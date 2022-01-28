@@ -3,6 +3,72 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.3.1] - 2022-01-31
+### Added
+- Add more advanced migration tests ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17393))
+- Add github workflow to build Docker images ([unasuke](https://github.com/mastodon/mastodon/pull/16973), [Gargron](https://github.com/mastodon/mastodon/pull/16980), [Gargron](https://github.com/mastodon/mastodon/pull/17000))
+
+### Fixed
+- Update some dependencies that were broken or unavailable
+- Fix some old migrations failing when skipping releases ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17394))
+- Fix migrations script failing in certain edge cases ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17398))
+- Fix media redownload worker retrying on unexpected response codes ([Gargron](https://github.com/tootsuite/mastodon/pull/16111))
+- Fix thread resolve worker retrying when status no longer exists ([Gargron](https://github.com/tootsuite/mastodon/pull/16109))
+- Fix n+1 queries when rendering statuses in REST API ([abcang](https://github.com/tootsuite/mastodon/pull/15641))
+- Fix remote reporters not receiving suspend/unsuspend activities ([Gargron](https://github.com/tootsuite/mastodon/pull/16050))
+- Fix understanding (not fully qualified) `as:Public` and `Public` ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15948))
+- Fix actor update not being distributed on profile picture deletion ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15461))
+- Fix processing of incoming Delete activities ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16084))
+- Fix processing of incoming Block activities ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15546))
+- Fix processing of incoming Update activities of unknown accounts ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15514))
+- Fix URIs of repeat follow requests not being recorded ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15662))
+- Fix error on requests with no `Digest` header ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15782))
+- Fix activity object not requiring signature in secure mode ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15592))
+- Fix database serialization failure returning HTTP 500 ([Gargron](https://github.com/tootsuite/mastodon/pull/16101))
+- Fix media processing getting stuck on too much stdin/stderr ([Gargron](https://github.com/tootsuite/mastodon/pull/16136))
+- Fix `tootctl maintenance fix-duplicates` failures ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15923), [ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15515))
+- Fix blocking someone not clearing up list feeds ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16205))
+- Fix edge case where follow limit interferes with accepting a follow ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/16098))
+- Fix reports of already suspended accounts being recorded ([Gargron](https://github.com/tootsuite/mastodon/pull/16047))
+- Fix sign-up restrictions based on IP addresses not being enforced ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15607))
+- Fix race conditions on account migration creation ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15597))
+- Fix not being able to change world filter expiration back to “Never” ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15858))
+- Fix error when muting users with `duration` in REST API ([Tak](https://github.com/tootsuite/mastodon/pull/15516))
+- Fix wrong URL to custom CSS when `CDN_HOST` is used ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15927))
+- Fix `tootctl accounts unfollow` ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15639))
+- Fix `tootctl emoji import` wasting time on MacOS shadow files ([cortices](https://github.com/tootsuite/mastodon/pull/15430))
+- Fix `tootctl emoji import` not treating shortcodes as case-insensitive ([angristan](https://github.com/tootsuite/mastodon/pull/15738))
+- Fix some issues with SAML account creation ([Gargron](https://github.com/tootsuite/mastodon/pull/15222), [kaiyou](https://github.com/tootsuite/mastodon/pull/15511
+- Fix instance actor not being automatically created if it wasn't seeded properly ([ClearlyClaire](https://github.com/tootsuite/mastodon/pull/15693))))
+- Fix app name, website and redirect URIs not having a maximum length ([Gargron](https://github.com/tootsuite/mastodon/pull/16042))
+- Fix some ActivityPub identifiers in server actor outbox ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16343))
+- Fix custom CSS path setting cookies and being uncacheable due to it ([tribela](https://github.com/mastodon/mastodon/pull/16314))
+- Fix some redis locks auto-releasing too fast ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16276), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/16291))
+- Fix migration script not being able to run if it fails midway ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16312))
+- Fix PWA not being usable from alternate domains ([HolgerHuo](https://github.com/mastodon/mastodon/pull/16714))
+- Fix scheduling a status decreasing status count ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16791))
+- Fix followers synchronization mechanism not working when URI has empty path ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16744))
+- Fix serialization of counts in REST API when user hides their network ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16418))
+- Fix `tootctl self-destruct` not sending delete activities for recently-suspended accounts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16688))
+- Fix `mastodon:setup` generated env-file syntax ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16896), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/16976))
+- Fix link previews being incorrectly generated from earlier links ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16885))
+- Fix wrong `to`/`cc` values for remote groups in ActivityPub ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16700))
+- Fix mentions with non-ascii TLDs not being processed ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16689))
+- Fix authentication failures halfway through a sign-in attempt ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16607), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/16792))
+- Fix suspended accounts statuses being merged back into timelines ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16628))
+- Fix crash when encountering invalid account fields ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16598))
+- Fix invalid blurhash handling for remote activities ([noellabo](https://github.com/mastodon/mastodon/pull/16583))
+- Fix newlines being added to accout notes when an account moves ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16415), [noellabo](https://github.com/mastodon/mastodon/pull/16576))
+- Fix logging out from one browser logging out all other sessions ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16943))
+- Fix confusing error when WebFinger request returns empty document ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16986))
+- Fix upload of remote media with OpenStack Swift sometimes failing ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16998))
+- Fix Docker build ([tribela](https://github.com/mastodon/mastodon/pull/17188))
+
+### Security
+- Fix user notes not having a length limit ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16942))
+- Fix revoking a specific session not working ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16943))
+- Fix filtering DMs from non-followed users ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17042))
+
 ## [3.3.0] - 2020-12-27
 ### Added
 
