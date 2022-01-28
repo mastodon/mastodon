@@ -37,8 +37,11 @@ RSpec.describe Auth::SessionsController, type: :controller do
     end
 
     context 'with a suspended user' do
+      before do
+        user.account.suspend!
+      end
+
       it 'redirects to home after sign out' do
-        Fabricate(:account, user: user, suspended: true)
         sign_in(user, scope: :user)
         delete :destroy
 
@@ -78,8 +81,8 @@ RSpec.describe Auth::SessionsController, type: :controller do
       end
 
       context 'using a valid email and existing user' do
-        let(:user) do
-          account = Fabricate.build(:account, username: 'pam_user1')
+        let!(:user) do
+          account = Fabricate.build(:account, username: 'pam_user1', user: nil)
           account.save!(validate: false)
           user = Fabricate(:user, email: 'pam@example.com', password: nil, account: account, external: true)
           user

@@ -61,7 +61,7 @@ class FanOutOnWriteService < BaseService
   def notify_mentioned_accounts!
     @status.active_mentions.where.not(id: @options[:silenced_account_ids] || []).joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
       LocalNotificationWorker.push_bulk(mentions) do |mention|
-        [mention.account_id, mention.id, 'Mention', :mention]
+        [mention.account_id, mention.id, 'Mention', 'mention']
       end
     end
   end
@@ -69,7 +69,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_all_followers!
     @account.followers_for_local_distribution.select(:id).reorder(nil).find_in_batches do |followers|
       FeedInsertWorker.push_bulk(followers) do |follower|
-        [@status.id, follower.id, :home, update: update?]
+        [@status.id, follower.id, 'home', { 'update' => update? }]
       end
     end
   end
@@ -77,7 +77,7 @@ class FanOutOnWriteService < BaseService
   def deliver_to_lists!
     @account.lists_for_local_distribution.select(:id).reorder(nil).find_in_batches do |lists|
       FeedInsertWorker.push_bulk(lists) do |list|
-        [@status.id, list.id, :list, update: update?]
+        [@status.id, list.id, 'list', { 'update' => update? }]
       end
     end
   end
@@ -85,14 +85,14 @@ class FanOutOnWriteService < BaseService
   def deliver_to_mentioned_followers!
     @status.mentions.joins(:account).merge(@account.followers_for_local_distribution).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
       FeedInsertWorker.push_bulk(mentions) do |mention|
-        [@status.id, mention.account_id, :home, update: update?]
+        [@status.id, mention.account_id, 'home', { 'update' => update? }]
       end
     end
   end
 
   def deliver_to_direct_timelines!
     FeedInsertWorker.push_bulk(@status.mentions.includes(:account).map(&:account).select { |mentioned_account| mentioned_account.local? }) do |account|
-      [@status.id, account.id, :direct, update: update?]
+      [@status.id, account.id, 'direct', { 'update' => update? }]
     end
   end
 
@@ -127,7 +127,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def update?
-    @is_update
+    @options[:update]
   end
 
   def broadcastable?

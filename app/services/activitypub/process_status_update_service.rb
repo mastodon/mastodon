@@ -10,6 +10,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status                    = status
     @account                   = status.account
     @media_attachments_changed = false
+    @poll_changed              = false
 
     # Only native types can be updated at the moment
     return if !expected_type? || already_updated_more_recently?
@@ -27,6 +28,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         end
 
         queue_poll_notifications!
+
+        next unless significant_changes?
+
         reset_preview_card!
         broadcast_updates!
       else
@@ -92,7 +96,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
       if poll_parser.significantly_changes?(poll)
-        @media_attachments_changed = true
+        @poll_changed = true
         poll.votes.delete_all unless poll.new_record?
       end
 
@@ -107,7 +111,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       @status.poll_id = poll.id
     elsif previous_poll.present?
       previous_poll.destroy!
-      @media_attachments_changed = true
+      @poll_changed = true
       @status.poll_id = nil
     end
   end
@@ -117,7 +121,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status.spoiler_text = @status_parser.spoiler_text || ''
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language || detected_language
-    @status.edited_at    = @status_parser.edited_at || Time.now.utc
+    @status.edited_at    = @status_parser.edited_at || Time.now.utc if significant_changes?
 
     @status.save!
   end
@@ -227,12 +231,12 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def create_edit!
-    return unless @status.text_previously_changed? || @status.spoiler_text_previously_changed? || @media_attachments_changed
+    return unless significant_changes?
 
     @status_edit = @status.edits.create(
       text: @status.text,
       spoiler_text: @status.spoiler_text,
-      media_attachments_changed: @media_attachments_changed,
+      media_attachments_changed: @media_attachments_changed || @poll_changed,
       account_id: @account.id,
       created_at: @status.edited_at
     )
@@ -248,17 +252,21 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     mime_type.present? && !MediaAttachment.supported_mime_types.include?(mime_type)
   end
 
+  def significant_changes?
+    @status.text_changed? || @status.text_previously_changed? || @status.spoiler_text_changed? || @status.spoiler_text_previously_changed? || @media_attachments_changed || @poll_changed
+  end
+
   def already_updated_more_recently?
     @status.edited_at.present? && @status_parser.edited_at.present? && @status.edited_at > @status_parser.edited_at
   end
 
   def reset_preview_card!
-    @status.preview_cards.clear if @status.text_previously_changed? || @status.spoiler_text.present?
-    LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id) if @status.spoiler_text.blank?
+    @status.preview_cards.clear
+    LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
   end
 
   def broadcast_updates!
-    ::DistributionWorker.perform_async(@status.id, update: true)
+    ::DistributionWorker.perform_async(@status.id, { 'update' => true })
   end
 
   def queue_poll_notifications!

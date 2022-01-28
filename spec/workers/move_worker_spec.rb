@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 describe MoveWorker do
-  let(:local_follower)   { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
-  let(:blocking_account) { Fabricate(:user, email: 'bar@example.com', account: Fabricate(:account, username: 'bar')).account }
-  let(:muting_account)   { Fabricate(:user, email: 'foo@example.com', account: Fabricate(:account, username: 'foo')).account }
+  let(:local_follower)   { Fabricate(:account) }
+  let(:blocking_account) { Fabricate(:account) }
+  let(:muting_account)   { Fabricate(:account) }
   let(:source_account)   { Fabricate(:account, protocol: :activitypub, domain: 'example.com') }
   let(:target_account)   { Fabricate(:account, protocol: :activitypub, domain: 'example.com') }
   let(:local_user)       { Fabricate(:user) }
@@ -88,7 +88,7 @@ describe MoveWorker do
   end
 
   context 'target account is local' do
-    let(:target_account) { Fabricate(:user, email: 'alice@example.com', account: Fabricate(:account, username: 'alice')).account }
+    let(:target_account) { Fabricate(:account) }
 
     describe 'perform' do
       it 'calls UnfollowFollowWorker' do
@@ -102,8 +102,8 @@ describe MoveWorker do
   end
 
   context 'both target and source accounts are local' do
-    let(:target_account) { Fabricate(:user, email: 'alice@example.com', account: Fabricate(:account, username: 'alice')).account }
-    let(:source_account) { Fabricate(:user, email: 'alice_@example.com', account: Fabricate(:account, username: 'alice_')).account }
+    let(:target_account) { Fabricate(:account) }
+    let(:source_account) { Fabricate(:account) }
 
     describe 'perform' do
       it 'calls makes local followers follow the target account' do
@@ -115,7 +115,7 @@ describe MoveWorker do
       include_examples 'block and mute handling'
 
       it 'does not fail when a local user is already following both accounts' do
-        double_follower = Fabricate(:user, email: 'eve@example.com', account: Fabricate(:account, username: 'eve')).account
+        double_follower = Fabricate(:account)
         double_follower.follow!(source_account)
         double_follower.follow!(target_account)
         subject.perform(source_account.id, target_account.id)

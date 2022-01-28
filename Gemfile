@@ -13,7 +13,7 @@ gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.3'
 
 gem 'hamlit-rails', '~> 0.2'
-gem 'pg', '~> 1.2'
+gem 'pg', '~> 1.3'
 gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
@@ -26,12 +26,12 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.10.1', require: false
+gem 'bootsnap', '~> 1.10.2', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'iso-639'
 gem 'chewy', '~> 7.2'
-gem 'cld3', '~> 3.4.3'
+gem 'cld3', '~> 3.4.4'
 gem 'devise', '~> 4.8'
 gem 'devise-two-factor', '~> 4.0'
 
@@ -79,7 +79,7 @@ gem 'rqrcode', '~> 2.1'
 gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 6.0'
 gem 'scenic', '~> 1.5'
-gem 'sidekiq', '~> 6.3'
+gem 'sidekiq', '~> 6.4'
 gem 'sidekiq-scheduler', '~> 3.1'
 gem 'sidekiq-unique-jobs', '~> 7.1'
 gem 'sidekiq-bulk', '~>0.2.0'
@@ -96,13 +96,13 @@ gem 'webpush', '~> 0.3'
 gem 'webauthn', '~> 3.0.0.alpha1'
 
 gem 'json-ld'
-gem 'json-ld-preloaded', '~> 3.1'
-gem 'rdf-normalize', '~> 0.4'
+gem 'json-ld-preloaded', '~> 3.2'
+gem 'rdf-normalize', '~> 0.5'
 
 gem 'redcarpet', '~> 3.5'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.23'
+  gem 'fabrication', '~> 2.24'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 0.9', require: false
   gem 'pry-byebug', '~> 3.9'
@@ -135,7 +135,7 @@ group :development do
   gem 'letter_opener', '~> 1.7'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.24', require: false
+  gem 'rubocop', '~> 1.25', require: false
   gem 'rubocop-rails', '~> 2.13', require: false
   gem 'brakeman', '~> 5.2', require: false
   gem 'bundler-audit', '~> 0.9', require: false
