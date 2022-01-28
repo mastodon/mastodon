@@ -13,7 +13,7 @@ gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.3'
 
 gem 'hamlit-rails', '~> 0.2'
-gem 'pg', '~> 1.2'
+gem 'pg', '~> 1.3'
 gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
@@ -97,7 +97,7 @@ gem 'webauthn', '~> 3.0.0.alpha1'
 
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
-gem 'rdf-normalize', '~> 0.4'
+gem 'rdf-normalize', '~> 0.5'
 
 gem 'redcarpet', '~> 3.5'
 

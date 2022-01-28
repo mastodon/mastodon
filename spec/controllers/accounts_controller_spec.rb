@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe AccountsController, type: :controller do
   render_views
 
-  let(:account) { Fabricate(:user).account }
+  let(:account) { Fabricate(:account) }
 
   shared_examples 'cachable response' do
     it 'does not set cookies' do

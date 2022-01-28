@@ -17,7 +17,7 @@ describe Settings::DeletesController do
       end
 
       context 'when suspended' do
-        let(:user) { Fabricate(:user, account_attributes: { username: 'alice', suspended_at: Time.now.utc }) }
+        let(:user) { Fabricate(:user, account_attributes: { suspended_at: Time.now.utc }) }
 
         it 'returns http forbidden' do
           get :show
@@ -64,7 +64,7 @@ describe Settings::DeletesController do
         end
 
         context 'when suspended' do
-          let(:user) { Fabricate(:user, account_attributes: { username: 'alice', suspended_at: Time.now.utc }) }
+          let(:user) { Fabricate(:user, account_attributes: { suspended_at: Time.now.utc }) }
 
           it 'returns http forbidden' do
             expect(response).to have_http_status(403)

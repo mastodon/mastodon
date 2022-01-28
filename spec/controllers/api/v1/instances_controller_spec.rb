@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::InstancesController, type: :controller do
   render_views
 
-  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user)  { Fabricate(:user) }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id) }
 
   before do
