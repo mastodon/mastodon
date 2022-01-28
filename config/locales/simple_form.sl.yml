@@ -113,6 +113,7 @@ sl:
         setting_use_blurhash: Pokaži barvite gradiente za skrite medije
         setting_use_pending_items: Počasen način
         severity: Strogost
+        sign_in_token_attempt: Varnostna koda
         type: Vrsta uvoza
         username: Uporabniško ime
         username_or_email: Uporabniško ime ali E-pošta
@@ -123,8 +124,16 @@ sl:
         must_be_follower: Blokiraj obvestila nesledilcev
         must_be_following: Blokiraj obvestila oseb, ki jim ne sledite
         must_be_following_dm: Blokiraj neposredna sporočila oseb, ki jim ne sledite
+      invite:
+        comment: Komentar
       invite_request:
         text: Zakaj se želite pridružiti?
+      ip_block:
+        comment: Komentar
+        ip: IP
+        severities:
+          no_access: Blokiraj dostop
+        severity: Pravilo
       notification_emails:
         digest: Pošlji izvlečke e-pošt
         favourite: Pošlji e-pošto, ko nekdo doda vaše stanje med priljubljene
@@ -134,8 +143,19 @@ sl:
         pending_account: Pošlji e-pošto, ko je potreben pregled novega računa
         reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
         report: Pošlji e-pošto, ko je oddana nova prijava
+      rule:
+        text: Pravilo
+      tag:
+        listable: Dovoli, da se ta ključnik pojavi v iskanjih in predlogih
+        name: Ključnik
+        trendable: Dovoli, da se ta ključnik pojavi med trendi
+        usable: Dovoli, da objave uporabljajo ta ključnik
     'no': 'Ne'
     recommended: Priporočeno
     required:
+      mark: "*"
       text: zahtevano
+    title:
+      sessions:
+        webauthn: Za prijavo uporabite eno od svojih varnostnih kod
     'yes': 'Da'
