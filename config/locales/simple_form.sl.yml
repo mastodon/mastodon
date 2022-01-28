@@ -44,6 +44,9 @@ sl:
         data: Izvožena CSV datoteka iz drugega Mastodon vozlišča
       invite_request:
         text: To nam bo pomagalo pregledati vašo prijavo
+      ip_block:
+        severities:
+          no_access: Blokiraj dostop do vseh virov
       sessions:
         otp: 'Vnesite dvomestno kodo, ki je ustvarjena z aplikacijo na telefonu, ali uporabite eno od vaših obnovitvenih kod:'
       user:
@@ -53,8 +56,13 @@ sl:
         fields:
           name: Oznaka
           value: Vsebina
+      account_alias:
+        acct: Ročica starega računa
+      account_migration:
+        acct: Ročica novega računa
       account_warning_preset:
         text: Prednastavljeno besedilo
+        title: Naslov
       admin_account_action:
         send_email_notification: Obvesti uporabnika po e-pošti
         text: Opozorilo po meri
@@ -62,9 +70,15 @@ sl:
         types:
           disable: Onemogoči
           none: Ne naredi ničesar
+          sensitive: Občutljivo
           silence: Utišaj
           suspend: Suspendiraj in nepovratno izbriši podatke računa
         warning_preset_id: Uporabi prednastavljeno opozorilo
+      announcement:
+        all_day: Celodnevni dogodek
+        ends_at: Konec dogodka
+        starts_at: Začetek dogodka
+        text: Objava
       defaults:
         autofollow: Povabite, da sledi vašemu računu
         avatar: Podoba
@@ -109,6 +123,7 @@ sl:
         setting_show_application: Razkrij aplikacijo za pošiljanje tutov
         setting_system_font_ui: Uporabi privzeto pisavo sistema
         setting_theme: Tema strani
+        setting_trends: Pokaži današnje trende
         setting_unfollow_modal: Pokaži potrditveno okno, preden nekoga prenehamo slediti
         setting_use_blurhash: Pokaži barvite gradiente za skrite medije
         setting_use_pending_items: Počasen način
@@ -133,6 +148,7 @@ sl:
         ip: IP
         severities:
           no_access: Blokiraj dostop
+          sign_up_requires_approval: Omeji število prijav
         severity: Pravilo
       notification_emails:
         digest: Pošlji izvlečke e-pošt
@@ -143,6 +159,7 @@ sl:
         pending_account: Pošlji e-pošto, ko je potreben pregled novega računa
         reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
         report: Pošlji e-pošto, ko je oddana nova prijava
+        trending_tag: Nov trend zahteva odobritev
       rule:
         text: Pravilo
       tag:
