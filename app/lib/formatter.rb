@@ -9,7 +9,7 @@ class Formatter
   include ActionView::Helpers::TextHelper
 
   def format(status, **options)
-    if status.reblog?
+    if status.respond_to?(:reblog?) && status.reblog?
       prepend_reblog = status.reblog.account.acct
       status         = status.proper
     else
@@ -30,7 +30,7 @@ class Formatter
       return html.html_safe # rubocop:disable Rails/OutputSafety
     end
 
-    linkable_accounts = status.active_mentions.map(&:account)
+    linkable_accounts = status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []
     linkable_accounts << status.account
 
     html = raw_content

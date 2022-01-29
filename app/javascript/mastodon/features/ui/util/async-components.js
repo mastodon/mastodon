@@ -157,3 +157,7 @@ export function Directory () {
 export function FollowRecommendations () {
   return import(/* webpackChunkName: "features/follow_recommendations" */'../../follow_recommendations');
 }
+
+export function CompareHistoryModal () {
+  return import(/*webpackChunkName: "modals/compare_history_modal" */'../components/compare_history_modal');
+}
