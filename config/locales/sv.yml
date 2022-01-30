@@ -125,6 +125,7 @@ sv:
       email_status: E-poststatus
       enable: Aktivera
       enabled: Aktiverad
+      enabled_msg: Uppfrysningen av %{username}'s konto lyckades
       followers: Följare
       follows: Följs
       header: Rubrik
@@ -141,6 +142,8 @@ sv:
       login_status: Inloggningsstatus
       media_attachments: Media bifogade filer
       memorialize: Förvandla till ett memoriam
+      memorialized: Memorialiserad
+      memorialized_msg: Omvandlingen av %{username} till ett minneskonto lyckades
       moderation:
         active: Aktiv
         all: Alla
@@ -191,6 +194,7 @@ sv:
       silence: Tystnad
       silenced: Tystad / Tystat
       statuses: Status
+      strikes: Föregående varningar
       subscribe: Prenumerera
       suspended: Avstängd / Avstängt
       title: Konton
@@ -242,6 +246,7 @@ sv:
         sensitive_account: Markera mediet i ditt konto som känsligt
         silence_account: Tysta konto
         suspend_account: Stäng av konto
+        unassigned_report: Återkalla rapport
         unblock_email_account: Avblockera e-postadress
         unsuspend_account: Återaktivera konto
         update_announcement: Uppdatera meddelande
@@ -252,6 +257,7 @@ sv:
         create_account_warning_html: "%{name} skickade en varning till %{target}"
         create_announcement_html: "%{name} skapade tillkännagivande %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
+        create_domain_block_html: "%{name} blockerade domänen %{target}"
         destroy_custom_emoji_html: "%{name} förstörde emoji %{target}"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
         destroy_email_domain_block_html: "%{name} avblockerade e-postdomän %{target}"
