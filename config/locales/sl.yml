@@ -186,6 +186,8 @@ sl:
       web: Splet
       whitelisted: Na belem seznamu
     action_logs:
+      action_types:
+        enable_user: Omogoči uporabnika
       deleted_status: "(izbrisano stanje)"
       title: Dnevnik revizije
     announcements:
@@ -288,6 +290,10 @@ sl:
       back_to_limited: Omejeno
       back_to_warning: Opozorilo
       by_domain: Domena
+      delivery:
+        all: Vse
+        unavailable: Ni na voljo
+        warning: Opozorilo
       delivery_available: Na voljo je dostava
       known_accounts:
         one: "%{count} znan račun"
@@ -444,14 +450,22 @@ sl:
         desc_html: Prikaži javno časovnico na ciljni strani
         title: Predogled časovnice
       title: Nastavitve strani
+      trends:
+        title: Trendi
     statuses:
       back_to_account: Nazaj na stran računa
+      deleted: Izbrisano
       media:
         title: Mediji
       no_status_selected: Nobeno stanje ni bilo spremenjeno, ker ni bilo izbrano nobeno
       title: Stanja računa
       with_media: Z mediji
     title: Upravljanje
+    trends:
+      allow: Dovoli
+      approved: Odobren
+      disallow: Ne dovoli
+      title: Trendi
     warning_presets:
       add_new: Dodaj novo
       delete: Izbriši
@@ -470,6 +484,10 @@ sl:
     advanced_web_interface_hint: 'Če želite uporabiti celotno širino zaslona, vam napredni spletni vmesnik omogoča, da si nastavite več različnih stolpcev in da si hkrati ogledate toliko informacij, kot želite: domačo stran, obvestila, združeno časovnico, poljubno število seznamov in ključnikov.'
     animations_and_accessibility: Animacije in dostopnost
     confirmation_dialogs: Potrditvena okna
+    localization:
+      body: Mastodon prevajamo prostovoljci.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Vsakdo lahko prispeva.
     sensitive_content: Občutljiva vsebina
   application_mailer:
     notification_preferences: Spremenite e-poštne nastavitve
@@ -495,11 +513,15 @@ sl:
     didnt_get_confirmation: Niste prejeli navodil za potrditev?
     forgot_password: Ste pozabili svoje geslo?
     invalid_reset_password_token: Žeton za ponastavitev gesla je neveljaven ali je potekel. Zahtevajte novo.
+    log_in_with: Prijavi se s
     login: Prijava
     logout: Odjava
     migrate_account: Premakni se na drug račun
     migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
     or_log_in_with: Ali se prijavite z
+    providers:
+      cas: CAS
+      saml: SAML
     register: Vpis
     registration_closed: "%{instance} ne sprejema novih članov"
     resend_confirmation: Ponovno pošlji navodila za potrditev
@@ -515,6 +537,7 @@ sl:
       confirming: Čakanje na potrditev e-pošte.
       pending: Naše osebje preverja vašo prijavo. To lahko traja nekaj časa. Če bo vaša prijava odobrena, boste prejeli e-pošto.
     trouble_logging_in: Težave pri prijavi?
+    use_security_key: Uporabi varnostni ključ
   authorize_follow:
     already_following: Temu računu že sledite
     error: Na žalost je prišlo do napake pri iskanju oddaljenega računa
@@ -565,6 +588,7 @@ sl:
       request: Zahtevajte svoj arhiv
       size: Velikost
     blocks: Blokirate
+    bookmarks: Zaznamki
     domain_blocks: Bloki domene
     lists: Seznami
     mutes: Utišate
@@ -575,6 +599,7 @@ sl:
       limit: Ste že dodali največje število ključnikov
   filters:
     contexts:
+      account: Profili
       home: Domača časovnica
       notifications: Obvestila
       public: Javne časovnice
@@ -593,12 +618,16 @@ sl:
     developers: Razvijalci
     more: Več…
     resources: Viri
+    trending_now: Zdaj v trendu
   generic:
     all: Vse
     changes_saved_msg: Spremembe so uspešno shranjene!
     copy: Kopiraj
+    delete: Izbriši
+    none: Brez
     order_by: Razvrsti po
     save_changes: Shrani spremembe
+    today: danes
     validation_errors:
       one: Nekaj še ni čisto v redu! Spodaj si oglejte napako
       two: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napaki
@@ -616,6 +645,7 @@ sl:
     success: Vaši podatki so bili uspešno naloženi in bodo zdaj pravočasno obdelani
     types:
       blocking: Seznam blokiranih
+      bookmarks: Zaznamki
       domain_blocking: Seznam blokiranih domen
       following: Seznam uporabnikov, katerim sledite
       muting: Seznam utišanih
@@ -648,6 +678,10 @@ sl:
   lists:
     errors:
       limit: Dosegli ste največje število seznamov
+  login_activities:
+    authentication_methods:
+      password: geslo
+      webauthn: varnostni ključi
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti stanju, ki že vsebuje slike
@@ -751,16 +785,40 @@ sl:
     activity: Zadnja dejavnost
     browser: Brskalnik
     browsers:
+      alipay: Alipay
       blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Neznan brskalnik
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Brskalnik Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UC Browser
+      weibo: Weibo
     current_session: Trenutna seja
     description: "%{browser} na %{platform}"
     explanation: To so spletni brskalniki, ki so trenutno prijavljeni v vaš Mastodon račun.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
       blackberry: BlackBerry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: neznana platforma
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Prekliči
     revoke_success: Seja je bila uspešno preklicana
     title: Seje
@@ -783,6 +841,7 @@ sl:
     profile: Profil
     relationships: Sledenja in sledilci
     two_factor_authentication: Dvofaktorsko overjanje
+    webauthn_authentication: Varnostni ključi
   statuses:
     attached:
       description: 'Priloženo: %{attached}'
@@ -803,6 +862,7 @@ sl:
       two: 'vsebuje nedovoljena ključnika: %{tags}'
       few: 'vsebuje nedovoljene ključnike: %{tags}'
       other: 'vsebuje nedovoljenih ključnikov: %{tags}'
+    edited_at: Urejeno %{date}
     language_detection: Samodejno zaznaj jezik
     open_in_web: Odpri na spletu
     over_character_limit: omejitev %{max} znakov je presežena
@@ -826,6 +886,16 @@ sl:
       public_long: Vsi lahko vidijo
       unlisted: Ni prikazano
       unlisted_long: Vsi lahko vidijo, vendar ni objavljeno na javnih časovnicah
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 tedna
+      '15778476': 6 mesecev
+      '2629746': 1 mesec
+      '31556952': 1 leto
+      '5259492': 2 meseca
+      '63113904': 2 leti
+      '7889238': 3 mesece
+    min_age_label: Starostna meja
   stream_entries:
     pinned: Pripet trob
     reblogged: spodbujen
@@ -918,7 +988,9 @@ sl:
     default: Mastodon (Temna)
     mastodon-light: Mastodon (Svetla)
   two_factor_authentication:
+    add: Dodaj
     disable: Onemogoči
+    edit: Uredi
     enabled: Dvofaktorsko preverjanje pristnosti je omogočeno
     enabled_success: Dvofaktorsko preverjanje pristnosti je uspešno omogočeno
     generate_recovery_codes: Ustvari kode za obnovitev
@@ -926,12 +998,16 @@ sl:
     recovery_codes: Varnostna kopija obnovitvenih kod
     recovery_codes_regenerated: Obnovitvene kode so bile uspešno regenerirane
     recovery_instructions_html: Če kdaj izgubite dostop do telefona, lahko uporabite eno od spodnjih obnovitvenih kod, da ponovno pridobite dostop do svojega računa. <strong>Shranite obnovitvene kode</strong>. Lahko jih natisnete in shranite z drugimi pomembnimi dokumenti.
+    webauthn: Varnostni ključi
   user_mailer:
     backup_ready:
       explanation: Zahtevali ste popolno varnostno kopijo računa Mastodon. Zdaj je pripravljen za prenos!
       subject: Vaš arhiv je pripravljen za prenos
       title: Prevzem arhiva
+    sign_in_token:
+      title: Poskus prijave
     warning:
+      reason: 'Razlog:'
       review_server_policies: Preglejte pravilnike strežnika
       subject:
         disable: Vaš račun %{acct} je zamrznjen
@@ -941,6 +1017,7 @@ sl:
       title:
         disable: Račun je zamrznjen
         none: Opozorilo
+        sensitive: Mediji so skriti
         silence: Račun je omejen
         suspend: Račun je suspendiran
     welcome:
@@ -963,6 +1040,7 @@ sl:
   users:
     follow_limit_reached: Ne morete spremljati več kot %{limit} ljudi
     invalid_otp_token: Neveljavna dvofaktorska koda
+    invalid_sign_in_token: Neveljavna varnostna koda
     otp_lost_help_html: Če ste izgubili dostop do obeh, stopite v stik z %{email}
     seamless_external_login: Prijavljeni ste prek zunanje storitve, tako da nastavitve gesla in e-pošte niso na voljo.
     signed_in_as: 'Vpisani kot:'
@@ -970,4 +1048,8 @@ sl:
     explanation_html: '<strong>V metapodatkih svojega profila se lahko potrdite kot lastnik povezav</strong>. Za to mora povezano spletno mesto vsebovati povezavo do vašega Mastodon profila. Povezava <strong>mora</strong> imeti atribut <code>el="me"</code>. Vsebina besedila povezave ni pomembna. Tukaj je primer:'
     verification: Potrditev
   webauthn_credentials:
+    add: Dodaj nov varnostni ključ
     delete: Izbriši
+    delete_confirmation: Ali ste prepričani, da želite izbrisati ta varnostni ključ?
+    invalid_credential: Neveljaven varnostni ključ
+    not_supported: Ta brskalnik ne podpira varnostnih ključev
