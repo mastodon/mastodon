@@ -23,6 +23,7 @@ sl:
       Uporablja se za namene federacije in se ne blokira, če ne želite blokirati celotne instance. V tem primeru blokirajte domeno.
     learn_more: Nauči se več
     privacy_policy: Pravilnik o zasebnosti
+    rules: Pravila strežnika
     see_whats_happening: Poglejte, kaj se dogaja
     server_stats: 'Statistika strežnika:'
     source_code: Izvorna koda
@@ -37,6 +38,7 @@ sl:
     unavailable_content_description:
       domain: Strežnik
       reason: Razlog
+      silenced_title: Omejeni strežniki
     user_count_after:
       one: uporabnik
       two: uporabnika
@@ -101,6 +103,8 @@ sl:
       confirm: Potrdi
       confirmed: Potrjeno
       confirming: Potrjujem
+      custom: Po meri
+      delete: Izbriši podatke
       deleted: Izbrisano
       demote: Degradiraj
       disable: Onemogoči
@@ -117,6 +121,7 @@ sl:
       follows: Sledi
       header: Glava
       inbox_url: URL mape "Prejeto"
+      invite_request_text: Razlogi za pridružitev
       invited_by: Povabljen od
       joined: Pridružil
       location:
@@ -182,11 +187,21 @@ sl:
       undo_suspension: Razveljavi suspendiranje
       unsubscribe: Odjavi se od naročnine
       username: Uporabniško ime
+      view_domain: Pokaži povzetek za domeno
       warn: Opozori
       web: Splet
       whitelisted: Na belem seznamu
     action_logs:
       action_types:
+        approve_user: Odobri uporabnika
+        assigned_to_self_report: Dodeli poročilo
+        change_email_user: Spremeni e-poštni naslov uporabnika
+        confirm_user: Potrdi uporabnika
+        create_account_warning: Ustvari opozorilo
+        create_announcement: Ustvari obvestilo
+        destroy_ip_block: Izbriši pravilo IP
+        destroy_status: Izbriši objavo
+        disable_user: Onemogoči uporabnika
         enable_user: Omogoči uporabnika
       deleted_status: "(izbrisano stanje)"
       title: Dnevnik revizije
