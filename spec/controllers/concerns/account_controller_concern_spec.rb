@@ -11,8 +11,31 @@ describe ApplicationController, type: :controller do
     end
   end
 
+  around do |example|
+    registrations_mode = Setting.registrations_mode
+    example.run
+    Setting.registrations_mode = registrations_mode
+  end
+
   before do
     routes.draw { get 'success' => 'anonymous#success' }
+  end
+
+  context 'when account is unconfirmed' do
+    it 'returns http not found' do
+      account = Fabricate(:user, confirmed_at: nil).account
+      get 'success', params: { account_username: account.username }
+      expect(response).to have_http_status(404)
+    end
+  end
+
+  context 'when account is not approved' do
+    it 'returns http not found' do
+      Setting.registrations_mode = 'approved'
+      account = Fabricate(:user, approved: false).account
+      get 'success', params: { account_username: account.username }
+      expect(response).to have_http_status(404)
+    end
   end
 
   context 'when account is suspended' do
