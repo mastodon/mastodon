@@ -167,8 +167,45 @@ jobs:
           name: Create database
           command: ./bin/rails db:create
       - run:
-          name: Run migrations
+          command: ./bin/rails db:migrate VERSION=20171010025614
+          name: Run migrations up to v2.0.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2
+          name: Populate database with test data
+      - run:
           command: ./bin/rails db:migrate
+          name: Run all remaining migrations
+
+  test-two-step-migrations:
+    <<: *defaults
+    docker:
+      - image: circleci/ruby:2.7-buster-node
+        environment: *ruby_environment
+      - image: circleci/postgres:12.2
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_HOST_AUTH_METHOD: trust
+      - image: circleci/redis:5-alpine
+    steps:
+      - *attach_workspace
+      - *install_system_dependencies
+      - run:
+          command: ./bin/rails db:create
+          name: Create database
+      - run:
+          command: ./bin/rails db:migrate VERSION=20171010025614
+          name: Run migrations up to v2.0.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2
+          name: Populate database with test data
+      - run:
+          command: ./bin/rails db:migrate
+          name: Run all pre-deployment migrations
+          evironment:
+            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+      - run:
+          command: ./bin/rails db:migrate
+          name: Run all post-deployment remaining migrations
 
   test-ruby2.7:
     <<: *defaults
@@ -236,6 +273,9 @@ workflows:
           requires:
             - install-ruby2.7
       - test-migrations:
+          requires:
+            - install-ruby2.7
+      - test-two-step-migrations:
           requires:
             - install-ruby2.7
       - test-ruby2.7:
