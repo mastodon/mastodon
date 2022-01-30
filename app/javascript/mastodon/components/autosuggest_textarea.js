@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Textarea from 'react-textarea-autosize';
 import classNames from 'classnames';
+import DebounceInput from 'react-debounce-input';
 
 const textAtCursorMatchesToken = (str, caretPosition) => {
   let word;
@@ -201,8 +202,10 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
           <label>
             <span style={{ display: 'none' }}>{placeholder}</span>
 
-            <Textarea
-              ref={this.setTextarea}
+            <DebounceInput
+              element={Textarea}
+              debounceTimeout={300}
+              inputRef={this.setTextarea}
               className='autosuggest-textarea__textarea'
               disabled={disabled}
               placeholder={placeholder}
