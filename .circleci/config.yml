@@ -122,8 +122,42 @@ jobs:
           command: ./bin/rails db:create
           name: Create database
       - run:
+          command: ./bin/rails db:migrate VERSION=20171010025614
+          name: Run migrations up to v2.0.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2
+          name: Populate database with test data
+      - run:
           command: ./bin/rails db:migrate
-          name: Run migrations
+          name: Run all remaining migrations
+
+  test-two-step-migrations:
+    executor:
+      name: default
+      ruby-version: '3.0'
+    steps:
+      - checkout
+      - install-system-dependencies
+      - install-ruby-dependencies:
+          ruby-version: '3.0'
+      - wait-db
+      - run:
+          command: ./bin/rails db:create
+          name: Create database
+      - run:
+          command: ./bin/rails db:migrate VERSION=20171010025614
+          name: Run migrations up to v2.0.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2
+          name: Populate database with test data
+      - run:
+          command: ./bin/rails db:migrate
+          name: Run all pre-deployment migrations
+          evironment:
+            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+      - run:
+          command: ./bin/rails db:migrate
+          name: Run all post-deployment remaining migrations
 
 workflows:
   version: 2
@@ -140,6 +174,9 @@ workflows:
           requires:
             - build
       - test-migrations:
+          requires:
+            - build
+      - test-two-step-migrations:
           requires:
             - build
       - node/run:
