@@ -159,9 +159,14 @@ sl:
       role: Dovoljenja
       roles:
         admin: Skrbnik
+        moderator: Moderator
         staff: Osebje
         user: Uporabnik
       search: Iskanje
+      search_same_email_domain: Drugi uporabniki z isto domeno e-pošte
+      search_same_ip: Drugi uporabniki z istim IP
+      security_measures:
+        only_password: Samo geslo
       shared_inbox_url: URL mape "Prejeto v skupni rabi"
       show:
         created_reports: Narejene prijave
@@ -183,20 +188,32 @@ sl:
     action_logs:
       deleted_status: "(izbrisano stanje)"
       title: Dnevnik revizije
+    announcements:
+      new:
+        title: Novo obvestilo
+      publish: Objavi
+      published_msg: Obvestilo je bilo uspešno objavljeno!
+      title: Obvestila
+      unpublish: Umakni iz objave
     custom_emojis:
+      assign_category: Dodeli kategorijo
       by_domain: Domena
       copied_msg: Lokalna kopija emotikonov je bila uspešno ustvarjena
       copy: Kopiraj
       copy_failed_msg: Lokalne kopije emotikonov ni bilo mogoče ustvariti
+      create_new_category: Ustvari novo kategorijo
       created_msg: Emotikon je uspešno ustvarjen!
       delete: Izbriši
       destroyed_msg: Emotikon je uspešno uničen!
       disable: Onemogoči
+      disabled: Onemogočeno
       disabled_msg: Ta emotikon je uspešno onemogočen
       emoji: Emotikon
       enable: Omogoči
+      enabled: Omogočeno
       enabled_msg: Ta emotikon je uspešno omogočen
       image_hint: PNG do 50KB
+      list: Seznam
       listed: Navedeno
       new:
         title: Dodaj nove emotikone
@@ -204,6 +221,7 @@ sl:
       shortcode: Kratka koda
       shortcode_hint: Najmanj 2 znaka, samo alfanumerični znaki in podčrtaji
       title: Emotikoni po meri
+      uncategorized: Brez kategorije
       unlisted: Neuvrščeni
       update_failed_msg: Tega emotikona ni bilo mogoče posodobiti
       updated_msg: Emotikon je uspešno posodobljen!
@@ -263,7 +281,12 @@ sl:
         create: Dodaj domeno
         title: Nov vnos e-pošte na črni seznam
       title: Črni seznam e-pošt
+    follow_recommendations:
+      status: Stanje
     instances:
+      back_to_all: Vse
+      back_to_limited: Omejeno
+      back_to_warning: Opozorilo
       by_domain: Domena
       delivery_available: Na voljo je dostava
       known_accounts:
@@ -275,6 +298,7 @@ sl:
         all: Vse
         limited: Omejeno
         title: Moderiranje
+      public_comment: Javni komentar
       title: Federacija
       total_blocked_by_us: Blokirano iz naše strani
       total_followed_by_them: Oni ti sledijo
@@ -288,6 +312,16 @@ sl:
         available: Razpoložljivo
         expired: Potekel
       title: Povabila
+    ip_blocks:
+      add_new: Ustvari pravilo
+      delete: Izbriši
+      expires_in:
+        '1209600': 2 tedna
+        '15778476': 6 mesecev
+        '2629746': 1 mesec
+        '31556952': 1 leto
+        '86400': 1 dan
+        '94670856': 3 leta
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
@@ -311,6 +345,7 @@ sl:
       are_you_sure: Ali ste prepričani?
       assign_to_self: Dodeli meni
       assigned: Dodeljen moderator
+      category: Kategorija
       comment:
         none: Brez
       created_at: Prijavljeno
@@ -322,6 +357,7 @@ sl:
         create_and_unresolve: Ponovo odpri z opombo
         delete: Izbriši
         placeholder: Opišite dejanja, ki ste jih izvedli, ali katere koli druge posodobitve...
+        title: Zapiski
       reopen: Ponovno odpri prijavo
       report: 'Prijavi #%{id}'
       reported_account: Prijavljeni račun
@@ -333,6 +369,11 @@ sl:
       unassign: Odstopljeni
       unresolved: Nerešeni
       updated_at: Posodobljeni
+      view_profile: Pokaži profil
+    rules:
+      add_new: Dodaj pravilo
+      delete: Izbriši
+      edit: Uredi pravilo
     settings:
       activity_api_enabled:
         desc_html: Številke lokalno objavljenih stanj, aktivnih uporabnikov in novih registracij na tedenskih seznamih
@@ -928,3 +969,5 @@ sl:
   verification:
     explanation_html: '<strong>V metapodatkih svojega profila se lahko potrdite kot lastnik povezav</strong>. Za to mora povezano spletno mesto vsebovati povezavo do vašega Mastodon profila. Povezava <strong>mora</strong> imeti atribut <code>el="me"</code>. Vsebina besedila povezave ni pomembna. Tukaj je primer:'
     verification: Potrditev
+  webauthn_credentials:
+    delete: Izbriši
