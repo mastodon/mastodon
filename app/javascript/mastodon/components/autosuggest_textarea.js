@@ -204,6 +204,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
 
             <DebounceInput
               element={Textarea}
+              debounceTimeout={1}
               inputRef={this.setTextarea}
               className='autosuggest-textarea__textarea'
               disabled={disabled}
