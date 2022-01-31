@@ -34,7 +34,6 @@ export const NOTIFICATIONS_LOAD_PENDING = 'NOTIFICATIONS_LOAD_PENDING';
 export const NOTIFICATIONS_MOUNT   = 'NOTIFICATIONS_MOUNT';
 export const NOTIFICATIONS_UNMOUNT = 'NOTIFICATIONS_UNMOUNT';
 
-
 export const NOTIFICATIONS_MARK_AS_READ = 'NOTIFICATIONS_MARK_AS_READ';
 
 export const NOTIFICATIONS_SET_BROWSER_SUPPORT    = 'NOTIFICATIONS_SET_BROWSER_SUPPORT';
@@ -124,7 +123,17 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
 const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
 
 const excludeTypesFromFilter = filter => {
-  const allTypes = ImmutableList(['follow', 'follow_request', 'favourite', 'reblog', 'mention', 'poll']);
+  const allTypes = ImmutableList([
+    'follow',
+    'follow_request',
+    'favourite',
+    'reblog',
+    'mention',
+    'poll',
+    'status',
+    'update',
+  ]);
+
   return allTypes.filterNot(item => item === filter).toJS();
 };
 
