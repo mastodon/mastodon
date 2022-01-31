@@ -3,6 +3,35 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.4.5] - 2022-01-31
+### Added
+- Add more advanced migration tests ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17393))
+- Add github workflow to build Docker images ([unasuke](https://github.com/mastodon/mastodon/pull/16973), [Gargron](https://github.com/mastodon/mastodon/pull/16980), [Gargron](https://github.com/mastodon/mastodon/pull/17000))
+
+### Fixed
+- Fix some old migrations failing when skipping releases ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17394))
+- Fix migrations script failing in certain edge cases ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17398))
+- Fix Docker build ([tribela](https://github.com/mastodon/mastodon/pull/17188))
+- Fix Ruby 3.0 dependencies ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16723))
+- Fix followers synchronization mechanism ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16510))
+
+## [3.4.4] - 2021-11-26
+### Fixed
+
+- Fix error when suspending user with an already blocked canonical email ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17036))
+- Fix overflow of long profile fields in admin UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17010))
+- Fix confusing error when WebFinger request returns empty document ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16986))
+- Fix upload of remote media with OpenStack Swift sometimes failing ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16998))
+- Fix logout link not working in Safari ([noellabo](https://github.com/mastodon/mastodon/pull/16574))
+- Fix “open” link of media modal not closing modal in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16524))
+- Fix replying from modal in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16516))
+- Fix `mastodon:setup` command crashing in some circumstances ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16976))
+
+### Security
+
+- Fix filtering DMs from non-followed users ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17042))
+- Fix handling of recursive toots in WebUI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17041))
+
 ## [3.4.3] - 2021-11-06
 ### Fixed
 
