@@ -199,10 +199,19 @@ sl:
         confirm_user: Potrdi uporabnika
         create_account_warning: Ustvari opozorilo
         create_announcement: Ustvari obvestilo
+        create_ip_block: Ustvari pravilo IP
+        create_unavailable_domain: Ustvari domeno, ki ni na voljo
+        destroy_announcement: Izbriši obvestilo
         destroy_ip_block: Izbriši pravilo IP
         destroy_status: Izbriši objavo
         disable_user: Onemogoči uporabnika
         enable_user: Omogoči uporabnika
+        reject_user: Zavrni uporabnika
+        remove_avatar_user: Odstrani avatar
+        reopen_report: Ponovno odpri prijavo
+        reset_password_user: Ponastavi geslo
+        silence_account: Omeji račun
+        update_status: Posodobi objavo
       deleted_status: "(izbrisano stanje)"
       title: Dnevnik revizije
     announcements:
@@ -247,6 +256,7 @@ sl:
       software: Programska oprema
       space: Uporaba prostora
       title: Nadzorna plošča
+      website: Spletišče
     domain_allows:
       add_new: Dodaj domeno na beli seznam
       created_msg: Domena je bila uspešno dodana na beli seznam
@@ -257,6 +267,7 @@ sl:
       created_msg: Domenski blok se sedaj obdeluje
       destroyed_msg: Domenski blok je bil razveljavljen
       domain: Domena
+      edit: Uredi domenski blok
       existing_domain_block_html: Uvedli ste strožje omejitve za %{name}, sedaj ga morate najprej <a href="%{unblock_url}">odblokirati</a>.
       new:
         create: Ustvari blok
@@ -267,6 +278,8 @@ sl:
           silence: Utišaj
           suspend: Suspendiraj
         title: Nov domenski blok
+      private_comment: Zasebni komentar
+      public_comment: Javni komentar
       reject_media: Zavrni predstavnostne datoteke
       reject_media_hint: Odstrani lokalno shranjene predstavnostne datoteke in zavrača prenašanje le-teh v prihodnosti. Za suspenzije ni pomembno
       reject_reports: Zavrnjene prijave
@@ -299,6 +312,7 @@ sl:
         title: Nov vnos e-pošte na črni seznam
       title: Črni seznam e-pošt
     follow_recommendations:
+      language: Za jezik
       status: Stanje
     instances:
       back_to_all: Vse
@@ -319,6 +333,7 @@ sl:
         all: Vse
         limited: Omejeno
         title: Moderiranje
+      private_comment: Zasebni komentar
       public_comment: Javni komentar
       title: Federacija
       total_blocked_by_us: Blokirano iz naše strani
@@ -343,6 +358,8 @@ sl:
         '31556952': 1 leto
         '86400': 1 dan
         '94670856': 3 leta
+      new:
+        title: Ustvari novo pravilo IP
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
@@ -372,6 +389,7 @@ sl:
       created_at: Prijavljeno
       mark_as_resolved: Označi kot rešeno
       mark_as_unresolved: Označi kot nerešeno
+      no_one_assigned: Nihče
       notes:
         create: Dodaj opombo
         create_and_resolve: Razreši z opombo
@@ -395,6 +413,8 @@ sl:
       add_new: Dodaj pravilo
       delete: Izbriši
       edit: Uredi pravilo
+      empty: Zaenkrat še ni opredeljenih pravil.
+      title: Pravila strežnika
     settings:
       activity_api_enabled:
         desc_html: Številke lokalno objavljenih stanj, aktivnih uporabnikov in novih registracij na tedenskih seznamih
@@ -480,6 +500,10 @@ sl:
       allow: Dovoli
       approved: Odobren
       disallow: Ne dovoli
+      tags:
+        dashboard:
+          tag_languages_dimension: Naj jeziki
+          tag_servers_dimension: Naj strežniki
       title: Trendi
     warning_presets:
       add_new: Dodaj novo
