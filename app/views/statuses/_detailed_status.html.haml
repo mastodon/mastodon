@@ -37,10 +37,15 @@
 
   .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
+    - if status.edited?
+      %data.dt-updated{ value: status.edited_at.to_time.iso8601 }
 
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     ·
+    - if status.edited?
+      = t('statuses.edited_at', date: l(status.edited_at))
+      ·
     %span.detailed-status__visibility-icon
       = visibility_icon status
     ·

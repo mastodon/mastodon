@@ -82,7 +82,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || !allowed_registrations?
+    redirect_to root_path if single_user_mode? || omniauth_only? || !allowed_registrations?
   end
 
   def check_enabled_registrations_for_create
@@ -91,6 +91,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def allowed_registrations?
     Setting.registrations_mode != 'none' || @invite&.valid_for_use?
+  end
+
+  def omniauth_only?
+    ENV['OMNIAUTH_ONLY'] == 'true'
   end
 
   def invite_code

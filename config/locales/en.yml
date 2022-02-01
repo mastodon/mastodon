@@ -99,7 +99,6 @@ en:
     accounts:
       add_email_domain_block: Block e-mail domain
       approve: Approve
-      approve_all: Approve all
       approved_msg: Successfully approved %{username}'s sign-up application
       are_you_sure: Are you sure?
       avatar: Avatar
@@ -114,6 +113,7 @@ en:
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
+      custom: Custom
       delete: Delete data
       deleted: Deleted
       demote: Demote
@@ -153,7 +153,6 @@ en:
         active: Active
         all: All
         pending: Pending
-        silenced: Limited
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
@@ -171,7 +170,6 @@ en:
       redownload: Refresh profile
       redownloaded_msg: Successfully refreshed %{username}'s profile from origin
       reject: Reject
-      reject_all: Reject all
       rejected_msg: Successfully rejected %{username}'s sign-up application
       remove_avatar: Remove avatar
       remove_header: Remove header
@@ -206,12 +204,14 @@ en:
       silence: Limit
       silenced: Limited
       statuses: Posts
+      strikes: Previous strikes
       subscribe: Subscribe
       suspended: Suspended
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
-      time_in_queue: Waiting in queue %{time}
       title: Accounts
+      unblock_email: Unblock email address
+      unblocked_email_msg: Successfully unblocked %{username}'s email address
       unconfirmed_email: Unconfirmed email
       undo_sensitized: Undo force-sensitive
       undo_silenced: Undo limit
@@ -226,6 +226,7 @@ en:
       whitelisted: Allowed for federation
     action_logs:
       action_types:
+        approve_user: Approve User
         assigned_to_self_report: Assign Report
         change_email_user: Change E-mail for User
         confirm_user: Confirm User
@@ -243,6 +244,7 @@ en:
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
         destroy_email_domain_block: Delete E-mail Domain Block
+        destroy_instance: Purge Domain
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
@@ -255,6 +257,7 @@ en:
         enable_user: Enable User
         memorialize_account: Memorialize Account
         promote_user: Promote User
+        reject_user: Reject User
         remove_avatar_user: Remove Avatar
         reopen_report: Reopen Report
         reset_password_user: Reset Password
@@ -263,6 +266,7 @@ en:
         silence_account: Limit Account
         suspend_account: Suspend Account
         unassigned_report: Unassign Report
+        unblock_email_account: Unblock email address
         unsensitive_account: Undo Force-Sensitive Account
         unsilence_account: Undo Limit Account
         unsuspend_account: Unsuspend Account
@@ -271,6 +275,7 @@ en:
         update_domain_block: Update Domain Block
         update_status: Update Post
       actions:
+        approve_user_html: "%{name} approved sign-up from %{target}"
         assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
         change_email_user_html: "%{name} changed the e-mail address of user %{target}"
         confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
@@ -288,6 +293,7 @@ en:
         destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block_html: "%{name} unblocked domain %{target}"
         destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
+        destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
@@ -300,6 +306,7 @@ en:
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
+        reject_user_html: "%{name} rejected sign-up from %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
         reopen_report_html: "%{name} reopened report %{target}"
         reset_password_user_html: "%{name} reset password of user %{target}"
@@ -308,6 +315,7 @@ en:
         silence_account_html: "%{name} limited %{target}'s account"
         suspend_account_html: "%{name} suspended %{target}'s account"
         unassigned_report_html: "%{name} unassigned report %{target}"
+        unblock_email_account_html: "%{name} unblocked %{target}'s email address"
         unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
         unsilence_account_html: "%{name} undid limit of %{target}'s account"
         unsuspend_account_html: "%{name} unsuspended %{target}'s account"
@@ -377,13 +385,13 @@ en:
       new_users: new users
       opened_reports: reports opened
       pending_reports_html:
-        one: "<strong>1</strong> pending reports"
+        one: "<strong>1</strong> pending report"
         other: "<strong>%{count}</strong> pending reports"
       pending_tags_html:
-        one: "<strong>1</strong> pending hashtags"
+        one: "<strong>1</strong> pending hashtag"
         other: "<strong>%{count}</strong> pending hashtags"
       pending_users_html:
-        one: "<strong>1</strong> pending users"
+        one: "<strong>1</strong> pending user"
         other: "<strong>%{count}</strong> pending users"
       resolved_reports: reports resolved
       software: Software
@@ -465,6 +473,7 @@ en:
       back_to_limited: Limited
       back_to_warning: Warning
       by_domain: Domain
+      confirm_purge: Are you sure you want to permanently delete data from this domain?
       delivery:
         all: All
         clear: Clear delivery errors
@@ -480,6 +489,7 @@ en:
       delivery_available: Delivery is available
       delivery_error_days: Delivery error days
       delivery_error_hint: If delivery is not possible for %{count} days, it will be automatically marked as undeliverable.
+      destroyed_msg: Data from %{domain} is now queued for imminent deletion.
       empty: No domains found.
       known_accounts:
         one: "%{count} known account"
@@ -490,6 +500,7 @@ en:
         title: Moderation
       private_comment: Private comment
       public_comment: Public comment
+      purge: Purge
       title: Federation
       total_blocked_by_us: Blocked by us
       total_followed_by_them: Followed by them
@@ -519,8 +530,6 @@ en:
         title: Create new IP rule
       no_ip_block_selected: No IP rules were changed as none were selected
       title: IP rules
-    pending_accounts:
-      title: Pending accounts (%{count})
     relationships:
       title: "%{acct}'s relationships"
     relays:
@@ -542,32 +551,44 @@ en:
     report_notes:
       created_msg: Report note successfully created!
       destroyed_msg: Report note successfully deleted!
+      today_at: Today at %{time}
     reports:
       account:
         notes:
           one: "%{count} note"
           other: "%{count} notes"
-        reports:
-          one: "%{count} report"
-          other: "%{count} reports"
+      action_log: Audit log
       action_taken_by: Action taken by
+      actions:
+        other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
+        silence_description_html: The profile will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted.
+        suspend_description_html: The profile and all its contents will become inaccessible until it is eventually deleted. Interacting with the account will be impossible. Reversible within 30 days.
+      actions_description_html: 'If removing the offending content above is insufficient:'
+      add_to_report: Add more to report
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
       by_target_domain: Domain of reported account
+      category: Category
+      category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
       comment:
         none: None
+      comment_description_html: 'To provide more information, %{name} wrote:'
       created_at: Reported
+      delete_and_resolve: Delete and resolve
       forwarded: Forwarded
       forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
+      no_one_assigned: No one
       notes:
         create: Add note
         create_and_resolve: Resolve with note
         create_and_unresolve: Reopen with note
         delete: Delete
         placeholder: Describe what actions have been taken, or any other related updates...
+        title: Notes
+      notes_description_html: View and leave notes to other moderators and your future self
       reopen: Reopen report
       report: 'Report #%{id}'
       reported_account: Reported account
@@ -575,11 +596,14 @@ en:
       resolved: Resolved
       resolved_msg: Report successfully resolved!
       status: Status
+      statuses: Reported content
+      statuses_description_html: Offending content will be cited in communication with the reported account
       target_origin: Origin of reported account
       title: Reports
       unassign: Unassign
       unresolved: Unresolved
       updated_at: Updated
+      view_profile: View profile
     rules:
       add_new: Add rule
       delete: Delete
@@ -681,15 +705,13 @@ en:
       destroyed_msg: Site upload successfully deleted!
     statuses:
       back_to_account: Back to account page
+      back_to_report: Back to report page
       batch:
-        delete: Delete
-        nsfw_off: Mark as not sensitive
-        nsfw_on: Mark as sensitive
+        remove_from_report: Remove from report
+        report: Report
       deleted: Deleted
-      failed_to_execute: Failed to execute
       media:
         title: Media
-      no_media: No media
       no_status_selected: No posts were changed as none were selected
       title: Account posts
       with_media: With media
@@ -822,6 +844,7 @@ en:
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     link_to_otp: Enter a two-factor code from your phone or a recovery code
     link_to_webauth: Use your security key device
+    log_in_with: Log in with
     login: Log in
     logout: Logout
     migrate_account: Move to a different account
@@ -980,6 +1003,7 @@ en:
     none: None
     order_by: Order by
     save_changes: Save changes
+    today: today
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
@@ -1286,15 +1310,16 @@ en:
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
+    edited_at: Edited %{date}
     errors:
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
     language_detection: Automatically detect language
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
+      direct: Posts that are only visible to mentioned users cannot be pinned
       limit: You have already pinned the maximum number of posts
       ownership: Someone else's post cannot be pinned
-      private: Non-public posts cannot be pinned
       reblog: A boost cannot be pinned
     poll:
       total_people:
@@ -1449,6 +1474,7 @@ en:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Add
     disable: Disable 2FA
@@ -1476,24 +1502,31 @@ en:
       subject: Please confirm attempted sign in
       title: Sign in attempt
     warning:
+      categories:
+        spam: Spam
+        violation: Content violates the following community guidelines
       explanation:
-        disable: You can no longer login to your account or use it in any other way, but your profile and other data remains intact.
-        sensitive: Your uploaded media files and linked media will be treated as sensitive.
-        silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed, but we will retain some data to prevent you from evading the suspension.
-      get_in_touch: You can reply to this e-mail to get in touch with the staff of %{instance}.
+        delete_statuses: Some of your posts have been found to violate one or more community guidelines and have been subsequently removed by the moderators of %{instance}. Future violations may result in harsher punitive actions against your account.
+        disable: You can no longer use your account, but your profile and other data remains intact. You can request a backup of your data, change account settings or delete your account.
+        sensitive: From now on, all your uploaded media files will be marked as sensitive and hidden behind a click-through warning.
+        silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various discovery features. However, others may still manually follow you.
+        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
+      get_in_touch: If you believe this is an error, you can reply to this e-mail to get in touch with the staff of %{instance}.
+      reason: 'Reason:'
       review_server_policies: Review server policies
-      statuses: 'Specifically, for:'
+      statuses: 'Posts that have been found in violation:'
       subject:
+        delete_statuses: Your posts on %{acct} have been removed
         disable: Your account %{acct} has been frozen
         none: Warning for %{acct}
-        sensitive: Your account %{acct} posting media has been marked as sensitive
+        sensitive: Your media files on %{acct} will be marked as sensitive from now on
         silence: Your account %{acct} has been limited
         suspend: Your account %{acct} has been suspended
       title:
+        delete_statuses: Posts removed
         disable: Account frozen
         none: Warning
-        sensitive: Your media has been marked as sensitive
+        sensitive: Media hidden
         silence: Account limited
         suspend: Account suspended
     welcome:

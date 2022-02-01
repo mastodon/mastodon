@@ -37,6 +37,7 @@ export const THUMBNAIL_UPLOAD_PROGRESS = 'THUMBNAIL_UPLOAD_PROGRESS';
 export const COMPOSE_SUGGESTIONS_CLEAR = 'COMPOSE_SUGGESTIONS_CLEAR';
 export const COMPOSE_SUGGESTIONS_READY = 'COMPOSE_SUGGESTIONS_READY';
 export const COMPOSE_SUGGESTION_SELECT = 'COMPOSE_SUGGESTION_SELECT';
+export const COMPOSE_SUGGESTION_IGNORE = 'COMPOSE_SUGGESTION_IGNORE';
 export const COMPOSE_SUGGESTION_TAGS_UPDATE = 'COMPOSE_SUGGESTION_TAGS_UPDATE';
 
 export const COMPOSE_TAG_HISTORY_UPDATE = 'COMPOSE_TAG_HISTORY_UPDATE';
@@ -251,12 +252,15 @@ export function uploadCompose(files) {
           if (status === 200) {
             dispatch(uploadComposeSuccess(data, f));
           } else if (status === 202) {
+            let tryCount = 1;
             const poll = () => {
               api(getState).get(`/api/v1/media/${data.id}`).then(response => {
                 if (response.status === 200) {
                   dispatch(uploadComposeSuccess(response.data, f));
                 } else if (response.status === 206) {
-                  setTimeout(() => poll(), 1000);
+                  let retryAfter = (Math.log2(tryCount) || 1) * 1000;
+                  tryCount += 1;
+                  setTimeout(() => poll(), retryAfter);
                 }
               }).catch(error => dispatch(uploadComposeFail(error)));
             };
@@ -534,13 +538,25 @@ export function selectComposeSuggestion(position, token, suggestion, path) {
       startPosition = position;
     }
 
-    dispatch({
-      type: COMPOSE_SUGGESTION_SELECT,
-      position: startPosition,
-      token,
-      completion,
-      path,
-    });
+    // We don't want to replace hashtags that vary only in case due to accessibility, but we need to fire off an event so that
+    // the suggestions are dismissed and the cursor moves forward.
+    if (suggestion.type !== 'hashtag' || token.slice(1).localeCompare(suggestion.name, undefined, { sensitivity: 'accent' }) !== 0) {
+      dispatch({
+        type: COMPOSE_SUGGESTION_SELECT,
+        position: startPosition,
+        token,
+        completion,
+        path,
+      });
+    } else {
+      dispatch({
+        type: COMPOSE_SUGGESTION_IGNORE,
+        position: startPosition,
+        token,
+        completion,
+        path,
+      });
+    }
   };
 };
 
