@@ -45,6 +45,8 @@ class User < ApplicationRecord
   self.ignored_columns = %w(
     remember_created_at
     remember_token
+    current_sign_in_ip
+    last_sign_in_ip
   )
 
   include Settings::Extend
