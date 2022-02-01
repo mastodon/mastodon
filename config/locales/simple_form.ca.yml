@@ -64,7 +64,7 @@ ca:
         domain: Això pot ser el nom del domini que es veu en l’adreça de correu electrònic, el registre MX al que resol el domini o l’IP del servidor al que resol el registre MX. Es comprovaran amb el registre d’usuari i es rebutjarà la inscripció.
         with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
-        name: 'És possible que vulguis utilitzar un d''aquests:'
+        name: 'És possible que vulguis utilitzar una d''aquestes:'
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -128,7 +128,7 @@ ca:
         context: Filtre els contextos
         current_password: Contrasenya actual
         data: Informació
-        discoverable: Mostra aquest compte en el directori
+        discoverable: Mostra aquest compte en el directori de perfils
         display_name: Nom visible
         email: Adreça de correu electrònic
         expires_in: Expira després
@@ -197,12 +197,12 @@ ca:
         severity: Regla
       notification_emails:
         digest: Envia un resum per correu electrònic
-        favourite: Envia un correu electrònic si algú marca com a preferit el teu estat
-        follow: Envia un correu electrònic si algú et segueix
+        favourite: Algú marca com a preferit el teu estat
+        follow: Algú t'ha seguit
         follow_request: Envia un correu electrònic si algú sol·licita seguir-te
-        mention: Envia un correu electrònic si algú et menciona
+        mention: Algú t'ha esmentat
         pending_account: Envia un correu electrònic quan es necessiti revisar un compte nou
-        reblog: Envia un correu electrònic si algú comparteix el teu estat
+        reblog: Algú comparteix el teu estat
         report: Envia un correu electrònic quan s'enviï un nou informe
         trending_tag: Envia un correu quan una etiqueta sense revisar està en tendència
       rule:
