@@ -46,8 +46,8 @@ ca:
         password: Utilitza com a mínim 8 caràcters
         phrase: Es combinarà independentment del format en el text o l'avís de contingut del tut
         scopes: A quines API es permetrà a l'aplicació accedir. Si selecciones un àmbit d'alt nivell, no cal que seleccionis un d'individual.
-        setting_aggregate_reblogs: No mostra els nous impulsos dels tuts que ja s'han impulsat recentment (només afecta als impulsos nous rebuts)
-        setting_default_sensitive: Els mèdia sensibles estan ocults per defecte i es poden revelar amb un clic
+        setting_aggregate_reblogs: No mostrar els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els impulsos nous rebuts)
+        setting_default_sensitive: El contingut gràfic sensible està ocult per defecte i es pot revelar amb un clic
         setting_display_media_default: Ocultar el contigut gràfic marcat com a sensible
         setting_display_media_hide_all: Oculta sempre tot el contingut multimèdia
         setting_display_media_show_all: Mostrar sempre el contingut gràfic marcat com a sensible
@@ -146,13 +146,13 @@ ca:
         password: Contrasenya
         phrase: Paraula clau o frase
         setting_advanced_layout: Activar l’interfície web avançada
-        setting_aggregate_reblogs: Agrupa impulsos en les línies de temps
+        setting_aggregate_reblogs: Agrupar impulsos en les línies de temps
         setting_auto_play_gif: Reproduir automàticament els GIFs animats
         setting_boost_modal: Mostrar la finestra de confirmació abans d'impulsar
         setting_crop_images: Retalla les imatges en tuts no ampliats a 16x9
         setting_default_language: Idioma de les publicacions
         setting_default_privacy: Privacitat de les publicacions
-        setting_default_sensitive: Marca sempre els elements multimèdia com a sensibles
+        setting_default_sensitive: Marcar sempre el contingut gràfic com a sensible
         setting_delete_modal: Mostrar la finestra de confirmació abans d'esborrar un tut
         setting_disable_swiping: Desactivar les animacions
         setting_display_media: Visualització multimèdia
@@ -160,10 +160,10 @@ ca:
         setting_display_media_hide_all: Amaga-ho tot
         setting_display_media_show_all: Mostra-ho tot
         setting_expand_spoilers: Sempre ampliar els tuts marcats amb advertències de contingut
-        setting_hide_network: Amaga la teva xarxa
-        setting_noindex: Desactivació de la indexació del motor de cerca
+        setting_hide_network: Amagar la teva xarxa
+        setting_noindex: Desactivar la indexació dels motors de cerca
         setting_reduce_motion: Reduir el moviment de les animacions
-        setting_show_application: Revela l'aplicació utilitzada per enviar tuts
+        setting_show_application: Revelar l'aplicació utilitzada per fer les publicacions
         setting_system_font_ui: Utilitzar el tipus de lletra predeterminat del sistema
         setting_theme: Tema del lloc
         setting_trends: Mostra les tendències d'avui
@@ -182,8 +182,8 @@ ca:
         name: Etiqueta
       interactions:
         must_be_follower: Blocar les notificacions de persones que no et segueixen
-        must_be_following: Bloca les notificacions de persones que no segueixes
-        must_be_following_dm: Bloca els missatges directes de persones que no segueixes
+        must_be_following: Blocar les notificacions de persones que no segueixes
+        must_be_following_dm: Blocar els missatges directes de persones que no segueixes
       invite:
         comment: Comenta
       invite_request:
@@ -196,15 +196,15 @@ ca:
           sign_up_requires_approval: Limitar els registres
         severity: Regla
       notification_emails:
-        digest: Envia un resum per correu electrònic
+        digest: Enviar un resum per correu electrònic
         favourite: Algú marca com a preferit el teu estat
         follow: Algú t'ha seguit
         follow_request: Envia un correu electrònic si algú sol·licita seguir-te
         mention: Algú t'ha esmentat
-        pending_account: Envia un correu electrònic quan es necessiti revisar un compte nou
+        pending_account: Un nou compte necessita revisió
         reblog: Algú comparteix el teu estat
-        report: Envia un correu electrònic quan s'enviï un nou informe
-        trending_tag: Envia un correu quan una etiqueta sense revisar està en tendència
+        report: Es presenta un nou informe
+        trending_tag: Una etiqueta sense revisar està en tendència
       rule:
         text: Norma
       tag:
