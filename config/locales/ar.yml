@@ -241,6 +241,7 @@ ar:
       whitelisted: في القائمة البيضاء
     action_logs:
       action_types:
+        approve_user: الموافقة على المستخدم
         assigned_to_self_report: أسند التقرير
         change_email_user: تغيير عنوان البريد الإلكتروني الخاص بالمستخدم
         confirm_user: تأكيد المستخدم
@@ -258,6 +259,7 @@ ar:
         destroy_domain_allow: حذف النطاق المسموح به
         destroy_domain_block: حذف كتلة النطاق
         destroy_email_domain_block: حذف نطاق بريد إلكتروني
+        destroy_instance: تنظيف النطاق
         destroy_ip_block: حذف قانون IP
         destroy_status: حذف المنشور
         destroy_unavailable_domain: حذف نطاق غير متوفر
@@ -560,6 +562,7 @@ ar:
     report_notes:
       created_msg: تم إنشاء ملاحظة الشكوى بنجاح!
       destroyed_msg: تم حذف ملاحظة الشكوى بنجاح!
+      today_at: اليوم على %{time}
     reports:
       account:
         notes:
@@ -569,6 +572,7 @@ ar:
           few: "%{count} ملاحظات"
           many: "%{count} ملاحظات"
           other: "%{count} ملاحظات"
+      action_log: سجل المراجعة
       action_taken_by: تم اتخاذ الإجراء مِن طرف
       are_you_sure: هل أنت متأكد ؟
       assign_to_self: عين لي
@@ -598,6 +602,7 @@ ar:
       resolved: معالجة
       resolved_msg: تم حل تقرير بنجاح!
       status: الحالة
+      statuses: المحتوى المبلغ عنه
       target_origin: مصدر الحساب المبلغ عنه
       title: الشكاوى
       unassign: إلغاء تعيين
