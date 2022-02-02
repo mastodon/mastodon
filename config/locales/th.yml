@@ -524,6 +524,7 @@ th:
       comment:
         none: ไม่มี
       created_at: รายงานเมื่อ
+      delete_and_resolve: ลบแล้วแก้ปัญหา
       forwarded: ส่งต่อแล้ว
       forwarded_to: ส่งต่อไปยัง %{domain} แล้ว
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
@@ -647,6 +648,7 @@ th:
       destroyed_msg: ลบการอัปโหลดไซต์สำเร็จ!
     statuses:
       back_to_account: กลับไปที่หน้าบัญชี
+      back_to_report: กลับไปที่หน้ารายงาน
       batch:
         remove_from_report: เอาออกจากรายงาน
         report: รายงาน
@@ -691,6 +693,8 @@ th:
           tag_languages_dimension: ภาษายอดนิยม
           tag_servers_dimension: เซิร์ฟเวอร์ยอดนิยม
           tag_uses_measure: การใช้งานทั้งหมด
+        listable: สามารถแนะนำ
+        not_listable: จะไม่แนะนำ
         not_trendable: จะไม่ปรากฏภายใต้แนวโน้ม
         not_usable: ไม่สามารถใช้
         title: แฮชแท็กที่กำลังนิยม
