@@ -92,7 +92,7 @@
 %hr.spacer
 
 .speech-bubble
-  .speech-bubble__bubble= simple_format(@report.comment.presence || t('admin.reports.comment.none'))
+  .speech-bubble__bubble= simple_format(h(@report.comment.presence || t('admin.reports.comment.none')))
   .speech-bubble__owner
     - if @report.account.local?
       = admin_account_link_to @report.account
