@@ -24,6 +24,7 @@
 #  poll_id                :bigint(8)
 #  deleted_at             :datetime
 #  edited_at              :datetime
+#  trendable              :boolean
 #
 
 class Status < ApplicationRecord
@@ -254,6 +255,18 @@ class Status < ApplicationRecord
 
   def decrement_count!(key)
     update_status_stat!(key => [public_send(key) - 1, 0].max)
+  end
+
+  def trendable?
+    if attributes['trendable'].nil?
+      account.trendable?
+    else
+      attributes['trendable']
+    end
+  end
+
+  def requires_review_notification?
+    attributes['trendable'].nil? && account.requires_review_notification?
   end
 
   after_create_commit  :increment_counter_caches

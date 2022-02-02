@@ -3,31 +3,11 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "04dbbc249b989db2e0119bbb0f59c9818e12889d2b97c529cdc0b1526002ba4b",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/report.rb",
-      "line": 113,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "Admin::ActionLog.from(\"(#{[Admin::ActionLog.where(:target_type => \"Report\", :target_id => id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Account\", :target_id => target_account_id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Status\", :target_id => status_ids, :created_at => ((created_at..updated_at))).unscope(:order)].map do\n \"(#{query.to_sql})\"\n end.join(\" UNION ALL \")}) AS admin_action_logs\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Report",
-        "method": "history"
-      },
-      "user_input": "Admin::ActionLog.where(:target_type => \"Status\", :target_id => status_ids, :created_at => ((created_at..updated_at))).unscope(:order)",
-      "confidence": "High",
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
       "fingerprint": "19df3740b8d02a9fe0eb52c939b4b87d3a2a591162a6adfa8d64e9c26aeebe6d",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/status.rb",
-      "line": 100,
+      "line": 104,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "result.joins(\"INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
       "render_path": null,
@@ -37,6 +17,46 @@
         "method": null
       },
       "user_input": "id",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "1dd97f9eed312e59e841fd28b4b2c12ef0ba822554f05352a87ba5ba36e3d7b6",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/trends/tag_filter.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Tag.joins(\"join unnest(array[#{Trends.tags.currently_trending_ids(false, -1).map(&:to_i).join(\",\")}]::integer[]) with ordinality as x (id, ordering) on tags.id = x.id\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Trends::TagFilter",
+        "method": "trending_scope"
+      },
+      "user_input": "Trends.tags.currently_trending_ids(false, -1).map(&:to_i).join(\",\")",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "30dfe36e87fe1b8f239df9a33d576e44a9863f73b680198d4713be6540ae61d3",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/trends/query.rb",
+      "line": 60,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "klass.joins(\"join unnest(array[#{ids.join(\",\")}]) with ordinality as x (id, ordering) on #{klass.table_name}.id = x.id\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Trends::Query",
+        "method": "to_arel"
+      },
+      "user_input": "ids.join(\",\")",
       "confidence": "Weak",
       "note": ""
     },
@@ -58,6 +78,26 @@
       },
       "user_input": "RemoteFollow.new(resource_params).interact_address_for(Status.find(params[:id]))",
       "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "6a0f9d658658ac3c7ded00423d6b5fa58983b95b7109a4159878533cca797d27",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/trends/status_filter.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Status.unscoped.joins(\"join unnest(array[#{(Trends.statuses.currently_trending_ids(true, -1) or Trends.statuses.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")}]::bigint[]) with ordinality as x (id, ordering) on statuses.id = x.id\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Trends::StatusFilter",
+        "method": "trending_scope"
+      },
+      "user_input": "(Trends.statuses.currently_trending_ids(true, -1) or Trends.statuses.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")",
+      "confidence": "Medium",
       "note": ""
     },
     {
@@ -107,7 +147,7 @@
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/admin/reports_controller.rb",
-      "line": 78,
+      "line": 90,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:resolved, :account_id, :target_account_id)",
       "render_path": null,
@@ -118,26 +158,6 @@
       },
       "user_input": ":account_id",
       "confidence": "High",
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "8c1d8c4b76c1cd3960e90dff999f854a6ff742fcfd8de6c7184ac5a1b1a4d7dd",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/preview_card_filter.rb",
-      "line": 50,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "PreviewCard.joins(\"join unnest(array[#{(Trends.links.currently_trending_ids(true, -1) or Trends.links.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")}]::integer[]) with ordinality as x (id, ordering) on preview_cards.id = x.id\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "PreviewCardFilter",
-        "method": "trending_scope"
-      },
-      "user_input": "(Trends.links.currently_trending_ids(true, -1) or Trends.links.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")",
-      "confidence": "Medium",
       "note": ""
     },
     {
@@ -161,26 +181,6 @@
       "note": ""
     },
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "c32a484ccd9da46abd3bc93d08b72029d7dbc0576ccf4e878a9627e9a83cad2e",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/tag_filter.rb",
-      "line": 50,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "Tag.joins(\"join unnest(array[#{Trends.tags.currently_trending_ids(false, -1).map(&:to_i).join(\",\")}]::integer[]) with ordinality as x (id, ordering) on tags.id = x.id\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "TagFilter",
-        "method": "trending_scope"
-      },
-      "user_input": "Trends.tags.currently_trending_ids(false, -1).map(&:to_i).join(\",\")",
-      "confidence": "Medium",
-      "note": ""
-    },
-    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
       "fingerprint": "cd5cfd7f40037fbfa753e494d7129df16e358bfc43ef0da3febafbf4ee1ed3ac",
@@ -194,7 +194,7 @@
         {
           "type": "template",
           "name": "admin/trends/links/index",
-          "line": 37,
+          "line": 45,
           "file": "app/views/admin/trends/links/index.html.haml",
           "rendered": {
             "name": "admin/trends/links/_preview_card",
@@ -208,6 +208,26 @@
       },
       "user_input": "(Unresolved Model).new.url",
       "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "dfbc609982401921416ce94f2710cd9f2d9668c797145fa8930e692b1fd77ac5",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/trends/preview_card_filter.rb",
+      "line": 50,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "PreviewCard.joins(\"join unnest(array[#{(Trends.links.currently_trending_ids(true, -1) or Trends.links.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")}]::integer[]) with ordinality as x (id, ordering) on preview_cards.id = x.id\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Trends::PreviewCardFilter",
+        "method": "trending_scope"
+      },
+      "user_input": "(Trends.links.currently_trending_ids(true, -1) or Trends.links.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")",
+      "confidence": "Medium",
       "note": ""
     },
     {
@@ -231,6 +251,6 @@
       "note": ""
     }
   ],
-  "updated": "2021-11-14 05:26:09 +0100",
-  "brakeman_version": "5.1.2"
+  "updated": "2022-02-06 00:16:40 +0100",
+  "brakeman_version": "5.2.0"
 }
