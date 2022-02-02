@@ -578,16 +578,19 @@ ar:
       comment:
         none: لا شيء
       created_at: ذكرت
+      delete_and_resolve: حذف وحسم
       forwarded: أُعيد توجيهه
       forwarded_to: أُعيد توجيهه إلى %{domain}
       mark_as_resolved: اعتبار الشكوى كمحلولة
       mark_as_unresolved: علم كغير محلولة
+      no_one_assigned: لا أحد
       notes:
         create: اضف ملاحظة
         create_and_resolve: الحل مع ملاحظة
         create_and_unresolve: إعادة فتح مع ملاحظة
         delete: حذف
         placeholder: قم بوصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى ذات علاقة...
+        title: الملاحظات
       reopen: إعادة فتح الشكوى
       report: 'الشكوى #%{id}'
       reported_account: حساب مُبلّغ عنه
@@ -600,6 +603,7 @@ ar:
       unassign: إلغاء تعيين
       unresolved: غير معالجة
       updated_at: محدث
+      view_profile: اعرض الصفحة التعريفية
     rules:
       add_new: إضافة قاعدة
       delete: حذف
@@ -701,6 +705,9 @@ ar:
       destroyed_msg: تم حذف التحميل مِن الموقع بنجاح!
     statuses:
       back_to_account: العودة إلى صفحة الحساب
+      back_to_report: العودة إلى صفحة التقرير
+      batch:
+        remove_from_report: إزالة من التقرير
       deleted: محذوف
       media:
         title: الوسائط
@@ -721,18 +728,30 @@ ar:
     title: الإدارة
     trends:
       allow: السماح
+      approved: مصادق عليه
+      disallow: رفض
       links:
+        allow: السماح بالرابط
         allow_provider: السماح للناشر
         disallow: رفض الرابط
         disallow_provider: عدم السماح للناشر
         title: الروابط المتداولة
       pending_review: في انتظار المراجعة
+      preview_card_providers:
+        title: الناشرون
+      rejected: مرفوض
       tags:
+        current_score: التقييم الحالي %{score}
         dashboard:
+          tag_accounts_measure: استخدامات فريدة
           tag_languages_dimension: أفضل اللغات
           tag_servers_dimension: الخوادم الأكثر نشاطا
           tag_servers_measure: خوادم أخرى
           tag_uses_measure: إجمالي الاستخدامات
+        listable: يمكن اقتراحه
+        not_listable: لن يتم اقتراحه
+        not_trendable: لن يظهر في المتداولة
+        not_usable: لا يمكن استخدامه
         title: الوسوم المتداولة
       title: المتداوَلة
     warning_presets:
@@ -800,6 +819,7 @@ ar:
     invalid_reset_password_token: رمز إعادة تعيين كلمة المرور غير صالح أو منتهي الصلاحية. يرجى طلب واحد جديد.
     link_to_otp: أدخل رمز ذو عامِلين من هاتفك أو رمز الاسترجاع
     link_to_webauth: استخدم جهاز مفتاح الأمان الخاص بك
+    log_in_with: الولوج عبر
     login: تسجيل الدخول
     logout: خروج
     migrate_account: الانتقال إلى حساب آخر
@@ -1494,6 +1514,10 @@ ar:
       subject: الرجاء تأكيد محاولة الولوج
       title: محاولة الولوج
     warning:
+      categories:
+        spam: مزعج
+        violation: ينتهك المحتوى المبادئ التوجيهية التالية للمجتمع
+      reason: 'السبب:'
       review_server_policies: مراجعة شروط السيرفر
       subject:
         disable: تم تجميد حسابك %{acct}
