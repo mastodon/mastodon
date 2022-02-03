@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module JsonLdHelper
+  include ContextHelper
+
   def equals_or_includes?(haystack, needle)
     haystack.is_a?(Array) ? haystack.include?(needle) : haystack == needle
   end
@@ -67,6 +69,84 @@ module JsonLdHelper
   def canonicalize(json)
     graph = RDF::Graph.new << JSON::LD::API.toRdf(json, documentLoader: method(:load_jsonld_context))
     graph.dump(:normalize)
+  end
+
+  def compact(json)
+    compacted = JSON::LD::API.compact(json.without('signature'), full_context, documentLoader: method(:load_jsonld_context))
+    compacted['signature'] = json['signature']
+    compacted
+  end
+
+  # Patches a JSON-LD document to avoid compatibility issues on redistribution
+  #
+  # Since compacting a JSON-LD document against Mastodon's built-in vocabulary
+  # means other extension namespaces will be expanded, malformed JSON-LD
+  # attributes lost, and some values “unexpectedly” compacted this method
+  # patches the following likely sources of incompatibility:
+  # - 'https://www.w3.org/ns/activitystreams#Public' being compacted to
+  #   'as:Public' (for instance, pre-3.4.0 Mastodon does not understand
+  #   'as:Public')
+  # - single-item arrays being compacted to the item itself (`[foo]` being
+  #   compacted to `foo`)
+  #
+  # It is not always possible for `patch_for_forwarding!` to produce a document
+  # deemed safe for forwarding. Use `safe_for_forwarding?` to check the status
+  # of the output document.
+  #
+  # @param original [Hash] The original JSON-LD document used as reference
+  # @param compacted [Hash] The compacted JSON-LD document to be patched
+  # @return [void]
+  def patch_for_forwarding!(original, compacted)
+    original.without('@context', 'signature').each do |key, value|
+      next if value.nil? || !compacted.key?(key)
+
+      compacted_value = compacted[key]
+      if value.is_a?(Hash) && compacted_value.is_a?(Hash)
+        patch_for_forwarding!(value, compacted_value)
+      elsif value.is_a?(Array)
+        compacted_value = [compacted_value] unless compacted_value.is_a?(Array)
+        return if value.size != compacted_value.size
+
+        compacted[key] = value.zip(compacted_value).map do |v, vc|
+          if v.is_a?(Hash) && vc.is_a?(Hash)
+            patch_for_forwarding!(v, vc)
+            vc
+          elsif v == 'https://www.w3.org/ns/activitystreams#Public' && vc == 'as:Public'
+            v
+          else
+            vc
+          end
+        end
+      elsif value == 'https://www.w3.org/ns/activitystreams#Public' && compacted_value == 'as:Public'
+        compacted[key] = value
+      end
+    end
+  end
+
+  # Tests whether a JSON-LD compaction is deemed safe for redistribution,
+  # that is, if it doesn't change its meaning to consumers that do not actually
+  # handle JSON-LD, but rely on values being serialized in a certain way.
+  #
+  # See `patch_for_forwarding!` for details.
+  #
+  # @param original [Hash] The original JSON-LD document used as reference
+  # @param compacted [Hash] The compacted JSON-LD document to be patched
+  # @return [Boolean] Whether the patched document is deemed safe
+  def safe_for_forwarding?(original, compacted)
+    original.without('@context', 'signature').all? do |key, value|
+      compacted_value = compacted[key]
+      return false unless value.class == compacted_value.class
+
+      if value.is_a?(Hash)
+        safe_for_forwarding?(value, compacted_value)
+      elsif value.is_a?(Array)
+        value.zip(compacted_value).all? do |v, vc|
+          v.is_a?(Hash) ? (vc.is_a?(Hash) && safe_for_forwarding?(v, vc)) : v == vc
+        end
+      else
+        value == compacted_value
+      end
+    end
   end
 
   def fetch_resource(uri, id, on_behalf_of = nil)
