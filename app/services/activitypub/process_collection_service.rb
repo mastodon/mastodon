@@ -8,12 +8,7 @@ class ActivityPub::ProcessCollectionService < BaseService
     @json    = original_json = Oj.load(body, mode: :strict)
     @options = options
 
-    begin
-      @json = compact(@json) if @json['signature'].is_a?(Hash)
-    rescue JSON::LD::JsonLdError => e
-      Rails.logger.debug "Error when compacting JSON-LD document for #{value_or_id(@json['actor'])}: #{e.message}"
-      @json = original_json.without('signature')
-    end
+    @json = compact(@json) if @json['signature'].is_a?(Hash)
 
     return if !supported_context? || (different_actor? && verify_account!.nil?) || suspended_actor? || @account.local?
 
