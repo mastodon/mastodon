@@ -119,7 +119,7 @@ class Header extends ImmutablePureComponent {
         <a
           aria-label={intl.formatMessage(messages.settings)}
           onClick={onSettingsClick}
-          href='#'
+          href='/settings/preferences'
           title={intl.formatMessage(messages.settings)}
         ><Icon id='cogs' /></a>
         <a
