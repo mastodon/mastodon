@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module JsonLdHelper
+  include ContextHelper
+
   def equals_or_includes?(haystack, needle)
     haystack.is_a?(Array) ? haystack.include?(needle) : haystack == needle
   end
@@ -67,6 +69,12 @@ module JsonLdHelper
   def canonicalize(json)
     graph = RDF::Graph.new << JSON::LD::API.toRdf(json, documentLoader: method(:load_jsonld_context))
     graph.dump(:normalize)
+  end
+
+  def compact(json)
+    compacted = JSON::LD::API.compact(json.without('signature'), full_context, documentLoader: method(:load_jsonld_context))
+    compacted['signature'] = json['signature']
+    compacted
   end
 
   def fetch_resource(uri, id, on_behalf_of = nil)
