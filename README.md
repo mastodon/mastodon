@@ -44,7 +44,7 @@ Click on this GIF for a brief video demo:
 
 <img src="http://tinysubversions.com/pics/hometown-article.gif" alt="Video demo of someone clicking 'read article' on an incoming article post, which then renders a full article.">
 
-This is based on rich text work by [Thibaut Girka](https://sitedethib.com), and my own work on `Article` support.
+This is based on rich text work by [Claire Girka](https://sitedethib.com), and my own work on `Article` support.
 
 ### It's more than just reading more stuff
 
