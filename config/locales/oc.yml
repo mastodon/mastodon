@@ -103,6 +103,7 @@ oc:
       confirm: Confirmar
       confirmed: Confirmat
       confirming: Confirmacion
+      custom: Personalizar
       delete: Suprimir donadas
       deleted: Suprimits
       demote: Retrogradar
@@ -169,6 +170,10 @@ oc:
         user: Uitlizaire
       search: Cercar
       search_same_ip: Autres utilizaires amb la meteissa IP
+      security_measures:
+        only_password: Sonque senhal
+        password_and_2fa: Senhal e 2FA
+        password_and_sign_in_token: Senhal e geton via mail
       sensitive: Sensible
       sensitized: marcar coma sensible
       shared_inbox_url: URL de recepcion partejada
@@ -192,6 +197,7 @@ oc:
       whitelisted: Mes en lista blanca
     action_logs:
       action_types:
+        approve_user: Aprobar l’utilizaire
         assigned_to_self_report: Assignar lo rapòrt
         change_email_user: Cambiar l’adreça de l’utilizaire
         confirm_user: Confirmar l’utilizaire
@@ -280,6 +286,7 @@ oc:
       interactions: interraccions
       media_storage: Emmagazinatge dels mèdias
       new_users: utilizaire novèl
+      opened_reports: senhalaments dubèrts
       resolved_reports: senhalament resolguts
       software: Logicial
       space: Utilizacion de l’espaci
@@ -416,6 +423,7 @@ oc:
       assign_to_self: Me l’assignar
       assigned: Moderador assignat
       by_target_domain: Domeni del compte senhalat
+      category: Categoria
       comment:
         none: Pas cap
       created_at: Creacion
@@ -438,6 +446,7 @@ oc:
       unassign: Levar
       unresolved: Pas resolgut
       updated_at: Actualizat
+      view_profile: Veire lo perfil
     rules:
       title: Règlas del servidor
     settings:
@@ -539,6 +548,11 @@ oc:
       review: Repassar l’estatut
       updated_msg: Paramètres d’etiquetas corrèctament actualizats
     title: Administracion
+    trends:
+      tags:
+        dashboard:
+          tag_languages_dimension: Lengas principalas
+          tag_servers_dimension: Servidors principals
     warning_presets:
       add_new: N’ajustar un nòu
       delete: Escafar
@@ -736,6 +750,7 @@ oc:
     delete: Suprimir
     order_by: Triar per
     save_changes: Salvar los cambiaments
+    today: uèi
     validation_errors:
       one: I a quicòm que truca ! Mercés de corregir l’error çai-jos
       other: I a quicòm que truca ! Mercés de corregir las %{count} errors çai-jos
@@ -782,6 +797,11 @@ oc:
   lists:
     errors:
       limit: Avètz atengut lo maximum de listas
+  login_activities:
+    authentication_methods:
+      password: senhal
+      sign_in_token: còdi de seguretat mail
+      webauthn: claus de seguretat
   media_attachments:
     validations:
       images_and_video: Se pòt pas ajustar una vidèo a un estatut que ten ja d’imatges
@@ -1028,6 +1048,14 @@ oc:
     keep_direct: Gardar los messatges dirèctes
     keep_media: Gardar las publicacions amb pèça-junta
     keep_pinned: Gardar las publicacions penjadas
+    min_age:
+      '1209600': 2 setmanas
+      '15778476': 6 meses
+      '2629746': 1 mes
+      '31556952': 1 an
+      '5259492': 2 meses
+      '63113904': 2 ans
+      '7889238': 3 meses
   stream_entries:
     pinned: Tut penjat
     reblogged: a partejat
@@ -1127,6 +1155,7 @@ oc:
     formats:
       default: "Lo %-d %B de %Y a %Ho%M"
       month: "%B de %Y"
+      time: "%H'h'%M"
   two_factor_authentication:
     add: Ajustar
     disable: Desactivar
@@ -1146,6 +1175,7 @@ oc:
       subject: Vòstre archiu es prèst per telecargament
       title: Archiu per emportar
     warning:
+      reason: 'Motiu :'
       review_server_policies: Repassar las politicas del servidor
       subject:
         disable: Vòstre compte %{acct} es gelat
