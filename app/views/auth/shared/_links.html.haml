@@ -3,7 +3,7 @@
     %li= link_to t('settings.account_settings'), edit_user_registration_path
   - else
     - if controller_name != 'sessions'
-      %li= link_to t('auth.login'), new_user_session_path
+      %li= link_to_login t('auth.login')
 
     - if controller_name != 'registrations'
       %li= link_to t('auth.register'), available_sign_up_path

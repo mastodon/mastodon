@@ -31,11 +31,15 @@ module Admin::ActionLogsHelper
       link_to truncate(record.text), edit_admin_announcement_path(record.id)
     when 'IpBlock'
       "#{record.ip}/#{record.ip.prefix} (#{I18n.t("simple_form.labels.ip_block.severities.#{record.severity}")})"
+    when 'Instance'
+      record.domain
     end
   end
 
   def log_target_from_history(type, attributes)
     case type
+    when 'User'
+      attributes['username']
     when 'CustomEmoji'
       attributes['shortcode']
     when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
@@ -52,6 +56,8 @@ module Admin::ActionLogsHelper
       truncate(attributes['text'].is_a?(Array) ? attributes['text'].last : attributes['text'])
     when 'IpBlock'
       "#{attributes['ip']}/#{attributes['ip'].prefix} (#{I18n.t("simple_form.labels.ip_block.severities.#{attributes['severity']}")})"
+    when 'Instance'
+      attributes['domain']
     end
   end
 end

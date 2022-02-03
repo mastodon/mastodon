@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ActivityPub::CollectionsController, type: :controller do
   let!(:account) { Fabricate(:account) }
+  let!(:private_pinned) { Fabricate(:status, account: account, text: 'secret private stuff', visibility: :private) }
   let(:remote_account) { nil }
 
   shared_examples 'cachable response' do
@@ -27,6 +28,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
 
     Fabricate(:status_pin, account: account)
     Fabricate(:status_pin, account: account)
+    Fabricate(:status_pin, account: account, status: private_pinned)
     Fabricate(:status, account: account, visibility: :private)
   end
 
@@ -50,7 +52,15 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
 
         it 'returns orderedItems with pinned statuses' do
           expect(body[:orderedItems]).to be_an Array
-          expect(body[:orderedItems].size).to eq 2
+          expect(body[:orderedItems].size).to eq 3
+        end
+
+        it 'includes URI of private pinned status' do
+          expect(body[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
+        end
+
+        it 'does not include contents of private pinned status' do
+          expect(response.body).not_to include(private_pinned.text)
         end
 
         context 'when account is permanently suspended' do
@@ -96,7 +106,16 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
           it 'returns orderedItems with pinned statuses' do
             json = body_as_json
             expect(json[:orderedItems]).to be_an Array
-            expect(json[:orderedItems].size).to eq 2
+            expect(json[:orderedItems].size).to eq 3
+          end
+
+          it 'includes URI of private pinned status' do
+            json = body_as_json
+            expect(json[:orderedItems]).to include(ActivityPub::TagManager.instance.uri_for(private_pinned))
+          end
+
+          it 'does not include contents of private pinned status' do
+            expect(response.body).not_to include(private_pinned.text)
           end
         end
 

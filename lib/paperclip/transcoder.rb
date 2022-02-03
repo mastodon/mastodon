@@ -19,7 +19,7 @@ module Paperclip
       metadata = VideoMetadataExtractor.new(@file.path)
 
       unless metadata.valid?
-        log("Unsupported file #{@file.path}")
+        Paperclip.log("Unsupported file #{@file.path}")
         return File.open(@file.path)
       end
 

@@ -29,7 +29,6 @@ class Blocks extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     hasMore: PropTypes.bool,
     domains: ImmutablePropTypes.orderedSet,
     intl: PropTypes.object.isRequired,
@@ -45,7 +44,7 @@ class Blocks extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, domains, shouldUpdateScroll, hasMore, multiColumn } = this.props;
+    const { intl, domains, hasMore, multiColumn } = this.props;
 
     if (!domains) {
       return (
@@ -64,7 +63,6 @@ class Blocks extends ImmutablePureComponent {
           scrollKey='domain_blocks'
           onLoadMore={this.handleLoadMore}
           hasMore={hasMore}
-          shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
         >

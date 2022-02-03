@@ -1,5 +1,5 @@
 Fabricator(:user) do
-  account
+  account      { Fabricate.build(:account, user: nil) }
   email        { sequence(:email) { |i| "#{i}#{Faker::Internet.email}" } }
   password     "123456789"
   confirmed_at { Time.zone.now }

@@ -188,6 +188,7 @@ class ActionBar extends React.PureComponent {
     const { status, relationship, intl } = this.props;
 
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
+    const pinnableStatus     = ['public', 'unlisted', 'private'].includes(status.get('visibility'));
     const mutingConversation = status.get('muted');
     const account            = status.get('account');
     const writtenByMe        = status.getIn(['account', 'id']) === me;
@@ -201,7 +202,7 @@ class ActionBar extends React.PureComponent {
     }
 
     if (writtenByMe) {
-      if (publicStatus) {
+      if (pinnableStatus) {
         menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
         menu.push(null);
       }
@@ -244,7 +245,7 @@ class ActionBar extends React.PureComponent {
       if (isStaff) {
         menu.push(null);
         menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
-        menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses/${status.get('id')}` });
+        menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses?id=${status.get('id')}` });
       }
     }
 

@@ -14,6 +14,17 @@ module ApplicationHelper
     ku
   ).freeze
 
+  def friendly_number_to_human(number, **options)
+    # By default, the number of precision digits used by number_to_human
+    # is looked up from the locales definition, and rails-i18n comes with
+    # values that don't seem to make much sense for many languages, so
+    # override these values with a default of 3 digits of precision.
+    options[:precision] = 3
+    options[:strip_insignificant_zeros] = true
+
+    number_to_human(number, **options)
+  end
+
   def active_nav_class(*paths)
     paths.any? { |path| current_page?(path) } ? 'active' : ''
   end
@@ -39,11 +50,37 @@ module ApplicationHelper
   end
 
   def available_sign_up_path
-    if closed_registrations?
+    if closed_registrations? || omniauth_only?
       'https://joinmastodon.org/#getting-started'
     else
       new_user_registration_path
     end
+  end
+
+  def omniauth_only?
+    ENV['OMNIAUTH_ONLY'] == 'true'
+  end
+
+  def link_to_login(name = nil, html_options = nil, &block)
+    target = new_user_session_path
+
+    html_options = name if block_given?
+
+    if omniauth_only? && Devise.mappings[:user].omniauthable? && User.omniauth_providers.size == 1
+      target = omniauth_authorize_path(:user, User.omniauth_providers[0])
+      html_options ||= {}
+      html_options[:method] = :post
+    end
+
+    if block_given?
+      link_to(target, html_options, &block)
+    else
+      link_to(name, target, html_options)
+    end
+  end
+
+  def provider_sign_in_link(provider)
+    link_to I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize), omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
   end
 
   def open_deletion?
@@ -124,6 +161,10 @@ module ApplicationHelper
     else
       content_tag(:div, data: { component: name.to_s.camelcase, props: Oj.dump(props) }, &block)
     end
+  end
+
+  def react_admin_component(name, props = {})
+    content_tag(:div, nil, data: { 'admin-component': name.to_s.camelcase, props: Oj.dump({ locale: I18n.locale }.merge(props)) })
   end
 
   def body_classes

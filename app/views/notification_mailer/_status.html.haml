@@ -37,7 +37,7 @@
                                   %p
                                     - status.media_attachments.each do |a|
                                       - if status.local?
-                                        = link_to medium_url(a), medium_url(a)
+                                        = link_to full_asset_url(a.file.url(:original)), full_asset_url(a.file.url(:original))
                                       - else
                                         = link_to a.remote_url, a.remote_url
 

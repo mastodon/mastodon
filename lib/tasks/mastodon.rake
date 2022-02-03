@@ -333,8 +333,12 @@ namespace :mastodon do
       prompt.say 'This configuration will be written to .env.production'
 
       if prompt.yes?('Save configuration?')
+        incompatible_syntax = false
+
         env_contents = env.each_pair.map do |key, value|
           if value.is_a?(String) && value =~ /[\s\#\\"]/
+            incompatible_syntax = true
+
             if value =~ /[']/
               value = value.to_s.gsub(/[\\"\$]/) { |x| "\\#{x}" }
               "#{key}=\"#{value}\""
@@ -346,12 +350,19 @@ namespace :mastodon do
           end
         end.join("\n")
 
-        File.write(Rails.root.join('.env.production'), "# Generated with mastodon:setup on #{Time.now.utc}\n\n" + env_contents + "\n")
+        generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n".dup
+
+        if incompatible_syntax
+          generated_header << "# Some variables in this file will be interpreted differently whether you are\n"
+          generated_header << "# using docker-compose or not.\n\n"
+        end
+
+        File.write(Rails.root.join('.env.production'), "#{generated_header}#{env_contents}\n")
 
         if using_docker
           prompt.ok 'Below is your configuration, save it to an .env.production file outside Docker:'
           prompt.say "\n"
-          prompt.say File.read(Rails.root.join('.env.production'))
+          prompt.say "#{generated_header}#{env.each_pair.map { |key, value| "#{key}=#{value}" }.join("\n")}"
           prompt.say "\n"
           prompt.ok 'It is also saved within this container so you can proceed with this wizard.'
         end
@@ -430,7 +441,7 @@ namespace :mastodon do
 
   namespace :webpush do
     desc 'Generate VAPID key'
-    task generate_vapid_key: :environment do
+    task :generate_vapid_key do
       vapid_key = Webpush.generate_key
       puts "VAPID_PRIVATE_KEY=#{vapid_key.private_key}"
       puts "VAPID_PUBLIC_KEY=#{vapid_key.public_key}"

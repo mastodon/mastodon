@@ -34,7 +34,6 @@ class HomeTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
     isPartial: PropTypes.bool,
@@ -112,7 +111,7 @@ class HomeTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, shouldUpdateScroll, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
+    const { intl, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
 
     let announcementsButton = null;
@@ -154,7 +153,6 @@ class HomeTimeline extends React.PureComponent {
           onLoadMore={this.handleLoadMore}
           timelineId='home'
           emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
-          shouldUpdateScroll={shouldUpdateScroll}
           bindToDocument={!multiColumn}
         />
       </Column>

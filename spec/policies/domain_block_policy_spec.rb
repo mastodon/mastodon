@@ -6,7 +6,7 @@ require 'pundit/rspec'
 RSpec.describe DomainBlockPolicy do
   let(:subject) { described_class }
   let(:admin)   { Fabricate(:user, admin: true).account }
-  let(:john)    { Fabricate(:user).account }
+  let(:john)    { Fabricate(:account) }
 
   permissions :index?, :show?, :create?, :destroy? do
     context 'admin' do

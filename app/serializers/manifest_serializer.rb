@@ -48,7 +48,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def scope
-    root_url
+    '/'
   end
 
   def share_target

@@ -967,6 +967,17 @@
   }
 }
 
+.status__content__edited-label {
+  display: block;
+  cursor: default;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 0;
+  padding-top: 8px;
+  color: $dark-text-color;
+  font-weight: 500;
+}
+
 .status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
@@ -2822,7 +2833,7 @@ a.account__display-name {
   transition: background-color 0.2s ease;
 }
 
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
   background-color: darken($ui-base-color, 10%);
 }
 
@@ -2830,7 +2841,7 @@ a.account__display-name {
   background-color: $ui-highlight-color;
 }
 
-.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+.react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
   background-color: lighten($ui-highlight-color, 10%);
 }
 
@@ -3022,13 +3033,13 @@ a.account__display-name {
     }
 
     @media screen and (max-height: 810px) {
-      .trends__item:nth-child(3) {
+      .trends__item:nth-of-type(3) {
         display: none;
       }
     }
 
     @media screen and (max-height: 720px) {
-      .trends__item:nth-child(2) {
+      .trends__item:nth-of-type(2) {
         display: none;
       }
     }
@@ -3074,17 +3085,20 @@ a.account__display-name {
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  color: $inverted-text-color;
-  background: $simple-background-color;
-  padding: 10px;
+  color: $darker-text-color;
+  background: transparent;
+  padding: 7px 0;
   font-family: inherit;
   font-size: 14px;
   resize: vertical;
   border: 0;
+  border-bottom: 2px solid $ui-primary-color;
   outline: 0;
-  border-radius: 4px;
 
-  &:focus {
+  &:focus,
+  &:active {
+    color: $primary-text-color;
+    border-bottom-color: $ui-highlight-color;
     outline: 0;
   }
 
@@ -3548,10 +3562,15 @@ a.status-card.compact:hover {
 }
 
 .column-header__setting-btn {
-  &:hover {
+  &:hover,
+  &:focus {
     color: $darker-text-color;
     text-decoration: underline;
   }
+}
+
+.column-header__collapsible__extra + .column-header__setting-btn {
+  padding-top: 5px;
 }
 
 .column-header__permission-btn {
@@ -3564,10 +3583,15 @@ a.status-card.compact:hover {
   float: right;
 
   .column-header__setting-btn {
-    padding: 0 10px;
+    padding: 5px;
+
+    &:first-child {
+      padding-right: 7px;
+    }
 
     &:last-child {
-      padding-right: 0;
+      padding-left: 7px;
+      margin-left: 5px;
     }
   }
 }
@@ -3912,7 +3936,8 @@ a.status-card.compact:hover {
     }
 
     &__multi-value__label,
-    &__input {
+    &__input,
+    &__input-container {
       color: $darker-text-color;
     }
 
@@ -4732,6 +4757,13 @@ a.status-card.compact:hover {
           background: rgba($gold-star, 0.3);
         }
       }
+
+      &.disabled {
+        color: $white;
+        background-color: transparent;
+        cursor: default;
+        opacity: 0.4;
+      }
     }
   }
 }
@@ -5535,7 +5567,8 @@ a.status-card.compact:hover {
     opacity: 0.2;
   }
 
-  .video-player__buttons button {
+  .video-player__buttons button,
+  .video-player__buttons a {
     color: currentColor;
     opacity: 0.75;
 
@@ -6937,7 +6970,6 @@ noscript {
     &__current {
       flex: 0 0 auto;
       font-size: 24px;
-      line-height: 36px;
       font-weight: 500;
       text-align: right;
       padding-right: 15px;
@@ -6959,6 +6991,58 @@ noscript {
         fill: none !important;
       }
     }
+
+    &--requires-review {
+      .trends__item__name {
+        color: $gold-star;
+
+        a {
+          color: $gold-star;
+        }
+      }
+
+      .trends__item__current {
+        color: $gold-star;
+      }
+
+      .trends__item__sparkline {
+        path:first-child {
+          fill: rgba($gold-star, 0.25) !important;
+        }
+
+        path:last-child {
+          stroke: lighten($gold-star, 6%) !important;
+        }
+      }
+    }
+
+    &--disabled {
+      .trends__item__name {
+        color: lighten($ui-base-color, 12%);
+
+        a {
+          color: lighten($ui-base-color, 12%);
+        }
+      }
+
+      .trends__item__current {
+        color: lighten($ui-base-color, 12%);
+      }
+
+      .trends__item__sparkline {
+        path:first-child {
+          fill: rgba(lighten($ui-base-color, 12%), 0.25) !important;
+        }
+
+        path:last-child {
+          stroke: lighten(lighten($ui-base-color, 12%), 6%) !important;
+        }
+      }
+    }
+  }
+
+  &--compact &__item {
+    padding: 10px;
   }
 }
 
@@ -7284,6 +7368,7 @@ noscript {
     &__account {
       display: flex;
       text-decoration: none;
+      overflow: hidden;
     }
 
     .account__avatar {

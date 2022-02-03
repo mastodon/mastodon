@@ -33,7 +33,7 @@ class Admin::AccountAction
   def save!
     ApplicationRecord.transaction do
       process_action!
-      process_warning!
+      process_strike!
     end
 
     process_email!
@@ -74,20 +74,14 @@ class Admin::AccountAction
     end
   end
 
-  def process_warning!
-    return unless warnable?
-
-    authorize(target_account, :warn?)
-
-    @warning = AccountWarning.create!(target_account: target_account,
-                                      account: current_account,
-                                      action: type,
-                                      text: text_for_warning)
-
-    # A log entry is only interesting if the warning contains
-    # custom text from someone. Otherwise it's just noise.
-
-    log_action(:create, warning) if warning.text.present?
+  def process_strike!
+    @warning = target_account.strikes.create!(
+      account: current_account,
+      report: report,
+      action: type,
+      text: text_for_warning,
+      status_ids: status_ids
+    )
   end
 
   def process_reports!
@@ -143,7 +137,7 @@ class Admin::AccountAction
   end
 
   def process_email!
-    UserMailer.warning(target_account.user, warning, status_ids).deliver_later! if warnable?
+    UserMailer.warning(target_account.user, warning).deliver_later! if warnable?
   end
 
   def warnable?
@@ -151,7 +145,7 @@ class Admin::AccountAction
   end
 
   def status_ids
-    report.status_ids if report && include_statuses
+    report.status_ids if with_report? && include_statuses
   end
 
   def reports

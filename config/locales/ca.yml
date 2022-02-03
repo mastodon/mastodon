@@ -119,6 +119,7 @@ ca:
       demote: Degrada
       destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
       disable: Inhabilita
+      disable_sign_in_token_auth: Desactivar l'autenticació de token per correu
       disable_two_factor_authentication: Desactiva 2FA
       disabled: Inhabilitat
       display_name: Nom visible
@@ -127,6 +128,7 @@ ca:
       email: Adreça electrònica
       email_status: Estat de l'adreça electrònica
       enable: Habilita
+      enable_sign_in_token_auth: Activar l'autenticació de token per correu
       enabled: Habilitat
       enabled_msg: El compte de %{username} s’ha descongelat amb èxit
       followers: Seguidors
@@ -191,6 +193,10 @@ ca:
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
+      security_measures:
+        only_password: Només contrasenya
+        password_and_2fa: Contrasenya i 2FA
+        password_and_sign_in_token: Contrasenya i token per correu
       sensitive: Sensible
       sensitized: marcar com a sensible
       shared_inbox_url: URL de la safata d'entrada compartida
@@ -242,8 +248,10 @@ ca:
         destroy_unavailable_domain: Esborra domini no disponible
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
+        disable_sign_in_token_auth_user: Desactivar l'autenticació de token per correu per l'usuari
         disable_user: Deshabilita l'usuari
         enable_custom_emoji: Activa l'emoji personalitzat
+        enable_sign_in_token_auth_user: Activar l'autenticació de token per correu pel l'usuari
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
@@ -285,8 +293,10 @@ ca:
         destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} ha desactivat l'autenticació de token per correu per a %{target}"
         disable_user_html: "%{name} ha desactivat l'accés del usuari %{target}"
         enable_custom_emoji_html: "%{name} ha activat l'emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ha activat l'autenticació de token per correu per a %{target}"
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
@@ -361,32 +371,28 @@ ca:
       updated_msg: Emoji s'ha actualitzat correctament!
       upload: Carrega
     dashboard:
-      authorized_fetch_mode: Mode d'obtenció autoritzat
-      backlog: treballs en espera
-      config: Configuració
-      feature_deletions: Supressions del compte
-      feature_invites: Enllaços de convits
-      feature_profile_directory: Directori de perfils
-      feature_registrations: Registres
-      feature_relay: Relay de la Federació
-      feature_timeline_preview: Vista prèvia de línia de temps
-      features: Característiques
-      hidden_service: Federació amb serveis ocults
-      open_reports: informes oberts
-      pending_tags: etiquetes pendents de revisar
-      pending_users: usuaris pendents de revisar
-      recent_users: Usuaris recents
-      search: Cerca de text complet
-      single_user_mode: Mode d'usuari únic
+      active_users: usuaris actius
+      interactions: interaccions
+      media_storage: Mèdia
+      new_users: usuaris nous
+      opened_reports: informes oberts
+      pending_reports_html:
+        one: "<strong>1</strong> informe pendent"
+        other: "<strong>%{count}</strong> informes pendents"
+      pending_tags_html:
+        one: "<strong>1</strong> etiqueta pendent"
+        other: "<strong>%{count}</strong> etiquetes pendents"
+      pending_users_html:
+        one: "<strong>1</strong> usuari pendent"
+        other: "<strong>%{count}</strong> usuaris pendents"
+      resolved_reports: informes resolts
       software: Programari
+      sources: Fonts de registre
       space: Ús de l’espai
       title: Panell
-      total_users: usuaris en total
-      trends: Tendències
-      week_interactions: interaccions d'aquesta setmana
-      week_users_active: usuaris actius aquesta setmana
-      week_users_new: nous usuaris aquest setmana
-      whitelist_mode: Mode llista blanca
+      top_languages: Idiomes més actius
+      top_servers: Servidors més actius
+      website: Lloc web
     domain_allows:
       add_new: Dominis autoritzats
       created_msg: El domini ha estat correctament autoritzat
@@ -468,6 +474,9 @@ ca:
         unavailable: No disponible
         unavailable_message: El lliurament no està disponible
         warning: Avís
+        warning_message:
+          one: Fallada de lliurament %{count} dia
+          other: Fallada de lliurament %{count} dies
       delivery_available: El lliurament està disponible
       delivery_error_days: Dies de fallades de lliurament
       delivery_error_hint: Si el lliurament no és possible per %{count} dies, serà automàticament marcat com a no lliurable.
@@ -566,6 +575,7 @@ ca:
       resolved: Resolt
       resolved_msg: Informe resolt amb èxit!
       status: Estat
+      target_origin: Origen del compte reportat
       title: Informes
       unassign: Treu l'assignació
       unresolved: No resolt
@@ -1001,6 +1011,17 @@ ca:
   lists:
     errors:
       limit: Has assolit la quantitat màxima de llistes
+  login_activities:
+    authentication_methods:
+      otp: aplicació d'autenticació de dos factors
+      password: contrasenya
+      sign_in_token: codi de seguretat per correu electrònic
+      webauthn: claus de seguretat
+    description_html: Si veus activitat que no reconeixes, considera canviar la teva contrasenya i activar l'autenticació de dos factors.
+    empty: Historial d'autenticació no disponible
+    failed_sign_in_html: Intent d'inici de sessió errat amb %{method} des-de %{ip} (%{browser})
+    successful_sign_in_html: Inici de sessió exitós amb %{method} des-de %{ip} (%{browser})
+    title: Historial d'autenticació
   media_attachments:
     validations:
       images_and_video: No es pot adjuntar un vídeo a una publicació que ja contingui imatges
@@ -1207,6 +1228,7 @@ ca:
     revoke: Revoca
     revoke_success: S'ha revocat la sessió amb èxit
     title: Sessions
+    view_authentication_history: Veure l'historial d'autenticació del teu compte
   settings:
     account: Compte
     account_settings: Ajustos del compte
@@ -1227,6 +1249,7 @@ ca:
     preferences: Preferències
     profile: Perfil
     relationships: Seguits i seguidors
+    statuses_cleanup: Borrat automàtic de publicacions
     two_factor_authentication: Autenticació de dos factors
     webauthn_authentication: Claus de seguretat
   statuses:
@@ -1278,6 +1301,40 @@ ca:
       public_long: Tothom pot veure-ho
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
+  statuses_cleanup:
+    enabled: Esborra automàtic publicacions velles
+    enabled_hint: Suprimeix automàticament les teves publicacions quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
+    exceptions: Excepcions
+    explanation: Com que suprimir publicacions és una operació cara, es fa lentament amb el pas del temps quan el servidor no està ocupat. Per aquest motiu, és possible que les teves publicacions se suprimeixin un temps després d’assolir el llindar d’edat.
+    ignore_favs: Ignora favorits
+    ignore_reblogs: Ignora impulsos
+    interaction_exceptions: Excepcions basades en interaccions
+    interaction_exceptions_explanation: Tingues en compte que no es garanteix que es suprimeixen les publicacions si passen per sota del llindar de favorit o impuls després d'haver-lo superat.
+    keep_direct: Manté missatges directes
+    keep_direct_hint: No esborra cap dels teus missatges directes
+    keep_media: Manté les publicacions amb adjunts multimèdia
+    keep_media_hint: No esborra cap de les teves publicacions que tinguin adjunts multimèdia
+    keep_pinned: Manté les publicacions fixades
+    keep_pinned_hint: No esborra cap de les teves publicacions fixades
+    keep_polls: Manté enquestes
+    keep_polls_hint: No esborra cap de les teves enquestes
+    keep_self_bookmark: Manté les publicacions que has desat a les adreces d'interès
+    keep_self_bookmark_hint: No esborra les teves pròpies publicacions si les has desat en les adreces d'interès
+    keep_self_fav: Manté les publicacions que has afavorit
+    keep_self_fav_hint: No esborra les teves pròpies publicacions si les has afavorit
+    min_age:
+      '1209600': 2 setmanes
+      '15778476': 6 mesos
+      '2629746': 1 mes
+      '31556952': 1 any
+      '5259492': 2 mesos
+      '63113904': 2 anys
+      '7889238': 3 mesos
+    min_age_label: Llindar d'edat
+    min_favs: Manté les publicacions afavorides més de
+    min_favs_hint: No suprimeix cap de les teves publicacions que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per suprimir publicacions independentment del nombre de favorits que tinguin
+    min_reblogs: Manté les publicacions impulsades més de
+    min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest número de vegades. Deixa-ho en blanc per suprimir les publicacions independentment del nombre d'impulsos que tinguin
   stream_entries:
     pinned: Tut fixat
     reblogged: ha impulsat

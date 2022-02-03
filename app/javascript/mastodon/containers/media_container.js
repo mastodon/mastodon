@@ -7,7 +7,7 @@ import { getLocale } from 'mastodon/locales';
 import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 import MediaGallery from 'mastodon/components/media_gallery';
 import Poll from 'mastodon/components/poll';
-import Hashtag from 'mastodon/components/hashtag';
+import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import ModalRoot from 'mastodon/components/modal_root';
 import MediaModal from 'mastodon/features/ui/components/media_modal';
 import Video from 'mastodon/features/video';

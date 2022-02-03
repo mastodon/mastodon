@@ -11,7 +11,11 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
   before_action :set_cache_headers
 
   def show
-    expires_in(page_requested? ? 0 : 3.minutes, public: public_fetch_mode? && !(signed_request_account.present? && page_requested?))
+    if page_requested?
+      expires_in(1.minute, public: public_fetch_mode? && signed_request_account.nil?)
+    else
+      expires_in(3.minutes, public: public_fetch_mode?)
+    end
     render json: outbox_presenter, serializer: ActivityPub::OutboxSerializer, adapter: ActivityPub::Adapter, content_type: 'application/activity+json'
   end
 
@@ -75,5 +79,9 @@ class ActivityPub::OutboxesController < ActivityPub::BaseController
 
   def set_account
     @account = params[:account_username].present? ? Account.find_local!(username_param) : Account.representative
+  end
+
+  def set_cache_headers
+    response.headers['Vary'] = 'Signature' if authorized_fetch_mode? || page_requested?
   end
 end

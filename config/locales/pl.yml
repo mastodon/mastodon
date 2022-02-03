@@ -127,6 +127,7 @@ pl:
       demote: Degraduj
       destroyed_msg: Dane %{username} są teraz w kolejce do natychmiastowego usunięcia
       disable: Dezaktywuj
+      disable_sign_in_token_auth: Wyłącz uwierzytelnianie tokenu e-mail
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
       disabled: Dezaktywowano
       display_name: Wyświetlana nazwa
@@ -135,6 +136,7 @@ pl:
       email: Adres e-mail
       email_status: Stan e-maila
       enable: Aktywuj
+      enable_sign_in_token_auth: Włącz uwierzytelnianie tokenu e-mail
       enabled: Aktywowano
       enabled_msg: Pomyślnie odblokowano konto %{username}
       followers: Śledzący
@@ -199,6 +201,10 @@ pl:
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
+      security_measures:
+        only_password: Tylko hasło
+        password_and_2fa: Hasło i 2FA
+        password_and_sign_in_token: Hasło i token e-mail
       sensitive: Wrażliwe
       sensitized: oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
@@ -250,8 +256,10 @@ pl:
         destroy_unavailable_domain: Usuń niedostępną domenę
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
+        disable_sign_in_token_auth_user: Wyłącz uwierzytelnianie tokenu e-mail dla użytkownika
         disable_user: Wyłącz użytkownika
         enable_custom_emoji: Włącz niestandardowe emoji
+        enable_sign_in_token_auth_user: Włącz uwierzytelnianie tokenu e-mail dla użytkownika
         enable_user: Włącz użytkownika
         memorialize_account: Upamiętnij konto
         promote_user: Podnieś uprawnienia
@@ -293,8 +301,10 @@ pl:
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem e-mail dla %{target}"
         disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
         enable_custom_emoji_html: "%{name} włączył(a) emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} włączył/a uwierzytelnianie tokenem e-mail dla %{target}"
         enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
         promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
@@ -369,32 +379,34 @@ pl:
       updated_msg: Pomyślnie zaktualizowano emoji!
       upload: Dodaj
     dashboard:
-      authorized_fetch_mode: Tryb bezpieczny
-      backlog: zaległe zadania
-      config: Konfiguracja
-      feature_deletions: Usuwanie kont
-      feature_invites: Zaproszenia
-      feature_profile_directory: Katalog profilów
-      feature_registrations: Rejestracja
-      feature_relay: Przekazywanie federacji
-      feature_timeline_preview: Podgląd osi czasu
-      features: Możliwości
-      hidden_service: Federowanie z ukrytymi usługami
-      open_reports: otwarte zgłoszenia
-      pending_tags: hasztagi oczekujące na sprawdzenie
-      pending_users: użytkownicy oczekujący na sprawdzenie
-      recent_users: Ostatni użytkownicy
-      search: Wyszukiwanie pełnego tekstu
-      single_user_mode: Tryb jednego użytkownika
+      active_users: aktywni użytkownicy
+      interactions: interakcje
+      media_storage: Przechowywanie mediów
+      new_users: nowi użytkownicy
+      opened_reports: otwarte zgłoszenia
+      pending_reports_html:
+        few: "<strong>%{count}</strong> oczekujące raporty"
+        many: "<strong>%{count}</strong> oczekujących raportów"
+        one: "<strong>1</strong> oczekujący raport"
+        other: "<strong>%{count}</strong> oczekujących raportów"
+      pending_tags_html:
+        few: "<strong>%{count}</strong> oczekujące hashtagi"
+        many: "<strong>%{count}</strong> oczekujących hashtagów"
+        one: "<strong>1</strong> oczekujący hashtag"
+        other: "<strong>%{count}</strong> oczekujących hashtagów"
+      pending_users_html:
+        few: "<strong>%{count}</strong> oczekujących użytkowników"
+        many: "<strong>%{count}</strong> oczekujących użytkowników"
+        one: "<strong>1</strong> oczekujący użytkownik"
+        other: "<strong>%{count}</strong> oczekujących użytkowników"
+      resolved_reports: zamkniętych zgłoszeń
       software: Oprogramowanie
+      sources: Źródła rejestracji
       space: Używana powierzchnia
       title: Panel administracyjny
-      total_users: łącznie użytkowników
-      trends: Na czasie
-      week_interactions: interakcje w tym tygodniu
-      week_users_active: aktywni w tym tygodniu
-      week_users_new: rejestracje w tym tygodniu
-      whitelist_mode: Tryb białej listy
+      top_languages: Najbardziej aktywne języki
+      top_servers: Najbardziej aktywne serwery
+      website: Strona
     domain_allows:
       add_new: Zatwierdź domenę
       created_msg: Domena dodana do białej listy
@@ -587,6 +599,7 @@ pl:
       resolved: Rozwiązane
       resolved_msg: Pomyślnie rozwiązano zgłoszenie.
       status: Stan
+      target_origin: Pochodzenie zgłaszanego konta
       title: Zgłoszenia
       unassign: Cofnij przypisanie
       unresolved: Nierozwiązane
@@ -1026,6 +1039,17 @@ pl:
   lists:
     errors:
       limit: Przekroczyłeś maksymalną liczbę utworzonych list
+  login_activities:
+    authentication_methods:
+      otp: aplikacja weryfikacji dwuetapowej
+      password: hasło
+      sign_in_token: kod bezpieczeństwa e-mail
+      webauthn: klucze bezpieczeństwa
+    description_html: Jeśli widzisz aktywność, której nie rozpoznajesz, rozważ zmianę hasła i włączenie weryfikacji dwuetapowej.
+    empty: Brak historii uwierzytelniania
+    failed_sign_in_html: Próba logowania zakończona niepowodzeniem przy pomocy %{method} z %{ip} (%{browser})
+    successful_sign_in_html: Pomyślne logowanie przy pomocy %{method} z %{ip} (%{browser})
+    title: Historia uwierzytelniania
   media_attachments:
     validations:
       images_and_video: Nie możesz załączyć pliku wideo do wpisu, który zawiera już zdjęcia
@@ -1236,6 +1260,7 @@ pl:
     revoke: Unieważnij
     revoke_success: Pomyślnie unieważniono sesję
     title: Sesje
+    view_authentication_history: Zobacz historię uwierzytelniania swojego konta
   settings:
     account: Konto
     account_settings: Ustawienia konta
@@ -1256,6 +1281,7 @@ pl:
     preferences: Preferencje
     profile: Profil
     relationships: Śledzeni i śledzący
+    statuses_cleanup: Automatyczne usuwanie posta
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     webauthn_authentication: Klucze bezpieczeństwa
   statuses:
@@ -1319,6 +1345,40 @@ pl:
       public_long: Widoczne dla wszystkich użytkowników
       unlisted: Niewypisane
       unlisted_long: Widoczne dla wszystkich, ale nie wyświetlane na publicznych osiach czasu
+  statuses_cleanup:
+    enabled: Automatycznie usuwaj stare wiadomości
+    enabled_hint: Automatycznie usuwa Twoje posty, gdy osiągną określony próg wiekowy, chyba że spełniają jeden z poniższych wyjątków
+    exceptions: Wyjątki
+    explanation: Ponieważ usuwanie postów jest kosztowną operacją, odbywa się to powoli, gdy serwer nie jest zajęty. Z tego powodu Twoje posty mogą zostać usunięte po pewnym czasie po osiągnięciu progu wiekowego.
+    ignore_favs: Ignoruj ulubione
+    ignore_reblogs: Ignoruj podbicia
+    interaction_exceptions: Wyjątki oparte na interakcjach
+    interaction_exceptions_explanation: Zauważ, że nie ma gwarancji usunięcia wpisów, jeśli ich wartość spadnie poniżej progu ulubionych lub podbić po tym, kiedy już były raz sprawdzone.
+    keep_direct: Zachowaj bezpośrednie wiadomości
+    keep_direct_hint: Nie usuwa żadnych bezpośrednich wiadomości
+    keep_media: Zachowaj posty z załącznikami multimedialnymi
+    keep_media_hint: Nie usuwa żadnych postów z załącznikami multimedialnymi
+    keep_pinned: Zachowaj przypięte posty
+    keep_pinned_hint: Nie usuwa żadnych przypiętych postów
+    keep_polls: Zachowaj ankiety
+    keep_polls_hint: Nie usuwa żadnej z ankiet
+    keep_self_bookmark: Zachowaj posty, które dodałeś do zakładek
+    keep_self_bookmark_hint: Nie usuwaj własnych postów, jeśli je dodałeś do zakładek
+    keep_self_fav: Zachowaj ulubione posty
+    keep_self_fav_hint: Nie usuwaj własnych postów, jeśli je polubiłeś
+    min_age:
+      '1209600': 2 tygodnie
+      '15778476': 6 miesięcy
+      '2629746': 1 miesiąc
+      '31556952': 1 rok
+      '5259492': 2 miesiące
+      '63113904': 2 lata
+      '7889238': 3 miesiące
+    min_age_label: Próg wieku
+    min_favs: Zachowaj ulubione posty więcej niż
+    min_favs_hint: Nie usuwa żadnego z Twoich wpisów, które otrzymały więcej niż tę liczbę ulubionych. Pozostaw puste, aby usunąć posty bez względu na ich liczbę ulubionych
+    min_reblogs: Utrzymuj posty wzmocnione więcej niż
+    min_reblogs_hint: Nie usuwa żadnego z Twoich wpisów, które zostały wzmocnione więcej niż tyle razy. Pozostaw puste, aby usunąć posty bez względu na ich liczbę wzmocnień
   stream_entries:
     pinned: Przypięty wpis
     reblogged: podbił

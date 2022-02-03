@@ -3,7 +3,7 @@
 class ActivityPub::Activity::Accept < ActivityPub::Activity
   def perform
     return accept_follow_for_relay if relay_follow?
-    return follow_request_from_object.authorize! unless follow_request_from_object.nil?
+    return accept_follow!(follow_request_from_object) unless follow_request_from_object.nil?
 
     case @object['type']
     when 'Follow'
@@ -19,7 +19,16 @@ class ActivityPub::Activity::Accept < ActivityPub::Activity
     return if target_account.nil? || !target_account.local?
 
     follow_request = FollowRequest.find_by(account: target_account, target_account: @account)
-    follow_request&.authorize!
+    accept_follow!(follow_request)
+  end
+
+  def accept_follow!(request)
+    return if request.nil?
+
+    is_first_follow = !request.target_account.followers.local.exists?
+    request.authorize!
+
+    RemoteAccountRefreshWorker.perform_async(request.target_account_id) if is_first_follow
   end
 
   def accept_follow_for_relay

@@ -76,7 +76,7 @@ tr:
     pin_errors:
       following: Onaylamak istediğiniz kişiyi zaten takip ediyor olmalısınız
     posts:
-      one: Toot
+      one: Gönderi
       other: Toot
     posts_tab_heading: Tootlar
     posts_with_replies: Tootlar ve yanıtlar
@@ -119,6 +119,7 @@ tr:
       demote: Düşür
       destroyed_msg: "%{username} verilerinin hemen silinmesi için kuyruğa alındı"
       disable: Devre dışı
+      disable_sign_in_token_auth: E-posta token doğrulamayı devre dışı bırak
       disable_two_factor_authentication: 2AD kapat
       disabled: Kapalı
       display_name: Görünen isim
@@ -127,6 +128,7 @@ tr:
       email: E-posta
       email_status: E-posta durumu
       enable: Etkinleştir
+      enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
       enabled: Etkin
       enabled_msg: "%{username} hesabı başarıyla çözüldü"
       followers: Takipçiler
@@ -191,8 +193,12 @@ tr:
       search: Ara
       search_same_email_domain: Aynı e-posta alan adına sahip diğer kullanıcılar
       search_same_ip: Aynı IP adresine sahip diğer kullanıcılar
+      security_measures:
+        only_password: Sadece parola
+        password_and_2fa: Parola ve İki aşamalı doğrulama
+        password_and_sign_in_token: Parola ve e-posta tokeni
       sensitive: Hassas
-      sensitized: hassas olarak işaretlendi
+      sensitized: Hassas olarak işaretlendi
       shared_inbox_url: Paylaşılan gelen kutusu bağlantısı
       show:
         created_reports: Yapılan şikayetler
@@ -242,8 +248,10 @@ tr:
         destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
+        disable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı devre dışı bırak
         disable_user: Kullanıcıyı Devre Dışı Bırak
         enable_custom_emoji: Özel İfadeyi Etkinleştir
+        enable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı etkinleştir
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
@@ -285,8 +293,10 @@ tr:
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
+        disable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı devre dışı bıraktı"
         disable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı devre dışı bıraktı"
         enable_custom_emoji_html: "%{name}, %{target} emojisini etkinleştirdi"
+        enable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı etkinleştirdi"
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
@@ -361,32 +371,28 @@ tr:
       updated_msg: Emoji başarıyla güncellendi!
       upload: Yükle
     dashboard:
-      authorized_fetch_mode: Güvenli mod
-      backlog: bekleyen işler
-      config: Yapılandırma
-      feature_deletions: Hesap silme
-      feature_invites: Davet bağlantıları
-      feature_profile_directory: Profil Dizini
-      feature_registrations: Kayıtlar
-      feature_relay: Federasyon aktarıcısı
-      feature_timeline_preview: Zaman çizelgesi önizlemesi
-      features: Özellikler
-      hidden_service: Gizli servislere sahip federasyon
-      open_reports: raporları aç
-      pending_tags: inceleme için bekleyen hashtag'ler
-      pending_users: inceleme için bekleyen kullanıcılar
-      recent_users: Son kullanıcılar
-      search: Tam metin araması
-      single_user_mode: Tek kullanıcı modu
+      active_users: aktif kullanıcılar
+      interactions: etkileşimler
+      media_storage: Medya deposu
+      new_users: yeni kullanıcılar
+      opened_reports: açılan bildirimler
+      pending_reports_html:
+        one: "<strong>1</strong> bekleyen bildirim"
+        other: "<strong>%{count}</strong> bekleyen bildirim"
+      pending_tags_html:
+        one: "<strong>1</strong> bekleyen etiket"
+        other: "<strong>%{count}</strong> bekleyen etiket"
+      pending_users_html:
+        one: "<strong>1</strong> bekleyen kullanıcı"
+        other: "<strong>%{count}</strong> bekleyen kullanıcı"
+      resolved_reports: çözülmüş bildirimler
       software: Yazılım
+      sources: Kayıt kaynakları
       space: Alan kullanımı
       title: Kontrol Paneli
-      total_users: toplam kullanıcı
-      trends: Gündemler
-      week_interactions: bu haftaki etkileşimler
-      week_users_active: bu hafta aktif
-      week_users_new: bu hafta kullanıcılar
-      whitelist_mode: Beyaz liste modu
+      top_languages: En aktif diller
+      top_servers: En aktif sunucular
+      website: Web sitesi
     domain_allows:
       add_new: Alan adını beyaz listeye al
       created_msg: Alan adı başarıyla beyaz listeye alındı
@@ -569,6 +575,7 @@ tr:
       resolved: Giderildi
       resolved_msg: Şikayet başarıyla çözümlendi!
       status: Durum
+      target_origin: Şikayet edilen hesabın kökeni
       title: Şikayetler
       unassign: Atamayı geri al
       unresolved: Giderilmedi
@@ -767,7 +774,7 @@ tr:
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Sunucu kurallarını</a> ve <a href="%{terms_path}" target="_blank">hizmet şartlarını</a> kabul ediyorum
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Hizmet şartlarını</a> kabul ediyorum
     delete_account: Hesabı sil
-    delete_account_html: Hesabınızı silmek isterseniz, <a href="%{path}">buradan devam edebilirsiniz </a>. Onaylamanız istenecektir.
+    delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
     description:
       prefix_invited_by_user: "@%{name} sizi bu Mastodon sunucusuna katılmaya davet ediyor!"
       prefix_sign_up: Bugün Mastodon'a kaydolun!
@@ -781,7 +788,7 @@ tr:
     login: Oturum aç
     logout: Oturumu kapat
     migrate_account: Farklı bir hesaba taşıyın
-    migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsanız, <a href="%{path}">buradan yapılandırabilirsiniz</a>.
+    migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsan, <a href="%{path}">buradan yapılandırabilirsin</a>.
     or_log_in_with: 'Veya şununla oturum açın:'
     providers:
       cas: CAS
@@ -1004,6 +1011,17 @@ tr:
   lists:
     errors:
       limit: En yüksek liste sayısına ulaştınız
+  login_activities:
+    authentication_methods:
+      otp: iki aşamalı kimlik doğrulama uygulaması
+      password: parola
+      sign_in_token: e-posta güvenlik kodu
+      webauthn: güvenlik anahtarları
+    description_html: Eğer tanımadığınız bir faaliyet görüyorsanız, parolanızı değiştirmeyi ve iki aşamalı kimlik doğrulamayı etkinleştirmeyi düşünün.
+    empty: Kimlik doğrulama geçmişi yok
+    failed_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarısız oturum açma girişimi"
+    successful_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarılı oturum açma"
+    title: Kimlik doğrulama geçmişi
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez
@@ -1210,6 +1228,7 @@ tr:
     revoke: İptal Et
     revoke_success: Oturum başarıyla iptal edildi
     title: Oturumlar
+    view_authentication_history: Hesabınızın kimlik doğrulama geçmişini görüntüle
   settings:
     account: Hesap
     account_settings: Hesap ayarları
@@ -1230,6 +1249,7 @@ tr:
     preferences: Tercihler
     profile: Profil
     relationships: Takip edilenler ve takipçiler
+    statuses_cleanup: Otomatik gönderi silme
     two_factor_authentication: İki adımlı doğrulama
     webauthn_authentication: Güvenlik anahtarları
   statuses:
@@ -1281,6 +1301,40 @@ tr:
       public_long: Herkese açık zaman tüneline gönder
       unlisted: Listelenmemiş
       unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez
+  statuses_cleanup:
+    enabled: Eski gönderileri otomatik olarak sil
+    enabled_hint: Belirli bir zaman eşiğine ulaşan eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler
+    exceptions: İstisnalar
+    explanation: Gönderi silme maliyetli bir iş olduğu için, sunucu çok yoğun olmadığında yavaş yavaş yapılmaktadır. Bu nedenle, gönderilerinizin zaman eşiği geldiğinde silinmesi belirli bir süre alabilir.
+    ignore_favs: Beğenileri yoksay
+    ignore_reblogs: Teşvikleri yoksay
+    interaction_exceptions: Etkileşimlere dayalı istisnalar
+    interaction_exceptions_explanation: Bir kere değerlendirmeye alındıktan sonra, belirtilen beğeni veya teşvik eşiğinin altında düşünce gönderilerin silinmesinin bir güvencesi yok.
+    keep_direct: Doğrudan iletileri sakla
+    keep_direct_hint: Herhangi bir doğrudan iletinizi silmez
+    keep_media: Görüntü eki olan gönderileri sakla
+    keep_media_hint: Herhangi bir medya eki olan gönderinizi silmez
+    keep_pinned: Sabitlenmiş gönderileri sakla
+    keep_pinned_hint: Herhangi bir sabitlenmiş gönderinizi silmez
+    keep_polls: Anketleri sakla
+    keep_polls_hint: Herhangi bir anketinizi silmez
+    keep_self_bookmark: Yer imi olarak eklenmiş gönderileri sakla
+    keep_self_bookmark_hint: Herhangi bir yer imi olarak eklenmiş gönderinizi silmez
+    keep_self_fav: Beğendiğiniz gönderileri sakla
+    keep_self_fav_hint: Kendi gönderilerinizi beğenmişseniz silmez
+    min_age:
+      '1209600': 2 hafta
+      '15778476': 6 ay
+      '2629746': 1 ay
+      '31556952': 1 yıl
+      '5259492': 2 ay
+      '63113904': 2 yıl
+      '7889238': 3 ay
+    min_age_label: Zaman eşiği
+    min_favs: Şundan daha fazla beğenilen gönderileri sakla
+    min_favs_hint: Bu belirtilenden daha fazla beğeni alan gönderilerinizin herhangi birini silmez. Beğeni sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
+    min_reblogs: Şundan daha fazla teşvik edilen gönderileri sakla
+    min_reblogs_hint: Bu belirtilenden daha fazla teşvik edilen gönderilerinizin herhangi birini silmez. Teşvik sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
   stream_entries:
     pinned: Sabitlenmiş toot
     reblogged: boostladı

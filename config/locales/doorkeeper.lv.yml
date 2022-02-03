@@ -1,1 +1,154 @@
+---
 lv:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Lietotnes nosaukums
+        redirect_uri: Novirzīšanas URI
+        scopes: Darbības sfēras
+        website: Lietotnes mājvieta
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: nedrīkst saturēt fragmentu.
+              invalid_uri: jābūt derīgam URI.
+              relative_uri: jābūt absolūtam URI.
+              secured_uri: jābūt HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizēt
+        cancel: Atcelt
+        destroy: Iznīcināt
+        edit: Rediģēt
+        submit: Apstiprināt
+      confirmations:
+        destroy: Vai esi pārliecināts?
+      edit:
+        title: Rediģēt pieteikumu
+      form:
+        error: Hmm! Pārbaudi, vai tavā veidlapā nav kļūdu
+      help:
+        native_redirect_uri: Lokālajiem testiem izmanto %{native_redirect_uri}
+        redirect_uri: Katram URI izmanto vienu līniju
+        scopes: Atdali darbības jomas ar atstarpēm. Lai izmantotu noklusējuma darbības jomas, atstāj tukšu.
+      index:
+        application: Lietotne
+        callback_url: Atzvanīšanas URL
+        delete: Dzēst
+        empty: Tev nav lietotņu.
+        name: Nosaukums
+        new: Jauns pieteikums
+        scopes: Darbības sfēras
+        show: Parādīt
+        title: Tavas lietotnes
+      new:
+        title: Jauns pieteikums
+      show:
+        actions: Darbības
+        application_id: Klienta atslēga
+        callback_urls: Atzvanīšanas URL
+        scopes: Darbības sfēras
+        secret: Klienta noslēpums
+        title: 'Lietotne: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizēt
+        deny: Aizliegt
+      error:
+        title: Radās kļūda
+      new:
+        able_to: Tā varēs
+        prompt: Lietotne %{client_name} prasa piekļuvi tavam kontam
+        title: Nepieciešama autorizācija
+      show:
+        title: Nokopē šo autorizācijas kodu un ielīmē to lietotnē.
+    authorized_applications:
+      buttons:
+        revoke: Atsaukt
+      confirmations:
+        revoke: Vai esi pārliecināts?
+      index:
+        application: Lietotne
+        created_at: Autorizēts
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: Darbības sfēras
+        title: Tevis autorizētās lietotnes
+    errors:
+      messages:
+        access_denied: Resursa īpašnieks vai autorizācijas serveris pieprasījumu noraidīja.
+        credential_flow_not_configured: Resursa īpašnieka paroles akreditācijas datu plūsma neizdevās, jo Doorkeeper.configure.resource_owner_from_credentials nebija konfigurēts.
+        invalid_client: Klienta autentifikācija neizdevās nezināma klienta, klienta autentifikācijas vai neatbalstītas autentifikācijas metodes dēļ.
+        invalid_grant: Sniegtā autorizācijas piekrišana nav derīga, tai ir beidzies derīguma termiņš, tā ir atsaukta, tā neatbilst autorizācijas pieprasījumā izmantotajam novirzīšanas URI vai tika izsniegta citam klientam.
+        invalid_redirect_uri: Iekļauts novirzīšanas uri nav derīgs.
+        invalid_request:
+          missing_param: 'Trūkst pieprasītā parametra: %{value}.'
+          request_not_authorized: Pieprasījums ir jāautorizē. Trūkst vai nav derīgs pieprasījuma autorizēšanai nepieciešamais parametrs.
+          unknown: Pieprasījumā trūkst nepieciešamā parametra, tajā ir neatbalstīta parametra vērtība vai tas ir citādi nepareizi veidots.
+        invalid_resource_owner: Norādītie resursa īpašnieka akreditācijas dati nav derīgi, vai arī resursa īpašnieku nevar atrast
+        invalid_scope: Pieprasītā darbības joma nav derīga, nav zināma vai ir nepareizi veidota.
+        invalid_token:
+          expired: Piekļuves pilnvaras derīguma termiņš ir beidzies
+          revoked: Piekļuves pilnvara tika atsaukta
+          unknown: Piekļuves pilnvara nav derīga
+        resource_owner_authenticator_not_configured: Resursa īpašnieka atrašana neizdevās, jo Doorkeeper.configure.resource_owner_authenticator nav savienots.
+        server_error: Autorizācijas serverim radās neparedzēts nosacījums, kas neļāva izpildīt pieprasījumu.
+        temporarily_unavailable: Autorizācijas serveris pašlaik nevar apstrādāt pieprasījumu servera īslaicīgas pārslodzes vai apkopes dēļ.
+        unauthorized_client: Klients nav pilnvarots izpildīt šo pieprasījumu, izmantojot šo metodi.
+        unsupported_grant_type: Autorizācijas serveris neatbalsta atļaujas piešķiršanas veidu.
+        unsupported_response_type: Autorizācijas serveris neatbalsta šo atbildes veidu.
+    flash:
+      applications:
+        create:
+          notice: Lietotne izveidota.
+        destroy:
+          notice: Lietotne izdzēsta.
+        update:
+          notice: Lietotne atjaunināta.
+      authorized_applications:
+        destroy:
+          notice: Lietotne atsaukta.
+    layouts:
+      admin:
+        nav:
+          applications: Lietotnes
+          oauth2_provider: OAuth2 nodrošinātājs
+      application:
+        title: OAuth nepieciešama autorizācija
+    scopes:
+      admin:read: lasīt visus datus uz servera
+      admin:read:accounts: lasīt sensitīvu informāciju no visiem kontiem
+      admin:read:reports: lasīt sensitīvu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
+      admin:write: modificēt visus datus uz servera
+      admin:write:accounts: veikt moderācijas darbības kontos
+      admin:write:reports: veikt moderācijas darbības pārskatos
+      follow: mainīt konta attiecības
+      push: saņemt savus push paziņojumus
+      read: lasīt visus sava konta datus
+      read:accounts: apskatīt kontu informāciju
+      read:blocks: apskatīt savus blokus
+      read:bookmarks: apskatīt savas grāmatzīmes
+      read:favourites: apskatīt savu izlasi
+      read:filters: apskatīt savus filtrus
+      read:follows: apskatīt savus sekotājus
+      read:lists: apskatīt savus sarakstus
+      read:mutes: apskatīt savus apklusinātos
+      read:notifications: apskatīt savus paziņojumus
+      read:reports: apskatīt savus pārskatus
+      read:search: meklēt savā vārdā
+      read:statuses: skatīt visus ierakstus
+      write: labot visus sava konta datus
+      write:accounts: labot manu profilu
+      write:blocks: bloķēt kontus un domēnus
+      write:bookmarks: pievienotās grāmatzīmes
+      write:favourites: iecienītākās ziņas
+      write:filters: izveidot filtrus
+      write:follows: seko cilvēkiem
+      write:lists: izveido sarakstus
+      write:media: pievieno mediju datnes
+      write:mutes: apklusini cilvēkus un sarunas
+      write:notifications: notīri savus paziņojumus
+      write:reports: ziņo par citiem cilvēkiem
+      write:statuses: publicē ziņas
