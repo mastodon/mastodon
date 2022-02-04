@@ -24,6 +24,10 @@ module Twitter::TwitterText
         )
       \)
     /iox
+    REGEXEN[:valid_iri_ucschar] = /[\u{A0}-\u{D7FF}\u{F900}-\u{FDCF}\u{FDF0}-\u{FFEF}\u{10000}-\u{1FFFD}\u{20000}-\u{2FFFD}\u{30000}-\u{3FFFD}\u{40000}-\u{4FFFD}\u{50000}-\u{5FFFD}\u{60000}-\u{6FFFD}\u{70000}-\u{7FFFD}\u{80000}-\u{8FFFD}\u{90000}-\u{9FFFD}\u{A0000}-\u{AFFFD}\u{B0000}-\u{BFFFD}\u{C0000}-\u{CFFFD}\u{D0000}-\u{DFFFD}\u{E1000}-\u{EFFFD}]/iou
+    REGEXEN[:valid_iri_iprivate] = /[\u{E000}-\u{F8FF}\u{F0000}-\u{FFFFD}\u{100000}-\u{10FFFD}]/iou
+    REGEXEN[:valid_url_query_chars] = /(?:#{REGEXEN[:valid_iri_ucschar]})|(?:#{REGEXEN[:valid_iri_iprivate]})|[a-z0-9!?\*'\(\);:&=\+\$\/%#\[\]\-_\.,~|@]/iou
+    REGEXEN[:valid_url_query_ending_chars] = /(?:#{REGEXEN[:valid_iri_ucschar]})|(?:#{REGEXEN[:valid_iri_iprivate]})|[a-z0-9_&=#\/\-]/iou
     REGEXEN[:valid_url_path] = /(?:
       (?:
         #{REGEXEN[:valid_general_url_path_chars]}*

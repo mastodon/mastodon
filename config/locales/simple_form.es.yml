@@ -35,7 +35,7 @@ es:
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
-        discoverable: El directorio del perfil es otra forma en la que su cuenta puede llegar a un público más amplio
+        discoverable: Permite que tu cuenta sea encontrada por desconocidos por medio de recomendaciones y otras herramientas
         email: Se le enviará un correo de confirmación
         fields: Puedes tener hasta 4 elementos mostrándose como una tabla en tu perfil
         header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -120,6 +120,7 @@ es:
         text: Anuncio
       defaults:
         autofollow: Invitar a seguir tu cuenta
+        avatar: Avatar
         bot: Esta es una cuenta bot
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nueva contraseña
@@ -127,7 +128,7 @@ es:
         context: Filtrar contextos
         current_password: Contraseña actual
         data: Información
-        discoverable: Listar esta cuenta en el directorio
+        discoverable: Sugerir la cuenta a otros
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Expirar tras
@@ -189,6 +190,7 @@ es:
         text: "¿Por qué quiere unirse usted?"
       ip_block:
         comment: Comentario
+        ip: IP
         severities:
           no_access: Bloquear acceso
           sign_up_requires_approval: Limitar registros
@@ -210,8 +212,10 @@ es:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a las publicaciones usar esta etiqueta
+    'no': 'No'
     recommended: Recomendado
     required:
+      mark: "*"
       text: necesario
     title:
       sessions:

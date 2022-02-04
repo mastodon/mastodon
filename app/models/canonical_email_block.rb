@@ -15,7 +15,7 @@ class CanonicalEmailBlock < ApplicationRecord
 
   belongs_to :reference_account, class_name: 'Account'
 
-  validates :canonical_email_hash, presence: true
+  validates :canonical_email_hash, presence: true, uniqueness: true
 
   def email=(email)
     self.canonical_email_hash = email_to_canonical_email_hash(email)

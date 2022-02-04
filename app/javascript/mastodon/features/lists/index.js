@@ -48,7 +48,7 @@ class Lists extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, shouldUpdateScroll, lists, multiColumn } = this.props;
+    const { intl, lists, multiColumn } = this.props;
 
     if (!lists) {
       return (
@@ -68,7 +68,6 @@ class Lists extends ImmutablePureComponent {
 
         <ScrollableList
           scrollKey='lists'
-          shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           prepend={<ColumnSubheading text={intl.formatMessage(messages.subheading)} />}
           bindToDocument={!multiColumn}

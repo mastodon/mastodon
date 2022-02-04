@@ -18,14 +18,14 @@ zh-CN:
     contact_unavailable: 未公开
     discover_users: 发现用户
     documentation: 文档
-    federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容 Mastodon 服务器上的人。
+    federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容Mastodon的服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
     instance_actor_flash: "这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。 \n"
     learn_more: 了解详情
     privacy_policy: 隐私政策
     rules: 服务器规则
-    rules_html: 如果你想要在此 Mastodon 服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：
+    rules_html: 如果你想要在此Mastodon服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：
     see_whats_happening: 看一看现在在发生什么
     server_stats: 服务器统计数据：
     source_code: 源代码
@@ -51,7 +51,7 @@ zh-CN:
     what_is_mastodon: Mastodon 是什么？
   accounts:
     choices_html: "%{name} 的推荐："
-    endorsements_hint: 你可以在 Web 界面上推荐你关注的人，他们会显示在这里。
+    endorsements_hint: 你可以在web界面上推荐你关注的人，他们会显示在这里。
     featured_tags_hint: 你可以精选一些话题标签展示在这里。
     follow: 关注
     followers:
@@ -189,8 +189,8 @@ zh-CN:
       sensitized: 已标记为敏感内容
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
       show:
-        created_reports: 这个帐户提交的报告
-        targeted_reports: 针对这个帐户的报告
+        created_reports: 这个帐户提交的举报
+        targeted_reports: 针对这个帐户的举报
       silence: 隐藏
       silenced: 已隐藏
       statuses: 嘟文
@@ -214,7 +214,7 @@ zh-CN:
       whitelisted: 允许跨站交互
     action_logs:
       action_types:
-        assigned_to_self_report: 指派报告
+        assigned_to_self_report: 指派举报
         change_email_user: 为用户修改邮箱地址
         confirm_user: 确认用户
         create_account_warning: 创建警告
@@ -242,13 +242,13 @@ zh-CN:
         memorialize_account: 将账户设为追悼模式
         promote_user: 给用户升任
         remove_avatar_user: 移除头像
-        reopen_report: 重开报告
+        reopen_report: 重开举报
         reset_password_user: 重置密码
-        resolve_report: 处理报告
+        resolve_report: 处理举报
         sensitive_account: 将你帐号中的媒体标记为敏感内容
         silence_account: 隐藏用户
         suspend_account: 封禁用户
-        unassigned_report: 取消报告的指派
+        unassigned_report: 取消举报的指派
         unsensitive_account: 去除你帐号中媒体的敏感内容标记
         unsilence_account: 解除账号隐藏
         unsuspend_account: 解除账号封禁
@@ -257,7 +257,7 @@ zh-CN:
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
-        assigned_to_self_report_html: "%{name} 接管了报告 %{target}"
+        assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
         confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_account_warning_html: "%{name} 向 %{target} 发送了警告"
@@ -285,13 +285,13 @@ zh-CN:
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
-        reopen_report_html: "%{name} 重开了报告 %{target}"
+        reopen_report_html: "%{name} 重开了举报 %{target}"
         reset_password_user_html: "%{name} 重置了用户 %{target} 的密码"
-        resolve_report_html: "%{name} 处理了报告 %{target}"
+        resolve_report_html: "%{name} 处理了举报 %{target}"
         sensitive_account_html: "%{name} 将 %{target} 的媒体标记为敏感内容"
         silence_account_html: "%{name} 隐藏了用户 %{target}"
         suspend_account_html: "%{name} 封禁了用户 %{target}"
-        unassigned_report_html: "%{name} 放弃接管报告 %{target}"
+        unassigned_report_html: "%{name} 放弃接管举报 %{target}"
         unsensitive_account_html: "%{name} 去除了 %{target} 的媒体的敏感内容标记"
         unsilence_account_html: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account_html: "%{name} 解除了用户 %{target} 的封禁状态"
@@ -366,7 +366,7 @@ zh-CN:
       feature_timeline_preview: 时间轴预览
       features: 功能
       hidden_service: 匿名服务连通性
-      open_reports: 待处理报告数
+      open_reports: 待处理举报数
       pending_tags: 等待审核的标签
       pending_users: 等待审核的用户
       recent_users: 新用户
@@ -410,10 +410,10 @@ zh-CN:
       public_comment_hint: 给这一域名限制添加公开的评论，如果你推广你的域名限制列表的话，这些评论就会显示出来。
       reject_media: 拒绝接收媒体文件
       reject_media_hint: 删除本站已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
-      reject_reports: 拒绝接收报告
-      reject_reports_hint: 忽略来自此域名的所有报告。这和封禁无关。
+      reject_reports: 拒绝接收举报
+      reject_reports_hint: 忽略来自此域名的所有举报。这和封禁无关。
       rejecting_media: 拒绝接收媒体文件
-      rejecting_reports: 拒绝接收报告
+      rejecting_reports: 拒绝接收举报
       severity:
         silence: 已隐藏
         suspend: 已封禁
@@ -440,7 +440,7 @@ zh-CN:
         title: 添加电子邮件域名屏蔽
       title: 电子邮件域名屏蔽
     follow_recommendations:
-      description_html: "<strong>“关注推荐”帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账户。每日都会更新推荐，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
+      description_html: "<strong>“关注推荐”可帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账户。推荐会每日更新，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
       language: 选择语言
       status: 嘟文
       suppress: 禁用推荐关注
@@ -449,12 +449,12 @@ zh-CN:
       unsuppress: 恢复推荐关注
     instances:
       back_to_all: 全部
-      back_to_limited: 隐藏
+      back_to_limited: 受限
       back_to_warning: 警告
       by_domain: 域名
       delivery:
         all: 全部
-        clear: 清除投递错误
+        clear: 清理投递错误
         restart: 重新投递
         stop: 停止投递
         title: 投递
@@ -479,7 +479,7 @@ zh-CN:
       total_blocked_by_us: 被我站屏蔽的
       total_followed_by_them: 被对方关注的
       total_followed_by_us: 被我站关注的
-      total_reported: 关于对方的报告
+      total_reported: 关于对方的举报
       total_storage: 媒体文件
     invites:
       deactivate_all: 撤销所有邀请链接
@@ -525,8 +525,8 @@ zh-CN:
       status: 状态
       title: 中继站
     report_notes:
-      created_msg: 报告记录建立成功！
-      destroyed_msg: 报告记录删除成功！
+      created_msg: 举报记录建立成功！
+      destroyed_msg: 举报记录删除成功！
     reports:
       account:
         notes:
@@ -537,10 +537,10 @@ zh-CN:
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
-      by_target_domain: 被报告账户的域名
+      by_target_domain: 被举报账户的域名
       comment:
         none: 没有
-      created_at: 报告时间
+      created_at: 举报时间
       forwarded: 已转发
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为“已处理”
@@ -551,14 +551,14 @@ zh-CN:
         create_and_unresolve: 添加记录并重开
         delete: 删除
         placeholder: 描述已经执行的操作，或其他任何相关的跟进情况…
-      reopen: 重开报告
-      report: '报告 #%{id}'
-      reported_account: 报告用户
-      reported_by: 报告人
+      reopen: 重开举报
+      report: '举报 #%{id}'
+      reported_account: 举报用户
+      reported_by: 举报人
       resolved: 已处理
-      resolved_msg: 报告处理成功！
+      resolved_msg: 举报处理成功！
       status: 状态
-      title: 报告
+      title: 举报
       unassign: 取消接管
       unresolved: 未处理
       updated_at: 更新时间
@@ -710,9 +710,9 @@ zh-CN:
       body: 新帐户的详细信息如下。你可以批准或拒绝此申请。
       subject: 在 %{instance} 上有新帐号 ( %{username}) 需要审核
     new_report:
-      body: "%{reporter} 报告了用户 %{target}"
-      body_remote: 来自 %{domain} 的用户报告了用户 %{target}
-      subject: 来自 %{instance} 的用户报告（#%{id}）
+      body: "%{reporter} 举报了用户 %{target}"
+      body_remote: 来自 %{domain} 的用户举报了用户 %{target}
+      subject: 来自 %{instance} 的用户举报（#%{id}）
     new_trending_tag:
       body: '今日的热门话题 #%{name} 之前未经审核。直到你允许之前这个话题将不会公开显示，或者就保持原样让它石沉大海。'
       subject: 在 %{instance} 有新话题 (#%{name}) 待审核
@@ -724,8 +724,8 @@ zh-CN:
     hint_html: 如果你想把另一个帐号迁移到这里，你可以先在这里创建一个别名。如果你想把关注者迁移过来，这一步是必须的。设置别名的操作时<strong>无害而且可以恢复的</strong>。<strong>帐号迁移的操作会从旧帐号开始</strong>。
     remove: 取消关联别名
   appearance:
-    advanced_web_interface: 高级 Web 界面
-    advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 Web 界面允许你配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
+    advanced_web_interface: 高级web界面
+    advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
     animations_and_accessibility: 动画和访问选项
     confirmation_dialogs: 确认对话框
     discovery: 发现
@@ -887,7 +887,7 @@ zh-CN:
     csv: CSV
     domain_blocks: 域名屏蔽
     lists: 列表
-    mutes: 你静音的用户
+    mutes: 你隐藏的用户
     storage: 媒体文件存储
   featured_tags:
     add_new: 添加新条目
@@ -1031,7 +1031,7 @@ zh-CN:
     title: 运营
   move_handler:
     carry_blocks_over_text: 这个用户迁移自你屏蔽过的 %{acct}
-    carry_mutes_over_text: 这个用户迁移自你静音过的 %{acct}
+    carry_mutes_over_text: 这个用户迁移自你隐藏过的 %{acct}
     copy_account_note_text: 这个用户迁移自 %{acct}，你曾为其添加备注：
   notification_mailer:
     digest:
@@ -1445,8 +1445,8 @@ zh-CN:
       error: 删除你的安全密钥时出错。请重试。
       success: 你的安全密钥已成功删除。
     invalid_credential: 无效的安全密钥
-    nickname_hint: 输入你新安全密钥的昵称
-    not_enabled: 你尚未启用 WebAuthn
+    nickname_hint: 输入你的新安全密钥的昵称
+    not_enabled: 你尚未启用WebAuthn
     not_supported: 此浏览器不支持安全密钥
     otp_required: 要使用安全密钥，请先启用两步验证。
     registered_on: 注册于 %{date}

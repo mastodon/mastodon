@@ -1,3 +1,5 @@
+require 'devise/strategies/authenticatable'
+
 Warden::Manager.after_set_user except: :fetch do |user, warden|
   if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
     session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
@@ -72,17 +74,48 @@ module Devise
   mattr_accessor :ldap_uid_conversion_replace
   @@ldap_uid_conversion_replace = nil
 
-  class Strategies::PamAuthenticatable
-    def valid?
-      super && ::Devise.pam_authentication
+  module Strategies
+    class PamAuthenticatable
+      def valid?
+        super && ::Devise.pam_authentication
+      end
+    end
+
+    class SessionActivationRememberable < Authenticatable
+      def valid?
+        @session_cookie = nil
+        session_cookie.present?
+      end
+
+      def authenticate!
+        resource = SessionActivation.find_by(session_id: session_cookie)&.user
+
+        unless resource
+          cookies.delete('_session_id')
+          return pass
+        end
+
+        if validate(resource)
+          success!(resource)
+        end
+      end
+
+      private
+
+      def session_cookie
+        @session_cookie ||= cookies.signed['_session_id']
+      end
     end
   end
 end
+
+Warden::Strategies.add(:session_activation_rememberable, Devise::Strategies::SessionActivationRememberable)
 
 Devise.setup do |config|
   config.warden do |manager|
     manager.default_strategies(scope: :user).unshift :two_factor_ldap_authenticatable if Devise.ldap_authentication
     manager.default_strategies(scope: :user).unshift :two_factor_pam_authenticatable  if Devise.pam_authentication
+    manager.default_strategies(scope: :user).unshift :session_activation_rememberable
     manager.default_strategies(scope: :user).unshift :two_factor_authenticatable
     manager.default_strategies(scope: :user).unshift :two_factor_backupable
   end

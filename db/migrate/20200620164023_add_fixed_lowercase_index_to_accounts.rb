@@ -1,15 +1,9 @@
+require Rails.root.join('lib', 'mastodon', 'migration_helpers')
+
 class AddFixedLowercaseIndexToAccounts < ActiveRecord::Migration[5.2]
+  include Mastodon::MigrationHelpers
+
   disable_ddl_transaction!
-
-  class CorruptionError < StandardError
-    def cause
-      nil
-    end
-
-    def backtrace
-      []
-    end
-  end
 
   def up
     if index_name_exists?(:accounts, 'old_index_accounts_on_username_and_domain_lower') && index_name_exists?(:accounts, 'index_accounts_on_username_and_domain_lower')
@@ -21,7 +15,8 @@ class AddFixedLowercaseIndexToAccounts < ActiveRecord::Migration[5.2]
     begin
       add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true, algorithm: :concurrently
     rescue ActiveRecord::RecordNotUnique
-      raise CorruptionError, 'Migration failed because of index corruption, see https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/#fixing'
+      remove_index :accounts, name: 'index_accounts_on_username_and_domain_lower'
+      raise CorruptionError
     end
 
     remove_index :accounts, name: 'old_index_accounts_on_username_and_domain_lower' if index_name_exists?(:accounts, 'old_index_accounts_on_username_and_domain_lower')

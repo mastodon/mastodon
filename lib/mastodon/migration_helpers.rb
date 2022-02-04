@@ -41,6 +41,20 @@
 
 module Mastodon
   module MigrationHelpers
+    class CorruptionError < StandardError
+      def initialize(message = nil)
+        super(message.presence || 'Migration failed because of index corruption, see https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/#fixing')
+      end
+
+      def cause
+        nil
+      end
+
+      def backtrace
+        []
+      end
+    end
+
     # Model that can be used for querying permissions of a SQL user.
     class Grant < ActiveRecord::Base
       self.table_name = 'information_schema.role_table_grants'
@@ -281,7 +295,7 @@ module Mastodon
       table = Arel::Table.new(table_name)
 
       total = estimate_rows_in_table(table_name).to_i
-      if total == 0
+      if total < 1
         count_arel = table.project(Arel.star.count.as('count'))
         count_arel = yield table, count_arel if block_given?
 

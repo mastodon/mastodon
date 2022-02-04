@@ -55,6 +55,10 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
 
         it_behaves_like 'cachable response'
 
+        it 'does not have a Vary header' do
+          expect(response.headers['Vary']).to be_nil
+        end
+
         context 'when account is permanently suspended' do
           before do
             account.suspend!
@@ -95,6 +99,10 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it_behaves_like 'cachable response'
+
+        it 'returns Vary header with Signature' do
+          expect(response.headers['Vary']).to include 'Signature'
+        end
 
         context 'when account is permanently suspended' do
           before do
@@ -144,7 +152,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
         end
       end
 
@@ -170,7 +178,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
         end
       end
 
@@ -195,7 +203,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
         end
       end
 
@@ -220,7 +228,7 @@ RSpec.describe ActivityPub::OutboxesController, type: :controller do
         end
 
         it 'returns private Cache-Control header' do
-          expect(response.headers['Cache-Control']).to eq 'max-age=0, private'
+          expect(response.headers['Cache-Control']).to eq 'max-age=60, private'
         end
       end
     end

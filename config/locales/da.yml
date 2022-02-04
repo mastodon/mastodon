@@ -6,7 +6,7 @@ da:
     about_this: Om
     active_count_after: aktive
     active_footnote: Månedlige aktive brugere (MAU)
-    administered_by: 'Administreret af:'
+    administered_by: 'Administreres af:'
     api: API
     apps: Mobil-apps
     apps_platforms: Benyt Mastodon på Android, iOS og andre platforme
@@ -289,6 +289,7 @@ da:
         enable_custom_emoji_html: "%{name} aktiverede humørikonet %{target}"
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
+        promote_user_html: "%{name} forfremmede brugeren %{target}"
         remove_avatar_user_html: "%{name} fjernede %{target}s profilbillede"
         reopen_report_html: "%{name} genåbnede anmeldelsen %{target}"
         reset_password_user_html: "%{name} nulstillede adgangskoden for brugeren %{target}"
@@ -854,6 +855,7 @@ da:
       caches: Indhold, cachelagret af andre servere, kan fortsat eksistere
       data_removal: Dine indlæg og andre data fjernes permanent
       email_change_html: Du kan <a href="%{path}">skifte e-mailadresse</a> uden at slette din konto
+      email_contact_html: Hvis det stadig ikke ankommer, kan du sende en e-mail til <a href="mailto:%{email}">%{email}</a> for hjælp
       email_reconfirmation_html: Modtager du ikke bekræftelsese-mailen, kan du <a href="%{path}">anmode om en ny</a>
       irreversible: Du vil ikke kunne gendanne/genaktivere din konto
       more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">fortrolighedspolitikken</a>.

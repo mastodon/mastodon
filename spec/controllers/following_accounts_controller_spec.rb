@@ -3,7 +3,7 @@ require 'rails_helper'
 describe FollowingAccountsController do
   render_views
 
-  let(:alice) { Fabricate(:account, username: 'alice') }
+  let(:alice) { Fabricate(:user).account }
   let(:followee0) { Fabricate(:account) }
   let(:followee1) { Fabricate(:account) }
 
@@ -99,6 +99,23 @@ describe FollowingAccountsController do
           expect(response).to have_http_status(200)
           expect(body['totalItems']).to eq 2
           expect(body['partOf']).to be_blank
+        end
+
+        context 'when account hides their network' do
+          before do
+            alice.user.settings.hide_network = true
+          end
+
+          it 'returns followers count' do
+            expect(body['totalItems']).to eq 2
+          end
+
+          it 'does not return items' do
+            expect(body['items']).to be_blank
+            expect(body['orderedItems']).to be_blank
+            expect(body['first']).to be_blank
+            expect(body['last']).to be_blank
+          end
         end
 
         context 'when account is permanently suspended' do
