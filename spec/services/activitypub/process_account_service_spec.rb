@@ -12,6 +12,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
         attachment: [
           { type: 'PropertyValue', name: 'Pronouns', value: 'They/them' },
           { type: 'PropertyValue', name: 'Occupation', value: 'Unit test' },
+          { type: 'PropertyValue', name: 'non-string', value: ['foo', 'bar'] },
         ],
       }.with_indifferent_access
     end

@@ -6,8 +6,6 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Footer from 'mastodon/features/picture_in_picture/components/footer';
 import { getAverageFromBlurhash } from 'mastodon/blurhash';
 
-export const previewState = 'previewVideoModal';
-
 export default class VideoModal extends ImmutablePureComponent {
 
   static propTypes = {
@@ -22,35 +20,13 @@ export default class VideoModal extends ImmutablePureComponent {
     onChangeBackgroundColor: PropTypes.func.isRequired,
   };
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
-
   componentDidMount () {
-    const { router } = this.context;
     const { media, onChangeBackgroundColor, onClose } = this.props;
-
-    if (router) {
-      router.history.push(router.history.location.pathname, previewState);
-      this.unlistenHistory = router.history.listen(() => onClose());
-    }
 
     const backgroundColor = getAverageFromBlurhash(media.get('blurhash'));
 
     if (backgroundColor) {
       onChangeBackgroundColor(backgroundColor);
-    }
-  }
-
-  componentWillUnmount () {
-    const { router } = this.context;
-
-    if (router) {
-      this.unlistenHistory();
-
-      if (router.history.location.state === previewState) {
-        router.history.goBack();
-      }
     }
   }
 

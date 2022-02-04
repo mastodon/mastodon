@@ -18,6 +18,7 @@ module SettingsHelper
     en: 'English',
     eo: 'Esperanto',
     'es-AR': 'Español (Argentina)',
+    'es-MX': 'Español (México)',
     es: 'Español',
     et: 'Eesti',
     eu: 'Euskara',

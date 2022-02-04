@@ -2,7 +2,8 @@
 
 class StatusLengthValidator < ActiveModel::Validator
   MAX_CHARS = (ENV['MAX_TOOT_CHARS'] || 500).to_i
-  URL_PLACEHOLDER = "\1#{'x' * 23}"
+  URL_PLACEHOLDER_CHARS = 23
+  URL_PLACEHOLDER = "\1#{'x' * URL_PLACEHOLDER_CHARS}"
 
   def validate(status)
     return unless status.local? && !status.reblog?

@@ -50,7 +50,6 @@ class AccountTimeline extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    shouldUpdateScroll: PropTypes.func,
     statusIds: ImmutablePropTypes.list,
     featuredStatusIds: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
@@ -115,7 +114,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   render () {
-    const { shouldUpdateScroll, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, multiColumn, remote, remoteUrl } = this.props;
+    const { statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, multiColumn, remote, remoteUrl } = this.props;
 
     if (!isAccount) {
       return (
@@ -162,7 +161,6 @@ class AccountTimeline extends ImmutablePureComponent {
           isLoading={isLoading}
           hasMore={hasMore}
           onLoadMore={this.handleLoadMore}
-          shouldUpdateScroll={shouldUpdateScroll}
           emptyMessage={emptyMessage}
           bindToDocument={!multiColumn}
           timelineId='account'

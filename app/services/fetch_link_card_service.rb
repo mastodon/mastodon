@@ -175,6 +175,6 @@ class FetchLinkCardService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "fetch:#{@url}" }
+    { redis: Redis.current, key: "fetch:#{@url}", autorelease: 15.minutes.seconds }
   end
 end

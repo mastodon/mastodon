@@ -7,6 +7,7 @@ es-MX:
     active_count_after: activo
     active_footnote: Usuarios Activos Mensuales (UAM)
     administered_by: 'Administrado por:'
+    api: API
     apps: Aplicaciones móviles
     apps_platforms: Utiliza Mastodon desde iOS, Android y otras plataformas
     browse_directory: Navega por el directorio de perfiles y filtra por intereses
@@ -14,6 +15,7 @@ es-MX:
     browse_public_posts: Navega por un transmisión en vivo de publicaciones públicas en Mastodon
     contact: Contacto
     contact_missing: No especificado
+    contact_unavailable: No disponible
     discover_users: Descubrir usuarios
     documentation: Documentación
     federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
@@ -80,6 +82,7 @@ es-MX:
     posts_with_replies: Toots con respuestas
     roles:
       admin: Administrador
+      bot: Bot
       group: Grupo
       moderator: Moderador
     unavailable: Perfil no disponible
@@ -99,6 +102,7 @@ es-MX:
       approve_all: Aprobar todos
       approved_msg: La solicitud de registro de %{username} ha sido aprobada correctamente
       are_you_sure: "¿Estás seguro?"
+      avatar: Avatar
       by_domain: Dominio
       change_email:
         changed_msg: "¡El correo electrónico se ha actualizado correctamente!"
@@ -131,9 +135,11 @@ es-MX:
       inbox_url: URL de la bandeja de entrada
       invite_request_text: Razones para unirse
       invited_by: Invitado por
+      ip: IP
       joined: Unido
       location:
         all: Todos
+        local: Local
         remote: Remoto
         title: Localización
       login_status: Estado del login
@@ -210,6 +216,7 @@ es-MX:
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
       warn: Adevertir
+      web: Web
       whitelisted: Añadido a la lista blanca
     action_logs:
       action_types:
@@ -223,6 +230,7 @@ es-MX:
         create_domain_block: Crear Bloqueo de Dominio
         create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
         create_ip_block: Crear regla IP
+        create_unavailable_domain: Crear Dominio No Disponible
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
         destroy_custom_emoji: Eliminar Emoji Personalizado
@@ -231,6 +239,7 @@ es-MX:
         destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
         destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estado
+        destroy_unavailable_domain: Eliminar Dominio No Disponible
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
         disable_user: Deshabilitar Usuario
@@ -264,6 +273,7 @@ es-MX:
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
         create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
         create_ip_block_html: "%{name} creó una regla para la IP %{target}"
+        create_unavailable_domain_html: "%{name} detuvo las entregas al dominio %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
         destroy_custom_emoji_html: "%{name} destruyó emoji %{target}"
@@ -272,6 +282,7 @@ es-MX:
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
         destroy_status_html: "%{name} eliminó el estado por %{target}"
+        destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
@@ -313,7 +324,7 @@ es-MX:
       scheduled_for: Programado para %{time}
       scheduled_msg: "¡Anuncio programado para su publicación!"
       title: Anuncios
-      unpublish: Eliminar publicación
+      unpublish: Retirar publicación
       unpublished_msg: "¡Anuncio despublicado con éxito!"
       updated_msg: "¡Anuncio actualizado con éxito!"
     custom_emojis:
@@ -329,6 +340,7 @@ es-MX:
       disable: Deshabilitar
       disabled: Desactivado
       disabled_msg: Se deshabilitó con éxito ese emoji
+      emoji: Emoji
       enable: Habilitar
       enabled: Activado
       enabled_msg: Se habilitó con éxito ese emoji
@@ -366,6 +378,7 @@ es-MX:
       recent_users: Usuarios recientes
       search: Búsqueda por texto completo
       single_user_mode: Modo único usuario
+      software: Software
       space: Uso de almacenamiento
       title: Tablero
       total_users: usuarios en total
@@ -434,16 +447,33 @@ es-MX:
         title: Nueva entrada en la lista negra de correo
       title: Lista negra de correo
     follow_recommendations:
-      description_html: "<strong>Las recomendaciones de cuentas a las que seguir ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para formar recomendaciones personalizadas de seguimiento, estas cuentas se recomiendan en su lugar. Se recalculan diariamente a partir de una mezcla de cuentas con las interacciones más recientes y el mayor número de seguidores para un idioma determinado."
+      description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
       language: Para el idioma
       status: Estado
-      suppress: Eliminar recomendación de cuentas a las que seguir
-      suppressed: Eliminado
-      title: Recomendaciones de cuentas a las que seguir
-      unsuppress: Restaurar recomendaciones de cuentas a las que seguir
+      suppress: Suprimir recomendación de cuentas
+      suppressed: Suprimida
+      title: Recomendaciones de cuentas
+      unsuppress: Restaurar recomendaciones de cuentas
     instances:
+      back_to_all: Todos
+      back_to_limited: Limitados
+      back_to_warning: Advertencia
       by_domain: Dominio
+      delivery:
+        all: Todos
+        clear: Limpiar errores de entrega
+        restart: Reiniciar entrega
+        stop: Detener entrega
+        title: Entrega
+        unavailable: No disponible
+        unavailable_message: Entrega no disponible
+        warning: Advertencia
+        warning_message:
+          one: Fallo de entrega %{count} día
+          other: Fallo de entrega %{count} días
       delivery_available: Entrega disponible
+      delivery_error_days: Días de error de entrega
+      delivery_error_hint: Si la entrega no es posible a lo largo de %{count} días, se marcará automáticamente como no entregable.
       empty: No se encontraron dominios.
       known_accounts:
         one: "%{count} cuenta conocida"
@@ -546,9 +576,9 @@ es-MX:
     rules:
       add_new: Añadir norma
       delete: Eliminar
-      description_html: Aunque la mayoría de las afirmaciones de haber leído y aceptado los términos de servicio, normalmente la gente no los lee hasta después de que surja un problema. <strong>Haz que sea más fácil ver las reglas de tu servidor de un vistazo, proporcionándolas en una lista de puntos.</strong> Intenta mantener reglas individuales cortas y sencillas, pero intenta no dividirlas en muchos objetos separados.
+      description_html: Aunque la mayoría afirma haber leído y estar de acuerdo con los términos de servicio, la gente normalmente no los lee hasta después de que surja algún problema. <strong>Haz que sea más fácil ver las normas de tu servidor de un vistazo estipulándolas en una lista de puntos.</strong> Intenta que cada norma sea corta y sencilla, pero sin estar divididas en muchos puntos.
       edit: Editar norma
-      empty: Aún no se han definido reglas del servidor.
+      empty: Aún no se han definido las normas del servidor.
       title: Normas del servidor
     settings:
       activity_api_enabled:
@@ -671,6 +701,7 @@ es-MX:
       last_active: Última actividad
       most_popular: Más popular
       most_recent: Más reciente
+      name: Hashtag
       review: Estado de revisión
       reviewed: Revisado
       title: Etiquetas
@@ -683,7 +714,7 @@ es-MX:
       add_new: Añadir nuevo
       delete: Borrar
       edit_preset: Editar aviso predeterminado
-      empty: Aún no ha definido ninguna advertencia predefinida.
+      empty: Aún no has definido ningún preajuste de advertencia.
       title: Editar configuración predeterminada de avisos
   admin_mailer:
     new_pending_account:
@@ -717,6 +748,7 @@ es-MX:
     toot_layout: Diseño de los toots
   application_mailer:
     notification_preferences: Cambiar preferencias de correo electrónico
+    salutation: "%{name}:"
     settings: 'Cambiar preferencias de correo: %{link}'
     view: 'Vista:'
     view_profile: Ver perfil
@@ -751,6 +783,9 @@ es-MX:
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
     or_log_in_with: O inicia sesión con
+    providers:
+      cas: CAS
+      saml: SAML
     register: Registrarse
     registration_closed: "%{instance} no está aceptando nuevos miembros"
     resend_confirmation: Volver a enviar el correo de confirmación
@@ -791,15 +826,24 @@ es-MX:
     errors:
       invalid_key: no es una clave Ed25519 o Curve25519 válida
       invalid_signature: no es una firma Ed25519 válida
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count} h"
       about_x_months: "%{count}m"
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Justo ahora
+      less_than_x_minutes: "%{count} m"
       less_than_x_seconds: Justo ahora
       over_x_years: "%{count}a"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
       x_months: "%{count}m"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: Los datos introducidos son incorrectos
     confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
@@ -851,6 +895,7 @@ es-MX:
       size: Tamaño
     blocks: Personas que has bloqueado
     bookmarks: Marcadores
+    csv: CSV
     domain_blocks: Bloqueos de dominios
     lists: Listas
     mutes: Tienes en silencio
@@ -1046,8 +1091,13 @@ es-MX:
   number:
     human:
       decimal_units:
+        format: "%n %u"
         units:
+          billion: MM
+          million: M
+          quadrillion: MB
           thousand: m
+          trillion: B
   otp_authentication:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
     description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
@@ -1061,6 +1111,7 @@ es-MX:
     next: Próximo
     older: Más antiguo
     prev: Anterior
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Ya has votado en esta encuesta
@@ -1122,15 +1173,40 @@ es-MX:
     activity: Última actividad
     browser: Navegador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Desconocido
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Navegador de Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
       qq: Navegador QQ
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Mastodon.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: GNU Linux
       mac: Mac
       other: Desconocido
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
@@ -1158,6 +1234,9 @@ es-MX:
     webauthn_authentication: Claves de seguridad
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audios"
       description: 'Adjunto: %{attached}'
       image:
         one: "%{count} imagen"
@@ -1193,8 +1272,9 @@ es-MX:
     show_older: Mostrar más antiguos
     show_thread: Mostrar discusión
     sign_in_to_participate: Regístrate para participar en la conversación
+    title: "%{name}: «%{quote}»"
     visibilities:
-      direct: Directo
+      direct: Directa
       private: Sólo mostrar a seguidores
       private_long: Solo mostrar a tus seguidores
       public: Público
@@ -1297,6 +1377,7 @@ es-MX:
   time:
     formats:
       default: "%d de %b del %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
     add: Añadir
     disable: Deshabilitar

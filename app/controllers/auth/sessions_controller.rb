@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Auth::SessionsController < Devise::SessionsController
-  include Devise::Controllers::Rememberable
-
   layout 'auth'
 
   skip_before_action :require_no_authentication, only: [:create]
@@ -26,7 +24,6 @@ class Auth::SessionsController < Devise::SessionsController
   def create
     super do |resource|
       resource.update_sign_in!(request, new_sign_in: true)
-      remember_me(resource)
       flash.delete(:notice)
     end
   end
@@ -40,7 +37,7 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def webauthn_options
-    user = find_user
+    user = User.find_by(id: session[:attempt_user_id])
 
     if user.webauthn_enabled?
       options_for_get = WebAuthn::Credential.options_for_get(
@@ -58,14 +55,18 @@ class Auth::SessionsController < Devise::SessionsController
   protected
 
   def find_user
-    if session[:attempt_user_id]
+    if user_params[:email].present?
+      find_user_from_params
+    elsif session[:attempt_user_id]
       User.find_by(id: session[:attempt_user_id])
-    else
-      user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
-      user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
-      user ||= User.find_for_authentication(email: user_params[:email])
-      user
     end
+  end
+
+  def find_user_from_params
+    user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
+    user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
+    user ||= User.find_for_authentication(email: user_params[:email])
+    user
   end
 
   def user_params
