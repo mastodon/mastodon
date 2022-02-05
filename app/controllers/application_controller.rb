@@ -137,13 +137,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_flavour
-    return Setting.flavour unless Themes.instance.flavours.include? current_user&.setting_flavour
-    current_user.setting_flavour
+    [current_user&.setting_flavour, Setting.flavour, 'glitch', 'vanilla'].find { |flavour| Themes.instance.flavours.include?(flavour) }
   end
 
   def current_skin
-    return Setting.skin unless Themes.instance.skins_for(current_flavour).include? current_user&.setting_skin
-    current_user.setting_skin
+    skins = Themes.instance.skins_for(current_flavour)
+    [current_user&.setting_skin, Setting.skin, 'default'].find { |skin| skins.include?(skin) }
   end
 
   def respond_with_error(code)
