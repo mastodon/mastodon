@@ -10,6 +10,15 @@ module ThemingConcern
 
   private
 
+  def current_flavour
+    [current_user&.setting_flavour, Setting.flavour, 'glitch', 'vanilla'].find { |flavour| Themes.instance.flavours.include?(flavour) }
+  end
+
+  def current_skin
+    skins = Themes.instance.skins_for(current_flavour)
+    [current_user&.setting_skin, Setting.skin, 'default'].find { |skin| skins.include?(skin) }
+  end
+
   def valid_pack_data?(data, pack_name)
     data['pack'].is_a?(Hash) && [String, Hash].any? { |c| data['pack'][pack_name].is_a?(c) }
   end
