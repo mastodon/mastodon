@@ -136,15 +136,6 @@ class ApplicationController < ActionController::Base
     @current_session = SessionActivation.find_by(session_id: cookies.signed['_session_id']) if cookies.signed['_session_id'].present?
   end
 
-  def current_flavour
-    [current_user&.setting_flavour, Setting.flavour, 'glitch', 'vanilla'].find { |flavour| Themes.instance.flavours.include?(flavour) }
-  end
-
-  def current_skin
-    skins = Themes.instance.skins_for(current_flavour)
-    [current_user&.setting_skin, Setting.skin, 'default'].find { |skin| skins.include?(skin) }
-  end
-
   def respond_with_error(code)
     respond_to do |format|
       format.any do
