@@ -33,7 +33,7 @@ RSpec.describe InstanceActorsController, type: :controller do
 
         it 'renders account' do
           json = body_as_json
-          expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :name, :summary, :inbox, :outbox, :url)
+          expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :inbox, :outbox, :url)
         end
 
         context 'in authorized fetch mode' do
