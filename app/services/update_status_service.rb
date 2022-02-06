@@ -3,6 +3,15 @@
 class UpdateStatusService < BaseService
   include Redisable
 
+  # @param [Status] status
+  # @param [Integer] account_id
+  # @param [Hash] options
+  # @option options [Array<Integer>] :media_ids
+  # @option options [Hash] :poll
+  # @option options [String] :text
+  # @option options [String] :spoiler_text
+  # @option options [Boolean] :sensitive
+  # @option options [String] :language
   def call(status, account_id, options = {})
     @status                    = status
     @options                   = options
@@ -63,7 +72,7 @@ class UpdateStatusService < BaseService
 
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
-      if @options[:poll][:options] != poll.options
+      if @options[:poll][:options] != poll.options || ActiveModel::Type::Boolean.new.cast(@options[:poll][:multiple]) != poll.multiple
         @poll_changed = true
         poll.votes.delete_all unless poll.new_record?
       end
