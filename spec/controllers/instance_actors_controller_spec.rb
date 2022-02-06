@@ -35,14 +35,6 @@ RSpec.describe InstanceActorsController, type: :controller do
           json = body_as_json
           expect(json).to include(:id, :type, :preferredUsername, :inbox, :publicKey, :inbox, :outbox, :url)
         end
-
-        context 'in authorized fetch mode' do
-          let(:authorized_fetch_mode) { true }
-
-          it 'returns http unauthorized' do
-            expect(response).to have_http_status(401)
-          end
-        end
       end
 
       before do
