@@ -8,10 +8,10 @@ import { openModal } from 'mastodon/actions/modal';
 import RelativeTimestamp from 'mastodon/components/relative_timestamp';
 import InlineAccount from 'mastodon/components/inline_account';
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, { statusId }) => ({
 
   onItemClick (index) {
-    dispatch(openModal('COMPARE_HISTORY', { index }));
+    dispatch(openModal('COMPARE_HISTORY', { index, statusId }));
   },
 
 });

@@ -6,7 +6,7 @@ export const HISTORY_FETCH_SUCCESS = 'HISTORY_FETCH_SUCCESS';
 export const HISTORY_FETCH_FAIL    = 'HISTORY_FETCH_FAIL';
 
 export const fetchHistory = statusId => (dispatch, getState) => {
-  const loading = getState().getIn(['history', 'loading']);
+  const loading = getState().getIn(['history', statusId, 'loading']);
 
   if (loading) {
     return;

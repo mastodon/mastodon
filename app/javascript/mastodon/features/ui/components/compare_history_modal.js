@@ -10,8 +10,8 @@ import InlineAccount from 'mastodon/components/inline_account';
 import IconButton from 'mastodon/components/icon_button';
 import RelativeTimestamp from 'mastodon/components/relative_timestamp';
 
-const mapStateToProps = state => ({
-  versions: state.getIn(['history', 'items']),
+const mapStateToProps = (state, { statusId }) => ({
+  versions: state.getIn(['history', statusId, 'items']),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -28,6 +28,7 @@ class CompareHistoryModal extends React.PureComponent {
   static propTypes = {
     onClose: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired,
+    statusId: PropTypes.string.isRequired,
     versions: ImmutablePropTypes.list.isRequired,
   };
 

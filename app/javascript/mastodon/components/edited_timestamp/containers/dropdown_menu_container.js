@@ -3,11 +3,11 @@ import { openDropdownMenu, closeDropdownMenu } from 'mastodon/actions/dropdown_m
 import { fetchHistory } from 'mastodon/actions/history';
 import DropdownMenu from 'mastodon/components/dropdown_menu';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, { statusId }) => ({
   dropdownPlacement: state.getIn(['dropdown_menu', 'placement']),
   openDropdownId: state.getIn(['dropdown_menu', 'openId']),
   openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
-  items: state.getIn(['history', 'items']),
+  items: state.getIn(['history', statusId, 'items']),
 });
 
 const mapDispatchToProps = (dispatch, { statusId }) => ({
