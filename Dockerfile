@@ -5,7 +5,7 @@ SHELL ["/bin/bash", "-c"]
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Install Node v16 (LTS)
-ENV NODE_VER="16.13.0"
+ENV NODE_VER="16.13.2"
 RUN ARCH= && \
     dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \
@@ -56,8 +56,8 @@ RUN npm install -g npm@latest && \
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 RUN cd /opt/mastodon && \
-  bundle config set deployment 'true' && \
-  bundle config set without 'development test' && \
+  bundle config set --local deployment 'true' && \
+  bundle config set --local without 'development test' && \
   bundle config set silence_root_warning true && \
 	bundle install -j"$(nproc)" && \
 	yarn install --pure-lockfile

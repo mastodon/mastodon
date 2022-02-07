@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Api::V1::Accounts::FollowerAccountsController do
   render_views
 
-  let(:user)    { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:accounts') }
   let(:account) { Fabricate(:account) }
   let(:alice)   { Fabricate(:account) }
@@ -49,10 +49,10 @@ describe Api::V1::Accounts::FollowerAccountsController do
     end
 
     context 'when requesting user is the account owner' do
-      let(:user) { Fabricate(:user, account: account) }
+      let(:user) { account.user }
 
       it 'returns all accounts, including muted accounts' do
-        user.account.mute!(bob)
+        account.mute!(bob)
         get :index, params: { account_id: account.id, limit: 2 }
 
         expect(body_as_json.size).to eq 2

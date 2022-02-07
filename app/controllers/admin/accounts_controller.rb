@@ -28,7 +28,7 @@ module Admin
       @deletion_request        = @account.deletion_request
       @account_moderation_note = current_account.account_moderation_notes.new(target_account: @account)
       @moderation_notes        = @account.targeted_moderation_notes.latest
-      @warnings                = @account.targeted_account_warnings.latest.custom
+      @warnings                = @account.strikes.custom.latest
       @domain_block            = DomainBlock.rule_for(@account.domain)
     end
 
@@ -115,6 +115,16 @@ module Admin
       log_action :remove_header, @account.user
 
       redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.removed_header_msg', username: @account.acct)
+    end
+
+    def unblock_email
+      authorize @account, :unblock_email?
+
+      CanonicalEmailBlock.where(reference_account: @account).delete_all
+
+      log_action :unblock_email, @account
+
+      redirect_to admin_account_path(@account.id), notice: I18n.t('admin.accounts.unblocked_email_msg', username: @account.acct)
     end
 
     private

@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::AccountsController < Api::BaseController
+  protect_from_forgery with: :exception
+
   include Authorization
   include AccountableConcern
 
   LIMIT = 100
 
-  before_action -> { doorkeeper_authorize! :'admin:read', :'admin:read:accounts' }, only: [:index, :show]
-  before_action -> { doorkeeper_authorize! :'admin:write', :'admin:write:accounts' }, except: [:index, :show]
+  before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:accounts' }, only: [:index, :show]
+  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:accounts' }, except: [:index, :show]
   before_action :require_staff!
   before_action :set_accounts, only: :index
   before_action :set_account, except: :index
@@ -94,7 +96,7 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   private
 
   def set_accounts
-    @accounts = filtered_accounts.order(id: :desc).includes(user: [:invite_request, :invite]).to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
+    @accounts = filtered_accounts.order(id: :desc).includes(user: [:invite_request, :invite, :ips]).to_a_paginated_by_id(limit_param(LIMIT), params_slice(:max_id, :since_id, :min_id))
   end
 
   def set_account

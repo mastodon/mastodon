@@ -967,6 +967,17 @@
   }
 }
 
+.status__content__edited-label {
+  display: block;
+  cursor: default;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 0;
+  padding-top: 8px;
+  color: $dark-text-color;
+  font-weight: 500;
+}
+
 .status__content__spoiler-link {
   display: inline-block;
   border-radius: 2px;
@@ -3074,17 +3085,20 @@ a.account__display-name {
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  color: $inverted-text-color;
-  background: $simple-background-color;
-  padding: 10px;
+  color: $darker-text-color;
+  background: transparent;
+  padding: 7px 0;
   font-family: inherit;
   font-size: 14px;
   resize: vertical;
   border: 0;
+  border-bottom: 2px solid $ui-primary-color;
   outline: 0;
-  border-radius: 4px;
 
-  &:focus {
+  &:focus,
+  &:active {
+    color: $primary-text-color;
+    border-bottom-color: $ui-highlight-color;
     outline: 0;
   }
 

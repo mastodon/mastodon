@@ -4,6 +4,7 @@ end
 
 Devise.setup do |config|
   # Devise omniauth strategies
+  options = {}
 
   # CAS strategy
   if ENV['CAS_ENABLED'] == 'true'

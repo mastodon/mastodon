@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Api::V1::Timelines::ListController do
   render_views
 
-  let(:user) { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user) { Fabricate(:user) }
   let(:list) { Fabricate(:list, account: user.account) }
 
   before do
@@ -30,7 +30,7 @@ describe Api::V1::Timelines::ListController do
   end
 
   context 'with the wrong user context' do
-    let(:other_user) { Fabricate(:user, account: Fabricate(:account, username: 'bob')) }
+    let(:other_user) { Fabricate(:user) }
     let(:token)      { Fabricate(:accessible_access_token, resource_owner_id: other_user.id, scopes: 'read') }
 
     describe 'GET #show' do
