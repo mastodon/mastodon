@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { length } from 'stringz';
 
 export default class CharacterCounter extends React.PureComponent {
 
   static propTypes = {
-    text: PropTypes.string.isRequired,
+    textLength: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
   };
 
@@ -18,7 +17,7 @@ export default class CharacterCounter extends React.PureComponent {
   }
 
   render () {
-    const diff = this.props.max - length(this.props.text);
+    const diff = this.props.max - this.props.textLength;
     return this.checkRemainingText(diff);
   }
 

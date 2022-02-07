@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 import { connect } from 'react-redux';
 import ComposeForm from '../components/compose_form';
 import {
@@ -10,6 +11,22 @@ import {
   insertEmojiCompose,
   uploadCompose,
 } from '../../../actions/compose';
+import { countableText } from '../util/counter';
+import { length } from 'stringz';
+
+const getCountableText = createSelector([state => state.getIn(['compose', 'text'])], (text) => countableText(text));
+const getCountableTextLength = createSelector([getCountableText], length);
+const getSpoilerLength = createSelector([state => state.getIn(['compose', 'spoiler_text'])], length);
+
+const getFullTextLength = createSelector(
+  [
+    getCountableTextLength,
+    getSpoilerLength,
+    state => state.getIn(['compose', 'spoiler']),
+  ],
+
+  (countableTextLength, spoilerTextLength, spoiler) => (spoiler ? countableTextLength + spoilerTextLength : countableTextLength)
+);
 
 const mapStateToProps = state => ({
   text: state.getIn(['compose', 'text']),
@@ -26,6 +43,7 @@ const mapStateToProps = state => ({
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
   isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
+  fulltextLength: getFullTextLength(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
