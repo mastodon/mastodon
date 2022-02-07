@@ -560,23 +560,28 @@ fa:
       action_taken_by: انجام‌دهنده
       actions:
         other_description_html: دیدن انتخاب های بیشتر برای کنترل رفتار حساب و سفارشی سازی ارتباط با حساب گزارش شده.
+      add_to_report: افزودن بیش‌تر به گزارش
       are_you_sure: مطمئنید؟
       assign_to_self: به عهدهٔ من بگذار
       assigned: مدیر عهده‌دار
       by_target_domain: دامنهٔ حساب گزارش‌شده
+      category: دسته
       comment:
         none: هیچ
       created_at: گزارش‌شده
+      delete_and_resolve: حذف و رفع
       forwarded: هدایت شده
       forwarded_to: هدایت شده به %{domain}
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
       mark_as_unresolved: علامت‌گذاری به عنوان حل‌نشده
+      no_one_assigned: هیچ‌کس
       notes:
         create: افزودن یادداشت
         create_and_resolve: حل کردن با یادداشت
         create_and_unresolve: دوباره گشودن با یادداشت
         delete: حذف
         placeholder: کارهایی را که در این باره انجام شده، یا هر به‌روزرسانی دیگری را بنویسید...
+        title: یادداشت‌ها
       reopen: دوباره به جریان بیندازید
       report: 'گزارش #%{id}'
       reported_account: حساب گزارش‌شده
@@ -584,11 +589,13 @@ fa:
       resolved: حل‌شده
       resolved_msg: گزارش با موفقیت حل شد!
       status: نوشته
+      statuses: محتوای گزارش شده
       target_origin: خاستگاه حساب گزارش‌شده
       title: گزارش‌ها
       unassign: پس‌گرفتن مسئولیت
       unresolved: حل‌نشده
       updated_at: به‌روز شد
+      view_profile: دیدن نمایه
     rules:
       add_new: افزودن قانون
       delete: حذف
@@ -690,6 +697,10 @@ fa:
       destroyed_msg: بارگذاری پایگاه با موفقیت حذف شد!
     statuses:
       back_to_account: بازگشت به صفحهٔ حساب
+      back_to_report: بازگشت به صفحهٔ گزارش
+      batch:
+        remove_from_report: برداشتن از گزارش
+        report: گزارش
       deleted: پاک‌شده
       media:
         title: رسانه
@@ -712,6 +723,12 @@ fa:
       allow: اجازه
       approved: تأیید شده
       disallow: اجازه ندادن
+      links:
+        allow: اجازه به پیوند
+        allow_provider: اجازه به ناشر
+        disallow: اجازه ندادن به پیوند
+        disallow_provider: اجازه ندادن به ناشر
+        title: پیوندهای داغ
       pending_review: بازبینی منتظر
       preview_card_providers:
         title: ناشران
@@ -795,6 +812,7 @@ fa:
     invalid_reset_password_token: کد بازنشانی رمز نامعتبر یا منقضی شده است. لطفاً کد دیگری درخواست کنید.
     link_to_otp: رمز بازگردانی یا رمز دوعاملی را از تلفنتان وارد کنید
     link_to_webauth: استفاده از افزارهٔ امنیتیتان
+    log_in_with: ورود با
     login: ورود
     logout: خروج
     migrate_account: نقل مکان به یک حساب دیگر
@@ -1259,6 +1277,7 @@ fa:
     disallowed_hashtags:
       one: 'دارای هشتگ غیرمجاز: %{tags}'
       other: 'دارای هشتگ‌های غیرمجاز: %{tags}'
+    edited_at: ویراسته در %{date}
     errors:
       in_reply_not_found: به نظر نمی‌رسد وضعیتی که می‌خواهید به آن پاسخ دهید، وجود داشته باشد.
     language_detection: زبان نوشته خودبه‌خود شناخته شود
@@ -1421,6 +1440,7 @@ fa:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%OH:%OM"
   two_factor_authentication:
     add: افزودن
     disable: غیرفعال‌کردن
@@ -1448,6 +1468,9 @@ fa:
       subject: لطفاً تلاش برای ورود را تأیید کنید
       title: تلاش برای ورود
     warning:
+      categories:
+        spam: هرزنامه
+      reason: 'دلیل:'
       review_server_policies: مرور سیاست‌های کارساز
       subject:
         disable: حساب %{acct} شما متوقف شده است
@@ -1455,8 +1478,10 @@ fa:
         silence: حساب %{acct} شما محدود شده است
         suspend: حساب %{acct}  شما معلق شده است
       title:
+        delete_statuses: فرسته‌ها برداشته شدند
         disable: حساب متوقف شده است
         none: هشدار
+        sensitive: رسانهٔ نهفته
         silence: حساب محدود شده است
         suspend: حساب معلق شده است
     welcome:
