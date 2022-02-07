@@ -25,7 +25,7 @@ const getFullTextLength = createSelector(
     state => state.getIn(['compose', 'spoiler']),
   ],
 
-  (countableTextLength, spoilerTextLength, spoiler) => (spoiler ? countableTextLength + spoilerTextLength : countableTextLength)
+  (countableTextLength, spoilerTextLength, spoiler) => (spoiler ? countableTextLength + spoilerTextLength : countableTextLength),
 );
 
 const mapStateToProps = state => ({

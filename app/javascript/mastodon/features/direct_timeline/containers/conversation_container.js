@@ -20,7 +20,7 @@ const makeMapStateToProps = () => {
       state => state.get('accounts'),
       (_, conversation) => conversation.get('accounts'),
     ],
-    (accounts, accountIds) => accountIds.map(accountId => accounts.get(accountId, null))
+    (accounts, accountIds) => accountIds.map(accountId => accounts.get(accountId, null)),
   );
 
   return (state, { conversation }) => {

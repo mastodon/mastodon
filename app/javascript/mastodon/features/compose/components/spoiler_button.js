@@ -10,6 +10,7 @@ const messages = defineMessages({
 
 export default @injectIntl
 class SpoilerButton extends React.PureComponent {
+
   static propTypes = {
     active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
@@ -29,4 +30,5 @@ class SpoilerButton extends React.PureComponent {
       />
     );
   }
+
 };
