@@ -7,13 +7,13 @@ class LinkDetailsExtractor
   # in commented-out CDATA blocks, they need to be removed before
   # attempting to parse JSON
   CDATA_JUNK_PATTERN = %r{^[\s]*(
-    (\/\*[\s]*<!\[CDATA\[[\s]*\*\/) # Block comment style opening
+    (/\*[\s]*<!\[CDATA\[[\s]*\*/) # Block comment style opening
     |
-    (\/\/[\s]*<!\[CDATA\[) # Single-line comment style opening
+    (//[\s]*<!\[CDATA\[) # Single-line comment style opening
     |
-    (\/\*[\s]*\]\]>[\s]*\*\/) # Block comment style closing
+    (/\*[\s]*\]\]>[\s]*\*/) # Block comment style closing
     |
-    (\/\/[\s]*\]\]>) # Single-line comment style closing
+    (//[\s]*\]\]>) # Single-line comment style closing
   )[\s]*$}x
 
   class StructuredData
