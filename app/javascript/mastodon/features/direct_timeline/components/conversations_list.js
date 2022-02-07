@@ -62,7 +62,7 @@ export default class ConversationsList extends ImmutablePureComponent {
         {conversations.map(item => (
           <ConversationContainer
             key={item.get('id')}
-            conversationId={item.get('id')}
+            conversation={item}
             onMoveUp={this.handleMoveUp}
             onMoveDown={this.handleMoveDown}
             scrollKey={this.props.scrollKey}

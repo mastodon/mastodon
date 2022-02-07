@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
 import Conversation from '../components/conversation';
 import { markConversationRead, deleteConversation } from 'mastodon/actions/conversations';
 import { makeGetStatus } from 'mastodon/selectors';
@@ -12,25 +13,31 @@ const messages = defineMessages({
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
 });
 
-const mapStateToProps = () => {
+const makeMapStateToProps = () => {
   const getStatus = makeGetStatus();
+  const getAccounts = createSelector(
+    [
+      state => state.get('accounts'),
+      (_, conversation) => conversation.get('accounts'),
+    ],
+    (accounts, accountIds) => accountIds.map(accountId => accounts.get(accountId, null))
+  );
 
-  return (state, { conversationId }) => {
-    const conversation = state.getIn(['conversations', 'items']).find(x => x.get('id') === conversationId);
+  return (state, { conversation }) => {
     const lastStatusId = conversation.get('last_status', null);
 
     return {
-      accounts: conversation.get('accounts').map(accountId => state.getIn(['accounts', accountId], null)),
+      accounts: getAccounts(state, conversation),
       unread: conversation.get('unread'),
       lastStatus: lastStatusId && getStatus(state, { id: lastStatusId }),
     };
   };
 };
 
-const mapDispatchToProps = (dispatch, { intl, conversationId }) => ({
+const mapDispatchToProps = (dispatch, { intl, conversation }) => ({
 
   markRead () {
-    dispatch(markConversationRead(conversationId));
+    dispatch(markConversationRead(conversation.get('id')));
   },
 
   reply (status, router) {
@@ -50,7 +57,7 @@ const mapDispatchToProps = (dispatch, { intl, conversationId }) => ({
   },
 
   delete () {
-    dispatch(deleteConversation(conversationId));
+    dispatch(deleteConversation(conversation.get('id')));
   },
 
   onMute (status) {
@@ -71,4 +78,4 @@ const mapDispatchToProps = (dispatch, { intl, conversationId }) => ({
 
 });
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Conversation));
+export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Conversation));
