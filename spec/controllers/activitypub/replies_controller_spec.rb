@@ -83,6 +83,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
     context 'when status is public' do
       let(:parent_visibility) { :public }
       let(:json) { body_as_json }
+      let(:page_json) { json[:first] }
 
       it 'returns http success' do
         expect(response).to have_http_status(200)
@@ -96,10 +97,28 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
 
       context 'without only_other_accounts' do
         it "returns items with thread author's replies" do
-          expect(json[:first]).to be_a Hash
-          expect(json[:first][:items]).to be_an Array
-          expect(json[:first][:items].size).to eq 1
-          expect(json[:first][:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+          expect(page_json).to be_a Hash
+          expect(page_json[:items]).to be_an Array
+          expect(page_json[:items].size).to eq 1
+          expect(page_json[:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+        end
+
+        context 'when there are few self-replies' do
+          it 'points next to replies from other people' do
+            expect(page_json).to be_a Hash
+            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=true', 'page=true')
+          end
+        end
+
+        context 'when there are many self-replies' do
+          before do
+            10.times { Fabricate(:status, account: status.account, thread: status, visibility: :public) }
+          end
+
+          it 'points next to other self-replies' do
+            expect(page_json).to be_a Hash
+            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=false', 'page=true')
+          end
         end
       end
 
@@ -107,21 +126,39 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
         let(:only_other_accounts) { 'true' }
 
         it 'returns items with other public or unlisted replies' do
-          expect(json[:first]).to be_a Hash
-          expect(json[:first][:items]).to be_an Array
-          expect(json[:first][:items].size).to eq 3
+          expect(page_json).to be_a Hash
+          expect(page_json[:items]).to be_an Array
+          expect(page_json[:items].size).to eq 3
         end
 
         it 'only inlines items that are local and public or unlisted replies' do
-          inlined_replies = json[:first][:items].select { |x| x.is_a?(Hash) }
+          inlined_replies = page_json[:items].select { |x| x.is_a?(Hash) }
           public_collection = ActivityPub::TagManager::COLLECTIONS[:public]
           expect(inlined_replies.all? { |item| item[:to].include?(public_collection) || item[:cc].include?(public_collection) }).to be true
           expect(inlined_replies.all? { |item| ActivityPub::TagManager.instance.local_uri?(item[:id]) }).to be true
         end
 
         it 'uses ids for remote toots' do
-          remote_replies = json[:first][:items].select { |x| !x.is_a?(Hash) }
+          remote_replies = page_json[:items].select { |x| !x.is_a?(Hash) }
           expect(remote_replies.all? { |item| item.is_a?(String) && !ActivityPub::TagManager.instance.local_uri?(item) }).to be true
+        end
+
+        context 'when there are few replies' do
+          it 'does not have a next page' do
+            expect(page_json).to be_a Hash
+            expect(page_json[:next]).to be_nil
+          end
+        end
+
+        context 'when there are many replies' do
+          before do
+            10.times { Fabricate(:status, thread: status, visibility: :public) }
+          end
+
+          it 'points next to other replies' do
+            expect(page_json).to be_a Hash
+            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=true', 'page=true')
+          end
         end
       end
     end
@@ -130,6 +167,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
   end
 
   before do
+    stub_const 'ActivityPub::RepliesController::DESCENDANTS_LIMIT', 5
     allow(controller).to receive(:signed_request_account).and_return(remote_querier)
 
     Fabricate(:status, thread: status, visibility: :public)
