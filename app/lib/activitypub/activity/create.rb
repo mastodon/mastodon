@@ -253,7 +253,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     media_attachments = []
 
     as_array(@object['attachment']).each do |attachment|
-      next if attachment['url'].blank? || media_attachments.size >= 9
+      media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
+
+      next if media_attachment_parser.remote_url.blank? || media_attachments.size >= 9
 
       begin
         media_attachment = MediaAttachment.create(
@@ -375,6 +377,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def unsupported_media_type?(mime_type)
     mime_type.present? && !MediaAttachment.supported_mime_types.include?(mime_type)
   end
+
+
+
+
+
+
+
+
+
 
   def skip_download?
     return @skip_download if defined?(@skip_download)
