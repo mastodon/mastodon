@@ -2,7 +2,7 @@
 
 module SettingsHelper
   def filterable_languages
-    LanguageDetector.instance.language_names.select(&LanguagesHelper::HUMAN_LOCALES.method(:key?))
+    LanguagesHelper::SUPPORTED_LOCALES.keys
   end
 
   def hash_to_object(hash)
