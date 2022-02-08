@@ -34,6 +34,57 @@ http {
     server 127.0.0.1:4000 fail_timeout=0;
   }
 
+  server {
+  server_name <%= ENV['S3_ALIAS_HOST'] %>;
+  root /var/www/html;
+
+  keepalive_timeout 30;
+
+  location = / {
+    index index.html;
+  }
+
+  location / {
+    try_files $uri @s3;
+  }
+
+  set $s3_backend 'https://' + <%= ENV['S3_BUCKET'] %> + '.' + <%= ENV['S3_HOSTNAME'] %>;
+
+  location @s3 {
+    limit_except GET {
+      deny all;
+    }
+
+    resolver 8.8.8.8;
+    proxy_set_header Host <%= ENV['S3_HOSTNAME'] %>;
+    proxy_set_header Connection '';
+    proxy_set_header Authorization '';
+    proxy_hide_header Set-Cookie;
+    proxy_hide_header 'Access-Control-Allow-Origin';
+    proxy_hide_header 'Access-Control-Allow-Methods';
+    proxy_hide_header 'Access-Control-Allow-Headers';
+    proxy_hide_header x-amz-id-2;
+    proxy_hide_header x-amz-request-id;
+    proxy_hide_header x-amz-meta-server-side-encryption;
+    proxy_hide_header x-amz-server-side-encryption;
+    proxy_hide_header x-amz-bucket-region;
+    proxy_hide_header x-amzn-requestid;
+    proxy_ignore_headers Set-Cookie;
+    proxy_pass $s3_backend$uri;
+    proxy_intercept_errors off;
+
+    proxy_cache CACHE;
+    proxy_cache_valid 200 48h;
+    proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+    proxy_cache_lock on;
+
+    expires 1y;
+    add_header Cache-Control public;
+    add_header 'Access-Control-Allow-Origin' '*';
+    add_header X-Cache-Status $upstream_cache_status;
+  }
+}
+
   proxy_cache_path cache levels=1:2 keys_zone=CACHE:10m inactive=7d max_size=1g;
 
   server {
