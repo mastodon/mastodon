@@ -2,6 +2,7 @@
 
 class LinkDetailsExtractor
   include ActionView::Helpers::TagHelper
+  include LanguagesHelper
 
   # Some publications wrap their JSON-LD data in their <script> tags
   # in commented-out CDATA blocks, they need to be removed before
@@ -216,14 +217,6 @@ class LinkDetailsExtractor
     url.to_s
   rescue Addressable::URI::InvalidURIError
     nil
-  end
-
-  def valid_locale_or_nil(str)
-    return nil if str.blank?
-
-    code,  = str.split(/_-/) # Strip out the region from e.g. en_US or ja-JA
-    locale = ISO_639.find(code)
-    locale&.alpha2
   end
 
   def link_tag(name)
