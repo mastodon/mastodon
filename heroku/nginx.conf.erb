@@ -34,6 +34,7 @@ http {
     server 127.0.0.1:4000 fail_timeout=0;
   }
 
+  <% if ENV['S3_ALIAS_HOST'] %>
   server {
   server_name <%= ENV['S3_ALIAS_HOST'] %>;
   root /var/www/html;
@@ -84,6 +85,7 @@ http {
     add_header X-Cache-Status $upstream_cache_status;
   }
 }
+<% end %>
 
   proxy_cache_path cache levels=1:2 keys_zone=CACHE:10m inactive=7d max_size=1g;
 
