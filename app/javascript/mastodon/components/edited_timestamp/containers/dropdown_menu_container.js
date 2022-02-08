@@ -8,6 +8,7 @@ const mapStateToProps = (state, { statusId }) => ({
   openDropdownId: state.getIn(['dropdown_menu', 'openId']),
   openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
   items: state.getIn(['history', statusId, 'items']),
+  loading: state.getIn(['history', statusId, 'loading']),
 });
 
 const mapDispatchToProps = (dispatch, { statusId }) => ({
