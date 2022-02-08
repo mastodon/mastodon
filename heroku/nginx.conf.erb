@@ -49,7 +49,7 @@ http {
     try_files $uri @s3;
   }
 
-  set $s3_backend <% 'https://' + ENV['S3_BUCKET'] + '.' + ENV['S3_HOSTNAME'] %>;
+  set $s3_backend <%= 'https://' + ENV['S3_BUCKET'] + '.' + ENV['S3_HOSTNAME'] %>;
 
   location @s3 {
     limit_except GET {
