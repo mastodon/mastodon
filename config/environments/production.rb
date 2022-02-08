@@ -44,8 +44,6 @@ Rails.application.configure do
   # Allow to specify public IP of reverse proxy if it's needed
   config.action_dispatch.trusted_proxies = ENV['TRUSTED_PROXY_IP'].split.map { |item| IPAddr.new(item) } if ENV['TRUSTED_PROXY_IP'].present?
 
-  config.hosts << ENV['S3_ALIAS_HOST'] if ENV['S3_ALIAS_HOST'].present?
-
   config.force_ssl = true
   config.ssl_options = {
     redirect: {
