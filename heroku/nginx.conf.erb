@@ -137,7 +137,7 @@ http {
       }
 
       resolver 8.8.8.8;
-      proxy_set_header Host <%= ENV['S3_HOSTNAME'] %>;
+      proxy_set_header Host <%= ENV['S3_BUCKET'] + '.' + ENV['S3_HOSTNAME'] %>;
       proxy_set_header Connection '';
       proxy_set_header Authorization '';
       proxy_hide_header Set-Cookie;
