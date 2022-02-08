@@ -76,7 +76,7 @@ $ heroku ps:scale worker=1
 ### Run Admin CLI commands
 
 ```
-$ heroku run bash
+$ heroku run bash # spins up a new dyno
 > bin/tootctl command options
 ```
 
@@ -84,6 +84,6 @@ $ heroku run bash
 
 ```
 $ heroku logs -t
-$ heroku console
-$ heroku ps:exec
+$ heroku console # rails console
+$ heroku ps:exec # attaches to currently-running dyno
 ```
