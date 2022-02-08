@@ -8,6 +8,12 @@ class Admin::StatusBatchAction
   attr_accessor :current_account, :type,
                 :status_ids, :report_id
 
+  attr_reader :send_email_notification
+
+  def send_email_notification=(value)
+    @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
+  end
+
   def save!
     process_action!
   end
@@ -55,7 +61,7 @@ class Admin::StatusBatchAction
       statuses.each { |status| Tombstone.find_or_create_by(uri: status.uri, account: status.account, by_moderator: true) } unless target_account.local?
     end
 
-    UserMailer.warning(target_account.user, @warning).deliver_later! if target_account.local?
+    UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
     RemovalWorker.push_bulk(status_ids) { |status_id| [status_id, { 'preserve' => target_account.local?, 'immediate' => !target_account.local? }] }
   end
 
@@ -80,6 +86,10 @@ class Admin::StatusBatchAction
 
   def with_report?
     !report.nil?
+  end
+
+  def warnable?
+    send_email_notification && target_account.local?
   end
 
   def target_account
