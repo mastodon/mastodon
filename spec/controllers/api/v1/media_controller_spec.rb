@@ -115,7 +115,6 @@ RSpec.describe Api::V1::MediaController, type: :controller do
       let(:media)  { Fabricate(:media_attachment, status: status, account: user.account) }
 
       before do
-        allow(PublishMediaAttachmentUpdateWorker).to receive(:perform_in)
         put :update, params: { id: media.id, description: 'Lorem ipsum!!!' }
       end
 
@@ -123,15 +122,11 @@ RSpec.describe Api::V1::MediaController, type: :controller do
         expect(media.reload.description).to eq 'Lorem ipsum!!!'
       end
 
-      it 'does not queue an update worker' do
-        expect(PublishMediaAttachmentUpdateWorker).to_not have_received(:perform_in)
-      end
-
       context 'when already attached to a status' do
         let(:status) { Fabricate(:status, account: user.account) }
 
-        it 'queues an update worker' do
-          expect(PublishMediaAttachmentUpdateWorker).to have_received(:perform_in)
+        it 'returns http not found' do
+          expect(response).to have_http_status(:not_found)
         end
       end
     end
