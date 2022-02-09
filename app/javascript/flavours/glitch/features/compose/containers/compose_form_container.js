@@ -51,6 +51,7 @@ function mapStateToProps (state) {
     focusDate: state.getIn(['compose', 'focusDate']),
     caretPosition: state.getIn(['compose', 'caretPosition']),
     isSubmitting: state.getIn(['compose', 'is_submitting']),
+    isEditing: state.getIn(['compose', 'id']) !== null,
     isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
     isUploading: state.getIn(['compose', 'is_uploading']),
     layout: state.getIn(['local_settings', 'layout']),

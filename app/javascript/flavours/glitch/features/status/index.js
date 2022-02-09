@@ -26,7 +26,7 @@ import {
   directCompose,
 } from 'flavours/glitch/actions/compose';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
-import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/statuses';
+import { muteStatus, unmuteStatus, deleteStatus, editStatus } from 'flavours/glitch/actions/statuses';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
@@ -307,6 +307,10 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleEditClick = (status, history) => {
+    this.props.dispatch(editStatus(status.get('id'), history));
+  }
+
   handleDirectClick = (account, router) => {
     this.props.dispatch(directCompose(account, router));
   }
@@ -585,6 +589,7 @@ class Status extends ImmutablePureComponent {
                   onReblog={this.handleReblogClick}
                   onBookmark={this.handleBookmarkClick}
                   onDelete={this.handleDeleteClick}
+                  onEdit={this.handleEditClick}
                   onDirect={this.handleDirectClick}
                   onMention={this.handleMentionClick}
                   onMute={this.handleMuteClick}

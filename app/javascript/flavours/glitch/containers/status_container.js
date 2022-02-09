@@ -17,7 +17,7 @@ import {
   pin,
   unpin,
 } from 'flavours/glitch/actions/interactions';
-import { muteStatus, unmuteStatus, deleteStatus } from 'flavours/glitch/actions/statuses';
+import { muteStatus, unmuteStatus, deleteStatus, editStatus } from 'flavours/glitch/actions/statuses';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
@@ -167,6 +167,10 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
         onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
       }));
     }
+  },
+
+  onEdit (status, history) {
+    dispatch(editStatus(status.get('id'), history));
   },
 
   onDirect (account, router) {
