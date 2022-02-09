@@ -295,7 +295,7 @@ module Mastodon
       table = Arel::Table.new(table_name)
 
       total = estimate_rows_in_table(table_name).to_i
-      if total < 1
+      if total == 0
         count_arel = table.project(Arel.star.count.as('count'))
         count_arel = yield table, count_arel if block_given?
 

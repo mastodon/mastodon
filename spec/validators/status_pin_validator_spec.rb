@@ -9,7 +9,7 @@ RSpec.describe StatusPinValidator, type: :validator do
     end
 
     let(:pin) { double(account: account, errors: errors, status: status, account_id: pin_account_id) }
-    let(:status) { double(reblog?: reblog, account_id: status_account_id, visibility: visibility, direct_visibility?: visibility == 'direct') }
+    let(:status) { double(reblog?: reblog, account_id: status_account_id, visibility: visibility) }
     let(:account)     { double(status_pins: status_pins, local?: local) }
     let(:status_pins) { double(count: count) }
     let(:errors)      { double(add: nil) }
@@ -37,11 +37,11 @@ RSpec.describe StatusPinValidator, type: :validator do
       end
     end
 
-    context 'if pin.status.direct_visibility?' do
-      let(:visibility) { 'direct' }
+    context 'unless %w(public unlisted).include?(pin.status.visibility)' do
+      let(:visibility) { '' }
 
       it 'calls errors.add' do
-        expect(errors).to have_received(:add).with(:base, I18n.t('statuses.pin_errors.direct'))
+        expect(errors).to have_received(:add).with(:base, I18n.t('statuses.pin_errors.private'))
       end
     end
 

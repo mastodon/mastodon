@@ -12,14 +12,14 @@ RSpec.describe AccountableConcern do
     end
   end
 
-  let(:user)   { Fabricate(:account) }
-  let(:target) { Fabricate(:account) }
-  let(:hoge)   { Hoge.new(user) }
+  let(:user)   { Fabricate(:user, account: Fabricate(:account)) }
+  let(:target) { Fabricate(:user, account: Fabricate(:account)) }
+  let(:hoge)   { Hoge.new(user.account) }
 
   describe '#log_action' do
     it 'creates Admin::ActionLog' do
       expect do
-        hoge.log_action(:create, target)
+        hoge.log_action(:create, target.account)
       end.to change { Admin::ActionLog.count }.by(1)
     end
   end

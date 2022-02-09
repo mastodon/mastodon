@@ -2,47 +2,22 @@
 
 class ActivityPub::RawDistributionWorker
   include Sidekiq::Worker
-  include Payloadable
 
   sidekiq_options queue: 'push'
 
-  # Base worker for when you want to queue up a bunch of deliveries of
-  # some payload. In this case, we have already generated JSON and
-  # we are going to distribute it to the account's followers minus
-  # the explicitly provided inboxes
   def perform(json, source_account_id, exclude_inboxes = [])
-    @account         = Account.find(source_account_id)
-    @json            = json
-    @exclude_inboxes = exclude_inboxes
+    @account = Account.find(source_account_id)
 
-    distribute!
+    ActivityPub::DeliveryWorker.push_bulk(inboxes - exclude_inboxes) do |inbox_url|
+      [json, @account.id, inbox_url]
+    end
   rescue ActiveRecord::RecordNotFound
     true
   end
 
-  protected
-
-  def distribute!
-    return if inboxes.empty?
-
-    ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
-      [payload, source_account_id, inbox_url, options]
-    end
-  end
-
-  def payload
-    @json
-  end
-
-  def source_account_id
-    @account.id
-  end
+  private
 
   def inboxes
-    @inboxes ||= @account.followers.inboxes - @exclude_inboxes
-  end
-
-  def options
-    {}
+    @inboxes ||= @account.followers.inboxes
   end
 end

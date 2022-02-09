@@ -10,9 +10,12 @@
 #  encrypted_password        :string           default(""), not null
 #  reset_password_token      :string
 #  reset_password_sent_at    :datetime
+#  remember_created_at       :datetime
 #  sign_in_count             :integer          default(0), not null
 #  current_sign_in_at        :datetime
 #  last_sign_in_at           :datetime
+#  current_sign_in_ip        :inet
+#  last_sign_in_ip           :inet
 #  admin                     :boolean          default(FALSE), not null
 #  confirmation_token        :string
 #  confirmed_at              :datetime
@@ -31,6 +34,7 @@
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
 #  invite_id                 :bigint(8)
+#  remember_token            :string
 #  chosen_languages          :string           is an Array
 #  created_by_application_id :bigint(8)
 #  approved                  :boolean          default(TRUE), not null
@@ -42,13 +46,6 @@
 #
 
 class User < ApplicationRecord
-  self.ignored_columns = %w(
-    remember_created_at
-    remember_token
-    current_sign_in_ip
-    last_sign_in_ip
-  )
-
   include Settings::Extend
   include UserRoles
 
@@ -84,7 +81,6 @@ class User < ApplicationRecord
   has_many :invites, inverse_of: :user
   has_many :markers, inverse_of: :user, dependent: :destroy
   has_many :webauthn_credentials, dependent: :destroy
-  has_many :ips, class_name: 'UserIp', inverse_of: :user
 
   has_one :invite_request, class_name: 'UserInviteRequest', inverse_of: :user, dependent: :destroy
   accepts_nested_attributes_for :invite_request, reject_if: ->(attributes) { attributes['text'].blank? && !Setting.require_invite_text }
@@ -111,7 +107,7 @@ class User < ApplicationRecord
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended_at: nil }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
-  scope :matches_ip, ->(value) { left_joins(:ips).where('user_ips.ip <<= ?', value) }
+  scope :matches_ip, ->(value) { where('current_sign_in_ip <<= ?', value).or(where('users.sign_up_ip <<= ?', value)).or(where('users.last_sign_in_ip <<= ?', value)).or(where(id: SessionActivation.select(:user_id).where('ip <<= ?', value))) }
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
@@ -178,10 +174,14 @@ class User < ApplicationRecord
     prepare_new_user! if new_user && approved?
   end
 
-  def update_sign_in!(new_sign_in: false)
+  def update_sign_in!(request, new_sign_in: false)
     old_current, new_current = current_sign_in_at, Time.now.utc
     self.last_sign_in_at     = old_current || new_current
     self.current_sign_in_at  = new_current
+
+    old_current, new_current = current_sign_in_ip, request.remote_ip
+    self.last_sign_in_ip     = old_current || new_current
+    self.current_sign_in_ip  = new_current
 
     if new_sign_in
       self.sign_in_count ||= 0
@@ -201,7 +201,7 @@ class User < ApplicationRecord
   end
 
   def suspicious_sign_in?(ip)
-    !otp_required_for_login? && !skip_sign_in_token? && current_sign_in_at.present? && !ips.where(ip: ip).exists?
+    !otp_required_for_login? && !skip_sign_in_token? && current_sign_in_at.present? && !recent_ip?(ip)
   end
 
   def functional?
@@ -245,10 +245,6 @@ class User < ApplicationRecord
     save!
   end
 
-  def preferred_posting_language
-    settings.default_language || locale
-  end
-
   def setting_default_privacy
     settings.default_privacy || 'private'
   end
@@ -281,26 +277,29 @@ class User < ApplicationRecord
     @shows_application ||= settings.show_application
   end
 
-  def token_for_app(app)
-    return nil if app.nil? || app.owner != self
-
-    Doorkeeper::AccessToken.find_or_create_by(application_id: app.id, resource_owner_id: id) do |t|
-      t.scopes            = app.scopes
-      t.expires_in        = Doorkeeper.configuration.access_token_expires_in
+  # rubocop:disable Naming/MethodParameterName
+  def token_for_app(a)
+    return nil if a.nil? || a.owner != self
+    Doorkeeper::AccessToken.find_or_create_by(application_id: a.id, resource_owner_id: id) do |t|
+      t.scopes = a.scopes
+      t.expires_in = Doorkeeper.configuration.access_token_expires_in
       t.use_refresh_token = Doorkeeper.configuration.refresh_token_enabled?
     end
   end
+  # rubocop:enable Naming/MethodParameterName
 
   def activate_session(request)
-    session_activations.activate(
-      session_id: SecureRandom.hex,
-      user_agent: request.user_agent,
-      ip: request.remote_ip
-    ).session_id
+    session_activations.activate(session_id: SecureRandom.hex,
+                                 user_agent: request.user_agent,
+                                 ip: request.remote_ip).session_id
   end
 
   def clear_other_sessions(id)
     session_activations.exclusive(id)
+  end
+
+  def session_active?(id)
+    session_activations.active? id
   end
 
   def web_push_subscription(session)
@@ -338,9 +337,10 @@ class User < ApplicationRecord
   end
 
   def reset_password!
-    # First, change password to something random and deactivate all sessions
+    # First, change password to something random, invalidate the remember-me token,
+    # and deactivate all sessions
     transaction do
-      update(password: SecureRandom.hex)
+      update(remember_token: nil, remember_created_at: nil, password: SecureRandom.hex)
       session_activations.destroy_all
     end
 
@@ -362,6 +362,22 @@ class User < ApplicationRecord
 
   def hide_all_media?
     setting_display_media == 'hide_all'
+  end
+
+  def recent_ips
+    @recent_ips ||= begin
+      arr = []
+
+      session_activations.each do |session_activation|
+        arr << [session_activation.updated_at, session_activation.ip]
+      end
+
+      arr << [current_sign_in_at, current_sign_in_ip] if current_sign_in_ip.present?
+      arr << [last_sign_in_at, last_sign_in_ip] if last_sign_in_ip.present?
+      arr << [created_at, sign_up_ip] if sign_up_ip.present?
+
+      arr.sort_by { |pair| pair.first || Time.now.utc }.uniq(&:last).reverse!
+    end
   end
 
   def sign_in_token_expired?
@@ -393,6 +409,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def recent_ip?(ip)
+    recent_ips.any? { |(_, recent_ip)| recent_ip == ip }
+  end
 
   def send_pending_devise_notifications
     pending_devise_notifications.each do |notification, args, kwargs|

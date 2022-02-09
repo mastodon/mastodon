@@ -16,6 +16,7 @@ describe AuthorizeInteractionsController do
 
     describe 'when signed in' do
       let(:user) { Fabricate(:user) }
+      let(:account) { Fabricate(:account, user: user) }
 
       before do
         sign_in(user)
@@ -75,7 +76,7 @@ describe AuthorizeInteractionsController do
 
     describe 'when signed in' do
       let!(:user) { Fabricate(:user) }
-      let(:account) { user.account }
+      let!(:account) { user.account }
 
       before do
         sign_in(user)

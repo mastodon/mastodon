@@ -4,7 +4,7 @@ class REST::Admin::CohortSerializer < ActiveModel::Serializer
   attributes :period, :frequency
 
   class CohortDataSerializer < ActiveModel::Serializer
-    attributes :date, :rate, :value
+    attributes :date, :percent, :value
 
     def date
       object.date.iso8601

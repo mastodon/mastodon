@@ -1,24 +1,33 @@
 # frozen_string_literal: true
 
-class ActivityPub::UpdateDistributionWorker < ActivityPub::RawDistributionWorker
-  # Distribute an profile update to servers that might have a copy
-  # of the account in question
+class ActivityPub::UpdateDistributionWorker
+  include Sidekiq::Worker
+  include Payloadable
+
+  sidekiq_options queue: 'push'
+
   def perform(account_id, options = {})
     @options = options.with_indifferent_access
     @account = Account.find(account_id)
 
-    distribute!
+    ActivityPub::DeliveryWorker.push_bulk(inboxes) do |inbox_url|
+      [signed_payload, @account.id, inbox_url]
+    end
+
+    ActivityPub::DeliveryWorker.push_bulk(Relay.enabled.pluck(:inbox_url)) do |inbox_url|
+      [signed_payload, @account.id, inbox_url]
+    end
   rescue ActiveRecord::RecordNotFound
     true
   end
 
-  protected
+  private
 
   def inboxes
-    @inboxes ||= AccountReachFinder.new(@account).inboxes
+    @inboxes ||= @account.followers.inboxes
   end
 
-  def payload
-    @payload ||= Oj.dump(serialize_payload(@account, ActivityPub::UpdateSerializer, signer: @account, sign_with: @options[:sign_with]))
+  def signed_payload
+    @signed_payload ||= Oj.dump(serialize_payload(@account, ActivityPub::UpdateSerializer, signer: @account, sign_with: @options[:sign_with]))
   end
 end

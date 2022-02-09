@@ -6,7 +6,7 @@ require 'pundit/rspec'
 RSpec.describe AccountModerationNotePolicy do
   let(:subject) { described_class }
   let(:admin)   { Fabricate(:user, admin: true).account }
-  let(:john)    { Fabricate(:account) }
+  let(:john)    { Fabricate(:user).account }
 
   permissions :create? do
     context 'staff' do
@@ -42,7 +42,7 @@ RSpec.describe AccountModerationNotePolicy do
     end
 
     context 'neither admin nor owner' do
-      let(:kevin) { Fabricate(:account) }
+      let(:kevin) { Fabricate(:user).account }
 
       it 'denies to destroy' do
         expect(subject).to_not permit(kevin, account_moderation_note)

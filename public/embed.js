@@ -15,7 +15,7 @@
     window.addEventListener('message', function(e) {
       var data = e.data || {};
 
-      if (data.type !== 'setHeight' || !iframes[data.id] || window.location.origin !== e.origin || data.id.toString() === '__proto__') {
+      if (data.type !== 'setHeight' || !iframes[data.id]) {
         return;
       }
 

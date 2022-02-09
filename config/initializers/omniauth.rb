@@ -5,6 +5,7 @@ end
 Devise.setup do |config|
   # Devise omniauth strategies
   options = {}
+  options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true'
 
   # CAS strategy
   if ENV['CAS_ENABLED'] == 'true'

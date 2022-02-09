@@ -9,8 +9,7 @@ module Admin
     def index
       authorize :account, :index?
 
-      @accounts = RelationshipFilter.new(@account, filter_params).results.includes(:account_stat, user: [:ips, :invite_request]).page(params[:page]).per(PER_PAGE)
-      @form     = Form::AccountBatch.new
+      @accounts = RelationshipFilter.new(@account, filter_params).results.page(params[:page]).per(PER_PAGE)
     end
 
     private

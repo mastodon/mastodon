@@ -9,7 +9,6 @@ class RemoveStatusService < BaseService
   # @param   [Hash] options
   # @option  [Boolean] :redraft
   # @option  [Boolean] :immediate
-  # @option  [Boolean] :preserve
   # @option  [Boolean] :original_removed
   def call(status, **options)
     @payload  = Oj.dump(event: :delete, payload: status.id.to_s)
@@ -44,7 +43,7 @@ class RemoveStatusService < BaseService
           remove_media
         end
 
-        @status.destroy! if permanently?
+        @status.destroy! if @options[:immediate] || !@status.reported?
       else
         raise Mastodon::RaceConditionError
       end
@@ -87,7 +86,7 @@ class RemoveStatusService < BaseService
     # the author and wouldn't normally receive the delete
     # notification - so here, we explicitly send it to them
 
-    status_reach_finder = StatusReachFinder.new(@status, unsafe: true)
+    status_reach_finder = StatusReachFinder.new(@status)
 
     ActivityPub::DeliveryWorker.push_bulk(status_reach_finder.inboxes) do |inbox_url|
       [signed_activity_json, @account.id, inbox_url]
@@ -136,13 +135,9 @@ class RemoveStatusService < BaseService
   end
 
   def remove_media
-    return if @options[:redraft] || !permanently?
+    return if @options[:redraft] || (!@options[:immediate] && @status.reported?)
 
     @status.media_attachments.destroy_all
-  end
-
-  def permanently?
-    @options[:immediate] || !(@options[:preserve] || @status.reported?)
   end
 
   def lock_options

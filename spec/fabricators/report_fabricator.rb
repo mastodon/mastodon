@@ -1,6 +1,6 @@
 Fabricator(:report) do
   account
-  target_account  { Fabricate(:account) }
-  comment         "You nasty"
-  action_taken_at nil
+  target_account { Fabricate(:account) }
+  comment      "You nasty"
+  action_taken false
 end

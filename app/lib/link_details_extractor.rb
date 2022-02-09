@@ -2,20 +2,6 @@
 
 class LinkDetailsExtractor
   include ActionView::Helpers::TagHelper
-  include LanguagesHelper
-
-  # Some publications wrap their JSON-LD data in their <script> tags
-  # in commented-out CDATA blocks, they need to be removed before
-  # attempting to parse JSON
-  CDATA_JUNK_PATTERN = %r{^[\s]*(
-    (/\*[\s]*<!\[CDATA\[[\s]*\*/) # Block comment style opening
-    |
-    (//[\s]*<!\[CDATA\[) # Single-line comment style opening
-    |
-    (/\*[\s]*\]\]>[\s]*\*/) # Block comment style closing
-    |
-    (//[\s]*\]\]>) # Single-line comment style closing
-  )[\s]*$}x
 
   class StructuredData
     SUPPORTED_TYPES = %w(
@@ -73,10 +59,6 @@ class LinkDetailsExtractor
 
     def publisher_logo
       publisher.dig('logo', 'url')
-    end
-
-    def valid?
-      json.present?
     end
 
     private
@@ -152,11 +134,11 @@ class LinkDetailsExtractor
   end
 
   def title
-    html_entities.decode(structured_data&.headline || opengraph_tag('og:title') || document.xpath('//title').map(&:content).first)
+    structured_data&.headline || opengraph_tag('og:title') || document.xpath('//title').map(&:content).first
   end
 
   def description
-    html_entities.decode(structured_data&.description || opengraph_tag('og:description') || meta_tag('description'))
+    structured_data&.description || opengraph_tag('og:description') || meta_tag('description')
   end
 
   def image
@@ -164,11 +146,11 @@ class LinkDetailsExtractor
   end
 
   def canonical_url
-    valid_url_or_nil(link_tag('canonical') || opengraph_tag('og:url'), same_origin_only: true) || @original_url.to_s
+    valid_url_or_nil(opengraph_tag('og:url') || link_tag('canonical'), same_origin_only: true) || @original_url.to_s
   end
 
   def provider_name
-    html_entities.decode(structured_data&.publisher_name || opengraph_tag('og:site_name'))
+    structured_data&.publisher_name || opengraph_tag('og:site_name')
   end
 
   def provider_url
@@ -176,7 +158,7 @@ class LinkDetailsExtractor
   end
 
   def author_name
-    html_entities.decode(structured_data&.author_name || opengraph_tag('og:author') || opengraph_tag('og:author:username'))
+    structured_data&.author_name || opengraph_tag('og:author') || opengraph_tag('og:author:username')
   end
 
   def author_url
@@ -219,6 +201,14 @@ class LinkDetailsExtractor
     nil
   end
 
+  def valid_locale_or_nil(str)
+    return nil if str.blank?
+
+    code,  = str.split(/_-/) # Strip out the region from e.g. en_US or ja-JA
+    locale = ISO_639.find(code)
+    locale&.alpha2
+  end
+
   def link_tag(name)
     document.xpath("//link[@rel=\"#{name}\"]").map { |link| link['href'] }.first
   end
@@ -233,24 +223,10 @@ class LinkDetailsExtractor
 
   def structured_data
     @structured_data ||= begin
-      # Some publications have more than one JSON-LD definition on the page,
-      # and some of those definitions aren't valid JSON either, so we have
-      # to loop through here until we find something that is the right type
-      # and doesn't break
-      document.xpath('//script[@type="application/ld+json"]').filter_map do |element|
-        json_ld = element.content&.gsub(CDATA_JUNK_PATTERN, '')
-
-        next if json_ld.blank?
-
-        structured_data = StructuredData.new(html_entities.decode(json_ld))
-
-        next unless structured_data.valid?
-
-        structured_data
-      rescue Oj::ParseError, EncodingError
-        Rails.logger.debug("Invalid JSON-LD in #{@original_url}")
-        next
-      end.first
+      json_ld = document.xpath('//script[@type="application/ld+json"]').map(&:content).first
+      json_ld.present? ? StructuredData.new(json_ld) : nil
+    rescue Oj::ParseError
+      nil
     end
   end
 
@@ -269,9 +245,5 @@ class LinkDetailsExtractor
     @detector ||= CharlockHolmes::EncodingDetector.new.tap do |detector|
       detector.strip_tags = true
     end
-  end
-
-  def html_entities
-    @html_entities ||= HTMLEntities.new
   end
 end

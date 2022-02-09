@@ -5,7 +5,7 @@ require 'pundit/rspec'
 
 RSpec.describe BackupPolicy do
   let(:subject) { described_class }
-  let(:john)    { Fabricate(:account) }
+  let(:john)    { Fabricate(:user).account }
 
   permissions :create? do
     context 'not user_signed_in?' do

@@ -6,7 +6,7 @@ RSpec.describe UnblockService, type: :service do
   subject { UnblockService.new }
 
   describe 'local' do
-    let(:bob) { Fabricate(:account) }
+    let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
 
     before do
       sender.block!(bob)
@@ -19,7 +19,7 @@ RSpec.describe UnblockService, type: :service do
   end
 
   describe 'remote ActivityPub' do
-    let(:bob) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
+    let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox')).account }
 
     before do
       sender.block!(bob)

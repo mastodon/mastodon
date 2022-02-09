@@ -35,16 +35,13 @@ describe ActivityPub::DistributionWorker do
     end
 
     context 'with direct status' do
-      let(:mentioned_account) { Fabricate(:account, protocol: :activitypub, inbox_url: 'https://foo.bar/inbox')}
-
       before do
         status.update(visibility: :direct)
-        status.mentions.create!(account: mentioned_account)
       end
 
-      it 'delivers to mentioned accounts' do
+      it 'does nothing' do
         subject.perform(status.id)
-        expect(ActivityPub::DeliveryWorker).to have_received(:push_bulk).with(['https://foo.bar/inbox'])
+        expect(ActivityPub::DeliveryWorker).to_not have_received(:push_bulk)
       end
     end
   end

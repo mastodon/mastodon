@@ -1,31 +1,32 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Update < ActivityPub::Activity
+  SUPPORTED_TYPES = %w(Application Group Organization Person Service).freeze
+
   def perform
     dereference_object!
 
-    if equals_or_includes_any?(@object['type'], %w(Application Group Organization Person Service))
+    if equals_or_includes_any?(@object['type'], SUPPORTED_TYPES)
       update_account
-    elsif equals_or_includes_any?(@object['type'], %w(Note Question))
-      update_status
+    elsif equals_or_includes_any?(@object['type'], %w(Question))
+      update_poll
     end
   end
 
   private
 
   def update_account
-    return reject_payload! if @account.uri != object_uri
+    return if @account.uri != object_uri
 
     ActivityPub::ProcessAccountService.new.call(@account.username, @account.domain, @object, signed_with_known_key: true)
   end
 
-  def update_status
+  def update_poll
     return reject_payload! if invalid_origin?(@object['id'])
 
     status = Status.find_by(uri: object_uri, account_id: @account.id)
+    return if status.nil? || status.preloadable_poll.nil?
 
-    return if status.nil?
-
-    ActivityPub::ProcessStatusUpdateService.new.call(status, @object)
+    ActivityPub::ProcessPollService.new.call(status.preloadable_poll, @object)
   end
 end

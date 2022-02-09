@@ -54,7 +54,7 @@ describe Report do
   end
 
   describe 'resolve!' do
-    subject(:report) { Fabricate(:report, action_taken_at: nil, action_taken_by_account_id: nil) }
+    subject(:report) { Fabricate(:report, action_taken: false, action_taken_by_account_id: nil) }
 
     let(:acting_account) { Fabricate(:account) }
 
@@ -63,13 +63,12 @@ describe Report do
     end
 
     it 'records action taken' do
-      expect(report.action_taken?).to be true
-      expect(report.action_taken_by_account_id).to eq acting_account.id
+      expect(report).to have_attributes(action_taken: true, action_taken_by_account_id: acting_account.id)
     end
   end
 
   describe 'unresolve!' do
-    subject(:report) { Fabricate(:report, action_taken_at: Time.now.utc, action_taken_by_account_id: acting_account.id) }
+    subject(:report) { Fabricate(:report, action_taken: true, action_taken_by_account_id: acting_account.id) }
 
     let(:acting_account) { Fabricate(:account) }
 
@@ -78,24 +77,23 @@ describe Report do
     end
 
     it 'unresolves' do
-      expect(report.action_taken?).to be false
-      expect(report.action_taken_by_account_id).to be_nil
+      expect(report).to have_attributes(action_taken: false, action_taken_by_account_id: nil)
     end
   end
 
   describe 'unresolved?' do
     subject { report.unresolved? }
 
-    let(:report) { Fabricate(:report, action_taken_at: action_taken) }
+    let(:report) { Fabricate(:report, action_taken: action_taken) }
 
     context 'if action is taken' do
-      let(:action_taken) { Time.now.utc }
+      let(:action_taken) { true }
 
       it { is_expected.to be false }
     end
 
     context 'if action not is taken' do
-      let(:action_taken) { nil }
+      let(:action_taken) { false }
 
       it { is_expected.to be true }
     end

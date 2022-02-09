@@ -49,7 +49,7 @@ describe ApplicationController, type: :controller do
 
     it 'returns account if signed in' do
       account = Fabricate(:account)
-      sign_in(account.user)
+      sign_in(Fabricate(:user, account: account))
       expect(controller.view_context.current_account).to eq account
     end
   end
@@ -164,13 +164,13 @@ describe ApplicationController, type: :controller do
     end
 
     it 'does nothing if user who signed in is not suspended' do
-      sign_in(Fabricate(:account, suspended: false).user)
+      sign_in(Fabricate(:user, account: Fabricate(:account, suspended: false)))
       get 'success'
       expect(response).to have_http_status(200)
     end
 
     it 'redirects to account status page' do
-      sign_in(Fabricate(:account, suspended: true).user)
+      sign_in(Fabricate(:user, account: Fabricate(:account, suspended: true)))
       get 'success'
       expect(response).to redirect_to(edit_user_registration_path)
     end

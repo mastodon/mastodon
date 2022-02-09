@@ -12,8 +12,6 @@ class LocalNotificationWorker
       activity = activity_class_name.constantize.find(activity_id)
     end
 
-    return if Notification.where(account: receiver, activity: activity).any?
-
     NotifyService.new.call(receiver, type || activity_class_name.underscore, activity)
   rescue ActiveRecord::RecordNotFound
     true

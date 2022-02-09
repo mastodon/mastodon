@@ -3,24 +3,11 @@
 ===
 
 <% unless @warning.none_action? %>
-<%= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance %>
+<%= t "user_mailer.warning.explanation.#{@warning.action}" %>
 
 <% end %>
-<% if @warning.text.present? %>
 <%= @warning.text %>
-
-<% end %>
-<% if @warning.report && !@warning.report.other? %>
-**<%= t('user_mailer.warning.reason') %>** <%= t("user_mailer.warning.categories.#{@warning.report.category}") %>
-
-<% if @warning.report.violation? && @warning.report.rule_ids.present? %>
-<% @warning.report.rules.each do |rule| %>
-- <%= rule.text %>
-<% end %>
-
-<% end %>
-<% end %>
-<% if !@statuses.empty? %>
+<% if !@statuses.nil? && !@statuses.empty? %>
 <%= t('user_mailer.warning.statuses') %>
 
 <% @statuses.each do |status| %>

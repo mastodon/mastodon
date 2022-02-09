@@ -31,6 +31,7 @@ RSpec.describe PublicFeed, type: :model do
     end
 
     it 'filters out silenced accounts' do
+      account = Fabricate(:account)
       silenced_account = Fabricate(:account, silenced: true)
       status = Fabricate(:status, account: account)
       silenced_status = Fabricate(:status, account: silenced_account)
@@ -175,7 +176,8 @@ RSpec.describe PublicFeed, type: :model do
 
       context 'with language preferences' do
         it 'excludes statuses in languages not allowed by the account user' do
-          @account.user.update(chosen_languages: [:en, :es])
+          user = Fabricate(:user, chosen_languages: [:en, :es])
+          @account.update(user: user)
           en_status = Fabricate(:status, language: 'en')
           es_status = Fabricate(:status, language: 'es')
           fr_status = Fabricate(:status, language: 'fr')
@@ -186,7 +188,8 @@ RSpec.describe PublicFeed, type: :model do
         end
 
         it 'includes all languages when user does not have a setting' do
-          @account.user.update(chosen_languages: nil)
+          user = Fabricate(:user, chosen_languages: nil)
+          @account.update(user: user)
 
           en_status = Fabricate(:status, language: 'en')
           es_status = Fabricate(:status, language: 'es')
@@ -196,8 +199,7 @@ RSpec.describe PublicFeed, type: :model do
         end
 
         it 'includes all languages when account does not have a user' do
-          @account.update(user: nil)
-
+          expect(@account.user).to be_nil
           en_status = Fabricate(:status, language: 'en')
           es_status = Fabricate(:status, language: 'es')
 

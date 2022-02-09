@@ -19,7 +19,8 @@ describe Settings::MigrationsController do
     context 'when user is sign in' do
       subject { get :show }
 
-      let(:user) { Fabricate(:account, moved_to_account: moved_to_account).user }
+      let(:user) { Fabricate(:user, account: account) }
+      let(:account) { Fabricate(:account, moved_to_account: moved_to_account) }
 
       before { sign_in user, scope: :user }
 

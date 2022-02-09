@@ -18,46 +18,65 @@ describe Admin::StatusesController do
   end
 
   describe 'GET #index' do
-    context do
-      before do
-        get :index, params: { account_id: account.id }
-      end
+    it 'returns http success with no media' do
+      get :index, params: { account_id: account.id }
 
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
-      end
+      statuses = assigns(:statuses).to_a
+      expect(statuses.size).to eq 4
+      expect(statuses.first.id).to eq last_status.id
+      expect(response).to have_http_status(200)
     end
 
-    context 'filtering by media' do
-      before do
-        get :index, params: { account_id: account.id, media: '1' }
-      end
+    it 'returns http success with media' do
+      get :index, params: { account_id: account.id, media: true }
 
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
-      end
+      statuses = assigns(:statuses).to_a
+      expect(statuses.size).to eq 2
+      expect(statuses.first.id).to eq last_media_attached_status.id
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe 'POST #batch' do
-    before do
-      post :batch, params: { :account_id => account.id, action => '', :admin_status_batch_action => { status_ids: status_ids } }
+  describe 'POST #create' do
+    subject do
+      -> { post :create, params: { :account_id => account.id, action => '', :form_status_batch => { status_ids: status_ids } } }
     end
 
+    let(:action) { 'nsfw_on' }
     let(:status_ids) { [media_attached_status.id] }
 
-    context 'when action is report' do
-      let(:action) { 'report' }
-
-      it 'creates a report' do
-        report = Report.last
-        expect(report.target_account_id).to eq account.id
-        expect(report.status_ids).to eq status_ids
+    context 'when action is nsfw_on' do
+      it 'updates sensitive column' do
+        is_expected.to change {
+          media_attached_status.reload.sensitive
+        }.from(false).to(true)
       end
+    end
 
-      it 'redirects to report page' do
-        expect(response).to redirect_to(admin_report_path(Report.last.id))
+    context 'when action is nsfw_off' do
+      let(:action) { 'nsfw_off' }
+      let(:sensitive) { false }
+
+      it 'updates sensitive column' do
+        is_expected.to change {
+          media_attached_status.reload.sensitive
+        }.from(true).to(false)
       end
+    end
+
+    context 'when action is delete' do
+      let(:action) { 'delete' }
+
+      it 'removes a status' do
+        allow(RemovalWorker).to receive(:perform_async)
+        subject.call
+        expect(RemovalWorker).to have_received(:perform_async).with(status_ids.first, immediate: true)
+      end
+    end
+
+    it 'redirects to account statuses page' do
+      subject.call
+      expect(response).to redirect_to(admin_account_statuses_path(account.id))
     end
   end
 end

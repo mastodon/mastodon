@@ -19,8 +19,7 @@ import {
   EmbedModal,
   ListEditor,
   ListAdder,
-  CompareHistoryModal,
-} from 'mastodon/features/ui/util/async-components';
+} from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
@@ -35,8 +34,7 @@ const MODAL_COMPONENTS = {
   'EMBED': EmbedModal,
   'LIST_EDITOR': ListEditor,
   'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
-  'LIST_ADDER': ListAdder,
-  'COMPARE_HISTORY': CompareHistoryModal,
+  'LIST_ADDER':ListAdder,
 };
 
 export default class ModalRoot extends React.PureComponent {

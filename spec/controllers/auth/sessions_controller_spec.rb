@@ -37,11 +37,8 @@ RSpec.describe Auth::SessionsController, type: :controller do
     end
 
     context 'with a suspended user' do
-      before do
-        user.account.suspend!
-      end
-
       it 'redirects to home after sign out' do
+        Fabricate(:account, user: user, suspended: true)
         sign_in(user, scope: :user)
         delete :destroy
 
@@ -81,8 +78,8 @@ RSpec.describe Auth::SessionsController, type: :controller do
       end
 
       context 'using a valid email and existing user' do
-        let!(:user) do
-          account = Fabricate.build(:account, username: 'pam_user1', user: nil)
+        let(:user) do
+          account = Fabricate.build(:account, username: 'pam_user1')
           account.save!(validate: false)
           user = Fabricate(:user, email: 'pam@example.com', password: nil, account: account, external: true)
           user
@@ -403,7 +400,7 @@ RSpec.describe Auth::SessionsController, type: :controller do
     end
 
     context 'when 2FA is disabled and IP is unfamiliar' do
-      let!(:user) { Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', current_sign_in_at: 3.weeks.ago) }
+      let!(:user) { Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', current_sign_in_at: 3.weeks.ago, current_sign_in_ip: '0.0.0.0') }
 
       before do
         request.remote_ip  = '10.10.10.10'

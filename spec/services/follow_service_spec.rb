@@ -7,7 +7,7 @@ RSpec.describe FollowService, type: :service do
 
   context 'local account' do
     describe 'locked account' do
-      let(:bob) { Fabricate(:account, locked: true, username: 'bob') }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, locked: true, username: 'bob')).account }
 
       before do
         subject.call(sender, bob)
@@ -19,7 +19,7 @@ RSpec.describe FollowService, type: :service do
     end
 
     describe 'locked account, no reblogs' do
-      let(:bob) { Fabricate(:account, locked: true, username: 'bob') }
+      let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, locked: true, username: 'bob')).account }
 
       before do
         subject.call(sender, bob, reblogs: false)

@@ -6,7 +6,7 @@ class Admin::Metrics::Retention
   end
 
   class CohortData < ActiveModelSerializers::Model
-    attributes :date, :rate, :value
+    attributes :date, :percent, :value
   end
 
   def initialize(start_at, end_at, frequency)
@@ -59,7 +59,7 @@ class Admin::Metrics::Retention
 
       current_cohort.data << CohortData.new(
         date: row['retention_period'],
-        rate: rate.to_f,
+        percent: rate.to_f,
         value: value.to_s
       )
     end

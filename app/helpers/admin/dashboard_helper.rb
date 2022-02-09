@@ -2,17 +2,17 @@
 
 module Admin::DashboardHelper
   def relevant_account_ip(account, ip_query)
-    ips = account.user.present? ? account.user.ips.to_a : []
+    default_ip = [account.user_current_sign_in_ip || account.user_sign_up_ip]
 
     matched_ip = begin
       ip_query_addr = IPAddr.new(ip_query)
-      ips.find { |ip| ip_query_addr.include?(ip.ip) } || ips.first
+      account.user.recent_ips.find { |(_, ip)| ip_query_addr.include?(ip) } || default_ip
     rescue IPAddr::Error
-      ips.first
-    end
+      default_ip
+    end.last
 
     if matched_ip
-      link_to matched_ip.ip, admin_accounts_path(ip: matched_ip.ip)
+      link_to matched_ip, admin_accounts_path(ip: matched_ip)
     else
       '-'
     end

@@ -1,0 +1,27 @@
+- content_for :page_title do
+  = t('admin.statuses.title')
+  \-
+  = "@#{@account.acct}"
+
+.filters
+  .back-link
+    = link_to admin_account_path(@account.id) do
+      %i.fa.fa-chevron-left.fa-fw
+      = t('admin.statuses.back_to_account')
+
+%hr.spacer/
+
+= form_for(@form, url: admin_account_statuses_path(@account.id)) do |f|
+  = hidden_field_tag :page, params[:page]
+  = hidden_field_tag :media, params[:media]
+
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        = f.button safe_join([fa_icon('eye-slash'), t('admin.statuses.batch.nsfw_on')]), name: :nsfw_on, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('eye'), t('admin.statuses.batch.nsfw_off')]), name: :nsfw_off, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('trash'), t('admin.statuses.batch.delete')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+    .batch-table__body
+      = render partial: 'admin/reports/status', collection: @statuses, locals: { f: f }

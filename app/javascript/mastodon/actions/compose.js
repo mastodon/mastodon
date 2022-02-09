@@ -252,15 +252,12 @@ export function uploadCompose(files) {
           if (status === 200) {
             dispatch(uploadComposeSuccess(data, f));
           } else if (status === 202) {
-            let tryCount = 1;
             const poll = () => {
               api(getState).get(`/api/v1/media/${data.id}`).then(response => {
                 if (response.status === 200) {
                   dispatch(uploadComposeSuccess(response.data, f));
                 } else if (response.status === 206) {
-                  let retryAfter = (Math.log2(tryCount) || 1) * 1000;
-                  tryCount += 1;
-                  setTimeout(() => poll(), retryAfter);
+                  setTimeout(() => poll(), 1000);
                 }
               }).catch(error => dispatch(uploadComposeFail(error)));
             };
