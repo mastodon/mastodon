@@ -76,13 +76,14 @@ module Remotable
   def synchronize_remote_attachment!(name)
     return unless defined?(@synchronizable_remote_attachments)
 
-    @synchronizable_remote_attachments.each do |url, attachment_name|
-      next unless attachment_name == name
-
-      cached_url = public_send(attachment_name).blank? ? nil : public_send(attachment_name).url(:original)
-      RemoteSynchronizationManager.instance.set_processed_url(url, cached_url)
+    @synchronizable_remote_attachments.keep_if do |url, attachment_name|
+      if attachment_name == name
+        cached_url = public_send(attachment_name).blank? ? nil : public_send(attachment_name).url(:original)
+        RemoteSynchronizationManager.instance.set_processed_url(url, cached_url)
+        false
+      else
+        true
+      end
     end
-
-    @synchronizable_remote_attachments = {}
   end
 end
