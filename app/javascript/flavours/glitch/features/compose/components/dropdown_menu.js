@@ -77,14 +77,16 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     document.removeEventListener('touchend', this.handleDocumentClick, withPassive);
   }
 
-  handleClick = (name, e) => {
+  handleClick = (e) => {
+    const i = Number(e.currentTarget.getAttribute('data-index'));
+
     const {
       onChange,
       onClose,
       items,
     } = this.props;
 
-    const { on } = this.props.items.find(item => item.name === name);
+    const { on, name } = this.props.items[i];
     e.preventDefault();  //  Prevents change in focus on click
     if ((on === null || typeof on === 'undefined')) {
       onClose();
@@ -101,11 +103,9 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     }
   }
 
-  handleKeyDown = (name, e) => {
+  handleKeyDown = (e) => {
+    const index = Number(e.currentTarget.getAttribute('data-index'));
     const { items } = this.props;
-    const index = items.findIndex(item => {
-      return (item.name === name);
-    });
     let element = null;
 
     switch(e.key) {
@@ -139,7 +139,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
     if (element) {
       element.focus();
-      this.handleChange(element.getAttribute('data-index'));
+      this.handleChange(this.props.items[Number(element.getAttribute('data-index'))].name);
       e.preventDefault();
       e.stopPropagation();
     }
@@ -149,7 +149,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     this.focusedItem = c;
   }
 
-  renderItem = (item) => {
+  renderItem = (item, i) => {
     const { name, icon, meta, on, text } = item;
 
     const active = (name === (this.props.value || this.state.value));
@@ -159,7 +159,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     let prefix = null;
 
     if (on !== null && typeof on !== 'undefined') {
-      prefix = <Toggle checked={on} onChange={this.handleClick.bind(this, name)} />;
+      prefix = <Toggle checked={on} onChange={this.handleClick} />;
     } else if (icon) {
       prefix = <Icon className='icon' fixedWidth id={icon} />
     }
@@ -167,12 +167,12 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     return (
       <div
         className={computedClass}
-        onClick={this.handleClick.bind(this, name)}
-        onKeyDown={this.handleKeyDown.bind(this, name)}
+        onClick={this.handleClick}
+        onKeyDown={this.handleKeyDown}
         role='option'
         tabIndex='0'
         key={name}
-        data-index={name}
+        data-index={i}
         ref={active ? this.setFocusRef : null}
       >
         {prefix}
@@ -223,7 +223,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
               transform: mounted ? `scale(${scaleX}, ${scaleY})` : null,
             }}
           >
-            {!!items && items.map(item => this.renderItem(item))}
+            {!!items && items.map((item, i) => this.renderItem(item, i))}
           </div>
         )}
       </Motion>
