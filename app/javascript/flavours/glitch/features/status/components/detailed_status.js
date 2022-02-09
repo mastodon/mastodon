@@ -7,7 +7,7 @@ import StatusContent from 'flavours/glitch/components/status_content';
 import MediaGallery from 'flavours/glitch/components/media_gallery';
 import AttachmentList from 'flavours/glitch/components/attachment_list';
 import { Link } from 'react-router-dom';
-import { injectIntl, FormattedDate, FormattedMessage } from 'react-intl';
+import { injectIntl, FormattedDate } from 'react-intl';
 import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from 'flavours/glitch/features/video';
@@ -19,6 +19,7 @@ import PollContainer from 'flavours/glitch/containers/poll_container';
 import Icon from 'flavours/glitch/components/icon';
 import AnimatedNumber from 'flavours/glitch/components/animated_number';
 import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
+import EditedTimestamp from 'flavours/glitch/components/edited_timestamp';
 
 export default @injectIntl
 class DetailedStatus extends ImmutablePureComponent {
@@ -265,7 +266,7 @@ class DetailedStatus extends ImmutablePureComponent {
       edited = (
         <React.Fragment>
           <React.Fragment> · </React.Fragment>
-          <FormattedMessage id='status.edited' defaultMessage='Edited {date}' values={{ date: intl.formatDate(status.get('edited_at'), { hour12: false, month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) }} />
+          <EditedTimestamp statusId={status.get('id')} timestamp={status.get('edited_at')} />
         </React.Fragment>
       );
     }
