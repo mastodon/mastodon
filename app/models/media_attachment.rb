@@ -208,6 +208,10 @@ class MediaAttachment < ApplicationRecord
     file.blank? && remote_url.present?
   end
 
+  def significantly_changed?
+    description_previously_changed? || thumbnail_updated_at_previously_changed? || file_meta_previously_changed?
+  end
+
   def larger_media_format?
     video? || gifv? || audio?
   end
