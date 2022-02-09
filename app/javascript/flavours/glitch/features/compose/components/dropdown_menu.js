@@ -154,13 +154,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
 
     const active = (name === (this.props.value || this.state.value));
 
-    const computedClass = classNames('composer--options--dropdown--content--item', {
-      active,
-      lengthy: meta,
-      'toggled-off': !on && on !== null && typeof on !== 'undefined',
-      'toggled-on': on,
-      'with-icon': icon,
-    });
+    const computedClass = classNames('composer--options--dropdown--content--item', { active });
 
     let prefix = null;
 

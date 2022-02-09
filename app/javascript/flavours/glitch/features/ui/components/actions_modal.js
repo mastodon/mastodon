@@ -8,13 +8,13 @@ import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
 import DisplayName from 'flavours/glitch/components/display_name';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
-import Link from 'flavours/glitch/components/link';
 import Toggle from 'react-toggle';
 
 export default class ActionsModal extends ImmutablePureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map,
+    onClick: PropTypes.func,
     actions: PropTypes.arrayOf(PropTypes.shape({
       active: PropTypes.bool,
       href: PropTypes.string,
@@ -46,43 +46,27 @@ export default class ActionsModal extends ImmutablePureComponent {
 
     return (
       <li key={name || i}>
-        <Link
-          className={classNames('link', { active })}
-          href={href}
-          onClick={on !== null && typeof on !== 'undefined' && onPassiveClick || onClick}
-          role={onClick ? 'button' : null}
-        >
-          {function () {
-
-            //  We render a `<Toggle>` if we were provided an `on`
-            //  property, and otherwise show an `<Icon>` if available.
-            switch (true) {
-            case on !== null && typeof on !== 'undefined':
-              return (
-                <Toggle
-                  checked={on}
-                  onChange={onPassiveClick || onClick}
-                />
-              );
-            case !!icon:
-              return (
-                <Icon
-                  className='icon'
-                  fixedWidth
-                  id={icon}
-                />
-              );
-            default:
-              return null;
-            }
-          }()}
+        <a href={href} target='_blank' rel='noopener noreferrer' onClick={on !== null && typeof on !== 'undefined' && onPassiveClick || onClick || this.props.onClick} data-index={i} className={classNames('link', { active })}>
+          {on !== null && typeof on !== 'undefined' && (
+            <Toggle
+              checked={on}
+              onChange={onPassiveClick || onClick}
+            />
+          )}
+          {icon && (
+            <Icon
+              className='icon'
+              fixedWidth
+              id={icon}
+            />
+          )}
           {meta ? (
             <div>
               <strong>{text}</strong>
               {meta}
             </div>
           ) : <div>{text}</div>}
-        </Link>
+        </a>
       </li>
     );
   }
