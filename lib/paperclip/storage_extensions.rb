@@ -30,7 +30,7 @@ module Paperclip
           s3_object(style_name).presigned_url(
             :get,
             base_options.merge(s3_url_options)
-          ).to_s&.gsub(s3_url, ENV['S3_ALIAS'])
+          ).to_s&.gsub(s3_url, ENV['S3_ALIAS_HOST'])
         else
           super
         end
