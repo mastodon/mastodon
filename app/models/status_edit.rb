@@ -11,6 +11,7 @@
 #  media_attachments_changed :boolean          default(FALSE), not null
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  content_type              :string
 #
 
 class StatusEdit < ApplicationRecord
@@ -20,4 +21,9 @@ class StatusEdit < ApplicationRecord
   default_scope { order(id: :asc) }
 
   delegate :local?, to: :status
+
+  def emojis
+    return @emojis if defined?(@emojis)
+    @emojis = CustomEmoji.from_text([spoiler_text, text].join(' '), status.account.domain)
+  end
 end
