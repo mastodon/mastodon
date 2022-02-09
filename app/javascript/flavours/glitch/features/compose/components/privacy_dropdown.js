@@ -53,13 +53,12 @@ class PrivacyDropdown extends React.PureComponent {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     noDirect: PropTypes.bool,
-    noModal: PropTypes.bool,
     container: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
 
   render () {
-    const { value, onChange, onModalOpen, onModalClose, disabled, noDirect, noModal, container, intl } = this.props;
+    const { value, onChange, onModalOpen, onModalClose, disabled, noDirect, container, intl } = this.props;
 
     //  We predefine our privacy items so that we can easily pick the
     //  dropdown icon later.
@@ -106,7 +105,6 @@ class PrivacyDropdown extends React.PureComponent {
         onModalOpen={onModalOpen}
         title={intl.formatMessage(messages.change_privacy)}
         container={container}
-        noModal={noModal}
         value={value}
       />
     );
