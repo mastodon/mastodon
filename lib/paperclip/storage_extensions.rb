@@ -26,10 +26,11 @@ module Paperclip
         time = 3600
         if path(style_name)
           base_options = { expires_in: time }
+          s3_url = ENV['S3_BUCKET'] + '.s3.' ENV['S3_REGION'] + '.amazonaws.com'
           s3_object(style_name).presigned_url(
             :get,
             base_options.merge(s3_url_options)
-          ).to_s
+          ).to_s.gsub(s3_url, ENV['S3_ALIAS'])
         else
           super
         end
