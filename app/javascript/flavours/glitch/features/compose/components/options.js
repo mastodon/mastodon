@@ -2,8 +2,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import spring from 'react-motion/lib/spring';
+import Toggle from 'react-toggle';
+import { connect } from 'react-redux';
 
 //  Components.
 import IconButton from 'flavours/glitch/components/icon_button';
@@ -80,6 +82,36 @@ const messages = defineMessages({
   },
 });
 
+@connect((state, { name }) => ({ checked: state.getIn(['compose', 'advanced_options', name]) }))
+class ToggleOption extends ImmutablePureComponent {
+
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    checked: PropTypes.bool,
+    onChangeAdvancedOption: PropTypes.func.isRequired,
+  };
+
+  handleChange = () => {
+    this.props.onChangeAdvancedOption(this.props.name);
+  };
+
+  render() {
+    const { name, meta, text, checked } = this.props;
+
+    return (
+      <React.Fragment>
+        <Toggle checked={checked} onChange={this.handleChange} />
+
+        <div className='content'>
+          <strong>{text}</strong>
+          {meta}
+        </div>
+      </React.Fragment>
+    );
+  }
+
+}
+
 export default @injectIntl
 class ComposerOptions extends ImmutablePureComponent {
 
@@ -141,6 +173,13 @@ class ComposerOptions extends ImmutablePureComponent {
     this.fileElement = fileElement;
   }
 
+  renderToggleItemContents = (item, index) => {
+    const { onChangeAdvancedOption } = this.props;
+    const { name, meta, text } = item;
+
+    return <ToggleOption name={name} text={text} meta={meta} onChangeAdvancedOption={onChangeAdvancedOption} />;
+  };
+
   //  Rendering.
   render () {
     const {
@@ -152,7 +191,6 @@ class ComposerOptions extends ImmutablePureComponent {
       hasMedia,
       allowPoll,
       hasPoll,
-      intl,
       onChangeAdvancedOption,
       onChangeContentType,
       onChangeVisibility,
@@ -164,23 +202,24 @@ class ComposerOptions extends ImmutablePureComponent {
       resetFileKey,
       spoiler,
       showContentTypeChoice,
+      intl: { formatMessage },
     } = this.props;
 
     const contentTypeItems = {
       plain: {
         icon: 'file-text',
         name: 'text/plain',
-        text: <FormattedMessage {...messages.plain} />,
+        text: formatMessage(messages.plain),
       },
       html: {
         icon: 'code',
         name: 'text/html',
-        text: <FormattedMessage {...messages.html} />,
+        text: formatMessage(messages.html),
       },
       markdown: {
         icon: 'arrow-circle-down',
         name: 'text/markdown',
-        text: <FormattedMessage {...messages.markdown} />,
+        text: formatMessage(messages.markdown),
       },
     };
 
@@ -204,18 +243,18 @@ class ComposerOptions extends ImmutablePureComponent {
             {
               icon: 'cloud-upload',
               name: 'upload',
-              text: <FormattedMessage {...messages.upload} />,
+              text: formatMessage(messages.upload),
             },
             {
               icon: 'paint-brush',
               name: 'doodle',
-              text: <FormattedMessage {...messages.doodle} />,
+              text: formatMessage(messages.doodle),
             },
           ]}
           onChange={this.handleClickAttach}
           onModalClose={onModalClose}
           onModalOpen={onModalOpen}
-          title={intl.formatMessage(messages.attach)}
+          title={formatMessage(messages.attach)}
         />
         {!!pollLimits && (
           <IconButton
@@ -229,7 +268,7 @@ class ComposerOptions extends ImmutablePureComponent {
               height: null,
               lineHeight: null,
             }}
-            title={intl.formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
+            title={formatMessage(hasPoll ? messages.remove_poll : messages.add_poll)}
           />
         )}
         <hr />
@@ -252,7 +291,7 @@ class ComposerOptions extends ImmutablePureComponent {
             onChange={onChangeContentType}
             onModalClose={onModalClose}
             onModalOpen={onModalOpen}
-            title={intl.formatMessage(messages.content_type)}
+            title={formatMessage(messages.content_type)}
             value={contentType}
           />
         )}
@@ -262,7 +301,7 @@ class ComposerOptions extends ImmutablePureComponent {
             ariaControls='glitch.composer.spoiler.input'
             label='CW'
             onClick={onToggleSpoiler}
-            title={intl.formatMessage(messages.spoiler)}
+            title={formatMessage(messages.spoiler)}
           />
         )}
         <Dropdown
@@ -271,22 +310,22 @@ class ComposerOptions extends ImmutablePureComponent {
           icon='ellipsis-h'
           items={advancedOptions ? [
             {
-              meta: <FormattedMessage {...messages.local_only_long} />,
+              meta: formatMessage(messages.local_only_long),
               name: 'do_not_federate',
-              on: advancedOptions.get('do_not_federate'),
-              text: <FormattedMessage {...messages.local_only_short} />,
+              text: formatMessage(messages.local_only_short),
             },
             {
-              meta: <FormattedMessage {...messages.threaded_mode_long} />,
+              meta: formatMessage(messages.threaded_mode_long),
               name: 'threaded_mode',
-              on: advancedOptions.get('threaded_mode'),
-              text: <FormattedMessage {...messages.threaded_mode_short} />,
+              text: formatMessage(messages.threaded_mode_short),
             },
           ] : null}
           onChange={onChangeAdvancedOption}
+          renderItemContents={this.renderToggleItemContents}
           onModalClose={onModalClose}
           onModalOpen={onModalOpen}
-          title={intl.formatMessage(messages.advanced_options_icon_title)}
+          title={formatMessage(messages.advanced_options_icon_title)}
+          closeOnChange={false}
         />
       </div>
     );

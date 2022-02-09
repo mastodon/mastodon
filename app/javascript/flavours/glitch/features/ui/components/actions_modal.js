@@ -7,8 +7,7 @@ import Avatar from 'flavours/glitch/components/avatar';
 import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
 import DisplayName from 'flavours/glitch/components/display_name';
 import classNames from 'classnames';
-import Icon from 'flavours/glitch/components/icon';
-import Toggle from 'react-toggle';
+import IconButton from 'flavours/glitch/components/icon_button';
 
 export default class ActionsModal extends ImmutablePureComponent {
 
@@ -19,12 +18,11 @@ export default class ActionsModal extends ImmutablePureComponent {
       active: PropTypes.bool,
       href: PropTypes.string,
       icon: PropTypes.string,
-      meta: PropTypes.node,
+      meta: PropTypes.string,
       name: PropTypes.string,
-      on: PropTypes.bool,
-      onPassiveClick: PropTypes.func,
-      text: PropTypes.node,
+      text: PropTypes.string,
     })),
+    renderItemContents: PropTypes.func,
   };
 
   renderAction = (action, i) => {
@@ -32,40 +30,25 @@ export default class ActionsModal extends ImmutablePureComponent {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const {
-      active,
-      href,
-      icon,
-      meta,
-      name,
-      on,
-      onClick,
-      onPassiveClick,
-      text,
-    } = action;
+    const { icon = null, text, meta = null, active = false, href = '#' } = action;
+    let contents = this.props.renderItemContents && this.props.renderItemContents(action, i);
+
+    if (!contents) {
+      contents = (
+        <React.Fragment>
+          {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex='-1' inverted />}
+          <div>
+            <div className={classNames({ 'actions-modal__item-label': !!meta })}>{text}</div>
+            <div>{meta}</div>
+          </div>
+        </React.Fragment>
+      );
+    }
 
     return (
-      <li key={name || i}>
-        <a href={href} target='_blank' rel='noopener noreferrer' onClick={on !== null && typeof on !== 'undefined' && onPassiveClick || onClick || this.props.onClick} data-index={i} className={classNames('link', { active })}>
-          {on !== null && typeof on !== 'undefined' && (
-            <Toggle
-              checked={on}
-              onChange={onPassiveClick || onClick}
-            />
-          )}
-          {icon && (
-            <Icon
-              className='icon'
-              fixedWidth
-              id={icon}
-            />
-          )}
-          {meta ? (
-            <div>
-              <strong>{text}</strong>
-              {meta}
-            </div>
-          ) : <div>{text}</div>}
+      <li key={`${text}-${i}`}>
+        <a href={href} target='_blank' rel='noopener noreferrer' onClick={this.props.onClick} data-index={i} className={classNames('link', { active })}>
+          {contents}
         </a>
       </li>
     );

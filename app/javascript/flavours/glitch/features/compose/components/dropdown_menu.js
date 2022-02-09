@@ -2,7 +2,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import spring from 'react-motion/lib/spring';
-import Toggle from 'react-toggle';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import classNames from 'classnames';
 
@@ -28,18 +27,20 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
       icon: PropTypes.string,
       meta: PropTypes.node,
       name: PropTypes.string.isRequired,
-      on: PropTypes.bool,
       text: PropTypes.node,
     })),
     onChange: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     style: PropTypes.object,
     value: PropTypes.string,
+    renderItemContents: PropTypes.func,
     openedViaKeyboard: PropTypes.bool,
+    closeOnChange: PropTypes.bool,
   };
 
   static defaultProps = {
     style: {},
+    closeOnChange: true,
   };
 
   state = {
@@ -83,12 +84,13 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
     const {
       onChange,
       onClose,
+      closeOnChange,
       items,
     } = this.props;
 
-    const { on, name } = this.props.items[i];
+    const { name } = this.props.items[i];
     e.preventDefault();  //  Prevents change in focus on click
-    if ((on === null || typeof on === 'undefined')) {
+    if (closeOnChange) {
       onClose();
     }
     onChange(name);
@@ -150,18 +152,25 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
   }
 
   renderItem = (item, i) => {
-    const { name, icon, meta, on, text } = item;
+    const { name, icon, meta, text } = item;
 
     const active = (name === (this.props.value || this.state.value));
 
     const computedClass = classNames('composer--options--dropdown--content--item', { active });
 
-    let prefix = null;
+    let contents = this.props.renderItemContents && this.props.renderItemContents(item, i);
 
-    if (on !== null && typeof on !== 'undefined') {
-      prefix = <Toggle checked={on} onChange={this.handleClick} />;
-    } else if (icon) {
-      prefix = <Icon className='icon' fixedWidth id={icon} />
+    if (!contents) {
+      contents = (
+        <React.Fragment>
+          {icon && <Icon className='icon' fixedWidth id={icon} />}
+
+          <div className='content'>
+            <strong>{text}</strong>
+            {meta}
+          </div>
+        </React.Fragment>
+      );
     }
 
     return (
@@ -175,12 +184,7 @@ export default class ComposerOptionsDropdownContent extends React.PureComponent 
         data-index={i}
         ref={active ? this.setFocusRef : null}
       >
-        {prefix}
-
-        <div className='content'>
-          <strong>{text}</strong>
-          {meta}
-        </div>
+        {contents}
       </div>
     );
   }
