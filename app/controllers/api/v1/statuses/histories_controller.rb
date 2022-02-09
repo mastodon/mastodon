@@ -7,7 +7,7 @@ class Api::V1::Statuses::HistoriesController < Api::BaseController
   before_action :set_status
 
   def show
-    render json: @status.edits, each_serializer: REST::StatusEditSerializer
+    render json: @status.edits.includes(:account, status: [:account]), each_serializer: REST::StatusEditSerializer
   end
 
   private
