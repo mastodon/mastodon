@@ -10,7 +10,7 @@
     .filter-subset.filter-subset--with-select
       %strong= t('admin.follow_recommendations.language')
       .input.select.optional
-        = select_tag :language, options_for_select(I18n.available_locales.map { |key| key.to_s.split(/[_-]/).first.to_sym }.uniq.map { |key| [human_locale(key), key]}, @language)
+        = select_tag :language, options_for_select(I18n.available_locales.map { |key| key.to_s.split(/[_-]/).first.to_sym }.uniq.map { |key| [standard_locale_name(key), key]}, @language)
 
     .filter-subset
       %strong= t('admin.follow_recommendations.status')
