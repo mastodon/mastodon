@@ -16,6 +16,26 @@ if ENV['S3_ENABLED'] == 'true' && ENV['S3_FORCE_SINGLE_REQUEST'] == 'true'
       end
     end
   end
-
   Paperclip::Storage::S3.prepend(Paperclip::Storage::S3Extensions)
 end
+
+module Paperclip
+  module Storage
+    module S3SignedExtensions
+      def url(style_name = default_style)
+        time = 3600
+        if path(style_name)
+          base_options = { expires_in: time }
+          s3_object(style_name).presigned_url(
+            :get,
+            base_options.merge(s3_url_options)
+          ).to_s
+        else
+          super
+        end
+      end
+    end
+  end
+end
+
+Paperclip::Storage::S3.prepend(Paperclip::Storage::S3SignedExtensions)
