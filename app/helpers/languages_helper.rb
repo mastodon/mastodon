@@ -209,13 +209,23 @@ module LanguagesHelper
     'zh-TW': '繁體中文（臺灣）',
   }.freeze
 
-  def human_locale(locale)
-    if locale == 'und'
+  def native_locale_name(locale)
+    if locale.blank? || locale == 'und'
       I18n.t('generic.none')
     elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
       supported_locale[1]
     elsif (regional_locale = REGIONAL_LOCALE_NAMES[locale.to_sym])
       regional_locale
+    else
+      locale
+    end
+  end
+
+  def standard_locale_name(locale)
+    if locale.blank?
+      I18n.t('generic.none')
+    elsif (supported_locale = SUPPORTED_LOCALES[locale.to_sym])
+      supported_locale[0]
     else
       locale
     end
