@@ -19,7 +19,7 @@ const messages = defineMessages({
   poll: { id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' },
   reblog: { id: 'notification.reblog', defaultMessage: '{name} boosted your status' },
   status: { id: 'notification.status', defaultMessage: '{name} just posted' },
-  update: { id: 'notification.update', defaultMessage: '{name} updated a post' },
+  update: { id: 'notification.update', defaultMessage: '{name} edited a post' },
 });
 
 const notificationForScreenReader = (intl, message, timestamp) => {
@@ -286,7 +286,7 @@ class Notification extends ImmutablePureComponent {
             </div>
 
             <span title={notification.get('created_at')}>
-              <FormattedMessage id='notification.update' defaultMessage='{name} updated a post' values={{ name: link }} />
+              <FormattedMessage id='notification.update' defaultMessage='{name} edited a post' values={{ name: link }} />
             </span>
           </div>
 
