@@ -21,22 +21,25 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
     icon: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
       icon: PropTypes.string,
-      meta: PropTypes.node,
+      meta: PropTypes.string,
       name: PropTypes.string.isRequired,
-      on: PropTypes.bool,
-      text: PropTypes.node,
+      text: PropTypes.string,
     })).isRequired,
     onModalOpen: PropTypes.func,
     onModalClose: PropTypes.func,
     title: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
-    noModal: PropTypes.bool,
     container: PropTypes.func,
+    renderItemContents: PropTypes.func,
+    closeOnChange: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    closeOnChange: true,
   };
 
   state = {
-    needsModalUpdate: false,
     open: false,
     openedViaKeyboard: undefined,
     placement: 'bottom',
@@ -44,10 +47,10 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
 
   //  Toggles opening and closing the dropdown.
   handleToggle = ({ target, type }) => {
-    const { onModalOpen, noModal } = this.props;
+    const { onModalOpen } = this.props;
     const { open } = this.state;
 
-    if (!noModal && isUserTouching()) {
+    if (isUserTouching()) {
       if (this.state.open) {
         this.props.onModalClose();
       } else {
@@ -107,9 +110,25 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
     this.setState({ open: false });
   }
 
+  handleItemClick = (e) => {
+    const {
+      items,
+      onChange,
+      onModalClose,
+      closeOnChange,
+    } = this.props;
+
+    const i = Number(e.currentTarget.getAttribute('data-index'));
+
+    const { name } = items[i];
+
+    e.preventDefault();  //  Prevents focus from changing
+    if (closeOnChange) onModalClose();
+    onChange(name);
+  };
+
   //  Creates an action modal object.
   handleMakeModal = () => {
-    const component = this;
     const {
       items,
       onChange,
@@ -125,6 +144,8 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
 
     //  The object.
     return {
+      renderItemContents: this.props.renderItemContents,
+      onClick: this.handleItemClick,
       actions: items.map(
         ({
           name,
@@ -133,46 +154,9 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           ...rest,
           active: value && name === value,
           name,
-          onClick (e) {
-            e.preventDefault();  //  Prevents focus from changing
-            onModalClose();
-            onChange(name);
-          },
-          onPassiveClick (e) {
-            e.preventDefault();  //  Prevents focus from changing
-            onChange(name);
-            component.setState({ needsModalUpdate: true });
-          },
         })
       ),
     };
-  }
-
-  //  If our modal is open and our props update, we need to also update
-  //  the modal.
-  handleUpdate = () => {
-    const { onModalOpen } = this.props;
-    const { needsModalUpdate } = this.state;
-
-    //  Gets our modal object.
-    const modal = this.handleMakeModal();
-
-    //  Reopens the modal with the new object.
-    if (needsModalUpdate && modal && onModalOpen) {
-      onModalOpen(modal);
-    }
-  }
-
-  //  Updates our modal as necessary.
-  componentDidUpdate (prevProps) {
-    const { items } = this.props;
-    const { needsModalUpdate } = this.state;
-    if (needsModalUpdate && items.find(
-      (item, i) => item.on !== prevProps.items[i].on
-    )) {
-      this.handleUpdate();
-      this.setState({ needsModalUpdate: false });
-    }
   }
 
   //  Rendering.
@@ -186,6 +170,8 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       onChange,
       value,
       container,
+      renderItemContents,
+      closeOnChange,
     } = this.props;
     const { open, placement } = this.state;
     const computedClass = classNames('composer--options--dropdown', {
@@ -226,10 +212,12 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
         >
           <DropdownMenu
             items={items}
+            renderItemContents={renderItemContents}
             onChange={onChange}
             onClose={this.handleClose}
             value={value}
             openedViaKeyboard={this.state.openedViaKeyboard}
+            closeOnChange={closeOnChange}
           />
         </Overlay>
       </div>

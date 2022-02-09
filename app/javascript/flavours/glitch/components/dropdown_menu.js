@@ -116,7 +116,7 @@ class DropdownMenu extends React.PureComponent {
 
     if (typeof action === 'function') {
       e.preventDefault();
-      action();
+      action(e);
     } else if (to) {
       e.preventDefault();
       this.context.router.history.push(to);
@@ -128,11 +128,11 @@ class DropdownMenu extends React.PureComponent {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { text, href = '#' } = option;
+    const { text, href = '#', target = '_blank', method } = option;
 
     return (
       <li className='dropdown-menu__item' key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener noreferrer' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
+        <a href={href} target={target} data-method={method} rel='noopener noreferrer' role='button' tabIndex='0' ref={i === 0 ? this.setFocusRef : null} onClick={this.handleClick} onKeyPress={this.handleItemKeyPress} data-index={i}>
           {text}
         </a>
       </li>
@@ -149,7 +149,7 @@ class DropdownMenu extends React.PureComponent {
           // It should not be transformed when mounting because the resulting
           // size will be used to determine the coordinate of the menu by
           // react-overlays
-          <div className='dropdown-menu' style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} ref={this.setRef}>
+          <div className={`dropdown-menu ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} ref={this.setRef}>
             <div className={`dropdown-menu__arrow ${placement}`} style={{ left: arrowOffsetLeft, top: arrowOffsetTop }} />
 
             <ul>
@@ -236,7 +236,8 @@ export default class Dropdown extends React.PureComponent {
     }
   }
 
-  handleItemClick = (i, e) => {
+  handleItemClick = e => {
+    const i = Number(e.currentTarget.getAttribute('data-index'));
     const { action, to } = this.props.items[i];
 
     this.handleClose();
