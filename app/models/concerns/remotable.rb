@@ -3,10 +3,6 @@
 module Remotable
   extend ActiveSupport::Concern
 
-  included do
-    after_save :synchronize_remote_attachments!
-  end
-
   class_methods do
     def remotable_attachment(attachment_name, limit, suppress_errors: true, download_on_assign: true, attribute_name: nil)
       attribute_name ||= "#{attachment_name}_remote_url".to_sym
@@ -70,15 +66,19 @@ module Remotable
       end
 
       alias_method("reset_#{attachment_name}!", "download_#{attachment_name}!")
+
+      send(:after_save) { synchronize_remote_attachment!(attachment_name) }
     end
   end
 
   private
 
-  def synchronize_remote_attachments!
+  def synchronize_remote_attachment!(name)
     return unless defined?(@synchronizable_remote_attachments)
 
     @synchronizable_remote_attachments.each do |url, attachment_name|
+      next unless attachment_name == name
+
       cached_url = public_send(attachment_name).blank? ? nil : public_send(attachment_name).url(:original)
       RemoteSynchronizationManager.instance.set_processed_url(url, cached_url)
     end
