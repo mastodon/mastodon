@@ -120,7 +120,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
 
     const i = Number(e.currentTarget.getAttribute('data-index'));
 
-    const { name } = this.props.items[i];
+    const { name } = items[i];
 
     e.preventDefault();  //  Prevents focus from changing
     if (closeOnChange) onModalClose();
@@ -129,7 +129,6 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
 
   //  Creates an action modal object.
   handleMakeModal = () => {
-    const component = this;
     const {
       items,
       onChange,

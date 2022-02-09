@@ -96,7 +96,7 @@ class ToggleOption extends ImmutablePureComponent {
   };
 
   render() {
-    const { name, meta, text, checked } = this.props;
+    const { meta, text, checked } = this.props;
 
     return (
       <React.Fragment>
@@ -173,7 +173,7 @@ class ComposerOptions extends ImmutablePureComponent {
     this.fileElement = fileElement;
   }
 
-  renderToggleItemContents = (item, index) => {
+  renderToggleItemContents = (item) => {
     const { onChangeAdvancedOption } = this.props;
     const { name, meta, text } = item;
 
