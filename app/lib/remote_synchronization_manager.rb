@@ -28,6 +28,19 @@ class RemoteSynchronizationManager
     nil
   end
 
+  def wait_for_processed_url(remote_url, retry_timeout: 30.seconds, retry_sleep: 0.1)
+    stop_retrying = retry_timeout.from_now
+    url = PROCESSING_VALUE
+
+    while Time.now < stop_retrying
+      url = get_processed_url(remote_url)
+      return url unless url == PROCESSING_VALUE
+      sleep retry_sleep
+    end
+
+    url
+  end
+
   def set_processed_url(remote_url, object_url)
     redis = synchronization_redis
     return if redis.nil?

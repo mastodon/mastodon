@@ -26,11 +26,11 @@ module Remotable
 
         # If a file is likely to go through ffmpeg, try the synchronization mechanisms
         needs_synchronization = (MediaAttachment::VIDEO_FILE_EXTENSIONS + ['.gif']).include?(File.extname(parsed_url.basename).downcase)
-        processed_url = RemoteSynchronizationManager.instance.get_processed_url(url) if needs_synchronization
+        processed_url = RemoteSynchronizationManager.instance.wait_for_processed_url(url) if needs_synchronization
 
         if processed_url == RemoteSynchronizationManager::PROCESSING_VALUE
+          public_send("#{attachment_name}=", nil) if public_send("#{attachment_name}_file_name").present?
           raise Mastodon::UnexpectedResponseError unless suppress_errors
-
           return
         end
 
