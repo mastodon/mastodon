@@ -1223,6 +1223,9 @@ de:
     reply:
       proceed: Fortfahren zum Antworten
       prompt: 'Du möchtest auf diesen Beitrag antworten:'
+  reports:
+    errors:
+      invalid_rules: verweist nicht auf gültige Regeln
   scheduled_statuses:
     over_daily_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, erreicht
@@ -1305,6 +1308,7 @@ de:
         other: "%{count} Videos"
     boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
+    default_language: Wie die Oberflächensprache
     disallowed_hashtags:
       one: 'enthält einen verbotenen Hashtag: %{tags}'
       other: 'enthält verbotene Hashtags: %{tags}'
