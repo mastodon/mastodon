@@ -26,7 +26,7 @@ module Remotable
 
         if processed_url == RemoteSynchronizationManager::PROCESSING_VALUE
           public_send("#{attachment_name}=", nil) if public_send("#{attachment_name}_file_name").present?
-          raise Mastodon::UnexpectedResponseError unless suppress_errors
+          raise HTTP::TimeoutError unless suppress_errors
           return
         end
 
