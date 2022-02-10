@@ -9,7 +9,6 @@ Devise.setup do |config|
   # CAS strategy
   if ENV['CAS_ENABLED'] == 'true'
     cas_options = {}
-    cas_options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true'
     cas_options[:display_name] = ENV['CAS_DISPLAY_NAME'] || 'cas'
     cas_options[:url] = ENV['CAS_URL'] if ENV['CAS_URL']
     cas_options[:host] = ENV['CAS_HOST'] if ENV['CAS_HOST']
@@ -39,7 +38,6 @@ Devise.setup do |config|
   # SAML strategy
   if ENV['SAML_ENABLED'] == 'true'
     saml_options = {}
-    saml_options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true'
     saml_options[:display_name] = ENV['SAML_DISPLAY_NAME'] || 'saml'
     saml_options[:assertion_consumer_service_url] = ENV['SAML_ACS_URL'] if ENV['SAML_ACS_URL']
     saml_options[:issuer] = ENV['SAML_ISSUER'] if ENV['SAML_ISSUER']
@@ -72,7 +70,6 @@ Devise.setup do |config|
   # OpenID Connect Strategy
   if ENV['OIDC_ENABLED'] == 'true'
     oidc_options = {}
-    oidc_options[:redirect_at_sign_in] = ENV['OAUTH_REDIRECT_AT_SIGN_IN'] == 'true' #OPTIONAL
     oidc_options[:display_name] = ENV['OIDC_DISPLAY_NAME'] || 'openid_connect' #OPTIONAL
     oidc_options[:issuer] = ENV['OIDC_ISSUER'] if ENV['OIDC_ISSUER'] #NEED
     oidc_options[:discovery] = ENV['OIDC_DISCOVERY'] == 'true' if ENV['OIDC_DISCOVERY'] #OPTIONAL (default: false)
