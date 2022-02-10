@@ -11,12 +11,9 @@ class Trends::Tags < Trends::Base
   }
 
   def register(status, at_time = Time.now.utc)
-    original_status = status.reblog? ? status.reblog : status
+    return unless !status.reblog? && status.public_visibility? && !status.account.silenced?
 
-    return unless original_status.public_visibility? && status.public_visibility? &&
-                  !original_status.account.silenced? && !status.account.silenced?
-
-    original_status.tags.each do |tag|
+    status.tags.each do |tag|
       add(tag, status.account_id, at_time) if tag.usable?
     end
   end
