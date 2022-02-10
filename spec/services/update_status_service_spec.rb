@@ -71,17 +71,27 @@ RSpec.describe UpdateStatusService, type: :service do
   end
 
   context 'when poll changes' do
-    let!(:status) { Fabricate(:status, text: 'Foo') }
-    let!(:poll) { Fabricate(:poll, options: %w(Foo Bar)) }
+    let(:account) { Fabricate(:account) }
+    let!(:status) { Fabricate(:status, text: 'Foo', account: account, poll_attributes: {options: %w(Foo Bar), account: account, multiple: false, hide_totals: false, expires_at: 7.days.from_now }) }
+    let!(:poll)   { status.poll }
+    let!(:voter) { Fabricate(:account) }
 
     before do
       status.update(poll: poll)
-      subject.call(status, status.account_id, text: 'Foo', poll: { options: %w(Bar Baz), expires_in: 5.days.to_i })
+      VoteService.new.call(voter, poll, [0])
+      subject.call(status, status.account_id, text: 'Foo', poll: { options: %w(Bar Baz Foo), expires_in: 5.days.to_i })
     end
 
     it 'updates poll' do
-      expect(status.poll).to_not eq poll
-      expect(status.poll.options).to eq %w(Bar Baz)
+      poll = status.poll.reload
+      expect(poll.options).to eq %w(Bar Baz Foo)
+    end
+
+    it 'resets votes' do
+      poll = status.poll.reload
+      expect(poll.votes_count).to eq 0
+      expect(poll.votes.count).to eq 0
+      expect(poll.cached_tallies).to eq [0, 0, 0]
     end
 
     it 'saves edit history' do
