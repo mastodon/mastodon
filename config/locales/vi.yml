@@ -1206,6 +1206,9 @@ vi:
     reply:
       proceed: Tiếp tục trả lời
       prompt: 'Bạn có muốn trả lời tút này?'
+  reports:
+    errors:
+      invalid_rules: không đúng với quy tắc
   scheduled_statuses:
     over_daily_limit: Bạn đã vượt qua giới hạn được lên lịch đăng tút %{limit} hôm nay
     over_total_limit: Bạn đã vượt quá giới hạn %{limit} của các tút được lên lịch
@@ -1285,6 +1288,7 @@ vi:
         other: "%{count} video"
     boosted_from_html: Đã chia sẻ từ %{acct_link}
     content_warning: 'Cảnh báo nội dung: %{warning}'
+    default_language: Giống ngôn ngữ giao diện
     disallowed_hashtags:
       other: 'chứa các hashtag bị cấm: %{tags}'
     edited_at: Đã sửa %{date}
