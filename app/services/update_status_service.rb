@@ -73,15 +73,13 @@ class UpdateStatusService < BaseService
 
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
-      if @options[:poll][:options] != poll.options || ActiveModel::Type::Boolean.new.cast(@options[:poll][:multiple]) != poll.multiple
-        @poll_changed = true
-        poll.votes.delete_all unless poll.new_record?
-      end
+      @poll_changed = true if @options[:poll][:options] != poll.options || ActiveModel::Type::Boolean.new.cast(@options[:poll][:multiple]) != poll.multiple
 
       poll.options     = @options[:poll][:options]
       poll.hide_totals = @options[:poll][:hide_totals] || false
       poll.multiple    = @options[:poll][:multiple] || false
       poll.expires_in  = @options[:poll][:expires_in]
+      poll.reset_votes! if @poll_changed
       poll.save!
 
       @status.poll_id = poll.id

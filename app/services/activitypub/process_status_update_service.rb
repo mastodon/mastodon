@@ -95,10 +95,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
-      if poll_parser.significantly_changes?(poll)
-        @poll_changed = true
-        poll.votes.delete_all unless poll.new_record?
-      end
+      @poll_changed = true if poll_parser.significantly_changes?(poll)
 
       poll.last_fetched_at = Time.now.utc
       poll.options         = poll_parser.options
@@ -106,6 +103,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       poll.expires_at      = poll_parser.expires_at
       poll.voters_count    = poll_parser.voters_count
       poll.cached_tallies  = poll_parser.cached_tallies
+      poll.reset_votes! if @poll_changed
       poll.save!
 
       @status.poll_id = poll.id
