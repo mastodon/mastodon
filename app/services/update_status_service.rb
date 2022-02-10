@@ -75,7 +75,7 @@ class UpdateStatusService < BaseService
       # votes, so we need to remove them
       if @options[:poll][:options] != poll.options || ActiveModel::Type::Boolean.new.cast(@options[:poll][:multiple]) != poll.multiple
         @poll_changed = true
-        poll.votes.delete_all unless poll.new_record?
+        poll.reset_votes! unless poll.new_record?
       end
 
       poll.options     = @options[:poll][:options]

@@ -97,7 +97,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       # votes, so we need to remove them
       if poll_parser.significantly_changes?(poll)
         @poll_changed = true
-        poll.votes.delete_all unless poll.new_record?
+        poll.reset_votes! unless poll.new_record?
       end
 
       poll.last_fetched_at = Time.now.utc
