@@ -73,10 +73,11 @@ class Trends::Base
     redis.zrevrange("#{key_prefix}:allowed", 0, rank, with_scores: true).last&.last || 0
   end
 
+  # @param [Redis] redis
   # @param [Integer] id
   # @param [Float] score
   # @param [Hash<String, Boolean>] subsets
-  def add_to_and_remove_from_subsets(id, score, subsets = {})
+  def add_to_and_remove_from_subsets(redis, id, score, subsets = {})
     subsets.each_key do |subset|
       key = [key_prefix, subset].compact.join(':')
 

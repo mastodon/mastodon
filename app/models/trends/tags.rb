@@ -79,7 +79,7 @@ class Trends::Tags < Trends::Base
 
       decaying_score = max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
 
-      add_to_and_remove_from_subsets(tag.id, decaying_score, {
+      add_to_and_remove_from_subsets(redis, tag.id, decaying_score, {
         all: true,
         allowed: tag.trendable?,
       })

@@ -97,7 +97,7 @@ class Trends::Statuses < Trends::Base
   end
 
   def calculate_scores(statuses, at_time)
-    redis.pipelined do
+    redis.pipelined do |pipeline|
       statuses.each do |status|
         expected  = 1.0
         observed  = (status.reblogs_count + status.favourites_count).to_f
@@ -112,14 +112,14 @@ class Trends::Statuses < Trends::Base
 
         decaying_score = score * (0.5**((at_time.to_f - status.created_at.to_f) / options[:score_halflife].to_f))
 
-        add_to_and_remove_from_subsets(status.id, decaying_score, {
+        add_to_and_remove_from_subsets(pipeline, status.id, decaying_score, {
           all: true,
           allowed: status.trendable? && status.account.discoverable?,
         })
 
         next unless valid_locale?(status.language)
 
-        add_to_and_remove_from_subsets(status.id, decaying_score, {
+        add_to_and_remove_from_subsets(pipeline, status.id, decaying_score, {
           "all:#{status.language}" => true,
           "allowed:#{status.language}" => status.trendable? && status.account.discoverable?,
         })
@@ -130,8 +130,8 @@ class Trends::Statuses < Trends::Base
       # having moments where the API returns empty results
 
       Trends.available_locales.each do |locale|
-        redis.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
-        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+        pipeline.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+        pipeline.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
       end
     end
   end

@@ -41,11 +41,11 @@ class Trends::History
     end
 
     def add(account_id)
-      redis.pipelined do
-        redis.incrby(key_for(:uses), 1)
-        redis.pfadd(key_for(:accounts), account_id)
-        redis.expire(key_for(:uses), EXPIRE_AFTER)
-        redis.expire(key_for(:accounts), EXPIRE_AFTER)
+      redis.pipelined do |pipeline|
+        pipeline.incrby(key_for(:uses), 1)
+        pipeline.pfadd(key_for(:accounts), account_id)
+        pipeline.expire(key_for(:uses), EXPIRE_AFTER)
+        pipeline.expire(key_for(:accounts), EXPIRE_AFTER)
       end
     end
 

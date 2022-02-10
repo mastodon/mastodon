@@ -88,14 +88,14 @@ class Trends::Links < Trends::Base
 
       decaying_score = max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
 
-      add_to_and_remove_from_subsets(preview_card.id, decaying_score, {
+      add_to_and_remove_from_subsets(redis, preview_card.id, decaying_score, {
         all: true,
         allowed: preview_card.trendable?,
       })
 
       next unless valid_locale?(preview_card.language)
 
-      add_to_and_remove_from_subsets(preview_card.id, decaying_score, {
+      add_to_and_remove_from_subsets(redis, preview_card.id, decaying_score, {
         "all:#{preview_card.language}" => true,
         "allowed:#{preview_card.language}" => preview_card.trendable?,
       })
@@ -105,10 +105,10 @@ class Trends::Links < Trends::Base
     # set. We do this instead of just deleting the localized sets to avoid
     # having moments where the API returns empty results
 
-    redis.pipelined do
+    redis.pipelined do |pipeline|
       Trends.available_locales.each do |locale|
-        redis.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
-        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+        pipeline.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+        pipeline.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
       end
     end
   end

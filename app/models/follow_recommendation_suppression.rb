@@ -19,9 +19,9 @@ class FollowRecommendationSuppression < ApplicationRecord
   private
 
   def remove_follow_recommendations
-    redis.pipelined do
+    redis.pipelined do |pipeline|
       I18n.available_locales.each do |locale|
-        redis.zrem("follow_recommendations:#{locale}", account_id)
+        pipeline.zrem("follow_recommendations:#{locale}", account_id)
       end
     end
   end
