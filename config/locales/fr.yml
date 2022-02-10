@@ -1288,7 +1288,7 @@ fr:
     preferences: Préférences
     profile: Profil
     relationships: Abonnements et abonné·e·s
-    statuses_cleanup: Suppression automatique de la publication
+    statuses_cleanup: Suppression automatique de messages
     two_factor_authentication: Identification à deux facteurs
     webauthn_authentication: Clés de sécurité
   statuses:
@@ -1342,7 +1342,7 @@ fr:
       unlisted: Public sans être affiché sur le fil public
       unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas listés sur les fils publics
   statuses_cleanup:
-    enabled: Supprimer automatiquement les anciens messages
+    enabled: Supprimer automatiquement vos anciens messages
     enabled_hint: Supprime automatiquement vos messages une fois qu'ils ont atteint un seuil d'ancienneté défini, à moins qu'ils ne correspondent à l'une des exceptions ci-dessous
     exceptions: Exceptions
     explanation: Parce que la suppression de messages est une opération lourde, cela se fait lentement au fil du temps lorsque le serveur n'est pas autrement occupé. Pour cette raison, vos messages peuvent être supprimés un peu plus tard que le seuil d'ancienneté défini.
@@ -1361,7 +1361,7 @@ fr:
     keep_self_bookmark: Conserver les messages que vous avez mis en marque-page
     keep_self_bookmark_hint: Ne supprime pas vos propres messages si vous les avez ajoutés aux marque-pages
     keep_self_fav: Conserver les messages que vous avez mis dans vos favoris
-    keep_self_fav_hint: Ne supprime pas vos propres publications si vous les avez mises dans vos favoris
+    keep_self_fav_hint: Ne supprime pas vos propres messages si vous les avez ajoutés à vos favoris
     min_age:
       '1209600': 2 semaines
       '15778476': 6 mois
@@ -1371,10 +1371,10 @@ fr:
       '63113904': 2 ans
       '7889238': 3 mois
     min_age_label: Seuil d'ancienneté
-    min_favs: Conserver les publications favorites plus de
-    min_favs_hint: Ne supprime aucune de vos publications qui ont reçu plus que ce nombre de favoris. Laisser vide pour supprimer les messages quel que soit leur nombre de favoris
-    min_reblogs: Conserver les publications partagées plus de
-    min_reblogs_hint: Ne supprime aucune de vos publications qui ont été partagées plus que ce nombre de fois. Laisser vide pour supprimer les publications indépendamment de leur nombre de partages
+    min_favs: Conserver les messages mis en favoris au moins
+    min_favs_hint: Ne supprime aucun de vos messages qui ont reçu au moins ce nombre de favoris. Laisser vide pour supprimer les messages quel que soit leur nombre de favoris
+    min_reblogs: Conserver les messages partagés au moins
+    min_reblogs_hint: Ne supprime aucun de vos messages qui ont été partagés au moins ce nombre de fois. Laisser vide pour supprimer les messages indépendamment de leur nombre de partages
   stream_entries:
     pinned: Message épinglé
     reblogged: a partagé
@@ -1521,7 +1521,7 @@ fr:
         silence: Votre compte %{acct} a été limité
         suspend: Votre compte %{acct} a été suspendu
       title:
-        delete_statuses: Publications supprimées
+        delete_statuses: Messages supprimés
         disable: Compte gelé
         none: Avertissement
         sensitive: Média masqué
