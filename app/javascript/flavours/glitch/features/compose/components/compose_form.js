@@ -47,6 +47,7 @@ class ComposeForm extends ImmutablePureComponent {
     preselectDate: PropTypes.instanceOf(Date),
     isSubmitting: PropTypes.bool,
     isChangingUpload: PropTypes.bool,
+    isEditing: PropTypes.bool,
     isUploading: PropTypes.bool,
     onChange: PropTypes.func,
     onSubmit: PropTypes.func,
@@ -293,6 +294,7 @@ class ComposeForm extends ImmutablePureComponent {
       spoilerText,
       suggestions,
       spoilersAlwaysOn,
+      isEditing,
     } = this.props;
 
     const countText = this.getFulltextForCharacterCounting();
@@ -364,6 +366,7 @@ class ComposeForm extends ImmutablePureComponent {
         <Publisher
           countText={countText}
           disabled={!this.canSubmit()}
+          isEditing={isEditing}
           onSecondarySubmit={handleSecondarySubmit}
           onSubmit={handleSubmit}
           privacy={privacy}

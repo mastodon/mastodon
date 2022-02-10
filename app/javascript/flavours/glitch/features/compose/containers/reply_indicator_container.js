@@ -1,14 +1,24 @@
 import { connect } from 'react-redux';
 import { cancelReplyCompose } from 'flavours/glitch/actions/compose';
-import { makeGetStatus } from 'flavours/glitch/selectors';
 import ReplyIndicator from '../components/reply_indicator';
 
-function makeMapStateToProps (state) {
-  const inReplyTo = state.getIn(['compose', 'in_reply_to']);
+const makeMapStateToProps = () => {
+  const mapStateToProps = state => {
+    let statusId = state.getIn(['compose', 'id'], null);
+    let editing  = true;
 
-  return {
-    status: inReplyTo ? state.getIn(['statuses', inReplyTo]) : null,
+    if (statusId === null) {
+      statusId = state.getIn(['compose', 'in_reply_to']);
+      editing  = false;
+    }
+
+    return {
+      status: state.getIn(['statuses', statusId]),
+      editing,
+    };
   };
+
+  return mapStateToProps;
 };
 
 const mapDispatchToProps = dispatch => ({
