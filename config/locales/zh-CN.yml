@@ -17,7 +17,7 @@ zh-CN:
     contact_unavailable: 未公开
     discover_users: 发现用户
     documentation: 文档
-    federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容 Mastodon 服务器上的人。
+    federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容Mastodon的服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     instance_actor_flash: |
@@ -1206,6 +1206,9 @@ zh-CN:
     reply:
       proceed: 确认回复
       prompt: '你想要回复此嘟文：'
+  reports:
+    errors:
+      invalid_rules: 没有引用有效的规则
   scheduled_statuses:
     over_daily_limit: 你已超出每日定时嘟文的上限（%{limit} 条）
     over_total_limit: 你已超出定时嘟文的上限（%{limit} 条）
@@ -1285,6 +1288,7 @@ zh-CN:
         other: "%{count} 段视频"
     boosted_from_html: 转嘟自 %{acct_link}
     content_warning: '内容警告：%{warning}'
+    default_language: 与界面显示语言相同
     disallowed_hashtags:
       other: '包含了这些禁止的话题标签：%{tags}'
     edited_at: 编辑于 %{date}
