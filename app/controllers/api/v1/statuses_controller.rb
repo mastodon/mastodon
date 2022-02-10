@@ -66,7 +66,8 @@ class Api::V1::StatusesController < Api::BaseController
       media_ids: status_params[:media_ids],
       sensitive: status_params[:sensitive],
       spoiler_text: status_params[:spoiler_text],
-      poll: status_params[:poll]
+      poll: status_params[:poll],
+      content_type: status_params[:content_type]
     )
 
     render json: @status, serializer: REST::StatusSerializer

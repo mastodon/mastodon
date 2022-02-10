@@ -221,6 +221,7 @@ class Status < ApplicationRecord
       spoiler_text: spoiler_text,
       media_attachments_changed: media_attachments_changed,
       account_id: account_id || self.account_id,
+      content_type: content_type,
       created_at: at_time || edited_at
     )
   end
