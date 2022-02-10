@@ -6,6 +6,7 @@ class ActivityPub::StatusUpdateDistributionWorker < ActivityPub::DistributionWor
   def perform(status_id, options = {})
     @options = options.with_indifferent_access
     @status  = Status.find(status_id)
+    @account = @status.account
 
     distribute!
   rescue ActiveRecord::RecordNotFound
