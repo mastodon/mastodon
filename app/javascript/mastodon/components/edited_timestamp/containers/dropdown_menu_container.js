@@ -7,7 +7,7 @@ const mapStateToProps = (state, { statusId }) => ({
   dropdownPlacement: state.getIn(['dropdown_menu', 'placement']),
   openDropdownId: state.getIn(['dropdown_menu', 'openId']),
   openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
-  items: state.getIn(['history', statusId, 'items']),
+  items: state.getIn(['history', statusId, 'items']) || [],
   loading: state.getIn(['history', statusId, 'loading']),
 });
 

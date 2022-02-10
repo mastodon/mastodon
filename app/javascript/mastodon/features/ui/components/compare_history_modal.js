@@ -57,7 +57,7 @@ class CompareHistoryModal extends React.PureComponent {
     return (
       <div className='modal-root__modal compare-history-modal'>
         <div className='report-modal__target'>
-          <IconButton className='report-modal__close' icon='times' onClick={onClose} size={20} />
+          <IconButton className='report-modal__close' icon='times' onClick={onClose} size={20} title='history' />
           {label}
         </div>
 
