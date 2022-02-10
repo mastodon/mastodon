@@ -129,7 +129,7 @@ function clearAll(state) {
     map.set('is_changing_upload', false);
     map.set('in_reply_to', null);
     map.set('quote_from', null);
-    map.set('quote_from_url', action.status.get('url'));
+    map.set('quote_from_url', null);
     map.set('privacy', state.get('default_privacy'));
     map.set('federation', state.get('default_federation'));
     map.set('content_type', state.get('default_content_type'));
@@ -528,6 +528,8 @@ export default function compose(state = initialState, action) {
       map.set('text', action.text);
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
+      map.set('federation',  !action.status.get('local_only'));
+      map.set('content_type',  action.status.get('content_type'));
       map.set('media_attachments', action.status.get('media_attachments'));
       map.set('focusDate', new Date());
       map.set('caretPosition', null);

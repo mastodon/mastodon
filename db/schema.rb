@@ -850,6 +850,8 @@ ActiveRecord::Schema.define(version: 2022_04_29_101850) do
     t.text "media_descriptions", array: true
     t.string "poll_options", array: true
     t.boolean "sensitive"
+    t.string "content_type"
+    t.boolean "local_only"
     t.index ["account_id"], name: "index_status_edits_on_account_id"
     t.index ["status_id"], name: "index_status_edits_on_status_id"
   end
