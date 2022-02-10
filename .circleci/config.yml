@@ -138,7 +138,6 @@ workflows:
                 - '3.0'
           name: test-ruby<< matrix.ruby-version >>
           requires:
-<<<<<<< HEAD
             - install
             - install-ruby2.7
       - build:
@@ -153,8 +152,6 @@ workflows:
       - test-ruby2.7:
           requires:
             - install-ruby2.7
-=======
->>>>>>> 9cdf8ac14 (Improve CircleCI config (#16861))
             - build
       - test-migrations:
           requires:
