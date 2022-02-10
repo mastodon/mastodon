@@ -6,9 +6,11 @@ sl:
     active_count_after: dejaven
     active_footnote: Aktivni mesečni uporabniki (AMU)
     administered_by: 'Upravlja:'
+    api: API (programerski vmesnik aplikacije)
     apps: Mobilne aplikacije
     apps_platforms: Uporabljajte Mastodon iz iOS, Android ali iz drugih platform
     browse_directory: Brskajte po imeniku profilov in filtriranje po interesih
+    browse_local_posts: Prebrskaj živi tok javnih objav s tega strežnika
     browse_public_posts: Brskajte javnih objav v živo na Mastodonu
     contact: Kontakt
     contact_missing: Ni nastavljeno
@@ -24,6 +26,7 @@ sl:
     learn_more: Nauči se več
     privacy_policy: Pravilnik o zasebnosti
     rules: Pravila strežnika
+    rules_html: 'Spodaj je povzetek pravil, ki jim morate slediti, če želite imeti račun na tem strežniku Mastodon:'
     see_whats_happening: Poglejte, kaj se dogaja
     server_stats: 'Statistika strežnika:'
     source_code: Izvorna koda
@@ -35,6 +38,7 @@ sl:
     status_count_before: Ki so avtorji
     tagline: Sledite prijateljem in odkrijte nove
     terms: Pogoji storitve
+    unavailable_content: Moderirani strežniki
     unavailable_content_description:
       domain: Strežnik
       reason: Razlog
@@ -123,6 +127,7 @@ sl:
       inbox_url: URL mape "Prejeto"
       invite_request_text: Razlogi za pridružitev
       invited_by: Povabljen od
+      ip: IP
       joined: Pridružil
       location:
         all: Vse
@@ -816,6 +821,9 @@ sl:
     reply:
       proceed: Nadaljuj z odgovorom
       prompt: 'Ali želite odgovoriti na ta tut:'
+  reports:
+    errors:
+      invalid_rules: se ne sklicuje na veljavna pravila
   scheduled_statuses:
     over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih tutov
     over_total_limit: Presegli ste omejitev %{limit} načrtovanih tutov
@@ -925,6 +933,8 @@ sl:
       unlisted: Ni prikazano
       unlisted_long: Vsi lahko vidijo, vendar ni objavljeno na javnih časovnicah
   statuses_cleanup:
+    keep_polls: Ohrani ankete
+    keep_polls_hint: Ne izbriše vaših anket
     min_age:
       '1209600': 2 tedna
       '15778476': 6 mesecev
@@ -1053,6 +1063,7 @@ sl:
         silence: Vaš račun %{acct} je omejen
         suspend: Vaš račun %{acct} je suspendiran
       title:
+        delete_statuses: Objave odstranjene
         disable: Račun je zamrznjen
         none: Opozorilo
         sensitive: Mediji so skriti
