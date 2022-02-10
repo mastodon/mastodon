@@ -6,13 +6,8 @@ describe ActivityPub::StatusUpdateDistributionWorker do
   let(:status)   { Fabricate(:status, text: 'foo') }
   let(:follower) { Fabricate(:account, protocol: :activitypub, inbox_url: 'http://example.com') }
 
-  let(:delivery_stub) { double }
-
   describe '#perform' do
     before do
-      allow(ActivityPub::DeliveryWorker).to receive(:new).and_return(delivery_stub)
-      allow(delivery_stub).to receive(:perform)
-
       follower.follow!(status.account)
 
       status.snapshot!
@@ -28,8 +23,11 @@ describe ActivityPub::StatusUpdateDistributionWorker do
       end
 
       it 'delivers to followers' do
+        expect(ActivityPub::DeliveryWorker).to receive(:push_bulk) do |items, &block|
+          expect(items.map(&block)).to match([[kind_of(String), status.account.id, 'http://example.com', anything]])
+        end
+
         subject.perform(status.id)
-        expect(delivery_stub).to have_received(:perform).with(kind_of(Hash), status.account.id, 'http://example.com', anything)
       end
     end
 
@@ -39,8 +37,11 @@ describe ActivityPub::StatusUpdateDistributionWorker do
       end
 
       it 'delivers to followers' do
+        expect(ActivityPub::DeliveryWorker).to receive(:push_bulk) do |items, &block|
+          expect(items.map(&block)).to match([[kind_of(String), status.account.id, 'http://example.com', anything]])
+        end
+
         subject.perform(status.id)
-        expect(delivery_stub).to have_received(:perform).with(kind_of(Hash), status.account.id, 'http://example.com', anything)
       end
     end
   end
