@@ -99,7 +99,6 @@ sq:
     accounts:
       add_email_domain_block: Blloko përkatësi email
       approve: Miratojeni
-      approve_all: Miratojini krejt
       approved_msg: U miratua me sukses aplikimi për regjistrim të %{username}
       are_you_sure: Jeni i sigurt?
       avatar: Avatar
@@ -114,6 +113,7 @@ sq:
       confirm: Ripohojeni
       confirmed: U ripohua
       confirming: Po ripohohet
+      custom: Vetjake
       delete: Fshiji të dhënat
       deleted: U fshi
       demote: Zhgradoje
@@ -153,7 +153,6 @@ sq:
         active: Aktiv
         all: Krejt
         pending: Pezull
-        silenced: Të heshtuara
         suspended: Të pezulluara
         title: Moderim
       moderation_notes: Shënime moderimesh
@@ -171,7 +170,6 @@ sq:
       redownload: Rifresko profilin
       redownloaded_msg: Profili i %{username} u rifreskua me sukses prej origjinës
       reject: Hidhe tej
-      reject_all: Hidhi krejt tej
       rejected_msg: Aplikimi për regjistrim i %{username} u hodh poshtë me sukses
       remove_avatar: Hiqe avatarin
       remove_header: Hiqe kryen
@@ -206,12 +204,14 @@ sq:
       silence: Heshtoje
       silenced: E heshtuar
       statuses: Gjendje
+      strikes: Ndëshkime të mëparshme
       subscribe: Pajtomë
       suspended: Të pezulluara
       suspension_irreversible: Të dhënat e kësaj llogarie janë fshirë në mënyrë të pakthyeshme. Mund ta shpezulloni llogarinë, për ta bërë të përdorshme, por kjo s’do të kthejë ndonjë të dhënë që kihej më parë.
       suspension_reversible_hint_html: Llogaria është pezulluar, dhe të dhënat do të hiqen plotësisht më %{date}. Deri atëherë, llogaria mund të rikthehet pa ndonjë zarar. Nëse doni të hiqen menjëherë krejt të dhënat e llogarisë, këtë mund ta bëni më poshtë.
-      time_in_queue: Pritje në radhë %{time}
       title: Llogari
+      unblock_email: Zhbllokoje adresën email
+      unblocked_email_msg: U zhbllokua me sukses adresa email e %{username}
       unconfirmed_email: Email i paripohuar
       undo_sensitized: Hiqja shenjën si rezervat
       undo_silenced: Zhbëje heshtjen
@@ -226,6 +226,7 @@ sq:
       whitelisted: Lejuar për federim
     action_logs:
       action_types:
+        approve_user: Miratoje Përdoruesin
         assigned_to_self_report: Caktoji Raportim
         change_email_user: Ndrysho Email për Përdoruesin
         confirm_user: Ripohoje Përdoruesin
@@ -243,6 +244,7 @@ sq:
         destroy_domain_allow: Fshi Lejim Përkatësie
         destroy_domain_block: Fshi Bllokim Përkatësie
         destroy_email_domain_block: Fshi bllokim përkatësie email-esh
+        destroy_instance: Spastroje Përkatësinë
         destroy_ip_block: Fshini Rregull IP
         destroy_status: Fshi Gjendje
         destroy_unavailable_domain: Fshi Përkatësi të Papërdorshme
@@ -255,6 +257,7 @@ sq:
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
+        reject_user: Hidhe Poshtë Përdoruesin
         remove_avatar_user: Hiqe Avatarin
         reopen_report: Rihape Raportimin
         reset_password_user: Ricaktoni Fjalëkalimin
@@ -263,6 +266,7 @@ sq:
         silence_account: Heshtoje Llogarinë
         suspend_account: Pezulloje Llogarinë
         unassigned_report: Hiqe Caktimin e Raportimit
+        unblock_email_account: Zhbllokoje adresën email
         unsensitive_account: Hiqjani shenjën si rezervat medias në llogarinë tuaj
         unsilence_account: Hiqe Heshtimin e Llogarisë
         unsuspend_account: Hiqe Pezullimin e Llogarisë
@@ -271,6 +275,7 @@ sq:
         update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
       actions:
+        approve_user_html: "%{name} miratoi regjistrim nga %{target}"
         assigned_to_self_report_html: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
         change_email_user_html: "%{name} ndryshoi adresën email të përdoruesit %{target}"
         confirm_user_html: "%{name} ripohoi adresën email të përdoruesit %{target}"
@@ -288,6 +293,7 @@ sq:
         destroy_domain_allow_html: "%{name} hoqi lejimin për federim me %{target}"
         destroy_domain_block_html: "%{name} zhbllokoi përkatësinë %{target}"
         destroy_email_domain_block_html: "%{name} hoqi bllokimin për përkatësinë email %{target}"
+        destroy_instance_html: "%{name} spastroi përkatësinë %{target}"
         destroy_ip_block_html: "%{name} fshiu rregull për IP-në %{target}"
         destroy_status_html: "%{name} hoqi gjendje nga %{target}"
         destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
@@ -300,6 +306,7 @@ sq:
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
+        reject_user_html: "%{name} hodhi poshtë regjistrimin nga %{target}"
         remove_avatar_user_html: "%{name} hoqi avatarin e %{target}"
         reopen_report_html: "%{name} rihapi raportimin %{target}"
         reset_password_user_html: "%{name} ricaktoi fjalëkalimi për përdoruesin %{target}"
@@ -308,6 +315,7 @@ sq:
         silence_account_html: "%{name} heshtoi llogarinë e %{target}"
         suspend_account_html: "%{name} pezulloi llogarinë e %{target}"
         unassigned_report_html: "%{name} rihapi raportimin %{target}"
+        unblock_email_account_html: "%{name} zhbllokoi adresën email të %{target}"
         unsensitive_account_html: "%{name} ia hoqi shenjën si rezervat medias në %{target}"
         unsilence_account_html: "%{name} hoqi heshtimin për llogarinë %{target}"
         unsuspend_account_html: "%{name} hoqi pezullimin për llogarinë e %{target}"
@@ -376,6 +384,15 @@ sq:
       media_storage: Depozitë media
       new_users: përdorues të rinj
       opened_reports: raportime të hapur
+      pending_reports_html:
+        one: "<strong>1</strong> raportim pezull"
+        other: "<strong>%{count}</strong> raportime pezull"
+      pending_tags_html:
+        one: "<strong>1</strong> hashtag pezull"
+        other: "<strong>%{count}</strong> hashtag-ë pezull"
+      pending_users_html:
+        one: "<strong>1</strong> përdorues pezull"
+        other: "<strong>%{count}</strong> përdorues pezull"
       resolved_reports: raportime të zgjidhur
       software: Software
       sources: Burime regjistrimi
@@ -456,6 +473,7 @@ sq:
       back_to_limited: E kufizuar
       back_to_warning: Kujdes
       by_domain: Përkatësi
+      confirm_purge: Jeni i sigurt se doni të fshihen përgjithmonë të dhënat prej kësaj përkatësie?
       delivery:
         all: Krejt
         clear: Spastro gabime dërgimi
@@ -471,6 +489,7 @@ sq:
       delivery_available: Ka shpërndarje të mundshme
       delivery_error_days: Ditë gabimi dështimi
       delivery_error_hint: Nëse dërgimi s’është i mundshëm për %{count} ditë, do t’i vihet shenjë automatikisht si i padërgueshëm.
+      destroyed_msg: Të dhënat prej %{domain} tani janë vënë në radhë për fshirje të menjëhershme.
       empty: S’u gjetën përkatësi.
       known_accounts:
         one: "%{count} llogari e njohur"
@@ -481,6 +500,7 @@ sq:
         title: Moderim
       private_comment: Koment privat
       public_comment: Koment publik
+      purge: Spastroje
       title: Federim
       total_blocked_by_us: Bllokuar nga ne
       total_followed_by_them: Ndjekur prej tyre
@@ -510,8 +530,6 @@ sq:
         title: Krijoni rregull IP të ri
       no_ip_block_selected: S’u ndryshua ndonjë rregull IP, ngaqë s’u përzgjodh ndonjë i tillë
       title: Rregulla IP
-    pending_accounts:
-      title: Llogari pezull (%{count})
     relationships:
       title: Marrëdhënie të %{acct}
     relays:
@@ -533,32 +551,44 @@ sq:
     report_notes:
       created_msg: Shënimi i raportimit u krijua me sukses!
       destroyed_msg: Shënimi i raportimit u fshi me sukses!
+      today_at: Sot më %{time}
     reports:
       account:
         notes:
           one: "%{count} shënim"
           other: "%{count} shënime"
-        reports:
-          one: "%{count} raportim"
-          other: "%{count} raportime"
+      action_log: Auditim regjistri
       action_taken_by: Veprimi i ndërmarrë nga
+      actions:
+        other_description_html: Shihni më tepër mundësi për kontroll të sjelljes së një llogari dhe përshtatni komunikimin me llogarinë e raportuar.
+        silence_description_html: Profili do të jetë i dukshëm vetëm për ata që e ndjekin tashmë, ose që e kërkojnë dorazi, duke reduktuar rëndë përhapjen e tij. Mundet përherë të prapakthehet.
+        suspend_description_html: Profili dhe krej lënda e tij do të bëhen të papërdorshëm, deri sa më në fund të fshihet. Ndërveprimi me llogarinë do të jetë i pamundur. E prapakthyeshme brenda 30 ditësh.
+      actions_description_html: 'Nëse heqja e lëndës më sipër që ka probleme është e pamjaftueshme:'
+      add_to_report: Shtoni më tepër te raportimi
       are_you_sure: A jeni i sigurt?
       assign_to_self: Caktojani vetes
       assigned: Iu caktua moderator
       by_target_domain: Përkatësi e llogarisë së raportuar
+      category: Kategori
+      category_description_html: Arsyeja pse kjo llogari dhe/ose lëndë raportohet do të citohet te komunikimi me llogarinë e raportuar
       comment:
         none: Asnjë
+      comment_description_html: 'Për të dhënë më tepër informacion, %{name} shkroi:'
       created_at: Raportuar më
+      delete_and_resolve: Zgjidhe dhe fshije
       forwarded: U përcoll
       forwarded_to: U përcoll te %{domain}
       mark_as_resolved: Vëri shenjë si i zgjidhur
       mark_as_unresolved: Vëri shenjë si të pazgjidhur
+      no_one_assigned: Askush
       notes:
         create: Shtoni shënim
         create_and_resolve: Zgjidhe me shënim
         create_and_unresolve: Rihape me shënim
         delete: Fshije
         placeholder: Përshkruani ç’veprime janë ndërmarrë, ose çfarëdo përditësimi tjetër që lidhet me të…
+        title: Shënime
+      notes_description_html: Shihni dhe lini shënime për moderatorët e tjerë dhe për veten në të ardhmen
       reopen: Rihape raportimin
       report: 'Raportim #%{id}'
       reported_account: Llogari e raportuar
@@ -566,11 +596,14 @@ sq:
       resolved: I zgjidhur
       resolved_msg: Raportimi u zgjidh me sukses!
       status: Gjendje
+      statuses: Lëndë e raportuar
+      statuses_description_html: Lënda problematike do të citohet në komunikimin me llogarinë e raportuar
       target_origin: Origjinë e llogarisë së raportuar
       title: Raportime
       unassign: Hiqja
       unresolved: Të pazgjidhur
       updated_at: U përditësua më
+      view_profile: Shihni profilin
     rules:
       add_new: Shtoni rregull
       delete: Fshije
@@ -672,15 +705,12 @@ sq:
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!
     statuses:
       back_to_account: Mbrapsht te faqja e llogarisë
+      back_to_report: Mbrapsht te faqja e raportimit
       batch:
-        delete: Fshije
-        nsfw_off: Vëri shenjë si jo rezervat
-        nsfw_on: Vëri shenjë si rezervat
+        remove_from_report: Hiqe prej raportimit
       deleted: E fshirë
-      failed_to_execute: S’u arrit të përmbushej
       media:
         title: Media
-      no_media: S’ka media
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
       with_media: Me media
@@ -693,21 +723,49 @@ sq:
       sidekiq_process_check:
         message_html: S’ka proces Sidekiq në punë për %{value} radhë. Ju lutemi, shqyrtoni formësimin tuaj për Sidekiq-un
     tags:
-      accounts_today: Përdorime unike sot
-      accounts_week: Përdorime unike këtë javë
-      breakdown: Përdorimi sot, analizuar sipas burimesh
-      last_active: Aktive së fundi më
-      most_popular: Më populloret
-      most_recent: Më të rejat
-      name: Hashtag
       review: Gjendje rishikimi
-      reviewed: E shqyrtuar
-      title: Hashtag-ë
-      trending_right_now: Popullore mu tani
-      unique_uses_today: "%{count} postime sot"
-      unreviewed: E pashqyrtuar
       updated_msg: Rregullimet për hashtag-ët u përditësuan me sukses
     title: Administrim
+    trends:
+      allow: Lejojeni
+      approved: Miratuar
+      disallow: Mos e lejo
+      links:
+        allow: Lejoje lidhjen
+        allow_provider: Lejoje botuesin
+        disallow: Hiq lejimin e lidhjes
+        disallow_provider: Mos e lejo botuesin
+        shared_by_over_week:
+          one: Ndarë nga një person javën e kaluar
+          other: Ndarë nga %{count} persona javën e kaluar
+        title: Lidhje në modë
+        usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
+      pending_review: Në pritje të shqyrtimit
+      preview_card_providers:
+        allowed: Lidhje prej këtij botuesi mund të përdoren
+        rejected: Lidhje prej këtij botuesi s’do të përdoren
+        title: Botues
+      rejected: Hedhur poshtë
+      tags:
+        dashboard:
+          tag_accounts_measure: përdorime unike
+          tag_languages_dimension: Gjuhë kryesuese
+          tag_servers_dimension: Shërbyes kryesues
+          tag_servers_measure: shërbyes të ndryshëm
+          tag_uses_measure: përdorime gjithsej
+        listable: Mund të sugjerohet
+        not_listable: S’do të sugjerohet
+        not_trendable: S’do të shfaqet nën të modës
+        not_usable: S’mund të përdoret
+        peaked_on_and_decaying: Kulmoi më %{date}, tani në rënie
+        title: Hashtag-ë në modë
+        trendable: Mund të shfaqet nën të modës
+        usable: Mund të përdoret
+        usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
+        used_by_over_week:
+          one: Përdorur nga një persona gjatë javës së kaluar
+          other: Përdorur nga %{count} persona gjatë javës së kaluar
+      title: Në modë
     warning_presets:
       add_new: Shtoni të ri
       delete: Fshije
@@ -722,9 +780,13 @@ sq:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: Raportim i ri për %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Hashtag-u #%{name} është popullor sot, por s’është shqyrtuar më parë. S’do të shfaqet publikisht pa e lejuar ju, ose thjesht ruani formularin siç është, që të mos dëgjoni më për të.'
-      subject: Hashtag i ri për shqyrtim te %{instance} (#%{name})
+    new_trending_links:
+      body: Lidhjet vijuese janë në modë sot, por botuesit e tyre nuk janë shqyrtuar më herët. Nuk do të shfaqen publikisht, veç në i miratofshi. S’do të prodhohen njoftime të mëtejshme për të njëjtë botues.
+      no_approved_links: Aktualisht nuk ka lidhje në modë të miratuara.
+      subject: Lidhje të reja në modë për shqyrtim te %{instance}
+    new_trending_tags:
+      body: 'Hashtag-ët vijues janë në modë sot, por nuk janë miratuar më herët. S’do të shfaqen publikisht, veç në i miratofshi:'
+      no_approved_tags: Aktualisht nuk ka hashtag-ë në modë të miratuar.
   aliases:
     add_new: Krijo alias
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
@@ -776,6 +838,7 @@ sq:
     invalid_reset_password_token: Token-i i ricaktimit të fjalëkalimit është i pavlefshëm ose ka skaduar. Ju lutemi, kërkoni një të ri.
     link_to_otp: Jepni një kod mirëfilltësimi dyfaktorësh prej telefonit tuaj ose një kod rimarrjeje
     link_to_webauth: Përdorni pajisjen tuaj të kyçeve të sigurisë
+    log_in_with: Hyni me
     login: Hyni
     logout: Dalje
     migrate_account: Kaloni në një tjetër llogari
@@ -931,34 +994,15 @@ sq:
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
     delete: Fshije
-    no_batch_actions_available: Në këtë faqe s’ka veprime masive gati
+    none: Asnjë
     order_by: Renditi sipas
     save_changes: Ruaji ndryshimet
+    today: sot
     validation_errors:
       one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë
       other: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni %{count} gabimet më poshtë
   html_validator:
     invalid_markup: 'përmban elementë HTML të pavlefshëm: %{error}'
-  identity_proofs:
-    active: Aktive
-    authorize: Po, autorizoje
-    authorize_connection_prompt: Të autorizohet kjo lidhje kriptografike?
-    errors:
-      failed: Lidhja kriptografike dështoi. Ju lutemi, riprovoni prej %{provider}.
-      keybase:
-        invalid_token: Token-ët Keybase janë hashe nënshkrimesh dhe duhet të jenë 66 shenja gjashtëmbëdhjetëshe
-        verification_failed: Keybase-i s’e njeh këtë token si një nënshkrim nga përdoruesi %{kb_username} i Keybase-it. Ju lutemi, riprovoni që prej Keybase-it.
-      wrong_user: S’mund të krijohet provë për %{proving} teksa është i futur si %{current}. Hyni si %{proving} dhe riprovoni.
-    explanation_html: Këtu mund të lidhni në mënyrë kriptografike identitetet tuaja të tjera prej platformash të tjera, bie fjala Keybase. Kjo u lejon të tjerëve t’ju dërgojnë mesazhe të fshehtëzuar në këto platforma dhe u lejon atyre të besojnë se lënda që u dërgoni vjen prej jush.
-    i_am_html: Jam %{username} në %{service}.
-    identity: Identitet
-    inactive: Jo aktiv
-    publicize_checkbox: 'Dhe cicëro këtë:'
-    publicize_toot: 'Është i provuar! Jam %{username} te %{service}: %{url}'
-    remove: Hiq provën prej llogarie
-    removed: Prova u hoq me sukses nga llogaria
-    status: Gjendje verifikimi
-    view_proof: Shihni provën
   imports:
     errors:
       over_rows_processing_limit: përmban më shumë se %{count} rreshta
@@ -1232,7 +1276,6 @@ sq:
     edit_profile: Përpunoni profilin
     export: Eksportim të dhënash
     featured_tags: Hashtag-ë të zgjedhur
-    identity_proofs: Prova identiteti
     import: Importo
     import_and_export: Importim dhe eksportim
     migrate: Migrim llogarie
@@ -1257,18 +1300,19 @@ sq:
         other: "%{count} video"
     boosted_from_html: Përforcuar nga %{acct_link}
     content_warning: 'Sinjalizim lënde: %{warning}'
+    default_language: Njësoj me gjuhën e ndërfaqes
     disallowed_hashtags:
       one: 'përmbante një hashtag të palejuar: %{tags}'
       other: 'përmbante hashtag-ë të palejuar: %{tags}'
+    edited_at: Përpunuar më %{date}
     errors:
       in_reply_not_found: Gjendja të cilës po provoni t’i përgjigjeni s’duket se ekziston.
-    language_detection: Pikase gjuhën vetvetiu
     open_in_web: Hape në internet
     over_character_limit: u tejkalua kufi shenjash prej %{max}
     pin_errors:
+      direct: Postimet që janë të dukshme vetëm për përdoruesit e përmendur s’mund të fiksohen
       limit: Keni fiksuar tashmë numrin maksimum të mesazheve
       ownership: S’mund të fiksohen mesazhet e të tjerëve
-      private: S’mund të fiksohet mesazh jopublik
       reblog: S’mund të fiksohet një përforcim
     poll:
       total_people:
@@ -1423,6 +1467,7 @@ sq:
     formats:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Shtoje
     disable: Çaktivizoje
@@ -1450,24 +1495,31 @@ sq:
       subject: Ju lutemi, ripohoni përpjekje hyrjeje
       title: Përpjekje hyrjeje
     warning:
+      categories:
+        spam: I padëshiruar
+        violation: Lënda cenon udhëzimet vijuese të bashkësisë
       explanation:
-        disable: Kur llogaria juaj është e ngrirë, të dhënat në llogarinë tuaj mbeten të paprekura, por s’mund të kryeni ndonjë veprim, para se të shkyçet.
-        sensitive: Kartelat tuaja media të ngarkuara dhe media e lidhur prej jush do të trajtohet si rezervat.
-        silence: Kur llogaria juaj është e kufizuar, mesazhet tuaj në këtë shërbyes do t’i shohin vetëm personat që ju ndjekin tashmë. dhe mund të liheni jashtë nga lista të ndryshme publike. Megjithatë, të tjerët prapë mund t’ju ndjekin dorazi.
-        suspend: Llogaria juaj është pezulluar, dhe krejt mesazhet tuaja dhe kartelat media të ngarkuara janë hequr në mënyrë të pakthyeshme nga ky shërbyes, dhe nga shërbyesit te të cilët kishit ndjekës.
-      get_in_touch: Që të lidheni me ekipin e %{instance}, mund t’i përgjigjeni këtij email-i.
+        delete_statuses: Për disa nga postimet tuaja është parë se cenojnë një ose më tepër udhëzime të bashkësisë dhe për pasojë janë hequr nga moderatorët e %{instance}. Cenime të ardhshme mund të sjellin veprime ndëshkimore më të ashpra kundër llogarisë tuaj.
+        disable: S’mund të përdorni më llogarinë tuaj, por profili juaj dhe të dhëna të tjera mbeten të paprekura. Mund të kërkoni një kopjeruajtje të të dhënave tuaja, të ndryshoni rregullime llogarie, ose të fshini llogarinë tuaj.
+        sensitive: Nga sot e tutje, krejt kartelave media të ngarkuara do t’u vihet shenjë si me spec dhe do të fshihen pas një sinjalizimi “klikojeni”.
+        silence: Mundeni ende të përdorni llogarinë tuaj, por vetëm personat që tashmë ju ndjekin do të shohin postimet tuaja në këtë shërbyes dhe mund të përjashtoheni nga veçori të ndryshme për zbulim lënde. Sidoqoftë, të tjerët mund t’ju ndjekin dorazi.
+        suspend: S’mund të përdorni më llogarinë tuaj dhe profili juaj, si dhe të dhëna të tjera, s’janë më të përdorshëm. Mundeni ende të bëni hyrjen në llogarinë tuaj për të kërkuar një kopjeruajtje të të dhënave tuaja, deri para se të dhënat tuaja të hiqen plotësisht brenda afërsisht 30 ditësh, por do të mbajmë ca të dhëna elementare, për t’ju penguar t’i bëni bisht pezullimin.
+      get_in_touch: Nëse besoni se këtu ka gabim, mund t’i përgjigjeni këtij email-i për t’u lidhur me stafin e %{instance}.
+      reason: 'Arsye:'
       review_server_policies: Shqyrtoni rregullat e shërbyesit
-      statuses: 'Posaçërisht, për:'
+      statuses: 'Postime që janë gjetur me cenime:'
       subject:
+        delete_statuses: Postimet tuaja në %{acct} janë hequr
         disable: Llogaria juaj %{acct} është ngrirë
         none: Sinjalizim për %{acct}
-        sensitive: Medias postuar nga llogaria juaj %{acct} i është vënë shenjë si rezervat
+        sensitive: Nga sot e tutje, kartelave tuaja media në %{acct} do t’u vihet shenjë si me spec
         silence: Llogaria juaj %{acct} është kufizuar
         suspend: Llogaria juaj %{acct} është pezulluar
       title:
+        delete_statuses: Postime të hequra
         disable: Llogari e ngrirë
         none: Sinjalizim
-        sensitive: Medias tuaj i është vënë shenjë si rezervat
+        sensitive: Me media të fshehur
         silence: Llogari e kufizuar
         suspend: Llogari e pezulluar
     welcome:

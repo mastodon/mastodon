@@ -66,7 +66,7 @@ class Scheduler::AccountsStatusesCleanupScheduler
   end
 
   def compute_budget
-    threads = Sidekiq::ProcessSet.new.filter { |x| x['queues'].include?('push') }.map { |x| x['concurrency'] }.sum
+    threads = Sidekiq::ProcessSet.new.select { |x| x['queues'].include?('push') }.map { |x| x['concurrency'] }.sum
     [PER_THREAD_BUDGET * threads, MAX_BUDGET].min
   end
 

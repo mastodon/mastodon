@@ -68,7 +68,7 @@ class FollowService < BaseService
     follow_request = @source_account.request_follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify], rate_limit: @options[:with_rate_limit], bypass_limit: @options[:bypass_limit])
 
     if @target_account.local?
-      LocalNotificationWorker.perform_async(@target_account.id, follow_request.id, follow_request.class.name, :follow_request)
+      LocalNotificationWorker.perform_async(@target_account.id, follow_request.id, follow_request.class.name, 'follow_request')
     elsif @target_account.activitypub?
       ActivityPub::DeliveryWorker.perform_async(build_json(follow_request), @source_account.id, @target_account.inbox_url)
     end
@@ -79,7 +79,7 @@ class FollowService < BaseService
   def direct_follow!
     follow = @source_account.follow!(@target_account, reblogs: @options[:reblogs], notify: @options[:notify], rate_limit: @options[:with_rate_limit], bypass_limit: @options[:bypass_limit])
 
-    LocalNotificationWorker.perform_async(@target_account.id, follow.id, follow.class.name, :follow)
+    LocalNotificationWorker.perform_async(@target_account.id, follow.id, follow.class.name, 'follow')
     MergeWorker.perform_async(@target_account.id, @source_account.id)
 
     follow

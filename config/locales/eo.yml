@@ -91,7 +91,6 @@ eo:
     accounts:
       add_email_domain_block: Bloki retadresan domajnon
       approve: Aprobi
-      approve_all: Aprobi ĉiujn
       are_you_sure: Ĉu vi certas?
       avatar: Profilbildo
       by_domain: Domajno
@@ -139,7 +138,6 @@ eo:
         active: Aktiva
         all: Ĉio
         pending: Pritraktata
-        silenced: Silentigita
         suspended: Haltigita
         title: Kontrolado
       moderation_notes: Kontrolaj notoj
@@ -156,7 +154,6 @@ eo:
       push_subscription_expires: Eksvalidiĝo de la abono al PuSH
       redownload: Aktualigi profilon
       reject: Malakcepti
-      reject_all: Malaprobi ĉiujn
       remove_avatar: Forigi profilbildon
       remove_header: Forigi kapan bildon
       resend_confirmation:
@@ -190,7 +187,6 @@ eo:
       statuses: Mesaĝoj
       subscribe: Aboni
       suspended: Haltigita
-      time_in_queue: Atendado en atendovico %{time}
       title: Kontoj
       unconfirmed_email: Nekonfirmita retadreso
       undo_sensitized: Malfari sentema
@@ -204,6 +200,7 @@ eo:
       whitelisted: En la blanka listo
     action_logs:
       action_types:
+        approve_user: Aprobu Uzanton
         assigned_to_self_report: Atribui Raporton
         change_email_user: Ŝanĝi retadreson de uzanto
         confirm_user: Konfermi uzanto
@@ -222,6 +219,7 @@ eo:
         destroy_email_domain_block: Forigi blokadon de retpoŝta domajno
         destroy_ip_block: Forigi IP-regulon
         destroy_status: Forigi mesaĝon
+        destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malebligi Propran Emoĝion
         disable_user: Malebligi uzanton
@@ -328,9 +326,15 @@ eo:
       updated_msg: Emoĝio sukcese ĝisdatigita!
       upload: Alŝuti
     dashboard:
+      active_users: aktivaj uzantoj
+      interactions: interago
+      media_storage: Aŭdvidaĵa memorilo
+      new_users: novaj uzantoj
       software: Programo
       space: Memorspaca uzado
       title: Kontrolpanelo
+      top_servers: Plej aktivaj serviloj
+      website: Retejo
     domain_allows:
       add_new: Aldoni domajnon al la blanka listo
       created_msg: Domajno estis sukcese aldonita al la blanka listo
@@ -441,8 +445,6 @@ eo:
         title: Krei novan IP-regulon
       no_ip_block_selected: Neniu IP-regulo estis ŝanĝita ĉar neniu estis elektita
       title: IP-reguloj
-    pending_accounts:
-      title: Pritraktataj kontoj (%{count})
     relationships:
       title: Rilatoj de %{acct}
     relays:
@@ -468,9 +470,6 @@ eo:
         notes:
           one: "%{count} noto"
           other: "%{count} notoj"
-        reports:
-          one: "%{count} signalo"
-          other: "%{count} signaloj"
       action_taken_by: Ago farita de
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
@@ -589,15 +588,9 @@ eo:
       delete: Forigi elŝutitan dosieron
     statuses:
       back_to_account: Reveni al konta paĝo
-      batch:
-        delete: Forigi
-        nsfw_off: Marki netikla
-        nsfw_on: Marki tikla
       deleted: Forigita
-      failed_to_execute: Ekigo malsukcesa
       media:
         title: Aŭdovidaĵoj
-      no_media: Neniu aŭdovidaĵo
       no_status_selected: Neniu mesaĝo estis ŝanĝita ĉar neniu estis elektita
       title: Mesaĝoj de la konto
       with_media: Kun aŭdovidaĵoj
@@ -608,19 +601,7 @@ eo:
         action: Administri servilajn regulojn
         message_html: Vi ne difinis iujn servilajn regulojn.
     tags:
-      accounts_today: Unikaj uzoj hodiaŭ
-      accounts_week: Unikaj uzoj je ĉi tiu semajno
-      breakdown: Disigo de la hodiaŭa uzo per fonto
-      last_active: Laste aktiva
-      most_popular: La plej populara
-      most_recent: Plej lasta
-      name: Kradvorto
       review: La statuso de la recenzo
-      reviewed: Recenzis
-      title: Kradvortoj
-      trending_right_now: Nunaj furoraĵoj
-      unique_uses_today: "%{count} uzas hodiaŭ"
-      unreviewed: Ne recenzis
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
     title: Administrado
     warning_presets:
@@ -636,9 +617,6 @@ eo:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
       subject: Nova signalo por %{instance} (#%{id})
-    new_trending_tag:
-      body: 'La kradvorto #%{name} furoras hodiaŭ, sed ankoraŭ ne estis kontrolita. Ĝi ne aperos publike sen via aprobo. Se vi ne volas tion, simple konservu la formularon tiel kiel.'
-      subject: Nova kradvorto kontrolebla en %{instance} (#%{name})
   aliases:
     add_new: Krei alinomon
     created_msg: Kreis novan alinomon sukcese. Vi povas inici la transloki el la malnovan konton nun.
@@ -687,6 +665,7 @@ eo:
     forgot_password: Pasvorto forgesita?
     invalid_reset_password_token: Ĵetono por restarigi pasvorton nevalida aŭ eksvalida. Bonvolu peti novan.
     link_to_webauth: Uzi vian sekurecan ŝlosilon
+    log_in_with: Ensaluti per
     login: Ensaluti
     logout: Elsaluti
     migrate_account: Movi al alia konto
@@ -839,24 +818,6 @@ eo:
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
   html_validator:
     invalid_markup: 'havas nevalidan HTML-markadon: %{error}'
-  identity_proofs:
-    active: Aktiva
-    authorize: Jes, permesi
-    authorize_connection_prompt: Permesi ĉi tiu ĉifrikan conekton?
-    errors:
-      failed: La ĉifrika conekto nefaris. Peti provu denove el %{provider}.
-      keybase:
-        invalid_token: Keybase signo estas haŝoj de subskribo kaj devi 66 deksesuma leteroj
-        verification_failed: Keybase ne rekoni ĉi tiu signo kiel subskribo de Keybase uzanto %{kb_username}. Peti provu denove el Keybase.
-      wrong_user: Ne povas krei por %{proving} dum ensalutis kiel %{current}. Ensaluti kiel %{proving} kaj provu denove.
-    explanation_html: Ĉi tie vi povas ĉifrika konekti via alia identicoj, kiel Keybase profilon. ĉi tiu igi aliaj popoloj sendi al vi ĉifritaj mesaĝoj kaj fidi kontento vi sendi al ilin.
-    i_am_html: Mi estas %{username} en %{service}.
-    identity: Identeco
-    inactive: Malaktiva
-    publicize_checkbox: 'Kaj fajfi ĉi tio:'
-    publicize_toot: 'I estas pruvita! Mi estas %{username} sur %{service}: %{url}'
-    status: Confirmo statuso
-    view_proof: Vidi pruvo
   imports:
     modes:
       merge: Kunigi
@@ -1025,7 +986,7 @@ eo:
     mutual: Reciproka
     primary: Primara
     relationship: Rilato
-    remove_selected_domains: Forigi ĉiuj sekvantojn el la selektitajn domajnojn
+    remove_selected_domains: Forigi ĉiujn sekvantojn el la selektitaj domajnoj
     remove_selected_followers: Forigi selektitajn sekvantojn
     remove_selected_follows: Ne plu sekvi elektitajn uzantojn
     status: Statuso de la konto
@@ -1103,7 +1064,6 @@ eo:
     edit_profile: Redakti profilon
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
-    identity_proofs: Pruvo de identeco
     import: Importi
     import_and_export: Alporto kaj elporto
     migrate: Konta migrado
@@ -1130,13 +1090,11 @@ eo:
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
       other: 'enhavis malpermesitan kradvorton: %{tags}'
-    language_detection: Aŭtomate detekti la lingvon
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
-      private: Mesaĝo nepublika ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
     poll:
       total_people:
@@ -1209,12 +1167,7 @@ eo:
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
     warning:
-      explanation:
-        disable: Dum via konto estas frostigita, via kontaj datumoj restas intaktaj, sed vi ne povas plenumi iujn agojn ĝis ĝi estas malhaltigita.
-        silence: Dum via konto estas limigita, nur tiuj, kiuj jam sekvas vin, vidos viajn mesaĝojn en ĉi tiu servilo, kaj vi povus esti ekskludita de diversaj publikaj listoj. Tamen, aliaj ankoraŭ povas mane sekvi vin.
-        suspend: Via konto estis haltigita, kaj ĉiuj el viaj mesaĝoj kaj alŝutitaj aŭdovidaj dosieroj estis nemalfareble forigitaj de ĉi tiu servilo, kaj de la serviloj, kie vi havis sekvantojn.
       review_server_policies: Superrigardi servilajn politikojn
-      statuses: 'Specife, per:'
       subject:
         disable: Via konto %{acct} estas frostigita
         none: Averto por %{acct}

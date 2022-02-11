@@ -42,7 +42,7 @@ nl:
       rejecting_media: 'Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken:'
       rejecting_media_title: Mediabestanden geweigerd
       silenced: Toots van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
-      silenced_title: Genegeerde servers
+      silenced_title: Beperkte servers
       suspended: Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.
       suspended_title: Opgeschorte servers
     unavailable_content_html: Met Mastodon kun je in het algemeen berichten bekijken van en communiceren met gebruikers van elke andere server in de fediverse. Dit zijn de uitzonderingen die door deze server zijn gemaakt en expliciet alleen hier gelden.
@@ -97,7 +97,6 @@ nl:
     accounts:
       add_email_domain_block: E-maildomein blokkeren
       approve: Goedkeuren
-      approve_all: Alles goedkeuren
       approved_msg: Het goedkeuren van het registratieverzoek van %{username} is geslaagd
       are_you_sure: Weet je het zeker?
       avatar: Avatar
@@ -112,6 +111,7 @@ nl:
       confirm: Bevestigen
       confirmed: Bevestigd
       confirming: Bevestiging
+      custom: Handmatig
       delete: Gegevens verwijderen
       deleted: Verwijderd
       demote: Degraderen
@@ -149,7 +149,6 @@ nl:
         active: Actief
         all: Alles
         pending: In afwachting
-        silenced: Genegeerd
         suspended: Opgeschort
         title: Moderatie
       moderation_notes: Opmerkingen voor moderatoren
@@ -167,7 +166,6 @@ nl:
       redownload: Profiel vernieuwen
       redownloaded_msg: Het herstellen van het oorspronkelijke profiel van %{username} is geslaagd
       reject: Afkeuren
-      reject_all: Alles afkeuren
       rejected_msg: Het afwijzen van het registratieverzoek van %{username} is geslaagd
       remove_avatar: Avatar verwijderen
       remove_header: Omslagfoto verwijderen
@@ -189,7 +187,7 @@ nl:
       search: Zoeken
       search_same_email_domain: Andere gebruikers met hetzelfde e-maildomein
       search_same_ip: Andere gebruikers met hetzelfde IP-adres
-      sensitive: Gevoelig
+      sensitive: Gevoelig forceren
       sensitized: als gevoelig gemarkeerd
       shared_inbox_url: Gedeelde inbox-URL
       show:
@@ -202,11 +200,10 @@ nl:
       suspended: Opgeschort
       suspension_irreversible: De gegevens van dit account zijn onomkeerbaar verwijderd. Je kunt het opschorten van dit account ongedaan maken zodat het weer valt te gebruiken, maar de verwijderde gegevens worden hiermee niet hersteld.
       suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
-      time_in_queue: "%{time} in de wachtrij"
       title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
-      undo_sensitized: Niet meer als gevoelig markeren
-      undo_silenced: Niet langer negeren
+      undo_sensitized: Niet meer als gevoelig forceren
+      undo_silenced: Niet langer beperken
       undo_suspension: Niet langer opschorten
       unsilenced_msg: Het opheffen van de beperkingen van %{username} zijn geslaagd
       unsubscribe: Opzeggen
@@ -488,8 +485,6 @@ nl:
         title: Nieuwe IP-regel aanmaken
       no_ip_block_selected: Er zijn geen IP-regels veranderd, omdat er geen een was geselecteerd
       title: IP-regels
-    pending_accounts:
-      title: Accounts in afwachting (%{count})
     relationships:
       title: Relaties van %{acct}
     relays:
@@ -516,9 +511,6 @@ nl:
         notes:
           one: "%{count} opmerking"
           other: "%{count} opmerkingen"
-        reports:
-          one: "%{count} rapportage"
-          other: "%{count} rapportages"
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -649,15 +641,9 @@ nl:
       destroyed_msg: Verwijderen website-upload geslaagd!
     statuses:
       back_to_account: Terug naar accountpagina
-      batch:
-        delete: Verwijderen
-        nsfw_off: Als niet gevoelig markeren
-        nsfw_on: Als gevoelig markeren
       deleted: Verwijderd
-      failed_to_execute: Uitvoeren mislukt
       media:
         title: Media
-      no_media: Geen media
       no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
       title: Toots van account
       with_media: Met media
@@ -670,19 +656,7 @@ nl:
       sidekiq_process_check:
         message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
     tags:
-      accounts_today: Aantal verschillende keren vandaag gebruikt
-      accounts_week: Aantal verschillende keren deze week gebruikt
-      breakdown: Uitsplitsing van het gebruik van vandaag naar bron
-      last_active: Laatst actief
-      most_popular: Meest populair
-      most_recent: Meest recent
-      name: Hashtag
       review: Status beoordelen
-      reviewed: Beoordeeld
-      title: Hashtags
-      trending_right_now: Op dit moment trending
-      unique_uses_today: "%{count} keer vandaag gebruikt"
-      unreviewed: Niet beoordeeld
       updated_msg: Instellingen hashtag succesvol bijgewerkt
     title: Beheer
     warning_presets:
@@ -699,9 +673,6 @@ nl:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: Nieuwe rapportage op %{instance} (#%{id})
-    new_trending_tag:
-      body: 'De hashtag #%{name} is vandaag trending, maar is nog niet beoordeeld. Het wordt niet in het openbaar getoond alvorens je de hashtag goedkeurt. Je kunt ook het formulier zoals het nu is opslaan, waarna je er niks meer over zult horen.'
-      subject: Nieuwe hashtag te beoordelen op %{instance} (#%{name})
   aliases:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
@@ -908,7 +879,6 @@ nl:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
     delete: Verwijderen
-    no_batch_actions_available: Geen batchacties op deze pagina beschikbaar
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
     validation_errors:
@@ -916,26 +886,6 @@ nl:
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   html_validator:
     invalid_markup: 'bevat ongeldige HTML-opmaak: %{error}'
-  identity_proofs:
-    active: Actief
-    authorize: Ja, autoriseren
-    authorize_connection_prompt: Deze cryptografische verbinding autoriseren?
-    errors:
-      failed: De cryptografische verbinding is mislukt. Probeer het opnieuw vanaf %{provider}.
-      keybase:
-        invalid_token: Keybasetokens zijn hashes van handtekeningen en moeten een lengte hebben van 66 hexadecimale tekens
-        verification_failed: Keybase herkent deze token niet als een handtekening van Keybasegebruiker %{kb_username}. Probeer het opnieuw vanuit Keybase.
-      wrong_user: Er kan geen bewijs worden aangemaakt voor %{proving} terwijl je bent ingelogd als %{current}. Log in als %{proving} en probeer het opnieuw.
-    explanation_html: Hier kun je met behulp van cryptografie jouw andere identiteiten verbinden, zoals een Keybaseprofiel. Hiermee kunnen andere mensen jou versleutelde berichten sturen en inhoud die jij verstuurt vertrouwen.
-    i_am_html: Ik ben %{username} op %{service}.
-    identity: Identiteit
-    inactive: Inactief
-    publicize_checkbox: 'En toot dit:'
-    publicize_toot: 'Het is bewezen! Ik ben %{username} op %{service}: %{url}'
-    remove: Bewijs uit account verwijderen
-    removed: Bewijs is succesvol uit account verwijderd
-    status: Verificatiestatus
-    view_proof: Bekijk bewijs
   imports:
     errors:
       over_rows_processing_limit: bevat meer dan %{count} rijen
@@ -1197,7 +1147,6 @@ nl:
     edit_profile: Profiel bewerken
     export: Exporteren
     featured_tags: Uitgelichte hashtags
-    identity_proofs: Identiteitsbewijzen
     import: Importeren
     import_and_export: Importeren en exporteren
     migrate: Accountmigratie
@@ -1226,13 +1175,11 @@ nl:
       other: 'bevatte niet toegestane hashtags: %{tags}'
     errors:
       in_reply_not_found: De toot waarop je probeert te reageren lijkt niet te bestaan.
-    language_detection: Taal automatisch detecteren
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
       limit: Je hebt het maximaal aantal toots al vastgezet
       ownership: Een toot van iemand anders kan niet worden vastgezet
-      private: Alleen openbare toots kunnen worden vastgezet
       reblog: Een boost kan niet worden vastgezet
     poll:
       total_people:
@@ -1380,24 +1327,15 @@ nl:
       subject: Bevestig de inlogpoging
       title: Inlogpoging
     warning:
-      explanation:
-        disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact, maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
-        sensitive: De mediabestanden die je upload en gekoppelde media worden als gevoelig behandeld.
-        silence: Zolang jouw account wordt beperkt, kunnen alleen mensen die jou al volgen jouw toots op deze server zien. Tevens ben je niet zichtbaar in meldingen, gesprekken en op openbare tijdlijnen. Anderen kunnen je echter wel handmatig volgen.
-        suspend: Jouw account is opgeschort. Jouw toots en geüploade media zijn onomkeerbaar van deze server verwijderd, en ook o.a. van de servers waar jij volgers had.
-      get_in_touch: Je kunt deze e-mail beantwoorden om in contact te komen met de medewerkers van %{instance}.
       review_server_policies: Serverbeleid bekijken
-      statuses: 'Met name voor:'
       subject:
         disable: Jouw account %{acct} is bevroren
         none: Waarschuwing voor %{acct}
-        sensitive: De door jouw account %{acct} geplaatste media is als gevoelig gemarkeerd
         silence: Jouw account %{acct} is nu beperkt
         suspend: Jouw account %{acct} is opgeschort
       title:
         disable: Account bevroren
         none: Waarschuwing
-        sensitive: Jouw media is als gevoelig gemarkeerd
         silence: Account beperkt
         suspend: Account opgeschort
     welcome:

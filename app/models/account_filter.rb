@@ -21,7 +21,7 @@ class AccountFilter
   end
 
   def results
-    scope = Account.includes(:account_stat, user: [:session_activations, :invite_request]).without_instance_actor.reorder(nil)
+    scope = Account.includes(:account_stat, user: [:ips, :invite_request]).without_instance_actor.reorder(nil)
 
     params.each do |key, value|
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?

@@ -149,10 +149,14 @@ module Mastodon
       :'zh-TW',
     ]
 
-    config.i18n.default_locale = ENV['DEFAULT_LOCALE']&.to_sym
+    config.i18n.default_locale = begin
+      custom_default_locale = ENV['DEFAULT_LOCALE']&.to_sym
 
-    unless config.i18n.available_locales.include?(config.i18n.default_locale)
-      config.i18n.default_locale = :en
+      if config.i18n.available_locales.include?(custom_default_locale)
+        custom_default_locale
+      else
+        :en
+      end
     end
 
     # config.paths.add File.join('app', 'api'), glob: File.join('**', '*.rb')
@@ -169,7 +173,6 @@ module Mastodon
       Doorkeeper::Application.send :include, ApplicationExtension
       Doorkeeper::AccessToken.send :include, AccessTokenExtension
       Devise::FailureApp.send :include, AbstractController::Callbacks
-      Devise::FailureApp.send :include, HttpAcceptLanguage::EasyAccess
       Devise::FailureApp.send :include, Localized
     end
   end

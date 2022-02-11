@@ -194,12 +194,12 @@ RSpec.describe User, type: :model do
     end
 
     it "returns 'private' if user has not configured default privacy setting and account is locked" do
-      user = Fabricate(:user, account: Fabricate(:account, locked: true))
+      user = Fabricate(:account, locked: true).user
       expect(user.setting_default_privacy).to eq 'private'
     end
 
     it "returns 'public' if user has not configured default privacy setting and account is not locked" do
-      user = Fabricate(:user, account: Fabricate(:account, locked: false))
+      user = Fabricate(:account, locked: false).user
       expect(user.setting_default_privacy).to eq 'public'
     end
   end
@@ -248,7 +248,7 @@ RSpec.describe User, type: :model do
 
   it_behaves_like 'Settings-extended' do
     def create!
-      User.create!(account: Fabricate(:account), email: 'foo@mastodon.space', password: 'abcd1234', agreement: true)
+      User.create!(account: Fabricate(:account, user: nil), email: 'foo@mastodon.space', password: 'abcd1234', agreement: true)
     end
 
     def fabricate

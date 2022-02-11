@@ -8,7 +8,6 @@ describe ActivityPub::DistributionWorker do
 
   describe '#perform' do
     before do
-      allow(ActivityPub::DeliveryWorker).to receive(:push_bulk)
       follower.follow!(status.account)
     end
 
@@ -18,8 +17,8 @@ describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to followers' do
+        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[kind_of(String), status.account.id, 'http://example.com', anything]])
         subject.perform(status.id)
-        expect(ActivityPub::DeliveryWorker).to have_received(:push_bulk).with(['http://example.com'])
       end
     end
 
@@ -29,19 +28,22 @@ describe ActivityPub::DistributionWorker do
       end
 
       it 'delivers to followers' do
+        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[kind_of(String), status.account.id, 'http://example.com', anything]])
         subject.perform(status.id)
-        expect(ActivityPub::DeliveryWorker).to have_received(:push_bulk).with(['http://example.com'])
       end
     end
 
     context 'with direct status' do
+      let(:mentioned_account) { Fabricate(:account, protocol: :activitypub, inbox_url: 'https://foo.bar/inbox')}
+
       before do
         status.update(visibility: :direct)
+        status.mentions.create!(account: mentioned_account)
       end
 
-      it 'does nothing' do
+      it 'delivers to mentioned accounts' do
+        expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [[kind_of(String), status.account.id, 'https://foo.bar/inbox', anything]])
         subject.perform(status.id)
-        expect(ActivityPub::DeliveryWorker).to_not have_received(:push_bulk)
       end
     end
   end

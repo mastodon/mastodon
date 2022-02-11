@@ -3,7 +3,7 @@ require 'rails_helper'
 describe FollowingAccountsController do
   render_views
 
-  let(:alice) { Fabricate(:user).account }
+  let(:alice) { Fabricate(:account) }
   let(:followee0) { Fabricate(:account) }
   let(:followee1) { Fabricate(:account) }
 
