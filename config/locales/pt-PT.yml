@@ -1223,6 +1223,9 @@ pt-PT:
     reply:
       proceed: Prosseguir com resposta
       prompt: 'Queres responder a esta publicação:'
+  reports:
+    errors:
+      invalid_rules: não faz referência a regras válidas
   scheduled_statuses:
     over_daily_limit: Excedeste o limite de %{limit} publicações agendadas para esse dia
     over_total_limit: Tu excedeste o limite de %{limit} publicações agendadas
@@ -1305,7 +1308,7 @@ pt-PT:
         other: "%{count} vídeos"
     boosted_from_html: Partilhadas de %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
-    default_language: Igual ao idioma da interface
+    default_language: Mesmo do idioma da interface
     disallowed_hashtags:
       one: 'continha uma hashtag proibida: %{tags}'
       other: 'continha as hashtags proibidas: %{tags}'
