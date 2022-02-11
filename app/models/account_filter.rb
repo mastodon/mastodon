@@ -49,7 +49,7 @@ class AccountFilter
     when 'email'
       accounts_with_users.merge(User.matches_email(value))
     when 'ip'
-      valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value)) : Account.none
+      valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value).group('users.id, accounts.id')) : Account.none
     when 'invited_by'
       invited_by_scope(value)
     when 'order'
