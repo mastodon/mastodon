@@ -21,8 +21,7 @@ const core = function () {
   return data.pack ? data : {};
 }();
 
-for (let i = 0; i < flavourFiles.length; i++) {
-  const flavourFile = flavourFiles[i];
+flavourFiles.forEach((flavourFile) => {
   const data = load(readFileSync(flavourFile), 'utf8');
   data.name = basename(dirname(flavourFile));
   data.skin = {};
@@ -35,27 +34,25 @@ for (let i = 0; i < flavourFiles.length; i++) {
   if (data.pack && typeof data.pack === 'object') {
     flavours[data.name] = data;
   }
-}
+});
 
-for (let i = 0; i < skinFiles.length; i++) {
-  const skinFile = skinFiles[i];
+skinFiles.forEach((skinFile) => {
   let skin = basename(skinFile);
   const name = basename(dirname(skinFile));
   if (!flavours[name]) {
-    continue;
+    return;
   }
   const data = flavours[name].skin;
   if (lstatSync(skinFile).isDirectory()) {
     data[skin] = {};
     const skinPacks = glob.sync(join(skinFile, '*.{css,scss}'));
-    for (let j = 0; j < skinPacks.length; j++) {
-      const pack = skinPacks[j];
+    skinPacks.forEach((pack) => {
       data[skin][basename(pack, extname(pack))] = pack;
-    }
+    });
   } else if ((skin = skin.match(/^(.*)\.s?css$/i))) {
     data[skin[1]] = { common: skinFile };
   }
-}
+});
 
 const output = {
   path: resolve('public', settings.public_output_path),

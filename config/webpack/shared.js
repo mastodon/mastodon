@@ -10,38 +10,33 @@ const rules = require('./rules');
 const localePacks = require('./generateLocalePacks');
 
 function reducePacks (data, into = {}) {
-  if (!data.pack) {
-    return into;
-  }
-  Object.keys(data.pack).reduce((map, entry) => {
+  if (!data.pack) return into;
+
+  for (const entry in data.pack) {
     const pack = data.pack[entry];
-    if (!pack) {
-      return map;
-    }
+    if (!pack) continue;
+
     const packFile = typeof pack === 'string' ? pack : pack.filename;
+
     if (packFile) {
-      map[data.name ? `flavours/${data.name}/${entry}` : `core/${entry}`] = resolve(data.pack_directory, packFile);
+      into[data.name ? `flavours/${data.name}/${entry}` : `core/${entry}`] = resolve(data.pack_directory, packFile);
     }
-    return map;
-  }, into);
-  if (data.name) {
-    Object.keys(data.skin).reduce((map, entry) => {
-      const skin = data.skin[entry];
-      const skinName = entry;
-      if (!skin) {
-        return map;
-      }
-      Object.keys(skin).reduce((map, entry) => {
-        const packFile = skin[entry];
-        if (!packFile) {
-          return map;
-        }
-        map[`skins/${data.name}/${skinName}/${entry}`] = resolve(packFile);
-        return map;
-      }, into);
-      return map;
-    }, into);
   }
+
+  if (!data.name) return into;
+
+  for (const skinName in data.skin) {
+    const skin = data.skin[skinName];
+    if (!skin) continue;
+
+    for (const entry in skin) {
+      const packFile = skin[entry];
+      if (!packFile) continue;
+
+      into[`skins/${data.name}/${skinName}/${entry}`] = resolve(packFile);
+    }
+  }
+
   return into;
 }
 
@@ -49,7 +44,7 @@ const entries = Object.assign(
   { locales: resolve('app', 'javascript', 'locales') },
   localePacks,
   reducePacks(core),
-  Object.keys(flavours).reduce((map, entry) => reducePacks(flavours[entry], map), {})
+  Object.values(flavours).reduce((map, data) => reducePacks(data, map), {})
 );
 
 
