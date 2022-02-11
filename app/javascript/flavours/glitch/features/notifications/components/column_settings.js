@@ -154,6 +154,17 @@ export default class ColumnSettings extends React.PureComponent {
             <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'status']} onChange={onChange} label={soundStr} />
           </div>
         </div>
+
+        <div role='group' aria-labelledby='notifications-update'>
+          <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.update' defaultMessage='Edits:' /></span>
+
+          <div className='column-settings__pillbar'>
+            <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'update']} onChange={onChange} label={alertStr} />
+            {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'update']} onChange={this.onPushChange} label={pushStr} />}
+            <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'update']} onChange={onChange} label={showStr} />
+            <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'update']} onChange={onChange} label={soundStr} />
+          </div>
+        </div>
       </div>
     );
   }

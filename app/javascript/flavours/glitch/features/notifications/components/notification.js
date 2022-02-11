@@ -171,6 +171,28 @@ export default class Notification extends ImmutablePureComponent {
           unread={this.props.unread}
         />
       );
+    case 'update':
+      return (
+        <StatusContainer
+          containerId={notification.get('id')}
+          hidden={hidden}
+          id={notification.get('status')}
+          account={notification.get('account')}
+          prepend='update'
+          muted
+          notification={notification}
+          onMoveDown={onMoveDown}
+          onMoveUp={onMoveUp}
+          onMention={onMention}
+          getScrollPosition={getScrollPosition}
+          updateScrollBottom={updateScrollBottom}
+          cachedMediaWidth={this.props.cachedMediaWidth}
+          cacheMediaWidth={this.props.cacheMediaWidth}
+          onUnmount={this.props.onUnmount}
+          withDismiss
+          unread={this.props.unread}
+        />
+      );
     default:
       return null;
     }
