@@ -549,23 +549,31 @@ fi:
     reports:
       action_log: Tarkastusloki
       action_taken_by: Toimenpiteen tekijä
+      actions:
+        delete_description_html: Ilmoitetut viestit poistetaan ja kirjataan varoitus, joka auttaa sinua saman tilin tulevista rikkomuksista.
+        other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja ilmoitetun tilin viestinnän mukauttamiseksi.
+      add_to_report: Lisää raporttiin
       are_you_sure: Oletko varma?
       assign_to_self: Ota tehtäväksi
       assigned: Määritetty valvoja
       by_target_domain: Ilmoitetun tilin verkkotunnus
+      category: Kategoria
       comment:
         none: Ei mitään
       created_at: Raportoitu
+      delete_and_resolve: Poista viestejä
       forwarded: Välitetty
       forwarded_to: Välitetty %{domain}
       mark_as_resolved: Merkitse ratkaistuksi
       mark_as_unresolved: Merkitse ratkaisemattomaksi
+      no_one_assigned: Ei kukaan
       notes:
         create: Lisää muistiinpano
         create_and_resolve: Ratkaise ja lisää muistiinpano
         create_and_unresolve: Avaa uudelleen ja lisää muistiinpano
         delete: Poista
         placeholder: Kuvaile mitä toimia on tehty tai muita päivityksiä tähän raporttiin…
+        title: Merkinnät
       reopen: Avaa raportti uudestaan
       report: 'Raportti nro %{id}'
       reported_account: Raportoitu tili
