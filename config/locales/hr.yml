@@ -1,6 +1,7 @@
+---
 hr:
   about:
-    about_hashtag_html: 'Ovo su javni tootovi označeni s <strong>#%{hashtag}</strong>. Možete biti u interakciji s njima, ako imate račun bilo gdje u fediverzumu.'
+    about_hashtag_html: Ovo su javni tootovi označeni s <strong>#%{hashtag}</strong>. Možete biti u interakciji s njima, ako imate račun bilo gdje u fediverzumu.
     about_mastodon_html: 'Društvena mreža budućnosti: bez oglasa, bez korporativnog nadzora, etički dizajn i decentralizacija! Budite u vlasništvu svojih podataka pomoću Mastodona!'
     about_this: Dodatne informacije
     active_count_after: aktivnih
@@ -161,15 +162,15 @@ hr:
     generate: Generiraj poveznicu za pozivanje
     invited_by: 'Poziva Vas:'
     max_uses:
-      one: 1 korištenje
       few: "%{count} korištenja"
+      one: 1 korištenje
       other: "%{count} korištenja"
   notification_mailer:
     digest:
       body: Ovo je kratak sažetak propuštenih poruka od Vašeg prošlog posjeta %{since}
       mention: "%{name} Vas je spomenuo/la:"
     favourite:
-      body: '%{name} je označio/la Vaš status favoritom:'
+      body: "%{name} je označio/la Vaš status favoritom:"
       subject: "%{name} je označio/la Vaš status favoritom"
     follow:
       body: "%{name} Vas sada prati!"
@@ -234,12 +235,12 @@ hr:
     over_character_limit: prijeđeno je ograničenje od %{max} znakova
     poll:
       total_people:
-        one: "%{count} osoba"
         few: "%{count} osobe"
+        one: "%{count} osoba"
         other: "%{count} ljudi"
       total_votes:
-        one: "%{count} glas"
         few: "%{count} glasa"
+        one: "%{count} glas"
         other: "%{count} glasova"
       vote: Glasaj
     show_more: Prikaži više
