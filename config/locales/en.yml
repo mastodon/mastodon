@@ -206,6 +206,7 @@ en:
       statuses: Posts
       strikes: Previous strikes
       subscribe: Subscribe
+      suspend: Suspend
       suspended: Suspended
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
@@ -560,10 +561,12 @@ en:
       action_log: Audit log
       action_taken_by: Action taken by
       actions:
+        delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
         other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
+        resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
         silence_description_html: The profile will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted.
         suspend_description_html: The profile and all its contents will become inaccessible until it is eventually deleted. Interacting with the account will be impossible. Reversible within 30 days.
-      actions_description_html: 'If removing the offending content above is insufficient:'
+      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an e-mail notification will be sent to them, except when the <strong>Spam</strong> category is selected.
       add_to_report: Add more to report
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
@@ -575,7 +578,7 @@ en:
         none: None
       comment_description_html: 'To provide more information, %{name} wrote:'
       created_at: Reported
-      delete_and_resolve: Delete and resolve
+      delete_and_resolve: Delete posts
       forwarded: Forwarded
       forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
@@ -589,12 +592,14 @@ en:
         placeholder: Describe what actions have been taken, or any other related updates...
         title: Notes
       notes_description_html: View and leave notes to other moderators and your future self
+      quick_actions_description_html: 'Take a quick action or scroll down to see reported content:'
       reopen: Reopen report
       report: 'Report #%{id}'
       reported_account: Reported account
       reported_by: Reported by
       resolved: Resolved
       resolved_msg: Report successfully resolved!
+      skip_to_actions: Skip to actions
       status: Status
       statuses: Reported content
       statuses_description_html: Offending content will be cited in communication with the reported account
