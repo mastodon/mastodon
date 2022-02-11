@@ -1410,8 +1410,9 @@ a.sparkline {
     }
 
     &__button {
+      box-sizing: border-box;
       flex: 0 0 auto;
-      width: 100px;
+      width: 200px;
       padding: 15px;
       padding-right: 0;
 
@@ -1425,6 +1426,40 @@ a.sparkline {
       padding: 15px;
       font-size: 14px;
       color: $dark-text-color;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    border: 0;
+
+    &__item {
+      flex-direction: column;
+      border: 0;
+
+      &__button {
+        width: 100%;
+        padding: 15px 0;
+      }
+
+      &__description {
+        padding: 0;
+        padding-bottom: 15px;
+      }
+    }
+  }
+}
+
+.section-skip-link {
+  float: right;
+
+  a {
+    color: $ui-highlight-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
     }
   }
 }
