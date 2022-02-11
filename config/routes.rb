@@ -228,6 +228,8 @@ Rails.application.routes.draw do
     resources :rules
 
     resources :reports, only: [:index, :show] do
+      resources :actions, only: [:create], controller: 'reports/actions'
+
       member do
         post :assign_to_self
         post :unassign

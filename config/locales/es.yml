@@ -99,7 +99,6 @@ es:
     accounts:
       add_email_domain_block: Poner en lista negra el dominio del correo
       approve: Aprobar
-      approve_all: Aprobar todos
       approved_msg: La solicitud de registro de %{username} ha sido aprobada correctamente
       are_you_sure: "¿Estás seguro?"
       avatar: Avatar
@@ -114,6 +113,7 @@ es:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      custom: Personalizado
       delete: Eliminar datos
       deleted: Borrado
       demote: Degradar
@@ -153,7 +153,6 @@ es:
         active: Activo
         all: Todos
         pending: Pendiente
-        silenced: Silenciados
         suspended: Suspendidos
         title: Moderación
       moderation_notes: Notas de moderación
@@ -171,7 +170,6 @@ es:
       redownload: Refrescar avatar
       redownloaded_msg: Se actualizó correctamente el perfil de %{username} desde el origen
       reject: Rechazar
-      reject_all: Rechazar todos
       rejected_msg: La solicitud de registro de %{username} ha sido rechazada con éxito
       remove_avatar: Eliminar el avatar
       remove_header: Eliminar cabecera
@@ -206,12 +204,14 @@ es:
       silence: Silenciar
       silenced: Silenciado
       statuses: Estados
+      strikes: Amonestaciones previas
       subscribe: Suscribir
       suspended: Suspendido
       suspension_irreversible: Los datos de esta cuenta han sido irreversiblemente eliminados. Puedes deshacer la suspensión de la cuenta para hacerla utilizable, pero no recuperará los datos que tenías anteriormente.
       suspension_reversible_hint_html: La cuenta ha sido suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si desea eliminar todos los datos de la cuenta inmediatamente, puede hacerlo a continuación.
-      time_in_queue: Esperando en cola %{time}
       title: Cuentas
+      unblock_email: Desbloquear dirección de correo
+      unblocked_email_msg: Se ha desbloqueado correctamente la dirección de correo de %{username}
       unconfirmed_email: Correo electrónico sin confirmar
       undo_sensitized: Desmarcar como sensible
       undo_silenced: Des-silenciar
@@ -226,6 +226,7 @@ es:
       whitelisted: Añadido a la lista blanca
     action_logs:
       action_types:
+        approve_user: Aprobar Usuario
         assigned_to_self_report: Asignar Reporte
         change_email_user: Cambiar Correo Electrónico del Usuario
         confirm_user: Confirmar Usuario
@@ -243,6 +244,7 @@ es:
         destroy_domain_allow: Eliminar Permiso de Dominio
         destroy_domain_block: Eliminar Bloqueo de Dominio
         destroy_email_domain_block: Eliminar Bloqueo de Dominio de Correo Electrónico
+        destroy_instance: Purgar Dominio
         destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estado
         destroy_unavailable_domain: Eliminar Dominio No Disponible
@@ -255,6 +257,7 @@ es:
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
         promote_user: Promover Usuario
+        reject_user: Rechazar Usuario
         remove_avatar_user: Eliminar Avatar
         reopen_report: Reabrir Reporte
         reset_password_user: Restablecer Contraseña
@@ -263,6 +266,7 @@ es:
         silence_account: Silenciar Cuenta
         suspend_account: Suspender Cuenta
         unassigned_report: Desasignar Reporte
+        unblock_email_account: Desbloquear dirección de correo
         unsensitive_account: Desmarcar multimedia en tu cuenta como sensible
         unsilence_account: Dejar de Silenciar Cuenta
         unsuspend_account: Dejar de Suspender Cuenta
@@ -271,6 +275,7 @@ es:
         update_domain_block: Actualizar el Bloqueo de Dominio
         update_status: Actualizar Estado
       actions:
+        approve_user_html: "%{name} aprobó el registro de %{target}"
         assigned_to_self_report_html: "%{name} asignó el informe %{target} a sí mismo"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
         confirm_user_html: "%{name} confirmó la dirección de correo electrónico del usuario %{target}"
@@ -288,6 +293,7 @@ es:
         destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
+        destroy_instance_html: "%{name} purgó el dominio %{target}"
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
         destroy_status_html: "%{name} eliminó el estado por %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
@@ -300,6 +306,7 @@ es:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
         promote_user_html: "%{name} promoción al usuario %{target}"
+        reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
         reopen_report_html: "%{name} reabrió el informe %{target}"
         reset_password_user_html: "%{name} reinició la contraseña del usuario %{target}"
@@ -308,6 +315,7 @@ es:
         silence_account_html: "%{name} silenció la cuenta de %{target}"
         suspend_account_html: "%{name} suspendió la cuenta de %{target}"
         unassigned_report_html: "%{name} des-asignó el informe %{target}"
+        unblock_email_account_html: "%{name} ha desbloqueado la dirección de correo de %{target}"
         unsensitive_account_html: "%{name} desmarcó la multimedia de %{target} como sensible"
         unsilence_account_html: "%{name} desilenció la cuenta de %{target}"
         unsuspend_account_html: "%{name} reactivó la cuenta de %{target}"
@@ -465,6 +473,7 @@ es:
       back_to_limited: Limitados
       back_to_warning: Advertencia
       by_domain: Dominio
+      confirm_purge: "¿Seguro que quieres eliminar permanentemente los datos de este dominio?"
       delivery:
         all: Todos
         clear: Limpiar errores de entrega
@@ -480,6 +489,7 @@ es:
       delivery_available: Entrega disponible
       delivery_error_days: Días de error de entrega
       delivery_error_hint: Si la entrega no es posible a lo largo de %{count} días, se marcará automáticamente como no entregable.
+      destroyed_msg: Los datos de %{domain} están ahora en cola para su inminente eliminación.
       empty: No se encontraron dominios.
       known_accounts:
         one: "%{count} cuenta conocida"
@@ -490,6 +500,7 @@ es:
         title: Moderación
       private_comment: Comentario privado
       public_comment: Comentario público
+      purge: Purgar
       title: Instancias conocidas
       total_blocked_by_us: Bloqueado por nosotros
       total_followed_by_them: Seguidos por ellos
@@ -519,8 +530,6 @@ es:
         title: Crear nueva regla IP
       no_ip_block_selected: No se han cambiado reglas IP ya que no se ha seleccionado ninguna
       title: Reglas IP
-    pending_accounts:
-      title: Cuentas pendientes (%{count})
     relationships:
       title: Relaciones de %{acct}
     relays:
@@ -542,32 +551,44 @@ es:
     report_notes:
       created_msg: "¡El registro de la denuncia se ha creado correctamente!"
       destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
+      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
-        reports:
-          one: "%{count} informe"
-          other: "%{count} informes"
+      action_log: Registro de auditoría
       action_taken_by: Acción tomada por
+      actions:
+        other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
+        silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
+        suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. La interacción con la cuenta será imposible. Reversible durante un plazo de 30 días.
+      actions_description_html: 'Si eliminar el contenido ofensivo de arriba no es suficiente:'
+      add_to_report: Añadir más al reporte
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
       assigned: Moderador asignado
       by_target_domain: Dominio de la cuenta reportada
+      category: Categoría
+      category_description_html: La razón por la que se reportó esta cuenta o contenido será citada en las comunicaciones con la cuenta reportada
       comment:
         none: Ninguno
+      comment_description_html: 'Para proporcionar más información, %{name} escribió:'
       created_at: Denunciado
+      delete_and_resolve: Eliminar y resolver
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelto
       mark_as_unresolved: Marcar como no resuelto
+      no_one_assigned: Nadie
       notes:
         create: Añadir una nota
         create_and_resolve: Resolver con una nota
         create_and_unresolve: Reabrir con una nota
         delete: Eliminar
         placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
+        title: Notas
+      notes_description_html: Ver y dejar notas a otros moderadores y a tu yo futuro
       reopen: Reabrir denuncia
       report: 'Reportar #%{id}'
       reported_account: Cuenta reportada
@@ -575,11 +596,14 @@ es:
       resolved: Resuelto
       resolved_msg: "¡La denuncia se ha resuelto correctamente!"
       status: Estado
+      statuses: Contenido reportado
+      statuses_description_html: El contenido ofensivo se citará en la comunicación con la cuenta reportada
       target_origin: Origen de la cuenta reportada
       title: Reportes
       unassign: Desasignar
       unresolved: No resuelto
       updated_at: Actualizado
+      view_profile: Ver perfil
     rules:
       add_new: Añadir norma
       delete: Eliminar
@@ -681,15 +705,13 @@ es:
       destroyed_msg: "¡Carga del sitio eliminada con éxito!"
     statuses:
       back_to_account: Volver a la cuenta
+      back_to_report: Volver a la página del reporte
       batch:
-        delete: Eliminar
-        nsfw_off: Marcar contenido como no sensible
-        nsfw_on: Marcar contenido como sensible
+        remove_from_report: Eliminar del reporte
+        report: Reporte
       deleted: Eliminado
-      failed_to_execute: Falló al ejecutar
       media:
         title: Multimedia
-      no_media: No hay multimedia
       no_status_selected: No se cambió ningún estado al no seleccionar ninguno
       title: Estado de las cuentas
       with_media: Con multimedia
@@ -702,21 +724,51 @@ es:
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la(s) cola(s) %{value}. Por favor, revise su configuración de Sidekiq
     tags:
-      accounts_today: Usos únicos de hoy
-      accounts_week: Usos únicos esta semana
-      breakdown: Desglose del consumo actual por fuentes
-      last_active: Última actividad
-      most_popular: Más popular
-      most_recent: Más reciente
-      name: Hashtag
       review: Estado de revisión
-      reviewed: Revisado
-      title: Etiquetas
-      trending_right_now: En tendencia ahora mismo
-      unique_uses_today: "%{count} publicando hoy"
-      unreviewed: No revisado
       updated_msg: Hashtags actualizados exitosamente
     title: Administración
+    trends:
+      allow: Permitir
+      approved: Aprobadas
+      disallow: No permitir
+      links:
+        allow: Permitir enlace
+        allow_provider: Permitir medio
+        disallow: Rechazar enlace
+        disallow_provider: Rechazar medio
+        shared_by_over_week:
+          one: Compartido por una persona durante la última semana
+          other: Compartido por %{count} personas durante la última semana
+        title: Enlaces en tendencia
+        usage_comparison: Compartido %{today} veces hoy, comparado con %{yesterday} ayer
+      pending_review: Revisión pendiente
+      preview_card_providers:
+        allowed: Los enlaces de este medio pueden ser tendencia
+        rejected: Los enlaces de este medio no pueden ser tendencia
+        title: Medios
+      rejected: Rechazadas
+      tags:
+        current_score: Puntuación actual %{score}
+        dashboard:
+          tag_accounts_measure: usos únicos
+          tag_languages_dimension: Idiomas principales
+          tag_servers_dimension: Servidores principales
+          tag_servers_measure: diferentes servidores
+          tag_uses_measure: usos totales
+        listable: Pueden ser recomendadas
+        not_listable: No serán recomendadas
+        not_trendable: No aparecerán en tendencias
+        not_usable: No pueden ser usadas
+        peaked_on_and_decaying: Alcanzó el pico en %{date}, ahora decreciendo
+        title: Etiquetas en tendencia
+        trendable: Pueden aparecer en tendencias
+        trending_rank: Tendencia n.º %{rank}
+        usable: Pueden usarse
+        usage_comparison: Usada %{today} veces hoy, comparado con %{yesterday} ayer
+        used_by_over_week:
+          one: Usada por una persona durante la última semana
+          other: Usada por %{count} personas durante la última semana
+      title: Tendencias
     warning_presets:
       add_new: Añadir nuevo
       delete: Borrar
@@ -731,9 +783,16 @@ es:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
-    new_trending_tag:
-      body: 'El hashtag #%{name} está en tendencia hoy, pero no ha sido revisado previamente. No se mostrará públicamente a menos que lo permita, o simplemente guarde el formulario como para no volver a ver esto.'
-      subject: Nuevo hashtag para revisión en %{instance} (#%{name})
+    new_trending_links:
+      body: Los siguientes enlaces están en tendencia hoy, pero sus medios de origen no han sido revisados previamente. No se mostrarán públicamente a menos que los apruebes. No se generarán más notificaciones de estos medios.
+      no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
+      requirements: El enlace en tendencia aprobado más bajo actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.
+      subject: Nuevos enlaces en tendencia esperando ser revisados en %{instance}
+    new_trending_tags:
+      body: 'Las siguientes etiquetas están en tendencia hoy, pero no han sido revisadas previamente. No se mostrarán públicamente a menos que las apruebes:'
+      no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
+      requirements: La etiqueta en tendencia aprobada más baja actualmente es "%{lowest_tag_name}" con una puntuación de %{lowest_tag_score}.
+      subject: Nuevas etiquetas en tendencia esperando ser revisadas en %{instance}
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
@@ -785,6 +844,7 @@ es:
     invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
     link_to_otp: Introduce un código de dos factores desde tu teléfono o un código de recuperación
     link_to_webauth: Utilice su dispositivo de clave de seguridad
+    log_in_with: Iniciar sesión con
     login: Iniciar sesión
     logout: Cerrar sesión
     migrate_account: Mudarse a otra cuenta
@@ -929,7 +989,7 @@ es:
       empty: No tienes filtros.
       title: Filtros
     new:
-      title: Añadir un nuevo filtro
+      title: Añadir nuevo filtro
   footer:
     developers: Desarrolladores
     more: Mas…
@@ -940,34 +1000,15 @@ es:
     changes_saved_msg: "¡Cambios guardados con éxito!"
     copy: Copiar
     delete: Eliminar
-    no_batch_actions_available: No hay acciones por lotes disponibles en esta página
+    none: Nada
     order_by: Ordenar por
     save_changes: Guardar cambios
+    today: hoy
     validation_errors:
       one: "¡Algo no está bien! Por favor, revisa el error"
       other: "¡Algo no está bien! Por favor, revise %{count} errores más abajo"
   html_validator:
     invalid_markup: 'contiene código HTML no válido: %{error}'
-  identity_proofs:
-    active: Activo
-    authorize: Sí, autorizar
-    authorize_connection_prompt: "¿Autorizar esta conexión criptográfica?"
-    errors:
-      failed: La conexión criptográfica falló. Por favor, inténtalo de nuevo desde %{provider}.
-      keybase:
-        invalid_token: Los tokens de Keybase son hashes de firmas y deben tener 66 caracteres hex
-        verification_failed: Keybase no reconoce este token como una firma del usuario de Keybase %{kb_username}. Por favor, inténtelo de nuevo desde Keybase.
-      wrong_user: No se puede crear una prueba para %{proving} mientras se inicia sesión como %{current}. Inicia sesión como %{proving} e inténtalo de nuevo.
-    explanation_html: Aquí puedes conectar criptográficamente sus otras identidades, como un perfil de Keybase. Esto permite a otras personas enviarle mensajes encriptados y confiar en el contenido que les envías.
-    i_am_html: Soy %{username} en %{service}.
-    identity: Identidad
-    inactive: Inactivo
-    publicize_checkbox: 'Y tootee esto:'
-    publicize_toot: "¡Comprobado! Soy %{username} en %{service}: %{url}"
-    remove: Eliminar prueba de la cuenta
-    removed: Prueba eliminada con éxito de la cuenta
-    status: Estado de la verificación
-    view_proof: Ver prueba
   imports:
     errors:
       over_rows_processing_limit: contiene más de %{count} filas
@@ -1183,6 +1224,9 @@ es:
     reply:
       proceed: Proceder a responder
       prompt: 'Quieres responder a esta publicación:'
+  reports:
+    errors:
+      invalid_rules: no hace referencia a reglas válidas
   scheduled_statuses:
     over_daily_limit: Ha superado el límite de %{limit} publicaciones programadas para ese día
     over_total_limit: Ha superado el límite de %{limit} publicaciones programadas
@@ -1241,7 +1285,6 @@ es:
     edit_profile: Editar perfil
     export: Exportar información
     featured_tags: Hashtags destacados
-    identity_proofs: Pruebas de identidad
     import: Importar
     import_and_export: Importar y exportar
     migrate: Migración de cuenta
@@ -1266,18 +1309,19 @@ es:
         other: "%{count} vídeos"
     boosted_from_html: Impulsado desde %{acct_link}
     content_warning: 'Alerta de contenido: %{warning}'
+    default_language: Igual que el idioma de la interfaz
     disallowed_hashtags:
       one: 'contenía un hashtag no permitido: %{tags}'
       other: 'contenía los hashtags no permitidos: %{tags}'
+    edited_at: Editado %{date}
     errors:
       in_reply_not_found: El estado al que intentas responder no existe.
-    language_detection: Detección automática de idioma
     open_in_web: Abrir en web
     over_character_limit: Límite de caracteres de %{max} superado
     pin_errors:
+      direct: Las publicaciones que son visibles solo para los usuarios mencionados no pueden fijarse
       limit: Ya has fijado el número máximo de publicaciones
       ownership: La publicación de otra persona no puede fijarse
-      private: Las publicaciones no públicas no pueden fijarse
       reblog: Un boost no puede fijarse
     poll:
       total_people:
@@ -1432,6 +1476,7 @@ es:
     formats:
       default: "%d de %b del %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Añadir
     disable: Deshabilitar
@@ -1459,24 +1504,31 @@ es:
       subject: Por favor, confirma el intento de inicio de sesión
       title: Intento de inicio de sesión
     warning:
+      categories:
+        spam: Spam
+        violation: El contenido viola las siguientes directrices de la comunidad
       explanation:
-        disable: Mientras su cuenta esté congelada, la información de su cuenta permanecerá intacta, pero no puede realizar ninguna acción hasta que se desbloquee.
-        sensitive: Los archivos multimedia subidos y vinculados serán tratados como sensibles.
-        silence: Mientras su cuenta está limitada, sólo las personas que ya te están siguiendo verán tus publicaciones en este servidor, y puede que se te excluya de varios listados públicos. Sin embargo, otros pueden seguirte manualmente.
-        suspend: Su cuenta ha sido suspendida, y todas tus publicaciones y tus archivos multimedia subidos han sido irreversiblemente eliminados de este servidor, y de los servidores donde tenías seguidores.
-      get_in_touch: Puede responder a esta dirección de correo electrónico para ponerse en contacto con el personal de %{instance}.
+        delete_statuses: Se ha visto que algunas de tus publicaciones violan una o más directrices de la comunidad y seguidamente han sido eliminadas por los moderadores de %{instance}. Futuras violaciones pueden resultar en acciones punitivas más severas contra tu cuenta.
+        disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
+        sensitive: A partir de ahora todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
+        silence: Aún puedes usar tu cuenta, pero solo las personas que te están siguiendo verán tus publicaciones en este servidor, y puedes ser excluido de varias funcionalidades de descubrimiento. Sin embargo, otras cuentas podrán empezar a seguirte manualmente.
+        suspend: Ya no puedes utilizar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía puedes iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquives la suspensión.
+      get_in_touch: Si crees que esto es un error, puedes responder a este correo electrónico para ponerte en contacto con el personal de %{instance}.
+      reason: 'Razón:'
       review_server_policies: Revisar las políticas del servidor
-      statuses: 'Específicamente, para:'
+      statuses: 'Publicaciones que han sido halladas contrarias las directrices:'
       subject:
+        delete_statuses: Tus publicaciones en %{acct} han sido eliminadas
         disable: Su cuenta %{acct} ha sido congelada
         none: Advertencia para %{acct}
-        sensitive: Tu cuenta %{acct} ha sido marcada como sensible
+        sensitive: Tus archivos multimedia en %{acct} se marcarán como sensibles a partir de ahora
         silence: Su cuenta %{acct} ha sido limitada
         suspend: Su cuenta %{acct} ha sido suspendida
       title:
+        delete_statuses: Publicaciones eliminadas
         disable: Cuenta congelada
         none: Advertencia
-        sensitive: Tu multimedia ha sido marcado como sensible
+        sensitive: Contenido multimedia oculto
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:

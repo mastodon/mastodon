@@ -120,24 +120,30 @@
 - if @report.comment.present?
   %p= t('admin.reports.comment_description_html', name: content_tag(:strong, @report.account.username, class: 'username'))
 
-  .report-notes__item
-    = image_tag @report.account.avatar.url, class: 'report-notes__item__avatar'
+  .report-notes
+    .report-notes__item
+      = image_tag @report.account.avatar.url, class: 'report-notes__item__avatar'
 
-    .report-notes__item__header
-      %span.username
-        = link_to display_name(@report.account), admin_account_path(@report.account_id)
-      %time{ datetime: @report.created_at.iso8601, title: l(@report.created_at) }
-        - if @report.created_at.today?
-          = t('admin.report_notes.today_at', time: l(@report.created_at, format: :time))
-        - else
-          = l @report.created_at.to_date
+      .report-notes__item__header
+        %span.username
+          = link_to display_name(@report.account), admin_account_path(@report.account_id)
+        %time{ datetime: @report.created_at.iso8601, title: l(@report.created_at) }
+          - if @report.created_at.today?
+            = t('admin.report_notes.today_at', time: l(@report.created_at, format: :time))
+          - else
+            = l @report.created_at.to_date
 
-    .report-notes__item__content
-      = simple_format(h(@report.comment))
+      .report-notes__item__content
+        = simple_format(h(@report.comment))
 
 %hr.spacer/
 
-%h3= t 'admin.reports.statuses'
+%h3
+  = t 'admin.reports.statuses'
+  %small.section-skip-link
+    = link_to '#actions' do
+      = fa_icon 'angle-double-down'
+      = t('admin.reports.skip_to_actions')
 
 %p
   = t 'admin.reports.statuses_description_html'
@@ -152,8 +158,6 @@
       .batch-table__toolbar__actions
         - if !@statuses.empty? && @report.unresolved?
           = f.button safe_join([fa_icon('times'), t('admin.statuses.batch.remove_from_report')]), name: :remove_from_report, class: 'table-action-link', type: :submit
-          = f.button safe_join([fa_icon('trash'), t('admin.reports.delete_and_resolve')]), name: :delete, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        - else
     .batch-table__body
       - if @statuses.empty?
         = nothing_here 'nothing-here--under-tabs'
@@ -163,24 +167,9 @@
 - if @report.unresolved?
   %hr.spacer/
 
-  %p= t 'admin.reports.actions_description_html'
+  %p#actions= t 'admin.reports.actions_description_html'
 
-  .report-actions
-    .report-actions__item
-      .report-actions__item__button
-        = link_to t('admin.accounts.silence'), new_admin_account_action_path(@report.target_account_id, type: 'silence', report_id: @report.id), class: 'button button--destructive'
-      .report-actions__item__description
-        = t('admin.reports.actions.silence_description_html')
-    .report-actions__item
-      .report-actions__item__button
-        = link_to t('admin.accounts.perform_full_suspension'), new_admin_account_action_path(@report.target_account_id, report_id: @report.id, type: 'suspend'), class: 'button button--destructive'
-      .report-actions__item__description
-        = t('admin.reports.actions.suspend_description_html')
-    .report-actions__item
-      .report-actions__item__button
-        = link_to t('admin.accounts.custom'), new_admin_account_action_path(@report.target_account_id, report_id: @report.id), class: 'button'
-      .report-actions__item__description
-        = t('admin.reports.actions.other_description_html')
+  = render partial: 'admin/reports/actions'
 
 - unless @action_logs.empty?
   %hr.spacer/

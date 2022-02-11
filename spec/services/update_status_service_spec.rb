@@ -114,7 +114,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'keeps old mentions as silent mentions' do
-      expect(status.mentions.pluck(:account_id)).to eq [alice.id, bob.id]
+      expect(status.mentions.pluck(:account_id)).to match_array([alice.id, bob.id])
     end
   end
 

@@ -99,7 +99,6 @@ de:
     accounts:
       add_email_domain_block: E-Mail-Domain blacklisten
       approve: Akzeptieren
-      approve_all: Alle akzeptieren
       approved_msg: "%{username}'s Anmeldeantrag erfolgreich genehmigt"
       are_you_sure: Bist du sicher?
       avatar: Profilbild
@@ -114,6 +113,7 @@ de:
       confirm: Bestätigen
       confirmed: Bestätigt
       confirming: Bestätigung
+      custom: Benutzerdefiniert
       delete: Daten löschen
       deleted: Gelöscht
       demote: Degradieren
@@ -131,7 +131,7 @@ de:
       enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentifizierung per E-Mail
       enabled: Freigegeben
       enabled_msg: "%{username}'s Konto erfolgreich freigegeben"
-      followers: Folgende
+      followers: Follower
       follows: Folgt
       header: Titelbild
       inbox_url: Posteingangs-URL
@@ -153,7 +153,6 @@ de:
         active: Aktiv
         all: Alle
         pending: In Warteschlange
-        silenced: Stummgeschaltet
         suspended: Gesperrt
         title: Moderation
       moderation_notes: Moderationsnotizen
@@ -171,7 +170,6 @@ de:
       redownload: Profil neu laden
       redownloaded_msg: Profil von %{username} erfolgreich von Ursprung aktualisiert
       reject: Ablehnen
-      reject_all: Alle ablehnen
       rejected_msg: "%{username}'s Anmeldeantrag erfolgreich abgelehnt"
       remove_avatar: Profilbild entfernen
       remove_header: Titelbild entfernen
@@ -206,12 +204,14 @@ de:
       silence: Stummschalten
       silenced: Stummgeschaltet
       statuses: Beiträge
+      strikes: Vorherige Strikes
       subscribe: Abonnieren
       suspended: Verbannt
       suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor schon hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du dies nachfolgend tun.
-      time_in_queue: "%{time} in der Warteschlange"
       title: Konten
+      unblock_email: E-Mail Adresse entsperren
+      unblocked_email_msg: Die E-Mail-Adresse von %{username} wurde erfolgreich entsperrt
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_sensitized: Nicht mehr als NSFW markieren
       undo_silenced: Stummschaltung aufheben
@@ -226,6 +226,7 @@ de:
       whitelisted: Auf der Whitelist
     action_logs:
       action_types:
+        approve_user: Benutzer genehmigen
         assigned_to_self_report: Bericht zuweisen
         change_email_user: E-Mail des Benutzers ändern
         confirm_user: Benutzer bestätigen
@@ -243,6 +244,7 @@ de:
         destroy_domain_allow: Erlaube das Löschen von Domains
         destroy_domain_block: Domain-Blockade löschen
         destroy_email_domain_block: E-Mail-Domain-Blockade löschen
+        destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
         destroy_status: Beitrag löschen
         destroy_unavailable_domain: Nicht verfügbare Domain löschen
@@ -255,6 +257,7 @@ de:
         enable_user: Benutzer aktivieren
         memorialize_account: Account deaktivieren
         promote_user: Benutzer befördern
+        reject_user: Benutzer ablehnen
         remove_avatar_user: Profilbild entfernen
         reopen_report: Meldung wieder eröffnen
         reset_password_user: Passwort zurücksetzen
@@ -263,6 +266,7 @@ de:
         silence_account: Konto stummschalten
         suspend_account: Konto sperren
         unassigned_report: Meldung widerrufen
+        unblock_email_account: E-Mail Adresse entsperren
         unsensitive_account: Markiere die Medien in deinem Konto nicht mehr als NSFW
         unsilence_account: Konto nicht mehr stummschalten
         unsuspend_account: Konto nicht mehr sperren
@@ -271,6 +275,7 @@ de:
         update_domain_block: Domain Block aktualisieren
         update_status: Beitrag aktualisieren
       actions:
+        approve_user_html: "%{name} genehmigte die Anmeldung von %{target}"
         assigned_to_self_report_html: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user_html: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
         confirm_user_html: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
@@ -288,6 +293,7 @@ de:
         destroy_domain_allow_html: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block_html: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
+        destroy_instance_html: "%{name} hat die Daten der Domain %{target} entfernt"
         destroy_ip_block_html: "%{name} hat eine Regel für IP %{target} gelöscht"
         destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
         destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
@@ -300,6 +306,7 @@ de:
         enable_user_html: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
         memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user_html: "%{name} hat %{target} befördert"
+        reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} hat das Profilbild von %{target} entfernt"
         reopen_report_html: "%{name} hat die Meldung %{target} wieder geöffnet"
         reset_password_user_html: "%{name} hat das Passwort von %{target} zurückgesetzt"
@@ -308,6 +315,7 @@ de:
         silence_account_html: "%{name} hat das Konto von %{target} stummgeschaltet"
         suspend_account_html: "%{name} hat das Konto von %{target} verbannt"
         unassigned_report_html: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
+        unblock_email_account_html: "%{name} entsperrte %{target}'s E-Mail-Adresse"
         unsensitive_account_html: "%{name} markierte %{target}'s Medien nicht als NSFW"
         unsilence_account_html: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account_html: "%{name} hat die Verbannung von %{target} aufgehoben"
@@ -371,9 +379,28 @@ de:
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
     dashboard:
+      active_users: Aktive Benutzer
+      interactions: Interaktionen
+      media_storage: Medienspeicher
+      new_users: Neue Benutzer
+      opened_reports: Erstellte Meldungen
+      pending_reports_html:
+        one: "<strong>1</strong> ausstehende Meldung"
+        other: "<strong>%{count}</strong> ausstehende Meldungen"
+      pending_tags_html:
+        one: "<strong>1</strong> ausstehender Hashtag"
+        other: "<strong>%{count}</strong> ausstehende Hashtags"
+      pending_users_html:
+        one: "<strong>1</strong> ausstehender Benutzer"
+        other: "<strong>%{count}</strong> ausstehende Benutzer"
+      resolved_reports: Gelöste Meldungen
       software: Software
+      sources: Registrierungsquellen
       space: Speicherverbrauch
       title: Übersicht
+      top_languages: Top aktive Sprachen
+      top_servers: Top aktive Server
+      website: Website
     domain_allows:
       add_new: Whitelist-Domain
       created_msg: Domain wurde erfolgreich zur Whitelist hinzugefügt
@@ -446,6 +473,7 @@ de:
       back_to_limited: Beschränkt
       back_to_warning: Warnung
       by_domain: Domain
+      confirm_purge: Bist du dir sicher, dass du die Daten für diese Domain für immer löschen möchtest?
       delivery:
         all: Alle
         clear: Zustellfehler löschen
@@ -461,6 +489,7 @@ de:
       delivery_available: Zustellung funktioniert
       delivery_error_days: Tage seitdem die Zustellung nicht funktioniert
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
+      destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
       known_accounts:
         one: "%{count} bekanntes Konto"
@@ -471,6 +500,7 @@ de:
         title: Moderation
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
+      purge: Löschen
       title: Föderation
       total_blocked_by_us: Von uns blockiert
       total_followed_by_them: Gefolgt von denen
@@ -500,8 +530,6 @@ de:
         title: Neue IP-Regel erstellen
       no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurden
       title: IP-Regeln
-    pending_accounts:
-      title: Ausstehende Konten (%{count})
     relationships:
       title: Beziehungen von %{acct}
     relays:
@@ -523,32 +551,44 @@ de:
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
+      today_at: Heute um %{time}
     reports:
       account:
         notes:
           one: "%{count} Notiz"
           other: "%{count} Notizen"
-        reports:
-          one: "%{count} Bericht"
-          other: "%{count} Berichte"
+      action_log: Überprüfungsprotokoll
       action_taken_by: Maßnahme ergriffen durch
+      actions:
+        other_description_html: Weitere Optionen zur Kontrolle des Kontoverhaltens und zur Anpassung der Kommunikation an das gemeldete Konto.
+        silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die es bereits verfolgen oder manuell nachschlagen und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
+        suspend_description_html: Das Profil und alle seine Inhalte werden unzugänglich werden, bis es schließlich gelöscht wird. Interaktion mit dem Konto wird unmöglich sein. Reversibel innerhalb von 30 Tagen.
+      actions_description_html: 'Wenn das Entfernen des obigen Inhalts nicht ausreicht:'
+      add_to_report: Mehr zur Meldung hinzufügen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
       assigned: Zugewiesener Moderator
       by_target_domain: Domain des gemeldeten Kontos
+      category: Kategorie
+      category_description_html: Der Grund, warum dieses Konto und/oder der Inhalt gemeldet wurden, wird in der Kommunikation mit dem gemeldeten Konto zitiert
       comment:
         none: Kein
+      comment_description_html: 'Um weitere Informationen bereitzustellen, schrieb %{name} folgendes:'
       created_at: Gemeldet
+      delete_and_resolve: Löschen und auflösen
       forwarded: Weitergeleitet
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als gelöst markieren
       mark_as_unresolved: Als ungelöst markieren
+      no_one_assigned: Niemand
       notes:
         create: Kommentar hinzufügen
         create_and_resolve: Mit Kommentar lösen
         create_and_unresolve: Mit Kommentar wieder öffnen
         delete: Löschen
         placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
+        title: Notizen
+      notes_description_html: Zeige und hinterlasse Notizen an andere Moderatoren und dein zukünftiges Selbst
       reopen: Meldung wieder eröffnen
       report: 'Meldung #%{id}'
       reported_account: Gemeldetes Konto
@@ -556,11 +596,14 @@ de:
       resolved: Gelöst
       resolved_msg: Meldung erfolgreich gelöst!
       status: Zustand
+      statuses: Gemeldeter Inhalt
+      statuses_description_html: Störende Inhalte werden in der Kommunikation mit dem gemeldeten Konto zitiert
       target_origin: Domain des gemeldeten Kontos
       title: Meldungen
       unassign: Zuweisung entfernen
       unresolved: Ungelöst
       updated_at: Aktualisiert
+      view_profile: Zeige Profil
     rules:
       add_new: Regel hinzufügen
       delete: Löschen
@@ -662,15 +705,13 @@ de:
       destroyed_msg: Upload erfolgreich gelöscht!
     statuses:
       back_to_account: Zurück zum Konto
+      back_to_report: Zurück zur Seite mit den Meldungen
       batch:
-        delete: Löschen
-        nsfw_off: Als nicht NSFW markieren
-        nsfw_on: Als NSFW markieren
+        remove_from_report: Von der Meldung entfernen
+        report: Meldung
       deleted: Gelöscht
-      failed_to_execute: Ausführen fehlgeschlagen
       media:
         title: Medien
-      no_media: Keine Medien
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       title: Beiträge des Kontos
       with_media: Mit Medien
@@ -683,21 +724,51 @@ de:
       sidekiq_process_check:
         message_html: Kein Sidekiq-Prozess läuft für die %{value} Warteschlange(n). Bitte überprüfen Sie Ihre Sidekiq-Konfiguration
     tags:
-      accounts_today: Einzigartige Nutzungen heute
-      accounts_week: Einzigartige Nutzung dieser Woche
-      breakdown: Heruntergebrochene Statistiken der heutigen Nutzung nach Quelle
-      last_active: Zuletzt aktiv
-      most_popular: Am beliebtesten
-      most_recent: Neuste
-      name: Hashtag
       review: Prüfstatus
-      reviewed: Überprüft
-      title: Hashtags
-      trending_right_now: Aktuell in den Trends
-      unique_uses_today: "%{count} Beiträge heute"
-      unreviewed: Nicht überprüft
       updated_msg: Hashtageinstellungen wurden erfolgreich aktualisiert
     title: Administration
+    trends:
+      allow: Erlauben
+      approved: Freigegeben
+      disallow: Verbieten
+      links:
+        allow: Erlaube Link
+        allow_provider: Erlaube Herausgeber
+        disallow: Verbiete Link
+        disallow_provider: Verbiete Herausgeber
+        shared_by_over_week:
+          one: In der letzten Woche geteilt von einer Person
+          other: In der letzten Woche geteilt von %{count} Personen
+        title: Angesagte Links
+        usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
+      pending_review: Überprüfung ausstehend
+      preview_card_providers:
+        allowed: Links von diesem Herausgeber können angesagt sein
+        rejected: Links von diesem Herausgeber können nicht angesagt sein
+        title: Herausgeber
+      rejected: Abgelehnt
+      tags:
+        current_score: Aktuelle Punktzahl %{score}
+        dashboard:
+          tag_accounts_measure: eindeutige Verwendungen
+          tag_languages_dimension: Top Sprachen
+          tag_servers_dimension: Top Server
+          tag_servers_measure: verschiedene Server
+          tag_uses_measure: Gesamtnutzungen
+        listable: Kann vorgeschlagen werden
+        not_listable: Wird nicht vorgeschlagen
+        not_trendable: Wird nicht unter Trends angezeigt
+        not_usable: Kann nicht verwendet werden
+        peaked_on_and_decaying: In den Trends am %{date}, jetzt absteigend
+        title: Beliebtes Hashtags
+        trendable: Darf unter Trends erscheinen
+        trending_rank: 'Trend #%{rank}'
+        usable: Kann verwendet werden
+        usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
+        used_by_over_week:
+          one: In der letzten Woche genutzt von einer Person
+          other: In der letzten Woche genutzt von %{count} Personen
+      title: Trends
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
@@ -712,9 +783,16 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: Neue Meldung auf %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Der Hashtag #%{name} ist heute am trenden, aber wurde vorher noch nicht überprüft. Er wird nicht öffentlich angezeigt, es sei denn du erlaubst es oder speicherst das Formular ab und vergisst es.'
-      subject: Neuer Hashtag zur Überprüfung auf %{instance} verfügbar (#%{name})
+    new_trending_links:
+      body: Die folgenden Links sind heute in den Trends, aber der Ursprung wurde bisher nicht überprüft. Sie werden nicht öffentlich angezeigt, es sei denn, du genehmigst sie. Sollten weitere Links vom selben Ursprung trenden, müssen sie nicht vorher überprüft werden.
+      no_approved_links: Derzeit sind keine Links hinterlegt, die genehmigt wurden.
+      requirements: Der am wenigsten genehmigte Trend-Link ist derzeit "%{lowest_link_title}" mit einer Punktzahl von %{lowest_link_score}.
+      subject: Neue Trend-Links zur Überprüfung auf %{instance}
+    new_trending_tags:
+      body: 'Die folgenden Hashtags trenden heute, aber sie wurden bisher nicht überprüft. Sie werden nicht öffentlich angezeigt, es sei denn, du genehmigst sie:'
+      no_approved_tags: Derzeit gibt es keine genehmigten trendene Hashtags.
+      requirements: 'Der am wenigsten genehmigte trendene Hashtag ist derzeit #%{lowest_tag_name} mit einer Punktzahl von %{lowest_tag_score}.'
+      subject: Neuer Hashtag zur Überprüfung auf %{instance} verfügbar
   aliases:
     add_new: Alias erstellen
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
@@ -766,6 +844,7 @@ de:
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
     link_to_otp: Gib einen Zwei-Faktor-Code von deinem Handy oder einen Wiederherstellungscode ein
     link_to_webauth: Verwende deinen Sicherheitsschlüssel
+    log_in_with: Anmelden mit
     login: Anmelden
     logout: Abmelden
     migrate_account: Ziehe zu einem anderen Konto um
@@ -921,34 +1000,15 @@ de:
     changes_saved_msg: Änderungen gespeichert!
     copy: Kopieren
     delete: Löschen
-    no_batch_actions_available: Keine Massenaktionen auf dieser Seite verfügbar
+    none: Keine
     order_by: Sortieren nach
     save_changes: Änderungen speichern
+    today: heute
     validation_errors:
       one: Etwas ist noch nicht ganz richtig! Bitte korrigiere den Fehler
       other: Etwas ist noch nicht ganz richtig! Bitte korrigiere %{count} Fehler
   html_validator:
     invalid_markup: 'enthält ungültiges HTML-Markup: %{error}'
-  identity_proofs:
-    active: Aktiv
-    authorize: Ja, autorisieren
-    authorize_connection_prompt: Diese kryptographische Verbindung autorisieren?
-    errors:
-      failed: Die kryptographische Verbindung ist fehlgeschlagen. Bitte versuche es nochmal von %{provider}.
-      keybase:
-        invalid_token: Keybase-Tokens sind Hashsignaturen und müssen 66 Hexadezimalzeichen lang sein
-        verification_failed: Keybase nimmt dieses Token nicht als Signatur für Keybase-Benutzer %{kb_username} an. Bitte versuche es nochmal über Keybase.
-      wrong_user: Kann keinen Beweis für %{proving} erstellen während du als %{current} angemeldet bist. Melde dich als %{proving} an und versuche es noch einmal.
-    explanation_html: Hier kannst du kryptographisch deine anderen Identitäten wie dein Keybase-Profil verbinden. Dadurch können andere Leute dir verschlüsselte Nachrichten senden und dem Inhalt, den sie dir senden, vertrauen.
-    i_am_html: Ich bin %{username} auf %{service}.
-    identity: Identität
-    inactive: Inaktiv
-    publicize_checkbox: 'Und poste das:'
-    publicize_toot: 'Es ist offiziell! Ich bin %{username} auf %{service}: %{url}'
-    remove: Nachweis vom Konto entfernen
-    removed: Identitätsnachweis erfolgreich vom Konto entfernt
-    status: Verifizierungsstatus
-    view_proof: Zeige Nachweis
   imports:
     errors:
       over_rows_processing_limit: enthält mehr als %{count} Zeilen
@@ -1164,6 +1224,9 @@ de:
     reply:
       proceed: Fortfahren zum Antworten
       prompt: 'Du möchtest auf diesen Beitrag antworten:'
+  reports:
+    errors:
+      invalid_rules: verweist nicht auf gültige Regeln
   scheduled_statuses:
     over_daily_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, erreicht
@@ -1222,7 +1285,6 @@ de:
     edit_profile: Profil bearbeiten
     export: Datenexport
     featured_tags: Empfohlene Hashtags
-    identity_proofs: Identitätsnachweise
     import: Datenimport
     import_and_export: Importieren und Exportieren
     migrate: Konto-Umzug
@@ -1230,7 +1292,7 @@ de:
     preferences: Einstellungen
     profile: Profil
     relationships: Folgende und Gefolgte
-    statuses_cleanup: Automatisches Beitraglöschen
+    statuses_cleanup: Automatische Löschung
     two_factor_authentication: Zwei-Faktor-Auth
     webauthn_authentication: Sicherheitsschlüssel
   statuses:
@@ -1247,18 +1309,19 @@ de:
         other: "%{count} Videos"
     boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
+    default_language: Wie die Oberflächensprache
     disallowed_hashtags:
       one: 'enthält einen verbotenen Hashtag: %{tags}'
       other: 'enthält verbotene Hashtags: %{tags}'
+    edited_at: Bearbeitet am %{date}
     errors:
       in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
-    language_detection: Sprache automatisch erkennen
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
     pin_errors:
+      direct: Beiträge, die nur für erwähnte Benutzer sichtbar sind, können nicht angepinnt werden
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
-      private: Du kannst nur öffentliche Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
     poll:
       total_people:
@@ -1415,6 +1478,7 @@ de:
     formats:
       default: "%d.%m.%Y %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Hinzufügen
     disable: Deaktivieren
@@ -1442,24 +1506,31 @@ de:
       subject: Bitte bestätige den Anmeldeversuch
       title: Anmeldeversuch
     warning:
+      categories:
+        spam: Spam
+        violation: Inhalt verletzt die folgenden Community-Richtlinien
       explanation:
-        disable: Solange dein Konto eingefroren ist, sind deine Benutzerdaten intakt; aber du kannst nichts tun, bis dein Konto entsperrt wurde.
-        sensitive: Deine hochgeladenen Mediendateien und verknüpften Medien werden als NSFW markiert.
+        delete_statuses: Einige deiner Beiträge wurden aufgrund eines Verstoßes gegen eine oder mehrere Community-Richtlinien entfernt und von den Moderatoren auf %{instance} entfernt. Künftige Verstöße können zu härteren Strafmaßnahmen gegen dein Konto führen.
+        disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst ein Backup deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
+        sensitive: Von nun an werden alle deine hochgeladenen Mediendateien als sensibel markiert und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
-        suspend: Dein Konto wurde gesperrt und alle deine Beiträge und hochgeladenen Medien wurden unwiderruflich vom Server und anderen Servern, bei denen du Folgende hattest, gelöscht.
-      get_in_touch: Du kannst auf diese E-Mail antworten, um mit dem Personal von %{instance} in Kontakt zu treten.
+        suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
+      get_in_touch: Wenn du glaubst, dass dies ein Fehler ist, kannst auf diese E-Mail antworten, um mit den Mitarbeitern von %{instance} in Kontakt zu treten.
+      reason: 'Grund:'
       review_server_policies: Serverrichtlinien ansehen
-      statuses: 'Besonders für:'
+      statuses: 'Beiträge, die in Verletzung gefunden wurden:'
       subject:
+        delete_statuses: Deine Beiträge auf %{acct} wurden entfernt
         disable: Dein Konto %{acct} wurde eingefroren
         none: Warnung für %{acct}
-        sensitive: Die Medien deines Konto %{acct} wurden als NSFW markiert
+        sensitive: Deine Mediendateien auf %{acct} werden von nun an als sensibel markiert
         silence: Dein Konto %{acct} wurde limitiert
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
+        delete_statuses: Beiträge entfernt
         disable: Konto eingefroren
         none: Warnung
-        sensitive: Deine Medien wurden als NSFW markiert
+        sensitive: Medien versteckt
         silence: Konto limitiert
         suspend: Konto gesperrt
     welcome:

@@ -16,10 +16,10 @@ ca:
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
-    discover_users: Descobreix usuaris
+    discover_users: Descobrir usuaris
     documentation: Documentació
     federation_hint_html: Amb un compte de %{instance} podràs seguir persones de qualsevol servidor Mastodon i altres.
-    get_apps: Prova una aplicació mòbil
+    get_apps: Provar una aplicació mòbil
     hosted_on: Mastodon allotjat a %{domain}
     instance_actor_flash: |
       Aquest compte és un actor virtual utilitzat per a representar al propi servidor i no cap usuari individual.
@@ -99,7 +99,6 @@ ca:
     accounts:
       add_email_domain_block: Afegir el domini de correu a la llista negra
       approve: Aprova
-      approve_all: Aprova'ls tots
       approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
       are_you_sure: N'estàs segur?
       avatar: Avatar
@@ -114,6 +113,7 @@ ca:
       confirm: Confirma
       confirmed: Confirmat
       confirming: Confirmant
+      custom: Personalitzat
       delete: Esborra les dades
       deleted: Esborrats
       demote: Degrada
@@ -132,7 +132,7 @@ ca:
       enabled: Habilitat
       enabled_msg: El compte de %{username} s’ha descongelat amb èxit
       followers: Seguidors
-      follows: Segueix
+      follows: Seguits
       header: Capçalera
       inbox_url: URL de la safata d'entrada
       invite_request_text: Motiu del registre
@@ -153,7 +153,6 @@ ca:
         active: Actiu
         all: Tot
         pending: Pendent
-        silenced: Silenciat
         suspended: Suspès
         title: Moderació
       moderation_notes: Notes de moderació
@@ -171,7 +170,6 @@ ca:
       redownload: Actualitza el perfil
       redownloaded_msg: El perfil de %{username} s’ha refrescat des de l’origen amb èxit
       reject: Rebutja
-      reject_all: Rebutja'ls tots
       rejected_msg: L’aplicació de registre de %{username} s’ha rebutjat amb èxit
       remove_avatar: Eliminar avatar
       remove_header: Treu la capçalera
@@ -206,12 +204,14 @@ ca:
       silence: Silenci
       silenced: Silenciat
       statuses: Tuts
+      strikes: Accions anteriors
       subscribe: Subscriu
       suspended: Suspès
       suspension_irreversible: Les dades d’aquest compte s’han suprimit irreversiblament. Pots desfer la suspensió del compte per a fer-lo usable però això no recuperarà les dades si és que en tenia.
       suspension_reversible_hint_html: El compte ha estat suspès i les dades seran totalment suprimides el %{date}. Fins llavors, el compte pot ser restaurat sense problemes. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
-      time_in_queue: Esperant en la cua %{time}
       title: Comptes
+      unblock_email: Desbloqueja l'adreça de correu
+      unblocked_email_msg: Adreça de correu de %{username} desbloquejada amb èxit
       unconfirmed_email: Correu electrònic sense confirmar
       undo_sensitized: Desmarcar com a sensible
       undo_silenced: Deixa de silenciar
@@ -226,6 +226,7 @@ ca:
       whitelisted: Llista blanca
     action_logs:
       action_types:
+        approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna l'informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
         confirm_user: Confirma l'usuari
@@ -243,6 +244,7 @@ ca:
         destroy_domain_allow: Esborra el domini permès
         destroy_domain_block: Esborra el bloqueig de domini
         destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
+        destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
         destroy_status: Esborra el tut
         destroy_unavailable_domain: Esborra domini no disponible
@@ -255,6 +257,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
+        reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
         reopen_report: Reobre l'informe
         reset_password_user: Restableix la contrasenya
@@ -263,6 +266,7 @@ ca:
         silence_account: Silencia el compte
         suspend_account: Suspèn el compte
         unassigned_report: Des-assigna l'informe
+        unblock_email_account: Desbloqueja l'adreça de correu
         unsensitive_account: Desmarcar els mèdia en el teu compte com a sensibles
         unsilence_account: Desfés el silenci del compte
         unsuspend_account: Desfés la suspensió del compte
@@ -271,6 +275,7 @@ ca:
         update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
       actions:
+        approve_user_html: "%{name} ha aprovat el registre de %{target}"
         assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
         change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
         confirm_user_html: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
@@ -288,6 +293,7 @@ ca:
         destroy_domain_allow_html: "%{name} no permet la federació amb el domini %{target}"
         destroy_domain_block_html: "%{name} ha desbloquejat el domini %{target}"
         destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
+        destroy_instance_html: "%{name} ha purgat el domini %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
         destroy_status_html: "%{name} ha eliminat el tut de %{target}"
         destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
@@ -300,6 +306,7 @@ ca:
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        reject_user_html: "%{name} ha rebutjat el registre de %{target}"
         remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
         reopen_report_html: "%{name} ha reobert l'informe %{target}"
         reset_password_user_html: "%{name} ha restablert la contrasenya de l'usuari %{target}"
@@ -308,6 +315,7 @@ ca:
         silence_account_html: "%{name} ha silenciat el compte de %{target}"
         suspend_account_html: "%{name} ha suspès el compte de %{target}"
         unassigned_report_html: "%{name} ha des-assignat l'informe %{target}"
+        unblock_email_account_html: "%{name} ha desbloquejat l'adreça de correu de %{target}"
         unsensitive_account_html: "%{name} ha desmarcat com sensibles els mèdia de %{target}"
         unsilence_account_html: "%{name} ha llevat el silenci del compte %{target}"
         unsuspend_account_html: "%{name} ha llevat la suspensió del compte de %{target}"
@@ -341,7 +349,7 @@ ca:
       assign_category: Assigna una categoria
       by_domain: Domini
       copied_msg: S'ha creat correctament la còpia local de l'emoji
-      copy: Copia
+      copy: Copiar
       copy_failed_msg: No s'ha pogut fer una còpia local d'aquest emoji
       create_new_category: Crea una categoria nova
       created_msg: Emoji creat amb èxit!
@@ -449,12 +457,12 @@ ca:
       empty: Cap domini de correu a la llista negre.
       from_html: des de %{domain}
       new:
-        create: Afegeix un domini
+        create: Afegir un domini
         title: Nova adreça de correu en la llista negra
       title: Llista negra de correus electrònics
     follow_recommendations:
       description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb d'altres com per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen a diari a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
-      language: Per llenguatge
+      language: Per idioma
       status: Estat
       suppress: Suprimeix les recomanacions de seguiment
       suppressed: Suprimit
@@ -465,6 +473,7 @@ ca:
       back_to_limited: Limitades
       back_to_warning: Avís
       by_domain: Domini
+      confirm_purge: Estàs segur que vols eliminar permanentment les dades d'aquest domini?
       delivery:
         all: Totes
         clear: Neteja els errors de lliurament
@@ -480,6 +489,7 @@ ca:
       delivery_available: El lliurament està disponible
       delivery_error_days: Dies de fallades de lliurament
       delivery_error_hint: Si el lliurament no és possible per %{count} dies, serà automàticament marcat com a no lliurable.
+      destroyed_msg: Les dades de %{domain} ara son en la cua per a esborrat imminent.
       empty: No s'han trobat dominis.
       known_accounts:
         one: "%{count} compte conegut"
@@ -490,6 +500,7 @@ ca:
         title: Moderació
       private_comment: Comentari privat
       public_comment: Comentari públic
+      purge: Purga
       title: Federació
       total_blocked_by_us: Bloquejats per nosaltres
       total_followed_by_them: Seguits per ells
@@ -519,8 +530,6 @@ ca:
         title: Crea nova regla IP
       no_ip_block_selected: No s’ha canviat cap regla IP perquè no s’han seleccionat
       title: Regles IP
-    pending_accounts:
-      title: Comptes pendents (%{count})
     relationships:
       title: relacions del %{acct}
     relays:
@@ -542,32 +551,44 @@ ca:
     report_notes:
       created_msg: La nota del informe s'ha creat correctament!
       destroyed_msg: La nota del informe s'ha esborrat correctament!
+      today_at: Avui a les %{time}
     reports:
       account:
         notes:
           one: "%{count} nota"
           other: "%{count} notes"
-        reports:
-          one: "%{count} informe"
-          other: "%{count} informes"
+      action_log: Registre d'auditoria
       action_taken_by: Mesures adoptades per
+      actions:
+        other_description_html: Veu més opcions controlant el comportament del compte i personalitza la comunicació al compte reportat.
+        silence_description_html: El perfil serà visible només per aquells que ja el seguien o en cerca manual, limitant severament el seu alcanç. Sempre pot ser revertit.
+        suspend_description_html: El perfil i tot el seu contingut esdevindrà inaccessible fins que sigui eventualment esborrat. Interactuar amb el compte serà impossible. Reversible dins de 30 dies.
+      actions_description_html: 'Si treien el contingut ofensiu de dalt és insuficient:'
+      add_to_report: Afegir més al informe
       are_you_sure: N'estàs segur?
       assign_to_self: Assignar-me
       assigned: Moderador assignat
       by_target_domain: Domini del compte reportat
+      category: Categoria
+      category_description_html: La raó que aquest compte o contingut ha estat reportat serà citat en la comunicació amb el compte reportat
       comment:
         none: Cap
+      comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
       created_at: Reportat
+      delete_and_resolve: Esborra i resol
       forwarded: Reenviat
       forwarded_to: Reenviat a %{domain}
       mark_as_resolved: Marca com a resolt
       mark_as_unresolved: Marcar com a sense resoldre
+      no_one_assigned: Ningú
       notes:
-        create: Afegeix una nota
+        create: Afegir una nota
         create_and_resolve: Resol amb una nota
         create_and_unresolve: Reobre amb una nota
         delete: Esborra
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
+        title: Notes
+      notes_description_html: Veu i deixa notes als altres moderadors i a tu mateix
       reopen: Reobre l'informe
       report: 'Informe #%{id}'
       reported_account: Compte reportat
@@ -575,11 +596,14 @@ ca:
       resolved: Resolt
       resolved_msg: Informe resolt amb èxit!
       status: Estat
+      statuses: Contingut reportat
+      statuses_description_html: El contingut ofensiu serà citat en comunicació amb el compte reportat
       target_origin: Origen del compte reportat
       title: Informes
       unassign: Treu l'assignació
       unresolved: No resolt
       updated_at: Actualitzat
+      view_profile: Veure perfil
     rules:
       add_new: Afegir norma
       delete: Suprimeix
@@ -681,15 +705,13 @@ ca:
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
     statuses:
       back_to_account: Torna a la pàgina del compte
+      back_to_report: Torna a la pàgina del informe
       batch:
-        delete: Suprimeix
-        nsfw_off: Marcar com a no sensible
-        nsfw_on: Marcar com a sensible
+        remove_from_report: Treu del informe
+        report: Informe
       deleted: Esborrats
-      failed_to_execute: No s'ha pogut executar
       media:
         title: Contingut multimèdia
-      no_media: Sense contingut multimèdia
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       title: Estats del compte
       with_media: Amb contingut multimèdia
@@ -702,23 +724,53 @@ ca:
       sidekiq_process_check:
         message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Si us plau revisa la teva configuració de Sidekiq
     tags:
-      accounts_today: Usos únics actuals
-      accounts_week: Usos únics d'aquesta setmana
-      breakdown: Desglossament de l’ús actual per origen
-      last_active: Darrer actiu
-      most_popular: Més populars
-      most_recent: Més recent
-      name: Etiqueta
       review: Revisar l'estat
-      reviewed: Revisades
-      title: Etiquetes
-      trending_right_now: Actualment en tendència
-      unique_uses_today: "%{count} publicacions d'avui"
-      unreviewed: Sense revisar
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
     title: Administració
+    trends:
+      allow: Permet
+      approved: Aprovat
+      disallow: No permès
+      links:
+        allow: Permet enllaç
+        allow_provider: Permet mitjà
+        disallow: No permetre l'enllaç
+        disallow_provider: No permetre el mitjà
+        shared_by_over_week:
+          one: Compartit per un usuari en la darrera setmana
+          other: Compartit per %{count} usuaris en la darrera setmana
+        title: Enllaços en tendència
+        usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
+      pending_review: Revisió pendent
+      preview_card_providers:
+        allowed: Els enllaços d'aquest mitjà poden estar en tendència
+        rejected: Els enllaços d'aquest mitjà no poden estar en tendència
+        title: Mitjans
+      rejected: Rebutjat
+      tags:
+        current_score: Puntuació actual %{score}
+        dashboard:
+          tag_accounts_measure: usos únics
+          tag_languages_dimension: Els millors idiomes
+          tag_servers_dimension: Els millors servidors
+          tag_servers_measure: diferents servidors
+          tag_uses_measure: total usos
+        listable: Es pot suggerir
+        not_listable: No es pot suggerir
+        not_trendable: No apareixeran en les tendències
+        not_usable: No pot ser emprat
+        peaked_on_and_decaying: Punt màxim el dia %{date}, ara decaient
+        title: Etiquetes en tendència
+        trendable: Pot aparèixer en les tendències
+        trending_rank: 'Tendència #%{rank}'
+        usable: Pot ser emprat
+        usage_comparison: Usat %{today} vegades avui, comparat amb %{yesterday} d'ahir
+        used_by_over_week:
+          one: Emprat per un usuari en la darrera setmana
+          other: Emprat per %{count} usuaris en la darrera setmana
+      title: Tendència
     warning_presets:
-      add_new: Afegeix-ne un de nou
+      add_new: Afegir-ne un de nou
       delete: Esborra
       edit_preset: Edita l'avís predeterminat
       empty: Encara no has definit cap preavís.
@@ -731,9 +783,16 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
-    new_trending_tag:
-      body: 'La etiqueta #%{name} està actualment en tendència però no s''ha revisat prèviament. No es mostrarà públicament tret que ho permetis o guardis el formulari tal com està per a no tornar a escoltar res al respecte.'
-      subject: Nova etiqueta pendent de revisió a %{instance} (#%{name})
+    new_trending_links:
+      body: Els enllaços següents son tendència avui però els seus mitjans no han estat verificats. No seran mostrats públicament fins que els aprovis. No es generaran noves notificacions dels mateixos mitjans.
+      no_approved_links: Actualment no hi ha enllaços en tendència aprovats.
+      requirements: L'enllaç en tendència més baixa aprovat és actualment "%{lowest_link_title}" amb una puntuació de %{lowest_link_score}.
+      subject: Nou enllaços en tendència pendents de revisar a %{instance}
+    new_trending_tags:
+      body: 'Les següents etiquetes son tendència avui però no han estat prèviament revisades. No seran mostrades públicament fins que les aprovis:'
+      no_approved_tags: Actualment no hi ha etiquetes en tendència aprovades.
+      requirements: L'etiqueta en tendència més baixa aprovada és actualment "%{lowest_tag_name}" amb una puntuació de %{lowest_tag_score}.
+      subject: Noves etiquetes en tendència pendents de ser revisades a %{instance}
   aliases:
     add_new: Crea un àlies
     created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
@@ -743,7 +802,7 @@ ca:
     remove: Desvincula l'àlies
   appearance:
     advanced_web_interface: Interfície web avançada
-    advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, l''interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, línia de temps federada i qualsevol número de llistes i etiquetes.'
+    advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, l''interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, línia de temps federada i qualsevol quantitat de llistes i etiquetes.'
     animations_and_accessibility: Animacions i accessibilitat
     confirmation_dialogs: Diàlegs de confirmació
     discovery: Descobriment
@@ -771,7 +830,7 @@ ca:
   auth:
     apply_for_account: Demana una invitació
     change_password: Contrasenya
-    checkbox_agreement_html: Estic d'acord amb les <a href="%{rules_path}" target="_blank">normes del servidor</a> i <a href="%{terms_path}" target="_blank"> els termes del servei</a>
+    checkbox_agreement_html: Accepto les <a href="%{rules_path}" target="_blank">normes del servidor</a> i <a href="%{terms_path}" target="_blank"> els termes del servei</a>
     checkbox_agreement_without_rules_html: Acepto els <a href="%{terms_path}" target="_blank">termes del servei</a>
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -785,7 +844,8 @@ ca:
     invalid_reset_password_token: L'enllaç de restabliment de la contrasenya no és vàlid o ha caducat. Torna-ho a provar.
     link_to_otp: Introdueix el teu codi de doble factor des d’el teu mòbil o un codi de recuperació
     link_to_webauth: Usa el teu dispositiu de clau de seguretat
-    login: Inicia sessió
+    log_in_with: Inicia sessió amb
+    login: Iniciar sessió
     logout: Surt
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
@@ -793,7 +853,7 @@ ca:
     providers:
       cas: CAS
       saml: SAML
-    register: Registre
+    register: Registrar-se
     registration_closed: "%{instance} no accepta nous membres"
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
@@ -806,7 +866,7 @@ ca:
     status:
       account_status: Estat del compte
       confirming: Esperant que es completi la confirmació del correu electrònic.
-      functional: El teu compte és plenament operatiu.
+      functional: El teu compte està completament operatiu.
       pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
@@ -898,7 +958,7 @@ ca:
       download: Baixa l’arxiu
       hint_html: Pots sol·licitar un arxiu dels teus <strong>tuts i dels fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
       in_progress: S'està compilant el teu arxiu...
-      request: Sol·licita el teu arxiu
+      request: Sol·licitar el teu arxiu
       size: Mida
     blocks: Persones que has blocat
     bookmarks: Marcadors
@@ -908,7 +968,7 @@ ca:
     mutes: Persones silenciades
     storage: Emmagatzematge
   featured_tags:
-    add_new: Afegir nova
+    add_new: Afegir nova etiqueta
     errors:
       limit: Ja has mostrat la quantitat màxima d'etiquetes
     hint_html: "<strong>Què son les etiquetes destacades?</strong> Es mostren de manera destacada en el teu perfil públic i permeten a les persones navegar per les teves publicacions gràcies a aquestes etiquetes. Són una gran eina per fer un seguiment de treballs creatius o de projectes a llarg termini."
@@ -929,7 +989,7 @@ ca:
       empty: No hi tens cap filtre.
       title: Filtres
     new:
-      title: Afegeix un nou filtre
+      title: Afegir un nou filtre
   footer:
     developers: Desenvolupadors
     more: Més…
@@ -938,36 +998,17 @@ ca:
   generic:
     all: Tot
     changes_saved_msg: Els canvis s'han desat correctament!
-    copy: Copia
+    copy: Copiar
     delete: Esborra
-    no_batch_actions_available: Cap accions de lot disponibles en aquesta pàgina
+    none: Cap
     order_by: Ordena per
-    save_changes: Desa els canvis
+    save_changes: Desar els canvis
+    today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
       other: Alguna cosa no va bé! Si us plau, revisa %{count} errors més a baix
   html_validator:
     invalid_markup: 'conté HTML markup no vàlid: %{error}'
-  identity_proofs:
-    active: Actiu
-    authorize: Sí, autoritza
-    authorize_connection_prompt: Autoritzar aquesta connexió criptogràfica?
-    errors:
-      failed: Ha fallat la connexió criptogràfica. Torna-ho a provar des de %{provider}.
-      keybase:
-        invalid_token: Els tokens de Keybase són hashs de signatures i han de tenir 66 caràcters hexadecimals
-        verification_failed: Keybase no reconeix aquest token com a signatura del usuari de Keybase %{kb_username}. Si us plau prova des de Keybase.
-      wrong_user: No es pot crear una prova per a %{proving} mentre es connectava com a %{current}. Inicia sessió com a %{proving} i prova de nou.
-    explanation_html: Aquí pots connectar criptogràficament les teves altres identitats com ara el teu perfil de Keybase. Això permet que altres persones t'enviïn missatges xifrats i confiar en el contingut que els hi envies.
-    i_am_html: Sóc %{username} a %{service}.
-    identity: Identitat
-    inactive: Inactiu
-    publicize_checkbox: 'I envia un tut d''això:'
-    publicize_toot: 'Està provat! Sóc %{username} a %{service}: %{url}'
-    remove: Elimina prova d’identitat del compte
-    removed: Prova d’identitat del compte eliminada amb èxit
-    status: Estat de verificació
-    view_proof: Veure la prova
   imports:
     errors:
       over_rows_processing_limit: conté més de %{count} files
@@ -1103,7 +1144,7 @@ ca:
     status:
       subject: "%{name} ha publicat"
   notifications:
-    email_events: Esdeveniments per a notificacions per correu electrònic
+    email_events: Esdeveniments per a notificacions de correu electrònic
     email_events_hint: 'Selecciona els esdeveniments per als quals vols rebre notificacions:'
     other_settings: Altres opcions de notificació
   number:
@@ -1183,6 +1224,9 @@ ca:
     reply:
       proceed: Procedir a respondre
       prompt: 'Vols respondre a aquest tut:'
+  reports:
+    errors:
+      invalid_rules: no fa referència a normes vàlides
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} tuts programats per a aquell dia
     over_total_limit: Has superat el limit de %{limit} tuts programats
@@ -1231,7 +1275,7 @@ ca:
     view_authentication_history: Veure l'historial d'autenticació del teu compte
   settings:
     account: Compte
-    account_settings: Ajustos del compte
+    account_settings: Configuració del compte
     aliases: Àlies de compte
     appearance: Aparença
     authorized_apps: Aplicacions autoritzades
@@ -1241,7 +1285,6 @@ ca:
     edit_profile: Edita el perfil
     export: Exportació de dades
     featured_tags: Etiquetes destacades
-    identity_proofs: Proves d'identitat
     import: Importació
     import_and_export: Importació i exportació
     migrate: Migració del compte
@@ -1249,7 +1292,7 @@ ca:
     preferences: Preferències
     profile: Perfil
     relationships: Seguits i seguidors
-    statuses_cleanup: Borrat automàtic de publicacions
+    statuses_cleanup: Esborrat automàtic de publicacions
     two_factor_authentication: Autenticació de dos factors
     webauthn_authentication: Claus de seguretat
   statuses:
@@ -1266,18 +1309,19 @@ ca:
         other: "%{count} vídeos"
     boosted_from_html: Impulsat des de %{acct_link}
     content_warning: 'Avís de contingut: %{warning}'
+    default_language: El mateix que a la llengua de la interfície
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'
       other: 'conté les etiquetes no permeses: %{tags}'
+    edited_at: Editat %{date}
     errors:
       in_reply_not_found: El tut al qual intentes respondre sembla que no existeix.
-    language_detection: Detecta automàticament el llenguatge
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
+      direct: Les publicacions que només son visibles per els usuaris mencionats no poden ser fixades
       limit: Ja has fixat el màxim nombre de tuts
       ownership: No es pot fixar el tut d'algú altre
-      private: No es pot fixar un tut no públic
       reblog: No es pot fixar un impuls
     poll:
       total_people:
@@ -1302,25 +1346,25 @@ ca:
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
   statuses_cleanup:
-    enabled: Esborra automàtic publicacions velles
+    enabled: Esborrar automàticament publicacions antigues
     enabled_hint: Suprimeix automàticament les teves publicacions quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
     exceptions: Excepcions
-    explanation: Com que suprimir publicacions és una operació cara, es fa lentament amb el pas del temps quan el servidor no està ocupat. Per aquest motiu, és possible que les teves publicacions se suprimeixin un temps després d’assolir el llindar d’edat.
+    explanation: Com que suprimir publicacions és una operació cara, es fa lentament amb el pas del temps i quan el servidor no està ocupat. Per aquest motiu, és possible que les teves publicacions se suprimeixin un temps després d’assolir el llindar d’edat.
     ignore_favs: Ignora favorits
     ignore_reblogs: Ignora impulsos
     interaction_exceptions: Excepcions basades en interaccions
-    interaction_exceptions_explanation: Tingues en compte que no es garanteix que es suprimeixen les publicacions si passen per sota del llindar de favorit o impuls després d'haver-lo superat.
-    keep_direct: Manté missatges directes
+    interaction_exceptions_explanation: Has de tenir en compte que no es garanteix que es suprimeixen les publicacions si passen per sota del llindar de favorit o impuls després d'haver-lo superat.
+    keep_direct: Mantenir missatges directes
     keep_direct_hint: No esborra cap dels teus missatges directes
-    keep_media: Manté les publicacions amb adjunts multimèdia
+    keep_media: Mantenir les publicacions amb contingut gràfic
     keep_media_hint: No esborra cap de les teves publicacions que tinguin adjunts multimèdia
-    keep_pinned: Manté les publicacions fixades
+    keep_pinned: Mantenir les publicacions fixades
     keep_pinned_hint: No esborra cap de les teves publicacions fixades
-    keep_polls: Manté enquestes
+    keep_polls: Mantenir enquestes
     keep_polls_hint: No esborra cap de les teves enquestes
-    keep_self_bookmark: Manté les publicacions que has desat a les adreces d'interès
+    keep_self_bookmark: Mantenir les publicacions que has desat a les adreces d'interès
     keep_self_bookmark_hint: No esborra les teves pròpies publicacions si les has desat en les adreces d'interès
-    keep_self_fav: Manté les publicacions que has afavorit
+    keep_self_fav: Mantenir les publicacions que has afavorit
     keep_self_fav_hint: No esborra les teves pròpies publicacions si les has afavorit
     min_age:
       '1209600': 2 setmanes
@@ -1331,9 +1375,9 @@ ca:
       '63113904': 2 anys
       '7889238': 3 mesos
     min_age_label: Llindar d'edat
-    min_favs: Manté les publicacions afavorides més de
+    min_favs: Mantenir les publicacions afavorides més de
     min_favs_hint: No suprimeix cap de les teves publicacions que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per suprimir publicacions independentment del nombre de favorits que tinguin
-    min_reblogs: Manté les publicacions impulsades més de
+    min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest número de vegades. Deixa-ho en blanc per suprimir les publicacions independentment del nombre d'impulsos que tinguin
   stream_entries:
     pinned: Tut fixat
@@ -1432,6 +1476,7 @@ ca:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Afegeix
     disable: Desactiva
@@ -1459,24 +1504,31 @@ ca:
       subject: Si us plau confirma l’intent d’inici de sessió
       title: Intent d’inici de sessió
     warning:
+      categories:
+        spam: Contingut brossa
+        violation: El contingut viola les següents guies de la comunitat
       explanation:
-        disable: Mentre el teu compte estigui congelat les dades romandran intactes però no pots dur a terme cap acció fins que no estigui desbloquejat.
-        sensitive: Els fitxers multimèdia pujats i els enllaçats seran tractas com a sensibles.
-        silence: Mentre el teu compte estigui limitat només les persones que ja et segueixen veuen les teves dades en aquest servidor i pots ser exclòs de diverses llistes públiques. No obstant això, d'altres encara poden seguir-te manualment.
-        suspend: El teu compte s'ha suspès i tots els teus tuts i fitxers multimèdia penjats s'han eliminat de manera irreversible d'aquest servidor i dels servidors on tenies seguidors.
-      get_in_touch: Pots respondre a aquest correu electrònic per a contactar amb el personal de %{instance}.
+        delete_statuses: Algunes de les teves publicacions han estat trobades que violen les guies de la comunitat i han estat per tant esborrades per els moderadors de %{instance}. Futures violacions podrien resultar en accions més punitives contra el teu compte.
+        disable: Ja no pots utilitzar el teu compte però el teu perfil i altres dades segueixen intactes. Pots demanar una copia de les teves dades, canviar els ajustaments del teu compte o esborrar-lo.
+        sensitive: A partir d'ara, tots els mèdia pujats seran marcats com a sensibles i ocultats darrera un avís.
+        silence: Encara pots fer servir el teu compte però només la gent que ja t'està seguint veuran les teves publicacions en aquest servidor i tu podries ser exclòs de les diverses opcions de descobriment. De totes maneres altres podrien encara seguir-te manualment.
+        suspend: Ja no pots utilitzar el teu compte i el teu perfil i altres dades ja no son accessibles. Encara pots iniciar sessió per a demanar una copia de les teves dades fins que siguin totalment eliminades als 30 dies però es mantindran les dades bàsiques per evitar que esquivis la suspensió.
+      get_in_touch: Si tu creus que això és un error pots respondre aquest correu electrònic per a contactar amb l'equip de %{instance}.
+      reason: 'Raó:'
       review_server_policies: Revisa les polítiques del servidor
-      statuses: 'Concretament, per:'
+      statuses: 'Publicacions que han estat trobades com a violació:'
       subject:
+        delete_statuses: Les teves publicacions de %{acct} han estat esborrades
         disable: S'ha congelat el teu compte %{acct}
         none: Avís per a %{acct}
-        sensitive: El teu compte %{acct} de publicació de mèdia ha estat marcat com a sensible
+        sensitive: Els teus mèdia de %{acct} seran marcades com a sensibles a partir d'ara
         silence: El teu compte %{acct} ha estat limitat
         suspend: S'ha suspès el teu compte %{acct}
       title:
+        delete_statuses: Publicacions esborrades
         disable: Compte congelat
         none: Avís
-        sensitive: Els teus mèdia han estat marcats com a sensibles
+        sensitive: Mèdia ocult
         silence: Compte limitat
         suspend: Compte suspès
     welcome:
