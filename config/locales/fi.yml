@@ -574,18 +574,24 @@ fi:
         delete: Poista
         placeholder: Kuvaile mitä toimia on tehty tai muita päivityksiä tähän raporttiin…
         title: Merkinnät
+      notes_description_html: Tarkastele ja jätä merkintöjä muille valvojille ja itsellesi tulevaisuuteen
+      quick_actions_description_html: 'Suorita nopea toiminto tai vieritä alas nähdäksesi raportoitu sisältö:'
       reopen: Avaa raportti uudestaan
       report: 'Raportti nro %{id}'
       reported_account: Raportoitu tili
       reported_by: Raportoija
       resolved: Ratkaistut
       resolved_msg: Raportti onnistuneesti ratkaistu!
+      skip_to_actions: Siirry toimintoihin
       status: Tila
+      statuses: Raportoitu sisältö
+      statuses_description_html: Loukkaava sisältö mainitaan ilmoitetun tilin yhteydessä
       target_origin: Raportoidun tilin alkuperä
       title: Raportit
       unassign: Määrittämätön
       unresolved: Ratkaisemattomat
       updated_at: Päivitetty
+      view_profile: Näytä profiili
     rules:
       add_new: Lisää sääntö
       delete: Poista
@@ -687,6 +693,10 @@ fi:
       destroyed_msg: Sivuston lataus onnistuneesti poistettu!
     statuses:
       back_to_account: Takaisin tilin sivulle
+      back_to_report: Takaisin raporttisivulle
+      batch:
+        remove_from_report: Poista raportista
+        report: Raportti
       deleted: Poistettu
       media:
         title: Media
@@ -822,6 +832,7 @@ fi:
     invalid_reset_password_token: Salasananpalautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
     link_to_otp: Syötä puhelimesi kaksivaiheinen koodi tai palautuskoodi
     link_to_webauth: Käytä suojausavaintasi
+    log_in_with: Kirjaudu käyttäen
     login: Kirjaudu sisään
     logout: Kirjaudu ulos
     migrate_account: Muuta toiseen tiliin
@@ -1201,6 +1212,9 @@ fi:
     reply:
       proceed: Jatka vastaamiseen
       prompt: 'Haluat vastata julkaisuun:'
+  reports:
+    errors:
+      invalid_rules: ei viittaa voimassa oleviin sääntöihin
   scheduled_statuses:
     over_daily_limit: Olet ylittänyt %{limit} ajoitetun viestin rajan tälle päivälle
     over_total_limit: Olet ylittänyt %{limit} ajoitetun viestin rajan
@@ -1283,9 +1297,11 @@ fi:
         other: "%{count} videota"
     boosted_from_html: Tehostettu %{acct_link}
     content_warning: 'Sisältövaroitus: %{warning}'
+    default_language: Sama kuin käyttöliittymän kieli
     disallowed_hashtags:
       one: 'sisälsi aihetunnisteen jota ei sallita: %{tags}'
       other: 'sisälsi aihetunnisteet joita ei sallita: %{tags}'
+    edited_at: Muokattu %{date}
     errors:
       in_reply_not_found: Viesti, johon yrität vastata, ei näytä olevan olemassa.
     open_in_web: Avaa selaimessa
