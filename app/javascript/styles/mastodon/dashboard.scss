@@ -61,6 +61,10 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   grid-gap: 10px;
 
+  @media screen and (max-width: 1350px) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
   &__item {
     &--span-double-column {
       grid-column: span 2;
@@ -94,6 +98,16 @@
     &:hover {
       background-color: lighten($ui-highlight-color, 10%);
       transition: all 200ms ease-out;
+    }
+
+    &.positive {
+      background: lighten($ui-base-color, 4%);
+      color: $valid-value-color;
+    }
+
+    &.negative {
+      background: lighten($ui-base-color, 4%);
+      color: $error-value-color;
     }
 
     span {

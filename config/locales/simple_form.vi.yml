@@ -15,11 +15,11 @@ vi:
         text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
-          disable: Cấm người này tiếp tục đăng nhập, nhưng không xóa hoặc ẩn tút của họ.
-          none: Sử dụng để gửi cảnh cáo tới tài khoản này, không áp đặt trừng phạt.
+          disable: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút.
+          none: Cảnh cáo tài khoản này, không áp đặt trừng phạt.
           sensitive: Mọi tập tin của tài khoản này tải lên đều sẽ bị gắn nhãn nhạy cảm.
           silence: Cấm tài khoản này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
-          suspend: Vô hiệu hóa mọi hoạt động của tài khoản này và xóa sạch dữ liệu. Có thể mở lại trong vòng 30 ngày.
+          suspend: Vô hiệu hóa và xóa sạch dữ liệu của tài khoản này. Có thể khôi phục trước 30 ngày.
         warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm ghi chú riêng
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
@@ -36,6 +36,7 @@ vi:
         current_username: Để xác nhận, vui lòng nhập tên người dùng của tài khoản hiện tại
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
         discoverable: Cho phép tài khoản của bạn xuất hiện trong gợi ý theo dõi và những tính năng khác
+        discoverable_no_directory: Cho phép mọi người tìm thấy tài khoản của bạn thông qua gợi ý theo dõi và các tính năng khác
         email: Bạn sẽ được gửi một email xác nhận
         fields: Được phép tạo tối đa 4 mục trên trang cá nhân của bạn
         header: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
@@ -55,7 +56,7 @@ vi:
         setting_noindex: Ảnh hưởng đến trang cá nhân và tút của bạn
         setting_show_application: Tên ứng dụng bạn dùng để đăng tút sẽ hiện trong chi tiết bài đăng
         setting_use_blurhash: Lớp phủ mờ dựa trên màu sắc của hình ảnh nhạy cảm
-        setting_use_pending_items: Dồn lại toàn bộ tút mới và chỉ hiển thị khi nào nhấp chuột vào
+        setting_use_pending_items: Dồn lại toàn bộ tút mới và chỉ hiển thị khi nhấp chuột vào
         username: Tên người dùng của bạn sẽ là duy nhất trên %{domain}
         whole_word: Khi từ khóa hoặc cụm từ là chữ và số, nó sẽ chỉ hiện ra những từ chính xác như vậy
       domain_allow:
@@ -106,10 +107,10 @@ vi:
         text: Ghi chú riêng
         type: Hành động
         types:
-          disable: Tạm khóa
+          disable: Khóa
           none: Cảnh cáo
           sensitive: Nhạy cảm
-          silence: Tạm ẩn
+          silence: Hạn chế
           suspend: Vô hiệu hóa
         warning_preset_id: Dùng mẫu có sẵn
       announcement:
@@ -187,7 +188,7 @@ vi:
       invite:
         comment: Bình luận
       invite_request:
-        text: Tại sao bạn muốn tham gia?
+        text: Vì sao bạn muốn tham gia?
       ip_block:
         comment: Mô tả
         ip: IP

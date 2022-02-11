@@ -13,7 +13,7 @@
 class Bookmark < ApplicationRecord
   include Paginable
 
-  update_index('statuses#status', :status) if Chewy.enabled?
+  update_index('statuses', :status) if Chewy.enabled?
 
   belongs_to :account, inverse_of: :bookmarks
   belongs_to :status,  inverse_of: :bookmarks

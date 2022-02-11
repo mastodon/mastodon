@@ -26,6 +26,7 @@ class Poll < ApplicationRecord
   belongs_to :status
 
   has_many :votes, class_name: 'PollVote', inverse_of: :poll, dependent: :delete_all
+  has_many :voters, -> { group('accounts.id') }, through: :votes, class_name: 'Account', source: :account
 
   has_many :notifications, as: :activity, dependent: :destroy
 
@@ -80,6 +81,12 @@ class Poll < ApplicationRecord
         votes_count: votes_count,
       )
     end
+  end
+
+  def reset_votes!
+    self.cached_tallies = options.map { 0 }
+    self.votes_count = 0
+    votes.delete_all unless new_record?
   end
 
   private

@@ -3,16 +3,26 @@ fi:
   simple_form:
     hints:
       account_alias:
-        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus mistä haluat siirtyä
+        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, josta haluat siirtyä
       account_migration:
-        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus mihin haluat siirtyä
+        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, johon haluat siirtyä
       account_warning_preset:
         title: Vapaaehtoinen. Ei näytetä vastaanottajalle
       admin_account_action:
-        include_statuses: Käyttäjä näkee mitkä tuuttaukset johtivat toimenpiteeseen tai varoitukseen
+        include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
         send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
+        text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
+        types:
+          disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
+          none: Käytä tätä lähettääksesi varoituksen käyttäjälle käynnistämättä mitään muita toimintoja.
+          sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluontoisiksi.
+          silence: Estä käyttäjää pystymästä julkaisemaan julkisessa näkyvyydessä, piilota käyttäjän viestit ja ilmoitukset ihmisiltä, jotka eivät seuraa käyttäjää.
+          suspend: Estä vuorovaikutus tililtä tai tilille ja poista sen sisältö. Palautettavissa 30 päivän kuluessa.
+        warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
+        all_day: Kun valittu, vain valittu aikaväli näytetään
+        ends_at: Valinnainen. Ilmoitus tullaan poistamaan automaattisesti tällä hetkellä
         scheduled_at: Jätä tyhjäksi julkaistaksesi ilmoituksen välittömästi
       defaults:
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
@@ -23,11 +33,12 @@ fi:
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
+        password: Käytä vähintään 8 merkkiä
         setting_display_media_default: Piilota arkaluonteiseksi merkitty media
         setting_display_media_hide_all: Piilota aina kaikki media
         setting_display_media_show_all: Näytä aina arkaluonteiseksi merkitty media
         setting_noindex: Vaikuttaa julkiseen profiiliisi ja tilasivuihisi
-        setting_show_application: Tuuttaamiseen käyttämäsi sovellus näkyy tuuttauksiesi yksityiskohtaisessa näkymässä
+        setting_show_application: Viestittelyyn käyttämäsi sovellus näkyy viestiesi yksityiskohtaisessa näkymässä
         setting_use_blurhash: Liukuvärit perustuvat piilotettujen kuvien väreihin, mutta sumentavat yksityiskohdat
       imports:
         data: Toisesta Mastodon-instanssista tuotu CSV-tiedosto
@@ -46,10 +57,14 @@ fi:
         types:
           disable: Poista kirjautuminen käytöstä
           none: Älä tee mitään
+          sensitive: Arkaluontoinen
           silence: Hiljennä
           suspend: Poista käytöstä ja tuhoa käyttäjätunnuksen tiedot peruuttamattomasti
+        warning_preset_id: Käytä varoitusmallia
       announcement:
         all_day: Koko päivän kestävä tapahtuma
+        ends_at: Tapahtuman loppu
+        starts_at: Tapahtuman alku
         text: Ilmoitus
       defaults:
         autofollow: Kutsu seuraamaan tiliäsi
@@ -83,7 +98,7 @@ fi:
         setting_default_language: Julkaisujen kieli
         setting_default_privacy: Julkaisun näkyvyys
         setting_default_sensitive: Merkitse media aina arkaluontoiseksi
-        setting_delete_modal: Kysy vahvistusta ennen tuuttauksen poistamista
+        setting_delete_modal: Kysy vahvistusta ennen viestin poistamista
         setting_display_media: Median näyttäminen
         setting_display_media_default: Oletus
         setting_display_media_hide_all: Piilota kaikki
@@ -91,7 +106,7 @@ fi:
         setting_hide_network: Piilota verkkosi
         setting_noindex: Jättäydy pois hakukoneindeksoinnista
         setting_reduce_motion: Vähennä animaatioiden liikettä
-        setting_show_application: Näytä sovellus mistä lähetät tuuttauksia
+        setting_show_application: Näytä sovellus mistä lähetät viestejä
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
         setting_theme: Sivuston teema
         setting_trends: Näytä päivän trendit
@@ -115,6 +130,12 @@ fi:
         comment: Kommentoi
       invite_request:
         text: Miksi haluat liittyä?
+      ip_block:
+        ip: IP
+        severities:
+          no_access: Estä pääsy
+          sign_up_requires_approval: Rajoita rekisteröitymisiä
+        severity: Sääntö
       notification_emails:
         digest: Lähetä koosteviestejä sähköpostitse
         favourite: Lähetä sähköposti, kun joku tykkää tilastasi
@@ -123,10 +144,12 @@ fi:
         mention: Lähetä sähköposti, kun sinut mainitaan
         pending_account: Uusi tili tarvitsee tarkastusta
         reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
+      rule:
+        text: Sääntö
       tag:
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
-        usable: Salli tuuttauksien käyttää tätä aihetunnistetta
+        usable: Salli postauksien käyttää tätä aihetunnistetta
     'no': Ei
     recommended: Suositeltu
     required:

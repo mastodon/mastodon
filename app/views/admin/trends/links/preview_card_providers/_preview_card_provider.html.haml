@@ -1,0 +1,16 @@
+.batch-table__row{ class: [preview_card_provider.requires_review? && 'batch-table__row--attention', !preview_card_provider.requires_review? && !preview_card_provider.trendable? && 'batch-table__row--muted'] }
+  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+    = f.check_box :preview_card_provider_ids, { multiple: true, include_hidden: false }, preview_card_provider.id
+
+  .batch-table__row__content.pending-account
+    .pending-account__header
+      %strong= preview_card_provider.domain
+
+      %br/
+
+      - if preview_card_provider.requires_review?
+        = t('admin.trends.pending_review')
+      - elsif preview_card_provider.trendable?
+        = t('admin.trends.preview_card_providers.allowed')
+      - else
+        = t('admin.trends.preview_card_providers.rejected')

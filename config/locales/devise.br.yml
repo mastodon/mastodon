@@ -3,6 +3,8 @@ br:
   devise:
     confirmations:
       confirmed: Kadarnaet eo bet ho chomlec'h postel gant berzh.
+      send_instructions: Resev a rit ur postel evit displegañ penaos kadarnaat ho chomlec'h-postel tuchantig, Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
+      send_paranoid_instructions: Ma'z eo ho chomlec'h-postel er stlennvon dija, kaset a vo ur postel deoc'h evit displegañ penaos kadarnaat ho chomlec'h-postel tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
     failure:
       already_authenticated: Kennasket oc'h dija.
       inactive: N'eo ket gweredekaet ho kont c'hoazh.
@@ -11,38 +13,106 @@ br:
       locked: Prennet eo ho kont.
       not_found_in_database: "%{authentication_keys} pe ger-tremen diwiriek."
       pending: O vezañ asantet eo ho kont.
+      timeout: Ho talc'h a zo aet da dermen. Mar plij, kit-tre c'hoazh evit kenderc'hel.
+      unauthenticated: Ret eo deoc'h mont-tre pe e em enskrivañ araok kenderc'hel.
+      unconfirmed: Ret eo deoc'h kadarnaat ho chomlec'h-postel araok kenderc'hel.
     mailer:
       confirmation_instructions:
         action: Gwiriekaat ar chomlec'h postel
         action_with_app: Kadarnaat ha distroiñ da %{app}
+        explanation: Krouet ho peus ur c'hont war %{host} gant ar chomlec'h-postel-mañ. N'eus nemet ur c'hlik evit bevaat anezhañ. Ma ne oa ket krouet ganeoc'h, dianavezit ar postel-se.
+        explanation_when_pending: Enskrivañ ho peus d'ur c'hemennad da %{host} gant ar chomlec'h-postel-se. Pa vo kadarnaet ho chomlec'h-postel, hoc'h enskrivadur a vo asantet. Gallout a rit mont-tre evit kemmañ munudoù ho kont pe skarzhañ anezhañ, met ne c'hellit ket implijout ul lod eus an aezamantoù par ma n'eo ket asantet ho kont. Ma vefe hoc'h enskrivadur nac'het, ho keloù a vefe skarzhet, neuze ne vo ket ret deoc'h ober netra ken. Ma ne oa ket ac'hanoc'h, dianavezit ar postel-se.
+        extra_html: Mar plij, gwiriit ivez <a href="%{terms_path}"> reolennoù ar servijer</a> ha <a href="%{policy_path}"> hon divizoù-implij</a>.
+        subject: 'Mastodon: kemennoù kadarnadur evit %{instance}'
         title: Gwiriekaat ar chomlec'h postel
       email_changed:
+        explanation: 'Chomlec''h-postel ho kont a zo bet kemmet da:'
+        extra: Ma n'ho peus ket kemmet ho postel, e seblant un den bennak en deus gallet mont-tre d'ho kont. Mar plij, kemmit ho ker-tremen hep gortoz, pe kit e darempred gant merer ar servijer ma'z oc'h bac'het e-maez ho kont.
         subject: 'Mastodoñ : Postel kemmet'
         title: Chomlec'h postel nevez
       password_change:
         explanation: Kemmet eo bet ger-tremen ho kont.
+        extra: Ma n'ho peus ket kemmet ho ker-tremen, e seblant un den bennak en deus gallet mont-tre d'ho kont. Mar plij, kemmit ho ker-tremen hep gortoz, pe kit e darempred gant merer ar servijer ma'z oc'h bac'het e-maez ho kont.
         subject: 'Mastodoñ : Ger-tremen kemmet'
         title: Ger-tremen kemmet
       reconfirmation_instructions:
-        explanation: Kadarnait ar chomlec'h nevez evit cheñch ho postel.
+        explanation: Kadarnait ar chomlec'h nevez evit kemmañ ho postel.
+        extra: Ma ne oa ket lañset ar ch'emm-se ganeoc'h, dianavezit ar postel-mañ. Chomlec'h-postel ar c'hont Mastodon ne vo ket kemmet keit ha ma c'hlikit ar lec'hienn a-us.
         subject: 'Mastodoñ : Kadarnait ar postel evit %{instance}'
         title: Gwiriekaat ar chomlec'h postel
       reset_password_instructions:
-        action: Cheñch ar ger-tremen
+        action: Kemmañ ar ger-tremen
         explanation: Goulennet ho peus ur ger-tremen nevez evit ho kont.
+        extra: Ma n'ho peus ket goulennet an dra-se, dianavezit ar postel-mañ. Ho ker-tremen ne gemmo ket keit ha ma c'hlikit ar lec'hienn a-us ha krouiit unan all.
+        subject: 'Mastodon: Adkorañ kemennoù ar ger-tremen'
         title: Adderaouekaat ar ger-tremen
       two_factor_disabled:
+        explanation: Dilesadur dre eil-elfenn a zo bet nac'het. Gallout a reer mont-tre en ur implijout nemet ur chomlec'h-postel hag ur ger-tremen.
+        subject: 'Mastodon: dilesadur dre eil-elfenn nac''het'
         title: 2FA diweredekaet
       two_factor_enabled:
+        explanation: Dilesadur dre eil-elfenn a zo aotreet evit ho kont. Ret a vo implij ur jedouer krouet gant an app TOTP koublet evit mont-tre.
+        subject: 'Mastodon: dilesadur dre eil-elfenn aotreet'
         title: 2FA gweredekaet
+      two_factor_recovery_codes_changed:
+        explanation: Ar c'hodoù adtapout diaraok a zo bet skarzhet ha kodoù nevez krouet.
+        subject: 'Mastodon: kod adtapout dre eil-elfenn a zo adgrouet'
+        title: Kod adtapout 2FA a zo bet kemmet
+      unlock_instructions:
+        subject: 'Mastodon: Dikrouilhiñ kemennoù'
+      webauthn_credential:
+        added:
+          explanation: An alc'hwez surentez-se a zo bet ouzhpennet d'ho kont
+          subject: 'Mastodon: alc''hwez surentez nevez-flamm'
+          title: Un alc'hwez surentez nevez-flamm a zo bet ouzhpennet
+        deleted:
+          explanation: An alc'hwez surentez-se a zo bet dilamet eus ho kont
+          subject: 'Mastodon: alc''hwezioù surentez dilamet'
+          title: Unan eus hoc'h alc'hwezioù surentez a zo bet dilamet
+      webauthn_disabled:
+        explanation: Dilezadur dre alc'hwezioù surentel a zo bet nac'het evit ho kont. Gallout a reer mont-tre en ur implijout ar jedouer krouet gant app TOTP koublet.
+        subject: 'Mastodon: dilesadur dre alc''hwezioù surentez nac''het'
+        title: Alc'hwezioù surentez nac'het
+      webauthn_enabled:
+        explanation: Dilesadur dre alc'hwez surentez a zo bet aotreet evit ho kont. Hoc'h alc'hwez surentez a c'hell bezañ implijet evit mont-tre.
+        subject: 'Mastodon: dilesadur dre alc''hwezioù surentez aotreet'
+        title: Alc'hwezioù surentez aotreet
+    omniauth_callbacks:
+      failure: Ne c'haller ket bezañ gwiriekaet deus %{kind} abalamour da "%{reason}".
+      success: Gwiriekaet deus kont %{kind} gant berzh.
     passwords:
+      no_token: Ne c'hellit ket mont d'ar bajenn-mañ ma zeuit ket deus ur postel evit adkorañ ur ger-tremen. M'ho peus implijet ur postel evit adkorañ ur ger-tremen, gwiriit oc'h implijet an URL a-bezh.
+      send_instructions: Ma'z eo ho chomlec'h-postel er stlennvon dija, kaset a vo deoc'h ur lec'hienn evit adkorañ ho ker-tremen tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
+      send_paranoid_instructions: Ma'z eo ho chomlec'h-postel er stlennvon dija, kaset a vo deoc'h ur lec'hienn evit adkorañ ho ker-tremen tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
+      updated: Kemmet eo bet ho ker-tremen gant berzh. Bremañ oc'h anavezadennet.
       updated_not_active: Kemmet eo bet ho ker-tremen ent reizh.
     registrations:
+      destroyed: Kenavo! Ho kont a zo bet nullet gant berzh. Emichañs e viot adwelet tuchant.
       signed_up: Donemat ! Kevreet oc'h.
+      signed_up_but_inactive: Enskrivet oc'h bet gant berzh. N'omp ket evit anavezadenniñ ac'hanoc'h alatao, rak ho kont n'eo ket aotreet c'hoazh.
+      signed_up_but_locked: Enskrivet oc'h bet gant berzh. N'omp ket evit anavezadenniñ ac'hanoc'h alatao, rak ho kont a zo prennet.
+      signed_up_but_pending: Ur c'hemennad gant ul lec'hienn kadarnaat a zo bet kaset d'ho chomlec'h-postel. Pa vo kliket al lec'hienn ganeoc'h e vo gwiriet hoc'h arload ganeomp. Ur gemennadenn a vo kaset deoc'h hag-eñ eo erbedet ho kont.
+      signed_up_but_unconfirmed: Ur ch'emennad gant ul lec'hienn kadarnaat a zo bet kaset d'ho chomlec'h-postel. Mar plij, heuliit al lec'hienn evit gweredekaat ho kont. Gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
+      update_needs_confirmation: Ho kont a zo bet hizivaet da benn, met ret eo deomp gwiriañ ho chomlec'h-postel nevez. Mar plij, gwiriit ho postelioù ha heuliit al lec'hienn evit kadarnaat ho chomlec'h-postel nevez. Gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
+      updated: Ho kont a zo bet hizivaet da benn.
     sessions:
       already_signed_out: Digennasket gant berzh.
       signed_in: Kennasket gant berzh.
       signed_out: Digennasket gant berzh.
+    unlocks:
+      send_instructions: Kaset e vo ur postel deoc'h evit displegañ deoc'h penaos dikrouilhiñ anezhañ tuchantig. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
+      send_paranoid_instructions: Ma'z eo ho kont krouet dija, kaset e vo ur postel deoc'h evit displegañ deoc'h penaos dikrouilhiñ anezhañ. Mar plij, gwiriit ho restr strobel ma ne oa ket resevet ar postel-mañ ganeoc'h.
+      unlocked: Ho kont a zo bet dibrennet gant berzh. Anavezadennit evit mont-tre.
   errors:
     messages:
+      already_confirmed: a zo bet kadarnaet dija, klaskit d'en em anavezadenniñ
+      confirmation_period_expired: eo ret bezañ kadarnaet a-raok %{period}, goulennit unan all mar plij
+      expired: a zo aet da dermen, goulennit unan nevez mar plij
       not_found: digavet
+      not_locked: ne oa ket prennet
+      not_saved:
+        few: "%{count} faot en deus miret ouzh %{resource} da vezañ gwarezet:"
+        many: "%{count} faot en deus miret ouzh %{resource} da vezañ gwarezet:"
+        one: '1 faot en deus miret ouzh %{resource} da vezañ gwarezet:'
+        other: "%{count} faot en deus miret ouzh %{resource} da vezañ gwarezet:"
+        two: "%{count} faot en deus miret ouzh %{resource} da vezañ gwarezet:"

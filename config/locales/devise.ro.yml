@@ -60,6 +60,23 @@ ro:
         title: Coduri de recuperare 2FA modificate
       unlock_instructions:
         subject: Instrucțiuni de deblocare
+      webauthn_credential:
+        added:
+          explanation: Următoarea cheie de securitate a fost adăugată în contul tău
+          subject: 'Mastodon: Noua cheie de securitate'
+          title: A fost adăugată o nouă cheie de securitate
+        deleted:
+          explanation: Următoarea cheie de securitate a fost ștearsă din contul tău
+          subject: 'Mastodon: Cheie de securitate ștearsă'
+          title: Una dintre cheile tale de securitate a fost ștearsă
+      webauthn_disabled:
+        explanation: Autentificarea cu chei de securitate a fost dezactivată pentru contul tău. Conectarea este posibilă acum folosind doar token-ul generat de aplicația TOTP.
+        subject: 'Mastodon: Autentificarea cu chei de securitate dezactivată'
+        title: Chei de securitate dezactivate
+      webauthn_enabled:
+        explanation: Autentificarea cheii de securitate a fost activată pentru contul tău. Cheia ta de securitate poate fi acum folosită pentru conectare.
+        subject: 'Mastodon: Autentificarea cheii de securitate activată'
+        title: Chei de securitate activate
     omniauth_callbacks:
       failure: Nu te-am putut autentifica de la %{kind} deoarece "%{reason}".
       success: Autentificat cu succes din contul %{kind}.
