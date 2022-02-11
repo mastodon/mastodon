@@ -46,6 +46,10 @@ class NotifyService < BaseService
     false
   end
 
+  def blocked_update?
+    false
+  end
+
   def following_sender?
     return @following_sender if defined?(@following_sender)
     @following_sender = @recipient.following?(@notification.from_account) || @recipient.requested?(@notification.from_account)
