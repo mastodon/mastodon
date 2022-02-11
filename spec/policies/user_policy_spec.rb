@@ -6,7 +6,7 @@ require 'pundit/rspec'
 RSpec.describe UserPolicy do
   let(:subject) { described_class }
   let(:admin)   { Fabricate(:user, admin: true).account }
-  let(:john)    { Fabricate(:user).account }
+  let(:john)    { Fabricate(:account) }
 
   permissions :reset_password?, :change_email? do
     context 'staff?' do

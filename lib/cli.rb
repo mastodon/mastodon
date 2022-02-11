@@ -13,6 +13,7 @@ require_relative 'mastodon/preview_cards_cli'
 require_relative 'mastodon/cache_cli'
 require_relative 'mastodon/upgrade_cli'
 require_relative 'mastodon/email_domain_blocks_cli'
+require_relative 'mastodon/canonical_email_blocks_cli'
 require_relative 'mastodon/ip_blocks_cli'
 require_relative 'mastodon/maintenance_cli'
 require_relative 'mastodon/version'
@@ -61,6 +62,9 @@ module Mastodon
 
     desc 'ip_blocks SUBCOMMAND ...ARGS', 'Manage IP blocks'
     subcommand 'ip_blocks', Mastodon::IpBlocksCLI
+
+    desc 'canonical_email_blocks SUBCOMMAND ...ARGS', 'Manage canonical e-mail blocks'
+    subcommand 'canonical_email_blocks', Mastodon::CanonicalEmailBlocksCLI
 
     desc 'maintenance SUBCOMMAND ...ARGS', 'Various maintenance utilities'
     subcommand 'maintenance', Mastodon::MaintenanceCLI

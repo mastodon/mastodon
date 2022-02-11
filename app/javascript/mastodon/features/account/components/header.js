@@ -123,7 +123,7 @@ class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl, domain, identity_proofs } = this.props;
+    const { account, intl, domain } = this.props;
 
     if (!account) {
       return null;
@@ -297,20 +297,8 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__extra'>
             <div className='account__header__bio'>
-              {(fields.size > 0 || identity_proofs.size > 0) && (
+              {fields.size > 0 && (
                 <div className='account__header__fields'>
-                  {identity_proofs.map((proof, i) => (
-                    <dl key={i}>
-                      <dt dangerouslySetInnerHTML={{ __html: proof.get('provider') }} />
-
-                      <dd className='verified'>
-                        <a href={proof.get('proof_url')} target='_blank' rel='noopener noreferrer'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
-                          <Icon id='check' className='verified__mark' />
-                        </span></a>
-                        <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} /></a>
-                      </dd>
-                    </dl>
-                  ))}
                   {fields.map((pair, i) => (
                     <dl key={i}>
                       <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />

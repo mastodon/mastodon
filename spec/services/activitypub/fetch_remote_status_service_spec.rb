@@ -67,7 +67,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
 
         expect(status).to_not be_nil
         expect(status.url).to eq "https://#{valid_domain}/watch?v=12345"
-        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix https://#{valid_domain}/watch?v=12345"
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remixhttps://#{valid_domain}/watch?v=12345"
       end
     end
 
@@ -100,7 +100,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
 
         expect(status).to_not be_nil
         expect(status.url).to eq "https://#{valid_domain}/watch?v=12345"
-        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remix https://#{valid_domain}/watch?v=12345"
+        expect(strip_tags(status.text)).to eq "Nyan Cat 10 hours remixhttps://#{valid_domain}/watch?v=12345"
       end
     end
 
@@ -120,7 +120,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
 
         expect(status).to_not be_nil
         expect(status.url).to eq "https://#{valid_domain}/@foo/1234"
-        expect(strip_tags(status.text)).to eq "Let's change the world https://#{valid_domain}/@foo/1234"
+        expect(strip_tags(status.text)).to eq "Let's change the worldhttps://#{valid_domain}/@foo/1234"
       end
     end
 
@@ -139,6 +139,47 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
         temp = note.dup
         temp[:id] = 'https://fake.address/@foo/5678'
         temp
+      end
+
+      it 'does not create status' do
+        expect(sender.statuses.first).to be_nil
+      end
+    end
+
+    context 'with a valid Create activity' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: "https://#{valid_domain}/@foo/1234/create",
+          type: 'Create',
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: note,
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.uri).to eq note[:id]
+        expect(status.text).to eq note[:content]
+      end
+    end
+
+    context 'with a Create activity with a mismatching id' do
+      let(:object) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: "https://#{valid_domain}/@foo/1234/create",
+          type: 'Create',
+          actor: ActivityPub::TagManager.instance.uri_for(sender),
+          object: {
+            id: "https://real.address/@foo/1234",
+            type: 'Note',
+            content: 'Lorem ipsum',
+            attributedTo: ActivityPub::TagManager.instance.uri_for(sender),
+          },
+        }
       end
 
       it 'does not create status' do

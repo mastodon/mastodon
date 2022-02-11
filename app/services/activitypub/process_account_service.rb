@@ -27,7 +27,6 @@ class ActivityPub::ProcessAccountService < BaseService
         create_account if @account.nil?
         update_account
         process_tags
-        process_attachments
 
         process_duplicate_accounts! if @options[:verified_webfinger]
       else
@@ -301,23 +300,6 @@ class ActivityPub::ProcessAccountService < BaseService
     end
   end
 
-  def process_attachments
-    return if @json['attachment'].blank?
-
-    previous_proofs = @account.identity_proofs.to_a
-    current_proofs  = []
-
-    as_array(@json['attachment']).each do |attachment|
-      next unless equals_or_includes?(attachment['type'], 'IdentityProof')
-      current_proofs << process_identity_proof(attachment)
-    end
-
-    previous_proofs.each do |previous_proof|
-      next if current_proofs.any? { |current_proof| current_proof.id == previous_proof.id }
-      previous_proof.delete
-    end
-  end
-
   def process_emoji(tag)
     return if skip_download?
     return if tag['name'].blank? || tag['icon'].blank? || tag['icon']['url'].blank?
@@ -333,13 +315,5 @@ class ActivityPub::ProcessAccountService < BaseService
     emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
     emoji.image_remote_url = image_url
     emoji.save
-  end
-
-  def process_identity_proof(attachment)
-    provider          = attachment['signatureAlgorithm']
-    provider_username = attachment['name']
-    token             = attachment['signatureValue']
-
-    @account.identity_proofs.where(provider: provider, provider_username: provider_username).find_or_create_by(provider: provider, provider_username: provider_username, token: token)
   end
 end

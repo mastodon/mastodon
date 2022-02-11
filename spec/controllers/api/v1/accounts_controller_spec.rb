@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::AccountsController, type: :controller do
   render_views
 
-  let(:user)   { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user)   { Fabricate(:user) }
   let(:scopes) { '' }
   let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
 
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
   describe 'POST #follow' do
     let(:scopes) { 'write:follows' }
-    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', locked: locked)).account }
+    let(:other_account) { Fabricate(:account, username: 'bob', locked: locked) }
 
     context do
       before do
@@ -150,7 +150,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
   describe 'POST #unfollow' do
     let(:scopes) { 'write:follows' }
-    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
@@ -168,9 +168,29 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     it_behaves_like 'forbidden for wrong scope', 'read:accounts'
   end
 
+  describe 'POST #remove_from_followers' do
+    let(:scopes) { 'write:follows' }
+    let(:other_account) { Fabricate(:account, username: 'bob') }
+
+    before do
+      other_account.follow!(user.account)
+      post :remove_from_followers, params: { id: other_account.id }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'removes the followed relation between user and target user' do
+      expect(user.account.followed_by?(other_account)).to be false
+    end
+
+    it_behaves_like 'forbidden for wrong scope', 'read:accounts'
+  end
+
   describe 'POST #block' do
     let(:scopes) { 'write:blocks' }
-    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
@@ -194,7 +214,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
   describe 'POST #unblock' do
     let(:scopes) { 'write:blocks' }
-    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.block!(other_account)
@@ -214,7 +234,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
   describe 'POST #mute' do
     let(:scopes) { 'write:mutes' }
-    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
@@ -242,7 +262,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
   describe 'POST #mute with notifications set to false' do
     let(:scopes) { 'write:mutes' }
-    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
@@ -270,7 +290,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
   describe 'POST #mute with nonzero duration set' do
     let(:scopes) { 'write:mutes' }
-    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.follow!(other_account)
@@ -298,7 +318,7 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
 
   describe 'POST #unmute' do
     let(:scopes) { 'write:mutes' }
-    let(:other_account) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:other_account) { Fabricate(:account, username: 'bob') }
 
     before do
       user.account.mute!(other_account)

@@ -12,6 +12,7 @@ import classNames from 'classnames';
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
+  edit: { id: 'status.edit', defaultMessage: 'Edit' },
   direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
@@ -137,6 +138,10 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onDelete(this.props.status, this.context.router.history, true);
   }
 
+  handleEditClick = () => {
+    this.props.onEdit(this.props.status, this.context.router.history);
+  }
+
   handlePinClick = () => {
     this.props.onPin(this.props.status);
   }
@@ -225,6 +230,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
     const anonymousAccess    = !me;
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
+    const pinnableStatus     = ['public', 'unlisted', 'private'].includes(status.get('visibility'));
     const mutingConversation = status.get('muted');
     const account            = status.get('account');
     const writtenByMe        = status.getIn(['account', 'id']) === me;
@@ -242,7 +248,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
     menu.push({ text: intl.formatMessage(status.get('bookmarked') ? messages.removeBookmark : messages.bookmark), action: this.handleBookmarkClick });
 
-    if (writtenByMe && publicStatus) {
+    if (writtenByMe && pinnableStatus) {
       menu.push({ text: intl.formatMessage(status.get('pinned') ? messages.unpin : messages.pin), action: this.handlePinClick });
     }
 
@@ -254,6 +260,7 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     if (writtenByMe) {
+      // menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
       menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
     } else {
@@ -290,7 +297,7 @@ class StatusActionBar extends ImmutablePureComponent {
       if (isStaff) {
         menu.push(null);
         menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
-        menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses/${status.get('id')}` });
+        menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses?id=${status.get('id')}` });
       }
     }
 

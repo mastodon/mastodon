@@ -13,6 +13,32 @@ describe FetchOEmbedService, type: :service do
 
   describe 'discover_provider' do
     context 'when status code is 200 and MIME type is text/html' do
+      context 'when OEmbed endpoint contains URL as parameter' do
+        before do
+          stub_request(:get, 'https://www.youtube.com/watch?v=IPSbNdBmWKE').to_return(
+            status: 200,
+            headers: { 'Content-Type': 'text/html' },
+            body: request_fixture('oembed_youtube.html'),
+          )
+          stub_request(:get, 'https://www.youtube.com/oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DIPSbNdBmWKE').to_return(
+            status: 200,
+            headers: { 'Content-Type': 'text/html' },
+            body: request_fixture('oembed_json_empty.html')
+          )
+        end
+
+        it 'returns new OEmbed::Provider for JSON provider' do
+          subject.call('https://www.youtube.com/watch?v=IPSbNdBmWKE')
+          expect(subject.endpoint_url).to eq 'https://www.youtube.com/oembed?format=json&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DIPSbNdBmWKE'
+          expect(subject.format).to eq :json
+        end
+
+        it 'stores URL template' do
+          subject.call('https://www.youtube.com/watch?v=IPSbNdBmWKE')
+          expect(Rails.cache.read('oembed_endpoint:www.youtube.com')[:endpoint]).to eq 'https://www.youtube.com/oembed?format=json&url={url}'
+        end
+      end
+
       context 'Both of JSON and XML provider are discoverable' do
         before do
           stub_request(:get, 'https://host.test/oembed.html').to_return(
@@ -33,6 +59,11 @@ describe FetchOEmbedService, type: :service do
           expect(subject.endpoint_url).to eq 'https://host.test/provider.xml'
           expect(subject.format).to eq :xml
         end
+
+        it 'does not cache OEmbed endpoint' do
+          subject.call('https://host.test/oembed.html', format: :xml)
+          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to eq false
+        end
       end
 
       context 'JSON provider is discoverable while XML provider is not' do
@@ -49,6 +80,11 @@ describe FetchOEmbedService, type: :service do
           expect(subject.endpoint_url).to eq 'https://host.test/provider.json'
           expect(subject.format).to eq :json
         end
+
+        it 'does not cache OEmbed endpoint' do
+          subject.call('https://host.test/oembed.html')
+          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to eq false
+        end
       end
 
       context 'XML provider is discoverable while JSON provider is not' do
@@ -64,6 +100,11 @@ describe FetchOEmbedService, type: :service do
           subject.call('https://host.test/oembed.html')
           expect(subject.endpoint_url).to eq 'https://host.test/provider.xml'
           expect(subject.format).to eq :xml
+        end
+
+        it 'does not cache OEmbed endpoint' do
+          subject.call('https://host.test/oembed.html')
+          expect(Rails.cache.exist?('oembed_endpoint:host.test')).to eq false
         end
       end
 

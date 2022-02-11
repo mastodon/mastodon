@@ -19,7 +19,7 @@ export default class Trends extends React.PureComponent {
   componentDidMount () {
     const { limit } = this.props;
 
-    api().get('/api/v1/admin/trends', { params: { limit } }).then(res => {
+    api().get('/api/v1/admin/trends/tags', { params: { limit } }).then(res => {
       this.setState({
         loading: false,
         data: res.data,
