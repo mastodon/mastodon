@@ -571,11 +571,12 @@ lv:
       action_log: Auditācijas pieraksti
       action_taken_by: Veiktā darbība
       actions:
-        delete_description_html: Ziņas, par kurām ziņots, tiks dzēstas, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākos pārkāpumus saistībā ar to pašu kontu.
+        delete_description_html: Raksti, par kurām ziņots, tiks dzēsti, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākos pārkāpumus saistībā ar to pašu kontu.
         other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
         resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
         silence_description_html: Profils būs redzams tikai tiem, kas jau tam seko vai manuāli apskata, stingri ierobežojot tās sasniedzamību. Šo vienmēr var atgriezt.
         suspend_description_html: Profils un viss tā saturs kļūs nepieejami, līdz tas beidzot tiek izdzēsts. Mijiedarbība ar kontu būs neiespējama. Atgriežams 30 dienu laikā.
+      actions_description_html: Izlem, kādas darbības jāveic, lai atrisinātu šo ziņojumu. Ja veiksi sodīšanas darbību pret kontu, par kuru ziņots, tam tiks nosūtīts e-pasta paziņojums, izņemot gadījumus, kad ir atlasīta kategorija <strong>Spam</strong>.
       add_to_report: Pievienot varāk paziņošanai
       are_you_sure: Vai esi pārliecināts?
       assign_to_self: Piešķirt man
@@ -587,6 +588,7 @@ lv:
         none: Neviens
       comment_description_html: 'Lai sniegtu vairāk informācijas, %{name} rakstīja:'
       created_at: Ziņoti
+      delete_and_resolve: Izdzēst rakstus
       forwarded: Pārsūtīti
       forwarded_to: Pārsūtīti %{domain}
       mark_as_resolved: Atzīmēt kā atrisinātu
@@ -600,12 +602,14 @@ lv:
         placeholder: Apraksti veiktās darbības vai citus saistītus atjauninājumus...
         title: Piezīmes
       notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
+      quick_actions_description_html: 'Veic ātro darbību vai ritini uz leju, lai skatītu saturu, par kuru ziņots:'
       reopen: Atkārtoti atvērt ziņojumu
       report: 'Ziņojums #%{id}'
       reported_account: Ziņotais konts
       reported_by: Ziņoja
       resolved: Atrisināts
       resolved_msg: Ziņojums veiksmīgi atrisināts!
+      skip_to_actions: Pāriet uz darbībām
       status: Statuss
       statuses: Ziņotais saturs
       statuses_description_html: Pārkāpuma saturs tiks minēts saziņā ar paziņoto kontu
