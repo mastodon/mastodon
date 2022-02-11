@@ -1,7 +1,6 @@
----
 fi:
   about:
-    about_hashtag_html: Nämä julkiset julkaisut on merkitty hastagilla <strong>#%{hashtag}</strong>. Voit vastata niihin, jos sinulla on tili jossain päin fediversumia.
+    about_hashtag_html: 'Nämä julkiset julkaisut on merkitty hastagilla <strong>#%{hashtag}</strong>. Voit vastata niihin, jos sinulla on tili jossain päin fediversumia.'
     about_mastodon_html: 'Tulevaisuuden sosiaalinen verkosto: Ei mainoksia, ei valvontaa, toteutettu avoimilla protokollilla ja hajautettu! Pidä tietosi ominasi Mastodonilla!'
     about_this: Tietoa tästä palvelimesta
     active_count_after: aktiivista
@@ -116,7 +115,7 @@ fi:
       delete: Poista tiedot
       deleted: Poistettu
       demote: Alenna
-      destroyed_msg: Käyttäjän %{username} tiedot ovat nyt jonossa poistettavaksi välittömästi
+      destroyed_msg: "Käyttäjän %{username} tiedot ovat nyt jonossa poistettavaksi välittömästi"
       disable: Poista käytöstä
       disable_sign_in_token_auth: Poista sähköpostitunnuksen todennus käytöstä
       disable_two_factor_authentication: Poista 2FA käytöstä
@@ -212,9 +211,9 @@ fi:
       undo_sensitized: Kumoa pakotus arkaluontoiseksi tiliksi
       undo_silenced: Peru hiljennys
       undo_suspension: Peru jäähy
-      unsilenced_msg: "%{username} -tilin rajoituksen kumoaminen onnistui"
+      unsilenced_msg: '%{username} -tilin rajoituksen kumoaminen onnistui'
       unsubscribe: Lopeta tilaus
-      unsuspended_msg: "%{username} -tilin keskeytyksen kumoaminen onnistui"
+      unsuspended_msg: '%{username} -tilin keskeytyksen kumoaminen onnistui'
       username: Käyttäjätunnus
       view_domain: Näytä verkkotunnuksen yhteenveto
       warn: Varoita
@@ -423,7 +422,7 @@ fi:
       show:
         affected_accounts:
           one: Vaikuttaa yhteen tiliin tietokannassa
-          other: Vaikuttaa %{count} tiliin tietokannassa
+          other: "Vaikuttaa %{count} tiliin tietokannassa"
         retroactive:
           silence: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien hiljennys
           suspend: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien jäähy
@@ -509,7 +508,7 @@ fi:
     relays:
       add_new: Lisää uusi rele
       delete: Poista
-      description_html: "<strong>federation relay</strong> on välittäjä palvelin, joka vaihtaa suuria määriä julkisia viestejä palvelimien välillä, jotka tilaavat ja julkaisevat sitä. <strong>Tämä auttaa pieniä ja keskisuuria palvelimia löytämään monipuolista sisältöä</strong>, joka muuten vaatisi käyttäjiä seuraamaan manuaalisesti muita ihmisiä eri palvelimilla."
+      description_html: <strong>federation relay</strong> on välittäjä palvelin, joka vaihtaa suuria määriä julkisia viestejä palvelimien välillä, jotka tilaavat ja julkaisevat sitä. <strong>Tämä auttaa pieniä ja keskisuuria palvelimia löytämään monipuolista sisältöä</strong>, joka muuten vaatisi käyttäjiä seuraamaan manuaalisesti muita ihmisiä eri palvelimilla.
       disable: Poista käytöstä
       disabled: Poistettu käytöstä
       enable: Ota käyttöön
@@ -545,7 +544,7 @@ fi:
         delete: Poista
         placeholder: Kuvaile mitä toimia on tehty tai muita päivityksiä tähän raporttiin…
       reopen: Avaa raportti uudestaan
-      report: Raportti nro %{id}
+      report: 'Raportti nro %{id}'
       reported_account: Raportoitu tili
       reported_by: Raportoija
       resolved: Ratkaistut
@@ -686,7 +685,7 @@ fi:
         disallow_provider: Estä julkaisija
         shared_by_over_week:
           one: Yhden henkilön jakama viime viikon aikana
-          other: "%{count} henkilön jakama viime viikon aikana"
+          other: '%{count} henkilön jakama viime viikon aikana'
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
       pending_review: Odottaa tarkistusta
@@ -715,7 +714,7 @@ fi:
         usage_comparison: Käytetty %{today} kertaa tänään, verrattuna %{yesterday} eiliseen
         used_by_over_week:
           one: Yhden henkilön käyttämä viime viikon aikana
-          other: "%{count} henkilön käyttämä viime viikon aikana"
+          other: '%{count} henkilön käyttämä viime viikon aikana'
       title: Trendit
     warning_presets:
       add_new: Lisää uusi
@@ -739,7 +738,7 @@ fi:
     new_trending_tags:
       body: 'Seuraavat hashtagit ovat trendejä tänään, mutta niitä ei ole aiemmin tarkistettu. Niitä ei näytetä julkisesti, ellet hyväksy niitä:'
       no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä hashtageja.
-      requirements: Alin hyväksytty trendikäs hashtag on tällä hetkellä "%{lowest_tag_name}" pisteillä %{lowest_tag_score}.
+      requirements: 'Alin hyväksytty trendikäs hashtag on tällä hetkellä "%{lowest_tag_name}" pisteillä %{lowest_tag_score}.'
       subject: Uusia trendikkäitä hashtageja tarkistettavaksi %{instance}
   aliases:
     add_new: Luo alias
@@ -898,7 +897,7 @@ fi:
     noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="%{apps_path}">sovellusta</a>.
   existing_username_validator:
     not_found: paikallista käyttäjää ei löydy kyseisellä käyttäjänimellä
-    not_found_multiple: "%{usernames} ei löytynyt"
+    not_found_multiple: '%{usernames} ei löytynyt'
   exports:
     archive_takeout:
       date: Päiväys
@@ -1065,7 +1064,7 @@ fi:
         other: "%{count} uutta ilmoitusta viime käyntisi jälkeen \U0001F418"
       title: Poissaollessasi…
     favourite:
-      body: "%{name} tykkäsi tilastasi:"
+      body: '%{name} tykkäsi tilastasi:'
       subject: "%{name} tykkäsi tilastasi"
       title: Uusi tykkäys
     follow:
@@ -1079,13 +1078,13 @@ fi:
       title: Uusi seuraamispyyntö
     mention:
       action: Vastaa
-      body: "%{name} mainitsi sinut:"
-      subject: "%{name} mainitsi sinut"
+      body: '%{name} mainitsi sinut:'
+      subject: '%{name} mainitsi sinut'
       title: Uusi maininta
     poll:
       subject: Äänestys käyttäjältä %{name} on päättynyt
     reblog:
-      body: "%{name} buustasi tilaasi:"
+      body: '%{name} buustasi tilaasi:'
       subject: "%{name} boostasi tilaasi"
       title: Uusi buustaus
     status:
@@ -1277,7 +1276,7 @@ fi:
     show_older: Näytä vanhempi
     show_thread: Näytä ketju
     sign_in_to_participate: Kirjaudu sisään osallistuaksesi keskusteluun
-    title: "%{name}: ”%{quote}”"
+    title: '%{name}: ”%{quote}”'
     visibilities:
       direct: Suoraan
       private: Vain seuraajille
