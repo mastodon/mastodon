@@ -387,6 +387,12 @@ fi:
       pending_reports_html:
         one: "<strong>1</strong> odottava raportti"
         other: "<strong>%{count}</strong> odottavat raportit"
+      pending_tags_html:
+        one: "<strong>1</strong> odottava hashtagi"
+        other: "<strong>%{count}</strong> odottavat hashtagit"
+      pending_users_html:
+        one: "<strong>1</strong> odottava käyttäjä"
+        other: "<strong>%{count}</strong> odottavat käyttäjät"
       resolved_reports: raportit ratkaistu
       software: Ohjelmisto
       sources: Kirjautumisen lähteet
@@ -467,6 +473,7 @@ fi:
       back_to_limited: Rajoitettu
       back_to_warning: Varoitus
       by_domain: Verkkotunnus
+      confirm_purge: Oletko varma, että haluat pysyvästi poistaa tiedot tältä verkkotunnukselta?
       delivery:
         all: Kaikki
         clear: Tyhjennä toimitusvirheet
@@ -479,6 +486,7 @@ fi:
       delivery_available: Toimitus on saatavilla
       delivery_error_days: Toimitusvirheen päivät
       delivery_error_hint: Jos toimitus ei ole mahdollista %{count} päivän aikana, se merkitään automaattisesti toimittamattomaksi.
+      destroyed_msg: Tiedot %{domain} on nyt jonossa välitöntä poistoa varten.
       empty: Verkkotunnuksia ei löytynyt.
       moderation:
         all: Kaikki
@@ -486,6 +494,7 @@ fi:
         title: Moderointi
       private_comment: Yksityinen kommentti
       public_comment: Julkinen kommentti
+      purge: Tyhjennä
       title: Tiedossa olevat instanssit
       total_blocked_by_us: Estetty meidän toimesta
       total_followed_by_them: Heidän seuraama
@@ -536,7 +545,9 @@ fi:
     report_notes:
       created_msg: Muistiinpano onnistuneesti lisätty raporttiin!
       destroyed_msg: Muistiinpano onnistuneesti poistettu raportista!
+      today_at: Tänään klo %{time}
     reports:
+      action_log: Tarkastusloki
       action_taken_by: Toimenpiteen tekijä
       are_you_sure: Oletko varma?
       assign_to_self: Ota tehtäväksi
