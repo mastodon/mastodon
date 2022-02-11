@@ -205,10 +205,13 @@ fi:
       statuses: Tilat
       strikes: Aiemmat varoitukset
       subscribe: Tilaa
+      suspend: Jäädytä
       suspended: Jäähyllä
       suspension_irreversible: Tämän tilin tiedot on poistettu peruuttamattomasti. Voit peruuttaa tilin jäädyttämisen, jolloin siitä tulee käyttökelpoinen, mutta toiminto ei palauta sillä aiemmin olleita tietoja.
       suspension_reversible_hint_html: Tili on jäädytetty, ja tiedot poistetaan kokonaan %{date}. Siihen asti tili voidaan palauttaa ilman haitallisia vaikutuksia. Jos haluat poistaa kaikki tilin tiedot välittömästi, voit tehdä sen alla.
       title: Tilit
+      unblock_email: Poista sähköpostiosoitteen esto
+      unblocked_email_msg: Käyttäjän %{username} sähköpostiosoitteen esto kumottiin
       unconfirmed_email: Sähköpostia ei vahvistettu
       undo_sensitized: Kumoa pakotus arkaluontoiseksi tiliksi
       undo_silenced: Peru hiljennys
@@ -241,6 +244,7 @@ fi:
         destroy_domain_allow: Salli verkkotunnuksen poisto
         destroy_domain_block: Poista verkkotunnuksen esto
         destroy_email_domain_block: Poista sähköpostipalvelimen esto
+        destroy_instance: Tyhjennä verkkotunnus
         destroy_ip_block: Poista IP-sääntö
         destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
@@ -262,6 +266,7 @@ fi:
         silence_account: Hiljennä tili
         suspend_account: Jäädytä tili
         unassigned_report: Peruuta raportin määritys
+        unblock_email_account: Poista sähköpostiosoitteen esto
         unsensitive_account: Kumoa pakotus arkaluontoiseksi tiliksi
         unsilence_account: Peruuta tilin rajoitus
         unsuspend_account: Peruuta tilin jäädytys
@@ -288,6 +293,7 @@ fi:
         destroy_domain_allow_html: "%{name} esti yhdistämisen verkkotunnuksella %{target}"
         destroy_domain_block_html: "%{name} poisti verkkotunnuksen %{target} eston"
         destroy_email_domain_block_html: "%{name} poisti verkkotunnuksen %{target} eston"
+        destroy_instance_html: "%{name} tyhjensi verkkotunnuksen %{target}"
         destroy_ip_block_html: "%{name} poisti IP-säännön %{target}"
         destroy_status_html: "%{name} poisti viestin %{target}"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
@@ -309,6 +315,7 @@ fi:
         silence_account_html: "%{name} rajoitti %{target} tilin"
         suspend_account_html: "%{name} siirsi käyttäjän %{target} jäähylle"
         unassigned_report_html: "%{name} peruutti raportin määrityksen %{target}"
+        unblock_email_account_html: "%{name} poisti %{target} sähköpostiosoitteen eston"
         unsensitive_account_html: "%{name} poisti merkinnän %{target} arkaluonteinen media"
         unsilence_account_html: "%{name} ei tehnyt rajoitusta %{target} tilille"
         unsuspend_account_html: "%{name} perui käyttäjän %{target} jäähyn"
@@ -377,6 +384,9 @@ fi:
       media_storage: Median tallennustila
       new_users: uudet käyttäjät
       opened_reports: raportit avattu
+      pending_reports_html:
+        one: "<strong>1</strong> odottava raportti"
+        other: "<strong>%{count}</strong> odottavat raportit"
       resolved_reports: raportit ratkaistu
       software: Ohjelmisto
       sources: Kirjautumisen lähteet
