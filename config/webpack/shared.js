@@ -16,10 +16,16 @@ function reducePacks (data, into = {}) {
     const pack = data.pack[entry];
     if (!pack) continue;
 
-    const packFile = typeof pack === 'string' ? pack : pack.filename;
+    let packFiles = [];
+    if (typeof pack === 'string')
+      packFiles = [pack];
+    else if (Array.isArray(pack))
+      packFiles = pack;
+    else
+      packFiles = [pack.filename];
 
-    if (packFile) {
-      into[data.name ? `flavours/${data.name}/${entry}` : `core/${entry}`] = resolve(data.pack_directory, packFile);
+    if (packFiles) {
+      into[data.name ? `flavours/${data.name}/${entry}` : `core/${entry}`] = packFiles.map(packFile => resolve(data.pack_directory, packFile));
     }
   }
 

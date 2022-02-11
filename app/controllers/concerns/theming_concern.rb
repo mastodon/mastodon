@@ -20,7 +20,7 @@ module ThemingConcern
   end
 
   def valid_pack_data?(data, pack_name)
-    data['pack'].is_a?(Hash) && [String, Hash].any? { |c| data['pack'][pack_name].is_a?(c) }
+    data['pack'].is_a?(Hash) && data['pack'][pack_name].present?
   end
 
   def nil_pack(data)
