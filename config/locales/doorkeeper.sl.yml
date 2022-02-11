@@ -38,6 +38,7 @@ sl:
         application: Program
         callback_url: Povratni URL
         delete: Izbriši
+        empty: Nimate programov.
         name: Ime
         new: Nov program
         scopes: Obsegi
@@ -72,6 +73,7 @@ sl:
       index:
         application: Program
         created_at: Odobreno
+        date_format: "%Y-%m-%d %H:%M:%S"
         scopes: Obsegi
         title: Vaši odobreni programi
     errors:
@@ -81,6 +83,10 @@ sl:
         invalid_client: Overitev odjemalca ni uspelo zaradi neznanega odjemalca, zaradi nevključitve overitve odjemalca ali zaradi nepodprte metode overitve.
         invalid_grant: Predložena odobritev za pooblastilo je neveljavna, potekla, preklicana, se ne ujema z URI preusmeritvijo, ki je uporabljena v zahtevi za pooblastilo ali je bila izdana drugemu odjemalcu.
         invalid_redirect_uri: URI za preusmeritev ni veljaven.
+        invalid_request:
+          missing_param: 'Zahtevani parameter manjka: %{value}.'
+          request_not_authorized: Zahtevo je potrebno overiti. Zahtevani parameter za overjanje zahteve manjka ali ni veljaven.
+          unknown: Zahtevku manjka zahtevani parameter, vključuje nepodprto vrednost parametra ali je nepravilno oblikovan.
         invalid_resource_owner: Predložene poverilnice lastnika virov niso veljavne ali pa lastnika virov ni mogoče najti
         invalid_scope: Zahtevani obseg je neveljaven, neznan ali nepravilen.
         invalid_token:
@@ -123,6 +129,7 @@ sl:
       read: preberi vse podatke svojega računa
       read:accounts: oglejte si podrobnosti računov
       read:blocks: oglejte si svoje blokirane
+      read:bookmarks: glejte svoje zaznamke
       read:favourites: oglejte si svoje priljubljene
       read:filters: oglejte si svoje filtre
       read:follows: oglejte si svoje sledilce
@@ -135,6 +142,7 @@ sl:
       write: spremenite vse podatke svojega računa
       write:accounts: spremenite svoj profil
       write:blocks: blokirajte račune in domene
+      write:bookmarks: objave zaznamkov
       write:favourites: priljubljena stanja
       write:filters: ustvari filtre
       write:follows: sledi osebam
