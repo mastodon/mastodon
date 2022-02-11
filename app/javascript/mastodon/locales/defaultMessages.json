@@ -82,6 +82,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Other",
+        "id": "report.categories.other"
+      },
+      {
+        "defaultMessage": "Spam",
+        "id": "report.categories.spam"
+      },
+      {
+        "defaultMessage": "Content violates one or more server rules",
+        "id": "report.categories.violation"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/admin/ReportReasonSelector.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Loading...",
         "id": "loading_indicator.label"
       },
@@ -98,8 +115,12 @@
         "id": "admin.dashboard.retention.average"
       },
       {
-        "defaultMessage": "Retention",
-        "id": "admin.dashboard.retention"
+        "defaultMessage": "User retention rate by day after sign-up",
+        "id": "admin.dashboard.daily_retention"
+      },
+      {
+        "defaultMessage": "User retention rate by month after sign-up",
+        "id": "admin.dashboard.monthly_retention"
       }
     ],
     "path": "app/javascript/mastodon/components/admin/Retention.json"
@@ -207,6 +228,27 @@
       }
     ],
     "path": "app/javascript/mastodon/components/domain.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Edited {count, plural, one {{count} time} other {{count} times}}",
+        "id": "status.edited_x_times"
+      },
+      {
+        "defaultMessage": "{name} created {date}",
+        "id": "status.history.created"
+      },
+      {
+        "defaultMessage": "{name} edited {date}",
+        "id": "status.history.edited"
+      },
+      {
+        "defaultMessage": "Edited {date}",
+        "id": "status.edited"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/edited_timestamp/index.json"
   },
   {
     "descriptors": [
@@ -382,20 +424,40 @@
         "id": "relative_time.just_now"
       },
       {
+        "defaultMessage": "just now",
+        "id": "relative_time.full.just_now"
+      },
+      {
         "defaultMessage": "{number}s",
         "id": "relative_time.seconds"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# second} other {# seconds}} ago",
+        "id": "relative_time.full.seconds"
       },
       {
         "defaultMessage": "{number}m",
         "id": "relative_time.minutes"
       },
       {
+        "defaultMessage": "{number, plural, one {# minute} other {# minutes}} ago",
+        "id": "relative_time.full.minutes"
+      },
+      {
         "defaultMessage": "{number}h",
         "id": "relative_time.hours"
       },
       {
+        "defaultMessage": "{number, plural, one {# hour} other {# hours}} ago",
+        "id": "relative_time.full.hours"
+      },
+      {
         "defaultMessage": "{number}d",
         "id": "relative_time.days"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# day} other {# days}} ago",
+        "id": "relative_time.full.days"
       },
       {
         "defaultMessage": "Moments remaining",
@@ -446,6 +508,10 @@
       {
         "defaultMessage": "Delete & re-draft",
         "id": "status.redraft"
+      },
+      {
+        "defaultMessage": "Edit",
+        "id": "status.edit"
       },
       {
         "defaultMessage": "Direct message @{name}",
@@ -604,6 +670,10 @@
       {
         "defaultMessage": "Direct",
         "id": "privacy.direct.short"
+      },
+      {
+        "defaultMessage": "Edited {date}",
+        "id": "status.edited"
       },
       {
         "defaultMessage": "Filtered",
@@ -1106,6 +1176,10 @@
       {
         "defaultMessage": "{publish}!",
         "id": "compose_form.publish_loud"
+      },
+      {
+        "defaultMessage": "Save changes",
+        "id": "compose_form.save_changes"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/compose_form.json"
@@ -2594,6 +2668,10 @@
         "id": "status.redraft"
       },
       {
+        "defaultMessage": "Edit",
+        "id": "status.edit"
+      },
+      {
         "defaultMessage": "Direct message @{name}",
         "id": "status.direct"
       },
@@ -2904,6 +2982,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/columns_area.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "{name} created {date}",
+        "id": "status.history.created"
+      },
+      {
+        "defaultMessage": "{name} edited {date}",
+        "id": "status.history.edited"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/compare_history_modal.json"
   },
   {
     "descriptors": [
