@@ -245,6 +245,10 @@ class User < ApplicationRecord
     save!
   end
 
+  def preferred_posting_language
+    settings.default_language || locale
+  end
+
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end

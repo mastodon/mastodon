@@ -93,7 +93,6 @@ zh-TW:
     accounts:
       add_email_domain_block: 將電子郵件網域加入黑名單
       approve: 核准
-      approve_all: 全部批准
       approved_msg: 成功審核了%{username} 的新帳戶申請
       are_you_sure: 您確定嗎?
       avatar: 頭像
@@ -108,6 +107,7 @@ zh-TW:
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
+      custom: 自訂
       delete: 刪除資料
       deleted: 已刪除
       demote: 降級
@@ -147,7 +147,6 @@ zh-TW:
         active: 活躍
         all: 全部
         pending: 等待中
-        silenced: 已靜音
         suspended: 已停權
         title: 版務
       moderation_notes: 管理備忘
@@ -165,7 +164,6 @@ zh-TW:
       redownload: 重新整理個人資料
       redownloaded_msg: 成功重新載入%{username} 的個人資料頁面
       reject: 拒絕
-      reject_all: 全部拒絕
       rejected_msg: 成功拒絕了%{username} 的新帳戶申請
       remove_avatar: 取消頭像
       remove_header: 移除開頭
@@ -200,12 +198,14 @@ zh-TW:
       silence: 靜音
       silenced: 已靜音
       statuses: 嘟文
+      strikes: 先前連續嘟文紀錄
       subscribe: 訂閱
       suspended: 已停權
       suspension_irreversible: 已永久刪除這個帳戶的數據。雖然這個帳戶的數據已被永久刪除，但是您仍然可以取消暫停這個帳戶。
       suspension_reversible_hint_html: 這個帳戶已被暫停，所有數據將會在 %{date} 被刪除。在此之前，您可以完全回復您的帳戶。如果您想即時刪除這個帳戶的數據，您可以在下面進行操作。
-      time_in_queue: 正在佇列等待 %{time}
       title: 帳戶
+      unblock_email: 解除封鎖電子郵件地址
+      unblocked_email_msg: 成功解除封鎖 %{username} 的電子郵件地址
       unconfirmed_email: 未確認的電子信箱地址
       undo_sensitized: 取消敏感狀態
       undo_silenced: 取消靜音
@@ -220,6 +220,7 @@ zh-TW:
       whitelisted: 已加入白名單
     action_logs:
       action_types:
+        approve_user: 批准使用者
         assigned_to_self_report: 指派回報
         change_email_user: 變更使用者的電子信箱地址
         confirm_user: 確認使用者
@@ -237,6 +238,7 @@ zh-TW:
         destroy_domain_allow: 刪除允許網域
         destroy_domain_block: 刪除阻擋網域
         destroy_email_domain_block: 刪除阻擋電郵網域
+        destroy_instance: 清除網域
         destroy_ip_block: 刪除 IP 規則
         destroy_status: 刪除狀態
         destroy_unavailable_domain: 刪除無法存取的網域
@@ -249,6 +251,7 @@ zh-TW:
         enable_user: 啓用帳戶
         memorialize_account: 設定成紀念帳戶
         promote_user: 把用戶升級
+        reject_user: 回絕使用者
         remove_avatar_user: 刪除大頭貼
         reopen_report: 重開舉報
         reset_password_user: 重設密碼
@@ -257,6 +260,7 @@ zh-TW:
         silence_account: 靜音用戶
         suspend_account: 暫停用戶
         unassigned_report: 取消指派舉報
+        unblock_email_account: 解除封鎖電子郵件地址
         unsensitive_account: 取消把您的帳戶的媒體設定為敏感內容
         unsilence_account: 取消用戶的靜音狀態
         unsuspend_account: 取消用戶的暫停狀態
@@ -265,6 +269,7 @@ zh-TW:
         update_domain_block: 更新封鎖網域
         update_status: 更新狀態
       actions:
+        approve_user_html: "%{name} 批准了從 %{target} 而來的註冊"
         assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
         change_email_user_html: "%{name} 變更了使用者 %{target} 的電子信箱地址"
         confirm_user_html: "%{name} 確認了使用者 %{target} 的電子信箱位址"
@@ -282,6 +287,7 @@ zh-TW:
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入站點聯盟"
         destroy_domain_block_html: "%{name} 取消了對網域 %{target} 的封鎖"
         destroy_email_domain_block_html: "%{name} 取消了對電子信箱網域 %{target} 的封鎖"
+        destroy_instance_html: "%{name} 清除了網域 %{target}"
         destroy_ip_block_html: "%{name} 刪除了 IP %{target} 的規則"
         destroy_status_html: "%{name} 刪除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢復了對網域 %{target} 的發送"
@@ -294,6 +300,7 @@ zh-TW:
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳戶"
         promote_user_html: "%{name} 對使用者 %{target} 進行了晉級操作"
+        reject_user_html: "%{name} 回絕了從 %{target} 而來的註冊"
         remove_avatar_user_html: "%{name} 移除了 %{target} 的大頭貼"
         reopen_report_html: "%{name} 重新開啟 %{target} 的檢舉"
         reset_password_user_html: "%{name} 重新設定了使用者 %{target} 的密碼"
@@ -302,6 +309,7 @@ zh-TW:
         silence_account_html: "%{name} 靜音了使用者 %{target}"
         suspend_account_html: "%{name} 停權了使用者 %{target}"
         unassigned_report_html: "%{name} 取消指派 %{target} 的檢舉"
+        unblock_email_account_html: "%{name} 解除封鎖了 %{target} 的電子郵件地址"
         unsensitive_account_html: "%{name} 將 %{target} 的媒體檔案的敏感狀態取消"
         unsilence_account_html: "%{name} 取消了使用者 %{target} 的靜音狀態"
         unsuspend_account_html: "%{name} 取消了使用者 %{target} 的停權狀態"
@@ -369,14 +377,14 @@ zh-TW:
       interactions: 互動
       media_storage: 媒體儲存空間
       new_users: 新使用者
-      opened_reports: 開啟的報告
+      opened_reports: 已開啟的報告
       pending_reports_html:
         other: "<strong>%{count}</strong> 份待處理報告"
       pending_tags_html:
         other: "<strong>%{count}</strong> 個待處理主題標籤"
       pending_users_html:
         other: "<strong>%{count}</strong> 位待處理使用者"
-      resolved_reports: 解決的報告
+      resolved_reports: 已解決的報告
       software: 軟體
       sources: 註冊來源
       space: 儲存空間用量
@@ -457,6 +465,7 @@ zh-TW:
       back_to_limited: 受限制的
       back_to_warning: 警告
       by_domain: 站台
+      confirm_purge: 您確定要永久刪除來自此網域的資料嗎？
       delivery:
         all: 所有
         clear: 清除遞送錯誤
@@ -471,6 +480,7 @@ zh-TW:
       delivery_available: 可傳送
       delivery_error_days: 遞送失敗天數
       delivery_error_hint: 若 %{count} 日皆無法遞送 ，則會自動標記無法遞送。
+      destroyed_msg: 來自 %{domain} 的資料現在正在佇列中等待刪除。
       empty: 找不到網域
       known_accounts:
         other: "%{count} 已知的帳戶"
@@ -480,6 +490,7 @@ zh-TW:
         title: 版主
       private_comment: 私人留言
       public_comment: 公開留言
+      purge: 清除
       title: 聯邦
       total_blocked_by_us: 被我們封鎖
       total_followed_by_them: 被他們關注
@@ -509,8 +520,6 @@ zh-TW:
         title: 建立新的 IP 規則
       no_ip_block_selected: 因為沒有選擇任何 IP 規則，所以什麼事都沒發生
       title: IP 規則
-    pending_accounts:
-      title: 待處理帳戶(%{count})
     relationships:
       title: "%{acct} 的關係"
     relays:
@@ -532,30 +541,43 @@ zh-TW:
     report_notes:
       created_msg: 檢舉記錄建立成功!
       destroyed_msg: 檢舉記錄刪除成功!
+      today_at: 今日為 %{time}
     reports:
       account:
         notes:
           other: "%{count} 則備註"
-        reports:
-          other: "%{count} 則檢舉"
+      action_log: 審計日誌
       action_taken_by: 操作執行者
+      actions:
+        other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
+        silence_description_html: 個人頁面僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。
+        suspend_description_html: 個人頁面及其內容將無法被存取，直到其最終被刪除。將無法與此帳號互動。此設定 30 日內可被還原。
+      actions_description_html: 若移除以上侵犯性違規內容不足成效：
+      add_to_report: 加入更多至報告
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
       assigned: 指派負責人
       by_target_domain: 檢舉帳戶之網域
+      category: 分類
+      category_description_html: 此帳號及/或被檢舉內容之原因會被引用在檢舉帳號通知中
       comment:
         none: 無
+      comment_description_html: 提供更多資訊，%{name} 寫道：
       created_at: 日期
+      delete_and_resolve: 刪除與解決
       forwarded: 已轉寄
       forwarded_to: 轉寄到 %{domain}
       mark_as_resolved: 標記為「已解決」
       mark_as_unresolved: 標記為「未解決」
+      no_one_assigned: 沒有人
       notes:
         create: 建立記錄
         create_and_resolve: 建立記錄並標記為「已解決」
         create_and_unresolve: 建立記錄並標記「未解決」
         delete: 刪除
         placeholder: 記錄已執行的動作，或其他相關的更新...
+        title: 註記
+      notes_description_html: 檢視及留下些給其他管理員和未來的自己的註記
       reopen: 重開檢舉
       report: '檢舉 #%{id}'
       reported_account: 被檢舉使用者
@@ -563,11 +585,14 @@ zh-TW:
       resolved: 已解決
       resolved_msg: 檢舉已處理!
       status: 嘟文
+      statuses: 被檢舉的內容
+      statuses_description_html: 侵犯性違規內容會被引用在檢舉帳號通知中
       target_origin: 檢舉帳戶之來源
       title: 檢舉
       unassign: 取消指派
       unresolved: 未解決
       updated_at: 更新
+      view_profile: 檢視個人資料頁
     rules:
       add_new: 新增規則
       delete: 刪除
@@ -669,15 +694,13 @@ zh-TW:
       destroyed_msg: 成功刪除站台的上傳項目！
     statuses:
       back_to_account: 返回帳戶訊息頁
+      back_to_report: 回到檢舉報告頁面
       batch:
-        delete: 刪除
-        nsfw_off: 標記為非敏感內容
-        nsfw_on: 標記為敏感內容
+        remove_from_report: 從檢舉報告中移除
+        report: 檢舉報告
       deleted: 已刪除
-      failed_to_execute: 執行失敗
       media:
         title: 媒體檔案
-      no_media: 不含媒體檔案
       no_status_selected: 因未選擇嘟文而未變更。
       title: 帳戶嘟文
       with_media: 含有媒體檔案
@@ -690,21 +713,49 @@ zh-TW:
       sidekiq_process_check:
         message_html: 没有队列 %{value} 的Sidekiq进程，请检查你的Sidekiq配置
     tags:
-      accounts_today: 本日不重複使用者數
-      accounts_week: 本週不重複使用者數
-      breakdown: 根據來源分類本日使用情況
-      last_active: 上次活躍
-      most_popular: 最熱門
-      most_recent: 最近
-      name: 主題標籤
       review: 審核嘟文
-      reviewed: 已審核
-      title: 主題標籤
-      trending_right_now: 最新趨勢
-      unique_uses_today: 今天嘟了 %{count} 則
-      unreviewed: 未審核
       updated_msg: 成功更新主題標籤設定
     title: 管理介面
+    trends:
+      allow: 允許
+      approved: 已通過審核
+      disallow: 不允許
+      links:
+        allow: 允許連結
+        allow_provider: 允許發行者
+        disallow: 不允許連結
+        disallow_provider: 不允許發行者
+        shared_by_over_week:
+          other: 於過去一週被 %{count} 人分享
+        title: 熱門連結
+        usage_comparison: 於今日被 %{today} 人分享，相較於昨日 %{yesterday} 人
+      pending_review: 等待審核中
+      preview_card_providers:
+        allowed: 此發行者之連結能登上熱門
+        rejected: 此發行者之連結不會登上熱門
+        title: 發行者
+      rejected: 被拒絕
+      tags:
+        current_score: 目前分數 %{score} 分
+        dashboard:
+          tag_accounts_measure: 獨特使用次數
+          tag_languages_dimension: 熱門語言
+          tag_servers_dimension: 熱門伺服器
+          tag_servers_measure: 不同伺服器
+          tag_uses_measure: 總使用次數
+        listable: 能被建議
+        not_listable: 不能被建議
+        not_trendable: 不會登上熱門
+        not_usable: 不可被使用
+        peaked_on_and_decaying: 於 %{date} 日最熱門，目前正退燒中
+        title: 熱門主題標籤
+        trendable: 能登上熱門
+        trending_rank: '熱門 #%{rank}'
+        usable: 可被使用
+        usage_comparison: 於今日被使用 %{today} 次，相較於昨日 %{yesterday} 次
+        used_by_over_week:
+          other: 於過去一週被 %{count} 人使用
+      title: 熱門榜
     warning_presets:
       add_new: 新增
       delete: 刪除
@@ -719,9 +770,16 @@ zh-TW:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
       subject: 來自 %{instance} 的使用者檢舉（#%{id}）
-    new_trending_tag:
-      body: '尚未通過審核的主題標籤 #%{name} 今天有炎上趨勢。這個標籤在你開綠燈之前不會公開顯示，你也可以選擇無視它以遭蒙蔽雙眼。'
-      subject: "%{instance} 上有待審核的主題標籤 (#%{name})"
+    new_trending_links:
+      body: 以下連結於今日登上熱門榜，然而他們的發行者之前仍未被審核過。除非您核准，這些連結將不會被公開顯示。來自這些發行者的通知往後將不會被產生。
+      no_approved_links: 這些是目前仍未被審核之熱門連結。
+      requirements: 已核准熱門連結中最低分者目前是「%{lowest_link_title}」為 %{lowest_link_score} 分。
+      subject: 於 %{instance} 待審核的新熱門連結
+    new_trending_tags:
+      body: 以下主題標籤於今日登上熱門榜，然而他們之前仍未被審核過。除非您核准，這些連結將不會被公開顯示：
+      no_approved_tags: 這些是目前仍未被審核之熱門主題標籤。
+      requirements: 已核准熱門標籤中最低分者目前是「#%{lowest_tag_name}」為 %{lowest_tag_score} 分。
+      subject: 於 %{instance} 待審核的新熱門主題標籤
   aliases:
     add_new: 建立別名
     created_msg: 成功建立別名。您可以自舊帳戶開始轉移。
@@ -773,6 +831,7 @@ zh-TW:
     invalid_reset_password_token: 密碼重設 token 無效或已過期。請重新設定密碼。
     link_to_otp: 請從您手機輸入雙重驗證 (2FA) 或還原碼
     link_to_webauth: 使用您的安全金鑰
+    log_in_with: 登入，使用
     login: 登入
     logout: 登出
     migrate_account: 轉移到另一個帳戶
@@ -928,33 +987,14 @@ zh-TW:
     changes_saved_msg: 已成功儲存修改!
     copy: 複製
     delete: 刪除
-    no_batch_actions_available: 此頁面目前沒有可用的批次作業
+    none: 無
     order_by: 排序
     save_changes: 儲存修改
+    today: 今天
     validation_errors:
       other: 唔…這是什麼鳥？請檢查以下 %{count} 項錯誤
   html_validator:
     invalid_markup: 含有無效的 HTML 語法：%{error}
-  identity_proofs:
-    active: 有效
-    authorize: 是的，請授權
-    authorize_connection_prompt: 授權此加密連接？
-    errors:
-      failed: 加密連接失敗。請於 %{provider} 重試。
-      keybase:
-        invalid_token: Keybase 標記必須為雜湊加密簽章並且由66個十六進位字符組成。
-        verification_failed: Keybase 無法確認此標記為 Keybase 使用者 %{kb_username} 的簽章。請在 Keybase 再試一次。
-      wrong_user: 未能為%{current} 以 %{proving} 建立身分驗證。請登入為 %{proving} 再試一次。
-    explanation_html: 在此你連結其他網路平台（如 Keybase）上的加密身分。讓其他人可以在那些平台上，傳送加密訊息給你，並驗證你的身分。
-    i_am_html: 我是 %{service} 上的 %{username}
-    identity: 身份
-    inactive: 非活躍
-    publicize_checkbox: 並發嘟：
-    publicize_toot: 驗證成功！我在是住在 %{service} 的 %{username} ： %{url}
-    remove: 移除帳戶證明
-    removed: 成功移除帳戶證明
-    status: 驗證狀態
-    view_proof: 檢視證明
   imports:
     errors:
       over_rows_processing_limit: 含有超過 %{count} 行
@@ -1167,6 +1207,9 @@ zh-TW:
     reply:
       proceed: 確認回覆
       prompt: 您想回覆此嘟文
+  reports:
+    errors:
+      invalid_rules: 未引用有效規則
   scheduled_statuses:
     over_daily_limit: 您已經超過了本日排定發嘟的限額 (%{limit})
     over_total_limit: 您已經超過了排定發嘟的限額 (%{limit})
@@ -1225,7 +1268,6 @@ zh-TW:
     edit_profile: 編輯使用者資訊
     export: 匯出
     featured_tags: 推薦標籤
-    identity_proofs: 身分驗證
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳戶搬遷
@@ -1247,17 +1289,18 @@ zh-TW:
         other: "%{count} 段影片"
     boosted_from_html: 轉嘟自 %{acct_link}
     content_warning: 內容警告： %{warning}
+    default_language: 與介面語言相同
     disallowed_hashtags:
       other: 含有不得使用的標籤： %{tags}
+    edited_at: 已編輯：%{date}
     errors:
       in_reply_not_found: 您嘗試回覆的嘟文看起來不存在。
-    language_detection: 自動偵測語言
     open_in_web: 以網頁開啟
     over_character_limit: 超過了 %{max} 字的限制
     pin_errors:
+      direct: 無法釘選只有僅提及使用者可見之嘟文
       limit: 你所置頂的嘟文數量已經達到上限
       ownership: 不能置頂他人的嘟文
-      private: 不能置頂非公開的嘟文
       reblog: 不能置頂轉嘟
     poll:
       total_people:
@@ -1408,6 +1451,7 @@ zh-TW:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: 新增
     disable: 停用
@@ -1435,24 +1479,31 @@ zh-TW:
       subject: 請確認登入嘗試
       title: 登入嘗試
     warning:
+      categories:
+        spam: 垃圾訊息
+        violation: 該內容違反以下社群規章
       explanation:
-        disable: 您將無法以任何方式登入或使用您的帳號，但您的個人資料頁面和其他資料仍保持完整。
-        sensitive: 您上傳的媒體檔案或連結的媒體將會被標記為敏感。
-        silence: 您仍然可以使用您的帳號，但僅有已追蹤您的人才能看到您在此伺服器的貼文，您也可能會從公開清單中被排除。但其他人仍可手動追蹤您。
-        suspend: 您將不能使用您的帳號，您的個人資料頁面及其他資料將不再能被取得。您仍可在資料被完全刪除前要求下載你的資料，但我們仍會保留一部份資料，以防止有人規避停權處罰。
-      get_in_touch: 您可以回覆此電子郵件並與 %{instance} 的工作人員們聯絡。
+        delete_statuses: 您部份的貼文被認定違反一項或多項社群規章，並且已被 %{instance} 的管理員依規定移除。往後更多的違規可能導致對您帳號更嚴重的處罰。
+        disable: 您無法繼續使用您的帳號，但您的個人頁面及其他資料內容保持不變。您可以要求一份您的資料備份，帳號異動設定，或是刪除帳號。
+        sensitive: 由此刻起，您所有上傳的媒體檔案將被標記為敏感內容，並且隱藏於點擊警告之後。
+        silence: 您仍然可以使用您的帳號，但僅有已追蹤您的人才能看到您在此伺服器的貼文，您也可能會從各式探索功能中被排除。但其他人仍可手動追蹤您。
+        suspend: 您將不能使用您的帳號，您的個人資料頁面及其他資料將不再能被存取。您仍可於約 30 日內資料被完全刪除前要求下載你的資料，但我們仍會保留一部份基本資料，以防止有人規避停權處罰。
+      get_in_touch: 如果您認為這是個錯誤，您可回復這封 e-mail 來連繫 %{instance} 的管理員。
+      reason: 原因：
       review_server_policies: 檢視伺服器政策
-      statuses: 特別是：
+      statuses: 被判定違規之嘟文：
       subject:
+        delete_statuses: 您於 %{acct} 之嘟文已被移除
         disable: 您的帳號 %{acct} 已被凍結
         none: 對 %{acct} 的警告
-        sensitive: 您帳號 %{acct} 張貼的媒體已被標記為敏感內容
+        sensitive: 您於 %{acct} 之媒體檔案即刻起已被標記為敏感內容
         silence: 您的帳號 %{acct} 已被限制
         suspend: 您的帳號 %{acct} 已被停權
       title:
+        delete_statuses: 嘟文已移除
         disable: 帳號已被涷結
         none: 警告
-        sensitive: 您的媒體已被標記為敏感內容
+        sensitive: 隱藏媒體內容
         silence: 帳號已被限制
         suspend: 帳號己被停用
     welcome:

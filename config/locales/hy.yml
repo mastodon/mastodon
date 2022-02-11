@@ -97,7 +97,6 @@ hy:
     accounts:
       add_email_domain_block: Արգելափակել էլ․ փոստի տիրոյթը
       approve: Ընդունել
-      approve_all: Ընդունել բոլորը
       approved_msg: Յաջողութեամբ հաստատուեց %{username}֊ի գրանցման յայտը
       are_you_sure: Վստա՞հ ես
       avatar: Աւատար
@@ -149,7 +148,6 @@ hy:
         active: Ակտիվ
         all: Բոլորը
         pending: Սպասում
-        silenced: Լռեցուած
         suspended: Կասեցուած
         title: Մոդերացիա
       moderation_notes: Մոդերացիայի նշումներ
@@ -167,7 +165,6 @@ hy:
       redownload: Թարմացնել հաշիւը
       redownloaded_msg: "%{username}֊ի հաշիւը սկզբնաղբիւրից բարեյաջող թարմացուեց"
       reject: Մերժել
-      reject_all: Մերժել բոլորը
       rejected_msg: Յաջողութեամբ մերժուեց %{username}֊ի գրանցման յայտը
       remove_avatar: Հեռացնել աւատարը
       remove_header: Հեռացնել գլխագիրը
@@ -206,7 +203,6 @@ hy:
       suspended: Կասեցուած
       suspension_irreversible: Հաշուի տուեալները անդարձ ջնջուեցին։ Դու կարող ես ապակասեցնել հաշիւը՝ դարձնելով այն կիրառելի, բայց այն չի վերականգնի նախկին տուեալները։
       suspension_reversible_hint_html: Հաշիւը կասեցուեց, եւ տուեալներն ամբողջապէս կը վերացուի %{date}ին։ Մինչեւ այդ, հաշիւը կարող է վերականգնուել՝ առանց կողմնակի ազդեցութիւնների։ Եթէ ցանկանում ես վերացնել հաշուի տուեալները միանգամից, կարող ես դա անել ներքեւում։
-      time_in_queue: Հերթում է %{time}
       title: Հաշիւներ
       unconfirmed_email: Չհաստատուած էլ․ հասցէ
       undo_sensitized: Ետարկել դիւրազգացութիւնը
@@ -414,8 +410,6 @@ hy:
       new:
         title: Ստեղծել նոր IP կանոն
       title: IP կանոններ
-    pending_accounts:
-      title: Սպասող հաշիւներ (%{count})
     relationships:
       title: "%{acct}ի յարաբերութիւններ"
     relays:
@@ -433,9 +427,6 @@ hy:
         notes:
           one: "%{count} նոթ"
           other: "%{count} նոթեր"
-        reports:
-          one: "%{count} զեկոյց"
-          other: "%{count} զեկոյց"
       action_taken_by: Գործողութիւնը կատարել է
       are_you_sure: Վստա՞հ ես
       assign_to_self: Ինձ յանձնարարուած
@@ -516,28 +507,13 @@ hy:
       destroyed_msg: Կայքի վերբեռնումը բարեյաջող ջնջուեց
     statuses:
       back_to_account: Վերադառնալ անձնական էջ
-      batch:
-        delete: Ջնջել
-        nsfw_off: Նշել որպէս ոչ դիւրազգաց
-        nsfw_on: Նշել որպէս դիւրազգաց
       deleted: Ջնջված է
-      failed_to_execute: Կատարումը ձախողուեց
       media:
         title: Մեդիա
-      no_media: Մեդիա չկայ
       title: Օգտատիրոջ գրառումները
       with_media: Մեդիայի հետ
     tags:
-      last_active: Վերջին ակտիւութիւնը
-      most_popular: Ամէնայայտնի
-      most_recent: Վերջին
-      name: Պիտակ
       review: Վերանայել գրառումը
-      reviewed: Վերանայուած
-      title: Պիտակներ
-      trending_right_now: Այժմ թրենդի մէջ է
-      unique_uses_today: "%{count} հրապարակուել է այսօր"
-      unreviewed: Վերանայուած չէ
     title: Ադմինիստարցիա
     warning_presets:
       add_new: Ավելացնել նորը
@@ -697,19 +673,6 @@ hy:
     delete: Ջնջել
     order_by: Դասաւորել ըստ
     save_changes: Պահպանել փոփոխութիւնները
-  identity_proofs:
-    active: Ակտիվ
-    authorize: Այո, նոյնականացնել
-    authorize_connection_prompt: Հաւաստագրէ՞լ այս ծածկագրման կապակցումը
-    i_am_html: Ես %{username}ն եմ %{service}ում։
-    identity: Ինքնութիւն
-    inactive: Ոչ ակտիւ
-    publicize_checkbox: Հրապարակել սա՝
-    publicize_toot: 'Ապացուցուա՜ծ է․ Ես%{username} եմ %{service}ում․ %{url} '
-    remove: Հաշուից հեռացնել ապացոյցը
-    removed: Ապացոյցը բարեյաջող հեռացուեց հաշուից
-    status: Հաստատման կարգավիճակ
-    view_proof: Նայել ապացոյցը
   imports:
     errors:
       over_rows_processing_limit: տողերի քանակը աւելին է քան %{count}-ը
@@ -903,7 +866,6 @@ hy:
     edit_profile: Խմբագրել պրոֆիլը
     export: Տվյալների արտահանում
     featured_tags: Ընտրուած հէշթեգեր
-    identity_proofs: Անձի նոյնացումներ
     import: Ներմուծել
     import_and_export: Ներմուծել և արտահանել
     migrate: Հաշուի տեղափոխում
@@ -925,7 +887,6 @@ hy:
         one: "%{count} վիդեո"
         other: "%{count} վիդեո"
     content_warning: Նախազգուշացում։ %{warning}
-    language_detection: Ինքնուրոյն ճանաչել լեզուն
     open_in_web: Բացել վէբում
     over_character_limit: "%{max} նիշի սահմանը գերազանցուած է"
     poll:
@@ -1075,15 +1036,12 @@ hy:
     sign_in_token:
       title: Մուտքի փորձ
     warning:
-      get_in_touch: Կարող էք կապուել %{instance} հանգոյցի անձնակազմի հետ պատասխանելով այս նամակին։
-      statuses: Մասնաւորապէս, միայն՝
       subject:
         disable: Քո %{acct} հաշիւը սառեցուել է
         none: Նախազգուշացուեմ %{acct}-ին
       title:
         disable: Հաշիւը սառեցուած է
         none: Զգուշացում
-        sensitive: Մեդիաֆայլը պիտակուել է որպէս զգայուն։
         silence: Հաշիւը սահմանափակուած է
         suspend: Հաշիւը արգելափակուած է
     welcome:

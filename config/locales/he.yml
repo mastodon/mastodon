@@ -65,7 +65,6 @@ he:
       memorialize: הפוך לדף זכרון
       moderation:
         all: הכל
-        silenced: מושתקים
         suspended: מושהים
         title: ניהול קהילה
       moderation_notes: הודעות מנחה
@@ -97,6 +96,7 @@ he:
         targeted_reports: דיווחים נגד חשבון זה
       silence: השתקה
       statuses: הודעות
+      strikes: עבירות קודמות
       subscribe: הרשמה
       title: חשבונות
       undo_silenced: ביטול השתקה
@@ -128,18 +128,28 @@ he:
       undo: ביטול
     instances:
       title: שרתים מוכרים
+    report_notes:
+      today_at: היום, ב%{time}
     reports:
+      add_to_report: הוספת פרטים לדיווח
       are_you_sure: 100% על בטוח?
+      category: קטגוריה
       comment:
         none: ללא
+      comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
       mark_as_resolved: סימון כפתור
+      no_one_assigned: אף אחד
+      notes:
+        title: הערות
       report: 'דווח על #%{id}'
       reported_account: חשבון מדווח
       reported_by: דווח על ידי
       resolved: פתור
       status: הודעה
+      statuses: התוכן עליו דווח
       title: דיווחים
       unresolved: לא פתור
+      view_profile: צפה בפרופיל
     settings:
       contact_information:
         email: נא להקליד כתובת דוא"ל פומבית
@@ -156,6 +166,11 @@ he:
         title: תיאור אתר מורחב
       site_title: כותרת האתר
       title: הגדרות אתר
+    statuses:
+      back_to_report: חזרה לעמוד הדיווח
+      batch:
+        remove_from_report: הסרה מהדיווח
+        report: דווח
     title: ניהול
   application_mailer:
     settings: 'שינוי הגדרות דוא"ל: %{link}'
@@ -165,6 +180,7 @@ he:
   auth:
     didnt_get_confirmation: לא התקבלו הוראות אימות?
     forgot_password: הנשתכחה סיסמתך?
+    log_in_with: התחבר באמצעות
     login: כניסה
     logout: יציאה
     register: הרשמה
@@ -172,6 +188,8 @@ he:
     reset_password: איפוס סיסמא
     security: החלפת סיסמא
     set_new_password: שינוי סיסמא
+    status:
+      redirecting_to: חשבונכם לא פעיל כעת מכיוון שמפנה ל%{acct}.
   authorize_follow:
     error: למרבה הצער, היתה שגיאה בחיפוש החשבון המרוחק
     follow: לעקוב
@@ -221,6 +239,11 @@ he:
     validations:
       images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
       too_many: לא ניתן להוסיף יותר מארבעה קבצים
+  migrations:
+    not_redirecting: חשבונכם לא מפנה לשום חשבון אחר כעת.
+    redirected_msg: חשבונכם כעת מפנה ל%{acct}.
+    redirecting_to: חשבונכם מפנה ל%{acct}.
+    set_redirect: הגדר הפניה
   notification_mailer:
     digest:
       body: להלן סיכום זריז של הדברים שקרו על מאז ביקורך האחרון ב-%{since}
@@ -257,6 +280,8 @@ he:
     preferences: העדפות
     two_factor_authentication: אימות דו-שלבי
   statuses:
+    default_language: זהה לשפת ממשק
+    edited_at: נערך ב%{date}
     open_in_web: פתח ברשת
     over_character_limit: חריגה מגבול התווים של %{max}
     show_more: עוד
@@ -273,6 +298,7 @@ he:
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      time: "%H:%M"
   two_factor_authentication:
     disable: כיבוי
     enabled_success: אימות דו-שלבי הופעל בהצלחה
@@ -280,5 +306,16 @@ he:
     lost_recovery_codes: קודי האחזור מאפשרים אחזור גישה לחשבון במידה ומכשירך אבד. במידה וקודי האחזור אבדו, ניתן לייצרם מחדש כאן. תוקף קודי האחזור הישנים יפוג.
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
+  user_mailer:
+    warning:
+      categories:
+        spam: ספאם
+      reason: 'סיבה:'
+      subject:
+        delete_statuses: הפוסטים שלכם ב%{acct} הוסרו
+        sensitive: קבצי המדיה שלכם ב%{acct} יסומנו בתור תוכן רגיש מעכשיו והלאה
+      title:
+        delete_statuses: פוסטים שהוסרו
+        sensitive: מדיה שהוסתרה
   users:
     invalid_otp_token: קוד דו-שלבי שגוי

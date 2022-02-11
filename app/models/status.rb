@@ -209,6 +209,16 @@ class Status < ApplicationRecord
     public_visibility? || unlisted_visibility?
   end
 
+  def snapshot!(media_attachments_changed: false, account_id: nil, at_time: nil)
+    edits.create!(
+      text: text,
+      spoiler_text: spoiler_text,
+      media_attachments_changed: media_attachments_changed,
+      account_id: account_id || self.account_id,
+      created_at: at_time || edited_at
+    )
+  end
+
   def edited?
     edited_at.present?
   end

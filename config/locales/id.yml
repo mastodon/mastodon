@@ -93,7 +93,6 @@ id:
     accounts:
       add_email_domain_block: Masukkan domain email ke daftar hitam
       approve: Terima
-      approve_all: Terima semua
       approved_msg: Berhasil menerima pendaftaran %{username}
       are_you_sure: Anda yakin?
       avatar: Avatar
@@ -108,6 +107,7 @@ id:
       confirm: Konfirmasi
       confirmed: Dikonfirmasi
       confirming: Mengkonfirmasi
+      custom: Kustom
       delete: Hapus data
       deleted: Terhapus
       demote: Turunkan
@@ -147,7 +147,6 @@ id:
         active: Aktif
         all: Semua
         pending: Tertunda
-        silenced: Didiamkan
         suspended: Disuspen
         title: Moderasi
       moderation_notes: Catatan moderasi
@@ -165,7 +164,6 @@ id:
       redownload: Muat ulang profil
       redownloaded_msg: Berhasil menyegarkan profil %{username} dari asal
       reject: Tolak
-      reject_all: Tolak semua
       rejected_msg: Berhasil menolak permintaan pendaftaran %{username}
       remove_avatar: Hapus avatar
       remove_header: Hapus header
@@ -200,12 +198,14 @@ id:
       silence: Diam
       silenced: Didiamkan
       statuses: Status
+      strikes: Peringatan sebelumnya
       subscribe: Langganan
       suspended: Disuspen
       suspension_irreversible: Data akun ini telah dihapus secara permanen. Anda dapat mengaktifkan akun agar tetap bisa dipakai lagi tapi data sebelumnya tidak dapat dikembalikan.
       suspension_reversible_hint_html: Akun telah ditangguhkan, dan data akan dihapus total pada %{date}. Sebelum tanggal tersebut, akun dapat dikembalikan tanpa efek apapun. Jika Anda ingin menghapus segera semua data, Anda dapat melakukan sesuai keterangan di bawah.
-      time_in_queue: Menunggu dalam antrean %{time}
       title: Akun
+      unblock_email: Buka blokir alamat email
+      unblocked_email_msg: Berhasil membuka blokir alamat email %{username}
       unconfirmed_email: Email belum dikonfirmasi
       undo_sensitized: Batalkan sensitif
       undo_silenced: Undo mendiamkan
@@ -220,6 +220,7 @@ id:
       whitelisted: Masuk daftar putih
     action_logs:
       action_types:
+        approve_user: Setujui Pengguna
         assigned_to_self_report: Berikan laporan
         change_email_user: Ubah Email untuk Pengguna
         confirm_user: Konfirmasi Pengguna
@@ -237,6 +238,7 @@ id:
         destroy_domain_allow: Hapus Izin Domain
         destroy_domain_block: Hapus Blokir Domain
         destroy_email_domain_block: Hapus email blokir domain
+        destroy_instance: Hapus Domain
         destroy_ip_block: Hapus aturan IP
         destroy_status: Hapus Status
         destroy_unavailable_domain: Hapus Domain yang Tidak Tersedia
@@ -249,6 +251,7 @@ id:
         enable_user: Aktifkan Pengguna
         memorialize_account: Kenang Akun
         promote_user: Promosikan Pengguna
+        reject_user: Tolak Pengguna
         remove_avatar_user: Hapus Avatar
         reopen_report: Buka Lagi Laporan
         reset_password_user: Atur Ulang Kata sandi
@@ -257,6 +260,7 @@ id:
         silence_account: Bisukan Akun
         suspend_account: Tangguhkan Akun
         unassigned_report: Batalkan Pemberian Laporan
+        unblock_email_account: Buka blokir alamat email
         unsensitive_account: Batalkan tanda media di akun Anda dari sensitif
         unsilence_account: Lepas Status Bisu Akun
         unsuspend_account: Lepas Status Tangguh Akun
@@ -265,6 +269,7 @@ id:
         update_domain_block: Perbarui Blokir Domain
         update_status: Perbarui Status
       actions:
+        approve_user_html: "%{name} menyetujui pendaftaran dari %{target}"
         assigned_to_self_report_html: "%{name} menugaskan laporan %{target} ke dirinya sendiri"
         change_email_user_html: "%{name} mengubah alamat email pengguna %{target}"
         confirm_user_html: "%{name} mengonfirmasi alamat email pengguna %{target}"
@@ -282,6 +287,7 @@ id:
         destroy_domain_allow_html: "%{name} membatalkan izin penggabungan dengan domain %{target}"
         destroy_domain_block_html: "%{name} membuka blokir domain %{target}"
         destroy_email_domain_block_html: "%{name} membuka blokir domain email %{target}"
+        destroy_instance_html: "%{name} menghapus domain %{target}"
         destroy_ip_block_html: "%{name} menghapus aturan untuk IP %{target}"
         destroy_status_html: "%{name} menghapus status %{target}"
         destroy_unavailable_domain_html: "%{name} melanjutkan pengiriman ke domain %{target}"
@@ -294,6 +300,7 @@ id:
         enable_user_html: "%{name} mengaktifkan login untuk pengguna %{target}"
         memorialize_account_html: "%{name} mengubah akun %{target} jadi halaman memorial"
         promote_user_html: "%{name} mempromosikan pengguna %{target}"
+        reject_user_html: "%{name} menolak pendaftaran dari %{target}"
         remove_avatar_user_html: "%{name} menghapus avatar %{target}"
         reopen_report_html: "%{name} membuka ulang laporan %{target}"
         reset_password_user_html: "%{name} mereset kata sandi pengguna %{target}"
@@ -302,6 +309,7 @@ id:
         silence_account_html: "%{name} membisukan akun %{target}"
         suspend_account_html: "%{name} menangguhkan akun %{target}"
         unassigned_report_html: "%{name} membatalkan penugasan laporan %{target}"
+        unblock_email_account_html: "%{name} membuka blokir alamat email %{target}"
         unsensitive_account_html: "%{name} membatalkan tanda media %{target} sebagai sensitif"
         unsilence_account_html: "%{name} membunyikan akun %{target}"
         unsuspend_account_html: "%{name} membatalkan penangguhan akun %{target}"
@@ -455,6 +463,7 @@ id:
       back_to_limited: Terbatas
       back_to_warning: Peringatan
       by_domain: Domain
+      confirm_purge: Yakin ingin menghapus permanen data dari domain ini?
       delivery:
         all: Semua
         clear: Hapus galat pengiriman
@@ -469,6 +478,7 @@ id:
       delivery_available: Pengiriman tersedia
       delivery_error_days: Lama hari pengiriman galat
       delivery_error_hint: Jika pengiriman tidak terjadi selama %{count} hari, ia akan ditandai secara otomatis sebagai tidak terkirim.
+      destroyed_msg: Data dari %{domain} masuk antrean dihapus dalam waktu dekat.
       empty: Domain tidak ditemukan.
       known_accounts:
         other: "%{count} akun yang dikenal"
@@ -478,6 +488,7 @@ id:
         title: Moderasi
       private_comment: Komentar pribadi
       public_comment: Komentar publik
+      purge: Hapus
       title: Server yang diketahui
       total_blocked_by_us: Yang kita blokir
       total_followed_by_them: Diikuti mereka
@@ -507,8 +518,6 @@ id:
         title: Buat aturan IP baru
       no_ip_block_selected: Tak ada aturan IP yang berubah karena tak ada yang dipilih
       title: Aturan IP
-    pending_accounts:
-      title: Akun tertunda (%{count})
     relationships:
       title: Hubungan %{acct}
     relays:
@@ -530,30 +539,43 @@ id:
     report_notes:
       created_msg: Catatan laporan berhasil dibuat!
       destroyed_msg: Catatan laporan berhasil dihapus!
+      today_at: Hari ini pada %{time}
     reports:
       account:
         notes:
           other: "%{count} catatan"
-        reports:
-          other: "%{count} laporan"
+      action_log: Log audit
       action_taken_by: Aksi dilakukan oleh
+      actions:
+        other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
+        silence_description_html: Profil hanya dapat terlihat oleh pengguna yang telah mengikuti atau melihatnya secara manual, yang sangat membatasi jangkauannya. Selalu dapat dipulihkan kembali.
+        suspend_description_html: Profil dan semua kontennya tidak dapat diakses sampai ia terhapus. Interaksi dengan akun tersebut tidak dimungkinkan. Dapat dipulihkan dalam waktu 30 hari.
+      actions_description_html: 'Jika menghapus konten yang menyinggung perasaan di atas tidak memadai:'
+      add_to_report: Tambahkan lebih banyak untuk lapor
       are_you_sure: Apakah Anda yakin?
       assign_to_self: Tugaskan kpd saya
       assigned: Moderator tertugas
       by_target_domain: Domain akun yang dilaporkan
+      category: Kategori
+      category_description_html: Alasan akun dan/atau konten ini dilaporkan akan disampaikan saat berkomunikasi dengan akun yang dilaporkan
       comment:
         none: Tidak ada
+      comment_description_html: 'Untuk menyediakan lebih banyak informasi, %{name} menulis:'
       created_at: Dilaporkan
+      delete_and_resolve: Hapus dan selesaikan
       forwarded: Diteruskan
       forwarded_to: Diteruskan ke %{domain}
       mark_as_resolved: Tandai telah diseleseikan
       mark_as_unresolved: Tandai belum terselesaikan
+      no_one_assigned: Tidak ada
       notes:
         create: Tambah catatan
         create_and_resolve: Diselesaikan dengan catatan
         create_and_unresolve: Dibuka kembali dengan catatan
         delete: Hapus
         placeholder: Jelaskan aksi yang telah dilakukan, atau pembaruan lain yang berhubungan...
+        title: Catatan
+      notes_description_html: Lihat dan tinggalkan catatan kepada moderator lain dan Anda di masa depan
       reopen: Buka lagi laporan
       report: 'Laporkan #%{id}'
       reported_account: Akun yang dilaporkan
@@ -561,11 +583,14 @@ id:
       resolved: Terseleseikan
       resolved_msg: Laporan berhasil diselesaikan!
       status: Status
+      statuses: Konten yang dilaporkan
+      statuses_description_html: Konten menyinggung akan disampaikan saat komunikasi dengan akun yang dilaporkan
       target_origin: Akun asal yang dilaporkan
       title: Laporan
       unassign: Bebas Tugas
       unresolved: Belum Terseleseikan
       updated_at: Diperbarui
+      view_profile: Lihat profil
     rules:
       add_new: Tambah aturan
       delete: Hapus
@@ -667,15 +692,13 @@ id:
       destroyed_msg: Situs yang diunggah berhasil dihapus!
     statuses:
       back_to_account: Kembali ke halaman akun
+      back_to_report: Kembali ke halaman laporan
       batch:
-        delete: Hapus
-        nsfw_off: Tandai sebagai tak sensitif
-        nsfw_on: Tandai sebagai sensitif
+        remove_from_report: Hapus dari laporan
+        report: Laporan
       deleted: Dihapus
-      failed_to_execute: Gagal mengeksekusi
       media:
         title: Media
-      no_media: Tanpa media
       no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
       title: Status akun
       with_media: Dengan media
@@ -688,21 +711,49 @@ id:
       sidekiq_process_check:
         message_html: Tidak ada proses Sidekiq yang berjalan untuk %{value} antrian. Silakan tinjau konfigurasi Sidekiq Anda
     tags:
-      accounts_today: Penggunaan unik hari ini
-      accounts_week: Penggunaan unik minggu ini
-      breakdown: Rinci penggunaan hari ini berdasar sumber
-      last_active: Terakhir aktif
-      most_popular: Paling populer
-      most_recent: Terkini
-      name: Tagar
       review: Tinjau status
-      reviewed: Ditinjau
-      title: Tagar
-      trending_right_now: Sedang tren sekarang
-      unique_uses_today: "%{count} memposkan hari ini"
-      unreviewed: Tak tertinjau
       updated_msg: Pembaruan pengaturan tagar berhasil
     title: Administrasi
+    trends:
+      allow: Izinkan
+      approved: Disetujui
+      disallow: Batalkan izin
+      links:
+        allow: Izinkan tautan
+        allow_provider: Izinkan penerbit
+        disallow: Batalkan izin tautan
+        disallow_provider: Batalkan izin penerbit
+        shared_by_over_week:
+          other: Dibagikan oleh %{count} orang selama seminggu terakhir
+        title: Tautan sedang tren
+        usage_comparison: Dibagikan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
+      pending_review: Tinjauan tertunda
+      preview_card_providers:
+        allowed: Tautan dari penerbit ini dapat menjadi tren
+        rejected: Tautan dari penerbit ini tidak dapat menjadi tren
+        title: Penerbit
+      rejected: Ditolak
+      tags:
+        current_score: Skor saat ini %{score}
+        dashboard:
+          tag_accounts_measure: kegunaan unik
+          tag_languages_dimension: Bahasa terpopuler
+          tag_servers_dimension: Server terpopuler
+          tag_servers_measure: server berbeda
+          tag_uses_measure: kegunaan total
+        listable: Dapat disarankan
+        not_listable: Tidak akan disarankan
+        not_trendable: Tidak akan muncul di bawah tren
+        not_usable: Tidak dapat digunakan
+        peaked_on_and_decaying: Populer pada %{date}, kini mulai turun
+        title: Tagar sedang tren
+        trendable: Dapat muncul di bawah tren
+        trending_rank: 'Sedang tren #%{rank}'
+        usable: Dapat digunakan
+        usage_comparison: Digunakan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
+        used_by_over_week:
+          other: Digunakan oleh %{count} orang selama seminggu terakhir
+      title: Tren
     warning_presets:
       add_new: Tambah baru
       delete: Hapus
@@ -717,9 +768,16 @@ id:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
       subject: Laporan baru untuk %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Tagar #%{name} sedang tren hari ini, tetapi belum ditinjau. Itu tidak akan ditampilkan secara publik kecuali Anda mengizinkannya, atau simpan saja borang sebagaimana mestinya untuk tidak mendengarnya lagi.'
-      subject: Tagar baru muncul untuk ditinjau di %{instance} (#%{name})
+    new_trending_links:
+      body: Tautan berikut sedang tren hari ini, tetapi penerbit sebelumnya belum ditinjau. Mereka tidak akan ditampilkan secara publik kecuali Anda menyetujuinya. Notifikasi berikutnya dari penerbit yang sama tidak akan dibuat.
+      no_approved_links: Saat ini tidak akan tautan tren yang disetujui.
+      requirements: Tautan tren yang disetujui peringkat terendah saat ini "%{lowest_link_title}" dengan skor %{lowest_link_score}.
+      subject: Tautan tren baru mulai ditinjau di %{instance}
+    new_trending_tags:
+      body: 'Tagar berikut sedang tren hari ini, tetapi mereka sebelumnya belum ditinjau. Mereka tidak akan muncul secara publik kecuali Anda menyetujuinya:'
+      no_approved_tags: Saat ini tidak ada tagar tren yang disetujui.
+      requirements: 'Tagar tren yang disetujui peringkat terendah saat ini #%{lowest_tag_name} dengan skor %{lowest_tag_score}.'
+      subject: Tagar tren baru mulai ditinjau di %{instance}
   aliases:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
@@ -771,6 +829,7 @@ id:
     invalid_reset_password_token: Token reset kata sandi tidak valid atau kedaluwarsa. Silakan minta yang baru.
     link_to_otp: Masukkan kode dua-faktor dari ponsel Anda atau dari kode pemulihan
     link_to_webauth: Gunakan perangkat kunci keamanan Anda
+    log_in_with: Masuk dengan
     login: Masuk
     logout: Keluar
     migrate_account: Pindah ke akun berbeda
@@ -926,33 +985,14 @@ id:
     changes_saved_msg: Perubahan berhasil disimpan!
     copy: Salin
     delete: Hapus
-    no_batch_actions_available: Tindakan batch tidak tersedia di halaman ini
+    none: Tidak ada
     order_by: Urut berdasarkan
     save_changes: Simpan perubahan
+    today: hari ini
     validation_errors:
       other: Ada yang belum benar! Silakan tinjau %{count} kesalahan di bawah ini
   html_validator:
     invalid_markup: 'berisi markup HTML yang tidak valid: %{error}'
-  identity_proofs:
-    active: Aktif
-    authorize: Ya, izinkan
-    authorize_connection_prompt: Izinkan koneksi kriptografi ini?
-    errors:
-      failed: Koneksi kriptografi gagal. Silakan coba lagi dari %{provider}.
-      keybase:
-        invalid_token: Token Keybase adalah sandi tanda tangan dan harus berupa 66 karakter hex
-        verification_failed: Keybase tidak mengenali token ini sebagai tanda tangan pengguna Keybase %{kb_username}. Silakan ulangi lagi dari Keybase.
-      wrong_user: Tidak dapat membuat bukti untuk %{proving} saat masuk sebagai %{current}. Masuk sebagai %{proving} dan coba lagi.
-    explanation_html: Anda dapat mengoneksikan identitas lain secara kriptografi, seperti profil Keybase. Ini mengizinkan orang lain untuk mengirim pesan terenkripsi kepada Anda dan mempercayai konten yang Anda kirim.
-    i_am_html: Saya adalah %{username} di %{service}.
-    identity: Identitas
-    inactive: Tidak aktif
-    publicize_checkbox: 'Dan toot ini:'
-    publicize_toot: 'Terbukti! Saya adalah %{username} di %{service}: %{url}'
-    remove: Hapus bukti dari akun
-    removed: Berhasil menghapus bukti dari akun
-    status: Status verifikasi
-    view_proof: Lihat bukti
   imports:
     errors:
       over_rows_processing_limit: berisi lebih dari %{count} baris
@@ -1223,7 +1263,6 @@ id:
     edit_profile: Ubah profil
     export: Expor data
     featured_tags: Tagar unggulan
-    identity_proofs: Bukti identitas
     import: Impor
     import_and_export: Impor dan ekspor
     migrate: Pemindahan akun
@@ -1245,17 +1284,18 @@ id:
         other: "%{count} video"
     boosted_from_html: Boost dari %{acct_link}
     content_warning: 'Peringatan konten: %{warning}'
+    default_language: Sama seperti bahasa antarmuka
     disallowed_hashtags:
       other: 'berisi tagar yang tidak diizinkan: %{tags}'
+    edited_at: Diedit %{date}
     errors:
       in_reply_not_found: Status yang ingin Anda balas sudah tidak ada.
-    language_detection: Deteksi bahasa secara otomatis
     open_in_web: Buka di web
     over_character_limit: melebihi %{max} karakter
     pin_errors:
+      direct: Kiriman yang hanya terlihat oleh pengguna yang disebutkan tidak dapat disematkan
       limit: Anda sudah mencapai jumlah maksimum toot yang dapat disematkan
       ownership: Toot orang lain tidak bisa disematkan
-      private: Toot privat tidak bisa disematkan
       reblog: Boost tidak bisa disematkan
     poll:
       total_people:
@@ -1408,6 +1448,7 @@ id:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Tambah
     disable: Matikan
@@ -1435,24 +1476,31 @@ id:
       subject: Harap konfirmasi usaha masuk akun
       title: Usaha masuk akun
     warning:
+      categories:
+        spam: Spam
+        violation: Konten melanggar panduan komunitas berikut
       explanation:
-        disable: Saat akun Anda beku, data Anda tetap utuh. Anda tidak akan dapat melakukan apa-apa sampai akun Anda tidak lagi dikunci.
-        sensitive: Berkas media dan media tertaut yang Anda unggah akan dianggap sebagai sensitif.
-        silence: Saat akun Anda dibatasi, hanya akun yang Anda ikuti yang dapat melihat toot Anda di server ini. Akun Anda mungkin akan dikecualikan dari daftar publik. Akun lain dapat mengikuti akun Anda secara manual.
-        suspend: Akun Anda telah ditangguhkan. Semua toot dan media yang Anda unggah dihapus secara permanen dari server ini, dan server tempat Anda memiliki pengikut.
-      get_in_touch: Anda dapat membalas email ini untuk menghubungi pengurus %{instance}.
+        delete_statuses: Beberapa kiriman Anda melanggar satu atau lebih panduan komunitas dan telah dihapus oleh moderator %{instance}. Pelanggaran berikutnya akan menyebabkan tindakan yang lebih parah terhadap akun Anda.
+        disable: Anda tidak lagi dapat menggunakan akun, tapi profil dan data Anda lainnya masih tersimpan. Anda dapat minta cadangan data Anda, mengubah pengaturan akun, atau menghapus akun.
+        sensitive: Mulai sekarang, semua berkas media yang telah Anda unggah akan ditandai sebagai sensitif dan disembunyikan di balik peringatan yang harus diklik.
+        silence: Anda masih tetap dapat menggunakan akun tetapi hanya orang yang mengikuti Anda yang dapat melihat kiriman Anda di server ini, dan Anda mungkin akan dikeluarkan dari fitur pencarian akun. Bagaimana pun, orang lain tetap dapat mengikuti Anda secara manual.
+        suspend: Anda tidak dapat menggunakan akun Anda, dan profil serta data lain Anda tidak lagi dapat diakses. Anda masih tetap bisa masuk akun untuk minta cadangan data sampai data Anda akan dihapus permanen 30 hari lagi, tapi kami akan menyimpan beberapa data dasar untuk mencegah Anda menghindari penangguhan.
+      get_in_touch: Jika Anda yakin ini kesalahan, Anda dapat membalas email ini untuk menghubungi staf %{instance}.
+      reason: 'Alasan:'
       review_server_policies: Tinjau kebijakan server
-      statuses: 'Khususnya untuk:'
+      statuses: 'Postingan yang telah terbukti pelanggarannya:'
       subject:
+        delete_statuses: Postingan anda pada %{acct} telah dihapus
         disable: Akun Anda %{acct} telah dibekukan
         none: Peringatan untuk %{acct}
-        sensitive: Postingan media akun Anda %{acct} telah ditandai sebagai sensitif
+        sensitive: File media anda pada %{acct} akan ditandai sebagai sensitif mulai saat ini
         silence: Akun Anda %{acct} telah dibatasi
         suspend: Akun Anda %{acct} telah ditangguhkan
       title:
+        delete_statuses: Postingan dihapus
         disable: Akun dibekukan
         none: Peringatan
-        sensitive: Media Anda telah ditandai sebagai sensitif
+        sensitive: Media disembunyikan
         silence: Akun dibatasi
         suspend: Akun ditangguhkan
     welcome:

@@ -46,8 +46,37 @@ sl:
         extra: Če tega niste zahtevali, prezrite to e-poštno sporočilo. Vaše geslo se ne bo spremenilo, dokler ne kliknete na zgornjo povezavo in ustvarite novega.
         subject: 'Mastodon: Navodila za ponastavitev gesla'
         title: Ponastavi geslo
+      two_factor_disabled:
+        explanation: Dvojno oz. dvofazno preverjanje pristnosti je za vaš račun onemogočeno. Prijava je zdaj možna le z e-poštnim naslovom in geslom.
+        subject: 'Mastodon: dvojno preverjanje pristnosti je onemogočeno'
+        title: 2FA onemogočeno
+      two_factor_enabled:
+        explanation: Dvojno oz. dvofazno preverjanje pristnosti je za vaš račun omogočena. Žeton, izdelan z aplikacijo TOTP, bo zahtevan zs prijavo.
+        subject: 'Mastodon: dvojno preverjanje pristnosti je omogočeno'
+        title: 2FA omogočeno
+      two_factor_recovery_codes_changed:
+        explanation: Prejšnje obnovitvene kode so postale neveljavne in ustvarjene so bile nove.
+        subject: 'Mastodon: varnostne obnovitvene kode za dvojno preverjanje pristnosti so ponovno izdelane'
+        title: obnovitvene kode 2FA spremenjene
       unlock_instructions:
         subject: 'Mastodon: Odkleni navodila'
+      webauthn_credential:
+        added:
+          explanation: Naslednja varnostna koda je dodana vašemu računu
+          subject: 'Mastodon: nova varnostna koda'
+          title: Dodana je nova varnostna koda
+        deleted:
+          explanation: Naslednja varnostna koda je izbrisana iz vašega računa
+          subject: 'Mastodon: varnostna koda izbrisana'
+          title: Ena od vaših varnostnih kod je bila izbrisana
+      webauthn_disabled:
+        explanation: Overjanje pristnosti z varnostnimi ključi je za vaš račun onemogočeno. Prijava je zdaj možna le z uporabo žetona, ki ga izdela aplikacijo TOTP.
+        subject: 'Mastodon: overjanje pristnosti z varnosnimi kodami je onemogočeno'
+        title: Varnostne kode onemogočene
+      webauthn_enabled:
+        explanation: Overjanje z varnostnim ključem je omogočeno za vaš račun. Svoj varnostni ključ lahko zdaj uporabite za prijavo.
+        subject: 'Mastodon: preverjanje pristnosti z varnostno kodo je omogočeno'
+        title: Varnostne kode omogočene
     omniauth_callbacks:
       failure: Overitev iz %{kind} ni možna zaradi "%{reason}".
       success: Overitev iz računa %{kind} je bila uspešna.

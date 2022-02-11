@@ -107,7 +107,6 @@ cs:
     accounts:
       add_email_domain_block: Blokovat e-mailovou doménu
       approve: Schválit
-      approve_all: Schválit vše
       approved_msg: Žádost o registraci uživatele %{username} úspěšně schválena
       are_you_sure: Opravdu?
       avatar: Avatar
@@ -161,7 +160,6 @@ cs:
         active: Aktivní
         all: Vše
         pending: Čekající
-        silenced: Omezené
         suspended: Pozastavené
         title: Moderování
       moderation_notes: Moderátorské poznámky
@@ -179,7 +177,6 @@ cs:
       redownload: Obnovit profil
       redownloaded_msg: Profil účtu %{username} byl úspěšně obnoven ze zdroje
       reject: Zamítnout
-      reject_all: Zamítnout vše
       rejected_msg: Žádost o registraci uživatele %{username} úspěšně zamítnuta
       remove_avatar: Odstranit avatar
       remove_header: Odstranit záhlaví
@@ -218,8 +215,9 @@ cs:
       suspended: Uživatel pozastaven
       suspension_irreversible: Data tohoto účtu byla nevratně smazána. Účet můžete obnovit, aby byl použitelný, ale nebudou obnovena žádná jeho dřívější data.
       suspension_reversible_hint_html: Účet byl pozastaven a jeho data budou kompletně smazána %{date}. Do té doby může být tento účet kompletně obnoven do původního stavu. Chcete-li smazat všechna data účtu ihned, můžete tak učinit níže.
-      time_in_queue: Čeká ve frontě %{time}
       title: Účty
+      unblock_email: Odblokovat e-mailovou adresu
+      unblocked_email_msg: E-mailová adresa %{username} byla úspěšně odblokována
       unconfirmed_email: Nepotvrzený e-mail
       undo_sensitized: Vrátit zpět citlivost
       undo_silenced: Zrušit omezení
@@ -234,6 +232,7 @@ cs:
       whitelisted: Povoleno federovat
     action_logs:
       action_types:
+        approve_user: Schválit uživatele
         assigned_to_self_report: Přiřadit hlášení
         change_email_user: Změnit uživateli e-mailovou adresu
         confirm_user: Potvrdit uživatele
@@ -251,6 +250,7 @@ cs:
         destroy_domain_allow: Odstranit povolenou doménu
         destroy_domain_block: Odstranit blokování domény
         destroy_email_domain_block: Smazat blokaci e-mailové domény
+        destroy_instance: Odmazat doménu
         destroy_ip_block: Smazat IP pravidlo
         destroy_status: Odstranit Příspěvek
         destroy_unavailable_domain: Smazat nedostupnou doménu
@@ -263,6 +263,7 @@ cs:
         enable_user: Povolit uživatele
         memorialize_account: Změna na „in memoriam“
         promote_user: Povýšit uživatele
+        reject_user: Odmítnout uživatele
         remove_avatar_user: Odstranit avatar
         reopen_report: Znovu otevřít hlášení
         reset_password_user: Obnovit heslo
@@ -271,6 +272,7 @@ cs:
         silence_account: Omezit účet
         suspend_account: Pozastavit účet
         unassigned_report: Zrušit přiřazení hlášení
+        unblock_email_account: Odblokovat e-mailovou adresu
         unsensitive_account: Zrušit označení médií ve vašem účtu jako citlivých
         unsilence_account: Zrušit omezení účtu
         unsuspend_account: Zrušit pozastavení účtu
@@ -279,6 +281,7 @@ cs:
         update_domain_block: Změnit blokaci domény
         update_status: Aktualizovat Příspěvek
       actions:
+        approve_user_html: "%{name} schválil registraci od %{target}"
         assigned_to_self_report_html: Uživatel %{name} si přidělil hlášení %{target}
         change_email_user_html: Uživatel %{name} změnil e-mailovou adresu uživatele %{target}
         confirm_user_html: Uživatel %{name} potvrdil e-mailovou adresu uživatele %{target}
@@ -296,6 +299,7 @@ cs:
         destroy_domain_allow_html: Uživatel %{name} zakázal federaci s doménou %{target}
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
         destroy_email_domain_block_html: Uživatel %{name} odblokoval e-mailovou doménu %{target}
+        destroy_instance_html: Uživatel %{name} odmazal doménu %{target}
         destroy_ip_block_html: "%{name} odstranil pravidlo pro IP %{target}"
         destroy_status_html: Uživatel %{name} odstranil příspěvek uživatele %{target}
         destroy_unavailable_domain_html: "%{name} obnovil doručování na doménu %{target}"
@@ -308,6 +312,7 @@ cs:
         enable_user_html: Uživatel %{name} povolil přihlašování pro uživatele %{target}
         memorialize_account_html: Uživatel %{name} změnil účet %{target} na „in memoriam“ stránku
         promote_user_html: Uživatel %{name} povýšil uživatele %{target}
+        reject_user_html: "%{name} odmítl registraci od %{target}"
         remove_avatar_user_html: Uživatel %{name} odstranil avatar uživatele %{target}
         reopen_report_html: Uživatel %{name} znovu otevřel hlášení %{target}
         reset_password_user_html: Uživatel %{name} obnovil heslo uživatele %{target}
@@ -316,6 +321,7 @@ cs:
         silence_account_html: Uživatel %{name} ztišil uživatele %{target}
         suspend_account_html: Uživatel %{name} pozastavil účet uživatele %{target}
         unassigned_report_html: Uživatel %{name} odebral hlášení %{target}
+        unblock_email_account_html: Uživatel %{name} odblokoval e-mailovou adresu %{target}
         unsensitive_account_html: "%{name} zrušil označení médií účtu %{target} jako citlivých"
         unsilence_account_html: Uživatel %{name} zrušil ztišení uživatele %{target}
         unsuspend_account_html: Uživatel %{name} zrušil pozastavení účtu uživatele %{target}
@@ -388,17 +394,17 @@ cs:
         few: "<strong>%{count}</strong> čekající hlášení"
         many: "<strong>%{count}</strong> čekajících hlášení"
         one: "<strong>1</strong> čekající hlášení"
-        other: "<strong>%{count}</strong> čekající hlášení"
+        other: "<strong>%{count}</strong> čekajících hlášení"
       pending_tags_html:
         few: "<strong>%{count}</strong> čekající hashtagy"
         many: "<strong>%{count}</strong> čekajících hashtagů"
         one: "<strong>1</strong> čekající hashtag"
-        other: "<strong>%{count}</strong> čekající hashtagy"
+        other: "<strong>%{count}</strong> čekajících hashtagů"
       pending_users_html:
         few: "<strong>%{count}</strong> čekající uživatelé"
         many: "<strong>%{count}</strong> čekajících uživatelů"
         one: "<strong>1</strong> čekající uživatel"
-        other: "<strong>%{count}</strong> čekající uživatel"
+        other: "<strong>%{count}</strong> čekajících uživatelů"
       resolved_reports: vyřešeno hlášení
       software: Software
       sources: Zdroje registrací
@@ -481,6 +487,7 @@ cs:
       back_to_limited: Omezený
       back_to_warning: Varování
       by_domain: Doména
+      confirm_purge: Jste si jisti, že chcete nevratně smazat data z této domény?
       delivery:
         all: Vše
         clear: Vymazat chyby doručení
@@ -498,6 +505,7 @@ cs:
       delivery_available: Doručení je k dispozici
       delivery_error_days: Dny chybného doručování
       delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
+      destroyed_msg: Data z %{domain} nyní čekají na smazání.
       empty: Nebyly nalezeny žádné domény.
       known_accounts:
         few: "%{count} známé účty"
@@ -510,6 +518,7 @@ cs:
         title: Moderování
       private_comment: Soukromý komentář
       public_comment: Veřejný komentář
+      purge: Odmazat
       title: Federace
       total_blocked_by_us: Blokované námi
       total_followed_by_them: Sledované jimi
@@ -539,8 +548,6 @@ cs:
         title: Vytvořit nové IP pravidlo
       no_ip_block_selected: Nebyla změněna žádná IP pravidla, protože nebylo žádné zaškrtnuto
       title: IP pravidla
-    pending_accounts:
-      title: Čekající účty (%{count})
     relationships:
       title: Vztahy uživatele %{acct}
     relays:
@@ -569,11 +576,6 @@ cs:
           many: "%{count} poznámek"
           one: "%{count} poznámka"
           other: "%{count} poznámek"
-        reports:
-          few: "%{count} hlášení"
-          many: "%{count} hlášení"
-          one: "%{count} hlášení"
-          other: "%{count} hlášení"
       action_taken_by: Akci vykonal uživatel
       are_you_sure: Opravu?
       assign_to_self: Přidělit ke mně
@@ -698,22 +700,16 @@ cs:
         desc_html: Ovlivňuje hashtagy, které nebyly dříve zakázány
         title: Povolit zobrazení hashtagů mezi populárními i bez předchozího posouzení
       trends:
-        desc_html: Veřejně zobrazit dříve schválené hashtagy, které jsou zrovna populární
-        title: Populární hashtagy
+        desc_html: Veřejně zobrazit dříve schválený obsah, který je zrovna populární
+        title: Trendy
     site_uploads:
       delete: Odstranit nahraný soubor
       destroyed_msg: Upload stránky byl úspěšně smazán!
     statuses:
       back_to_account: Zpět na stránku účtu
-      batch:
-        delete: Smazat
-        nsfw_off: Označit, že není citlivý
-        nsfw_on: Označit jako citlivý
       deleted: Smazáno
-      failed_to_execute: Nepodařilo se vykonat
       media:
         title: Média
-      no_media: Žádná média
       no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
       title: Příspěvky účtu
       with_media: S médii
@@ -726,21 +722,55 @@ cs:
       sidekiq_process_check:
         message_html: Pro %{value} frontu/fronty neběží žádný Sidekiq proces. Zkontrolujte prosím svou Sidekiq konfiguraci
     tags:
-      accounts_today: Dnešní jedinečná použití
-      accounts_week: Jedinečná použití tento týden
-      breakdown: Přehled dnešního používání podle zdroje
-      last_active: Nedávno použité
-      most_popular: Nejpopulárnější
-      most_recent: Nedávno vytvořené
-      name: Hashtag
-      review: Stav schválení
-      reviewed: Schválen
-      title: Hashtagy
-      trending_right_now: Populární právě teď
-      unique_uses_today: Dnes použilo %{count} uživatelů
-      unreviewed: Nezkontrolováno
+      review: Stav posouzení
       updated_msg: Nastavení hashtagů bylo úspěšně aktualizováno
     title: Administrace
+    trends:
+      allow: Povolit
+      approved: Schválené
+      disallow: Zakázat
+      links:
+        allow: Povolit odkaz
+        allow_provider: Povolit vydavatele
+        disallow: Zakázat odkaz
+        disallow_provider: Zakázat vydavatele
+        shared_by_over_week:
+          few: Sdílený %{count} lidmi za poslední týden
+          many: Sdílený %{count} lidmi za poslední týden
+          one: Sdílený jedním člověkem za poslední týden
+          other: Sdílený %{count} lidmi za poslední týden
+        title: Populární odkazy
+        usage_comparison: Za dnešek %{today} sdílení, oproti %{yesterday} včera
+      pending_review: Čeká na posouzení
+      preview_card_providers:
+        allowed: Odkazy z tohoto vydavatele se smí objevovat mezi populárními
+        rejected: Odkazy z tohoto vydavatele se neobjeví mezi populárními
+        title: Vydavatelé
+      rejected: Zamítnutí
+      tags:
+        current_score: Aktuální skóre %{score}
+        dashboard:
+          tag_accounts_measure: unikátních použití
+          tag_languages_dimension: Nejčastější jazyky
+          tag_servers_dimension: Nejčastější servery
+          tag_servers_measure: různých serverů
+          tag_uses_measure: použití celkem
+        listable: Může být navrhován
+        not_listable: Nebude navrhován
+        not_trendable: Neobjeví se mezi populárními
+        not_usable: Nemůže být používán
+        peaked_on_and_decaying: Vrcholil %{date}, nyní skomírá
+        title: Populární hashtagy
+        trendable: Může se objevovat mezi populárními
+        trending_rank: 'Populární #%{rank}'
+        usable: Může být používán
+        usage_comparison: Za dnešek %{today} použití, oproti %{yesterday} včera
+        used_by_over_week:
+          few: Použit %{count} lidmi za poslední týden
+          many: Použit %{count} lidmi za poslední týden
+          one: Použit jedním člověkem za poslední týden
+          other: Použit %{count} lidmi za poslední týden
+      title: Trendy
     warning_presets:
       add_new: Přidat nové
       delete: Smazat
@@ -755,9 +785,16 @@ cs:
       body: Uživatel %{reporter} nahlásil uživatele %{target}
       body_remote: Někdo z domény %{domain} nahlásil uživatele %{target}
       subject: Nové hlášení pro %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Hashtag #%{name} je dnes populární, ale nebyl dříve schválen. Pokud to nedovolíte, nebude veřejně zobrazen. Nebo pouze uložte formulář tak, jak je, a už o něm neuslyšíte.'
-      subject: Nový hashtag ke schválení na %{instance} (#%{name})
+    new_trending_links:
+      body: Následující odkazy jsou dnes populární, ale jejich vydavatelé zatím nebyli posouzeni. Nebudou veřejně zobrazeny, pokud je neschválíte. Pro stejné vydavatele už další upozornění nedostanete.
+      no_approved_links: Momentálně nejsou žádné schválené populární odkazy.
+      requirements: Nejnižší schválený populární odkaz je momentálně "%{lowest_link_title}" se skóre %{lowest_link_score}.
+      subject: Nové populární odkazy k posouzení na %{instance}
+    new_trending_tags:
+      body: 'Následující hashtagy jsou dnes populární, ale nebyly dříve přezkoumány. Nebudou zobrazeny veřejně, pokud je neschválíte:'
+      no_approved_tags: Momentálně nejsou žádné schválené populární hashtagy.
+      requirements: Nejnižší schválený populární hashtag je momentálně "%{lowest_tag_name}" se skóre %{lowest_tag_score}.
+      subject: Nové populární hashtagy k posouzení na %{instance}
   aliases:
     add_new: Vytvořit alias
     created_msg: Nový alias byl úspěšně vytvořen. Nyní můžete zahájit přesun ze starého účtu.
@@ -809,6 +846,7 @@ cs:
     invalid_reset_password_token: Token pro obnovení hesla je buď neplatný, nebo vypršel. Vyžádejte si prosím nový.
     link_to_otp: Zadat kód dvoufázového ověření z mobilu nebo záložní kód
     link_to_webauth: Použít svůj bezpečnostní klíč
+    log_in_with: Přihlásit přes
     login: Přihlásit
     logout: Odhlásit
     migrate_account: Přesunout se na jiný účet
@@ -831,7 +869,7 @@ cs:
       account_status: Stav účtu
       confirming: Čeká na dokončení potvrzení e-mailu.
       functional: Váš účet je zcela funkční.
-      pending: Vaše žádost čeká na schválení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
+      pending: Vaše žádost čeká na posouzení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
     too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
     trouble_logging_in: Problémy s přihlášením?
@@ -964,9 +1002,10 @@ cs:
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
     delete: Smazat
-    no_batch_actions_available: Pro tuto stránku nejsou dostupné žádné souhrnné akce
+    none: Žádné
     order_by: Seřadit podle
     save_changes: Uložit změny
+    today: dnes
     validation_errors:
       few: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyby uvedené níže
       many: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
@@ -974,26 +1013,6 @@ cs:
       other: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyb uvedených níže
   html_validator:
     invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
-  identity_proofs:
-    active: Aktivní
-    authorize: Ano, autorizovat
-    authorize_connection_prompt: Autorizovat toto kryptografické spojení?
-    errors:
-      failed: Kryptografické spojení selhalo. Zkuste to prosím znovu z %{provider}.
-      keybase:
-        invalid_token: Keybase tokeny jsou hashe podpisů a musí být dlouhé 66 hexadecimálních znaků
-        verification_failed: Keybase nerozpoznává tento token jako podpis uživatele %{kb_username} na Keybase. Zkuste to prosím znovu z Keybase.
-      wrong_user: Nelze vytvořit důkaz pro %{proving}, zatímco jste přihlášeni jako %{current}. Přihlaste se jako %{proving} a zkuste to znovu.
-    explanation_html: Zde můžete kryptograficky propojit další své identity z jiných platforem, jako například Keybase. To umožňuje jiným lidem poslat vám šifrované zprávy na těchto platformách a důvěřovat, že obsah, který jim posíláte, pochází od vás.
-    i_am_html: Na %{service} jsem %{username}.
-    identity: Identita
-    inactive: Neaktivní
-    publicize_checkbox: 'A odeslat tohle:'
-    publicize_toot: 'Je to dokázáno! Na %{service} jsem %{username}: %{url}'
-    remove: Odstranit důkaz z účtu
-    removed: Úspěšně odstraněn důkaz z účtu
-    status: Stav ověření
-    view_proof: Zobrazit důkaz
   imports:
     errors:
       over_rows_processing_limit: obsahuje více než %{count} řádků
@@ -1273,7 +1292,6 @@ cs:
     edit_profile: Upravit profil
     export: Export dat
     featured_tags: Zvýrazněné hashtagy
-    identity_proofs: Důkazy identity
     import: Import
     import_and_export: Import a export
     migrate: Přesun účtu
@@ -1311,13 +1329,12 @@ cs:
       other: 'obsahoval nepovolené hashtagy: %{tags}'
     errors:
       in_reply_not_found: Příspěvek, na který se pokoušíte odpovědět, neexistuje.
-    language_detection: Zjistit jazyk automaticky
     open_in_web: Otevřít na webu
     over_character_limit: byl překročen limit %{max} znaků
     pin_errors:
+      direct: Příspěvky viditelné pouze zmíněným uživatelům nelze připnout
       limit: Už jste si připnuli maximální počet příspěvků
       ownership: Nelze připnout příspěvek někoho jiného
-      private: Neveřejné příspěvky nelze připnout
       reblog: Boosty nelze připnout
     poll:
       total_people:
@@ -1503,24 +1520,15 @@ cs:
       subject: Potvrďte prosím pokus o přihlášení
       title: Pokus o přihlášení
     warning:
-      explanation:
-        disable: Nemůžete se přihlásit do svého účtu nebo ho jakkoliv jinak používat, ale váš profil a ostatní data zůstávají nedotčeny.
-        sensitive: Vámi nahrané a odkazované mediální soubory budou považovány za citlivé.
-        silence: Nadále můžete používat svůj účet, ale pouze lidé, kteří vás již sledovali, uvidí vaše příspěvky na tomto serveru a můžete být vyjmuti z různých veřejných seznamů. Ostatní vás však stále mohou ručně začít sledovat.
-        suspend: Nemůžete už používat svůj účet a váš profil a ostatní data již nejsou dostupná. Stále se můžete přihlásit pro vyžádání zálohy svých dat, dokud nebudou zcela smazána, ale ponecháme si některé údaje, abychom vám zabránili ve vyhýbání se pozastavení.
-      get_in_touch: Můžete odpovědět na tento e-mail a spojit se s personálem serveru %{instance}.
       review_server_policies: Zkontrolujte pravidla serveru
-      statuses: 'Konkrétně kvůli:'
       subject:
         disable: Váš účet %{acct} byl zmrazen
         none: Varování pro %{acct}
-        sensitive: Média z Vašeho účtu %{acct} byla označena za citlivá
         silence: Váš účet %{acct} byl omezen
         suspend: Váš účet %{acct} byl pozastaven
       title:
         disable: Účet zmrazen
         none: Varování
-        sensitive: Vaše média byla označena jako citlivá
         silence: Účet omezen
         suspend: Účet pozastaven
     welcome:

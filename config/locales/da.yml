@@ -99,7 +99,6 @@ da:
     accounts:
       add_email_domain_block: Blokér e-maildomæne
       approve: Godkend
-      approve_all: Godkend alle
       approved_msg: Tilmeldingsansøgning for %{username} blev godkendt
       are_you_sure: Sikker?
       avatar: Profilbillede
@@ -114,6 +113,7 @@ da:
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
+      custom: Tilpasset
       delete: Slet data
       deleted: Slettet
       demote: Degradér
@@ -153,7 +153,6 @@ da:
         active: Aktiv
         all: Alle
         pending: Afventer
-        silenced: Tavsgjort
         suspended: Suspenderet
         title: Moderation
       moderation_notes: Moderationsnotater
@@ -171,7 +170,6 @@ da:
       redownload: Opfrisk profil
       redownloaded_msg: Profil for %{username} opfriske fra oprindelsesserver
       reject: Afvis
-      reject_all: Afvis alle
       rejected_msg: Tilmeldingsansøgning fra %{username} afvist
       remove_avatar: Fjern profilbillede
       remove_header: Fjern overskrift
@@ -206,12 +204,14 @@ da:
       silence: Tavsgør
       silenced: Tavsgjort
       statuses: Statusser
+      strikes: Tidligere striber
       subscribe: Abonnér
       suspended: Suspenderet
       suspension_irreversible: Disse kontodata er blevet slettet permanent. Du kan afsuspendere kontoen for at gøre den brugbar, men dette gendanner ikke de tidligere kontodata.
       suspension_reversible_hint_html: Kontoen er blevet suspenderet, og dens data fjernes helt d. %{date}. Indtil da kan kontoen genoprettes uden datatab mv. Ønsker alle kontodata fjernet straks, kan dette gøres nedenfor.
-      time_in_queue: Venter i køen %{time}
       title: Konti
+      unblock_email: Afblokér e-mailadresse
+      unblocked_email_msg: "%{username}s e-mail-adresse afblokeret"
       unconfirmed_email: Ikke-bekræftet e-mail
       undo_sensitized: Fortryd sensitiv
       undo_silenced: Fortryd tavsgørelse
@@ -226,6 +226,7 @@ da:
       whitelisted: Tilladt for federering
     action_logs:
       action_types:
+        approve_user: Godkend bruger
         assigned_to_self_report: Tildel rapport
         change_email_user: Skift e-mail for bruger
         confirm_user: Bekræft bruger
@@ -243,6 +244,7 @@ da:
         destroy_domain_allow: Slet domænetilladelse
         destroy_domain_block: Slet domæneblokering
         destroy_email_domain_block: Slet e-maildomæneblokering
+        destroy_instance: Udrens domæne
         destroy_ip_block: Slet IP-regel
         destroy_status: Slet status
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
@@ -255,6 +257,7 @@ da:
         enable_user: Aktivér brugeren
         memorialize_account: Gør til mindekonto
         promote_user: Promovér bruger
+        reject_user: Afvis bruger
         remove_avatar_user: Fjern profilbillede
         reopen_report: Genåbn anmeldelse
         reset_password_user: Nulstil adgangskode
@@ -263,6 +266,7 @@ da:
         silence_account: Tavsgør konto
         suspend_account: Suspendér konto
         unassigned_report: Aftildel anmeldelse
+        unblock_email_account: Afblokér af e-mailadresse
         unsensitive_account: Afmarkér medierne i din konto som sensitive
         unsilence_account: Fjern kontotavsgørelse
         unsuspend_account: Afsuspendér konto
@@ -271,6 +275,7 @@ da:
         update_domain_block: Opdatér domæneblokering
         update_status: Opdatér status
       actions:
+        approve_user_html: "%{name} godkendte tilmelding fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte sig selv anmeldelsen %{target}"
         change_email_user_html: "%{name} ændrede e-mailadressen for bruger %{target}"
         confirm_user_html: "%{name} bekræftede e-mailadressen for bruger %{target}"
@@ -288,6 +293,7 @@ da:
         destroy_domain_allow_html: "%{name} fjernede federeringstilladelsen med domænet %{target}"
         destroy_domain_block_html: "%{name} afblokerede domænet %{target}"
         destroy_email_domain_block_html: "%{name} afblokerede e-maildomænet %{target}"
+        destroy_instance_html: "%{name} udrensede domænet %{target}"
         destroy_ip_block_html: "%{name} slettede en regel for IP %{target}"
         destroy_status_html: "%{name} fjernede statussen fra %{target}"
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
@@ -300,6 +306,7 @@ da:
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
         promote_user_html: "%{name} forfremmede brugeren %{target}"
+        reject_user_html: "%{name} afviste tilmelding fra %{target}"
         remove_avatar_user_html: "%{name} fjernede %{target}s profilbillede"
         reopen_report_html: "%{name} genåbnede anmeldelsen %{target}"
         reset_password_user_html: "%{name} nulstillede adgangskoden for brugeren %{target}"
@@ -308,6 +315,7 @@ da:
         silence_account_html: "%{name} tavsgjorde %{target}s konto"
         suspend_account_html: "%{name} suspenderede %{target}s konto"
         unassigned_report_html: "%{name} fjernede tildelingen af rapporten %{target}"
+        unblock_email_account_html: "%{name} afblokerede %{target}s e-mailadresse"
         unsensitive_account_html: "%{name} afmarkerede %{target}s medier som sensitive"
         unsilence_account_html: "%{name} fjernede tavsgøring af %{target}s konto"
         unsuspend_account_html: "%{name} fjernede suspenderingen af %{target}s konto"
@@ -375,6 +383,7 @@ da:
       interactions: interaktioner
       media_storage: Medielagerplads
       new_users: nye brugere
+      opened_reports: rapporter åbnet
       pending_reports_html:
         one: "<strong>1</strong> afventende rapport"
         other: "<strong>%{count}</strong> afventende rapporter"
@@ -464,6 +473,7 @@ da:
       back_to_limited: Begrænset
       back_to_warning: Advarsel
       by_domain: Domæne
+      confirm_purge: Sikker på, at data skal slettes fra dette domæne permanent?
       delivery:
         all: Alle
         clear: Ryd leveringsfejl
@@ -479,6 +489,7 @@ da:
       delivery_available: Levering er tilgængelig
       delivery_error_days: Leveringsfejldage
       delivery_error_hint: Er levering ikke mulig i %{count} dage, markeres den automatisk som ikke-leverbar.
+      destroyed_msg: Data fra %{domain} er nu sat i kø til snarlig sletning.
       empty: Ingen domæner fundet.
       known_accounts:
         one: "%{count} kendt konto"
@@ -489,6 +500,7 @@ da:
         title: Moderation
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
+      purge: Udrens
       title: Federation
       total_blocked_by_us: Blokeret af os
       total_followed_by_them: Følges af dem
@@ -518,8 +530,6 @@ da:
         title: Opret ny IP-regel
       no_ip_block_selected: Ingen IP-regler blev ændret, da ingen blev valgt
       title: IP-regler
-    pending_accounts:
-      title: Afventende konti (%{count})
     relationships:
       title: "%{acct}-relationer"
     relays:
@@ -541,32 +551,44 @@ da:
     report_notes:
       created_msg: Anmeldelsesnotat er oprettet!
       destroyed_msg: Anmeldelsesnotat er slettet!
+      today_at: I dag kl. %{time}
     reports:
       account:
         notes:
           one: "%{count} notat"
           other: "%{count} notater"
-        reports:
-          one: "%{count} anmeldelse"
-          other: "%{count} anmeldelser"
+      action_log: Revisionslog
       action_taken_by: Handling udført af
+      actions:
+        other_description_html: Se flere muligheder for kontoadfærdsstyring og kommunikationstilpasning til den anmeldte konto.
+        silence_description_html: Profilen vil kun være synlig for dem, som allerede følger den eller manuelt slå den op, hvilket markant begrænse dens rækkevidde. Kan altid omgøres.
+        suspend_description_html: Profilen inkl. alt indhold gøres utilgængelig, indtil den til sidst slettes. Interaktion med kontoen vil være umulig. Reversible inden for 30 dage.
+      actions_description_html: 'Hvis fjernelse af det krænkende indhold ovenfor er utilstrækkelig:'
+      add_to_report: Føj mere til anmeldelse
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
       assigned: Tildelt moderator
       by_target_domain: Domæne for anmeldt konto
+      category: Kategori
+      category_description_html: Årsagen til anmeldelsen af denne konto og/eller indhold refereres i kommunikationen med den anmeldte konto
       comment:
         none: Ingen
+      comment_description_html: 'For at give mere information, skrev %{name}:'
       created_at: Anmeldt
+      delete_and_resolve: Løs og slet
       forwarded: Videresendt
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Markér som løst
       mark_as_unresolved: Markér som ikke-løst
+      no_one_assigned: Ingen
       notes:
         create: Tilføj notat
         create_and_resolve: Løs med notat
         create_and_unresolve: Genåbn med notat
         delete: Slet
         placeholder: Beskriv de udførte handlinger eller andre relevante opdateringer...
+        title: Notater
+      notes_description_html: Se og skriv notater til andre moderatorer og dit fremtid selv
       reopen: Genåbn anmeldelse
       report: 'Anmeldelse #%{id}'
       reported_account: Anmeldt konto
@@ -574,11 +596,14 @@ da:
       resolved: Løst
       resolved_msg: Anmeldelse er nu løst!
       status: Status
+      statuses: Anmeld indhold
+      statuses_description_html: Krænkende indhold refereres i kommunikationen med den anmeldte konto
       target_origin: Anmeldte kontos oprindelse
       title: Anmeldelser
       unassign: Utildel
       unresolved: Ikke-løst
       updated_at: Opdateret
+      view_profile: Vis profil
     rules:
       add_new: Tilføj regel
       delete: Slet
@@ -680,15 +705,13 @@ da:
       destroyed_msg: Websteds-upload blev slettet!
     statuses:
       back_to_account: Tilbage til kontosiden
+      back_to_report: Retur til anmeldelsessiden
       batch:
-        delete: Slet
-        nsfw_off: Markér som ikke-sensitivt
-        nsfw_on: Markér som sensitivt
+        remove_from_report: Fjern fra anmeldelse
+        report: Anmeldelse
       deleted: Slettet
-      failed_to_execute: Udførelse mislykkedes
       media:
         title: Medier
-      no_media: Ingen medier
       no_status_selected: Ingen indlæg ændret, da ingen var valgt
       title: Kontoindlæg
       with_media: Med medier
@@ -701,21 +724,51 @@ da:
       sidekiq_process_check:
         message_html: Ingen Sidekiq-proces kører for %{value}-kø(er). Gennemgå din Sidekiq-opsætning
     tags:
-      accounts_today: Unikke anvendelser i dag
-      accounts_week: Unikke anvendelser denne uge
-      breakdown: Dagens anvendelse fordelt på kilde
-      last_active: Senest aktiv
-      most_popular: Mest populære
-      most_recent: Seneste
-      name: Hashtag
       review: Gennemsynsstatus
-      reviewed: Gennemgået
-      title: Hashtags
-      trending_right_now: Populære lige nu
-      unique_uses_today: "%{count} indlæg i dag"
-      unreviewed: Ikke gennemgået
       updated_msg: Hashtag-indstillinger opdateret
     title: Administration
+    trends:
+      allow: Tillad
+      approved: Godkendt
+      disallow: Tillad ikke
+      links:
+        allow: Tillad link
+        allow_provider: Tillad udgiver
+        disallow: Tillad ikke link
+        disallow_provider: Tillad ikke udgiver
+        shared_by_over_week:
+          one: Delt af én person i løbet af den sidste uge
+          other: Delt af %{count} personer i løbet af den sidste uge
+        title: Populære links
+        usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
+      pending_review: Afventende vurdering
+      preview_card_providers:
+        allowed: Links fra denne udgiver kan trende
+        rejected: Links fra denne udgiver vil ikke trende
+        title: Udgivere
+      rejected: Afvist
+      tags:
+        current_score: Aktuel score %{score}
+        dashboard:
+          tag_accounts_measure: unikke brugere
+          tag_languages_dimension: Topsprog
+          tag_servers_dimension: Topservere
+          tag_servers_measure: forskellige servere
+          tag_uses_measure: brugere i alt
+        listable: Kan foreslås
+        not_listable: Foreslås ikke
+        not_trendable: Vises ikke under tendenser
+        not_usable: Kan ikke bruges
+        peaked_on_and_decaying: Toppede d. %{date}, nu nedadgående
+        title: Populære hashtags
+        trendable: Kan vises under tendenser
+        trending_rank: 'Populær #%{rank}'
+        usable: Kan bruges
+        usage_comparison: Brugt %{today} gange i dag, sammenlignet med %{yesterday} i går
+        used_by_over_week:
+          one: Brugt af én person i løbet af den sidste uge
+          other: Brugt af %{count} personer i løbet af den sidste uge
+      title: Trends
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
@@ -730,9 +783,16 @@ da:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
       subject: Ny anmeldelse for %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Hashtagget #%{name} teender i dag, men er ikke tidligere blevet gennemgået. Det vises ikke offentligt, medmindre du tillader det eller blot gemme formularen, som den er, for aldrig at høre om det igen.'
-      subject: Nyt hashtag til gennemsyn på %{instance} (#%{name})
+    new_trending_links:
+      body: De flg. links er populære i dag, men deres udgivere er ikke tidligere blevet revideret. De vil ikke blive vist offentligt, medmindre du godkender dem. Yderligere notifikationer fra de samme udgivere genereres ikke.
+      no_approved_links: Der er i pt. ingen godkendte populære links.
+      requirements: Det laveste godkendte populære link er pt. "%{lowest_link_title}" med en score på %{lowest_link_score}.
+      subject: Nye populære links er klar til revidering på %{instance}
+    new_trending_tags:
+      body: 'Flg. hashtags er populære i dag, men de er ikke tidligere revideret. De vises ikke offentligt, medmindre du godkender dem:'
+      no_approved_tags: Der er pt. ingen godkendte populære hashtags.
+      requirements: 'Det laveste godkendte populære hashtags er pt. #%{lowest_tag_name} med en score på %{lowest_tag_score}.'
+      subject: Nye populære hashtags er klar til revidering på %{instance}
   aliases:
     add_new: Opret alias
     created_msg: Nyt alias oprettet. Du kan nu påbegynde flytningen fra den gamle konto.
@@ -784,6 +844,7 @@ da:
     invalid_reset_password_token: Adgangskodenulstillingstoken ugyldigt eller udløbet. Anmod om et nyt.
     link_to_otp: Angiv en tofaktorkode fra din mobil, eller en gendannelseskode
     link_to_webauth: Brug din sikkerhedsnøgleenhed
+    log_in_with: Log ind med
     login: Log ind
     logout: Log ud
     migrate_account: Flyt til en anden konto
@@ -939,34 +1000,15 @@ da:
     changes_saved_msg: Ændringerne er gemt!
     copy: Kopier
     delete: Slet
-    no_batch_actions_available: Ingen multihandlinger tilgængelige på denne side
+    none: Intet
     order_by: Sortér efter
     save_changes: Gem ændringer
+    today: i dag
     validation_errors:
       one: Noget er ikke er helt i vinkel! Tjek fejlen nedenfor
       other: Noget er ikke er helt i vinkel! Tjek de %{count} fejl nedenfor
   html_validator:
     invalid_markup: 'indeholder ugyldig HTML-markup: %{error}'
-  identity_proofs:
-    active: Aktiv
-    authorize: Ja, godkend
-    authorize_connection_prompt: Godkend denne kryptografiske forbindelse?
-    errors:
-      failed: Den kryptografiske forbindelse mislykkedes. Prøv igen fra %{provider}.
-      keybase:
-        invalid_token: Keybase-tokens er hashes af signaturer og skal udgøre 66 hex tegn
-        verification_failed: Keybase genkender ikke dette token som Keybasebruger %{kb_username}s signatur. Forsøg igen fra Keybase.
-      wrong_user: Kan ikke oprette et bevis til %{proving}, når indlogget %{current}. Log ind som %{proving} og forsøg igen.
-    explanation_html: Her kan du kryptografisk forbinde dine andre identiteter fra andre platforme, såsom Keybase. Dette lader andre personer sende dig krypterede beskeder på disse platforme og giver dem mulighed for at stole på, at det indhold, du sender dem, kommer fra dig.
-    i_am_html: Jeg er %{username} på %{service}.
-    identity: Identitet
-    inactive: Inaktiv
-    publicize_checkbox: 'Og toot dette:'
-    publicize_toot: 'Det er bevist! Jeg er %{username} på %{service}: %{url}'
-    remove: Fjern bevis fra konto
-    removed: Bevis fjernet fra kontoen
-    status: Verifikationsstatus
-    view_proof: Se bevis
   imports:
     errors:
       over_rows_processing_limit: indeholder mere end %{count} rækker
@@ -1182,6 +1224,9 @@ da:
     reply:
       proceed: Fortsæt for at besvare
       prompt: 'Du ønsker at besvare dette indlæg:'
+  reports:
+    errors:
+      invalid_rules: refererer ikke til gyldige regler
   scheduled_statuses:
     over_daily_limit: Du har nået dagsgrænsen på %{limit} planlagte indlæg
     over_total_limit: Du har nået grænsen på %{limit} planlagte indlæg
@@ -1240,7 +1285,6 @@ da:
     edit_profile: Redigér profil
     export: Dataeksport
     featured_tags: Fremhævede hashtags
-    identity_proofs: Identitetsbeviser
     import: Import
     import_and_export: Importér og eksportér
     migrate: Kontomigrering
@@ -1265,18 +1309,19 @@ da:
         other: "%{count} videoer"
     boosted_from_html: Boostet fra %{acct_link}
     content_warning: 'Indholdsadvarsel: %{warning}'
+    default_language: Det samme som UI-sproget
     disallowed_hashtags:
       one: 'indeholdte et ikke tilladt hashtag: %{tags}'
       other: 'indeholdte de ikke tilladte hashtags: %{tags}'
+    edited_at: Redigeret %{date}
     errors:
       in_reply_not_found: Indlægget, du forsøger at besvare, ser ikke ud til at findes.
-    language_detection: Detektér sprog automatisk
     open_in_web: Åbn i browser
     over_character_limit: grænsen på %{max} tegn er nået
     pin_errors:
+      direct: Indlæg, som kun kan ses af nævnte brugere, kan ikke fastgøres
       limit: Du har allerede fastgjort det maksimale antal indlæg
       ownership: Andres indlæg kan ikke fastgøres
-      private: Ikke-offentlige indlæg kan ikke fastgjøres
       reblog: Et boost kan ikke fastgøres
     poll:
       total_people:
@@ -1351,6 +1396,7 @@ da:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Tilføj
     disable: Deaktivér 2FA
@@ -1378,24 +1424,31 @@ da:
       subject: Bekræft indlogningsforsøg
       title: Indlogningsforsøg
     warning:
+      categories:
+        spam: Spam
+        violation: Indhold overtræder flg. fællesskabsretningslinjer
       explanation:
-        disable: Du kan ikke længere logge ind på, eller på anden vis bruge, din konto, men din profil og øvrige data forbliver intakte.
-        sensitive: Dine uploadede mediefiler og linkede medier vil blive behandlet som sensitive.
-        silence: Du kan stadig bruge din konto, men kun personer, som allerede følger dig, vil se dine indlæg på denne server, og du kan blive udelukket fra forskellige offentlige lister. Personer vil stadig manuelt kunne følge dig.
-        suspend: Du kan ikke længere bruge din konto, og din profil samt øvrige data kan ikke længere tilgås. Du kan stadig logge ind for at anmode om en sikkerhedskopi af dine data, indtil dataene helt er fjernet. men visse data bevares mhp. at forhindre dig i at omgå udelukkelsen.
-      get_in_touch: Du kan besvare denne e-mail for at komme i kontakt med personalet på %{instance}.
+        delete_statuses: Nogle af dine indlæg har vist sig at være i strid med en eller flere fællesskabsretningslinjer og er som konsekvens fjernet af moderatorerne på %{instance}. Fremtidige overtrædelser kan resultere i hårdere kontosanktioner.
+        disable: Din konto kan ikke længere bruges, men profilen og andre data er intakte. Du kan anmode om en sikkerhedskopi af dine data, ændre kontoindstillinger eller slette kontoen.
+        sensitive: Fra nu af vil alle dine uploadede mediefiler blive markeret som sensitive og skjult bag en klik-igennem advarsel.
+        silence: Din konto kan stadig bruges, men dine indlæg vil kunne ses af personer, som allerede følger dig på denne server, og du kan blive udelukket fra forskellige opdagelsesfunktioner. Personer vil stadig kunne følge dig manuelt.
+        suspend: Din konto kan ikke længere bruges, og hverken profil eller øvrige data kan tilgås. Du kan stadig logge ind for at anmode om en sikkerhedskopi af dine data, indtil disse om ca. 30 er helt slettet. Visse data bevares dog mhp. at forhindre dig i at omgå udelukkelsen.
+      get_in_touch: Anses dette som en fejl, kan denne e-mail besvares for at komme i kontakt med personalet på %{instance}.
+      reason: 'Årsag:'
       review_server_policies: Gennemgå serverpolitikker
-      statuses: 'Specifikt til:'
+      statuses: 'Indlæg fundet i krænkelse:'
       subject:
+        delete_statuses: Dine indlæg på %{acct} er blevet fjernet
         disable: Din konto %{acct} er blevet frosset
         none: Advarsel for %{acct}
-        sensitive: Din konto %{acct} opslagsmedie er blevet markeret som sensitivt
+        sensitive: Dine mediefiler på %{acct} markeres fra nu af som sensitive
         silence: Din konto %{acct} er blevet begrænset
         suspend: Din konto %{acct} er blevet suspenderet
       title:
+        delete_statuses: Indlæg fjernet
         disable: Konto frosset
         none: Advarsel
-        sensitive: Dit medie er blevet markeret som sensitivt
+        sensitive: Medier skjult
         silence: Konto begrænset
         suspend: Konto suspenderet
     welcome:

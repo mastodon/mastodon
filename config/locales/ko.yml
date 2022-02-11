@@ -95,7 +95,6 @@ ko:
     accounts:
       add_email_domain_block: 이 이메일 도메인을 차단하기
       approve: 승인
-      approve_all: 모두 승인
       approved_msg: 성공적으로 %{username}의 가입 신청서를 승인했습니다
       are_you_sure: 정말로 실행하시겠습니까?
       avatar: 아바타
@@ -110,6 +109,7 @@ ko:
       confirm: 확인
       confirmed: 확인됨
       confirming: 확인 중
+      custom: 사용자 지정
       delete: 데이터 삭제
       deleted: 삭제됨
       demote: 강등
@@ -127,8 +127,8 @@ ko:
       enable_sign_in_token_auth: 이메일 토큰 인증 활성화
       enabled: 활성
       enabled_msg: "%{username}의 계정을 성공적으로 얼리기 해제하였습니다"
-      followers: 팔로워 수
-      follows: 팔로잉 수
+      followers: 팔로워
+      follows: 팔로잉
       header: 헤더
       inbox_url: 수신함 URL
       invite_request_text: 가입 하려는 이유
@@ -149,7 +149,6 @@ ko:
         active: 활동
         all: 전체
         pending: 대기중
-        silenced: 침묵 중
         suspended: 정지 중
         title: 중재
       moderation_notes: 중재 기록
@@ -167,7 +166,6 @@ ko:
       redownload: 프로필 업데이트
       redownloaded_msg: 성공적으로 %{username}의 프로필을 원본으로부터 업데이트 하였습니다
       reject: 거부
-      reject_all: 모두 거부
       rejected_msg: 성공적으로 %{username}의 가입 신청서를 반려하였습니다
       remove_avatar: 아바타 지우기
       remove_header: 헤더 삭제
@@ -202,12 +200,14 @@ ko:
       silence: 침묵
       silenced: 침묵 됨
       statuses: 게시물
+      strikes: 이전의 처벌들
       subscribe: 구독하기
       suspended: 정지 됨
       suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
       suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
-      time_in_queue: "%{time}동안 기다림"
       title: 계정
+      unblock_email: 이메일 주소 차단 해제
+      unblocked_email_msg: "%{username}의 이메일 주소를 성공적으로 차단 해제했습니다"
       unconfirmed_email: 미확인 된 이메일 주소
       undo_sensitized: 민감함으로 설정 취소
       undo_silenced: 침묵 해제
@@ -222,6 +222,7 @@ ko:
       whitelisted: 허용 목록
     action_logs:
       action_types:
+        approve_user: 사용자 승인
         assigned_to_self_report: 신고 맡기
         change_email_user: 사용자의 이메일 변경
         confirm_user: 사용자 확인
@@ -239,6 +240,7 @@ ko:
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
         destroy_email_domain_block: 이메일 도메인 차단 삭제
+        destroy_instance: 도메인 제거
         destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
@@ -251,6 +253,7 @@ ko:
         enable_user: 사용자 활성화
         memorialize_account: 추모계정으로 전환
         promote_user: 사용자 승급
+        reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
         reset_password_user: 암호 재설정
@@ -259,6 +262,7 @@ ko:
         silence_account: 계정 침묵
         suspend_account: 계정 정지
         unassigned_report: 신고 맡기 취소
+        unblock_email_account: 이메일 주소 차단 해제
         unsensitive_account: 당신의 계정의 미디어를 민감함으로 표시하지 않음
         unsilence_account: 계정 침묵 취소
         unsuspend_account: 계정 정지 취소
@@ -267,6 +271,7 @@ ko:
         update_domain_block: 도메인 차단 갱신
         update_status: 게시물 게시
       actions:
+        approve_user_html: "%{name} 님이 %{target}의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
         change_email_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 변경했습니다"
         confirm_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 승인했습니다"
@@ -284,6 +289,7 @@ ko:
         destroy_domain_allow_html: "%{name} 님이 %{target} 도메인과의 연합을 금지했습니다"
         destroy_domain_block_html: "%{name} 님이 도메인 %{target}의 차단을 해제했습니다"
         destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
+        destroy_instance_html: "%{name} 님이 도메인 %{target}를 제거했습니다"
         destroy_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
         destroy_status_html: "%{name} 님이 %{target}의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
@@ -296,6 +302,7 @@ ko:
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화 했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 추모비 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
+        reject_user_html: "%{name} 님이 %{target}의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target}의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
         reset_password_user_html: "%{name} 님이 사용자 %{target}의 암호를 초기화했습니다"
@@ -304,6 +311,7 @@ ko:
         silence_account_html: "%{name} 님이 %{target}의 계정을 침묵시켰습니다"
         suspend_account_html: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
         unassigned_report_html: "%{name} 님이 신고 %{target}을 할당 해제했습니다"
+        unblock_email_account_html: "%{name} 님이 %{target}의 이메일 주소를 차단 해제했습니다."
         unsensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감하지 않음으로 표시했습니다"
         unsilence_account_html: "%{name} 님이 %{target}의 계정에 대한 침묵을 해제했습니다"
         unsuspend_account_html: "%{name} 님이 %{target}의 계정에 대한 정지를 해제했습니다"
@@ -367,9 +375,25 @@ ko:
       updated_msg: 에모지가 성공적으로 업데이트 되었습니다!
       upload: 업로드
     dashboard:
+      active_users: 활성 사용자
+      interactions: 상호 작용
+      media_storage: 미디어 저장소
+      new_users: 새로운 사용자
+      opened_reports: 신고 열림
+      pending_reports_html:
+        other: "<strong>%{count}</strong> 개의 신고 대기중"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> 개의 해시태그 대기중"
+      pending_users_html:
+        other: "<strong>%{count}</strong> 명의 사용자 대기중"
+      resolved_reports: 신고 해결됨
       software: 소프트웨어
+      sources: 가입 출처
       space: 디스크 사용량
       title: 대시보드
+      top_languages: 상위 활성 언어
+      top_servers: 상위 활성 서버
+      website: 웹사이트
     domain_allows:
       add_new: 도메인 허용
       created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
@@ -443,6 +467,7 @@ ko:
       back_to_limited: 제한됨
       back_to_warning: 경고
       by_domain: 도메인
+      confirm_purge: 정말로 이 도메인의 데이터를 영구적으로 삭제하길 원하십니까?
       delivery:
         all: 전체
         clear: 전달 에러 초기화
@@ -457,6 +482,7 @@ ko:
       delivery_available: 전송 가능
       delivery_error_days: 전달 에러가 난 날짜들
       delivery_error_hint: 만약 %{count}일동안 전달이 불가능하다면, 자동으로 전달불가로 표시됩니다.
+      destroyed_msg: "%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다."
       empty: 도메인이 하나도 없습니다.
       known_accounts:
         other: 알려진 계정 %{count}개
@@ -466,6 +492,7 @@ ko:
         title: 중재
       private_comment: 비공개 주석
       public_comment: 공개 주석
+      purge: 제거
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
       total_followed_by_them: 우리를 팔로우
@@ -495,8 +522,6 @@ ko:
         title: 새 IP 규칙 만들기
       no_ip_block_selected: 아무 것도 선택 되지 않아 어떤 IP 규칙도 변경 되지 않았습니다
       title: IP 규칙들
-    pending_accounts:
-      title: 대기중인 계정 (%{count})
     relationships:
       title: "%{acct}의 관계"
     relays:
@@ -518,30 +543,43 @@ ko:
     report_notes:
       created_msg: 리포트 노트가 성공적으로 작성되었습니다!
       destroyed_msg: 리포트 노트가 성공적으로 삭제되었습니다!
+      today_at: 오늘 %{time}
     reports:
       account:
         notes:
           other: "%{count}개의 기록"
-        reports:
-          other: "%{count}개의 신고"
+      action_log: 감사 기록
       action_taken_by: 신고 처리자
+      actions:
+        other_description_html: 계정 동작을 제어하고 신고된 계정과의 의사소통을 사용자 지정하기 위한 추가 옵션을 봅니다.
+        silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
+        suspend_description_html: 프로필과 모든 컨텐츠가 최종적으로 삭제될 때까지 접근 불가상태가 됩니다. 이 계정과의 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다.
+      actions_description_html: '만약 문제가 되는 위의 컨텐츠를 삭제하는 것을 불충분할 때에는:'
+      add_to_report: 신고에 더 추가하기
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
       assigned: 할당 된 중재자
       by_target_domain: 신고된 계정의 도메인
+      category: 카테고리
+      category_description_html: 이 계정 또는 게시물이 신고된 이유는 신고된 계정과의 의사소통 과정에 인용됩니다
       comment:
         none: 없음
+      comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
       created_at: 리포트 시각
+      delete_and_resolve: 삭제하고 처리됨으로 변경
       forwarded: 전달됨
       forwarded_to: "%{domain}에게 전달됨"
       mark_as_resolved: 해결 완료 처리
       mark_as_unresolved: 미해결로 표시
+      no_one_assigned: 아무도 없음
       notes:
         create: 기록 추가
         create_and_resolve: 기록을 작성하고 해결됨으로 표시
         create_and_unresolve: 기록 작성과 함께 미해결로 표시
         delete: 삭제
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
+        title: 노트
+      notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
       reopen: 리포트 다시 열기
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
@@ -549,11 +587,14 @@ ko:
       resolved: 해결됨
       resolved_msg: 리포트가 성공적으로 해결되었습니다!
       status: 상태
+      statuses: 신고된 컨텐츠
+      statuses_description_html: 문제가 되는 컨텐츠는 신고된 계정에게 인용되어 전달됩니다
       target_origin: 신고된 계정의 소속
       title: 신고
       unassign: 할당 해제
       unresolved: 미해결
       updated_at: 업데이트 시각
+      view_profile: 프로필 보기
     rules:
       add_new: 규칙 추가
       delete: 삭제
@@ -655,15 +696,13 @@ ko:
       destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!
     statuses:
       back_to_account: 계정으로 돌아가기
+      back_to_report: 신고 페이지로 돌아가기
       batch:
-        delete: 삭제
-        nsfw_off: NSFW 끄기
-        nsfw_on: NSFW 켜기
+        remove_from_report: 신고에서 제거
+        report: 신고
       deleted: 삭제됨
-      failed_to_execute: 실행을 실패하였습니다
       media:
         title: 미디어
-      no_media: 미디어 없음
       no_status_selected: 아무 게시물도 선택 되지 않아 아무 것도 바뀌지 않았습니다
       title: 계정 게시물
       with_media: 미디어 있음
@@ -676,21 +715,49 @@ ko:
       sidekiq_process_check:
         message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
     tags:
-      accounts_today: 오늘의 순 사용자
-      accounts_week: 금주의 순 사용자
-      breakdown: 소스별 오늘의 사용량 분석
-      last_active: 최근에 사용됨
-      most_popular: 최고 인기
-      most_recent: 최근에 추가됨
-      name: 해시태그
       review: 심사 상태
-      reviewed: 심사 됨
-      title: 해시태그
-      trending_right_now: 지금 유행 중
-      unique_uses_today: 오늘 %{count}명이 포스팅
-      unreviewed: 심사 되지 않음
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
+    trends:
+      allow: 허용
+      approved: 승인됨
+      disallow: 거부
+      links:
+        allow: 링크 허용하기
+        allow_provider: 출처 허용하기
+        disallow: 링크 거부하기
+        disallow_provider: 출처 거부하기
+        shared_by_over_week:
+          other: 한 주 동안 %{count}명의 사람이 공유했습니다
+        title: 지금 유행 중인 링크
+        usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
+      pending_review: 심사 대기
+      preview_card_providers:
+        allowed: 이 출처의 링크는 유행 목록에 실릴 수 있습니다
+        rejected: 이 출처의 링크는 유행 목록에 실릴 수 없습니다
+        title: 출처
+      rejected: 거부됨
+      tags:
+        current_score: 현재 %{score}점
+        dashboard:
+          tag_accounts_measure: 고유한 사용
+          tag_languages_dimension: 상위 언어
+          tag_servers_dimension: 상위 서버
+          tag_servers_measure: 다른 서버들
+          tag_uses_measure: 총 사용
+        listable: 추천될 수 있습니다
+        not_listable: 추천될 수 없습니다
+        not_trendable: 유행 목록에 나타나지 않습니다
+        not_usable: 사용할 수 없음
+        peaked_on_and_decaying: "%{date}에 고점을 찍고, 떨어지고 있습니다"
+        title: 유행하는 해시태그
+        trendable: 유행 목록에 나타날 수 있습니다
+        trending_rank: "#%{rank}위로 유행 중"
+        usable: 사용할 수 없음
+        usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
+        used_by_over_week:
+          other: 한 주 동안 %{count}명의 사람이 사용했습니다
+      title: 유행
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
@@ -705,9 +772,16 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
-    new_trending_tag:
-      body: '오늘 #%{name} 해시태그가 유행하고 있습니다, 하지만 심사 된 적이 없습니다. 허용하지 않는 한 공개적으로 나타나지 않습니다. 또는 그냥 저장을 눌러 더이상 나타나지 않게 할 수 있습니다.'
-      subject: 새 해시태그가 %{instance}에서 심사 대기 중입니다(#%{name})
+    new_trending_links:
+      body: 아래에 있는 링크들이 오늘 유행 중입니다, 하지만 이 링크들의 출처는 전에 심사를 받은 적이 없습니다. 이 링크들은 승인하기 전까지는 공개적으로 표시되지 않을 것입니다. 동일한 출처에 대한 알림은 더 생성되지 않습니다.
+      no_approved_links: 현재 승인된 유행 중인 링크가 없습니다.
+      requirements: 현재 승인된 유행하는 링크 중 가장 낮은 것은 %{lowest_link_score}점을 가진 "%{lowest_link_title}" 입니다
+      subject: 새 유행하는 링크가 %{instance}에서 심사 대기 중입니다
+    new_trending_tags:
+      body: '아래에 있는 해시태그들이 오늘 유행 중입니다, 하지만 전에 심사를 받은 적이 없습니다. 이 해시태그들은 승인하기 전까지는 공개적으로 표시되지 않을 것입니다:'
+      no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
+      requirements: '현재 승인된 유행하는 해시태그 중 가장 낮은 것은 %{lowest_tag_score}점을 가진 #%{lowest_tag_name} 입니다'
+      subject: 새 유행하는 해시태그가 %{instance}에서 심사 대기 중입니다
   aliases:
     add_new: 별칭 만들기
     created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
@@ -759,6 +833,7 @@ ko:
     invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
     link_to_otp: 휴대폰의 2차 코드 혹은 복구 키를 입력해 주세요
     link_to_webauth: 보안 키 장치 사용
+    log_in_with: 다음으로 로그인
     login: 로그인
     logout: 로그아웃
     migrate_account: 계정 옮기기
@@ -809,7 +884,7 @@ ko:
       invalid_signature: 유효하지 않은 Ed25519 서명
   date:
     formats:
-      default: "%Y-%b-%d"
+      default: "%Y-%m-%d"
       with_month_name: "%Y년 %B %d일"
   datetime:
     distance_in_words:
@@ -914,33 +989,14 @@ ko:
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
     delete: 삭제
-    no_batch_actions_available: 이 페이지에서 수행할 수 있는 일괄작업이 없습니다
+    none: 없음
     order_by: 순서
     save_changes: 변경 사항을 저장
+    today: 오늘
     validation_errors:
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
   html_validator:
     invalid_markup: '올바르지 않은 HTML 마크업을 포함하고 있습니다: %{error}'
-  identity_proofs:
-    active: 활성
-    authorize: 네, 인증합니다
-    authorize_connection_prompt: 이 암호화 연결을 인증합니까?
-    errors:
-      failed: 암호화 연결에 실패했습니다. %{provider}에서 다시 시도해 주세요.
-      keybase:
-        invalid_token: 키베이스 토큰은 서명의 해시이며 66자의 16진수 문자여야 합니다
-        verification_failed: 키베이스가 이 토큰을 키베이스 유저 %{kb_username}의 서명으로 인식하지 못했습니다. 키베이스에서 다시 시도하세요.
-      wrong_user: "%{current}로 로그인 한 상태에서는 %{proving}에 대한 증명을 할 수 없습니다. %{proving}으로 로그인 한 후 다시 시도하세요."
-    explanation_html: 키베이스와 같은 다른 명의에 대한 암호화 연결을 할 수 있습니다. 이것으로 다른 사람들이 당신에게 암호화 된 메시지를 보낼 수 있고 당신의 메시지를 믿을 수 있습니다.
-    i_am_html: 나는 %{service}의 %{username} 입니다.
-    identity: 신원
-    inactive: 비활성
-    publicize_checkbox: '그리고 이것을 게시하세요:'
-    publicize_toot: '증명되었습니다! 저는 %{service}에 있는 %{username}입니다: %{url}'
-    remove: 계정증명 삭제
-    removed: 성공적으로 계정증명을 삭제했습니다
-    status: 인증 상태
-    view_proof: 증명 보기
   imports:
     errors:
       over_rows_processing_limit: "%{count}개 이상의 열을 포함합니다"
@@ -1040,7 +1096,7 @@ ko:
     digest:
       action: 모든 알림 보기
       body: 마지막 로그인(%{since}) 이후로 일어난 일들에 관한 요약
-      mention: "%{name} 님이 답장했습니다:"
+      mention: "%{name} 님이 나를 언급했습니다:"
       new_followers_summary:
         other: 게다가, 접속하지 않은 동안 %{count} 명의 팔로워가 생겼습니다!
       subject:
@@ -1061,8 +1117,8 @@ ko:
       title: 새 팔로우 요청
     mention:
       action: 답장
-      body: "%{name} 님이 답장을 보냈습니다:"
-      subject: "%{name} 님이 답장을 보냈습니다"
+      body: "%{name} 님이 나를 언급했습니다:"
+      subject: "%{name} 님이 나를 언급했습니다"
       title: 새 멘션
     poll:
       subject: "%{name}의 투표가 종료되었습니다"
@@ -1211,7 +1267,6 @@ ko:
     edit_profile: 프로필 편집
     export: 데이터 내보내기
     featured_tags: 추천 해시태그
-    identity_proofs: 신원 증명
     import: 데이터 가져오기
     import_and_export: 가져오기 / 내보내기
     migrate: 계정 이동
@@ -1235,15 +1290,15 @@ ko:
     content_warning: '열람 주의: %{warning}'
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
+    edited_at: "%{date}에 편집됨"
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
-    language_detection: 자동으로 언어 감지
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
+      direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
-      private: 비공개 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
     poll:
       total_people:
@@ -1396,6 +1451,7 @@ ko:
     formats:
       default: "%Y년 %m월 %d일 %H:%M"
       month: "%Y년 %b"
+      time: "%H:%M"
   two_factor_authentication:
     add: 추가
     disable: 비활성화
@@ -1423,24 +1479,31 @@ ko:
       subject: 로그인 시도를 확인해 주십시오
       title: 로그인 시도
     warning:
+      categories:
+        spam: 스팸
+        violation: 컨텐츠가 다음의 커뮤니티 규정을 위반합니다
       explanation:
-        disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
-        sensitive: 당신의 업로드 한 미디어 파일들과 링크된 미디어들은 민감함으로 취급됩니다.
-        silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 게시물을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
-        suspend: 당신의 계정은 정지 되었으며, 모든 게시물과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
-      get_in_touch: 이 메일에 대해 답장해서 %{instance}의 스태프와 연락 할 수 있습니다.
+        delete_statuses: 당신의 게시물 중 몇 개가 커뮤니티 규정을 위반하는 것으로 확인되었고 %{instance}의 중재자에 의해 삭제되었습니다. 이후의 규정 위반은 당신의 계정에 대해 더 강력한 제재가 이루어 질 수 있습니다.
+        disable: 당신은 더이상 당신의 계정을 사용할 수 없습니다, 하지만 프로필과 다른 데이터들은 여전히 그대로 남아있습니다. 당신의 데이터에 대한 백업을 요청하거나, 계정 설정을 변경 또는 계정을 삭제할 수 있습니다.
+        sensitive: 지금부터는, 당신이 업로드한 미디어 파일들은 민감함 표시가 뜨게 되고 클릭해야만 볼 수 있다는 경고문 뒤에 가려지게 됩니다.
+        silence: 당신은 여전히 당신의 계정을 사용할 수 있지만 당신을 팔로우 하고 있는 사람들만 당신의 게시물을 볼 수 있으며, 여러가지 탐색 기능에서 제외됩니다. 하지만, 여전히 다른 사람들은 수동으로 당신을 팔로우 할 수 있습니다.
+        suspend: 당신은 더이상 당신의 계정을 사용할 수 없으며, 프로필과 데이터는 접근 불가능하게 됩니다. 데이터가 완전히 삭제되기 전인 30일동안은 여전히 백업을 요청하기 위해 로그인 할 수 있습니다, 하지만 계정 정지를 회피하는 것을 방지하기 위하여 몇 가지 정보는 유지됩니다.
+      get_in_touch: 이것이 잘못된 조치라고 생각된다면, 이 메일에 답장하여 %{instance}의 스태프들에게 연락할 수 있습니다.
+      reason: '사유:'
       review_server_policies: 서버 정책 검토하기
-      statuses: '구체적으로:'
+      statuses: '위반사항이 발견된 게시물:'
       subject:
+        delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         none: "%{acct}에게의 경고"
-        sensitive: 당신의 계정 %{acct}에서 포스팅 하는 미디어는 민감함으로 설정되었습니다
+        sensitive: 지금부터 당신의 계정 %{acct}의 미디어 파일들은 민감함으로 표시됩니다
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
+        delete_statuses: 게시물 삭제됨
         disable: 계정 동결 됨
         none: 경고
-        sensitive: 당신의 미디어는 민감함으로 표시되었습니다
+        sensitive: 미디어 숨겨짐
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:
@@ -1483,7 +1546,7 @@ ko:
     destroy:
       error: 보안 키를 삭제하는데 문제가 발생했습니다. 다시 시도해보십시오.
       success: 보안 키가 성공적으로 삭제되었습니다.
-    invalid_credential: 잘못된 보안 키
+    invalid_credential: 올바르지 않은 보안 키
     nickname_hint: 새 보안 키의 별명을 입력해 주세요
     not_enabled: 아직 WebAuthn을 활성화 하지 않았습니다.
     not_supported: 이 브라우저는 보안 키를 지원하지 않습니다
