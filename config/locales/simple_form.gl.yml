@@ -35,8 +35,8 @@ gl:
         current_password: Por razóns de seguridade, introduce o contrasinal da conta actual
         current_username: Para confirmar, introduce o nome de usuaria da conta actual
         digest: Enviar só tras un longo período de inactividade e só se recibiches algunha mensaxe directa na tua ausencia
-        discoverable: Permite que a túa conta poida ser descuberta por persoas descoñecidas a través de recomendacións e outras ferramentas
-        discoverable_no_directory: Permitir que a túa conta poida ser descuberta por extrañas a través das recomendacións e outras ferramentas
+        discoverable: Permite que a túa conta poida ser descuberta por persoas descoñecidas a través de recomendacións, directorio de perfil e outras ferramentas
+        discoverable_no_directory: Permitir que a túa conta poida ser descuberta por persoas descoñecidas a través das recomendacións e outras ferramentas
         email: Ímosche enviar un correo de confirmación
         fields: Podes ter ate 4 elementos no teu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
@@ -53,7 +53,7 @@ gl:
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
         setting_hide_network: Non se mostrará no teu perfil quen te segue e a quen estás a seguir
-        setting_noindex: Afecta ao teu perfil público e páxinas de estado
+        setting_noindex: Afecta ao teu perfil público e páxinas de publicación
         setting_show_application: A aplicación que estás a utilizar para enviar publicacións mostrarase na vista detallada da publicación
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esborranchando todos os detalles
         setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
@@ -71,7 +71,7 @@ gl:
       imports:
         data: Ficheiro CSV exportado desde outro servidor Mastodon
       invite_request:
-        text: Esto axudaranos a revisar a tua aplicación
+        text: Esto axudaranos a revisar a tua solicitude
       ip_block:
         comment: Opcional. Lembrar a razón para engadir esta regra.
         expires_in: Os enderezos IP son un recurso finito, a veces son compartidos e cambian de mans con frecuencia. Por esta razón, non se recomendan os bloqueos indefinidos de IPs.
@@ -83,7 +83,7 @@ gl:
       rule:
         text: Describe unha regra ou requerimento para as usuarias deste servidor. Intenta que sexa curta e simple
       sessions:
-        otp: 'Introduce o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
+        otp: 'Escribe o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
         webauthn: Se é unha chave USB asegúrate de que está conectada e preme o botón.
       tag:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
@@ -205,7 +205,7 @@ gl:
         pending_account: Enviar un correo cando unha nova conta precisa revisión
         reblog: Enviar un correo cando alguén promociona a tua mensaxe
         report: Enviar un correo cando se envíe unha denuncia
-        trending_tag: Un cancelo ser revisar está sendo tendencia
+        trending_tag: Unha nova tendencia require aprobación
       rule:
         text: Regra
       tag:

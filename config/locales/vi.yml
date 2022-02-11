@@ -2,7 +2,7 @@
 vi:
   about:
     about_hashtag_html: Đây là các tút <strong>#%{hashtag}</strong> trên mạng liên hợp. Bạn có thể tương tác với chúng sau khi đăng nhập.
-    about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không theo dõi người dùng và phi tập quyền! Làm chủ quyền riêng tư của bạn với Mastodon!'
+    about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
     about_this: Giới thiệu
     active_count_after: hoạt động
     active_footnote: Người dùng hoạt động hàng tháng (MAU)
@@ -21,7 +21,7 @@ vi:
     federation_hint_html: Đăng ký tài khoản %{instance} là bạn có thể giao tiếp với bất cứ ai trên bất kỳ máy chủ Mastodon nào và còn hơn thế nữa.
     get_apps: Ứng dụng di động
     hosted_on: "%{domain} vận hành nhờ Mastodon"
-    instance_actor_flash: Đây là một tài khoản ảo được sử dụng để đại diện cho máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên chặn trừ khi bạn muốn chặn toàn bộ máy chủ.
+    instance_actor_flash: "Đây là một tài khoản ảo được sử dụng để đại diện cho máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên chặn trừ khi bạn muốn chặn toàn bộ máy chủ. \n"
     learn_more: Tìm hiểu
     privacy_policy: Chính sách bảo mật
     rules: Quy tắc máy chủ
@@ -48,7 +48,7 @@ vi:
     user_count_after:
       other: người dùng
     user_count_before: Nhà của
-    what_is_mastodon: Mastodon là gì?
+    what_is_mastodon: Tham gia Mastodon
   accounts:
     choices_html: "%{name} tôn vinh:"
     endorsements_hint: Bạn có thể tôn vinh những người bạn theo dõi và họ sẽ hiển thị ở giao diện web.
@@ -93,7 +93,6 @@ vi:
     accounts:
       add_email_domain_block: Chặn tên miền email
       approve: Phê duyệt
-      approve_all: Phê duyệt tất cả
       approved_msg: Đã phê duyệt %{username} đăng ký thành công
       are_you_sure: Bạn có chắc không?
       avatar: Ảnh đại diện
@@ -108,11 +107,12 @@ vi:
       confirm: Phê duyệt
       confirmed: Đã xác thực
       confirming: Chờ xác nhận
+      custom: Tùy chỉnh
       delete: Xóa dữ liệu
       deleted: Đã xóa
-      demote: Xóa chức vụ
+      demote: Xóa vai trò
       destroyed_msg: Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ
-      disable: Tạm khóa
+      disable: Khóa
       disable_sign_in_token_auth: Tắt xác thực bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác thực hai bước
       disabled: Đã vô hiệu hóa
@@ -147,7 +147,6 @@ vi:
         active: Hoạt động
         all: Toàn bộ
         pending: Chờ xử lý
-        silenced: Hạn chế
         suspended: Vô hiệu hóa
         title: Trạng thái
       moderation_notes: Nhật ký kiểm duyệt
@@ -158,14 +157,13 @@ vi:
       not_subscribed: Chưa đăng ký
       pending: Chờ duyệt
       perform_full_suspension: Vô hiệu hóa
-      promote: Chỉ định chức vụ
+      promote: Chỉ định vai trò
       protocol: Giao thức
       public: Công khai
       push_subscription_expires: Đăng ký PuSH hết hạn
       redownload: Làm mới trang cá nhân
       redownloaded_msg: Đã tiếp nhận tài khoản %{username} thành công
       reject: Từ chối
-      reject_all: Từ chối tất cả
       rejected_msg: Đã từ chối đăng ký tài khoản %{username}
       remove_avatar: Xóa ảnh đại diện
       remove_header: Xóa ảnh bìa
@@ -178,7 +176,7 @@ vi:
       reset: Làm tươi
       reset_password: Đặt lại mật khẩu
       resubscribe: Đăng ký lại
-      role: Chức vụ
+      role: Vai trò
       roles:
         admin: Quản trị viên
         moderator: Kiểm duyệt viên
@@ -200,12 +198,14 @@ vi:
       silence: Ẩn
       silenced: Hạn chế
       statuses: Tút
+      strikes: Những lần trước
       subscribe: Đăng ký
       suspended: Vô hiệu hóa
       suspension_irreversible: Toàn bộ dữ liệu của người dùng này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
       suspension_reversible_hint_html: Mọi dữ liệu của người này sẽ bị xóa sạch vào %{date}. Trước thời hạn này, dữ liệu vẫn có thể phục hồi. Nếu bạn muốn xóa dữ liệu của người này ngay lập tức, hãy tiếp tục.
-      time_in_queue: Đang chờ cách đây %{time}
       title: Tài khoản
+      unblock_email: Mở khóa địa chỉ email
+      unblocked_email_msg: Mở khóa thành công địa chỉ email của %{username}
       unconfirmed_email: Email chưa được xác thực
       undo_sensitized: Đánh dấu bình thường
       undo_silenced: Bỏ hạn chế
@@ -220,6 +220,7 @@ vi:
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
+        approve_user: Phê duyệt người dùng
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email
         confirm_user: Xác thực
@@ -231,24 +232,26 @@ vi:
         create_email_domain_block: Tạo chặn tên miền email mới
         create_ip_block: Tạo chặn IP mới
         create_unavailable_domain: Tạo máy chủ không khả dụng
-        demote_user: Xóa chức vụ
+        demote_user: Xóa vai trò
         destroy_announcement: Xóa thông báo
         destroy_custom_emoji: Xóa emoji
         destroy_domain_allow: Xóa máy chủ cho phép
         destroy_domain_block: Xóa máy chủ đã chặn
         destroy_email_domain_block: Xóa tên miền email đã chặn
+        destroy_instance: Thanh trừng máy chủ
         destroy_ip_block: Xóa IP đã chặn
         destroy_status: Xóa tút
         destroy_unavailable_domain: Xóa máy chủ không khả dụng
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
         disable_sign_in_token_auth_user: Tắt xác thực bằng email cho người dùng
-        disable_user: Tạm khóa người dùng
+        disable_user: Khóa người dùng
         enable_custom_emoji: Kích hoạt Emoji
         enable_sign_in_token_auth_user: Bật xác thực bằng email cho người dùng
         enable_user: Kích hoạt lại người dùng
         memorialize_account: Đánh dấu tưởng niệm
-        promote_user: Chỉ định chức vụ
+        promote_user: Chỉ định vai trò
+        reject_user: Từ chối người dùng
         remove_avatar_user: Xóa ảnh đại diện
         reopen_report: Mở lại báo cáo
         reset_password_user: Đặt lại mật khẩu
@@ -257,6 +260,7 @@ vi:
         silence_account: Đánh dấu hạn chế
         suspend_account: Đánh dấu vô hiệu hóa
         unassigned_report: Báo cáo chưa xử lý
+        unblock_email_account: Mở khóa địa chỉ email
         unsensitive_account: Bỏ nhạy cảm
         unsilence_account: Bỏ hạn chế
         unsuspend_account: Bỏ vô hiệu hóa
@@ -265,6 +269,7 @@ vi:
         update_domain_block: Cập nhật máy chủ chặn
         update_status: Cập nhật tút
       actions:
+        approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
         assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
         change_email_user_html: "%{name} đã thay đổi địa chỉ email cho %{target}"
         confirm_user_html: "%{name} xác nhận địa chỉ email của người dùng %{target}"
@@ -276,12 +281,13 @@ vi:
         create_email_domain_block_html: "%{name} chặn tên miền email %{target}"
         create_ip_block_html: "%{name} đã chặn IP %{target}"
         create_unavailable_domain_html: "%{name} ngưng phân phối với máy chủ %{target}"
-        demote_user_html: "%{name} đã xóa chức vụ %{target}"
+        demote_user_html: "%{name} đã xóa vai trò của %{target}"
         destroy_announcement_html: "%{name} xóa thông báo %{target}"
         destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
         destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
         destroy_domain_block_html: "%{name} bỏ chặn tên miền email %{target}"
         destroy_email_domain_block_html: "%{name} bỏ chặn tên miền email %{target}"
+        destroy_instance_html: "%{name} thanh trừng máy chủ %{target}"
         destroy_ip_block_html: "%{name} bỏ chặn IP %{target}"
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục phân phối với máy chủ %{target}"
@@ -293,7 +299,8 @@ vi:
         enable_sign_in_token_auth_user_html: "%{name} bật xác thực email của %{target}"
         enable_user_html: "%{name} mở khóa cho người dùng %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
-        promote_user_html: "%{name} chỉ định chức vụ cho %{target}"
+        promote_user_html: "%{name} chỉ định vai trò cho %{target}"
+        reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report_html: "%{name} mở lại báo cáo %{target}"
         reset_password_user_html: "%{name} đặt lại mật khẩu của người dùng %{target}"
@@ -302,6 +309,7 @@ vi:
         silence_account_html: "%{name} đã ẩn %{target}"
         suspend_account_html: "%{name} đã vô hiệu hóa %{target}"
         unassigned_report_html: "%{name} đã xử lý báo cáo %{target} chưa xử lí"
+        unblock_email_account_html: "%{name} mở khóa địa chỉ email của %{target}"
         unsensitive_account_html: "%{name} đánh dấu nội dung của %{target} là bình thường"
         unsilence_account_html: "%{name} đã bỏ ẩn %{target}"
         unsuspend_account_html: "%{name} đã ngừng vô hiệu hóa %{target}"
@@ -365,9 +373,25 @@ vi:
       updated_msg: Cập nhật thành công Emoji!
       upload: Tải lên
     dashboard:
+      active_users: người dùng hoạt động
+      interactions: tương tác
+      media_storage: Dung lượng lưu trữ
+      new_users: người dùng mới
+      opened_reports: báo cáo chưa xử lí
+      pending_reports_html:
+        other: "<strong>%{count}</strong> báo cáo đang chờ"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> hashtag đang chờ"
+      pending_users_html:
+        other: "<strong>%{count}</strong> người dùng đang chờ"
+      resolved_reports: báo cáo đã xử lí
       software: Phần mềm
+      sources: Nguồn đăng ký
       space: Dung lượng lưu trữ
       title: Thống kê
+      top_languages: Ngôn ngữ phổ biến
+      top_servers: Máy chủ phổ biến
+      website: Website
     domain_allows:
       add_new: Cho phép liên hợp với máy chủ
       created_msg: Máy chủ đã được kích hoạt liên hợp thành công
@@ -439,6 +463,7 @@ vi:
       back_to_limited: Hạn chế
       back_to_warning: Cảnh báo
       by_domain: Máy chủ
+      confirm_purge: Bạn có chắc chắn muốn xóa dữ liệu từ máy chủ này vĩnh viễn?
       delivery:
         all: Toàn bộ
         clear: Xóa phân phối lỗi
@@ -453,6 +478,7 @@ vi:
       delivery_available: Cho phép liên kết
       delivery_error_days: Ngày lỗi phân phối
       delivery_error_hint: Nếu không thể phân phối sau %{count} ngày, nó sẽ tự dộng đánh dấu là không thể phân phối.
+      destroyed_msg: Dữ liệu từ %{domain} đã lên lịch để xóa.
       empty: Không có máy chủ nào.
       known_accounts:
         other: "%{count} tài khoản đã biết"
@@ -462,6 +488,7 @@ vi:
         title: Kiểm duyệt
       private_comment: Bình luận riêng
       public_comment: Bình luận công khai
+      purge: Thanh trừng
       title: Mạng liên hợp
       total_blocked_by_us: Bị chặn bởi chúng ta
       total_followed_by_them: Được họ theo dõi
@@ -491,8 +518,6 @@ vi:
         title: Chặn một IP mới
       no_ip_block_selected: Bạn chưa chọn bất kỳ IP nào
       title: Những IP bị chặn
-    pending_accounts:
-      title: Tài khoản đang chờ xem xét (%{count})
     relationships:
       title: Mối quan hệ của %{acct}
     relays:
@@ -514,30 +539,43 @@ vi:
     report_notes:
       created_msg: Đã thêm ghi chú kiểm duyệt!
       destroyed_msg: Đã xóa ghi chú kiểm duyệt!
+      today_at: Hôm nay lúc %{time}
     reports:
       account:
         notes:
           other: "%{count} kiểm duyệt"
-        reports:
-          other: "%{count} báo cáo"
+      action_log: Nhật ký kiểm duyệt
       action_taken_by: Hành động được thực hiện bởi
+      actions:
+        other_description_html: Những tùy chọn để kiểm soát tài khoản và giao tiếp với tài khoản bị báo cáo.
+        silence_description_html: Trang cá nhân sẽ chỉ hiển thị với những người đã theo dõi hoặc tìm kiếm thủ công, hạn chế tối đa tầm ảnh hưởng của nó. Có thể đổi lại bình thường sau.
+        suspend_description_html: Trang cá nhân và tất cả các nội dung sẽ không thể truy cập cho đến khi nó bị xóa hoàn toàn. Không thể tương tác với tài khoản. Đảo ngược trong vòng 30 ngày.
+      actions_description_html: 'Nếu loại bỏ nội dung vi phạm ở trên là không đủ:'
+      add_to_report: Bổ sung báo cáo
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
       assigned: Người xử lý
       by_target_domain: Tên tài khoản bị báo cáo
+      category: Phân loại
+      category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn trong giao tiếp với tài khoản báo cáo
       comment:
         none: Không có mô tả
+      comment_description_html: 'Để cung cấp thêm thông tin, %{name} cho biết:'
       created_at: Báo cáo lúc
+      delete_and_resolve: Xóa và giải quyết
       forwarded: Chuyển tiếp
       forwarded_to: Chuyển tiếp tới %{domain}
       mark_as_resolved: Đã xử lý xong!
       mark_as_unresolved: Mở lại
+      no_one_assigned: Chưa có
       notes:
         create: Ghi chú
         create_and_resolve: Xử lý
         create_and_unresolve: Mở lại kèm ghi chú mới
         delete: Xóa bỏ
         placeholder: Mô tả vi phạm của người này, mức độ xử lý và những cập nhật liên quan khác...
+        title: Ghi chú
+      notes_description_html: Xem và để lại ghi chú cho các kiểm duyệt viên khác
       reopen: Mở lại báo cáo
       report: 'Báo cáo #%{id}'
       reported_account: Tài khoản bị báo cáo
@@ -545,11 +583,14 @@ vi:
       resolved: Đã xử lý xong
       resolved_msg: Đã xử lý báo cáo xong!
       status: Trạng thái
+      statuses: Nội dung bị báo cáo
+      statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn trong giao tiếp với tài khoản báo cáo
       target_origin: Nguồn đã báo cáo người dùng
       title: Báo cáo
       unassign: Bỏ qua
       unresolved: Chờ xử lý
       updated_at: Cập nhật lúc
+      view_profile: Xem trang cá nhân
     rules:
       add_new: Thêm quy tắc
       delete: Xóa bỏ
@@ -584,7 +625,7 @@ vi:
         desc_html: Hiển thị trên trang chủ. Kích cỡ tối thiểu 600x100px. Mặc định dùng hình thu nhỏ của máy chủ
         title: Hình ảnh giới thiệu
       mascot:
-        desc_html: Hiển thị trên nhiều trang. Kích cỡ tối thiểu 293 × 205px. Mặc định dùng linh vật Mastodon
+        desc_html: Hiển thị trên nhiều trang. Kích cỡ tối thiểu 293 x 205px. Mặc định dùng linh vật Mastodon
         title: Logo máy chủ
       peers_api_enabled:
         desc_html: Tên miền mà máy chủ này đã kết giao trong mạng liên hợp
@@ -651,15 +692,13 @@ vi:
       destroyed_msg: Đã xóa tập tin tải lên thành công!
     statuses:
       back_to_account: Quay lại trang tài khoản
+      back_to_report: Quay lại trang báo cáo
       batch:
-        delete: Xóa bỏ
-        nsfw_off: Đánh dấu là bình thường
-        nsfw_on: Đánh dấu là nhạy cảm
+        remove_from_report: Xóa khỏi báo cáo
+        report: Báo cáo
       deleted: Đã xóa
-      failed_to_execute: Không thể thực thi
       media:
         title: Media
-      no_media: Toàn bộ
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
       title: Toàn bộ tút
       with_media: Có media
@@ -672,21 +711,49 @@ vi:
       sidekiq_process_check:
         message_html: Sidekiq không hoạt động khi truy vấn %{value}. Hãy kiểm tra lại cấu hình Sidekiq
     tags:
-      accounts_today: Sử dụng hôm nay
-      accounts_week: Sử dụng trong tuần
-      breakdown: Thống kê số lượt dùng hôm nay
-      last_active: Hôm nay
-      most_popular: Phổ biến nhất
-      most_recent: Gần đây
-      name: Hashtag
       review: Phê duyệt
-      reviewed: Đã phê duyệt
-      title: Hashtag
-      trending_right_now: Xu hướng
-      unique_uses_today: "%{count} tút dùng hôm nay"
-      unreviewed: Chưa phê duyệt
       updated_msg: Hashtag đã được cập nhật thành công
     title: Quản trị
+    trends:
+      allow: Cho phép
+      approved: Đã cho phép
+      disallow: Cấm
+      links:
+        allow: Liên kết cho phép
+        allow_provider: Nguồn đăng cho phép
+        disallow: Liên kết cấm
+        disallow_provider: Nguồn đăng bị cấm
+        shared_by_over_week:
+          other: Chia sẻ bởi %{count} người trong tuần rồi
+        title: Liên kết đang là xu hướng
+        usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
+      pending_review: Đang chờ
+      preview_card_providers:
+        allowed: Liên kết từ nguồn đăng này có thể thành xu hướng
+        rejected: Liên kết từ nguồn đăng không thể thành xu hướng
+        title: Nguồn đăng
+      rejected: Đã cấm
+      tags:
+        current_score: Chỉ số gần đây %{score}
+        dashboard:
+          tag_accounts_measure: lần dùng
+          tag_languages_dimension: Top ngôn ngữ
+          tag_servers_dimension: Top máy chủ
+          tag_servers_measure: máy chủ khác
+          tag_uses_measure: tổng người dùng
+        listable: Có thể đề xuất
+        not_listable: Không thể đề xuất
+        not_trendable: Không xuất hiện xu hướng
+        not_usable: Không được phép dùng
+        peaked_on_and_decaying: Đỉnh điểm %{date}, giờ đang giảm
+        title: Hashtag xu hướng
+        trendable: Có thể xuất hiện thành xu hướng
+        trending_rank: 'Xu hướng #%{rank}'
+        usable: Có thể dùng
+        usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
+        used_by_over_week:
+          other: Dùng bởi %{count} người tuần rồi
+      title: Xu hướng
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
@@ -701,9 +768,16 @@ vi:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
       subject: "(%{instance}) Báo cáo #%{id}"
-    new_trending_tag:
-      body: 'Hashtag # %{name} đang là xu hướng nhưng chưa được kiểm duyệt. Nó sẽ không được hiển thị công khai trừ khi bạn cho phép. Bỏ qua nếu bạn không bao giờ muốn thấy nó xuất hiện.'
-      subject: Hashtag mới được xem xét trên %{instance} (# %{name})
+    new_trending_links:
+      body: Các liên kết này đang là xu hướng hôm nay, nhưng các nguồn đăng của chúng chưa được xem xét trước đây. Chúng sẽ không được hiển thị công khai trừ khi bạn cho phép chúng. Các thông báo khác từ cùng một nguồn đăng sẽ không được tạo.
+      no_approved_links: Hiện tại không có liên kết xu hướng nào được cho phép.
+      requirements: Liên kết xu hướng được cho phép thấp nhất hiện tại là "%{lowest_link_title}" với chỉ số %{lowest_link_score}.
+      subject: Liên kết xu hướng mới chờ duyệt trên %{instance}
+    new_trending_tags:
+      body: 'Các hashtag này đang là xu hướng hôm nay, nhưng chúng chưa được xem xét trước đó. Chúng sẽ không được hiển thị công khai trừ khi bạn cho phép chúng:'
+      no_approved_tags: Hiện tại không có hashtag xu hướng nào được cho phép.
+      requirements: 'Hashtag xu hướng được cho phép thấp nhất hiện tại là #%{lowest_tag_name} với chỉ số %{lowest_tag_score}.'
+      subject: Hashtag xu hướng mới chờ duyệt trên %{instance}
   aliases:
     add_new: Kết nối tài khoản
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
@@ -755,6 +829,7 @@ vi:
     invalid_reset_password_token: Mã đặt lại mật khẩu không hợp lệ hoặc hết hạn. Vui lòng yêu cầu một cái mới.
     link_to_otp: Nhập mã xác thực từ điện thoại hoặc mã phục hồi
     link_to_webauth: Nhập khóa bảo mật từ thiết bị
+    log_in_with: Đăng nhập bằng
     login: Đăng nhập
     logout: Đăng xuất
     migrate_account: Chuyển sang tài khoản khác
@@ -910,33 +985,14 @@ vi:
     changes_saved_msg: Đã cập nhật thay đổi xong!
     copy: Sao chép
     delete: Xóa
-    no_batch_actions_available: Không có sẵn hành động hàng loạt trên trang này
+    none: Trống
     order_by: Sắp xếp
     save_changes: Lưu thay đổi
+    today: hôm nay
     validation_errors:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
   html_validator:
     invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
-  identity_proofs:
-    active: Hoạt động
-    authorize: OK, cho phép
-    authorize_connection_prompt: Cho phép kết nối mã hóa này?
-    errors:
-      failed: Kết nối mã hóa không thành công. Vui lòng thử lại từ %{provider}.
-      keybase:
-        invalid_token: Mã đăng nhập Keybase giống như chữ ký số và phải đảm bảo 66 ký tự hex
-        verification_failed: Keybase không nhận ra mã đăng nhập này là chữ ký của người dùng Keybase %{kb_username}. Vui lòng thử lại từ Keybase.
-      wrong_user: Không thể tạo bằng chứng cho %{proving} trong khi đăng nhập là %{current}. Đăng nhập bằng %{proving} và thử lại.
-    explanation_html: Tại đây, bạn có thể kết nối mã hóa tài khoản của bạn trên các nền tảng khác, chẳng hạn như Keybase. Điều này cho phép người khác gửi cho bạn tin nhắn được mã hóa và tin tưởng nội dung bạn gửi cho họ.
-    i_am_html: Tôi là %{username} trên %{service}.
-    identity: Danh tính
-    inactive: Không hoạt động
-    publicize_checkbox: 'Và tút này:'
-    publicize_toot: 'Đã chứng minh! Tôi là %{username} trên %{service}: %{url}'
-    remove: Xóa bằng chứng của tài khoản
-    removed: Hoàn tất xóa bằng chứng của tài khoản
-    status: Tình trạng xác minh
-    view_proof: Xem bằng chứng
   imports:
     errors:
       over_rows_processing_limit: chứa nhiều hơn %{count} hàng
@@ -1149,6 +1205,9 @@ vi:
     reply:
       proceed: Tiếp tục trả lời
       prompt: Bạn có muốn trả lời tút này?
+  reports:
+    errors:
+      invalid_rules: không đúng với quy tắc
   scheduled_statuses:
     over_daily_limit: Bạn đã vượt qua giới hạn được lên lịch đăng tút %{limit} hôm nay
     over_total_limit: Bạn đã vượt quá giới hạn %{limit} của các tút được lên lịch
@@ -1207,7 +1266,6 @@ vi:
     edit_profile: Trang cá nhân
     export: Xuất dữ liệu
     featured_tags: Hashtag thường dùng
-    identity_proofs: Bằng chứng nhận dạng
     import: Nhập dữ liệu
     import_and_export: Dữ liệu
     migrate: Chuyển tài khoản sang máy chủ khác
@@ -1229,17 +1287,18 @@ vi:
         other: "%{count} video"
     boosted_from_html: Đã chia sẻ từ %{acct_link}
     content_warning: 'Cảnh báo nội dung: %{warning}'
+    default_language: Giống ngôn ngữ giao diện
     disallowed_hashtags:
       other: 'chứa các hashtag bị cấm: %{tags}'
+    edited_at: Đã sửa %{date}
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
-    language_detection: Tự động phát hiện ngôn ngữ
     open_in_web: Xem trong web
     over_character_limit: vượt quá giới hạn %{max} ký tự
     pin_errors:
+      direct: Không thể ghim những tút nhắn riêng
       limit: Bạn đã ghim quá số lượng tút cho phép
       ownership: Không thể ghim tút của người khác
-      private: Tút riêng tư nên không thể ghim
       reblog: Không thể ghim chia sẻ
     poll:
       total_people:
@@ -1254,7 +1313,7 @@ vi:
     sign_in_to_participate: Đăng nhập để trả lời tút này
     title: '%{name}: "%{quote}"'
     visibilities:
-      direct: Nhắn tin
+      direct: Nhắn riêng
       private: Riêng tư
       private_long: Chỉ người theo dõi mới được xem
       public: Công khai
@@ -1359,6 +1418,7 @@ vi:
     formats:
       default: "%d.%m.%Y %H:%M"
       month: "%B %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Thêm
     disable: Vô hiệu hóa
@@ -1386,24 +1446,31 @@ vi:
       subject: Xác nhận đăng nhập
       title: Đăng nhập
     warning:
+      categories:
+        spam: Spam
+        violation: Nội dung vi phạm quy tắc cộng đồng
       explanation:
-        disable: Bạn bị cấm đăng nhập tài khoản. Tuy nhiên, trang cá nhân và dữ liệu của bạn vẫn sẽ được giữ nguyên.
-        sensitive: Ảnh và video tải lên của bạn sẽ bị đánh dấu là nhạy cảm.
-        silence: Bạn vẫn có thể dùng tài khoản của bạn. Tuy nhiên, chỉ có những người đang theo dõi bạn mới có thể thấy tút của bạn. Bạn sẽ bị loại khỏi danh sách của một số người. Những người mới khác vẫn có thể theo dõi bạn bình thường.
-        suspend: Tài khoản của bạn đã bị vô hiệu hóa. Tất cả tút và tập tin mà bạn đã tải lên sẽ không thể truy cập được nữa. Bạn vẫn có thể đăng nhập để yêu cầu tải về bản sao dữ liệu của bạn. Tuy nhiên, chúng tôi sẽ giữ lại một vài dữ liệu để ngăn ngừa bạn trốn tránh trách nhiệm.
-      get_in_touch: Bạn có thể trả lời e-mail này để liên hệ với đội ngũ của %{instance}.
+        delete_statuses: Một số bài đăng của bạn đã vi phạm một hoặc nhiều quy tắc cộng đồng và bị gỡ bỏ bởi kiểm duyệt viên %{instance}. Các vi phạm trong tương lai có thể dẫn đến các hành động trừng phạt khắc nghiệt hơn so với tài khoản của bạn.
+        disable: Bạn không còn có thể sử dụng tài khoản của mình, nhưng hồ sơ của bạn và dữ liệu khác vẫn còn nguyên. Bạn có thể yêu cầu sao lưu dữ liệu của mình, thay đổi cài đặt tài khoản hoặc xóa tài khoản của bạn.
+        sensitive: Từ giờ trở đi, tất cả các media của bạn bạn tải lên sẽ được đánh dấu là nhạy cảm và ẩn đằng sau cảnh báo nhấp chuột.
+        silence: Bạn vẫn có thể sử dụng tài khoản của mình, nhưng chỉ những người đang theo dõi bạn mới thấy bài đăng của bạn. Bạn cũng bị loại khỏi các tính năng khám phá khác. Tuy nhiên, những người khác vẫn có thể theo dõi bạn.
+        suspend: Bạn không còn có thể sử dụng tài khoản của bạn, hồ sơ và các dữ liệu khác không còn có thể truy cập được. Bạn vẫn có thể đăng nhập để yêu cầu sao lưu dữ liệu của mình cho đến khi dữ liệu bị xóa hoàn toàn trong khoảng 30 ngày, nhưng chúng tôi sẽ giữ lại một số dữ liệu cơ bản để ngăn bạn tránh bị đình chỉ.
+      get_in_touch: Nếu bạn tin rằng đây là lỗi, bạn có thể trả lời e-mail này để liên lạc với các nhân viên của %{instance}.
+      reason: 'Lý do:'
       review_server_policies: Xem lại quy tắc của máy chủ
-      statuses: 'Cụ thể, cho:'
+      statuses: 'Đây là những tút vi phạm:'
       subject:
+        delete_statuses: Những tút %{acct} của bạn đã bị xóa bỏ
         disable: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
         none: Cảnh báo cho %{acct}
-        sensitive: Ảnh và video tải lên của %{acct} sẽ bị đánh dấu là nhạy cảm
+        sensitive: Những tập tin media %{acct} sẽ bị đánh dấu nhạy cảm kể từ bây giờ
         silence: Tài khoản %{acct} của bạn đã bị hạn chế
         suspend: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
       title:
+        delete_statuses: Tút đã bị xóa
         disable: Tài khoản bị đóng băng
         none: Cảnh báo
-        sensitive: Ảnh và video của bạn sẽ bị đánh dấu nhạy cảm
+        sensitive: Media đã bị ẩn
         silence: Tài khoản bị hạn chế
         suspend: Toài khoản bị vô hiệu hóa
     welcome:

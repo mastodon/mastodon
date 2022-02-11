@@ -1,7 +1,7 @@
 ---
 is:
   about:
-    about_hashtag_html: Þetta eru opinber tíst sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
+    about_hashtag_html: Þetta eru opinber skilaboð sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -99,7 +99,6 @@ is:
     accounts:
       add_email_domain_block: Útiloka tölvupóstlén
       approve: Samþykkja
-      approve_all: Samþykkja allt
       approved_msg: Tókst að samþykkja skráningu fyrir %{username}
       are_you_sure: Ertu viss?
       avatar: Auðkennismynd
@@ -114,6 +113,7 @@ is:
       confirm: Staðfesta
       confirmed: Staðfest
       confirming: Staðfesti
+      custom: Sérsniðið
       delete: Eyða gögnum
       deleted: Eytt
       demote: Lækka í tign
@@ -153,7 +153,6 @@ is:
         active: Virkur
         all: Allt
         pending: Í bið
-        silenced: Hulið
         suspended: Í bið
         title: Umsjón
       moderation_notes: Minnispunktar umsjónarmanna
@@ -171,7 +170,6 @@ is:
       redownload: Endurlesa notandasnið
       redownloaded_msg: Tókst að endurlesa notandasnið %{username} úr upphaflegu sniði
       reject: Hafna
-      reject_all: Hafna öllu
       rejected_msg: Tókst að hafna skráningu fyrir %{username}
       remove_avatar: Fjarlægja auðkennismynd
       remove_header: Fjarlægja haus
@@ -206,12 +204,14 @@ is:
       silence: Hylja
       silenced: Hulið
       statuses: Stöðufærslur
+      strikes: Fyrri refsingar
       subscribe: Gerast áskrifandi
       suspended: Í bið
       suspension_irreversible: Gögnunum á þessum notandaaðgangi hefur verið eytt óafturkræft. Þú getur tekið aðganginn úr bið svo hægt sé að nota hann, en það mun ekki endurheimta neitt af þeim gögnum sem á honum voru áður.
       suspension_reversible_hint_html: Notandaaðgangurin hefur verið settur í biðstöðu og gögnunum á honum verður eytt að fullu þann %{date}. Þangað til væri hægt að endurheimta aðganginn úr bið án nokkurra breytinga. Ef þú vilt eyða öllum gögnum af honum strax, geturðu gert það hér fyrir neðan.
-      time_in_queue: Bíður í biðröð %{time}
       title: Notandaaðgangar
+      unblock_email: Leyfa tölvupóstfang
+      unblocked_email_msg: Tókst að afbanna tölvupóstfang notandans %{username}
       unconfirmed_email: Óstaðfestur tölvupóstur
       undo_sensitized: Afturkalla merkingu sem viðkvæmt
       undo_silenced: Hætta að hylja
@@ -226,6 +226,7 @@ is:
       whitelisted: Á lista yfir leyft
     action_logs:
       action_types:
+        approve_user: Samþykkja notanda
         assigned_to_self_report: Úthluta kæru
         change_email_user: Skipta um tölvupóstfang notanda
         confirm_user: Staðfesta notanda
@@ -243,6 +244,7 @@ is:
         destroy_domain_allow: Eyða léni leyft
         destroy_domain_block: Eyða léni bannað
         destroy_email_domain_block: Eyða tölvupóstfangi bannað
+        destroy_instance: Henda léni
         destroy_ip_block: Eyða IP-reglu
         destroy_status: Eyða stöðufærslu
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
@@ -255,6 +257,7 @@ is:
         enable_user: Virkja notanda
         memorialize_account: Gera aðgang að minningargrein
         promote_user: Hækka notanda í tign
+        reject_user: Hafna notanda
         remove_avatar_user: Fjarlægja auðkennismynd
         reopen_report: Enduropna kæru
         reset_password_user: Endurstilla lykilorð
@@ -263,6 +266,7 @@ is:
         silence_account: Hylja notandaaðgang
         suspend_account: Setja notandaaðgang í bið
         unassigned_report: Aftengja úthlutun kæru
+        unblock_email_account: Leyfa tölvupóstfang
         unsensitive_account: Afmerkja myndefni á aðgangnum þínum sem viðkvæmt
         unsilence_account: Hætta að hylja notandaaðgang
         unsuspend_account: Taka notandaaðgang úr bið
@@ -271,6 +275,7 @@ is:
         update_domain_block: Uppfæra útilokun léns
         update_status: Uppfæra stöðufærslu
       actions:
+        approve_user_html: "%{name} samþykkti nýskráningu frá %{target}"
         assigned_to_self_report_html: "%{name} úthlutaði kæru %{target} til sín"
         change_email_user_html: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
         confirm_user_html: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
@@ -288,6 +293,7 @@ is:
         destroy_domain_allow_html: "%{name} bannaði skýjasamband með léninu %{target}"
         destroy_domain_block_html: "%{name} aflétti útilokun af léninu %{target}"
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
+        destroy_instance_html: "%{name} henti léninu %{target}"
         destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
         destroy_status_html: "%{name} fjarlægði stöðufærslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
@@ -300,6 +306,7 @@ is:
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
         promote_user_html: "%{name} hækkaði notandann %{target} í tign"
+        reject_user_html: "%{name} hafnaði nýskráningu frá %{target}"
         remove_avatar_user_html: "%{name} fjarlægði auðkennismynd af %{target}"
         reopen_report_html: "%{name} enduropnaði kæru %{target}"
         reset_password_user_html: "%{name} endurstillti lykilorð fyrir notandann %{target}"
@@ -308,6 +315,7 @@ is:
         silence_account_html: "%{name} þaggaði niður í aðgangnum %{target}"
         suspend_account_html: "%{name} setti notandaaðganginn %{target} í bið"
         unassigned_report_html: "%{name} fjarlægði úthlutun af kæru %{target}"
+        unblock_email_account_html: "%{name} opnaði á tölvupóstfangið %{target}"
         unsensitive_account_html: "%{name} tók merkinguna viðkvæmt af myndefni frá %{target}"
         unsilence_account_html: "%{name} hætti að hylja notandaaðganginn %{target}"
         unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr bið"
@@ -371,9 +379,28 @@ is:
       updated_msg: Tókst að uppfæra tjáningartákn!
       upload: Senda inn
     dashboard:
+      active_users: virkir notendur
+      interactions: aðgerðir
+      media_storage: Geymsla myndefnis
+      new_users: nýir notendur
+      opened_reports: kærur opnaðar
+      pending_reports_html:
+        one: "<strong>1</strong> kæra í bið"
+        other: "<strong>%{count}</strong> kærur í bið"
+      pending_tags_html:
+        one: "<strong>1</strong> myllumerki í bið"
+        other: "<strong>%{count}</strong> myllumerki í bið"
+      pending_users_html:
+        one: "<strong>1</strong> notandi í bið"
+        other: "<strong>%{count}</strong> notendur í bið"
+      resolved_reports: kærur leystar
       software: Hugbúnaður
+      sources: Uppruni nýskráninga
       space: Notkun geymslurýmis
       title: Stjórnborð
+      top_languages: Virkustu tungumál
+      top_servers: Virkustu netþjónar
+      website: Vefsvæði
     domain_allows:
       add_new: Setja lén á lista yfir leyft
       created_msg: Það tókst að setja lénið á lista yfir leyft
@@ -446,6 +473,7 @@ is:
       back_to_limited: Takmarkað
       back_to_warning: Aðvörun
       by_domain: Lén
+      confirm_purge: Ertu viss um að þú viljir eyða gögnum endanlega frá þessu léni?
       delivery:
         all: Allt
         clear: Hreinsa afhendingarvillur
@@ -461,6 +489,7 @@ is:
       delivery_available: Afhending er til taks
       delivery_error_days: Dagar með villum í afhendingu
       delivery_error_hint: Ef afhending er ekki möguleg í %{count} daga, verður það sjálfkrafa merkt sem óafhendanlegt.
+      destroyed_msg: Gögn frá %{domain} bíða núna eftir að vera eytt innan skamms.
       empty: Engin lén fundust.
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
@@ -471,6 +500,7 @@ is:
         title: Umsjón
       private_comment: Einkaathugasemd
       public_comment: Opinber athugasemd
+      purge: Henda
       title: Samband
       total_blocked_by_us: Útilokaðir af okkur
       total_followed_by_them: Fylgt af þeim
@@ -500,8 +530,6 @@ is:
         title: Búa til nýja IP-reglu
       no_ip_block_selected: Engum IP-reglum var breytt því ekkert var valið
       title: IP-reglur
-    pending_accounts:
-      title: Notendaaðgangar í bið (%{count})
     relationships:
       title: Vensl %{acct}
     relays:
@@ -523,32 +551,44 @@ is:
     report_notes:
       created_msg: Tókst að útbúa minnispunkt skýrslu!
       destroyed_msg: Tókst að eyða minnispunkti skýrslu!
+      today_at: Í dag kl. %{time}
     reports:
       account:
         notes:
           one: "%{count} minnispunktur"
           other: "%{count} minnispunktar"
-        reports:
-          one: "%{count} skýrsla"
-          other: "%{count} skýrslur"
+      action_log: Atvikaskrá
       action_taken_by: Aðgerð framkvæmd af
+      actions:
+        other_description_html: Skoðaðu fleir valkosti fyrir stjórnun á hegðun notandaaðgangsins og til að stýra samskiptum við kærðan notandaaðgang.
+        silence_description_html: Notandaaðgangurinn verður einungis sýnilegur þeim sem þegar fylgjast með honum eða sem fletta honum upp handvirkt, sem takmarkar útbreiðslu efnis verulega. Er alltaf hægt að afturkalla.
+        suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út. Samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga.
+      actions_description_html: 'Ef það að fjarlægja óviðeigandi efnið hér fyrir ofan er ekki nægilegt:'
+      add_to_report: Bæta fleiru í kæru
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
       assigned: Úthlutaður umsjónarmaður
       by_target_domain: Lén kærða notandaaðgangsins
+      category: Flokkur
+      category_description_html: Ástæðan fyrir því að þessi notandaaðgangur og/eða efni hans var kært mun verða tiltekin í samskiptum við kærðan notandaaðgang
       comment:
         none: Ekkert
+      comment_description_html: 'Til að gefa nánari upplýsingar skrifaði %{name}:'
       created_at: Tilkynnt
+      delete_and_resolve: Eyða og leysa
       forwarded: Áframsent
       forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
       mark_as_unresolved: Merkja sem óleyst
+      no_one_assigned: Enginn
       notes:
         create: Bæta við minnispunkti
         create_and_resolve: Leysa með minnispunkti
         create_and_unresolve: Enduropna með minnispunkti
         delete: Eyða
         placeholder: Lýstu til hvaða aðgerða hefur verið gripið eða uppfærðu inn aðrar tengdar upplýsingar...
+        title: Minnispunktar
+      notes_description_html: Skoðaðu og skrifaðu minnispunkta til annarra stjórnenda og sjálfs þín
       reopen: Enduropna kæru
       report: 'Kæra #%{id}'
       reported_account: Kærður notandaaðgangur
@@ -556,11 +596,14 @@ is:
       resolved: Leyst
       resolved_msg: Það tókst að leysa kæruna!
       status: Staða
+      statuses: Kært efni
+      statuses_description_html: Óviðeigandi efni verður tiltekið í samskiptum við kærðan notandaaðgang
       target_origin: Uppruni kærða notandaaðgangsins
       title: Kærur
       unassign: Aftengja úthlutun
       unresolved: Óleyst
       updated_at: Uppfært
+      view_profile: Skoða notandasnið
     rules:
       add_new: Skrá reglu
       delete: Eyða
@@ -662,15 +705,13 @@ is:
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
     statuses:
       back_to_account: Fara aftur á síðu notandaaðgangsins
+      back_to_report: Til baka á kærusíðu
       batch:
-        delete: Eyða
-        nsfw_off: Merkja gögn sem ekki viðkvæm
-        nsfw_on: Merkja sem viðkvæmt
+        remove_from_report: Fjarlægja úr kæru
+        report: Kæra
       deleted: Eytt
-      failed_to_execute: Mistókst að keyra
       media:
         title: Myndefni
-      no_media: Ekkert myndefni
       no_status_selected: Engum stöðufærslum var breytt þar sem engar voru valdar
       title: Staða notendaaðganga
       with_media: Með myndefni
@@ -683,21 +724,51 @@ is:
       sidekiq_process_check:
         message_html: Ekkert Sidekiq-ferli er í gangi fyrir %{value} biðröð/biðraðir. Endilega athugaðu Sidekiq-uppsetninguna þína
     tags:
-      accounts_today: Einstök afnot í dag
-      accounts_week: Einstök afnot í þessari viku
-      breakdown: Samantekt á notkun dagsins eftir uppruna
-      last_active: Síðasta virkni
-      most_popular: Vinsælast
-      most_recent: Nýjast
-      name: Myllumerki
       review: Yfirfara stöðufærslu
-      reviewed: Yfirfarið
-      title: Myllumerki
-      trending_right_now: Í umræðunni nákvæmlega núna
-      unique_uses_today: "%{count} færslur í dag"
-      unreviewed: Ekki yfirfarið
       updated_msg: Það tókst að uppfæra stillingar myllumerkja
     title: Stjórnendur
+    trends:
+      allow: Leyfa
+      approved: Samþykkt
+      disallow: Ekki leyfa
+      links:
+        allow: Leyfa tengil
+        allow_provider: Leyfa útgefanda
+        disallow: Ekki leyfa tengil
+        disallow_provider: Ekki leyfa útgefanda
+        shared_by_over_week:
+          one: Deilt af einum aðila síðustu vikuna
+          other: Deilt af %{count} aðilum síðustu vikuna
+        title: Vinsælir tenglar
+        usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
+      pending_review: Bíður eftir yfirlestri
+      preview_card_providers:
+        allowed: Tenglar frá þessum útgefanda geta verið með í vinsældum
+        rejected: Tenglar frá þessum útgefanda verða ekki með í vinsældum
+        title: Útgefendur
+      rejected: Hafnað
+      tags:
+        current_score: Núverandi stig %{score}
+        dashboard:
+          tag_accounts_measure: einstök tilvik
+          tag_languages_dimension: Vinsælustu tungumál
+          tag_servers_dimension: Vinsælustu netþjónar
+          tag_servers_measure: mismunandi netþjónar
+          tag_uses_measure: tilvik alls
+        listable: Má stinga uppá
+        not_listable: Mun ekki vera stungið uppá
+        not_trendable: Mun ekki birtast í vinsældum
+        not_usable: Má ekki nota
+        peaked_on_and_decaying: Toppaði þann %{date}, núna dalandi
+        title: Vinsæl myllumerki
+        trendable: Má vera með í vinsældum
+        trending_rank: 'Vinsæl #%{rank}'
+        usable: Má nota
+        usage_comparison: Notað %{today} sinnum í dag, samanborið við %{yesterday} í gær
+        used_by_over_week:
+          one: Notað af einum aðila síðustu vikuna
+          other: Notað af %{count} aðilum síðustu vikuna
+      title: Tilhneiging
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
@@ -712,9 +783,16 @@ is:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
       subject: Ný kæra vegna %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Myllumerkið #%{name} er í umræðunni í dag, en hefur ekki verið yfirfarið áður. Það mun ekki verða birt opinberlega nema að þú samþykkir það, annars geturðu vistað eyðublaðið óbreytt og aldrei heyrt á þetta minnst framar.'
-      subject: Nýtt myllumerki er komið til yfirferðar á %{instance} (#%{name})
+    new_trending_links:
+      body: Eftirfarandi tenglar eru vinsælir í dag, en ekki er búið að yfirfara útgefendur þeirra. Þeir munu ekki birtast opinberlega nema þú samþykkir þá. Ekki verða útbúnar frekari tilkynningar frá sömu útgefendum.
+      no_approved_links: Í augnablikinu eru engir samþykktir vinsælir tenglar.
+      requirements: Minnst vinsæli tengillinn sem búið er að samþykkja er núna "%{lowest_link_title}" með stigaskorið %{lowest_link_score}.
+      subject: Nýir vinsælir tenglar eru tilbúnir til yfirferðar á %{instance}
+    new_trending_tags:
+      body: 'Eftirfarandi myllumerki eru vinsæl í dag, en ekki er búið að yfirfara þau. Þau munu ekki birtast opinberlega nema þú samþykkir þau:'
+      no_approved_tags: Í augnablikinu eru engin samþykkt vinsæl myllumerki.
+      requirements: Minnst vinsæla myllumerkið sem búið er að samþykkja er núna %{lowest_tag_name} með stigaskorið %{lowest_tag_score}.
+      subject: Ný vinsæl myllumerki eru tilbúin til yfirferðar á %{instance}
   aliases:
     add_new: Búa til samnefni (alias)
     created_msg: Tókst að búa til samnefni. Þú getur núna byrjað að færa gögn af gamla aðgangnum.
@@ -766,6 +844,7 @@ is:
     invalid_reset_password_token: Teikn fyrir endurstillingu lykilorðs er ógilt eða útrunnið. Biddu um nýtt teikn.
     link_to_otp: Settu inn tveggja-þátta kóða úr farsímanum þínum eða endurheimtukóða
     link_to_webauth: Notaðu tæki með öryggislykli
+    log_in_with: Skrá inn með
     login: Skrá inn
     logout: Skrá út
     migrate_account: Færa á annan notandaaðgang
@@ -921,34 +1000,15 @@ is:
     changes_saved_msg: Það tókst að vista breytingarnar!
     copy: Afrita
     delete: Eyða
-    no_batch_actions_available: Engar magnvinnsluaðgerðir tiltækar á þessari síðu
+    none: Ekkert
     order_by: Raða eftir
     save_changes: Vista breytingar
+    today: í dag
     validation_errors:
       one: Ennþá er ekk alvegi allt í lagi! Skoðaðu vel villuna hér fyrir neðan
       other: Ennþá er ekki alveg allt í lagi! Skoðaðu vel villurnar %{count} hér fyrir neðan
   html_validator:
     invalid_markup: 'inniheldur ógildar HTML-merkingar: %{error}'
-  identity_proofs:
-    active: Virkur
-    authorize: Já, heimila
-    authorize_connection_prompt: Auðkenna dulkóðaða tengingu?
-    errors:
-      failed: Dulrituð tenging mistókst, endilega reyndu aftur frá %{provider}.
-      keybase:
-        invalid_token: Keybase-teikn eru tætigildi undirritana og verða að vera 66 hex-stafir
-        verification_failed: Keybase skilur þetta teikn ekki sem undirritun Keybase-notandans %{kb_username}. Prófaðu aftur í Keybase.
-      wrong_user: Get ekki búið til sannvottun fyrir %{proving} á meðan skráð er inn sem %{current}. Skráðu inn sem %{proving} og prófaðu aftur.
-    explanation_html: Hér geturðu tengt dulritað önnur auðkenni þín, eins og t.d. Keybase-notandasnið. Þetta gerir öðru fólki kleift að senda þér dulrituð skilaboð og að treysta efni sem þú sendir þeim.
-    i_am_html: Ég er %{username} á %{service}.
-    identity: Auðkenni
-    inactive: Óvirkt
-    publicize_checkbox: 'Og tísti þetta:'
-    publicize_toot: 'Það er búið að sanna þetta! Ég er %{username} á %{service}: %{url}'
-    remove: Fjarlægja sönnun úr notandaaðgangi
-    removed: Tókst að fjarlægja sönnun úr notandaaðgangi
-    status: Staða sannvottunar
-    view_proof: Skoða sönnun
   imports:
     errors:
       over_rows_processing_limit: inniheldur meira en %{count} raðir
@@ -1164,6 +1224,9 @@ is:
     reply:
       proceed: Halda áfram í að svara
       prompt: 'Þú ætlar að svara þessu tísti:'
+  reports:
+    errors:
+      invalid_rules: vísar ekki til gildra reglna
   scheduled_statuses:
     over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætluð tíst fyrir þennan dag
     over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætluð tíst
@@ -1222,7 +1285,6 @@ is:
     edit_profile: Breyta notandasniði
     export: Útflutningur gagna
     featured_tags: Myllumerki með aukið vægi
-    identity_proofs: Sannanir á auðkenni
     import: Flytja inn
     import_and_export: Inn- og útflutningur
     migrate: Yfirfærsla notandaaðgangs
@@ -1247,18 +1309,19 @@ is:
         other: "%{count} myndskeið"
     boosted_from_html: Endurbirt frá %{acct_link}
     content_warning: 'Aðvörun vegna efnis (CW): %{warning}'
+    default_language: Sama og tungumál viðmóts
     disallowed_hashtags:
       one: 'innihélt óleyfilegt myllumerki: %{tags}'
       other: 'innihélt óleyfilegu myllumerkin: %{tags}'
+    edited_at: Breytt %{date}
     errors:
       in_reply_not_found: Stöðufærslan sem þú ert að reyna að svara að er líklega ekki til.
-    language_detection: Greina tungumál sjálfvirkt
     open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð
     pin_errors:
+      direct: Ekki er hægt að festa skilaboð sem einungis eru sýnileg þeim notendum sem minnst er á
       limit: Þú hefur þegar fest leyfilegan hámarksfjölda tísta
       ownership: Tíst frá einhverjum öðrum er ekki hægt að festa
-      private: Óopinber tíst er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
     poll:
       total_people:
@@ -1413,6 +1476,7 @@ is:
     formats:
       default: "%d. %b, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Bæta við
     disable: Gera óvirkt
@@ -1440,24 +1504,31 @@ is:
       subject: Endilega staðfestu tilraun til innskráningar
       title: Tilraun til innskráningar
     warning:
+      categories:
+        spam: Ruslpóstur
+        violation: Efnið er á skjön við eftirfarandi leiðbeiningar til notenda
       explanation:
-        disable: Á meðan aðgangurinn þinn er frystur, eru gögn aðgangsins ósnert, en þú getur ekki framkvæmt neinar aðgerðir fyrr en honum hefur verið aflæst.
-        sensitive: Innsent myndefni sem þú sendir inn og tengt myndefni verður farið með sem viðkvæmt efni.
-        silence: Á meðan aðgangurinn þinn er takmarkaður, mun aðeins fólk sem þegar fylgist með þér sjá tístin þín á þessum vefþjóni, auk þess sem lokað gæti verið á þig á ýmsum opinberum listum. Aftur á móti geta aðrir gerst fylgjendur þínir handvirkt.
-        suspend: Aðgangurinn þinn hefur verið settur í biðstöðu, öll þín tíst og innsent myndefni hafa verið óafturkræft fjarlægð af þessum vefþjóni, sem og af þeim vefþjónum þar sem þú áttir þér fylgjendur.
-      get_in_touch: Þú getur svarað þessum tölvupósti til að setja þig í samband við umsjónarmenn %{instance}.
+        delete_statuses: Sum skilaboð frá þér eru álitin eru að hafa gengið gegn samþykktum skilmálum vegna notkunar og hafa því stjórnendur fjarlægt þau af %{instance}. Brot sem framin verða hér eftir geta leitt til enn harðari aðgerða gegn notandaaðgangnum þínum.
+        disable: Þú getur ekki lengur notað aðganginn þinn, en notandasniðið þitt og önnur gögn eru óskemmd. Þú getur beðið um afrit af gögnunum þínum, getur breytt stillingum eða eytt aðgangnum þínum.
+        sensitive: Héðan í frá verður allt myndefni sem þú sendir inn meðhöndlað sem viðkvæmt efni og falið á bakvið aðvörun sem smella þarf á.
+        silence: Þú getur áfram notað aðganginn þinn en aðeins fólk sem þegar fylgist með þér mun sjá tístin þín á þessum vefþjóni, auk þess sem lokað gæti verið á þig á ýmsum opinberum listum. Aftur á móti geta aðrir gerst fylgjendur þínir handvirkt.
+        suspend: Þú getur ekki lengur notað aðganginn þinn og notandasniðið þitt og önnur gögn eru ekki lengur aðgengileg. Þú getur enn skráð þig inn til að biðja um afrit af gögnunum þínum þar til þeim verður eytt að fullu eftir 30 daga, við munum hinsvegar halda eftir einstaka grunnupplýsingum til að koma í veg fyrir að þú komist framhjá þessu banni.
+      get_in_touch: Ef þú álítur að um mistök sé að ræða, geturðu svarað þessum tölvupósti til að setja þig í samband við umsjónarmenn %{instance}.
+      reason: 'Ástæða:'
       review_server_policies: Yfirfara reglur vefþjónsins
-      statuses: 'Sérstaklega fyrir:'
+      statuses: 'Skilaboð sem álitin eru að hafa gengið gegn samþykktum ákvæðum:'
       subject:
+        delete_statuses: Skilaboð ín á %{acct} hafa verið fjarlægð
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
         none: Aðvörun fyrir %{acct}
-        sensitive: Myndefni sent frá %{acct} aðgangnum þínum hefur verið merkt sem viðkvæmt
+        sensitive: Myndefnið þitt á %{acct} verður héðan í frá merkt sem viðkvæmt
         silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
         suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
       title:
+        delete_statuses: Skilaboð fjarlægð
         disable: Notandaaðgangur frystur
         none: Aðvörun
-        sensitive: Myndefnið þitt hefur verið merkt sem viðkvæmt
+        sensitive: Mynd er falin
         silence: Notandaaðgangur takmarkaður
         suspend: Notandaaðgangur í bið
     welcome:
