@@ -1,7 +1,6 @@
----
 lv:
   about:
-    about_hashtag_html: Šīs ir publiskas ziņas, kas atzīmētas ar <strong>#%{hashtag}</strong>. Tu vari mijiedarboties ar tām, ja tev ir konts jebkurā federācijas vietnē.
+    about_hashtag_html: 'Šīs ir publiskas ziņas, kas atzīmētas ar <strong>#%{hashtag}</strong>. Tu vari mijiedarboties ar tām, ja tev ir konts jebkurā federācijas vietnē.'
     about_mastodon_html: 'Nākotnes sociālais tīkls: bez reklāmām, bez korporatīvās uzraudzības, ētisks dizains un decentralizācija! Pārvaldi savus datus ar Mastodon!'
     about_this: Par
     active_count_after: aktīvs
@@ -32,9 +31,9 @@ lv:
     server_stats: 'Servera statistika:'
     source_code: Pirmkods
     status_count_after:
+      zero: nav
       one: ziņa
       other: ziņas
-      zero: nav
     status_count_before: Kurš publicējis
     tagline: Seko draugiem un atrodi jaunus
     terms: Pakalpojuma noteikumi
@@ -50,9 +49,9 @@ lv:
       suspended_title: Apturēti serveri
     unavailable_content_html: Mastodon parasti ļauj apskatīt saturu un mijiedarboties ar lietotājiem no jebkura cita federācijas servera. Šie ir izņēmumi, kas veikti šajā konkrētajā serverī.
     user_count_after:
+      zero: lietotājI
       one: lietotājs
       other: lietotāji
-      zero: lietotājI
     user_count_before: Mājās uz
     what_is_mastodon: Kas ir Mastodon?
   accounts:
@@ -61,9 +60,9 @@ lv:
     featured_tags_hint: Šeit vari norādīt īpašus tēmturus, kuri tiks parādīti šeit.
     follow: Seko
     followers:
+      zero: Sekotāju
       one: Sekotājs
       other: Sekotāji
-      zero: Sekotāju
     following: Seko
     instance_actor_flash: Šis konts ir virtuāls aktieris, ko izmanto, lai pārstāvētu pašu serveri, nevis atsevišķu lietotāju. To izmanto federācijas nolūkos, un to nevajadzētu apturēt.
     joined: Pievienojās %{date}
@@ -79,9 +78,9 @@ lv:
     pin_errors:
       following: Tev jau ir jāseko personai, kuru vēlies apstiprināt
     posts:
+      zero: Ziņu
       one: Ziņa
       other: Ziņas
-      zero: Ziņu
     posts_tab_heading: Ziņas
     posts_with_replies: Ziņas un atbildes
     roles:
@@ -121,7 +120,7 @@ lv:
       delete: Dzēst datus
       deleted: Dzēsts
       demote: Pazemināt
-      destroyed_msg: Lietotāja %{username} dati tagad ievietoti rindā, lai tos nekavējoties izdzēstu
+      destroyed_msg: "Lietotāja %{username} dati tagad ievietoti rindā, lai tos nekavējoties izdzēstu"
       disable: Iesaldēt
       disable_sign_in_token_auth: Atspējot autentifikāciju ar e-pasta marķieri
       disable_two_factor_authentication: Atspējot 2FA
@@ -152,7 +151,7 @@ lv:
       media_attachments: Mediju pielikumi
       memorialize: Pārvērst atmiņās
       memorialized: Piemiņa saglabāta
-      memorialized_msg: "%{username} veiksmīgi pārvērsts par piemiņas kontu"
+      memorialized_msg: '%{username} veiksmīgi pārvērsts par piemiņas kontu'
       moderation:
         active: Aktīvie
         all: Visi
@@ -389,17 +388,17 @@ lv:
       new_users: jauni lietotāji
       opened_reports: atvērtie ziņojumi
       pending_reports_html:
+        zero: "<strong>%{count}</strong> ziņojumu"
         one: "<strong>1</strong> ziņojums gaida"
         other: "<strong>%{count}</strong>ziņojumi gaida"
-        zero: "<strong>%{count}</strong> ziņojumu"
       pending_tags_html:
+        zero: "<strong>%{count}</strong> tēmturu"
         one: "<strong>1</strong> tēmturis gaida"
         other: "<strong>%{count}</strong>tēmturi gaida"
-        zero: "<strong>%{count}</strong> tēmturu"
       pending_users_html:
+        zero: "<strong>%{count}</strong> lietotāju"
         one: "<strong>1</strong> lietotājs gaida"
         other: "<strong>%{count}</strong>lietotāji gaida"
-        zero: "<strong>%{count}</strong> lietotāju"
       resolved_reports: ziņojumi atrisināti
       software: Programmatūra
       sources: Reģistrēšanās avoti
@@ -446,9 +445,9 @@ lv:
         suspend: apturēts
       show:
         affected_accounts:
-          one: Ietekmēts viens konts datu bāzē
-          other: Ietekmēti %{count} konti datu bāzē
           zero: "%{count} ietekmētu kontu"
+          one: Ietekmēts viens konts datu bāzē
+          other: "Ietekmēti %{count} konti datu bāzē"
         retroactive:
           silence: Atsaukt ierobežojumus esošajiem ietekmētajiem kontiem no šī domēna
           suspend: Atcelt šī domēna esošo ietekmēto kontu darbības apturēšanu
@@ -492,18 +491,18 @@ lv:
         unavailable_message: Piegāde nav iespējama
         warning: Brīdinājums
         warning_message:
+          zero: Piegādes kļūme %{count} dienas
           one: Piegādes kļūme %{count} diena
           other: Piegādes kļūme %{count} dienas
-          zero: Piegādes kļūme %{count} dienas
       delivery_available: Piegāde ir iespējama
       delivery_error_days: Piegādes kļūdu dienas
       delivery_error_hint: Ja piegāde nav iespējama %{count} dienas, tā tiks automātiski atzīmēta kā nepiegādājama.
       destroyed_msg: Dati no %{domain} tagad ir gaidīšanas rindā, lai tos drīzumā dzēstu.
       empty: Domēni nav atrasti.
       known_accounts:
+        zero: "%{count} zināmu kontu"
         one: "%{count} zināms konts"
         other: "%{count} zināmi konti"
-        zero: "%{count} zināmu kontu"
       moderation:
         all: Visas
         limited: Ierobežotās
@@ -545,7 +544,7 @@ lv:
     relays:
       add_new: Pievienot jaunu releju
       delete: Dzēst
-      description_html: "<strong>Federācijas relejs</strong> ir starpniekserveris, kas apmainās ar lielu publisko ziņu apjomu starp serveriem, kas to abonē un publicē. <strong>Tas var palīdzēt maziem un vidējiem serveriem atklāt saturu no federācijas</strong>, pretējā gadījumā vietējiem lietotājiem manuāli jāseko citām personām attālos serveros."
+      description_html: <strong>Federācijas relejs</strong> ir starpniekserveris, kas apmainās ar lielu publisko ziņu apjomu starp serveriem, kas to abonē un publicē. <strong>Tas var palīdzēt maziem un vidējiem serveriem atklāt saturu no federācijas</strong>, pretējā gadījumā vietējiem lietotājiem manuāli jāseko citām personām attālos serveros.
       disable: Atspējot
       disabled: Atspējots
       enable: Iespējot
@@ -565,9 +564,9 @@ lv:
     reports:
       account:
         notes:
+          zero: "%{count} piezīmju"
           one: "%{count} piezīme"
           other: "%{count} piezīmes"
-          zero: "%{count} piezīmju"
       action_log: Auditācijas pieraksti
       action_taken_by: Veiktā darbība
       actions:
@@ -748,9 +747,9 @@ lv:
         disallow: Neatļaut saiti
         disallow_provider: Neatļaut publicētāju
         shared_by_over_week:
+          zero: Pēdējās nedēļas laikā kopīgoja %{count} persona
           one: Pēdējās nedēļas laikā kopīgoja viena persona
           other: Pēdējās nedēļas laikā kopīgoja %{count} personas
-          zero: Pēdējās nedēļas laikā kopīgoja %{count} persona
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
       pending_review: Gaida pārskatīšanu
@@ -778,9 +777,9 @@ lv:
         usable: Var tikt lietots
         usage_comparison: Šodien lietots %{today} reizes, salīdzinot ar %{yesterday} vakar
         used_by_over_week:
+          zero: Pēdējās nedēļas laikā izmantoja %{count} personu
           one: Pēdējās nedēļas laikā izmantoja viens cilvēks
           other: Pēdējās nedēļas laikā izmantoja %{count} personas
-          zero: Pēdējās nedēļas laikā izmantoja %{count} personu
       title: Tendences
     warning_presets:
       add_new: Pievienot jaunu
@@ -795,7 +794,7 @@ lv:
     new_report:
       body: "%{reporter} ziņoja par %{target}"
       body_remote: Kāds no %{domain} ziņoja par %{target}
-      subject: Jauns ziņojums par %{instance} (#%{id})
+      subject: 'Jauns ziņojums par %{instance} (#%{id})'
     new_trending_links:
       body: Tālāk norādītās saites šodien ir populāras, taču to publicētāji iepriekš nav pārskatīti. Tie netiks rādīti publiski, ja vien tu tos neapstiprināsi. Turpmāki paziņojumi no tiem pašiem publicētājiem netiks ģenerēti.
       no_approved_links: Pašlaik nav apstiprinātu tendenču saišu.
@@ -1018,9 +1017,9 @@ lv:
     save_changes: Saglabāt izmaiņas
     today: šodien
     validation_errors:
+      zero: '%{count} kļūdu'
       one: Kaut kas vēl nav īsti kārtībā! Lūdzu, pārskati zemāk norādīto kļūdu
       other: Kaut kas vēl nav īsti kārtībā! Lūdzu, pārskati %{count} kļūdas zemāk
-      zero: "%{count} kļūdu"
   html_validator:
     invalid_markup: 'satur nederīgu HTML marķējumu: %{error}'
   imports:
@@ -1055,9 +1054,9 @@ lv:
     generate: Ģenerēt uzaicinājuma saiti
     invited_by: 'Tevi uzaicināja:'
     max_uses:
+      zero: "%{count} lietojumu"
       one: 1 lietojums
       other: "%{count} lietojumi"
-      zero: "%{count} lietojumu"
     max_uses_prompt: Nav ierobežojuma
     prompt: Izveido un kopīgo saites ar citiem, lai piešķirtu piekļuvi šim serverim
     table:
@@ -1126,13 +1125,13 @@ lv:
       body: Šeit ir īss kopsavilkums par ziņojumiem, kurus tu esi palaidis garām kopš pēdējā apmeklējuma %{since}
       mention: "%{name} pieminēja tevi:"
       new_followers_summary:
+        zero: '%{count} jaunu sekotāju!'
         one: Tāpat, atrodoties prom, esi ieguvis vienu jaunu sekotāju! Jip!
         other: Turklāt, atrodoties prom, esi ieguvis %{count} jaunus sekotājus! Apbrīnojami!
-        zero: "%{count} jaunu sekotāju!"
       subject:
+        zero: "%{count} jaunu paziņojumu"
         one: "1 jauns paziņojums kopš tava pēdējā apmeklējuma \U0001F418"
         other: "%{count} jauni paziņojumi kopš tava pēdējā apmeklējuma \U0001F418"
-        zero: "%{count} jaunu paziņojumu"
       title: Tavas prombūtnes laikā...
     favourite:
       body: 'Tavu ziņu izlasei pievienoja %{name}:'
@@ -1153,7 +1152,7 @@ lv:
       subject: Tevi pieminēja %{name}
       title: Jauna pieminēšana
     poll:
-      subject: "%{name} aptauja ir beigusies"
+      subject: '%{name} aptauja ir beigusies'
     reblog:
       body: 'Tavu ziņu paaugstināja %{name}:'
       subject: "%{name} paaugstināja tavu ziņu"
@@ -1315,25 +1314,25 @@ lv:
   statuses:
     attached:
       audio:
+        zero: "%{count} audio"
         one: "%{count} audio"
         other: "%{count} audio"
-        zero: "%{count} audio"
       description: 'Pievienots: %{attached}'
       image:
+        zero: "%{count} attēlu"
         one: "%{count} attēls"
         other: "%{count} attēli"
-        zero: "%{count} attēlu"
       video:
+        zero: "%{count} video"
         one: "%{count} video"
         other: "%{count} video"
-        zero: "%{count} video"
     boosted_from_html: Paaugstināja %{acct_link}
     content_warning: 'Satura brīdinājums: %{warning}'
     default_language: Tāda, kā interfeisa valoda
     disallowed_hashtags:
+      zero: 'neatļauti tēmturi: %{tags}'
       one: 'saturēja neatļautu tēmturi: %{tags}'
       other: 'saturēja neatļautus tēmturus: %{tags}'
-      zero: 'neatļauti tēmturi: %{tags}'
     edited_at: Rediģēts %{date}
     errors:
       in_reply_not_found: Šķiet, ka ziņa, uz kuru tu mēģini atbildēt, nepastāv.
@@ -1346,20 +1345,20 @@ lv:
       reblog: Paaugstinātās ziņas nevar piespraust
     poll:
       total_people:
+        zero: "%{count} personu"
         one: "%{count} persona"
         other: "%{count} personas"
-        zero: "%{count} personu"
       total_votes:
+        zero: "%{count} balsu"
         one: "%{count} balss"
         other: "%{count} balsis"
-        zero: "%{count} balsu"
       vote: Balsu skaits
     show_more: Rādīt vairāk
     show_newer: Nekad nerādīt
     show_older: Rādīt senākus
     show_thread: Rādīt tematu
     sign_in_to_participate: Lai piedalītos sarunā, pieraksties
-    title: "%{name}: “%{quote}”"
+    title: '%{name}: “%{quote}”'
     visibilities:
       direct: Tiešs
       private: Tikai sekotājiem
@@ -1409,7 +1408,7 @@ lv:
   tags:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
   terms:
-    body_html: |
+    body_html: |2
       <h2>Privātuma politika</h2>
       <h3 id="collect">Kādu informāciju mēs apkopojam?</h3>
 
