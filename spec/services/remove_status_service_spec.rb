@@ -39,6 +39,11 @@ RSpec.describe RemoveStatusService, type: :service do
       expect(a_request(:post, 'http://example.com/inbox').with(
         body: hash_including({
           'type' => 'Delete',
+          'object' => {
+            'type' => 'Tombstone',
+            'id' => ActivityPub::TagManager.instance.uri_for(@status),
+            'atomUri' => OStatus::TagManager.instance.uri_for(@status),
+          },
         })
       )).to have_been_made.once
     end
@@ -47,7 +52,12 @@ RSpec.describe RemoveStatusService, type: :service do
       subject.call(@status)
       expect(a_request(:post, 'http://example2.com/inbox').with(
         body: hash_including({
-          'type' => 'Delete'
+          'type' => 'Delete',
+          'object' => {
+            'type' => 'Tombstone',
+            'id' => ActivityPub::TagManager.instance.uri_for(@status),
+            'atomUri' => OStatus::TagManager.instance.uri_for(@status),
+          },
         })
       )).to have_been_made.once
     end
@@ -59,10 +69,10 @@ RSpec.describe RemoveStatusService, type: :service do
     end
   end
 
-  context 'when removed status is a reblog' do
+  context 'when removed status is a private self-reblog' do
     before do
-      original_status = Fabricate(:status, account: alice, text: 'Hello ThisIsASecret')
-      @status = ReblogService.new.call(alice, original_status)
+      @original_status = Fabricate(:status, account: alice, text: 'Hello ThisIsASecret', visibility: :private)
+      @status = ReblogService.new.call(alice, @original_status)
     end
 
     it 'sends Undo activity to followers' do
@@ -72,6 +82,27 @@ RSpec.describe RemoveStatusService, type: :service do
           'type' => 'Undo',
           'object' => hash_including({
             'type' => 'Announce',
+            'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
+          }),
+        })
+      )).to have_been_made.once
+    end
+  end
+
+  context 'when removed status is public self-reblog' do
+    before do
+      @original_status = Fabricate(:status, account: alice, text: 'Hello ThisIsASecret', visibility: :public)
+      @status = ReblogService.new.call(alice, @original_status)
+    end
+
+    it 'sends Undo activity to followers' do
+      subject.call(@status)
+      expect(a_request(:post, 'http://example.com/inbox').with(
+        body: hash_including({
+          'type' => 'Undo',
+          'object' => hash_including({
+            'type' => 'Announce',
+            'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
           }),
         })
       )).to have_been_made.once
