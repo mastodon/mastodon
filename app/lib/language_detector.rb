@@ -19,10 +19,9 @@ class LanguageDetector
   end
 
   def language_names
-    #@language_names =
-    #  CLD3::TaskContextParams::LANGUAGE_NAMES.map { |name| iso6391(name.to_s).to_sym }
-    #                                         .uniq
-    [:ja]
+    @language_names =
+     CLD3::TaskContextParams::LANGUAGE_NAMES.map { |name| iso6391(name.to_s).to_sym }
+                                            .uniq
   end
 
   private

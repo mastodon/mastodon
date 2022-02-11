@@ -35,14 +35,11 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-    #nsfw = status_params[:sensitive]
-
     @status = PostStatusService.new.call(current_user.account,
                                          text: status_params[:status],
                                          thread: @thread,
                                          media_ids: status_params[:media_ids],
                                          sensitive: status_params[:sensitive],
-                                         #sensitive: nsfw == true ? true : check_nsfw(set_image_path),
                                          spoiler_text: status_params[:spoiler_text],
                                          visibility: status_params[:visibility],
                                          scheduled_at: status_params[:scheduled_at],
