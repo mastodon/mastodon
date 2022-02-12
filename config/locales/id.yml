@@ -551,8 +551,10 @@ id:
       actions:
         delete_description_html: Kiriman yang dilaporkan akan dihapus dan peringatan akan direkam untuk membantu Anda mengurus masalah oleh akun yang sama di masa mendatang.
         other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
+        resolve_description_html: Tidak ada tindakan untuk akun yang dilaporkan, tidak ada peringatan yang direkam, dan laporan akan ditutup.
         silence_description_html: Profil hanya dapat terlihat oleh pengguna yang telah mengikuti atau melihatnya secara manual, yang sangat membatasi jangkauannya. Selalu dapat dipulihkan kembali.
         suspend_description_html: Profil dan semua kontennya tidak dapat diakses sampai ia terhapus. Interaksi dengan akun tersebut tidak dimungkinkan. Dapat dipulihkan dalam waktu 30 hari.
+      actions_description_html: Memutuskan tindakan yang tepat untuk menyelesaikan laporan ini. Jika Anda memutuskan tindakan hukuman kepada akun terlapor, notifikasi email akan dikirim ke mereka, kecuali saat kategori <strong>Spam</strong> dipilih.
       add_to_report: Tambahkan lebih banyak untuk lapor
       are_you_sure: Apakah Anda yakin?
       assign_to_self: Tugaskan kpd saya
@@ -564,6 +566,7 @@ id:
         none: Tidak ada
       comment_description_html: 'Untuk menyediakan lebih banyak informasi, %{name} menulis:'
       created_at: Dilaporkan
+      delete_and_resolve: Hapus kiriman
       forwarded: Diteruskan
       forwarded_to: Diteruskan ke %{domain}
       mark_as_resolved: Tandai telah diseleseikan
@@ -577,12 +580,14 @@ id:
         placeholder: Jelaskan aksi yang telah dilakukan, atau pembaruan lain yang berhubungan...
         title: Catatan
       notes_description_html: Lihat dan tinggalkan catatan kepada moderator lain dan Anda di masa depan
+      quick_actions_description_html: 'Lakukan tindakan cepat atau gulir ke bawah untuk melihat konten yang dilaporkan:'
       reopen: Buka lagi laporan
       report: 'Laporkan #%{id}'
       reported_account: Akun yang dilaporkan
       reported_by: Dilaporkan oleh
       resolved: Terseleseikan
       resolved_msg: Laporan berhasil diselesaikan!
+      skip_to_actions: Langsung ke tindakan
       status: Status
       statuses: Konten yang dilaporkan
       statuses_description_html: Konten menyinggung akan disampaikan saat komunikasi dengan akun yang dilaporkan
@@ -1125,6 +1130,8 @@ id:
       title: Boost baru
     status:
       subject: "%{name} baru saja memposting"
+    update:
+      subject: "%{name} mengedit kiriman"
   notifications:
     email_events: Event untuk notifikasi email
     email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
@@ -1206,6 +1213,9 @@ id:
     reply:
       proceed: Lanjutkan ke balasan
       prompt: 'Anda ingin membalas toot ini:'
+  reports:
+    errors:
+      invalid_rules: tidak mereferensikan aturan yang valid
   scheduled_statuses:
     over_daily_limit: Anda telah melampaui batas %{limit} toot terjadwal untuk sehari
     over_total_limit: Anda telah melampaui batas %{limit} toot terjadwal
