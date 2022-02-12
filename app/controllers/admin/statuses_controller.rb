@@ -29,8 +29,9 @@ module Admin
     end
 
     def after_create_redirect_path
-      if @status_batch_action.report_id.present?
-        admin_report_path(@status_batch_action.report_id)
+      report_id = @status_batch_action&.report_id || params[:report_id]
+      if report_id.present?
+        admin_report_path(report_id)
       else
         admin_account_statuses_path(params[:account_id], current_params)
       end
@@ -46,6 +47,15 @@ module Admin
 
     def filter_params
       params.slice(*Admin::StatusFilter::KEYS).permit(*Admin::StatusFilter::KEYS)
+    end
+
+    def current_params
+      page = (params[:page] || 1).to_i
+
+      {
+        media: params[:media],
+        page: page > 1 && page,
+      }.select { |_, value| value.present? }
     end
 
     def action_from_button
