@@ -205,6 +205,7 @@ es-AR:
       statuses: Mensajes
       strikes: Sanciones previas
       subscribe: Suscribirse
+      suspend: Suspender
       suspended: Suspendidas
       suspension_irreversible: Se eliminaron irreversiblemente los datos de esta cuenta. Podés dejar de suspenderla para hacerla utilizable, pero no se recuperarán los datos que tenía anteriormente.
       suspension_reversible_hint_html: La cuenta fue suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si querés eliminar todos los datos de la cuenta inmediatamente, podés hacerlo abajo.
@@ -559,9 +560,12 @@ es-AR:
       action_log: Registro de auditoría
       action_taken_by: Acción tomada por
       actions:
+        delete_description_html: Los mensajes denunciados serán eliminados y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta denunciada.
+        resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará el incumplimiento, y se cerrará la denuncia.
         silence_description_html: El perfil será visible sólo para aquellos que ya sigan esta cuenta o que la busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
         suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. No será posible interactuar con la cuenta. Reversible dentro de los 30 días.
+      actions_description_html: Decidí qué medidas tomar para resolver esta denuncia. Si tomás una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       add_to_report: Agregar más a la denuncia
       are_you_sure: '¿Estás seguro?'
       assign_to_self: Asignármela a mí
@@ -573,6 +577,7 @@ es-AR:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
       created_at: Denunciado
+      delete_and_resolve: Eliminar mensajes
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelta
@@ -1140,6 +1145,8 @@ es-AR:
       title: Nueva adhesión
     status:
       subject: "%{name} acaba de enviar un mensaje"
+    update:
+      subject: "%{name} editó un mensaje"
   notifications:
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Seleccioná los eventos para los que querés recibir notificaciones:'
