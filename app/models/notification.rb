@@ -35,6 +35,7 @@ class Notification < ApplicationRecord
     follow_request
     favourite
     poll
+    update
   ).freeze
 
   TARGET_STATUS_INCLUDES_BY_TYPE = {
@@ -43,6 +44,7 @@ class Notification < ApplicationRecord
     mention: [mention: :status],
     favourite: [favourite: :status],
     poll: [poll: :status],
+    update: :status,
   }.freeze
 
   belongs_to :account, optional: true
@@ -76,7 +78,7 @@ class Notification < ApplicationRecord
 
   def target_status
     case type
-    when :status
+    when :status, :update
       status
     when :reblog
       status&.reblog
@@ -110,7 +112,7 @@ class Notification < ApplicationRecord
         cached_status = cached_statuses_by_id[notification.target_status.id]
 
         case notification.type
-        when :status
+        when :status, :update
           notification.status = cached_status
         when :reblog
           notification.status.reblog = cached_status
