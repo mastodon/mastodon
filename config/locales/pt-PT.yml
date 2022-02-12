@@ -565,6 +565,7 @@ pt-PT:
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma punição será registada, e a denuncia será fechada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou o procurem manualmente, limitando severamente o seu alcance. Pode sempre ser revertido.
         suspend_description_html: O perfil e todo o seu conteúdo tornar-se-ão inacessíveis até serem eventualmente apagados. A interacção com a conta será impossível. Reversível no prazo de 30 dias.
+      actions_description_html: Decida a ação a tomar para resolver esta denúncia. Se decidir por uma ação punitiva contra a conta denunciada, um e-mail de notificação será enviado, excetuando quando selecionada a categoria <strong>Spam</strong>.
       add_to_report: Adicionar mais à denúncia
       are_you_sure: Tem a certeza?
       assign_to_self: Atribuída a mim
@@ -576,6 +577,7 @@ pt-PT:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
       created_at: Denunciado
+      delete_and_resolve: Eliminar publicações
       forwarded: Encaminhado
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
@@ -589,12 +591,14 @@ pt-PT:
         placeholder: Descreve as ações que foram tomadas ou quaisquer outras atualizações relacionadas...
         title: Notas
       notes_description_html: Visualize e deixe anotações para outros moderadores e para sí no futuro
+      quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo denunciado:'
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
       reported_by: Denunciado por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
+      skip_to_actions: Passar para as ações
       status: Estado
       statuses: Conteúdo denunciado
       statuses_description_html: O conteúdo ofensivo será citado na comunicação com a conta denunciada
@@ -1143,6 +1147,8 @@ pt-PT:
       title: Nova partilha
     status:
       subject: "%{name} acabou de publicar"
+    update:
+      subject: "%{name} editou uma publicação"
   notifications:
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os eventos para os quais deseja receber notificações:'
