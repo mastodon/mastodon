@@ -757,6 +757,7 @@ ar:
         not_trendable: لن يظهر في المتداولة
         not_usable: لا يمكن استخدامه
         title: الوسوم المتداولة
+        usable: يمكن استخدامه
       title: المتداوَلة
     warning_presets:
       add_new: إضافة واحد جديد
@@ -1138,6 +1139,8 @@ ar:
       title: ترقية جديدة
     status:
       subject: "%{name} نشر للتو"
+    update:
+      subject: "قام %{name} بتحرير منشور"
   notifications:
     email_events: الأحداث للإشعارات عبر البريد الإلكتروني
     email_events_hint: 'اختر الأحداث التي تريد أن تصِلَك اشعارات عنها:'
@@ -1313,6 +1316,7 @@ ar:
         other: "%{count} فيديوهات"
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى: %{warning}'
+    default_language: نفس لغة الواجهة
     disallowed_hashtags:
       zero: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       one: 'يحتوي على وسم غير مسموح به: %{tags}'
@@ -1320,6 +1324,7 @@ ar:
       few: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       many: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       other: 'يحتوي على وسوم غير مسموح بها: %{tags}'
+    edited_at: عُدّل في %{date}
     errors:
       in_reply_not_found: إنّ المنشور الذي تحاول الرد عليه غير موجود على ما يبدو.
     open_in_web: افتح في الويب
