@@ -65,6 +65,7 @@ class Status < ApplicationRecord
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :bookmarks, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
+  has_many :reblogged_by_accounts, through: :reblogs, class_name: 'Account', source: :account
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy, inverse_of: :status
   has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status
