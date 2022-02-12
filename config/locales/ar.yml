@@ -221,6 +221,7 @@ ar:
       statuses: المنشورات
       strikes: الضربات السابقة
       subscribe: اشترك
+      suspend: علّق الحساب
       suspended: تم تعليقه
       suspension_irreversible: تم حذف بيانات هذا الحساب بشكل لا رجعة فيه، يمكنك إلغاء تعليق الحساب لجعله قابلا للاستخدام، ولكنه لن يسترد أي بيانات كانت لديه سابقاً.
       suspension_reversible_hint_html: تم تعليق الحساب، وسيتم إزالة البيانات بالكامل في %{date}، حتى ذلك الحين، يمكن استعادة الحساب دون أي آثار سلبية أي كما أنه لم يحدث أي شيء، إذا كنت ترغب في حذف جميع بيانات الحساب الآن، فيمكنك فعل ذلك أدناه.
@@ -574,6 +575,7 @@ ar:
           other: "%{count} ملاحظات"
       action_log: سجل المراجعة
       action_taken_by: تم اتخاذ الإجراء مِن طرف
+      add_to_report: أضف المزيد إلى التقرير
       are_you_sure: هل أنت متأكد ؟
       assign_to_self: عين لي
       assigned: تعين رئيس
@@ -582,6 +584,7 @@ ar:
       comment:
         none: لا شيء
       created_at: ذكرت
+      delete_and_resolve: احذف المنشورات
       forwarded: أُعيد توجيهه
       forwarded_to: أُعيد توجيهه إلى %{domain}
       mark_as_resolved: اعتبار الشكوى كمحلولة
@@ -600,6 +603,7 @@ ar:
       reported_by: أبلغ عنه من طرف
       resolved: معالجة
       resolved_msg: تم حل تقرير بنجاح!
+      skip_to_actions: تخطي إلى الإجراءات
       status: الحالة
       statuses: المحتوى المبلغ عنه
       target_origin: مصدر الحساب المبلغ عنه
@@ -1533,8 +1537,10 @@ ar:
         silence: إنّ حسابك %{acct} محدود
         suspend: لقد تم تعليق حسابك %{acct}
       title:
+        delete_statuses: منشورات محذوفة
         disable: الحساب مُجمَّد
         none: تحذير
+        sensitive: الوسائط المخفية
         silence: الحساب محدود
         suspend: الحساب مُعلَّق
     welcome:
