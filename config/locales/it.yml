@@ -205,6 +205,7 @@ it:
       statuses: Stati
       strikes: Provvedimenti precedenti
       subscribe: Sottoscrivi
+      suspend: Sospendi
       suspended: Sospeso
       suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile. È possibile annullare la sospensione dell'account per renderlo utilizzabile, ma non recupererà alcuno dei dati precedenti.
       suspension_reversible_hint_html: L'account è stato sospeso e i dati saranno completamente eliminati il %{date}. Fino ad allora, l'account può essere ripristinato senza effetti negativi. Se si desidera eliminare immediatamente tutti i dati dell'account, è possibile farlo qui sotto.
@@ -558,9 +559,12 @@ it:
           other: "%{count} note"
       action_taken_by: Azione intrapresa da
       actions:
+        delete_description_html: I post segnalati saranno eliminati e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
+        resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna violazione registrata, e la segnalazione sarà chiusa.
         silence_description_html: Il profilo sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato.
         suspend_description_html: Il profilo e tutti i suoi contenuti diventeranno inaccessibili fino a quando non sarà cancellato. L'interazione con l'account sarà impossibile. Annullabile entro 30 giorni.
+      actions_description_html: Decidete quali azioni intraprendere per risolvere la segnalazione. Se si intraprende un'azione punitiva contro l'account segnalato, gli sarà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       add_to_report: Aggiungi altro al report
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
@@ -572,6 +576,7 @@ it:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
       created_at: Segnalato
+      delete_and_resolve: Cancella post
       forwarded: Inoltrato
       forwarded_to: Inoltrato a %{domain}
       mark_as_resolved: Segna come risolto
@@ -585,12 +590,14 @@ it:
         placeholder: Descrivi quali azioni sono state intraprese, o ogni altro aggiornamento rilevante...
         title: Note
       notes_description_html: Visualizza e lascia note ad altri moderatori e al tuo futuro sé
+      quick_actions_description_html: 'Fai un''azione rapida o scorri verso il basso per vedere il contenuto segnalato:'
       reopen: Riapri rapporto
       report: 'Rapporto #%{id}'
       reported_account: Account segnalato
       reported_by: Inviato da
       resolved: Risolto
       resolved_msg: Rapporto risolto!
+      skip_to_actions: Passa alle azioni
       status: Stato
       statuses: Contenuto segnalato
       statuses_description_html: Il contenuto offensivo sarà citato nella comunicazione con l'account segnalato
@@ -1139,6 +1146,8 @@ it:
       title: Nuova condivisione
     status:
       subject: "%{name} ha appena pubblicato un post"
+    update:
+      subject: "%{name} ha modificato un post"
   notifications:
     email_events: Eventi per notifiche via email
     email_events_hint: 'Seleziona gli eventi per i quali vuoi ricevere le notifiche:'
