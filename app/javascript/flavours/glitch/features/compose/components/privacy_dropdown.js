@@ -27,6 +27,7 @@ class PrivacyDropdown extends React.PureComponent {
     onChange: PropTypes.func.isRequired,
     noDirect: PropTypes.bool,
     container: PropTypes.func,
+    disabled: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
