@@ -50,12 +50,7 @@ module Admin
     end
 
     def current_params
-      page = (params[:page] || 1).to_i
-
-      {
-        media: params[:media],
-        page: page > 1 && page,
-      }.select { |_, value| value.present? }
+      params.slice(:media, :page).permit(:media, :page)
     end
 
     def action_from_button
