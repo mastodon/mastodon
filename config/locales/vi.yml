@@ -201,6 +201,7 @@ vi:
       statuses: Tút
       strikes: Những lần trước
       subscribe: Đăng ký
+      suspend: Vô hiệu hóa
       suspended: Vô hiệu hóa
       suspension_irreversible: Toàn bộ dữ liệu của người dùng này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
       suspension_reversible_hint_html: Mọi dữ liệu của người này sẽ bị xóa sạch vào %{date}. Trước thời hạn này, dữ liệu vẫn có thể phục hồi. Nếu bạn muốn xóa dữ liệu của người này ngay lập tức, hãy tiếp tục.
@@ -548,9 +549,12 @@ vi:
       action_log: Nhật ký kiểm duyệt
       action_taken_by: Hành động được thực hiện bởi
       actions:
+        delete_description_html: Những tút bị báo cáo sẽ được xóa và 1 thẹo sẽ được ghi lại để giúp bạn lưu ý về tài khoản này trong tương lai.
         other_description_html: Những tùy chọn để kiểm soát tài khoản và giao tiếp với tài khoản bị báo cáo.
+        resolve_description_html: Không có hành động nào áp dụng đối với tài khoản bị báo cáo, không có thẹo, và báo cáo sẽ được đóng.
         silence_description_html: Trang cá nhân sẽ chỉ hiển thị với những người đã theo dõi hoặc tìm kiếm thủ công, hạn chế tối đa tầm ảnh hưởng của nó. Có thể đổi lại bình thường sau.
         suspend_description_html: Trang cá nhân và tất cả các nội dung sẽ không thể truy cập cho đến khi nó bị xóa hoàn toàn. Không thể tương tác với tài khoản. Đảo ngược trong vòng 30 ngày.
+      actions_description_html: Quyết định hướng xử lý báo cáo này. Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho họ, ngoại trừ nếu đó là <strong>Spam</strong>.
       add_to_report: Bổ sung báo cáo
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
@@ -562,6 +566,7 @@ vi:
         none: Không có mô tả
       comment_description_html: 'Để cung cấp thêm thông tin, %{name} cho biết:'
       created_at: Báo cáo lúc
+      delete_and_resolve: Xóa tút
       forwarded: Chuyển tiếp
       forwarded_to: Chuyển tiếp tới %{domain}
       mark_as_resolved: Đã xử lý xong!
@@ -575,12 +580,14 @@ vi:
         placeholder: Mô tả vi phạm của người này, mức độ xử lý và những cập nhật liên quan khác...
         title: Ghi chú
       notes_description_html: Xem và để lại ghi chú cho các kiểm duyệt viên khác
+      quick_actions_description_html: 'Kiểm duyệt nhanh hoặc kéo xuống để xem nội dung bị báo cáo:'
       reopen: Mở lại báo cáo
       report: 'Báo cáo #%{id}'
       reported_account: Tài khoản bị báo cáo
       reported_by: Báo cáo bởi
       resolved: Đã xử lý xong
       resolved_msg: Đã xử lý báo cáo xong!
+      skip_to_actions: Kiểm duyệt ngay
       status: Trạng thái
       statuses: Nội dung bị báo cáo
       statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn trong giao tiếp với tài khoản báo cáo
@@ -1123,6 +1130,8 @@ vi:
       title: Lượt chia sẻ mới
     status:
       subject: "Bài đăng mới từ %{name}"
+    update:
+      subject: "%{name} đã sửa một tút"
   notifications:
     email_events: Email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
