@@ -549,9 +549,12 @@ zh-TW:
       action_log: 審計日誌
       action_taken_by: 操作執行者
       actions:
+        delete_description_html: 被檢舉的嘟文將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
+        resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
         silence_description_html: 個人頁面僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。
         suspend_description_html: 個人頁面及其內容將無法被存取，直到其最終被刪除。將無法與此帳號互動。此設定 30 日內可被還原。
+      actions_description_html: 決定應對此報告採取何種行動。若您對檢舉之帳號採取懲罰措施，則將對他們發送 e-mail 通知，如非選擇了 <strong>垃圾郵件</strong> 類別。
       add_to_report: 加入更多至報告
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
@@ -563,6 +566,7 @@ zh-TW:
         none: 無
       comment_description_html: '提供更多資訊，%{name} 寫道：'
       created_at: 日期
+      delete_and_resolve: 刪除嘟文
       forwarded: 已轉寄
       forwarded_to: 轉寄到 %{domain}
       mark_as_resolved: 標記為「已解決」
@@ -576,12 +580,14 @@ zh-TW:
         placeholder: 記錄已執行的動作，或其他相關的更新...
         title: 註記
       notes_description_html: 檢視及留下些給其他管理員和未來的自己的註記
+      quick_actions_description_html: '採取一個快速行動，或者下捲以檢視檢舉內容：'
       reopen: 重開檢舉
       report: '檢舉 #%{id}'
       reported_account: 被檢舉使用者
       reported_by: 檢舉人
       resolved: 已解決
       resolved_msg: 檢舉已處理!
+      skip_to_actions: 跳過行動
       status: 嘟文
       statuses: 被檢舉的內容
       statuses_description_html: 侵犯性違規內容會被引用在檢舉帳號通知中
