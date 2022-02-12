@@ -86,7 +86,7 @@ class SearchQueryTransformer < Parslet::Transform
     def initialize(prefix, term)
       @operator = :filter
       case prefix
-      when 'by'
+      when 'from'
         @filter = :account_id
         username, domain = term.split('@')
         account = Account.find_remote(username, domain)
