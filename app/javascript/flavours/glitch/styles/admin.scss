@@ -1203,6 +1203,10 @@ a.sparkline {
       }
     }
   }
+
+  @media screen and (max-width: 930px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .account-card {
