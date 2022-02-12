@@ -191,6 +191,7 @@ th:
       silenced: จำกัดอยู่
       statuses: โพสต์
       subscribe: บอกรับ
+      suspend: ระงับ
       suspended: ระงับอยู่
       title: บัญชี
       unblock_email: เลิกปิดกั้นที่อยู่อีเมล
@@ -529,6 +530,7 @@ th:
       comment:
         none: ไม่มี
       created_at: รายงานเมื่อ
+      delete_and_resolve: ลบโพสต์
       forwarded: ส่งต่อแล้ว
       forwarded_to: ส่งต่อไปยัง %{domain} แล้ว
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
@@ -1048,6 +1050,8 @@ th:
       title: การดันใหม่
     status:
       subject: "%{name} เพิ่งโพสต์"
+    update:
+      subject: "%{name} ได้แก้ไขโพสต์"
   notifications:
     email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
     email_events_hint: 'เลือกเหตุการณ์ที่คุณต้องการรับการแจ้งเตือน:'
