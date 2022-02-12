@@ -193,7 +193,7 @@ class Account < ApplicationRecord
   end
 
   def searchable?
-    !(suspended? || moved?)
+    !(suspended? || moved?) && (!local? || (approved? && confirmed?))
   end
 
   def possibly_stale?
