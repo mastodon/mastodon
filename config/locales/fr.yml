@@ -322,8 +322,8 @@ fr:
         update_announcement_html: "%{name} a mis à jour l'annonce %{target}"
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
         update_domain_block_html: "%{name} a mis à jour le blocage de domaine pour %{target}"
-        update_status_html: "%{name} a mis à jour le statut de %{target}"
-      deleted_status: "(statut supprimé)"
+        update_status_html: "%{name} a mis à jour le message de %{target}"
+      deleted_status: "(message supprimé)"
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
       filter_by_user: Filtrer par utilisateur·ice
@@ -1336,7 +1336,7 @@ fr:
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
-    title: '%{name} : "%{quote}"'
+    title: '%{name} : « %{quote} »'
     visibilities:
       direct: Direct
       private: Abonné⋅e⋅s uniquement
