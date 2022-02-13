@@ -112,6 +112,7 @@ pt-BR:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      custom: Personalizar
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
@@ -203,6 +204,7 @@ pt-BR:
       silenced: Silenciado
       statuses: Toots
       subscribe: Inscrever-se
+      suspend: Suspender
       suspended: Banido
       suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não irá recuperar nenhum dado que ela possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
@@ -551,6 +553,7 @@ pt-BR:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
       created_at: Denunciado
+      delete_and_resolve: Excluir mensagens
       forwarded: Encaminhados
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
@@ -564,12 +567,14 @@ pt-BR:
         placeholder: Descreva que ações foram tomadas, ou quaisquer outras atualizações relacionadas…
         title: Notas
       notes_description_html: Visualize e deixe anotações para outros moderadores e para o seu "eu" do futuro
+      quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo relatado:'
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
       reported_by: Denunciada por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
+      skip_to_actions: Pular para ações
       status: Situação
       statuses: Conteúdo denunciado
       statuses_description_html: Conteúdo Ofensivo será citado em comunicação com a conta relatada
@@ -680,6 +685,9 @@ pt-BR:
       destroyed_msg: Upload do site excluído com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
+      back_to_report: Voltar às denúncias
+      batch:
+        report: Denunciar
       deleted: Excluídos
       media:
         title: Mídia
