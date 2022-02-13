@@ -21,7 +21,7 @@ gem 'dotenv-rails', '~> 2.7'
 gem 'aws-sdk-s3', '~> 1.112', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
-gem 'kt-paperclip', '~> 7.0'
+gem 'kt-paperclip', '~> 7.1'
 gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
