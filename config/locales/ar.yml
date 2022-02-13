@@ -1,6 +1,6 @@
 ar:
   about:
-    about_hashtag_html: 'هذه تبويقات متاحة للجمهور تحتوي على الكلمات الدلالية <strong>#%{hashtag}</strong>. يمكنك التفاعل معها إن كان لديك حساب في أي مكان على الفديفرس.'
+    about_hashtag_html: 'هذه منشورات متاحة للجمهور تحتوي على الكلمات الدلالية <strong>#%{hashtag}</strong>. يمكنك التفاعل معها إن كان لديك حساب في أي مكان على الفديفرس.'
     about_mastodon_html: 'شبكة التواصل الإجتماعية المستقبَليّة: مِن دون إعلانات ، غير خاضعة لرقابة الشركات ، تصميم أخلاقي ولامركزية! بياناتكم مِلك لكم مع ماستدون!'
     about_this: عن مثيل الخادم هذا
     active_count_after: نشط
@@ -87,14 +87,14 @@ ar:
     pin_errors:
       following: يجب أن تكون مِن متابعي حساب الشخص الذي تريد إبرازه
     posts:
-      zero: تبويقات
-      one: تبويق
-      two: تبويقات
-      few: تبويقات
-      many: تبويقات
-      other: تبويقات
-    posts_tab_heading: تبويقات
-    posts_with_replies: التبويقات و الردود
+      zero: منشور
+      one: منشور واحد
+      two: منشورَيْن
+      few: منشورات
+      many: منشورات
+      other: منشور
+    posts_tab_heading: المنشورات
+    posts_with_replies: المنشورات والردود
     roles:
       admin: المدير
       bot: روبوت
@@ -513,6 +513,7 @@ ar:
         title: الإشراف
       private_comment: تعليق خاص
       public_comment: تعليق للعلن
+      purge: تطهير
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
       total_followed_by_them: يُتابِعونها
@@ -551,7 +552,7 @@ ar:
       disable: تعطيل
       disabled: مُعطَّل
       enable: تشغيل
-      enable_hint: عندما تقوم بتنشيط هذه الميزة، سوف يشترك خادومكم في جميع التبويقات القادمة مِن هذا المُرحِّل و سيشرع كذلك بإرسال كافة التبويقات العمومية إليه.
+      enable_hint: عندما تقوم بتنشيط هذه الميزة، سوف يشترك خادومكم في جميع المنشورات القادمة مِن هذا المُرحِّل و سيشرع كذلك بإرسال كافة المنشورات العمومية إليه.
       enabled: مُشغَّل
       inbox_url: رابط المُرحّل
       pending: في انتظار تسريح المُرحِّل
@@ -797,7 +798,7 @@ ar:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: يمكن للجميع المساهمة.
     sensitive_content: المحتوى الحساس
-    toot_layout: تصميم التبويق
+    toot_layout: شكل المنشور
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
     salutation: "%{name}،"
@@ -942,7 +943,7 @@ ar:
     archive_takeout:
       date: التاريخ
       download: تنزيل نسخة لحسابك
-      hint_html: بإمكانك طلب نسخة كاملة لـ <strong>كافة تبويقاتك و الوسائط التي قمت بنشرها</strong>. البيانات المُصدَّرة ستكون محفوظة على شكل نسق ActivityPub و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق. يُمكنك طلب نسخة كل 7 أيام.
+      hint_html: بإمكانك طلب نسخة كاملة لـ <strong>كافة منشوراتك والوسائط التي قمت بنشرها</strong>. البيانات المُصدَّرة ستكون محفوظة على شكل نسق ActivityPub و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق. يُمكنك طلب نسخة كل 7 أيام.
       in_progress: جارٍ انشاء نسخة لبيانات حسابك…
       request: اطلب نسخة مِن حسابك
       size: الحجم
@@ -1188,7 +1189,7 @@ ar:
       too_many_options: لا يمكنه أن يحتوي أكثر مِن %{max} عناصر
   preferences:
     other: إعدادات أخرى
-    posting_defaults: التفضيلات الافتراضية لنشر التبويقات
+    posting_defaults: التفضيلات الافتراضية للنشر
     public_timelines: الخيوط الزمنية العامة
   reactions:
     errors:
@@ -1221,16 +1222,16 @@ ar:
   remote_interaction:
     favourite:
       proceed: المواصلة إلى المفضلة
-      prompt: 'ترغب في إضافة هذا التبويق إلى مفضلتك:'
+      prompt: 'ترغب في إضافة هذا المنشور إلى مفضلتك:'
     reblog:
       proceed: المواصلة إلى الترقية
-      prompt: 'ترغب في ترقية هذا التبويق:'
+      prompt: 'ترغب في مشاركة هذا المنشور:'
     reply:
       proceed: المواصلة إلى الرد
-      prompt: 'ترغب في الرد على هذا التبويق:'
+      prompt: 'ترغب في الرد على هذا المنشور:'
   scheduled_statuses:
-    over_daily_limit: لقد تجاوزتَ حد الـ %{limit} تبويقات مُبَرمَجة المسموح بها لذلك اليوم
-    over_total_limit: لقد بلغت حد الـ %{limit} مِن التبويقات المبرمَجة
+    over_daily_limit: لقد تجاوزتَ حد الـ %{limit} منشورات مُبَرمَجة مسموح بها اليوم
+    over_total_limit: لقد بلغت حد الـ %{limit} مِن المنشورات المبرمَجة
     too_soon: يجب أن يكون تاريخ البرمجة في المستقبَل
   sessions:
     activity: آخر نشاط
@@ -1336,8 +1337,8 @@ ar:
     open_in_web: افتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
     pin_errors:
-      limit: لقد بلغت الحد الأقصى للتبويقات المدبسة
-      ownership: لا يمكن تدبيس تبويق نشره شخص آخر
+      limit: لقد بلغت الحد الأقصى للمنشورات المثبتة
+      ownership: لا يمكن تثبيت منشور نشره شخص آخر
       reblog: لا يمكن تثبيت ترقية
     poll:
       total_people:
@@ -1404,7 +1405,7 @@ ar:
     min_reblogs: إبقاء المشاركات المعززة أكثر من
     min_reblogs_hint: لن تُحذف أي من منشوراتك التي أعيد مشاركتها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المنشورات بغض النظر عن عدد إعادات المشاركة
   stream_entries:
-    pinned: تبويق مثبّت
+    pinned: منشور مثبّت
     reblogged: رقّاه
     sensitive_content: محتوى حساس
   tags:
