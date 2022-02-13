@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class ApproveAppealService < BaseService
-  def call(appeal)
-    @appeal = appeal
-    @strike = appeal.strike
+  def call(appeal, current_account)
+    @appeal          = appeal
+    @strike          = appeal.strike
+    @current_account = current_account
 
     ApplicationRecord.transaction do
       undo_strike_action!
@@ -36,6 +37,7 @@ class ApproveAppealService < BaseService
   end
 
   def mark_strike_as_appealed!
+    @appeal.approve!(@current_account)
     @strike.touch(:appealed_at)
   end
 

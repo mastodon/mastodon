@@ -1,9 +1,10 @@
 - content_for :page_title do
-  = t('disputes.strikes.view', acct: @strike.target_account.acct)
+  = t('disputes.strikes.title', action: t(@strike.action, scope: 'disputes.strikes.title_actions'), date: l(@strike.created_at.to_date))
 
-- if @appeal.persisted? && can?(:approve, @appeal)
-  - content_for :heading_actions do
-    = link_to t('disputes.strikes.appeals.approve'), approve_admin_disputes_appeal_path(@appeal), method: :post, class: 'button'
+- content_for :heading_actions do
+  - if @appeal.persisted?
+    = link_to t('admin.accounts.approve'), approve_admin_disputes_appeal_path(@appeal), method: :post, class: 'button' if can?(:approve, @appeal)
+    = link_to t('admin.accounts.reject'), reject_admin_disputes_appeal_path(@appeal), method: :post, class: 'button button--destructive' if can?(:reject, @appeal)
 
 - if @strike.appealed?
   %p.hint
@@ -11,6 +12,12 @@
       = fa_icon 'check'
       = ' '
       = t 'disputes.strikes.appeal_approved'
+- elsif @appeal.persisted? && @appeal.rejected?
+  %p.hint
+    %span.negative-hint
+      = fa_icon 'times'
+      = ' '
+      = t 'disputes.strikes.appeal_rejected'
 
 .report-header
   .report-header__card
@@ -68,7 +75,7 @@
       .report-header__details__item__header
         %strong= t('disputes.strikes.recipient')
       .report-header__details__item__content
-        = @strike.target_account.username
+        = admin_account_link_to @strike.target_account, path: can?(:show, @strike.target_account) ? admin_account_path(@strike.target_account_id) : ActivityPub::TagManager.instance.url_for(@strike.target_account)
     .report-header__details__item
       .report-header__details__item__header
         %strong= t('disputes.strikes.action_taken')
@@ -100,7 +107,7 @@
 
       .report-notes__item__header
         %span.username
-          = link_to display_name(@appeal.account), short_account_url(@appeal.account)
+          = link_to @appeal.account.username, can?(:show, @appeal.account) ? admin_account_path(@appeal.account_id) : short_account_url(@appeal.account)
         %time{ datetime: @appeal.created_at.iso8601, title: l(@appeal.created_at) }
           - if @appeal.created_at.today?
             = t('admin.report_notes.today_at', time: l(@appeal.created_at, format: :time))

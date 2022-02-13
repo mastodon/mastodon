@@ -94,7 +94,6 @@ en:
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
-      delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
       add_email_domain_block: Block e-mail domain
@@ -163,6 +162,11 @@ en:
       not_subscribed: Not subscribed
       pending: Pending review
       perform_full_suspension: Suspend
+      previous_strikes: Previous strikes
+      previous_strikes_description_html:
+        one: This account has <strong>one</strong> strike.
+        other: This account has <strong>%{count}</strong> strikes.
+        zero: This account is <strong>in good standing</strong>.
       promote: Promote
       protocol: Protocol
       public: Public
@@ -258,6 +262,7 @@ en:
         enable_user: Enable User
         memorialize_account: Memorialize Account
         promote_user: Promote User
+        reject_appeal: Reject Appeal
         reject_user: Reject User
         remove_avatar_user: Remove Avatar
         reopen_report: Reopen Report
@@ -308,6 +313,7 @@ en:
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
+        reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
         reject_user_html: "%{name} rejected sign-up from %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
         reopen_report_html: "%{name} reopened report %{target}"
@@ -386,6 +392,9 @@ en:
       media_storage: Media storage
       new_users: new users
       opened_reports: reports opened
+      pending_appeals_html:
+        one: "<strong>1</strong> pending appeal"
+        other: "<strong>%{count}</strong> pending appeals"
       pending_reports_html:
         one: "<strong>1</strong> pending report"
         other: "<strong>%{count}</strong> pending reports"
@@ -403,6 +412,9 @@ en:
       top_languages: Top active languages
       top_servers: Top active servers
       website: Website
+    disputes:
+      appeals:
+        title: Appeals
     domain_allows:
       add_new: Allow federation with domain
       created_msg: Domain has been successfully allowed for federation
@@ -717,6 +729,16 @@ en:
       no_status_selected: No posts were changed as none were selected
       title: Account posts
       with_media: With media
+    strikes:
+      actions:
+        delete_statuses: "%{name} deleted %{target}'s posts"
+        disable: "%{name} froze %{target}'s account"
+        none: "%{name} sent a warning to %{target}"
+        sensitive: "%{name} marked %{target}'s account as sensitive"
+        silence: "%{name} limited %{target}'s account"
+        suspend: "%{name} suspended %{target}'s account"
+      appeal_approved: Appealed
+      appeal_pending: Appeal pending
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
@@ -950,17 +972,24 @@ en:
       action_taken: Action taken
       appeal: Appeal
       appeal_approved: This strike has been successfully appealed and is no longer valid
+      appeal_rejected: The appeal has been rejected
       appeal_submitted_at: Appeal submitted
       appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
       appeals:
-        approve: Approve appeal
         submit: Submit appeal
       associated_report: Associated report
       created_at: Dated
       recipient: Addressed to
       status: 'Post #%{id}'
       status_removed: Post already removed from system
-      view: View strike for %{acct}
+      title: "%{action} from %{date}"
+      title_actions:
+        delete_statuses: Post removal
+        disable: Freezing of account
+        none: Warning
+        sensitive: Marking as sensitive of account
+        silence: Limitation of account
+        suspend: Suspension of account
   domain_validator:
     invalid_domain: is not a valid domain name
   errors:
@@ -1528,6 +1557,10 @@ en:
       explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
       subject: Your appeal from %{date} has been approved
       title: Appeal approved
+    appeal_rejected:
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been rejected.
+      subject: Your appeal from %{date} has been rejected
+      title: Appeal rejected
     backup_ready:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
       subject: Your archive is ready for download

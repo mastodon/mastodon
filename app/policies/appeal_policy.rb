@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 class AppealPolicy < ApplicationPolicy
-  def approve?
-    !record.strike.appealed? && staff?
+  def index?
+    staff?
   end
+
+  def approve?
+    record.pending? && staff?
+  end
+
+  alias reject? approve?
 end

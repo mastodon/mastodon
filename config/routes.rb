@@ -330,9 +330,10 @@ Rails.application.routes.draw do
     end
 
     namespace :disputes do
-      resources :appeals, only: [] do
+      resources :appeals, only: [:index] do
         member do
           post :approve
+          post :reject
         end
       end
     end

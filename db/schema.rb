@@ -248,10 +248,16 @@ ActiveRecord::Schema.define(version: 2022_02_10_153119) do
     t.bigint "account_id", null: false
     t.bigint "account_warning_id", null: false
     t.text "text", default: "", null: false
+    t.datetime "approved_at"
+    t.bigint "approved_by_account_id"
+    t.datetime "rejected_at"
+    t.bigint "rejected_by_account_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_appeals_on_account_id"
     t.index ["account_warning_id"], name: "index_appeals_on_account_warning_id", unique: true
+    t.index ["approved_by_account_id"], name: "index_appeals_on_approved_by_account_id"
+    t.index ["rejected_by_account_id"], name: "index_appeals_on_rejected_by_account_id"
   end
 
   create_table "backups", force: :cascade do |t|
@@ -1043,6 +1049,8 @@ ActiveRecord::Schema.define(version: 2022_02_10_153119) do
   add_foreign_key "announcement_reactions", "announcements", on_delete: :cascade
   add_foreign_key "announcement_reactions", "custom_emojis", on_delete: :cascade
   add_foreign_key "appeals", "account_warnings", on_delete: :cascade
+  add_foreign_key "appeals", "accounts", column: "approved_by_account_id", on_delete: :nullify
+  add_foreign_key "appeals", "accounts", column: "rejected_by_account_id", on_delete: :nullify
   add_foreign_key "appeals", "accounts", on_delete: :cascade
   add_foreign_key "backups", "users", on_delete: :nullify
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade

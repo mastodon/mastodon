@@ -3,31 +3,11 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "04dbbc249b989db2e0119bbb0f59c9818e12889d2b97c529cdc0b1526002ba4b",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/report.rb",
-      "line": 113,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "Admin::ActionLog.from(\"(#{[Admin::ActionLog.where(:target_type => \"Report\", :target_id => id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Account\", :target_id => target_account_id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Status\", :target_id => status_ids, :created_at => ((created_at..updated_at))).unscope(:order)].map do\n \"(#{query.to_sql})\"\n end.join(\" UNION ALL \")}) AS admin_action_logs\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Report",
-        "method": "history"
-      },
-      "user_input": "Admin::ActionLog.where(:target_type => \"Status\", :target_id => status_ids, :created_at => ((created_at..updated_at))).unscope(:order)",
-      "confidence": "High",
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
       "fingerprint": "19df3740b8d02a9fe0eb52c939b4b87d3a2a591162a6adfa8d64e9c26aeebe6d",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/status.rb",
-      "line": 100,
+      "line": 104,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "result.joins(\"INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
       "render_path": null,
@@ -107,7 +87,7 @@
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/admin/reports_controller.rb",
-      "line": 78,
+      "line": 90,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:resolved, :account_id, :target_account_id)",
       "render_path": null,
@@ -138,6 +118,36 @@
       },
       "user_input": "(Trends.links.currently_trending_ids(true, -1) or Trends.links.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")",
       "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "afad51718ae373b2f19d2513029fd2afccf58b9148e475934bc6a162ee33c352",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/admin/disputes/appeals/_appeal.html.haml",
+      "line": 7,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "t((Unresolved Model).new.strike.action, :scope => \"admin.strikes.actions\", :name => content_tag(:span, (Unresolved Model).new.strike.account.username, :class => \"username\"), :target => content_tag(:span, (Unresolved Model).new.account.acct, :class => \"target\"))",
+      "render_path": [
+        {
+          "type": "template",
+          "name": "admin/disputes/appeals/index",
+          "line": 16,
+          "file": "app/views/admin/disputes/appeals/index.html.haml",
+          "rendered": {
+            "name": "admin/disputes/appeals/_appeal",
+            "file": "app/views/admin/disputes/appeals/_appeal.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "admin/disputes/appeals/_appeal"
+      },
+      "user_input": "(Unresolved Model).new.strike",
+      "confidence": "Weak",
       "note": ""
     },
     {
@@ -194,7 +204,7 @@
         {
           "type": "template",
           "name": "admin/trends/links/index",
-          "line": 37,
+          "line": 39,
           "file": "app/views/admin/trends/links/index.html.haml",
           "rendered": {
             "name": "admin/trends/links/_preview_card",
@@ -213,13 +223,13 @@
     {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
-      "fingerprint": "e867661b2c9812bc8b75a5df12b28e2a53ab97015de0638b4e732fe442561b28",
+      "fingerprint": "f9de0ca4b04ae4b51b74d98db14dcbb6dae6809e627b58e711019cf9b4a47866",
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/reports_controller.rb",
       "line": 36,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
-      "code": "params.permit(:account_id, :comment, :forward, :status_ids => ([]))",
+      "code": "params.permit(:account_id, :comment, :category, :forward, :status_ids => ([]), :rule_ids => ([]))",
       "render_path": null,
       "location": {
         "type": "method",
@@ -231,6 +241,6 @@
       "note": ""
     }
   ],
-  "updated": "2021-11-14 05:26:09 +0100",
-  "brakeman_version": "5.1.2"
+  "updated": "2022-02-13 02:24:12 +0100",
+  "brakeman_version": "5.2.1"
 }

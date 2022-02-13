@@ -33,4 +33,21 @@ RSpec.describe Admin::Disputes::AppealsController, type: :controller do
       expect(UserMailer).to have_received(:appeal_approved).with(target_account.user, appeal)
     end
   end
+
+  describe 'POST #reject' do
+    let(:current_user) { Fabricate(:user, admin: true) }
+
+    before do
+      allow(UserMailer).to receive(:appeal_rejected).and_return(double('email', deliver_later: nil))
+      post :reject, params: { id: appeal.id }
+    end
+
+    it 'redirects back to the strike page' do
+      expect(response).to redirect_to(disputes_strike_path(appeal.strike))
+    end
+
+    it 'notifies target account about rejected appeal' do
+      expect(UserMailer).to have_received(:appeal_rejected).with(target_account.user, appeal)
+    end
+  end
 end
