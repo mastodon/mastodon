@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Admin::AccountModerationNotesHelper
-  def admin_account_link_to(account, path:)
+  def admin_account_link_to(account, path: nil)
     return if account.nil?
 
     link_to path || admin_account_path(account.id), class: name_tag_classes(account), title: account.acct do

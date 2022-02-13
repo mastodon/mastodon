@@ -16,6 +16,9 @@
         - if account_warning.appealed?
           ·
           %span.positive-hint= t('admin.strikes.appeal_approved')
-        - elsif account_warning.appeal
+        - elsif account_warning.appeal&.pending?
           ·
           %span.warning-hint= t('admin.strikes.appeal_pending')
+        - elsif account_warning.appeal&.rejected?
+          ·
+          %span.negative-hint= t('admin.strikes.appeal_rejected')
