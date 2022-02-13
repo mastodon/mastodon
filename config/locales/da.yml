@@ -563,6 +563,7 @@ da:
         other_description_html: Se flere muligheder for kontoadfærdsstyring og kommunikationstilpasning til den anmeldte konto.
         silence_description_html: Profilen vil kun være synlig for dem, som allerede følger den eller manuelt slå den op, hvilket markant begrænse dens rækkevidde. Kan altid omgøres.
         suspend_description_html: Profilen inkl. alt indhold gøres utilgængelig, indtil den til sidst slettes. Interaktion med kontoen vil være umulig. Reversible inden for 30 dage.
+      actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       add_to_report: Føj mere til anmeldelse
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
@@ -574,6 +575,7 @@ da:
         none: Ingen
       comment_description_html: 'For at give mere information, skrev %{name}:'
       created_at: Anmeldt
+      delete_and_resolve: Slet indlæg
       forwarded: Videresendt
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Markér som løst
@@ -587,12 +589,14 @@ da:
         placeholder: Beskriv de udførte handlinger eller andre relevante opdateringer...
         title: Notater
       notes_description_html: Se og skriv notater til andre moderatorer og dit fremtid selv
+      quick_actions_description_html: 'Træf en hurtig foranstaltning eller rul ned for at se anmeldt indhold:'
       reopen: Genåbn anmeldelse
       report: 'Anmeldelse #%{id}'
       reported_account: Anmeldt konto
       reported_by: Anmeldt af
       resolved: Løst
       resolved_msg: Anmeldelse er nu løst!
+      skip_to_actions: Overspring til handlinger
       status: Status
       statuses: Anmeld indhold
       statuses_description_html: Krænkende indhold refereres i kommunikationen med den anmeldte konto
@@ -1141,6 +1145,8 @@ da:
       title: Nyt boost
     status:
       subject: "%{name} har netop postet"
+    update:
+      subject: "%{name} redigerede et indlæg"
   notifications:
     email_events: Begivenheder for e-mailnotifikationer
     email_events_hint: 'Vælg begivenheder, som notifikationer skal modtages for:'
