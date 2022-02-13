@@ -31,8 +31,8 @@ fr:
     server_stats: 'Statistiques du serveur :'
     source_code: Code source
     status_count_after:
-      one: statut
-      other: statuts
+      one: message
+      other: messages
     status_count_before: Ayant publié
     tagline: Suivez vos amis et découvrez-en de nouveaux
     terms: Conditions d’utilisation
@@ -202,7 +202,7 @@ fr:
         targeted_reports: Signalés par d’autres
       silence: Masquer
       silenced: Masqué
-      statuses: Statuts
+      statuses: Messages
       strikes: Punitions précédentes
       subscribe: S’abonner
       suspend: Suspendre
@@ -246,7 +246,7 @@ fr:
         destroy_email_domain_block: Supprimer le blocage de domaine de courriel
         destroy_instance: Purge du domaine
         destroy_ip_block: Supprimer la règle IP
-        destroy_status: Supprimer le statut
+        destroy_status: Supprimer le message
         destroy_unavailable_domain: Supprimer le domaine indisponible
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
@@ -273,7 +273,7 @@ fr:
         update_announcement: Modifier l’annonce
         update_custom_emoji: Mettre à jour les émojis personnalisés
         update_domain_block: Mettre à jour le blocage de domaine
-        update_status: Mettre à jour le statut
+        update_status: Mettre à jour le message
       actions:
         approve_user_html: "%{name} a approuvé l’inscription de %{target}"
         assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
@@ -295,7 +295,7 @@ fr:
         destroy_email_domain_block_html: "%{name} a débloqué le domaine de courriel %{target}"
         destroy_instance_html: "%{name} a purgé le domaine %{target}"
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
-        destroy_status_html: "%{name} a supprimé le statut de %{target}"
+        destroy_status_html: "%{name} a supprimé le message de %{target}"
         destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
@@ -714,7 +714,7 @@ fr:
       media:
         title: Médias
       no_status_selected: Aucun statut n’a été modifié car aucun n’a été sélectionné
-      title: Statuts du compte
+      title: Messages du compte
       with_media: Avec médias
     system_checks:
       database_schema_check:
@@ -819,7 +819,7 @@ fr:
     settings: 'Changer les préférences courriel : %{link}'
     view: 'Voir :'
     view_profile: Voir le profil
-    view_status: Afficher le statut
+    view_status: Afficher le message
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
