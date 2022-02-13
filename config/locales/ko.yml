@@ -201,6 +201,7 @@ ko:
       statuses: 게시물
       strikes: 이전의 처벌들
       subscribe: 구독하기
+      suspend: 정지
       suspended: 정지 됨
       suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
       suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
@@ -548,7 +549,9 @@ ko:
       action_log: 감사 기록
       action_taken_by: 신고 처리자
       actions:
+        delete_description_html: 신고된 게시물은 삭제될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
         other_description_html: 계정 동작을 제어하고 신고된 계정과의 의사소통을 사용자 지정하기 위한 추가 옵션을 봅니다.
+        resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
         silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
         suspend_description_html: 프로필과 모든 컨텐츠가 최종적으로 삭제될 때까지 접근 불가상태가 됩니다. 이 계정과의 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다.
       add_to_report: 신고에 더 추가하기
@@ -562,6 +565,7 @@ ko:
         none: 없음
       comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
       created_at: 리포트 시각
+      delete_and_resolve: 게시물 삭제
       forwarded: 전달됨
       forwarded_to: '%{domain}에게 전달됨'
       mark_as_resolved: 해결 완료 처리
@@ -1123,6 +1127,8 @@ ko:
       title: 새 부스트
     status:
       subject: "%{name} 님이 방금 게시물을 올렸습니다"
+    update:
+      subject: "%{name} 님이 게시물을 수정했습니다"
   notifications:
     email_events: 이메일 알림에 대한 이벤트
     email_events_hint: '알림 받을 이벤트를 선택해주세요:'
