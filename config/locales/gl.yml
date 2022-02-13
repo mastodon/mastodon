@@ -576,6 +576,7 @@ gl:
         none: Ningún
       comment_description_html: 'Como información engadida, %{name} escribiu:'
       created_at: Denunciado
+      delete_and_resolve: Eliminar publicacións
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resolto
@@ -589,12 +590,14 @@ gl:
         placeholder: Describir que accións foron tomadas ou calquera outra novidade sobre esta denuncia...
         title: Notas
       notes_description_html: Ver e deixar unha nota para ti no futuro e outras moderadoras
+      quick_actions_description_html: 'Tomar unha acción rápida ou desprázate abaixo para ver o contido denunciado:'
       reopen: Reabrir denuncia
       report: 'Denuncia #%{id}'
       reported_account: Conta denunciada
       reported_by: Denunciado por
       resolved: Resolto
       resolved_msg: Resolveuse con éxito a denuncia!
+      skip_to_actions: Ir a accións
       status: Estado
       statuses: Contido denunciado
       statuses_description_html: O contido ofensivo será citado na comunicación coa conta denunciada
@@ -1143,6 +1146,8 @@ gl:
       title: Nova promoción
     status:
       subject: "%{name} publicou"
+    update:
+      subject: "%{name} editou unha publicación"
   notifications:
     email_events: Eventos para os correos de notificación
     email_events_hint: 'Escolle os eventos sobre os que queres recibir notificacións:'
