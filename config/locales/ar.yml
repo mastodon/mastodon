@@ -745,6 +745,7 @@ ar:
         disallow: رفض الرابط
         disallow_provider: عدم السماح للناشر
         title: الروابط المتداولة
+        usage_comparison: تمت مشاركته %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
       pending_review: في انتظار المراجعة
       preview_card_providers:
         title: الناشرون
@@ -761,10 +762,12 @@ ar:
         not_listable: لن يتم اقتراحه
         not_trendable: لن يظهر في المتداولة
         not_usable: لا يمكن استخدامه
+        peaked_on_and_decaying: بلغ ذروته في %{date}، في تراجع الآن
         title: الوسوم المتداولة
         trendable: السماح بالظهور تحت المتداولة
         trending_rank: 'المتداولة #%{rank}'
         usable: يمكن استخدامه
+        usage_comparison: تم استخدامه %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
       title: المتداوَلة
     warning_presets:
       add_new: إضافة واحد جديد
@@ -1502,6 +1505,7 @@ ar:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: إضافة
     disable: تعطيل
@@ -1532,6 +1536,8 @@ ar:
       categories:
         spam: مزعج
         violation: ينتهك المحتوى المبادئ التوجيهية التالية للمجتمع
+      explanation:
+        sensitive: من الآن فصاعدا، سيتم وضع علامة على جميع ملفات الوسائط التي يتم تحميلها على أنها حساسة وستكون مخفية خلف تحذير يُنقر.
       reason: 'السبب:'
       review_server_policies: مراجعة شروط السيرفر
       subject:
