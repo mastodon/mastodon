@@ -165,6 +165,11 @@ lv:
       not_subscribed: Nav abonēts
       pending: Gaida pārskatīšanu
       perform_full_suspension: Apturēt
+      previous_strikes: Iepriekšējie brīdinājumi
+      previous_strikes_description_html:
+        one: Šim kontam ir <strong>viens</strong> brīdinājums.
+        other: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
+        zero: Š konta <strong>stāvoklis ir labs</strong>.
       promote: Veicināt
       protocol: Protokols
       public: Publisks
@@ -229,6 +234,7 @@ lv:
       whitelisted: Atļauts federācijai
     action_logs:
       action_types:
+        approve_appeal: Apstiprināt Apelāciju
         approve_user: Apstiprināt lietotāju
         assigned_to_self_report: Piešķirt Pārskatu
         change_email_user: Mainīt e-pastu lietotājam
@@ -260,6 +266,7 @@ lv:
         enable_user: Ieslēgt Lietotāju
         memorialize_account: Saglabāt Kontu Piemiņai
         promote_user: Paaugstināt Lietotāju
+        reject_appeal: Noraidīt Apelāciju
         reject_user: Noraidīt lietotāju
         remove_avatar_user: Noņemt Avatāru
         reopen_report: Atkārtoti Atvērt Ziņojumu
@@ -278,6 +285,7 @@ lv:
         update_domain_block: Atjaunināt Domēna Bloku
         update_status: Atjaunināt ziņu
       actions:
+        approve_appeal_html: "%{name} apstiprināja moderācijas lēmuma apelāciju no %{target}"
         approve_user_html: "%{name} apstiprināja reģistrēšanos no %{target}"
         assigned_to_self_report_html: "%{name} piešķīra pārskatu %{target} sev"
         change_email_user_html: "%{name} nomainīja e-pasta adresi lietotājam %{target}"
@@ -309,6 +317,7 @@ lv:
         enable_user_html: "%{name} iespējoja pieteikšanos lietotājam %{target}"
         memorialize_account_html: "%{name} pārvērta %{target} kontu par atmiņas lapu"
         promote_user_html: "%{name} paaugstināja lietotāju %{target}"
+        reject_appeal_html: "%{name} apstiprināja moderācijas lēmuma apelāciju no %{target}"
         reject_user_html: "%{name} noraidīja reģistrēšanos no %{target}"
         remove_avatar_user_html: "%{name} noņēma %{target} avatāru"
         reopen_report_html: "%{name} atkārtoti atvēra ziņojumu %{target}"
