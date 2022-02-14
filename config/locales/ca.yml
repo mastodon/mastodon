@@ -1562,6 +1562,13 @@ ca:
   user_mailer:
     appeal_approved:
       action: Ves al teu compte
+      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat aprovada. El teu compte està un cop més al dia.
+      subject: La teva apel·lació de %{date} ha estat aprovada
+      title: Apel·lació aprovada
+    appeal_rejected:
+      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat rebutjada.
+      subject: La teva apel·lació del %{date} ha estat rebutjada
+      title: Apel·lació rebutjada
     backup_ready:
       explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
       subject: El teu arxiu està preparat per a descàrrega
@@ -1573,6 +1580,7 @@ ca:
       subject: Si us plau confirma l’intent d’inici de sessió
       title: Intent d’inici de sessió
     warning:
+      appeal: Trametre una apel·lació
       categories:
         spam: Contingut brossa
         violation: El contingut viola les següents guies de la comunitat
