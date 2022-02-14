@@ -10,6 +10,7 @@ class Disputes::AppealsController < Disputes::BaseController
 
     redirect_to disputes_strike_path(@strike), notice: I18n.t('disputes.strikes.appealed_msg')
   rescue ActiveRecord::RecordInvalid
+    flash.now[:alert] = I18n.t('disputes.strikes.appeal_error')
     render template: 'disputes/strikes/show'
   end
 
