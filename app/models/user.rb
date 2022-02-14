@@ -265,6 +265,10 @@ class User < ApplicationRecord
     settings.notification_emails['pending_account']
   end
 
+  def allows_appeal_emails?
+    settings.notification_emails['appeal']
+  end
+
   def allows_trending_tag_emails?
     settings.notification_emails['trending_tag']
   end
