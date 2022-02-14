@@ -16,6 +16,8 @@
 #  updated_at             :datetime         not null
 #
 class Appeal < ApplicationRecord
+  MAX_STRIKE_AGE = 20.days
+
   belongs_to :account
   belongs_to :strike, class_name: 'AccountWarning', foreign_key: 'account_warning_id'
   belongs_to :approved_by_account, class_name: 'Account', optional: true
@@ -53,6 +55,6 @@ class Appeal < ApplicationRecord
   private
 
   def validate_time_frame
-    errors.add(:base, I18n.t('strikes.errors.too_late')) if Time.now.utc > (strike.created_at + 20.days)
+    errors.add(:base, I18n.t('strikes.errors.too_late')) if strike.created_at < MAX_STRIKE_AGE.ago
   end
 end
