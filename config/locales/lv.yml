@@ -989,6 +989,24 @@ lv:
       appeal_rejected: Apelācija ir noraidīta
       appeal_submitted_at: Apelācija iesniegta
       appealed_msg: Jūsu apelācija ir iesniegta. Ja tā tiks apstiprināta, jums tiks paziņots.
+      appeals:
+        submit: Iesniegt apelāciju
+      associated_report: Saistītais ziņojums
+      created_at: Datēts
+      recipient: Adresēts
+      status: 'Publikācija #%{id}'
+      status_removed: Publikācija jau ir noņemta no sistēmas
+      title: "%{action} kopš %{date}"
+      title_actions:
+        delete_statuses: Ziņas noņemšana
+        disable: Konta iesaldēšana
+        none: Brīdinājums
+        sensitive: Konta atzīmēšana kā sensitīvs
+        silence: Konta ierobežošana
+        suspend: Konta apturēšana
+      your_appeal_approved: Jūsu apelācija ir apstiprināta
+      your_appeal_pending: Jūs esat iesniedzis apelāciju
+      your_appeal_rejected: Jūsu apelācija ir noraidīta
   domain_validator:
     invalid_domain: nav derīgs domēna nosaukums
   errors:
@@ -1574,6 +1592,13 @@ lv:
     recovery_instructions_html: Ja kādreiz zaudēsi piekļuvi savam tālrunim, vari izmantot kādu no tālāk norādītajiem atkopšanas kodiem, lai atgūtu piekļuvi savam kontam. <strong>Glabā atkopšanas kodus drošībā</strong>. Piemēram, tu vari tos izdrukāt un uzglabāt kopā ar citiem svarīgiem dokumentiem.
     webauthn: Drošības atslēgas
   user_mailer:
+    appeal_approved:
+      action: Dodies uz savu kontu
+      explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir apstiprināta. Jūsu konts atkal ir labā stāvoklī.
+      subject: Jūsu %{date} apelācija ir apstiprināta
+      title: Apelācija apstiprināta
+    appeal_rejected:
+      explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir noraidīta.
     backup_ready:
       explanation: Tu pieprasīji pilnu sava Mastodon konta dublējumu. Tagad tas ir gatavs lejupielādei!
       subject: Tavs arhīvs ir gatavs lejupielādei
