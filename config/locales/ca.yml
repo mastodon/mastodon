@@ -978,6 +978,25 @@ ca:
       appeal_approved: L'acció ha estat apel·lada amb èxit i ja no és vàlida
       appeal_rejected: L'apel·lació ha estat rebutjada
       appeal_submitted_at: Apel·lació tramesa
+      appealed_msg: La teva apel·lació ha estat tramesa. Si és aprovada, seràs notificat.
+      appeals:
+        submit: Apel·lació tramesa
+      associated_report: Informe associat
+      created_at: Datada
+      recipient: Dirigida a
+      status: 'Publicació #%{id}'
+      status_removed: Publicació ja esborrada del sistema
+      title: "%{action} del %{date}"
+      title_actions:
+        delete_statuses: Eliminació de publicació
+        disable: Congelació del compte
+        none: Avís
+        sensitive: Marcant com a sensible el compte
+        silence: Limitació del compte
+        suspend: Suspensió del compte
+      your_appeal_approved: La teva apel·lació s'ha aprovat
+      your_appeal_pending: Has tramés una apel·lació
+      your_appeal_rejected: La teva apel·lació ha estat rebutjada
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
   errors:
@@ -1541,6 +1560,8 @@ ca:
     recovery_instructions_html: Si mai perds l'accés al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
     webauthn: Claus de seguretat
   user_mailer:
+    appeal_approved:
+      action: Ves al teu compte
     backup_ready:
       explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
       subject: El teu arxiu està preparat per a descàrrega
