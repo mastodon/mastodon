@@ -165,6 +165,7 @@ ca:
       previous_strikes_description_html:
         one: Aquest compte té <strong>una</strong> acció.
         other: Aquest compte té <strong>%{count}</strong> accions.
+        zero: Aquest compte està <strong>al dia</strong>.
       promote: Promociona
       protocol: Protocol
       public: Públic
@@ -229,6 +230,7 @@ ca:
       whitelisted: Llista blanca
     action_logs:
       action_types:
+        approve_appeal: Aprova Apel·lació
         approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna l'informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
@@ -260,6 +262,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
+        reject_appeal: Rebutja Apel·lació
         reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
         reopen_report: Reobre l'informe
@@ -278,6 +281,7 @@ ca:
         update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
       actions:
+        approve_appeal_html: "%{name} ha aprovat l'apel·lació a la decisió de moderació de %{target}"
         approve_user_html: "%{name} ha aprovat el registre de %{target}"
         assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
         change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
@@ -309,6 +313,7 @@ ca:
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        reject_appeal_html: "%{name} ha rebutjat l'apel·lació a la decisió de moderació de %{target}"
         reject_user_html: "%{name} ha rebutjat el registre de %{target}"
         remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
         reopen_report_html: "%{name} ha reobert l'informe %{target}"
@@ -387,6 +392,9 @@ ca:
       media_storage: Mèdia
       new_users: usuaris nous
       opened_reports: informes oberts
+      pending_appeals_html:
+        one: "<strong>1</strong> apel·lació pendent"
+        other: "<strong>%{count}</strong> apel·lacions pendents"
       pending_reports_html:
         one: "<strong>1</strong> informe pendent"
         other: "<strong>%{count}</strong> informes pendents"
@@ -404,6 +412,10 @@ ca:
       top_languages: Idiomes més actius
       top_servers: Servidors més actius
       website: Lloc web
+    disputes:
+      appeals:
+        empty: Cap apel·lació trobada.
+        title: Apel·lacions
     domain_allows:
       add_new: Dominis autoritzats
       created_msg: El domini ha estat correctament autoritzat
@@ -722,6 +734,16 @@ ca:
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       title: Estats del compte
       with_media: Amb contingut multimèdia
+    strikes:
+      actions:
+        delete_statuses: "%{name} ha eliminat les publicacions de %{target}"
+        disable: "%{name} ha congelat el compte de %{target}"
+        none: "%{name} ha enviat un avís a %{target}"
+        sensitive: "%{name} ha marcat el compte de %{target} com a sensible"
+        silence: "%{name} ha limitat el compte de %{target}"
+        suspend: "%{name} ha suspès el compte de %{target}"
+      appeal_approved: Apel·lat
+      appeal_pending: Apel·lació pendent
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
@@ -783,6 +805,11 @@ ca:
       empty: Encara no has definit cap preavís.
       title: Gestiona les configuracions predefinides dels avisos
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: eliminar les seves publicacions
+        disable: congelar els seus comptes
+        none: un avís
     new_pending_account:
       body: A continuació trobaràs els detalls del compte nou. Pots aprovar o rebutjar aquest registre.
       subject: Nou compte per a revisar a %{instance} (%{username})
