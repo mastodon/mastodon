@@ -1,9 +1,6 @@
 - content_for :page_title do
   = t('admin.disputes.appeals.title')
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 .filters
   .filter-subset
     %strong= t('admin.tags.review')
