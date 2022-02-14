@@ -158,6 +158,11 @@ sv:
       not_subscribed: Inte prenumererat
       pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
+      previous_strikes: Tidigare varningar
+      previous_strikes_description_html:
+        one: Detta konto har <strong>en</strong> varning.
+        other: Detta konto har <strong>%{count}</strong> varningar.
+        zero: Detta konto är <strong>i gott skick</strong>.
       promote: Befordra
       protocol: Protokoll
       public: Offentlig
@@ -212,6 +217,7 @@ sv:
       whitelisted: Vitlistad
     action_logs:
       action_types:
+        approve_appeal: Godkänn överklagande
         approve_user: Godkänn användare
         assigned_to_self_report: Tilldela anmälan
         change_email_user: Ändra e-post för användare
@@ -239,6 +245,7 @@ sv:
         enable_user: Aktivera användare
         memorialize_account: Minnesmärk konto
         promote_user: Befordra användare
+        reject_appeal: Avvisa överklagande
         reject_user: Avvisa användare
         remove_avatar_user: Ta bort avatar
         reopen_report: Öppna rapporten igen
