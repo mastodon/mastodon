@@ -751,6 +751,7 @@ lv:
         silence: "%{name} ierobežoja %{target} kontu"
         suspend: "%{name} apturēja %{target} kontu"
       appeal_approved: Pārsūdzēts
+      appeal_pending: Apelācija tiek izskatīta
     system_checks:
       database_schema_check:
         message_html: Notiek datubāzu migrācijas. Lūdzu, palaid tās, lai nodrošinātu, ka lietojumprogramma darbojas, kā paredzēts
@@ -814,6 +815,17 @@ lv:
       empty: Tu vēl neesi definējis iepriekš iestatītos brīdinājumus.
       title: Pārvaldīt brīdinājuma iestatījumus
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: lai izdzēstu viņu ierakstus
+        disable: lai iesaldētu viņu kontu
+        none: brīdinājums
+        sensitive: lai atzīmētu viņu kontu kā sensitīvu
+        silence: lai ierobežotu viņu kontu
+        suspend: lai apturētu viņu kontu
+      body: "%{target} pārsūdzēja %{action_taken_by} moderēšanas lēmumu no %{date}, kas bija %{type}. Viņi rakstīja:"
+      next_steps: Varat apstiprināt apelāciju, lai atsauktu regulēšanas lēmumu, vai ignorēt to.
+      subject: "%{username} pārsūdz moderēšanas lēmumu par %{instance}"
     new_pending_account:
       body: Sīkāka informācija par jauno kontu ir sniegta zemāk. Tu vari apstiprināt vai noraidīt šo pieteikumu.
       subject: Jauns konts pārskatīšanai %{instance} (%{username})
@@ -969,6 +981,14 @@ lv:
     directory: Profila direktorija
     explanation: Atklāj lietotājus, pamatojoties uz viņu interesēm
     explore_mastodon: Izpētīt %{title}
+  disputes:
+    strikes:
+      action_taken: Veiktā darbība
+      appeal: Apelācija
+      appeal_approved: Šis brīdinājums ir veiksmīgi pārsūdzēts un vairs nav spēkā
+      appeal_rejected: Apelācija ir noraidīta
+      appeal_submitted_at: Apelācija iesniegta
+      appealed_msg: Jūsu apelācija ir iesniegta. Ja tā tiks apstiprināta, jums tiks paziņots.
   domain_validator:
     invalid_domain: nav derīgs domēna nosaukums
   errors:
