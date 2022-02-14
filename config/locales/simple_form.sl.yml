@@ -3,6 +3,7 @@ sl:
     hints:
       account_warning_preset:
         text: Lahko uporabite skladnjo tuta, kot so URL-ji, ključniki in omembe
+        title: Neobvezno. Ni vidno prejemniku
       admin_account_action:
         send_email_notification: Uporabnik bo prejel razlago, kaj se je zgodilo z njihovim računom
         text_html: Neobvezno. Lahko uporabite skladnjo tuta. <a href="%{path}">Prednastavite opozorila</a>, da prihranite čas
@@ -47,6 +48,7 @@ sl:
       invite_request:
         text: To nam bo pomagalo pregledati vašo prijavo
       ip_block:
+        comment: Neobvezno. Spomnite se, zakaj ste dodali to pravilo.
         severities:
           no_access: Blokiraj dostop do vseh virov
       sessions:
@@ -79,6 +81,7 @@ sl:
       announcement:
         all_day: Celodnevni dogodek
         ends_at: Konec dogodka
+        scheduled_at: Načrtuj čas objave
         starts_at: Začetek dogodka
         text: Objava
       defaults:
@@ -165,6 +168,8 @@ sl:
         mention: Pošlji e-pošto, ko vas nekdo omeni
         pending_account: Pošlji e-pošto, ko je potreben pregled novega računa
         reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
+        report: Novo poročilo je oddano
+        trending_tag: Nov trend zahteva pregled
       rule:
         text: Pravilo
       tag:
