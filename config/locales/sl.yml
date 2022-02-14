@@ -219,9 +219,17 @@ sl:
         silence_account: Omeji račun
         update_status: Posodobi objavo
       deleted_status: "(izbrisano stanje)"
+      filter_by_action: Filtriraj po dejanjih
+      filter_by_user: Filtriraj po uporabnikih
       title: Dnevnik revizije
     announcements:
+      destroyed_msg: Obvestilo je bilo uspešno izbrisano!
+      edit:
+        title: Uredi obvestilo
+      empty: Obvestil ni mogoče najti.
+      live: V živo
       new:
+        create: Ustvari obvestilo
         title: Novo obvestilo
       publish: Objavi
       published_msg: Obvestilo je bilo uspešno objavljeno!
@@ -259,6 +267,10 @@ sl:
       updated_msg: Emotikon je uspešno posodobljen!
       upload: Pošlji
     dashboard:
+      active_users: dejavnih uporabnikov
+      interactions: interakcij
+      new_users: novih uporabnikov
+      opened_reports: odprtih poročil
       software: Programska oprema
       space: Uporaba prostora
       title: Nadzorna plošča
@@ -327,6 +339,9 @@ sl:
       by_domain: Domena
       delivery:
         all: Vse
+        clear: Počisti napake dostave
+        stop: Ustavi dostavo
+        title: Dostava
         unavailable: Ni na voljo
         warning: Opozorilo
       delivery_available: Na voljo je dostava
@@ -366,6 +381,7 @@ sl:
         '94670856': 3 leta
       new:
         title: Ustvari novo pravilo IP
+      title: IP-pravila
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
@@ -498,6 +514,8 @@ sl:
         title: Trendi
     statuses:
       back_to_account: Nazaj na stran računa
+      batch:
+        remove_from_report: Odstrani iz poročila
       deleted: Izbrisano
       media:
         title: Mediji
@@ -509,6 +527,9 @@ sl:
       allow: Dovoli
       approved: Odobren
       disallow: Ne dovoli
+      links:
+        allow: Dovoli povezavo
+      pending_review: Čakajoče na pregled
       tags:
         dashboard:
           tag_languages_dimension: Naj jeziki
@@ -520,6 +541,9 @@ sl:
       edit_preset: Uredi prednastavitev opozoril
       title: Upravljaj prednastavitev opozoril
   admin_mailer:
+    new_appeal:
+      actions:
+        none: opozorilo
     new_pending_account:
       body: Podrobnosti o novem računu so navedene spodaj. To aplikacijo lahko odobrite ali zavrnete.
       subject: Nov račun za pregled na %{instance} (%{username})
@@ -597,12 +621,17 @@ sl:
       return: Prikaži uporabnikov profil
       web: Pojdi na splet
     title: Sledi %{acct}
+  challenge:
+    confirm: Nadaljuj
+    invalid_password: Neveljavno geslo
+    prompt: Potrdite geslo za nadaljevanje
   datetime:
     distance_in_words:
       half_a_minute: Pravkar
       less_than_x_seconds: Pravkar
   deletes:
     confirm_password: Vnesite svoje trenutno geslo, da potrdite svojo identiteto
+    confirm_username: Vnesite svoje uporabniško ime, da potrdite postopek
     proceed: Izbriši račun
     success_msg: Vaš račun je bil uspešno izbrisan
   directories:
@@ -612,6 +641,7 @@ sl:
   disputes:
     strikes:
       title_actions:
+        delete_statuses: Odstranitev objave
         none: Opozorilo
         silence: Omejitev računa
   errors:
@@ -741,6 +771,7 @@ sl:
       too_many: Ni možno priložiti več kot 4 datoteke
   migrations:
     acct: username@domain novega računa
+    proceed_with_move: Premakni sledilce
   moderation:
     title: Moderiranje
   notification_mailer:
@@ -783,6 +814,8 @@ sl:
       title: Nova spodbuda
     update:
       subject: "%{name} je uredil(a) objavo"
+  otp_authentication:
+    enable: Omogoči
   pagination:
     newer: Novejše
     next: Naprej
@@ -805,6 +838,7 @@ sl:
   relationships:
     activity: Dejavnost računa
     dormant: Skrit
+    follow_selected_followers: Sledi izbranim sledilcem
     last_active: Zadnja dejavnost
     most_recent: Najnovejša
     moved: Prestavljeno
@@ -883,6 +917,7 @@ sl:
   settings:
     account: Račun
     account_settings: Nastavitve računa
+    aliases: Vzdevki računa
     appearance: Videz
     authorized_apps: Pooblaščene aplikacije
     back: Nazaj na Mastodon
@@ -935,6 +970,9 @@ sl:
         other: "%{count} glasov"
       vote: Glasuj
     show_more: Pokaži več
+    show_newer: Pokaži novejše
+    show_older: Pokaži starejše
+    show_thread: Pokaži nit
     sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
     visibilities:
       private: Samo sledilci
