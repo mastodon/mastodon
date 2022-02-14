@@ -51,7 +51,7 @@ RUN npm install -g npm@latest && \
 	gem install bundler && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends git libicu-dev libidn11-dev \
-	libpq-dev libprotobuf-dev protobuf-compiler shared-mime-info
+	libpq-dev shared-mime-info
 
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
@@ -88,7 +88,7 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 RUN apt-get update && \
   apt-get -y --no-install-recommends install \
 	  libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
-	  libicu66 libprotobuf17 libidn11 libyaml-0-2 \
+	  libicu66 libidn11 libyaml-0-2 \
 	  file ca-certificates tzdata libreadline8 gcc tini apt-utils && \
 	ln -s /opt/mastodon /mastodon && \
 	gem install bundler && \

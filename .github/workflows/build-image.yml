@@ -6,6 +6,10 @@ on:
       - "main"
     tags:
       - "*"
+  pull_request:
+    paths:
+      - .github/workflows/build-image.yml
+      - Dockerfile
 jobs:
   build-image:
     runs-on: ubuntu-latest
@@ -30,7 +34,7 @@ jobs:
         with:
           context: .
           platforms: linux/amd64,linux/arm64
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=tootsuite/mastodon:latest
           cache-to: type=inline
