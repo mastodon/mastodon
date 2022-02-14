@@ -548,7 +548,9 @@ zh-CN:
       action_log: 审计日志
       action_taken_by: 操作执行者
       actions:
+        delete_description_html: 被举报的嘟文将被删除，同时该帐号将被标记一次处罚，以供未来同一帐号再次违规时参考。
         other_description_html: 查看控制该被举报帐号行为以及与其通信范围的更多选项。
+        resolve_description_html: 不会对被举报帐号采取任何动作，举报将被关闭，也不会留下处罚记录。
         silence_description_html: 只有关注或手工搜索此帐号才能查看其资料，将严重限制其触达范围。可随时撤销。
         suspend_description_html: 此帐号及其内容将无法访问，并最终被删除。也无法与该帐号交互。可在30天内撤销。
       add_to_report: 添加到报告
@@ -562,6 +564,7 @@ zh-CN:
         none: 没有
       comment_description_html: '%{name} 补充道：'
       created_at: 举报时间
+      delete_and_resolve: 删除嘟文
       forwarded: 已转发
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为“已处理”
@@ -581,6 +584,7 @@ zh-CN:
       reported_by: 举报人
       resolved: 已处理
       resolved_msg: 举报处理成功！
+      skip_to_actions: 跳转到操作
       status: 状态
       statuses: 被举报内容
       statuses_description_html: 违规内容将在与该帐号的通信中被引用
@@ -1123,6 +1127,8 @@ zh-CN:
       title: 新的转嘟
     status:
       subject: "%{name} 刚刚发嘟"
+    update:
+      subject: "%{name} 编辑了嘟文"
   notifications:
     email_events: 电子邮件通知事件
     email_events_hint: '选择你想要收到通知的事件：'
