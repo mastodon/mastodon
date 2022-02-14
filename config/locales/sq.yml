@@ -161,6 +161,11 @@ sq:
       not_subscribed: Jo i pajtuar
       pending: Në pritje të shqyrtimit
       perform_full_suspension: Pezulloje
+      previous_strikes: Paralajmërime të mëparshme
+      previous_strikes_description_html:
+        one: Kjo llogari ka <strong>one</strong> paralajmërim.
+        other: Kjo llogari ka <strong>%{count}</strong> paralajmërime.
+        zero: Kjo llogari është <strong>në pozita të mira</strong>.
       promote: Promovojeni
       protocol: Protokoll
       public: Publike
@@ -225,6 +230,7 @@ sq:
       whitelisted: Lejuar për federim
     action_logs:
       action_types:
+        approve_appeal: Miratojeni Apelimin
         approve_user: Miratoje Përdoruesin
         assigned_to_self_report: Caktoji Raportim
         change_email_user: Ndrysho Email për Përdoruesin
@@ -256,6 +262,7 @@ sq:
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
+        reject_appeal: Hidheni Poshtë Apelimin
         reject_user: Hidhe Poshtë Përdoruesin
         remove_avatar_user: Hiqe Avatarin
         reopen_report: Rihape Raportimin
@@ -274,6 +281,7 @@ sq:
         update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
       actions:
+        approve_appeal_html: "%{name} miratoi apelim vendimi moderimi nga %{target}"
         approve_user_html: "%{name} miratoi regjistrim nga %{target}"
         assigned_to_self_report_html: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
         change_email_user_html: "%{name} ndryshoi adresën email të përdoruesit %{target}"
@@ -305,6 +313,7 @@ sq:
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
+        reject_appeal_html: "%{name} hodhi poshtë apelim vendimi moderimi nga %{target}"
         reject_user_html: "%{name} hodhi poshtë regjistrimin nga %{target}"
         remove_avatar_user_html: "%{name} hoqi avatarin e %{target}"
         reopen_report_html: "%{name} rihapi raportimin %{target}"
@@ -383,6 +392,9 @@ sq:
       media_storage: Depozitë media
       new_users: përdorues të rinj
       opened_reports: raportime të hapur
+      pending_appeals_html:
+        one: "<strong>1</strong> apelim pezull"
+        other: "<strong>%{count}</strong> apelime pezull"
       pending_reports_html:
         one: "<strong>1</strong> raportim pezull"
         other: "<strong>%{count}</strong> raportime pezull"
@@ -400,6 +412,10 @@ sq:
       top_languages: Gjuhët aktive kryesuese
       top_servers: Shërbyesit aktivë kryesues
       website: Sajt
+    disputes:
+      appeals:
+        empty: S’u gjetën apelime.
+        title: Apelime
     domain_allows:
       add_new: Shtoje përkatësinë në listë lejimesh
       created_msg: Përkatësia u shtua me sukses në listë lejimesh
@@ -559,6 +575,7 @@ sq:
       action_log: Auditim regjistri
       action_taken_by: Veprimi i ndërmarrë nga
       actions:
+        delete_description_html: Postimet e raportuara do të fshihen dhe do të regjistrohet një paralajmërim, për t’ju ndihmuar të përshkallëzoni hapat në rast shkeljesh të ardhme nga e njëjta llogari.
         other_description_html: Shihni më tepër mundësi për kontroll të sjelljes së një llogari dhe përshtatni komunikimin me llogarinë e raportuar.
         silence_description_html: Profili do të jetë i dukshëm vetëm për ata që e ndjekin tashmë, ose që e kërkojnë dorazi, duke reduktuar rëndë përhapjen e tij. Mundet përherë të prapakthehet.
         suspend_description_html: Profili dhe krej lënda e tij do të bëhen të papërdorshëm, deri sa më në fund të fshihet. Ndërveprimi me llogarinë do të jetë i pamundur. E prapakthyeshme brenda 30 ditësh.
@@ -715,6 +732,8 @@ sq:
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
       with_media: Me media
+    strikes:
+      appeal_pending: Apelim pezull
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
@@ -927,6 +946,22 @@ sq:
     directory: Drejtori profilesh
     explanation: Zbuloni përdorues bazuar në interesat e tyre
     explore_mastodon: Eksploroni %{title}
+  disputes:
+    strikes:
+      appealed_msg: Apelimi juaj u parashtruar. Nëse miratohet, do të njoftoheni.
+      appeals:
+        submit: Parashtroni apelim
+      associated_report: Raportimi i përshoqëruar
+      created_at: Datuar
+      recipient: Drejtuar
+      status: '#%{id} postimi'
+      status_removed: Postim i hequr tashmë nga sistemi
+      title: "%{action} prej %{date}"
+      title_actions:
+        delete_statuses: Heqje postimi
+        disable: Ngrirje e llogarisë
+        silence: Kufizim llogarie
+        suspend: Pezullim llogarie
   domain_validator:
     invalid_domain: s’është emër i vlefshëm përkatësie
   errors:
