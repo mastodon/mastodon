@@ -52,6 +52,84 @@ module Mastodon
       end
     end
 
+    option :target
+    desc 'aliases USERNAME', 'Create aliases for a user'
+    long_desc <<-LONG_DESC
+      Create aliases for a user.
+
+      With the --target option, create an alias for the user
+    LONG_DESC
+    def aliases(username)
+      user = Account.find_local(username)&.user
+      account = Account.find_local(username)
+
+      if user.nil?
+        say('No user with such username', :red)
+        exit(1)
+      end
+
+      if account.suspended?
+        say('User was suspended', :red)
+        exit(1)
+      end
+
+      if user.disabled?
+        say('User was disabled', :red)
+        exit(1)
+      end
+
+      the_aliases = account.aliases.build(acct: options[:target])
+
+      say(the_aliases.to_json, :blue)
+
+      if the_aliases.save
+        ActivityPub::UpdateDistributionWorker.perform_async(account.id)
+        say('OK', :green)
+      else
+        say("Unable to save #{username}", :red)
+        say(the_aliases.errors.full_messages, :red)
+      end
+    end
+
+    option :target
+    desc 'move USERNAME', 'Move a user to a different account'
+    long_desc <<-LONG_DESC
+      Move a user to a different account.
+
+      With the --target option, create an alias for the user
+    LONG_DESC
+    def move(username)
+      user = Account.find_local(username)&.user
+      account = Account.find_local(username)
+
+      if user.nil?
+        say('No user with such username', :red)
+        exit(1)
+      end
+
+      if account.suspended?
+        say('User was suspended', :red)
+        exit(1)
+      end
+
+      if user.disabled?
+        say('User was disabled', :red)
+        exit(1)
+      end
+
+      the_migration = account.migrations.build(acct: options[:target], current_password: 'by_pass', current_username: username)
+
+      say(the_migration.to_json, :blue)
+
+      if the_migration.save
+        MoveService.new.call(the_migration)
+        say('OK', :green)
+      else
+        say("Unable to save #{username}", :red)
+        say(the_migration.errors.full_messages, :red)
+      end
+    end
+
     option :email, required: true
     option :password, default: SecureRandom.hex
     option :confirmed, type: :boolean
