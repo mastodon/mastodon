@@ -810,6 +810,12 @@ ca:
         delete_statuses: eliminar les seves publicacions
         disable: congelar els seus comptes
         none: un avís
+        sensitive: marcar els seus comptes com a sensibles
+        silence: limitar els seus comptes
+        suspend: suspendre els seus comptes
+      body: "%{target} està apel·lant una decisió de moderació de %{action_taken_by} el %{date}, del tipus %{type}. Han escrit:"
+      next_steps: Pots aprovar l'apel·lació per a desfer la decisió de moderació o ignorar-la.
+      subject: "%{username} està apel·lant una decisió de moderació a %{instance}"
     new_pending_account:
       body: A continuació trobaràs els detalls del compte nou. Pots aprovar o rebutjar aquest registre.
       subject: Nou compte per a revisar a %{instance} (%{username})
@@ -965,6 +971,13 @@ ca:
     directory: Directori de perfils
     explanation: Descobreix usuaris segons els teus interessos
     explore_mastodon: Explora %{title}
+  disputes:
+    strikes:
+      action_taken: Acció presa
+      appeal: Apel·lació
+      appeal_approved: L'acció ha estat apel·lada amb èxit i ja no és vàlida
+      appeal_rejected: L'apel·lació ha estat rebutjada
+      appeal_submitted_at: Apel·lació tramesa
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
   errors:
