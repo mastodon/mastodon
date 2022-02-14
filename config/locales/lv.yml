@@ -396,6 +396,10 @@ lv:
       media_storage: Mediju krātuve
       new_users: jauni lietotāji
       opened_reports: atvērtie ziņojumi
+      pending_appeals_html:
+        zero: "<strong>%{count}</strong> izskatāmo apelāciju"
+        one: "<strong>1</strong> izskatāmā apelācija"
+        other: "<strong>%{count}</strong> izskatāmās apelācijas"
       pending_reports_html:
         zero: "<strong>%{count}</strong> ziņojumu"
         one: "<strong>1</strong> ziņojums gaida"
@@ -1599,6 +1603,8 @@ lv:
       title: Apelācija apstiprināta
     appeal_rejected:
       explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir noraidīta.
+      subject: Jūsu %{date} apelācija ir noraidīta
+      title: Apelācija noraidīta
     backup_ready:
       explanation: Tu pieprasīji pilnu sava Mastodon konta dublējumu. Tagad tas ir gatavs lejupielādei!
       subject: Tavs arhīvs ir gatavs lejupielādei
@@ -1610,6 +1616,8 @@ lv:
       subject: Lūdzu, apstiprini pierakstīšanās mēģinājumu
       title: Pierakstīšanās mēģinājums
     warning:
+      appeal: Iesniegt apelāciju
+      appeal_description: Ja uzskatāt, ka tā ir kļūda, varat iesniegt apelāciju %{instance} darbiniekiem.
       categories:
         spam: Spams
         violation: Saturs pārkāpj šādas kopienas pamatnostādnes
