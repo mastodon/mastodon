@@ -962,6 +962,9 @@ sq:
         disable: Ngrirje e llogarisë
         silence: Kufizim llogarie
         suspend: Pezullim llogarie
+      your_appeal_approved: Apelimi juaj u miratua
+      your_appeal_pending: Keni parashtruar një apelim
+      your_appeal_rejected: Apelimi juaj është hedhur poshtë
   domain_validator:
     invalid_domain: s’është emër i vlefshëm përkatësie
   errors:
@@ -1525,6 +1528,12 @@ sq:
     recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezikuar kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
     webauthn: Kyçe sigurie
   user_mailer:
+    appeal_approved:
+      action: Kaloni te llogaria juaj
+      subject: Apelimi juaj i datës %{date} u miratua
+      title: Apelimi u miratua
+    appeal_rejected:
+      title: Apelimi u hodh poshtë
     backup_ready:
       explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E keni gati për shkarkim!
       subject: Arkivi juaj është gati për shkarkim
@@ -1536,6 +1545,8 @@ sq:
       subject: Ju lutemi, ripohoni përpjekje hyrjeje
       title: Përpjekje hyrjeje
     warning:
+      appeal: Parashtroni një apelim
+      appeal_description: Nëse besoni se është gabim, mund t’i parashtroni një apelim stafit të %{instance}.
       categories:
         spam: I padëshiruar
         violation: Lënda cenon udhëzimet vijuese të bashkësisë
