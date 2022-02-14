@@ -216,6 +216,7 @@ el:
       whitelisted: Εγκεκριμένοι
     action_logs:
       action_types:
+        approve_appeal: Έγκριση Έφεσης
         approve_user: Έγκριση Χρήστη
         assigned_to_self_report: Ανάθεση Αναφοράς
         change_email_user: Αλλαγή email για χρήστη
@@ -243,6 +244,7 @@ el:
         enable_user: Ενεργοποίηση Χρήστη
         memorialize_account: Μετατροπή Λογαριασμού σε Αναμνηστικό
         promote_user: Προαγωγή Χρήστη
+        reject_appeal: Απόρριψη Έφεσης
         reject_user: Απόρριψη Χρήστη
         remove_avatar_user: Αφαίρεση Avatar
         reopen_report: Ξανάνοιγμα Καταγγελίας
@@ -332,6 +334,9 @@ el:
       software: Λογισμικό
       space: Κατανάλωση χώρου
       title: Ταμπλό
+    disputes:
+      appeals:
+        title: Εφέσεις
     domain_allows:
       add_new: Έγκριση τομέα
       created_msg: Ο τομέας εγκρίθηκε με επιτυχία
@@ -628,6 +633,9 @@ el:
       empty: Δεν έχετε ακόμη ορίσει κάποια προεπιλογή προειδοποίησης.
       title: Διαχείριση προκαθορισμένων προειδοποιήσεων
   admin_mailer:
+    new_appeal:
+      actions:
+        none: μια προειδοποίηση
     new_pending_account:
       body: Τα στοιχεία του νέου λογαριασμού είναι παρακάτω. Μπορείς να εγκρίνεις ή να απορρίψεις αυτή την αίτηση.
       subject: Νέος λογαριασμός προς έγκριση στο %{instance} (%{username})
