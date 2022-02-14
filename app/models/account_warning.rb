@@ -12,7 +12,7 @@
 #  updated_at        :datetime         not null
 #  report_id         :bigint(8)
 #  status_ids        :string           is an Array
-#  appealed_at       :datetime
+#  overruled_at      :datetime
 #
 
 class AccountWarning < ApplicationRecord
@@ -33,13 +33,13 @@ class AccountWarning < ApplicationRecord
 
   scope :latest, -> { order(id: :desc) }
   scope :custom, -> { where.not(text: '') }
-  scope :active, -> { where(appealed_at: nil).or(where('account_warnings.appealed_at >= ?', 30.days.ago)) }
+  scope :active, -> { where(overruled_at: nil).or(where('account_warnings.overruled_at >= ?', 30.days.ago)) }
 
   def statuses
     Status.with_discarded.where(id: status_ids || [])
   end
 
-  def appealed?
-    appealed_at.present?
+  def overruled?
+    overruled_at.present?
   end
 end

@@ -1,4 +1,4 @@
-= link_to disputes_strike_path(account_warning), class: ['log-entry', account_warning.appealed? && 'log-entry--inactive'] do
+= link_to disputes_strike_path(account_warning), class: ['log-entry', account_warning.overruled? && 'log-entry--inactive'] do
   .log-entry__header
     .log-entry__avatar
       = image_tag account_warning.target_account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
@@ -13,7 +13,7 @@
           ·
           = t('admin.reports.title', id: account_warning.report_id)
 
-        - if account_warning.appealed?
+        - if account_warning.overruled?
           ·
           %span.positive-hint= t('admin.strikes.appeal_approved')
         - elsif account_warning.appeal&.pending?

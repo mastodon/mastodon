@@ -38,7 +38,7 @@ class ApproveAppealService < BaseService
 
   def mark_strike_as_appealed!
     @appeal.approve!(@current_account)
-    @strike.touch(:appealed_at)
+    @strike.touch(:overruled_at)
   end
 
   def undo_disable!

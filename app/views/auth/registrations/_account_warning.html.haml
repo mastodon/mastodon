@@ -1,7 +1,7 @@
 = link_to disputes_strike_path(account_warning), class: 'log-entry' do
   .log-entry__header
     .log-entry__avatar
-      .indicator-icon{ class: account_warning.appealed? ? 'success' : 'failure' }
+      .indicator-icon{ class: account_warning.overruled? ? 'success' : 'failure' }
         = fa_icon 'warning'
     .log-entry__content
       .log-entry__title
@@ -9,7 +9,7 @@
       .log-entry__timestamp
         %time.formatted{ datetime: account_warning.created_at.iso8601 }= l(account_warning.created_at)
 
-        - if account_warning.appealed?
+        - if account_warning.overruled?
           ·
           %span.positive-hint= t('disputes.strikes.your_appeal_approved')
         - elsif account_warning.appeal&.pending?

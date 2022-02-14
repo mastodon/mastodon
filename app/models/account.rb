@@ -271,7 +271,7 @@ class Account < ApplicationRecord
   end
 
   def previous_strikes_count
-    strikes.where(appealed_at: nil).count
+    strikes.where(overruled_at: nil).count
   end
 
   def keypair

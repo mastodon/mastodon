@@ -135,7 +135,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_153119) do
     t.datetime "updated_at", null: false
     t.bigint "report_id"
     t.string "status_ids", array: true
-    t.datetime "appealed_at"
+    t.datetime "overruled_at"
     t.index ["account_id"], name: "index_account_warnings_on_account_id"
     t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
   end
