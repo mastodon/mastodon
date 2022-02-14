@@ -22,7 +22,7 @@ class AppealService < BaseService
 
   def notify_staff!
     User.staff.includes(:account).each do |u|
-      AdminMailer.new_appeal(u.account, @appeal).deliver_later if u.allows_report_emails?
+      AdminMailer.new_appeal(u.account, @appeal).deliver_later if u.allows_appeal_emails?
     end
   end
 end

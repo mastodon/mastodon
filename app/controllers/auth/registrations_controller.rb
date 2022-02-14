@@ -127,7 +127,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_strikes
-    @strikes = current_account.strikes.where(appealed_at: nil).latest
+    @strikes = current_account.strikes.active.latest
   end
 
   def require_not_suspended!

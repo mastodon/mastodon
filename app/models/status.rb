@@ -24,7 +24,6 @@
 #  poll_id                :bigint(8)
 #  deleted_at             :datetime
 #  edited_at              :datetime
-#  trendable              :boolean
 #
 
 class Status < ApplicationRecord

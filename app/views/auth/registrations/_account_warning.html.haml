@@ -1,7 +1,7 @@
 = link_to disputes_strike_path(account_warning), class: 'log-entry' do
   .log-entry__header
     .log-entry__avatar
-      .indicator-icon.failure
+      .indicator-icon{ class: account_warning.appealed? ? 'success' : 'failure' }
         = fa_icon 'warning'
     .log-entry__content
       .log-entry__title

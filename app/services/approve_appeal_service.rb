@@ -46,7 +46,7 @@ class ApproveAppealService < BaseService
   end
 
   def undo_delete_statuses!
-    @strike.statuses.each(&:undiscard)
+    # Cannot be undone
   end
 
   def undo_sensitive!
