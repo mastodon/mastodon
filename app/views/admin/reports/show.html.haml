@@ -57,7 +57,7 @@
         .report-header__details__item__header
           %strong= t('admin.accounts.strikes')
         .report-header__details__item__content
-          = @report.target_account.strikes.count
+          = @report.target_account.previous_strikes_count
 
   .report-header__details
     .report-header__details__item

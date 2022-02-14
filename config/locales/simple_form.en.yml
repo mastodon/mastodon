@@ -27,6 +27,8 @@ en:
         scheduled_at: Leave blank to publish the announcement immediately
         starts_at: Optional. In case your announcement is bound to a specific time range
         text: You can use post syntax. Please be mindful of the space the announcement will take up on the user's screen
+      appeal:
+        text: You can only appeal a strike once
       defaults:
         autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
@@ -119,6 +121,8 @@ en:
         scheduled_at: Schedule publication
         starts_at: Start of event
         text: Announcement
+      appeal:
+        text: Explain why this decision should be reversed
       defaults:
         autofollow: Invite to follow your account
         avatar: Avatar
@@ -197,6 +201,7 @@ en:
           sign_up_requires_approval: Limit sign-ups
         severity: Rule
       notification_emails:
+        appeal: Someone appeals a moderator decision
         digest: Send digest e-mails
         favourite: Someone favourited your post
         follow: Someone followed you
@@ -204,8 +209,8 @@ en:
         mention: Someone mentioned you
         pending_account: New account needs review
         reblog: Someone boosted your post
-        report: A new report is submitted
-        trending_tag: A new trend requires approval
+        report: New report is submitted
+        trending_tag: New trend requires review
       rule:
         text: Rule
       tag:

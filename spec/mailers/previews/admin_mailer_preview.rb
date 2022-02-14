@@ -15,4 +15,9 @@ class AdminMailerPreview < ActionMailer::Preview
   def new_trending_links
     AdminMailer.new_trending_links(Account.first, PreviewCard.limit(3))
   end
+
+  # Preview this email at http://localhost:3000/rails/mailers/admin_mailer/new_appeal
+  def new_appeal
+    AdminMailer.new_appeal(Account.first, Appeal.first)
+  end
 end
