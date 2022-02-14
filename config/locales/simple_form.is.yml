@@ -26,6 +26,8 @@ is:
         scheduled_at: Skildu þetta eftir autt til að birta auglýsinguna samstundis
         starts_at: Valfrjálst. Notað ef auglýsing er bundin við tiltekinn tímaramma
         text: Þú getur notað sömu skilgreiningar og fyrir tíst. Hafðu í huga það pláss sem auglýsingin mun taka á skjá notandans
+      appeal:
+        text: Þú getur aðeins áfrýjað banni einu sinni
       defaults:
         autofollow: Fólk sem skráir sig í gegnum boðið mun sjálfkrafa fylgjast með þér
         avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
@@ -118,6 +120,8 @@ is:
         scheduled_at: Áætla birtingu
         starts_at: Upphaf atburðar
         text: Auglýsing
+      appeal:
+        text: Útskýrðu af hverju ætti að afturkalla þessa ákvörðun
       defaults:
         autofollow: Bjóða að fylgjast með aðgangnum þínum
         avatar: Auðkennismynd
@@ -196,6 +200,7 @@ is:
           sign_up_requires_approval: Takmarka nýskráningar
         severity: Regla
       notification_emails:
+        appeal: Einhver áfrýjar ákvörðun umsjónarmanns
         digest: Senda uppsafnaðan tölvupóst
         favourite: Einhver setti stöðufærslu þína í eftirlæti
         follow: Einhver fylgist núna með þér
@@ -203,6 +208,8 @@ is:
         mention: Einhver minntist á þig
         pending_account: Nýr notandaaðgangur þarfnast yfirferðar
         reblog: Einhver endurbirti stöðufærslu þína
+        report: Ný kæra hefur verið send inn
+        trending_tag: Ný tilhneiging krefst yfirferðar
       rule:
         text: Regla
       tag:
