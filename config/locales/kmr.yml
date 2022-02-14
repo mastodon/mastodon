@@ -778,6 +778,14 @@ kmr:
       empty: Te hin tu hişyariyên pêşsazkirî destnîşan nekirine.
       title: Hişyariyên pêşsazkirî bi rêve bibe
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: ku şandiyên wan jê bibî
+        disable: ku ajimêrê wan bicemidînî
+        none: hişyariyek
+        sensitive: ku ajimêrê wan wekî hestyar nîşan bikî
+        silence: ku ajimêrê wan sînordar bikî
+        suspend: ku ajimêrê wan bidî rawestandin
     new_pending_account:
       body: Zanyariyênn ajimêra nû li jêr in. Tu dikarî vê serîlêdanê bipejirîne an pûç bike.
       subject: (%{username}) ajimêrê nû ji bo vekolandina li ser %{instance}
@@ -1496,6 +1504,8 @@ kmr:
     recovery_instructions_html: Heke gava te têlefona xwe winda kir, tu dikarî yek ji kodên rizgarkirinê yên jêrîn bi kar bîne da ku tu bigihîjî ajimêra xwe. <strong>Kodên rizgarkirinê li cihekî ewle biparêze </strong>. Mînakî, tu dikarî wan çap bikî û wan bi peldandkên din ên girîng re tomar bike.
     webauthn: Kilîdên ewlehiyê
   user_mailer:
+    appeal_approved:
+      action: Biçe ajimêra xwe
     backup_ready:
       explanation: Te yedekîya tijê ya ajimêrê xwe Mastodonê xwest. Niha ji daxistinê re amade ye!
       subject: Arşîva te amede ye bo daxistinê
