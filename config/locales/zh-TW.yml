@@ -970,11 +970,11 @@ zh-TW:
       associated_report: 相關報告
       created_at: 過時的
       recipient: 此致
-      status: '貼文編號 %{id}'
-      status_removed: 貼文已從系統中移除
+      status: '嘟文編號 #%{id}'
+      status_removed: 嘟文已從系統中移除
       title: "%{action} 來自 %{date}"
       title_actions:
-        delete_statuses: 貼文移除
+        delete_statuses: 嘟文移除
         disable: 凍結帳號
         none: 警告
         sensitive: 標記為敏感帳號
@@ -1535,7 +1535,7 @@ zh-TW:
     webauthn: 安全金鑰
   user_mailer:
     appeal_approved:
-      action: 到您的帳號
+      action: 前往您的帳號
       explanation: 您在 %{appeal_date} 遞交的針對您帳號的 %{strike_date} 警示的申訴已獲批准。您的帳號再次享有良好的信譽。
       subject: 您在 %{date} 提出的申訴已獲批准
       title: 申訴已批准
