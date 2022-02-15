@@ -161,6 +161,8 @@ da:
       not_subscribed: Abonnerer ikke
       pending: Afventende vurdering
       perform_full_suspension: Suspendér
+      previous_strikes_description_html:
+        zero: Denne kontostatus er <strong>på god fod</strong>.
       promote: Forfrem
       protocol: Protokol
       public: Offentlig
@@ -225,6 +227,7 @@ da:
       whitelisted: Tilladt for federering
     action_logs:
       action_types:
+        approve_appeal: Godkend appel
         approve_user: Godkend bruger
         assigned_to_self_report: Tildel rapport
         change_email_user: Skift e-mail for bruger
@@ -256,6 +259,7 @@ da:
         enable_user: Aktivér brugeren
         memorialize_account: Gør til mindekonto
         promote_user: Promovér bruger
+        reject_appeal: Afvis appel
         reject_user: Afvis bruger
         remove_avatar_user: Fjern profilbillede
         reopen_report: Genåbn anmeldelse
@@ -274,6 +278,7 @@ da:
         update_domain_block: Opdatér domæneblokering
         update_status: Opdatér status
       actions:
+        approve_appeal_html: "%{name} godkendte moderationsafgørelsesappellen fra %{target}"
         approve_user_html: "%{name} godkendte tilmelding fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte sig selv anmeldelsen %{target}"
         change_email_user_html: "%{name} ændrede e-mailadressen for bruger %{target}"
