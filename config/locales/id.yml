@@ -157,6 +157,11 @@ id:
       not_subscribed: Tidak berlangganan
       pending: Tinjauan tertunda
       perform_full_suspension: Lakukan suspen penuh
+      previous_strikes: Peringatan sebelumnya
+      previous_strikes_description_html:
+        one: Akun ini mendapatkan <strong>satu</strong> peringatan.
+        other: Akun ini mendapatkan <strong>%{count}</strong> peringatan.
+        zero: Akun ini <strong>status bagus</strong>.
       promote: Promosikan
       protocol: Protokol
       public: Publik
@@ -221,6 +226,7 @@ id:
       whitelisted: Masuk daftar putih
     action_logs:
       action_types:
+        approve_appeal: Setujui Banding
         approve_user: Setujui Pengguna
         assigned_to_self_report: Berikan laporan
         change_email_user: Ubah Email untuk Pengguna
@@ -252,6 +258,7 @@ id:
         enable_user: Aktifkan Pengguna
         memorialize_account: Kenang Akun
         promote_user: Promosikan Pengguna
+        reject_appeal: Tolak Banding
         reject_user: Tolak Pengguna
         remove_avatar_user: Hapus Avatar
         reopen_report: Buka Lagi Laporan
@@ -270,6 +277,7 @@ id:
         update_domain_block: Perbarui Blokir Domain
         update_status: Perbarui Status
       actions:
+        approve_appeal_html: "%{name} menyetujui moderasi keputusan banding dari %{target}"
         approve_user_html: "%{name} menyetujui pendaftaran dari %{target}"
         assigned_to_self_report_html: "%{name} menugaskan laporan %{target} ke dirinya sendiri"
         change_email_user_html: "%{name} mengubah alamat email pengguna %{target}"
@@ -301,6 +309,7 @@ id:
         enable_user_html: "%{name} mengaktifkan login untuk pengguna %{target}"
         memorialize_account_html: "%{name} mengubah akun %{target} jadi halaman memorial"
         promote_user_html: "%{name} mempromosikan pengguna %{target}"
+        reject_appeal_html: "%{name} menolak moderasi keputusan banding dari %{target}"
         reject_user_html: "%{name} menolak pendaftaran dari %{target}"
         remove_avatar_user_html: "%{name} menghapus avatar %{target}"
         reopen_report_html: "%{name} membuka ulang laporan %{target}"
@@ -379,6 +388,8 @@ id:
       media_storage: Penyimpanan media
       new_users: pengguna baru
       opened_reports: laporan dibuka
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> banding tertunda"
       pending_reports_html:
         other: "<strong>%{count}</strong> laporan ditunda"
       pending_tags_html:
@@ -393,6 +404,10 @@ id:
       top_languages: Bahasa aktif teratas
       top_servers: Server aktif teratas
       website: Situs web
+    disputes:
+      appeals:
+        empty: Tidak ada banding yang ditemukan.
+        title: Banding
     domain_allows:
       add_new: Daftar putihkan domain
       created_msg: Domain berhasil masuk daftar putih
@@ -707,6 +722,10 @@ id:
       no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
       title: Status akun
       with_media: Dengan media
+    strikes:
+      actions:
+        delete_statuses: "%{name} menghapus kiriman %{target}"
+        disable: "%{name} membekukan akun %{target}"
     system_checks:
       database_schema_check:
         message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
