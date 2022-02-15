@@ -1,6 +1,6 @@
 is:
   about:
-    about_hashtag_html: 'Þetta eru opinber skilaboð sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.'
+    about_hashtag_html: 'Þetta eru opinberar færslur sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.'
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -31,8 +31,8 @@ is:
     server_stats: 'Tölfræði þjóns:'
     source_code: Grunnkóði
     status_count_after:
-      one: stöðufærsla
-      other: stöðufærslur
+      one: færsla
+      other: færslur
     status_count_before: Sem stóðu fyrir
     tagline: Fylgstu með vinum og uppgötvaðu nýja
     terms: Þjónustuskilmálar
@@ -75,10 +75,10 @@ is:
     pin_errors:
       following: Þú þarft að vera þegar að fylgjast með þeim sem þú ætlar að mæla með
     posts:
-      one: Tíst
-      other: Tíst
-    posts_tab_heading: Tíst
-    posts_with_replies: Tíst og svör
+      one: Færsla
+      other: Færslur
+    posts_tab_heading: Færslur
+    posts_with_replies: Færslur og svör
     roles:
       admin: Stjóri
       bot: Róbót
@@ -206,7 +206,7 @@ is:
         targeted_reports: Kært af öðrum
       silence: Hylja
       silenced: Hulið
-      statuses: Stöðufærslur
+      statuses: Færslur
       strikes: Fyrri refsingar
       subscribe: Gerast áskrifandi
       suspend: Setja í bið
@@ -251,7 +251,7 @@ is:
         destroy_email_domain_block: Eyða tölvupóstfangi bannað
         destroy_instance: Henda léni
         destroy_ip_block: Eyða IP-reglu
-        destroy_status: Eyða stöðufærslu
+        destroy_status: Eyða færslu
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
@@ -279,7 +279,7 @@ is:
         update_announcement: Uppfæra tilkynningu
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
         update_domain_block: Uppfæra útilokun léns
-        update_status: Uppfæra stöðufærslu
+        update_status: Uppfæra færslu
       actions:
         approve_appeal_html: "%{name} samþykkti áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         approve_user_html: "%{name} samþykkti nýskráningu frá %{target}"
@@ -302,7 +302,7 @@ is:
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
         destroy_instance_html: "%{name} henti léninu %{target}"
         destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
-        destroy_status_html: "%{name} fjarlægði stöðufærslu frá %{target}"
+        destroy_status_html: "%{name} fjarlægði færslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
@@ -330,8 +330,8 @@ is:
         update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
         update_domain_block_html: "%{name} uppfærði lénalás fyrir %{target}"
-        update_status_html: "%{name} uppfærði stöðufærslu frá %{target}"
-      deleted_status: "(eydd stöðufærsla)"
+        update_status_html: "%{name} uppfærði færslu frá %{target}"
+      deleted_status: "(eydd færsla)"
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
@@ -550,11 +550,11 @@ is:
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
-      description_html: <strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra tísta við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum.
+      description_html: <strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra færslna við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum.
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
-      enable_hint: Ef þetta er einu sinni virkjað, mun vefþjónninn þinn gerast áskrifandi að öllum opinberum tístum frá þessum endurvarpa og byrja að senda sín eigin opinberu tíst til hans.
+      enable_hint: Ef þetta er einu sinni virkjað, mun vefþjónninn þinn gerast áskrifandi að öllum opinberum færslum frá þessum endurvarpa og byrja að senda sín eigin opinberu tíst til hans.
       enabled: Virkt
       inbox_url: Slóð endurvarpa
       pending: Bíð eftir samþykki endurvarpa
@@ -632,7 +632,7 @@ is:
       title: Reglur netþjónsins
     settings:
       activity_api_enabled:
-        desc_html: Fjöldi staðværra stöðufærslna, virkra notenda og nýskráninga í vikulegum skömmtum
+        desc_html: Fjöldi staðvært birtra færslna, virkra notenda og nýskráninga í vikulegum skömmtum
         title: Birta samantektartölfræði um virkni notanda
       bootstrap_timeline_accounts:
         desc_html: Aðskildu mörg notendanöfn með kommum. Einungis staðværir og ólæstir aðgangar virka. Þegar þetta er autt er sjálgefið miðað við alla staðværa stjórnendur.
@@ -731,8 +731,8 @@ is:
       deleted: Eytt
       media:
         title: Myndefni
-      no_status_selected: Engum stöðufærslum var breytt þar sem engar voru valdar
-      title: Staða notendaaðganga
+      no_status_selected: Engum færslum var breytt þar sem engar voru valdar
+      title: Færslur notandaaðgangs
       with_media: Með myndefni
     strikes:
       actions:
@@ -851,14 +851,14 @@ is:
       guide_link: https://crowdin.com/project/mastodon/is
       guide_link_text: Allir geta tekið þátt.
     sensitive_content: Viðkvæmt efni
-    toot_layout: Framsetning tísta
+    toot_layout: Framsetning færslu
   application_mailer:
     notification_preferences: Breyta kjörstillingum tölvupósts
     salutation: "%{name},"
     settings: 'Breyta kjörstillingum tölvupósts: %{link}'
     view: 'Skoða:'
     view_profile: Skoða notandasnið
-    view_status: Skoða stöðufærslu
+    view_status: Skoða færslu
   applications:
     created: Það tókst að búa til forrit
     destroyed: Það tókst að eyða forriti
@@ -877,7 +877,7 @@ is:
     description:
       prefix_invited_by_user: "@%{name} býður þér að taka þátt á þessum Mastodon-vefþjóni!"
       prefix_sign_up: Skráðu þig á Mastodon strax í dag!
-      suffix: Með notandaaðgangi geturðu fylgst með fólki, sent inn stöðufærslur og skipst á skilaboðum við notendur á hvaða Mastodon-vefþjóni sem er, auk margs fleira!
+      suffix: Með notandaaðgangi geturðu fylgst með fólki, sent inn færslur og skipst á skilaboðum við notendur á hvaða Mastodon-vefþjóni sem er, auk margs fleira!
     didnt_get_confirmation: Fékkstu ekki leiðbeiningar um hvernig eigi að staðfesta aðganginn?
     dont_have_your_security_key: Ertu ekki með öryggislykilinn þinn?
     forgot_password: Gleymdirðu lykilorðinu?
@@ -1021,7 +1021,7 @@ is:
     archive_takeout:
       date: Dagsetning
       download: Náðu í safnskrána þína
-      hint_html: Þú getur beðið um safnskrá með <strong>tístunum þínum og innsendu myndefni</strong>. Útfluttu gögnin verða á ActivityPub-sniði, sem allur samhæfður hugbúnaður á að geta lesið. Þú getur beðið um safnskrá á 7 daga fresti.
+      hint_html: Þú getur beðið um safnskrá með <strong>færslunum þínum og innsendu myndefni</strong>. Útfluttu gögnin verða á ActivityPub-sniði, sem allur samhæfður hugbúnaður á að geta lesið. Þú getur beðið um safnskrá á 7 daga fresti.
       in_progress: Set saman safnskrána þína...
       request: Biddu um safnskrána þína
       size: Stærð
@@ -1130,7 +1130,7 @@ is:
     title: Auðkenningarferill
   media_attachments:
     validations:
-      images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
+      images_and_video: Ekki er hægt að hengja myndskeið við færslu sem þegar inniheldur myndir
       not_ready: Ekki er hægt að hengja við skrár sem ekki er búið að vinna til fulls. Prófaðu aftur eftir augnablik!
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
@@ -1183,8 +1183,8 @@ is:
         other: "%{count} nýjar tilkynningar síðan þú leist inn síðast \U0001F418"
       title: Á meðan þú varst fjarverandi...
     favourite:
-      body: 'Stöðufærslan þín var sett í eftirlæti af %{name}:'
-      subject: "%{name} setti stöðufærslu þína í eftirlæti"
+      body: 'Færslan þín var sett í eftirlæti af %{name}:'
+      subject: "%{name} setti færsluna þína í eftirlæti"
       title: Nýtt eftirlæti
     follow:
       body: "%{name} er núna að fylgjast með þér!"
@@ -1203,8 +1203,8 @@ is:
     poll:
       subject: Könnun frá %{name} er lokið
     reblog:
-      body: '%{name} endurbirti stöðufærsluna þína:'
-      subject: "%{name} endurbirti stöðufærsluna þína"
+      body: '%{name} endurbirti færsluna þína:'
+      subject: "%{name} endurbirti færsluna þína"
       title: Ný endurbirting
     status:
       subject: "%{name} sendi inn rétt í þessu"
@@ -1284,19 +1284,19 @@ is:
   remote_interaction:
     favourite:
       proceed: Halda áfram í að setja í eftirlæti
-      prompt: 'Þú ætlar að setja þetta tíst í eftirlæti:'
+      prompt: 'Þú ætlar að setja þessa færslu í eftirlæti:'
     reblog:
       proceed: Halda áfram í endurbirtingu
-      prompt: 'Þú ætlar að endurbirta þetta tíst:'
+      prompt: 'Þú ætlar að endurbirta þessa færslu:'
     reply:
       proceed: Halda áfram í að svara
-      prompt: 'Þú ætlar að svara þessu tísti:'
+      prompt: 'Þú ætlar að svara þessari færslu:'
   reports:
     errors:
       invalid_rules: vísar ekki til gildra reglna
   scheduled_statuses:
-    over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætluð tíst fyrir þennan dag
-    over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætluð tíst
+    over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur fyrir þennan dag
+    over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur
     too_soon: Áætluð dagsetning verður að vera í framtíðinni
   sessions:
     activity: Síðasta virkni
@@ -1382,13 +1382,13 @@ is:
       other: 'innihélt óleyfilegu myllumerkin: %{tags}'
     edited_at: Breytt %{date}
     errors:
-      in_reply_not_found: Stöðufærslan sem þú ert að reyna að svara að er líklega ekki til.
+      in_reply_not_found: Færslan sem þú ert að reyna að svara að er líklega ekki til.
     open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð
     pin_errors:
-      direct: Ekki er hægt að festa skilaboð sem einungis eru sýnileg þeim notendum sem minnst er á
-      limit: Þú hefur þegar fest leyfilegan hámarksfjölda tísta
-      ownership: Tíst frá einhverjum öðrum er ekki hægt að festa
+      direct: Ekki er hægt að festa færslur sem einungis eru sýnilegar þeim notendum sem minnst er á
+      limit: Þú hefur þegar fest leyfilegan hámarksfjölda færslna
+      ownership: Færslur frá einhverjum öðrum er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
     poll:
       total_people:
