@@ -169,6 +169,11 @@ pl:
       not_subscribed: Nie zasubskrybowano
       pending: Oczekuje na przegląd
       perform_full_suspension: Zawieś
+      previous_strikes: Poprzednie ostrzeżenia
+      previous_strikes_description_html:
+        one: To konto ma <strong>jedno</strong> ostrzeżenie.
+        other: To konto ma <strong>%{count}</strong> ostrzeżeń.
+        zero: To konto jest <strong>w dobrym stanie</strong>.
       promote: Podnieś uprawnienia
       protocol: Protokół
       public: Publiczne
@@ -233,6 +238,7 @@ pl:
       whitelisted: Na białej liście
     action_logs:
       action_types:
+        approve_appeal: Zatwierdź odwołanie
         approve_user: Zatwierdź użytkownika
         assigned_to_self_report: Przypisz zgłoszenie
         change_email_user: Zmień adres e-mail użytkownika
@@ -264,6 +270,7 @@ pl:
         enable_user: Włącz użytkownika
         memorialize_account: Upamiętnij konto
         promote_user: Podnieś uprawnienia
+        reject_appeal: Odrzuć odwołanie
         reject_user: Odrzuć użytkownika
         remove_avatar_user: Usuń awatar
         reopen_report: Otwórz zgłoszenie ponownie
@@ -282,6 +289,7 @@ pl:
         update_domain_block: Zaktualizuj blokadę domeny
         update_status: Aktualizuj wpis
       actions:
+        approve_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         approve_user_html: "%{name} zatwierdził rejestrację od %{target}"
         assigned_to_self_report_html: "%{name} przypisał(a) sobie zgłoszenie %{target}"
         change_email_user_html: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
@@ -313,6 +321,7 @@ pl:
         enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
         promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        reject_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         reject_user_html: "%{name} odrzucił rejestrację od %{target}"
         remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
         reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
@@ -414,6 +423,10 @@ pl:
       top_languages: Najbardziej aktywne języki
       top_servers: Najbardziej aktywne serwery
       website: Strona
+    disputes:
+      appeals:
+        empty: Nie znaleziono odwołań.
+        title: Odwołania
     domain_allows:
       add_new: Zatwierdź domenę
       created_msg: Domena dodana do białej listy
@@ -740,6 +753,15 @@ pl:
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
       with_media: Z zawartością multimedialną
+    strikes:
+      actions:
+        delete_statuses: "%{name} usunął(-ęła) posty %{target}"
+        disable: "%{name} zamroził(a) konto %{target}"
+        none: "%{name} wysłał(a) ostrzeżenie do %{target}"
+        sensitive: "%{name} oznaczył(-a) konto %{target} jako wrażliwe"
+        silence: "%{name} ograniczył(-a) konto %{target}"
+        suspend: "%{name} zawiesił(-a) konto %{target}"
+      appeal_pending: Odwołanie w toku
     system_checks:
       database_schema_check:
         message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
@@ -805,6 +827,17 @@ pl:
       empty: Nie zdefiniowano jeszcze żadnych szablonów ostrzegawczych.
       title: Zarządzaj szablonami ostrzeżeń
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: aby usunąć ich wpisy
+        disable: aby zamrozić jego/jej konto
+        none: ostrzeżenie
+        sensitive: aby oznaczyć konto jako wrażliwe
+        silence: aby ograniczyć swoje konto
+        suspend: aby zawiesić konto
+      body: "%{target} odwołuje się od decyzji moderatora %{action_taken_by} z %{date}, czyli %{type}. Napisał:"
+      next_steps: Możesz zaakceptować odwołanie o cofnięcie decyzji o moderacji lub je zignorować.
+      subject: "%{username} odwołuje się od decyzji moderacyjnej na %{instance}"
     new_pending_account:
       body: Poniżej znajdują się szczegóły dotycząće nowego konta. Możesz przyjąć lub odrzucić to podanie.
       subject: Nowe konto czeka na przegląd na %{instance} (%{username})
@@ -960,6 +993,11 @@ pl:
     directory: Katalog profilów
     explanation: Poznaj profile na podstawie zainteresowań
     explore_mastodon: Odkrywaj %{title}
+  disputes:
+    strikes:
+      action_taken: Podjęte działania
+      appeal: Odwołanie
+      appeal_approved: To ostrzeżenie zostało pomyślnie odwołane i nie jest już ważne
   domain_validator:
     invalid_domain: nie jest prawidłową nazwą domeny
   errors:
