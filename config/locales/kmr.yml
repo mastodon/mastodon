@@ -164,6 +164,7 @@ kmr:
       previous_strikes_description_html:
         one: Ev ajimêr <strong>yek</strong> binpêkirin kiriye.
         other: Ev ajimêr <strong>%{count}</strong> binpêkirin kiriye.
+        zero: Ev ajimêr <strong>di rewşeke baş de ye</strong>.
       promote: Derbasê asteke bilind be
       protocol: Protokol
       public: Gelemperî
@@ -228,6 +229,7 @@ kmr:
       whitelisted: Ji bona yekbûyînê maf tê dayîn
     action_logs:
       action_types:
+        approve_appeal: Îtîrazê bipejirîne
         approve_user: Bikarhêner bipejirîne
         assigned_to_self_report: Ragihandinê diyar bike
         change_email_user: E-nameya bikarhêner biguherîne
@@ -259,6 +261,7 @@ kmr:
         enable_user: Bikarhêner çalak bike
         memorialize_account: Ajimêrê bike bîranînek
         promote_user: Bikarhêner pêş bixe
+        reject_appeal: Îtîrazê nepejirîne
         reject_user: Bikarhêner nepejirîne
         remove_avatar_user: Avatarê rake
         reopen_report: Ragihandina ji nû ve veke
@@ -277,6 +280,7 @@ kmr:
         update_domain_block: Navperên astengkirî rojane bike
         update_status: Şandiyê rojane bike
       actions:
+        approve_appeal_html: "%{name} îtiraza biryara çavdêriyê ji %{target} pejirand"
         approve_user_html: "%{name} tomarkirina ji %{target} pejirand"
         assigned_to_self_report_html: "%{name} ji xwe re ragihandinek %{target} hilda"
         change_email_user_html: "%{name} navnîşana e-nameya bikarhêner %{target} guherand"
@@ -308,6 +312,7 @@ kmr:
         enable_user_html: "%{name} ji bo bikarhêner %{target} têketin çalak kir"
         memorialize_account_html: "%{name} ajimêra %{target} veguherand rûpeleke bîranînê"
         promote_user_html: "%{name} bikarhêner %{target} bilind kir"
+        reject_appeal_html: "%{name} îtiraza biryara çavdêriyê ji %{target} nepejirand"
         reject_user_html: "%{name} tomarkirina ji %{target} nepejirand"
         remove_avatar_user_html: "%{name} avatara bikarhêner %{target} rakir"
         reopen_report_html: "%{name} ragihandina %{target} ji nû ve vekir"
