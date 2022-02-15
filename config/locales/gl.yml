@@ -160,6 +160,11 @@ gl:
       not_subscribed: Non subscrita
       pending: Revisión pendente
       perform_full_suspension: Suspender
+      previous_strikes: Accións previas
+      previous_strikes_description_html:
+        one: Esta conta ten <strong>un</strong> evento.
+        other: Esta conta ten <strong>%{count}</strong> eventos.
+        zero: Esta conta ten <strong>boa reputación</strong>.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -224,6 +229,7 @@ gl:
       whitelisted: Listaxe branca
     action_logs:
       action_types:
+        approve_appeal: Aprobar apelación
         approve_user: Aprobar Usuaria
         assigned_to_self_report: Asignar denuncia
         change_email_user: Editar email da usuaria
@@ -255,6 +261,7 @@ gl:
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
         promote_user: Promover usuaria
+        reject_appeal: Rexeitar apelación
         reject_user: Rexeitar Usuaria
         remove_avatar_user: Eliminar avatar
         reopen_report: Reabrir denuncia
@@ -273,6 +280,7 @@ gl:
         update_domain_block: Actualizar bloqueo do dominio
         update_status: Actualizar publicación
       actions:
+        approve_appeal_html: "%{name} aprobou a apelación da decisión da moderación de %{target}"
         approve_user_html: "%{name} aprobou o rexistro de %{target}"
         assigned_to_self_report_html: "%{name} asignou a denuncia %{target} para si mesma"
         change_email_user_html: "%{name} cambiou o enderezo de email da usuaria %{target}"
@@ -304,6 +312,7 @@ gl:
         enable_user_html: "%{name} activou a conexión para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
+        reject_appeal_html: "%{name} rexeitou a apelación da decisión da moderación de %{target}"
         reject_user_html: "%{name} rexeitou o rexistro de %{target}"
         remove_avatar_user_html: "%{name} eliminou o avatar de %{target}"
         reopen_report_html: "%{name} reabriu a denuncia %{target}"
@@ -382,6 +391,9 @@ gl:
       media_storage: Almacenaxe multimedia
       new_users: novas usuarias
       opened_reports: denuncias abertas
+      pending_appeals_html:
+        one: "<strong>1</strong> apelación pendente"
+        other: "<strong>%{count}</strong> apelacións pendentes"
       pending_reports_html:
         one: "<strong>1</strong> denuncia pendente"
         other: "<strong>%{count}</strong> denuncias pendentes"
@@ -399,6 +411,10 @@ gl:
       top_languages: Idiomas máis activos
       top_servers: Servidores máis activos
       website: Sitio web
+    disputes:
+      appeals:
+        empty: Non hai apelacións.
+        title: Apelacións
     domain_allows:
       add_new: Engadir dominio á listaxe branca
       created_msg: Engadeu o dominio a lista branca
@@ -717,6 +733,15 @@ gl:
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
       title: Publicacións da conta
       with_media: con medios
+    strikes:
+      actions:
+        delete_statuses: "%{name} eliminou as publicacións de %{target}"
+        disable: "%{name} pausou a conta de %{target}"
+        none: "%{name} envioulle un aviso a %{target}"
+        sensitive: "%{name} marcou a conta de %{target} como sensible"
+        silence: "%{name} limitou a conta de %{target}"
+        suspend: "%{name} suspendeu a conta de %{target}"
+      appeal_approved: Recurrida
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
