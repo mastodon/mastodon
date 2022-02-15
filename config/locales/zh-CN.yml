@@ -157,6 +157,11 @@ zh-CN:
       not_subscribed: 未订阅
       pending: 待审核
       perform_full_suspension: 封禁
+      previous_strikes: 既往处罚
+      previous_strikes_description_html:
+        one: 此帐号有<strong>1次</strong>处罚。
+        other: 此帐号有<strong>%{count}次</strong>处罚。
+        zero: 此帐号<strong>记录良好</strong>。
       promote: 升任
       protocol: 协议
       public: 公开页面
@@ -221,6 +226,7 @@ zh-CN:
       whitelisted: 允许跨站交互
     action_logs:
       action_types:
+        approve_appeal: 批准申诉
         approve_user: 批准用户
         assigned_to_self_report: 指派举报
         change_email_user: 为用户修改邮箱地址
@@ -252,6 +258,7 @@ zh-CN:
         enable_user: 启用用户
         memorialize_account: 将账户设为追悼模式
         promote_user: 给用户升任
+        reject_appeal: 驳回申诉
         reject_user: 拒绝用户
         remove_avatar_user: 移除头像
         reopen_report: 重开举报
@@ -270,6 +277,7 @@ zh-CN:
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
+        approve_appeal_html: "%{name} 批准了 %{target} 对营运决策的申诉"
         approve_user_html: "%{name} 批准了用户 %{target} 的注册"
         assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
@@ -301,6 +309,7 @@ zh-CN:
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
+        reject_appeal_html: "%{name} 驳回了 %{target} 对营运决策的申诉"
         reject_user_html: "%{name} 拒绝了用户 %{target} 的注册"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
         reopen_report_html: "%{name} 重开了举报 %{target}"
@@ -379,6 +388,8 @@ zh-CN:
       media_storage: 媒体存储
       new_users: 新用户
       opened_reports: 被发起的举报
+      pending_appeals_html:
+        other: "<strong>%{count}</strong>个待处理申诉"
       pending_reports_html:
         other: "<strong>%{count}</strong> 个待处理请求"
       pending_tags_html:
@@ -393,6 +404,10 @@ zh-CN:
       top_languages: 最活跃的语言
       top_servers: 最活跃的服务器
       website: 网页端
+    disputes:
+      appeals:
+        empty: 没有发现申诉。
+        title: 申诉
     domain_allows:
       add_new: 允许和域名跨站交互
       created_msg: 域名已被允许跨站交互
@@ -707,6 +722,16 @@ zh-CN:
       no_status_selected: 因为没有嘟文被选中，所以没有更改
       title: 帐户嘟文
       with_media: 含有媒体文件
+    strikes:
+      actions:
+        delete_statuses: "%{name} 刪除了 %{target} 的嘟文"
+        disable: "%{name} 冻结了用户 %{target}"
+        none: "%{name} 向 %{target} 发送了警告"
+        sensitive: "%{name} 将 %{target} 的帐号标记为敏感内容"
+        silence: "%{name} 限制了用户 %{target}"
+        suspend: "%{name} 封禁了用户 %{target}"
+      appeal_approved: 已申诉
+      appeal_pending: 申诉待处理
     system_checks:
       database_schema_check:
         message_html: 有待处理的数据库迁移。请运行它们以确保应用程序正常运行。
@@ -766,6 +791,11 @@ zh-CN:
       empty: 你尚未定义任何警告预设。
       title: 管理预设警告
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: 删除其嘟文
+        disable: 冻结其帐号
+        none: 警告
     new_pending_account:
       body: 新帐户的详细信息如下。你可以批准或拒绝此申请。
       subject: 在 %{instance} 上有新帐号 ( %{username}) 需要审核
