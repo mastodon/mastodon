@@ -162,6 +162,10 @@ is:
       pending: Bíður eftir yfirlestri
       perform_full_suspension: Setja í bið
       previous_strikes: Fyrri refsingar
+      previous_strikes_description_html:
+        one: Þessi notandaaðgangur er með <strong>eina</strong> refsingu.
+        other: Þessi notandaaðgangur er með <strong>%{count}</strong> refsingar.
+        zero: Þessi notandaaðgangur er <strong>í góðu lagi</strong>.
       promote: Hækka í tign
       protocol: Samskiptamáti
       public: Opinber
@@ -725,6 +729,13 @@ is:
       title: Staða notendaaðganga
       with_media: Með myndefni
     strikes:
+      actions:
+        delete_statuses: "%{name} eyddi færslum frá %{target}"
+        disable: "%{name} frysti aðganginn %{target}"
+        none: "%{name} sendi aðvörun til %{target}"
+        sensitive: "%{name} merkti efni frá %{target} sem viðkvæmt"
+        silence: "%{name} takmarkaði aðganginn %{target}"
+        suspend: "%{name} setti notandaaðganginn %{target} í bið"
       appeal_approved: Áfrýjað
       appeal_pending: Áfrýjun í bið
     system_checks:
@@ -790,6 +801,7 @@ is:
   admin_mailer:
     new_appeal:
       body: "%{target} er að áfrýja ákvörðun umsjónarmanns tekinni af %{action_taken_by} frá %{date}, sem var %{type}. Viðkomandi skrifaði:"
+      next_steps: Þú getur samþykkt áfrýjunina til að afturkalla ákvörðun umsjónarmanns, eða hunsað hana.
       subject: "%{target} er að áfrýja ákvörðun umsjónarmanns tekinni á %{instance}"
     new_pending_account:
       body: Nákvæmari upplýsingar um nýja notandaaðganginn eru hér fyrir neðan. Þú getur samþykkt eða hafnað þessari umsókn.
@@ -948,6 +960,7 @@ is:
     explore_mastodon: Kannaðu %{title}
   disputes:
     strikes:
+      action_taken: Framkvæmd aðgerð
       appeal: Áfrýja
       appeal_approved: Þessari refsingu hefur verið áfrýjað með góðum árangri og hún því ekki lengur í gildi
       appeal_rejected: Áfrýjuninni hefur verið hafnað
@@ -955,6 +968,18 @@ is:
       appealed_msg: Áfrýjun þín hefur verið sen dinn. Þú verður látin/n vita ef hún verður samþykkt.
       appeals:
         submit: Senda inn áfrýjun
+      associated_report: Tengd kæra
+      created_at: Dagsett
+      recipient: Stílað til
+      status: 'Færsla #%{id}'
+      status_removed: Færsla þegar fjarlægð úr kerfinu
+      title: "%{action} frá %{date}"
+      title_actions:
+        delete_statuses: Fjarlæging færslu
+        disable: Frysting aðgangs
+        none: Aðvörun
+        silence: Takmörkun aðgangs
+        suspend: Ógilding aðgangs
       your_appeal_approved: Áfrýjun þín hefur verið samþykkt
       your_appeal_pending: Þú hefur sent inn áfrýjun
       your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
