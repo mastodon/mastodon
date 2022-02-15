@@ -1562,6 +1562,13 @@ hu:
   user_mailer:
     appeal_approved:
       action: Ugrás a fiókodhoz
+      explanation: A fiókod %{strike_date}-n elkövetett vétsége elleni fellebbezés, melyet %{appeal_date}-n küldtél be, jóváhagyásra került. A fiókod megint makulátlan.
+      subject: A %{date}-i fellebbezésedet jóváhagyták
+      title: Fellebbezés jóváhagyva
+    appeal_rejected:
+      explanation: A fiókod %{strike_date}-n elkövetett vétsége elleni fellebbezés, melyet %{appeal_date}-n küldtél be, elutasításra került.
+      subject: A %{date}-i fellebbezésedet visszautasították
+      title: Fellebbezés visszautasítva
     backup_ready:
       explanation: A Mastodon fiókod teljes mentését kérted. A mentés kész ás letölthető!
       subject: Az adataidról készült archív letöltésre kész
@@ -1573,6 +1580,8 @@ hu:
       subject: Erősítsd meg a megkísérelt belépést
       title: Belépési kísérlet
     warning:
+      appeal: Fellebbezés beküldése
+      appeal_description: Ha azt gondolod, hogy ez hibás, beküldhetsz egy fellebbezést a %{instance} szerver csapatának.
       categories:
         spam: Kéretlen üzenet
         violation: A tartalom megsérti a következő közösségi irányelveket
