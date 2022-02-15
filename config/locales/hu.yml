@@ -977,8 +977,26 @@ hu:
       appeal: Fellebbezés
       appeal_approved: Ezt a vétséget eredményesen fellebbezték, így már nem érvényes
       appeal_rejected: A fellebbezést visszautasították
-      appeal_submitted_at: Fellebbezés továbbítva
-      appealed_msg: A fellebbezésedet továbbítottuk. Ha jóváhagyták, értesítünk.
+      appeal_submitted_at: Fellebbezés beküldve
+      appealed_msg: A fellebbezésedet beküldtük. Ha jóváhagyták, értesítünk.
+      appeals:
+        submit: Fellebbezés beküldése
+      associated_report: Társított bejelentés
+      created_at: Dátum
+      recipient: Címzett
+      status: 'Bejegyzés #%{id}'
+      status_removed: A bejegyzést már eltávolítottuk a rendszerből
+      title: "%{action} ekkor %{date}"
+      title_actions:
+        delete_statuses: Bejegyzés eltávolítása
+        disable: Fiók befagyasztása
+        none: Figyelmeztetés
+        sensitive: Fiók érzékenynek jelölése
+        silence: Fiók korlátozása
+        suspend: Fiók felfüggesztése
+      your_appeal_approved: A fellebbezésedet jóváhagyták
+      your_appeal_pending: Beküldtél egy fellebbezést
+      your_appeal_rejected: A fellebbezésedet visszautasították
   domain_validator:
     invalid_domain: nem egy valódi domain név
   errors:
@@ -1542,6 +1560,8 @@ hu:
     recovery_instructions_html: A visszaállítási kódok egyikének segítségével tudsz majd belépni, ha elveszítenéd a telefonod. <strong>Tartsd biztos helyen a visszaállítási kódjaid</strong>! Például nyomtasd ki őket és tárold a többi fontos iratoddal együtt.
     webauthn: Biztonsági kulcsok
   user_mailer:
+    appeal_approved:
+      action: Ugrás a fiókodhoz
     backup_ready:
       explanation: A Mastodon fiókod teljes mentését kérted. A mentés kész ás letölthető!
       subject: Az adataidról készült archív letöltésre kész
