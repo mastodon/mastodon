@@ -729,6 +729,9 @@ id:
         none: "%{name} mengirim peringatan ke %{target}"
         sensitive: "%{name} menandai akun %{target} sebagai sensitif"
         silence: "%{name} membatasi akun %{target}"
+        suspend: "%{name} menangguhkan akun %{target}"
+      appeal_approved: Banding disetujui
+      appeal_pending: Banding ditunda
     system_checks:
       database_schema_check:
         message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
@@ -788,6 +791,17 @@ id:
       empty: Anda belum mendefinisikan peringatan apapun.
       title: Kelola preset peringatan
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: untuk menghapus kiriman mereka
+        disable: untuk membekukan akun mereka
+        none: peringatan
+        sensitive: untuk menandai akun mereka sebagai sensitif
+        silence: untuk membatasi akun mereka
+        suspend: untuk menangguhkan akun mereka
+      body: "%{target} melakukan banding keputusan moderasi oleh %{action_taken_by} dari %{date}, yang %{type}. Mereka menulis:"
+      next_steps: Anda dapat menyetujui banding untuk mengurungkan keputusan moderasi atau mengabaikannya.
+      subject: "%{username} melakukan banding keputusan moderasi di %{instance}"
     new_pending_account:
       body: Detail akun baru di bawah. Anda dapat menyetujui atau menolak lamaran ini.
       subject: Akun baru muncul untuk ditinjau di %{instance} (%{username})
@@ -943,6 +957,24 @@ id:
     directory: Direktori profil
     explanation: Temukan pengguna berdasarkan minatnya
     explore_mastodon: Jelajahi %{title}
+  disputes:
+    strikes:
+      action_taken: Tindakan dilaksanakan
+      appeal: Banding
+      appeal_approved: Peringatan ini digagalkan dalam banding dan tidak lagi valid
+      appeal_rejected: Banding telah ditolak
+      appeal_submitted_at: Banding dikirimkan
+      appealed_msg: Banding Anda sudah dikirim. Jika disetujui, Anda akan diberi tahu.
+      appeals:
+        submit: Ajukan banding
+      associated_report: Laporan yang berkaitan
+      created_at: Tanggal
+      recipient: Dialamatkan untuk
+      status: 'Kiriman #%{id}'
+      status_removed: Kirim sudah dihapus dari sistem
+      title: "%{action} dari %{date}"
+      title_actions:
+        delete_statuses: Penghapusan kiriman
   domain_validator:
     invalid_domain: bukan nama domain yang valid
   errors:
