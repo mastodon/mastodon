@@ -391,6 +391,9 @@ es:
       media_storage: Almacenamiento multimedia
       new_users: nuevos usuarios
       opened_reports: informes abiertos
+      pending_appeals_html:
+        one: "<strong>1</strong> apelación pendiente"
+        other: "<strong>%{count}</strong> apelaciones pendientes"
       pending_reports_html:
         one: "<strong>1</strong> informe pendiente"
         other: "<strong>%{count}</strong> informes pendientes"
@@ -1569,6 +1572,7 @@ es:
       title: Intento de inicio de sesión
     warning:
       appeal: Enviar una apelación
+      appeal_description: Si crees que esto es un error, puedes enviar una apelación al equipo de %{instance}.
       categories:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad
