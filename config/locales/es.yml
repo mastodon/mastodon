@@ -209,6 +209,7 @@ es:
       statuses: Estados
       strikes: Amonestaciones previas
       subscribe: Suscribir
+      suspend: Suspender
       suspended: Suspendido
       suspension_irreversible: Los datos de esta cuenta han sido irreversiblemente eliminados. Puedes deshacer la suspensión de la cuenta para hacerla utilizable, pero no recuperará los datos que tenías anteriormente.
       suspension_reversible_hint_html: La cuenta ha sido suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si desea eliminar todos los datos de la cuenta inmediatamente, puede hacerlo a continuación.
@@ -574,9 +575,12 @@ es:
       action_log: Registro de auditoría
       action_taken_by: Acción tomada por
       actions:
+        delete_description_html: Los mensajes denunciados serán eliminados y se registrará una amonestación para ayudarte a escalar en futuras infracciones por la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
+        resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
         silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
         suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. La interacción con la cuenta será imposible. Reversible durante un plazo de 30 días.
+      actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       add_to_report: Añadir más al reporte
       are_you_sure: '¿Estás seguro?'
       assign_to_self: Asignármela a mí
@@ -588,6 +592,7 @@ es:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
       created_at: Denunciado
+      delete_and_resolve: Eliminar publicaciones
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelto
@@ -601,12 +606,14 @@ es:
         placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
         title: Notas
       notes_description_html: Ver y dejar notas a otros moderadores y a tu yo futuro
+      quick_actions_description_html: 'Toma una acción rápida o desplázate hacia abajo para ver el contenido denunciado:'
       reopen: Reabrir denuncia
       report: 'Reportar #%{id}'
       reported_account: Cuenta reportada
       reported_by: Reportado por
       resolved: Resuelto
       resolved_msg: '¡La denuncia se ha resuelto correctamente!'
+      skip_to_actions: Ir directamente a las acciones
       status: Estado
       statuses: Contenido reportado
       statuses_description_html: El contenido ofensivo se citará en la comunicación con la cuenta reportada
@@ -1201,6 +1208,8 @@ es:
       title: Nueva difusión
     status:
       subject: "%{name} acaba de publicar"
+    update:
+      subject: "%{name} editó una publicación"
   notifications:
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Selecciona los eventos para los que deseas recibir notificaciones:'
