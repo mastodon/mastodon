@@ -226,6 +226,7 @@ vi:
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
+        approve_appeal: Cho phép Xuất Hiện
         approve_user: Phê duyệt người dùng
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email
@@ -257,6 +258,7 @@ vi:
         enable_user: Kích hoạt lại người dùng
         memorialize_account: Đánh dấu tưởng niệm
         promote_user: Chỉ định vai trò
+        reject_appeal: Từ chối Xuất Hiện
         reject_user: Từ chối người dùng
         remove_avatar_user: Xóa ảnh đại diện
         reopen_report: Mở lại báo cáo
@@ -275,6 +277,7 @@ vi:
         update_domain_block: Cập nhật máy chủ chặn
         update_status: Cập nhật tút
       actions:
+        approve_appeal_html: "%{name} đã phê duyệt quyết định kiểm duyệt từ %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
         assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
         change_email_user_html: "%{name} đã thay đổi địa chỉ email cho %{target}"
@@ -398,6 +401,9 @@ vi:
       top_languages: Ngôn ngữ phổ biến
       top_servers: Máy chủ phổ biến
       website: Website
+    disputes:
+      appeals:
+        title: Xuất Hiện
     domain_allows:
       add_new: Cho phép liên hợp với máy chủ
       created_msg: Máy chủ đã được kích hoạt liên hợp thành công
@@ -712,6 +718,13 @@ vi:
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
       title: Toàn bộ tút
       with_media: Có media
+    strikes:
+      actions:
+        delete_statuses: "%{name} đã xóa tút của %{target}"
+        disable: "%{name} đã ẩn %{target}"
+        none: "%{name} đã gửi cảnh cáo %{target}"
+        sensitive: "%{name} đã đánh dấu người dùng %{target} là nhạy cảm"
+        silence: "%{name} đã ẩn %{target}"
     system_checks:
       database_schema_check:
         message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
