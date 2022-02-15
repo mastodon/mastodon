@@ -575,9 +575,12 @@ is:
       action_log: Atvikaskrá
       action_taken_by: Aðgerð framkvæmd af
       actions:
+        delete_description_html: Kærðum færslum verður eytt og refsing skráð svo þú eigir auðveldara með að bregðast við í framtíðinni verði um fleiri brot að ræða frá sama notandaaðgangi.
         other_description_html: Skoðaðu fleir valkosti fyrir stjórnun á hegðun notandaaðgangsins og til að stýra samskiptum við kærðan notandaaðgang.
+        resolve_description_html: Til engra aðgerða verður tekið gagnvart kærðum færslum, engin refsing verður skráð og kærunni verður lokað.
         silence_description_html: Notandaaðgangurinn verður einungis sýnilegur þeim sem þegar fylgjast með honum eða sem fletta honum upp handvirkt, sem takmarkar útbreiðslu efnis verulega. Er alltaf hægt að afturkalla.
         suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út. Samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga.
+      actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
       add_to_report: Bæta fleiru í kæru
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
@@ -589,6 +592,7 @@ is:
         none: Ekkert
       comment_description_html: 'Til að gefa nánari upplýsingar skrifaði %{name}:'
       created_at: Tilkynnt
+      delete_and_resolve: Eyða færslum
       forwarded: Áframsent
       forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
@@ -602,12 +606,14 @@ is:
         placeholder: Lýstu til hvaða aðgerða hefur verið gripið eða uppfærðu inn aðrar tengdar upplýsingar...
         title: Minnispunktar
       notes_description_html: Skoðaðu og skrifaðu minnispunkta til annarra stjórnenda og sjálfs þín
+      quick_actions_description_html: 'Beittu flýtiaðgerð eða skrunaðu niður til að skoða kært efni:'
       reopen: Enduropna kæru
       report: 'Kæra #%{id}'
       reported_account: Kærður notandaaðgangur
       reported_by: Kært af
       resolved: Leyst
       resolved_msg: Það tókst að leysa kæruna!
+      skip_to_actions: Sleppa og fara í aðgerðir
       status: Staða
       statuses: Kært efni
       statuses_description_html: Óviðeigandi efni verður tiltekið í samskiptum við kærðan notandaaðgang
@@ -800,6 +806,13 @@ is:
       title: Sýsla með forstilltar aðvaranir
   admin_mailer:
     new_appeal:
+      actions:
+        delete_statuses: að eyða færslum viðkomandi
+        disable: að frysta aðgang viðkomandi
+        none: aðvörun
+        sensitive: að merkja efni á aðgangnum sem viðkvæmt
+        silence: að takmarka aðgang viðkomandi
+        suspend: að setja aðgang viðkomandi í bið
       body: "%{target} er að áfrýja ákvörðun umsjónarmanns tekinni af %{action_taken_by} frá %{date}, sem var %{type}. Viðkomandi skrifaði:"
       next_steps: Þú getur samþykkt áfrýjunina til að afturkalla ákvörðun umsjónarmanns, eða hunsað hana.
       subject: "%{target} er að áfrýja ákvörðun umsjónarmanns tekinni á %{instance}"
@@ -978,8 +991,9 @@ is:
         delete_statuses: Fjarlæging færslu
         disable: Frysting aðgangs
         none: Aðvörun
+        sensitive: Efni verður merkt sem viðkvæmt frá aðgangnum
         silence: Takmörkun aðgangs
-        suspend: Ógilding aðgangs
+        suspend: Setja aðgang í bið
       your_appeal_approved: Áfrýjun þín hefur verið samþykkt
       your_appeal_pending: Þú hefur sent inn áfrýjun
       your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
@@ -1194,6 +1208,8 @@ is:
       title: Ný endurbirting
     status:
       subject: "%{name} sendi inn rétt í þessu"
+    update:
+      subject: "%{name} breytti færslu"
   notifications:
     email_events: Atburðir fyrir tilkynningar í tölvupósti
     email_events_hint: 'Veldu þá atburði sem þú vilt fá tilkynningar í tölvupósti þegar þeir koma upp:'
@@ -1546,9 +1562,11 @@ is:
   user_mailer:
     appeal_approved:
       action: Farðu inn á notandaaðganginn þinn
+      explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið samþykkt. Notandaaðgangurinn þinn er aftur í góðu lagi.
       subject: Áfrýjun þín frá %{date} hefur verið samþykkt
       title: Áfrýjun samþykkt
     appeal_rejected:
+      explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið hafnað.
       subject: Áfrýjun þinni frá %{date} hefur verið hafnað
       title: Áfrýjun hafnað
     backup_ready:
