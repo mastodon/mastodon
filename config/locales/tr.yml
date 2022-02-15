@@ -161,6 +161,11 @@ tr:
       not_subscribed: Abone edilmedi
       pending: Bekleyen yorum
       perform_full_suspension: Askıya al
+      previous_strikes: Önceki eylemler
+      previous_strikes_description_html:
+        one: Bu hesap için <strong>bir</strong> eylem yapılmış.
+        other: Bu hesap için <strong>%{count}</strong> eylem yapılmış.
+        zero: Bu hesap <strong>hali iyi durumda</strong>.
       promote: Yükselt
       protocol: Protokol
       public: Herkese açık
@@ -225,6 +230,7 @@ tr:
       whitelisted: Beyaz listede
     action_logs:
       action_types:
+        approve_appeal: Başvuruyu Kabul Et
         approve_user: Kullanıcıyı Onayla
         assigned_to_self_report: Raporu Ata
         change_email_user: Kullanıcı E-postasını Değiştir
@@ -256,6 +262,7 @@ tr:
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
+        reject_appeal: Başvuruyu Reddet
         reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
         reopen_report: Şikayeti Tekrar Aç
@@ -274,6 +281,7 @@ tr:
         update_domain_block: Engellenen Alan Adını Güncelle
         update_status: Durumu Güncelle
       actions:
+        approve_appeal_html: "%{name}, %{target} kişisinin yönetim karar başvurusunu kabul etti"
         approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
         assigned_to_self_report_html: "%{name} kendilerine %{target} adlı raporu verdi"
         change_email_user_html: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
@@ -305,6 +313,7 @@ tr:
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
+        reject_appeal_html: "%{name}, %{target} kişisinin yönetim karar başvurusunu reddetti"
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
         reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
@@ -400,6 +409,10 @@ tr:
       top_languages: En aktif diller
       top_servers: En aktif sunucular
       website: Web sitesi
+    disputes:
+      appeals:
+        empty: İtiraz bulunamadı.
+        title: İtirazlar
     domain_allows:
       add_new: Alan adını beyaz listeye al
       created_msg: Alan adı başarıyla beyaz listeye alındı
@@ -718,6 +731,14 @@ tr:
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       title: Hesap durumları
       with_media: Medya ile
+    strikes:
+      actions:
+        delete_statuses: "%{name}, %{target} kullanıcısının gönderilerini sildi"
+        disable: "%{name}, %{target} kullanıcısının hesabını dondurdu"
+        none: "%{name}, %{target} kullanıcısına bir uyarı gönderdi"
+        sensitive: "%{name}, %{target} kullanıcısının hesabını hassas olarak işaretledi"
+        silence: "%{name}, %{target} kullanıcısının hesabını sınırladı"
+        suspend: "%{name}, %{target} kullanıcısının hesabını askıya aldı"
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
