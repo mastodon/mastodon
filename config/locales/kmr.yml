@@ -721,6 +721,14 @@ kmr:
       no_status_selected: Tu şandî nehat hilbijartin ji ber vê tu şandî jî nehat guhertin
       title: Şandiyên ajimêr
       with_media: Bi medya yê re
+    strikes:
+      actions:
+        delete_statuses: "%{name} şandiyên %{target} jêbirin"
+        disable: "%{name} ajimêr %{target} cemidand"
+        none: "%{name} ji bo %{target} hişyariyek şand"
+        sensitive: "%{name} ajimêrê %{target} wekî hestiyarî nîşan kir"
+        silence: "%{name} ajimêra %{target} bi sînor kir"
+        suspend: "%{name} ajimêra %{target} hilda rawestandinê"
     system_checks:
       database_schema_check:
         message_html: Koçberiyên databasê yên li bendê hene. Ji kerema xwe wan bişopîne da ku bicîh bikî ku sepan wekî ku tê hêvî kirin tevbigere
@@ -945,6 +953,18 @@ kmr:
     directory: Rêgeha profîlê
     explanation: Bikarhêneran li gorî berjewendiyên wan bibîne
     explore_mastodon: Vekole %{title}
+  disputes:
+    strikes:
+      action_taken: Çalakî hatin kirin
+      created_at: Dîrok
+      recipient: Ji kê re
+      status: 'Şandî #%{id}'
+      status_removed: Şandî jixwe ji pergalê hatî rakirin
+      title: "%{action} ji %{date}"
+      title_actions:
+        delete_statuses: Jêbirina şandiyê
+        disable: Cemdandina ajimêrê
+        none: Hişyarî
   domain_validator:
     invalid_domain: ne naveke navper a derbasdar e
   errors:
