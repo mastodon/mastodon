@@ -810,6 +810,7 @@ da:
         suspend: for suspendering af vedkommendes konto
       body: "%{target} appellerer en moderationsbeslutning fra %{action_taken_by} pr. %{date}, der var %{type}. Vedkommende skrev:"
       next_steps: Appellen kan godkendes for at fortryde moderationsbeslutningen eller den ignoreres.
+      subject: "%{username} appellerer en moderationsbeslutning for %{instance}"
     new_pending_account:
       body: Detaljerne for den nye konto fremgår nedenfor. Du kan godkende eller afvise denne ansøgning.
       subject: Ny konto til gennemgang på %{instance} (%{username})
@@ -965,6 +966,28 @@ da:
     directory: Profilliste
     explanation: Find brugere baseret på deres interesser
     explore_mastodon: Uforsk %{title}
+  disputes:
+    strikes:
+      action_taken: Handling foretaget
+      appeal: Appel
+      appeal_rejected: Appellen er afvist
+      appeal_submitted_at: Appel indgivet
+      appealed_msg: Din appel er indgivet. Godkendes den, underrettes du.
+      appeals:
+        submit: Indgiv appel
+      associated_report: Tilknyttet anmeldelse
+      created_at: Dateret
+      recipient: Adresseret til
+      status: 'Indlæg #%{id}'
+      status_removed: Indlæg allerede fjernet fra system
+      title: "%{action} pr. %{date}"
+      title_actions:
+        delete_statuses: Indlægsfjernelse
+        disable: Kontofrysning
+        none: Advarsel
+        sensitive: Markering som sensitiv konto
+        silence: Kontobegrænsning
+        suspend: Kontosuspendering
   domain_validator:
     invalid_domain: er ikke et gyldigt domænenavn
   errors:
