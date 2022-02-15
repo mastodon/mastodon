@@ -161,6 +161,11 @@ it:
       not_subscribed: Non sottoscritto
       pending: Revisioni in attesa
       perform_full_suspension: Sospendi
+      previous_strikes: Provvedimenti precedenti
+      previous_strikes_description_html:
+        one: Questo account ha <strong>una</strong> violazione.
+        other: Questo account ha <strong>%{count}</strong> violazioni.
+        zero: Questo account ha <strong>una buona reputazione</strong>.
       promote: Promuovi
       protocol: Protocollo
       public: Pubblico
@@ -225,6 +230,7 @@ it:
       whitelisted: Nella whitelist
     action_logs:
       action_types:
+        approve_appeal: Approva Ricorso
         approve_user: Approva Utente
         assigned_to_self_report: Assegna report
         change_email_user: Cambia l'e-mail per l'utente
@@ -256,6 +262,7 @@ it:
         enable_user: Abilita utente
         memorialize_account: Trasforma in account commemorativo
         promote_user: Promuovi utente
+        reject_appeal: Respingi Ricorso
         reject_user: Rifiuta Utente
         remove_avatar_user: Elimina avatar
         reopen_report: Riapri report
@@ -274,6 +281,7 @@ it:
         update_domain_block: Aggiorna blocco di dominio
         update_status: Aggiorna stato
       actions:
+        approve_appeal_html: "%{name} ha approvato il ricorso contro la decisione di moderazione da %{target}"
         approve_user_html: "%{name} ha approvato la registrazione da %{target}"
         assigned_to_self_report_html: "%{name} ha assegnato il rapporto %{target} a se stesso"
         change_email_user_html: "%{name} ha cambiato l'indirizzo e-mail dell'utente %{target}"
@@ -305,6 +313,7 @@ it:
         enable_user_html: "%{name} ha abilitato il login per l'utente %{target}"
         memorialize_account_html: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
         promote_user_html: "%{name} ha promosso l'utente %{target}"
+        reject_appeal_html: "%{name} ha respinto il ricorso contro la decisione di moderazione da %{target}"
         reject_user_html: "%{name} ha rifiutato la registrazione da %{target}"
         remove_avatar_user_html: "%{name} ha rimosso l'immagine profilo di %{target}"
         reopen_report_html: "%{name} ha riaperto il rapporto %{target}"
@@ -383,6 +392,9 @@ it:
       media_storage: Archiviazione media
       new_users: nuovi utenti
       opened_reports: rapporti aperti
+      pending_appeals_html:
+        one: "<strong>1</strong> appello in attesa"
+        other: "<strong>%{count}</strong> appelli in attesa"
       pending_reports_html:
         one: "<strong>1</strong> rapporto in attesa"
         other: "<strong>%{count}</strong> rapporti in attesa"
@@ -400,6 +412,10 @@ it:
       top_languages: Lingue più attive
       top_servers: Server più attivi
       website: Sito web
+    disputes:
+      appeals:
+        empty: Nessun appello trovato.
+        title: Appelli
     domain_allows:
       add_new: Dominio nella whitelist
       created_msg: Il dominio è stato inserito nella whitelist
@@ -717,6 +733,16 @@ it:
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
       with_media: con media
+    strikes:
+      actions:
+        delete_statuses: "%{name} ha eliminato i post di %{target}"
+        disable: "%{name} ha congelato l'account di %{target}"
+        none: "%{name} ha inviato un avviso a %{target}"
+        sensitive: "%{name} ha contrassegnato l'account di %{target} come sensibile"
+        silence: "%{name} ha limitato l'account di %{target}"
+        suspend: "%{name} ha sospeso l'account di %{target}"
+      appeal_approved: Sottoposto ad appello
+      appeal_pending: Appello in attesa
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
@@ -778,6 +804,17 @@ it:
       empty: Non hai ancora definito alcun avviso preimpostato.
       title: Gestisci avvisi predefiniti
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: per cancellare i loro post
+        disable: per congelare il loro account
+        none: avviso
+        sensitive: per contrassegnare il loro account come sensibile
+        silence: per limitare il loro account
+        suspend: per sospendere il loro account
+      body: "%{target} sta facendo appello contro una decisione di moderazione di %{action_taken_by} da %{date}, che era %{type}. Ha scritto:"
+      next_steps: Puoi approvare l'appello per annullare la decisione di moderazione, oppure ignorarlo.
+      subject: "%{username} sta facendo appello contro una decisione di moderazione su %{instance}"
     new_pending_account:
       body: I dettagli del nuovo account sono qui sotto. Puoi approvare o rifiutare questa richiesta.
       subject: Nuovo account pronto per la revisione su %{instance} (%{username})
@@ -933,6 +970,31 @@ it:
     directory: Directory dei profili
     explanation: Scopri utenti in base ai loro interessi
     explore_mastodon: Esplora %{title}
+  disputes:
+    strikes:
+      action_taken: Azione intrapresa
+      appeal: Appello
+      appeal_approved: Questa sanzione è stata annullata in un appello e non è più valida
+      appeal_rejected: L'appello è stato respinto
+      appeal_submitted_at: Appello presentato
+      appealed_msg: Il tuo appello è stato presentato. Se sarà approvato, sarai informato.
+      appeals:
+        submit: Presenta un appello
+      associated_report: Segnalazione associata
+      created_at: Data
+      recipient: Indirizzata a
+      status: 'Post #%{id}'
+      status_removed: Post già rimosso dal sistema
+      title: "%{action} da %{date}"
+      title_actions:
+        delete_statuses: Eliminazione del post
+        disable: Congelamento dell'account
+        none: Avviso
+        sensitive: Marcatura dell'account come sensibile
+        silence: Limitazione dell'account
+        suspend: Sospensione dell'account
+      your_appeal_approved: Il tuo appello è stato approvato
+      your_appeal_pending: Hai presentato un appello
   domain_validator:
     invalid_domain: non è un nome di dominio valido
   errors:
