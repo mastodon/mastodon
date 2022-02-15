@@ -984,6 +984,9 @@ es:
         sensitive: Marcado de cuenta como sensible
         silence: Limitación de cuenta
         suspend: Suspensión de cuenta
+      your_appeal_approved: Se aprobó tu apelación
+      your_appeal_pending: Has enviado una apelación
+      your_appeal_rejected: Tu apelación ha sido rechazada
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
   errors:
@@ -1545,6 +1548,15 @@ es:
     recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
     webauthn: Claves de seguridad
   user_mailer:
+    appeal_approved:
+      action: Ir a tu cuenta
+      explanation: La apelación de la amonestación contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
+      subject: Tu apelación del %{date} ha sido aprobada
+      title: Apelación aprobada
+    appeal_rejected:
+      explanation: La apelación de la amonestación contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue rechazada.
+      subject: Tu apelación del %{date} ha sido rechazada
+      title: Apelación rechazada
     backup_ready:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
@@ -1556,6 +1568,7 @@ es:
       subject: Por favor, confirma el intento de inicio de sesión
       title: Intento de inicio de sesión
     warning:
+      appeal: Enviar una apelación
       categories:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad
