@@ -812,6 +812,10 @@ es-AR:
         none: una advertencia
         sensitive: para marcar su cuenta como sensible
         silence: para limitar su cuenta
+        suspend: para suspender su cuenta
+      body: "%{target} está apelando a una solicitud de moderación de %{action_taken_by} de %{date}, del tipo %{type}. Ellos escribieron:"
+      next_steps: Podés aprobar la apelación para deshacer la solicitud de moderación, o ignorarla.
+      subject: "%{username} está apelando a una solicitud de moderación en %{instance}"
     new_pending_account:
       body: Abajo están los detalles de la nueva cuenta. Podés aprobar o rechazar esta solicitud.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
@@ -967,6 +971,32 @@ es-AR:
     directory: Directorio de perfiles
     explanation: Descubrí usuarios basados en sus intereses
     explore_mastodon: Navegá %{title}
+  disputes:
+    strikes:
+      action_taken: Acción tomada
+      appeal: Apelar
+      appeal_approved: Este incumplimiento fue apelado exitosamente y ya no es válido
+      appeal_rejected: Se rechazó la apelación
+      appeal_submitted_at: Apelación enviada
+      appealed_msg: Tu apelación fue enviada. Si se aprueba, se te notificará.
+      appeals:
+        submit: Enviar apelación
+      associated_report: Denuncia asociada
+      created_at: Con fecha
+      recipient: Dirigida a
+      status: 'Mensaje #%{id}'
+      status_removed: Mensaje ya eliminado del sistema
+      title: "%{action} de %{date}"
+      title_actions:
+        delete_statuses: Eliminación de mensaje
+        disable: Congelación de cuenta
+        none: Advertencia
+        sensitive: Marcado de cuenta como sensible
+        silence: Limitación de cuenta
+        suspend: Suspensión de cuenta
+      your_appeal_approved: Se aprobó tu apelación
+      your_appeal_pending: Enviaste una apelación
+      your_appeal_rejected: Se rechazó tu apelación
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
   errors:
