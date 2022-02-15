@@ -277,7 +277,7 @@ zh-CN:
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
-        approve_appeal_html: "%{name} 批准了 %{target} 对营运决策的申诉"
+        approve_appeal_html: "%{name} 批准了 %{target} 对审核结果的申诉"
         approve_user_html: "%{name} 批准了用户 %{target} 的注册"
         assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
@@ -309,7 +309,7 @@ zh-CN:
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
-        reject_appeal_html: "%{name} 驳回了 %{target} 对营运决策的申诉"
+        reject_appeal_html: "%{name} 驳回了 %{target} 对审核结果的申诉"
         reject_user_html: "%{name} 拒绝了用户 %{target} 的注册"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
         reopen_report_html: "%{name} 重开了举报 %{target}"
@@ -796,6 +796,12 @@ zh-CN:
         delete_statuses: 删除其嘟文
         disable: 冻结其帐号
         none: 警告
+        sensitive: 标记其帐号为敏感内容
+        silence: 限制其帐号
+        suspend: 停用其帐号
+      body: "%{target} 对 %{action_taken_by} 于 %{date} 做出的 %{type} 审核结果提出申诉，写道："
+      next_steps: 你可以批准此申诉并撤销该审核结果，也可以忽略此申诉。
+      subject: "%{username} 对 %{instance} 的审核结果提出了申诉"
     new_pending_account:
       body: 新帐户的详细信息如下。你可以批准或拒绝此申请。
       subject: 在 %{instance} 上有新帐号 ( %{username}) 需要审核
@@ -951,6 +957,22 @@ zh-CN:
     directory: 用户目录
     explanation: 根据兴趣发现用户
     explore_mastodon: 探索 %{title}
+  disputes:
+    strikes:
+      action_taken: 采取的措施
+      appeal: 申诉
+      appeal_approved: 此次处罚已申诉成功并不再生效
+      appeal_rejected: 此次申诉已被驳回
+      appeal_submitted_at: 申诉已提交
+      appealed_msg: 你的申诉已经提交。如果申诉通过，你将收到通知。
+      appeals:
+        submit: 提交申诉
+      associated_report: 相关举报
+      created_at: 日期
+      recipient: 发送至
+      status: '嘟文 #%{id}'
+      status_removed: 嘟文已从系统中删除
+      title: "%{action} 于 %{date}"
   domain_validator:
     invalid_domain: 不是一个有效的域名
   errors:
