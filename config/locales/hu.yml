@@ -161,6 +161,11 @@ hu:
       not_subscribed: Nincs feliratkozás
       pending: Engedélyezés alatt
       perform_full_suspension: Felfüggesztés
+      previous_strikes: Korábbi vétségek
+      previous_strikes_description_html:
+        one: Ennek a fióknak <strong>egy</strong> vétsége van.
+        other: Ennek a fióknak <strong>%{count}</strong> vétsége van.
+        zero: Ennek a fióknak <strong>nincs</strong> vétsége.
       promote: Előléptetés
       protocol: Protokoll
       public: Nyilvános
@@ -225,6 +230,7 @@ hu:
       whitelisted: Engedélyező-listán
     action_logs:
       action_types:
+        approve_appeal: Fellebbezés Jóváhagyása
         approve_user: Felhasználó Jóváhagyása
         assigned_to_self_report: Jelentés hozzárendelése
         change_email_user: Felhasználó e-mail címének módosítása
@@ -256,6 +262,7 @@ hu:
         enable_user: Felhasználó engedélyezése
         memorialize_account: Fiók emlékké nyilvánítása
         promote_user: Felhasználó előléptetése
+        reject_appeal: Fellebbezés Elutasítása
         reject_user: Felhasználó Elutasítása
         remove_avatar_user: Profilkép eltávolítása
         reopen_report: Jelentés újranyitása
@@ -274,6 +281,7 @@ hu:
         update_domain_block: Domain tiltás frissítése
         update_status: Bejegyzés frissítése
       actions:
+        approve_appeal_html: "%{name} jóváhagyott egy fellebbezést %{target} moderátori döntéséről"
         approve_user_html: "%{name} jóváhagyta %{target} regisztrációját"
         assigned_to_self_report_html: "%{name} a %{target} bejelentést magához rendelte"
         change_email_user_html: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
