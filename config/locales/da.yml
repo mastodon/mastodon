@@ -310,6 +310,7 @@ da:
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
         promote_user_html: "%{name} forfremmede brugeren %{target}"
+        reject_appeal_html: "%{name} afviste moderationsafgørelsesappellen fra %{target}"
         reject_user_html: "%{name} afviste tilmelding fra %{target}"
         remove_avatar_user_html: "%{name} fjernede %{target}s profilbillede"
         reopen_report_html: "%{name} genåbnede anmeldelsen %{target}"
@@ -388,6 +389,9 @@ da:
       media_storage: Medielagerplads
       new_users: nye brugere
       opened_reports: rapporter åbnet
+      pending_appeals_html:
+        one: "<strong>1</strong> afventende appel"
+        other: "<strong>%{count}</strong> afventende appeller"
       pending_reports_html:
         one: "<strong>1</strong> afventende rapport"
         other: "<strong>%{count}</strong> afventende rapporter"
@@ -405,6 +409,10 @@ da:
       top_languages: Mest aktive sprog
       top_servers: Mest aktive servere
       website: Websted
+    disputes:
+      appeals:
+        empty: Ingen appeller fundet.
+        title: Appeller
     domain_allows:
       add_new: Tillade federering med domæne
       created_msg: Domæne er blevet tilladt federering
@@ -721,6 +729,16 @@ da:
       no_status_selected: Ingen indlæg ændret, da ingen var valgt
       title: Kontoindlæg
       with_media: Med medier
+    strikes:
+      actions:
+        delete_statuses: "%{name} slettede %{target}s indlæg"
+        disable: "%{name} frøs %{target}s konto"
+        none: "%{name} sendte en advarsel til %{target}"
+        sensitive: "%{name} markerede %{target}s konto som sensitiv"
+        silence: "%{name} begrænsede %{target}s konto"
+        suspend: "%{name} suspenderede %{target}s konto"
+      appeal_approved: Appelleret
+      appeal_pending: Appel afventer
     system_checks:
       database_schema_check:
         message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
@@ -782,6 +800,9 @@ da:
       empty: Ingen advarselsforvalg defineret endnu.
       title: Håndtérr advarselsforvalg
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: for sletning af indlæg
     new_pending_account:
       body: Detaljerne for den nye konto fremgår nedenfor. Du kan godkende eller afvise denne ansøgning.
       subject: Ny konto til gennemgang på %{instance} (%{username})
