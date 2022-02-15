@@ -726,6 +726,7 @@ id:
       actions:
         delete_statuses: "%{name} menghapus kiriman %{target}"
         disable: "%{name} membekukan akun %{target}"
+        none: "%{name} mengirim peringatan ke %{target}"
     system_checks:
       database_schema_check:
         message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
