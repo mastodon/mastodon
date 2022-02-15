@@ -727,11 +727,11 @@ zh-TW:
         delete_statuses: "%{name} 刪除了 %{target} 的貼文"
         disable: "%{name} 凍結了 %{target} 的帳號"
         none: "%{name} 已對 %{target} 送出警告"
-        sensitive: "%{name} 將 %{target} 的帳號標記為有敏感內容"
+        sensitive: "%{name} 將 %{target} 的帳號標記為含有敏感內容"
         silence: "%{name} 限制了 %{target} 的帳號"
-        suspend: "%{name} 停權了使用者 %{target}"
+        suspend: "%{name} 將 %{target} 的帳號停權"
       appeal_approved: 已申訴
-      appeal_pending: 申訴擱置中
+      appeal_pending: 申訴待審中
     system_checks:
       database_schema_check:
         message_html: 有挂起的数据库迁移，请运行它们以确保应用程序按照预期运行。
@@ -793,10 +793,10 @@ zh-TW:
   admin_mailer:
     new_appeal:
       actions:
-        delete_statuses: 要刪除他們的貼文
+        delete_statuses: 要刪除他們的嘟文
         disable: 要凍結他們的帳號
         none: 警告
-        sensitive: 要將他們的帳號標記為有敏感內容
+        sensitive: 要將他們的帳號標記為含有敏感內容
         silence: 要限制他們的帳號
         suspend: 要停權他們的帳號
       body: "%{target} 正在就 %{date} 的 %{action_taken_by} 做出的審核決定提出上訴，該決定是 %{type}。他們寫道："
@@ -969,7 +969,7 @@ zh-TW:
         submit: 遞交申訴
       associated_report: 相關報告
       created_at: 過時的
-      recipient: 收件人
+      recipient: 此致
       status: '貼文編號 %{id}'
       status_removed: 貼文已從系統中移除
       title: "%{action} 來自 %{date}"
