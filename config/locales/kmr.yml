@@ -980,6 +980,7 @@ kmr:
       appealed_msg: Îtîraza te hatiye şandin. Ku were pejirandin, tu yê werî agahdarkirin.
       appeals:
         submit: Îtîrazê bişîne
+      associated_report: Ragihandina têkildar
       created_at: Dîrok
       recipient: Ji kê re
       status: 'Şandî #%{id}'
@@ -992,6 +993,9 @@ kmr:
         sensitive: Nîşankirina ajimêr wekî hestyar
         silence: Sînorkirina ajimêrê
         suspend: Rawestandina ajimêrê
+      your_appeal_approved: Îtîraza te hate pejirandin
+      your_appeal_pending: Te îtîrazek şand
+      your_appeal_rejected: Îtîraza te nehate pejirandin
   domain_validator:
     invalid_domain: ne naveke navper a derbasdar e
   errors:
@@ -1557,6 +1561,13 @@ kmr:
   user_mailer:
     appeal_approved:
       action: Biçe ajimêra xwe
+      explanation: Îtîraza binpêkirinê ya li dijî ajimêrê te ya %{strike_date} ku te di %{appeal_date} de şandibû hate pejirandin. Ajimêrê te careke din di rewşek baş de ye.
+      subject: Îtîraza te ji %{date} hate pejirandin
+      title: Îtîraz hate pejirandin
+    appeal_rejected:
+      explanation: Îtîraza binpêkirinê ya li dijî ajimêrê te ya di %{strike_date} de ku te di %{appeal_date} de şandibû nehat pejirandin.
+      subject: Îtîraza te ji %{date} nehate pejirandin
+      title: Îtîraz nehate pejirandin
     backup_ready:
       explanation: Te yedekîya tijê ya ajimêrê xwe Mastodonê xwest. Niha ji daxistinê re amade ye!
       subject: Arşîva te amede ye bo daxistinê
@@ -1568,6 +1579,8 @@ kmr:
       subject: Ji kerema xwe re hewldanên têketinê piştrast bike
       title: Hewldanên têketinê
     warning:
+      appeal: Îtîrazekê bişîne
+      appeal_description: Heke tu bawer dikî ku ev şaşetiyeke, tu dikarî îtîrazekê ji karmendên %{instance} re bişînî.
       categories:
         spam: Nexwestî (Spam)
         violation: Naverok rêbazên civakê yên jêrîn binpê dike
