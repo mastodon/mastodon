@@ -411,6 +411,10 @@ kmr:
       top_languages: Zimanên herî çalak
       top_servers: Rajekarên herî çalak
       website: Malpera tevnê
+    disputes:
+      appeals:
+        empty: Îtîraz nehatin dîtin.
+        title: Îtîraz
     domain_allows:
       add_new: Maf bide navpera federasyonê
       created_msg: Ji bo federasyonê maf dayîna navperê bi serkeftî hate dayîn
@@ -737,6 +741,8 @@ kmr:
         sensitive: "%{name} ajimêrê %{target} wekî hestiyarî nîşan kir"
         silence: "%{name} ajimêra %{target} bi sînor kir"
         suspend: "%{name} ajimêra %{target} hilda rawestandinê"
+      appeal_approved: Îtîraz
+      appeal_pending: Îtîraz li benda nirxandinê ye
     system_checks:
       database_schema_check:
         message_html: Koçberiyên databasê yên li bendê hene. Ji kerema xwe wan bişopîne da ku bicîh bikî ku sepan wekî ku tê hêvî kirin tevbigere
@@ -806,6 +812,9 @@ kmr:
         sensitive: ku ajimêrê wan wekî hestyar nîşan bikî
         silence: ku ajimêrê wan sînordar bikî
         suspend: ku ajimêrê wan bidî rawestandin
+      body: "%{target} îtiraza biryareke çavdêriyê dike bi riya %{action_taken_by} ji %{date}, ku %{type} bû. Wan nivîsand:"
+      next_steps: Tu dikarî îtirazê bipejirînî ku biryara çavdêriyê têk bibî, an jî paşguh bikî.
+      subject: "%{username} li ser %{instance} îtiraz li biryareke çavdêriyê dike"
     new_pending_account:
       body: Zanyariyênn ajimêra nû li jêr in. Tu dikarî vê serîlêdanê bipejirîne an pûç bike.
       subject: (%{username}) ajimêrê nû ji bo vekolandina li ser %{instance}
@@ -964,6 +973,13 @@ kmr:
   disputes:
     strikes:
       action_taken: Çalakî hatin kirin
+      appeal: Îtîraz
+      appeal_approved: Ev binpêkirin bi serkeftî hate îtîraz kirin û êdî ne derbasdar e
+      appeal_rejected: Îtîraz nehate pejirandin
+      appeal_submitted_at: Îtîraz hate şandin
+      appealed_msg: Îtîraza te hatiye şandin. Ku were pejirandin, tu yê werî agahdarkirin.
+      appeals:
+        submit: Îtîrazê bişîne
       created_at: Dîrok
       recipient: Ji kê re
       status: 'Şandî #%{id}'
