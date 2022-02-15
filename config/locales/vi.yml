@@ -309,6 +309,7 @@ vi:
         enable_user_html: "%{name} mở khóa cho người dùng %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user_html: "%{name} chỉ định vai trò cho %{target}"
+        reject_appeal_html: "%{name} đã phản đối quyết định kiểm duyệt từ %{target}"
         reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report_html: "%{name} mở lại báo cáo %{target}"
@@ -387,6 +388,8 @@ vi:
       media_storage: Dung lượng lưu trữ
       new_users: người dùng mới
       opened_reports: báo cáo chưa xử lí
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> quyết định đang chờ"
       pending_reports_html:
         other: "<strong>%{count}</strong> báo cáo đang chờ"
       pending_tags_html:
@@ -403,6 +406,7 @@ vi:
       website: Website
     disputes:
       appeals:
+        empty: Không tìm thấy.
         title: Xuất Hiện
     domain_allows:
       add_new: Cho phép liên hợp với máy chủ
@@ -725,6 +729,9 @@ vi:
         none: "%{name} đã gửi cảnh cáo %{target}"
         sensitive: "%{name} đã đánh dấu người dùng %{target} là nhạy cảm"
         silence: "%{name} đã ẩn %{target}"
+        suspend: "%{name} đã vô hiệu hóa %{target}"
+      appeal_approved: Đã khiếu nại
+      appeal_pending: Đang kháng cáo
     system_checks:
       database_schema_check:
         message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
@@ -784,6 +791,17 @@ vi:
       empty: Bạn chưa thêm mẫu có sẵn nào cả.
       title: Quản lý mẫu cảnh cáo
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: xóa tút của họ
+        disable: hạn chế tài khoản của họ
+        none: một cảnh báo
+        sensitive: đánh dấu tài khoản của họ là nhạy cảm
+        silence: hạn chế tài khoản của họ
+        suspend: vô hiệu hóa tài khoản của họ
+      body: "%{target} đã khiếu nại quyết định kiểm duyệt từ %{action_taken_by} vào %{date}, vì %{type}. Họ cho biết:"
+      next_steps: Bạn có thể chấp nhận kháng cáo để hủy bỏ kiểm duyệt, hoặc bỏ qua.
+      subject: "%{username} đang khiếu nại quyết định kiểm duyệt trên %{instance}"
     new_pending_account:
       body: Thông tin chi tiết của tài khoản mới ở phía dưới. Bạn có thể phê duyệt hoặc từ chối người này.
       subject: Tài khoản chờ xét duyệt trên %{instance} (%{username})
@@ -939,6 +957,32 @@ vi:
     directory: Khám phá
     explanation: Tìm những người chung sở thích
     explore_mastodon: Thành viên %{title}
+  disputes:
+    strikes:
+      action_taken: Hành động đã thực hiện
+      appeal: Khiếu nại
+      appeal_approved: Khiếu nại đã được chấp nhận và cảnh cáo không còn giá trị
+      appeal_rejected: Khiếu nại bị từ chối
+      appeal_submitted_at: Đã gửi khiếu nại
+      appealed_msg: Khiếu nại của bạn đã được gửi đi. Nếu nó được chấp nhận, bạn sẽ nhận được thông báo.
+      appeals:
+        submit: Gửi khiếu nại
+      associated_report: Báo cáo đính kèm
+      created_at: Ngày
+      recipient: Người nhận
+      status: 'Tút #%{id}'
+      status_removed: Tút này đã được xóa khỏi hệ thống
+      title: "%{action} từ %{date}"
+      title_actions:
+        delete_statuses: Xóa tút
+        disable: Đóng băng tài khoản
+        none: Cảnh cáo
+        sensitive: Đánh dấu nhạy cảm
+        silence: Hạn chế tài khoản
+        suspend: Vô hiệu hóa tài khoản
+      your_appeal_approved: Khiếu nại của bạn được chấp nhận
+      your_appeal_pending: Bạn đã gửi một khiếu nại
+      your_appeal_rejected: Khiếu nại của bạn bị từ chối
   domain_validator:
     invalid_domain: không phải là một tên miền hợp lệ
   errors:
@@ -1459,6 +1503,8 @@ vi:
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy dùng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
     webauthn: Khóa bảo mật
   user_mailer:
+    appeal_approved:
+      action: Đến trang cá nhân của bạn
     backup_ready:
       explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
       subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
