@@ -5,7 +5,7 @@ zh-CN:
     about_mastodon_html: Mastodon 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本站
     active_count_after: 活跃用户
-    active_footnote: 每月活跃用户
+    active_footnote: 每月活跃用户（MAU）
     administered_by: 本站管理员：
     api: API
     apps: 移动应用
@@ -20,13 +20,13 @@ zh-CN:
     documentation: 文档
     federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容Mastodon的服务器上的人。
     get_apps: 尝试移动应用
-    hosted_on: 一个在 %{domain} 上运行的 Mastodon 实例
+    hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     instance_actor_flash: "这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。 \n"
     learn_more: 了解详情
     privacy_policy: 隐私政策
     rules: 服务器规则
     rules_html: 如果你想要在此Mastodon服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：
-    see_whats_happening: 看一看现在在发生什么
+    see_whats_happening: 看看有什么新鲜事
     server_stats: 服务器统计数据：
     source_code: 源码
     status_count_after:
@@ -44,14 +44,14 @@ zh-CN:
       silenced_title: 已隐藏的服务器
       suspended: 这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。
       suspended_title: 已封禁的服务器
-    unavailable_content_html: 通常来说，在Mastodon上，你可以浏览联邦宇宙中任何一台服务器上的内容，并且和上面的用户互动。但是某些站点上不排除会有例外。
+    unavailable_content_html: 通常来说，在 Mastodon 上，你可以浏览联邦宇宙中任何一台服务器上的内容，并且和上面的用户互动。但是某些站点上不排除会有例外。
     user_count_after:
       other: 位用户
     user_count_before: 这里共注册有
     what_is_mastodon: Mastodon 是什么？
   accounts:
     choices_html: "%{name} 的推荐："
-    endorsements_hint: 你可以在web界面上推荐你关注的人，他们会显示在这里。
+    endorsements_hint: 你可以在 web 界面上推荐你关注的人，他们会显示在这里。
     featured_tags_hint: 你可以精选一些话题标签展示在这里。
     follow: 关注
     followers:
@@ -86,15 +86,14 @@ zh-CN:
       action: 执行操作
       title: 在 %{acct} 上执行管理操作
     account_moderation_notes:
-      create: 新建
-      created_msg: 管理备忘建立成功！
+      create: 新增记录
+      created_msg: 管理记录已创建！
       delete: 删除
-      destroyed_msg: 管理备忘删除成功！
+      destroyed_msg: 管理记录删除成功！
     accounts:
       add_email_domain_block: 封禁电子邮箱域名
       approve: 批准
-      approve_all: 全部批准
-      approved_msg: 成功批准 %{username} 的注册申请
+      approved_msg: 已批准 %{username} 的注册申请
       are_you_sure: 你确定吗？
       avatar: 头像
       by_domain: 域名
@@ -107,14 +106,15 @@ zh-CN:
         title: 为 %{username} 更改电子邮箱
       confirm: 确认
       confirmed: 已确认
-      confirming: 确认中
+      confirming: 等待确认
+      custom: 自定义
       delete: 删除数据
       deleted: 已删除
       demote: 降任
-      destroyed_msg: "%{username} 的数据已进入等待队列，即将被删除"
+      destroyed_msg: "%{username} 的数据已被安排至删除队列"
       disable: 冻结
       disable_sign_in_token_auth: 禁用电子邮件令牌认证
-      disable_two_factor_authentication: 停用双重认证
+      disable_two_factor_authentication: 停用两步认证
       disabled: 已冻结
       display_name: 昵称
       domain: 域名
@@ -136,7 +136,7 @@ zh-CN:
       location:
         all: 全部
         local: 本站
-        remote: 远程
+        remote: 远端实例
         title: 位置
       login_status: 登录状态
       media_attachments: 媒体文件
@@ -147,7 +147,6 @@ zh-CN:
         active: 活跃
         all: 全部
         pending: 待审核
-        silenced: 已隐藏
         suspended: 已封禁
         title: 管理
       moderation_notes: 管理员备注
@@ -165,8 +164,7 @@ zh-CN:
       redownload: 刷新个人资料
       redownloaded_msg: 成功从来源处刷新 %{username} 的用户资料
       reject: 拒绝
-      reject_all: 拒绝全部
-      rejected_msg: 成功拒绝 %{username} 的注册申请
+      rejected_msg: 已拒绝 %{username} 的注册申请
       remove_avatar: 删除头像
       remove_header: 删除横幅图片
       removed_avatar_msg: 成功删除 %{username} 的头像
@@ -200,12 +198,14 @@ zh-CN:
       silence: 隐藏
       silenced: 已隐藏
       statuses: 嘟文
+      strikes: 既往处罚
       subscribe: 订阅
       suspended: 已封禁
       suspension_irreversible: 该帐号的数据已被不可逆转地删除。你可以取消暂停该帐号以使其可用，但它不会恢复以前拥有的任何数据。
       suspension_reversible_hint_html: 帐号已封禁，数据将在 %{date} 完全删除。 在此之前，帐号仍可恢复，并且没有任何不良影响。 如果你想立即移除该帐号的所有数据，可以在下面进行。
-      time_in_queue: 已经等待了 %{time}
       title: 用户
+      unblock_email: 取消屏蔽邮件地址
+      unblocked_email_msg: 成功取消屏蔽了 %{username} 的邮件地址
       unconfirmed_email: 待验证的电子邮件地址
       undo_sensitized: 去除敏感内容标记
       undo_silenced: 解除隐藏
@@ -220,6 +220,7 @@ zh-CN:
       whitelisted: 允许跨站交互
     action_logs:
       action_types:
+        approve_user: 批准用户
         assigned_to_self_report: 指派举报
         change_email_user: 为用户修改邮箱地址
         confirm_user: 确认用户
@@ -237,6 +238,7 @@ zh-CN:
         destroy_domain_allow: 解除域名允许
         destroy_domain_block: 解除域名封禁
         destroy_email_domain_block: 解除电子邮箱域名封禁
+        destroy_instance: 删除实例
         destroy_ip_block: 删除 IP 规则
         destroy_status: 删除嘟文
         destroy_unavailable_domain: 删除不可用域名
@@ -249,6 +251,7 @@ zh-CN:
         enable_user: 启用用户
         memorialize_account: 将账户设为追悼模式
         promote_user: 给用户升任
+        reject_user: 拒绝用户
         remove_avatar_user: 移除头像
         reopen_report: 重开举报
         reset_password_user: 重置密码
@@ -257,6 +260,7 @@ zh-CN:
         silence_account: 隐藏用户
         suspend_account: 封禁用户
         unassigned_report: 取消举报的指派
+        unblock_email_account: 取消屏蔽邮件地址
         unsensitive_account: 去除你帐号中媒体的敏感内容标记
         unsilence_account: 解除账号隐藏
         unsuspend_account: 解除账号封禁
@@ -265,6 +269,7 @@ zh-CN:
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
+        approve_user_html: "%{name} 批准了用户 %{target} 的注册"
         assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
         confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
@@ -282,6 +287,7 @@ zh-CN:
         destroy_domain_allow_html: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block_html: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block_html: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
+        destroy_instance_html: "%{name} 删除了实例 %{target}"
         destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
@@ -294,6 +300,7 @@ zh-CN:
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
+        reject_user_html: "%{name} 拒绝了用户 %{target} 的注册"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
         reopen_report_html: "%{name} 重开了举报 %{target}"
         reset_password_user_html: "%{name} 重置了用户 %{target} 的密码"
@@ -302,6 +309,7 @@ zh-CN:
         silence_account_html: "%{name} 隐藏了用户 %{target}"
         suspend_account_html: "%{name} 封禁了用户 %{target}"
         unassigned_report_html: "%{name} 放弃接管举报 %{target}"
+        unblock_email_account_html: "%{name} 取消屏蔽了 %{target} 的邮件地址"
         unsensitive_account_html: "%{name} 去除了 %{target} 的媒体的敏感内容标记"
         unsilence_account_html: "%{name} 解除了用户 %{target} 的隐藏状态"
         unsuspend_account_html: "%{name} 解除了用户 %{target} 的封禁状态"
@@ -365,9 +373,25 @@ zh-CN:
       updated_msg: 表情更新成功！
       upload: 上传新表情
     dashboard:
+      active_users: 活跃用户
+      interactions: 互动数
+      media_storage: 媒体存储
+      new_users: 新用户
+      opened_reports: 被发起的举报
+      pending_reports_html:
+        other: "<strong>%{count}</strong> 个待处理请求"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> 个待处理标签"
+      pending_users_html:
+        other: "<strong>%{count}</strong> 个待处理用户"
+      resolved_reports: 已解决的举报
       software: 软件
+      sources: 注册来源
       space: 存储使用情况
       title: 信息面板
+      top_languages: 最活跃的语言
+      top_servers: 最活跃的服务器
+      website: 网页端
     domain_allows:
       add_new: 允许和域名跨站交互
       created_msg: 域名已被允许跨站交互
@@ -439,6 +463,7 @@ zh-CN:
       back_to_limited: 受限
       back_to_warning: 警告
       by_domain: 域名
+      confirm_purge: 你确认要从这个实例中永久地删除数据吗？
       delivery:
         all: 全部
         clear: 清理投递错误
@@ -453,6 +478,7 @@ zh-CN:
       delivery_available: 可投递
       delivery_error_days: 投递错误天数
       delivery_error_hint: 如果投递已不可用 %{count} 天，它将被自动标记为无法投递。
+      destroyed_msg: "%{domain} 中的数据现在正在排队等待被立刻删除。"
       empty: 暂无域名。
       known_accounts:
         other: "%{count} 个已知帐户"
@@ -462,6 +488,7 @@ zh-CN:
         title: 运营
       private_comment: 私密评论
       public_comment: 公开评论
+      purge: 删除
       title: 已知实例
       total_blocked_by_us: 被我站屏蔽的
       total_followed_by_them: 被对方关注的
@@ -491,8 +518,6 @@ zh-CN:
         title: 创建新 IP 规则
       no_ip_block_selected: 因为没有 IP 规则被选中，所以没有更改
       title: IP 规则
-    pending_accounts:
-      title: 待处理的帐户 (%{count})
     relationships:
       title: "%{acct} 的关系"
     relays:
@@ -514,30 +539,43 @@ zh-CN:
     report_notes:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
+      today_at: 今天 %{time}
     reports:
       account:
         notes:
           other: "%{count} 条笔记"
-        reports:
-          other: "%{count} 个报告"
+      action_log: 审计日志
       action_taken_by: 操作执行者
+      actions:
+        other_description_html: 查看控制该被举报帐号行为以及与其通信范围的更多选项。
+        silence_description_html: 只有关注或手工搜索此帐号才能查看其资料，将严重限制其触达范围。可随时撤销。
+        suspend_description_html: 此帐号及其内容将无法访问，并最终被删除。也无法与该帐号交互。可在30天内撤销。
+      actions_description_html: 若移除上述违规内容仍力度不足：
+      add_to_report: 添加到报告
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
       by_target_domain: 被举报账户的域名
+      category: 类别
+      category_description_html: 此帐号和/或内容被举报的原因将在与该帐号的通信中被引用。
       comment:
         none: 没有
+      comment_description_html: "%{name} 补充道："
       created_at: 举报时间
+      delete_and_resolve: 删除并解决
       forwarded: 已转发
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为“已处理”
       mark_as_unresolved: 标记为“未处理”
+      no_one_assigned: 未分派
       notes:
         create: 添加记录
         create_and_resolve: 添加记录并标记为“已处理”
         create_and_unresolve: 添加记录并重开
         delete: 删除
         placeholder: 描述已经执行的操作，或其他任何相关的跟进情况…
+        title: 备注
+      notes_description_html: 查看备注或向其他监察员留言
       reopen: 重开举报
       report: '举报 #%{id}'
       reported_account: 举报用户
@@ -545,11 +583,14 @@ zh-CN:
       resolved: 已处理
       resolved_msg: 举报处理成功！
       status: 状态
+      statuses: 被举报内容
+      statuses_description_html: 违规内容将在与该帐号的通信中被引用
       target_origin: 被举报账号的来源
       title: 举报
       unassign: 取消接管
       unresolved: 未处理
       updated_at: 更新时间
+      view_profile: 查看资料
     rules:
       add_new: 添加规则
       delete: 删除
@@ -651,15 +692,13 @@ zh-CN:
       destroyed_msg: 站点上传的文件已经成功删除！
     statuses:
       back_to_account: 返回帐户信息页
+      back_to_report: 返回举报页
       batch:
-        delete: 删除
-        nsfw_off: 标记为非敏感内容
-        nsfw_on: 标记为敏感内容
+        remove_from_report: 从报告中移除
+        report: 举报
       deleted: 已删除
-      failed_to_execute: 执行失败
       media:
         title: 媒体文件
-      no_media: 不含媒体文件
       no_status_selected: 因为没有嘟文被选中，所以没有更改
       title: 帐户嘟文
       with_media: 含有媒体文件
@@ -672,21 +711,49 @@ zh-CN:
       sidekiq_process_check:
         message_html: "%{value} 队列未运行任何 Sidekiq 进程。请检查你的 Sidekiq 配置"
     tags:
-      accounts_today: 今日活跃用户
-      accounts_week: 本周活跃用户
-      breakdown: 按来源分类今天的使用情况
-      last_active: 最近活动
-      most_popular: 最热门的
-      most_recent: 最近的
-      name: 话题标签
       review: 审核状态
-      reviewed: 已审核
-      title: 话题标签
-      trending_right_now: 当前热门
-      unique_uses_today: 今天发布了 %{count} 条
-      unreviewed: 未审核
       updated_msg: 话题标签设置更新成功
     title: 管理
+    trends:
+      allow: 允许
+      approved: 已批准
+      disallow: 不允许
+      links:
+        allow: 允许链接
+        allow_provider: 允许发布者
+        disallow: 不允许链接
+        disallow_provider: 不允许发布者
+        shared_by_over_week:
+          other: "%{count} 人在过去一周内分享"
+        title: 热门链接
+        usage_comparison: 今日被分享 %{today} 次，前一日为 %{yesterday} 次
+      pending_review: 待审核
+      preview_card_providers:
+        allowed: 来自此发布者的链接可进入流行列表
+        rejected: 来自此发布者的链接不会进入流行列表
+        title: 发布者
+      rejected: 已拒绝
+      tags:
+        current_score: 当前 %{score} 分
+        dashboard:
+          tag_accounts_measure: 独立使用
+          tag_languages_dimension: 语言排行
+          tag_servers_dimension: 服务器排行
+          tag_servers_measure: 不同服务器
+          tag_uses_measure: 总使用
+        listable: 可被推荐
+        not_listable: 不会被推荐
+        not_trendable: 不会出现在流行列表中
+        not_usable: 不可使用
+        peaked_on_and_decaying: 在 %{date} 达到峰值，下降中
+        title: 热门标签
+        trendable: 可显示在流行列表中
+        trending_rank: '热门 #%{rank}'
+        usable: 可以使用
+        usage_comparison: 今日被使用 %{today} 次，前一日为 %{yesterday} 次
+        used_by_over_week:
+          other: "%{count} 人在过去一周内使用过"
+      title: 流行趋势
     warning_presets:
       add_new: 添加新条目
       delete: 删除
@@ -701,9 +768,16 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: 来自 %{instance} 的用户举报（#%{id}）
-    new_trending_tag:
-      body: '今日的热门话题 #%{name} 之前未经审核。直到你允许之前这个话题将不会公开显示，或者就保持原样让它石沉大海。'
-      subject: 在 %{instance} 有新话题 (#%{name}) 待审核
+    new_trending_links:
+      body: 以下为今日流行的链接，但它们的发布者尚未经过审核。在您批准前它们不会被公开显示。来自相同发布者的更多通知不会被生成。
+      no_approved_links: 当前没有经过批准的流行链接。
+      requirements: 已批准流行链接中最低的是 %{lowest_link_title} （%{lowest_link_score} 分）。
+      subject: "%{instance} 上待审核的新流行链接"
+    new_trending_tags:
+      body: 以下为今日流行的标签，但它们尚未经过审核。在您批准前它们不会被公开显示。
+      no_approved_tags: 当前没有经过批准的流行标签。
+      requirements: '已批准流行链接中最低的是 #%{lowest_tag_name} （%{lowest_tag_score} 分）。'
+      subject: "%{instance} 上待审核的新流行标签"
   aliases:
     add_new: 创建别名
     created_msg: 成功创建了一个新别名。你现在可以从旧账户开始迁移了。
@@ -755,11 +829,12 @@ zh-CN:
     invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
     link_to_otp: 输入从手机中获得的两步验证代码或恢复代码
     link_to_webauth: 使用你的安全密钥设备
+    log_in_with: 通过外部服务登录
     login: 登录
     logout: 登出
     migrate_account: 迁移到另一个帐户
     migrate_account_html: 如果你希望引导别人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
-    or_log_in_with: 或通过其他方式登录
+    or_log_in_with: 或通过外部服务登录
     providers:
       cas: CAS
       saml: SAML
@@ -910,33 +985,14 @@ zh-CN:
     changes_saved_msg: 更改保存成功！
     copy: 复制
     delete: 删除
-    no_batch_actions_available: 本页面无可用批量操作
+    none: 无
     order_by: 排序方式
     save_changes: 保存更改
+    today: 今天
     validation_errors:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
   html_validator:
     invalid_markup: '包含无效的 HTML 标记: %{error}'
-  identity_proofs:
-    active: 有效
-    authorize: 是，授权
-    authorize_connection_prompt: 授权这一密码学连接？
-    errors:
-      failed: 密码关联失败。请在 %{provider} 上重新尝试。
-      keybase:
-        invalid_token: Keybase 令牌是签名的哈希并且必须是 66 个十六进制字符
-        verification_failed: Keybase 无法将此令牌识别为 Keybase 用户 %{kb_username} 的签名。请在 Keybase 再试一次。
-      wrong_user: 无法以 %{current} 的身份创建 %{proving} 的证明。请以 %{proving} 的身份登录并再次尝试。
-    explanation_html: 在这里，你可以和你的其他身份建立密码学关联，例如 Keybase 个人资料。这样，别人就可以给你发送加密信息，也能够信任你发给他们的内容。
-    i_am_html: 我是 %{service} 上的 %{username} 。
-    identity: 身份
-    inactive: 失效
-    publicize_checkbox: 并发一条这样的嘟文：
-    publicize_toot: '证明完毕！我是 %{service} 上的 %{username}: %{url}'
-    remove: 从帐户中移除凭据
-    removed: 成功从帐户中删除凭据
-    status: 验证状态
-    view_proof: 查看证明
   imports:
     errors:
       over_rows_processing_limit: 包含行数超过了 %{count}
@@ -1149,6 +1205,9 @@ zh-CN:
     reply:
       proceed: 确认回复
       prompt: 你想要回复此嘟文：
+  reports:
+    errors:
+      invalid_rules: 没有引用有效的规则
   scheduled_statuses:
     over_daily_limit: 你已超出每日定时嘟文的上限（%{limit} 条）
     over_total_limit: 你已超出定时嘟文的上限（%{limit} 条）
@@ -1207,7 +1266,6 @@ zh-CN:
     edit_profile: 更改个人资料
     export: 导出
     featured_tags: 精选的话题标签
-    identity_proofs: 身份证明
     import: 导入
     import_and_export: 导入和导出
     migrate: 帐户迁移
@@ -1229,17 +1287,18 @@ zh-CN:
         other: "%{count} 段视频"
     boosted_from_html: 转嘟自 %{acct_link}
     content_warning: 内容警告：%{warning}
+    default_language: 与界面显示语言相同
     disallowed_hashtags:
       other: 包含了这些禁止的话题标签：%{tags}
+    edited_at: 编辑于 %{date}
     errors:
       in_reply_not_found: 你回复的嘟文似乎不存在
-    language_detection: 自动检测语言
     open_in_web: 在站内打开
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
+      direct: 仅对被提及的用户可见的帖子不能被置顶
       limit: 你所置顶的嘟文数量已经达到上限
       ownership: 不能置顶别人的嘟文
-      private: 不能置顶非公开的嘟文
       reblog: 不能置顶转嘟
     poll:
       total_people:
@@ -1392,6 +1451,7 @@ zh-CN:
     formats:
       default: "%Y年%m月%d日 %H:%M"
       month: "%Y年%m月"
+      time: "%H:%M"
   two_factor_authentication:
     add: 添加
     disable: 停用双重认证
@@ -1419,24 +1479,31 @@ zh-CN:
       subject: 请确认登录请求：
       title: 登录请求
     warning:
+      categories:
+        spam: 垃圾信息
+        violation: 内容违反了以下社区准则
       explanation:
-        disable: 虽然你的帐户被冻结，你的帐户数据仍然完整；但是你无法在解锁前执行任何操作。
-        sensitive: 你上传的媒体文件和媒体链接将被视作敏感内容。
-        silence: 当你的帐户被隐藏时，只有已经关注你的人才会这台服务器上看到你的嘟文，并且你会被排除在各种公共列表之外。但是，其他人仍然可以手动关注你。
-        suspend: 你的帐户已被封禁，所有的嘟文和你上传的媒体文件都已经从该服务器和你的关注者的服务器上删除并且不可恢复。
-      get_in_touch: 你可回复该邮件以联系 %{instance} 的工作人员。
+        delete_statuses: 你的某些嘟文被发现违反了一项或多项社区准则，随后被 %{instance} 的监察员删除。继续违规将可能导致你的帐号受到更严厉的惩罚。
+        disable: 你不能再使用你的帐户，但你的个人资料和其他数据保持不变。你可以请求数据备份，更改账户设置或删除账户。
+        sensitive: 即刻起，你上传的所有媒体文件都将被标记为敏感内容并隐藏，在点击警告后才能查看。
+        silence: 你可以继续使用你的帐号，但只有已关注你的人才能在看到你在此服务器上的嘟文，并且你会被排除在各类公共列表之外。其他用户仍可以手动关注你。
+        suspend: 你不能再使用你的帐户，并且你的个人资料和其他数据都将无法访问。在大约30天内，你仍可以登录并请求数据备份，之后相关数据将被完全删除。我们会保留一些基础数据以避免封禁失效。
+      get_in_touch: 如果你认为此操作有误，可回复此邮件以与 %{instance} 的工作人员取得联系。
+      reason: 理由：
       review_server_policies: 查看服务器政策
-      statuses: 具体来说，适用于：
+      statuses: 被发现有违规行为的嘟文：
       subject:
+        delete_statuses: 你在 %{acct} 的嘟文已被删除
         disable: 你的帐户 %{acct} 已被冻结
         none: 对 %{acct} 的警告
-        sensitive: 你的帐号 %{acct} 所发布的媒体已被标记为敏感内容
+        sensitive: 你在 %{acct} 的媒体文件将被标记为敏感内容
         silence: 你的帐户 %{acct} 已被隐藏
         suspend: 你的帐户 %{acct} 已被封禁。
       title:
+        delete_statuses: 嘟文已删除
         disable: 账号已冻结
         none: 警示
-        sensitive: 你的媒体被标记为敏感内容
+        sensitive: 已隐藏的媒体内容
         silence: 帐户被隐藏
         suspend: 账号被封禁
     welcome:

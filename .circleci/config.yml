@@ -32,7 +32,7 @@ commands:
           name: Install system dependencies
           command: |
             sudo apt-get update
-            sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
+            sudo apt-get install -y libicu-dev libidn11-dev
   install-ruby-dependencies:
     parameters:
       ruby-version:

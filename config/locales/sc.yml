@@ -21,7 +21,9 @@ sc:
     federation_hint_html: Cun unu contu in %{instance} as a pòdere sighire persones in cale si siat serbidore de Mastodon o de su fediversu.
     get_apps: Proa un'aplicatzione mòbile
     hosted_on: Mastodon allogiadu in %{domain}
-    instance_actor_flash: Custu contu est un'atore virtuale impreadu pro rapresentare su pròpiu serbidore, no est un'utente individuale. Benit impreadu pro punnas de federatzione e no ddu dias dèpere blocare si non boles blocare su domìniu intreu, e in cussu casu dias dèpere impreare unu blocu de domìniu.
+    instance_actor_flash: 'Custu contu est un''atore virtuale impreadu pro rapresentare su pròpiu serbidore, no est un''utente individuale. Benit impreadu pro punnas de federatzione e no ddu dias dèpere blocare si non boles blocare su domìniu intreu, e in cussu casu dias dèpere impreare unu blocu de domìniu.
+
+      '
     learn_more: Àteras informatziones
     privacy_policy: Polìtica de riservadesa
     rules: Règulas de su serbidore
@@ -97,7 +99,6 @@ sc:
     accounts:
       add_email_domain_block: Bloca domìniu de posta eletrònica
       approve: Aprova
-      approve_all: Aprova totus
       approved_msg: Sa dimanda de registru de %{username} est istada aprovada
       are_you_sure: Seguru?
       avatar: Immàgine de profilu
@@ -149,7 +150,6 @@ sc:
         active: Ativu
         all: Totus
         pending: De imbiare
-        silenced: A sa muda
         suspended: Suspèndidu
         title: Moderatzione
       moderation_notes: Notas de moderatzione
@@ -167,7 +167,6 @@ sc:
       redownload: Atualiza su profilu
       redownloaded_msg: Su profilu de %{username} est istadu atualizadu dae s'orìgine
       reject: Refuda
-      reject_all: Refuda totu
       rejected_msg: Sa dimanda de registru de %{username} est istada refudada
       remove_avatar: Boga immàgine de profilu
       remove_header: Boga s'intestatzione
@@ -202,7 +201,6 @@ sc:
       suspended: Suspèndidu
       suspension_irreversible: Is datos de custu contu sunt istados cantzellados in manera irreversìbile. Podes bogare sa suspensione a su contu pro chi si potzat impreare, ma no at a recuperare datu perunu de is chi teniat in antis.
       suspension_reversible_hint_html: Su contu est istadu suspèndidu, e is datos ant a èssere cantzelladu de su totu su %{date}. Finas a tando, su contu si podet ripristinare sena efetu malu perunu. Si boles cantzellare totu is datos de su contu immediatamente ddu podes fàghere inoghe in bassu.
-      time_in_queue: Isetende in coa %{time}
       title: Contos
       unconfirmed_email: Posta eletrònica sena cunfirmare
       undo_sensitized: Boga sa marcadura comente "sensìbile"
@@ -467,8 +465,6 @@ sc:
         title: Crea una règula IP noa
       no_ip_block_selected: Peruna règula IP est istada mudada dae chi non nd'as seletzionadu
       title: Règulas IP
-    pending_accounts:
-      title: Contos in ispera (%{count})
     relationships:
       title: relatziones de %{acct}
     relays:
@@ -495,9 +491,6 @@ sc:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
-        reports:
-          one: "%{count} informe"
-          other: "%{count} informes"
       action_taken_by: Mesuras adotadas dae
       are_you_sure: Seguru?
       assign_to_self: Assigna a mie
@@ -628,15 +621,9 @@ sc:
       destroyed_msg: Càrriga de su situ cantzellada.
     statuses:
       back_to_account: Torra a sa pàgina de su contu
-      batch:
-        delete: Cantzella
-        nsfw_off: Signala comente a non sensìbile
-        nsfw_on: Signala comente a sensìbile
       deleted: Cantzelladu
-      failed_to_execute: Faddina in s'esecutzione
       media:
         title: Elementos multimediales
-      no_media: Perunu elementu multimediale
       no_status_selected: Perunu istadu est istadu mudadu dae chi non nd'as seletzionadu
       title: Istados de su contu
       with_media: Cun elementos multimediales
@@ -649,19 +636,7 @@ sc:
       sidekiq_process_check:
         message_html: Perunu protzessu Sidekiq est in esecutzione pro sa coa(s) %{value}. Revisiona is cunfiguratziones de Sidekiq
     tags:
-      accounts_today: Impreos ùnicos atuales
-      accounts_week: Impreos ùnicos de custa chida
-      breakdown: Detàllios de s'impreu atuale pro orìgine
-      last_active: Ùrtima atividade
-      most_popular: Prus populares
-      most_recent: Prus reghentes
-      name: Eticheta
       review: Revisiona s'istadu
-      reviewed: Revisionadas
-      title: Etichetas
-      trending_right_now: In tendèntzia immoe
-      unique_uses_today: "%{count} publicatziones de oe"
-      unreviewed: Sena revisionare
       updated_msg: Cunfiguratzione de etichetas atualizada
     title: Amministratzione
     warning_presets:
@@ -678,9 +653,6 @@ sc:
       body: "%{reporter} at sinnaladu %{target}"
       body_remote: Una persone de su domìniu %{domain} at sinnaladu %{target}
       subject: Informe nou pro %{instance} (#%{id})
-    new_trending_tag:
-      body: 'S''eticheta #%{name} est in tendèntzia oe, ma no est istada revisionada in passadu. No at a èssere ammustrada in pùblicu francu chi ddu permitas; si sarvas su formulàriu sena ddu modificare, no ddu as a bìdere mai prus.'
-      subject: Eticheta noa de revisionare in %{instance} (#%{name})
   aliases:
     add_new: Crea unu nomìngiu
     created_msg: Nomìngiu creadu. Immoe podes cumintzare a tramudare dae su contu betzu.
@@ -887,7 +859,6 @@ sc:
     changes_saved_msg: Modìficas sarvadas.
     copy: Còpia
     delete: Cantzella
-    no_batch_actions_available: Peruna atzione in blocu a disponimentu dae custa pàgina
     order_by: Òrdina pro
     save_changes: Sarva is modìficas
     validation_errors:
@@ -895,26 +866,6 @@ sc:
       other: Calicuna cosa ancora no est andende. Bide is %{count} faddinas in bàsciu
   html_validator:
     invalid_markup: 'cuntenet etichetas HTML non vàlidas: %{error}'
-  identity_proofs:
-    active: Ativu
-    authorize: Eja, autoriza
-    authorize_connection_prompt: Boles autorizare custa connessione critografada?
-    errors:
-      failed: Faddina in sa connessione critografada. Torra·bi a proare dae %{provider}.
-      keybase:
-        invalid_token: Is còdighes de autorizatzione de Keybase sunt hash de firmas e depent tènnere 66 caràteres esadetzimales
-        verification_failed: Keybase non reconnoschet custu còdighe de autorizatzione che a firma de s'utente de Keybase %{kb_username}. Torra·bi a proare dae Keybase.
-      wrong_user: Impossìbile creare una proa pro %{proving} cando as fatu s'atzessu che a %{current}. Intra che a %{proving} e torra·bi a proare.
-    explanation_html: Inoghe podes collegare critograficamente is àteras identidades tuas dae àteras prataformas, che a Keybase. Custu permitit a àteras persones de t'imbiare messàgios tzifrados in cussas prataformas e de tènnere sa seguresa chi is cuntenutos chi ddis ses imbiende benint dae tene.
-    i_am_html: So %{username} in %{service}.
-    identity: Identidade
-    inactive: Inativu
-    publicize_checkbox: 'E imbia custu tut:'
-    publicize_toot: 'Verificadu! So %{username} in %{service}: %{url}'
-    remove: Boga sa proa dae su contu
-    removed: Proa bogada dae su contu
-    status: Istadu de verìfica
-    view_proof: Ammustra sa proa
   imports:
     errors:
       over_rows_processing_limit: cuntenet prus de %{count} filas
@@ -1176,7 +1127,6 @@ sc:
     edit_profile: Modìfica profilu
     export: Esportatzione de datos
     featured_tags: Etichetas in evidèntzia
-    identity_proofs: Proas de identidade
     import: Importatzione
     import_and_export: Importatzione e esportatzione
     migrate: Tràmuda de contu
@@ -1205,13 +1155,11 @@ sc:
       other: 'cuntenet is etichetas non permìtidas: %{tags}'
     errors:
       in_reply_not_found: Ses chirchende de rispòndere a unu tut chi no esistit prus.
-    language_detection: Rileva s'idioma in automàticu
     open_in_web: Aberi in sa web
     over_character_limit: lìmite de caràteres de %{max} superadu
     pin_errors:
       limit: As giai apicadu su nùmeru màssimu de tuts
       ownership: Is tuts de àtere non podent èssere apicados
-      private: Is tuts non pùblicos non podent èssere apicados
       reblog: Is cumpartziduras non podent èssere apicadas
     poll:
       total_people:
@@ -1368,24 +1316,15 @@ sc:
       subject: Cunfirma su tentativu de identificatzione
       title: Tentativu de identificatzione
     warning:
-      explanation:
-        disable: Non podes prus intrare in su contu tuo o dd'impreare in cale si siat àtera manera, ma su profilu e is àteros datos tuos abarrant intatos.
-        sensitive: Is elementos e documentos multimediales carrigados e ligados tuos ant a èssere tratados che a sensìbiles.
-        silence: Podes ancora impreare su contu tuo, ma isceti is persones chi ti sunt giai sighende ant a bìdere is tuts tuos in custu serbidore, e dias pòdere èssere esclùdidu dae unas cantas listas pùblicas. Nointames custu, is àteros ti diant pòdere galu sighire in manera manuale.
-        suspend: Non podes prus impreare su contu tuo, e su profilu e àteros datos non sunt prus atzessìbiles. Bi podes ancora intrare pro pedire una còpia de seguresa de is datos tuos finas a cando no ant a èssere cantzellados de su totu, ma nd'amus a mantènnere unos cantos pro non ti permìtere de evàdere sa suspensione.
-      get_in_touch: Podes rispòndere a custu indiritzu de posta eletrònica pro cuntatare cun su personale de %{instance}.
       review_server_policies: Revisiona sas polìticas de su serbidore
-      statuses: 'In manera cuncreta, pro:'
       subject:
         disable: Su contu tuo %{acct} est istadu cungeladu
         none: Avisu pro %{acct}
-        sensitive: Is elementos multimediales de publicatzione de su contu tuo %{acct} sunt istados marcados comente sensìbiles
         silence: Su contu tuo %{acct} est istadu limitadu
         suspend: Su contu tuo %{acct} est istadu suspèndidu
       title:
         disable: Contu congeladu
         none: Atentzione
-        sensitive: S'elementu multimediale tuo est istadu marcadu comente sensìbile
         silence: Contu limitadu
         suspend: Contu suspèndidu
     welcome:

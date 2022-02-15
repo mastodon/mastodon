@@ -45,6 +45,9 @@ sl:
         data: Izvožena CSV datoteka iz drugega Mastodon vozlišča
       invite_request:
         text: To nam bo pomagalo pregledati vašo prijavo
+      ip_block:
+        severities:
+          no_access: Blokiraj dostop do vseh virov
       sessions:
         otp: 'Vnesite dvomestno kodo, ki je ustvarjena z aplikacijo na telefonu, ali uporabite eno od vaših obnovitvenih kod:'
       user:
@@ -54,8 +57,13 @@ sl:
         fields:
           name: Oznaka
           value: Vsebina
+      account_alias:
+        acct: Ročica starega računa
+      account_migration:
+        acct: Ročica novega računa
       account_warning_preset:
         text: Prednastavljeno besedilo
+        title: Naslov
       admin_account_action:
         send_email_notification: Obvesti uporabnika po e-pošti
         text: Opozorilo po meri
@@ -63,9 +71,15 @@ sl:
         types:
           disable: Onemogoči
           none: Ne naredi ničesar
+          sensitive: Občutljivo
           silence: Utišaj
           suspend: Suspendiraj in nepovratno izbriši podatke računa
         warning_preset_id: Uporabi prednastavljeno opozorilo
+      announcement:
+        all_day: Celodnevni dogodek
+        ends_at: Konec dogodka
+        starts_at: Začetek dogodka
+        text: Objava
       defaults:
         autofollow: Povabite, da sledi vašemu računu
         avatar: Podoba
@@ -82,12 +96,14 @@ sl:
         expires_in: Preteče po
         fields: Metapodatki profila
         header: Glava
+        honeypot: "%{label} (ne izpolnjujte)"
         inbox_url: URL mape "Prejeto"
         irreversible: Opusti namesto skrij
         locale: Jezik vmesnika
         locked: Zaklenjen račun
         max_uses: Največje število uporabnikov
         new_password: Novo geslo
+        note: Biografija
         otp_attempt: Dvofaktorska koda
         password: Geslo
         phrase: Ključna beseda ali fraza
@@ -95,6 +111,7 @@ sl:
         setting_aggregate_reblogs: Skupinske spodbude na časovnicah
         setting_auto_play_gif: Samodejno predvajanje animiranih GIF-ov
         setting_boost_modal: Pred sunkom pokaži potrditveno okno
+        setting_crop_images: Obreži slike v nerazširjenih objavah v razmerju 16:9
         setting_default_language: Jezik objavljanja
         setting_default_privacy: Zasebnost objave
         setting_default_sensitive: Vedno označi medije kot občutljive
@@ -110,22 +127,35 @@ sl:
         setting_show_application: Razkrij aplikacijo za pošiljanje tutov
         setting_system_font_ui: Uporabi privzeto pisavo sistema
         setting_theme: Tema strani
+        setting_trends: Pokaži današnje trende
         setting_unfollow_modal: Pokaži potrditveno okno, preden nekoga prenehamo slediti
         setting_use_blurhash: Pokaži barvite gradiente za skrite medije
         setting_use_pending_items: Počasen način
         severity: Strogost
+        sign_in_token_attempt: Varnostna koda
         type: Vrsta uvoza
         username: Uporabniško ime
         username_or_email: Uporabniško ime ali E-pošta
         whole_word: Celotna beseda
+      email_domain_block:
+        with_dns_records: Vključi zapise MX in IP-številke domene
       featured_tag:
         name: Ključnik
       interactions:
         must_be_follower: Blokiraj obvestila nesledilcev
         must_be_following: Blokiraj obvestila oseb, ki jim ne sledite
         must_be_following_dm: Blokiraj neposredna sporočila oseb, ki jim ne sledite
+      invite:
+        comment: Komentar
       invite_request:
         text: Zakaj se želite pridružiti?
+      ip_block:
+        comment: Komentar
+        ip: IP
+        severities:
+          no_access: Blokiraj dostop
+          sign_up_requires_approval: Omeji število prijav
+        severity: Pravilo
       notification_emails:
         digest: Pošlji izvlečke e-pošt
         favourite: Pošlji e-pošto, ko nekdo doda vaše stanje med priljubljene
@@ -135,8 +165,20 @@ sl:
         pending_account: Pošlji e-pošto, ko je potreben pregled novega računa
         reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
         report: Pošlji e-pošto, ko je oddana nova prijava
+        trending_tag: Nov trend zahteva odobritev
+      rule:
+        text: Pravilo
+      tag:
+        listable: Dovoli, da se ta ključnik pojavi v iskanjih in predlogih
+        name: Ključnik
+        trendable: Dovoli, da se ta ključnik pojavi med trendi
+        usable: Dovoli, da objave uporabljajo ta ključnik
     'no': Ne
     recommended: Priporočeno
     required:
+      mark: "*"
       text: zahtevano
+    title:
+      sessions:
+        webauthn: Za prijavo uporabite eno od svojih varnostnih kod
     'yes': Da

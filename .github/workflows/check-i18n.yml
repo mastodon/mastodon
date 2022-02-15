@@ -18,7 +18,7 @@ jobs:
     - name: Install system dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
+        sudo apt-get install -y libicu-dev libidn11-dev
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:

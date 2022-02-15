@@ -164,6 +164,12 @@ Rails.application.routes.draw do
     resources :login_activities, only: [:index]
   end
 
+  namespace :disputes do
+    resources :strikes, only: [:show] do
+      resource :appeal, only: [:create]
+    end
+  end
+
   resources :media, only: [:show] do
     get :player
   end
@@ -225,6 +231,8 @@ Rails.application.routes.draw do
     resources :rules
 
     resources :reports, only: [:index, :show] do
+      resources :actions, only: [:create], controller: 'reports/actions'
+
       member do
         post :assign_to_self
         post :unassign
@@ -328,6 +336,15 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    namespace :disputes do
+      resources :appeals, only: [:index] do
+        member do
+          post :approve
+          post :reject
+        end
+      end
+    end
   end
 
   get '/admin', to: redirect('/admin/dashboard', status: 302)
@@ -338,7 +355,7 @@ Rails.application.routes.draw do
 
     # JSON / REST API
     namespace :v1 do
-      resources :statuses, only: [:create, :show, :destroy] do
+      resources :statuses, only: [:create, :show, :update, :destroy] do
         scope module: :statuses do
           resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
           resources :favourited_by, controller: :favourited_by_accounts, only: :index
