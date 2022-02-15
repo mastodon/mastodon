@@ -164,6 +164,8 @@ es:
       previous_strikes: Amonestaciones anteriores
       previous_strikes_description_html:
         one: Esta cuenta tiene <strong>una</strong> amonestación.
+        other: Esta cuenta tiene <strong>%{count}</strong> amonestaciones.
+        zero: Esta cuenta está <strong>en buen estado</strong>.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -227,6 +229,7 @@ es:
       whitelisted: Añadido a la lista blanca
     action_logs:
       action_types:
+        approve_appeal: Aprobar Apelación
         approve_user: Aprobar Usuario
         assigned_to_self_report: Asignar Reporte
         change_email_user: Cambiar Correo Electrónico del Usuario
@@ -258,6 +261,7 @@ es:
         enable_user: Habilitar Usuario
         memorialize_account: Transformar en Cuenta Conmemorativa
         promote_user: Promover Usuario
+        reject_appeal: Rechazar Apelación
         reject_user: Rechazar Usuario
         remove_avatar_user: Eliminar Avatar
         reopen_report: Reabrir Reporte
@@ -276,6 +280,7 @@ es:
         update_domain_block: Actualizar el Bloqueo de Dominio
         update_status: Actualizar Estado
       actions:
+        approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
         approve_user_html: "%{name} aprobó el registro de %{target}"
         assigned_to_self_report_html: "%{name} asignó el informe %{target} a sí mismo"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
@@ -307,6 +312,7 @@ es:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
         promote_user_html: "%{name} promoción al usuario %{target}"
+        reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
         reopen_report_html: "%{name} reabrió el informe %{target}"
@@ -402,6 +408,10 @@ es:
       top_languages: Idiomas más activos
       top_servers: Servidores más activos
       website: Sitio web
+    disputes:
+      appeals:
+        empty: No se encontraron apelaciones.
+        title: Apelaciones
     domain_allows:
       add_new: Añadir dominio a la lista blanca
       created_msg: Dominio añadido a la lista blanca con éxito
@@ -714,6 +724,16 @@ es:
       no_status_selected: No se cambió ningún estado al no seleccionar ninguno
       title: Estado de las cuentas
       with_media: Con multimedia
+    strikes:
+      actions:
+        delete_statuses: "%{name} eliminó las publicaciones de %{target}"
+        disable: "%{name} congeló la cuenta de %{target}"
+        none: "%{name} envió una advertencia a %{target}"
+        sensitive: "%{name} marcó la cuenta de %{target} como sensible"
+        silence: "%{name} limitó la cuenta de %{target}"
+        suspend: "%{name} suspendió la cuenta de %{target}"
+      appeal_approved: Apelado
+      appeal_pending: Apelación pendiente
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
@@ -775,6 +795,17 @@ es:
       empty: Aún no has definido ningún preajuste de advertencia.
       title: Editar configuración predeterminada de avisos
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: para eliminar sus mensajes
+        disable: para congelar su cuenta
+        none: una advertencia
+        sensitive: para marcar su cuenta como sensible
+        silence: para limitar su cuenta
+        suspend: suspender su cuenta
+      body: "%{target} está apelando a una solicitud de moderación de %{action_taken_by} el %{date}, del tipo %{type}. Ellos escribieron:"
+      next_steps: Puedes aprobar la apelación para deshacer la decisión de moderación, o ignorarla.
+      subject: "%{username} está apelando a una decisión de moderación en %{instance}"
     new_pending_account:
       body: Los detalles de la nueva cuenta están abajos. Puedes aprobar o rechazar esta aplicación.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
@@ -930,6 +961,29 @@ es:
     directory: Directorio de perfiles
     explanation: Descubre usuarios según sus intereses
     explore_mastodon: Explorar %{title}
+  disputes:
+    strikes:
+      action_taken: Acción realizada
+      appeal: Apelar
+      appeal_approved: Esta amonestación fue apelada exitosamente y ya no es válida
+      appeal_rejected: Se rechazó la apelación
+      appeal_submitted_at: Apelación enviada
+      appealed_msg: Tu apelación fue enviada. Si se aprueba, se te notificará.
+      appeals:
+        submit: Enviar apelación
+      associated_report: Informe asociado
+      created_at: Con fecha
+      recipient: Dirigida a
+      status: 'Publicación #%{id}'
+      status_removed: Publicación ya eliminada del sistema
+      title: "%{action} del %{date}"
+      title_actions:
+        delete_statuses: Eliminación de publicación
+        disable: Congelación de la cuenta
+        none: Advertencia
+        sensitive: Marcado de cuenta como sensible
+        silence: Limitación de cuenta
+        suspend: Suspensión de cuenta
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
   errors:
