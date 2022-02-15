@@ -230,7 +230,7 @@ tr:
       whitelisted: Beyaz listede
     action_logs:
       action_types:
-        approve_appeal: Başvuruyu Kabul Et
+        approve_appeal: İtirazı Kabul Et
         approve_user: Kullanıcıyı Onayla
         assigned_to_self_report: Raporu Ata
         change_email_user: Kullanıcı E-postasını Değiştir
@@ -262,7 +262,7 @@ tr:
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
-        reject_appeal: Başvuruyu Reddet
+        reject_appeal: İtirazı Reddet
         reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
         reopen_report: Şikayeti Tekrar Aç
@@ -281,7 +281,7 @@ tr:
         update_domain_block: Engellenen Alan Adını Güncelle
         update_status: Durumu Güncelle
       actions:
-        approve_appeal_html: "%{name}, %{target} kişisinin yönetim karar başvurusunu kabul etti"
+        approve_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını kabul etti"
         approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
         assigned_to_self_report_html: "%{name} kendilerine %{target} adlı raporu verdi"
         change_email_user_html: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
@@ -313,7 +313,7 @@ tr:
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
-        reject_appeal_html: "%{name}, %{target} kişisinin yönetim karar başvurusunu reddetti"
+        reject_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını reddetti"
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
         reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
@@ -737,8 +737,10 @@ tr:
         disable: "%{name}, %{target} kullanıcısının hesabını dondurdu"
         none: "%{name}, %{target} kullanıcısına bir uyarı gönderdi"
         sensitive: "%{name}, %{target} kullanıcısının hesabını hassas olarak işaretledi"
-        silence: "%{name}, %{target} kullanıcısının hesabını sınırladı"
+        silence: "%{name}, %{target} kullanıcısının hesabını kısıtladı"
         suspend: "%{name}, %{target} kullanıcısının hesabını askıya aldı"
+      appeal_approved: İtiraz Edildi
+      appeal_pending: İtiraz bekliyor
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
@@ -800,6 +802,17 @@ tr:
       empty: Henüz önceden ayarlanmış bir uyarı tanımlanmadı.
       title: Uyarı ön-ayarlarını yönet
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: gönderilerini silme
+        disable: hesaplarını dondurma
+        none: uyarı
+        sensitive: hesaplarını hassas olarak işaretleme
+        silence: hesaplarını kısıtlama
+        suspend: hesaplarını askıya alma
+      body: "%{target}, %{date} tarihinde %{action_taken_by} tarafından alınan %{type} yönetim kararına itiraz etti. Şunu yazdılar:"
+      next_steps: Yönetim kararını geri almak için itirazı onaylayabilir veya itirazı görmezden gelebilirsiniz.
+      subject: "%{username}, %{instance} hakkındaki bir yönetim kararına itiraz ediyor"
     new_pending_account:
       body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
       subject: '%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})'
@@ -955,6 +968,32 @@ tr:
     directory: Profil Dizini
     explanation: Kullanıcıları ilgi alanlarına göre keşfedin
     explore_mastodon: '%{title} sunucusunu keşfet'
+  disputes:
+    strikes:
+      action_taken: Yapılan işlem
+      appeal: İtiraz
+      appeal_approved: Eyleme başarılı bir şekilde itiraz edildi ve artık geçerli değil
+      appeal_rejected: İtiraz reddedildi
+      appeal_submitted_at: İtiraz gönderildi
+      appealed_msg: İtiraz gönderildi. Kabul edilirse bilgilendirileceksiniz.
+      appeals:
+        submit: İtirazı gönder
+      associated_report: İlişkili rapor
+      created_at: Tarih
+      recipient: Kime
+      status: 'Gönderi #%{id}'
+      status_removed: Gönderi zaten sistemden kaldırıldı
+      title: "%{date} tarihli %{action}"
+      title_actions:
+        delete_statuses: Gönderi kaldırma
+        disable: Hesabın dondurulması
+        none: Uyarı
+        sensitive: Hassas hesap olarak işaretleme
+        silence: Hesabın kısıtlanması
+        suspend: Hesabın askıya alınması
+      your_appeal_approved: İtirazınız onaylandı
+      your_appeal_pending: Bir itiraz gönderdiniz
+      your_appeal_rejected: İtirazınız reddedildi
   domain_validator:
     invalid_domain: geçerli bir alan adı değil
   errors:
@@ -1518,6 +1557,11 @@ tr:
     recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. Kurtarma kodlarınızı güvenli halde tutunuz. Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
     webauthn: Güvenlik anahtarları
   user_mailer:
+    appeal_approved:
+      action: Hesabınıza gidin
+      title: İtiraz onaylandı
+    appeal_rejected:
+      title: İtiraz reddedildi
     backup_ready:
       explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
       subject: Arşiviniz indirilmeye hazır
@@ -1529,6 +1573,7 @@ tr:
       subject: Lütfen oturum açma girişimini onaylayın
       title: Oturum açma girişimi
     warning:
+      appeal: Bir itiraz gönder
       categories:
         spam: İstenmeyen
         violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
