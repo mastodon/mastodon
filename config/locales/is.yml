@@ -1447,7 +1447,7 @@ is:
     min_reblogs: Halda færslum sem eru endurbirtar oftar en
     min_reblogs_hint: Eyðir ekki þínum eigin færslum sem endurbirtar hafa verið þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda endurbirtinga
   stream_entries:
-    pinned: Fest tíst
+    pinned: Fest færsla
     reblogged: endurbirt
     sensitive_content: Viðkvæmt efni
   tags:
@@ -1459,7 +1459,7 @@ is:
 
       <ul>
       <li><em>Grunnupplýsingar um notandaaðgang</em>: Ef þú skráir þig á þessum netþjóni gætirðu verið beðinn um að slá inn notandanafn, tölvupóstfang og lykilorð. Þú getur einnig sett inn viðbótarupplýsingar eins og birtingarnafn og æviágrip auk þess að hlaða inn auðkennismynd eða mynd til að birta á síðuhaus. Notandanafn, birtingarnafn, æviágrip, auðkennismynd og hausmynd eru alltaf skráð opinberlega. </li>
-      <li><em>Skilaboð, fylgnigögn og aðrar opinberar upplýsingar</em>: Listinn yfir þá sem þú fylgist með er skráður opinberlega, það sama er að segja um þá sem fylgjast með þér. Þegar þú sendir skilaboð er dagsetning og tími vistaður sem og hvaða forrit þú sendir skilaboðin frá. Skilaboð geta innihaldið viðhengi, svo sem myndir og myndskeið. Opinberar og óskráðar færslur er aðgengilegar opinberlega. Þegar þú birtir færslu á notandasniðinu þínu (forsíðu) eru það einnig opinberar upplýsingar. Færslurnar þínar eru sendar þeim sem fylgjast með þér, í sumum tilvikum þýðir það að þær eru afhentar á aðra netþjóna og afrit geymd þar. Þegar þú eyðir færslum er það sömuleiðis birt fylgjendum þínum. Aðgerðir eins og að endurbirta eða setja færslu í eftirlæti eru ávallt opinberar.</li>
+      <li><em>Færslur, fylgnigögn og aðrar opinberar upplýsingar</em>: Listinn yfir þá sem þú fylgist með er skráður opinberlega, það sama er að segja um þá sem fylgjast með þér. Þegar þú sendir skilaboð er dagsetning og tími vistaður sem og hvaða forrit þú sendir skilaboðin frá. Skilaboð geta innihaldið viðhengi, svo sem myndir og myndskeið. Opinberar og óskráðar færslur er aðgengilegar opinberlega. Þegar þú birtir færslu á notandasniðinu þínu (forsíðu) eru það einnig opinberar upplýsingar. Færslurnar þínar eru sendar þeim sem fylgjast með þér, í sumum tilvikum þýðir það að þær eru afhentar á aðra netþjóna og afrit geymd þar. Þegar þú eyðir færslum er það sömuleiðis birt fylgjendum þínum. Aðgerðir eins og að endurbirta eða setja færslu í eftirlæti eru ávallt opinberar.</li>
       <li><em>Beinar færslur og eingöngu til fylgjenda</em>: Öll innlegg eru geymd og unnin á netþjóninum. Færslur sem eingöngu eru til fylgjenda berast til fylgjenda þinna og þeirra notenda sem minnst er á í þeim, beinar færslur berast aðeins til notenda sem getið er um í viðkomandi færslu. Í sumum tilvikum þýðir það að færslurnar eru afhentar á aðra netþjóna og afrit geymd þar. Við leggjum mikla áherslu á að takmarka aðgang að þessum færslum einungis við aðila sem til þess hafa heimild, en aðrir utanaðkomandi netþjónar gætu mögulega ekki gert það. Þess vegna er mikilvægt að skoða vel þá netþjóna sem fylgjendur þínir tilheyra. Þú getur valið að þurfa að samþykkja og hafna nýjum fylgjendum handvirkt í stillingunum.<em>Hafðu í huga að rekstraraðilar netþjónsins og allir viðtakendamiðlarar geta skoðað slík skilaboð</em> og að viðtakendur geta tekið skjámyndir, afritað eða á annan hátt deilt þessum gögnum. <em>Ekki deila hættulegum upplýsingum í gegnum Mastodon.</em></li>
       <li><em>IP-vistföng og önnur lýsigögn</em>: Þegar þú skráir þig inn skráum við IP-töluna sem þú skráir þig inn af, sem og heiti vafraforritsins þíns. Allar innskráðar setur verða tiltækar til skoðunar og afturköllunar í stillingunum. Síðast notaða IP-talan er geymd í allt að 12 mánuði. Við gætum líka haldið eftir atvikaskrám netþjónsins sem gæti innihaldið IP-tölur allra beiðna til netþjónsins.</li>
       </ul>
@@ -1586,23 +1586,23 @@ is:
         spam: Ruslpóstur
         violation: Efnið er á skjön við eftirfarandi leiðbeiningar til notenda
       explanation:
-        delete_statuses: Sum skilaboð frá þér eru álitin eru að hafa gengið gegn samþykktum skilmálum vegna notkunar og hafa því stjórnendur fjarlægt þau af %{instance}. Brot sem framin verða hér eftir geta leitt til enn harðari aðgerða gegn notandaaðgangnum þínum.
+        delete_statuses: Sumar færslur frá þér eru álitnar hafa gengið gegn samþykktum skilmálum vegna notkunar og hafa því stjórnendur fjarlægt þau af %{instance}. Brot sem framin verða hér eftir geta leitt til enn harðari aðgerða gegn notandaaðgangnum þínum.
         disable: Þú getur ekki lengur notað aðganginn þinn, en notandasniðið þitt og önnur gögn eru óskemmd. Þú getur beðið um afrit af gögnunum þínum, getur breytt stillingum eða eytt aðgangnum þínum.
         sensitive: Héðan í frá verður allt myndefni sem þú sendir inn meðhöndlað sem viðkvæmt efni og falið á bakvið aðvörun sem smella þarf á.
-        silence: Þú getur áfram notað aðganginn þinn en aðeins fólk sem þegar fylgist með þér mun sjá tístin þín á þessum vefþjóni, auk þess sem lokað gæti verið á þig á ýmsum opinberum listum. Aftur á móti geta aðrir gerst fylgjendur þínir handvirkt.
+        silence: Þú getur áfram notað aðganginn þinn en aðeins fólk sem þegar fylgist með þér mun sjá færslurnar þínar á þessum vefþjóni, auk þess sem lokað gæti verið á þig á ýmsum opinberum listum. Aftur á móti geta aðrir gerst fylgjendur þínir handvirkt.
         suspend: Þú getur ekki lengur notað aðganginn þinn og notandasniðið þitt og önnur gögn eru ekki lengur aðgengileg. Þú getur enn skráð þig inn til að biðja um afrit af gögnunum þínum þar til þeim verður eytt að fullu eftir 30 daga, við munum hinsvegar halda eftir einstaka grunnupplýsingum til að koma í veg fyrir að þú komist framhjá þessu banni.
       get_in_touch: Ef þú álítur að um mistök sé að ræða, geturðu svarað þessum tölvupósti til að setja þig í samband við umsjónarmenn %{instance}.
       reason: 'Ástæða:'
-      statuses: 'Skilaboð sem álitin eru að hafa gengið gegn samþykktum ákvæðum:'
+      statuses: 'Færslur sem álitnar eru að hafa gengið gegn samþykktum ákvæðum:'
       subject:
-        delete_statuses: Skilaboð ín á %{acct} hafa verið fjarlægð
+        delete_statuses: Færslurnar þínar á %{acct} hafa verið fjarlægðar
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
         none: Aðvörun fyrir %{acct}
         sensitive: Myndefnið þitt á %{acct} verður héðan í frá merkt sem viðkvæmt
         silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
         suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
       title:
-        delete_statuses: Skilaboð fjarlægð
+        delete_statuses: Færslur fjarlægðar
         disable: Notandaaðgangur frystur
         none: Aðvörun
         sensitive: Mynd er falin
