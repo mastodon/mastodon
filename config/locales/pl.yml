@@ -761,6 +761,7 @@ pl:
         sensitive: "%{name} oznaczył(-a) konto %{target} jako wrażliwe"
         silence: "%{name} ograniczył(-a) konto %{target}"
         suspend: "%{name} zawiesił(-a) konto %{target}"
+      appeal_approved: Odwołanie
       appeal_pending: Odwołanie w toku
     system_checks:
       database_schema_check:
@@ -1600,6 +1601,8 @@ pl:
     recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
     webauthn: Klucze bezpieczeństwa
   user_mailer:
+    appeal_approved:
+      action: Przejdź do swojego konta
     backup_ready:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
