@@ -226,6 +226,7 @@ is:
       whitelisted: Á lista yfir leyft
     action_logs:
       action_types:
+        approve_appeal: Samþykkja áfrýjun
         approve_user: Samþykkja notanda
         assigned_to_self_report: Úthluta kæru
         change_email_user: Skipta um tölvupóstfang notanda
@@ -257,6 +258,7 @@ is:
         enable_user: Virkja notanda
         memorialize_account: Gera aðgang að minningargrein
         promote_user: Hækka notanda í tign
+        reject_appeal: Hafna áfrýjun
         reject_user: Hafna notanda
         remove_avatar_user: Fjarlægja auðkennismynd
         reopen_report: Enduropna kæru
@@ -275,6 +277,7 @@ is:
         update_domain_block: Uppfæra útilokun léns
         update_status: Uppfæra stöðufærslu
       actions:
+        approve_appeal_html: "%{name} samþykkti áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         approve_user_html: "%{name} samþykkti nýskráningu frá %{target}"
         assigned_to_self_report_html: "%{name} úthlutaði kæru %{target} til sín"
         change_email_user_html: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
@@ -306,6 +309,7 @@ is:
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
         promote_user_html: "%{name} hækkaði notandann %{target} í tign"
+        reject_appeal_html: "%{name} hafnaði áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         reject_user_html: "%{name} hafnaði nýskráningu frá %{target}"
         remove_avatar_user_html: "%{name} fjarlægði auðkennismynd af %{target}"
         reopen_report_html: "%{name} enduropnaði kæru %{target}"
@@ -384,6 +388,9 @@ is:
       media_storage: Geymsla myndefnis
       new_users: nýir notendur
       opened_reports: kærur opnaðar
+      pending_appeals_html:
+        one: "<strong>1</strong> áfrýjun í bið"
+        other: "<strong>%{count}</strong> áfrýjanir í bið"
       pending_reports_html:
         one: "<strong>1</strong> kæra í bið"
         other: "<strong>%{count}</strong> kærur í bið"
@@ -401,6 +408,10 @@ is:
       top_languages: Virkustu tungumál
       top_servers: Virkustu netþjónar
       website: Vefsvæði
+    disputes:
+      appeals:
+        empty: Engar áfrýjanir fundust.
+        title: Áfrýjanir
     domain_allows:
       add_new: Setja lén á lista yfir leyft
       created_msg: Það tókst að setja lénið á lista yfir leyft
@@ -713,6 +724,9 @@ is:
       no_status_selected: Engum stöðufærslum var breytt þar sem engar voru valdar
       title: Staða notendaaðganga
       with_media: Með myndefni
+    strikes:
+      appeal_approved: Áfrýjað
+      appeal_pending: Áfrýjun í bið
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
@@ -774,6 +788,9 @@ is:
       empty: Þú hefur ekki enn skilgreint neinar aðvaranaforstillingar.
       title: Sýsla með forstilltar aðvaranir
   admin_mailer:
+    new_appeal:
+      body: "%{target} er að áfrýja ákvörðun umsjónarmanns tekinni af %{action_taken_by} frá %{date}, sem var %{type}. Viðkomandi skrifaði:"
+      subject: "%{target} er að áfrýja ákvörðun umsjónarmanns tekinni á %{instance}"
     new_pending_account:
       body: Nákvæmari upplýsingar um nýja notandaaðganginn eru hér fyrir neðan. Þú getur samþykkt eða hafnað þessari umsókn.
       subject: Nýr notandaaðgangur er kominn til yfirferðar á %{instance} (%{username})
@@ -929,6 +946,18 @@ is:
     directory: Notandasniðamappa
     explanation: Leitaðu að notendum eftir áhugamálum þeirra
     explore_mastodon: Kannaðu %{title}
+  disputes:
+    strikes:
+      appeal: Áfrýja
+      appeal_approved: Þessari refsingu hefur verið áfrýjað með góðum árangri og hún því ekki lengur í gildi
+      appeal_rejected: Áfrýjuninni hefur verið hafnað
+      appeal_submitted_at: Áfrýjun send inn
+      appealed_msg: Áfrýjun þín hefur verið sen dinn. Þú verður látin/n vita ef hún verður samþykkt.
+      appeals:
+        submit: Senda inn áfrýjun
+      your_appeal_approved: Áfrýjun þín hefur verið samþykkt
+      your_appeal_pending: Þú hefur sent inn áfrýjun
+      your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
   domain_validator:
     invalid_domain: er ekki leyfilegt nafn á léni
   errors:
@@ -1490,6 +1519,13 @@ is:
     recovery_instructions_html: Ef þú tapar símanum þínum geturðu notað einn af endurheimtukóðunum hér fyrir neðan til að fá aftur samband við notandaaðganginn þinn. <strong>Geymdu endurheimtukóðana á öruggum stað</strong>. Sem dæmi gætirðu prentað þá út og geymt með öðrum mikilvægum skjölum.
     webauthn: Öryggislyklar
   user_mailer:
+    appeal_approved:
+      action: Farðu inn á notandaaðganginn þinn
+      subject: Áfrýjun þín frá %{date} hefur verið samþykkt
+      title: Áfrýjun samþykkt
+    appeal_rejected:
+      subject: Áfrýjun þinni frá %{date} hefur verið hafnað
+      title: Áfrýjun hafnað
     backup_ready:
       explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum. Það er núna tilbúið til niðurhals!
       subject: Safnskráin þín er tilbúin til niðurhals
@@ -1501,6 +1537,8 @@ is:
       subject: Endilega staðfestu tilraun til innskráningar
       title: Tilraun til innskráningar
     warning:
+      appeal: Ssenda inn áfrýjun
+      appeal_description: Ef þú álítur að um mistök sé að ræða, geturðu sent áfrýjun til umsjónarmanna %{instance}.
       categories:
         spam: Ruslpóstur
         violation: Efnið er á skjön við eftirfarandi leiðbeiningar til notenda
