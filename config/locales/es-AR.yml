@@ -164,6 +164,8 @@ es-AR:
       previous_strikes: Incumplimientos previos
       previous_strikes_description_html:
         one: Esta cuenta tiene <strong>un</strong> incumplimiento.
+        other: Esta cuenta tiene <strong>%{count}</strong> incumplimientos.
+        zero: Esta cuenta está <strong>en buen estado</strong>.
       promote: Promover
       protocol: Protocolo
       public: Pública
@@ -228,6 +230,7 @@ es-AR:
       whitelisted: Permitidas para federación
     action_logs:
       action_types:
+        approve_appeal: Aprobar apelación
         approve_user: Aprobar usuario
         assigned_to_self_report: Asignar denuncia
         change_email_user: Cambiar correo electrónico del usuario
@@ -259,6 +262,7 @@ es-AR:
         enable_user: Habilitar usuario
         memorialize_account: Convertir en cuenta conmemorativa
         promote_user: Promover usuario
+        reject_appeal: Rechazar apelación
         reject_user: Rechazar usuario
         remove_avatar_user: Quitar avatar
         reopen_report: Reabrir denuncia
@@ -277,6 +281,7 @@ es-AR:
         update_domain_block: Actualizar bloque de dominio
         update_status: Actualizar mensaje
       actions:
+        approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
         approve_user_html: "%{name} aprobó el registro de %{target}"
         assigned_to_self_report_html: "%{name} se asignó la denuncia %{target} a sí"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
@@ -308,6 +313,7 @@ es-AR:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
         promote_user_html: "%{name} promovió al usuario %{target}"
+        reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} quitó el avatar de %{target}"
         reopen_report_html: "%{name} reabrió la denuncia %{target}"
@@ -386,6 +392,9 @@ es-AR:
       media_storage: Almacenamiento de medios
       new_users: nuevos usuarios
       opened_reports: denuncias abiertas
+      pending_appeals_html:
+        one: "<strong>1</strong> apelación pendiente"
+        other: "<strong>%{count}</strong> apelaciones pendientes"
       pending_reports_html:
         one: "<strong>1</strong> denuncia pendiente"
         other: "<strong>%{count}</strong> denuncias pendientes"
@@ -403,6 +412,10 @@ es-AR:
       top_languages: Idiomas más activos
       top_servers: Servidores más activos
       website: Sitio web
+    disputes:
+      appeals:
+        empty: No se encontraron apelaciones.
+        title: Apelaciones
     domain_allows:
       add_new: Permitir federación con el dominio
       created_msg: El dominio fue exitosamente permitido para la federación
@@ -721,6 +734,16 @@ es-AR:
       no_status_selected: No se cambió ningún mensaje, ya que ninguno fue seleccionado
       title: Mensajes de la cuenta
       with_media: Con medios
+    strikes:
+      actions:
+        delete_statuses: "%{name} eliminó los mensajes de %{target}"
+        disable: "%{name} congeló la cuenta de %{target}"
+        none: "%{name} envió una advertencia a %{target}"
+        sensitive: "%{name} marcó los medios de %{target} como sensibles"
+        silence: "%{name} limitó la cuenta de %{target}"
+        suspend: "%{name} suspendió la cuenta de %{target}"
+      appeal_approved: Apelado
+      appeal_pending: Apelación pendiente
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecutalas para asegurarte de que la aplicación funciona según lo esperado
@@ -782,6 +805,13 @@ es-AR:
       empty: Aún no ha definido ningún preajuste de advertencia.
       title: Administrar preajustes de advertencia
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: para eliminar sus mensajes
+        disable: para congelar su cuenta
+        none: una advertencia
+        sensitive: para marcar su cuenta como sensible
+        silence: para limitar su cuenta
     new_pending_account:
       body: Abajo están los detalles de la nueva cuenta. Podés aprobar o rechazar esta solicitud.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
