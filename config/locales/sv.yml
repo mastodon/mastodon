@@ -627,6 +627,10 @@ sv:
         title: Media
       title: Kontostatus
       with_media: med media
+    strikes:
+      actions:
+        disable: "%{name} frös %{target}s konto"
+        silence: "%{name} begränsade %{target}s konto"
     system_checks:
       rules_check:
         action: Hantera serverregler
