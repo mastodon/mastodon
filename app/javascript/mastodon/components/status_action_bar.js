@@ -260,6 +260,7 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     if (writtenByMe) {
+      menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.handleReport }); // FIXME: Testing
       // menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
       menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
