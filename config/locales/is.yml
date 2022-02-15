@@ -438,7 +438,7 @@ is:
           suspend: Setja í bið
         title: Ný útilokun á léni
       obfuscate: Gera heiti léns ólæsilegt
-      obfuscate_hint: Gera heiti léns ólæsilegt að hluta í listanum ef auglýsing er virk fyrir lista yfir takmarkanir léna
+      obfuscate_hint: Gera heiti léns ólæsilegt að hluta í listanum ef auglýsing yfir takmarkanir léna er virk
       private_comment: Einkaathugasemd
       private_comment_hint: Athugasemd um þessa útilokun á léni til innanhússnotkunar fyrir umsjónarmenn.
       public_comment: Opinber athugasemd
@@ -450,14 +450,14 @@ is:
       rejecting_media: hafna myndskrám
       rejecting_reports: hafna kærum
       severity:
-        silence: hulið
+        silence: takmarkað
         suspend: í bið
       show:
         affected_accounts:
           one: Einn notandaaðgangur í gagnagrunninum kemur við sögu
           other: "%{count} notendaaðgangar í gagnagrunninum koma við sögu"
         retroactive:
-          silence: Hætta að hylja viðkomandi notendaaðganga frá þessu léni
+          silence: Hætta að takmarka viðkomandi notendaaðganga frá þessu léni
           suspend: Taka úr bið viðkomandi notendaaðganga frá þessu léni
         title: Afturkalla útilokun á léni fyrir %{domain}
         undo: Afturkalla
