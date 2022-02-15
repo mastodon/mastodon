@@ -988,6 +988,9 @@ da:
         sensitive: Markering som sensitiv konto
         silence: Kontobegrænsning
         suspend: Kontosuspendering
+      your_appeal_approved: Din appel er godkendt
+      your_appeal_pending: Du har indgivet en appel
+      your_appeal_rejected: Din appel er afvist
   domain_validator:
     invalid_domain: er ikke et gyldigt domænenavn
   errors:
@@ -1552,6 +1555,13 @@ da:
     recovery_instructions_html: Mister du nogensinde adgang til din mobil, kan du bruge en af gendannelseskoderne nedenfor til at opnå adgang til din konto. <strong>Opbevar gendannelseskoderne et sikkert sted</strong>. Du kan f.eks. udskrive dem, og gemme dem sammen med andre vigtige dokumenter.
     webauthn: Sikkerhedsnøgler
   user_mailer:
+    appeal_approved:
+      action: Gå til din konto
+      subject: Din appel pr. %{date} er godkendt
+      title: Appel godkendt
+    appeal_rejected:
+      subject: Din appel pr. %{date} er afvist
+      title: Appel afvist
     backup_ready:
       explanation: Den anmodede fulde sikkerhedskopi af din Mastodon-konto er nu klar til download!
       subject: Dit arkiv er klar til download
@@ -1563,6 +1573,8 @@ da:
       subject: Bekræft indlogningsforsøg
       title: Indlogningsforsøg
     warning:
+      appeal: Indgiv appel
+      appeal_description: Mener du, at dette er en fejl, kan der indgives en appel til personalet på %{instance}.
       categories:
         spam: Spam
         violation: Indhold overtræder flg. fællesskabsretningslinjer
