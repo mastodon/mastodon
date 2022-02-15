@@ -1560,6 +1560,15 @@ es-AR:
     recovery_instructions_html: Si alguna vez perdés el acceso a tu aplicación de 2FA, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
     webauthn: Llaves de seguridad
   user_mailer:
+    appeal_approved:
+      action: Ir a tu cuenta
+      explanation: La apelación del incumplimiento contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
+      subject: Tu apelación del %{date} fue aprobada
+      title: Apelación aprobada
+    appeal_rejected:
+      explanation: La apelación del incumplimiento contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue rechazada.
+      subject: Tu apelación del %{date} fue rechazada
+      title: Apelación rechazada
     backup_ready:
       explanation: Solicitaste un resguardo completo de tu cuenta de Mastodon. ¡Ya está listo para descargar!
       subject: Tu archivo historial está listo para descargar
@@ -1571,6 +1580,8 @@ es-AR:
       subject: Por favor, confirmá el intento de inicio de sesión
       title: Intento de inicio de sesión
     warning:
+      appeal: Enviar una apelación
+      appeal_description: Si creés que esto es un error, podés enviar una apelación al equipo de %{instance}.
       categories:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad
