@@ -392,6 +392,9 @@ tr:
       media_storage: Medya deposu
       new_users: yeni kullanıcılar
       opened_reports: açılan bildirimler
+      pending_appeals_html:
+        one: "bekleyen itiraz <strong>1</strong>"
+        other: "bekleyen itiraz <strong>%{count}</strong>"
       pending_reports_html:
         one: "<strong>1</strong> bekleyen bildirim"
         other: "<strong>%{count}</strong> bekleyen bildirim"
@@ -1559,8 +1562,12 @@ tr:
   user_mailer:
     appeal_approved:
       action: Hesabınıza gidin
+      explanation: '%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda.'
+      subject: '%{date} tarihli itirazınız kabul edildi'
       title: İtiraz onaylandı
     appeal_rejected:
+      explanation: '%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız reddedildi.'
+      subject: '%{date} tarihli itirazınız reddedildi'
       title: İtiraz reddedildi
     backup_ready:
       explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
@@ -1574,6 +1581,7 @@ tr:
       title: Oturum açma girişimi
     warning:
       appeal: Bir itiraz gönder
+      appeal_description: Bunun bir hata olduğunu düşünüyorsanız, %{instance} sunucusunun personeline bir itiraz gönderebilirsiniz.
       categories:
         spam: İstenmeyen
         violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
