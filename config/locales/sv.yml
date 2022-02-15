@@ -765,6 +765,10 @@ sv:
     directory: Profil-mapp
     explanation: Upptäck användare baserat på deras intressen
     explore_mastodon: Utforska %{title}
+  disputes:
+    strikes:
+      created_at: Daterad
+      status: 'Inlägg #%{id}'
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
@@ -1273,6 +1277,8 @@ sv:
     recovery_instructions_html: Om du någonsin tappar åtkomst till din telefon kan du använda någon av återställningskoderna nedan för att återställa åtkomst till ditt konto. <strong> Håll återställningskoderna säkra </strong>. Du kan till exempel skriva ut dem och lagra dem med andra viktiga dokument.
     webauthn: Säkerhetsnycklar
   user_mailer:
+    appeal_approved:
+      action: Gå till ditt konto
     backup_ready:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
