@@ -64,7 +64,7 @@ hu:
     instance_actor_flash: "Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét\nfelhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni."
     joined: Csatlakozott %{date}
     last_active: utoljára aktív
-    link_verified_on: A link tulajdonosát %{date} -n ellenőriztük
+    link_verified_on: 'A hivatkozás tulajdonosa ekkor volt ellenőrizve: %{date}'
     media: Média
     moved_html: "%{name} ide költözött: %{new_profile_link}"
     network_hidden: Ez az információ nem elérhető
@@ -212,7 +212,7 @@ hu:
       suspend: Felfüggesztés
       suspended: Felfüggesztett
       suspension_irreversible: Ennek a fióknak az adatait visszaállíthatatlanul törölték. Visszavonhatod a fiók felfüggesztését, hogy újra használható legyen, de a régi adatok ettől még nem fognak visszatérni.
-      suspension_reversible_hint_html: A fiókot felfüggesztettük, az adatait %{date}-n teljesen eltávolítjuk. Eddig az időpontig a fiók probléma nélkül visszaállítható. Ha mégis azonnal törölni szeretnéd a fiókot, alább megteheted.
+      suspension_reversible_hint_html: 'A fiókot felfüggesztettük, az adatai ekkor lesznek teljesen eltávolítva: %{date}. Eddig az időpontig a fiók probléma nélkül visszaállítható. Ha mégis azonnal törölni szeretnéd a fiókot, alább megteheted.'
       title: Fiókok
       unblock_email: E-mail-cím tiltásának feloldása
       unblocked_email_msg: A(z) %{username} e-mail-cím tiltása sikeresen feloldva
@@ -813,7 +813,7 @@ hu:
         sensitive: fiók érzékenynek jelöléséről
         silence: fiók korlátozásáról
         suspend: fiók felfüggesztéséről
-      body: "%{target} fellebbezi %{action_taken_by} moderátor %{date} napján hozott %{type} szóló döntését. Ezt írták:"
+      body: "%{target} fellebbezi %{action_taken_by} moderátor %{date}-i, %{type} szóló döntését. Ezt írták:"
       next_steps: Jóváhagyhatod a fellebbezést, hogy semmissé tedd a moderátori döntést, vagy figyelmen kívül hagyhatod.
       subject: "%{username} fellebbez egy moderátori döntést a %{instance} szerveren"
     new_pending_account:
@@ -1380,7 +1380,7 @@ hu:
     disallowed_hashtags:
       one: 'tiltott hashtaget tartalmaz: %{tags}'
       other: 'tiltott hashtageket tartalmaz: %{tags}'
-    edited_at: Szerkesztve %{date}
+    edited_at: 'Szerkesztve: %{date}'
     errors:
       in_reply_not_found: Már nem létezik az a bejegyzés, melyre válaszolni szeretnél.
     open_in_web: Megnyitás a weben
@@ -1562,11 +1562,11 @@ hu:
   user_mailer:
     appeal_approved:
       action: Ugrás a fiókodhoz
-      explanation: A fiókod %{strike_date}-n elkövetett vétsége elleni fellebbezés, melyet %{appeal_date}-n küldtél be, jóváhagyásra került. A fiókod megint makulátlan.
+      explanation: A fiókod %{appeal_date}-i fellebbezése, mely a %{strike_date}-i vétségeddel kapcsolatos, jóváhagyásra került. A fiókod megint makulátlan.
       subject: A %{date}-i fellebbezésedet jóváhagyták
       title: Fellebbezés jóváhagyva
     appeal_rejected:
-      explanation: A fiókod %{strike_date}-n elkövetett vétsége elleni fellebbezés, melyet %{appeal_date}-n küldtél be, elutasításra került.
+      explanation: A %{appeal_date}-i fellebbezésed, amely a fiókod %{strike_date}-i vétségével kapcsolatos, elutasításra került.
       subject: A %{date}-i fellebbezésedet visszautasították
       title: Fellebbezés visszautasítva
     backup_ready:
@@ -1581,7 +1581,7 @@ hu:
       title: Belépési kísérlet
     warning:
       appeal: Fellebbezés beküldése
-      appeal_description: Ha azt gondolod, hogy ez hibás, beküldhetsz egy fellebbezést a %{instance} szerver csapatának.
+      appeal_description: Ha azt gondolod, hogy ez hibás, beküldhetsz egy fellebbezést a(z) %{instance} szerver csapatának.
       categories:
         spam: Kéretlen üzenet
         violation: A tartalom megsérti a következő közösségi irányelveket
@@ -1653,4 +1653,4 @@ hu:
     not_enabled: Még nem engedélyezted a WebAuthn-t
     not_supported: Ez a böngésző nem támogatja a biztonsági kulcsokat
     otp_required: A biztonsági kulcsok használatához először engedélyezd a kétlépcsős azonosítást.
-    registered_on: 'Regisztrált ekkor: %{date}'
+    registered_on: 'Regisztráció ekkor: %{date}'
