@@ -160,6 +160,8 @@ zh-TW:
       previous_strikes: 先前的警示
       previous_strikes_description_html:
         one: 此帳號已有 <strong>1</strong> 次警示。
+        other: 此帳號已有 <strong>%{count}</strong> 次警示。
+        zero: 此帳號<strong>信譽良好</strong>。
       promote: 晉級
       protocol: 協議
       public: 公開
@@ -224,6 +226,7 @@ zh-TW:
       whitelisted: 已加入白名單
     action_logs:
       action_types:
+        approve_appeal: 批准申訴
         approve_user: 批准使用者
         assigned_to_self_report: 指派回報
         change_email_user: 變更使用者的電子信箱地址
@@ -255,6 +258,7 @@ zh-TW:
         enable_user: 啓用帳戶
         memorialize_account: 設定成紀念帳戶
         promote_user: 把用戶升級
+        reject_appeal: 回絕申訴
         reject_user: 回絕使用者
         remove_avatar_user: 刪除大頭貼
         reopen_report: 重開舉報
@@ -273,6 +277,7 @@ zh-TW:
         update_domain_block: 更新封鎖網域
         update_status: 更新狀態
       actions:
+        approve_appeal_html: "%{name} 批准了來自 %{target} 的審核決定上訴"
         approve_user_html: "%{name} 批准了從 %{target} 而來的註冊"
         assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
         change_email_user_html: "%{name} 變更了使用者 %{target} 的電子信箱地址"
@@ -304,6 +309,7 @@ zh-TW:
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳戶"
         promote_user_html: "%{name} 對使用者 %{target} 進行了晉級操作"
+        reject_appeal_html: "%{name} 回絕了來自 %{target} 的審核決定上訴"
         reject_user_html: "%{name} 回絕了從 %{target} 而來的註冊"
         remove_avatar_user_html: "%{name} 移除了 %{target} 的大頭貼"
         reopen_report_html: "%{name} 重新開啟 %{target} 的檢舉"
@@ -382,6 +388,8 @@ zh-TW:
       media_storage: 媒體儲存空間
       new_users: 新使用者
       opened_reports: 已開啟的報告
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> 個待處理申訴"
       pending_reports_html:
         other: "<strong>%{count}</strong> 份待處理報告"
       pending_tags_html:
@@ -396,6 +404,10 @@ zh-TW:
       top_languages: 最活躍語言
       top_servers: 最活躍伺服器
       website: 網站
+    disputes:
+      appeals:
+        empty: 找不到申訴。
+        title: 申訴
     domain_allows:
       add_new: 將網域加入白名單
       created_msg: 網域已成功加入白名單
@@ -710,6 +722,16 @@ zh-TW:
       no_status_selected: 因未選擇嘟文而未變更。
       title: 帳戶嘟文
       with_media: 含有媒體檔案
+    strikes:
+      actions:
+        delete_statuses: "%{name} 刪除了 %{target} 的貼文"
+        disable: "%{name} 凍結了 %{target} 的帳號"
+        none: "%{name} 已對 %{target} 送出警告"
+        sensitive: "%{name} 將 %{target} 的帳號標記為有敏感內容"
+        silence: "%{name} 限制了 %{target} 的帳號"
+        suspend: "%{name} 停權了使用者 %{target}"
+      appeal_approved: 已申訴
+      appeal_pending: 申訴擱置中
     system_checks:
       database_schema_check:
         message_html: 有挂起的数据库迁移，请运行它们以确保应用程序按照预期运行。
@@ -769,6 +791,17 @@ zh-TW:
       empty: 您未曾定義任何預設警告
       title: 管理預設警告
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: 要刪除他們的貼文
+        disable: 要凍結他們的帳號
+        none: 警告
+        sensitive: 要將他們的帳號標記為有敏感內容
+        silence: 要限制他們的帳號
+        suspend: 要停權他們的帳號
+      body: "%{target} 正在就 %{date} 的 %{action_taken_by} 做出的審核決定提出上訴，該決定是 %{type}。他們寫道："
+      next_steps: 您可以批准申訴以還原審核決定，或是忽略它。
+      subject: "%{username} 正在申訴 %{instance} 上的審核決定"
     new_pending_account:
       body: 以下是新帳戶的詳細資訊。您可以同意或拒絕這項申請。
       subject: '%{instance} 上有新帳戶 (%{username}) 待審核'
@@ -924,6 +957,30 @@ zh-TW:
     directory: 個人資料目錄
     explanation: 根據興趣去發現新朋友
     explore_mastodon: 探索%{title}
+  disputes:
+    strikes:
+      action_taken: 採取的行動
+      appeal: 申訴
+      appeal_approved: 此警示已成功申訴，不再有效
+      appeal_rejected: 申訴已被回絕
+      appeal_submitted_at: 申訴已遞交
+      appealed_msg: 您的申訴已遞交。若其被批准，您將會被通知。
+      appeals:
+        submit: 遞交申訴
+      associated_report: 相關報告
+      created_at: 過時的
+      recipient: 收件人
+      status: '貼文編號 %{id}'
+      status_removed: 貼文已從系統中移除
+      title: "%{action} 來自 %{date}"
+      title_actions:
+        delete_statuses: 貼文移除
+        disable: 凍結帳號
+        none: 警告
+        sensitive: 標記為敏感帳號
+        silence: 帳號限制
+        suspend: 帳號停權
+      your_appeal_approved: 您的申訴已被批准
   domain_validator:
     invalid_domain: 並非一個有效域名
   errors:
