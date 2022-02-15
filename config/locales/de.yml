@@ -230,7 +230,7 @@ de:
       whitelisted: Auf der Whitelist
     action_logs:
       action_types:
-        approve_appeal: Beschwerde annehmen
+        approve_appeal: Einspruch annehmen
         approve_user: Benutzer genehmigen
         assigned_to_self_report: Bericht zuweisen
         change_email_user: E-Mail des Benutzers ändern
@@ -262,7 +262,7 @@ de:
         enable_user: Benutzer aktivieren
         memorialize_account: Account deaktivieren
         promote_user: Benutzer befördern
-        reject_appeal: Beschwerde ablehnen
+        reject_appeal: Einspruch ablehnen
         reject_user: Benutzer ablehnen
         remove_avatar_user: Profilbild entfernen
         reopen_report: Meldung wieder eröffnen
@@ -281,7 +281,7 @@ de:
         update_domain_block: Domain Block aktualisieren
         update_status: Beitrag aktualisieren
       actions:
-        approve_appeal_html: "%{name} genehmigte Moderationsbeschlüsse von %{target}"
+        approve_appeal_html: "%{name} genehmigte die Moderationsbeschlüsse von %{target}"
         approve_user_html: "%{name} genehmigte die Anmeldung von %{target}"
         assigned_to_self_report_html: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user_html: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
@@ -313,7 +313,7 @@ de:
         enable_user_html: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
         memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user_html: "%{name} hat %{target} befördert"
-        reject_appeal_html: "%{name} hat Moderationsentscheidungen von %{target} abgelehnt"
+        reject_appeal_html: "%{name} hat die Moderationsbeschlüsse von %{target} abgelehnt"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} hat das Profilbild von %{target} entfernt"
         reopen_report_html: "%{name} hat die Meldung %{target} wieder geöffnet"
@@ -409,6 +409,10 @@ de:
       top_languages: Top aktive Sprachen
       top_servers: Top aktive Server
       website: Website
+    disputes:
+      appeals:
+        empty: Keine Einsprüche gefunden.
+        title: Einsprüche
     domain_allows:
       add_new: Whitelist-Domain
       created_msg: Domain wurde erfolgreich zur Whitelist hinzugefügt
@@ -573,6 +577,7 @@ de:
         resolve_description_html: Es wird keine Maßnahme gegen den gemeldeten Account ergriffen, es wird kein Strike verzeichnet und die Meldung wird geschlossen.
         silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die es bereits verfolgen oder manuell nachschlagen und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
         suspend_description_html: Das Profil und alle seine Inhalte werden unzugänglich werden, bis es schließlich gelöscht wird. Interaktion mit dem Konto wird unmöglich sein. Reversibel innerhalb von 30 Tagen.
+      actions_description_html: Entscheide, welche Maßnahmen zur Lösung dieses Berichts zu ergreifen sind. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an diese gesendet außer wenn die <strong>Spam</strong> Kategorie ausgewählt ist.
       add_to_report: Mehr zur Meldung hinzufügen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
@@ -598,12 +603,14 @@ de:
         placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
         title: Notizen
       notes_description_html: Zeige und hinterlasse Notizen an andere Moderatoren und dein zukünftiges Selbst
+      quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       reopen: Meldung wieder eröffnen
       report: 'Meldung #%{id}'
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
       resolved_msg: Meldung erfolgreich gelöst!
+      skip_to_actions: Zu Aktionen springen
       status: Zustand
       statuses: Gemeldeter Inhalt
       statuses_description_html: Störende Inhalte werden in der Kommunikation mit dem gemeldeten Konto zitiert
@@ -724,6 +731,16 @@ de:
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       title: Beiträge des Kontos
       with_media: Mit Medien
+    strikes:
+      actions:
+        delete_statuses: "%{name} hat die Beiträge von %{target} entfernt"
+        disable: "%{name} hat das Konto von %{target} eingefroren"
+        none: "%{name} hat eine Warnung an %{target} gesendet"
+        sensitive: "%{name} markierte %{target}'s Konto als NSFW"
+        silence: "%{name} hat das Konto von %{target} eingeschränkt"
+        suspend: "%{name} hat das Konto von %{target} verbannt"
+      appeal_approved: Einspruch angenommen
+      appeal_pending: Einspruch ausstehend
     system_checks:
       database_schema_check:
         message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führen Sie sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
@@ -785,6 +802,17 @@ de:
       empty: Du hast noch keine Warnungsvorlagen hinzugefügt.
       title: Warnungsvorlagen verwalten
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: deren Beiträge zu löschen
+        disable: deren Konto einzufrieren
+        none: eine Warnung
+        sensitive: deren Konto als NSFW zu markieren
+        silence: deren Konto zu beschränken
+        suspend: deren Konto zu sperren
+      body: "%{target} hat was gegen eine Moderationsentscheidung von %{action_taken_by} von %{date}, die %{type} war. Die Person schrieb:"
+      next_steps: Du kannst dem Einspruch zustimmen und die Moderationsentscheidung rückgängig machen oder ignorieren.
+      subject: "%{username} hat Einspruch an einer Moderationsentscheidung von %{instance}"
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
       subject: Neues Konto zur Überprüfung auf %{instance} verfügbar (%{username})
@@ -940,6 +968,10 @@ de:
     directory: Profilverzeichnis
     explanation: Entdecke Benutzer basierend auf deren Interessen
     explore_mastodon: Entdecke %{title}
+  disputes:
+    strikes:
+      action_taken: Maßnahme ergriffen
+      appeal: Einspruch
   domain_validator:
     invalid_domain: ist kein gültiger Domain-Name
   errors:
