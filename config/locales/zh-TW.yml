@@ -981,6 +981,8 @@ zh-TW:
         silence: 帳號限制
         suspend: 帳號停權
       your_appeal_approved: 您的申訴已被批准
+      your_appeal_pending: 您已遞交申訴
+      your_appeal_rejected: 您的申訴已被回絕
   domain_validator:
     invalid_domain: 並非一個有效域名
   errors:
@@ -1532,6 +1534,15 @@ zh-TW:
     recovery_instructions_html: 如果你的手機無法使用，你可以使用下列任意一個備用驗證碼來重新獲得帳戶的訪問權。<strong>請妥善保管好你的備用驗證碼</strong>（例如，你可以將它們列印出來，與你的其他重要文件放在一起）。
     webauthn: 安全金鑰
   user_mailer:
+    appeal_approved:
+      action: 到您的帳號
+      explanation: 您在 %{appeal_date} 遞交的針對您帳號的 %{strike_date} 警示的申訴已獲批准。您的帳號再次享有良好的信譽。
+      subject: 您在 %{date} 提出的申訴已獲批准
+      title: 申訴已批准
+    appeal_rejected:
+      explanation: 您在 %{appeal_date} 遞交的針對您帳號的 %{strike_date} 警示的申訴已被回絕。
+      subject: 您在 %{date} 提出的申訴已被回絕
+      title: 申訴被回絕
     backup_ready:
       explanation: 你要求的 Mastodon 帳戶完整備份檔案現已就緒，可供下載!
       subject: 你的備份檔已可供下載
@@ -1543,6 +1554,8 @@ zh-TW:
       subject: 請確認登入嘗試
       title: 登入嘗試
     warning:
+      appeal: 遞交申訴
+      appeal_description: 若您認為這是錯誤，您可以向 %{instance} 的工作人員提出申訴。
       categories:
         spam: 垃圾訊息
         violation: 該內容違反以下社群規章
