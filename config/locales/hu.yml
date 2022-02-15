@@ -165,7 +165,7 @@ hu:
       previous_strikes_description_html:
         one: Ennek a fióknak <strong>egy</strong> vétsége van.
         other: Ennek a fióknak <strong>%{count}</strong> vétsége van.
-        zero: Ennek a fióknak <strong>nincs</strong> vétsége.
+        zero: Ez a fiók <strong>makulátlan</strong>.
       promote: Előléptetés
       protocol: Protokoll
       public: Nyilvános
@@ -313,6 +313,7 @@ hu:
         enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
         memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"
         promote_user_html: "%{name} előléptette %{target} felhasználót"
+        reject_appeal_html: "%{name} visszautasított egy fellebbezést %{target} moderátori döntéséről"
         reject_user_html: "%{name} elutasította %{target} regisztrációját"
         remove_avatar_user_html: "%{name} törölte %{target} profilképét"
         reopen_report_html: "%{name} újranyitotta a %{target} bejelentést"
@@ -391,6 +392,9 @@ hu:
       media_storage: Médiatároló
       new_users: új felhasználó
       opened_reports: megnyitott bejelentés
+      pending_appeals_html:
+        one: "<strong>1</strong> folyamatban lévő fellebbezés"
+        other: "<strong>%{count}</strong> folyamatban lévő fellebbezés"
       pending_reports_html:
         one: "<strong>1</strong> függőben lévő bejelentés"
         other: "<strong>%{count}</strong> függőben lévő bejelentés"
@@ -408,6 +412,10 @@ hu:
       top_languages: Legaktívabb nyelvek
       top_servers: Legaktívabb szerverek
       website: Weboldal
+    disputes:
+      appeals:
+        empty: Nem található fellebbezés.
+        title: Fellebbezések
     domain_allows:
       add_new: Domain engedélyezése
       created_msg: A domain rákerült az engedélyező-listára
@@ -726,6 +734,16 @@ hu:
       no_status_selected: Nem változtattunk meg egy bejegyzést sem, mert semmi sem volt kiválasztva
       title: Fiók bejegyzései
       with_media: Médiával
+    strikes:
+      actions:
+        delete_statuses: "%{name} törölte %{target} bejegyzését"
+        disable: "%{name} befagyasztotta %{target} fiókját"
+        none: "%{name} figyelmeztetést küldött %{target} fióknak"
+        sensitive: "%{name} érzékenynek jelölte %{target} fiókját"
+        silence: "%{name} korlátozta %{target} fiókját"
+        suspend: "%{name} felfüggesztette %{target} fiókját"
+      appeal_approved: Megfellebbezve
+      appeal_pending: Fellebbezés folyamatban
     system_checks:
       database_schema_check:
         message_html: Vannak esedékes adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, hogy az alkalmazás megfelelően működjön
