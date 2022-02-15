@@ -239,16 +239,16 @@ is:
         create_announcement: Búa til tilkynningu
         create_custom_emoji: Búa til sérsniðið tjáningartákn
         create_domain_allow: Búa til lén leyft
-        create_domain_block: Búa til lén bannað
-        create_email_domain_block: Búa til tölvupóstfang bannað
+        create_domain_block: Búa til útilokun léns
+        create_email_domain_block: Búa til útilokun tölvupóstléns
         create_ip_block: Búa til IP-reglu
         create_unavailable_domain: Útbúa lén sem ekki er tiltækt
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
         destroy_domain_allow: Eyða léni leyft
-        destroy_domain_block: Eyða léni bannað
-        destroy_email_domain_block: Eyða tölvupóstfangi bannað
+        destroy_domain_block: Eyða útilokun léns
+        destroy_email_domain_block: Eyða útilokun tölvupóstléns
         destroy_instance: Henda léni
         destroy_ip_block: Eyða IP-reglu
         destroy_status: Eyða færslu
@@ -329,7 +329,7 @@ is:
         unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr bið"
         update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
-        update_domain_block_html: "%{name} uppfærði lénalás fyrir %{target}"
+        update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
       deleted_status: "(eydd færsla)"
       empty: Engar atvikaskrár fundust.
@@ -465,16 +465,16 @@ is:
       view: Skoða útilokun á léni
     email_domain_blocks:
       add_new: Bæta við nýju
-      created_msg: Tókst að bæta póstléni á lista yfir bannað
+      created_msg: Tókst að útiloka póstlén
       delete: Eyða
-      destroyed_msg: Tókst að eyða póstléni af lista yfir bannað
+      destroyed_msg: Tókst að aflétta útilokun af póstléni
       domain: Lén
-      empty: Engin tölvupóstlén eru á bannlista.
+      empty: Engin tölvupóstlén eru útilokuð.
       from_html: frá %{domain}
       new:
         create: Bæta við léni
-        title: Ný færsla á bannlista fyrir tölvupóstföng
-      title: Bannlisti yfir tölvupóstföng
+        title: Útiloka nýtt tölvupóstlén
+      title: Útilokuð tölvupóstlén
     follow_recommendations:
       description_html: "<strong>Að fylgja meðmælum hjálpar nýjum notendum að finna áhugavert efni á einfaldan máta</strong>. Þegar notandi hefur ekki átt í nægilegum samskiptum við aðra til að vera farinn að móta sér skoðanir á hverju hann vill fylgjast með, er mælt með að fylgjast með þessum aðgöngum. Þeir eru endurreiknaðir daglega út frá blöndu þeirra aðganga sem eru með hvað mestri þáttöku í umræðum og mesta fylgjendafjölda út frá hverju tungumáli."
       language: Fyrir tungumálið
@@ -517,7 +517,7 @@ is:
       public_comment: Opinber athugasemd
       purge: Henda
       title: Samband
-      total_blocked_by_us: Útilokaðir af okkur
+      total_blocked_by_us: Útilokað af okkur
       total_followed_by_them: Fylgt af þeim
       total_followed_by_us: Fylgt af okkur
       total_reported: Kærur um þá
