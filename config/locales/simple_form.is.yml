@@ -6,12 +6,12 @@ is:
       account_migration:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast til
       account_warning_preset:
-        text: Þú getur notað sömu skilgreiningar og fyrir tíst, svo sem URL-slóðir, myllumerki og tilvísanir
+        text: Þú getur notað sömu skilgreiningar og fyrir færslur, svo sem URL-slóðir, myllumerki og tilvísanir
         title: Valkvætt. Ekki sýnilegt viðtakandanum
       admin_account_action:
-        include_statuses: Notandinn mun sjá hvaða tíst hafa valdið viðbrögðum umsjónarmanns eða aðvörun kerfisins
+        include_statuses: Notandinn mun sjá hvaða færslur hafa valdið viðbrögðum umsjónarmanns eða aðvörun kerfisins
         send_email_notification: Notandinn mun fá útskýringar á því hvað gerðist með notandaaðganginn hans
-        text_html: Valfrjálst. Þú getur notað sömu skilgreiningar og fyrir tíst. Þú getur <a href="%{path}">bætt inn forstilltum aðvörunum</a> til að spara tíma
+        text_html: Valfrjálst. Þú getur notað sömu skilgreiningar og fyrir færslur. Þú getur <a href="%{path}">bætt inn forstilltum aðvörunum</a> til að spara tíma
         type_html: Veldu hvað eigi að gera við <strong>%{acct}</strong>
         types:
           disable: Koma í veg fyrir að notandinn noti aðganginn sinn, en ekki eyða eða fela efnið þeirra.
@@ -25,7 +25,7 @@ is:
         ends_at: Valfrjálst. Auglýsing verðut tekin úr birtingu á þessum tíma
         scheduled_at: Skildu þetta eftir autt til að birta auglýsinguna samstundis
         starts_at: Valfrjálst. Notað ef auglýsing er bundin við tiltekinn tímaramma
-        text: Þú getur notað sömu skilgreiningar og fyrir tíst. Hafðu í huga það pláss sem auglýsingin mun taka á skjá notandans
+        text: Þú getur notað sömu skilgreiningar og fyrir færslur. Hafðu í huga það pláss sem auglýsingin mun taka á skjá notandans
       appeal:
         text: Þú getur aðeins áfrýjað refsingu einu sinni
       defaults:
@@ -42,11 +42,11 @@ is:
         fields: Þú getur birt allt að 4 atriði sem töflu á notandasniðinu þínu
         header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         inbox_url: Afritaðu slóðina af forsíðu endurvarpans sem þú vilt nota
-        irreversible: Síuð tíst munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
+        irreversible: Síaðar færslur munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
         locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
-        phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í tísti
+        phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í færslu
         scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
         setting_aggregate_reblogs: Ekki sýna nýjar endurbirtingar á tístum sem hafa nýlega verið endurbirt (hefur bara áhrif á ný-mótteknar endurbirtingar)
         setting_default_sensitive: Viðkvæmt myndefni er sjálfgefið falið og er hægt að birta með smelli
