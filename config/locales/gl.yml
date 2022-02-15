@@ -742,6 +742,7 @@ gl:
         silence: "%{name} limitou a conta de %{target}"
         suspend: "%{name} suspendeu a conta de %{target}"
       appeal_approved: Recurrida
+      appeal_pending: Apelación pendente
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
@@ -803,6 +804,17 @@ gl:
       empty: Non definiches os avisos prestablecidos.
       title: Xestionar avisos preestablecidos
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: borrar as súas publicacións
+        disable: pausar a súa conta
+        none: un aviso
+        sensitive: marcar a conta como sensible
+        silence: limitar a súa conta
+        suspend: suspender a súa conta
+      body: "%{target} apelou a decisión de moderación de %{action_taken_by} o %{date}, de tipo %{type}. Escribiu:"
+      next_steps: Podes aprobar o recurso e desfacer a decisión de moderación, ou ignoralo.
+      subject: "%{username} fixo unha apelación á decisión de moderación en %{instance}"
     new_pending_account:
       body: Abaixo están os detalles da conta. Podes aprobar ou rexeitar esta solicitude.
       subject: Hai unha conta nova para revisar en %{instance} (%{username})
@@ -958,6 +970,32 @@ gl:
     directory: Directorio de perfís
     explanation: Descubre usuarias según o teu interese
     explore_mastodon: Explorar %{title}
+  disputes:
+    strikes:
+      action_taken: Acción tomada
+      appeal: Apelar
+      appeal_approved: Esta acción foi recurrida e xa non é válida
+      appeal_rejected: O recurso foi rexeitado
+      appeal_submitted_at: Enviouse a apelación
+      appealed_msg: A túa apelación foi enviada. Se é aprobada recibirás unha notificación.
+      appeals:
+        submit: Enviar apelación
+      associated_report: Denuncia asociada
+      created_at: Data
+      recipient: Entregada a
+      status: 'Publicación #%{id}'
+      status_removed: A publicación xa foi eliminada do sistema
+      title: "%{action} o %{date}"
+      title_actions:
+        delete_statuses: Eliminación da publicación
+        disable: Pausar conta
+        none: Aviso
+        sensitive: Marcar a conta como sensible
+        silence: Limitar a conta
+        suspend: Suspender a conta
+      your_appeal_approved: A apelación foi aprobada
+      your_appeal_pending: Enviaches unha apelación
+      your_appeal_rejected: A apelación foi rexeitada
   domain_validator:
     invalid_domain: non é un nome de dominio válido
   errors:
@@ -1521,6 +1559,15 @@ gl:
     recovery_instructions_html: Se perdeses o acceso ao teu teléfono, podes utilizar un dos códigos de recuperación inferiores para recuperar o acceso á conta. <strong>Garda os códigos nun lugar seguro</strong>. Por exemplo, podes imprimilos e gardalos xunto con outros documentos importantes.
     webauthn: Chaves de seguridade
   user_mailer:
+    appeal_approved:
+      action: Vai á túa conta
+      explanation: A apelación da acción contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi aprobada. A túa conta volve ao estado normal de uso.
+      subject: O recurso presentado o %{date} foi aprobado
+      title: Apelación aprobada
+    appeal_rejected:
+      explanation: A apelación contra a acción tomada contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi rexeitada.
+      subject: A túa apelación do %{date} foi rexeitada
+      title: Apelación rexeitada
     backup_ready:
       explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
       subject: O teu ficheiro xa está preparado para descargar
@@ -1532,6 +1579,7 @@ gl:
       subject: Por favor confirma o intento de conexión
       title: Intento de conexión
     warning:
+      appeal: Enviar unha apelación
       categories:
         spam: Spam
         violation: O contido viola as seguintes normas da comunidade
