@@ -769,6 +769,8 @@ hu:
         disallow_provider: Közzétevő letiltása
         shared_by_over_week:
           one: Egy ember osztotta meg az elmúlt héten
+          other: '%{count} ember osztotta meg az elmúlt héten'
+          zero: Senki sem osztotta meg az elmúlt héten
         title: Felkapott hivatkozások
         usage_comparison: '%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest'
       pending_review: Áttekintésre vár
@@ -795,6 +797,10 @@ hu:
         trending_rank: '%{rank}. felkapott'
         usable: Használható
         usage_comparison: '%{today} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest'
+        used_by_over_week:
+          one: Egy ember használta a múlt héten
+          other: '%{count} ember használta a múlt héten'
+          zero: Senki sem használta a múlt héten
       title: Trendek
     warning_presets:
       add_new: Új hozzáadása
