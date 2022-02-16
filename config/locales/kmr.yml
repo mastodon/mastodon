@@ -391,6 +391,18 @@ kmr:
       media_storage: Bîrdanaka medyayê
       new_users: bikarhênerên nû
       opened_reports: ragihandin hatin vekirin
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> îtîraz li benda nirxandinê ye"
+        other: "<strong>%{count}</strong> îtîraz li benda nirxandinê ne"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> ragihandin benda nirxandinê ye"
+        other: "<strong>%{count}</strong> ragihandin benda nirxandinê ne"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> hashtag benda nirxandinê ye"
+        other: "<strong>%{count}</strong> hashtag benda nirxandinê ne"
+      pending_users_html:
+        one: "<strong>%{count}</strong> bikarhêner benda nirxandinê ye"
+        other: "<strong>%{count}</strong> bikarhêner benda nirxandinê ne"
       resolved_reports: ragihandinên çareserkirî
       software: Nermalav
       sources: Çavkaniyên tomarkirî
@@ -440,6 +452,9 @@ kmr:
         silence: sînorkirî
         suspend: hatiye rawestandin
       show:
+        affected_accounts:
+          one: Yek ajimêr di danegehê de bandor kir
+          other: "%{count} ajimêr di danegehê de bandor kir"
         retroactive:
           silence: Vê navperê de sînorê li ser hemî ajimêran rabike
           suspend: Vê navperê de rawestandinê li ser hemî ajimêran rabike
