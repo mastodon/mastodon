@@ -161,6 +161,11 @@ pt-PT:
       not_subscribed: Não inscrito
       pending: Pendente de revisão
       perform_full_suspension: Fazer suspensão completa
+      previous_strikes: Punições anteriores
+      previous_strikes_description_html:
+        one: Esta conta tem <strong>1</strong> punição.
+        other: Esta conta tem <strong>%{count}</strong> punições.
+        zero: Esta conta está <strong>bem reputada</strong>.
       promote: Promover
       protocol: Protocolo
       public: Público
@@ -225,6 +230,7 @@ pt-PT:
       whitelisted: Está na lista branca
     action_logs:
       action_types:
+        approve_appeal: Aprovar Recurso
         approve_user: Aprovar Utilizador
         assigned_to_self_report: Atribuir Denúncia
         change_email_user: Alterar E-mail do Utilizador
@@ -256,6 +262,7 @@ pt-PT:
         enable_user: Ativar Utilizador
         memorialize_account: Memorizar Conta
         promote_user: Promover Utilizador
+        reject_appeal: Rejeitar Recurso
         reject_user: Rejeitar Utilizador
         remove_avatar_user: Remover Imagem de Perfil
         reopen_report: Reabrir Denúncia
@@ -274,6 +281,7 @@ pt-PT:
         update_domain_block: Atualizar Bloqueio de Domínio
         update_status: Atualizar Estado
       actions:
+        approve_appeal_html: "%{name} aprovou recurso da decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovou a inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} a si próprio"
         change_email_user_html: "%{name} alterou o endereço de e-mail do utilizador %{target}"
@@ -305,6 +313,7 @@ pt-PT:
         enable_user_html: "%{name} ativou o acesso para o utilizador %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o utilizador %{target}"
+        reject_appeal_html: "%{name} rejeitou recurso da decisão de moderação de %{target}"
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report_html: "%{name} reabriu a denúncia %{target}"
@@ -391,6 +400,10 @@ pt-PT:
       top_languages: Principais idiomas activos
       top_servers: Servidores mais activos
       website: Website
+    disputes:
+      appeals:
+        empty: Nenhum recurso encontrado.
+        title: Recursos
     domain_allows:
       add_new: Colocar domínio na lista branca
       created_msg: Domínio foi adicionado à lista branca com sucesso
