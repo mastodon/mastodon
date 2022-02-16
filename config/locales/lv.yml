@@ -396,22 +396,6 @@ lv:
       media_storage: Mediju krātuve
       new_users: jauni lietotāji
       opened_reports: atvērtie ziņojumi
-      pending_appeals_html:
-        zero: "<strong>%{count}</strong> izskatāmo apelāciju"
-        one: "<strong>1</strong> izskatāmā apelācija"
-        other: "<strong>%{count}</strong> izskatāmās apelācijas"
-      pending_reports_html:
-        zero: "<strong>%{count}</strong> ziņojumu"
-        one: "<strong>1</strong> ziņojums gaida"
-        other: "<strong>%{count}</strong>ziņojumi gaida"
-      pending_tags_html:
-        zero: "<strong>%{count}</strong> tēmturu"
-        one: "<strong>1</strong> tēmturis gaida"
-        other: "<strong>%{count}</strong>tēmturi gaida"
-      pending_users_html:
-        zero: "<strong>%{count}</strong> lietotāju"
-        one: "<strong>1</strong> lietotājs gaida"
-        other: "<strong>%{count}</strong>lietotāji gaida"
       resolved_reports: ziņojumi atrisināti
       software: Programmatūra
       sources: Reģistrēšanās avoti
@@ -461,10 +445,6 @@ lv:
         silence: ierobežots
         suspend: apturēts
       show:
-        affected_accounts:
-          zero: "%{count} ietekmētu kontu"
-          one: Ietekmēts viens konts datu bāzē
-          other: "Ietekmēti %{count} konti datu bāzē"
         retroactive:
           silence: Atsaukt ierobežojumus esošajiem ietekmētajiem kontiem no šī domēna
           suspend: Atcelt šī domēna esošo ietekmēto kontu darbības apturēšanu
@@ -516,10 +496,6 @@ lv:
       delivery_error_hint: Ja piegāde nav iespējama %{count} dienas, tā tiks automātiski atzīmēta kā nepiegādājama.
       destroyed_msg: Dati no %{domain} tagad ir gaidīšanas rindā, lai tos drīzumā dzēstu.
       empty: Domēni nav atrasti.
-      known_accounts:
-        zero: "%{count} zināmu kontu"
-        one: "%{count} zināms konts"
-        other: "%{count} zināmi konti"
       moderation:
         all: Visas
         limited: Ierobežotās
@@ -777,10 +753,6 @@ lv:
         allow_provider: Atļaut publicētāju
         disallow: Neatļaut saiti
         disallow_provider: Neatļaut publicētāju
-        shared_by_over_week:
-          zero: Pēdējās nedēļas laikā kopīgoja %{count} persona
-          one: Pēdējās nedēļas laikā kopīgoja viena persona
-          other: Pēdējās nedēļas laikā kopīgoja %{count} personas
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
       pending_review: Gaida pārskatīšanu
@@ -807,10 +779,6 @@ lv:
         trending_rank: 'Populārākie #%{rank}'
         usable: Var tikt lietots
         usage_comparison: Šodien lietots %{today} reizes, salīdzinot ar %{yesterday} vakar
-        used_by_over_week:
-          zero: Pēdējās nedēļas laikā izmantoja %{count} personu
-          one: Pēdējās nedēļas laikā izmantoja viens cilvēks
-          other: Pēdējās nedēļas laikā izmantoja %{count} personas
       title: Tendences
     warning_presets:
       add_new: Pievienot jaunu
