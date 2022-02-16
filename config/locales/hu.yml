@@ -392,18 +392,6 @@ hu:
       media_storage: Médiatároló
       new_users: új felhasználó
       opened_reports: megnyitott bejelentés
-      pending_appeals_html:
-        one: "<strong>1</strong> folyamatban lévő fellebbezés"
-        other: "<strong>%{count}</strong> folyamatban lévő fellebbezés"
-      pending_reports_html:
-        one: "<strong>1</strong> függőben lévő bejelentés"
-        other: "<strong>%{count}</strong> függőben lévő bejelentés"
-      pending_tags_html:
-        one: "<strong>1</strong> függőben lévő hashtag"
-        other: "<strong>%{count}</strong> függőben lévő hashtag"
-      pending_users_html:
-        one: "<strong>1</strong> függőben lévő felhasználó"
-        other: "<strong>%{count}</strong> függőben lévő felhasználó"
       resolved_reports: megoldott bejelentés
       software: Szoftver
       sources: Regisztrációs források
@@ -453,9 +441,6 @@ hu:
         silence: némítva
         suspend: felfüggesztve
       show:
-        affected_accounts:
-          one: Összesen egy fiók érintett az adatbázisban
-          other: "Összesen %{count} fiók érintett az adatbázisban"
         retroactive:
           silence: Minden felhasználó némításának feloldása ezen a domainen
           suspend: Minden felhasználó felfüggesztésének feloldása ezen a domainen
@@ -506,9 +491,6 @@ hu:
       delivery_error_hint: Ha a kézbesítés lehetetlen %{count} napig, automatikusan kézbesíthetetlennek lesz megjelölve.
       destroyed_msg: A(z) %{domain} adatai sorba lettek állítva végleges törléshez.
       empty: Nem található domain.
-      known_accounts:
-        one: "%{count} ismert fiók"
-        other: "%{count} ismert fiók"
       moderation:
         all: Mind
         limited: Korlátozott
@@ -765,9 +747,6 @@ hu:
         allow_provider: Közzétevő engedélyezése
         disallow: Hivatkozás letiltása
         disallow_provider: Közzétevő letiltása
-        shared_by_over_week:
-          one: Egy ember osztotta meg a múlt héten
-          other: '%{count} ember osztotta meg a múlt héten'
         title: Felkapott hivatkozások
         usage_comparison: '%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest'
       pending_review: Áttekintésre vár
@@ -794,9 +773,6 @@ hu:
         trending_rank: '%{rank}. felkapott'
         usable: Használható
         usage_comparison: '%{today} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest'
-        used_by_over_week:
-          one: Egy ember használta a múlt héten
-          other: '%{count} ember használta a múlt héten'
       title: Trendek
     warning_presets:
       add_new: Új hozzáadása
