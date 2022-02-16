@@ -17,13 +17,13 @@ sr-Latn:
       unconfirmed: Pre nastavka morate potvrditi svoj nalog.
     mailer:
       confirmation_instructions:
-        subject: 'Mastodont: Uputstvo za potvrdu korisničkog naloga na instanci %{instance}'
+        subject: 'Uputstvo za potvrdu korisničkog naloga na instanci %{instance}'
       password_change:
-        subject: 'Mastodont: Lozinka promenjena'
+        subject: 'Lozinka promenjena'
       reset_password_instructions:
-        subject: 'Mastodont: Uputstvo za resetovanje lozinke'
+        subject: 'Uputstvo za resetovanje lozinke'
       unlock_instructions:
-        subject: 'Mastodont: Uputstvo za otključavanje korisničkog naloga'
+        subject: 'Uputstvo za otključavanje korisničkog naloga'
     omniauth_callbacks:
       failure: Nismo u mogućnosti autorizovati Vas sa %{kind} nalogom zbog "%{reason}".
       success: Uspešna autorizacija sa %{kind} naloga.

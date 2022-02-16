@@ -25,59 +25,59 @@ ca:
         explanation: Has creat un compte a %{host} amb aquesta adreça de correu electrònic. Estàs a un sol clic de l'activació. Si no fos així, ignora aquest correu electrònic.
         explanation_when_pending: Has sol·licitat una invitació a %{host} amb aquesta adreça de correu electrònic. Un cop confirmis la teva adreça de correu electrònic revisarem la teva sol·licitud. No es pot iniciar la sessió fins llavors. Si la teva sol·licitud és rebutjada les teves dades s’eliminaran, de manera que no s’exigirà cap altra acció. Si no has estat tu qui ha fet aquest sol·licitud si us plau ignora aquest correu electrònic.
         extra_html: Si us plau consulta també <a href="%{terms_path}"> les regles del servidor</a> i <a href="%{policy_path}"> les nostres condicions de servei</a>.
-        subject: 'Mastodon: Instruccions de confirmació %{instance}'
+        subject: 'Instruccions de confirmació %{instance}'
         title: Verifica l'adreça de correu
       email_changed:
         explanation: 'L''adreça de correu del teu compte s''està canviant a:'
         extra: Si no has canviat el teu correu electrònic és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador del servidor si no pots accedir al teu compte.
-        subject: 'Mastodon: s''ha canviat l''adreça electrònica'
+        subject: 's''ha canviat l''adreça electrònica'
         title: Adreça de correu electrònic nova
       password_change:
         explanation: S'ha canviat la contrasenya del teu compte.
         extra: Si no has canviat el teu correu electrònic, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador del servidor si no pots accedir al teu compte.
-        subject: 'Mastodon: Contrasenya canviada'
+        subject: 'Contrasenya canviada'
         title: Contrasenya canviada
       reconfirmation_instructions:
         explanation: Confirma la nova adreça per canviar el teu correu electrònic.
         extra: Si no has iniciat aquest canvi, ignora aquest correu electrònic. L'adreça electrònica del compte de Mastodon no canviarà fins que accedeixis a l'enllaç de dalt.
-        subject: 'Mastodon: confirma l''adreça electrònica per a %{instance}'
+        subject: 'confirma l''adreça electrònica per a %{instance}'
         title: Verifica l'adreça de correu electrònic
       reset_password_instructions:
         action: Canviar contrasenya
         explanation: Has sol·licitat una contrasenya nova per al teu compte.
         extra: Si no ho has sol·licitat, ignora aquest correu electrònic. La teva contrasenya no canviarà fins que accedeixis a l'enllaç de dalt i creis un de nou.
-        subject: 'Mastodon: Instruccions per a reiniciar contrasenya'
+        subject: 'Instruccions per a reiniciar contrasenya'
         title: Contrasenya restablerta
       two_factor_disabled:
         explanation: L´autenticació de dos factors pel teu compte ha estat desactivat. L'inici de sessió és ara possible utilitzant només l'adreça de correu electrònic i la contrasenya.
-        subject: 'Mastodon: autenticació de dos factors desactivada'
+        subject: 'autenticació de dos factors desactivada'
         title: 2FA desactivat
       two_factor_enabled:
         explanation: L'autenticació de dos factors ha estat habilitada pel teu compte. Un token generat per l'aplicació d'emparellat TOTP serà requerit per a iniciar sessió.
-        subject: 'Mastodon: autenticació de dos factors activada'
+        subject: 'autenticació de dos factors activada'
         title: 2FA activat
       two_factor_recovery_codes_changed:
         explanation: Els codis de recuperació anteriors han estat invalidats i s'han generat uns de nous.
-        subject: 'Mastodon: codis de recuperació de Dos factors regenerats'
+        subject: 'codis de recuperació de Dos factors regenerats'
         title: 2FA codis de recuperació canviats
       unlock_instructions:
-        subject: 'Mastodon: Instruccions per a desbloquejar'
+        subject: 'Instruccions per a desbloquejar'
       webauthn_credential:
         added:
           explanation: La següent clau de seguretat s'ha afegit al teu compte
-          subject: 'Mastodon: Nova clau de seguretat'
+          subject: 'Nova clau de seguretat'
           title: S'ha afegit una nova clau de seguretat
         deleted:
           explanation: La següent clau de seguretat s'ha esborrat del teu compte
-          subject: 'Mastodon: clau de seguretat esborrada'
+          subject: 'clau de seguretat esborrada'
           title: Una de les teves claus de seguretat ha estat esborrada
       webauthn_disabled:
         explanation: S'ha desactivat l'autenticació amb claus de seguretat per al teu compte. L'inici de sessió és ara possible emprant només el token generat per l'aplicació TOTP.
-        subject: 'Mastodon: S''ha desactivat l''autenticació amb claus de seguretat'
+        subject: 'S''ha desactivat l''autenticació amb claus de seguretat'
         title: Claus de seguretat desactivades
       webauthn_enabled:
         explanation: S'ha activat l'autenticació amb claus de seguretat. La teva clau de seguretat por ser emprada per a iniciar sessió.
-        subject: 'Mastodon: Autenticació amb clau de seguretat activada'
+        subject: 'Autenticació amb clau de seguretat activada'
         title: Claus de seguretat activades
     omniauth_callbacks:
       failure: No podem autenticar-te des de %{kind} degut a "%{reason}".
