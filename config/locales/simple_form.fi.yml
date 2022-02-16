@@ -26,14 +26,23 @@ fi:
         scheduled_at: Jätä tyhjäksi julkaistaksesi ilmoituksen välittömästi
         starts_at: Valinnainen. Jos ilmoituksesi on sidottu tiettyyn aikaväliin
         text: Voit käyttää julkaisun syntaksia. Muista, kuinka paljon tilaa ilmoitus vie käyttäjän näytöltä
+      appeal:
+        text: Voit valittaa varoituksesta vain kerran
       defaults:
+        autofollow: Henkilöt, jotka rekisteröityvät kutsun kautta, seuraavat sinua automaattisesti
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         bot: Tämä tili suorittaa enimmäkseen automaattisia toimintoja eikä sitä ehkä valvota
+        context: Yksi tai useampi asiayhteys, jossa suodattimen pitäisi olla käytössä
+        current_password: Turvallisuussyistä kirjoita nykyisen tilin salasana
+        current_username: Vahvista kirjoittamalla nykyisen tilin käyttäjätunnus
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
         discoverable: Profiilihakemisto on toinen tapa, jolla tilisi voi tavoittaa laajemman yleisön
+        discoverable_no_directory: Salli tuntemattomien löytää tilisi suositusten ja muiden ominaisuuksien kautta
         email: Sinulle lähetetään vahvistussähköposti
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
+        inbox_url: Kopioi URL-osoite sen viestin etusivulta, jota haluat käyttää
+        irreversible: Suodatetut julkaisut katoavat lopullisesti, vaikka suodatin poistettaisiin myöhemmin
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
         password: Käytä vähintään 8 merkkiä
         setting_display_media_default: Piilota arkaluonteiseksi merkitty media
