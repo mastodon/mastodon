@@ -860,11 +860,11 @@ gl:
     link_to_otp: Escribe o código do segundo factor do móbil ou un código de recuperación
     link_to_webauth: Usa o teu dispositivo de chave de seguridade
     log_in_with: Inicia sesión con
-    login: Conectar
-    logout: Desconectar
+    login: Acceder
+    logout: Pechar sesión
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se queres redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
-    or_log_in_with: ou conectar con
+    or_log_in_with: Ou accede con
     providers:
       cas: CAS
       saml: SAML
@@ -884,7 +884,7 @@ gl:
       pending: A túa solicitude está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a solicitude está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
-    trouble_logging_in: Problemas para conectar?
+    trouble_logging_in: Problemas para acceder?
     use_security_key: Usa chave de seguridade
   authorize_follow:
     already_following: Xa está a seguir esta conta
@@ -1201,9 +1201,9 @@ gl:
           trillion: T
   otp_authentication:
     code_hint: Escribe o código creado pola app de autenticación para confirmar
-    description_html: Se activas a <strong>autenticación con dous factores</strong> utilizando unha app de autenticación, ó conectarte pedirémosche que teñas o móbil á man, para crear o código que precisas para conectarte.
+    description_html: Se activas a <strong>autenticación con dous factores</strong> utilizando unha app de autenticación, ao conectarte pedirémosche que teñas o móbil á man, para crear o código que precisas para acceder.
     enable: Activar
-    instructions_html: "<strong>Escanea este código QR na túa app TOTP no móbil ou Google Authenticator</strong>. A partir de agora, a app creará códigos que terás que escribir cando te conectes."
+    instructions_html: "<strong>Escanea este código QR na túa app TOTP no móbil ou tipo Google Authenticator</strong>. A partir de agora, a app creará códigos que terás que escribir cando te conectes."
     manual_instructions: 'Se non podes escanear o código QR e tes que escribilo á man, aquí tes o código en texto plano:'
     setup: Configurar
     wrong_code: O código escrito non é válido! ¿é correcta a hora no dispositivo e no servidor?
@@ -1550,7 +1550,7 @@ gl:
       title: Leve o ficheiro
     sign_in_token:
       details: 'Detalles sobre o intento:'
-      explanation: 'Detectamos un intento de conectar coa túa conta desde un enderezo IP descoñecido. Se es ti, escribe o código de seguridade inferior na páxina de desafío de conexión:'
+      explanation: 'Detectamos un intento de acceso coa túa conta desde un enderezo IP descoñecido. Se es ti, escribe o código de seguridade inferior na páxina de desafío de conexión:'
       further_actions: 'Se non foches ti, cambia agora o contrasinal e activa o segundo factor de autenticación para a túa conta. Pódelo facer aquí:'
       subject: Por favor confirma o intento de conexión
       title: Intento de conexión
@@ -1565,7 +1565,7 @@ gl:
         disable: Xa non podes usar a túa conta, pero o teu perfil e outros datos permanecen intactos. Podes solicitar unha copia dos teus datos, cambiar os axustes da conta ou eliminar a túa conta.
         sensitive: A partir deste momento, tódolos ficheiros que subiches estarán marcados como sensibles e agochados tras un aviso de contido.
         silence: Aínda podes usar a túa conta pero só as persoas que te siguen poden ver as túas publicacións neste servidor, e podes que foses excluída de varios xeitos de descubrimento. Porén, aínda te poden seguir de xeito manual.
-        suspend: Xa non podes usar a túa conta, o teu perfil e outros datos xa non son accesibles. Aínda podes conectarte para solicitar unha copia dos teus datos no prazo de 30 días previos á eliminación da conta, pero imos reter algúns datos básicos para evitar que poidas evitar a suspensión.
+        suspend: Xa non podes usar a túa conta, o teu perfil e outros datos xa non son accesibles. Aínda podes acceder para solicitar unha copia dos teus datos no prazo de 30 días previos á eliminación da conta. Imos reter algúns datos básicos para evitar que poidas evitar a suspensión.
       get_in_touch: Se consideras que isto é un erro, podes responder a este email para contactar coa administración de %{instance}.
       reason: 'Razón:'
       statuses: 'Publicacións que contradín as normas:'
