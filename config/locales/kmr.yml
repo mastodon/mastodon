@@ -391,18 +391,6 @@ kmr:
       media_storage: Bîrdanaka medyayê
       new_users: bikarhênerên nû
       opened_reports: ragihandin hatin vekirin
-      pending_appeals_html:
-        one: "<strong>1</strong> îtîraz li benda nirxandinê ye"
-        other: "<strong>%{count}</strong> îtîraz li benda nirxandinê ye"
-      pending_reports_html:
-        one: "<strong>1</strong> ragihandin benda nirxandinê"
-        other: "<strong>%{count}</strong> ragihandin benda nirxandinê"
-      pending_tags_html:
-        one: "<strong>1</strong> hashtag benda nirxandinê"
-        other: "<strong>%{count}</strong> hashtag benda nirxandinê"
-      pending_users_html:
-        one: "<strong>1</strong> bikarhêner benda nirxandinê"
-        other: "<strong>%{count}</strong> bikarhêner benda nirxandinê"
       resolved_reports: ragihandinên çareserkirî
       software: Nermalav
       sources: Çavkaniyên tomarkirî
@@ -452,9 +440,6 @@ kmr:
         silence: sînorkirî
         suspend: hatiye rawestandin
       show:
-        affected_accounts:
-          one: Yek ajimêr di danegehê de bandor kir
-          other: "%{count} ajimêr di danegehê de bandor kir"
         retroactive:
           silence: Vê navperê de sînorê li ser hemî ajimêran rabike
           suspend: Vê navperê de rawestandinê li ser hemî ajimêran rabike
@@ -505,9 +490,6 @@ kmr:
       delivery_error_hint: Ger gehandin %{count} rojan ne pêkan be ewê wek bixweber wê nayê gehandin were nîşandan.
       destroyed_msg: Daneyên %{domain} niha ji bo jêbirina nêzîk di rêzê de ne.
       empty: Tu navper nehatine dîtin.
-      known_accounts:
-        one: "%{count} ajimêra naskirî"
-        other: "%{count} ajimêrên naskirî"
       moderation:
         all: Hemû
         limited: Sînorkirî
@@ -764,9 +746,6 @@ kmr:
         allow_provider: Mafê bide weşanger
         disallow: Mafê nede girêdanê
         disallow_provider: Mafê nede weşanger
-        shared_by_over_week:
-          one: Di nava hefteya dawî de ji aliyê keskekî ve hate parvekirin
-          other: Di nava hefteya dawî de ji aliyê %{count} ve hate parvekirin
         title: Girêdanên di rojevê de
         usage_comparison: Îro %{today} car hate parvekirin, li gorî %{yesterday} duh
       pending_review: Li benda nirxandinê ye
@@ -793,9 +772,6 @@ kmr:
         trending_rank: 'Rojev #%{rank}'
         usable: Dikare were bikaranîn
         usage_comparison: '%{today} car îro hate bikaranîn, li gorî %{yesterday} duh'
-        used_by_over_week:
-          one: Di nava hefteya dawî de ji aliyê kesekî ve hatiye bikaranîn
-          other: Di nava hefteya dawî de ji %{count} kes ve hatiye bikaranîn
       title: Rojev
     warning_presets:
       add_new: Yeka nû tevlî bike
