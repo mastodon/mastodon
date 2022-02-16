@@ -383,15 +383,6 @@ fi:
       media_storage: Median tallennustila
       new_users: uudet käyttäjät
       opened_reports: raportit avattu
-      pending_reports_html:
-        one: "<strong>1</strong> odottava raportti"
-        other: "<strong>%{count}</strong> odottavat raportit"
-      pending_tags_html:
-        one: "<strong>1</strong> odottava hashtagi"
-        other: "<strong>%{count}</strong> odottavat hashtagit"
-      pending_users_html:
-        one: "<strong>1</strong> odottava käyttäjä"
-        other: "<strong>%{count}</strong> odottavat käyttäjät"
       resolved_reports: raportit ratkaistu
       software: Ohjelmisto
       sources: Kirjautumisen lähteet
@@ -437,9 +428,6 @@ fi:
         silence: hiljennetty
         suspend: jäähyllä
       show:
-        affected_accounts:
-          one: Vaikuttaa yhteen tiliin tietokannassa
-          other: "Vaikuttaa %{count} tiliin tietokannassa"
         retroactive:
           silence: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien hiljennys
           suspend: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien jäähy
@@ -723,9 +711,6 @@ fi:
         allow_provider: Salli julkaisija
         disallow: Hylkää linkki
         disallow_provider: Estä julkaisija
-        shared_by_over_week:
-          one: Yhden henkilön jakama viime viikon aikana
-          other: '%{count} henkilön jakama viime viikon aikana'
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
       pending_review: Odottaa tarkistusta
@@ -752,9 +737,6 @@ fi:
         trending_rank: 'Nousussa #%{rank}'
         usable: Voidaan käyttää
         usage_comparison: Käytetty %{today} kertaa tänään, verrattuna %{yesterday} eiliseen
-        used_by_over_week:
-          one: Yhden henkilön käyttämä viime viikon aikana
-          other: '%{count} henkilön käyttämä viime viikon aikana'
       title: Trendit
     warning_presets:
       add_new: Lisää uusi
