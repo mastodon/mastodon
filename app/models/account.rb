@@ -271,7 +271,7 @@ class Account < ApplicationRecord
   end
 
   def previous_strikes_count
-    strikes.where(overruled_at: nil).count
+    strikes.where(overruled_at: nil).select(:report_id).distinct.count
   end
 
   def keypair
