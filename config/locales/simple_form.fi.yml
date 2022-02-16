@@ -62,6 +62,8 @@ fi:
         whole_word: Kun avainsana tai lause on vain aakkosnumeerinen, se otetaan käyttöön, jos se vastaa koko sanaa
       domain_allow:
         domain: Tämä verkkotunnus voi noutaa tietoja tältä palvelimelta ja sieltä saapuvat tiedot käsitellään ja tallennetaan
+      email_domain_block:
+        domain: Tämä voi olla se verkkotunnus, joka näkyy sähköpostiosoitteessa, MX-tietue, johon verkkotunnus ratkaistaan tai IP-osoitteessa, johon MX tietue päättää. Ne tarkistetaan käyttäjän kirjautumisen yhteydessä ja kirjautuminen hylätään.
       imports:
         data: Toisesta Mastodon-instanssista tuotu CSV-tiedosto
       sessions:
