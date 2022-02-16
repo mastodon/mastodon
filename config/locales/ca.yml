@@ -392,6 +392,18 @@ ca:
       media_storage: Mèdia
       new_users: usuaris nous
       opened_reports: informes oberts
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apel·lació pendent"
+        other: "<strong>%{count}</strong> apel·lacions pendents"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> informe pendent"
+        other: "<strong>%{count}</strong> informes pendents"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> etiqueta pendent"
+        other: "<strong>%{count}</strong> etiquetes pendents"
+      pending_users_html:
+        one: "<strong>%{count}</strong> usuari pendent"
+        other: "<strong>%{count}</strong> usuaris pendents"
       resolved_reports: informes resolts
       software: Programari
       sources: Fonts de registre
@@ -441,6 +453,10 @@ ca:
         silence: silenciat
         suspend: suspès
       show:
+        affected_accounts:
+          one: Un compte afectat en la base de dades
+          other: "%{count} comptes afectats en la base de dades"
+          zero: Cap compte afectat en la base de dades
         retroactive:
           silence: Desfés el silenci a tots els comptes existents d'aquest domini
           suspend: Desfés la suspensió de tots els comptes d'aquest domini
@@ -491,6 +507,10 @@ ca:
       delivery_error_hint: Si el lliurament no és possible per %{count} dies, serà automàticament marcat com a no lliurable.
       destroyed_msg: Les dades de %{domain} ara son en la cua per a esborrat imminent.
       empty: No s'han trobat dominis.
+      known_accounts:
+        one: "%{count} compte conegut"
+        other: "%{count} comptes coneguts"
+        zero: Cap compte conegut
       moderation:
         all: Totes
         limited: Limitades
@@ -747,6 +767,10 @@ ca:
         allow_provider: Permet mitjà
         disallow: No permetre l'enllaç
         disallow_provider: No permetre el mitjà
+        shared_by_over_week:
+          one: Compartit per un usuari en la darrera setmana
+          other: Compartit per %{count} usuaris en la darrera setmana
+          zero: Compartit per ningú en la darrera setmana
         title: Enllaços en tendència
         usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
       pending_review: Revisió pendent
@@ -773,6 +797,10 @@ ca:
         trending_rank: 'Tendència #%{rank}'
         usable: Pot ser emprat
         usage_comparison: Usat %{today} vegades avui, comparat amb %{yesterday} d'ahir
+        used_by_over_week:
+          one: Emprat per un usuari en la darrera setmana
+          other: Emprat per %{count} usuaris en la darrera setmana
+          zero: Emprat per ningú en la darrera setmana
       title: Tendència
     warning_presets:
       add_new: Afegir-ne un de nou
