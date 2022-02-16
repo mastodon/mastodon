@@ -33,7 +33,7 @@ class AccountWarning < ApplicationRecord
 
   scope :latest, -> { order(id: :desc) }
   scope :custom, -> { where.not(text: '') }
-  scope :active, -> { where(overruled_at: nil).or(where('account_warnings.overruled_at >= ?', 30.days.ago)) }
+  scope :recent, -> { where('account_warnings.created_at >= ?', 3.months.ago) }
 
   def statuses
     Status.with_discarded.where(id: status_ids || [])
