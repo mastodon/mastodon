@@ -232,6 +232,7 @@ uk:
       whitelisted: У білому списку
     action_logs:
       action_types:
+        approve_appeal: Затвердити апеляцію
         approve_user: Затвердити користувачів
         assigned_to_self_report: Призначити звіт
         change_email_user: Змінити електронну пошту для користувача
@@ -263,6 +264,7 @@ uk:
         enable_user: Активувати користувача
         memorialize_account: Зробити обліковий запис меморіалом
         promote_user: Підвищити користувача
+        reject_appeal: Відхилити апеляцію
         reject_user: Відхилити користувача
         remove_avatar_user: Видалити аватар
         reopen_report: Перевідкрити скаргу
@@ -398,6 +400,10 @@ uk:
       top_languages: Найактивніші мови
       top_servers: Найактивніші сервери
       website: Вебсайт
+    disputes:
+      appeals:
+        empty: Апеляцій не знайдено.
+        title: Апеляції
     domain_allows:
       add_new: Додати домен до білого списку
       created_msg: Домен було успішно додано до білого списку
@@ -435,6 +441,10 @@ uk:
         silence: заглушені
         suspend: призупинені
       show:
+        affected_accounts:
+          one: Впливає на один обліковий запис у базі даних
+          other: "Впливає на %{count} облікових записів у базі даних"
+          zero: Не впливає на жоден обліковий запис у базі даних
         retroactive:
           silence: Зняти глушення з усіх існуючих заглушених облікових записів цього домену
           suspend: Розморозити існуючі заморожені облікові записи з цього домену
@@ -487,6 +497,10 @@ uk:
       delivery_error_hint: Якщо доставляння неможливе впродовж %{count} днів, воно автоматично позначиться недоставленим.
       destroyed_msg: Дані з %{domain} тепер у черзі на видалення.
       empty: Доменів не знайдено.
+      known_accounts:
+        one: "%{count} відомий обліковий запис"
+        other: "%{count} відомих облікових записів"
+        zero: Немає відомих облікових записів
       moderation:
         all: Усі
         limited: Обмежені
@@ -710,6 +724,9 @@ uk:
       no_status_selected: Жодного статуса не було змінено, оскільки жодного не було вибрано
       title: Статуси облікових записів
       with_media: З медіа
+    strikes:
+      actions:
+        delete_statuses: "%{name} видаляє допис від %{target}"
     system_checks:
       database_schema_check:
         message_html: Існують відкладені перенесення бази даних. Запустіть їх, щоб забезпечити очікувану роботу програми
