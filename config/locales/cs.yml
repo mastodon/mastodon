@@ -388,21 +388,6 @@ cs:
       media_storage: Úložiště médií
       new_users: noví uživatelé
       opened_reports: podáno hlášení
-      pending_reports_html:
-        one: "<strong>1</strong> čekající hlášení"
-        few: "<strong>%{count}</strong> čekající hlášení"
-        many: "<strong>%{count}</strong> čekajících hlášení"
-        other: "<strong>%{count}</strong> čekajících hlášení"
-      pending_tags_html:
-        one: "<strong>1</strong> čekající hashtag"
-        few: "<strong>%{count}</strong> čekající hashtagy"
-        many: "<strong>%{count}</strong> čekajících hashtagů"
-        other: "<strong>%{count}</strong> čekajících hashtagů"
-      pending_users_html:
-        one: "<strong>1</strong> čekající uživatel"
-        few: "<strong>%{count}</strong> čekající uživatelé"
-        many: "<strong>%{count}</strong> čekajících uživatelů"
-        other: "<strong>%{count}</strong> čekajících uživatelů"
       resolved_reports: vyřešeno hlášení
       software: Software
       sources: Zdroje registrací
@@ -448,11 +433,6 @@ cs:
         silence: omezena
         suspend: pozastaveno
       show:
-        affected_accounts:
-          one: Jeden účet v databázi byl ovlivněn
-          few: "%{count} účty v databázi byly ovlivněny"
-          many: "%{count} účtů v databázi bylo ovlivněno"
-          other: "%{count} účtů v databázi bylo ovlivněno"
         retroactive:
           silence: Vzít zpět omezení existujících dotčených účtů z této domény
           suspend: Zrušit pozastavení existujících ovlivněných účtů z této domény
@@ -505,11 +485,6 @@ cs:
       delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
       destroyed_msg: Data z %{domain} nyní čekají na smazání.
       empty: Nebyly nalezeny žádné domény.
-      known_accounts:
-        one: "%{count} známý účet"
-        few: "%{count} známé účty"
-        many: "%{count} známých účtů"
-        other: "%{count} známých účtů"
       moderation:
         all: Všechny
         limited: Omezený
@@ -732,11 +707,6 @@ cs:
         allow_provider: Povolit vydavatele
         disallow: Zakázat odkaz
         disallow_provider: Zakázat vydavatele
-        shared_by_over_week:
-          one: Sdílený jedním člověkem za poslední týden
-          few: Sdílený %{count} lidmi za poslední týden
-          many: Sdílený %{count} lidmi za poslední týden
-          other: Sdílený %{count} lidmi za poslední týden
         title: Populární odkazy
         usage_comparison: Za dnešek %{today} sdílení, oproti %{yesterday} včera
       pending_review: Čeká na posouzení
@@ -763,11 +733,6 @@ cs:
         trending_rank: 'Populární #%{rank}'
         usable: Může být používán
         usage_comparison: Za dnešek %{today} použití, oproti %{yesterday} včera
-        used_by_over_week:
-          one: Použit jedním člověkem za poslední týden
-          few: Použit %{count} lidmi za poslední týden
-          many: Použit %{count} lidmi za poslední týden
-          other: Použit %{count} lidmi za poslední týden
       title: Trendy
     warning_presets:
       add_new: Přidat nové
