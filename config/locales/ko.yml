@@ -722,10 +722,13 @@ ko:
     strikes:
       actions:
         delete_statuses: "%{name} 님이 %{target}의 게시물을 지웠습니다"
-        disable: "%{name} 님이 %{target}의 계정을 냉동시켰습니다"
+        disable: "%{name} 님이 %{target}의 계정을 동결시켰습니다"
         none: "%{name} 님이 %{target}에게 경고를 보냈습니다"
         sensitive: "%{name} 님이 %{target}의 계정을 민감함으로 표시했습니다"
         silence: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
+        suspend: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
+      appeal_approved: 이의제기됨
+      appeal_pending: 이의제기 대기중
     system_checks:
       database_schema_check:
         message_html: 데이터베이스 마이그레이션이 대기중입니다. 응용프로그램이 예상한대로 동작할 수 있도록 마이그레이션을 실행해 주세요
@@ -785,6 +788,9 @@ ko:
       empty: 아직 어떤 경고 틀도 정의되지 않았습니다.
       title: 경고 틀 관리
   admin_mailer:
+    new_appeal:
+      actions:
+        none: 경고
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
       subject: '%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다'
@@ -943,6 +949,18 @@ ko:
   disputes:
     strikes:
       appeal: 이의제기
+      appeal_submitted_at: 이의제기 접수됨
+      appealed_msg: 당신의 이의제기가 접수되었습니다. 만약 승인된다면, 알림을 받게 될 것입니다.
+      appeals:
+        submit: 이의 제출
+      associated_report: 관련된 신고
+      status: '게시물 #%{id}'
+      title_actions:
+        delete_statuses: 게시물 삭제
+        disable: 계정 동결
+        none: 경고
+        sensitive: 계정을 민감함으로 표시
+        silence: 계정의 제한
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
