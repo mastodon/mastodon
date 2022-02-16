@@ -392,6 +392,18 @@ hu:
       media_storage: Médiatároló
       new_users: új felhasználó
       opened_reports: megnyitott bejelentés
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> fellebbezés folyamatban"
+        other: "<strong>%{count}</strong> fellebbezés folyamatban"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> bejelentés folyamatban"
+        other: "<strong>%{count}</strong> bejelentés folyamatban"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> hashtag jóváhagyásra vár"
+        other: "<strong>%{count}</strong> hashtag jóváhagyásra vár"
+      pending_users_html:
+        one: "<strong>%{count}</strong> függő fiók"
+        other: "<strong>%{count}</strong> függő fiók"
       resolved_reports: megoldott bejelentés
       software: Szoftver
       sources: Regisztrációs források
@@ -441,6 +453,10 @@ hu:
         silence: némítva
         suspend: felfüggesztve
       show:
+        affected_accounts:
+          one: Egy fiókot érintett az adatbázisban
+          other: "%{count} fiókot érintett az adatbázisban"
+          zero: Nem érintett fiókot az adatbázisban
         retroactive:
           silence: Minden felhasználó némításának feloldása ezen a domainen
           suspend: Minden felhasználó felfüggesztésének feloldása ezen a domainen
@@ -491,6 +507,10 @@ hu:
       delivery_error_hint: Ha a kézbesítés lehetetlen %{count} napig, automatikusan kézbesíthetetlennek lesz megjelölve.
       destroyed_msg: A(z) %{domain} adatai sorba lettek állítva végleges törléshez.
       empty: Nem található domain.
+      known_accounts:
+        one: "%{count} ismert fiók"
+        other: "%{count} ismert fiók"
+        zero: Nincs ismert fiók
       moderation:
         all: Mind
         limited: Korlátozott
@@ -747,6 +767,8 @@ hu:
         allow_provider: Közzétevő engedélyezése
         disallow: Hivatkozás letiltása
         disallow_provider: Közzétevő letiltása
+        shared_by_over_week:
+          one: Egy ember osztotta meg az elmúlt héten
         title: Felkapott hivatkozások
         usage_comparison: '%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest'
       pending_review: Áttekintésre vár
