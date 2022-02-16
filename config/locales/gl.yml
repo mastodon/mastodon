@@ -391,18 +391,6 @@ gl:
       media_storage: Almacenaxe multimedia
       new_users: novas usuarias
       opened_reports: denuncias abertas
-      pending_appeals_html:
-        one: "<strong>1</strong> apelación pendente"
-        other: "<strong>%{count}</strong> apelacións pendentes"
-      pending_reports_html:
-        one: "<strong>1</strong> denuncia pendente"
-        other: "<strong>%{count}</strong> denuncias pendentes"
-      pending_tags_html:
-        one: "<strong>1</strong> cancelo pendente"
-        other: "<strong>%{count}</strong> cancelos pendentes"
-      pending_users_html:
-        one: "<strong>1</strong> usuaria pendente"
-        other: "<strong>%{count}</strong> usuarias pendentes"
       resolved_reports: denuncias resoltas
       software: Software
       sources: Orixes de rexistro
@@ -452,9 +440,6 @@ gl:
         silence: limitado
         suspend: suspendido
       show:
-        affected_accounts:
-          one: Unha conta na base de datos afectada
-          other: "%{count} contas na base de datos afectadas"
         retroactive:
           silence: Deixar de silenciar todas as contas existentes deste dominio
           suspend: Desbotar suspenso de todas as contas existentes deste dominio
@@ -505,9 +490,6 @@ gl:
       delivery_error_hint: Se non é posible a entrega durante %{count} días, será automáticamente marcado como non entregable.
       destroyed_msg: Os datos desde %{domain} están na cola para o borrado inminente.
       empty: Non se atopan dominios.
-      known_accounts:
-        one: "%{count} conta coñecida"
-        other: "%{count} contas coñecidas"
       moderation:
         all: Todo
         limited: Limitado
@@ -764,9 +746,6 @@ gl:
         allow_provider: Permitir orixe
         disallow: Denegar ligazón
         disallow_provider: Denegar orixe
-        shared_by_over_week:
-          one: Compartido por unha persoa na última semana
-          other: Compartido por %{count} persoas na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
       pending_review: Revisión pendente
@@ -793,9 +772,6 @@ gl:
         trending_rank: 'En voga #%{rank}'
         usable: Pode ser usado
         usage_comparison: Utilizado %{today} veces hoxe, comparado coas %{yesterday} de onte
-        used_by_over_week:
-          one: Utilizado por unha persoa na última semana
-          other: Utilizado por %{count} persoas na última semana
       title: Tendencias
     warning_presets:
       add_new: Engadir novo
