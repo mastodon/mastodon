@@ -390,21 +390,6 @@ gd:
       media_storage: Stòras mheadhanan
       new_users: cleachdaichean ùra
       opened_reports: gearanan air am fosgladh
-      pending_reports_html:
-        one: "<strong>%{count}</strong> lèirmheas ri dhèiligeadh"
-        two: "<strong>%{count}</strong> lèirmheas ri dhèiligeadh"
-        few: "<strong>%{count}</strong> lèirmheasan ri dhèiligeadh"
-        other: "<strong>%{count}</strong> lèirmheas ri dhèiligeadh"
-      pending_tags_html:
-        one: "<strong>%{count}</strong> taga hais ri dhèiligeadh"
-        two: "<strong>%{count}</strong> thaga hais ri dhèiligeadh"
-        few: "<strong>%{count}</strong> tagaichean hais ri dhèiligeadh"
-        other: "<strong>%{count}</strong> taga hais ri dhèiligeadh"
-      pending_users_html:
-        one: "<strong>%{count}</strong> chleachdaiche ri dhèiligeadh"
-        two: "<strong>%{count}</strong> chleachdaiche ri dhèiligeadh"
-        few: "<strong>%{count}</strong> cleachdaichean ri dhèiligeadh"
-        other: "<strong>%{count}</strong> cleachdaiche ri dhèiligeadh"
       resolved_reports: gearanan air am fuasgladh
       software: Bathar-bog
       sources: Tùsan clàraidh
@@ -450,11 +435,6 @@ gd:
         silence: cuingichte
         suspend: à rèim
       show:
-        affected_accounts:
-          one: Bheir seo buaidh air %{count} chunntas san stòr-dàta
-          two: "Bheir seo buaidh air %{count} chunntas san stòr-dàta"
-          few: "Bheir seo buaidh air %{count} cunntasan san stòr-dàta"
-          other: "Bheir seo buaidh air %{count} cunntas san stòr-dàta"
         retroactive:
           silence: Dì-chuingich na cunntasan a tha ann on àrainn seo ’s air a bheil buaidh
           suspend: Cuir na cunntasan a tha ann on àrainn seo ’s air a bheil buaidh ann an rèim a-rithist
@@ -507,11 +487,6 @@ gd:
       delivery_error_hint: Mura gabh a lìbhrigeadh fad %{count} là(ithean), thèid comharra a chur ris gu fèin-obrachail a dh’innseas nach gabh a lìbhrigeadh.
       destroyed_msg: Tha an dàta o %{domain} air ciutha an sguabaidh às aithghearr.
       empty: Cha deach àrainn a lorg.
-      known_accounts:
-        one: "%{count} cunntas as aithne dhuinn"
-        two: "%{count} chunntas as aithne dhuinn"
-        few: "%{count} cunntasan as aithne dhuinn"
-        other: "%{count} cunntas as aithne dhuinn"
       moderation:
         all: Na h-uile
         limited: Cuingichte
@@ -754,11 +729,6 @@ gd:
         allow_provider: Ceadaich am foillsichear
         disallow: Na ceadaich an ceangal
         disallow_provider: Na ceadaich am foillsichear
-        shared_by_over_week:
-          one: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
-          two: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
-          few: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
-          other: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
         title: Ceanglaichean a’ treandadh
         usage_comparison: Chaidh a cho-roinneadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
       pending_review: A’ feitheamh air lèirmheas
@@ -785,11 +755,6 @@ gd:
         trending_rank: 'A’ treandadh #%{rank}'
         usable: Gabhaidh a chleachdadh
         usage_comparison: Chaidh a chleachdadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
-        used_by_over_week:
-          one: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
-          two: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
-          few: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
-          other: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
       title: Treandaichean
     warning_presets:
       add_new: Cuir fear ùr ris
