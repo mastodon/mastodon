@@ -390,21 +390,6 @@ ru:
       media_storage: Медиа файлы
       new_users: новые пользователи
       opened_reports: жалоб открыто
-      pending_reports_html:
-        one: "<strong>%{count}</strong> жалоба к рассмотрению"
-        few: "<strong>%{count}</strong> жалобы к рассмотрению"
-        many: "<strong>%{count}</strong> жалоб к рассмотрению"
-        other: "<strong>%{count}</strong> жалобы к рассмотрению"
-      pending_tags_html:
-        one: "<strong>%{count}</strong> хэштег к рассмотрению"
-        few: "<strong>%{count}</strong> хэштега к рассмотрению"
-        many: "<strong>%{count}</strong> хэштегов к рассмотрению"
-        other: "<strong>%{count}</strong> хэштега к рассмотрению"
-      pending_users_html:
-        one: "<strong>%{count}</strong> регистрация к рассмотрению"
-        few: "<strong>%{count}</strong> регистрации к рассмотрению"
-        many: "<strong>%{count}</strong> регистраций к рассмотрению"
-        other: "<strong>%{count}</strong> регистрации к рассмотрению"
       resolved_reports: жалоб решено
       software: Программное обеспечение
       sources: Источники регистрации
@@ -450,11 +435,6 @@ ru:
         silence: скрывается
         suspend: заблокирован
       show:
-        affected_accounts:
-          one: Влияет на одну учётную запись в базе данных
-          few: "%{count} учетных записей в базе данных затронуты"
-          many: "%{count} учетных записей в базе данных затронуты"
-          other: "%{count} учетных записей в базе данных затронуты"
         retroactive:
           silence: Убрать скрытие постов учётных записей с этого узла
           suspend: Снять блокировку со всех существующих учётных записей этого домена
@@ -507,11 +487,6 @@ ru:
       delivery_error_hint: Если доставка доставка не удастся в течение %{count} дней, он будет автоматически отмечен недоступным для доставки.
       destroyed_msg: Данные для домена %{domain} поставлены в очередь на удаление.
       empty: Домены не найдены.
-      known_accounts:
-        one: "%{count} известная учётная запись"
-        few: "%{count} известные учётные записи"
-        many: "%{count} известных учётных записей"
-        other: "%{count} известных учётных записей"
       moderation:
         all: Все
         limited: Ограниченные
@@ -755,11 +730,6 @@ ru:
         allow: Разрешить ссылку
         allow_provider: Разрешить издание
         disallow_provider: Отклонить издание
-        shared_by_over_week:
-          one: '%{count} человек поделился за последнюю неделю'
-          few: '%{count} человека поделились за последнюю неделю'
-          many: '%{count} человек поделились за последнюю неделю'
-          other: '%{count} человека поделилось за последнюю неделю'
         title: Актуальные ссылки
       pending_review: Ожидает рассмотрения
       preview_card_providers:
