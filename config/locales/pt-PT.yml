@@ -786,10 +786,12 @@ pt-PT:
         delete_statuses: para elimintar as suas publicações
         disable: para congelar a sua conta
         none: uma advertência
-        sensitive: para marcar a sua conta como sensível
-        silence: para limitar a sua conta
-        suspend: para suspender a sua conta
+        sensitive: marcação da sua conta como sensível
+        silence: limitação da sua conta
+        suspend: suspensão da sua conta
       body: "%{target} está a recorrer de uma decisão de moderação de %{action_taken_by} a %{date}, que consistiu em %{type}. Escreveu:"
+      next_steps: Pode aprovar o recurso para reverter a decisão de moderação, ou ignorá-lo.
+      subject: "%{username} está a recorrer da decisão de moderação em %{instance}"
     new_pending_account:
       body: Em baixo, estão os detalhes da nova conta. Pode aprovar ou rejeitar esta inscrição.
       subject: Nova conta para revisão em %{instance} (%{username})
@@ -945,6 +947,22 @@ pt-PT:
     directory: Dirétorio de perfil
     explanation: Descobre utilizadores com base nos seus interesses
     explore_mastodon: Explorar %{title}
+  disputes:
+    strikes:
+      action_taken: Ação tomada
+      appeal: Recorrer
+      appeal_approved: Esta punição foi alvo de recurso, bem sucedido, pelo que já não é válida
+      appeal_rejected: O recurso foi rejeitado
+      appeal_submitted_at: Recurso submetido
+      appealed_msg: O seu recurso foi submetido. Se ele for aprovado, será notificado.
+      appeals:
+        submit: Submeter recurso
+      associated_report: Denúncia associada
+      created_at: Data
+      recipient: Endereçado a
+      status: 'Publicação #%{id}'
+      status_removed: Publicação já eliminada do sistema
+      title: "%{action} de %{date}"
   domain_validator:
     invalid_domain: não é um nome de domínio válido
   errors:
