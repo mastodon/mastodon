@@ -309,6 +309,7 @@ ko:
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화 했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 추모비 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
+        reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 거절했습니다"
         reject_user_html: "%{name} 님이 %{target}의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target}의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
@@ -387,6 +388,8 @@ ko:
       media_storage: 미디어 저장소
       new_users: 새로운 사용자
       opened_reports: 신고 열림
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> 개의 대기중인 이의제기"
       pending_reports_html:
         other: "<strong>%{count}</strong> 개의 신고 대기중"
       pending_tags_html:
@@ -401,6 +404,10 @@ ko:
       top_languages: 상위 활성 언어
       top_servers: 상위 활성 서버
       website: 웹사이트
+    disputes:
+      appeals:
+        empty: 이의제기 없음.
+        title: 이의제기
     domain_allows:
       add_new: 도메인 허용
       created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
@@ -712,6 +719,13 @@ ko:
       no_status_selected: 아무 게시물도 선택 되지 않아 아무 것도 바뀌지 않았습니다
       title: 계정 게시물
       with_media: 미디어 있음
+    strikes:
+      actions:
+        delete_statuses: "%{name} 님이 %{target}의 게시물을 지웠습니다"
+        disable: "%{name} 님이 %{target}의 계정을 냉동시켰습니다"
+        none: "%{name} 님이 %{target}에게 경고를 보냈습니다"
+        sensitive: "%{name} 님이 %{target}의 계정을 민감함으로 표시했습니다"
+        silence: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
     system_checks:
       database_schema_check:
         message_html: 데이터베이스 마이그레이션이 대기중입니다. 응용프로그램이 예상한대로 동작할 수 있도록 마이그레이션을 실행해 주세요
