@@ -250,7 +250,7 @@ class EmojiPickerMenu extends React.PureComponent {
 
   state = {
     modifierOpen: false,
-    placement: null,
+    readyToFocus: false,
   };
 
   handleDocumentClick = e => {
@@ -262,6 +262,16 @@ class EmojiPickerMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
+
+    // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
+    // to wait for a frame before focusing
+    requestAnimationFrame(() => {
+      this.setState({ readyToFocus: true });
+      if (this.node) {
+        const element = this.node.querySelector('input[type="search"]');
+        if (element) element.focus();
+      }
+    });
   }
 
   componentWillUnmount () {
@@ -361,7 +371,7 @@ class EmojiPickerMenu extends React.PureComponent {
           showSkinTones={false}
           backgroundImageFn={backgroundImageFn}
           notFound={notFoundFn}
-          autoFocus
+          autoFocus={this.state.readyToFocus}
           emojiTooltip
           native={useSystemEmojiFont}
         />
@@ -396,6 +406,7 @@ class EmojiPickerDropdown extends React.PureComponent {
   state = {
     active: false,
     loading: false,
+    placement: null,
   };
 
   setRef = (c) => {
