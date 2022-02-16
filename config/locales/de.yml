@@ -392,18 +392,6 @@ de:
       media_storage: Medienspeicher
       new_users: Neue Benutzer
       opened_reports: Erstellte Meldungen
-      pending_appeals_html:
-        one: "<strong>1</strong> ausstehender Einspruch"
-        other: "<strong>%{count}</strong> ausstehende Einsprüche"
-      pending_reports_html:
-        one: "<strong>1</strong> ausstehende Meldung"
-        other: "<strong>%{count}</strong> ausstehende Meldungen"
-      pending_tags_html:
-        one: "<strong>1</strong> ausstehender Hashtag"
-        other: "<strong>%{count}</strong> ausstehende Hashtags"
-      pending_users_html:
-        one: "<strong>1</strong> ausstehender Benutzer"
-        other: "<strong>%{count}</strong> ausstehende Benutzer"
       resolved_reports: Gelöste Meldungen
       software: Software
       sources: Registrierungsquellen
@@ -453,9 +441,6 @@ de:
         silence: stummgeschaltet
         suspend: gesperrt
       show:
-        affected_accounts:
-          one: Ein Konto in der Datenbank betroffen
-          other: "%{count} Konten in der Datenbank betroffen"
         retroactive:
           silence: Alle existierenden Konten dieser Domain nicht mehr stummschalten
           suspend: Alle existierenden Konten dieser Domain entsperren
@@ -506,9 +491,6 @@ de:
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
       destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
-      known_accounts:
-        one: "%{count} bekanntes Konto"
-        other: "%{count} bekannte Konten"
       moderation:
         all: Alle
         limited: Beschränkt
@@ -765,9 +747,6 @@ de:
         allow_provider: Erlaube Herausgeber
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
-        shared_by_over_week:
-          one: In der letzten Woche geteilt von einer Person
-          other: In der letzten Woche geteilt von %{count} Personen
         title: Angesagte Links
         usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
       pending_review: Überprüfung ausstehend
@@ -794,9 +773,6 @@ de:
         trending_rank: 'Trend #%{rank}'
         usable: Kann verwendet werden
         usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
-        used_by_over_week:
-          one: In der letzten Woche genutzt von einer Person
-          other: In der letzten Woche genutzt von %{count} Personen
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
