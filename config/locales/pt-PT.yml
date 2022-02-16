@@ -716,6 +716,16 @@ pt-PT:
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       title: Estado das contas
       with_media: Com media
+    strikes:
+      actions:
+        delete_statuses: "%{name} eliminou a publicação de %{target}"
+        disable: "%{name} congelou a conta de %{target}"
+        none: "%{name} enviou uma advertência a %{target}"
+        sensitive: "%{name} marcou a conta de %{target} como sensível"
+        silence: "%{name} limitou a conta de %{target}"
+        suspend: "%{name} suspendeu a conta de %{target}"
+      appeal_approved: Recorrido
+      appeal_pending: Recurso pendente
     system_checks:
       database_schema_check:
         message_html: Existem migrações de base de dados pendentes. Por favor, execute-as para garantir que o aplicativo se comporte como esperado
@@ -771,6 +781,15 @@ pt-PT:
       empty: Ainda não definiu nenhum aviso predefinido.
       title: Gerir os avisos predefinidos
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: para elimintar as suas publicações
+        disable: para congelar a sua conta
+        none: uma advertência
+        sensitive: para marcar a sua conta como sensível
+        silence: para limitar a sua conta
+        suspend: para suspender a sua conta
+      body: "%{target} está a recorrer de uma decisão de moderação de %{action_taken_by} a %{date}, que consistiu em %{type}. Escreveu:"
     new_pending_account:
       body: Em baixo, estão os detalhes da nova conta. Pode aprovar ou rejeitar esta inscrição.
       subject: Nova conta para revisão em %{instance} (%{username})
