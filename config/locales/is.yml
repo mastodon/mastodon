@@ -392,6 +392,18 @@ is:
       media_storage: Geymsla myndefnis
       new_users: nýir notendur
       opened_reports: kærur opnaðar
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> áfrýjun í bið"
+        other: "<strong>%{count}</strong> áfrýjanir í bið"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> kæra í bið"
+        other: "<strong>%{count}</strong> kærur í bið"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> myllumerki í bið"
+        other: "<strong>%{count}</strong> myllumerki í bið"
+      pending_users_html:
+        one: "<strong>%{count}</strong> notandi í bið"
+        other: "<strong>%{count}</strong> notendur í bið"
       resolved_reports: kærur leystar
       software: Hugbúnaður
       sources: Uppruni nýskráninga
@@ -441,6 +453,10 @@ is:
         silence: takmarkað
         suspend: í bið
       show:
+        affected_accounts:
+          one: Einn notandaaðgangur í gagnagrunninum kemur við sögu
+          other: "%{count} notendaaðgangar í gagnagrunninum koma við sögu"
+          zero: Enginn notandaaðgangur í gagnagrunninum kemur við sögu
         retroactive:
           silence: Hætta að takmarka viðkomandi notendaaðganga frá þessu léni
           suspend: Taka úr bið viðkomandi notendaaðganga frá þessu léni
@@ -491,6 +507,10 @@ is:
       delivery_error_hint: Ef afhending er ekki möguleg í %{count} daga, verður það sjálfkrafa merkt sem óafhendanlegt.
       destroyed_msg: Gögn frá %{domain} bíða núna eftir að vera eytt innan skamms.
       empty: Engin lén fundust.
+      known_accounts:
+        one: "%{count} þekktur notandaaðgangur"
+        other: "%{count} þekktir notendaaðgangar"
+        zero: Enginn þekktur notandaaðgangur
       moderation:
         all: Allt
         limited: Takmarkað
@@ -747,6 +767,9 @@ is:
         allow_provider: Leyfa útgefanda
         disallow: Ekki leyfa tengil
         disallow_provider: Ekki leyfa útgefanda
+        shared_by_over_week:
+          one: Deilt af einum aðila síðustu vikuna
+          other: Deilt af %{count} aðilum síðustu vikuna
         title: Vinsælir tenglar
         usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
       pending_review: Bíður eftir yfirlestri
