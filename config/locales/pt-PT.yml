@@ -963,6 +963,16 @@ pt-PT:
       status: 'Publicação #%{id}'
       status_removed: Publicação já eliminada do sistema
       title: "%{action} de %{date}"
+      title_actions:
+        delete_statuses: Remoção de publicação
+        disable: Congelamento da conta
+        none: Advertência
+        sensitive: Marcação da conta como sensível
+        silence: Limitação da conta
+        suspend: Suspensão da conta
+      your_appeal_approved: O seu recurso foi aprovado
+      your_appeal_pending: Submeteu um recurso
+      your_appeal_rejected: O seu recurso foi rejeitado
   domain_validator:
     invalid_domain: não é um nome de domínio válido
   errors:
@@ -1526,6 +1536,8 @@ pt-PT:
     recovery_instructions_html: Se tu alguma vez perderes o teu smartphone, to poderás usar um dos códigos de recuperação para voltares a ter acesso à tua conta. <strong>Mantém os códigos de recuperação seguros</strong>. Por exemplo, tu podes imprimi-los e guardá-los junto a outros documentos importantes.
     webauthn: Chaves de segurança
   user_mailer:
+    appeal_approved:
+      action: Ir para a sua conta
     backup_ready:
       explanation: Pediste uma cópia completa da tua conta Mastodon. Ela já está pronta para descarregares!
       subject: O teu arquivo está pronto para descarregar
