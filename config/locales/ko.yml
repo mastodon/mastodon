@@ -157,6 +157,11 @@ ko:
       not_subscribed: 구독하지 않음
       pending: 심사 대기
       perform_full_suspension: 정지시키기
+      previous_strikes: 이전의 처벌들
+      previous_strikes_description_html:
+        one: 이 계정은 <strong>한<strong> 번의 처벌이 있었습니다.
+        other: 이 계정은 <strong>%{count}</strong> 번의 처벌이 있었습니다.
+        zero: 이 계정은 처벌 기록이 <strong>없습니다</strong>.
       promote: 승급
       protocol: 프로토콜
       public: 공개
@@ -221,6 +226,7 @@ ko:
       whitelisted: 허용 목록
     action_logs:
       action_types:
+        approve_appeal: 이의제기 승인
         approve_user: 사용자 승인
         assigned_to_self_report: 신고 맡기
         change_email_user: 사용자의 이메일 변경
@@ -252,6 +258,7 @@ ko:
         enable_user: 사용자 활성화
         memorialize_account: 추모계정으로 전환
         promote_user: 사용자 승급
+        reject_appeal: 이의제기 거절
         reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
@@ -270,6 +277,7 @@ ko:
         update_domain_block: 도메인 차단 갱신
         update_status: 게시물 게시
       actions:
+        approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target}의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
         change_email_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 변경했습니다"
