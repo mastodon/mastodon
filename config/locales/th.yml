@@ -740,6 +740,13 @@ th:
       empty: คุณยังไม่ได้กำหนดคำเตือนที่ตั้งไว้ล่วงหน้าใด ๆ
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: เพื่อลบโพสต์ของเขา
+        disable: เพื่ออายัดบัญชีของเขา
+        sensitive: เพื่อทำเครื่องหมายบัญชีของเขาว่าละเอียดอ่อน
+        silence: เพื่อจำกัดบัญชีของเขา
+        suspend: เพื่อระงับบัญชีของเขา
     new_pending_account:
       body: รายละเอียดของบัญชีใหม่อยู่ด้านล่าง คุณสามารถอนุมัติหรือปฏิเสธใบสมัครนี้
     new_report:
@@ -886,8 +893,10 @@ th:
     explore_mastodon: สำรวจ %{title}
   disputes:
     strikes:
+      appeal_submitted_at: ส่งการอุทธรณ์แล้ว
       appeals:
         submit: ส่งการอุทธรณ์
+      associated_report: รายงานที่เชื่อมโยง
       status: 'โพสต์ #%{id}'
       title_actions:
         none: คำเตือน
