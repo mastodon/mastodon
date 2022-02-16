@@ -400,6 +400,26 @@ pl:
       media_storage: Przechowywanie mediów
       new_users: nowi użytkownicy
       opened_reports: otwarte zgłoszenia
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> oczekujących odwołań"
+        few: "<strong>%{count}</strong> oczekujące odwołania"
+        many: "<strong>%{count}</strong> oczekujących odwołań"
+        other: "<strong>%{count}</strong> oczekujących odwołań"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> oczekujący raport"
+        few: "<strong>%{count}</strong> oczekujące raporty"
+        many: "<strong>%{count}</strong> oczekujących raportów"
+        other: "<strong>%{count}</strong> oczekujących raportów"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> oczekujący hashtag"
+        few: "<strong>%{count}</strong> oczekujące hashtagi"
+        many: "<strong>%{count}</strong> oczekujących hashtagów"
+        other: "<strong>%{count}</strong> oczekujących hashtagów"
+      pending_users_html:
+        one: "<strong>%{count}</strong> oczekujący użytkownik"
+        few: "<strong>%{count}</strong> oczekujących użytkowników"
+        many: "<strong>%{count}</strong> oczekujących użytkowników"
+        other: "<strong>%{count}</strong> oczekujących użytkowników"
       resolved_reports: zamkniętych zgłoszeń
       software: Oprogramowanie
       sources: Źródła rejestracji
