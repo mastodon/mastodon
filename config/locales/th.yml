@@ -368,14 +368,6 @@ th:
       media_storage: ที่เก็บข้อมูลสื่อ
       new_users: ผู้ใช้ใหม่
       opened_reports: รายงานที่เปิด
-      pending_appeals_html:
-        other: "<strong>%{count}</strong> การอุทธรณ์ที่รอดำเนินการ"
-      pending_reports_html:
-        other: "<strong>%{count}</strong> รายงานที่รอดำเนินการ"
-      pending_tags_html:
-        other: "<strong>%{count}</strong> แฮชแท็กที่รอดำเนินการ"
-      pending_users_html:
-        other: "<strong>%{count}</strong> ผู้ใช้ที่รอดำเนินการ"
       resolved_reports: รายงานที่แก้ปัญหาแล้ว
       software: ซอฟต์แวร์
       sources: แหล่งที่มาการลงทะเบียน
@@ -420,8 +412,6 @@ th:
         silence: จำกัดอยู่
         suspend: ระงับอยู่
       show:
-        affected_accounts:
-          other: "มีผลต่อ %{count} บัญชีในฐานข้อมูล"
         retroactive:
           silence: เลิกทำการจำกัดบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
           suspend: เลิกระงับบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
@@ -466,8 +456,6 @@ th:
       delivery_available: มีการจัดส่ง
       delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
       empty: ไม่พบโดเมน
-      known_accounts:
-        other: "%{count} บัญชีที่รู้จัก"
       moderation:
         all: ทั้งหมด
         limited: จำกัดอยู่
@@ -702,8 +690,6 @@ th:
         allow_provider: อนุญาตผู้เผยแพร่
         disallow: ไม่อนุญาตลิงก์
         disallow_provider: ไม่อนุญาตผู้เผยแพร่
-        shared_by_over_week:
-          other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
         usage_comparison: แบ่งปัน %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
       pending_review: การตรวจทานที่รอดำเนินการ
@@ -730,8 +716,6 @@ th:
         trending_rank: 'กำลังนิยม #%{rank}'
         usable: สามารถใช้
         usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
-        used_by_over_week:
-          other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
       title: แนวโน้ม
     warning_presets:
       add_new: เพิ่มใหม่
