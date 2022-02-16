@@ -392,18 +392,6 @@ it:
       media_storage: Archiviazione media
       new_users: nuovi utenti
       opened_reports: rapporti aperti
-      pending_appeals_html:
-        one: "<strong>1</strong> appello in attesa"
-        other: "<strong>%{count}</strong> appelli in attesa"
-      pending_reports_html:
-        one: "<strong>1</strong> rapporto in attesa"
-        other: "<strong>%{count}</strong> rapporti in attesa"
-      pending_tags_html:
-        one: "<strong>1</strong> hashtag in attesa"
-        other: "<strong>%{count}</strong> hashtag in attesa"
-      pending_users_html:
-        one: "<strong>1</strong> utente in attesa"
-        other: "<strong>%{count}</strong> utenti in attesa"
       resolved_reports: segnalazioni risolte
       software: Software
       sources: Sorgenti di registrazione
@@ -453,9 +441,6 @@ it:
         silence: silenziato
         suspend: sospeso
       show:
-        affected_accounts:
-          one: Interessato un solo account nel database
-          other: "Interessati %{count} account nel database"
         retroactive:
           silence: De-silenzia tutti gli account esistenti da questo dominio
           suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
@@ -506,9 +491,6 @@ it:
       delivery_error_hint: Se la consegna non è possibile per %{count} giorni, sarà automaticamente contrassegnata come non consegnabile.
       destroyed_msg: I dati da %{domain} sono in coda per l'eliminazione imminente.
       empty: Nessun dominio trovato.
-      known_accounts:
-        one: "%{count} account noto"
-        other: "%{count} account noti"
       moderation:
         all: Tutto
         limited: Limitato
@@ -764,9 +746,6 @@ it:
         allow_provider: Consenti editore
         disallow: Non consentire link
         disallow_provider: Non consentire editore
-        shared_by_over_week:
-          one: Condiviso da una persona nell'ultima settimana
-          other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
       pending_review: Revisione in sospeso
@@ -793,9 +772,6 @@ it:
         trending_rank: 'In tendenza #%{rank}'
         usable: Utilizzabile
         usage_comparison: Usato %{today} volte oggi, rispetto a %{yesterday} ieri
-        used_by_over_week:
-          one: Usato da una persona nell'ultima settimana
-          other: Usato da %{count} persone nell'ultima settimana
       title: Tendenze
     warning_presets:
       add_new: Aggiungi nuovo
