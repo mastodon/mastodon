@@ -388,14 +388,6 @@ vi:
       media_storage: Dung lượng lưu trữ
       new_users: người dùng mới
       opened_reports: báo cáo chưa xử lí
-      pending_appeals_html:
-        other: "<strong>%{count}</strong> quyết định đang chờ"
-      pending_reports_html:
-        other: "<strong>%{count}</strong> báo cáo đang chờ"
-      pending_tags_html:
-        other: "<strong>%{count}</strong> hashtag đang chờ"
-      pending_users_html:
-        other: "<strong>%{count}</strong> người dùng đang chờ"
       resolved_reports: báo cáo đã xử lí
       software: Phần mềm
       sources: Nguồn đăng ký
@@ -445,8 +437,6 @@ vi:
         silence: bị hạn chế
         suspend: bị vô hiệu hóa
       show:
-        affected_accounts:
-          other: "%{count} tài khoản trong cơ sở dữ liệu bị ảnh hưởng"
         retroactive:
           silence: Bỏ hạn chế những tài khoản ở máy chủ này
           suspend: Ngưng vô hiệu hóa các tài khoản ở máy chủ này
@@ -496,8 +486,6 @@ vi:
       delivery_error_hint: Nếu không thể phân phối sau %{count} ngày, nó sẽ tự dộng đánh dấu là không thể phân phối.
       destroyed_msg: Dữ liệu từ %{domain} đã lên lịch để xóa.
       empty: Không có máy chủ nào.
-      known_accounts:
-        other: "%{count} tài khoản đã biết"
       moderation:
         all: Tất cả
         limited: Hạn chế
@@ -753,8 +741,6 @@ vi:
         allow_provider: Nguồn đăng cho phép
         disallow: Liên kết cấm
         disallow_provider: Nguồn đăng bị cấm
-        shared_by_over_week:
-          other: Chia sẻ bởi %{count} người trong tuần rồi
         title: Liên kết đang là xu hướng
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       pending_review: Đang chờ
@@ -781,8 +767,6 @@ vi:
         trending_rank: 'Xu hướng #%{rank}'
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
-        used_by_over_week:
-          other: Dùng bởi %{count} người tuần rồi
       title: Xu hướng
     warning_presets:
       add_new: Thêm mới
