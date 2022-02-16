@@ -6,6 +6,7 @@ fi:
       account_migration:
         acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, johon haluat siirtyä
       account_warning_preset:
+        text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, hashtageja ja mainintoja
         title: Vapaaehtoinen. Ei näytetä vastaanottajalle
       admin_account_action:
         include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
@@ -23,6 +24,8 @@ fi:
         all_day: Kun valittu, vain valittu aikaväli näytetään
         ends_at: Valinnainen. Ilmoitus tullaan poistamaan automaattisesti tällä hetkellä
         scheduled_at: Jätä tyhjäksi julkaistaksesi ilmoituksen välittömästi
+        starts_at: Valinnainen. Jos ilmoituksesi on sidottu tiettyyn aikaväliin
+        text: Voit käyttää julkaisun syntaksia. Muista, kuinka paljon tilaa ilmoitus vie käyttäjän näytöltä
       defaults:
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         bot: Tämä tili suorittaa enimmäkseen automaattisia toimintoja eikä sitä ehkä valvota
