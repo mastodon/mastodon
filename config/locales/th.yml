@@ -368,6 +368,8 @@ th:
       media_storage: ที่เก็บข้อมูลสื่อ
       new_users: ผู้ใช้ใหม่
       opened_reports: รายงานที่เปิด
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> การอุทธรณ์ที่รอดำเนินการ"
       pending_reports_html:
         other: "<strong>%{count}</strong> รายงานที่รอดำเนินการ"
       pending_tags_html:
@@ -384,6 +386,7 @@ th:
       website: เว็บไซต์
     disputes:
       appeals:
+        empty: ไม่พบการอุทธรณ์
         title: การอุทธรณ์
     domain_allows:
       add_new: อนุญาตการติดต่อกับภายนอกกับโดเมน
@@ -671,6 +674,15 @@ th:
       no_status_selected: ไม่มีการเปลี่ยนแปลงโพสต์เนื่องจากไม่มีการเลือก
       title: โพสต์ของบัญชี
       with_media: มีสื่อ
+    strikes:
+      actions:
+        delete_statuses: "%{name} ได้ลบโพสต์ของ %{target}"
+        disable: "%{name} ได้อายัดบัญชีของ %{target}"
+        none: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
+        sensitive: "%{name} ได้ทำเครื่องหมายบัญชีของ %{target} ว่าละเอียดอ่อน"
+        silence: "%{name} ได้จำกัดบัญชีของ %{target}"
+        suspend: "%{name} ได้ระงับบัญชีของ %{target}"
+      appeal_approved: อุทธรณ์แล้ว
     system_checks:
       rules_check:
         action: จัดการกฎของเซิร์ฟเวอร์
@@ -874,6 +886,8 @@ th:
     explore_mastodon: สำรวจ %{title}
   disputes:
     strikes:
+      appeals:
+        submit: ส่งการอุทธรณ์
       status: 'โพสต์ #%{id}'
       title_actions:
         none: คำเตือน
