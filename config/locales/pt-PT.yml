@@ -165,7 +165,7 @@ pt-PT:
       previous_strikes_description_html:
         one: Esta conta tem <strong>1</strong> punição.
         other: Esta conta tem <strong>%{count}</strong> punições.
-        zero: Esta conta está <strong>bem reputada</strong>.
+        zero: Esta conta está <strong>em situação regular</strong>.
       promote: Promover
       protocol: Protocolo
       public: Público
@@ -392,6 +392,18 @@ pt-PT:
       media_storage: Armazenamento de media
       new_users: novos utilizadores
       opened_reports: denúncias abertas
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> recurso pendente"
+        other: "<strong>%{count}</strong> recursos pendentes"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> denuncia pendente"
+        other: "<strong>%{count}</strong> denuncias pendentes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> hashtag pendente"
+        other: "<strong>%{count}</strong> hashtags pendentes"
+      pending_users_html:
+        one: "<strong>%{count}</strong> utilizador pendente"
+        other: "<strong>%{count}</strong> utilizadores pendentes"
       resolved_reports: denúncias resolvidas
       software: Software
       sources: Origem de inscrições
@@ -441,6 +453,10 @@ pt-PT:
         silence: silenciado
         suspend: suspenso
       show:
+        affected_accounts:
+          one: Uma conta na base de dados afetada
+          other: "%{count} contas na base de dados afetadas"
+          zero: Nenhuma conta na base de dados é afetada
         retroactive:
           silence: Não silenciar contas afetadas existentes deste domínio
           suspend: Não suspender todas as contas existentes nesse domínio
@@ -491,6 +507,10 @@ pt-PT:
       delivery_error_hint: Se a entrega não for possível durante %{count} dias, será automaticamente marcada como não realizável.
       destroyed_msg: Dados de %{domain} estão agora na fila para iminente eliminação.
       empty: Não foram encontrados domínios.
+      known_accounts:
+        one: "%{count} conta conhecida"
+        other: "%{count} contas conhecidas"
+        zero: Nenhuma conta conhecida
       moderation:
         all: Todas
         limited: Limitadas
@@ -747,6 +767,10 @@ pt-PT:
         allow_provider: Permitir editor
         disallow: Não permitir link
         disallow_provider: Não permitir editor
+        shared_by_over_week:
+          one: Partilhado por uma pessoa na última semana
+          other: Partilhado por %{count} pessoas na última semana
+          zero: Partilhado por ninguém na última semana
         title: Links em destaque
         usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
       pending_review: Pendente de revisão
@@ -773,6 +797,10 @@ pt-PT:
         trending_rank: 'Tendência #%{rank}'
         usable: Pode ser utilizada
         usage_comparison: Utilizada %{today} vezes hoje, em comparação com %{yesterday} ontem
+        used_by_over_week:
+          one: Utilizada por uma pessoa na última semana
+          other: Utilizada por %{count} pessoas na última semana
+          zero: Utilizada por ninguém na última semana
       title: Tendências
     warning_presets:
       add_new: Adicionar novo
@@ -1538,6 +1566,13 @@ pt-PT:
   user_mailer:
     appeal_approved:
       action: Ir para a sua conta
+      explanation: O recurso à punição contra a sua conta de %{strike_date}, o qual submeteu a %{appeal_date}, foi aprovado. A sua conta encontra-se novamente em situação regular.
+      subject: O seu recurso de %{date} foi aprovado
+      title: Recurso aprovado
+    appeal_rejected:
+      explanation: O recurso à punição contra a sua conta de %{strike_date}, o qual submeteu a %{appeal_date}, foi rejeitado.
+      subject: O seu recurso de %{date} foi rejeitado
+      title: Recurso rejeitado
     backup_ready:
       explanation: Pediste uma cópia completa da tua conta Mastodon. Ela já está pronta para descarregares!
       subject: O teu arquivo está pronto para descarregar
@@ -1549,6 +1584,8 @@ pt-PT:
       subject: Por favor, confirme a tentativa de acesso
       title: Tentativa de acesso
     warning:
+      appeal: Submeter um recurso
+      appeal_description: Se acredita que isso é um erro, pode submeter um recurso para a equipa de %{instance}.
       categories:
         spam: Spam
         violation: O conteúdo infringe as seguintes diretrizes da comunidade
