@@ -383,15 +383,6 @@ fr:
       media_storage: Stockage des médias
       new_users: nouveaux utilisateurs
       opened_reports: rapports ouverts
-      pending_reports_html:
-        one: "<strong>1</strong> rapport en attente"
-        other: "<strong>%{count}</strong> rapports en attente"
-      pending_tags_html:
-        one: "<strong>1</strong> hashtag en attente"
-        other: "<strong>%{count}</strong> hashtags en attente"
-      pending_users_html:
-        one: "<strong>1</strong> utilisateur·rice en attente"
-        other: "<strong>%{count}</strong> utilisateur·rice·s en attente"
       resolved_reports: rapports résolus
       software: Logiciel
       sources: Sources d'inscription
@@ -437,9 +428,6 @@ fr:
         silence: masqué
         suspend: suspendu
       show:
-        affected_accounts:
-          one: Un compte affecté dans la base de données
-          other: "%{count} comptes affectés dans la base de données"
         retroactive:
           silence: Ne plus masquer les comptes existants affectés de ce domaine
           suspend: Annuler la suspension des comptes existants affectés pour ce domaine
@@ -490,9 +478,6 @@ fr:
       delivery_error_hint: Si la livraison n'est pas possible pendant %{count} jours, elle sera automatiquement marquée comme non livrable.
       destroyed_msg: Les données de %{domain} sont maintenant en file d'attente pour une suppression imminente.
       empty: Aucun domaine trouvé.
-      known_accounts:
-        one: "%{count} compte connu"
-        other: "%{count} comptes connus"
       moderation:
         all: Tout
         limited: Limité
@@ -736,9 +721,6 @@ fr:
         allow_provider: Autoriser l'éditeur
         disallow: Interdire le lien
         disallow_provider: Interdire l'éditeur
-        shared_by_over_week:
-          one: Partagé par une personne au cours de la dernière semaine
-          other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
       pending_review: En attente de révision
@@ -765,9 +747,6 @@ fr:
         trending_rank: 'Tendance #%{rank}'
         usable: Peut être utilisé
         usage_comparison: Utilisé %{today} fois aujourd'hui, comparé à %{yesterday} hier
-        used_by_over_week:
-          one: Utilisé par une personne au cours de la dernière semaine
-          other: Utilisé par %{count} personnes au cours de la dernière semaine
       title: Tendances
     warning_presets:
       add_new: Ajouter un nouveau
