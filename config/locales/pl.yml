@@ -400,21 +400,6 @@ pl:
       media_storage: Przechowywanie mediów
       new_users: nowi użytkownicy
       opened_reports: otwarte zgłoszenia
-      pending_reports_html:
-        one: "<strong>%{count}</strong> oczekujący raport"
-        few: "<strong>%{count}</strong> oczekujące raporty"
-        many: "<strong>%{count}</strong> oczekujących raportów"
-        other: "<strong>%{count}</strong> oczekujących raportów"
-      pending_tags_html:
-        one: "<strong>%{count}</strong>oczekujący hasztag"
-        few: "<strong>%{count}</strong> oczekujące hashtagi"
-        many: "<strong>%{count}</strong> oczekujących hashtagów"
-        other: "<strong>%{count}</strong> oczekujących hashtagów"
-      pending_users_html:
-        one: "<strong>1</strong> oczekujący użytkownik"
-        few: "<strong>%{count}</strong> oczekujących użytkowników"
-        many: "<strong>%{count}</strong> oczekujących użytkowników"
-        other: "<strong>%{count}</strong> oczekujących użytkowników"
       resolved_reports: zamkniętych zgłoszeń
       software: Oprogramowanie
       sources: Źródła rejestracji
@@ -464,11 +449,6 @@ pl:
         silence: wyciszono
         suspend: zawieszono
       show:
-        affected_accounts:
-          one: Dotknęło jedno konto w bazie danych
-          few: "Dotknęło %{count} kont w bazie danych"
-          many: "Dotknęło %{count} kont w bazie danych"
-          other: "Dotknęło %{count} kont w bazie danych"
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
@@ -521,11 +501,6 @@ pl:
       delivery_error_hint: Jeżeli doręczanie nie będzie możliwe przez %{count} dni, zostanie automatycznie oznaczona jako nie do doręczania.
       destroyed_msg: Dane z %{domain} są teraz w kolejce do bezpośredniego usunięcia.
       empty: Nie znaleziono domen.
-      known_accounts:
-        one: "%{count} znane konto"
-        few: "%{count} znane konta"
-        many: "%{count} znane konta"
-        other: "%{count} znane konta"
       moderation:
         all: Wszystkie
         limited: Ograniczone
@@ -784,11 +759,6 @@ pl:
         allow_provider: Zezwalaj na wydawcę
         disallow: Nie zezwalaj na link
         disallow_provider: Nie zezwalaj na wydawcę
-        shared_by_over_week:
-          one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
-          few: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
-          many: Udostępnione przez %{count} osób w ciągu ostatniego tygodnia
-          other: Udostępnione przez %{count} osób w ciągu ostatniego tygodnia
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
       pending_review: Oczekuje na przegląd
@@ -815,11 +785,6 @@ pl:
         trending_rank: 'Popularne #%{rank}'
         usable: Może być użyty
         usage_comparison: Używane %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
-        used_by_over_week:
-          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
-          few: Użyte przez %{count} osoby w ciągu ostatniego tygodnia
-          many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
-          other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
       title: Na czasie
     warning_presets:
       add_new: Dodaj nowy
