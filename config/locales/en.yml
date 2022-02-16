@@ -394,16 +394,16 @@ en:
       new_users: new users
       opened_reports: reports opened
       pending_appeals_html:
-        one: "<strong>1</strong> pending appeal"
+        one: "<strong>%{count}</strong> pending appeal"
         other: "<strong>%{count}</strong> pending appeals"
       pending_reports_html:
-        one: "<strong>1</strong> pending report"
+        one: "<strong>%{count}</strong> pending report"
         other: "<strong>%{count}</strong> pending reports"
       pending_tags_html:
-        one: "<strong>1</strong> pending hashtag"
+        one: "<strong>%{count}</strong> pending hashtag"
         other: "<strong>%{count}</strong> pending hashtags"
       pending_users_html:
-        one: "<strong>1</strong> pending user"
+        one: "<strong>%{count}</strong> pending user"
         other: "<strong>%{count}</strong> pending users"
       resolved_reports: reports resolved
       software: Software
@@ -457,6 +457,7 @@ en:
         affected_accounts:
           one: One account in the database affected
           other: "%{count} accounts in the database affected"
+          zero: No account in the database is affected
         retroactive:
           silence: Undo limit of existing affected accounts from this domain
           suspend: Unsuspend existing affected accounts from this domain
@@ -510,6 +511,7 @@ en:
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
+        zero: No known account
       moderation:
         all: All
         limited: Limited
@@ -769,6 +771,7 @@ en:
         shared_by_over_week:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
+          zero: Shared by noone over the last week
         title: Trending links
         usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
       pending_review: Pending review
@@ -798,6 +801,7 @@ en:
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
+          zero: Used by noone over the last week
       title: Trends
     warning_presets:
       add_new: Add new
