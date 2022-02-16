@@ -388,14 +388,6 @@ ko:
       media_storage: 미디어 저장소
       new_users: 새로운 사용자
       opened_reports: 신고 열림
-      pending_appeals_html:
-        other: "<strong>%{count}</strong> 개의 대기중인 이의제기"
-      pending_reports_html:
-        other: "<strong>%{count}</strong> 개의 신고 대기중"
-      pending_tags_html:
-        other: "<strong>%{count}</strong> 개의 해시태그 대기중"
-      pending_users_html:
-        other: "<strong>%{count}</strong> 명의 사용자 대기중"
       resolved_reports: 신고 해결됨
       software: 소프트웨어
       sources: 가입 출처
@@ -445,8 +437,6 @@ ko:
         silence: 침묵
         suspend: 정지
       show:
-        affected_accounts:
-          other: "데이터베이스 중 %{count}개의 계정에 영향을 끼칩니다"
         retroactive:
           silence: 이 도메인에 존재하는 모든 계정의 침묵를 해제
           suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
@@ -496,8 +486,6 @@ ko:
       delivery_error_hint: 만약 %{count}일동안 전달이 불가능하다면, 자동으로 전달불가로 표시됩니다.
       destroyed_msg: '%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다.'
       empty: 도메인이 하나도 없습니다.
-      known_accounts:
-        other: "알려진 계정 %{count}개"
       moderation:
         all: 모두
         limited: 제한됨
@@ -750,8 +738,6 @@ ko:
         allow_provider: 출처 허용하기
         disallow: 링크 거부하기
         disallow_provider: 출처 거부하기
-        shared_by_over_week:
-          other: 한 주 동안 %{count}명의 사람이 공유했습니다
         title: 지금 유행 중인 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
       pending_review: 심사 대기
@@ -778,8 +764,6 @@ ko:
         trending_rank: '#%{rank}위로 유행 중'
         usable: 사용할 수 없음
         usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
-        used_by_over_week:
-          other: 한 주 동안 %{count}명의 사람이 사용했습니다
       title: 유행
     warning_presets:
       add_new: 새로 추가
