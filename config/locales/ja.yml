@@ -376,12 +376,6 @@ ja:
       media_storage: メディアストレージ
       new_users: 新規ユーザー
       opened_reports: 新規通報
-      pending_reports_html:
-        other: "保留中の通報 <strong>%{count}</strong> 件"
-      pending_tags_html:
-        other: "保留中のハッシュタグ <strong>%{count}</strong> 件"
-      pending_users_html:
-        other: "保留中のユーザー <strong>%{count}</strong> 件"
       resolved_reports: 解決済みの通報
       software: ソフトウェア
       sources: サインアップソース
@@ -427,8 +421,6 @@ ja:
         silence: サイレンス中
         suspend: 停止中
       show:
-        affected_accounts:
-          other: "データベース中の%{count}個のアカウントに影響します"
         retroactive:
           silence: このドメインの既存の影響するアカウントのサイレンスを戻す
           suspend: このドメインの既存の影響するアカウントの停止を戻す
@@ -478,8 +470,6 @@ ja:
       delivery_error_hint: '%{count} 日間配送ができない場合は、自動的に配送不可としてマークされます。'
       destroyed_msg: '%{domain} からのデータは、すぐに削除されるように、キューに追加されました。'
       empty: ドメインが見つかりませんでした。
-      known_accounts:
-        other: "既知のアカウント数 %{count}"
       moderation:
         all: すべて
         limited: 制限あり
@@ -715,8 +705,6 @@ ja:
         allow_provider: 発行者の承認
         disallow: リンクの拒否
         disallow_provider: 発行者の拒否
-        shared_by_over_week:
-          other: 先週 %{count} 人が共有しました
         title: トレンドリンク
         usage_comparison: 今日は %{today} 回、昨日は %{yesterday} 回共有されました
       pending_review: 保留中
@@ -743,8 +731,6 @@ ja:
         trending_rank: '人気: %{rank} 位'
         usable: 使用を許可
         usage_comparison: 今日は %{today} 回、昨日は %{yesterday} 回使用されました。
-        used_by_over_week:
-          other: 先週は %{count} 人に使用されました
       title: トレンド
     warning_presets:
       add_new: 追加
