@@ -322,6 +322,10 @@ $content-width: 840px;
 
       & > ul {
         display: none;
+
+        &.visible {
+          display: block;
+        }
       }
 
       ul a,
