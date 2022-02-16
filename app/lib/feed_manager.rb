@@ -441,7 +441,7 @@ class FeedManager
 
     return false if active_filters.empty?
 
-    combined_regex = active_filters.reduce { |memo, obj| Regexp.union(memo, obj) }
+    combined_regex = Regexp.union(active_filters)
     status         = status.reblog if status.reblog?
 
     combined_text = [
