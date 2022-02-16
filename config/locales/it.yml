@@ -392,6 +392,18 @@ it:
       media_storage: Archiviazione media
       new_users: nuovi utenti
       opened_reports: rapporti aperti
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> appello in attesa"
+        other: "<strong>%{count}</strong> appelli in attesa"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> segnalazione in attesa"
+        other: "<strong>%{count}</strong> segnalazioni in attesa"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> hashtag in attesa"
+        other: "<strong>%{count}</strong> hashtag in attesa"
+      pending_users_html:
+        one: "<strong>%{count}</strong> utente in attesa"
+        other: "<strong>%{count}</strong> utenti in attesa"
       resolved_reports: segnalazioni risolte
       software: Software
       sources: Sorgenti di registrazione
@@ -441,6 +453,10 @@ it:
         silence: silenziato
         suspend: sospeso
       show:
+        affected_accounts:
+          one: Interessato un solo account nel database
+          other: "Interessati %{count} account nel database"
+          zero: Nessun account nel database è interessato
         retroactive:
           silence: De-silenzia tutti gli account esistenti da questo dominio
           suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
@@ -491,6 +507,10 @@ it:
       delivery_error_hint: Se la consegna non è possibile per %{count} giorni, sarà automaticamente contrassegnata come non consegnabile.
       destroyed_msg: I dati da %{domain} sono in coda per l'eliminazione imminente.
       empty: Nessun dominio trovato.
+      known_accounts:
+        one: "%{count} account noto"
+        other: "%{count} account noti"
+        zero: Nessun account noto
       moderation:
         all: Tutto
         limited: Limitato
@@ -746,6 +766,10 @@ it:
         allow_provider: Consenti editore
         disallow: Non consentire link
         disallow_provider: Non consentire editore
+        shared_by_over_week:
+          one: Condiviso da una persona nell'ultima settimana
+          other: Condiviso da %{count} persone nell'ultima settimana
+          zero: Condiviso da nessuno nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
       pending_review: Revisione in sospeso
@@ -772,6 +796,10 @@ it:
         trending_rank: 'In tendenza #%{rank}'
         usable: Utilizzabile
         usage_comparison: Usato %{today} volte oggi, rispetto a %{yesterday} ieri
+        used_by_over_week:
+          one: Usato da una persona nell'ultima settimana
+          other: Usato da %{count} persone nell'ultima settimana
+          zero: Usato da nessuno nell'ultima settimana
       title: Tendenze
     warning_presets:
       add_new: Aggiungi nuovo
@@ -971,6 +999,7 @@ it:
         suspend: Sospensione dell'account
       your_appeal_approved: Il tuo appello è stato approvato
       your_appeal_pending: Hai presentato un appello
+      your_appeal_rejected: Il tuo appello è stato respinto
   domain_validator:
     invalid_domain: non è un nome di dominio valido
   errors:
@@ -1537,6 +1566,15 @@ it:
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
     webauthn: Chiavi di sicurezza
   user_mailer:
+    appeal_approved:
+      action: Vai al tuo account
+      explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato approvato. Il tuo account ha riottenuto la buona reputazione.
+      subject: Il tuo appello del %{date} è stato approvato
+      title: Appello approvato
+    appeal_rejected:
+      explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato respinto.
+      subject: Il tuo appello del %{date} è stato respinto
+      title: Appello respinto
     backup_ready:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
@@ -1548,6 +1586,8 @@ it:
       subject: Conferma il tentativo di accesso
       title: Tentativo di accesso
     warning:
+      appeal: Presenta un appello
+      appeal_description: Se credi che si tratti di un errore, puoi presentare un appello allo staff di %{instance}.
       categories:
         spam: Spam
         violation: Il contenuto viola le seguenti linee guida della comunità
