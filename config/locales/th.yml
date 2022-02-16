@@ -896,10 +896,15 @@ th:
       appeal_submitted_at: ส่งการอุทธรณ์แล้ว
       appeals:
         submit: ส่งการอุทธรณ์
-      associated_report: รายงานที่เชื่อมโยง
+      associated_report: รายงานที่เกี่ยวข้อง
       status: 'โพสต์ #%{id}'
       title_actions:
+        delete_statuses: การเอาโพสต์ออก
+        disable: การอายัดบัญชี
         none: คำเตือน
+        sensitive: การทำเครื่องหมายบัญชีว่าละเอียดอ่อน
+        silence: การจำกัดบัญชี
+        suspend: การระงับบัญชี
   domain_validator:
     invalid_domain: ไม่ใช่ชื่อโดเมนที่ถูกต้อง
   errors:
