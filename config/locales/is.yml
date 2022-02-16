@@ -770,6 +770,7 @@ is:
         shared_by_over_week:
           one: Deilt af einum aðila síðustu vikuna
           other: Deilt af %{count} aðilum síðustu vikuna
+          zero: Ekki deilt af neinum aðila síðustu vikuna
         title: Vinsælir tenglar
         usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
       pending_review: Bíður eftir yfirlestri
@@ -796,6 +797,10 @@ is:
         trending_rank: 'Vinsæl #%{rank}'
         usable: Má nota
         usage_comparison: Notað %{today} sinnum í dag, samanborið við %{yesterday} í gær
+        used_by_over_week:
+          one: Notað af einum aðila síðustu vikuna
+          other: Notað af %{count} aðilum síðustu vikuna
+          zero: Ekki notað af neinum aðila síðustu vikuna
       title: Tilhneiging
     warning_presets:
       add_new: Bæta við nýju
