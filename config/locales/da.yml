@@ -389,6 +389,18 @@ da:
       media_storage: Medielagerplads
       new_users: nye brugere
       opened_reports: rapporter åbnet
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> afventende appel"
+        other: "<strong>%{count}</strong> afventende appeller"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> afventende anmeldelse"
+        other: "<strong>%{count}</strong> afventende anmeldelser"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> afventende hashtag"
+        other: "<strong>%{count}</strong> afventende hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> afventende bruger"
+        other: "<strong>%{count}</strong> afventende brugere"
       resolved_reports: anmeldelser løst
       software: Software
       sources: Tilmeldingskilder
@@ -438,6 +450,10 @@ da:
         silence: tavsgjort
         suspend: suspenderet
       show:
+        affected_accounts:
+          one: Én konto i databasen påvirket
+          other: "%{count} konti i databasen påvirket"
+          zero: Ingen konto i databasen påvirket
         retroactive:
           silence: Fjern tavsgøring for eksisterende, berørte konti fra dette domæne
           suspend: Fjern suspendering for eksisterende, berørte konti fra dette domæne
@@ -488,6 +504,10 @@ da:
       delivery_error_hint: Er levering ikke mulig i %{count} dage, markeres den automatisk som ikke-leverbar.
       destroyed_msg: Data fra %{domain} er nu sat i kø til snarlig sletning.
       empty: Ingen domæner fundet.
+      known_accounts:
+        one: "%{count} kendt konto"
+        other: "%{count} kendte konti"
+        zero: Ingen kendt konto
       moderation:
         all: Alle
         limited: Begrænset
@@ -742,6 +762,10 @@ da:
         allow_provider: Tillad udgiver
         disallow: Tillad ikke link
         disallow_provider: Tillad ikke udgiver
+        shared_by_over_week:
+          one: Delt af én person i løbet af den seneste uge
+          other: Delt af %{count} personer i løbet af den seneste uge
+          zero: Ikke delt af nogen i løbet af den seneste uge
         title: Populære links
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
       pending_review: Afventende vurdering
