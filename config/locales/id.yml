@@ -388,6 +388,14 @@ id:
       media_storage: Penyimpanan media
       new_users: pengguna baru
       opened_reports: laporan dibuka
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> banding ditunda"
+      pending_reports_html:
+        other: "<strong>%{count}</strong> laporan banding"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> tagar ditunda"
+      pending_users_html:
+        other: "<strong>%{count}</strong> pengguna ditunda"
       resolved_reports: laporan sudah diselesaikan
       software: Perangkat lunak
       sources: Sumber pendaftaran
@@ -437,6 +445,10 @@ id:
         silence: dibungkam
         suspend: ditangguhkan
       show:
+        affected_accounts:
+          one: Satu akun di basis data terpengaruh
+          other: "%{count} akun di basis data terpengaruh"
+          zero: Tidak ada akun di basis data terpengaruh
         retroactive:
           silence: Hapus pendiaman terhadap akun pada domain ini
           suspend: Hapus suspen terhadap akun pada domain ini
@@ -486,6 +498,10 @@ id:
       delivery_error_hint: Jika pengiriman tidak terjadi selama %{count} hari, ia akan ditandai secara otomatis sebagai tidak terkirim.
       destroyed_msg: Data dari %{domain} masuk antrean dihapus dalam waktu dekat.
       empty: Domain tidak ditemukan.
+      known_accounts:
+        one: "%{count} akun dikenal"
+        other: "%{count} akun dikenal"
+        zero: Tidak ada akun yang dikenal
       moderation:
         all: Semua
         limited: Terbatas
@@ -741,6 +757,10 @@ id:
         allow_provider: Izinkan penerbit
         disallow: Batalkan izin tautan
         disallow_provider: Batalkan izin penerbit
+        shared_by_over_week:
+          one: Dibagikan oleh satu orang lebih dari seminggu lalu
+          other: Dibagikan oleh %{count} orang lebih dari seminggu lalu
+          zero: Tidak dibagikan siapapun lebih dari seminggu lalu
         title: Tautan sedang tren
         usage_comparison: Dibagikan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
       pending_review: Tinjauan tertunda
