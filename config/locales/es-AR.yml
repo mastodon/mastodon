@@ -392,6 +392,18 @@ es-AR:
       media_storage: Almacenamiento de medios
       new_users: nuevos usuarios
       opened_reports: denuncias abiertas
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apelación pendiente"
+        other: "<strong>%{count}</strong> apelaciones pendientes"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> denuncia pendiente"
+        other: "<strong>%{count}</strong> denuncias pendientes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> etiqueta pendiente"
+        other: "<strong>%{count}</strong> etiquetas pendientes"
+      pending_users_html:
+        one: "<strong>%{count}</strong> usuario pendiente"
+        other: "<strong>%{count}</strong> usuarios pendientes"
       resolved_reports: denuncias resueltas
       software: Software
       sources: Fuentes de registro
@@ -441,6 +453,10 @@ es-AR:
         silence: limitados
         suspend: suspendidos
       show:
+        affected_accounts:
+          one: Una cuenta en la base de datos afectada
+          other: "%{count} cuentas en la base de datos afectada"
+          zero: Ninguna cuenta en la base de datos está afectada
         retroactive:
           silence: Quitar límite de las cuentas existentes afectadas de este dominio
           suspend: Quitar suspensión de las cuentas existentes afectadas de este dominio
@@ -491,6 +507,10 @@ es-AR:
       delivery_error_hint: Si la entrega no es posible durante %{count} días, se marcará automáticamente como no entregable.
       destroyed_msg: Los datos de %{domain} están ahora en cola para su eliminación inminente.
       empty: No se encontraron dominios.
+      known_accounts:
+        one: "%{count} cuenta conocida"
+        other: "%{count} cuentas conocidas"
+        zero: Ninguna cuenta conocida
       moderation:
         all: Todas
         limited: Limitadas
@@ -747,6 +767,10 @@ es-AR:
         allow_provider: Permitir medio
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
+        shared_by_over_week:
+          one: Compartido por una persona en la última semana
+          other: Compartido por %{count} personas durante la última semana
+          zero: Compartido por nadie en la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
       pending_review: Revisión pendiente
@@ -773,6 +797,10 @@ es-AR:
         trending_rank: 'Tendencia n.º %{rank}'
         usable: Pueden usarse
         usage_comparison: Usadas %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
+        used_by_over_week:
+          one: Usada por una persona durante la última semana
+          other: Usada por %{count} personas durante la última semana
+          zero: Usada por nadie en la última semana
       title: Tendencias
     warning_presets:
       add_new: Agregar nuevo
