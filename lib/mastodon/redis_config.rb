@@ -20,6 +20,19 @@ def setup_redis_env_url(prefix = nil, defaults = true)
                               end
 end
 
+def redis_params_for(name, namespace, opts)
+  params = {
+    driver: :hiredis,
+    url: ENV[name],
+    namespace: namespace,
+  }.merge(opts)
+  if ENV['REDIS_TLS_NOVERIFY']
+    params[:driver] = :ruby
+    params[:ssl_params] = { verify_mode: OpenSSL::SSL::VERIFY_NONE }
+  end
+  return params
+end
+
 setup_redis_env_url
 setup_redis_env_url(:cache, false)
 setup_redis_env_url(:sidekiq, false)
@@ -28,15 +41,13 @@ namespace         = ENV.fetch('REDIS_NAMESPACE', nil)
 cache_namespace   = namespace ? namespace + '_cache' : 'cache'
 sidekiq_namespace = namespace
 
-REDIS_CACHE_PARAMS = {
-  driver: :hiredis,
-  url: ENV['CACHE_REDIS_URL'],
+REDIS_CACHE_PARAMS = redis_params_for(
+  'CACHE_REDIS_URL',
+  cache_namespace,
   expires_in: 10.minutes,
-  namespace: cache_namespace,
-}.freeze
+).freeze
 
-REDIS_SIDEKIQ_PARAMS = {
-  driver: :hiredis,
-  url: ENV['SIDEKIQ_REDIS_URL'],
-  namespace: sidekiq_namespace,
-}.freeze
+REDIS_SIDEKIQ_PARAMS = redis_params_for(
+  'SIDEKIQ_REDIS_URL',
+  sidekiq_namespace,
+).freeze
