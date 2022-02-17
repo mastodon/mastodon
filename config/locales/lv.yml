@@ -396,6 +396,22 @@ lv:
       media_storage: Mediju krātuve
       new_users: jauni lietotāji
       opened_reports: atvērtie ziņojumi
+      pending_appeals_html:
+        zero: "<strong>%{count}</strong> izskatāmo apelāciju"
+        one: "<strong>%{count}</strong> izskatāmā apelācija"
+        other: "<strong>%{count}</strong> izskatāmās apelācijas"
+      pending_reports_html:
+        zero: "<strong>%{count}</strong>ziņojumi gaida"
+        one: "<strong>%{count}</strong>ziņojums gaida"
+        other: "<strong>%{count}</strong>ziņojumi gaida"
+      pending_tags_html:
+        zero: "<strong>%{count}</strong>tēmturi gaida"
+        one: "<strong>%{count}</strong>tēmturis gaida"
+        other: "<strong>%{count}</strong>tēmturi gaida"
+      pending_users_html:
+        zero: "<strong>%{count}</strong>lietotāji gaida"
+        one: "<strong>%{count}</strong>lietotājs gaida"
+        other: "<strong>%{count}</strong>lietotāji gaida"
       resolved_reports: ziņojumi atrisināti
       software: Programmatūra
       sources: Reģistrēšanās avoti
@@ -445,6 +461,10 @@ lv:
         silence: ierobežots
         suspend: apturēts
       show:
+        affected_accounts:
+          one: Ietekmēts viens konts datu bāzē
+          other: "Ietekmēti %{count} konti datu bāzē"
+          zero: Nav ietekmētu kontu datubāzē
         retroactive:
           silence: Atsaukt ierobežojumus esošajiem ietekmētajiem kontiem no šī domēna
           suspend: Atcelt šī domēna esošo ietekmēto kontu darbības apturēšanu
@@ -496,6 +516,8 @@ lv:
       delivery_error_hint: Ja piegāde nav iespējama %{count} dienas, tā tiks automātiski atzīmēta kā nepiegādājama.
       destroyed_msg: Dati no %{domain} tagad ir gaidīšanas rindā, lai tos drīzumā dzēstu.
       empty: Domēni nav atrasti.
+      known_accounts:
+        one: "%{count} zināms konts"
       moderation:
         all: Visas
         limited: Ierobežotās
