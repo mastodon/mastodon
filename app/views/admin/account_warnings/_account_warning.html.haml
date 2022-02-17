@@ -1,6 +1,24 @@
-.speech-bubble.warning
-  .speech-bubble__bubble
-    = Formatter.instance.linkify(account_warning.text)
-  .speech-bubble__owner
-    = admin_account_link_to account_warning.account
-    %time.formatted{ datetime: account_warning.created_at.iso8601 }= l account_warning.created_at
+= link_to disputes_strike_path(account_warning), class: ['log-entry', account_warning.overruled? && 'log-entry--inactive'] do
+  .log-entry__header
+    .log-entry__avatar
+      = image_tag account_warning.target_account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
+    .log-entry__content
+      .log-entry__title
+        = t(account_warning.action, scope: 'admin.strikes.actions', name: content_tag(:span, account_warning.account.username, class: 'username'), target: content_tag(:span, account_warning.target_account.acct, class: 'target')).html_safe
+      .log-entry__timestamp
+        %time.formatted{ datetime: account_warning.created_at.iso8601 }
+          = l(account_warning.created_at)
+
+        - if account_warning.report_id.present?
+          ·
+          = t('admin.reports.title', id: account_warning.report_id)
+
+        - if account_warning.overruled?
+          ·
+          %span.positive-hint= t('admin.strikes.appeal_approved')
+        - elsif account_warning.appeal&.pending?
+          ·
+          %span.warning-hint= t('admin.strikes.appeal_pending')
+        - elsif account_warning.appeal&.rejected?
+          ·
+          %span.negative-hint= t('admin.strikes.appeal_rejected')

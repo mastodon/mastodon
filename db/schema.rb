@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_175231) do
+ActiveRecord::Schema.define(version: 2022_02_10_153119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2022_02_09_175231) do
     t.datetime "updated_at", null: false
     t.bigint "report_id"
     t.string "status_ids", array: true
+    t.datetime "overruled_at"
     t.index ["account_id"], name: "index_account_warnings_on_account_id"
     t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
   end
@@ -241,6 +242,22 @@ ActiveRecord::Schema.define(version: 2022_02_09_175231) do
     t.datetime "updated_at", null: false
     t.datetime "published_at"
     t.bigint "status_ids", array: true
+  end
+
+  create_table "appeals", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "account_warning_id", null: false
+    t.text "text", default: "", null: false
+    t.datetime "approved_at"
+    t.bigint "approved_by_account_id"
+    t.datetime "rejected_at"
+    t.bigint "rejected_by_account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_appeals_on_account_id"
+    t.index ["account_warning_id"], name: "index_appeals_on_account_warning_id", unique: true
+    t.index ["approved_by_account_id"], name: "index_appeals_on_approved_by_account_id"
+    t.index ["rejected_by_account_id"], name: "index_appeals_on_rejected_by_account_id"
   end
 
   create_table "backups", force: :cascade do |t|
@@ -1034,6 +1051,10 @@ ActiveRecord::Schema.define(version: 2022_02_09_175231) do
   add_foreign_key "announcement_reactions", "accounts", on_delete: :cascade
   add_foreign_key "announcement_reactions", "announcements", on_delete: :cascade
   add_foreign_key "announcement_reactions", "custom_emojis", on_delete: :cascade
+  add_foreign_key "appeals", "account_warnings", on_delete: :cascade
+  add_foreign_key "appeals", "accounts", column: "approved_by_account_id", on_delete: :nullify
+  add_foreign_key "appeals", "accounts", column: "rejected_by_account_id", on_delete: :nullify
+  add_foreign_key "appeals", "accounts", on_delete: :cascade
   add_foreign_key "backups", "users", on_delete: :nullify
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade

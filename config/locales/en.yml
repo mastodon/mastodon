@@ -94,7 +94,6 @@ en:
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
-      delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
       add_email_domain_block: Block e-mail domain
@@ -163,6 +162,11 @@ en:
       not_subscribed: Not subscribed
       pending: Pending review
       perform_full_suspension: Suspend
+      previous_strikes: Previous strikes
+      previous_strikes_description_html:
+        one: This account has <strong>one</strong> strike.
+        other: This account has <strong>%{count}</strong> strikes.
+        zero: This account is <strong>in good standing</strong>.
       promote: Promote
       protocol: Protocol
       public: Public
@@ -227,6 +231,7 @@ en:
       whitelisted: Allowed for federation
     action_logs:
       action_types:
+        approve_appeal: Approve Appeal
         approve_user: Approve User
         assigned_to_self_report: Assign Report
         change_email_user: Change E-mail for User
@@ -258,6 +263,7 @@ en:
         enable_user: Enable User
         memorialize_account: Memorialize Account
         promote_user: Promote User
+        reject_appeal: Reject Appeal
         reject_user: Reject User
         remove_avatar_user: Remove Avatar
         reopen_report: Reopen Report
@@ -276,6 +282,7 @@ en:
         update_domain_block: Update Domain Block
         update_status: Update Post
       actions:
+        approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
         approve_user_html: "%{name} approved sign-up from %{target}"
         assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
         change_email_user_html: "%{name} changed the e-mail address of user %{target}"
@@ -307,6 +314,7 @@ en:
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
+        reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
         reject_user_html: "%{name} rejected sign-up from %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
         reopen_report_html: "%{name} reopened report %{target}"
@@ -385,14 +393,17 @@ en:
       media_storage: Media storage
       new_users: new users
       opened_reports: reports opened
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> pending appeal"
+        other: "<strong>%{count}</strong> pending appeals"
       pending_reports_html:
-        one: "<strong>1</strong> pending report"
+        one: "<strong>%{count}</strong> pending report"
         other: "<strong>%{count}</strong> pending reports"
       pending_tags_html:
-        one: "<strong>1</strong> pending hashtag"
+        one: "<strong>%{count}</strong> pending hashtag"
         other: "<strong>%{count}</strong> pending hashtags"
       pending_users_html:
-        one: "<strong>1</strong> pending user"
+        one: "<strong>%{count}</strong> pending user"
         other: "<strong>%{count}</strong> pending users"
       resolved_reports: reports resolved
       software: Software
@@ -402,6 +413,10 @@ en:
       top_languages: Top active languages
       top_servers: Top active servers
       website: Website
+    disputes:
+      appeals:
+        empty: No appeals found.
+        title: Appeals
     domain_allows:
       add_new: Allow federation with domain
       created_msg: Domain has been successfully allowed for federation
@@ -442,6 +457,7 @@ en:
         affected_accounts:
           one: One account in the database affected
           other: "%{count} accounts in the database affected"
+          zero: No account in the database is affected
         retroactive:
           silence: Undo limit of existing affected accounts from this domain
           suspend: Unsuspend existing affected accounts from this domain
@@ -495,6 +511,7 @@ en:
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
+        zero: No known account
       moderation:
         all: All
         limited: Limited
@@ -720,6 +737,16 @@ en:
       no_status_selected: No posts were changed as none were selected
       title: Account posts
       with_media: With media
+    strikes:
+      actions:
+        delete_statuses: "%{name} deleted %{target}'s posts"
+        disable: "%{name} froze %{target}'s account"
+        none: "%{name} sent a warning to %{target}"
+        sensitive: "%{name} marked %{target}'s account as sensitive"
+        silence: "%{name} limited %{target}'s account"
+        suspend: "%{name} suspended %{target}'s account"
+      appeal_approved: Appealed
+      appeal_pending: Appeal pending
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
@@ -744,6 +771,7 @@ en:
         shared_by_over_week:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
+          zero: Shared by noone over the last week
         title: Trending links
         usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
       pending_review: Pending review
@@ -773,6 +801,7 @@ en:
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
+          zero: Used by noone over the last week
       title: Trends
     warning_presets:
       add_new: Add new
@@ -781,6 +810,17 @@ en:
       empty: You haven't defined any warning presets yet.
       title: Manage warning presets
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: to delete their posts
+        disable: to freeze their account
+        none: a warning
+        sensitive: to mark their account as sensitive
+        silence: to limit their account
+        suspend: to suspend their account
+      body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
+      next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
+      subject: "%{username} is appealing a moderation decision on %{instance}"
     new_pending_account:
       body: The details of the new account are below. You can approve or reject this application.
       subject: New account up for review on %{instance} (%{username})
@@ -871,7 +911,6 @@ en:
     status:
       account_status: Account status
       confirming: Waiting for e-mail confirmation to be completed.
-      functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
     too_fast: Form submitted too fast, try again.
@@ -937,6 +976,32 @@ en:
     directory: Profile directory
     explanation: Discover users based on their interests
     explore_mastodon: Explore %{title}
+  disputes:
+    strikes:
+      action_taken: Action taken
+      appeal: Appeal
+      appeal_approved: This strike has been successfully appealed and is no longer valid
+      appeal_rejected: The appeal has been rejected
+      appeal_submitted_at: Appeal submitted
+      appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
+      appeals:
+        submit: Submit appeal
+      associated_report: Associated report
+      created_at: Dated
+      recipient: Addressed to
+      status: 'Post #%{id}'
+      status_removed: Post already removed from system
+      title: "%{action} from %{date}"
+      title_actions:
+        delete_statuses: Post removal
+        disable: Freezing of account
+        none: Warning
+        sensitive: Marking as sensitive of account
+        silence: Limitation of account
+        suspend: Suspension of account
+      your_appeal_approved: Your appeal has been approved
+      your_appeal_pending: You have submitted an appeal
+      your_appeal_rejected: Your appeal has been rejected
   domain_validator:
     invalid_domain: is not a valid domain name
   errors:
@@ -1501,6 +1566,15 @@ en:
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     webauthn: Security keys
   user_mailer:
+    appeal_approved:
+      action: Go to your account
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
+      subject: Your appeal from %{date} has been approved
+      title: Appeal approved
+    appeal_rejected:
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been rejected.
+      subject: Your appeal from %{date} has been rejected
+      title: Appeal rejected
     backup_ready:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
       subject: Your archive is ready for download
@@ -1512,6 +1586,8 @@ en:
       subject: Please confirm attempted sign in
       title: Sign in attempt
     warning:
+      appeal: Submit an appeal
+      appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.
       categories:
         spam: Spam
         violation: Content violates the following community guidelines
@@ -1523,7 +1599,6 @@ en:
         suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
       get_in_touch: If you believe this is an error, you can reply to this e-mail to get in touch with the staff of %{instance}.
       reason: 'Reason:'
-      review_server_policies: Review server policies
       statuses: 'Posts that have been found in violation:'
       subject:
         delete_statuses: Your posts on %{acct} have been removed

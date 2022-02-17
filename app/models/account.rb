@@ -274,6 +274,10 @@ class Account < ApplicationRecord
     true
   end
 
+  def previous_strikes_count
+    strikes.where(overruled_at: nil).count
+  end
+
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
