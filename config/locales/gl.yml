@@ -306,10 +306,10 @@ gl:
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no email para %{target}"
-        disable_user_html: "%{name} desactivou a conexión para a usuaria %{target}"
+        disable_user_html: "%{name} desactivou as credenciais para a usuaria %{target}"
         enable_custom_emoji_html: "%{name} activou o emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no email para %{target}"
-        enable_user_html: "%{name} activou a conexión para a usuaria %{target}"
+        enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
         reject_appeal_html: "%{name} rexeitou a apelación da decisión da moderación de %{target}"
@@ -391,6 +391,18 @@ gl:
       media_storage: Almacenaxe multimedia
       new_users: novas usuarias
       opened_reports: denuncias abertas
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apelación pendente"
+        other: "<strong>%{count}</strong> apelacións pendentes"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> denuncia pendente"
+        other: "<strong>%{count}</strong> denuncias pendentes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> etiqueta pendente"
+        other: "<strong>%{count}</strong> etiquetas pendentes"
+      pending_users_html:
+        one: "<strong>%{count}</strong> usuaria pendente"
+        other: "<strong>%{count}</strong> usuarias pendentes"
       resolved_reports: denuncias resoltas
       software: Software
       sources: Orixes de rexistro
@@ -440,6 +452,10 @@ gl:
         silence: limitado
         suspend: suspendido
       show:
+        affected_accounts:
+          one: Ten efecto sobre unha conta na base de datos
+          other: "Ten efecto sobre %{count} contas na base de datos"
+          zero: Non afecta a ningunha conta na base de datos
         retroactive:
           silence: Deixar de silenciar todas as contas existentes deste dominio
           suspend: Desbotar suspenso de todas as contas existentes deste dominio
@@ -490,6 +506,10 @@ gl:
       delivery_error_hint: Se non é posible a entrega durante %{count} días, será automáticamente marcado como non entregable.
       destroyed_msg: Os datos desde %{domain} están na cola para o borrado inminente.
       empty: Non se atopan dominios.
+      known_accounts:
+        one: "%{count} conta coñecida"
+        other: "%{count} contas coñecidas"
+        zero: Sen contas coñecidas
       moderation:
         all: Todo
         limited: Limitado
@@ -746,6 +766,10 @@ gl:
         allow_provider: Permitir orixe
         disallow: Denegar ligazón
         disallow_provider: Denegar orixe
+        shared_by_over_week:
+          one: Compartido por unha persoa na última semana
+          other: Compartido por %{count} persoas na última semana
+          zero: Non foi compartido na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
       pending_review: Revisión pendente
@@ -772,6 +796,10 @@ gl:
         trending_rank: 'En voga #%{rank}'
         usable: Pode ser usado
         usage_comparison: Utilizado %{today} veces hoxe, comparado coas %{yesterday} de onte
+        used_by_over_week:
+          one: Utilizado por unha persoa na última semana
+          other: Utilizado por %{count} persoas na última semana
+          zero: Non foi utilizado na última semana
       title: Tendencias
     warning_presets:
       add_new: Engadir novo
@@ -1099,9 +1127,9 @@ gl:
       sign_in_token: código de seguridade por email
       webauthn: chaves de seguridade
     description_html: Se ves actividade que non recoñeces, considera cambiar o contrasinal e activar o segundo factor de autenticación.
-    empty: Sen historial de autenticación dispoñible
-    failed_sign_in_html: Intento de conexión errado con %{method} desde %{ip} (%{browser})
-    successful_sign_in_html: Conexión correcta con %{method} desde %{ip} (%{browser})
+    empty: Non hai historial de autenticación
+    failed_sign_in_html: Intento de acceso errado con %{method} desde %{ip} (%{browser})
+    successful_sign_in_html: Acceso correcto con %{method} desde %{ip} (%{browser})
     title: Historial de autenticación
   media_attachments:
     validations:
@@ -1606,7 +1634,7 @@ gl:
     invalid_otp_token: O código do segundo factor non é válido
     invalid_sign_in_token: Código de seguridade non válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
-    seamless_external_login: Accedeches a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
+    seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
     suspicious_sign_in_confirmation: Semella que non entraches antes usando este dispositivo, así que ímosche enviar un código de seguridade ao teu enderezo de email para confirmar que es ti.
   verification:
