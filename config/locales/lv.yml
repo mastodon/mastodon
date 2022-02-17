@@ -518,6 +518,8 @@ lv:
       empty: Domēni nav atrasti.
       known_accounts:
         one: "%{count} zināms konts"
+        other: "%{count} zināmi konti"
+        zero: Nav zināmu kontu
       moderation:
         all: Visas
         limited: Ierobežotās
@@ -775,6 +777,10 @@ lv:
         allow_provider: Atļaut publicētāju
         disallow: Neatļaut saiti
         disallow_provider: Neatļaut publicētāju
+        shared_by_over_week:
+          one: Pēdējās nedēļas laikā kopīgoja viena persona
+          other: Pēdējās nedēļas laikā kopīgoja %{count} personas
+          zero: Pēdējās nedēļas laikā neviens nav kopīgojis
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
       pending_review: Gaida pārskatīšanu
@@ -801,6 +807,10 @@ lv:
         trending_rank: 'Populārākie #%{rank}'
         usable: Var tikt lietots
         usage_comparison: Šodien lietots %{today} reizes, salīdzinot ar %{yesterday} vakar
+        used_by_over_week:
+          one: Pēdējās nedēļas laikā izmantoja viens cilvēks
+          other: Pēdējās nedēļas laikā izmantoja %{count} personas
+          zero: Pēdējās nedēļas laikā neviens nav izmantojis
       title: Tendences
     warning_presets:
       add_new: Pievienot jaunu
