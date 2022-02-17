@@ -392,6 +392,18 @@ tr:
       media_storage: Medya deposu
       new_users: yeni kullanıcılar
       opened_reports: açılan bildirimler
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> bekleyen itiraz"
+        other: "<strong>%{count}</strong> bekleyen itiraz"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> bekleyen bildirim"
+        other: "<strong>%{count}</strong> bekleyen bildirim"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> bekleyen etiket"
+        other: "<strong>%{count}</strong> bekleyen etiket"
+      pending_users_html:
+        one: "<strong>%{count}</strong> bekleyen kullanıcı"
+        other: "<strong>%{count}</strong> bekleyen kullanıcı"
       resolved_reports: çözülmüş bildirimler
       software: Yazılım
       sources: Kayıt kaynakları
@@ -441,6 +453,10 @@ tr:
         silence: susturulmuş
         suspend: uzaklaştırılmış
       show:
+        affected_accounts:
+          one: Veritabanındaki bir hesap etkilendi
+          other: "Veritabanındaki %{count} hesap etkilendi"
+          zero: Veritabanındaki hiç bir hesap etkilenmedi
         retroactive:
           silence: Bu domaindeki tüm hesapların üzerindeki susturulma işlemini kaldır
           suspend: Bu domaindeki tüm hesapların üzerindeki uzaklaştırma işlemini kaldır
@@ -491,6 +507,10 @@ tr:
       delivery_error_hint: Eğer teslimat %{count} gün boyunca mümkün olmazsa, otomatik olarak teslim edilemiyor olarak işaretlenecek.
       destroyed_msg: '%{domain} alan adından veriler hemen silinmek üzere kuyruğa alındı.'
       empty: Alan adı bulunamadı.
+      known_accounts:
+        one: "%{count} bilinen hesap"
+        other: "%{count} bilinen hesap"
+        zero: Bilinen hesap yok
       moderation:
         all: Tümü
         limited: Sınırlı
@@ -747,6 +767,10 @@ tr:
         allow_provider: Yayıncıya izin ver
         disallow: Bağlantıya izin verme
         disallow_provider: Yayıncıya izin verme
+        shared_by_over_week:
+          one: Geçen hafta bir kişi paylaştı
+          other: Geçen hafta %{count} kişi paylaştı
+          zero: Geçen hafta kimse paylaşmadı
         title: Öne çıkan bağlantılar
         usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
       pending_review: İnceleme bekliyor
@@ -773,6 +797,9 @@ tr:
         trending_rank: 'Öne çıkanlar #%{rank}'
         usable: Kullanılabilir
         usage_comparison: Bugün %{today} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
+        used_by_over_week:
+          one: Geçen hafta bir kişi tarafından kullanıldı
+          zero: Geçen hafta kimse tarafından kullanılmadı
       title: Öne çıkanlar
     warning_presets:
       add_new: Yeni ekle
