@@ -388,6 +388,14 @@ ko:
       media_storage: 미디어 저장소
       new_users: 새로운 사용자
       opened_reports: 신고 열림
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> 개의 대기 중인 이의제기"
+      pending_reports_html:
+        other: "<strong>%{count}</strong> 건의 대기 중인 신고"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> 개의 대기 중인 해시태그"
+      pending_users_html:
+        other: "<strong>%{count}</strong> 명의 대기 중인 사용자"
       resolved_reports: 신고 해결됨
       software: 소프트웨어
       sources: 가입 출처
@@ -437,6 +445,10 @@ ko:
         silence: 침묵
         suspend: 정지
       show:
+        affected_accounts:
+          one: 데이터베이스 내부의 1개의 계정에 영향을 끼칩니다
+          other: "데이터베이스 내부의 %{count} 개의 계정에 영향을 끼칩니다"
+          zero: 데이터베이스 내부의 영향을 끼치는 계정이 없습니다
         retroactive:
           silence: 이 도메인에 존재하는 모든 계정의 침묵를 해제
           suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
@@ -486,6 +498,10 @@ ko:
       delivery_error_hint: 만약 %{count}일동안 전달이 불가능하다면, 자동으로 전달불가로 표시됩니다.
       destroyed_msg: '%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다.'
       empty: 도메인이 하나도 없습니다.
+      known_accounts:
+        one: "%{count} 개의 알려진 계정"
+        other: "%{count} 개의 알려진 계정"
+        zero: 알려진 계정이 없습니다
       moderation:
         all: 모두
         limited: 제한됨
@@ -738,6 +754,10 @@ ko:
         allow_provider: 출처 허용하기
         disallow: 링크 거부하기
         disallow_provider: 출처 거부하기
+        shared_by_over_week:
+          one: 지난 주 동안 한 명의 사람이 공유했습니다
+          other: 지난 주 동안 %{count} 명의 사람들이 공유했습니다
+          zero: 지난 주 동안 공유한 사람이 없습니다
         title: 지금 유행 중인 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
       pending_review: 심사 대기
@@ -757,13 +777,17 @@ ko:
         listable: 추천될 수 있습니다
         not_listable: 추천될 수 없습니다
         not_trendable: 유행 목록에 나타나지 않습니다
-        not_usable: 사용할 수 없음
+        not_usable: 사용불가
         peaked_on_and_decaying: '%{date}에 고점을 찍고, 떨어지고 있습니다'
         title: 유행하는 해시태그
         trendable: 유행 목록에 나타날 수 있습니다
         trending_rank: '#%{rank}위로 유행 중'
-        usable: 사용할 수 없음
+        usable: 사용 가능
         usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
+        used_by_over_week:
+          one: 지난 주 동안 한 명의 사람이 사용했습니다
+          other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
+          zero: 지난 주 동안 사용한 사람이 없습니다
       title: 유행
     warning_presets:
       add_new: 새로 추가
@@ -939,6 +963,7 @@ ko:
         submit: 이의 제출
       associated_report: 관련된 신고
       created_at: 날짜
+      recipient: 수신자
       status: '게시물 #%{id}'
       status_removed: 게시물이 이미 시스템에서 지워졌습니다
       title_actions:
