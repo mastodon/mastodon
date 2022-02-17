@@ -322,6 +322,10 @@ $content-width: 840px;
 
       & > ul {
         display: none;
+
+        &.visible {
+          display: block;
+        }
       }
 
       ul a,
@@ -594,12 +598,16 @@ body,
 }
 
 .log-entry {
+  display: block;
   line-height: 20px;
   padding: 15px;
   padding-left: 15px * 2 + 40px;
   background: $ui-base-color;
   border-bottom: 1px solid darken($ui-base-color, 8%);
   position: relative;
+  text-decoration: none;
+  color: $darker-text-color;
+  font-size: 14px;
 
   &:first-child {
     border-top-left-radius: 4px;
@@ -612,13 +620,10 @@ body,
     border-bottom: 0;
   }
 
-  &:hover {
+  &:hover,
+  &:focus,
+  &:active {
     background: lighten($ui-base-color, 4%);
-  }
-
-  &__header {
-    color: $darker-text-color;
-    font-size: 14px;
   }
 
   &__avatar {
@@ -654,6 +659,18 @@ body,
     &:focus,
     &:active {
       text-decoration: underline;
+    }
+  }
+
+  &--inactive {
+    .log-entry__title {
+      text-decoration: line-through;
+    }
+
+    a,
+    .username,
+    .target {
+      color: $darker-text-color;
     }
   }
 }
@@ -1191,6 +1208,17 @@ a.sparkline {
         font-weight: 600;
         padding: 4px 0;
       }
+
+      a {
+        color: $ui-highlight-color;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
+        }
+      }
     }
 
     &--horizontal {
@@ -1464,6 +1492,59 @@ a.sparkline {
     &:focus,
     &:active {
       text-decoration: underline;
+    }
+  }
+}
+
+.strike-card {
+  padding: 15px;
+  border-radius: 4px;
+  background: $ui-base-color;
+  font-size: 15px;
+  line-height: 20px;
+  word-wrap: break-word;
+  font-weight: 400;
+  color: $primary-text-color;
+
+  p {
+    margin-bottom: 20px;
+    unicode-bidi: plaintext;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__statuses-list {
+    border-radius: 4px;
+    border: 1px solid darken($ui-base-color, 8%);
+    font-size: 13px;
+    line-height: 18px;
+    overflow: hidden;
+
+    &__item {
+      padding: 16px;
+      background: lighten($ui-base-color, 2%);
+      border-bottom: 1px solid darken($ui-base-color, 8%);
+
+      &:last-child {
+        border-bottom: 0;
+      }
+
+      &__meta {
+        color: $darker-text-color;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }

@@ -111,7 +111,7 @@ class User < ApplicationRecord
   scope :inactive, -> { where(arel_table[:current_sign_in_at].lt(ACTIVE_DURATION.ago)) }
   scope :active, -> { confirmed.where(arel_table[:current_sign_in_at].gteq(ACTIVE_DURATION.ago)).joins(:account).where(accounts: { suspended_at: nil }) }
   scope :matches_email, ->(value) { where(arel_table[:email].matches("#{value}%")) }
-  scope :matches_ip, ->(value) { left_joins(:ips).where('user_ips.ip <<= ?', value) }
+  scope :matches_ip, ->(value) { left_joins(:ips).where('user_ips.ip <<= ?', value).group('users.id') }
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
@@ -263,6 +263,10 @@ class User < ApplicationRecord
 
   def allows_pending_account_emails?
     settings.notification_emails['pending_account']
+  end
+
+  def allows_appeal_emails?
+    settings.notification_emails['appeal']
   end
 
   def allows_trending_tag_emails?

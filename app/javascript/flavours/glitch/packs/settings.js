@@ -7,13 +7,7 @@ function main() {
   const { delegate } = require('@rails/ujs');
 
   delegate(document, '.sidebar__toggle__icon', 'click', () => {
-    const target = document.querySelector('.sidebar ul');
-
-    if (target.style.display === 'block') {
-      target.style.display = 'none';
-    } else {
-      target.style.display = 'block';
-    }
+    document.querySelector('.sidebar ul').classList.toggle('visible');
   });
 }
 

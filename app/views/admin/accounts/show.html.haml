@@ -246,17 +246,28 @@
   %hr.spacer/
 
   - unless @warnings.empty?
-    = render @warnings
+
+    %h3= t 'admin.accounts.previous_strikes'
+
+    %p= t('admin.accounts.previous_strikes_description_html', count: @account.previous_strikes_count)
+
+    .account-strikes
+      = render @warnings
 
     %hr.spacer/
 
-  = render @moderation_notes
+  %h3= t 'admin.reports.notes.title'
+
+  %p= t 'admin.reports.notes_description_html'
+
+  .report-notes
+    = render partial: 'admin/report_notes/report_note', collection: @moderation_notes
 
   = simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |f|
-    = render 'shared/error_messages', object: @account_moderation_note
-
-    = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
     = f.hidden_field :target_account_id
+
+    .field-group
+      = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
 
     .actions
       = f.button :button, t('admin.account_moderation_notes.create'), type: :submit
