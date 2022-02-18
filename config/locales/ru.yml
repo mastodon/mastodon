@@ -169,6 +169,10 @@ ru:
       not_subscribed: Не подписаны
       pending: Ожидает рассмотрения
       perform_full_suspension: Блокировка
+      previous_strikes: Предыдущие замечания
+      previous_strikes_description_html:
+        one: У этой учетной записи <strong>одно</strong> замечание.
+        other: У этой учетной записи <strong>%{count}</strong> замечания.
       promote: Повысить
       protocol: Протокол
       public: Публичный
@@ -210,7 +214,7 @@ ru:
       silence: Скрытие
       silenced: Заглушен
       statuses: Посты
-      strikes: Предыдущие предупреждения
+      strikes: Предыдущие замечания
       subscribe: Подписаться
       suspend: Заблокировать
       suspended: Заморожен
@@ -905,6 +909,7 @@ ru:
     explore_mastodon: Изучайте %{title}
   disputes:
     strikes:
+      appeal_approved: Это замечание было успешно обжаловано и более не действительно
       status: 'Пост #%{id}'
       title: "%{action} от %{date}"
       your_appeal_approved: Ваша апелляция одобрена
