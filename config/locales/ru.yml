@@ -237,6 +237,7 @@ ru:
       whitelisted: В белом списке
     action_logs:
       action_types:
+        approve_appeal: Одобрить обжалование
         approve_user: Утвердить
         assigned_to_self_report: Присвоение жалоб
         change_email_user: Изменение e-mail пользователей
@@ -267,6 +268,7 @@ ru:
         enable_user: Разморозка пользователей
         memorialize_account: Присвоение пользователям статуса «мемориала»
         promote_user: Повышение пользователей
+        reject_appeal: Отклонить обжалование
         reject_user: Отклонить
         remove_avatar_user: Удаление аватаров
         reopen_report: Возобновление жалоб
@@ -402,6 +404,10 @@ ru:
       top_languages: Самые активные языки
       top_servers: Самые активные серверы
       website: Веб-сайт
+    disputes:
+      appeals:
+        empty: Обжалования не найдены.
+        title: Обжалования
     domain_allows:
       add_new: Внести в белый список
       created_msg: Домен добавлен в белый список
@@ -491,6 +497,10 @@ ru:
       delivery_error_hint: Если доставка доставка не удастся в течение %{count} дней, он будет автоматически отмечен недоступным для доставки.
       destroyed_msg: Данные для домена %{domain} поставлены в очередь на удаление.
       empty: Домены не найдены.
+      known_accounts:
+        one: "%{count} известная учётная запись"
+        other: "%{count} известных учётных записей"
+        zero: Нет известных учётных записей
       moderation:
         all: Все
         limited: Ограниченные
@@ -714,6 +724,8 @@ ru:
       no_status_selected: Ничего не изменилось, так как ни один пост не был выделен
       title: Посты пользователя
       with_media: С файлами
+    strikes:
+      appeal_pending: Обжалование в обработке
     system_checks:
       database_schema_check:
         message_html: Есть отложенные миграции базы данных. Запустите их, чтобы убедиться, что приложение работает должным образом
@@ -744,6 +756,7 @@ ru:
       tags:
         dashboard:
           tag_accounts_measure: уникальных использований
+          tag_languages_dimension: Самые популярные языки
           tag_uses_measure: всего использований
         listable: Может предлагаться
         not_listable: Не будет предлагаться
