@@ -388,6 +388,12 @@ zh-CN:
       media_storage: 媒体存储
       new_users: 新用户
       opened_reports: 被发起的举报
+      pending_reports_html:
+        other: "<strong>%{count}</strong> 个待处理举报"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> 个待处理话题标签"
+      pending_users_html:
+        other: "<strong>%{count}</strong> 个待处理用户"
       resolved_reports: 已解决的举报
       software: 软件
       sources: 注册来源
@@ -437,6 +443,10 @@ zh-CN:
         silence: 已隐藏
         suspend: 已封禁
       show:
+        affected_accounts:
+          one: 数据库中的 1 个帐户受到影响
+          other: "数据库中的 %{count} 个帐户受到影响"
+          zero: 数据库中没有帐户受到影响
         retroactive:
           silence: 对此域名的所有帐户解除隐藏
           suspend: 对此域名的所有帐户解除封禁
@@ -486,6 +496,10 @@ zh-CN:
       delivery_error_hint: 如果投递已不可用 %{count} 天，它将被自动标记为无法投递。
       destroyed_msg: '%{domain} 中的数据现在正在排队等待被立刻删除。'
       empty: 暂无域名。
+      known_accounts:
+        one: "%{count} 个已知帐户"
+        other: "%{count} 个已知帐户"
+        zero: 没有已知账户
       moderation:
         all: 全部
         limited: 受限的
@@ -741,6 +755,9 @@ zh-CN:
         allow_provider: 允许发布者
         disallow: 不允许链接
         disallow_provider: 不允许发布者
+        shared_by_over_week:
+          one: 过去一周内被 1 个人分享过
+          other: 过去一周内被 %{count} 个人分享过
         title: 热门链接
         usage_comparison: 今日被分享 %{today} 次，前一日为 %{yesterday} 次
       pending_review: 待审核
@@ -767,6 +784,9 @@ zh-CN:
         trending_rank: '热门 #%{rank}'
         usable: 可以使用
         usage_comparison: 今日被使用 %{today} 次，前一日为 %{yesterday} 次
+        used_by_over_week:
+          one: 过去一周内被 1 个人使用过
+          other: 过去一周内被 %{count} 个人使用过
       title: 流行趋势
     warning_presets:
       add_new: 添加新条目
