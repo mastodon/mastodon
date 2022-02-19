@@ -213,11 +213,16 @@ fi:
       rule:
         text: Sääntö
       tag:
+        listable: Salli tämän hashtagin näkyä hauissa ja ehdotuksissa
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
         usable: Salli postauksien käyttää tätä aihetunnistetta
     'no': 'Ei'
     recommended: Suositeltu
     required:
+      mark: "*"
       text: pakollinen tieto
+    title:
+      sessions:
+        webauthn: Käytä jotakin suojausavainta kirjautuaksesi sisään
     'yes': 'Kyllä'
