@@ -1,7 +1,6 @@
----
 th:
   about:
-    about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์ได้หากคุณมีบัญชีที่ใดก็ตามในจักรวาลสหพันธ์
+    about_hashtag_html: 'มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์ได้หากคุณมีบัญชีที่ใดก็ตามในจักรวาลสหพันธ์'
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา ไม่มีการสอดแนมโดยองค์กร การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ใช้งานอยู่
@@ -48,7 +47,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ตัวเลือกของ %{name}:'
+    choices_html: "ตัวเลือกของ %{name}:"
     featured_tags_hint: คุณสามารถแนะนำแฮชแท็กที่เฉพาะเจาะจงที่จะแสดงที่นี่
     follow: ติดตาม
     followers:
@@ -104,7 +103,7 @@ th:
       delete: ลบข้อมูล
       deleted: ลบแล้ว
       demote: ลดขั้น
-      destroyed_msg: ตอนนี้จัดคิวเพื่อลบข้อมูลของ %{username} ในเร็ว ๆ นี้แล้ว
+      destroyed_msg: "ตอนนี้จัดคิวเพื่อลบข้อมูลของ %{username} ในเร็ว ๆ นี้แล้ว"
       disable: อายัด
       disable_sign_in_token_auth: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       disable_two_factor_authentication: ปิดใช้งาน 2FA
@@ -369,6 +368,14 @@ th:
       media_storage: ที่เก็บข้อมูลสื่อ
       new_users: ผู้ใช้ใหม่
       opened_reports: รายงานที่เปิด
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> การอุทธรณ์ที่รอดำเนินการ"
+      pending_reports_html:
+        other: "<strong>%{count}</strong> รายงานที่รอดำเนินการ"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> แฮชแท็กที่รอดำเนินการ"
+      pending_users_html:
+        other: "<strong>%{count}</strong> ผู้ใช้ที่รอดำเนินการ"
       resolved_reports: รายงานที่แก้ปัญหาแล้ว
       software: ซอฟต์แวร์
       sources: แหล่งที่มาการลงทะเบียน
@@ -457,6 +464,10 @@ th:
       delivery_available: มีการจัดส่ง
       delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
       empty: ไม่พบโดเมน
+      known_accounts:
+        one: "%{count} บัญชีที่รู้จัก"
+        other: "%{count} บัญชีที่รู้จัก"
+        zero: ไม่มีบัญชีที่รู้จัก
       moderation:
         all: ทั้งหมด
         limited: จำกัดอยู่
@@ -494,7 +505,7 @@ th:
       no_ip_block_selected: ไม่มีการเปลี่ยนแปลงกฎ IP เนื่องจากไม่มีการเลือก
       title: กฎ IP
     relationships:
-      title: ความสัมพันธ์ของ %{acct}
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -691,6 +702,9 @@ th:
         allow_provider: อนุญาตผู้เผยแพร่
         disallow: ไม่อนุญาตลิงก์
         disallow_provider: ไม่อนุญาตผู้เผยแพร่
+        shared_by_over_week:
+          one: แบ่งปันโดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
+          other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
         usage_comparison: แบ่งปัน %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
       pending_review: การตรวจทานที่รอดำเนินการ
@@ -717,6 +731,9 @@ th:
         trending_rank: 'กำลังนิยม #%{rank}'
         usable: สามารถใช้
         usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
+        used_by_over_week:
+          one: ใช้โดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
+          other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
       title: แนวโน้ม
     warning_presets:
       add_new: เพิ่มใหม่
@@ -737,7 +754,7 @@ th:
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
-      subject: รายงานใหม่สำหรับ %{instance} (#%{id})
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
     new_trending_links:
       no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติ
       subject: ลิงก์ที่กำลังนิยมใหม่สำหรับตรวจทานใน %{instance}
@@ -1294,7 +1311,7 @@ th:
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
   terms:
-    title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
