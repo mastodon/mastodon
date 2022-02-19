@@ -313,6 +313,7 @@ fi:
         enable_user_html: "%{name} salli kirjautumisen käyttäjälle %{target}"
         memorialize_account_html: "%{name} muutti käyttäjän %{target} tilin muistosivuksi"
         promote_user_html: "%{name} ylensi käyttäjän %{target}"
+        reject_appeal_html: "%{name} hylkäsi moderointipäätöksen muutoksenhaun %{target}"
         reject_user_html: "%{name} hylkäsi käyttäjän rekisteröitymisen kohteesta %{target}"
         remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
         reopen_report_html: "%{name} avasi uudelleen raportin %{target}"
@@ -391,6 +392,18 @@ fi:
       media_storage: Median tallennustila
       new_users: uudet käyttäjät
       opened_reports: raportit avattu
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> vireillä oleva valitus"
+        other: "<strong>%{count}</strong> vireillä olevat valitukset"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> odottava raportti"
+        other: "<strong>%{count}</strong> odottavat raportit"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> odottava hashtagi"
+        other: "<strong>%{count}</strong> odottavat hashtagit"
+      pending_users_html:
+        one: "<strong>%{count}</strong> odottava käyttäjä"
+        other: "<strong>%{count}</strong> odottavat käyttäjät"
       resolved_reports: raportit ratkaistu
       software: Ohjelmisto
       sources: Kirjautumisen lähteet
@@ -399,6 +412,10 @@ fi:
       top_languages: Aktiiviset kielet
       top_servers: Aktiiviset palvelimet
       website: Sivusto
+    disputes:
+      appeals:
+        empty: Valituksia ei löytynyt.
+        title: Valitukset
     domain_allows:
       add_new: Salli liitto verkkotunnuksella
       created_msg: Verkkotunnus on onnistuneesti sallittu federaatiolle
@@ -436,6 +453,10 @@ fi:
         silence: hiljennetty
         suspend: jäähyllä
       show:
+        affected_accounts:
+          one: Tämä vaikuttaa yhteen tiliin tietokannassa
+          other: "Vaikuttaa %{count} tiliin tietokannassa"
+          zero: Tämä ei vaikuta mihinkään tietokannan tiliin
         retroactive:
           silence: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien hiljennys
           suspend: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien jäähy
@@ -478,11 +499,18 @@ fi:
         unavailable: Ei saatavilla
         unavailable_message: Toimitus ei käytettävissä
         warning: Varoitus
+        warning_message:
+          one: Toimitusvirhe %{count} päivä
+          other: Toimitushäiriö %{count} päivää
       delivery_available: Toimitus on saatavilla
       delivery_error_days: Toimitusvirheen päivät
       delivery_error_hint: Jos toimitus ei ole mahdollista %{count} päivän aikana, se merkitään automaattisesti toimittamattomaksi.
       destroyed_msg: Tiedot %{domain} on nyt jonossa välitöntä poistoa varten.
       empty: Verkkotunnuksia ei löytynyt.
+      known_accounts:
+        one: "%{count} tunnettu tili"
+        other: "%{count} tunnettua tiliä"
+        zero: Ei tunnettua tiliä
       moderation:
         all: Kaikki
         limited: Rajoitettu
@@ -542,6 +570,10 @@ fi:
       destroyed_msg: Muistiinpano onnistuneesti poistettu raportista!
       today_at: Tänään klo %{time}
     reports:
+      account:
+        notes:
+          one: "%{count} ilmoitus"
+          other: "%{count} ilmoitusta"
       action_log: Tarkastusloki
       action_taken_by: Toimenpiteen tekijä
       actions:
@@ -1396,8 +1428,10 @@ fi:
         disable: Tilisi %{acct} on jäädytetty
         none: Varoitus %{acct}
       title:
+        delete_statuses: Viestit poistettu
         disable: Tili jäädytetty
         none: Varoitus
+        sensitive: Media piilotettu
         silence: Rajoitettu tili
         suspend: Tilin käyttäminen keskeytetty
     welcome:
