@@ -1,3 +1,4 @@
+---
 fi:
   activerecord:
     attributes:
@@ -117,37 +118,37 @@ fi:
       application:
         title: OAuth-valtuutus tarvitaan
     scopes:
-      "admin:read": lukea kaikkia tietoja palvelimelta
-      "admin:read:accounts": lue arkaluontoinen sisältö kaikilta tileiltä
-      "admin:read:reports": lue arkaluonteiset tiedot kaikista raporteista ja raportoiduista tileistä
-      "admin:write": muokata kaikkia tietoja palvelimella
-      "admin:write:accounts": suorita moderointitoiminnot tileillä
-      "admin:write:reports": suorita moderointitoiminnot raporteissa
+      admin:read: lukea kaikkia tietoja palvelimelta
+      admin:read:accounts: lue arkaluontoinen sisältö kaikilta tileiltä
+      admin:read:reports: lue arkaluonteiset tiedot kaikista raporteista ja raportoiduista tileistä
+      admin:write: muokata kaikkia tietoja palvelimella
+      admin:write:accounts: suorita moderointitoiminnot tileillä
+      admin:write:reports: suorita moderointitoiminnot raporteissa
       follow: seurata, estää, perua eston ja lopettaa tilien seuraaminen
       push: vastaanottaa push-ilmoituksesi
       read: lukea tilin tietoja
-      "read:accounts": nähdä tilin tiedot
-      "read:blocks": katso lohkosi
-      "read:bookmarks": katso kirjanmerkkisi
-      "read:favourites": katso suosikkisi
-      "read:filters": katso suodattimesi
-      "read:follows": katso ketä seuraat
-      "read:lists": katso listasi
-      "read:mutes": katso mykistyksesi
-      "read:notifications": katso ilmoitukset
-      "read:reports": katso raporttisi
-      "read:search": haku sinun puolesta
-      "read:statuses": katso kaikki viestit
+      read:accounts: nähdä tilin tiedot
+      read:blocks: katso lohkosi
+      read:bookmarks: katso kirjanmerkkisi
+      read:favourites: katso suosikkisi
+      read:filters: katso suodattimesi
+      read:follows: katso ketä seuraat
+      read:lists: katso listasi
+      read:mutes: katso mykistyksesi
+      read:notifications: katso ilmoitukset
+      read:reports: katso raporttisi
+      read:search: haku sinun puolesta
+      read:statuses: katso kaikki viestit
       write: julkaista puolestasi
-      "write:accounts": muokata profiiliasi
-      "write:blocks": estää tilit ja palvelimet
-      "write:bookmarks": kirjanmerkki viestit
-      "write:favourites": suosikki viestit
-      "write:filters": luoda suodattimia
-      "write:follows": seurata ihmisiä
-      "write:lists": luoda listoja
-      "write:media": lähettää mediatiedostoja
-      "write:mutes": mykistää ihmisiä ja keskusteluja
-      "write:notifications": tyhjentää ilmoituksesi
-      "write:reports": raportoi muille ihmisille
-      "write:statuses": julkaise viestejä
+      write:accounts: muokata profiiliasi
+      write:blocks: estää tilit ja palvelimet
+      write:bookmarks: kirjanmerkki viestit
+      write:favourites: suosikki viestit
+      write:filters: luoda suodattimia
+      write:follows: seurata ihmisiä
+      write:lists: luoda listoja
+      write:media: lähettää mediatiedostoja
+      write:mutes: mykistää ihmisiä ja keskusteluja
+      write:notifications: tyhjentää ilmoituksesi
+      write:reports: raportoi muille ihmisille
+      write:statuses: julkaise viestejä
