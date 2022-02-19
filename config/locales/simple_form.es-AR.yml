@@ -27,6 +27,8 @@ es-AR:
         scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
         starts_at: Opcional. En caso de que tu anuncio esté vinculado a un rango de tiempo específico
         text: Podés usar sintaxis de mensajes. Por favor, tené en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
+      appeal:
+        text: Sólo podés apelar un incumplimiento una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles'
@@ -119,6 +121,8 @@ es-AR:
         scheduled_at: Programar publicación
         starts_at: Inicio del evento
         text: Anuncio
+      appeal:
+        text: Explicá por qué esta decisión debería ser revertida
       defaults:
         autofollow: Invitar para seguir tu cuenta
         avatar: Avatar
@@ -197,6 +201,7 @@ es-AR:
           sign_up_requires_approval: Limitar registros
         severity: Regla
       notification_emails:
+        appeal: Alguien apela una solicitud de moderador
         digest: Enviar correos electrónicos compilatorios
         favourite: Una cuenta marca tu mensaje como favorito
         follow: Una cuenta te sigue
@@ -204,8 +209,8 @@ es-AR:
         mention: Una cuenta te menciona
         pending_account: Una nueva cuenta necesita revisión
         reblog: Una cuenta adhiere a tu mensaje
-        report: Se envía una nueva denuncia
-        trending_tag: Una nueva tendencia requiere aprobación
+        report: Se envió una nueva denuncia
+        trending_tag: Una nueva tendencia requiere revisión
       rule:
         text: Regla
       tag:

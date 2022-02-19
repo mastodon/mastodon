@@ -1,7 +1,7 @@
 ---
 ar:
   about:
-    about_hashtag_html: هذه تبويقات متاحة للجمهور تحتوي على الكلمات الدلالية <strong>#%{hashtag}</strong>. يمكنك التفاعل معها إن كان لديك حساب في أي مكان على الفديفرس.
+    about_hashtag_html: هذه منشورات متاحة للجمهور تحتوي على الكلمات الدلالية <strong>#%{hashtag}</strong>. يمكنك التفاعل معها إن كان لديك حساب في أي مكان على الفديفرس.
     about_mastodon_html: 'شبكة التواصل الإجتماعية المستقبَليّة: مِن دون إعلانات ، غير خاضعة لرقابة الشركات ، تصميم أخلاقي ولامركزية! بياناتكم مِلك لكم مع ماستدون!'
     about_this: عن مثيل الخادم هذا
     active_count_after: نشط
@@ -88,14 +88,14 @@ ar:
     pin_errors:
       following: يجب أن تكون مِن متابعي حساب الشخص الذي تريد إبرازه
     posts:
-      few: تبويقات
-      many: تبويقات
-      one: تبويق
-      other: تبويقات
-      two: تبويقات
-      zero: تبويقات
-    posts_tab_heading: تبويقات
-    posts_with_replies: التبويقات و الردود
+      few: منشورات
+      many: منشورات
+      one: منشور واحد
+      other: منشور
+      two: منشورَيْن
+      zero: منشور
+    posts_tab_heading: المنشورات
+    posts_with_replies: المنشورات والردود
     roles:
       admin: المدير
       bot: روبوت
@@ -110,7 +110,6 @@ ar:
     account_moderation_notes:
       create: اترك ملاحظة
       created_msg: تم إنشاء ملاحظة الإشراف بنجاح!
-      delete: حذف
       destroyed_msg: تم تدمير ملاحظة الإشراف بنجاح!
     accounts:
       add_email_domain_block: حظر نطاق بريد إلكتروني
@@ -220,14 +219,15 @@ ar:
       silence: كتم
       silenced: تم كتمه
       statuses: المنشورات
-      strikes: الضربات السابقة
+      strikes: العقوبات السابقة
       subscribe: اشترك
+      suspend: علّق الحساب
       suspended: تم تعليقه
       suspension_irreversible: تم حذف بيانات هذا الحساب بشكل لا رجعة فيه، يمكنك إلغاء تعليق الحساب لجعله قابلا للاستخدام، ولكنه لن يسترد أي بيانات كانت لديه سابقاً.
       suspension_reversible_hint_html: تم تعليق الحساب، وسيتم إزالة البيانات بالكامل في %{date}، حتى ذلك الحين، يمكن استعادة الحساب دون أي آثار سلبية أي كما أنه لم يحدث أي شيء، إذا كنت ترغب في حذف جميع بيانات الحساب الآن، فيمكنك فعل ذلك أدناه.
       title: الحسابات
       unblock_email: إلغاء حظر عنوان البريد الإلكتروني
-      unblocked_email_msg: تم إلغاء حظر عنوان البريد الإلكتروني %{username} بنجاح
+      unblocked_email_msg: تم إلغاء حظر عنوان البريد الإلكتروني لـ %{username} بنجاح
       unconfirmed_email: البريد الإلكتروني غير مؤكد
       undo_sensitized: التراجع عن حساسية
       undo_silenced: رفع الصمت
@@ -441,13 +441,6 @@ ar:
         silence: تم كتمه
         suspend: تم تعليقه
       show:
-        affected_accounts:
-          few: "%{count} حسابات معنية في قاعدة البيانات"
-          many: "%{count} حسابات معنية في قاعدة البيانات"
-          one: حساب واحد %{count} معني في قاعدة البيانات
-          other: "%{count} حسابات معنية في قاعدة البيانات"
-          two: حسابين %{count} معنيين في قاعدة البيانات
-          zero: "%{count} حسابات معنية في قاعدة البيانات"
         retroactive:
           silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
           suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
@@ -500,19 +493,13 @@ ar:
       delivery_error_days: أيام أخطاء التوصيل
       delivery_error_hint: إذا كان التوصيل غير ممكناً لـ%{count} يوم، فستوضع عليها علامة {غير قابلة للتسليم} تلقائياً.
       empty: لم يتم العثور على نطاقات.
-      known_accounts:
-        few: "%{count} حسابات معروفة"
-        many: "%{count} حسابات معروفة"
-        one: حساب معروف %{count}
-        other: "%{count} حسابات معروفة"
-        two: "%{count} حسابات معروفة"
-        zero: "%{count} حسابات معروفة"
       moderation:
         all: كافتها
         limited: محدود
         title: الإشراف
       private_comment: تعليق خاص
       public_comment: تعليق للعلن
+      purge: تطهير
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
       total_followed_by_them: يُتابِعونها
@@ -551,7 +538,7 @@ ar:
       disable: تعطيل
       disabled: مُعطَّل
       enable: تشغيل
-      enable_hint: عندما تقوم بتنشيط هذه الميزة، سوف يشترك خادومكم في جميع التبويقات القادمة مِن هذا المُرحِّل و سيشرع كذلك بإرسال كافة التبويقات العمومية إليه.
+      enable_hint: عندما تقوم بتنشيط هذه الميزة، سوف يشترك خادومكم في جميع المنشورات القادمة مِن هذا المُرحِّل و سيشرع كذلك بإرسال كافة المنشورات العمومية إليه.
       enabled: مُشغَّل
       inbox_url: رابط المُرحّل
       pending: في انتظار تسريح المُرحِّل
@@ -575,6 +562,7 @@ ar:
           zero: "%{count} ملاحظات"
       action_log: سجل المراجعة
       action_taken_by: تم اتخاذ الإجراء مِن طرف
+      add_to_report: أضف المزيد إلى التقرير
       are_you_sure: هل أنت متأكد ؟
       assign_to_self: عين لي
       assigned: تعين رئيس
@@ -583,7 +571,7 @@ ar:
       comment:
         none: لا شيء
       created_at: ذكرت
-      delete_and_resolve: حذف وحسم
+      delete_and_resolve: احذف المنشورات
       forwarded: أُعيد توجيهه
       forwarded_to: أُعيد توجيهه إلى %{domain}
       mark_as_resolved: اعتبار الشكوى كمحلولة
@@ -602,6 +590,7 @@ ar:
       reported_by: أبلغ عنه من طرف
       resolved: معالجة
       resolved_msg: تم حل تقرير بنجاح!
+      skip_to_actions: تخطي إلى الإجراءات
       status: الحالة
       statuses: المحتوى المبلغ عنه
       target_origin: مصدر الحساب المبلغ عنه
@@ -742,6 +731,7 @@ ar:
         disallow: رفض الرابط
         disallow_provider: عدم السماح للناشر
         title: الروابط المتداولة
+        usage_comparison: تمت مشاركته %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
       pending_review: في انتظار المراجعة
       preview_card_providers:
         title: الناشرون
@@ -758,7 +748,12 @@ ar:
         not_listable: لن يتم اقتراحه
         not_trendable: لن يظهر في المتداولة
         not_usable: لا يمكن استخدامه
+        peaked_on_and_decaying: بلغ ذروته في %{date}، في تراجع الآن
         title: الوسوم المتداولة
+        trendable: السماح بالظهور تحت المتداولة
+        trending_rank: 'المتداولة #%{rank}'
+        usable: يمكن استخدامه
+        usage_comparison: تم استخدامه %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
       title: المتداوَلة
     warning_presets:
       add_new: إضافة واحد جديد
@@ -792,7 +787,7 @@ ar:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: يمكن للجميع المساهمة.
     sensitive_content: المحتوى الحساس
-    toot_layout: تصميم التبويق
+    toot_layout: شكل المنشور
   application_mailer:
     notification_preferences: تعديل خيارات البريد الإلكتروني
     salutation: "%{name}،"
@@ -847,7 +842,6 @@ ar:
     status:
       account_status: حالة الحساب
       confirming: في انتظار اكتمال تأكيد البريد الإلكتروني.
-      functional: حسابك جاهز.
       pending: إن طلبك قيد المراجعة من قبل فريقنا. قد يستغرق هذا بعض الوقت. سوف تتلقى بريدا إلكترونيا إذا تمت الموافقة على طلبك.
       redirecting_to: حسابك غير نشط لأنه تم تحويله حاليا إلى %{acct}.
     too_fast: تم إرسال النموذج بسرعة كبيرة، حاول مرة أخرى.
@@ -937,7 +931,7 @@ ar:
     archive_takeout:
       date: التاريخ
       download: تنزيل نسخة لحسابك
-      hint_html: بإمكانك طلب نسخة كاملة لـ <strong>كافة تبويقاتك و الوسائط التي قمت بنشرها</strong>. البيانات المُصدَّرة ستكون محفوظة على شكل نسق ActivityPub و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق. يُمكنك طلب نسخة كل 7 أيام.
+      hint_html: بإمكانك طلب نسخة كاملة لـ <strong>كافة منشوراتك والوسائط التي قمت بنشرها</strong>. البيانات المُصدَّرة ستكون محفوظة على شكل نسق ActivityPub و باستطاعتك قراءتها بأي برنامج يدعم هذا النسق. يُمكنك طلب نسخة كل 7 أيام.
       in_progress: جارٍ انشاء نسخة لبيانات حسابك…
       request: اطلب نسخة مِن حسابك
       size: الحجم
@@ -1140,6 +1134,8 @@ ar:
       title: ترقية جديدة
     status:
       subject: "%{name} نشر للتو"
+    update:
+      subject: قام %{name} بتحرير منشور
   notifications:
     email_events: الأحداث للإشعارات عبر البريد الإلكتروني
     email_events_hint: 'اختر الأحداث التي تريد أن تصِلَك اشعارات عنها:'
@@ -1181,7 +1177,7 @@ ar:
       too_many_options: لا يمكنه أن يحتوي أكثر مِن %{max} عناصر
   preferences:
     other: إعدادات أخرى
-    posting_defaults: التفضيلات الافتراضية لنشر التبويقات
+    posting_defaults: التفضيلات الافتراضية للنشر
     public_timelines: الخيوط الزمنية العامة
   reactions:
     errors:
@@ -1214,16 +1210,16 @@ ar:
   remote_interaction:
     favourite:
       proceed: المواصلة إلى المفضلة
-      prompt: 'ترغب في إضافة هذا التبويق إلى مفضلتك:'
+      prompt: 'ترغب في إضافة هذا المنشور إلى مفضلتك:'
     reblog:
       proceed: المواصلة إلى الترقية
-      prompt: 'ترغب في ترقية هذا التبويق:'
+      prompt: 'ترغب في مشاركة هذا المنشور:'
     reply:
       proceed: المواصلة إلى الرد
-      prompt: 'ترغب في الرد على هذا التبويق:'
+      prompt: 'ترغب في الرد على هذا المنشور:'
   scheduled_statuses:
-    over_daily_limit: لقد تجاوزتَ حد الـ %{limit} تبويقات مُبَرمَجة المسموح بها لذلك اليوم
-    over_total_limit: لقد بلغت حد الـ %{limit} مِن التبويقات المبرمَجة
+    over_daily_limit: لقد تجاوزتَ حد الـ %{limit} منشورات مُبَرمَجة مسموح بها اليوم
+    over_total_limit: لقد بلغت حد الـ %{limit} مِن المنشورات المبرمَجة
     too_soon: يجب أن يكون تاريخ البرمجة في المستقبَل
   sessions:
     activity: آخر نشاط
@@ -1315,6 +1311,7 @@ ar:
         zero: "%{count} فيديوهات"
     boosted_from_html: تم إعادة ترقيته مِن %{acct_link}
     content_warning: 'تحذير عن المحتوى: %{warning}'
+    default_language: نفس لغة الواجهة
     disallowed_hashtags:
       few: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       many: 'يحتوي على وسوم غير مسموح بها: %{tags}'
@@ -1322,13 +1319,14 @@ ar:
       other: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       two: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       zero: 'يحتوي على وسوم غير مسموح بها: %{tags}'
+    edited_at: عُدّل في %{date}
     errors:
       in_reply_not_found: إنّ المنشور الذي تحاول الرد عليه غير موجود على ما يبدو.
     open_in_web: افتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
     pin_errors:
-      limit: لقد بلغت الحد الأقصى للتبويقات المدبسة
-      ownership: لا يمكن تدبيس تبويق نشره شخص آخر
+      limit: لقد بلغت الحد الأقصى للمنشورات المثبتة
+      ownership: لا يمكن تثبيت منشور نشره شخص آخر
       reblog: لا يمكن تثبيت ترقية
     poll:
       total_people:
@@ -1366,7 +1364,7 @@ ar:
     exceptions: الاستثناءات
     explanation: لأن حذف المشاركات عملية مكلفة، يتم ذلك ببطء مع مرور الوقت عندما يكون الخادم غير مشغول. لهذا السبب، يمكن حذف مشاركاتك بعد فترة من بلوغها عتبة السن.
     ignore_favs: تجاهل المفضلة
-    ignore_reblogs: تجاهل التعزيزات
+    ignore_reblogs: تجاهل المشاركات
     interaction_exceptions: الاستثناءات المبنية على التفاعلات
     interaction_exceptions_explanation: لاحظ أنه لا يوجد ضمان لحذف الوظائف إذا كانت أقل من عتبة التعزيز المفضلة بعد أن تكون قد ذهبت إليها.
     keep_direct: الاحتفاظ بالرسائل المباشرة
@@ -1393,9 +1391,9 @@ ar:
     min_favs: إبقاء المشاركات المفضلة أكثر من
     min_favs_hint: لم تقوم بحذف أي من المشاركات الخاصة بك التي حصلت على أكثر من هذه الكمية من المفضلة. اتركه فارغاً لحذف المشاركات بغض النظر عن عدد المفضلات لديها
     min_reblogs: إبقاء المشاركات المعززة أكثر من
-    min_reblogs_hint: لم تقم بحذف أي من مشاركاتك التي تم تعزيزها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المشاركات بغض النظر عن عدد تعزيزاتها
+    min_reblogs_hint: لن تُحذف أي من منشوراتك التي أعيد مشاركتها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المنشورات بغض النظر عن عدد إعادات المشاركة
   stream_entries:
-    pinned: تبويق مثبّت
+    pinned: منشور مثبّت
     reblogged: رقّاه
     sensitive_content: محتوى حساس
   tags:
@@ -1492,6 +1490,7 @@ ar:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: إضافة
     disable: تعطيل
@@ -1522,16 +1521,21 @@ ar:
       categories:
         spam: مزعج
         violation: ينتهك المحتوى المبادئ التوجيهية التالية للمجتمع
+      explanation:
+        sensitive: من الآن فصاعدا، سيتم وضع علامة على جميع ملفات الوسائط التي يتم تحميلها على أنها حساسة وستكون مخفية خلف تحذير يُنقر.
+        silence: لا يزال بإمكانك استخدام حسابك ولكن فقط الأشخاص الذين يتابعونك فقط يمكنهم رؤية منشوراتك على هذا الخادم، وقد يتم استبعادك من ميزات الاكتشاف المختلفة. قد يتبعك آخرون على كل حال يدوياً.
+      get_in_touch: إذا كنت تعتقد أن هذا خطأ، يمكنك الرد على هذا البريد الإلكتروني للتواصل مع فريق %{instance}.
       reason: 'السبب:'
-      review_server_policies: مراجعة شروط السيرفر
       subject:
         disable: تم تجميد حسابك %{acct}
         none: تحذير إلى %{acct}
         silence: إنّ حسابك %{acct} محدود
         suspend: لقد تم تعليق حسابك %{acct}
       title:
+        delete_statuses: منشورات محذوفة
         disable: الحساب مُجمَّد
         none: تحذير
+        sensitive: الوسائط المخفية
         silence: الحساب محدود
         suspend: الحساب مُعلَّق
     welcome:

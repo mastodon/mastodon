@@ -27,6 +27,8 @@ gl:
         scheduled_at: Déixao baleiro para publicar o anuncio de xeito inmediato
         starts_at: Opcional. No caso de que o teu anuncio estea vinculado a un intre de tempo específico
         text: Podes empregar a sintaxe na publicación. Ten en conta o espazo que ocupará o anuncio na pantalla da usuaria
+      appeal:
+        text: Só podes apelar a decesión unha vez
       defaults:
         autofollow: As persoas que se conectaron a través dun convite seguirante automáticamente
         avatar: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
@@ -119,6 +121,8 @@ gl:
         scheduled_at: Publicación programada
         starts_at: Comezo do acontecemento
         text: Anuncio
+      appeal:
+        text: Indica a razón pola que habería que reverter a decisión
       defaults:
         autofollow: Convida a seguir a tua conta
         avatar: Avatar
@@ -197,6 +201,7 @@ gl:
           sign_up_requires_approval: Limitar o rexistro
         severity: Regra
       notification_emails:
+        appeal: Alguén apelou contra a decisión da moderación
         digest: Enviar correos con resumos
         favourite: Enviar un correo cando alguén marca como favorita unha das tuas publicacións
         follow: Enviar un correo cando alguén te segue
@@ -204,8 +209,8 @@ gl:
         mention: Enviar un correo cando alguén te menciona
         pending_account: Enviar un correo cando unha nova conta precisa revisión
         reblog: Enviar un correo cando alguén promociona a tua mensaxe
-        report: Enviar un correo cando se envíe unha denuncia
-        trending_tag: Unha nova tendencia require aprobación
+        report: Enviouse unha nova denuncia
+        trending_tag: Hai que revisar unha nova tendencia
       rule:
         text: Regra
       tag:

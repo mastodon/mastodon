@@ -27,6 +27,8 @@ vi:
         scheduled_at: Để trống nếu muốn đăng thông báo ngay lập tức
         starts_at: Tùy chọn. Trong trường hợp thông báo của bạn đăng vào một khoảng thời gian cụ thể
         text: Bạn có thể dùng URL, hashtag và nhắc đến. Cố gắng ngắn gọn bởi vì thông báo sẽ xuất hiện trên màn hình điện thoại của người dùng
+      appeal:
+        text: Bạn chỉ có thể khiếu nại mỗi lần một cảnh cáo
       defaults:
         autofollow: Những người đăng ký sẽ tự động theo dõi bạn
         avatar: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
@@ -119,6 +121,8 @@ vi:
         scheduled_at: Lên lịch đăng
         starts_at: Bắt đầu sự kiện
         text: Thông báo
+      appeal:
+        text: Giải thích rõ vì sao quyết định này có thể đảo ngược
       defaults:
         autofollow: Mời theo dõi tài khoản của bạn
         avatar: Ảnh đại diện
@@ -197,6 +201,7 @@ vi:
           sign_up_requires_approval: Giới hạn đăng ký
         severity: Mức độ
       notification_emails:
+        appeal: Có người khiếu nại quyết định kiểm duyệt
         digest: Gửi email định kỳ
         favourite: Ai đó thích tút của bạn
         follow: Ai đó theo dõi bạn
@@ -204,8 +209,8 @@ vi:
         mention: Ai đó nhắc đến bạn
         pending_account: Tài khoản mới cần phê duyệt
         reblog: Ai đó chia sẻ tút của bạn
-        report: Ai đó gửi báo cáo
-        trending_tag: Một hashtag chưa được phê duyệt đang là xu hướng
+        report: Đã gửi báo cáo mới
+        trending_tag: Một xu hướng cần được xem xét
       rule:
         text: Quy tắc
       tag:

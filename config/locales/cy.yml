@@ -105,7 +105,6 @@ cy:
     account_moderation_notes:
       create: Gadael nodyn
       created_msg: Crewyd nodyn goruwchwylio yn llwyddiannus!
-      delete: Dileu
       destroyed_msg: Dinistrwyd nodyn goruwchwylio yn llwyddiannus!
     accounts:
       add_email_domain_block: Cosbrestru parth e-bost
@@ -332,13 +331,6 @@ cy:
         silence: tawelu
         suspend: ataliedig
       show:
-        affected_accounts:
-          few: Effeithiwyd ar %{count} gyfrifon
-          many: Effeithiwyd ar %{count} gyfrifon
-          one: Effeithiwyd ar un cyfrif
-          other: Effeithiwyd ar %{count} gyfrifon
-          two: Effeithiwyd ar %{count} gyfrifon
-          zero: Effeithiwyd ar %{count} gyfrifon
         retroactive:
           silence: Dad-dawelu pob cyfri presennol o'r parth hwn
           suspend: Dad-atal pob cyfrif o'r parth hwn sy'n bodoli
@@ -361,13 +353,6 @@ cy:
     instances:
       by_domain: Parth
       delivery_available: Mae'r cyflenwad ar gael
-      known_accounts:
-        few: "%{count} cyfrifon hysbys"
-        many: "%{count} cyfrifon hysbys"
-        one: "%{count} cyfrif hysbys"
-        other: "%{count} cyfrifon hysbys"
-        two: "%{count} cyfrifon hysbys"
-        zero: "%{count} cyfrifon hysbys"
       moderation:
         all: Pob
         limited: Gyfyngedig
@@ -623,7 +608,6 @@ cy:
     status:
       account_status: Statws cyfrif
       confirming: Aros i gadarnhad e-bost gael ei gwblhau.
-      functional: Mae eich cyfrif yn gwbl weithredol.
       pending: Mae'ch cais yn aros i gael ei adolygu gan ein staff. Gall hyn gymryd cryn amser. Byddwch yn derbyn e-bost os caiff eich cais ei gymeradwyo.
       redirecting_to: Mae eich cyfrif yn anactif oherwydd ei fod ar hyn o bryd yn ailgyfeirio i %{acct}.
     trouble_logging_in: Trafferdd mewngofnodi?
@@ -1184,7 +1168,6 @@ cy:
       subject: Cadarnhewch yr ymgais mewngofnodi
       title: Ymgais mewngofnodi
     warning:
-      review_server_policies: Adolygu polisïau'r gweinydd
       subject:
         disable: Mae'ch cyfrif %{acct} wedi'i rewi
         none: Rhybudd am %{acct}

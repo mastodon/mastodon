@@ -90,7 +90,6 @@ ko:
     account_moderation_notes:
       create: 중재 기록 작성하기
       created_msg: 중재 기록이 성공적으로 작성되었습니다!
-      delete: 삭제
       destroyed_msg: 중재 기록이 성공적으로 삭제되었습니다!
     accounts:
       add_email_domain_block: 이 이메일 도메인을 차단하기
@@ -159,6 +158,11 @@ ko:
       not_subscribed: 구독하지 않음
       pending: 심사 대기
       perform_full_suspension: 정지시키기
+      previous_strikes: 이전의 처벌들
+      previous_strikes_description_html:
+        one: 이 계정은 <strong>한<strong> 번의 처벌이 있었습니다.
+        other: 이 계정은 <strong>%{count}</strong> 번의 처벌이 있었습니다.
+        zero: 이 계정은 처벌 기록이 <strong>없습니다</strong>.
       promote: 승급
       protocol: 프로토콜
       public: 공개
@@ -202,6 +206,7 @@ ko:
       statuses: 게시물
       strikes: 이전의 처벌들
       subscribe: 구독하기
+      suspend: 정지
       suspended: 정지 됨
       suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
       suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
@@ -222,6 +227,7 @@ ko:
       whitelisted: 허용 목록
     action_logs:
       action_types:
+        approve_appeal: 이의제기 승인
         approve_user: 사용자 승인
         assigned_to_self_report: 신고 맡기
         change_email_user: 사용자의 이메일 변경
@@ -253,6 +259,7 @@ ko:
         enable_user: 사용자 활성화
         memorialize_account: 추모계정으로 전환
         promote_user: 사용자 승급
+        reject_appeal: 이의제기 거절
         reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
@@ -271,6 +278,7 @@ ko:
         update_domain_block: 도메인 차단 갱신
         update_status: 게시물 게시
       actions:
+        approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target}의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
         change_email_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 변경했습니다"
@@ -302,6 +310,7 @@ ko:
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화 했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 추모비 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
+        reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 거절했습니다"
         reject_user_html: "%{name} 님이 %{target}의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target}의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
@@ -380,12 +389,14 @@ ko:
       media_storage: 미디어 저장소
       new_users: 새로운 사용자
       opened_reports: 신고 열림
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> 개의 대기 중인 이의제기"
       pending_reports_html:
-        other: "<strong>%{count}</strong> 개의 신고 대기중"
+        other: "<strong>%{count}</strong> 건의 대기 중인 신고"
       pending_tags_html:
-        other: "<strong>%{count}</strong> 개의 해시태그 대기중"
+        other: "<strong>%{count}</strong> 개의 대기 중인 해시태그"
       pending_users_html:
-        other: "<strong>%{count}</strong> 명의 사용자 대기중"
+        other: "<strong>%{count}</strong> 명의 대기 중인 사용자"
       resolved_reports: 신고 해결됨
       software: 소프트웨어
       sources: 가입 출처
@@ -394,6 +405,10 @@ ko:
       top_languages: 상위 활성 언어
       top_servers: 상위 활성 서버
       website: 웹사이트
+    disputes:
+      appeals:
+        empty: 이의제기 없음.
+        title: 이의제기
     domain_allows:
       add_new: 도메인 허용
       created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
@@ -434,7 +449,9 @@ ko:
         suspend: 정지
       show:
         affected_accounts:
-          other: 데이터베이스 중 %{count}개의 계정에 영향을 끼칩니다
+          one: 데이터베이스 내부의 1개의 계정에 영향을 끼칩니다
+          other: 데이터베이스 내부의 %{count} 개의 계정에 영향을 끼칩니다
+          zero: 데이터베이스 내부의 영향을 끼치는 계정이 없습니다
         retroactive:
           silence: 이 도메인에 존재하는 모든 계정의 침묵를 해제
           suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
@@ -485,7 +502,9 @@ ko:
       destroyed_msg: "%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다."
       empty: 도메인이 하나도 없습니다.
       known_accounts:
-        other: 알려진 계정 %{count}개
+        one: "%{count} 개의 알려진 계정"
+        other: "%{count} 개의 알려진 계정"
+        zero: 알려진 계정이 없습니다
       moderation:
         all: 모두
         limited: 제한됨
@@ -551,10 +570,11 @@ ko:
       action_log: 감사 기록
       action_taken_by: 신고 처리자
       actions:
+        delete_description_html: 신고된 게시물은 삭제될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
         other_description_html: 계정 동작을 제어하고 신고된 계정과의 의사소통을 사용자 지정하기 위한 추가 옵션을 봅니다.
+        resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
         silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
         suspend_description_html: 프로필과 모든 컨텐츠가 최종적으로 삭제될 때까지 접근 불가상태가 됩니다. 이 계정과의 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다.
-      actions_description_html: '만약 문제가 되는 위의 컨텐츠를 삭제하는 것을 불충분할 때에는:'
       add_to_report: 신고에 더 추가하기
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
@@ -566,7 +586,7 @@ ko:
         none: 없음
       comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
       created_at: 리포트 시각
-      delete_and_resolve: 삭제하고 처리됨으로 변경
+      delete_and_resolve: 게시물 삭제
       forwarded: 전달됨
       forwarded_to: "%{domain}에게 전달됨"
       mark_as_resolved: 해결 완료 처리
@@ -706,6 +726,16 @@ ko:
       no_status_selected: 아무 게시물도 선택 되지 않아 아무 것도 바뀌지 않았습니다
       title: 계정 게시물
       with_media: 미디어 있음
+    strikes:
+      actions:
+        delete_statuses: "%{name} 님이 %{target}의 게시물을 지웠습니다"
+        disable: "%{name} 님이 %{target}의 계정을 동결시켰습니다"
+        none: "%{name} 님이 %{target}에게 경고를 보냈습니다"
+        sensitive: "%{name} 님이 %{target}의 계정을 민감함으로 표시했습니다"
+        silence: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
+        suspend: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
+      appeal_approved: 이의제기됨
+      appeal_pending: 이의제기 대기중
     system_checks:
       database_schema_check:
         message_html: 데이터베이스 마이그레이션이 대기중입니다. 응용프로그램이 예상한대로 동작할 수 있도록 마이그레이션을 실행해 주세요
@@ -728,7 +758,9 @@ ko:
         disallow: 링크 거부하기
         disallow_provider: 출처 거부하기
         shared_by_over_week:
-          other: 한 주 동안 %{count}명의 사람이 공유했습니다
+          one: 지난 주 동안 한 명의 사람이 공유했습니다
+          other: 지난 주 동안 %{count} 명의 사람들이 공유했습니다
+          zero: 지난 주 동안 공유한 사람이 없습니다
         title: 지금 유행 중인 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
       pending_review: 심사 대기
@@ -748,15 +780,17 @@ ko:
         listable: 추천될 수 있습니다
         not_listable: 추천될 수 없습니다
         not_trendable: 유행 목록에 나타나지 않습니다
-        not_usable: 사용할 수 없음
+        not_usable: 사용불가
         peaked_on_and_decaying: "%{date}에 고점을 찍고, 떨어지고 있습니다"
         title: 유행하는 해시태그
         trendable: 유행 목록에 나타날 수 있습니다
         trending_rank: "#%{rank}위로 유행 중"
-        usable: 사용할 수 없음
+        usable: 사용 가능
         usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
         used_by_over_week:
-          other: 한 주 동안 %{count}명의 사람이 사용했습니다
+          one: 지난 주 동안 한 명의 사람이 사용했습니다
+          other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
+          zero: 지난 주 동안 사용한 사람이 없습니다
       title: 유행
     warning_presets:
       add_new: 새로 추가
@@ -765,6 +799,9 @@ ko:
       empty: 아직 어떤 경고 틀도 정의되지 않았습니다.
       title: 경고 틀 관리
   admin_mailer:
+    new_appeal:
+      actions:
+        none: 경고
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
       subject: "%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다"
@@ -855,7 +892,6 @@ ko:
     status:
       account_status: 계정 상태
       confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
-      functional: 계정이 완벽히 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
@@ -921,6 +957,25 @@ ko:
     directory: 프로필 책자
     explanation: 관심사에 대한 유저들을 발견합니다
     explore_mastodon: "%{title} 탐사하기"
+  disputes:
+    strikes:
+      action_taken: 내려진 징계
+      appeal: 이의제기
+      appeal_submitted_at: 이의제기 접수됨
+      appealed_msg: 당신의 이의제기가 접수되었습니다. 만약 승인된다면, 알림을 받게 될 것입니다.
+      appeals:
+        submit: 이의 제출
+      associated_report: 관련된 신고
+      created_at: 날짜
+      recipient: 수신자
+      status: '게시물 #%{id}'
+      status_removed: 게시물이 이미 시스템에서 지워졌습니다
+      title_actions:
+        delete_statuses: 게시물 삭제
+        disable: 계정 동결
+        none: 경고
+        sensitive: 계정을 민감함으로 표시
+        silence: 계정의 제한
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
@@ -1128,6 +1183,8 @@ ko:
       title: 새 부스트
     status:
       subject: "%{name} 님이 방금 게시물을 올렸습니다"
+    update:
+      subject: "%{name} 님이 게시물을 수정했습니다"
   notifications:
     email_events: 이메일 알림에 대한 이벤트
     email_events_hint: '알림 받을 이벤트를 선택해주세요:'
@@ -1288,6 +1345,7 @@ ko:
         other: "%{count}개의 영상"
     boosted_from_html: "%{acct_link} 님으로부터 부스트"
     content_warning: '열람 주의: %{warning}'
+    default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
     edited_at: "%{date}에 편집됨"
@@ -1468,6 +1526,8 @@ ko:
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     webauthn: 보안 키
   user_mailer:
+    appeal_approved:
+      action: 내 계정으로 가기
     backup_ready:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
@@ -1490,7 +1550,6 @@ ko:
         suspend: 당신은 더이상 당신의 계정을 사용할 수 없으며, 프로필과 데이터는 접근 불가능하게 됩니다. 데이터가 완전히 삭제되기 전인 30일동안은 여전히 백업을 요청하기 위해 로그인 할 수 있습니다, 하지만 계정 정지를 회피하는 것을 방지하기 위하여 몇 가지 정보는 유지됩니다.
       get_in_touch: 이것이 잘못된 조치라고 생각된다면, 이 메일에 답장하여 %{instance}의 스태프들에게 연락할 수 있습니다.
       reason: '사유:'
-      review_server_policies: 서버 정책 검토하기
       statuses: '위반사항이 발견된 게시물:'
       subject:
         delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다

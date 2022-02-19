@@ -4,6 +4,7 @@ sl:
     hints:
       account_warning_preset:
         text: Lahko uporabite skladnjo tuta, kot so URL-ji, ključniki in omembe
+        title: Neobvezno. Ni vidno prejemniku
       admin_account_action:
         send_email_notification: Uporabnik bo prejel razlago, kaj se je zgodilo z njihovim računom
         text_html: Neobvezno. Lahko uporabite skladnjo tuta. <a href="%{path}">Prednastavite opozorila</a>, da prihranite čas
@@ -14,6 +15,7 @@ sl:
         avatar: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         bot: Ta račun v glavnem opravlja samodejna dejanja in morda ni pod nadzorom
         context: En ali več kontekstov, kjer naj se uporabi filter
+        current_username: Za potrditev vnesite uporabniško ime trenutnega računa
         digest: Pošlje se le po dolgem obdobju nedejavnosti in samo, če ste prejeli osebna sporočila v vaši odsotnosti
         email: Poslali vam bomo potrditveno e-pošto
         fields: Na svojem profilu lahko imate do 4 predmete prikazane kot tabelo.
@@ -41,13 +43,18 @@ sl:
         domain: Ta domena bo lahko prejela podatke s tega strežnika, dohodni podatki z nje pa bodo obdelani in shranjeni
       featured_tag:
         name: 'Morda boste želeli uporabiti eno od teh:'
+      form_challenge:
+        current_password: Vstopate v varovano območje
       imports:
         data: Izvožena CSV datoteka iz drugega Mastodon vozlišča
       invite_request:
         text: To nam bo pomagalo pregledati vašo prijavo
       ip_block:
+        comment: Neobvezno. Spomnite se, zakaj ste dodali to pravilo.
         severities:
           no_access: Blokiraj dostop do vseh virov
+          sign_up_requires_approval: Za nove registracije bo potrebna vaša odobritev
+        severity: Izberite, kaj se bo zgodilo z zahtevami iz tega IP-naslova
       sessions:
         otp: 'Vnesite dvomestno kodo, ki je ustvarjena z aplikacijo na telefonu, ali uporabite eno od vaših obnovitvenih kod:'
       user:
@@ -78,6 +85,7 @@ sl:
       announcement:
         all_day: Celodnevni dogodek
         ends_at: Konec dogodka
+        scheduled_at: Načrtuj čas objave
         starts_at: Začetek dogodka
         text: Objava
       defaults:
@@ -164,8 +172,8 @@ sl:
         mention: Pošlji e-pošto, ko vas nekdo omeni
         pending_account: Pošlji e-pošto, ko je potreben pregled novega računa
         reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
-        report: Pošlji e-pošto, ko je oddana nova prijava
-        trending_tag: Nov trend zahteva odobritev
+        report: Novo poročilo je oddano
+        trending_tag: Nov trend zahteva pregled
       rule:
         text: Pravilo
       tag:

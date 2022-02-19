@@ -92,7 +92,6 @@ nl:
     account_moderation_notes:
       create: Laat een opmerking achter
       created_msg: Aanmaken van opmerking voor moderatoren geslaagd!
-      delete: Verwijderen
       destroyed_msg: Verwijderen van opmerking voor moderatoren geslaagd!
     accounts:
       add_email_domain_block: E-maildomein blokkeren
@@ -396,9 +395,6 @@ nl:
         silence: genegeerd
         suspend: opgeschort
       show:
-        affected_accounts:
-          one: Eén account in de database aangepast
-          other: "%{count} accounts in de database aangepast"
         retroactive:
           silence: Alle genegeerde accounts van dit domein niet langer negeren
           suspend: Alle opgeschorte accounts van dit domein niet langer opschorten
@@ -447,9 +443,6 @@ nl:
       delivery_error_days: Dagen met bezorgfouten
       delivery_error_hint: Wanneer de bezorging voor %{count} dagen niet mogelijk is, wordt de bezorging automatisch als niet beschikbaar gemarkeerd.
       empty: Geen domeinen gevonden.
-      known_accounts:
-        one: "%{count} bekend account"
-        other: "%{count} bekende accounts"
       moderation:
         all: Alles
         limited: Beperkt
@@ -745,7 +738,6 @@ nl:
     status:
       account_status: Accountstatus
       confirming: Aan het wachten totdat de e-mail is bevestigd.
-      functional: Jouw account is volledig operationeel.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
@@ -1327,7 +1319,6 @@ nl:
       subject: Bevestig de inlogpoging
       title: Inlogpoging
     warning:
-      review_server_policies: Serverbeleid bekijken
       subject:
         disable: Jouw account %{acct} is bevroren
         none: Waarschuwing voor %{acct}

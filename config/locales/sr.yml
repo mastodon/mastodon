@@ -64,7 +64,6 @@ sr:
     account_moderation_notes:
       create: Оставите белешку
       created_msg: Модераторска белешка успешно направљена!
-      delete: Обриши
       destroyed_msg: Модераторска белешка успешно обрисана!
     accounts:
       are_you_sure: Да ли сте сигурни?
@@ -211,10 +210,6 @@ sr:
         silence: ућуткани
         suspend: суспендовани
       show:
-        affected_accounts:
-          few: Утиче на %{count} налога у бази
-          one: Један налог у бази података је под утицајем
-          other: Утиче на %{count} налога у бази података
         retroactive:
           silence: Угаси ућуткивање за све постојеће налоге са овог домена
           suspend: Уклони суспензије за све постојеће налоге са овог домена
@@ -233,10 +228,6 @@ sr:
       title: Црна листа E-поште
     instances:
       delivery_available: Достава је доступна
-      known_accounts:
-        few: "%{count} знаних налога"
-        one: "%{count} знан налог"
-        other: "%{count} знаних налога"
       moderation:
         all: Све
         limited: Ограничено
@@ -716,7 +707,6 @@ sr:
       subject: Ваша архива је спремна за преузимање
       title: Извоз архиве
     warning:
-      review_server_policies: Прегледај политику сервера
       subject:
         disable: Ваш налог %{acct} је замрзнут
         none: Упозорење за %{acct}

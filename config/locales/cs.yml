@@ -102,7 +102,6 @@ cs:
     account_moderation_notes:
       create: Zanechat poznámku
       created_msg: Moderátorská poznámka byla úspěšně vytvořena!
-      delete: Smazat
       destroyed_msg: Moderátorská poznámka byla úspěšně zničena!
     accounts:
       add_email_domain_block: Blokovat e-mailovou doménu
@@ -390,21 +389,6 @@ cs:
       media_storage: Úložiště médií
       new_users: noví uživatelé
       opened_reports: podáno hlášení
-      pending_reports_html:
-        few: "<strong>%{count}</strong> čekající hlášení"
-        many: "<strong>%{count}</strong> čekajících hlášení"
-        one: "<strong>1</strong> čekající hlášení"
-        other: "<strong>%{count}</strong> čekajících hlášení"
-      pending_tags_html:
-        few: "<strong>%{count}</strong> čekající hashtagy"
-        many: "<strong>%{count}</strong> čekajících hashtagů"
-        one: "<strong>1</strong> čekající hashtag"
-        other: "<strong>%{count}</strong> čekajících hashtagů"
-      pending_users_html:
-        few: "<strong>%{count}</strong> čekající uživatelé"
-        many: "<strong>%{count}</strong> čekajících uživatelů"
-        one: "<strong>1</strong> čekající uživatel"
-        other: "<strong>%{count}</strong> čekajících uživatelů"
       resolved_reports: vyřešeno hlášení
       software: Software
       sources: Zdroje registrací
@@ -450,11 +434,6 @@ cs:
         silence: omezena
         suspend: pozastaveno
       show:
-        affected_accounts:
-          few: "%{count} účty v databázi byly ovlivněny"
-          many: "%{count} účtů v databázi bylo ovlivněno"
-          one: Jeden účet v databázi byl ovlivněn
-          other: "%{count} účtů v databázi bylo ovlivněno"
         retroactive:
           silence: Vzít zpět omezení existujících dotčených účtů z této domény
           suspend: Zrušit pozastavení existujících ovlivněných účtů z této domény
@@ -507,11 +486,6 @@ cs:
       delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
       destroyed_msg: Data z %{domain} nyní čekají na smazání.
       empty: Nebyly nalezeny žádné domény.
-      known_accounts:
-        few: "%{count} známé účty"
-        many: "%{count} známých účtů"
-        one: "%{count} známý účet"
-        other: "%{count} známých účtů"
       moderation:
         all: Všechny
         limited: Omezený
@@ -734,11 +708,6 @@ cs:
         allow_provider: Povolit vydavatele
         disallow: Zakázat odkaz
         disallow_provider: Zakázat vydavatele
-        shared_by_over_week:
-          few: Sdílený %{count} lidmi za poslední týden
-          many: Sdílený %{count} lidmi za poslední týden
-          one: Sdílený jedním člověkem za poslední týden
-          other: Sdílený %{count} lidmi za poslední týden
         title: Populární odkazy
         usage_comparison: Za dnešek %{today} sdílení, oproti %{yesterday} včera
       pending_review: Čeká na posouzení
@@ -765,11 +734,6 @@ cs:
         trending_rank: 'Populární #%{rank}'
         usable: Může být používán
         usage_comparison: Za dnešek %{today} použití, oproti %{yesterday} včera
-        used_by_over_week:
-          few: Použit %{count} lidmi za poslední týden
-          many: Použit %{count} lidmi za poslední týden
-          one: Použit jedním člověkem za poslední týden
-          other: Použit %{count} lidmi za poslední týden
       title: Trendy
     warning_presets:
       add_new: Přidat nové
@@ -868,7 +832,6 @@ cs:
     status:
       account_status: Stav účtu
       confirming: Čeká na dokončení potvrzení e-mailu.
-      functional: Váš účet je zcela funkční.
       pending: Vaše žádost čeká na posouzení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
     too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
@@ -1520,7 +1483,6 @@ cs:
       subject: Potvrďte prosím pokus o přihlášení
       title: Pokus o přihlášení
     warning:
-      review_server_policies: Zkontrolujte pravidla serveru
       subject:
         disable: Váš účet %{acct} byl zmrazen
         none: Varování pro %{acct}

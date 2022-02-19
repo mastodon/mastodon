@@ -27,6 +27,8 @@ ca:
         scheduled_at: Deixa-ho en blanc per a publicar l’anunci immediatament
         starts_at: Opcional. En el cas que el teu anunci estigui vinculat a un interval de temps específic
         text: Pots utilitzar sintaxi d'un tut. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
+      appeal:
+        text: Només pots emetre una apel·lació per cada acció
       defaults:
         autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
         avatar: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
@@ -119,6 +121,8 @@ ca:
         scheduled_at: Programa la publicació
         starts_at: Inici del esdeveniment
         text: Anunci
+      appeal:
+        text: Explica perquè aquesta decisió hauria de ser revertida
       defaults:
         autofollow: Convida a seguir el teu compte
         avatar: Avatar
@@ -197,6 +201,7 @@ ca:
           sign_up_requires_approval: Limitar els registres
         severity: Regla
       notification_emails:
+        appeal: Algú ha apel·lat una decisió de moderació
         digest: Enviar un resum per correu electrònic
         favourite: Algú marca com a preferit el teu estat
         follow: Algú t'ha seguit
@@ -204,8 +209,8 @@ ca:
         mention: Algú t'ha esmentat
         pending_account: Un nou compte necessita revisió
         reblog: Algú comparteix el teu estat
-        report: Es presenta un nou informe
-        trending_tag: Una etiqueta sense revisar està en tendència
+        report: Nou informe és emés
+        trending_tag: Nova tendència requereix revisió
       rule:
         text: Norma
       tag:

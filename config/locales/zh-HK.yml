@@ -90,7 +90,6 @@ zh-HK:
     account_moderation_notes:
       create: 加入管理紀錄
       created_msg: 已新增管理紀錄
-      delete: 刪除
       destroyed_msg: 管理紀錄已被刪除
     accounts:
       add_email_domain_block: 封鎖電郵網域
@@ -403,8 +402,6 @@ zh-HK:
         silence: 已靜音
         suspend: 已停權
       show:
-        affected_accounts:
-          other: 將影響到資料庫中的 %{count} 個帳號
         retroactive:
           silence: 對此域名的所有帳號取消靜音
           suspend: 對此域名的所有帳號取消除名
@@ -452,8 +449,6 @@ zh-HK:
       delivery_error_days: 遞送失敗天數
       delivery_error_hint: 若 %{count} 天皆無法達成遞送，將會被自動標記為離線。
       empty: 找不到域名。
-      known_accounts:
-        other: "%{count} 已知的帳號"
       moderation:
         all: 全部
         limited: 限制
@@ -749,7 +744,6 @@ zh-HK:
     status:
       account_status: 帳戶文章
       confirming: 正在等待確認電郵地址。
-      functional: 你的帳戶可以正常使用。
       pending: 管理員正在處理你的申請。可能會需要一點時間處理。我們將會在申請被批準的時候馬上寄電郵給你。
       redirecting_to: 你的帳戶因為正在重新定向到 %{acct}，所以暫時被停用。
     too_fast: 你太快遞交了，請再試一次。
@@ -1368,7 +1362,6 @@ zh-HK:
       subject: 請確認登入請求
       title: 登入請求
     warning:
-      review_server_policies: 審視伺服器政策
       subject:
         disable: 你的帳號 %{acct} 已經被涷結
         none: 警告帳號%{acct}

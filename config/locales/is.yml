@@ -1,7 +1,7 @@
 ---
 is:
   about:
-    about_hashtag_html: Þetta eru opinber skilaboð sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
+    about_hashtag_html: Þetta eru opinberar færslur sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -10,7 +10,7 @@ is:
     api: API-kerfisviðmót
     apps: Farsímaforrit
     apps_platforms: Notaðu Mastodon frá iOS, Android og öðrum stýrikerfum
-    browse_directory: Skoða notandasniðamöppu og sía eftir áhugamálum
+    browse_directory: Skoða notendur og sía eftir áhugamálum
     browse_local_posts: Skoðaðu kvikt streymi af opinberum færslum á þessum vefþjóni
     browse_public_posts: Skoðaðu kvikt streymi af opinberum færslum á Mastodon
     contact: Hafa samband
@@ -32,8 +32,8 @@ is:
     server_stats: 'Tölfræði þjóns:'
     source_code: Grunnkóði
     status_count_after:
-      one: stöðufærsla
-      other: stöðufærslur
+      one: færsla
+      other: færslur
     status_count_before: Sem stóðu fyrir
     tagline: Fylgstu með vinum og uppgötvaðu nýja
     terms: Þjónustuskilmálar
@@ -76,10 +76,10 @@ is:
     pin_errors:
       following: Þú þarft að vera þegar að fylgjast með þeim sem þú ætlar að mæla með
     posts:
-      one: Tíst
-      other: Tíst
-    posts_tab_heading: Tíst
-    posts_with_replies: Tíst og svör
+      one: Færsla
+      other: Færslur
+    posts_tab_heading: Færslur
+    posts_with_replies: Færslur og svör
     roles:
       admin: Stjóri
       bot: Róbót
@@ -94,7 +94,6 @@ is:
     account_moderation_notes:
       create: Skilja eftir minnispunkt
       created_msg: Tókst að útbúa minnispunkt umsjónarmanns!
-      delete: Eyða
       destroyed_msg: Tókst að eyða minnispunkti umsjónarmanns!
     accounts:
       add_email_domain_block: Útiloka tölvupóstlén
@@ -163,6 +162,11 @@ is:
       not_subscribed: Ekki í áskrift
       pending: Bíður eftir yfirlestri
       perform_full_suspension: Setja í bið
+      previous_strikes: Fyrri refsingar
+      previous_strikes_description_html:
+        one: Þessi notandaaðgangur er með <strong>eina</strong> refsingu.
+        other: Þessi notandaaðgangur er með <strong>%{count}</strong> refsingar.
+        zero: Þessi notandaaðgangur er <strong>í góðu lagi</strong>.
       promote: Hækka í tign
       protocol: Samskiptamáti
       public: Opinber
@@ -203,14 +207,15 @@ is:
         targeted_reports: Kært af öðrum
       silence: Hylja
       silenced: Hulið
-      statuses: Stöðufærslur
+      statuses: Færslur
       strikes: Fyrri refsingar
       subscribe: Gerast áskrifandi
+      suspend: Setja í bið
       suspended: Í bið
       suspension_irreversible: Gögnunum á þessum notandaaðgangi hefur verið eytt óafturkræft. Þú getur tekið aðganginn úr bið svo hægt sé að nota hann, en það mun ekki endurheimta neitt af þeim gögnum sem á honum voru áður.
       suspension_reversible_hint_html: Notandaaðgangurin hefur verið settur í biðstöðu og gögnunum á honum verður eytt að fullu þann %{date}. Þangað til væri hægt að endurheimta aðganginn úr bið án nokkurra breytinga. Ef þú vilt eyða öllum gögnum af honum strax, geturðu gert það hér fyrir neðan.
       title: Notandaaðgangar
-      unblock_email: Leyfa tölvupóstfang
+      unblock_email: Aflétta útilokun tölvupóstfangs
       unblocked_email_msg: Tókst að afbanna tölvupóstfang notandans %{username}
       unconfirmed_email: Óstaðfestur tölvupóstur
       undo_sensitized: Afturkalla merkingu sem viðkvæmt
@@ -226,6 +231,7 @@ is:
       whitelisted: Á lista yfir leyft
     action_logs:
       action_types:
+        approve_appeal: Samþykkja áfrýjun
         approve_user: Samþykkja notanda
         assigned_to_self_report: Úthluta kæru
         change_email_user: Skipta um tölvupóstfang notanda
@@ -234,19 +240,19 @@ is:
         create_announcement: Búa til tilkynningu
         create_custom_emoji: Búa til sérsniðið tjáningartákn
         create_domain_allow: Búa til lén leyft
-        create_domain_block: Búa til lén bannað
-        create_email_domain_block: Búa til tölvupóstfang bannað
+        create_domain_block: Búa til útilokun léns
+        create_email_domain_block: Búa til útilokun tölvupóstléns
         create_ip_block: Búa til IP-reglu
         create_unavailable_domain: Útbúa lén sem ekki er tiltækt
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
         destroy_domain_allow: Eyða léni leyft
-        destroy_domain_block: Eyða léni bannað
-        destroy_email_domain_block: Eyða tölvupóstfangi bannað
+        destroy_domain_block: Eyða útilokun léns
+        destroy_email_domain_block: Eyða útilokun tölvupóstléns
         destroy_instance: Henda léni
         destroy_ip_block: Eyða IP-reglu
-        destroy_status: Eyða stöðufærslu
+        destroy_status: Eyða færslu
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
@@ -257,6 +263,7 @@ is:
         enable_user: Virkja notanda
         memorialize_account: Gera aðgang að minningargrein
         promote_user: Hækka notanda í tign
+        reject_appeal: Hafna áfrýjun
         reject_user: Hafna notanda
         remove_avatar_user: Fjarlægja auðkennismynd
         reopen_report: Enduropna kæru
@@ -273,8 +280,9 @@ is:
         update_announcement: Uppfæra tilkynningu
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
         update_domain_block: Uppfæra útilokun léns
-        update_status: Uppfæra stöðufærslu
+        update_status: Uppfæra færslu
       actions:
+        approve_appeal_html: "%{name} samþykkti áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         approve_user_html: "%{name} samþykkti nýskráningu frá %{target}"
         assigned_to_self_report_html: "%{name} úthlutaði kæru %{target} til sín"
         change_email_user_html: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
@@ -295,7 +303,7 @@ is:
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
         destroy_instance_html: "%{name} henti léninu %{target}"
         destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
-        destroy_status_html: "%{name} fjarlægði stöðufærslu frá %{target}"
+        destroy_status_html: "%{name} fjarlægði færslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
@@ -306,6 +314,7 @@ is:
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
         promote_user_html: "%{name} hækkaði notandann %{target} í tign"
+        reject_appeal_html: "%{name} hafnaði áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         reject_user_html: "%{name} hafnaði nýskráningu frá %{target}"
         remove_avatar_user_html: "%{name} fjarlægði auðkennismynd af %{target}"
         reopen_report_html: "%{name} enduropnaði kæru %{target}"
@@ -321,9 +330,9 @@ is:
         unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr bið"
         update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
-        update_domain_block_html: "%{name} uppfærði lénalás fyrir %{target}"
-        update_status_html: "%{name} uppfærði stöðufærslu frá %{target}"
-      deleted_status: "(eydd stöðufærsla)"
+        update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
+        update_status_html: "%{name} uppfærði færslu frá %{target}"
+      deleted_status: "(eydd færsla)"
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
@@ -384,14 +393,17 @@ is:
       media_storage: Geymsla myndefnis
       new_users: nýir notendur
       opened_reports: kærur opnaðar
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> áfrýjun í bið"
+        other: "<strong>%{count}</strong> áfrýjanir í bið"
       pending_reports_html:
-        one: "<strong>1</strong> kæra í bið"
+        one: "<strong>%{count}</strong> kæra í bið"
         other: "<strong>%{count}</strong> kærur í bið"
       pending_tags_html:
-        one: "<strong>1</strong> myllumerki í bið"
+        one: "<strong>%{count}</strong> myllumerki í bið"
         other: "<strong>%{count}</strong> myllumerki í bið"
       pending_users_html:
-        one: "<strong>1</strong> notandi í bið"
+        one: "<strong>%{count}</strong> notandi í bið"
         other: "<strong>%{count}</strong> notendur í bið"
       resolved_reports: kærur leystar
       software: Hugbúnaður
@@ -401,6 +413,10 @@ is:
       top_languages: Virkustu tungumál
       top_servers: Virkustu netþjónar
       website: Vefsvæði
+    disputes:
+      appeals:
+        empty: Engar áfrýjanir fundust.
+        title: Áfrýjanir
     domain_allows:
       add_new: Setja lén á lista yfir leyft
       created_msg: Það tókst að setja lénið á lista yfir leyft
@@ -423,7 +439,7 @@ is:
           suspend: Setja í bið
         title: Ný útilokun á léni
       obfuscate: Gera heiti léns ólæsilegt
-      obfuscate_hint: Gera heiti léns ólæsilegt að hluta í listanum ef auglýsing er virk fyrir lista yfir takmarkanir léna
+      obfuscate_hint: Gera heiti léns ólæsilegt að hluta í listanum ef auglýsing yfir takmarkanir léna er virk
       private_comment: Einkaathugasemd
       private_comment_hint: Athugasemd um þessa útilokun á léni til innanhússnotkunar fyrir umsjónarmenn.
       public_comment: Opinber athugasemd
@@ -435,14 +451,15 @@ is:
       rejecting_media: hafna myndskrám
       rejecting_reports: hafna kærum
       severity:
-        silence: hulið
+        silence: takmarkað
         suspend: í bið
       show:
         affected_accounts:
           one: Einn notandaaðgangur í gagnagrunninum kemur við sögu
           other: "%{count} notendaaðgangar í gagnagrunninum koma við sögu"
+          zero: Enginn notandaaðgangur í gagnagrunninum kemur við sögu
         retroactive:
-          silence: Hætta að hylja viðkomandi notendaaðganga frá þessu léni
+          silence: Hætta að takmarka viðkomandi notendaaðganga frá þessu léni
           suspend: Taka úr bið viðkomandi notendaaðganga frá þessu léni
         title: Afturkalla útilokun á léni fyrir %{domain}
         undo: Afturkalla
@@ -450,16 +467,16 @@ is:
       view: Skoða útilokun á léni
     email_domain_blocks:
       add_new: Bæta við nýju
-      created_msg: Tókst að bæta póstléni á lista yfir bannað
+      created_msg: Tókst að útiloka póstlén
       delete: Eyða
-      destroyed_msg: Tókst að eyða póstléni af lista yfir bannað
+      destroyed_msg: Tókst að aflétta útilokun af póstléni
       domain: Lén
-      empty: Engin tölvupóstlén eru á bannlista.
+      empty: Engin tölvupóstlén eru útilokuð.
       from_html: frá %{domain}
       new:
         create: Bæta við léni
-        title: Ný færsla á bannlista fyrir tölvupóstföng
-      title: Bannlisti yfir tölvupóstföng
+        title: Útiloka nýtt tölvupóstlén
+      title: Útilokuð tölvupóstlén
     follow_recommendations:
       description_html: "<strong>Að fylgja meðmælum hjálpar nýjum notendum að finna áhugavert efni á einfaldan máta</strong>. Þegar notandi hefur ekki átt í nægilegum samskiptum við aðra til að vera farinn að móta sér skoðanir á hverju hann vill fylgjast með, er mælt með að fylgjast með þessum aðgöngum. Þeir eru endurreiknaðir daglega út frá blöndu þeirra aðganga sem eru með hvað mestri þáttöku í umræðum og mesta fylgjendafjölda út frá hverju tungumáli."
       language: Fyrir tungumálið
@@ -494,6 +511,7 @@ is:
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
         other: "%{count} þekktir notendaaðgangar"
+        zero: Enginn þekktur notandaaðgangur
       moderation:
         all: Allt
         limited: Takmarkað
@@ -502,7 +520,7 @@ is:
       public_comment: Opinber athugasemd
       purge: Henda
       title: Samband
-      total_blocked_by_us: Útilokaðir af okkur
+      total_blocked_by_us: Útilokað af okkur
       total_followed_by_them: Fylgt af þeim
       total_followed_by_us: Fylgt af okkur
       total_reported: Kærur um þá
@@ -535,11 +553,11 @@ is:
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
-      description_html: "<strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra tísta við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum."
+      description_html: "<strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra færslna við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum."
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
-      enable_hint: Ef þetta er einu sinni virkjað, mun vefþjónninn þinn gerast áskrifandi að öllum opinberum tístum frá þessum endurvarpa og byrja að senda sín eigin opinberu tíst til hans.
+      enable_hint: Ef þetta er einu sinni virkjað, mun vefþjónninn þinn gerast áskrifandi að öllum opinberum færslum frá þessum endurvarpa og byrja að senda sín eigin opinberu tíst til hans.
       enabled: Virkt
       inbox_url: Slóð endurvarpa
       pending: Bíð eftir samþykki endurvarpa
@@ -560,10 +578,12 @@ is:
       action_log: Atvikaskrá
       action_taken_by: Aðgerð framkvæmd af
       actions:
+        delete_description_html: Kærðum færslum verður eytt og refsing skráð svo þú eigir auðveldara með að bregðast við í framtíðinni verði um fleiri brot að ræða frá sama notandaaðgangi.
         other_description_html: Skoðaðu fleir valkosti fyrir stjórnun á hegðun notandaaðgangsins og til að stýra samskiptum við kærðan notandaaðgang.
+        resolve_description_html: Til engra aðgerða verður tekið gagnvart kærðum færslum, engin refsing verður skráð og kærunni verður lokað.
         silence_description_html: Notandaaðgangurinn verður einungis sýnilegur þeim sem þegar fylgjast með honum eða sem fletta honum upp handvirkt, sem takmarkar útbreiðslu efnis verulega. Er alltaf hægt að afturkalla.
         suspend_description_html: Notandaaðgangurinn og allt efni á honum mun verða óaðgengilegt og á endanum eytt út. Samskipti við aðganginn verða ekki möguleg. Hægt að afturkalla innan 30 daga.
-      actions_description_html: 'Ef það að fjarlægja óviðeigandi efnið hér fyrir ofan er ekki nægilegt:'
+      actions_description_html: Ákveddu til hvaða aðgerða eigi að taka til að leysa þessa kæru. Ef þú ákveður að refsa kærða notandaaðgangnum, verður viðkomandi send tilkynning í tölvupósti, nema ef flokkurinn <strong>Ruslpóstur</strong> sé valinn.
       add_to_report: Bæta fleiru í kæru
       are_you_sure: Ertu viss?
       assign_to_self: Úthluta mér
@@ -575,7 +595,7 @@ is:
         none: Ekkert
       comment_description_html: 'Til að gefa nánari upplýsingar skrifaði %{name}:'
       created_at: Tilkynnt
-      delete_and_resolve: Eyða og leysa
+      delete_and_resolve: Eyða færslum
       forwarded: Áframsent
       forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
@@ -589,12 +609,14 @@ is:
         placeholder: Lýstu til hvaða aðgerða hefur verið gripið eða uppfærðu inn aðrar tengdar upplýsingar...
         title: Minnispunktar
       notes_description_html: Skoðaðu og skrifaðu minnispunkta til annarra stjórnenda og sjálfs þín
+      quick_actions_description_html: 'Beittu flýtiaðgerð eða skrunaðu niður til að skoða kært efni:'
       reopen: Enduropna kæru
       report: 'Kæra #%{id}'
       reported_account: Kærður notandaaðgangur
       reported_by: Kært af
       resolved: Leyst
       resolved_msg: Það tókst að leysa kæruna!
+      skip_to_actions: Sleppa og fara í aðgerðir
       status: Staða
       statuses: Kært efni
       statuses_description_html: Óviðeigandi efni verður tiltekið í samskiptum við kærðan notandaaðgang
@@ -613,7 +635,7 @@ is:
       title: Reglur netþjónsins
     settings:
       activity_api_enabled:
-        desc_html: Fjöldi staðværra stöðufærslna, virkra notenda og nýskráninga í vikulegum skömmtum
+        desc_html: Fjöldi staðvært birtra færslna, virkra notenda og nýskráninga í vikulegum skömmtum
         title: Birta samantektartölfræði um virkni notanda
       bootstrap_timeline_accounts:
         desc_html: Aðskildu mörg notendanöfn með kommum. Einungis staðværir og ólæstir aðgangar virka. Þegar þetta er autt er sjálgefið miðað við alla staðværa stjórnendur.
@@ -712,9 +734,19 @@ is:
       deleted: Eytt
       media:
         title: Myndefni
-      no_status_selected: Engum stöðufærslum var breytt þar sem engar voru valdar
-      title: Staða notendaaðganga
+      no_status_selected: Engum færslum var breytt þar sem engar voru valdar
+      title: Færslur notandaaðgangs
       with_media: Með myndefni
+    strikes:
+      actions:
+        delete_statuses: "%{name} eyddi færslum frá %{target}"
+        disable: "%{name} frysti aðganginn %{target}"
+        none: "%{name} sendi aðvörun til %{target}"
+        sensitive: "%{name} merkti efni frá %{target} sem viðkvæmt"
+        silence: "%{name} takmarkaði aðganginn %{target}"
+        suspend: "%{name} setti notandaaðganginn %{target} í bið"
+      appeal_approved: Áfrýjað
+      appeal_pending: Áfrýjun í bið
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
@@ -739,6 +771,7 @@ is:
         shared_by_over_week:
           one: Deilt af einum aðila síðustu vikuna
           other: Deilt af %{count} aðilum síðustu vikuna
+          zero: Ekki deilt af neinum aðila síðustu vikuna
         title: Vinsælir tenglar
         usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
       pending_review: Bíður eftir yfirlestri
@@ -768,6 +801,7 @@ is:
         used_by_over_week:
           one: Notað af einum aðila síðustu vikuna
           other: Notað af %{count} aðilum síðustu vikuna
+          zero: Ekki notað af neinum aðila síðustu vikuna
       title: Tilhneiging
     warning_presets:
       add_new: Bæta við nýju
@@ -776,6 +810,17 @@ is:
       empty: Þú hefur ekki enn skilgreint neinar aðvaranaforstillingar.
       title: Sýsla með forstilltar aðvaranir
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: að eyða færslum viðkomandi
+        disable: að frysta aðgang viðkomandi
+        none: aðvörun
+        sensitive: að merkja efni á aðgangnum sem viðkvæmt
+        silence: að takmarka aðgang viðkomandi
+        suspend: að setja aðgang viðkomandi í bið
+      body: "%{target} er að áfrýja ákvörðun umsjónarmanns tekinni af %{action_taken_by} frá %{date}, sem var %{type}. Viðkomandi skrifaði:"
+      next_steps: Þú getur samþykkt áfrýjunina til að afturkalla ákvörðun umsjónarmanns, eða hunsað hana.
+      subject: "%{username} er að áfrýja ákvörðun umsjónarmanns tekinni á %{instance}"
     new_pending_account:
       body: Nákvæmari upplýsingar um nýja notandaaðganginn eru hér fyrir neðan. Þú getur samþykkt eða hafnað þessari umsókn.
       subject: Nýr notandaaðgangur er kominn til yfirferðar á %{instance} (%{username})
@@ -811,14 +856,14 @@ is:
       guide_link: https://crowdin.com/project/mastodon/is
       guide_link_text: Allir geta tekið þátt.
     sensitive_content: Viðkvæmt efni
-    toot_layout: Framsetning tísta
+    toot_layout: Framsetning færslu
   application_mailer:
     notification_preferences: Breyta kjörstillingum tölvupósts
     salutation: "%{name},"
     settings: 'Breyta kjörstillingum tölvupósts: %{link}'
     view: 'Skoða:'
     view_profile: Skoða notandasnið
-    view_status: Skoða stöðufærslu
+    view_status: Skoða færslu
   applications:
     created: Það tókst að búa til forrit
     destroyed: Það tókst að eyða forriti
@@ -837,7 +882,7 @@ is:
     description:
       prefix_invited_by_user: "@%{name} býður þér að taka þátt á þessum Mastodon-vefþjóni!"
       prefix_sign_up: Skráðu þig á Mastodon strax í dag!
-      suffix: Með notandaaðgangi geturðu fylgst með fólki, sent inn stöðufærslur og skipst á skilaboðum við notendur á hvaða Mastodon-vefþjóni sem er, auk margs fleira!
+      suffix: Með notandaaðgangi geturðu fylgst með fólki, sent inn færslur og skipst á skilaboðum við notendur á hvaða Mastodon-vefþjóni sem er, auk margs fleira!
     didnt_get_confirmation: Fékkstu ekki leiðbeiningar um hvernig eigi að staðfesta aðganginn?
     dont_have_your_security_key: Ertu ekki með öryggislykilinn þinn?
     forgot_password: Gleymdirðu lykilorðinu?
@@ -866,7 +911,6 @@ is:
     status:
       account_status: Staða notandaaðgangs
       confirming: Bíð eftir að staðfestingu tölvupósts sé lokið.
-      functional: Notandaaðgangurinn þinn er með fulla virkni.
       pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
@@ -932,6 +976,32 @@ is:
     directory: Notandasniðamappa
     explanation: Leitaðu að notendum eftir áhugamálum þeirra
     explore_mastodon: Kannaðu %{title}
+  disputes:
+    strikes:
+      action_taken: Framkvæmd aðgerð
+      appeal: Áfrýja
+      appeal_approved: Þessari refsingu hefur verið áfrýjað með góðum árangri og hún því ekki lengur í gildi
+      appeal_rejected: Áfrýjuninni hefur verið hafnað
+      appeal_submitted_at: Áfrýjun send inn
+      appealed_msg: Áfrýjun þín hefur verið sen dinn. Þú verður látin/n vita ef hún verður samþykkt.
+      appeals:
+        submit: Senda inn áfrýjun
+      associated_report: Tengd kæra
+      created_at: Dagsett
+      recipient: Stílað til
+      status: 'Færsla #%{id}'
+      status_removed: Færsla þegar fjarlægð úr kerfinu
+      title: "%{action} frá %{date}"
+      title_actions:
+        delete_statuses: Fjarlæging færslu
+        disable: Frysting aðgangs
+        none: Aðvörun
+        sensitive: Efni verður merkt sem viðkvæmt frá aðgangnum
+        silence: Takmörkun aðgangs
+        suspend: Setja aðgang í bið
+      your_appeal_approved: Áfrýjun þín hefur verið samþykkt
+      your_appeal_pending: Þú hefur sent inn áfrýjun
+      your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
   domain_validator:
     invalid_domain: er ekki leyfilegt nafn á léni
   errors:
@@ -956,7 +1026,7 @@ is:
     archive_takeout:
       date: Dagsetning
       download: Náðu í safnskrána þína
-      hint_html: Þú getur beðið um safnskrá með <strong>tístunum þínum og innsendu myndefni</strong>. Útfluttu gögnin verða á ActivityPub-sniði, sem allur samhæfður hugbúnaður á að geta lesið. Þú getur beðið um safnskrá á 7 daga fresti.
+      hint_html: Þú getur beðið um safnskrá með <strong>færslunum þínum og innsendu myndefni</strong>. Útfluttu gögnin verða á ActivityPub-sniði, sem allur samhæfður hugbúnaður á að geta lesið. Þú getur beðið um safnskrá á 7 daga fresti.
       in_progress: Set saman safnskrána þína...
       request: Biddu um safnskrána þína
       size: Stærð
@@ -1065,7 +1135,7 @@ is:
     title: Auðkenningarferill
   media_attachments:
     validations:
-      images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
+      images_and_video: Ekki er hægt að hengja myndskeið við færslu sem þegar inniheldur myndir
       not_ready: Ekki er hægt að hengja við skrár sem ekki er búið að vinna til fulls. Prófaðu aftur eftir augnablik!
       too_many: Ekki er hægt að hengja við fleiri en 4 skrár
   migrations:
@@ -1118,8 +1188,8 @@ is:
         other: "%{count} nýjar tilkynningar síðan þú leist inn síðast \U0001F418"
       title: Á meðan þú varst fjarverandi...
     favourite:
-      body: 'Stöðufærslan þín var sett í eftirlæti af %{name}:'
-      subject: "%{name} setti stöðufærslu þína í eftirlæti"
+      body: 'Færslan þín var sett í eftirlæti af %{name}:'
+      subject: "%{name} setti færsluna þína í eftirlæti"
       title: Nýtt eftirlæti
     follow:
       body: "%{name} er núna að fylgjast með þér!"
@@ -1138,11 +1208,13 @@ is:
     poll:
       subject: Könnun frá %{name} er lokið
     reblog:
-      body: "%{name} endurbirti stöðufærsluna þína:"
-      subject: "%{name} endurbirti stöðufærsluna þína"
+      body: "%{name} endurbirti færsluna þína:"
+      subject: "%{name} endurbirti færsluna þína"
       title: Ný endurbirting
     status:
       subject: "%{name} sendi inn rétt í þessu"
+    update:
+      subject: "%{name} breytti færslu"
   notifications:
     email_events: Atburðir fyrir tilkynningar í tölvupósti
     email_events_hint: 'Veldu þá atburði sem þú vilt fá tilkynningar í tölvupósti þegar þeir koma upp:'
@@ -1217,19 +1289,19 @@ is:
   remote_interaction:
     favourite:
       proceed: Halda áfram í að setja í eftirlæti
-      prompt: 'Þú ætlar að setja þetta tíst í eftirlæti:'
+      prompt: 'Þú ætlar að setja þessa færslu í eftirlæti:'
     reblog:
       proceed: Halda áfram í endurbirtingu
-      prompt: 'Þú ætlar að endurbirta þetta tíst:'
+      prompt: 'Þú ætlar að endurbirta þessa færslu:'
     reply:
       proceed: Halda áfram í að svara
-      prompt: 'Þú ætlar að svara þessu tísti:'
+      prompt: 'Þú ætlar að svara þessari færslu:'
   reports:
     errors:
       invalid_rules: vísar ekki til gildra reglna
   scheduled_statuses:
-    over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætluð tíst fyrir þennan dag
-    over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætluð tíst
+    over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur fyrir þennan dag
+    over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur
     too_soon: Áætluð dagsetning verður að vera í framtíðinni
   sessions:
     activity: Síðasta virkni
@@ -1315,13 +1387,13 @@ is:
       other: 'innihélt óleyfilegu myllumerkin: %{tags}'
     edited_at: Breytt %{date}
     errors:
-      in_reply_not_found: Stöðufærslan sem þú ert að reyna að svara að er líklega ekki til.
+      in_reply_not_found: Færslan sem þú ert að reyna að svara að er líklega ekki til.
     open_in_web: Opna í vafra
     over_character_limit: hámarksfjölda stafa (%{max}) náð
     pin_errors:
-      direct: Ekki er hægt að festa skilaboð sem einungis eru sýnileg þeim notendum sem minnst er á
-      limit: Þú hefur þegar fest leyfilegan hámarksfjölda tísta
-      ownership: Tíst frá einhverjum öðrum er ekki hægt að festa
+      direct: Ekki er hægt að festa færslur sem einungis eru sýnilegar þeim notendum sem minnst er á
+      limit: Þú hefur þegar fest leyfilegan hámarksfjölda færslna
+      ownership: Færslur frá einhverjum öðrum er ekki hægt að festa
       reblog: Ekki er hægt að festa endurbirtingu
     poll:
       total_people:
@@ -1380,7 +1452,7 @@ is:
     min_reblogs: Halda færslum sem eru endurbirtar oftar en
     min_reblogs_hint: Eyðir ekki þínum eigin færslum sem endurbirtar hafa verið þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda endurbirtinga
   stream_entries:
-    pinned: Fest tíst
+    pinned: Fest færsla
     reblogged: endurbirt
     sensitive_content: Viðkvæmt efni
   tags:
@@ -1392,7 +1464,7 @@ is:
 
       <ul>
       <li><em>Grunnupplýsingar um notandaaðgang</em>: Ef þú skráir þig á þessum netþjóni gætirðu verið beðinn um að slá inn notandanafn, tölvupóstfang og lykilorð. Þú getur einnig sett inn viðbótarupplýsingar eins og birtingarnafn og æviágrip auk þess að hlaða inn auðkennismynd eða mynd til að birta á síðuhaus. Notandanafn, birtingarnafn, æviágrip, auðkennismynd og hausmynd eru alltaf skráð opinberlega. </li>
-      <li><em>Skilaboð, fylgnigögn og aðrar opinberar upplýsingar</em>: Listinn yfir þá sem þú fylgist með er skráður opinberlega, það sama er að segja um þá sem fylgjast með þér. Þegar þú sendir skilaboð er dagsetning og tími vistaður sem og hvaða forrit þú sendir skilaboðin frá. Skilaboð geta innihaldið viðhengi, svo sem myndir og myndskeið. Opinberar og óskráðar færslur er aðgengilegar opinberlega. Þegar þú birtir færslu á notandasniðinu þínu (forsíðu) eru það einnig opinberar upplýsingar. Færslurnar þínar eru sendar þeim sem fylgjast með þér, í sumum tilvikum þýðir það að þær eru afhentar á aðra netþjóna og afrit geymd þar. Þegar þú eyðir færslum er það sömuleiðis birt fylgjendum þínum. Aðgerðir eins og að endurbirta eða setja færslu í eftirlæti eru ávallt opinberar.</li>
+      <li><em>Færslur, fylgnigögn og aðrar opinberar upplýsingar</em>: Listinn yfir þá sem þú fylgist með er skráður opinberlega, það sama er að segja um þá sem fylgjast með þér. Þegar þú sendir skilaboð er dagsetning og tími vistaður sem og hvaða forrit þú sendir skilaboðin frá. Skilaboð geta innihaldið viðhengi, svo sem myndir og myndskeið. Opinberar og óskráðar færslur er aðgengilegar opinberlega. Þegar þú birtir færslu á notandasniðinu þínu (forsíðu) eru það einnig opinberar upplýsingar. Færslurnar þínar eru sendar þeim sem fylgjast með þér, í sumum tilvikum þýðir það að þær eru afhentar á aðra netþjóna og afrit geymd þar. Þegar þú eyðir færslum er það sömuleiðis birt fylgjendum þínum. Aðgerðir eins og að endurbirta eða setja færslu í eftirlæti eru ávallt opinberar.</li>
       <li><em>Beinar færslur og eingöngu til fylgjenda</em>: Öll innlegg eru geymd og unnin á netþjóninum. Færslur sem eingöngu eru til fylgjenda berast til fylgjenda þinna og þeirra notenda sem minnst er á í þeim, beinar færslur berast aðeins til notenda sem getið er um í viðkomandi færslu. Í sumum tilvikum þýðir það að færslurnar eru afhentar á aðra netþjóna og afrit geymd þar. Við leggjum mikla áherslu á að takmarka aðgang að þessum færslum einungis við aðila sem til þess hafa heimild, en aðrir utanaðkomandi netþjónar gætu mögulega ekki gert það. Þess vegna er mikilvægt að skoða vel þá netþjóna sem fylgjendur þínir tilheyra. Þú getur valið að þurfa að samþykkja og hafna nýjum fylgjendum handvirkt í stillingunum.<em>Hafðu í huga að rekstraraðilar netþjónsins og allir viðtakendamiðlarar geta skoðað slík skilaboð</em> og að viðtakendur geta tekið skjámyndir, afritað eða á annan hátt deilt þessum gögnum. <em>Ekki deila hættulegum upplýsingum í gegnum Mastodon.</em></li>
       <li><em>IP-vistföng og önnur lýsigögn</em>: Þegar þú skráir þig inn skráum við IP-töluna sem þú skráir þig inn af, sem og heiti vafraforritsins þíns. Allar innskráðar setur verða tiltækar til skoðunar og afturköllunar í stillingunum. Síðast notaða IP-talan er geymd í allt að 12 mánuði. Við gætum líka haldið eftir atvikaskrám netþjónsins sem gæti innihaldið IP-tölur allra beiðna til netþjónsins.</li>
       </ul>
@@ -1493,6 +1565,15 @@ is:
     recovery_instructions_html: Ef þú tapar símanum þínum geturðu notað einn af endurheimtukóðunum hér fyrir neðan til að fá aftur samband við notandaaðganginn þinn. <strong>Geymdu endurheimtukóðana á öruggum stað</strong>. Sem dæmi gætirðu prentað þá út og geymt með öðrum mikilvægum skjölum.
     webauthn: Öryggislyklar
   user_mailer:
+    appeal_approved:
+      action: Farðu inn á notandaaðganginn þinn
+      explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið samþykkt. Notandaaðgangurinn þinn er aftur í góðu lagi.
+      subject: Áfrýjun þín frá %{date} hefur verið samþykkt
+      title: Áfrýjun samþykkt
+    appeal_rejected:
+      explanation: Áfrýjun refsingarinnar gagnvart aðgangnum þínum þann %{strike_date} sem þú sendir inn þann %{appeal_date} hefur verið hafnað.
+      subject: Áfrýjun þinni frá %{date} hefur verið hafnað
+      title: Áfrýjun hafnað
     backup_ready:
       explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum. Það er núna tilbúið til niðurhals!
       subject: Safnskráin þín er tilbúin til niðurhals
@@ -1504,28 +1585,29 @@ is:
       subject: Endilega staðfestu tilraun til innskráningar
       title: Tilraun til innskráningar
     warning:
+      appeal: Ssenda inn áfrýjun
+      appeal_description: Ef þú álítur að um mistök sé að ræða, geturðu sent áfrýjun til umsjónarmanna %{instance}.
       categories:
         spam: Ruslpóstur
         violation: Efnið er á skjön við eftirfarandi leiðbeiningar til notenda
       explanation:
-        delete_statuses: Sum skilaboð frá þér eru álitin eru að hafa gengið gegn samþykktum skilmálum vegna notkunar og hafa því stjórnendur fjarlægt þau af %{instance}. Brot sem framin verða hér eftir geta leitt til enn harðari aðgerða gegn notandaaðgangnum þínum.
+        delete_statuses: Sumar færslur frá þér eru álitnar hafa gengið gegn samþykktum skilmálum vegna notkunar og hafa því stjórnendur fjarlægt þau af %{instance}. Brot sem framin verða hér eftir geta leitt til enn harðari aðgerða gegn notandaaðgangnum þínum.
         disable: Þú getur ekki lengur notað aðganginn þinn, en notandasniðið þitt og önnur gögn eru óskemmd. Þú getur beðið um afrit af gögnunum þínum, getur breytt stillingum eða eytt aðgangnum þínum.
         sensitive: Héðan í frá verður allt myndefni sem þú sendir inn meðhöndlað sem viðkvæmt efni og falið á bakvið aðvörun sem smella þarf á.
-        silence: Þú getur áfram notað aðganginn þinn en aðeins fólk sem þegar fylgist með þér mun sjá tístin þín á þessum vefþjóni, auk þess sem lokað gæti verið á þig á ýmsum opinberum listum. Aftur á móti geta aðrir gerst fylgjendur þínir handvirkt.
+        silence: Þú getur áfram notað aðganginn þinn en aðeins fólk sem þegar fylgist með þér mun sjá færslurnar þínar á þessum vefþjóni, auk þess sem lokað gæti verið á þig á ýmsum opinberum listum. Aftur á móti geta aðrir gerst fylgjendur þínir handvirkt.
         suspend: Þú getur ekki lengur notað aðganginn þinn og notandasniðið þitt og önnur gögn eru ekki lengur aðgengileg. Þú getur enn skráð þig inn til að biðja um afrit af gögnunum þínum þar til þeim verður eytt að fullu eftir 30 daga, við munum hinsvegar halda eftir einstaka grunnupplýsingum til að koma í veg fyrir að þú komist framhjá þessu banni.
       get_in_touch: Ef þú álítur að um mistök sé að ræða, geturðu svarað þessum tölvupósti til að setja þig í samband við umsjónarmenn %{instance}.
       reason: 'Ástæða:'
-      review_server_policies: Yfirfara reglur vefþjónsins
-      statuses: 'Skilaboð sem álitin eru að hafa gengið gegn samþykktum ákvæðum:'
+      statuses: 'Færslur sem álitnar eru að hafa gengið gegn samþykktum ákvæðum:'
       subject:
-        delete_statuses: Skilaboð ín á %{acct} hafa verið fjarlægð
+        delete_statuses: Færslurnar þínar á %{acct} hafa verið fjarlægðar
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
         none: Aðvörun fyrir %{acct}
         sensitive: Myndefnið þitt á %{acct} verður héðan í frá merkt sem viðkvæmt
         silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
         suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
       title:
-        delete_statuses: Skilaboð fjarlægð
+        delete_statuses: Færslur fjarlægðar
         disable: Notandaaðgangur frystur
         none: Aðvörun
         sensitive: Mynd er falin

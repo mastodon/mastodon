@@ -27,6 +27,8 @@ hu:
         scheduled_at: Hagyd üresen, hogy a közleményt azonnal közzétegyük
         starts_at: Opcionális. Akkor használd, ha a közleményed adott időintervallumra vonatkozik
         text: Használhatod a bejegyzések szintaxisát. Ügyelj arra, hogy mennyi helyet foglal el majd a közlemény a felhasználó képernyőjén
+      appeal:
+        text: Egy vétséget csak egyszer fellebbezhetsz meg
       defaults:
         autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
         avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -119,6 +121,8 @@ hu:
         scheduled_at: Közlemény időzítése
         starts_at: Esemény kezdete
         text: Közlemény
+      appeal:
+        text: Magyarázd el, miért kellene visszavonni ezt a döntést
       defaults:
         autofollow: Meghívás a fiókod követésére
         avatar: Profilkép
@@ -197,6 +201,7 @@ hu:
           sign_up_requires_approval: Regisztrációk korlátozása
         severity: Szabály
       notification_emails:
+        appeal: Valaki fellebbez egy moderátori döntéssel szemben
         digest: Összevont e-mailek küldése
         favourite: Valaki kedvencnek jelölte a bejegyzésedet
         follow: E-mail küldése, amikor valaki követni kezd téged
@@ -204,8 +209,8 @@ hu:
         mention: E-mail küldése, amikor valaki megemlít téged
         pending_account: E-mail küldése, ha új fiókot kell engedélyezni
         reblog: Valaki megtolta a bejegyzésedet
-        report: E-mail küldése, ha új bejelentés érkezett
-        trending_tag: Új felkapott hashtag jóváhagyásra vár
+        report: Új bejelentést küldtek be
+        trending_tag: Új trend felülvizsgálatra vár
       rule:
         text: Szabály
       tag:

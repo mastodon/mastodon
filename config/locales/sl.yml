@@ -91,9 +91,9 @@ sl:
     account_moderation_notes:
       create: Pusti opombo
       created_msg: Moderirana opomba je uspešno ustvarjena!
-      delete: Izbriši
       destroyed_msg: Moderirana opomba je uspešno uničena!
     accounts:
+      add_email_domain_block: Blokiraj domeno e-pošte
       approve: Odobri
       are_you_sure: Ali ste prepričani?
       avatar: Podoba
@@ -186,6 +186,7 @@ sl:
       silenced: Utišan
       statuses: Stanja
       subscribe: Naroči
+      suspend: Suspendiraj
       suspended: Suspendiran
       title: Računi
       unconfirmed_email: Nepotrjena e-pošta
@@ -219,9 +220,17 @@ sl:
         silence_account: Omeji račun
         update_status: Posodobi objavo
       deleted_status: "(izbrisano stanje)"
+      filter_by_action: Filtriraj po dejanjih
+      filter_by_user: Filtriraj po uporabnikih
       title: Dnevnik revizije
     announcements:
+      destroyed_msg: Obvestilo je bilo uspešno izbrisano!
+      edit:
+        title: Uredi obvestilo
+      empty: Obvestil ni mogoče najti.
+      live: V živo
       new:
+        create: Ustvari obvestilo
         title: Novo obvestilo
       publish: Objavi
       published_msg: Obvestilo je bilo uspešno objavljeno!
@@ -259,6 +268,10 @@ sl:
       updated_msg: Emotikon je uspešno posodobljen!
       upload: Pošlji
     dashboard:
+      active_users: dejavnih uporabnikov
+      interactions: interakcij
+      new_users: novih uporabnikov
+      opened_reports: odprtih poročil
       software: Programska oprema
       space: Uporaba prostora
       title: Nadzorna plošča
@@ -296,11 +309,6 @@ sl:
         silence: utišani
         suspend: suspendirani
       show:
-        affected_accounts:
-          few: "%{count} računi v bazi podatkov so prizadeti"
-          one: En račun v bazi podatkov je prizadet
-          other: "%{count} računov v bazi podatkov je prizadetih"
-          two: "%{count} računa v bazi podatkov so prizadeta"
         retroactive:
           silence: Prekliči utišanje za vse obstoječe račune iz te domene
           suspend: Aktiviraj vse obstoječe račune iz te domene
@@ -327,14 +335,12 @@ sl:
       by_domain: Domena
       delivery:
         all: Vse
+        clear: Počisti napake dostave
+        stop: Ustavi dostavo
+        title: Dostava
         unavailable: Ni na voljo
         warning: Opozorilo
       delivery_available: Na voljo je dostava
-      known_accounts:
-        few: "%{count} znani računi"
-        one: "%{count} znan račun"
-        other: "%{count} znanih računov"
-        two: "%{count} znana računa"
       moderation:
         all: Vse
         limited: Omejeno
@@ -366,6 +372,7 @@ sl:
         '94670856': 3 leta
       new:
         title: Ustvari novo pravilo IP
+      title: IP-pravila
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
@@ -393,6 +400,7 @@ sl:
       comment:
         none: Brez
       created_at: Prijavljeno
+      delete_and_resolve: Izbriši objave
       mark_as_resolved: Označi kot rešeno
       mark_as_unresolved: Označi kot nerešeno
       no_one_assigned: Nihče
@@ -403,12 +411,14 @@ sl:
         delete: Izbriši
         placeholder: Opišite dejanja, ki ste jih izvedli, ali katere koli druge posodobitve...
         title: Zapiski
+      quick_actions_description_html: 'Opravite hitro dejanje ali podrsajte navzdol, da si ogledate poročano vsebino:'
       reopen: Ponovno odpri prijavo
       report: 'Prijavi #%{id}'
       reported_account: Prijavljeni račun
       reported_by: Prijavljen od
       resolved: Razrešeni
       resolved_msg: Prijava je uspešno razrešena!
+      skip_to_actions: Preskoči na dejanja
       status: Stanje
       title: Prijave
       unassign: Odstopljeni
@@ -495,6 +505,8 @@ sl:
         title: Trendi
     statuses:
       back_to_account: Nazaj na stran računa
+      batch:
+        remove_from_report: Odstrani iz poročila
       deleted: Izbrisano
       media:
         title: Mediji
@@ -506,6 +518,9 @@ sl:
       allow: Dovoli
       approved: Odobren
       disallow: Ne dovoli
+      links:
+        allow: Dovoli povezavo
+      pending_review: Čakajoče na pregled
       tags:
         dashboard:
           tag_languages_dimension: Naj jeziki
@@ -517,6 +532,9 @@ sl:
       edit_preset: Uredi prednastavitev opozoril
       title: Upravljaj prednastavitev opozoril
   admin_mailer:
+    new_appeal:
+      actions:
+        none: opozorilo
     new_pending_account:
       body: Podrobnosti o novem računu so navedene spodaj. To aplikacijo lahko odobrite ali zavrnete.
       subject: Nov račun za pregled na %{instance} (%{username})
@@ -594,18 +612,29 @@ sl:
       return: Prikaži uporabnikov profil
       web: Pojdi na splet
     title: Sledi %{acct}
+  challenge:
+    confirm: Nadaljuj
+    invalid_password: Neveljavno geslo
+    prompt: Potrdite geslo za nadaljevanje
   datetime:
     distance_in_words:
       half_a_minute: Pravkar
       less_than_x_seconds: Pravkar
   deletes:
     confirm_password: Vnesite svoje trenutno geslo, da potrdite svojo identiteto
+    confirm_username: Vnesite svoje uporabniško ime, da potrdite postopek
     proceed: Izbriši račun
     success_msg: Vaš račun je bil uspešno izbrisan
   directories:
     directory: Imenik profilov
     explanation: Odkrijte uporabnike glede na njihove interese
     explore_mastodon: Razišči %{title}
+  disputes:
+    strikes:
+      title_actions:
+        delete_statuses: Odstranitev objave
+        none: Opozorilo
+        silence: Omejitev računa
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nimate dovoljenja za ogled te strani.
@@ -733,6 +762,7 @@ sl:
       too_many: Ni možno priložiti več kot 4 datoteke
   migrations:
     acct: username@domain novega računa
+    proceed_with_move: Premakni sledilce
   moderation:
     title: Moderiranje
   notification_mailer:
@@ -773,6 +803,10 @@ sl:
       body: "%{name} je spodbudil/a vaše stanje:"
       subject: "%{name} je spodbudil/a vaše stanje"
       title: Nova spodbuda
+    update:
+      subject: "%{name} je uredil(a) objavo"
+  otp_authentication:
+    enable: Omogoči
   pagination:
     newer: Novejše
     next: Naprej
@@ -795,6 +829,7 @@ sl:
   relationships:
     activity: Dejavnost računa
     dormant: Skrit
+    follow_selected_followers: Sledi izbranim sledilcem
     last_active: Zadnja dejavnost
     most_recent: Najnovejša
     moved: Prestavljeno
@@ -873,6 +908,7 @@ sl:
   settings:
     account: Račun
     account_settings: Nastavitve računa
+    aliases: Vzdevki računa
     appearance: Videz
     authorized_apps: Pooblaščene aplikacije
     back: Nazaj na Mastodon
@@ -925,6 +961,9 @@ sl:
         two: "%{count} glasova"
       vote: Glasuj
     show_more: Pokaži več
+    show_newer: Pokaži novejše
+    show_older: Pokaži starejše
+    show_thread: Pokaži nit
     sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
     visibilities:
       private: Samo sledilci
@@ -1057,7 +1096,6 @@ sl:
       title: Poskus prijave
     warning:
       reason: 'Razlog:'
-      review_server_policies: Preglejte pravilnike strežnika
       subject:
         disable: Vaš račun %{acct} je zamrznjen
         none: Opozorila za %{acct}
@@ -1099,7 +1137,11 @@ sl:
     verification: Potrditev
   webauthn_credentials:
     add: Dodaj nov varnostni ključ
+    create:
+      success: Vaš varnostni ključ je bil uspešno dodan.
     delete: Izbriši
     delete_confirmation: Ali ste prepričani, da želite izbrisati ta varnostni ključ?
+    destroy:
+      success: Vaš varnostni ključ je bil uspešno izbrisan.
     invalid_credential: Neveljaven varnostni ključ
     not_supported: Ta brskalnik ne podpira varnostnih ključev

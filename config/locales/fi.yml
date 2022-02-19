@@ -94,7 +94,6 @@ fi:
     account_moderation_notes:
       create: Jätä muistiinpano
       created_msg: Moderointimerkinnän luonti onnistui!
-      delete: Poista
       destroyed_msg: Moderointimerkinnän poisto onnistui!
     accounts:
       add_email_domain_block: Estä sähköpostidomain
@@ -113,6 +112,7 @@ fi:
       confirm: Vahvista
       confirmed: Vahvistettu
       confirming: Vahvistetaan
+      custom: Mukautettu
       delete: Poista tiedot
       deleted: Poistettu
       demote: Alenna
@@ -203,11 +203,15 @@ fi:
       silence: Hiljennä
       silenced: Mykistetty
       statuses: Tilat
+      strikes: Aiemmat varoitukset
       subscribe: Tilaa
+      suspend: Jäädytä
       suspended: Jäähyllä
       suspension_irreversible: Tämän tilin tiedot on poistettu peruuttamattomasti. Voit peruuttaa tilin jäädyttämisen, jolloin siitä tulee käyttökelpoinen, mutta toiminto ei palauta sillä aiemmin olleita tietoja.
       suspension_reversible_hint_html: Tili on jäädytetty, ja tiedot poistetaan kokonaan %{date}. Siihen asti tili voidaan palauttaa ilman haitallisia vaikutuksia. Jos haluat poistaa kaikki tilin tiedot välittömästi, voit tehdä sen alla.
       title: Tilit
+      unblock_email: Poista sähköpostiosoitteen esto
+      unblocked_email_msg: Käyttäjän %{username} sähköpostiosoitteen esto kumottiin
       unconfirmed_email: Sähköpostia ei vahvistettu
       undo_sensitized: Kumoa pakotus arkaluontoiseksi tiliksi
       undo_silenced: Peru hiljennys
@@ -240,6 +244,7 @@ fi:
         destroy_domain_allow: Salli verkkotunnuksen poisto
         destroy_domain_block: Poista verkkotunnuksen esto
         destroy_email_domain_block: Poista sähköpostipalvelimen esto
+        destroy_instance: Tyhjennä verkkotunnus
         destroy_ip_block: Poista IP-sääntö
         destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
@@ -261,6 +266,7 @@ fi:
         silence_account: Hiljennä tili
         suspend_account: Jäädytä tili
         unassigned_report: Peruuta raportin määritys
+        unblock_email_account: Poista sähköpostiosoitteen esto
         unsensitive_account: Kumoa pakotus arkaluontoiseksi tiliksi
         unsilence_account: Peruuta tilin rajoitus
         unsuspend_account: Peruuta tilin jäädytys
@@ -287,6 +293,7 @@ fi:
         destroy_domain_allow_html: "%{name} esti yhdistämisen verkkotunnuksella %{target}"
         destroy_domain_block_html: "%{name} poisti verkkotunnuksen %{target} eston"
         destroy_email_domain_block_html: "%{name} poisti verkkotunnuksen %{target} eston"
+        destroy_instance_html: "%{name} tyhjensi verkkotunnuksen %{target}"
         destroy_ip_block_html: "%{name} poisti IP-säännön %{target}"
         destroy_status_html: "%{name} poisti viestin %{target}"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
@@ -308,6 +315,7 @@ fi:
         silence_account_html: "%{name} rajoitti %{target} tilin"
         suspend_account_html: "%{name} siirsi käyttäjän %{target} jäähylle"
         unassigned_report_html: "%{name} peruutti raportin määrityksen %{target}"
+        unblock_email_account_html: "%{name} poisti %{target} sähköpostiosoitteen eston"
         unsensitive_account_html: "%{name} poisti merkinnän %{target} arkaluonteinen media"
         unsilence_account_html: "%{name} ei tehnyt rajoitusta %{target} tilille"
         unsuspend_account_html: "%{name} perui käyttäjän %{target} jäähyn"
@@ -421,9 +429,6 @@ fi:
         silence: hiljennetty
         suspend: jäähyllä
       show:
-        affected_accounts:
-          one: Vaikuttaa yhteen tiliin tietokannassa
-          other: Vaikuttaa %{count} tiliin tietokannassa
         retroactive:
           silence: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien hiljennys
           suspend: Peru kaikkien tässä verkkotunnuksessa jo olemassa olevien tilien jäähy
@@ -456,6 +461,7 @@ fi:
       back_to_limited: Rajoitettu
       back_to_warning: Varoitus
       by_domain: Verkkotunnus
+      confirm_purge: Oletko varma, että haluat pysyvästi poistaa tiedot tältä verkkotunnukselta?
       delivery:
         all: Kaikki
         clear: Tyhjennä toimitusvirheet
@@ -468,6 +474,7 @@ fi:
       delivery_available: Toimitus on saatavilla
       delivery_error_days: Toimitusvirheen päivät
       delivery_error_hint: Jos toimitus ei ole mahdollista %{count} päivän aikana, se merkitään automaattisesti toimittamattomaksi.
+      destroyed_msg: Tiedot %{domain} on nyt jonossa välitöntä poistoa varten.
       empty: Verkkotunnuksia ei löytynyt.
       moderation:
         all: Kaikki
@@ -475,6 +482,7 @@ fi:
         title: Moderointi
       private_comment: Yksityinen kommentti
       public_comment: Julkinen kommentti
+      purge: Tyhjennä
       title: Tiedossa olevat instanssit
       total_blocked_by_us: Estetty meidän toimesta
       total_followed_by_them: Heidän seuraama
@@ -525,37 +533,53 @@ fi:
     report_notes:
       created_msg: Muistiinpano onnistuneesti lisätty raporttiin!
       destroyed_msg: Muistiinpano onnistuneesti poistettu raportista!
+      today_at: Tänään klo %{time}
     reports:
+      action_log: Tarkastusloki
       action_taken_by: Toimenpiteen tekijä
+      actions:
+        delete_description_html: Ilmoitetut viestit poistetaan ja kirjataan varoitus, joka auttaa sinua saman tilin tulevista rikkomuksista.
+        other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja ilmoitetun tilin viestinnän mukauttamiseksi.
+      add_to_report: Lisää raporttiin
       are_you_sure: Oletko varma?
       assign_to_self: Ota tehtäväksi
       assigned: Määritetty valvoja
       by_target_domain: Ilmoitetun tilin verkkotunnus
+      category: Kategoria
       comment:
         none: Ei mitään
       created_at: Raportoitu
+      delete_and_resolve: Poista viestejä
       forwarded: Välitetty
       forwarded_to: Välitetty %{domain}
       mark_as_resolved: Merkitse ratkaistuksi
       mark_as_unresolved: Merkitse ratkaisemattomaksi
+      no_one_assigned: Ei kukaan
       notes:
         create: Lisää muistiinpano
         create_and_resolve: Ratkaise ja lisää muistiinpano
         create_and_unresolve: Avaa uudelleen ja lisää muistiinpano
         delete: Poista
         placeholder: Kuvaile mitä toimia on tehty tai muita päivityksiä tähän raporttiin…
+        title: Merkinnät
+      notes_description_html: Tarkastele ja jätä merkintöjä muille valvojille ja itsellesi tulevaisuuteen
+      quick_actions_description_html: 'Suorita nopea toiminto tai vieritä alas nähdäksesi raportoitu sisältö:'
       reopen: Avaa raportti uudestaan
       report: Raportti nro %{id}
       reported_account: Raportoitu tili
       reported_by: Raportoija
       resolved: Ratkaistut
       resolved_msg: Raportti onnistuneesti ratkaistu!
+      skip_to_actions: Siirry toimintoihin
       status: Tila
+      statuses: Raportoitu sisältö
+      statuses_description_html: Loukkaava sisältö mainitaan ilmoitetun tilin yhteydessä
       target_origin: Raportoidun tilin alkuperä
       title: Raportit
       unassign: Määrittämätön
       unresolved: Ratkaisemattomat
       updated_at: Päivitetty
+      view_profile: Näytä profiili
     rules:
       add_new: Lisää sääntö
       delete: Poista
@@ -657,6 +681,10 @@ fi:
       destroyed_msg: Sivuston lataus onnistuneesti poistettu!
     statuses:
       back_to_account: Takaisin tilin sivulle
+      back_to_report: Takaisin raporttisivulle
+      batch:
+        remove_from_report: Poista raportista
+        report: Raportti
       deleted: Poistettu
       media:
         title: Media
@@ -684,9 +712,6 @@ fi:
         allow_provider: Salli julkaisija
         disallow: Hylkää linkki
         disallow_provider: Estä julkaisija
-        shared_by_over_week:
-          one: Yhden henkilön jakama viime viikon aikana
-          other: "%{count} henkilön jakama viime viikon aikana"
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
       pending_review: Odottaa tarkistusta
@@ -713,9 +738,6 @@ fi:
         trending_rank: 'Nousussa #%{rank}'
         usable: Voidaan käyttää
         usage_comparison: Käytetty %{today} kertaa tänään, verrattuna %{yesterday} eiliseen
-        used_by_over_week:
-          one: Yhden henkilön käyttämä viime viikon aikana
-          other: "%{count} henkilön käyttämä viime viikon aikana"
       title: Trendit
     warning_presets:
       add_new: Lisää uusi
@@ -792,6 +814,7 @@ fi:
     invalid_reset_password_token: Salasananpalautustunnus on virheellinen tai vanhentunut. Pyydä uusi.
     link_to_otp: Syötä puhelimesi kaksivaiheinen koodi tai palautuskoodi
     link_to_webauth: Käytä suojausavaintasi
+    log_in_with: Kirjaudu käyttäen
     login: Kirjaudu sisään
     logout: Kirjaudu ulos
     migrate_account: Muuta toiseen tiliin
@@ -813,7 +836,6 @@ fi:
     status:
       account_status: Tilin tila
       confirming: Odotetaan sähköpostivahvistuksen valmistumista.
-      functional: Tilisi on täysin toimiva.
       pending: Hakemuksesi odottaa henkilökuntamme tarkastusta. Tämä voi kestää jonkin aikaa. Saat sähköpostiviestin, jos hakemuksesi on hyväksytty.
       redirecting_to: Tilisi ei ole aktiivinen, koska se ohjaa tällä hetkellä kohteeseen %{acct}.
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
@@ -1171,6 +1193,9 @@ fi:
     reply:
       proceed: Jatka vastaamiseen
       prompt: 'Haluat vastata julkaisuun:'
+  reports:
+    errors:
+      invalid_rules: ei viittaa voimassa oleviin sääntöihin
   scheduled_statuses:
     over_daily_limit: Olet ylittänyt %{limit} ajoitetun viestin rajan tälle päivälle
     over_total_limit: Olet ylittänyt %{limit} ajoitetun viestin rajan
@@ -1253,14 +1278,17 @@ fi:
         other: "%{count} videota"
     boosted_from_html: Tehostettu %{acct_link}
     content_warning: 'Sisältövaroitus: %{warning}'
+    default_language: Sama kuin käyttöliittymän kieli
     disallowed_hashtags:
       one: 'sisälsi aihetunnisteen jota ei sallita: %{tags}'
       other: 'sisälsi aihetunnisteet joita ei sallita: %{tags}'
+    edited_at: Muokattu %{date}
     errors:
       in_reply_not_found: Viesti, johon yrität vastata, ei näytä olevan olemassa.
     open_in_web: Avaa selaimessa
     over_character_limit: merkkimäärän rajoitus %{max} ylitetty
     pin_errors:
+      direct: Viestejä, jotka ovat näkyvissä vain mainituille käyttäjille, ei voi kiinnittää
       limit: Olet jo kiinnittänyt suurimman mahdollisen määrän tuuttauksia
       ownership: Muiden tuuttauksia ei voi kiinnittää
       reblog: Buustausta ei voi kiinnittää
@@ -1296,6 +1324,7 @@ fi:
     interaction_exceptions: Poikkeukset, jotka perustuvat vuorovaikutukseen
     interaction_exceptions_explanation: Huomaa, että ei ole takeita viestien poistamiselle, jos ne alittavat suosikki- tai tehostusrajan sen jälkeen, kun ne on kerran ylitetty.
     keep_direct: Säilytä suorat viestit
+    keep_direct_hint: Ei poista mitään sinun suoria viestejä
     keep_media: Säilytä viestit, joissa on liitetiedostoja
     keep_media_hint: Ei poista viestejä, joissa on liitteitä
     keep_pinned: Pidä kiinnitettyt viestit
@@ -1315,6 +1344,7 @@ fi:
       '63113904': 2 vuotta
       '7889238': 3 kuukautta
     min_age_label: Ikäraja
+    min_favs: Pidä viestit suosikeissa vähintään
   stream_entries:
     pinned: Kiinnitetty tuuttaus
     reblogged: buustasi
@@ -1355,7 +1385,6 @@ fi:
       subject: Ole hyvä ja vahvista sisäänkirjautumisyritys
       title: Sisäänkirjautumisyritys
     warning:
-      review_server_policies: Tarkista palvelimen käytännöt
       subject:
         disable: Tilisi %{acct} on jäädytetty
         none: Varoitus %{acct}
