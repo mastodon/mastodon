@@ -140,6 +140,7 @@ class UserMailer < Devise::Mailer
   def welcome(user)
     @resource = user
     @instance = Rails.configuration.x.local_domain
+    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @resource.active_for_authentication?
 
