@@ -59,4 +59,8 @@ class InstancePresenter
   def mascot
     @mascot ||= Rails.cache.fetch('site_uploads/mascot') { SiteUpload.find_by(var: 'mascot') }
   end
+
+  def email
+    @email ||= Rails.cache.fetch('site_uploads/email') { SiteUpload.find_by(var: 'email') }
+  end
 end
