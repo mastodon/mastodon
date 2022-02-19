@@ -94,7 +94,6 @@ gl:
     account_moderation_notes:
       create: Deixar nota
       created_msg: Nota de moderación creada de xeito correcto!
-      delete: Eliminar
       destroyed_msg: Nota de moderación eliminada de xeito correcto!
     accounts:
       add_email_domain_block: Bloquear o dominio do email
@@ -163,6 +162,11 @@ gl:
       not_subscribed: Non subscrita
       pending: Revisión pendente
       perform_full_suspension: Suspender
+      previous_strikes: Accións previas
+      previous_strikes_description_html:
+        one: Esta conta ten <strong>un</strong> evento.
+        other: Esta conta ten <strong>%{count}</strong> eventos.
+        zero: Esta conta ten <strong>boa reputación</strong>.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -206,6 +210,7 @@ gl:
       statuses: Publicacións
       strikes: Accións previas
       subscribe: Subscribirse
+      suspend: Suspender
       suspended: Suspendida
       suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta. Podes reactivar a conta para facela usable novamente pero non recuperará os datos eliminados.
       suspension_reversible_hint_html: Esta conta foi suspendida, e os datos serán totalmente eliminados o %{date}. Ata entón, a conta pode ser restaurada sen danos. Se desexas eliminar agora mesmo todos os datos da conta, podes facelo aquí embaixo.
@@ -226,6 +231,7 @@ gl:
       whitelisted: Listaxe branca
     action_logs:
       action_types:
+        approve_appeal: Aprobar apelación
         approve_user: Aprobar Usuaria
         assigned_to_self_report: Asignar denuncia
         change_email_user: Editar email da usuaria
@@ -233,16 +239,16 @@ gl:
         create_account_warning: Crear aviso
         create_announcement: Crear anuncio
         create_custom_emoji: Crear emoticonas personalizadas
-        create_domain_allow: Crear permiso de dominio
-        create_domain_block: Crear bloqueo de dominio
+        create_domain_allow: Crear Dominio Permitido
+        create_domain_block: Crear bloquedo do Dominio
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regra IP
         create_unavailable_domain: Crear dominio Non dispoñible
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
         destroy_custom_emoji: Eliminar emoticona personalizada
-        destroy_domain_allow: Eliminar permiso de dominio
-        destroy_domain_block: Eliminar bloqueo de dominio
+        destroy_domain_allow: Eliminar Dominio permitido
+        destroy_domain_block: Eliminar bloqueo do Dominio
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
         destroy_instance: Purgar Dominio
         destroy_ip_block: Eliminar regra IP
@@ -257,6 +263,7 @@ gl:
         enable_user: Activar usuaria
         memorialize_account: Transformar en conta conmemorativa
         promote_user: Promover usuaria
+        reject_appeal: Rexeitar apelación
         reject_user: Rexeitar Usuaria
         remove_avatar_user: Eliminar avatar
         reopen_report: Reabrir denuncia
@@ -275,6 +282,7 @@ gl:
         update_domain_block: Actualizar bloqueo do dominio
         update_status: Actualizar publicación
       actions:
+        approve_appeal_html: "%{name} aprobou a apelación da decisión da moderación de %{target}"
         approve_user_html: "%{name} aprobou o rexistro de %{target}"
         assigned_to_self_report_html: "%{name} asignou a denuncia %{target} para si mesma"
         change_email_user_html: "%{name} cambiou o enderezo de email da usuaria %{target}"
@@ -300,12 +308,13 @@ gl:
         disable_2fa_user_html: "%{name} desactivou o requerimento do segundo factor para a usuaria %{target}"
         disable_custom_emoji_html: "%{name} desactivou o emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desactivou a autenticación por token no email para %{target}"
-        disable_user_html: "%{name} desactivou a conexión para a usuaria %{target}"
+        disable_user_html: "%{name} desactivou as credenciais para a usuaria %{target}"
         enable_custom_emoji_html: "%{name} activou o emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} activou a autenticación con token no email para %{target}"
-        enable_user_html: "%{name} activou a conexión para a usuaria %{target}"
+        enable_user_html: "%{name} activou as credenciais para a usuaria %{target}"
         memorialize_account_html: "%{name} convertiu a conta de %{target} nunha páxina para o recordo"
         promote_user_html: "%{name} promocionou a usuaria %{target}"
+        reject_appeal_html: "%{name} rexeitou a apelación da decisión da moderación de %{target}"
         reject_user_html: "%{name} rexeitou o rexistro de %{target}"
         remove_avatar_user_html: "%{name} eliminou o avatar de %{target}"
         reopen_report_html: "%{name} reabriu a denuncia %{target}"
@@ -384,14 +393,17 @@ gl:
       media_storage: Almacenaxe multimedia
       new_users: novas usuarias
       opened_reports: denuncias abertas
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apelación pendente"
+        other: "<strong>%{count}</strong> apelacións pendentes"
       pending_reports_html:
-        one: "<strong>1</strong> denuncia pendente"
+        one: "<strong>%{count}</strong> denuncia pendente"
         other: "<strong>%{count}</strong> denuncias pendentes"
       pending_tags_html:
-        one: "<strong>1</strong> cancelo pendente"
-        other: "<strong>%{count}</strong> cancelos pendentes"
+        one: "<strong>%{count}</strong> etiqueta pendente"
+        other: "<strong>%{count}</strong> etiquetas pendentes"
       pending_users_html:
-        one: "<strong>1</strong> usuaria pendente"
+        one: "<strong>%{count}</strong> usuaria pendente"
         other: "<strong>%{count}</strong> usuarias pendentes"
       resolved_reports: denuncias resoltas
       software: Software
@@ -401,6 +413,10 @@ gl:
       top_languages: Idiomas máis activos
       top_servers: Servidores máis activos
       website: Sitio web
+    disputes:
+      appeals:
+        empty: Non hai apelacións.
+        title: Apelacións
     domain_allows:
       add_new: Engadir dominio á listaxe branca
       created_msg: Engadeu o dominio a lista branca
@@ -439,8 +455,9 @@ gl:
         suspend: suspendido
       show:
         affected_accounts:
-          one: Unha conta na base de datos afectada
-          other: "%{count} contas na base de datos afectadas"
+          one: Ten efecto sobre unha conta na base de datos
+          other: Ten efecto sobre %{count} contas na base de datos
+          zero: Non afecta a ningunha conta na base de datos
         retroactive:
           silence: Deixar de silenciar todas as contas existentes deste dominio
           suspend: Desbotar suspenso de todas as contas existentes deste dominio
@@ -494,6 +511,7 @@ gl:
       known_accounts:
         one: "%{count} conta coñecida"
         other: "%{count} contas coñecidas"
+        zero: Sen contas coñecidas
       moderation:
         all: Todo
         limited: Limitado
@@ -560,10 +578,12 @@ gl:
       action_log: Rexistro de auditoría
       action_taken_by: Acción tomada por
       actions:
+        delete_description_html: As publicacións denunciadas van ser eliminadas e gárdase un aviso para axudarche a xestionar futuras infraccións desta conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
+        resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardan avisos, e a denuncia arquivada.
         silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
         suspend_description_html: O perfil e tódolos seus contidos será inaccesbles e finalmente eliminados. A interacción coa conta non será posible. Reversible durante 30 días.
-      actions_description_html: 'Se eliminar o contido ofensivo non é suficiente:'
+      actions_description_html: Decide que acción tomar respecto desta denuncia. Se tomas accións punitivas contra a conta denunciada, enviaráselles un email coa notificación, excepto se está seleccionada a categoría <strong>Spam</strong>.
       add_to_report: Engadir máis á denuncia
       are_you_sure: Estás seguro?
       assign_to_self: Asignarme
@@ -575,7 +595,7 @@ gl:
         none: Ningún
       comment_description_html: 'Como información engadida, %{name} escribiu:'
       created_at: Denunciado
-      delete_and_resolve: Eliminar e resolver
+      delete_and_resolve: Eliminar publicacións
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resolto
@@ -589,12 +609,14 @@ gl:
         placeholder: Describir que accións foron tomadas ou calquera outra novidade sobre esta denuncia...
         title: Notas
       notes_description_html: Ver e deixar unha nota para ti no futuro e outras moderadoras
+      quick_actions_description_html: 'Tomar unha acción rápida ou desprázate abaixo para ver o contido denunciado:'
       reopen: Reabrir denuncia
       report: 'Denuncia #%{id}'
       reported_account: Conta denunciada
       reported_by: Denunciado por
       resolved: Resolto
       resolved_msg: Resolveuse con éxito a denuncia!
+      skip_to_actions: Ir a accións
       status: Estado
       statuses: Contido denunciado
       statuses_description_html: O contido ofensivo será citado na comunicación coa conta denunciada
@@ -715,6 +737,16 @@ gl:
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
       title: Publicacións da conta
       with_media: con medios
+    strikes:
+      actions:
+        delete_statuses: "%{name} eliminou as publicacións de %{target}"
+        disable: "%{name} pausou a conta de %{target}"
+        none: "%{name} envioulle un aviso a %{target}"
+        sensitive: "%{name} marcou a conta de %{target} como sensible"
+        silence: "%{name} limitou a conta de %{target}"
+        suspend: "%{name} suspendeu a conta de %{target}"
+      appeal_approved: Recurrida
+      appeal_pending: Apelación pendente
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
@@ -739,6 +771,7 @@ gl:
         shared_by_over_week:
           one: Compartido por unha persoa na última semana
           other: Compartido por %{count} persoas na última semana
+          zero: Non foi compartido na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
       pending_review: Revisión pendente
@@ -768,6 +801,7 @@ gl:
         used_by_over_week:
           one: Utilizado por unha persoa na última semana
           other: Utilizado por %{count} persoas na última semana
+          zero: Non foi utilizado na última semana
       title: Tendencias
     warning_presets:
       add_new: Engadir novo
@@ -776,6 +810,17 @@ gl:
       empty: Non definiches os avisos prestablecidos.
       title: Xestionar avisos preestablecidos
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: borrar as súas publicacións
+        disable: pausar a súa conta
+        none: un aviso
+        sensitive: marcar a conta como sensible
+        silence: limitar a súa conta
+        suspend: suspender a súa conta
+      body: "%{target} apelou a decisión de moderación de %{action_taken_by} o %{date}, de tipo %{type}. Escribiu:"
+      next_steps: Podes aprobar o recurso e desfacer a decisión de moderación, ou ignoralo.
+      subject: "%{username} fixo unha apelación á decisión de moderación en %{instance}"
     new_pending_account:
       body: Abaixo están os detalles da conta. Podes aprobar ou rexeitar esta solicitude.
       subject: Hai unha conta nova para revisar en %{instance} (%{username})
@@ -844,12 +889,12 @@ gl:
     invalid_reset_password_token: O testemuño para restablecer o contrasinal non é válido ou caducou. Por favor solicite un novo.
     link_to_otp: Escribe o código do segundo factor do móbil ou un código de recuperación
     link_to_webauth: Usa o teu dispositivo de chave de seguridade
-    log_in_with: Inicia sesión con
-    login: Conectar
-    logout: Desconectar
+    log_in_with: Accede con
+    login: Acceder
+    logout: Pechar sesión
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se queres redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
-    or_log_in_with: ou conectar con
+    or_log_in_with: Ou accede con
     providers:
       cas: CAS
       saml: SAML
@@ -866,11 +911,10 @@ gl:
     status:
       account_status: Estado da conta
       confirming: Agardando a confirmación do correo enviado.
-      functional: A súa conta está totalmente operativa.
       pending: A túa solicitude está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a solicitude está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
-    trouble_logging_in: Problemas para conectar?
+    trouble_logging_in: Problemas para acceder?
     use_security_key: Usa chave de seguridade
   authorize_follow:
     already_following: Xa está a seguir esta conta
@@ -932,6 +976,32 @@ gl:
     directory: Directorio de perfís
     explanation: Descubre usuarias según o teu interese
     explore_mastodon: Explorar %{title}
+  disputes:
+    strikes:
+      action_taken: Acción tomada
+      appeal: Apelar
+      appeal_approved: Esta acción foi recurrida e xa non é válida
+      appeal_rejected: O recurso foi rexeitado
+      appeal_submitted_at: Enviouse a apelación
+      appealed_msg: A túa apelación foi enviada. Se é aprobada recibirás unha notificación.
+      appeals:
+        submit: Enviar apelación
+      associated_report: Denuncia asociada
+      created_at: Data
+      recipient: Entregada a
+      status: 'Publicación #%{id}'
+      status_removed: A publicación xa foi eliminada do sistema
+      title: "%{action} o %{date}"
+      title_actions:
+        delete_statuses: Eliminación da publicación
+        disable: Pausar conta
+        none: Aviso
+        sensitive: Marcar a conta como sensible
+        silence: Limitar a conta
+        suspend: Suspender a conta
+      your_appeal_approved: A apelación foi aprobada
+      your_appeal_pending: Enviaches unha apelación
+      your_appeal_rejected: A apelación foi rexeitada
   domain_validator:
     invalid_domain: non é un nome de dominio válido
   errors:
@@ -1059,9 +1129,9 @@ gl:
       sign_in_token: código de seguridade por email
       webauthn: chaves de seguridade
     description_html: Se ves actividade que non recoñeces, considera cambiar o contrasinal e activar o segundo factor de autenticación.
-    empty: Sen historial de autenticación dispoñible
-    failed_sign_in_html: Intento de conexión errado con %{method} desde %{ip} (%{browser})
-    successful_sign_in_html: Conexión correcta con %{method} desde %{ip} (%{browser})
+    empty: Non hai historial de autenticación
+    failed_sign_in_html: Intento de acceso errado con %{method} desde %{ip} (%{browser})
+    successful_sign_in_html: Acceso correcto con %{method} desde %{ip} (%{browser})
     title: Historial de autenticación
   media_attachments:
     validations:
@@ -1143,6 +1213,8 @@ gl:
       title: Nova promoción
     status:
       subject: "%{name} publicou"
+    update:
+      subject: "%{name} editou unha publicación"
   notifications:
     email_events: Eventos para os correos de notificación
     email_events_hint: 'Escolle os eventos sobre os que queres recibir notificacións:'
@@ -1159,9 +1231,9 @@ gl:
           trillion: T
   otp_authentication:
     code_hint: Escribe o código creado pola app de autenticación para confirmar
-    description_html: Se activas a <strong>autenticación con dous factores</strong> utilizando unha app de autenticación, ó conectarte pedirémosche que teñas o móbil á man, para crear o código que precisas para conectarte.
+    description_html: Se activas a <strong>autenticación con dous factores</strong> utilizando unha app de autenticación, ao conectarte pedirémosche que teñas o móbil á man, para crear o código que precisas para acceder.
     enable: Activar
-    instructions_html: "<strong>Escanea este código QR na túa app TOTP no móbil ou Google Authenticator</strong>. A partir de agora, a app creará códigos que terás que escribir cando te conectes."
+    instructions_html: "<strong>Escanea este código QR na túa app TOTP ou tipo Google Authenticator no móbil</strong>. A partir de agora, a app creará códigos que terás que escribir cando entres."
     manual_instructions: 'Se non podes escanear o código QR e tes que escribilo á man, aquí tes o código en texto plano:'
     setup: Configurar
     wrong_code: O código escrito non é válido! ¿é correcta a hora no dispositivo e no servidor?
@@ -1254,7 +1326,7 @@ gl:
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
-    explanation: Estos son os navegadores web nos que actualmente ten sesión aberta.
+    explanation: Estos son os navegadores web nos que actualmente ten sesión iniciada.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1335,7 +1407,7 @@ gl:
     show_newer: Mostrar o máis novo
     show_older: Mostrar o máis vello
     show_thread: Amosar fío
-    sign_in_to_participate: Conéctese para participar na conversa
+    sign_in_to_participate: Accede e participa na conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Directa
@@ -1493,17 +1565,28 @@ gl:
     recovery_instructions_html: Se perdeses o acceso ao teu teléfono, podes utilizar un dos códigos de recuperación inferiores para recuperar o acceso á conta. <strong>Garda os códigos nun lugar seguro</strong>. Por exemplo, podes imprimilos e gardalos xunto con outros documentos importantes.
     webauthn: Chaves de seguridade
   user_mailer:
+    appeal_approved:
+      action: Vai á túa conta
+      explanation: A apelación da acción contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi aprobada. A túa conta volve ao estado normal de uso.
+      subject: O recurso presentado o %{date} foi aprobado
+      title: Apelación aprobada
+    appeal_rejected:
+      explanation: A apelación contra a acción tomada contra a túa conta o %{strike_date} que enviaches o %{appeal_date} foi rexeitada.
+      subject: A túa apelación do %{date} foi rexeitada
+      title: Apelación rexeitada
     backup_ready:
       explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
       subject: O teu ficheiro xa está preparado para descargar
       title: Leve o ficheiro
     sign_in_token:
       details: 'Detalles sobre o intento:'
-      explanation: 'Detectamos un intento de conectar coa túa conta desde un enderezo IP descoñecido. Se es ti, escribe o código de seguridade inferior na páxina de desafío de conexión:'
+      explanation: 'Detectamos un intento de acceso coa túa conta desde un enderezo IP descoñecido. Se es ti, escribe o código de seguridade inferior na páxina de desafío de conexión:'
       further_actions: 'Se non foches ti, cambia agora o contrasinal e activa o segundo factor de autenticación para a túa conta. Pódelo facer aquí:'
       subject: Por favor confirma o intento de conexión
       title: Intento de conexión
     warning:
+      appeal: Enviar unha apelación
+      appeal_description: Se cres que esto é un erro, podes enviar un recurso á administración de %{instance}.
       categories:
         spam: Spam
         violation: O contido viola as seguintes normas da comunidade
@@ -1512,10 +1595,9 @@ gl:
         disable: Xa non podes usar a túa conta, pero o teu perfil e outros datos permanecen intactos. Podes solicitar unha copia dos teus datos, cambiar os axustes da conta ou eliminar a túa conta.
         sensitive: A partir deste momento, tódolos ficheiros que subiches estarán marcados como sensibles e agochados tras un aviso de contido.
         silence: Aínda podes usar a túa conta pero só as persoas que te siguen poden ver as túas publicacións neste servidor, e podes que foses excluída de varios xeitos de descubrimento. Porén, aínda te poden seguir de xeito manual.
-        suspend: Xa non podes usar a túa conta, o teu perfil e outros datos xa non son accesibles. Aínda podes conectarte para solicitar unha copia dos teus datos no prazo de 30 días previos á eliminación da conta, pero imos reter algúns datos básicos para evitar que poidas evitar a suspensión.
+        suspend: Xa non podes usar a túa conta, o teu perfil e outros datos xa non son accesibles. Aínda podes acceder para solicitar unha copia dos teus datos no prazo de 30 días previos á eliminación da conta. Imos reter algúns datos básicos para evitar que poidas evitar a suspensión.
       get_in_touch: Se consideras que isto é un erro, podes responder a este email para contactar coa administración de %{instance}.
       reason: 'Razón:'
-      review_server_policies: Revisar políticas do servidor
       statuses: 'Publicacións que contradín as normas:'
       subject:
         delete_statuses: As túas publicacións en %{acct} foron eliminadas
@@ -1554,9 +1636,9 @@ gl:
     invalid_otp_token: O código do segundo factor non é válido
     invalid_sign_in_token: Código de seguridade non válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
-    seamless_external_login: Está conectado a través de un servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
+    seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
-    suspicious_sign_in_confirmation: Semella que non te conectaches antes desde este dispositivo, e hai tempo que non te conectas, así que ímosche enviar un código de seguridade ao teu enderezo de email para confirmar que es ti.
+    suspicious_sign_in_confirmation: Semella que non entraches antes usando este dispositivo, así que ímosche enviar un código de seguridade ao teu enderezo de email para confirmar que es ti.
   verification:
     explanation_html: 'Podes <strong>validarte a ti mesma como a dona das ligazóns nos metadatos do teu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí tes un exemplo:'
     verification: Validación
@@ -1567,7 +1649,7 @@ gl:
       success: Engadeuse correctamente a chave de seguridade.
     delete: Eliminar
     delete_confirmation: "¿Tes a certeza de que queres eliminar a chave de seguridade?"
-    description_html: Se activas a <strong>autenticación con chave de seguridade</strong>, ó conectarte pediráseche que uses unha das túas chaves.
+    description_html: Se activas a <strong>autenticación con chave de seguridade</strong>, pediráseche que uses unha das túas chaves para acceder.
     destroy:
       error: Houbo un problema ó eliminar a túa chave de seguridade, inténtao outra vez.
       success: Eliminouse correctamente a chave de seguridade.

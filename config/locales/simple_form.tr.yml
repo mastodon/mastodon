@@ -27,6 +27,8 @@ tr:
         scheduled_at: Duyuruyu hemen yayınlamak için boş bırakın
         starts_at: İsteğe bağlı. Duyurunuzun belirli bir zaman aralığına bağlı olması durumunda
         text: Toot söz dizimini kullanabilirsiniz. Lütfen duyurunun kullanıcının ekranında yer alacağı alanı göz önünde bulundurun
+      appeal:
+        text: Bir eyleme yalnızca bir kere itiraz edebilirsiniz
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
         avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
@@ -119,6 +121,8 @@ tr:
         scheduled_at: Yayınlamayı zamanla
         starts_at: Etkinliğin başlangıcı
         text: Duyuru
+      appeal:
+        text: Bu kararın neden geri alınması gerektiğini açıklayın
       defaults:
         autofollow: Hesabınızı takip etmeye davet edin
         avatar: Profil resmi
@@ -197,6 +201,7 @@ tr:
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
+        appeal: Birisi, bir yönetim kararına itiraz ediyor
         digest: Özet e-postaları gönder
         favourite: Birisi gönderinizi beğendi
         follow: Biri seni takip etti
@@ -205,7 +210,7 @@ tr:
         pending_account: Yeni hesabın incelenmesi gerekiyor
         reblog: Birisi gönderini boostladı
         report: Yeni rapor gönderildi
-        trending_tag: İncelenmemiş bir etiket gündem oluyor
+        trending_tag: Yeni eğilimin gözden geçmesi gerekiyor
       rule:
         text: Kural
       tag:

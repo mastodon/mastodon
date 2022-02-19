@@ -27,6 +27,8 @@ pt-PT:
         scheduled_at: Deixe em branco para publicar o anúncio imediatamente
         starts_at: Opcional. Caso o seu anúncio seja vinculado a um intervalo de tempo específico
         text: Pode utilizar a sintaxe dos toot. Por favor, tenha em consideração o espaço que o anúncio ocupará no ecrã do utilizador
+      appeal:
+        text: Só pode recorrer de uma punição uma vez
       defaults:
         autofollow: As pessoas que aderem através do convite seguir-te-ão automaticamente
         avatar: PNG, GIF or JPG. Arquivos até %{size}. Vão ser reduzidos para %{dimensions}px
@@ -119,6 +121,8 @@ pt-PT:
         scheduled_at: Agendar publicação
         starts_at: Início do evento
         text: Anúncio
+      appeal:
+        text: Explique porque esta decisão deve ser revertida
       defaults:
         autofollow: Convidar para seguir a tua conta
         avatar: Imagem de Perfil
@@ -197,6 +201,7 @@ pt-PT:
           sign_up_requires_approval: Limitar inscrições
         severity: Regra
       notification_emails:
+        appeal: Alguém recorreu de uma decisão de moderação
         digest: Enviar e-mails de resumo
         favourite: Quando alguém adiciona uma publicação sua aos favoritos
         follow: Quando alguém começar a segui-lo
@@ -204,8 +209,8 @@ pt-PT:
         mention: Quando alguém o mencionar
         pending_account: Quando uma nova conta aguarda aprovação
         reblog: Quando alguém partilhar uma publicação sua
-        report: Quando um novo relatório é submetido
-        trending_tag: Quando uma hashtag não aprovada anteriormente estiver em destaque
+        report: Nova denúncia submetida
+        trending_tag: Nova tendência requer revisão
       rule:
         text: Regra
       tag:

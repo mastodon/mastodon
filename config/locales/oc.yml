@@ -86,7 +86,6 @@ oc:
     account_moderation_notes:
       create: Crear una nòta
       created_msg: Nòta de moderacion ben creada !
-      delete: Suprimir
       destroyed_msg: Nòta de moderacion ben suprimida !
     accounts:
       add_email_domain_block: Metre lo domeni del corrièl en lista negra
@@ -329,9 +328,6 @@ oc:
         silence: mes en silenci
         suspend: suspendut
       show:
-        affected_accounts:
-          one: Un compte de la basa de donadas tocat
-          other: "%{count} compte de la basa de donadas tocat"
         retroactive:
           silence: Levar lo silenci de totes los comptes d’aqueste domeni
           suspend: Levar la suspension de totes los comptes d’aqueste domeni
@@ -357,9 +353,6 @@ oc:
     instances:
       by_domain: Domeni
       delivery_available: Liurason disponibla
-      known_accounts:
-        one: "%{count} compte conegut"
-        other: "%{count} comptes coneguts"
       moderation:
         all: Totas
         limited: Limitat
@@ -627,7 +620,6 @@ oc:
       title: Configuracion
     status:
       account_status: Estat del compte
-      functional: Vòstre compte es complètament foncional.
     trouble_logging_in: Problèmas de connexion ?
     use_security_key: Utilizar clau de seguretat
   authorize_follow:
@@ -1176,7 +1168,6 @@ oc:
       title: Archiu per emportar
     warning:
       reason: 'Motiu :'
-      review_server_policies: Repassar las politicas del servidor
       subject:
         disable: Vòstre compte %{acct} es gelat
         none: Avertiment per %{acct}

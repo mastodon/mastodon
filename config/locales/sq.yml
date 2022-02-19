@@ -94,7 +94,6 @@ sq:
     account_moderation_notes:
       create: Lini një shënim
       created_msg: Shënimi i moderimit u krijua me sukses!
-      delete: Fshije
       destroyed_msg: Shënimi i moderimit u asgjësua me sukses!
     accounts:
       add_email_domain_block: Blloko përkatësi email
@@ -163,6 +162,11 @@ sq:
       not_subscribed: Jo i pajtuar
       pending: Në pritje të shqyrtimit
       perform_full_suspension: Pezulloje
+      previous_strikes: Paralajmërime të mëparshme
+      previous_strikes_description_html:
+        one: Kjo llogari ka <strong>one</strong> paralajmërim.
+        other: Kjo llogari ka <strong>%{count}</strong> paralajmërime.
+        zero: Kjo llogari është <strong>në pozita të mira</strong>.
       promote: Promovojeni
       protocol: Protokoll
       public: Publike
@@ -206,6 +210,7 @@ sq:
       statuses: Gjendje
       strikes: Ndëshkime të mëparshme
       subscribe: Pajtomë
+      suspend: Pezulloje
       suspended: Të pezulluara
       suspension_irreversible: Të dhënat e kësaj llogarie janë fshirë në mënyrë të pakthyeshme. Mund ta shpezulloni llogarinë, për ta bërë të përdorshme, por kjo s’do të kthejë ndonjë të dhënë që kihej më parë.
       suspension_reversible_hint_html: Llogaria është pezulluar, dhe të dhënat do të hiqen plotësisht më %{date}. Deri atëherë, llogaria mund të rikthehet pa ndonjë zarar. Nëse doni të hiqen menjëherë krejt të dhënat e llogarisë, këtë mund ta bëni më poshtë.
@@ -226,6 +231,7 @@ sq:
       whitelisted: Lejuar për federim
     action_logs:
       action_types:
+        approve_appeal: Miratojeni Apelimin
         approve_user: Miratoje Përdoruesin
         assigned_to_self_report: Caktoji Raportim
         change_email_user: Ndrysho Email për Përdoruesin
@@ -257,6 +263,7 @@ sq:
         enable_user: Aktivizo Përdorues
         memorialize_account: Bëje Llogari Përkujtimore
         promote_user: Promovojeni Përdoruesin
+        reject_appeal: Hidheni Poshtë Apelimin
         reject_user: Hidhe Poshtë Përdoruesin
         remove_avatar_user: Hiqe Avatarin
         reopen_report: Rihape Raportimin
@@ -275,6 +282,7 @@ sq:
         update_domain_block: Përditëso Bllok Përkatësish
         update_status: Përditëso Gjendjen
       actions:
+        approve_appeal_html: "%{name} miratoi apelim vendimi moderimi nga %{target}"
         approve_user_html: "%{name} miratoi regjistrim nga %{target}"
         assigned_to_self_report_html: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
         change_email_user_html: "%{name} ndryshoi adresën email të përdoruesit %{target}"
@@ -306,6 +314,7 @@ sq:
         enable_user_html: "%{name} aktivizoi hyrje për përdoruesin %{target}"
         memorialize_account_html: "%{name} e shndërroi llogarinë e %{target} në një faqe përkujtimore"
         promote_user_html: "%{name} gradoi përdoruesin %{target}"
+        reject_appeal_html: "%{name} hodhi poshtë apelim vendimi moderimi nga %{target}"
         reject_user_html: "%{name} hodhi poshtë regjistrimin nga %{target}"
         remove_avatar_user_html: "%{name} hoqi avatarin e %{target}"
         reopen_report_html: "%{name} rihapi raportimin %{target}"
@@ -384,14 +393,17 @@ sq:
       media_storage: Depozitë media
       new_users: përdorues të rinj
       opened_reports: raportime të hapur
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apelim pezull"
+        other: "<strong>%{count}</strong> apelime pezull"
       pending_reports_html:
-        one: "<strong>1</strong> raportim pezull"
+        one: "<strong>%{count}</strong> raportim pezull"
         other: "<strong>%{count}</strong> raportime pezull"
       pending_tags_html:
-        one: "<strong>1</strong> hashtag pezull"
+        one: "<strong>%{count}</strong> hashtag pezull"
         other: "<strong>%{count}</strong> hashtag-ë pezull"
       pending_users_html:
-        one: "<strong>1</strong> përdorues pezull"
+        one: "<strong>%{count}</strong> përdorues pezull"
         other: "<strong>%{count}</strong> përdorues pezull"
       resolved_reports: raportime të zgjidhur
       software: Software
@@ -401,6 +413,10 @@ sq:
       top_languages: Gjuhët aktive kryesuese
       top_servers: Shërbyesit aktivë kryesues
       website: Sajt
+    disputes:
+      appeals:
+        empty: S’u gjetën apelime.
+        title: Apelime
     domain_allows:
       add_new: Shtoje përkatësinë në listë lejimesh
       created_msg: Përkatësia u shtua me sukses në listë lejimesh
@@ -441,6 +457,7 @@ sq:
         affected_accounts:
           one: Pat ndikim te një llogari në bazën e të dhënave
           other: Pat ndikim te %{count} llogari në bazën e të dhënave
+          zero: S’pat ndikim te ndonjë llogari në bazën e të dhënave
         retroactive:
           silence: Hiqu heshtimin krejt llogarive ekzistuese nga kjo përkatësi
           suspend: Hiqu pezullimin krejt llogarive ekzistuese nga kjo përkatësi
@@ -494,6 +511,7 @@ sq:
       known_accounts:
         one: "%{count} llogari e njohur"
         other: "%{count} llogari të njohura"
+        zero: Pa llogari të njohur
       moderation:
         all: Krejt
         limited: Të kufizuarat
@@ -560,10 +578,12 @@ sq:
       action_log: Auditim regjistri
       action_taken_by: Veprimi i ndërmarrë nga
       actions:
+        delete_description_html: Postimet e raportuara do të fshihen dhe do të regjistrohet një paralajmërim, për t’ju ndihmuar të përshkallëzoni hapat në rast shkeljesh të ardhme nga e njëjta llogari.
         other_description_html: Shihni më tepër mundësi për kontroll të sjelljes së një llogari dhe përshtatni komunikimin me llogarinë e raportuar.
+        resolve_description_html: Ndaj llogarisë së raportuar nuk do të ndërmerret ndonjë veprim, s’do të regjistrohet ndonjë paralajmërim dhe raporti do të mbyllet.
         silence_description_html: Profili do të jetë i dukshëm vetëm për ata që e ndjekin tashmë, ose që e kërkojnë dorazi, duke reduktuar rëndë përhapjen e tij. Mundet përherë të prapakthehet.
         suspend_description_html: Profili dhe krej lënda e tij do të bëhen të papërdorshëm, deri sa më në fund të fshihet. Ndërveprimi me llogarinë do të jetë i pamundur. E prapakthyeshme brenda 30 ditësh.
-      actions_description_html: 'Nëse heqja e lëndës më sipër që ka probleme është e pamjaftueshme:'
+      actions_description_html: Vendosni cili veprim të kryhet për të zgjidhur këtë raportim. Nëse ndërmerrni një veprim ndëshkues kundër llogarisë së raportuar, atyre do t’u dërgohet një njoftim me email, hiq rastin kur përzgjidhet kategoria <strong>I padëshiruar</strong>.
       add_to_report: Shtoni më tepër te raportimi
       are_you_sure: A jeni i sigurt?
       assign_to_self: Caktojani vetes
@@ -575,7 +595,7 @@ sq:
         none: Asnjë
       comment_description_html: 'Për të dhënë më tepër informacion, %{name} shkroi:'
       created_at: Raportuar më
-      delete_and_resolve: Zgjidhe dhe fshije
+      delete_and_resolve: Fshiji postimet
       forwarded: U përcoll
       forwarded_to: U përcoll te %{domain}
       mark_as_resolved: Vëri shenjë si i zgjidhur
@@ -589,12 +609,14 @@ sq:
         placeholder: Përshkruani ç’veprime janë ndërmarrë, ose çfarëdo përditësimi tjetër që lidhet me të…
         title: Shënime
       notes_description_html: Shihni dhe lini shënime për moderatorët e tjerë dhe për veten në të ardhmen
+      quick_actions_description_html: 'Kryeni një veprim të shpejtë, ose rrëshqitni poshtë për të parë lëndën e raportuar:'
       reopen: Rihape raportimin
       report: 'Raportim #%{id}'
       reported_account: Llogari e raportuar
       reported_by: Raportuar nga
       resolved: I zgjidhur
       resolved_msg: Raportimi u zgjidh me sukses!
+      skip_to_actions: Kaloni te veprimet
       status: Gjendje
       statuses: Lëndë e raportuar
       statuses_description_html: Lënda problematike do të citohet në komunikimin me llogarinë e raportuar
@@ -708,12 +730,23 @@ sq:
       back_to_report: Mbrapsht te faqja e raportimit
       batch:
         remove_from_report: Hiqe prej raportimit
+        report: Raportojeni
       deleted: E fshirë
       media:
         title: Media
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
       title: Gjendje llogarish
       with_media: Me media
+    strikes:
+      actions:
+        delete_statuses: "%{name} fshiu postime të %{target}"
+        disable: "%{name} ngriu postime të %{target}"
+        none: "%{name} dërgoi një sinjalizim për %{target}"
+        sensitive: "%{name} i vuri shenjë llogarisë së %{target} si rezervat"
+        silence: "%{name} e kufizoi llogarinë %{target}"
+        suspend: "%{name} e pezulloi llogarinë e %{target}"
+      appeal_approved: Apeluar
+      appeal_pending: Apelim pezull
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
@@ -738,6 +771,7 @@ sq:
         shared_by_over_week:
           one: Ndarë nga një person javën e kaluar
           other: Ndarë nga %{count} persona javën e kaluar
+          zero: E pandarë nga njeri gjatë javës së kaluar
         title: Lidhje në modë
         usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
       pending_review: Në pritje të shqyrtimit
@@ -765,6 +799,7 @@ sq:
         used_by_over_week:
           one: Përdorur nga një persona gjatë javës së kaluar
           other: Përdorur nga %{count} persona gjatë javës së kaluar
+          zero: E papërdorur nga njeri gjatë javës së kaluar
       title: Në modë
     warning_presets:
       add_new: Shtoni të ri
@@ -773,6 +808,17 @@ sq:
       empty: S’keni përcaktuar ende sinjalizime të gatshme.
       title: Administroni sinjalizime të paracaktuara
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: fshirje e postimeve të tij
+        disable: ngrirje e llogarisë së tij
+        none: një vërejtje
+        sensitive: vënie shenjë llogarisë së tij si rezervat
+        silence: kufizim i llogarisë së tij
+        suspend: pezullim i llogarisë së tij
+      body: "%{target} po apelon një vendim moderimi nga %{action_taken_by} të marrë më %{date}, që qe %{type}. Shkruan:"
+      next_steps: Apelimin mund të miratoni, që të zhbëhet vendimi i marrë, ose ta shpërfillni.
+      subject: "%{username} po apelon një vendim moderimi te %{instance}"
     new_pending_account:
       body: Hollësitë e llogarisë së re gjenden më poshtë. Mund ta miratoni ose hidhni poshtë këtë aplikim.
       subject: Llogari e re për shqyrtim në %{instance} (%{username})
@@ -787,6 +833,7 @@ sq:
     new_trending_tags:
       body: 'Hashtag-ët vijues janë në modë sot, por nuk janë miratuar më herët. S’do të shfaqen publikisht, veç në i miratofshi:'
       no_approved_tags: Aktualisht nuk ka hashtag-ë në modë të miratuar.
+      subject: Hashtag-ë të rinj në modë për t’u shqyrtuar në %{instance}
   aliases:
     add_new: Krijo alias
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
@@ -860,7 +907,6 @@ sq:
     status:
       account_status: Gjendje llogarie
       confirming: Po pritet që të plotësohet ripohimi i email-it.
-      functional: Llogaria juaj është tërësisht funksionale.
       pending: Aplikimi juaj është në pritje të shqyrtimit nga stafi ynë. Kjo mund të dojë ca kohë. Nëse aplikimi juaj miratohet, do të merrni një email.
       redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
@@ -926,6 +972,32 @@ sq:
     directory: Drejtori profilesh
     explanation: Zbuloni përdorues bazuar në interesat e tyre
     explore_mastodon: Eksploroni %{title}
+  disputes:
+    strikes:
+      action_taken: Vendim i marrë
+      appeal: Apelim
+      appeal_approved: Ky paralajmërim është apeluar me sukses dhe s’vlen më
+      appeal_rejected: Apelimi është hedhur poshtë
+      appeal_submitted_at: Apelimi u parashtrua
+      appealed_msg: Apelimi juaj u parashtruar. Nëse miratohet, do të njoftoheni.
+      appeals:
+        submit: Parashtroni apelim
+      associated_report: Raportimi i përshoqëruar
+      created_at: Datuar
+      recipient: Drejtuar
+      status: "#%{id} postimi"
+      status_removed: Postim i hequr tashmë nga sistemi
+      title: "%{action} prej %{date}"
+      title_actions:
+        delete_statuses: Heqje postimi
+        disable: Ngrirje e llogarisë
+        none: Vërejtje
+        sensitive: Vënie shenjë llogarisë si rezervat
+        silence: Kufizim llogarie
+        suspend: Pezullim llogarie
+      your_appeal_approved: Apelimi juaj u miratua
+      your_appeal_pending: Keni parashtruar një apelim
+      your_appeal_rejected: Apelimi juaj është hedhur poshtë
   domain_validator:
     invalid_domain: s’është emër i vlefshëm përkatësie
   errors:
@@ -1137,6 +1209,8 @@ sq:
       title: Përforcim i ri
     status:
       subject: "%{name} sapo postoi"
+    update:
+      subject: "%{name} përpunoi një postim"
   notifications:
     email_events: Akte për njoftim me email
     email_events_hint: 'Përzgjidhni akte për të cilët doni të merrni njoftime:'
@@ -1218,6 +1292,9 @@ sq:
     reply:
       proceed: Ripohoni përgjigjen
       prompt: 'Doni t’i përgjigjeni këtij mesazhi:'
+  reports:
+    errors:
+      invalid_rules: s’i referohet ndonjë rregulli të vlefshëm
   scheduled_statuses:
     over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara për atë ditë
     over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara
@@ -1484,6 +1561,15 @@ sq:
     recovery_instructions_html: Në ndodhtë që të humbni hyrje te telefoni juaj, mund të përdorni një nga kodet e rikthimit më poshtë, që të rifitoni hyrje te llogaria juaj. <strong>Mbajini të parrezikuar kodet e rikthimeve</strong>. Për shembull, mund t’i shtypni dhe t’i ruani tok me dokumente të tjerë të rëndësishëm.
     webauthn: Kyçe sigurie
   user_mailer:
+    appeal_approved:
+      action: Kaloni te llogaria juaj
+      explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date} është miratuar. Llogaria juaj është sërish në pozita të mira.
+      subject: Apelimi juaj i datës %{date} u miratua
+      title: Apelimi u miratua
+    appeal_rejected:
+      explanation: Apelimi i paralajmërimit kundër llogarisë tuaj më %{strike_date}, të cilin e parashtruar më %{appeal_date}, u hodh poshtë.
+      subject: Apelimi juaj prej %{date} është hedhur poshtë
+      title: Apelimi u hodh poshtë
     backup_ready:
       explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E keni gati për shkarkim!
       subject: Arkivi juaj është gati për shkarkim
@@ -1495,6 +1581,8 @@ sq:
       subject: Ju lutemi, ripohoni përpjekje hyrjeje
       title: Përpjekje hyrjeje
     warning:
+      appeal: Parashtroni një apelim
+      appeal_description: Nëse besoni se është gabim, mund t’i parashtroni një apelim stafit të %{instance}.
       categories:
         spam: I padëshiruar
         violation: Lënda cenon udhëzimet vijuese të bashkësisë
@@ -1506,7 +1594,6 @@ sq:
         suspend: S’mund të përdorni më llogarinë tuaj dhe profili juaj, si dhe të dhëna të tjera, s’janë më të përdorshëm. Mundeni ende të bëni hyrjen në llogarinë tuaj për të kërkuar një kopjeruajtje të të dhënave tuaja, deri para se të dhënat tuaja të hiqen plotësisht brenda afërsisht 30 ditësh, por do të mbajmë ca të dhëna elementare, për t’ju penguar t’i bëni bisht pezullimin.
       get_in_touch: Nëse besoni se këtu ka gabim, mund t’i përgjigjeni këtij email-i për t’u lidhur me stafin e %{instance}.
       reason: 'Arsye:'
-      review_server_policies: Shqyrtoni rregullat e shërbyesit
       statuses: 'Postime që janë gjetur me cenime:'
       subject:
         delete_statuses: Postimet tuaja në %{acct} janë hequr

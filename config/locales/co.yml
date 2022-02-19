@@ -94,7 +94,6 @@ co:
     account_moderation_notes:
       create: Creà una nota
       created_msg: Nota di muderazione creata!
-      delete: Toglie
       destroyed_msg: Nota di muderazione sguassata!
     accounts:
       add_email_domain_block: Mette u duminiu e-mail in lista nera
@@ -416,9 +415,6 @@ co:
         silence: silenzatu
         suspend: suspesu
       show:
-        affected_accounts:
-          one: Un contu tuccatu indè a database
-          other: "%{count} conti tuccati indè a database"
         retroactive:
           silence: Ùn silenzà più i conti affettati di stu duminiu
           suspend: Ùn suspende più i conti affettati di stu duminiu
@@ -466,9 +462,6 @@ co:
       delivery_error_days: Ghjorni d'errori di a distribuzione
       delivery_error_hint: S'ellu ùn si pò distribuì à u duminiu per %{count} ghjorni, sarà autumaticamente marcatu cum'è indistribuibile.
       empty: Mancun duminiu trovu.
-      known_accounts:
-        one: "%{count} contu cunnisciutu"
-        other: "%{count} conti cunnisciuti"
       moderation:
         all: Tuttu
         limited: Limitatu
@@ -778,7 +771,6 @@ co:
     status:
       account_status: Statutu di u contu
       confirming: In attesa di a cumplezzione di a cunfirmazione di l'e-mail.
-      functional: U vostru contu hè uperaziunale.
       pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
       redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
     too_fast: Furmulariu mandatu troppu prestu, ripruvate.
@@ -1393,7 +1385,6 @@ co:
       subject: Cunfirmate u tentativu di cunnessione
       title: Tentativu di cunnessione
     warning:
-      review_server_policies: Leghje e pulitiche di u servore
       subject:
         disable: U vostru contu %{acct} hè statu ghjacciatu
         none: Avertimentu pè %{acct}

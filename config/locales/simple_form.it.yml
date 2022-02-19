@@ -27,6 +27,8 @@ it:
         scheduled_at: Lascia vuoto per pubblicare immediatamente l'annuncio
         starts_at: Opzionale. Quando l'annuncio è legato a un intervallo di tempo specifico
         text: Puoi usare la sintassi dei post. Tieni presente lo spazio che l'annuncio occuperà nello schermo dell'utente
+      appeal:
+        text: Puoi appellarti solo una volta
       defaults:
         autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
         avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
@@ -119,6 +121,8 @@ it:
         scheduled_at: Programma la pubblicazione
         starts_at: Inizio dell'evento
         text: Annuncio
+      appeal:
+        text: Spiega perché la decisione dovrebbe essere annullata
       defaults:
         autofollow: Invita a seguire il tuo account
         avatar: Immagine di profilo
@@ -197,6 +201,7 @@ it:
           sign_up_requires_approval: Limita iscrizioni
         severity: Regola
       notification_emails:
+        appeal: Qualcuno ricorre contro una decisione del moderatore
         digest: Invia email riassuntive
         favourite: Qualcuno ha apprezzato il tuo post
         follow: Invia email quando qualcuno ti segue
@@ -204,8 +209,8 @@ it:
         mention: Invia email quando qualcuno ti menziona
         pending_account: Invia e-mail quando un nuovo account richiede l'approvazione
         reblog: Qualcuno ha condiviso il tuo post
-        report: Manda una mail quando viene inviato un nuovo rapporto
-        trending_tag: Invia e-mail quando un hashtag non controllato è in tendenza
+        report: Una nuova segnalazione è stata inviata
+        trending_tag: La nuova tendenza richiede un controllo
       rule:
         text: Regola
       tag:

@@ -102,7 +102,6 @@ pl:
     account_moderation_notes:
       create: Pozostaw notatkę
       created_msg: Pomyślnie dodano notatkę moderacyjną!
-      delete: Usuń
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną!
     accounts:
       add_email_domain_block: Dodaj domenę e-mail na czarną listę
@@ -171,6 +170,11 @@ pl:
       not_subscribed: Nie zasubskrybowano
       pending: Oczekuje na przegląd
       perform_full_suspension: Zawieś
+      previous_strikes: Poprzednie ostrzeżenia
+      previous_strikes_description_html:
+        one: To konto ma <strong>jedno</strong> ostrzeżenie.
+        other: To konto ma <strong>%{count}</strong> ostrzeżeń.
+        zero: To konto jest <strong>w dobrym stanie</strong>.
       promote: Podnieś uprawnienia
       protocol: Protokół
       public: Publiczne
@@ -214,6 +218,7 @@ pl:
       statuses: Wpisy
       strikes: Poprzednie ostrzeżenia
       subscribe: Subskrybuj
+      suspend: Zawieś
       suspended: Zawieszono
       suspension_irreversible: Dane tego konta zostały bezpowrotnie usunięte. Możesz cofnąć zawieszenie tego konta aby można było z niego ponownie korzystać, lecz nie przywróci to danych które poprzednio się na nim znajdowały.
       suspension_reversible_hint_html: Twoje konto zostało zawieszone, a dane zostaną całkowicie usunięte %{date}. Do tego czasu, konto może zostać przywrócone bez żadnych negatywnych skutków. Jeżeli chcesz natychmiastowo usunąć wszystkie dane, możesz zrobić to niżej.
@@ -234,6 +239,7 @@ pl:
       whitelisted: Na białej liście
     action_logs:
       action_types:
+        approve_appeal: Zatwierdź odwołanie
         approve_user: Zatwierdź użytkownika
         assigned_to_self_report: Przypisz zgłoszenie
         change_email_user: Zmień adres e-mail użytkownika
@@ -265,6 +271,7 @@ pl:
         enable_user: Włącz użytkownika
         memorialize_account: Upamiętnij konto
         promote_user: Podnieś uprawnienia
+        reject_appeal: Odrzuć odwołanie
         reject_user: Odrzuć użytkownika
         remove_avatar_user: Usuń awatar
         reopen_report: Otwórz zgłoszenie ponownie
@@ -283,6 +290,7 @@ pl:
         update_domain_block: Zaktualizuj blokadę domeny
         update_status: Aktualizuj wpis
       actions:
+        approve_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         approve_user_html: "%{name} zatwierdził rejestrację od %{target}"
         assigned_to_self_report_html: "%{name} przypisał(a) sobie zgłoszenie %{target}"
         change_email_user_html: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
@@ -314,6 +322,7 @@ pl:
         enable_user_html: "%{name} przywrócił(a) możliwość logowania użytkownikowi %{target}"
         memorialize_account_html: "%{name} nadał(a) kontu %{target} status in memoriam"
         promote_user_html: "%{name} podniósł(a) uprawnienia użytkownikowi %{target}"
+        reject_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         reject_user_html: "%{name} odrzucił rejestrację od %{target}"
         remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
         reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
@@ -392,6 +401,11 @@ pl:
       media_storage: Przechowywanie mediów
       new_users: nowi użytkownicy
       opened_reports: otwarte zgłoszenia
+      pending_appeals_html:
+        few: "<strong>%{count}</strong> oczekujące odwołania"
+        many: "<strong>%{count}</strong> oczekujących odwołań"
+        one: "<strong>%{count}</strong> oczekujących odwołań"
+        other: "<strong>%{count}</strong> oczekujących odwołań"
       pending_reports_html:
         few: "<strong>%{count}</strong> oczekujące raporty"
         many: "<strong>%{count}</strong> oczekujących raportów"
@@ -400,12 +414,12 @@ pl:
       pending_tags_html:
         few: "<strong>%{count}</strong> oczekujące hashtagi"
         many: "<strong>%{count}</strong> oczekujących hashtagów"
-        one: "<strong>%{count}</strong>oczekujący hasztag"
+        one: "<strong>%{count}</strong> oczekujący hashtag"
         other: "<strong>%{count}</strong> oczekujących hashtagów"
       pending_users_html:
         few: "<strong>%{count}</strong> oczekujących użytkowników"
         many: "<strong>%{count}</strong> oczekujących użytkowników"
-        one: "<strong>1</strong> oczekujący użytkownik"
+        one: "<strong>%{count}</strong> oczekujący użytkownik"
         other: "<strong>%{count}</strong> oczekujących użytkowników"
       resolved_reports: zamkniętych zgłoszeń
       software: Oprogramowanie
@@ -415,6 +429,10 @@ pl:
       top_languages: Najbardziej aktywne języki
       top_servers: Najbardziej aktywne serwery
       website: Strona
+    disputes:
+      appeals:
+        empty: Nie znaleziono odwołań.
+        title: Odwołania
     domain_allows:
       add_new: Zatwierdź domenę
       created_msg: Domena dodana do białej listy
@@ -452,11 +470,6 @@ pl:
         silence: wyciszono
         suspend: zawieszono
       show:
-        affected_accounts:
-          few: Dotknęło %{count} kont w bazie danych
-          many: Dotknęło %{count} kont w bazie danych
-          one: Dotknęło jedno konto w bazie danych
-          other: Dotknęło %{count} kont w bazie danych
         retroactive:
           silence: Odwołaj wyciszenie wszystkich kont w tej domenie
           suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
@@ -509,11 +522,6 @@ pl:
       delivery_error_hint: Jeżeli doręczanie nie będzie możliwe przez %{count} dni, zostanie automatycznie oznaczona jako nie do doręczania.
       destroyed_msg: Dane z %{domain} są teraz w kolejce do bezpośredniego usunięcia.
       empty: Nie znaleziono domen.
-      known_accounts:
-        few: "%{count} znane konta"
-        many: "%{count} znane konta"
-        one: "%{count} znane konto"
-        other: "%{count} znane konta"
       moderation:
         all: Wszystkie
         limited: Ograniczone
@@ -582,10 +590,12 @@ pl:
       action_log: Dziennik audytu
       action_taken_by: Działanie podjęte przez
       actions:
+        delete_description_html: Zgłoszone posty zostaną usunięte, a zdarzenie zostanie zapisane, aby pomóc w eskalacji przyszłych wykroczeń na tym samym koncie.
         other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
+        resolve_description_html: Nie zostaną podjęte żadne działania przeciwko zgłoszonemu sprawozdaniu, zdarzenie nie zostanie zarejestrowane, a zgłoszenie zostanie zamknięte.
         silence_description_html: Profil będzie widoczny tylko dla tych, którzy go już obserwują lub szukaj ręcznie, poważnie ograniczając jego zasięg. Może być zawsze cofnięty.
         suspend_description_html: Profil i cała jego zawartość staną się niedostępne, dopóki nie zostaną ostatecznie usunięte. Interakcja z kontem będzie niemożliwa. Odwracalne w ciągu 30 dni.
-      actions_description_html: 'Jeśli usunięcie obraźliwych treści jest niewystarczające:'
+      actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontowi, zostanie do nich wysłane powiadomienie e-mail, chyba że wybrano kategorię <strong>Spam</strong>.
       add_to_report: Dodaj więcej do raportu
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
@@ -597,7 +607,7 @@ pl:
         none: Brak
       comment_description_html: 'Aby dostarczyć więcej informacji, %{name} napisał:'
       created_at: Zgłoszono
-      delete_and_resolve: Usuń i rozwiąż
+      delete_and_resolve: Usuń posty
       forwarded: Przekazano
       forwarded_to: Przekazano do %{domain}
       mark_as_resolved: Oznacz jako rozwiązane
@@ -611,12 +621,14 @@ pl:
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
+      quick_actions_description_html: 'Wykonaj szybkie działanie lub przewiń w dół, aby zobaczyć zgłoszoną zawartość:'
       reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
       reported_account: Zgłoszone konto
       reported_by: Zgłaszający
       resolved: Rozwiązane
       resolved_msg: Pomyślnie rozwiązano zgłoszenie.
+      skip_to_actions: Przejdź do akcji
       status: Stan
       statuses: Zgłoszona treść
       statuses_description_html: Obraźliwe treści będą cytowane w komunikacji ze zgłoszonym kontem
@@ -737,6 +749,16 @@ pl:
       no_status_selected: Żaden wpis nie został zmieniony, bo żaden nie został wybrany
       title: Wpisy konta
       with_media: Z zawartością multimedialną
+    strikes:
+      actions:
+        delete_statuses: "%{name} usunął(-ęła) posty %{target}"
+        disable: "%{name} zamroził(a) konto %{target}"
+        none: "%{name} wysłał(a) ostrzeżenie do %{target}"
+        sensitive: "%{name} oznaczył(-a) konto %{target} jako wrażliwe"
+        silence: "%{name} ograniczył(-a) konto %{target}"
+        suspend: "%{name} zawiesił(-a) konto %{target}"
+      appeal_approved: Odwołanie
+      appeal_pending: Odwołanie w toku
     system_checks:
       database_schema_check:
         message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
@@ -758,11 +780,6 @@ pl:
         allow_provider: Zezwalaj na wydawcę
         disallow: Nie zezwalaj na link
         disallow_provider: Nie zezwalaj na wydawcę
-        shared_by_over_week:
-          few: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
-          many: Udostępnione przez %{count} osób w ciągu ostatniego tygodnia
-          one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
-          other: Udostępnione przez %{count} osób w ciągu ostatniego tygodnia
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
       pending_review: Oczekuje na przegląd
@@ -789,11 +806,6 @@ pl:
         trending_rank: 'Popularne #%{rank}'
         usable: Może być użyty
         usage_comparison: Używane %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
-        used_by_over_week:
-          few: Użyte przez %{count} osoby w ciągu ostatniego tygodnia
-          many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
-          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
-          other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
       title: Na czasie
     warning_presets:
       add_new: Dodaj nowy
@@ -802,6 +814,17 @@ pl:
       empty: Nie zdefiniowano jeszcze żadnych szablonów ostrzegawczych.
       title: Zarządzaj szablonami ostrzeżeń
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: aby usunąć ich wpisy
+        disable: aby zamrozić jego/jej konto
+        none: ostrzeżenie
+        sensitive: aby oznaczyć konto jako wrażliwe
+        silence: aby ograniczyć swoje konto
+        suspend: aby zawiesić konto
+      body: "%{target} odwołuje się od decyzji moderatora %{action_taken_by} z %{date}, czyli %{type}. Napisał:"
+      next_steps: Możesz zaakceptować odwołanie o cofnięcie decyzji o moderacji lub je zignorować.
+      subject: "%{username} odwołuje się od decyzji moderacyjnej na %{instance}"
     new_pending_account:
       body: Poniżej znajdują się szczegóły dotycząće nowego konta. Możesz przyjąć lub odrzucić to podanie.
       subject: Nowe konto czeka na przegląd na %{instance} (%{username})
@@ -892,7 +915,6 @@ pl:
     status:
       account_status: Stan konta
       confirming: Oczekiwanie na potwierdzenie adresu e-mail.
-      functional: Twoje konto całkowicie funkcjonuje.
       pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
@@ -958,6 +980,32 @@ pl:
     directory: Katalog profilów
     explanation: Poznaj profile na podstawie zainteresowań
     explore_mastodon: Odkrywaj %{title}
+  disputes:
+    strikes:
+      action_taken: Podjęte działania
+      appeal: Odwołanie
+      appeal_approved: To ostrzeżenie zostało pomyślnie odwołane i nie jest już ważne
+      appeal_rejected: Odwołanie zostało odrzucone
+      appeal_submitted_at: Przesłano odwołanie
+      appealed_msg: Twoje odwołanie zostało złożone. Jeśli zostanie zatwierdzone, zostaniesz powiadomiony.
+      appeals:
+        submit: Zgłoś odwołanie
+      associated_report: Powiązany raport
+      created_at: Data
+      recipient: Adresowane do
+      status: 'Post #%{id}'
+      status_removed: Post został już usunięty z systemu
+      title: "%{action} z %{date}"
+      title_actions:
+        delete_statuses: Usuwanie postów
+        disable: Zamrażanie konta
+        none: Ostrzeżenie
+        sensitive: Oznaczenie konta jako wrażliwe
+        silence: Ograniczenie konta
+        suspend: Zawieszenie konta
+      your_appeal_approved: Twoje odwołanie zostało zatwierdzone
+      your_appeal_pending: Zgłosiłeś odwołanie
+      your_appeal_rejected: Twoje odwołanie zostało odrzucone
   domain_validator:
     invalid_domain: nie jest prawidłową nazwą domeny
   errors:
@@ -1258,6 +1306,9 @@ pl:
     reply:
       proceed: Przejdź do dodawania odpowiedzi
       prompt: 'Chcesz odpowiedzieć na ten wpis:'
+  reports:
+    errors:
+      invalid_rules: nie odwołuje się do prawidłowych reguł
   scheduled_statuses:
     over_daily_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów na ten dzień
     over_total_limit: Przekroczyłeś(-aś) limit %{limit} zaplanowanych wpisów
@@ -1536,6 +1587,8 @@ pl:
     recovery_instructions_html: Jeżeli kiedykolwiek utracisz dostęp do telefonu, możesz wykorzystać jeden z kodów zapasowych, aby odzyskać dostęp do konta. <strong>Trzymaj je w bezpiecznym miejscu</strong>. Na przykład, wydrukuj je i przechowuj z ważnymi dokumentami.
     webauthn: Klucze bezpieczeństwa
   user_mailer:
+    appeal_approved:
+      action: Przejdź do swojego konta
     backup_ready:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
@@ -1558,7 +1611,6 @@ pl:
         suspend: Nie możesz już używać Twojego konta, a Twój profil i inne dane nie są już dostępne. Zanim w pełni usuniemy Twoje dane po około 30 dniach, możesz nadal zalogować się, aby uzyskać ich kopię. Zachowamy pewne podstawowe dane, aby zapobiegać obchodzeniu przez Ciebie zawieszenia.
       get_in_touch: Jeżeli uważasz to za błąd, możesz odpowiedzieć na ten e-mail, aby skontaktować się z prowadzącymi %{instance}.
       reason: 'Powód:'
-      review_server_policies: Przejrzyj zasady serwera
       statuses: 'Wpisy uznane za naruszające wytyczne:'
       subject:
         delete_statuses: Twoje wpisy na %{acct} zostały usunięte

@@ -94,7 +94,6 @@ tr:
     account_moderation_notes:
       create: Not bırak
       created_msg: Denetim notu başarıyla oluşturuldu!
-      delete: Sil
       destroyed_msg: Denetim notu başarıyla yok edildi!
     accounts:
       add_email_domain_block: E-posta alan adını engelle
@@ -163,6 +162,11 @@ tr:
       not_subscribed: Abone edilmedi
       pending: Bekleyen yorum
       perform_full_suspension: Askıya al
+      previous_strikes: Önceki eylemler
+      previous_strikes_description_html:
+        one: Bu hesap için <strong>bir</strong> eylem yapılmış.
+        other: Bu hesap için <strong>%{count}</strong> eylem yapılmış.
+        zero: Bu hesap <strong>hali iyi durumda</strong>.
       promote: Yükselt
       protocol: Protokol
       public: Herkese açık
@@ -206,6 +210,7 @@ tr:
       statuses: Durumlar
       strikes: Önceki eylemler
       subscribe: Abone ol
+      suspend: Askıya al
       suspended: Askıya alındı
       suspension_irreversible: Bu hesabın verileri geri dönüşümsüz olarak silindi. Hesabı kullanılabilir hale getirmek için hesabın askıya alınmasını kaldırabilirsiniz, ancak daha önce sahip olduğu herhangi bir veri kurtarılamaz.
       suspension_reversible_hint_html: Hesap askıya alındı ve veriler %{date} tarihinde tamamen kaldırılacak. O zamana kadar, hesap herhangi bir olumsuz etki olmaksızın geri yüklenebilir. Hesabın tüm verilerini hemen kaldırmak isterseniz, bunu aşağıdan yapabilirsiniz.
@@ -226,6 +231,7 @@ tr:
       whitelisted: Beyaz listede
     action_logs:
       action_types:
+        approve_appeal: İtirazı Kabul Et
         approve_user: Kullanıcıyı Onayla
         assigned_to_self_report: Raporu Ata
         change_email_user: Kullanıcı E-postasını Değiştir
@@ -257,6 +263,7 @@ tr:
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
+        reject_appeal: İtirazı Reddet
         reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
         reopen_report: Şikayeti Tekrar Aç
@@ -275,6 +282,7 @@ tr:
         update_domain_block: Engellenen Alan Adını Güncelle
         update_status: Durumu Güncelle
       actions:
+        approve_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını kabul etti"
         approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
         assigned_to_self_report_html: "%{name} kendilerine %{target} adlı raporu verdi"
         change_email_user_html: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
@@ -306,6 +314,7 @@ tr:
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
+        reject_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını reddetti"
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
         reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
@@ -384,14 +393,17 @@ tr:
       media_storage: Medya deposu
       new_users: yeni kullanıcılar
       opened_reports: açılan bildirimler
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> bekleyen itiraz"
+        other: "<strong>%{count}</strong> bekleyen itiraz"
       pending_reports_html:
-        one: "<strong>1</strong> bekleyen bildirim"
+        one: "<strong>%{count}</strong> bekleyen bildirim"
         other: "<strong>%{count}</strong> bekleyen bildirim"
       pending_tags_html:
-        one: "<strong>1</strong> bekleyen etiket"
+        one: "<strong>%{count}</strong> bekleyen etiket"
         other: "<strong>%{count}</strong> bekleyen etiket"
       pending_users_html:
-        one: "<strong>1</strong> bekleyen kullanıcı"
+        one: "<strong>%{count}</strong> bekleyen kullanıcı"
         other: "<strong>%{count}</strong> bekleyen kullanıcı"
       resolved_reports: çözülmüş bildirimler
       software: Yazılım
@@ -401,6 +413,10 @@ tr:
       top_languages: En aktif diller
       top_servers: En aktif sunucular
       website: Web sitesi
+    disputes:
+      appeals:
+        empty: İtiraz bulunamadı.
+        title: İtirazlar
     domain_allows:
       add_new: Alan adını beyaz listeye al
       created_msg: Alan adı başarıyla beyaz listeye alındı
@@ -441,6 +457,7 @@ tr:
         affected_accounts:
           one: Veritabanındaki bir hesap etkilendi
           other: Veritabanındaki %{count} hesap etkilendi
+          zero: Veritabanındaki hiç bir hesap etkilenmedi
         retroactive:
           silence: Bu domaindeki tüm hesapların üzerindeki susturulma işlemini kaldır
           suspend: Bu domaindeki tüm hesapların üzerindeki uzaklaştırma işlemini kaldır
@@ -494,6 +511,7 @@ tr:
       known_accounts:
         one: "%{count} bilinen hesap"
         other: "%{count} bilinen hesap"
+        zero: Bilinen hesap yok
       moderation:
         all: Tümü
         limited: Sınırlı
@@ -560,10 +578,12 @@ tr:
       action_log: Denetim günlüğü
       action_taken_by: tarafından gerçekleştirilen eylem
       actions:
+        delete_description_html: Bildirilen gönderiler silinecek ve aynı hesapla ileride yaşabileceğiniz etkileşimlerde çoğaltmanız için bir eylem kaydedilecek.
         other_description_html: Hesabın davranışını denetlemek ve bildirilen hesabın iletişimini yapılandırmak için daha fazla seçenek görün.
+        resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
         silence_description_html: Profil sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir.
         suspend_description_html: Profil ve tüm içeriği sonunda silinene kadar erişilmez olacak. Hesapla etkileşim mümkün olmayacak. 30 gün boyunca geri alınabilir.
-      actions_description_html: 'Yukarıdaki incitici içeriğin kaldırılması yetersiz ise:'
+      actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
       add_to_report: Bildirime daha fazlasını ekle
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
@@ -575,7 +595,7 @@ tr:
         none: Yok
       comment_description_html: 'Daha fazla bilgi vermek için %{name} şunu yazdı:'
       created_at: Şikayet edildi
-      delete_and_resolve: Çöz ve sil
+      delete_and_resolve: Gönderileri sil
       forwarded: İletildi
       forwarded_to: "%{domain}'e iletildi"
       mark_as_resolved: Giderildi olarak işaretle
@@ -589,12 +609,14 @@ tr:
         placeholder: Hangi işlemlerin yapıldığını, ya da diğer ilgili güncellemeleri açıklayın...
         title: Notlar
       notes_description_html: Kendiniz ve diğer moderatörler için not bırakın veya notları görüntüleyin
+      quick_actions_description_html: 'Hemen bir şey yapın veya bildirilen içeriği görmek için aşağı kaydırın:'
       reopen: Şikayeti tekrar aç
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
       reported_by: Şikayet eden
       resolved: Giderildi
       resolved_msg: Şikayet başarıyla çözümlendi!
+      skip_to_actions: İşlemlere atla
       status: Durum
       statuses: Bildirilen içerik
       statuses_description_html: İncitici içerik, bildirilen hesapla iletişimde alıntılanacaktır
@@ -715,6 +737,16 @@ tr:
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       title: Hesap durumları
       with_media: Medya ile
+    strikes:
+      actions:
+        delete_statuses: "%{name}, %{target} kullanıcısının gönderilerini sildi"
+        disable: "%{name}, %{target} kullanıcısının hesabını dondurdu"
+        none: "%{name}, %{target} kullanıcısına bir uyarı gönderdi"
+        sensitive: "%{name}, %{target} kullanıcısının hesabını hassas olarak işaretledi"
+        silence: "%{name}, %{target} kullanıcısının hesabını kısıtladı"
+        suspend: "%{name}, %{target} kullanıcısının hesabını askıya aldı"
+      appeal_approved: İtiraz Edildi
+      appeal_pending: İtiraz bekliyor
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
@@ -739,6 +771,7 @@ tr:
         shared_by_over_week:
           one: Geçen hafta bir kişi paylaştı
           other: Geçen hafta %{count} kişi paylaştı
+          zero: Geçen hafta kimse paylaşmadı
         title: Öne çıkan bağlantılar
         usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
       pending_review: İnceleme bekliyor
@@ -766,8 +799,8 @@ tr:
         usable: Kullanılabilir
         usage_comparison: Bugün %{today} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
         used_by_over_week:
-          one: Geçen hafta %{count} kişi tarafından kullanıldı
-          other: Geçen hafta %{count} kişi tarafından kullanıldı
+          one: Geçen hafta bir kişi tarafından kullanıldı
+          zero: Geçen hafta kimse tarafından kullanılmadı
       title: Öne çıkanlar
     warning_presets:
       add_new: Yeni ekle
@@ -776,6 +809,17 @@ tr:
       empty: Henüz önceden ayarlanmış bir uyarı tanımlanmadı.
       title: Uyarı ön-ayarlarını yönet
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: gönderilerini silme
+        disable: hesaplarını dondurma
+        none: uyarı
+        sensitive: hesaplarını hassas olarak işaretleme
+        silence: hesaplarını kısıtlama
+        suspend: hesaplarını askıya alma
+      body: "%{target}, %{date} tarihinde %{action_taken_by} tarafından alınan %{type} yönetim kararına itiraz etti. Şunu yazdılar:"
+      next_steps: Yönetim kararını geri almak için itirazı onaylayabilir veya itirazı görmezden gelebilirsiniz.
+      subject: "%{username}, %{instance} hakkındaki bir yönetim kararına itiraz ediyor"
     new_pending_account:
       body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
       subject: "%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})"
@@ -866,7 +910,6 @@ tr:
     status:
       account_status: Hesap durumu
       confirming: E-posta doğrulamasının tamamlanması bekleniyor.
-      functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
@@ -932,6 +975,32 @@ tr:
     directory: Profil Dizini
     explanation: Kullanıcıları ilgi alanlarına göre keşfedin
     explore_mastodon: "%{title} sunucusunu keşfet"
+  disputes:
+    strikes:
+      action_taken: Yapılan işlem
+      appeal: İtiraz
+      appeal_approved: Eyleme başarılı bir şekilde itiraz edildi ve artık geçerli değil
+      appeal_rejected: İtiraz reddedildi
+      appeal_submitted_at: İtiraz gönderildi
+      appealed_msg: İtiraz gönderildi. Kabul edilirse bilgilendirileceksiniz.
+      appeals:
+        submit: İtirazı gönder
+      associated_report: İlişkili rapor
+      created_at: Tarih
+      recipient: Kime
+      status: 'Gönderi #%{id}'
+      status_removed: Gönderi zaten sistemden kaldırıldı
+      title: "%{date} tarihli %{action}"
+      title_actions:
+        delete_statuses: Gönderi kaldırma
+        disable: Hesabın dondurulması
+        none: Uyarı
+        sensitive: Hassas hesap olarak işaretleme
+        silence: Hesabın kısıtlanması
+        suspend: Hesabın askıya alınması
+      your_appeal_approved: İtirazınız onaylandı
+      your_appeal_pending: Bir itiraz gönderdiniz
+      your_appeal_rejected: İtirazınız reddedildi
   domain_validator:
     invalid_domain: geçerli bir alan adı değil
   errors:
@@ -1143,6 +1212,8 @@ tr:
       title: Yeni boost
     status:
       subject: "%{name} az önce gönderdi"
+    update:
+      subject: "%{name} bir gönderiyi düzenledi"
   notifications:
     email_events: E-posta bildirimi gönderilecek etkinlikler
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
@@ -1493,6 +1564,15 @@ tr:
     recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. Kurtarma kodlarınızı güvenli halde tutunuz. Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
     webauthn: Güvenlik anahtarları
   user_mailer:
+    appeal_approved:
+      action: Hesabınıza gidin
+      explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda."
+      subject: "%{date} tarihli itirazınız kabul edildi"
+      title: İtiraz onaylandı
+    appeal_rejected:
+      explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız reddedildi."
+      subject: "%{date} tarihli itirazınız reddedildi"
+      title: İtiraz reddedildi
     backup_ready:
       explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
       subject: Arşiviniz indirilmeye hazır
@@ -1504,6 +1584,8 @@ tr:
       subject: Lütfen oturum açma girişimini onaylayın
       title: Oturum açma girişimi
     warning:
+      appeal: Bir itiraz gönder
+      appeal_description: Bunun bir hata olduğunu düşünüyorsanız, %{instance} sunucusunun personeline bir itiraz gönderebilirsiniz.
       categories:
         spam: İstenmeyen
         violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
@@ -1515,7 +1597,6 @@ tr:
         suspend: Hesabınızı artık kullanamazsınız ve profiliniz ve diğer veri artık erişilebilir değil. Yaklaşık 30 gün içinde silinene kadar verinizin bir yedeğini istemek için giriş yapabilirsiniz, ancak askıdan kaçınmanızı önlemek için bazı temel veriyi saklayabiliriz.
       get_in_touch: Bunun bir hata olduğunu düşünüyorsanız, %{instance} yönetimiyle bağlantıya geçmek için bu e-postaya yanıt verebilirsiniz.
       reason: 'Gerekçe:'
-      review_server_policies: Sunucu politikalarını inceleyin
       statuses: 'İhlal içeren gönderiler:'
       subject:
         delete_statuses: "%{acct} hesabınızdaki gönderiler kaldırıldı"

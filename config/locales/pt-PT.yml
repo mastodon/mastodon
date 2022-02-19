@@ -94,7 +94,6 @@ pt-PT:
     account_moderation_notes:
       create: Criar nota
       created_msg: Nota de moderação criada com sucesso!
-      delete: Eliminar
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       add_email_domain_block: Adicionar o domínio de e-mail à lista negra
@@ -163,6 +162,11 @@ pt-PT:
       not_subscribed: Não inscrito
       pending: Pendente de revisão
       perform_full_suspension: Fazer suspensão completa
+      previous_strikes: Punições anteriores
+      previous_strikes_description_html:
+        one: Esta conta tem <strong>1</strong> punição.
+        other: Esta conta tem <strong>%{count}</strong> punições.
+        zero: Esta conta está <strong>em situação regular</strong>.
       promote: Promover
       protocol: Protocolo
       public: Público
@@ -206,6 +210,7 @@ pt-PT:
       statuses: Status
       strikes: Punições anteriores
       subscribe: Inscrever-se
+      suspend: Suspender
       suspended: Suspensa
       suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente. Pode cancelar a suspensão da conta para torná-la utilizável, mas ela não irá recuperar os dados que possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente eliminados em %{date}. Até lá, a conta poderá ser recuperada sem quaisquer efeitos negativos. Se deseja eliminar todos os dados desta conta imediatamente, pode fazê-lo em baixo.
@@ -226,6 +231,7 @@ pt-PT:
       whitelisted: Está na lista branca
     action_logs:
       action_types:
+        approve_appeal: Aprovar Recurso
         approve_user: Aprovar Utilizador
         assigned_to_self_report: Atribuir Denúncia
         change_email_user: Alterar E-mail do Utilizador
@@ -257,6 +263,7 @@ pt-PT:
         enable_user: Ativar Utilizador
         memorialize_account: Memorizar Conta
         promote_user: Promover Utilizador
+        reject_appeal: Rejeitar Recurso
         reject_user: Rejeitar Utilizador
         remove_avatar_user: Remover Imagem de Perfil
         reopen_report: Reabrir Denúncia
@@ -275,6 +282,7 @@ pt-PT:
         update_domain_block: Atualizar Bloqueio de Domínio
         update_status: Atualizar Estado
       actions:
+        approve_appeal_html: "%{name} aprovou recurso da decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovou a inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} a si próprio"
         change_email_user_html: "%{name} alterou o endereço de e-mail do utilizador %{target}"
@@ -306,6 +314,7 @@ pt-PT:
         enable_user_html: "%{name} ativou o acesso para o utilizador %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o utilizador %{target}"
+        reject_appeal_html: "%{name} rejeitou recurso da decisão de moderação de %{target}"
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report_html: "%{name} reabriu a denúncia %{target}"
@@ -384,14 +393,17 @@ pt-PT:
       media_storage: Armazenamento de media
       new_users: novos utilizadores
       opened_reports: denúncias abertas
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> recurso pendente"
+        other: "<strong>%{count}</strong> recursos pendentes"
       pending_reports_html:
-        one: "<strong>1</strong> denúncia pendente"
-        other: "<strong>%{count}</strong> denúncias pendentes"
+        one: "<strong>%{count}</strong> denuncia pendente"
+        other: "<strong>%{count}</strong> denuncias pendentes"
       pending_tags_html:
-        one: "<strong>1</strong> hashtag pendente"
+        one: "<strong>%{count}</strong> hashtag pendente"
         other: "<strong>%{count}</strong> hashtags pendentes"
       pending_users_html:
-        one: "<strong>1</strong> utilizador pendente"
+        one: "<strong>%{count}</strong> utilizador pendente"
         other: "<strong>%{count}</strong> utilizadores pendentes"
       resolved_reports: denúncias resolvidas
       software: Software
@@ -401,6 +413,10 @@ pt-PT:
       top_languages: Principais idiomas activos
       top_servers: Servidores mais activos
       website: Website
+    disputes:
+      appeals:
+        empty: Nenhum recurso encontrado.
+        title: Recursos
     domain_allows:
       add_new: Colocar domínio na lista branca
       created_msg: Domínio foi adicionado à lista branca com sucesso
@@ -439,8 +455,9 @@ pt-PT:
         suspend: suspenso
       show:
         affected_accounts:
-          one: Uma conta na base de dados afectada
-          other: "%{count} contas na base de dados afectadas"
+          one: Uma conta na base de dados afetada
+          other: "%{count} contas na base de dados afetadas"
+          zero: Nenhuma conta na base de dados é afetada
         retroactive:
           silence: Não silenciar contas afetadas existentes deste domínio
           suspend: Não suspender todas as contas existentes nesse domínio
@@ -494,6 +511,7 @@ pt-PT:
       known_accounts:
         one: "%{count} conta conhecida"
         other: "%{count} contas conhecidas"
+        zero: Nenhuma conta conhecida
       moderation:
         all: Todas
         limited: Limitadas
@@ -560,10 +578,12 @@ pt-PT:
       action_log: Registo de auditoria
       action_taken_by: Ação tomada por
       actions:
+        delete_description_html: As publicações denunciadas serão eliminadas e uma punição será registada para ajudá-lo a escalar ações em futuras infrações pela mesma conta.
         other_description_html: Ver mais opções para controlar o comportamento da conta e personalizar a comunicação para a conta denunciada.
+        resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma punição será registada, e a denuncia será fechada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou o procurem manualmente, limitando severamente o seu alcance. Pode sempre ser revertido.
         suspend_description_html: O perfil e todo o seu conteúdo tornar-se-ão inacessíveis até serem eventualmente apagados. A interacção com a conta será impossível. Reversível no prazo de 30 dias.
-      actions_description_html: 'Se a remoção do conteúdo ofensivo acima for insuficiente:'
+      actions_description_html: Decida a ação a tomar para resolver esta denúncia. Se decidir por uma ação punitiva contra a conta denunciada, um e-mail de notificação será enviado, excetuando quando selecionada a categoria <strong>Spam</strong>.
       add_to_report: Adicionar mais à denúncia
       are_you_sure: Tem a certeza?
       assign_to_self: Atribuída a mim
@@ -575,7 +595,7 @@ pt-PT:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
       created_at: Denunciado
-      delete_and_resolve: Apagar e resolver
+      delete_and_resolve: Eliminar publicações
       forwarded: Encaminhado
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
@@ -589,12 +609,14 @@ pt-PT:
         placeholder: Descreve as ações que foram tomadas ou quaisquer outras atualizações relacionadas...
         title: Notas
       notes_description_html: Visualize e deixe anotações para outros moderadores e para sí no futuro
+      quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo denunciado:'
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
       reported_by: Denunciado por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
+      skip_to_actions: Passar para as ações
       status: Estado
       statuses: Conteúdo denunciado
       statuses_description_html: O conteúdo ofensivo será citado na comunicação com a conta denunciada
@@ -715,6 +737,16 @@ pt-PT:
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       title: Estado das contas
       with_media: Com media
+    strikes:
+      actions:
+        delete_statuses: "%{name} eliminou a publicação de %{target}"
+        disable: "%{name} congelou a conta de %{target}"
+        none: "%{name} enviou uma advertência a %{target}"
+        sensitive: "%{name} marcou a conta de %{target} como sensível"
+        silence: "%{name} limitou a conta de %{target}"
+        suspend: "%{name} suspendeu a conta de %{target}"
+      appeal_approved: Recorrido
+      appeal_pending: Recurso pendente
     system_checks:
       database_schema_check:
         message_html: Existem migrações de base de dados pendentes. Por favor, execute-as para garantir que o aplicativo se comporte como esperado
@@ -739,6 +771,7 @@ pt-PT:
         shared_by_over_week:
           one: Partilhado por uma pessoa na última semana
           other: Partilhado por %{count} pessoas na última semana
+          zero: Partilhado por ninguém na última semana
         title: Links em destaque
         usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
       pending_review: Pendente de revisão
@@ -768,6 +801,7 @@ pt-PT:
         used_by_over_week:
           one: Utilizada por uma pessoa na última semana
           other: Utilizada por %{count} pessoas na última semana
+          zero: Utilizada por ninguém na última semana
       title: Tendências
     warning_presets:
       add_new: Adicionar novo
@@ -776,6 +810,17 @@ pt-PT:
       empty: Ainda não definiu nenhum aviso predefinido.
       title: Gerir os avisos predefinidos
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: para elimintar as suas publicações
+        disable: para congelar a sua conta
+        none: uma advertência
+        sensitive: marcação da sua conta como sensível
+        silence: limitação da sua conta
+        suspend: suspensão da sua conta
+      body: "%{target} está a recorrer de uma decisão de moderação de %{action_taken_by} a %{date}, que consistiu em %{type}. Escreveu:"
+      next_steps: Pode aprovar o recurso para reverter a decisão de moderação, ou ignorá-lo.
+      subject: "%{username} está a recorrer da decisão de moderação em %{instance}"
     new_pending_account:
       body: Em baixo, estão os detalhes da nova conta. Pode aprovar ou rejeitar esta inscrição.
       subject: Nova conta para revisão em %{instance} (%{username})
@@ -866,7 +911,6 @@ pt-PT:
     status:
       account_status: Estado da conta
       confirming: A aguardar que conclua a confirmação do e-mail.
-      functional: A sua conta está totalmente operacional.
       pending: A sua inscrição está pendente de revisão pela nossa equipa. Isso pode demorar algum tempo. Receberá um e-mail se a sua conta for aprovada.
       redirecting_to: A sua conta está inativa porque está atualmente a ser redirecionada para %{acct}.
     too_fast: Formulário enviado muito rapidamente, tente novamente.
@@ -932,6 +976,32 @@ pt-PT:
     directory: Dirétorio de perfil
     explanation: Descobre utilizadores com base nos seus interesses
     explore_mastodon: Explorar %{title}
+  disputes:
+    strikes:
+      action_taken: Ação tomada
+      appeal: Recorrer
+      appeal_approved: Esta punição foi alvo de recurso, bem sucedido, pelo que já não é válida
+      appeal_rejected: O recurso foi rejeitado
+      appeal_submitted_at: Recurso submetido
+      appealed_msg: O seu recurso foi submetido. Se ele for aprovado, será notificado.
+      appeals:
+        submit: Submeter recurso
+      associated_report: Denúncia associada
+      created_at: Data
+      recipient: Endereçado a
+      status: 'Publicação #%{id}'
+      status_removed: Publicação já eliminada do sistema
+      title: "%{action} de %{date}"
+      title_actions:
+        delete_statuses: Remoção de publicação
+        disable: Congelamento da conta
+        none: Advertência
+        sensitive: Marcação da conta como sensível
+        silence: Limitação da conta
+        suspend: Suspensão da conta
+      your_appeal_approved: O seu recurso foi aprovado
+      your_appeal_pending: Submeteu um recurso
+      your_appeal_rejected: O seu recurso foi rejeitado
   domain_validator:
     invalid_domain: não é um nome de domínio válido
   errors:
@@ -1143,6 +1213,8 @@ pt-PT:
       title: Nova partilha
     status:
       subject: "%{name} acabou de publicar"
+    update:
+      subject: "%{name} editou uma publicação"
   notifications:
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os eventos para os quais deseja receber notificações:'
@@ -1224,6 +1296,9 @@ pt-PT:
     reply:
       proceed: Prosseguir com resposta
       prompt: 'Queres responder a esta publicação:'
+  reports:
+    errors:
+      invalid_rules: não faz referência a regras válidas
   scheduled_statuses:
     over_daily_limit: Excedeste o limite de %{limit} publicações agendadas para esse dia
     over_total_limit: Tu excedeste o limite de %{limit} publicações agendadas
@@ -1306,6 +1381,7 @@ pt-PT:
         other: "%{count} vídeos"
     boosted_from_html: Partilhadas de %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
+    default_language: Mesmo do idioma da interface
     disallowed_hashtags:
       one: 'continha uma hashtag proibida: %{tags}'
       other: 'continha as hashtags proibidas: %{tags}'
@@ -1489,6 +1565,15 @@ pt-PT:
     recovery_instructions_html: Se tu alguma vez perderes o teu smartphone, to poderás usar um dos códigos de recuperação para voltares a ter acesso à tua conta. <strong>Mantém os códigos de recuperação seguros</strong>. Por exemplo, tu podes imprimi-los e guardá-los junto a outros documentos importantes.
     webauthn: Chaves de segurança
   user_mailer:
+    appeal_approved:
+      action: Ir para a sua conta
+      explanation: O recurso à punição contra a sua conta de %{strike_date}, o qual submeteu a %{appeal_date}, foi aprovado. A sua conta encontra-se novamente em situação regular.
+      subject: O seu recurso de %{date} foi aprovado
+      title: Recurso aprovado
+    appeal_rejected:
+      explanation: O recurso à punição contra a sua conta de %{strike_date}, o qual submeteu a %{appeal_date}, foi rejeitado.
+      subject: O seu recurso de %{date} foi rejeitado
+      title: Recurso rejeitado
     backup_ready:
       explanation: Pediste uma cópia completa da tua conta Mastodon. Ela já está pronta para descarregares!
       subject: O teu arquivo está pronto para descarregar
@@ -1500,6 +1585,8 @@ pt-PT:
       subject: Por favor, confirme a tentativa de acesso
       title: Tentativa de acesso
     warning:
+      appeal: Submeter um recurso
+      appeal_description: Se acredita que isso é um erro, pode submeter um recurso para a equipa de %{instance}.
       categories:
         spam: Spam
         violation: O conteúdo infringe as seguintes diretrizes da comunidade
@@ -1511,7 +1598,6 @@ pt-PT:
         suspend: Não pode mais utilizar a sua conta, e o seu perfil e outros dados já não se encontram acessíveis. Poderá ainda iniciar sessão para solicitar uma cópia dos seus dados até os mesmos serem totalmente removidos em cerca de 30 dias, porém reteremos alguns dados básicos para o impedir evitar a suspensão.
       get_in_touch: Se acredita tratar-se de um erro, pode responder a este e-mail para entrar em contacto com os colaboradores de %{instance}.
       reason: 'Motivo:'
-      review_server_policies: Reveja a política da instância
       statuses: 'Publicações que foram consideradas em infracção:'
       subject:
         delete_statuses: As suas publicações em %{acct} foram removidas

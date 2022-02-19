@@ -88,7 +88,6 @@ vi:
     account_moderation_notes:
       create: Thêm ghi chú
       created_msg: Thêm ghi chú kiểm duyệt thành công!
-      delete: Xóa bỏ
       destroyed_msg: Đã xóa ghi chú kiểm duyệt!
     accounts:
       add_email_domain_block: Chặn tên miền email
@@ -157,6 +156,11 @@ vi:
       not_subscribed: Chưa đăng ký
       pending: Chờ duyệt
       perform_full_suspension: Vô hiệu hóa
+      previous_strikes: Những lần trước
+      previous_strikes_description_html:
+        one: Người dùng này có <strong>một</strong> lần cảnh cáo.
+        other: Người dùng này có <strong>%{count}</strong> lần cảnh cáo.
+        zero: Người dùng này <strong>chưa từng bị cảnh cáo</strong>.
       promote: Chỉ định vai trò
       protocol: Giao thức
       public: Công khai
@@ -200,6 +204,7 @@ vi:
       statuses: Tút
       strikes: Những lần trước
       subscribe: Đăng ký
+      suspend: Vô hiệu hóa
       suspended: Vô hiệu hóa
       suspension_irreversible: Toàn bộ dữ liệu của người dùng này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
       suspension_reversible_hint_html: Mọi dữ liệu của người này sẽ bị xóa sạch vào %{date}. Trước thời hạn này, dữ liệu vẫn có thể phục hồi. Nếu bạn muốn xóa dữ liệu của người này ngay lập tức, hãy tiếp tục.
@@ -220,6 +225,7 @@ vi:
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
+        approve_appeal: Cho phép Xuất Hiện
         approve_user: Phê duyệt người dùng
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email
@@ -251,6 +257,7 @@ vi:
         enable_user: Kích hoạt lại người dùng
         memorialize_account: Đánh dấu tưởng niệm
         promote_user: Chỉ định vai trò
+        reject_appeal: Từ chối Xuất Hiện
         reject_user: Từ chối người dùng
         remove_avatar_user: Xóa ảnh đại diện
         reopen_report: Mở lại báo cáo
@@ -269,6 +276,7 @@ vi:
         update_domain_block: Cập nhật máy chủ chặn
         update_status: Cập nhật tút
       actions:
+        approve_appeal_html: "%{name} đã phê duyệt quyết định kiểm duyệt từ %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
         assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
         change_email_user_html: "%{name} đã thay đổi địa chỉ email cho %{target}"
@@ -300,6 +308,7 @@ vi:
         enable_user_html: "%{name} mở khóa cho người dùng %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user_html: "%{name} chỉ định vai trò cho %{target}"
+        reject_appeal_html: "%{name} đã phản đối quyết định kiểm duyệt từ %{target}"
         reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report_html: "%{name} mở lại báo cáo %{target}"
@@ -378,6 +387,8 @@ vi:
       media_storage: Dung lượng lưu trữ
       new_users: người dùng mới
       opened_reports: báo cáo chưa xử lí
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> kháng cáo đang chờ"
       pending_reports_html:
         other: "<strong>%{count}</strong> báo cáo đang chờ"
       pending_tags_html:
@@ -392,6 +403,10 @@ vi:
       top_languages: Ngôn ngữ phổ biến
       top_servers: Máy chủ phổ biến
       website: Website
+    disputes:
+      appeals:
+        empty: Không tìm thấy.
+        title: Xuất Hiện
     domain_allows:
       add_new: Cho phép liên hợp với máy chủ
       created_msg: Máy chủ đã được kích hoạt liên hợp thành công
@@ -430,7 +445,9 @@ vi:
         suspend: bị vô hiệu hóa
       show:
         affected_accounts:
-          other: "%{count} tài khoản trong cơ sở dữ liệu bị ảnh hưởng"
+          one: Ảnh hưởng một người dùng trong cơ sở dữ liệu
+          other: Ảnh hưởng %{count} người dùng trong cơ sở dữ liệu
+          zero: Không ảnh hưởng người dùng nào trong cơ sở dữ liệu
         retroactive:
           silence: Bỏ hạn chế những tài khoản ở máy chủ này
           suspend: Ngưng vô hiệu hóa các tài khoản ở máy chủ này
@@ -481,7 +498,9 @@ vi:
       destroyed_msg: Dữ liệu từ %{domain} đã lên lịch để xóa.
       empty: Không có máy chủ nào.
       known_accounts:
-        other: "%{count} tài khoản đã biết"
+        one: "%{count} người dùng đã biết"
+        other: "%{count} người dùng đã biết"
+        zero: Không có người dùng đã biết
       moderation:
         all: Tất cả
         limited: Hạn chế
@@ -547,10 +566,12 @@ vi:
       action_log: Nhật ký kiểm duyệt
       action_taken_by: Hành động được thực hiện bởi
       actions:
+        delete_description_html: Những tút bị báo cáo sẽ được xóa và 1 thẹo sẽ được ghi lại để giúp bạn lưu ý về tài khoản này trong tương lai.
         other_description_html: Những tùy chọn để kiểm soát tài khoản và giao tiếp với tài khoản bị báo cáo.
+        resolve_description_html: Không có hành động nào áp dụng đối với tài khoản bị báo cáo, không có thẹo, và báo cáo sẽ được đóng.
         silence_description_html: Trang cá nhân sẽ chỉ hiển thị với những người đã theo dõi hoặc tìm kiếm thủ công, hạn chế tối đa tầm ảnh hưởng của nó. Có thể đổi lại bình thường sau.
         suspend_description_html: Trang cá nhân và tất cả các nội dung sẽ không thể truy cập cho đến khi nó bị xóa hoàn toàn. Không thể tương tác với tài khoản. Đảo ngược trong vòng 30 ngày.
-      actions_description_html: 'Nếu loại bỏ nội dung vi phạm ở trên là không đủ:'
+      actions_description_html: Quyết định hướng xử lý báo cáo này. Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho họ, ngoại trừ nếu đó là <strong>Spam</strong>.
       add_to_report: Bổ sung báo cáo
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
@@ -562,7 +583,7 @@ vi:
         none: Không có mô tả
       comment_description_html: 'Để cung cấp thêm thông tin, %{name} cho biết:'
       created_at: Báo cáo lúc
-      delete_and_resolve: Xóa và giải quyết
+      delete_and_resolve: Xóa tút
       forwarded: Chuyển tiếp
       forwarded_to: Chuyển tiếp tới %{domain}
       mark_as_resolved: Đã xử lý xong!
@@ -576,12 +597,14 @@ vi:
         placeholder: Mô tả vi phạm của người này, mức độ xử lý và những cập nhật liên quan khác...
         title: Ghi chú
       notes_description_html: Xem và để lại ghi chú cho các kiểm duyệt viên khác
+      quick_actions_description_html: 'Kiểm duyệt nhanh hoặc kéo xuống để xem nội dung bị báo cáo:'
       reopen: Mở lại báo cáo
       report: 'Báo cáo #%{id}'
       reported_account: Tài khoản bị báo cáo
       reported_by: Báo cáo bởi
       resolved: Đã xử lý xong
       resolved_msg: Đã xử lý báo cáo xong!
+      skip_to_actions: Kiểm duyệt ngay
       status: Trạng thái
       statuses: Nội dung bị báo cáo
       statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn trong giao tiếp với tài khoản báo cáo
@@ -625,7 +648,7 @@ vi:
         desc_html: Hiển thị trên trang chủ. Kích cỡ tối thiểu 600x100px. Mặc định dùng hình thu nhỏ của máy chủ
         title: Hình ảnh giới thiệu
       mascot:
-        desc_html: Hiển thị trên nhiều trang. Kích cỡ tối thiểu 293 x 205px. Mặc định dùng linh vật Mastodon
+        desc_html: Hiển thị trên nhiều trang. Kích cỡ tối thiểu 293 × 205px. Mặc định dùng linh vật Mastodon
         title: Logo máy chủ
       peers_api_enabled:
         desc_html: Tên miền mà máy chủ này đã kết giao trong mạng liên hợp
@@ -702,6 +725,16 @@ vi:
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
       title: Toàn bộ tút
       with_media: Có media
+    strikes:
+      actions:
+        delete_statuses: "%{name} đã xóa tút của %{target}"
+        disable: "%{name} đã ẩn %{target}"
+        none: "%{name} đã gửi cảnh cáo %{target}"
+        sensitive: "%{name} đã đánh dấu người dùng %{target} là nhạy cảm"
+        silence: "%{name} đã ẩn %{target}"
+        suspend: "%{name} đã vô hiệu hóa %{target}"
+      appeal_approved: Đã khiếu nại
+      appeal_pending: Đang kháng cáo
     system_checks:
       database_schema_check:
         message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
@@ -724,7 +757,9 @@ vi:
         disallow: Liên kết cấm
         disallow_provider: Nguồn đăng bị cấm
         shared_by_over_week:
-          other: Chia sẻ bởi %{count} người trong tuần rồi
+          one: Chia sẻ bởi một người trong tuần qua
+          other: Chia sẻ bởi %{count} người trong tuần qua
+          zero: Không ai chia sẻ trong tuần qua
         title: Liên kết đang là xu hướng
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       pending_review: Đang chờ
@@ -752,7 +787,9 @@ vi:
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
-          other: Dùng bởi %{count} người tuần rồi
+          one: Dùng bởi một người trong tuần qua
+          other: Dùng bởi %{count} người trong tuần qua
+          zero: Không ai dùng trong tuần qua
       title: Xu hướng
     warning_presets:
       add_new: Thêm mới
@@ -761,6 +798,17 @@ vi:
       empty: Bạn chưa thêm mẫu có sẵn nào cả.
       title: Quản lý mẫu cảnh cáo
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: xóa tút của họ
+        disable: hạn chế tài khoản của họ
+        none: một cảnh báo
+        sensitive: đánh dấu tài khoản của họ là nhạy cảm
+        silence: hạn chế tài khoản của họ
+        suspend: vô hiệu hóa tài khoản của họ
+      body: "%{target} đã khiếu nại quyết định kiểm duyệt từ %{action_taken_by} vào %{date}, vì %{type}. Họ cho biết:"
+      next_steps: Bạn có thể chấp nhận kháng cáo để hủy bỏ kiểm duyệt, hoặc bỏ qua.
+      subject: "%{username} đang khiếu nại quyết định kiểm duyệt trên %{instance}"
     new_pending_account:
       body: Thông tin chi tiết của tài khoản mới ở phía dưới. Bạn có thể phê duyệt hoặc từ chối người này.
       subject: Tài khoản chờ xét duyệt trên %{instance} (%{username})
@@ -851,7 +899,6 @@ vi:
     status:
       account_status: Trạng thái tài khoản
       confirming: Đang chờ xác thực email.
-      functional: Tài khoản của bạn đã được xác thực.
       pending: Đơn đăng ký của bạn đang chờ phê duyệt. Điều này có thể mất một thời gian. Bạn sẽ nhận được email nếu đơn đăng ký của bạn được chấp thuận.
       redirecting_to: Tài khoản của bạn không hoạt động vì hiện đang chuyển hướng đến %{acct}.
     too_fast: Nghi vấn đăng ký spam, xin thử lại.
@@ -917,6 +964,32 @@ vi:
     directory: Khám phá
     explanation: Tìm những người chung sở thích
     explore_mastodon: Thành viên %{title}
+  disputes:
+    strikes:
+      action_taken: Hành động đã thực hiện
+      appeal: Khiếu nại
+      appeal_approved: Khiếu nại đã được chấp nhận và cảnh cáo không còn giá trị
+      appeal_rejected: Khiếu nại bị từ chối
+      appeal_submitted_at: Đã gửi khiếu nại
+      appealed_msg: Khiếu nại của bạn đã được gửi đi. Nếu nó được chấp nhận, bạn sẽ nhận được thông báo.
+      appeals:
+        submit: Gửi khiếu nại
+      associated_report: Báo cáo đính kèm
+      created_at: Ngày
+      recipient: Người nhận
+      status: 'Tút #%{id}'
+      status_removed: Tút này đã được xóa khỏi hệ thống
+      title: "%{action} từ %{date}"
+      title_actions:
+        delete_statuses: Xóa tút
+        disable: Đóng băng tài khoản
+        none: Cảnh cáo
+        sensitive: Đánh dấu nhạy cảm
+        silence: Hạn chế tài khoản
+        suspend: Vô hiệu hóa tài khoản
+      your_appeal_approved: Khiếu nại của bạn được chấp nhận
+      your_appeal_pending: Bạn đã gửi một khiếu nại
+      your_appeal_rejected: Khiếu nại của bạn bị từ chối
   domain_validator:
     invalid_domain: không phải là một tên miền hợp lệ
   errors:
@@ -1124,6 +1197,8 @@ vi:
       title: Lượt chia sẻ mới
     status:
       subject: Bài đăng mới từ %{name}
+    update:
+      subject: "%{name} đã sửa một tút"
   notifications:
     email_events: Email
     email_events_hint: 'Chọn những hoạt động sẽ gửi thông báo qua email:'
@@ -1435,6 +1510,15 @@ vi:
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy dùng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
     webauthn: Khóa bảo mật
   user_mailer:
+    appeal_approved:
+      action: Đến trang cá nhân của bạn
+      explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã được chấp nhận. Tài khoản của bạn đã có thể sử dụng bình thường.
+      subject: Khiếu nại của bạn từ %{date} đã được chấp nhận
+      title: Khiếu nại đã được chấp nhận
+    appeal_rejected:
+      explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã bị từ chối.
+      subject: Khiếu nại của bạn từ %{date} đã bị từ chối
+      title: Khiếu nại bị từ chối
     backup_ready:
       explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
       subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
@@ -1446,6 +1530,8 @@ vi:
       subject: Xác nhận đăng nhập
       title: Đăng nhập
     warning:
+      appeal: Gửi khiếu nại
+      appeal_description: Nếu bạn nghĩ đây chỉ là nhầm lẫn, hãy gửi một khiếu nại cho %{instance}.
       categories:
         spam: Spam
         violation: Nội dung vi phạm quy tắc cộng đồng
@@ -1457,7 +1543,6 @@ vi:
         suspend: Bạn không còn có thể sử dụng tài khoản của bạn, hồ sơ và các dữ liệu khác không còn có thể truy cập được. Bạn vẫn có thể đăng nhập để yêu cầu sao lưu dữ liệu của mình cho đến khi dữ liệu bị xóa hoàn toàn trong khoảng 30 ngày, nhưng chúng tôi sẽ giữ lại một số dữ liệu cơ bản để ngăn bạn tránh bị đình chỉ.
       get_in_touch: Nếu bạn tin rằng đây là lỗi, bạn có thể trả lời e-mail này để liên lạc với các nhân viên của %{instance}.
       reason: 'Lý do:'
-      review_server_policies: Xem lại quy tắc của máy chủ
       statuses: 'Đây là những tút vi phạm:'
       subject:
         delete_statuses: Những tút %{acct} của bạn đã bị xóa bỏ
