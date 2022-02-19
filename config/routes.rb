@@ -164,6 +164,12 @@ Rails.application.routes.draw do
     resources :login_activities, only: [:index]
   end
 
+  namespace :disputes do
+    resources :strikes, only: [:show] do
+      resource :appeal, only: [:create]
+    end
+  end
+
   resources :media, only: [:show] do
     get :player
   end
@@ -225,6 +231,8 @@ Rails.application.routes.draw do
     resources :rules
 
     resources :reports, only: [:index, :show] do
+      resources :actions, only: [:create], controller: 'reports/actions'
+
       member do
         post :assign_to_self
         post :unassign
@@ -319,6 +327,15 @@ Rails.application.routes.draw do
           collection do
             post :batch
           end
+        end
+      end
+    end
+
+    namespace :disputes do
+      resources :appeals, only: [:index] do
+        member do
+          post :approve
+          post :reject
         end
       end
     end

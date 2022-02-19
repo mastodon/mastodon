@@ -24,6 +24,8 @@ class AccountFilter
     scope = Account.includes(:account_stat, user: [:ips, :invite_request]).without_instance_actor.reorder(nil)
 
     params.each do |key, value|
+      next if key.to_s == 'page'
+
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
 
@@ -49,7 +51,7 @@ class AccountFilter
     when 'email'
       accounts_with_users.merge(User.matches_email(value))
     when 'ip'
-      valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value)) : Account.none
+      valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value).group('users.id, accounts.id')) : Account.none
     when 'invited_by'
       invited_by_scope(value)
     when 'order'

@@ -19,6 +19,7 @@ const messages = defineMessages({
   poll: { id: 'notification.poll', defaultMessage: 'A poll you have voted in has ended' },
   reblog: { id: 'notification.reblog', defaultMessage: '{name} boosted your status' },
   status: { id: 'notification.status', defaultMessage: '{name} just posted' },
+  update: { id: 'notification.update', defaultMessage: '{name} edited a post' },
 });
 
 const notificationForScreenReader = (intl, message, timestamp) => {
@@ -273,6 +274,38 @@ class Notification extends ImmutablePureComponent {
     );
   }
 
+  renderUpdate (notification, link) {
+    const { intl, unread } = this.props;
+
+    return (
+      <HotKeys handlers={this.getHandlers()}>
+        <div className={classNames('notification notification-update focusable', { unread })} tabIndex='0' aria-label={notificationForScreenReader(intl, intl.formatMessage(messages.update, { name: notification.getIn(['account', 'acct']) }), notification.get('created_at'))}>
+          <div className='notification__message'>
+            <div className='notification__favourite-icon-wrapper'>
+              <Icon id='pencil' fixedWidth />
+            </div>
+
+            <span title={notification.get('created_at')}>
+              <FormattedMessage id='notification.update' defaultMessage='{name} edited a post' values={{ name: link }} />
+            </span>
+          </div>
+
+          <StatusContainer
+            id={notification.get('status')}
+            account={notification.get('account')}
+            muted
+            withDismiss
+            hidden={this.props.hidden}
+            getScrollPosition={this.props.getScrollPosition}
+            updateScrollBottom={this.props.updateScrollBottom}
+            cachedMediaWidth={this.props.cachedMediaWidth}
+            cacheMediaWidth={this.props.cacheMediaWidth}
+          />
+        </div>
+      </HotKeys>
+    );
+  }
+
   renderPoll (notification, account) {
     const { intl, unread } = this.props;
     const ownPoll  = me === account.get('id');
@@ -330,6 +363,8 @@ class Notification extends ImmutablePureComponent {
       return this.renderReblog(notification, link);
     case 'status':
       return this.renderStatus(notification, link);
+    case 'update':
+      return this.renderUpdate(notification, link);
     case 'poll':
       return this.renderPoll(notification, account);
     }
