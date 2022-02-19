@@ -940,6 +940,12 @@ fi:
     directory: Profiilihakemisto
     explanation: Löydä käyttäjiä heidän kiinnostustensa mukaan
     explore_mastodon: Tutki %{title}ia
+  disputes:
+    strikes:
+      created_at: Päivätty
+      recipient: Osoitettu
+      status: 'Viesti #%{id}'
+      status_removed: Viesti on jo poistettu järjestelmästä
   domain_validator:
     invalid_domain: ei ole kelvollinen toimialueen nimi
   errors:
@@ -1398,6 +1404,7 @@ fi:
     formats:
       default: "%d.%m.%Y klo %H.%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Lisää
     disable: Poista käytöstä
@@ -1424,6 +1431,9 @@ fi:
       subject: Ole hyvä ja vahvista sisäänkirjautumisyritys
       title: Sisäänkirjautumisyritys
     warning:
+      categories:
+        spam: Roskaposti
+      reason: 'Syy:'
       subject:
         disable: Tilisi %{acct} on jäädytetty
         none: Varoitus %{acct}
