@@ -150,6 +150,9 @@ th:
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
       previous_strikes: การลงโทษก่อนหน้านี้
+      previous_strikes_description_html:
+        one: บัญชีนี้มี <strong>หนึ่ง</strong> การลงโทษ
+        other: บัญชีนี้มี <strong>%{count}</strong> การลงโทษ
       promote: เลื่อนขั้น
       protocol: โปรโตคอล
       public: สาธารณะ
@@ -535,6 +538,7 @@ th:
         notes:
           other: "%{count} หมายเหตุ"
       action_log: รายการบันทึกการตรวจสอบ
+      action_taken_by: ดำเนินการกระทำโดย
       are_you_sure: คุณแน่ใจหรือไม่?
       assign_to_self: มอบหมายให้ฉัน
       assigned: ผู้ควบคุมที่ได้รับมอบหมาย
@@ -903,10 +907,13 @@ th:
     explore_mastodon: สำรวจ %{title}
   disputes:
     strikes:
+      action_taken: การกระทำที่ดำเนินการ
       appeal_submitted_at: ส่งการอุทธรณ์แล้ว
       appeals:
         submit: ส่งการอุทธรณ์
       associated_report: รายงานที่เกี่ยวข้อง
+      created_at: ลงวันที่
+      recipient: ส่งถึง
       status: 'โพสต์ #%{id}'
       title_actions:
         delete_statuses: การเอาโพสต์ออก
