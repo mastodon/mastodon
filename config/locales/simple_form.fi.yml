@@ -100,8 +100,11 @@ fi:
       account_migration:
         acct: Uuden tilin käsittely
       account_warning_preset:
+        text: Esiasetettu teksti
         title: Otsikko
       admin_account_action:
+        include_statuses: Sisällytä raportoidut viestit sähköpostiin
+        send_email_notification: Ilmoita käyttäjälle sähköpostitse
         text: Mukautettu varoitus
         type: Toimenpide
         types:
@@ -114,8 +117,11 @@ fi:
       announcement:
         all_day: Koko päivän kestävä tapahtuma
         ends_at: Tapahtuman loppu
+        scheduled_at: Ajasta julkaisu
         starts_at: Tapahtuman alku
         text: Ilmoitus
+      appeal:
+        text: Perustele, miksi tämä päätös olisi kumottava
       defaults:
         autofollow: Kutsu seuraamaan tiliäsi
         avatar: Profiilikuva
@@ -132,6 +138,9 @@ fi:
         expires_in: Vanhenee
         fields: Profiilin metadata
         header: Otsakekuva
+        honeypot: "%{label} (älä täytä)"
+        inbox_url: Välityspostilaatikon URL-osoite
+        irreversible: Pudota piilottamisen sijaan
         locale: Kieli
         locked: Lukitse tili
         max_uses: Käyttökertoja enintään
