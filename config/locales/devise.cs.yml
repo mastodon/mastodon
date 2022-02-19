@@ -23,59 +23,59 @@ cs:
         explanation: S touto e-mailovou adresou jste si již účet na serveru %{host} vytvořili. K jeho aktivaci vám zbývá jedno kliknutí. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
         explanation_when_pending: Pro tuto e-mailovou adresu bylo požádáno o pozvánku na %{host}. Jakmile svou e-mailovou adresu potvrdíte, vaši žádost posoudíme. Můžete se přihlásit, změnit podrobnosti svého účtu nebo ho smazat, ale do schválení účtu nebudete mít k většině funkcí přístup. Pokud bude vaše žádost zamítnuta, vaše data budou odstraněna, a nebude od vás vyžadována žádná další akce. Pokud jste to nebyli vy, považujte tento e-mail za bezpředmětný.
         extra_html: Přečtěte si prosím také <a href="%{terms_path}">pravidla tohoto serveru</a> a <a href="%{policy_path}">naše podmínky používání</a>.
-        subject: 'Mastodon: Potvrzení účtu na serveru %{instance}'
+        subject: 'Potvrzení účtu na serveru %{instance}'
         title: Potvrďte e-mailovou adresu
       email_changed:
         explanation: 'E-mailová adresa vašeho účtu byla změněna na:'
         extra: Pokud jste si e-mailovou adresu neměnili, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Změňte si prosím okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora serveru.
-        subject: 'Mastodon: E-mailová adresa změněna'
+        subject: 'E-mailová adresa změněna'
         title: Nová e-mailová adresa
       password_change:
         explanation: Heslo k vašemu účtu bylo změněno.
         extra: Pokud jste si heslo neměnili, je pravděpodobné, že někdo jiný získal přístup k vašemu účtu. Změňte si prosím okamžitě heslo, nebo, pokud se nemůžete na účet přihlásit, kontaktujte administrátora serveru.
-        subject: 'Mastodon: Heslo bylo změněno'
+        subject: 'Heslo bylo změněno'
         title: Heslo bylo změněno
       reconfirmation_instructions:
         explanation: Potvrďte novou adresu pro změnu e-mailu.
         extra: Pokud jste si tuto změnu nevyžádali vy, považujte tento e-mail za bezpředmětný. Pokud výše uvedenou adresu nenavštívíte, e-mailová adresa změněna nebude.
-        subject: 'Mastodon: Potvrďte e-mail pro %{instance}'
+        subject: 'Potvrďte e-mail pro %{instance}'
         title: Ověřit e-mailovou adresu
       reset_password_instructions:
         action: Změnit heslo
         explanation: Pro svůj účet jste si vyžádali nové heslo.
         extra: Pokud jste si tuto změnu nevyžádali vy, považujte tento e-mail za bezpředmětný. Pokud výše uvedenou adresu nenavštívíte, vaše heslo změněno nebude.
-        subject: 'Mastodon: Instrukce pro obnovení hesla'
+        subject: 'Instrukce pro obnovení hesla'
         title: Obnovení hesla
       two_factor_disabled:
         explanation: Dvoufázové ověřování bylo pro váš účet vypnuto. Pro přihlášení je nyní stačí pouze e-mailová adresa a heslo.
-        subject: 'Mastodon: Dvoufázové ověřování vypnuto'
+        subject: 'Dvoufázové ověřování vypnuto'
         title: 2FA vypnuto
       two_factor_enabled:
         explanation: Dvoufázové ověřování bylo pro váš účet zapnuto. Pro přihlášení bude vyžadován token vygenerovaný spárovanou TOTP aplikací.
-        subject: 'Mastodon: Dvoufázové ověřování zapnuto'
+        subject: 'Dvoufázové ověřování zapnuto'
         title: 2FA zapnuto
       two_factor_recovery_codes_changed:
         explanation: Předchozí záložní kódy byly zrušeny a byly vygenerovány nové.
-        subject: 'Mastodon: Dvoufázové záložní kódy znovu vygenerovány'
+        subject: 'Dvoufázové záložní kódy znovu vygenerovány'
         title: Záložní kódy pro 2FA změněny
       unlock_instructions:
-        subject: 'Mastodon: Instrukce pro odemčení účtu'
+        subject: 'Instrukce pro odemčení účtu'
       webauthn_credential:
         added:
           explanation: Následující bezpečnostní klíč byl přidán k vašemu účtu
-          subject: 'Mastodon: Nový bezpečnostní klíč'
+          subject: 'Nový bezpečnostní klíč'
           title: Byl přidán nový bezpečnostní klíč
         deleted:
           explanation: Následující bezpečnostní klíč byl odstraněn z vašeho účtu
-          subject: 'Mastodon: Bezpečnostní klíč byl smazán'
+          subject: 'Bezpečnostní klíč byl smazán'
           title: Jeden z vašich bezpečnostních klíčů byl smazán
       webauthn_disabled:
         explanation: Pro váš účet bylo vypnuto ověření bezpečnostními klíči. Přihlášení je nyní možné pouze s tokenem vygenerovaným spárovanou TOTP aplikací.
-        subject: 'Mastodon: Přihlašování bezpečnostními klíči vypnuto'
+        subject: 'Přihlašování bezpečnostními klíči vypnuto'
         title: Bezpečnostní klíče zakázány
       webauthn_enabled:
         explanation: Pro váš účet bylo povoleno ověření bezpečnostními klíči. Nyní můžete svůj bezpečnostní klíč použít pro přihlášení.
-        subject: 'Mastodon: Přihlašování bezpečnostními klíči povoleno'
+        subject: 'Přihlašování bezpečnostními klíči povoleno'
         title: Bezpečnostní klíče povoleny
     omniauth_callbacks:
       failure: Nelze vás ověřit z %{kind}, protože „%{reason}“.

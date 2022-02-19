@@ -40,6 +40,8 @@
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :mascot, as: :file, wrapper: :with_block_label, label: t('admin.settings.mascot.title'), hint: site_upload_delete_hint(t('admin.settings.mascot.desc_html'), :mascot)
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :email, as: :file, wrapper: :with_block_label, label: t('admin.settings.email.title'), hint: site_upload_delete_hint(t('admin.settings.email.desc_html'), :email)
 
   %hr.spacer/
 
