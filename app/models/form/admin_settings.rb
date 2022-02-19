@@ -28,6 +28,7 @@ class Form::AdminSettings
     thumbnail
     hero
     mascot
+    email
     trends
     trendable_by_default
     show_domain_blocks
@@ -55,6 +56,7 @@ class Form::AdminSettings
     thumbnail
     hero
     mascot
+    email
   ).freeze
 
   attr_accessor(*KEYS)
