@@ -149,6 +149,7 @@ th:
       not_subscribed: ไม่ได้บอกรับ
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
+      previous_strikes: การลงโทษก่อนหน้านี้
       promote: เลื่อนขั้น
       protocol: โปรโตคอล
       public: สาธารณะ
@@ -189,6 +190,7 @@ th:
       silence: จำกัด
       silenced: จำกัดอยู่
       statuses: โพสต์
+      strikes: การลงโทษก่อนหน้านี้
       subscribe: บอกรับ
       suspend: ระงับ
       suspended: ระงับอยู่
@@ -1062,7 +1064,7 @@ th:
   move_handler:
     carry_blocks_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ปิดกั้น
     carry_mutes_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ซ่อน
-    copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้าของคุณเกี่ยวกับผู้ใช้:'
+    copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้านี้ของคุณเกี่ยวกับผู้ใช้:'
   notification_mailer:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
@@ -1315,7 +1317,7 @@ th:
     reblogged: ดันแล้ว
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   tags:
-    does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
+    does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้านี้
   terms:
     title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
