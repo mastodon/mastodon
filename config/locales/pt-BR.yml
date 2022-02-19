@@ -94,7 +94,6 @@ pt-BR:
     account_moderation_notes:
       create: Deixar nota
       created_msg: Nota de moderação criada com sucesso!
-      delete: Excluir
       destroyed_msg: Nota de moderação excluída com sucesso!
     accounts:
       add_email_domain_block: Adicionar o domínio de e-mail à lista negra
@@ -113,6 +112,7 @@ pt-BR:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
+      custom: Personalizar
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
@@ -204,6 +204,7 @@ pt-BR:
       silenced: Silenciado
       statuses: Toots
       subscribe: Inscrever-se
+      suspend: Suspender
       suspended: Banido
       suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não irá recuperar nenhum dado que ela possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
@@ -424,9 +425,6 @@ pt-BR:
         silence: silenciado
         suspend: banido
       show:
-        affected_accounts:
-          one: Uma conta no banco de dados foi afetada
-          other: "%{count} contas no banco de dados foram afetadas"
         retroactive:
           silence: Dessilenciar contas existentes afetadas deste domínio
           suspend: Remover a suspensão das contas afetadas deste domínio
@@ -470,9 +468,6 @@ pt-BR:
         warning: Aviso
       delivery_available: Envio disponível
       empty: Nenhum domínio encontrado.
-      known_accounts:
-        one: "%{count} conta conhecida"
-        other: "%{count} contas conhecidas"
       moderation:
         all: Todos
         limited: Limitados
@@ -541,7 +536,6 @@ pt-BR:
         other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta reportada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou que o procuram manualmente, limitando severamente seu alcance. Pode ser sempre revertido.
         suspend_description_html: O perfil e todo o seu conteúdo ficarão inacessíveis até que seja eventualmente excluído. Interagir com a conta será impossível. Reversível dentro de 30 dias.
-      actions_description_html: 'Se remover o conteúdo ofensivo acima for insuficiente:'
       add_to_report: Adicionar mais ao relatório
       are_you_sure: Você tem certeza?
       assign_to_self: Pegar
@@ -553,7 +547,7 @@ pt-BR:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
       created_at: Denunciado
-      delete_and_resolve: Apagar e resolver
+      delete_and_resolve: Excluir mensagens
       forwarded: Encaminhados
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
@@ -567,12 +561,14 @@ pt-BR:
         placeholder: Descreva que ações foram tomadas, ou quaisquer outras atualizações relacionadas…
         title: Notas
       notes_description_html: Visualize e deixe anotações para outros moderadores e para o seu "eu" do futuro
+      quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo relatado:'
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
       reported_by: Denunciada por
       resolved: Resolvido
       resolved_msg: Denúncia resolvida com sucesso!
+      skip_to_actions: Pular para ações
       status: Situação
       statuses: Conteúdo denunciado
       statuses_description_html: Conteúdo Ofensivo será citado em comunicação com a conta relatada
@@ -683,6 +679,9 @@ pt-BR:
       destroyed_msg: Upload do site excluído com sucesso!
     statuses:
       back_to_account: Voltar para página da conta
+      back_to_report: Voltar às denúncias
+      batch:
+        report: Denunciar
       deleted: Excluídos
       media:
         title: Mídia
@@ -732,9 +731,6 @@ pt-BR:
         trending_rank: 'Em alta #%{rank}'
         usable: Pode ser usado
         usage_comparison: Usado %{today} vezes hoje, em comparação com %{yesterday} de ontem
-        used_by_over_week:
-          one: Usado por uma pessoa na última semana
-          other: Usado por %{count} pessoas na última semana
       title: Em alta
     warning_presets:
       add_new: Adicionar novo
@@ -826,7 +822,6 @@ pt-BR:
     status:
       account_status: Status da conta
       confirming: Confirmação por e-mail pendente.
-      functional: Sua conta está totalmente operacional.
       pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
@@ -1462,7 +1457,6 @@ pt-BR:
         sensitive: A partir de agora, todos os seus arquivos de mídia enviados serão marcados como confidenciais e escondidos por trás de um aviso de clique.
       get_in_touch: Se você acredita que isso é um erro, você pode responder a este e-mail para entrar em contato com a equipe de %{instance}.
       reason: 'Motivo:'
-      review_server_policies: Revisar as políticas da instância
       subject:
         disable: Sua conta %{acct} foi bloqueada
         none: Aviso para %{acct}

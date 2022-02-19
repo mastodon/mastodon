@@ -86,7 +86,6 @@ et:
     account_moderation_notes:
       create: Jäta teade
       created_msg: Moderatsiooniteade edukalt koostatud!
-      delete: Kustuta
       destroyed_msg: Moderatsiooniteade edukalt kustutatud!
     accounts:
       add_email_domain_block: Keela e-posti domeen
@@ -318,9 +317,6 @@ et:
         silence: vaigistatud
         suspend: peatatud
       show:
-        affected_accounts:
-          one: Üks kasutaja andmebaasis mõjutatud
-          other: "%{count} kasutajat andmebaasis mõjutatud"
         retroactive:
           silence: Eemalda vaigistus mõjutatud kasutajatelt sellel domeenil
           suspend: Lõpeta mõjutatud kasutajate peatamine sellel domeenil
@@ -343,9 +339,6 @@ et:
     instances:
       by_domain: Domeen
       delivery_available: Üleandmine on saadaval
-      known_accounts:
-        one: "%{count} teadaolev kasutaja"
-        other: "%{count} teadaolevat kasutajat"
       moderation:
         all: Kõik
         limited: Piiratud
@@ -596,7 +589,6 @@ et:
     status:
       account_status: Konto olek
       confirming: Ootan e-posti kinnitust.
-      functional: Teie konto on täiesti töökorras.
       pending: Teie taotlus ootab ülevaadet meie personali poolt. See võib võtta mõnda aega. Kui Teie taotlus on vastu võetud, saadetakse Teile e-kiri.
       redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
     trouble_logging_in: Probleeme sisselogimisega?
@@ -1016,7 +1008,6 @@ et:
       subject: Teie arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
     warning:
-      review_server_policies: Vaadake üle serveri eeskirju
       subject:
         disable: Teie konto %{acct} on lukustatud
         none: Hoiatus kasutajale %{acct}

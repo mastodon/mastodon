@@ -7,6 +7,7 @@ fi:
       account_migration:
         acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, johon haluat siirtyä
       account_warning_preset:
+        text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, hashtageja ja mainintoja
         title: Vapaaehtoinen. Ei näytetä vastaanottajalle
       admin_account_action:
         include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
@@ -24,24 +25,58 @@ fi:
         all_day: Kun valittu, vain valittu aikaväli näytetään
         ends_at: Valinnainen. Ilmoitus tullaan poistamaan automaattisesti tällä hetkellä
         scheduled_at: Jätä tyhjäksi julkaistaksesi ilmoituksen välittömästi
+        starts_at: Valinnainen. Jos ilmoituksesi on sidottu tiettyyn aikaväliin
+        text: Voit käyttää julkaisun syntaksia. Muista, kuinka paljon tilaa ilmoitus vie käyttäjän näytöltä
+      appeal:
+        text: Voit valittaa varoituksesta vain kerran
       defaults:
+        autofollow: Henkilöt, jotka rekisteröityvät kutsun kautta, seuraavat sinua automaattisesti
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         bot: Tämä tili suorittaa enimmäkseen automaattisia toimintoja eikä sitä ehkä valvota
+        context: Yksi tai useampi asiayhteys, jossa suodattimen pitäisi olla käytössä
+        current_password: Turvallisuussyistä kirjoita nykyisen tilin salasana
+        current_username: Vahvista kirjoittamalla nykyisen tilin käyttäjätunnus
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
         discoverable: Profiilihakemisto on toinen tapa, jolla tilisi voi tavoittaa laajemman yleisön
+        discoverable_no_directory: Salli tuntemattomien löytää tilisi suositusten ja muiden ominaisuuksien kautta
         email: Sinulle lähetetään vahvistussähköposti
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
+        inbox_url: Kopioi URL-osoite sen viestin etusivulta, jota haluat käyttää
+        irreversible: Suodatetut julkaisut katoavat lopullisesti, vaikka suodatin poistettaisiin myöhemmin
+        locale: Käyttöliittymän, sähköpostien ja ilmoitusten kieli
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
         password: Käytä vähintään 8 merkkiä
+        phrase: Täytetään riippumatta julkaisun kirjainkoon tai sisällön varoituksesta
+        scopes: Mihin sovellusliittymiin sovellus pääsee käsiksi. Jos valitset ylätason laajuuden, sinun ei tarvitse valita yksittäisiä.
+        setting_aggregate_reblogs: Älä näytä uusia tehosteita viesteille, joita on äskettäin tehostettu (koskee vain äskettäin saatuja tehosteita)
+        setting_default_sensitive: Arkaluontoinen media on oletuksena piilotettu ja se voidaan näyttää yhdellä napsautuksella
         setting_display_media_default: Piilota arkaluonteiseksi merkitty media
         setting_display_media_hide_all: Piilota aina kaikki media
         setting_display_media_show_all: Näytä aina arkaluonteiseksi merkitty media
+        setting_hide_network: Ketä seuraat ja kuka seuraa sinua, piilotetaan profiiliisi
         setting_noindex: Vaikuttaa julkiseen profiiliisi ja tilasivuihisi
         setting_show_application: Viestittelyyn käyttämäsi sovellus näkyy viestiesi yksityiskohtaisessa näkymässä
         setting_use_blurhash: Liukuvärit perustuvat piilotettujen kuvien väreihin, mutta sumentavat yksityiskohdat
+        setting_use_pending_items: Piilota aikajanan päivitykset napsautuksen taakse sen sijaan, että vierittäisi syötettä automaattisesti
+        username: Käyttäjänimesi tulee olemaan yksilöllinen %{domain}
+        whole_word: Kun avainsana tai lause on vain aakkosnumeerinen, se otetaan käyttöön, jos se vastaa koko sanaa
+      domain_allow:
+        domain: Tämä verkkotunnus voi noutaa tietoja tältä palvelimelta ja sieltä saapuvat tiedot käsitellään ja tallennetaan
+      email_domain_block:
+        domain: Tämä voi olla se verkkotunnus, joka näkyy sähköpostiosoitteessa, MX-tietue, johon verkkotunnus ratkaistaan tai IP-osoitteessa, johon MX tietue päättää. Ne tarkistetaan käyttäjän kirjautumisen yhteydessä ja kirjautuminen hylätään.
+        with_dns_records: Annetun verkkotunnuksen DNS-tietueet yritetään ratkaista ja tulokset myös estetään
+      featured_tag:
+        name: 'Voit halutessasi käyttää jotakin näistä:'
+      form_challenge:
+        current_password: Olet menossa suojatulle alueelle
       imports:
         data: Toisesta Mastodon-instanssista tuotu CSV-tiedosto
+      invite_request:
+        text: Tämä auttaa meitä arvioimaan sovellustasi
+      ip_block:
+        comment: Valinnainen. Muista miksi lisäsit tämän säännön.
+        expires_in: IP-osoitteet ovat rajallinen resurssi, joskus niitä jaetaan ja vaihtavat usein omistajaa. Tästä syystä epämääräisiä IP-lohkoja ei suositella.
       sessions:
         otp: Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.
     labels:

@@ -94,7 +94,6 @@ sc:
     account_moderation_notes:
       create: Lassa una nota
       created_msg: As creadu una nota de moderatzione.
-      delete: Cantzella
       destroyed_msg: As cantzelladu una nota de moderatzione.
     accounts:
       add_email_domain_block: Bloca domìniu de posta eletrònica
@@ -393,9 +392,6 @@ sc:
         silence: a sa muda
         suspend: suspèndidu
       show:
-        affected_accounts:
-          one: Unu contu de sa base de datos implicadu
-          other: "%{count} contos de sa base de datos implicados"
         retroactive:
           silence: Boga de is contos a sa muda is contos de custu domìniu implicados
           suspend: Boga sa suspensione de is contos de custu domìniu implicados
@@ -427,9 +423,6 @@ sc:
       by_domain: Domìniu
       delivery_available: Sa cunsigna est a disponimentu
       empty: Perunu domìniu agatadu.
-      known_accounts:
-        one: "%{count} contu connòschidu"
-        other: "%{count} contos connòschidos"
       moderation:
         all: Totus
         limited: Limitadas
@@ -725,7 +718,6 @@ sc:
     status:
       account_status: Istadu de su contu
       confirming: Isetende chi sa posta eletrònica siat cumpletada.
-      functional: Su contu tuo est operativu.
       pending: Sa dimanda tua est in protzessu de revisione dae su personale nostru. Podet serbire unu pagu de tempus. As a retzire unu messàgiu eletrònicu si sa dimanda est aprovada.
       redirecting_to: Su contu tuo est inativu pro ite in die de oe est torrende a indiritzare a %{acct}.
     too_fast: Formulàriu imbiadu tropu a lestru, torra a proare.
@@ -1316,7 +1308,6 @@ sc:
       subject: Cunfirma su tentativu de identificatzione
       title: Tentativu de identificatzione
     warning:
-      review_server_policies: Revisiona sas polìticas de su serbidore
       subject:
         disable: Su contu tuo %{acct} est istadu cungeladu
         none: Avisu pro %{acct}

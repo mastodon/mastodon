@@ -92,7 +92,6 @@
     account_moderation_notes:
       create: Lag
       created_msg: Moderasjonsnotat laget uten problem!
-      delete: Slett
       destroyed_msg: Moderasjonsnotat slettet uten problem!
     accounts:
       add_email_domain_block: Svartelist E-postdomenet
@@ -366,9 +365,6 @@
         silence: stilnet
         suspend: suspendert
       show:
-        affected_accounts:
-          one: En konto i databasen påvirket
-          other: "%{count} kontoer i databasen påvirket"
         retroactive:
           silence: Avmålbind alle eksisterende kontoer fre dette domenet
           suspend: Avutvis alle eksisterende kontoer fra dette domenet
@@ -410,9 +406,6 @@
         unavailable: Ikke tilgjengelig
         warning: Advarsel
       delivery_available: Levering er tilgjengelig
-      known_accounts:
-        one: "%{count} kjent konto"
-        other: "%{count} kjente kontoer"
       moderation:
         all: Alt
         limited: Begrenset
@@ -698,7 +691,6 @@
     status:
       account_status: Kontostatus
       confirming: Venter på at e-postbekreftelsen er fullført.
-      functional: Kontoen din er fullt operativt.
       pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
     trouble_logging_in: Har du problemer med å logge på?
@@ -1263,7 +1255,6 @@
       subject: Bekreft forsøk på å logge inn
       title: Påloggingsforsøk
     warning:
-      review_server_policies: Gjennomgå serverretningslinjer
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
         none: Advarsel for %{acct}

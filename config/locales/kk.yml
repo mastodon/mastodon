@@ -87,7 +87,6 @@ kk:
     account_moderation_notes:
       create: Жазба қалдырыңыз
       created_msg: Модерация жазбасы қалдырылды!
-      delete: Өшіру
       destroyed_msg: Модерация жазбасы өшірілді!
     accounts:
       approve: Құптау
@@ -267,9 +266,6 @@ kk:
         silence: үнсіз
         suspend: тоқтатылған
       show:
-        affected_accounts:
-          one: Дерекқорда бір тіркелгі қозғалды
-          other: дерекқордағы %{count} аккаунт қозғалған
         retroactive:
           silence: Осы домендегі бар тіркелгілерді жою
           suspend: Осы домендегі бар барлық тіркелгілерді тоқтатыңыз
@@ -291,9 +287,6 @@ kk:
     instances:
       by_domain: Domаin
       delivery_available: Жеткізу қол жетімді
-      known_accounts:
-        one: "%{count} таныс аккаунт"
-        other: "%{count} таныс аккаунт"
       moderation:
         all: Барлығы
         limited: Лимит
@@ -539,7 +532,6 @@ kk:
     status:
       account_status: Аккаунт статусы
       confirming: Электрондық поштаны растау аяқталуын күтуде.
-      functional: Сіздің есептік жазбаңыз толығымен жұмыс істейді.
       pending: Сіздің өтінішіңіз біздің қызметкерлеріміздің қарауында. Бұл біраз уақыт алуы мүмкін. Өтінішіңіз мақұлданса, сізге электрондық пошта хабарламасы келеді.
       redirecting_to: Сіздің есептік жазбаңыз белсенді емес, себебі ол %{acct} жүйесіне қайта бағытталуда.
     trouble_logging_in: Кіру қиын ба?
@@ -1038,7 +1030,6 @@ kk:
       subject: Мұрағатыңыз түсіріп алуға дайын
       title: Мұрағатты алу
     warning:
-      review_server_policies: Сервер саясатын қарап шығыңыз
       subject:
         disable: Аккаунтыңыз %{acct} уақытша тоқтатылды
         none: "%{acct} ескертуі"

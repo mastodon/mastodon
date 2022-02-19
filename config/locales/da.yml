@@ -94,7 +94,6 @@ da:
     account_moderation_notes:
       create: Læg en note
       created_msg: Moderatornotat oprettet!
-      delete: Slet
       destroyed_msg: Moderatornotat destrueret!
     accounts:
       add_email_domain_block: Blokér e-maildomæne
@@ -163,6 +162,8 @@ da:
       not_subscribed: Abonnerer ikke
       pending: Afventende vurdering
       perform_full_suspension: Suspendér
+      previous_strikes_description_html:
+        zero: Denne kontostatus er <strong>på god fod</strong>.
       promote: Forfrem
       protocol: Protokol
       public: Offentlig
@@ -206,6 +207,7 @@ da:
       statuses: Statusser
       strikes: Tidligere striber
       subscribe: Abonnér
+      suspend: Suspendér
       suspended: Suspenderet
       suspension_irreversible: Disse kontodata er blevet slettet permanent. Du kan afsuspendere kontoen for at gøre den brugbar, men dette gendanner ikke de tidligere kontodata.
       suspension_reversible_hint_html: Kontoen er blevet suspenderet, og dens data fjernes helt d. %{date}. Indtil da kan kontoen genoprettes uden datatab mv. Ønsker alle kontodata fjernet straks, kan dette gøres nedenfor.
@@ -226,6 +228,7 @@ da:
       whitelisted: Tilladt for federering
     action_logs:
       action_types:
+        approve_appeal: Godkend appel
         approve_user: Godkend bruger
         assigned_to_self_report: Tildel rapport
         change_email_user: Skift e-mail for bruger
@@ -257,6 +260,7 @@ da:
         enable_user: Aktivér brugeren
         memorialize_account: Gør til mindekonto
         promote_user: Promovér bruger
+        reject_appeal: Afvis appel
         reject_user: Afvis bruger
         remove_avatar_user: Fjern profilbillede
         reopen_report: Genåbn anmeldelse
@@ -275,6 +279,7 @@ da:
         update_domain_block: Opdatér domæneblokering
         update_status: Opdatér status
       actions:
+        approve_appeal_html: "%{name} godkendte moderationsafgørelsesappellen fra %{target}"
         approve_user_html: "%{name} godkendte tilmelding fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte sig selv anmeldelsen %{target}"
         change_email_user_html: "%{name} ændrede e-mailadressen for bruger %{target}"
@@ -306,6 +311,7 @@ da:
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
         promote_user_html: "%{name} forfremmede brugeren %{target}"
+        reject_appeal_html: "%{name} afviste moderationsafgørelsesappellen fra %{target}"
         reject_user_html: "%{name} afviste tilmelding fra %{target}"
         remove_avatar_user_html: "%{name} fjernede %{target}s profilbillede"
         reopen_report_html: "%{name} genåbnede anmeldelsen %{target}"
@@ -384,14 +390,17 @@ da:
       media_storage: Medielagerplads
       new_users: nye brugere
       opened_reports: rapporter åbnet
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> afventende appel"
+        other: "<strong>%{count}</strong> afventende appeller"
       pending_reports_html:
-        one: "<strong>1</strong> afventende rapport"
-        other: "<strong>%{count}</strong> afventende rapporter"
+        one: "<strong>%{count}</strong> afventende anmeldelse"
+        other: "<strong>%{count}</strong> afventende anmeldelser"
       pending_tags_html:
-        one: "<strong>1</strong> afventende hashtag"
+        one: "<strong>%{count}</strong> afventende hashtag"
         other: "<strong>%{count}</strong> afventende hashtags"
       pending_users_html:
-        one: "<strong>1</strong> afventende bruger"
+        one: "<strong>%{count}</strong> afventende bruger"
         other: "<strong>%{count}</strong> afventende brugere"
       resolved_reports: anmeldelser løst
       software: Software
@@ -401,6 +410,10 @@ da:
       top_languages: Mest aktive sprog
       top_servers: Mest aktive servere
       website: Websted
+    disputes:
+      appeals:
+        empty: Ingen appeller fundet.
+        title: Appeller
     domain_allows:
       add_new: Tillade federering med domæne
       created_msg: Domæne er blevet tilladt federering
@@ -439,8 +452,9 @@ da:
         suspend: suspenderet
       show:
         affected_accounts:
-          one: En konto i databasen påvirket
+          one: Én konto i databasen påvirket
           other: "%{count} konti i databasen påvirket"
+          zero: Ingen konto i databasen påvirket
         retroactive:
           silence: Fjern tavsgøring for eksisterende, berørte konti fra dette domæne
           suspend: Fjern suspendering for eksisterende, berørte konti fra dette domæne
@@ -494,6 +508,7 @@ da:
       known_accounts:
         one: "%{count} kendt konto"
         other: "%{count} kendte konti"
+        zero: Ingen kendt konto
       moderation:
         all: Alle
         limited: Begrænset
@@ -563,7 +578,7 @@ da:
         other_description_html: Se flere muligheder for kontoadfærdsstyring og kommunikationstilpasning til den anmeldte konto.
         silence_description_html: Profilen vil kun være synlig for dem, som allerede følger den eller manuelt slå den op, hvilket markant begrænse dens rækkevidde. Kan altid omgøres.
         suspend_description_html: Profilen inkl. alt indhold gøres utilgængelig, indtil den til sidst slettes. Interaktion med kontoen vil være umulig. Reversible inden for 30 dage.
-      actions_description_html: 'Hvis fjernelse af det krænkende indhold ovenfor er utilstrækkelig:'
+      actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       add_to_report: Føj mere til anmeldelse
       are_you_sure: Sikker?
       assign_to_self: Tildel til mig
@@ -575,7 +590,7 @@ da:
         none: Ingen
       comment_description_html: 'For at give mere information, skrev %{name}:'
       created_at: Anmeldt
-      delete_and_resolve: Løs og slet
+      delete_and_resolve: Slet indlæg
       forwarded: Videresendt
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Markér som løst
@@ -589,12 +604,14 @@ da:
         placeholder: Beskriv de udførte handlinger eller andre relevante opdateringer...
         title: Notater
       notes_description_html: Se og skriv notater til andre moderatorer og dit fremtid selv
+      quick_actions_description_html: 'Træf en hurtig foranstaltning eller rul ned for at se anmeldt indhold:'
       reopen: Genåbn anmeldelse
       report: 'Anmeldelse #%{id}'
       reported_account: Anmeldt konto
       reported_by: Anmeldt af
       resolved: Løst
       resolved_msg: Anmeldelse er nu løst!
+      skip_to_actions: Overspring til handlinger
       status: Status
       statuses: Anmeld indhold
       statuses_description_html: Krænkende indhold refereres i kommunikationen med den anmeldte konto
@@ -715,6 +732,16 @@ da:
       no_status_selected: Ingen indlæg ændret, da ingen var valgt
       title: Kontoindlæg
       with_media: Med medier
+    strikes:
+      actions:
+        delete_statuses: "%{name} slettede %{target}s indlæg"
+        disable: "%{name} frøs %{target}s konto"
+        none: "%{name} sendte en advarsel til %{target}"
+        sensitive: "%{name} markerede %{target}s konto som sensitiv"
+        silence: "%{name} begrænsede %{target}s konto"
+        suspend: "%{name} suspenderede %{target}s konto"
+      appeal_approved: Appelleret
+      appeal_pending: Appel afventer
     system_checks:
       database_schema_check:
         message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
@@ -737,8 +764,9 @@ da:
         disallow: Tillad ikke link
         disallow_provider: Tillad ikke udgiver
         shared_by_over_week:
-          one: Delt af én person i løbet af den sidste uge
-          other: Delt af %{count} personer i løbet af den sidste uge
+          one: Delt af én person i løbet af den seneste uge
+          other: Delt af %{count} personer i løbet af den seneste uge
+          zero: Ikke delt af nogen i løbet af den seneste uge
         title: Populære links
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
       pending_review: Afventende vurdering
@@ -766,8 +794,9 @@ da:
         usable: Kan bruges
         usage_comparison: Brugt %{today} gange i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
-          one: Brugt af én person i løbet af den sidste uge
-          other: Brugt af %{count} personer i løbet af den sidste uge
+          one: Brugt af én person i løbet af den seneste uge
+          other: Brugt af %{count} personer i løbet af den seneste uge
+          zero: Ikke brugt af nogen i løbet af den seneste uge
       title: Trends
     warning_presets:
       add_new: Tilføj ny
@@ -776,6 +805,17 @@ da:
       empty: Ingen advarselsforvalg defineret endnu.
       title: Håndtérr advarselsforvalg
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: for sletning af vedkommendes indlæg
+        disable: for frysning af vedkommendes konto
+        none: en advarsel
+        sensitive: for markering af vedkommendes konto som sensitiv
+        silence: for begrænsning af vedkommendes konto
+        suspend: for suspendering af vedkommendes konto
+      body: "%{target} appellerer en moderationsbeslutning fra %{action_taken_by} pr. %{date}, der var %{type}. Vedkommende skrev:"
+      next_steps: Appellen kan godkendes for at fortryde moderationsbeslutningen eller den ignoreres.
+      subject: "%{username} appellerer en moderationsbeslutning for %{instance}"
     new_pending_account:
       body: Detaljerne for den nye konto fremgår nedenfor. Du kan godkende eller afvise denne ansøgning.
       subject: Ny konto til gennemgang på %{instance} (%{username})
@@ -866,7 +906,6 @@ da:
     status:
       account_status: Kontostatus
       confirming: Afventer færdiggørelse af e-mailbekræftelse.
-      functional: Din konto er fuldt operationel.
       pending: Din ansøgning afventer gennemgang af vores medarbejdere. Dette kan tage noget tid. Du modtager en e-mail, hvis din ansøgning godkendes.
       redirecting_to: Din konto er inaktiv, da den pt. er omdirigerer til %{acct}.
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
@@ -932,6 +971,31 @@ da:
     directory: Profilliste
     explanation: Find brugere baseret på deres interesser
     explore_mastodon: Uforsk %{title}
+  disputes:
+    strikes:
+      action_taken: Handling foretaget
+      appeal: Appel
+      appeal_rejected: Appellen er afvist
+      appeal_submitted_at: Appel indgivet
+      appealed_msg: Din appel er indgivet. Godkendes den, underrettes du.
+      appeals:
+        submit: Indgiv appel
+      associated_report: Tilknyttet anmeldelse
+      created_at: Dateret
+      recipient: Adresseret til
+      status: 'Indlæg #%{id}'
+      status_removed: Indlæg allerede fjernet fra system
+      title: "%{action} pr. %{date}"
+      title_actions:
+        delete_statuses: Indlægsfjernelse
+        disable: Kontofrysning
+        none: Advarsel
+        sensitive: Markering som sensitiv konto
+        silence: Kontobegrænsning
+        suspend: Kontosuspendering
+      your_appeal_approved: Din appel er godkendt
+      your_appeal_pending: Du har indgivet en appel
+      your_appeal_rejected: Din appel er afvist
   domain_validator:
     invalid_domain: er ikke et gyldigt domænenavn
   errors:
@@ -1143,6 +1207,8 @@ da:
       title: Nyt boost
     status:
       subject: "%{name} har netop postet"
+    update:
+      subject: "%{name} redigerede et indlæg"
   notifications:
     email_events: Begivenheder for e-mailnotifikationer
     email_events_hint: 'Vælg begivenheder, som notifikationer skal modtages for:'
@@ -1413,6 +1479,13 @@ da:
     recovery_instructions_html: Mister du nogensinde adgang til din mobil, kan du bruge en af gendannelseskoderne nedenfor til at opnå adgang til din konto. <strong>Opbevar gendannelseskoderne et sikkert sted</strong>. Du kan f.eks. udskrive dem, og gemme dem sammen med andre vigtige dokumenter.
     webauthn: Sikkerhedsnøgler
   user_mailer:
+    appeal_approved:
+      action: Gå til din konto
+      subject: Din appel pr. %{date} er godkendt
+      title: Appel godkendt
+    appeal_rejected:
+      subject: Din appel pr. %{date} er afvist
+      title: Appel afvist
     backup_ready:
       explanation: Den anmodede fulde sikkerhedskopi af din Mastodon-konto er nu klar til download!
       subject: Dit arkiv er klar til download
@@ -1424,6 +1497,8 @@ da:
       subject: Bekræft indlogningsforsøg
       title: Indlogningsforsøg
     warning:
+      appeal: Indgiv appel
+      appeal_description: Mener du, at dette er en fejl, kan der indgives en appel til personalet på %{instance}.
       categories:
         spam: Spam
         violation: Indhold overtræder flg. fællesskabsretningslinjer
@@ -1435,7 +1510,6 @@ da:
         suspend: Din konto kan ikke længere bruges, og hverken profil eller øvrige data kan tilgås. Du kan stadig logge ind for at anmode om en sikkerhedskopi af dine data, indtil disse om ca. 30 er helt slettet. Visse data bevares dog mhp. at forhindre dig i at omgå udelukkelsen.
       get_in_touch: Anses dette som en fejl, kan denne e-mail besvares for at komme i kontakt med personalet på %{instance}.
       reason: 'Årsag:'
-      review_server_policies: Gennemgå serverpolitikker
       statuses: 'Indlæg fundet i krænkelse:'
       subject:
         delete_statuses: Dine indlæg på %{acct} er blevet fjernet

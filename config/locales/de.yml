@@ -94,7 +94,6 @@ de:
     account_moderation_notes:
       create: Notiz erstellen
       created_msg: Moderationsnotiz erfolgreich erstellt!
-      delete: Löschen
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       add_email_domain_block: E-Mail-Domain blacklisten
@@ -163,6 +162,11 @@ de:
       not_subscribed: Nicht abonniert
       pending: In Warteschlange
       perform_full_suspension: Verbannen
+      previous_strikes: Vorherige Strikes
+      previous_strikes_description_html:
+        one: Dieses Konto hat <strong>einen</strong> Strike.
+        other: Dieses Konto hat <strong>%{count}</strong> Strikes.
+        zero: Dieses Konto ist <strong>in gutem Stand</strong>.
       promote: Befördern
       protocol: Protokoll
       public: Öffentlich
@@ -206,6 +210,7 @@ de:
       statuses: Beiträge
       strikes: Vorherige Strikes
       subscribe: Abonnieren
+      suspend: Suspendieren
       suspended: Verbannt
       suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor schon hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du dies nachfolgend tun.
@@ -226,6 +231,7 @@ de:
       whitelisted: Auf der Whitelist
     action_logs:
       action_types:
+        approve_appeal: Einspruch annehmen
         approve_user: Benutzer genehmigen
         assigned_to_self_report: Bericht zuweisen
         change_email_user: E-Mail des Benutzers ändern
@@ -257,6 +263,7 @@ de:
         enable_user: Benutzer aktivieren
         memorialize_account: Account deaktivieren
         promote_user: Benutzer befördern
+        reject_appeal: Einspruch ablehnen
         reject_user: Benutzer ablehnen
         remove_avatar_user: Profilbild entfernen
         reopen_report: Meldung wieder eröffnen
@@ -275,6 +282,7 @@ de:
         update_domain_block: Domain Block aktualisieren
         update_status: Beitrag aktualisieren
       actions:
+        approve_appeal_html: "%{name} genehmigte die Moderationsbeschlüsse von %{target}"
         approve_user_html: "%{name} genehmigte die Anmeldung von %{target}"
         assigned_to_self_report_html: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user_html: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
@@ -306,6 +314,7 @@ de:
         enable_user_html: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
         memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user_html: "%{name} hat %{target} befördert"
+        reject_appeal_html: "%{name} hat die Moderationsbeschlüsse von %{target} abgelehnt"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} hat das Profilbild von %{target} entfernt"
         reopen_report_html: "%{name} hat die Meldung %{target} wieder geöffnet"
@@ -384,15 +393,6 @@ de:
       media_storage: Medienspeicher
       new_users: Neue Benutzer
       opened_reports: Erstellte Meldungen
-      pending_reports_html:
-        one: "<strong>1</strong> ausstehende Meldung"
-        other: "<strong>%{count}</strong> ausstehende Meldungen"
-      pending_tags_html:
-        one: "<strong>1</strong> ausstehender Hashtag"
-        other: "<strong>%{count}</strong> ausstehende Hashtags"
-      pending_users_html:
-        one: "<strong>1</strong> ausstehender Benutzer"
-        other: "<strong>%{count}</strong> ausstehende Benutzer"
       resolved_reports: Gelöste Meldungen
       software: Software
       sources: Registrierungsquellen
@@ -401,6 +401,10 @@ de:
       top_languages: Top aktive Sprachen
       top_servers: Top aktive Server
       website: Website
+    disputes:
+      appeals:
+        empty: Keine Einsprüche gefunden.
+        title: Einsprüche
     domain_allows:
       add_new: Whitelist-Domain
       created_msg: Domain wurde erfolgreich zur Whitelist hinzugefügt
@@ -438,9 +442,6 @@ de:
         silence: stummgeschaltet
         suspend: gesperrt
       show:
-        affected_accounts:
-          one: Ein Konto in der Datenbank betroffen
-          other: "%{count} Konten in der Datenbank betroffen"
         retroactive:
           silence: Alle existierenden Konten dieser Domain nicht mehr stummschalten
           suspend: Alle existierenden Konten dieser Domain entsperren
@@ -491,9 +492,6 @@ de:
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
       destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
-      known_accounts:
-        one: "%{count} bekanntes Konto"
-        other: "%{count} bekannte Konten"
       moderation:
         all: Alle
         limited: Beschränkt
@@ -560,10 +558,12 @@ de:
       action_log: Überprüfungsprotokoll
       action_taken_by: Maßnahme ergriffen durch
       actions:
+        delete_description_html: Der gemeldete Beitrag wird gelöscht und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
         other_description_html: Weitere Optionen zur Kontrolle des Kontoverhaltens und zur Anpassung der Kommunikation an das gemeldete Konto.
+        resolve_description_html: Es wird keine Maßnahme gegen den gemeldeten Account ergriffen, es wird kein Strike verzeichnet und die Meldung wird geschlossen.
         silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die es bereits verfolgen oder manuell nachschlagen und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
         suspend_description_html: Das Profil und alle seine Inhalte werden unzugänglich werden, bis es schließlich gelöscht wird. Interaktion mit dem Konto wird unmöglich sein. Reversibel innerhalb von 30 Tagen.
-      actions_description_html: 'Wenn das Entfernen des obigen Inhalts nicht ausreicht:'
+      actions_description_html: Entscheide, welche Maßnahmen zur Lösung dieses Berichts zu ergreifen sind. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an diese gesendet außer wenn die <strong>Spam</strong> Kategorie ausgewählt ist.
       add_to_report: Mehr zur Meldung hinzufügen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
@@ -575,7 +575,7 @@ de:
         none: Kein
       comment_description_html: 'Um weitere Informationen bereitzustellen, schrieb %{name} folgendes:'
       created_at: Gemeldet
-      delete_and_resolve: Löschen und auflösen
+      delete_and_resolve: Beiträge löschen
       forwarded: Weitergeleitet
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als gelöst markieren
@@ -589,12 +589,14 @@ de:
         placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
         title: Notizen
       notes_description_html: Zeige und hinterlasse Notizen an andere Moderatoren und dein zukünftiges Selbst
+      quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       reopen: Meldung wieder eröffnen
       report: 'Meldung #%{id}'
       reported_account: Gemeldetes Konto
       reported_by: Gemeldet von
       resolved: Gelöst
       resolved_msg: Meldung erfolgreich gelöst!
+      skip_to_actions: Zu Aktionen springen
       status: Zustand
       statuses: Gemeldeter Inhalt
       statuses_description_html: Störende Inhalte werden in der Kommunikation mit dem gemeldeten Konto zitiert
@@ -715,6 +717,16 @@ de:
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
       title: Beiträge des Kontos
       with_media: Mit Medien
+    strikes:
+      actions:
+        delete_statuses: "%{name} hat die Beiträge von %{target} entfernt"
+        disable: "%{name} hat das Konto von %{target} eingefroren"
+        none: "%{name} hat eine Warnung an %{target} gesendet"
+        sensitive: "%{name} markierte %{target}'s Konto als NSFW"
+        silence: "%{name} hat das Konto von %{target} eingeschränkt"
+        suspend: "%{name} hat das Konto von %{target} verbannt"
+      appeal_approved: Einspruch angenommen
+      appeal_pending: Einspruch ausstehend
     system_checks:
       database_schema_check:
         message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führen Sie sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
@@ -736,9 +748,6 @@ de:
         allow_provider: Erlaube Herausgeber
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
-        shared_by_over_week:
-          one: In der letzten Woche geteilt von einer Person
-          other: In der letzten Woche geteilt von %{count} Personen
         title: Angesagte Links
         usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
       pending_review: Überprüfung ausstehend
@@ -760,14 +769,11 @@ de:
         not_trendable: Wird nicht unter Trends angezeigt
         not_usable: Kann nicht verwendet werden
         peaked_on_and_decaying: In den Trends am %{date}, jetzt absteigend
-        title: Beliebtes Hashtags
+        title: Angesagte Hashtags
         trendable: Darf unter Trends erscheinen
         trending_rank: 'Trend #%{rank}'
         usable: Kann verwendet werden
         usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
-        used_by_over_week:
-          one: In der letzten Woche genutzt von einer Person
-          other: In der letzten Woche genutzt von %{count} Personen
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
@@ -776,6 +782,17 @@ de:
       empty: Du hast noch keine Warnungsvorlagen hinzugefügt.
       title: Warnungsvorlagen verwalten
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: deren Beiträge zu löschen
+        disable: deren Konto einzufrieren
+        none: eine Warnung
+        sensitive: deren Konto als NSFW zu markieren
+        silence: deren Konto zu beschränken
+        suspend: deren Konto zu sperren
+      body: "%{target} hat was gegen eine Moderationsentscheidung von %{action_taken_by} von %{date}, die %{type} war. Die Person schrieb:"
+      next_steps: Du kannst dem Einspruch zustimmen und die Moderationsentscheidung rückgängig machen oder ignorieren.
+      subject: "%{username} hat Einspruch an einer Moderationsentscheidung von %{instance}"
     new_pending_account:
       body: Die Details von diesem neuem Konto sind unten. Du kannst die Anfrage akzeptieren oder ablehnen.
       subject: Neues Konto zur Überprüfung auf %{instance} verfügbar (%{username})
@@ -866,7 +883,6 @@ de:
     status:
       account_status: Kontostatus
       confirming: Warte auf die Bestätigung der E-Mail.
-      functional: Dein Konto ist voll funktionsfähig.
       pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
       redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
     too_fast: Formular zu schnell gesendet, versuchen Sie es erneut.
@@ -932,6 +948,32 @@ de:
     directory: Profilverzeichnis
     explanation: Entdecke Benutzer basierend auf deren Interessen
     explore_mastodon: Entdecke %{title}
+  disputes:
+    strikes:
+      action_taken: Maßnahme ergriffen
+      appeal: Einspruch
+      appeal_approved: Dieser Strike wurde erfolgreich beeinsprucht und ist nicht mehr gültig
+      appeal_rejected: Der Einspruch wurde abgelehnt
+      appeal_submitted_at: Einspruch eingelegt
+      appealed_msg: Dein Einspruch wurde abgesendet. Wenn er angenommen wird, wirst du benachrichtigt.
+      appeals:
+        submit: Einspruch erheben
+      associated_report: Zugehöriger Bericht
+      created_at: Datum
+      recipient: Adressiert an
+      status: 'Beitrag #%{id}'
+      status_removed: Beitrag bereits vom System entfernt
+      title: "%{action} vom %{date}"
+      title_actions:
+        delete_statuses: Post-Entfernung
+        disable: Einfrieren des Kontos
+        none: Warnung
+        sensitive: Als NSFW markieren
+        silence: Kontobeschränkung
+        suspend: Kontosperre
+      your_appeal_approved: Dein Einspruch wurde angenommen
+      your_appeal_pending: Du hast Einspruch eingelegt
+      your_appeal_rejected: Dein Einspruch wurde abgelehnt
   domain_validator:
     invalid_domain: ist kein gültiger Domain-Name
   errors:
@@ -1143,6 +1185,8 @@ de:
       title: Dein Beitrag wurde geteilt
     status:
       subject: "%{name} hat gerade etwas gepostet"
+    update:
+      subject: "%{name} bearbeitete einen Beitrag"
   notifications:
     email_events: Ereignisse für E-Mail-Benachrichtigungen
     email_events_hint: 'Wähle Ereignisse, für die du Benachrichtigungen erhalten möchtest:'
@@ -1495,6 +1539,15 @@ de:
     recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscode benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
     webauthn: Sicherheitsschlüssel
   user_mailer:
+    appeal_approved:
+      action: Gehe zu deinem Konto
+      explanation: Der Einspruch gegen dem Strike vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in gutem Zustand.
+      subject: Dein Einspruch vom %{date} wurde angenommen
+      title: Einspruch angenommen
+    appeal_rejected:
+      explanation: Der Einspruch gegen dem Strike vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde abgelehnt.
+      subject: Dein Einspruch vom %{date} wurde abgelehnt
+      title: Einspruch abgelehnt
     backup_ready:
       explanation: Du hast ein vollständiges Backup von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
       subject: Dein Archiv ist bereit zum Download
@@ -1506,6 +1559,8 @@ de:
       subject: Bitte bestätige den Anmeldeversuch
       title: Anmeldeversuch
     warning:
+      appeal: Einspruch einsenden
+      appeal_description: Wenn du glaubst, dass dies ein Fehler ist, kannst du einen Einspruch an die Mitarbeiter von %{instance} senden.
       categories:
         spam: Spam
         violation: Inhalt verletzt die folgenden Community-Richtlinien
@@ -1517,7 +1572,6 @@ de:
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
       get_in_touch: Wenn du glaubst, dass dies ein Fehler ist, kannst auf diese E-Mail antworten, um mit den Mitarbeitern von %{instance} in Kontakt zu treten.
       reason: 'Grund:'
-      review_server_policies: Serverrichtlinien ansehen
       statuses: 'Beiträge, die in Verletzung gefunden wurden:'
       subject:
         delete_statuses: Deine Beiträge auf %{acct} wurden entfernt

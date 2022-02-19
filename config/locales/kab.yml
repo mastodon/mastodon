@@ -76,7 +76,6 @@ kab:
       action: Eg tigawt
     account_moderation_notes:
       create: Eǧǧ tazmilt
-      delete: Kkes
     accounts:
       add_email_domain_block: Sewḥel taɣult n yimayl
       approve: Qbel
@@ -369,9 +368,6 @@ kab:
       delivery_available: Yella usiweḍ
       delivery_error_days: Ussan n tuccḍiwin n usiweḍ
       empty: Ulac taɣultin yettwafen.
-      known_accounts:
-        one: "%{count} n umiḍan i yettwasnen"
-        other: "%{count} n yimiḍanen i yettwassnen"
       moderation:
         all: Akk
         limited: Yettwasgugem
@@ -427,6 +423,7 @@ kab:
           other: "%{count} n timawin"
       action_taken_by: Tigawt yettwaṭṭfen sɣur
       are_you_sure: Tetḥaq-eḍ?
+      category: Taggayt
       comment:
         none: Ula yiwen
       mark_as_resolved: Creḍ-it yefra
@@ -444,6 +441,7 @@ kab:
       title: Ineqqisen
       unresolved: Ur yefra ara
       updated_at: Yettwaleqqem
+      view_profile: Wali amaɣnu
     rules:
       add_new: Rnu alugen
       delete: Kkes
@@ -481,6 +479,8 @@ kab:
       title: Tisuffiγin n umiḍan
       with_media: S taγwalt
     title: Tadbelt
+    trends:
+      allow: Sireg
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
@@ -491,6 +491,7 @@ kab:
   appearance:
     discovery: Asnirem
     localization:
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Yal yiwen·t y·tezmer a ttekki.
     sensitive_content: Agbur amḥulfu
   application_mailer:
@@ -511,10 +512,14 @@ kab:
       prefix_invited_by_user: "@%{name} inced-ik·ikem ad ternuḍ ɣer uqeddac-a n Mastodon!"
       prefix_sign_up: Zeddi di Maṣṭudun assa!
     forgot_password: Tettud awal-ik uffir?
+    log_in_with: Qqen s
     login: Qqen
     logout: Ffeγ
     migrate_account: Gujj γer umiḍan nniḍen
     or_log_in_with: Neγ eqqen s
+    providers:
+      cas: CAS
+      saml: SAML
     register: Jerred
     registration_closed: "%{instance} ur yeqbil ara imttekkiyen imaynuten"
     reset_password: Wennez awal uffir
@@ -524,7 +529,6 @@ kab:
       title: Sbadu
     status:
       account_status: Addad n umiḍan
-      functional: Amiḍan-inek·m yettwaheyya.
     trouble_logging_in: Γur-k uguren n tuqqna?
     use_security_key: Seqdec tasarut n teɣlist
   authorize_follow:
@@ -582,6 +586,8 @@ kab:
     archive_takeout:
       date: Azemz
       size: Teγzi
+    bookmarks: Ticraḍ
+    csv: CSV
     lists: Tibdarin
     mutes: Wid tesgugmeḍ
   featured_tags:
@@ -610,6 +616,7 @@ kab:
     delete: Kkes
     order_by: Sizwer s
     save_changes: Sekles ibeddilen
+    today: ass-a
   imports:
     modes:
       merge: Smezdi
@@ -780,6 +787,7 @@ kab:
       video:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
+    edited_at: Tettwaẓreg deg %{date}
     open_in_web: Ldi deg Web
     poll:
       total_people:
@@ -790,6 +798,7 @@ kab:
         other: "%{count} n yedɣaren"
       vote: Dɣeṛ
     show_more: Ssken-d ugar
+    show_newer: Ssken-d timaynutin
     show_thread: Ssken-d lxiḍ
     sign_in_to_participate: Qqen i waken ad tzeddiḍ deg udiwenni
     title: '%{name} : "%{quote}"'
@@ -833,6 +842,8 @@ kab:
     webauthn: Tisura n teɣlist
   user_mailer:
     warning:
+      categories:
+        spam: Aspam
       title:
         disable: Amiḍan i igersen
         none: Γur-wat

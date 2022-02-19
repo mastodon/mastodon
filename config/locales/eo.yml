@@ -86,7 +86,6 @@ eo:
     account_moderation_notes:
       create: Lasi noton
       created_msg: Kontrola noto sukcese kreita!
-      delete: Forigi
       destroyed_msg: Kontrola noto sukcese detruita!
     accounts:
       add_email_domain_block: Bloki retadresan domajnon
@@ -369,9 +368,6 @@ eo:
         silence: silentigita
         suspend: haltigita
       show:
-        affected_accounts:
-          one: Unu konto en la datumbazo esta influita
-          other: "%{count} kontoj en la datumbazo estas influitaj"
         retroactive:
           silence: Malkaŝi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
           suspend: Malhaltigi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
@@ -407,9 +403,6 @@ eo:
         warning: Averto
       delivery_available: Liverado disponeblas
       empty: Neniuj domajnoj trovitaj.
-      known_accounts:
-        one: "%{count} konata konto"
-        other: "%{count} konataj kontoj"
       moderation:
         all: Ĉiuj
         limited: Limigita
@@ -684,7 +677,6 @@ eo:
       title: Agordi
     status:
       account_status: Statuso de la konto
-      functional: Via konto estas plene funkcianta.
     too_fast: Formularo sendita tro rapide, klopodu denove.
     trouble_logging_in: Ĝeni ensaluti?
     use_security_key: Uzi sekurecan ŝlosilon
@@ -1167,7 +1159,6 @@ eo:
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
     warning:
-      review_server_policies: Superrigardi servilajn politikojn
       subject:
         disable: Via konto %{acct} estas frostigita
         none: Averto por %{acct}

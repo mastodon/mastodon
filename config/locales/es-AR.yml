@@ -94,7 +94,6 @@ es-AR:
     account_moderation_notes:
       create: Dejar nota
       created_msg: "¡Nota de moderación creada exitosamente!"
-      delete: Eliminar
       destroyed_msg: "¡Nota de moderación destruída exitosamente!"
     accounts:
       add_email_domain_block: Bloquear el dominio del correo electrónico
@@ -163,6 +162,11 @@ es-AR:
       not_subscribed: No suscripto
       pending: Revisión pendiente
       perform_full_suspension: Suspender
+      previous_strikes: Incumplimientos previos
+      previous_strikes_description_html:
+        one: Esta cuenta tiene <strong>un</strong> incumplimiento.
+        other: Esta cuenta tiene <strong>%{count}</strong> incumplimientos.
+        zero: Esta cuenta está <strong>en buen estado</strong>.
       promote: Promover
       protocol: Protocolo
       public: Pública
@@ -206,6 +210,7 @@ es-AR:
       statuses: Mensajes
       strikes: Sanciones previas
       subscribe: Suscribirse
+      suspend: Suspender
       suspended: Suspendidas
       suspension_irreversible: Se eliminaron irreversiblemente los datos de esta cuenta. Podés dejar de suspenderla para hacerla utilizable, pero no se recuperarán los datos que tenía anteriormente.
       suspension_reversible_hint_html: La cuenta fue suspendida y los datos se eliminarán completamente el %{date}. Hasta entonces, la cuenta puede ser restaurada sin ningún efecto perjudicial. Si querés eliminar todos los datos de la cuenta inmediatamente, podés hacerlo abajo.
@@ -226,6 +231,7 @@ es-AR:
       whitelisted: Permitidas para federación
     action_logs:
       action_types:
+        approve_appeal: Aprobar apelación
         approve_user: Aprobar usuario
         assigned_to_self_report: Asignar denuncia
         change_email_user: Cambiar correo electrónico del usuario
@@ -257,6 +263,7 @@ es-AR:
         enable_user: Habilitar usuario
         memorialize_account: Convertir en cuenta conmemorativa
         promote_user: Promover usuario
+        reject_appeal: Rechazar apelación
         reject_user: Rechazar usuario
         remove_avatar_user: Quitar avatar
         reopen_report: Reabrir denuncia
@@ -275,6 +282,7 @@ es-AR:
         update_domain_block: Actualizar bloque de dominio
         update_status: Actualizar mensaje
       actions:
+        approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
         approve_user_html: "%{name} aprobó el registro de %{target}"
         assigned_to_self_report_html: "%{name} se asignó la denuncia %{target} a sí"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
@@ -306,6 +314,7 @@ es-AR:
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una cuenta conmemorativa"
         promote_user_html: "%{name} promovió al usuario %{target}"
+        reject_appeal_html: "%{name} rechazó la solicitud de moderación de %{target}"
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} quitó el avatar de %{target}"
         reopen_report_html: "%{name} reabrió la denuncia %{target}"
@@ -384,14 +393,17 @@ es-AR:
       media_storage: Almacenamiento de medios
       new_users: nuevos usuarios
       opened_reports: denuncias abiertas
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apelación pendiente"
+        other: "<strong>%{count}</strong> apelaciones pendientes"
       pending_reports_html:
-        one: "<strong>1</strong> denuncia pendiente"
+        one: "<strong>%{count}</strong> denuncia pendiente"
         other: "<strong>%{count}</strong> denuncias pendientes"
       pending_tags_html:
-        one: "<strong>1</strong> etiqueta pendiente"
+        one: "<strong>%{count}</strong> etiqueta pendiente"
         other: "<strong>%{count}</strong> etiquetas pendientes"
       pending_users_html:
-        one: "<strong>1</strong> usuario pendiente"
+        one: "<strong>%{count}</strong> usuario pendiente"
         other: "<strong>%{count}</strong> usuarios pendientes"
       resolved_reports: denuncias resueltas
       software: Software
@@ -401,6 +413,10 @@ es-AR:
       top_languages: Idiomas más activos
       top_servers: Servidores más activos
       website: Sitio web
+    disputes:
+      appeals:
+        empty: No se encontraron apelaciones.
+        title: Apelaciones
     domain_allows:
       add_new: Permitir federación con el dominio
       created_msg: El dominio fue exitosamente permitido para la federación
@@ -439,8 +455,9 @@ es-AR:
         suspend: suspendidos
       show:
         affected_accounts:
-          one: Una cuenta afectada en la base de datos
-          other: "%{count} cuentas afectadas en la base de datos"
+          one: Una cuenta en la base de datos afectada
+          other: "%{count} cuentas en la base de datos afectada"
+          zero: Ninguna cuenta en la base de datos está afectada
         retroactive:
           silence: Quitar límite de las cuentas existentes afectadas de este dominio
           suspend: Quitar suspensión de las cuentas existentes afectadas de este dominio
@@ -494,6 +511,7 @@ es-AR:
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentas conocidas"
+        zero: Ninguna cuenta conocida
       moderation:
         all: Todas
         limited: Limitadas
@@ -560,10 +578,12 @@ es-AR:
       action_log: Registro de auditoría
       action_taken_by: Acción tomada por
       actions:
+        delete_description_html: Los mensajes denunciados serán eliminados y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta denunciada.
+        resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará el incumplimiento, y se cerrará la denuncia.
         silence_description_html: El perfil será visible sólo para aquellos que ya sigan esta cuenta o que la busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
         suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. No será posible interactuar con la cuenta. Reversible dentro de los 30 días.
-      actions_description_html: 'Si quitar el contenido ofensivo de arriba no es suficiente:'
+      actions_description_html: Decidí qué medidas tomar para resolver esta denuncia. Si tomás una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
       add_to_report: Agregar más a la denuncia
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
@@ -575,7 +595,7 @@ es-AR:
         none: Ninguno
       comment_description_html: 'Para proporcionar más información, %{name} escribió:'
       created_at: Denunciado
-      delete_and_resolve: Resolver y eliminar
+      delete_and_resolve: Eliminar mensajes
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelta
@@ -589,12 +609,14 @@ es-AR:
         placeholder: Describí qué acciones se tomaron, o cualquier otra actualización relacionada...
         title: Notas
       notes_description_html: Ver y dejar notas para otros moderadores y como referencia futura
+      quick_actions_description_html: 'Tomá una acción rápida o desplazate hacia abajo para ver el contenido denunciado:'
       reopen: Reabrir denuncia
       report: 'Denuncia #%{id}'
       reported_account: Cuenta denunciada
       reported_by: Denunciada por
       resolved: Resueltas
       resolved_msg: "¡Denuncia exitosamente resuelta!"
+      skip_to_actions: Ir directamente a las acciones
       status: Estado
       statuses: Contenido denunciado
       statuses_description_html: El contenido ofensivo se citará en la comunicación con la cuenta denunciada
@@ -715,6 +737,16 @@ es-AR:
       no_status_selected: No se cambió ningún mensaje, ya que ninguno fue seleccionado
       title: Mensajes de la cuenta
       with_media: Con medios
+    strikes:
+      actions:
+        delete_statuses: "%{name} eliminó los mensajes de %{target}"
+        disable: "%{name} congeló la cuenta de %{target}"
+        none: "%{name} envió una advertencia a %{target}"
+        sensitive: "%{name} marcó los medios de %{target} como sensibles"
+        silence: "%{name} limitó la cuenta de %{target}"
+        suspend: "%{name} suspendió la cuenta de %{target}"
+      appeal_approved: Apelado
+      appeal_pending: Apelación pendiente
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecutalas para asegurarte de que la aplicación funciona según lo esperado
@@ -737,8 +769,9 @@ es-AR:
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
         shared_by_over_week:
-          one: Compartido por una persona durante la última semana
-          other: Compartido por %{count} personas durante la última semana
+          one: Compartido por una persona en la última semana
+          other: Compartido por %{count} personas en la última semana
+          zero: Compartido por nadie en la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
       pending_review: Revisión pendiente
@@ -766,8 +799,9 @@ es-AR:
         usable: Pueden usarse
         usage_comparison: Usadas %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
         used_by_over_week:
-          one: Usada por una persona durante la última semana
-          other: Usada por %{count} personas durante la última semana
+          one: Usada por una persona en la última semana
+          other: Usada por %{count} personas en la última semana
+          zero: Usada por nadie en la última semana
       title: Tendencias
     warning_presets:
       add_new: Agregar nuevo
@@ -776,6 +810,17 @@ es-AR:
       empty: Aún no ha definido ningún preajuste de advertencia.
       title: Administrar preajustes de advertencia
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: para eliminar sus mensajes
+        disable: para congelar su cuenta
+        none: una advertencia
+        sensitive: para marcar su cuenta como sensible
+        silence: para limitar su cuenta
+        suspend: para suspender su cuenta
+      body: "%{target} está apelando a una solicitud de moderación de %{action_taken_by} de %{date}, del tipo %{type}. Ellos escribieron:"
+      next_steps: Podés aprobar la apelación para deshacer la solicitud de moderación, o ignorarla.
+      subject: "%{username} está apelando a una solicitud de moderación en %{instance}"
     new_pending_account:
       body: Abajo están los detalles de la nueva cuenta. Podés aprobar o rechazar esta solicitud.
       subject: Nueva cuenta para revisión en %{instance} (%{username})
@@ -866,7 +911,6 @@ es-AR:
     status:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
-      functional: Tu cuenta está totalmente operativa.
       pending: Tu solicitud está pendiente de revisión por nuestra administración. Eso puede tardar algún tiempo. Si se aprueba tu solicitud, vas a recibir un correo electrónico.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
     too_fast: Formulario enviado demasiado rápido, probá de nuevo.
@@ -932,6 +976,32 @@ es-AR:
     directory: Directorio de perfiles
     explanation: Descubrí usuarios basados en sus intereses
     explore_mastodon: Navegá %{title}
+  disputes:
+    strikes:
+      action_taken: Acción tomada
+      appeal: Apelar
+      appeal_approved: Este incumplimiento fue apelado exitosamente y ya no es válido
+      appeal_rejected: Se rechazó la apelación
+      appeal_submitted_at: Apelación enviada
+      appealed_msg: Tu apelación fue enviada. Si se aprueba, se te notificará.
+      appeals:
+        submit: Enviar apelación
+      associated_report: Denuncia asociada
+      created_at: Con fecha
+      recipient: Dirigida a
+      status: 'Mensaje #%{id}'
+      status_removed: Mensaje ya eliminado del sistema
+      title: "%{action} de %{date}"
+      title_actions:
+        delete_statuses: Eliminación de mensaje
+        disable: Congelación de cuenta
+        none: Advertencia
+        sensitive: Marcado de cuenta como sensible
+        silence: Limitación de cuenta
+        suspend: Suspensión de cuenta
+      your_appeal_approved: Se aprobó tu apelación
+      your_appeal_pending: Enviaste una apelación
+      your_appeal_rejected: Se rechazó tu apelación
   domain_validator:
     invalid_domain: no es un nombre de dominio válido
   errors:
@@ -1143,6 +1213,8 @@ es-AR:
       title: Nueva adhesión
     status:
       subject: "%{name} acaba de enviar un mensaje"
+    update:
+      subject: "%{name} editó un mensaje"
   notifications:
     email_events: Eventos para notificaciones por correo electrónico
     email_events_hint: 'Seleccioná los eventos para los que querés recibir notificaciones:'
@@ -1493,6 +1565,15 @@ es-AR:
     recovery_instructions_html: Si alguna vez perdés el acceso a tu aplicación de 2FA, podés usar uno de los siguientes códigos de recuperación para recuperar el acceso a tu cuenta. <strong>Mantenelos a salvo</strong>. Por ejemplo, podés imprimirlos y guardarlos con otros documentos importantes.
     webauthn: Llaves de seguridad
   user_mailer:
+    appeal_approved:
+      action: Ir a tu cuenta
+      explanation: La apelación del incumplimiento contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue aprobada. Tu cuenta se encuentra de nuevo en buen estado.
+      subject: Tu apelación del %{date} fue aprobada
+      title: Apelación aprobada
+    appeal_rejected:
+      explanation: La apelación del incumplimiento contra tu cuenta del %{strike_date} que enviaste el %{appeal_date} fue rechazada.
+      subject: Tu apelación del %{date} fue rechazada
+      title: Apelación rechazada
     backup_ready:
       explanation: Solicitaste un resguardo completo de tu cuenta de Mastodon. ¡Ya está listo para descargar!
       subject: Tu archivo historial está listo para descargar
@@ -1504,6 +1585,8 @@ es-AR:
       subject: Por favor, confirmá el intento de inicio de sesión
       title: Intento de inicio de sesión
     warning:
+      appeal: Enviar una apelación
+      appeal_description: Si creés que esto es un error, podés enviar una apelación al equipo de %{instance}.
       categories:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad
@@ -1515,7 +1598,6 @@ es-AR:
         suspend: Ya no podés usar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía podés iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquivés la suspensión.
       get_in_touch: Si crees que esto es un error, podés responder a este correo electrónico para ponerte en contacto con el equipo de %{instance}.
       reason: 'Motivo:'
-      review_server_policies: Revisar las políticas del servidor
       statuses: 'Mensajes que se encontraron en violación:'
       subject:
         delete_statuses: Se eliminaron tus mensajes en %{acct}

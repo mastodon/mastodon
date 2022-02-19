@@ -92,7 +92,6 @@ nn:
     account_moderation_notes:
       create: Legg igjen merknad
       created_msg: Moderatormerknad er laga!
-      delete: Slett
       destroyed_msg: Moderatormerknad er utsletta!
     accounts:
       add_email_domain_block: Gøym e-postdomene
@@ -369,9 +368,6 @@ nn:
         silence: dempa
         suspend: utvist
       show:
-        affected_accounts:
-          one: Éin konto i databasen vert påverka
-          other: "%{count} kontoar i databasen vert påverka"
         retroactive:
           silence: Avmålbind alle eksisterende kontoer fre dette domenet
           suspend: Avutvis alle eksisterende kontoer fra dette domenet
@@ -413,9 +409,6 @@ nn:
         unavailable: Ikke tilgjengelig
         warning: Advarsel
       delivery_available: Levering er tilgjengelig
-      known_accounts:
-        one: "%{count} kjend konto"
-        other: "%{count} kjende kontoar"
       moderation:
         all: Alle
         limited: Avgrensa
@@ -706,7 +699,6 @@ nn:
     status:
       account_status: Kontostatus
       confirming: Ventar på stadfesting av e-post.
-      functional: Kontoen din er oppe og går.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
     trouble_logging_in: Får du ikkje logga inn?
@@ -1282,7 +1274,6 @@ nn:
       subject: Venlegast stadfest forsøket på å logga inn
       title: Forsøk på å logga inn
     warning:
-      review_server_policies: Gjennomgå serverretningslinjer
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
         none: Åtvaring for %{acct}

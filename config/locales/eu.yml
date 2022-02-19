@@ -92,7 +92,6 @@ eu:
     account_moderation_notes:
       create: Sortu oharra
       created_msg: Moderazio oharra ongi sortu da!
-      delete: Ezabatu
       destroyed_msg: Moderazio ohara ongi suntsitu da!
     accounts:
       add_email_domain_block: Sartu domeinua zerrenda beltzean
@@ -380,15 +379,6 @@ eu:
       media_storage: Multimedia biltegiratzea
       new_users: erabiltzaile berri
       opened_reports: txosten irekita
-      pending_reports_html:
-        one: Txosten <strong>1</strong> zain
-        other: "<strong>%{count}</strong> txosten zain"
-      pending_tags_html:
-        one: Traola <strong>1</strong> zain
-        other: "<strong>%{count}</strong> traola zain"
-      pending_users_html:
-        one: Erabiltzaile <strong>1</strong> zain
-        other: "<strong>%{count}</strong> erabiltzaile zain"
       resolved_reports: txosten konponduta
       software: Softwarea
       sources: Izen emate jatorriak
@@ -434,9 +424,6 @@ eu:
         silence: isilarazia
         suspend: kanporatua
       show:
-        affected_accounts:
-          one: Datu-baseko kontu bati eragiten dio
-          other: Datu-baseko %{count} kontuei eragiten die
         retroactive:
           silence: Kendu isilarazteko agindua domeinu honetako kontu guztiei
           suspend: Kendu kanporatzeko agindua domeinu honetako kontu guztiei
@@ -487,9 +474,6 @@ eu:
       delivery_error_hint: Banaketa ezin bada %{count} egunean egin, banaezin bezala markatuko da automatikoki.
       destroyed_msg: "%{domain} domeinuko datuak berehala ezabatzeko ilaran daude orain."
       empty: Ez da domeinurik aurkitu.
-      known_accounts:
-        one: Kontu ezagun %{count}
-        other: "%{count} kontu ezagun"
       moderation:
         all: Denak
         limited: Mugatua
@@ -710,9 +694,6 @@ eu:
         allow_provider: Onartu argitaratzailea
         disallow: Ukatu esteka
         disallow_provider: Ukatu argitaratzailea
-        shared_by_over_week:
-          one: Pertsona batek partekatua azken astean
-          other: "%{count} pertsonak partekatua azken astean"
         title: Esteken joerak
         usage_comparison: "%{today} aldiz partekatua gaur, atzo %{yesterday} aldiz"
       pending_review: Berrikusketaren zain
@@ -739,9 +720,6 @@ eu:
         trending_rank: "%{rank}. joera"
         usable: Erabili daiteke
         usage_comparison: "%{today} aldiz erabili da gaur, atzo %{yesterday} aldiz"
-        used_by_over_week:
-          one: Pertsona batek erabilia azken astean
-          other: "%{count} pertsonak erabilia azken astean"
       title: Joerak
     warning_presets:
       add_new: Gehitu berria
@@ -839,7 +817,6 @@ eu:
     status:
       account_status: Kontuaren egoera
       confirming: E-mail baieztapena osatu bitartean zain.
-      functional: Zure kontua guztiz erabilgarri dago.
       pending: Zure eskaera gainbegiratzeko dago oraindik. Honek denbora behar lezake. Zure eskaera onartzen bada e-mail bat jasoko duzu.
       redirecting_to: Zure kontua ez dago aktibo orain %{acct} kontura birbideratzen duelako.
     too_fast: Formularioa azkarregi bidali duzu, saiatu berriro.
@@ -1470,7 +1447,6 @@ eu:
       subject: Berretsi saioa hasteko saiakera
       title: Saioa hasteko saiakera
     warning:
-      review_server_policies: Berrikusi zerbitzariko politikak
       subject:
         disable: Zure  %{acct} kontua izoztu da
         none: "%{acct} konturako abisua"
