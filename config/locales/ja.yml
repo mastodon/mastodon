@@ -270,6 +270,7 @@ ja:
         update_domain_block: ドメインブロックを更新
         update_status: 投稿を更新
       actions:
+        approve_appeal_html: "%{name} さんが %{target} からの抗議を承認しました"
         approve_user_html: "%{target} から登録された %{name} さんを承認しました"
         assigned_to_self_report_html: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
         change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
@@ -301,6 +302,7 @@ ja:
         enable_user_html: "%{name} さんが %{target} さんのログインを有効化しました"
         memorialize_account_html: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name} さんが %{target} さんを昇格しました"
+        reject_appeal_html: "%{name} さんが %{target} からの抗議を却下しました"
         reject_user_html: "%{target} から登録された %{name} さんを拒否しました"
         remove_avatar_user_html: "%{name} さんが %{target} さんのアイコンを削除しました"
         reopen_report_html: "%{name} さんが通報 %{target} を未解決に戻しました"
@@ -908,6 +910,9 @@ ja:
     directory: ディレクトリ
     explanation: 関心を軸にユーザーを発見しよう
     explore_mastodon: '%{title}を探索'
+  disputes:
+    strikes:
+      appeal: 抗議
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
