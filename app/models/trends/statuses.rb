@@ -113,12 +113,21 @@ class Trends::Statuses < Trends::Base
           allowed: status.trendable? && status.account.discoverable?,
         })
 
-        next if status.language.blank?
+        next unless valid_locale?(status.language)
 
         add_to_and_remove_from_subsets(status.id, decaying_score, {
           "all:#{status.language}" => true,
           "allowed:#{status.language}" => status.trendable? && status.account.discoverable?,
         })
+      end
+
+      # Clean up localized sets by calculating the intersection with the main
+      # set. We do this instead of just deleting the localized sets to avoid
+      # having moments where the API returns empty results
+
+      Trends.available_locales.each do |locale|
+        redis.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
       end
     end
   end

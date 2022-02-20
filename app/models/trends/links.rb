@@ -93,12 +93,23 @@ class Trends::Links < Trends::Base
         allowed: preview_card.trendable?,
       })
 
-      next if preview_card.language.blank?
+      next unless valid_locale?(preview_card.language)
 
       add_to_and_remove_from_subsets(preview_card.id, decaying_score, {
         "all:#{preview_card.language}" => true,
         "allowed:#{preview_card.language}" => preview_card.trendable?,
       })
+    end
+
+    # Clean up localized sets by calculating the intersection with the main
+    # set. We do this instead of just deleting the localized sets to avoid
+    # having moments where the API returns empty results
+
+    redis.pipelined do
+      Trends.available_locales.each do |locale|
+        redis.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+      end
     end
   end
 

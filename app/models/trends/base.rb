@@ -2,6 +2,7 @@
 
 class Trends::Base
   include Redisable
+  include LanguagesHelper
 
   class_attribute :default_options
 
