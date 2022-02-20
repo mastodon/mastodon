@@ -5,10 +5,10 @@ import noop from 'lodash/noop';
 import StatusContent from 'mastodon/components/status_content';
 import { MediaGallery, Video } from 'mastodon/features/ui/util/async-components';
 import Bundle from 'mastodon/features/ui/components/bundle';
-import classNames from 'classnames';
 import Avatar from 'mastodon/components/avatar';
 import DisplayName from 'mastodon/components/display_name';
 import RelativeTimestamp from 'mastodon/components/relative_timestamp';
+import Option from './option';
 
 export default class StatusCheckBox extends React.PureComponent {
 
@@ -19,9 +19,9 @@ export default class StatusCheckBox extends React.PureComponent {
     onToggle: PropTypes.func.isRequired,
   };
 
-  handleStatusesChange = e => {
-    const { onToggle, id } = this.props;
-    onToggle(id, e.target.checked);
+  handleStatusesToggle = (value, checked) => {
+    const { onToggle } = this.props;
+    onToggle(value, checked);
   };
 
   render () {
@@ -72,34 +72,32 @@ export default class StatusCheckBox extends React.PureComponent {
       }
     }
 
-    return (
-      <label className='dialog-option status-check-box poll__option selectable'>
-        <input type='checkbox' name='status_ids' value={status.get('id')} checked={checked} onChange={this.handleStatusesChange} />
-
-        <span
-          className={classNames('poll__input checkbox', { active: checked })}
-          tabIndex='0'
-          role='checkbox'
-          onKeyPress={this.handleRulesKeyPress}
-          aria-checked={checked}
-          aria-label={status.get('search_index')}
-          data-value={status.get('id')}
-        />
-
-        <div className='status-check-box__status poll__option__text'>
-          <div className='detailed-status__display-name'>
-            <div className='detailed-status__display-avatar'>
-              <Avatar account={status.get('account')} size={46} />
-            </div>
-
-            <div><DisplayName account={status.get('account')} /> · <RelativeTimestamp timestamp={status.get('created_at')} /></div>
+    const labelComponent = (
+      <div className='status-check-box__status poll__option__text'>
+        <div className='detailed-status__display-name'>
+          <div className='detailed-status__display-avatar'>
+            <Avatar account={status.get('account')} size={46} />
           </div>
 
-          <StatusContent status={status} />
-
-          {media}
+          <div><DisplayName account={status.get('account')} /> · <RelativeTimestamp timestamp={status.get('created_at')} /></div>
         </div>
-      </label>
+
+        <StatusContent status={status} />
+
+        {media}
+      </div>
+    );
+
+    return (
+      <Option
+        name='status_ids'
+        value={status.get('id')}
+        checked={checked}
+        onToggle={this.handleStatusesToggle}
+        label={status.get('search_index')}
+        labelComponent={labelComponent}
+        multiple
+      />
     );
   }
 

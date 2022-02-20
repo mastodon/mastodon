@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
-import classNames from 'classnames';
+import Option from './components/option';
 
 const messages = defineMessages({
   dislike: { id: 'report.reasons.dislike', defaultMessage: 'I don\'t like it' },
@@ -13,6 +13,8 @@ const messages = defineMessages({
   violation_description: { id: 'report.reasons.violation_description', defaultMessage: 'You are aware that it breaks specific rules' },
   other: { id: 'report.reasons.other', defaultMessage: 'It\'s something else' },
   other_description: { id: 'report.reasons.other_description', defaultMessage: 'The issue does not fit into other categories' },
+  status: { id: 'report.category.title_status', defaultMessage: 'post' },
+  account: { id: 'report.category.title_account', defaultMessage: 'profile' },
 });
 
 export default @injectIntl
@@ -22,6 +24,7 @@ class Category extends React.PureComponent {
     onNextStep: PropTypes.func.isRequired,
     category: PropTypes.string,
     onChangeCategory: PropTypes.func.isRequired,
+    startedFrom: PropTypes.oneOf(['status', 'account']),
     intl: PropTypes.object.isRequired,
   };
 
@@ -41,27 +44,16 @@ class Category extends React.PureComponent {
     }
   };
 
-  handleCategoryChange = e => {
+  handleCategoryToggle = (value, checked) => {
     const { onChangeCategory } = this.props;
 
-    if (e.target.checked) {
-      onChangeCategory(e.target.value);
+    if (checked) {
+      onChangeCategory(value);
     }
   };
 
-  handleCategoryKeyPress = e => {
-    const { onChangeCategory } = this.props;
-
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.stopPropagation();
-      e.preventDefault();
-
-      onChangeCategory(e.target.getAttribute('data-value'));
-    }
-  }
-
   render () {
-    const { category, intl } = this.props;
+    const { category, startedFrom, intl } = this.props;
 
     const options = [
       'dislike',
@@ -72,29 +64,22 @@ class Category extends React.PureComponent {
 
     return (
       <React.Fragment>
-        <h3 className='report-dialog-modal__title'><FormattedMessage id='report.category.title' defaultMessage="Tell us what's going on with this post" /></h3>
+        <h3 className='report-dialog-modal__title'><FormattedMessage id='report.category.title' defaultMessage="Tell us what's going on with this {type}" values={{ type: intl.formatMessage(messages[startedFrom]) }} /></h3>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.category.subtitle' defaultMessage='Choose the best match' /></p>
 
-        {options.map(item => (
-          <label key={item} className='dialog-option poll__option selectable'>
-            <input type='radio' name='category' value={item} checked={category === item} onChange={this.handleCategoryChange} />
-
-            <span
-              className={classNames('poll__input', { active: category === item })}
-              tabIndex='0'
-              role='radio'
-              onKeyPress={this.handleCategoryKeyPress}
-              aria-checked={category === item}
-              aria-label={intl.formatMessage(messages[item])}
-              data-value={item}
+        <div>
+          {options.map(item => (
+            <Option
+              key={item}
+              name='category'
+              value={item}
+              checked={category === item}
+              onToggle={this.handleCategoryToggle}
+              label={intl.formatMessage(messages[item])}
+              description={intl.formatMessage(messages[`${item}_description`])}
             />
-
-            <span className='poll__option__text'>
-              <strong>{intl.formatMessage(messages[item])}</strong>
-              {intl.formatMessage(messages[`${item}_description`])}
-            </span>
-          </label>
-        ))}
+          ))}
+        </div>
 
         <div className='flex-spacer' />
 

@@ -140,6 +140,7 @@ class ReportModal extends ImmutablePureComponent {
       forward,
       category,
       isSubmitting,
+      isSubmitted,
     } = this.state;
 
     const domain   = account.get('acct').split('@')[1];
@@ -152,6 +153,7 @@ class ReportModal extends ImmutablePureComponent {
       stepComponent = (
         <Category
           onNextStep={this.handleNextStep}
+          startedFrom={this.props.statusId ? 'status' : 'account'}
           category={category}
           onChangeCategory={this.handleChangeCategory}
         />
@@ -193,6 +195,7 @@ class ReportModal extends ImmutablePureComponent {
     case 'thanks':
       stepComponent = (
         <Thanks
+          submitted={isSubmitted}
           account={account}
           onClose={onClose}
         />
