@@ -709,12 +709,18 @@ eu:
       back_to_report: Atzera txostenaren orrira
       batch:
         remove_from_report: Kendu txostenetik
+        report: Salatu
       deleted: Ezabatuta
       media:
         title: Multimedia
       no_status_selected: Ez da bidalketarik aldatu ez delako bidalketarik aukeratu
       title: Kontuaren bidalketak
       with_media: Multimediarekin
+    strikes:
+      actions:
+        delete_statuses: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketak ezabatu ditu"
+        disable: "%{name} erabiltzailea %{target} erabiltzailearen kontua izoztu du"
+        none: "%{name} erabiltzaileak abisua bidali dio %{target} erabiltzaileari"
     system_checks:
       database_schema_check:
         message_html: Aplikatu gabeko datu-basearen migrazioak daude. Exekutatu aplikazioak esperotako portaera izan dezan
