@@ -31,9 +31,9 @@
         = check_box_tag :batch_checkbox_all, nil, false
       .batch-table__toolbar__actions
         = f.button safe_join([fa_icon('check'), t('admin.trends.statuses.allow')]), name: :approve, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        = f.button safe_join([fa_icon('check'), t('admin.trends.statuses.allow_account')]), name: :approve_all, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('check'), t('admin.trends.statuses.allow_account')]), name: :approve_accounts, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
         = f.button safe_join([fa_icon('times'), t('admin.trends.statuses.disallow')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-        = f.button safe_join([fa_icon('times'), t('admin.trends.statuses.disallow_account')]), name: :reject_all, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('times'), t('admin.trends.statuses.disallow_account')]), name: :reject_accounts, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
     .batch-table__body
       - if @statuses.empty?
         = nothing_here 'nothing-here--under-tabs'

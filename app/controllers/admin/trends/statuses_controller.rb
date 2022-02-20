@@ -34,12 +34,12 @@ class Admin::Trends::StatusesController < Admin::BaseController
   def action_from_button
     if params[:approve]
       'approve'
-    elsif params[:approve_all]
-      'approve_all'
+    elsif params[:approve_accounts]
+      'approve_accounts'
     elsif params[:reject]
       'reject'
-    elsif params[:reject_all]
-      'reject_all'
+    elsif params[:reject_accounts]
+      'reject_accounts'
     end
   end
 end

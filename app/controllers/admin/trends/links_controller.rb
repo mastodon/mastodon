@@ -34,12 +34,12 @@ class Admin::Trends::LinksController < Admin::BaseController
   def action_from_button
     if params[:approve]
       'approve'
-    elsif params[:approve_all]
-      'approve_all'
+    elsif params[:approve_providers]
+      'approve_providers'
     elsif params[:reject]
       'reject'
-    elsif params[:reject_all]
-      'reject_all'
+    elsif params[:reject_providers]
+      'reject_providers'
     end
   end
 end

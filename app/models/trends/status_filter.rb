@@ -38,8 +38,8 @@ class Trends::StatusFilter
   def trending_scope(value)
     scope = Trends.statuses.query
 
-    scope.in_locale(@params[:locale].to_s) if @params[:locale].present?
-    scope.allowed if value == 'allowed'
+    scope = scope.in_locale(@params[:locale].to_s) if @params[:locale].present?
+    scope = scope.allowed if value == 'allowed'
 
     scope.to_arel
   end

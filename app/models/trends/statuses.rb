@@ -10,9 +10,13 @@ class Trends::Statuses < Trends::Base
   }
 
   class Query < Trends::Query
-    def filtered_for(account)
+    def filtered_for!(account)
       @account = account
       self
+    end
+
+    def filtered_for(account)
+      clone.filtered_for!(account)
     end
 
     private

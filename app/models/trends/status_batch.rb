@@ -10,12 +10,12 @@ class Trends::StatusBatch
     case action
     when 'approve'
       approve!
-    when 'approve_all'
-      approve_all!
+    when 'approve_accounts'
+      approve_accounts!
     when 'reject'
       reject!
-    when 'reject_all'
-      reject_all!
+    when 'reject_accounts'
+      reject_accounts!
     end
   end
 
@@ -34,7 +34,7 @@ class Trends::StatusBatch
     statuses.update_all(trendable: true)
   end
 
-  def approve_all!
+  def approve_accounts!
     status_accounts.each do |account|
       authorize(account, :review?)
       account.update(trendable: true, reviewed_at: action_time)
@@ -49,7 +49,7 @@ class Trends::StatusBatch
     statuses.update_all(trendable: false)
   end
 
-  def reject_all!
+  def reject_accounts!
     status_accounts.each do |account|
       authorize(account, :review?)
       account.update(trendable: false, reviewed_at: action_time)

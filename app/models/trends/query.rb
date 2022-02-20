@@ -15,27 +15,43 @@ class Trends::Query
     @loaded  = false
     @allowed = false
     @limit   = -1
-    @skip    = 0
+    @offset  = 0
   end
 
-  def allowed
+  def allowed!
     @allowed = true
     self
   end
 
-  def in_locale(value)
+  def allowed
+    clone.allowed!
+  end
+
+  def in_locale!(value)
     @locale = value
     self
   end
 
-  def skip(value)
-    @skip = value
+  def in_locale(value)
+    clone.in_locale!(value)
+  end
+
+  def offset!(value)
+    @offset = value
+    self
+  end
+
+  def offset(value)
+    clone.offset!(value)
+  end
+
+  def limit!(value)
+    @limit = value
     self
   end
 
   def limit(value)
-    @limit = value
-    self
+    clone.limit!(value)
   end
 
   def records
@@ -77,7 +93,7 @@ class Trends::Query
   end
 
   def ids
-    redis.zrevrange(key, @skip, @limit.positive? ? @limit - 1 : @limit).map(&:to_i)
+    redis.zrevrange(key, @offset, @limit.positive? ? @limit - 1 : @limit).map(&:to_i)
   end
 
   def perform_queries

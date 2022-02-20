@@ -10,12 +10,12 @@ class Trends::PreviewCardBatch
     case action
     when 'approve'
       approve!
-    when 'approve_all'
-      approve_all!
+    when 'approve_providers'
+      approve_providers!
     when 'reject'
       reject!
-    when 'reject_all'
-      reject_all!
+    when 'reject_providers'
+      reject_providers!
     end
   end
 
@@ -34,7 +34,7 @@ class Trends::PreviewCardBatch
     preview_cards.update_all(trendable: true)
   end
 
-  def approve_all!
+  def approve_providers!
     preview_card_providers.each do |provider|
       authorize(provider, :review?)
       provider.update(trendable: true, reviewed_at: action_time)
@@ -49,7 +49,7 @@ class Trends::PreviewCardBatch
     preview_cards.update_all(trendable: false)
   end
 
-  def reject_all!
+  def reject_providers!
     preview_card_providers.each do |provider|
       authorize(provider, :review?)
       provider.update(trendable: false, reviewed_at: action_time)
