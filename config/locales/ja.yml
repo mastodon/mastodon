@@ -219,6 +219,7 @@ ja:
       whitelisted: 連合許可済み
     action_logs:
       action_types:
+        approve_appeal: 抗議を承認
         approve_user: ユーザーの承認
         assigned_to_self_report: 通報の担当者に設定
         change_email_user: ユーザーのメールアドレスを変更
@@ -250,6 +251,7 @@ ja:
         enable_user: ユーザーを有効化
         memorialize_account: 追悼アカウント化
         promote_user: ユーザーを昇格
+        reject_appeal: 抗議を却下
         reject_user: ユーザーを拒否
         remove_avatar_user: アイコンを削除
         reopen_report: 未解決に戻す
@@ -377,6 +379,14 @@ ja:
       media_storage: メディアストレージ
       new_users: 新規ユーザー
       opened_reports: 新規通報
+      pending_appeals_html:
+        other: "保留中の抗議 <strong>%{count}</strong> 件"
+      pending_reports_html:
+        other: "保留中の通報 <strong>%{count}</strong> 件"
+      pending_tags_html:
+        other: "保留中のハッシュタグ <strong>%{count}</strong> 件"
+      pending_users_html:
+        other: "保留中のユーザー <strong>%{count}</strong> 件"
       resolved_reports: 解決済みの通報
       software: ソフトウェア
       sources: サインアップソース
@@ -385,6 +395,10 @@ ja:
       top_languages: トップのアクティブ言語
       top_servers: トップアクティブサーバー
       website: ウェブサイト
+    disputes:
+      appeals:
+        empty: 抗議はありません。
+        title: 抗議
     domain_allows:
       add_new: 連合を許可
       created_msg: 連合を許可しました
