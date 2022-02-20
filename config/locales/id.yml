@@ -987,6 +987,10 @@ id:
         none: Peringatan
         sensitive: Tandai akun sebagai sensitif
         silence: Pembatasan akun
+        suspend: Penangguhan akun
+      your_appeal_approved: Banding Anda disetujui
+      your_appeal_pending: Anda telah mengirim banding
+      your_appeal_rejected: Banding Anda ditolak
   domain_validator:
     invalid_domain: bukan nama domain yang valid
   errors:
@@ -1540,6 +1544,9 @@ id:
     recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
     webauthn: Kunci keamanan
   user_mailer:
+    appeal_approved:
+      action: Ke akun Anda
+      explanation: Banding peringatan terhadap akun Anda pada %{strike_date} yang Anda kirim pada %{appeal_date} telah disetujui. Akun Anda akan kembali ditandai sebagai akun bagus.
     backup_ready:
       explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
       subject: Arsip Anda sudah siap diunduh
