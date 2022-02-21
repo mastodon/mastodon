@@ -225,6 +225,7 @@ fr:
       whitelisted: Sur liste blanche
     action_logs:
       action_types:
+        approve_appeal: Approuver la contestation
         approve_user: Approuver l’utilisateur
         assigned_to_self_report: Affecter le signalement
         change_email_user: Modifier le courriel pour
@@ -256,6 +257,7 @@ fr:
         enable_user: Activer l’utilisateur
         memorialize_account: Ériger en mémorial
         promote_user: Promouvoir l’utilisateur
+        reject_appeal: Rejeter la contestation
         reject_user: Rejeter l’utilisateur
         remove_avatar_user: Supprimer l’avatar
         reopen_report: Rouvrir le signalement
@@ -400,6 +402,9 @@ fr:
       top_languages: Langues les plus actives
       top_servers: Serveurs les plus actifs
       website: Site Web
+    disputes:
+      appeals:
+        title: Contestations
     domain_allows:
       add_new: Mettre le domaine sur liste sur blanche
       created_msg: Ce domaine a été ajouté à la liste blanche avec succès
@@ -929,11 +934,18 @@ fr:
     explore_mastodon: Explorer %{title}
   disputes:
     strikes:
+      appeals:
+        submit: Soumettre la contestation
+      associated_report: Rapport associé
       created_at: En date du
       recipient: Adressé à
+      status: 'Message #%{id}'
       title_actions:
         delete_statuses: Suppression de message
+        disable: Suspension de compte
         none: Avertissement
+        silence: Limitation du compte
+        suspend: Suspension de compte
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
   errors:
@@ -1496,6 +1508,8 @@ fr:
   user_mailer:
     appeal_approved:
       action: Aller à votre compte
+    appeal_rejected:
+      title: Contestation rejetée
     backup_ready:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
@@ -1507,6 +1521,7 @@ fr:
       subject: Veuillez confirmer la tentative de connexion
       title: Tentative de connexion
     warning:
+      appeal: Soumettre une contestation
       categories:
         spam: Indésirable
         violation: Le contenu viole les directives de la communauté suivantes
