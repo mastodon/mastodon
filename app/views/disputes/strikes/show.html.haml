@@ -23,7 +23,7 @@
   .report-header__card
     .strike-card
       - unless @strike.none_action?
-        %p= t "user_mailer.warning.explanation.#{@strike.action}"
+        %p= t "user_mailer.warning.explanation.#{@strike.action}", instance: Rails.configuration.x.local_domain
 
       - unless @strike.text.blank?
         = Formatter.instance.linkify(@strike.text)
@@ -34,9 +34,10 @@
           = t("user_mailer.warning.categories.#{@strike.report.category}")
 
         - if @strike.report.violation? && @strike.report.rule_ids.present?
-          %ul.rules-list
+          %ul.strike-card__rules
             - @strike.report.rules.each do |rule|
-              %li= rule.text
+              %li
+                %span.strike-card__rules__text= rule.text
 
       - if @strike.status_ids.present? && !@strike.status_ids.empty?
         %p
