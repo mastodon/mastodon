@@ -71,7 +71,7 @@ class NotifyService < BaseService
     message? && @notification.target_status.direct_visibility?
   end
 
-  # Returns true if the sender has been mentionned by the recipient up the thread
+  # Returns true if the sender has been mentioned by the recipient up the thread
   def response_to_recipient?
     return false if @notification.target_status.in_reply_to_id.nil?
 
