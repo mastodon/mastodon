@@ -1565,10 +1565,12 @@ fr:
   user_mailer:
     appeal_approved:
       action: Aller à votre compte
+      explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été approuvé. Votre compte est de nouveau en règle.
       subject: Votre appel du %{date} a été approuvé
       title: Appel approuvé
     appeal_rejected:
       explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été rejeté.
+      subject: Votre appel du %{date} a été rejeté
       title: Contestation rejetée
     backup_ready:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
@@ -1582,6 +1584,7 @@ fr:
       title: Tentative de connexion
     warning:
       appeal: Soumettre une contestation
+      appeal_description: Si vous pensez qu'il s'agit d'une erreur, vous pouvez faire appel auprès de l'équipe de %{instance}.
       categories:
         spam: Indésirable
         violation: Le contenu viole les directives de la communauté suivantes
