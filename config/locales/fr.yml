@@ -390,6 +390,9 @@ fr:
       media_storage: Stockage des médias
       new_users: nouveaux utilisateurs
       opened_reports: rapports ouverts
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> appel en attente"
+        other: "<strong>%{count}</strong> appels en attente"
       pending_reports_html:
         one: "<strong>%{count}</strong> rapport en attente"
         other: "<strong>%{count}</strong> rapports en attente"
@@ -409,6 +412,7 @@ fr:
       website: Site Web
     disputes:
       appeals:
+        empty: Aucun appel trouvé.
         title: Contestations
     domain_allows:
       add_new: Mettre le domaine sur liste sur blanche
@@ -571,6 +575,7 @@ fr:
       action_log: Journal d’audit
       action_taken_by: Intervention de
       actions:
+        delete_description_html: Les messages signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
         silence_description_html: Le profil ne sera visible que pour ceux qui le suivent déjà ou le consultent manuellement, ce qui limite considérablement sa portée. Peut toujours être restauré.
         suspend_description_html: Le profil et tout son contenu deviendront inaccessibles jusqu'à ce qu'il soit éventuellement supprimé. Interagir avec le compte sera impossible. Réversible dans les 30 jours.
@@ -727,6 +732,9 @@ fr:
       no_status_selected: Aucun statut n’a été modifié car aucun n’a été sélectionné
       title: Messages du compte
       with_media: Avec médias
+    strikes:
+      appeal_approved: Appel soumis
+      appeal_pending: Appel en attente
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
@@ -1515,6 +1523,7 @@ fr:
   user_mailer:
     appeal_approved:
       action: Aller à votre compte
+      title: Appel approuvé
     appeal_rejected:
       title: Contestation rejetée
     backup_ready:
