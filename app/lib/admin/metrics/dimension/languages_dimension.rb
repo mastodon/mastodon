@@ -7,7 +7,9 @@ class Admin::Metrics::Dimension::LanguagesDimension < Admin::Metrics::Dimension:
     'languages'
   end
 
-  def data
+  protected
+
+  def perform_query
     sql = <<-SQL.squish
       SELECT locale, count(*) AS value
       FROM users
