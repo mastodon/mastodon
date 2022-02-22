@@ -740,6 +740,8 @@ fr:
         disable: "%{name} a bloqué le compte de %{target}"
         none: "%{name} a envoyé un avertissement à %{target}"
         sensitive: "%{name} a marqué le compte de %{target} comme sensible"
+        silence: "%{name} a limité le compte de %{target}"
+        suspend: "%{name} a suspendu le compte de %{target}"
       appeal_approved: Appel soumis
       appeal_pending: Appel en attente
     system_checks:
@@ -763,6 +765,10 @@ fr:
         allow_provider: Autoriser l'éditeur
         disallow: Interdire le lien
         disallow_provider: Interdire l'éditeur
+        shared_by_over_week:
+          one: Partagé par une personne au cours de la semaine dernière
+          other: Partagé par %{count} personnes au cours de la semaine dernière
+          zero: Non partagé au cours de la semaine dernière
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
       pending_review: En attente de révision
@@ -789,6 +795,10 @@ fr:
         trending_rank: 'Tendance #%{rank}'
         usable: Peut être utilisé
         usage_comparison: Utilisé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+        used_by_over_week:
+          one: Utilisé par une personne au cours de la semaine dernière
+          other: Utilisé par %{count} personnes au cours de la semaine dernière
+          zero: Non utilisé au cours de la semaine dernière
       title: Tendances
     warning_presets:
       add_new: Ajouter un nouveau
@@ -797,6 +807,12 @@ fr:
       empty: Vous n'avez pas encore créé de paramètres prédéfinis pour les avertissements.
       title: Gérer les avertissements prédéfinis
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: effacer les messages
+        disable: bloquer le compte
+        none: un avertissement
+        sensitive: marquer le compte comme sensible
     new_pending_account:
       body: Les détails du nouveau compte se trouvent ci-dessous. Vous pouvez approuver ou rejeter cette demande.
       subject: Nouveau compte à examiner sur %{instance} (%{username})
