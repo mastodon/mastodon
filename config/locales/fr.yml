@@ -813,6 +813,11 @@ fr:
         disable: bloquer le compte
         none: un avertissement
         sensitive: marquer le compte comme sensible
+        silence: limiter le compte
+        suspend: suspendre le compte
+      body: "%{target} fait appel de la décision de modération émise par %{action_taken_by} le %{date} et qui était : %{type}. Cette personne a écrit :"
+      next_steps: Vous pouvez approuver l'appel pour annuler la décision de modération, ou l'ignorer.
+      subject: "%{username} fait appel d'une décision de modération sur %{instance}"
     new_pending_account:
       body: Les détails du nouveau compte se trouvent ci-dessous. Vous pouvez approuver ou rejeter cette demande.
       subject: Nouveau compte à examiner sur %{instance} (%{username})
