@@ -988,13 +988,18 @@ fr:
       created_at: En date du
       recipient: Adressé à
       status: 'Message #%{id}'
+      status_removed: Message déjà supprimé du système
       title: "%{action} du %{date}"
       title_actions:
         delete_statuses: Suppression de message
         disable: Suspension de compte
         none: Avertissement
+        sensitive: Marquage d'un compte comme sensible
         silence: Limitation du compte
         suspend: Suspension de compte
+      your_appeal_approved: Votre appel a été approuvé
+      your_appeal_pending: Vous avez soumis un appel
+      your_appeal_rejected: Votre appel a été rejeté
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
   errors:
@@ -1289,6 +1294,9 @@ fr:
     reply:
       proceed: Confirmer la réponse
       prompt: 'Vous souhaitez répondre à ce message :'
+  reports:
+    errors:
+      invalid_rules: ne fait pas référence à des règles valides
   scheduled_statuses:
     over_daily_limit: Vous avez dépassé la limite de %{limit} messages planifiés par jour
     over_total_limit: Vous avez dépassé la limite de %{limit} messages planifiés
