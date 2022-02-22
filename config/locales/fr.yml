@@ -281,6 +281,7 @@ fr:
         update_domain_block: Mettre à jour le blocage de domaine
         update_status: Mettre à jour le message
       actions:
+        approve_appeal_html: "%{name} a approuvé l'appel de la décision de modération émis par %{target}"
         approve_user_html: "%{name} a approuvé l’inscription de %{target}"
         assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
         change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur·rice %{target}"
@@ -312,6 +313,7 @@ fr:
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
+        reject_appeal_html: "%{name} a rejeté l'appel de la décision de modération émis par %{target}"
         reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
@@ -976,13 +978,17 @@ fr:
   disputes:
     strikes:
       action_taken: Mesure prise
+      appeal_approved: Cette sanction a été annulée en appel et n'est plus valide
+      appeal_rejected: L'appel a été rejeté
       appeal_submitted_at: Contestation soumise le
+      appealed_msg: Votre demande d'appel a été soumise. Si elle est approuvée, vous en serez informé·e.
       appeals:
         submit: Soumettre la contestation
       associated_report: Rapport associé
       created_at: En date du
       recipient: Adressé à
       status: 'Message #%{id}'
+      title: "%{action} du %{date}"
       title_actions:
         delete_statuses: Suppression de message
         disable: Suspension de compte
@@ -1551,8 +1557,10 @@ fr:
   user_mailer:
     appeal_approved:
       action: Aller à votre compte
+      subject: Votre appel du %{date} a été approuvé
       title: Appel approuvé
     appeal_rejected:
+      explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été rejeté.
       title: Contestation rejetée
     backup_ready:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
