@@ -1513,6 +1513,25 @@ a.sparkline {
     &:last-child {
       margin-bottom: 0;
     }
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  &__rules {
+    list-style: disc;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    color: $darker-text-color;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__text {
+      color: $primary-text-color;
+    }
   }
 
   &__statuses-list {
