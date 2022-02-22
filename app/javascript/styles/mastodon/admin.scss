@@ -661,18 +661,6 @@ body,
       text-decoration: underline;
     }
   }
-
-  &--inactive {
-    .log-entry__title {
-      text-decoration: line-through;
-    }
-
-    a,
-    .username,
-    .target {
-      color: $darker-text-color;
-    }
-  }
 }
 
 a.name-tag,
@@ -1208,17 +1196,6 @@ a.sparkline {
         font-weight: 600;
         padding: 4px 0;
       }
-
-      a {
-        color: $ui-highlight-color;
-        text-decoration: none;
-
-        &:hover,
-        &:focus,
-        &:active {
-          text-decoration: underline;
-        }
-      }
     }
 
     &--horizontal {
@@ -1305,6 +1282,30 @@ a.sparkline {
       right: 15px;
       background: linear-gradient(to left, $ui-base-color, transparent);
       pointer-events: none;
+    }
+
+    a {
+      color: $secondary-text-color;
+      text-decoration: none;
+      unicode-bidi: isolate;
+
+      &:hover {
+        text-decoration: underline;
+
+        .fa {
+          color: lighten($dark-text-color, 7%);
+        }
+      }
+
+      &.mention {
+        &:hover {
+          text-decoration: none;
+
+          span {
+            text-decoration: underline;
+          }
+        }
+      }
     }
   }
 
@@ -1512,6 +1513,25 @@ a.sparkline {
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  &__rules {
+    list-style: disc;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    color: $darker-text-color;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__text {
+      color: $primary-text-color;
     }
   }
 
