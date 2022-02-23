@@ -1176,6 +1176,9 @@ en:
     carry_mutes_over_text: This user moved from %{acct}, which you had muted.
     copy_account_note_text: 'This user moved from %{acct}, here were your previous notes about them:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} signed up"
     digest:
       action: View all notifications
       body: Here is a brief summary of the messages you missed since your last visit on %{since}
