@@ -335,15 +335,6 @@ class FeedManager
     redis.exists?("subscribed:#{timeline_key}")
   end
 
-  # Check if the account is blocking or muting any of the given accounts
-  # @param [Integer] receiver_id
-  # @param [Array<Integer>] account_ids
-  # @param [Symbol] context
-  def blocks_or_mutes?(receiver_id, account_ids, context)
-    Block.where(account_id: receiver_id, target_account_id: account_ids).any? ||
-      (context == :home ? Mute.where(account_id: receiver_id, target_account_id: account_ids).any? : Mute.where(account_id: receiver_id, target_account_id: account_ids, hide_notifications: true).any?)
-  end
-
   # Check if status should not be added to the home feed
   # @param [Status] status
   # @param [Integer] receiver_id
@@ -354,15 +345,16 @@ class FeedManager
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
     return true  if phrase_filtered?(status, receiver_id, :home)
 
-    check_for_blocks = crutches[:active_mentions][status.id] || []
-    check_for_blocks.concat([status.account_id])
+    check_for_blocks = (crutches[:active_mentions][status.id] || []) + [status.account_id]
+    check_for_mutes  = [status.account_id]
 
     if status.reblog?
       check_for_blocks.concat([status.reblog.account_id])
+      check_for_mutes.concat([status.reblog.account_id])
       check_for_blocks.concat(crutches[:active_mentions][status.reblog_of_id] || [])
     end
 
-    return true if check_for_blocks.any? { |target_account_id| crutches[:blocking][target_account_id] || crutches[:muting][target_account_id] }
+    return true if check_for_blocks.any? { |target_account_id| crutches[:blocking][target_account_id] } || check_for_mutes.any? { |target_account_id| crutches[:muting][target_account_id] }
 
     if status.reply? && !status.in_reply_to_account_id.nil?                                                                      # Filter out if it's a reply
       should_filter   = !crutches[:following][status.in_reply_to_account_id]                                                     # and I'm not following the person it's a reply to
@@ -396,7 +388,7 @@ class FeedManager
     check_for_blocks = status.active_mentions.pluck(:account_id)
     check_for_blocks.concat([status.in_reply_to_account]) if status.reply? && !status.in_reply_to_account_id.nil?
 
-    should_filter   = blocks_or_mutes?(receiver_id, check_for_blocks, :mentions)                                                         # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked (or muted)
+    should_filter   = Block.where(account_id: receiver_id, target_account_id: check_for_blocks).any?                                     # Filter if it's from someone I blocked, in reply to someone I blocked, or mentioning someone I blocked
     should_filter ||= (status.account.silenced? && !Follow.where(account_id: receiver_id, target_account_id: status.account_id).exists?) # of if the account is silenced and I'm not following them
 
     should_filter
