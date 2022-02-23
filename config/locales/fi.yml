@@ -800,6 +800,7 @@ fi:
         used_by_over_week:
           one: Yhden henkilön käyttämä viimeisen viikon aikana
           other: Käyttänyt %{count} henkilöä viimeisen viikon aikana
+          zero: Ei kenenkään käytössä viimeisen viikon aikana
       title: Trendit
     warning_presets:
       add_new: Lisää uusi
@@ -808,6 +809,14 @@ fi:
       empty: Et ole vielä määrittänyt yhtään varoitusesiasetusta.
       title: Hallinnoi varoitusesiasetuksia
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: poistaa heidän viestit
+        disable: jäädyttää heidän tilinsä
+        none: varoitus
+        sensitive: merkitä heidän tilinsä arkaluonteiseksi
+        silence: rajoittaa heidän tilinsä
+        suspend: keskeyttää heidän tilinsä
     new_pending_account:
       body: Uuden tilin tiedot ovat alla. Voit hyväksyä tai hylätä tämän hakemuksen.
       subject: Uusi tili tarkastettavana %{instance} (%{username})
