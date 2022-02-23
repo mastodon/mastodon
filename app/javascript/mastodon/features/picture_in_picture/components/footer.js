@@ -60,7 +60,7 @@ class Footer extends ImmutablePureComponent {
     const { router } = this.context;
 
     if (onClose) {
-      onClose();
+      onClose(true);
     }
 
     dispatch(replyCompose(status, router.history));
