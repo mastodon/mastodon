@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { submitReport } from 'flavours/glitch/actions/reports';
 import { expandAccountTimeline } from 'flavours/glitch/actions/timelines';
 import { fetchRules } from 'flavours/glitch/actions/rules';
+import { fetchRelationships } from 'flavours/glitch/actions/accounts';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { makeGetAccount } from 'flavours/glitch/selectors';
@@ -116,6 +117,7 @@ class ReportModal extends ImmutablePureComponent {
   componentDidMount () {
     const { dispatch, accountId } = this.props;
 
+    dispatch(fetchRelationships([accountId]));
     dispatch(expandAccountTimeline(accountId, { withReplies: true }));
     dispatch(fetchRules());
   }
