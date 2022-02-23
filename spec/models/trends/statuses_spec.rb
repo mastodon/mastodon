@@ -1,9 +1,47 @@
 require 'rails_helper'
 
 RSpec.describe Trends::Statuses do
-  subject { described_class.new(threshold: 5, review_threshold: 10, score_halflife: 8.hours) }
+  subject! { described_class.new(threshold: 5, review_threshold: 10, score_halflife: 8.hours) }
 
   let!(:at_time) { DateTime.new(2021, 11, 14, 10, 15, 0) }
+
+  describe 'Trends::Statuses::Query' do
+    let!(:query) { subject.query }
+    let!(:today) { at_time }
+
+    let!(:status1) { Fabricate(:status, text: 'Foo', trendable: true, created_at: today) }
+    let!(:status2) { Fabricate(:status, text: 'Bar', trendable: true, created_at: today) }
+
+    before do
+      15.times { reblog(status1, today) }
+      12.times { reblog(status2, today) }
+
+      subject.refresh(today)
+    end
+
+    describe '#filtered_for' do
+      let(:account) { Fabricate(:account) }
+
+      it 'returns a composable query scope' do
+        expect(query.filtered_for(account)).to be_a Trends::Query
+      end
+
+      it 'filters out blocked accounts' do
+        account.block!(status1.account)
+        expect(query.filtered_for(account).to_a).to eq [status2]
+      end
+
+      it 'filters out muted accounts' do
+        account.mute!(status2.account)
+        expect(query.filtered_for(account).to_a).to eq [status1]
+      end
+
+      it 'filters out blocked-by accounts' do
+        status1.account.block!(account)
+        expect(query.filtered_for(account).to_a).to eq [status2]
+      end
+    end
+  end
 
   describe '#add' do
     let(:status) { Fabricate(:status) }
@@ -18,7 +56,13 @@ RSpec.describe Trends::Statuses do
   end
 
   describe '#query' do
-    pending
+    it 'returns a composable query scope' do
+      expect(subject.query).to be_a Trends::Query
+    end
+
+    it 'responds to filtered_for' do
+      expect(subject.query).to respond_to(:filtered_for)
+    end
   end
 
   describe '#refresh' do
@@ -28,11 +72,6 @@ RSpec.describe Trends::Statuses do
     let!(:status1) { Fabricate(:status, text: 'Foo', trendable: true, created_at: yesterday) }
     let!(:status2) { Fabricate(:status, text: 'Bar', trendable: true, created_at: today) }
     let!(:status3) { Fabricate(:status, text: 'Baz', trendable: true, created_at: today) }
-
-    def reblog(status, at_time)
-      reblog = Fabricate(:status, reblog: status, created_at: at_time)
-      subject.add(status, reblog.account_id, at_time)
-    end
 
     before do
       13.times { reblog(status1, today) }
@@ -62,5 +101,10 @@ RSpec.describe Trends::Statuses do
       decayed_score = subject.score(status2.id)
       expect(decayed_score).to be <= original_score / 2
     end
+  end
+
+  def reblog(status, at_time)
+    reblog = Fabricate(:status, reblog: status, created_at: at_time)
+    subject.add(status, reblog.account_id, at_time)
   end
 end
