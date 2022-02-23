@@ -736,6 +736,14 @@ fi:
       no_status_selected: Viestejä ei muutettu, koska yhtään ei ole valittuna
       title: Tilin tilat
       with_media: Sisältää mediaa
+    strikes:
+      actions:
+        delete_statuses: "%{name} poisti käyttäjän %{target} viestit"
+        disable: "%{name} jäädytti %{target} tilin"
+        none: "%{name} lähetti varoituksen henkilölle %{target}"
+        sensitive: "%{name} merkitsi käyttäjän %{target} tilin arkaluonteiseksi"
+        silence: "%{name} rajoitti käyttäjän %{target} tilin"
+        suspend: "%{name} keskeytti käyttäjän %{target} tilin"
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
