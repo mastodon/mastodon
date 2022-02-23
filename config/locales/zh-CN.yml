@@ -388,6 +388,8 @@ zh-CN:
       media_storage: 媒体存储
       new_users: 新用户
       opened_reports: 被发起的举报
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> 个待处理举报"
       pending_reports_html:
         other: "<strong>%{count}</strong> 个待处理举报"
       pending_tags_html:
@@ -1161,6 +1163,9 @@ zh-CN:
     carry_mutes_over_text: 这个用户迁移自你隐藏过的 %{acct}
     copy_account_note_text: '这个用户迁移自 %{acct}，你曾为其添加备注：'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} 注册了"
     digest:
       action: 查看所有通知
       body: 以下是自%{since}你最后一次登录以来错过的消息的摘要
