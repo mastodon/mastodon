@@ -98,7 +98,6 @@ lv:
     account_moderation_notes:
       create: Atstāt piezīmi
       created_msg: Moderācijas piezīme ir veiksmīgi izveidota!
-      delete: Dzēst
       destroyed_msg: Moderācijas piezīme ir veiksmīgi iznīcināta!
     accounts:
       add_email_domain_block: Bloķēt e-pasta domēnu
@@ -167,6 +166,11 @@ lv:
       not_subscribed: Nav abonēts
       pending: Gaida pārskatīšanu
       perform_full_suspension: Apturēt
+      previous_strikes: Iepriekšējie brīdinājumi
+      previous_strikes_description_html:
+        one: Šim kontam ir <strong>viens</strong> brīdinājums.
+        other: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
+        zero: Š konta <strong>stāvoklis ir labs</strong>.
       promote: Veicināt
       protocol: Protokols
       public: Publisks
@@ -210,6 +214,7 @@ lv:
       statuses: Ziņas
       strikes: Iepriekšējie streiki
       subscribe: Abonēt
+      suspend: Apturēt
       suspended: Apturēts
       suspension_irreversible: Šī konta dati ir neatgriezeniski izdzēsti. Tu vari atcelt konta darbības apturēšanu, lai tas būtu izmantojams, taču tas neatjaunos iepriekšējos datus.
       suspension_reversible_hint_html: Konta darbība ir apturēta, un dati tiks pilnībā noņemti %{date}. Līdz tam kontu var atjaunot bez jebkādām nelabvēlīgām sekām. Ja vēlies nekavējoties noņemt visus konta datus, to vari izdarīt zemāk.
@@ -230,6 +235,7 @@ lv:
       whitelisted: Atļauts federācijai
     action_logs:
       action_types:
+        approve_appeal: Apstiprināt Apelāciju
         approve_user: Apstiprināt lietotāju
         assigned_to_self_report: Piešķirt Pārskatu
         change_email_user: Mainīt e-pastu lietotājam
@@ -261,6 +267,7 @@ lv:
         enable_user: Ieslēgt Lietotāju
         memorialize_account: Saglabāt Kontu Piemiņai
         promote_user: Paaugstināt Lietotāju
+        reject_appeal: Noraidīt Apelāciju
         reject_user: Noraidīt lietotāju
         remove_avatar_user: Noņemt Avatāru
         reopen_report: Atkārtoti Atvērt Ziņojumu
@@ -279,6 +286,7 @@ lv:
         update_domain_block: Atjaunināt Domēna Bloku
         update_status: Atjaunināt ziņu
       actions:
+        approve_appeal_html: "%{name} apstiprināja moderācijas lēmuma apelāciju no %{target}"
         approve_user_html: "%{name} apstiprināja reģistrēšanos no %{target}"
         assigned_to_self_report_html: "%{name} piešķīra pārskatu %{target} sev"
         change_email_user_html: "%{name} nomainīja e-pasta adresi lietotājam %{target}"
@@ -310,6 +318,7 @@ lv:
         enable_user_html: "%{name} iespējoja pieteikšanos lietotājam %{target}"
         memorialize_account_html: "%{name} pārvērta %{target} kontu par atmiņas lapu"
         promote_user_html: "%{name} paaugstināja lietotāju %{target}"
+        reject_appeal_html: "%{name} noraidīja moderācijas lēmuma apelāciju no %{target}"
         reject_user_html: "%{name} noraidīja reģistrēšanos no %{target}"
         remove_avatar_user_html: "%{name} noņēma %{target} avatāru"
         reopen_report_html: "%{name} atkārtoti atvēra ziņojumu %{target}"
@@ -388,18 +397,22 @@ lv:
       media_storage: Mediju krātuve
       new_users: jauni lietotāji
       opened_reports: atvērtie ziņojumi
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> izskatāmā apelācija"
+        other: "<strong>%{count}</strong> izskatāmās apelācijas"
+        zero: "<strong>%{count}</strong> izskatāmo apelāciju"
       pending_reports_html:
-        one: "<strong>1</strong> ziņojums gaida"
+        one: "<strong>%{count}</strong>ziņojums gaida"
         other: "<strong>%{count}</strong>ziņojumi gaida"
-        zero: "<strong>%{count}</strong> ziņojumu"
+        zero: "<strong>%{count}</strong>ziņojumi gaida"
       pending_tags_html:
-        one: "<strong>1</strong> tēmturis gaida"
+        one: "<strong>%{count}</strong>tēmturis gaida"
         other: "<strong>%{count}</strong>tēmturi gaida"
-        zero: "<strong>%{count}</strong> tēmturu"
+        zero: "<strong>%{count}</strong>tēmturi gaida"
       pending_users_html:
-        one: "<strong>1</strong> lietotājs gaida"
+        one: "<strong>%{count}</strong>lietotājs gaida"
         other: "<strong>%{count}</strong>lietotāji gaida"
-        zero: "<strong>%{count}</strong> lietotāju"
+        zero: "<strong>%{count}</strong>lietotāji gaida"
       resolved_reports: ziņojumi atrisināti
       software: Programmatūra
       sources: Reģistrēšanās avoti
@@ -408,6 +421,10 @@ lv:
       top_languages: Aktīvākās valodas
       top_servers: Aktīvākie serveri
       website: Tīmekļa vietne
+    disputes:
+      appeals:
+        empty: Apelācijas netika atrastas.
+        title: Apelācijas
     domain_allows:
       add_new: Atļaut federāciju ar domēnu
       created_msg: Domēns ir veiksmīgi atļauts federācijai
@@ -448,7 +465,7 @@ lv:
         affected_accounts:
           one: Ietekmēts viens konts datu bāzē
           other: Ietekmēti %{count} konti datu bāzē
-          zero: "%{count} ietekmētu kontu"
+          zero: Nav ietekmētu kontu datubāzē
         retroactive:
           silence: Atsaukt ierobežojumus esošajiem ietekmētajiem kontiem no šī domēna
           suspend: Atcelt šī domēna esošo ietekmēto kontu darbības apturēšanu
@@ -503,7 +520,7 @@ lv:
       known_accounts:
         one: "%{count} zināms konts"
         other: "%{count} zināmi konti"
-        zero: "%{count} zināmu kontu"
+        zero: Nav zināmu kontu
       moderation:
         all: Visas
         limited: Ierobežotās
@@ -571,10 +588,12 @@ lv:
       action_log: Auditācijas pieraksti
       action_taken_by: Veiktā darbība
       actions:
+        delete_description_html: Raksti, par kurām ziņots, tiks dzēsti, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākos pārkāpumus saistībā ar to pašu kontu.
         other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
+        resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
         silence_description_html: Profils būs redzams tikai tiem, kas jau tam seko vai manuāli apskata, stingri ierobežojot tās sasniedzamību. Šo vienmēr var atgriezt.
         suspend_description_html: Profils un viss tā saturs kļūs nepieejami, līdz tas beidzot tiek izdzēsts. Mijiedarbība ar kontu būs neiespējama. Atgriežams 30 dienu laikā.
-      actions_description_html: 'Ja ar minētā satura noņemšanu vien nepietiek:'
+      actions_description_html: Izlem, kādas darbības jāveic, lai atrisinātu šo ziņojumu. Ja veiksi sodīšanas darbību pret kontu, par kuru ziņots, tam tiks nosūtīts e-pasta paziņojums, izņemot gadījumus, kad ir atlasīta kategorija <strong>Spam</strong>.
       add_to_report: Pievienot varāk paziņošanai
       are_you_sure: Vai esi pārliecināts?
       assign_to_self: Piešķirt man
@@ -586,7 +605,7 @@ lv:
         none: Neviens
       comment_description_html: 'Lai sniegtu vairāk informācijas, %{name} rakstīja:'
       created_at: Ziņoti
-      delete_and_resolve: Dzēst un atrisināt
+      delete_and_resolve: Izdzēst rakstus
       forwarded: Pārsūtīti
       forwarded_to: Pārsūtīti %{domain}
       mark_as_resolved: Atzīmēt kā atrisinātu
@@ -600,12 +619,14 @@ lv:
         placeholder: Apraksti veiktās darbības vai citus saistītus atjauninājumus...
         title: Piezīmes
       notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
+      quick_actions_description_html: 'Veic ātro darbību vai ritini uz leju, lai skatītu saturu, par kuru ziņots:'
       reopen: Atkārtoti atvērt ziņojumu
       report: 'Ziņojums #%{id}'
       reported_account: Ziņotais konts
       reported_by: Ziņoja
       resolved: Atrisināts
       resolved_msg: Ziņojums veiksmīgi atrisināts!
+      skip_to_actions: Pāriet uz darbībām
       status: Statuss
       statuses: Ziņotais saturs
       statuses_description_html: Pārkāpuma saturs tiks minēts saziņā ar paziņoto kontu
@@ -726,6 +747,16 @@ lv:
       no_status_selected: Neviena ziņa netika mainīta, jo neviena netika atlasīta
       title: Konta ziņas
       with_media: Ar medijiem
+    strikes:
+      actions:
+        delete_statuses: "%{name} izdzēsa %{target} publikācijas"
+        disable: "%{name} iesaldēja %{target} kontu"
+        none: "%{name} nosūtīja brīdinājumu %{target}"
+        sensitive: "%{name} atzīmēja %{target} kontu kā sensitīvu"
+        silence: "%{name} ierobežoja %{target} kontu"
+        suspend: "%{name} apturēja %{target} kontu"
+      appeal_approved: Pārsūdzēts
+      appeal_pending: Apelācija tiek izskatīta
     system_checks:
       database_schema_check:
         message_html: Notiek datubāzu migrācijas. Lūdzu, palaid tās, lai nodrošinātu, ka lietojumprogramma darbojas, kā paredzēts
@@ -750,7 +781,7 @@ lv:
         shared_by_over_week:
           one: Pēdējās nedēļas laikā kopīgoja viena persona
           other: Pēdējās nedēļas laikā kopīgoja %{count} personas
-          zero: Pēdējās nedēļas laikā kopīgoja %{count} persona
+          zero: Pēdējās nedēļas laikā neviens nav kopīgojis
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
       pending_review: Gaida pārskatīšanu
@@ -780,7 +811,7 @@ lv:
         used_by_over_week:
           one: Pēdējās nedēļas laikā izmantoja viens cilvēks
           other: Pēdējās nedēļas laikā izmantoja %{count} personas
-          zero: Pēdējās nedēļas laikā izmantoja %{count} personu
+          zero: Pēdējās nedēļas laikā neviens nav izmantojis
       title: Tendences
     warning_presets:
       add_new: Pievienot jaunu
@@ -789,6 +820,17 @@ lv:
       empty: Tu vēl neesi definējis iepriekš iestatītos brīdinājumus.
       title: Pārvaldīt brīdinājuma iestatījumus
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: lai izdzēstu viņu ierakstus
+        disable: lai iesaldētu viņu kontu
+        none: brīdinājums
+        sensitive: lai atzīmētu viņu kontu kā sensitīvu
+        silence: lai ierobežotu viņu kontu
+        suspend: lai apturētu viņu kontu
+      body: "%{target} pārsūdzēja %{action_taken_by} moderēšanas lēmumu no %{date}, kas bija %{type}. Viņi rakstīja:"
+      next_steps: Varat apstiprināt apelāciju, lai atsauktu regulēšanas lēmumu, vai ignorēt to.
+      subject: "%{username} pārsūdz moderēšanas lēmumu par %{instance}"
     new_pending_account:
       body: Sīkāka informācija par jauno kontu ir sniegta zemāk. Tu vari apstiprināt vai noraidīt šo pieteikumu.
       subject: Jauns konts pārskatīšanai %{instance} (%{username})
@@ -879,7 +921,6 @@ lv:
     status:
       account_status: Konta statuss
       confirming: Gaida e-pasta apstiprinājuma pabeigšanu.
-      functional: Tavs konts ir pilnībā darboties spējīgs.
       pending: Tavu pieteikumu gaida mūsu darbinieku izskatīšana. Tas var aizņemt kādu laiku. Ja tavs pieteikums tiks apstiprināts, tu saņemsi e-pastu.
       redirecting_to: Tavs konts ir neaktīvs, jo pašlaik tas tiek novirzīts uz %{acct}.
     too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
@@ -945,6 +986,32 @@ lv:
     directory: Profila direktorija
     explanation: Atklāj lietotājus, pamatojoties uz viņu interesēm
     explore_mastodon: Izpētīt %{title}
+  disputes:
+    strikes:
+      action_taken: Veiktā darbība
+      appeal: Apelācija
+      appeal_approved: Šis brīdinājums ir veiksmīgi pārsūdzēts un vairs nav spēkā
+      appeal_rejected: Apelācija ir noraidīta
+      appeal_submitted_at: Apelācija iesniegta
+      appealed_msg: Jūsu apelācija ir iesniegta. Ja tā tiks apstiprināta, jums tiks paziņots.
+      appeals:
+        submit: Iesniegt apelāciju
+      associated_report: Saistītais ziņojums
+      created_at: Datēts
+      recipient: Adresēts
+      status: 'Publikācija #%{id}'
+      status_removed: Publikācija jau ir noņemta no sistēmas
+      title: "%{action} kopš %{date}"
+      title_actions:
+        delete_statuses: Ziņas noņemšana
+        disable: Konta iesaldēšana
+        none: Brīdinājums
+        sensitive: Konta atzīmēšana kā sensitīvs
+        silence: Konta ierobežošana
+        suspend: Konta apturēšana
+      your_appeal_approved: Jūsu apelācija ir apstiprināta
+      your_appeal_pending: Jūs esat iesniedzis apelāciju
+      your_appeal_rejected: Jūsu apelācija ir noraidīta
   domain_validator:
     invalid_domain: nav derīgs domēna nosaukums
   errors:
@@ -1160,6 +1227,8 @@ lv:
       title: Jauns stimuls
     status:
       subject: "%{name} tikko publicēja"
+    update:
+      subject: "%{name} rediģējis rakstu"
   notifications:
     email_events: E-pasta paziņojumu notikumi
     email_events_hint: 'Atlasi notikumus, par kuriem vēlies saņemt paziņojumus:'
@@ -1528,6 +1597,15 @@ lv:
     recovery_instructions_html: Ja kādreiz zaudēsi piekļuvi savam tālrunim, vari izmantot kādu no tālāk norādītajiem atkopšanas kodiem, lai atgūtu piekļuvi savam kontam. <strong>Glabā atkopšanas kodus drošībā</strong>. Piemēram, tu vari tos izdrukāt un uzglabāt kopā ar citiem svarīgiem dokumentiem.
     webauthn: Drošības atslēgas
   user_mailer:
+    appeal_approved:
+      action: Dodies uz savu kontu
+      explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir apstiprināta. Jūsu konts atkal ir labā stāvoklī.
+      subject: Jūsu %{date} apelācija ir apstiprināta
+      title: Apelācija apstiprināta
+    appeal_rejected:
+      explanation: Apelācija par brīdinājumu jūsu kontam %{strike_date}, ko iesniedzāt %{appeal_date}, ir noraidīta.
+      subject: Jūsu %{date} apelācija ir noraidīta
+      title: Apelācija noraidīta
     backup_ready:
       explanation: Tu pieprasīji pilnu sava Mastodon konta dublējumu. Tagad tas ir gatavs lejupielādei!
       subject: Tavs arhīvs ir gatavs lejupielādei
@@ -1539,6 +1617,8 @@ lv:
       subject: Lūdzu, apstiprini pierakstīšanās mēģinājumu
       title: Pierakstīšanās mēģinājums
     warning:
+      appeal: Iesniegt apelāciju
+      appeal_description: Ja uzskatāt, ka tā ir kļūda, varat iesniegt apelāciju %{instance} darbiniekiem.
       categories:
         spam: Spams
         violation: Saturs pārkāpj šādas kopienas pamatnostādnes
@@ -1550,7 +1630,6 @@ lv:
         suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
       get_in_touch: Ja uzskati, ka tā ir kļūda, vari atbildēt uz šo e-pastu, lai sazinātos ar %{instance} darbiniekiem.
       reason: 'Iemesls:'
-      review_server_policies: Pārskati servera politikas
       statuses: 'Ziņas, kurās tika konstatēti pārkāpumi:'
       subject:
         delete_statuses: Tavas ziņas %{acct} tika noņemtas

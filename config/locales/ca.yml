@@ -94,7 +94,6 @@ ca:
     account_moderation_notes:
       create: Crea nota
       created_msg: La nota de moderació s'ha creat correctament!
-      delete: Suprimeix
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
       add_email_domain_block: Afegir el domini de correu a la llista negra
@@ -163,6 +162,11 @@ ca:
       not_subscribed: No subscrit
       pending: Revisió pendent
       perform_full_suspension: Suspèn
+      previous_strikes: Accions anteriors
+      previous_strikes_description_html:
+        one: Aquest compte té <strong>una</strong> acció.
+        other: Aquest compte té <strong>%{count}</strong> accions.
+        zero: Aquest compte està <strong>al dia</strong>.
       promote: Promociona
       protocol: Protocol
       public: Públic
@@ -206,6 +210,7 @@ ca:
       statuses: Tuts
       strikes: Accions anteriors
       subscribe: Subscriu
+      suspend: Suspèn
       suspended: Suspès
       suspension_irreversible: Les dades d’aquest compte s’han suprimit irreversiblament. Pots desfer la suspensió del compte per a fer-lo usable però això no recuperarà les dades si és que en tenia.
       suspension_reversible_hint_html: El compte ha estat suspès i les dades seran totalment suprimides el %{date}. Fins llavors, el compte pot ser restaurat sense problemes. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
@@ -226,6 +231,7 @@ ca:
       whitelisted: Llista blanca
     action_logs:
       action_types:
+        approve_appeal: Aprova Apel·lació
         approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna l'informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
@@ -257,6 +263,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
+        reject_appeal: Rebutja Apel·lació
         reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
         reopen_report: Reobre l'informe
@@ -275,6 +282,7 @@ ca:
         update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
       actions:
+        approve_appeal_html: "%{name} ha aprovat l'apel·lació a la decisió de moderació de %{target}"
         approve_user_html: "%{name} ha aprovat el registre de %{target}"
         assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
         change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
@@ -306,6 +314,7 @@ ca:
         enable_user_html: "%{name} ha activat l'accés del usuari %{target}"
         memorialize_account_html: "%{name} ha convertit el compte %{target} en una pàgina de memorial"
         promote_user_html: "%{name} ha promogut l'usuari %{target}"
+        reject_appeal_html: "%{name} ha rebutjat l'apel·lació a la decisió de moderació de %{target}"
         reject_user_html: "%{name} ha rebutjat el registre de %{target}"
         remove_avatar_user_html: "%{name} ha eliminat l'avatar de %{target}"
         reopen_report_html: "%{name} ha reobert l'informe %{target}"
@@ -384,14 +393,17 @@ ca:
       media_storage: Mèdia
       new_users: usuaris nous
       opened_reports: informes oberts
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apel·lació pendent"
+        other: "<strong>%{count}</strong> apel·lacions pendents"
       pending_reports_html:
-        one: "<strong>1</strong> informe pendent"
+        one: "<strong>%{count}</strong> informe pendent"
         other: "<strong>%{count}</strong> informes pendents"
       pending_tags_html:
-        one: "<strong>1</strong> etiqueta pendent"
+        one: "<strong>%{count}</strong> etiqueta pendent"
         other: "<strong>%{count}</strong> etiquetes pendents"
       pending_users_html:
-        one: "<strong>1</strong> usuari pendent"
+        one: "<strong>%{count}</strong> usuari pendent"
         other: "<strong>%{count}</strong> usuaris pendents"
       resolved_reports: informes resolts
       software: Programari
@@ -401,6 +413,10 @@ ca:
       top_languages: Idiomes més actius
       top_servers: Servidors més actius
       website: Lloc web
+    disputes:
+      appeals:
+        empty: Cap apel·lació trobada.
+        title: Apel·lacions
     domain_allows:
       add_new: Dominis autoritzats
       created_msg: El domini ha estat correctament autoritzat
@@ -441,6 +457,7 @@ ca:
         affected_accounts:
           one: Un compte afectat en la base de dades
           other: "%{count} comptes afectats en la base de dades"
+          zero: Cap compte afectat en la base de dades
         retroactive:
           silence: Desfés el silenci a tots els comptes existents d'aquest domini
           suspend: Desfés la suspensió de tots els comptes d'aquest domini
@@ -494,6 +511,7 @@ ca:
       known_accounts:
         one: "%{count} compte conegut"
         other: "%{count} comptes coneguts"
+        zero: Cap compte conegut
       moderation:
         all: Totes
         limited: Limitades
@@ -560,10 +578,12 @@ ca:
       action_log: Registre d'auditoria
       action_taken_by: Mesures adoptades per
       actions:
+        delete_description_html: Les publicacions reportades seran eliminades i un cop serà gravat per ajudar-te a escalar en futures infraccions des d'el mateix compte.
         other_description_html: Veu més opcions controlant el comportament del compte i personalitza la comunicació al compte reportat.
+        resolve_description_html: No serà presa cap acció contra el compte reportat, cap cop serà gravat i l'informe es tancarà.
         silence_description_html: El perfil serà visible només per aquells que ja el seguien o en cerca manual, limitant severament el seu alcanç. Sempre pot ser revertit.
         suspend_description_html: El perfil i tot el seu contingut esdevindrà inaccessible fins que sigui eventualment esborrat. Interactuar amb el compte serà impossible. Reversible dins de 30 dies.
-      actions_description_html: 'Si treien el contingut ofensiu de dalt és insuficient:'
+      actions_description_html: Decideix quina acció a prendre per a resoldre aquest informe. Si prens un acció punitiva contra el compte reportat, se li enviarà una notificació per correu electrònic, excepte quan la categoria <strong>Spam</strong> és seleccionada.
       add_to_report: Afegir més al informe
       are_you_sure: N'estàs segur?
       assign_to_self: Assignar-me
@@ -575,7 +595,7 @@ ca:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
       created_at: Reportat
-      delete_and_resolve: Esborra i resol
+      delete_and_resolve: Esborra les publicacions
       forwarded: Reenviat
       forwarded_to: Reenviat a %{domain}
       mark_as_resolved: Marca com a resolt
@@ -589,12 +609,14 @@ ca:
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
         title: Notes
       notes_description_html: Veu i deixa notes als altres moderadors i a tu mateix
+      quick_actions_description_html: 'Pren una acció ràpida o desplaça''t avall per a veure el contingut reportat:'
       reopen: Reobre l'informe
       report: 'Informe #%{id}'
       reported_account: Compte reportat
       reported_by: Reportat per
       resolved: Resolt
       resolved_msg: Informe resolt amb èxit!
+      skip_to_actions: Salta a les accions
       status: Estat
       statuses: Contingut reportat
       statuses_description_html: El contingut ofensiu serà citat en comunicació amb el compte reportat
@@ -715,6 +737,16 @@ ca:
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
       title: Estats del compte
       with_media: Amb contingut multimèdia
+    strikes:
+      actions:
+        delete_statuses: "%{name} ha eliminat les publicacions de %{target}"
+        disable: "%{name} ha congelat el compte de %{target}"
+        none: "%{name} ha enviat un avís a %{target}"
+        sensitive: "%{name} ha marcat el compte de %{target} com a sensible"
+        silence: "%{name} ha limitat el compte de %{target}"
+        suspend: "%{name} ha suspès el compte de %{target}"
+      appeal_approved: Apel·lat
+      appeal_pending: Apel·lació pendent
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
@@ -739,6 +771,7 @@ ca:
         shared_by_over_week:
           one: Compartit per un usuari en la darrera setmana
           other: Compartit per %{count} usuaris en la darrera setmana
+          zero: Compartit per ningú en la darrera setmana
         title: Enllaços en tendència
         usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
       pending_review: Revisió pendent
@@ -768,6 +801,7 @@ ca:
         used_by_over_week:
           one: Emprat per un usuari en la darrera setmana
           other: Emprat per %{count} usuaris en la darrera setmana
+          zero: Emprat per ningú en la darrera setmana
       title: Tendència
     warning_presets:
       add_new: Afegir-ne un de nou
@@ -776,6 +810,17 @@ ca:
       empty: Encara no has definit cap preavís.
       title: Gestiona les configuracions predefinides dels avisos
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: eliminar les seves publicacions
+        disable: congelar els seus comptes
+        none: un avís
+        sensitive: marcar els seus comptes com a sensibles
+        silence: limitar els seus comptes
+        suspend: suspendre els seus comptes
+      body: "%{target} està apel·lant una decisió de moderació de %{action_taken_by} el %{date}, del tipus %{type}. Han escrit:"
+      next_steps: Pots aprovar l'apel·lació per a desfer la decisió de moderació o ignorar-la.
+      subject: "%{username} està apel·lant una decisió de moderació a %{instance}"
     new_pending_account:
       body: A continuació trobaràs els detalls del compte nou. Pots aprovar o rebutjar aquest registre.
       subject: Nou compte per a revisar a %{instance} (%{username})
@@ -866,7 +911,6 @@ ca:
     status:
       account_status: Estat del compte
       confirming: Esperant que es completi la confirmació del correu electrònic.
-      functional: El teu compte està completament operatiu.
       pending: La vostra sol·licitud està pendent de revisió pel nostre personal. Això pot trigar una mica. Rebreu un correu electrònic quan sigui aprovada.
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
@@ -932,6 +976,32 @@ ca:
     directory: Directori de perfils
     explanation: Descobreix usuaris segons els teus interessos
     explore_mastodon: Explora %{title}
+  disputes:
+    strikes:
+      action_taken: Acció presa
+      appeal: Apel·lació
+      appeal_approved: L'acció ha estat apel·lada amb èxit i ja no és vàlida
+      appeal_rejected: L'apel·lació ha estat rebutjada
+      appeal_submitted_at: Apel·lació tramesa
+      appealed_msg: La teva apel·lació ha estat emesa. Si és aprovada, seràs notificat.
+      appeals:
+        submit: Apel·lació emesa
+      associated_report: Informe associat
+      created_at: Datada
+      recipient: Dirigida a
+      status: 'Publicació #%{id}'
+      status_removed: Publicació ja esborrada del sistema
+      title: "%{action} del %{date}"
+      title_actions:
+        delete_statuses: Eliminació de publicació
+        disable: Congelació del compte
+        none: Avís
+        sensitive: Marcant com a sensible el compte
+        silence: Limitació del compte
+        suspend: Suspensió del compte
+      your_appeal_approved: La teva apel·lació s'ha aprovat
+      your_appeal_pending: Has tramés una apel·lació
+      your_appeal_rejected: La teva apel·lació ha estat rebutjada
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
   errors:
@@ -1143,6 +1213,8 @@ ca:
       title: Nou impuls
     status:
       subject: "%{name} ha publicat"
+    update:
+      subject: "%{name} ha editat una publicació"
   notifications:
     email_events: Esdeveniments per a notificacions de correu electrònic
     email_events_hint: 'Selecciona els esdeveniments per als quals vols rebre notificacions:'
@@ -1493,6 +1565,15 @@ ca:
     recovery_instructions_html: Si mai perds l'accés al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
     webauthn: Claus de seguretat
   user_mailer:
+    appeal_approved:
+      action: Ves al teu compte
+      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat aprovada. El teu compte està un cop més al dia.
+      subject: La teva apel·lació de %{date} ha estat aprovada
+      title: Apel·lació aprovada
+    appeal_rejected:
+      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat rebutjada.
+      subject: La teva apel·lació del %{date} ha estat rebutjada
+      title: Apel·lació rebutjada
     backup_ready:
       explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
       subject: El teu arxiu està preparat per a descàrrega
@@ -1504,6 +1585,8 @@ ca:
       subject: Si us plau confirma l’intent d’inici de sessió
       title: Intent d’inici de sessió
     warning:
+      appeal: Trametre una apel·lació
+      appeal_description: Si creus que això és un error pots emetre una apel·lació al equip de %{instance}.
       categories:
         spam: Contingut brossa
         violation: El contingut viola les següents guies de la comunitat
@@ -1515,7 +1598,6 @@ ca:
         suspend: Ja no pots utilitzar el teu compte i el teu perfil i altres dades ja no son accessibles. Encara pots iniciar sessió per a demanar una copia de les teves dades fins que siguin totalment eliminades als 30 dies però es mantindran les dades bàsiques per evitar que esquivis la suspensió.
       get_in_touch: Si tu creus que això és un error pots respondre aquest correu electrònic per a contactar amb l'equip de %{instance}.
       reason: 'Raó:'
-      review_server_policies: Revisa les polítiques del servidor
       statuses: 'Publicacions que han estat trobades com a violació:'
       subject:
         delete_statuses: Les teves publicacions de %{acct} han estat esborrades

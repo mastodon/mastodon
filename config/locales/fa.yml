@@ -94,7 +94,6 @@ fa:
     account_moderation_notes:
       create: افزودن یادداشت
       created_msg: یادداشت مدیر با موفقیت ساخته شد!
-      delete: حذف
       destroyed_msg: یادداشت نظارتی با موفقیت نابود شد!
     accounts:
       add_email_domain_block: مسدود کردن دامنهٔ رایانامه
@@ -384,15 +383,6 @@ fa:
       media_storage: ذخیره‌ساز رسانه
       new_users: کاربران جدید
       opened_reports: گزارش باز شده
-      pending_reports_html:
-        one: "<strong>۱</strong> گزارش منتظر"
-        other: "<strong>%{count}</strong> گزارش منتظر"
-      pending_tags_html:
-        one: "<strong>۱</strong> برچسب منتظر"
-        other: "<strong>%{count}</strong> برچسب منتظر"
-      pending_users_html:
-        one: "<strong>۱</strong> کاربر منتظر"
-        other: "<strong>%{count}</strong> کاربر منتظر"
       resolved_reports: گزارش حل شده
       software: نرم‌افزار
       sources: منابع ثبت‌نام
@@ -438,9 +428,6 @@ fa:
         silence: بی‌صداشده
         suspend: معلق‌شده
       show:
-        affected_accounts:
-          one: روی یک حساب در پایگاه داده تأثیر گذاشت
-          other: روی %{count} حساب در پایگاه داده تأثیر گذاشت
         retroactive:
           silence: بی‌صداشدن همهٔ حساب‌های این دامین را لغو کن
           suspend: معلق‌شدن همهٔ حساب‌های این دامین را لغو کن
@@ -491,9 +478,6 @@ fa:
       delivery_error_hint: اگر تحویل محتوا به مدت %{count} روز ممکن نباشد، به طور خودکار به عنوان تحویل‌ناشونده علامت‌گذاری خواهد شد.
       destroyed_msg: هم اکنون داده دامنه %{domain} در صف حذف حتمی است.
       empty: هیج دامنه‌ای پیدا نشد.
-      known_accounts:
-        one: "%{count} حساب شناخته‌شده"
-        other: "%{count} حساب شناخته‌شده"
       moderation:
         all: همه
         limited: محدود
@@ -570,7 +554,6 @@ fa:
       comment:
         none: هیچ
       created_at: گزارش‌شده
-      delete_and_resolve: حذف و رفع
       forwarded: هدایت شده
       forwarded_to: هدایت شده به %{domain}
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
@@ -835,7 +818,6 @@ fa:
     status:
       account_status: وضعیت حساب
       confirming: در حال انتظار برای کامل شدن تأیید ایمیل.
-      functional: حساب شما قابل استفاده است.
       pending: درخواست شما منتظر تأیید مسئولان سایت است و این فرایند ممکن است کمی طول بکشد. اگر درخواست شما پذیرفته شود به شما ایمیلی فرستاده خواهد شد.
       redirecting_to: حساب شما غیرفعال است زیرا هم‌اکنون به %{acct} منتقل شده است.
     too_fast: فرم با سرعت بسیار زیادی فرستاده شد، دوباره تلاش کنید.
@@ -1471,7 +1453,6 @@ fa:
       categories:
         spam: هرزنامه
       reason: 'دلیل:'
-      review_server_policies: مرور سیاست‌های کارساز
       subject:
         disable: حساب %{acct} شما متوقف شده است
         none: هشدار برای %{acct}

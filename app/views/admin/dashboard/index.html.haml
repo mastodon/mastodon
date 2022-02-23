@@ -19,10 +19,10 @@
 
 .dashboard
   .dashboard__item
-    = react_admin_component :counter, measure: 'new_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.new_users'), href: admin_accounts_path
+    = react_admin_component :counter, measure: 'new_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.new_users'), href: admin_accounts_path(origin: 'local')
 
   .dashboard__item
-    = react_admin_component :counter, measure: 'active_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.active_users'), href: admin_accounts_path
+    = react_admin_component :counter, measure: 'active_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.active_users'), href: admin_accounts_path(origin: 'local')
 
   .dashboard__item
     = react_admin_component :counter, measure: 'interactions', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.interactions')

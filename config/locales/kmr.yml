@@ -94,7 +94,6 @@ kmr:
     account_moderation_notes:
       create: Nîşeyekê bihêle
       created_msg: Nîşeyê moderator bi awayekî serkeftî hate afirandin!
-      delete: Jê bibe
       destroyed_msg: Nîşeyê moderator bi awayekî serkeftî hate tinne kirin!
     accounts:
       add_email_domain_block: Navparê e-nameyê asteng bike
@@ -163,6 +162,11 @@ kmr:
       not_subscribed: Beşdar nebû
       pending: Li benda nirxandinê ye
       perform_full_suspension: Sekinî
+      previous_strikes: Binpêkirinên berê
+      previous_strikes_description_html:
+        one: Ev ajimêr <strong>yek</strong> binpêkirin kiriye.
+        other: Ev ajimêr <strong>%{count}</strong> binpêkirin kiriye.
+        zero: Ev ajimêr <strong>di rewşeke baş de ye</strong>.
       promote: Derbasê asteke bilind be
       protocol: Protokol
       public: Gelemperî
@@ -204,8 +208,9 @@ kmr:
       silence: Sînor
       silenced: Bêdeng kirî
       statuses: Şandî
-      strikes: Lêdanên berê
+      strikes: Binpêkirinên berê
       subscribe: Bibe kiryar
+      suspend: Hatiye rawestandin
       suspended: Hatiye rawestandin
       suspension_irreversible: Daneyên vê ajimêrê bêveger hatine jêbirin. Tu dikarî ajimêra xwe ji rawestandinê vegerinî da ku ew bi kar bînî lê ew ê tu daneya ku berê hebû venegere.
       suspension_reversible_hint_html: Ajimêr hat qerisandin, û daneyên di %{date} de hemû were rakirin. Hetta vê demê, ajimêr bê bandorên nebaş dikare dîsa vegere. Heke tu dixwazî hemû daneyan ajimêrê niha rakî, tu dikarî li jêrê bikî.
@@ -226,6 +231,7 @@ kmr:
       whitelisted: Ji bona yekbûyînê maf tê dayîn
     action_logs:
       action_types:
+        approve_appeal: Îtîrazê bipejirîne
         approve_user: Bikarhêner bipejirîne
         assigned_to_self_report: Ragihandinê diyar bike
         change_email_user: E-nameya bikarhêner biguherîne
@@ -257,6 +263,7 @@ kmr:
         enable_user: Bikarhêner çalak bike
         memorialize_account: Ajimêrê bike bîranînek
         promote_user: Bikarhêner pêş bixe
+        reject_appeal: Îtîrazê nepejirîne
         reject_user: Bikarhêner nepejirîne
         remove_avatar_user: Avatarê rake
         reopen_report: Ragihandina ji nû ve veke
@@ -275,6 +282,7 @@ kmr:
         update_domain_block: Navperên astengkirî rojane bike
         update_status: Şandiyê rojane bike
       actions:
+        approve_appeal_html: "%{name} îtiraza biryara çavdêriyê ji %{target} pejirand"
         approve_user_html: "%{name} tomarkirina ji %{target} pejirand"
         assigned_to_self_report_html: "%{name} ji xwe re ragihandinek %{target} hilda"
         change_email_user_html: "%{name} navnîşana e-nameya bikarhêner %{target} guherand"
@@ -306,6 +314,7 @@ kmr:
         enable_user_html: "%{name} ji bo bikarhêner %{target} têketin çalak kir"
         memorialize_account_html: "%{name} ajimêra %{target} veguherand rûpeleke bîranînê"
         promote_user_html: "%{name} bikarhêner %{target} bilind kir"
+        reject_appeal_html: "%{name} îtiraza biryara çavdêriyê ji %{target} nepejirand"
         reject_user_html: "%{name} tomarkirina ji %{target} nepejirand"
         remove_avatar_user_html: "%{name} avatara bikarhêner %{target} rakir"
         reopen_report_html: "%{name} ragihandina %{target} ji nû ve vekir"
@@ -384,15 +393,18 @@ kmr:
       media_storage: Bîrdanaka medyayê
       new_users: bikarhênerên nû
       opened_reports: ragihandin hatin vekirin
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> îtîraz li benda nirxandinê ye"
+        other: "<strong>%{count}</strong> îtîraz li benda nirxandinê ne"
       pending_reports_html:
-        one: "<strong>1</strong> ragihandin benda nirxandinê"
-        other: "<strong>%{count}</strong> ragihandin benda nirxandinê"
+        one: "<strong>%{count}</strong> ragihandin benda nirxandinê ye"
+        other: "<strong>%{count}</strong> ragihandin benda nirxandinê ne"
       pending_tags_html:
-        one: "<strong>1</strong> hashtag benda nirxandinê"
-        other: "<strong>%{count}</strong> hashtag benda nirxandinê"
+        one: "<strong>%{count}</strong> hashtag benda nirxandinê ye"
+        other: "<strong>%{count}</strong> hashtag benda nirxandinê ne"
       pending_users_html:
-        one: "<strong>1</strong> bikarhêner benda nirxandinê"
-        other: "<strong>%{count}</strong> bikarhêner benda nirxandinê"
+        one: "<strong>%{count}</strong> bikarhêner benda nirxandinê ye"
+        other: "<strong>%{count}</strong> bikarhêner benda nirxandinê ne"
       resolved_reports: ragihandinên çareserkirî
       software: Nermalav
       sources: Çavkaniyên tomarkirî
@@ -401,6 +413,10 @@ kmr:
       top_languages: Zimanên herî çalak
       top_servers: Rajekarên herî çalak
       website: Malpera tevnê
+    disputes:
+      appeals:
+        empty: Îtîraz nehatin dîtin.
+        title: Îtîraz
     domain_allows:
       add_new: Maf bide navpera federasyonê
       created_msg: Ji bo federasyonê maf dayîna navperê bi serkeftî hate dayîn
@@ -443,6 +459,7 @@ kmr:
         affected_accounts:
           one: Yek ajimêr di danegehê de bandor kir
           other: "%{count} ajimêr di danegehê de bandor kir"
+          zero: Yek ajimêr di danegehê de bi bandor e
         retroactive:
           silence: Vê navperê de sînorê li ser hemî ajimêran rabike
           suspend: Vê navperê de rawestandinê li ser hemî ajimêran rabike
@@ -496,6 +513,7 @@ kmr:
       known_accounts:
         one: "%{count} ajimêra naskirî"
         other: "%{count} ajimêrên naskirî"
+        zero: Ajimêra naskirî tune ye
       moderation:
         all: Hemû
         limited: Sînorkirî
@@ -562,10 +580,12 @@ kmr:
       action_log: Tomarê çavdêriyê
       action_taken_by: Çalakî hate kirin ji aliyê
       actions:
+        delete_description_html: Şandiyên hatine ragihandin wê werin jêbirin û were tomarkirin da ku ji te re bibe alîkar ku tu ji hêla heman ajimêrê ve binpêkirinên pêşerojê bêtir bikî.
         other_description_html: Bêtir vebijêrkên ji bo kontrolkirina tevgera ajimêrê bibîne û pêwendiyê li ser ajimêra ragihandî kesane bike.
+        resolve_description_html: Li hemberî ajimêra hatiye ragihandin wê tiştek pêk neyê, binpêkirin nayên tomarkirin û ragihandin wê were girtin.
         silence_description_html: Wê profîl tenê ji kesên ku berê te dişopînin an ji bi destan lê serî lê didin re xuya bibe, gihandina wê bi tundî sînordar dike. Her gav dikare were vegerandin.
         suspend_description_html: Heya ku di dawiyê de neyê jêbirin, wê profîl û hemû naverokên wê ne gihiştbar bin. Têkiliya bi ajimêrê re wê ne guncav be. Di nav 30 rojan de veger ji jêbirinê pêkan e.
-      actions_description_html: 'Ku rakirina naveroka sûcdar a li jor ne bes e:'
+      actions_description_html: Ji bo çareserkirina vê ragihandinê biryar bide ka tê kîjan gav bavêjî. Ku tu li dijî ajimêrê ragihandî çalakiyeke cezakirinê bikî, ji bilî dema ku kategoriya <strong>Spam</strong> were hilbijartin, wê agahdariyek e-nameyê ji wan re were şandin.
       add_to_report: Bo ragihandinê bêtir tevlî bike
       are_you_sure: Gelo tu bawerî?
       assign_to_self: Bo min diyar bike
@@ -577,7 +597,7 @@ kmr:
         none: Ne yek
       comment_description_html: 'Bo bêtir zanyarî bidî, %{name} nivîsand:'
       created_at: Hate ragihandin
-      delete_and_resolve: Jê bibe û ji nû ve çareser bike
+      delete_and_resolve: Şandiyan jê bibe
       forwarded: Beralîkirî
       forwarded_to: Beralîkirî bo %{domain}
       mark_as_resolved: Wekî çareserkirî nîşan bide
@@ -591,12 +611,14 @@ kmr:
         placeholder: Bide nasîn ka çi çalakî hatine kirin, an jî heman rojanekirinên din ên têkildar...
         title: Nîşe
       notes_description_html: Nîşeyan ji çavdêrên din û ji xwe re di pêşerojê de bibîne û bihêle
+      quick_actions_description_html: 'Ji bo dîtina naveroka ragihandî çalakiyeke bilez bavêje an jî li jêr bigere:'
       reopen: Ragihandina ji nû ve veke
       report: "@%{id} Ragihîne"
       reported_account: Ajimêra ragihandî
       reported_by: Ragihandî ji aliyê
       resolved: Çareserkirî
       resolved_msg: Ragihandin bi awayekî serkeftî hate çareserkirin!
+      skip_to_actions: Derbasî çalakiyan bibe
       status: Rewş
       statuses: Naveroka ragihandî
       statuses_description_html: Naveroka sûcdar wê di danûstendina bi xwediyê ajimêra ragihandî re wê werê diyarkirin
@@ -717,6 +739,16 @@ kmr:
       no_status_selected: Tu şandî nehat hilbijartin ji ber vê tu şandî jî nehat guhertin
       title: Şandiyên ajimêr
       with_media: Bi medya yê re
+    strikes:
+      actions:
+        delete_statuses: "%{name} şandiyên %{target} jêbirin"
+        disable: "%{name} ajimêr %{target} cemidand"
+        none: "%{name} ji bo %{target} hişyariyek şand"
+        sensitive: "%{name} ajimêrê %{target} wekî hestiyarî nîşan kir"
+        silence: "%{name} ajimêra %{target} bi sînor kir"
+        suspend: "%{name} ajimêra %{target} hilda rawestandinê"
+      appeal_approved: Îtîraz
+      appeal_pending: Îtîraz li benda nirxandinê ye
     system_checks:
       database_schema_check:
         message_html: Koçberiyên databasê yên li bendê hene. Ji kerema xwe wan bişopîne da ku bicîh bikî ku sepan wekî ku tê hêvî kirin tevbigere
@@ -740,7 +772,8 @@ kmr:
         disallow_provider: Mafê nede weşanger
         shared_by_over_week:
           one: Di nava hefteya dawî de ji aliyê keskekî ve hate parvekirin
-          other: Di nava hefteya dawî de ji aliyê %{count} ve hate parvekirin
+          other: Di nava hefteya dawî de ji aliyê %{count} kes ve hate parvekirin
+          zero: Di nava hefteya dawî de ji aliyê kesekî ve nehate parvekirin
         title: Girêdanên di rojevê de
         usage_comparison: Îro %{today} car hate parvekirin, li gorî %{yesterday} duh
       pending_review: Li benda nirxandinê ye
@@ -770,6 +803,7 @@ kmr:
         used_by_over_week:
           one: Di nava hefteya dawî de ji aliyê kesekî ve hatiye bikaranîn
           other: Di nava hefteya dawî de ji %{count} kes ve hatiye bikaranîn
+          zero: Di nava hefteya dawî de ji aliyê kesekî ve nehate bikaranîn
       title: Rojev
     warning_presets:
       add_new: Yeka nû tevlî bike
@@ -778,6 +812,17 @@ kmr:
       empty: Te hin tu hişyariyên pêşsazkirî destnîşan nekirine.
       title: Hişyariyên pêşsazkirî bi rêve bibe
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: ku şandiyên wan jê bibî
+        disable: ku ajimêrê wan bicemidînî
+        none: hişyariyek
+        sensitive: ku ajimêrê wan wekî hestyar nîşan bikî
+        silence: ku ajimêrê wan sînordar bikî
+        suspend: ku ajimêrê wan bidî rawestandin
+      body: "%{target} îtiraza biryareke çavdêriyê dike bi riya %{action_taken_by} ji %{date}, ku %{type} bû. Wan nivîsand:"
+      next_steps: Tu dikarî îtirazê bipejirînî ku biryara çavdêriyê têk bibî, an jî paşguh bikî.
+      subject: "%{username} li ser %{instance} îtiraz li biryareke çavdêriyê dike"
     new_pending_account:
       body: Zanyariyênn ajimêra nû li jêr in. Tu dikarî vê serîlêdanê bipejirîne an pûç bike.
       subject: "(%{username}) ajimêrê nû ji bo vekolandina li ser %{instance}"
@@ -868,7 +913,6 @@ kmr:
     status:
       account_status: Rewşa ajimêr
       confirming: Li benda pejirandina e-nameyê ne da ku biqede.
-      functional: Ajimêra te êdî amade ye.
       pending: Daxwaza te li benda vekolînê ji hêla xebatkarên me ye. Ev dibe ku hinek dem bigire. Heke daxwaza te were pejirandin tu yê e-nameyekê bistîne.
       redirecting_to: Ajimêra te neçalak e ji ber ku niha ber bi %{acct} ve tê beralîkirin.
     too_fast: Form pir zû hat şandin, dîsa biceribîne.
@@ -934,6 +978,32 @@ kmr:
     directory: Rêgeha profîlê
     explanation: Bikarhêneran li gorî berjewendiyên wan bibîne
     explore_mastodon: Vekole %{title}
+  disputes:
+    strikes:
+      action_taken: Çalakî hatin kirin
+      appeal: Îtîraz
+      appeal_approved: Ev binpêkirin bi serkeftî hate îtîraz kirin û êdî ne derbasdar e
+      appeal_rejected: Îtîraz nehate pejirandin
+      appeal_submitted_at: Îtîraz hate şandin
+      appealed_msg: Îtîraza te hatiye şandin. Ku were pejirandin, tu yê werî agahdarkirin.
+      appeals:
+        submit: Îtîrazê bişîne
+      associated_report: Ragihandina têkildar
+      created_at: Dîrok
+      recipient: Ji kê re
+      status: 'Şandî #%{id}'
+      status_removed: Şandî jixwe ji pergalê hatî rakirin
+      title: "%{action} ji %{date}"
+      title_actions:
+        delete_statuses: Jêbirina şandiyê
+        disable: Cemdandina ajimêrê
+        none: Hişyarî
+        sensitive: Nîşankirina ajimêr wekî hestyar
+        silence: Sînorkirina ajimêrê
+        suspend: Rawestandina ajimêrê
+      your_appeal_approved: Îtîraza te hate pejirandin
+      your_appeal_pending: Te îtîrazek şand
+      your_appeal_rejected: Îtîraza te nehate pejirandin
   domain_validator:
     invalid_domain: ne naveke navper a derbasdar e
   errors:
@@ -1145,6 +1215,8 @@ kmr:
       title: Bilindkirinên nû
     status:
       subject: "%{name} niha şand"
+    update:
+      subject: "%{name} şandiyek guhert"
   notifications:
     email_events: Bûyer bo agahdariyên e-nameyê
     email_events_hint: 'Bûyera ku tu dixwazî agahdariyan jê wergerî hilbijêre:'
@@ -1495,6 +1567,15 @@ kmr:
     recovery_instructions_html: Heke gava te têlefona xwe winda kir, tu dikarî yek ji kodên rizgarkirinê yên jêrîn bi kar bîne da ku tu bigihîjî ajimêra xwe. <strong>Kodên rizgarkirinê li cihekî ewle biparêze </strong>. Mînakî, tu dikarî wan çap bikî û wan bi peldandkên din ên girîng re tomar bike.
     webauthn: Kilîdên ewlehiyê
   user_mailer:
+    appeal_approved:
+      action: Biçe ajimêra xwe
+      explanation: Îtîraza binpêkirinê ya li dijî ajimêrê te ya %{strike_date} ku te di %{appeal_date} de şandibû hate pejirandin. Ajimêrê te careke din di rewşek baş de ye.
+      subject: Îtîraza te ji %{date} hate pejirandin
+      title: Îtîraz hate pejirandin
+    appeal_rejected:
+      explanation: Îtîraza binpêkirinê ya li dijî ajimêrê te ya di %{strike_date} de ku te di %{appeal_date} de şandibû nehat pejirandin.
+      subject: Îtîraza te ji %{date} nehate pejirandin
+      title: Îtîraz nehate pejirandin
     backup_ready:
       explanation: Te yedekîya tijê ya ajimêrê xwe Mastodonê xwest. Niha ji daxistinê re amade ye!
       subject: Arşîva te amede ye bo daxistinê
@@ -1506,6 +1587,8 @@ kmr:
       subject: Ji kerema xwe re hewldanên têketinê piştrast bike
       title: Hewldanên têketinê
     warning:
+      appeal: Îtîrazekê bişîne
+      appeal_description: Heke tu bawer dikî ku ev şaşetiyeke, tu dikarî îtîrazekê ji karmendên %{instance} re bişînî.
       categories:
         spam: Nexwestî (Spam)
         violation: Naverok rêbazên civakê yên jêrîn binpê dike
@@ -1517,7 +1600,6 @@ kmr:
         suspend: Tu êdî nikarî têkevî ajimêra xwe, û profîla te û daneyên din êdî nayên gihîştin. Dîsa jî tu dikarî têkevî da ku hilanîna daneyên xwe daxwaz bikî heya ku dane bi tevahî werin rakirin di hundirê 30 roj de, lê em ê hin daneyan biparêzin da ku tu ji rawestandinê rizgar bikî.
       get_in_touch: Ku tu bawer dikî ev çewtiyeke, tu dikarî bersiva vê e-nameyê bidî ku bi xebatkarên %{instance} re têkevî pêwendiyê.
       reason: 'Sedem:'
-      review_server_policies: Rêbazên rajeker lêkolîn bike
       statuses: 'Şandiyên ku di binpêkirinê de hatine dîtin:'
       subject:
         delete_statuses: Şandiyên te yên li ser %{acct} hatin rakirin

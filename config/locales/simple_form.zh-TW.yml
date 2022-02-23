@@ -3,9 +3,9 @@ zh-TW:
   simple_form:
     hints:
       account_alias:
-        acct: 指定欲移動之帳戶的 使用者名稱@站台
+        acct: 指定要移動的帳號的「使用者名稱@網域名稱」
       account_migration:
-        acct: 指定欲移動至之帳戶的 使用者名稱@站台
+        acct: 指定要移動至的帳號的「使用者名稱@網域名稱」
       account_warning_preset:
         text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
         title: 可選。不會向收件者顯示
@@ -27,6 +27,8 @@ zh-TW:
         scheduled_at: 空白則立即發布公告
         starts_at: 可選的，讓公告在特定時間範圍內顯示
         text: 您可以使用嘟文語法，但請小心別讓公告太鴨霸而佔據使用者的整個版面。
+      appeal:
+        text: 您只能對警示提出一次申訴
       defaults:
         autofollow: 通過邀請網址註冊的使用者將自動關注你
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會等比例縮減成 %{dimensions} 像素
@@ -119,6 +121,8 @@ zh-TW:
         scheduled_at: 排程發佈
         starts_at: 活動開始時間
         text: 公告
+      appeal:
+        text: 解釋為什麼要撤銷這個決定
       defaults:
         autofollow: 邀請別人關注你的帳戶
         avatar: 大頭貼
@@ -197,6 +201,7 @@ zh-TW:
           sign_up_requires_approval: 限制註冊
         severity: 規則
       notification_emails:
+        appeal: 有人對管理員的決定提出上訴
         digest: 傳送摘要信件
         favourite: 當有使用者喜歡你的嘟文時，傳送電子信件通知
         follow: 當有使用者關注你時，傳送電子信件通知
@@ -204,8 +209,8 @@ zh-TW:
         mention: 當有使用者在嘟文提及你時，傳送電子信件通知
         pending_account: 需要審核的新帳戶
         reblog: 當有使用者轉嘟你的嘟文時，傳送電子信件通知
-        report: 當提交新檢舉時傳送電子郵件
-        trending_tag: 未經審核的標籤正在炎上中
+        report: 新回報已遞交
+        trending_tag: 新趨勢需要審閱
       rule:
         text: 規則
       tag:

@@ -23,7 +23,7 @@
   .report-header__card
     .strike-card
       - unless @strike.none_action?
-        %p= t "user_mailer.warning.explanation.#{@strike.action}"
+        %p= t "user_mailer.warning.explanation.#{@strike.action}", instance: Rails.configuration.x.local_domain
 
       - unless @strike.text.blank?
         = Formatter.instance.linkify(@strike.text)
@@ -34,9 +34,10 @@
           = t("user_mailer.warning.categories.#{@strike.report.category}")
 
         - if @strike.report.violation? && @strike.report.rule_ids.present?
-          %ul.rules-list
+          %ul.strike-card__rules
             - @strike.report.rules.each do |rule|
-              %li= rule.text
+              %li
+                %span.strike-card__rules__text= rule.text
 
       - if @strike.status_ids.present? && !@strike.status_ids.empty?
         %p
@@ -75,7 +76,7 @@
       .report-header__details__item__header
         %strong= t('disputes.strikes.recipient')
       .report-header__details__item__content
-        = admin_account_link_to @strike.target_account, path: can?(:show, @strike.target_account) ? admin_account_path(@strike.target_account_id) : ActivityPub::TagManager.instance.url_for(@strike.target_account)
+        = link_to @strike.target_account.username, can?(:show, @strike.target_account) ? admin_account_path(@strike.target_account_id) : ActivityPub::TagManager.instance.url_for(@strike.target_account), class: 'table-action-link'
     .report-header__details__item
       .report-header__details__item__header
         %strong= t('disputes.strikes.action_taken')
@@ -89,7 +90,7 @@
         .report-header__details__item__header
           %strong= t('disputes.strikes.associated_report')
         .report-header__details__item__content
-          = link_to t('admin.reports.report', id: @strike.report.id), admin_report_path(@strike.report)
+          = link_to t('admin.reports.report', id: @strike.report.id), admin_report_path(@strike.report), class: 'table-action-link'
     - if @appeal.persisted?
       .report-header__details__item
         .report-header__details__item__header

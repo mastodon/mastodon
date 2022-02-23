@@ -88,7 +88,6 @@ zh-CN:
     account_moderation_notes:
       create: 新增记录
       created_msg: 管理记录已创建！
-      delete: 删除
       destroyed_msg: 管理记录删除成功！
     accounts:
       add_email_domain_block: 封禁电子邮箱域名
@@ -157,6 +156,11 @@ zh-CN:
       not_subscribed: 未订阅
       pending: 待审核
       perform_full_suspension: 封禁
+      previous_strikes: 既往处罚
+      previous_strikes_description_html:
+        one: 此帐号有<strong>1次</strong>处罚。
+        other: 此帐号有<strong>%{count}次</strong>处罚。
+        zero: 此帐号<strong>记录良好</strong>。
       promote: 升任
       protocol: 协议
       public: 公开页面
@@ -200,6 +204,7 @@ zh-CN:
       statuses: 嘟文
       strikes: 既往处罚
       subscribe: 订阅
+      suspend: 封禁
       suspended: 已封禁
       suspension_irreversible: 该帐号的数据已被不可逆转地删除。你可以取消暂停该帐号以使其可用，但它不会恢复以前拥有的任何数据。
       suspension_reversible_hint_html: 帐号已封禁，数据将在 %{date} 完全删除。 在此之前，帐号仍可恢复，并且没有任何不良影响。 如果你想立即移除该帐号的所有数据，可以在下面进行。
@@ -220,6 +225,7 @@ zh-CN:
       whitelisted: 允许跨站交互
     action_logs:
       action_types:
+        approve_appeal: 批准申诉
         approve_user: 批准用户
         assigned_to_self_report: 指派举报
         change_email_user: 为用户修改邮箱地址
@@ -251,6 +257,7 @@ zh-CN:
         enable_user: 启用用户
         memorialize_account: 将账户设为追悼模式
         promote_user: 给用户升任
+        reject_appeal: 驳回申诉
         reject_user: 拒绝用户
         remove_avatar_user: 移除头像
         reopen_report: 重开举报
@@ -269,6 +276,7 @@ zh-CN:
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
       actions:
+        approve_appeal_html: "%{name} 批准了 %{target} 对审核结果的申诉"
         approve_user_html: "%{name} 批准了用户 %{target} 的注册"
         assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
@@ -300,6 +308,7 @@ zh-CN:
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
+        reject_appeal_html: "%{name} 驳回了 %{target} 对审核结果的申诉"
         reject_user_html: "%{name} 拒绝了用户 %{target} 的注册"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
         reopen_report_html: "%{name} 重开了举报 %{target}"
@@ -379,9 +388,9 @@ zh-CN:
       new_users: 新用户
       opened_reports: 被发起的举报
       pending_reports_html:
-        other: "<strong>%{count}</strong> 个待处理请求"
+        other: "<strong>%{count}</strong> 个待处理举报"
       pending_tags_html:
-        other: "<strong>%{count}</strong> 个待处理标签"
+        other: "<strong>%{count}</strong> 个待处理话题标签"
       pending_users_html:
         other: "<strong>%{count}</strong> 个待处理用户"
       resolved_reports: 已解决的举报
@@ -392,6 +401,10 @@ zh-CN:
       top_languages: 最活跃的语言
       top_servers: 最活跃的服务器
       website: 网页端
+    disputes:
+      appeals:
+        empty: 没有发现申诉。
+        title: 申诉
     domain_allows:
       add_new: 允许和域名跨站交互
       created_msg: 域名已被允许跨站交互
@@ -430,7 +443,9 @@ zh-CN:
         suspend: 已封禁
       show:
         affected_accounts:
-          other: 将会影响到数据库中的 %{count} 个帐户
+          one: 数据库中的 1 个帐户受到影响
+          other: 数据库中的 %{count} 个帐户受到影响
+          zero: 数据库中没有帐户受到影响
         retroactive:
           silence: 对此域名的所有帐户解除隐藏
           suspend: 对此域名的所有帐户解除封禁
@@ -481,7 +496,9 @@ zh-CN:
       destroyed_msg: "%{domain} 中的数据现在正在排队等待被立刻删除。"
       empty: 暂无域名。
       known_accounts:
+        one: "%{count} 个已知帐户"
         other: "%{count} 个已知帐户"
+        zero: 没有已知账户
       moderation:
         all: 全部
         limited: 受限的
@@ -547,10 +564,12 @@ zh-CN:
       action_log: 审计日志
       action_taken_by: 操作执行者
       actions:
+        delete_description_html: 被举报的嘟文将被删除，同时该帐号将被标记一次处罚，以供未来同一帐号再次违规时参考。
         other_description_html: 查看控制该被举报帐号行为以及与其通信范围的更多选项。
+        resolve_description_html: 不会对被举报帐号采取任何动作，举报将被关闭，也不会留下处罚记录。
         silence_description_html: 只有关注或手工搜索此帐号才能查看其资料，将严重限制其触达范围。可随时撤销。
         suspend_description_html: 此帐号及其内容将无法访问，并最终被删除。也无法与该帐号交互。可在30天内撤销。
-      actions_description_html: 若移除上述违规内容仍力度不足：
+      actions_description_html: 决定采取何种措施处理此举报。如果对被举报帐号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       add_to_report: 添加到报告
       are_you_sure: 你确定吗？
       assign_to_self: 接管
@@ -562,7 +581,7 @@ zh-CN:
         none: 没有
       comment_description_html: "%{name} 补充道："
       created_at: 举报时间
-      delete_and_resolve: 删除并解决
+      delete_and_resolve: 删除嘟文
       forwarded: 已转发
       forwarded_to: 转发举报至 %{domain}
       mark_as_resolved: 标记为“已处理”
@@ -576,12 +595,14 @@ zh-CN:
         placeholder: 描述已经执行的操作，或其他任何相关的跟进情况…
         title: 备注
       notes_description_html: 查看备注或向其他监察员留言
+      quick_actions_description_html: 快捷选择操作或向下滚动以查看举报内容：
       reopen: 重开举报
       report: '举报 #%{id}'
       reported_account: 举报用户
       reported_by: 举报人
       resolved: 已处理
       resolved_msg: 举报处理成功！
+      skip_to_actions: 跳转到操作
       status: 状态
       statuses: 被举报内容
       statuses_description_html: 违规内容将在与该帐号的通信中被引用
@@ -702,6 +723,16 @@ zh-CN:
       no_status_selected: 因为没有嘟文被选中，所以没有更改
       title: 帐户嘟文
       with_media: 含有媒体文件
+    strikes:
+      actions:
+        delete_statuses: "%{name} 刪除了 %{target} 的嘟文"
+        disable: "%{name} 冻结了用户 %{target}"
+        none: "%{name} 向 %{target} 发送了警告"
+        sensitive: "%{name} 将 %{target} 的帐号标记为敏感内容"
+        silence: "%{name} 限制了用户 %{target}"
+        suspend: "%{name} 封禁了用户 %{target}"
+      appeal_approved: 已申诉
+      appeal_pending: 申诉待处理
     system_checks:
       database_schema_check:
         message_html: 有待处理的数据库迁移。请运行它们以确保应用程序正常运行。
@@ -724,7 +755,9 @@ zh-CN:
         disallow: 不允许链接
         disallow_provider: 不允许发布者
         shared_by_over_week:
-          other: "%{count} 人在过去一周内分享"
+          one: 过去一周内被 1 个人分享过
+          other: 过去一周内被 %{count} 个人分享过
+          zero: 过去一周内未被分享过
         title: 热门链接
         usage_comparison: 今日被分享 %{today} 次，前一日为 %{yesterday} 次
       pending_review: 待审核
@@ -752,7 +785,9 @@ zh-CN:
         usable: 可以使用
         usage_comparison: 今日被使用 %{today} 次，前一日为 %{yesterday} 次
         used_by_over_week:
-          other: "%{count} 人在过去一周内使用过"
+          one: 过去一周内被 1 个人使用过
+          other: 过去一周内被 %{count} 个人使用过
+          zero: 过去一周内未被使用过
       title: 流行趋势
     warning_presets:
       add_new: 添加新条目
@@ -761,6 +796,17 @@ zh-CN:
       empty: 你尚未定义任何警告预设。
       title: 管理预设警告
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: 删除其嘟文
+        disable: 冻结其帐号
+        none: 警告
+        sensitive: 标记其帐号为敏感内容
+        silence: 限制其帐号
+        suspend: 停用其帐号
+      body: "%{target} 对 %{action_taken_by} 于 %{date} 做出的 %{type} 审核结果提出申诉，写道："
+      next_steps: 你可以批准此申诉并撤销该审核结果，也可以忽略此申诉。
+      subject: "%{username} 对 %{instance} 的审核结果提出了申诉"
     new_pending_account:
       body: 新帐户的详细信息如下。你可以批准或拒绝此申请。
       subject: 在 %{instance} 上有新帐号 ( %{username}) 需要审核
@@ -851,7 +897,6 @@ zh-CN:
     status:
       account_status: 帐户状态
       confirming: 等待电子邮件确认完成。
-      functional: 你的帐号可以正常使用了。
       pending: 工作人员正在审核你的申请。这需要花点时间。在申请被批准后，你将收到一封电子邮件。
       redirecting_to: 你的帐户无效，因为它已被设置为跳转到 %{acct}
     too_fast: 表单提交过快，请重试。
@@ -917,6 +962,32 @@ zh-CN:
     directory: 用户目录
     explanation: 根据兴趣发现用户
     explore_mastodon: 探索 %{title}
+  disputes:
+    strikes:
+      action_taken: 采取的措施
+      appeal: 申诉
+      appeal_approved: 此次处罚已申诉成功并不再生效
+      appeal_rejected: 此次申诉已被驳回
+      appeal_submitted_at: 申诉已提交
+      appealed_msg: 你的申诉已经提交。如果申诉通过，你将收到通知。
+      appeals:
+        submit: 提交申诉
+      associated_report: 相关举报
+      created_at: 日期
+      recipient: 发送至
+      status: '嘟文 #%{id}'
+      status_removed: 嘟文已从系统中删除
+      title: "%{action} 于 %{date}"
+      title_actions:
+        delete_statuses: 嘟文删除
+        disable: 帐号冻结
+        none: 警告
+        sensitive: 标记帐号为敏感内容
+        silence: 帐号限制
+        suspend: 帐号封禁
+      your_appeal_approved: 你的申诉已被批准
+      your_appeal_pending: 你已提交申诉
+      your_appeal_rejected: 你的申诉已被驳回
   domain_validator:
     invalid_domain: 不是一个有效的域名
   errors:
@@ -1124,6 +1195,8 @@ zh-CN:
       title: 新的转嘟
     status:
       subject: "%{name} 刚刚发嘟"
+    update:
+      subject: "%{name} 编辑了嘟文"
   notifications:
     email_events: 电子邮件通知事件
     email_events_hint: 选择你想要收到通知的事件：
@@ -1468,6 +1541,15 @@ zh-CN:
     recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     webauthn: 安全密钥
   user_mailer:
+    appeal_approved:
+      action: 前往你的帐号
+      explanation: 你于 %{appeal_date} 对 %{strike_date} 在你帐号上做出的处罚提出的申诉已被批准，你的帐号已回到正常状态。
+      subject: 你于 %{date} 提出的申诉已被批准
+      title: 申诉已批准
+    appeal_rejected:
+      explanation: 你于 %{appeal_date} 对 %{strike_date} 在你帐号上做出的处罚提出的申诉已被驳回。
+      subject: 你于 %{date} 提出的申诉已被驳回
+      title: 申诉已驳回
     backup_ready:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
       subject: 你的存档已经准备完毕
@@ -1479,6 +1561,8 @@ zh-CN:
       subject: 请确认登录请求：
       title: 登录请求
     warning:
+      appeal: 提交申诉
+      appeal_description: 如果你认为此结果有误，可以向 %{instance} 的工作人员提交申诉。
       categories:
         spam: 垃圾信息
         violation: 内容违反了以下社区准则
@@ -1490,7 +1574,6 @@ zh-CN:
         suspend: 你不能再使用你的帐户，并且你的个人资料和其他数据都将无法访问。在大约30天内，你仍可以登录并请求数据备份，之后相关数据将被完全删除。我们会保留一些基础数据以避免封禁失效。
       get_in_touch: 如果你认为此操作有误，可回复此邮件以与 %{instance} 的工作人员取得联系。
       reason: 理由：
-      review_server_policies: 查看服务器政策
       statuses: 被发现有违规行为的嘟文：
       subject:
         delete_statuses: 你在 %{acct} 的嘟文已被删除

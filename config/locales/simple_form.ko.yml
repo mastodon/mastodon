@@ -27,6 +27,8 @@ ko:
         scheduled_at: 공백으로 두면 공지사항이 곧바로 발행 됩니다
         starts_at: 공지사항이 특정한 시간에 종속 될 때를 위한 옵션입니다
         text: 게시물 문법을 사용할 수 있습니다. 공지사항은 사용자의 화면 상단 공간을 차지한다는 것을 명심하세요
+      appeal:
+        text: 처벌에 대해 단 한 번만 이의제기를 할 수 있습니다
       defaults:
         autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
         avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
@@ -119,6 +121,8 @@ ko:
         scheduled_at: 발행 일정
         starts_at: 이벤트 시작
         text: 공지사항
+      appeal:
+        text: 이 결정이 왜 번복되어야 하는지에 대해 설명해주세요
       defaults:
         autofollow: 초대를 통한 팔로우
         avatar: 아바타
@@ -197,6 +201,7 @@ ko:
           sign_up_requires_approval: 가입 제한
         severity: 규칙
       notification_emails:
+        appeal: 누군가가 중재자의 결정에 이의를 제기했습니다
         digest: 요약 이메일 보내기
         favourite: 누군가 내 상태를 즐겨찾기로 등록했을 때 이메일 보내기
         follow: 누군가 나를 팔로우 했을 때 이메일 보내기
@@ -204,8 +209,8 @@ ko:
         mention: 누군가 나를 언급했을 때 이메일 보내기
         pending_account: 새 계정이 심사가 필요할 때 이메일 보내기
         reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
-        report: 새 신고 등록시 이메일로 알리기
-        trending_tag: 리뷰 되지 않은 해시태그가 유행할 때 이메일 보내기
+        report: 새 신고가 접수되었습니다
+        trending_tag: 새 트렌드에 대한 리뷰가 필요합니다
       rule:
         text: 규칙
       tag:

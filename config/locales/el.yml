@@ -93,7 +93,6 @@ el:
     account_moderation_notes:
       create: Άφησε σημείωση
       created_msg: Επιτυχής δημιουργία σημειώματος μεσολάβησης!
-      delete: Διαγραφή
       destroyed_msg: Επιτυχής καταστροφή σημειώματος μεσολάβησης!
     accounts:
       add_email_domain_block: Εγγραφή τομέα email σε μαύρη λίστα
@@ -197,6 +196,7 @@ el:
       silenced: Αποσιωπημένοι
       statuses: Καταστάσεις
       subscribe: Εγγραφή
+      suspend: Αναστολή
       suspended: Σε αναστολή
       suspension_irreversible: Τα δεδομένα αυτού του λογαριασμού έχουν διαγραφεί οριστικά. Μπορείς να άρεις την αναστολή του λογαριασμού για να μπορέσει να χρησιμοποιηθεί αλλά αυτό δεν θα επαναφέρει όσα δεδομένα είχε προηγουμένως.
       suspension_reversible_hint_html: Ο λογαριασμός έχει ανασταλλεί και τα δεδομένα του θα διαγραφούν πλήρως στις %{date}. Μέχρι τότε ο λογαριασμός μπορεί να επανέλθει κανονικά. Αν θέλεις να διαγράψεις όλα τα δεδομένα του λογαριασμού, μπορείς να το κάνεις παρακάτω.
@@ -217,6 +217,7 @@ el:
       whitelisted: Εγκεκριμένοι
     action_logs:
       action_types:
+        approve_appeal: Έγκριση Έφεσης
         approve_user: Έγκριση Χρήστη
         assigned_to_self_report: Ανάθεση Αναφοράς
         change_email_user: Αλλαγή email για χρήστη
@@ -244,6 +245,7 @@ el:
         enable_user: Ενεργοποίηση Χρήστη
         memorialize_account: Μετατροπή Λογαριασμού σε Αναμνηστικό
         promote_user: Προαγωγή Χρήστη
+        reject_appeal: Απόρριψη Έφεσης
         reject_user: Απόρριψη Χρήστη
         remove_avatar_user: Αφαίρεση Avatar
         reopen_report: Ξανάνοιγμα Καταγγελίας
@@ -321,18 +323,12 @@ el:
       updated_msg: Επιτυχής ενημέρωση του emoji!
       upload: Ανέβασμα
     dashboard:
-      pending_reports_html:
-        one: "<strong>1</strong> εκκρεμής αναφορά"
-        other: "<strong>%{count}</strong> εκκρεμείς αναφορές"
-      pending_tags_html:
-        one: "<strong>1</strong> εκκρεμές hashtag"
-        other: "<strong>%{count}</strong> εκκρεμή hashtag"
-      pending_users_html:
-        one: "<strong>1</strong> χρήστης σε εκκρεμότητα"
-        other: "<strong>%{count}</strong> χρήστες σε εκκρεμότητα"
       software: Λογισμικό
       space: Κατανάλωση χώρου
       title: Ταμπλό
+    disputes:
+      appeals:
+        title: Εφέσεις
     domain_allows:
       add_new: Έγκριση τομέα
       created_msg: Ο τομέας εγκρίθηκε με επιτυχία
@@ -368,9 +364,6 @@ el:
         silence: αποσιωπημένοι
         suspend: ανεσταλμένοι
       show:
-        affected_accounts:
-          one: Επηρεάζεται ένας λογαριασμός στη βάση δεδομένων
-          other: Επηρεάζονται %{count} λογαριασμοί στη βάση δεδομένων
         retroactive:
           silence: Αναίρεση αποσιώπησης όλων των λογαριασμός του τομέα
           suspend: Αναίρεση αναστολής όλων των λογαριασμών του τομέα
@@ -398,9 +391,6 @@ el:
       delivery_available: Διαθέσιμη παράδοση
       destroyed_msg: Τα δεδομένα από το %{domain} βρίσκονται σε αναμονή για επικείμενη διαγραφή.
       empty: Δεν βρέθηκαν τομείς.
-      known_accounts:
-        one: "%{count} γνωστός λογαριασμός"
-        other: "%{count} γνωστοί λογαριασμοί"
       moderation:
         all: Όλα
         limited: Περιορισμένα
@@ -477,7 +467,7 @@ el:
       comment:
         none: Κανένα
       created_at: Καταγγέλθηκε
-      delete_and_resolve: Διαγραφή και επίλυση
+      delete_and_resolve: Διαγραφή δημοσιεύσεων
       forwarded: Προωθημένα
       forwarded_to: Προώθημένα προς %{domain}
       mark_as_resolved: Σημειωμένο ως επιλυμένο
@@ -490,12 +480,14 @@ el:
         delete: Διαγραφή
         placeholder: Περιέγραψε τις ενέργειες που έγιναν, ή οποιαδήποτε άλλη ενημέρωση...
         title: Σημειώσεις
+      quick_actions_description_html: 'Κάντε μια γρήγορη ενέργεια ή μετακινηθείτε προς τα κάτω για να δείτε το αναφερόμενο περιεχόμενο:'
       reopen: Ξανάνοιξε την καταγγελία
       report: 'Καταγγελία #%{id}'
       reported_account: Αναφερόμενος λογαριασμός
       reported_by: Αναφέρθηκε από
       resolved: Επιλύθηκε
       resolved_msg: Η καταγγελία επιλύθηκε επιτυχώς!
+      skip_to_actions: Μετάβαση στις ενέργειες
       status: Κατάσταση
       statuses: Αναφερόμενο περιεχόμενο
       title: Αναφορές
@@ -627,6 +619,9 @@ el:
       empty: Δεν έχετε ακόμη ορίσει κάποια προεπιλογή προειδοποίησης.
       title: Διαχείριση προκαθορισμένων προειδοποιήσεων
   admin_mailer:
+    new_appeal:
+      actions:
+        none: μια προειδοποίηση
     new_pending_account:
       body: Τα στοιχεία του νέου λογαριασμού είναι παρακάτω. Μπορείς να εγκρίνεις ή να απορρίψεις αυτή την αίτηση.
       subject: Νέος λογαριασμός προς έγκριση στο %{instance} (%{username})
@@ -707,7 +702,6 @@ el:
     status:
       account_status: Κατάσταση λογαριασμού
       confirming: Αναμονή για ολοκλήρωση επιβεβαίωσης του email.
-      functional: Ο λογαριασμός σου είναι πανέτοιμος.
       pending: Η εφαρμογή σας εκκρεμεί έγκρισης, πιθανόν θα διαρκέσει κάποιο χρόνο. Θα λάβετε email αν εγκριθεί.
       redirecting_to: Ο λογαριασμός σου είναι ανενεργός γιατί επί του παρόντος ανακατευθύνει στον %{acct}.
     too_fast: Η φόρμα υποβλήθηκε πολύ γρήγορα, προσπαθήστε ξανά.
@@ -966,6 +960,8 @@ el:
       title: Νέα προώθηση
     status:
       subject: Ο/Η %{name} μόλις έγραψε κάτι
+    update:
+      subject: "%{name} επεξεργάστηκε μια δημοσίευση"
   notifications:
     email_events: Συμβάντα για ειδοποιήσεις μέσω email
     email_events_hint: 'Επέλεξε συμβάντα για τα οποία θέλεις να λαμβάνεις ειδοποιήσεις μέσω email:'
@@ -1254,7 +1250,6 @@ el:
       categories:
         spam: Ανεπιθύμητο
       reason: 'Αιτιολογία:'
-      review_server_policies: Αναθεώρηση πολιτικής του κόμβου
       subject:
         disable: Ο λογαριασμός σου %{acct} έχει παγώσει
         none: Προειδοποίηση προς %{acct}

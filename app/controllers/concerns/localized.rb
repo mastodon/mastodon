@@ -14,7 +14,7 @@ module Localized
   private
 
   def requested_locale
-    requested_locale_name   = available_locale_or_nil(params[:locale])
+    requested_locale_name   = available_locale_or_nil(params[:lang])
     requested_locale_name ||= available_locale_or_nil(current_user.locale) if respond_to?(:user_signed_in?) && user_signed_in?
     requested_locale_name ||= http_accept_language if ENV['DEFAULT_LOCALE'].blank?
     requested_locale_name

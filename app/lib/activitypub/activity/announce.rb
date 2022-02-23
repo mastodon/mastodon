@@ -8,6 +8,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       original_status = status_from_object
 
       return reject_payload! if original_status.nil? || !announceable?(original_status)
+      return if requested_through_relay?
 
       @status = Status.find_by(account: @account, reblog: original_status)
 

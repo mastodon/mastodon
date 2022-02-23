@@ -16,11 +16,11 @@ fr:
     contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
-    discover_users: Découvrez des utilisateurs
+    discover_users: Découvrez des utilisateur·rice·s
     documentation: Documentation
-    federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre les gens sur n’importe quel serveur Mastodon et au-delà.
+    federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre des gens sur n’importe quel serveur Mastodon et au-delà.
     get_apps: Essayez une application mobile
-    hosted_on: Serveur Mastodon hébergé par %{domain}
+    hosted_on: Serveur Mastodon hébergé sur %{domain}
     instance_actor_flash: |
       Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un·e utilisateur·rice individuel·le.
       Il est utilisé à des fins de fédération et ne doit pas être bloqué à moins que vous ne vouliez bloquer l’instance entière, auquel cas vous devriez utiliser un blocage de domaine.
@@ -32,10 +32,10 @@ fr:
     server_stats: 'Statistiques du serveur :'
     source_code: Code source
     status_count_after:
-      one: statut
-      other: statuts
+      one: message
+      other: messages
     status_count_before: Ayant publié
-    tagline: Suivez vos amis et découvrez-en de nouveaux
+    tagline: Suivez vos ami·e·s et découvrez-en de nouveaux·elles
     terms: Conditions d’utilisation
     unavailable_content: Serveurs modérés
     unavailable_content_description:
@@ -94,7 +94,6 @@ fr:
     account_moderation_notes:
       create: Laisser une remarque
       created_msg: Note de modération créée avec succès !
-      delete: Supprimer
       destroyed_msg: Note de modération supprimée avec succès !
     accounts:
       add_email_domain_block: Mettre le domaine du courriel sur liste noire
@@ -163,6 +162,11 @@ fr:
       not_subscribed: Non abonné
       pending: En attente d’approbation
       perform_full_suspension: Suspendre
+      previous_strikes: Sanctions précédentes
+      previous_strikes_description_html:
+        one: Ce compte a reçu <strong>une</strong> sanction.
+        other: Ce compte a reçu <strong>%{count}</strong> sanctions.
+        zero: Ce compte est <strong>en règle</strong>.
       promote: Promouvoir
       protocol: Protocole
       public: Publique
@@ -203,9 +207,10 @@ fr:
         targeted_reports: Signalés par d’autres
       silence: Masquer
       silenced: Masqué
-      statuses: Statuts
+      statuses: Messages
       strikes: Punitions précédentes
       subscribe: S’abonner
+      suspend: Suspendre
       suspended: Suspendu
       suspension_irreversible: Les données de ce compte ont été irréversiblement supprimées. Vous pouvez annuler la suspension du compte pour le rendre utilisable, mais il ne récupérera aucune donnée qu’il avait auparavant.
       suspension_reversible_hint_html: Le compte a été suspendu et les données seront complètement supprimées le %{date}. D’ici là, le compte peut être restauré sans aucun effet néfaste. Si vous souhaitez supprimer toutes les données du compte immédiatement, vous pouvez le faire ci-dessous.
@@ -226,6 +231,7 @@ fr:
       whitelisted: Sur liste blanche
     action_logs:
       action_types:
+        approve_appeal: Approuver l'appel
         approve_user: Approuver l’utilisateur
         assigned_to_self_report: Affecter le signalement
         change_email_user: Modifier le courriel pour
@@ -246,7 +252,7 @@ fr:
         destroy_email_domain_block: Supprimer le blocage de domaine de courriel
         destroy_instance: Purge du domaine
         destroy_ip_block: Supprimer la règle IP
-        destroy_status: Supprimer le statut
+        destroy_status: Supprimer le message
         destroy_unavailable_domain: Supprimer le domaine indisponible
         disable_2fa_user: Désactiver l’A2F
         disable_custom_emoji: Désactiver les émojis personnalisés
@@ -257,6 +263,7 @@ fr:
         enable_user: Activer l’utilisateur
         memorialize_account: Ériger en mémorial
         promote_user: Promouvoir l’utilisateur
+        reject_appeal: Rejeter l'appel
         reject_user: Rejeter l’utilisateur
         remove_avatar_user: Supprimer l’avatar
         reopen_report: Rouvrir le signalement
@@ -273,8 +280,9 @@ fr:
         update_announcement: Modifier l’annonce
         update_custom_emoji: Mettre à jour les émojis personnalisés
         update_domain_block: Mettre à jour le blocage de domaine
-        update_status: Mettre à jour le statut
+        update_status: Mettre à jour le message
       actions:
+        approve_appeal_html: "%{name} a approuvé l'appel de la décision de modération émis par %{target}"
         approve_user_html: "%{name} a approuvé l’inscription de %{target}"
         assigned_to_self_report_html: "%{name} s’est assigné·e le signalement de %{target}"
         change_email_user_html: "%{name} a modifié l'adresse de courriel de l'utilisateur·rice %{target}"
@@ -295,7 +303,7 @@ fr:
         destroy_email_domain_block_html: "%{name} a débloqué le domaine de courriel %{target}"
         destroy_instance_html: "%{name} a purgé le domaine %{target}"
         destroy_ip_block_html: "%{name} a supprimé la règle pour l'IP %{target}"
-        destroy_status_html: "%{name} a supprimé le statut de %{target}"
+        destroy_status_html: "%{name} a supprimé le message de %{target}"
         destroy_unavailable_domain_html: "%{name} a repris la livraison au domaine %{target}"
         disable_2fa_user_html: "%{name} a désactivé l'authentification à deux facteurs pour l'utilisateur·rice %{target}"
         disable_custom_emoji_html: "%{name} a désactivé l'émoji %{target}"
@@ -306,6 +314,7 @@ fr:
         enable_user_html: "%{name} a activé la connexion de l'utilisateur·rice %{target}"
         memorialize_account_html: "%{name} a converti le compte de %{target} en un mémorial"
         promote_user_html: "%{name} a promu l'utilisateur·rice %{target}"
+        reject_appeal_html: "%{name} a rejeté l'appel de la décision de modération émis par %{target}"
         reject_user_html: "%{name} a rejeté l’inscription de %{target}"
         remove_avatar_user_html: "%{name} a supprimé l'avatar de %{target}"
         reopen_report_html: "%{name} a rouvert le signalement %{target}"
@@ -322,8 +331,8 @@ fr:
         update_announcement_html: "%{name} a mis à jour l'annonce %{target}"
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
         update_domain_block_html: "%{name} a mis à jour le blocage de domaine pour %{target}"
-        update_status_html: "%{name} a mis à jour le statut de %{target}"
-      deleted_status: "(statut supprimé)"
+        update_status_html: "%{name} a mis à jour le message de %{target}"
+      deleted_status: "(message supprimé)"
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
       filter_by_user: Filtrer par utilisateur·ice
@@ -384,14 +393,17 @@ fr:
       media_storage: Stockage des médias
       new_users: nouveaux utilisateurs
       opened_reports: rapports ouverts
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> appel en attente"
+        other: "<strong>%{count}</strong> appels en attente"
       pending_reports_html:
-        one: "<strong>1</strong> rapport en attente"
+        one: "<strong>%{count}</strong> rapport en attente"
         other: "<strong>%{count}</strong> rapports en attente"
       pending_tags_html:
-        one: "<strong>1</strong> hashtag en attente"
+        one: "<strong>%{count}</strong> hashtag en attente"
         other: "<strong>%{count}</strong> hashtags en attente"
       pending_users_html:
-        one: "<strong>1</strong> utilisateur·rice en attente"
+        one: "<strong>%{count}</strong> utilisateur·rice en attente"
         other: "<strong>%{count}</strong> utilisateur·rice·s en attente"
       resolved_reports: rapports résolus
       software: Logiciel
@@ -401,6 +413,10 @@ fr:
       top_languages: Langues les plus actives
       top_servers: Serveurs les plus actifs
       website: Site Web
+    disputes:
+      appeals:
+        empty: Aucun appel trouvé.
+        title: Appels
     domain_allows:
       add_new: Mettre le domaine sur liste sur blanche
       created_msg: Ce domaine a été ajouté à la liste blanche avec succès
@@ -441,6 +457,7 @@ fr:
         affected_accounts:
           one: Un compte affecté dans la base de données
           other: "%{count} comptes affectés dans la base de données"
+          zero: Pas de compte affecté dans la base de données
         retroactive:
           silence: Ne plus masquer les comptes existants affectés de ce domaine
           suspend: Annuler la suspension des comptes existants affectés pour ce domaine
@@ -494,6 +511,7 @@ fr:
       known_accounts:
         one: "%{count} compte connu"
         other: "%{count} comptes connus"
+        zero: Pas de compte connu
       moderation:
         all: Tout
         limited: Limité
@@ -560,10 +578,12 @@ fr:
       action_log: Journal d’audit
       action_taken_by: Intervention de
       actions:
+        delete_description_html: Les messages signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
+        resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
         silence_description_html: Le profil ne sera visible que pour ceux qui le suivent déjà ou le consultent manuellement, ce qui limite considérablement sa portée. Peut toujours être restauré.
         suspend_description_html: Le profil et tout son contenu deviendront inaccessibles jusqu'à ce qu'il soit éventuellement supprimé. Interagir avec le compte sera impossible. Réversible dans les 30 jours.
-      actions_description_html: 'Si la suppression du contenu offensant ci-dessus est insuffisante :'
+      actions_description_html: Décidez des mesures à prendre pour résoudre ce signalement. Si vous prenez des mesures punitives contre le compte signalé, une notification sera envoyée par e-mail, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
       add_to_report: Ajouter davantage au rapport
       are_you_sure: Voulez-vous vraiment faire ça ?
       assign_to_self: Me l’assigner
@@ -575,7 +595,7 @@ fr:
         none: Aucun
       comment_description_html: 'Pour fournir plus d''informations, %{name} a écrit :'
       created_at: Signalé
-      delete_and_resolve: Supprimer et résoudre
+      delete_and_resolve: Supprimer les publications
       forwarded: Transféré
       forwarded_to: Transféré à %{domain}
       mark_as_resolved: Marquer comme résolu
@@ -589,12 +609,14 @@ fr:
         placeholder: Décrivez quelles actions ont été prises, ou toute autre mise à jour…
         title: Remarques
       notes_description_html: Voir et laisser des notes aux autres modérateurs et à votre futur moi-même
+      quick_actions_description_html: 'Faites une action rapide ou faites défiler vers le bas pour voir le contenu signalé :'
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
       reported_account: Compte signalé
       reported_by: Signalé par
       resolved: Résolus
       resolved_msg: Signalement résolu avec succès !
+      skip_to_actions: Passer aux actions
       status: Statut
       statuses: Contenu signalé
       statuses_description_html: Le contenu offensant sera cité dans la communication avec le compte signalé
@@ -713,8 +735,18 @@ fr:
       media:
         title: Médias
       no_status_selected: Aucun statut n’a été modifié car aucun n’a été sélectionné
-      title: Statuts du compte
+      title: Messages du compte
       with_media: Avec médias
+    strikes:
+      actions:
+        delete_statuses: "%{name} a supprimé les messages de %{target}"
+        disable: "%{name} a bloqué le compte de %{target}"
+        none: "%{name} a envoyé un avertissement à %{target}"
+        sensitive: "%{name} a marqué le compte de %{target} comme sensible"
+        silence: "%{name} a limité le compte de %{target}"
+        suspend: "%{name} a suspendu le compte de %{target}"
+      appeal_approved: Appel soumis
+      appeal_pending: Appel en attente
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
@@ -737,8 +769,9 @@ fr:
         disallow: Interdire le lien
         disallow_provider: Interdire l'éditeur
         shared_by_over_week:
-          one: Partagé par une personne au cours de la dernière semaine
-          other: Partagé par %{count} personnes au cours de la dernière semaine
+          one: Partagé par une personne au cours de la semaine dernière
+          other: Partagé par %{count} personnes au cours de la semaine dernière
+          zero: Non partagé au cours de la semaine dernière
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
       pending_review: En attente de révision
@@ -766,8 +799,9 @@ fr:
         usable: Peut être utilisé
         usage_comparison: Utilisé %{today} fois aujourd'hui, comparé à %{yesterday} hier
         used_by_over_week:
-          one: Utilisé par une personne au cours de la dernière semaine
-          other: Utilisé par %{count} personnes au cours de la dernière semaine
+          one: Utilisé par une personne au cours de la semaine dernière
+          other: Utilisé par %{count} personnes au cours de la semaine dernière
+          zero: Non utilisé au cours de la semaine dernière
       title: Tendances
     warning_presets:
       add_new: Ajouter un nouveau
@@ -776,6 +810,17 @@ fr:
       empty: Vous n'avez pas encore créé de paramètres prédéfinis pour les avertissements.
       title: Gérer les avertissements prédéfinis
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: effacer les messages
+        disable: bloquer le compte
+        none: un avertissement
+        sensitive: marquer le compte comme sensible
+        silence: limiter le compte
+        suspend: suspendre le compte
+      body: "%{target} fait appel de la décision de modération émise par %{action_taken_by} le %{date} et qui était : %{type}. Cette personne a écrit :"
+      next_steps: Vous pouvez approuver l'appel pour annuler la décision de modération, ou l'ignorer.
+      subject: "%{username} fait appel d'une décision de modération sur %{instance}"
     new_pending_account:
       body: Les détails du nouveau compte se trouvent ci-dessous. Vous pouvez approuver ou rejeter cette demande.
       subject: Nouveau compte à examiner sur %{instance} (%{username})
@@ -818,7 +863,7 @@ fr:
     settings: 'Changer les préférences courriel : %{link}'
     view: 'Voir :'
     view_profile: Voir le profil
-    view_status: Afficher le statut
+    view_status: Afficher le message
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
@@ -866,7 +911,6 @@ fr:
     status:
       account_status: État du compte
       confirming: En attente de la confirmation par courriel à compléter.
-      functional: Votre compte est entièrement opérationnel.
       pending: Votre demande est en attente d'examen par notre personnel. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
@@ -932,6 +976,31 @@ fr:
     directory: Annuaire des profils
     explanation: Découvrir des utilisateur·rice·s en fonction de leurs centres d’intérêt
     explore_mastodon: Explorer %{title}
+  disputes:
+    strikes:
+      action_taken: Mesure prise
+      appeal_approved: Cette sanction a été annulée en appel et n'est plus valide
+      appeal_rejected: L'appel a été rejeté
+      appeal_submitted_at: Appel soumis le
+      appealed_msg: Votre demande d'appel a été soumise. Si elle est approuvée, vous en serez informé·e.
+      appeals:
+        submit: Faire appel
+      associated_report: Rapport associé
+      created_at: En date du
+      recipient: Adressé à
+      status: 'Message #%{id}'
+      status_removed: Message déjà supprimé du système
+      title: "%{action} du %{date}"
+      title_actions:
+        delete_statuses: Suppression de message
+        disable: Suspension de compte
+        none: Avertissement
+        sensitive: Marquage d'un compte comme sensible
+        silence: Limitation du compte
+        suspend: Suspension de compte
+      your_appeal_approved: Votre appel a été approuvé
+      your_appeal_pending: Vous avez soumis un appel
+      your_appeal_rejected: Votre appel a été rejeté
   domain_validator:
     invalid_domain: n’est pas un nom de domaine valide
   errors:
@@ -1143,6 +1212,8 @@ fr:
       title: Nouveau partage
     status:
       subject: "%{name} vient de publier"
+    update:
+      subject: "%{name} a modifié une publication"
   notifications:
     email_events: Événements pour les notifications par courriel
     email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
@@ -1224,6 +1295,9 @@ fr:
     reply:
       proceed: Confirmer la réponse
       prompt: 'Vous souhaitez répondre à ce message :'
+  reports:
+    errors:
+      invalid_rules: ne fait pas référence à des règles valides
   scheduled_statuses:
     over_daily_limit: Vous avez dépassé la limite de %{limit} messages planifiés par jour
     over_total_limit: Vous avez dépassé la limite de %{limit} messages planifiés
@@ -1333,7 +1407,7 @@ fr:
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
-    title: '%{name} : "%{quote}"'
+    title: "%{name} : « %{quote} »"
     visibilities:
       direct: Direct
       private: Abonné⋅e⋅s uniquement
@@ -1490,6 +1564,15 @@ fr:
     recovery_instructions_html: Si vous perdez l’accès à votre téléphone, vous pouvez utiliser un des codes de récupération ci-dessous pour retrouver l’accès à votre compte. <strong>Conservez les codes de récupération en sécurité</strong>. Par exemple, en les imprimant et en les stockant avec vos autres documents importants.
     webauthn: Clés de sécurité
   user_mailer:
+    appeal_approved:
+      action: Aller à votre compte
+      explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été approuvé. Votre compte est de nouveau en règle.
+      subject: Votre appel du %{date} a été approuvé
+      title: Appel approuvé
+    appeal_rejected:
+      explanation: L'appel de la sanction contre votre compte mise en place le %{strike_date} que vous avez soumis le %{appeal_date} a été rejeté.
+      subject: Votre appel du %{date} a été rejeté
+      title: Appel rejeté
     backup_ready:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
@@ -1501,6 +1584,8 @@ fr:
       subject: Veuillez confirmer la tentative de connexion
       title: Tentative de connexion
     warning:
+      appeal: Faire appel
+      appeal_description: Si vous pensez qu'il s'agit d'une erreur, vous pouvez faire appel auprès de l'équipe de %{instance}.
       categories:
         spam: Indésirable
         violation: Le contenu viole les directives de la communauté suivantes
@@ -1510,9 +1595,8 @@ fr:
         sensitive: Désormais, tous vos fichiers multimédias téléchargés seront marqués comme sensibles et cachés derrière un avertissement à cliquer.
         silence: Vous pouvez toujours utiliser votre compte, mais seules les personnes qui vous suivent déjà verront vos messages sur ce serveur, et vous pourriez être exclu de diverses fonctions de découverte. Cependant, d'autres personnes peuvent toujours vous suivre manuellement.
         suspend: Vous ne pouvez plus utiliser votre compte, votre profil et vos autres données ne sont plus accessibles. Vous pouvez toujours vous connecter pour demander une sauvegarde de vos données jusqu'à leur suppression complète dans environ 30 jours, mais nous conserverons certaines données de base pour vous empêcher d'échapper à la suspension.
-      get_in_touch: Si vous pensez qu'il s'agit d'une erreur, vous pouvez répondre à ce courriel pour entrer en contact avec le personnel de %{instance}.
+      get_in_touch: Si vous pensez qu’il s'agit d’une erreur, vous pouvez répondre à ce courriel pour entrer en contact avec l’équipe de %{instance}.
       reason: 'Motif :'
-      review_server_policies: Passer en revue les politiques du serveur
       statuses: 'Les messages qui ont été jugés en violation :'
       subject:
         delete_statuses: Vos messages sur %{acct} ont été supprimés
