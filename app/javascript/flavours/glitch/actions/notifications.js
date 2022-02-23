@@ -57,7 +57,7 @@ defineMessages({
 });
 
 const fetchRelatedRelationships = (dispatch, notifications) => {
-  const accountIds = notifications.filter(item => item.type === 'follow').map(item => item.account.id);
+  const accountIds = notifications.filter(item => ['follow', 'follow_request', 'admin.sign_up'].indexOf(item.type) !== -1).map(item => item.account.id);
 
   if (accountIds > 0) {
     dispatch(fetchRelationships(accountIds));
@@ -144,6 +144,7 @@ const excludeTypesFromFilter = filter => {
     'poll',
     'status',
     'update',
+    'admin.sign_up',
   ]);
 
   return allTypes.filterNot(item => item === filter).toJS();
