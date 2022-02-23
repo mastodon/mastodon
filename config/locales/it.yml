@@ -1174,6 +1174,9 @@ it:
     carry_mutes_over_text: Questo utente si è spostato da %{acct} che hai silenziato.
     copy_account_note_text: 'Questo utente si è spostato da %{acct}, ecco le tue note precedenti su di loro:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} si è iscritto"
     digest:
       action: Vedi tutte le notifiche
       body: Ecco un breve riassunto di quello che ti sei perso dalla tua ultima visita del %{since}
