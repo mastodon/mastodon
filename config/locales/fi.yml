@@ -979,10 +979,23 @@ fi:
     strikes:
       action_taken: Toteutetut toimet
       appeal: Vetoomus
+      appeal_approved: Tähän valitukseen on haettu muutosta, eikä se ole enää voimassa
+      appeal_rejected: Valitus on hylätty
+      appeal_submitted_at: Valitus lähetetty
+      appealed_msg: Valituksesi on lähetetty. Jos se hyväksytään, sinulle ilmoitetaan.
+      appeals:
+        submit: Lähetä valitus
+      associated_report: Liittyvä raportti
       created_at: Päivätty
       recipient: Osoitettu
       status: 'Viesti #%{id}'
       status_removed: Viesti on jo poistettu järjestelmästä
+      title: "%{action} alkaen %{date}"
+      title_actions:
+        delete_statuses: Viestin poisto
+        disable: Tilin jäädyttäminen
+        none: Varoitus
+        sensitive: Merkintä tilille arkaluonteisena
   domain_validator:
     invalid_domain: ei ole kelvollinen toimialueen nimi
   errors:
