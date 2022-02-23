@@ -1175,6 +1175,9 @@ hu:
     carry_mutes_over_text: Ez a fiók elköltözött innen %{acct}, melyet lenémítottatok.
     copy_account_note_text: 'Ez a fiók elköltözött innen %{acct}, itt vannak a bejegyzéseitek róla:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} feliratkozott"
     digest:
       action: Összes értesítés megtekintése
       body: Itt a legutóbbi látogatásod (%{since}) óta írott üzenetek rövid összefoglalása
