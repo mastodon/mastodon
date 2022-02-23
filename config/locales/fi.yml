@@ -996,6 +996,11 @@ fi:
         disable: Tilin jäädyttäminen
         none: Varoitus
         sensitive: Merkintä tilille arkaluonteisena
+        silence: Tilin rajoittaminen
+        suspend: Tilin keskeyttäminen
+      your_appeal_approved: Valituksesi on hyväksytty
+      your_appeal_pending: Olet lähettänyt valituksen
+      your_appeal_rejected: Valituksesi on hylätty
   domain_validator:
     invalid_domain: ei ole kelvollinen toimialueen nimi
   errors:
@@ -1170,6 +1175,9 @@ fi:
     carry_mutes_over_text: Tämä käyttäjä siirtyi paikasta %{acct}, jonka mykistit.
     copy_account_note_text: 'Tämä käyttäjä siirtyi paikasta %{acct}, tässä olivat aiemmat muistiinpanosi niistä:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} kirjautunut"
     digest:
       action: Näytä kaikki ilmoitukset
       body: Tässä lyhyt yhteenveto viime käyntisi (%{since}) jälkeen tulleista viesteistä
@@ -1207,6 +1215,8 @@ fi:
       title: Uusi buustaus
     status:
       subject: "%{name} julkaisi juuri"
+    update:
+      subject: "%{name} muokkasi viestiä"
   notifications:
     email_events: Sähköposti-ilmoitusten tapahtumat
     email_events_hint: 'Valitse tapahtumat, joista haluat saada ilmoituksia:'
