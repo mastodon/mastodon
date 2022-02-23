@@ -744,6 +744,8 @@ fi:
         sensitive: "%{name} merkitsi käyttäjän %{target} tilin arkaluonteiseksi"
         silence: "%{name} rajoitti käyttäjän %{target} tilin"
         suspend: "%{name} keskeytti käyttäjän %{target} tilin"
+      appeal_approved: Valitti
+      appeal_pending: Valitus vireillä
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
@@ -765,6 +767,10 @@ fi:
         allow_provider: Salli julkaisija
         disallow: Hylkää linkki
         disallow_provider: Estä julkaisija
+        shared_by_over_week:
+          one: Jakanut yksi henkilö viimeisen viikon aikana
+          other: Jakanut %{count} henkilöä viimeisen viikon aikana
+          zero: Kukaan ei ole jakanut viimeisen viikon aikana
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
       pending_review: Odottaa tarkistusta
@@ -791,6 +797,9 @@ fi:
         trending_rank: 'Nousussa #%{rank}'
         usable: Voidaan käyttää
         usage_comparison: Käytetty %{today} kertaa tänään, verrattuna %{yesterday} eiliseen
+        used_by_over_week:
+          one: Yhden henkilön käyttämä viimeisen viikon aikana
+          other: Käyttänyt %{count} henkilöä viimeisen viikon aikana
       title: Trendit
     warning_presets:
       add_new: Lisää uusi
