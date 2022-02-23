@@ -1450,10 +1450,15 @@ fi:
       '7889238': 3 kuukautta
     min_age_label: Ikäraja
     min_favs: Pidä viestit suosikeissa vähintään
+    min_favs_hint: Ei poista yhtään julkaisuasi, jotka ovat saaneet vähintään tämän määrän tykkäyksiä. Jätä tyhjäksi, jos haluat poistaa julkaisuja tykkäyksien määrästä riippumatta
+    min_reblogs: Pidä viestit tehostettuna vähintään
+    min_reblogs_hint: Ei poista yhtään viestiäsi, jota on tehostettu vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi viestejä riippumatta niiden tehosteiden määrästä
   stream_entries:
     pinned: Kiinnitetty tuuttaus
     reblogged: buustasi
     sensitive_content: Arkaluontoista sisältöä
+  tags:
+    does_not_match_previous_name: ei vastaa edellistä nimeä
   terms:
     title: "%{instance}, käyttöehdot ja tietosuojakäytäntö"
   themes:
@@ -1468,6 +1473,7 @@ fi:
   two_factor_authentication:
     add: Lisää
     disable: Poista käytöstä
+    disabled_success: Kaksivaiheinen todennus on poistettu käytöstä
     edit: Muokkaa
     enabled: Kaksivaiheinen todentaminen käytössä
     enabled_success: Kaksivaiheisen todentamisen käyttöönotto onnistui
@@ -1480,6 +1486,8 @@ fi:
     recovery_instructions_html: Jos menetät puhelimesi, voit kirjautua tilillesi jollakin alla olevista palautuskoodeista. <strong>Pidä palautuskoodit hyvässä tallessa</strong>. Voit esimerkiksi tulostaa ne ja säilyttää muiden tärkeiden papereiden joukossa.
     webauthn: Suojausavaimet
   user_mailer:
+    appeal_approved:
+      action: Siirry tilillesi
     backup_ready:
       explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!
       subject: Arkisto on valmiina ladattavaksi
