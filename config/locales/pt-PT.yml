@@ -1175,6 +1175,9 @@ pt-PT:
     carry_mutes_over_text: Este utilizador migrou de %{acct}, que você tinha silenciado.
     copy_account_note_text: 'Este utilizador migrou de %{acct}, aqui estão as suas notas anteriores sobre ele:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} inscreveu-se"
     digest:
       action: Ver todas as notificações
       body: Aqui tens um breve resumo do que perdeste desde o último acesso a %{since}
