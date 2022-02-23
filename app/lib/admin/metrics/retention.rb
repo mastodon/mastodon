@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Retention
+  CACHE_TTL = 5.minutes.freeze
+
   class Cohort < ActiveModelSerializers::Model
     attributes :period, :frequency, :data
   end
@@ -9,13 +11,37 @@ class Admin::Metrics::Retention
     attributes :date, :rate, :value
   end
 
+  attr_reader :loaded
+
+  alias loaded? loaded
+
   def initialize(start_at, end_at, frequency)
     @start_at  = start_at&.to_date
     @end_at    = end_at&.to_date
     @frequency = %w(day month).include?(frequency) ? frequency : 'day'
+    @loaded    = false
+  end
+
+  def cache_key
+    ['metrics/retention', @start_at, @end_at, @frequency].join(';')
   end
 
   def cohorts
+    load
+  end
+
+  protected
+
+  def load
+    unless loaded?
+      @values = Rails.cache.fetch(cache_key, expires_in: CACHE_TTL) { perform_query }
+      @loaded = true
+    end
+
+    @values
+  end
+
+  def perform_query
     sql = <<-SQL.squish
       SELECT axis.*, (
         WITH new_users AS (

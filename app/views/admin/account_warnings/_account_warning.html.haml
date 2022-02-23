@@ -1,7 +1,8 @@
-= link_to disputes_strike_path(account_warning), class: ['log-entry', account_warning.overruled? && 'log-entry--inactive'] do
+= link_to disputes_strike_path(account_warning), class: 'log-entry' do
   .log-entry__header
     .log-entry__avatar
-      = image_tag account_warning.target_account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
+      .indicator-icon{ class: account_warning.overruled? ? 'success' : 'failure' }
+        = fa_icon 'warning'
     .log-entry__content
       .log-entry__title
         = t(account_warning.action, scope: 'admin.strikes.actions', name: content_tag(:span, account_warning.account.username, class: 'username'), target: content_tag(:span, account_warning.target_account.acct, class: 'target')).html_safe
@@ -11,7 +12,7 @@
 
         - if account_warning.report_id.present?
           ·
-          = t('admin.reports.title', id: account_warning.report_id)
+          = t('admin.reports.report', id: account_warning.report_id)
 
         - if account_warning.overruled?
           ·
