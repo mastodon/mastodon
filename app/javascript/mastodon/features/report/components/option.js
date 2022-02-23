@@ -39,7 +39,7 @@ export default class Option extends React.PureComponent {
         <input type={multiple ? 'checkbox' : 'radio'} name={name} value={value} checked={checked} onChange={this.handleChange} />
 
         <span
-          className={classNames('poll__input', { active: checked })}
+          className={classNames('poll__input', { active: checked, checkbox: multiple })}
           tabIndex='0'
           role='radio'
           onKeyPress={this.handleKeyPress}
