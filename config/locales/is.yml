@@ -1175,6 +1175,9 @@ is:
     carry_mutes_over_text: Þessi notandi fluttist frá %{acct}, sem þú hafðir þaggað niður í.
     copy_account_note_text: 'Þessi notandi fluttist frá %{acct}, hér eru fyrri minnispunktar þínir um hann:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} nýskráði sig"
     digest:
       action: Skoða allar tilkynningar
       body: Hér er stutt yfirlit yfir þau skilaboð sem þú gætir hafa misst af síðan þú leist inn síðast %{since}
