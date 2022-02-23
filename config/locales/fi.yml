@@ -817,6 +817,9 @@ fi:
         sensitive: merkitä heidän tilinsä arkaluonteiseksi
         silence: rajoittaa heidän tilinsä
         suspend: keskeyttää heidän tilinsä
+      body: "%{target} on valittanut valvojan päätöksestä %{action_taken_by} aika %{date}, joka oli %{type}. He kirjoittivat:"
+      next_steps: Voit hyväksyä vetoomuksen ja kumota päätöksen tai jättää sen huomiotta.
+      subject: "%{username} valittaa valvojan päätöksestä, joka koskee %{instance}"
     new_pending_account:
       body: Uuden tilin tiedot ovat alla. Voit hyväksyä tai hylätä tämän hakemuksen.
       subject: Uusi tili tarkastettavana %{instance} (%{username})
@@ -974,6 +977,8 @@ fi:
     explore_mastodon: Tutki %{title}ia
   disputes:
     strikes:
+      action_taken: Toteutetut toimet
+      appeal: Vetoomus
       created_at: Päivätty
       recipient: Osoitettu
       status: 'Viesti #%{id}'
