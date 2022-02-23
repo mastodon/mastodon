@@ -1163,6 +1163,9 @@ zh-TW:
     carry_mutes_over_text: 此使用者轉移自被您靜音的 %{acct}。
     copy_account_note_text: '此使用者轉移自 %{acct}，以下是您之前關於他們的備註：'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} 已進行註冊"
     digest:
       action: 閱覽所有通知
       body: 以下是自%{since}你最後一次登入以來錯過的訊息摘要
