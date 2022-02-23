@@ -50,16 +50,14 @@
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 500;
-  height: 36px;
   letter-spacing: 0;
-  line-height: 36px;
+  line-height: 22px;
   overflow: hidden;
-  padding: 0 16px;
+  padding: 7px 18px;
   position: relative;
   text-align: center;
-  text-transform: uppercase;
   text-decoration: none;
   text-overflow: ellipsis;
   transition: all 100ms ease-in;
@@ -100,17 +98,6 @@
     outline: 0 !important;
   }
 
-  &.button-primary,
-  &.button-alternative,
-  &.button-secondary,
-  &.button-alternative-2 {
-    font-size: 16px;
-    line-height: 36px;
-    height: auto;
-    text-transform: none;
-    padding: 4px 16px;
-  }
-
   &.button-alternative {
     color: $inverted-text-color;
     background: $ui-primary-color;
@@ -135,7 +122,7 @@
   &.button-secondary {
     color: $darker-text-color;
     background: transparent;
-    padding: 3px 15px;
+    padding: 6px 17px;
     border: 1px solid $ui-primary-color;
 
     &:active,
@@ -1114,42 +1101,39 @@
   font-size: 15px;
 }
 
-.status-check-box {
-  border-bottom: 1px solid $ui-secondary-color;
-  display: flex;
+.status-check-box__status {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 10px;
 
-  .status-check-box__status {
-    margin: 10px 0 10px 10px;
-    flex: 1;
-    overflow: hidden;
+  .detailed-status__display-name {
+    color: lighten($inverted-text-color, 16%);
 
-    .media-gallery {
-      max-width: 250px;
+    span {
+      display: inline;
     }
 
-    .status__content {
-      padding: 0;
-      white-space: normal;
-    }
-
-    .video-player,
-    .audio-player {
-      margin-top: 8px;
-      max-width: 250px;
-    }
-
-    .media-gallery__item-thumbnail {
-      cursor: default;
+    &:hover strong {
+      text-decoration: none;
     }
   }
-}
 
-.status-check-box-toggle {
-  align-items: center;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: center;
-  padding: 10px;
+  .media-gallery,
+  .audio-player,
+  .video-player {
+    margin-top: 8px;
+    max-width: 250px;
+  }
+
+  .status__content {
+    padding: 0;
+    white-space: normal;
+  }
+
+  .media-gallery__item-thumbnail {
+    cursor: default;
+  }
 }
 
 .status__prepend {
@@ -5101,6 +5085,192 @@ a.status-card.compact:hover {
 .report-modal {
   width: 90vw;
   max-width: 700px;
+}
+
+.report-dialog-modal {
+  max-width: 90vw;
+  width: 480px;
+  height: 80vh;
+  background: lighten($ui-secondary-color, 8%);
+  color: $inverted-text-color;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+
+  &__container {
+    box-sizing: border-box;
+    border-top: 1px solid $ui-secondary-color;
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  &__title {
+    font-size: 28px;
+    line-height: 33px;
+    font-weight: 700;
+    margin-bottom: 15px;
+
+    @media screen and (max-height: 800px) {
+      font-size: 22px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 22px;
+    margin-bottom: 4px;
+  }
+
+  &__lead {
+    font-size: 17px;
+    line-height: 22px;
+    color: lighten($inverted-text-color, 16%);
+    margin-bottom: 30px;
+  }
+
+  &__actions {
+    margin-top: 30px;
+    display: flex;
+
+    .button {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__statuses {
+    flex-grow: 1;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  .status__content a {
+    color: $highlight-text-color;
+  }
+
+  .status__content,
+  .status__content p {
+    color: $inverted-text-color;
+  }
+
+  .dialog-option .poll__input {
+    border-color: $inverted-text-color;
+    color: $ui-secondary-color;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 8px;
+      height: auto;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: lighten($inverted-text-color, 15%);
+      border-width: 4px;
+    }
+
+    &.active {
+      border-color: $inverted-text-color;
+      background: $inverted-text-color;
+    }
+  }
+
+  .poll__option.dialog-option {
+    padding: 15px 0;
+    flex: 0 0 auto;
+    border-bottom: 1px solid $ui-secondary-color;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    & > .poll__option__text {
+      font-size: 13px;
+      color: lighten($inverted-text-color, 16%);
+
+      strong {
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 22px;
+        color: $inverted-text-color;
+        display: block;
+        margin-bottom: 4px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .flex-spacer {
+    background: transparent;
+  }
+
+  &__textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    color: $inverted-text-color;
+    background: $simple-background-color;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 17px;
+    line-height: 22px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    margin: 20px 0;
+
+    &::placeholder {
+      color: $dark-text-color;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+
+    & > span {
+      font-size: 17px;
+      font-weight: 500;
+      margin-left: 10px;
+    }
+  }
+
+  .button.button-secondary {
+    border-color: $inverted-text-color;
+    color: $inverted-text-color;
+    flex: 0 0 auto;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: lighten($inverted-text-color, 15%);
+      color: lighten($inverted-text-color, 15%);
+    }
+  }
+
+  hr {
+    border: 0;
+    background: transparent;
+    margin: 15px 0;
+  }
 }
 
 .report-modal__container {

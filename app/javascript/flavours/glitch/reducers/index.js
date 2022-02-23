@@ -17,7 +17,7 @@ import push_notifications from './push_notifications';
 import status_lists from './status_lists';
 import mutes from './mutes';
 import blocks from './blocks';
-import reports from './reports';
+import rules from './rules';
 import boosts from './boosts';
 import contexts from './contexts';
 import compose from './compose';
@@ -64,7 +64,7 @@ const reducers = {
   push_notifications,
   mutes,
   blocks,
-  reports,
+  rules,
   boosts,
   contexts,
   compose,

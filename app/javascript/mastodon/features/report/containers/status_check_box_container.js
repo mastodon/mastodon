@@ -1,19 +1,15 @@
 import { connect } from 'react-redux';
 import StatusCheckBox from '../components/status_check_box';
-import { toggleStatusReport } from '../../../actions/reports';
-import { Set as ImmutableSet } from 'immutable';
+import { makeGetStatus } from 'mastodon/selectors';
 
-const mapStateToProps = (state, { id }) => ({
-  status: state.getIn(['statuses', id]),
-  checked: state.getIn(['reports', 'new', 'status_ids'], ImmutableSet()).includes(id),
-});
+const makeMapStateToProps = () => {
+  const getStatus = makeGetStatus();
 
-const mapDispatchToProps = (dispatch, { id }) => ({
+  const mapStateToProps = (state, { id }) => ({
+    status: getStatus(state, { id }),
+  });
 
-  onToggle (e) {
-    dispatch(toggleStatusReport(id, e.target.checked));
-  },
+  return mapStateToProps;
+};
 
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(StatusCheckBox);
+export default connect(makeMapStateToProps)(StatusCheckBox);

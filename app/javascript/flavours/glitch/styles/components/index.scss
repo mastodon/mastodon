@@ -41,16 +41,14 @@
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 500;
-  height: 36px;
   letter-spacing: 0;
-  line-height: 36px;
+  line-height: 22px;
   overflow: hidden;
-  padding: 0 16px;
+  padding: 7px 18px;
   position: relative;
   text-align: center;
-  text-transform: uppercase;
   text-decoration: none;
   text-overflow: ellipsis;
   transition: all 100ms ease-in;
@@ -82,17 +80,6 @@
     cursor: default;
   }
 
-  &.button-primary,
-  &.button-alternative,
-  &.button-secondary,
-  &.button-alternative-2 {
-    font-size: 16px;
-    line-height: 36px;
-    height: auto;
-    text-transform: none;
-    padding: 4px 16px;
-  }
-
   &.button-alternative {
     color: $inverted-text-color;
     background: $ui-primary-color;
@@ -121,8 +108,7 @@
     color: $darker-text-color;
     text-transform: none;
     background: transparent;
-    padding: 3px 15px;
-    border-radius: 4px;
+    padding: 6px 17px;
     border: 1px solid $ui-primary-color;
 
     &:active,

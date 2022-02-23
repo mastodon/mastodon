@@ -1,38 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { changeReportComment, changeReportForward, submitReport } from 'flavours/glitch/actions/reports';
+import { submitReport } from 'flavours/glitch/actions/reports';
 import { expandAccountTimeline } from 'flavours/glitch/actions/timelines';
+import { fetchRules } from 'flavours/glitch/actions/rules';
+import { fetchRelationships } from 'flavours/glitch/actions/accounts';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { makeGetAccount } from 'flavours/glitch/selectors';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
-import StatusCheckBox from 'flavours/glitch/features/report/containers/status_check_box_container';
 import { OrderedSet } from 'immutable';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import Button from 'flavours/glitch/components/button';
-import Toggle from 'react-toggle';
-import IconButton from '../../../components/icon_button';
+import IconButton from 'flavours/glitch/components/icon_button';
+import Category from 'flavours/glitch/features/report/category';
+import Statuses from 'flavours/glitch/features/report/statuses';
+import Rules from 'flavours/glitch/features/report/rules';
+import Comment from 'flavours/glitch/features/report/comment';
+import Thanks from 'flavours/glitch/features/report/thanks';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
-  placeholder: { id: 'report.placeholder', defaultMessage: 'Additional comments' },
-  submit: { id: 'report.submit', defaultMessage: 'Submit' },
 });
 
 const makeMapStateToProps = () => {
   const getAccount = makeGetAccount();
 
-  const mapStateToProps = state => {
-    const accountId = state.getIn(['reports', 'new', 'account_id']);
-
-    return {
-      isSubmitting: state.getIn(['reports', 'new', 'isSubmitting']),
-      account: getAccount(state, accountId),
-      comment: state.getIn(['reports', 'new', 'comment']),
-      forward: state.getIn(['reports', 'new', 'forward']),
-      statusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}:with_replies`, 'items'])).union(state.getIn(['reports', 'new', 'status_ids'])),
-    };
-  };
+  const mapStateToProps = (state, { accountId }) => ({
+    account: getAccount(state, accountId),
+  });
 
   return mapStateToProps;
 };
@@ -42,92 +36,183 @@ export default @connect(makeMapStateToProps)
 class ReportModal extends ImmutablePureComponent {
 
   static propTypes = {
-    isSubmitting: PropTypes.bool,
-    account: ImmutablePropTypes.map,
-    statusIds: ImmutablePropTypes.orderedSet.isRequired,
-    comment: PropTypes.string.isRequired,
-    forward: PropTypes.bool,
+    accountId: PropTypes.string.isRequired,
+    statusId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    account: ImmutablePropTypes.map.isRequired,
   };
 
-  handleCommentChange = e => {
-    this.props.dispatch(changeReportComment(e.target.value));
-  }
-
-  handleForwardChange = e => {
-    this.props.dispatch(changeReportForward(e.target.checked));
-  }
+  state = {
+    step: 'category',
+    selectedStatusIds: OrderedSet(this.props.statusId ? [this.props.statusId] : []),
+    comment: '',
+    category: null,
+    selectedRuleIds: OrderedSet(),
+    forward: true,
+    isSubmitting: false,
+    isSubmitted: false,
+  };
 
   handleSubmit = () => {
-    this.props.dispatch(submitReport());
-  }
+    const { dispatch, accountId } = this.props;
+    const { selectedStatusIds, comment, category, selectedRuleIds, forward } = this.state;
 
-  handleKeyDown = e => {
-    if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
-      this.handleSubmit();
+    this.setState({ isSubmitting: true });
+
+    dispatch(submitReport({
+      account_id: accountId,
+      status_ids: selectedStatusIds.toArray(),
+      comment,
+      forward,
+      category,
+      rule_ids: selectedRuleIds.toArray(),
+    }, this.handleSuccess, this.handleFail));
+  };
+
+  handleSuccess = () => {
+    this.setState({ isSubmitting: false, isSubmitted: true, step: 'thanks' });
+  };
+
+  handleFail = () => {
+    this.setState({ isSubmitting: false });
+  };
+
+  handleStatusToggle = (statusId, checked) => {
+    const { selectedStatusIds } = this.state;
+
+    if (checked) {
+      this.setState({ selectedStatusIds: selectedStatusIds.add(statusId) });
+    } else {
+      this.setState({ selectedStatusIds: selectedStatusIds.remove(statusId) });
+    }
+  };
+
+  handleRuleToggle = (ruleId, checked) => {
+    const { selectedRuleIds } = this.state;
+
+    if (checked) {
+      this.setState({ selectedRuleIds: selectedRuleIds.add(ruleId) });
+    } else {
+      this.setState({ selectedRuleIds: selectedRuleIds.remove(ruleId) });
     }
   }
+
+  handleChangeCategory = category => {
+    this.setState({ category });
+  };
+
+  handleChangeComment = comment => {
+    this.setState({ comment });
+  };
+
+  handleChangeForward = forward => {
+    this.setState({ forward });
+  };
+
+  handleNextStep = step => {
+    this.setState({ step });
+  };
 
   componentDidMount () {
-    this.props.dispatch(expandAccountTimeline(this.props.account.get('id'), { withReplies: true }));
-  }
+    const { dispatch, accountId } = this.props;
 
-  componentWillReceiveProps (nextProps) {
-    if (this.props.account !== nextProps.account && nextProps.account) {
-      this.props.dispatch(expandAccountTimeline(nextProps.account.get('id'), { withReplies: true }));
-    }
+    dispatch(fetchRelationships([accountId]));
+    dispatch(expandAccountTimeline(accountId, { withReplies: true }));
+    dispatch(fetchRules());
   }
 
   render () {
-    const { account, comment, intl, statusIds, isSubmitting, forward, onClose } = this.props;
+    const {
+      accountId,
+      account,
+      intl,
+      onClose,
+    } = this.props;
 
     if (!account) {
       return null;
     }
 
-    const domain = account.get('acct').split('@')[1];
+    const {
+      step,
+      selectedStatusIds,
+      selectedRuleIds,
+      comment,
+      forward,
+      category,
+      isSubmitting,
+      isSubmitted,
+    } = this.state;
+
+    const domain   = account.get('acct').split('@')[1];
+    const isRemote = !!domain;
+
+    let stepComponent;
+
+    switch(step) {
+    case 'category':
+      stepComponent = (
+        <Category
+          onNextStep={this.handleNextStep}
+          startedFrom={this.props.statusId ? 'status' : 'account'}
+          category={category}
+          onChangeCategory={this.handleChangeCategory}
+        />
+      );
+      break;
+    case 'rules':
+      stepComponent = (
+        <Rules
+          onNextStep={this.handleNextStep}
+          selectedRuleIds={selectedRuleIds}
+          onToggle={this.handleRuleToggle}
+        />
+      );
+      break;
+    case 'statuses':
+      stepComponent = (
+        <Statuses
+          onNextStep={this.handleNextStep}
+          accountId={accountId}
+          selectedStatusIds={selectedStatusIds}
+          onToggle={this.handleStatusToggle}
+        />
+      );
+      break;
+    case 'comment':
+      stepComponent = (
+        <Comment
+          onSubmit={this.handleSubmit}
+          isSubmitting={isSubmitting}
+          isRemote={isRemote}
+          comment={comment}
+          forward={forward}
+          domain={domain}
+          onChangeComment={this.handleChangeComment}
+          onChangeForward={this.handleChangeForward}
+        />
+      );
+      break;
+    case 'thanks':
+      stepComponent = (
+        <Thanks
+          submitted={isSubmitted}
+          account={account}
+          onClose={onClose}
+        />
+      );
+    }
 
     return (
-      <div className='modal-root__modal report-modal'>
+      <div className='modal-root__modal report-dialog-modal'>
         <div className='report-modal__target'>
           <IconButton className='report-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={onClose} size={20} />
           <FormattedMessage id='report.target' defaultMessage='Report {target}' values={{ target: <strong>{account.get('acct')}</strong> }} />
         </div>
 
-        <div className='report-modal__container'>
-          <div className='report-modal__comment'>
-            <p><FormattedMessage id='report.hint' defaultMessage='The report will be sent to your server moderators. You can provide an explanation of why you are reporting this account below:' /></p>
-
-            <textarea
-              className='setting-text light'
-              placeholder={intl.formatMessage(messages.placeholder)}
-              value={comment}
-              onChange={this.handleCommentChange}
-              onKeyDown={this.handleKeyDown}
-              disabled={isSubmitting}
-              autoFocus
-            />
-
-            {domain && (
-              <div>
-                <p><FormattedMessage id='report.forward_hint' defaultMessage='The account is from another server. Send an anonymized copy of the report there as well?' /></p>
-
-                <div className='setting-toggle'>
-                  <Toggle id='report-forward' checked={forward} disabled={isSubmitting} onChange={this.handleForwardChange} />
-                  <label htmlFor='report-forward' className='setting-toggle__label'><FormattedMessage id='report.forward' defaultMessage='Forward to {target}' values={{ target: domain }} /></label>
-                </div>
-              </div>
-            )}
-
-            <Button disabled={isSubmitting} text={intl.formatMessage(messages.submit)} onClick={this.handleSubmit} />
-          </div>
-
-          <div className='report-modal__statuses'>
-            <div>
-              {statusIds.map(statusId => <StatusCheckBox id={statusId} key={statusId} disabled={isSubmitting} />)}
-            </div>
-          </div>
+        <div className='report-dialog-modal__container'>
+          {stepComponent}
         </div>
       </div>
     );

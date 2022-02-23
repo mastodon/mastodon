@@ -537,6 +537,192 @@
   max-width: 700px;
 }
 
+.report-dialog-modal {
+  max-width: 90vw;
+  width: 480px;
+  height: 80vh;
+  background: lighten($ui-secondary-color, 8%);
+  color: $inverted-text-color;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+
+  &__container {
+    box-sizing: border-box;
+    border-top: 1px solid $ui-secondary-color;
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  &__title {
+    font-size: 28px;
+    line-height: 33px;
+    font-weight: 700;
+    margin-bottom: 15px;
+
+    @media screen and (max-height: 800px) {
+      font-size: 22px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 22px;
+    margin-bottom: 4px;
+  }
+
+  &__lead {
+    font-size: 17px;
+    line-height: 22px;
+    color: lighten($inverted-text-color, 16%);
+    margin-bottom: 30px;
+  }
+
+  &__actions {
+    margin-top: 30px;
+    display: flex;
+
+    .button {
+      flex: 1 1 auto;
+    }
+  }
+
+  &__statuses {
+    flex-grow: 1;
+    min-height: 0;
+    overflow: auto;
+  }
+
+  .status__content a {
+    color: $highlight-text-color;
+  }
+
+  .status__content,
+  .status__content p {
+    color: $inverted-text-color;
+  }
+
+  .dialog-option .poll__input {
+    border-color: $inverted-text-color;
+    color: $ui-secondary-color;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: 8px;
+      height: auto;
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      border-color: lighten($inverted-text-color, 15%);
+      border-width: 4px;
+    }
+
+    &.active {
+      border-color: $inverted-text-color;
+      background: $inverted-text-color;
+    }
+  }
+
+  .poll__option.dialog-option {
+    padding: 15px 0;
+    flex: 0 0 auto;
+    border-bottom: 1px solid $ui-secondary-color;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    & > .poll__option__text {
+      font-size: 13px;
+      color: lighten($inverted-text-color, 16%);
+
+      strong {
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 22px;
+        color: $inverted-text-color;
+        display: block;
+        margin-bottom: 4px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .flex-spacer {
+    background: transparent;
+  }
+
+  &__textarea {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    color: $inverted-text-color;
+    background: $simple-background-color;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 17px;
+    line-height: 22px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    margin: 20px 0;
+
+    &::placeholder {
+      color: $dark-text-color;
+    }
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+
+    & > span {
+      font-size: 17px;
+      font-weight: 500;
+      margin-left: 10px;
+    }
+  }
+
+  .button.button-secondary {
+    border-color: $inverted-text-color;
+    color: $inverted-text-color;
+    flex: 0 0 auto;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: lighten($inverted-text-color, 15%);
+      color: lighten($inverted-text-color, 15%);
+    }
+  }
+
+  hr {
+    border: 0;
+    background: transparent;
+    margin: 15px 0;
+  }
+}
+
 .report-modal__container {
   display: flex;
   border-top: 1px solid $ui-secondary-color;
