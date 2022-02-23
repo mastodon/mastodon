@@ -110,6 +110,7 @@ eu:
       confirm: Berretsi
       confirmed: Berretsita
       confirming: Berresten
+      custom: Pertsonalizatua
       delete: Ezabatu datuak
       deleted: Ezabatua
       demote: Jaitsi mailaz
@@ -201,6 +202,7 @@ eu:
       silenced: Isilarazita
       statuses: Bidalketa
       subscribe: Harpidetu
+      suspend: Kanporatu
       suspended: Kanporatuta
       suspension_irreversible: Kontu honen datuak behin betiko ezabatu dira. Kontua kanporatzea atzera bota dezakezu, berriz erabilgarri izan dadin, baina datuak ezingo dira berreskuratu.
       suspension_reversible_hint_html: Kontu hau kanporatua izan da eta bere datuak %{date}(e)an behin betiko ezabatuko dira. Ordura arte kontua kalterik gabe leheneratu daiteke. Kontuaren datu guztiak oraintxe bertan ezabatu nahi badituzu, jarraian egin dezakezu.
@@ -221,6 +223,7 @@ eu:
       whitelisted: Zerrenda zurian
     action_logs:
       action_types:
+        approve_appeal: Onartu apelazioa
         approve_user: Onartu erabiltzailea
         assigned_to_self_report: Esleitu salaketa
         change_email_user: Aldatu erabiltzailearen e-maila
@@ -252,6 +255,7 @@ eu:
         enable_user: Gaitu erabiltzailea
         memorialize_account: Bihurtu kontua oroigarri
         promote_user: Igo erabiltzailea mailaz
+        reject_appeal: Baztertu apelazioa
         reject_user: Baztertu erabiltzailea
         remove_avatar_user: Kendu abatarra
         reopen_report: Berrireki txostena
@@ -270,6 +274,7 @@ eu:
         update_domain_block: Eguneratu domeinu-blokeoa
         update_status: Eguneratu bidalketa
       actions:
+        approve_appeal_html: "%{name} erabiltzaileak %{target} erabiltzailearen moderazio erabakiaren apelazioa onartu du"
         approve_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen izen-ematea onartu du"
         assigned_to_self_report_html: "%{name} erabiltzaileak %{target} salaketa bere buruari esleitu dio"
         change_email_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen e-posta helbidea aldatu du"
@@ -301,6 +306,7 @@ eu:
         enable_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen saioa gaitu du"
         memorialize_account_html: "%{name} erabiltzaileak %{target} kontua memoriala bihurtu du"
         promote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz igo du"
+        reject_appeal_html: "%{name} erabiltzaileak %{target} erabiltzailearen moderazio erabakiaren apelazioa baztertu du"
         reject_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen izen-ematea baztertu du"
         remove_avatar_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen abatarra kendu du"
         reopen_report_html: "%{name} erabiltzaileak %{target} txostena berrireki du"
@@ -387,6 +393,10 @@ eu:
       top_languages: Hizkuntza aktiboenak
       top_servers: Zerbitzari aktiboenak
       website: Webgunea
+    disputes:
+      appeals:
+        empty: Ez da apelaziorik aurkitu.
+        title: Apelazioak
     domain_allows:
       add_new: Sartu domeinua zerrenda zurian
       created_msg: Domeinua ongi sartu da zerrenda zurian
@@ -424,6 +434,10 @@ eu:
         silence: isilarazia
         suspend: kanporatua
       show:
+        affected_accounts:
+          one: Datu-baseko kontu bati eragiten dio
+          other: Datu-baseko %{count} konturi eragiten die
+          zero: Ez die eragiten datu-baseko kontuei
         retroactive:
           silence: Kendu isilarazteko agindua domeinu honetako kontu guztiei
           suspend: Kendu kanporatzeko agindua domeinu honetako kontu guztiei
@@ -474,6 +488,10 @@ eu:
       delivery_error_hint: Banaketa ezin bada %{count} egunean egin, banaezin bezala markatuko da automatikoki.
       destroyed_msg: "%{domain} domeinuko datuak berehala ezabatzeko ilaran daude orain."
       empty: Ez da domeinurik aurkitu.
+      known_accounts:
+        one: Kontu ezagun %{count}
+        other: "%{count} kontu ezagun"
+        zero: Kontu ezagunik ez
       moderation:
         all: Denak
         limited: Mugatua
@@ -531,41 +549,61 @@ eu:
     report_notes:
       created_msg: Salaketa oharra ongi sortu da!
       destroyed_msg: Salaketa oharra ongi ezabatu da!
+      today_at: Gaur %{time}(e)tan
     reports:
       account:
         notes:
           one: Ohar %{count}
           other: "%{count} ohar"
+      action_log: Auditoria-egunkaria
       action_taken_by: Neurrien hartzailea
+      actions:
+        other_description_html: Ikusi kontuaren portaera kontrolatzeko eta salatutako kontuarekin komunikazioa pertsonalizatzeko aukera gehiago.
+        silence_description_html: Profila dagoeneko jarraitzen dutenei edo eskuz bilatzen dutenei bakarrik agertuko zaie, bere irismena asko mugatuz. Beti bota daiteke atzera.
+        suspend_description_html: Profila eta bere eduki guztiak iritsiezinak bihurtuko dira, ezabatzen den arte. Kontuarekin ezin da interakziorik eduki. Atzera bota daiteke 30 eguneko epean.
+      actions_description_html: Erabaki txosten hau konpontzeko ze ekintza hartu. Salatutako kontuaren aurka zigor ekintza bat hartzen baduzu, eposta jakinarazpen bat bidaliko zaie, <strong>Spam</strong> kategoria hautatzean ezik.
+      add_to_report: Gehitu gehiago txostenera
       are_you_sure: Ziur zaude?
       assign_to_self: Esleitu niri
       assigned: Esleitutako moderatzailea
       by_target_domain: Jakinarazitako kontuaren domeinua
+      category: Kategoria
+      category_description_html: Kontu edo/eta eduki hau salatu izanaren arrazoia salatutako kontuarekiko komunikazioan aipatuko da
       comment:
         none: Bat ere ez
+      comment_description_html: 'Informazio gehiago emateko, %{name} idatzi:'
       created_at: Salatua
+      delete_and_resolve: Ezabatu bidalketak
       forwarded: Birbidalia
       forwarded_to: 'Hona birbidalia: %{domain}'
       mark_as_resolved: Markatu konpondutako gisa
       mark_as_unresolved: Markatu konpondu gabeko gisa
+      no_one_assigned: Inor ez
       notes:
         create: Gehitu oharra
         create_and_resolve: Konpondu ohar batekin
         create_and_unresolve: Berrireki ohar batekin
         delete: Ezabatu
         placeholder: Azaldu hartutako neurriak, edo erlazioa duten bestelako berriak...
+        title: Oharrak
+      notes_description_html: Ikusi eta idatzi oharrak beste moderatzaileentzat eta zuretzat etorkizunerako
+      quick_actions_description_html: 'Hartu ekintza azkar bat edo korritu behera salatutako edukia ikusteko:'
       reopen: Berrireki salaketa
       report: 'Salaketa #%{id}'
       reported_account: Salatutako kontua
       reported_by: Salatzailea
       resolved: Konponduta
       resolved_msg: Salaketa ongi konpondu da!
+      skip_to_actions: Salto ekintzetara
       status: Mezua
+      statuses: Salatutako edukia
+      statuses_description_html: Salatutako edukia salatutako kontuarekiko komunikazioan aipatuko da
       target_origin: Salatutako kontuaren jatorria
       title: Salaketak
       unassign: Kendu esleipena
       unresolved: Konpondu gabea
       updated_at: Eguneratua
+      view_profile: Ikusi profila
     rules:
       add_new: Gehitu araua
       delete: Ezabatu
@@ -667,12 +705,21 @@ eu:
       destroyed_msg: Guneko igoera ongi ezabatu da!
     statuses:
       back_to_account: Atzera kontuaren orrira
+      back_to_report: Atzera txostenaren orrira
+      batch:
+        remove_from_report: Kendu txostenetik
+        report: Salatu
       deleted: Ezabatuta
       media:
         title: Multimedia
       no_status_selected: Ez da bidalketarik aldatu ez delako bidalketarik aukeratu
       title: Kontuaren bidalketak
       with_media: Multimediarekin
+    strikes:
+      actions:
+        delete_statuses: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketak ezabatu ditu"
+        disable: "%{name} erabiltzailea %{target} erabiltzailearen kontua izoztu du"
+        none: "%{name} erabiltzaileak abisua bidali dio %{target} erabiltzaileari"
     system_checks:
       database_schema_check:
         message_html: Aplikatu gabeko datu-basearen migrazioak daude. Exekutatu aplikazioak esperotako portaera izan dezan

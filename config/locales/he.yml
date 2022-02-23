@@ -120,6 +120,10 @@ he:
       reject_media: חסימת קבצי מדיה
       reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים בעתיד. לא רלוונטי להשעיות
       show:
+        affected_accounts:
+          one: חשבון אחד במסד נתונים מושפע
+          other: "%{count} חשבונות במסד נתונים מושפעים"
+          zero: אף חשבון במסד נתונים מושפע
         retroactive:
           silence: הסרת השתקה מכל החשבונות על שרת זה
           suspend: הסרת השעייה מכל החשבונות על שרת זה
@@ -175,6 +179,17 @@ he:
         remove_from_report: הסרה מהדיווח
         report: דווח
     title: ניהול
+    trends:
+      links:
+        shared_by_over_week:
+          one: שותף ע"י משתמש\ת אחד\ת בשבוע האחרון
+          other: שותף ע"י %{count} משתמשים בשבוע האחרון
+          zero: לא שותף בכלל בשבוע האחרון
+      tags:
+        used_by_over_week:
+          one: היה בשימוש משתמש\ת אחד\ת בשבוע האחרון
+          other: היה בשימוש ע"י %{count} משתמשים בשבוע האחרון
+          zero: לא היה בשימוש בכלל בשבוע האחרון
   application_mailer:
     settings: 'שינוי הגדרות דוא"ל: %{link}'
     view: 'תצוגה:'
