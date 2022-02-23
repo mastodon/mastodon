@@ -18,7 +18,7 @@ class BootstrapTimelineService < BaseService
 
   def notify_staff!
     User.staff.includes(:account).find_each do |user|
-      NotifyService.new.call(user.account, :'admin.new_user', @source_account)
+      NotifyService.new.call(user.account, :'admin.sign_up', @source_account)
     end
   end
 end
