@@ -1187,6 +1187,9 @@ lv:
     carry_mutes_over_text: Šis lietotājs pārcēlās no %{acct}, kuru tu biji apklusinājis.
     copy_account_note_text: 'Šis lietotājs pārcēlās no %{acct}, šeit bija tavas iepriekšējās piezīmes par viņu:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} ir pierakstījies"
     digest:
       action: Rādīt visus paziņojumus
       body: Šeit ir īss kopsavilkums par ziņojumiem, kurus tu esi palaidis garām kopš pēdējā apmeklējuma %{since}
