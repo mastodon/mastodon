@@ -1175,6 +1175,9 @@ es:
     carry_mutes_over_text: Este usuario se mudó desde %{acct}, que habías silenciado.
     copy_account_note_text: 'Este usuario se mudó desde %{acct}, aquí estaban tus notas anteriores sobre él:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} se registró"
     digest:
       action: Ver todas las notificaciones
       body: Un resumen de los mensajes que perdiste en desde tu última visita, el %{since}
