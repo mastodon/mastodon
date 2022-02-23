@@ -786,6 +786,10 @@ id:
         trending_rank: 'Sedang tren #%{rank}'
         usable: Dapat digunakan
         usage_comparison: Digunakan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
+        used_by_over_week:
+          one: Dipakai oleh satu orang lebih dari seminggu lalu
+          other: Dipakai oleh %{count} orang selama seminggu terakhir
+          zero: Tidak dipakai siapapun lebih dari seminggu lalu
       title: Tren
     warning_presets:
       add_new: Tambah baru
@@ -980,6 +984,12 @@ id:
         delete_statuses: Penghapusan kiriman
         disable: Pembekuan akun
         none: Peringatan
+        sensitive: Tandai akun sebagai sensitif
+        silence: Pembatasan akun
+        suspend: Penangguhan akun
+      your_appeal_approved: Banding Anda disetujui
+      your_appeal_pending: Anda telah mengirim banding
+      your_appeal_rejected: Banding Anda ditolak
   domain_validator:
     invalid_domain: bukan nama domain yang valid
   errors:
@@ -1533,6 +1543,15 @@ id:
     recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
     webauthn: Kunci keamanan
   user_mailer:
+    appeal_approved:
+      action: Ke akun Anda
+      explanation: Banding peringatan terhadap akun Anda pada %{strike_date} yang Anda kirim pada %{appeal_date} telah disetujui. Akun Anda akan kembali ditandai sebagai akun bagus.
+      subject: Banding Anda dari %{date} telah disetujui
+      title: Banding disetujui
+    appeal_rejected:
+      explanation: Banding terhadap akun Anda pada %{strike_date} yang Anda ajukan %{appeal_date} telah ditolak.
+      subject: Banding Anda dari %{date} telah ditolak
+      title: Banding ditolak
     backup_ready:
       explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
       subject: Arsip Anda sudah siap diunduh
@@ -1544,6 +1563,8 @@ id:
       subject: Harap konfirmasi usaha masuk akun
       title: Usaha masuk akun
     warning:
+      appeal: Ajukan banding
+      appeal_description: Jika Anda yakin ini galat, Anda dapat mengajukan banding ke staf %{instance}.
       categories:
         spam: Spam
         violation: Konten melanggar panduan komunitas berikut

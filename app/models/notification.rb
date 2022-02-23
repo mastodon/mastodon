@@ -36,6 +36,7 @@ class Notification < ApplicationRecord
     favourite
     poll
     update
+    admin.sign_up
   ).freeze
 
   TARGET_STATUS_INCLUDES_BY_TYPE = {
@@ -63,13 +64,10 @@ class Notification < ApplicationRecord
   scope :without_suspended, -> { joins(:from_account).merge(Account.without_suspended) }
 
   scope :browserable, ->(exclude_types = [], account_id = nil) {
-    types = TYPES - exclude_types.map(&:to_sym)
-
-    if account_id.nil?
-      where(type: types)
-    else
-      where(type: types, from_account_id: account_id)
-    end
+    scope = all
+    scope = where(from_account_id: account_id) if account_id.present?
+    scope = scope.where(type: TYPES - exclude_types.map(&:to_sym)) unless exclude_types.empty?
+    scope
   }
 
   def type
@@ -142,6 +140,8 @@ class Notification < ApplicationRecord
       self.from_account_id = activity&.account_id
     when 'Mention'
       self.from_account_id = activity&.status&.account_id
+    when 'Account'
+      self.from_account_id = activity&.id
     end
   end
 end

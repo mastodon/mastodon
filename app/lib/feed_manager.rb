@@ -549,7 +549,7 @@ class FeedManager
       end
     else
       # A reblog may reach earlier than the original status because of the
-      # delay of the worker deliverying the original status, the late addition
+      # delay of the worker delivering the original status, the late addition
       # by merging timelines, and other reasons.
       # If such a reblog already exists, just do not re-insert it into the feed.
       return false unless redis.zscore(reblog_key, status.id).nil?

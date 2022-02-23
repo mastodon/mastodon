@@ -929,7 +929,12 @@ ru:
     explore_mastodon: Изучайте %{title}
   disputes:
     strikes:
+      action_taken: Предпринятые меры
       appeal_approved: Это замечание было успешно обжаловано и более не действительно
+      appeals:
+        submit: Подать обжалование
+      created_at: Дата
+      recipient: Адресовано
       status: 'Пост #%{id}'
       title: "%{action} от %{date}"
       your_appeal_approved: Ваша апелляция одобрена
@@ -1293,7 +1298,7 @@ ru:
     authorized_apps: Приложения
     back: Назад в Mastodon
     delete: Удаление учётной записи
-    development: Разработка
+    development: Разработчикам
     edit_profile: Изменить профиль
     export: Экспорт данных
     featured_tags: Особенные хэштеги
@@ -1514,6 +1519,7 @@ ru:
     webauthn: Ключи безопасности
   user_mailer:
     appeal_approved:
+      action: Перейти к своему профилю
       subject: Ваша апелляция от %{date} была одобрена
       title: Апелляция одобрена
     appeal_rejected:

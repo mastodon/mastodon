@@ -22,34 +22,6 @@ class NotifyService < BaseService
     FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient)
   end
 
-  def blocked_status?
-    false
-  end
-
-  def blocked_favourite?
-    false
-  end
-
-  def blocked_follow?
-    false
-  end
-
-  def blocked_reblog?
-    false
-  end
-
-  def blocked_follow_request?
-    false
-  end
-
-  def blocked_poll?
-    false
-  end
-
-  def blocked_update?
-    false
-  end
-
   def following_sender?
     return @following_sender if defined?(@following_sender)
     @following_sender = @recipient.following?(@notification.from_account) || @recipient.requested?(@notification.from_account)
@@ -71,7 +43,7 @@ class NotifyService < BaseService
     message? && @notification.target_status.direct_visibility?
   end
 
-  # Returns true if the sender has been mentionned by the recipient up the thread
+  # Returns true if the sender has been mentioned by the recipient up the thread
   def response_to_recipient?
     return false if @notification.target_status.in_reply_to_id.nil?
 
@@ -149,15 +121,15 @@ class NotifyService < BaseService
 
     return blocked if message? && from_staff?
 
-    blocked ||= domain_blocking?                                 # Skip for domain blocked accounts
-    blocked ||= @recipient.blocking?(@notification.from_account) # Skip for blocked accounts
+    blocked ||= domain_blocking?
+    blocked ||= @recipient.blocking?(@notification.from_account)
     blocked ||= @recipient.muting_notifications?(@notification.from_account)
-    blocked ||= hellbanned?                                      # Hellban
-    blocked ||= optional_non_follower?                           # Options
-    blocked ||= optional_non_following?                          # Options
-    blocked ||= optional_non_following_and_direct?               # Options
+    blocked ||= hellbanned?
+    blocked ||= optional_non_follower?
+    blocked ||= optional_non_following?
+    blocked ||= optional_non_following_and_direct?
     blocked ||= conversation_muted?
-    blocked ||= send("blocked_#{@notification.type}?")           # Type-dependent filters
+    blocked ||= blocked_mention? if @notification.type == :mention
     blocked
   end
 

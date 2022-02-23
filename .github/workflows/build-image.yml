@@ -22,6 +22,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
+        if: github.event_name != 'pull_request'
       - uses: docker/metadata-action@v3
         id: meta
         with:
@@ -31,6 +32,7 @@ jobs:
           tags: |
             type=edge,branch=main
             type=semver,pattern={{ raw }}
+            type=ref,event=pr
       - uses: docker/build-push-action@v2
         with:
           context: .

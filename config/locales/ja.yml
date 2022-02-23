@@ -198,6 +198,7 @@ ja:
       silenced: サイレンス済み
       statuses: 投稿数
       subscribe: 購読する
+      suspend: サスペンド
       suspended: 停止済み
       suspension_irreversible: このアカウントのデータは削除され元に戻せなくなります。後日アカウントの凍結を解除することはできますがデータは元に戻せません。
       suspension_reversible_hint_html: アカウントは停止されており、データは %{date} に完全に削除されます。それまではアカウントを元に戻すことができます。今すぐ完全に削除したい場合は以下から行うことができます。
@@ -218,6 +219,7 @@ ja:
       whitelisted: 連合許可済み
     action_logs:
       action_types:
+        approve_appeal: 抗議を承認
         approve_user: ユーザーの承認
         assigned_to_self_report: 通報の担当者に設定
         change_email_user: ユーザーのメールアドレスを変更
@@ -249,6 +251,7 @@ ja:
         enable_user: ユーザーを有効化
         memorialize_account: 追悼アカウント化
         promote_user: ユーザーを昇格
+        reject_appeal: 抗議を却下
         reject_user: ユーザーを拒否
         remove_avatar_user: アイコンを削除
         reopen_report: 未解決に戻す
@@ -267,6 +270,7 @@ ja:
         update_domain_block: ドメインブロックを更新
         update_status: 投稿を更新
       actions:
+        approve_appeal_html: "%{name} さんが %{target} からの抗議を承認しました"
         approve_user_html: "%{target} から登録された %{name} さんを承認しました"
         assigned_to_self_report_html: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
         change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
@@ -298,6 +302,7 @@ ja:
         enable_user_html: "%{name} さんが %{target} さんのログインを有効化しました"
         memorialize_account_html: "%{name} さんが %{target} さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name} さんが %{target} さんを昇格しました"
+        reject_appeal_html: "%{name} さんが %{target} からの抗議を却下しました"
         reject_user_html: "%{target} から登録された %{name} さんを拒否しました"
         remove_avatar_user_html: "%{name} さんが %{target} さんのアイコンを削除しました"
         reopen_report_html: "%{name} さんが通報 %{target} を未解決に戻しました"
@@ -376,6 +381,14 @@ ja:
       media_storage: メディアストレージ
       new_users: 新規ユーザー
       opened_reports: 新規通報
+      pending_appeals_html:
+        other: 保留中の抗議 <strong>%{count}</strong> 件
+      pending_reports_html:
+        other: 保留中の通報 <strong>%{count}</strong> 件
+      pending_tags_html:
+        other: 保留中のハッシュタグ <strong>%{count}</strong> 件
+      pending_users_html:
+        other: 保留中のユーザー <strong>%{count}</strong> 件
       resolved_reports: 解決済みの通報
       software: ソフトウェア
       sources: サインアップソース
@@ -384,6 +397,10 @@ ja:
       top_languages: トップのアクティブ言語
       top_servers: トップアクティブサーバー
       website: ウェブサイト
+    disputes:
+      appeals:
+        empty: 抗議はありません。
+        title: 抗議
     domain_allows:
       add_new: 連合を許可
       created_msg: 連合を許可しました
@@ -893,6 +910,9 @@ ja:
     directory: ディレクトリ
     explanation: 関心を軸にユーザーを発見しよう
     explore_mastodon: "%{title}を探索"
+  disputes:
+    strikes:
+      appeal: 抗議
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
@@ -1300,8 +1320,8 @@ ja:
     enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます
     exceptions: 例外
     explanation: 投稿の削除はサーバーに負荷がかかるため、サーバーが混み合っていないときに時間をかけて行われます。
-    ignore_favs: お気に入りされた数を無視
-    ignore_reblogs: ブーストされた数を無視
+    ignore_favs: 設定しない
+    ignore_reblogs: 設定しない
     interaction_exceptions: インタラクションに基づく例外
     interaction_exceptions_explanation: お気に入りやブーストの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
     keep_direct: ダイレクトメッセージを保持
@@ -1325,10 +1345,10 @@ ja:
       '63113904': 2年
       '7889238': 3ヶ月
     min_age_label: 投稿を保持する期間
-    min_favs: これ以上お気に入りに登録された投稿を無視する
-    min_favs_hint: この数以上、お気に入りに登録された投稿を削除しません。空白にしておくと、お気に入りに登録された数に関わらず投稿を削除します。
-    min_reblogs: これ以上ブーストされた投稿を無視する
-    min_reblogs_hint: この数以上、ブーストされた投稿を削除しません。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
+    min_favs: お気に入りの基準値
+    min_favs_hint: この数以上、お気に入りされた投稿を削除せずに残します。空白にしておくと、お気に入りに登録された数に関わらず投稿を削除します。
+    min_reblogs: ブーストの基準値
+    min_reblogs_hint: この数以上、ブーストされた投稿を削除せずに残します。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
   stream_entries:
     pinned: 固定された投稿
     reblogged: さんがブースト
