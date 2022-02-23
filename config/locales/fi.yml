@@ -1511,6 +1511,11 @@ fi:
       categories:
         spam: Roskaposti
         violation: Sisältö rikkoo seuraavia yhteisön sääntöjä
+      explanation:
+        delete_statuses: Joitakin viestejäsi on havaittu rikkovan yhtä tai useampaa yhteisön sääntöä ja %{instance} valvojat ovat poistaneet ne. Tulevat rikkomukset voivat johtaa ankarampiin rangaistuksiin tiliäsi vastaan.
+        disable: Et voi enää käyttää tiliäsi, mutta profiilisi ja muut tiedot pysyvät muuttumattomina. Voit pyytää varmuuskopiota tiedoistasi, vaihtaa tilin asetuksia tai poistaa tilisi.
+        sensitive: Tästä lähtien kaikki ladatut mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
+        silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat ihmiset näkevät viestisi tällä palvelimella ja sinut voidaan sulkea pois erilaisista hakuominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
       reason: 'Syy:'
       subject:
         disable: Tilisi %{acct} on jäädytetty
