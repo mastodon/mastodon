@@ -27,6 +27,8 @@ fr:
         scheduled_at: Laisser vide pour publier l’annonce immédiatement
         starts_at: Optionnel. Si votre annonce est liée à une période spécifique
         text: Vous pouvez utiliser la syntaxe des messages. Veuillez prendre en compte l’espace que l'annonce prendra sur l’écran de l'utilisateur·rice
+      appeal:
+        text: Vous ne pouvez faire appel d'une sanction qu'une seule fois
       defaults:
         autofollow: Les personnes qui s’inscrivent grâce à l’invitation vous suivront automatiquement
         avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
@@ -119,6 +121,8 @@ fr:
         scheduled_at: Planifier la publication
         starts_at: Début de l’événement
         text: Annonce
+      appeal:
+        text: Expliquez pourquoi cette décision devrait être annulée
       defaults:
         autofollow: Invitation à suivre votre compte
         avatar: Image de profil
@@ -197,6 +201,7 @@ fr:
           sign_up_requires_approval: Limite des inscriptions
         severity: Règle
       notification_emails:
+        appeal: Une personne fait appel d'une décision des modérateur·rice·s
         digest: Envoyer des courriels récapitulatifs
         favourite: Quelqu’un a ajouté mon message à ses favoris
         follow: Quelqu’un vient de me suivre
@@ -204,6 +209,8 @@ fr:
         mention: Quelqu’un me mentionne
         pending_account: Nouveau compte en attente d’approbation
         reblog: Quelqu’un a partagé mon message
+        report: Nouveau signalement soumis
+        trending_tag: Nouvelle tendance nécessitant supervision
       rule:
         text: Règle
       tag:

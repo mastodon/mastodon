@@ -150,6 +150,10 @@ th:
       not_subscribed: ไม่ได้บอกรับ
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
+      previous_strikes: การลงโทษก่อนหน้านี้
+      previous_strikes_description_html:
+        one: บัญชีนี้มี <strong>หนึ่ง</strong> การลงโทษ
+        other: บัญชีนี้มี <strong>%{count}</strong> การลงโทษ
       promote: เลื่อนขั้น
       protocol: โปรโตคอล
       public: สาธารณะ
@@ -190,6 +194,7 @@ th:
       silence: จำกัด
       silenced: จำกัดอยู่
       statuses: โพสต์
+      strikes: การลงโทษก่อนหน้านี้
       subscribe: บอกรับ
       suspend: ระงับ
       suspended: ระงับอยู่
@@ -369,6 +374,14 @@ th:
       media_storage: ที่เก็บข้อมูลสื่อ
       new_users: ผู้ใช้ใหม่
       opened_reports: รายงานที่เปิด
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> การอุทธรณ์ที่รอดำเนินการ"
+      pending_reports_html:
+        other: "<strong>%{count}</strong> รายงานที่รอดำเนินการ"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> แฮชแท็กที่รอดำเนินการ"
+      pending_users_html:
+        other: "<strong>%{count}</strong> ผู้ใช้ที่รอดำเนินการ"
       resolved_reports: รายงานที่แก้ปัญหาแล้ว
       software: ซอฟต์แวร์
       sources: แหล่งที่มาการลงทะเบียน
@@ -413,6 +426,10 @@ th:
         silence: จำกัดอยู่
         suspend: ระงับอยู่
       show:
+        affected_accounts:
+          one: หนึ่งบัญชีในฐานข้อมูลที่ได้รับผลกระทบ
+          other: "%{count} บัญชีในฐานข้อมูลที่ได้รับผลกระทบ"
+          zero: ไม่มีบัญชีในฐานข้อมูลที่ได้รับผลกระทบ
         retroactive:
           silence: เลิกทำการจำกัดบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
           suspend: เลิกระงับบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
@@ -457,6 +474,10 @@ th:
       delivery_available: มีการจัดส่ง
       delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
       empty: ไม่พบโดเมน
+      known_accounts:
+        one: "%{count} บัญชีที่รู้จัก"
+        other: "%{count} บัญชีที่รู้จัก"
+        zero: ไม่มีบัญชีที่รู้จัก
       moderation:
         all: ทั้งหมด
         limited: จำกัดอยู่
@@ -518,6 +539,7 @@ th:
         notes:
           other: "%{count} หมายเหตุ"
       action_log: รายการบันทึกการตรวจสอบ
+      action_taken_by: ใช้การกระทำโดย
       are_you_sure: คุณแน่ใจหรือไม่?
       assign_to_self: มอบหมายให้ฉัน
       assigned: ผู้ควบคุมที่ได้รับมอบหมาย
@@ -691,6 +713,10 @@ th:
         allow_provider: อนุญาตผู้เผยแพร่
         disallow: ไม่อนุญาตลิงก์
         disallow_provider: ไม่อนุญาตผู้เผยแพร่
+        shared_by_over_week:
+          one: แบ่งปันโดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
+          other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
+          zero: ไม่มีใครแบ่งปันในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
         usage_comparison: แบ่งปัน %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
       pending_review: การตรวจทานที่รอดำเนินการ
@@ -717,6 +743,10 @@ th:
         trending_rank: 'กำลังนิยม #%{rank}'
         usable: สามารถใช้
         usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
+        used_by_over_week:
+          one: ใช้โดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
+          other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
+          zero: ไม่มีใครใช้ในช่วงสัปดาห์ที่ผ่านมา
       title: แนวโน้ม
     warning_presets:
       add_new: เพิ่มใหม่
@@ -878,10 +908,13 @@ th:
     explore_mastodon: สำรวจ %{title}
   disputes:
     strikes:
+      action_taken: การกระทำที่ใช้
       appeal_submitted_at: ส่งการอุทธรณ์แล้ว
       appeals:
         submit: ส่งการอุทธรณ์
       associated_report: รายงานที่เกี่ยวข้อง
+      created_at: ลงวันที่
+      recipient: ส่งถึง
       status: 'โพสต์ #%{id}'
       title_actions:
         delete_statuses: การเอาโพสต์ออก
@@ -1039,7 +1072,7 @@ th:
   move_handler:
     carry_blocks_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ปิดกั้น
     carry_mutes_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ซ่อน
-    copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้าของคุณเกี่ยวกับผู้ใช้:'
+    copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้านี้ของคุณเกี่ยวกับผู้ใช้:'
   notification_mailer:
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
@@ -1292,7 +1325,7 @@ th:
     reblogged: ดันแล้ว
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   tags:
-    does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
+    does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้านี้
   terms:
     title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
   themes:

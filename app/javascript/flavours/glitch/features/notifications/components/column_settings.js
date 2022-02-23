@@ -6,6 +6,7 @@ import ClearColumnButton from './clear_column_button';
 import GrantPermissionButton from './grant_permission_button';
 import SettingToggle from './setting_toggle';
 import PillBarButton from './pill_bar_button';
+import { isStaff } from 'flavours/glitch/util/initial_state';
 
 export default class ColumnSettings extends React.PureComponent {
 
@@ -156,7 +157,7 @@ export default class ColumnSettings extends React.PureComponent {
         </div>
 
         <div role='group' aria-labelledby='notifications-update'>
-          <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.update' defaultMessage='Edits:' /></span>
+          <span id='notifications-update' className='column-settings__section'><FormattedMessage id='notifications.column_settings.update' defaultMessage='Edits:' /></span>
 
           <div className='column-settings__pillbar'>
             <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'update']} onChange={onChange} label={alertStr} />
@@ -165,6 +166,19 @@ export default class ColumnSettings extends React.PureComponent {
             <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'update']} onChange={onChange} label={soundStr} />
           </div>
         </div>
+
+        {isStaff && (
+          <div role='group' aria-labelledby='notifications-admin-sign-up'>
+            <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.admin.sign_up' defaultMessage='New sign-ups:' /></span>
+
+            <div className='column-settings__pillbar'>
+              <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'admin.sign_up']} onChange={onChange} label={alertStr} />
+              {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'admin.sign_up']} onChange={this.onPushChange} label={pushStr} />}
+              <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'admin.sign_up']} onChange={onChange} label={showStr} />
+              <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'admin.sign_up']} onChange={onChange} label={soundStr} />
+            </div>
+          </div>
+        )}
       </div>
     );
   }

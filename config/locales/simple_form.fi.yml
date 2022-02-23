@@ -77,16 +77,35 @@ fi:
       ip_block:
         comment: Valinnainen. Muista miksi lisäsit tämän säännön.
         expires_in: IP-osoitteet ovat rajallinen resurssi, joskus niitä jaetaan ja vaihtavat usein omistajaa. Tästä syystä epämääräisiä IP-lohkoja ei suositella.
+        ip: Kirjoita IPv4- tai IPv6-osoite. Voit estää kokonaisia alueita käyttämällä CIDR-syntaksia. Varo, että et lukitse itseäsi!
+        severities:
+          no_access: Estä pääsy kaikkiin resursseihin
+          sign_up_requires_approval: Uudet rekisteröitymiset edellyttävät hyväksyntääsi
+        severity: Valitse, mitä tapahtuu tämän IP-osoitteen pyynnöille
+      rule:
+        text: Kuvaile sääntöä tai vaatimusta tämän palvelimen käyttäjille. Yritä pitää se lyhyenä ja yksinkertaisena
       sessions:
         otp: Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.
+        webauthn: Jos kyseessä on USB-avain, muista laittaa se paikalleen ja tarvittaessa napauttaa sitä.
+      tag:
+        name: Voit muuttaa esimerkiksi kirjaimia paremmin luettavaksi
+      user:
+        chosen_languages: Kun valittu, vain valituilla kielillä julkaistut viestit näkyvät julkisilla aikajanoilla
     labels:
       account:
         fields:
           name: Nimike
           value: Sisältö
+      account_alias:
+        acct: Vanhan tilin käsittely
+      account_migration:
+        acct: Uuden tilin käsittely
       account_warning_preset:
+        text: Esiasetettu teksti
         title: Otsikko
       admin_account_action:
+        include_statuses: Sisällytä raportoidut viestit sähköpostiin
+        send_email_notification: Ilmoita käyttäjälle sähköpostitse
         text: Mukautettu varoitus
         type: Toimenpide
         types:
@@ -99,8 +118,11 @@ fi:
       announcement:
         all_day: Koko päivän kestävä tapahtuma
         ends_at: Tapahtuman loppu
+        scheduled_at: Ajasta julkaisu
         starts_at: Tapahtuman alku
         text: Ilmoitus
+      appeal:
+        text: Perustele, miksi tämä päätös olisi kumottava
       defaults:
         autofollow: Kutsu seuraamaan tiliäsi
         avatar: Profiilikuva
@@ -117,6 +139,9 @@ fi:
         expires_in: Vanhenee
         fields: Profiilin metadata
         header: Otsakekuva
+        honeypot: "%{label} (älä täytä)"
+        inbox_url: Välityspostilaatikon URL-osoite
+        irreversible: Pudota piilottamisen sijaan
         locale: Kieli
         locked: Lukitse tili
         max_uses: Käyttökertoja enintään
@@ -134,10 +159,12 @@ fi:
         setting_default_privacy: Julkaisun näkyvyys
         setting_default_sensitive: Merkitse media aina arkaluontoiseksi
         setting_delete_modal: Kysy vahvistusta ennen viestin poistamista
+        setting_disable_swiping: Poista pyyhkäisyt käytöstä
         setting_display_media: Median näyttäminen
         setting_display_media_default: Oletus
         setting_display_media_hide_all: Piilota kaikki
         setting_display_media_show_all: Näytä kaikki
+        setting_expand_spoilers: Laajenna aina sisältövaroituksilla merkityt viestit
         setting_hide_network: Piilota verkkosi
         setting_noindex: Jättäydy pois hakukoneindeksoinnista
         setting_reduce_motion: Vähennä animaatioiden liikettä
@@ -146,6 +173,7 @@ fi:
         setting_theme: Sivuston teema
         setting_trends: Näytä päivän trendit
         setting_unfollow_modal: Kysy vahvistusta, ennen kuin lopetat seuraamisen
+        setting_use_blurhash: Näytä värikkäät liukuvärit piilotetulle medialle
         setting_use_pending_items: Hidastila
         severity: Vakavuus
         sign_in_token_attempt: Turvakoodi
@@ -166,12 +194,14 @@ fi:
       invite_request:
         text: Miksi haluat liittyä?
       ip_block:
+        comment: Kommentti
         ip: IP
         severities:
           no_access: Estä pääsy
           sign_up_requires_approval: Rajoita rekisteröitymisiä
         severity: Sääntö
       notification_emails:
+        appeal: Joku valittaa valvojan päätöksestä
         digest: Lähetä koosteviestejä sähköpostitse
         favourite: Lähetä sähköposti, kun joku tykkää tilastasi
         follow: Lähetä sähköposti, kun joku seuraa sinua
@@ -179,14 +209,21 @@ fi:
         mention: Lähetä sähköposti, kun sinut mainitaan
         pending_account: Uusi tili tarvitsee tarkastusta
         reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
+        report: Uusi raportti on lähetetty
+        trending_tag: Uusi trendi vaatii tarkastelua
       rule:
         text: Sääntö
       tag:
+        listable: Salli tämän hashtagin näkyä hauissa ja ehdotuksissa
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
         usable: Salli postauksien käyttää tätä aihetunnistetta
     'no': Ei
     recommended: Suositeltu
     required:
+      mark: "*"
       text: pakollinen tieto
+    title:
+      sessions:
+        webauthn: Käytä jotakin suojausavainta kirjautuaksesi sisään
     'yes': Kyllä
