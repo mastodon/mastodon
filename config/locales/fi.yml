@@ -1488,6 +1488,13 @@ fi:
   user_mailer:
     appeal_approved:
       action: Siirry tilillesi
+      explanation: Valitus tiliäsi koskevasta varoituksesta %{strike_date} jonka lähetit %{appeal_date} on hyväksytty. Tilisi on jälleen hyvässä kunnossa.
+      subject: Valituksesi %{date} on hyväksytty
+      title: Valitus hyväksytty
+    appeal_rejected:
+      explanation: Valitus tiliäsi koskevasta varoituksesta %{strike_date} jonka lähetit %{appeal_date} on hylätty.
+      subject: Valituksesi %{date} on hylätty
+      title: Valitus hylätty
     backup_ready:
       explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!
       subject: Arkisto on valmiina ladattavaksi
@@ -1499,8 +1506,11 @@ fi:
       subject: Ole hyvä ja vahvista sisäänkirjautumisyritys
       title: Sisäänkirjautumisyritys
     warning:
+      appeal: Lähetä valitus
+      appeal_description: Jos uskot, että tämä on virhe, voit hakea muutosta henkilökunnalta %{instance}.
       categories:
         spam: Roskaposti
+        violation: Sisältö rikkoo seuraavia yhteisön sääntöjä
       reason: 'Syy:'
       subject:
         disable: Tilisi %{acct} on jäädytetty
