@@ -31,6 +31,7 @@ jobs:
           tags: |
             type=edge,branch=main
             type=semver,pattern={{ raw }}
+            type=ref,event=pr
       - uses: docker/build-push-action@v2
         with:
           context: .
