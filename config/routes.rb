@@ -193,7 +193,12 @@ Rails.application.routes.draw do
     resources :domain_allows, only: [:new, :create, :show, :destroy]
     resources :domain_blocks, only: [:new, :create, :show, :destroy, :update, :edit]
 
-    resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
+    resources :email_domain_blocks, only: [:index, :new, :create] do
+      collection do
+        post :batch
+      end
+    end
+
     resources :action_logs, only: [:index]
     resources :warning_presets, except: [:new]
 

@@ -17,43 +17,43 @@ RSpec.describe Admin::EmailDomainBlocksController, type: :controller do
       EmailDomainBlock.paginates_per default_per_page
     end
 
-    it 'renders email blacks' do
+    it 'returns http success' do
       2.times { Fabricate(:email_domain_block) }
-
       get :index, params: { page: 2 }
-
-      assigned = assigns(:email_domain_blocks)
-      expect(assigned.count).to eq 1
-      expect(assigned.klass).to be EmailDomainBlock
       expect(response).to have_http_status(200)
     end
   end
 
   describe 'GET #new' do
-    it 'assigns a new email black' do
+    it 'returns http success' do
       get :new
-
-      expect(assigns(:email_domain_block)).to be_instance_of(EmailDomainBlock)
       expect(response).to have_http_status(200)
     end
   end
 
   describe 'POST #create' do
-    it 'blocks the domain when succeeded to save' do
-      post :create, params: { email_domain_block: { domain: 'example.com' } }
+    context 'when resolve button is pressed' do
+      before do
+        post :create, params: { email_domain_block: { domain: 'example.com' } }
+      end
 
-      expect(flash[:notice]).to eq I18n.t('admin.email_domain_blocks.created_msg')
-      expect(response).to redirect_to(admin_email_domain_blocks_path)
+      it 'renders new template' do
+        expect(response).to render_template(:new)
+      end
     end
-  end
 
-  describe 'DELETE #destroy' do
-    it 'unblocks the domain' do
-      email_domain_block = Fabricate(:email_domain_block)
-      delete :destroy, params: { id: email_domain_block.id }
+    context 'when save button is pressed' do
+      before do
+        post :create, params: { email_domain_block: { domain: 'example.com' }, save: '' }
+      end
 
-      expect(flash[:notice]).to eq I18n.t('admin.email_domain_blocks.destroyed_msg')
-      expect(response).to redirect_to(admin_email_domain_blocks_path)
+      it 'blocks the domain' do
+        expect(EmailDomainBlock.find_by(domain: 'example.com')).to_not be_nil
+      end
+
+      it 'redirects to e-mail domain blocks' do
+        expect(response).to redirect_to(admin_email_domain_blocks_path)
+      end
     end
   end
 end
