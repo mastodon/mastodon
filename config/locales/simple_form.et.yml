@@ -1,4 +1,3 @@
----
 et:
   simple_form:
     hints:
@@ -55,7 +54,6 @@ et:
       domain_allow:
         domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
       email_domain_block:
-        domain: See võib olla domeeninimi, mis esineb e-posti aadressil, MX kirjele vastav domeen või serveri IP. Neid kontrollitakse, kui kasutaja loob konto ning seejärel konto loomine keelatakse.
         with_dns_records: Proovitakse ka üles vaadata selle domeeni DNS kirjed ning selle vastused samuti keelatakse
       featured_tag:
         name: 'Äkki soovite kasutada mõnda neist:'
@@ -180,8 +178,8 @@ et:
         name: Silt
         trendable: Luba sellel sildil trendida
         usable: Luba tuututustel seda silti kasutada
-    'no': Ei
+    'no': 'Ei'
     recommended: Soovituslik
     required:
       text: kohustuslik
-    'yes': Jah
+    'yes': 'Jah'
