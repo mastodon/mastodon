@@ -246,9 +246,14 @@ class ComposeForm extends ImmutablePureComponent {
         selectionStart = selectionEnd = text.length;
       }
       if (textarea) {
-        textarea.setSelectionRange(selectionStart, selectionEnd);
-        textarea.focus();
-        if (!singleColumn) textarea.scrollIntoView();
+        // Because of the wicg-inert polyfill, the activeElement may not be
+        // immediately selectable, we have to wait for observers to run, as
+        // described in https://github.com/WICG/inert#performance-and-gotchas
+        Promise.resolve().then(() => {
+          textarea.setSelectionRange(selectionStart, selectionEnd);
+          textarea.focus();
+          if (!singleColumn) textarea.scrollIntoView();
+        }).catch(console.error);
       }
 
     //  Refocuses the textarea after submitting.
