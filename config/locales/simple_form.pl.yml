@@ -1,4 +1,3 @@
----
 pl:
   simple_form:
     hints:
@@ -62,7 +61,6 @@ pl:
       domain_allow:
         domain: Ta domena będzie mogła pobierać dane z serwera, a dane przychodzące z niej będą przetwarzane i przechowywane
       email_domain_block:
-        domain: Może to być nazwa domeny pojawiająca się w adresu e-mail, rekord MX na który rozwiązuje domena lub IP serwera na który rozwiązuje rekord MX. Będą one wykrywane i odrzucane przy rejestracji.
         with_dns_records: Zostanie wykonana próba rozwiązania rekordów DNS podanej domeny, a wyniki również zostaną dodane na czarną listę
       featured_tag:
         name: 'Sugerujemy użycie jednego z następujących:'
@@ -211,7 +209,7 @@ pl:
         name: Hashtag
         trendable: Pozwól na wyświetlanie tego hashtagu w „Na czasie”
         usable: Pozwól na umieszczanie tego hashtagu we wpisach
-    'no': Nie
+    'no': 'Nie'
     recommended: Polecane
     required:
       mark: "*"
@@ -219,4 +217,4 @@ pl:
     title:
       sessions:
         webauthn: Użyj jednego ze swoich kluczy bezpieczeństwa, aby się zalogować
-    'yes': Tak
+    'yes': 'Tak'
