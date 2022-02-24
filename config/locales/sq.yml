@@ -466,11 +466,18 @@ sq:
       view: Shihni bllokim përkatësie
     email_domain_blocks:
       add_new: Shtoni të ri
+      attempts_over_week:
+        one: "%{count} përpjekje gjatë javës së shkuar"
+        other: "%{count} përpjekje regjistrimi gjatë javës së kaluar"
       created_msg: Përkatësia email u shtua me sukses te lista e bllokimeve
       delete: Fshije
+      dns:
+        types:
+          mx: Zë MX
       domain: Përkatësi
       new:
         create: Shtoni përkatësi
+        resolve: Ftilloje përkatësinë
         title: Zë i ri email në listë bllokimesh
       title: Listë bllokimesh email-esh
     follow_recommendations:
