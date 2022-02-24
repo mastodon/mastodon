@@ -466,12 +466,22 @@ es-MX:
       view: Ver dominio bloqueado
     email_domain_blocks:
       add_new: Añadir nuevo
+      attempts_over_week:
+        one: "%{count} intento durante la última semana"
+        other: "%{count} intentos de registro durante la última semana"
       created_msg: Dominio de correo añadido a la lista negra con éxito
       delete: Borrar
+      dns:
+        types:
+          mx: Registro MX
       domain: Dominio
       new:
         create: Añadir dominio
+        resolve: Resolver dominio
         title: Nueva entrada en la lista negra de correo
+      no_email_domain_block_selected: No se han cambiado bloqueos de dominio ya que ninguno ha sido seleccionado
+      resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tenga cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
+      resolved_through_html: Resuelto a través de %{domain}
       title: Lista negra de correo
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
@@ -824,16 +834,6 @@ es-MX:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: 'Nuevo reporte para la %{instance} (#%{id})'
-    new_trending_links:
-      body: Los siguientes enlaces están en tendencia hoy, pero sus medios de origen no han sido revisados previamente. No se mostrarán públicamente a menos que los apruebes. No se generarán más notificaciones de estos medios.
-      no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
-      requirements: El enlace en tendencia aprobado más bajo actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.
-      subject: Nuevos enlaces en tendencia esperando ser revisados en %{instance}
-    new_trending_tags:
-      body: 'Las siguientes etiquetas están en tendencia hoy, pero no han sido revisadas previamente. No se mostrarán públicamente a menos que las apruebes:'
-      no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
-      requirements: 'La etiqueta en tendencia aprobada más baja actualmente es "%{lowest_tag_name}" con una puntuación de %{lowest_tag_score}.'
-      subject: Nuevas etiquetas en tendencia esperando ser revisadas en %{instance}
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
