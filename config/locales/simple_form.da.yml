@@ -1,4 +1,3 @@
----
 da:
   simple_form:
     hints:
@@ -62,7 +61,6 @@ da:
       domain_allow:
         domain: Dette domæne vil kunne hente data, og dermed behandle og gemme indgående data, fra denne server
       email_domain_block:
-        domain: Dette kan være det domænenavn, der vises i e-mailadressen, MX-posten domænet opløser til eller IP'en på den server, som MX-posten opløser til. Disse tjekkes ved brugertilmelding, og tilmeldingen afvises.
         with_dns_records: Et forsøg på at løse det givne domænes DNS-poster foretages og resultaterne blokeres ligeledes
       featured_tag:
         name: 'Du vil formentlig ønske at bruge en af flg.:'
@@ -216,7 +214,7 @@ da:
         name: Hashtag
         trendable: Tillad visning af dette hashtag under trends
         usable: Tillad indlæg at benytte dette hashtag
-    'no': Nej
+    'no': 'Nej'
     recommended: Anbefalet
     required:
       mark: "*"
@@ -224,4 +222,4 @@ da:
     title:
       sessions:
         webauthn: Brug en af dine sikkerhedskoder til indlogning
-    'yes': Ja
+    'yes': 'Ja'
