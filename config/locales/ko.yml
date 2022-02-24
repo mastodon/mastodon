@@ -1145,6 +1145,9 @@ ko:
     carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} 님이 가입했습니다"
     digest:
       action: 모든 알림 보기
       body: 마지막 로그인(%{since}) 이후로 일어난 일들에 관한 요약
@@ -1538,6 +1541,8 @@ ko:
       subject: 로그인 시도를 확인해 주십시오
       title: 로그인 시도
     warning:
+      appeal: 이의 제출하기
+      appeal_description: 이것이 오류라고 생각한다면, %{instance}의 중재자에게 이의신청을 할 수 있습니다.
       categories:
         spam: 스팸
         violation: 컨텐츠가 다음의 커뮤니티 규정을 위반합니다
