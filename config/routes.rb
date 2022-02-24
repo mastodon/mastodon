@@ -327,6 +327,12 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :statuses, only: [:index] do
+        collection do
+          post :batch
+        end
+      end
+
       namespace :links do
         resources :preview_card_providers, only: [:index], path: :publishers do
           collection do
@@ -448,6 +454,7 @@ Rails.application.routes.draw do
       namespace :trends do
         resources :links, only: [:index]
         resources :tags, only: [:index]
+        resources :statuses, only: [:index]
       end
 
       namespace :emails do
@@ -554,6 +561,8 @@ Rails.application.routes.draw do
 
         namespace :trends do
           resources :tags, only: [:index]
+          resources :links, only: [:index]
+          resources :statuses, only: [:index]
         end
 
         post :measures, to: 'measures#create'

@@ -268,6 +268,18 @@ class Status < ApplicationRecord
     update_status_stat!(key => [public_send(key) - 1, 0].max)
   end
 
+  def trendable?
+    if attributes['trendable'].nil?
+      account.trendable?
+    else
+      attributes['trendable']
+    end
+  end
+
+  def requires_review_notification?
+    attributes['trendable'].nil? && account.requires_review_notification?
+  end
+
   after_create_commit  :increment_counter_caches
   after_destroy_commit :decrement_counter_caches
 

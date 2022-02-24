@@ -787,6 +787,15 @@ en:
         rejected: Links from this publisher won't trend
         title: Publishers
       rejected: Rejected
+      statuses:
+        allow: Allow post
+        allow_account: Allow author
+        disallow: Disallow post
+        disallow_account: Disallow author
+        shared_by:
+          one: Shared or favourited one time
+          other: Shared and favourited %{friendly_count} times
+        title: Trending posts
       tags:
         current_score: Current score %{score}
         dashboard:
@@ -835,16 +844,21 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
-    new_trending_links:
-      body: The following links are trending today, but their publishers have not been previously reviewed. They will not be displayed publicly unless you approve them. Further notifications from the same publishers will not be generated.
-      no_approved_links: There are currently no approved trending links.
-      requirements: The lowest approved trending link is currently "%{lowest_link_title}" with a score of %{lowest_link_score}.
-      subject: New trending links up for review on %{instance}
-    new_trending_tags:
-      body: 'The following hashtags are trending today, but they have not been previously reviewed. They will not be displayed publicly unless you approve them:'
-      no_approved_tags: There are currently no approved trending hashtags.
-      requirements: 'The lowest approved trending hashtag is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
-      subject: New trending hashtags up for review on %{instance}
+    new_trends:
+      body: 'The following items need a review before they can be displayed publicly:'
+      new_trending_links:
+        no_approved_links: There are currently no approved trending links.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending link, which is currently "%{lowest_link_title}" with a score of %{lowest_link_score}.'
+        title: Trending links
+      new_trending_statuses:
+        no_approved_statuses: There are currently no approved trending posts.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending post, which is currently %{lowest_status_url} with a score of %{lowest_status_score}.'
+        title: Trending posts
+      new_trending_tags:
+        no_approved_tags: There are currently no approved trending hashtags.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
+        title: Trending hashtags
+      subject: New trends up for review on %{instance}
   aliases:
     add_new: Create alias
     created_msg: Successfully created a new alias. You can now initiate the move from the old account.

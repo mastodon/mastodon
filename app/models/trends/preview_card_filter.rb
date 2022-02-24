@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-class PreviewCardFilter
+class Trends::PreviewCardFilter
   KEYS = %i(
     trending
+    locale
   ).freeze
 
   attr_reader :params
@@ -15,7 +16,7 @@ class PreviewCardFilter
     scope = PreviewCard.unscoped
 
     params.each do |key, value|
-      next if key.to_s == 'page'
+      next if %w(page locale).include?(key.to_s)
 
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
@@ -35,19 +36,11 @@ class PreviewCardFilter
   end
 
   def trending_scope(value)
-    ids = begin
-      case value.to_s
-      when 'allowed'
-        Trends.links.currently_trending_ids(true, -1)
-      else
-        Trends.links.currently_trending_ids(false, -1)
-      end
-    end
+    scope = Trends.links.query
 
-    if ids.empty?
-      PreviewCard.none
-    else
-      PreviewCard.joins("join unnest(array[#{ids.map(&:to_i).join(',')}]::integer[]) with ordinality as x (id, ordering) on preview_cards.id = x.id").order('x.ordering')
-    end
+    scope = scope.in_locale(@params[:locale].to_s) if @params[:locale].present?
+    scope = scope.allowed if value == 'allowed'
+
+    scope.to_arel
   end
 end
