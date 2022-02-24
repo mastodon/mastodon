@@ -1169,6 +1169,9 @@ da:
     carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft tavsgjort.
     copy_account_note_text: 'Denne bruger er flyttet fra %{acct}, her er dine tidligere noter om dem:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} tilmeldte sig"
     digest:
       action: Se alle notifikationer
       body: Her er et kort resumé af de beskeder, du er gået glip af siden dit seneste besøg d. %{since}
