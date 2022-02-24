@@ -466,12 +466,22 @@ it:
       view: Visualizza blocco di dominio
     email_domain_blocks:
       add_new: Aggiungi nuovo
+      attempts_over_week:
+        one: "%{count} tentativo nell'ultima settimana"
+        other: "%{count} tentativi di registrazione nell'ultima settimana"
       created_msg: Dominio email aggiunto con successo alla lista nera
       delete: Elimina
+      dns:
+        types:
+          mx: Record MX
       domain: Dominio
       new:
         create: Aggiungi dominio
+        resolve: Risolvi dominio
         title: Nuova voce della lista nera delle email
+      no_email_domain_block_selected: Nessun blocco di dominio di posta elettronica è stato modificato in quanto nessuno è stato selezionato
+      resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
+      resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
     follow_recommendations:
       description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
