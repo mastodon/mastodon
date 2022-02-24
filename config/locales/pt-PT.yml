@@ -466,8 +466,14 @@ pt-PT:
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
+      attempts_over_week:
+        one: "%{count} tentativa na última semana"
+        other: "%{count} tentativas de inscrição na última semana"
       created_msg: Bloqueio de domínio de e-mail criado com sucesso
       delete: Eliminar
+      dns:
+        types:
+          mx: Registo MX
       domain: Domínio
       new:
         create: Adicionar domínio
