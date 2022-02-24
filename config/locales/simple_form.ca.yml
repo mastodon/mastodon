@@ -1,4 +1,3 @@
----
 ca:
   simple_form:
     hints:
@@ -64,7 +63,6 @@ ca:
       domain_allow:
         domain: Aquest domini podrà obtenir dades d’aquest servidor i les dades entrants d’aquests seran processades i emmagatzemades
       email_domain_block:
-        domain: Això pot ser el nom del domini que es veu en l’adreça de correu electrònic, el registre MX al que resol el domini o l’IP del servidor al que resol el registre MX. Es comprovaran amb el registre d’usuari i es rebutjarà la inscripció.
         with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
         name: 'És possible que vulguis utilitzar una d''aquestes:'
@@ -226,4 +224,4 @@ ca:
     title:
       sessions:
         webauthn: Usa una de les teves claus de seguretat per a iniciar sessió
-    'yes': Sí
+    'yes': 'Sí'
