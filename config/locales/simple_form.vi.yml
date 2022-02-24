@@ -1,4 +1,3 @@
----
 vi:
   simple_form:
     hints:
@@ -64,7 +63,6 @@ vi:
       domain_allow:
         domain: Máy chủ này sẽ tiếp nhận dữ liệu, rồi sau đó xử lý và lưu trữ
       email_domain_block:
-        domain: Đây có thể là tên miền hoặc IP của dịch vụ email. Người dùng của những dịch vụ email này sẽ bị từ chối khi đăng ký.
         with_dns_records: Nếu DNS có vấn đề, nó sẽ bị đưa vào danh sách cấm
       featured_tag:
         name: 'Những hashtag gợi ý cho bạn:'
@@ -218,7 +216,7 @@ vi:
         name: Hashtag
         trendable: Cho phép hashtag này xuất hiện trong xu hướng
         usable: Cho phép dùng hashtag này trong tút
-    'no': Tắt
+    'no': 'Tắt'
     recommended: Đề xuất
     required:
       mark: "*"
@@ -226,4 +224,4 @@ vi:
     title:
       sessions:
         webauthn: Dùng một trong những khóa bảo mật của bạn để đăng nhập
-    'yes': Bật
+    'yes': 'Bật'
