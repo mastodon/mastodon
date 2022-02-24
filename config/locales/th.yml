@@ -764,12 +764,6 @@ th:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
       subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
-    new_trending_links:
-      no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติ
-      subject: ลิงก์ที่กำลังนิยมใหม่สำหรับตรวจทานใน %{instance}
-    new_trending_tags:
-      no_approved_tags: ไม่มีแฮชแท็กที่กำลังนิยมที่ได้รับอนุมัติ
-      subject: แฮชแท็กที่กำลังนิยมใหม่สำหรับตรวจทานใน %{instance}
   aliases:
     add_new: สร้างนามแฝง
     created_msg: สร้างนามแฝงใหม่สำเร็จ ตอนนี้คุณสามารถทำการย้ายจากบัญชีเก่า
