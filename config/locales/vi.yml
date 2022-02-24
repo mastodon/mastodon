@@ -814,16 +814,6 @@ vi:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
       subject: '(%{instance}) Báo cáo #%{id}'
-    new_trending_links:
-      body: Các liên kết này đang là xu hướng hôm nay, nhưng các nguồn đăng của chúng chưa được xem xét trước đây. Chúng sẽ không được hiển thị công khai trừ khi bạn cho phép chúng. Các thông báo khác từ cùng một nguồn đăng sẽ không được tạo.
-      no_approved_links: Hiện tại không có liên kết xu hướng nào được cho phép.
-      requirements: Liên kết xu hướng được cho phép thấp nhất hiện tại là "%{lowest_link_title}" với chỉ số %{lowest_link_score}.
-      subject: Liên kết xu hướng mới chờ duyệt trên %{instance}
-    new_trending_tags:
-      body: 'Các hashtag này đang là xu hướng hôm nay, nhưng chúng chưa được xem xét trước đó. Chúng sẽ không được hiển thị công khai trừ khi bạn cho phép chúng:'
-      no_approved_tags: Hiện tại không có hashtag xu hướng nào được cho phép.
-      requirements: 'Hashtag xu hướng được cho phép thấp nhất hiện tại là #%{lowest_tag_name} với chỉ số %{lowest_tag_score}.'
-      subject: Hashtag xu hướng mới chờ duyệt trên %{instance}
   aliases:
     add_new: Kết nối tài khoản
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
