@@ -814,16 +814,6 @@ zh-TW:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
       subject: '來自 %{instance} 的使用者檢舉（#%{id}）'
-    new_trending_links:
-      body: 以下連結於今日登上熱門榜，然而他們的發行者之前仍未被審核過。除非您核准，這些連結將不會被公開顯示。來自這些發行者的通知往後將不會被產生。
-      no_approved_links: 這些是目前仍未被審核之熱門連結。
-      requirements: 已核准熱門連結中最低分者目前是「%{lowest_link_title}」為 %{lowest_link_score} 分。
-      subject: 於 %{instance} 待審核的新熱門連結
-    new_trending_tags:
-      body: '以下主題標籤於今日登上熱門榜，然而他們之前仍未被審核過。除非您核准，這些連結將不會被公開顯示：'
-      no_approved_tags: 這些是目前仍未被審核之熱門主題標籤。
-      requirements: '已核准熱門標籤中最低分者目前是「#%{lowest_tag_name}」為 %{lowest_tag_score} 分。'
-      subject: 於 %{instance} 待審核的新熱門主題標籤
   aliases:
     add_new: 建立別名
     created_msg: 成功建立別名。您可以自舊帳戶開始轉移。
