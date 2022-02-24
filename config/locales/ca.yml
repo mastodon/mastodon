@@ -466,12 +466,21 @@ ca:
       view: Veure el bloqueig del domini
     email_domain_blocks:
       add_new: Afegir nou
+      attempts_over_week:
+        one: "%{count} intent en la darrera setmana"
+        other: "%{count} intents de registre en la darrera setmana"
       created_msg: S'ha creat el bloc de domini de correu electrònic
       delete: Suprimeix
+      dns:
+        types:
+          mx: Registre MX
       domain: Domini
       new:
         create: Afegir un domini
+        resolve: Resol domini
         title: Nova adreça de correu en la llista negra
+      no_email_domain_block_selected: No s'han canviat els bloquejos de domini perquè cap s'ha seleccionat
+      resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals son els responsables finals per a acceptar els correus. Bloquejar un domini MX bloquejarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
       title: Llista negra de correus electrònics
     follow_recommendations:
       description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb d'altres com per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen a diari a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
