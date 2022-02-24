@@ -466,11 +466,18 @@ fi:
       view: Näytä verkkotunnuksen esto
     email_domain_blocks:
       add_new: Lisää uusi
+      attempts_over_week:
+        one: "%{count} yritystä viimeisen viikon aikana"
+        other: "%{count} rekisteröitymisyritystä viimeisen viikon aikana"
       created_msg: Sähköpostiverkkotunnuksen lisäys estolistalle onnistui
       delete: Poista
+      dns:
+        types:
+          mx: MX tietue
       domain: Verkkotunnus
       new:
         create: Lisää verkkotunnus
+        resolve: Ratkaise verkkotunnus
         title: Uusi sähköpostiestolistan merkintä
       title: Sähköpostiestolista
     follow_recommendations:
