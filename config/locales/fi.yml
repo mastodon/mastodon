@@ -1516,10 +1516,17 @@ fi:
         disable: Et voi enää käyttää tiliäsi, mutta profiilisi ja muut tiedot pysyvät muuttumattomina. Voit pyytää varmuuskopiota tiedoistasi, vaihtaa tilin asetuksia tai poistaa tilisi.
         sensitive: Tästä lähtien kaikki ladatut mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
         silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat ihmiset näkevät viestisi tällä palvelimella ja sinut voidaan sulkea pois erilaisista hakuominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
+        suspend: Et voi enää käyttää tiliäsi ja profiilisi ja muut tiedot eivät ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi varmuuskopiota tiedoistasi, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme joitakin perustietoja, jotka estävät sinua kiertämästä keskeyttämistä.
+      get_in_touch: Jos uskot, että tämä on virhe, voit vastata tähän sähköpostiin ottaaksesi yhteyttä %{instance} henkilökuntaan.
       reason: 'Syy:'
+      statuses: 'Viestit, joiden on havaittu rikkovan sääntöjä:'
       subject:
+        delete_statuses: Viestisi %{acct} on poistettu
         disable: Tilisi %{acct} on jäädytetty
         none: Varoitus %{acct}
+        sensitive: Sinun mediatiedostosi %{acct} merkitään tästä lähtien arkaluonteisiksi
+        silence: Tilisi %{acct} on rajoitettu
+        suspend: Tilisi %{acct} on keskeytetty
       title:
         delete_statuses: Viestit poistettu
         disable: Tili jäädytetty
