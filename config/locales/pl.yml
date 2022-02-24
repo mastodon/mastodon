@@ -835,16 +835,6 @@ pl:
       body: "Użytkownik %{reporter} zgłosił(a) %{target}"
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: 'Nowe zgłoszenie na %{instance} (#%{id})'
-    new_trending_links:
-      body: Poniższe linki są dziś popularne, ale ich wydawcy nie byli wcześniej sprawdzeni. Nie będą one wyświetlane publicznie dopóki ich nie zatwierdzisz. Kolejne powiadomienia od tych samych wydawców nie zostaną wygenerowane.
-      no_approved_links: Obecnie nie ma zatwierdzonych linków trendów.
-      requirements: Najniższy zatwierdzony link trendu to "%{lowest_link_title}" z wynikiem %{lowest_link_score}.
-      subject: Nowe popularne linki do przeglądu na %{instance}
-    new_trending_tags:
-      body: 'Następujące hashtagi są dziś popularne, ale nie zostały wcześniej sprawdzone. Nie będą one wyświetlane publicznie, chyba że je zatwierdzisz:'
-      no_approved_tags: Obecnie nie ma zatwierdzonych popularnych hashtagów.
-      requirements: 'Najniższy zatwierdzony popularny hashtag to obecnie #%{lowest_tag_name} z wynikiem %{lowest_tag_score}.'
-      subject: Nowy popularny hashtag do zatwierdzenia na %{instance}
   aliases:
     add_new: Utwórz alias
     created_msg: Pomyślnie utworzono nowy alias. Możesz teraz rozpocząć przenoszenie ze starego konta.
