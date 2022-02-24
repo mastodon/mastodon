@@ -210,6 +210,7 @@ a.table-action-link {
     &__content {
       padding-top: 12px;
       padding-bottom: 16px;
+      overflow: hidden;
 
       &--unpadded {
         padding: 0;
@@ -291,4 +292,10 @@ a.table-action-link {
       display: none;
     }
   }
+}
+
+.one-liner {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
