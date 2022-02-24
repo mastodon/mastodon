@@ -466,12 +466,22 @@ es-AR:
       view: Ver bloqueo de dominio
     email_domain_blocks:
       add_new: Agregar nuevo
+      attempts_over_week:
+        one: "%{count} intento durante la última semana"
+        other: "%{count} intentos durante la última semana"
       created_msg: Se bloqueó el dominio de correo electrónico exitosamente
       delete: Eliminar
+      dns:
+        types:
+          mx: Registro MX
       domain: Dominio
       new:
         create: Agregar dominio
+        resolve: Resolver dominio
         title: Bloquear nuevo dominio de correo electrónico
+      no_email_domain_block_selected: No se cambiaron bloques de dominio ya que no se seleccionó ninguno
+      resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tené cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
+      resolved_through_html: Resuelto a través de %{domain}
       title: Dominios bloqueados de correo electrónico
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas para seguir ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para formar recomendaciones personalizadas de seguimiento, se recomiendan estas cuentas, en su lugar. Se recalculan diariamente a partir de una mezcla de cuentas con las interacciones más recientes y el mayor número de seguidores para un idioma determinado."
