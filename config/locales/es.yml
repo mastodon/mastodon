@@ -466,11 +466,18 @@ es:
       view: Ver dominio bloqueado
     email_domain_blocks:
       add_new: Añadir nuevo
+      attempts_over_week:
+        one: "%{count} intento durante la última semana"
+        other: "%{count} intentos de registro durante la última semana"
       created_msg: Dominio de correo añadido a la lista negra con éxito
       delete: Borrar
+      dns:
+        types:
+          mx: Registro MX
       domain: Dominio
       new:
         create: Añadir dominio
+        resolve: Resolver dominio
         title: Nueva entrada en la lista negra de correo
       title: Lista negra de correo
     follow_recommendations:
