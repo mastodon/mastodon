@@ -466,8 +466,14 @@ fr:
       view: Afficher les blocages de domaines
     email_domain_blocks:
       add_new: Ajouter
+      attempts_over_week:
+        one: "%{count} tentative au cours de la dernière semaine"
+        other: "%{count} tentatives au cours de la dernière semaine"
       created_msg: Le blocage de domaine de courriel est désormais activé
       delete: Supprimer
+      dns:
+        types:
+          mx: Enregistrement MX
       domain: Domaine
       new:
         create: Créer le blocage
@@ -1171,6 +1177,9 @@ fr:
     carry_mutes_over_text: Cet utilisateur que vous aviez masqué est parti de %{acct}.
     copy_account_note_text: 'Cet·te utilisateur·rice est parti·e de %{acct}, voici vos notes précédentes à son sujet :'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} s'est inscrit·e"
     digest:
       action: Voir toutes les notifications
       body: Voici un bref résumé des messages que vous avez raté depuis votre dernière visite le %{since}
