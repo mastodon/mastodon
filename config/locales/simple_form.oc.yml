@@ -1,4 +1,3 @@
----
 oc:
   simple_form:
     hints:
@@ -55,7 +54,6 @@ oc:
       domain_allow:
         domain: Aqueste domeni poirà recuperar las donadas d’aqueste servidor estant e las donadas venent d’aqueste domeni seràn tractadas e gardadas
       email_domain_block:
-        domain: Pòt èsser lo nom de domeni mostrat sus l’adreça electronica, l’enregistrament MX, o l’adreça IP ligada. Serà verificat pendent l’inscripcion de la persona puèi serà regetada.
         with_dns_records: Un ensag de resolucion dels enregistraments DNS del domeni donat serà realizat e los resultats seràn tanben meses en lista negra
       featured_tag:
         name: 'Benlèu que volètz utilizar una d’aquestas causas :'
@@ -202,7 +200,7 @@ oc:
         name: Etiqueta
         trendable: Permetre a aquesta etiqueta d’aparéisser a las tendéncias
         usable: Permetre als tuts d’utilizar aquesta etiqueta
-    'no': Non
+    'no': 'Non'
     recommended: Recomandat
     required:
       mark: "*"
@@ -210,4 +208,4 @@ oc:
     title:
       sessions:
         webauthn: Utilizatz una de vòstras clau de seguretat per vos identificar
-    'yes': Òc
+    'yes': 'Òc'
