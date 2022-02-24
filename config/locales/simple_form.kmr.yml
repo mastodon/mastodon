@@ -1,4 +1,3 @@
----
 kmr:
   simple_form:
     hints:
@@ -48,9 +47,7 @@ kmr:
         locked: Bi destan daxwazên şopê hilbijêrîne da ku kî bikaribe te bişopîne
         password: Herî kêm 8 karakter bikar bîne
         phrase: Ji rewşa nivîsê tîpên girdek/hûrdek an jî ji hişyariya naveroka ya şandiyê wek serbixwe wê were hevbeş kirin
-        scopes: |-
-          Sepana ku dê kîjan maf bide bigihije APIyan.
-          Ger te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî.
+        scopes: "Sepana ku dê kîjan maf bide bigihije APIyan.\nGer te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî."
         setting_aggregate_reblogs: Bilindkirinên ku nû hatine weşan ji şandiyên di dema dawî de nîşan nede (tenê li ser bilindkirinên nû wergirtî bandor dike)
         setting_default_sensitive: Medyaya hestiyar berdestî ve tê veşartin û bi tikandin dikare were eşkere kirin
         setting_display_media_default: Medyaya wekî hestyarî hatiye nîşankirî ye veşêre
@@ -66,7 +63,6 @@ kmr:
       domain_allow:
         domain: Ev navê navperê, ji vê rajekarê wê daneyan bistîne û daneyên ku jê bê wê were sazkirin û veşartin
       email_domain_block:
-        domain: Ev navê qada yê ku di navnîşana e-maîlê da xuya dibe, tomara MXê ya ku qada vê çareser dike an jî iPya rajekara ku MX tomar dike. Ev ên bi tomarê bikarhêneran bên kontrolkirin û tomarê were redkirin.
         with_dns_records: Hewl tê dayîn ku tomarên DNSê yên li qada jê re hatine dayîn were çareserkirin û encamên wê jî were astengkirin
       featured_tag:
         name: 'Belkî tu yekê bi kar bînî çi van:'
@@ -220,7 +216,7 @@ kmr:
         name: Hashtag
         trendable: Bihêle ku ev hashtag werê xuyakirin di bin rojevê de
         usable: Bihêle ku şandî ev hashtag bi kar bînin
-    'no': Na
+    'no': 'Na'
     recommended: Pêşniyarkirî
     required:
       mark: "*"
@@ -228,4 +224,4 @@ kmr:
     title:
       sessions:
         webauthn: Yek ji kilîtên ewlehiyê yên xwe bi kar bîne bo têketinê
-    'yes': Erê
+    'yes': 'Erê'
