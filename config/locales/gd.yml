@@ -767,16 +767,6 @@ gd:
       body: "Rinn %{reporter} gearan air %{target}"
       body_remote: Rinn cuideigin o %{domain} gearan air %{target}
       subject: 'Tha gearan ùr aig %{instance} (#%{id})'
-    new_trending_links:
-      body: Tha na ceanglaichean a leanas a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh air na foillsichearan aca fhathast. Cha nochd iad gu poblach mur aontaich thu riutha. Chan fhaic thu brathan eile mu na h-aon fhoillsichearan.
-      no_approved_links: Chan eil ceangal a’ treandadh le aontachadh ann.
-      requirements: '’S e “%{lowest_link_title}” a tha sa cheangal a’ treandadh as ìsle le aontachadh agus sgòr de %{lowest_link_score} air.'
-      subject: Tha ceanglaichean ùra a’ trèanadh feumach air lèirmheas air %{instance}
-    new_trending_tags:
-      body: 'Tha na tagaichean hais a leanas a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh orra fhathast. Cha nochd iad gu poblach mur aontaich thu riutha:'
-      no_approved_tags: Chan eil tagaichean hais a’ treandadh le aontachadh ann.
-      requirements: '’S e #%{lowest_tag_name} a tha san taga hais a’ treandadh as ìsle le aontachadh agus sgòr de %{lowest_tag_score} air.'
-      subject: Tha tagaichean hais ùra a’ trèanadh feumach air lèirmheas air %{instance}
   aliases:
     add_new: Cruthaich alias
     created_msg: Chaidh an t-alias ùr a chruthachadh. ’S urrainn dhut tòiseachadh air imrich on seann-chunntas a-nis.
