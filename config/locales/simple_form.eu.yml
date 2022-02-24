@@ -1,4 +1,3 @@
----
 eu:
   simple_form:
     hints:
@@ -62,7 +61,6 @@ eu:
       domain_allow:
         domain: Domeinu honek zerbitzari honetatik datuak hartu ahal izango ditu eta bertatik jasotako informazioa prozesatu eta gordeko da
       email_domain_block:
-        domain: Hau e-mail helbidean agertzen den domeinua izan daiteke, honen MX erregistroa, edo MX erregistroaren IP helbidea. Hauek erabiltzaileak izena ematean egiaztatuko dira eta atzera botako da.
         with_dns_records: Emandako domeinuaren DNS erregistroak ebazteko saiakera bat egingo da eta emaitzak ere zerrenda beltzean sartuko dira
       featured_tag:
         name: 'Hauetakoren bat erabili zenezake:'
@@ -211,7 +209,7 @@ eu:
         name: Traola
         trendable: Baimendu traola hau joeretan agertzea
         usable: Baimendu tootek traola hau erabiltzea
-    'no': Ez
+    'no': 'Ez'
     recommended: Aholkatua
     required:
       mark: "*"
@@ -219,4 +217,4 @@ eu:
     title:
       sessions:
         webauthn: Erabili zure segurtasun gakoetako bat saioa hasteko
-    'yes': Bai
+    'yes': 'Bai'
