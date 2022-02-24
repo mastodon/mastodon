@@ -1174,6 +1174,9 @@ tr:
     carry_mutes_over_text: Bu kullanıcı sessize aldığınız %{acct} adresinden taşındı.
     copy_account_note_text: 'Bu kullanıcı %{acct} adresinden taşındı, işte onlarla ilgili önceki notlarınız:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} kaydoldu"
     digest:
       action: Tüm bildirimleri görüntüle
       body: Son ziyaretiniz olan %{since}'den beri'da kaçırdığınız şeylerin özeti
