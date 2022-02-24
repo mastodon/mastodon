@@ -1,4 +1,3 @@
----
 pt-BR:
   simple_form:
     hints:
@@ -62,7 +61,6 @@ pt-BR:
       domain_allow:
         domain: Este domínio poderá obter dados deste servidor e os dados recebidos dele serão processados e armazenados
       email_domain_block:
-        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Esses vão ser verificados no momento de registro do usuário e o registro será rejeitado.
         with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
         name: 'Você pode querer usar um destes:'
@@ -211,7 +209,7 @@ pt-BR:
         name: Hashtag
         trendable: Permitir que esta hashtag fique em alta
         usable: Permitir que toots usem esta hashtag
-    'no': Não
+    'no': 'Não'
     recommended: Recomendado
     required:
       mark: "*"
@@ -219,4 +217,4 @@ pt-BR:
     title:
       sessions:
         webauthn: Utilize uma das suas chaves de segurança para entrar
-    'yes': Sim
+    'yes': 'Sim'
