@@ -392,6 +392,9 @@ de:
       media_storage: Medienspeicher
       new_users: Neue Benutzer
       opened_reports: Erstellte Meldungen
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> ausstehender Einspruch"
+        other: "<strong>%{count}</strong> ausstehende Einsprüche"
       resolved_reports: Gelöste Meldungen
       software: Software
       sources: Registrierungsquellen
@@ -441,6 +444,10 @@ de:
         silence: stummgeschaltet
         suspend: gesperrt
       show:
+        affected_accounts:
+          one: Ein Konto in der Datenbank betroffen
+          other: "%{count} Konten in der Datenbank betroffen"
+          zero: Kein Konto in der Datenbank ist betroffen
         retroactive:
           silence: Alle existierenden Konten dieser Domain nicht mehr stummschalten
           suspend: Alle existierenden Konten dieser Domain entsperren
@@ -452,10 +459,17 @@ de:
       add_new: Neue hinzufügen
       created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
       delete: Löschen
+      dns:
+        types:
+          mx: MX-Record
       domain: Domain
       new:
         create: Blockade erstellen
+        resolve: Domain auflösen
         title: Neue E-Mail-Domain-Blockade
+      no_email_domain_block_selected: Es wurden keine E-Mail-Domain-Blockierungen geändert, da keine ausgewählt wurden
+      resolved_dns_records_hint_html: Der Domain-Name wird an die folgenden MX-Domains aufgelöst, die letztendlich für die Annahme von E-Mails verantwortlich sind. Das Blockieren einer MX-Domain blockiert Anmeldungen von jeder E-Mail-Adresse, die dieselbe MX-Domain verwendet, auch wenn der sichtbare Domainname anders ist. <strong>Achte darauf große E-Mail-Anbieter nicht zu blockieren.</strong>
+      resolved_through_html: Durch %{domain} aufgelöst
       title: E-Mail-Domain-Blockade
     follow_recommendations:
       description_html: "<strong>Folgeempfehlungen helfen neuen Nutzern dabei, schnell interessante Inhalte zu finden</strong>. Wenn ein Nutzer noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erstellen, werden stattdessen diese Benutzerkonten verwendet. Sie werden täglich basiert auf einer Mischung aus am meisten interagierenden Benutzerkonten und solchen mit den meisten Folgenden für eine bestimmte Sprache neuberechnet."
@@ -488,6 +502,10 @@ de:
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
       destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
+      known_accounts:
+        one: "%{count} bekanntes Konto"
+        other: "%{count} bekannte Konten"
+        zero: Kein bekanntes Konto
       moderation:
         all: Alle
         limited: Beschränkt
@@ -744,6 +762,10 @@ de:
         allow_provider: Erlaube Herausgeber
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
+        shared_by_over_week:
+          one: In der letzten Woche geteilt von einer Person
+          other: In der letzten Woche geteilt von %{count} Personen
+          zero: Geteilt von niemandem in der letzten Woche
         title: Angesagte Links
         usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
       pending_review: Überprüfung ausstehend
@@ -752,6 +774,12 @@ de:
         rejected: Links von diesem Herausgeber können nicht angesagt sein
         title: Herausgeber
       rejected: Abgelehnt
+      statuses:
+        allow: Beitrag erlauben
+        allow_account: Autor erlauben
+        disallow: Beitrag verbieten
+        disallow_account: Autor verbieten
+        title: Angesagte Beiträge
       tags:
         current_score: Aktuelle Punktzahl %{score}
         dashboard:
@@ -770,6 +798,10 @@ de:
         trending_rank: 'Trend #%{rank}'
         usable: Kann verwendet werden
         usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
+        used_by_over_week:
+          one: In der letzten Woche genutzt von einer Person
+          other: In der letzten Woche genutzt von %{count} Personen
+          zero: Genutzt von niemandem in der letzten Woche
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
@@ -796,6 +828,10 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: 'Neue Meldung auf %{instance} (#%{id})'
+    new_trends:
+      body: 'Die folgenden Einträge müssen überprüft werden, bevor sie öffentlich angezeigt werden können:'
+      new_trending_links:
+        no_approved_links: Derzeit sind keine Links hinterlegt, die genehmigt wurden.
   aliases:
     add_new: Alias erstellen
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
