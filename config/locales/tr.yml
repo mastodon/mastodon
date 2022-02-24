@@ -823,16 +823,6 @@ tr:
       body: "%{reporter}, %{target} kişisini bildirdi"
       body_remote: '%{domain} alan adından birisi %{target} kişisini bildirdi'
       subject: '%{instance} için yeni şikayet (#%{id})'
-    new_trending_links:
-      body: Aşağıdaki bağlantılar bugün öne çıkıyorlar, ancak yayıncıları daha önce incelenmedi. Siz onaylamadığınız sürece herkese açık olarak görüntülenmeyecekler. Aynı yayıncılar için benzer bildirimler üretilmeyecek.
-      no_approved_links: Şu anda onaylanmış öne çıkan bağlantı yok.
-      requirements: Şu anda en düşük onaylanmış öne çıkan bağlantı %{lowest_link_score} puana sahip olan "%{lowest_link_title}".
-      subject: '%{instance}, inceleme bekleyen yeni öne çıkan bağlantılara sahip'
-    new_trending_tags:
-      body: 'Aşağıdaki etiketler bugün öne çıkıyorlar, ancak daha önce incelenmediler. Siz onaylamadığınız sürece herkese açık olarak görüntülenmeyecekler:'
-      no_approved_tags: Şu anda onaylanmış öne çıkan etiket yok.
-      requirements: 'Şu anda en düşük onaylanmış öne çıkan etiket %{lowest_tag_score} puana sahip olan #%{lowest_tag_name}.'
-      subject: '%{instance}, inceleme bekleyen yeni öne çıkan etiketlere sahip'
   aliases:
     add_new: Takma ad oluştur
     created_msg: Yeni takma ad başarıyla oluşturuldu. Artık eski hesaptan taşınmayı başlatabilirsiniz.
