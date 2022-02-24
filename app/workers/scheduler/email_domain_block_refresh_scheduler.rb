@@ -25,6 +25,6 @@ class Scheduler::EmailDomainBlockRefreshScheduler
   end
 
   def ip?(str)
-     str =~ Regexp.union([Resolv::IPv4::Regex, Resolv::IPv6::Regex])
+    str =~ Regexp.union([Resolv::IPv4::Regex, Resolv::IPv6::Regex])
   end
 end
