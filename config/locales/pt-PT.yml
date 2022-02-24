@@ -477,7 +477,11 @@ pt-PT:
       domain: Domínio
       new:
         create: Adicionar domínio
+        resolve: Domínio de resolução
         title: Novo bloqueio de domínio de e-mail
+      no_email_domain_block_selected: Nenhum bloqueio de domínio de e-mail foi alterado pois nenhum foi selecionado
+      resolved_dns_records_hint_html: O nome de domínio resolve para os seguintes domínios MX, que são, em última análise, responsáveis por aceitar o e-mail. Bloquear um domínio MX irá bloquear as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo quando o nome de domínio visível é diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
+      resolved_through_html: Resolvido através de %{domain}
       title: Domínios de e-mail bloqueados
     follow_recommendations:
       description_html: "<strong>Recomendações de quem seguir ajudam novos utilizadores a encontrar conteúdo interessante rapidamente.</strong>. Quando um utilizador não interage com outros o suficiente para formar recomendações personalizadas, estas contas são recomendadas. Elas são recalculadas diariamente a partir de uma mistura de contas com mais atividade recente e maior número de seguidores locais para um determinado idioma."
