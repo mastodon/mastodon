@@ -1,4 +1,3 @@
----
 hu:
   simple_form:
     hints:
@@ -64,7 +63,6 @@ hu:
       domain_allow:
         domain: Ez a domain adatot kérhet le a szerverünkről és az ettől érkező adatokat feldolgozzuk és mentjük
       email_domain_block:
-        domain: Lehet domain név, mely az email címben szerepel, MX rekord, amire a domain hivatkozik vagy a szerver IP címe, amire az MX rekord hivatkozik. Ezeket regisztrációkor ellenőrizzük és visszautasítjuk a regisztrációt, ha szükséges.
         with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
       featured_tag:
         name: 'Ezeket esetleg használhatod:'
@@ -218,7 +216,7 @@ hu:
         name: Hashtag
         trendable: A hashtag megjelenhet a felkapottak között
         usable: Bejegyzések használhatják ezt a hashtaget
-    'no': Nem
+    'no': 'Nem'
     recommended: Ajánlott
     required:
       mark: "*"
@@ -226,4 +224,4 @@ hu:
     title:
       sessions:
         webauthn: Használd valamelyik biztonsági kulcsodat a bejelentkezéshez
-    'yes': Igen
+    'yes': 'Igen'
