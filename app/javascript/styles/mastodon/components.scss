@@ -2797,6 +2797,10 @@ a.account__display-name {
     position: relative;
     min-height: 120px;
   }
+
+  .scrollable {
+    flex: 1 1 auto;
+  }
 }
 
 .scrollable.fullscreen {
@@ -7722,5 +7726,124 @@ noscript {
     color: $darker-text-color;
     margin-bottom: 15px;
     text-align: center;
+  }
+}
+
+.explore__search-header {
+  background: $ui-base-color;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 15px;
+
+  .search {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .search__input {
+    border-radius: 4px;
+    color: $inverted-text-color;
+    background: $simple-background-color;
+    padding: 10px;
+
+    &::placeholder {
+      color: $dark-text-color;
+    }
+  }
+
+  .search .fa {
+    top: 10px;
+    right: 10px;
+    color: $dark-text-color;
+  }
+
+  .search .fa-times-circle {
+    top: 12px;
+  }
+}
+
+.explore__search-results {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.story {
+  display: flex;
+  align-items: center;
+  color: $primary-text-color;
+  text-decoration: none;
+  padding: 15px 0;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: lighten($ui-base-color, 4%);
+  }
+
+  &__details {
+    padding: 0 15px;
+    flex: 1 1 auto;
+
+    &__publisher {
+      color: $darker-text-color;
+      margin-bottom: 4px;
+    }
+
+    &__title {
+      font-size: 19px;
+      line-height: 24px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    &__shared {
+      color: $darker-text-color;
+    }
+  }
+
+  &__thumbnail {
+    flex: 0 0 auto;
+    margin: 0 15px;
+    position: relative;
+    width: 120px;
+    height: 120px;
+
+    .skeleton {
+      width: 100%;
+      height: 100%;
+    }
+
+    img {
+      border-radius: 4px;
+      display: block;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &__preview {
+      border-radius: 4px;
+      display: block;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+
+      &--hidden {
+        display: none;
+      }
+    }
   }
 }
