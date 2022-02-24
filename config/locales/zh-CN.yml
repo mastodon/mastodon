@@ -823,16 +823,6 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: '来自 %{instance} 的用户举报（#%{id}）'
-    new_trending_links:
-      body: 以下为今日流行的链接，但它们的发布者尚未经过审核。在您批准前它们不会被公开显示。来自相同发布者的更多通知不会被生成。
-      no_approved_links: 当前没有经过批准的流行链接。
-      requirements: 已批准流行链接中最低的是 %{lowest_link_title} （%{lowest_link_score} 分）。
-      subject: '%{instance} 上待审核的新流行链接'
-    new_trending_tags:
-      body: '以下为今日流行的标签，但它们尚未经过审核。在您批准前它们不会被公开显示。'
-      no_approved_tags: 当前没有经过批准的流行标签。
-      requirements: '已批准流行链接中最低的是 #%{lowest_tag_name} （%{lowest_tag_score} 分）。'
-      subject: '%{instance} 上待审核的新流行标签'
   aliases:
     add_new: 创建别名
     created_msg: 成功创建了一个新别名。你现在可以从旧账户开始迁移了。
