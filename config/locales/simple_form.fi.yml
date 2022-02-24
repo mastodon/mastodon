@@ -63,6 +63,7 @@ fi:
       domain_allow:
         domain: Tämä verkkotunnus voi noutaa tietoja tältä palvelimelta ja sieltä saapuvat tiedot käsitellään ja tallennetaan
       email_domain_block:
+        domain: Tämä voi olla se verkkotunnus, joka näkyy sähköpostiosoitteessa tai MX tietueessa jota se käyttää. Ne tarkistetaan rekisteröitymisen yhteydessä.
         with_dns_records: Annetun verkkotunnuksen DNS-tietueet yritetään ratkaista ja tulokset myös estetään
       featured_tag:
         name: 'Voit halutessasi käyttää jotakin näistä:'
