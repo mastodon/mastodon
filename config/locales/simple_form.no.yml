@@ -1,5 +1,4 @@
----
-'no':
+"no":
   simple_form:
     hints:
       account_alias:
@@ -61,7 +60,6 @@
       domain_allow:
         domain: Dette domenet vil være i stand til å hente data fra denne serveren og dets innkommende data vil bli prosessert og lagret
       email_domain_block:
-        domain: Det kan være domenenavnet som vises i e-postadressen, MX-posten, som domenet bestemmer til, eller IP-en til serveren som MX-posten løser etter. De vil bli sjekket ved brukerregistrering og registrering vil bli avvist.
         with_dns_records: Et forsøk på å løse det gitte domenets DNS-poster vil bli gjort, og resultatene vil også bli svartelistet
       featured_tag:
         name: 'Du vil kanskje ønske å bruke en av disse:'
@@ -82,7 +80,7 @@
       rule:
         text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
@@ -209,7 +207,7 @@
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å vises under trender
         usable: Tillat tuter å bruke denne emneknaggen
-    'no': Nei
+    'no': 'Nei'
     recommended: Anbefalt
     required:
       mark: "*"
@@ -217,4 +215,4 @@
     title:
       sessions:
         webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
-    'yes': Ja
+    'yes': 'Ja'
