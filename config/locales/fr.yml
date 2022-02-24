@@ -834,16 +834,6 @@ fr:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: 'Nouveau signalement sur %{instance} (#%{id})'
-    new_trending_links:
-      body: Les liens suivants sont tendance aujourd'hui, mais leurs éditeurs n'ont pas été révisés auparavant. Ils ne seront pas affichés publiquement à moins que vous ne les approuviez. De nouvelles notifications provenant des mêmes éditeurs ne seront pas générées.
-      no_approved_links: Il n'y a actuellement aucun lien tendance approuvé.
-      requirements: Le lien tendance le plus bas est actuellement "%{lowest_link_title}" avec un score de %{lowest_link_score}.
-      subject: Nouveaux liens tendance à examiner sur %{instance}
-    new_trending_tags:
-      body: 'Les hashtags suivants sont tendances aujourd''hui, mais ils n''ont pas été examinés précédemment. Ils ne seront pas affichés publiquement à moins que vous ne les approuviez :'
-      no_approved_tags: Il n'y a actuellement aucun hashtag tendance approuvé.
-      requirements: 'Le hashtag tendance le plus bas est actuellement #%{lowest_tag_name} avec un score de %{lowest_tag_score}.'
-      subject: Nouveaux hashtags tendance à réviser sur %{instance}
   aliases:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant déménager depuis l'ancien compte.
