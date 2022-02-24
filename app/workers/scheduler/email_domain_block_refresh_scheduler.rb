@@ -12,7 +12,7 @@ class Scheduler::EmailDomainBlockRefreshScheduler
 
       EmailDomainBlock.find_each do |email_domain_block|
         ips = begin
-          if is_ip?(email_domain_block.domain)
+          if ip?(email_domain_block.domain)
             [email_domain_block.domain]
           else
             dns.getresources(email_domain_block.domain, Resolv::DNS::Resource::IN::A).to_a + dns.getresources(email_domain_block.domain, Resolv::DNS::Resource::IN::AAAA).to_a.map { |resource| resource.address.to_s }
@@ -24,7 +24,7 @@ class Scheduler::EmailDomainBlockRefreshScheduler
     end
   end
 
-  def is_ip?(str)
+  def ip?(str)
      str =~ Regexp.union([Resolv::IPv4::Regex, Resolv::IPv6::Regex])
   end
 end
