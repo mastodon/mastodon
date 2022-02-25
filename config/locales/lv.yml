@@ -474,12 +474,23 @@ lv:
       view: Skatīt domēna bloķēšanu
     email_domain_blocks:
       add_new: Pievienot jaunu
+      attempts_over_week:
+        zero: "%{count} mēģinājumu pagājušajā nedēļā"
+        one: "%{count} mēģinājums pagājušajā nedēļā"
+        other: "%{count} reģistrēšanās mēģinājumi pagājušajā nedēļā"
       created_msg: E-pasta domēns ir veiksmīgi bloķēts
       delete: Dzēst
+      dns:
+        types:
+          mx: MX ieraksts
       domain: Domēns
       new:
         create: Pievienot domēnu
+        resolve: Atrisināt domēnu
         title: Bloķēt jaunu e-pasta domēnu
+      no_email_domain_block_selected: Neviens e-pasta domēna bloks netika mainīts, jo neviens netika atlasīts
+      resolved_dns_records_hint_html: Domēna nosaukums tiek izmantots tālāk norādītajos MX domēnos, kas galu galā ir atbildīgi par e-pasta pieņemšanu. Bloķējot MX domēnu, tiks bloķēta reģistrēšanās no jebkuras e-pasta adreses, kas izmanto vienu un to pašu MX domēnu, pat ja redzamais domēna nosaukums atšķiras. <strong>Esi uzmanīgs, lai nebloķētu lielākos e-pasta pakalpojumu sniedzējus.</strong>
+      resolved_through_html: Atrisināts, izmantojot %{domain}
       title: Bloķētie e-pasta domēni
     follow_recommendations:
       description_html: "<strong>Sekošana rekomendācijām palīdz jaunajiem lietotājiem ātri atrast interesantu saturu</strong>. Ja lietotājs nav pietiekami mijiedarbojies ar citiem, lai izveidotu personalizētus ieteikumus, ieteicams izmantot šos kontus. Tie tiek pārrēķināti katru dienu, izmantojot vairākus kontus ar visaugstākajām pēdējā laika saistībām un vislielāko vietējo sekotāju skaitu noteiktā valodā."
@@ -786,6 +797,10 @@ lv:
         rejected: Saites no šī publicētāja nebūs tendence
         title: Publicētāji
       rejected: Noraidīts
+      statuses:
+        allow: Atļaut publicēt
+        allow_account: Atļaut autoru
+        disallow: Neatļaut publicēt
       tags:
         current_score: Pašreizējais rezultāts %{score}
         dashboard:
