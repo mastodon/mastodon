@@ -851,9 +851,11 @@ fr:
         title: Liens tendance
       new_trending_statuses:
         no_approved_statuses: Il n'y a pas de message tendance approuvé actuellement.
+        requirements: 'N''importe quel élément de la sélection pourrait surpasser le message tendance approuvé n°%{rank}, qui est actuellement « %{lowest_status_url} » avec un résultat de %{lowest_status_score}.'
         title: Messages tendance
       new_trending_tags:
         no_approved_tags: Il n'y a pas de hashtag tendance approuvé actuellement.
+        requirements: 'N''importe quel élément de la sélection pourrait surpasser le hashtag tendance approuvé n°%{rank}, qui est actuellement #%{lowest_tag_name} avec un résultat de %{lowest_tag_score}.'
         title: Hashtags tendance
       subject: Nouvelles tendances à examiner sur %{instance}
   aliases:
