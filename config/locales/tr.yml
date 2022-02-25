@@ -466,12 +466,22 @@ tr:
       view: Alan adı bloğunu görüntüle
     email_domain_blocks:
       add_new: Yeni ekle
+      attempts_over_week:
+        one: "Son haftada %{count} deneme"
+        other: "Son haftada %{count} kayıt denemesi"
       created_msg: E-posta alan adı kara listeye başarıyla eklendi
       delete: Sil
+      dns:
+        types:
+          mx: MX kaydı
       domain: Alan adı
       new:
         create: Alan adı ekle
+        resolve: Alan adı çözümleme
         title: Yeni e-posta kara liste girişi
+      no_email_domain_block_selected: Seçim yapılmadığından hiç bir e-posta alan adı engeli değiştirilmedi
+      resolved_dns_records_hint_html: Alan adı aşağıdaki MX alan adlarına çözümleniyor, ancak hiç biri nihayetinde e-posta kabulünden sorum değil. Bir MX alan adını engellemek, görünen alan adı farklı osa bile aynı MX alan adını kullanan e-posta adreslerinden gelen kayıtları engelleyecektir. <strong>Başlıca e-posta sağlayıcıları engellememek için dikkatli olun.</strong>
+      resolved_through_html: '%{domain} aracılığıyla çözümlendi'
       title: E-posta kara listesi
     follow_recommendations:
       description_html: "<strong>Takip önerileri yeni kullanıcıların hızlı bir şekilde ilginç içerik bulmalarını sağlar</strong>. Eğer bir kullanıcı, kişisel takip önerileri almaya yetecek kadar başkalarıyla etkileşime girmediğinde, onun yerine bu hesaplar önerilir. Bu öneriler, verili bir dil için en yüksek takipçi sayısına ve en yüksek güncel meşguliyete sahip hesapların bir karışımdan günlük olarak hesaplanıyorlar."
@@ -779,6 +789,12 @@ tr:
       statuses:
         allow: Gönderiye izin ver
         allow_account: Yazara izin ver
+        disallow: Gönderi iznini kaldır
+        disallow_account: Yazar iznini kaldır
+        shared_by:
+          one: Bir defa paylaşıldı veya favorilendi
+          other: '%{friendly_count} defa paylaşıldı veya favorilendi'
+        title: Öne çıkan gönderiler
       tags:
         current_score: Mevcut puan %{score}
         dashboard:
@@ -826,6 +842,21 @@ tr:
       body: "%{reporter}, %{target} kişisini bildirdi"
       body_remote: '%{domain} alan adından birisi %{target} kişisini bildirdi'
       subject: '%{instance} için yeni şikayet (#%{id})'
+    new_trends:
+      body: 'Aşağıdaki öğeler herkese açık olarak gösterilmeden önce gözden geçirilmelidir:'
+      new_trending_links:
+        no_approved_links: Şu anda onaylanmış öne çıkan bağlantı yok.
+        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_link_score} skoruna sahip "%{lowest_link_title}" olan #%{rank} onaylanmış öne çıkan bağlantıyı geçebilir.'
+        title: Öne çıkan bağlantılar
+      new_trending_statuses:
+        no_approved_statuses: Şu anda onaylanmış öne çıkan gönderi yok.
+        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_status_score} skoruna sahip "%{lowest_status_url}" olan #%{rank} onaylanmış öne çıkan gönderiyi geçebilir.'
+        title: Öne çıkan gönderiler
+      new_trending_tags:
+        no_approved_tags: Şu anda onaylanmış öne çıkan etiket yok.
+        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_tag_score} skoruna sahip "%{lowest_tag_name}" olan #%{rank} onaylanmış öne çıkan etiketi geçebilir.'
+        title: Öne çıkan etiketler
+      subject: '%{instance}, inceleme bekleyen yeni öne çıkan öğelere sahip'
   aliases:
     add_new: Takma ad oluştur
     created_msg: Yeni takma ad başarıyla oluşturuldu. Artık eski hesaptan taşınmayı başlatabilirsiniz.
