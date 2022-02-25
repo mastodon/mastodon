@@ -788,6 +788,8 @@ sq:
       statuses:
         allow: Lejo postim
         allow_account: Lejo autor
+        disallow: Mos lejo postim
+        disallow_account: Mos lejo autor
       tags:
         dashboard:
           tag_accounts_measure: përdorime unike
@@ -834,6 +836,8 @@ sq:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
       subject: 'Raportim i ri për %{instance} (#%{id})'
+    new_trends:
+      body: 'Gjërat vijuese lypin një shqyrtim, përpara se të mund të shfaqen publikisht:'
   aliases:
     add_new: Krijo alias
     created_msg: U krijua me sukses alias i ri. Tani mund të filloni lëvizjen prej llogarisë së vjetër.
