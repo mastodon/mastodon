@@ -466,12 +466,21 @@ is:
       view: Skoða útilokun á léni
     email_domain_blocks:
       add_new: Bæta við nýju
+      attempts_over_week:
+        one: "%{count} tilraun síðustu viku"
+        other: "%{count} tilraunir til nýskráningar í síðustu viku"
       created_msg: Tókst að útiloka póstlén
       delete: Eyða
+      dns:
+        types:
+          mx: MX-færsla
       domain: Lén
       new:
         create: Bæta við léni
+        resolve: Leysa lén
         title: Útiloka nýtt tölvupóstlén
+      no_email_domain_block_selected: Engum útilokunum tölvupóstléna var breytt þar sem ekkert var valið
+      resolved_through_html: Leyst í gegnum %{domain}
       title: Útilokuð tölvupóstlén
     follow_recommendations:
       description_html: "<strong>Að fylgja meðmælum hjálpar nýjum notendum að finna áhugavert efni á einfaldan máta</strong>. Þegar notandi hefur ekki átt í nægilegum samskiptum við aðra til að vera farinn að móta sér skoðanir á hverju hann vill fylgjast með, er mælt með að fylgjast með þessum aðgöngum. Þeir eru endurreiknaðir daglega út frá blöndu þeirra aðganga sem eru með hvað mestri þáttöku í umræðum og mesta fylgjendafjölda út frá hverju tungumáli."
@@ -776,6 +785,15 @@ is:
         rejected: Tenglar frá þessum útgefanda verða ekki með í vinsældum
         title: Útgefendur
       rejected: Hafnað
+      statuses:
+        allow: Leyfa færslu
+        allow_account: Leyfa höfund
+        disallow: Ekki leyfa færslu
+        disallow_account: Ekki leyfa höfund
+        shared_by:
+          one: ShaDeilt eða gert að eftirlæti einu sinni
+          other: Deilt eða gert að eftirlæti %{friendly_count} sinnum
+        title: Vinsælar færslur
       tags:
         current_score: Núverandi stig %{score}
         dashboard:
@@ -824,6 +842,17 @@ is:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
       subject: 'Ný kæra vegna %{instance} (#%{id})'
+    new_trends:
+      body: 'Eftirfarandi atriði þarfnast yfirferðar áður en hægt er að birta þau opinberlega:'
+      new_trending_links:
+        no_approved_links: Það eru í augnablikinu engir samþykktir vinsælir tenglar.
+        title: Vinsælir tenglar
+      new_trending_statuses:
+        no_approved_statuses: Það eru í augnablikinu engar samþykktar vinsælar færslur.
+        title: Vinsælar færslur
+      new_trending_tags:
+        no_approved_tags: Það eru í augnablikinu engin samþykkt vinsæl myllumerki.
+        title: Vinsæl myllumerki
   aliases:
     add_new: Búa til samnefni (alias)
     created_msg: Tókst að búa til samnefni. Þú getur núna byrjað að færa gögn af gamla aðgangnum.
