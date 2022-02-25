@@ -786,6 +786,15 @@ ca:
         rejected: Els enllaços d'aquest mitjà no poden estar en tendència
         title: Mitjans
       rejected: Rebutjat
+      statuses:
+        allow: Permet publicació
+        allow_account: Permet autor
+        disallow: Rebutja publicació
+        disallow_account: Rebutja autor
+        shared_by:
+          one: Compartit o afavorit una vegada
+          other: Compartit i afavorit %{friendly_count} vegades
+        title: Publicacions en tendència
       tags:
         current_score: Puntuació actual %{score}
         dashboard:
@@ -834,6 +843,10 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: 'Informe nou per a %{instance} (#%{id})'
+    new_trends:
+      body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
+      new_trending_links:
+        no_approved_links: Actualment no hi ha enllaços en tendència aprovats.
   aliases:
     add_new: Crea un àlies
     created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
