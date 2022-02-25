@@ -30,6 +30,7 @@ export default class IconButton extends React.PureComponent {
     label: PropTypes.string,
     counter: PropTypes.number,
     obfuscateCount: PropTypes.bool,
+    href: PropTypes.string,
   };
 
   static defaultProps = {
@@ -109,6 +110,7 @@ export default class IconButton extends React.PureComponent {
       title,
       counter,
       obfuscateCount,
+      href,
     } = this.props;
 
     const {
@@ -130,6 +132,21 @@ export default class IconButton extends React.PureComponent {
       style.width = 'auto';
     }
 
+    let contents = (
+      <React.Fragment>
+        <Icon id={icon} fixedWidth aria-hidden='true' /> {typeof counter !== 'undefined' && <span className='icon-button__counter'><AnimatedNumber value={counter} obfuscate={obfuscateCount} /></span>}
+        {this.props.label}
+      </React.Fragment>
+    );
+
+    if (href) {
+      contents = (
+        <a href={href} target='_blank' rel='noopener noreferrer'>
+          {contents}
+        </a>
+      );
+    }
+
     return (
       <button
         aria-label={title}
@@ -145,8 +162,7 @@ export default class IconButton extends React.PureComponent {
         tabIndex={tabIndex}
         disabled={disabled}
       >
-        <Icon id={icon} fixedWidth aria-hidden='true' /> {typeof counter !== 'undefined' && <span className='icon-button__counter'><AnimatedNumber value={counter} obfuscate={obfuscateCount} /></span>}
-        {this.props.label}
+        {contents}
       </button>
     );
   }
