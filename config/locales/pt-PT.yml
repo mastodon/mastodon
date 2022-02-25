@@ -786,6 +786,15 @@ pt-PT:
         rejected: Links deste editor não serão incluídos nos destaques
         title: Editores
       rejected: Rejeitado
+      statuses:
+        allow: Permitir publicação
+        allow_account: Permitir autor
+        disallow: Não permitir publicação
+        disallow_account: Não permitir autor
+        shared_by:
+          one: Partilhado ou adicionado aos favoritos uma vez
+          other: Partilhado e adicionado aos favoritos %{friendly_count} vezes
+        title: Publicações em destaque
       tags:
         current_score: Pontuação atual %{score}
         dashboard:
@@ -834,6 +843,10 @@ pt-PT:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
       subject: 'Nova denúncia para %{instance} (#%{id})'
+    new_trends:
+      body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
+      new_trending_links:
+        no_approved_links: Não existem, atualmente, links aprovados para destaque.
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
