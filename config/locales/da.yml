@@ -463,11 +463,18 @@ da:
       view: Vis domæneblokering
     email_domain_blocks:
       add_new: Tilføj ny
+      attempts_over_week:
+        one: "%{count} tilmeldingsforsøg over den seneste uge"
+        other: "%{count} tilmeldingsforsøg over den seneste uge"
       created_msg: E-maildomæne blokeret
       delete: Slet
+      dns:
+        types:
+          mx: MX-post
       domain: Domæne
       new:
         create: Tilføj domæne
+        resolve: Opløs domæne
         title: Blokere nyt e-maildomæne
       title: Blokerede e-maildomæner
     follow_recommendations:
