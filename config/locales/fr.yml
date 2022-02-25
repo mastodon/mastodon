@@ -842,6 +842,10 @@ fr:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: 'Nouveau signalement sur %{instance} (#%{id})'
+    new_trends:
+      body: 'Les éléments suivants doivent être approuvés avant de pouvoir être affichés publiquement :'
+      new_trending_links:
+        title: Liens tendance
   aliases:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant déménager depuis l'ancien compte.
