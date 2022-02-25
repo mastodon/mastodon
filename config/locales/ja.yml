@@ -708,8 +708,8 @@ ja:
       title: 投稿一覧
       with_media: メディアあり
     strikes:
-      appeal_approved: 異議
-      appeal_pending: 保留中の異議
+      appeal_approved: 抗議済み
+      appeal_pending: 保留中の抗議
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
@@ -775,6 +775,9 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       body_remote: '%{domain} の誰かが %{target} を通報しました'
       subject: '%{instance} の新しい通報 (#%{id})'
+    new_trends:
+      new_trending_links:
+        title: トレンドリンク
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
@@ -915,6 +918,12 @@ ja:
   disputes:
     strikes:
       appeal: 抗議
+      appeals:
+        submit: 抗議を送信
+      created_at: 日時
+      recipient: 送信元
+      title_actions:
+        none: 警告
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
@@ -1465,6 +1474,8 @@ ja:
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     webauthn: セキュリティキー
   user_mailer:
+    appeal_rejected:
+      title: 却下された抗議
     backup_ready:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
       subject: アーカイブの準備ができました
@@ -1476,6 +1487,7 @@ ja:
       subject: ログイン試行を確認してください
       title: ログインを検出しました
     warning:
+      appeal: 抗議を送信
       categories:
         spam: スパム
         violation: コンテンツは以下のコミュニティガイドラインに違反しています
