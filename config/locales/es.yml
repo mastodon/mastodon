@@ -19,7 +19,7 @@ es:
     documentation: Documentación
     federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
     get_apps: Probar una aplicación móvil
-    hosted_on: Mastodon hosteado en %{domain}
+    hosted_on: Mastodon alojado en %{domain}
     instance_actor_flash: |
       Esta cuenta es un actor virtual usado para representar al servidor y no a ningún usuario individual.
       Se usa para fines federativos y no debe ser bloqueado a menos que usted quiera bloquear toda la instancia, en cuyo caso se debe utilizar un bloque de dominio.
@@ -698,7 +698,7 @@ es:
         title: Modo de registros
       show_known_fediverse_at_about_page:
         desc_html: Cuando esté desactivado, se mostrarán solamente publicaciones locales en la línea temporal pública
-        title: Mostrar fediverso conocido en la vista previa de la historia
+        title: Incluye contenido federado en la página de línea de tiempo pública no autenticada
       show_staff_badge:
         desc_html: Mostrar un parche de staff en la página de un usuario
         title: Mostrar parche de staff
@@ -1065,9 +1065,9 @@ es:
   filters:
     contexts:
       account: Perfiles
-      home: Timeline propio
+      home: Inicio y listas
       notifications: Notificaciones
-      public: Timeline público
+      public: Líneas de tiempo públicas
       thread: Conversaciones
     edit:
       title: Editar filtro
@@ -1649,7 +1649,7 @@ es:
       subject: Bienvenido a Mastodon
       tip_federated_timeline: La línea de tiempo federada es una vista de la red de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
-      tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
+      tip_local_timeline: La línea de tiempo local es una vista de la gente en %{instance}. ¡Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
       tips: Consejos
       title: Te damos la bienvenida a bordo, %{name}!
