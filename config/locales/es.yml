@@ -789,7 +789,12 @@ es:
       statuses:
         allow: Permitir publicación
         allow_account: Permitir autor
-        disallow: Deshabilitar publicación
+        disallow: No permitir publicación
+        disallow_account: No permitir autor
+        shared_by:
+          one: Compartido o favorito uan vez
+          other: Compatido o favorito %{friendly_count} veces
+        title: Publicaciones destacadas
       tags:
         current_score: Puntuación actual %{score}
         dashboard:
@@ -838,6 +843,10 @@ es:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: 'Nuevo reporte para la %{instance} (#%{id})'
+    new_trends:
+      body: 'Los siguientes items necesitan una revisión antes de que puedan ser mostrados públicamente:'
+      new_trending_links:
+        no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
