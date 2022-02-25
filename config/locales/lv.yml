@@ -801,6 +801,12 @@ lv:
         allow: Atļaut publicēt
         allow_account: Atļaut autoru
         disallow: Neatļaut publicēt
+        disallow_account: Neatļaut autoru
+        shared_by:
+          zero: '%{friendly_count} reižu kopīgots vai pievienots izlasei'
+          one: Vienreiz kopīgots vai pievienots izlasei
+          other: Kopīgots un pievienots izlasei %{friendly_count} reizes
+        title: Populārākās ziņas
       tags:
         current_score: Pašreizējais rezultāts %{score}
         dashboard:
@@ -849,6 +855,21 @@ lv:
       body: "%{reporter} ziņoja par %{target}"
       body_remote: Kāds no %{domain} ziņoja par %{target}
       subject: 'Jauns ziņojums par %{instance} (#%{id})'
+    new_trends:
+      body: 'Tālāk norādītie vienumi ir jāpārskata, lai tos varētu parādīt publiski:'
+      new_trending_links:
+        no_approved_links: Pašlaik nav apstiprinātu tendenču saišu.
+        requirements: 'Jebkurš no šiem kandidātiem varētu pārspēt #%{rank} apstiprināto populāro saiti, kas pašlaik ir "%{lowest_link_title}" ar rezultātu %{lowest_link_score}.'
+        title: Populārākās saites
+      new_trending_statuses:
+        no_approved_statuses: Pašlaik nav apstiprinātu tendenču saišu.
+        requirements: 'Jebkurš no šiem kandidātiem varētu pārspēt #%{rank} apstiprināto populāro ziņu, kas pašlaik ir %{lowest_status_url} ar rezultātu %{lowest_status_score}.'
+        title: Populārākās ziņas
+      new_trending_tags:
+        no_approved_tags: Pašlaik nav apstiprinātu tendenču tēmturu.
+        requirements: 'Jebkurš no šiem kandidātiem varētu pārspēt #%{rank} apstiprināto populāro tēmturi, kas pašlaik ir #%{lowest_tag_name} ar rezultātu %{lowest_tag_score}.'
+        title: Populārākie tēmturi
+      subject: Tiek pārskatītas jaunas tendences %{instance}
   aliases:
     add_new: Izveidot aizstājvārdu
     created_msg: Veiksmīgi izveidots jauns aizstājvārds. Tagad vari sākt pārvietošanu no vecā konta.
