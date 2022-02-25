@@ -441,7 +441,7 @@ class FeedManager
 
     return false if active_filters.empty?
 
-    combined_regex = active_filters.reduce { |memo, obj| Regexp.union(memo, obj) }
+    combined_regex = Regexp.union(active_filters)
     status         = status.reblog if status.reblog?
 
     combined_text = [
@@ -491,7 +491,7 @@ class FeedManager
       end
     else
       # A reblog may reach earlier than the original status because of the
-      # delay of the worker deliverying the original status, the late addition
+      # delay of the worker delivering the original status, the late addition
       # by merging timelines, and other reasons.
       # If such a reblog already exists, just do not re-insert it into the feed.
       return false unless redis.zscore(reblog_key, status.id).nil?

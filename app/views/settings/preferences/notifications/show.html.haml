@@ -21,6 +21,7 @@
 
       - if current_user.staff?
         = ff.input :report, as: :boolean, wrapper: :with_label
+        = ff.input :appeal, as: :boolean, wrapper: :with_label
         = ff.input :pending_account, as: :boolean, wrapper: :with_label
         = ff.input :trending_tag, as: :boolean, wrapper: :with_label
 

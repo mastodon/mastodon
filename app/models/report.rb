@@ -39,6 +39,9 @@ class Report < ApplicationRecord
   scope :with_accounts, -> { includes([:account, :target_account, :action_taken_by_account, :assigned_account].index_with({ user: [:invite_request, :invite] })) }
 
   validates :comment, length: { maximum: 1_000 }
+  validates :rule_ids, absence: true, unless: :violation?
+
+  validate :validate_rule_ids
 
   enum category: {
     other: 0,
@@ -121,5 +124,11 @@ class Report < ApplicationRecord
 
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil? && account.local?
+  end
+
+  def validate_rule_ids
+    return unless violation?
+
+    errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids.size
   end
 end

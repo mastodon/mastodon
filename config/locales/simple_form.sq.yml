@@ -27,6 +27,8 @@ sq:
         scheduled_at: Që lajmërimi të botohet menjëherë, lëreni të zbrazët
         starts_at: Opsionale. Në rast se lajmërimi juaj është i lidhur me një interval kohor të caktuar
         text: Mund të përdorni sintaksë mesazhesh. Ju lutemi, mos harroni që hapësira e lajmërimit do të hajë vend në ekranin e përdoruesit
+      appeal:
+        text: Një paralajmërim mund ta apeloni vetëm një herë
       defaults:
         autofollow: Personat që regjistrohen përmes ftesës do t’ju ndjekin vetvetiu
         avatar: PNG, GIF ose JPG. Maksimumi %{size}. Do të zvogëlohen në %{dimensions}px
@@ -119,6 +121,8 @@ sq:
         scheduled_at: Planifikoji botimin
         starts_at: Fillim i aktit
         text: Lajmërim
+      appeal:
+        text: Shpjegoni pse duhet përmbysur ky vendim
       defaults:
         autofollow: Ftesë për ndjekje të llogarisë tuaj
         avatar: Avatar
@@ -197,6 +201,7 @@ sq:
           sign_up_requires_approval: Kufizo regjistrime
         severity: Rregull
       notification_emails:
+        appeal: Dikush apelon një vendim moderatori
         digest: Dërgo email-e përmbledhës
         favourite: Dikush parapëlqeu gjendjen tuaj
         follow: Dikush filloi t’ju ndjekë
@@ -205,7 +210,6 @@ sq:
         pending_account: Llogaria e re lyp shqyrtim
         reblog: Dikush përforcoi gjendjen tuaj
         report: Parashtrohet raportim i ri
-        trending_tag: Një hashtag i pashqyrtuar zë e bëhet popullor
       rule:
         text: Rregull
       tag:

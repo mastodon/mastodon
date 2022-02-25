@@ -33,6 +33,6 @@ class Api::V1::ReportsController < Api::BaseController
   end
 
   def report_params
-    params.permit(:account_id, :comment, :forward, status_ids: [])
+    params.permit(:account_id, :comment, :category, :forward, status_ids: [], rule_ids: [])
   end
 end

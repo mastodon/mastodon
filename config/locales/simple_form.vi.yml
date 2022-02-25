@@ -15,11 +15,11 @@ vi:
         text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
-          disable: Cấm người này tiếp tục đăng nhập, nhưng không xóa hoặc ẩn tút của họ.
-          none: Sử dụng để gửi cảnh cáo tới tài khoản này, không áp đặt trừng phạt.
+          disable: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút.
+          none: Cảnh cáo tài khoản này, không áp đặt trừng phạt.
           sensitive: Mọi tập tin của tài khoản này tải lên đều sẽ bị gắn nhãn nhạy cảm.
           silence: Cấm tài khoản này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
-          suspend: Vô hiệu hóa mọi hoạt động của tài khoản này và xóa sạch dữ liệu. Có thể mở lại trong vòng 30 ngày.
+          suspend: Vô hiệu hóa và xóa sạch dữ liệu của tài khoản này. Có thể khôi phục trước 30 ngày.
         warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm ghi chú riêng
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
@@ -27,6 +27,8 @@ vi:
         scheduled_at: Để trống nếu muốn đăng thông báo ngay lập tức
         starts_at: Tùy chọn. Trong trường hợp thông báo của bạn đăng vào một khoảng thời gian cụ thể
         text: Bạn có thể dùng URL, hashtag và nhắc đến. Cố gắng ngắn gọn bởi vì thông báo sẽ xuất hiện trên màn hình điện thoại của người dùng
+      appeal:
+        text: Bạn chỉ có thể khiếu nại mỗi lần một cảnh cáo
       defaults:
         autofollow: Những người đăng ký sẽ tự động theo dõi bạn
         avatar: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
@@ -107,10 +109,10 @@ vi:
         text: Ghi chú riêng
         type: Hành động
         types:
-          disable: Tạm khóa
+          disable: Khóa
           none: Cảnh cáo
           sensitive: Nhạy cảm
-          silence: Tạm ẩn
+          silence: Hạn chế
           suspend: Vô hiệu hóa
         warning_preset_id: Dùng mẫu có sẵn
       announcement:
@@ -119,6 +121,8 @@ vi:
         scheduled_at: Lên lịch đăng
         starts_at: Bắt đầu sự kiện
         text: Thông báo
+      appeal:
+        text: Giải thích rõ vì sao quyết định này có thể đảo ngược
       defaults:
         autofollow: Mời theo dõi tài khoản của bạn
         avatar: Ảnh đại diện
@@ -197,6 +201,7 @@ vi:
           sign_up_requires_approval: Giới hạn đăng ký
         severity: Mức độ
       notification_emails:
+        appeal: Có người khiếu nại quyết định kiểm duyệt
         digest: Gửi email định kỳ
         favourite: Ai đó thích tút của bạn
         follow: Ai đó theo dõi bạn
@@ -204,8 +209,8 @@ vi:
         mention: Ai đó nhắc đến bạn
         pending_account: Tài khoản mới cần phê duyệt
         reblog: Ai đó chia sẻ tút của bạn
-        report: Ai đó gửi báo cáo
-        trending_tag: Một hashtag chưa được phê duyệt đang là xu hướng
+        report: Đã gửi báo cáo mới
+        trending_tag: Một xu hướng cần được xem xét
       rule:
         text: Quy tắc
       tag:

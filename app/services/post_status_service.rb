@@ -2,6 +2,7 @@
 
 class PostStatusService < BaseService
   include Redisable
+  include LanguagesHelper
 
   MIN_SCHEDULE_OFFSET = 5.minutes.freeze
 
@@ -109,10 +110,6 @@ class PostStatusService < BaseService
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
   end
 
-  def language_from_option(str)
-    ISO_639.find(str)&.alpha2
-  end
-
   def process_mentions_service
     ProcessMentionsService.new
   end
@@ -165,7 +162,7 @@ class PostStatusService < BaseService
       sensitive: @sensitive,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
-      language: language_from_option(@options[:language]) || @account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(@text, @account),
+      language: valid_locale_or_nil(@options[:language].presence || @account.user&.preferred_posting_language || I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
     }.compact

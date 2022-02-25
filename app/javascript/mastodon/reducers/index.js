@@ -17,7 +17,7 @@ import status_lists from './status_lists';
 import mutes from './mutes';
 import blocks from './blocks';
 import boosts from './boosts';
-import reports from './reports';
+import rules from './rules';
 import contexts from './contexts';
 import compose from './compose';
 import search from './search';
@@ -38,6 +38,7 @@ import announcements from './announcements';
 import markers from './markers';
 import picture_in_picture from './picture_in_picture';
 import accounts_map from './accounts_map';
+import history from './history';
 
 const reducers = {
   announcements,
@@ -60,7 +61,7 @@ const reducers = {
   mutes,
   blocks,
   boosts,
-  reports,
+  rules,
   contexts,
   compose,
   search,
@@ -79,6 +80,7 @@ const reducers = {
   missed_updates,
   markers,
   picture_in_picture,
+  history,
 };
 
 export default combineReducers(reducers);

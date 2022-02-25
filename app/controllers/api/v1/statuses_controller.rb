@@ -3,8 +3,8 @@
 class Api::V1::StatusesController < Api::BaseController
   include Authorization
 
-  before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :destroy]
-  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :destroy]
+  before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
+  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
   before_action :require_user!, except:  [:show, :context]
   before_action :set_status, only:       [:show, :context]
   before_action :set_thread, only:       [:create]
@@ -35,24 +35,44 @@ class Api::V1::StatusesController < Api::BaseController
   end
 
   def create
-    @status = PostStatusService.new.call(current_user.account,
-                                         text: status_params[:status],
-                                         thread: @thread,
-                                         media_ids: status_params[:media_ids],
-                                         sensitive: status_params[:sensitive],
-                                         spoiler_text: status_params[:spoiler_text],
-                                         visibility: status_params[:visibility],
-                                         scheduled_at: status_params[:scheduled_at],
-                                         application: doorkeeper_token.application,
-                                         poll: status_params[:poll],
-                                         idempotency: request.headers['Idempotency-Key'],
-                                         with_rate_limit: true)
+    @status = PostStatusService.new.call(
+      current_user.account,
+      text: status_params[:status],
+      thread: @thread,
+      media_ids: status_params[:media_ids],
+      sensitive: status_params[:sensitive],
+      spoiler_text: status_params[:spoiler_text],
+      visibility: status_params[:visibility],
+      language: status_params[:language],
+      scheduled_at: status_params[:scheduled_at],
+      application: doorkeeper_token.application,
+      poll: status_params[:poll],
+      idempotency: request.headers['Idempotency-Key'],
+      with_rate_limit: true
+    )
 
     render json: @status, serializer: @status.is_a?(ScheduledStatus) ? REST::ScheduledStatusSerializer : REST::StatusSerializer
   end
 
+  def update
+    @status = Status.where(account: current_account).find(params[:id])
+    authorize @status, :update?
+
+    UpdateStatusService.new.call(
+      @status,
+      current_account.id,
+      text: status_params[:status],
+      media_ids: status_params[:media_ids],
+      sensitive: status_params[:sensitive],
+      spoiler_text: status_params[:spoiler_text],
+      poll: status_params[:poll]
+    )
+
+    render json: @status, serializer: REST::StatusSerializer
+  end
+
   def destroy
-    @status = Status.where(account_id: current_user.account).find(params[:id])
+    @status = Status.where(account: current_account).find(params[:id])
     authorize @status, :destroy?
 
     @status.discard
@@ -84,6 +104,7 @@ class Api::V1::StatusesController < Api::BaseController
       :sensitive,
       :spoiler_text,
       :visibility,
+      :language,
       :scheduled_at,
       media_ids: [],
       poll: [

@@ -19,7 +19,8 @@ import {
   EmbedModal,
   ListEditor,
   ListAdder,
-} from '../../../features/ui/util/async-components';
+  CompareHistoryModal,
+} from 'mastodon/features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),
@@ -34,7 +35,8 @@ const MODAL_COMPONENTS = {
   'EMBED': EmbedModal,
   'LIST_EDITOR': ListEditor,
   'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
-  'LIST_ADDER':ListAdder,
+  'LIST_ADDER': ListAdder,
+  'COMPARE_HISTORY': CompareHistoryModal,
 };
 
 export default class ModalRoot extends React.PureComponent {
@@ -43,6 +45,7 @@ export default class ModalRoot extends React.PureComponent {
     type: PropTypes.string,
     props: PropTypes.object,
     onClose: PropTypes.func.isRequired,
+    ignoreFocus: PropTypes.bool,
   };
 
   state = {
@@ -77,7 +80,7 @@ export default class ModalRoot extends React.PureComponent {
     return <BundleModalError {...props} onClose={onClose} />;
   }
 
-  handleClose = () => {
+  handleClose = (ignoreFocus = false) => {
     const { onClose } = this.props;
     let message = null;
     try {
@@ -87,7 +90,7 @@ export default class ModalRoot extends React.PureComponent {
       // isn't set.
       // This would be much smoother with react-intl 3+ and `forwardRef`.
     }
-    onClose(message);
+    onClose(message, ignoreFocus);
   }
 
   setModalRef = (c) => {
@@ -95,12 +98,12 @@ export default class ModalRoot extends React.PureComponent {
   }
 
   render () {
-    const { type, props } = this.props;
+    const { type, props, ignoreFocus } = this.props;
     const { backgroundColor } = this.state;
     const visible = !!type;
 
     return (
-      <Base backgroundColor={backgroundColor} onClose={this.handleClose}>
+      <Base backgroundColor={backgroundColor} onClose={this.handleClose} ignoreFocus={ignoreFocus}>
         {visible && (
           <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
             {(SpecificComponent) => <SpecificComponent {...props} onChangeBackgroundColor={this.setBackgroundColor} onClose={this.handleClose} ref={this.setModalRef} />}

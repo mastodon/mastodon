@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_18_183123) do
+ActiveRecord::Schema.define(version: 2022_02_24_010024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_183123) do
     t.datetime "updated_at", null: false
     t.bigint "report_id"
     t.string "status_ids", array: true
+    t.datetime "overruled_at"
     t.index ["account_id"], name: "index_account_warnings_on_account_id"
     t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
   end
@@ -176,13 +177,15 @@ ActiveRecord::Schema.define(version: 2022_01_18_183123) do
     t.string "also_known_as", array: true
     t.datetime "silenced_at"
     t.datetime "suspended_at"
-    t.integer "trust_level"
     t.boolean "hide_collections"
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
     t.string "devices_url"
     t.integer "suspension_origin"
     t.datetime "sensitized_at"
+    t.boolean "trendable"
+    t.datetime "reviewed_at"
+    t.datetime "requested_review_at"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
@@ -241,6 +244,22 @@ ActiveRecord::Schema.define(version: 2022_01_18_183123) do
     t.datetime "updated_at", null: false
     t.datetime "published_at"
     t.bigint "status_ids", array: true
+  end
+
+  create_table "appeals", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "account_warning_id", null: false
+    t.text "text", default: "", null: false
+    t.datetime "approved_at"
+    t.bigint "approved_by_account_id"
+    t.datetime "rejected_at"
+    t.bigint "rejected_by_account_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_appeals_on_account_id"
+    t.index ["account_warning_id"], name: "index_appeals_on_account_warning_id", unique: true
+    t.index ["approved_by_account_id"], name: "index_appeals_on_approved_by_account_id"
+    t.index ["rejected_by_account_id"], name: "index_appeals_on_rejected_by_account_id"
   end
 
   create_table "backups", force: :cascade do |t|
@@ -370,6 +389,9 @@ ActiveRecord::Schema.define(version: 2022_01_18_183123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "parent_id"
+    t.inet "ips", array: true
+    t.datetime "last_refresh_at"
+
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
@@ -867,6 +889,7 @@ ActiveRecord::Schema.define(version: 2022_01_18_183123) do
     t.bigint "poll_id"
     t.datetime "deleted_at"
     t.datetime "edited_at"
+    t.boolean "trendable"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
     t.index ["deleted_at"], name: "index_statuses_on_deleted_at", where: "(deleted_at IS NOT NULL)"
     t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
@@ -1031,6 +1054,10 @@ ActiveRecord::Schema.define(version: 2022_01_18_183123) do
   add_foreign_key "announcement_reactions", "accounts", on_delete: :cascade
   add_foreign_key "announcement_reactions", "announcements", on_delete: :cascade
   add_foreign_key "announcement_reactions", "custom_emojis", on_delete: :cascade
+  add_foreign_key "appeals", "account_warnings", on_delete: :cascade
+  add_foreign_key "appeals", "accounts", column: "approved_by_account_id", on_delete: :nullify
+  add_foreign_key "appeals", "accounts", column: "rejected_by_account_id", on_delete: :nullify
+  add_foreign_key "appeals", "accounts", on_delete: :cascade
   add_foreign_key "backups", "users", on_delete: :nullify
   add_foreign_key "blocks", "accounts", column: "target_account_id", name: "fk_9571bfabc1", on_delete: :cascade
   add_foreign_key "blocks", "accounts", name: "fk_4269e03e65", on_delete: :cascade
@@ -1204,5 +1231,4 @@ ActiveRecord::Schema.define(version: 2022_01_18_183123) do
     ORDER BY (sum(t0.rank)) DESC;
   SQL
   add_index "follow_recommendations", ["account_id"], name: "index_follow_recommendations_on_account_id", unique: true
-
 end

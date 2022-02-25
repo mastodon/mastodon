@@ -1,15 +1,14 @@
-%tr
-  %td
-    %samp= email_domain_block.domain
-  %td
-    = table_link_to 'trash', t('admin.email_domain_blocks.delete'), admin_email_domain_block_path(email_domain_block), method: :delete
+.batch-table__row
+  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+    = f.check_box :email_domain_block_ids, { multiple: true, include_hidden: false }, email_domain_block.id
+  .batch-table__row__content.pending-account
+    .pending-account__header
+      %samp= link_to email_domain_block.domain, admin_accounts_path(email: "%@#{email_domain_block.domain}")
 
-- email_domain_block.children.each do |child_email_domain_block|
-  %tr
-    %td
-      %samp= child_email_domain_block.domain
-      %span.muted-hint
-        = surround '(', ')' do
-          = t('admin.email_domain_blocks.from_html', domain: content_tag(:samp, email_domain_block.domain))
-    %td
-      = table_link_to 'trash', t('admin.email_domain_blocks.delete'), admin_email_domain_block_path(child_email_domain_block), method: :delete
+      %br/
+
+      - if email_domain_block.parent.present?
+        = t('admin.email_domain_blocks.resolved_through_html', domain: content_tag(:samp, email_domain_block.parent.domain))
+        •
+
+      = t('admin.email_domain_blocks.attempts_over_week', count: email_domain_block.history.reduce(0) { |sum, day| sum + day.accounts })

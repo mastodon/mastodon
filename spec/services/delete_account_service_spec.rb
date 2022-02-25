@@ -90,7 +90,7 @@ RSpec.describe DeleteAccountService, type: :service do
       let!(:account) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
       let!(:local_follower) { Fabricate(:account) }
 
-      it 'sends a reject follow to follwer inboxes' do
+      it 'sends a reject follow to follower inboxes' do
         subject.call
         expect(a_request(:post, account.inbox_url)).to have_been_made.once
       end

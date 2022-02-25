@@ -164,6 +164,12 @@ Rails.application.routes.draw do
     resources :login_activities, only: [:index]
   end
 
+  namespace :disputes do
+    resources :strikes, only: [:show] do
+      resource :appeal, only: [:create]
+    end
+  end
+
   resources :media, only: [:show] do
     get :player
   end
@@ -187,7 +193,12 @@ Rails.application.routes.draw do
     resources :domain_allows, only: [:new, :create, :show, :destroy]
     resources :domain_blocks, only: [:new, :create, :show, :destroy, :update, :edit]
 
-    resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
+    resources :email_domain_blocks, only: [:index, :new, :create] do
+      collection do
+        post :batch
+      end
+    end
+
     resources :action_logs, only: [:index]
     resources :warning_presets, except: [:new]
 
@@ -225,6 +236,8 @@ Rails.application.routes.draw do
     resources :rules
 
     resources :reports, only: [:index, :show] do
+      resources :actions, only: [:create], controller: 'reports/actions'
+
       member do
         post :assign_to_self
         post :unassign
@@ -314,11 +327,26 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :statuses, only: [:index] do
+        collection do
+          post :batch
+        end
+      end
+
       namespace :links do
         resources :preview_card_providers, only: [:index], path: :publishers do
           collection do
             post :batch
           end
+        end
+      end
+    end
+
+    namespace :disputes do
+      resources :appeals, only: [:index] do
+        member do
+          post :approve
+          post :reject
         end
       end
     end
@@ -332,7 +360,7 @@ Rails.application.routes.draw do
 
     # JSON / REST API
     namespace :v1 do
-      resources :statuses, only: [:create, :show, :destroy] do
+      resources :statuses, only: [:create, :show, :update, :destroy] do
         scope module: :statuses do
           resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
           resources :favourited_by, controller: :favourited_by_accounts, only: :index
@@ -426,6 +454,7 @@ Rails.application.routes.draw do
       namespace :trends do
         resources :links, only: [:index]
         resources :tags, only: [:index]
+        resources :statuses, only: [:index]
       end
 
       namespace :emails do
@@ -532,6 +561,8 @@ Rails.application.routes.draw do
 
         namespace :trends do
           resources :tags, only: [:index]
+          resources :links, only: [:index]
+          resources :statuses, only: [:index]
         end
 
         post :measures, to: 'measures#create'

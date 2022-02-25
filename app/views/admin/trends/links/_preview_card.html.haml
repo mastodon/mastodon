@@ -13,7 +13,7 @@
         •
 
       - if preview_card.language.present?
-        = human_locale(preview_card.language)
+        = standard_locale_name(preview_card.language)
         •
 
       = t('admin.trends.links.shared_by_over_week', count: preview_card.history.reduce(0) { |sum, day| sum + day.accounts })

@@ -5,15 +5,17 @@ class Admin::Metrics::Measure::ResolvedReportsMeasure < Admin::Metrics::Measure:
     'resolved_reports'
   end
 
-  def total
+  protected
+
+  def perform_total_query
     Report.resolved.where(action_taken_at: time_period).count
   end
 
-  def previous_total
+  def perform_previous_total_query
     Report.resolved.where(action_taken_at: previous_time_period).count
   end
 
-  def data
+  def perform_data_query
     sql = <<-SQL.squish
       SELECT axis.*, (
         WITH resolved_reports AS (

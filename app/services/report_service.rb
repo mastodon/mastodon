@@ -8,13 +8,15 @@ class ReportService < BaseService
     @target_account = target_account
     @status_ids     = options.delete(:status_ids) || []
     @comment        = options.delete(:comment) || ''
+    @category       = options.delete(:category) || 'other'
+    @rule_ids       = options.delete(:rule_ids)
     @options        = options
 
     raise ActiveRecord::RecordNotFound if @target_account.suspended?
 
     create_report!
     notify_staff!
-    forward_to_origin! if !@target_account.local? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
+    forward_to_origin! if forward?
 
     @report
   end
@@ -27,7 +29,9 @@ class ReportService < BaseService
       status_ids: @status_ids,
       comment: @comment,
       uri: @options[:uri],
-      forwarded: ActiveModel::Type::Boolean.new.cast(@options[:forward])
+      forwarded: forward?,
+      category: @category,
+      rule_ids: @rule_ids
     )
   end
 
@@ -46,6 +50,10 @@ class ReportService < BaseService
       some_local_account.id,
       @target_account.inbox_url
     )
+  end
+
+  def forward?
+    !@target_account.local? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
   end
 
   def payload

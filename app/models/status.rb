@@ -24,6 +24,7 @@
 #  poll_id                :bigint(8)
 #  deleted_at             :datetime
 #  edited_at              :datetime
+#  trendable              :boolean
 #
 
 class Status < ApplicationRecord
@@ -62,6 +63,7 @@ class Status < ApplicationRecord
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :bookmarks, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
+  has_many :reblogged_by_accounts, through: :reblogs, class_name: 'Account', source: :account
   has_many :replies, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :thread
   has_many :mentions, dependent: :destroy, inverse_of: :status
   has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status
@@ -209,6 +211,16 @@ class Status < ApplicationRecord
     public_visibility? || unlisted_visibility?
   end
 
+  def snapshot!(media_attachments_changed: false, account_id: nil, at_time: nil)
+    edits.create!(
+      text: text,
+      spoiler_text: spoiler_text,
+      media_attachments_changed: media_attachments_changed,
+      account_id: account_id || self.account_id,
+      created_at: at_time || edited_at
+    )
+  end
+
   def edited?
     edited_at.present?
   end
@@ -254,6 +266,18 @@ class Status < ApplicationRecord
 
   def decrement_count!(key)
     update_status_stat!(key => [public_send(key) - 1, 0].max)
+  end
+
+  def trendable?
+    if attributes['trendable'].nil?
+      account.trendable?
+    else
+      attributes['trendable']
+    end
+  end
+
+  def requires_review_notification?
+    attributes['trendable'].nil? && account.requires_review_notification?
   end
 
   after_create_commit  :increment_counter_caches

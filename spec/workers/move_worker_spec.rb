@@ -21,7 +21,6 @@ describe MoveWorker do
     blocking_account.block!(source_account)
     muting_account.mute!(source_account)
 
-    allow(UnfollowFollowWorker).to receive(:push_bulk)
     allow(BlockService).to receive(:new).and_return(block_service)
     allow(block_service).to receive(:call)
   end
@@ -78,8 +77,8 @@ describe MoveWorker do
   context 'both accounts are distant' do
     describe 'perform' do
       it 'calls UnfollowFollowWorker' do
+        expect_push_bulk_to_match(UnfollowFollowWorker, [[local_follower.id, source_account.id, target_account.id, false]])
         subject.perform(source_account.id, target_account.id)
-        expect(UnfollowFollowWorker).to have_received(:push_bulk).with([local_follower.id])
       end
 
       include_examples 'user note handling'
@@ -92,8 +91,8 @@ describe MoveWorker do
 
     describe 'perform' do
       it 'calls UnfollowFollowWorker' do
+        expect_push_bulk_to_match(UnfollowFollowWorker, [[local_follower.id, source_account.id, target_account.id, true]])
         subject.perform(source_account.id, target_account.id)
-        expect(UnfollowFollowWorker).to have_received(:push_bulk).with([local_follower.id])
       end
 
       include_examples 'user note handling'
