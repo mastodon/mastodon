@@ -1,10 +1,12 @@
----
 cy:
   activerecord:
     attributes:
       poll:
         expires_at: Terfyn amser
         options: Dewisiadau
+      user:
+        email: Cyfeiriad e-bost
+        locale: Lleol
     errors:
       models:
         account:
