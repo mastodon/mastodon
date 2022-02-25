@@ -776,6 +776,13 @@ hu:
         rejected: A közzétevő hivatkozásai nem lesznek felkapottak
         title: Közzétévők
       rejected: Elutasított
+      statuses:
+        allow: Bejegyzés engedélyezése
+        allow_account: Szerző engedélyezése
+        shared_by:
+          one: Megosztva vagy kedvencnek jelölve egy alkalommal
+          other: Megosztva és kedvencnek jelölve %{friendly_count} alkalommal
+        title: Felkapott bejegyzések
       tags:
         current_score: 'Jelenlegi pontszám: %{score}'
         dashboard:
@@ -824,6 +831,19 @@ hu:
       body: "%{reporter} jelentette: %{target}"
       body_remote: Valaki a %{domain} domainről jelentette %{target}
       subject: 'Új jelentés az alábbi szerveren: %{instance} (#%{id})'
+    new_trends:
+      body: 'A következő elemeket ellenőrizni kell, mielőtt nyilvánosan megjelennének:'
+      new_trending_links:
+        no_approved_links: Jelenleg nincsenek jóváhagyott felkapott hivatkozások.
+        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott hivatkozást, amely jelenleg a(z) „%{lowest_link_title}” ezzel a pontszámmal: %{lowest_link_score}.'
+        title: Felkapott hivatkozások
+      new_trending_statuses:
+        no_approved_statuses: Jelenleg nincsenek jóváhagyott felkapott bejegyzések.
+        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott bejegyzést, amely jelenleg a(z) „%{lowest_status_url}” ezzel a pontszámmal: %{lowest_status_score}.'
+        title: Felkapott bejegyzések
+      new_trending_tags:
+        no_approved_tags: Jelenleg nincsenek jóváhagyott felkapott hashtagek.
+        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott hashtaget, amely jelenleg a(z) #%{lowest_tag_name} ezzel a pontszámmal: %{lowest_tag_score}.'
   aliases:
     add_new: Alias készítése
     created_msg: Elkészült az új aliasod. Most már elkezdheted a költöztetést a régi fiókból.
