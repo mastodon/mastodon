@@ -449,9 +449,13 @@ ja:
       add_new: 新規追加
       created_msg: メールドメインブロックに追加しました
       delete: 消去
+      dns:
+        types:
+          mx: MXレコード
       domain: ドメイン
       new:
         create: ドメインを追加
+        resolve: ドメイン解決
         title: 新規メールドメインブロック
       title: メールドメインブロック
     follow_recommendations:
@@ -484,6 +488,10 @@ ja:
       delivery_error_hint: '%{count} 日間配送ができない場合は、自動的に配送不可としてマークされます。'
       destroyed_msg: '%{domain} からのデータは、すぐに削除されるように、キューに追加されました。'
       empty: ドメインが見つかりませんでした。
+      known_accounts:
+        one: "既知のアカウントが%{count}件あります"
+        other: "既知のアカウントが%{count}件あります"
+        zero: 既知のアカウントはありません
       moderation:
         all: すべて
         limited: 制限あり
@@ -558,6 +566,7 @@ ja:
       comment:
         none: なし
       created_at: 通報日時
+      delete_and_resolve: 投稿を削除
       forwarded: 転送済み
       forwarded_to: '%{domain} に転送されました'
       mark_as_resolved: 解決済みとしてマーク
@@ -698,6 +707,9 @@ ja:
       no_status_selected: 何も選択されていないため、変更されていません
       title: 投稿一覧
       with_media: メディアあり
+    strikes:
+      appeal_approved: 異議
+      appeal_pending: 保留中の異議
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
@@ -753,6 +765,9 @@ ja:
       empty: まだプリセット警告文が作成されていません。
       title: プリセット警告文を管理
   admin_mailer:
+    new_appeal:
+      actions:
+        none: 警告
     new_pending_account:
       body: 新しいアカウントの詳細は以下の通りです。この申請を承認または却下することができます。
       subject: '%{instance} で新しいアカウント (%{username}) が承認待ちです'
