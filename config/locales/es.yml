@@ -847,6 +847,17 @@ es:
       body: 'Los siguientes items necesitan una revisión antes de que puedan ser mostrados públicamente:'
       new_trending_links:
         no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar el enlace de tendencia aprobado por #%{rank}, que actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.'
+        title: Enlaces en tendencia
+      new_trending_statuses:
+        no_approved_statuses: Actualmente no hay enlaces en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar la publicación en tendencia aprobado por #%{rank}, que actualmente es %{lowest_status_url} con una puntuación de %{lowest_status_score}.'
+        title: Publicaciones en tendencia
+      new_trending_tags:
+        no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
+        requirements: 'Cualquiera de estos candidatos podría superar el hashtag en tendencia aprobado por #%{rank}, que actualmente es #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
+        title: Hashtags de tendencia
+      subject: Nuevas tendencias para revisión en %{instance}
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
