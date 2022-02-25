@@ -791,6 +791,12 @@ pl:
         rejected: Linki od tego wydawcy nie mogą podlegać trendom
         title: Wydawcy
       rejected: Odrzucono
+      statuses:
+        allow: Zezwól na post
+        allow_account: Zezwól na autora
+        disallow: Nie zezwalaj na post
+        disallow_account: Nie zezwalaj na autora
+        title: Popularne teraz
       tags:
         current_score: Bieżący wynik %{score}
         dashboard:
@@ -835,6 +841,10 @@ pl:
       body: "Użytkownik %{reporter} zgłosił(a) %{target}"
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: 'Nowe zgłoszenie na %{instance} (#%{id})'
+    new_trends:
+      body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
+      new_trending_links:
+        no_approved_links: Obecnie nie ma zatwierdzonych linków trendów.
   aliases:
     add_new: Utwórz alias
     created_msg: Pomyślnie utworzono nowy alias. Możesz teraz rozpocząć przenoszenie ze starego konta.
