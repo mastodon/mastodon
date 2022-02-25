@@ -778,6 +778,10 @@ ja:
     new_trends:
       new_trending_links:
         title: トレンドリンク
+      new_trending_statuses:
+        title: トレンド投稿
+      new_trending_tags:
+        title: トレンドハッシュタグ
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
@@ -918,11 +922,15 @@ ja:
   disputes:
     strikes:
       appeal: 抗議
+      appeal_submitted_at: 抗議が送信されました
       appeals:
         submit: 抗議を送信
+      associated_report: 関連する通報
       created_at: 日時
       recipient: 送信元
+      title: "%{date}に%{action}"
       title_actions:
+        disable: アカウント凍結
         none: 警告
   domain_validator:
     invalid_domain: は無効なドメイン名です
