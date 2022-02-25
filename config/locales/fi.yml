@@ -852,6 +852,12 @@ fi:
       new_trending_statuses:
         no_approved_statuses: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä viestejä.
         requirements: 'Mikä tahansa näistä ehdokkaista voisi ylittää #%{rank} hyväksytyn trendikkään julkaisun, joka on tällä hetkellä %{lowest_status_url} arvosanalla %{lowest_status_score}.'
+        title: Suositut viestit
+      new_trending_tags:
+        no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä hashtageja.
+        requirements: 'Mikä tahansa näistä ehdokkaista voisi ylittää #%{rank} hyväksytyn trendikkään hashtagin, joka on tällä hetkellä #%{lowest_tag_name} arvosanalla %{lowest_tag_score}.'
+        title: Suositut hashtagit
+      subject: Uusia trendejä tarkistettavaksi %{instance}
   aliases:
     add_new: Luo alias
     created_msg: Uusi alias luotiin onnistuneesti. Voit nyt aloittaa siirron vanhasta tilistä.
