@@ -22,10 +22,15 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
   def update_status
     return reject_payload! if invalid_origin?(@object['id'])
 
-    status = Status.find_by(uri: object_uri, account_id: @account.id)
+    @status = Status.find_by(uri: object_uri, account_id: @account.id)
 
-    return if status.nil?
+    return if @status.nil?
 
-    ActivityPub::ProcessStatusUpdateService.new.call(status, @object)
+    forwarder.forward! if forwarder.forwardable?
+    ActivityPub::ProcessStatusUpdateService.new.call(@status, @object)
+  end
+
+  def forwarder
+    @forwarder ||= ActivityPub::Forwarder.new(@account, @json, @status)
   end
 end
