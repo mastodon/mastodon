@@ -458,8 +458,13 @@ id:
       view: Lihat blokir domain
     email_domain_blocks:
       add_new: Tambah baru
+      attempts_over_week:
+        other: "%{count} upaya mendaftar selama seminggu terakhir"
       created_msg: Berhasil memblokir domain email
       delete: Hapus
+      dns:
+        types:
+          mx: Data MX
       domain: Domain
       new:
         create: Tambah domain
