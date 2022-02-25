@@ -786,6 +786,15 @@ es-AR:
         rejected: Los enlaces de este medio no serán tendencia
         title: Medios
       rejected: Rechazadas
+      statuses:
+        allow: Permitir mensaje
+        allow_account: Permitir autor
+        disallow: Rechazar mensaje
+        disallow_account: Rechazar autor
+        shared_by:
+          one: Compartido o marcado como favorito una vez
+          other: Compartido y marcado como favorito %{friendly_count} veces
+        title: Mensajes en tendencia
       tags:
         current_score: Puntuación actual %{score}
         dashboard:
@@ -834,6 +843,19 @@ es-AR:
       body: "%{reporter} denunció a %{target}"
       body_remote: Alguien de %{domain} denunció a %{target}
       subject: 'Nueva denuncia para %{instance} (#%{id})'
+    new_trends:
+      body: 'Los siguientes elementos necesitan una revisión antes de que se puedan mostrar públicamente:'
+      new_trending_links:
+        no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar el enlace de tendencia aprobado de #%{rank}, que actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.'
+        title: Enlaces en tendencia
+      new_trending_statuses:
+        no_approved_statuses: Actualmente no hay mensajes en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar el mensaje de tendencia aprobado de #%{rank}, que actualmente es %{lowest_status_url} con una puntuación de %{lowest_status_score}.'
+        title: Mensajes en tendencia
+      new_trending_tags:
+        no_approved_tags: Actualmente no hay etiquetas en tendencia aprobadas.
+        requirements: 'Cualquiera de estos candidatos podría superar la etiqueta en tendencia aprobada de #%{rank}, que actualmente es #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se creó exitosamente. Ahora podés empezar la mudanza desde la cuenta vieja.
