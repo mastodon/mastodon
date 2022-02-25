@@ -471,6 +471,8 @@ id:
         resolve: Pembaruan domain
         title: Blokir domain email baru
       no_email_domain_block_selected: Tidak ada blokir domain email yang diubah sebab tidak ada yang dipilih
+      resolved_dns_records_hint_html: Pembaruan nama domain mengikuti domain MX, yang bertanggung jawab menerima email. Memblokir domain MX akan memblokir pendaftaran dari alamat email apapun yang menggunakan domain MX sama, meskipun nama domainnya beda. <strong>Hati-hati untuk tidak memblokir layanan email besar.</strong>
+      resolved_through_html: Diperbarui melalui %{domain}
       title: Domain email terblokir
     follow_recommendations:
       description_html: "<strong>\"Rekomendasi untuk diikuti\" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu."
@@ -773,6 +775,14 @@ id:
         rejected: Tautan dari penerbit ini tidak dapat menjadi tren
         title: Penerbit
       rejected: Ditolak
+      statuses:
+        allow: Izinkan kiriman
+        allow_account: Izinkan penulis
+        disallow: Jangan beri izin kiriman
+        disallow_account: Jangan beri izin penulis
+        shared_by:
+          other: Dibagikan dan difavoritkan %{friendly_count} kali
+        title: Kiriman yang sedang tren
       tags:
         current_score: Skor saat ini %{score}
         dashboard:
@@ -821,6 +831,10 @@ id:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
       subject: 'Laporan baru untuk %{instance} (#%{id})'
+    new_trends:
+      body: 'Item berikut harus ditinjau sebelum ditampilkan secara publik:'
+      new_trending_links:
+        no_approved_links: Saat ini tidak ada tautan tren yang disetujui.
   aliases:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
