@@ -459,7 +459,7 @@ zh-TW:
     email_domain_blocks:
       add_new: 加入新項目
       attempts_over_week:
-        other: "上周共有 %{count} 次註冊嘗試"
+        other: "上週共有 %{count} 次註冊嘗試"
       created_msg: 已成功將電子信箱網域加入黑名單
       delete: 刪除
       dns:
@@ -776,13 +776,13 @@ zh-TW:
         title: 發行者
       rejected: 被拒絕
       statuses:
-        allow: 允許貼文
+        allow: 允許嘟文
         allow_account: 允許作者
-        disallow: 不允許貼文
+        disallow: 不允許嘟文
         disallow_account: 不允許作者
         shared_by:
           other: 分享過或／及收藏過 %{friendly_count} 次
-        title: 熱門貼文
+        title: 熱門嘟文
       tags:
         current_score: 目前分數 %{score} 分
         dashboard:
@@ -838,14 +838,14 @@ zh-TW:
         requirements: '這些候選中的任何一個都可能超過 #%{rank} 已批准的熱門連結，該連結目前是「%{lowest_link_title}」，得分為 %{lowest_link_score}。'
         title: 熱門連結
       new_trending_statuses:
-        no_approved_statuses: 這些是目前仍未被審核之熱門貼文。
-        requirements: '這些候選中的任何一個都可能超過 #%{rank} 已批准的熱門貼文，該貼文目前是 %{lowest_status_url}，得分為 %{lowest_status_score}。'
-        title: 熱門貼文
+        no_approved_statuses: 這些是目前仍未被審核之熱門嘟文。
+        requirements: '這些候選中的任何一個都可能超過 #%{rank} 已批准的熱門嘟文，該嘟文目前是 %{lowest_status_url}，得分為 %{lowest_status_score}。'
+        title: 熱門嘟文
       new_trending_tags:
         no_approved_tags: 這些是目前仍未被審核之熱門主題標籤。
         requirements: '這些候選中的任何一個都可能超過 #%{rank} 已批准的熱門主題標籤，該主題標籤目前是 #%{lowest_tag_name}，得分為 %{lowest_tag_score}。'
         title: 熱門主題標籤
-      subject: '%{instance} 有待審核的新熱門'
+      subject: '%{instance} 有待審核之新熱門'
   aliases:
     add_new: 建立別名
     created_msg: 成功建立別名。您可以自舊帳戶開始轉移。
