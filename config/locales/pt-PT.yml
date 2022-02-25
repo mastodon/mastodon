@@ -846,7 +846,18 @@ pt-PT:
     new_trends:
       body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
       new_trending_links:
-        no_approved_links: Não existem, atualmente, links aprovados para destaque.
+        no_approved_links: Não existem, atualmente, links aprovados em destaque.
+        requirements: 'Qualquer um destes candidatos pode ultrapassar o #%{rank} link aprovado em destaque, que é atualmente "%{lowest_link_title}" com uma pontuação de %{lowest_link_score}.'
+        title: Links em destaque
+      new_trending_statuses:
+        no_approved_statuses: Não existem, atualmente, publicações aprovadas em destaque.
+        requirements: 'Qualquer um destes candidatos pode ultrapassar a #%{rank} publicação aprovada em destaque, que é atualmente %{lowest_status_url} com uma pontuação de %{lowest_status_score}.'
+        title: Publicações em destaque
+      new_trending_tags:
+        no_approved_tags: Não existem, atualmente, hashtags aprovadas em destaque.
+        requirements: 'Qualquer um destes candidatos pode ultrapassar a #%{rank} hashtag aprovada em destaque, que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
+        title: Hashtags em destaque
+      subject: Novas tendências para revisão em %{instance}
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
