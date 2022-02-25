@@ -785,6 +785,15 @@ it:
         rejected: I link da questa fonte non possono essere in tendenza
         title: Editori
       rejected: Rifiutato
+      statuses:
+        allow: Consenti post
+        allow_account: Consenti autore
+        disallow: Non consentire post
+        disallow_account: Non consentire autore
+        shared_by:
+          one: Condiviso o preferito una volta
+          other: Condiviso e preferito %{friendly_count} volte
+        title: Post di tendenza
       tags:
         current_score: Punteggio corrente %{score}
         dashboard:
@@ -833,6 +842,21 @@ it:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: 'Nuova segnalazione per %{instance} (#%{id})'
+    new_trends:
+      body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
+      new_trending_links:
+        no_approved_links: Attualmente non ci sono link in tendenza approvati.
+        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} link di tendenza approvato, che è attualmente "%{lowest_link_title}" con un punteggio di %{lowest_link_score}.'
+        title: Link di tendenza
+      new_trending_statuses:
+        no_approved_statuses: Attualmente non ci sono post di tendenza approvati.
+        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} post di tendenza approvato, che è attualmente "%{lowest_status_url}" con un punteggio di %{lowest_status_score}.'
+        title: Post di tendenza
+      new_trending_tags:
+        no_approved_tags: Attualmente non ci sono hashtag di tendenza approvati.
+        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} hashtag di tendenza approvato, che è attualmente "%{lowest_tag_name}" con un punteggio di %{lowest_tag_score}.'
+        title: Hashtag di tendenza
+      subject: Nuove tendenze in attesa di controllo su %{instance}
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
