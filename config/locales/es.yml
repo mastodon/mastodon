@@ -792,8 +792,8 @@ es:
         disallow: No permitir publicación
         disallow_account: No permitir autor
         shared_by:
-          one: Compartido o favorito uan vez
-          other: Compatido o favorito %{friendly_count} veces
+          one: Compartido o marcado como favorito una vez
+          other: Compatido o marcado como favorito %{friendly_count} veces
         title: Publicaciones destacadas
       tags:
         current_score: Puntuación actual %{score}
@@ -844,7 +844,7 @@ es:
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: 'Nuevo reporte para la %{instance} (#%{id})'
     new_trends:
-      body: 'Los siguientes items necesitan una revisión antes de que puedan ser mostrados públicamente:'
+      body: 'Los siguientes elementos necesitan una revisión antes de que se puedan mostrar públicamente:'
       new_trending_links:
         no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
         requirements: 'Cualquiera de estos candidatos podría superar el enlace de tendencia aprobado por #%{rank}, que actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.'
