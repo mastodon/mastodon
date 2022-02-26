@@ -440,6 +440,9 @@ th:
       add_new: เพิ่มใหม่
       created_msg: ปิดกั้นโดเมนอีเมลสำเร็จ
       delete: ลบ
+      dns:
+        types:
+          mx: ระเบียน MX
       domain: โดเมน
       new:
         create: เพิ่มโดเมน
@@ -1064,6 +1067,9 @@ th:
     carry_mutes_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ซ่อน
     copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้านี้ของคุณเกี่ยวกับผู้ใช้:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} ได้ลงทะเบียน"
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
       mention: "%{name} ได้กล่าวถึงคุณใน:"
