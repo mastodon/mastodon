@@ -14,4 +14,7 @@
 
 = render partial: 'account_warning', collection: @strikes
 
+- if @user.account.strikes.exists?
+  = link_to t('auth.status.view_strikes'), disputes_strikes_path
+
 %hr.spacer/
