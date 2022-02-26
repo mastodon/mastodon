@@ -93,7 +93,7 @@ class Trends::Statuses < Trends::Base
 
     original_status.public_visibility? &&
       original_status.account.discoverable? && !original_status.account.silenced? &&
-      original_status.spoiler_text.blank? && !original_status.sensitive? && !original_status.reply?
+      (original_status.spoiler_text.blank? || Setting.trending_status_cw) && !original_status.sensitive? && !original_status.reply?
   end
 
   def calculate_scores(statuses, at_time)
