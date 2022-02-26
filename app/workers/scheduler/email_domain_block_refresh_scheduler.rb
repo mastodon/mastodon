@@ -15,7 +15,8 @@ class Scheduler::EmailDomainBlockRefreshScheduler
           if ip?(email_domain_block.domain)
             [email_domain_block.domain]
           else
-            dns.getresources(email_domain_block.domain, Resolv::DNS::Resource::IN::A).to_a + dns.getresources(email_domain_block.domain, Resolv::DNS::Resource::IN::AAAA).to_a.map { |resource| resource.address.to_s }
+            resources = dns.getresources(email_domain_block.domain, Resolv::DNS::Resource::IN::A).to_a + dns.getresources(email_domain_block.domain, Resolv::DNS::Resource::IN::AAAA).to_a
+            resources.map { |resource| resource.address.to_s }
           end
         end
 
