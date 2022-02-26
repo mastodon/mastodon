@@ -1367,16 +1367,20 @@ a.sparkline {
       line-height: 20px;
       margin-bottom: 4px;
 
-      .username a {
+      .username {
         color: $primary-text-color;
         font-weight: 500;
-        text-decoration: none;
         margin-right: 5px;
 
-        &:hover,
-        &:focus,
-        &:active {
-          text-decoration: underline;
+        a {
+          color: inherit;
+          text-decoration: none;
+
+          &:hover,
+          &:focus,
+          &:active {
+            text-decoration: underline;
+          }
         }
       }
 
