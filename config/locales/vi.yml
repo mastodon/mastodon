@@ -782,7 +782,7 @@ vi:
         disallow_account: Không cho phép người đăng
         shared_by:
           other: Đã chia sẻ và thích %{friendly_count} lần
-        title: Tút thịnh hành
+        title: Tút xu hướng
       tags:
         current_score: Chỉ số gần đây %{score}
         dashboard:
@@ -834,7 +834,18 @@ vi:
     new_trends:
       body: 'Các mục sau đây cần được xem xét trước khi chúng hiển thị công khai:'
       new_trending_links:
-        no_approved_links: Hiện tại không có liên kết xu hướng được duyệt.
+        no_approved_links: Hiện tại không có liên kết xu hướng nào được duyệt.
+        requirements: 'Bất kỳ ứng cử viên nào vượt qua #%{rank} duyệt liên kết xu hướng, với hiện tại là "%{lowest_link_title}" với điểm số %{lowest_link_score}.'
+        title: Liên kết xu hướng
+      new_trending_statuses:
+        no_approved_statuses: Hiện tại không có tút xu hướng nào được duyệt.
+        requirements: 'Bất kỳ ứng cử viên nào vượt qua #%{rank} duyệt tút xu hướng, với hiện tại là "%{lowest_status_url}" với điểm số %{lowest_status_score}.'
+        title: Tút xu hướng
+      new_trending_tags:
+        no_approved_tags: Hiện tại không có hashtag xu hướng nào được duyệt.
+        requirements: 'Bất kỳ ứng cử viên nào vượt qua #%{rank} duyệt hashtag xu hướng, với hiện tại là "%{lowest_tag_name}" với điểm số %{lowest_tag_score}.'
+        title: Hashtag xu hướng
+      subject: Xu hướng mới chờ duyệt trên %{instance}
   aliases:
     add_new: Kết nối tài khoản
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
