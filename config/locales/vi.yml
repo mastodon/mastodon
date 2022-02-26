@@ -468,7 +468,11 @@ vi:
       domain: Địa chỉ email
       new:
         create: Thêm địa chỉ
+        resolve: Xử lý tên miền
         title: Chặn tên miền email mới
+      no_email_domain_block_selected: Không có chặn e-mail nào thay đổi vì không có mục nào được chọn
+      resolved_dns_records_hint_html: Tên miền phân giải thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong việc chấp nhận email. Chặn tên miền MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một tên miền MX, ngay cả khi tên miền hiển thị là khác. <strong>Cẩn thận đừng chặn những dịch vụ email lớn.</strong>
+      resolved_through_html: Đã xử lý thông qua %{domain}
       title: Tên miền email đã chặn
     follow_recommendations:
       description_html: "<strong>Gợi ý theo dõi là cách giúp những người dùng mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người dùng chưa đủ tương tác với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những tài khoản này sẽ được đề xuất. Nó bao gồm các tài khoản có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
@@ -771,6 +775,14 @@ vi:
         rejected: Liên kết từ nguồn đăng không thể thành xu hướng
         title: Nguồn đăng
       rejected: Đã cấm
+      statuses:
+        allow: Cho phép tút
+        allow_account: Cho phép người đăng
+        disallow: Không cho phép tút
+        disallow_account: Không cho phép người đăng
+        shared_by:
+          other: Đã chia sẻ và thích %{friendly_count} lần
+        title: Tút thịnh hành
       tags:
         current_score: Chỉ số gần đây %{score}
         dashboard:
@@ -819,6 +831,10 @@ vi:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
       subject: '(%{instance}) Báo cáo #%{id}'
+    new_trends:
+      body: 'Các mục sau đây cần được xem xét trước khi chúng hiển thị công khai:'
+      new_trending_links:
+        no_approved_links: Hiện tại không có liên kết xu hướng được duyệt.
   aliases:
     add_new: Kết nối tài khoản
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
