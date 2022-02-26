@@ -456,6 +456,9 @@ ru:
       add_new: Добавить новую
       created_msg: E-mail домен внесён в список блокировки
       delete: Удалить
+      dns:
+        types:
+          mx: Запись MX
       domain: Домен
       new:
         create: Создать блокировку
@@ -595,6 +598,7 @@ ru:
         placeholder: Опишите, какие действия были приняты, или любые другие подробности…
         title: Примечания
       notes_description_html: Просмотрите или оставьте примечания для остальных модераторов и себя в будущем
+      remote_user_placeholder: удаленный пользователь из %{instance}
       reopen: Переоткрыть жалобу
       report: 'Жалоба №%{id}'
       reported_account: Учётная запись нарушителя
@@ -723,6 +727,8 @@ ru:
       title: Посты пользователя
       with_media: С файлами
     strikes:
+      actions:
+        delete_statuses: "%{name} удалил(а) посты %{target}"
       appeal_pending: Обжалование в обработке
     system_checks:
       database_schema_check:
@@ -743,6 +749,7 @@ ru:
       links:
         allow: Разрешить ссылку
         allow_provider: Разрешить издание
+        disallow: Запретить ссылку
         disallow_provider: Отклонить издание
         title: Актуальные ссылки
       pending_review: Ожидает рассмотрения
@@ -754,7 +761,7 @@ ru:
       tags:
         dashboard:
           tag_accounts_measure: уникальных использований
-          tag_languages_dimension: Самые популярные языки
+          tag_languages_dimension: Популярные языки
           tag_servers_dimension: Самые популярные серверы
           tag_uses_measure: всего использований
         listable: Может предлагаться
