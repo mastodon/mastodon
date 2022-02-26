@@ -724,6 +724,12 @@ th:
         rejected: ลิงก์จากผู้เผยแพร่นี้จะไม่ขึ้นแนวโน้ม
         title: ผู้เผยแพร่
       rejected: ปฏิเสธแล้ว
+      statuses:
+        allow: อนุญาตโพสต์
+        allow_account: อนุญาตผู้สร้าง
+        disallow: ไม่อนุญาตโพสต์
+        disallow_account: ไม่อนุญาตผู้สร้าง
+        title: โพสต์ที่กำลังนิยม
       tags:
         current_score: คะแนนปัจจุบัน %{score}
         dashboard:
@@ -767,6 +773,13 @@ th:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
       subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
+    new_trends:
+      new_trending_links:
+        title: ลิงก์ที่กำลังนิยม
+      new_trending_statuses:
+        title: โพสต์ที่กำลังนิยม
+      new_trending_tags:
+        title: แฮชแท็กที่กำลังนิยม
   aliases:
     add_new: สร้างนามแฝง
     created_msg: สร้างนามแฝงใหม่สำเร็จ ตอนนี้คุณสามารถทำการย้ายจากบัญชีเก่า
