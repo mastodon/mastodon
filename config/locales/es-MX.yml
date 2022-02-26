@@ -786,6 +786,15 @@ es-MX:
         rejected: Los enlaces de este medio no pueden ser tendencia
         title: Medios
       rejected: Rechazadas
+      statuses:
+        allow: Permitir publicación
+        allow_account: Permitir autor
+        disallow: No permitir publicación
+        disallow_account: No permitir autor
+        shared_by:
+          one: Compartido o marcado como favorito una vez
+          other: Compatido o marcado como favorito %{friendly_count} veces
+        title: Publicaciones destacadas
       tags:
         current_score: Puntuación actual %{score}
         dashboard:
@@ -834,6 +843,21 @@ es-MX:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: 'Nuevo reporte para la %{instance} (#%{id})'
+    new_trends:
+      body: 'Los siguientes elementos necesitan una revisión antes de que se puedan mostrar públicamente:'
+      new_trending_links:
+        no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar el enlace de tendencia aprobado por #%{rank}, que actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.'
+        title: Enlaces en tendencia
+      new_trending_statuses:
+        no_approved_statuses: Actualmente no hay enlaces en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar la publicación en tendencia aprobado por #%{rank}, que actualmente es %{lowest_status_url} con una puntuación de %{lowest_status_score}.'
+        title: Publicaciones en tendencia
+      new_trending_tags:
+        no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
+        requirements: 'Cualquiera de estos candidatos podría superar el hashtag en tendencia aprobado por #%{rank}, que actualmente es #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
+        title: Etiquetas en tendencia
+      subject: Nuevas tendencias esperando ser revisadas en %{instance}
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
