@@ -127,7 +127,7 @@
   - elsif @report.account.local?
     %p= t('admin.reports.comment_description_html', name: content_tag(:strong, @report.account.username, class: 'username'))
   - else
-    %p= t('admin.reports.comment_description_html', name: t('admin.reports.remote_user_placeholder'))
+    %p= t('admin.reports.comment_description_html', name: t('admin.reports.remote_user_placeholder', instance: @report.account.domain))
 
   .report-notes
     .report-notes__item
