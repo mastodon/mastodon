@@ -3,11 +3,13 @@
 #
 # Table name: email_domain_blocks
 #
-#  id         :bigint(8)        not null, primary key
-#  domain     :string           default(""), not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  parent_id  :bigint(8)
+#  id              :bigint(8)        not null, primary key
+#  domain          :string           default(""), not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  parent_id       :bigint(8)
+#  ips             :inet             is an Array
+#  last_refresh_at :datetime
 #
 
 class EmailDomainBlock < ApplicationRecord
@@ -18,27 +20,42 @@ class EmailDomainBlock < ApplicationRecord
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
-  def with_dns_records=(val)
-    @with_dns_records = ActiveModel::Type::Boolean.new.cast(val)
+  # Used for adding multiple blocks at once
+  attr_accessor :other_domains
+
+  def history
+    @history ||= Trends::History.new('email_domain_blocks', id)
   end
 
-  def with_dns_records?
-    @with_dns_records
-  end
+  def self.block?(domain_or_domains, ips: [], attempt_ip: nil)
+    domains = Array(domain_or_domains).map do |str|
+      domain = begin
+        if str.include?('@')
+          str.split('@', 2).last
+        else
+          str
+        end
+      end
 
-  alias with_dns_records with_dns_records?
-
-  def self.block?(email)
-    _, domain = email.split('@', 2)
-
-    return true if domain.nil?
-
-    begin
-      domain = TagManager.instance.normalize_domain(domain)
+      TagManager.instance.normalize_domain(domain) if domain.present?
     rescue Addressable::URI::InvalidURIError
-      return true
+      nil
     end
 
-    where(domain: domain).exists?
+    # If some of the inputs passed in are invalid, we definitely want to
+    # block the attempt, but we also want to register hits against any
+    # other valid matches
+
+    blocked = domains.any?(&:nil?)
+
+    scope = where(domain: domains)
+    scope = scope.or(where('ips && ARRAY[?]::inet[]', ips)) if ips.any?
+
+    scope.find_each do |block|
+      blocked = true
+      block.history.add(attempt_ip) if attempt_ip.present?
+    end
+
+    blocked
   end
 end

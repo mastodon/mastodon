@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_10_153119) do
+ActiveRecord::Schema.define(version: 2022_02_24_010024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,13 +177,15 @@ ActiveRecord::Schema.define(version: 2022_02_10_153119) do
     t.string "also_known_as", array: true
     t.datetime "silenced_at"
     t.datetime "suspended_at"
-    t.integer "trust_level"
     t.boolean "hide_collections"
     t.integer "avatar_storage_schema_version"
     t.integer "header_storage_schema_version"
     t.string "devices_url"
     t.integer "suspension_origin"
     t.datetime "sensitized_at"
+    t.boolean "trendable"
+    t.datetime "reviewed_at"
+    t.datetime "requested_review_at"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
@@ -387,6 +389,9 @@ ActiveRecord::Schema.define(version: 2022_02_10_153119) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "parent_id"
+    t.inet "ips", array: true
+    t.datetime "last_refresh_at"
+
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
@@ -887,6 +892,7 @@ ActiveRecord::Schema.define(version: 2022_02_10_153119) do
     t.string "content_type"
     t.datetime "deleted_at"
     t.datetime "edited_at"
+    t.boolean "trendable"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
     t.index ["deleted_at"], name: "index_statuses_on_deleted_at", where: "(deleted_at IS NOT NULL)"
     t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
@@ -1228,5 +1234,4 @@ ActiveRecord::Schema.define(version: 2022_02_10_153119) do
     ORDER BY (sum(t0.rank)) DESC;
   SQL
   add_index "follow_recommendations", ["account_id"], name: "index_follow_recommendations_on_account_id", unique: true
-
 end
