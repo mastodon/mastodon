@@ -143,7 +143,7 @@
           - elsif @report.account.local?
             = link_to @report.account.username, admin_account_path(@report.account_id)
           - else
-            = @report.account.domain
+            = link_to @report.account.domain, admin_instance_path(@report.account.domain)
         %time{ datetime: @report.created_at.iso8601, title: l(@report.created_at) }
           - if @report.created_at.today?
             = t('admin.report_notes.today_at', time: l(@report.created_at, format: :time))
