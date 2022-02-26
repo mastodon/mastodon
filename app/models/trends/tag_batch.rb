@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Form::TagBatch
+class Trends::TagBatch
   include ActiveModel::Model
   include Authorization
 
@@ -22,12 +22,12 @@ class Form::TagBatch
   end
 
   def approve!
-    tags.each { |tag| authorize(tag, :update?) }
+    tags.each { |tag| authorize(tag, :review?) }
     tags.update_all(trendable: true, reviewed_at: action_time)
   end
 
   def reject!
-    tags.each { |tag| authorize(tag, :update?) }
+    tags.each { |tag| authorize(tag, :review?) }
     tags.update_all(trendable: false, reviewed_at: action_time)
   end
 

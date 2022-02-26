@@ -41,6 +41,7 @@ defaults: &defaults
   use_pending_items: false
   trends: true
   trendable_by_default: false
+  trending_status_cw: true
   crop_images: true
   notification_emails:
     follow: false
@@ -52,6 +53,8 @@ defaults: &defaults
     report: true
     pending_account: true
     trending_tag: true
+    trending_link: false
+    trending_status: false
     appeal: true
   interactions:
     must_be_follower: false

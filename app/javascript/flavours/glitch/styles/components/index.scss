@@ -146,6 +146,11 @@
   transition-property: background-color, color;
   text-decoration: none;
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   &:hover,
   &:active,
   &:focus {

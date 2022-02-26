@@ -35,6 +35,7 @@ class Form::AdminSettings
     show_replies_in_public_timelines
     trends
     trendable_by_default
+    trending_status_cw
     show_domain_blocks
     show_domain_blocks_rationale
     noindex
@@ -57,6 +58,7 @@ class Form::AdminSettings
     show_replies_in_public_timelines
     trends
     trendable_by_default
+    trending_status_cw
     noindex
     require_invite_text
     captcha_enabled

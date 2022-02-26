@@ -42,6 +42,10 @@ class StatusPolicy < ApplicationPolicy
     staff? || owned?
   end
 
+  def review?
+    staff?
+  end
+
   private
 
   def requires_mention?

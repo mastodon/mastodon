@@ -7,7 +7,7 @@
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/status.rb",
-      "line": 104,
+      "line": 105,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "result.joins(\"INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
       "render_path": null,
@@ -17,6 +17,26 @@
         "method": null
       },
       "user_input": "id",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "30dfe36e87fe1b8f239df9a33d576e44a9863f73b680198d4713be6540ae61d3",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/trends/query.rb",
+      "line": 60,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "klass.joins(\"join unnest(array[#{ids.join(\",\")}]) with ordinality as x (id, ordering) on #{klass.table_name}.id = x.id\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Trends::Query",
+        "method": "to_arel"
+      },
+      "user_input": "ids.join(\",\")",
       "confidence": "Weak",
       "note": ""
     },
@@ -101,26 +121,6 @@
       "note": ""
     },
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "8c1d8c4b76c1cd3960e90dff999f854a6ff742fcfd8de6c7184ac5a1b1a4d7dd",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/preview_card_filter.rb",
-      "line": 50,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "PreviewCard.joins(\"join unnest(array[#{(Trends.links.currently_trending_ids(true, -1) or Trends.links.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")}]::integer[]) with ordinality as x (id, ordering) on preview_cards.id = x.id\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "PreviewCardFilter",
-        "method": "trending_scope"
-      },
-      "user_input": "(Trends.links.currently_trending_ids(true, -1) or Trends.links.currently_trending_ids(false, -1)).map(&:to_i).join(\",\")",
-      "confidence": "Medium",
-      "note": ""
-    },
-    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 2,
       "fingerprint": "afad51718ae373b2f19d2513029fd2afccf58b9148e475934bc6a162ee33c352",
@@ -134,7 +134,7 @@
         {
           "type": "template",
           "name": "admin/disputes/appeals/index",
-          "line": 16,
+          "line": 20,
           "file": "app/views/admin/disputes/appeals/index.html.haml",
           "rendered": {
             "name": "admin/disputes/appeals/_appeal",
@@ -171,26 +171,6 @@
       "note": ""
     },
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "c32a484ccd9da46abd3bc93d08b72029d7dbc0576ccf4e878a9627e9a83cad2e",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/tag_filter.rb",
-      "line": 50,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "Tag.joins(\"join unnest(array[#{Trends.tags.currently_trending_ids(false, -1).map(&:to_i).join(\",\")}]::integer[]) with ordinality as x (id, ordering) on tags.id = x.id\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "TagFilter",
-        "method": "trending_scope"
-      },
-      "user_input": "Trends.tags.currently_trending_ids(false, -1).map(&:to_i).join(\",\")",
-      "confidence": "Medium",
-      "note": ""
-    },
-    {
       "warning_type": "Cross-Site Scripting",
       "warning_code": 4,
       "fingerprint": "cd5cfd7f40037fbfa753e494d7129df16e358bfc43ef0da3febafbf4ee1ed3ac",
@@ -204,7 +184,7 @@
         {
           "type": "template",
           "name": "admin/trends/links/index",
-          "line": 39,
+          "line": 45,
           "file": "app/views/admin/trends/links/index.html.haml",
           "rendered": {
             "name": "admin/trends/links/_preview_card",
@@ -241,6 +221,6 @@
       "note": ""
     }
   ],
-  "updated": "2022-02-13 02:24:12 +0100",
+  "updated": "2022-02-15 03:48:53 +0100",
   "brakeman_version": "5.2.1"
 }

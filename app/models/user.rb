@@ -269,8 +269,16 @@ class User < ApplicationRecord
     settings.notification_emails['appeal']
   end
 
-  def allows_trending_tag_emails?
+  def allows_trending_tags_review_emails?
     settings.notification_emails['trending_tag']
+  end
+
+  def allows_trending_links_review_emails?
+    settings.notification_emails['trending_link']
+  end
+
+  def allows_trending_statuses_review_emails?
+    settings.notification_emails['trending_status']
   end
 
   def hides_network?
