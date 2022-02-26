@@ -118,15 +118,28 @@
 = react_admin_component :report_reason_selector, id: @report.id, category: @report.category, rule_ids: @report.rule_ids&.map(&:to_s), disabled: @report.action_taken?
 
 - if @report.comment.present?
-  %p= t('admin.reports.comment_description_html', name: content_tag(:strong, @report.account.username, class: 'username'))
+  - if @report.account.instance_actor?
+    %p= t('admin.reports.comment_description_html', name: content_tag(:strong, site_hostname, class: 'username'))
+  - elsif @report.account.local?
+    %p= t('admin.reports.comment_description_html', name: content_tag(:strong, @report.account.username, class: 'username'))
+  - else
+    %p= t('admin.reports.comment_description_html', name: t('admin.reports.remote_user_placeholder', instance: @report.account.domain))
 
   .report-notes
     .report-notes__item
-      = image_tag @report.account.avatar.url, class: 'report-notes__item__avatar'
+      - if @report.account.local? && !@report.account.instance_actor?
+        = image_tag @report.account.avatar.url, class: 'report-notes__item__avatar'
+      - else
+        = image_tag(full_asset_url('avatars/original/missing.png', skip_pipeline: true), class: 'report-notes__item__avatar')
 
       .report-notes__item__header
         %span.username
-          = link_to display_name(@report.account), admin_account_path(@report.account_id)
+          - if @report.account.instance_actor?
+            = site_hostname
+          - elsif @report.account.local?
+            = link_to @report.account.username, admin_account_path(@report.account_id)
+          - else
+            = link_to @report.account.domain, admin_instance_path(@report.account.domain)
         %time{ datetime: @report.created_at.iso8601, title: l(@report.created_at) }
           - if @report.created_at.today?
             = t('admin.report_notes.today_at', time: l(@report.created_at, format: :time))
