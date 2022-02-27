@@ -74,7 +74,7 @@ class Comment extends React.PureComponent {
         <div className='flex-spacer' />
 
         <div className='report-dialog-modal__actions'>
-          <Button onClick={this.handleClick}><FormattedMessage id='report.submit' defaultMessage='Submit report' /></Button>
+          <Button onClick={this.handleClick} disabled={isSubmitting}><FormattedMessage id='report.submit' defaultMessage='Submit report' /></Button>
         </div>
       </React.Fragment>
     );

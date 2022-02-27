@@ -6,9 +6,11 @@ import StatusCheckBox from 'flavours/glitch/features/report/containers/status_ch
 import { OrderedSet } from 'immutable';
 import { FormattedMessage } from 'react-intl';
 import Button from 'flavours/glitch/components/button';
+import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 
 const mapStateToProps = (state, { accountId }) => ({
   availableStatusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}:with_replies`, 'items'])),
+  isLoading: state.getIn(['timelines', `account:${accountId}:with_replies`, 'isLoading']),
 });
 
 export default @connect(mapStateToProps)
@@ -19,6 +21,7 @@ class Statuses extends React.PureComponent {
     accountId: PropTypes.string.isRequired,
     availableStatusIds: ImmutablePropTypes.set.isRequired,
     selectedStatusIds: ImmutablePropTypes.set.isRequired,
+    isLoading: PropTypes.bool,
     onToggle: PropTypes.func.isRequired,
   };
 
@@ -28,7 +31,7 @@ class Statuses extends React.PureComponent {
   };
 
   render () {
-    const { availableStatusIds, selectedStatusIds, onToggle } = this.props;
+    const { availableStatusIds, selectedStatusIds, onToggle, isLoading } = this.props;
 
     return (
       <React.Fragment>
@@ -36,7 +39,7 @@ class Statuses extends React.PureComponent {
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.statuses.subtitle' defaultMessage='Select all that apply' /></p>
 
         <div className='report-dialog-modal__statuses'>
-          {availableStatusIds.union(selectedStatusIds).map(statusId => (
+          {isLoading ? <LoadingIndicator /> : availableStatusIds.union(selectedStatusIds).map(statusId => (
             <StatusCheckBox
               id={statusId}
               key={statusId}
