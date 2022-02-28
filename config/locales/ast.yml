@@ -4,6 +4,7 @@ ast:
     about_mastodon_html: 'La rede social del futuru: ¡ensin anuncios nin vixilancia, con un diseñu éticu y descentralizáu! Controla los tos datos con Mastodon.'
     about_this: Tocante a
     administered_by: 'Alministráu por:'
+    api: API
     apps: Aplicaciones pa móviles
     apps_platforms: Usa Mastodon dende Android, iOS y otres plataformes
     contact: Contautu
@@ -91,12 +92,22 @@ ast:
       domain: Dominiu
     instances:
       by_domain: Dominiu
+      private_comment: Comentariu priváu
+      public_comment: Comentariu públicu
       title: Federación
     invites:
       filter:
         available: Disponible
         expired: Caducó
       title: Invitaciones
+    ip_blocks:
+      expires_in:
+        '1209600': 2 selmanes
+        '15778476': 6 meses
+        '2629746': 1 mes
+        '31556952': 1 añu
+        '86400': 1 día
+        '94670856': 3 años
     relays:
       save_and_enable: Guardar y activar
       status: Estáu
@@ -175,6 +186,9 @@ ast:
     directory: Direutoriu de perfiles
     explanation: y descubri a usuarios según los sos intereses
     explore_mastodon: Esplora %{title}
+  disputes:
+    strikes:
+      appeal_rejected: Refugóse l'apellación
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nun tienes permisu pa ver esta páxina.
@@ -325,12 +339,31 @@ ast:
   sessions:
     browser: Restolador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Restolador desconocíu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
+    ip: IP
     platforms:
-      mac: Mac
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: GNU/Linux
+      mac: macOS
       other: plataforma desconocida
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revocar
     revoke_success: La sesión revocóse correutamente
     title: Sesiones
@@ -382,6 +415,15 @@ ast:
       public_long: Tol mundu puen velos
       unlisted: Nun llistar
       unlisted_long: Tol mundu puen velos pero nun se llisten nes llinies temporales públiques
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 selmanes
+      '15778476': 6 meses
+      '2629746': 1 mes
+      '31556952': 1 añu
+      '5259492': 2 meses
+      '63113904': 2 años
+      '7889238': 3 meses
   stream_entries:
     pinned: Barritu fixáu
     reblogged: compartió
