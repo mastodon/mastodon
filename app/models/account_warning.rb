@@ -17,12 +17,13 @@
 
 class AccountWarning < ApplicationRecord
   enum action: {
-    none:            0,
-    disable:         1_000,
-    delete_statuses: 1_500,
-    sensitive:       2_000,
-    silence:         3_000,
-    suspend:         4_000,
+    none:                       0,
+    disable:                    1_000,
+    mark_statuses_as_sensitive: 1_250,
+    delete_statuses:            1_500,
+    sensitive:                  2_000,
+    silence:                    3_000,
+    suspend:                    4_000,
   }, _suffix: :action
 
   belongs_to :account, inverse_of: :account_warnings
