@@ -70,8 +70,8 @@ class Admin::StatusBatchAction
   def handle_mark_as_sensitive!
     # Can't use a transaction here because UpdateStatusService queues
     # Sidekiq jobs
-    statuses.includes(:media_attachments).find_each do |status|
-      next unless status.with_media?
+    statuses.includes(:media_attachments, :preview_cards).find_each do |status|
+      next unless status.with_media? || status.with_preview_card?
 
       authorize(status, :update?)
 
