@@ -59,6 +59,8 @@ es:
       error:
         title: Ha ocurrido un error
       new:
+        prompt_html: "%{client_name} desea permiso para acceder a su cuenta. Es una aplicación de terceros. <strong>Si no confías en ella, no deberías autorizarlo.</strong>"
+        review_permissions: Revisar permisos
         title: Se requiere autorización
       show:
         title: Copia este código de autorización y pégalo en la aplicación.
@@ -69,6 +71,7 @@ es:
         revoke: '¿Está seguro?'
       index:
         authorized_at: Autorizado el %{date}
+        description_html: Estas son aplicaciones que pueden acceder a tu cuenta usando la API. Si hay aplicaciones que no se reconocen aquí, o una aplicación no funciona correctamente, puede revocar su acceso.
         last_used_at: Último uso el %{date}
         never_used: Nunca usado
         scopes: Permisos
@@ -126,12 +129,15 @@ es:
         favourites: Favoritos
         filters: Filtros
         follow: Relaciones
+        follows: Seguidos
         lists: Listas
+        media: Archivos adjuntos
         mutes: Silenciados
         notifications: Notificaciones
         push: Notificaciones push
         reports: Informes
         search: Buscar
+        statuses: Publicaciones
     layouts:
       admin:
         nav:
@@ -146,6 +152,7 @@ es:
       "admin:write": modificar todos los datos en el servidor
       "admin:write:accounts": realizar acciones de moderación en cuentas
       "admin:write:reports": realizar acciones de moderación en informes
+      crypto: usar cifrado de extremo a extremo
       follow: seguir, bloquear, desbloquear y dejar de seguir cuentas
       push: recibir tus notificaciones push
       read: leer los datos de tu cuenta
@@ -165,6 +172,7 @@ es:
       "write:accounts": modifica tu perfil
       "write:blocks": bloquear cuentas y dominios
       "write:bookmarks": guardar estados como marcadores
+      "write:conversations": silenciar y eliminar conversaciones
       "write:favourites": publicaciones favoritas
       "write:filters": crear filtros
       "write:follows": seguir usuarios
