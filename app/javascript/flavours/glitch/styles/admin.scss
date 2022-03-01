@@ -923,6 +923,12 @@ a.name-tag,
       text-decoration: none;
       margin-bottom: 10px;
 
+      .account-role {
+        vertical-align: middle;
+      }
+    }
+
+    a.announcements-list__item__title {
       &:hover,
       &:focus,
       &:active {
@@ -939,6 +945,10 @@ a.name-tag,
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    &__permissions {
+      margin-top: 10px;
     }
 
     &:last-child {
