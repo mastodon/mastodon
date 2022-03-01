@@ -69,6 +69,9 @@ th:
       confirmations:
         revoke: คุณแน่ใจหรือไม่?
       index:
+        authorized_at: อนุญาตเมื่อ %{date}
+        last_used_at: ใช้ล่าสุดเมื่อ %{date}
+        never_used: ไม่เคยใช้
         scopes: สิทธิอนุญาต
         superapp: ภายใน
         title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
@@ -97,6 +100,10 @@ th:
         destroy:
           notice: เพิกถอนแอปพลิเคชันแล้ว
     grouped_scopes:
+      access:
+        read: การเข้าถึงแบบอ่านอย่างเดียว
+        read/write: การเข้าถึงแบบอ่านและเขียน
+        write: การเข้าถึงแบบเขียนอย่างเดียว
       title:
         accounts: บัญชี
         all: ทุกอย่าง
@@ -150,6 +157,7 @@ th:
       "write:accounts": ปรับเปลี่ยนโปรไฟล์ของคุณ
       "write:blocks": ปิดกั้นบัญชีและโดเมน
       "write:bookmarks": เพิ่มที่คั่นหน้าโพสต์
+      "write:conversations": ซ่อนและลบการสนทนา
       "write:favourites": ชื่นชอบโพสต์
       "write:filters": สร้างตัวกรอง
       "write:follows": ติดตามผู้คน
