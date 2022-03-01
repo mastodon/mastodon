@@ -932,8 +932,10 @@ it:
     status:
       account_status: Stato dell'account
       confirming: In attesa che la conferma e-mail sia completata.
+      functional: Il tuo profilo è completamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
+      view_strikes: Visualizza gli avvisi passati contro il tuo profilo
     too_fast: Modulo inviato troppo velocemente, riprova.
     trouble_logging_in: Problemi di accesso?
     use_security_key: Usa la chiave di sicurezza
@@ -1009,6 +1011,7 @@ it:
         submit: Presenta un appello
       associated_report: Segnalazione associata
       created_at: Data
+      description_html: Queste sono azioni intraprese contro il tuo profilo e avvisi inviati a te dallo staff di %{instance}.
       recipient: Indirizzata a
       status: 'Post #%{id}'
       status_removed: Post già rimosso dal sistema
@@ -1389,6 +1392,7 @@ it:
     profile: Profilo
     relationships: Follows e followers
     statuses_cleanup: Cancellazione automatica dei post
+    strikes: Avvisi di moderazione
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
   statuses:
