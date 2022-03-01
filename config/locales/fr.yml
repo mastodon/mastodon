@@ -43,7 +43,7 @@ fr:
       rejecting_media: 'Les fichiers média de ces serveurs ne seront ni traités ni stockés, et aucune miniature ne sera affichée, rendant nécessaire de cliquer vers le fichier d’origine :'
       rejecting_media_title: Médias filtrés
       silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·rice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
-      silenced_title: Serveurs masqués
+      silenced_title: Serveurs limités
       suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant impossible toute interaction ou communication avec les utilisateur·rice·s de ces serveurs :'
       suspended_title: Serveurs suspendus
     unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateur·rice·s de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
@@ -204,8 +204,8 @@ fr:
       show:
         created_reports: Signalements faits
         targeted_reports: Signalés par d’autres
-      silence: Masquer
-      silenced: Masqué
+      silence: Limiter
+      silenced: Limité
       statuses: Messages
       strikes: Punitions précédentes
       subscribe: S’abonner
@@ -218,9 +218,9 @@ fr:
       unblocked_email_msg: L'adresse courriel de %{username} a été débloquée avec succès
       unconfirmed_email: Courriel non confirmé
       undo_sensitized: Annuler sensible
-      undo_silenced: Ne plus masquer
+      undo_silenced: Annuler la limitation
       undo_suspension: Annuler la suspension
-      unsilenced_msg: Le compte de %{username} a été illimité avec succès
+      unsilenced_msg: La limitation du compte de %{username} a été annulée avec succès
       unsubscribe: Se désabonner
       unsuspended_msg: Le compte de %{username} a été réactivé avec succès
       username: Nom d’utilisateur·ice
@@ -269,12 +269,12 @@ fr:
         reset_password_user: Réinitialiser le mot de passe
         resolve_report: Résoudre le signalement
         sensitive_account: Marquer les médias de votre compte comme sensibles
-        silence_account: Masque le compte
+        silence_account: Limiter le compte
         suspend_account: Suspendre le compte
         unassigned_report: Ne plus assigner le signalement
         unblock_email_account: Débloquer l'adresse courriel
         unsensitive_account: Ne pas marquer les médias de votre compte comme sensibles
-        unsilence_account: Ne plus masquer le compte
+        unsilence_account: Annuler la limitation du compte
         unsuspend_account: Annuler la suspension du compte
         update_announcement: Modifier l’annonce
         update_custom_emoji: Mettre à jour les émojis personnalisés
@@ -427,7 +427,7 @@ fr:
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
       edit: Modifier le blocage de domaine
-      existing_domain_block_html: Vous avez déjà imposé des limites plus strictes à %{name}, vous devez d’abord le <a href="%{unblock_url}">débloquer</a>.
+      existing_domain_block_html: Vous avez déjà imposé des limites plus strictes à %{name}, vous devez d’abord le/la <a href="%{unblock_url}">débloquer</a>.
       new:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
@@ -438,7 +438,7 @@ fr:
           suspend: Suspendre
         title: Nouveau blocage de domaine
       obfuscate: Obfusquer le nom de domaine
-      obfuscate_hint: Obfusquer partiellement le nom de domaine dans la liste si la liste des limitations de domaine est activée
+      obfuscate_hint: Obfusquer partiellement le nom de domaine dans la liste si la publication de la liste des limitations de domaine est activée
       private_comment: Commentaire privé
       private_comment_hint: Commentaire sur cette limitation de domaine pour informer en interne les modérateurs.
       public_comment: Commentaire public
