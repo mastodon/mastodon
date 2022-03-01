@@ -59,6 +59,7 @@ pt-PT:
       error:
         title: Ocorreu um erro
       new:
+        review_permissions: Rever permissões
         title: Autorização é necessária
       show:
         title: Copiar o código desta autorização e colar na aplicação.
@@ -68,6 +69,12 @@ pt-PT:
       confirmations:
         revoke: Tens a certeza?
       index:
+        authorized_at: Autorizado em %{date}
+        description_html: Estas são aplicações que podem aceder à sua conta utilizando a API. Se encontrar aqui aplicativos que não reconhece, ou um aplicativo está com mau funcionamento, pode revogar o seu acesso.
+        last_used_at: Última utilização em %{date}
+        never_used: Nunca utilizado
+        scopes: Permissões
+        superapp: Interna
         title: As tuas aplicações autorizadas
     errors:
       messages:
@@ -103,6 +110,17 @@ pt-PT:
       authorized_applications:
         destroy:
           notice: Aplicação revogada.
+    grouped_scopes:
+      access:
+        read: Acesso só de leitura
+        read/write: Acesso de leitura e escrita
+        write: Acesso só de escrita
+      title:
+        accounts: Contas
+        admin/accounts: Administração de contas
+        admin/all: Todas as funções administrativas
+        admin/reports: Administração de denúncias
+        all: Tudo
     layouts:
       admin:
         nav:
