@@ -116,19 +116,19 @@ fr:
       deleted: Supprimé
       demote: Rétrograder
       destroyed_msg: "Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment"
-      disable: Désactiver
+      disable: Geler
       disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
-      disabled: Désactivé
+      disabled: Gelé
       display_name: Nom affiché
       domain: Domaine
       edit: Éditer
       email: Courriel
       email_status: État du courriel
-      enable: Activer
+      enable: Dégeler
       enable_sign_in_token_auth: Activer l'authentification basée sur les jetons envoyés par courriel
       enabled: Activé
-      enabled_msg: Le compte de %{username} a été débloqué avec succès
+      enabled_msg: Le compte de %{username} a été dégelé avec succès
       followers: Abonné·e·s
       follows: Abonnements
       header: Entête
@@ -747,7 +747,7 @@ fr:
     strikes:
       actions:
         delete_statuses: "%{name} a supprimé les messages de %{target}"
-        disable: "%{name} a bloqué le compte de %{target}"
+        disable: "%{name} a gelé le compte de %{target}"
         none: "%{name} a envoyé un avertissement à %{target}"
         sensitive: "%{name} a marqué le compte de %{target} comme sensible"
         silence: "%{name} a limité le compte de %{target}"
@@ -829,7 +829,7 @@ fr:
     new_appeal:
       actions:
         delete_statuses: effacer les messages
-        disable: bloquer le compte
+        disable: geler le compte
         none: un avertissement
         sensitive: marquer le compte comme sensible
         silence: limiter le compte
@@ -1014,7 +1014,7 @@ fr:
       title: "%{action} du %{date}"
       title_actions:
         delete_statuses: Suppression de message
-        disable: Suspension de compte
+        disable: Gel du compte
         none: Avertissement
         sensitive: Marquage d'un compte comme sensible
         silence: Limitation du compte
