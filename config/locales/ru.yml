@@ -730,6 +730,9 @@ ru:
     strikes:
       actions:
         delete_statuses: "%{name} удалил(а) посты %{target}"
+        disable: "%{name} заморозил(а) учётную запись %{target}"
+        none: "%{name} отправил(а) предупреждение %{target}"
+        silence: "%{name} ограничил(а) учетную запись %{target}"
       appeal_pending: Обжалование в обработке
     system_checks:
       database_schema_check:
@@ -776,6 +779,11 @@ ru:
         title: Актуальные хэштеги
         trendable: Может появляться в списке «актуального»
         usable: Может использоваться
+        usage_comparison: Использовано %{today} сегодня, для сравнения вчера %{yesterday}
+        used_by_over_week:
+          one: За последнюю неделю использовано одним человеком
+          other: За последнюю неделю использовано %{count} людьми
+          zero: За последнюю неделю никто не использовал
       title: Популярное
     warning_presets:
       add_new: Добавить
