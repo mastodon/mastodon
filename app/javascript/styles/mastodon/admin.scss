@@ -1504,6 +1504,8 @@ a.sparkline {
   word-wrap: break-word;
   font-weight: 400;
   color: $primary-text-color;
+  box-sizing: border-box;
+  min-height: 100%;
 
   p {
     margin-bottom: 20px;
