@@ -373,12 +373,15 @@ el:
       view: Εμφάνιση αποκλεισμού τομέα
     email_domain_blocks:
       add_new: Πρόσθεση νέου
+      attempts_over_week:
+        one: "%{count} προσπάθεια την τελευταία εβδομάδα"
+        other: "%{count} προσπάθειες εγγραφής την τελευταία εβδομάδα"
       created_msg: Επιτυχής πρόσθεση email τομέα σε μαύρη λίστα
       delete: Διαγραφή
-      destroyed_msg: Επιτυχής διαγραφή email τομέα από τη μαύρη λίστα
+      dns:
+        types:
+          mx: Εγγραφή MX
       domain: Τομέας
-      empty: Δεν έχουν οριστεί αποκλεισμένοι τομείς email.
-      from_html: από %{domain}
       new:
         create: Πρόσθεση τομέα
         title: Νέα εγγραφή email στη μαύρη λίστα
@@ -481,6 +484,7 @@ el:
         placeholder: Περιέγραψε τις ενέργειες που έγιναν, ή οποιαδήποτε άλλη ενημέρωση...
         title: Σημειώσεις
       quick_actions_description_html: 'Κάντε μια γρήγορη ενέργεια ή μετακινηθείτε προς τα κάτω για να δείτε το αναφερόμενο περιεχόμενο:'
+      remote_user_placeholder: ο απομακρυσμένος χρήστης από %{instance}
       reopen: Ξανάνοιξε την καταγγελία
       report: 'Καταγγελία #%{id}'
       reported_account: Αναφερόμενος λογαριασμός
@@ -925,6 +929,9 @@ el:
     carry_mutes_over_text: Ο/Η χρήστης μετακόμισε από το %{acct}, που είχες αποσιωπήσει.
     copy_account_note_text: 'Ο/Η χρήστης μετακόμισε από το %{acct}, ορίστε οι προηγούμενες σημειώσεις σου:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} έχει εγγραφεί"
     digest:
       action: Δες όλες τις ειδοποιήσεις
       body: Μια σύνοψη των μηνυμάτων που έχασες από την τελευταία επίσκεψή σου στις %{since}

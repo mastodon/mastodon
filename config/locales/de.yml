@@ -393,6 +393,18 @@ de:
       media_storage: Medienspeicher
       new_users: Neue Benutzer
       opened_reports: Erstellte Meldungen
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> ausstehender Einspruch"
+        other: "<strong>%{count}</strong> ausstehende Einsprüche"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> ausstehende Meldung"
+        other: "<strong>%{count}</strong> ausstehende Meldungen"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> ausstehender Hashtag"
+        other: "<strong>%{count}</strong> ausstehende Hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> ausstehender Benutzer"
+        other: "<strong>%{count}</strong> ausstehende Benutzer"
       resolved_reports: Gelöste Meldungen
       software: Software
       sources: Registrierungsquellen
@@ -442,6 +454,10 @@ de:
         silence: stummgeschaltet
         suspend: gesperrt
       show:
+        affected_accounts:
+          one: Ein Konto in der Datenbank betroffen
+          other: "%{count} Konten in der Datenbank betroffen"
+          zero: Kein Konto in der Datenbank ist betroffen
         retroactive:
           silence: Alle existierenden Konten dieser Domain nicht mehr stummschalten
           suspend: Alle existierenden Konten dieser Domain entsperren
@@ -451,15 +467,22 @@ de:
       view: Zeige Domain-Blockade
     email_domain_blocks:
       add_new: Neue hinzufügen
+      attempts_over_week:
+        one: "%{count} Registrierungsversuch in der letzten Woche"
+        other: "%{count} Registrierungsversuche in der letzten Woche"
       created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
       delete: Löschen
-      destroyed_msg: E-Mail-Domain-Blockade erfolgreich gelöscht
+      dns:
+        types:
+          mx: MX-Record
       domain: Domain
-      empty: Keine E-Mail-Domains sind momentan auf der Blacklist.
-      from_html: von %{domain}
       new:
         create: Blockade erstellen
+        resolve: Domain auflösen
         title: Neue E-Mail-Domain-Blockade
+      no_email_domain_block_selected: Es wurden keine E-Mail-Domain-Blockierungen geändert, da keine ausgewählt wurden
+      resolved_dns_records_hint_html: Der Domain-Name wird an die folgenden MX-Domains aufgelöst, die letztendlich für die Annahme von E-Mails verantwortlich sind. Das Blockieren einer MX-Domain blockiert Anmeldungen von jeder E-Mail-Adresse, die dieselbe MX-Domain verwendet, auch wenn der sichtbare Domainname anders ist. <strong>Achte darauf große E-Mail-Anbieter nicht zu blockieren.</strong>
+      resolved_through_html: Durch %{domain} aufgelöst
       title: E-Mail-Domain-Blockade
     follow_recommendations:
       description_html: "<strong>Folgeempfehlungen helfen neuen Nutzern dabei, schnell interessante Inhalte zu finden</strong>. Wenn ein Nutzer noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erstellen, werden stattdessen diese Benutzerkonten verwendet. Sie werden täglich basiert auf einer Mischung aus am meisten interagierenden Benutzerkonten und solchen mit den meisten Folgenden für eine bestimmte Sprache neuberechnet."
@@ -492,6 +515,10 @@ de:
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
       destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
+      known_accounts:
+        one: "%{count} bekanntes Konto"
+        other: "%{count} bekannte Konten"
+        zero: Kein bekanntes Konto
       moderation:
         all: Alle
         limited: Beschränkt
@@ -590,6 +617,7 @@ de:
         title: Notizen
       notes_description_html: Zeige und hinterlasse Notizen an andere Moderatoren und dein zukünftiges Selbst
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
+      remote_user_placeholder: der entfernte Benutzer von %{instance}
       reopen: Meldung wieder eröffnen
       report: 'Meldung #%{id}'
       reported_account: Gemeldetes Konto
@@ -748,6 +776,10 @@ de:
         allow_provider: Erlaube Herausgeber
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
+        shared_by_over_week:
+          one: In der letzten Woche geteilt von einer Person
+          other: In der letzten Woche geteilt von %{count} Personen
+          zero: Geteilt von niemandem in der letzten Woche
         title: Angesagte Links
         usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
       pending_review: Überprüfung ausstehend
@@ -756,6 +788,15 @@ de:
         rejected: Links von diesem Herausgeber können nicht angesagt sein
         title: Herausgeber
       rejected: Abgelehnt
+      statuses:
+        allow: Beitrag erlauben
+        allow_account: Autor erlauben
+        disallow: Beitrag verbieten
+        disallow_account: Autor verbieten
+        shared_by:
+          one: Einmal geteilt oder favorisiert
+          other: "%{friendly_count} mal geteilt oder favorisiert"
+        title: Angesagte Beiträge
       tags:
         current_score: Aktuelle Punktzahl %{score}
         dashboard:
@@ -774,6 +815,10 @@ de:
         trending_rank: 'Trend #%{rank}'
         usable: Kann verwendet werden
         usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
+        used_by_over_week:
+          one: In der letzten Woche genutzt von einer Person
+          other: In der letzten Woche genutzt von %{count} Personen
+          zero: Genutzt von niemandem in der letzten Woche
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
@@ -800,16 +845,21 @@ de:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
       subject: Neue Meldung auf %{instance} (#%{id})
-    new_trending_links:
-      body: Die folgenden Links sind heute in den Trends, aber der Ursprung wurde bisher nicht überprüft. Sie werden nicht öffentlich angezeigt, es sei denn, du genehmigst sie. Sollten weitere Links vom selben Ursprung trenden, müssen sie nicht vorher überprüft werden.
-      no_approved_links: Derzeit sind keine Links hinterlegt, die genehmigt wurden.
-      requirements: Der am wenigsten genehmigte Trend-Link ist derzeit "%{lowest_link_title}" mit einer Punktzahl von %{lowest_link_score}.
-      subject: Neue Trend-Links zur Überprüfung auf %{instance}
-    new_trending_tags:
-      body: 'Die folgenden Hashtags trenden heute, aber sie wurden bisher nicht überprüft. Sie werden nicht öffentlich angezeigt, es sei denn, du genehmigst sie:'
-      no_approved_tags: Derzeit gibt es keine genehmigten trendene Hashtags.
-      requirements: 'Der am wenigsten genehmigte trendene Hashtag ist derzeit #%{lowest_tag_name} mit einer Punktzahl von %{lowest_tag_score}.'
-      subject: Neuer Hashtag zur Überprüfung auf %{instance} verfügbar
+    new_trends:
+      body: 'Die folgenden Einträge müssen überprüft werden, bevor sie öffentlich angezeigt werden können:'
+      new_trending_links:
+        no_approved_links: Derzeit sind keine trendenen Links hinterlegt, die genehmigt wurden.
+        requirements: 'Jeder dieser Kandidaten könnte den #%{rank} genehmigten trendenen Link übertreffen, der derzeit "%{lowest_link_title}" mit einer Punktzahl von %{lowest_link_score} ist.'
+        title: Angesagte Links
+      new_trending_statuses:
+        no_approved_statuses: Derzeit sind keine trendenen Beiträge hinterlegt, die genehmigt wurden.
+        requirements: 'Jeder dieser Kandidaten könnte den #%{rank} genehmigten trendenen Beitrag übertreffen, der derzeit "%{lowest_status_url}" mit einer Punktzahl von %{lowest_status_score} ist.'
+        title: Angesagte Beiträge
+      new_trending_tags:
+        no_approved_tags: Derzeit gibt es keine genehmigten trendenen Hashtags.
+        requirements: 'Jeder dieser Kandidaten könnte den #%{rank} genehmigten trendenen Hashtag übertreffen, der derzeit "%{lowest_tag_name}" mit einer Punktzahl von %{lowest_tag_score} ist.'
+        title: Angesagte Hashtags
+      subject: Neue Trends zur Überprüfung auf %{instance}
   aliases:
     add_new: Alias erstellen
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
@@ -1148,6 +1198,9 @@ de:
     carry_mutes_over_text: Dieses Benutzerkonto ist von %{acct} umgezogen, welches du stummgeschaltet hast.
     copy_account_note_text: 'Dieser Benutzer ist von %{acct} umgezogen, hier waren deine letzten Notizen zu diesem Benutzer:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} registrierte sich"
     digest:
       action: Zeige alle Benachrichtigungen
       body: Hier ist eine kurze Zusammenfassung der Nachrichten, die du seit deinem letzten Besuch am %{since} verpasst hast

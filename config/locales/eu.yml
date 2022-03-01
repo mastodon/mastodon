@@ -449,10 +449,7 @@ eu:
       add_new: Gehitu berria
       created_msg: Ongi gehitu da e-mail helbidea domeinuen zerrenda beltzera
       delete: Ezabatu
-      destroyed_msg: Ongi ezabatu da e-mail domeinua zerrenda beltzetik
       domain: Domeinua
-      empty: Ez dago e-mail domeinurik zerrenda beltzean.
-      from_html: "%{domain} domeinutik"
       new:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
@@ -782,16 +779,6 @@ eu:
       body: "%{reporter}(e)k %{target} salatu du"
       body_remote: "%{domain} domeinuko norbaitek %{target} salatu du"
       subject: Salaketa berria %{instance} instantzian (#%{id})
-    new_trending_links:
-      body: Ondorengo estekak dira joera gaur, baina beren argitaratzaileak ez dira berrikusi aurretik. Ez dira bistaratuko publikoki onartu ezean. Ez da sortuko argitaratzaile hauen jakinarazpen gehiago.
-      no_approved_links: Ez dago onartutako esteken joerarik une honetan.
-      requirements: Onartutako esteken joera baxuena %{lowest_link_title} da une honetan %{lowest_link_score} emaitzarekin.
-      subject: Esteken joera gehiago daude berrikusteko %{instance} instantzian
-    new_trending_tags:
-      body: 'Ondorengo traolak dira joera gaur, baina ez dira berrikusi aurretik. Ez dira bistaratuko publikoki onartzen ez badituzu:'
-      no_approved_tags: Ez dago onartutako traolen joerarik une honetan.
-      requirements: Onartutako traolen joera baxuena %{lowest_tag_name} da une honetan %{lowest_tag_score} emaitzarekin.
-      subject: Traolen joera gehiago daude berrikusteko %{instance} instantzian
   aliases:
     add_new: Sortu ezizena
     created_msg: Ongi sortu da ezizena. Orain kontu zaharretik migratzen hasi zaitezke.

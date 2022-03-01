@@ -189,6 +189,7 @@ sv:
       security_measures:
         only_password: Endast lösenord
         password_and_2fa: Lösenord och 2FA
+        password_and_sign_in_token: Lösenord och e-post token
       sensitive: Känsligt
       sensitized: markerad som känsligt
       shared_inbox_url: Delad inkorg URL
@@ -403,10 +404,7 @@ sv:
       add_new: Lägg till ny
       created_msg: E-postdomän har lagts till i domänblockslistan utan problem
       delete: Radera
-      destroyed_msg: E-postdomän har tagits bort från domänblockslistan utan problem
       domain: Domän
-      empty: För tillfället inga svartlistade mejl.
-      from_html: från %{domain}
       new:
         create: Skapa domän
         title: Ny E-postdomänblocklistningsinmatning
@@ -628,6 +626,10 @@ sv:
         action: Hantera serverregler
         message_html: Du har inte definierat några serverregler.
     title: Administration
+    trends:
+      statuses:
+        allow: Godkänn inlägg
+        allow_account: Godkänn författare
     warning_presets:
       add_new: Lägg till ny
       delete: Radera

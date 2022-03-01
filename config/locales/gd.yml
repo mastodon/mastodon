@@ -170,6 +170,11 @@ gd:
       not_subscribed: Gun fho-sgrìobhadh
       pending: A’ feitheamh air lèirmheas
       perform_full_suspension: Cuir à rèim
+      previous_strikes: Rabhaidhean roimhe
+      previous_strikes_description_html:
+        one: Fhuair an cunntas seo <strong>aon</strong> rabhadh.
+        other: Fhuair an cunntas seo <strong>%{count}</strong> rabhaidhean.
+        zero: Tha <strong>deagh chliù</strong> aig a’ chunntas seo.
       promote: Àrdaich
       protocol: Pròtacal
       public: Poblach
@@ -213,6 +218,7 @@ gd:
       statuses: Postaichean
       strikes: Rabhaidhean roimhe
       subscribe: Fo-sgrìobh
+      suspend: Cuir à rèim
       suspended: À rèim
       suspension_irreversible: Chaidh dàta a’ chunntais seo a sguabadh às gu buan. ’S urrainn an cunntas a chur ann an rèim a-rithist ach an gabh a chleachdadh ach chan fhaigh thu gin dhen dàta air ais a b’ àbhaist a bhith aige.
       suspension_reversible_hint_html: Chaidh an cunntas a chur à rèim agus thèid an dàta aige a sguabadh às gu buan %{date}. Gus an dig an t-àm ud, gabhaidh an cunntas aiseag fhathast gun droch bhuaidh sam bith air. Nam bu toigh leat gach dàta a’ chunntais a thoirt air falbh sa bhad, ’s urrainn dhut sin a dhèanamh gu h-ìosal.
@@ -233,6 +239,7 @@ gd:
       whitelisted: Ceadaichte a chùm co-nasgaidh
     action_logs:
       action_types:
+        approve_appeal: Thoir aonta ris an ath-thagradh
         approve_user: Aontaich ris a’ chleachdaiche
         assigned_to_self_report: Iomruin an gearan
         change_email_user: Atharraich post-d a’ chleachdaiche
@@ -264,6 +271,7 @@ gd:
         enable_user: Cuir an cleachdaiche an comas
         memorialize_account: Dèan cuimhneachan dhen chunntas
         promote_user: Àrdaich an cleachdaiche
+        reject_appeal: Diùlt an t-ath-thagradh
         reject_user: Diùlt an cleachdaiche
         remove_avatar_user: Thoir air falbh an t-avatar
         reopen_report: Fosgail an gearan a-rithist
@@ -282,6 +290,7 @@ gd:
         update_domain_block: Ùraich bacadh na h-àrainne
         update_status: Ùraich am post
       actions:
+        approve_appeal_html: Dh’aontaich %{name} ri ath-thagradh air co-dhùnadh na maorsainneachd o %{target}
         approve_user_html: Dh’aontaich %{name} ri clàradh o %{target}
         assigned_to_self_report_html: Dh’iomruin %{name} an gearan %{target} dhaibh fhèin
         change_email_user_html: Dh’atharraich %{name} seòladh puist-d a’ chleachdaiche %{target}
@@ -313,6 +322,7 @@ gd:
         enable_user_html: Chuir %{name} an clàradh a-steach an comas dhan chleachdaiche %{target}
         memorialize_account_html: Rinn %{name} duilleag cuimhneachain dhen chunntas aig %{target}
         promote_user_html: Dh’àrdaich %{name} an cleachdaiche %{target}
+        reject_appeal_html: Dhiùlt %{name} an t-ath-thagradh air co-dhùnadh na maorsainneachd o %{target}
         reject_user_html: Dhiùlt %{name} an clàradh o %{target}
         remove_avatar_user_html: Thug %{name} avatar aig %{target} air falbh
         reopen_report_html: Dh’fhosgail %{name} an gearan %{target} a-rithist
@@ -391,6 +401,11 @@ gd:
       media_storage: Stòras mheadhanan
       new_users: cleachdaichean ùra
       opened_reports: gearanan air am fosgladh
+      pending_appeals_html:
+        few: "<strong>%{count}</strong> ath-thagraidhean ri dhèiligeadh"
+        one: "<strong>%{count}</strong> ath-thagradh ri dhèiligeadh"
+        other: "<strong>%{count}</strong> ath-thagradh ri dhèiligeadh"
+        two: "<strong>%{count}</strong> ath-thagradh ri dhèiligeadh"
       resolved_reports: gearanan air am fuasgladh
       software: Bathar-bog
       sources: Tùsan clàraidh
@@ -399,6 +414,10 @@ gd:
       top_languages: Brod nan cànan gnìomhach
       top_servers: Brod nam frithealaichean gnìomhach
       website: Làrach-lìn
+    disputes:
+      appeals:
+        empty: Cha deach ath-thagradh a lorg.
+        title: Ath-thagraidhean
     domain_allows:
       add_new: Ceadaich co-nasgadh le àrainn
       created_msg: Chaidh an àrainn a cheadachadh a chùm co-nasgaidh
@@ -447,10 +466,7 @@ gd:
       add_new: Cuir tè ùr ris
       created_msg: Chaidh àrainn a’ phuist-d a bhacadh
       delete: Sguab às
-      destroyed_msg: Chaidh àrainn a’ phuist-d a dhì-bhacadh
       domain: Àrainn
-      empty: Chan eil àrainn puist-d sam bith ’ga bhacadh aig an àm seo.
-      from_html: o %{domain}
       new:
         create: Cuir àrainn ris
         title: Bac àrainn puist-d ùr
@@ -709,6 +725,9 @@ gd:
       no_status_selected: Cha deach post sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       title: Postaichean a’ chunntais
       with_media: Le meadhanan riutha
+    strikes:
+      appeal_approved: Air ath-thagradh
+      appeal_pending: "’Ga ath-thagradh"
     system_checks:
       database_schema_check:
         message_html: Tha imrichean stòir-dhàta ri dhèiligeadh ann. Ruith iad a dhèanamh cinnteach gum bi giùlan na h-aplacaid mar a bhiodhte ’n dùil
@@ -764,6 +783,10 @@ gd:
       empty: Cha do mhìnich thu ro-sheataichean rabhaidhean fhathast.
       title: Stiùirich na rabhaidhean ro-shuidhichte
   admin_mailer:
+    new_appeal:
+      body: 'Tha %{target} ag ath-thagradh co-dhùnadh na maorsainneachd a thug %{action_taken_by} %{date} agus ’s e %{type} a bh’ ann. Sgrìobh iad:'
+      next_steps: "’S urrainn dhut aontachadh ris an ath-thagradh air co-dhùnadh na maorsainneachd no a leigeil seachad."
+      subject: Tha %{username} ag ath-thagradh co-dhùnadh na maorsainneachd air %{instance}
     new_pending_account:
       body: Chì thu mion-fhiosrachadh a’ chunntais ùir gu h-ìosal. ’S urrainn dhut gabhail ris an iarrtas seo no a dhiùltadh.
       subject: Tha cunntas ùr air %{instance} a’ feitheamh air lèirmheas (%{username})
@@ -771,16 +794,6 @@ gd:
       body: Rinn %{reporter} gearan air %{target}
       body_remote: Rinn cuideigin o %{domain} gearan air %{target}
       subject: Tha gearan ùr aig %{instance} (#%{id})
-    new_trending_links:
-      body: Tha na ceanglaichean a leanas a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh air na foillsichearan aca fhathast. Cha nochd iad gu poblach mur aontaich thu riutha. Chan fhaic thu brathan eile mu na h-aon fhoillsichearan.
-      no_approved_links: Chan eil ceangal a’ treandadh le aontachadh ann.
-      requirements: "’S e “%{lowest_link_title}” a tha sa cheangal a’ treandadh as ìsle le aontachadh agus sgòr de %{lowest_link_score} air."
-      subject: Tha ceanglaichean ùra a’ trèanadh feumach air lèirmheas air %{instance}
-    new_trending_tags:
-      body: 'Tha na tagaichean hais a leanas a’ treandadh an-diugh ach cha deach lèirmheas a dhèanamh orra fhathast. Cha nochd iad gu poblach mur aontaich thu riutha:'
-      no_approved_tags: Chan eil tagaichean hais a’ treandadh le aontachadh ann.
-      requirements: "’S e #%{lowest_tag_name} a tha san taga hais a’ treandadh as ìsle le aontachadh agus sgòr de %{lowest_tag_score} air."
-      subject: Tha tagaichean hais ùra a’ trèanadh feumach air lèirmheas air %{instance}
   aliases:
     add_new: Cruthaich alias
     created_msg: Chaidh an t-alias ùr a chruthachadh. ’S urrainn dhut tòiseachadh air imrich on seann-chunntas a-nis.
@@ -919,6 +932,18 @@ gd:
     directory: Eòlaire nam pròifil
     explanation: Lorg cleachdaichean stèidhichte air an ùidhean
     explore_mastodon: Rùraich %{title}
+  disputes:
+    strikes:
+      appeal: Ath-thagair
+      appeal_approved: Chaidh le ath-thagradh an rabhaidh is chan eil e dligheach tuilleadh
+      appeal_rejected: Chaidh an t-ath-thagradh a dhiùltadh
+      appeal_submitted_at: Chaidh an t-ath-thagradh a chur a-null
+      appealed_msg: Chaidh an t-ath-thagradh agad a chur a-null. Ma thèid aontachadh ris, gheibh thu brath mu dhèidhinn.
+      appeals:
+        submit: Cuir a-null an t-ath-thagradh
+      your_appeal_approved: Chaidh aontachadh ris an ath-thagradh agad
+      your_appeal_pending: Chuir thu ath-thagradh a-null
+      your_appeal_rejected: Chaidh an t-ath-thagradh agad a dhiùltadh
   domain_validator:
     invalid_domain: "– chan eil seo ’na ainm àrainne dligheach"
   errors:

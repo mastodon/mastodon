@@ -2,11 +2,10 @@
 ast:
   activerecord:
     attributes:
-      poll:
-        options: Escoyetes
-    errors:
-      models:
-        account:
-          attributes:
-            username:
-              invalid: namái lletres, númberos y guiones baxos
+      user:
+        locale: Locale
+        password: Contraseña
+      user/account:
+        username: Nome d'usuariu
+      user/invite_request:
+        text: Motivu

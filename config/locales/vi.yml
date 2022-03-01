@@ -457,15 +457,21 @@ vi:
       view: Xem máy chủ chặn
     email_domain_blocks:
       add_new: Thêm mới
+      attempts_over_week:
+        other: "%{count} lần thử đăng ký vào tuần trước"
       created_msg: Đã chặn tên miền email này
       delete: Xóa bỏ
-      destroyed_msg: Đã bỏ chặn tên miền email này
+      dns:
+        types:
+          mx: Giá trị MX
       domain: Địa chỉ email
-      empty: Chưa chặn tên miền email nào.
-      from_html: từ %{domain}
       new:
         create: Thêm địa chỉ
+        resolve: Xử lý tên miền
         title: Chặn tên miền email mới
+      no_email_domain_block_selected: Không có chặn e-mail nào thay đổi vì không có mục nào được chọn
+      resolved_dns_records_hint_html: Tên miền phân giải thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong việc chấp nhận email. Chặn tên miền MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một tên miền MX, ngay cả khi tên miền hiển thị là khác. <strong>Cẩn thận đừng chặn những dịch vụ email lớn.</strong>
+      resolved_through_html: Đã xử lý thông qua %{domain}
       title: Tên miền email đã chặn
     follow_recommendations:
       description_html: "<strong>Gợi ý theo dõi là cách giúp những người dùng mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người dùng chưa đủ tương tác với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những tài khoản này sẽ được đề xuất. Nó bao gồm các tài khoản có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
@@ -598,6 +604,7 @@ vi:
         title: Ghi chú
       notes_description_html: Xem và để lại ghi chú cho các kiểm duyệt viên khác
       quick_actions_description_html: 'Kiểm duyệt nhanh hoặc kéo xuống để xem nội dung bị báo cáo:'
+      remote_user_placeholder: người dùng ở %{instance}
       reopen: Mở lại báo cáo
       report: 'Báo cáo #%{id}'
       reported_account: Tài khoản bị báo cáo
@@ -768,6 +775,14 @@ vi:
         rejected: Liên kết từ nguồn đăng không thể thành xu hướng
         title: Nguồn đăng
       rejected: Đã cấm
+      statuses:
+        allow: Cho phép tút
+        allow_account: Cho phép người đăng
+        disallow: Không cho phép tút
+        disallow_account: Không cho phép người đăng
+        shared_by:
+          other: Đã chia sẻ và thích %{friendly_count} lần
+        title: Tút xu hướng
       tags:
         current_score: Chỉ số gần đây %{score}
         dashboard:
@@ -816,16 +831,21 @@ vi:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
       subject: "(%{instance}) Báo cáo #%{id}"
-    new_trending_links:
-      body: Các liên kết này đang là xu hướng hôm nay, nhưng các nguồn đăng của chúng chưa được xem xét trước đây. Chúng sẽ không được hiển thị công khai trừ khi bạn cho phép chúng. Các thông báo khác từ cùng một nguồn đăng sẽ không được tạo.
-      no_approved_links: Hiện tại không có liên kết xu hướng nào được cho phép.
-      requirements: Liên kết xu hướng được cho phép thấp nhất hiện tại là "%{lowest_link_title}" với chỉ số %{lowest_link_score}.
-      subject: Liên kết xu hướng mới chờ duyệt trên %{instance}
-    new_trending_tags:
-      body: 'Các hashtag này đang là xu hướng hôm nay, nhưng chúng chưa được xem xét trước đó. Chúng sẽ không được hiển thị công khai trừ khi bạn cho phép chúng:'
-      no_approved_tags: Hiện tại không có hashtag xu hướng nào được cho phép.
-      requirements: 'Hashtag xu hướng được cho phép thấp nhất hiện tại là #%{lowest_tag_name} với chỉ số %{lowest_tag_score}.'
-      subject: Hashtag xu hướng mới chờ duyệt trên %{instance}
+    new_trends:
+      body: 'Các mục sau đây cần được xem xét trước khi chúng hiển thị công khai:'
+      new_trending_links:
+        no_approved_links: Hiện tại không có liên kết xu hướng nào được duyệt.
+        requirements: 'Bất kỳ ứng cử viên nào vượt qua #%{rank} duyệt liên kết xu hướng, với hiện tại là "%{lowest_link_title}" với điểm số %{lowest_link_score}.'
+        title: Liên kết xu hướng
+      new_trending_statuses:
+        no_approved_statuses: Hiện tại không có tút xu hướng nào được duyệt.
+        requirements: 'Bất kỳ ứng cử viên nào vượt qua #%{rank} duyệt tút xu hướng, với hiện tại là "%{lowest_status_url}" với điểm số %{lowest_status_score}.'
+        title: Tút xu hướng
+      new_trending_tags:
+        no_approved_tags: Hiện tại không có hashtag xu hướng nào được duyệt.
+        requirements: 'Bất kỳ ứng cử viên nào vượt qua #%{rank} duyệt hashtag xu hướng, với hiện tại là "%{lowest_tag_name}" với điểm số %{lowest_tag_score}.'
+        title: Hashtag xu hướng
+      subject: Xu hướng mới chờ duyệt trên %{instance}
   aliases:
     add_new: Kết nối tài khoản
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
@@ -1162,6 +1182,9 @@ vi:
     carry_mutes_over_text: Tài khoản này chuyển từ %{acct}, máy chủ mà bạn đã ẩn trước đó.
     copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là lịch sử kiểm duyệt của họ:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} đã được đăng ký"
     digest:
       action: Xem toàn bộ thông báo
       body: Dưới đây là những tin nhắn bạn đã bỏ lỡ kể từ lần truy cập trước vào %{since}

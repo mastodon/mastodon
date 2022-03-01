@@ -469,15 +469,22 @@ kmr:
       view: Astengkirina navperê nîşan bike
     email_domain_blocks:
       add_new: Nû tevlî bike
+      attempts_over_week:
+        one: "%{count} hewldan di hefteya borî de"
+        other: "%{count} hewldanên tomarkirinê di hefteya borî de"
       created_msg: Bi serkeftî navpera e-name hat asteng kirin
       delete: Jê bibe
-      destroyed_msg: Bi serkeftî navpera e-name yê ji asteng kirinê derket
+      dns:
+        types:
+          mx: Tomarkerê MX
       domain: Navper
-      empty: Tu navperên e-nameyê astengkirî bo niha tune ne.
-      from_html: ji %{domain}
       new:
         create: Navper tevlî bike
+        resolve: Navparê çareser bike
         title: Navparê e-nameyê nû asteng bike
+      no_email_domain_block_selected: Tu astengên navparê e-nameyê nehatin guhertin ji ber ku tu yek nehatine hilbijartin
+      resolved_dns_records_hint_html: Navê navparê ji MX ên jêrîn re çareser dike, ên ku di dawiyê de berpirsiyarin ji pejirandina e-nameyê. Astengkirina navparek MX wê tomarkirina ji her navnîşana e-nameyê ya ku heman navpara MX bi kar tîne asteng bike, tevlî ku navê navparê xuya cûda be. <strong>Hişyar be ku peydekarên sereke yên e-nameyê asteng nekî.</strong>
+      resolved_through_html: Bi riya %{domain} ve hate çareserkirin
       title: Navparên e-nameyê astengkirî
     follow_recommendations:
       description_html: "<strong>Şopandina pêşniyaran ji bo bikarhênerên nû re dibe alîkar ku zû naveroka balkêş bibînin</strong>. Gava ku bikarhênerek têra xwe bi kesên din re têkildar nebê da ku pêşnîyarên şopandina yên kesane bo xwe çêbike, li şûna van ajimêran têne pêşniyarkirin. Ew her roj ji tevliheviya ajimêrên bi tevlêbûnên herî dawîn ên herî bilind û jimara şopdarên herêmî yên herî pir ji bo zimaneke diyarkirî ji nû ve têne pêşniyarkirin."
@@ -612,6 +619,7 @@ kmr:
         title: Nîşe
       notes_description_html: Nîşeyan ji çavdêrên din û ji xwe re di pêşerojê de bibîne û bihêle
       quick_actions_description_html: 'Ji bo dîtina naveroka ragihandî çalakiyeke bilez bavêje an jî li jêr bigere:'
+      remote_user_placeholder: bikarhênerê ji dûr ve ji %{instance}
       reopen: Ragihandina ji nû ve veke
       report: "@%{id} Ragihîne"
       reported_account: Ajimêra ragihandî
@@ -782,6 +790,15 @@ kmr:
         rejected: Girêdanên ji vê weşangerê nikarin bibin rojev
         title: Weşanger
       rejected: Nepejirand
+      statuses:
+        allow: Mafê bide şandiyê
+        allow_account: Mafê bide nivîskar
+        disallow: Mafê nede şandiyê
+        disallow_account: Mafê nede nivîskar
+        shared_by:
+          one: Yek carî parvekirî an bijartî
+          other: "%{friendly_count} carên parvekirî û bijartî"
+        title: Şandiyên rojevê
       tags:
         current_score: Encama niha %{score}
         dashboard:
@@ -830,16 +847,21 @@ kmr:
       body: "%{reporter} ji %{target} ê ragihand"
       body_remote: Kesekî bi navê %{domain} ji %{target} ê ragihand
       subject: Ragihandinek nû ji bo %{instance} (#%{id})
-    new_trending_links:
-      body: Girêdanên li jêr îro rojev in, lê weşangerên wan berê nehatine nirxandin. Heya ku tu wan nepejirînî ew dê bi awayekî giştî neyên nîşandan. Ji heman weşangeran agahdarîyên bêtir nayên çêkirin.
-      no_approved_links: Niha tu girêdanên rojeva pejirandî tune ne.
-      requirements: Girêdanên rojevê ya herî kêm pejirandî niha "%{lowest_link_title}" e bi rêjeyek %{lowest_link_score}.
-      subject: Girêdanên rojevê yên nû ji bo nirxandinê li ser %{instance} derdikevin
-    new_trending_tags:
-      body: 'Hashtagên li jêr îro trojev in, lê ew berê nehatine nirxandin. Heya ku tu wan nepejirînî, ew dê bi awayekî gelemperî neyên nîşandan:'
-      no_approved_tags: Niha hashtagên rojevê pejirandî tune ne.
-      requirements: 'Hashtagên rojevê ya herî kêm pejirandî niha #%{lowest_tag_name} e bi rêjeyek %{lowest_tag_score}.'
-      subject: Hashtagên rojevê yên nû ji bo nirxandinê li ser %{instance} derdikevin
+    new_trends:
+      body: 'Tiştên jêrîn berî ku ew bi gelemperî werin xuyakirin divê werin nirxandin:'
+      new_trending_links:
+        no_approved_links: Niha tu girêdanên rojeva pejirandî tune ne.
+        requirements: 'Yek ji namzedên li jêr dikare ji #%{rank} girêdana diyarkirî ya pejirandî derbas bibe, niha ku "%{lowest_link_title}" bi %{lowest_link_score} puan e.'
+        title: Girêdanên rojevê
+      new_trending_statuses:
+        no_approved_statuses: Niha tu şandiyên rojeva pejirandî tune ne.
+        requirements: 'Yek ji namzedên li jêr dikare ji #%{rank} şandiyaa diyarkirî ya pejirandî derbas bibe, niha ku %{lowest_status_url} bi %{lowest_status_score} puan e.'
+        title: Şandiyên rojevê
+      new_trending_tags:
+        no_approved_tags: Niha hashtagên rojevê pejirandî tune ne.
+        requirements: 'Yek ji namzedên li jêr dikare ji #%{rank} hashtagaa diyarkirî ya pejirandî derbas bibe, niha ku #%{lowest_tag_name} bi %{lowest_tag_score} puan e.'
+        title: Hashtagên rojevê
+      subject: Rojevên nû ji bo nirxandinê li ser %{instance} derdikevin
   aliases:
     add_new: Naveke sexte çê bike
     created_msg: Bi serkeftî nûçikê nû hat çêkirin. Tu niha dikarî di ajimêrê xwe kevn bar bikî.
@@ -1178,6 +1200,9 @@ kmr:
     carry_mutes_over_text: Ev bikarhêner ji %{acct}, ku te bê deng kirbû, bar kir.
     copy_account_note_text: 'Ev bikarhêner ji %{acct} livî ye, li vir nîşeyên te yên berê ku te di derbarê wî/ê de nivîsandiye:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} tomar bû"
     digest:
       action: Hemû agahdariyan nîşan bide
       body: Li vir kurteyeke peyamên ku li te derbasbûnd ji serdana te ya dawîn di %{since} de

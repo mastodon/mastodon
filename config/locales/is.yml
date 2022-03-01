@@ -467,15 +467,22 @@ is:
       view: Skoða útilokun á léni
     email_domain_blocks:
       add_new: Bæta við nýju
+      attempts_over_week:
+        one: "%{count} tilraun síðustu viku"
+        other: "%{count} tilraunir til nýskráningar í síðustu viku"
       created_msg: Tókst að útiloka póstlén
       delete: Eyða
-      destroyed_msg: Tókst að aflétta útilokun af póstléni
+      dns:
+        types:
+          mx: MX-færsla
       domain: Lén
-      empty: Engin tölvupóstlén eru útilokuð.
-      from_html: frá %{domain}
       new:
         create: Bæta við léni
+        resolve: Leysa lén
         title: Útiloka nýtt tölvupóstlén
+      no_email_domain_block_selected: Engum útilokunum tölvupóstléna var breytt þar sem ekkert var valið
+      resolved_dns_records_hint_html: Heiti lénsins vísar til eftirfarandi MX-léna, sem bera endanlega ábyrgð á að tölvupóstur skili sér. Útilokun á MX-léni mun koma í veg fyrir nýskráningar með hverju því tölvupóstfangi sem notar sama MX-lén, jafnvel þótt sýnilega lénsheitið sé frábrugðið. <strong>Farðu varlega svo þú útilokir ekki algengar tölvupóstþjónustur.</strong>
+      resolved_through_html: Leyst í gegnum %{domain}
       title: Útilokuð tölvupóstlén
     follow_recommendations:
       description_html: "<strong>Að fylgja meðmælum hjálpar nýjum notendum að finna áhugavert efni á einfaldan máta</strong>. Þegar notandi hefur ekki átt í nægilegum samskiptum við aðra til að vera farinn að móta sér skoðanir á hverju hann vill fylgjast með, er mælt með að fylgjast með þessum aðgöngum. Þeir eru endurreiknaðir daglega út frá blöndu þeirra aðganga sem eru með hvað mestri þáttöku í umræðum og mesta fylgjendafjölda út frá hverju tungumáli."
@@ -610,6 +617,7 @@ is:
         title: Minnispunktar
       notes_description_html: Skoðaðu og skrifaðu minnispunkta til annarra stjórnenda og sjálfs þín
       quick_actions_description_html: 'Beittu flýtiaðgerð eða skrunaðu niður til að skoða kært efni:'
+      remote_user_placeholder: fjartengda notandann frá %{instance}
       reopen: Enduropna kæru
       report: 'Kæra #%{id}'
       reported_account: Kærður notandaaðgangur
@@ -780,6 +788,15 @@ is:
         rejected: Tenglar frá þessum útgefanda verða ekki með í vinsældum
         title: Útgefendur
       rejected: Hafnað
+      statuses:
+        allow: Leyfa færslu
+        allow_account: Leyfa höfund
+        disallow: Ekki leyfa færslu
+        disallow_account: Ekki leyfa höfund
+        shared_by:
+          one: ShaDeilt eða gert að eftirlæti einu sinni
+          other: Deilt eða gert að eftirlæti %{friendly_count} sinnum
+        title: Vinsælar færslur
       tags:
         current_score: Núverandi stig %{score}
         dashboard:
@@ -828,16 +845,21 @@ is:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
       subject: Ný kæra vegna %{instance} (#%{id})
-    new_trending_links:
-      body: Eftirfarandi tenglar eru vinsælir í dag, en ekki er búið að yfirfara útgefendur þeirra. Þeir munu ekki birtast opinberlega nema þú samþykkir þá. Ekki verða útbúnar frekari tilkynningar frá sömu útgefendum.
-      no_approved_links: Í augnablikinu eru engir samþykktir vinsælir tenglar.
-      requirements: Minnst vinsæli tengillinn sem búið er að samþykkja er núna "%{lowest_link_title}" með stigaskorið %{lowest_link_score}.
-      subject: Nýir vinsælir tenglar eru tilbúnir til yfirferðar á %{instance}
-    new_trending_tags:
-      body: 'Eftirfarandi myllumerki eru vinsæl í dag, en ekki er búið að yfirfara þau. Þau munu ekki birtast opinberlega nema þú samþykkir þau:'
-      no_approved_tags: Í augnablikinu eru engin samþykkt vinsæl myllumerki.
-      requirements: Minnst vinsæla myllumerkið sem búið er að samþykkja er núna %{lowest_tag_name} með stigaskorið %{lowest_tag_score}.
-      subject: Ný vinsæl myllumerki eru tilbúin til yfirferðar á %{instance}
+    new_trends:
+      body: 'Eftirfarandi atriði þarfnast yfirferðar áður en hægt er að birta þau opinberlega:'
+      new_trending_links:
+        no_approved_links: Það eru í augnablikinu engir samþykktir vinsælir tenglar.
+        requirements: 'Hver af þessum tillögum gætu farið yfir samþykkta vinsæla tengilinn númer #%{rank}, sem í augnablikinu er "%{lowest_link_title}" með %{lowest_link_score} stig.'
+        title: Vinsælir tenglar
+      new_trending_statuses:
+        no_approved_statuses: Það eru í augnablikinu engar samþykktar vinsælar færslur.
+        requirements: 'Hver af þessum tillögum gætu farið yfir samþykktu vinsælu færsluna númer #%{rank}, sem í augnablikinu er %{lowest_status_url} með %{lowest_status_score} stig'
+        title: Vinsælar færslur
+      new_trending_tags:
+        no_approved_tags: Það eru í augnablikinu engin samþykkt vinsæl myllumerki.
+        requirements: 'Hver af þessum tillögum gætu farið yfir samþykkta vinsæla myllumerkið númer #%{rank}, sem í augnablikinu er %{lowest_tag_name} með %{lowest_tag_score} stig'
+        title: Vinsæl myllumerki
+      subject: Nýtt vinsælt til yfirferðar á %{instance}
   aliases:
     add_new: Búa til samnefni (alias)
     created_msg: Tókst að búa til samnefni. Þú getur núna byrjað að færa gögn af gamla aðgangnum.
@@ -1176,6 +1198,9 @@ is:
     carry_mutes_over_text: Þessi notandi fluttist frá %{acct}, sem þú hafðir þaggað niður í.
     copy_account_note_text: 'Þessi notandi fluttist frá %{acct}, hér eru fyrri minnispunktar þínir um hann:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} nýskráði sig"
     digest:
       action: Skoða allar tilkynningar
       body: Hér er stutt yfirlit yfir þau skilaboð sem þú gætir hafa misst af síðan þú leist inn síðast %{since}

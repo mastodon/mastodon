@@ -467,15 +467,22 @@ es-AR:
       view: Ver bloqueo de dominio
     email_domain_blocks:
       add_new: Agregar nuevo
+      attempts_over_week:
+        one: "%{count} intento durante la última semana"
+        other: "%{count} intentos durante la última semana"
       created_msg: Se bloqueó el dominio de correo electrónico exitosamente
       delete: Eliminar
-      destroyed_msg: Se desbloqueó el dominio de correo electrónico exitosamente
+      dns:
+        types:
+          mx: Registro MX
       domain: Dominio
-      empty: Actualmente no hay dominios de correo electrónico bloqueados.
-      from_html: de %{domain}
       new:
         create: Agregar dominio
+        resolve: Resolver dominio
         title: Bloquear nuevo dominio de correo electrónico
+      no_email_domain_block_selected: No se cambiaron bloques de dominio ya que no se seleccionó ninguno
+      resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tené cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
+      resolved_through_html: Resuelto a través de %{domain}
       title: Dominios bloqueados de correo electrónico
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas para seguir ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para formar recomendaciones personalizadas de seguimiento, se recomiendan estas cuentas, en su lugar. Se recalculan diariamente a partir de una mezcla de cuentas con las interacciones más recientes y el mayor número de seguidores para un idioma determinado."
@@ -610,6 +617,7 @@ es-AR:
         title: Notas
       notes_description_html: Ver y dejar notas para otros moderadores y como referencia futura
       quick_actions_description_html: 'Tomá una acción rápida o desplazate hacia abajo para ver el contenido denunciado:'
+      remote_user_placeholder: el usuario remoto de %{instance}
       reopen: Reabrir denuncia
       report: 'Denuncia #%{id}'
       reported_account: Cuenta denunciada
@@ -780,6 +788,15 @@ es-AR:
         rejected: Los enlaces de este medio no serán tendencia
         title: Medios
       rejected: Rechazadas
+      statuses:
+        allow: Permitir mensaje
+        allow_account: Permitir autor
+        disallow: Rechazar mensaje
+        disallow_account: Rechazar autor
+        shared_by:
+          one: Compartido o marcado como favorito una vez
+          other: Compartido y marcado como favorito %{friendly_count} veces
+        title: Mensajes en tendencia
       tags:
         current_score: Puntuación actual %{score}
         dashboard:
@@ -828,16 +845,21 @@ es-AR:
       body: "%{reporter} denunció a %{target}"
       body_remote: Alguien de %{domain} denunció a %{target}
       subject: Nueva denuncia para %{instance} (#%{id})
-    new_trending_links:
-      body: Los siguientes enlaces están en tendencia hoy, pero sus medios de origen no han sido revisados previamente. No se mostrarán públicamente a menos que los aprobés. No se generarán más notificaciones de estos medios.
-      no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
-      requirements: El enlace en tendencia aprobado más bajo actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.
-      subject: Nuevos enlaces en tendencia esperando ser revisados en %{instance}
-    new_trending_tags:
-      body: 'Las siguientes etiquetas están en tendencia hoy, pero no han sido revisadas previamente. No se mostrarán públicamente a menos que las aprobés:'
-      no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
-      requirements: La etiqueta en tendencia aprobada más baja actualmente es "%{lowest_tag_name}" con una puntuación de %{lowest_tag_score}.
-      subject: Nuevas etiquetas en tendencia esperando ser revisadas en %{instance}
+    new_trends:
+      body: 'Los siguientes elementos necesitan una revisión antes de que se puedan mostrar públicamente:'
+      new_trending_links:
+        no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar el enlace de tendencia aprobado de #%{rank}, que actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.'
+        title: Enlaces en tendencia
+      new_trending_statuses:
+        no_approved_statuses: Actualmente no hay mensajes en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar el mensaje de tendencia aprobado de #%{rank}, que actualmente es %{lowest_status_url} con una puntuación de %{lowest_status_score}.'
+        title: Mensajes en tendencia
+      new_trending_tags:
+        no_approved_tags: Actualmente no hay etiquetas en tendencia aprobadas.
+        requirements: 'Cualquiera de estos candidatos podría superar la etiqueta en tendencia aprobada de #%{rank}, que actualmente es #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
+        title: Etiquetas en tendencia
+      subject: Nuevas tendencias para revisar en %{instance}
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se creó exitosamente. Ahora podés empezar la mudanza desde la cuenta vieja.
@@ -1176,6 +1198,9 @@ es-AR:
     carry_mutes_over_text: Este usuario se mudó desde %{acct}, que habías silenciado.
     copy_account_note_text: 'Este usuario se mudó desde %{acct}, acá están tus notas previas sobre él/ella:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: Se registró %{name}
     digest:
       action: Ver todas las notificaciones
       body: Acá tenés un resumen de los mensajes que te perdiste desde tu última visita, el %{since}
