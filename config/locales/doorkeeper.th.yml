@@ -68,6 +68,7 @@ th:
       confirmations:
         revoke: คุณแน่ใจหรือไม่?
       index:
+        scopes: สิทธิอนุญาต
         title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
     errors:
       messages:
@@ -93,6 +94,25 @@ th:
       authorized_applications:
         destroy:
           notice: เพิกถอนแอปพลิเคชันแล้ว
+    grouped_scopes:
+      title:
+        accounts: บัญชี
+        all: ทุกอย่าง
+        blocks: การปิดกั้น
+        bookmarks: ที่คั่นหน้า
+        conversations: การสนทนา
+        favourites: รายการโปรด
+        filters: ตัวกรอง
+        follow: ความสัมพันธ์
+        follows: การติดตาม
+        lists: รายการ
+        media: ไฟล์แนบสื่อ
+        mutes: การซ่อน
+        notifications: การแจ้งเตือน
+        push: การแจ้งเตือนแบบผลัก
+        reports: การรายงาน
+        search: ค้นหา
+        statuses: โพสต์
     layouts:
       admin:
         nav:
