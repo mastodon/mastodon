@@ -596,6 +596,7 @@ lv:
       action_taken_by: Veiktā darbība
       actions:
         delete_description_html: Raksti, par kurām ziņots, tiks dzēsti, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākos pārkāpumus saistībā ar to pašu kontu.
+        mark_as_sensitive_description_html: Mediju faili ziņojumos, par kuriem ziņots, tiks atzīmēti kā sensitīvi, un tiks reģistrēts brīdinājums, lai palīdzētu tev palielināt tā paša konta turpmākās refrakcijas.
         other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
         resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
         silence_description_html: Profils būs redzams tikai tiem, kas jau tam seko vai manuāli apskata, stingri ierobežojot tās sasniedzamību. Šo vienmēr var atgriezt.
@@ -616,6 +617,7 @@ lv:
       forwarded: Pārsūtīti
       forwarded_to: Pārsūtīti %{domain}
       mark_as_resolved: Atzīmēt kā atrisinātu
+      mark_as_sensitive: Atzīmēt kā sensitīvu
       mark_as_unresolved: Atzīmēt kā neatrisinātu
       no_one_assigned: Neviena
       notes:
@@ -759,6 +761,7 @@ lv:
       actions:
         delete_statuses: "%{name} izdzēsa %{target} publikācijas"
         disable: "%{name} iesaldēja %{target} kontu"
+        mark_statuses_as_sensitive: "%{name} atzīmēja %{target} ziņu kā sensitīvu"
         none: "%{name} nosūtīja brīdinājumu %{target}"
         sensitive: "%{name} atzīmēja %{target} kontu kā sensitīvu"
         silence: "%{name} ierobežoja %{target} kontu"
@@ -842,6 +845,7 @@ lv:
       actions:
         delete_statuses: lai izdzēstu viņu ierakstus
         disable: lai iesaldētu viņu kontu
+        mark_statuses_as_sensitive: lai atzīmētu viņu ziņas kā sensitīvas
         none: brīdinājums
         sensitive: lai atzīmētu viņu kontu kā sensitīvu
         silence: lai ierobežotu viņu kontu
@@ -1031,7 +1035,9 @@ lv:
       title_actions:
         delete_statuses: Ziņas noņemšana
         disable: Konta iesaldēšana
+        mark_statuses_as_sensitive: Ziņu atzīmēšana kā sensitīvas
         none: Brīdinājums
+        sensitive: Konta atzīmēšana kā sensitīvs
         silence: Konta ierobežošana
         suspend: Konta apturēšana
       your_appeal_approved: Jūsu apelācija ir apstiprināta
@@ -1652,23 +1658,28 @@ lv:
         spam: Spams
         violation: Saturs pārkāpj šādas kopienas pamatnostādnes
       explanation:
-        delete_statuses: Ir konstatēts, ka daži no jūsu ierakstiem pārkāpj vienu vai vairākas kopienas vadlīnijas, un pēc tam %{instance} moderatori tos ir izdzēsuši. Turpmāki pārkāpumi var novest pie bargākiem soda pasākumiem pret jūsu kontu.
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
+        mark_statuses_as_sensitive: '%{instance} moderatori dažas no tavām ziņām ir atzīmējušas kā sensitīvas. Tas nozīmē, ka cilvēkiem būs jāpieskaras ziņās esošajiem medijiem, pirms tiek parādīts priekšskatījums. Tu arī pats vari atzīmēt mediju kā sensitīvu, kad tādu publicēsi turpmāk.'
         sensitive: No šī brīža visi augšupielādētie mediju faili tiks atzīmēti kā sensitīvi un paslēpti aiz klikšķa brīdinājuma.
         silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
         suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
       get_in_touch: Ja uzskati, ka tā ir kļūda, vari atbildēt uz šo e-pastu, lai sazinātos ar %{instance} darbiniekiem.
       reason: 'Iemesls:'
+      statuses: 'Citētās ziņas:'
       subject:
         delete_statuses: Tavas ziņas %{acct} tika noņemtas
         disable: Tavs konts %{acct} tika iesaldēts
+        mark_statuses_as_sensitive: Tavas ziņas vietnē %{acct} ir atzīmētas kā sensitīvas
         none: Brīdinājums par %{acct}
+        sensitive: Tavas ziņas vietnē %{acct} turpmāk tiks atzīmētas kā sensitīvas
         silence: Tavs konts %{acct} tika ierobežots
         suspend: Tava konta %{acct} darbība ir apturēta
       title:
         delete_statuses: Izdzēstās ziņas
         disable: Konts iesaldēts
+        mark_statuses_as_sensitive: Ziņas ir atzīmēts kā sensitīvas
         none: Brīdinājums
+        sensitive: Konts ir atzīmēts kā sensitīvs
         silence: Konts ierobežots
         suspend: Konts apturēts
     welcome:
