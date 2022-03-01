@@ -1,4 +1,3 @@
----
 ast:
   activerecord:
     attributes:
@@ -23,9 +22,9 @@ ast:
         edit: Editar
         submit: Unviar
       confirmations:
-        destroy: "¿De xuru?"
+        destroy: '¿De xuru?'
       form:
-        error: "¡Meca! Comprueba los fallos posibles del formulariu"
+        error: '¡Meca! Comprueba los fallos posibles del formulariu'
       help:
         native_redirect_uri: Usa %{native_redirect_uri} pa pruebes llocales
         redirect_uri: Usa una llinia per URI
@@ -46,21 +45,14 @@ ast:
         deny: Negar
       error:
         title: Asocedió un fallu
-      new:
-        able_to: Va ser a
-        prompt: L'aplicación %{client_name} solicitó l'accesu a la to cuenta
       show:
         title: Copia esti códigu d'autorización y apiégalu na aplicación.
     authorized_applications:
       buttons:
         revoke: Revocar
       confirmations:
-        revoke: "¿De xuru?"
+        revoke: '¿De xuru?'
       index:
-        application: Aplicación
-        created_at: Data d'autorización
-        date_format: "%H:%M:%S %d-%m-%Y"
-        scopes: Ámbitos
         title: Les aplicaciones qu'autoricesti
     errors:
       messages:
@@ -79,32 +71,32 @@ ast:
           applications: Aplicaciones
           oauth2_provider: Fornidor d'OAuth2
     scopes:
-      admin:read: lleer tolos datos del sirvidor
-      admin:read:accounts: lleer la información sensible de toles cuentes
-      admin:read:reports: lleer la información sensible de tolos informes y cuentes informaes
-      admin:write: modificar tolos datos del sirvidor
+      "admin:read": lleer tolos datos del sirvidor
+      "admin:read:accounts": lleer la información sensible de toles cuentes
+      "admin:read:reports": lleer la información sensible de tolos informes y cuentes informaes
+      "admin:write": modificar tolos datos del sirvidor
       read: lleer tolos datos de la to cuenta
-      read:accounts: ver información de cuentes
-      read:blocks: ver quién bloquies
-      read:bookmarks: ver los tos marcadores
-      read:favourites: ver los tos favoritos
-      read:filters: ver les tos peñeres
-      read:follows: ver quién sigues
-      read:lists: ver les tos llistes
-      read:mutes: ver quién silencies
-      read:notifications: ver los tos avisos
-      read:reports: ver los tos informes
-      read:statuses: ver tolos estaos
+      "read:accounts": ver información de cuentes
+      "read:blocks": ver quién bloquies
+      "read:bookmarks": ver los tos marcadores
+      "read:favourites": ver los tos favoritos
+      "read:filters": ver les tos peñeres
+      "read:follows": ver quién sigues
+      "read:lists": ver les tos llistes
+      "read:mutes": ver quién silencies
+      "read:notifications": ver los tos avisos
+      "read:reports": ver los tos informes
+      "read:statuses": ver tolos estaos
       write: modificar los datos de la to cuenta
-      write:accounts: modificar el to perfil
-      write:blocks: bloquiar cuentes y dominios
-      write:bookmarks: amestar estaos a Marcadores
-      write:favourites: marcar estaos como favoritos
-      write:filters: crear peñeres
-      write:follows: siguir a xente
-      write:lists: crear llistes
-      write:media: xubir ficheros multimedia
-      write:mutes: silenciar xente y conversaciones
-      write:notifications: llimpiar los tos avisos
-      write:reports: informar d'otres persones
-      write:statuses: espublizar estaos
+      "write:accounts": modificar el to perfil
+      "write:blocks": bloquiar cuentes y dominios
+      "write:bookmarks": amestar estaos a Marcadores
+      "write:favourites": marcar estaos como favoritos
+      "write:filters": crear peñeres
+      "write:follows": siguir a xente
+      "write:lists": crear llistes
+      "write:media": xubir ficheros multimedia
+      "write:mutes": silenciar xente y conversaciones
+      "write:notifications": llimpiar los tos avisos
+      "write:reports": informar d'otres persones
+      "write:statuses": espublizar estaos
