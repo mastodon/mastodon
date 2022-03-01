@@ -605,6 +605,7 @@ zh-CN:
         title: 备注
       notes_description_html: 查看备注或向其他监察员留言
       quick_actions_description_html: '快捷选择操作或向下滚动以查看举报内容：'
+      remote_user_placeholder: 来自 %{instance} 的远程实例用户
       reopen: 重开举报
       report: '举报 #%{id}'
       reported_account: 举报用户
@@ -775,6 +776,8 @@ zh-CN:
         rejected: 来自此发布者的链接不会进入流行列表
         title: 发布者
       rejected: 已拒绝
+      statuses:
+        title: 热门嘟文
       tags:
         current_score: 当前 %{score} 分
         dashboard:
@@ -824,6 +827,12 @@ zh-CN:
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: '来自 %{instance} 的用户举报（#%{id}）'
     new_trends:
+      new_trending_links:
+        no_approved_links: 当前没有经过批准的热门链接。
+        title: 热门链接
+      new_trending_statuses:
+        no_approved_statuses: 当前没有经过批准的热门链接。
+        title: 热门嘟文
       new_trending_tags:
         no_approved_tags: 目前没有经批准的热门标签。
         title: 热门标签
