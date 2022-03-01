@@ -59,6 +59,8 @@ lv:
       error:
         title: Radās kļūda
       new:
+        prompt_html: "%{client_name} vēlas saņemt atļauju piekļūt tavam kontam. Tā ir trešās puses lietojumprogramma. <strong>Ja tu tam neuzticies, tad nevajadzētu to autorizēt.</strong>"
+        review_permissions: Pārskatīt atļaujas
         title: Nepieciešama autorizācija
       show:
         title: Nokopē šo autorizācijas kodu un ielīmē to lietotnē.
@@ -68,6 +70,12 @@ lv:
       confirmations:
         revoke: Vai esi pārliecināts?
       index:
+        authorized_at: Autorizētas %{date}
+        description_html: Šīs ir lietojumprogrammas, kas var piekļūt tavam kontam, izmantojot API. Ja ir lietojumprogrammas, kuras šeit neatpazīsti, vai lietojumprogramma nedarbojas pareizi, vari atsaukt tām piekļuvi.
+        last_used_at: Pēdējo reizi lietotas %{date}
+        never_used: Nekad nav lietotas
+        scopes: Atļaujas
+        superapp: Iekšējs
         title: Tevis autorizētās lietotnes
     errors:
       messages:
@@ -103,6 +111,14 @@ lv:
       authorized_applications:
         destroy:
           notice: Lietotne atsaukta.
+    grouped_scopes:
+      access:
+        read: Tikai lasīšanas piekļuve
+        read/write: Lasīšanas un rakstīšanas piekļuve
+        write: Tikai rakstīšanas piekļuve
+      title:
+        accounts: Konti
+        admin/accounts: Kontu administrēšana
     layouts:
       admin:
         nav:
