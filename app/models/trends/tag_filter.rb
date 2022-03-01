@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-class PreviewCardProviderFilter
+class Trends::TagFilter
   KEYS = %i(
+    trending
     status
   ).freeze
 
@@ -12,7 +13,13 @@ class PreviewCardProviderFilter
   end
 
   def results
-    scope = PreviewCardProvider.unscoped
+    scope = begin
+      if params[:status] == 'pending_review'
+        Tag.unscoped
+      else
+        trending_scope
+      end
+    end
 
     params.each do |key, value|
       next if key.to_s == 'page'
@@ -20,7 +27,7 @@ class PreviewCardProviderFilter
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
 
-    scope.order(domain: :asc)
+    scope
   end
 
   private
@@ -34,14 +41,18 @@ class PreviewCardProviderFilter
     end
   end
 
+  def trending_scope
+    Trends.tags.query.to_arel
+  end
+
   def status_scope(value)
     case value.to_s
     when 'approved'
-      PreviewCardProvider.trendable
+      Tag.trendable
     when 'rejected'
-      PreviewCardProvider.not_trendable
+      Tag.not_trendable
     when 'pending_review'
-      PreviewCardProvider.pending_review
+      Tag.pending_review
     else
       raise "Unknown status: #{value}"
     end

@@ -242,6 +242,6 @@ module LanguagesHelper
   end
 
   def valid_locale?(locale)
-    SUPPORTED_LOCALES.key?(locale.to_sym)
+    locale.present? && SUPPORTED_LOCALES.key?(locale.to_sym)
   end
 end

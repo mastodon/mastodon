@@ -17,6 +17,8 @@ class FavouriteService < BaseService
 
     favourite = Favourite.create!(account: account, status: status)
 
+    Trends.statuses.register(status)
+
     create_notification(favourite)
     bump_potential_friendship(account, status)
 

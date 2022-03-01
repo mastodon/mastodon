@@ -64,7 +64,7 @@ en:
       domain_allow:
         domain: This domain will be able to fetch data from this server and incoming data from it will be processed and stored
       email_domain_block:
-        domain: This can be the domain name that shows up in the e-mail address, the MX record that domain resolves to, or IP of the server that MX record resolves to. Those will be checked upon user sign-up and the sign-up will be rejected.
+        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
         with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
       featured_tag:
         name: 'You might want to use one of these:'

@@ -23,8 +23,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
         visibility: visibility_from_audience
       )
 
-      Trends.tags.register(@status)
-      Trends.links.register(@status)
+      Trends.register!(@status)
 
       distribute
     end

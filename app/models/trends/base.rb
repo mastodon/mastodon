@@ -2,6 +2,7 @@
 
 class Trends::Base
   include Redisable
+  include LanguagesHelper
 
   class_attribute :default_options
 
@@ -32,8 +33,8 @@ class Trends::Base
     raise NotImplementedError
   end
 
-  def get(*)
-    raise NotImplementedError
+  def query
+    Trends::Query.new(key_prefix, klass)
   end
 
   def score(id)
@@ -70,6 +71,21 @@ class Trends::Base
 
   def score_at_rank(rank)
     redis.zrevrange("#{key_prefix}:allowed", 0, rank, with_scores: true).last&.last || 0
+  end
+
+  # @param [Integer] id
+  # @param [Float] score
+  # @param [Hash<String, Boolean>] subsets
+  def add_to_and_remove_from_subsets(id, score, subsets = {})
+    subsets.each_key do |subset|
+      key = [key_prefix, subset].compact.join(':')
+
+      if score.positive? && subsets[subset]
+        redis.zadd(key, score, id)
+      else
+        redis.zrem(key, id)
+      end
+    end
   end
 
   private

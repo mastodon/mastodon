@@ -34,6 +34,7 @@ SimpleNavigation::Configuration.run do |navigation|
     n.item :development, safe_join([fa_icon('code fw'), t('settings.development')]), settings_applications_url, if: -> { current_user.functional? }
 
     n.item :trends, safe_join([fa_icon('fire fw'), t('admin.trends.title')]), admin_trends_tags_path, if: proc { current_user.staff? } do |s|
+      s.item :statuses, safe_join([fa_icon('comments-o fw'), t('admin.trends.statuses.title')]), admin_trends_statuses_path, highlights_on: %r{/admin/trends/statuses}
       s.item :tags, safe_join([fa_icon('hashtag fw'), t('admin.trends.tags.title')]), admin_trends_tags_path, highlights_on: %r{/admin/tags|/admin/trends/tags}
       s.item :links, safe_join([fa_icon('newspaper-o fw'), t('admin.trends.links.title')]), admin_trends_links_path, highlights_on: %r{/admin/trends/links}
     end

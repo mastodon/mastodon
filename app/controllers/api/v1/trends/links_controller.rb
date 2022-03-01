@@ -12,10 +12,14 @@ class Api::V1::Trends::LinksController < Api::BaseController
   def set_links
     @links = begin
       if Setting.trends
-        Trends.links.get(true, limit_param(10))
+        links_from_trends
       else
         []
       end
     end
+  end
+
+  def links_from_trends
+    Trends.links.query.allowed.in_locale(content_locale).limit(limit_param(10))
   end
 end

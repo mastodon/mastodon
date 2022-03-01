@@ -27,4 +27,8 @@ module Localized
   def available_locale_or_nil(locale_name)
     locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
   end
+
+  def content_locale
+    @content_locale ||= I18n.locale.to_s.split(/[_-]/).first
+  end
 end

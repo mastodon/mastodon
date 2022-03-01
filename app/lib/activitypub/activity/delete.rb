@@ -37,50 +37,16 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
       return if @status.nil?
 
-      forward! if @json['signature'].present? && @status.distributable?
+      forwarder.forward! if forwarder.forwardable?
       delete_now!
     end
   end
 
-  def rebloggers_ids
-    return @rebloggers_ids if defined?(@rebloggers_ids)
-    @rebloggers_ids = @status.reblogs.includes(:account).references(:account).merge(Account.local).pluck(:account_id)
-  end
-
-  def inboxes_for_reblogs
-    Account.where(id: ::Follow.where(target_account_id: rebloggers_ids).select(:account_id)).inboxes
-  end
-
-  def replied_to_status
-    return @replied_to_status if defined?(@replied_to_status)
-    @replied_to_status = @status.thread
-  end
-
-  def reply_to_local?
-    !replied_to_status.nil? && replied_to_status.account.local?
-  end
-
-  def inboxes_for_reply
-    replied_to_status.account.followers.inboxes
-  end
-
-  def forward!
-    inboxes = inboxes_for_reblogs
-    inboxes += inboxes_for_reply if reply_to_local?
-    inboxes -= [@account.preferred_inbox_url]
-
-    sender_id = reply_to_local? ? replied_to_status.account_id : rebloggers_ids.first
-
-    ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes.uniq) do |inbox_url|
-      [payload, sender_id, inbox_url]
-    end
+  def forwarder
+    @forwarder ||= ActivityPub::Forwarder.new(@account, @json, @status)
   end
 
   def delete_now!
     RemoveStatusService.new.call(@status, redraft: false)
-  end
-
-  def payload
-    @payload ||= Oj.dump(@json)
   end
 end

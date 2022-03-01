@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Form::PreviewCardProviderBatch
+class Trends::PreviewCardProviderBatch
   include ActiveModel::Model
   include Authorization
 
@@ -22,12 +22,12 @@ class Form::PreviewCardProviderBatch
   end
 
   def approve!
-    preview_card_providers.each { |provider| authorize(provider, :update?) }
+    preview_card_providers.each { |provider| authorize(provider, :review?) }
     preview_card_providers.update_all(trendable: true, reviewed_at: Time.now.utc)
   end
 
   def reject!
-    preview_card_providers.each { |provider| authorize(provider, :update?) }
+    preview_card_providers.each { |provider| authorize(provider, :review?) }
     preview_card_providers.update_all(trendable: false, reviewed_at: Time.now.utc)
   end
 end
