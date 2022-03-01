@@ -980,7 +980,6 @@ ko:
         delete_statuses: 게시물 삭제
         disable: 계정 동결
         none: 경고
-        sensitive: 계정을 민감함으로 표시
         silence: 계정의 제한
         suspend: 계정 정지
   domain_validator:
@@ -1564,19 +1563,16 @@ ko:
         suspend: 당신은 더이상 당신의 계정을 사용할 수 없으며, 프로필과 데이터는 접근 불가능하게 됩니다. 데이터가 완전히 삭제되기 전인 30일동안은 여전히 백업을 요청하기 위해 로그인 할 수 있습니다, 하지만 계정 정지를 회피하는 것을 방지하기 위하여 몇 가지 정보는 유지됩니다.
       get_in_touch: 이것이 잘못된 조치라고 생각된다면, 이 메일에 답장하여 %{instance}의 스태프들에게 연락할 수 있습니다.
       reason: '사유:'
-      statuses: '위반사항이 발견된 게시물:'
       subject:
         delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         none: '%{acct}에게의 경고'
-        sensitive: 지금부터 당신의 계정 %{acct}의 미디어 파일들은 민감함으로 표시됩니다
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
         delete_statuses: 게시물 삭제됨
         disable: 계정 동결 됨
         none: 경고
-        sensitive: 미디어 숨겨짐
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:
