@@ -759,7 +759,10 @@ ru:
         rejected: Ссылки этого издания не будут отображаться в «актуальном»
         title: Издатели
       rejected: Отклонённые
+      statuses:
+        title: Популярные посты
       tags:
+        current_score: Текущий счет %{score}
         dashboard:
           tag_accounts_measure: уникальных использований
           tag_languages_dimension: Популярные языки
@@ -773,6 +776,7 @@ ru:
         title: Актуальные хэштеги
         trendable: Может появляться в списке «актуального»
         usable: Может использоваться
+      title: Популярное
     warning_presets:
       add_new: Добавить
       delete: Удалить
@@ -787,6 +791,13 @@ ru:
       body: "%{reporter} подал(а) жалобу на %{target}"
       body_remote: Кто-то с узла %{domain} пожаловался на %{target}
       subject: Новая жалоба, узел %{instance} (№%{id})
+    new_trends:
+      new_trending_links:
+        title: Популярные ссылки
+      new_trending_statuses:
+        title: Популярные посты
+      new_trending_tags:
+        title: Популярные хэштеги
   aliases:
     add_new: Создать псевдоним
     created_msg: Новый псевдоним установлен. Теперь мы можете начать миграцию со старой учётной записи.
@@ -860,6 +871,7 @@ ru:
     status:
       account_status: Статус учётной записи
       confirming: Ожидание подтверждения e-mail.
+      functional: Ваша учётная запись в полном порядке.
       pending: Ваша заявка ожидает одобрения администраторами, это может занять немного времени. Вы получите письмо, как только заявку одобрят.
       redirecting_to: Ваша учётная запись деактивированна, потому что вы настроили перенаправление на %{acct}.
     too_fast: Форма отправлена слишком быстро, попробуйте еще раз.
@@ -931,9 +943,11 @@ ru:
       appeal_approved: Это замечание было успешно обжаловано и более не действительно
       appeals:
         submit: Подать обжалование
+      associated_report: Связанные обращения
       created_at: Дата
       recipient: Адресовано
       status: 'Пост #%{id}'
+      status_removed: Пост уже удален из системы
       title: "%{action} от %{date}"
       your_appeal_approved: Ваша апелляция одобрена
       your_appeal_pending: Вы подали апелляцию
@@ -1006,6 +1020,7 @@ ru:
     changes_saved_msg: Изменения успешно сохранены!
     copy: Копировать
     delete: Удалить
+    none: Ничего
     order_by: Сортировка
     save_changes: Сохранить изменения
     today: сегодня
