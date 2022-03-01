@@ -59,6 +59,8 @@ zh-TW:
       error:
         title: 發生錯誤
       new:
+        prompt_html: "%{client_name} 欲請求存取您帳號之權限。這是一個第三方應用程式。<strong>若您不信任該應用程式，請不要授權。</strong>"
+        review_permissions: 檢視權限
         title: 需要授權
       show:
         title: 複製此授權碼並貼上到應用程式中。
@@ -68,6 +70,7 @@ zh-TW:
       confirmations:
         revoke: 確定撤銷？
       index:
+        authorized_at: 於 %{date} 授權
         title: 已授權的應用程式
     errors:
       messages:
