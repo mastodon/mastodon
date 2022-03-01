@@ -944,8 +944,10 @@ lv:
     status:
       account_status: Konta statuss
       confirming: Gaida e-pasta apstiprinājuma pabeigšanu.
+      functional: Tavs konts ir pilnībā darboties spējīgs.
       pending: Tavu pieteikumu gaida mūsu darbinieku izskatīšana. Tas var aizņemt kādu laiku. Ja tavs pieteikums tiks apstiprināts, tu saņemsi e-pastu.
       redirecting_to: Tavs konts ir neaktīvs, jo pašlaik tas tiek novirzīts uz %{acct}.
+      view_strikes: Skati iepriekšējos brīdinājumus par savu kontu
     too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
     trouble_logging_in: Problēma ar pieteikšanos?
     use_security_key: Lietot drošības atslēgu
@@ -1021,6 +1023,7 @@ lv:
         submit: Iesniegt apelāciju
       associated_report: Saistītais ziņojums
       created_at: Datēts
+      description_html: Šīs ir darbības, kas veiktas pret tavu kontu, un brīdinājumi, ko tev ir nosūtījuši %{instance} darbinieki.
       recipient: Adresēts
       status: 'Publikācija #%{id}'
       status_removed: Publikācija jau ir noņemta no sistēmas
@@ -1405,6 +1408,7 @@ lv:
     profile: Profils
     relationships: Man seko un sekotāji
     statuses_cleanup: Automātiska ziņu dzēšana
+    strikes: Moderācijas aizrādījumi
     two_factor_authentication: Divfaktoru Aut
     webauthn_authentication: Drošības atslēgas
   statuses:
