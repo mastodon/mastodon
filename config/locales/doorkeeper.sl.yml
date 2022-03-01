@@ -68,6 +68,9 @@ sl:
       confirmations:
         revoke: Ali ste prepričani?
       index:
+        last_used_at: Zadnjič uporabljeno %{date}
+        never_used: Nikoli uporabljeno
+        scopes: Dovoljenja
         title: Vaši odobreni programi
     errors:
       messages:
@@ -103,6 +106,25 @@ sl:
       authorized_applications:
         destroy:
           notice: Program je preklican.
+    grouped_scopes:
+      access:
+        read: Dostop samo za branje
+        read/write: Dostop za branje in pisanje
+        write: Dostop samo za pisanje
+      title:
+        accounts: Računi
+        admin/accounts: Upravljanje računov
+        admin/all: Vse skrbniške funkcije
+        admin/reports: Upravljanje poročil
+        bookmarks: Zaznamki
+        conversations: Pogovori
+        filters: Filtri
+        follows: Sledi
+        media: Predstavnostne priloge
+        mutes: Utišani
+        notifications: Obvestila
+        push: Potisna obvestila
+        reports: Poročila
     layouts:
       admin:
         nav:
