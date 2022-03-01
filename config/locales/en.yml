@@ -933,8 +933,10 @@ en:
     status:
       account_status: Account status
       confirming: Waiting for e-mail confirmation to be completed.
+      functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+      view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     trouble_logging_in: Trouble logging in?
     use_security_key: Use security key
@@ -1010,6 +1012,7 @@ en:
         submit: Submit appeal
       associated_report: Associated report
       created_at: Dated
+      description_html: These are actions taken against your account and warnings that have been sent to you by the staff of %{instance}.
       recipient: Addressed to
       status: 'Post #%{id}'
       status_removed: Post already removed from system
@@ -1391,6 +1394,7 @@ en:
     profile: Profile
     relationships: Follows and followers
     statuses_cleanup: Automated post deletion
+    strikes: Moderation strikes
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
   statuses:
