@@ -594,6 +594,7 @@ pl:
       action_taken_by: Działanie podjęte przez
       actions:
         delete_description_html: Zgłoszone posty zostaną usunięte, a zdarzenie zostanie zapisane, aby pomóc w eskalacji przyszłych wykroczeń na tym samym koncie.
+        mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
         other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
         resolve_description_html: Nie zostaną podjęte żadne działania przeciwko zgłoszonemu sprawozdaniu, zdarzenie nie zostanie zarejestrowane, a zgłoszenie zostanie zamknięte.
         silence_description_html: Profil będzie widoczny tylko dla tych, którzy go już obserwują lub szukaj ręcznie, poważnie ograniczając jego zasięg. Może być zawsze cofnięty.
@@ -614,6 +615,7 @@ pl:
       forwarded: Przekazano
       forwarded_to: Przekazano do %{domain}
       mark_as_resolved: Oznacz jako rozwiązane
+      mark_as_sensitive: Oznacz jako wrażliwe
       mark_as_unresolved: Oznacz jako nierozwiązane
       no_one_assigned: Nikt nie
       notes:
@@ -756,6 +758,7 @@ pl:
       actions:
         delete_statuses: "%{name} usunął(-ęła) posty %{target}"
         disable: "%{name} zamroził(a) konto %{target}"
+        mark_statuses_as_sensitive: "%{name} oznaczył/a wiadomości %{target} jako wrażliwe"
         none: "%{name} wysłał(a) ostrzeżenie do %{target}"
         sensitive: "%{name} oznaczył(-a) konto %{target} jako wrażliwe"
         silence: "%{name} ograniczył(-a) konto %{target}"
@@ -827,6 +830,7 @@ pl:
       actions:
         delete_statuses: aby usunąć ich wpisy
         disable: aby zamrozić jego/jej konto
+        mark_statuses_as_sensitive: aby oznaczyć swoje posty jako wrażliwe
         none: ostrzeżenie
         sensitive: aby oznaczyć konto jako wrażliwe
         silence: aby ograniczyć swoje konto
@@ -1002,7 +1006,9 @@ pl:
       title_actions:
         delete_statuses: Usuwanie postów
         disable: Zamrażanie konta
+        mark_statuses_as_sensitive: Oznaczanie postów jako wrażliwych
         none: Ostrzeżenie
+        sensitive: Oznaczanie konta jako wrażliwe
         silence: Ograniczenie konta
         suspend: Zawieszenie konta
       your_appeal_approved: Twoje odwołanie zostało zatwierdzone
@@ -1610,11 +1616,13 @@ pl:
         violation: Zawartość narusza następujące wytyczne społeczności
       explanation:
         disable: Nie możesz już używać swojego konta, ale Twój profil i inne dane pozostają nienaruszone. Możesz poprosić o kopię swoich danych, zmienić ustawienia konta lub usunąć swoje konto.
+        mark_statuses_as_sensitive: Niektóre z Twoich postów zostały oznaczone jako wrażliwe przez moderatorów %{instance}. Oznacza to, że ludzie będą musieli dotknąć mediów w postach przed wyświetleniem podglądu. Możesz oznaczyć media jako wrażliwe podczas publikowania w przyszłości.
         sensitive: Od teraz wszystkie przesłane pliki multimedialne będą oznaczone jako wrażliwe i ukryte za ostrzeżeniem kliknięcia.
         silence: Kiedy Twoje konto jest ograniczone, tylko osoby, które je śledzą, będą widzieć Twoje wpisy. Może ono też przestać być widoczne w funkcjach odkrywania. Inni wciąż mogą zacząć Cię śledzić.
         suspend: Nie możesz już używać Twojego konta, a Twój profil i inne dane nie są już dostępne. Zanim w pełni usuniemy Twoje dane po około 30 dniach, możesz nadal zalogować się, aby uzyskać ich kopię. Zachowamy pewne podstawowe dane, aby zapobiegać obchodzeniu przez Ciebie zawieszenia.
       get_in_touch: Jeżeli uważasz to za błąd, możesz odpowiedzieć na ten e-mail, aby skontaktować się z prowadzącymi %{instance}.
       reason: 'Powód:'
+      statuses: 'Cytowane posty:'
       subject:
         delete_statuses: Twoje wpisy na %{acct} zostały usunięte
         disable: Twoje konto %{acct} zostało wyłączone
