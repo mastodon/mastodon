@@ -320,12 +320,12 @@ fr:
         reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur·rice %{target}"
         resolve_report_html: "%{name} a résolu le signalement %{target}"
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
-        silence_account_html: "%{name} a masqué le compte de %{target}"
+        silence_account_html: "%{name} a limité le compte de %{target}"
         suspend_account_html: "%{name} a suspendu le compte de %{target}"
         unassigned_report_html: "%{name} a désassigné le signalement %{target}"
         unblock_email_account_html: "%{name} a débloqué l'adresse courriel de %{target}"
         unsensitive_account_html: "%{name} a enlevé le marquage comme sensible du média de %{target}"
-        unsilence_account_html: "%{name} a enlevé le masquage du compte de %{target}"
+        unsilence_account_html: "%{name} a annulé la limitation du compte de %{target}"
         unsuspend_account_html: "%{name} a réactivé le compte de %{target}"
         update_announcement_html: "%{name} a mis à jour l'annonce %{target}"
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
@@ -450,7 +450,7 @@ fr:
       rejecting_media: rejet des fichiers multimédia
       rejecting_reports: rejet des signalements
       severity:
-        silence: masqué
+        silence: limité
         suspend: suspendu
       show:
         affected_accounts:
@@ -458,7 +458,7 @@ fr:
           other: "%{count} comptes affectés dans la base de données"
           zero: Pas de compte affecté dans la base de données
         retroactive:
-          silence: Ne plus masquer les comptes existants affectés de ce domaine
+          silence: Ne plus limiter les comptes existants affectés de ce domaine
           suspend: Annuler la suspension des comptes existants affectés pour ce domaine
         title: Annuler le blocage du domaine %{domain}
         undo: Annuler
@@ -1415,7 +1415,7 @@ fr:
     over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
       direct: Les messages qui ne sont visibles que pour les utilisateurs mentionnés ne peuvent pas être épinglés
-      limit: Vous avez déjà épinglé le nombre maximum de pouets
+      limit: Vous avez déjà épinglé le nombre maximum de messages
       ownership: Vous ne pouvez pas épingler un statut ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
     poll:
