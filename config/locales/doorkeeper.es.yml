@@ -68,6 +68,11 @@ es:
       confirmations:
         revoke: '¿Está seguro?'
       index:
+        authorized_at: Autorizado el %{date}
+        last_used_at: Último uso el %{date}
+        never_used: Nunca usado
+        scopes: Permisos
+        superapp: Interno
         title: Sus aplicaciones autorizadas
     errors:
       messages:
@@ -103,6 +108,30 @@ es:
       authorized_applications:
         destroy:
           notice: Aplicación revocada.
+    grouped_scopes:
+      access:
+        read: Acceso de solo lectura
+        read/write: Acceso de lectura y escritura
+        write: Acceso sólo escritura
+      title:
+        accounts: Cuentas
+        admin/accounts: Administración de cuentas
+        admin/all: Todas las funciones administrativas
+        admin/reports: Administración de informes
+        all: Todo
+        blocks: Bloqueos
+        bookmarks: Marcadores
+        conversations: Conversaciones
+        crypto: Cifrado de extremo a extremo
+        favourites: Favoritos
+        filters: Filtros
+        follow: Relaciones
+        lists: Listas
+        mutes: Silenciados
+        notifications: Notificaciones
+        push: Notificaciones push
+        reports: Informes
+        search: Buscar
     layouts:
       admin:
         nav:
