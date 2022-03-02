@@ -238,6 +238,10 @@ class Status < ApplicationRecord
     media_attachments.any?
   end
 
+  def with_preview_card?
+    preview_cards.any?
+  end
+
   def non_sensitive_with_media?
     !sensitive? && with_media?
   end

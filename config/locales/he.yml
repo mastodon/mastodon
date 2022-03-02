@@ -263,6 +263,9 @@ he:
     redirecting_to: חשבונכם מפנה ל%{acct}.
     set_redirect: הגדר הפניה
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} נרשמו"
     digest:
       body: להלן סיכום זריז של הדברים שקרו על מאז ביקורך האחרון ב-%{since}
       mention: "%{name} פנה אליך ב:"

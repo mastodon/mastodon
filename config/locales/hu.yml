@@ -469,15 +469,22 @@ hu:
       view: Domain tiltásának megtekintése
     email_domain_blocks:
       add_new: Új hozzáadása
+      attempts_over_week:
+        one: "%{count} próbálkozás a múlt héten"
+        other: "%{count} próbálkozás feliratkozásra a múlt héten"
       created_msg: E-mail domain sikeresen letiltva
       delete: Törlés
-      destroyed_msg: E-mail domain sikeresen engedélyezve
+      dns:
+        types:
+          mx: MX rekord
       domain: Domain
-      empty: Nincs letiltott email domain.
-      from_html: "%{domain}-ról"
       new:
         create: Domain hozzáadása
+        resolve: Domain feloldása
         title: Új e-mail domain tiltása
+      no_email_domain_block_selected: Nem változott meg egyetlen e-mail domain tiltás sem, mert nem volt egy sem kiválasztva
+      resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
+      resolved_through_html: Feloldva %{domain}-n keresztül
       title: Tiltott e-mail domainek
     follow_recommendations:
       description_html: "<strong>A követési ajánlatok segítik az új felhasználókat az érdekes tartalmak gyors megtalálásában</strong>. Ha egy felhasználó még nem érintkezett eleget másokkal ahhoz, hogy személyre szabott ajánlatokat kapjon, ezeket a fiókokat ajánljuk helyette. Ezeket naponta újraszámítjuk a nemrég legtöbb embert foglalkoztató, illetve legtöbb helyi követővel rendelkező fiókok alapján."
@@ -612,6 +619,7 @@ hu:
         title: Megjegyzések
       notes_description_html: Megtekintés, és megjegyzések hagyása más moderátoroknak
       quick_actions_description_html: 'Hozz egy gyors intézkedést, vagy görgess le a bejelentett tartalomhoz:'
+      remote_user_placeholder: 'a távoli felhasználó innen: %{instance}'
       reopen: Bejelentés újranyitása
       report: "#%{id} számú jelentés"
       reported_account: Bejelentett fiók
@@ -782,6 +790,15 @@ hu:
         rejected: A közzétevő hivatkozásai nem lesznek felkapottak
         title: Közzétévők
       rejected: Elutasított
+      statuses:
+        allow: Bejegyzés engedélyezése
+        allow_account: Szerző engedélyezése
+        disallow: Bejegyzés tiltása
+        disallow_account: Szerző tiltása
+        shared_by:
+          one: Megosztva vagy kedvencnek jelölve egy alkalommal
+          other: Megosztva és kedvencnek jelölve %{friendly_count} alkalommal
+        title: Felkapott bejegyzések
       tags:
         current_score: 'Jelenlegi pontszám: %{score}'
         dashboard:
@@ -830,16 +847,21 @@ hu:
       body: "%{reporter} jelentette: %{target}"
       body_remote: Valaki a %{domain} domainről jelentette %{target}
       subject: 'Új jelentés az alábbi szerveren: %{instance} (#%{id})'
-    new_trending_links:
-      body: A következő hivatkozások ma felkapottak, de a közzétevőjük eddig még nem lett ellenőrizve. Nem fognak nyilvánosan megjelenni, hacsak nem hagyod jóvá őket. További értesítések nem lesznek előállítva ugyanahhoz a közzétevőhöz.
-      no_approved_links: Jelenleg nincsenek jóváhagyott felkapott hivatkozások.
-      requirements: 'A legkisebb pontszámú jóváhagyott felkapott hivatkozás jelenleg ez: „%{lowest_link_title}”, pontszáma %{lowest_link_score}.'
-      subject: 'Új jóváhagyandó felkapott hivatkozások ezen: %{instance}'
-    new_trending_tags:
-      body: 'A következő hashtagek ma felkapottak, de a eddig még nem lettek ellenőrizve. Nem fognak nyilvánosan megjelenni, hacsak nem hagyod jóvá őket:'
-      no_approved_tags: Jelenleg nincsenek jóváhagyott felkapott hashtagek.
-      requirements: 'A legkisebb pontszámú jóváhagyott felkapott hashtag jelenleg ez: #%{lowest_tag_name}, pontszáma %{lowest_tag_score}.'
-      subject: 'Új jóváhagyandó felkapott hashtagek ezen: %{instance}'
+    new_trends:
+      body: 'A következő elemeket ellenőrizni kell, mielőtt nyilvánosan megjelennének:'
+      new_trending_links:
+        no_approved_links: Jelenleg nincsenek jóváhagyott felkapott hivatkozások.
+        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott hivatkozást, amely jelenleg a(z) „%{lowest_link_title}” ezzel a pontszámmal: %{lowest_link_score}.'
+        title: Felkapott hivatkozások
+      new_trending_statuses:
+        no_approved_statuses: Jelenleg nincsenek jóváhagyott felkapott bejegyzések.
+        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott bejegyzést, amely jelenleg a(z) „%{lowest_status_url}” ezzel a pontszámmal: %{lowest_status_score}.'
+        title: Felkapott bejegyzések
+      new_trending_tags:
+        no_approved_tags: Jelenleg nincsenek jóváhagyott felkapott hashtagek.
+        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott hashtaget, amely jelenleg a(z) #%{lowest_tag_name} ezzel a pontszámmal: %{lowest_tag_score}.'
+        title: Felkapott hashtagek
+      subject: 'Új jóváhagyandó trendek ezen: %{instance}'
   aliases:
     add_new: Alias készítése
     created_msg: Elkészült az új aliasod. Most már elkezdheted a költöztetést a régi fiókból.
@@ -1178,6 +1200,9 @@ hu:
     carry_mutes_over_text: Ez a fiók elköltözött innen %{acct}, melyet lenémítottatok.
     copy_account_note_text: 'Ez a fiók elköltözött innen %{acct}, itt vannak a bejegyzéseitek róla:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} feliratkozott"
     digest:
       action: Összes értesítés megtekintése
       body: Itt a legutóbbi látogatásod (%{since}) óta írott üzenetek rövid összefoglalása

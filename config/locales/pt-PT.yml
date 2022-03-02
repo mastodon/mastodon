@@ -467,15 +467,22 @@ pt-PT:
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
+      attempts_over_week:
+        one: "%{count} tentativa na última semana"
+        other: "%{count} tentativas de inscrição na última semana"
       created_msg: Bloqueio de domínio de e-mail criado com sucesso
       delete: Eliminar
-      destroyed_msg: Bloqueio de domínio de e-mail excluído com sucesso
+      dns:
+        types:
+          mx: Registo MX
       domain: Domínio
-      empty: Nenhum domínio de e-mail atualmente na lista negra.
-      from_html: de %{domain}
       new:
         create: Adicionar domínio
+        resolve: Domínio de resolução
         title: Novo bloqueio de domínio de e-mail
+      no_email_domain_block_selected: Nenhum bloqueio de domínio de e-mail foi alterado pois nenhum foi selecionado
+      resolved_dns_records_hint_html: O nome de domínio resolve para os seguintes domínios MX, que são, em última análise, responsáveis por aceitar o e-mail. Bloquear um domínio MX irá bloquear as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo quando o nome de domínio visível é diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
+      resolved_through_html: Resolvido através de %{domain}
       title: Domínios de e-mail bloqueados
     follow_recommendations:
       description_html: "<strong>Recomendações de quem seguir ajudam novos utilizadores a encontrar conteúdo interessante rapidamente.</strong>. Quando um utilizador não interage com outros o suficiente para formar recomendações personalizadas, estas contas são recomendadas. Elas são recalculadas diariamente a partir de uma mistura de contas com mais atividade recente e maior número de seguidores locais para um determinado idioma."
@@ -610,6 +617,7 @@ pt-PT:
         title: Notas
       notes_description_html: Visualize e deixe anotações para outros moderadores e para sí no futuro
       quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo denunciado:'
+      remote_user_placeholder: o utilizador remoto de %{instance}
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
@@ -780,6 +788,15 @@ pt-PT:
         rejected: Links deste editor não serão incluídos nos destaques
         title: Editores
       rejected: Rejeitado
+      statuses:
+        allow: Permitir publicação
+        allow_account: Permitir autor
+        disallow: Não permitir publicação
+        disallow_account: Não permitir autor
+        shared_by:
+          one: Partilhado ou adicionado aos favoritos uma vez
+          other: Partilhado e adicionado aos favoritos %{friendly_count} vezes
+        title: Publicações em destaque
       tags:
         current_score: Pontuação atual %{score}
         dashboard:
@@ -828,16 +845,21 @@ pt-PT:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
       subject: Nova denúncia para %{instance} (#%{id})
-    new_trending_links:
-      body: Os seguintes links estão hoje em destaque, mas os seus editores não foram previamente revistos. Eles não serão exibidos publicamente a menos que você os aprove. Outras notificações dos mesmos editores não serão geradas.
-      no_approved_links: Não existem, atualmente, links aprovados em destaque.
-      requirements: O link em destaque, com pontuação mais baixa, aprovado atualmente é "%{lowest_link_title}" com uma pontuação de %{lowest_link_score}.
-      subject: Novos links em destaque para revisão em %{instance}
-    new_trending_tags:
-      body: 'As seguintes hashtags estão hoje em tendência, mas não foram revistas anteriormente. Elas não serão exibidas publicamente, a menos que você as aprove:'
-      no_approved_tags: Não existem, atualmente, hashtags aprovados em tendência.
-      requirements: 'A hashtag em tendência, com pontuação mais baixa, aprovado atualmente é #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
-      subject: Novas hashtags em tendência para revisão em %{instance}
+    new_trends:
+      body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
+      new_trending_links:
+        no_approved_links: Não existem, atualmente, links aprovados em destaque.
+        requirements: 'Qualquer um destes candidatos pode ultrapassar o #%{rank} link aprovado em destaque, que é atualmente "%{lowest_link_title}" com uma pontuação de %{lowest_link_score}.'
+        title: Links em destaque
+      new_trending_statuses:
+        no_approved_statuses: Não existem, atualmente, publicações aprovadas em destaque.
+        requirements: 'Qualquer um destes candidatos pode ultrapassar a #%{rank} publicação aprovada em destaque, que é atualmente %{lowest_status_url} com uma pontuação de %{lowest_status_score}.'
+        title: Publicações em destaque
+      new_trending_tags:
+        no_approved_tags: Não existem, atualmente, hashtags aprovadas em destaque.
+        requirements: 'Qualquer um destes candidatos pode ultrapassar a #%{rank} hashtag aprovada em destaque, que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
+        title: Hashtags em destaque
+      subject: Novas tendências para revisão em %{instance}
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
@@ -1176,6 +1198,9 @@ pt-PT:
     carry_mutes_over_text: Este utilizador migrou de %{acct}, que você tinha silenciado.
     copy_account_note_text: 'Este utilizador migrou de %{acct}, aqui estão as suas notas anteriores sobre ele:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} inscreveu-se"
     digest:
       action: Ver todas as notificações
       body: Aqui tens um breve resumo do que perdeste desde o último acesso a %{since}

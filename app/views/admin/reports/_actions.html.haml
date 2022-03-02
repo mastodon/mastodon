@@ -5,6 +5,12 @@
         = link_to t('admin.reports.mark_as_resolved'), resolve_admin_report_path(@report), method: :post, class: 'button'
       .report-actions__item__description
         = t('admin.reports.actions.resolve_description_html')
+    - if @statuses.any? { |status| status.with_media? || status.with_preview_card? }
+      .report-actions__item
+        .report-actions__item__button
+          = button_tag t('admin.reports.mark_as_sensitive'), name: :mark_as_sensitive, class: 'button'
+        .report-actions__item__description
+          = t('admin.reports.actions.mark_as_sensitive_description_html')
     .report-actions__item
       .report-actions__item__button
         = button_tag t('admin.reports.delete_and_resolve'), name: :delete, class: 'button button--destructive'

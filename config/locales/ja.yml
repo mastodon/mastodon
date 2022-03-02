@@ -449,12 +449,13 @@ ja:
       add_new: 新規追加
       created_msg: メールドメインブロックに追加しました
       delete: 消去
-      destroyed_msg: メールドメインブロックから外しました
+      dns:
+        types:
+          mx: MXレコード
       domain: ドメイン
-      empty: メールドメインブロックには現在何も登録されていません。
-      from_html: "%{domain} から"
       new:
         create: ドメインを追加
+        resolve: ドメイン解決
         title: 新規メールドメインブロック
       title: メールドメインブロック
     follow_recommendations:
@@ -487,6 +488,10 @@ ja:
       delivery_error_hint: "%{count} 日間配送ができない場合は、自動的に配送不可としてマークされます。"
       destroyed_msg: "%{domain} からのデータは、すぐに削除されるように、キューに追加されました。"
       empty: ドメインが見つかりませんでした。
+      known_accounts:
+        one: 既知のアカウントが%{count}件あります
+        other: 既知のアカウントが%{count}件あります
+        zero: 既知のアカウントはありません
       moderation:
         all: すべて
         limited: 制限あり
@@ -561,6 +566,7 @@ ja:
       comment:
         none: なし
       created_at: 通報日時
+      delete_and_resolve: 投稿を削除
       forwarded: 転送済み
       forwarded_to: "%{domain} に転送されました"
       mark_as_resolved: 解決済みとしてマーク
@@ -574,6 +580,7 @@ ja:
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
         title: メモ
       notes_description_html: 他のモデレーターと将来の自分にメモを残してください
+      remote_user_placeholder: "%{instance} からのリモートユーザー"
       reopen: 未解決に戻す
       report: 通報#%{id}
       reported_account: 報告対象アカウント
@@ -701,6 +708,9 @@ ja:
       no_status_selected: 何も選択されていないため、変更されていません
       title: 投稿一覧
       with_media: メディアあり
+    strikes:
+      appeal_approved: 抗議済み
+      appeal_pending: 保留中の抗議
     system_checks:
       database_schema_check:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
@@ -756,6 +766,9 @@ ja:
       empty: まだプリセット警告文が作成されていません。
       title: プリセット警告文を管理
   admin_mailer:
+    new_appeal:
+      actions:
+        none: 警告
     new_pending_account:
       body: 新しいアカウントの詳細は以下の通りです。この申請を承認または却下することができます。
       subject: "%{instance} で新しいアカウント (%{username}) が承認待ちです"
@@ -763,16 +776,13 @@ ja:
       body: "%{reporter} が %{target} を通報しました"
       body_remote: "%{domain} の誰かが %{target} を通報しました"
       subject: "%{instance} の新しい通報 (#%{id})"
-    new_trending_links:
-      body: 以下のリンクは今日のトレンドですが、これらの発行者はまだレビューされていません。承認するまでは、このリンクは公開されず、通知も生成されません。
-      no_approved_links: 承認済みのトレンドはありません。
-      requirements: '承認された最低のトレンドは現在 %{lowest_link_title} です。（スコア: %{lowest_link_score} ）'
-      subject: 新しいトレンドを %{instance} で確認してください。
-    new_trending_tags:
-      body: 以下のハッシュタグは今日のトレンドですが、これらの発行者はまだレビューされていません。承認するまでは、このハッシュタグは公開されず、通知も生成されません。
-      no_approved_tags: 承認済みのハッシュタグはありません。
-      requirements: '承認された最低のトレンドハッシュタグは現在 %{lowest_tag_name} です。（スコア: %{lowest_tag_score} ）'
-      subject: 新しいトレンドハッシュタグを %{instance} で確認してください。
+    new_trends:
+      new_trending_links:
+        title: トレンドリンク
+      new_trending_statuses:
+        title: トレンド投稿
+      new_trending_tags:
+        title: トレンドハッシュタグ
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
@@ -913,6 +923,16 @@ ja:
   disputes:
     strikes:
       appeal: 抗議
+      appeal_submitted_at: 抗議が送信されました
+      appeals:
+        submit: 抗議を送信
+      associated_report: 関連する通報
+      created_at: 日時
+      recipient: 送信元
+      title: "%{date}に%{action}"
+      title_actions:
+        disable: アカウント凍結
+        none: 警告
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
@@ -1302,8 +1322,8 @@ ja:
         other: "%{count}票"
       vote: 投票
     show_more: もっと見る
-    show_newer: 新しいものから表示
-    show_older: 古いものから表示
+    show_newer: 新しいものを表示
+    show_older: 古いものを表示
     show_thread: スレッドを表示
     sign_in_to_participate: ログインして会話に参加
     title: '%{name}: "%{quote}"'
@@ -1463,6 +1483,8 @@ ja:
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     webauthn: セキュリティキー
   user_mailer:
+    appeal_rejected:
+      title: 却下された抗議
     backup_ready:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
       subject: アーカイブの準備ができました
@@ -1474,6 +1496,7 @@ ja:
       subject: ログイン試行を確認してください
       title: ログインを検出しました
     warning:
+      appeal: 抗議を送信
       categories:
         spam: スパム
         violation: コンテンツは以下のコミュニティガイドラインに違反しています

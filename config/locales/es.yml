@@ -20,7 +20,7 @@ es:
     documentation: Documentación
     federation_hint_html: Con una cuenta en %{instance} usted podrá seguir a las personas en cualquier servidor de Mastodon y más allá.
     get_apps: Probar una aplicación móvil
-    hosted_on: Mastodon hosteado en %{domain}
+    hosted_on: Mastodon alojado en %{domain}
     instance_actor_flash: |
       Esta cuenta es un actor virtual usado para representar al servidor y no a ningún usuario individual.
       Se usa para fines federativos y no debe ser bloqueado a menos que usted quiera bloquear toda la instancia, en cuyo caso se debe utilizar un bloque de dominio.
@@ -467,15 +467,22 @@ es:
       view: Ver dominio bloqueado
     email_domain_blocks:
       add_new: Añadir nuevo
+      attempts_over_week:
+        one: "%{count} intento durante la última semana"
+        other: "%{count} intentos de registro durante la última semana"
       created_msg: Dominio de correo añadido a la lista negra con éxito
       delete: Borrar
-      destroyed_msg: Dominio de correo borrado de la lista negra con éxito
+      dns:
+        types:
+          mx: Registro MX
       domain: Dominio
-      empty: Actualmente no hay dominios de correo electrónico en la lista negra.
-      from_html: de %{domain}
       new:
         create: Añadir dominio
+        resolve: Resolver dominio
         title: Nueva entrada en la lista negra de correo
+      no_email_domain_block_selected: No se han cambiado bloqueos de dominio ya que ninguno ha sido seleccionado
+      resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tenga cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
+      resolved_through_html: Resuelto a través de %{domain}
       title: Lista negra de correo
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
@@ -610,6 +617,7 @@ es:
         title: Notas
       notes_description_html: Ver y dejar notas a otros moderadores y a tu yo futuro
       quick_actions_description_html: 'Toma una acción rápida o desplázate hacia abajo para ver el contenido denunciado:'
+      remote_user_placeholder: el usuario remoto de %{instance}
       reopen: Reabrir denuncia
       report: 'Reportar #%{id}'
       reported_account: Cuenta reportada
@@ -692,7 +700,7 @@ es:
         title: Modo de registros
       show_known_fediverse_at_about_page:
         desc_html: Cuando esté desactivado, se mostrarán solamente publicaciones locales en la línea temporal pública
-        title: Mostrar fediverso conocido en la vista previa de la historia
+        title: Incluye contenido federado en la página de línea de tiempo pública no autenticada
       show_staff_badge:
         desc_html: Mostrar un parche de staff en la página de un usuario
         title: Mostrar parche de staff
@@ -780,6 +788,15 @@ es:
         rejected: Los enlaces de este medio no pueden ser tendencia
         title: Medios
       rejected: Rechazadas
+      statuses:
+        allow: Permitir publicación
+        allow_account: Permitir autor
+        disallow: No permitir publicación
+        disallow_account: No permitir autor
+        shared_by:
+          one: Compartido o marcado como favorito una vez
+          other: Compatido o marcado como favorito %{friendly_count} veces
+        title: Publicaciones destacadas
       tags:
         current_score: Puntuación actual %{score}
         dashboard:
@@ -828,16 +845,21 @@ es:
       body: "%{reporter} ha reportado a %{target}"
       body_remote: Alguien de %{domain} a reportado a %{target}
       subject: Nuevo reporte para la %{instance} (#%{id})
-    new_trending_links:
-      body: Los siguientes enlaces están en tendencia hoy, pero sus medios de origen no han sido revisados previamente. No se mostrarán públicamente a menos que los apruebes. No se generarán más notificaciones de estos medios.
-      no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
-      requirements: El enlace en tendencia aprobado más bajo actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.
-      subject: Nuevos enlaces en tendencia esperando ser revisados en %{instance}
-    new_trending_tags:
-      body: 'Las siguientes etiquetas están en tendencia hoy, pero no han sido revisadas previamente. No se mostrarán públicamente a menos que las apruebes:'
-      no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
-      requirements: La etiqueta en tendencia aprobada más baja actualmente es "%{lowest_tag_name}" con una puntuación de %{lowest_tag_score}.
-      subject: Nuevas etiquetas en tendencia esperando ser revisadas en %{instance}
+    new_trends:
+      body: 'Los siguientes elementos necesitan una revisión antes de que se puedan mostrar públicamente:'
+      new_trending_links:
+        no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar el enlace de tendencia aprobado por #%{rank}, que actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.'
+        title: Enlaces en tendencia
+      new_trending_statuses:
+        no_approved_statuses: Actualmente no hay enlaces en tendencia aprobados.
+        requirements: 'Cualquiera de estos candidatos podría superar la publicación en tendencia aprobado por #%{rank}, que actualmente es %{lowest_status_url} con una puntuación de %{lowest_status_score}.'
+        title: Publicaciones en tendencia
+      new_trending_tags:
+        no_approved_tags: Actualmente no hay ninguna etiqueta en tendencia aprobada.
+        requirements: 'Cualquiera de estos candidatos podría superar el hashtag en tendencia aprobado por #%{rank}, que actualmente es #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
+        title: Etiquetas en tendencia
+      subject: Nuevas tendencias esperando ser revisadas en %{instance}
   aliases:
     add_new: Crear alias
     created_msg: El nuevo alias se ha creado correctamente. Ahora puedes empezar el traslado desde la cuenta antigua.
@@ -1045,9 +1067,9 @@ es:
   filters:
     contexts:
       account: Perfiles
-      home: Timeline propio
+      home: Inicio y listas
       notifications: Notificaciones
-      public: Timeline público
+      public: Líneas de tiempo públicas
       thread: Conversaciones
     edit:
       title: Editar filtro
@@ -1176,6 +1198,9 @@ es:
     carry_mutes_over_text: Este usuario se mudó desde %{acct}, que habías silenciado.
     copy_account_note_text: 'Este usuario se mudó desde %{acct}, aquí estaban tus notas anteriores sobre él:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} se registró"
     digest:
       action: Ver todas las notificaciones
       body: Un resumen de los mensajes que perdiste en desde tu última visita, el %{since}
@@ -1626,7 +1651,7 @@ es:
       subject: Bienvenido a Mastodon
       tip_federated_timeline: La línea de tiempo federada es una vista de la red de Mastodon. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
       tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
-      tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
+      tip_local_timeline: La línea de tiempo local es una vista de la gente en %{instance}. ¡Estos son tus vecinos inmediatos!
       tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Mastodon a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
       tips: Consejos
       title: Te damos la bienvenida a bordo, %{name}!
