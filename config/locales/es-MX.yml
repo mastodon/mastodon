@@ -585,6 +585,7 @@ es-MX:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: Los mensajes denunciados serán eliminados y se registrará una amonestación para ayudarte a escalar en futuras infracciones por la misma cuenta.
+        mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar futuras acciones sobre la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
         silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
@@ -605,6 +606,7 @@ es-MX:
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelto
+      mark_as_sensitive: Marcar como sensible
       mark_as_unresolved: Marcar como no resuelto
       no_one_assigned: Nadie
       notes:
@@ -748,6 +750,7 @@ es-MX:
       actions:
         delete_statuses: "%{name} eliminó las publicaciones de %{target}"
         disable: "%{name} congeló la cuenta de %{target}"
+        mark_statuses_as_sensitive: "%{name} ha marcado las publicaciones de %{target} como sensibles"
         none: "%{name} envió una advertencia a %{target}"
         sensitive: "%{name} marcó la cuenta de %{target} como sensible"
         silence: "%{name} limitó la cuenta de %{target}"
@@ -830,6 +833,7 @@ es-MX:
       actions:
         delete_statuses: para eliminar sus mensajes
         disable: para congelar su cuenta
+        mark_statuses_as_sensitive: para marcar sus mensajes como sensibles
         none: una advertencia
         sensitive: para marcar su cuenta como sensible
         silence: para limitar su cuenta
@@ -932,8 +936,10 @@ es-MX:
     status:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
+      functional: Tu cuenta está completamente operativa.
       pending: Su solicitud está pendiente de revisión por nuestros administradores. Eso puede tardar algún tiempo. Usted recibirá un correo electrónico si el solicitud sea aprobada.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
+      view_strikes: Ver amonestaciones pasadas contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, inténtelo de nuevo.
     trouble_logging_in: '¿Problemas para iniciar sesión?'
     use_security_key: Usar la clave de seguridad
@@ -1009,6 +1015,7 @@ es-MX:
         submit: Enviar apelación
       associated_report: Informe asociado
       created_at: Con fecha
+      description_html: Estas son las acciones emprendidas contra tu cuenta y las advertencias que te han sido enviadas por el personal de %{instance}.
       recipient: Dirigida a
       status: 'Publicación #%{id}'
       status_removed: Publicación ya eliminada del sistema
@@ -1016,7 +1023,9 @@ es-MX:
       title_actions:
         delete_statuses: Eliminación de publicación
         disable: Congelación de la cuenta
+        mark_statuses_as_sensitive: Marcando los mensajes como sensibles
         none: Advertencia
+        sensitive: Marcando la cuenta como sensible
         silence: Limitación de cuenta
         suspend: Suspensión de cuenta
       your_appeal_approved: Se aprobó tu apelación
@@ -1388,6 +1397,7 @@ es-MX:
     profile: Perfil
     relationships: Siguiendo y seguidores
     statuses_cleanup: Eliminación automática de publicaciones
+    strikes: Amonestaciones de moderación
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Claves de seguridad
   statuses:
@@ -1614,22 +1624,29 @@ es-MX:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad
       explanation:
+        delete_statuses: Se ha determinado que algunos de tus mensajes violan una o más directrices de la comunidad y han sido por tanto eliminados por los moderadores de %{instance}.
         disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
+        mark_statuses_as_sensitive: Algunos de tus mensajes han sido marcados como sensibles por los moderadores de %{instance}. Esto significa que la gente tendrá que pulsar los archivos multimedia en las publicaciones antes de que se muestre una vista previa. Puedes marcar los archivos multimedia como sensibles tú mismo cuando publiques en el futuro.
         sensitive: A partir de ahora todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
         silence: Aún puedes usar tu cuenta, pero solo las personas que te están siguiendo verán tus publicaciones en este servidor, y puedes ser excluido de varias funcionalidades de descubrimiento. Sin embargo, otras cuentas podrán empezar a seguirte manualmente.
         suspend: Ya no puedes utilizar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía puedes iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquives la suspensión.
       get_in_touch: Si crees que esto es un error, puedes responder a este correo electrónico para ponerte en contacto con el personal de %{instance}.
       reason: 'Razón:'
+      statuses: 'Publicaciones citadas:'
       subject:
         delete_statuses: Tus publicaciones en %{acct} han sido eliminadas
         disable: Su cuenta %{acct} ha sido congelada
+        mark_statuses_as_sensitive: Tus publicaciones en %{acct} han sido marcadas como sensibles
         none: Advertencia para %{acct}
+        sensitive: Tus publicaciones en %{acct} se marcarán como sensibles a partir de ahora
         silence: Su cuenta %{acct} ha sido limitada
         suspend: Su cuenta %{acct} ha sido suspendida
       title:
         delete_statuses: Publicaciones eliminadas
         disable: Cuenta congelada
+        mark_statuses_as_sensitive: Publicaciones marcadas como sensibles
         none: Advertencia
+        sensitive: Cuenta marcada como sensible
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
