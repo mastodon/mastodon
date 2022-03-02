@@ -585,6 +585,7 @@ pt-PT:
       action_taken_by: Ação tomada por
       actions:
         delete_description_html: As publicações denunciadas serão eliminadas e uma punição será registada para ajudá-lo a escalar ações em futuras infrações pela mesma conta.
+        mark_as_sensitive_description_html: A media nas publicações denunciadas será marcada como sensível e uma punição será registada para ajudá-lo a escalar ações em futuras infrações pela mesma conta.
         other_description_html: Ver mais opções para controlar o comportamento da conta e personalizar a comunicação para a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma punição será registada, e a denuncia será fechada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou o procurem manualmente, limitando severamente o seu alcance. Pode sempre ser revertido.
@@ -605,6 +606,7 @@ pt-PT:
       forwarded: Encaminhado
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
+      mark_as_sensitive: Marcar como sensível
       mark_as_unresolved: Marcar como não resolvido
       no_one_assigned: Ninguém
       notes:
@@ -748,6 +750,7 @@ pt-PT:
       actions:
         delete_statuses: "%{name} eliminou a publicação de %{target}"
         disable: "%{name} congelou a conta de %{target}"
+        mark_statuses_as_sensitive: "%{name} marcou as publicações de %{target} como sensíveis"
         none: "%{name} enviou uma advertência a %{target}"
         sensitive: "%{name} marcou a conta de %{target} como sensível"
         silence: "%{name} limitou a conta de %{target}"
@@ -830,6 +833,7 @@ pt-PT:
       actions:
         delete_statuses: para elimintar as suas publicações
         disable: para congelar a sua conta
+        mark_statuses_as_sensitive: marcar as suas publicações como sensíveis
         none: uma advertência
         sensitive: marcação da sua conta como sensível
         silence: limitação da sua conta
@@ -1019,7 +1023,9 @@ pt-PT:
       title_actions:
         delete_statuses: Remoção de publicação
         disable: Congelamento da conta
+        mark_statuses_as_sensitive: Marcação das publicações como sensíveis
         none: Advertência
+        sensitive: Marcação da conta como sensível
         silence: Limitação da conta
         suspend: Suspensão da conta
       your_appeal_approved: O seu recurso foi aprovado
