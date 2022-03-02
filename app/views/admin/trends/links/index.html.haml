@@ -4,6 +4,10 @@
 - content_for :header_tags do
   = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
+%p= t('admin.trends.links.description_html')
+
+%hr.spacer/
+
 = form_tag admin_trends_links_path, method: 'GET', class: 'simple_form' do
   - Trends::PreviewCardFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?

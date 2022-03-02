@@ -22,6 +22,9 @@
     - if status.language.present?
       •
       = standard_locale_name(status.language)
+    - if status.trendable? && !status.account.discoverable?
+      •
+      = t('admin.trends.statuses.not_discoverable')
     - if status.trendable? && (rank = Trends.statuses.rank(status.id))
       •
       %abbr{ title: t('admin.trends.tags.current_score', score: Trends.statuses.score(status.id)) }= t('admin.trends.tags.trending_rank', rank: rank + 1)
