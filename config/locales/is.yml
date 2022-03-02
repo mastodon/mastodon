@@ -938,6 +938,7 @@ is:
       functional: Notandaaðgangurinn þinn er með fulla virkni.
       pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
+      view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     trouble_logging_in: Vandræði við að skrá inn?
     use_security_key: Nota öryggislykil
@@ -1020,7 +1021,9 @@ is:
       title_actions:
         delete_statuses: Fjarlæging færslu
         disable: Frysting aðgangs
+        mark_statuses_as_sensitive: Merking færslna sem viðkvæmar
         none: Aðvörun
+        sensitive: Merking notanda sem viðkvæms
         silence: Takmörkun aðgangs
         suspend: Setja aðgang í bið
       your_appeal_approved: Áfrýjun þín hefur verið samþykkt
@@ -1624,16 +1627,21 @@ is:
         suspend: Þú getur ekki lengur notað aðganginn þinn og notandasniðið þitt og önnur gögn eru ekki lengur aðgengileg. Þú getur enn skráð þig inn til að biðja um afrit af gögnunum þínum þar til þeim verður eytt að fullu eftir 30 daga, við munum hinsvegar halda eftir einstaka grunnupplýsingum til að koma í veg fyrir að þú komist framhjá þessu banni.
       get_in_touch: Ef þú álítur að um mistök sé að ræða, geturðu svarað þessum tölvupósti til að setja þig í samband við umsjónarmenn %{instance}.
       reason: 'Ástæða:'
+      statuses: 'Færslur sem vísað er í:'
       subject:
         delete_statuses: Færslurnar þínar á %{acct} hafa verið fjarlægðar
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
+        mark_statuses_as_sensitive: Færslur þínar á %{acct} hafa verið merktar sem viðkvæmar
         none: Aðvörun fyrir %{acct}
+        sensitive: Færslur þínar á %{acct} verða héðan í frá merktar sem viðkvæmar
         silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
         suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
       title:
         delete_statuses: Færslur fjarlægðar
         disable: Notandaaðgangur frystur
+        mark_statuses_as_sensitive: Færslur merktar sem viðkvæmar
         none: Aðvörun
+        sensitive: Notandaaðgangur merktur sem viðkvæmur
         silence: Notandaaðgangur takmarkaður
         suspend: Notandaaðgangur í bið
     welcome:
