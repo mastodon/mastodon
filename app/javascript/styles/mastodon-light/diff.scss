@@ -40,19 +40,11 @@ html {
   background: lighten($ui-base-color, 12%);
 }
 
-.filter-form,
-.directory__card__bar {
+.filter-form {
   background: $white;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 }
 
-.scrollable .directory__list {
-  width: calc(100% + 2px);
-  margin-left: -1px;
-  margin-right: -1px;
-}
-
-.directory__card,
 .table-of-contents {
   border: 1px solid lighten($ui-base-color, 8%);
 }
@@ -75,8 +67,7 @@ html {
 .column-header__back-button,
 .column-header__button,
 .column-header__button.active,
-.account__header__bar,
-.directory__card__extra {
+.account__header__bar {
   background: $white;
 }
 
