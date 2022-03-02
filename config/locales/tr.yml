@@ -585,6 +585,7 @@ tr:
       action_taken_by: tarafından gerçekleştirilen eylem
       actions:
         delete_description_html: Bildirilen gönderiler silinecek ve aynı hesapla ileride yaşabileceğiniz etkileşimlerde çoğaltmanız için bir eylem kaydedilecek.
+        mark_as_sensitive_description_html: Bildirilen gönderilerdeki ortam dosyaları hassas olarak işaretlenecek ve aynı hesapla ileride yaşayabileceğiniz etkileşimlerde kullanabilmeniz için bir eylem kaydedilecek.
         other_description_html: Hesabın davranışını denetlemek ve bildirilen hesabın iletişimini yapılandırmak için daha fazla seçenek görün.
         resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
         silence_description_html: Profil sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir.
@@ -605,6 +606,7 @@ tr:
       forwarded: İletildi
       forwarded_to: '%{domain}''e iletildi'
       mark_as_resolved: Giderildi olarak işaretle
+      mark_as_sensitive: Hassas olarak işaretle
       mark_as_unresolved: Çözümlenmemiş olarak işaretle
       no_one_assigned: Hiç kimse
       notes:
@@ -748,6 +750,7 @@ tr:
       actions:
         delete_statuses: "%{name}, %{target} kullanıcısının gönderilerini sildi"
         disable: "%{name}, %{target} kullanıcısının hesabını dondurdu"
+        mark_statuses_as_sensitive: "%{name}, %{target} kullanıcısının gönderilerini hassas olarak işaretledi"
         none: "%{name}, %{target} kullanıcısına bir uyarı gönderdi"
         sensitive: "%{name}, %{target} kullanıcısının hesabını hassas olarak işaretledi"
         silence: "%{name}, %{target} kullanıcısının hesabını kısıtladı"
@@ -830,6 +833,7 @@ tr:
       actions:
         delete_statuses: gönderilerini silme
         disable: hesaplarını dondurma
+        mark_statuses_as_sensitive: gönderilerini hassas olarak işaretleme
         none: uyarı
         sensitive: hesaplarını hassas olarak işaretleme
         silence: hesaplarını kısıtlama
@@ -932,8 +936,10 @@ tr:
     status:
       account_status: Hesap durumu
       confirming: E-posta doğrulamasının tamamlanması bekleniyor.
+      functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
+      view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
     use_security_key: Güvenlik anahtarını kullan
@@ -1009,6 +1015,7 @@ tr:
         submit: İtirazı gönder
       associated_report: İlişkili rapor
       created_at: Tarih
+      description_html: Bunlar hesabınıza yönelik eylemler ve %{instance} yönetimi tarafından size gönderilen uyarılardır.
       recipient: Kime
       status: 'Gönderi #%{id}'
       status_removed: Gönderi zaten sistemden kaldırıldı
@@ -1016,7 +1023,9 @@ tr:
       title_actions:
         delete_statuses: Gönderi kaldırma
         disable: Hesabın dondurulması
+        mark_statuses_as_sensitive: Gönderileri hassas olarak işaretleme
         none: Uyarı
+        sensitive: Hesabı hassas olarak işaretleme
         silence: Hesabın kısıtlanması
         suspend: Hesabın askıya alınması
       your_appeal_approved: İtirazınız onaylandı
@@ -1614,22 +1623,29 @@ tr:
         spam: İstenmeyen
         violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
       explanation:
+        delete_statuses: Bazı gönderilerinizin, topluluk ilkelerimizden bir veya daha fazlasını ihlal ettiği görüldü ve daha sonra %{instance} moderatörleri tarafından kaldırıldılar.
         disable: Artık hesabınızı kullanamazsınız, ancak profil ve diğer veri sağlam. Verinizin bir yedeğini isteyebilir, hesap ayarlarınızı değiştirebilir veya hesabınızı silebilirsiniz.
+        mark_statuses_as_sensitive: Gönderilerinizin bazıları %{instance} moderatörleri tarafından hassas olarak işaretlendi. Bu nedenle bir önizleme görüntülenmeden önce insanların gönderilerinizdeki ortam dosyalarına dokunması gerekiyor. Gelecekte gönderimde bulunurken ortam dosyalarını hassas olarak işaretleyebilirsiniz.
         sensitive: Artık tüm yüklenmiş ortam dosyalarınız hassas olarak işaretlenecek ve üzerine tıklanarak açılacak şekilde bir uyarının ardına gizlenecektir.
         silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucudaki gönderilenizi görecek ve çeşitli keşif özelliklerinin dışında bırakılabilirsiniz. Ancak, başkaları sizi manuel olarak hala takip edebilir.
         suspend: Hesabınızı artık kullanamazsınız ve profiliniz ve diğer veri artık erişilebilir değil. Yaklaşık 30 gün içinde silinene kadar verinizin bir yedeğini istemek için giriş yapabilirsiniz, ancak askıdan kaçınmanızı önlemek için bazı temel veriyi saklayabiliriz.
       get_in_touch: Bunun bir hata olduğunu düşünüyorsanız, %{instance} yönetimiyle bağlantıya geçmek için bu e-postaya yanıt verebilirsiniz.
       reason: 'Gerekçe:'
+      statuses: 'Sözü geçen gönderiler:'
       subject:
         delete_statuses: '%{acct} hesabınızdaki gönderiler kaldırıldı'
         disable: '%{acct} hesabınız donduruldu'
+        mark_statuses_as_sensitive: '%{acct} hesabındaki gönderiler hassas olarak işaretlendi'
         none: '%{acct} için uyarı'
+        sensitive: '%{acct} hesabınızdaki gönderiler artık hassas olarak işaretlenecek'
         silence: '%{acct} hesabınız sınırlandırıldı'
         suspend: '%{acct} hesabınız askıya alındı'
       title:
         delete_statuses: Kaldırılan gönderiler
         disable: Hesap donduruldu
+        mark_statuses_as_sensitive: Gönderiler hassas olarak işaretlendi
         none: Uyarı
+        sensitive: Hesap hassas olarak işaretlendi
         silence: Hesap sınırlandırıldı
         suspend: Hesap askıya alındı
     welcome:
