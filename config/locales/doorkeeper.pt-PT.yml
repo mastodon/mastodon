@@ -59,6 +59,7 @@ pt-PT:
       error:
         title: Ocorreu um erro
       new:
+        prompt_html: "%{client_name} pretende ter permissão para aceder à sua conta. É uma aplicação de terceiros. <strong>Se não confia nesta aplicação, então não deve autorizá-la.</strong>"
         review_permissions: Rever permissões
         title: Autorização é necessária
       show:
@@ -121,6 +122,22 @@ pt-PT:
         admin/all: Todas as funções administrativas
         admin/reports: Administração de denúncias
         all: Tudo
+        blocks: Bloqueios
+        bookmarks: Itens Salvos
+        conversations: Conversas
+        crypto: Encriptação ponta-a-ponta
+        favourites: Favoritos
+        filters: Filtros
+        follow: Relações
+        follows: Seguidores
+        lists: Listas
+        media: Anexos de media
+        mutes: Silenciados
+        notifications: Notificações
+        push: Notificações push
+        reports: Denúncias
+        search: Pesquisa
+        statuses: Publicações
     layouts:
       admin:
         nav:
@@ -135,6 +152,7 @@ pt-PT:
       "admin:write": modificar todos os dados no servidor
       "admin:write:accounts": executar ações de moderação em contas
       "admin:write:reports": executar ações de moderação em denúncias
+      crypto: usa encriptação ponta-a-ponta
       follow: siga, bloqueie, desbloqueie, e deixa de seguir contas
       push: receber as suas notificações push
       read: tenha acesso aos dados da tua conta
@@ -154,6 +172,7 @@ pt-PT:
       "write:accounts": modificar o seu perfil
       "write:blocks": bloquear contas e domínios
       "write:bookmarks": estado dos favoritos
+      "write:conversations": silenciar e eliminar conversas
       "write:favourites": estado dos favoritos
       "write:filters": criar filtros
       "write:follows": seguir pessoas
