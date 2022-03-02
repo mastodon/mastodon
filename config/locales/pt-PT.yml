@@ -932,8 +932,10 @@ pt-PT:
     status:
       account_status: Estado da conta
       confirming: A aguardar que conclua a confirmação do e-mail.
+      functional: A sua conta está totalmente operacional.
       pending: A sua inscrição está pendente de revisão pela nossa equipa. Isso pode demorar algum tempo. Receberá um e-mail se a sua conta for aprovada.
       redirecting_to: A sua conta está inativa porque está atualmente a ser redirecionada para %{acct}.
+      view_strikes: Veja as punições anteriores contra a sua conta
     too_fast: Formulário enviado muito rapidamente, tente novamente.
     trouble_logging_in: Problemas em iniciar sessão?
     use_security_key: Usar chave de segurança
@@ -1009,6 +1011,7 @@ pt-PT:
         submit: Submeter recurso
       associated_report: Denúncia associada
       created_at: Data
+      description_html: Estas são ações tomadas contra a sua conta e avisos que lhe foram enviados pela equipa de %{instance}.
       recipient: Endereçado a
       status: 'Publicação #%{id}'
       status_removed: Publicação já eliminada do sistema
@@ -1388,6 +1391,7 @@ pt-PT:
     profile: Perfil
     relationships: Seguindo e seguidores
     statuses_cleanup: Remoção automática da publicação
+    strikes: Punições de moderação
     two_factor_authentication: Autenticação em duas etapas
     webauthn_authentication: Chaves de segurança
   statuses:
