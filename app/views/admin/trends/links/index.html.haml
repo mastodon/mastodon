@@ -1,6 +1,10 @@
 - content_for :page_title do
   = t('admin.trends.links.title')
 
+%p= t('admin.trends.links.description_html')
+
+%hr.spacer/
+
 = form_tag admin_trends_links_path, method: 'GET', class: 'simple_form' do
   - Trends::PreviewCardFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?

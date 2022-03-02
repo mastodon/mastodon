@@ -777,6 +777,7 @@ en:
       links:
         allow: Allow link
         allow_provider: Allow publisher
+        description_html: These are links that are currently being shared a lot by accounts that your server sees posts from. It can help your users find out what's going on in the world. No links are displayed publicly until you approve the publisher. You can also allow or reject individual links.
         disallow: Disallow link
         disallow_provider: Disallow publisher
         shared_by_over_week:
@@ -788,14 +789,17 @@ en:
       pending_review: Pending review
       preview_card_providers:
         allowed: Links from this publisher can trend
+        description_html: These are domains from which links are often shared on your server. Links will not trend publicly unless the domain of the link is approved. Your approval (or rejection) extends to subdomains.
         rejected: Links from this publisher won't trend
         title: Publishers
       rejected: Rejected
       statuses:
         allow: Allow post
         allow_account: Allow author
+        description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
         disallow: Disallow post
         disallow_account: Disallow author
+        not_discoverable: Author has not opted-in to being discoverable
         shared_by:
           one: Shared or favourited one time
           other: Shared and favourited %{friendly_count} times
@@ -808,6 +812,7 @@ en:
           tag_servers_dimension: Top servers
           tag_servers_measure: different servers
           tag_uses_measure: total uses
+        description_html: These are hashtags that are currently appearing in a lot of posts that your server sees. It can help your users find out what people are talking the most about at the moment. No hashtags are displayed publicly until you approve them.
         listable: Can be suggested
         not_listable: Won't be suggested
         not_trendable: Won't appear under trends

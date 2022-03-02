@@ -1,6 +1,10 @@
 - content_for :page_title do
   = t('admin.trends.preview_card_providers.title')
 
+%p= t('admin.trends.preview_card_providers.description_html')
+
+%hr.spacer/
+
 .filters
   .filter-subset
     %strong= t('admin.tags.review')
@@ -13,7 +17,6 @@
     = link_to admin_trends_links_path do
       = fa_icon 'chevron-left fw'
       = t('admin.trends.links.title')
-
 
 %hr.spacer/
 

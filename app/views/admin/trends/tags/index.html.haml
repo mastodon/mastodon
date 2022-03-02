@@ -1,6 +1,10 @@
 - content_for :page_title do
   = t('admin.trends.tags.title')
 
+%p= t('admin.trends.tags.description_html')
+
+%hr.spacer/
+
 .filters
   .filter-subset
     %strong= t('admin.tags.review')
