@@ -605,6 +605,7 @@ es-AR:
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelta
+      mark_as_sensitive: Marcado como sensible
       mark_as_unresolved: Marcar como no resuelta
       no_one_assigned: Nadie
       notes:
@@ -707,7 +708,7 @@ es-AR:
         desc_html: Párrafo introductorio en la API. Describe qué hace especial a este servidor de Mastodon y todo lo demás que sea importante. Podés usar etiquetas HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
         title: Descripción del servidor
       site_description_extended:
-        desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras cosas que definen tu servidor. Podés usar etiquets HTML
+        desc_html: Un buen lugar para tu código de conducta, reglas, directrices y otras cosas que definen tu servidor. Podés usar etiquets HTML
         title: Información extendida personalizada
       site_short_description:
         desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe qué es Mastodon y qué hace especial a este servidor en un solo párrafo.
@@ -748,6 +749,7 @@ es-AR:
       actions:
         delete_statuses: "%{name} eliminó los mensajes de %{target}"
         disable: "%{name} congeló la cuenta de %{target}"
+        mark_statuses_as_sensitive: "%{name} marcó los mensajes de %{target} como sensibles"
         none: "%{name} envió una advertencia a %{target}"
         sensitive: "%{name} marcó los medios de %{target} como sensibles"
         silence: "%{name} limitó la cuenta de %{target}"
@@ -830,6 +832,7 @@ es-AR:
       actions:
         delete_statuses: para eliminar sus mensajes
         disable: para congelar su cuenta
+        mark_statuses_as_sensitive: para marcar sus mensajes como sensibles
         none: una advertencia
         sensitive: para marcar su cuenta como sensible
         silence: para limitar su cuenta
@@ -932,8 +935,10 @@ es-AR:
     status:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
+      functional: Tu cuenta está totalmente operativa.
       pending: Tu solicitud está pendiente de revisión por nuestra administración. Eso puede tardar algún tiempo. Si se aprueba tu solicitud, vas a recibir un correo electrónico.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
+      view_strikes: Ver incumplimientos pasados contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, probá de nuevo.
     trouble_logging_in: '¿Tenés problemas para iniciar sesión?'
     use_security_key: Usar la llave de seguridad
@@ -1009,6 +1014,7 @@ es-AR:
         submit: Enviar apelación
       associated_report: Denuncia asociada
       created_at: Con fecha
+      description_html: Estas son acciones tomadas contra tu cuenta y las advertencias que te han sido enviadas por el equipo de %{instance}.
       recipient: Dirigida a
       status: 'Mensaje #%{id}'
       status_removed: Mensaje ya eliminado del sistema
@@ -1016,7 +1022,9 @@ es-AR:
       title_actions:
         delete_statuses: Eliminación de mensaje
         disable: Congelación de cuenta
+        mark_statuses_as_sensitive: Marcado de mensajes como sensibles
         none: Advertencia
+        sensitive: Marcado de cuenta como sensible
         silence: Limitación de cuenta
         suspend: Suspensión de cuenta
       your_appeal_approved: Se aprobó tu apelación
@@ -1614,22 +1622,29 @@ es-AR:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad
       explanation:
+        delete_statuses: Algunos de tus mensajes se encontraron violando una o más directrices de la comunidad y fueron eliminados posteriormente por los moderadores de %{instance}.
         disable: Ya no podés usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Podés solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta, o eliminarla.
+        mark_statuses_as_sensitive: Algunos de tus mensajes fueron marcados como sensibles por los moderadores de %{instance}. Esto significa que la gente tendrá que hacer clic o darle un toque a los medios en los mensajes antes de que se muestre una vista previa. Podés marcar los medios como sensibles vos mismo cuando publiqués en el futuro.
         sensitive: A partir de ahora, todos tus archivos subidos serán marcados como sensibles y ocultos tras una advertencia en la que habrá que hacer clic.
         silence: Todavía podés usar tu cuenta, pero sólo las personas que te están siguiendo verán tus publicaciones en este servidor, y podrías ser excluido de varias funciones de descubrimiento. Sin embargo, otras cuentas podrán seguirte manualmente.
         suspend: Ya no podés usar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía podés iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquivés la suspensión.
       get_in_touch: Si crees que esto es un error, podés responder a este correo electrónico para ponerte en contacto con el equipo de %{instance}.
       reason: 'Motivo:'
+      statuses: 'Mensajes citados:'
       subject:
         delete_statuses: Se eliminaron tus mensajes en %{acct}
         disable: Tu cuenta %{acct} fue congelada
+        mark_statuses_as_sensitive: Tus mensajes en %{acct} fueron marcados como sensibles
         none: Advertencia para %{acct}
+        sensitive: Tus mensajes en %{acct} se marcarán como sensibles a partir de ahora
         silence: Tu cuenta %{acct} fue limitada
         suspend: Tu cuenta %{acct} fue suspendida
       title:
         delete_statuses: Mensajes eliminados
         disable: Cuenta congelada
+        mark_statuses_as_sensitive: Mensajes marcados como sensibles
         none: Advertencia
+        sensitive: Cuenta marcada como sensible
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:
