@@ -5,9 +5,9 @@
 
 %hr.spacer/
 
-.announcements-list
+.applications-list
   - @applications.each do |application|
-    .announcements-list__item
+    .applications-list__item
       - if application.website.present?
         = link_to application.name, application.website, target: '_blank', rel: 'noopener noreferrer', class: 'announcements-list__item__title'
       - else
