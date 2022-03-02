@@ -765,6 +765,7 @@ zh-TW:
       links:
         allow: 允許連結
         allow_provider: 允許發行者
+        description_html: 這些連結是正在被您伺服器上看到該嘟文之帳號大量分享。這些連結可以幫助您的使用者探索現在世界上正在發生的事情。除非您核准該發佈者，連結將不被公開展示。您也可以核准或駁回個別連結。
         disallow: 不允許連結
         disallow_provider: 不允許發行者
         shared_by_over_week:
@@ -776,14 +777,17 @@ zh-TW:
       pending_review: 等待審核中
       preview_card_providers:
         allowed: 此發行者之連結能登上熱門
+        description_html: 這些網域來自被您伺服器常被分享的連結。除非您核准該連結，則這些連結將不會成為公開熱門標籤。您的核准或駁回將對子網域仍有效。
         rejected: 此發行者之連結不會登上熱門
         title: 發行者
       rejected: 被拒絕
       statuses:
         allow: 允許嘟文
         allow_account: 允許作者
+        description_html: 這些是您伺服器上已知被正在大量分享及加入最愛之嘟文。這些嘟文能幫助您伺服器上舊雨新知發現更多帳號來跟隨。除非您核准該作者且作者允許他們的帳號被推薦至其他人，嘟文將不被公開展示。您可以核准或駁回個別嘟文。
         disallow: 不允許嘟文
         disallow_account: 不允許作者
+        not_discoverable: 嘟文作者選擇不被發現
         shared_by:
           other: 分享過或／及收藏過 %{friendly_count} 次
         title: 熱門嘟文
