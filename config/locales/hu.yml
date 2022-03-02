@@ -1014,6 +1014,7 @@ hu:
         submit: Fellebbezés beküldése
       associated_report: Társított bejelentés
       created_at: Dátum
+      description_html: Ezek a fiókod ellen elvégzett műveletek és figyelmeztetések, melyeket a %{instance} szerver csapata küldött.
       recipient: Címzett
       status: 'Bejegyzés #%{id}'
       status_removed: A bejegyzést már eltávolítottuk a rendszerből
@@ -1622,7 +1623,9 @@ hu:
         spam: Kéretlen üzenet
         violation: A tartalom megsérti a következő közösségi irányelveket
       explanation:
+        delete_statuses: Néhány bejegyzésedről úgy találták, hogy megsértenek egy vagy több közösségi irányelvet, így ezeket a %{instance} moderátorai eltávolították.
         disable: Nem használhatod tovább a fiókodat, bár a profil- és egyéb adataid érintetlenül maradnak. Kérhetsz mentést az adataidról, megváltoztathatod a beállításaidat vagy törölheted a fiókodat.
+        mark_statuses_as_sensitive: Néhány bejegyzésedet a %{instance} moderátorai érzékenynek jelölték. Ez azt jelenti, hogy az embereknek először rá kell nyomni a bejegyzés médiatartalmára, mielőtt egy előnézet megjelenne. A jövőben te is megjelölheted bejegyzés írása közben a médiatartalmat érzékenyként.
         sensitive: Mostantól minden feltöltött médiaállományodat érzékeny tartalomként jelölünk meg és kattintásos figyelmeztetés mögé rejtjük.
         silence: A fiókodat most is használhatod, de ezen a kiszolgálón csak olyanok láthatják a bejegyzéseidet, akik már eddig is a követőid voltak, valamint kihagyunk különböző felfedezésre használható funkciókból. Ettől még mások továbbra is manuálisan be tudnak követni.
         suspend: Többé nem használhatod a fiókodat, a profilod és más adataid többé nem elérhetőek. Még be tudsz jelentkezni, hogy mentést kérj az adataidról addig, amíg kb. 30 nap múlva teljesen le nem töröljük őket. Néhány alapadatot megtartunk, hogy el tudjuk kerülni, hogy megkerüld a felfüggesztést.
@@ -1640,7 +1643,9 @@ hu:
       title:
         delete_statuses: Bejegyzések törölve
         disable: Befagyasztott fiók
+        mark_statuses_as_sensitive: Bejegyzések érzékenynek jelölve
         none: Figyelem
+        sensitive: Fiók érzékenynek jelölve
         silence: Lekorlátozott fiók
         suspend: Felfüggesztett fiók
     welcome:
