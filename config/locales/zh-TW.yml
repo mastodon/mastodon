@@ -574,7 +574,7 @@ zh-TW:
       action_taken_by: 操作執行者
       actions:
         delete_description_html: 被檢舉的嘟文將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
-        mark_as_sensitive_description_html: 被檢舉的貼文中的媒體將會被標記為敏感，並將會記錄一次警告，以協助您升級同一帳號未來的違規行為。
+        mark_as_sensitive_description_html: 被檢舉的嘟文中的媒體將會被標記為敏感，並將會記錄一次警告，以協助您升級同一帳號未來的違規行為。
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
         silence_description_html: 個人頁面僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。
@@ -739,7 +739,7 @@ zh-TW:
       actions:
         delete_statuses: "%{name} 刪除了 %{target} 的貼文"
         disable: "%{name} 凍結了 %{target} 的帳號"
-        mark_statuses_as_sensitive: "%{name} 將 %{target} 的貼文標記為敏感內容"
+        mark_statuses_as_sensitive: "%{name} 將 %{target} 的嘟文標記為敏感內容"
         none: "%{name} 已對 %{target} 送出警告"
         sensitive: "%{name} 將 %{target} 的帳號標記為含有敏感內容"
         silence: "%{name} 限制了 %{target} 的帳號"
@@ -821,7 +821,7 @@ zh-TW:
       actions:
         delete_statuses: 要刪除他們的嘟文
         disable: 要凍結他們的帳號
-        mark_statuses_as_sensitive: 要將他們的貼文標記為含有敏感內容
+        mark_statuses_as_sensitive: 要將他們的嘟文標記為含有敏感內容
         none: 警告
         sensitive: 要將他們的帳號標記為含有敏感內容
         silence: 要限制他們的帳號
@@ -924,7 +924,7 @@ zh-TW:
     status:
       account_status: 帳戶狀態
       confirming: 等待電子郵件確認完成。
-      functional: 您的帳戶可以正常使用了。
+      functional: 您的帳號可以正常使用了。
       pending: 管管們正在處理您的申請，這可能需要一點時間處理。我們將在申請通過後以電子郵件方式通知您。
       redirecting_to: 您的帳戶因目前重新導向至 %{acct} 而被停用。
       view_strikes: 檢視針對您帳號過去的警示
@@ -1003,7 +1003,7 @@ zh-TW:
         submit: 遞交申訴
       associated_report: 相關報告
       created_at: 過時的
-      description_html: 這些是 %{instance} 的工作人員向您發送的針對您的帳號採取的措施與警告。
+      description_html: 這些是 %{instance} 的管理員向您發送的針對您的帳號採取的措施與警告。
       recipient: 此致
       status: '嘟文編號 #%{id}'
       status_removed: 嘟文已從系統中移除
@@ -1011,7 +1011,7 @@ zh-TW:
       title_actions:
         delete_statuses: 嘟文移除
         disable: 凍結帳號
-        mark_statuses_as_sensitive: 將貼文標記為敏感
+        mark_statuses_as_sensitive: 將嘟文標記為敏感
         none: 警告
         sensitive: 將帳號標記為敏感
         silence: 帳號限制
@@ -1600,27 +1600,27 @@ zh-TW:
         spam: 垃圾訊息
         violation: 該內容違反以下社群規章
       explanation:
-        delete_statuses: 您的某些貼文被發現違反了一項或多項社群準則，隨後已被 %{instance} 的管理員刪除。
+        delete_statuses: 您的某些嘟文被發現違反了一項或多項社群準則，隨後已被 %{instance} 的管理員刪除。
         disable: 您無法繼續使用您的帳號，但您的個人頁面及其他資料內容保持不變。您可以要求一份您的資料備份，帳號異動設定，或是刪除帳號。
-        mark_statuses_as_sensitive: 您的部份貼文已被 %{instance} 的管理員標記為敏感。這代表了人們必須在顯示預覽前點擊貼文中的媒體。您可以在將來貼文時自己將媒體標記為敏感。
+        mark_statuses_as_sensitive: 您的部份嘟文已被 %{instance} 的管理員標記為敏感。這代表了人們必須在顯示預覽前點擊嘟文中的媒體。您可以在將來嘟文時自己將媒體標記為敏感。
         sensitive: 由此刻起，您所有上傳的媒體檔案將被標記為敏感內容，並且隱藏於點擊警告之後。
         silence: 您仍然可以使用您的帳號，但僅有已追蹤您的人才能看到您在此伺服器的貼文，您也可能會從各式探索功能中被排除。但其他人仍可手動追蹤您。
         suspend: 您將不能使用您的帳號，您的個人資料頁面及其他資料將不再能被存取。您仍可於約 30 日內資料被完全刪除前要求下載你的資料，但我們仍會保留一部份基本資料，以防止有人規避停權處罰。
       get_in_touch: 如果您認為這是個錯誤，您可回復這封 e-mail 來連繫 %{instance} 的管理員。
       reason: '原因：'
-      statuses: '引用的貼文：'
+      statuses: '引用的嘟文：'
       subject:
         delete_statuses: 您於 %{acct} 之嘟文已被移除
         disable: 您的帳號 %{acct} 已被凍結
-        mark_statuses_as_sensitive: 您在 %{acct} 上的貼文已被標記為敏感
+        mark_statuses_as_sensitive: 您在 %{acct} 上的嘟文已被標記為敏感
         none: 對 %{acct} 的警告
-        sensitive: 從現在開始，您在 %{acct} 上的貼文將會被標記為敏感
+        sensitive: 從現在開始，您在 %{acct} 上的嘟文將會被標記為敏感
         silence: 您的帳號 %{acct} 已被限制
         suspend: 您的帳號 %{acct} 已被停權
       title:
         delete_statuses: 嘟文已移除
         disable: 帳號已被涷結
-        mark_statuses_as_sensitive: 貼文已標記為敏感內容
+        mark_statuses_as_sensitive: 嘟文已標記為敏感內容
         none: 警告
         sensitive: 帳號已標記為敏感內容
         silence: 帳號已被限制
