@@ -832,6 +832,7 @@ hu:
       actions:
         delete_statuses: bejegyzések törléséről
         disable: fiók befagyasztásáról
+        mark_statuses_as_sensitive: bejegyzések érzékenynek jelöléséről
         none: figyelmeztetésről
         sensitive: fiók érzékenynek jelöléséről
         silence: fiók korlátozásáról
@@ -934,8 +935,10 @@ hu:
     status:
       account_status: Fiók állapota
       confirming: Várakozás az e-mailes visszaigazolásra.
+      functional: A fiókod teljesen működőképes.
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha a kérelmedet jóváhagyták.
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
+      view_strikes: Előző, fiókod elleni vétségek megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     trouble_logging_in: Problémád van a bejelentkezéssel?
     use_security_key: Biztonsági kulcs használata
@@ -1018,7 +1021,9 @@ hu:
       title_actions:
         delete_statuses: Bejegyzés eltávolítása
         disable: Fiók befagyasztása
+        mark_statuses_as_sensitive: Bejegyzések érzékenynek jelölése
         none: Figyelmeztetés
+        sensitive: Fiók érzékenynek jelölése
         silence: Fiók korlátozása
         suspend: Fiók felfüggesztése
       your_appeal_approved: A fellebbezésedet jóváhagyták
@@ -1390,6 +1395,7 @@ hu:
     profile: Profil
     relationships: Követések és követők
     statuses_cleanup: Bejegyzések automatikus törlése
+    strikes: Moderáció alapú vétségek
     two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
   statuses:
@@ -1622,10 +1628,13 @@ hu:
         suspend: Többé nem használhatod a fiókodat, a profilod és más adataid többé nem elérhetőek. Még be tudsz jelentkezni, hogy mentést kérj az adataidról addig, amíg kb. 30 nap múlva teljesen le nem töröljük őket. Néhány alapadatot megtartunk, hogy el tudjuk kerülni, hogy megkerüld a felfüggesztést.
       get_in_touch: Ha azt gondolod, hogy ez egy hiba, akkor válaszolj erre az e-mail-re, hogy kapcsolatba léphess a %{instance} kiszolgáló üzemeltetőivel.
       reason: 'Indok:'
+      statuses: 'Bejegyzések idézve:'
       subject:
         delete_statuses: A(z) %{acct} fiók bejegyzései eltávolításra kerültek
         disable: A fiókodat %{acct} befagyasztották
+        mark_statuses_as_sensitive: Bejegyzéseidet a %{acct} szerveren érzékenyek jelölték
         none: Figyelmeztetés a %{acct} fióknak
+        sensitive: Bejegyzéseidet a %{acct} szerveren mostantól érzékenynek jelöljük
         silence: A fiókodat %{acct} korlátozták
         suspend: A fiókodat %{acct} felfüggesztették
       title:
