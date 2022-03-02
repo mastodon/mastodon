@@ -806,8 +806,10 @@ lv:
       statuses:
         allow: Atļaut publicēt
         allow_account: Atļaut autoru
+        description_html: Šīs ir ziņas, par kurām tavs serveris zina un kuras pašlaik tiek koplietotas un pašlaik ir daudz izlasē. Tas var palīdzēt taviem jaunajiem un atkārtotiem lietotājiem atrast vairāk cilvēku, kam sekot. Neviena ziņa netiek publiski rādīta, kamēr neesi apstiprinājis autoru un autors atļauj savu kontu ieteikt citiem. Vari arī atļaut vai noraidīt atsevišķas ziņas.
         disallow: Neatļaut publicēt
         disallow_account: Neatļaut autoru
+        not_discoverable: Autors nav izvēlējies būt atklājams
         shared_by:
           zero: '%{friendly_count} reižu kopīgots vai pievienots izlasei'
           one: Vienreiz kopīgots vai pievienots izlasei
@@ -821,6 +823,7 @@ lv:
           tag_servers_dimension: Populārākie serveri
           tag_servers_measure: dažādi serveri
           tag_uses_measure: lietojumi pavisam
+        description_html: Šīs ir atsauces, kas pašlaik tiek rādītas daudzās ziņās, kuras redz tavs serveris. Tas var palīdzēt taviem lietotājiem uzzināt, par ko cilvēki šobrīd runā visvairāk. Neviena atsauce netiek rādīta publiski, kamēr tu neesi tās apstiprinājis.
         listable: Var tikt ieteikts
         not_listable: Nevar tikt ieteikts
         not_trendable: Neparādīsies pie tendencēm
@@ -1660,6 +1663,7 @@ lv:
         spam: Spams
         violation: Saturs pārkāpj šādas kopienas pamatnostādnes
       explanation:
+        delete_statuses: Tika konstatēts, ka dažas no tavām ziņām pārkāpj vienu vai vairākas kopienas vadlīnijas, un rezultātā %{instance} moderatori tās noņēma.
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
         mark_statuses_as_sensitive: '%{instance} moderatori dažas no tavām ziņām ir atzīmējušas kā sensitīvas. Tas nozīmē, ka cilvēkiem būs jāpieskaras ziņās esošajiem medijiem, pirms tiek parādīts priekšskatījums. Tu arī pats vari atzīmēt mediju kā sensitīvu, kad tādu publicēsi turpmāk.'
         sensitive: No šī brīža visi augšupielādētie mediju faili tiks atzīmēti kā sensitīvi un paslēpti aiz klikšķa brīdinājuma.
