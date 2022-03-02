@@ -776,6 +776,7 @@ de:
       links:
         allow: Erlaube Link
         allow_provider: Erlaube Herausgeber
+        description_html: Dies sind Links, die derzeit von Konten geteilt werden, von denen dein Server Beiträge sieht. Es kann deinen Benutzern helfen, herauszufinden, was in der Welt vor sich geht. Es werden keine Links öffentlich angezeigt, bis du den Publisher genehmigst. Du kannst auch einzelne Links zulassen oder ablehnen.
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
         shared_by_over_week:
@@ -787,14 +788,17 @@ de:
       pending_review: Überprüfung ausstehend
       preview_card_providers:
         allowed: Links von diesem Herausgeber können angesagt sein
+        description_html: Dies sind Domains, von denen Links oft auf deinem Server geteilt werden. Links werden sich nicht öffentlich trenden, es sei denn, die Domain des Links wird genehmigt. Deine Zustimmung (oder Ablehnung) erstreckt sich auf Subdomains.
         rejected: Links von diesem Herausgeber können nicht angesagt sein
         title: Herausgeber
       rejected: Abgelehnt
       statuses:
         allow: Beitrag erlauben
         allow_account: Autor erlauben
+        description_html: Dies sind Beiträge, von denen dein Server weiß, dass sie derzeit viel geteilt und favorisiert werden. Es kann deinen neuen und wiederkehrenden Benutzern helfen, weitere Personen zu finden. Es werden keine Beiträge öffentlich angezeigt, bis du den Autor genehmigst und der Autor es zulässt deren Konto anderen Benutzern zu zeigen. Du kannst auch einzelne Beiträge zulassen oder ablehnen.
         disallow: Beitrag verbieten
         disallow_account: Autor verbieten
+        not_discoverable: Der Autor hat sich nicht dafür entschieden, entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
           other: '%{friendly_count} mal geteilt oder favorisiert'
@@ -807,6 +811,7 @@ de:
           tag_servers_dimension: Top Server
           tag_servers_measure: verschiedene Server
           tag_uses_measure: Gesamtnutzungen
+        description_html: Dies sind Hashtags, die derzeit in vielen Beiträgen erscheinen, die dein Server sieht. Es kann deinen Benutzern helfen, herauszufinden, worüber die Menschen im Moment am meisten reden. Es werden keine Hashtags öffentlich angezeigt, bis du sie genehmigst.
         listable: Kann vorgeschlagen werden
         not_listable: Wird nicht vorgeschlagen
         not_trendable: Wird nicht unter Trends angezeigt
