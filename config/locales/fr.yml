@@ -585,6 +585,7 @@ fr:
       action_taken_by: Intervention de
       actions:
         delete_description_html: Les messages signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
+        mark_as_sensitive_description_html: Les médias des messages signalés seront marqués comme sensibles et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
         silence_description_html: Le profil ne sera visible que pour ceux qui le suivent déjà ou le consultent manuellement, ce qui limite considérablement sa portée. Peut toujours être restauré.
@@ -605,6 +606,7 @@ fr:
       forwarded: Transféré
       forwarded_to: Transféré à %{domain}
       mark_as_resolved: Marquer comme résolu
+      mark_as_sensitive: Marquer comme sensible
       mark_as_unresolved: Marquer comme non-résolu
       no_one_assigned: Personne
       notes:
@@ -748,6 +750,7 @@ fr:
       actions:
         delete_statuses: "%{name} a supprimé les messages de %{target}"
         disable: "%{name} a gelé le compte de %{target}"
+        mark_statuses_as_sensitive: "%{name} a marqué le message de %{target} comme sensible"
         none: "%{name} a envoyé un avertissement à %{target}"
         sensitive: "%{name} a marqué le compte de %{target} comme sensible"
         silence: "%{name} a limité le compte de %{target}"
@@ -830,6 +833,7 @@ fr:
       actions:
         delete_statuses: effacer les messages
         disable: geler le compte
+        mark_statuses_as_sensitive: marquer les messages comme sensibles
         none: un avertissement
         sensitive: marquer le compte comme sensible
         silence: limiter le compte
@@ -932,8 +936,10 @@ fr:
     status:
       account_status: État du compte
       confirming: En attente de la confirmation par courriel à compléter.
+      functional: Votre compte est entièrement opérationnel.
       pending: Votre demande est en attente d'examen par notre personnel. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
+      view_strikes: Voir les sanctions précédemment appliquées à votre compte
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     trouble_logging_in: Vous avez un problème pour vous connecter ?
     use_security_key: Utiliser la clé de sécurité
@@ -1008,6 +1014,7 @@ fr:
         submit: Faire appel
       associated_report: Rapport associé
       created_at: En date du
+      description_html: Ce sont les mesures prises contre votre compte et les avertissements qui vous ont été envoyés par les responsables de %{instance}.
       recipient: Adressé à
       status: 'Message #%{id}'
       status_removed: Message déjà supprimé du système
@@ -1015,7 +1022,9 @@ fr:
       title_actions:
         delete_statuses: Suppression de message
         disable: Gel du compte
+        mark_statuses_as_sensitive: Marquage des messages comme sensibles
         none: Avertissement
+        sensitive: Marquage du compte comme sensible
         silence: Limitation du compte
         suspend: Suspension de compte
       your_appeal_approved: Votre appel a été approuvé
@@ -1387,6 +1396,7 @@ fr:
     profile: Profil
     relationships: Abonnements et abonné·e·s
     statuses_cleanup: Suppression automatique de messages
+    strikes: Sanctions de modération
     two_factor_authentication: Identification à deux facteurs
     webauthn_authentication: Clés de sécurité
   statuses:
@@ -1619,10 +1629,13 @@ fr:
         suspend: Vous ne pouvez plus utiliser votre compte, votre profil et vos autres données ne sont plus accessibles. Vous pouvez toujours vous connecter pour demander une sauvegarde de vos données jusqu'à leur suppression complète dans environ 30 jours, mais nous conserverons certaines données de base pour vous empêcher d'échapper à la suspension.
       get_in_touch: Si vous pensez qu’il s'agit d’une erreur, vous pouvez répondre à ce courriel pour entrer en contact avec l’équipe de %{instance}.
       reason: 'Motif :'
+      statuses: 'Messages cités :'
       subject:
         delete_statuses: Vos messages sur %{acct} ont été supprimés
         disable: Votre compte %{acct} a été gelé
+        mark_statuses_as_sensitive: Vos messages sur %{acct} ont été marqués comme sensibles
         none: Avertissement pour %{acct}
+        sensitive: Vos messages sur %{acct} seront désormais marqués comme sensibles
         silence: Votre compte %{acct} a été limité
         suspend: Votre compte %{acct} a été suspendu
       title:
