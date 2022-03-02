@@ -584,6 +584,7 @@ kmr:
       action_taken_by: Çalakî hate kirin ji aliyê
       actions:
         delete_description_html: Şandiyên hatine ragihandin wê werin jêbirin û were tomarkirin da ku ji te re bibe alîkar ku tu ji hêla heman ajimêrê ve binpêkirinên pêşerojê bêtir bikî.
+        mark_as_sensitive_description_html: Şandiyên hatine ragihandin wê werin nîşandan wekî hestyar û were tomarkirin da ku ji te re bibe alîkar ku tu ji hêla heman ajimêrê ve binpêkirinên pêşerojê bêtir bikî.
         other_description_html: Bêtir vebijêrkên ji bo kontrolkirina tevgera ajimêrê bibîne û pêwendiyê li ser ajimêra ragihandî kesane bike.
         resolve_description_html: Li hemberî ajimêra hatiye ragihandin wê tiştek pêk neyê, binpêkirin nayên tomarkirin û ragihandin wê were girtin.
         silence_description_html: Wê profîl tenê ji kesên ku berê te dişopînin an ji bi destan lê serî lê didin re xuya bibe, gihandina wê bi tundî sînordar dike. Her gav dikare were vegerandin.
@@ -604,6 +605,7 @@ kmr:
       forwarded: Beralîkirî
       forwarded_to: Beralîkirî bo %{domain}
       mark_as_resolved: Wekî çareserkirî nîşan bide
+      mark_as_sensitive: Wekî hestiyar nîşan bide
       mark_as_unresolved: Wekî neçareserkirî nîşan bide
       no_one_assigned: Ne yek
       notes:
@@ -747,6 +749,7 @@ kmr:
       actions:
         delete_statuses: "%{name} şandiyên %{target} jêbirin"
         disable: "%{name} ajimêr %{target} cemidand"
+        mark_statuses_as_sensitive: "%{name} medyayê %{target} wekî hestiyar nîşan kir"
         none: "%{name} ji bo %{target} hişyariyek şand"
         sensitive: "%{name} ajimêrê %{target} wekî hestiyarî nîşan kir"
         silence: "%{name} ajimêra %{target} bi sînor kir"
@@ -829,6 +832,7 @@ kmr:
       actions:
         delete_statuses: ku şandiyên wan jê bibî
         disable: ku ajimêrê wan bicemidînî
+        mark_statuses_as_sensitive: ku şandiyê wan wekî hestyar nîşan bikî
         none: hişyariyek
         sensitive: ku ajimêrê wan wekî hestyar nîşan bikî
         silence: ku ajimêrê wan sînordar bikî
@@ -1018,7 +1022,9 @@ kmr:
       title_actions:
         delete_statuses: Jêbirina şandiyê
         disable: Cemdandina ajimêrê
+        mark_statuses_as_sensitive: Nîşankirina şandiyan wekî hestyar
         none: Hişyarî
+        sensitive: Nîşankirina ajimêran wekî hestyar
         silence: Sînorkirina ajimêrê
         suspend: Rawestandina ajimêrê
       your_appeal_approved: Îtîraza te hate pejirandin
@@ -1617,22 +1623,29 @@ kmr:
         spam: Nexwestî (Spam)
         violation: Naverok rêbazên civakê yên jêrîn binpê dike
       explanation:
+        delete_statuses: Hate dîtin ku hinek şandiyên te yek an jî çend rêwerzên civatê binpê dikin û dû re ji hêla çavdêrên %{instance} ve hatine rakirin.
         disable: Tu êdî nikarî ajimêra xwe bi kar bînî, lê profîla te û daneyên din bê ziyan dimînin. Tu dikarî ji daneyên xwe hilanînê bixwazî, sazkariyên ajimêrê biguherîmî an jî ajimêrê xwe jê bibî.
+        mark_statuses_as_sensitive: Hinek şandiyên te ji hêla çavdêrên %{instance} ve wekî hestyar hatine nîşankirin. Ev tê vê wateyê ku berî ku pêşdîtinek were xuyang kirin pêdivî ye ku mirov di nav şandiyan de bitikînî. Dema ku di pêşerojê de bişînî tu dikarî medyayê wekî xwe hestyar nîşan bikî.
         sensitive: Ji niha û pê ve, hemû pelên te yên medyayê yên hatine barkirin wê li piştî hişyariyek wekî hestyar û veşartî bêne nîşankirin.
         silence: Tu hîn jî dikarî ajimêra xwe bi kar bînî lê tenê kesên ku jixwe te dişopînin wê şandiyên te li ser vê rajekarê bibînin, û dibe ku tu ji cûrbecûr taybetmendiyên vedîtinê werî bi dûrxistin. Lêbelê, yên din hîn jî dikarin bi destan te bişopînin.
         suspend: Tu êdî nikarî têkevî ajimêra xwe, û profîla te û daneyên din êdî nayên gihîştin. Dîsa jî tu dikarî têkevî da ku hilanîna daneyên xwe daxwaz bikî heya ku dane bi tevahî werin rakirin di hundirê 30 roj de, lê em ê hin daneyan biparêzin da ku tu ji rawestandinê rizgar bikî.
       get_in_touch: Ku tu bawer dikî ev çewtiyeke, tu dikarî bersiva vê e-nameyê bidî ku bi xebatkarên %{instance} re têkevî pêwendiyê.
       reason: 'Sedem:'
+      statuses: 'Şandiyên binavkirî:'
       subject:
         delete_statuses: Şandiyên te yên li ser %{acct} hatin rakirin
         disable: Ajimêra te a %{acct} hat qerisandin
+        mark_statuses_as_sensitive: Şandiyên te yên li ser %{acct} wekî hestyar hatine nîşankirin
         none: Hişyarî bo %{acct}
+        sensitive: Şandiyên te yên li ser %{acct} wê ji niha û pê ve wekî hestyar bêne nîşankirin
         silence: Ajimêra te ya %{acct} hate bisînorkirin
         suspend: Ajimêra te %{acct} hate rawestandin
       title:
         delete_statuses: Şandî hatin rakirin
         disable: Ajimêr hate qerisandin
+        mark_statuses_as_sensitive: Şandî wekî hestyar hatine nîşankirin
         none: Hişyarî
+        sensitive: Ajimêr wekî hestyar hate nîşankirin
         silence: Ajimêr sînor kiriye
         suspend: Ajimêr hatiye rawestandin
     welcome:
