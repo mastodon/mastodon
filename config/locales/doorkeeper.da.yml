@@ -70,6 +70,12 @@ da:
       confirmations:
         revoke: Sikker?
       index:
+        authorized_at: Godkendt pr. %{date}
+        description_html: Disse er applikationer, som kan tilgå din konto vha. API'en. Er der applikationer her, som ikke genkendes eller udviser mærkelig adfærd, kan deres adgang tilbagekaldes.
+        last_used_at: Senest brugt pr. %{date}
+        never_used: Aldrig brugt
+        scopes: Tilladelser
+        superapp: Intern
         title: Dine godkendte applikationer
     errors:
       messages:
@@ -105,6 +111,15 @@ da:
       authorized_applications:
         destroy:
           notice: Applikation tilbagekaldt.
+    grouped_scopes:
+      access:
+        read: Skrivebeskyttet adgang
+        read/write: Læse- og skriveadgang
+        write: Kun skriveadgang
+      title:
+        accounts: Konti
+        admin/accounts: Kontihåndtering
+        admin/all: Alle håndteringsfunktioner
     layouts:
       admin:
         nav:
