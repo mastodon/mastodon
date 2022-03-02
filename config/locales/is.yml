@@ -749,6 +749,7 @@ is:
       actions:
         delete_statuses: "%{name} eyddi færslum frá %{target}"
         disable: "%{name} frysti aðganginn %{target}"
+        mark_statuses_as_sensitive: "%{name} merkti færslur frá %{target} sem viðkvæmar"
         none: "%{name} sendi aðvörun til %{target}"
         sensitive: "%{name} merkti efni frá %{target} sem viðkvæmt"
         silence: "%{name} takmarkaði aðganginn %{target}"
@@ -831,6 +832,7 @@ is:
       actions:
         delete_statuses: að eyða færslum viðkomandi
         disable: að frysta aðgang viðkomandi
+        mark_statuses_as_sensitive: að merkja færslur frá þeim sem viðkvæmar
         none: aðvörun
         sensitive: að merkja efni á aðgangnum sem viðkvæmt
         silence: að takmarka aðgang viðkomandi
