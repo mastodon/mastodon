@@ -59,6 +59,8 @@ gl:
       error:
         title: Algo fallou
       new:
+        prompt_html: "%{client_name} solicita permiso para acceder á túa conta. É unha aplicación de terceiros. <strong>Se non confías nela, non deberías autorizala.</strong>"
+        review_permissions: Revisar permisos
         title: Autorización necesaria
       show:
         title: Copia este código de autorización e pégao na aplicación.
@@ -68,6 +70,12 @@ gl:
       confirmations:
         revoke: Estás segura?
       index:
+        authorized_at: Autorizada o %{date}
+        description_html: Estas aplicacións poden acceder á túa conta usando a API. Se ves publicacións que non recoñeces, ou hai comportamentos non consentidos dalgunha delas, podes revogar o acceso.
+        last_used_at: Último acceso o %{date}
+        never_used: Nunca utilizado
+        scopes: Permisos
+        superapp: Interno
         title: As túas aplicacións autorizadas
     errors:
       messages:
@@ -103,6 +111,27 @@ gl:
       authorized_applications:
         destroy:
           notice: Aplicación revogada.
+    grouped_scopes:
+      access:
+        read: Acceso de só-lectura
+        read/write: Acceso de lectura e escritura
+        write: Acceso de só-escritura
+      title:
+        accounts: Contas
+        admin/accounts: Administración das contas
+        admin/all: Tódas funcións administrativas
+        admin/reports: Administración das denuncias
+        all: Todo
+        blocks: Bloqueos
+        bookmarks: Marcadores
+        conversations: Conversas
+        crypto: Cifrado E2E
+        favourites: Favoritas
+        filters: Filtros
+        follow: Relacións
+        follows: Seguimentos
+        lists: Listas
+        media: Anexos multimedia
     layouts:
       admin:
         nav:
