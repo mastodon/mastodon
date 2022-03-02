@@ -788,14 +788,17 @@ ca:
       pending_review: Revisió pendent
       preview_card_providers:
         allowed: Els enllaços d'aquest mitjà poden estar en tendència
+        description_html: Aquest son els dominis des d´els quals es comparteixen sovint enllaços en el teu servidor. Els enllaços no seran tendència pública fins que el domini del enllaç s'aprovi. La teva aprovació (o rebuig) es fa extensible als subdominis.
         rejected: Els enllaços d'aquest mitjà no poden estar en tendència
         title: Mitjans
       rejected: Rebutjat
       statuses:
         allow: Permet publicació
         allow_account: Permet autor
+        description_html: Aquestes son publicacions que el teu servidor veu i que ara mateix s'estan compartint i afavorint molt. Poden ajudar als teus nous usuaris i als que retornen a trobar més gent a qui seguir. Cap publicació es mostra publicament fins que no aprovis l'autor i l'autor permeti que el seu compte sigui sugerit a altres. També pots aceptar o rebutjar publicacions individuals.
         disallow: Rebutja publicació
         disallow_account: Rebutja autor
+        not_discoverable: L'autor no ha activat poder ser detectable
         shared_by:
           one: Compartit o afavorit una vegada
           other: Compartit i afavorit %{friendly_count} vegades
