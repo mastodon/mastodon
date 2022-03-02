@@ -584,6 +584,7 @@ gl:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: As publicacións denunciadas van ser eliminadas e gárdase un aviso para axudarche a xestionar futuras infraccións desta conta.
+        mark_as_sensitive_description_html: O multimedia das publicacións denunciadas vai ser marcado como sensible e apúntase un aviso para axudarche a facer seguimento das infraccións da mesma conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardan avisos, e a denuncia arquivada.
         silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
@@ -604,6 +605,7 @@ gl:
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resolto
+      mark_as_sensitive: Marcar como sensible
       mark_as_unresolved: Marcar como non resolto
       no_one_assigned: Ninguén
       notes:
@@ -747,6 +749,7 @@ gl:
       actions:
         delete_statuses: "%{name} eliminou as publicacións de %{target}"
         disable: "%{name} pausou a conta de %{target}"
+        mark_statuses_as_sensitive: "%{name} marcou as publicacións de %{target} como sensibles"
         none: "%{name} envioulle un aviso a %{target}"
         sensitive: "%{name} marcou a conta de %{target} como sensible"
         silence: "%{name} limitou a conta de %{target}"
@@ -829,6 +832,7 @@ gl:
       actions:
         delete_statuses: borrar as súas publicacións
         disable: pausar a súa conta
+        mark_statuses_as_sensitive: marcar as súas publicacións como sensibles
         none: un aviso
         sensitive: marcar a conta como sensible
         silence: limitar a súa conta
@@ -931,8 +935,10 @@ gl:
     status:
       account_status: Estado da conta
       confirming: Agardando a confirmación do correo enviado.
+      functional: A túa conta está completamente operativa.
       pending: A túa solicitude está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a solicitude está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
+      view_strikes: Ver avisos anteriores respecto da túa conta
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     trouble_logging_in: Problemas para acceder?
     use_security_key: Usa chave de seguridade
@@ -1008,6 +1014,7 @@ gl:
         submit: Enviar apelación
       associated_report: Denuncia asociada
       created_at: Data
+      description_html: Estas son as accións tomadas contra a túa conta e os avisos que che enviou a administración de %{instance}.
       recipient: Entregada a
       status: 'Publicación #%{id}'
       status_removed: A publicación xa foi eliminada do sistema
@@ -1015,7 +1022,9 @@ gl:
       title_actions:
         delete_statuses: Eliminación da publicación
         disable: Pausar conta
+        mark_statuses_as_sensitive: Marcar as publicacións como sensibles
         none: Aviso
+        sensitive: Marcar a conta como sensible
         silence: Limitar a conta
         suspend: Suspender a conta
       your_appeal_approved: A apelación foi aprobada
@@ -1387,6 +1396,7 @@ gl:
     profile: Perfil
     relationships: Seguindo e seguidoras
     statuses_cleanup: Borrado automático da publicación
+    strikes: Avisos da moderación
     two_factor_authentication: Validar Dobre Factor
     webauthn_authentication: Chaves de seguridade
   statuses:
@@ -1613,6 +1623,7 @@ gl:
         spam: Spam
         violation: O contido viola as seguintes normas da comunidade
       explanation:
+        delete_statuses: Algunha das túas publicacións son consideradas contrarias ás normas da comunidade e foron por tanto eliminadas pola moderación de %{instance}.
         disable: Xa non podes usar a túa conta, pero o teu perfil e outros datos permanecen intactos. Podes solicitar unha copia dos teus datos, cambiar os axustes da conta ou eliminar a túa conta.
         sensitive: A partir deste momento, tódolos ficheiros que subiches estarán marcados como sensibles e agochados tras un aviso de contido.
         silence: Aínda podes usar a túa conta pero só as persoas que te siguen poden ver as túas publicacións neste servidor, e podes que foses excluída de varios xeitos de descubrimento. Porén, aínda te poden seguir de xeito manual.
