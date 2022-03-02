@@ -585,6 +585,7 @@ it:
       action_taken_by: Azione intrapresa da
       actions:
         delete_description_html: I post segnalati saranno eliminati e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        mark_as_sensitive_description_html: I media nei post segnalati saranno segnati come sensibili e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna violazione registrata, e la segnalazione sarà chiusa.
         silence_description_html: Il profilo sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato.
@@ -605,6 +606,7 @@ it:
       forwarded: Inoltrato
       forwarded_to: Inoltrato a %{domain}
       mark_as_resolved: Segna come risolto
+      mark_as_sensitive: Segna come sensibile
       mark_as_unresolved: Segna come non risolto
       no_one_assigned: Nessuno
       notes:
@@ -748,6 +750,7 @@ it:
       actions:
         delete_statuses: "%{name} ha eliminato i post di %{target}"
         disable: "%{name} ha congelato l'account di %{target}"
+        mark_statuses_as_sensitive: "%{name} ha segnato il media di %{target} come sensibile"
         none: "%{name} ha inviato un avviso a %{target}"
         sensitive: "%{name} ha contrassegnato l'account di %{target} come sensibile"
         silence: "%{name} ha limitato l'account di %{target}"
@@ -830,6 +833,7 @@ it:
       actions:
         delete_statuses: per cancellare i loro post
         disable: per congelare il loro account
+        mark_statuses_as_sensitive: per contrassegnare i loro post come sensibili
         none: avviso
         sensitive: per contrassegnare il loro account come sensibile
         silence: per limitare il loro account
@@ -1019,7 +1023,9 @@ it:
       title_actions:
         delete_statuses: Eliminazione del post
         disable: Congelamento dell'account
+        mark_statuses_as_sensitive: Marcatura dei post come sensibili
         none: Avviso
+        sensitive: Marcatura dell'account come sensibile
         silence: Limitazione dell'account
         suspend: Sospensione dell'account
       your_appeal_approved: Il tuo appello è stato approvato
@@ -1621,22 +1627,29 @@ it:
         spam: Spam
         violation: Il contenuto viola le seguenti linee guida della comunità
       explanation:
+        delete_statuses: Alcuni dei tuoi post sono stati riconosciuti in violazione di una o più linee guida della comunità e sono stati successivamente rimossi dai moderatori di %{instance}.
         disable: Non puoi più utilizzare il tuo account, ma il tuo profilo e gli altri dati rimangono intatti. Puoi richiedere un backup dei tuoi dati, modificare le impostazioni dell'account o eliminare il tuo account.
+        mark_statuses_as_sensitive: Alcuni dei tuoi post sono stati contrassegnati come sensibili dai moderatori di %{instance}. Ciò significa che le persone dovranno toccare i media nei post prima che venga visualizzata un'anteprima. Puoi contrassegnare tu i media come sensibili quando ne pubblicherai in futuro.
         sensitive: D'ora in poi, tutti i file multimediali che hai caricato saranno contrassegnati come sensibili e nascosti dietro un avviso click-through.
         silence: Puoi ancora utilizzare il tuo account, ma solo le persone che già ti seguono possono vedere i tuoi post su questo server, e potresti essere escluso da varie funzionalità di ricerca. Gli altri utenti possono comunque seguirti manualmente.
         suspend: Non puoi più utilizzare il tuo account, e il tuo profilo e gli altri dati non sono più accessibili. Puoi ancora effettuare il login per richiedere un backup dei dati fino a quando i dati non saranno completamente cancellati nei prossimi 30 giorni, ma conserveremo alcuni dati di base per impedirti di eludere la sospensione.
       get_in_touch: Se credi che questo sia un errore, puoi rispondere a questa e-mail per metterti in contatto con lo staff di %{instance}.
       reason: 'Motivo:'
+      statuses: 'Post citati:'
       subject:
         delete_statuses: I tuoi post su %{acct} sono stati eliminati
         disable: Il tuo account %{acct} è stato congelato
+        mark_statuses_as_sensitive: I tuoi post su %{acct} sono stati contrassegnati come sensibili
         none: Avviso per %{acct}
+        sensitive: I tuoi post su %{acct} d'ora in poi saranno contrassegnati come sensibili
         silence: Il tuo account %{acct} è stato limitato
         suspend: Il tuo account %{acct} è stato sospeso
       title:
         delete_statuses: Post eliminati
         disable: Account congelato
+        mark_statuses_as_sensitive: Post contrassegnati come sensibili
         none: Avviso
+        sensitive: Account contrassegnato come sensibile
         silence: Account limitato
         suspend: Account sospeso
     welcome:
