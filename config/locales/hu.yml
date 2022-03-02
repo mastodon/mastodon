@@ -161,10 +161,10 @@ hu:
       not_subscribed: Nincs feliratkozás
       pending: Engedélyezés alatt
       perform_full_suspension: Felfüggesztés
-      previous_strikes: Korábbi vétségek
+      previous_strikes: Korábbi szankciók
       previous_strikes_description_html:
-        one: Ennek a fióknak <strong>egy</strong> vétsége van.
-        other: Ennek a fióknak <strong>%{count}</strong> vétsége van.
+        one: Ezt a fiókot <strong>egyszer</strong> szankcionálták.
+        other: Ezt a fiókot <strong>%{count}</strong> esetben szankcionálták.
         zero: Ez a fiók <strong>makulátlan</strong>.
       promote: Előléptetés
       protocol: Protokoll
@@ -207,7 +207,7 @@ hu:
       silence: Némítás
       silenced: Némított
       statuses: Bejegyzés
-      strikes: Korábbi kihágások
+      strikes: Korábbi szankciók
       subscribe: Feliratkozás
       suspend: Felfüggesztés
       suspended: Felfüggesztett
@@ -585,6 +585,7 @@ hu:
       action_taken_by: 'Kezelte:'
       actions:
         delete_description_html: A bejelentett bejegyzéseket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsünk a későbbi eszkalációban ugyanennél a fióknál.
+        mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy szankciót, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetében.
         other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
         resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel vétséget, és bezárjuk a bejelentést.
         silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézileg megkeresik, rendkívül korlátozva az elérését. Ez mindig visszafordítható.
@@ -938,7 +939,7 @@ hu:
       functional: A fiókod teljesen működőképes.
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha a kérelmedet jóváhagyták.
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
-      view_strikes: Előző, fiókod elleni vétségek megtekintése
+      view_strikes: Fiókod elleni korábbi szankciók megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     trouble_logging_in: Problémád van a bejelentkezéssel?
     use_security_key: Biztonsági kulcs használata
@@ -1006,7 +1007,7 @@ hu:
     strikes:
       action_taken: Intézkedés
       appeal: Fellebbezés
-      appeal_approved: Ezt a vétséget eredményesen fellebbezték, így már nem érvényes
+      appeal_approved: Ezt a szankciót eredményesen fellebbezték, így már nem érvényes
       appeal_rejected: A fellebbezést visszautasították
       appeal_submitted_at: Fellebbezés beküldve
       appealed_msg: A fellebbezésedet beküldtük. Ha jóváhagyták, értesítünk.
@@ -1396,7 +1397,7 @@ hu:
     profile: Profil
     relationships: Követések és követők
     statuses_cleanup: Bejegyzések automatikus törlése
-    strikes: Moderáció alapú vétségek
+    strikes: Moderációs szankciók
     two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
   statuses:
