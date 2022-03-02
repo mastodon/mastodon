@@ -574,6 +574,7 @@ zh-TW:
       action_taken_by: 操作執行者
       actions:
         delete_description_html: 被檢舉的嘟文將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
+        mark_as_sensitive_description_html: 被檢舉的貼文中的媒體將會被標記為敏感，並將會記錄一次警告，以協助您升級同一帳號未來的違規行為。
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
         silence_description_html: 個人頁面僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。
@@ -594,6 +595,7 @@ zh-TW:
       forwarded: 已轉寄
       forwarded_to: 轉寄到 %{domain}
       mark_as_resolved: 標記為「已解決」
+      mark_as_sensitive: 標記為敏感內容
       mark_as_unresolved: 標記為「未解決」
       no_one_assigned: 沒有人
       notes:
@@ -737,6 +739,7 @@ zh-TW:
       actions:
         delete_statuses: "%{name} 刪除了 %{target} 的貼文"
         disable: "%{name} 凍結了 %{target} 的帳號"
+        mark_statuses_as_sensitive: "%{name} 將 %{target} 的貼文標記為敏感內容"
         none: "%{name} 已對 %{target} 送出警告"
         sensitive: "%{name} 將 %{target} 的帳號標記為含有敏感內容"
         silence: "%{name} 限制了 %{target} 的帳號"
@@ -818,6 +821,7 @@ zh-TW:
       actions:
         delete_statuses: 要刪除他們的嘟文
         disable: 要凍結他們的帳號
+        mark_statuses_as_sensitive: 要將他們的貼文標記為含有敏感內容
         none: 警告
         sensitive: 要將他們的帳號標記為含有敏感內容
         silence: 要限制他們的帳號
@@ -920,8 +924,10 @@ zh-TW:
     status:
       account_status: 帳戶狀態
       confirming: 等待電子郵件確認完成。
+      functional: 您的帳戶可以正常使用了。
       pending: 管管們正在處理您的申請，這可能需要一點時間處理。我們將在申請通過後以電子郵件方式通知您。
       redirecting_to: 您的帳戶因目前重新導向至 %{acct} 而被停用。
+      view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
     trouble_logging_in: 登錄時遇到困難？
     use_security_key: 使用安全金鑰
