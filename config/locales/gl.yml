@@ -1625,21 +1625,27 @@ gl:
       explanation:
         delete_statuses: Algunha das túas publicacións son consideradas contrarias ás normas da comunidade e foron por tanto eliminadas pola moderación de %{instance}.
         disable: Xa non podes usar a túa conta, pero o teu perfil e outros datos permanecen intactos. Podes solicitar unha copia dos teus datos, cambiar os axustes da conta ou eliminar a túa conta.
+        mark_statuses_as_sensitive: Algunha das túas publicacións foron marcadas como sensible pola moderación de %{instance}. Esto significa que as persoas só poderan ver a vista previa se tocan nelas. Ti tamén podes marcar os medios como sensibles en futuras publicacións.
         sensitive: A partir deste momento, tódolos ficheiros que subiches estarán marcados como sensibles e agochados tras un aviso de contido.
         silence: Aínda podes usar a túa conta pero só as persoas que te siguen poden ver as túas publicacións neste servidor, e podes que foses excluída de varios xeitos de descubrimento. Porén, aínda te poden seguir de xeito manual.
         suspend: Xa non podes usar a túa conta, o teu perfil e outros datos xa non son accesibles. Aínda podes acceder para solicitar unha copia dos teus datos no prazo de 30 días previos á eliminación da conta. Imos reter algúns datos básicos para evitar que poidas evitar a suspensión.
       get_in_touch: Se consideras que isto é un erro, podes responder a este email para contactar coa administración de %{instance}.
       reason: 'Razón:'
+      statuses: 'Publicacións citadas:'
       subject:
         delete_statuses: As túas publicacións en %{acct} foron eliminadas
         disable: A súa conta %{acct} foi conxelada
+        mark_statuses_as_sensitive: As túas publicacións en %{acct} foron marcadas como sensibles
         none: Aviso para %{acct}
+        sensitive: A partir de agora as túas publicacións en %{acct} van ser marcadas como sensibles
         silence: A súa conta %{acct} foi limitada
         suspend: A súa conta %{acct} foi suspendida
       title:
         delete_statuses: Publicacións eliminadas
         disable: Conta conxelada
+        mark_statuses_as_sensitive: Publicacións marcadas como sensibles
         none: Aviso
+        sensitive: Conta marcada como sensible
         silence: Conta limitada
         suspend: Conta suspendida
     welcome:
