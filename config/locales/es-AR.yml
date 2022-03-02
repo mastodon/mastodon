@@ -776,6 +776,7 @@ es-AR:
       links:
         allow: Permitir enlace
         allow_provider: Permitir medio
+        description_html: Estos son enlaces que actualmente están siendo muy compartidos por cuentas desde las que tu servidor ve los mensajes. Esto puede ayudar a tus usuarios a averiguar qué está pasando en el mundo. No hay enlaces que se muestren públicamente hasta que autoricés al publicador. También podés permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
         shared_by_over_week:
@@ -787,14 +788,17 @@ es-AR:
       pending_review: Revisión pendiente
       preview_card_providers:
         allowed: Los enlaces de este medio pueden ser tendencia
+        description_html: Estos son dominios desde los que los enlaces a menudo se comparten en tu servidor. Los enlaces no serán tendencia públicamente a menos que se apruebe el dominio del enlace. Tu aprobación (o rechazo) se extiende a los subdominios.
         rejected: Los enlaces de este medio no serán tendencia
         title: Medios
       rejected: Rechazadas
       statuses:
         allow: Permitir mensaje
         allow_account: Permitir autor
+        description_html: Estos son mensajes que tu servidor detecta que están siendo compartidos y marcados como favoritos muchas veces en este momento. Esto puede ayudar a tus usuarios nuevos y retornantes a encontrar más cuentas para seguir. No hay mensajes que se muestren públicamente hasta que aprobés al autor, y el autor permita que su cuenta sea sugerida a otros. También podés permitir o rechazar mensajes individuales.
         disallow: Rechazar mensaje
         disallow_account: Rechazar autor
+        not_discoverable: El autor optó ser detectable
         shared_by:
           one: Compartido o marcado como favorito una vez
           other: Compartido y marcado como favorito %{friendly_count} veces
@@ -807,6 +811,7 @@ es-AR:
           tag_servers_dimension: Servidores principales
           tag_servers_measure: diferentes servidores
           tag_uses_measure: usos totales
+        description_html: Estas son etiquetas que están apareciendo en muchos mensajes que tu servidor ve. Esto puede ayudar a tus usuarios a averiguar de qué habla la gente en estos momentos. No hay etiquetas que se muestren públicamente hasta que las aprobés.
         listable: Pueden ser recomendadas
         not_listable: No serán recomendadas
         not_trendable: No aparecerán en tendencias
