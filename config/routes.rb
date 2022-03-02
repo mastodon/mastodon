@@ -168,7 +168,7 @@ Rails.application.routes.draw do
   end
 
   namespace :disputes do
-    resources :strikes, only: [:show] do
+    resources :strikes, only: [:show, :index] do
       resource :appeal, only: [:create]
     end
   end

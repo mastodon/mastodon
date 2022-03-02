@@ -64,7 +64,7 @@ zh-TW:
       domain_allow:
         domain: 此域名將能夠攫取本站資料，而自域名該發出的資料也會於本站處理和留存。
       email_domain_block:
-        domain: 這裡可以是電子郵件地址中的域名、域名解析到的 MX 記錄、或 MX 記錄解析到的伺服器 IP 地址。新使用者註冊時會比對上述資料，如果相符時將拒絕相關註冊。
+        domain: 這可以是顯示在電子郵件中的網域名稱，或是其使用的 MX 紀錄。其將在註冊時檢查。
         with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，解析結果一致者將一併封鎖
       featured_tag:
         name: 您可能想使用其中一個：

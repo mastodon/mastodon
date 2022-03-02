@@ -132,7 +132,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_strikes
-    @strikes = current_account.strikes.active.latest
+    @strikes = current_account.strikes.recent.latest
   end
 
   def require_not_suspended!

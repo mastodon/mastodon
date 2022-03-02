@@ -467,15 +467,22 @@ ca:
       view: Veure el bloqueig del domini
     email_domain_blocks:
       add_new: Afegir nou
+      attempts_over_week:
+        one: "%{count} intent en la darrera setmana"
+        other: "%{count} intents de registre en la darrera setmana"
       created_msg: S'ha creat el bloc de domini de correu electrònic
       delete: Suprimeix
-      destroyed_msg: S'ha eliminat correctament el bloc del domini de correu
+      dns:
+        types:
+          mx: Registre MX
       domain: Domini
-      empty: Cap domini de correu a la llista negre.
-      from_html: des de %{domain}
       new:
         create: Afegir un domini
+        resolve: Resol domini
         title: Nova adreça de correu en la llista negra
+      no_email_domain_block_selected: No s'han canviat els bloquejos de domini perquè cap s'ha seleccionat
+      resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals son els responsables finals per a acceptar els correus. Bloquejar un domini MX bloquejarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
+      resolved_through_html: Resolt mitjançant %{domain}
       title: Llista negra de correus electrònics
     follow_recommendations:
       description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb d'altres com per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen a diari a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
@@ -610,6 +617,7 @@ ca:
         title: Notes
       notes_description_html: Veu i deixa notes als altres moderadors i a tu mateix
       quick_actions_description_html: 'Pren una acció ràpida o desplaça''t avall per a veure el contingut reportat:'
+      remote_user_placeholder: l'usuari remot des de %{instance}
       reopen: Reobre l'informe
       report: 'Informe #%{id}'
       reported_account: Compte reportat
@@ -780,6 +788,15 @@ ca:
         rejected: Els enllaços d'aquest mitjà no poden estar en tendència
         title: Mitjans
       rejected: Rebutjat
+      statuses:
+        allow: Permet publicació
+        allow_account: Permet autor
+        disallow: Rebutja publicació
+        disallow_account: Rebutja autor
+        shared_by:
+          one: Compartit o afavorit una vegada
+          other: Compartit i afavorit %{friendly_count} vegades
+        title: Publicacions en tendència
       tags:
         current_score: Puntuació actual %{score}
         dashboard:
@@ -828,16 +845,21 @@ ca:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
-    new_trending_links:
-      body: Els enllaços següents son tendència avui però els seus mitjans no han estat verificats. No seran mostrats públicament fins que els aprovis. No es generaran noves notificacions dels mateixos mitjans.
-      no_approved_links: Actualment no hi ha enllaços en tendència aprovats.
-      requirements: L'enllaç en tendència més baixa aprovat és actualment "%{lowest_link_title}" amb una puntuació de %{lowest_link_score}.
-      subject: Nou enllaços en tendència pendents de revisar a %{instance}
-    new_trending_tags:
-      body: 'Les següents etiquetes son tendència avui però no han estat prèviament revisades. No seran mostrades públicament fins que les aprovis:'
-      no_approved_tags: Actualment no hi ha etiquetes en tendència aprovades.
-      requirements: L'etiqueta en tendència més baixa aprovada és actualment "%{lowest_tag_name}" amb una puntuació de %{lowest_tag_score}.
-      subject: Noves etiquetes en tendència pendents de ser revisades a %{instance}
+    new_trends:
+      body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
+      new_trending_links:
+        no_approved_links: Actualment no hi ha enllaços en tendència aprovats.
+        requirements: 'Qualsevol d''aquests candidats podria superar el #%{rank} del enllaç en tendència aprovat, que actualment és "%{lowest_link_title}" amb una puntuació de %{lowest_link_score}.'
+        title: Enllaços en tendència
+      new_trending_statuses:
+        no_approved_statuses: Actualment no hi ha etiquetes en tendència aprovades.
+        requirements: 'Qualsevol d''aquests candidats podria superar el #%{rank} de la publicació en tendència aprovada, que actualment és "%{lowest_status_url}" amb una puntuació de %{lowest_status_score}.'
+        title: Publicacions en tendència
+      new_trending_tags:
+        no_approved_tags: Actualment no hi ha etiquetes en tendència aprovades.
+        requirements: 'Qualsevol d''aquests candidats podria superar el #%{rank} de la etiqueta en tendència aprovada, que actualment és "%{lowest_tag_name}" amb una puntuació de %{lowest_tag_score}.'
+        title: Etiquetes en tendència
+      subject: Noves tendències pendents de revisar a %{instance}
   aliases:
     add_new: Crea un àlies
     created_msg: Nou àlies creat amb èxit. Ara pots iniciar el moviment des de'l compte vell.
@@ -1176,6 +1198,9 @@ ca:
     carry_mutes_over_text: Aquest usuari s’ha mogut des de %{acct}, que havies silenciat.
     copy_account_note_text: 'Aquest usuari s’ha mogut des de %{acct}, aquí estaven les teves notes prèvies sobre ell:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} s'ha registrat"
     digest:
       action: Mostra totes les notificacions
       body: Un resum del que et vas perdre des de la darrera visita el %{since}

@@ -64,7 +64,7 @@ hu:
       domain_allow:
         domain: Ez a domain adatot kérhet le a szerverünkről és az ettől érkező adatokat feldolgozzuk és mentjük
       email_domain_block:
-        domain: Lehet domain név, mely az email címben szerepel, MX rekord, amire a domain hivatkozik vagy a szerver IP címe, amire az MX rekord hivatkozik. Ezeket regisztrációkor ellenőrizzük és visszautasítjuk a regisztrációt, ha szükséges.
+        domain: Ez lehet az e-mail címben szereplő domain név vagy az MX rekord, melyet ez használ. Ezeket feliratkozáskor ellenőrizzük.
         with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
       featured_tag:
         name: 'Ezeket esetleg használhatod:'

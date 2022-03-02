@@ -64,7 +64,7 @@ fr:
       domain_allow:
         domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
       email_domain_block:
-        domain: Ceci peut être le nom de domaine qui apparaît dans le courriel, l’enregistrement MX que le domaine résout, ou l’IP du serveur auquel l’enregistrement MX résout. Celles-ci seront vérifiées lors de l’inscription de l’utilisateur et l’inscription sera rejetée.
+        domain: Cela peut être le nom de domaine qui apparaît dans l'adresse courriel ou l'enregistrement MX qu'il utilise. Une vérification sera faite à l'inscription.
         with_dns_records: Une tentative de résolution des enregistrements DNS du domaine donné sera effectuée et les résultats seront également mis sur liste noire
       featured_tag:
         name: 'Vous pourriez vouloir utiliser l’un d’entre eux :'

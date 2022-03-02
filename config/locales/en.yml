@@ -586,6 +586,7 @@ en:
       action_taken_by: Action taken by
       actions:
         delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
+        mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future refractions by the same account.
         other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
         silence_description_html: The profile will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted.
@@ -606,6 +607,7 @@ en:
       forwarded: Forwarded
       forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
+      mark_as_sensitive: Mark as sensitive
       mark_as_unresolved: Mark as unresolved
       no_one_assigned: No one
       notes:
@@ -749,6 +751,7 @@ en:
       actions:
         delete_statuses: "%{name} deleted %{target}'s posts"
         disable: "%{name} froze %{target}'s account"
+        mark_statuses_as_sensitive: "%{name} marked %{target}'s posts as sensitive"
         none: "%{name} sent a warning to %{target}"
         sensitive: "%{name} marked %{target}'s account as sensitive"
         silence: "%{name} limited %{target}'s account"
@@ -831,6 +834,7 @@ en:
       actions:
         delete_statuses: to delete their posts
         disable: to freeze their account
+        mark_statuses_as_sensitive: to mark their posts as sensitive
         none: a warning
         sensitive: to mark their account as sensitive
         silence: to limit their account
@@ -933,8 +937,10 @@ en:
     status:
       account_status: Account status
       confirming: Waiting for e-mail confirmation to be completed.
+      functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+      view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     trouble_logging_in: Trouble logging in?
     use_security_key: Use security key
@@ -1010,6 +1016,7 @@ en:
         submit: Submit appeal
       associated_report: Associated report
       created_at: Dated
+      description_html: These are actions taken against your account and warnings that have been sent to you by the staff of %{instance}.
       recipient: Addressed to
       status: 'Post #%{id}'
       status_removed: Post already removed from system
@@ -1017,8 +1024,9 @@ en:
       title_actions:
         delete_statuses: Post removal
         disable: Freezing of account
+        mark_statuses_as_sensitive: Marking of posts as sensitive
         none: Warning
-        sensitive: Marking as sensitive of account
+        sensitive: Marking of account as sensitive
         silence: Limitation of account
         suspend: Suspension of account
       your_appeal_approved: Your appeal has been approved
@@ -1391,6 +1399,7 @@ en:
     profile: Profile
     relationships: Follows and followers
     statuses_cleanup: Automated post deletion
+    strikes: Moderation strikes
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
   statuses:
@@ -1617,26 +1626,29 @@ en:
         spam: Spam
         violation: Content violates the following community guidelines
       explanation:
-        delete_statuses: Some of your posts have been found to violate one or more community guidelines and have been subsequently removed by the moderators of %{instance}. Future violations may result in harsher punitive actions against your account.
+        delete_statuses: Some of your posts have been found to violate one or more community guidelines and have been subsequently removed by the moderators of %{instance}.
         disable: You can no longer use your account, but your profile and other data remains intact. You can request a backup of your data, change account settings or delete your account.
+        mark_statuses_as_sensitive: Some of your posts have been marked as sensitive by the moderators of %{instance}. This means that people will need to tap the media in the posts before a preview is displayed. You can mark media as sensitive yourself when posting in the future.
         sensitive: From now on, all your uploaded media files will be marked as sensitive and hidden behind a click-through warning.
         silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various discovery features. However, others may still manually follow you.
         suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
       get_in_touch: If you believe this is an error, you can reply to this e-mail to get in touch with the staff of %{instance}.
       reason: 'Reason:'
-      statuses: 'Posts that have been found in violation:'
+      statuses: 'Posts cited:'
       subject:
         delete_statuses: Your posts on %{acct} have been removed
         disable: Your account %{acct} has been frozen
+        mark_statuses_as_sensitive: Your posts on %{acct} have been marked as sensitive
         none: Warning for %{acct}
-        sensitive: Your media files on %{acct} will be marked as sensitive from now on
+        sensitive: Your posts on %{acct} will be marked as sensitive from now on
         silence: Your account %{acct} has been limited
         suspend: Your account %{acct} has been suspended
       title:
         delete_statuses: Posts removed
         disable: Account frozen
+        mark_statuses_as_sensitive: Posts marked as sensitive
         none: Warning
-        sensitive: Media hidden
+        sensitive: Account marked as sensitive
         silence: Account limited
         suspend: Account suspended
     welcome:

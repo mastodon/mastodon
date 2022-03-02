@@ -464,15 +464,22 @@ da:
       view: Vis domæneblokering
     email_domain_blocks:
       add_new: Tilføj ny
+      attempts_over_week:
+        one: "%{count} tilmeldingsforsøg over den seneste uge"
+        other: "%{count} tilmeldingsforsøg over den seneste uge"
       created_msg: E-maildomæne blokeret
       delete: Slet
-      destroyed_msg: E-maildomæne afblokeret
+      dns:
+        types:
+          mx: MX-post
       domain: Domæne
-      empty: Ingen e-maildomæner er pt. blokeret.
-      from_html: fra %{domain}
       new:
         create: Tilføj domæne
+        resolve: Opløs domæne
         title: Blokere nyt e-maildomæne
+      no_email_domain_block_selected: Ingen e-mailblokeringer ændret, da ingen var valgt
+      resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke ikke at blokere store e-mailudbydere.</strong>
+      resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
     follow_recommendations:
       description_html: "<strong>Følg-anbefalinger hjælpe nye brugere til hurtigt at finde interessant indhold</strong>. Når en bruger ikke har interageret nok med andre til at danne personlige følg-anbefalinger, anbefales disse konti i stedet. De genberegnes dagligt baseret på en blanding af konti med de fleste nylige engagementer og fleste lokale følger-antal for et givet sprog."
@@ -605,6 +612,7 @@ da:
         title: Notater
       notes_description_html: Se og skriv notater til andre moderatorer og dit fremtid selv
       quick_actions_description_html: 'Træf en hurtig foranstaltning eller rul ned for at se anmeldt indhold:'
+      remote_user_placeholder: fjernbrugeren fra %{instance}
       reopen: Genåbn anmeldelse
       report: 'Anmeldelse #%{id}'
       reported_account: Anmeldt konto
@@ -775,6 +783,15 @@ da:
         rejected: Links fra denne udgiver vil ikke trende
         title: Udgivere
       rejected: Afvist
+      statuses:
+        allow: Tillad indlæg
+        allow_account: Tillad forfatter
+        disallow: Forbyd indlæg
+        disallow_account: Forbyd forfatter
+        shared_by:
+          one: Delt eller favoriseret én gang
+          other: Delt eller favoriseret %{friendly_count} gange
+        title: Populære opslag
       tags:
         current_score: Aktuel score %{score}
         dashboard:
@@ -813,7 +830,7 @@ da:
         sensitive: for markering af vedkommendes konto som sensitiv
         silence: for begrænsning af vedkommendes konto
         suspend: for suspendering af vedkommendes konto
-      body: "%{target} appellerer en moderationsbeslutning fra %{action_taken_by} pr. %{date}, der var %{type}. Vedkommende skrev:"
+      body: "%{target} appellerer en moderationsbeslutning fra %{action_taken_by} pr. %{date} om at %{type}. Vedkommende skrev:"
       next_steps: Appellen kan godkendes for at fortryde moderationsbeslutningen eller den ignoreres.
       subject: "%{username} appellerer en moderationsbeslutning for %{instance}"
     new_pending_account:
@@ -823,16 +840,21 @@ da:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
       subject: Ny anmeldelse for %{instance} (#%{id})
-    new_trending_links:
-      body: De flg. links er populære i dag, men deres udgivere er ikke tidligere blevet revideret. De vil ikke blive vist offentligt, medmindre du godkender dem. Yderligere notifikationer fra de samme udgivere genereres ikke.
-      no_approved_links: Der er i pt. ingen godkendte populære links.
-      requirements: Det laveste godkendte populære link er pt. "%{lowest_link_title}" med en score på %{lowest_link_score}.
-      subject: Nye populære links er klar til revidering på %{instance}
-    new_trending_tags:
-      body: 'Flg. hashtags er populære i dag, men de er ikke tidligere revideret. De vises ikke offentligt, medmindre du godkender dem:'
-      no_approved_tags: Der er pt. ingen godkendte populære hashtags.
-      requirements: 'Det laveste godkendte populære hashtags er pt. #%{lowest_tag_name} med en score på %{lowest_tag_score}.'
-      subject: Nye populære hashtags er klar til revidering på %{instance}
+    new_trends:
+      body: 'Flg. emner kræver revision, inden de kan vises offentligt:'
+      new_trending_links:
+        no_approved_links: Der er i pt. ingen godkendte populære links.
+        requirements: 'Enhver af disse kandidater vil kunne overgå #%{rank} godkendte populære link, der med en score på %{lowest_link_score} pt. er "%{lowest_link_title}".'
+        title: Populære links
+      new_trending_statuses:
+        no_approved_statuses: Der er i pt. ingen godkendte populære opslag.
+        requirements: 'Enhver af disse kandidater vil kunne overgå #%{rank} godkendte populære opslag, der med en score på %{lowest_status_score} pt. er %{lowest_status_url}.'
+        title: Populære opslag
+      new_trending_tags:
+        no_approved_tags: Der er pt. ingen godkendte populære hashtags.
+        requirements: 'Enhver af disse kandidater vil kunne overgå #%{rank} godkendte populære hastag, der med en score på #%{lowest_tag_score} pt. er %{lowest_tag_name}.'
+        title: Populære hashtags
+      subject: Nye tendenser klar til revision på %{instance}
   aliases:
     add_new: Opret alias
     created_msg: Nyt alias oprettet. Du kan nu påbegynde flytningen fra den gamle konto.
@@ -1170,6 +1192,9 @@ da:
     carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft tavsgjort.
     copy_account_note_text: 'Denne bruger er flyttet fra %{acct}, her er dine tidligere noter om dem:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} tilmeldte sig"
     digest:
       action: Se alle notifikationer
       body: Her er et kort resumé af de beskeder, du er gået glip af siden dit seneste besøg d. %{since}

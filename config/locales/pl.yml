@@ -481,13 +481,17 @@ pl:
       add_new: Dodaj nową
       created_msg: Pomyślnie utworzono blokadę domeny e-mail
       delete: Usuń
-      destroyed_msg: Pomyślnie usunięto blokadę domeny e-mail
+      dns:
+        types:
+          mx: Rekord MX
       domain: Domena
-      empty: Żadna domena e-mail nie znajduje się obecnie na czarnej liście.
-      from_html: z %{domain}
       new:
         create: Utwórz blokadę
+        resolve: Rozwiąż domenę
         title: Nowa blokada domeny e-mail
+      no_email_domain_block_selected: Żadne blokady domeny e-mail nie zostały zmienione, ponieważ żadne z nich nie zostały wybrane
+      resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
+      resolved_through_html: Rozwiązano przez %{domain}
       title: Blokowanie domen e-mail
     follow_recommendations:
       description_html: "<strong>Polecane śledzenia pomagają nowym użytkownikom szybko odnaleźć interesujące treści</strong>. Jeżeli użytkownik nie wchodził w interakcje z innymi wystarczająco często, aby powstały spersonalizowane rekomendacje, polecane są te konta. Są one obliczane każdego dnia na podstawie kombinacji kont o największej liczbie niedawnej aktywności i największej liczbie lokalnych obserwatorów dla danego języka."
@@ -788,6 +792,12 @@ pl:
         rejected: Linki od tego wydawcy nie mogą podlegać trendom
         title: Wydawcy
       rejected: Odrzucono
+      statuses:
+        allow: Zezwól na post
+        allow_account: Zezwól na autora
+        disallow: Nie zezwalaj na post
+        disallow_account: Nie zezwalaj na autora
+        title: Popularne teraz
       tags:
         current_score: Bieżący wynik %{score}
         dashboard:
@@ -832,16 +842,10 @@ pl:
       body: Użytkownik %{reporter} zgłosił(a) %{target}
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
       subject: Nowe zgłoszenie na %{instance} (#%{id})
-    new_trending_links:
-      body: Poniższe linki są dziś popularne, ale ich wydawcy nie byli wcześniej sprawdzeni. Nie będą one wyświetlane publicznie dopóki ich nie zatwierdzisz. Kolejne powiadomienia od tych samych wydawców nie zostaną wygenerowane.
-      no_approved_links: Obecnie nie ma zatwierdzonych linków trendów.
-      requirements: Najniższy zatwierdzony link trendu to "%{lowest_link_title}" z wynikiem %{lowest_link_score}.
-      subject: Nowe popularne linki do przeglądu na %{instance}
-    new_trending_tags:
-      body: 'Następujące hashtagi są dziś popularne, ale nie zostały wcześniej sprawdzone. Nie będą one wyświetlane publicznie, chyba że je zatwierdzisz:'
-      no_approved_tags: Obecnie nie ma zatwierdzonych popularnych hashtagów.
-      requirements: 'Najniższy zatwierdzony popularny hashtag to obecnie #%{lowest_tag_name} z wynikiem %{lowest_tag_score}.'
-      subject: Nowy popularny hashtag do zatwierdzenia na %{instance}
+    new_trends:
+      body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
+      new_trending_links:
+        no_approved_links: Obecnie nie ma zatwierdzonych linków trendów.
   aliases:
     add_new: Utwórz alias
     created_msg: Pomyślnie utworzono nowy alias. Możesz teraz rozpocząć przenoszenie ze starego konta.
@@ -1184,6 +1188,9 @@ pl:
     carry_mutes_over_text: Ten użytkownik przeniósł się z konta %{acct}, które wyciszyłeś(-aś).
     copy_account_note_text: 'Ten użytkownik przeniósł się z konta %{acct}, oto Twoje poprzednie notatki o nim:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} zarejestrował(-a) się"
     digest:
       action: Wyświetl wszystkie powiadomienia
       body: Oto krótkie podsumowanie wiadomości, które ominęły Cię od Twojej ostatniej wizyty (%{since})

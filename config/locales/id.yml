@@ -457,15 +457,21 @@ id:
       view: Lihat blokir domain
     email_domain_blocks:
       add_new: Tambah baru
+      attempts_over_week:
+        other: "%{count} upaya mendaftar selama seminggu terakhir"
       created_msg: Berhasil memblokir domain email
       delete: Hapus
-      destroyed_msg: Berhasil membuka blokiran domain email
+      dns:
+        types:
+          mx: Data MX
       domain: Domain
-      empty: Tidak ada domain email yang diblokir.
-      from_html: dari %{domain}
       new:
         create: Tambah domain
+        resolve: Pembaruan domain
         title: Blokir domain email baru
+      no_email_domain_block_selected: Tidak ada blokir domain email yang diubah sebab tidak ada yang dipilih
+      resolved_dns_records_hint_html: Pembaruan nama domain mengikuti domain MX, yang bertanggung jawab menerima email. Memblokir domain MX akan memblokir pendaftaran dari alamat email apapun yang menggunakan domain MX sama, meskipun nama domainnya beda. <strong>Hati-hati untuk tidak memblokir layanan email besar.</strong>
+      resolved_through_html: Diperbarui melalui %{domain}
       title: Domain email terblokir
     follow_recommendations:
       description_html: <strong>"Rekomendasi untuk diikuti" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu.
@@ -598,6 +604,7 @@ id:
         title: Catatan
       notes_description_html: Lihat dan tinggalkan catatan kepada moderator lain dan Anda di masa depan
       quick_actions_description_html: 'Lakukan tindakan cepat atau gulir ke bawah untuk melihat konten yang dilaporkan:'
+      remote_user_placeholder: pengguna jarak jauh dari %{instance}
       reopen: Buka lagi laporan
       report: 'Laporkan #%{id}'
       reported_account: Akun yang dilaporkan
@@ -768,6 +775,14 @@ id:
         rejected: Tautan dari penerbit ini tidak dapat menjadi tren
         title: Penerbit
       rejected: Ditolak
+      statuses:
+        allow: Izinkan kiriman
+        allow_account: Izinkan penulis
+        disallow: Jangan beri izin kiriman
+        disallow_account: Jangan beri izin penulis
+        shared_by:
+          other: Dibagikan dan difavoritkan %{friendly_count} kali
+        title: Kiriman yang sedang tren
       tags:
         current_score: Skor saat ini %{score}
         dashboard:
@@ -816,16 +831,21 @@ id:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
       subject: Laporan baru untuk %{instance} (#%{id})
-    new_trending_links:
-      body: Tautan berikut sedang tren hari ini, tetapi penerbit sebelumnya belum ditinjau. Mereka tidak akan ditampilkan secara publik kecuali Anda menyetujuinya. Notifikasi berikutnya dari penerbit yang sama tidak akan dibuat.
-      no_approved_links: Saat ini tidak akan tautan tren yang disetujui.
-      requirements: Tautan tren yang disetujui peringkat terendah saat ini "%{lowest_link_title}" dengan skor %{lowest_link_score}.
-      subject: Tautan tren baru mulai ditinjau di %{instance}
-    new_trending_tags:
-      body: 'Tagar berikut sedang tren hari ini, tetapi mereka sebelumnya belum ditinjau. Mereka tidak akan muncul secara publik kecuali Anda menyetujuinya:'
-      no_approved_tags: Saat ini tidak ada tagar tren yang disetujui.
-      requirements: 'Tagar tren yang disetujui peringkat terendah saat ini #%{lowest_tag_name} dengan skor %{lowest_tag_score}.'
-      subject: Tagar tren baru mulai ditinjau di %{instance}
+    new_trends:
+      body: 'Item berikut harus ditinjau sebelum ditampilkan secara publik:'
+      new_trending_links:
+        no_approved_links: Saat ini tidak ada tautan tren yang disetujui.
+        requirements: 'Kandidat yang ada di sini bisa saja melewati peringkat #%{rank} tautan tren yang disetujui, yang kini "%{lowest_link_title}" memiliki nilai %{lowest_link_score}.'
+        title: Tautan sedang tren
+      new_trending_statuses:
+        no_approved_statuses: Tidak ada kiriman sedang tren yang disetujui.
+        requirements: 'Kandidat yang ada di sini bisa saja melewati peringkat #%{rank} kiriman tren yang disetujui, yang kini %{lowest_status_url} memiliki nilai %{lowest_status_score}.'
+        title: Kiriman yang sedang tren
+      new_trending_tags:
+        no_approved_tags: Saat ini tidak ada tagar tren yang disetujui.
+        requirements: 'Kandidat yang ada di sini bisa saja melewati peringkat #%{rank} tagar sedang tren yang disetujui, yang kini #%{lowest_tag_name} memiliki nilai %{lowest_tag_score}.'
+        title: Tagar sedang tren
+      subject: Tren baru yang perlu ditinjau di %{instance}
   aliases:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
@@ -1162,6 +1182,9 @@ id:
     carry_mutes_over_text: Pengguna ini pindah dari %{acct}, yang telah Anda bisukan sebelumnya.
     copy_account_note_text: 'Pengguna ini pindah dari %{acct}, ini dia pesan Anda sebelumnya tentang mereka:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} mendaftar"
     digest:
       action: Lihat semua notifikasi
       body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}

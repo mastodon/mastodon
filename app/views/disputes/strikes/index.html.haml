@@ -1,0 +1,6 @@
+- content_for :page_title do
+  = t('settings.strikes')
+
+%p= t('disputes.strikes.description_html', instance: Rails.configuration.x.local_domain)
+
+= render partial: 'auth/registrations/account_warning', collection: @strikes

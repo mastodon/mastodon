@@ -30,6 +30,8 @@ class Admin::StatusBatchAction
     case type
     when 'delete'
       handle_delete!
+    when 'mark_as_sensitive'
+      handle_mark_as_sensitive!
     when 'report'
       handle_report!
     when 'remove_from_report'
@@ -63,6 +65,38 @@ class Admin::StatusBatchAction
 
     UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
     RemovalWorker.push_bulk(status_ids) { |status_id| [status_id, { 'preserve' => target_account.local?, 'immediate' => !target_account.local? }] }
+  end
+
+  def handle_mark_as_sensitive!
+    # Can't use a transaction here because UpdateStatusService queues
+    # Sidekiq jobs
+    statuses.includes(:media_attachments, :preview_cards).find_each do |status|
+      next unless status.with_media? || status.with_preview_card?
+
+      authorize(status, :update?)
+
+      if target_account.local?
+        UpdateStatusService.new.call(status, current_account.id, sensitive: true)
+      else
+        status.update(sensitive: true)
+      end
+
+      log_action(:update, status)
+
+      if with_report?
+        report.resolve!(current_account)
+        log_action(:resolve, report)
+      end
+
+      @warning = target_account.strikes.create!(
+        action: :mark_statuses_as_sensitive,
+        account: current_account,
+        report: report,
+        status_ids: status_ids
+      )
+    end
+
+    UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
   end
 
   def handle_report!

@@ -463,10 +463,7 @@ ko:
       add_new: 새로 추가
       created_msg: 이메일 도메인 차단 규칙을 생성했습니다
       delete: 삭제
-      destroyed_msg: 이메일 도메인 차단 규칙을 삭제했습니다
       domain: 도메인
-      empty: 현재 블랙리스트에 등록한 이메일 도메인이 없습니다
-      from_html: "%{domain}에서"
       new:
         create: 차단 규칙 생성
         title: 새 이메일 도메인 차단
@@ -809,16 +806,6 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
-    new_trending_links:
-      body: 아래에 있는 링크들이 오늘 유행 중입니다, 하지만 이 링크들의 출처는 전에 심사를 받은 적이 없습니다. 이 링크들은 승인하기 전까지는 공개적으로 표시되지 않을 것입니다. 동일한 출처에 대한 알림은 더 생성되지 않습니다.
-      no_approved_links: 현재 승인된 유행 중인 링크가 없습니다.
-      requirements: 현재 승인된 유행하는 링크 중 가장 낮은 것은 %{lowest_link_score}점을 가진 "%{lowest_link_title}" 입니다
-      subject: 새 유행하는 링크가 %{instance}에서 심사 대기 중입니다
-    new_trending_tags:
-      body: '아래에 있는 해시태그들이 오늘 유행 중입니다, 하지만 전에 심사를 받은 적이 없습니다. 이 해시태그들은 승인하기 전까지는 공개적으로 표시되지 않을 것입니다:'
-      no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
-      requirements: '현재 승인된 유행하는 해시태그 중 가장 낮은 것은 %{lowest_tag_score}점을 가진 #%{lowest_tag_name} 입니다'
-      subject: 새 유행하는 해시태그가 %{instance}에서 심사 대기 중입니다
   aliases:
     add_new: 별칭 만들기
     created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
@@ -976,6 +963,7 @@ ko:
         none: 경고
         sensitive: 계정을 민감함으로 표시
         silence: 계정의 제한
+        suspend: 계정 정지
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
@@ -1148,6 +1136,9 @@ ko:
     carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} 님이 가입했습니다"
     digest:
       action: 모든 알림 보기
       body: 마지막 로그인(%{since}) 이후로 일어난 일들에 관한 요약
@@ -1528,6 +1519,8 @@ ko:
   user_mailer:
     appeal_approved:
       action: 내 계정으로 가기
+    appeal_rejected:
+      title: 이의제기가 거절되었습니다
     backup_ready:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
@@ -1539,6 +1532,8 @@ ko:
       subject: 로그인 시도를 확인해 주십시오
       title: 로그인 시도
     warning:
+      appeal: 이의 제출하기
+      appeal_description: 이것이 오류라고 생각한다면, %{instance}의 중재자에게 이의신청을 할 수 있습니다.
       categories:
         spam: 스팸
         violation: 컨텐츠가 다음의 커뮤니티 규정을 위반합니다

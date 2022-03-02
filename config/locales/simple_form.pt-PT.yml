@@ -64,7 +64,7 @@ pt-PT:
       domain_allow:
         domain: Este domínio será capaz de obter dados desta instância e os dados dele recebidos serão processados e armazenados
       email_domain_block:
-        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail, o registo MX para o qual o domínio resolve, ou o IP do servidor para o qual o registo MX resolve. Estes serão verificados no momento da inscrição do utilizador e a inscrição será rejeitada.
+        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail ou o registo MX por ele utilizado. Eles serão verificados aquando da inscrição.
         with_dns_records: Será feita uma tentativa de resolver os registos DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
         name: 'Poderás querer usar um destes:'
