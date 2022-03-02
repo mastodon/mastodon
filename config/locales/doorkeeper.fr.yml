@@ -71,6 +71,11 @@ fr:
         revoke: Voulez-vous vraiment faire ça ?
       index:
         authorized_at: Autorisée le %{date}
+        description_html: Ces applications peuvent accéder à votre compte via l'API. Si vous voyez ici des applications que vous ne reconnaissez pas ou qui ne fonctionnent pas normalement, vous pouvez en révoquer les accès.
+        last_used_at: Dernière utilisation le %{date}
+        never_used: Jamais utilisée
+        scopes: Autorisations
+        superapp: Interne
         title: Vos applications autorisées
     errors:
       messages:
@@ -106,6 +111,27 @@ fr:
       authorized_applications:
         destroy:
           notice: Application révoquée.
+    grouped_scopes:
+      access:
+        read: Accès en lecture seule
+        read/write: Accès en lecture et écriture
+        write: Accès en écriture seule
+      title:
+        accounts: Comptes
+        admin/accounts: Gestion des comptes
+        admin/all: Toutes les fonctionnalités d'administration
+        admin/reports: Gestion des rapports
+        all: Tout
+        blocks: Blocages
+        bookmarks: Marque-pages
+        conversations: Conversations
+        crypto: Chiffrement de bout-en-bout
+        favourites: Favoris
+        filters: Filtres
+        follow: Relations
+        follows: Abonnements
+        lists: Listes
+        media: Fichiers médias
     layouts:
       admin:
         nav:
