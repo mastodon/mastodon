@@ -788,8 +788,10 @@ da:
       statuses:
         allow: Tillad indlæg
         allow_account: Tillad forfatter
+        description_html: Disse er indlæg, kendt af din server nu, som pt. deles og favoriseres meget. Det kan hjælpe dine nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før du godkender forfatteren, og denne tillader sin konto at blive foreslået til andre. Du kan også tillade/afvise individuelle indlæg.
         disallow: Forbyd indlæg
         disallow_account: Forbyd forfatter
+        not_discoverable: Forfatteren har ikke valgt at kunne findes
         shared_by:
           one: Delt eller favoriseret én gang
           other: Delt eller favoriseret %{friendly_count} gange
@@ -802,6 +804,7 @@ da:
           tag_servers_dimension: Topservere
           tag_servers_measure: forskellige servere
           tag_uses_measure: brugere i alt
+        description_html: Disse er hashtags, som pt. vises i en masse indlæg, som din server ser. Det kan hjælpe dine brugere til at finde ud af, hvad folk taler mest om pt. Ingen hashtags vises offentligt, før du godkender dem.
         listable: Kan foreslås
         not_listable: Foreslås ikke
         not_trendable: Vises ikke under tendenser
