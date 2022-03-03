@@ -556,6 +556,7 @@ th:
       forwarded: ส่งต่อแล้ว
       forwarded_to: ส่งต่อไปยัง %{domain} แล้ว
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
+      mark_as_sensitive: ทำเครื่องหมายว่าละเอียดอ่อน
       mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
       no_one_assigned: ไม่มีใคร
       notes:
@@ -693,6 +694,7 @@ th:
       actions:
         delete_statuses: "%{name} ได้ลบโพสต์ของ %{target}"
         disable: "%{name} ได้อายัดบัญชีของ %{target}"
+        mark_statuses_as_sensitive: "%{name} ได้ทำเครื่องหมายโพสต์ของ %{target} ว่าละเอียดอ่อน"
         none: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         sensitive: "%{name} ได้ทำเครื่องหมายบัญชีของ %{target} ว่าละเอียดอ่อน"
         silence: "%{name} ได้จำกัดบัญชีของ %{target}"
@@ -769,6 +771,7 @@ th:
       actions:
         delete_statuses: เพื่อลบโพสต์ของเขา
         disable: เพื่ออายัดบัญชีของเขา
+        mark_statuses_as_sensitive: เพื่อทำเครื่องหมายโพสต์ของเขาว่าละเอียดอ่อน
         sensitive: เพื่อทำเครื่องหมายบัญชีของเขาว่าละเอียดอ่อน
         silence: เพื่อจำกัดบัญชีของเขา
         suspend: เพื่อระงับบัญชีของเขา
