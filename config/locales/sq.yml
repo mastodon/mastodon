@@ -26,6 +26,7 @@ sq:
       Përdoret për qëllime federimi dhe s’duhet bllokuar, veç në daçi të bllokoni krejt instancën, me ç’rast do të duhej të përdornit bllokim përkatësie.
     learn_more: Mësoni më tepër
     logged_in_as_html: Aktualisht jeni i futur si %{username}.
+    logout_before_registering: Jeni i futur tashmë.
     privacy_policy: Rregulla privatësie
     rules: Rregulla shërbyesi
     rules_html: 'Më poshtë keni një përmbledhje të rregullave që duhet të ndiqni, nëse doni të keni një llogari në këtë shërbyes Mastodon:'
@@ -606,6 +607,7 @@ sq:
       forwarded: U përcoll
       forwarded_to: U përcoll te %{domain}
       mark_as_resolved: Vëri shenjë si i zgjidhur
+      mark_as_sensitive: Vëri shenjë si rezervat
       mark_as_unresolved: Vëri shenjë si të pazgjidhur
       no_one_assigned: Askush
       notes:
@@ -749,6 +751,7 @@ sq:
       actions:
         delete_statuses: "%{name} fshiu postime të %{target}"
         disable: "%{name} ngriu postime të %{target}"
+        mark_statuses_as_sensitive: "%{name} u vuri shenjë postimeve të %{target} si rezervat"
         none: "%{name} dërgoi një sinjalizim për %{target}"
         sensitive: "%{name} i vuri shenjë llogarisë së %{target} si rezervat"
         silence: "%{name} e kufizoi llogarinë %{target}"
@@ -774,6 +777,7 @@ sq:
       links:
         allow: Lejoje lidhjen
         allow_provider: Lejoje botuesin
+        description_html: Këto janë lidhje që ndahen aktualisht shumë me llogari prej të cilave shërbyesi juaj sheh postime. Mund të ndihmojë përdoruesit tuaj të gjejnë se ç’po ndodh në botë. S’shfaqen lidhje publikisht, deri sa të miratoni botuesin. Mundeni edhe të lejoni ose hidhni poshtë lidhje individuale.
         disallow: Hiq lejimin e lidhjes
         disallow_provider: Mos e lejo botuesin
         shared_by_over_week:
@@ -785,14 +789,17 @@ sq:
       pending_review: Në pritje të shqyrtimit
       preview_card_providers:
         allowed: Lidhje prej këtij botuesi mund të përdoren
+        description_html: Këto janë përkatësi prej të cilave ndahen shpesh lidhje në shërbyesin tuaj. Lidhjet nuk do të ofrohen publikisht, veç në u miratoftë përkatësia e lidhjes. Miratimi (ose hedhja poshtë) shtrihet edhe te nënpërkatësitë.
         rejected: Lidhje prej këtij botuesi s’do të përdoren
         title: Botues
       rejected: Hedhur poshtë
       statuses:
         allow: Lejo postim
         allow_account: Lejo autor
+        description_html: Këto janë postime të cilat shërbyesi juaj di se po ndahen shumë dhe po zgjidhen si të parapëlqyera për çastin. Mund të ndihmojnë përdoruesit tuaj të rinj dhe të riardhur të gjejnë më tepër vetë për të ndjekur. S’shfaqen postime publikisht, pa miratuar ju autorin dhe autori lejon që llogaria e tij t’u sugjerohet të tjerëve. Mundeni edhe të lejoni, ose hidhni, poshtë postime individuale.
         disallow: Mos lejo postim
         disallow_account: Mos lejo autor
+        not_discoverable: Autori s’ka zgjedhur të jetë i zbulueshëm
       tags:
         dashboard:
           tag_accounts_measure: përdorime unike
