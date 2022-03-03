@@ -731,6 +731,7 @@ ru:
       actions:
         delete_statuses: "%{name} удалил(а) посты %{target}"
         disable: "%{name} заморозил(а) учётную запись %{target}"
+        mark_statuses_as_sensitive: "%{name} отметил(а) %{target} посты как деликатные"
         none: "%{name} отправил(а) предупреждение %{target}"
         silence: "%{name} ограничил(а) учетную запись %{target}"
       appeal_pending: Обжалование в обработке
@@ -966,6 +967,9 @@ ru:
       status: 'Пост #%{id}'
       status_removed: Пост уже удален из системы
       title: "%{action} от %{date}"
+      title_actions:
+        delete_statuses: Удаление поста
+        mark_statuses_as_sensitive: Помечать посты как деликатные
       your_appeal_approved: Ваша апелляция одобрена
       your_appeal_pending: Вы подали апелляцию
       your_appeal_rejected: Ваша апелляция отклонена
@@ -1590,6 +1594,7 @@ ru:
       title:
         delete_statuses: Ваши посты удалены
         disable: Учётная запись заморожена
+        mark_statuses_as_sensitive: Посты, отмеченные как деликатные
         none: Предупреждение
         silence: На учётную запись наложены ограничения
         suspend: Учётная запись заблокирована
