@@ -8,7 +8,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, profile_directory, showTrends } from 'flavours/glitch/util/initial_state';
+import { me, showTrends } from 'flavours/glitch/util/initial_state';
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
@@ -37,7 +37,6 @@ const messages = defineMessages({
   lists_subheading: { id: 'column_subheading.lists', defaultMessage: 'Lists' },
   misc: { id: 'navigation_bar.misc', defaultMessage: 'Misc' },
   menu: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
-  profile_directory: { id: 'getting_started.directory', defaultMessage: 'Profile directory' },
 });
 
 const makeMapStateToProps = () => {
@@ -148,10 +147,6 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
 
     if (myAccount.get('locked') || unreadFollowRequests > 0) {
       navItems.push(<ColumnLink key='6' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
-    }
-
-    if (profile_directory) {
-      navItems.push(<ColumnLink key='7' icon='address-book' text={intl.formatMessage(messages.profile_directory)} to='/directory' />);
     }
 
     navItems.push(<ColumnLink key='8' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
