@@ -15,12 +15,15 @@ th:
     contact: ติดต่อ
     contact_missing: ไม่ได้ตั้ง
     contact_unavailable: ไม่มี
+    continue_to_web: ดำเนินการต่อไปยังแอปเว็บ
     discover_users: ค้นพบผู้ใช้
     documentation: เอกสารประกอบ
     federation_hint_html: ด้วยบัญชีที่ %{instance} คุณจะสามารถติดตามผู้คนในเซิร์ฟเวอร์ Mastodon และอื่น ๆ
     get_apps: ลองแอปมือถือ
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     learn_more: เรียนรู้เพิ่มเติม
+    logged_in_as_html: คุณกำลังเข้าสู่ระบบเป็น %{username}
+    logout_before_registering: คุณได้เข้าสู่ระบบอยู่แล้ว
     privacy_policy: นโยบายความเป็นส่วนตัว
     rules: กฎของเซิร์ฟเวอร์
     rules_html: 'ด้านล่างคือข้อมูลสรุปของกฎที่คุณจำเป็นต้องปฏิบัติตามหากคุณต้องการมีบัญชีในเซิร์ฟเวอร์ Mastodon นี้:'
@@ -940,7 +943,9 @@ th:
       title_actions:
         delete_statuses: การเอาโพสต์ออก
         disable: การอายัดบัญชี
+        mark_statuses_as_sensitive: การทำเครื่องหมายโพสต์ว่าละเอียดอ่อน
         none: คำเตือน
+        sensitive: การทำเครื่องหมายบัญชีว่าละเอียดอ่อน
         silence: การจำกัดบัญชี
         suspend: การระงับบัญชี
   domain_validator:
@@ -1336,7 +1341,7 @@ th:
       '2629746': 1 เดือน
       '31556952': 1 ปี
       '5259492': 2 เดือน
-      '604800': 1 week
+      '604800': 1 สัปดาห์
       '63113904': 2 ปี
       '7889238': 3 เดือน
     min_age_label: ค่าเกณฑ์อายุ
