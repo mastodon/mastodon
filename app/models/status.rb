@@ -303,6 +303,8 @@ class Status < ApplicationRecord
   after_create_commit :store_uri, if: :local?
   after_create_commit :update_statistics, if: :local?
 
+  after_create_commit :check_reblog, if: :reblog?
+
   around_create Mastodon::Snowflake::Callbacks
 
   before_validation :prepare_contents, if: :local?
@@ -465,5 +467,9 @@ class Status < ApplicationRecord
     inbox_owners.each do |inbox_owner|
       AccountConversation.remove_status(inbox_owner, self)
     end
+  end
+
+  def check_reblog
+    discard unless Status.where(id: reblog_of_id, deleted_at: nil).exists?
   end
 end
