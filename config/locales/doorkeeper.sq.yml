@@ -59,6 +59,7 @@ sq:
       error:
         title: Ndodhi një gabim
       new:
+        prompt_html: "%{client_name} do të donte leje të hyjë në llogarinë tuaj. Është një aplikacion palësh të treta. <strong>Nëse s’i zini besë, atëherë s’duhet ta autorizoni.</strong>"
         review_permissions: Shqyrtoni leje
         title: Lypset autorizim
       show:
@@ -70,6 +71,7 @@ sq:
         revoke: A jeni i sigurt?
       index:
         authorized_at: Autorizuar më %{date}
+        description_html: Këto janë aplikacione që mund të hyjnë në llogarinë tuaj duke përdorur API-n. Nëse këtu ka aplikacione që nuk i njihni, ose një aplikacion po sillet ndryshe nga sa pritet, mund t’i shfuqiozoni hyrjen.
         last_used_at: Përdorur së fundi më %{date}
         never_used: I papërdorur ndonjëherë
         scopes: Leje
@@ -124,10 +126,13 @@ sq:
         bookmarks: Faqerojtës
         conversations: Biseda
         crypto: Fshehtëzim skaj-më-skaj
+        favourites: Të parapëlqyer
         filters: Filtra
         follow: Marrëdhënie
+        follows: Ndjekje
         lists: Lista
         media: Bashkëngjitje media
+        mutes: Heshtime
         notifications: Njoftime
         push: Njoftime Push
         reports: Raportime
