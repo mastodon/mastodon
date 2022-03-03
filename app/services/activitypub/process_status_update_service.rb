@@ -13,7 +13,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @poll_changed              = false
 
     # Only native types can be updated at the moment
-    return if !expected_type? || already_updated_more_recently?
+    return false if !expected_type? || already_updated_more_recently?
 
     # Only allow processing one create/update per status at a time
     RedisLock.acquire(lock_options) do |lock|
@@ -37,6 +37,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         raise Mastodon::RaceConditionError
       end
     end
+
+    significant_changes?
   end
 
   private

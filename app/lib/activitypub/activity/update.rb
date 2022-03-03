@@ -26,6 +26,10 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
 
     return if @status.nil?
 
-    ActivityPub::ProcessStatusUpdateService.new.call(@status, @object)
+    forwarder.forward! if ActivityPub::ProcessStatusUpdateService.new.call(@status, @object) && forwarder.forwardable?
+  end
+
+  def forwarder
+    @forwarder ||= ActivityPub::Forwarder.new(@account, @json, @status)
   end
 end
