@@ -242,6 +242,7 @@ ar:
       whitelisted: في القائمة البيضاء
     action_logs:
       action_types:
+        approve_appeal: الموافقة على الطعن
         approve_user: الموافقة على المستخدم
         assigned_to_self_report: أسند التقرير
         change_email_user: تغيير عنوان البريد الإلكتروني الخاص بالمستخدم
@@ -273,6 +274,7 @@ ar:
         enable_user: تفعيل المستخدم
         memorialize_account: جعل الحساب تذكاريا
         promote_user: ترقية المستخدم
+        reject_appeal: رفض الطعن
         reject_user: ارفض المستخدم
         remove_avatar_user: احذف الصورة الرمزية
         reopen_report: إعادة فتح التقرير
@@ -404,6 +406,10 @@ ar:
       top_languages: اللغات الأكثر نشاطا
       top_servers: الخوادم الأكثر نشاطا
       website: موقع الويب
+    disputes:
+      appeals:
+        empty: ليست هناك أية طعون.
+        title: الطعون
     domain_allows:
       add_new: إضافة النطاق إلى القائمة البيضاء
       created_msg: تمت إضافة النطاق إلى القائمة البيضاء بنجاح
@@ -710,6 +716,8 @@ ar:
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       title: منشورات الحساب
       with_media: تحتوي على وسائط
+    strikes:
+      appeal_pending: طعن قيد المراجعة
     system_checks:
       database_schema_check:
         message_html: هناك عمليات هجرة معلقة لقواعد البيانات. يرجى تشغيلها لضمان تصرف التطبيق كما هو متوقع
@@ -770,6 +778,11 @@ ar:
       body: "قام %{reporter} بالإبلاغ عن %{target}"
       body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: 'تقرير جديد ل%{instance} (#%{id})'
+    new_trends:
+      new_trending_statuses:
+        title: المنشورات الشائعة
+      new_trending_tags:
+        title: الوسوم المتداولة
   aliases:
     add_new: أنشئ كُنية
     created_msg: تم إنشاء الكُنية الجديدة بنجاح. يمكنكم الآن الشروع في الإنتقال مِن حسابكم القديم.
@@ -911,9 +924,22 @@ ar:
   disputes:
     strikes:
       action_taken: الإجراء المتخذ
+      appeal: طعن
+      appeal_submitted_at: طعن أرسِل في
+      appeals:
+        submit: تقديم طعن
+      associated_report: التقرير المتربط
+      created_at: بتاريخ
+      recipient: موجّه إلى
       status: 'المنشور #%{id}'
       title_actions:
+        delete_statuses: إزالة منشور
+        disable: تجميد للحساب
         none: تحذير
+        suspend: تعليق للحساب
+      your_appeal_approved: تمت الموافقة على طعنك
+      your_appeal_pending: لقد قمت بتقديم طعن
+      your_appeal_rejected: تم رفض طعنك
   domain_validator:
     invalid_domain: ليس بإسم نطاق صالح
   errors:
@@ -1517,6 +1543,9 @@ ar:
   user_mailer:
     appeal_approved:
       action: انتقل إلى حسابك
+      title: تمت الموافقة على الطعن
+    appeal_rejected:
+      title: رُفض الاستئناف
     backup_ready:
       explanation: لقد قمت بطلب نسخة كاملة لحسابك على ماستدون. إنها متوفرة الآن للتنزيل!
       subject: نسخة بيانات حسابك جاهزة للتنزيل
@@ -1528,6 +1557,7 @@ ar:
       subject: الرجاء تأكيد محاولة الولوج
       title: محاولة الولوج
     warning:
+      appeal: تقديم طعن
       categories:
         spam: مزعج
         violation: ينتهك المحتوى المبادئ التوجيهية التالية للمجتمع
