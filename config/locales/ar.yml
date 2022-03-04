@@ -717,6 +717,7 @@ ar:
       title: منشورات الحساب
       with_media: تحتوي على وسائط
     strikes:
+      appeal_approved: طُعِن فيه
       appeal_pending: طعن قيد المراجعة
     system_checks:
       database_schema_check:
@@ -771,6 +772,15 @@ ar:
       empty: لم تحدد أي إعدادات تحذير مسبقة بعد.
       title: إدارة نماذج التحذير
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: لحذف منشوراتهم
+        disable: لتجميد حسابهم
+        mark_statuses_as_sensitive: لوضع علامة حساس على منشوراتهم
+        none: لتحذيرهم
+        sensitive: لجعل حسابهم كحساس
+        silence: للحد من حسابهم
+        suspend: لتعليق حسابهم
     new_pending_account:
       body: تفاصيل الحساب الجديد أدناه. يمكنك الموافقة على هذا الطلب أو رفضه.
       subject: حساب جديد في انتظار مراجعة على %{instance} (%{username})
@@ -925,7 +935,9 @@ ar:
     strikes:
       action_taken: الإجراء المتخذ
       appeal: طعن
+      appeal_rejected: رُفِض الطعن
       appeal_submitted_at: طعن أرسِل في
+      appealed_msg: تم تقديم طعنك. إذا تمت الموافقة عليه، سيتم إبلاغك.
       appeals:
         submit: تقديم طعن
       associated_report: التقرير المتربط
@@ -1543,8 +1555,10 @@ ar:
   user_mailer:
     appeal_approved:
       action: انتقل إلى حسابك
-      title: تمت الموافقة على الطعن
+      subject: تم قبول طعنك الذي قدمته بتاريخ %{date}
+      title: تم قبول طعنك
     appeal_rejected:
+      subject: تم رفض طعنك الذي قدمته بتاريخ %{date}
       title: رُفض الاستئناف
     backup_ready:
       explanation: لقد قمت بطلب نسخة كاملة لحسابك على ماستدون. إنها متوفرة الآن للتنزيل!
@@ -1558,6 +1572,7 @@ ar:
       title: محاولة الولوج
     warning:
       appeal: تقديم طعن
+      appeal_description: إذا كنت تعتقد أن هذا خطأ، يمكنك تقديم طعن إلى فريق %{instance}.
       categories:
         spam: مزعج
         violation: ينتهك المحتوى المبادئ التوجيهية التالية للمجتمع
