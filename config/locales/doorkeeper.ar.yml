@@ -68,6 +68,7 @@ ar:
       confirmations:
         revoke: متأكد ؟
       index:
+        superapp: داخلي
         title: تطبيقاتك المرخص لها
     errors:
       messages:
@@ -103,6 +104,17 @@ ar:
       authorized_applications:
         destroy:
           notice: تم إبطال التصريح المخول للتطبيق.
+    grouped_scopes:
+      access:
+        read: وصول للقراءة فقط
+        read/write: وصول للقراءة والكتابة
+        write: وصول للكتابة فقط
+      title:
+        accounts: الحسابات
+        admin/accounts: إدارة الحسابات
+        admin/all: جميع المهام الإدارية
+        admin/reports: إدارة التقارير
+        all: كل شيء
     layouts:
       admin:
         nav:
