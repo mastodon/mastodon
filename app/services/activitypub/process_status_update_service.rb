@@ -13,7 +13,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @poll_changed              = false
 
     # Only native types can be updated at the moment
-    return false if !expected_type? || already_updated_more_recently?
+    return if !expected_type? || already_updated_more_recently?
+
+    last_edit_date = status.edited_at.presence || status.created_at
 
     # Only allow processing one create/update per status at a time
     RedisLock.acquire(lock_options) do |lock|
@@ -38,7 +40,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       end
     end
 
-    significant_changes?
+    forward_activity! if significant_changes? && @status_parser.edited_at.present? && @status_parser.edited_at > last_edit_date
   end
 
   private
@@ -269,5 +271,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     PollExpirationNotifyWorker.remove_from_scheduled(poll.id) if @previous_expires_at.present? && @previous_expires_at > poll.expires_at
     PollExpirationNotifyWorker.perform_at(poll.expires_at + 5.minutes, poll.id)
+  end
+
+  def forward_activity!
+    forwarder.forward! if forwarder.forwardable?
+  end
+
+  def forwarder
+    @forwarder ||= ActivityPub::Forwarder.new(@account, @json, @status)
   end
 end
