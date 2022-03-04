@@ -54,6 +54,12 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         media_attachment   = previous_media_attachments.find { |previous_media_attachment| previous_media_attachment.remote_url == media_attachment_parser.remote_url }
         media_attachment ||= MediaAttachment.new(account: @account, remote_url: media_attachment_parser.remote_url)
 
+        # If a previously existing media attachment was significantly updated, mark
+        # media attachments as changed even if none were added or removed
+        if media_attachment_parser.significantly_changes?(media_attachment)
+          @media_attachments_changed = true
+        end
+
         media_attachment.description          = media_attachment_parser.description
         media_attachment.focus                = media_attachment_parser.focus
         media_attachment.thumbnail_remote_url = media_attachment_parser.thumbnail_remote_url
@@ -75,6 +81,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
 
     @status.ordered_media_attachment_ids = next_media_attachments.map(&:id)
+    @media_attachments_changed = true if @status.ordered_media_attachment_ids_changed?
   end
 
   def update_poll!
@@ -87,7 +94,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
-      poll_changed = true if poll_parser.significantly_changes?(poll)
+      @poll_changed = true if poll_parser.significantly_changes?(poll)
 
       poll.last_fetched_at = Time.now.utc
       poll.options         = poll_parser.options
@@ -95,12 +102,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       poll.expires_at      = poll_parser.expires_at
       poll.voters_count    = poll_parser.voters_count
       poll.cached_tallies  = poll_parser.cached_tallies
-      poll.reset_votes! if poll_changed
+      poll.reset_votes! if @poll_changed
       poll.save!
 
       @status.poll_id = poll.id
     elsif previous_poll.present?
       previous_poll.destroy!
+      @poll_changed = true
       @status.poll_id = nil
     end
   end

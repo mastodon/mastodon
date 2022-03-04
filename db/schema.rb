@@ -1167,6 +1167,28 @@ ActiveRecord::Schema.define(version: 2022_03_03_203437) do
   SQL
   add_index "instances", ["domain"], name: "index_instances_on_domain", unique: true
 
+  create_view "user_ips", sql_definition: <<-SQL
+      SELECT t0.user_id,
+      t0.ip,
+      max(t0.used_at) AS used_at
+     FROM ( SELECT users.id AS user_id,
+              users.sign_up_ip AS ip,
+              users.created_at AS used_at
+             FROM users
+            WHERE (users.sign_up_ip IS NOT NULL)
+          UNION ALL
+           SELECT session_activations.user_id,
+              session_activations.ip,
+              session_activations.updated_at
+             FROM session_activations
+          UNION ALL
+           SELECT login_activities.user_id,
+              login_activities.ip,
+              login_activities.created_at
+             FROM login_activities
+            WHERE (login_activities.success = true)) t0
+    GROUP BY t0.user_id, t0.ip;
+  SQL
   create_view "account_summaries", materialized: true, sql_definition: <<-SQL
       SELECT accounts.id AS account_id,
       mode() WITHIN GROUP (ORDER BY t0.language) AS language,
@@ -1213,27 +1235,4 @@ ActiveRecord::Schema.define(version: 2022_03_03_203437) do
     ORDER BY (sum(t0.rank)) DESC;
   SQL
   add_index "follow_recommendations", ["account_id"], name: "index_follow_recommendations_on_account_id", unique: true
-
-  create_view "user_ips", sql_definition: <<-SQL
-      SELECT t0.user_id,
-      t0.ip,
-      max(t0.used_at) AS used_at
-     FROM ( SELECT users.id AS user_id,
-              users.sign_up_ip AS ip,
-              users.created_at AS used_at
-             FROM users
-            WHERE (users.sign_up_ip IS NOT NULL)
-          UNION ALL
-           SELECT session_activations.user_id,
-              session_activations.ip,
-              session_activations.updated_at
-             FROM session_activations
-          UNION ALL
-           SELECT login_activities.user_id,
-              login_activities.ip,
-              login_activities.created_at
-             FROM login_activities
-            WHERE (login_activities.success = true)) t0
-    GROUP BY t0.user_id, t0.ip;
-  SQL
 end
