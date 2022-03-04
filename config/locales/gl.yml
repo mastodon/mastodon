@@ -778,6 +778,7 @@ gl:
       links:
         allow: Permitir ligazón
         allow_provider: Permitir orixe
+        description_html: Estas son ligazóns que actualmente están sendo compartidas por moitas contas das que o teu servidor recibe publicación. Pode ser de utilidade para as túas usuarias para saber o que acontece polo mundo. Non se mostran ligazóns de xeito público a non ser que autorices a quen as publica. Tamén podes permitir ou rexeitar ligazóns de xeito individual.
         disallow: Denegar ligazón
         disallow_provider: Denegar orixe
         shared_by_over_week:
@@ -789,14 +790,17 @@ gl:
       pending_review: Revisión pendente
       preview_card_providers:
         allowed: As ligazóns desta orixe poden estar en voga
+        description_html: Estes son dominios de onde proceden as ligazóns compartidas con frecuencia no teu servidor. As ligazóns non se mostran públicamente a non ser que o dominio da ligazón sexa aprobado. A aprobación (ou rexeitamento) exténdese aos subdominios.
         rejected: As ligazóns desta orixe non poden estar en voga
         title: Orixes
       rejected: Rexeitado
       statuses:
         allow: Permitir publicación
         allow_account: Permitir autora
+        description_html: Estas son publicacións que o teu servidor coñece que están sendo compartidas e favorecidas en gran número neste intre. Pode ser útil para as persoas recén chegadas e as que retornan para que atopen persoas a quen seguir. Non se mostran publicamente a menos que aprobes a autora, e a autora permita que a súa conta sexa suxerida a outras. Tamén podes rexeitar ou aprobar publicacións individuais.
         disallow: Rexeitar publicación
         disallow_account: Rexeitar autora
+        not_discoverable: A autora non elexiu poder ser atopada
         shared_by:
           one: Compartida ou favorecida unha vez
           other: Compartida ou favorecida %{friendly_count} veces
@@ -809,6 +813,7 @@ gl:
           tag_servers_dimension: Clasificación Servidores
           tag_servers_measure: diferentes servidores
           tag_uses_measure: total de usos
+        description_html: Estes son cancelos que actualmente están presentes en moitas publicacións que o teu servidor recibe. Pode ser útil para que as túas usuarias atopen a outras persoas a través do máis comentado neste intre. Non se mostran cancelos públicamente que non fosen aprobados por ti.
         listable: Pode ser suxerida
         not_listable: Non vai ser suxerida
         not_trendable: Non aparecerá en tendencias
@@ -1479,7 +1484,7 @@ gl:
       '2629746': 1 mes
       '31556952': 1 ano
       '5259492': 2 meses
-      '604800': 1 week
+      '604800': 1 semana
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Límite temporal
