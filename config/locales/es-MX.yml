@@ -753,11 +753,11 @@ es-MX:
       actions:
         delete_statuses: "%{name} ha eliminado las publicaciones de %{target}'s"
         disable: "%{name} congeló la cuenta de %{target}"
-        mark_statuses_as_sensitive: "%{name} ha marcado las publicaciones de %{target} como sensibles"
+        mark_statuses_as_sensitive: "%{name} marcó las publicaciones de %{target} como sensibles"
         none: "%{name} envió una advertencia a %{target}"
-        sensitive: "%{name} marcó la cuenta de %{target} como sensible"
-        silence: "%{name} limitó la cuenta de %{target}"
-        suspend: "%{name} suspendió la cuenta de %{target}"
+        sensitive: "%{name} ha marcado la cuenta de %{target}'s como sensible"
+        silence: "%{name} limito la cuenta de %{target}"
+        suspend: "%{name} suspendio la cuenta de %{target}"
       appeal_approved: Apelado
       appeal_pending: Apelación pendiente
     system_checks:
@@ -778,33 +778,33 @@ es-MX:
       disallow: Rechazar
       links:
         allow: Permitir enlace
-        allow_provider: Permitir medio
+        allow_provider: Permitir editor
         description_html: Estos son enlaces que actualmente están siendo compartidos mucho por las cuentas desde las que tu servidor ve los mensajes. Pueden ayudar a tus usuarios a averiguar qué está pasando en el mundo. Ningún enlace se muestren públicamente hasta que autorice al dominio. También puede permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
-        disallow_provider: Rechazar medio
+        disallow_provider: Rechazar editor
         shared_by_over_week:
           one: Compartido por una persona en la última semana
           other: Compartido por %{count} personas durante la última semana
           zero: Compartido por nadie en la última semana
         title: Enlaces en tendencia
-        usage_comparison: Compartido %{today} veces hoy, comparado con %{yesterday} ayer
+        usage_comparison: Compartido %{today} veces hoy, comparado a %{yesterday} ayer
       pending_review: Revisión pendiente
       preview_card_providers:
-        allowed: Los enlaces de este medio pueden ser tendencia
+        allowed: Los enlaces de este editor pueden ser tendencia
         description_html: Estos son dominios desde los que los enlaces a menudo se comparten en su servidor. Los enlaces no serán tendencia públicamente a menos que se apruebe el dominio del enlace. Su aprobación (o rechazo) se extiende a los subdominios.
-        rejected: Los enlaces de este medio no pueden ser tendencia
-        title: Medios
-      rejected: Rechazadas
+        rejected: Los enlaces del editor no pueden ser tendencia
+        title: Editores
+      rejected: Rechazado
       statuses:
         allow: Permitir publicación
         allow_account: Permitir autor
         description_html: Estos son publicaciones que su servidor conoce que están siendo compartidas y marcadas como favoritas mucho en este momento. Pueden ayudar a tus usuarios nuevos y retornantes a encontrar más gente a la que seguir. No hay mensajes que se muestren públicamente hasta que apruebes el autor y el autor permita que su cuenta sea sugerida a otros. También puedes permitir o rechazar mensajes individuales.
-        disallow: No permitir publicación
+        disallow: Rechazar publicación
         disallow_account: No permitir autor
         not_discoverable: El autor no ha optado por ser detectable
         shared_by:
           one: Compartido o marcado como favorito una vez
-          other: Compatido o marcado como favorito %{friendly_count} veces
+          other: Compartido o marcado como favorito %{friendly_count} veces
         title: Publicaciones destacadas
       tags:
         current_score: Puntuación actual %{score}
