@@ -59,7 +59,7 @@ es-MX:
       error:
         title: Ha ocurrido un error
       new:
-        prompt_html: "%{client_name} desea permiso para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confías en ella, no deberías autorizarla.</strong>"
+        prompt_html: "%{client_name} Requiere permisos para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confías en ella, no deberías darle autorización.</strong>"
         review_permissions: Revisar permisos
         title: Se requiere autorización
       show:
@@ -71,8 +71,8 @@ es-MX:
         revoke: '¿Está seguro?'
       index:
         authorized_at: Autorizado el %{date}
-        description_html: Estas son aplicaciones que pueden acceder a tu cuenta usando la API. Si hay aplicaciones que no se reconocen aquí, o una aplicación no funciona correctamente, puedes revocar su acceso.
-        last_used_at: Último uso el %{date}
+        description_html: Estas son aplicaciones que pueden acceder a tu cuenta utilizando la API. Si hay alguna aplicación que no reconozcas aquí, o una aplicación esta teniendo comportamientos extraños, puedes revocar el acceso.
+        last_used_at: Usado por ultima vez el %{date}
         never_used: Nunca usado
         scopes: Permisos
         superapp: Interno
