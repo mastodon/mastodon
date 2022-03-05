@@ -69,6 +69,8 @@ ja:
         revoke: 本当に取り消しますか？
       index:
         authorized_at: '%{date} に承認されました'
+        last_used_at: 最終使用日 %{date}
+        never_used: 使用されていない
         scopes: 権限
         title: 認証済みアプリ
     errors:
@@ -114,11 +116,13 @@ ja:
         accounts: アカウント
         blocks: ブロック
         bookmarks: ブックマーク
+        crypto: エンドツーエンド暗号化
         favourites: お気に入り
         filters: フィルター
         lists: リスオ
         mutes: ミュート
         notifications: 通知
+        push: プッシュ通知
         reports: 通報
         search: 検索
         statuses: 投稿
@@ -136,6 +140,7 @@ ja:
       "admin:write": サーバーのすべてのデータの変更
       "admin:write:accounts": アカウントに対するアクションの実行
       "admin:write:reports": 通報に対するアクションの実行
+      crypto: エンドツーエンド暗号化の使用
       follow: アカウントのつながりを変更
       push: プッシュ通知の受信
       read: アカウントのすべてのデータの読み取り
