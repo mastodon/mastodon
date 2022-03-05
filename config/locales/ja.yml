@@ -1,7 +1,7 @@
 ---
 ja:
   about:
-    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の公開投稿です。どこか連合に参加しているSNS上にアカウントを作れば、会話に参加することができます。
+    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の公開ほたです。どこか連合に参加しているSNS上にアカウントを作れば、会話に参加することができます。
     about_mastodon_html: Mastodon は、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     active_count_after: 人がアクティブ
@@ -30,17 +30,17 @@ ja:
     server_stats: 'サーバー統計:'
     source_code: ソースコード
     status_count_after:
-      other: 投稿
-    status_count_before: 投稿数
+      other: ほた
+    status_count_before: ほた数
     tagline: Follow friends and discover new ones
     terms: 利用規約
     unavailable_content: 制限中のサーバー
     unavailable_content_description:
       domain: サーバー
       reason: 制限理由
-      rejecting_media: 'これらのサーバーからのメディアファイルは処理されず、保存や変換もされません。サムネイルも表示されません。表示するにはクリックしてそのサーバーに直接アクセスする必要があります:'
-      rejecting_media_title: メディアを拒否しているサーバー
-      silenced: 'これらのサーバーからの投稿は公開タイムラインと会話から隠されます。また該当するユーザーからの通知は相手をフォローしている場合を除き表示されません:'
+      rejecting_media: 'これらのサーバーからのおたかんファイルは処理されず、保存や変換もされません。サムネイルも表示されません。表示するにはクリックしてそのサーバーに直接アクセスする必要があります:'
+      rejecting_media_title: おたかんを拒否しているサーバー
+      silenced: 'これらのサーバーからのほたは公開タイムラインと会話から隠されます。また該当するユーザーからの通知は相手をフォローしている場合を除き表示されません:'
       silenced_title: サイレンス済みのサーバー
       suspended: 'これらのサーバーからのデータは処理されず、保存や変換もされません。該当するユーザーとの交流もできません:'
       suspended_title: 停止済みのサーバー
@@ -61,7 +61,7 @@ ja:
     joined: "%{date} に登録"
     last_active: 最後の活動
     link_verified_on: このリンクの所有権は %{date} に確認されました
-    media: メディア
+    media: おたかん
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     network_hidden: この情報は利用できません
     never_active: 活動なし
@@ -71,9 +71,9 @@ ja:
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
-      other: 投稿
-    posts_tab_heading: 投稿
-    posts_with_replies: 投稿と返信
+      other: ほた
+    posts_tab_heading: ほた
+    posts_with_replies: ひらちょん
     roles:
       admin: Admin
       bot: Bot
@@ -138,7 +138,7 @@ ja:
         remote: リモート
         title: ロケーション
       login_status: ログイン
-      media_attachments: 添付されたメディア
+      media_attachments: 添付されたおたかん
       memorialize: 追悼アカウント化
       memorialized: 追悼化済み
       memorialized_msg: "%{username} を追悼アカウント化しました"
@@ -196,7 +196,7 @@ ja:
         targeted_reports: このアカウントについての通報
       silence: サイレンス
       silenced: サイレンス済み
-      statuses: 投稿数
+      statuses: ほた数
       subscribe: 購読する
       suspend: サスペンド
       suspended: 停止済み
@@ -240,7 +240,7 @@ ja:
         destroy_email_domain_block: メールドメインブロックを削除
         destroy_instance: ドメインをブロックする
         destroy_ip_block: IPルールを削除
-        destroy_status: 投稿を削除
+        destroy_status: ほたを削除
         destroy_unavailable_domain: 配送できないドメインを削除
         disable_2fa_user: 二段階認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
@@ -257,18 +257,18 @@ ja:
         reopen_report: 未解決に戻す
         reset_password_user: パスワードをリセット
         resolve_report: 通報を解決済みにする
-        sensitive_account: アカウントのメディアを閲覧注意にマーク
+        sensitive_account: アカウントのおたかんを閲覧注意にマーク
         silence_account: アカウントをサイレンス
         suspend_account: アカウントを停止
         unassigned_report: 通報の担当を解除
         unblock_email_account: メールアドレスのブロックを解除
-        unsensitive_account: アカウントのメディアの閲覧注意マークを解除
+        unsensitive_account: アカウントのおたかんの閲覧注意マークを解除
         unsilence_account: アカウントのサイレンスを解除
         unsuspend_account: アカウントの停止を解除
         update_announcement: お知らせを更新
         update_custom_emoji: カスタム絵文字を更新
         update_domain_block: ドメインブロックを更新
-        update_status: 投稿を更新
+        update_status: ほたを更新
       actions:
         approve_appeal_html: "%{name} さんが %{target} からの抗議を承認しました"
         approve_user_html: "%{target} から登録された %{name} さんを承認しました"
@@ -291,7 +291,7 @@ ja:
         destroy_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックから外しました"
         destroy_instance_html: "%{name} さんが %{target} をドメインブロックしました"
         destroy_ip_block_html: "%{name} さんが IP %{target} のルールを削除しました"
-        destroy_status_html: "%{name} さんが %{target} さんの投稿を削除しました"
+        destroy_status_html: "%{name} さんが %{target} さんのほたを削除しました"
         destroy_unavailable_domain_html: "%{name} がドメイン %{target} への配送を再開しました"
         disable_2fa_user_html: "%{name} さんが %{target} さんの二段階認証を無効化しました"
         disable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
@@ -308,18 +308,18 @@ ja:
         reopen_report_html: "%{name} さんが通報 %{target} を未解決に戻しました"
         reset_password_user_html: "%{name} さんが %{target} さんのパスワードをリセットしました"
         resolve_report_html: "%{name} さんが通報 %{target} を解決済みにしました"
-        sensitive_account_html: "%{name} さんが %{target} さんのメディアを閲覧注意にマークしました"
+        sensitive_account_html: "%{name} さんが %{target} さんのおたかんを閲覧注意にマークしました"
         silence_account_html: "%{name} さんが %{target} さんをサイレンスにしました"
         suspend_account_html: "%{name} さんが %{target} さんを停止しました"
         unassigned_report_html: "%{name} さんが通報 %{target} の担当を外しました"
         unblock_email_account_html: "%{name} さんが %{target} のドメインブロックを解除しました"
-        unsensitive_account_html: "%{name} さんが %{target} さんのメディアの閲覧注意を解除しました"
+        unsensitive_account_html: "%{name} さんが %{target} さんのおたかんの閲覧注意を解除しました"
         unsilence_account_html: "%{name} さんが %{target} さんのサイレンスを解除しました"
         unsuspend_account_html: "%{name} さんが %{target} さんの停止を解除しました"
         update_announcement_html: "%{name} さんがお知らせ %{target} を更新しました"
         update_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を更新しました"
         update_domain_block_html: "%{name} が %{target} のドメインブロックを更新しました"
-        update_status_html: "%{name} さんが %{target} さんの投稿を更新しました"
+        update_status_html: "%{name} さんが %{target} さんのほたを更新しました"
       deleted_status: "(削除済)"
       empty: ログが見つかりませんでした
       filter_by_action: アクションでフィルター
@@ -378,7 +378,7 @@ ja:
     dashboard:
       active_users: アクティブユーザー
       interactions: 交流
-      media_storage: メディアストレージ
+      media_storage: おたかんストレージ
       new_users: 新規ユーザー
       opened_reports: 新規通報
       pending_appeals_html:
@@ -417,7 +417,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントの投稿をフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
+          desc_html: "<strong>サイレンス</strong>はアカウントのほたをフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、おたかん、プロフィールデータをすべて削除します。おたかんファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
           noop: なし
           silence: サイレンス
           suspend: 停止
@@ -428,11 +428,11 @@ ja:
       private_comment_hint: このコメントは同じサーバーのモデレーターも閲覧できます。
       public_comment: コメント (公開)
       public_comment_hint: ドメインブロックの公開を有効にしている場合、このコメントも公開されます。
-      reject_media: メディアファイルを拒否
-      reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
+      reject_media: おたかんファイルを拒否
+      reject_media_hint: ローカルに保存されたおたかんファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: 通報を拒否
       reject_reports_hint: このドメインからの通報をすべて無視します。停止とは無関係です
-      rejecting_media: メディアファイルを拒否中
+      rejecting_media: おたかんファイルを拒否中
       rejecting_reports: 通報を拒否中
       severity:
         silence: サイレンス中
@@ -504,7 +504,7 @@ ja:
       total_followed_by_them: 被フォロー合計
       total_followed_by_us: フォロー合計
       total_reported: 通報合計
-      total_storage: 添付されたメディア
+      total_storage: 添付されたおたかん
     invites:
       deactivate_all: すべて無効化
       filter:
@@ -533,11 +533,11 @@ ja:
     relays:
       add_new: リレーを追加
       delete: 削除
-      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開投稿を仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
+      description_html: "<strong>連合リレー</strong>とは、登録しているサーバー間の公開ほたを仲介するサーバーです。<strong>中小規模のサーバーが連合のコンテンツを見つけるのを助けます。</strong>これを使用しない場合、ローカルユーザーがリモートユーザーを手動でフォローする必要があります。"
       disable: 無効化
       disabled: 無効
       enable: 有効化
-      enable_hint: 有効にすると、リレーから全ての公開投稿を受信するようになり、またこのサーバーの全ての公開投稿をリレーに送信するようになります。
+      enable_hint: 有効にすると、リレーから全ての公開ほたを受信するようになり、またこのサーバーの全ての公開ほたをリレーに送信するようになります。
       enabled: 有効
       inbox_url: リレーURL
       pending: リレーサーバーの承認待ちです
@@ -566,7 +566,7 @@ ja:
       comment:
         none: なし
       created_at: 通報日時
-      delete_and_resolve: 投稿を削除
+      delete_and_resolve: ほたを削除
       forwarded: 転送済み
       forwarded_to: "%{domain} に転送されました"
       mark_as_resolved: 解決済みとしてマーク
@@ -590,7 +590,7 @@ ja:
       skip_to_actions: アクションに移動
       status: ステータス
       statuses: 通報内容
-      statuses_description_html: 問題の投稿は通報されたアカウントへの連絡時に引用されます
+      statuses_description_html: 問題のほたは通報されたアカウントへの連絡時に引用されます
       target_origin: 報告されたアカウントの起源
       title: 通報
       unassign: 担当を外す
@@ -606,7 +606,7 @@ ja:
       title: サーバーのルール
     settings:
       activity_api_enabled:
-        desc_html: 週ごとのローカルに投稿された投稿数、アクティブなユーザー数、新規登録者数
+        desc_html: 週ごとのローカルにほたされたほた数、アクティブなユーザー数、新規登録者数
         title: ユーザーアクティビティに関する統計を公開する
       bootstrap_timeline_accounts:
         desc_html: 複数のユーザー名を指定する場合コンマで区切ります。おすすめに表示されます。
@@ -637,8 +637,8 @@ ja:
         desc_html: 連合内でこのサーバーが遭遇したドメインの名前
         title: 接続しているサーバーのリストを公開する
       preview_sensitive_media:
-        desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
-        title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
+        desc_html: 他のウェブサイトにリンクを貼った際、おたかんが閲覧注意としてマークされていてもサムネイルが表示されます
+        title: OpenGraphによるプレビューで閲覧注意のおたかんも表示する
       profile_directory:
         desc_html: ユーザーが見つかりやすくできるようになります
         title: ディレクトリを有効にする
@@ -662,7 +662,7 @@ ja:
           open: 誰でも登録可
         title: 新規登録
       show_known_fediverse_at_about_page:
-        desc_html: チェックを外すと、ランディングページからリンクされた公開タイムラインにローカルの公開投稿のみ表示します。
+        desc_html: チェックを外すと、ランディングページからリンクされた公開タイムラインにローカルの公開ほたのみ表示します。
         title: 公開タイムラインに連合先のコンテンツも表示する
       show_staff_badge:
         desc_html: ユーザーページにスタッフのバッジを表示します
@@ -704,10 +704,10 @@ ja:
         report: 通報
       deleted: 削除済み
       media:
-        title: メディア
+        title: おたかん
       no_status_selected: 何も選択されていないため、変更されていません
-      title: 投稿一覧
-      with_media: メディアあり
+      title: ほた一覧
+      with_media: おたかんあり
     strikes:
       appeal_approved: 抗議済み
       appeal_pending: 保留中の抗議
@@ -780,7 +780,7 @@ ja:
       new_trending_links:
         title: トレンドリンク
       new_trending_statuses:
-        title: トレンド投稿
+        title: トレンドほた
       new_trending_tags:
         title: トレンドハッシュタグ
   aliases:
@@ -801,14 +801,14 @@ ja:
       guide_link: https://ja.crowdin.com/project/mastodon
       guide_link_text: 誰でも参加することができます。
     sensitive_content: 閲覧注意コンテンツ
-    toot_layout: 投稿のレイアウト
+    toot_layout: ほたのレイアウト
   application_mailer:
     notification_preferences: メール設定の変更
     salutation: "%{name} さん"
     settings: 'メール設定の変更: %{link}'
     view: 'リンク:'
     view_profile: プロフィールを表示
-    view_status: 投稿を表示
+    view_status: ほたを表示
   applications:
     created: アプリが作成されました
     destroyed: アプリが削除されました
@@ -908,7 +908,7 @@ ja:
     warning:
       before: '続行する前に、次の点を再度確認してください:'
       caches: 他のサーバーにコンテンツのキャッシュがずっと残る場合があります
-      data_removal: あなたの投稿やその他のデータはこのサーバーから完全に削除されます
+      data_removal: あなたのほたやその他のデータはこのサーバーから完全に削除されます
       email_change_html: アカウントを削除しなくても<a href="%{path}">メールアドレスを変更</a>できます
       email_contact_html: それでも届かない場合、<a href="mailto:%{email}">%{email}</a> までメールで問い合わせてください
       email_reconfirmation_html: 確認のメールが届かない場合、<a href="%{path}">もう一度申請</a>できます。
@@ -957,7 +957,7 @@ ja:
     archive_takeout:
       date: 日時
       download: ダウンロード
-      hint_html: "<strong>投稿本文とメディア</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
+      hint_html: "<strong>ほた本文とおたかん</strong>のアーカイブをリクエストできます。 データはActivityPub形式で、対応しているソフトウェアで読み込むことができます。7日毎にアーカイブをリクエストできます。"
       in_progress: 準備中...
       request: アーカイブをリクエスト
       size: 容量
@@ -967,12 +967,12 @@ ja:
     domain_blocks: 非表示にしたドメイン
     lists: リスト
     mutes: ミュート
-    storage: メディア
+    storage: おたかん
   featured_tags:
     add_new: 追加
     errors:
       limit: 注目のハッシュタグの上限に達しました
-    hint_html: "<strong>注目のハッシュタグとは？</strong>プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開投稿だけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
+    hint_html: "<strong>注目のハッシュタグとは？</strong>プロフィールページに目立つ形で表示され、そのハッシュタグのついたあなたの公開ほただけを抽出して閲覧できるようにします。クリエイティブな仕事や長期的なプロジェクトを追うのに優れた機能です。"
   filters:
     contexts:
       account: プロフィール
@@ -1115,7 +1115,7 @@ ja:
         other: "新しい%{count}件の通知 \U0001F418"
       title: 不在の間に…
     favourite:
-      body: "%{name} さんにお気に入り登録された、あなたの投稿があります:"
+      body: "%{name} さんにお気に入り登録された、あなたのほたがあります:"
       subject: "%{name} さんにお気に入りに登録されました"
       title: 新たなお気に入り登録
     follow:
@@ -1135,13 +1135,13 @@ ja:
     poll:
       subject: "%{name}  さんの投票が終了しました"
     reblog:
-      body: "%{name} さんにブーストされた、あなたの投稿があります:"
+      body: "%{name} さんにブーストされた、あなたのほたがあります:"
       subject: "%{name} さんにブーストされました"
       title: 新たなブースト
     status:
-      subject: "%{name} さんが投稿しました"
+      subject: "%{name} さんがほたしました"
     update:
-      subject: "%{name} さんが投稿を更新しました"
+      subject: "%{name} さんがほたを更新しました"
   notifications:
     email_events: メールによる通知
     email_events_hint: '受信する通知を選択:'
@@ -1165,9 +1165,9 @@ ja:
     setup: セットアップ
     wrong_code: コードが間違っています。サーバーとデバイスの時計にずれがあるかもしれません。
   pagination:
-    newer: 新しい投稿
+    newer: 新しいほた
     next: 次
-    older: 以前の投稿
+    older: 以前のほた
     prev: 前
     truncate: "&hellip;"
   polls:
@@ -1183,7 +1183,7 @@ ja:
       too_many_options: は%{max}個までです
   preferences:
     other: その他
-    posting_defaults: デフォルトの投稿設定
+    posting_defaults: デフォルトのほた設定
     public_timelines: 公開タイムライン
   reactions:
     errors:
@@ -1224,8 +1224,8 @@ ja:
       proceed: 返信する
       prompt: '返信しようとしています:'
   scheduled_statuses:
-    over_daily_limit: その日予約できる投稿数 %{limit} を超えています
-    over_total_limit: 予約できる投稿数 %{limit} を超えています
+    over_daily_limit: その日予約できるほた数 %{limit} を超えています
+    over_total_limit: 予約できるほた数 %{limit} を超えています
     too_soon: より先の時間を指定してください
   sessions:
     activity: 最後のアクティビティ
@@ -1288,7 +1288,7 @@ ja:
     preferences: ユーザー設定
     profile: プロフィール
     relationships: フォロー・フォロワー
-    statuses_cleanup: 投稿の自動削除
+    statuses_cleanup: ほたの自動削除
     two_factor_authentication: 二段階認証
     webauthn_authentication: セキュリティキー
   statuses:
@@ -1307,13 +1307,13 @@ ja:
       other: '許可されていないハッシュタグが含まれています: %{tags}'
     edited_at: "%{date} に編集"
     errors:
-      in_reply_not_found: あなたが返信しようとしている投稿は存在しないようです。
+      in_reply_not_found: あなたが返信しようとしているほたは存在しないようです。
     open_in_web: Webで開く
     over_character_limit: 上限は %{max}文字までです
     pin_errors:
-      direct: 返信したユーザーのみに表示される投稿はピン留めできません
-      limit: 固定できる投稿数の上限に達しました
-      ownership: 他人の投稿を固定することはできません
+      direct: 返信したユーザーのみに表示されるほたはピン留めできません
+      limit: 固定できるほた数の上限に達しました
+      ownership: 他人のほたを固定することはできません
       reblog: ブーストを固定することはできません
     poll:
       total_people:
@@ -1336,26 +1336,26 @@ ja:
       unlisted: 未収載
       unlisted_long: 誰でも見ることができますが、公開タイムラインには表示されません
   statuses_cleanup:
-    enabled: 古い投稿を自動的に削除する
-    enabled_hint: 設定した期間を過ぎた投稿は、以下の例外に該当しない限り、自動的に削除されます
+    enabled: 古いほたを自動的に削除する
+    enabled_hint: 設定した期間を過ぎたほたは、以下の例外に該当しない限り、自動的に削除されます
     exceptions: 例外
-    explanation: 投稿の削除はサーバーに負荷がかかるため、サーバーが混み合っていないときに時間をかけて行われます。
+    explanation: ほたの削除はサーバーに負荷がかかるため、サーバーが混み合っていないときに時間をかけて行われます。
     ignore_favs: 設定しない
     ignore_reblogs: 設定しない
     interaction_exceptions: インタラクションに基づく例外
-    interaction_exceptions_explanation: お気に入りやブーストの基準値を一度超えてしまった投稿は、基準値を下回った後であっても、削除される保証はありません。
+    interaction_exceptions_explanation: お気に入りやブーストの基準値を一度超えてしまったほたは、基準値を下回った後であっても、削除される保証はありません。
     keep_direct: ダイレクトメッセージを保持
     keep_direct_hint: ダイレクトメッセージを削除せずに残します
-    keep_media: メディア付きの投稿を保持
-    keep_media_hint: メディア付きの投稿を削除せずに残します
-    keep_pinned: ピン留めされた投稿を保持
-    keep_pinned_hint: ピン留めされた投稿を削除せずに残します
-    keep_polls: アンケート付きの投稿を保持
-    keep_polls_hint: アンケート付きの投稿を削除せずに残します
-    keep_self_bookmark: ブックマークした投稿を保持
-    keep_self_bookmark_hint: 自分自身でブックマークした投稿を削除せずに残します
-    keep_self_fav: お気に入りに登録した投稿を保持
-    keep_self_fav_hint: 自分自身でお気に入りに登録した投稿を削除せずに残します
+    keep_media: おたかん付きのほたを保持
+    keep_media_hint: おたかん付きのほたを削除せずに残します
+    keep_pinned: ピン留めされたほたを保持
+    keep_pinned_hint: ピン留めされたほたを削除せずに残します
+    keep_polls: アンケート付きのほたを保持
+    keep_polls_hint: アンケート付きのほたを削除せずに残します
+    keep_self_bookmark: ブックマークしたほたを保持
+    keep_self_bookmark_hint: 自分自身でブックマークしたほたを削除せずに残します
+    keep_self_fav: お気に入りに登録したほたを保持
+    keep_self_fav_hint: 自分自身でお気に入りに登録したほたを削除せずに残します
     min_age:
       '1209600': 2週間
       '15778476': 6ヶ月
@@ -1364,13 +1364,13 @@ ja:
       '5259492': 2ヶ月
       '63113904': 2年
       '7889238': 3ヶ月
-    min_age_label: 投稿を保持する期間
+    min_age_label: ほたを保持する期間
     min_favs: お気に入りの基準値
-    min_favs_hint: この数以上、お気に入りされた投稿を削除せずに残します。空白にしておくと、お気に入りに登録された数に関わらず投稿を削除します。
+    min_favs_hint: この数以上、お気に入りされたほたを削除せずに残します。空白にしておくと、お気に入りに登録された数に関わらずほたを削除します。
     min_reblogs: ブーストの基準値
-    min_reblogs_hint: この数以上、ブーストされた投稿を削除せずに残します。空白にしておくと、ブーストされた数に関わらず投稿を削除します。
+    min_reblogs_hint: この数以上、ブーストされたほたを削除せずに残します。空白にしておくと、ブーストされた数に関わらずほたを削除します。
   stream_entries:
-    pinned: 固定された投稿
+    pinned: 固定されたほた
     reblogged: さんがブースト
     sensitive_content: 閲覧注意
   tags:
@@ -1382,8 +1382,8 @@ ja:
 
       <ul>
       <li><em>基本的なアカウント情報</em>: 当サイトに登録すると、ユーザー名・メールアドレス・パスワードの入力を求められることがあります。また表示名や自己紹介・プロフィール画像・ヘッダー画像といった追加のプロフィールを登録できます。ユーザー名・表示名・自己紹介・プロフィール画像・ヘッダー画像は常に公開されます。</li>
-      <li><em>投稿・フォロー・その他公開情報</em>: フォローしているユーザーの一覧は一般公開されます。フォロワーも同様です。メッセージを投稿する際、日時だけでなく投稿に使用したアプリケーション名も記録されます。メッセージには写真や動画といった添付メディアを含むことがあります。「公開」や「未収載」の投稿は一般公開されます。プロフィールに投稿を載せるとそれもまた公開情報となります。投稿はフォロワーに配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。投稿を削除した場合も同様にフォロワーに配信されます。他の投稿をリブログやお気に入り登録する行動は常に公開されます。</li>
-      <li><em>「ダイレクト」と「フォロワー限定」投稿</em>: すべての投稿はサーバーに保存され、処理されます。「フォロワー限定」投稿はフォロワーと投稿に書かれたユーザーに配信されます。「ダイレクト」投稿は投稿に書かれたユーザーにのみ配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。私たちはこれらの閲覧を一部の許可された者に限定するよう誠意を持って努めます。しかし他のサーバーにおいても同様に扱われるとは限りません。したがって、相手の所属するサーバーを吟味することが重要です。設定で新しいフォロワーの承認または拒否を手動で行うよう切り替えることもできます。<em>サーバー管理者は「ダイレクト」や「フォロワー限定」投稿も閲覧する可能性があることを忘れないでください。</em>また受信者がスクリーンショットやコピー、もしくは共有する可能性があることを忘れないでください。<em>いかなる危険な情報もMastodon上で共有しないでください。</em></li>
+      <li><em>ほた・フォロー・その他公開情報</em>: フォローしているユーザーの一覧は一般公開されます。フォロワーも同様です。メッセージをほたする際、日時だけでなくほたに使用したアプリケーション名も記録されます。メッセージには写真や動画といった添付おたかんを含むことがあります。「公開」や「未収載」のほたは一般公開されます。プロフィールにほたを載せるとそれもまた公開情報となります。ほたはフォロワーに配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。ほたを削除した場合も同様にフォロワーに配信されます。他のほたをリブログやお気に入り登録する行動は常に公開されます。</li>
+      <li><em>「ダイレクト」と「フォロワー限定」ほた</em>: すべてのほたはサーバーに保存され、処理されます。「フォロワー限定」ほたはフォロワーとほたに書かれたユーザーに配信されます。「ダイレクト」ほたはほたに書かれたユーザーにのみ配信されます。場合によっては他のサーバーに配信され、そこにコピーが保存されることを意味します。私たちはこれらの閲覧を一部の許可された者に限定するよう誠意を持って努めます。しかし他のサーバーにおいても同様に扱われるとは限りません。したがって、相手の所属するサーバーを吟味することが重要です。設定で新しいフォロワーの承認または拒否を手動で行うよう切り替えることもできます。<em>サーバー管理者は「ダイレクト」や「フォロワー限定」ほたも閲覧する可能性があることを忘れないでください。</em>また受信者がスクリーンショットやコピー、もしくは共有する可能性があることを忘れないでください。<em>いかなる危険な情報もMastodon上で共有しないでください。</em></li>
       <li><em>IPアドレスやその他メタデータ</em>: ログインする際IPアドレスだけでなくブラウザーアプリケーション名を記録します。ログインしたセッションはすべてユーザー設定で見直し、取り消すことができます。使用されている最新のIPアドレスは最大12ヵ月間保存されます。またサーバーへのIPアドレスを含むすべてのリクエストのログを保持することがあります。</li>
       </ul>
 
@@ -1394,9 +1394,9 @@ ja:
       <p>収集した情報は次の用途に使用されることがあります:</p>
 
       <ul>
-      <li>Mastodonのコア機能の提供: ログインしている間にかぎり他の人たちと投稿を通じて交流することができます。例えば自分専用のホームタイムラインで投稿をまとめて読むために他の人たちをフォローできます。</li>
+      <li>Mastodonのコア機能の提供: ログインしている間にかぎり他の人たちとほたを通じて交流することができます。例えば自分専用のホームタイムラインでほたをまとめて読むために他の人たちをフォローできます。</li>
       <li>コミュニティ維持の補助: 例えばIPアドレスを既知のものと比較し、BAN回避目的の複数登録者やその他違反者を判別します。</li>
-      <li>提供されたメールアドレスはお知らせの送信・投稿に対するリアクションやメッセージ送信の通知・お問い合わせやその他要求や質問への返信に使用されることがあります。</li>
+      <li>提供されたメールアドレスはお知らせの送信・ほたに対するリアクションやメッセージ送信の通知・お問い合わせやその他要求や質問への返信に使用されることがあります。</li>
       </ul>
 
       <hr class="spacer" />
@@ -1416,7 +1416,7 @@ ja:
       <li>登録されたユーザーに関連付けられたIPアドレスを12ヵ月以内の間保持します。</li>
       </ul>
 
-      <p>あなたは投稿・添付メディア・プロフィール画像・ヘッダー画像を含む自身のデータのアーカイブを要求し、ダウンロードすることができます。</p>
+      <p>あなたはほた・添付おたかん・プロフィール画像・ヘッダー画像を含む自身のデータのアーカイブを要求し、ダウンロードすることができます。</p>
 
       <p>あなたはいつでもアカウントの削除を要求できます。削除は取り消すことができません。</p>
 
@@ -1434,9 +1434,9 @@ ja:
 
       <p>私たちは個人を特定できる情報を外部へ販売・取引・その他方法で渡すことはありません。これには当サイトの運営・業務遂行・サービス提供を行ううえで補助する信頼できる第三者をこの機密情報の保護に同意するかぎり含みません。法令の遵守やサイトポリシーの施行、権利・財産・安全の保護に適切と判断した場合、あなたの情報を公開することがあります。</p>
 
-      <p>あなたの公開情報はネットワーク上の他のサーバーにダウンロードされることがあります。相手が異なるサーバーに所属する場合、「公開」と「フォロワー限定」投稿はフォロワーの所属するサーバーに配信され、「ダイレクト」投稿は受信者の所属するサーバーに配信されます。</p>
+      <p>あなたの公開情報はネットワーク上の他のサーバーにダウンロードされることがあります。相手が異なるサーバーに所属する場合、「公開」と「フォロワー限定」ほたはフォロワーの所属するサーバーに配信され、「ダイレクト」ほたは受信者の所属するサーバーに配信されます。</p>
 
-      <p>あなたがアカウントの使用をアプリケーションに許可すると、承認した権限の範囲内で公開プロフィール情報・フォローリスト・フォロワー・リスト・すべての投稿・お気に入り登録にアクセスできます。アプリケーションはメールアドレスやパスワードに決してアクセスできません。</p>
+      <p>あなたがアカウントの使用をアプリケーションに許可すると、承認した権限の範囲内で公開プロフィール情報・フォローリスト・フォロワー・リスト・すべてのほた・お気に入り登録にアクセスできます。アプリケーションはメールアドレスやパスワードに決してアクセスできません。</p>
 
       <hr class="spacer" />
 
@@ -1501,10 +1501,10 @@ ja:
         spam: スパム
         violation: コンテンツは以下のコミュニティガイドラインに違反しています
       explanation:
-        delete_statuses: あなたの投稿のいくつかは、1つ以上のコミュニティガイドラインに違反していることが判明し、 %{instance} のモデレータによって削除されました。 今後の違反は、より厳しい処罰が行われる可能性があります。
+        delete_statuses: あなたのほたのいくつかは、1つ以上のコミュニティガイドラインに違反していることが判明し、 %{instance} のモデレータによって削除されました。 今後の違反は、より厳しい処罰が行われる可能性があります。
         disable: アカウントは使用できませんが、プロフィールやその他のデータはそのまま残ります。 データのバックアップをリクエストしたり、アカウント設定を変更したり、アカウントを削除したりできます。
-        sensitive: 今後、アップロードされたすべてのメディアファイルは閲覧注意してマークされ、クリックスルー警告の背後に隠されます。
-        silence: アカウントが制限されています。このサーバーでは既にフォローしている人だけがあなたの投稿を見ることができます。 様々な発見機能から除外されるかもしれません。他の人があなたを手動でフォローすることは可能です。
+        sensitive: 今後、アップロードされたすべてのおたかんファイルは閲覧注意してマークされ、クリックスルー警告の背後に隠されます。
+        silence: アカウントが制限されています。このサーバーでは既にフォローしている人だけがあなたのほたを見ることができます。 様々な発見機能から除外されるかもしれません。他の人があなたを手動でフォローすることは可能です。
       reason: '理由:'
       subject:
         disable: あなたのアカウント %{acct} は凍結されました
@@ -1512,10 +1512,10 @@ ja:
         silence: あなたのアカウント %{acct} はサイレンスにされました
         suspend: あなたのアカウント %{acct} は停止されました
       title:
-        delete_statuses: 投稿が削除されました
+        delete_statuses: ほたが削除されました
         disable: アカウントが凍結されました
         none: 警告
-        sensitive: メディアが非表示にされました
+        sensitive: おたかんが非表示にされました
         silence: アカウントがサイレンスにされました
         suspend: アカウントが停止されました
     welcome:
@@ -1523,11 +1523,11 @@ ja:
       edit_profile_step: アイコンやヘッダーの画像をアップロードしたり、表示名を変更したりして、自分のプロフィールをカスタマイズすることができます。また、誰かからの新規フォローを許可する前にその人の様子を見ておきたい場合、アカウントを承認制にすることもできます。
       explanation: 始めるにあたってのアドバイスです
       final_action: 始めましょう
-      final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #introductions ハッシュタグが便利かもしれません。'
+      final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開したほたはローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #introductions ハッシュタグが便利かもしれません。'
       full_handle: あなたの正式なユーザーID
       full_handle_hint: 別のサーバーの友達とフォローやメッセージをやり取りする際には、これを伝えることになります。
       review_preferences_action: 設定の変更
-      review_preferences_step: 受け取りたいメールの種類や投稿のデフォルト公開範囲など、ユーザー設定を必ず済ませておきましょう。目が回らない自信があるなら、アニメーション GIF を自動再生する設定もご検討ください。
+      review_preferences_step: 受け取りたいメールの種類やほたのデフォルト公開範囲など、ユーザー設定を必ず済ませておきましょう。目が回らない自信があるなら、アニメーション GIF を自動再生する設定もご検討ください。
       subject: Mastodon へようこそ
       tip_federated_timeline: 連合タイムラインは Mastodon ネットワークの流れを見られるものです。ただしあなたと同じサーバーの人がフォローしている人だけが含まれるので、それが全てではありません。
       tip_following: 最初は、サーバーの管理者をフォローした状態になっています。もっと興味のある人たちを見つけるには、ローカルタイムラインと連合タイムラインを確認してみましょう。
