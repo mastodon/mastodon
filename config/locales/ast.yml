@@ -185,8 +185,16 @@ ast:
       web: Dir a la web
   datetime:
     distance_in_words:
+      about_x_hours: "%{count} h"
+      about_x_years: "%{count} a"
+      almost_x_years: "%{count} a"
       half_a_minute: Puramente agora
+      less_than_x_minutes: "%{count} m"
       less_than_x_seconds: Puramente agora
+      over_x_years: "%{count} a"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: La información qu'introduxesti nun yera correuta
     confirm_password: Introduz la contraseña pa verificar la to identidá
@@ -360,6 +368,8 @@ ast:
       generic: Restolador desconocíu
       ie: Internet Explorer
       micro_messenger: MicroMessenger
+      phantom_js: PhantomJS
+      uc_browser: UCBrowser
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     ip: IP
