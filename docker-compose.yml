@@ -3,20 +3,18 @@ services:
 
   db:
     restart: always
-    image: postgres:14-alpine
+    image: postgres:9.6-alpine
     shm_size: 256mb
     networks:
       - internal_network
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
     volumes:
-      - ./postgres14:/var/lib/postgresql/data
-    environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - ./postgres:/var/lib/postgresql/data
 
   redis:
     restart: always
-    image: redis:6-alpine
+    image: redis:6.0-alpine
     networks:
       - internal_network
     healthcheck:
@@ -26,7 +24,7 @@ services:
 
 #  es:
 #    restart: always
-#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+#    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.10
 #    environment:
 #      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
 #      - "cluster.name=es-mastodon"
@@ -44,8 +42,8 @@ services:
 #        hard: -1
 
   web:
-    build: .
-    image: tootsuite/mastodon
+    #build: .
+    image: tootsuite/mastodon:v3.4.6
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
@@ -64,8 +62,8 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    build: .
-    image: tootsuite/mastodon
+    #build: .
+    image: tootsuite/mastodon:v3.4.6
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -81,8 +79,8 @@ services:
       - redis
 
   sidekiq:
-    build: .
-    image: tootsuite/mastodon
+    #build: .
+    image: tootsuite/mastodon:v3.4.6
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
@@ -94,9 +92,6 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
-    healthcheck:
-      test: ["CMD-SHELL", "ps aux | grep '[s]idekiq\ 6' || false"]
-
 ## Uncomment to enable federation with tor instances along with adding the following ENV variables
 ## http_proxy=http://privoxy:8118
 ## ALLOW_ACCESS_TO_HIDDEN_SERVICE=true
