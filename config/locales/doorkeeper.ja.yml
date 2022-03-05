@@ -68,6 +68,7 @@ ja:
       confirmations:
         revoke: 本当に取り消しますか？
       index:
+        authorized_at: '%{date} に承認されました'
         scopes: 権限
         title: 認証済みアプリ
     errors:
@@ -105,6 +106,10 @@ ja:
         destroy:
           notice: アプリが取り消されました。
     grouped_scopes:
+      access:
+        read: 読み取り専用アクセス
+        read/write: 読み取りおよび書き込みアクセス
+        write: 書き込み専用アクセス
       title:
         accounts: アカウント
         blocks: ブロック
