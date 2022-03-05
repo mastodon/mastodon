@@ -276,8 +276,8 @@ ast:
       limit: Algamesti la cantidá máxima de llistes
   media_attachments:
     validations:
-      images_and_video: Nun pue axuntase un videu a un estáu que yá contién imáxenes
-      too_many: Nun puen axuntase más de 4 ficheros
+      images_and_video: Nun se pue axuntar nengún videu a un artículu que yá contién imáxenes
+      too_many: Nun se puen axuntar más de 4 ficheros
   migrations:
     acct: nome_usuariu@dominiu de la cuenta nueva
     incoming_migrations: Mudase dende otra cuenta
@@ -400,7 +400,7 @@ ast:
     boosted_from_html: Compartióse'l barritu dende %{acct_link}
     pin_errors:
       limit: Yá fixesti'l númberu máximu de barritos
-      ownership: Nun pue fixase'l barritu d'otra persona
+      ownership: Nun se pue fixar l'artículu d'otru perfil
       reblog: Nun pue fixase un barritu compartíu
     poll:
       total_people:
@@ -458,6 +458,7 @@ ast:
       subject: Afáyate en Mastodon
       tips: Conseyos
   users:
+    follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu nun ye válidu
     otp_lost_help_html: Si pierdes l'accesu, contauta con %{email}
     seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que los axustes de la contraseña y corréu nun tán disponibles.
