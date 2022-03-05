@@ -59,6 +59,8 @@ es-MX:
       error:
         title: Ha ocurrido un error
       new:
+        prompt_html: "%{client_name} desea permiso para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confías en ella, no deberías autorizarla.</strong>"
+        review_permissions: Revisar permisos
         title: Se requiere autorización
       show:
         title: Copia este código de autorización y pégalo en la aplicación.
@@ -68,6 +70,12 @@ es-MX:
       confirmations:
         revoke: '¿Está seguro?'
       index:
+        authorized_at: Autorizado el %{date}
+        description_html: Estas son aplicaciones que pueden acceder a tu cuenta usando la API. Si hay aplicaciones que no se reconocen aquí, o una aplicación no funciona correctamente, puedes revocar su acceso.
+        last_used_at: Último uso el %{date}
+        never_used: Nunca usado
+        scopes: Permisos
+        superapp: Interno
         title: Sus aplicaciones autorizadas
     errors:
       messages:
@@ -103,6 +111,33 @@ es-MX:
       authorized_applications:
         destroy:
           notice: Aplicación revocada.
+    grouped_scopes:
+      access:
+        read: Acceso de solo lectura
+        read/write: Acceso de lectura y escritura
+        write: Acceso de sólo escritura
+      title:
+        accounts: Cuentas
+        admin/accounts: Administración de cuentas
+        admin/all: Todas las funciones administrativas
+        admin/reports: Administración de reportes
+        all: Todo
+        blocks: Bloques
+        bookmarks: Marcadores
+        conversations: Conversaciones
+        crypto: Cifrado de extremo a extremo
+        favourites: Favoritos
+        filters: Filtros
+        follow: Relaciones
+        follows: Seguidos
+        lists: Listas
+        media: Archivos adjuntos
+        mutes: Silenciados
+        notifications: Notificaciones
+        push: Notificaciones push
+        reports: Reportes
+        search: Busqueda
+        statuses: Publicaciones
     layouts:
       admin:
         nav:
@@ -117,6 +152,7 @@ es-MX:
       "admin:write": modificar todos los datos en el servidor
       "admin:write:accounts": realizar acciones de moderación en cuentas
       "admin:write:reports": realizar acciones de moderación en informes
+      crypto: usar cifrado de extremo a extremo
       follow: seguir, bloquear, desbloquear y dejar de seguir cuentas
       push: recibir tus notificaciones push
       read: leer los datos de tu cuenta
@@ -136,6 +172,7 @@ es-MX:
       "write:accounts": modifica tu perfil
       "write:blocks": bloquear cuentas y dominios
       "write:bookmarks": guardar estados como marcadores
+      "write:conversations": silenciar y eliminar conversaciones
       "write:favourites": toots favoritos
       "write:filters": crear filtros
       "write:follows": seguir usuarios
