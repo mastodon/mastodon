@@ -556,7 +556,7 @@ All notable changes to this project will be documented in this file.
 - Change boost button to no longer serve as visibility indicator in web UI ([noellabo](https://github.com/mastodon/mastodon/pull/14132), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/14373))
 - Change contrast of flash messages ([cchoi12](https://github.com/mastodon/mastodon/pull/13892))
 - Change wording from "Hide media" to "Hide image/images" in web UI ([ariasuni](https://github.com/mastodon/mastodon/pull/13834))
-- Change appearence of settings pages to be more consistent ([ariasuni](https://github.com/mastodon/mastodon/pull/13938))
+- Change appearance of settings pages to be more consistent ([ariasuni](https://github.com/mastodon/mastodon/pull/13938))
 - Change "Add media" tooltip to not include long list of formats in web UI ([ariasuni](https://github.com/mastodon/mastodon/pull/13954))
 - Change how badly contrasting emoji are rendered in web UI ([leo60228](https://github.com/mastodon/mastodon/pull/13773), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/13772), [mfmfuyu](https://github.com/mastodon/mastodon/pull/14020), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/14015))
 - Change structure of unavailable content section on about page ([ariasuni](https://github.com/mastodon/mastodon/pull/13930))
