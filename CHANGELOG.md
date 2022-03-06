@@ -706,7 +706,7 @@ All notable changes to this project will be documented in this file.
 - Fix poll refresh button not being debounced in web UI ([rasjonell](https://github.com/mastodon/mastodon/pull/13485), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/13490))
 - Fix confusing error when failing to add an alias to an unknown account ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/13480))
 - Fix "Email changed" notification sometimes having wrong e-mail ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/13475))
-- Fix varioues issues on the account aliases page ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/13452))
+- Fix various issues on the account aliases page ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/13452))
 - Fix API footer link in web UI ([bubblineyuri](https://github.com/mastodon/mastodon/pull/13441))
 - Fix pagination of following, followers, follow requests, blocks and mutes lists in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/13445))
 - Fix styling of polls in JS-less fallback on public pages ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/13436))
