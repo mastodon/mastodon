@@ -530,7 +530,7 @@ All notable changes to this project will be documented in this file.
   - The `meta` attribute on the Media Attachment entity in REST API can now have a `colors` attribute which in turn contains three hex colors: `background`, `foreground`, and `accent`
   - The background color is chosen from the most dominant color around the edges of the thumbnail
   - The foreground and accent colors are chosen from the colors that are the most different from the background color using the CIEDE2000 algorithm
-  - The most satured color of the two is designated as the accent color
+  - The most saturated color of the two is designated as the accent color
   - The one with the highest W3C contrast is designated as the foreground color
   - If there are not enough colors in the thumbnail, new ones are generated using a monochrome pattern
 - Add a visibility indicator to toots in web UI ([noellabo](https://github.com/mastodon/mastodon/pull/14123), [highemerly](https://github.com/mastodon/mastodon/pull/14292))
