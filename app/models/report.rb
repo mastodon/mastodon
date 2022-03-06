@@ -63,8 +63,8 @@ class Report < ApplicationRecord
     Status.with_discarded.where(id: status_ids)
   end
 
-  def media_attachments
-    MediaAttachment.where(status_id: status_ids)
+  def media_attachments_count
+    statuses.pluck(:ordered_media_attachment_ids).compact.sum(&:size)
   end
 
   def rules
