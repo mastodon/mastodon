@@ -8,7 +8,7 @@ const messages = defineMessages({
   dislike: { id: 'report.reasons.dislike', defaultMessage: 'I don\'t like it' },
   dislike_description: { id: 'report.reasons.dislike_description', defaultMessage: 'It is not something you want to see' },
   spam: { id: 'report.reasons.spam', defaultMessage: 'It\'s spam' },
-  spam_description: { id: 'report.reasons.spam_description', defaultMessage: 'Malicious links, fake engagement, or repetetive replies' },
+  spam_description: { id: 'report.reasons.spam_description', defaultMessage: 'Malicious links, fake engagement, or repetitive replies' },
   violation: { id: 'report.reasons.violation', defaultMessage: 'It violates server rules' },
   violation_description: { id: 'report.reasons.violation_description', defaultMessage: 'You are aware that it breaks specific rules' },
   other: { id: 'report.reasons.other', defaultMessage: 'It\'s something else' },
