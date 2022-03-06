@@ -578,7 +578,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - Fix `following` param not working when exact match is found in account search ([noellabo](https://github.com/mastodon/mastodon/pull/14394))
-- Fix sometimes occuring duplicate mention notifications ([noellabo](https://github.com/mastodon/mastodon/pull/14378))
+- Fix sometimes occurring duplicate mention notifications ([noellabo](https://github.com/mastodon/mastodon/pull/14378))
 - Fix RSS feeds not being cacheable ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/14368))
 - Fix lack of locking around processing of Announce activities in ActivityPub ([noellabo](https://github.com/mastodon/mastodon/pull/14365))
 - Fix boosted toots from blocked account not being retroactively removed from TL ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/14339))
