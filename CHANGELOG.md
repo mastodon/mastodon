@@ -507,7 +507,7 @@ All notable changes to this project will be documented in this file.
 - Add blurhash to link previews ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/13984), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/14143), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/13985), [Sasha-Sorokin](https://github.com/mastodon/mastodon/pull/14267), [Sasha-Sorokin](https://github.com/mastodon/mastodon/pull/14278), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/14126), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/14261), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/14260))
   - In web UI, toots cannot be marked as sensitive unless there is media attached
   - However, it's possible to do via API or ActivityPub
-  - Thumnails of link previews of such posts now use blurhash in web UI
+  - Thumbnails of link previews of such posts now use blurhash in web UI
   - The Card entity in REST API has a new `blurhash` attribute
 - Add support for `summary` field for media description in ActivityPub ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/13763))
 - Add hints about incomplete remote content to web UI ([Gargron](https://github.com/mastodon/mastodon/pull/14031), [noellabo](https://github.com/mastodon/mastodon/pull/14195))
