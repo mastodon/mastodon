@@ -804,6 +804,7 @@ sq:
         shared_by:
           one: Ndarë me të tjerë, ose shënuar si e parapëlqyer një herë
           other: Ndarë me të tjerë, ose shënuar si e parapëlqyer %{friendly_count} herë
+        title: Postime në modë
       tags:
         dashboard:
           tag_accounts_measure: përdorime unike
@@ -856,7 +857,9 @@ sq:
       body: 'Gjërat vijuese lypin një shqyrtim, përpara se të mund të shfaqen publikisht:'
       new_trending_links:
         no_approved_links: Aktualisht s’ka lidhje në modë të miratuara.
+        title: Lidhje në modë
       new_trending_statuses:
+        no_approved_statuses: Aktualisht s’ka postime në modë të miratuar.
         title: Postime në modë
       new_trending_tags:
         no_approved_tags: Aktualisht s’ka hashtag-ë në modë të miratuar.
@@ -935,8 +938,10 @@ sq:
     status:
       account_status: Gjendje llogarie
       confirming: Po pritet që të plotësohet ripohimi i email-it.
+      functional: Llogaria juaj është tërësisht funksionale.
       pending: Aplikimi juaj është në pritje të shqyrtimit nga stafi ynë. Kjo mund të dojë ca kohë. Nëse aplikimi juaj miratohet, do të merrni një email.
       redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
+      view_strikes: Shihni paralajmërime të dikurshme kundër llogarisë tuaj
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
     trouble_logging_in: Probleme me hyrjen?
     use_security_key: Përdor kyç sigurie
@@ -1012,6 +1017,7 @@ sq:
         submit: Parashtroni apelim
       associated_report: Raportimi i përshoqëruar
       created_at: Datuar
+      description_html: Këto janë veprime të ndërmara kundër llogarisë tuaj dhe sinjalizime që ju janë dërguar nga stafi i %{instance}.
       recipient: Drejtuar
       status: '#%{id} postimi'
       status_removed: Postim i hequr tashmë nga sistemi
@@ -1019,7 +1025,9 @@ sq:
       title_actions:
         delete_statuses: Heqje postimi
         disable: Ngrirje e llogarisë
+        mark_statuses_as_sensitive: Vënie shenjë postimeve si me spec
         none: Vërejtje
+        sensitive: Vënie shenjë llogarive si me spec
         silence: Kufizim llogarie
         suspend: Pezullim llogarie
       your_appeal_approved: Apelimi juaj u miratua
@@ -1470,7 +1478,7 @@ sq:
       '2629746': 1 muaj
       '31556952': 1 vit
       '5259492': 2 muaj
-      '604800': 1 week
+      '604800': 1 javë
       '63113904': 2 vjet
       '7889238': 3 muaj
     min_age_label: Prag moshe
@@ -1618,22 +1626,29 @@ sq:
         spam: I padëshiruar
         violation: Lënda cenon udhëzimet vijuese të bashkësisë
       explanation:
+        delete_statuses: Disa nga postimet tuaja janë parë të cenojnë një ose më tepër udhëzime të bashkësisë dhe për pasojë janë hequr nga moderatorët e %{instance}.
         disable: S’mund të përdorni më llogarinë tuaj, por profili juaj dhe të dhëna të tjera mbeten të paprekura. Mund të kërkoni një kopjeruajtje të të dhënave tuaja, të ndryshoni rregullime llogarie, ose të fshini llogarinë tuaj.
+        mark_statuses_as_sensitive: Disave nga postimet tuaj u është vënë shenjë si me spec nga moderatorët e %{instance}. Kjo do të thotë se njerëzve do t’u duhet të prekin median te postimet, para se të shfaqet një paraparje. Mund t’i vini vetë shenjë medias si me spec, kur postoni në të ardhmen.
         sensitive: Nga sot e tutje, krejt kartelave media të ngarkuara do t’u vihet shenjë si me spec dhe do të fshihen pas një sinjalizimi “klikojeni”.
         silence: Mundeni ende të përdorni llogarinë tuaj, por vetëm personat që tashmë ju ndjekin do të shohin postimet tuaja në këtë shërbyes dhe mund të përjashtoheni nga veçori të ndryshme për zbulim lënde. Sidoqoftë, të tjerët mund t’ju ndjekin dorazi.
         suspend: S’mund të përdorni më llogarinë tuaj dhe profili juaj, si dhe të dhëna të tjera, s’janë më të përdorshëm. Mundeni ende të bëni hyrjen në llogarinë tuaj për të kërkuar një kopjeruajtje të të dhënave tuaja, deri para se të dhënat tuaja të hiqen plotësisht brenda afërsisht 30 ditësh, por do të mbajmë ca të dhëna elementare, për t’ju penguar t’i bëni bisht pezullimin.
       get_in_touch: Nëse besoni se këtu ka gabim, mund t’i përgjigjeni këtij email-i për t’u lidhur me stafin e %{instance}.
       reason: 'Arsye:'
+      statuses: 'Postime të cituar:'
       subject:
         delete_statuses: Postimet tuaja në %{acct} janë hequr
         disable: Llogaria juaj %{acct} është ngrirë
+        mark_statuses_as_sensitive: Postimeve tuaj në %{acct} u është vënë shenjë si me spec
         none: Sinjalizim për %{acct}
+        sensitive: Tani e tutje, postimeve tuaj në %{acct} do t’u vihet shenjë si me spec
         silence: Llogaria juaj %{acct} është kufizuar
         suspend: Llogaria juaj %{acct} është pezulluar
       title:
         delete_statuses: Postime të hequra
         disable: Llogari e ngrirë
+        mark_statuses_as_sensitive: Postimeve iu vu shenjë si me spec
         none: Sinjalizim
+        sensitive: Llogarice iu vu shenjë si me spec
         silence: Llogari e kufizuar
         suspend: Llogari e pezulluar
     welcome:
