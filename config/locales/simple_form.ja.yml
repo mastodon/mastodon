@@ -18,7 +18,7 @@ ja:
           disable: ユーザーが自分のアカウントを使用できないようにします。コンテンツを削除したり非表示にすることはありません。
           none: これを使用すると、他の操作をせずにユーザーに警告を送信できます。
           sensitive: このユーザーが添付したおたかんを強制的に閲覧注意にする
-          silence: ユーザーが公開ほたできないようにし、フォローしていない人にほたや通知が表示されないようにする。
+          silence: ユーザーが公開ほたできないようにし、ひらちょんしていない人にほたや通知が表示されないようにする。
           suspend: このアカウントとのやりとりを止め、コンテンツを削除します。30日以内は取消可能です。
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
@@ -28,7 +28,7 @@ ja:
         starts_at: オプションです。お知らせしたい事柄の期間が決まっている場合に使用します
         text: ほたと同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
       defaults:
-        autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
+        autofollow: 招待から登録した人が自動的にあなたをひらちょんするようになります
         avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
         bot: このアカウントは主に自動で動作し、人が見ていない可能性があります
         context: フィルターを適用する対象 (複数選択可)
@@ -43,7 +43,7 @@ ja:
         inbox_url: 使用したいリレーサーバーのトップページからURLをコピーします
         irreversible: フィルターが後で削除されても、除外されたほたは元に戻せなくなります
         locale: ユーザーインターフェース、メールやプッシュ通知の言語
-        locked: フォロワーを手動で承認する必要があります
+        locked: おたかんを手動で承認する必要があります
         password: 少なくとも8文字は入力してください
         phrase: ほた内容の大文字小文字や閲覧注意に関係なく一致
         scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
@@ -52,7 +52,7 @@ ja:
         setting_display_media_default: 閲覧注意としてマークされたおたかんは隠す
         setting_display_media_hide_all: おたかんを常に隠す
         setting_display_media_show_all: おたかんを常に表示する
-        setting_hide_network: フォローとフォロワーの情報がプロフィールページで見られないようにします
+        setting_hide_network: ひらちょんとおたかんの情報がプロフィールページで見られないようにします
         setting_noindex: 公開プロフィールおよび各ほたページに影響します
         setting_show_application: ほたするのに使用したアプリがほたの詳細ビューに表示されるようになります
         setting_use_blurhash: ぼかしはおたかんの色を元に生成されますが、細部は見えにくくなっています
@@ -119,7 +119,7 @@ ja:
         starts_at: 予定開始日時
         text: お知らせ
       defaults:
-        autofollow: 招待から参加後、あなたをフォロー
+        autofollow: 招待から参加後、あなたをひらちょん
         avatar: アイコン
         bot: これは BOT アカウントです
         chosen_languages: 表示する言語
@@ -167,7 +167,7 @@ ja:
         setting_system_font_ui: システムのデフォルトフォントを使う
         setting_theme: サイトテーマ
         setting_trends: 本日のトレンドタグを表示する
-        setting_unfollow_modal: フォローを解除する前に確認ダイアログを表示する
+        setting_unfollow_modal: ひらちょんを解除する前に確認ダイアログを表示する
         setting_use_blurhash: 非表示のおたかんを色付きのぼかしで表示する
         setting_use_pending_items: 手動更新モード
         severity: 重大性
@@ -181,9 +181,9 @@ ja:
       featured_tag:
         name: ハッシュタグ
       interactions:
-        must_be_follower: フォロワー以外からの通知をブロック
-        must_be_following: フォローしていないユーザーからの通知をブロック
-        must_be_following_dm: フォローしていないユーザーからのダイレクトメッセージをブロック
+        must_be_follower: おたかん以外からの通知をブロック
+        must_be_following: ひらちょんしていないユーザーからの通知をブロック
+        must_be_following_dm: ひらちょんしていないユーザーからのダイレクトメッセージをブロック
       invite:
         comment: コメント
       invite_request:
@@ -198,8 +198,8 @@ ja:
       notification_emails:
         digest: タイムラインからピックアップしてメールで通知する
         favourite: お気に入り登録された時
-        follow: フォローされた時
-        follow_request: フォローリクエストを受けた時
+        follow: ひらちょんされた時
+        follow_request: ひらちょんリクエストを受けた時
         mention: 返信が来た時
         pending_account: 新しいアカウントの承認が必要な時
         reblog: ほたがブーストされた時
