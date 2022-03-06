@@ -1496,7 +1496,7 @@ All notable changes to this project will be documented in this file.
 - Change Docker image to use Ubuntu with jemalloc ([Sir-Boops](https://github.com/mastodon/mastodon/pull/10100), [BenLubar](https://github.com/mastodon/mastodon/pull/10212))
 - Change public pages to be cacheable by proxies ([BenLubar](https://github.com/mastodon/mastodon/pull/9059))
 - Change the 410 gone response for suspended accounts to be cacheable by proxies ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/10339))
-- Change web UI to not not empty timeline of blocked users on block ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/10359))
+- Change web UI to not empty timeline of blocked users on block ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/10359))
 - Change JSON serializer to remove unused `@context` values ([Gargron](https://github.com/mastodon/mastodon/pull/10378))
 - Change GIFV file size limit to be the same as for other videos ([rinsuki](https://github.com/mastodon/mastodon/pull/9924))
 - Change Webpack to not use @babel/preset-env to compile node_modules ([ykzts](https://github.com/mastodon/mastodon/pull/10289))
