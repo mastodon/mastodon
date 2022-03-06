@@ -42,8 +42,8 @@ services:
 #        hard: -1
 
   web:
-    #build: .
-    image: tootsuite/mastodon:v3.4.6
+    build: .
+    #image: tootsuite/mastodon:v3.4.6
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000"
@@ -62,8 +62,8 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
-    #build: .
-    image: tootsuite/mastodon:v3.4.6
+    build: .
+    #image: tootsuite/mastodon:v3.4.6
     restart: always
     env_file: .env.production
     command: node ./streaming
@@ -79,8 +79,8 @@ services:
       - redis
 
   sidekiq:
-    #build: .
-    image: tootsuite/mastodon:v3.4.6
+    build: .
+    #image: tootsuite/mastodon:v3.4.6
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
