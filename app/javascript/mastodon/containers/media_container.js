@@ -43,7 +43,7 @@ export default class MediaContainer extends PureComponent {
 
   handleOpenVideo = (options) => {
     const { components } = this.props;
-    const { media } = JSON.parse(components[options.componetIndex].getAttribute('data-props'));
+    const { media } = JSON.parse(components[options.componentIndex].getAttribute('data-props'));
     const mediaList = fromJS(media);
 
     document.body.classList.add('with-modals--active');
@@ -87,7 +87,7 @@ export default class MediaContainer extends PureComponent {
               ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
               ...(componentName === 'Video' ? {
-                componetIndex: i,
+                componentIndex: i,
                 onOpenVideo: this.handleOpenVideo,
               } : {
                 onOpenMedia: this.handleOpenMedia,
