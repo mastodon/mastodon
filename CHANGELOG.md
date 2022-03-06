@@ -87,7 +87,7 @@ All notable changes to this project will be documented in this file.
 - Fix suspended accounts statuses being merged back into timelines ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16628))
 - Fix crash when encountering invalid account fields ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16598))
 - Fix invalid blurhash handling for remote activities ([noellabo](https://github.com/mastodon/mastodon/pull/16583))
-- Fix newlines being added to accout notes when an account moves ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16415), [noellabo](https://github.com/mastodon/mastodon/pull/16576))
+- Fix newlines being added to account notes when an account moves ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16415), [noellabo](https://github.com/mastodon/mastodon/pull/16576))
 - Fix crash when creating an announcement with links ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16941))
 - Fix logging out from one browser logging out all other sessions ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16943))
 
