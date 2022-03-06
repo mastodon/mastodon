@@ -1,5 +1,5 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  # Vanilla omniauth stategies
+  # Vanilla omniauth strategies
 end
 
 Devise.setup do |config|
