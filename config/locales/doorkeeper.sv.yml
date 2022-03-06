@@ -68,6 +68,11 @@ sv:
       confirmations:
         revoke: Är du säker?
       index:
+        authorized_at: Auktoriserades %{date}
+        last_used_at: Användes senast %{date}
+        never_used: Aldrig använd
+        scopes: Behörigheter
+        superapp: Internt
         title: Dina behöriga ansökningar
     errors:
       messages:
@@ -103,6 +108,21 @@ sv:
       authorized_applications:
         destroy:
           notice: Applikation återkallas.
+    grouped_scopes:
+      title:
+        accounts: Konton
+        all: Allting
+        bookmarks: Bokmärken
+        conversations: Konversationer
+        crypto: Ände-till-ände-kryptering
+        favourites: Favoriter
+        follow: Relationer
+        follows: Följer
+        lists: Listor
+        notifications: Aviseringar
+        reports: Rapporter
+        search: Sök
+        statuses: Inlägg
     layouts:
       admin:
         nav:
