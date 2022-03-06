@@ -1673,7 +1673,7 @@ All notable changes to this project will be documented in this file.
 - Limit maximum visibility of local silenced users to unlisted ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/9583))
 - Change API error message for unconfirmed accounts ([noellabo](https://github.com/mastodon/mastodon/pull/9625))
 - Change the icon to "reply-all" when it's a reply to other accounts ([mayaeh](https://github.com/mastodon/mastodon/pull/9378))
-- Do not ignore federated reports targetting already-reported accounts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/9534))
+- Do not ignore federated reports targeting already-reported accounts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/9534))
 - Upgrade default Ruby version to 2.6.0 ([Gargron](https://github.com/mastodon/mastodon/pull/9688))
 - Change e-mail digest frequency ([Gargron](https://github.com/mastodon/mastodon/pull/9689))
 - Change Docker images for Tor support in docker-compose.yml ([Sir-Boops](https://github.com/mastodon/mastodon/pull/9438))
