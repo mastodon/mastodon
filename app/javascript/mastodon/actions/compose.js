@@ -232,9 +232,16 @@ export function uploadCompose(files) {
     const media  = getState().getIn(['compose', 'media_attachments']);
     const pending  = getState().getIn(['compose', 'pending_media_attachments']);
     const progress = new Array(files.length).fill(0);
-    let total = Array.from(files).reduce((a, v) => a + v.size, 0);
+    const filesArray = Array.from(files);
+    const imageSizeLimit = 1024 * 1024 * 10;
+    const videoSizeLimit = 1024 * 1024 * 40;
+    let total = filesArray.reduce((a, v) => a + v.size, 0);
 
-    if (files.length + media.size + pending > uploadLimit) {
+    if (
+      filesArray.some(file =>
+        (file.type.match(/video\/.*/) && file.size > videoSizeLimit)
+        || (file.type.match(/image\/.*/) && file.size > imageSizeLimit))
+      || (files.length + media.size + pending > uploadLimit)) {
       dispatch(showAlert(undefined, messages.uploadErrorLimit));
       return;
     }
