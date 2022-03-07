@@ -720,6 +720,8 @@ pt-BR:
         title: Editor
       rejected: Rejeitado
       statuses:
+        allow: Permitir postagem
+        allow_account: Permitir autor
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -887,6 +889,13 @@ pt-BR:
     directory: Diretório de perfis
     explanation: Descobrir usuários baseado em seus interesses
     explore_mastodon: Explore o %{title}
+  disputes:
+    strikes:
+      title_actions:
+        none: Aviso
+        sensitive: Marcar a conta como sensível
+        silence: Limitação da conta
+        suspend: Suspensão de conta
   domain_validator:
     invalid_domain: não é um nome de domínio válido
   errors:
@@ -1321,7 +1330,7 @@ pt-BR:
       '2629746': 1 mês
       '31556952': 1 ano
       '5259492': 2 meses
-      '604800': 1 week
+      '604800': 1 semana
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Validade
@@ -1442,6 +1451,11 @@ pt-BR:
     recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para acessar a sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los junto com outros documentos importantes.
     webauthn: Chaves de segurança
   user_mailer:
+    appeal_approved:
+      action: Acessar perfil
+      title: Contestação aprovada
+    appeal_rejected:
+      title: Contestação rejeitada
     backup_ready:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
@@ -1453,10 +1467,12 @@ pt-BR:
       subject: Por favor, confirme a tentativa de acesso
       title: Tentativa de acesso
     warning:
+      appeal: Enviar uma contestação
       categories:
         spam: Spam
         violation: O conteúdo viola as seguintes diretrizes da comunidade
       explanation:
+        disable: Você não poderá mais usar a sua conta, mas o seu perfil e outros dados permanecem intactos. Você pode solicitar um backup dos seus dados, mudar as configurações ou excluir sua conta.
         sensitive: A partir de agora, todos os seus arquivos de mídia enviados serão marcados como confidenciais e escondidos por trás de um aviso de clique.
       get_in_touch: Se você acredita que isso é um erro, você pode responder a este e-mail para entrar em contato com a equipe de %{instance}.
       reason: 'Motivo:'
