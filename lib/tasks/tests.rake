@@ -73,7 +73,7 @@ namespace :tests do
            'https://remote.com/@remote', 'https://remote.com/salmon/1'),
           (4, 'Remote', 'remote.com', NULL, #{remote_public_key}, now(), now(),
            'https://remote.com/@Remote', 'https://remote.com/salmon/1'),
-          (5, 'REMOTE', 'Remote.com', NULL, #{remote_public_key2}, now(), now(),
+          (5, 'REMOTE', 'Remote.com', NULL, #{remote_public_key2}, now() - interval '1 year', now() - interval '1 year',
            'https://remote.com/stale/@REMOTE', 'https://remote.com/stale/salmon/1');
 
         INSERT INTO "accounts"
