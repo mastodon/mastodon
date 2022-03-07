@@ -59,6 +59,8 @@ zh-CN:
       error:
         title: 发生错误
       new:
+        prompt_html: "%{client_name} 希望得到访问你的账户的许可。这是一个第三方应用。<strong>如果你不信任它，那么你不应该授权它。</strong>"
+        review_permissions: 检查权限
         title: 需要授权
       show:
         title: 接下来请复制此处的授权代码并粘贴到应用中。
@@ -68,6 +70,11 @@ zh-CN:
       confirmations:
         revoke: 确定要撤销对此应用的授权吗？
       index:
+        authorized_at: 授权于 %{date}
+        description_html: 这些是可以使用 API 访问你账户的应用程序。如果这里有你不认识的应用程序，或者某个应用程序行为异常，你可以撤销其访问权限。
+        never_used: 从未使用
+        scopes: 权限
+        superapp: 内部
         title: 已授权的应用列表
     errors:
       messages:
@@ -104,6 +111,10 @@ zh-CN:
         destroy:
           notice: 已成功撤销对此应用的授权
     grouped_scopes:
+      access:
+        read: 只读权限
+        read/write: 读写权限
+        write: 仅写入权限
       title:
         crypto: 端到端加密
         lists: 列表
