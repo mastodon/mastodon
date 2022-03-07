@@ -42,8 +42,12 @@
 module Mastodon
   module MigrationHelpers
     class CorruptionError < StandardError
-      def initialize(message = nil)
-        super(message.presence || 'Migration failed because of index corruption, see https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/#fixing')
+      attr_reader :index_name
+
+      def initialize(index_name)
+        @index_name = index_name
+
+        super('The #{index_name} index seems to be corrupted, it contains duplicate rows')
       end
 
       def cause
@@ -800,6 +804,25 @@ module Mastodon
       name = name.to_s
 
       columns(table).find { |column| column.name == name }
+    end
+
+    # Update the configuration of an index by creating a new one and then
+    # removing the old one
+    def update_index(table_name, index_name, columns, **index_options)
+      if index_name_exists?(table_name, "#{index_name}_old") && index_name_exists?(table_name, index_name)
+        remove_index table_name, index_name
+      elsif index_name_exists?(table_name, index_name)
+        rename_index table_name, index_name, "#{index_name}_old"
+      end
+
+      begin
+        add_index table_name, columns, **index_options.merge(name: index_name, algorithm: :concurrently)
+      rescue ActiveRecord::RecordNotUnique
+        remove_index table_name, name: index_name
+        raise CorruptionError.new(index_name)
+      end
+
+      remove_index table_name, name: "#{index_name}_old" if index_name_exists?(table_name, "#{index_name}_old")
     end
 
     # This will replace the first occurrence of a string in a column with
