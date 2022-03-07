@@ -1,5 +1,4 @@
----
-'no':
+"no":
   simple_form:
     hints:
       account_alias:
@@ -35,7 +34,6 @@
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: For å bekrefte, vennligst skriv inn brukernavnet til den nåværende kontoen
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
-        discoverable: Profilmappen er en annen måte for kontoen din å nå et bredere publikum på
         email: Du vil bli tilsendt en bekreftelses-E-post
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
@@ -81,7 +79,7 @@
       rule:
         text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
@@ -208,7 +206,7 @@
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å vises under trender
         usable: Tillat tuter å bruke denne emneknaggen
-    'no': Nei
+    'no': 'Nei'
     recommended: Anbefalt
     required:
       mark: "*"
@@ -216,4 +214,4 @@
     title:
       sessions:
         webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
-    'yes': Ja
+    'yes': 'Ja'
