@@ -14,8 +14,8 @@ import ShortNumber from 'mastodon/components/short_number';
 import {
   followAccount,
   unfollowAccount,
-  blockAccount,
   unblockAccount,
+  unmuteAccount,
 } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
 import classNames from 'classnames';
@@ -25,9 +25,9 @@ const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
   cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Cancel follow request' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
+  unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
+  unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
-  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
@@ -72,8 +72,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onBlock(account) {
     if (account.getIn(['relationship', 'blocking'])) {
       dispatch(unblockAccount(account.get('id')));
-    } else {
-      dispatch(blockAccount(account.get('id')));
+    }
+  },
+
+  onMute(account) {
+    if (account.getIn(['relationship', 'muting'])) {
+      dispatch(unmuteAccount(account.get('id')));
     }
   },
 
@@ -126,6 +130,10 @@ class AccountCard extends ImmutablePureComponent {
     this.props.onBlock(this.props.account);
   };
 
+  handleMute = () => {
+    this.props.onMute(this.props.account);
+  }
+
   handleEditProfile = () => {
     window.open('/settings/profile', '_blank');
   }
@@ -140,10 +148,12 @@ class AccountCard extends ImmutablePureComponent {
         actionBtn = '';
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button className={classNames('logo-button')} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.handleFollow} />;
+      } else if (account.getIn(['relationship', 'muting'])) {
+        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unmute)} onClick={this.handleMute} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.handleBlock} />;
+        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
       }
     } else {
       actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.handleEditProfile} />;

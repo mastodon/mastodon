@@ -1275,7 +1275,8 @@ a.sparkline {
   }
 
   &__bio {
-    padding: 8px 15px;
+    padding: 0 15px;
+    margin: 8px 0;
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word;
@@ -1336,7 +1337,7 @@ a.sparkline {
     max-width: 340px;
 
     &__item {
-      padding: 15px;
+      padding: 15px 0;
       text-align: center;
       color: $primary-text-color;
       font-weight: 600;
