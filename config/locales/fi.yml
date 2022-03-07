@@ -797,8 +797,10 @@ fi:
       statuses:
         allow: Salli viesti
         allow_account: Salli tekijä
+        description_html: Nämä ovat viestejä, jotka palvelimesi tietää tällä hetkellä jaetuksi ja suosituksi. Tämä voi auttaa uusia ja palaavia ihmisiä löytämään lisää ihmisiä, joita seurata seurata. Julkaisuja ei näytetä julkisesti ennen kuin hyväksyt tekijän ja kirjoittaja sallii tilinsä ehdottamisen muille. Voit myös sallia tai hylätä yksittäiset viestit.
         disallow: Estä viesti
         disallow_account: Estä tekijä
+        not_discoverable: Tekijä ei ole ilmoittanut olevansa löydettävissä
         shared_by:
           one: Jaettu tai suosikki kerran
           other: Jaettu ja lisätty suosikkeihin %{friendly_count} kertaa
@@ -811,6 +813,7 @@ fi:
           tag_servers_dimension: Suosituimmat palvelimet
           tag_servers_measure: eri palvelimet
           tag_uses_measure: käyttökerrat
+        description_html: Nämä ovat hashtageja, jotka näkyvät tällä hetkellä monissa viesteissä, jotka palvelimesi näkee. Tämä voi auttaa käyttäjiäsi selvittämään, mistä ihmiset puhuvat eniten tällä hetkellä. Mitään hashtageja ei näytetä julkisesti ennen kuin hyväksyt ne.
         listable: Voidaan ehdottaa
         not_listable: Ei tulla ehdottamaan
         not_trendable: Ei näy trendien alla
@@ -837,6 +840,7 @@ fi:
       actions:
         delete_statuses: poistaa heidän viestit
         disable: jäädyttää heidän tilinsä
+        mark_statuses_as_sensitive: merkitä heidän viestinsä arkaluonteisiksi
         none: varoitus
         sensitive: merkitä heidän tilinsä arkaluonteiseksi
         silence: rajoittaa heidän tilinsä
@@ -939,8 +943,10 @@ fi:
     status:
       account_status: Tilin tila
       confirming: Odotetaan sähköpostivahvistuksen valmistumista.
+      functional: Tilisi on täysin toimiva.
       pending: Hakemuksesi odottaa henkilökuntamme tarkastusta. Tämä voi kestää jonkin aikaa. Saat sähköpostiviestin, jos hakemuksesi on hyväksytty.
       redirecting_to: Tilisi ei ole aktiivinen, koska se ohjaa tällä hetkellä kohteeseen %{acct}.
+      view_strikes: Näytä tiliäsi koskevia aiempia varoituksia
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
     trouble_logging_in: Ongelmia kirjautumisessa?
     use_security_key: Käytä suojausavainta
@@ -1016,6 +1022,7 @@ fi:
         submit: Lähetä valitus
       associated_report: Liittyvä raportti
       created_at: Päivätty
+      description_html: Nämä ovat tiliäsi koskevia toimia ja varoituksia, jotka %{instance} henkilökunta on lähettänyt sinulle.
       recipient: Osoitettu
       status: 'Viesti #%{id}'
       status_removed: Viesti on jo poistettu järjestelmästä
