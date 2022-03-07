@@ -118,7 +118,7 @@ describe Report do
     end
   end
 
-  describe 'validatiions' do
+  describe 'validations' do
     it 'has a valid fabricator' do
       report = Fabricate(:report)
       report.valid?
