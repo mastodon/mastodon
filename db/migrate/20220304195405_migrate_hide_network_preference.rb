@@ -12,7 +12,9 @@ class MigrateHideNetworkPreference < ActiveRecord::Migration[6.1]
   end
 
   def up
-    Setting.where(thing_type: 'User', var: 'hide_network').find_each do |setting|
+    Account.reset_column_information
+
+    Setting.unscoped.where(thing_type: 'User', var: 'hide_network').find_each do |setting|
       account = User.find(setting.thing_id).account
 
       ApplicationRecord.transaction do
@@ -27,8 +29,8 @@ class MigrateHideNetworkPreference < ActiveRecord::Migration[6.1]
   def down
     Account.local.where(hide_collections: true).includes(:user).find_each do |account|
       ApplicationRecord.transaction do
+        Setting.create(thing_type: 'User', thing_id: account.user.id, var: 'hide_network', value: account.hide_collections?)
         account.update(hide_collections: nil)
-        Setting.create(thing: account.user, var: 'hide_network', value: account.hide_collections?)
       end
     end
   end
