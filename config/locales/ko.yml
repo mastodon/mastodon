@@ -15,6 +15,7 @@ ko:
     contact: 연락처
     contact_missing: 미설정
     contact_unavailable: 없음
+    continue_to_web: 웹앱에서 계속하기
     discover_users: 유저 발견하기
     documentation: 문서
     federation_hint_html: '%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다.'
@@ -24,6 +25,8 @@ ko:
       이 계정은 가상의 actor로서 개인 유저가 아닌 서버 자체를 나타냅니다.
       이것은 페더레이션을 목적으로 사용 되며 인스턴스 전체를 차단하려 하지 않는 이상 차단하지 않아야 합니다, 그 경우에는 도메인 차단을 사용하세요.
     learn_more: 자세히
+    logged_in_as_html: 현재 %{username}으로 로그인 했습니다.
+    logout_before_registering: 이미 로그인 했습니다.
     privacy_policy: 개인정보 정책
     rules: 서버 규칙
     rules_html: '아래의 글은 이 마스토돈 서버에 계정이 있다면 따라야 할 규칙의 요약입니다:'
@@ -468,8 +471,10 @@ ko:
       domain: 도메인
       new:
         create: 차단 규칙 생성
+        resolve: 도메인 해결
         title: 새 이메일 도메인 차단
       no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
+      resolved_through_html: '%{domain}을 통해 해결됨'
       title: Email 도메인 차단
     follow_recommendations:
       description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
