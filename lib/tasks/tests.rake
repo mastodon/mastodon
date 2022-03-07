@@ -28,6 +28,11 @@ namespace :tests do
         puts 'Faux remote accounts not properly claned up'
         exit(1)
       end
+
+      unless AccountConversation.first&.last_status_id == 11
+        puts 'AccountConversation records not created as expected'
+        exit(1)
+      end
     end
 
     desc 'Populate the database with test data for 2.4.0'
@@ -108,6 +113,9 @@ namespace :tests do
         VALUES
           (3, 7, 'ptuser@localhost', now(), now(), false, 'pt');
 
+        -- conversations
+        INSERT INTO "conversations" (id, created_at, updated_at) VALUES (1, now(), now());
+
         -- statuses
 
         INSERT INTO "statuses"
@@ -143,14 +151,22 @@ namespace :tests do
         VALUES
           (9, 1, 2, now(), now());
 
+        INSERT INTO "statuses"
+          (id, account_id, text, in_reply_to_id, conversation_id, visibility, created_at, updated_at)
+        VALUES
+          (10, 2, '@admin hey!', NULL, 1, 3, now(), now()),
+          (11, 1, '@user hey!', 10, 1, 3, now(), now());
+
         -- mentions (from previous statuses)
 
         INSERT INTO "mentions"
-          (status_id, account_id, created_at, updated_at)
+          (id, status_id, account_id, created_at, updated_at)
         VALUES
-          (2, 3, now(), now()),
-          (3, 4, now(), now()),
-          (4, 5, now(), now());
+          (1, 2, 3, now(), now()),
+          (2, 3, 4, now(), now()),
+          (3, 4, 5, now(), now()),
+          (4, 10, 1, now(), now()),
+          (5, 11, 2, now(), now());
 
         -- stream entries
 
@@ -166,7 +182,6 @@ namespace :tests do
           (7, 4, 'status', now(), now()),
           (8, 5, 'status', now(), now()),
           (9, 1, 'status', now(), now());
-
 
         -- custom emoji
 
@@ -207,12 +222,12 @@ namespace :tests do
         -- follows
 
         INSERT INTO "follows"
-          (account_id, target_account_id, created_at, updated_at)
+          (id, account_id, target_account_id, created_at, updated_at)
         VALUES
-          (1, 5, now(), now()),
-          (6, 2, now(), now()),
-          (5, 2, now(), now()),
-          (6, 1, now(), now());
+          (1, 1, 5, now(), now()),
+          (2, 6, 2, now(), now()),
+          (3, 5, 2, now(), now()),
+          (4, 6, 1, now(), now());
 
         -- follow requests
 
@@ -221,6 +236,15 @@ namespace :tests do
         VALUES
           (2, 5, now(), now()),
           (5, 1, now(), now());
+
+        -- notifications
+
+        INSERT INTO "notifications"
+          (id, from_account_id, account_id, activity_type, activity_id, created_at, updated_at)
+        VALUES
+          (1, 6, 2, 'Follow', 2, now(), now()),
+          (2, 2, 1, 'Mention', 4, now(), now()),
+          (3, 1, 2, 'Mention', 5, now(), now());
       SQL
     end
   end
