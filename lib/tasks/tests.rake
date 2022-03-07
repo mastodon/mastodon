@@ -5,12 +5,17 @@ namespace :tests do
     desc 'Check that database state is consistent with a successful migration from populated data'
     task check_database: :environment do
       unless Account.find_by(username: 'admin', domain: nil)&.hide_collections? == false
-        puts "Unexpected value for Account#hide_collections? for user 'admin'"
+        puts 'Unexpected value for Account#hide_collections? for user @admin'
         exit(1)
       end
 
       unless Account.find_by(username: 'user', domain: nil)&.hide_collections? == true
-        puts "Unexpected value for Account#hide_collections? for user 'user'"
+        puts 'Unexpected value for Account#hide_collections? for user @user'
+        exit(1)
+      end
+
+      unless Account.find_by(username: 'evil', domain: 'activitypub.com')&.suspended?
+        puts 'Unexpected value for Account#suspended? for user @evil@activitypub.com'
         exit(1)
       end
     end
@@ -72,6 +77,13 @@ namespace :tests do
         VALUES
           (7, 'user', #{local_domain}, #{user_private_key}, #{user_public_key}, now(), now()),
           (8, 'pt_user', NULL, #{user_private_key}, #{user_public_key}, now(), now());
+
+        INSERT INTO "accounts"
+          (id, username, domain, private_key, public_key, created_at, updated_at, protocol, inbox_url, outbox_url, followers_url, suspended)
+        VALUES
+          (9, 'evil', 'activitypub.com', NULL, #{remote_public_key_ap}, now(), now(),
+           1, 'https://activitypub.com/users/evil/inbox', 'https://activitypub.com/users/evil/outbox',
+           'https://activitypub.com/users/evil/followers', true);
 
         -- users
 
