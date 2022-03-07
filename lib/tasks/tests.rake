@@ -2,6 +2,30 @@
 
 namespace :tests do
   namespace :migrations do
+    desc 'Check that database state is consistent with a successful migration from populated data'
+    task check_database: :environment do
+      unless Account.find_by(username: 'admin', domain: nil)&.hide_collections? == false
+        puts "Unexpected value for Account#hide_collections? for user 'admin'"
+        exit(1)
+      end
+
+      unless Account.find_by(username: 'user', domain: nil)&.hide_collections? == true
+        puts "Unexpected value for Account#hide_collections? for user 'user'"
+        exit(1)
+      end
+    end
+
+    desc 'Populate the database with test data for 2.4.0'
+    task populate_v2_4: :environment do
+      ActiveRecord::Base.connection.execute(<<~SQL)
+        INSERT INTO "settings"
+          (id, thing_type, thing_id, var, value, created_at, updated_at)
+        VALUES
+          (1, 'User', 1, 'hide_network', E'--- false\n', now(), now()),
+          (2, 'User', 2, 'hide_network', E'--- true\n', now(), now());
+      SQL
+    end
+
     desc 'Populate the database with test data for 2.0.0'
     task populate_v2: :environment do
       admin_key   = OpenSSL::PKey::RSA.new(2048)
