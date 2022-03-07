@@ -1236,6 +1236,11 @@ a.sparkline {
   background: $ui-base-color;
   border-radius: 4px;
 
+  &__permalink {
+    color: inherit;
+    text-decoration: none;
+  }
+
   &__header {
     padding: 4px;
     border-radius: 4px;
@@ -1252,20 +1257,22 @@ a.sparkline {
   }
 
   &__title {
-    margin-top: -25px;
+    margin-top: -(15px + 8px);
     display: flex;
     align-items: flex-end;
 
     &__avatar {
-      padding: 15px;
+      padding: 14px;
 
-      img {
+      img,
+      .account__avatar {
         display: block;
         margin: 0;
         width: 56px;
         height: 56px;
-        background: darken($ui-base-color, 8%);
+        background-color: darken($ui-base-color, 8%);
         border-radius: 8px;
+        border: 1px solid $ui-base-color;
       }
     }
 
@@ -1273,30 +1280,34 @@ a.sparkline {
       color: $darker-text-color;
       padding-bottom: 15px;
       font-size: 15px;
+      line-height: 20px;
 
       bdi {
         display: block;
         color: $primary-text-color;
-        font-weight: 500;
+        font-weight: 700;
       }
     }
   }
 
   &__bio {
     padding: 0 15px;
+    margin: 8px 0;
     overflow: hidden;
     text-overflow: ellipsis;
     word-wrap: break-word;
-    max-height: 18px * 2;
+    max-height: 21px * 2;
     position: relative;
+    font-size: 15px;
+    line-height: 21px;
 
     &::after {
       display: block;
       content: "";
       width: 50px;
-      height: 18px;
+      height: 21px;
       position: absolute;
-      bottom: 0;
+      bottom: 8px;
       right: 15px;
       background: linear-gradient(to left, $ui-base-color, transparent);
       pointer-events: none;
@@ -1309,10 +1320,6 @@ a.sparkline {
 
       &:hover {
         text-decoration: underline;
-
-        .fa {
-          color: lighten($dark-text-color, 7%);
-        }
       }
 
       &.mention {
@@ -1329,12 +1336,21 @@ a.sparkline {
 
   &__actions {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding-top: 10px;
 
     &__button {
-      flex: 0 0 auto;
+      flex-shrink: 1;
       padding: 0 15px;
+      overflow: hidden;
+
+      .button {
+        min-width: 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+      }
     }
   }
 
@@ -1343,19 +1359,23 @@ a.sparkline {
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
     grid-auto-flow: column;
+    max-width: 340px;
+    min-width: 65px * 3;
 
     &__item {
-      padding: 15px;
+      padding: 15px 0;
       text-align: center;
       color: $primary-text-color;
       font-weight: 600;
       font-size: 15px;
+      line-height: 21px;
 
       small {
         display: block;
         color: $darker-text-color;
         font-weight: 400;
         font-size: 13px;
+        line-height: 18px;
       }
     }
   }
