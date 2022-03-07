@@ -18,6 +18,16 @@ namespace :tests do
         puts 'Unexpected value for Account#suspended? for user @evil@activitypub.com'
         exit(1)
       end
+
+      unless Status.find(6).account_id == Status.find(7).account_id
+        puts 'Users @remote@remote.com and @Remote@remote.com not properly merged'
+        exit(1)
+      end
+
+      if Account.where(domain: Rails.configuration.x.local_domain).exists?
+        puts 'Faux remote accounts not properly claned up'
+        exit(1)
+      end
     end
 
     desc 'Populate the database with test data for 2.4.0'
