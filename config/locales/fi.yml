@@ -587,6 +587,7 @@ fi:
       action_taken_by: Toimenpiteen tekijä
       actions:
         delete_description_html: Ilmoitetut viestit poistetaan ja kirjataan varoitus, joka auttaa sinua saman tilin tulevista rikkomuksista.
+        mark_as_sensitive_description_html: Ilmoitettujen viestien media merkitään arkaluonteisiksi ja varoitus tallennetaan, jotta voit lisätä saman tilin tulevia rikkomuksia.
         other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja ilmoitetun tilin viestinnän mukauttamiseksi.
         resolve_description_html: Ilmoitettua tiliä vastaan ei ryhdytä toimenpiteisiin, varoitusta ei kirjata ja raportti suljetaan.
         silence_description_html: Profiili näkyy vain niille, jotka jo seuraavat sitä tai etsivät sen manuaalisesti, mikä rajoittaa merkittävästi kattavuutta. Se voidaan aina palauttaa.
@@ -607,6 +608,7 @@ fi:
       forwarded: Välitetty
       forwarded_to: Välitetty %{domain}
       mark_as_resolved: Merkitse ratkaistuksi
+      mark_as_sensitive: Merkitse arkaluonteiseksi
       mark_as_unresolved: Merkitse ratkaisemattomaksi
       no_one_assigned: Ei kukaan
       notes:
@@ -750,6 +752,7 @@ fi:
       actions:
         delete_statuses: "%{name} poisti käyttäjän %{target} viestit"
         disable: "%{name} jäädytti %{target} tilin"
+        mark_statuses_as_sensitive: "%{name} merkitsi %{target} viestiä arkaluonteiseksi"
         none: "%{name} lähetti varoituksen henkilölle %{target}"
         sensitive: "%{name} merkitsi käyttäjän %{target} tilin arkaluonteiseksi"
         silence: "%{name} rajoitti käyttäjän %{target} tilin"
