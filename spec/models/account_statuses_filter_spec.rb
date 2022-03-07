@@ -26,13 +26,15 @@ RSpec.describe AccountStatusesFilter do
   end
 
   def status_with_mention!(visibility, mentioned_account = nil)
-    status = Fabricate(:status, account: account, visibility: visibility)
-    Fabricate(:mention, status: status, account: mentioned_account || Fabricate(:account))
+    Fabricate(:status, account: account, visibility: visibility).tap do |status|
+      Fabricate(:mention, status: status, account: mentioned_account || Fabricate(:account))
+    end
   end
 
   def status_with_media_attachment!(visibility)
-    status = Fabricate(:status, account: account, visibility: visibility)
-    Fabricate(:media_attachment, account: account, status: status)
+    Fabricate(:status, account: account, visibility: visibility).tap do |status|
+      Fabricate(:media_attachment, account: account, status: status)
+    end
   end
 
   describe '#results' do
@@ -45,7 +47,6 @@ RSpec.describe AccountStatusesFilter do
       status_with_parent!(:public)
       status_with_reblog!(:public)
       status_with_tag!(:public, tag)
-      status_with_mention!(:direct, current_account) if current_account.present?
       status_with_mention!(:direct)
       status_with_media_attachment!(:public)
     end
@@ -152,6 +153,14 @@ RSpec.describe AccountStatusesFilter do
         expect(subject.results.pluck(:reblog_of_id)).to_not be_empty
       end
 
+      context 'when there is a direct status mentioning the non-follower' do
+        let!(:direct_status) { status_with_mention!(:direct, current_account) }
+
+        it 'returns the direct status' do
+          expect(subject.results.pluck(:id)).to include(direct_status.id)
+        end
+      end
+
       it_behaves_like 'filter params'
     end
 
@@ -168,6 +177,14 @@ RSpec.describe AccountStatusesFilter do
 
       it 'returns public reblogs' do
         expect(subject.results.pluck(:reblog_of_id)).to_not be_empty
+      end
+
+      context 'when there is a private status mentioning the non-follower' do
+        let!(:private_status) { status_with_mention!(:private, current_account) }
+
+        it 'returns the private status' do
+          expect(subject.results.pluck(:id)).to include(private_status.id)
+        end
       end
 
       context 'when blocking a reblogged account' do
