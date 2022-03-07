@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_195405) do
+ActiveRecord::Schema.define(version: 2022_03_07_094650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -420,8 +420,8 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
   end
 
   create_table "featured_tags", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "tag_id"
+    t.bigint "account_id", null: false
+    t.bigint "tag_id", null: false
     t.bigint "statuses_count", default: 0, null: false
     t.datetime "last_status_at"
     t.datetime "created_at", null: false
