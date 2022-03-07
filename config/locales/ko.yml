@@ -576,6 +576,7 @@ ko:
       action_taken_by: 신고 처리자
       actions:
         delete_description_html: 신고된 게시물은 삭제될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
+        mark_as_sensitive_description_html: 신고된 게시물의 미디어는 민감함으로 표시될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
         other_description_html: 계정 동작을 제어하고 신고된 계정과의 의사소통을 사용자 지정하기 위한 추가 옵션을 봅니다.
         resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
         silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
@@ -736,6 +737,7 @@ ko:
       actions:
         delete_statuses: "%{name} 님이 %{target}의 게시물을 지웠습니다"
         disable: "%{name} 님이 %{target}의 계정을 동결시켰습니다"
+        mark_statuses_as_sensitive: "%{name} 님이 %{target}의 게시물을 민감함으로 표시했습니다"
         none: "%{name} 님이 %{target}에게 경고를 보냈습니다"
         sensitive: "%{name} 님이 %{target}의 계정을 민감함으로 표시했습니다"
         silence: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
@@ -903,6 +905,7 @@ ko:
     status:
       account_status: 계정 상태
       confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
+      functional: 계정이 완벽히 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
@@ -984,7 +987,9 @@ ko:
       title_actions:
         delete_statuses: 게시물 삭제
         disable: 계정 동결
+        mark_statuses_as_sensitive: 게시물을 민감함으로 표시
         none: 경고
+        sensitive: 계정을 민감함으로 표시
         silence: 계정의 제한
         suspend: 계정 정지
   domain_validator:
