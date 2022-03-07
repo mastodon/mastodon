@@ -1553,21 +1553,27 @@ fi:
       explanation:
         delete_statuses: Joitakin viesteistäsi on havaittu rikkovan yhtä tai useampaa yhteisön sääntöä ja %{instance} valvojat ovat poistaneet ne.
         disable: Et voi enää käyttää tiliäsi, mutta profiilisi ja muut tiedot pysyvät muuttumattomina. Voit pyytää varmuuskopiota tiedoistasi, vaihtaa tilin asetuksia tai poistaa tilisi.
+        mark_statuses_as_sensitive: Valvojat %{instance} ovat merkinneet osan julkaisuistasi arkaluonteisiksi. Tämä tarkoittaa sitä, että ihmisten täytyy napauttaa viestiä ennen kuin esikatselu näytetään. Voit merkitä median itse arkaluonteiseksi kun julkaiset tulevaisuudessa.
         sensitive: Tästä lähtien kaikki ladatut mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
         silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat ihmiset näkevät viestisi tällä palvelimella ja sinut voidaan sulkea pois erilaisista hakuominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
         suspend: Et voi enää käyttää tiliäsi ja profiilisi ja muut tiedot eivät ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi varmuuskopiota tiedoistasi, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme joitakin perustietoja, jotka estävät sinua kiertämästä keskeyttämistä.
       get_in_touch: Jos uskot, että tämä on virhe, voit vastata tähän sähköpostiin ottaaksesi yhteyttä %{instance} henkilökuntaan.
       reason: 'Syy:'
+      statuses: 'Viestejä lainattu:'
       subject:
         delete_statuses: Viestisi %{acct} on poistettu
         disable: Tilisi %{acct} on jäädytetty
+        mark_statuses_as_sensitive: Viestisi %{acct} on merkitty arkaluonteisiksi
         none: Varoitus %{acct}
+        sensitive: Sinun viestisi %{acct} merkitään arkaluonteisiksi tästä lähtien
         silence: Tilisi %{acct} on rajoitettu
         suspend: Tilisi %{acct} on keskeytetty
       title:
         delete_statuses: Viestit poistettu
         disable: Tili jäädytetty
+        mark_statuses_as_sensitive: Viestit on merkitty arkaluonteisiksi
         none: Varoitus
+        sensitive: Tili on merkitty arkaluonteiseksi
         silence: Rajoitettu tili
         suspend: Tilin käyttäminen keskeytetty
     welcome:
