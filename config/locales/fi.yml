@@ -1030,7 +1030,9 @@ fi:
       title_actions:
         delete_statuses: Viestin poisto
         disable: Tilin jäädyttäminen
+        mark_statuses_as_sensitive: Viestien merkitseminen arkaluonteisiksi
         none: Varoitus
+        sensitive: Tilin merkitseminen arkaluonteiseksi
         silence: Tilin rajoittaminen
         suspend: Tilin keskeyttäminen
       your_appeal_approved: Valituksesi on hyväksytty
@@ -1402,6 +1404,7 @@ fi:
     profile: Profiili
     relationships: Seuratut ja seuraajat
     statuses_cleanup: Automaattinen viestin poisto
+    strikes: Valvojan varoitukset
     two_factor_authentication: Kaksivaiheinen todentaminen
     webauthn_authentication: Suojausavaimet
   statuses:
@@ -1481,7 +1484,7 @@ fi:
       '2629746': 1 kuukausi
       '31556952': 1 vuosi
       '5259492': 2 kuukautta
-      '604800': 1 week
+      '604800': 1 viikko
       '63113904': 2 vuotta
       '7889238': 3 kuukautta
     min_age_label: Ikäraja
@@ -1548,6 +1551,7 @@ fi:
         spam: Roskaposti
         violation: Sisältö rikkoo seuraavia yhteisön sääntöjä
       explanation:
+        delete_statuses: Joitakin viesteistäsi on havaittu rikkovan yhtä tai useampaa yhteisön sääntöä ja %{instance} valvojat ovat poistaneet ne.
         disable: Et voi enää käyttää tiliäsi, mutta profiilisi ja muut tiedot pysyvät muuttumattomina. Voit pyytää varmuuskopiota tiedoistasi, vaihtaa tilin asetuksia tai poistaa tilisi.
         sensitive: Tästä lähtien kaikki ladatut mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
         silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat ihmiset näkevät viestisi tällä palvelimella ja sinut voidaan sulkea pois erilaisista hakuominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
