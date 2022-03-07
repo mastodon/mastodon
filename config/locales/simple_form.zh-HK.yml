@@ -1,4 +1,3 @@
----
 zh-HK:
   simple_form:
     hints:
@@ -7,7 +6,7 @@ zh-HK:
       account_migration:
         acct: 指定欲移動至之帳戶的「使用者名稱@域名」
       account_warning_preset:
-        text: 你可使用 toot 格式，例如網址、「#」標籤和提及功能
+        text: '你可使用 toot 格式，例如網址、「#」標籤和提及功能'
         title: 可選，接收者不會見到
       admin_account_action:
         include_statuses: 使用者將會看到哪些文章導致檢舉或警告
@@ -35,8 +34,6 @@ zh-HK:
         current_password: 基於保安緣故，請輸入目前帳號的密碼
         current_username: 請輸入目前帳戶的使用者名稱以確認
         digest: 僅在你長時間未登錄，且收到了私信時發送
-        discoverable: 個人資料目錄可以讓你的帳號更廣為人知
-        discoverable_no_directory: 允許他人通過推薦與其他功能探索你的賬號
         email: 你將收到一封確認電郵
         fields: 個人資料頁可顯示多至 4 個項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
@@ -64,7 +61,7 @@ zh-HK:
       email_domain_block:
         with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
       featured_tag:
-        name: 你可能想使用其中一個：
+        name: '你可能想使用其中一個：'
       form_challenge:
         current_password: 你正要進入安全區域
       imports:
@@ -82,7 +79,7 @@ zh-HK:
       rule:
         text: 請描述在此伺服器上用戶需要遵守的規則或要求。請盡量保持簡短易明。
       sessions:
-        otp: 輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：
+        otp: '輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：'
         webauthn: 如果它是 USB 安全鑰匙的話，請先插入電腦。如鑰匙設計有需要，請按鍵啟用。
       tag:
         name: 你只能變更大小寫（以使其更易讀）。
@@ -210,7 +207,7 @@ zh-HK:
         name: 主題標籤
         trendable: 允許此主題標籤在趨勢下顯示
         usable: 允許文章使用此主題標籤
-    'no': 否
+    'no': '否'
     recommended: 建議
     required:
       mark: "*"
@@ -218,4 +215,4 @@ zh-HK:
     title:
       sessions:
         webauthn: 使用你的安全密鑰裝置來登入
-    'yes': 是
+    'yes': '是'
