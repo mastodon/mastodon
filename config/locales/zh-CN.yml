@@ -841,6 +841,7 @@ zh-CN:
         title: 热门嘟文
       new_trending_tags:
         no_approved_tags: 目前没有经批准的热门标签。
+        requirements: '这些候选人都可能会超过#%{rank} 批准的热门标签，目前是 #%{lowest_tag_name} ，分数为 %{lowest_tag_score}。'
         title: 热门标签
       subject: '%{instance} 上的新趋势供审核'
   aliases:
@@ -919,6 +920,7 @@ zh-CN:
       functional: 你的帐号可以正常使用了。
       pending: 工作人员正在审核你的申请。这需要花点时间。在申请被批准后，你将收到一封电子邮件。
       redirecting_to: 你的帐户无效，因为它已被设置为跳转到 %{acct}
+      view_strikes: 查看针对你帐号的记录
     too_fast: 表单提交过快，请重试。
     trouble_logging_in: 登录有问题？
     use_security_key: 使用安全密钥
@@ -994,6 +996,7 @@ zh-CN:
         submit: 提交申诉
       associated_report: 相关举报
       created_at: 日期
+      description_html: 这些是针对您的帐户采取的行动和警告，已经由 %{instance} 的工作人员发送给您。
       recipient: 发送至
       status: '嘟文 #%{id}'
       status_removed: 嘟文已从系统中删除
@@ -1001,7 +1004,9 @@ zh-CN:
       title_actions:
         delete_statuses: 嘟文删除
         disable: 帐号冻结
+        mark_statuses_as_sensitive: 标记嘟文有敏感内容
         none: 警告
+        sensitive: 标记帐号有敏感内容
         silence: 帐号限制
         suspend: 帐号封禁
       your_appeal_approved: 你的申诉已被批准
@@ -1369,6 +1374,7 @@ zh-CN:
     profile: 个人资料
     relationships: 关注管理
     statuses_cleanup: 自动删除嘟文
+    strikes: 操作记录
     two_factor_authentication: 双重认证
     webauthn_authentication: 安全密钥
   statuses:
@@ -1442,7 +1448,7 @@ zh-CN:
       '2629746': 1个月
       '31556952': 1年
       '5259492': 2个月
-      '604800': 1 week
+      '604800': 一周
       '63113904': 两年
       '7889238': 3个月
     min_age_label: 过期阈值
