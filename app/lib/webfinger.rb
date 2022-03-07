@@ -90,7 +90,7 @@ class Webfinger
   end
 
   def standard_url
-    if @domain.end_with? ".onion"
+    if @domain.end_with?(".onion", ".i2p")
       "http://#{@domain}/.well-known/webfinger?resource=#{@uri}"
     else
       "https://#{@domain}/.well-known/webfinger?resource=#{@uri}"
@@ -98,7 +98,7 @@ class Webfinger
   end
 
   def host_meta_url
-    if @domain.end_with? ".onion"
+    if @domain.end_with?(".onion","i2p")
       "http://#{@domain}/.well-known/host-meta"
     else
       "https://#{@domain}/.well-known/host-meta"
