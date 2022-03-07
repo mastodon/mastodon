@@ -64,7 +64,19 @@ class Report < ApplicationRecord
   end
 
   def media_attachments_count
-    statuses.pluck(:ordered_media_attachment_ids).compact.sum(&:size)
+    statuses_to_query = []
+    count = 0
+
+    statuses.pluck(:id, :ordered_media_attachment_ids).each do |id, ordered_ids|
+      if ordered_ids.nil?
+        statuses_to_query << id
+      else
+        count += ordered_ids.size
+      end
+    end
+
+    count += MediaAttachment.where(status_id: statuses_to_query).count unless statuses_to_query.empty?
+    count
   end
 
   def rules
