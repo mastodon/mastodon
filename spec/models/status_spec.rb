@@ -348,59 +348,6 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '.permitted_for' do
-    subject { described_class.permitted_for(target_account, account).pluck(:visibility) }
-
-    let(:target_account) { alice }
-    let(:account) { bob }
-    let!(:public_status) { Fabricate(:status, account: target_account, visibility: 'public') }
-    let!(:unlisted_status) { Fabricate(:status, account: target_account, visibility: 'unlisted') }
-    let!(:private_status) { Fabricate(:status, account: target_account, visibility: 'private') }
-
-    let!(:direct_status) do
-      Fabricate(:status, account: target_account, visibility: 'direct').tap do |status|
-        Fabricate(:mention, status: status, account: account)
-      end
-    end
-
-    let!(:other_direct_status) do
-      Fabricate(:status, account: target_account, visibility: 'direct').tap do |status|
-        Fabricate(:mention, status: status)
-      end
-    end
-
-    context 'given nil' do
-      let(:account) { nil }
-      let(:direct_status) { nil }
-      it { is_expected.to eq(%w(unlisted public)) }
-    end
-
-    context 'given blocked account' do
-      before do
-        target_account.block!(account)
-      end
-
-      it { is_expected.to be_empty }
-    end
-
-    context 'given same account' do
-      let(:account) { target_account }
-      it { is_expected.to eq(%w(direct direct private unlisted public)) }
-    end
-
-    context 'given followed account' do
-      before do
-        account.follow!(target_account)
-      end
-
-      it { is_expected.to eq(%w(direct private unlisted public)) }
-    end
-
-    context 'given unfollowed account' do
-      it { is_expected.to eq(%w(direct unlisted public)) }
-    end
-  end
-
   describe 'before_validation' do
     it 'sets account being replied to correctly over intermediary nodes' do
       first_status = Fabricate(:status, account: bob)
