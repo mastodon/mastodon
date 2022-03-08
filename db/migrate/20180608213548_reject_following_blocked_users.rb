@@ -22,13 +22,13 @@ class RejectFollowingBlockedUsers < ActiveRecord::Migration[5.2]
 
     follows.each do |follow|
       blocked_account = follow.account
-      followed_acccount = follow.target_account
+      followed_account = follow.target_account
 
       next follow.destroy! if blocked_account.local?
 
-      reject_follow_json = Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(follow, serializer: ActivityPub::RejectFollowSerializer, adapter: ActivityPub::Adapter).as_json).sign!(followed_acccount))
+      reject_follow_json = Oj.dump(ActivityPub::LinkedDataSignature.new(ActiveModelSerializers::SerializableResource.new(follow, serializer: ActivityPub::RejectFollowSerializer, adapter: ActivityPub::Adapter).as_json).sign!(followed_account))
 
-      ActivityPub::DeliveryWorker.perform_async(reject_follow_json, followed_acccount, blocked_account.inbox_url)
+      ActivityPub::DeliveryWorker.perform_async(reject_follow_json, followed_account, blocked_account.inbox_url)
 
       follow.destroy!
     end

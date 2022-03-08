@@ -409,14 +409,6 @@
     }
   }
 
-  .directory__card {
-    border-radius: 4px;
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      border-radius: 0;
-    }
-  }
-
   .page-header {
     @media screen and (max-width: $no-gap-breakpoint) {
       border-bottom: 0;
@@ -835,17 +827,19 @@
     grid-gap: 10px;
     grid-template-columns: minmax(0, 50%) minmax(0, 50%);
 
+    .account-card {
+      display: flex;
+      flex-direction: column;
+    }
+
     @media screen and (max-width: $no-gap-breakpoint) {
       display: block;
-    }
 
-    .icon-button {
-      font-size: 18px;
+      .account-card {
+        margin-bottom: 10px;
+        display: block;
+      }
     }
-  }
-
-  .directory__card {
-    margin-bottom: 0;
   }
 
   .card-grid {

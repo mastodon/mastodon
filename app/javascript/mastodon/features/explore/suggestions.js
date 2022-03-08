@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Account from 'mastodon/containers/account_container';
+import AccountCard from 'mastodon/features/directory/components/account_card';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import { connect } from 'react-redux';
 import { fetchSuggestions } from 'mastodon/actions/suggestions';
@@ -29,9 +29,9 @@ class Suggestions extends React.PureComponent {
     const { isLoading, suggestions } = this.props;
 
     return (
-      <div className='explore__links'>
-        {isLoading ? (<LoadingIndicator />) : suggestions.map(suggestion => (
-          <Account key={suggestion.get('account')} id={suggestion.get('account')} />
+      <div className='explore__suggestions'>
+        {isLoading ? <LoadingIndicator /> : suggestions.map(suggestion => (
+          <AccountCard key={suggestion.get('account')} id={suggestion.get('account')} />
         ))}
       </div>
     );

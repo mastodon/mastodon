@@ -128,8 +128,17 @@ jobs:
           command: ./bin/rails tests:migrations:populate_v2
           name: Populate database with test data
       - run:
+          command: ./bin/rails db:migrate VERSION=20180514140000
+          name: Run migrations up to v2.4.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2_4
+          name: Populate database with test data
+      - run:
           command: ./bin/rails db:migrate
           name: Run all remaining migrations
+      - run:
+          command: ./bin/rails tests:migrations:check_database
+          name: Check migration result
 
   test-two-step-migrations:
     executor:
@@ -151,13 +160,24 @@ jobs:
           command: ./bin/rails tests:migrations:populate_v2
           name: Populate database with test data
       - run:
+          command: ./bin/rails db:migrate VERSION=20180514140000
+          name: Run pre-deployment migrations up to v2.4.0
+          environment:
+            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2_4
+          name: Populate database with test data
+      - run:
           command: ./bin/rails db:migrate
           name: Run all pre-deployment migrations
-          evironment:
+          environment:
             SKIP_POST_DEPLOYMENT_MIGRATIONS: true
       - run:
           command: ./bin/rails db:migrate
           name: Run all post-deployment remaining migrations
+      - run:
+          command: ./bin/rails tests:migrations:check_database
+          name: Check migration result
 
 workflows:
   version: 2

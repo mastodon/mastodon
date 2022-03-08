@@ -126,7 +126,7 @@ class User < ApplicationRecord
   has_many :session_activations, dependent: :destroy
 
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :favourite_modal, :delete_modal,
-           :reduce_motion, :system_font_ui, :noindex, :flavour, :skin, :display_media, :hide_network, :hide_followers_count,
+           :reduce_motion, :system_font_ui, :noindex, :flavour, :skin, :display_media, :hide_followers_count,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
            :disable_swiping, :default_content_type, :system_emoji_font,
@@ -279,10 +279,6 @@ class User < ApplicationRecord
 
   def allows_trending_statuses_review_emails?
     settings.notification_emails['trending_status']
-  end
-
-  def hides_network?
-    @hides_network ||= settings.hide_network
   end
 
   def aggregates_reblogs?
