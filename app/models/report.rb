@@ -129,6 +129,6 @@ class Report < ApplicationRecord
   def validate_rule_ids
     return unless violation?
 
-    errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids.size
+    errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids&.size
   end
 end

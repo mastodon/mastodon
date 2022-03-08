@@ -1,0 +1,7 @@
+<%= t 'user_mailer.appeal_approved.title' %>
+
+===
+
+<%= t 'user_mailer.appeal_approved.explanation', appeal_date: l(@appeal.created_at), strike_date: l(@appeal.strike.created_at) %>
+
+=> <%= root_url %>

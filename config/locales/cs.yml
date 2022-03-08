@@ -102,7 +102,6 @@ cs:
     account_moderation_notes:
       create: Zanechat poznámku
       created_msg: Moderátorská poznámka byla úspěšně vytvořena!
-      delete: Smazat
       destroyed_msg: Moderátorská poznámka byla úspěšně zničena!
     accounts:
       add_email_domain_block: Blokovat e-mailovou doménu
@@ -390,21 +389,6 @@ cs:
       media_storage: Úložiště médií
       new_users: noví uživatelé
       opened_reports: podáno hlášení
-      pending_reports_html:
-        few: "<strong>%{count}</strong> čekající hlášení"
-        many: "<strong>%{count}</strong> čekajících hlášení"
-        one: "<strong>1</strong> čekající hlášení"
-        other: "<strong>%{count}</strong> čekajících hlášení"
-      pending_tags_html:
-        few: "<strong>%{count}</strong> čekající hashtagy"
-        many: "<strong>%{count}</strong> čekajících hashtagů"
-        one: "<strong>1</strong> čekající hashtag"
-        other: "<strong>%{count}</strong> čekajících hashtagů"
-      pending_users_html:
-        few: "<strong>%{count}</strong> čekající uživatelé"
-        many: "<strong>%{count}</strong> čekajících uživatelů"
-        one: "<strong>1</strong> čekající uživatel"
-        other: "<strong>%{count}</strong> čekajících uživatelů"
       resolved_reports: vyřešeno hlášení
       software: Software
       sources: Zdroje registrací
@@ -450,11 +434,6 @@ cs:
         silence: omezena
         suspend: pozastaveno
       show:
-        affected_accounts:
-          few: "%{count} účty v databázi byly ovlivněny"
-          many: "%{count} účtů v databázi bylo ovlivněno"
-          one: Jeden účet v databázi byl ovlivněn
-          other: "%{count} účtů v databázi bylo ovlivněno"
         retroactive:
           silence: Vzít zpět omezení existujících dotčených účtů z této domény
           suspend: Zrušit pozastavení existujících ovlivněných účtů z této domény
@@ -466,10 +445,7 @@ cs:
       add_new: Přidat
       created_msg: E-mailová doména úspěšně zablokována
       delete: Smazat
-      destroyed_msg: E-mailová doména úspěšně odblokována
       domain: Doména
-      empty: Žádné e-mailové domény nejsou aktuálně blokovány.
-      from_html: z domény %{domain}
       new:
         create: Přidat doménu
         title: Blokovat novou e-mailovou doménu
@@ -507,11 +483,6 @@ cs:
       delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
       destroyed_msg: Data z %{domain} nyní čekají na smazání.
       empty: Nebyly nalezeny žádné domény.
-      known_accounts:
-        few: "%{count} známé účty"
-        many: "%{count} známých účtů"
-        one: "%{count} známý účet"
-        other: "%{count} známých účtů"
       moderation:
         all: Všechny
         limited: Omezený
@@ -734,11 +705,6 @@ cs:
         allow_provider: Povolit vydavatele
         disallow: Zakázat odkaz
         disallow_provider: Zakázat vydavatele
-        shared_by_over_week:
-          few: Sdílený %{count} lidmi za poslední týden
-          many: Sdílený %{count} lidmi za poslední týden
-          one: Sdílený jedním člověkem za poslední týden
-          other: Sdílený %{count} lidmi za poslední týden
         title: Populární odkazy
         usage_comparison: Za dnešek %{today} sdílení, oproti %{yesterday} včera
       pending_review: Čeká na posouzení
@@ -765,11 +731,6 @@ cs:
         trending_rank: 'Populární #%{rank}'
         usable: Může být používán
         usage_comparison: Za dnešek %{today} použití, oproti %{yesterday} včera
-        used_by_over_week:
-          few: Použit %{count} lidmi za poslední týden
-          many: Použit %{count} lidmi za poslední týden
-          one: Použit jedním člověkem za poslední týden
-          other: Použit %{count} lidmi za poslední týden
       title: Trendy
     warning_presets:
       add_new: Přidat nové
@@ -785,16 +746,6 @@ cs:
       body: Uživatel %{reporter} nahlásil uživatele %{target}
       body_remote: Někdo z domény %{domain} nahlásil uživatele %{target}
       subject: Nové hlášení pro %{instance} (#%{id})
-    new_trending_links:
-      body: Následující odkazy jsou dnes populární, ale jejich vydavatelé zatím nebyli posouzeni. Nebudou veřejně zobrazeny, pokud je neschválíte. Pro stejné vydavatele už další upozornění nedostanete.
-      no_approved_links: Momentálně nejsou žádné schválené populární odkazy.
-      requirements: Nejnižší schválený populární odkaz je momentálně "%{lowest_link_title}" se skóre %{lowest_link_score}.
-      subject: Nové populární odkazy k posouzení na %{instance}
-    new_trending_tags:
-      body: 'Následující hashtagy jsou dnes populární, ale nebyly dříve přezkoumány. Nebudou zobrazeny veřejně, pokud je neschválíte:'
-      no_approved_tags: Momentálně nejsou žádné schválené populární hashtagy.
-      requirements: Nejnižší schválený populární hashtag je momentálně "%{lowest_tag_name}" se skóre %{lowest_tag_score}.
-      subject: Nové populární hashtagy k posouzení na %{instance}
   aliases:
     add_new: Vytvořit alias
     created_msg: Nový alias byl úspěšně vytvořen. Nyní můžete zahájit přesun ze starého účtu.
@@ -868,7 +819,6 @@ cs:
     status:
       account_status: Stav účtu
       confirming: Čeká na dokončení potvrzení e-mailu.
-      functional: Váš účet je zcela funkční.
       pending: Vaše žádost čeká na posouzení naším personálem. To může nějakou dobu trvat. Pokud bude váš požadavek schválen, obdržíte e-mail.
       redirecting_to: Váš účet je neaktivní, protože je právě přesměrován na účet %{acct}.
     too_fast: Formulář byl odeslán příliš rychle, zkuste to znovu.
@@ -1520,7 +1470,6 @@ cs:
       subject: Potvrďte prosím pokus o přihlášení
       title: Pokus o přihlášení
     warning:
-      review_server_policies: Zkontrolujte pravidla serveru
       subject:
         disable: Váš účet %{acct} byl zmrazen
         none: Varování pro %{acct}

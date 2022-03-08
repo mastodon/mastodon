@@ -102,7 +102,7 @@ const handlePush = (event) => {
 
         options.image   = undefined;
         options.actions = [actionExpand(preferred_locale)];
-      } else if (notification.type === 'mention') {
+      } else if (['mention', 'status'].includes(notification.type)) {
         options.actions = [actionReblog(preferred_locale), actionFavourite(preferred_locale)];
       }
 

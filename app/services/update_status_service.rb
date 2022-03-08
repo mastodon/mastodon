@@ -22,8 +22,8 @@ class UpdateStatusService < BaseService
 
     Status.transaction do
       create_previous_edit!
-      update_media_attachments!
-      update_poll!
+      update_media_attachments! if @options.key?(:media_ids)
+      update_poll! if @options.key?(:poll)
       update_immediate_attributes!
       create_edit!
     end
@@ -91,9 +91,9 @@ class UpdateStatusService < BaseService
   end
 
   def update_immediate_attributes!
-    @status.text         = @options[:text].presence || @options.delete(:spoiler_text) || ''
-    @status.spoiler_text = @options[:spoiler_text] || ''
-    @status.sensitive    = @options[:sensitive] || @options[:spoiler_text].present?
+    @status.text         = @options[:text].presence || @options.delete(:spoiler_text) || '' if @options.key?(:text)
+    @status.spoiler_text = @options[:spoiler_text] || '' if @options.key?(:spoiler_text)
+    @status.sensitive    = @options[:sensitive] || @options[:spoiler_text].present? if @options.key?(:sensitive) || @options.key?(:spoiler_text)
     @status.language     = valid_locale_or_nil(@options[:language] || @status.language || @status.account.user&.preferred_posting_language || I18n.default_locale)
     @status.edited_at    = Time.now.utc
 

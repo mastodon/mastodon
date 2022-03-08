@@ -9,19 +9,19 @@ class Admin::Metrics::Measure::TagUsesMeasure < Admin::Metrics::Measure::BaseMea
     'tag_uses'
   end
 
-  def total
+  protected
+
+  def perform_total_query
     tag.history.aggregate(time_period).uses
   end
 
-  def previous_total
+  def perform_previous_total_query
     tag.history.aggregate(previous_time_period).uses
   end
 
-  def data
+  def perform_data_query
     time_period.map { |date| { date: date.to_time(:utc).iso8601, value: tag.history.get(date).uses.to_s } }
   end
-
-  protected
 
   def tag
     @tag ||= Tag.find(params[:id])

@@ -82,7 +82,6 @@ th:
     account_moderation_notes:
       create: เขียนหมายเหตุ
       created_msg: สร้างหมายเหตุการควบคุมสำเร็จ!
-      delete: ลบ
       destroyed_msg: ทำลายหมายเหตุการควบคุมสำเร็จ!
     accounts:
       add_email_domain_block: ปิดกั้นโดเมนอีเมล
@@ -151,6 +150,10 @@ th:
       not_subscribed: ไม่ได้บอกรับ
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
+      previous_strikes: การลงโทษก่อนหน้านี้
+      previous_strikes_description_html:
+        one: บัญชีนี้มี <strong>หนึ่ง</strong> การลงโทษ
+        other: บัญชีนี้มี <strong>%{count}</strong> การลงโทษ
       promote: เลื่อนขั้น
       protocol: โปรโตคอล
       public: สาธารณะ
@@ -191,7 +194,9 @@ th:
       silence: จำกัด
       silenced: จำกัดอยู่
       statuses: โพสต์
+      strikes: การลงโทษก่อนหน้านี้
       subscribe: บอกรับ
+      suspend: ระงับ
       suspended: ระงับอยู่
       title: บัญชี
       unblock_email: เลิกปิดกั้นที่อยู่อีเมล
@@ -210,6 +215,7 @@ th:
       whitelisted: อนุญาตการติดต่อกับภายนอกแล้ว
     action_logs:
       action_types:
+        approve_appeal: อนุมัติการอุทธรณ์
         approve_user: อนุมัติผู้ใช้
         assigned_to_self_report: มอบหมายรายงาน
         change_email_user: เปลี่ยนอีเมลสำหรับผู้ใช้
@@ -241,6 +247,7 @@ th:
         enable_user: เปิดใช้งานผู้ใช้
         memorialize_account: ทำให้บัญชีเป็นอนุสรณ์
         promote_user: เลื่อนขั้นผู้ใช้
+        reject_appeal: ปฏิเสธการอุทธรณ์
         reject_user: ปฏิเสธผู้ใช้
         remove_avatar_user: เอาภาพประจำตัวออก
         reopen_report: เปิดรายงานใหม่
@@ -367,6 +374,8 @@ th:
       media_storage: ที่เก็บข้อมูลสื่อ
       new_users: ผู้ใช้ใหม่
       opened_reports: รายงานที่เปิด
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> การอุทธรณ์ที่รอดำเนินการ"
       pending_reports_html:
         other: "<strong>%{count}</strong> รายงานที่รอดำเนินการ"
       pending_tags_html:
@@ -381,6 +390,10 @@ th:
       top_languages: ภาษาที่ใช้งานอยู่สูงสุด
       top_servers: เซิร์ฟเวอร์ที่ใช้งานอยู่สูงสุด
       website: เว็บไซต์
+    disputes:
+      appeals:
+        empty: ไม่พบการอุทธรณ์
+        title: การอุทธรณ์
     domain_allows:
       add_new: อนุญาตการติดต่อกับภายนอกกับโดเมน
       created_msg: อนุญาตการติดต่อกับภายนอกกับโดเมนสำเร็จ
@@ -401,6 +414,7 @@ th:
           silence: ทำให้เงียบ
           suspend: ระงับ
         title: การปิดกั้นโดเมนใหม่
+      obfuscate: ทำให้ชื่อโดเมนคลุมเครือ
       private_comment: ความคิดเห็นส่วนตัว
       public_comment: ความคิดเห็นสาธารณะ
       reject_media: ปฏิเสธไฟล์สื่อ
@@ -414,7 +428,9 @@ th:
         suspend: ระงับอยู่
       show:
         affected_accounts:
-          other: มีผลต่อ %{count} บัญชีในฐานข้อมูล
+          one: หนึ่งบัญชีในฐานข้อมูลที่ได้รับผลกระทบ
+          other: "%{count} บัญชีในฐานข้อมูลที่ได้รับผลกระทบ"
+          zero: ไม่มีบัญชีในฐานข้อมูลที่ได้รับผลกระทบ
         retroactive:
           silence: เลิกทำการจำกัดบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
           suspend: เลิกระงับบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
@@ -426,13 +442,16 @@ th:
       add_new: เพิ่มใหม่
       created_msg: ปิดกั้นโดเมนอีเมลสำเร็จ
       delete: ลบ
-      destroyed_msg: เลิกปิดกั้นโดเมนอีเมลสำเร็จ
+      dns:
+        types:
+          mx: ระเบียน MX
       domain: โดเมน
-      empty: ไม่มีโดเมนอีเมลที่ปิดกั้นอยู่
-      from_html: จาก %{domain}
       new:
         create: เพิ่มโดเมน
+        resolve: แปลงที่อยู่โดเมน
         title: ปิดกั้นโดเมนอีเมลใหม่
+      no_email_domain_block_selected: ไม่มีการเปลี่ยนแปลงการปิดกั้นโดเมนอีเมลเนื่องจากไม่มีการเลือก
+      resolved_through_html: แปลงที่อยู่ผ่าน %{domain}
       title: โดเมนอีเมลที่ปิดกั้นอยู่
     follow_recommendations:
       language: สำหรับภาษา
@@ -460,7 +479,9 @@ th:
       delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
       empty: ไม่พบโดเมน
       known_accounts:
+        one: "%{count} บัญชีที่รู้จัก"
         other: "%{count} บัญชีที่รู้จัก"
+        zero: ไม่มีบัญชีที่รู้จัก
       moderation:
         all: ทั้งหมด
         limited: จำกัดอยู่
@@ -522,6 +543,7 @@ th:
         notes:
           other: "%{count} หมายเหตุ"
       action_log: รายการบันทึกการตรวจสอบ
+      action_taken_by: ใช้การกระทำโดย
       are_you_sure: คุณแน่ใจหรือไม่?
       assign_to_self: มอบหมายให้ฉัน
       assigned: ผู้ควบคุมที่ได้รับมอบหมาย
@@ -529,8 +551,9 @@ th:
       category: หมวดหมู่
       comment:
         none: ไม่มี
+      comment_description_html: 'เพื่อให้ข้อมูลเพิ่มเติม %{name} ได้เขียน:'
       created_at: รายงานเมื่อ
-      delete_and_resolve: ลบแล้วแก้ปัญหา
+      delete_and_resolve: ลบโพสต์
       forwarded: ส่งต่อแล้ว
       forwarded_to: ส่งต่อไปยัง %{domain} แล้ว
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
@@ -542,12 +565,14 @@ th:
         create_and_unresolve: เปิดใหม่โดยมีหมายเหตุ
         delete: ลบ
         title: หมายเหตุ
+      remote_user_placeholder: ผู้ใช้ระยะไกลจาก %{instance}
       reopen: เปิดรายงานใหม่
       report: 'รายงาน #%{id}'
       reported_account: บัญชีที่ได้รับการรายงาน
       reported_by: รายงานโดย
       resolved: แก้ปัญหาแล้ว
       resolved_msg: แก้ปัญหารายงานสำเร็จ!
+      skip_to_actions: ข้ามไปยังการกระทำ
       status: สถานะ
       statuses: เนื้อหาที่รายงาน
       target_origin: จุดเริ่มต้นของบัญชีที่ได้รับการรายงาน
@@ -567,6 +592,7 @@ th:
         desc_html: จำนวนโพสต์ที่เผยแพร่ในเซิร์ฟเวอร์, ผู้ใช้ที่ใช้งานอยู่ และการลงทะเบียนใหม่ในบักเก็ตรายสัปดาห์
         title: เผยแพร่สถิติรวมเกี่ยวกับกิจกรรมผู้ใช้ใน API
       bootstrap_timeline_accounts:
+        desc_html: แยกหลายชื่อผู้ใช้ด้วยจุลภาค จะรับประกันว่าจะแสดงบัญชีเหล่านี้ในคำแนะนำการติดตาม
         title: แนะนำบัญชีเหล่านี้ให้กับผู้ใช้ใหม่
       contact_information:
         email: อีเมลธุรกิจ
@@ -664,6 +690,15 @@ th:
       no_status_selected: ไม่มีการเปลี่ยนแปลงโพสต์เนื่องจากไม่มีการเลือก
       title: โพสต์ของบัญชี
       with_media: มีสื่อ
+    strikes:
+      actions:
+        delete_statuses: "%{name} ได้ลบโพสต์ของ %{target}"
+        disable: "%{name} ได้อายัดบัญชีของ %{target}"
+        none: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
+        sensitive: "%{name} ได้ทำเครื่องหมายบัญชีของ %{target} ว่าละเอียดอ่อน"
+        silence: "%{name} ได้จำกัดบัญชีของ %{target}"
+        suspend: "%{name} ได้ระงับบัญชีของ %{target}"
+      appeal_approved: อุทธรณ์แล้ว
     system_checks:
       rules_check:
         action: จัดการกฎของเซิร์ฟเวอร์
@@ -684,7 +719,9 @@ th:
         disallow: ไม่อนุญาตลิงก์
         disallow_provider: ไม่อนุญาตผู้เผยแพร่
         shared_by_over_week:
+          one: แบ่งปันโดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
           other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
+          zero: ไม่มีใครแบ่งปันในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
         usage_comparison: แบ่งปัน %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
       pending_review: การตรวจทานที่รอดำเนินการ
@@ -693,6 +730,12 @@ th:
         rejected: ลิงก์จากผู้เผยแพร่นี้จะไม่ขึ้นแนวโน้ม
         title: ผู้เผยแพร่
       rejected: ปฏิเสธแล้ว
+      statuses:
+        allow: อนุญาตโพสต์
+        allow_account: อนุญาตผู้สร้าง
+        disallow: ไม่อนุญาตโพสต์
+        disallow_account: ไม่อนุญาตผู้สร้าง
+        title: โพสต์ที่กำลังนิยม
       tags:
         current_score: คะแนนปัจจุบัน %{score}
         dashboard:
@@ -705,13 +748,16 @@ th:
         not_listable: จะไม่แนะนำ
         not_trendable: จะไม่ปรากฏภายใต้แนวโน้ม
         not_usable: ไม่สามารถใช้
+        peaked_on_and_decaying: สูงสุดเมื่อ %{date} ตอนนี้กำลังลง
         title: แฮชแท็กที่กำลังนิยม
         trendable: สามารถปรากฏภายใต้แนวโน้ม
         trending_rank: 'กำลังนิยม #%{rank}'
         usable: สามารถใช้
         usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
         used_by_over_week:
+          one: ใช้โดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
           other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
+          zero: ไม่มีใครใช้ในช่วงสัปดาห์ที่ผ่านมา
       title: แนวโน้ม
     warning_presets:
       add_new: เพิ่มใหม่
@@ -720,18 +766,30 @@ th:
       empty: คุณยังไม่ได้กำหนดคำเตือนที่ตั้งไว้ล่วงหน้าใด ๆ
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: เพื่อลบโพสต์ของเขา
+        disable: เพื่ออายัดบัญชีของเขา
+        sensitive: เพื่อทำเครื่องหมายบัญชีของเขาว่าละเอียดอ่อน
+        silence: เพื่อจำกัดบัญชีของเขา
+        suspend: เพื่อระงับบัญชีของเขา
     new_pending_account:
       body: รายละเอียดของบัญชีใหม่อยู่ด้านล่าง คุณสามารถอนุมัติหรือปฏิเสธใบสมัครนี้
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
       subject: รายงานใหม่สำหรับ %{instance} (#%{id})
-    new_trending_links:
-      no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติ
-      subject: ลิงก์ที่กำลังนิยมใหม่สำหรับตรวจทานใน %{instance}
-    new_trending_tags:
-      no_approved_tags: ไม่มีแฮชแท็กที่กำลังนิยมที่ได้รับอนุมัติ
-      subject: แฮชแท็กที่กำลังนิยมใหม่สำหรับตรวจทานใน %{instance}
+    new_trends:
+      new_trending_links:
+        no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติ
+        title: ลิงก์ที่กำลังนิยม
+      new_trending_statuses:
+        no_approved_statuses: ไม่มีโพสต์ที่กำลังนิยมที่ได้รับอนุมัติ
+        title: โพสต์ที่กำลังนิยม
+      new_trending_tags:
+        no_approved_tags: ไม่มีแฮชแท็กที่กำลังนิยมที่ได้รับอนุมัติ
+        title: แฮชแท็กที่กำลังนิยม
+      subject: แนวโน้มใหม่สำหรับตรวจทานใน %{instance}
   aliases:
     add_new: สร้างนามแฝง
     created_msg: สร้างนามแฝงใหม่สำเร็จ ตอนนี้คุณสามารถทำการย้ายจากบัญชีเก่า
@@ -802,7 +860,6 @@ th:
     status:
       account_status: สถานะบัญชี
       confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
-      functional: บัญชีของคุณทำงานได้อย่างเต็มที่
       pending: ใบสมัครของคุณกำลังรอดำเนินการตรวจทานโดยพนักงานของเรา นี่อาจใช้เวลาสักครู่ คุณจะได้รับอีเมลหากใบสมัครของคุณได้รับการอนุมัติ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
@@ -865,6 +922,23 @@ th:
     directory: ไดเรกทอรีโปรไฟล์
     explanation: ค้นพบผู้ใช้ตามความสนใจของเขา
     explore_mastodon: สำรวจ %{title}
+  disputes:
+    strikes:
+      action_taken: การกระทำที่ใช้
+      appeal_submitted_at: ส่งการอุทธรณ์แล้ว
+      appeals:
+        submit: ส่งการอุทธรณ์
+      associated_report: รายงานที่เกี่ยวข้อง
+      created_at: ลงวันที่
+      recipient: ส่งถึง
+      status: 'โพสต์ #%{id}'
+      title_actions:
+        delete_statuses: การเอาโพสต์ออก
+        disable: การอายัดบัญชี
+        none: คำเตือน
+        sensitive: การทำเครื่องหมายบัญชีว่าละเอียดอ่อน
+        silence: การจำกัดบัญชี
+        suspend: การระงับบัญชี
   domain_validator:
     invalid_domain: ไม่ใช่ชื่อโดเมนที่ถูกต้อง
   errors:
@@ -1014,8 +1088,11 @@ th:
   move_handler:
     carry_blocks_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ปิดกั้น
     carry_mutes_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ซ่อน
-    copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้าของคุณเกี่ยวกับผู้ใช้:'
+    copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้านี้ของคุณเกี่ยวกับผู้ใช้:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} ได้ลงทะเบียน"
     digest:
       action: ดูการแจ้งเตือนทั้งหมด
       mention: "%{name} ได้กล่าวถึงคุณใน:"
@@ -1050,6 +1127,8 @@ th:
       title: การดันใหม่
     status:
       subject: "%{name} เพิ่งโพสต์"
+    update:
+      subject: "%{name} ได้แก้ไขโพสต์"
   notifications:
     email_events: เหตุการณ์สำหรับการแจ้งเตือนอีเมล
     email_events_hint: 'เลือกเหตุการณ์ที่คุณต้องการรับการแจ้งเตือน:'
@@ -1265,7 +1344,7 @@ th:
     reblogged: ดันแล้ว
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   tags:
-    does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้า
+    does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้านี้
   terms:
     title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
   themes:
@@ -1291,6 +1370,11 @@ th:
     recovery_codes_regenerated: สร้างรหัสกู้คืนใหม่สำเร็จ
     webauthn: กุญแจความปลอดภัย
   user_mailer:
+    appeal_approved:
+      action: ไปยังบัญชีของคุณ
+      title: อนุมัติการอุทธรณ์แล้ว
+    appeal_rejected:
+      title: ปฏิเสธการอุทธรณ์แล้ว
     backup_ready:
       explanation: คุณได้ขอข้อมูลสำรองแบบเต็มของบัญชี Mastodon ของคุณ ตอนนี้ข้อมูลสำรองพร้อมสำหรับการดาวน์โหลดแล้ว!
       subject: การเก็บถาวรของคุณพร้อมสำหรับการดาวน์โหลดแล้ว
@@ -1302,11 +1386,13 @@ th:
       subject: โปรดยืนยันการลงชื่อเข้าที่พยายาม
       title: ความพยายามลงชื่อเข้า
     warning:
+      appeal: ส่งการอุทธรณ์
+      appeal_description: หากคุณเชื่อว่านี่เป็นข้อผิดพลาด คุณสามารถส่งการอุทธรณ์ไปยังพนักงานของ %{instance}
       categories:
         spam: สแปม
         violation: เนื้อหาละเมิดหลักเกณฑ์ชุมชนดังต่อไปนี้
+      get_in_touch: หากคุณเชื่อว่านี่เป็นข้อผิดพลาด คุณสามารถตอบกลับอีเมลนี้เพื่อติดต่อกับพนักงานของ %{instance}
       reason: 'เหตุผล:'
-      review_server_policies: ตรวจทานนโยบายของเซิร์ฟเวอร์
       statuses: 'โพสต์ที่พบว่ามีการละเมิด:'
       subject:
         disable: บัญชีของคุณ %{acct} ถูกอายัด
@@ -1322,15 +1408,19 @@ th:
         suspend: ระงับบัญชีอยู่
     welcome:
       edit_profile_action: ตั้งค่าโปรไฟล์
+      edit_profile_step: คุณสามารถปรับแต่งโปรไฟล์ของคุณได้โดยอัปโหลดภาพประจำตัว, ส่วนหัว เปลี่ยนชื่อที่แสดงของคุณ และอื่น ๆ หากคุณต้องการตรวจทานผู้ติดตามใหม่ก่อนที่จะอนุญาตให้เขาติดตามคุณ คุณสามารถล็อคบัญชีของคุณ
+      explanation: นี่คือเคล็ดลับบางส่วนที่จะช่วยให้คุณเริ่มต้นใช้งาน
       final_action: เริ่มโพสต์
       final_step: 'เริ่มโพสต์! แม้ว่าไม่มีผู้ติดตาม โพสต์สาธารณะของคุณอาจเห็นโดยผู้อื่น ตัวอย่างเช่น ในเส้นเวลาในเซิร์ฟเวอร์และในแฮชแท็ก คุณอาจต้องการแนะนำตัวเองในแฮชแท็ก #introductions'
       full_handle: นามเต็มของคุณ
       full_handle_hint: นี่คือสิ่งที่คุณจะบอกเพื่อน ๆ ของคุณ เพื่อให้เขาสามารถส่งข้อความหรือติดตามคุณจากเซิร์ฟเวอร์อื่น
       review_preferences_action: เปลี่ยนการกำหนดลักษณะ
+      review_preferences_step: ตรวจสอบให้แน่ใจว่าได้ตั้งการกำหนดลักษณะของคุณ เช่น อีเมลใดที่คุณต้องการรับ หรือระดับความเป็นส่วนตัวใดที่คุณต้องการให้โพสต์ของคุณเป็นค่าเริ่มต้น หากคุณไม่มีภาวะป่วยจากการเคลื่อนไหว คุณสามารถเลือกเปิดใช้งานการเล่น GIF อัตโนมัติ
       subject: ยินดีต้อนรับสู่ Mastodon
       tip_federated_timeline: เส้นเวลาที่ติดต่อกับภายนอกคือมุมมองสายน้ำของเครือข่าย Mastodon แต่เส้นเวลารวมเฉพาะผู้คนที่เพื่อนบ้านของคุณบอกรับเท่านั้น ดังนั้นเส้นเวลาจึงไม่ครบถ้วน
       tip_following: คุณติดตามผู้ดูแลเซิร์ฟเวอร์ของคุณเป็นค่าเริ่มต้น เพื่อค้นหาผู้คนที่น่าสนใจเพิ่มเติม ตรวจสอบเส้นเวลาในเซิร์ฟเวอร์และที่ติดต่อกับภายนอก
       tip_local_timeline: เส้นเวลาในเซิร์ฟเวอร์คือมุมมองสายน้ำของผู้คนใน %{instance} นี่คือเพื่อนบ้านใกล้เคียงของคุณ!
+      tip_mobile_webapp: หากเบราว์เซอร์มือถือของคุณเสนอให้คุณเพิ่ม Mastodon ไปยังหน้าจอหลักของคุณ คุณจะสามารถรับการแจ้งเตือนแบบผลัก แอปเว็บทำหน้าที่เหมือนแอปเนทีฟในหลาย ๆ ด้าน!
       tips: เคล็ดลับ
       title: ยินดีต้อนรับ %{name}!
   users:

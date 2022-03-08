@@ -1,23 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Toggle from 'react-toggle';
 import noop from 'lodash/noop';
-import StatusContent from '../../../components/status_content';
-import { MediaGallery, Video } from '../../ui/util/async-components';
-import Bundle from '../../ui/components/bundle';
+import StatusContent from 'mastodon/components/status_content';
+import { MediaGallery, Video } from 'mastodon/features/ui/util/async-components';
+import Bundle from 'mastodon/features/ui/components/bundle';
+import Avatar from 'mastodon/components/avatar';
+import DisplayName from 'mastodon/components/display_name';
+import RelativeTimestamp from 'mastodon/components/relative_timestamp';
+import Option from './option';
 
 export default class StatusCheckBox extends React.PureComponent {
 
   static propTypes = {
+    id: PropTypes.string.isRequired,
     status: ImmutablePropTypes.map.isRequired,
     checked: PropTypes.bool,
     onToggle: PropTypes.func.isRequired,
-    disabled: PropTypes.bool,
+  };
+
+  handleStatusesToggle = (value, checked) => {
+    const { onToggle } = this.props;
+    onToggle(value, checked);
   };
 
   render () {
-    const { status, checked, onToggle, disabled } = this.props;
+    const { status, checked } = this.props;
+
     let media = null;
 
     if (status.get('reblog')) {
@@ -50,23 +59,45 @@ export default class StatusCheckBox extends React.PureComponent {
       } else {
         media = (
           <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-            {Component => <Component media={status.get('media_attachments')} sensitive={status.get('sensitive')} height={110} onOpenMedia={noop} />}
+            {Component => (
+              <Component
+                media={status.get('media_attachments')}
+                sensitive={status.get('sensitive')}
+                height={110}
+                onOpenMedia={noop}
+              />
+            )}
           </Bundle>
         );
       }
     }
 
-    return (
-      <div className='status-check-box'>
-        <div className='status-check-box__status'>
-          <StatusContent status={status} />
-          {media}
+    const labelComponent = (
+      <div className='status-check-box__status poll__option__text'>
+        <div className='detailed-status__display-name'>
+          <div className='detailed-status__display-avatar'>
+            <Avatar account={status.get('account')} size={46} />
+          </div>
+
+          <div><DisplayName account={status.get('account')} /> · <RelativeTimestamp timestamp={status.get('created_at')} /></div>
         </div>
 
-        <div className='status-check-box-toggle'>
-          <Toggle checked={checked} onChange={onToggle} disabled={disabled} />
-        </div>
+        <StatusContent status={status} />
+
+        {media}
       </div>
+    );
+
+    return (
+      <Option
+        name='status_ids'
+        value={status.get('id')}
+        checked={checked}
+        onToggle={this.handleStatusesToggle}
+        label={status.get('search_index')}
+        labelComponent={labelComponent}
+        multiple
+      />
     );
   }
 

@@ -3,7 +3,7 @@
 module SessionTrackingConcern
   extend ActiveSupport::Concern
 
-  UPDATE_SIGN_IN_HOURS = 24
+  SESSION_UPDATE_FREQUENCY = 24.hours.freeze
 
   included do
     before_action :set_session_activity
@@ -17,6 +17,6 @@ module SessionTrackingConcern
   end
 
   def session_needs_update?
-    !current_session.nil? && current_session.updated_at < UPDATE_SIGN_IN_HOURS.hours.ago
+    !current_session.nil? && current_session.updated_at < SESSION_UPDATE_FREQUENCY.ago
   end
 end

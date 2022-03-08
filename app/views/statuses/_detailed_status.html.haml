@@ -49,7 +49,7 @@
     %span.detailed-status__visibility-icon
       = visibility_icon status
     ·
-    - if status.application && @account.user&.setting_show_application
+    - if status.application && status.account.user&.setting_show_application
       - if status.application.website.blank?
         %strong.detailed-status__application= status.application.name
       - else

@@ -88,7 +88,6 @@ id:
     account_moderation_notes:
       create: Beri catatan
       created_msg: Catatan moderasi berhasil dibuat!
-      delete: Hapus
       destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
       add_email_domain_block: Masukkan domain email ke daftar hitam
@@ -157,6 +156,11 @@ id:
       not_subscribed: Tidak berlangganan
       pending: Tinjauan tertunda
       perform_full_suspension: Lakukan suspen penuh
+      previous_strikes: Peringatan sebelumnya
+      previous_strikes_description_html:
+        one: Akun ini mendapatkan <strong>satu</strong> peringatan.
+        other: Akun ini mendapatkan <strong>%{count}</strong> peringatan.
+        zero: Akun ini <strong>status bagus</strong>.
       promote: Promosikan
       protocol: Protokol
       public: Publik
@@ -200,6 +204,7 @@ id:
       statuses: Status
       strikes: Peringatan sebelumnya
       subscribe: Langganan
+      suspend: Tangguhkan
       suspended: Disuspen
       suspension_irreversible: Data akun ini telah dihapus secara permanen. Anda dapat mengaktifkan akun agar tetap bisa dipakai lagi tapi data sebelumnya tidak dapat dikembalikan.
       suspension_reversible_hint_html: Akun telah ditangguhkan, dan data akan dihapus total pada %{date}. Sebelum tanggal tersebut, akun dapat dikembalikan tanpa efek apapun. Jika Anda ingin menghapus segera semua data, Anda dapat melakukan sesuai keterangan di bawah.
@@ -220,6 +225,7 @@ id:
       whitelisted: Masuk daftar putih
     action_logs:
       action_types:
+        approve_appeal: Setujui Banding
         approve_user: Setujui Pengguna
         assigned_to_self_report: Berikan laporan
         change_email_user: Ubah Email untuk Pengguna
@@ -251,6 +257,7 @@ id:
         enable_user: Aktifkan Pengguna
         memorialize_account: Kenang Akun
         promote_user: Promosikan Pengguna
+        reject_appeal: Tolak Banding
         reject_user: Tolak Pengguna
         remove_avatar_user: Hapus Avatar
         reopen_report: Buka Lagi Laporan
@@ -269,6 +276,7 @@ id:
         update_domain_block: Perbarui Blokir Domain
         update_status: Perbarui Status
       actions:
+        approve_appeal_html: "%{name} menyetujui moderasi keputusan banding dari %{target}"
         approve_user_html: "%{name} menyetujui pendaftaran dari %{target}"
         assigned_to_self_report_html: "%{name} menugaskan laporan %{target} ke dirinya sendiri"
         change_email_user_html: "%{name} mengubah alamat email pengguna %{target}"
@@ -300,6 +308,7 @@ id:
         enable_user_html: "%{name} mengaktifkan login untuk pengguna %{target}"
         memorialize_account_html: "%{name} mengubah akun %{target} jadi halaman memorial"
         promote_user_html: "%{name} mempromosikan pengguna %{target}"
+        reject_appeal_html: "%{name} menolak moderasi keputusan banding dari %{target}"
         reject_user_html: "%{name} menolak pendaftaran dari %{target}"
         remove_avatar_user_html: "%{name} menghapus avatar %{target}"
         reopen_report_html: "%{name} membuka ulang laporan %{target}"
@@ -378,8 +387,10 @@ id:
       media_storage: Penyimpanan media
       new_users: pengguna baru
       opened_reports: laporan dibuka
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> banding ditunda"
       pending_reports_html:
-        other: "<strong>%{count}</strong> laporan ditunda"
+        other: "<strong>%{count}</strong> laporan banding"
       pending_tags_html:
         other: "<strong>%{count}</strong> tagar ditunda"
       pending_users_html:
@@ -392,6 +403,10 @@ id:
       top_languages: Bahasa aktif teratas
       top_servers: Server aktif teratas
       website: Situs web
+    disputes:
+      appeals:
+        empty: Tidak ada banding yang ditemukan.
+        title: Banding
     domain_allows:
       add_new: Daftar putihkan domain
       created_msg: Domain berhasil masuk daftar putih
@@ -430,7 +445,9 @@ id:
         suspend: ditangguhkan
       show:
         affected_accounts:
-          other: "%{count} akun dalam database terpengaruh"
+          one: Satu akun di basis data terpengaruh
+          other: "%{count} akun di basis data terpengaruh"
+          zero: Tidak ada akun di basis data terpengaruh
         retroactive:
           silence: Hapus pendiaman terhadap akun pada domain ini
           suspend: Hapus suspen terhadap akun pada domain ini
@@ -440,15 +457,21 @@ id:
       view: Lihat blokir domain
     email_domain_blocks:
       add_new: Tambah baru
+      attempts_over_week:
+        other: "%{count} upaya mendaftar selama seminggu terakhir"
       created_msg: Berhasil memblokir domain email
       delete: Hapus
-      destroyed_msg: Berhasil membuka blokiran domain email
+      dns:
+        types:
+          mx: Data MX
       domain: Domain
-      empty: Tidak ada domain email yang diblokir.
-      from_html: dari %{domain}
       new:
         create: Tambah domain
+        resolve: Pembaruan domain
         title: Blokir domain email baru
+      no_email_domain_block_selected: Tidak ada blokir domain email yang diubah sebab tidak ada yang dipilih
+      resolved_dns_records_hint_html: Pembaruan nama domain mengikuti domain MX, yang bertanggung jawab menerima email. Memblokir domain MX akan memblokir pendaftaran dari alamat email apapun yang menggunakan domain MX sama, meskipun nama domainnya beda. <strong>Hati-hati untuk tidak memblokir layanan email besar.</strong>
+      resolved_through_html: Diperbarui melalui %{domain}
       title: Domain email terblokir
     follow_recommendations:
       description_html: <strong>"Rekomendasi untuk diikuti" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu.
@@ -481,7 +504,9 @@ id:
       destroyed_msg: Data dari %{domain} masuk antrean dihapus dalam waktu dekat.
       empty: Domain tidak ditemukan.
       known_accounts:
-        other: "%{count} akun yang dikenal"
+        one: "%{count} akun dikenal"
+        other: "%{count} akun dikenal"
+        zero: Tidak ada akun yang dikenal
       moderation:
         all: Semua
         limited: Terbatas
@@ -547,10 +572,12 @@ id:
       action_log: Log audit
       action_taken_by: Aksi dilakukan oleh
       actions:
+        delete_description_html: Kiriman yang dilaporkan akan dihapus dan peringatan akan direkam untuk membantu Anda mengurus masalah oleh akun yang sama di masa mendatang.
         other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
+        resolve_description_html: Tidak ada tindakan untuk akun yang dilaporkan, tidak ada peringatan yang direkam, dan laporan akan ditutup.
         silence_description_html: Profil hanya dapat terlihat oleh pengguna yang telah mengikuti atau melihatnya secara manual, yang sangat membatasi jangkauannya. Selalu dapat dipulihkan kembali.
         suspend_description_html: Profil dan semua kontennya tidak dapat diakses sampai ia terhapus. Interaksi dengan akun tersebut tidak dimungkinkan. Dapat dipulihkan dalam waktu 30 hari.
-      actions_description_html: 'Jika menghapus konten yang menyinggung perasaan di atas tidak memadai:'
+      actions_description_html: Memutuskan tindakan yang tepat untuk menyelesaikan laporan ini. Jika Anda memutuskan tindakan hukuman kepada akun terlapor, notifikasi email akan dikirim ke mereka, kecuali saat kategori <strong>Spam</strong> dipilih.
       add_to_report: Tambahkan lebih banyak untuk lapor
       are_you_sure: Apakah Anda yakin?
       assign_to_self: Tugaskan kpd saya
@@ -562,7 +589,7 @@ id:
         none: Tidak ada
       comment_description_html: 'Untuk menyediakan lebih banyak informasi, %{name} menulis:'
       created_at: Dilaporkan
-      delete_and_resolve: Hapus dan selesaikan
+      delete_and_resolve: Hapus kiriman
       forwarded: Diteruskan
       forwarded_to: Diteruskan ke %{domain}
       mark_as_resolved: Tandai telah diseleseikan
@@ -576,12 +603,15 @@ id:
         placeholder: Jelaskan aksi yang telah dilakukan, atau pembaruan lain yang berhubungan...
         title: Catatan
       notes_description_html: Lihat dan tinggalkan catatan kepada moderator lain dan Anda di masa depan
+      quick_actions_description_html: 'Lakukan tindakan cepat atau gulir ke bawah untuk melihat konten yang dilaporkan:'
+      remote_user_placeholder: pengguna jarak jauh dari %{instance}
       reopen: Buka lagi laporan
       report: 'Laporkan #%{id}'
       reported_account: Akun yang dilaporkan
       reported_by: Dilaporkan oleh
       resolved: Terseleseikan
       resolved_msg: Laporan berhasil diselesaikan!
+      skip_to_actions: Langsung ke tindakan
       status: Status
       statuses: Konten yang dilaporkan
       statuses_description_html: Konten menyinggung akan disampaikan saat komunikasi dengan akun yang dilaporkan
@@ -702,6 +732,16 @@ id:
       no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
       title: Status akun
       with_media: Dengan media
+    strikes:
+      actions:
+        delete_statuses: "%{name} menghapus kiriman %{target}"
+        disable: "%{name} membekukan akun %{target}"
+        none: "%{name} mengirim peringatan ke %{target}"
+        sensitive: "%{name} menandai akun %{target} sebagai sensitif"
+        silence: "%{name} membatasi akun %{target}"
+        suspend: "%{name} menangguhkan akun %{target}"
+      appeal_approved: Banding disetujui
+      appeal_pending: Banding ditunda
     system_checks:
       database_schema_check:
         message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
@@ -724,7 +764,9 @@ id:
         disallow: Batalkan izin tautan
         disallow_provider: Batalkan izin penerbit
         shared_by_over_week:
-          other: Dibagikan oleh %{count} orang selama seminggu terakhir
+          one: Dibagikan oleh satu orang lebih dari seminggu lalu
+          other: Dibagikan oleh %{count} orang lebih dari seminggu lalu
+          zero: Tidak dibagikan siapapun lebih dari seminggu lalu
         title: Tautan sedang tren
         usage_comparison: Dibagikan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
       pending_review: Tinjauan tertunda
@@ -733,6 +775,14 @@ id:
         rejected: Tautan dari penerbit ini tidak dapat menjadi tren
         title: Penerbit
       rejected: Ditolak
+      statuses:
+        allow: Izinkan kiriman
+        allow_account: Izinkan penulis
+        disallow: Jangan beri izin kiriman
+        disallow_account: Jangan beri izin penulis
+        shared_by:
+          other: Dibagikan dan difavoritkan %{friendly_count} kali
+        title: Kiriman yang sedang tren
       tags:
         current_score: Skor saat ini %{score}
         dashboard:
@@ -752,7 +802,9 @@ id:
         usable: Dapat digunakan
         usage_comparison: Digunakan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
         used_by_over_week:
-          other: Digunakan oleh %{count} orang selama seminggu terakhir
+          one: Dipakai oleh satu orang lebih dari seminggu lalu
+          other: Dipakai oleh %{count} orang selama seminggu terakhir
+          zero: Tidak dipakai siapapun lebih dari seminggu lalu
       title: Tren
     warning_presets:
       add_new: Tambah baru
@@ -761,6 +813,17 @@ id:
       empty: Anda belum mendefinisikan peringatan apapun.
       title: Kelola preset peringatan
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: untuk menghapus kiriman mereka
+        disable: untuk membekukan akun mereka
+        none: peringatan
+        sensitive: untuk menandai akun mereka sebagai sensitif
+        silence: untuk membatasi akun mereka
+        suspend: untuk menangguhkan akun mereka
+      body: "%{target} melakukan banding keputusan moderasi oleh %{action_taken_by} dari %{date}, yang %{type}. Mereka menulis:"
+      next_steps: Anda dapat menyetujui banding untuk mengurungkan keputusan moderasi atau mengabaikannya.
+      subject: "%{username} melakukan banding keputusan moderasi di %{instance}"
     new_pending_account:
       body: Detail akun baru di bawah. Anda dapat menyetujui atau menolak lamaran ini.
       subject: Akun baru muncul untuk ditinjau di %{instance} (%{username})
@@ -768,16 +831,21 @@ id:
       body: "%{reporter} telah melaporkan %{target}"
       body_remote: Seseorang dari %{domain} telah melaporkan %{target}
       subject: Laporan baru untuk %{instance} (#%{id})
-    new_trending_links:
-      body: Tautan berikut sedang tren hari ini, tetapi penerbit sebelumnya belum ditinjau. Mereka tidak akan ditampilkan secara publik kecuali Anda menyetujuinya. Notifikasi berikutnya dari penerbit yang sama tidak akan dibuat.
-      no_approved_links: Saat ini tidak akan tautan tren yang disetujui.
-      requirements: Tautan tren yang disetujui peringkat terendah saat ini "%{lowest_link_title}" dengan skor %{lowest_link_score}.
-      subject: Tautan tren baru mulai ditinjau di %{instance}
-    new_trending_tags:
-      body: 'Tagar berikut sedang tren hari ini, tetapi mereka sebelumnya belum ditinjau. Mereka tidak akan muncul secara publik kecuali Anda menyetujuinya:'
-      no_approved_tags: Saat ini tidak ada tagar tren yang disetujui.
-      requirements: 'Tagar tren yang disetujui peringkat terendah saat ini #%{lowest_tag_name} dengan skor %{lowest_tag_score}.'
-      subject: Tagar tren baru mulai ditinjau di %{instance}
+    new_trends:
+      body: 'Item berikut harus ditinjau sebelum ditampilkan secara publik:'
+      new_trending_links:
+        no_approved_links: Saat ini tidak ada tautan tren yang disetujui.
+        requirements: 'Kandidat yang ada di sini bisa saja melewati peringkat #%{rank} tautan tren yang disetujui, yang kini "%{lowest_link_title}" memiliki nilai %{lowest_link_score}.'
+        title: Tautan sedang tren
+      new_trending_statuses:
+        no_approved_statuses: Tidak ada kiriman sedang tren yang disetujui.
+        requirements: 'Kandidat yang ada di sini bisa saja melewati peringkat #%{rank} kiriman tren yang disetujui, yang kini %{lowest_status_url} memiliki nilai %{lowest_status_score}.'
+        title: Kiriman yang sedang tren
+      new_trending_tags:
+        no_approved_tags: Saat ini tidak ada tagar tren yang disetujui.
+        requirements: 'Kandidat yang ada di sini bisa saja melewati peringkat #%{rank} tagar sedang tren yang disetujui, yang kini #%{lowest_tag_name} memiliki nilai %{lowest_tag_score}.'
+        title: Tagar sedang tren
+      subject: Tren baru yang perlu ditinjau di %{instance}
   aliases:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
@@ -851,7 +919,6 @@ id:
     status:
       account_status: Status akun
       confirming: Menunggu konfirmasi email diselesaikan.
-      functional: Akun Anda kini beroperasi penuh.
       pending: Permintaan Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima email jika permintaan Anda diterima.
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
     too_fast: Formulir dikirim terlalu cepat, coba lagi.
@@ -917,6 +984,32 @@ id:
     directory: Direktori profil
     explanation: Temukan pengguna berdasarkan minatnya
     explore_mastodon: Jelajahi %{title}
+  disputes:
+    strikes:
+      action_taken: Tindakan dilaksanakan
+      appeal: Banding
+      appeal_approved: Peringatan ini digagalkan dalam banding dan tidak lagi valid
+      appeal_rejected: Banding telah ditolak
+      appeal_submitted_at: Banding dikirimkan
+      appealed_msg: Banding Anda sudah dikirim. Jika disetujui, Anda akan diberi tahu.
+      appeals:
+        submit: Ajukan banding
+      associated_report: Laporan yang berkaitan
+      created_at: Tanggal
+      recipient: Dialamatkan untuk
+      status: 'Kiriman #%{id}'
+      status_removed: Kirim sudah dihapus dari sistem
+      title: "%{action} dari %{date}"
+      title_actions:
+        delete_statuses: Penghapusan kiriman
+        disable: Pembekuan akun
+        none: Peringatan
+        sensitive: Tandai akun sebagai sensitif
+        silence: Pembatasan akun
+        suspend: Penangguhan akun
+      your_appeal_approved: Banding Anda disetujui
+      your_appeal_pending: Anda telah mengirim banding
+      your_appeal_rejected: Banding Anda ditolak
   domain_validator:
     invalid_domain: bukan nama domain yang valid
   errors:
@@ -1089,6 +1182,9 @@ id:
     carry_mutes_over_text: Pengguna ini pindah dari %{acct}, yang telah Anda bisukan sebelumnya.
     copy_account_note_text: 'Pengguna ini pindah dari %{acct}, ini dia pesan Anda sebelumnya tentang mereka:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} mendaftar"
     digest:
       action: Lihat semua notifikasi
       body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}
@@ -1124,6 +1220,8 @@ id:
       title: Boost baru
     status:
       subject: "%{name} baru saja memposting"
+    update:
+      subject: "%{name} mengedit kiriman"
   notifications:
     email_events: Event untuk notifikasi email
     email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
@@ -1205,6 +1303,9 @@ id:
     reply:
       proceed: Lanjutkan ke balasan
       prompt: 'Anda ingin membalas toot ini:'
+  reports:
+    errors:
+      invalid_rules: tidak mereferensikan aturan yang valid
   scheduled_statuses:
     over_daily_limit: Anda telah melampaui batas %{limit} toot terjadwal untuk sehari
     over_total_limit: Anda telah melampaui batas %{limit} toot terjadwal
@@ -1465,6 +1566,15 @@ id:
     recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
     webauthn: Kunci keamanan
   user_mailer:
+    appeal_approved:
+      action: Ke akun Anda
+      explanation: Banding peringatan terhadap akun Anda pada %{strike_date} yang Anda kirim pada %{appeal_date} telah disetujui. Akun Anda akan kembali ditandai sebagai akun bagus.
+      subject: Banding Anda dari %{date} telah disetujui
+      title: Banding disetujui
+    appeal_rejected:
+      explanation: Banding terhadap akun Anda pada %{strike_date} yang Anda ajukan %{appeal_date} telah ditolak.
+      subject: Banding Anda dari %{date} telah ditolak
+      title: Banding ditolak
     backup_ready:
       explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
       subject: Arsip Anda sudah siap diunduh
@@ -1476,6 +1586,8 @@ id:
       subject: Harap konfirmasi usaha masuk akun
       title: Usaha masuk akun
     warning:
+      appeal: Ajukan banding
+      appeal_description: Jika Anda yakin ini galat, Anda dapat mengajukan banding ke staf %{instance}.
       categories:
         spam: Spam
         violation: Konten melanggar panduan komunitas berikut
@@ -1487,7 +1599,6 @@ id:
         suspend: Anda tidak dapat menggunakan akun Anda, dan profil serta data lain Anda tidak lagi dapat diakses. Anda masih tetap bisa masuk akun untuk minta cadangan data sampai data Anda akan dihapus permanen 30 hari lagi, tapi kami akan menyimpan beberapa data dasar untuk mencegah Anda menghindari penangguhan.
       get_in_touch: Jika Anda yakin ini kesalahan, Anda dapat membalas email ini untuk menghubungi staf %{instance}.
       reason: 'Alasan:'
-      review_server_policies: Tinjau kebijakan server
       statuses: 'Postingan yang telah terbukti pelanggarannya:'
       subject:
         delete_statuses: Postingan anda pada %{acct} telah dihapus

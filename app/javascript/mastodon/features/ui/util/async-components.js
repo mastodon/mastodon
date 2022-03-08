@@ -138,10 +138,6 @@ export function ListAdder () {
   return import(/*webpackChunkName: "features/list_adder" */'../../list_adder');
 }
 
-export function Search () {
-  return import(/*webpackChunkName: "features/search" */'../../search');
-}
-
 export function Tesseract () {
   return import(/*webpackChunkName: "tesseract" */'tesseract.js');
 }
@@ -160,4 +156,8 @@ export function FollowRecommendations () {
 
 export function CompareHistoryModal () {
   return import(/*webpackChunkName: "modals/compare_history_modal" */'../components/compare_history_modal');
+}
+
+export function Explore () {
+  return import(/* webpackChunkName: "features/explore" */'../../explore');
 }

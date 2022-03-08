@@ -35,6 +35,8 @@ class Notification < ApplicationRecord
     follow_request
     favourite
     poll
+    update
+    admin.sign_up
   ).freeze
 
   TARGET_STATUS_INCLUDES_BY_TYPE = {
@@ -43,6 +45,7 @@ class Notification < ApplicationRecord
     mention: [mention: :status],
     favourite: [favourite: :status],
     poll: [poll: :status],
+    update: :status,
   }.freeze
 
   belongs_to :account, optional: true
@@ -61,13 +64,10 @@ class Notification < ApplicationRecord
   scope :without_suspended, -> { joins(:from_account).merge(Account.without_suspended) }
 
   scope :browserable, ->(exclude_types = [], account_id = nil) {
-    types = TYPES - exclude_types.map(&:to_sym)
-
-    if account_id.nil?
-      where(type: types)
-    else
-      where(type: types, from_account_id: account_id)
-    end
+    scope = all
+    scope = where(from_account_id: account_id) if account_id.present?
+    scope = scope.where(type: TYPES - exclude_types.map(&:to_sym)) unless exclude_types.empty?
+    scope
   }
 
   def type
@@ -76,7 +76,7 @@ class Notification < ApplicationRecord
 
   def target_status
     case type
-    when :status
+    when :status, :update
       status
     when :reblog
       status&.reblog
@@ -110,7 +110,7 @@ class Notification < ApplicationRecord
         cached_status = cached_statuses_by_id[notification.target_status.id]
 
         case notification.type
-        when :status
+        when :status, :update
           notification.status = cached_status
         when :reblog
           notification.status.reblog = cached_status
@@ -140,6 +140,8 @@ class Notification < ApplicationRecord
       self.from_account_id = activity&.account_id
     when 'Mention'
       self.from_account_id = activity&.status&.account_id
+    when 'Account'
+      self.from_account_id = activity&.id
     end
   end
 end

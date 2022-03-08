@@ -140,7 +140,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
-    it 'unsensitives account' do
+    it 'unsensitizes account' do
       expect(account.reload.sensitized?).to be false
     end
   end
