@@ -10,9 +10,9 @@ import { fetchDirectory, expandDirectory } from 'flavours/glitch/actions/directo
 import { List as ImmutableList } from 'immutable';
 import AccountCard from './components/account_card';
 import RadioButton from 'flavours/glitch/components/radio_button';
-import classNames from 'classnames';
 import LoadMore from 'flavours/glitch/components/load_more';
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
+import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 
 const messages = defineMessages({
   title: { id: 'column.directory', defaultMessage: 'Browse profiles' },
@@ -129,7 +129,7 @@ class Directory extends React.PureComponent {
     const pinned = !!columnId;
 
     const scrollableArea = (
-      <div className='scrollable' style={{ background: 'transparent' }}>
+      <div className='scrollable'>
         <div className='filter-form'>
           <div className='filter-form__column' role='group'>
             <RadioButton name='order' value='active' label={intl.formatMessage(messages.recentlyActive)} checked={order === 'active'} onChange={this.handleChangeOrder} />
@@ -142,8 +142,10 @@ class Directory extends React.PureComponent {
           </div>
         </div>
 
-        <div className={classNames('directory__list', { loading: isLoading })}>
-          {accountIds.map(accountId => <AccountCard id={accountId} key={accountId} />)}
+        <div className='directory__list'>
+          {isLoading ? <LoadingIndicator /> : accountIds.map(accountId => (
+            <AccountCard id={accountId} key={accountId} />
+          ))}
         </div>
 
         <LoadMore onClick={this.handleLoadMore} visible={!isLoading} />

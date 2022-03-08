@@ -144,7 +144,7 @@ class ScrollableList extends PureComponent {
     this.attachIntersectionObserver();
     attachFullscreenListener(this.onFullScreenChange);
 
-    // Handle initial scroll posiiton
+    // Handle initial scroll position
     this.handleScroll();
   }
 

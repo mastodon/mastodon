@@ -351,11 +351,11 @@ class Account < ApplicationRecord
   end
 
   def hides_followers?
-    hide_collections? || user_hides_network?
+    hide_collections?
   end
 
   def hides_following?
-    hide_collections? || user_hides_network?
+    hide_collections?
   end
 
   def object_type

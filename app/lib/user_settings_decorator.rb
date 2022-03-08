@@ -32,7 +32,6 @@ class UserSettingsDecorator
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['system_emoji_font']   = system_emoji_font_preference if change?('setting_system_emoji_font')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
-    user.settings['hide_followers_count']= hide_followers_count_preference if change?('setting_hide_followers_count')
     user.settings['flavour']             = flavour_preference if change?('setting_flavour')
     user.settings['skin']                = skin_preference if change?('setting_skin')
     user.settings['hide_network']        = hide_network_preference if change?('setting_hide_network')
@@ -108,10 +107,6 @@ class UserSettingsDecorator
 
   def noindex_preference
     boolean_cast_setting 'setting_noindex'
-  end
-
-  def hide_followers_count_preference
-    boolean_cast_setting 'setting_hide_followers_count'
   end
 
   def flavour_preference
