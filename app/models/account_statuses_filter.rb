@@ -48,7 +48,7 @@ class AccountStatusesFilter
   def filtered_scope
     scope = account.statuses.left_outer_joins(:mentions)
 
-    scope.merge!(scope.where(visibility: follower? ? %i(public unlisted private) : %i(public unlisted)).or(scope.where(mentions: { account_id: current_account.id })).group(:id))
+    scope.merge!(scope.where(visibility: follower? ? %i(public unlisted private) : %i(public unlisted)).or(scope.where(mentions: { account_id: current_account.id })).group(Status.arel_table[:id]))
     scope.merge!(filtered_reblogs_scope) if reblogs_may_occur?
 
     scope
@@ -59,7 +59,7 @@ class AccountStatusesFilter
   end
 
   def only_media_scope
-    Status.joins(:media_attachments).merge(account.media_attachments.reorder(nil)).group(:id)
+    Status.joins(:media_attachments).merge(account.media_attachments.reorder(nil)).group(Status.arel_table[:id])
   end
 
   def no_replies_scope
@@ -71,7 +71,7 @@ class AccountStatusesFilter
   end
 
   def pinned_scope
-    account.pinned_statuses
+    account.pinned_statuses.group(Status.arel_table[:id], StatusPin.arel_table[:created_at])
   end
 
   def hashtag_scope
