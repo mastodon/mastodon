@@ -34,6 +34,7 @@ class FanOutOnWriteService < BaseService
   def fan_out_to_local_recipients!
     deliver_to_self!
     notify_mentioned_accounts!
+    notify_about_update! if update?
 
     case @status.visibility.to_sym
     when :public, :unlisted, :private
@@ -60,6 +61,14 @@ class FanOutOnWriteService < BaseService
     @status.active_mentions.where.not(id: @options[:silenced_account_ids] || []).joins(:account).merge(Account.local).select(:id, :account_id).reorder(nil).find_in_batches do |mentions|
       LocalNotificationWorker.push_bulk(mentions) do |mention|
         [mention.account_id, mention.id, 'Mention', 'mention']
+      end
+    end
+  end
+
+  def notify_about_update!
+    @status.reblogged_by_accounts.merge(Account.local).select(:id).reorder(nil).find_in_batches do |accounts|
+      LocalNotificationWorker.push_bulk(accounts) do |account|
+        [account.id, @status.id, 'Status', 'update']
       end
     end
   end

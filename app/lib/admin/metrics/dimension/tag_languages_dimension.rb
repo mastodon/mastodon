@@ -11,7 +11,9 @@ class Admin::Metrics::Dimension::TagLanguagesDimension < Admin::Metrics::Dimensi
     'tag_languages'
   end
 
-  def data
+  protected
+
+  def perform_query
     sql = <<-SQL.squish
       SELECT COALESCE(statuses.language, 'und') AS language, count(*) AS value
       FROM statuses
@@ -27,8 +29,6 @@ class Admin::Metrics::Dimension::TagLanguagesDimension < Admin::Metrics::Dimensi
 
     rows.map { |row| { key: row['language'], human_key: standard_locale_name(row['language']), value: row['value'].to_s } }
   end
-
-  private
 
   def params
     @params.permit(:id)

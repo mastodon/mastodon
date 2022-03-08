@@ -8,6 +8,7 @@ module Admin
       @pending_users_count   = User.pending.count
       @pending_reports_count = Report.unresolved.count
       @pending_tags_count    = Tag.pending_review.count
+      @pending_appeals_count = Appeal.pending.count
     end
 
     private

@@ -220,21 +220,23 @@ class DeleteAccountService < BaseService
 
     return unless keep_account_record?
 
-    @account.silenced_at       = nil
-    @account.suspended_at      = @options[:suspended_at] || Time.now.utc
-    @account.suspension_origin = :local
-    @account.locked            = false
-    @account.memorial          = false
-    @account.discoverable      = false
-    @account.display_name      = ''
-    @account.note              = ''
-    @account.fields            = []
-    @account.statuses_count    = 0
-    @account.followers_count   = 0
-    @account.following_count   = 0
-    @account.moved_to_account  = nil
-    @account.also_known_as     = []
-    @account.trust_level       = :untrusted
+    @account.silenced_at         = nil
+    @account.suspended_at        = @options[:suspended_at] || Time.now.utc
+    @account.suspension_origin   = :local
+    @account.locked              = false
+    @account.memorial            = false
+    @account.discoverable        = false
+    @account.trendable           = false
+    @account.display_name        = ''
+    @account.note                = ''
+    @account.fields              = []
+    @account.statuses_count      = 0
+    @account.followers_count     = 0
+    @account.following_count     = 0
+    @account.moved_to_account    = nil
+    @account.reviewed_at         = nil
+    @account.requested_review_at = nil
+    @account.also_known_as       = []
     @account.avatar.destroy
     @account.header.destroy
     @account.save!
@@ -265,7 +267,7 @@ class DeleteAccountService < BaseService
   end
 
   def delete_actor_json
-    @delete_actor_json ||= Oj.dump(serialize_payload(@account, ActivityPub::DeleteActorSerializer, signer: @account))
+    @delete_actor_json ||= Oj.dump(serialize_payload(@account, ActivityPub::DeleteActorSerializer, signer: @account, always_sign: true))
   end
 
   def delivery_inboxes

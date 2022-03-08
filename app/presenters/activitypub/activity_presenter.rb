@@ -4,7 +4,7 @@ class ActivityPub::ActivityPresenter < ActiveModelSerializers::Model
   attributes :id, :type, :actor, :published, :to, :cc, :virtual_object
 
   class << self
-    def from_status(status)
+    def from_status(status, allow_inlining: true)
       new.tap do |presenter|
         presenter.id        = ActivityPub::TagManager.instance.activity_uri_for(status)
         presenter.type      = status.reblog? ? 'Announce' : 'Create'
@@ -15,7 +15,7 @@ class ActivityPub::ActivityPresenter < ActiveModelSerializers::Model
 
         presenter.virtual_object = begin
           if status.reblog?
-            if status.account == status.proper.account && status.proper.private_visibility? && status.local?
+            if allow_inlining && status.account == status.proper.account && status.proper.private_visibility? && status.local?
               status.proper
             else
               ActivityPub::TagManager.instance.uri_for(status.proper)

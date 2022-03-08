@@ -4,8 +4,8 @@ class Trends::Links < Trends::Base
   PREFIX = 'trending_links'
 
   self.default_options = {
-    threshold: 15,
-    review_threshold: 10,
+    threshold: 5,
+    review_threshold: 3,
     max_score_cooldown: 2.days.freeze,
     max_score_halflife: 8.hours.freeze,
   }
@@ -27,12 +27,6 @@ class Trends::Links < Trends::Base
     record_used_id(preview_card.id, at_time)
   end
 
-  def get(allowed, limit)
-    preview_card_ids = currently_trending_ids(allowed, limit)
-    preview_cards = PreviewCard.where(id: preview_card_ids).index_by(&:id)
-    preview_card_ids.map { |id| preview_cards[id] }.compact
-  end
-
   def refresh(at_time = Time.now.utc)
     preview_cards = PreviewCard.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq)
     calculate_scores(preview_cards, at_time)
@@ -42,7 +36,7 @@ class Trends::Links < Trends::Base
   def request_review
     preview_cards = PreviewCard.where(id: currently_trending_ids(false, -1))
 
-    preview_cards_requiring_review = preview_cards.filter_map do |preview_card|
+    preview_cards.filter_map do |preview_card|
       next unless would_be_trending?(preview_card.id) && !preview_card.trendable? && preview_card.requires_review_notification?
 
       if preview_card.provider.nil?
@@ -53,18 +47,16 @@ class Trends::Links < Trends::Base
 
       preview_card
     end
-
-    return if preview_cards_requiring_review.empty?
-
-    User.staff.includes(:account).find_each do |user|
-      AdminMailer.new_trending_links(user.account, preview_cards_requiring_review).deliver_later! if user.allows_trending_tag_emails?
-    end
   end
 
   protected
 
   def key_prefix
     PREFIX
+  end
+
+  def klass
+    PreviewCard
   end
 
   private
@@ -96,17 +88,27 @@ class Trends::Links < Trends::Base
 
       decaying_score = max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
 
-      if decaying_score.zero?
-        redis.zrem("#{PREFIX}:all", preview_card.id)
-        redis.zrem("#{PREFIX}:allowed", preview_card.id)
-      else
-        redis.zadd("#{PREFIX}:all", decaying_score, preview_card.id)
+      add_to_and_remove_from_subsets(preview_card.id, decaying_score, {
+        all: true,
+        allowed: preview_card.trendable?,
+      })
 
-        if preview_card.trendable?
-          redis.zadd("#{PREFIX}:allowed", decaying_score, preview_card.id)
-        else
-          redis.zrem("#{PREFIX}:allowed", preview_card.id)
-        end
+      next unless valid_locale?(preview_card.language)
+
+      add_to_and_remove_from_subsets(preview_card.id, decaying_score, {
+        "all:#{preview_card.language}" => true,
+        "allowed:#{preview_card.language}" => preview_card.trendable?,
+      })
+    end
+
+    # Clean up localized sets by calculating the intersection with the main
+    # set. We do this instead of just deleting the localized sets to avoid
+    # having moments where the API returns empty results
+
+    redis.pipelined do
+      Trends.available_locales.each do |locale|
+        redis.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
       end
     end
   end

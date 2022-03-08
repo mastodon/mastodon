@@ -17,16 +17,7 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
 
     data = {
       policy: 'all',
-
-      alerts: {
-        follow: alerts_enabled,
-        follow_request: alerts_enabled,
-        favourite: alerts_enabled,
-        reblog: alerts_enabled,
-        mention: alerts_enabled,
-        poll: alerts_enabled,
-        status: alerts_enabled,
-      },
+      alerts: Notification::TYPES.index_with { alerts_enabled },
     }
 
     data.deep_merge!(data_params) if params[:data]
@@ -61,6 +52,6 @@ class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   end
 
   def data_params
-    @data_params ||= params.require(:data).permit(:policy, alerts: [:follow, :follow_request, :favourite, :reblog, :mention, :poll, :status])
+    @data_params ||= params.require(:data).permit(:policy, alerts: Notification::TYPES)
   end
 end

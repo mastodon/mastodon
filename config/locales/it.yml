@@ -94,7 +94,6 @@ it:
     account_moderation_notes:
       create: Lascia nota
       created_msg: Nota di moderazione creata con successo!
-      delete: Elimina
       destroyed_msg: Nota di moderazione distrutta con successo!
     accounts:
       add_email_domain_block: Inserisci il dominio email nella blacklist
@@ -163,6 +162,11 @@ it:
       not_subscribed: Non sottoscritto
       pending: Revisioni in attesa
       perform_full_suspension: Sospendi
+      previous_strikes: Provvedimenti precedenti
+      previous_strikes_description_html:
+        one: Questo account ha <strong>una</strong> violazione.
+        other: Questo account ha <strong>%{count}</strong> violazioni.
+        zero: Questo account ha <strong>una buona reputazione</strong>.
       promote: Promuovi
       protocol: Protocollo
       public: Pubblico
@@ -206,6 +210,7 @@ it:
       statuses: Stati
       strikes: Provvedimenti precedenti
       subscribe: Sottoscrivi
+      suspend: Sospendi
       suspended: Sospeso
       suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile. È possibile annullare la sospensione dell'account per renderlo utilizzabile, ma non recupererà alcuno dei dati precedenti.
       suspension_reversible_hint_html: L'account è stato sospeso e i dati saranno completamente eliminati il %{date}. Fino ad allora, l'account può essere ripristinato senza effetti negativi. Se si desidera eliminare immediatamente tutti i dati dell'account, è possibile farlo qui sotto.
@@ -226,6 +231,7 @@ it:
       whitelisted: Nella whitelist
     action_logs:
       action_types:
+        approve_appeal: Approva Ricorso
         approve_user: Approva Utente
         assigned_to_self_report: Assegna report
         change_email_user: Cambia l'e-mail per l'utente
@@ -257,6 +263,7 @@ it:
         enable_user: Abilita utente
         memorialize_account: Trasforma in account commemorativo
         promote_user: Promuovi utente
+        reject_appeal: Respingi Ricorso
         reject_user: Rifiuta Utente
         remove_avatar_user: Elimina avatar
         reopen_report: Riapri report
@@ -275,6 +282,7 @@ it:
         update_domain_block: Aggiorna blocco di dominio
         update_status: Aggiorna stato
       actions:
+        approve_appeal_html: "%{name} ha approvato il ricorso contro la decisione di moderazione da %{target}"
         approve_user_html: "%{name} ha approvato la registrazione da %{target}"
         assigned_to_self_report_html: "%{name} ha assegnato il rapporto %{target} a se stesso"
         change_email_user_html: "%{name} ha cambiato l'indirizzo e-mail dell'utente %{target}"
@@ -306,6 +314,7 @@ it:
         enable_user_html: "%{name} ha abilitato il login per l'utente %{target}"
         memorialize_account_html: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
         promote_user_html: "%{name} ha promosso l'utente %{target}"
+        reject_appeal_html: "%{name} ha respinto il ricorso contro la decisione di moderazione da %{target}"
         reject_user_html: "%{name} ha rifiutato la registrazione da %{target}"
         remove_avatar_user_html: "%{name} ha rimosso l'immagine profilo di %{target}"
         reopen_report_html: "%{name} ha riaperto il rapporto %{target}"
@@ -384,14 +393,17 @@ it:
       media_storage: Archiviazione media
       new_users: nuovi utenti
       opened_reports: rapporti aperti
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> appello in attesa"
+        other: "<strong>%{count}</strong> appelli in attesa"
       pending_reports_html:
-        one: "<strong>1</strong> rapporto in attesa"
-        other: "<strong>%{count}</strong> rapporti in attesa"
+        one: "<strong>%{count}</strong> segnalazione in attesa"
+        other: "<strong>%{count}</strong> segnalazioni in attesa"
       pending_tags_html:
-        one: "<strong>1</strong> hashtag in attesa"
+        one: "<strong>%{count}</strong> hashtag in attesa"
         other: "<strong>%{count}</strong> hashtag in attesa"
       pending_users_html:
-        one: "<strong>1</strong> utente in attesa"
+        one: "<strong>%{count}</strong> utente in attesa"
         other: "<strong>%{count}</strong> utenti in attesa"
       resolved_reports: segnalazioni risolte
       software: Software
@@ -401,6 +413,10 @@ it:
       top_languages: Lingue più attive
       top_servers: Server più attivi
       website: Sito web
+    disputes:
+      appeals:
+        empty: Nessun appello trovato.
+        title: Appelli
     domain_allows:
       add_new: Dominio nella whitelist
       created_msg: Il dominio è stato inserito nella whitelist
@@ -441,6 +457,7 @@ it:
         affected_accounts:
           one: Interessato un solo account nel database
           other: Interessati %{count} account nel database
+          zero: Nessun account nel database è interessato
         retroactive:
           silence: De-silenzia tutti gli account esistenti da questo dominio
           suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
@@ -450,15 +467,22 @@ it:
       view: Visualizza blocco di dominio
     email_domain_blocks:
       add_new: Aggiungi nuovo
+      attempts_over_week:
+        one: "%{count} tentativo nell'ultima settimana"
+        other: "%{count} tentativi di registrazione nell'ultima settimana"
       created_msg: Dominio email aggiunto con successo alla lista nera
       delete: Elimina
-      destroyed_msg: Dominio email cancellato con successo dalla lista nera
+      dns:
+        types:
+          mx: Record MX
       domain: Dominio
-      empty: Nessun dominio di posta elettronica attualmente in blacklist.
-      from_html: da %{domain}
       new:
         create: Aggiungi dominio
+        resolve: Risolvi dominio
         title: Nuova voce della lista nera delle email
+      no_email_domain_block_selected: Nessun blocco di dominio di posta elettronica è stato modificato in quanto nessuno è stato selezionato
+      resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
+      resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
     follow_recommendations:
       description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
@@ -494,6 +518,7 @@ it:
       known_accounts:
         one: "%{count} account noto"
         other: "%{count} account noti"
+        zero: Nessun account noto
       moderation:
         all: Tutto
         limited: Limitato
@@ -557,12 +582,15 @@ it:
         notes:
           one: "%{count} nota"
           other: "%{count} note"
+      action_log: Registro di controllo
       action_taken_by: Azione intrapresa da
       actions:
+        delete_description_html: I post segnalati saranno eliminati e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
+        resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna violazione registrata, e la segnalazione sarà chiusa.
         silence_description_html: Il profilo sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato.
         suspend_description_html: Il profilo e tutti i suoi contenuti diventeranno inaccessibili fino a quando non sarà cancellato. L'interazione con l'account sarà impossibile. Annullabile entro 30 giorni.
-      actions_description_html: 'Se la rimozione del contenuto in questione è insufficiente:'
+      actions_description_html: Decidete quali azioni intraprendere per risolvere la segnalazione. Se si intraprende un'azione punitiva contro l'account segnalato, gli sarà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
       add_to_report: Aggiungi altro al report
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
@@ -574,7 +602,7 @@ it:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
       created_at: Segnalato
-      delete_and_resolve: Cancella e risolvi
+      delete_and_resolve: Cancella post
       forwarded: Inoltrato
       forwarded_to: Inoltrato a %{domain}
       mark_as_resolved: Segna come risolto
@@ -588,12 +616,15 @@ it:
         placeholder: Descrivi quali azioni sono state intraprese, o ogni altro aggiornamento rilevante...
         title: Note
       notes_description_html: Visualizza e lascia note ad altri moderatori e al tuo futuro sé
+      quick_actions_description_html: 'Fai un''azione rapida o scorri verso il basso per vedere il contenuto segnalato:'
+      remote_user_placeholder: l'utente remoto da %{instance}
       reopen: Riapri rapporto
       report: 'Rapporto #%{id}'
       reported_account: Account segnalato
       reported_by: Inviato da
       resolved: Risolto
       resolved_msg: Rapporto risolto!
+      skip_to_actions: Passa alle azioni
       status: Stato
       statuses: Contenuto segnalato
       statuses_description_html: Il contenuto offensivo sarà citato nella comunicazione con l'account segnalato
@@ -714,6 +745,16 @@ it:
       no_status_selected: Nessun status è stato modificato perché nessuno era stato selezionato
       title: Gli status dell'account
       with_media: con media
+    strikes:
+      actions:
+        delete_statuses: "%{name} ha eliminato i post di %{target}"
+        disable: "%{name} ha congelato l'account di %{target}"
+        none: "%{name} ha inviato un avviso a %{target}"
+        sensitive: "%{name} ha contrassegnato l'account di %{target} come sensibile"
+        silence: "%{name} ha limitato l'account di %{target}"
+        suspend: "%{name} ha sospeso l'account di %{target}"
+      appeal_approved: Sottoposto ad appello
+      appeal_pending: Appello in attesa
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
@@ -738,6 +779,7 @@ it:
         shared_by_over_week:
           one: Condiviso da una persona nell'ultima settimana
           other: Condiviso da %{count} persone nell'ultima settimana
+          zero: Condiviso da nessuno nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
       pending_review: Revisione in sospeso
@@ -746,6 +788,15 @@ it:
         rejected: I link da questa fonte non possono essere in tendenza
         title: Editori
       rejected: Rifiutato
+      statuses:
+        allow: Consenti post
+        allow_account: Consenti autore
+        disallow: Non consentire post
+        disallow_account: Non consentire autore
+        shared_by:
+          one: Condiviso o preferito una volta
+          other: Condiviso e preferito %{friendly_count} volte
+        title: Post di tendenza
       tags:
         current_score: Punteggio corrente %{score}
         dashboard:
@@ -767,6 +818,7 @@ it:
         used_by_over_week:
           one: Usato da una persona nell'ultima settimana
           other: Usato da %{count} persone nell'ultima settimana
+          zero: Usato da nessuno nell'ultima settimana
       title: Tendenze
     warning_presets:
       add_new: Aggiungi nuovo
@@ -775,6 +827,17 @@ it:
       empty: Non hai ancora definito alcun avviso preimpostato.
       title: Gestisci avvisi predefiniti
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: per cancellare i loro post
+        disable: per congelare il loro account
+        none: avviso
+        sensitive: per contrassegnare il loro account come sensibile
+        silence: per limitare il loro account
+        suspend: per sospendere il loro account
+      body: "%{target} sta facendo appello contro una decisione di moderazione di %{action_taken_by} da %{date}, che era %{type}. Ha scritto:"
+      next_steps: Puoi approvare l'appello per annullare la decisione di moderazione, oppure ignorarlo.
+      subject: "%{username} sta facendo appello contro una decisione di moderazione su %{instance}"
     new_pending_account:
       body: I dettagli del nuovo account sono qui sotto. Puoi approvare o rifiutare questa richiesta.
       subject: Nuovo account pronto per la revisione su %{instance} (%{username})
@@ -782,16 +845,21 @@ it:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: Nuova segnalazione per %{instance} (#%{id})
-    new_trending_links:
-      body: I seguenti link sono in tendenza oggi, ma i loro editori non sono stati revisionati precedentemente. Non saranno mostrati pubblicamente a meno che tu non li approvi. Ulteriori notifiche dagli stessi editori non saranno generate.
-      no_approved_links: Nessun link in tendenza correntemente approvato.
-      requirements: Il link in tendenza più basso approvato è correntemente "%{lowest_link_title}" con un punteggio di %{lowest_link_score}.
-      subject: Nuovi link in tendenza in attesa di revisione su %{instance}
-    new_trending_tags:
-      body: 'I seguenti hashtag sono in tendenza oggi, ma non sono stati precedentemente revisionati. Non saranno visualizzati pubblicamente a meno che non li approvi:'
-      no_approved_tags: Nessun hashtag in tendenza correntemente approvato.
-      requirements: 'L''hashtag in tendenza approvato con punteggio più basso è al momento #%{lowest_tag_name} con un punteggio di %{lowest_tag_score}.'
-      subject: I nuovi hashtag in tendenza in attesa di revisione su %{instance}
+    new_trends:
+      body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
+      new_trending_links:
+        no_approved_links: Attualmente non ci sono link in tendenza approvati.
+        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} link di tendenza approvato, che è attualmente "%{lowest_link_title}" con un punteggio di %{lowest_link_score}.'
+        title: Link di tendenza
+      new_trending_statuses:
+        no_approved_statuses: Attualmente non ci sono post di tendenza approvati.
+        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} post di tendenza approvato, che è attualmente "%{lowest_status_url}" con un punteggio di %{lowest_status_score}.'
+        title: Post di tendenza
+      new_trending_tags:
+        no_approved_tags: Attualmente non ci sono hashtag di tendenza approvati.
+        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} hashtag di tendenza approvato, che è attualmente "%{lowest_tag_name}" con un punteggio di %{lowest_tag_score}.'
+        title: Hashtag di tendenza
+      subject: Nuove tendenze in attesa di controllo su %{instance}
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
@@ -867,7 +935,6 @@ it:
     status:
       account_status: Stato dell'account
       confirming: In attesa che la conferma e-mail sia completata.
-      functional: Il tuo account è pienamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
     too_fast: Modulo inviato troppo velocemente, riprova.
@@ -933,6 +1000,32 @@ it:
     directory: Directory dei profili
     explanation: Scopri utenti in base ai loro interessi
     explore_mastodon: Esplora %{title}
+  disputes:
+    strikes:
+      action_taken: Azione intrapresa
+      appeal: Appello
+      appeal_approved: Questa sanzione è stata annullata in un appello e non è più valida
+      appeal_rejected: L'appello è stato respinto
+      appeal_submitted_at: Appello presentato
+      appealed_msg: Il tuo appello è stato presentato. Se sarà approvato, sarai informato.
+      appeals:
+        submit: Presenta un appello
+      associated_report: Segnalazione associata
+      created_at: Data
+      recipient: Indirizzata a
+      status: 'Post #%{id}'
+      status_removed: Post già rimosso dal sistema
+      title: "%{action} da %{date}"
+      title_actions:
+        delete_statuses: Eliminazione del post
+        disable: Congelamento dell'account
+        none: Avviso
+        sensitive: Marcatura dell'account come sensibile
+        silence: Limitazione dell'account
+        suspend: Sospensione dell'account
+      your_appeal_approved: Il tuo appello è stato approvato
+      your_appeal_pending: Hai presentato un appello
+      your_appeal_rejected: Il tuo appello è stato respinto
   domain_validator:
     invalid_domain: non è un nome di dominio valido
   errors:
@@ -1107,6 +1200,9 @@ it:
     carry_mutes_over_text: Questo utente si è spostato da %{acct} che hai silenziato.
     copy_account_note_text: 'Questo utente si è spostato da %{acct}, ecco le tue note precedenti su di loro:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} si è iscritto"
     digest:
       action: Vedi tutte le notifiche
       body: Ecco un breve riassunto di quello che ti sei perso dalla tua ultima visita del %{since}
@@ -1144,6 +1240,8 @@ it:
       title: Nuova condivisione
     status:
       subject: "%{name} ha appena pubblicato un post"
+    update:
+      subject: "%{name} ha modificato un post"
   notifications:
     email_events: Eventi per notifiche via email
     email_events_hint: 'Seleziona gli eventi per i quali vuoi ricevere le notifiche:'
@@ -1225,6 +1323,9 @@ it:
     reply:
       proceed: Continua per rispondere
       prompt: 'Vuoi rispondere a questo post:'
+  reports:
+    errors:
+      invalid_rules: non fa riferimento a regole valide
   scheduled_statuses:
     over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
     over_total_limit: Hai superato il limite di %{limit} post programmati
@@ -1494,6 +1595,15 @@ it:
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
     webauthn: Chiavi di sicurezza
   user_mailer:
+    appeal_approved:
+      action: Vai al tuo account
+      explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato approvato. Il tuo account ha riottenuto la buona reputazione.
+      subject: Il tuo appello del %{date} è stato approvato
+      title: Appello approvato
+    appeal_rejected:
+      explanation: L'appello della sanzione contro il tuo account del %{strike_date} che hai inviato il %{appeal_date} è stato respinto.
+      subject: Il tuo appello del %{date} è stato respinto
+      title: Appello respinto
     backup_ready:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
@@ -1505,6 +1615,8 @@ it:
       subject: Conferma il tentativo di accesso
       title: Tentativo di accesso
     warning:
+      appeal: Presenta un appello
+      appeal_description: Se credi che si tratti di un errore, puoi presentare un appello allo staff di %{instance}.
       categories:
         spam: Spam
         violation: Il contenuto viola le seguenti linee guida della comunità
@@ -1516,7 +1628,6 @@ it:
         suspend: Non puoi più utilizzare il tuo account, e il tuo profilo e gli altri dati non sono più accessibili. Puoi ancora effettuare il login per richiedere un backup dei dati fino a quando i dati non saranno completamente cancellati nei prossimi 30 giorni, ma conserveremo alcuni dati di base per impedirti di eludere la sospensione.
       get_in_touch: Se credi che questo sia un errore, puoi rispondere a questa e-mail per metterti in contatto con lo staff di %{instance}.
       reason: 'Motivo:'
-      review_server_policies: Rivedi regole del server
       statuses: 'Post che sono stati trovati in violazione:'
       subject:
         delete_statuses: I tuoi post su %{acct} sono stati eliminati

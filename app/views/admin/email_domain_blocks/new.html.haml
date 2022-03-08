@@ -1,14 +1,38 @@
 - content_for :page_title do
   = t('.title')
 
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
 = simple_form_for @email_domain_block, url: admin_email_domain_blocks_path do |f|
   = render 'shared/error_messages', object: @email_domain_block
 
   .fields-group
-    = f.input :domain, wrapper: :with_block_label, label: t('admin.email_domain_blocks.domain')
+    = f.input :domain, wrapper: :with_block_label, label: t('admin.email_domain_blocks.domain'), input_html: { readonly: defined?(@resolved_records) }
 
-  .fields-group
-    = f.input :with_dns_records, as: :boolean, wrapper: :with_label
+  - if defined?(@resolved_records)
+    %p.hint= t('admin.email_domain_blocks.resolved_dns_records_hint_html')
+
+    .batch-table
+      .batch-table__toolbar
+        %label.batch-table__toolbar__select.batch-checkbox-all
+          = check_box_tag :batch_checkbox_all, nil, false
+        .batch-table__toolbar__actions
+      .batch-table__body
+        - @resolved_records.each do |record|
+          .batch-table__row
+            %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+              = f.input_field :other_domains, as: :boolean, checked_value: record.exchange.to_s, include_hidden: false, multiple: true
+            .batch-table__row__content.pending-account
+              .pending-account__header
+                %samp= record.exchange.to_s
+                %br
+                = t('admin.email_domain_blocks.dns.types.mx')
+
+    %hr.spacer/
 
   .actions
-    = f.button :button, t('.create'), type: :submit
+    - if defined?(@resolved_records)
+      = f.button :button, t('.create'), type: :submit, name: :save
+    - else
+      = f.button :button, t('.resolve'), type: :submit, name: :resolve
