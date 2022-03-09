@@ -479,11 +479,41 @@ it:
       title: Consigli su chi seguire
       unsuppress: Ripristina consigli su chi seguire
     instances:
+      availability:
+        description_html:
+          one: Se la consegna al dominio fallisce <strong>%{count} giorno</strong>, non sarà effettuato alcun tentativo di consegna ulteriore a meno che la consegna <em>dal</em> dominio non sia ricevuta.
+          other: Se la consegna al dominio fallisce <strong>%{count} giorni differenti</strong>, non sarà effettuato alcun tentativo di consegna ulteriore a meno che la consegna <em>dal</em> dominio non sia ricevuta.
+        failure_threshold_reached: Soglia di fallimento raggiunta il %{date}.
+        failures_recorded:
+          one: Tentativo fallito %{count} giorno.
+          other: Tentativo fallito %{count} giorni differenti.
+        no_failures_recorded: Nessun fallimento registrato.
+        title: Disponibilità
       back_to_all: Tutto
       back_to_limited: Limitato
       back_to_warning: Avviso
       by_domain: Dominio
       confirm_purge: Sei sicuro di voler cancellare definitivamente i dati di questo dominio?
+      content_policies:
+        comment: Nota interna
+        description_html: Puoi definire le politiche del contenuto che saranno applicate a tutti i profili da questo dominio e ognuno dei suoi sottodomini.
+        policies:
+          reject_media: Rifiuta multimedia
+          reject_reports: Rifiuta rapporti
+          silence: Limita
+          suspend: Sospendi
+        policy: Politica
+        reason: Motivo pubblico
+        title: Politiche sui contenuti
+      dashboard:
+        instance_accounts_dimension: Profili più seguiti
+        instance_accounts_measure: profili memorizzati
+        instance_followers_measure: i nostri seguaci lì
+        instance_follows_measure: i loro seguaci qui
+        instance_languages_dimension: Lingue preferite
+        instance_media_attachments_measure: allegati multimediali memorizzati
+        instance_reports_measure: segnalazioni su di loro
+        instance_statuses_measure: post memorizzati
       delivery:
         all: Tutto
         clear: Cancella errori di consegna
@@ -506,12 +536,14 @@ it:
       private_comment: Commento privato
       public_comment: Commento pubblico
       purge: Ripulisci
+      purge_description_html: Se credi che questo dominio sia offline per sempre, puoi eliminare tutti i registri del profilo e i dati associati da questo dominio dalla tua archiviazione. Questo potrebbe richiedere un po' di tempo.
       title: Istanze conosciute
       total_blocked_by_us: Bloccato da noi
       total_followed_by_them: Seguito da loro
       total_followed_by_us: Seguito da noi
       total_reported: Segnalazioni su di loro
       total_storage: Media allegati
+      totals_time_period_hint_html: I totali sotto visualizzati includono i dati per tutti i tempi.
     invites:
       deactivate_all: Disattiva tutto
       filter:
