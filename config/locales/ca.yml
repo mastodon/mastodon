@@ -479,11 +479,24 @@ ca:
       title: Seguir les recomanacions
       unsuppress: Restaurar les recomanacions de seguiment
     instances:
+      availability:
+        description_html:
+          one: Si la tramesa cap el domini falla <strong>%{count} dia</strong> sense èxit, no es faran més intents d'entrega a no ser que es rebi una tramesa <em>des de</em> el domini.
+          other: Si la tramesa cap el domini falla durant <strong>%{count} diferents dies</strong> sense èxit, no es faran més intents a no se que es rebi una tramesa <em>des de</em> el domini.
+        failure_threshold_reached: Llindar de fallada assolit el %{date}.
+        failures_recorded:
+          one: Inten fallit en %{count} dia.
+          other: Intents fallits en %{count} diferents dies.
+        no_failures_recorded: Sense errors registrats.
+        title: Disponibilitat
       back_to_all: Totes
       back_to_limited: Limitades
       back_to_warning: Avís
       by_domain: Domini
       confirm_purge: Estàs segur que vols eliminar permanentment les dades d'aquest domini?
+      content_policies:
+        comment: Nota interna
+        description_html: Pots definir polítiques de contingut que seran aplicades a tots els comptes d'aquest domini i a qualsevol dels seus subdominis.
       delivery:
         all: Totes
         clear: Neteja els errors de lliurament
