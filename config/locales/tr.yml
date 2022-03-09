@@ -496,6 +496,24 @@ tr:
       confirm_purge: Bu alan adından verileri kalıcı olarak silmek istediğinizden emin misin?
       content_policies:
         comment: İç not
+        description_html: Bu alan adındaki ve alt alan adlarındaki tüm hesaplara uygulanacak içerik ilkeleri belirleyebilirsiniz.
+        policies:
+          reject_media: Medyayı reddet
+          reject_reports: Şikayetleri reddet
+          silence: Sınırla
+          suspend: Askıya al
+        policy: İlke
+        reason: Kamuya açık gerekçe
+        title: İçerik ilkeleri
+      dashboard:
+        instance_accounts_dimension: En çok takip edilen hesaplar
+        instance_accounts_measure: kayıtlı hesaplar
+        instance_followers_measure: oradaki takipçilerimiz
+        instance_follows_measure: buradaki takipçileri
+        instance_languages_dimension: En gözde diller
+        instance_media_attachments_measure: kayıtlı medya ekleri
+        instance_reports_measure: haklarındaki şikayetler
+        instance_statuses_measure: kayıtlı gönderiler
       delivery:
         all: Tümü
         clear: Teslimat hatalarını temizle
@@ -518,12 +536,14 @@ tr:
       private_comment: Özel yorum
       public_comment: Genel yorum
       purge: Temizle
+      purge_description_html: Eğer bu alan adının temelli çevrimdışı olduğunu düşünüyorsanız, bu alanda adına ait tüm hesap kayıtlarını ve ilişkili tüm veriyi depolama alanınızdan kaldırabilirsiniz. Bu işlem uzun sürebilir.
       title: Bilinen Sunucular
       total_blocked_by_us: Tarafımızca engellenen
       total_followed_by_them: Onlar tarafından takip edilen
       total_followed_by_us: Tarafımızca takip edilen
       total_reported: Onlar hakkında şikayetler
       total_storage: Medya ekleri
+      totals_time_period_hint_html: Aşağıdaki gösterilen toplamlar, gelmiş geçmiş tüm veriyi içeriyor.
     invites:
       deactivate_all: Tümünü devre dışı bırak
       filter:
