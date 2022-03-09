@@ -494,6 +494,10 @@ lv:
           one: Ja piegāde uz domēnu neizdodas <strong>%{count} dienu</strong> bez panākumiem, turpmāki piegādes mēģinājumi netiks veikti, ja vien netiks saņemta piegāde <em>no</em> domēna.
           other: Ja piegāde uz domēnu neizdodas <strong>%{count} dažādas dienās</strong>, un tas neizdodas, turpmāki piegādes mēģinājumi netiks veikti, ja vien netiks saņemta piegāde <em>no</em> domēna.
         failure_threshold_reached: Kļūmju slieksnis sasniegts %{date}.
+        failures_recorded:
+          zero: Neizdevušies mēģinājumi %{count} dienās.
+          one: Neizdevies mēģinājums %{count} dienā.
+          other: Neizdevušies mēģinājumi %{count} dienās.
         no_failures_recorded: Nav reģistrētu kļūdu.
         title: Pieejamība
       back_to_all: Visas
