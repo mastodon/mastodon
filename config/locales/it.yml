@@ -449,21 +449,6 @@ it:
       reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
       reject_reports: Respingi rapporti
       reject_reports_hint: Ignora tutti i rapporti provenienti da questo dominio. Irrilevante per sospensioni
-      rejecting_media: rigetta file media
-      rejecting_reports: rigetta segnalazioni
-      severity:
-        silence: silenziato
-        suspend: sospeso
-      show:
-        affected_accounts:
-          one: Interessato un solo account nel database
-          other: "Interessati %{count} account nel database"
-          zero: Nessun account nel database è interessato
-        retroactive:
-          silence: De-silenzia tutti gli account esistenti da questo dominio
-          suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
-        title: Annulla il blocco del dominio per %{domain}
-        undo: Annulla
       undo: Annulla
       view: Visualizza blocco di dominio
     email_domain_blocks:
@@ -504,13 +489,7 @@ it:
         clear: Cancella errori di consegna
         restart: Riavvia la consegna
         stop: Interrompi consegna
-        title: Consegna
         unavailable: Non disponibile
-        unavailable_message: Consegna non disponibile
-        warning: Avviso
-        warning_message:
-          one: Errore di consegna %{count} giorno
-          other: Errori di consegna %{count} giorni
       delivery_available: Distribuzione disponibile
       delivery_error_days: Giorni con errori di consegna
       delivery_error_hint: Se la consegna non è possibile per %{count} giorni, sarà automaticamente contrassegnata come non consegnabile.
