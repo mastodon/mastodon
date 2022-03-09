@@ -20,6 +20,7 @@ class Admin::Metrics::Dimension::InstanceLanguagesDimension < Admin::Metrics::Di
       INNER JOIN accounts ON accounts.id = statuses.account_id
       WHERE accounts.domain = $1
         AND statuses.id BETWEEN $2 AND $3
+        AND statuses.reblog_of_id IS NULL
       GROUP BY COALESCE(statuses.language, 'und')
       ORDER BY count(*) DESC
       LIMIT $4
