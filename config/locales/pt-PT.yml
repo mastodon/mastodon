@@ -479,11 +479,38 @@ pt-PT:
       title: Seguir recomendações
       unsuppress: Restaurar recomendações de contas a seguir
     instances:
+      availability:
+        description_html:
+          one: Se a transmissão ao domínio falhar <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de transmissão será feita a menos que uma transmissão <em>proveniente</em> do domínio seja recebida.
+          other: Se a transmissão ao domínio falhar em <strong>%{count} dias diferentes</strong> sem sucesso, nenhuma tentativa de transmissão será feita a menos que uma transmissão <em>proveniente</em> do domínio seja recebida.
+        failure_threshold_reached: Limite de falhas atingido em %{date}.
+        no_failures_recorded: Sem falhas registadas.
+        title: Disponibilidade
       back_to_all: Todas
       back_to_limited: Limitadas
       back_to_warning: Aviso
       by_domain: Domínio
       confirm_purge: Tem a certeza que deseja eliminar permanentemente os dados deste domínio?
+      content_policies:
+        comment: Nota interna
+        description_html: Pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
+        policies:
+          reject_media: Rejeitar media
+          reject_reports: Rejeitar denúncias
+          silence: Limitar
+          suspend: Suspender
+        policy: Política
+        reason: Justificação pública
+        title: Políticas de conteúdo
+      dashboard:
+        instance_accounts_dimension: Contas mais seguidas
+        instance_accounts_measure: contas armazenadas
+        instance_followers_measure: nossos seguidores lá
+        instance_follows_measure: os seus seguidores aqui
+        instance_languages_dimension: Idiomas mais populares
+        instance_media_attachments_measure: anexos de media armazenados
+        instance_reports_measure: denúncias sobre eles
+        instance_statuses_measure: publicações armazenadas
       delivery:
         all: Todas
         clear: Limpar erros de entrega
