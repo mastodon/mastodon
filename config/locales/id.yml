@@ -470,11 +470,34 @@ id:
       title: Rekomendasi untuk diikuti
       unsuppress: Kembalikan rekomendasi untuk diikuti
     instances:
+      availability:
+        description_html:
+          other: Jika pengiriman ke domain selama <strong>%{count} hari</strong> tidak berhasil, tidak akan ada upaya pengiriman kecuali bila kiriman <em>dari</em> domain tersebut berhasil diterima.
+        failure_threshold_reached: Batas kegagalan tercapai pada %{date}.
+        failures_recorded:
+          other: Upaya gagal dalam %{count} hari berbeda.
+        no_failures_recorded: Tidak ada kegagalan tercatat.
+        title: Ketersediaan
       back_to_all: Semua
       back_to_limited: Terbatas
       back_to_warning: Peringatan
       by_domain: Domain
       confirm_purge: Yakin ingin menghapus permanen data dari domain ini?
+      content_policies:
+        comment: Catatan internal
+        description_html: Anda dapat menentukan kebijakan konten yang akan diterapkan ke semua akun dari domain ini dan dari subdomainnya.
+        policies:
+          reject_media: Tolak media
+          reject_reports: Tolak laporan
+          silence: Batas
+          suspend: Tangguhkan
+        policy: Kebijakan
+        reason: Alasan publik
+        title: Kebijakan konten
+      dashboard:
+        instance_accounts_dimension: Akun yang paling banyak diikuti
+        instance_accounts_measure: akun tersimpan
+        instance_followers_measure: pengikut kami di sana
       delivery:
         all: Semua
         clear: Hapus galat pengiriman
