@@ -390,17 +390,6 @@ sv:
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
       reject_reports: Avvisa rapporter
       reject_reports_hint: Ignorera alla rapporter som kommer från den här domänen. Gäller inte för avstängningar
-      rejecting_media: avvisar media-filer
-      rejecting_reports: avvisar rapporter
-      severity:
-        silence: tystad
-        suspend: avstängd
-      show:
-        retroactive:
-          silence: Ta bort tysta ner från alla befintliga konton på den här domänen
-          suspend: Ta bort suspendering från alla befintliga konton på den här domänen
-        title: Ångra domänblockering för %{domain}
-        undo: Ångra
       undo: Ångra
       view: Visa domänblock
     email_domain_blocks:
@@ -426,10 +415,7 @@ sv:
         clear: Rensa leverans-fel
         restart: Starta om leverans
         stop: Stoppa leverans
-        title: Leverans
         unavailable: Ej tillgänglig
-        unavailable_message: Leverans otillgängligt
-        warning: Varning
       delivery_available: Leverans är tillgängligt
       empty: Inga domäner hittades.
       moderation:
