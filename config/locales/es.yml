@@ -496,6 +496,24 @@ es:
       confirm_purge: '¿Seguro que quieres eliminar permanentemente los datos de este dominio?'
       content_policies:
         comment: Nota interna
+        description_html: Puedes definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
+        policies:
+          reject_media: Rechazar multimedia
+          reject_reports: Rechazar informes
+          silence: Límite
+          suspend: Suspender
+        policy: Política
+        reason: Razón pública
+        title: Políticas de contenido
+      dashboard:
+        instance_accounts_dimension: Cuentas más seguidas
+        instance_accounts_measure: cuentas almacenadas
+        instance_followers_measure: nuestros seguidores allí
+        instance_follows_measure: sus seguidores aquí
+        instance_languages_dimension: Idiomas principales
+        instance_media_attachments_measure: archivos adjuntos guardados
+        instance_reports_measure: informes sobre ellos
+        instance_statuses_measure: mensajes almacenados
       delivery:
         all: Todos
         clear: Limpiar errores de entrega
@@ -518,12 +536,14 @@ es:
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
+      purge_description_html: Si crees que este dominio está desconectado, puedes borrar todos los registros de cuentas y los datos asociados de este dominio de tu almacenamiento. Esto puede llevar un tiempo.
       title: Instancias conocidas
       total_blocked_by_us: Bloqueado por nosotros
       total_followed_by_them: Seguidos por ellos
       total_followed_by_us: Seguido por nosotros
       total_reported: Informes sobre ellas
       total_storage: Archivos multimedia
+      totals_time_period_hint_html: Los totales mostrados a continuación incluyen datos para todo el tiempo.
     invites:
       deactivate_all: Desactivar todos
       filter:
