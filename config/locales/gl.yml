@@ -478,6 +478,16 @@ gl:
       title: Recomendacións de seguimento
       unsuppress: Restablecer recomendación de seguimento
     instances:
+      availability:
+        description_html:
+          one: Se fallan as entregas ao dominio por <strong>%{count} día</strong>, non se farán máis intentos a menos que se reciba unha solicitude <em>desde</em> ese dominio.
+          other: Se fallan as entregas ao dominio por <strong>%{count} días diferentes</strong>, non se farán máis intentos a menos que se reciba unha solicitude <em>desde</em> ese dominio.
+        failure_threshold_reached: Acadouse o límite de fallos o %{date}.
+        failures_recorded:
+          one: Intento fallido por %{count} día.
+          other: Intentos fallidos durante %{count} días distintos.
+        no_failures_recorded: Non hai fallos rexistrados.
+        title: Dispoñibilidade
       back_to_all: Todo
       back_to_limited: Limitado
       back_to_warning: Aviso
