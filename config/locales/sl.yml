@@ -321,10 +321,31 @@ sl:
       language: Za jezik
       status: Stanje
     instances:
+      availability:
+        title: Razpoložljivost
       back_to_all: Vse
       back_to_limited: Omejeno
       back_to_warning: Opozorilo
       by_domain: Domena
+      content_policies:
+        comment: Interna opomba
+        policies:
+          reject_media: Zavrni večpredstavnost
+          reject_reports: Zarvni poročila
+          silence: Omeji
+          suspend: Suspendiraj
+        policy: Pravila
+        reason: Javni razlog
+        title: Pravila glede vsebine
+      dashboard:
+        instance_accounts_dimension: Najpogosteje sledeni računi
+        instance_accounts_measure: shranjenih računov
+        instance_followers_measure: naših sledilcev tukaj
+        instance_follows_measure: njihovih sledilcev tukaj
+        instance_languages_dimension: Naj jeziki
+        instance_media_attachments_measure: shranjenih predstavnostnih priponk
+        instance_reports_measure: poročil o njih
+        instance_statuses_measure: shanjenih objav
       delivery:
         all: Vse
         clear: Počisti napake dostave
