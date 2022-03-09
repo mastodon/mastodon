@@ -493,6 +493,26 @@ gl:
       back_to_warning: Aviso
       by_domain: Dominio
       confirm_purge: Tes a certeza de querer eliminar permanentemente os datos deste dominio?
+      content_policies:
+        comment: Nota interna
+        description_html: Podes definir políticas acerca do contido que serán aplicadas a tódalas contas deste dominio e tódolos seus subdominios.
+        policies:
+          reject_media: Rexeitar multimedia
+          reject_reports: Rexeitar denuncias
+          silence: Límitar
+          suspend: Suspender
+        policy: Criterios
+        reason: Razón pública
+        title: Políticas sobre o contido
+      dashboard:
+        instance_accounts_dimension: Contas máis seguidas
+        instance_accounts_measure: contas gardadas
+        instance_followers_measure: as nosas seguidoras alí
+        instance_follows_measure: as súas seguidoras aquí
+        instance_languages_dimension: Top de idiomas
+        instance_media_attachments_measure: anexos multimedia gardados
+        instance_reports_measure: denuncias acerca deles
+        instance_statuses_measure: publicacións gardadas
       delivery:
         all: Todo
         clear: Eliminar erros na entrega
@@ -515,12 +535,14 @@ gl:
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
+      purge_description_html: Se cres que este dominio está desconectado por unha boa razón, podes borrar tódolos rexistros e datos asociados a este dominio na túa almacenaxe. Vainos levar un anaco.
       title: Federación
       total_blocked_by_us: Bloqueado por nós
       total_followed_by_them: Seguidos por eles
       total_followed_by_us: Seguidos por nós
       total_reported: Denuncias sobre eles
       total_storage: Adxuntos multimedia
+      totals_time_period_hint_html: Os totais aquí mostrados inclúen todo o historial de datos.
     invites:
       deactivate_all: Desactivar todo
       filter:
