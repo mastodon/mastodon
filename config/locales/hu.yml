@@ -479,11 +479,34 @@ hu:
       title: Követési ajánlatok
       unsuppress: Követési ajánlatok visszaállítása
     instances:
+      availability:
+        failure_threshold_reached: 'Hibaküszöb elérve ekkor: %{date}.'
+        failures_recorded:
+          one: Sikertelen próbálkozás %{count} napon.
+          other: Sikertelen próbálkozás %{count} különböző napon.
+        no_failures_recorded: Nem rögzítettünk hibát.
+        title: Elérhetőség
       back_to_all: Mind
       back_to_limited: Korlátozott
       back_to_warning: Figyelmeztetés
       by_domain: Domain
       confirm_purge: Biztos, hogy véglegesen törölni akarod az adatokat ebből a domainből?
+      content_policies:
+        comment: Belső megjegyzés
+        policies:
+          reject_media: Média elutasítása
+          reject_reports: Bejelentések elutasítása
+          silence: Korlátozás
+          suspend: Felfüggesztés
+        policy: Házirend
+        reason: Nyilvános indok
+        title: Tartalmi szabályzat
+      dashboard:
+        instance_accounts_dimension: Legtöbbet követett fiókok
+        instance_accounts_measure: tárolt fiók
+        instance_followers_measure: követőnk náluk
+        instance_follows_measure: követőik nálunk
+        instance_languages_dimension: Legnépszerűbb nyelvek
       delivery:
         all: Mind
         clear: Kézbesítési hibák törlése
