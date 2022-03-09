@@ -479,11 +479,23 @@ es:
       title: Recomendaciones de cuentas
       unsuppress: Restaurar recomendaciones de cuentas
     instances:
+      availability:
+        description_html:
+          one: Si el envío al dominio falla <strong>%{count} día</strong> sin éxito, no se harán más intentos de entrega a menos que se reciba un envío <em>desde</em> el dominio.
+          other: Si el envío al dominio falla <strong>%{count} días diferentes</strong> sin éxito, no se harán más intentos de entrega a menos que se reciba un envío <em>desde</em> el dominio.
+        failure_threshold_reached: Límite de fallo alcanzado el %{date}.
+        failures_recorded:
+          one: Intento fallido en %{count} día.
+          other: Intentos fallidos en %{count} días diferentes.
+        no_failures_recorded: No hay fallos en el registro.
+        title: Disponibilidad
       back_to_all: Todos
       back_to_limited: Limitados
       back_to_warning: Advertencia
       by_domain: Dominio
       confirm_purge: '¿Seguro que quieres eliminar permanentemente los datos de este dominio?'
+      content_policies:
+        comment: Nota interna
       delivery:
         all: Todos
         clear: Limpiar errores de entrega
