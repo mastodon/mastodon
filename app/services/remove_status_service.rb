@@ -40,7 +40,7 @@ class RemoveStatusService < BaseService
           remove_reblogs
           remove_from_hashtags
           remove_from_public
-          remove_from_media if @status.media_attachments.any?
+          remove_from_media if @status.with_media?
           remove_media
         end
 

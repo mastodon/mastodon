@@ -33,9 +33,9 @@
                               %div.auto-dir
                                 = Formatter.instance.format(status)
 
-                                - if status.media_attachments.size > 0
+                                - if status.ordered_media_attachments.size > 0
                                   %p
-                                    - status.media_attachments.each do |a|
+                                    - status.ordered_media_attachments.each do |a|
                                       - if status.local?
                                         = link_to full_asset_url(a.file.url(:original)), full_asset_url(a.file.url(:original))
                                       - else

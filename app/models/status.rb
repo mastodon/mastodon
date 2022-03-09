@@ -3,28 +3,29 @@
 #
 # Table name: statuses
 #
-#  id                     :bigint(8)        not null, primary key
-#  uri                    :string
-#  text                   :text             default(""), not null
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  in_reply_to_id         :bigint(8)
-#  reblog_of_id           :bigint(8)
-#  url                    :string
-#  sensitive              :boolean          default(FALSE), not null
-#  visibility             :integer          default("public"), not null
-#  spoiler_text           :text             default(""), not null
-#  reply                  :boolean          default(FALSE), not null
-#  language               :string
-#  conversation_id        :bigint(8)
-#  local                  :boolean
-#  account_id             :bigint(8)        not null
-#  application_id         :bigint(8)
-#  in_reply_to_account_id :bigint(8)
-#  poll_id                :bigint(8)
-#  deleted_at             :datetime
-#  edited_at              :datetime
-#  trendable              :boolean
+#  id                           :bigint(8)        not null, primary key
+#  uri                          :string
+#  text                         :text             default(""), not null
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  in_reply_to_id               :bigint(8)
+#  reblog_of_id                 :bigint(8)
+#  url                          :string
+#  sensitive                    :boolean          default(FALSE), not null
+#  visibility                   :integer          default("public"), not null
+#  spoiler_text                 :text             default(""), not null
+#  reply                        :boolean          default(FALSE), not null
+#  language                     :string
+#  conversation_id              :bigint(8)
+#  local                        :boolean
+#  account_id                   :bigint(8)        not null
+#  application_id               :bigint(8)
+#  in_reply_to_account_id       :bigint(8)
+#  poll_id                      :bigint(8)
+#  deleted_at                   :datetime
+#  edited_at                    :datetime
+#  trendable                    :boolean
+#  ordered_media_attachment_ids :bigint(8)        is an Array
 #
 
 class Status < ApplicationRecord
@@ -211,11 +212,14 @@ class Status < ApplicationRecord
     public_visibility? || unlisted_visibility?
   end
 
-  def snapshot!(media_attachments_changed: false, account_id: nil, at_time: nil)
+  def snapshot!(account_id: nil, at_time: nil)
     edits.create!(
       text: text,
       spoiler_text: spoiler_text,
-      media_attachments_changed: media_attachments_changed,
+      sensitive: sensitive,
+      ordered_media_attachment_ids: ordered_media_attachment_ids || media_attachments.pluck(:id),
+      media_descriptions: ordered_media_attachments.map(&:description),
+      poll_options: preloadable_poll&.options,
       account_id: account_id || self.account_id,
       created_at: at_time || edited_at
     )
@@ -228,7 +232,7 @@ class Status < ApplicationRecord
   alias sign? distributable?
 
   def with_media?
-    media_attachments.any?
+    ordered_media_attachments.any?
   end
 
   def with_preview_card?
@@ -250,6 +254,15 @@ class Status < ApplicationRecord
     fields += preloadable_poll.options unless preloadable_poll.nil?
 
     @emojis = CustomEmoji.from_text(fields.join(' '), account.domain)
+  end
+
+  def ordered_media_attachments
+    if ordered_media_attachment_ids.nil?
+      media_attachments
+    else
+      map = media_attachments.index_by(&:id)
+      ordered_media_attachment_ids.map { |media_attachment_id| map[media_attachment_id] }
+    end
   end
 
   def replies_count
