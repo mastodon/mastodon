@@ -449,21 +449,6 @@ ca:
       reject_media_hint: Elimina els fitxers multimèdia emmagatzemats localment i impedeix baixar-ne cap en el futur. Irrellevant en les suspensions
       reject_reports: Rebutja informes
       reject_reports_hint: Ignora tots els informes procedents d'aquest domini. No és rellevant per a les suspensions
-      rejecting_media: rebutjant els fitxers multimèdia
-      rejecting_reports: rebutjant els informes
-      severity:
-        silence: silenciat
-        suspend: suspès
-      show:
-        affected_accounts:
-          one: Un compte afectat en la base de dades
-          other: "%{count} comptes afectats en la base de dades"
-          zero: Cap compte afectat en la base de dades
-        retroactive:
-          silence: Desfés el silenci a tots els comptes existents d'aquest domini
-          suspend: Desfés la suspensió de tots els comptes d'aquest domini
-        title: Desfés el bloqueig de domini de %{domain}
-        undo: Desfés
       undo: Desfés el bloqueig del domini
       view: Veure el bloqueig del domini
     email_domain_blocks:
@@ -504,13 +489,7 @@ ca:
         clear: Neteja els errors de lliurament
         restart: Reinicia el lliurament
         stop: Atura el lliurament
-        title: Lliurament
         unavailable: No disponible
-        unavailable_message: El lliurament no està disponible
-        warning: Avís
-        warning_message:
-          one: Fallada de lliurament %{count} dia
-          other: Fallada de lliurament %{count} dies
       delivery_available: El lliurament està disponible
       delivery_error_days: Dies de fallades de lliurament
       delivery_error_hint: Si el lliurament no és possible per %{count} dies, serà automàticament marcat com a no lliurable.
