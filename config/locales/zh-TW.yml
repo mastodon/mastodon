@@ -441,21 +441,6 @@ zh-TW:
       reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該站點的任何媒體檔案。與停權無關
       reject_reports: 拒絕檢舉
       reject_reports_hint: 忽略所有來自此站點的檢舉。與停權無關
-      rejecting_media: 拒絕媒體檔案
-      rejecting_reports: 拒絕檢舉中
-      severity:
-        silence: 已靜音
-        suspend: 已停權
-      show:
-        affected_accounts:
-          one: 資料庫中的 1 個帳號受到影響
-          other: "資料庫中的 %{count} 個帳號受到影響"
-          zero: 沒有影響到資料庫中的帳號
-        retroactive:
-          silence: 對此站點的所有使用者取消靜音
-          suspend: 對此站點的所有使用者取消停權
-        title: 撤銷 %{domain} 的站點封鎖
-        undo: 撤銷
       undo: 復原欲封鎖域名
       view: 顯示阻擋的網域
     email_domain_blocks:
@@ -495,12 +480,7 @@ zh-TW:
         clear: 清除遞送錯誤
         restart: 重新啟動遞送
         stop: 停止遞送
-        title: 遞送
         unavailable: 無法使用
-        unavailable_message: 無法使用遞送
-        warning: 警告
-        warning_message:
-          other: 遞送失敗 %{count} 天
       delivery_available: 可傳送
       delivery_error_days: 遞送失敗天數
       delivery_error_hint: 若 %{count} 日皆無法遞送 ，則會自動標記無法遞送。
