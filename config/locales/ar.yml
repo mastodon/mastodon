@@ -440,17 +440,6 @@ ar:
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
       reject_reports_hint: تجاهل جميع تقارير الإبلاغ القادمة من هذا النطاق. هذا يستثي التعليقات
-      rejecting_media: جار رفض ملفات الوسائط
-      rejecting_reports: جار رفض التقارير
-      severity:
-        silence: تم كتمه
-        suspend: تم تعليقه
-      show:
-        retroactive:
-          silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
-          suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
-        title: رفع حظر النطاق عن %{domain}
-        undo: إلغاء
       undo: إلغاء حجب النطاق
       view: عرض كتلة النطاق
     email_domain_blocks:
@@ -480,17 +469,7 @@ ar:
         clear: مسح أخطاء التسليم
         restart: إعادة تشغيل التوصيل
         stop: إيقاف التوصيل
-        title: التوصيل
         unavailable: غير متوفر
-        unavailable_message: التوصيل غير متوفر
-        warning: تحذير
-        warning_message:
-          zero: فشل التوصيل لـ%{count} يوم
-          one: فشل التوصيل لـ%{count} يوم
-          two: فشل التوصيل لـ%{count} يوم
-          few: فشل التوصيل لـ%{count} أيام
-          many: فشل التوصيل لـ%{count} يوم
-          other: فشل التوصيل لـ%{count} يوم
       delivery_available: التسليم متوفر
       delivery_error_days: أيام أخطاء التوصيل
       delivery_error_hint: إذا كان التوصيل غير ممكناً لـ%{count} يوم، فستوضع عليها علامة {غير قابلة للتسليم} تلقائياً.
