@@ -162,7 +162,7 @@ class PostStatusService < BaseService
       sensitive: @sensitive,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
-      language: valid_locale_or_nil(@options[:language].presence || @account.user&.preferred_posting_language || I18n.default_locale),
+      language: valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
     }.compact
