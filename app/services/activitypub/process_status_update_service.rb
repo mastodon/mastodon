@@ -216,13 +216,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     return if @status.edits.any?
 
-    @status.snapshot!(at_time: @status.created_at)
+    @status.snapshot!(at_time: @status.created_at, rate_limit: false)
   end
 
   def create_edit!
     return unless significant_changes?
 
-    @status.snapshot!(account_id: @account.id)
+    @status.snapshot!(account_id: @account.id, rate_limit: false)
   end
 
   def skip_download?

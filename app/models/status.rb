@@ -212,7 +212,7 @@ class Status < ApplicationRecord
     public_visibility? || unlisted_visibility?
   end
 
-  def snapshot!(account_id: nil, at_time: nil)
+  def snapshot!(account_id: nil, at_time: nil, rate_limit: true)
     edits.create!(
       text: text,
       spoiler_text: spoiler_text,
@@ -221,7 +221,8 @@ class Status < ApplicationRecord
       media_descriptions: ordered_media_attachments.map(&:description),
       poll_options: preloadable_poll&.options,
       account_id: account_id || self.account_id,
-      created_at: at_time || edited_at
+      created_at: at_time || edited_at,
+      rate_limit: rate_limit
     )
   end
 
