@@ -319,11 +319,16 @@ sl:
       add_new: Dodaj novo
       created_msg: Domena e-pošte je bila uspešno dodana na črni seznam
       delete: Izbriši
-      destroyed_msg: Domena e-pošte je bila uspešno izbrisana iz črnega seznama
+      dns:
+        types:
+          mx: Zapis MX
       domain: Domena
       new:
         create: Dodaj domeno
+        resolve: Razreši domeno
         title: Nov vnos e-pošte na črni seznam
+      no_email_domain_block_selected: Nobena domena e-računa ni bila spremenjena, ker nobena ni bila izbrana
+      resolved_through_html: Razrešeno prek %{domain}
       title: Črni seznam e-pošt
     follow_recommendations:
       language: Za jezik

@@ -475,15 +475,23 @@ lv:
       view: Skatīt domēna bloķēšanu
     email_domain_blocks:
       add_new: Pievienot jaunu
+      attempts_over_week:
+        one: "%{count} mēģinājums pagājušajā nedēļā"
+        other: "%{count} reģistrēšanās mēģinājumi pagājušajā nedēļā"
+        zero: "%{count} mēģinājumu pagājušajā nedēļā"
       created_msg: E-pasta domēns ir veiksmīgi bloķēts
       delete: Dzēst
-      destroyed_msg: E-pasta domēns ir veiksmīgi atbloķēts
+      dns:
+        types:
+          mx: MX ieraksts
       domain: Domēns
-      empty: Pašlaik nav bloķēts neviens e-pasta domēns.
-      from_html: no %{domain}
       new:
         create: Pievienot domēnu
+        resolve: Atrisināt domēnu
         title: Bloķēt jaunu e-pasta domēnu
+      no_email_domain_block_selected: Neviens e-pasta domēna bloks netika mainīts, jo neviens netika atlasīts
+      resolved_dns_records_hint_html: Domēna nosaukums tiek izmantots tālāk norādītajos MX domēnos, kas galu galā ir atbildīgi par e-pasta pieņemšanu. Bloķējot MX domēnu, tiks bloķēta reģistrēšanās no jebkuras e-pasta adreses, kas izmanto vienu un to pašu MX domēnu, pat ja redzamais domēna nosaukums atšķiras. <strong>Esi uzmanīgs, lai nebloķētu lielākos e-pasta pakalpojumu sniedzējus.</strong>
+      resolved_through_html: Atrisināts, izmantojot %{domain}
       title: Bloķētie e-pasta domēni
     follow_recommendations:
       description_html: "<strong>Sekošana rekomendācijām palīdz jaunajiem lietotājiem ātri atrast interesantu saturu</strong>. Ja lietotājs nav pietiekami mijiedarbojies ar citiem, lai izveidotu personalizētus ieteikumus, ieteicams izmantot šos kontus. Tie tiek pārrēķināti katru dienu, izmantojot vairākus kontus ar visaugstākajām pēdējā laika saistībām un vislielāko vietējo sekotāju skaitu noteiktā valodā."
@@ -620,6 +628,7 @@ lv:
         title: Piezīmes
       notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
       quick_actions_description_html: 'Veic ātro darbību vai ritini uz leju, lai skatītu saturu, par kuru ziņots:'
+      remote_user_placeholder: attālais lietotājs no %{instance}
       reopen: Atkārtoti atvērt ziņojumu
       report: 'Ziņojums #%{id}'
       reported_account: Ziņotais konts
@@ -790,6 +799,16 @@ lv:
         rejected: Saites no šī publicētāja nebūs tendence
         title: Publicētāji
       rejected: Noraidīts
+      statuses:
+        allow: Atļaut publicēt
+        allow_account: Atļaut autoru
+        disallow: Neatļaut publicēt
+        disallow_account: Neatļaut autoru
+        shared_by:
+          one: Vienreiz kopīgots vai pievienots izlasei
+          other: Kopīgots un pievienots izlasei %{friendly_count} reizes
+          zero: "%{friendly_count} reižu kopīgots vai pievienots izlasei"
+        title: Populārākās ziņas
       tags:
         current_score: Pašreizējais rezultāts %{score}
         dashboard:
@@ -838,16 +857,21 @@ lv:
       body: "%{reporter} ziņoja par %{target}"
       body_remote: Kāds no %{domain} ziņoja par %{target}
       subject: Jauns ziņojums par %{instance} (#%{id})
-    new_trending_links:
-      body: Tālāk norādītās saites šodien ir populāras, taču to publicētāji iepriekš nav pārskatīti. Tie netiks rādīti publiski, ja vien tu tos neapstiprināsi. Turpmāki paziņojumi no tiem pašiem publicētājiem netiks ģenerēti.
-      no_approved_links: Pašlaik nav apstiprinātu tendenču saišu.
-      requirements: Viszemāk apstiprinātā populārā saite pašlaik ir “%{lowest_link_title}” ar rezultātu %{lowest_link_score}.
-      subject: Jaunas populāras saites ir pieejamas pārskatīšanai vietnē %{instance}
-    new_trending_tags:
-      body: 'Tālāk norādītās atsauces ir populāras, taču tās iepriekš nav pārskatītas. Tie netiks rādīti publiski, ja vien tu tās neapstiprināsi:'
-      no_approved_tags: Pašlaik nav apstiprinātu tendenču tēmturu.
-      requirements: 'Viszemāk apstiprinātais populārais tēmturis pašlaik ir #%{lowest_tag_name} ar rezultātu %{lowest_tag_score}.'
-      subject: Jauni populāri tēmturi ir pieejami pārskatīšanai vietnē %{instance}
+    new_trends:
+      body: 'Tālāk norādītie vienumi ir jāpārskata, lai tos varētu parādīt publiski:'
+      new_trending_links:
+        no_approved_links: Pašlaik nav apstiprinātu tendenču saišu.
+        requirements: 'Jebkurš no šiem kandidātiem varētu pārspēt #%{rank} apstiprināto populāro saiti, kas pašlaik ir "%{lowest_link_title}" ar rezultātu %{lowest_link_score}.'
+        title: Populārākās saites
+      new_trending_statuses:
+        no_approved_statuses: Pašlaik nav apstiprinātu tendenču saišu.
+        requirements: 'Jebkurš no šiem kandidātiem varētu pārspēt #%{rank} apstiprināto populāro ziņu, kas pašlaik ir %{lowest_status_url} ar rezultātu %{lowest_status_score}.'
+        title: Populārākās ziņas
+      new_trending_tags:
+        no_approved_tags: Pašlaik nav apstiprinātu tendenču tēmturu.
+        requirements: 'Jebkurš no šiem kandidātiem varētu pārspēt #%{rank} apstiprināto populāro tēmturi, kas pašlaik ir #%{lowest_tag_name} ar rezultātu %{lowest_tag_score}.'
+        title: Populārākie tēmturi
+      subject: Tiek pārskatītas jaunas tendences %{instance}
   aliases:
     add_new: Izveidot aizstājvārdu
     created_msg: Veiksmīgi izveidots jauns aizstājvārds. Tagad vari sākt pārvietošanu no vecā konta.
@@ -1188,6 +1212,9 @@ lv:
     carry_mutes_over_text: Šis lietotājs pārcēlās no %{acct}, kuru tu biji apklusinājis.
     copy_account_note_text: 'Šis lietotājs pārcēlās no %{acct}, šeit bija tavas iepriekšējās piezīmes par viņu:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} ir pierakstījies"
     digest:
       action: Rādīt visus paziņojumus
       body: Šeit ir īss kopsavilkums par ziņojumiem, kurus tu esi palaidis garām kopš pēdējā apmeklējuma %{since}

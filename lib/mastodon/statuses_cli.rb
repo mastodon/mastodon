@@ -156,7 +156,7 @@ module Mastodon
 
         ActiveRecord::Base.connection.add_index(:statuses, :conversation_id, name: :index_statuses_conversation_id, algorithm: :concurrently, if_not_exists: true)
 
-        say('Extract the deletion target from coversations... This might take a while...')
+        say('Extract the deletion target from conversations... This might take a while...')
 
         ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', force: true)
 

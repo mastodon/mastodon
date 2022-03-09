@@ -12,6 +12,22 @@
 
 %h3= t('auth.status.account_status')
 
+%p.hint
+  - if @user.account.suspended?
+    %span.negative-hint= t('user_mailer.warning.explanation.suspend')
+  - elsif @user.disabled?
+    %span.negative-hint= t('user_mailer.warning.explanation.disable')
+  - elsif @user.account.silenced?
+    %span.warning-hint= t('user_mailer.warning.explanation.silence')
+  - else
+    %span.positive-hint= t('auth.status.functional')
+
 = render partial: 'account_warning', collection: @strikes
+
+- if @user.account.strikes.exists?
+  %hr.spacer/
+
+  %p.muted-hint
+    = link_to t('auth.status.view_strikes'), disputes_strikes_path
 
 %hr.spacer/

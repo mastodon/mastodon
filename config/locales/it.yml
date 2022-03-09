@@ -467,15 +467,22 @@ it:
       view: Visualizza blocco di dominio
     email_domain_blocks:
       add_new: Aggiungi nuovo
+      attempts_over_week:
+        one: "%{count} tentativo nell'ultima settimana"
+        other: "%{count} tentativi di registrazione nell'ultima settimana"
       created_msg: Dominio email aggiunto con successo alla lista nera
       delete: Elimina
-      destroyed_msg: Dominio email cancellato con successo dalla lista nera
+      dns:
+        types:
+          mx: Record MX
       domain: Dominio
-      empty: Nessun dominio di posta elettronica attualmente in blacklist.
-      from_html: da %{domain}
       new:
         create: Aggiungi dominio
+        resolve: Risolvi dominio
         title: Nuova voce della lista nera delle email
+      no_email_domain_block_selected: Nessun blocco di dominio di posta elettronica è stato modificato in quanto nessuno è stato selezionato
+      resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
+      resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
     follow_recommendations:
       description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
@@ -575,6 +582,7 @@ it:
         notes:
           one: "%{count} nota"
           other: "%{count} note"
+      action_log: Registro di controllo
       action_taken_by: Azione intrapresa da
       actions:
         delete_description_html: I post segnalati saranno eliminati e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
@@ -609,6 +617,7 @@ it:
         title: Note
       notes_description_html: Visualizza e lascia note ad altri moderatori e al tuo futuro sé
       quick_actions_description_html: 'Fai un''azione rapida o scorri verso il basso per vedere il contenuto segnalato:'
+      remote_user_placeholder: l'utente remoto da %{instance}
       reopen: Riapri rapporto
       report: 'Rapporto #%{id}'
       reported_account: Account segnalato
@@ -779,6 +788,15 @@ it:
         rejected: I link da questa fonte non possono essere in tendenza
         title: Editori
       rejected: Rifiutato
+      statuses:
+        allow: Consenti post
+        allow_account: Consenti autore
+        disallow: Non consentire post
+        disallow_account: Non consentire autore
+        shared_by:
+          one: Condiviso o preferito una volta
+          other: Condiviso e preferito %{friendly_count} volte
+        title: Post di tendenza
       tags:
         current_score: Punteggio corrente %{score}
         dashboard:
@@ -827,16 +845,21 @@ it:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
       subject: Nuova segnalazione per %{instance} (#%{id})
-    new_trending_links:
-      body: I seguenti link sono in tendenza oggi, ma i loro editori non sono stati revisionati precedentemente. Non saranno mostrati pubblicamente a meno che tu non li approvi. Ulteriori notifiche dagli stessi editori non saranno generate.
-      no_approved_links: Nessun link in tendenza correntemente approvato.
-      requirements: Il link in tendenza più basso approvato è correntemente "%{lowest_link_title}" con un punteggio di %{lowest_link_score}.
-      subject: Nuovi link in tendenza in attesa di revisione su %{instance}
-    new_trending_tags:
-      body: 'I seguenti hashtag sono in tendenza oggi, ma non sono stati precedentemente revisionati. Non saranno visualizzati pubblicamente a meno che non li approvi:'
-      no_approved_tags: Nessun hashtag in tendenza correntemente approvato.
-      requirements: 'L''hashtag in tendenza approvato con punteggio più basso è al momento #%{lowest_tag_name} con un punteggio di %{lowest_tag_score}.'
-      subject: I nuovi hashtag in tendenza in attesa di revisione su %{instance}
+    new_trends:
+      body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
+      new_trending_links:
+        no_approved_links: Attualmente non ci sono link in tendenza approvati.
+        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} link di tendenza approvato, che è attualmente "%{lowest_link_title}" con un punteggio di %{lowest_link_score}.'
+        title: Link di tendenza
+      new_trending_statuses:
+        no_approved_statuses: Attualmente non ci sono post di tendenza approvati.
+        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} post di tendenza approvato, che è attualmente "%{lowest_status_url}" con un punteggio di %{lowest_status_score}.'
+        title: Post di tendenza
+      new_trending_tags:
+        no_approved_tags: Attualmente non ci sono hashtag di tendenza approvati.
+        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} hashtag di tendenza approvato, che è attualmente "%{lowest_tag_name}" con un punteggio di %{lowest_tag_score}.'
+        title: Hashtag di tendenza
+      subject: Nuove tendenze in attesa di controllo su %{instance}
   aliases:
     add_new: Crea alias
     created_msg: Hai creato un nuovo alias. Ora puoi iniziare lo spostamento dal vecchio account.
@@ -1177,6 +1200,9 @@ it:
     carry_mutes_over_text: Questo utente si è spostato da %{acct} che hai silenziato.
     copy_account_note_text: 'Questo utente si è spostato da %{acct}, ecco le tue note precedenti su di loro:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} si è iscritto"
     digest:
       action: Vedi tutte le notifiche
       body: Ecco un breve riassunto di quello che ti sei perso dalla tua ultima visita del %{since}

@@ -64,7 +64,7 @@ vi:
       domain_allow:
         domain: Máy chủ này sẽ tiếp nhận dữ liệu, rồi sau đó xử lý và lưu trữ
       email_domain_block:
-        domain: Đây có thể là tên miền hoặc IP của dịch vụ email. Người dùng của những dịch vụ email này sẽ bị từ chối khi đăng ký.
+        domain: Phân tích tên miền thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong chấp nhận email. Giá trị MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một giá trị MX, ngay cả khi tên miền hiển thị là khác.
         with_dns_records: Nếu DNS có vấn đề, nó sẽ bị đưa vào danh sách cấm
       featured_tag:
         name: 'Những hashtag gợi ý cho bạn:'

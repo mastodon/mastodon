@@ -104,7 +104,7 @@ class Results extends React.PureComponent {
         </div>
 
         <div className='explore__search-results'>
-          {isLoading ? (<LoadingIndicator />) : filteredResults}
+          {isLoading ? <LoadingIndicator /> : filteredResults}
         </div>
       </React.Fragment>
     );

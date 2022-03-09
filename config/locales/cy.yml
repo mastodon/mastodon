@@ -140,6 +140,7 @@ cy:
       header: Pennawd
       inbox_url: URL Mewnflwch
       invited_by: Gwahoddwyd gan
+      ip: IP
       joined: Ymunodd
       location:
         all: Popeth
@@ -194,6 +195,7 @@ cy:
       silenced: Tawelwyd
       statuses: Statysau
       subscribe: Tanysgrifio
+      suspend: Atal
       suspended: Ataliwyd
       title: Cyfrifon
       unconfirmed_email: E-bost heb ei gadarnhau
@@ -221,6 +223,7 @@ cy:
         destroy_domain_allow: Dileu Alluogiad Parth
         destroy_domain_block: Dileu Gwaharddiad Parth
         destroy_email_domain_block: Dileu gwaharddiad parth ebost
+        destroy_ip_block: Dileu rheol IP
         destroy_status: Dileu Statws
         disable_2fa_user: Diffodd 2FA
         disable_custom_emoji: Analluogi Emoji Addasiedig
@@ -342,10 +345,10 @@ cy:
       add_new: Ychwanegu
       created_msg: Llwyddwyd i ychwanegu parth e-bost i'r gosbrestr
       delete: Dileu
-      destroyed_msg: Llwyddwyd i ddileu parth e-bost o'r gosbrestr
+      dns:
+        types:
+          mx: Cofnod MX
       domain: Parth
-      empty: Dim parthiau ebost ar y rhestr rhwystro.
-      from_html: o %{domain}
       new:
         create: Ychwanegu parth
         title: Cofnod newydd yng nghosbrestr e-byst

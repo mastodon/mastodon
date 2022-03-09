@@ -63,20 +63,20 @@ RSpec.describe UnsuspendAccountService, type: :service do
   describe 'unsuspending a remote account' do
     include_examples 'common behavior' do
       let!(:account)                 { Fabricate(:account, domain: 'bob.com', uri: 'https://bob.com', inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
-      let!(:reslove_account_service) { double }
+      let!(:resolve_account_service) { double }
 
       before do
-        allow(ResolveAccountService).to receive(:new).and_return(reslove_account_service)
+        allow(ResolveAccountService).to receive(:new).and_return(resolve_account_service)
       end
 
       context 'when the account is not remotely suspended' do
         before do
-          allow(reslove_account_service).to receive(:call).with(account).and_return(account)
+          allow(resolve_account_service).to receive(:call).with(account).and_return(account)
         end
 
         it 're-fetches the account' do
           subject.call
-          expect(reslove_account_service).to have_received(:call).with(account)
+          expect(resolve_account_service).to have_received(:call).with(account)
         end
 
         it "merges back into local followers' feeds" do
@@ -92,7 +92,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
 
       context 'when the account is remotely suspended' do
         before do
-          allow(reslove_account_service).to receive(:call).with(account) do |account|
+          allow(resolve_account_service).to receive(:call).with(account) do |account|
             account.suspend!(origin: :remote)
             account
           end
@@ -100,7 +100,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
 
         it 're-fetches the account' do
           subject.call
-          expect(reslove_account_service).to have_received(:call).with(account)
+          expect(resolve_account_service).to have_received(:call).with(account)
         end
 
         it "does not merge back into local followers' feeds" do
@@ -116,12 +116,12 @@ RSpec.describe UnsuspendAccountService, type: :service do
 
       context 'when the account is remotely deleted' do
         before do
-          allow(reslove_account_service).to receive(:call).with(account).and_return(nil)
+          allow(resolve_account_service).to receive(:call).with(account).and_return(nil)
         end
 
         it 're-fetches the account' do
           subject.call
-          expect(reslove_account_service).to have_received(:call).with(account)
+          expect(resolve_account_service).to have_received(:call).with(account)
         end
 
         it "does not merge back into local followers' feeds" do

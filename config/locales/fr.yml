@@ -44,7 +44,7 @@ fr:
       rejecting_media: 'Les fichiers média de ces serveurs ne seront ni traités ni stockés, et aucune miniature ne sera affichée, rendant nécessaire de cliquer vers le fichier d’origine :'
       rejecting_media_title: Médias filtrés
       silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·rice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
-      silenced_title: Serveurs masqués
+      silenced_title: Serveurs limités
       suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant impossible toute interaction ou communication avec les utilisateur·rice·s de ces serveurs :'
       suspended_title: Serveurs suspendus
     unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateur·rice·s de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
@@ -117,19 +117,19 @@ fr:
       deleted: Supprimé
       demote: Rétrograder
       destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
-      disable: Désactiver
+      disable: Geler
       disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
-      disabled: Désactivé
+      disabled: Gelé
       display_name: Nom affiché
       domain: Domaine
       edit: Éditer
       email: Courriel
       email_status: État du courriel
-      enable: Activer
+      enable: Dégeler
       enable_sign_in_token_auth: Activer l'authentification basée sur les jetons envoyés par courriel
       enabled: Activé
-      enabled_msg: Le compte de %{username} a été débloqué avec succès
+      enabled_msg: Le compte de %{username} a été dégelé avec succès
       followers: Abonné·e·s
       follows: Abonnements
       header: Entête
@@ -205,8 +205,8 @@ fr:
       show:
         created_reports: Signalements faits
         targeted_reports: Signalés par d’autres
-      silence: Masquer
-      silenced: Masqué
+      silence: Limiter
+      silenced: Limité
       statuses: Messages
       strikes: Punitions précédentes
       subscribe: S’abonner
@@ -219,9 +219,9 @@ fr:
       unblocked_email_msg: L'adresse courriel de %{username} a été débloquée avec succès
       unconfirmed_email: Courriel non confirmé
       undo_sensitized: Annuler sensible
-      undo_silenced: Ne plus masquer
+      undo_silenced: Annuler la limitation
       undo_suspension: Annuler la suspension
-      unsilenced_msg: Le compte de %{username} a été illimité avec succès
+      unsilenced_msg: La limitation du compte de %{username} a été annulée avec succès
       unsubscribe: Se désabonner
       unsuspended_msg: Le compte de %{username} a été réactivé avec succès
       username: Nom d’utilisateur·ice
@@ -270,12 +270,12 @@ fr:
         reset_password_user: Réinitialiser le mot de passe
         resolve_report: Résoudre le signalement
         sensitive_account: Marquer les médias de votre compte comme sensibles
-        silence_account: Masque le compte
+        silence_account: Limiter le compte
         suspend_account: Suspendre le compte
         unassigned_report: Ne plus assigner le signalement
         unblock_email_account: Débloquer l'adresse courriel
         unsensitive_account: Ne pas marquer les médias de votre compte comme sensibles
-        unsilence_account: Ne plus masquer le compte
+        unsilence_account: Annuler la limitation du compte
         unsuspend_account: Annuler la suspension du compte
         update_announcement: Modifier l’annonce
         update_custom_emoji: Mettre à jour les émojis personnalisés
@@ -321,12 +321,12 @@ fr:
         reset_password_user_html: "%{name} a réinitialisé le mot de passe de l'utilisateur·rice %{target}"
         resolve_report_html: "%{name} a résolu le signalement %{target}"
         sensitive_account_html: "%{name} a marqué le média de %{target} comme sensible"
-        silence_account_html: "%{name} a masqué le compte de %{target}"
+        silence_account_html: "%{name} a limité le compte de %{target}"
         suspend_account_html: "%{name} a suspendu le compte de %{target}"
         unassigned_report_html: "%{name} a désassigné le signalement %{target}"
         unblock_email_account_html: "%{name} a débloqué l'adresse courriel de %{target}"
         unsensitive_account_html: "%{name} a enlevé le marquage comme sensible du média de %{target}"
-        unsilence_account_html: "%{name} a enlevé le masquage du compte de %{target}"
+        unsilence_account_html: "%{name} a annulé la limitation du compte de %{target}"
         unsuspend_account_html: "%{name} a réactivé le compte de %{target}"
         update_announcement_html: "%{name} a mis à jour l'annonce %{target}"
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
@@ -428,7 +428,7 @@ fr:
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
       edit: Modifier le blocage de domaine
-      existing_domain_block_html: Vous avez déjà imposé des limites plus strictes à %{name}, vous devez d’abord le <a href="%{unblock_url}">débloquer</a>.
+      existing_domain_block_html: Vous avez déjà imposé des limites plus strictes à %{name}, vous devez d’abord le/la <a href="%{unblock_url}">débloquer</a>.
       new:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
@@ -439,7 +439,7 @@ fr:
           suspend: Suspendre
         title: Nouveau blocage de domaine
       obfuscate: Obfusquer le nom de domaine
-      obfuscate_hint: Obfusquer partiellement le nom de domaine dans la liste si la liste des limitations de domaine est activée
+      obfuscate_hint: Obfusquer partiellement le nom de domaine dans la liste si la publication de la liste des limitations de domaine est activée
       private_comment: Commentaire privé
       private_comment_hint: Commentaire sur cette limitation de domaine pour informer en interne les modérateurs.
       public_comment: Commentaire public
@@ -451,7 +451,7 @@ fr:
       rejecting_media: rejet des fichiers multimédia
       rejecting_reports: rejet des signalements
       severity:
-        silence: masqué
+        silence: limité
         suspend: suspendu
       show:
         affected_accounts:
@@ -459,7 +459,7 @@ fr:
           other: "%{count} comptes affectés dans la base de données"
           zero: Pas de compte affecté dans la base de données
         retroactive:
-          silence: Ne plus masquer les comptes existants affectés de ce domaine
+          silence: Ne plus limiter les comptes existants affectés de ce domaine
           suspend: Annuler la suspension des comptes existants affectés pour ce domaine
         title: Annuler le blocage du domaine %{domain}
         undo: Annuler
@@ -467,15 +467,22 @@ fr:
       view: Afficher les blocages de domaines
     email_domain_blocks:
       add_new: Ajouter
+      attempts_over_week:
+        one: "%{count} tentative au cours de la dernière semaine"
+        other: "%{count} tentatives au cours de la dernière semaine"
       created_msg: Le blocage de domaine de courriel est désormais activé
       delete: Supprimer
-      destroyed_msg: Le blocage de domaine de courriel a été désactivé
+      dns:
+        types:
+          mx: Enregistrement MX
       domain: Domaine
-      empty: Aucun domaine de courriel n’est actuellement sur liste noire.
-      from_html: de %{domain}
       new:
         create: Créer le blocage
+        resolve: Résoudre le domaine
         title: Nouveau blocage de domaine de courriel
+      no_email_domain_block_selected: Aucun blocage de domaine de courriel n'a été modifié car aucun n'a été sélectionné
+      resolved_dns_records_hint_html: Le nom de domaine est relié aux domaines MX suivants, qui ont la responsabilité ultime d'accepter les courriels. Bloquer un domaine MX empêchera les inscriptions à partir de toute adresse courriel utilisant le même domaine MX, même si le nom de domaine affiché est différent. <strong> Veillez à ne pas bloquer les fournisseurs de messagerie d'envergure.</strong>
+      resolved_through_html: Résolu par %{domain}
       title: Blocage de domaines de courriel
     follow_recommendations:
       description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un·e utilisateur·rice n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
@@ -610,6 +617,7 @@ fr:
         title: Remarques
       notes_description_html: Voir et laisser des notes aux autres modérateurs et à votre futur moi-même
       quick_actions_description_html: 'Faites une action rapide ou faites défiler vers le bas pour voir le contenu signalé :'
+      remote_user_placeholder: l'utilisateur·rice distant·e de %{instance}
       reopen: Ré-ouvrir le signalement
       report: 'Signalement #%{id}'
       reported_account: Compte signalé
@@ -697,7 +705,7 @@ fr:
         desc_html: Montrer un badge de responsable sur une page utilisateur·rice
         title: Montrer un badge de responsable
       site_description:
-        desc_html: Paragraphe introductif sur la page d’accueil. Décrivez ce qui rend spécifique ce serveur Mastodon et toute autre chose importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
+        desc_html: Paragraphe introductif sur l'API. Décrivez les particularités de ce serveur Mastodon et précisez toute autre chose qui vous semble importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du serveur
       site_description_extended:
         desc_html: L’endroit idéal pour afficher votre code de conduite, les règles, les guides et autres choses qui rendent votre serveur différent. Vous pouvez utiliser des balises HTML
@@ -740,7 +748,7 @@ fr:
     strikes:
       actions:
         delete_statuses: "%{name} a supprimé les messages de %{target}"
-        disable: "%{name} a bloqué le compte de %{target}"
+        disable: "%{name} a gelé le compte de %{target}"
         none: "%{name} a envoyé un avertissement à %{target}"
         sensitive: "%{name} a marqué le compte de %{target} comme sensible"
         silence: "%{name} a limité le compte de %{target}"
@@ -780,6 +788,15 @@ fr:
         rejected: Les liens de cet éditeur ne seront pas considérés tendance
         title: Éditeurs
       rejected: Rejeté
+      statuses:
+        allow: Autoriser le message
+        allow_account: Autoriser l'auteur·rice
+        disallow: Proscrire le message
+        disallow_account: Proscrire l'auteur·rice
+        shared_by:
+          one: Partagé ou ajouté aux favoris une fois
+          other: Partagé et ajouté aux favoris %{friendly_count} fois
+        title: Messages tendance
       tags:
         current_score: Score actuel %{score}
         dashboard:
@@ -813,7 +830,7 @@ fr:
     new_appeal:
       actions:
         delete_statuses: effacer les messages
-        disable: bloquer le compte
+        disable: geler le compte
         none: un avertissement
         sensitive: marquer le compte comme sensible
         silence: limiter le compte
@@ -828,16 +845,21 @@ fr:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
       subject: Nouveau signalement sur %{instance} (#%{id})
-    new_trending_links:
-      body: Les liens suivants sont tendance aujourd'hui, mais leurs éditeurs n'ont pas été révisés auparavant. Ils ne seront pas affichés publiquement à moins que vous ne les approuviez. De nouvelles notifications provenant des mêmes éditeurs ne seront pas générées.
-      no_approved_links: Il n'y a actuellement aucun lien tendance approuvé.
-      requirements: Le lien tendance le plus bas est actuellement "%{lowest_link_title}" avec un score de %{lowest_link_score}.
-      subject: Nouveaux liens tendance à examiner sur %{instance}
-    new_trending_tags:
-      body: 'Les hashtags suivants sont tendances aujourd''hui, mais ils n''ont pas été examinés précédemment. Ils ne seront pas affichés publiquement à moins que vous ne les approuviez :'
-      no_approved_tags: Il n'y a actuellement aucun hashtag tendance approuvé.
-      requirements: 'Le hashtag tendance le plus bas est actuellement #%{lowest_tag_name} avec un score de %{lowest_tag_score}.'
-      subject: Nouveaux hashtags tendance à réviser sur %{instance}
+    new_trends:
+      body: 'Les éléments suivants doivent être approuvés avant de pouvoir être affichés publiquement :'
+      new_trending_links:
+        no_approved_links: Il n'y a pas de lien tendance approuvé actuellement.
+        requirements: N'importe quel élément de la sélection pourrait surpasser le lien tendance approuvé n°%{rank}, qui est actuellement « %{lowest_link_title} » avec un résultat de %{lowest_link_score}.
+        title: Liens tendance
+      new_trending_statuses:
+        no_approved_statuses: Il n'y a pas de message tendance approuvé actuellement.
+        requirements: N'importe quel élément de la sélection pourrait surpasser le message tendance approuvé n°%{rank}, qui est actuellement « %{lowest_status_url} » avec un résultat de %{lowest_status_score}.
+        title: Messages tendance
+      new_trending_tags:
+        no_approved_tags: Il n'y a pas de hashtag tendance approuvé actuellement.
+        requirements: 'N''importe quel élément de la sélection pourrait surpasser le hashtag tendance approuvé n°%{rank}, qui est actuellement #%{lowest_tag_name} avec un résultat de %{lowest_tag_score}.'
+        title: Hashtags tendance
+      subject: Nouvelles tendances à examiner sur %{instance}
   aliases:
     add_new: Créer un alias
     created_msg: Un nouvel alias a été créé avec succès. Vous pouvez maintenant déménager depuis l'ancien compte.
@@ -993,7 +1015,7 @@ fr:
       title: "%{action} du %{date}"
       title_actions:
         delete_statuses: Suppression de message
-        disable: Suspension de compte
+        disable: Gel du compte
         none: Avertissement
         sensitive: Marquage d'un compte comme sensible
         silence: Limitation du compte
@@ -1030,7 +1052,7 @@ fr:
       request: Demandez vos archives
       size: Taille
     blocks: Vous bloquez
-    bookmarks: Signets
+    bookmarks: Marque-pages
     csv: CSV
     domain_blocks: Blocages de domaine
     lists: Listes
@@ -1090,7 +1112,7 @@ fr:
     success: Vos données ont été importées avec succès et seront traitées en temps et en heure
     types:
       blocking: Liste de comptes bloqués
-      bookmarks: Signets
+      bookmarks: Marque-pages
       domain_blocking: Liste des serveurs bloqués
       following: Liste d’utilisateur·rice·s suivi·e·s
       muting: Liste d’utilisateur·rice·s que vous masquez
@@ -1175,6 +1197,9 @@ fr:
     carry_mutes_over_text: Cet utilisateur que vous aviez masqué est parti de %{acct}.
     copy_account_note_text: 'Cet·te utilisateur·rice est parti·e de %{acct}, voici vos notes précédentes à son sujet :'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} s'est inscrit·e"
     digest:
       action: Voir toutes les notifications
       body: Voici un bref résumé des messages que vous avez raté depuis votre dernière visite le %{since}
@@ -1391,7 +1416,7 @@ fr:
     over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
       direct: Les messages qui ne sont visibles que pour les utilisateurs mentionnés ne peuvent pas être épinglés
-      limit: Vous avez déjà épinglé le nombre maximum de pouets
+      limit: Vous avez déjà épinglé le nombre maximum de messages
       ownership: Vous ne pouvez pas épingler un statut ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
     poll:

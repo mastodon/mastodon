@@ -387,6 +387,8 @@ zh-CN:
       media_storage: 媒体存储
       new_users: 新用户
       opened_reports: 被发起的举报
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> 个待处理举报"
       pending_reports_html:
         other: "<strong>%{count}</strong> 个待处理举报"
       pending_tags_html:
@@ -455,15 +457,21 @@ zh-CN:
       view: 查看域名屏蔽
     email_domain_blocks:
       add_new: 添加新条目
+      attempts_over_week:
+        other: 上周有 %{count} 次注册尝试
       created_msg: 成功屏蔽电子邮件域名
       delete: 删除
-      destroyed_msg: 电子邮件域名屏蔽删除成功
+      dns:
+        types:
+          mx: MX 记录
       domain: 域名
-      empty: 当前没有邮件域名被封禁。
-      from_html: 来自 %{domain}
       new:
         create: 添加域名
+        resolve: 解析域名
         title: 添加电子邮件域名屏蔽
+      no_email_domain_block_selected: 没有任何项目被选中，因此未能更改电子邮件域名屏蔽列表
+      resolved_dns_records_hint_html: 该域名解析的 MX 记录所指向的域名如下，这些域名被用于接收电子邮件。 即使电子邮件地址域名与 MX 域名不同，屏蔽一个 MX 域名意味着阻止任何使用相同 MX 域名的电子邮件地址注册本站账户。 <strong>请小心不要误屏蔽主要的电子邮件提供商。</strong>
+      resolved_through_html: 通过 %{domain} 解析
       title: 电子邮件域名屏蔽
     follow_recommendations:
       description_html: "<strong>“关注推荐”可帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账户。推荐会每日更新，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
@@ -596,6 +604,7 @@ zh-CN:
         title: 备注
       notes_description_html: 查看备注或向其他监察员留言
       quick_actions_description_html: 快捷选择操作或向下滚动以查看举报内容：
+      remote_user_placeholder: 来自 %{instance} 的远程实例用户
       reopen: 重开举报
       report: '举报 #%{id}'
       reported_account: 举报用户
@@ -766,6 +775,8 @@ zh-CN:
         rejected: 来自此发布者的链接不会进入流行列表
         title: 发布者
       rejected: 已拒绝
+      statuses:
+        title: 热门嘟文
       tags:
         current_score: 当前 %{score} 分
         dashboard:
@@ -814,16 +825,17 @@ zh-CN:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: 来自 %{instance} 的用户举报（#%{id}）
-    new_trending_links:
-      body: 以下为今日流行的链接，但它们的发布者尚未经过审核。在您批准前它们不会被公开显示。来自相同发布者的更多通知不会被生成。
-      no_approved_links: 当前没有经过批准的流行链接。
-      requirements: 已批准流行链接中最低的是 %{lowest_link_title} （%{lowest_link_score} 分）。
-      subject: "%{instance} 上待审核的新流行链接"
-    new_trending_tags:
-      body: 以下为今日流行的标签，但它们尚未经过审核。在您批准前它们不会被公开显示。
-      no_approved_tags: 当前没有经过批准的流行标签。
-      requirements: '已批准流行链接中最低的是 #%{lowest_tag_name} （%{lowest_tag_score} 分）。'
-      subject: "%{instance} 上待审核的新流行标签"
+    new_trends:
+      new_trending_links:
+        no_approved_links: 当前没有经过批准的热门链接。
+        title: 热门链接
+      new_trending_statuses:
+        no_approved_statuses: 当前没有经过批准的热门链接。
+        title: 热门嘟文
+      new_trending_tags:
+        no_approved_tags: 目前没有经批准的热门标签。
+        title: 热门标签
+      subject: "%{instance} 上的新趋势供审核"
   aliases:
     add_new: 创建别名
     created_msg: 成功创建了一个新别名。你现在可以从旧账户开始迁移了。
@@ -1160,6 +1172,9 @@ zh-CN:
     carry_mutes_over_text: 这个用户迁移自你隐藏过的 %{acct}
     copy_account_note_text: 这个用户迁移自 %{acct}，你曾为其添加备注：
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} 注册了"
     digest:
       action: 查看所有通知
       body: 以下是自%{since}你最后一次登录以来错过的消息的摘要

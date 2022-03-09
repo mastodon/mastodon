@@ -4,6 +4,10 @@
 - content_for :header_tags do
   = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
+%p= t('admin.trends.tags.description_html')
+
+%hr.spacer/
+
 .filters
   .filter-subset
     %strong= t('admin.tags.review')

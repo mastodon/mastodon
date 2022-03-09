@@ -165,7 +165,7 @@ Rails.application.routes.draw do
   end
 
   namespace :disputes do
-    resources :strikes, only: [:show] do
+    resources :strikes, only: [:show, :index] do
       resource :appeal, only: [:create]
     end
   end
@@ -493,6 +493,7 @@ Rails.application.routes.draw do
         resource :search, only: :show, controller: :search
         resource :lookup, only: :show, controller: :lookup
         resources :relationships, only: :index
+        resources :familiar_followers, only: :index
       end
 
       resources :accounts, only: [:create, :show] do

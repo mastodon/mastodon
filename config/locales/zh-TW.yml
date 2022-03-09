@@ -457,15 +457,21 @@ zh-TW:
       view: 顯示阻擋的網域
     email_domain_blocks:
       add_new: 加入新項目
+      attempts_over_week:
+        other: 上週共有 %{count} 次註冊嘗試
       created_msg: 已成功將電子信箱網域加入黑名單
       delete: 刪除
-      destroyed_msg: 已成功從黑名單刪除電子信箱網域
+      dns:
+        types:
+          mx: MX 記錄
       domain: 站點
-      empty: 現在沒有阻擋任何 e-mail 網域。
-      from_html: 由 %{domain}
       new:
         create: 新增站點
+        resolve: 解析網域
         title: 新增電子信箱黑名單項目
+      no_email_domain_block_selected: 因未選取項目，而未更改電子信箱網域封鎖清單
+      resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
+      resolved_through_html: 透過 %{domain} 解析
       title: 電子信箱黑名單
     follow_recommendations:
       description_html: |-
@@ -600,6 +606,7 @@ zh-TW:
         title: 註記
       notes_description_html: 檢視及留下些給其他管理員和未來的自己的註記
       quick_actions_description_html: 採取一個快速行動，或者下捲以檢視檢舉內容：
+      remote_user_placeholder: 來自 %{instance} 之遠端使用者
       reopen: 重開檢舉
       report: '檢舉 #%{id}'
       reported_account: 被檢舉使用者
@@ -770,6 +777,14 @@ zh-TW:
         rejected: 此發行者之連結不會登上熱門
         title: 發行者
       rejected: 被拒絕
+      statuses:
+        allow: 允許嘟文
+        allow_account: 允許作者
+        disallow: 不允許嘟文
+        disallow_account: 不允許作者
+        shared_by:
+          other: 分享過或／及收藏過 %{friendly_count} 次
+        title: 熱門嘟文
       tags:
         current_score: 目前分數 %{score} 分
         dashboard:
@@ -818,16 +833,21 @@ zh-TW:
       body: "%{reporter} 檢舉了使用者 %{target}"
       body_remote: 來自 %{domain} 的使用者檢舉了使用者 %{target}
       subject: 來自 %{instance} 的使用者檢舉（#%{id}）
-    new_trending_links:
-      body: 以下連結於今日登上熱門榜，然而他們的發行者之前仍未被審核過。除非您核准，這些連結將不會被公開顯示。來自這些發行者的通知往後將不會被產生。
-      no_approved_links: 這些是目前仍未被審核之熱門連結。
-      requirements: 已核准熱門連結中最低分者目前是「%{lowest_link_title}」為 %{lowest_link_score} 分。
-      subject: 於 %{instance} 待審核的新熱門連結
-    new_trending_tags:
-      body: 以下主題標籤於今日登上熱門榜，然而他們之前仍未被審核過。除非您核准，這些連結將不會被公開顯示：
-      no_approved_tags: 這些是目前仍未被審核之熱門主題標籤。
-      requirements: 已核准熱門標籤中最低分者目前是「#%{lowest_tag_name}」為 %{lowest_tag_score} 分。
-      subject: 於 %{instance} 待審核的新熱門主題標籤
+    new_trends:
+      body: 以下項目需要經過審核才能公開顯示：
+      new_trending_links:
+        no_approved_links: 這些是目前仍未被審核之熱門連結。
+        requirements: '這些候選中的任何一個都可能超過 #%{rank} 已批准的熱門連結，該連結目前是「%{lowest_link_title}」，得分為 %{lowest_link_score}。'
+        title: 熱門連結
+      new_trending_statuses:
+        no_approved_statuses: 這些是目前仍未被審核之熱門嘟文。
+        requirements: '這些候選中的任何一個都可能超過 #%{rank} 已批准的熱門嘟文，該嘟文目前是 %{lowest_status_url}，得分為 %{lowest_status_score}。'
+        title: 熱門嘟文
+      new_trending_tags:
+        no_approved_tags: 這些是目前仍未被審核之熱門主題標籤。
+        requirements: '這些候選中的任何一個都可能超過 #%{rank} 已批准的熱門主題標籤，該主題標籤目前是 #%{lowest_tag_name}，得分為 %{lowest_tag_score}。'
+        title: 熱門主題標籤
+      subject: "%{instance} 有待審核之新熱門"
   aliases:
     add_new: 建立別名
     created_msg: 成功建立別名。您可以自舊帳戶開始轉移。
@@ -1164,6 +1184,9 @@ zh-TW:
     carry_mutes_over_text: 此使用者轉移自被您靜音的 %{acct}。
     copy_account_note_text: 此使用者轉移自 %{acct}，以下是您之前關於他們的備註：
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} 已進行註冊"
     digest:
       action: 閱覽所有通知
       body: 以下是自%{since}你最後一次登入以來錯過的訊息摘要

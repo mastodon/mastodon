@@ -467,15 +467,22 @@ gl:
       view: Ollar dominios bloqueados
     email_domain_blocks:
       add_new: Engadir novo
+      attempts_over_week:
+        one: "%{count} intento na última semana"
+        other: "%{count} intentos de conexión na última semana"
       created_msg: Engadiuse de xeito correcto o dominio de email á listaxe negra
       delete: Eliminar
-      destroyed_msg: Eliminouse de xeito correcto o dominio de email da listaxe negra
+      dns:
+        types:
+          mx: Rexistro MX
       domain: Dominio
-      empty: Actualmente non hai dominios de email na listaxe negra.
-      from_html: desde %{domain}
       new:
         create: Engadir dominio
+        resolve: Resolver dominio
         title: Nova entrada na listaxe negra de email
+      no_email_domain_block_selected: Non se cambiou ningún bloqueo de dominio de email porque non se seleccionou ningún
+      resolved_dns_records_hint_html: O nome de dominio resolve os seguintes rexistros MX, que son os últimos responsables da aceptación de emails. Bloqueando un dominio MX rexeitarás calquera enderezo de email que use este dominio MX, incluso se o nome de dominio visible é outro. <strong>Ten coidado de non bloquear os principais provedores.</strong>
+      resolved_through_html: Resolto a través de %{domain}
       title: Listaxe negra de email
     follow_recommendations:
       description_html: "<strong>As recomendacións de seguimento son útiles para que as novas usuarias atopen contidos interesantes</strong>. Cando unha usuaria aínda non interactuou con outras para obter recomendacións de seguimento, estas contas serán recomendadas. Variarán a diario xa que se escollen en base ao maior número de interaccións e ao contador local de seguimentos para un idioma dado."
@@ -610,6 +617,7 @@ gl:
         title: Notas
       notes_description_html: Ver e deixar unha nota para ti no futuro e outras moderadoras
       quick_actions_description_html: 'Tomar unha acción rápida ou desprázate abaixo para ver o contido denunciado:'
+      remote_user_placeholder: a usuaria remota desde %{instance}
       reopen: Reabrir denuncia
       report: 'Denuncia #%{id}'
       reported_account: Conta denunciada
@@ -780,6 +788,15 @@ gl:
         rejected: As ligazóns desta orixe non poden estar en voga
         title: Orixes
       rejected: Rexeitado
+      statuses:
+        allow: Permitir publicación
+        allow_account: Permitir autora
+        disallow: Rexeitar publicación
+        disallow_account: Rexeitar autora
+        shared_by:
+          one: Compartida ou favorecida unha vez
+          other: Compartida ou favorecida %{friendly_count} veces
+        title: Publicacións en voga
       tags:
         current_score: Puntuación actual %{score}
         dashboard:
@@ -828,16 +845,21 @@ gl:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
       subject: Novo informe sobre %{instance} (#%{id})
-    new_trending_links:
-      body: As seguintes ligazóns están hoxe en voga, pero as súas orixes non foron anteriormente revisadas. Non se van amosar públicamente ata que as aprobes. Non se crearán novas notificacións acerca destas orixes.
-      no_approved_links: Actualmente non hai ligazóns en voga aprobadas.
-      requirements: A ligazón en voga aprobada con menor rango é "%{lowest_link_title}" cunha puntuación de %{lowest_link_score}.
-      subject: Novas ligazóns en voga para revisión en %{instance}
-    new_trending_tags:
-      body: 'Os seguintes cancelos son tendencia hoxe, pero non foron previamente revisados. Non aparecerán públicamente a menos que os aprobes:'
-      no_approved_tags: Non hai cancelos en voga aprobados.
-      requirements: 'O cancelo aprobado con menor rango é #%{lowest_tag_name} cunha puntuación de %{lowest_tag_score}.'
-      subject: Hai novos cancelos pendentes de revisión en %{instance}
+    new_trends:
+      body: 'Os seguintes elementos precisan revisión antes de ser mostrados públicamente:'
+      new_trending_links:
+        no_approved_links: Actualmente non hai ligazóns en voga aprobadas.
+        requirements: 'Calquera destos candidatos podería superar o #%{rank} das ligazóns en voga aprobadas, que actualmente é "%{lowest_link_title}" cunha puntuación de %{lowest_link_score}.'
+        title: Ligazóns en voga
+      new_trending_statuses:
+        no_approved_statuses: Actualmente non hai publicacións en voga aprobadas.
+        requirements: 'Calquera destos candidatos podería superar o #%{rank} nas publicacións en boga aprobadas, que actualmente é %{lowest_status_url} cunha puntuación de %{lowest_status_score}.'
+        title: Publicacións en voga
+      new_trending_tags:
+        no_approved_tags: Non hai etiquetas en voga aprobadas.
+        requirements: 'Calquera destos candidatos podería superar o #%{rank} dos cancelos en voga aprobados, que actualmente é #%{lowest_tag_name} cunha puntuación de %{lowest_tag_score}.'
+        title: Cancelos en voga
+      subject: Novas tendencias para revisar en %{instance}
   aliases:
     add_new: Crear alcume
     created_msg: Creou un novo alcume correctamente. Pode iniciar o movemento desde a conta antiga.
@@ -1176,6 +1198,9 @@ gl:
     carry_mutes_over_text: Esta usuaria chegou desde %{acct}, que ti tes acalada.
     copy_account_note_text: 'Esta usuaria chegou desde %{acct}, aquí están as túas notas previas acerca dela:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} rexistrouse"
     digest:
       action: Ver todas as notificacións
       body: Aquí ten un breve resumo das mensaxes publicadas desde a súa última visita en %{since}

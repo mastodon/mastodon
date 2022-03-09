@@ -255,6 +255,7 @@ pt-BR:
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
+        reject_appeal: Rejeitar recurso
         reject_user: Rejeitar Usuário
         remove_avatar_user: Remover Avatar
         reopen_report: Reabrir Relatório
@@ -273,6 +274,7 @@ pt-BR:
         update_domain_block: Atualizar bloqueio de domínio
         update_status: Editar Status
       actions:
+        approve_appeal_html: "%{name} aprovou o recurso de decisão de moderação de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} para si"
         change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do usuário %{target}"
@@ -388,6 +390,9 @@ pt-BR:
       top_languages: Línguas mais ativas
       top_servers: Servidores mais ativos
       website: Site
+    disputes:
+      appeals:
+        title: Apelações
     domain_allows:
       add_new: Permitir domínio
       created_msg: Domínio foi permitido
@@ -425,6 +430,8 @@ pt-BR:
         silence: silenciado
         suspend: banido
       show:
+        affected_accounts:
+          one: Uma conta no banco de dados foi afetada
         retroactive:
           silence: Dessilenciar contas existentes afetadas deste domínio
           suspend: Remover a suspensão das contas afetadas deste domínio
@@ -436,12 +443,10 @@ pt-BR:
       add_new: Adicionar novo
       created_msg: Domínio de e-mail adicionado à lista negra com sucesso
       delete: Excluir
-      destroyed_msg: Domínio de e-mail excluído da lista negra com sucesso
       domain: Domínio
-      empty: Nenhum domínio de e-mail atualmente bloqueado.
-      from_html: de %{domain}
       new:
         create: Adicionar domínio
+        resolve: Resolver domínio
         title: Nova entrada de lista negra de e-mail
       title: Lista de negra de e-mail
     follow_recommendations:
@@ -715,6 +720,8 @@ pt-BR:
         rejected: Links deste editor não vão tender
         title: Editor
       rejected: Rejeitado
+      statuses:
+        title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
         dashboard:
@@ -746,10 +753,6 @@ pt-BR:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
-    new_trending_links:
-      no_approved_links: Atualmente, não há links de tendência aprovados.
-    new_trending_tags:
-      body: 'As seguintes hashtags estão em alta hoje, mas não foram avaliadas anteriormente. Elas não serão exibidas publicamente, a menos que você as aprove:'
   aliases:
     add_new: Criar alias
     created_msg: Um novo alias foi criado com sucesso. Agora você pode iniciar a mudança da conta antiga.
