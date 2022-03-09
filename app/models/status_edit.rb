@@ -25,7 +25,12 @@ class StatusEdit < ApplicationRecord
 
   class PreservedMediaAttachment < ActiveModelSerializers::Model
     attributes :media_attachment, :description
-    delegate :id, :type, :url, :preview_url, :remote_url, :preview_remote_url, :text_url, :meta, :blurhash, to: :media_attachment
+
+    delegate :id, :type, :url, :preview_url, :remote_url,
+             :preview_remote_url, :text_url, :meta, :blurhash,
+             :not_processed?, :needs_redownload?, :local?,
+             :file, :thumbnail, :thumbnail_remote_url,
+             :shortcode, to: :media_attachment
   end
 
   rate_limit by: :account, family: :statuses
