@@ -449,21 +449,6 @@ hu:
       reject_media_hint: Eltávolítja a helyben tárolt médiafájlokat és a továbbiakban letiltja az új médiafájlok letöltését. Felfüggesztett fiókok esetében irreleváns opció
       reject_reports: Bejelentések elutasítása
       reject_reports_hint: Erről a domainről származó minden bejelentés elutasítása. Felfüggesztett fiókok esetén irreleváns opció
-      rejecting_media: médiafájlok elutasítása
-      rejecting_reports: bejelentések elutasítása
-      severity:
-        silence: némítva
-        suspend: felfüggesztve
-      show:
-        affected_accounts:
-          one: Egy fiókot érintett az adatbázisban
-          other: "%{count} fiókot érintett az adatbázisban"
-          zero: Nem érintett fiókot az adatbázisban
-        retroactive:
-          silence: Minden felhasználó némításának feloldása ezen a domainen
-          suspend: Minden felhasználó felfüggesztésének feloldása ezen a domainen
-        title: '%{domain} domain tiltásának feloldása'
-        undo: Visszavonás
       undo: Domain tiltásának visszavonása
       view: Domain tiltásának megtekintése
     email_domain_blocks:
@@ -504,13 +489,7 @@ hu:
         clear: Kézbesítési hibák törlése
         restart: Kézbesítés újraindítása
         stop: Kézbesítés leállítása
-        title: Kézbesítés
         unavailable: Nem elérhető
-        unavailable_message: Kézbesítés nem elérhető
-        warning: Figyelmeztetés
-        warning_message:
-          one: Kézbesítés sikertelen %{count} napja
-          other: Kézbesítés sikertelen %{count} napja
       delivery_available: Kézbesítés elérhető
       delivery_error_days: Kézbesítési hiba időtartama
       delivery_error_hint: Ha a kézbesítés lehetetlen %{count} napig, automatikusan kézbesíthetetlennek lesz megjelölve.
