@@ -480,6 +480,14 @@ is:
       unsuppress: Endurheimta að fylgja meðmælum
     instances:
       availability:
+        description_html:
+          one: Ef afhending til lénsins mistekst í <strong>%{count} dag</strong>, verður ekki reynt aftur að afhenda til lénsins nema ef afhending <em>frá</em> léninu berst.
+          other: Ef afhending til lénsins mistekst í <strong>%{count} daga</strong>, verður ekki reynt aftur að afhenda til lénsins nema ef afhending <em>frá</em> léninu berst.
+        failure_threshold_reached: Hámarki misheppnaðra tilrauna náð þann %{date}.
+        failures_recorded:
+          one: Misheppnaðar tilraunir á %{count} degi.
+          other: Misheppnaðar tilraunir á %{count} mismunandi dögum.
+        no_failures_recorded: Engar misheppnaðar tilraunir á skrá.
         title: Tiltækileiki
       back_to_all: Allt
       back_to_limited: Takmarkað
@@ -488,6 +496,7 @@ is:
       confirm_purge: Ertu viss um að þú viljir eyða gögnum endanlega frá þessu léni?
       content_policies:
         comment: Innri minnispunktur
+        description_html: Þú getur skilgreint stefnu varðandi efni sem verður beitt á alla aðganga frá þessu léni og öllum undirlénum þess.
         policies:
           reject_media: Hafna myndefni
           reject_reports: Hafna kærum
