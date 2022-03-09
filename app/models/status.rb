@@ -303,8 +303,6 @@ class Status < ApplicationRecord
   after_create_commit :store_uri, if: :local?
   after_create_commit :update_statistics, if: :local?
 
-  after_create_commit :check_reblog, if: :reblog?
-
   around_create Mastodon::Snowflake::Callbacks
 
   before_validation :prepare_contents, if: :local?
@@ -378,6 +376,63 @@ class Status < ApplicationRecord
 
   def status_stat
     super || build_status_stat
+  end
+
+  # Hack to use a "INSERT INTO ... SELECT ..." query instead of "INSERT INTO ... VALUES ..." query
+  def self._insert_record(values)
+    if values.is_a?(Hash) && values['reblog_of_id'].present?
+      primary_key = self.primary_key
+      primary_key_value = nil
+
+      if primary_key
+        primary_key_value = values[primary_key]
+
+        if !primary_key_value && prefetch_primary_key?
+          primary_key_value = next_sequence_value
+          values[primary_key] = primary_key_value
+        end
+      end
+
+      # The following line is where we differ from stock ActiveRecord implementation
+      im = _compile_reblog_insert(values)
+
+      # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
+      # For our purposes, it's equivalent to a foreign key constraint violation
+      result = connection.insert(im, "#{self} Create", primary_key || false, primary_key_value)
+      raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id']}) is not present in table \"statuses\"" if result.nil?
+
+      result
+    else
+      super
+    end
+  end
+
+  def self._compile_reblog_insert(values)
+    # This is somewhat equivalent to the following code of ActiveRecord::Persistence:
+    # `arel_table.compile_insert(_substitute_values(values))`
+    # The main difference is that we use a `SELECT` instead of a `VALUES` clause,
+    # which means we have to build the `SELECT` clause ourselves and do a bit more
+    # manual work.
+
+    # Instead of using Arel::InsertManager#values, we are going to use Arel::InsertManager#select
+    im = Arel::InsertManager.new
+    im.into(arel_table)
+
+    binds = []
+    reblog_bind = nil
+    values.each do |name, value|
+      attr = arel_table[name]
+      bind = predicate_builder.build_bind_attribute(attr.name, value)
+
+      im.columns << attr
+      binds << bind
+
+      reblog_bind = bind if name == 'reblog_of_id'
+    end
+
+    im.select(arel_table.where(arel_table[:id].eq(reblog_bind)).where(arel_table[:deleted_at].eq(nil)).project(*binds))
+
+    im
   end
 
   private
@@ -467,9 +522,5 @@ class Status < ApplicationRecord
     inbox_owners.each do |inbox_owner|
       AccountConversation.remove_status(inbox_owner, self)
     end
-  end
-
-  def check_reblog
-    discard unless Status.where(id: reblog_of_id, deleted_at: nil).exists?
   end
 end
