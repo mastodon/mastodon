@@ -479,11 +479,23 @@ tr:
       title: Takip önerileri
       unsuppress: Takip önerisini geri getir
     instances:
+      availability:
+        description_html:
+          one: Eğer alan adına teslimat <strong>%{count} gün</strong> boyunca başarısız olursa, alan adından bir teslimat <em>gelmedikçe</em> yeni bir iletim denemesi yapılmayacak.
+          other: Eğer alan adına teslimat <strong>%{count} farklı gün</strong> boyunca başarısız olursa, alan adından bir teslimat <em>gelmedikçe</em> yeni bir iletim denemesi yapılmayacak.
+        failure_threshold_reached: Başarısızlık eşiğine %{date} tarihinde ulaşıldı.
+        failures_recorded:
+          one: '%{count} gün başarısız girişim.'
+          other: '%{count} farklı gün başarısız girişim.'
+        no_failures_recorded: Kayıtlı başarısızlık yok.
+        title: Ulaşılabilirlik
       back_to_all: Tümü
       back_to_limited: Sınırlı
       back_to_warning: Uyarı
       by_domain: Alan adı
       confirm_purge: Bu alan adından verileri kalıcı olarak silmek istediğinizden emin misin?
+      content_policies:
+        comment: İç not
       delivery:
         all: Tümü
         clear: Teslimat hatalarını temizle
