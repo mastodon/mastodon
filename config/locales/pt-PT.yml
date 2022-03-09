@@ -484,6 +484,9 @@ pt-PT:
           one: Se a transmissão ao domínio falhar <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de transmissão será feita a menos que uma transmissão <em>proveniente</em> do domínio seja recebida.
           other: Se a transmissão ao domínio falhar em <strong>%{count} dias diferentes</strong> sem sucesso, nenhuma tentativa de transmissão será feita a menos que uma transmissão <em>proveniente</em> do domínio seja recebida.
         failure_threshold_reached: Limite de falhas atingido em %{date}.
+        failures_recorded:
+          one: Tentativa falhada em %{count} dia.
+          other: Tentativas em %{count} dias diferentes.
         no_failures_recorded: Sem falhas registadas.
         title: Disponibilidade
       back_to_all: Todas
@@ -533,12 +536,14 @@ pt-PT:
       private_comment: Comentários privados
       public_comment: Comentários públicos
       purge: Purgar
+      purge_description_html: Se acredita que este domínio está definitivamente offline, pode excluir todos os registos de contas e dados associados a ele do seu armazenamento. Isso pode demorar algum tempo.
       title: Instâncias conhecidas
       total_blocked_by_us: Bloqueadas por nós
       total_followed_by_them: Seguidas por eles
       total_followed_by_us: Seguidas por nós
       total_reported: Denúncias sobre eles
       total_storage: Anexos de media
+      totals_time_period_hint_html: Os totais exibidos abaixo incluem dados referentes ao tempo total.
     invites:
       deactivate_all: Desativar todos
       filter:
