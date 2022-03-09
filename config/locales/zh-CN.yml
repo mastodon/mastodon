@@ -438,21 +438,6 @@ zh-CN:
       reject_media_hint: 删除本站已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
       reject_reports: 拒绝接收举报
       reject_reports_hint: 忽略来自此域名的所有举报。这和封禁无关。
-      rejecting_media: 拒绝接收媒体文件
-      rejecting_reports: 拒绝接收举报
-      severity:
-        silence: 已隐藏
-        suspend: 已封禁
-      show:
-        affected_accounts:
-          one: 数据库中的 1 个帐户受到影响
-          other: "数据库中的 %{count} 个帐户受到影响"
-          zero: 数据库中没有帐户受到影响
-        retroactive:
-          silence: 对此域名的所有帐户解除隐藏
-          suspend: 对此域名的所有帐户解除封禁
-        title: 撤销对 %{domain} 的域名屏蔽
-        undo: 撤销
       undo: 撤销屏蔽域名
       view: 查看域名屏蔽
     email_domain_blocks:
@@ -492,12 +477,7 @@ zh-CN:
         clear: 清理投递错误
         restart: 重新投递
         stop: 停止投递
-        title: 投递
         unavailable: 不可用
-        unavailable_message: 投递不可用
-        warning: 警告
-        warning_message:
-          other: 投递已失败 %{count} 天
       delivery_available: 可投递
       delivery_error_days: 投递错误天数
       delivery_error_hint: 如果投递已不可用 %{count} 天，它将被自动标记为无法投递。
