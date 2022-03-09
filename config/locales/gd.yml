@@ -465,21 +465,6 @@ gd:
       reject_media_hint: Bheir seo air falbh na faidhlichean meadhain a chaidh a stòradh agus diùltaidh e luchdadh a-nuas sam bith dhiubh san àm ri teachd. Chan eil buaidh aig seo fo chur à rèim
       reject_reports: Diùlt gearanan
       reject_reports_hint: Leig seachad gearan sam bith a thig a-steach on àrainn seo. Chan eil buaidh aig seo fo chur à rèim
-      rejecting_media: a’ diùltadh faidhlichean meadhain
-      rejecting_reports: a’ diùltadh gearanan
-      severity:
-        silence: cuingichte
-        suspend: à rèim
-      show:
-        affected_accounts:
-          one: Bheir seo buaidh air aon chunntas san stòr-dàta
-          other: "Bheir seo buaidh air %{count} cunntas san stòr-dàta"
-          zero: Cha doir seo buaidh air cunntas sa bith san stòr-dàta
-        retroactive:
-          silence: Dì-chuingich na cunntasan a tha ann on àrainn seo ’s air a bheil buaidh
-          suspend: Cuir na cunntasan a tha ann on àrainn seo ’s air a bheil buaidh ann an rèim a-rithist
-        title: Neo-dhèan bacadh na h-àrainne %{domain}
-        undo: Neo-dhèan
       undo: Neo-dhèan bacadh na h-àrainne
       view: Seall bacadh na h-àrainne
     email_domain_blocks:
@@ -521,15 +506,7 @@ gd:
         clear: Falamhaich na mearachdan lìbhrigidh
         restart: Ath-thòisich air an lìbhrigeadh
         stop: Cuir stad air an lìbhrigeadh
-        title: Lìbhrigeadh
         unavailable: Chan eil e ri làimh
-        unavailable_message: Chan eil lìbhrigeadh ri fhaighinn
-        warning: Rabhadh
-        warning_message:
-          one: Dh’fhàillig leis an lìbhrigeadh fad %{count} latha
-          two: Dh’fhàillig leis an lìbhrigeadh fad %{count} latha
-          few: Dh’fhàillig leis an lìbhrigeadh fad %{count} làithean
-          other: Dh’fhàillig leis an lìbhrigeadh fad %{count} latha
       delivery_available: Tha lìbhrigeadh ri fhaighinn
       delivery_error_days: Làithean le mearachd lìbhrigidh
       delivery_error_hint: Mura gabh a lìbhrigeadh fad %{count} là(ithean), thèid comharra a chur ris gu fèin-obrachail a dh’innseas nach gabh a lìbhrigeadh.
