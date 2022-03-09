@@ -322,6 +322,8 @@ sl:
       status: Stanje
     instances:
       availability:
+        failure_threshold_reached: Prag neuspelih poskusov dosežen %{date}.
+        no_failures_recorded: Ni zabeleženih neuspelih poskusov.
         title: Razpoložljivost
       back_to_all: Vse
       back_to_limited: Omejeno
@@ -329,6 +331,7 @@ sl:
       by_domain: Domena
       content_policies:
         comment: Interna opomba
+        description_html: Določite lahko pravila (t.i. politike), ki bodo veljale za vse račune te domene ter vseh njenih poddomen.
         policies:
           reject_media: Zavrni večpredstavnost
           reject_reports: Zarvni poročila
@@ -358,12 +361,14 @@ sl:
         title: Moderiranje
       private_comment: Zasebni komentar
       public_comment: Javni komentar
+      purge_description_html: Če menite, da je ta domena trajno nedosegljiva, lahko v svoji shrambi izbrišete vse zapise računov in povezane podatke iz te domene. To lahko vzame nekaj časa.
       title: Federacija
       total_blocked_by_us: Blokirano iz naše strani
       total_followed_by_them: Oni ti sledijo
       total_followed_by_us: Mi ti sledimo
       total_reported: Poročila o njih
       total_storage: Predstavnostne priloge
+      totals_time_period_hint_html: Spodaj prikazani seštevki vključujejo podatke za celotno obdobje.
     invites:
       deactivate_all: Onemogoči vse
       filter:
