@@ -469,22 +469,31 @@ ko:
       title: 팔로우 추천
       unsuppress: 팔로우 추천 복원
     instances:
+      availability:
+        no_failures_recorded: 실패 기록이 없습니다.
+        title: 가용성
       back_to_all: 전체
       back_to_limited: 제한됨
       back_to_warning: 경고
       by_domain: 도메인
       confirm_purge: 정말로 이 도메인의 데이터를 영구적으로 삭제하길 원하십니까?
       content_policies:
+        comment: 내부 참고 사항
+        description_html: 이 도메인과 하위 도메인의 모든 계정에 적용될 콘텐츠 정책을 정의할 수 있습니다.
         policies:
           reject_media: 미디어 거부
           reject_reports: 신고 거부
           silence: 제한
           suspend: 정지
         policy: 정책
+        reason: 공개 사유
         title: 콘텐츠 정책
       dashboard:
         instance_accounts_dimension: 제일 많이 팔로우된 계정
+        instance_accounts_measure: 보관된 계정
         instance_languages_dimension: 상위 언어
+        instance_media_attachments_measure: 보관된 미디어 첨부파일
+        instance_statuses_measure: 보관된 게시물
       delivery:
         all: 전체
         clear: 전달 에러 초기화
@@ -507,12 +516,14 @@ ko:
       private_comment: 비공개 주석
       public_comment: 공개 주석
       purge: 제거
+      purge_description_html: 이 도메인이 영구적으로 오프라인 상태라고 생각되면 스토리지에서 이 도메인의 모든 계정 레코드와 관련 데이터를 삭제할 수 있습니다. 이 작업은 시간이 좀 걸릴 수 있습니다.
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
       total_followed_by_them: 우리를 팔로우
       total_followed_by_us: 우리가 한 팔로우
       total_reported: 이들에 대한 신고
       total_storage: 미디어 첨부
+      totals_time_period_hint_html: 아래에 표시된 총계에는 모든 시간에 대한 데이터가 포함됩니다.
     invites:
       deactivate_all: 전부 비활성화
       filter:
@@ -571,6 +582,7 @@ ko:
         resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
         silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
         suspend_description_html: 프로필과 모든 컨텐츠가 최종적으로 삭제될 때까지 접근 불가상태가 됩니다. 이 계정과의 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다.
+      actions_description_html: 이 보고서를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면 <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 이메일 알림이 해당 계정으로 전송됩니다.
       add_to_report: 신고에 더 추가하기
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
@@ -586,6 +598,7 @@ ko:
       forwarded: 전달됨
       forwarded_to: '%{domain}에게 전달됨'
       mark_as_resolved: 해결 완료 처리
+      mark_as_sensitive: 민감함으로 설정
       mark_as_unresolved: 미해결로 표시
       no_one_assigned: 아무도 없음
       notes:
@@ -596,6 +609,7 @@ ko:
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
         title: 노트
       notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
+      quick_actions_description_html: '보고된 콘텐츠를 보려면 빠른 조치를 취하거나 아래로 스크롤하세요:'
       remote_user_placeholder: '%{instance}의 리모트 사용자'
       reopen: 리포트 다시 열기
       report: '신고 #%{id}'
@@ -603,6 +617,7 @@ ko:
       reported_by: 신고자
       resolved: 해결됨
       resolved_msg: 리포트가 성공적으로 해결되었습니다!
+      skip_to_actions: 작업으로 건너뛰기
       status: 상태
       statuses: 신고된 컨텐츠
       statuses_description_html: 문제가 되는 컨텐츠는 신고된 계정에게 인용되어 전달됩니다
@@ -1538,6 +1553,7 @@ ko:
   user_mailer:
     appeal_approved:
       action: 내 계정으로 가기
+      title: 소명이 받아들여짐
     appeal_rejected:
       title: 이의제기가 거절되었습니다
     backup_ready:
