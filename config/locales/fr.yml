@@ -479,12 +479,15 @@ fr:
       title: Recommandations d'abonnement
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
+      availability:
+        title: Disponibilité
       back_to_all: Tout
       back_to_limited: Limité
       back_to_warning: Avertissement
       by_domain: Domaine
       confirm_purge: Êtes-vous sûr de vouloir supprimer définitivement les données de ce domaine ?
       content_policies:
+        comment: Note interne
         description_html: Vous pouvez définir des politiques de contenu qui seront appliquées à tous les comptes de ce domaine et à tous ses sous-domaines.
         policies:
           reject_media: Rejeter les médias
@@ -492,6 +495,17 @@ fr:
           silence: Limiter
           suspend: Suspendre
         policy: Règlement
+        reason: Raison publique
+        title: Politiques de contenu
+      dashboard:
+        instance_accounts_dimension: Comptes les plus suivis
+        instance_accounts_measure: comptes stockés
+        instance_followers_measure: nos abonné⋅e⋅s là-bas
+        instance_follows_measure: leurs abonné⋅e⋅s ici
+        instance_languages_dimension: Langues les plus utilisées
+        instance_media_attachments_measure: fichiers médias stockés
+        instance_reports_measure: signalements mentionnant l'instance
+        instance_statuses_measure: messages stockés
       delivery:
         all: Tout
         clear: Effacer les erreurs de livraison
