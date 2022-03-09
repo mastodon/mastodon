@@ -479,11 +479,32 @@ is:
       title: Fylgja meðmælum
       unsuppress: Endurheimta að fylgja meðmælum
     instances:
+      availability:
+        title: Tiltækileiki
       back_to_all: Allt
       back_to_limited: Takmarkað
       back_to_warning: Aðvörun
       by_domain: Lén
       confirm_purge: Ertu viss um að þú viljir eyða gögnum endanlega frá þessu léni?
+      content_policies:
+        comment: Innri minnispunktur
+        policies:
+          reject_media: Hafna myndefni
+          reject_reports: Hafna kærum
+          silence: Takmörk
+          suspend: Setja í bið
+        policy: Stefna
+        reason: Opinber ástæða
+        title: Stefnur varðandi efni
+      dashboard:
+        instance_accounts_dimension: Aðgangar sem mest er fylgst með
+        instance_accounts_measure: geymdir aðgangar
+        instance_followers_measure: fylgjendur okkar þar
+        instance_follows_measure: fylgjendur þeirra hér
+        instance_languages_dimension: Vinsælustu tungumál
+        instance_media_attachments_measure: geymd myndefnisviðhengi
+        instance_reports_measure: kærur um þá
+        instance_statuses_measure: geymdar færslur
       delivery:
         all: Allt
         clear: Hreinsa afhendingarvillur
@@ -512,6 +533,7 @@ is:
       total_followed_by_us: Fylgt af okkur
       total_reported: Kærur um þá
       total_storage: Myndaviðhengi
+      totals_time_period_hint_html: Samtölurnar sem birtar eru hér fyrir neðan innihalda gögn frá upphafi.
     invites:
       deactivate_all: Gera allt óvirkt
       filter:
