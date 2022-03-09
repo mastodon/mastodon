@@ -449,21 +449,6 @@ es-AR:
       reject_media_hint: Quita los archivos de medios almacenados e impide la descarga en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar denuncias
       reject_reports_hint: Ignora todas las denuncias que vengan de este dominio. Irrelevante para suspensiones
-      rejecting_media: rechazo de archivos de medios
-      rejecting_reports: rechazo de denuncias
-      severity:
-        silence: limitados
-        suspend: suspendidos
-      show:
-        affected_accounts:
-          one: Una cuenta en la base de datos afectada
-          other: "%{count} cuentas en la base de datos afectada"
-          zero: Ninguna cuenta en la base de datos está afectada
-        retroactive:
-          silence: Quitar límite de las cuentas existentes afectadas de este dominio
-          suspend: Quitar suspensión de las cuentas existentes afectadas de este dominio
-        title: Deshacer el bloqueo de dominio para %{domain}
-        undo: Deshacer
       undo: Deshacer bloqueo de dominio
       view: Ver bloqueo de dominio
     email_domain_blocks:
@@ -504,13 +489,7 @@ es-AR:
         clear: Limpiar errores de entrega
         restart: Reiniciar entrega
         stop: Detener entrega
-        title: Entrega
         unavailable: No disponible
-        unavailable_message: Entrega no disponible
-        warning: Advertencia
-        warning_message:
-          one: Falla de entrega %{count} día
-          other: Falla de entrega %{count} días
       delivery_available: La entrega está disponible
       delivery_error_days: Días de error de entrega
       delivery_error_hint: Si la entrega no es posible durante %{count} días, se marcará automáticamente como no entregable.
