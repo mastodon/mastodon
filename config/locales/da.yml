@@ -165,19 +165,20 @@ da:
       previous_strikes: Tidligere anmeldelser (strikes)
       previous_strikes_description_html:
         one: Denne konto har <strong>et</strong> anmeldelse.
-        zero: Denne kontostatus er <strong>på god fod</strong>.
+        other: Denne konto har <strong>%{count}</strong> anmeldelser.
+        zero: Denne konto er <strong>på god fod</strong>.
       promote: Forfrem
       protocol: Protokol
       public: Offentlig
       push_subscription_expires: PuSH-abonnement udløber
       redownload: Opfrisk profil
-      redownloaded_msg: Profil for %{username} opfriske fra oprindelsesserver
+      redownloaded_msg: '%{username}s profil opfrisket fra oprindelsesserver'
       reject: Afvis
-      rejected_msg: Tilmeldingsansøgning fra %{username} afvist
+      rejected_msg: '%{username}s tilmeldingsansøgning afvist'
       remove_avatar: Fjern profilbillede
       remove_header: Fjern overskrift
-      removed_avatar_msg: Profilbillede for %{username} fjernet
-      removed_header_msg: Overskriftsbillede for %{username} fjernet
+      removed_avatar_msg: '%{username}s profilbillede fjernet'
+      removed_header_msg: '%{username}s overskriftsbillede fjernet'
       resend_confirmation:
         already_confirmed: Denne bruger er allerede bekræftet
         send: Gensend bekræftelses e-mail
