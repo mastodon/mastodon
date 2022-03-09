@@ -26,6 +26,14 @@ class Admin::Metrics::Measure::BaseMeasure
     raise NotImplementedError
   end
 
+  def unit
+    nil
+  end
+
+  def total_in_time_range?
+    true
+  end
+
   def total
     load[:total]
   end
