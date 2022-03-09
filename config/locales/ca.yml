@@ -497,6 +497,23 @@ ca:
       content_policies:
         comment: Nota interna
         description_html: Pots definir polítiques de contingut que seran aplicades a tots els comptes d'aquest domini i a qualsevol dels seus subdominis.
+        policies:
+          reject_media: Rebutja mèdia
+          reject_reports: Rebutja informes
+          silence: Límit
+          suspend: Suspèn
+        policy: Política
+        reason: Raó pública
+        title: Polítiques de contingut
+      dashboard:
+        instance_accounts_dimension: Comptes més seguits
+        instance_accounts_measure: comptes desats
+        instance_followers_measure: els nostres seguidors d'allà
+        instance_follows_measure: els seus seguidors d'aquí
+        instance_languages_dimension: Idiomes principals
+        instance_media_attachments_measure: adjunts multimèdia desats
+        instance_reports_measure: informes sobre ells
+        instance_statuses_measure: publicacions desades
       delivery:
         all: Totes
         clear: Neteja els errors de lliurament
@@ -519,12 +536,14 @@ ca:
       private_comment: Comentari privat
       public_comment: Comentari públic
       purge: Purga
+      purge_description_html: Si creus que aquest domini està fora de línia per sempre, pots esborrar tots els seus comptes i dades relacionades del teu emmagatzematge. Això pot trigar una estona.
       title: Federació
       total_blocked_by_us: Bloquejats per nosaltres
       total_followed_by_them: Seguits per ells
       total_followed_by_us: Seguits per nosaltres
       total_reported: Informes sobre ells
       total_storage: Adjunts multimèdia
+      totals_time_period_hint_html: Els totals mostrats a sota incloeixen dades de tots els temps.
     invites:
       deactivate_all: Desactiva-ho tot
       filter:
