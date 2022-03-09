@@ -448,21 +448,6 @@ gl:
       reject_media_hint: Eliminar ficheiros multimedia almacenados de xeito local e rexeita descargalos no futuro. Irrelevante para as suspensións
       reject_reports: Rexeitar denuncias
       reject_reports_hint: Ignorar todas as denuncias procedentes deste dominio. Irrelevante para as suspensións
-      rejecting_media: rexeitando ficheiros multimedia
-      rejecting_reports: rexeitando denuncias
-      severity:
-        silence: limitado
-        suspend: suspendido
-      show:
-        affected_accounts:
-          one: Ten efecto sobre unha conta na base de datos
-          other: "Ten efecto sobre %{count} contas na base de datos"
-          zero: Non afecta a ningunha conta na base de datos
-        retroactive:
-          silence: Deixar de silenciar todas as contas existentes deste dominio
-          suspend: Desbotar suspenso de todas as contas existentes deste dominio
-        title: Desfacer o bloqueo de dominio para %{domain}
-        undo: Desfacer
       undo: Desfacer bloqueo de dominio
       view: Ollar dominios bloqueados
     email_domain_blocks:
@@ -503,13 +488,7 @@ gl:
         clear: Eliminar erros na entrega
         restart: Restablecer a entrega
         stop: Deter a entrega
-        title: Entrega
         unavailable: Non dispoñible
-        unavailable_message: Entrega non dispoñible
-        warning: Aviso
-        warning_message:
-          one: Fallou a entrega %{count} día
-          other: Fallou a entrega %{count} días
       delivery_available: Entrega dispoñíbel
       delivery_error_days: Días de fallo na entrega
       delivery_error_hint: Se non é posible a entrega durante %{count} días, será automáticamente marcado como non entregable.
