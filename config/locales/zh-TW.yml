@@ -471,6 +471,10 @@ zh-TW:
       unsuppress: 回復跟隨建議
     instances:
       availability:
+        failure_threshold_reached: 錯誤門檻於 %{date}
+        failures_recorded:
+          other: 錯誤嘗試於 %{count} 天
+        no_failures_recorded: 報告中沒有錯誤
         title: 可用狀態
       back_to_all: 所有
       back_to_limited: 受限制的
@@ -490,7 +494,12 @@ zh-TW:
       dashboard:
         instance_accounts_dimension: 最多人跟隨之帳號
         instance_accounts_measure: 已儲存帳號
-        instance_followers_measure: 那邊的跟隨者
+        instance_followers_measure: 我們那邊的跟隨者
+        instance_follows_measure: 他們這邊的跟隨者
+        instance_languages_dimension: 熱門語言
+        instance_media_attachments_measure: 已儲存多媒體附加檔案
+        instance_reports_measure: 關於他們的檢舉報告
+        instance_statuses_measure: 已儲存嘟文
       delivery:
         all: 所有
         clear: 清除遞送錯誤
