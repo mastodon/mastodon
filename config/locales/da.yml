@@ -481,11 +481,37 @@ da:
         description_html:
           one: Lykkes det ikke at levere til domænet i løbet af <strong>%{count} dag</strong>, foretages ingen yderligere leveringsforsøg, medmindre en levering <em>fra</em> domænet modtages.
           other: Lykkes det ikke at levere til domænet i <strong>%{count} dage</strong>, foretages ingen yderligere leveringsforsøg, medmindre en levering <em>fra</em> domænet modtages.
+        failure_threshold_reached: Fejlgrænse nået %{date}.
+        failures_recorded:
+          one: Mislykket forsøg %{count} dag.
+          other: Mislykkede forsøg på %{count} forskellige dage.
+        no_failures_recorded: Ingen fejl noteret.
+        title: Tilgængelighed
       back_to_all: Alle
       back_to_limited: Begrænset
       back_to_warning: Advarsel
       by_domain: Domæne
       confirm_purge: Sikker på, at data skal slettes fra dette domæne permanent?
+      content_policies:
+        comment: Internt notat
+        description_html: Der kan defineres indholdspolitikker, som anvendes på alle konti fra dette domæne og alle dets underdomæner.
+        policies:
+          reject_media: Afvis medier
+          reject_reports: Afvis anmeldelser
+          silence: Begræns
+          suspend: Suspendér
+        policy: Politik
+        reason: Offentlig årsag
+        title: Indholdspolitikker
+      dashboard:
+        instance_accounts_dimension: Mest fulgte konti
+        instance_accounts_measure: gemte konti
+        instance_followers_measure: vores følgere dér
+        instance_follows_measure: deres følgere dér
+        instance_languages_dimension: Topsprog
+        instance_media_attachments_measure: gemte medievedhæftninger
+        instance_reports_measure: anmeldelser af dem
+        instance_statuses_measure: gemte indlæg
       delivery:
         all: Alle
         clear: Ryd leveringsfejl
