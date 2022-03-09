@@ -488,11 +488,25 @@ lv:
       title: Sekošanas rekomendācijas
       unsuppress: Atjaunot sekošanas rekomendāciju
     instances:
+      availability:
+        description_html:
+          zero: Ja piegāde uz domēnu neizdodas <strong>%{count} dažādas dienās</strong>, un tas neizdodas, turpmāki piegādes mēģinājumi netiks veikti, ja vien netiks saņemta piegāde <em>no</em> domēna.
+          one: Ja piegāde uz domēnu neizdodas <strong>%{count} dienu</strong> bez panākumiem, turpmāki piegādes mēģinājumi netiks veikti, ja vien netiks saņemta piegāde <em>no</em> domēna.
+          other: Ja piegāde uz domēnu neizdodas <strong>%{count} dažādas dienās</strong>, un tas neizdodas, turpmāki piegādes mēģinājumi netiks veikti, ja vien netiks saņemta piegāde <em>no</em> domēna.
+        failure_threshold_reached: Kļūmju slieksnis sasniegts %{date}.
+        no_failures_recorded: Nav reģistrētu kļūdu.
+        title: Pieejamība
       back_to_all: Visas
       back_to_limited: Ierobežotās
       back_to_warning: Brīdinājums
       by_domain: Domēns
       confirm_purge: Vai tiešām vēlies neatgriezeniski izdzēst datus no šī domēna?
+      content_policies:
+        comment: Iekšējā piezīme
+        description_html: Tu vari definēt satura politikas, kas tiks piemērotas visiem kontiem no šī domēna un jebkura tā apakšdomēna.
+        policies:
+          reject_media: Noraidīt medijus
+          reject_reports: Noraidīt ziņojumus
       delivery:
         all: Visas
         clear: Notīrīt piegādes kļūdas
