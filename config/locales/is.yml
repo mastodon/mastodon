@@ -449,21 +449,6 @@ is:
       reject_media_hint: Fjarlægir staðværar myndefnisskrár úr geymslu og neitar framvegis að sækja neinar slíkar. Skiptir ekki máli fyrir biðstöður
       reject_reports: Hafna kærum
       reject_reports_hint: Hunsa allar kærur frá þessu léni. Skiptir ekki máli fyrir biðstöður
-      rejecting_media: hafna myndskrám
-      rejecting_reports: hafna kærum
-      severity:
-        silence: takmarkað
-        suspend: í bið
-      show:
-        affected_accounts:
-          one: Einn notandaaðgangur í gagnagrunninum kemur við sögu
-          other: "%{count} notendaaðgangar í gagnagrunninum koma við sögu"
-          zero: Enginn notandaaðgangur í gagnagrunninum kemur við sögu
-        retroactive:
-          silence: Hætta að takmarka viðkomandi notendaaðganga frá þessu léni
-          suspend: Taka úr bið viðkomandi notendaaðganga frá þessu léni
-        title: Afturkalla útilokun á léni fyrir %{domain}
-        undo: Afturkalla
       undo: Afturkalla útilokun á léni
       view: Skoða útilokun á léni
     email_domain_blocks:
@@ -504,13 +489,7 @@ is:
         clear: Hreinsa afhendingarvillur
         restart: Endurræsa afhendingu
         stop: Stöðva afhendingu
-        title: Afhending
         unavailable: Ekki tiltækt
-        unavailable_message: Afhending ekki möguleg
-        warning: Aðvörun
-        warning_message:
-          one: '%{count} dagur með villum í afhendingu'
-          other: '%{count} dagar með villum í afhendingu'
       delivery_available: Afhending er til taks
       delivery_error_days: Dagar með villum í afhendingu
       delivery_error_hint: Ef afhending er ekki möguleg í %{count} daga, verður það sjálfkrafa merkt sem óafhendanlegt.
