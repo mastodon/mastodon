@@ -44,6 +44,7 @@ module Mastodon
     class WebauthnCredential < ApplicationRecord; end
     class FollowRecommendationSuppression < ApplicationRecord; end
     class CanonicalEmailBlock < ApplicationRecord; end
+    class Appeal < ApplicationRecord; end
 
     class PreviewCard < ApplicationRecord
       self.inheritance_column = false
@@ -92,6 +93,7 @@ module Mastodon
         owned_classes << AccountNote if ActiveRecord::Base.connection.table_exists?(:account_notes)
         owned_classes << FollowRecommendationSuppression if ActiveRecord::Base.connection.table_exists?(:follow_recommendation_suppressions)
         owned_classes << AccountIdentityProof if ActiveRecord::Base.connection.table_exists?(:account_identity_proofs)
+        owned_classes << Appeal if ActiveRecord::Base.connection.table_exists?(:appeals)
 
         owned_classes.each do |klass|
           klass.where(account_id: other_account.id).find_each do |record|
@@ -119,6 +121,12 @@ module Mastodon
         if ActiveRecord::Base.connection.table_exists?(:canonical_email_blocks)
           CanonicalEmailBlock.where(reference_account_id: other_account.id).find_each do |record|
             record.update_attribute(:reference_account_id, id)
+          end
+        end
+
+        if ActiveRecord::Base.connection.table_exists?(:appeals)
+          Appeal.where(account_warning_id: other_account.id).find_each do |record|
+            record.update_attribute(:account_warning_id, id)
           end
         end
       end
