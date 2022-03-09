@@ -457,21 +457,6 @@ lv:
       reject_media_hint: Noņem lokāli saglabātos mediju failus un atsaka tos lejupielādēt nākotnē. Nav nozīmes apturēšanai
       reject_reports: Noraidīt ziņojumus
       reject_reports_hint: Ignorēt visus ziņojumus, kas nāk no šī domēna. Nav nozīmes apturēšanai
-      rejecting_media: noraidīt mediju failus
-      rejecting_reports: noraida ziņojumus
-      severity:
-        silence: ierobežots
-        suspend: apturēts
-      show:
-        affected_accounts:
-          one: Ietekmēts viens konts datu bāzē
-          other: "Ietekmēti %{count} konti datu bāzē"
-          zero: Nav ietekmētu kontu datubāzē
-        retroactive:
-          silence: Atsaukt ierobežojumus esošajiem ietekmētajiem kontiem no šī domēna
-          suspend: Atcelt šī domēna esošo ietekmēto kontu darbības apturēšanu
-        title: Atsaukt domēna bloķēšanu %{domain}
-        undo: Atsaukt
       undo: Atsaukt domēna bloķēšanu
       view: Skatīt domēna bloķēšanu
     email_domain_blocks:
@@ -513,14 +498,7 @@ lv:
         clear: Notīrīt piegādes kļūdas
         restart: Pārstartēt piegādi
         stop: Apturēt piegādi
-        title: Piegāde
         unavailable: Nav pieejams
-        unavailable_message: Piegāde nav iespējama
-        warning: Brīdinājums
-        warning_message:
-          zero: Piegādes kļūme %{count} dienas
-          one: Piegādes kļūme %{count} diena
-          other: Piegādes kļūme %{count} dienas
       delivery_available: Piegāde ir iespējama
       delivery_error_days: Piegādes kļūdu dienas
       delivery_error_hint: Ja piegāde nav iespējama %{count} dienas, tā tiks automātiski atzīmēta kā nepiegādājama.
