@@ -449,21 +449,6 @@ de:
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
       reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
-      rejecting_media: Mediendateien werden nicht gespeichert
-      rejecting_reports: Meldungen werden ignoriert
-      severity:
-        silence: stummgeschaltet
-        suspend: gesperrt
-      show:
-        affected_accounts:
-          one: Ein Konto in der Datenbank betroffen
-          other: "%{count} Konten in der Datenbank betroffen"
-          zero: Kein Konto in der Datenbank ist betroffen
-        retroactive:
-          silence: Alle existierenden Konten dieser Domain nicht mehr stummschalten
-          suspend: Alle existierenden Konten dieser Domain entsperren
-        title: Domain-Blockade für %{domain} zurücknehmen
-        undo: Zurücknehmen
       undo: Domainblockade zurücknehmen
       view: Zeige Domain-Blockade
     email_domain_blocks:
@@ -504,13 +489,7 @@ de:
         clear: Zustellfehler löschen
         restart: Lieferung neu starten
         stop: Lieferung stoppen
-        title: Zustellung
         unavailable: Nicht verfügbar
-        unavailable_message: Zustellung funktioniert nicht
-        warning: Warnung
-        warning_message:
-          one: Zustellfehler seit %{count} Tag
-          other: Zustellfehler seit %{count} Tagen
       delivery_available: Zustellung funktioniert
       delivery_error_days: Tage seitdem die Zustellung nicht funktioniert
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
