@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_195405) do
+ActiveRecord::Schema.define(version: 2022_03_07_094650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -847,6 +847,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "ordered_media_attachment_ids", array: true
+    t.text "media_descriptions", array: true
     t.string "poll_options", array: true
     t.boolean "sensitive"
     t.index ["account_id"], name: "index_status_edits_on_account_id"

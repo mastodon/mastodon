@@ -81,6 +81,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
 
     @status.ordered_media_attachment_ids = next_media_attachments.map(&:id)
+    @status.media_attachments.reload
+
     @media_attachments_changed = true if @status.ordered_media_attachment_ids_changed?
   end
 

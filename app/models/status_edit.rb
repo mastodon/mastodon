@@ -11,6 +11,7 @@
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
 #  ordered_media_attachment_ids :bigint(8)        is an Array
+#  media_descriptions           :text             is an Array
 #  poll_options                 :string           is an Array
 #  sensitive                    :boolean
 #
@@ -19,6 +20,11 @@ class StatusEdit < ApplicationRecord
   self.ignored_columns = %w(
     media_attachments_changed
   )
+
+  class PreservedMediaAttachment < ActiveModelSerializers::Model
+    attributes :media_attachment, :description
+    delegate :id, :type, :url, :preview_url, :remote_url, :preview_remote_url, :text_url, :meta, :blurhash, to: :media_attachment
+  end
 
   belongs_to :status
   belongs_to :account, optional: true
@@ -33,10 +39,15 @@ class StatusEdit < ApplicationRecord
   end
 
   def ordered_media_attachments
-    return [] if ordered_media_attachment_ids.nil?
+    return @ordered_media_attachments if defined?(@ordered_media_attachments)
 
-    map = status.media_attachments.index_by(&:id)
-
-    ordered_media_attachment_ids.map { |media_attachment_id| map[media_attachment_id] }
+    @ordered_media_attachments = begin
+      if ordered_media_attachment_ids.nil?
+        []
+      else
+        map = status.media_attachments.index_by(&:id)
+        ordered_media_attachment_ids.map.with_index { |media_attachment_id, index| PreservedMediaAttachment.new(media_attachment: map[media_attachment_id], description: media_descriptions[index]) }
+      end
+    end
   end
 end

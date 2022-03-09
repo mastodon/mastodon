@@ -218,6 +218,7 @@ class Status < ApplicationRecord
       spoiler_text: spoiler_text,
       sensitive: sensitive,
       ordered_media_attachment_ids: ordered_media_attachment_ids || media_attachments.pluck(:id),
+      media_descriptions: ordered_media_attachments.map(&:description),
       poll_options: preloadable_poll&.options,
       account_id: account_id || self.account_id,
       created_at: at_time || edited_at
@@ -260,7 +261,6 @@ class Status < ApplicationRecord
       media_attachments
     else
       map = media_attachments.index_by(&:id)
-
       ordered_media_attachment_ids.map { |media_attachment_id| map[media_attachment_id] }
     end
   end
