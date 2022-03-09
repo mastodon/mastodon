@@ -447,21 +447,6 @@ da:
       reject_media_hint: Fjerner lokalt lagrede mediefiler og afviser at download nogle fremadrettet. Irrelevant for suspenderinger
       reject_reports: Afvis anmeldelser
       reject_reports_hint: Ignorér alle anmeldelser fra dette domæne. Irrelevant for suspenderinger
-      rejecting_media: afviser mediefiler
-      rejecting_reports: afviser anmeldelser
-      severity:
-        silence: tavsgjort
-        suspend: suspenderet
-      show:
-        affected_accounts:
-          one: Én konto i databasen påvirket
-          other: "%{count} konti i databasen påvirket"
-          zero: Ingen konto i databasen påvirket
-        retroactive:
-          silence: Fjern tavsgøring for eksisterende, berørte konti fra dette domæne
-          suspend: Fjern suspendering for eksisterende, berørte konti fra dette domæne
-        title: Annullér domæneblokering for domænet %{domain}
-        undo: Annullér
       undo: Annullér domæneblokering
       view: Vis domæneblokering
     email_domain_blocks:
@@ -502,13 +487,7 @@ da:
         clear: Ryd leveringsfejl
         restart: Genstart levering
         stop: Stop levering
-        title: Levering
         unavailable: Utilgængelig
-        unavailable_message: Levering utilgængelig
-        warning: Advarsel
-        warning_message:
-          one: Leveringsfejl %{count} dag
-          other: Leveringsfejl %{count} dage
       delivery_available: Levering er tilgængelig
       delivery_error_days: Leveringsfejldage
       delivery_error_hint: Er levering ikke mulig i %{count} dage, markeres den automatisk som ikke-leverbar.
