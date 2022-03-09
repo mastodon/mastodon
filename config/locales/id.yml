@@ -441,21 +441,6 @@ id:
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
       reject_reports: Tolak laporan
       reject_reports_hint: Abaikan semua laporan dari domain ini. Tidak relevan untuk penangguhan
-      rejecting_media: tolak berkas media
-      rejecting_reports: laporan ditolak
-      severity:
-        silence: dibungkam
-        suspend: ditangguhkan
-      show:
-        affected_accounts:
-          one: Satu akun di basis data terpengaruh
-          other: "%{count} akun di basis data terpengaruh"
-          zero: Tidak ada akun di basis data terpengaruh
-        retroactive:
-          silence: Hapus pendiaman terhadap akun pada domain ini
-          suspend: Hapus suspen terhadap akun pada domain ini
-        title: Hapus pemblokiran domain %{domain}
-        undo: Urungkan
       undo: Urungkan blokir domain
       view: Lihat blokir domain
     email_domain_blocks:
@@ -495,12 +480,7 @@ id:
         clear: Hapus galat pengiriman
         restart: Mulai ulang pengiriman
         stop: Setop pengiriman
-        title: Pengiriman
         unavailable: Tidak tersedia
-        unavailable_message: Pengiriman tidak tersedia
-        warning: Peringatan
-        warning_message:
-          other: Kegagalan pengiriman %{count} hari
       delivery_available: Pengiriman tersedia
       delivery_error_days: Lama hari pengiriman galat
       delivery_error_hint: Jika pengiriman tidak terjadi selama %{count} hari, ia akan ditandai secara otomatis sebagai tidak terkirim.
