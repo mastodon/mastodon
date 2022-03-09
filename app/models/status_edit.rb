@@ -17,6 +17,8 @@
 #
 
 class StatusEdit < ApplicationRecord
+  include RateLimitable
+
   self.ignored_columns = %w(
     media_attachments_changed
   )
@@ -25,6 +27,8 @@ class StatusEdit < ApplicationRecord
     attributes :media_attachment, :description
     delegate :id, :type, :url, :preview_url, :remote_url, :preview_remote_url, :text_url, :meta, :blurhash, to: :media_attachment
   end
+
+  rate_limit by: :account, family: :statuses
 
   belongs_to :status
   belongs_to :account, optional: true
