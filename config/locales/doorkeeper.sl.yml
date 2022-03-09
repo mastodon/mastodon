@@ -59,6 +59,8 @@ sl:
       error:
         title: Prišlo je do napake
       new:
+        prompt_html: "%{client_name} želi dovoljenje za dostop do vašega računa. Gre za zunanji program. <strong>Če mu ne zaupate, mu ne dodelite teh pravic.</strong>"
+        review_permissions: Preglej pravice
         title: Potrebna je pooblastitev
       show:
         title: Kopirajte to pooblastilno kodo in jo prilepite v program.
@@ -68,9 +70,11 @@ sl:
       confirmations:
         revoke: Ali ste prepričani?
       index:
+        description_html: To so programi, ki lahko dostopajo do vašega računa prek vmesnika API. Če so na seznamu programi, ki jih ne prepoznate ali pa se čudno vedejo, lahko prekličete njihovo pravico do dostopa.
         last_used_at: Zadnjič uporabljeno %{date}
         never_used: Nikoli uporabljeno
         scopes: Dovoljenja
+        superapp: Interno
         title: Vaši odobreni programi
     errors:
       messages:
@@ -116,15 +120,20 @@ sl:
         admin/accounts: Upravljanje računov
         admin/all: Vse skrbniške funkcije
         admin/reports: Upravljanje poročil
+        all: Vse
         bookmarks: Zaznamki
         conversations: Pogovori
+        favourites: Priljubljeni
         filters: Filtri
         follows: Sledi
+        lists: Seznami
         media: Predstavnostne priloge
         mutes: Utišani
         notifications: Obvestila
         push: Potisna obvestila
         reports: Poročila
+        search: Iskanje
+        statuses: Objave
     layouts:
       admin:
         nav:
