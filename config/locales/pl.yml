@@ -462,17 +462,6 @@ pl:
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       reject_reports: Odrzucaj zgłoszenia
       reject_reports_hint: Zgłoszenia z tej instancji będą ignorowane. Nieprzydatne przy zawieszeniu
-      rejecting_media: pliki multimedialne są odrzucane
-      rejecting_reports: zgłoszenia są odrzucane
-      severity:
-        silence: wyciszono
-        suspend: zawieszono
-      show:
-        retroactive:
-          silence: Odwołaj wyciszenie wszystkich kont w tej domenie
-          suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
-        title: Odwołaj blokadę dla domeny %{domain}
-        undo: Cofnij
       undo: Cofnij
       view: Zobacz blokadę domeny
     email_domain_blocks:
@@ -510,15 +499,7 @@ pl:
         clear: Wyczyść błędy w doręczaniu
         restart: Uruchom ponownie doręczenie
         stop: Zatrzymaj doręczanie
-        title: Doręczanie
         unavailable: Niedostępne
-        unavailable_message: Doręczaniei niedostępne
-        warning: Ostrzeżenie
-        warning_message:
-          one: '%{count} dzień niepowodzenia doręczenia'
-          few: '%{count} dni niepowodzenia doręczenia'
-          many: '%{count} dni niepowodzenia doręczenia'
-          other: '%{count} dni niepowodzenia doręczenia'
       delivery_available: Doręczanie jest dostępne
       delivery_error_days: Dni błędów doręczenia
       delivery_error_hint: Jeżeli doręczanie nie będzie możliwe przez %{count} dni, zostanie automatycznie oznaczona jako nie do doręczania.
