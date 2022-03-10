@@ -14,7 +14,7 @@ module Mastodon
     end
 
     MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2022_03_07_083603
+    MAX_SUPPORTED_VERSION = 2022_03_10_060706
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -487,7 +487,11 @@ module Mastodon
       end
 
       @prompt.say 'Restoring statuses indexes…'
-      ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true
+      if ActiveRecord::Migrator.current_version < 20220310060706
+        ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true
+      else
+        ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true, where: 'uri IS NOT NULL', opclass: :text_pattern_ops
+      end
     end
 
     def deduplicate_tags!
