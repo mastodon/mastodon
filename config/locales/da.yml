@@ -415,12 +415,12 @@ da:
       website: Websted
     disputes:
       appeals:
-        empty: Ingen appeller fundet.
-        title: Appeller
+        empty: Ingen anker fundet.
+        title: Anker
     domain_allows:
       add_new: Tillade federering med domæne
-      created_msg: Domæne er blevet tilladt federering
-      destroyed_msg: Domæne er blevet forbudt federering
+      created_msg: Domæne er blevet tilladt for federering
+      destroyed_msg: Domæne er blevet forbudt for federering
       undo: Forbyd federering med domæne
     domain_blocks:
       add_new: Tilføj ny domæneblokering
@@ -428,12 +428,12 @@ da:
       destroyed_msg: Domæneblokering er blevet fjernet
       domain: Domæne
       edit: Redigér domæneblokering
-      existing_domain_block_html: Du har allerede pålagt %{name} strengere grænser, du skal <a href="%{unblock_url}">afblokerere</a> det først.
+      existing_domain_block_html: Der har allerede pålagt %{name} strengere begrænsninger, så dette kræver først en <a href="%{unblock_url}">afblokering</a>.
       new:
         create: Opret blokering
-        hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk benytte specifikke moderationsmetoder på disse konti.
+        hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk føje særlige moderationsmetoder til disse konti.
         severity:
-          desc_html: "<strong>Tavsgjort</strong> vil gøre kontoens indlæg usynlige for alle, som ikke følger dem. <strong>Suspendering</strong> vil fjerne alt kontoindhold, medier og profildata. Brug <strong>Ingen</strong>, hvis mediefiler blot ønskes afvist."
+          desc_html: "<strong>Tavsgørelse</strong> gør kontoens indlæg usynlige for alle, som ikke følger dem. <strong>Suspendering</strong> fjerner alt kontoindhold, medier og profildata. Brug <strong>Ingen</strong>, hvis mediefiler blot ønskes afvist."
           noop: Ingen
           silence: Tavsgøre
           suspend: Suspendere
