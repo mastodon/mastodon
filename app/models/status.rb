@@ -3,31 +3,31 @@
 #
 # Table name: statuses
 #
-#  id                     :bigint(8)        not null, primary key
-#  uri                    :string
-#  text                   :text             default(""), not null
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  in_reply_to_id         :bigint(8)
-#  reblog_of_id           :bigint(8)
-#  url                    :string
-#  sensitive              :boolean          default(FALSE), not null
-#  visibility             :integer          default("public"), not null
-#  spoiler_text           :text             default(""), not null
-#  reply                  :boolean          default(FALSE), not null
-#  language               :string
-#  conversation_id        :bigint(8)
-#  local                  :boolean
-#  account_id             :bigint(8)        not null
-#  application_id         :bigint(8)
-#  in_reply_to_account_id :bigint(8)
-#  local_only             :boolean
-#  full_status_text       :text             default(""), not null
-#  poll_id                :bigint(8)
-#  content_type           :string
-#  deleted_at             :datetime
-#  edited_at              :datetime
-#  trendable              :boolean
+#  id                           :bigint(8)        not null, primary key
+#  uri                          :string
+#  text                         :text             default(""), not null
+#  created_at                   :datetime         not null
+#  updated_at                   :datetime         not null
+#  in_reply_to_id               :bigint(8)
+#  reblog_of_id                 :bigint(8)
+#  url                          :string
+#  sensitive                    :boolean          default(FALSE), not null
+#  visibility                   :integer          default("public"), not null
+#  spoiler_text                 :text             default(""), not null
+#  reply                        :boolean          default(FALSE), not null
+#  language                     :string
+#  conversation_id              :bigint(8)
+#  local                        :boolean
+#  account_id                   :bigint(8)        not null
+#  application_id               :bigint(8)
+#  in_reply_to_account_id       :bigint(8)
+#  local_only                   :boolean
+#  poll_id                      :bigint(8)
+#  content_type                 :string
+#  deleted_at                   :datetime
+#  edited_at                    :datetime
+#  trendable                    :boolean
+#  ordered_media_attachment_ids :bigint(8)        is an Array
 #
 
 class Status < ApplicationRecord
@@ -217,14 +217,18 @@ class Status < ApplicationRecord
     public_visibility? || unlisted_visibility?
   end
 
-  def snapshot!(media_attachments_changed: false, account_id: nil, at_time: nil)
+  def snapshot!(account_id: nil, at_time: nil, rate_limit: true)
     edits.create!(
       text: text,
       spoiler_text: spoiler_text,
-      media_attachments_changed: media_attachments_changed,
+      sensitive: sensitive,
+      ordered_media_attachment_ids: ordered_media_attachment_ids || media_attachments.pluck(:id),
+      media_descriptions: ordered_media_attachments.map(&:description),
+      poll_options: preloadable_poll&.options,
       account_id: account_id || self.account_id,
       content_type: content_type,
-      created_at: at_time || edited_at
+      created_at: at_time || edited_at,
+      rate_limit: rate_limit
     )
   end
 
@@ -235,7 +239,7 @@ class Status < ApplicationRecord
   alias sign? distributable?
 
   def with_media?
-    media_attachments.any?
+    ordered_media_attachments.any?
   end
 
   def with_preview_card?
@@ -257,6 +261,15 @@ class Status < ApplicationRecord
     fields += preloadable_poll.options unless preloadable_poll.nil?
 
     @emojis = CustomEmoji.from_text(fields.join(' '), account.domain)
+  end
+
+  def ordered_media_attachments
+    if ordered_media_attachment_ids.nil?
+      media_attachments
+    else
+      map = media_attachments.index_by(&:id)
+      ordered_media_attachment_ids.map { |media_attachment_id| map[media_attachment_id] }
+    end
   end
 
   def replies_count
@@ -426,6 +439,63 @@ class Status < ApplicationRecord
 
   def status_stat
     super || build_status_stat
+  end
+
+  # Hack to use a "INSERT INTO ... SELECT ..." query instead of "INSERT INTO ... VALUES ..." query
+  def self._insert_record(values)
+    if values.is_a?(Hash) && values['reblog_of_id'].present?
+      primary_key = self.primary_key
+      primary_key_value = nil
+
+      if primary_key
+        primary_key_value = values[primary_key]
+
+        if !primary_key_value && prefetch_primary_key?
+          primary_key_value = next_sequence_value
+          values[primary_key] = primary_key_value
+        end
+      end
+
+      # The following line is where we differ from stock ActiveRecord implementation
+      im = _compile_reblog_insert(values)
+
+      # Since we are using SELECT instead of VALUES, a non-error `nil` return is possible.
+      # For our purposes, it's equivalent to a foreign key constraint violation
+      result = connection.insert(im, "#{self} Create", primary_key || false, primary_key_value)
+      raise ActiveRecord::InvalidForeignKey, "(reblog_of_id)=(#{values['reblog_of_id']}) is not present in table \"statuses\"" if result.nil?
+
+      result
+    else
+      super
+    end
+  end
+
+  def self._compile_reblog_insert(values)
+    # This is somewhat equivalent to the following code of ActiveRecord::Persistence:
+    # `arel_table.compile_insert(_substitute_values(values))`
+    # The main difference is that we use a `SELECT` instead of a `VALUES` clause,
+    # which means we have to build the `SELECT` clause ourselves and do a bit more
+    # manual work.
+
+    # Instead of using Arel::InsertManager#values, we are going to use Arel::InsertManager#select
+    im = Arel::InsertManager.new
+    im.into(arel_table)
+
+    binds = []
+    reblog_bind = nil
+    values.each do |name, value|
+      attr = arel_table[name]
+      bind = predicate_builder.build_bind_attribute(attr.name, value)
+
+      im.columns << attr
+      binds << bind
+
+      reblog_bind = bind if name == 'reblog_of_id'
+    end
+
+    im.select(arel_table.where(arel_table[:id].eq(reblog_bind)).where(arel_table[:deleted_at].eq(nil)).project(*binds))
+
+    im
   end
 
   private

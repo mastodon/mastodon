@@ -21,10 +21,10 @@
     = f.input :obfuscate, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.obfuscate'), hint: I18n.t('admin.domain_blocks.obfuscate_hint')
 
   .field-group
-    = f.input :private_comment, wrapper: :with_label, label: I18n.t('admin.domain_blocks.private_comment'), hint: t('admin.domain_blocks.private_comment_hint'), rows: 6
+    = f.input :private_comment, wrapper: :with_label, label: I18n.t('admin.domain_blocks.private_comment'), hint: t('admin.domain_blocks.private_comment_hint'), as: :string
 
   .field-group
-    = f.input :public_comment, wrapper: :with_label, label: I18n.t('admin.domain_blocks.public_comment'), hint: t('admin.domain_blocks.public_comment_hint'), rows: 6
+    = f.input :public_comment, wrapper: :with_label, label: I18n.t('admin.domain_blocks.public_comment'), hint: t('admin.domain_blocks.public_comment_hint'), as: :string
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

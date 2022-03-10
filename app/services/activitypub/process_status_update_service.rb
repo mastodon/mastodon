@@ -76,13 +76,14 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       end
     end
 
-    removed_media_attachments = previous_media_attachments - next_media_attachments
-    added_media_attachments   = next_media_attachments - previous_media_attachments
+    added_media_attachments = next_media_attachments - previous_media_attachments
 
-    MediaAttachment.where(id: removed_media_attachments.map(&:id)).update_all(status_id: nil)
     MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
 
-    @media_attachments_changed = true if removed_media_attachments.any? || added_media_attachments.any?
+    @status.ordered_media_attachment_ids = next_media_attachments.map(&:id)
+    @status.media_attachments.reload
+
+    @media_attachments_changed = true if @status.ordered_media_attachment_ids_changed?
   end
 
   def update_poll!
@@ -215,19 +216,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     return if @status.edits.any?
 
-    @status.snapshot!(
-      media_attachments_changed: false,
-      at_time: @status.created_at
-    )
+    @status.snapshot!(at_time: @status.created_at, rate_limit: false)
   end
 
   def create_edit!
     return unless significant_changes?
 
-    @status.snapshot!(
-      media_attachments_changed: @media_attachments_changed || @poll_changed,
-      account_id: @account.id
-    )
+    @status.snapshot!(account_id: @account.id, rate_limit: false)
   end
 
   def skip_download?
