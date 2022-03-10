@@ -325,20 +325,20 @@ da:
         suspend_account_html: "%{name} suspenderede %{target}s konto"
         unassigned_report_html: "%{name} fjernede tildelingen af rapporten %{target}"
         unblock_email_account_html: "%{name} afblokerede %{target}s e-mailadresse"
-        unsensitive_account_html: "%{name} afmarkerede %{target}s medier som sensitive"
-        unsilence_account_html: "%{name} fjernede tavsgøring af %{target}s konto"
+        unsensitive_account_html: "%{name} fjernede sensitivmarkeringen af %{target}s medier"
+        unsilence_account_html: "%{name} fjernede begrænsningen af %{target}s konto"
         unsuspend_account_html: "%{name} fjernede suspenderingen af %{target}s konto"
         update_announcement_html: "%{name} opdaterede bekendtgørelsen %{target}"
         update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
         update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
-        update_status_html: "%{name} opdaterede status for %{target}"
-      deleted_status: "(slettet status)"
+        update_status_html: "%{name} opdaterede indlægget fra %{target}"
+      deleted_status: "(slettet indlæg)"
       empty: Ingen logger fundet.
       filter_by_action: Filtrér efter handling
       filter_by_user: Filtrér efter bruger
       title: Revisionslog
     announcements:
-      destroyed_msg: Bekendtgørelsen blev slettet!
+      destroyed_msg: Bekendtgørelsen er slettet!
       edit:
         title: Redigér bekendtgørelse
       empty: Ingen bekendtgørelser fundet.
