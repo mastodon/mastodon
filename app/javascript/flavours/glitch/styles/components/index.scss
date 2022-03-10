@@ -1563,41 +1563,6 @@ button.icon-button.active i.fa-retweet {
   filter: none;
 }
 
-.compare-history-modal {
-  .report-modal__target {
-    border-bottom: 1px solid $ui-secondary-color;
-  }
-
-  &__container {
-    padding: 30px;
-    pointer-events: all;
-  }
-
-  .status__content {
-    color: $inverted-text-color;
-    font-size: 19px;
-    line-height: 24px;
-
-    .emojione {
-      width: 24px;
-      height: 24px;
-      margin: -1px 0 0;
-    }
-
-    a {
-      color: $highlight-text-color;
-    }
-
-    hr {
-      height: 0.25rem;
-      padding: 0;
-      background-color: $ui-secondary-color;
-      border: 0;
-      margin: 20px 0;
-    }
-  }
-}
-
 .loading-bar {
   background-color: $ui-highlight-color;
   height: 3px;
