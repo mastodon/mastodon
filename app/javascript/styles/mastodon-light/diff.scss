@@ -304,7 +304,8 @@ html {
   }
 
   &__item {
-    a {
+    a,
+    button {
       background: $white;
       color: $darker-text-color;
     }
@@ -336,8 +337,16 @@ html {
   color: $white;
 }
 
-.dropdown-menu__separator {
+.dropdown-menu__separator,
+.dropdown-menu__item.edited-timestamp__history__item,
+.dropdown-menu__container__header,
+.compare-history-modal .report-modal__target,
+.report-dialog-modal .poll__option.dialog-option {
   border-bottom-color: lighten($ui-base-color, 4%);
+}
+
+.report-dialog-modal__container {
+  border-top-color: lighten($ui-base-color, 4%);
 }
 
 // Change the background colors of modals
@@ -351,6 +360,7 @@ html {
 .embed-modal,
 .error-modal,
 .onboarding-modal,
+.compare-history-modal,
 .report-modal__comment .setting-text__wrapper,
 .report-modal__comment .setting-text,
 .announcements,
