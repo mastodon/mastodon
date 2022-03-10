@@ -66,7 +66,7 @@ jobs:
           ruby-version: '3.0'
       - node/install-packages:
           cache-version: v1
-          pkg-manager: yarn
+          pkg-manager: npm
       - run:
           command: ./bin/rails assets:precompile
           name: Precompile assets
@@ -202,8 +202,8 @@ workflows:
       - node/run:
           cache-version: v1
           name: test-webui
-          pkg-manager: yarn
+          pkg-manager: npm
           requires:
             - build
           version: lts
-          yarn-run: test:jest
+          npm-run: test:jest

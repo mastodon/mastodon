@@ -47,20 +47,19 @@ RUN apt-get update && \
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
 RUN npm install -g npm@latest && \
-	npm install -g yarn && \
 	gem install bundler && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends git libicu-dev libidn11-dev \
 	libpq-dev shared-mime-info
 
-COPY Gemfile* package.json yarn.lock /opt/mastodon/
+COPY Gemfile* package.json package-lock.json /opt/mastodon/
 
 RUN cd /opt/mastodon && \
   bundle config set --local deployment 'true' && \
   bundle config set --local without 'development test' && \
   bundle config set silence_root_warning true && \
 	bundle install -j"$(nproc)" && \
-	yarn install --pure-lockfile
+	npm install
 
 FROM ubuntu:20.04
 
@@ -113,7 +112,7 @@ USER mastodon
 # Precompile assets
 RUN cd ~ && \
 	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
-	yarn cache clean
+	npm cache clean
 
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
