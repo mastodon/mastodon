@@ -472,11 +472,11 @@ zh-TW:
     instances:
       availability:
         description_html:
-          other: 若對網域傳送訊息失敗持續 <strong>%{count} 天 </strong> ，系統將會暫停對該網域傳送，除非收到<em>來自該網域</em> 之訊息。
-        failure_threshold_reached: 錯誤門檻於 %{date}
+          other: 若在<strong>%{count}天</strong>向某個網域遞送失敗，除非收到某個網域的遞送<em>表單</em>，否則不會繼續嘗試遞送。
+        failure_threshold_reached: 錯誤門檻於 %{date}。
         failures_recorded:
-          other: 錯誤嘗試於 %{count} 天
-        no_failures_recorded: 報告中沒有錯誤
+          other: 錯誤嘗試於 %{count} 天。
+        no_failures_recorded: 報告中沒有錯誤。
         title: 可用狀態
       back_to_all: 所有
       back_to_limited: 受限制的
@@ -525,12 +525,14 @@ zh-TW:
       private_comment: 私人留言
       public_comment: 公開留言
       purge: 清除
+      purge_description_html: 若您相信此網域將永久離線，您可以自儲存空間中刪除該網域所有帳號紀錄及相關資料。這可能花費一些時間。
       title: 聯邦
       total_blocked_by_us: 被我們封鎖
       total_followed_by_them: 被他們關注
       total_followed_by_us: 被我們關注
       total_reported: 關於他們的舉報
       total_storage: 多媒體附檔
+      totals_time_period_hint_html: 以下顯示之總和包含所有時間的資料。
     invites:
       deactivate_all: 全部停用
       filter:
