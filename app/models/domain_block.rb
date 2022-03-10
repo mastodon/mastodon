@@ -32,7 +32,7 @@ class DomainBlock < ApplicationRecord
 
   def policies
     if suspend?
-      :suspend
+      [:suspend]
     else
       [severity.to_sym, reject_media? ? :reject_media : nil, reject_reports? ? :reject_reports : nil].reject { |policy| policy == :noop || policy.nil? }
     end
