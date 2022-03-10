@@ -1,9 +1,6 @@
 - content_for :page_title do
   = @instance.domain
 
-- content_for :header_tags do
-  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
-
 - content_for :heading_actions do
   = l(@time_period.first)
   = ' - '
