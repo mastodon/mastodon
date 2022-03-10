@@ -18,8 +18,6 @@ class UpdateStatusService < BaseService
     @status                    = status
     @options                   = options
     @account_id                = account_id
-    @media_attachments_changed = false
-    @poll_changed              = false
 
     Status.transaction do
       create_previous_edit!
@@ -42,14 +40,12 @@ class UpdateStatusService < BaseService
   def update_media_attachments!
     previous_media_attachments = @status.media_attachments.to_a
     next_media_attachments     = validate_media!
-    removed_media_attachments  = previous_media_attachments - next_media_attachments
     added_media_attachments    = next_media_attachments - previous_media_attachments
 
-    MediaAttachment.where(id: removed_media_attachments.map(&:id)).update_all(status_id: nil)
     MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
 
+    @status.ordered_media_attachment_ids = (@options[:media_ids] || []).map(&:to_i) & next_media_attachments.map(&:id)
     @status.media_attachments.reload
-    @media_attachments_changed = true if removed_media_attachments.any? || added_media_attachments.any?
   end
 
   def validate_media!
@@ -74,19 +70,18 @@ class UpdateStatusService < BaseService
 
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
-      @poll_changed = true if @options[:poll][:options] != poll.options || ActiveModel::Type::Boolean.new.cast(@options[:poll][:multiple]) != poll.multiple
+      poll_changed = true if @options[:poll][:options] != poll.options || ActiveModel::Type::Boolean.new.cast(@options[:poll][:multiple]) != poll.multiple
 
       poll.options     = @options[:poll][:options]
       poll.hide_totals = @options[:poll][:hide_totals] || false
       poll.multiple    = @options[:poll][:multiple] || false
       poll.expires_in  = @options[:poll][:expires_in]
-      poll.reset_votes! if @poll_changed
+      poll.reset_votes! if poll_changed
       poll.save!
 
       @status.poll_id = poll.id
     elsif previous_poll.present?
       previous_poll.destroy
-      @poll_changed = true
       @status.poll_id = nil
     end
   end
@@ -95,7 +90,7 @@ class UpdateStatusService < BaseService
     @status.text         = @options[:text].presence || @options.delete(:spoiler_text) || '' if @options.key?(:text)
     @status.spoiler_text = @options[:spoiler_text] || '' if @options.key?(:spoiler_text)
     @status.sensitive    = @options[:sensitive] || @options[:spoiler_text].present? if @options.key?(:sensitive) || @options.key?(:spoiler_text)
-    @status.language     = valid_locale_or_nil(@options[:language] || @status.language || @status.account.user&.preferred_posting_language || I18n.default_locale)
+    @status.language     = valid_locale_cascade(@options[:language], @status.language, @status.account.user&.preferred_posting_language, I18n.default_locale)
     @status.content_type = @options[:content_type] || @status.content_type
     @status.edited_at    = Time.now.utc
 
@@ -138,16 +133,10 @@ class UpdateStatusService < BaseService
 
     return if @status.edits.any?
 
-    @status.snapshot!(
-      media_attachments_changed: false,
-      at_time: @status.created_at
-    )
+    @status.snapshot!(at_time: @status.created_at, rate_limit: false)
   end
 
   def create_edit!
-    @status.snapshot!(
-      media_attachments_changed: @media_attachments_changed || @poll_changed,
-      account_id: @account_id
-    )
+    @status.snapshot!(account_id: @account_id)
   end
 end

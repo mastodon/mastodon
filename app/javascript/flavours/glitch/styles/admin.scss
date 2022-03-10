@@ -367,6 +367,21 @@ body,
     }
   }
 
+  .positive-hint,
+  .negative-hint,
+  .neutral-hint {
+    a {
+      color: inherit;
+      text-decoration: underline;
+
+      &:focus,
+      &:hover,
+      &:active {
+        text-decoration: none;
+      }
+    }
+  }
+
   .positive-hint {
     color: $valid-value-color;
     font-weight: 500;
@@ -1608,6 +1623,41 @@ a.sparkline {
         &:active {
           text-decoration: underline;
         }
+      }
+    }
+  }
+}
+
+.availability-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 21px;
+
+  &__hint {
+    padding: 0 15px;
+  }
+
+  &__graphic {
+    display: flex;
+    margin: 0 -2px;
+
+    &__item {
+      display: block;
+      flex: 0 0 auto;
+      width: 4px;
+      height: 21px;
+      background: lighten($ui-base-color, 8%);
+      margin: 0 2px;
+      border-radius: 2px;
+
+      &.positive {
+        background: $valid-value-color;
+      }
+
+      &.negative {
+        background: $error-value-color;
       }
     }
   }
