@@ -801,14 +801,17 @@ tr:
       pending_review: İnceleme bekliyor
       preview_card_providers:
         allowed: Bu yayıncının bağlantıları öne çıkabilir
+        description_html: Sunucunuzda bağlantıları sıklıkla paylaşılan alan adları var. Bağlantının alan adı onaylanmadıkça, bağlantılar öne çıkmayacaktır. Onayınız (veya reddiniz) alt alan adlarını kapsar.
         rejected: Bu yayıncının bağlantıları öne çıkmayacak
         title: Yayıncılar
       rejected: Reddedildi
       statuses:
         allow: Gönderiye izin ver
         allow_account: Yazara izin ver
+        description_html: Bunlar, sunucunuzca bilinen, şu an sıklıkla paylaşılan ve beğenilen gönderilerdir. Yeni ve geri dönen kullanıcılarınızın takip etmesi için daha fazla kullanıcı bulmasına yararlar. Siz yazarı onaylamadığınız ve yazar hesabının başkalarına önerilmesine izin vermediği sürece gönderileri herkese açık olarak gösterilmez. Tekil gönderileri de onaylayabilir veya reddedebilirsiniz.
         disallow: Gönderi iznini kaldır
         disallow_account: Yazar iznini kaldır
+        not_discoverable: Yazar keşfedilebilir olmamayı seçiyor
         shared_by:
           one: Bir defa paylaşıldı veya favorilendi
           other: '%{friendly_count} defa paylaşıldı veya favorilendi'
@@ -821,6 +824,7 @@ tr:
           tag_servers_dimension: En gözde sunucular
           tag_servers_measure: farklı sunucular
           tag_uses_measure: toplam kullanım
+        description_html: Bunlar sunucunuzun gördüğü gönderilerde sıklıkla gözüken etiketlerdir. Kullanıcılarınızın, şu an en çok ne hakkında konuşulduğunu görmesine yardımcı olurlar. Onaylamadığınız sürece etiketler herkese açık görünmez.
         listable: Önerilebilir
         not_listable: Önerilmeyecek
         not_trendable: Öne çıkanlar altında görünmeyecek
