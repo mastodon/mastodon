@@ -470,11 +470,39 @@ vi:
       title: Gợi ý theo dõi
       unsuppress: Mở lại gợi ý theo dõi
     instances:
+      availability:
+        description_html:
+          other: Nếu chuyển đến tên miền <strong>%{count} ngày</strong> mà không thành công, không chuyển gì nữa cho tới khi sự tiếp nhận <em>từ</em> máy chủ được nhận.
+        failure_threshold_reached: Thất bại đạt ngưỡng vào %{date}.
+        failures_recorded:
+          other: Thất bại tạm thời vào %{count} ngày khác.
+        no_failures_recorded: Chưa bao giờ thất bại.
+        title: Khả dụng
       back_to_all: Toàn bộ
       back_to_limited: Hạn chế
       back_to_warning: Cảnh báo
       by_domain: Máy chủ
       confirm_purge: Bạn có chắc chắn muốn xóa dữ liệu từ máy chủ này vĩnh viễn?
+      content_policies:
+        comment: Lưu ý nội bộ
+        description_html: Bạn có thể xác định các chính sách nội dung sẽ được áp dụng cho tất cả các tài khoản trên máy chủ này và bất kỳ tên miền phụ nào của nó.
+        policies:
+          reject_media: Từ chối media
+          reject_reports: Từ chối báo cáo
+          silence: Hạn chế
+          suspend: Vô hiệu hóa
+        policy: Chính sách
+        reason: Lý do công khai
+        title: Chính sách nội dung
+      dashboard:
+        instance_accounts_dimension: Những tài khoản được theo dõi nhiều nhất
+        instance_accounts_measure: tài khoản đã lưu trữ
+        instance_followers_measure: người theo dõi của chúng ta ở đó
+        instance_follows_measure: người theo dõi của họ ở đây
+        instance_languages_dimension: Top ngôn ngữ
+        instance_media_attachments_measure: tệp đính kèm
+        instance_reports_measure: báo cáo về họ
+        instance_statuses_measure: tút đã lưu trữ
       delivery:
         all: Toàn bộ
         clear: Xóa phân phối lỗi
@@ -497,12 +525,14 @@ vi:
       private_comment: Bình luận riêng
       public_comment: Bình luận công khai
       purge: Thanh trừng
+      purge_description_html: Nếu bạn tin rằng máy chủ này đã chết, bạn có thể xóa tất cả các bản ghi tài khoản và dữ liệu đã liên kết khỏi bộ nhớ của mình. Việc này có thể mất một lúc.
       title: Mạng liên hợp
       total_blocked_by_us: Bị chặn bởi chúng ta
       total_followed_by_them: Được họ theo dõi
       total_followed_by_us: Được quản trị viên theo dõi
       total_reported: Toàn bộ báo cáo
       total_storage: Media
+      totals_time_period_hint_html: Tổng số được hiển thị bên dưới bao gồm dữ liệu cho mọi thời điểm.
     invites:
       deactivate_all: Vô hiệu hóa tất cả
       filter:
