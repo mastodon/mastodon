@@ -13,8 +13,8 @@ module Mastodon
       true
     end
 
-    MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2022_03_10_060959
+    MIN_SUPPORTED_VERSION = 2019_10_01_213028 # rubocop:disable Style/NumericLiterals
+    MAX_SUPPORTED_VERSION = 2022_03_10_060959 # rubocop:disable Style/NumericLiterals
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -207,7 +207,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring index_accounts_on_username_and_domain_lower…'
-      if ActiveRecord::Migrator.current_version < 20200620164023
+      if ActiveRecord::Migrator.current_version < 20200620164023 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :accounts, 'lower (username), lower(domain)', name: 'index_accounts_on_username_and_domain_lower', unique: true
       else
         ActiveRecord::Base.connection.add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true
@@ -250,7 +250,7 @@ module Mastodon
         end
       end
 
-      if ActiveRecord::Migrator.current_version < 20220118183010
+      if ActiveRecord::Migrator.current_version < 20220118183010 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
           users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
           @prompt.warn "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
@@ -274,7 +274,8 @@ module Mastodon
       ActiveRecord::Base.connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
       ActiveRecord::Base.connection.add_index :users, ['email'], name: 'index_users_on_email', unique: true
       ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if ActiveRecord::Migrator.current_version < 20220118183010
-      if ActiveRecord::Migrator.current_version < 20220310060641
+
+      if ActiveRecord::Migrator.current_version < 20220310060641 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
       else
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, where: 'reset_password_token IS NOT NULL', opclass: :text_pattern_ops
@@ -337,7 +338,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring conversations indexes…'
-      if ActiveRecord::Migrator.current_version < 20220307083603
+      if ActiveRecord::Migrator.current_version < 20220307083603 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true
       else
         ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true, where: 'uri IS NOT NULL', opclass: :text_pattern_ops
@@ -454,7 +455,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring media_attachments indexes…'
-      if ActiveRecord::Migrator.current_version < 20220310060626
+      if ActiveRecord::Migrator.current_version < 20220310060626 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :media_attachments, ['shortcode'], name: 'index_media_attachments_on_shortcode', unique: true
       else
         ActiveRecord::Base.connection.add_index :media_attachments, ['shortcode'], name: 'index_media_attachments_on_shortcode', unique: true, where: 'shortcode IS NOT NULL', opclass: :text_pattern_ops
@@ -487,7 +488,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring statuses indexes…'
-      if ActiveRecord::Migrator.current_version < 20220310060706
+      if ActiveRecord::Migrator.current_version < 20220310060706 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true
       else
         ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true, where: 'uri IS NOT NULL', opclass: :text_pattern_ops
