@@ -14,7 +14,7 @@ module Mastodon
     end
 
     MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2022_03_10_060706
+    MAX_SUPPORTED_VERSION = 2022_03_10_060959
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
