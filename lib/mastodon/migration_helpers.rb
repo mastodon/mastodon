@@ -809,20 +809,19 @@ module Mastodon
     # Update the configuration of an index by creating a new one and then
     # removing the old one
     def update_index(table_name, index_name, columns, **index_options)
-      if index_name_exists?(table_name, "#{index_name}_old") && index_name_exists?(table_name, index_name)
-        remove_index table_name, index_name
-      elsif index_name_exists?(table_name, index_name)
-        rename_index table_name, index_name, "#{index_name}_old"
+      if index_name_exists?(table_name, "#{index_name}_new") && index_name_exists?(table_name, index_name)
+        remove_index table_name, "#{index_name}_new"
       end
 
       begin
-        add_index table_name, columns, **index_options.merge(name: index_name, algorithm: :concurrently)
+        add_index table_name, columns, **index_options.merge(name: "#{index_name}_new", algorithm: :concurrently)
       rescue ActiveRecord::RecordNotUnique
-        remove_index table_name, name: index_name
+        remove_index table_name, name: "#{index_name}_new"
         raise CorruptionError.new(index_name)
       end
 
-      remove_index table_name, name: "#{index_name}_old" if index_name_exists?(table_name, "#{index_name}_old")
+      remove_index table_name, name: index_name if index_name_exists?(table_name, index_name)
+      rename_index table_name, "#{index_name}_new", index_name
     end
 
     # This will replace the first occurrence of a string in a column with
