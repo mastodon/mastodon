@@ -470,6 +470,9 @@ ko:
       unsuppress: 팔로우 추천 복원
     instances:
       availability:
+        description_html:
+          other: 도메인에 대한 전달이 성공 없이 <strong>%{count}</strong>일 실패한다면, 이후의 전달 시도는 해당 도메인<em>에서</em> 전달이 오기 전까지는 만들어지지 않습니다.
+        failure_threshold_reached: '%{date}에 실패 임계점에 도달했습니다.'
         failures_recorded:
           other: 실패한 전달 시도 총 %{count}일.
         no_failures_recorded: 실패 기록이 없습니다.
@@ -480,7 +483,7 @@ ko:
       by_domain: 도메인
       confirm_purge: 정말로 이 도메인의 데이터를 영구적으로 삭제하길 원하십니까?
       content_policies:
-        comment: 내부 참고 사항
+        comment: 내부 참고사항
         description_html: 이 도메인과 하위 도메인의 모든 계정에 적용될 콘텐츠 정책을 정의할 수 있습니다.
         policies:
           reject_media: 미디어 거부
@@ -488,7 +491,7 @@ ko:
           silence: 제한
           suspend: 정지
         policy: 정책
-        reason: 공개 사유
+        reason: 공개적인 사유
         title: 콘텐츠 정책
       dashboard:
         instance_accounts_dimension: 제일 많이 팔로우된 계정
@@ -829,8 +832,12 @@ ko:
       actions:
         delete_statuses: 게시물을 삭제하는 것
         disable: 계정을 동결시키는 것
+        mark_statuses_as_sensitive: 게시물을 민감함으로 표시하는 것
         none: 경고
-      body: "%{target} 님이 %{action_taken_by} 님에 의해 %{date}에 결정된 중재 결정에 대한 이의를 제기했습니다, 결정된 사항은 %{type} 였습니다. 작성내용은 다음과 같습니다:"
+        sensitive: 계정을 민감함으로 표시하는 것
+        silence: 계정을 제한하는 것
+        suspend: 계정을 정지하는 것
+      body: "%{target} 님이 %{action_taken_by} 님에 의해 %{date}에 결정된 중재 결정에 대한 이의를 제기했습니다, 결정된 사항은 %{type}이었습니다. 작성내용은 다음과 같습니다:"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
       subject: '%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다'
@@ -998,6 +1005,7 @@ ko:
       recipient: 수신자
       status: '게시물 #%{id}'
       status_removed: 게시물이 이미 시스템에서 지워졌습니다
+      title: "%{action} (%{date}에)"
       title_actions:
         delete_statuses: 게시물 삭제
         disable: 계정 동결
@@ -1006,9 +1014,9 @@ ko:
         sensitive: 계정을 민감함으로 표시
         silence: 계정의 제한
         suspend: 계정 정지
-      your_appeal_approved: 소명이 받아들여졌습니다
+      your_appeal_approved: 당신의 소명이 받아들여졌습니다
       your_appeal_pending: 소명을 제출했습니다
-      your_appeal_rejected: 소명이 기각되었습니다
+      your_appeal_rejected: 당신의 소명이 기각되었습니다
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
@@ -1302,6 +1310,9 @@ ko:
     reply:
       proceed: 답장 진행
       prompt: '이 게시물에 답장을 하려 합니다:'
+  reports:
+    errors:
+      invalid_rules: 올바른 규칙을 포함하지 않습니다
   scheduled_statuses:
     over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 게시물 제한을 초과합니다
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
@@ -1368,6 +1379,7 @@ ko:
     profile: 프로필
     relationships: 팔로잉과 팔로워
     statuses_cleanup: 게시물 자동 삭제
+    strikes: 중재 기록
     two_factor_authentication: 2단계 인증
     webauthn_authentication: 보안 키
   statuses:
