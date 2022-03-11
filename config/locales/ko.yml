@@ -470,6 +470,8 @@ ko:
       unsuppress: 팔로우 추천 복원
     instances:
       availability:
+        failures_recorded:
+          other: 실패한 전달 시도 총 %{count}일.
         no_failures_recorded: 실패 기록이 없습니다.
         title: 가용성
       back_to_all: 전체
@@ -491,8 +493,11 @@ ko:
       dashboard:
         instance_accounts_dimension: 제일 많이 팔로우된 계정
         instance_accounts_measure: 보관된 계정
+        instance_followers_measure: 저쪽을 팔로우 하는 우리의 팔로워 수
+        instance_follows_measure: 우리를 팔로우 하는 저쪽의 팔로워 수
         instance_languages_dimension: 상위 언어
         instance_media_attachments_measure: 보관된 미디어 첨부파일
+        instance_reports_measure: 이들에 대한 신고
         instance_statuses_measure: 보관된 게시물
       delivery:
         all: 전체
@@ -822,7 +827,10 @@ ko:
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: 게시물을 삭제하는 것
+        disable: 계정을 동결시키는 것
         none: 경고
+      body: "%{target} 님이 %{action_taken_by} 님에 의해 %{date}에 결정된 중재 결정에 대한 이의를 제기했습니다, 결정된 사항은 %{type} 였습니다. 작성내용은 다음과 같습니다:"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
       subject: '%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다'
