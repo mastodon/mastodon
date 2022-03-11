@@ -60,8 +60,8 @@ zh-CN:
       error:
         title: 发生错误
       new:
-        able_to: 此应用将能够
-        prompt: "%{client_name} 应用想要授权访问你的账户"
+        prompt_html: "%{client_name} 希望得到访问你帐号的许可。这是一个第三方应用。<strong>如果你不信任它，那么你不应该授权它。</strong>"
+        review_permissions: 检查权限
         title: 需要授权
       show:
         title: 接下来请复制此处的授权代码并粘贴到应用中。
@@ -71,10 +71,12 @@ zh-CN:
       confirmations:
         revoke: 确定要撤销对此应用的授权吗？
       index:
-        application: 应用
-        created_at: 授权时间
-        date_format: "%Y 年 %m 月 %d 日 %H:%M:%S"
-        scopes: 权限范围
+        authorized_at: 授权于 %{date}
+        description_html: 这些是可以使用 API 访问你帐号的应用程序。如果这里有你不认识的应用程序，或者某个应用程序行为异常，你可以撤销其访问权限。
+        last_used_at: 最后一次使用 %{date}
+        never_used: 从未使用
+        scopes: 权限
+        superapp: 内部
         title: 已授权的应用列表
     errors:
       messages:
@@ -110,6 +112,33 @@ zh-CN:
       authorized_applications:
         destroy:
           notice: 已成功撤销对此应用的授权
+    grouped_scopes:
+      access:
+        read: 只读权限
+        read/write: 读写权限
+        write: 仅写入权限
+      title:
+        accounts: 帐号
+        admin/accounts: 管理员帐号
+        admin/all: 所有管理功能
+        admin/reports: 管理报表
+        all: 所有
+        blocks: 屏蔽
+        bookmarks: 收藏
+        conversations: 会话
+        crypto: 端到端加密
+        favourites: 喜欢
+        filters: 过滤器
+        follow: 关系
+        follows: 关注
+        lists: 列表
+        media: 媒体文件
+        mutes: 静音
+        notifications: 通知
+        push: 推送通知
+        reports: 报告
+        search: 搜索
+        statuses: 嘟文
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ zh-CN:
       admin:write: 修改服务器上的所有数据
       admin:write:accounts: 对帐号执行管理操作
       admin:write:reports: 对举报执行管理操作
+      crypto: 使用端到端加密
       follow: 关注或屏蔽用户
       push: 接收你的帐户的推送通知
       read: 读取你的帐户数据
@@ -143,6 +173,7 @@ zh-CN:
       write:accounts: 修改你的个人资料
       write:blocks: 屏蔽账号和域名
       write:bookmarks: 为嘟文添加书签
+      write:conversations: 静音并删除会话
       write:favourites: 喜欢的嘟文
       write:filters: 创建过滤器
       write:follows: 关注其他人

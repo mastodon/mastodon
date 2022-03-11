@@ -16,6 +16,7 @@ tr:
     contact: İletişim
     contact_missing: Ayarlanmadı
     contact_unavailable: Yok
+    continue_to_web: Web uygulamasına git
     discover_users: Kullanıcıları keşfet
     documentation: Belgeler
     federation_hint_html: "%{instance} hesabınızla, herhangi bir Mastodon sunucusundaki ve haricindeki kişileri takip edebilirsiniz."
@@ -25,6 +26,8 @@ tr:
       Bu hesap, herhangi bir kullanıcıyı değil sunucunun kendisini temsil etmek için kullanılan sanal bir aktördür.
       Federasyon amaçlı kullanılır ve tüm yansıyı engellemek istemediğiniz sürece engellenmemelidir; bu durumda bir etki alanı bloğu kullanmanız gerekir.
     learn_more: Daha fazla bilgi edinin
+    logged_in_as_html: Şu an %{username} olarak oturum açmışsınız.
+    logout_before_registering: Zaten oturumunuz açık.
     privacy_policy: Gizlilik politikası
     rules: Sunucu kuralları
     rules_html: 'Aşağıda, bu Mastodon sunucusu üzerinde bir hesap açmak istiyorsanız uymanız gereken kuralların bir özeti var:'
@@ -69,7 +72,6 @@ tr:
     media: Medya
     moved_html: "%{name}, %{new_profile_link} adresine taşındı:"
     network_hidden: Bu bilgi mevcut değil
-    never_active: Asla
     nothing_here: Burada henüz hiçbir gönderi yok!
     people_followed_by: Kullanıcı %{name}'in takip ettikleri
     people_who_follow: Kullanıcı %{name}'i takip edenler
@@ -433,7 +435,7 @@ tr:
         create: Yeni blok oluştur
         hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez, fakat o hesapların üzerine otomatik olarak belirli yönetim metodlarını olarak uygular.
         severity:
-          desc_html: "<strong>Susturma</strong>, uygulanan hesabın gönderilerini, o hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong> hesabın bütün içeriğini, ortam dosyalarını ve profil verisini siler."
+          desc_html: "<strong>Susturma</strong>, uygulanan hesabın gönderilerini, o hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong> hesabın bütün içeriğini, medya dosyalarını ve profil verisini siler. Sadece medya dosyalarını reddetmek için <strong>Hiçbiri</strong> kullanın."
           noop: Yok
           silence: Sustur
           suspend: Uzaklaştır
@@ -444,25 +446,10 @@ tr:
       private_comment_hint: Denetleyiciler tarafından dahili kullanım için bu alan adı sınırlaması hakkında yorum.
       public_comment: Genel yorum
       public_comment_hint: Eğer alan adı sınırlamaları listesinin tanıtılması etkinleştirilmişse, genel kullanım için bu alan adı sınırlaması hakkında yorum.
-      reject_media: Ortam dosyalarını reddetme
-      reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırma için uygun değildir
+      reject_media: Medya dosyalarını reddet
+      reject_media_hint: Yerel olarak depolanmış medya dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırmalarla ilgisizdir
       reject_reports: Raporları reddet
       reject_reports_hint: Bu alan adından gelen tüm şikayetleri yok sayın. Uzaklaştırmalar için mevzu dışıdır
-      rejecting_media: ortam dosyalarını reddet
-      rejecting_reports: şikayetleri reddet
-      severity:
-        silence: susturulmuş
-        suspend: uzaklaştırılmış
-      show:
-        affected_accounts:
-          one: Veritabanındaki bir hesap etkilendi
-          other: Veritabanındaki %{count} hesap etkilendi
-          zero: Veritabanındaki hiç bir hesap etkilenmedi
-        retroactive:
-          silence: Bu domaindeki tüm hesapların üzerindeki susturulma işlemini kaldır
-          suspend: Bu domaindeki tüm hesapların üzerindeki uzaklaştırma işlemini kaldır
-        title: "%{domain} domain'i için yapılan işlemi geri al"
-        undo: Geri al
       undo: Geri al
       view: Alan adı bloğunu görüntüle
     email_domain_blocks:
@@ -493,23 +480,47 @@ tr:
       title: Takip önerileri
       unsuppress: Takip önerisini geri getir
     instances:
+      availability:
+        description_html:
+          one: Eğer alan adına teslimat <strong>%{count} gün</strong> boyunca başarısız olursa, alan adından bir teslimat <em>gelmedikçe</em> yeni bir iletim denemesi yapılmayacak.
+          other: Eğer alan adına teslimat <strong>%{count} farklı gün</strong> boyunca başarısız olursa, alan adından bir teslimat <em>gelmedikçe</em> yeni bir iletim denemesi yapılmayacak.
+        failure_threshold_reached: Başarısızlık eşiğine %{date} tarihinde ulaşıldı.
+        failures_recorded:
+          one: "%{count} gün başarısız girişim."
+          other: "%{count} farklı gün başarısız girişim."
+        no_failures_recorded: Kayıtlı başarısızlık yok.
+        title: Ulaşılabilirlik
       back_to_all: Tümü
       back_to_limited: Sınırlı
       back_to_warning: Uyarı
       by_domain: Alan adı
       confirm_purge: Bu alan adından verileri kalıcı olarak silmek istediğinizden emin misin?
+      content_policies:
+        comment: İç not
+        description_html: Bu alan adındaki ve alt alan adlarındaki tüm hesaplara uygulanacak içerik ilkeleri belirleyebilirsiniz.
+        policies:
+          reject_media: Medyayı reddet
+          reject_reports: Şikayetleri reddet
+          silence: Sınırla
+          suspend: Askıya al
+        policy: İlke
+        reason: Kamuya açık gerekçe
+        title: İçerik ilkeleri
+      dashboard:
+        instance_accounts_dimension: En çok takip edilen hesaplar
+        instance_accounts_measure: kayıtlı hesaplar
+        instance_followers_measure: oradaki takipçilerimiz
+        instance_follows_measure: buradaki takipçileri
+        instance_languages_dimension: En gözde diller
+        instance_media_attachments_measure: kayıtlı medya ekleri
+        instance_reports_measure: haklarındaki şikayetler
+        instance_statuses_measure: kayıtlı gönderiler
       delivery:
         all: Tümü
         clear: Teslimat hatalarını temizle
         restart: Teslimatı yeniden başlat
         stop: Teslimatı durdur
-        title: Teslimat
         unavailable: Mevcut Değil
-        unavailable_message: Teslimat mevcut değil
-        warning: Uyarı
-        warning_message:
-          one: Teslimat %{count} gündür başarısız
-          other: Teslimat %{count} gündür başarısız
       delivery_available: Teslimat mevcut
       delivery_error_days: Teslimat hatası günleri
       delivery_error_hint: Eğer teslimat %{count} gün boyunca mümkün olmazsa, otomatik olarak teslim edilemiyor olarak işaretlenecek.
@@ -526,12 +537,14 @@ tr:
       private_comment: Özel yorum
       public_comment: Genel yorum
       purge: Temizle
+      purge_description_html: Eğer bu alan adının temelli çevrimdışı olduğunu düşünüyorsanız, bu alanda adına ait tüm hesap kayıtlarını ve ilişkili tüm veriyi depolama alanınızdan kaldırabilirsiniz. Bu işlem uzun sürebilir.
       title: Bilinen Sunucular
       total_blocked_by_us: Tarafımızca engellenen
       total_followed_by_them: Onlar tarafından takip edilen
       total_followed_by_us: Tarafımızca takip edilen
       total_reported: Onlar hakkında şikayetler
       total_storage: Medya ekleri
+      totals_time_period_hint_html: Aşağıdaki gösterilen toplamlar, gelmiş geçmiş tüm veriyi içeriyor.
     invites:
       deactivate_all: Tümünü devre dışı bırak
       filter:
@@ -586,6 +599,7 @@ tr:
       action_taken_by: tarafından gerçekleştirilen eylem
       actions:
         delete_description_html: Bildirilen gönderiler silinecek ve aynı hesapla ileride yaşabileceğiniz etkileşimlerde çoğaltmanız için bir eylem kaydedilecek.
+        mark_as_sensitive_description_html: Bildirilen gönderilerdeki medya dosyaları hassas olarak işaretlenecek ve aynı hesapla ileride yaşayabileceğiniz etkileşimlerde kullanabilmeniz için bir eylem kaydedilecek.
         other_description_html: Hesabın davranışını denetlemek ve bildirilen hesabın iletişimini yapılandırmak için daha fazla seçenek görün.
         resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
         silence_description_html: Profil sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir.
@@ -606,6 +620,7 @@ tr:
       forwarded: İletildi
       forwarded_to: "%{domain}'e iletildi"
       mark_as_resolved: Giderildi olarak işaretle
+      mark_as_sensitive: Hassas olarak işaretle
       mark_as_unresolved: Çözümlenmemiş olarak işaretle
       no_one_assigned: Hiç kimse
       notes:
@@ -749,6 +764,7 @@ tr:
       actions:
         delete_statuses: "%{name}, %{target} kullanıcısının gönderilerini sildi"
         disable: "%{name}, %{target} kullanıcısının hesabını dondurdu"
+        mark_statuses_as_sensitive: "%{name}, %{target} kullanıcısının gönderilerini hassas olarak işaretledi"
         none: "%{name}, %{target} kullanıcısına bir uyarı gönderdi"
         sensitive: "%{name}, %{target} kullanıcısının hesabını hassas olarak işaretledi"
         silence: "%{name}, %{target} kullanıcısının hesabını kısıtladı"
@@ -774,6 +790,7 @@ tr:
       links:
         allow: Bağlantıya izin ver
         allow_provider: Yayıncıya izin ver
+        description_html: Bu bağlantılar şu anda sunucunuzun gönderilerini gördüğü hesaplarca bolca paylaşılıyor. Kullanıcılarınızın dünyada neler olduğunu görmesine yardımcı olabilir. Yayıncıyı onaylamadığınız sürece hiçbir bağlantı herkese açık yayınlanmaz. Tekil bağlantıları onaylayabilir veya reddedebilirsiniz.
         disallow: Bağlantıya izin verme
         disallow_provider: Yayıncıya izin verme
         shared_by_over_week:
@@ -785,14 +802,17 @@ tr:
       pending_review: İnceleme bekliyor
       preview_card_providers:
         allowed: Bu yayıncının bağlantıları öne çıkabilir
+        description_html: Sunucunuzda bağlantıları sıklıkla paylaşılan alan adları var. Bağlantının alan adı onaylanmadıkça, bağlantılar öne çıkmayacaktır. Onayınız (veya reddiniz) alt alan adlarını kapsar.
         rejected: Bu yayıncının bağlantıları öne çıkmayacak
         title: Yayıncılar
       rejected: Reddedildi
       statuses:
         allow: Gönderiye izin ver
         allow_account: Yazara izin ver
+        description_html: Bunlar, sunucunuzca bilinen, şu an sıklıkla paylaşılan ve beğenilen gönderilerdir. Yeni ve geri dönen kullanıcılarınızın takip etmesi için daha fazla kullanıcı bulmasına yararlar. Siz yazarı onaylamadığınız ve yazar hesabının başkalarına önerilmesine izin vermediği sürece gönderileri herkese açık olarak gösterilmez. Tekil gönderileri de onaylayabilir veya reddedebilirsiniz.
         disallow: Gönderi iznini kaldır
         disallow_account: Yazar iznini kaldır
+        not_discoverable: Yazar keşfedilebilir olmamayı seçiyor
         shared_by:
           one: Bir defa paylaşıldı veya favorilendi
           other: "%{friendly_count} defa paylaşıldı veya favorilendi"
@@ -805,6 +825,7 @@ tr:
           tag_servers_dimension: En gözde sunucular
           tag_servers_measure: farklı sunucular
           tag_uses_measure: toplam kullanım
+        description_html: Bunlar sunucunuzun gördüğü gönderilerde sıklıkla gözüken etiketlerdir. Kullanıcılarınızın, şu an en çok ne hakkında konuşulduğunu görmesine yardımcı olurlar. Onaylamadığınız sürece etiketler herkese açık görünmez.
         listable: Önerilebilir
         not_listable: Önerilmeyecek
         not_trendable: Öne çıkanlar altında görünmeyecek
@@ -831,6 +852,7 @@ tr:
       actions:
         delete_statuses: gönderilerini silme
         disable: hesaplarını dondurma
+        mark_statuses_as_sensitive: gönderilerini hassas olarak işaretleme
         none: uyarı
         sensitive: hesaplarını hassas olarak işaretleme
         silence: hesaplarını kısıtlama
@@ -933,8 +955,10 @@ tr:
     status:
       account_status: Hesap durumu
       confirming: E-posta doğrulamasının tamamlanması bekleniyor.
+      functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
+      view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
     use_security_key: Güvenlik anahtarını kullan
@@ -1010,6 +1034,7 @@ tr:
         submit: İtirazı gönder
       associated_report: İlişkili rapor
       created_at: Tarih
+      description_html: Bunlar hesabınıza yönelik eylemler ve %{instance} yönetimi tarafından size gönderilen uyarılardır.
       recipient: Kime
       status: 'Gönderi #%{id}'
       status_removed: Gönderi zaten sistemden kaldırıldı
@@ -1017,8 +1042,9 @@ tr:
       title_actions:
         delete_statuses: Gönderi kaldırma
         disable: Hesabın dondurulması
+        mark_statuses_as_sensitive: Gönderileri hassas olarak işaretleme
         none: Uyarı
-        sensitive: Hassas hesap olarak işaretleme
+        sensitive: Hesabı hassas olarak işaretleme
         silence: Hesabın kısıtlanması
         suspend: Hesabın askıya alınması
       your_appeal_approved: İtirazınız onaylandı
@@ -1048,7 +1074,7 @@ tr:
     archive_takeout:
       date: Tarih
       download: Arşivinizi indirin
-      hint_html: "<strong>Tootlarınızın ve yüklediğiniz ortamların</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub formatında olacaktır. Her 7 günde bir arşiv talep edebilirsiniz."
+      hint_html: "<strong>Gönderileriniz ve yüklediğiniz medya dosyalarının</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub biçiminde olacaktır. Her 7 günde bir arşiv talep edebilirsiniz."
       in_progress: Arşivinizi derliyoruz...
       request: Arşivinizi isteyin
       size: Boyut
@@ -1390,6 +1416,7 @@ tr:
     profile: Profil
     relationships: Takip edilenler ve takipçiler
     statuses_cleanup: Otomatik gönderi silme
+    strikes: Moderasyon eylemleri
     two_factor_authentication: İki adımlı doğrulama
     webauthn_authentication: Güvenlik anahtarları
   statuses:
@@ -1469,6 +1496,7 @@ tr:
       '2629746': 1 ay
       '31556952': 1 yıl
       '5259492': 2 ay
+      '604800': 1 hafta
       '63113904': 2 yıl
       '7889238': 3 ay
     min_age_label: Zaman eşiği
@@ -1616,26 +1644,28 @@ tr:
         spam: İstenmeyen
         violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
       explanation:
-        delete_statuses: Bazı gönderilerinizin bir veya daha topluluk ilkemizi ihlal ettiği bulundu ve dolayısıyla %{instance} sunucusu moderatörleri tarafından kaldırıldı. Gelecekteki ihlaller hesabınıza karşı daha sert cezalandırmayla sonuçlanabilir.
+        delete_statuses: Bazı gönderilerinizin, topluluk ilkelerimizden bir veya daha fazlasını ihlal ettiği görüldü ve daha sonra %{instance} moderatörleri tarafından kaldırıldılar.
         disable: Artık hesabınızı kullanamazsınız, ancak profil ve diğer veri sağlam. Verinizin bir yedeğini isteyebilir, hesap ayarlarınızı değiştirebilir veya hesabınızı silebilirsiniz.
-        sensitive: Artık tüm yüklenmiş ortam dosyalarınız hassas olarak işaretlenecek ve üzerine tıklanarak açılacak şekilde bir uyarının ardına gizlenecektir.
+        mark_statuses_as_sensitive: Gönderilerinizin bazıları %{instance} moderatörleri tarafından hassas olarak işaretlendi. Bu nedenle bir önizleme görüntülenmeden önce insanların gönderilerinizdeki medya dosyalarına dokunması gerekiyor. Gelecekte gönderimde bulunurken medya dosyalarını hassas olarak işaretleyebilirsiniz.
+        sensitive: Artık tüm yüklenmiş medya dosyalarınız hassas olarak işaretlenecek ve üzerine tıklanarak açılacak şekilde bir uyarının ardına gizlenecektir.
         silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucudaki gönderilenizi görecek ve çeşitli keşif özelliklerinin dışında bırakılabilirsiniz. Ancak, başkaları sizi manuel olarak hala takip edebilir.
         suspend: Hesabınızı artık kullanamazsınız ve profiliniz ve diğer veri artık erişilebilir değil. Yaklaşık 30 gün içinde silinene kadar verinizin bir yedeğini istemek için giriş yapabilirsiniz, ancak askıdan kaçınmanızı önlemek için bazı temel veriyi saklayabiliriz.
-      get_in_touch: Bunun bir hata olduğunu düşünüyorsanız, %{instance} yönetimiyle bağlantıya geçmek için bu e-postaya yanıt verebilirsiniz.
       reason: 'Gerekçe:'
-      statuses: 'İhlal içeren gönderiler:'
+      statuses: 'Sözü geçen gönderiler:'
       subject:
         delete_statuses: "%{acct} hesabınızdaki gönderiler kaldırıldı"
         disable: "%{acct} hesabınız donduruldu"
+        mark_statuses_as_sensitive: "%{acct} hesabındaki gönderiler hassas olarak işaretlendi"
         none: "%{acct} için uyarı"
-        sensitive: "%{acct} hesabınızdaki ortam dosyaları artık hassas olarak işaretlenecek"
+        sensitive: "%{acct} hesabınızdaki gönderiler artık hassas olarak işaretlenecek"
         silence: "%{acct} hesabınız sınırlandırıldı"
         suspend: "%{acct} hesabınız askıya alındı"
       title:
         delete_statuses: Kaldırılan gönderiler
         disable: Hesap donduruldu
+        mark_statuses_as_sensitive: Gönderiler hassas olarak işaretlendi
         none: Uyarı
-        sensitive: Gizlenmiş ortam dosyaları
+        sensitive: Hesap hassas olarak işaretlendi
         silence: Hesap sınırlandırıldı
         suspend: Hesap askıya alındı
     welcome:

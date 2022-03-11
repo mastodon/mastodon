@@ -5,7 +5,7 @@ es-MX:
       account_alias:
         acct: Especifique el nombre de usuario@dominio de la cuenta desde la cual se desea migrar
       account_migration:
-        acct: Especifique el nombre de usuario@dominio de la cuenta a la cual se desea migrar
+        acct: Especifique el nombre de usuario@dominio de la cuenta a la cual desea migrar
       account_warning_preset:
         text: Puede usar sintaxis de toots, como URLs, hashtags y menciones
         title: Opcional. No visible para el destinatario
@@ -28,7 +28,7 @@ es-MX:
         starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
         text: Puedes usar la sintaxis toot. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
       appeal:
-        text: Sólo puedes apelar una amonestación una vez
+        text: Sólo puede apelar una amonestación a la vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -37,8 +37,7 @@ es-MX:
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
-        discoverable: El directorio del perfil es otra forma en la que su cuenta puede llegar a un público más amplio
-        discoverable_no_directory: Permite que tu cuenta sea encontrada por desconocidos por medio de recomendaciones y otras herramientas
+        discoverable: Permite que tu cuenta sea descubierta por extraños a través de recomendaciones, tendencias y otras características
         email: Se le enviará un correo de confirmación
         fields: Puedes tener hasta 4 elementos mostrándose como una tabla en tu perfil
         header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -64,6 +63,7 @@ es-MX:
       domain_allow:
         domain: Este dominio podrá obtener datos de este servidor y los datos entrantes serán procesados y archivados
       email_domain_block:
+        domain: Este puede ser el nombre de dominio que se muestra en al dirección de correo o el registro MX que utiliza. Se comprobarán al registrarse.
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
         name: 'Puede que quieras usar uno de estos:'
@@ -208,8 +208,8 @@ es-MX:
         mention: Enviar correo electrónico cuando alguien te mencione
         pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
-        report: Nuevo informe enviado
-        trending_tag: Una nueva tendencia requiere revisión
+        report: Nuevo reporte enviado
+        trending_tag: La nueva tendencia requiere de revisión
       rule:
         text: Norma
       tag:

@@ -60,8 +60,8 @@ tr:
       error:
         title: Bir hata oluştu
       new:
-        able_to: 'Şunları yapabilecek:'
-        prompt: "%{client_name} uygulaması hesabınıza erişim istiyor"
+        prompt_html: "%{client_name} hesabınıza erişme izni istiyor. Bu üçüncü taraf bir uygulamadır. <strong>Eğer güvenmiyorsanız, izin vermemelisiniz.</strong>"
+        review_permissions: İzinleri incele
         title: İzin gerekli
       show:
         title: Bu yetkilendirme kodunu kopyalayın ve uygulamaya yapıştırın.
@@ -71,10 +71,12 @@ tr:
       confirmations:
         revoke: Emin misiniz?
       index:
-        application: Uygulama
-        created_at: Yetkili
-        date_format: "%m-%d-%Y %H:%M:%S"
-        scopes: Kapsamlar
+        authorized_at: "%{date} tarihinde onaylandı"
+        description_html: Bunlar, API aracılığıyla hesabınıza erişebilen uygulamalardır. Eğer burada tanımadığınız uygulamalar veya kötü davranan bir uygulama var, erişimini kaldırabilirsiniz.
+        last_used_at: En son %{date} tarihinde kullanıldı
+        never_used: Hiç kullanılmadı
+        scopes: İzinler
+        superapp: Dahili
         title: Yetkili uygulamalarınız
     errors:
       messages:
@@ -110,6 +112,33 @@ tr:
       authorized_applications:
         destroy:
           notice: Uygulama iptal edildi.
+    grouped_scopes:
+      access:
+        read: Sadece okuma erişimi
+        read/write: Okuma ve yazma erişimi
+        write: Sadece yazma erişimi
+      title:
+        accounts: Hesaplar
+        admin/accounts: Hesapların yönetimi
+        admin/all: Tüm yönetsel işlevler
+        admin/reports: Şikayetlerin yönetimi
+        all: Her şey
+        blocks: Engeller
+        bookmarks: Yer imleri
+        conversations: Sohbetler
+        crypto: Uçtan uca şifreleme
+        favourites: Beğeniler
+        filters: Filtreler
+        follow: İlişkiler
+        follows: Takip edilenler
+        lists: Listeler
+        media: Medya ekleri
+        mutes: Sessize alınanlar
+        notifications: Bildirimler
+        push: Anlık bildirimler
+        reports: Şikayetler
+        search: Arama
+        statuses: Gönderiler
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ tr:
       admin:write: sunucudaki tüm verileri değiştirin
       admin:write:accounts: hesaplarda denetleme eylemleri gerçekleştirin
       admin:write:reports: raporlarda denetleme eylemleri gerçekleştirin
+      crypto: uçtan uca şifreleme kullan
       follow: hesap ilişkilerini değiştirin
       push: anlık bildirimlerizi alın
       read: hesabınızın tüm verilerini okuyun
@@ -143,6 +173,7 @@ tr:
       write:accounts: profilinizi değiştirin
       write:blocks: hesapları ve alan adlarını engelleyin
       write:bookmarks: durumları yer imleyin
+      write:conversations: sessize al ve sohbetleri sil
       write:favourites: durumları beğenin
       write:filters: filtreler oluşturun
       write:follows: insanları takip edin

@@ -67,7 +67,6 @@ nn:
     media: Media
     moved_html: "%{name} har flytta til %{new_profile_link}:"
     network_hidden: Denne informasjonen er ikkje tilgjengeleg
-    never_active: Aldri
     nothing_here: Her er det ingenting!
     people_followed_by: Folk som %{name} fylgjer
     people_who_follow: Folk som fylgjer %{name}
@@ -362,17 +361,6 @@ nn:
       reject_media_hint: Fjernar mediefiler som er lagra lokalt og nektar å lasta ned andre i framtida. Har ikkje noko å seia for utvisingar
       reject_reports: Avvis rapportar
       reject_reports_hint: Ignorer alle rapportar frå dette domenet. Har ikkje noko å seia for utvisingar
-      rejecting_media: avviser mediefiler
-      rejecting_reports: avviser rapportar
-      severity:
-        silence: dempa
-        suspend: utvist
-      show:
-        retroactive:
-          silence: Avmålbind alle eksisterende kontoer fre dette domenet
-          suspend: Avutvis alle eksisterende kontoer fra dette domenet
-        title: Angre domeneblokkering for %{domain}
-        undo: Angr
       undo: Angre
       view: Vis domeneblokkering
     email_domain_blocks:
@@ -402,9 +390,7 @@ nn:
         clear: Feil ved fjerning
         restart: Starte levering
         stop: Stopp levering
-        title: Levering
         unavailable: Ikke tilgjengelig
-        warning: Advarsel
       delivery_available: Levering er tilgjengelig
       moderation:
         all: Alle

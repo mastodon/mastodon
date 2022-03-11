@@ -61,7 +61,6 @@ oc:
     media: Mèdias
     moved_html: "%{name} a mudat a %{new_profile_link} :"
     network_hidden: Aquesta informacion es pas disponibla
-    never_active: Jamai
     nothing_here: I a pas res aquí !
     people_followed_by: Lo monde que %{name} sèc
     people_who_follow: Lo monde que sègon %{name}
@@ -322,17 +321,6 @@ oc:
       reject_media_hint: Lèva los fichièrs gardats localament e regèta las demandas de telecargament dins lo futur. Servís pas a res per las suspensions
       reject_reports: Regetar los senhalaments
       reject_reports_hint: Ignorar totes los senhalaments que venon d’aqueste domeni. Pas pertiment per las suspensions
-      rejecting_media: regeta los fichièrs multimèdias
-      rejecting_reports: regeta los senhalements
-      severity:
-        silence: mes en silenci
-        suspend: suspendut
-      show:
-        retroactive:
-          silence: Levar lo silenci de totes los comptes d’aqueste domeni
-          suspend: Levar la suspension de totes los comptes d’aqueste domeni
-        title: Restablir lo blocatge de domeni de %{domain}
-        undo: Restablir
       undo: Restablir
       view: Veire lo blocatge de domeni
     email_domain_blocks:
@@ -1043,6 +1031,7 @@ oc:
       '2629746': 1 mes
       '31556952': 1 an
       '5259492': 2 meses
+      '604800': 1 week
       '63113904': 2 ans
       '7889238': 3 meses
   stream_entries:

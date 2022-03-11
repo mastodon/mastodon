@@ -60,8 +60,8 @@ th:
       error:
         title: เกิดข้อผิดพลาด
       new:
-        able_to: แอปจะสามารถ
-        prompt: แอปพลิเคชัน %{client_name} ขอเข้าถึงบัญชีของคุณ
+        prompt_html: "%{client_name} ต้องการสิทธิอนุญาตเพื่อเข้าถึงบัญชีของคุณ แอปพลิเคชันเป็นแอปพลิเคชันจากบุคคลที่สาม <strong>หากคุณไม่เชื่อถือแอปพลิเคชัน คุณไม่ควรอนุญาตแอปพลิเคชัน</strong>"
+        review_permissions: ตรวจทานสิทธิอนุญาต
         title: ต้องมีการอนุญาต
       show:
         title: คัดลอกรหัสการอนุญาตนี้แล้ววางลงในแอปพลิเคชัน
@@ -71,10 +71,12 @@ th:
       confirmations:
         revoke: คุณแน่ใจหรือไม่?
       index:
-        application: แอปพลิเคชัน
-        created_at: อนุญาตเมื่อ
-        date_format: "%d/%m/%Y %H:%M:%S"
-        scopes: ขอบเขต
+        authorized_at: อนุญาตเมื่อ %{date}
+        description_html: นี่คือแอปพลิเคชันที่สามารถเข้าถึงบัญชีของคุณโดยใช้ API หากมีแอปพลิเคชันที่คุณไม่รู้จักที่นี่ หรือแอปพลิเคชันทำงานผิดปกติ คุณสามารถเพิกถอนการเข้าถึงของแอปพลิเคชัน
+        last_used_at: ใช้ล่าสุดเมื่อ %{date}
+        never_used: ไม่เคยใช้
+        scopes: สิทธิอนุญาต
+        superapp: ภายใน
         title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
     errors:
       messages:
@@ -100,6 +102,33 @@ th:
       authorized_applications:
         destroy:
           notice: เพิกถอนแอปพลิเคชันแล้ว
+    grouped_scopes:
+      access:
+        read: การเข้าถึงแบบอ่านเท่านั้น
+        read/write: การเข้าถึงแบบอ่านและเขียน
+        write: การเข้าถึงแบบเขียนเท่านั้น
+      title:
+        accounts: บัญชี
+        admin/accounts: การดูแลบัญชี
+        admin/all: ฟังก์ชันการดูแลทั้งหมด
+        admin/reports: การดูแลรายงาน
+        all: ทุกอย่าง
+        blocks: การปิดกั้น
+        bookmarks: ที่คั่นหน้า
+        conversations: การสนทนา
+        crypto: การเข้ารหัสแบบต้นทางถึงปลายทาง
+        favourites: รายการโปรด
+        filters: ตัวกรอง
+        follow: ความสัมพันธ์
+        follows: การติดตาม
+        lists: รายการ
+        media: ไฟล์แนบสื่อ
+        mutes: การซ่อน
+        notifications: การแจ้งเตือน
+        push: การแจ้งเตือนแบบผลัก
+        reports: การรายงาน
+        search: ค้นหา
+        statuses: โพสต์
     layouts:
       admin:
         nav:
@@ -114,6 +143,7 @@ th:
       admin:write: ปรับเปลี่ยนข้อมูลทั้งหมดในเซิร์ฟเวอร์
       admin:write:accounts: ทำการกระทำการควบคุมบัญชี
       admin:write:reports: ทำการกระทำการควบคุมรายงาน
+      crypto: ใช้การเข้ารหัสแบบต้นทางถึงปลายทาง
       follow: ปรับเปลี่ยนความสัมพันธ์ของบัญชี
       push: รับการแจ้งเตือนแบบผลักของคุณ
       read: อ่านข้อมูลบัญชีทั้งหมดของคุณ
@@ -133,6 +163,7 @@ th:
       write:accounts: ปรับเปลี่ยนโปรไฟล์ของคุณ
       write:blocks: ปิดกั้นบัญชีและโดเมน
       write:bookmarks: เพิ่มที่คั่นหน้าโพสต์
+      write:conversations: ซ่อนและลบการสนทนา
       write:favourites: ชื่นชอบโพสต์
       write:filters: สร้างตัวกรอง
       write:follows: ติดตามผู้คน
