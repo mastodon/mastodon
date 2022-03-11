@@ -224,4 +224,19 @@ module ApplicationHelper
     content_tag(:script, json_escape(json).html_safe, id: 'initial-state', type: 'application/json')
     # rubocop:enable Rails/OutputSafety
   end
+
+  def grouped_scopes(scopes)
+    scope_parser      = ScopeParser.new
+    scope_transformer = ScopeTransformer.new
+
+    scopes.each_with_object({}) do |str, h|
+      scope = scope_transformer.apply(scope_parser.parse(str))
+
+      if h[scope.key]
+        h[scope.key].merge!(scope)
+      else
+        h[scope.key] = scope
+      end
+    end.values
+  end
 end

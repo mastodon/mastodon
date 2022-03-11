@@ -27,6 +27,8 @@ class ApproveAppealService < BaseService
       undo_disable!
     when 'delete_statuses'
       undo_delete_statuses!
+    when 'mark_statuses_as_sensitive'
+      undo_mark_statuses_as_sensitive!
     when 'sensitive'
       undo_sensitive!
     when 'silence'
@@ -47,6 +49,12 @@ class ApproveAppealService < BaseService
 
   def undo_delete_statuses!
     # Cannot be undone
+  end
+
+  def undo_mark_statuses_as_sensitive!
+    @strike.statuses.includes(:media_attachments).each do |status|
+      UpdateStatusService.new.call(status, @current_account.id, sensitive: false) if status.with_media?
+    end
   end
 
   def undo_sensitive!

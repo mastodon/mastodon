@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_010024) do
+ActiveRecord::Schema.define(version: 2022_03_09_213005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -391,7 +391,6 @@ ActiveRecord::Schema.define(version: 2022_02_24_010024) do
     t.bigint "parent_id"
     t.inet "ips", array: true
     t.datetime "last_refresh_at"
-
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
@@ -420,8 +419,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_010024) do
   end
 
   create_table "featured_tags", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "tag_id"
+    t.bigint "account_id", null: false
+    t.bigint "tag_id", null: false
     t.bigint "statuses_count", default: 0, null: false
     t.datetime "last_status_at"
     t.datetime "created_at", null: false
@@ -630,6 +629,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_010024) do
     t.string "scopes"
     t.bigint "application_id"
     t.bigint "resource_owner_id"
+    t.datetime "last_used_at"
+    t.inet "last_used_ip"
     t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
     t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
@@ -843,9 +844,12 @@ ActiveRecord::Schema.define(version: 2022_02_24_010024) do
     t.bigint "account_id"
     t.text "text", default: "", null: false
     t.text "spoiler_text", default: "", null: false
-    t.boolean "media_attachments_changed", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "ordered_media_attachment_ids", array: true
+    t.text "media_descriptions", array: true
+    t.string "poll_options", array: true
+    t.boolean "sensitive"
     t.index ["account_id"], name: "index_status_edits_on_account_id"
     t.index ["status_id"], name: "index_status_edits_on_status_id"
   end
@@ -890,6 +894,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_010024) do
     t.datetime "deleted_at"
     t.datetime "edited_at"
     t.boolean "trendable"
+    t.bigint "ordered_media_attachment_ids", array: true
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
     t.index ["deleted_at"], name: "index_statuses_on_deleted_at", where: "(deleted_at IS NOT NULL)"
     t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"

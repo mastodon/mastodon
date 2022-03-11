@@ -6,10 +6,10 @@ class ReportService < BaseService
   def call(source_account, target_account, options = {})
     @source_account = source_account
     @target_account = target_account
-    @status_ids     = options.delete(:status_ids) || []
-    @comment        = options.delete(:comment) || ''
-    @category       = options.delete(:category) || 'other'
-    @rule_ids       = options.delete(:rule_ids)
+    @status_ids     = options.delete(:status_ids).presence || []
+    @comment        = options.delete(:comment).presence || ''
+    @category       = options.delete(:category).presence || 'other'
+    @rule_ids       = options.delete(:rule_ids).presence
     @options        = options
 
     raise ActiveRecord::RecordNotFound if @target_account.suspended?
@@ -26,7 +26,7 @@ class ReportService < BaseService
   def create_report!
     @report = @source_account.reports.create!(
       target_account: @target_account,
-      status_ids: @status_ids,
+      status_ids: reported_status_ids,
       comment: @comment,
       uri: @options[:uri],
       forwarded: forward?,
@@ -54,6 +54,10 @@ class ReportService < BaseService
 
   def forward?
     !@target_account.local? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
+  end
+
+  def reported_status_ids
+    @target_account.statuses.with_discarded.find(Array(@status_ids)).pluck(:id)
   end
 
   def payload

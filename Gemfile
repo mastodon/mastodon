@@ -40,6 +40,7 @@ end
 gem 'net-ldap', '~> 0.17'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
+gem 'gitlab-omniauth-openid-connect', '~>0.5.0', require: 'omniauth_openid_connect'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
@@ -113,7 +114,7 @@ end
 group :test do
   gem 'capybara', '~> 3.36'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.19'
+  gem 'faker', '~> 2.20'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'

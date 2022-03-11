@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Disputes::StrikesController < Disputes::BaseController
-  before_action :set_strike
+  before_action :set_strike, only: [:show]
+
+  def index
+    @strikes = current_account.strikes.latest
+  end
 
   def show
     authorize @strike, :show?

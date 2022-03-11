@@ -1625,28 +1625,36 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Follow",
-        "id": "account.follow"
-      },
-      {
         "defaultMessage": "Unfollow",
         "id": "account.unfollow"
       },
       {
-        "defaultMessage": "Awaiting approval",
+        "defaultMessage": "Follow",
+        "id": "account.follow"
+      },
+      {
+        "defaultMessage": "Cancel follow request",
+        "id": "account.cancel_follow_request"
+      },
+      {
+        "defaultMessage": "Awaiting approval. Click to cancel follow request",
         "id": "account.requested"
       },
       {
-        "defaultMessage": "Unblock @{name}",
-        "id": "account.unblock"
+        "defaultMessage": "Unblock",
+        "id": "account.unblock_short"
       },
       {
-        "defaultMessage": "Unmute @{name}",
-        "id": "account.unmute"
+        "defaultMessage": "Unmute",
+        "id": "account.unmute_short"
       },
       {
         "defaultMessage": "Unfollow",
         "id": "confirmations.unfollow.confirm"
+      },
+      {
+        "defaultMessage": "Edit profile",
+        "id": "account.edit_profile"
       },
       {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
@@ -1661,12 +1669,8 @@
         "id": "account.followers"
       },
       {
-        "defaultMessage": "Never",
-        "id": "account.never_active"
-      },
-      {
-        "defaultMessage": "Last active",
-        "id": "account.last_status"
+        "defaultMessage": "Following",
+        "id": "account.following"
       }
     ],
     "path": "app/javascript/mastodon/features/directory/components/account_card.json"
@@ -2007,10 +2011,6 @@
       {
         "defaultMessage": "Getting started",
         "id": "getting_started.heading"
-      },
-      {
-        "defaultMessage": "Profile directory",
-        "id": "getting_started.directory"
       }
     ],
     "path": "app/javascript/mastodon/features/getting_started/index.json"
@@ -2742,7 +2742,7 @@
         "id": "report.reasons.spam"
       },
       {
-        "defaultMessage": "Malicious links, fake engagement, or repetetive replies",
+        "defaultMessage": "Malicious links, fake engagement, or repetitive replies",
         "id": "report.reasons.spam_description"
       },
       {
@@ -3390,6 +3390,10 @@
         "id": "navigation_bar.info"
       },
       {
+        "defaultMessage": "Profile directory",
+        "id": "getting_started.directory"
+      },
+      {
         "defaultMessage": "Mobile apps",
         "id": "navigation_bar.apps"
       },
@@ -3515,10 +3519,6 @@
       {
         "defaultMessage": "Lists",
         "id": "navigation_bar.lists"
-      },
-      {
-        "defaultMessage": "Profile directory",
-        "id": "getting_started.directory"
       },
       {
         "defaultMessage": "Preferences",

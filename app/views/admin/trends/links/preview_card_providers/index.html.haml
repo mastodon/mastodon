@@ -4,6 +4,10 @@
 - content_for :header_tags do
   = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
+%p= t('admin.trends.preview_card_providers.description_html')
+
+%hr.spacer/
+
 .filters
   .filter-subset
     %strong= t('admin.tags.review')
@@ -16,7 +20,6 @@
     = link_to admin_trends_links_path do
       = fa_icon 'chevron-left fw'
       = t('admin.trends.links.title')
-
 
 %hr.spacer/
 

@@ -510,7 +510,7 @@ module Mastodon
       accounts = accounts.sort_by(&:id).reverse
 
       @prompt.warn "Multiple local accounts were found for username '#{accounts.first.username}'."
-      @prompt.warn 'All those accounts are distinct accounts but only the most recently-created one is fully-functionnal.'
+      @prompt.warn 'All those accounts are distinct accounts but only the most recently-created one is fully-functional.'
 
       accounts.each_with_index do |account, idx|
         @prompt.say '%2d. %s: created at: %s; updated at: %s; last logged in at: %s; statuses: %5d; last status at: %s' % [idx, account.username, account.created_at, account.updated_at, account.user&.last_sign_in_at&.to_s || 'N/A', account.account_stat&.statuses_count || 0, account.account_stat&.last_status_at || 'N/A']

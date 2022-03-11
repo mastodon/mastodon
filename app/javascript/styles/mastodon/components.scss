@@ -50,7 +50,7 @@
   cursor: pointer;
   display: inline-block;
   font-family: inherit;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 22px;
@@ -1127,7 +1127,7 @@
   .media-gallery,
   .audio-player,
   .video-player {
-    margin-top: 8px;
+    margin-top: 15px;
     max-width: 250px;
   }
 
@@ -2333,17 +2333,7 @@ a.account__display-name {
     padding: 0;
   }
 
-  .directory__list {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: minmax(0, 50%) minmax(0, 50%);
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      display: block;
-    }
-  }
-
-  .directory__card {
+  .account-card {
     margin-bottom: 0;
   }
 
@@ -4315,7 +4305,7 @@ a.status-card.compact:hover {
   }
 }
 
-.upload-progess__message {
+.upload-progress__message {
   flex: 1 1 auto;
 }
 
@@ -5619,6 +5609,12 @@ a.status-card.compact:hover {
       margin: 20px 0;
     }
   }
+
+  .media-gallery,
+  .audio-player,
+  .video-player {
+    margin-top: 15px;
+  }
 }
 
 .loading-bar {
@@ -6219,136 +6215,20 @@ a.status-card.compact:hover {
   }
 }
 
-.directory {
-  &__list {
-    width: 100%;
-    margin: 10px 0;
-    transition: opacity 100ms ease-in;
+.scrollable .account-card {
+  margin: 10px;
+  background: lighten($ui-base-color, 8%);
+}
 
-    &.loading {
-      opacity: 0.7;
-    }
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      margin: 0;
-    }
+.scrollable .account-card__title__avatar {
+  img,
+  .account__avatar {
+    border-color: lighten($ui-base-color, 8%);
   }
+}
 
-  &__card {
-    box-sizing: border-box;
-    margin-bottom: 10px;
-
-    &__img {
-      height: 125px;
-      position: relative;
-      background: darken($ui-base-color, 12%);
-      overflow: hidden;
-
-      img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        object-fit: cover;
-      }
-    }
-
-    &__bar {
-      display: flex;
-      align-items: center;
-      background: lighten($ui-base-color, 4%);
-      padding: 10px;
-
-      &__name {
-        flex: 1 1 auto;
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        overflow: hidden;
-      }
-
-      &__relationship {
-        width: 23px;
-        min-height: 1px;
-        flex: 0 0 auto;
-      }
-
-      .avatar {
-        flex: 0 0 auto;
-        width: 48px;
-        height: 48px;
-        padding-top: 2px;
-
-        img {
-          width: 100%;
-          height: 100%;
-          display: block;
-          margin: 0;
-          border-radius: 4px;
-          background: darken($ui-base-color, 8%);
-          object-fit: cover;
-        }
-      }
-
-      .display-name {
-        margin-left: 15px;
-        text-align: left;
-
-        strong {
-          font-size: 15px;
-          color: $primary-text-color;
-          font-weight: 500;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        span {
-          display: block;
-          font-size: 14px;
-          color: $darker-text-color;
-          font-weight: 400;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
-    }
-
-    &__extra {
-      background: $ui-base-color;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      .accounts-table__count {
-        width: 33.33%;
-        flex: 0 0 auto;
-        padding: 15px 0;
-      }
-
-      .account__header__content {
-        box-sizing: border-box;
-        padding: 15px 10px;
-        border-bottom: 1px solid lighten($ui-base-color, 8%);
-        width: 100%;
-        min-height: 18px + 30px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        p {
-          display: none;
-
-          &:first-child {
-            display: inline;
-          }
-        }
-
-        br {
-          display: none;
-        }
-      }
-    }
-  }
+.scrollable .account-card__bio::after {
+  background: linear-gradient(to left, lighten($ui-base-color, 8%), transparent);
 }
 
 .account-gallery__container {
@@ -6452,6 +6332,7 @@ a.status-card.compact:hover {
 
   &__column {
     padding: 10px 15px;
+    padding-bottom: 0;
   }
 
   .radio-button {

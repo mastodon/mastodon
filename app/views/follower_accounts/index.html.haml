@@ -7,7 +7,7 @@
 
 = render 'accounts/header', account: @account
 
-- if @account.user_hides_network?
+- if @account.hide_collections?
   .nothing-here= t('accounts.network_hidden')
 - elsif user_signed_in? && @account.blocking?(current_account)
   .nothing-here= t('accounts.unavailable')
