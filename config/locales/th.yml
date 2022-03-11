@@ -453,13 +453,24 @@ th:
       by_domain: โดเมน
       confirm_purge: คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลจากโดเมนนี้อย่างถาวร?
       content_policies:
+        comment: หมายเหตุภายใน
         policies:
           reject_media: ปฏิเสธสื่อ
           reject_reports: ปฏิเสธรายงาน
           silence: จำกัด
           suspend: ระงับ
+        policy: นโยบาย
+        reason: เหตุผลสาธารณะ
+        title: นโยบายเนื้อหา
       dashboard:
+        instance_accounts_dimension: บัญชีที่ติดตามมากที่สุด
+        instance_accounts_measure: บัญชีที่จัดเก็บไว้
+        instance_followers_measure: ผู้ติดตามของเราที่นั่น
+        instance_follows_measure: ผู้ติดตามของเขาที่นี่
         instance_languages_dimension: ภาษายอดนิยม
+        instance_media_attachments_measure: ไฟล์แนบสื่อที่จัดเก็บไว้
+        instance_reports_measure: รายงานเกี่ยวกับเขา
+        instance_statuses_measure: โพสต์ที่จัดเก็บไว้
       delivery:
         all: ทั้งหมด
         clear: ล้างข้อผิดพลาดการจัดส่ง
