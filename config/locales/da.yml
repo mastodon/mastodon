@@ -742,27 +742,28 @@ da:
         desc_html: Påvirker hashtags, som ikke tidligere er blevet nægtet
         title: Tillad hashtags at forme tendens uden forudgående revision
       trends:
-        desc_html: Vis tidligere gennemgåede hashtags, som pt. trender
-        title: Populære hashtags
+        desc_html: Vis offentligt tidligere reviderede hashtags, som pt. trender
+        title: Populært
     site_uploads:
       delete: Slet uploadet fil
       destroyed_msg: Websteds-upload blev slettet!
     statuses:
-      back_to_account: Tilbage til kontosiden
-      back_to_report: Retur til anmeldelsessiden
+      back_to_account: Retur til kontoside
+      back_to_report: Retur til anmeldelsesside
       batch:
         remove_from_report: Fjern fra anmeldelse
         report: Anmeldelse
       deleted: Slettet
       media:
         title: Medier
-      no_status_selected: Ingen indlæg ændret, da ingen var valgt
+      no_status_selected: Ingen indlæg ændret (ingen valgt)
       title: Kontoindlæg
       with_media: Med medier
     strikes:
       actions:
         delete_statuses: "%{name} slettede %{target}s indlæg"
         disable: "%{name} frøs %{target}s konto"
+        mark_statuses_as_sensitive: "%{name} markerede %{target}s indlæg som sensitive"
         none: "%{name} sendte en advarsel til %{target}"
         sensitive: "%{name} markerede %{target}s konto som sensitiv"
         silence: "%{name} begrænsede %{target}s konto"
