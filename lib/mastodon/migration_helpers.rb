@@ -47,7 +47,9 @@ module Mastodon
       def initialize(index_name)
         @index_name = index_name
 
-        super('The #{index_name} index seems to be corrupted, it contains duplicate rows')
+        super "The index `#{index_name}` seems to be corrupted, it contains duplicate rows. " \
+          'For information on how to fix this, see our documentation: ' \
+          'https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/'
       end
 
       def cause
