@@ -75,7 +75,6 @@ pl:
     media: Zawartość multimedialna
     moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
     network_hidden: Ta informacja nie jest dostępna
-    never_active: Nigdy
     nothing_here: Niczego tu nie ma!
     people_followed_by: Konta śledzone przez %{name}
     people_who_follow: Osoby, które śledzą konto %{name}
@@ -464,17 +463,6 @@ pl:
       reject_media_hint: Usuwa przechowywane lokalnie pliki multimedialne i nie pozwala na ich pobieranie. Nieprzydatne przy zawieszeniu
       reject_reports: Odrzucaj zgłoszenia
       reject_reports_hint: Zgłoszenia z tej instancji będą ignorowane. Nieprzydatne przy zawieszeniu
-      rejecting_media: pliki multimedialne są odrzucane
-      rejecting_reports: zgłoszenia są odrzucane
-      severity:
-        silence: wyciszono
-        suspend: zawieszono
-      show:
-        retroactive:
-          silence: Odwołaj wyciszenie wszystkich kont w tej domenie
-          suspend: Odwołaj zawieszenie wszystkich kont w tej domenie
-        title: Odwołaj blokadę dla domeny %{domain}
-        undo: Cofnij
       undo: Cofnij
       view: Zobacz blokadę domeny
     email_domain_blocks:
@@ -512,15 +500,7 @@ pl:
         clear: Wyczyść błędy w doręczaniu
         restart: Uruchom ponownie doręczenie
         stop: Zatrzymaj doręczanie
-        title: Doręczanie
         unavailable: Niedostępne
-        unavailable_message: Doręczaniei niedostępne
-        warning: Ostrzeżenie
-        warning_message:
-          few: "%{count} dni niepowodzenia doręczenia"
-          many: "%{count} dni niepowodzenia doręczenia"
-          one: "%{count} dzień niepowodzenia doręczenia"
-          other: "%{count} dni niepowodzenia doręczenia"
       delivery_available: Doręczanie jest dostępne
       delivery_error_days: Dni błędów doręczenia
       delivery_error_hint: Jeżeli doręczanie nie będzie możliwe przez %{count} dni, zostanie automatycznie oznaczona jako nie do doręczania.
@@ -595,6 +575,7 @@ pl:
       action_taken_by: Działanie podjęte przez
       actions:
         delete_description_html: Zgłoszone posty zostaną usunięte, a zdarzenie zostanie zapisane, aby pomóc w eskalacji przyszłych wykroczeń na tym samym koncie.
+        mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
         other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
         resolve_description_html: Nie zostaną podjęte żadne działania przeciwko zgłoszonemu sprawozdaniu, zdarzenie nie zostanie zarejestrowane, a zgłoszenie zostanie zamknięte.
         silence_description_html: Profil będzie widoczny tylko dla tych, którzy go już obserwują lub szukaj ręcznie, poważnie ograniczając jego zasięg. Może być zawsze cofnięty.
@@ -615,6 +596,7 @@ pl:
       forwarded: Przekazano
       forwarded_to: Przekazano do %{domain}
       mark_as_resolved: Oznacz jako rozwiązane
+      mark_as_sensitive: Oznacz jako wrażliwe
       mark_as_unresolved: Oznacz jako nierozwiązane
       no_one_assigned: Nikt nie
       notes:
@@ -757,6 +739,7 @@ pl:
       actions:
         delete_statuses: "%{name} usunął(-ęła) posty %{target}"
         disable: "%{name} zamroził(a) konto %{target}"
+        mark_statuses_as_sensitive: "%{name} oznaczył/a wiadomości %{target} jako wrażliwe"
         none: "%{name} wysłał(a) ostrzeżenie do %{target}"
         sensitive: "%{name} oznaczył(-a) konto %{target} jako wrażliwe"
         silence: "%{name} ograniczył(-a) konto %{target}"
@@ -782,6 +765,7 @@ pl:
       links:
         allow: Zezwól na link
         allow_provider: Zezwalaj na wydawcę
+        description_html: Są to linki, które są obecnie często udostępniane przez konta, z których Twój serwer widzi posty. Może to pomóc Twoim użytkownikom dowiedzieć się, co dzieje się na świecie. Żadne linki nie są wyświetlane publicznie dopóki nie zaakceptujesz wydawcy. Możesz również zezwolić lub odrzucić indywidualne linki.
         disallow: Nie zezwalaj na link
         disallow_provider: Nie zezwalaj na wydawcę
         title: Popularne linki
@@ -828,6 +812,7 @@ pl:
       actions:
         delete_statuses: aby usunąć ich wpisy
         disable: aby zamrozić jego/jej konto
+        mark_statuses_as_sensitive: aby oznaczyć swoje posty jako wrażliwe
         none: ostrzeżenie
         sensitive: aby oznaczyć konto jako wrażliwe
         silence: aby ograniczyć swoje konto
@@ -1003,8 +988,9 @@ pl:
       title_actions:
         delete_statuses: Usuwanie postów
         disable: Zamrażanie konta
+        mark_statuses_as_sensitive: Oznaczanie postów jako wrażliwych
         none: Ostrzeżenie
-        sensitive: Oznaczenie konta jako wrażliwe
+        sensitive: Oznaczanie konta jako wrażliwe
         silence: Ograniczenie konta
         suspend: Zawieszenie konta
       your_appeal_approved: Twoje odwołanie zostało zatwierdzone
@@ -1473,6 +1459,7 @@ pl:
       '2629746': 1 miesiąc
       '31556952': 1 rok
       '5259492': 2 miesiące
+      '604800': 1 week
       '63113904': 2 lata
       '7889238': 3 miesiące
     min_age_label: Próg wieku
@@ -1611,26 +1598,27 @@ pl:
         spam: Spam
         violation: Zawartość narusza następujące wytyczne społeczności
       explanation:
-        delete_statuses: Stwierdzono, że niektóre z Twoich postów naruszają jedną lub więcej wytycznych dla społeczności i zostały usunięte przez moderatorów %{instance}. Przyszłe naruszenia mogą skutkować ostrzejszymi działaniami karnymi w stosunku do Twojego konta.
         disable: Nie możesz już używać swojego konta, ale Twój profil i inne dane pozostają nienaruszone. Możesz poprosić o kopię swoich danych, zmienić ustawienia konta lub usunąć swoje konto.
+        mark_statuses_as_sensitive: Niektóre z Twoich postów zostały oznaczone jako wrażliwe przez moderatorów %{instance}. Oznacza to, że ludzie będą musieli dotknąć mediów w postach przed wyświetleniem podglądu. Możesz oznaczyć media jako wrażliwe podczas publikowania w przyszłości.
         sensitive: Od teraz wszystkie przesłane pliki multimedialne będą oznaczone jako wrażliwe i ukryte za ostrzeżeniem kliknięcia.
         silence: Kiedy Twoje konto jest ograniczone, tylko osoby, które je śledzą, będą widzieć Twoje wpisy. Może ono też przestać być widoczne w funkcjach odkrywania. Inni wciąż mogą zacząć Cię śledzić.
         suspend: Nie możesz już używać Twojego konta, a Twój profil i inne dane nie są już dostępne. Zanim w pełni usuniemy Twoje dane po około 30 dniach, możesz nadal zalogować się, aby uzyskać ich kopię. Zachowamy pewne podstawowe dane, aby zapobiegać obchodzeniu przez Ciebie zawieszenia.
-      get_in_touch: Jeżeli uważasz to za błąd, możesz odpowiedzieć na ten e-mail, aby skontaktować się z prowadzącymi %{instance}.
       reason: 'Powód:'
-      statuses: 'Wpisy uznane za naruszające wytyczne:'
+      statuses: 'Cytowane posty:'
       subject:
         delete_statuses: Twoje wpisy na %{acct} zostały usunięte
         disable: Twoje konto %{acct} zostało wyłączone
+        mark_statuses_as_sensitive: Twoje posty na %{acct} zostały oznaczone jako wrażliwe
         none: Ostrzeżenie dla %{acct}
-        sensitive: Twoje multimedia na %{acct} będą od teraz oznaczane jako wrażliwe
+        sensitive: Twoje posty na %{acct} będą od teraz oznaczone jako wrażliwe
         silence: Twoje konto %{acct} zostało ograniczone
         suspend: Twoje konto %{acct} zostało zawieszone
       title:
         delete_statuses: Wpisy usunięte
         disable: Konto wyłączone
+        mark_statuses_as_sensitive: Posty oznaczone jako wrażliwe
         none: Ostrzeżenie
-        sensitive: Media ukryte
+        sensitive: Konto oznaczone jako wrażliwe
         silence: Konto ograniczone
         suspend: Konto zawieszone
     welcome:

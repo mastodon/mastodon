@@ -16,6 +16,7 @@ ar:
     contact: للتواصل معنا
     contact_missing: لم يتم تعيينه
     contact_unavailable: غير متوفر
+    continue_to_web: المتابعة إلى تطبيق الويب
     discover_users: اكتشف مستخدِمين
     documentation: الدليل
     federation_hint_html: بواسطة حساب في %{instance} ستتمكن من تتبع أناس في أي خادم ماستدون وأكثر.
@@ -81,7 +82,6 @@ ar:
     media: الوسائط
     moved_html: "%{name} إنتقلَ إلى %{new_profile_link}:"
     network_hidden: إنّ المعطيات غير متوفرة
-    never_active: أبدا
     nothing_here: لا يوجد أي شيء هنا!
     people_followed_by: الأشخاص الذين يتبعهم %{name}
     people_who_follow: الأشخاص الذين يتبعون %{name}
@@ -242,6 +242,7 @@ ar:
       whitelisted: في القائمة البيضاء
     action_logs:
       action_types:
+        approve_appeal: الموافقة على الطعن
         approve_user: الموافقة على المستخدم
         assigned_to_self_report: أسند التقرير
         change_email_user: تغيير عنوان البريد الإلكتروني الخاص بالمستخدم
@@ -273,6 +274,7 @@ ar:
         enable_user: تفعيل المستخدم
         memorialize_account: جعل الحساب تذكاريا
         promote_user: ترقية المستخدم
+        reject_appeal: رفض الطعن
         reject_user: ارفض المستخدم
         remove_avatar_user: احذف الصورة الرمزية
         reopen_report: إعادة فتح التقرير
@@ -404,6 +406,10 @@ ar:
       top_languages: اللغات الأكثر نشاطا
       top_servers: الخوادم الأكثر نشاطا
       website: موقع الويب
+    disputes:
+      appeals:
+        empty: ليست هناك أية طعون.
+        title: الطعون
     domain_allows:
       add_new: إضافة النطاق إلى القائمة البيضاء
       created_msg: تمت إضافة النطاق إلى القائمة البيضاء بنجاح
@@ -435,17 +441,6 @@ ar:
       reject_media_hint: يزيل ملفات الوسائط المخزنة محليًا ويرفض تنزيل أي ملفات في المستقبل. غير ذي صلة للتعليق
       reject_reports: رفض التقارير
       reject_reports_hint: تجاهل جميع تقارير الإبلاغ القادمة من هذا النطاق. هذا يستثي التعليقات
-      rejecting_media: جار رفض ملفات الوسائط
-      rejecting_reports: جار رفض التقارير
-      severity:
-        silence: تم كتمه
-        suspend: تم تعليقه
-      show:
-        retroactive:
-          silence: إلغاء الكتم عن كافة الحسابات المتواجدة على هذا النطاق
-          suspend: إلغاء التعليق المفروض على كافة حسابات هذا النطاق
-        title: رفع حظر النطاق عن %{domain}
-        undo: إلغاء
       undo: إلغاء حجب النطاق
       view: عرض كتلة النطاق
     email_domain_blocks:
@@ -475,21 +470,14 @@ ar:
         clear: مسح أخطاء التسليم
         restart: إعادة تشغيل التوصيل
         stop: إيقاف التوصيل
-        title: التوصيل
         unavailable: غير متوفر
-        unavailable_message: التوصيل غير متوفر
-        warning: تحذير
-        warning_message:
-          few: فشل التوصيل لـ%{count} أيام
-          many: فشل التوصيل لـ%{count} يوم
-          one: فشل التوصيل لـ%{count} يوم
-          other: فشل التوصيل لـ%{count} يوم
-          two: فشل التوصيل لـ%{count} يوم
-          zero: فشل التوصيل لـ%{count} يوم
       delivery_available: التسليم متوفر
       delivery_error_days: أيام أخطاء التوصيل
       delivery_error_hint: إذا كان التوصيل غير ممكناً لـ%{count} يوم، فستوضع عليها علامة {غير قابلة للتسليم} تلقائياً.
       empty: لم يتم العثور على نطاقات.
+      known_accounts:
+        one: "%{count} حساب معروف"
+        other: "%{count} حسابات معروفة"
       moderation:
         all: كافتها
         limited: محدود
@@ -700,12 +688,16 @@ ar:
       back_to_report: العودة إلى صفحة التقرير
       batch:
         remove_from_report: إزالة من التقرير
+        report: إبلاغ
       deleted: محذوف
       media:
         title: الوسائط
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       title: منشورات الحساب
       with_media: تحتوي على وسائط
+    strikes:
+      appeal_approved: طُعِن فيه
+      appeal_pending: طعن قيد المراجعة
     system_checks:
       database_schema_check:
         message_html: هناك عمليات هجرة معلقة لقواعد البيانات. يرجى تشغيلها لضمان تصرف التطبيق كما هو متوقع
@@ -759,6 +751,15 @@ ar:
       empty: لم تحدد أي إعدادات تحذير مسبقة بعد.
       title: إدارة نماذج التحذير
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: لحذف منشوراتهم
+        disable: لتجميد حسابهم
+        mark_statuses_as_sensitive: لوضع علامة حساس على منشوراتهم
+        none: لتحذيرهم
+        sensitive: لجعل حسابهم كحساس
+        silence: للحد من حسابهم
+        suspend: لتعليق حسابهم
     new_pending_account:
       body: تفاصيل الحساب الجديد أدناه. يمكنك الموافقة على هذا الطلب أو رفضه.
       subject: حساب جديد في انتظار مراجعة على %{instance} (%{username})
@@ -766,6 +767,11 @@ ar:
       body: قام %{reporter} بالإبلاغ عن %{target}
       body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: تقرير جديد ل%{instance} (#%{id})
+    new_trends:
+      new_trending_statuses:
+        title: المنشورات الشائعة
+      new_trending_tags:
+        title: الوسوم المتداولة
   aliases:
     add_new: أنشئ كُنية
     created_msg: تم إنشاء الكُنية الجديدة بنجاح. يمكنكم الآن الشروع في الإنتقال مِن حسابكم القديم.
@@ -904,6 +910,27 @@ ar:
     directory: سِجلّ الصفحات التعريفية
     explanation: استكشف مستخدِمين آخرين حسب المواضيع التي تهمهم
     explore_mastodon: استكشف %{title}
+  disputes:
+    strikes:
+      action_taken: الإجراء المتخذ
+      appeal: طعن
+      appeal_rejected: رُفِض الطعن
+      appeal_submitted_at: طعن أرسِل في
+      appealed_msg: تم تقديم طعنك. إذا تمت الموافقة عليه، سيتم إبلاغك.
+      appeals:
+        submit: تقديم طعن
+      associated_report: التقرير المتربط
+      created_at: بتاريخ
+      recipient: موجّه إلى
+      status: 'المنشور #%{id}'
+      title_actions:
+        delete_statuses: إزالة منشور
+        disable: تجميد للحساب
+        none: تحذير
+        suspend: تعليق للحساب
+      your_appeal_approved: تمت الموافقة على طعنك
+      your_appeal_pending: لقد قمت بتقديم طعن
+      your_appeal_rejected: تم رفض طعنك
   domain_validator:
     invalid_domain: ليس بإسم نطاق صالح
   errors:
@@ -1382,6 +1409,7 @@ ar:
       '2629746': شهر واحد
       '31556952': سنة واحدة
       '5259492': شهران
+      '604800': أسبوع
       '63113904': أسبوعان
       '7889238': 3 أشهر
     min_age_label: عتبة العمر
@@ -1504,6 +1532,13 @@ ar:
     recovery_instructions_html: إن فقدت الوصول إلى هاتفك، يمكنك استخدام أحد رموز الاسترداد أدناه لاستعادة الوصول إلى حسابك. <strong>حافظ على رموز الاسترداد بأمان</strong>. يمكنك ، على سبيل المثال ، طباعتها وتخزينها مع مستندات أخرى هامة.
     webauthn: مفاتيح الأمان
   user_mailer:
+    appeal_approved:
+      action: انتقل إلى حسابك
+      subject: تم قبول طعنك الذي قدمته بتاريخ %{date}
+      title: تم قبول طعنك
+    appeal_rejected:
+      subject: تم رفض طعنك الذي قدمته بتاريخ %{date}
+      title: رُفض الاستئناف
     backup_ready:
       explanation: لقد قمت بطلب نسخة كاملة لحسابك على ماستدون. إنها متوفرة الآن للتنزيل!
       subject: نسخة بيانات حسابك جاهزة للتنزيل
@@ -1515,13 +1550,14 @@ ar:
       subject: الرجاء تأكيد محاولة الولوج
       title: محاولة الولوج
     warning:
+      appeal: تقديم طعن
+      appeal_description: إذا كنت تعتقد أن هذا خطأ، يمكنك تقديم طعن إلى فريق %{instance}.
       categories:
         spam: مزعج
         violation: ينتهك المحتوى المبادئ التوجيهية التالية للمجتمع
       explanation:
         sensitive: من الآن فصاعدا، سيتم وضع علامة على جميع ملفات الوسائط التي يتم تحميلها على أنها حساسة وستكون مخفية خلف تحذير يُنقر.
         silence: لا يزال بإمكانك استخدام حسابك ولكن فقط الأشخاص الذين يتابعونك فقط يمكنهم رؤية منشوراتك على هذا الخادم، وقد يتم استبعادك من ميزات الاكتشاف المختلفة. قد يتبعك آخرون على كل حال يدوياً.
-      get_in_touch: إذا كنت تعتقد أن هذا خطأ، يمكنك الرد على هذا البريد الإلكتروني للتواصل مع فريق %{instance}.
       reason: 'السبب:'
       subject:
         disable: تم تجميد حسابك %{acct}
@@ -1532,7 +1568,6 @@ ar:
         delete_statuses: منشورات محذوفة
         disable: الحساب مُجمَّد
         none: تحذير
-        sensitive: الوسائط المخفية
         silence: الحساب محدود
         suspend: الحساب مُعلَّق
     welcome:

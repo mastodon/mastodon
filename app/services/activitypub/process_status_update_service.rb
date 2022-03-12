@@ -13,7 +13,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @poll_changed              = false
 
     # Only native types can be updated at the moment
-    return if !expected_type? || already_updated_more_recently?
+    return @status if !expected_type? || already_updated_more_recently?
+
+    last_edit_date = status.edited_at.presence || status.created_at
 
     # Only allow processing one create/update per status at a time
     RedisLock.acquire(lock_options) do |lock|
@@ -37,13 +39,18 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         raise Mastodon::RaceConditionError
       end
     end
+
+    forward_activity! if significant_changes? && @status_parser.edited_at.present? && @status_parser.edited_at > last_edit_date
+
+    @status
   end
 
   private
 
   def update_media_attachments!
-    previous_media_attachments = @status.media_attachments.to_a
-    next_media_attachments     = []
+    previous_media_attachments     = @status.media_attachments.to_a
+    previous_media_attachments_ids = @status.ordered_media_attachment_ids || previous_media_attachments.map(&:id)
+    next_media_attachments         = []
 
     as_array(@json['attachment']).each do |attachment|
       media_attachment_parser = ActivityPub::Parser::MediaAttachmentParser.new(attachment)
@@ -83,7 +90,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status.ordered_media_attachment_ids = next_media_attachments.map(&:id)
     @status.media_attachments.reload
 
-    @media_attachments_changed = true if @status.ordered_media_attachment_ids_changed?
+    @media_attachments_changed = true if @status.ordered_media_attachment_ids != previous_media_attachments_ids
   end
 
   def update_poll!
@@ -262,5 +269,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     PollExpirationNotifyWorker.remove_from_scheduled(poll.id) if @previous_expires_at.present? && @previous_expires_at > poll.expires_at
     PollExpirationNotifyWorker.perform_at(poll.expires_at + 5.minutes, poll.id)
+  end
+
+  def forward_activity!
+    forwarder.forward! if forwarder.forwardable?
+  end
+
+  def forwarder
+    @forwarder ||= ActivityPub::Forwarder.new(@account, @json, @status)
   end
 end

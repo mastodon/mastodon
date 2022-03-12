@@ -16,6 +16,7 @@ is:
     contact: Hafa samband
     contact_missing: Ekki skilgreint
     contact_unavailable: Ekki til staðar
+    continue_to_web: Halda áfram í vefforritið
     discover_users: Uppgötva notendur
     documentation: Hjálparskjöl
     federation_hint_html: Með notandaaðgangi á %{instance} geturðu fylgst með fólki á hvaða Mastodon-þjóni sem er og reyndar víðar.
@@ -25,6 +26,8 @@ is:
       Þessi aðgangur er sýndarnotandi sem er notaður til að tákna sjálfan vefþjóninn en ekki neinn einstakan notanda.
       Tilgangur hans tengist virkni vefþjónasambandsins og ætti alls ekki að loka á hann nema að þú viljir útiloka allan viðkomandi vefþjón, en þá ætti frekar að útiloka sjálft lénið.
     learn_more: Kanna nánar
+    logged_in_as_html: Þú ert núna skráð/ur inn sem %{username}.
+    logout_before_registering: Þú ert þegar skráð/ur inn.
     privacy_policy: Persónuverndarstefna
     rules: Reglur netþjónsins
     rules_html: 'Hér fyrir neðan er yfirlit yfir þær reglur sem þú þarft að fara eftir ef þú ætlar að vera með notandaaðgang á þessum Mastodon-netþjóni:'
@@ -69,7 +72,6 @@ is:
     media: Myndefni
     moved_html: "%{name} hefur verið færður í %{new_profile_link}:"
     network_hidden: Þessar upplýsingar ekki tiltækar
-    never_active: Aldrei
     nothing_here: Það er ekkert hér!
     people_followed_by: Fólk sem %{name} fylgist með
     people_who_follow: Fólk sem fylgist með %{name}
@@ -448,21 +450,6 @@ is:
       reject_media_hint: Fjarlægir staðværar myndefnisskrár úr geymslu og neitar framvegis að sækja neinar slíkar. Skiptir ekki máli fyrir biðstöður
       reject_reports: Hafna kærum
       reject_reports_hint: Hunsa allar kærur frá þessu léni. Skiptir ekki máli fyrir biðstöður
-      rejecting_media: hafna myndskrám
-      rejecting_reports: hafna kærum
-      severity:
-        silence: takmarkað
-        suspend: í bið
-      show:
-        affected_accounts:
-          one: Einn notandaaðgangur í gagnagrunninum kemur við sögu
-          other: "%{count} notendaaðgangar í gagnagrunninum koma við sögu"
-          zero: Enginn notandaaðgangur í gagnagrunninum kemur við sögu
-        retroactive:
-          silence: Hætta að takmarka viðkomandi notendaaðganga frá þessu léni
-          suspend: Taka úr bið viðkomandi notendaaðganga frá þessu léni
-        title: Afturkalla útilokun á léni fyrir %{domain}
-        undo: Afturkalla
       undo: Afturkalla útilokun á léni
       view: Skoða útilokun á léni
     email_domain_blocks:
@@ -493,23 +480,47 @@ is:
       title: Fylgja meðmælum
       unsuppress: Endurheimta að fylgja meðmælum
     instances:
+      availability:
+        description_html:
+          one: Ef afhending til lénsins mistekst í <strong>%{count} dag</strong>, verður ekki reynt aftur að afhenda til lénsins nema ef afhending <em>frá</em> léninu berst.
+          other: Ef afhending til lénsins mistekst í <strong>%{count} daga</strong>, verður ekki reynt aftur að afhenda til lénsins nema ef afhending <em>frá</em> léninu berst.
+        failure_threshold_reached: Hámarki misheppnaðra tilrauna náð þann %{date}.
+        failures_recorded:
+          one: Misheppnaðar tilraunir á %{count} degi.
+          other: Misheppnaðar tilraunir á %{count} mismunandi dögum.
+        no_failures_recorded: Engar misheppnaðar tilraunir á skrá.
+        title: Tiltækileiki
       back_to_all: Allt
       back_to_limited: Takmarkað
       back_to_warning: Aðvörun
       by_domain: Lén
       confirm_purge: Ertu viss um að þú viljir eyða gögnum endanlega frá þessu léni?
+      content_policies:
+        comment: Innri minnispunktur
+        description_html: Þú getur skilgreint stefnu varðandi efni sem verður beitt á alla aðganga frá þessu léni og öllum undirlénum þess.
+        policies:
+          reject_media: Hafna myndefni
+          reject_reports: Hafna kærum
+          silence: Takmörk
+          suspend: Setja í bið
+        policy: Stefna
+        reason: Opinber ástæða
+        title: Stefnur varðandi efni
+      dashboard:
+        instance_accounts_dimension: Aðgangar sem mest er fylgst með
+        instance_accounts_measure: geymdir aðgangar
+        instance_followers_measure: fylgjendur okkar þar
+        instance_follows_measure: fylgjendur þeirra hér
+        instance_languages_dimension: Vinsælustu tungumál
+        instance_media_attachments_measure: geymd myndefnisviðhengi
+        instance_reports_measure: kærur um þá
+        instance_statuses_measure: geymdar færslur
       delivery:
         all: Allt
         clear: Hreinsa afhendingarvillur
         restart: Endurræsa afhendingu
         stop: Stöðva afhendingu
-        title: Afhending
         unavailable: Ekki tiltækt
-        unavailable_message: Afhending ekki möguleg
-        warning: Aðvörun
-        warning_message:
-          one: "%{count} dagur með villum í afhendingu"
-          other: "%{count} dagar með villum í afhendingu"
       delivery_available: Afhending er til taks
       delivery_error_days: Dagar með villum í afhendingu
       delivery_error_hint: Ef afhending er ekki möguleg í %{count} daga, verður það sjálfkrafa merkt sem óafhendanlegt.
@@ -526,12 +537,14 @@ is:
       private_comment: Einkaathugasemd
       public_comment: Opinber athugasemd
       purge: Henda
+      purge_description_html: Ef þú heldur að þetta lén sé farið endanlega af netinu, geturðu eytt öllum færslum aðganga og tengdum gögnum frá þessu léni úr gagnageymslum þínum. Þetta gæti tekið þó nokkra stund.
       title: Samband
       total_blocked_by_us: Útilokað af okkur
       total_followed_by_them: Fylgt af þeim
       total_followed_by_us: Fylgt af okkur
       total_reported: Kærur um þá
       total_storage: Myndaviðhengi
+      totals_time_period_hint_html: Samtölurnar sem birtar eru hér fyrir neðan innihalda gögn frá upphafi.
     invites:
       deactivate_all: Gera allt óvirkt
       filter:
@@ -586,6 +599,7 @@ is:
       action_taken_by: Aðgerð framkvæmd af
       actions:
         delete_description_html: Kærðum færslum verður eytt og refsing skráð svo þú eigir auðveldara með að bregðast við í framtíðinni verði um fleiri brot að ræða frá sama notandaaðgangi.
+        mark_as_sensitive_description_html: Myndefnið í kærðu færslunum verður merkt sem viðkvæmt og refsing verður skráð til minnis fyrir viðbrögð gegn mögulegum framtíðarbrotum frá sama notandaaðgangi.
         other_description_html: Skoðaðu fleir valkosti fyrir stjórnun á hegðun notandaaðgangsins og til að stýra samskiptum við kærðan notandaaðgang.
         resolve_description_html: Til engra aðgerða verður tekið gagnvart kærðum færslum, engin refsing verður skráð og kærunni verður lokað.
         silence_description_html: Notandaaðgangurinn verður einungis sýnilegur þeim sem þegar fylgjast með honum eða sem fletta honum upp handvirkt, sem takmarkar útbreiðslu efnis verulega. Er alltaf hægt að afturkalla.
@@ -606,6 +620,7 @@ is:
       forwarded: Áframsent
       forwarded_to: Áframsent á %{domain}
       mark_as_resolved: Merkja sem leyst
+      mark_as_sensitive: Merkja sem viðkvæmt
       mark_as_unresolved: Merkja sem óleyst
       no_one_assigned: Enginn
       notes:
@@ -749,6 +764,7 @@ is:
       actions:
         delete_statuses: "%{name} eyddi færslum frá %{target}"
         disable: "%{name} frysti aðganginn %{target}"
+        mark_statuses_as_sensitive: "%{name} merkti færslur frá %{target} sem viðkvæmar"
         none: "%{name} sendi aðvörun til %{target}"
         sensitive: "%{name} merkti efni frá %{target} sem viðkvæmt"
         silence: "%{name} takmarkaði aðganginn %{target}"
@@ -774,6 +790,7 @@ is:
       links:
         allow: Leyfa tengil
         allow_provider: Leyfa útgefanda
+        description_html: Þetta eru tenglar/slóðir sem mikið er deilt af notendum sem netþjónninn þinn sér færslur frá. Þeir geta hjálpað notendunum þínu við að finna út hvað sé í gangi í heiminum. Engir tenglar birtast opinberlega fyrr en þú hefur samþykkt útgefanda þeirra. Þú getur líka leyft eða hafnað eintökum tenglum.
         disallow: Ekki leyfa tengil
         disallow_provider: Ekki leyfa útgefanda
         shared_by_over_week:
@@ -785,14 +802,17 @@ is:
       pending_review: Bíður eftir yfirlestri
       preview_card_providers:
         allowed: Tenglar frá þessum útgefanda geta verið með í vinsældum
+        description_html: Þetta eru lén þaðan sem tenglum er oftast deilt á netþjóninum þínum. Vinsældir tengla munu ekki aukast opinberlega nema lén þeirra sé samþykkt. Samþykki þitt (eða höfnun) nær einnig yfir undirlén.
         rejected: Tenglar frá þessum útgefanda verða ekki með í vinsældum
         title: Útgefendur
       rejected: Hafnað
       statuses:
         allow: Leyfa færslu
         allow_account: Leyfa höfund
+        description_html: Þetta eru færslur sem netþjónninn þinn veit að er víða deilt eða eru mikið sett í eftirlæti þessa stundina. Þær geta hjálpað nýjum sem eldri notendum þínum við að finna fleira fólk til að fylgjast með. Engar færslur birtast opinberlega fyrr en þú hefur samþykkt höfund þeirra og að viðkomandi höfundur leyfi að efni frá þeim sé notað í tillögur til annarra. Þú getur líka leyft eða hafnað eintökum færslum.
         disallow: Ekki leyfa færslu
         disallow_account: Ekki leyfa höfund
+        not_discoverable: Höfundur hefur ekki beðið um að vera finnanlegur
         shared_by:
           one: ShaDeilt eða gert að eftirlæti einu sinni
           other: Deilt eða gert að eftirlæti %{friendly_count} sinnum
@@ -805,6 +825,7 @@ is:
           tag_servers_dimension: Vinsælustu netþjónar
           tag_servers_measure: mismunandi netþjónar
           tag_uses_measure: tilvik alls
+        description_html: Þetta eru myllumerki sem birtast núna í mjög mörgum færslum sem netþjónninn þinn sér. Þau geta hjálpað notendunum þínu við að finna út hvað sé mest í umræðunni hjá öðru fólki. Engin myllumerki birtast opinberlega fyrr en þú hefur samþykkt þau.
         listable: Má stinga uppá
         not_listable: Mun ekki vera stungið uppá
         not_trendable: Mun ekki birtast í vinsældum
@@ -831,6 +852,7 @@ is:
       actions:
         delete_statuses: að eyða færslum viðkomandi
         disable: að frysta aðgang viðkomandi
+        mark_statuses_as_sensitive: að merkja færslur frá þeim sem viðkvæmar
         none: aðvörun
         sensitive: að merkja efni á aðgangnum sem viðkvæmt
         silence: að takmarka aðgang viðkomandi
@@ -933,8 +955,10 @@ is:
     status:
       account_status: Staða notandaaðgangs
       confirming: Bíð eftir að staðfestingu tölvupósts sé lokið.
+      functional: Notandaaðgangurinn þinn er með fulla virkni.
       pending: Umsóknin þín bíður eftir að starfsfólkið okkar fari yfir hana. Það gæti tekið nokkurn tíma. Þú munt fá tölvupóst ef umsóknin er samþykkt.
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
+      view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
     trouble_logging_in: Vandræði við að skrá inn?
     use_security_key: Nota öryggislykil
@@ -1010,6 +1034,7 @@ is:
         submit: Senda inn áfrýjun
       associated_report: Tengd kæra
       created_at: Dagsett
+      description_html: Þetta eru aðgerðir sem notaðar hafa verið gagnvart aðgangnum þínum og aðvaranir sem þér hafa verið sendar af umsjónarfólki á %{instance}.
       recipient: Stílað til
       status: 'Færsla #%{id}'
       status_removed: Færsla þegar fjarlægð úr kerfinu
@@ -1017,8 +1042,9 @@ is:
       title_actions:
         delete_statuses: Fjarlæging færslu
         disable: Frysting aðgangs
+        mark_statuses_as_sensitive: Merking færslna sem viðkvæmar
         none: Aðvörun
-        sensitive: Efni verður merkt sem viðkvæmt frá aðgangnum
+        sensitive: Merking notanda sem viðkvæms
         silence: Takmörkun aðgangs
         suspend: Setja aðgang í bið
       your_appeal_approved: Áfrýjun þín hefur verið samþykkt
@@ -1390,6 +1416,7 @@ is:
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
     statuses_cleanup: Sjálfvirk eyðing færslna
+    strikes: Umsýsla refsinga
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
   statuses:
@@ -1469,6 +1496,7 @@ is:
       '2629746': 1 mánuður
       '31556952': 1 ár
       '5259492': 2 mánuðir
+      '604800': 1 vika
       '63113904': 2 ár
       '7889238': 3 mánuðir
     min_age_label: Aldursmörk
@@ -1616,26 +1644,28 @@ is:
         spam: Ruslpóstur
         violation: Efnið er á skjön við eftirfarandi leiðbeiningar til notenda
       explanation:
-        delete_statuses: Sumar færslur frá þér eru álitnar hafa gengið gegn samþykktum skilmálum vegna notkunar og hafa því stjórnendur fjarlægt þau af %{instance}. Brot sem framin verða hér eftir geta leitt til enn harðari aðgerða gegn notandaaðgangnum þínum.
+        delete_statuses: Sumar færslur frá þér eru álitnar hafa gengið gegn samþykktum skilmálum vegna notkunar og hafa því verið fjarlægðar af stjórnendum á %{instance}.
         disable: Þú getur ekki lengur notað aðganginn þinn, en notandasniðið þitt og önnur gögn eru óskemmd. Þú getur beðið um afrit af gögnunum þínum, getur breytt stillingum eða eytt aðgangnum þínum.
+        mark_statuses_as_sensitive: Sumar færslur frá þér hafa verið merktar sem viðkvæmt efni af stjórnendum á %{instance}. Þetta þýðir að fólk þarf að ýta á myndefnið til þess að forskoðunarmynd birtist. Þú getur framvegis sjálf/ur merkt myndefnið þitt sem viðkvæmt í færslunum þínum.
         sensitive: Héðan í frá verður allt myndefni sem þú sendir inn meðhöndlað sem viðkvæmt efni og falið á bakvið aðvörun sem smella þarf á.
         silence: Þú getur áfram notað aðganginn þinn en aðeins fólk sem þegar fylgist með þér mun sjá færslurnar þínar á þessum vefþjóni, auk þess sem lokað gæti verið á þig á ýmsum opinberum listum. Aftur á móti geta aðrir gerst fylgjendur þínir handvirkt.
         suspend: Þú getur ekki lengur notað aðganginn þinn og notandasniðið þitt og önnur gögn eru ekki lengur aðgengileg. Þú getur enn skráð þig inn til að biðja um afrit af gögnunum þínum þar til þeim verður eytt að fullu eftir 30 daga, við munum hinsvegar halda eftir einstaka grunnupplýsingum til að koma í veg fyrir að þú komist framhjá þessu banni.
-      get_in_touch: Ef þú álítur að um mistök sé að ræða, geturðu svarað þessum tölvupósti til að setja þig í samband við umsjónarmenn %{instance}.
       reason: 'Ástæða:'
-      statuses: 'Færslur sem álitnar eru að hafa gengið gegn samþykktum ákvæðum:'
+      statuses: 'Færslur sem vísað er í:'
       subject:
         delete_statuses: Færslurnar þínar á %{acct} hafa verið fjarlægðar
         disable: Notandaaðgangurinn þinn %{acct} hefur verið frystur
+        mark_statuses_as_sensitive: Færslur þínar á %{acct} hafa verið merktar sem viðkvæmar
         none: Aðvörun fyrir %{acct}
-        sensitive: Myndefnið þitt á %{acct} verður héðan í frá merkt sem viðkvæmt
+        sensitive: Færslur þínar á %{acct} verða héðan í frá merktar sem viðkvæmar
         silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
         suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
       title:
         delete_statuses: Færslur fjarlægðar
         disable: Notandaaðgangur frystur
+        mark_statuses_as_sensitive: Færslur merktar sem viðkvæmar
         none: Aðvörun
-        sensitive: Mynd er falin
+        sensitive: Notandaaðgangur merktur sem viðkvæmur
         silence: Notandaaðgangur takmarkaður
         suspend: Notandaaðgangur í bið
     welcome:

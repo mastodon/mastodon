@@ -42,7 +42,6 @@ ast:
     joined: Xunióse en %{date}
     moved_html: "%{name} mudóse a %{new_profile_link}:"
     network_hidden: Esta información nun ta disponible
-    never_active: Enxamás
     nothing_here: "¡Equí nun hai nada!"
     people_followed_by: Persones a les que sigue %{name}
     people_who_follow: Persones que siguen a %{name}
@@ -56,10 +55,12 @@ ast:
   admin:
     accounts:
       are_you_sure: "¿De xuru?"
+      avatar: Avatar
       by_domain: Dominiu
       domain: Dominiu
       email: Corréu
       followers: Siguidores
+      ip: IP
       location:
         local: Llocal
         title: Allugamientu
@@ -82,17 +83,31 @@ ast:
         title: Anunciu nuevu
       published_msg: "¡L'anunciu espublizóse coreutamente!"
       title: Anuncios
+      updated_msg: "¡L'anunciu anovóse correutamente!"
     custom_emojis:
       by_domain: Dominiu
       copy_failed_msg: Nun pudo facese una copia llocal d'esi fustaxe
       emoji: Fustaxe
+      not_permitted: Nun tienes permisu pa facer esta aición
       update_failed_msg: Nun pudo anovase esi fustaxe
+    dashboard:
+      media_storage: Almacenamientu multimedia
+      software: Software
+      website: Sitiu web
     domain_blocks:
       domain: Dominiu
+      private_comment: Comentariu priváu
+      public_comment: Comentariu públicu
     email_domain_blocks:
       domain: Dominiu
     instances:
+      availability:
+        title: Disponibilidá
       by_domain: Dominiu
+      content_policies:
+        comment: Nota interna
+        policy: Política
+        reason: Motivu públicu
       private_comment: Comentariu priváu
       public_comment: Comentariu públicu
       title: Federación
@@ -161,9 +176,12 @@ ast:
     login: Aniciar sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">configuralo equí</a>.
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rexistrase
     security: Seguranza
-    trouble_logging_in: "¿Problemes col aniciu de sesión?"
+    trouble_logging_in: "¿Tienes problemes col aniciu de sesión?"
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
     already_requested: Yá unviesti una solicitú de siguimientu a esa cuenta
@@ -175,8 +193,16 @@ ast:
       web: Dir a la web
   datetime:
     distance_in_words:
+      about_x_hours: "%{count} h"
+      about_x_years: "%{count} a"
+      almost_x_years: "%{count} a"
       half_a_minute: Puramente agora
+      less_than_x_minutes: "%{count} m"
       less_than_x_seconds: Puramente agora
+      over_x_years: "%{count} a"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: La información qu'introduxesti nun yera correuta
     confirm_password: Introduz la contraseña pa verificar la to identidá
@@ -193,7 +219,7 @@ ast:
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nun tienes permisu pa ver esta páxina.
-    '404': La páxina que tabes guetando nun ta equí.
+    '404': La páxina que busques nun ta equí.
     '406': Esta páxina nun ta disponible nel formatu solicitáu.
     '410': La páxina que tabes guetando yá nun esiste.
     '422':
@@ -201,7 +227,7 @@ ast:
       title: Falló la verificación de seguranza
     '429': Ficiéronse milenta solicitúes
     '500': 
-    '503': The page could not be served due to a temporary server failure.
+    '503': Nun se pudo sirvir la páxina pola mor d'un fallu temporal del sirvidor.
   exports:
     archive_takeout:
       date: Data
@@ -213,6 +239,7 @@ ast:
     blocks: Xente que bloquiesti
     lists: Llistes
     mutes: Xente que silenciesti
+    storage: Almacenamientu multimedia
   featured_tags:
     add_new: Amestar
   filters:
@@ -275,8 +302,8 @@ ast:
       limit: Algamesti la cantidá máxima de llistes
   media_attachments:
     validations:
-      images_and_video: Nun pue axuntase un videu a un estáu que yá contién imáxenes
-      too_many: Nun puen axuntase más de 4 ficheros
+      images_and_video: Nun se pue axuntar nengún videu a un artículu que yá contién imáxenes
+      too_many: Nun se puen axuntar más de 4 ficheros
   migrations:
     acct: nome_usuariu@dominiu de la cuenta nueva
     incoming_migrations: Mudase dende otra cuenta
@@ -349,6 +376,11 @@ ast:
       generic: Restolador desconocíu
       ie: Internet Explorer
       micro_messenger: MicroMessenger
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
     ip: IP
@@ -399,7 +431,7 @@ ast:
     boosted_from_html: Compartióse'l barritu dende %{acct_link}
     pin_errors:
       limit: Yá fixesti'l númberu máximu de barritos
-      ownership: Nun pue fixase'l barritu d'otra persona
+      ownership: Nun se pue fixar l'artículu d'otru perfil
       reblog: Nun pue fixase un barritu compartíu
     poll:
       total_people:
@@ -423,6 +455,7 @@ ast:
       '2629746': 1 mes
       '31556952': 1 añu
       '5259492': 2 meses
+      '604800': 1 selmana
       '63113904': 2 años
       '7889238': 3 meses
   stream_entries:
@@ -446,6 +479,7 @@ ast:
     webauthn: Claves d'autenticación
   user_mailer:
     warning:
+      reason: 'Motivu:'
       subject:
         suspend: Suspendióse la cuenta %{acct}
       title:
@@ -456,6 +490,7 @@ ast:
       subject: Afáyate en Mastodon
       tips: Conseyos
   users:
+    follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu nun ye válidu
     otp_lost_help_html: Si pierdes l'accesu, contauta con %{email}
     seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que los axustes de la contraseña y corréu nun tán disponibles.

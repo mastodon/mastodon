@@ -24,6 +24,7 @@ sk:
       Tento účet je virtuálnym aktérom, ktorý predstavuje samotný server a nie žiadného jedného užívateľa.
       Je využívaný pre potreby federovania a nemal by byť blokovaný, pokiaľ nechceš zablokovať celý server, čo ide lepšie dosiahnúť cez blokovanie domény.
     learn_more: Zisti viac
+    logout_before_registering: Už si prihlásený/á.
     privacy_policy: Zásady súkromia
     rules: Serverové pravidlá
     see_whats_happening: Pozoruj, čo sa deje
@@ -71,7 +72,6 @@ sk:
     media: Médiá
     moved_html: "%{name} účet bol presunutý na %{new_profile_link}:"
     network_hidden: Táto informácia nieje k dispozícii
-    never_active: Nikdy
     nothing_here: Nič tu nie je!
     people_followed_by: Ľudia, ktorých %{name} sleduje
     people_who_follow: Ľudia sledujúci %{name}
@@ -345,17 +345,6 @@ sk:
       reject_media_hint: Vymaže miestne uložené súbory médií a odmietne ich sťahovanie v budúcnosti. Nepodstatné pri vylúčení
       reject_reports: Zamietni hlásenia
       reject_reports_hint: Ignoruj všetky hlásenia prichádzajúce z tejto domény. Nevplýva na blokovania
-      rejecting_media: odmietanie médiálnych súborov
-      rejecting_reports: odmietanie hlásení
-      severity:
-        silence: stíšené
-        suspend: vylúčené
-      show:
-        retroactive:
-          silence: Zruš stíšenie všetkých momentálne utíšených účtov z tejto domény
-          suspend: Zruš suspendáciu všetkých momentálne ovplyvnených účtov z tejto domény
-        title: Zruš blokovanie domény %{domain}
-        undo: Vráť späť
       undo: Odvolaj blokovanie domény
       view: Ukáž blokovanie domén
     email_domain_blocks:
@@ -383,7 +372,6 @@ sk:
       delivery:
         all: Všetko
         unavailable: Nedostupné
-        warning: Upozornenie
       delivery_available: Je v dosahu doručovania
       moderation:
         all: Všetky

@@ -16,6 +16,7 @@ it:
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
+    continue_to_web: Continua all'app web
     discover_users: Scopri utenti
     documentation: Documentazione
     federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Mastodon e oltre.
@@ -25,6 +26,8 @@ it:
       Questo account è un attore virtuale utilizzato per rappresentare il server stesso e non un particolare utente.
       È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
     learn_more: Scopri altro
+    logged_in_as_html: Sei correntemente connesso come %{username}.
+    logout_before_registering: Hai giù acceduto.
     privacy_policy: Politica della privacy
     rules: Regole del server
     rules_html: 'Di seguito è riportato un riassunto delle regole che devi seguire se vuoi avere un account su questo server di Mastodon:'
@@ -69,7 +72,6 @@ it:
     media: Media
     moved_html: "%{name} si è spostato su %{new_profile_link}:"
     network_hidden: Questa informazione non e' disponibile
-    never_active: Mai
     nothing_here: Qui non c'è nulla!
     people_followed_by: Persone seguite da %{name}
     people_who_follow: Persone che seguono %{name}
@@ -448,21 +450,6 @@ it:
       reject_media_hint: Rimuovi i file media salvati in locale e blocca i download futuri. Irrilevante per le sospensioni
       reject_reports: Respingi rapporti
       reject_reports_hint: Ignora tutti i rapporti provenienti da questo dominio. Irrilevante per sospensioni
-      rejecting_media: rigetta file media
-      rejecting_reports: rigetta segnalazioni
-      severity:
-        silence: silenziato
-        suspend: sospeso
-      show:
-        affected_accounts:
-          one: Interessato un solo account nel database
-          other: Interessati %{count} account nel database
-          zero: Nessun account nel database è interessato
-        retroactive:
-          silence: De-silenzia tutti gli account esistenti da questo dominio
-          suspend: Annulla la sospensione di tutti gli account esistenti da questo dominio
-        title: Annulla il blocco del dominio per %{domain}
-        undo: Annulla
       undo: Annulla
       view: Visualizza blocco di dominio
     email_domain_blocks:
@@ -493,23 +480,47 @@ it:
       title: Consigli su chi seguire
       unsuppress: Ripristina consigli su chi seguire
     instances:
+      availability:
+        description_html:
+          one: Se la consegna al dominio fallisce <strong>%{count} giorno</strong>, non sarà effettuato alcun tentativo di consegna ulteriore a meno che la consegna <em>dal</em> dominio non sia ricevuta.
+          other: Se la consegna al dominio fallisce <strong>%{count} giorni differenti</strong>, non sarà effettuato alcun tentativo di consegna ulteriore a meno che la consegna <em>dal</em> dominio non sia ricevuta.
+        failure_threshold_reached: Soglia di fallimento raggiunta il %{date}.
+        failures_recorded:
+          one: Tentativo fallito %{count} giorno.
+          other: Tentativo fallito %{count} giorni differenti.
+        no_failures_recorded: Nessun fallimento registrato.
+        title: Disponibilità
       back_to_all: Tutto
       back_to_limited: Limitato
       back_to_warning: Avviso
       by_domain: Dominio
       confirm_purge: Sei sicuro di voler cancellare definitivamente i dati di questo dominio?
+      content_policies:
+        comment: Nota interna
+        description_html: Puoi definire le politiche del contenuto che saranno applicate a tutti i profili da questo dominio e ognuno dei suoi sottodomini.
+        policies:
+          reject_media: Rifiuta multimedia
+          reject_reports: Rifiuta rapporti
+          silence: Limita
+          suspend: Sospendi
+        policy: Politica
+        reason: Motivo pubblico
+        title: Politiche sui contenuti
+      dashboard:
+        instance_accounts_dimension: Profili più seguiti
+        instance_accounts_measure: profili memorizzati
+        instance_followers_measure: i nostri seguaci lì
+        instance_follows_measure: i loro seguaci qui
+        instance_languages_dimension: Lingue preferite
+        instance_media_attachments_measure: allegati multimediali memorizzati
+        instance_reports_measure: segnalazioni su di loro
+        instance_statuses_measure: post memorizzati
       delivery:
         all: Tutto
         clear: Cancella errori di consegna
         restart: Riavvia la consegna
         stop: Interrompi consegna
-        title: Consegna
         unavailable: Non disponibile
-        unavailable_message: Consegna non disponibile
-        warning: Avviso
-        warning_message:
-          one: Errore di consegna %{count} giorno
-          other: Errori di consegna %{count} giorni
       delivery_available: Distribuzione disponibile
       delivery_error_days: Giorni con errori di consegna
       delivery_error_hint: Se la consegna non è possibile per %{count} giorni, sarà automaticamente contrassegnata come non consegnabile.
@@ -526,12 +537,14 @@ it:
       private_comment: Commento privato
       public_comment: Commento pubblico
       purge: Ripulisci
+      purge_description_html: Se credi che questo dominio sia offline per sempre, puoi eliminare tutti i registri del profilo e i dati associati da questo dominio dalla tua archiviazione. Questo potrebbe richiedere un po' di tempo.
       title: Istanze conosciute
       total_blocked_by_us: Bloccato da noi
       total_followed_by_them: Seguito da loro
       total_followed_by_us: Seguito da noi
       total_reported: Segnalazioni su di loro
       total_storage: Media allegati
+      totals_time_period_hint_html: I totali sotto visualizzati includono i dati per tutti i tempi.
     invites:
       deactivate_all: Disattiva tutto
       filter:
@@ -586,6 +599,7 @@ it:
       action_taken_by: Azione intrapresa da
       actions:
         delete_description_html: I post segnalati saranno eliminati e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        mark_as_sensitive_description_html: I media nei post segnalati saranno segnati come sensibili e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna violazione registrata, e la segnalazione sarà chiusa.
         silence_description_html: Il profilo sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato.
@@ -606,6 +620,7 @@ it:
       forwarded: Inoltrato
       forwarded_to: Inoltrato a %{domain}
       mark_as_resolved: Segna come risolto
+      mark_as_sensitive: Segna come sensibile
       mark_as_unresolved: Segna come non risolto
       no_one_assigned: Nessuno
       notes:
@@ -749,6 +764,7 @@ it:
       actions:
         delete_statuses: "%{name} ha eliminato i post di %{target}"
         disable: "%{name} ha congelato l'account di %{target}"
+        mark_statuses_as_sensitive: "%{name} ha segnato il media di %{target} come sensibile"
         none: "%{name} ha inviato un avviso a %{target}"
         sensitive: "%{name} ha contrassegnato l'account di %{target} come sensibile"
         silence: "%{name} ha limitato l'account di %{target}"
@@ -774,6 +790,7 @@ it:
       links:
         allow: Consenti link
         allow_provider: Consenti editore
+        description_html: Questi sono collegamenti che attualmente vengono molto condivisi dagli account di cui il server vede i post. Può aiutare i tuoi utenti a scoprire cosa sta succedendo nel mondo. Nessun link viene visualizzato pubblicamente finché non si approva chi lo pubblica. È anche possibile permettere o rifiutare i singoli collegamenti.
         disallow: Non consentire link
         disallow_provider: Non consentire editore
         shared_by_over_week:
@@ -785,14 +802,17 @@ it:
       pending_review: Revisione in sospeso
       preview_card_providers:
         allowed: I link da questa fonte possono essere in tendenza
+        description_html: Questi sono domini da cui i link sono spesso condivisi sul tuo server. I link non appariranno di tendenza se il dominio del link non è approvato. La tua approvazione (o rifiuto) si estende ai sottodomini.
         rejected: I link da questa fonte non possono essere in tendenza
         title: Editori
       rejected: Rifiutato
       statuses:
         allow: Consenti post
         allow_account: Consenti autore
+        description_html: Questi sono post noti al tuo server che sono attualmente molto condivisi e preferiti. Può aiutare i tuoi utenti (nuovi e non) a trovare più persone da seguire. Nessun post viene visualizzato pubblicamente fino a quando si approva l'autore, e l'autore permette che il suo account sia suggerito ad altri. È anche possibile permettere o rifiutare singoli post.
         disallow: Non consentire post
         disallow_account: Non consentire autore
+        not_discoverable: L'autore non ha optato di essere scopribile
         shared_by:
           one: Condiviso o preferito una volta
           other: Condiviso e preferito %{friendly_count} volte
@@ -805,6 +825,7 @@ it:
           tag_servers_dimension: Server migliori
           tag_servers_measure: server diversi
           tag_uses_measure: usi totali
+        description_html: Questi sono hashtag che attualmente compaiono in molti post che il tuo server vede. Può aiutare i tuoi utenti a scoprire di cosa le persone stanno parlando di più al momento. Nessun hashtag viene visualizzato pubblicamente finché non lo approvi.
         listable: Suggeribile
         not_listable: Non sarà suggerito
         not_trendable: Non apparirà nelle tendenze
@@ -831,6 +852,7 @@ it:
       actions:
         delete_statuses: per cancellare i loro post
         disable: per congelare il loro account
+        mark_statuses_as_sensitive: per contrassegnare i loro post come sensibili
         none: avviso
         sensitive: per contrassegnare il loro account come sensibile
         silence: per limitare il loro account
@@ -935,8 +957,10 @@ it:
     status:
       account_status: Stato dell'account
       confirming: In attesa che la conferma e-mail sia completata.
+      functional: Il tuo profilo è completamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
+      view_strikes: Visualizza gli avvisi passati contro il tuo profilo
     too_fast: Modulo inviato troppo velocemente, riprova.
     trouble_logging_in: Problemi di accesso?
     use_security_key: Usa la chiave di sicurezza
@@ -1012,6 +1036,7 @@ it:
         submit: Presenta un appello
       associated_report: Segnalazione associata
       created_at: Data
+      description_html: Queste sono azioni intraprese contro il tuo profilo e avvisi inviati a te dallo staff di %{instance}.
       recipient: Indirizzata a
       status: 'Post #%{id}'
       status_removed: Post già rimosso dal sistema
@@ -1019,6 +1044,7 @@ it:
       title_actions:
         delete_statuses: Eliminazione del post
         disable: Congelamento dell'account
+        mark_statuses_as_sensitive: Marcatura dei post come sensibili
         none: Avviso
         sensitive: Marcatura dell'account come sensibile
         silence: Limitazione dell'account
@@ -1392,6 +1418,7 @@ it:
     profile: Profilo
     relationships: Follows e followers
     statuses_cleanup: Cancellazione automatica dei post
+    strikes: Avvisi di moderazione
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
   statuses:
@@ -1471,6 +1498,7 @@ it:
       '2629746': 1 mese
       '31556952': 1 anno
       '5259492': 2 mesi
+      '604800': 1 settimana
       '63113904': 2 anni
       '7889238': 3 mesi
     min_age_label: Soglia di età
@@ -1621,26 +1649,28 @@ it:
         spam: Spam
         violation: Il contenuto viola le seguenti linee guida della comunità
       explanation:
-        delete_statuses: Alcuni dei tuoi post sono in violazione di una o più linee guida della comunità, e quindi sono stati eliminati dai moderatori di %{instance}. Le future violazioni possono comportare azioni punitive più severe contro il tuo account.
+        delete_statuses: Alcuni dei tuoi post sono stati riconosciuti in violazione di una o più linee guida della comunità e sono stati successivamente rimossi dai moderatori di %{instance}.
         disable: Non puoi più utilizzare il tuo account, ma il tuo profilo e gli altri dati rimangono intatti. Puoi richiedere un backup dei tuoi dati, modificare le impostazioni dell'account o eliminare il tuo account.
+        mark_statuses_as_sensitive: Alcuni dei tuoi post sono stati contrassegnati come sensibili dai moderatori di %{instance}. Ciò significa che le persone dovranno toccare i media nei post prima che venga visualizzata un'anteprima. Puoi contrassegnare tu i media come sensibili quando ne pubblicherai in futuro.
         sensitive: D'ora in poi, tutti i file multimediali che hai caricato saranno contrassegnati come sensibili e nascosti dietro un avviso click-through.
         silence: Puoi ancora utilizzare il tuo account, ma solo le persone che già ti seguono possono vedere i tuoi post su questo server, e potresti essere escluso da varie funzionalità di ricerca. Gli altri utenti possono comunque seguirti manualmente.
         suspend: Non puoi più utilizzare il tuo account, e il tuo profilo e gli altri dati non sono più accessibili. Puoi ancora effettuare il login per richiedere un backup dei dati fino a quando i dati non saranno completamente cancellati nei prossimi 30 giorni, ma conserveremo alcuni dati di base per impedirti di eludere la sospensione.
-      get_in_touch: Se credi che questo sia un errore, puoi rispondere a questa e-mail per metterti in contatto con lo staff di %{instance}.
       reason: 'Motivo:'
-      statuses: 'Post che sono stati trovati in violazione:'
+      statuses: 'Post citati:'
       subject:
         delete_statuses: I tuoi post su %{acct} sono stati eliminati
         disable: Il tuo account %{acct} è stato congelato
+        mark_statuses_as_sensitive: I tuoi post su %{acct} sono stati contrassegnati come sensibili
         none: Avviso per %{acct}
-        sensitive: I tuoi file multimediali su %{acct} d'ora in poi saranno contrassegnati come sensibili
+        sensitive: I tuoi post su %{acct} d'ora in poi saranno contrassegnati come sensibili
         silence: Il tuo account %{acct} è stato limitato
         suspend: Il tuo account %{acct} è stato sospeso
       title:
         delete_statuses: Post eliminati
         disable: Account congelato
+        mark_statuses_as_sensitive: Post contrassegnati come sensibili
         none: Avviso
-        sensitive: Media nascosto
+        sensitive: Account contrassegnato come sensibile
         silence: Account limitato
         suspend: Account sospeso
     welcome:

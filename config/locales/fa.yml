@@ -69,7 +69,6 @@ fa:
     media: عکس و ویدیو
     moved_html: "%{name} حساب خود را به %{new_profile_link} منتقل کرده است:"
     network_hidden: این اطلاعات در دسترس نیست
-    never_active: هرگز
     nothing_here: این‌جا چیزی نیست!
     people_followed_by: کسانی که %{name} پی می‌گیرد
     people_who_follow: کسانی که %{name} را پی می‌گیرند
@@ -422,17 +421,6 @@ fa:
       reject_media_hint: پرونده‌های رسانه‌ای ذخیره‌شدهٔ محلّی را پاک کرده و از بارگیریشان در آینده خودداری می‌کند. بی‌تأثیر روی معلق‌ها
       reject_reports: نپذیرفتن گزارش‌ها
       reject_reports_hint: گزارش‌هایی را که از این دامنه می‌آید نادیده می‌گیرد. بی‌تأثیر برای معلق‌شده‌ها
-      rejecting_media: نپذیرفتن پرونده‌های رسانه‌ای
-      rejecting_reports: گزارش‌ها نادیده گرفته می‌شوند
-      severity:
-        silence: بی‌صداشده
-        suspend: معلق‌شده
-      show:
-        retroactive:
-          silence: بی‌صداشدن همهٔ حساب‌های این دامین را لغو کن
-          suspend: معلق‌شدن همهٔ حساب‌های این دامین را لغو کن
-        title: واگردانی مسدودسازی دامنه برای %{domain}
-        undo: واگردانی
       undo: واگردانی مسدودسازی دامین
       view: دیدن مسدودسازی دامنه
     email_domain_blocks:
@@ -463,13 +451,7 @@ fa:
         clear: پاک کردن خطاهای تحول محتوا
         restart: بازراه‌اندازی تحویل محتوا
         stop: متوقف‌کردن تحویل محتوا
-        title: تحویل محتوا
         unavailable: ناموجود
-        unavailable_message: تحویل محتوا در دسترس نیست
-        warning: هشدار
-        warning_message:
-          one: شکست تحویل %{count} روز
-          other: شکست تحویل محتوا %{count} روز
       delivery_available: پیام آماده است
       delivery_error_days: زورهای خطای تحویل محتوا
       delivery_error_hint: اگر تحویل محتوا به مدت %{count} روز ممکن نباشد، به طور خودکار به عنوان تحویل‌ناشونده علامت‌گذاری خواهد شد.
@@ -1315,6 +1297,7 @@ fa:
       '2629746': ۱ ماه
       '31556952': ۱ سال
       '5259492': ۲ ماه
+      '604800': 1 week
       '63113904': ۲ سال
       '7889238': ۳ ماه
     min_age_label: کرانهٔ سن
@@ -1459,7 +1442,6 @@ fa:
         delete_statuses: فرسته‌ها برداشته شدند
         disable: حساب متوقف شده است
         none: هشدار
-        sensitive: رسانهٔ نهفته
         silence: حساب محدود شده است
         suspend: حساب معلق شده است
     welcome:
