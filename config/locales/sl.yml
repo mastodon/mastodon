@@ -66,7 +66,6 @@ sl:
     media: Mediji
     moved_html: "%{name} se je prestavil na %{new_profile_link}:"
     network_hidden: Ta informacija ni na voljo
-    never_active: Nikoli
     nothing_here: Tukaj ni ničesar!
     people_followed_by: Ljudje, ki jim sledi %{name}
     people_who_follow: Ljudje, ki sledijo %{name}
@@ -303,17 +302,6 @@ sl:
       reject_media_hint: Odstrani lokalno shranjene predstavnostne datoteke in zavrača prenašanje le-teh v prihodnosti. Za suspenzije ni pomembno
       reject_reports: Zavrnjene prijave
       reject_reports_hint: Prezri vse prijave, ki pridejo iz te domene. Za suspenzije ni pomembno
-      rejecting_media: zavrnitev predstavnostnih datotek
-      rejecting_reports: zavrnitev prijav
-      severity:
-        silence: utišani
-        suspend: suspendirani
-      show:
-        retroactive:
-          silence: Prekliči utišanje za vse obstoječe račune iz te domene
-          suspend: Aktiviraj vse obstoječe račune iz te domene
-        title: Razveljavi domenski blok za %{domain}
-        undo: Razveljavi
       undo: Razveljavi domenski blok
     email_domain_blocks:
       add_new: Dodaj novo
@@ -334,17 +322,39 @@ sl:
       language: Za jezik
       status: Stanje
     instances:
+      availability:
+        failure_threshold_reached: Prag neuspelih poskusov dosežen %{date}.
+        no_failures_recorded: Ni zabeleženih neuspelih poskusov.
+        title: Razpoložljivost
       back_to_all: Vse
       back_to_limited: Omejeno
       back_to_warning: Opozorilo
       by_domain: Domena
+      content_policies:
+        comment: Interna opomba
+        description_html: Določite lahko pravila (t.i. politike), ki bodo veljale za vse račune te domene ter vseh njenih poddomen.
+        policies:
+          reject_media: Zavrni večpredstavnost
+          reject_reports: Zarvni poročila
+          silence: Omeji
+          suspend: Suspendiraj
+        policy: Pravila
+        reason: Javni razlog
+        title: Pravila glede vsebine
+      dashboard:
+        instance_accounts_dimension: Najpogosteje sledeni računi
+        instance_accounts_measure: shranjenih računov
+        instance_followers_measure: naših sledilcev tukaj
+        instance_follows_measure: njihovih sledilcev tukaj
+        instance_languages_dimension: Naj jeziki
+        instance_media_attachments_measure: shranjenih predstavnostnih priponk
+        instance_reports_measure: poročil o njih
+        instance_statuses_measure: shanjenih objav
       delivery:
         all: Vse
         clear: Počisti napake dostave
         stop: Ustavi dostavo
-        title: Dostava
         unavailable: Ni na voljo
-        warning: Opozorilo
       delivery_available: Na voljo je dostava
       moderation:
         all: Vse
@@ -352,12 +362,14 @@ sl:
         title: Moderiranje
       private_comment: Zasebni komentar
       public_comment: Javni komentar
+      purge_description_html: Če menite, da je ta domena trajno nedosegljiva, lahko v svoji shrambi izbrišete vse zapise računov in povezane podatke iz te domene. To lahko vzame nekaj časa.
       title: Federacija
       total_blocked_by_us: Blokirano iz naše strani
       total_followed_by_them: Oni ti sledijo
       total_followed_by_us: Mi ti sledimo
       total_reported: Poročila o njih
       total_storage: Predstavnostne priloge
+      totals_time_period_hint_html: Spodaj prikazani seštevki vključujejo podatke za celotno obdobje.
     invites:
       deactivate_all: Onemogoči vse
       filter:
@@ -603,6 +615,7 @@ sl:
     status:
       account_status: Stanje računa
       confirming: Čakanje na potrditev e-pošte.
+      functional: Vaš račun je polno opravilen.
       pending: Naše osebje preverja vašo prijavo. To lahko traja nekaj časa. Če bo vaša prijava odobrena, boste prejeli e-pošto.
     trouble_logging_in: Težave pri prijavi?
     use_security_key: Uporabi varnostni ključ
@@ -986,6 +999,7 @@ sl:
       '2629746': 1 mesec
       '31556952': 1 leto
       '5259492': 2 meseca
+      '604800': 1 week
       '63113904': 2 leti
       '7889238': 3 mesece
     min_age_label: Starostna meja
@@ -1110,7 +1124,6 @@ sl:
         delete_statuses: Objave odstranjene
         disable: Račun je zamrznjen
         none: Opozorilo
-        sensitive: Mediji so skriti
         silence: Račun je omejen
         suspend: Račun je suspendiran
     welcome:

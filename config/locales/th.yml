@@ -16,12 +16,15 @@ th:
     contact: ติดต่อ
     contact_missing: ไม่ได้ตั้ง
     contact_unavailable: ไม่มี
+    continue_to_web: ดำเนินการต่อไปยังแอปเว็บ
     discover_users: ค้นพบผู้ใช้
     documentation: เอกสารประกอบ
     federation_hint_html: ด้วยบัญชีที่ %{instance} คุณจะสามารถติดตามผู้คนในเซิร์ฟเวอร์ Mastodon และอื่น ๆ
     get_apps: ลองแอปมือถือ
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     learn_more: เรียนรู้เพิ่มเติม
+    logged_in_as_html: คุณกำลังเข้าสู่ระบบเป็น %{username}
+    logout_before_registering: คุณได้เข้าสู่ระบบอยู่แล้ว
     privacy_policy: นโยบายความเป็นส่วนตัว
     rules: กฎของเซิร์ฟเวอร์
     rules_html: 'ด้านล่างคือข้อมูลสรุปของกฎที่คุณจำเป็นต้องปฏิบัติตามหากคุณต้องการมีบัญชีในเซิร์ฟเวอร์ Mastodon นี้:'
@@ -60,7 +63,6 @@ th:
     media: สื่อ
     moved_html: "%{name} ได้ย้ายไปยัง %{new_profile_link}:"
     network_hidden: ไม่มีข้อมูลนี้
-    never_active: ไม่เลย
     nothing_here: ไม่มีสิ่งใดที่นี่!
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
@@ -421,21 +423,6 @@ th:
       reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเซิร์ฟเวอร์ออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
       reject_reports: ปฏิเสธรายงาน
       reject_reports_hint: เพิกเฉยรายงานทั้งหมดที่มาจากโดเมนนี้ ไม่เกี่ยวข้องกับการระงับ
-      rejecting_media: กำลังปฏิเสธไฟล์สื่อ
-      rejecting_reports: กำลังปฏิเสธรายงาน
-      severity:
-        silence: จำกัดอยู่
-        suspend: ระงับอยู่
-      show:
-        affected_accounts:
-          one: หนึ่งบัญชีในฐานข้อมูลที่ได้รับผลกระทบ
-          other: "%{count} บัญชีในฐานข้อมูลที่ได้รับผลกระทบ"
-          zero: ไม่มีบัญชีในฐานข้อมูลที่ได้รับผลกระทบ
-        retroactive:
-          silence: เลิกทำการจำกัดบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
-          suspend: เลิกระงับบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
-        title: เลิกทำการปิดกั้นโดเมนสำหรับ %{domain}
-        undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
       view: ดูการปิดกั้นโดเมน
     email_domain_blocks:
@@ -471,10 +458,7 @@ th:
         clear: ล้างข้อผิดพลาดการจัดส่ง
         restart: เริ่มการจัดส่งใหม่
         stop: หยุดการจัดส่ง
-        title: การจัดส่ง
         unavailable: ไม่พร้อมใช้งาน
-        unavailable_message: การจัดส่งไม่พร้อมใช้งาน
-        warning: คำเตือน
       delivery_available: มีการจัดส่ง
       delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
       empty: ไม่พบโดเมน
@@ -557,6 +541,7 @@ th:
       forwarded: ส่งต่อแล้ว
       forwarded_to: ส่งต่อไปยัง %{domain} แล้ว
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
+      mark_as_sensitive: ทำเครื่องหมายว่าละเอียดอ่อน
       mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
       no_one_assigned: ไม่มีใคร
       notes:
@@ -694,6 +679,7 @@ th:
       actions:
         delete_statuses: "%{name} ได้ลบโพสต์ของ %{target}"
         disable: "%{name} ได้อายัดบัญชีของ %{target}"
+        mark_statuses_as_sensitive: "%{name} ได้ทำเครื่องหมายโพสต์ของ %{target} ว่าละเอียดอ่อน"
         none: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         sensitive: "%{name} ได้ทำเครื่องหมายบัญชีของ %{target} ว่าละเอียดอ่อน"
         silence: "%{name} ได้จำกัดบัญชีของ %{target}"
@@ -742,7 +728,7 @@ th:
           tag_accounts_measure: การใช้งานที่ไม่ซ้ำกัน
           tag_languages_dimension: ภาษายอดนิยม
           tag_servers_dimension: เซิร์ฟเวอร์ยอดนิยม
-          tag_servers_measure: เซิร์ฟเวอร์อื่น
+          tag_servers_measure: เซิร์ฟเวอร์ต่าง ๆ
           tag_uses_measure: การใช้งานทั้งหมด
         listable: สามารถแนะนำ
         not_listable: จะไม่แนะนำ
@@ -770,6 +756,7 @@ th:
       actions:
         delete_statuses: เพื่อลบโพสต์ของเขา
         disable: เพื่ออายัดบัญชีของเขา
+        mark_statuses_as_sensitive: เพื่อทำเครื่องหมายโพสต์ของเขาว่าละเอียดอ่อน
         sensitive: เพื่อทำเครื่องหมายบัญชีของเขาว่าละเอียดอ่อน
         silence: เพื่อจำกัดบัญชีของเขา
         suspend: เพื่อระงับบัญชีของเขา
@@ -860,6 +847,7 @@ th:
     status:
       account_status: สถานะบัญชี
       confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
+      functional: บัญชีของคุณทำงานได้อย่างเต็มที่
       pending: ใบสมัครของคุณกำลังรอดำเนินการตรวจทานโดยพนักงานของเรา นี่อาจใช้เวลาสักครู่ คุณจะได้รับอีเมลหากใบสมัครของคุณได้รับการอนุมัติ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
@@ -925,6 +913,7 @@ th:
   disputes:
     strikes:
       action_taken: การกระทำที่ใช้
+      appeal: อุทธรณ์
       appeal_submitted_at: ส่งการอุทธรณ์แล้ว
       appeals:
         submit: ส่งการอุทธรณ์
@@ -932,13 +921,18 @@ th:
       created_at: ลงวันที่
       recipient: ส่งถึง
       status: 'โพสต์ #%{id}'
+      title: "%{action} จาก %{date}"
       title_actions:
         delete_statuses: การเอาโพสต์ออก
         disable: การอายัดบัญชี
+        mark_statuses_as_sensitive: การทำเครื่องหมายโพสต์ว่าละเอียดอ่อน
         none: คำเตือน
         sensitive: การทำเครื่องหมายบัญชีว่าละเอียดอ่อน
         silence: การจำกัดบัญชี
         suspend: การระงับบัญชี
+      your_appeal_approved: อนุมัติการอุทธรณ์ของคุณแล้ว
+      your_appeal_pending: คุณได้ส่งการอุทธรณ์
+      your_appeal_rejected: ปฏิเสธการอุทธรณ์ของคุณแล้ว
   domain_validator:
     invalid_domain: ไม่ใช่ชื่อโดเมนที่ถูกต้อง
   errors:
@@ -1332,6 +1326,7 @@ th:
       '2629746': 1 เดือน
       '31556952': 1 ปี
       '5259492': 2 เดือน
+      '604800': 1 สัปดาห์
       '63113904': 2 ปี
       '7889238': 3 เดือน
     min_age_label: ค่าเกณฑ์อายุ
@@ -1372,8 +1367,10 @@ th:
   user_mailer:
     appeal_approved:
       action: ไปยังบัญชีของคุณ
+      subject: อนุมัติการอุทธรณ์ของคุณจาก %{date} แล้ว
       title: อนุมัติการอุทธรณ์แล้ว
     appeal_rejected:
+      subject: ปฏิเสธการอุทธรณ์ของคุณจาก %{date} แล้ว
       title: ปฏิเสธการอุทธรณ์แล้ว
     backup_ready:
       explanation: คุณได้ขอข้อมูลสำรองแบบเต็มของบัญชี Mastodon ของคุณ ตอนนี้ข้อมูลสำรองพร้อมสำหรับการดาวน์โหลดแล้ว!
@@ -1391,19 +1388,22 @@ th:
       categories:
         spam: สแปม
         violation: เนื้อหาละเมิดหลักเกณฑ์ชุมชนดังต่อไปนี้
-      get_in_touch: หากคุณเชื่อว่านี่เป็นข้อผิดพลาด คุณสามารถตอบกลับอีเมลนี้เพื่อติดต่อกับพนักงานของ %{instance}
       reason: 'เหตุผล:'
-      statuses: 'โพสต์ที่พบว่ามีการละเมิด:'
+      statuses: 'โพสต์ที่อ้างถึง:'
       subject:
-        disable: บัญชีของคุณ %{acct} ถูกอายัด
+        delete_statuses: เอาโพสต์ของคุณใน %{acct} ออกแล้ว
+        disable: อายัดบัญชีของคุณ %{acct} แล้ว
+        mark_statuses_as_sensitive: ทำเครื่องหมายโพสต์ของคุณใน %{acct} ว่าละเอียดอ่อนแล้ว
         none: คำเตือนสำหรับ %{acct}
-        silence: บัญชีของคุณ %{acct} ถูกจำกัด
-        suspend: บัญชีของคุณ %{acct} ถูกระงับ
+        sensitive: จะทำเครื่องหมายโพสต์ของคุณใน %{acct} ว่าละเอียดอ่อนนับจากนี้ไป
+        silence: จำกัดบัญชีของคุณ %{acct} แล้ว
+        suspend: ระงับบัญชีของคุณ %{acct} แล้ว
       title:
         delete_statuses: เอาโพสต์ออกแล้ว
         disable: อายัดบัญชีอยู่
+        mark_statuses_as_sensitive: ทำเครื่องหมายโพสต์ว่าละเอียดอ่อนแล้ว
         none: คำเตือน
-        sensitive: ซ่อนสื่ออยู่
+        sensitive: ทำเครื่องหมายบัญชีว่าละเอียดอ่อนแล้ว
         silence: จำกัดบัญชีอยู่
         suspend: ระงับบัญชีอยู่
     welcome:

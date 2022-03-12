@@ -16,6 +16,7 @@ fr:
     contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
+    continue_to_web: Continuer vers l’application web
     discover_users: Découvrez des utilisateur·rice·s
     documentation: Documentation
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre des gens sur n’importe quel serveur Mastodon et au-delà.
@@ -25,6 +26,8 @@ fr:
       Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un·e utilisateur·rice individuel·le.
       Il est utilisé à des fins de fédération et ne doit pas être bloqué à moins que vous ne vouliez bloquer l’instance entière, auquel cas vous devriez utiliser un blocage de domaine.
     learn_more: En savoir plus
+    logged_in_as_html: Vous êtes actuellement connecté·e en tant que %{username}.
+    logout_before_registering: Vous êtes déjà connecté·e.
     privacy_policy: Politique de confidentialité
     rules: Règles du serveur
     rules_html: 'Voici un résumé des règles que vous devez suivre si vous voulez avoir un compte sur ce serveur de Mastodon :'
@@ -69,7 +72,6 @@ fr:
     media: Médias
     moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
     network_hidden: Cette information n’est pas disponible
-    never_active: Jamais
     nothing_here: Rien à voir ici !
     people_followed_by: Personnes suivies par %{name}
     people_who_follow: Personnes qui suivent %{name}
@@ -351,7 +353,7 @@ fr:
       scheduled_for: Planifiée pour %{time}
       scheduled_msg: Annonce planifiée pour publication !
       title: Annonces
-      unpublish: Supprimer la publication
+      unpublish: Retirer l'annonce
       unpublished_msg: L’annonce a été dépubliée avec succès !
       updated_msg: L’annonce a été mise à jour avec succès !
     custom_emojis:
@@ -448,21 +450,6 @@ fr:
       reject_media_hint: Supprime localement les fichiers média stockés et refuse d’en télécharger ultérieurement. Ne concerne pas les suspensions
       reject_reports: Rejeter les signalements
       reject_reports_hint: Ignorez tous les signalements provenant de ce domaine. Ne concerne pas les suspensions
-      rejecting_media: rejet des fichiers multimédia
-      rejecting_reports: rejet des signalements
-      severity:
-        silence: limité
-        suspend: suspendu
-      show:
-        affected_accounts:
-          one: Un compte affecté dans la base de données
-          other: "%{count} comptes affectés dans la base de données"
-          zero: Pas de compte affecté dans la base de données
-        retroactive:
-          silence: Ne plus limiter les comptes existants affectés de ce domaine
-          suspend: Annuler la suspension des comptes existants affectés pour ce domaine
-        title: Annuler le blocage du domaine %{domain}
-        undo: Annuler
       undo: Annuler le blocage de domaine
       view: Afficher les blocages de domaines
     email_domain_blocks:
@@ -493,23 +480,40 @@ fr:
       title: Recommandations d'abonnement
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
+      availability:
+        no_failures_recorded: Pas d'échec enregistré.
+        title: Disponibilité
       back_to_all: Tout
       back_to_limited: Limité
       back_to_warning: Avertissement
       by_domain: Domaine
       confirm_purge: Êtes-vous sûr de vouloir supprimer définitivement les données de ce domaine ?
+      content_policies:
+        comment: Note interne
+        description_html: Vous pouvez définir des politiques de contenu qui seront appliquées à tous les comptes de ce domaine et à tous ses sous-domaines.
+        policies:
+          reject_media: Rejeter les médias
+          reject_reports: Rejeter les signalements
+          silence: Limiter
+          suspend: Suspendre
+        policy: Règlement
+        reason: Raison publique
+        title: Politiques de contenu
+      dashboard:
+        instance_accounts_dimension: Comptes les plus suivis
+        instance_accounts_measure: comptes stockés
+        instance_followers_measure: nos abonné⋅e⋅s là-bas
+        instance_follows_measure: leurs abonné⋅e⋅s ici
+        instance_languages_dimension: Langues les plus utilisées
+        instance_media_attachments_measure: fichiers médias stockés
+        instance_reports_measure: signalements mentionnant l'instance
+        instance_statuses_measure: messages stockés
       delivery:
         all: Tout
         clear: Effacer les erreurs de livraison
         restart: Redémarrer la livraison
         stop: Arrêter la livraison
-        title: Livraison
         unavailable: Indisponible
-        unavailable_message: Livraison indisponible
-        warning: Avertissement
-        warning_message:
-          one: Échec de livraison %{count} jour
-          other: Échec de livraison %{count} jours
       delivery_available: Livraison disponible
       delivery_error_days: Jours d'erreur de livraison
       delivery_error_hint: Si la livraison n'est pas possible pendant %{count} jours, elle sera automatiquement marquée comme non livrable.
@@ -526,12 +530,14 @@ fr:
       private_comment: Commentaire privé
       public_comment: Commentaire public
       purge: Purge
+      purge_description_html: Si vous pensez que ce domaine est définitivement hors service, vous pouvez supprimer de votre espace de stockage toutes les traces des comptes de ce domaine et les données associées. Cela peut prendre du temps.
       title: Fédération
       total_blocked_by_us: Bloqués par nous
       total_followed_by_them: Suivi par eux
       total_followed_by_us: Suivi par nous
       total_reported: Signalements à leur sujet
       total_storage: Attachements de média
+      totals_time_period_hint_html: Les totaux affichés ci-dessous incluent des données sans limite de temps.
     invites:
       deactivate_all: Tout désactiver
       filter:
@@ -586,6 +592,7 @@ fr:
       action_taken_by: Intervention de
       actions:
         delete_description_html: Les messages signalés seront supprimés et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
+        mark_as_sensitive_description_html: Les médias des messages signalés seront marqués comme sensibles et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
         silence_description_html: Le profil ne sera visible que pour ceux qui le suivent déjà ou le consultent manuellement, ce qui limite considérablement sa portée. Peut toujours être restauré.
@@ -602,10 +609,11 @@ fr:
         none: Aucun
       comment_description_html: 'Pour fournir plus d''informations, %{name} a écrit :'
       created_at: Signalé
-      delete_and_resolve: Supprimer les publications
+      delete_and_resolve: Supprimer les messages
       forwarded: Transféré
       forwarded_to: Transféré à %{domain}
       mark_as_resolved: Marquer comme résolu
+      mark_as_sensitive: Marquer comme sensible
       mark_as_unresolved: Marquer comme non-résolu
       no_one_assigned: Personne
       notes:
@@ -742,13 +750,14 @@ fr:
       deleted: Supprimé
       media:
         title: Médias
-      no_status_selected: Aucun statut n’a été modifié car aucun n’a été sélectionné
+      no_status_selected: Aucun message n’a été modifié car aucun n’a été sélectionné
       title: Messages du compte
       with_media: Avec médias
     strikes:
       actions:
         delete_statuses: "%{name} a supprimé les messages de %{target}"
         disable: "%{name} a gelé le compte de %{target}"
+        mark_statuses_as_sensitive: "%{name} a marqué le message de %{target} comme sensible"
         none: "%{name} a envoyé un avertissement à %{target}"
         sensitive: "%{name} a marqué le compte de %{target} comme sensible"
         silence: "%{name} a limité le compte de %{target}"
@@ -774,6 +783,7 @@ fr:
       links:
         allow: Autoriser le lien
         allow_provider: Autoriser l'éditeur
+        description_html: Ces liens sont actuellement énormément partagés par des comptes dont votre serveur voit les messages. Cela peut aider vos utilisateur⋅rice⋅s à découvrir ce qu'il se passe dans le monde. Aucun lien n'est publiquement affiché tant que vous n'avez pas approuvé le compte qui le publie. Vous pouvez également autoriser ou rejeter les liens individuellement.
         disallow: Interdire le lien
         disallow_provider: Interdire l'éditeur
         shared_by_over_week:
@@ -785,14 +795,17 @@ fr:
       pending_review: En attente de révision
       preview_card_providers:
         allowed: Les liens de cet éditeur peuvent être tendance
+        description_html: Voici les domaines depuis lesquels des liens sont souvent partagés sur votre serveur. Les liens n'apparaîtront pas publiquement dans les tendances à moins que le domaine du lien ne soit approuvé. Votre approbation (ou votre rejet) s'étend aux sous-domaines.
         rejected: Les liens de cet éditeur ne seront pas considérés tendance
         title: Éditeurs
       rejected: Rejeté
       statuses:
         allow: Autoriser le message
         allow_account: Autoriser l'auteur·rice
+        description_html: Voici les messages dont votre serveur a connaissance qui sont beaucoup partagés et mis en favoris en ce moment. Cela peut aider vos utilisateur⋅rice⋅s, néophytes comme aguerri⋅e⋅s, à trouver plus de comptes à suivre. Aucun message n'est publiquement affiché tant que vous n'en avez pas approuvé l'auteur⋅rice, et seulement si icellui permet que son compte soit suggéré aux autres. Vous pouvez également autoriser ou rejeter les messages individuellement.
         disallow: Proscrire le message
         disallow_account: Proscrire l'auteur·rice
+        not_discoverable: L'auteur⋅rice n'a pas choisi de pouvoir être découvert⋅e
         shared_by:
           one: Partagé ou ajouté aux favoris une fois
           other: Partagé et ajouté aux favoris %{friendly_count} fois
@@ -805,6 +818,7 @@ fr:
           tag_servers_dimension: Meilleurs serveurs
           tag_servers_measure: différents serveurs
           tag_uses_measure: utilisations totales
+        description_html: Ces hashtags apparaissent actuellement dans de nombreux messages que votre serveur voit. Cela peut aider vos utilisateur⋅rice⋅s à découvrir les sujets dont les gens parlent le plus en ce moment. Aucun hashtag n'est publiquement affiché tant que vous ne l'avez pas approuvé.
         listable: Peut être suggéré
         not_listable: Ne sera pas suggéré
         not_trendable: N'apparaîtra pas sous les tendances
@@ -831,6 +845,7 @@ fr:
       actions:
         delete_statuses: effacer les messages
         disable: geler le compte
+        mark_statuses_as_sensitive: marquer les messages comme sensibles
         none: un avertissement
         sensitive: marquer le compte comme sensible
         silence: limiter le compte
@@ -933,15 +948,17 @@ fr:
     status:
       account_status: État du compte
       confirming: En attente de la confirmation par courriel à compléter.
+      functional: Votre compte est entièrement opérationnel.
       pending: Votre demande est en attente d'examen par notre personnel. Cela peut prendre un certain temps. Vous recevrez un courriel si votre demande est approuvée.
       redirecting_to: Votre compte est inactif car il est actuellement redirigé vers %{acct}.
+      view_strikes: Voir les sanctions précédemment appliquées à votre compte
     too_fast: Formulaire envoyé trop rapidement, veuillez réessayer.
     trouble_logging_in: Vous avez un problème pour vous connecter ?
     use_security_key: Utiliser la clé de sécurité
   authorize_follow:
     already_following: Vous suivez déjà ce compte
     already_requested: Vous avez déjà envoyé une demande d’abonnement à ce compte
-    error: Malheureusement, il y a eu une erreur en cherchant les détails du compte distant
+    error: Malheureusement, une erreur s'est produite lors de la recherche du compte distant
     follow: Suivre
     follow_request: 'Vous avez demandé à suivre :'
     following: 'Youpi ! Vous suivez maintenant  :'
@@ -1001,6 +1018,7 @@ fr:
   disputes:
     strikes:
       action_taken: Mesure prise
+      appeal: Faire appel
       appeal_approved: Cette sanction a été annulée en appel et n'est plus valide
       appeal_rejected: L'appel a été rejeté
       appeal_submitted_at: Appel soumis le
@@ -1009,6 +1027,7 @@ fr:
         submit: Faire appel
       associated_report: Rapport associé
       created_at: En date du
+      description_html: Ce sont les mesures prises contre votre compte et les avertissements qui vous ont été envoyés par les responsables de %{instance}.
       recipient: Adressé à
       status: 'Message #%{id}'
       status_removed: Message déjà supprimé du système
@@ -1016,8 +1035,9 @@ fr:
       title_actions:
         delete_statuses: Suppression de message
         disable: Gel du compte
+        mark_statuses_as_sensitive: Marquage des messages comme sensibles
         none: Avertissement
-        sensitive: Marquage d'un compte comme sensible
+        sensitive: Marquage du compte comme sensible
         silence: Limitation du compte
         suspend: Suspension de compte
       your_appeal_approved: Votre appel a été approuvé
@@ -1097,7 +1117,7 @@ fr:
     today: aujourd’hui
     validation_errors:
       one: Quelque chose ne va pas ! Veuillez vérifiez l’erreur ci-dessous
-      other: Certaines choses ne vont pas ! Veuillez vérifiez les %{count} erreurs ci-dessous
+      other: Certaines choses ne vont pas ! Veuillez vérifier les %{count} erreurs ci-dessous
   html_validator:
     invalid_markup: 'contient un balisage HTML invalide: %{error}'
   imports:
@@ -1156,8 +1176,8 @@ fr:
     title: Historique d'authentification
   media_attachments:
     validations:
-      images_and_video: Impossible de joindre une vidéo à un statut contenant déjà des images
-      not_ready: Impossible de joindre les fichiers en traitements. Réessayez dans un instant !
+      images_and_video: Impossible de joindre une vidéo à un message contenant déjà des images
+      not_ready: Impossible de joindre les fichiers en cours de traitement. Réessayez dans un instant !
       too_many: Impossible de joindre plus de 4 fichiers
   migrations:
     acct: A déménagé vers
@@ -1238,7 +1258,7 @@ fr:
     status:
       subject: "%{name} vient de publier"
     update:
-      subject: "%{name} a modifié une publication"
+      subject: "%{name} a modifié un message"
   notifications:
     email_events: Événements pour les notifications par courriel
     email_events_hint: 'Sélectionnez les événements pour lesquels vous souhaitez recevoir des notifications :'
@@ -1389,6 +1409,7 @@ fr:
     profile: Profil
     relationships: Abonnements et abonné·e·s
     statuses_cleanup: Suppression automatique de messages
+    strikes: Sanctions de modération
     two_factor_authentication: Identification à deux facteurs
     webauthn_authentication: Clés de sécurité
   statuses:
@@ -1411,13 +1432,13 @@ fr:
       other: 'contient les hashtags désactivés : %{tags}'
     edited_at: Édité le %{date}
     errors:
-      in_reply_not_found: Le statut auquel vous essayez de répondre ne semble pas exister.
+      in_reply_not_found: Le message auquel vous essayez de répondre ne semble pas exister.
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
       direct: Les messages qui ne sont visibles que pour les utilisateurs mentionnés ne peuvent pas être épinglés
       limit: Vous avez déjà épinglé le nombre maximum de messages
-      ownership: Vous ne pouvez pas épingler un statut ne vous appartenant pas
+      ownership: Vous ne pouvez pas épingler un message ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
     poll:
       total_people:
@@ -1438,9 +1459,9 @@ fr:
       private: Abonné⋅e⋅s uniquement
       private_long: Afficher seulement à vos vos abonné·e·s
       public: Publique
-      public_long: Tout le monde peut voir vos statuts
+      public_long: Tout le monde peut voir vos messages
       unlisted: Public sans être affiché sur le fil public
-      unlisted_long: Tout le monde peut voir vos statuts mais ils ne seront pas listés sur les fils publics
+      unlisted_long: Tout le monde peut voir vos messages mais ils ne seront pas listés sur les fils publics
   statuses_cleanup:
     enabled: Supprimer automatiquement vos anciens messages
     enabled_hint: Supprime automatiquement vos messages une fois qu'ils ont atteint un seuil d'ancienneté défini, à moins qu'ils ne correspondent à l'une des exceptions ci-dessous
@@ -1468,6 +1489,7 @@ fr:
       '2629746': 1 mois
       '31556952': 1 an
       '5259492': 2 mois
+      '604800': 1 semaine
       '63113904': 2 ans
       '7889238': 3 mois
     min_age_label: Seuil d'ancienneté
@@ -1613,28 +1635,30 @@ fr:
       appeal_description: Si vous pensez qu'il s'agit d'une erreur, vous pouvez faire appel auprès de l'équipe de %{instance}.
       categories:
         spam: Indésirable
-        violation: Le contenu viole les directives de la communauté suivantes
+        violation: Le contenu enfreint les directives de la communauté suivantes
       explanation:
-        delete_statuses: Certains de vos messages ont été jugés en violation d'une ou plusieurs directives de la communauté et ont été supprimés par les modérateurs de %{instance}. De nouvelles violations peuvent entraîner des actions punitives plus sévères contre votre compte.
+        delete_statuses: Il a été constaté que certains de vos messages enfreignent une ou plusieurs directives de la communauté. Par conséquent, ils ont été supprimés par l'équipe de modération de %{instance}.
         disable: Vous ne pouvez plus utiliser votre compte, mais votre profil et d'autres données restent intacts. Vous pouvez demander une sauvegarde de vos données, modifier les paramètres de votre compte ou supprimer votre compte.
+        mark_statuses_as_sensitive: Certains de vos messages ont été marqués comme sensibles par l'équipe de modération de %{instance}. Cela signifie qu'il faudra cliquer sur le média pour pouvoir en afficher un aperçu. Vous pouvez marquer les médias comme sensibles vous-même lorsque vous posterez à l'avenir.
         sensitive: Désormais, tous vos fichiers multimédias téléchargés seront marqués comme sensibles et cachés derrière un avertissement à cliquer.
         silence: Vous pouvez toujours utiliser votre compte, mais seules les personnes qui vous suivent déjà verront vos messages sur ce serveur, et vous pourriez être exclu de diverses fonctions de découverte. Cependant, d'autres personnes peuvent toujours vous suivre manuellement.
         suspend: Vous ne pouvez plus utiliser votre compte, votre profil et vos autres données ne sont plus accessibles. Vous pouvez toujours vous connecter pour demander une sauvegarde de vos données jusqu'à leur suppression complète dans environ 30 jours, mais nous conserverons certaines données de base pour vous empêcher d'échapper à la suspension.
-      get_in_touch: Si vous pensez qu’il s'agit d’une erreur, vous pouvez répondre à ce courriel pour entrer en contact avec l’équipe de %{instance}.
       reason: 'Motif :'
-      statuses: 'Les messages qui ont été jugés en violation :'
+      statuses: 'Messages cités :'
       subject:
         delete_statuses: Vos messages sur %{acct} ont été supprimés
         disable: Votre compte %{acct} a été gelé
+        mark_statuses_as_sensitive: Vos messages sur %{acct} ont été marqués comme sensibles
         none: Avertissement pour %{acct}
-        sensitive: Vos fichiers multimédias sur %{acct} seront désormais marqués comme sensibles
+        sensitive: Vos messages sur %{acct} seront désormais marqués comme sensibles
         silence: Votre compte %{acct} a été limité
         suspend: Votre compte %{acct} a été suspendu
       title:
         delete_statuses: Messages supprimés
         disable: Compte gelé
+        mark_statuses_as_sensitive: Messages marqués comme sensibles
         none: Avertissement
-        sensitive: Média masqué
+        sensitive: Compte marqué comme sensible
         silence: Compte limité
         suspend: Compte suspendu
     welcome:

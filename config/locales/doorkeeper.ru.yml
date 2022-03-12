@@ -60,8 +60,8 @@ ru:
       error:
         title: Произошла ошибка
       new:
-        able_to: Оно сможет
-        prompt: Приложение %{client_name} запрашивает доступ к Вашей учётной записи
+        prompt_html: "%{client_name} хочет получить доступ к вашему аккаунту. Это стороннее приложение. <strong>Если вы ему не доверяете, не разрешайте доступ.</strong>"
+        review_permissions: Просмотр разрешений
         title: Требуется авторизация
       show:
         title: Скопируйте этот код авторизации и вставьте его в приложении.
@@ -71,9 +71,9 @@ ru:
       confirmations:
         revoke: Вы уверены?
       index:
-        application: Приложение
-        created_at: Авторизовано
-        date_format: "%d.%m.%Y %H:%M:%S"
+        authorized_at: Доступ получен %{date}
+        last_used_at: Последнее использование %{date}
+        never_used: Не использовалось
         scopes: Разрешения
         title: Ваши авторизованные приложения
     errors:
@@ -110,6 +110,31 @@ ru:
       authorized_applications:
         destroy:
           notice: Авторизация приложения отозвана.
+    grouped_scopes:
+      access:
+        read: Доступ только для чтения
+        read/write: Доступ на чтение и запись
+        write: Доступ только для записи
+      title:
+        accounts: Учётные записи
+        admin/all: Все административные функции
+        all: Все
+        blocks: Блокировки
+        bookmarks: Закладки
+        conversations: Диалоги
+        crypto: Сквозное шифрование
+        favourites: Избранное
+        filters: Фильтры
+        follow: Взаимосвязи
+        follows: Подписки
+        lists: Списки
+        media: Медиафайлы
+        mutes: Без звука
+        notifications: Уведомления
+        push: Push-уведомления
+        reports: Обращения
+        search: Поиск
+        statuses: Посты
     layouts:
       admin:
         nav:

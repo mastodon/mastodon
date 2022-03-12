@@ -69,7 +69,6 @@ sc:
     media: Elementos multimediales
     moved_html: "%{name} est istadu trasferidu a %{new_profile_link}:"
     network_hidden: Custa informatzione no est a disponimentu
-    never_active: Mai
     nothing_here: Nudda inoghe.
     people_followed_by: Gente sighida dae %{name}
     people_who_follow: Gente chi sighit a %{name}
@@ -386,17 +385,6 @@ sc:
       reject_media_hint: Cantzellat elementos multimediales sarvados in locale e refudat iscarrigamentos in su benidore. Non rilevante pro is suspensiones
       reject_reports: Refuda informes
       reject_reports_hint: Iscarta informes chi benint de custu domìniu. Non rilevante pro is suspensiones
-      rejecting_media: refudende documentos multimediales
-      rejecting_reports: refudende informes
-      severity:
-        silence: a sa muda
-        suspend: suspèndidu
-      show:
-        retroactive:
-          silence: Boga de is contos a sa muda is contos de custu domìniu implicados
-          suspend: Boga sa suspensione de is contos de custu domìniu implicados
-        title: Iscontza su blocu de domìniu de %{domain}
-        undo: Iscontza
       undo: Iscontza su blocu de domìniu
       view: Bide su blocu de domìniu
     email_domain_blocks:
@@ -1179,6 +1167,7 @@ sc:
       '2629746': 1 mese
       '31556952': 1 annu
       '5259492': 2 meses
+      '604800': 1 week
       '63113904': 2 annos
       '7889238': 3 meses
   stream_entries:

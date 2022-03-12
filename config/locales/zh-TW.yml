@@ -16,6 +16,7 @@ zh-TW:
     contact: 聯絡我們
     contact_missing: 未設定
     contact_unavailable: 未公開
+    continue_to_web: 於網頁程式中繼續
     discover_users: 探索使用者
     documentation: 文件
     federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤隨便一台 Mastodon 伺服器上的人等等。
@@ -23,6 +24,8 @@ zh-TW:
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
     instance_actor_flash: "這個帳戶是個用來代表伺服器自已的虛擬角色，而不是實際的使用者。它是用來聯盟用的，除非您想要封鎖整個站台，不然不該封鎖它。但要封鎖整個站台，您可以使用網域封鎖功能。 \n"
     learn_more: 了解詳細
+    logged_in_as_html: 您目前登入使用的帳號是 %{username}
+    logout_before_registering: 您已經登入了！
     privacy_policy: 隱私權政策
     rules: 伺服器規則
     rules_html: 以下是您若想在此 Mastodon 伺服器建立帳戶必須遵守的規則總結：
@@ -64,7 +67,6 @@ zh-TW:
     media: 媒體
     moved_html: "%{name} 已經搬遷到 %{new_profile_link}:"
     network_hidden: 此訊息不可用
-    never_active: 永不
     nothing_here: 暫時沒有內容可供顯示!
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
@@ -438,21 +440,6 @@ zh-TW:
       reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該站點的任何媒體檔案。與停權無關
       reject_reports: 拒絕檢舉
       reject_reports_hint: 忽略所有來自此站點的檢舉。與停權無關
-      rejecting_media: 拒絕媒體檔案
-      rejecting_reports: 拒絕檢舉中
-      severity:
-        silence: 已靜音
-        suspend: 已停權
-      show:
-        affected_accounts:
-          one: 資料庫中的 1 個帳號受到影響
-          other: 資料庫中的 %{count} 個帳號受到影響
-          zero: 沒有影響到資料庫中的帳號
-        retroactive:
-          silence: 對此站點的所有使用者取消靜音
-          suspend: 對此站點的所有使用者取消停權
-        title: 撤銷 %{domain} 的站點封鎖
-        undo: 撤銷
       undo: 復原欲封鎖域名
       view: 顯示阻擋的網域
     email_domain_blocks:
@@ -484,22 +471,45 @@ zh-TW:
       title: 跟隨建議
       unsuppress: 回復跟隨建議
     instances:
+      availability:
+        description_html:
+          other: 若在<strong>%{count}天</strong>向某個網域遞送失敗，除非收到某個網域的遞送<em>表單</em>，否則不會繼續嘗試遞送。
+        failure_threshold_reached: 錯誤門檻於 %{date}。
+        failures_recorded:
+          other: 錯誤嘗試於 %{count} 天。
+        no_failures_recorded: 報告中沒有錯誤。
+        title: 可用狀態
       back_to_all: 所有
       back_to_limited: 受限制的
       back_to_warning: 警告
       by_domain: 站台
       confirm_purge: 您確定要永久刪除來自此網域的資料嗎？
+      content_policies:
+        comment: 內部備註
+        description_html: 您可以定義對所有此網域帳號及其子網域所實施之內容政策。
+        policies:
+          reject_media: 拒絕多媒體
+          reject_reports: 拒絕檢舉
+          silence: 限制
+          suspend: 停權
+        policy: 政策
+        reason: 公開理由
+        title: 內容政策
+      dashboard:
+        instance_accounts_dimension: 最多人跟隨之帳號
+        instance_accounts_measure: 已儲存帳號
+        instance_followers_measure: 我們那邊的跟隨者
+        instance_follows_measure: 他們這邊的跟隨者
+        instance_languages_dimension: 熱門語言
+        instance_media_attachments_measure: 已儲存多媒體附加檔案
+        instance_reports_measure: 關於他們的檢舉報告
+        instance_statuses_measure: 已儲存嘟文
       delivery:
         all: 所有
         clear: 清除遞送錯誤
         restart: 重新啟動遞送
         stop: 停止遞送
-        title: 遞送
         unavailable: 無法使用
-        unavailable_message: 無法使用遞送
-        warning: 警告
-        warning_message:
-          other: 遞送失敗 %{count} 天
       delivery_available: 可傳送
       delivery_error_days: 遞送失敗天數
       delivery_error_hint: 若 %{count} 日皆無法遞送 ，則會自動標記無法遞送。
@@ -516,12 +526,14 @@ zh-TW:
       private_comment: 私人留言
       public_comment: 公開留言
       purge: 清除
+      purge_description_html: 若您相信此網域將永久離線，您可以自儲存空間中刪除該網域所有帳號紀錄及相關資料。這可能花費一些時間。
       title: 聯邦
       total_blocked_by_us: 被我們封鎖
       total_followed_by_them: 被他們關注
       total_followed_by_us: 被我們關注
       total_reported: 關於他們的舉報
       total_storage: 多媒體附檔
+      totals_time_period_hint_html: 以下顯示之總和包含所有時間的資料。
     invites:
       deactivate_all: 全部停用
       filter:
@@ -575,6 +587,7 @@ zh-TW:
       action_taken_by: 操作執行者
       actions:
         delete_description_html: 被檢舉的嘟文將被刪除，並且會被以刪除線標記，幫助您升級同一帳號未來的違規行為。
+        mark_as_sensitive_description_html: 被檢舉的嘟文中的媒體將會被標記為敏感，並將會記錄一次警告，以協助您升級同一帳號未來的違規行為。
         other_description_html: 檢視更多控制帳號行為以及自訂檢舉帳號通知之選項。
         resolve_description_html: 被檢舉的帳號將不被採取任何行動，不會加以刪除線標記，並且此份報告將被關閉。
         silence_description_html: 個人頁面僅會對已跟隨帳號之使用者或手動查詢可見，將大幅度限制觸及範圍。此設定可隨時被還原。
@@ -595,6 +608,7 @@ zh-TW:
       forwarded: 已轉寄
       forwarded_to: 轉寄到 %{domain}
       mark_as_resolved: 標記為「已解決」
+      mark_as_sensitive: 標記為敏感內容
       mark_as_unresolved: 標記為「未解決」
       no_one_assigned: 沒有人
       notes:
@@ -738,6 +752,7 @@ zh-TW:
       actions:
         delete_statuses: "%{name} 刪除了 %{target} 的貼文"
         disable: "%{name} 凍結了 %{target} 的帳號"
+        mark_statuses_as_sensitive: "%{name} 將 %{target} 的嘟文標記為敏感內容"
         none: "%{name} 已對 %{target} 送出警告"
         sensitive: "%{name} 將 %{target} 的帳號標記為含有敏感內容"
         silence: "%{name} 限制了 %{target} 的帳號"
@@ -763,6 +778,7 @@ zh-TW:
       links:
         allow: 允許連結
         allow_provider: 允許發行者
+        description_html: 這些連結是正在被您伺服器上看到該嘟文之帳號大量分享。這些連結可以幫助您的使用者探索現在世界上正在發生的事情。除非您核准該發佈者，連結將不被公開展示。您也可以核准或駁回個別連結。
         disallow: 不允許連結
         disallow_provider: 不允許發行者
         shared_by_over_week:
@@ -774,14 +790,17 @@ zh-TW:
       pending_review: 等待審核中
       preview_card_providers:
         allowed: 此發行者之連結能登上熱門
+        description_html: 這些網域來自被您伺服器常被分享的連結。除非您核准該連結，則這些連結將不會成為公開熱門標籤。您的核准或駁回將對子網域仍有效。
         rejected: 此發行者之連結不會登上熱門
         title: 發行者
       rejected: 被拒絕
       statuses:
         allow: 允許嘟文
         allow_account: 允許作者
+        description_html: 這些是您伺服器上已知被正在大量分享及加入最愛之嘟文。這些嘟文能幫助您伺服器上舊雨新知發現更多帳號來跟隨。除非您核准該作者且作者允許他們的帳號被推薦至其他人，嘟文將不被公開展示。您可以核准或駁回個別嘟文。
         disallow: 不允許嘟文
         disallow_account: 不允許作者
+        not_discoverable: 嘟文作者選擇不被發現
         shared_by:
           other: 分享過或／及收藏過 %{friendly_count} 次
         title: 熱門嘟文
@@ -793,6 +812,7 @@ zh-TW:
           tag_servers_dimension: 熱門伺服器
           tag_servers_measure: 不同伺服器
           tag_uses_measure: 總使用次數
+        description_html: 這些主題標籤正在您的伺服器上大量嘟文中出現。這些主題標籤能幫助您的使用者發現人們正集中討論的內容。除非您核准，主題標籤將不被公開展示。
         listable: 能被建議
         not_listable: 不能被建議
         not_trendable: 不會登上熱門
@@ -819,6 +839,7 @@ zh-TW:
       actions:
         delete_statuses: 要刪除他們的嘟文
         disable: 要凍結他們的帳號
+        mark_statuses_as_sensitive: 要將他們的嘟文標記為含有敏感內容
         none: 警告
         sensitive: 要將他們的帳號標記為含有敏感內容
         silence: 要限制他們的帳號
@@ -921,8 +942,10 @@ zh-TW:
     status:
       account_status: 帳戶狀態
       confirming: 等待電子郵件確認完成。
+      functional: 您的帳號可以正常使用了。
       pending: 管管們正在處理您的申請，這可能需要一點時間處理。我們將在申請通過後以電子郵件方式通知您。
       redirecting_to: 您的帳戶因目前重新導向至 %{acct} 而被停用。
+      view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
     trouble_logging_in: 登錄時遇到困難？
     use_security_key: 使用安全金鑰
@@ -998,6 +1021,7 @@ zh-TW:
         submit: 遞交申訴
       associated_report: 相關報告
       created_at: 過時的
+      description_html: 這些是 %{instance} 的管理員向您發送的針對您的帳號採取的措施與警告。
       recipient: 此致
       status: '嘟文編號 #%{id}'
       status_removed: 嘟文已從系統中移除
@@ -1005,8 +1029,9 @@ zh-TW:
       title_actions:
         delete_statuses: 嘟文移除
         disable: 凍結帳號
+        mark_statuses_as_sensitive: 將嘟文標記為敏感
         none: 警告
-        sensitive: 標記為敏感帳號
+        sensitive: 將帳號標記為敏感
         silence: 帳號限制
         suspend: 帳號停權
       your_appeal_approved: 您的申訴已被批准
@@ -1374,6 +1399,7 @@ zh-TW:
     profile: 使用者資訊
     relationships: 跟隨中與跟隨者
     statuses_cleanup: 自動貼文刪除
+    strikes: 管理警告
     two_factor_authentication: 兩階段認證
     webauthn_authentication: 安全金鑰
   statuses:
@@ -1447,6 +1473,7 @@ zh-TW:
       '2629746': 1 個月
       '31556952': 1 年
       '5259492': 2 個月
+      '604800': 一週
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 按時間篩選
@@ -1592,26 +1619,28 @@ zh-TW:
         spam: 垃圾訊息
         violation: 該內容違反以下社群規章
       explanation:
-        delete_statuses: 您部份的貼文被認定違反一項或多項社群規章，並且已被 %{instance} 的管理員依規定移除。往後更多的違規可能導致對您帳號更嚴重的處罰。
+        delete_statuses: 您的某些嘟文被發現違反了一項或多項社群準則，隨後已被 %{instance} 的管理員刪除。
         disable: 您無法繼續使用您的帳號，但您的個人頁面及其他資料內容保持不變。您可以要求一份您的資料備份，帳號異動設定，或是刪除帳號。
+        mark_statuses_as_sensitive: 您的部份嘟文已被 %{instance} 的管理員標記為敏感。這代表了人們必須在顯示預覽前點擊嘟文中的媒體。您可以在將來嘟文時自己將媒體標記為敏感。
         sensitive: 由此刻起，您所有上傳的媒體檔案將被標記為敏感內容，並且隱藏於點擊警告之後。
         silence: 您仍然可以使用您的帳號，但僅有已追蹤您的人才能看到您在此伺服器的貼文，您也可能會從各式探索功能中被排除。但其他人仍可手動追蹤您。
         suspend: 您將不能使用您的帳號，您的個人資料頁面及其他資料將不再能被存取。您仍可於約 30 日內資料被完全刪除前要求下載你的資料，但我們仍會保留一部份基本資料，以防止有人規避停權處罰。
-      get_in_touch: 如果您認為這是個錯誤，您可回復這封 e-mail 來連繫 %{instance} 的管理員。
       reason: 原因：
-      statuses: 被判定違規之嘟文：
+      statuses: 引用的嘟文：
       subject:
         delete_statuses: 您於 %{acct} 之嘟文已被移除
         disable: 您的帳號 %{acct} 已被凍結
+        mark_statuses_as_sensitive: 您在 %{acct} 上的嘟文已被標記為敏感
         none: 對 %{acct} 的警告
-        sensitive: 您於 %{acct} 之媒體檔案即刻起已被標記為敏感內容
+        sensitive: 從現在開始，您在 %{acct} 上的嘟文將會被標記為敏感
         silence: 您的帳號 %{acct} 已被限制
         suspend: 您的帳號 %{acct} 已被停權
       title:
         delete_statuses: 嘟文已移除
         disable: 帳號已被涷結
+        mark_statuses_as_sensitive: 嘟文已標記為敏感內容
         none: 警告
-        sensitive: 隱藏媒體內容
+        sensitive: 帳號已標記為敏感內容
         silence: 帳號已被限制
         suspend: 帳號己被停用
     welcome:

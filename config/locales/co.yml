@@ -69,7 +69,6 @@ co:
     media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
     network_hidden: St'infurmazione ùn hè micca dispunibule
-    never_active: Mai
     nothing_here: Ùn c’hè nunda quì!
     people_followed_by: Seguitati da %{name}
     people_who_follow: Seguitanu %{name}
@@ -409,17 +408,6 @@ co:
       reject_media_hint: Sguassa tutti i media caricati è ricusa caricamenti futuri. Inutile per una suspensione
       reject_reports: Righjittà i riporti
       reject_reports_hint: Ignurà tutti i signalamenti chì venenu d'issu duminiu. Senz'oghjettu pè e suspensione
-      rejecting_media: righjettu di i fugliali media
-      rejecting_reports: righjettu di i signalamenti
-      severity:
-        silence: silenzatu
-        suspend: suspesu
-      show:
-        retroactive:
-          silence: Ùn silenzà più i conti affettati di stu duminiu
-          suspend: Ùn suspende più i conti affettati di stu duminiu
-        title: Ùn bluccà più u duminiu %{domain}
-        undo: Annullà
       undo: Annullà u blucchime di duminiu
       view: Vede blucchime di duminiu
     email_domain_blocks:
@@ -448,13 +436,7 @@ co:
         clear: Sguassà l'errori di distribuzione
         restart: Riprincipià a distribuzione
         stop: Firmà a distribuzione
-        title: Distribuzione
         unavailable: Indispunibule
-        unavailable_message: Distribuzione micca dispunibule
-        warning: Avertimentu
-        warning_message:
-          one: Errore di distribuzione per %{count} ghjornu
-          other: Errore di distribuzione per %{count} ghjorni
       delivery_available: Distribuzione dispunibule
       delivery_error_days: Ghjorni d'errori di a distribuzione
       delivery_error_hint: S'ellu ùn si pò distribuì à u duminiu per %{count} ghjorni, sarà autumaticamente marcatu cum'è indistribuibile.
@@ -1251,6 +1233,7 @@ co:
       '2629746': 1 mese
       '31556952': 1 annu
       '5259492': 2 mesi
+      '604800': 1 week
       '63113904': 2 anni
       '7889238': 3 mesi
     min_age_label: Età minima

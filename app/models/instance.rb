@@ -33,7 +33,7 @@ class Instance < ApplicationRecord
   end
 
   def unavailable?
-    unavailable_domain.present?
+    unavailable_domain.present? || domain_block&.suspend?
   end
 
   def failing?

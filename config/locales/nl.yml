@@ -67,7 +67,6 @@ nl:
     media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     network_hidden: Deze informatie is niet beschikbaar
-    never_active: Nooit
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgen
     people_who_follow: Mensen die %{name} volgen
@@ -389,17 +388,6 @@ nl:
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       reject_reports: Rapportages weigeren
       reject_reports_hint: Alle rapportages die vanaf dit domein komen negeren. Irrelevant voor opgeschorte domeinen
-      rejecting_media: mediabestanden worden geweigerd
-      rejecting_reports: rapportages worden geweigerd
-      severity:
-        silence: genegeerd
-        suspend: opgeschort
-      show:
-        retroactive:
-          silence: Alle genegeerde accounts van dit domein niet langer negeren
-          suspend: Alle opgeschorte accounts van dit domein niet langer opschorten
-        title: Domeinblokkade voor %{domain} ongedaan maken
-        undo: Ongedaan maken
       undo: domeinblokkade ongedaan maken
       view: Domeinblokkade bekijken
     email_domain_blocks:
@@ -429,13 +417,7 @@ nl:
         clear: Bezorgfouten weghalen
         restart: Bezorging herstarten
         stop: Bezorging beëindigen
-        title: Bezorging
         unavailable: Niet beschikbaar
-        unavailable_message: Bezorging is niet beschikbaar
-        warning: Waarschuwing
-        warning_message:
-          one: Bezorgingsfout voor %{count} dag
-          other: Bezorgfout voor %{count} dagen
       delivery_available: Bezorging is mogelijk
       delivery_error_days: Dagen met bezorgfouten
       delivery_error_hint: Wanneer de bezorging voor %{count} dagen niet mogelijk is, wordt de bezorging automatisch als niet beschikbaar gemarkeerd.

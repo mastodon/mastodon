@@ -66,7 +66,6 @@ zh-HK:
     media: 媒體
     moved_html: "%{name} 已經轉移到 %{new_profile_link}："
     network_hidden: 此信息不可用
-    never_active: 永不
     nothing_here: 暫時未有內容可以顯示！
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
@@ -396,17 +395,6 @@ zh-HK:
       reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
       reject_reports: 拒絕檢舉個案
       reject_reports_hint: 忽略所有來自此站點的檢舉。與停權無關
-      rejecting_media: 拒絕媒體檔案
-      rejecting_reports: 拒絕檢舉中
-      severity:
-        silence: 已靜音
-        suspend: 已停權
-      show:
-        retroactive:
-          silence: 對此域名的所有帳號取消靜音
-          suspend: 對此域名的所有帳號取消除名
-        title: 撤銷 %{domain} 的域名阻隔
-        undo: 撤銷
       undo: 撤銷域名阻隔
       view: 顯示正被阻隔的網域
     email_domain_blocks:
@@ -436,12 +424,7 @@ zh-HK:
         clear: 清除遞送錯誤
         restart: 重新啟動遞送
         stop: 停止遞送
-        title: 遞送
         unavailable: 離線
-        unavailable_message: 無法遞送
-        warning: 警告
-        warning_message:
-          other: 遞送失敗 %{count} 天
       delivery_available: 可傳送
       delivery_error_days: 遞送失敗天數
       delivery_error_hint: 若 %{count} 天皆無法達成遞送，將會被自動標記為離線。
@@ -1228,6 +1211,7 @@ zh-HK:
       '2629746': 1 個月
       '31556952': 1 年
       '5259492': 2 個月
+      '604800': 1 week
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 按時間篩選

@@ -60,8 +60,8 @@ hu:
       error:
         title: Hiba történt
       new:
-        able_to: Képes lesz
-        prompt: "%{client_name} nevű alkalmazás engedélyt kér a fiókodhoz való hozzáféréshez."
+        prompt_html: "%{client_name} szeretné elérni a fiókodat. Ez egy harmadik féltől származó alkalmazás. <strong>Ha nem bízol meg benne, ne addj felhatalmazást neki.</strong>"
+        review_permissions: Engedélyek áttekintése
         title: Engedély szükséges
       show:
         title: Másold le ezt az engedélyező kódot és írd be az alkalmazásba.
@@ -71,10 +71,12 @@ hu:
       confirmations:
         revoke: Biztos vagy benne?
       index:
-        application: Alkalmazás
-        created_at: Felhatalmazva
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Hatáskör
+        authorized_at: 'Felhatalmazva ekkor: %{date}'
+        description_html: Ezek olyan alkalmazások, melyek API-n keresztül érhetik el a fiókodat. Ha vannak itt olyanok, melyeket nem ismersz fel, vagy valamelyik alkalmazás rosszul működik, visszavonhatod az engedélyét.
+        last_used_at: 'Utoljára ekkor használva: %{date}'
+        never_used: Soha sem volt használva
+        scopes: Engedélyek
+        superapp: Belső
         title: Engedélyezett alkalmazásaid
     errors:
       messages:
@@ -110,6 +112,33 @@ hu:
       authorized_applications:
         destroy:
           notice: Alkalmazás visszavonva.
+    grouped_scopes:
+      access:
+        read: Csak olvasási elérés
+        read/write: Olvasási és írási elérés
+        write: Csak írási elérés
+      title:
+        accounts: Fiókok
+        admin/accounts: Fiókok adminisztrációja
+        admin/all: Minden adminisztratív funkció
+        admin/reports: Bejelentések adminisztrációja
+        all: Minden
+        blocks: Letiltások
+        bookmarks: Könyvjelzők
+        conversations: Beszélgetések
+        crypto: Végpontok közti titkosítás
+        favourites: Kedvencek
+        filters: Szűrők
+        follow: Kapcsolatok
+        follows: Követések
+        lists: Listák
+        media: Médiamellékletek
+        mutes: Némítások
+        notifications: Értesítések
+        push: Push értesítések
+        reports: Bejelentések
+        search: Keresés
+        statuses: Bejegyzések
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ hu:
       admin:write: szerver minden adatának változtatása
       admin:write:accounts: moderációs műveletek végzése fiókokon
       admin:write:reports: moderációs műveletek végzése bejelentéseken
+      crypto: végpontok közti titkosítás használata
       follow: fiókok követése, letiltása, tiltás feloldása és követés abbahagyása
       push: push értesítések fogadása
       read: fiókod adatainak olvasása
@@ -143,6 +173,7 @@ hu:
       write:accounts: profilod megváltoztatása
       write:blocks: fiókok és domainek letiltása
       write:bookmarks: bejegyzések könyvjelzőzése
+      write:conversations: beszélgetések némítása és törlése
       write:favourites: bejegyzések kedvencnek jelölése
       write:filters: szűrők létrehozása
       write:follows: mások követése
