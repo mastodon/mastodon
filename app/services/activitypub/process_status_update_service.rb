@@ -13,7 +13,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @poll_changed              = false
 
     # Only native types can be updated at the moment
-    return if !expected_type? || already_updated_more_recently?
+    return @status if !expected_type? || already_updated_more_recently?
 
     last_edit_date = status.edited_at.presence || status.created_at
 
@@ -41,6 +41,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     end
 
     forward_activity! if significant_changes? && @status_parser.edited_at.present? && @status_parser.edited_at > last_edit_date
+
+    @status
   end
 
   private
