@@ -657,11 +657,11 @@ da:
       title: Serverregler
     settings:
       activity_api_enabled:
-        desc_html: Antal af lokalt opslåede statusser, aktive brugere, og nye registreringer i ugentlige opdelinger
+        desc_html: Antal lokalt opslåede indlæg, aktive brugere samt nye tilmeldinger i ugentlige opdelinger
         title: Offentliggør samlede statistikker vedr. brugeraktivitet i API'en
       bootstrap_timeline_accounts:
-        desc_html: Adskil flere brugernavne med kommaer. Kun lokale og ulåste konti vil fungere. Standard, hvis tom, er alle lokale admins.
-        title: Standard følger for nye brugere
+        desc_html: Adskil flere brugernavne med kommaer. Disse konti vil være garanteret visning i følg-anbefalinger
+        title: Anbefal disse konti til nye brugere
       contact_information:
         email: Forretningse-mail
         username: Kontaktbrugernavn
@@ -670,7 +670,7 @@ da:
         title: Tilpasset CSS
       default_noindex:
         desc_html: Påvirker alle brugere, som ikke selv har ændret denne indstilling
-        title: Fravælge som standard søgemaskineindekseringer for brugere
+        title: Fravælg som standard søgemaskineindekseringer for brugere
       domain_blocks:
         all: Til alle
         disabled: Til ingen
@@ -679,7 +679,7 @@ da:
       domain_blocks_rationale:
         title: Vis begrundelse
       hero:
-        desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, benyttes serverminiaturebillede
+        desc_html: Vises på forsiden. Mindst 600x100px anbefales. Hvis ikke angivet, benyttes serverminiaturebillede
         title: Heltebillede
       mascot:
         desc_html: Vist på forsiden. Mindst 293x205px anbefales. Hvis ikke sat, benyttes standardmaskot
