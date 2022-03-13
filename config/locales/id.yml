@@ -525,12 +525,14 @@ id:
       private_comment: Komentar pribadi
       public_comment: Komentar publik
       purge: Hapus
+      purge_description_html: Jika Anda meyakini bahwa domain ini lebih baik offline, Anda dapat menghapus semua rekaman akun dan data terkait dari domain ini dari ruang penyimpanan Anda. Ini perlu beberapa waktu.
       title: Server yang diketahui
       total_blocked_by_us: Yang kita blokir
       total_followed_by_them: Diikuti mereka
       total_followed_by_us: Diikuti kita
       total_reported: Laporan tentang mereka
       total_storage: Lampiran media
+      totals_time_period_hint_html: Total tampilan di bawah termasuk data seluruh waktu.
     invites:
       deactivate_all: Nonaktifkan semua
       filter:
@@ -749,6 +751,7 @@ id:
       actions:
         delete_statuses: "%{name} menghapus kiriman %{target}"
         disable: "%{name} membekukan akun %{target}"
+        mark_statuses_as_sensitive: "%{name} menandai kiriman %{target} sebagai sensitif"
         none: "%{name} mengirim peringatan ke %{target}"
         sensitive: "%{name} menandai akun %{target} sebagai sensitif"
         silence: "%{name} membatasi akun %{target}"
