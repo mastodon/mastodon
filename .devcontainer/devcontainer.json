@@ -19,7 +19,7 @@
 	"forwardPorts": [3000, 4000],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "bundle install && yarn install && ./bin/rails db:setup",
+	"postCreateCommand": "bundle install --path vendor/bundle && yarn install && ./bin/rails db:setup",
 
 	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
