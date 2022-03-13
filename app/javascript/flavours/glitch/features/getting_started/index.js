@@ -26,6 +26,7 @@ const messages = defineMessages({
   navigation_subheading: { id: 'column_subheading.navigation', defaultMessage: 'Navigation' },
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
+  explore: { id: 'navigation_bar.explore', defaultMessage: 'Explore' },
   direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
@@ -121,41 +122,43 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
 
     if (multiColumn) {
       if (!columns.find(item => item.get('id') === 'HOME')) {
-        navItems.push(<ColumnLink key='0' icon='home' text={intl.formatMessage(messages.home_timeline)} to='/home' />);
+        navItems.push(<ColumnLink key='home' icon='home' text={intl.formatMessage(messages.home_timeline)} to='/home' />);
       }
 
       if (!columns.find(item => item.get('id') === 'NOTIFICATIONS')) {
-        navItems.push(<ColumnLink key='1' icon='bell' text={intl.formatMessage(messages.notifications)} badge={badgeDisplay(unreadNotifications)} to='/notifications' />);
+        navItems.push(<ColumnLink key='notifications' icon='bell' text={intl.formatMessage(messages.notifications)} badge={badgeDisplay(unreadNotifications)} to='/notifications' />);
       }
 
       if (!columns.find(item => item.get('id') === 'COMMUNITY')) {
-        navItems.push(<ColumnLink key='2' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/public/local' />);
+        navItems.push(<ColumnLink key='community_timeline' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/public/local' />);
       }
 
       if (!columns.find(item => item.get('id') === 'PUBLIC')) {
-        navItems.push(<ColumnLink key='3' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/public' />);
+        navItems.push(<ColumnLink key='public_timeline' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/public' />);
       }
     }
 
+    navItems.push(<ColumnLink key='explore' icon='globe' text={intl.formatMessage(messages.explore)} to='/explore' />);
+
     if (!multiColumn || !columns.find(item => item.get('id') === 'DIRECT')) {
-      navItems.push(<ColumnLink key='4' icon='envelope' text={intl.formatMessage(messages.direct)} to='/conversations' />);
+      navItems.push(<ColumnLink key='conversations' icon='envelope' text={intl.formatMessage(messages.direct)} to='/conversations' />);
     }
 
     if (!multiColumn || !columns.find(item => item.get('id') === 'BOOKMARKS')) {
-      navItems.push(<ColumnLink key='5' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
+      navItems.push(<ColumnLink key='bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
     }
 
     if (myAccount.get('locked') || unreadFollowRequests > 0) {
-      navItems.push(<ColumnLink key='6' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
     }
 
-    navItems.push(<ColumnLink key='8' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
+    navItems.push(<ColumnLink key='getting_started' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
 
     listItems = listItems.concat([
       <div key='9'>
-        <ColumnLink key='10' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+        <ColumnLink key='lists' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
         {lists.filter(list => !columns.find(item => item.get('id') === 'LIST' && item.getIn(['params', 'id']) === list.get('id'))).map(list =>
-          <ColumnLink key={(11 + Number(list.get('id'))).toString()} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
+          <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
         )}
       </div>,
     ]);
