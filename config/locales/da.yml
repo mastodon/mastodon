@@ -1463,25 +1463,25 @@ da:
       public: Offentlig
       public_long: Kan ses af alle
       unlisted: Ulistet
-      unlisted_long: Alle kan se, men er ikke listet på offentlige tidslinjer
+      unlisted_long: Kan ses af alle, men listes på offentlige tidslinjer
   statuses_cleanup:
     enabled: Slet automatisk gamle indlæg
     enabled_hint: Sletter automatisk dine indlæg, når disse når en bestemt alder, medmindre de matcher en af undtagelserne nedenfor
     exceptions: Undtagelser
-    explanation: Sletning af indlæg er en ressourcekrævende operation, hvorfor dette sker gradvist over tid, når serveren ellers ikke er optaget. Dine indlæg kan derfor blive slettet nogen tid efter, at de har passeret aldersgrænsen.
+    explanation: Sletning af indlæg er en ressourcekrævende operation, hvorfor dette sker gradvist over tid, når serveren ellers ikke er optaget. Indlæg kan derfor blive slettet efter, at de reelt har passeret aldersgrænsen.
     ignore_favs: Ignorér favoritter
     ignore_reblogs: Ignorér boosts
     interaction_exceptions: Undtagelser baseret på interaktioner
-    interaction_exceptions_explanation: Bemærk, at der ikke er nogen garanti for at indlæg slettes, hvis de går under favorit- eller boost-tærsklerne efter at have været gået over dem.
+    interaction_exceptions_explanation: Bemærk, at det ikke garanteres, at indlæg slettes, hvis de når under favorit- eller boost-tærsklerne efter én gang at været nået over dem.
     keep_direct: Behold direkte besked
-    keep_direct_hint: Slet ingen af dine direkte beskeder
+    keep_direct_hint: Sletter ingen af dine direkte beskeder
     keep_media: Behold indlæg med medievedhæftninger
     keep_media_hint: Sletter ingen af dine indlæg med medievedhæftninger
     keep_pinned: Behold fastgjorte indlæg
     keep_pinned_hint: Sletter ingen af dine fastgjorte indlæg
     keep_polls: Behold afstemninger
     keep_polls_hint: Sletter ingen af dine afstemninger
-    keep_self_bookmark: Behold dine bogmærker
+    keep_self_bookmark: Behold bogmærkede indlæg
     keep_self_bookmark_hint: Sletter ikke egne indlæg, såfremt de er bogmærket
     keep_self_fav: Behold indlæg du har foretrukket
     keep_self_fav_hint: Sletter ikke egne indlæg, såfremt de er foretrukket
