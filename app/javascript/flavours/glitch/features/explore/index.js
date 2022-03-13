@@ -56,7 +56,7 @@ class Explore extends React.PureComponent {
           </div>
         ) : (
           <ColumnHeader
-            icon={isSearching ? 'search' : 'globe'}
+            icon={isSearching ? 'search' : 'hashtag'}
             title={intl.formatMessage(isSearching ? messages.searchResults : messages.title)}
             onClick={this.handleHeaderClick}
             multiColumn={multiColumn}

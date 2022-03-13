@@ -138,7 +138,7 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
       }
     }
 
-    navItems.push(<ColumnLink key='explore' icon='globe' text={intl.formatMessage(messages.explore)} to='/explore' />);
+    navItems.push(<ColumnLink key='explore' icon='hashtag' text={intl.formatMessage(messages.explore)} to='/explore' />);
 
     if (!multiColumn || !columns.find(item => item.get('id') === 'DIRECT')) {
       navItems.push(<ColumnLink key='conversations' icon='envelope' text={intl.formatMessage(messages.direct)} to='/conversations' />);
