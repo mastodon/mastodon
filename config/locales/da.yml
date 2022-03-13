@@ -1276,12 +1276,12 @@ da:
           thousand: T
           trillion: tri.
   otp_authentication:
-    code_hint: Angiv koden genereret af din godkendelses-app for at bekræfte
-    description_html: Aktiverer du <strong>tofaktorgodkendelse</strong> vha. af en godkendelses-app, vil du skulle benytte din mobil, der genererer det token, der skal angives ved indlogning.
+    code_hint: Angiv koden genereret af godkendelses-appen for at bekræfte
+    description_html: Aktiveres <strong>tofaktorgodkendelse</strong> vha. af en godkendelses-app, vil man skulle benytte sin mobil, der genererer det token, der skal angives ved indlogning.
     enable: Aktivér
-    instructions_html: "<strong>Skan denne QR-kode i Google Autehnticator eller en lign. TOTP-app på din mobil</strong>. Fra nu af, vil appen generere tokens, som vil skulle angives ifm. indlogning."
-    manual_instructions: 'Kan QR-koden ikke skannes, så du er nødt til manuelt at angive den, er her en simplel tekst-hemmelighed:'
-    setup: Sæt op
+    instructions_html: "<strong>Skan denne QR-kode i Google Autehnticator eller en lign. TOTP-app på mobilen</strong>. Fremadrettet vil appen generere de tokens, som vil skulle angives ifm. indlogning."
+    manual_instructions: 'Kan QR-koden ikke skannes, så man er nødt til manuelt at angive den, er her en simplel tekst-hemmelighed:'
+    setup: Opsæt
     wrong_code: Den angivne kode er ugyldig! Er server- og enhedsklokkeslæt korrekte?
   pagination:
     newer: Nyere
@@ -1293,7 +1293,7 @@ da:
     errors:
       already_voted: Du har allerede stemt i denne afstemning
       duplicate_options: indeholder dubletvalg
-      duration_too_long: er for langt ude i fremtiden
+      duration_too_long: er for lang en varighed
       duration_too_short: er for kort en varighed
       expired: Afstemningen er allerede afsluttet
       invalid_choice: Den valgte stemningsmulighed findes ikke
