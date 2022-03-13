@@ -98,12 +98,22 @@ class GettingStarted extends ImmutablePureComponent {
     if (multiColumn) {
       navItems.push(
         <ColumnSubheading key='header-discover' text={intl.formatMessage(messages.discover)} />,
+      );
+      height += 34;
+    }
+
+    navItems.push(
+      <ColumnLink key='explore' icon='hashtag' text={intl.formatMessage(messages.explore)} to='/explore' />,
+    );
+    height += 48;
+
+    if (multiColumn) {
+      navItems.push(
         <ColumnLink key='community_timeline' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/public/local' />,
         <ColumnLink key='public_timeline' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/public' />,
-        <ColumnLink key='explore' icon='hashtag' text={intl.formatMessage(messages.explore)} to='/explore' />,
       );
 
-      height += 34 + 48*3;
+      height += 48*2;
 
       navItems.push(
         <ColumnSubheading key='header-personal' text={intl.formatMessage(messages.personal)} />,
