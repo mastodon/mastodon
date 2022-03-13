@@ -808,13 +808,13 @@ da:
       statuses:
         allow: Tillad indlæg
         allow_account: Tillad forfatter
-        description_html: Disse er indlæg, kendt af serveren, som pt. deles og favoriseres meget. Det kan hjælpe nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før man godkender forfatteren, og denne tillader sin konto at blive foreslået til andre. Man kan også tillade/afvise individuelle indlæg.
+        description_html: Disse er indlæg, kendt af serveren, som pt. deles og favoritmarkeres meget. Det kan hjælpe nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før man godkender forfatteren, samt denne tillader sin konto at blive foreslået andre. Man kan også tillade/afvise individuelle indlæg.
         disallow: Tillad ikke indlæg
         disallow_account: Tillad ikke forfatter
         not_discoverable: Forfatteren har ikke valgt at kunne findes
         shared_by:
-          one: Delt eller favoriseret én gang
-          other: Delt eller favoriseret %{friendly_count} gange
+          one: Delt eller favoritmarkeret én gang
+          other: Delt eller favoritmarkeret %{friendly_count} gange
         title: Populære opslag
       tags:
         current_score: Aktuel score %{score}
@@ -1224,18 +1224,18 @@ da:
         subject: "%{name} tilmeldte sig"
     digest:
       action: Se alle notifikationer
-      body: Her er et kort resumé af de beskeder, du er gået glip af siden dit seneste besøg d. %{since}
+      body: Her er en kort oversigt over de beskeder, som er misset siden dit seneste besøg %{since}
       mention: "%{name} nævnte dig i:"
       new_followers_summary:
-        one: Du har også fået en ny følger, mens du var væk! Sådan!
-        other: Du har også fået %{count} nye følgere, mens du var væk! Sådan!
+        one: Under dit fravær har du har også fået en ny følger! Sådan!
+        other: Under dit fravær har du har også fået %{count} nye følgere! Sådan!
       subject:
-        one: "1 ny notifikation siden dit senest besøg \U0001F418"
-        other: "%{count} nye notifikationer siden dit senest besøg \U0001F418"
-      title: Mens du var væk...
+        one: "1 ny notifikation siden senest besøg \U0001F418"
+        other: "%{count} nye notifikationer siden senest besøg \U0001F418"
+      title: I dit fravær...
     favourite:
-      body: 'Dit indlæg blev favoriseret af %{name}:'
-      subject: "%{name} favoriserede dit indlæg"
+      body: '%{name} favoritmarkerede dit indlæg:'
+      subject: "%{name} favoritmarkerede dit indlæg"
       title: Ny favorit
     follow:
       body: "%{name} følger dig nu!"
