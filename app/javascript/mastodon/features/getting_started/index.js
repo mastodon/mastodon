@@ -100,7 +100,7 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnSubheading key='header-discover' text={intl.formatMessage(messages.discover)} />,
         <ColumnLink key='community_timeline' icon='users' text={intl.formatMessage(messages.community_timeline)} to='/public/local' />,
         <ColumnLink key='public_timeline' icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/public' />,
-        <ColumnLink key='explore' icon='globe' text={intl.formatMessage(messages.explore)} to='/explore' />,
+        <ColumnLink key='explore' icon='hashtag' text={intl.formatMessage(messages.explore)} to='/explore' />,
       );
 
       height += 34 + 48*3;
