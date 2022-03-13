@@ -798,19 +798,19 @@ da:
           zero: Ikke delt af nogen i løbet af den seneste uge
         title: Populære links
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
-      pending_review: Afventende vurdering
+      pending_review: Afventer revision
       preview_card_providers:
         allowed: Links fra denne udgiver kan trende
-        description_html: Disse er domæner, hvorfra links ofte deles på din server. Links vil ikke trende offentligt, medmindre domænet for linket er godkendt. Din godkendelse/afvisning indbefatter underdomæner.
+        description_html: Disse er domæner, hvorfra links ofte deles på serveren. Links vil ikke trende offentligt, medmindre man har godkendt domænet for linket. Godkendelse/afvisning indbefatter underdomæner.
         rejected: Links fra denne udgiver vil ikke trende
         title: Udgivere
       rejected: Afvist
       statuses:
         allow: Tillad indlæg
         allow_account: Tillad forfatter
-        description_html: Disse er indlæg, kendt af din server nu, som pt. deles og favoriseres meget. Det kan hjælpe dine nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før du godkender forfatteren, og denne tillader sin konto at blive foreslået til andre. Du kan også tillade/afvise individuelle indlæg.
-        disallow: Forbyd indlæg
-        disallow_account: Forbyd forfatter
+        description_html: Disse er indlæg, kendt af serveren, som pt. deles og favoriseres meget. Det kan hjælpe nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før man godkender forfatteren, og denne tillader sin konto at blive foreslået til andre. Man kan også tillade/afvise individuelle indlæg.
+        disallow: Tillad ikke indlæg
+        disallow_account: Tillad ikke forfatter
         not_discoverable: Forfatteren har ikke valgt at kunne findes
         shared_by:
           one: Delt eller favoriseret én gang
@@ -819,21 +819,21 @@ da:
       tags:
         current_score: Aktuel score %{score}
         dashboard:
-          tag_accounts_measure: unikke brugere
+          tag_accounts_measure: unikke anvendelser
           tag_languages_dimension: Topsprog
           tag_servers_dimension: Topservere
           tag_servers_measure: forskellige servere
-          tag_uses_measure: brugere i alt
-        description_html: Disse er hashtags, som pt. vises i en masse indlæg, som din server ser. Det kan hjælpe dine brugere til at finde ud af, hvad folk taler mest om pt. Ingen hashtags vises offentligt, før du godkender dem.
+          tag_uses_measure: anvendelser i alt
+        description_html: Disse er hashtags, som pt. vises i en masse indlæg, som serveren ser. Det kan hjælpe brugerne til at finde ud af, hvad folk taler mest om pt. Ingen hashtags vises offentligt, før man godkender dem.
         listable: Kan foreslås
         not_listable: Foreslås ikke
         not_trendable: Vises ikke under tendenser
-        not_usable: Kan ikke bruges
-        peaked_on_and_decaying: Toppede d. %{date}, nu nedadgående
+        not_usable: Kan ikke anvendes
+        peaked_on_and_decaying: Toppede pr. %{date}, nu for nedadgående
         title: Populære hashtags
         trendable: Kan vises under tendenser
         trending_rank: 'Populær #%{rank}'
-        usable: Kan bruges
+        usable: Kan anvendes
         usage_comparison: Brugt %{today} gange i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
           one: Brugt af én person i løbet af den seneste uge
