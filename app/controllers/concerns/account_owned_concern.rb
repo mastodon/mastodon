@@ -52,6 +52,6 @@ module AccountOwnedConcern
 
   def temporary_suspension_response
     expires_in(3.minutes, public: true)
-    forbidden
+    not_available_for_legal_reasons
   end
 end

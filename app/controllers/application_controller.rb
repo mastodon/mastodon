@@ -114,6 +114,10 @@ class ApplicationController < ActionController::Base
     respond_with_error(429)
   end
 
+  def not_available_for_legal_reasons
+    respond_with_error(451)
+  end
+
   def single_user_mode?
     @single_user_mode ||= Rails.configuration.x.single_user_mode && Account.where('id > 0').exists?
   end
