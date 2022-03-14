@@ -36,6 +36,7 @@ tt:
         local: Җирле
         title: Урын
       moderation:
+        active: Актив
         all: Бөтенесе
       perform_full_suspension: Искә алмау
       reset: Ташлату
@@ -64,6 +65,8 @@ tt:
     email_domain_blocks:
       delete: Бетерү
       domain: Домен
+    follow_recommendations:
+      status: Халәт
     instances:
       by_domain: Домен
       moderation:
@@ -96,10 +99,14 @@ tt:
         delete: Бетерү
       status: Халәт
       updated_at: Яңартылды
+    rules:
+      delete: Бетерү
     statuses:
       deleted: Бетерелде
       media:
         title: Медиа
+    trends:
+      allow: Рөхсәт итү
     warning_presets:
       delete: Бетерү
   application_mailer:
@@ -159,6 +166,7 @@ tt:
     all: Бөтенесе
     copy: Күчереп алу
     delete: Бетерү
+    today: бүген
   imports:
     types:
       bookmarks: Кыстыргычлар
@@ -232,15 +240,27 @@ tt:
       video:
         other: "%{count} видео"
     title: '%{name}: "%{quote}"'
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 атна
+      '15778476': 6 months
+      '2629746': 1 ай
+      '31556952': 1 ел
+      '5259492': 2 months
+      '604800': 1 атна
+      '63113904': 2 ел
+      '7889238': 3 months
   time:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Өстәү
     edit: Үзгәртү
   user_mailer:
     warning:
+      reason: 'Сәбаб:'
       title:
         none: Игътибар
   webauthn_credentials:
