@@ -42,11 +42,15 @@ tt:
       reset: Ташлату
       role: Рөхсәтләр
       roles:
+        moderator: Модератор
         user: Кулланучы
       search: Эзләү
       sensitive: Sizmäle
       username: Кулланучы исеме
       web: Веб
+    action_logs:
+      action_types:
+        disable_2fa_user: 2FA cүндерү
     custom_emojis:
       by_domain: Домен
       copy: Күчереп алу
@@ -80,11 +84,12 @@ tt:
       delete: Бетерү
       expires_in:
         '1209600': 2 атна
-        '15778476': 6 months
+        '15778476': 6 ай
         '2629746': 1 ай
         '31556952': 1 ел
         '86400': 1 көн
         '94670856': 3 ел
+      title: IP кагыйдәләре
     relays:
       delete: Бетерү
       disable: Cүндерү
@@ -131,9 +136,12 @@ tt:
     distance_in_words:
       about_x_hours: "%{count}сәг"
       about_x_months: "%{count}ай"
+      about_x_years: "%{count}ел"
+      almost_x_years: "%{count}ел"
       half_a_minute: Хәзер генә
       less_than_x_minutes: "%{count}м"
       less_than_x_seconds: Хәзер генә
+      over_x_years: "%{count}ел"
       x_days: "%{count}к"
       x_minutes: "%{count}м"
       x_months: "%{count}ай"
@@ -219,6 +227,7 @@ tt:
     platforms:
       adobe_air: Adobе Air
       android: Andrоid
+      blackberry: Blаckberry
       chrome_os: ChromеOS
       firefox_os: Firеfox OS
       ios: iОS
@@ -246,10 +255,10 @@ tt:
       '15778476': 6 months
       '2629746': 1 ай
       '31556952': 1 ел
-      '5259492': 2 months
+      '5259492': 2 ай
       '604800': 1 атна
       '63113904': 2 ел
-      '7889238': 3 months
+      '7889238': 3 ай
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -257,6 +266,7 @@ tt:
       time: "%H:%M"
   two_factor_authentication:
     add: Өстәү
+    disable: 2FA cүндерү
     edit: Үзгәртү
   user_mailer:
     warning:
