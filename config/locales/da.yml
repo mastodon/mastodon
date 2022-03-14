@@ -1615,10 +1615,11 @@ da:
   user_mailer:
     appeal_approved:
       action: Gå til din konto
-      explanation: Appellen til advarslen mod din konto %{strike_date}, indsendt af dig %{appeal_date}, er blevet godkendt. Din konto er igen på god fod.
+      explanation: Appellen af kontoadvarslen fra %{strike_date}, indsendt af dig pr. %{appeal_date}, er blevet godkendt. Din kontostatus er igen god.
       subject: Din appel pr. %{date} er godkendt
       title: Appel godkendt
     appeal_rejected:
+      explanation: Appellen af kontoadvarslen fra %{strike_date}, indsendt af dig pr. %{appeal_date}, er blevet afvist.
       subject: Din appel pr. %{date} er afvist
       title: Appel afvist
     backup_ready:
