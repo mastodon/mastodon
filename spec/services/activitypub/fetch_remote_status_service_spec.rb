@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
   include ActionView::Helpers::TextHelper
 
-  let(:sender) { Fabricate(:account) }
-  let(:recipient) { Fabricate(:account) }
-  let(:valid_domain) { Rails.configuration.x.local_domain }
+  let!(:sender) { Fabricate(:account).tap { |account| account.update(uri: ActivityPub::TagManager.instance.uri_for(account)) } }
+  let!(:recipient) { Fabricate(:account) }
+  let!(:valid_domain) { Rails.configuration.x.local_domain }
+
+  let(:existing_status) { nil }
 
   let(:note) do
     {
@@ -19,11 +21,13 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
 
   subject { described_class.new }
 
+  before do
+    stub_request(:head, 'https://example.com/watch?v=12345').to_return(status: 404, body: '')
+  end
+
   describe '#call' do
     before do
-      sender.update(uri: ActivityPub::TagManager.instance.uri_for(sender))
-
-      stub_request(:head, 'https://example.com/watch?v=12345').to_return(status: 404, body: '')
+      existing_status
       subject.call(object[:id], prefetched_body: Oj.dump(object))
     end
 
@@ -184,6 +188,38 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
 
       it 'does not create status' do
         expect(sender.statuses.first).to be_nil
+      end
+    end
+
+    context 'when status already exists' do
+      let(:existing_status) { Fabricate(:status, account: sender, text: 'Foo', uri: note[:id]) }
+
+      context 'with a Note object' do
+        let(:object) { note }
+
+        it 'updates status' do
+          existing_status.reload
+          expect(existing_status.text).to eq 'Lorem ipsum'
+          expect(existing_status.edits).to_not be_empty
+        end
+      end
+
+      context 'with a Create activity' do
+        let(:object) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            id: "https://#{valid_domain}/@foo/1234/create",
+            type: 'Create',
+            actor: ActivityPub::TagManager.instance.uri_for(sender),
+            object: note,
+          }
+        end
+
+        it 'updates status' do
+          existing_status.reload
+          expect(existing_status.text).to eq 'Lorem ipsum'
+          expect(existing_status.edits).to_not be_empty
+        end
       end
     end
   end

@@ -32,8 +32,12 @@ class Instance < ApplicationRecord
     @delivery_failure_tracker ||= DeliveryFailureTracker.new(domain)
   end
 
+  def purgeable?
+    unavailable? || domain_block&.suspend?
+  end
+
   def unavailable?
-    unavailable_domain.present? || domain_block&.suspend?
+    unavailable_domain.present?
   end
 
   def failing?
