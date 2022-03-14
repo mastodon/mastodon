@@ -479,6 +479,13 @@ kmr:
       unsuppress: Pêşniyara şopandinê paşve vegerîne
     instances:
       availability:
+        description_html:
+          one: Ku radestkirina navparê <strong>%{count} roj </strong> bêyî serkeftin birevebiçe, heya ku radestkirinek <em> ji </em> navparê neyê wergirtin, wê hewildanên radestkirinê neyên kirin.
+          other: Ku radestkirina navparê <strong>%{count} rojên cuda</strong> bêyî serkeftin birevebiçe, heya ku radestkirinek <em> ji </em> navparê neyê wergirtin, wê hewildanên radestkirinê neyên kirin.
+        failure_threshold_reached: Rêjeya têkçûnê gihîşte %{date}.
+        failures_recorded:
+          one: Hewldana têkçûyî di %{count} roj de.
+          other: Hewldanên têkçûyî di %{count} rojên cuda de.
         title: Berdestbûnî
       back_to_all: Hemû
       back_to_limited: Sînorkirî
