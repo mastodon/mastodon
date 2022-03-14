@@ -70,19 +70,19 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'includes reblog' do
-        expect(assigns(:notifications).map(&:activity)).to include(@reblog_of_first_status)
+        expect(body_as_json.map { |x| x[:type] }).to include 'reblog'
       end
 
       it 'includes mention' do
-        expect(assigns(:notifications).map(&:activity)).to include(@mention_from_status)
+        expect(body_as_json.map { |x| x[:type] }).to include 'mention'
       end
 
       it 'includes favourite' do
-        expect(assigns(:notifications).map(&:activity)).to include(@favourite)
+        expect(body_as_json.map { |x| x[:type] }).to include 'favourite'
       end
 
       it 'includes follow' do
-        expect(assigns(:notifications).map(&:activity)).to include(@follow)
+        expect(body_as_json.map { |x| x[:type] }).to include 'follow'
       end
     end
 
@@ -96,7 +96,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns only notifications from specified user' do
-        expect(assigns(:notifications).map(&:from_account_id).uniq).to eq [third.account.id]
+        expect(body_as_json.map { |x| x[:account][:id] }.uniq).to eq [third.account.id.to_s]
       end
     end
 
@@ -110,7 +110,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns nothing' do
-        expect(assigns(:notifications)).to be_empty
+        expect(body_as_json.size).to eq 0
       end
     end
 
@@ -124,7 +124,8 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns everything but excluded type' do
-        expect(assigns(:notifications).map(&:type).uniq).to_not include(:mention)
+        expect(body_as_json.size).to_not eq 0
+        expect(body_as_json.map { |x| x[:type] }.uniq).to_not include 'mention'
       end
     end
 
@@ -138,7 +139,7 @@ RSpec.describe Api::V1::NotificationsController, type: :controller do
       end
 
       it 'returns only requested type' do
-        expect(assigns(:notifications).map(&:type).uniq).to eq %i(mention)
+        expect(body_as_json.map { |x| x[:type] }.uniq).to eq ['mention']
       end
     end
   end
