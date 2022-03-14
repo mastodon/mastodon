@@ -1,4 +1,3 @@
----
 da:
   simple_form:
     hints:
@@ -27,11 +26,13 @@ da:
         scheduled_at: Lad stå tomt for straks at publicere bekendtgørelsen
         starts_at: Valgfri. Såfremt din bekendtgørelse er knyttet til et bestemt tidsinterval
         text: Du kan bruge markup-formattering i indlæg. Vær opmærksom på den plads, som en bekendtgørelse vil fylde på brugerens skærm
+      appeal:
+        text: En advarsel kan kun appelleres én gang
       defaults:
-        autofollow: Personer, som har tilmeldt sig via invitationen, vil automatisk følge dig
+        autofollow: Personer tilmeldt via invitationen vil automatisk blive følgere
         avatar: PNG, GIF eller JPG. Maks. %{size}. Auto-nedskaleres til %{dimensions}px
         bot: Signalér til andre, at denne konto primært udfører automatiserede handlinger og muligvis ikke monitoreres
-        context: En eller flere kontekster, hvor filteret skal være gældende
+        context: En eller flere kontekster, hvor filteret skal anvendes
         current_password: Angiv af sikkerhedsårsager adgangskoden til den aktuelle konto
         current_username: For at bekræfte, angiv brugernavnet for den aktuelle konto
         digest: Sendes kun efter en lang inaktivitetsperiode, og kun hvis du har modtaget personlige beskeder i dit fravær
@@ -215,7 +216,7 @@ da:
         name: Hashtag
         trendable: Tillad visning af dette hashtag under trends
         usable: Tillad indlæg at benytte dette hashtag
-    'no': Nej
+    'no': 'Nej'
     recommended: Anbefalet
     required:
       mark: "*"
@@ -223,4 +224,4 @@ da:
     title:
       sessions:
         webauthn: Brug en af dine sikkerhedskoder til indlogning
-    'yes': Ja
+    'yes': 'Ja'
