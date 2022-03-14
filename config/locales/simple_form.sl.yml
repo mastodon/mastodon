@@ -1,4 +1,3 @@
----
 sl:
   simple_form:
     hints:
@@ -74,6 +73,7 @@ sl:
         text: Prednastavljeno besedilo
         title: Naslov
       admin_account_action:
+        include_statuses: Vključi omenjene objave v e-sporočilo
         send_email_notification: Obvesti uporabnika po e-pošti
         text: Opozorilo po meri
         type: Dejanje
@@ -90,6 +90,8 @@ sl:
         scheduled_at: Načrtuj čas objave
         starts_at: Začetek dogodka
         text: Objava
+      appeal:
+        text: Razložite, zakaj bi morali to odločitev spremeniti
       defaults:
         autofollow: Povabite, da sledi vašemu računu
         avatar: Podoba
@@ -183,7 +185,7 @@ sl:
         name: Ključnik
         trendable: Dovoli, da se ta ključnik pojavi med trendi
         usable: Dovoli, da objave uporabljajo ta ključnik
-    'no': Ne
+    'no': 'Ne'
     recommended: Priporočeno
     required:
       mark: "*"
@@ -191,4 +193,4 @@ sl:
     title:
       sessions:
         webauthn: Za prijavo uporabite eno od svojih varnostnih kod
-    'yes': Da
+    'yes': 'Da'
