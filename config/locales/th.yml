@@ -23,7 +23,7 @@ th:
     get_apps: ลองแอปมือถือ
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     learn_more: เรียนรู้เพิ่มเติม
-    logged_in_as_html: คุณกำลังเข้าสู่ระบบเป็น %{username}
+    logged_in_as_html: คุณกำลังเข้าสู่ระบบเป็น %{username} ในปัจจุบัน
     logout_before_registering: คุณได้เข้าสู่ระบบอยู่แล้ว
     privacy_policy: นโยบายความเป็นส่วนตัว
     rules: กฎของเซิร์ฟเวอร์
@@ -447,11 +447,33 @@ th:
       title: คำแนะนำการติดตาม
       unsuppress: คืนค่าคำแนะนำการติดตาม
     instances:
+      availability:
+        title: ความพร้อมใช้งาน
       back_to_all: ทั้งหมด
       back_to_limited: จำกัดอยู่
       back_to_warning: คำเตือน
       by_domain: โดเมน
       confirm_purge: คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลจากโดเมนนี้อย่างถาวร?
+      content_policies:
+        comment: หมายเหตุภายใน
+        description_html: คุณสามารถกำหนดนโยบายเนื้อหาที่จะนำไปใช้กับบัญชีทั้งหมดจากโดเมนนี้และโดเมนย่อยใดก็ตามของโดเมน
+        policies:
+          reject_media: ปฏิเสธสื่อ
+          reject_reports: ปฏิเสธรายงาน
+          silence: จำกัด
+          suspend: ระงับ
+        policy: นโยบาย
+        reason: เหตุผลสาธารณะ
+        title: นโยบายเนื้อหา
+      dashboard:
+        instance_accounts_dimension: บัญชีที่ติดตามมากที่สุด
+        instance_accounts_measure: บัญชีที่จัดเก็บไว้
+        instance_followers_measure: ผู้ติดตามของเราที่นั่น
+        instance_follows_measure: ผู้ติดตามของเขาที่นี่
+        instance_languages_dimension: ภาษายอดนิยม
+        instance_media_attachments_measure: ไฟล์แนบสื่อที่จัดเก็บไว้
+        instance_reports_measure: รายงานเกี่ยวกับเขา
+        instance_statuses_measure: โพสต์ที่จัดเก็บไว้
       delivery:
         all: ทั้งหมด
         clear: ล้างข้อผิดพลาดการจัดส่ง
@@ -657,7 +679,7 @@ th:
         desc_html: มีผลต่อแฮชแท็กที่ไม่ได้ไม่อนุญาตก่อนหน้านี้
         title: อนุญาตให้แฮชแท็กขึ้นแนวโน้มโดยไม่มีการตรวจทานล่วงหน้า
       trends:
-        desc_html: แสดงเนื้อหาที่ตรวจทานแล้วก่อนหน้านี้ที่กำลังนิยมเป็นสาธารณะ
+        desc_html: แสดงเนื้อหาที่ตรวจทานแล้วก่อนหน้านี้ที่กำลังนิยมในปัจจุบันเป็นสาธารณะ
         title: แนวโน้ม
     site_uploads:
       delete: ลบไฟล์ที่อัปโหลด
@@ -767,13 +789,13 @@ th:
       subject: รายงานใหม่สำหรับ %{instance} (#%{id})
     new_trends:
       new_trending_links:
-        no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติ
+        no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติในปัจจุบัน
         title: ลิงก์ที่กำลังนิยม
       new_trending_statuses:
-        no_approved_statuses: ไม่มีโพสต์ที่กำลังนิยมที่ได้รับอนุมัติ
+        no_approved_statuses: ไม่มีโพสต์ที่กำลังนิยมที่ได้รับอนุมัติในปัจจุบัน
         title: โพสต์ที่กำลังนิยม
       new_trending_tags:
-        no_approved_tags: ไม่มีแฮชแท็กที่กำลังนิยมที่ได้รับอนุมัติ
+        no_approved_tags: ไม่มีแฮชแท็กที่กำลังนิยมที่ได้รับอนุมัติในปัจจุบัน
         title: แฮชแท็กที่กำลังนิยม
       subject: แนวโน้มใหม่สำหรับตรวจทานใน %{instance}
   aliases:

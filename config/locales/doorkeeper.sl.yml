@@ -71,6 +71,7 @@ sl:
       confirmations:
         revoke: Ali ste prepričani?
       index:
+        authorized_at: Overjen(a) %{date}
         description_html: To so programi, ki lahko dostopajo do vašega računa prek vmesnika API. Če so na seznamu programi, ki jih ne prepoznate ali pa se čudno vedejo, lahko prekličete njihovo pravico do dostopa.
         last_used_at: Zadnjič uporabljeno %{date}
         never_used: Nikoli uporabljeno
@@ -122,10 +123,13 @@ sl:
         admin/all: Vse skrbniške funkcije
         admin/reports: Upravljanje poročil
         all: Vse
+        blocks: Blokira
         bookmarks: Zaznamki
         conversations: Pogovori
+        crypto: Šifriranje od konca do konca
         favourites: Priljubljeni
         filters: Filtri
+        follow: Razmerja
         follows: Sledi
         lists: Seznami
         media: Predstavnostne priloge
@@ -149,6 +153,7 @@ sl:
       admin:write: spremeni vse podatke na strežniku
       admin:write:accounts: izvedi moderirana dejanja na računih
       admin:write:reports: izvedi moderirana dejanja na prijavah
+      crypto: Uporabi šifriranje od konca do konca
       follow: spremeni razmerja med računi
       push: prejmi potisna obvestila
       read: preberi vse podatke svojega računa
@@ -168,6 +173,7 @@ sl:
       write:accounts: spremenite svoj profil
       write:blocks: blokirajte račune in domene
       write:bookmarks: objave zaznamkov
+      write:conversations: utišaj in izbriši pogovore
       write:favourites: priljubljena stanja
       write:filters: ustvari filtre
       write:follows: sledi osebam

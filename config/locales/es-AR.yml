@@ -373,6 +373,7 @@ es-AR:
       enable: Habilitar
       enabled: Habilitado
       enabled_msg: Se habilitó ese emoji exitosamente
+      image_hint: PNG o GIF, hasta %{size}
       list: Listar
       listed: Listados
       new:
@@ -479,11 +480,41 @@ es-AR:
       title: Recomendaciones de cuentas para seguir
       unsuppress: Restablecer recomendaciones de cuentas para seguir
     instances:
+      availability:
+        description_html:
+          one: Si el envío al dominio falla durante <strong>%{count} día</strong> sin éxito, no se harán más intentos de entrega a menos que se reciba un envío <em>desde</em> el dominio.
+          other: Si el envío al dominio falla durante <strong>%{count} días</strong> sin éxito, no se harán más intentos de entrega a menos que se reciba un envío <em>desde</em> el dominio.
+        failure_threshold_reached: Umbral de límite de fallo alcanzado el %{date}.
+        failures_recorded:
+          one: Intento fallido en %{count} día.
+          other: Intentos fallidos en %{count} días.
+        no_failures_recorded: No hay fallos en el registro.
+        title: Disponibilidad
       back_to_all: Todos
       back_to_limited: Limitados
       back_to_warning: Advertencia
       by_domain: Dominio
       confirm_purge: "¿Estás seguro que querés eliminar permanentemente los datos de este dominio?"
+      content_policies:
+        comment: Nota interna
+        description_html: Podés definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
+        policies:
+          reject_media: Rechazar medios
+          reject_reports: Rechazar denuncias
+          silence: Limitar
+          suspend: Suspender
+        policy: Política
+        reason: Razón pública
+        title: Políticas de contenido
+      dashboard:
+        instance_accounts_dimension: Cuentas más seguidas
+        instance_accounts_measure: cuentas almacenadas
+        instance_followers_measure: nuestros seguidores allí
+        instance_follows_measure: sus seguidores aquí
+        instance_languages_dimension: Idiomas principales
+        instance_media_attachments_measure: archivos adjuntos almacenados
+        instance_reports_measure: denuncias sobre ellos
+        instance_statuses_measure: mensajes almacenados
       delivery:
         all: Todos
         clear: Limpiar errores de entrega
@@ -506,12 +537,14 @@ es-AR:
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
+      purge_description_html: Si creés que este dominio está fuera de línea para siempre, podés eliminar de tu almacenamiento todos los registros de cuentas y los datos asociados a este dominio. Esto puede llevar un tiempo.
       title: Federación
       total_blocked_by_us: Bloqueada por nosotros
       total_followed_by_them: Seguidas por ellos
       total_followed_by_us: Seguidas por nosotros
       total_reported: Denuncias sobre ellas
       total_storage: Adjuntos
+      totals_time_period_hint_html: Los datos totales mostrados a continuación incluyen datos para todo el tiempo.
     invites:
       deactivate_all: Desactivar todas
       filter:
