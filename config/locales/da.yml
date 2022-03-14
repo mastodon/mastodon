@@ -1639,7 +1639,9 @@ da:
         spam: Spam
         violation: Indhold overtræder flg. fællesskabsretningslinjer
       explanation:
-        disable: Din konto kan ikke længere bruges, men profilen og andre data er intakte. Du kan anmode om en sikkerhedskopi af dine data, ændre kontoindstillinger eller slette kontoen.
+        delete_statuses: Nogle af dine indlæg har vist sig at være i strid med en eller flere fællesskabsretningslinjer og er efterfølgende fjernet af %{instance}-moderatorerne.
+        disable: Du kan ikke længere anvende din konto, men profilen og øvrige data er intakte. Du kan anmode om en sikkerhedskopi af dine data, ændre kontoindstillinger eller slette kontoen.
+        mark_statuses_as_sensitive: Nogle af dine indlæg er blevet markeret som sensitive af %{instance}-moderatorerne. Det betyder, at folk er nødt til at trykke på medierne i indlæggene, før en forhåndsvisning vises. Du kan selv markere medier som sensitive i fremtidige indlæg.
         sensitive: Fra nu af vil alle dine uploadede mediefiler blive markeret som sensitive og skjult bag en klik-igennem advarsel.
         silence: Din konto kan stadig bruges, men dine indlæg vil kunne ses af personer, som allerede følger dig på denne server, og du kan blive udelukket fra forskellige opdagelsesfunktioner. Personer vil stadig kunne følge dig manuelt.
         suspend: Din konto kan ikke længere bruges, og hverken profil eller øvrige data kan tilgås. Du kan stadig logge ind for at anmode om en sikkerhedskopi af dine data, indtil disse om ca. 30 er helt slettet. Visse data bevares dog mhp. at forhindre dig i at omgå udelukkelsen.
