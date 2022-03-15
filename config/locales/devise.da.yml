@@ -1,10 +1,9 @@
----
 da:
   devise:
     confirmations:
       confirmed: Din e-mail er nu bekræftet.
-      send_instructions: Du vil om få minutter modtage en e-mailvejledning til, hvordan du bekræfter din e-mailadresse. Tjek din spammappe, hvis du modtager denne e-mail.
-      send_paranoid_instructions: Findes din e-mailadresse allerede i vores database, vil du om få minutter modtage en e-mailvejledning til, hvordan du bekræfter din e-mailadresse. Tjek din spammappe, hvis du ikke modtager denne e-mail.
+      send_instructions: Du skulle om få minutter modtage en e-mailvejledning til, hvordan din e-mailadresse bekræftes. Tjek spammappen, hvis e-mailen ikke ser ud til at lande i indbakken.
+      send_paranoid_instructions: Findes din e-mailadresse allerede i vores database, skulle du om få minutter modtage en e-mailvejledning til, hvordan din e-mailadresse bekræftes. Tjek spammappen, hvis e-mailen ikke ser ud til at lande i indbakken.
     failure:
       already_authenticated: Du er allerede logget ind.
       inactive: Din konto er endnu ikke aktiveret.
@@ -12,15 +11,15 @@ da:
       last_attempt: Du har ét forsøg mere, før din konto bliver låst.
       locked: Din konto er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller adgangskode.
-      pending: Din konto er stadig under bedømmelse.
-      timeout: Din session udløb. Log ind igen for at fortsætte.
-      unauthenticated: Du skal logge ind eller tilmelde dig for at fortsætte.
-      unconfirmed: Du skal bekræfte din e-mailadresse for at fortsætte.
+      pending: Din konto er stadig under revision.
+      timeout: Session udløbet. Log ind igen for at fortsætte.
+      unauthenticated: Log ind eller tilmelde dig for at fortsætte.
+      unconfirmed: Bekræft din e-mailadresse for at fortsætte.
     mailer:
       confirmation_instructions:
         action: Bekræft e-mailadresse
         action_with_app: Bekræft og returnér til %{app}
-        explanation: Du har oprettet en konto på %{host} med denne e-mailadresse og er nu et klik fra at aktivere din konto. Har du ikke oprettet dig, så ignorér blot denne e-mail.
+        explanation: Du har oprettet en konto på %{host} med denne e-mailadresse og er nu ét klik fra at aktivere den. Har du ikke oprettet dig, så ignorér blot denne e-mail.
         explanation_when_pending: Du ansøgte om en invitation til %{host} med denne e-mailadresse. Når du har bekræftet din e-mailadresse, gennemgår vi din ansøgning. Du kan logge ind for at ændre dine oplysninger eller slette din konto, men du kan ikke tilgå de fleste af funktionerne, før din konto er godkendt. Afvises din ansøgning, fjernes dine data, så ingen yderligere handling fra dig er nødvendig. Har du ikke ansøgt, så ignorér blot denne e-mail.
         extra_html: Tjek også <a href="%{terms_path}">reglerne for serveren</a> samt <a href="%{policy_path}">vores tjenestevilkår</a>.
         subject: 'Mastodon: Bekræftelsesinstrukser for %{instance}'
