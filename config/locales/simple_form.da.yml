@@ -73,9 +73,9 @@ da:
       invite_request:
         text: Dette vil hjælpe os med at gennemgå din ansøgning
       ip_block:
-        comment: Valgfri. Husk, hvorfor du tilføjede denne regel.
-        expires_in: IP-adresser er en begrænset ressource, de deles undertiden og skifter ofte hænder. Af denne grund anbefales ubegrænsede IP-blokke ikke.
-        ip: Angiv en IPv4- eller IPv6-adresse. Du kan blokere hele intervaller vha. CIDR-syntaksen. Vær forsigtig med ikke at låse dig ude!
+        comment: Valgfri. Begrundelse for denne regel.
+        expires_in: IP-adresser er en begrænset ressource, de deles undertiden og skifter ofte hænder, hvorfor ubegrænsede IP-blokke ikke anbefales.
+        ip: Angiv en IPv4- eller IPv6-adresse. Hele intervaller kan blokeres vha. CIDR-syntaksen. Pas på med ikke selv at blive låst ude!
         severities:
           no_access: Blokér adgang til alle ressourcer
           sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
