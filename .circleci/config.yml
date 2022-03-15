@@ -23,7 +23,7 @@ executors:
         environment:
           POSTGRES_USER: root
           POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:6-alpine
+      - image: cimg/redis:6.2
 
 commands:
   install-system-dependencies:
