@@ -799,6 +799,7 @@ id:
         description_html: Ini adalah kiriman yang diketahui server Anda yang kini sedang dibagikan dan difavoritkan banyak akun. Ini akan membantu pengguna baru dan lama Anda menemukan lebih banyak orang untuk diikuti. Tidak ada kiriman yang ditampilkan secara publik kecuali jika sudah disetujui pemilik akun, dan pemilik akun mengizinkan akun mereka disarankan untuk orang lain. Anda juga dapat mengizinkan atau menolak kiriman individu.
         disallow: Jangan beri izin kiriman
         disallow_account: Jangan beri izin penulis
+        not_discoverable: Pemilik akun memilih untuk tidak dapat ditemukan
         shared_by:
           other: Dibagikan dan difavoritkan %{friendly_count} kali
         title: Kiriman yang sedang tren
@@ -810,6 +811,7 @@ id:
           tag_servers_dimension: Server terpopuler
           tag_servers_measure: server berbeda
           tag_uses_measure: kegunaan total
+        description_html: Ini adalah tagar yang kini sedang muncul di banyak kiriman yang dapat dilihat server Anda. Ini dapat membantu pengguna Anda menemukan apa yang sedang dibicarakan banyak orang. Tagar tidak akan ditampilkan secara publik kecuali jika Anda mengizinkannya.
         listable: Dapat disarankan
         not_listable: Tidak akan disarankan
         not_trendable: Tidak akan muncul di bawah tren
@@ -836,6 +838,7 @@ id:
       actions:
         delete_statuses: untuk menghapus kiriman mereka
         disable: untuk membekukan akun mereka
+        mark_statuses_as_sensitive: untuk menandai kiriman sebagai sensitif
         none: peringatan
         sensitive: untuk menandai akun mereka sebagai sensitif
         silence: untuk membatasi akun mereka
@@ -938,8 +941,10 @@ id:
     status:
       account_status: Status akun
       confirming: Menunggu konfirmasi email diselesaikan.
+      functional: Akun Anda kini beroperasi penuh.
       pending: Permintaan Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima email jika permintaan Anda diterima.
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
+      view_strikes: Lihat hukuman lalu yang pernah terjadi kepada akun Anda
     too_fast: Formulir dikirim terlalu cepat, coba lagi.
     trouble_logging_in: Kesulitan masuk?
     use_security_key: Gunakan kunci keamanan
@@ -1015,6 +1020,7 @@ id:
         submit: Ajukan banding
       associated_report: Laporan yang berkaitan
       created_at: Tanggal
+      description_html: Ini adalah tindakan yang dilakukan terhadap akun Anda dan peringatan telah dikirim oleh staf %{instance}.
       recipient: Dialamatkan untuk
       status: 'Kiriman #%{id}'
       status_removed: Kirim sudah dihapus dari sistem
@@ -1022,7 +1028,9 @@ id:
       title_actions:
         delete_statuses: Penghapusan kiriman
         disable: Pembekuan akun
+        mark_statuses_as_sensitive: Tandai kiriman sebagai sensitif
         none: Peringatan
+        sensitive: Tandai akun sebagai sensitif
         silence: Pembatasan akun
         suspend: Penangguhan akun
       your_appeal_approved: Banding Anda disetujui
@@ -1390,6 +1398,7 @@ id:
     profile: Profil
     relationships: Ikuti dan pengikut
     statuses_cleanup: Hapus kiriman otomatis
+    strikes: Moderasi hukuman
     two_factor_authentication: Autentikasi Two-factor
     webauthn_authentication: Kunci keamanan
   statuses:
@@ -1463,7 +1472,7 @@ id:
       '2629746': 1 bulan
       '31556952': 1 tahun
       '5259492': 2 bulan
-      '604800': 1 week
+      '604800': 1 minggu
       '63113904': 2 tahun
       '7889238': 3 bulan
     min_age_label: Batas usia
