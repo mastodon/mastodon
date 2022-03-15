@@ -589,15 +589,15 @@ zh-CN:
         other_description_html: 查看控制该被举报账号行为以及与其通信范围的更多选项。
         resolve_description_html: 不会对被举报账号采取任何动作，举报将被关闭，也不会留下处罚记录。
         silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。可随时撤销。
-        suspend_description_html: 此帐号及其内容将无法访问，并最终被删除。也无法与该帐号交互。可在30天内撤销。
-      actions_description_html: 决定采取何种措施处理此举报。如果对被举报帐号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
+        suspend_description_html: 此账号及其内容将无法访问，并最终被删除。也无法与该账号交互。可在30天内撤销。
+      actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       add_to_report: 添加到报告
       are_you_sure: 你确定吗？
       assign_to_self: 接管
       assigned: 已接管的监察员
       by_target_domain: 被举报账户的域名
       category: 类别
-      category_description_html: 此帐号和/或内容被举报的原因将在与该帐号的通信中被引用。
+      category_description_html: 此账号和/或内容被举报的原因将在与该账号的通信中被引用。
       comment:
         none: 没有
       comment_description_html: '%{name} 补充道：'
@@ -628,7 +628,7 @@ zh-CN:
       skip_to_actions: 跳转到操作
       status: 状态
       statuses: 被举报内容
-      statuses_description_html: 违规内容将在与该帐号的通信中被引用
+      statuses_description_html: 违规内容将在与该账号的通信中被引用
       target_origin: 被举报账号的来源
       title: 举报
       unassign: 取消接管
@@ -752,7 +752,7 @@ zh-CN:
         disable: "%{name} 冻结了用户 %{target}"
         mark_statuses_as_sensitive: "%{name} 已将 %{target} 的嘟文标记为敏感内容"
         none: "%{name} 向 %{target} 发送了警告"
-        sensitive: "%{name} 将 %{target} 的帐号标记为敏感内容"
+        sensitive: "%{name} 将 %{target} 的账号标记为敏感内容"
         silence: "%{name} 限制了用户 %{target}"
         suspend: "%{name} 封禁了用户 %{target}"
       appeal_approved: 已申诉
@@ -836,18 +836,18 @@ zh-CN:
     new_appeal:
       actions:
         delete_statuses: 删除其嘟文
-        disable: 冻结其帐号
+        disable: 冻结其账号
         mark_statuses_as_sensitive: 标记其嘟文为敏感内容
         none: 警告
-        sensitive: 标记其帐号为敏感内容
-        silence: 限制其帐号
-        suspend: 停用其帐号
+        sensitive: 标记其账号为敏感内容
+        silence: 限制其账号
+        suspend: 停用其账号
       body: "%{target} 对 %{action_taken_by} 于 %{date} 做出的 %{type} 审核结果提出申诉，写道："
       next_steps: 你可以批准此申诉并撤销该审核结果，也可以忽略此申诉。
       subject: "%{username} 对 %{instance} 的审核结果提出了申诉"
     new_pending_account:
       body: 新帐户的详细信息如下。你可以批准或拒绝此申请。
-      subject: 在 %{instance} 上有新帐号 ( %{username}) 需要审核
+      subject: 在 %{instance} 上有新账号 (%{username}) 需要审核
     new_report:
       body: "%{reporter} 举报了用户 %{target}"
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
@@ -872,7 +872,7 @@ zh-CN:
     created_msg: 成功创建了一个新别名。你现在可以从旧账户开始迁移了。
     deleted_msg: 成功移除别名。已经无法从该帐户移动到此帐户了。
     empty: 你没有设置别名
-    hint_html: 如果你想把另一个帐号迁移到这里，你可以先在这里创建一个别名。如果你想把关注者迁移过来，这一步是必须的。设置别名的操作时<strong>无害而且可以恢复的</strong>。<strong>帐号迁移的操作会从旧帐号开始</strong>。
+    hint_html: 如果你想从另一个账号迁移到这里，可以先在这里创建一个别名。要把旧账号的关注者迁移过来，这一步是必须的。设置别名的操作是<strong>无害且可撤销的</strong>。<strong>账号迁移的操作会从旧账号发起</strong>。
     remove: 取消关联别名
   appearance:
     advanced_web_interface: 高级 Web 界面
@@ -935,15 +935,15 @@ zh-CN:
     set_new_password: 设置新密码
     setup:
       email_below_hint_html: 如果下面的电子邮箱地址是错误的，你可以在这里修改并重新发送新的确认邮件。
-      email_settings_hint_html: 确认邮件已经发送到%{email}。如果该邮箱地址不对，你可以在帐号设置里面修改。
+      email_settings_hint_html: 确认邮件已经发送到%{email}。如果该邮箱地址不对，你可以在账号设置里面修改。
       title: 初始设置
     status:
       account_status: 帐户状态
       confirming: 等待电子邮件确认完成。
-      functional: 你的帐号可以正常使用了。
+      functional: 你的账号可以正常使用了。
       pending: 工作人员正在审核你的申请。这需要花点时间。在申请被批准后，你将收到一封电子邮件。
       redirecting_to: 你的帐户无效，因为它已被设置为跳转到 %{acct}
-      view_strikes: 查看针对你帐号的记录
+      view_strikes: 查看针对你账号的记录
     too_fast: 表单提交过快，请重试。
     trouble_logging_in: 登录有问题？
     use_security_key: 使用安全密钥
@@ -1026,12 +1026,12 @@ zh-CN:
       title: "%{action} 于 %{date}"
       title_actions:
         delete_statuses: 嘟文删除
-        disable: 帐号冻结
+        disable: 账号冻结
         mark_statuses_as_sensitive: 标记嘟文有敏感内容
         none: 警告
-        sensitive: 标记帐号有敏感内容
-        silence: 帐号限制
-        suspend: 帐号封禁
+        sensitive: 标记账号有敏感内容
+        silence: 账号限制
+        suspend: 账号封禁
       your_appeal_approved: 你的申诉已被批准
       your_appeal_pending: 你已提交申诉
       your_appeal_rejected: 你的申诉已被驳回
@@ -1176,12 +1176,12 @@ zh-CN:
     cancelled_msg: 成功取消跳转
     errors:
       already_moved: 和你已经迁移过的帐号相同
-      missing_also_known_as: 没有引用此帐号
+      missing_also_known_as: 没有引用此账号
       move_to_self: 不能是当前帐户
       not_found: 找不到
       on_cooldown: 你正处于冷却状态
     followers_count: 迁移时的关注者
-    incoming_migrations: 从其它帐号迁移
+    incoming_migrations: 从其它账号迁移
     incoming_migrations_html: 要把另一个帐号移动到本帐号，首先你需要 <a href="%{path}">创建一个帐号别名</a> 。
     moved_msg: 你的帐号现在会跳转到%{acct} ，同时关注者也会迁移过去 。
     not_redirecting: 你的帐号当前未跳转到其它帐户。
@@ -1192,12 +1192,12 @@ zh-CN:
     redirecting_to: 你的帐户被跳转到了 %{acct}。
     set_redirect: 设置跳转
     warning:
-      backreference_required: 新账号必须先引用现在这个帐号
+      backreference_required: 新账号必须先引用当前账号
       before: '在继续前，请仔细阅读下列说明：'
       cooldown: 移动后会有一个冷却期，在此期间你将无法再次移动
       disabled_account: 此后，你的当前帐户将无法使用。但是，你仍然有权导出数据或者重新激活。
       followers: 这步操作将把所有关注者从当前账户移动到新账户
-      only_redirect_html: 或者，你可以<a href="%{path}">只在你的帐号资料上设置一个跳转</a>。
+      only_redirect_html: 或者，你可以<a href="%{path}">只在你的账号资料上设置一个跳转</a>。
       other_data: 不会自动移动其它数据
       redirect: 在收到一个跳转通知后，你当前的帐号资料将会更新，并被排除在搜索范围外
   moderation:
@@ -1295,7 +1295,7 @@ zh-CN:
       limit_reached: 互动种类的限制
       unrecognized_emoji: 不是一个可识别的表情
   relationships:
-    activity: 帐号活动
+    activity: 账号活动
     dormant: 休眠
     follow_selected_followers: 关注选中的关注者
     followers: 关注者
@@ -1314,7 +1314,7 @@ zh-CN:
   remote_follow:
     acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
-    no_account_html: 还没有帐号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
+    no_account_html: 还没有账号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
     proceed: 确认关注
     prompt: '你正准备关注：'
     reason_html: "<strong>为什么需要这个步骤？</strong> <code>%{instance}</code> 可能不是你所注册的服务器，所以我们需要先跳转到你所在的服务器。"
@@ -1378,9 +1378,9 @@ zh-CN:
     title: 会话
     view_authentication_history: 查看账户的认证历史
   settings:
-    account: 帐号
+    account: 账号
     account_settings: 帐户设置
-    aliases: 帐号别名
+    aliases: 账号别名
     appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
@@ -1594,12 +1594,12 @@ zh-CN:
     webauthn: 安全密钥
   user_mailer:
     appeal_approved:
-      action: 前往你的帐号
-      explanation: 你于 %{appeal_date} 对 %{strike_date} 在你帐号上做出的处罚提出的申诉已被批准，你的帐号已回到正常状态。
+      action: 前往你的账号
+      explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被批准，你的账号已回到正常状态。
       subject: 你于 %{date} 提出的申诉已被批准
       title: 申诉已批准
     appeal_rejected:
-      explanation: 你于 %{appeal_date} 对 %{strike_date} 在你帐号上做出的处罚提出的申诉已被驳回。
+      explanation: 你于 %{appeal_date} 对 %{strike_date} 在你账号上做出的处罚提出的申诉已被驳回。
       subject: 你于 %{date} 提出的申诉已被驳回
       title: 申诉已驳回
     backup_ready:
@@ -1623,7 +1623,7 @@ zh-CN:
         disable: 你不能再使用你的帐户，但你的个人资料和其他数据保持不变。你可以请求数据备份，更改账户设置或删除账户。
         mark_statuses_as_sensitive: 你的一些嘟文已经被 %{instance} 检察员标记为敏感内容。这意味着人们需要在嘟文中点击媒体，才能显示媒体预览。你可以在今后发嘟时自行将媒体标记为敏感内容。
         sensitive: 即刻起，你上传的所有媒体文件都将被标记为敏感内容并隐藏，在点击警告后才能查看。
-        silence: 你可以继续使用你的帐号，但只有已关注你的人才能在看到你在此服务器上的嘟文，并且你会被排除在各类公共列表之外。其他用户仍可以手动关注你。
+        silence: 你可以继续使用你的账号，但只有已关注你的人才能在看到你在此服务器上的嘟文，并且你会被排除在各类公共列表之外。其他用户仍可以手动关注你。
         suspend: 你不能再使用你的帐户，并且你的个人资料和其他数据都将无法访问。在大约30天内，你仍可以登录并请求数据备份，之后相关数据将被完全删除。我们会保留一些基础数据以避免封禁失效。
       reason: '理由：'
       statuses: '被引用的嘟文：'
