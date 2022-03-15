@@ -30,7 +30,7 @@ jobs:
             latest=auto
           tags: |
             type=edge,branch=main
-            type=semver,pattern={{ raw }}
+            type=match,pattern=v(.*),group=0
             type=ref,event=pr
       - uses: docker/build-push-action@v2
         with:
