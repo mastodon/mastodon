@@ -450,6 +450,7 @@ eu:
       new:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
+      no_email_domain_block_selected: Ez da eposta domeinu blokeorik aldatu ez delako bat bera ere hautatu
       title: E-mail zerrenda beltza
     follow_recommendations:
       description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
@@ -460,11 +461,32 @@ eu:
       title: Jarraitzeko gomendioak
       unsuppress: Berrezarri jarraitzeko gomendioa
     instances:
+      availability:
+        failure_threshold_reached: Hutsegite atalasera iritsi da %{date} datan.
+        no_failures_recorded: Ez dago hutsegiterik erregistroan.
+        title: Egoera
       back_to_all: Guztiak
       back_to_limited: Mugatua
       back_to_warning: Abisua
       by_domain: Domeinua
       confirm_purge: Ziur zaude domeinu honen datuak behin betiko ezabatu nahi dituzula?
+      content_policies:
+        comment: Barne-oharra
+        description_html: Domeinu honetako eta bere azpi-domeinuetako kontu guztiei aplikatuko zaizkien eduki-politikak definitu ditzakezu.
+        policies:
+          reject_media: Errefusatu multimediak
+          reject_reports: Errefusatu salaketak
+          silence: Isilarazi
+          suspend: Kanporatu
+        policy: Politika
+        reason: Arrazoi publikoa
+        title: Eduki politikak
+      dashboard:
+        instance_accounts_dimension: Kontu jarraituenak
+        instance_accounts_measure: gordetako kontuak
+        instance_followers_measure: gure jarraitzaileak hemen
+        instance_follows_measure: beren jarraitzaileak hemen
+        instance_languages_dimension: Hizkuntza nagusiak
       delivery:
         all: Guztiak
         clear: Garbitu banaketa erroreak
