@@ -1,4 +1,3 @@
----
 eu:
   simple_form:
     hints:
@@ -27,6 +26,8 @@ eu:
         scheduled_at: Laga hutsik iragarpena berehala argitaratzeko
         starts_at: Aukerakoa. Zure iragarpena denbora-tarte batera lotuta dagoenerako
         text: Tootetako sintaxia erabili dezakezu. Kontuan izan iragarpenak erabiltzailearen pantailan hartuko duen neurria
+      appeal:
+        text: Abisu bati errekurtsoa behin bakarrik jarri diezaiokezu
       defaults:
         autofollow: Gonbidapena erabiliz izena ematen dutenek automatikoki jarraituko dizute
         avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
@@ -208,7 +209,7 @@ eu:
         name: Traola
         trendable: Baimendu traola hau joeretan agertzea
         usable: Baimendu tootek traola hau erabiltzea
-    'no': Ez
+    'no': 'Ez'
     recommended: Aholkatua
     required:
       mark: "*"
@@ -216,4 +217,4 @@ eu:
     title:
       sessions:
         webauthn: Erabili zure segurtasun gakoetako bat saioa hasteko
-    'yes': Bai
+    'yes': 'Bai'
