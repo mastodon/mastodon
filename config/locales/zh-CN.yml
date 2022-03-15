@@ -496,10 +496,13 @@ zh-CN:
         title: 本站点内容发布规则
       dashboard:
         instance_accounts_dimension: 被关注最多的账号
-        instance_accounts_measure: 保存的账号
+        instance_accounts_measure: 存储的账号
         instance_followers_measure: 本站关注者
         instance_follows_measure: 对方关注者
         instance_languages_dimension: 语言排行
+        instance_media_attachments_measure: 存储的媒体文件
+        instance_reports_measure: 关于对方的举报
+        instance_statuses_measure: 存储的嘟文
       delivery:
         all: 全部
         clear: 清理投递错误
@@ -522,12 +525,14 @@ zh-CN:
       private_comment: 私密评论
       public_comment: 公开评论
       purge: 删除
+      purge_description_html: 如果你确认此域名已永久离线，可以从存储中删除此域名的所有账号记录和相关数据。这将会需要一段时间。
       title: 已知实例
       total_blocked_by_us: 被我站屏蔽的
       total_followed_by_them: 被对方关注的
       total_followed_by_us: 被我站关注的
       total_reported: 关于对方的举报
       total_storage: 媒体文件
+      totals_time_period_hint_html: 下方显示的总数来自全部历史数据。
     invites:
       deactivate_all: 撤销所有邀请链接
       filter:
@@ -581,6 +586,7 @@ zh-CN:
       action_taken_by: 操作执行者
       actions:
         delete_description_html: 被举报的嘟文将被删除，同时该帐号将被标记一次处罚，以供未来同一帐号再次违规时参考。
+        mark_as_sensitive_description_html: 被举报的嘟文将被标记为敏感内容，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
         other_description_html: 查看控制该被举报帐号行为以及与其通信范围的更多选项。
         resolve_description_html: 不会对被举报帐号采取任何动作，举报将被关闭，也不会留下处罚记录。
         silence_description_html: 只有关注或手工搜索此帐号才能查看其资料，将严重限制其触达范围。可随时撤销。
