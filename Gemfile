@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.5.0', '< 3.1.0'
+ruby '>= 2.5.0', '< 3.2.0'
 
 gem 'pkg-config', '~> 1.4'
 gem 'rexml', '~> 3.2'
+gem 'net-smtp', '~> 0.3.1', require: false
 
 gem 'puma', '~> 5.6'
 gem 'rails', '~> 6.1.4'
