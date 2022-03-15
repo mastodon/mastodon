@@ -60,6 +60,7 @@ All notable changes to this project will be documented in this file.
   - `category` can be one of: `spam`, `violation`, `other` (default)
   - `rule_ids` must reference `rules` returned in `GET /api/v1/instance`
 - Add global `lang` param to REST API ([Gargron](https://github.com/mastodon/mastodon/pull/17464), [Gargron](https://github.com/mastodon/mastodon/pull/17592))
+- Add `types` param to `GET /api/v1/notifications` in REST API ([Gargron](https://github.com/mastodon/mastodon/pull/17767))
 - **Add notifications for moderators about new sign-ups** ([Gargron](https://github.com/mastodon/mastodon/pull/16953), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17629))
   - When a new user confirms e-mail, moderators receive a notification
   - New streaming API event:
@@ -116,6 +117,7 @@ All notable changes to this project will be documented in this file.
   - Post language can be overriden individually using `language` param
   - Otherwise, it defaults to the user's interface language
 - Remove support for `OAUTH_REDIRECT_AT_SIGN_IN` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17287))
+  - Use `OMNIAUTH_ONLY` instead
 - Remove Keybase integration ([Gargron](https://github.com/mastodon/mastodon/pull/17045))
 - Remove old columns and indexes ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17245), [Gargron](https://github.com/mastodon/mastodon/pull/16409), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17191))
 - Remove shortcodes from newly-created media attachments ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16730), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/16763))
