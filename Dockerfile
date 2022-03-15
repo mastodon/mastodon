@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 as build-dep
+FROM ubuntu:22.04 as build-dep
 
 # Use bash for the shell
 SHELL ["/bin/bash", "-c"]
@@ -19,7 +19,7 @@ RUN ARCH= && \
   esac && \
     echo "Etc/UTC" > /etc/localtime && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends ca-certificates wget python apt-utils && \
+	apt-get install -y --no-install-recommends ca-certificates wget python-is-python3 apt-utils && \
 	cd ~ && \
 	wget -q https://nodejs.org/download/release/v$NODE_VER/node-v$NODE_VER-linux-$ARCH.tar.gz && \
 	tar xf node-v$NODE_VER-linux-$ARCH.tar.gz && \
@@ -50,7 +50,7 @@ RUN npm install -g npm@latest && \
 	npm install -g yarn && \
 	gem install bundler && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends git libicu-dev libidn11-dev \
+	apt-get install -y --no-install-recommends git libicu-dev libidn12-dev \
 	libpq-dev shared-mime-info
 
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
@@ -62,7 +62,7 @@ RUN cd /opt/mastodon && \
 	bundle install -j"$(nproc)" && \
 	yarn install --pure-lockfile
 
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # Copy over all the langs needed for runtime
 COPY --from=build-dep /opt/node /opt/node
@@ -87,8 +87,8 @@ RUN apt-get update && \
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN apt-get update && \
   apt-get -y --no-install-recommends install \
-	  libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
-	  libicu66 libidn11 libyaml-0-2 \
+	  libssl3 libpq5 imagemagick ffmpeg libjemalloc2 \
+	  libicu70 libidn12 libyaml-0-2 \
 	  file ca-certificates tzdata libreadline8 gcc tini apt-utils && \
 	ln -s /opt/mastodon /mastodon && \
 	gem install bundler && \
