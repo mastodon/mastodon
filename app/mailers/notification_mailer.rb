@@ -9,6 +9,7 @@ class NotificationMailer < ApplicationMailer
   def mention(recipient, notification)
     @me     = recipient
     @status = notification.target_status
+    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @me.user.functional? && @status.present?
 
@@ -21,6 +22,7 @@ class NotificationMailer < ApplicationMailer
   def follow(recipient, notification)
     @me      = recipient
     @account = notification.from_account
+    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @me.user.functional?
 
@@ -33,6 +35,7 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
     @status  = notification.target_status
+    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @me.user.functional? && @status.present?
 
@@ -46,6 +49,7 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
     @status  = notification.target_status
+    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @me.user.functional? && @status.present?
 
@@ -58,6 +62,7 @@ class NotificationMailer < ApplicationMailer
   def follow_request(recipient, notification)
     @me      = recipient
     @account = notification.from_account
+    @logo = InstancePresenter.new.email&.file&.url
 
     return unless @me.user.functional?
 
@@ -72,6 +77,7 @@ class NotificationMailer < ApplicationMailer
     @me                  = recipient
     @since               = opts[:since] || [@me.user.last_emailed_at, (@me.user.current_sign_in_at + 1.day)].compact.max
     @notifications_count = Notification.where(account: @me, activity_type: 'Mention').where('created_at > ?', @since).count
+    @logo = InstancePresenter.new.email&.file&.url
 
     return if @notifications_count.zero?
 

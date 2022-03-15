@@ -19,6 +19,7 @@ class AdminMailer < ApplicationMailer
     @account  = user.account
     @me       = recipient
     @instance = Rails.configuration.x.local_domain
+    @logo = InstancePresenter.new.email&.file&.url
 
     locale_for_account(@me) do
       mail to: @me.user_email, subject: I18n.t('admin_mailer.new_pending_account.subject', instance: @instance, username: @account.username)
