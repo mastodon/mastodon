@@ -56,14 +56,14 @@ commands:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.0-node
+      - image: cimg/ruby:3.1-node
         environment:
           RAILS_ENV: test
     steps:
       - checkout
       - install-system-dependencies
       - install-ruby-dependencies:
-          ruby-version: '3.0'
+          ruby-version: '3.1'
       - node/install-packages:
           cache-version: v1
           pkg-manager: yarn
@@ -111,12 +111,12 @@ jobs:
   test-migrations:
     executor:
       name: default
-      ruby-version: '3.0'
+      ruby-version: '3.1'
     steps:
       - checkout
       - install-system-dependencies
       - install-ruby-dependencies:
-          ruby-version: '3.0'
+          ruby-version: '3.1'
       - wait-db
       - run:
           command: ./bin/rails db:create
@@ -143,12 +143,12 @@ jobs:
   test-two-step-migrations:
     executor:
       name: default
-      ruby-version: '3.0'
+      ruby-version: '3.1'
     steps:
       - checkout
       - install-system-dependencies
       - install-ruby-dependencies:
-          ruby-version: '3.0'
+          ruby-version: '3.1'
       - wait-db
       - run:
           command: ./bin/rails db:create
@@ -190,6 +190,7 @@ workflows:
               ruby-version:
                 - '2.7'
                 - '3.0'
+                - '3.1'
           name: test-ruby<< matrix.ruby-version >>
           requires:
             - build
