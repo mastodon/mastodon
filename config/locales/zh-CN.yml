@@ -777,6 +777,7 @@ zh-CN:
       links:
         allow: 允许链接
         allow_provider: 允许发布者
+        description_html: 这些是当前此服务器可见账号的嘟文中被大量分享的链接。它可以帮助用户了解正在发生的事情。发布者获得批准前不会公开显示任何链接。你也可以批准或拒绝单个链接。
         disallow: 不允许链接
         disallow_provider: 不允许发布者
         shared_by_over_week:
@@ -788,14 +789,19 @@ zh-CN:
       pending_review: 待审核
       preview_card_providers:
         allowed: 来自此发布者的链接可进入流行列表
+        description_html: 这些域名所属的链接经常在此服务器上被分享。在对应域名获得批准前链接不会公开显示在趋势中。批准和拒绝操作也会对子域名生效。
         rejected: 来自此发布者的链接不会进入流行列表
         title: 发布者
       rejected: 已拒绝
       statuses:
         allow: 允许嘟文
         allow_account: 允许作者
+        description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。它可以帮助新用户和老用户发现更多可关注的账号。发布者获得批准前不会公开显示任何嘟文。同时发布者还需要允许其账号被推荐给其他用户。你也可以批准或拒绝单条嘟文。
         disallow: 禁止本嘟文
         disallow_account: 禁止本作者
+        not_discoverable: 发布者未选择可被发现
+        shared_by:
+          other: 被分享和喜欢%{friendly_count}次
         title: 热门嘟文
       tags:
         current_score: 当前 %{score} 分
