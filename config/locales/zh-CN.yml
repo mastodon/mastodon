@@ -22,8 +22,7 @@ zh-CN:
     get_apps: 尝试移动应用
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     instance_actor_flash: |
-      这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。 
-
+      这个账号是个虚拟账号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
     learn_more: 了解详情
     logged_in_as_html: 你当前是以 %{username} 登录的。
     logout_before_registering: 您已登录。
@@ -144,7 +143,7 @@ zh-CN:
       media_attachments: 媒体文件
       memorialize: 设置为追悼帐户
       memorialized: 被悼念
-      memorialized_msg: 成功将 %{username} 转换为悼念帐号
+      memorialized_msg: 成功将 %{username} 转换为悼念账号
       moderation:
         active: 活跃
         all: 全部
@@ -154,16 +153,16 @@ zh-CN:
       moderation_notes: 管理员备注
       most_recent_activity: 最后一次活跃的时间
       most_recent_ip: 最后一次活跃的 IP 地址
-      no_account_selected: 因为没有选中任何帐号，所以没有更改
+      no_account_selected: 因为没有选中任何账号，所以没有更改
       no_limits_imposed: 无限制
       not_subscribed: 未订阅
       pending: 待审核
       perform_full_suspension: 封禁
       previous_strikes: 既往处罚
       previous_strikes_description_html:
-        one: 此帐号有<strong>1次</strong>处罚。
-        other: 此帐号有<strong>%{count}次</strong>处罚。
-        zero: 此帐号<strong>记录良好</strong>。
+        one: 此账号有<strong>1次</strong>处罚。
+        other: 此账号有<strong>%{count}次</strong>处罚。
+        zero: 此账号<strong>记录良好</strong>。
       promote: 升任
       protocol: 协议
       public: 公开页面
@@ -220,7 +219,7 @@ zh-CN:
       undo_suspension: 解除封禁
       unsilenced_msg: 成功解除 %{username} 的帐号限制
       unsubscribe: 取消订阅
-      unsuspended_msg: 已成功取消封禁 %{username} 的帐号
+      unsuspended_msg: 已成功取消封禁 %{username} 的账号
       username: 用户名
       view_domain: 查看域名摘要
       warn: 警告
@@ -266,12 +265,12 @@ zh-CN:
         reopen_report: 重开举报
         reset_password_user: 重置密码
         resolve_report: 处理举报
-        sensitive_account: 将你帐号中的媒体标记为敏感内容
+        sensitive_account: 将你账号中的媒体标记为敏感内容
         silence_account: 隐藏用户
         suspend_account: 封禁用户
         unassigned_report: 取消举报的指派
         unblock_email_account: 取消屏蔽邮件地址
-        unsensitive_account: 去除你帐号中媒体的敏感内容标记
+        unsensitive_account: 去除你账号中媒体的敏感内容标记
         unsilence_account: 解除账号隐藏
         unsuspend_account: 解除账号封禁
         update_announcement: 更新公告
@@ -585,11 +584,11 @@ zh-CN:
       action_log: 审计日志
       action_taken_by: 操作执行者
       actions:
-        delete_description_html: 被举报的嘟文将被删除，同时该帐号将被标记一次处罚，以供未来同一帐号再次违规时参考。
+        delete_description_html: 被举报的嘟文将被删除，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
         mark_as_sensitive_description_html: 被举报的嘟文将被标记为敏感内容，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
-        other_description_html: 查看控制该被举报帐号行为以及与其通信范围的更多选项。
-        resolve_description_html: 不会对被举报帐号采取任何动作，举报将被关闭，也不会留下处罚记录。
-        silence_description_html: 只有关注或手工搜索此帐号才能查看其资料，将严重限制其触达范围。可随时撤销。
+        other_description_html: 查看控制该被举报账号行为以及与其通信范围的更多选项。
+        resolve_description_html: 不会对被举报账号采取任何动作，举报将被关闭，也不会留下处罚记录。
+        silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。可随时撤销。
         suspend_description_html: 此帐号及其内容将无法访问，并最终被删除。也无法与该帐号交互。可在30天内撤销。
       actions_description_html: 决定采取何种措施处理此举报。如果对被举报帐号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
       add_to_report: 添加到报告
@@ -811,6 +810,7 @@ zh-CN:
           tag_servers_dimension: 服务器排行
           tag_servers_measure: 不同服务器
           tag_uses_measure: 总使用
+        description_html: 这些是当前此服务器可见嘟文中大量出现的标签。它可以帮助用户发现其他人正关注的话题。在获得批准前不会公开显示任何标签。
         listable: 可被推荐
         not_listable: 不会被推荐
         not_trendable: 不会出现在流行列表中
@@ -837,6 +837,7 @@ zh-CN:
       actions:
         delete_statuses: 删除其嘟文
         disable: 冻结其帐号
+        mark_statuses_as_sensitive: 标记其嘟文为敏感内容
         none: 警告
         sensitive: 标记其帐号为敏感内容
         silence: 限制其帐号
@@ -852,11 +853,14 @@ zh-CN:
       body_remote: 来自 %{domain} 的用户举报了用户 %{target}
       subject: '来自 %{instance} 的用户举报（#%{id}）'
     new_trends:
+      body: '以下项目需要审核才能公开显示：'
       new_trending_links:
         no_approved_links: 当前没有经过批准的热门链接。
+        requirements: '以下候选均可超过 #%{rank} 已批准趋势链接，当前为 "%{lowest_link_title}"，分数为 %{lowest_link_score}。'
         title: 热门链接
       new_trending_statuses:
         no_approved_statuses: 当前没有经过批准的热门链接。
+        requirements: '以下候选均可超过 #%{rank} 已批准趋势嘟文，当前为 %{lowest_status_url} 分数为 %{lowest_status_score}。'
         title: 热门嘟文
       new_trending_tags:
         no_approved_tags: 目前没有经批准的热门标签。
@@ -907,7 +911,7 @@ zh-CN:
     description:
       prefix_invited_by_user: "@%{name} 邀请你加入这个Mastodon服务器！"
       prefix_sign_up: 现在就注册 Mastodon！
-      suffix: 注册一个帐号，你就可以关注别人、发布嘟文、并和其它任何Mastodon服务器上的用户交流，而且还有其它更多功能！
+      suffix: 注册一个账号，你就可以关注他人、发布嘟文、并和其它任何 Mastodon 服务器上的用户交流，而且还有其它更多功能！
     didnt_get_confirmation: 没有收到确认邮件？
     dont_have_your_security_key: 没有你的安全密钥？
     forgot_password: 忘记密码？
@@ -918,7 +922,7 @@ zh-CN:
     login: 登录
     logout: 登出
     migrate_account: 迁移到另一个帐户
-    migrate_account_html: 如果你希望引导别人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
+    migrate_account_html: 如果你希望引导他人关注另一个账号，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过外部服务登录
     providers:
       cas: CAS
@@ -1141,7 +1145,7 @@ zh-CN:
     max_uses:
       other: "%{count} 次"
     max_uses_prompt: 无限制
-    prompt: 生成分享链接，邀请别人在本服务器注册
+    prompt: 生成分享链接，邀请他人在本服务器注册
     table:
       expires_at: 失效时间
       uses: 已使用次数
@@ -1418,7 +1422,7 @@ zh-CN:
     pin_errors:
       direct: 仅对被提及的用户可见的帖子不能被置顶
       limit: 你所置顶的嘟文数量已经达到上限
-      ownership: 不能置顶别人的嘟文
+      ownership: 不能置顶他人的嘟文
       reblog: 不能置顶转嘟
     poll:
       total_people:
