@@ -470,13 +470,36 @@ zh-CN:
       title: 关注推荐
       unsuppress: 恢复推荐关注
     instances:
+      availability:
+        description_html:
+          other: 如果连续 <strong>%{count} 天</strong> 均无法成功向该域名投递消息，则将不再尝试向其投递，直至收到<em>来自</em>该域名的消息。
+        failure_threshold_reached: 于 %{date} 达到失败阈值。
+        failures_recorded:
+          other: 在 %{count} 天中尝试失败。
+        no_failures_recorded: 没有失败记录。
+        title: 可用性
       back_to_all: 全部
       back_to_limited: 受限
       back_to_warning: 警告
       by_domain: 域名
       confirm_purge: 你确认要从这个实例中永久地删除数据吗？
       content_policies:
+        comment: 内部备注
+        description_html: 你可以设置应用于此域名所有账号和其所有子域名的内容策略。
+        policies:
+          reject_media: 拒收媒体
+          reject_reports: 拒收举报
+          silence: 隐藏
+          suspend: 封禁
+        policy: 策略
+        reason: 公开理由
         title: 本站点内容发布规则
+      dashboard:
+        instance_accounts_dimension: 被关注最多的账号
+        instance_accounts_measure: 保存的账号
+        instance_followers_measure: 本站关注者
+        instance_follows_measure: 对方关注者
+        instance_languages_dimension: 语言排行
       delivery:
         all: 全部
         clear: 清理投递错误
