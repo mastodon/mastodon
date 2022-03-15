@@ -26,31 +26,20 @@ RUN ARCH= && \
 	rm node-v$NODE_VER-linux-$ARCH.tar.gz && \
 	mv node-v$NODE_VER-linux-$ARCH /opt/node
 
-# Install Ruby 3.0
-ENV RUBY_VER="3.0.3"
+# Install Ruby
 RUN apt-get update && \
   apt-get install -y --no-install-recommends build-essential \
-    bison libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \
-		libncurses5-dev libffi-dev zlib1g-dev libssl-dev && \
-	cd ~ && \
-	wget https://cache.ruby-lang.org/pub/ruby/${RUBY_VER%.*}/ruby-$RUBY_VER.tar.gz && \
-	tar xf ruby-$RUBY_VER.tar.gz && \
-	cd ruby-$RUBY_VER && \
-	./configure --prefix=/opt/ruby \
-	  --with-jemalloc \
-	  --with-shared \
-	  --disable-install-doc && \
-	make -j"$(nproc)" > /dev/null && \
-	make install && \
-	rm -rf ../ruby-$RUBY_VER.tar.gz ../ruby-$RUBY_VER
+    libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \
+    libncurses5-dev libffi-dev zlib1g-dev libssl-dev \
+    ruby ruby-dev
 
-ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
+ENV PATH="${PATH}:/opt/node/bin"
 
 RUN npm install -g npm@latest && \
 	npm install -g yarn && \
 	gem install bundler && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends git libicu-dev libidn12-dev \
+	apt-get install -y --no-install-recommends git libicu-dev libidn-dev \
 	libpq-dev shared-mime-info
 
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
@@ -66,7 +55,6 @@ FROM ubuntu:22.04
 
 # Copy over all the langs needed for runtime
 COPY --from=build-dep /opt/node /opt/node
-COPY --from=build-dep /opt/ruby /opt/ruby
 
 # Add more PATHs to the PATH
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin"
