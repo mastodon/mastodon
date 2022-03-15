@@ -60,12 +60,12 @@ da:
         username: Dit brugernavn vil være unikt på %{domain}
         whole_word: Ved rent alfanumeriske nøgleord/-sætning, forudsætter brugen matchning af hele ordet
       domain_allow:
-        domain: Dette domæne vil kunne hente data, samt behandle og gemme indgående data, fra denne server
+        domain: Dette domæne vil kunne hente data, som efterfølgende behandles og gemmes, fra denne server
       email_domain_block:
-        domain: Dette kan være domænenavnet i e-mailadressen eller MX-posten, den bruger. Begge tjekkes ved tilmelding.
-        with_dns_records: Et forsøg på at løse det givne domænes DNS-poster foretages og resultaterne blokeres ligeledes
+        domain: Dette kan være domænenavnet vist i den benyttede i e-mailadresse eller MX-post. Begge tjekkes under tilmelding.
+        with_dns_records: Et forsøg på at opløse det givne domænes DNS-poster foretages, og resultaterne blokeres ligeledes
       featured_tag:
-        name: 'Du vil formentlig ønske at bruge en af flg.:'
+        name: 'Et af flg. ønskes måske anvendt:'
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
       imports:
