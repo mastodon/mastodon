@@ -23,6 +23,7 @@ zh-CN:
     hosted_on: 运行在 %{domain} 上的 Mastodon 实例
     instance_actor_flash: "这个账号是个虚拟帐号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。 \n"
     learn_more: 了解详情
+    logout_before_registering: 您已登录。
     privacy_policy: 隐私政策
     rules: 服务器规则
     rules_html: 如果你想要在此Mastodon服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：
@@ -470,6 +471,8 @@ zh-CN:
       back_to_warning: 警告
       by_domain: 域名
       confirm_purge: 你确认要从这个实例中永久地删除数据吗？
+      content_policies:
+        title: 本站点内容发布规则
       delivery:
         all: 全部
         clear: 清理投递错误

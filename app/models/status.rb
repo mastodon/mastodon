@@ -300,6 +300,10 @@ class Status < ApplicationRecord
     end
   end
 
+  def requires_review?
+    attributes['trendable'].nil? && account.requires_review?
+  end
+
   def requires_review_notification?
     attributes['trendable'].nil? && account.requires_review_notification?
   end
