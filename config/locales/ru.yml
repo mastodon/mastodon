@@ -479,6 +479,13 @@ ru:
       back_to_warning: Все узлы требующие внимания
       by_domain: Домен
       confirm_purge: Вы уверены, что хотите навсегда удалить данные с этого домена?
+      content_policies:
+        policy: Политика
+      dashboard:
+        instance_accounts_measure: сохраненные учетные записи
+        instance_languages_dimension: Популярные языки
+        instance_media_attachments_measure: сохраненные медиафайлы
+        instance_statuses_measure: сохраненные посты
       delivery:
         all: Все
         clear: Очистить ошибки доставки
@@ -501,12 +508,14 @@ ru:
       private_comment: Приватный комментарий
       public_comment: Публичный комментарий
       purge: Удалить данные
+      purge_description_html: Если вы считаете, что этот домен отключен навсегда, вы можете удалить все записи учетной записи и связанные с этим доменом данные из своего хранилища. Это может занять некоторое время.
       title: Федерация
       total_blocked_by_us: Заблокировано нами
       total_followed_by_them: Их подписчиков
       total_followed_by_us: Наших подписчиков
       total_reported: Жалобы на них
       total_storage: Медиафайлы
+      totals_time_period_hint_html: Итоги, показанные ниже, включают данные за всё время.
     invites:
       deactivate_all: Отключить все
       filter:
@@ -725,6 +734,7 @@ ru:
         disable: "%{name} заморозил(а) учётную запись %{target}"
         mark_statuses_as_sensitive: "%{name} отметил(а) %{target} посты как деликатные"
         none: "%{name} отправил(а) предупреждение %{target}"
+        sensitive: "%{name} отметил(а) учетную запись %{target} как деликатную"
         silence: "%{name} ограничил(а) учетную запись %{target}"
       appeal_pending: Обжалование в обработке
     system_checks:
@@ -1369,6 +1379,7 @@ ru:
       few: 'содержались запрещённые хэштеги: %{tags}'
       many: 'содержались запрещённые хэштеги: %{tags}'
       other: 'содержались запрещённые хэштеги: %{tags}'
+    edited_at_html: Редактировано %{date}
     errors:
       in_reply_not_found: Пост, на который вы пытаетесь ответить, не существует или удалён.
     open_in_web: Открыть в веб-версии
