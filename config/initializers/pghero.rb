@@ -1,1 +1,1 @@
-PgHero.show_migrations = false
+PgHero.show_migrations = Rails.env.development?
