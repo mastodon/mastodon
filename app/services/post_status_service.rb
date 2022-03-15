@@ -28,6 +28,7 @@ class PostStatusService < BaseService
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
     @quote_id    = @options[:quote_id]
+    # @remote_media= []
 
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
@@ -139,34 +140,29 @@ class PostStatusService < BaseService
   end
 
   def validate_media!
-
     if @options[:media_ids].blank? || !@options[:media_ids].is_a?(Enumerable)
       @media = []
-      return unless (ENV['ALLOW_REMOTE_MEDIA_TAG'] || 'false') == 'true'
-      remote_media = process_remote_attachments
-      return if remote_media.blank?
-
-      media_ids = remote_media
-      id = remote_media.take(9).map(&:id)
-    else
-      media_ids = @options[:media_ids]
-      id = @options[:media_ids].take(9).map(&:to_i)
+      return
     end
 
-    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if media_ids.size > 9 || @options[:poll].present?
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > 9 || @options[:poll].present?
 
-    @media = @account.media_attachments.where(status_id: nil).where(id: id)
+    @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(9).map(&:to_i))
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.images_and_video') if @media.size > 1 && @media.find(&:audio_or_video?)
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
   end
 
   def process_remote_attachments
+    # IMAGE: [https://s3.mashiro.top/view/2022/02/24/6f3f209aa55e3083f0659ecb62448fc0.jpg]
     image_array = @text.scan(/IMAGE:\s*\[\s*((?:https|http):\/\/.+?)\s*\](?:\s*\{\s*((?:https|http):\/\/.+?)\s*\})*/)
     video_array = @text.scan(/VIDEO:\s*\[\s*((?:https|http):\/\/.+?)\s*\](?:\s*\{\s*((?:https|http):\/\/.+?)\s*\})*/)
 
     @text       = @text.gsub(/(?:IMAGE|VIDEO):\s*\[\s*((?:https|http):\/\/.+?)\s*\](?:\s*\{\s*((?:https|http):\/\/.+?)\s*\})*/, '')
+
     return [] if image_array.blank? && video_array.blank?
+
+    # raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many_nine') if @media.to_a.size + image_array.size > 9 || @options[:poll].present?
 
     media_attachments = []
     media_array = if !video_array.empty?
@@ -257,6 +253,15 @@ class PostStatusService < BaseService
   end
 
   def status_attributes
+    remote_media_attachment = process_remote_attachments.take(9)
+
+    if !remote_media_attachment.blank?
+      @media = @media.to_a.concat(remote_media_attachment)
+      remote_media_attachment_ids = remote_media_attachment.map(&:id)
+      @options[:media_ids] = @options[:media_ids] || []
+      @options[:media_ids].concat(remote_media_attachment_ids)
+    end
+
     {
       text: @text,
       media_attachments: @media || [],
