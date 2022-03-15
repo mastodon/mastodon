@@ -20,18 +20,18 @@ da:
         action: Bekræft e-mailadresse
         action_with_app: Bekræft og returnér til %{app}
         explanation: Du har oprettet en konto på %{host} med denne e-mailadresse og er nu ét klik fra at aktivere den. Har du ikke oprettet dig, så ignorér blot denne e-mail.
-        explanation_when_pending: Du ansøgte om en invitation til %{host} med denne e-mailadresse. Når du har bekræftet din e-mailadresse, gennemgår vi din ansøgning. Du kan logge ind for at ændre dine oplysninger eller slette din konto, men du kan ikke tilgå de fleste af funktionerne, før din konto er godkendt. Afvises din ansøgning, fjernes dine data, så ingen yderligere handling fra dig er nødvendig. Har du ikke ansøgt, så ignorér blot denne e-mail.
-        extra_html: Tjek også <a href="%{terms_path}">reglerne for serveren</a> samt <a href="%{policy_path}">vores tjenestevilkår</a>.
+        explanation_when_pending: Du har ansøgt om en invitation til %{host} med denne e-mailadresse. Når du har bekræftet adressen, gennemgås din ansøgning. Du kan logge ind for at ændre oplysninger eller slette kontoen, men hovedparten af funktionerne kan ikke tilgås, før kontoen er godkendt. Afvises ansøgningen, fjernes dine data, så ingen yderligere handling fra dig er nødvendig. Har du ikke ansøgt, så ignorér blot denne e-mail.
+        extra_html: Tjek også <a href="%{terms_path}">reglerne for serveren</a> samt <a href="%{policy_path}">gældende Tjenestevilkår</a>.
         subject: 'Mastodon: Bekræftelsesinstrukser for %{instance}'
         title: Bekræft e-mailadresse
       email_changed:
         explanation: 'Din kontos e-mailadressen ændres til:'
-        extra: Har du ikke selv skiftet din e-mailadresse, er det muligt, at nogen har fået adgang til din konto. Skift venligst din adgangskode med det samme eller kontakt serveradministratoren, hvis du er låst ude af din konto.
+        extra: Har du ikke selv skiftet din e-mailadresse, har nogen sandsynligvis opnået adgang til din konto. Skift derfor straks din adgangskode eller kontakt serveradministratoren, hvis du er låst ude af kontoen.
         subject: 'Mastodon: E-mail skiftet'
         title: Ny e-mailadresse
       password_change:
         explanation: Din kontoadgangskode er skiftet.
-        extra: Har du ikke selv ændret dim adgangskode, er det muligt, at nogen har fået adgang til din konto. Skift venligst din adgangskode med det samme eller kontakt serveradministratoren, hvis du er låst ude af din konto.
+        extra: Har du ikke selv skiftet din adgangskode, har nogen sandsynligvis opnået adgang til din konto. Skift derfor straks din adgangskode eller kontakt serveradministratoren, hvis du er låst ude af kontoen.
         subject: 'Mastodon: Adgangskode skiftet'
         title: Adgangskode skiftet
       reconfirmation_instructions:
