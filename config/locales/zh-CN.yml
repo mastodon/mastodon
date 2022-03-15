@@ -125,7 +125,7 @@ zh-CN:
       enable: 解冻
       enable_sign_in_token_auth: 启用电子邮件令牌认证
       enabled: 已启用
-      enabled_msg: 成功解冻 %{username} 的帐号
+      enabled_msg: 成功解冻 %{username} 的账号
       followers: 关注者
       follows: 正在关注
       header: 个人资料页横幅图片
@@ -208,8 +208,8 @@ zh-CN:
       subscribe: 订阅
       suspend: 封禁
       suspended: 已封禁
-      suspension_irreversible: 该帐号的数据已被不可逆转地删除。你可以取消暂停该帐号以使其可用，但它不会恢复以前拥有的任何数据。
-      suspension_reversible_hint_html: 帐号已封禁，数据将在 %{date} 完全删除。 在此之前，帐号仍可恢复，并且没有任何不良影响。 如果你想立即移除该帐号的所有数据，可以在下面进行。
+      suspension_irreversible: 该账号的数据已被不可逆转地删除。你可以取消暂停该账号以使其可用，但它不会恢复以前拥有的任何数据。
+      suspension_reversible_hint_html: 账号已封禁，数据将在 %{date} 完全删除。 在此之前，账号仍可恢复，并且没有任何不良影响。 如果你想立即移除该账号的所有数据，可以在下面进行。
       title: 用户
       unblock_email: 取消屏蔽邮件地址
       unblocked_email_msg: 成功取消屏蔽了 %{username} 的邮件地址
@@ -217,7 +217,7 @@ zh-CN:
       undo_sensitized: 去除敏感内容标记
       undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
-      unsilenced_msg: 成功解除 %{username} 的帐号限制
+      unsilenced_msg: 成功解除 %{username} 的账号限制
       unsubscribe: 取消订阅
       unsuspended_msg: 已成功取消封禁 %{username} 的账号
       username: 用户名
@@ -1172,20 +1172,20 @@ zh-CN:
   migrations:
     acct: 新帐户的 用户名@域名
     cancel: 取消跳转
-    cancel_explanation: 取消跳转将会重新激活你当前的帐号，但是已经迁移到新账号的关注者不会回来。
+    cancel_explanation: 取消跳转将会重新激活你当前的账号，但是已经迁移到新账号的关注者不会回来。
     cancelled_msg: 成功取消跳转
     errors:
-      already_moved: 和你已经迁移过的帐号相同
+      already_moved: 和你已经迁移过的账号相同
       missing_also_known_as: 没有引用此账号
       move_to_self: 不能是当前帐户
       not_found: 找不到
       on_cooldown: 你正处于冷却状态
     followers_count: 迁移时的关注者
     incoming_migrations: 从其它账号迁移
-    incoming_migrations_html: 要把另一个帐号移动到本帐号，首先你需要 <a href="%{path}">创建一个帐号别名</a> 。
-    moved_msg: 你的帐号现在会跳转到%{acct} ，同时关注者也会迁移过去 。
-    not_redirecting: 你的帐号当前未跳转到其它帐户。
-    on_cooldown: 你最近已经迁移过你的帐号。此功能将在%{count} 天后再次可用。
+    incoming_migrations_html: 要把另一个账号移动到本账号，首先你需要<a href="%{path}">创建一个账号别名</a> 。
+    moved_msg: 你的账号现在会跳转到 %{acct} ，同时关注者也会一并迁移 。
+    not_redirecting: 你的账号当前未跳转到其它账号。
+    on_cooldown: 你最近已经迁移过你的账号。此功能将在%{count} 天后再次可用。
     past_migrations: 迁移记录
     proceed_with_move: 移动关注者
     redirected_msg: 你的账号现在会跳转至 %{acct}
@@ -1199,7 +1199,7 @@ zh-CN:
       followers: 这步操作将把所有关注者从当前账户移动到新账户
       only_redirect_html: 或者，你可以<a href="%{path}">只在你的账号资料上设置一个跳转</a>。
       other_data: 不会自动移动其它数据
-      redirect: 在收到一个跳转通知后，你当前的帐号资料将会更新，并被排除在搜索范围外
+      redirect: 在收到一个跳转通知后，你当前的账号资料将会更新，并被排除在搜索范围外
   moderation:
     title: 运营
   move_handler:
