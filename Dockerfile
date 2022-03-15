@@ -26,8 +26,8 @@ RUN ARCH= && \
 	rm node-v$NODE_VER-linux-$ARCH.tar.gz && \
 	mv node-v$NODE_VER-linux-$ARCH /opt/node
 
-# Install Ruby 3.0
-ENV RUBY_VER="3.0.3"
+# Install Ruby 3.1
+ENV RUBY_VER="3.1.1"
 RUN apt-get update && \
   apt-get install -y --no-install-recommends build-essential \
     bison libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \
