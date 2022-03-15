@@ -29,7 +29,7 @@
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.edited?
         ·
-        = t('statuses.edited_at', date: l(status.edited_at))
+        = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted'))
       - if status.discarded?
         ·
         %span.negative-hint= t('admin.statuses.deleted')
