@@ -367,6 +367,7 @@ id:
       enable: Aktifkan
       enabled: Diaktifkan
       enabled_msg: Emoji berhasil diaktifkan
+      image_hint: PNG atau GIF hingga %{size}
       list: Daftar
       listed: Terdaftar
       new:
@@ -497,6 +498,10 @@ id:
         instance_accounts_measure: akun tersimpan
         instance_followers_measure: pengikut kami di sana
         instance_follows_measure: pengikut mereka di sini
+        instance_languages_dimension: Bahasa terpopuler
+        instance_media_attachments_measure: lampiran media tersimpan
+        instance_reports_measure: laporan tentang mereka
+        instance_statuses_measure: kiriman tersimpan
       delivery:
         all: Semua
         clear: Hapus galat pengiriman
@@ -519,12 +524,14 @@ id:
       private_comment: Komentar pribadi
       public_comment: Komentar publik
       purge: Hapus
+      purge_description_html: Jika Anda meyakini bahwa domain ini lebih baik offline, Anda dapat menghapus semua rekaman akun dan data terkait dari domain ini dari ruang penyimpanan Anda. Ini perlu beberapa waktu.
       title: Server yang diketahui
       total_blocked_by_us: Yang kita blokir
       total_followed_by_them: Diikuti mereka
       total_followed_by_us: Diikuti kita
       total_reported: Laporan tentang mereka
       total_storage: Lampiran media
+      totals_time_period_hint_html: Total tampilan di bawah termasuk data seluruh waktu.
     invites:
       deactivate_all: Nonaktifkan semua
       filter:
@@ -743,6 +750,7 @@ id:
       actions:
         delete_statuses: "%{name} menghapus kiriman %{target}"
         disable: "%{name} membekukan akun %{target}"
+        mark_statuses_as_sensitive: "%{name} menandai kiriman %{target} sebagai sensitif"
         none: "%{name} mengirim peringatan ke %{target}"
         sensitive: "%{name} menandai akun %{target} sebagai sensitif"
         silence: "%{name} membatasi akun %{target}"
@@ -768,6 +776,7 @@ id:
       links:
         allow: Izinkan tautan
         allow_provider: Izinkan penerbit
+        description_html: Ini adalah tautan yang saat ini dibagikan oleh banyak akun yang dapat dilihat dari server Anda. Ini dapat membantu pengguna Anda menemukan apa yang sedang terjadi di dunia. Tidak ada tautan yang ditampilkan secara publik kecuali Anda sudah menyetujui pengirimnya. Anda juga dapat mengizinkan atau menolak tautan individu.
         disallow: Batalkan izin tautan
         disallow_provider: Batalkan izin penerbit
         shared_by_over_week:
@@ -779,6 +788,7 @@ id:
       pending_review: Tinjauan tertunda
       preview_card_providers:
         allowed: Tautan dari penerbit ini dapat menjadi tren
+        description_html: Ini adalah domain yang tautannya sering dibagikan di server Anda. Tautan tidak akan menjadi tren secara publik kecuali domain dari tautan tersebut disetujui. Persetujuan (atau penolakan) Anda mempengaruhi subdomain.
         rejected: Tautan dari penerbit ini tidak dapat menjadi tren
         title: Penerbit
       rejected: Ditolak
