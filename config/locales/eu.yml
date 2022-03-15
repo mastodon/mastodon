@@ -15,6 +15,7 @@ eu:
     contact: Kontaktua
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
+    continue_to_web: Jarraitu web aplikaziora
     discover_users: Aurkitu erabiltzaileak
     documentation: Dokumentazioa
     federation_hint_html: '%{instance} instantzian kontu bat izanda edozein Mastodon zerbitzariko jendea jarraitu ahal izango duzu, eta harago ere.'
@@ -24,6 +25,8 @@ eu:
       Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke. 
 
     learn_more: Ikasi gehiago
+    logged_in_as_html: '%{username} bezala saioa hasita zaude.'
+    logout_before_registering: Saioa hasi duzu jada.
     privacy_policy: Pribatutasun politika
     rules: Zerbitzariaren arauak
     rules_html: 'Behean Mastodon zerbitzari honetan kontua eduki nahi baduzu jarraitu beharreko arauen laburpena daukazu:'
@@ -160,6 +163,11 @@ eu:
       not_subscribed: Harpidetu gabe
       pending: Berrikusketa egiteke
       perform_full_suspension: Kanporatu
+      previous_strikes: Aurreko abisuak
+      previous_strikes_description_html:
+        one: Kontu honek abisu <strong>bat</strong> dauka.
+        other: Kontu honek <strong>%{count}</strong> abisu dauzka.
+        zero: Kontu honek <strong>ez dauka abisurik</strong>.
       promote: Sustatu
       protocol: Protokoloa
       public: Publikoa
@@ -201,6 +209,7 @@ eu:
       silence: Isilarazi
       silenced: Isilarazita
       statuses: Bidalketa
+      strikes: Aurreko abisuak
       subscribe: Harpidetu
       suspend: Kanporatu
       suspended: Kanporatuta
@@ -363,6 +372,7 @@ eu:
       enable: Gaitu
       enabled: Gaituta
       enabled_msg: Emoji hori ongi gaitu da
+      image_hint: '%{size} arteko PNG edo GIF'
       list: Zerrendatu
       listed: Zerrendatua
       new:
@@ -433,6 +443,9 @@ eu:
       add_new: Gehitu berria
       created_msg: Ongi gehitu da e-mail helbidea domeinuen zerrenda beltzera
       delete: Ezabatu
+      dns:
+        types:
+          mx: MX erregistroa
       domain: Domeinua
       new:
         create: Gehitu domeinua
