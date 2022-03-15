@@ -68,12 +68,12 @@ export default class Counter extends React.PureComponent {
       );
     } else {
       const measure = data[0];
-      const percentChange = percIncrease(measure.previous_total * 1, measure.total * 1);
+      const percentChange = measure.previous_total && percIncrease(measure.previous_total * 1, measure.total * 1);
 
       content = (
         <React.Fragment>
-          <span className='sparkline__value__total'><FormattedNumber value={measure.total} /></span>
-          <span className={classNames('sparkline__value__change', { positive: percentChange > 0, negative: percentChange < 0 })}>{percentChange > 0 && '+'}<FormattedNumber value={percentChange} style='percent' /></span>
+          <span className='sparkline__value__total'>{measure.human_value || <FormattedNumber value={measure.total} />}</span>
+          {measure.previous_total && (<span className={classNames('sparkline__value__change', { positive: percentChange > 0, negative: percentChange < 0 })}>{percentChange > 0 && '+'}<FormattedNumber value={percentChange} style='percent' /></span>)}
         </React.Fragment>
       );
     }

@@ -60,8 +60,8 @@ da:
       error:
         title: En fejl opstod
       new:
-        able_to: Den vil være i stand til
-        prompt: Applikationen %{client_name} anmoder om adgang til din konto
+        prompt_html: "%{client_name} ønsker tilladelse til at tilgå din konto. Den er en tredjepartsapplikation. <strong>Er der ikke tillid til den, bør den ikke godkendes.</strong>"
+        review_permissions: Gennemgå tilladelser
         title: Godkendelse krævet
       show:
         title: Kopiér og indsæt denne godkendelseskode i applikationen.
@@ -71,10 +71,12 @@ da:
       confirmations:
         revoke: Sikker?
       index:
-        application: Applikation
-        created_at: Godkendt
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Omfang
+        authorized_at: Godkendt pr. %{date}
+        description_html: Disse er applikationer, som kan tilgå din konto vha. API'en. Er der applikationer her, som ikke genkendes eller udviser mærkelig adfærd, kan deres adgang tilbagekaldes.
+        last_used_at: Senest brugt pr. %{date}
+        never_used: Aldrig brugt
+        scopes: Tilladelser
+        superapp: Intern
         title: Dine godkendte applikationer
     errors:
       messages:
@@ -110,6 +112,33 @@ da:
       authorized_applications:
         destroy:
           notice: Applikation tilbagekaldt.
+    grouped_scopes:
+      access:
+        read: Skrivebeskyttet adgang
+        read/write: Læse- og skriveadgang
+        write: Kun skriveadgang
+      title:
+        accounts: Konti
+        admin/accounts: Kontihåndtering
+        admin/all: Alle håndteringsfunktioner
+        admin/reports: Rapporthåndteringer
+        all: Alt
+        blocks: Blokeringer
+        bookmarks: Bogmærker
+        conversations: Konversationer
+        crypto: Ende-til-ende kryptering
+        favourites: Favoritter
+        filters: Filtre
+        follow: Relationer
+        follows: Følger
+        lists: Lister
+        media: Medievedhæftninger
+        mutes: Tavsgjorte
+        notifications: Notifikationer
+        push: Push-notifikationer
+        reports: Anmeldelser
+        search: Søgning
+        statuses: Indlæg
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ da:
       admin:write: redigér al data på serveren
       admin:write:accounts: udfør modereringshandlinger på konti
       admin:write:reports: udfør modereringshandlinger på anmeldelser
+      crypto: benyt ende-til-ende kryptering
       follow: ændre kontorelationer
       push: modtage dine push-notifikationer
       read: læse alle dine kontodata
@@ -143,7 +173,8 @@ da:
       write:accounts: ændre din profil
       write:blocks: blokere konti og domæner
       write:bookmarks: bogmærke statusser
-      write:favourites: favorisere statusser
+      write:conversations: tavsgør og slet konversationer
+      write:favourites: favoritmarkerede indlæg
       write:filters: oprette filtre
       write:follows: følge personer
       write:lists: oprette lister

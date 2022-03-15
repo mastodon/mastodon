@@ -1,88 +1,95 @@
 - content_for :page_title do
   = @instance.domain
 
-.filters
-  .back-link
-    = link_to admin_instances_path() do
-      %i.fa.fa-chevron-left.fa-fw
-      = t('admin.instances.back_to_all')
-    = link_to admin_instances_path(limited: 1) do
-      %i.fa.fa-chevron-left.fa-fw
-      = t('admin.instances.back_to_limited')
-    = link_to admin_instances_path(warning: 1) do
-      %i.fa.fa-chevron-left.fa-fw
-      = t('admin.instances.back_to_warning')
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
-.dashboard__counters
-  %div
-    = link_to admin_accounts_path(origin: 'remote', by_domain: @instance.domain) do
-      .dashboard__counters__num= number_with_delimiter @instance.accounts_count
-      .dashboard__counters__label= t 'admin.accounts.title'
-  %div
-    = link_to admin_reports_path(by_target_domain: @instance.domain) do
-      .dashboard__counters__num= number_with_delimiter @instance.reports_count
-      .dashboard__counters__label= t 'admin.instances.total_reported'
-  %div
-    %div
-      .dashboard__counters__num= number_to_human_size @instance.media_storage
-      .dashboard__counters__label= t 'admin.instances.total_storage'
-  %div
-    %div
-      .dashboard__counters__num= number_with_delimiter @instance.following_count
-      .dashboard__counters__label= t 'admin.instances.total_followed_by_them'
-  %div
-    %div
-      .dashboard__counters__num= number_with_delimiter @instance.followers_count
-      .dashboard__counters__label= t 'admin.instances.total_followed_by_us'
-  %div
-    %div
-      .dashboard__counters__num= number_with_delimiter @instance.blocks_count
-      .dashboard__counters__label= t 'admin.instances.total_blocked_by_us'
+- content_for :heading_actions do
+  = l(@time_period.first)
+  = ' - '
+  = l(@time_period.last)
 
-  %div
-    %div
-      .dashboard__counters__num
-        - if @instance.delivery_failure_tracker.available?
-          = fa_icon 'check'
-        - else
-          = fa_icon 'times'
-      .dashboard__counters__label= t 'admin.instances.delivery_available'
+%p
+  = fa_icon 'info fw'
+  = t('admin.instances.totals_time_period_hint_html')
 
-- if @instance.private_comment.present?
-  .speech-bubble
-    .speech-bubble__bubble
-      = simple_format(h(@instance.private_comment))
-    .speech-bubble__owner= t 'admin.instances.private_comment'
-
-- if @instance.public_comment.present?
-  .speech-bubble
-    .speech-bubble__bubble
-      = simple_format(h(@instance.public_comment))
-    .speech-bubble__owner= t 'admin.instances.public_comment'
-
-- unless @exhausted_deliveries_days.empty?
-  %h4= t 'admin.instances.delivery_error_days'
-  %ul
-    = render partial: 'exhausted_deliveries_days', collection: @exhausted_deliveries_days
-  %p.hint
-    = t 'admin.instances.delivery_error_hint', count: DeliveryFailureTracker::FAILURE_DAYS_THRESHOLD
+.dashboard
+  .dashboard__item
+    = react_admin_component :counter, measure: 'instance_accounts', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_accounts_measure'), href: admin_accounts_path(origin: 'remote', by_domain: @instance.domain)
+  .dashboard__item
+    = react_admin_component :counter, measure: 'instance_statuses', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_statuses_measure')
+  .dashboard__item
+    = react_admin_component :counter, measure: 'instance_media_attachments', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_media_attachments_measure')
+  .dashboard__item
+    = react_admin_component :counter, measure: 'instance_follows', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_follows_measure')
+  .dashboard__item
+    = react_admin_component :counter, measure: 'instance_followers', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_followers_measure')
+  .dashboard__item
+    = react_admin_component :counter, measure: 'instance_reports', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, label: t('admin.instances.dashboard.instance_reports_measure'), href: admin_reports_path(by_target_domain: @instance.domain)
+  .dashboard__item
+    = react_admin_component :dimension, dimension: 'instance_accounts', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, limit: 8, label: t('admin.instances.dashboard.instance_accounts_dimension')
+  .dashboard__item
+    = react_admin_component :dimension, dimension: 'instance_languages', start_at: @time_period.first, end_at: @time_period.last, params: { domain: @instance.domain }, limit: 8, label: t('admin.instances.dashboard.instance_languages_dimension')
 
 %hr.spacer/
 
-%div.action-buttons
-  %div
-    - if @instance.domain_allow
-      = link_to t('admin.domain_allows.undo'), admin_domain_allow_path(@instance.domain_allow), class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
-    - elsif @instance.domain_block
-      = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@instance.domain_block), class: 'button'
-      = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: 'button'
+%h3= t('admin.instances.content_policies.title')
+
+- if whitelist_mode?
+  %p= t('admin.instances.content_policies.limited_federation_mode_description_html')
+
+  - if @instance.domain_allow
+    = link_to t('admin.domain_allows.undo'), admin_domain_allow_path(@instance.domain_allow), class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
+  - else
+    = link_to t('admin.domain_allows.add_new'), admin_domain_allows_path(domain_allow: { domain: @instance.domain }), class: 'button', method: :post
+- else
+  %p= t('admin.instances.content_policies.description_html')
+
+  - if @instance.domain_block
+    .table-wrapper
+      %table.table.horizontal-table
+        %tbody
+          %tr
+            %th= t('admin.instances.content_policies.comment')
+            %td= @instance.domain_block.private_comment
+          %tr
+            %th= t('admin.instances.content_policies.reason')
+            %td= @instance.domain_block.public_comment
+          %tr
+            %th= t('admin.instances.content_policies.policy')
+            %td= @instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' • ')
+
+    = link_to t('admin.domain_blocks.edit'), edit_admin_domain_block_path(@instance.domain_block), class: 'button'
+    = link_to t('admin.domain_blocks.undo'), admin_domain_block_path(@instance.domain_block), class: 'button', data: { confirm: t('admin.accounts.are_you_sure'), method: :delete }
+  - else
+    = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @instance.domain), class: 'button'
+
+%hr.spacer/
+
+%h3= t('admin.instances.availability.title')
+
+%p
+  = t('admin.instances.availability.description_html', count: DeliveryFailureTracker::FAILURE_DAYS_THRESHOLD)
+
+.availability-indicator
+  %ul.availability-indicator__graphic
+    - @instance.availability_over_days(14).each do |(date, failing)|
+      %li.availability-indicator__graphic__item{ class: failing ? 'negative' : 'neutral', title: l(date) }
+  .availability-indicator__hint
+    - if @instance.unavailable?
+      %span.negative-hint
+        = t('admin.instances.availability.failure_threshold_reached', date: l(@instance.unavailable_domain.created_at.to_date))
+        = link_to t('admin.instances.delivery.restart'), restart_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }
+    - elsif @instance.exhausted_deliveries_days.empty?
+      %span.positive-hint
+        = t('admin.instances.availability.no_failures_recorded')
+        = link_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }
     - else
-      = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @instance.domain), class: 'button'
-    - if @instance.delivery_failure_tracker.available?
-      - unless @exhausted_deliveries_days.empty?
-        = link_to t('admin.instances.delivery.clear'), clear_delivery_errors_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }, class: 'button'
-      = link_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }, class: 'button'
-    - else
-      = link_to t('admin.instances.delivery.restart'), restart_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }, class: 'button'
-    - if !@instance.delivery_failure_tracker.available? || @instance.accounts_count.zero? || @instance.domain_block&.suspend?
-      = link_to t('admin.instances.purge'), admin_instance_path(@instance), data: { confirm: t('admin.instances.confirm_purge'), method: :delete }, class: 'button'
+      %span.negative-hint
+        = t('admin.instances.availability.failures_recorded', count: @instance.delivery_failure_tracker.days)
+        = link_to t('admin.instances.delivery.clear'), clear_delivery_errors_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post } unless @instance.exhausted_deliveries_days.empty?
+
+- if @instance.purgeable?
+  %p= t('admin.instances.purge_description_html')
+
+  = link_to t('admin.instances.purge'), admin_instance_path(@instance), data: { confirm: t('admin.instances.confirm_purge'), method: :delete }, class: 'button button--destructive'

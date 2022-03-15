@@ -16,6 +16,7 @@ kmr:
     contact: Têkilî
     contact_missing: Nehate sazkirin
     contact_unavailable: N/A
+    continue_to_web: Bo malpera sepanê bidomîne
     discover_users: Bikarhêneran keşf bike
     documentation: Pelbend
     federation_hint_html: Bi ajimêrê xwe %{instance} re tu dikarî kesên rajekar û li derveyî mastodonê bişopînî.
@@ -25,6 +26,8 @@ kmr:
 
       '
     learn_more: Bêtir fêr bibe
+    logged_in_as_html: Tu niha wekî %{username} têketî ye.
+    logout_before_registering: Jixwe te berê têketin kiriye.
     privacy_policy: Polîtikaya nihêniyê
     rules: Rêbazên rajekar
     rules_html: 'Heger tu bixwazî ajimêrekî li ser rajekarê mastodon vebikî, li jêrê de kurtasî ya qaîdeyên ku tu guh bidî heye:'
@@ -69,7 +72,6 @@ kmr:
     media: Medya
     moved_html: "%{name} bar kire %{new_profile_link}:"
     network_hidden: Ev zanyarî berdest nîne
-    never_active: Tu car
     nothing_here: Li vir tiştek tune ye!
     people_followed_by: Kesên ku%{name} wan dişopîne
     people_who_follow: Kesên%{name} dişopîne
@@ -371,7 +373,6 @@ kmr:
       enable: Çalak bike
       enabled: Çalakkirî
       enabled_msg: Ev hestok bi serkeftî hate çalak kirin
-      image_hint: Mezinahiya pelê PNG heya 50Kb te
       list: Rêzok
       listed: Rêzokkirî
       new:
@@ -450,21 +451,6 @@ kmr:
       reject_media_hint: Pelên medyayê herêmî hatine tomarkirin radike û di pêşerojê de daxistinê red dike. Ji bo rawstandinê ne girîng e
       reject_reports: Ragihandinan red bike
       reject_reports_hint: Ragihandinên ku ji vê navperê tê paşguh bike. Ji bo dûrbûnê re ne guncav e
-      rejecting_media: pelên medyayê red bike
-      rejecting_reports: ragihandinê red bike
-      severity:
-        silence: sînorkirî
-        suspend: hatiye rawestandin
-      show:
-        affected_accounts:
-          one: Yek ajimêr di danegehê de bandor kir
-          other: "%{count} ajimêr di danegehê de bandor kir"
-          zero: Yek ajimêr di danegehê de bi bandor e
-        retroactive:
-          silence: Vê navperê de sînorê li ser hemî ajimêran rabike
-          suspend: Vê navperê de rawestandinê li ser hemî ajimêran rabike
-        title: Ji bo navperê %{domain} asteng kirinê hilde
-        undo: Vegerîne
       undo: Astengkirina navperê vegerîne
       view: Astengkirina navperê nîşan bike
     email_domain_blocks:
@@ -505,13 +491,7 @@ kmr:
         clear: Çewtiyên gihandinê paqij bike
         restart: Gihandinê nû va bike
         stop: Gehandinê rawestîne
-        title: Gihiştin
         unavailable: Nederbasdar
-        unavailable_message: Gihandin berdest nîne
-        warning: Hişyarî
-        warning_message:
-          one: Sernekeftina radestkirinê %{count} roj
-          other: Sernekeftina radestkirinê %{count} roj
       delivery_available: Gihandin berdest e
       delivery_error_days: Rojên çewtiyên gehandinê
       delivery_error_hint: Ger gehandin %{count} rojan ne pêkan be ewê wek bixweber wê nayê gehandin were nîşandan.
@@ -588,6 +568,7 @@ kmr:
       action_taken_by: Çalakî hate kirin ji aliyê
       actions:
         delete_description_html: Şandiyên hatine ragihandin wê werin jêbirin û were tomarkirin da ku ji te re bibe alîkar ku tu ji hêla heman ajimêrê ve binpêkirinên pêşerojê bêtir bikî.
+        mark_as_sensitive_description_html: Şandiyên hatine ragihandin wê werin nîşandan wekî hestyar û were tomarkirin da ku ji te re bibe alîkar ku tu ji hêla heman ajimêrê ve binpêkirinên pêşerojê bêtir bikî.
         other_description_html: Bêtir vebijêrkên ji bo kontrolkirina tevgera ajimêrê bibîne û pêwendiyê li ser ajimêra ragihandî kesane bike.
         resolve_description_html: Li hemberî ajimêra hatiye ragihandin wê tiştek pêk neyê, binpêkirin nayên tomarkirin û ragihandin wê were girtin.
         silence_description_html: Wê profîl tenê ji kesên ku berê te dişopînin an ji bi destan lê serî lê didin re xuya bibe, gihandina wê bi tundî sînordar dike. Her gav dikare were vegerandin.
@@ -608,6 +589,7 @@ kmr:
       forwarded: Beralîkirî
       forwarded_to: Beralîkirî bo %{domain}
       mark_as_resolved: Wekî çareserkirî nîşan bide
+      mark_as_sensitive: Wekî hestiyar nîşan bide
       mark_as_unresolved: Wekî neçareserkirî nîşan bide
       no_one_assigned: Ne yek
       notes:
@@ -751,6 +733,7 @@ kmr:
       actions:
         delete_statuses: "%{name} şandiyên %{target} jêbirin"
         disable: "%{name} ajimêr %{target} cemidand"
+        mark_statuses_as_sensitive: "%{name} medyayê %{target} wekî hestiyar nîşan kir"
         none: "%{name} ji bo %{target} hişyariyek şand"
         sensitive: "%{name} ajimêrê %{target} wekî hestiyarî nîşan kir"
         silence: "%{name} ajimêra %{target} bi sînor kir"
@@ -776,6 +759,7 @@ kmr:
       links:
         allow: Mafê bide girêdanê
         allow_provider: Mafê bide weşanger
+        description_html: Van girêdanên ku niha ji hêla ajimêrên ku rajekarê te ji wan peyaman dibîne pir têne parvekirin. Ew dikare ji bikarhênerên te re bibe alîkar ku fêr bibin ka li cîhanê çi diqewime. Heya ku tu weşanger nepejirînin, ti girêdan bi gelemperî nayê xuyangkirin. Her weha tu dikarî mafê bidî girêdanên kesane an jî nedî.
         disallow: Mafê nede girêdanê
         disallow_provider: Mafê nede weşanger
         shared_by_over_week:
@@ -787,14 +771,17 @@ kmr:
       pending_review: Li benda nirxandinê ye
       preview_card_providers:
         allowed: Girêdanên ji vê weşangerê dikarin bibin rojev
+        description_html: Ev navperên ku ji wan girêdanên bi gelemperî li ser rajekarê te têne parvekirin. Heya ku girêdana rojevê neyê pejirandin, girêdan wê ji raya giştî re nebin rojev. Pejirandina (an nepejirandina) te berbi jêrnavperan ve diçe.
         rejected: Girêdanên ji vê weşangerê nikarin bibin rojev
         title: Weşanger
       rejected: Nepejirand
       statuses:
         allow: Mafê bide şandiyê
         allow_account: Mafê bide nivîskar
+        description_html: Van şandiyên ku rajekarê te pê dizane ku niha pir têne parvekirin û bijartekirin. Ew dikare ji bikarhênerên te yên nû û yên vedigerin re bibe alîkar ku bêtir mirovên ku bişopînin bibînin. Heya ku tu nivîskar nepejirînî, tu şandî bi gelemperî nayên xuyangkirin, û nivîskar mafê dide ku ajimêrê xwe ji kesên din re were pêşniyarkirin. Her weha tu dikarî mafê bidî şandiyên kesane an jî nedî.
         disallow: Mafê nede şandiyê
         disallow_account: Mafê nede nivîskar
+        not_discoverable: Nivîskar nejilbijartiye ji bo ku were kifşkirin
         shared_by:
           one: Yek carî parvekirî an bijartî
           other: "%{friendly_count} carên parvekirî û bijartî"
@@ -807,6 +794,7 @@ kmr:
           tag_servers_dimension: Rajekarên pir tên bikaranîn
           tag_servers_measure: rajekarên cuda
           tag_uses_measure: bikaranîna giştî
+        description_html: Ev hashtag in ku niha di gelek şandiyên ku rajekarê te dibîne de xuya dibin. Ew dikare ji bikarhênerên te re bibe alîkar ku fêr bibin ka mirov di vê demê de herî pir li ser çi diaxive. Heya ku tu wan nepejirînî, tu hashtag bi gelemperî nayê xuyangkirin.
         listable: Dikare were pêşniyarkirin
         not_listable: Nikare wer pêşniyarkirin
         not_trendable: Wê di bin rojevan de xuya neke
@@ -833,6 +821,7 @@ kmr:
       actions:
         delete_statuses: ku şandiyên wan jê bibî
         disable: ku ajimêrê wan bicemidînî
+        mark_statuses_as_sensitive: ku şandiyê wan wekî hestyar nîşan bikî
         none: hişyariyek
         sensitive: ku ajimêrê wan wekî hestyar nîşan bikî
         silence: ku ajimêrê wan sînordar bikî
@@ -935,8 +924,10 @@ kmr:
     status:
       account_status: Rewşa ajimêr
       confirming: Li benda pejirandina e-nameyê ne da ku biqede.
+      functional: Ajimêra te êdî amade ye.
       pending: Daxwaza te li benda vekolînê ji hêla xebatkarên me ye. Ev dibe ku hinek dem bigire. Heke daxwaza te were pejirandin tu yê e-nameyekê bistîne.
       redirecting_to: Ajimêra te neçalak e ji ber ku niha ber bi %{acct} ve tê beralîkirin.
+      view_strikes: Binpêkirinên berê yên dijî ajimêrê xwe bibîne
     too_fast: Form pir zû hat şandin, dîsa biceribîne.
     trouble_logging_in: Têketina te de pirsgirêk çêdibe?
     use_security_key: Kilîteke ewlehiyê bikar bîne
@@ -1012,6 +1003,7 @@ kmr:
         submit: Îtîrazê bişîne
       associated_report: Ragihandina têkildar
       created_at: Dîrok
+      description_html: Ev kiryarên ku li dijî ajimêrê te hatine kirin û hişyariyên ku ji hêla xebatkarên %{instance} ve ji te re hatine şandinin.
       recipient: Ji kê re
       status: 'Şandî #%{id}'
       status_removed: Şandî jixwe ji pergalê hatî rakirin
@@ -1019,8 +1011,9 @@ kmr:
       title_actions:
         delete_statuses: Jêbirina şandiyê
         disable: Cemdandina ajimêrê
+        mark_statuses_as_sensitive: Nîşankirina şandiyan wekî hestyar
         none: Hişyarî
-        sensitive: Nîşankirina ajimêr wekî hestyar
+        sensitive: Nîşankirina ajimêran wekî hestyar
         silence: Sînorkirina ajimêrê
         suspend: Rawestandina ajimêrê
       your_appeal_approved: Îtîraza te hate pejirandin
@@ -1117,7 +1110,7 @@ kmr:
       blocking: Rêzoka astengkirinê
       bookmarks: Şûnpel
       domain_blocking: Rêzoka navperên astengkirî
-      following: Rêzoka yên tên şopandin
+      following: Rêzoka yên dişopînin
       muting: Rêzoka bêdengiyê
     upload: Bar bike
   in_memoriam_html: Di bîranînê de.
@@ -1315,7 +1308,7 @@ kmr:
     reason_html: "<strong>Ev gav ji bona çi pêwîst e?</strong><code>%{instance}</code>rajekerên ku tu tomarkiriyî dibe ku tunebe, ji bona vê divê pêşî te beralîyê rajekera te bi xwe bikin."
   remote_interaction:
     favourite:
-      proceed: Ber bi bijarê ve biçe
+      proceed: Ber bi bijarteyê ve biçe
       prompt: 'Tu dixwazî vê şandiyê bibijêrî:'
     reblog:
       proceed: Bo bilindkirinê bidomîne
@@ -1391,7 +1384,8 @@ kmr:
     preferences: Hilbijarte
     profile: Profîl
     relationships: Yên tê şopandin û şopîner
-    statuses_cleanup: Bi xweberî va jê birina şandiya
+    statuses_cleanup: Bi xweberî ve jêbirina şandiya
+    strikes: Binpêkirinên çavdêriyê
     two_factor_authentication: Piştrastkirinê du-faktorî
     webauthn_authentication: Kilîdên ewlehiyê
   statuses:
@@ -1471,6 +1465,7 @@ kmr:
       '2629746': 1 meh
       '31556952': 1 sal
       '5259492': 2 meh
+      '604800': 1 hefte
       '63113904': 2 sal
       '7889238': 3 meh
     min_age_label: Şêmûga demê
@@ -1618,26 +1613,28 @@ kmr:
         spam: Nexwestî (Spam)
         violation: Naverok rêbazên civakê yên jêrîn binpê dike
       explanation:
-        delete_statuses: Hate dîtin ku hinek nivîsên te yek an çend rêbazên civakê binpê dikin û dû re ji hêla çavdêran %{instance} ve hatine rakirin. Binpêkirinên di pêşerojê dibe ku li dijî ajimêra te bibe sedema kiryarên cezayê tundtir.
+        delete_statuses: Hate dîtin ku hinek şandiyên te yek an jî çend rêwerzên civatê binpê dikin û dû re ji hêla çavdêrên %{instance} ve hatine rakirin.
         disable: Tu êdî nikarî ajimêra xwe bi kar bînî, lê profîla te û daneyên din bê ziyan dimînin. Tu dikarî ji daneyên xwe hilanînê bixwazî, sazkariyên ajimêrê biguherîmî an jî ajimêrê xwe jê bibî.
+        mark_statuses_as_sensitive: Hinek şandiyên te ji hêla çavdêrên %{instance} ve wekî hestyar hatine nîşankirin. Ev tê vê wateyê ku berî ku pêşdîtinek were xuyang kirin pêdivî ye ku mirov di nav şandiyan de bitikînî. Dema ku di pêşerojê de bişînî tu dikarî medyayê wekî xwe hestyar nîşan bikî.
         sensitive: Ji niha û pê ve, hemû pelên te yên medyayê yên hatine barkirin wê li piştî hişyariyek wekî hestyar û veşartî bêne nîşankirin.
         silence: Tu hîn jî dikarî ajimêra xwe bi kar bînî lê tenê kesên ku jixwe te dişopînin wê şandiyên te li ser vê rajekarê bibînin, û dibe ku tu ji cûrbecûr taybetmendiyên vedîtinê werî bi dûrxistin. Lêbelê, yên din hîn jî dikarin bi destan te bişopînin.
         suspend: Tu êdî nikarî têkevî ajimêra xwe, û profîla te û daneyên din êdî nayên gihîştin. Dîsa jî tu dikarî têkevî da ku hilanîna daneyên xwe daxwaz bikî heya ku dane bi tevahî werin rakirin di hundirê 30 roj de, lê em ê hin daneyan biparêzin da ku tu ji rawestandinê rizgar bikî.
-      get_in_touch: Ku tu bawer dikî ev çewtiyeke, tu dikarî bersiva vê e-nameyê bidî ku bi xebatkarên %{instance} re têkevî pêwendiyê.
       reason: 'Sedem:'
-      statuses: 'Şandiyên ku di binpêkirinê de hatine dîtin:'
+      statuses: 'Şandiyên binavkirî:'
       subject:
         delete_statuses: Şandiyên te yên li ser %{acct} hatin rakirin
         disable: Ajimêra te a %{acct} hat qerisandin
+        mark_statuses_as_sensitive: Şandiyên te yên li ser %{acct} wekî hestyar hatine nîşankirin
         none: Hişyarî bo %{acct}
-        sensitive: Pelên te yên medyayê yên li ser %{acct} wê ji niha û pê ve wekî hestyar bêne nîşankirin
+        sensitive: Şandiyên te yên li ser %{acct} wê ji niha û pê ve wekî hestyar bêne nîşankirin
         silence: Ajimêra te ya %{acct} hate bisînorkirin
         suspend: Ajimêra te %{acct} hate rawestandin
       title:
         delete_statuses: Şandî hatin rakirin
         disable: Ajimêr hate qerisandin
+        mark_statuses_as_sensitive: Şandî wekî hestyar hatine nîşankirin
         none: Hişyarî
-        sensitive: Medya veşartî ye
+        sensitive: Ajimêr wekî hestyar hate nîşankirin
         silence: Ajimêr sînor kiriye
         suspend: Ajimêr hatiye rawestandin
     welcome:

@@ -75,7 +75,6 @@ cs:
     media: Média
     moved_html: "%{name} se přesunul a na %{new_profile_link}:"
     network_hidden: Tato informace není k dispozici
-    never_active: Nikdy
     nothing_here: Nic tu není!
     people_followed_by: Lidé, které sleduje %{name}
     people_who_follow: Lidé, kteří sledují %{name}
@@ -367,7 +366,6 @@ cs:
       enable: Povolit
       enabled: Povoleno
       enabled_msg: Emoji bylo úspěšně povoleno
-      image_hint: PNG až do 50 KB
       list: Uvést
       listed: Uvedeno
       new:
@@ -428,17 +426,6 @@ cs:
       reject_media_hint: Odstraní lokálně uložené mediální soubory a odmítne jejich stahování v budoucnosti. Nepodstatné pro pozastavení
       reject_reports: Odmítat hlášení
       reject_reports_hint: Ignorovat všechna hlášení pocházející z této domény. Nepodstatné pro pozastavení
-      rejecting_media: odmítají se mediální soubory
-      rejecting_reports: odmítají se hlášení
-      severity:
-        silence: omezena
-        suspend: pozastaveno
-      show:
-        retroactive:
-          silence: Vzít zpět omezení existujících dotčených účtů z této domény
-          suspend: Zrušit pozastavení existujících ovlivněných účtů z této domény
-        title: Zrušit blokaci domény %{domain}
-        undo: Odvolat
       undo: Odvolat blokaci domény
       view: Zobrazit blokaci domény
     email_domain_blocks:
@@ -469,15 +456,7 @@ cs:
         clear: Vymazat chyby doručení
         restart: Restartovat doručování
         stop: Zastavit doručování
-        title: Doručování
         unavailable: Nedostupný
-        unavailable_message: Doručování nedostupné
-        warning: Varování
-        warning_message:
-          few: Doručení selhává %{count} dny
-          many: Doručení selhává %{count} dnů
-          one: Doručení selhává %{count} den
-          other: Doručení selhává %{count} dnů
       delivery_available: Doručení je k dispozici
       delivery_error_days: Dny chybného doručování
       delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
@@ -1339,6 +1318,7 @@ cs:
       '2629746': 1 měsíc
       '31556952': 1 rok
       '5259492': 2 měsíce
+      '604800': 1 week
       '63113904': 2 roky
       '7889238': 3 měsíce
     min_age_label: Hranice stáří

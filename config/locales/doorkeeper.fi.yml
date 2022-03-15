@@ -60,8 +60,7 @@ fi:
       error:
         title: Tapahtui virhe
       new:
-        able_to: Se voi
-        prompt: Sovellus %{client_name} pyytää lupaa käyttää tiliäsi
+        review_permissions: Tarkista käyttöoikeudet
         title: Valtuutus vaaditaan
       show:
         title: Kopioi tämä valtuutuskoodi ja liitä se sovellukseen.
@@ -71,10 +70,10 @@ fi:
       confirmations:
         revoke: Oletko varma?
       index:
-        application: Sovellus
-        created_at: Valtuutettu
-        date_format: "%d/%m/%Y %H:%M:%S"
+        last_used_at: Viimeksi käytetty %{date}
+        never_used: Ei käytetty
         scopes: Oikeudet
+        superapp: Sisäinen
         title: Valtuutetut sovellukset
     errors:
       messages:
@@ -110,6 +109,30 @@ fi:
       authorized_applications:
         destroy:
           notice: Sovellus peruttu.
+    grouped_scopes:
+      access:
+        read: Vain luku
+        read/write: Luku- ja kirjoitusoikeudet
+        write: Vain kirjoitus
+      title:
+        accounts: Tilit
+        all: Kaikki
+        blocks: Torjutut
+        bookmarks: Kirjanmerkit
+        conversations: Keskustelut
+        crypto: Päästä päähän -salaus
+        favourites: Suosikit
+        filters: Suodattimet
+        follow: Liitokset
+        follows: Seuraa
+        lists: Listat
+        media: Medialiitteet
+        mutes: Mykistykset
+        notifications: Ilmoitukset
+        push: Push-ilmoitukset
+        reports: Raportit
+        search: Hae
+        statuses: Viestit
     layouts:
       admin:
         nav:

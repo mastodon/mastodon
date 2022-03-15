@@ -25,10 +25,10 @@
       - if status.preloadable_poll
         = render_poll_component(status)
 
-  - if !status.media_attachments.empty?
-    - if status.media_attachments.first.video?
+  - if !status.ordered_media_attachments.empty?
+    - if status.ordered_media_attachments.first.video?
       = render_video_component(status, width: 670, height: 380, detailed: true)
-    - elsif status.media_attachments.first.audio?
+    - elsif status.ordered_media_attachments.first.audio?
       = render_audio_component(status, width: 670, height: 380)
     - else
       = render_media_gallery_component(status, height: 380, standalone: true)

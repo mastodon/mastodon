@@ -132,7 +132,7 @@ module StatusesHelper
   end
 
   def render_video_component(status, **options)
-    video = status.media_attachments.first
+    video = status.ordered_media_attachments.first
 
     meta = video.file.meta || {}
 
@@ -150,12 +150,12 @@ module StatusesHelper
     }.merge(**options)
 
     react_component :video, component_params do
-      render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+      render partial: 'statuses/attachment_list', locals: { attachments: status.ordered_media_attachments }
     end
   end
 
   def render_audio_component(status, **options)
-    audio = status.media_attachments.first
+    audio = status.ordered_media_attachments.first
 
     meta = audio.file.meta || {}
 
@@ -170,7 +170,7 @@ module StatusesHelper
     }.merge(**options)
 
     react_component :audio, component_params do
-      render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+      render partial: 'statuses/attachment_list', locals: { attachments: status.ordered_media_attachments }
     end
   end
 
@@ -178,11 +178,11 @@ module StatusesHelper
     component_params = {
       sensitive: sensitized?(status, current_account),
       autoplay: prefers_autoplay?,
-      media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json },
+      media: status.ordered_media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json },
     }.merge(**options)
 
     react_component :media_gallery, component_params do
-      render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
+      render partial: 'statuses/attachment_list', locals: { attachments: status.ordered_media_attachments }
     end
   end
 
