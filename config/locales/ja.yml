@@ -16,6 +16,7 @@ ja:
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
+    continue_to_web: アプリで続ける
     discover_users: ユーザーを見つける
     documentation: ドキュメント
     federation_hint_html: "%{instance} のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
@@ -23,6 +24,8 @@ ja:
     hosted_on: Mastodon hosted on %{domain}
     instance_actor_flash: "このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。 \n"
     learn_more: もっと詳しく
+    logged_in_as_html: "%{username} としてログインしています。"
+    logout_before_registering: 既にログインしています。
     privacy_policy: プライバシーポリシー
     rules: サーバーのルール
     rules_html: 'このMastodonサーバーには、アカウントの所持にあたって従うべきルールが設定されています。概要は以下の通りです:'
@@ -64,7 +67,6 @@ ja:
     media: メディア
     moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
     network_hidden: この情報は利用できません
-    never_active: 活動なし
     nothing_here: 何もありません！
     people_followed_by: "%{name} さんがフォロー中のアカウント"
     people_who_follow: "%{name} さんをフォロー中のアカウント"
@@ -359,7 +361,7 @@ ja:
       enable: 有効化
       enabled: 有効
       enabled_msg: 絵文字を有効化しました
-      image_hint: 50KBまでのPNG画像を利用できます
+      image_hint: "%{size}までのPNGまたはGIF画像を利用できます"
       list: 表示
       listed: 表示
       new:
@@ -432,17 +434,6 @@ ja:
       reject_media_hint: ローカルに保存されたメディアファイルを削除し、今後のダウンロードを拒否します。停止とは無関係です
       reject_reports: 通報を拒否
       reject_reports_hint: このドメインからの通報をすべて無視します。停止とは無関係です
-      rejecting_media: メディアファイルを拒否中
-      rejecting_reports: 通報を拒否中
-      severity:
-        silence: サイレンス中
-        suspend: 停止中
-      show:
-        retroactive:
-          silence: このドメインの既存の影響するアカウントのサイレンスを戻す
-          suspend: このドメインの既存の影響するアカウントの停止を戻す
-        title: "%{domain}のドメインブロックを戻す"
-        undo: 元に戻す
       undo: ドメインブロックを戻す
       view: ドメインブロックを表示
     email_domain_blocks:
@@ -477,12 +468,7 @@ ja:
         clear: 配送エラーをクリア
         restart: 配送を再開
         stop: 配送を停止
-        title: 配送
         unavailable: 配送不可
-        unavailable_message: 配送不可
-        warning: 警告あり
-        warning_message:
-          other: "%{count} 日配送失敗"
       delivery_available: 配送可能
       delivery_error_days: 配送エラー発生日
       delivery_error_hint: "%{count} 日間配送ができない場合は、自動的に配送不可としてマークされます。"
@@ -570,6 +556,7 @@ ja:
       forwarded: 転送済み
       forwarded_to: "%{domain} に転送されました"
       mark_as_resolved: 解決済みとしてマーク
+      mark_as_sensitive: 閲覧注意にする
       mark_as_unresolved: 未解決に戻す
       no_one_assigned: なし
       notes:
@@ -740,6 +727,9 @@ ja:
         rejected: この発行者からのリンクを拒否
         title: 発行者
       rejected: 拒否
+      statuses:
+        allow: 投稿を許可する
+        disallow: 投稿を許可しない
       tags:
         current_score: 現在のスコア %{score}
         dashboard:
@@ -769,6 +759,7 @@ ja:
     new_appeal:
       actions:
         none: 警告
+        sensitive: アカウントを閲覧注意にする
     new_pending_account:
       body: 新しいアカウントの詳細は以下の通りです。この申請を承認または却下することができます。
       subject: "%{instance} で新しいアカウント (%{username}) が承認待ちです"
@@ -834,6 +825,7 @@ ja:
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
     link_to_otp: 携帯電話から二段階認証コードを入力するか、リカバリーコードを入力してください
     link_to_webauth: セキュリティキーを使用する
+    log_in_with: 次の方法でログイン
     login: ログイン
     logout: ログアウト
     migrate_account: 別のアカウントに引っ越す
@@ -1362,6 +1354,7 @@ ja:
       '2629746': 1ヶ月
       '31556952': 1年
       '5259492': 2ヶ月
+      '604800': 1 週間
       '63113904': 2年
       '7889238': 3ヶ月
     min_age_label: 投稿を保持する期間
@@ -1501,9 +1494,8 @@ ja:
         spam: スパム
         violation: コンテンツは以下のコミュニティガイドラインに違反しています
       explanation:
-        delete_statuses: あなたの投稿のいくつかは、1つ以上のコミュニティガイドラインに違反していることが判明し、 %{instance} のモデレータによって削除されました。 今後の違反は、より厳しい処罰が行われる可能性があります。
         disable: アカウントは使用できませんが、プロフィールやその他のデータはそのまま残ります。 データのバックアップをリクエストしたり、アカウント設定を変更したり、アカウントを削除したりできます。
-        sensitive: 今後、アップロードされたすべてのメディアファイルは閲覧注意してマークされ、クリックスルー警告の背後に隠されます。
+        sensitive: 今後、アップロードされたすべてのメディアファイルは閲覧注意としてマークされ、クリック解除式の警告で覆われるようになります。
         silence: アカウントが制限されています。このサーバーでは既にフォローしている人だけがあなたの投稿を見ることができます。 様々な発見機能から除外されるかもしれません。他の人があなたを手動でフォローすることは可能です。
       reason: '理由:'
       subject:
@@ -1515,7 +1507,6 @@ ja:
         delete_statuses: 投稿が削除されました
         disable: アカウントが凍結されました
         none: 警告
-        sensitive: メディアが非表示にされました
         silence: アカウントがサイレンスにされました
         suspend: アカウントが停止されました
     welcome:

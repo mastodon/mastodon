@@ -16,6 +16,7 @@ pt-PT:
     contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
+    continue_to_web: Continuar para a aplicação web
     discover_users: Descobrir utilizadores
     documentation: Documentação
     federation_hint_html: Ter uma conta em %{instance} permitirá seguir pessoas em qualquer instância Mastodon.
@@ -25,6 +26,8 @@ pt-PT:
       Esta conta é um actor virtual usado para representar a própria instância e não um utilizador individual.
       É usada para motivos de federação e não deve ser bloqueada a não ser que que queira bloquear a instância por completo. Se for esse o caso, deverá usar o bloqueio de domínio.
     learn_more: Saber mais
+    logged_in_as_html: Está de momento ligado como %{username}.
+    logout_before_registering: Já tem sessão iniciada.
     privacy_policy: Política de privacidade
     rules: Regras da instância
     rules_html: 'Abaixo está um resumo das regras que precisa seguir se pretender ter uma conta nesta instância do Mastodon:'
@@ -69,7 +72,6 @@ pt-PT:
     media: Media
     moved_html: "%{name} mudou-se para %{new_profile_link}:"
     network_hidden: Esta informação não está disponível
-    never_active: Nunca
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas seguidas por %{name}
     people_who_follow: Pessoas que seguem %{name}
@@ -371,7 +373,6 @@ pt-PT:
       enable: Ativar
       enabled: Ativado
       enabled_msg: Ativado com sucesso este emoji
-      image_hint: PNG de até 50KB
       list: Lista
       listed: Listado
       new:
@@ -448,21 +449,6 @@ pt-PT:
       reject_media_hint: Remove arquivos de media armazenados localmente e rejeita descarregar novos arquivos no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncia
       reject_reports_hint: Ignorar todos as denúncias provenientes deste domínio. Irrelevante para suspensões
-      rejecting_media: a rejeitar ficheiros de media
-      rejecting_reports: a rejeitar denúncias
-      severity:
-        silence: silenciado
-        suspend: suspenso
-      show:
-        affected_accounts:
-          one: Uma conta na base de dados afetada
-          other: "%{count} contas na base de dados afetadas"
-          zero: Nenhuma conta na base de dados é afetada
-        retroactive:
-          silence: Não silenciar contas afetadas existentes deste domínio
-          suspend: Não suspender todas as contas existentes nesse domínio
-        title: Remover o bloqueio de domínio de %{domain}
-        undo: Anular
       undo: Anular
       view: Ver domínios bloqueados
     email_domain_blocks:
@@ -493,23 +479,47 @@ pt-PT:
       title: Seguir recomendações
       unsuppress: Restaurar recomendações de contas a seguir
     instances:
+      availability:
+        description_html:
+          one: Se a transmissão ao domínio falhar <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de transmissão será feita a menos que uma transmissão <em>proveniente</em> do domínio seja recebida.
+          other: Se a transmissão ao domínio falhar em <strong>%{count} dias diferentes</strong> sem sucesso, nenhuma tentativa de transmissão será feita a menos que uma transmissão <em>proveniente</em> do domínio seja recebida.
+        failure_threshold_reached: Limite de falhas atingido em %{date}.
+        failures_recorded:
+          one: Tentativa falhada em %{count} dia.
+          other: Tentativas em %{count} dias diferentes.
+        no_failures_recorded: Sem falhas registadas.
+        title: Disponibilidade
       back_to_all: Todas
       back_to_limited: Limitadas
       back_to_warning: Aviso
       by_domain: Domínio
       confirm_purge: Tem a certeza que deseja eliminar permanentemente os dados deste domínio?
+      content_policies:
+        comment: Nota interna
+        description_html: Pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
+        policies:
+          reject_media: Rejeitar media
+          reject_reports: Rejeitar denúncias
+          silence: Limitar
+          suspend: Suspender
+        policy: Política
+        reason: Justificação pública
+        title: Políticas de conteúdo
+      dashboard:
+        instance_accounts_dimension: Contas mais seguidas
+        instance_accounts_measure: contas armazenadas
+        instance_followers_measure: nossos seguidores lá
+        instance_follows_measure: os seus seguidores aqui
+        instance_languages_dimension: Idiomas mais populares
+        instance_media_attachments_measure: anexos de media armazenados
+        instance_reports_measure: denúncias sobre eles
+        instance_statuses_measure: publicações armazenadas
       delivery:
         all: Todas
         clear: Limpar erros de entrega
         restart: Reiniciar entrega
         stop: Parar entrega
-        title: Entrega
         unavailable: Indisponível
-        unavailable_message: Entrega indisponível
-        warning: Aviso
-        warning_message:
-          one: Falhou entrega %{count} dia
-          other: Falhou entrega %{count} dias
       delivery_available: Entrega disponível
       delivery_error_days: Dias de erro de entrega
       delivery_error_hint: Se a entrega não for possível durante %{count} dias, será automaticamente marcada como não realizável.
@@ -526,12 +536,14 @@ pt-PT:
       private_comment: Comentários privados
       public_comment: Comentários públicos
       purge: Purgar
+      purge_description_html: Se acredita que este domínio está definitivamente offline, pode excluir todos os registos de contas e dados associados a ele do seu armazenamento. Isso pode demorar algum tempo.
       title: Instâncias conhecidas
       total_blocked_by_us: Bloqueadas por nós
       total_followed_by_them: Seguidas por eles
       total_followed_by_us: Seguidas por nós
       total_reported: Denúncias sobre eles
       total_storage: Anexos de media
+      totals_time_period_hint_html: Os totais exibidos abaixo incluem dados referentes ao tempo total.
     invites:
       deactivate_all: Desativar todos
       filter:
@@ -586,6 +598,7 @@ pt-PT:
       action_taken_by: Ação tomada por
       actions:
         delete_description_html: As publicações denunciadas serão eliminadas e uma punição será registada para ajudá-lo a escalar ações em futuras infrações pela mesma conta.
+        mark_as_sensitive_description_html: A media nas publicações denunciadas será marcada como sensível e uma punição será registada para ajudá-lo a escalar ações em futuras infrações pela mesma conta.
         other_description_html: Ver mais opções para controlar o comportamento da conta e personalizar a comunicação para a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma punição será registada, e a denuncia será fechada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou o procurem manualmente, limitando severamente o seu alcance. Pode sempre ser revertido.
@@ -606,6 +619,7 @@ pt-PT:
       forwarded: Encaminhado
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
+      mark_as_sensitive: Marcar como sensível
       mark_as_unresolved: Marcar como não resolvido
       no_one_assigned: Ninguém
       notes:
@@ -749,6 +763,7 @@ pt-PT:
       actions:
         delete_statuses: "%{name} eliminou a publicação de %{target}"
         disable: "%{name} congelou a conta de %{target}"
+        mark_statuses_as_sensitive: "%{name} marcou as publicações de %{target} como sensíveis"
         none: "%{name} enviou uma advertência a %{target}"
         sensitive: "%{name} marcou a conta de %{target} como sensível"
         silence: "%{name} limitou a conta de %{target}"
@@ -774,6 +789,7 @@ pt-PT:
       links:
         allow: Permitir link
         allow_provider: Permitir editor
+        description_html: Estes são links que atualmente estão a ser frequentemente partilhados por contas visiveis pelo seu servidor. Eles podem ajudar os seus utilizador a descobrir o que está a acontecer no mundo. Nenhum link é exibido publicamente até que aprove o editor. Também pode permitir ou rejeitar links individualmente.
         disallow: Não permitir link
         disallow_provider: Não permitir editor
         shared_by_over_week:
@@ -785,14 +801,17 @@ pt-PT:
       pending_review: Pendente de revisão
       preview_card_providers:
         allowed: Links deste editor poderão ser incluídos nos destaques
+        description_html: Estes são domínios a partir dos quais links são frequentemente partilhados no seu servidor. Estes links não serão colocados em destaque a menos que o seu domínio de origem seja aprovado. A sua aprovação (ou rejeição) estende-se a subdomínios.
         rejected: Links deste editor não serão incluídos nos destaques
         title: Editores
       rejected: Rejeitado
       statuses:
         allow: Permitir publicação
         allow_account: Permitir autor
+        description_html: Estas são publicações que o seu servidor conhece e que atualmente estão a ser frequentemente partilhadas e adicionadas aos favoritos. Isto pode ajudar os seus utilizadores, novos e retornados, a encontrar mais pessoas para seguir. Nenhuma publicação será exibida publicamente até que aprove o autor, e o autor permita que a sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individualmente.
         disallow: Não permitir publicação
         disallow_account: Não permitir autor
+        not_discoverable: O autor optou por não permitir que a sua conta seja sugerida a outros
         shared_by:
           one: Partilhado ou adicionado aos favoritos uma vez
           other: Partilhado e adicionado aos favoritos %{friendly_count} vezes
@@ -805,6 +824,7 @@ pt-PT:
           tag_servers_dimension: Servidores mais populares
           tag_servers_measure: servidores diferentes
           tag_uses_measure: utilizações totais
+        description_html: Estas são hashtags que aparecem atualmente com frequência em publicações visíveis pelo seu servidor. Isto pode ajudar os seus utilizadores a descobrir o que está ser mais falado no momento. Nenhuma hashtag é exibida publicamente até que a aprove.
         listable: Pode ser sugerida
         not_listable: Não será sugerida
         not_trendable: Não aparecerá nas tendências
@@ -831,6 +851,7 @@ pt-PT:
       actions:
         delete_statuses: para elimintar as suas publicações
         disable: para congelar a sua conta
+        mark_statuses_as_sensitive: marcar as suas publicações como sensíveis
         none: uma advertência
         sensitive: marcação da sua conta como sensível
         silence: limitação da sua conta
@@ -933,8 +954,10 @@ pt-PT:
     status:
       account_status: Estado da conta
       confirming: A aguardar que conclua a confirmação do e-mail.
+      functional: A sua conta está totalmente operacional.
       pending: A sua inscrição está pendente de revisão pela nossa equipa. Isso pode demorar algum tempo. Receberá um e-mail se a sua conta for aprovada.
       redirecting_to: A sua conta está inativa porque está atualmente a ser redirecionada para %{acct}.
+      view_strikes: Veja as punições anteriores contra a sua conta
     too_fast: Formulário enviado muito rapidamente, tente novamente.
     trouble_logging_in: Problemas em iniciar sessão?
     use_security_key: Usar chave de segurança
@@ -1010,6 +1033,7 @@ pt-PT:
         submit: Submeter recurso
       associated_report: Denúncia associada
       created_at: Data
+      description_html: Estas são ações tomadas contra a sua conta e avisos que lhe foram enviados pela equipa de %{instance}.
       recipient: Endereçado a
       status: 'Publicação #%{id}'
       status_removed: Publicação já eliminada do sistema
@@ -1017,6 +1041,7 @@ pt-PT:
       title_actions:
         delete_statuses: Remoção de publicação
         disable: Congelamento da conta
+        mark_statuses_as_sensitive: Marcação das publicações como sensíveis
         none: Advertência
         sensitive: Marcação da conta como sensível
         silence: Limitação da conta
@@ -1390,6 +1415,7 @@ pt-PT:
     profile: Perfil
     relationships: Seguindo e seguidores
     statuses_cleanup: Remoção automática da publicação
+    strikes: Punições de moderação
     two_factor_authentication: Autenticação em duas etapas
     webauthn_authentication: Chaves de segurança
   statuses:
@@ -1469,6 +1495,7 @@ pt-PT:
       '2629746': 1 mês
       '31556952': 1 ano
       '5259492': 2 meses
+      '604800': 1 semana
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Limite de idade
@@ -1616,26 +1643,28 @@ pt-PT:
         spam: Spam
         violation: O conteúdo infringe as seguintes diretrizes da comunidade
       explanation:
-        delete_statuses: Algumas das suas publicações foram consideradas como a infringir uma ou mais diretrizes da comunidade e foram subsequentemente removidas pelos moderadores de %{instance}. Futuras infrações podem resultar em acções punitivas mais severas contra a sua conta.
+        delete_statuses: Algumas das suas publicações foram consideradas como a infringir uma ou mais diretrizes da comunidade e foram subsequentemente removidas pelos moderadores de %{instance}.
         disable: Não pode mais utilizar a sua conta, mas o seu perfil e outros dados permanecem intactos. Pode solicitar uma cópia dos seus dados, alterar as definições da conta ou apagá-la.
+        mark_statuses_as_sensitive: Algumas das suas publicações foram marcadas como sensíveis pelos moderadores de %{instance}. Isto significa que as pessoas terão de clicar na media nas publicações, antes de ser exibida uma pré-visualização. No futuro, quando publicar, lembre-se que pode você mesmo marcar a media como sensível.
         sensitive: A partir de agora, todos os ficheiros de media que carregue serão marcados como sensíveis e escondidos atrás de um aviso de "clicar-para-continuar".
         silence: Pode ainda utilizar a sua conta mas apenas as pessoas que já o seguem poderão ver as suas mensagens neste servidor, e poderá ser excluído de várias funcionalidades de divulgação. No entanto, outros poderão ainda segui-lo manualmente.
         suspend: Não pode mais utilizar a sua conta, e o seu perfil e outros dados já não se encontram acessíveis. Poderá ainda iniciar sessão para solicitar uma cópia dos seus dados até os mesmos serem totalmente removidos em cerca de 30 dias, porém reteremos alguns dados básicos para o impedir evitar a suspensão.
-      get_in_touch: Se acredita tratar-se de um erro, pode responder a este e-mail para entrar em contacto com os colaboradores de %{instance}.
       reason: 'Motivo:'
-      statuses: 'Publicações que foram consideradas em infracção:'
+      statuses: 'Publicações citadas:'
       subject:
         delete_statuses: As suas publicações em %{acct} foram removidas
         disable: A tua conta %{acct} foi congelada
+        mark_statuses_as_sensitive: As suas publicações em %{acct} foram marcadas como sensíveis
         none: Aviso para %{acct}
-        sensitive: Os seus ficheiros de media em %{acct} serão marcados como sensiveis de agora em diante
+        sensitive: As suas publicações em %{acct} serão a partir de agora marcadas como sensíveis
         silence: A tua conta %{acct} foi limitada
         suspend: A tua conta %{acct} foi suspensa
       title:
         delete_statuses: Publicações removidas
         disable: Conta congelada
+        mark_statuses_as_sensitive: Publicações marcadas como sensíveis
         none: Aviso
-        sensitive: Media escondida
+        sensitive: Conta marcada como sensível
         silence: Conta limitada
         suspend: Conta suspensa
     welcome:

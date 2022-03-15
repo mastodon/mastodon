@@ -16,6 +16,7 @@ id:
     contact: Kontak
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
+    continue_to_web: Lanjut ke apl web
     discover_users: Temukan pengguna
     documentation: Dokumentasi
     federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
@@ -23,6 +24,8 @@ id:
     hosted_on: Mastodon dihosting di %{domain}
     instance_actor_flash: "Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain. \n"
     learn_more: Pelajari selengkapnya
+    logged_in_as_html: Anda sedang masuk sebagai %{username}.
+    logout_before_registering: Anda sudah masuk.
     privacy_policy: Kebijakan Privasi
     rules: Aturan server
     rules_html: 'Di bawah ini adalah ringkasan aturan yang perlu Anda ikuti jika Anda ingin memiliki akun di server Mastodon ini:'
@@ -64,7 +67,6 @@ id:
     media: Media
     moved_html: "%{name} telah pindah ke %{new_profile_link}:"
     network_hidden: Informasi ini tidak tersedia
-    never_active: Tak pernah
     nothing_here: Tidak ada apapun disini!
     people_followed_by: Orang yang diikuti %{name}
     people_who_follow: Orang-orang yang mengikuti %{name}
@@ -365,7 +367,7 @@ id:
       enable: Aktifkan
       enabled: Diaktifkan
       enabled_msg: Emoji berhasil diaktifkan
-      image_hint: PNG hingga 50KB
+      image_hint: PNG atau GIF hingga %{size}
       list: Daftar
       listed: Terdaftar
       new:
@@ -438,21 +440,6 @@ id:
       reject_media_hint: Hapus file media yang tersimpan dan menolak semua unduhan nantinya. Tidak terpengaruh dengan suspen
       reject_reports: Tolak laporan
       reject_reports_hint: Abaikan semua laporan dari domain ini. Tidak relevan untuk penangguhan
-      rejecting_media: tolak berkas media
-      rejecting_reports: laporan ditolak
-      severity:
-        silence: dibungkam
-        suspend: ditangguhkan
-      show:
-        affected_accounts:
-          one: Satu akun di basis data terpengaruh
-          other: "%{count} akun di basis data terpengaruh"
-          zero: Tidak ada akun di basis data terpengaruh
-        retroactive:
-          silence: Hapus pendiaman terhadap akun pada domain ini
-          suspend: Hapus suspen terhadap akun pada domain ini
-        title: Hapus pemblokiran domain %{domain}
-        undo: Urungkan
       undo: Urungkan blokir domain
       view: Lihat blokir domain
     email_domain_blocks:
@@ -482,22 +469,45 @@ id:
       title: Rekomendasi untuk diikuti
       unsuppress: Kembalikan rekomendasi untuk diikuti
     instances:
+      availability:
+        description_html:
+          other: Jika pengiriman ke domain selama <strong>%{count} hari</strong> tidak berhasil, tidak akan ada upaya pengiriman kecuali bila kiriman <em>dari</em> domain tersebut berhasil diterima.
+        failure_threshold_reached: Batas kegagalan tercapai pada %{date}.
+        failures_recorded:
+          other: Upaya gagal dalam %{count} hari berbeda.
+        no_failures_recorded: Tidak ada kegagalan tercatat.
+        title: Ketersediaan
       back_to_all: Semua
       back_to_limited: Terbatas
       back_to_warning: Peringatan
       by_domain: Domain
       confirm_purge: Yakin ingin menghapus permanen data dari domain ini?
+      content_policies:
+        comment: Catatan internal
+        description_html: Anda dapat menentukan kebijakan konten yang akan diterapkan ke semua akun dari domain ini dan dari subdomainnya.
+        policies:
+          reject_media: Tolak media
+          reject_reports: Tolak laporan
+          silence: Batas
+          suspend: Tangguhkan
+        policy: Kebijakan
+        reason: Alasan publik
+        title: Kebijakan konten
+      dashboard:
+        instance_accounts_dimension: Akun yang paling banyak diikuti
+        instance_accounts_measure: akun tersimpan
+        instance_followers_measure: pengikut kami di sana
+        instance_follows_measure: pengikut mereka di sini
+        instance_languages_dimension: Bahasa terpopuler
+        instance_media_attachments_measure: lampiran media tersimpan
+        instance_reports_measure: laporan tentang mereka
+        instance_statuses_measure: kiriman tersimpan
       delivery:
         all: Semua
         clear: Hapus galat pengiriman
         restart: Mulai ulang pengiriman
         stop: Setop pengiriman
-        title: Pengiriman
         unavailable: Tidak tersedia
-        unavailable_message: Pengiriman tidak tersedia
-        warning: Peringatan
-        warning_message:
-          other: Kegagalan pengiriman %{count} hari
       delivery_available: Pengiriman tersedia
       delivery_error_days: Lama hari pengiriman galat
       delivery_error_hint: Jika pengiriman tidak terjadi selama %{count} hari, ia akan ditandai secara otomatis sebagai tidak terkirim.
@@ -514,12 +524,14 @@ id:
       private_comment: Komentar pribadi
       public_comment: Komentar publik
       purge: Hapus
+      purge_description_html: Jika Anda meyakini bahwa domain ini lebih baik offline, Anda dapat menghapus semua rekaman akun dan data terkait dari domain ini dari ruang penyimpanan Anda. Ini perlu beberapa waktu.
       title: Server yang diketahui
       total_blocked_by_us: Yang kita blokir
       total_followed_by_them: Diikuti mereka
       total_followed_by_us: Diikuti kita
       total_reported: Laporan tentang mereka
       total_storage: Lampiran media
+      totals_time_period_hint_html: Total tampilan di bawah termasuk data seluruh waktu.
     invites:
       deactivate_all: Nonaktifkan semua
       filter:
@@ -573,6 +585,7 @@ id:
       action_taken_by: Aksi dilakukan oleh
       actions:
         delete_description_html: Kiriman yang dilaporkan akan dihapus dan peringatan akan direkam untuk membantu Anda mengurus masalah oleh akun yang sama di masa mendatang.
+        mark_as_sensitive_description_html: Media di dalam kiriman terlapor akan ditandai sebagai sensitif dan hukuman akan direkam untuk membantu menangani pelanggaran dari akun yang sama di masa mendatang.
         other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
         resolve_description_html: Tidak ada tindakan untuk akun yang dilaporkan, tidak ada peringatan yang direkam, dan laporan akan ditutup.
         silence_description_html: Profil hanya dapat terlihat oleh pengguna yang telah mengikuti atau melihatnya secara manual, yang sangat membatasi jangkauannya. Selalu dapat dipulihkan kembali.
@@ -593,6 +606,7 @@ id:
       forwarded: Diteruskan
       forwarded_to: Diteruskan ke %{domain}
       mark_as_resolved: Tandai telah diseleseikan
+      mark_as_sensitive: Tandai sebagai sensitif
       mark_as_unresolved: Tandai belum terselesaikan
       no_one_assigned: Tidak ada
       notes:
@@ -736,6 +750,7 @@ id:
       actions:
         delete_statuses: "%{name} menghapus kiriman %{target}"
         disable: "%{name} membekukan akun %{target}"
+        mark_statuses_as_sensitive: "%{name} menandai kiriman %{target} sebagai sensitif"
         none: "%{name} mengirim peringatan ke %{target}"
         sensitive: "%{name} menandai akun %{target} sebagai sensitif"
         silence: "%{name} membatasi akun %{target}"
@@ -761,6 +776,7 @@ id:
       links:
         allow: Izinkan tautan
         allow_provider: Izinkan penerbit
+        description_html: Ini adalah tautan yang saat ini dibagikan oleh banyak akun yang dapat dilihat dari server Anda. Ini dapat membantu pengguna Anda menemukan apa yang sedang terjadi di dunia. Tidak ada tautan yang ditampilkan secara publik kecuali Anda sudah menyetujui pengirimnya. Anda juga dapat mengizinkan atau menolak tautan individu.
         disallow: Batalkan izin tautan
         disallow_provider: Batalkan izin penerbit
         shared_by_over_week:
@@ -772,6 +788,7 @@ id:
       pending_review: Tinjauan tertunda
       preview_card_providers:
         allowed: Tautan dari penerbit ini dapat menjadi tren
+        description_html: Ini adalah domain yang tautannya sering dibagikan di server Anda. Tautan tidak akan menjadi tren secara publik kecuali domain dari tautan tersebut disetujui. Persetujuan (atau penolakan) Anda mempengaruhi subdomain.
         rejected: Tautan dari penerbit ini tidak dapat menjadi tren
         title: Penerbit
       rejected: Ditolak
@@ -1004,7 +1021,6 @@ id:
         delete_statuses: Penghapusan kiriman
         disable: Pembekuan akun
         none: Peringatan
-        sensitive: Tandai akun sebagai sensitif
         silence: Pembatasan akun
         suspend: Penangguhan akun
       your_appeal_approved: Banding Anda disetujui
@@ -1445,6 +1461,7 @@ id:
       '2629746': 1 bulan
       '31556952': 1 tahun
       '5259492': 2 bulan
+      '604800': 1 week
       '63113904': 2 tahun
       '7889238': 3 bulan
     min_age_label: Batas usia
@@ -1592,26 +1609,21 @@ id:
         spam: Spam
         violation: Konten melanggar panduan komunitas berikut
       explanation:
-        delete_statuses: Beberapa kiriman Anda melanggar satu atau lebih panduan komunitas dan telah dihapus oleh moderator %{instance}. Pelanggaran berikutnya akan menyebabkan tindakan yang lebih parah terhadap akun Anda.
         disable: Anda tidak lagi dapat menggunakan akun, tapi profil dan data Anda lainnya masih tersimpan. Anda dapat minta cadangan data Anda, mengubah pengaturan akun, atau menghapus akun.
         sensitive: Mulai sekarang, semua berkas media yang telah Anda unggah akan ditandai sebagai sensitif dan disembunyikan di balik peringatan yang harus diklik.
         silence: Anda masih tetap dapat menggunakan akun tetapi hanya orang yang mengikuti Anda yang dapat melihat kiriman Anda di server ini, dan Anda mungkin akan dikeluarkan dari fitur pencarian akun. Bagaimana pun, orang lain tetap dapat mengikuti Anda secara manual.
         suspend: Anda tidak dapat menggunakan akun Anda, dan profil serta data lain Anda tidak lagi dapat diakses. Anda masih tetap bisa masuk akun untuk minta cadangan data sampai data Anda akan dihapus permanen 30 hari lagi, tapi kami akan menyimpan beberapa data dasar untuk mencegah Anda menghindari penangguhan.
-      get_in_touch: Jika Anda yakin ini kesalahan, Anda dapat membalas email ini untuk menghubungi staf %{instance}.
       reason: 'Alasan:'
-      statuses: 'Postingan yang telah terbukti pelanggarannya:'
       subject:
         delete_statuses: Postingan anda pada %{acct} telah dihapus
         disable: Akun Anda %{acct} telah dibekukan
         none: Peringatan untuk %{acct}
-        sensitive: File media anda pada %{acct} akan ditandai sebagai sensitif mulai saat ini
         silence: Akun Anda %{acct} telah dibatasi
         suspend: Akun Anda %{acct} telah ditangguhkan
       title:
         delete_statuses: Postingan dihapus
         disable: Akun dibekukan
         none: Peringatan
-        sensitive: Media disembunyikan
         silence: Akun dibatasi
         suspend: Akun ditangguhkan
     welcome:

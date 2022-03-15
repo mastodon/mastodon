@@ -30,7 +30,7 @@ class DeliveryFailureTracker
   end
 
   def exhausted_deliveries_days
-    Redis.current.smembers(exhausted_deliveries_key).sort.map { |date| Date.new(date.slice(0, 4).to_i, date.slice(4, 2).to_i, date.slice(6, 2).to_i) }
+    @exhausted_deliveries_days ||= Redis.current.smembers(exhausted_deliveries_key).sort.map { |date| Date.new(date.slice(0, 4).to_i, date.slice(4, 2).to_i, date.slice(6, 2).to_i) }
   end
 
   alias reset! track_success!

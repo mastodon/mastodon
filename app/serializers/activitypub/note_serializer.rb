@@ -13,7 +13,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   attribute :content_map, if: :language?
   attribute :updated, if: :edited?
 
-  has_many :media_attachments, key: :attachment
+  has_many :virtual_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
 
   has_one :replies, serializer: ActivityPub::CollectionSerializer, if: :local?
@@ -104,6 +104,10 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   def sensitive
     object.account.sensitized? || object.sensitive
+  end
+
+  def virtual_attachments
+    object.ordered_media_attachments
   end
 
   def virtual_tags

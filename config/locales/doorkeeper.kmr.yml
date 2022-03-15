@@ -60,8 +60,8 @@ kmr:
       error:
         title: Xeletîyek çêbû
       new:
-        able_to: Ew ê bikaribe
-        prompt: Sepanê %{client_name} dixwaze bigihîje ajimêrê te
+        prompt_html: "%{client_name} mafê dixwaze ku bigihîje ajimêrê te. Ew sepanek aliyê sêyemîn e. <strong>Ku tu pê bawer nakî, wê demê divê tu mafê gihiştinê nedî. </strong>"
+        review_permissions: Gihiştinan binirxînin
         title: Destûr kirin pêwîst e
       show:
         title: Destûr hildana vê kodê jê bigire û ji sepanê re pêve bike.
@@ -71,10 +71,12 @@ kmr:
       confirmations:
         revoke: Ma tu bawerî?
       index:
-        application: Sepan
-        created_at: Destûrmend
-        date_format: "%Y-%m-%d%H:%M:%S"
-        scopes: Berfirehî
+        authorized_at: Maf hate dayîn di %{date} de
+        description_html: Ev sepan in ku dikarin bi riya karanîna API ve bigihîjin ajimêrê te. Ku sepanên tu li vir nas nakî hene, an sepanek çewt tevdigere, tu dikarî gihîştina wê têk bibî.
+        last_used_at: Herî dawî di %{date} de hate bikaranîn
+        never_used: Tu car nehatiye bikaranîn
+        scopes: Maf
+        superapp: Hundirin
         title: Sepanên destûrmendê te
     errors:
       messages:
@@ -110,6 +112,33 @@ kmr:
       authorized_applications:
         destroy:
           notice: Sepan hate dûrxisitn.
+    grouped_scopes:
+      access:
+        read: Gihîştina tenê xwendin
+        read/write: Gihîştina xwendin û nivîsandin
+        write: Gihîştina tenê nivîsandin
+      title:
+        accounts: Ajimêr
+        admin/accounts: Rêveberiya ajimêran
+        admin/all: Hemû fonksiyonên reveberî
+        admin/reports: Rêveberiya ragihandinan
+        all: Her tişt
+        blocks: Astengkirin
+        bookmarks: Şûnpel
+        conversations: Axaftin
+        crypto: Dawî bi dawî şifrekirî
+        favourites: Bijarte
+        filters: Parzûn
+        follow: Pêwendî
+        follows: Şopîner
+        lists: Rêzok
+        media: Pêvekên medya
+        mutes: Bêdengkirin
+        notifications: Agahdarî
+        push: Agahdariyên Push
+        reports: Ragihandin
+        search: Lêgerîn
+        statuses: Şandî
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ kmr:
       admin:write: hemû daneyên li ser rajekar biguherîne
       admin:write:accounts: di ajimêrê de çalakiyên li hev kirî pêk bîne
       admin:write:reports: di ragihandinê de çalakiyên li hev kirî pêk bîne
+      crypto: dawî bi dawî şifrekirî bi kar bîne
       follow: têkiliyên ajimêrê biguherîne
       push: agahdariyên xwe bistîne
       read: hemû daneyên ajimêra xwe bixwîne
@@ -143,6 +173,7 @@ kmr:
       write:accounts: profîla xwe biguherîne
       write:blocks: hemû ajimêr û navperan asteng bike
       write:bookmarks: şandiyan di şûnpelê de tomar bike
+      write:conversations: bêdengkirin û jêbirina axaftinan
       write:favourites: şandiyên bijarte
       write:filters: parzûnan çê bike
       write:follows: kesan bişopîne

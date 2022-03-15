@@ -67,7 +67,6 @@ eu:
     media: Multimedia
     moved_html: "%{name} hona migratu da %{new_profile_link}:"
     network_hidden: Informazio hau ez dago eskuragarri
-    never_active: Inoiz ez
     nothing_here: Ez dago ezer hemen!
     people_followed_by: "%{name}(e)k jarraitzen dituenak"
     people_who_follow: "%{name} jarraitzen dutenak"
@@ -363,7 +362,6 @@ eu:
       enable: Gaitu
       enabled: Gaituta
       enabled_msg: Emoji hori ongi gaitu da
-      image_hint: PNG gehienez 50KB
       list: Zerrendatu
       listed: Zerrendatua
       new:
@@ -428,21 +426,6 @@ eu:
       reject_media_hint: Lokalki gordetako multimedia fitxategiak ezabatzen ditu eta etorkizunean fitxategi berriak deskargatzeari uko egingo dio. Ez du garrantzirik kanporaketetan
       reject_reports: Errefusatu salaketak
       reject_reports_hint: Ezikusi domeinu honetatik jasotako salaketak. Kanporatzeentzako garrantzirik gabekoa
-      rejecting_media: errefusatu multimedia fitxategiak
-      rejecting_reports: txostenak errefusatzen
-      severity:
-        silence: isilarazia
-        suspend: kanporatua
-      show:
-        affected_accounts:
-          one: Datu-baseko kontu bati eragiten dio
-          other: Datu-baseko %{count} konturi eragiten die
-          zero: Ez die eragiten datu-baseko kontuei
-        retroactive:
-          silence: Kendu isilarazteko agindua domeinu honetako kontu guztiei
-          suspend: Kendu kanporatzeko agindua domeinu honetako kontu guztiei
-        title: Desegin %{domain} domeinuko blokeoa
-        undo: Desegin
       undo: Desegin domeinuaren blokeoa
       view: Ikusi domeinuaren blokeoa
     email_domain_blocks:
@@ -473,13 +456,7 @@ eu:
         clear: Garbitu banaketa erroreak
         restart: Berrabiarazi banaketa
         stop: Gelditu banaketa
-        title: Banaketa
         unavailable: Eskuraezina
-        unavailable_message: Banaketa ez dago eskuragarri
-        warning: Abisua
-        warning_message:
-          one: Banaketa hutsegitea egun %{count}
-          other: Banaketa hutsegitea %{count} egun
       delivery_available: Bidalketa eskuragarri dago
       delivery_error_days: Banaketa errore egunak
       delivery_error_hint: Banaketa ezin bada %{count} egunean egin, banaezin bezala markatuko da automatikoki.
@@ -1350,6 +1327,7 @@ eu:
       '2629746': Hilabete 1
       '31556952': Urte 1
       '5259492': 2 hilabete
+      '604800': 1 week
       '63113904': 2 urte
       '7889238': 3 hilabete
     min_age_label: Denbora muga

@@ -60,8 +60,8 @@ ca:
       error:
         title: S'a produit un error
       new:
-        able_to: Serà capaç de
-        prompt: L'aplicació %{client_name} sol⋅licita tenir accés al teu compte
+        prompt_html: "%{client_name} voldria permís per a accedir el teu compte. És una aplicació de tercers. <strong>Si no hi confies no hauries d'autoritzar-la.</strong>"
+        review_permissions: Revisa els permisos
         title: Cal autorizació
       show:
         title: Copia aquest codi d'autorització i enganxa'l en l'aplicació.
@@ -71,10 +71,12 @@ ca:
       confirmations:
         revoke: N'estàs segur?
       index:
-        application: Aplicació
-        created_at: Creat el
-        date_format: "%A-%m-%d %H:%M:%S"
-        scopes: Àmbits
+        authorized_at: Autoritzada el %{date}
+        description_html: Aquestes son les aplicacions que poden accedir al teu compte usant l'API. Si aquí hi ha aplicacions que no reconeixes o una aplicació es comporta malament, pots revocar el seu accés.
+        last_used_at: Darrera utilització el %{date}
+        never_used: Mai usat
+        scopes: Permisos
+        superapp: Interna
         title: Les teves aplicacions autoritzades
     errors:
       messages:
@@ -110,6 +112,33 @@ ca:
       authorized_applications:
         destroy:
           notice: Aplicació revocada.
+    grouped_scopes:
+      access:
+        read: Accés només de lectura
+        read/write: Accés de lectura i escriptura
+        write: Accés de només escriptura
+      title:
+        accounts: Comptes
+        admin/accounts: Administració dels comptes
+        admin/all: Totes les funcions administratives
+        admin/reports: Administració dels informes
+        all: Tot
+        blocks: Bloquejos
+        bookmarks: Marcadors
+        conversations: Converses
+        crypto: Xifrat d'extrem a extrem
+        favourites: Favorits
+        filters: Filtres
+        follow: Relacions
+        follows: Seguits
+        lists: Llistes
+        media: Adjunts multimèdia
+        mutes: Silenciats
+        notifications: Notificacions
+        push: Notificacions push
+        reports: Informes
+        search: Cerca
+        statuses: Publicacions
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ ca:
       admin:write: modificar totes les dades en el servidor
       admin:write:accounts: fer l'acció de moderació en els comptes
       admin:write:reports: fer l'acció de moderació en els informes
+      crypto: usa xifrat d'extrem a extrem
       follow: seguir, blocar, desblocar i deixar de seguir comptes
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte
@@ -143,6 +173,7 @@ ca:
       write:accounts: modifica el teu perfil
       write:blocks: bloqueja comptes i dominis
       write:bookmarks: publicacions a marcadors
+      write:conversations: silencia i esborra converses
       write:favourites: afavoreix tuts
       write:filters: crear filtres
       write:follows: seguir usuaris

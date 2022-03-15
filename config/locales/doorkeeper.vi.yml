@@ -60,8 +60,8 @@ vi:
       error:
         title: Một lỗi đã xảy ra
       new:
-        able_to: Nó sẽ có thể
-        prompt: Ứng dụng %{client_name} yêu cầu quyền truy cập vào tài khoản của bạn
+        prompt_html: "%{client_name} yêu cầu truy cập tài khoản của bạn. Đây là ứng dụng của bên thứ ba. <strong>Nếu không tin tưởng, đừng cho phép nó.</strong>"
+        review_permissions: Xem lại quyền cho phép
         title: Yêu cầu truy cập
       show:
         title: Sao chép mã này và dán nó vào ứng dụng.
@@ -71,10 +71,12 @@ vi:
       confirmations:
         revoke: Bạn có chắc không?
       index:
-        application: Ứng dụng
-        created_at: Đã cho phép
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Quyền hạn
+        authorized_at: Cấp quyền vào %{date}
+        description_html: Đây là những ứng dụng có thể truy cập tài khoản của bạn bằng API. Nếu có ứng dụng bạn không nhận ra ở đây hoặc ứng dụng hoạt động sai, bạn có thể thu hồi quyền truy cập của ứng dụng đó.
+        last_used_at: Dùng gần nhất vào %{date}
+        never_used: Chưa dùng bao giờ
+        scopes: Quyền cho phép
+        superapp: Nội bộ
         title: Các ứng dụng đang cho phép
     errors:
       messages:
@@ -110,6 +112,33 @@ vi:
       authorized_applications:
         destroy:
           notice: Đã gỡ bỏ ứng dụng.
+    grouped_scopes:
+      access:
+        read: Chỉ đọc
+        read/write: Đọc và ghi
+        write: Chỉ ghi
+      title:
+        accounts: Tài khoản
+        admin/accounts: Quản trị tài khoản
+        admin/all: Mọi chức năng quản trị
+        admin/reports: Quản trị báo cáo
+        all: Tất cả
+        blocks: Chặn
+        bookmarks: Tút đã lưu
+        conversations: Thảo luận
+        crypto: Mã hóa đầu cuối
+        favourites: Lượt thích
+        filters: Bộ lọc
+        follow: Mối quan hệ
+        follows: Đang theo dõi
+        lists: Danh sách
+        media: Tập tin đính kèm
+        mutes: Đã ẩn
+        notifications: Thông báo
+        push: Thông báo đẩy
+        reports: Báo cáo
+        search: Tìm kiếm
+        statuses: Tút
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ vi:
       admin:write: sửa đổi tất cả dữ liệu trên máy chủ
       admin:write:accounts: áp đặt hành động kiểm duyệt trên tài khoản
       admin:write:reports: áp đặt kiểm duyệt với các báo cáo
+      crypto: dùng mã hóa đầu cuối
       follow: sửa đổi các mối quan hệ tài khoản
       push: nhận thông báo đẩy của bạn
       read: đọc tất cả dữ liệu tài khoản của bạn
@@ -143,6 +173,7 @@ vi:
       write:accounts: sửa đổi trang cá nhân của bạn
       write:blocks: chặn người dùng và máy chủ
       write:bookmarks: sửa đổi những thứ bạn lưu
+      write:conversations: ẩn và xóa thảo luận
       write:favourites: lượt thích
       write:filters: tạo bộ lọc
       write:follows: theo dõi ai đó

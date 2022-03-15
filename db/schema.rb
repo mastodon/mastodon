@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_195405) do
+ActiveRecord::Schema.define(version: 2022_03_10_060959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_account_migrations_on_account_id"
-    t.index ["target_account_id"], name: "index_account_migrations_on_target_account_id"
+    t.index ["target_account_id"], name: "index_account_migrations_on_target_account_id", where: "(target_account_id IS NOT NULL)"
   end
 
   create_table "account_moderation_notes", force: :cascade do |t|
@@ -188,9 +188,9 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.datetime "requested_review_at"
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), COALESCE(lower((domain)::text), ''::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
-    t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
+    t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id", where: "(moved_to_account_id IS NOT NULL)"
     t.index ["uri"], name: "index_accounts_on_uri"
-    t.index ["url"], name: "index_accounts_on_url"
+    t.index ["url"], name: "index_accounts_on_url", opclass: :text_pattern_ops, where: "(url IS NOT NULL)"
   end
 
   create_table "accounts_tags", id: false, force: :cascade do |t|
@@ -230,7 +230,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.datetime "updated_at", null: false
     t.index ["account_id", "announcement_id", "name"], name: "index_announcement_reactions_on_account_id_and_announcement_id", unique: true
     t.index ["announcement_id"], name: "index_announcement_reactions_on_announcement_id"
-    t.index ["custom_emoji_id"], name: "index_announcement_reactions_on_custom_emoji_id"
+    t.index ["custom_emoji_id"], name: "index_announcement_reactions_on_custom_emoji_id", where: "(custom_emoji_id IS NOT NULL)"
   end
 
   create_table "announcements", force: :cascade do |t|
@@ -258,8 +258,8 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_appeals_on_account_id"
     t.index ["account_warning_id"], name: "index_appeals_on_account_warning_id", unique: true
-    t.index ["approved_by_account_id"], name: "index_appeals_on_approved_by_account_id"
-    t.index ["rejected_by_account_id"], name: "index_appeals_on_rejected_by_account_id"
+    t.index ["approved_by_account_id"], name: "index_appeals_on_approved_by_account_id", where: "(approved_by_account_id IS NOT NULL)"
+    t.index ["rejected_by_account_id"], name: "index_appeals_on_rejected_by_account_id", where: "(rejected_by_account_id IS NOT NULL)"
   end
 
   create_table "backups", force: :cascade do |t|
@@ -311,7 +311,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.string "uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["uri"], name: "index_conversations_on_uri", unique: true
+    t.index ["uri"], name: "index_conversations_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
   end
 
   create_table "custom_emoji_categories", force: :cascade do |t|
@@ -391,7 +391,6 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.bigint "parent_id"
     t.inet "ips", array: true
     t.datetime "last_refresh_at"
-
     t.index ["domain"], name: "index_email_domain_blocks_on_domain", unique: true
   end
 
@@ -420,8 +419,8 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
   end
 
   create_table "featured_tags", force: :cascade do |t|
-    t.bigint "account_id"
-    t.bigint "tag_id"
+    t.bigint "account_id", null: false
+    t.bigint "tag_id", null: false
     t.bigint "statuses_count", default: 0, null: false
     t.datetime "last_status_at"
     t.datetime "created_at", null: false
@@ -510,7 +509,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.bigint "account_id", null: false
     t.bigint "follow_id"
     t.index ["account_id", "list_id"], name: "index_list_accounts_on_account_id_and_list_id", unique: true
-    t.index ["follow_id"], name: "index_list_accounts_on_follow_id"
+    t.index ["follow_id"], name: "index_list_accounts_on_follow_id", where: "(follow_id IS NOT NULL)"
     t.index ["list_id", "account_id"], name: "index_list_accounts_on_list_id_and_account_id"
   end
 
@@ -569,8 +568,8 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.datetime "thumbnail_updated_at"
     t.string "thumbnail_remote_url"
     t.index ["account_id", "status_id"], name: "index_media_attachments_on_account_id_and_status_id", order: { status_id: :desc }
-    t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id"
-    t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true
+    t.index ["scheduled_status_id"], name: "index_media_attachments_on_scheduled_status_id", where: "(scheduled_status_id IS NOT NULL)"
+    t.index ["shortcode"], name: "index_media_attachments_on_shortcode", unique: true, opclass: :text_pattern_ops, where: "(shortcode IS NOT NULL)"
     t.index ["status_id"], name: "index_media_attachments_on_status_id"
   end
 
@@ -632,8 +631,8 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.bigint "resource_owner_id"
     t.datetime "last_used_at"
     t.inet "last_used_ip"
-    t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
-    t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
+    t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, opclass: :text_pattern_ops, where: "(refresh_token IS NOT NULL)"
+    t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", where: "(resource_owner_id IS NOT NULL)"
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
@@ -845,9 +844,12 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.bigint "account_id"
     t.text "text", default: "", null: false
     t.text "spoiler_text", default: "", null: false
-    t.boolean "media_attachments_changed", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "ordered_media_attachment_ids", array: true
+    t.text "media_descriptions", array: true
+    t.string "poll_options", array: true
+    t.boolean "sensitive"
     t.index ["account_id"], name: "index_status_edits_on_account_id"
     t.index ["status_id"], name: "index_status_edits_on_status_id"
   end
@@ -892,14 +894,15 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.datetime "deleted_at"
     t.datetime "edited_at"
     t.boolean "trendable"
+    t.bigint "ordered_media_attachment_ids", array: true
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
     t.index ["deleted_at"], name: "index_statuses_on_deleted_at", where: "(deleted_at IS NOT NULL)"
     t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
     t.index ["id", "account_id"], name: "index_statuses_public_20200119", order: { id: :desc }, where: "((deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
-    t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
-    t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
+    t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id", where: "(in_reply_to_account_id IS NOT NULL)"
+    t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id", where: "(in_reply_to_id IS NOT NULL)"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
-    t.index ["uri"], name: "index_statuses_on_uri", unique: true
+    t.index ["uri"], name: "index_statuses_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
   end
 
   create_table "statuses_tags", id: false, force: :cascade do |t|
@@ -993,9 +996,9 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.boolean "skip_sign_in_token"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
-    t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id"
+    t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id", where: "(created_by_application_id IS NOT NULL)"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, opclass: :text_pattern_ops, where: "(reset_password_token IS NOT NULL)"
   end
 
   create_table "web_push_subscriptions", force: :cascade do |t|
@@ -1007,7 +1010,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_195405) do
     t.datetime "updated_at", null: false
     t.bigint "access_token_id"
     t.bigint "user_id"
-    t.index ["access_token_id"], name: "index_web_push_subscriptions_on_access_token_id"
+    t.index ["access_token_id"], name: "index_web_push_subscriptions_on_access_token_id", where: "(access_token_id IS NOT NULL)"
     t.index ["user_id"], name: "index_web_push_subscriptions_on_user_id"
   end
 

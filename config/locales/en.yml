@@ -373,7 +373,7 @@ en:
       enable: Enable
       enabled: Enabled
       enabled_msg: Successfully enabled that emoji
-      image_hint: PNG up to 50KB
+      image_hint: PNG or GIF up to %{size}
       list: List
       listed: Listed
       new:
@@ -450,21 +450,6 @@ en:
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       reject_reports: Reject reports
       reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
-      rejecting_media: rejecting media files
-      rejecting_reports: rejecting reports
-      severity:
-        silence: limited
-        suspend: suspended
-      show:
-        affected_accounts:
-          one: One account in the database affected
-          other: "%{count} accounts in the database affected"
-          zero: No account in the database is affected
-        retroactive:
-          silence: Undo limit of existing affected accounts from this domain
-          suspend: Unsuspend existing affected accounts from this domain
-        title: Undo domain block for %{domain}
-        undo: Undo
       undo: Undo domain block
       view: View domain block
     email_domain_blocks:
@@ -495,23 +480,47 @@ en:
       title: Follow recommendations
       unsuppress: Restore follow recommendation
     instances:
+      availability:
+        description_html:
+          one: If delivering to the domain fails <strong>%{count} day</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+          other: If delivering to the domain fails on <strong>%{count} different days</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+        failure_threshold_reached: Failure threshold reached on %{date}.
+        failures_recorded:
+          one: Failed attempt on %{count} day.
+          other: Failed attempts on %{count} different days.
+        no_failures_recorded: No failures on record.
+        title: Availability
       back_to_all: All
       back_to_limited: Limited
       back_to_warning: Warning
       by_domain: Domain
       confirm_purge: Are you sure you want to permanently delete data from this domain?
+      content_policies:
+        comment: Internal note
+        description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
+        policies:
+          reject_media: Reject media
+          reject_reports: Reject reports
+          silence: Limit
+          suspend: Suspend
+        policy: Policy
+        reason: Public reason
+        title: Content policies
+      dashboard:
+        instance_accounts_dimension: Most followed accounts
+        instance_accounts_measure: stored accounts
+        instance_followers_measure: our followers there
+        instance_follows_measure: their followers here
+        instance_languages_dimension: Top languages
+        instance_media_attachments_measure: stored media attachments
+        instance_reports_measure: reports about them
+        instance_statuses_measure: stored posts
       delivery:
         all: All
         clear: Clear delivery errors
         restart: Restart delivery
         stop: Stop delivery
-        title: Delivery
         unavailable: Unavailable
-        unavailable_message: Delivery unavailable
-        warning: Warning
-        warning_message:
-          one: Delivery failure %{count} day
-          other: Delivery failure %{count} days
       delivery_available: Delivery is available
       delivery_error_days: Delivery error days
       delivery_error_hint: If delivery is not possible for %{count} days, it will be automatically marked as undeliverable.
@@ -528,12 +537,14 @@ en:
       private_comment: Private comment
       public_comment: Public comment
       purge: Purge
+      purge_description_html: If you believe this domain is offline for good, you can delete all account records and associated data from this domain from your storage. This may take a while.
       title: Federation
       total_blocked_by_us: Blocked by us
       total_followed_by_them: Followed by them
       total_followed_by_us: Followed by us
       total_reported: Reports about them
       total_storage: Media attachments
+      totals_time_period_hint_html: The totals displayed below include data for all time.
     invites:
       deactivate_all: Deactivate all
       filter:
@@ -1640,7 +1651,6 @@ en:
         sensitive: From now on, all your uploaded media files will be marked as sensitive and hidden behind a click-through warning.
         silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various discovery features. However, others may still manually follow you.
         suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
-      get_in_touch: If you believe this is an error, you can reply to this e-mail to get in touch with the staff of %{instance}.
       reason: 'Reason:'
       statuses: 'Posts cited:'
       subject:
