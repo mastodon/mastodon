@@ -811,6 +811,7 @@ ko:
           tag_servers_dimension: 상위 서버
           tag_servers_measure: 다른 서버들
           tag_uses_measure: 총 사용
+        description_html: 현재 서버에서 볼 수 있는 게시물에서 많이 공유되고 있는 해시태그들입니다. 현재 사람들이 무슨 이야기를 하고 있는지 사용자들이 파악할 수 있도록 도움이 됩니다. 승인하지 않는 한 해시태그는 공개적으로 게시되지 않습니다.
         listable: 추천될 수 있습니다
         not_listable: 추천될 수 없습니다
         not_trendable: 유행 목록에 나타나지 않습니다
@@ -843,6 +844,7 @@ ko:
         silence: 계정을 제한하는 것
         suspend: 계정을 정지하는 것
       body: "%{target} 님이 %{action_taken_by} 님에 의해 %{date}에 결정된 중재 결정에 대한 이의를 제기했습니다, 결정된 사항은 %{type}이었습니다. 작성내용은 다음과 같습니다:"
+      next_steps: 중재 결정사항을 되돌리기 위해서 상소를 승인하거나, 무시할 수 있습니다.
       subject: "%{username} 님이 %{instance}에서 발생한 중재 결정에 대해 소명을 제출했습니다"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
@@ -855,9 +857,11 @@ ko:
       body: '아래에 있는 항목들은 공개적으로 보여지기 전에 검토를 거쳐야 합니다:'
       new_trending_links:
         no_approved_links: 현재 승인된 유행 중인 링크가 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 링크를 앞지를 수 있으며, 이것은 현재 "%{lowest_link_title}"이고 %{lowest_link_score}점을 기록하고 있습니다.'
         title: 유행하는 링크
       new_trending_statuses:
         no_approved_statuses: 현재 승인된 유행 중인 게시물이 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 게시물을 앞지를 수 있으며, 이것은 현재 %{lowest_status_url}이고 %{lowest_status_score}점을 기록하고 있습니다.'
         title: 유행하는 게시물
       new_trending_tags:
         no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
