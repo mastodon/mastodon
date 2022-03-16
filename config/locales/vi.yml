@@ -777,19 +777,19 @@ vi:
       links:
         allow: Liên kết cho phép
         allow_provider: Nguồn đăng cho phép
-        description_html: Đây là những liên kết được chia sẻ nhiều trên máy chủ của bạn. Nó có thể giúp người dùng của bạn tìm hiểu những gì đang xảy ra trên thế giới. Không có liên kết nào được hiển thị công khai cho đến khi bạn duyệt nguồn. Bạn cũng có thể cho phép hoặc từ chối các liên kết riêng lẻ.
+        description_html: Đây là những liên kết được chia sẻ nhiều trên máy chủ của bạn. Nó có thể giúp người dùng tìm hiểu những gì đang xảy ra trên thế giới. Không có liên kết nào được hiển thị công khai cho đến khi bạn duyệt nguồn. Bạn cũng có thể cho phép hoặc từ chối từng liên kết riêng.
         disallow: Liên kết cấm
         disallow_provider: Nguồn đăng bị cấm
         shared_by_over_week:
-          one: Chia sẻ bởi một người trong tuần qua
-          other: Chia sẻ bởi %{count} người trong tuần qua
+          one: một người chia sẻ trong tuần qua
+          other: '%{count} người chia sẻ trong tuần qua'
           zero: Không ai chia sẻ trong tuần qua
-        title: Liên kết đang là xu hướng
+        title: Liên kết xu hướng
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       pending_review: Đang chờ
       preview_card_providers:
         allowed: Liên kết từ nguồn đăng này có thể thành xu hướng
-        description_html: Đây là những nguồn mà từ đó các liên kết thường được chia sẻ trên máy chủ của bạn. Các liên kết sẽ không được trở thành xu hướng trừ khi bạn cho phép nguồn. Sự cho phép (hoặc từ chối) của bạn mở rộng đến các tên miền phụ.
+        description_html: Đây là những nguồn mà từ đó các liên kết thường được chia sẻ trên máy chủ của bạn. Các liên kết sẽ không được trở thành xu hướng trừ khi bạn cho phép nguồn. Sự cho phép (hoặc cấm) của bạn áp dụng luôn cho các tên miền phụ.
         rejected: Liên kết từ nguồn đăng không thể thành xu hướng
         title: Nguồn đăng
       rejected: Đã cấm
@@ -801,7 +801,7 @@ vi:
         disallow_account: Không cho phép người đăng
         not_discoverable: Tác giả đã chọn không tham gia mục khám phá
         shared_by:
-          other: Đã chia sẻ và thích %{friendly_count} lần
+          other: Được thích và đăng lại %{friendly_count} lần
         title: Tút xu hướng
       tags:
         current_score: Chỉ số gần đây %{score}
@@ -1448,12 +1448,12 @@ vi:
   statuses_cleanup:
     enabled: Tự động xóa những tút cũ
     enabled_hint: Tự động xóa các tút của bạn khi chúng tới thời điểm nhất định, trừ những trường hợp ngoại lệ bên dưới
-    exceptions: Ngoại trừ
+    exceptions: Ngoại lệ
     explanation: Việc xóa tút rất tốn thời gian vì tút của bạn sẽ tăng dần theo năm tháng. Bởi lý do này, bạn nên xóa những tút cũ khi chúng đã đạt tới thời điểm nhất định.
     ignore_favs: Bỏ qua số luợt thích
     ignore_reblogs: Bỏ qua lượt đăng lại
     interaction_exceptions: Ngoại lệ dựa trên tương tác
-    interaction_exceptions_explanation: Lưu ý rằng không có gì đảm bảo rằng các tút sẽ bị xóa nếu chúng xuống dưới ngưỡng mức yêu thích hoặc đăng lại sau khi đã từng vượt qua.
+    interaction_exceptions_explanation: Lưu ý rằng không có gì đảm bảo rằng các tút sẽ bị xóa nếu chúng tụt dưới ngưỡng mức yêu thích hoặc đăng lại, dù đã từng đạt.
     keep_direct: Giữ lại tin nhắn
     keep_direct_hint: Không xóa tin nhắn của bạn
     keep_media: Giữ lại những tút có đính kèm media
