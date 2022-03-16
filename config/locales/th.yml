@@ -155,6 +155,7 @@ th:
       previous_strikes_description_html:
         one: บัญชีนี้มี <strong>หนึ่ง</strong> การดำเนินการ
         other: บัญชีนี้มี <strong>%{count}</strong> การดำเนินการ
+        zero: บัญชีนี้ <strong>อยู่ในสถานะที่ดี</strong>
       promote: เลื่อนขั้น
       protocol: โปรโตคอล
       public: สาธารณะ
@@ -742,6 +743,8 @@ th:
         allow_account: อนุญาตผู้สร้าง
         disallow: ไม่อนุญาตโพสต์
         disallow_account: ไม่อนุญาตผู้สร้าง
+        shared_by:
+          other: แบ่งปันและชื่นชอบ %{friendly_count} ครั้ง
         title: โพสต์ที่กำลังนิยม
       tags:
         current_score: คะแนนปัจจุบัน %{score}
@@ -1283,6 +1286,7 @@ th:
     profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
     statuses_cleanup: การลบโพสต์แบบอัตโนมัติ
+    strikes: การดำเนินการการควบคุม
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
     webauthn_authentication: กุญแจความปลอดภัย
   statuses:
