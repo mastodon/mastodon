@@ -696,6 +696,9 @@ ja:
       title: 投稿一覧
       with_media: メディアあり
     strikes:
+      actions:
+        mark_statuses_as_sensitive: "%{name} さんが %{target} さんの投稿を閲覧注意としてマークしました"
+        sensitive: "%{name} さんが %{target} さんのアカウントを閲覧注意としてマークしました"
       appeal_approved: 抗議済み
       appeal_pending: 保留中の抗議
     system_checks:
@@ -1103,6 +1106,9 @@ ja:
     carry_mutes_over_text: このユーザーは、あなたがミュートしていた %{acct} から引っ越しました。
     copy_account_note_text: 'このユーザーは %{acct} から引っ越しました。これは以前のメモです。'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} がサインアップしました"
     digest:
       action: 全ての通知を表示
       body: '最後のログイン（%{since}）からの出来事:'
