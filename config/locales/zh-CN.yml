@@ -1414,6 +1414,7 @@ zh-CN:
     default_language: 与界面显示语言相同
     disallowed_hashtags:
       other: '包含了这些禁止的话题标签：%{tags}'
+    edited_at_html: 编辑于 %{date}
     errors:
       in_reply_not_found: 你回复的嘟文似乎不存在
     open_in_web: 在站内打开
@@ -1447,7 +1448,7 @@ zh-CN:
     enabled: 自动删除旧嘟文
     enabled_hint: 当您的嘟文达到指定的过期时间后自动删除，除非它们与下面的例外之一相匹配
     exceptions: 例外
-    explanation: 因为删除帖子是一个昂贵的操作，所以这个操作会随着时间的推移而缓慢地完成，当服务器没有其他忙碌的时候。 为此原因，您的帖子可能会在达到年龄界限后被删除。
+    explanation: 删除嘟文是一个消耗系统资源的耗时操作，所以这个操作会在服务器空闲时完成。因此，您的嘟文可能会在达到过期阈值之后一段时间才会被删除。
     ignore_favs: 取消喜欢
     ignore_reblogs: 忽略转嘟
     interaction_exceptions: 基于互动的例外
@@ -1476,7 +1477,7 @@ zh-CN:
     min_age_label: 过期阈值
     min_favs: 保留如下嘟文：喜欢数超过
     min_favs_hint: 喜欢数超过该阈值的的嘟文不被删除。如果留空，则无视喜欢数，直接删除。
-    min_reblogs: 保留如下嘟文：转嘟属超过
+    min_reblogs: 保留如下嘟文：转嘟数超过
     min_reblogs_hint: 转嘟数超过该阈值的的嘟文不被删除。如果留空，则无视被转嘟的数量，直接删除。
   stream_entries:
     pinned: 置顶嘟文
