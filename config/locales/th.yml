@@ -1226,6 +1226,9 @@ th:
     reply:
       proceed: ดำเนินการต่อเพื่อตอบกลับ
       prompt: 'คุณต้องการตอบกลับโพสต์นี้:'
+  reports:
+    errors:
+      invalid_rules: ไม่ได้อ้างอิงกฎที่ถูกต้อง
   scheduled_statuses:
     too_soon: วันที่ตามกำหนดการต้องอยู่ในอนาคต
   sessions:
@@ -1249,6 +1252,7 @@ th:
       weibo: Weibo
     current_session: เซสชันปัจจุบัน
     description: "%{browser} ใน %{platform}"
+    explanation: นี่คือเว็บเบราว์เซอร์ที่เข้าสู่ระบบบัญชี Mastodon ของคุณในปัจจุบัน
     ip: IP
     platforms:
       adobe_air: Adobe Air
