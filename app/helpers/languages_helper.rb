@@ -88,7 +88,7 @@ module LanguagesHelper
     ko: ['Korean', '한국어'].freeze,
     kr: ['Kanuri', 'Kanuri'].freeze,
     ks: ['Kashmiri', 'कश्मीरी'].freeze,
-    ku: ['Kurdish', 'Kurdî'].freeze,
+    ku: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     kv: ['Komi', 'коми кыв'].freeze,
     kw: ['Cornish', 'Kernewek'].freeze,
     ky: ['Kyrgyz', 'Кыргызча'].freeze,
@@ -188,8 +188,9 @@ module LanguagesHelper
 
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
+    ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
-    kmr: ['Northern Kurdish', 'Kurmancî'].freeze,
+    kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
