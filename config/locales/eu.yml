@@ -16,6 +16,7 @@ eu:
     contact: Kontaktua
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
+    continue_to_web: Jarraitu web aplikaziora
     discover_users: Aurkitu erabiltzaileak
     documentation: Dokumentazioa
     federation_hint_html: "%{instance} instantzian kontu bat izanda edozein Mastodon zerbitzariko jendea jarraitu ahal izango duzu, eta harago ere."
@@ -23,6 +24,8 @@ eu:
     hosted_on: Mastodon %{domain} domeinuan ostatatua
     instance_actor_flash: "Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke. \n"
     learn_more: Ikasi gehiago
+    logged_in_as_html: "%{username} bezala saioa hasita zaude."
+    logout_before_registering: Saioa hasi duzu jada.
     privacy_policy: Pribatutasun politika
     rules: Zerbitzariaren arauak
     rules_html: 'Behean Mastodon zerbitzari honetan kontua eduki nahi baduzu jarraitu beharreko arauen laburpena daukazu:'
@@ -159,6 +162,11 @@ eu:
       not_subscribed: Harpidetu gabe
       pending: Berrikusketa egiteke
       perform_full_suspension: Kanporatu
+      previous_strikes: Aurreko abisuak
+      previous_strikes_description_html:
+        one: Kontu honek abisu <strong>bat</strong> dauka.
+        other: Kontu honek <strong>%{count}</strong> abisu dauzka.
+        zero: Kontu honek <strong>ez dauka abisurik</strong>.
       promote: Sustatu
       protocol: Protokoloa
       public: Publikoa
@@ -200,6 +208,7 @@ eu:
       silence: Isilarazi
       silenced: Isilarazita
       statuses: Bidalketa
+      strikes: Aurreko abisuak
       subscribe: Harpidetu
       suspend: Kanporatu
       suspended: Kanporatuta
@@ -362,6 +371,7 @@ eu:
       enable: Gaitu
       enabled: Gaituta
       enabled_msg: Emoji hori ongi gaitu da
+      image_hint: "%{size} arteko PNG edo GIF"
       list: Zerrendatu
       listed: Zerrendatua
       new:
@@ -432,10 +442,14 @@ eu:
       add_new: Gehitu berria
       created_msg: Ongi gehitu da e-mail helbidea domeinuen zerrenda beltzera
       delete: Ezabatu
+      dns:
+        types:
+          mx: MX erregistroa
       domain: Domeinua
       new:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
+      no_email_domain_block_selected: Ez da eposta domeinu blokeorik aldatu ez delako bat bera ere hautatu
       title: E-mail zerrenda beltza
     follow_recommendations:
       description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
@@ -446,11 +460,32 @@ eu:
       title: Jarraitzeko gomendioak
       unsuppress: Berrezarri jarraitzeko gomendioa
     instances:
+      availability:
+        failure_threshold_reached: Hutsegite atalasera iritsi da %{date} datan.
+        no_failures_recorded: Ez dago hutsegiterik erregistroan.
+        title: Egoera
       back_to_all: Guztiak
       back_to_limited: Mugatua
       back_to_warning: Abisua
       by_domain: Domeinua
       confirm_purge: Ziur zaude domeinu honen datuak behin betiko ezabatu nahi dituzula?
+      content_policies:
+        comment: Barne-oharra
+        description_html: Domeinu honetako eta bere azpi-domeinuetako kontu guztiei aplikatuko zaizkien eduki-politikak definitu ditzakezu.
+        policies:
+          reject_media: Errefusatu multimediak
+          reject_reports: Errefusatu salaketak
+          silence: Isilarazi
+          suspend: Kanporatu
+        policy: Politika
+        reason: Arrazoi publikoa
+        title: Eduki politikak
+      dashboard:
+        instance_accounts_dimension: Kontu jarraituenak
+        instance_accounts_measure: gordetako kontuak
+        instance_followers_measure: gure jarraitzaileak hemen
+        instance_follows_measure: beren jarraitzaileak hemen
+        instance_languages_dimension: Hizkuntza nagusiak
       delivery:
         all: Guztiak
         clear: Garbitu banaketa erroreak

@@ -152,10 +152,11 @@ th:
       not_subscribed: ไม่ได้บอกรับ
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
-      previous_strikes: การลงโทษก่อนหน้านี้
+      previous_strikes: การดำเนินการก่อนหน้านี้
       previous_strikes_description_html:
-        one: บัญชีนี้มี <strong>หนึ่ง</strong> การลงโทษ
-        other: บัญชีนี้มี <strong>%{count}</strong> การลงโทษ
+        one: บัญชีนี้มี <strong>หนึ่ง</strong> การดำเนินการ
+        other: บัญชีนี้มี <strong>%{count}</strong> การดำเนินการ
+        zero: บัญชีนี้ <strong>อยู่ในสถานะที่ดี</strong>
       promote: เลื่อนขั้น
       protocol: โปรโตคอล
       public: สาธารณะ
@@ -196,7 +197,7 @@ th:
       silence: จำกัด
       silenced: จำกัดอยู่
       statuses: โพสต์
-      strikes: การลงโทษก่อนหน้านี้
+      strikes: การดำเนินการก่อนหน้านี้
       subscribe: บอกรับ
       suspend: ระงับ
       suspended: ระงับอยู่
@@ -354,6 +355,7 @@ th:
       enable: เปิดใช้งาน
       enabled: เปิดใช้งานอยู่
       enabled_msg: เปิดใช้งานอีโมจินั้นสำเร็จ
+      image_hint: PNG หรือ GIF สูงสุด %{size}
       list: แสดงรายการ
       listed: อยู่ในรายการ
       new:
@@ -742,6 +744,8 @@ th:
         allow_account: อนุญาตผู้สร้าง
         disallow: ไม่อนุญาตโพสต์
         disallow_account: ไม่อนุญาตผู้สร้าง
+        shared_by:
+          other: แบ่งปันและชื่นชอบ %{friendly_count} ครั้ง
         title: โพสต์ที่กำลังนิยม
       tags:
         current_score: คะแนนปัจจุบัน %{score}
@@ -778,6 +782,7 @@ th:
         delete_statuses: เพื่อลบโพสต์ของเขา
         disable: เพื่ออายัดบัญชีของเขา
         mark_statuses_as_sensitive: เพื่อทำเครื่องหมายโพสต์ของเขาว่าละเอียดอ่อน
+        none: คำเตือน
         sensitive: เพื่อทำเครื่องหมายบัญชีของเขาว่าละเอียดอ่อน
         silence: เพื่อจำกัดบัญชีของเขา
         suspend: เพื่อระงับบัญชีของเขา
@@ -935,6 +940,7 @@ th:
     strikes:
       action_taken: การกระทำที่ใช้
       appeal: อุทธรณ์
+      appeal_rejected: ปฏิเสธการอุทธรณ์แล้ว
       appeal_submitted_at: ส่งการอุทธรณ์แล้ว
       appeals:
         submit: ส่งการอุทธรณ์
@@ -1098,6 +1104,7 @@ th:
     warning:
       before: 'ก่อนดำเนินการต่อ โปรดอ่านหมายเหตุเหล่านี้อย่างระมัดระวัง:'
       followers: การกระทำนี้จะย้ายผู้ติดตามทั้งหมดจากบัญชีปัจจุบันไปยังบัญชีใหม่
+      other_data: จะไม่ย้ายข้อมูลอื่น ๆ โดยอัตโนมัติ
   moderation:
     title: การควบคุม
   move_handler:
@@ -1220,6 +1227,9 @@ th:
     reply:
       proceed: ดำเนินการต่อเพื่อตอบกลับ
       prompt: 'คุณต้องการตอบกลับโพสต์นี้:'
+  reports:
+    errors:
+      invalid_rules: ไม่ได้อ้างอิงกฎที่ถูกต้อง
   scheduled_statuses:
     too_soon: วันที่ตามกำหนดการต้องอยู่ในอนาคต
   sessions:
@@ -1243,6 +1253,7 @@ th:
       weibo: Weibo
     current_session: เซสชันปัจจุบัน
     description: "%{browser} ใน %{platform}"
+    explanation: นี่คือเว็บเบราว์เซอร์ที่เข้าสู่ระบบบัญชี Mastodon ของคุณในปัจจุบัน
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1280,6 +1291,7 @@ th:
     profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
     statuses_cleanup: การลบโพสต์แบบอัตโนมัติ
+    strikes: การดำเนินการการควบคุม
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
     webauthn_authentication: กุญแจความปลอดภัย
   statuses:
@@ -1296,7 +1308,9 @@ th:
     default_language: เหมือนกับภาษาส่วนติดต่อ
     disallowed_hashtags:
       other: 'มีแฮชแท็กที่ไม่อนุญาต: %{tags}'
-    edited_at: แก้ไขเมื่อ %{date}
+    edited_at_html: แก้ไขเมื่อ %{date}
+    errors:
+      in_reply_not_found: ดูเหมือนว่าจะไม่มีโพสต์ที่คุณกำลังพยายามตอบกลับอยู่
     open_in_web: เปิดในเว็บ
     pin_errors:
       direct: ไม่สามารถปักหมุดโพสต์ที่ปรากฏแก่ผู้ใช้ที่กล่าวถึงเท่านั้น
