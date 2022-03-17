@@ -1,7 +1,6 @@
----
 th:
   about:
-    about_hashtag_html: มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์ได้หากคุณมีบัญชีที่ใดก็ตามในจักรวาลสหพันธ์
+    about_hashtag_html: 'มีการแท็กโพสต์สาธารณะเหล่านี้ด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์ได้หากคุณมีบัญชีที่ใดก็ตามในจักรวาลสหพันธ์'
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา ไม่มีการสอดแนมโดยองค์กร การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ใช้งานอยู่
@@ -51,7 +50,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ตัวเลือกของ %{name}:'
+    choices_html: "ตัวเลือกของ %{name}:"
     featured_tags_hint: คุณสามารถแนะนำแฮชแท็กที่เฉพาะเจาะจงที่จะแสดงที่นี่
     follow: ติดตาม
     followers:
@@ -106,7 +105,7 @@ th:
       delete: ลบข้อมูล
       deleted: ลบแล้ว
       demote: ลดขั้น
-      destroyed_msg: ตอนนี้จัดคิวเพื่อลบข้อมูลของ %{username} ในเร็ว ๆ นี้แล้ว
+      destroyed_msg: "ตอนนี้จัดคิวเพื่อลบข้อมูลของ %{username} ในเร็ว ๆ นี้แล้ว"
       disable: อายัด
       disable_sign_in_token_auth: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       disable_two_factor_authentication: ปิดใช้งาน 2FA
@@ -269,6 +268,7 @@ th:
         update_domain_block: อัปเดตการปิดกั้นโดเมน
         update_status: อัปเดตโพสต์
       actions:
+        approve_appeal_html: "%{name} ได้อนุมัติการอุทธรณ์การตัดสินใจของผู้ควบคุมจาก %{target}"
         approve_user_html: "%{name} ได้อนุมัติการลงทะเบียนจาก %{target}"
         assigned_to_self_report_html: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
         change_email_user_html: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
@@ -299,6 +299,7 @@ th:
         enable_user_html: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         memorialize_account_html: "%{name} ได้เปลี่ยนบัญชีของ %{target} เป็นหน้าอนุสรณ์"
         promote_user_html: "%{name} ได้เลื่อนขั้นผู้ใช้ %{target}"
+        reject_appeal_html: "%{name} ได้ปฏิเสธการอุทธรณ์การตัดสินใจของผู้ควบคุมจาก %{target}"
         reject_user_html: "%{name} ได้ปฏิเสธการลงทะเบียนจาก %{target}"
         remove_avatar_user_html: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report_html: "%{name} ได้เปิดรายงาน %{target} ใหม่"
@@ -526,7 +527,7 @@ th:
       no_ip_block_selected: ไม่มีการเปลี่ยนแปลงกฎ IP เนื่องจากไม่มีการเลือก
       title: กฎ IP
     relationships:
-      title: ความสัมพันธ์ของ %{acct}
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -791,7 +792,7 @@ th:
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
-      subject: รายงานใหม่สำหรับ %{instance} (#%{id})
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
     new_trends:
       new_trending_links:
         no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติในปัจจุบัน
@@ -1376,7 +1377,7 @@ th:
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้านี้
   terms:
-    title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
