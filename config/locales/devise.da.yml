@@ -1,4 +1,3 @@
----
 da:
   devise:
     confirmations:
@@ -37,13 +36,13 @@ da:
         title: Adgangskode skiftet
       reconfirmation_instructions:
         explanation: Bekræft den nye adresse for at skifte din e-mail.
-        extra: Er denne ændring ikke foranlediget af dig, så ignorér denne e-mail. Mastodon-kontoens e-mailadresse skiftes ikke, før linket ovenfor benyttes.
+        extra: Er denne ændring ikke foranlediget af dig, så ignorér denne e-mail. Mastodon-kontoens e-mailadresse kan kun skiftes vha. linket ovenfor.
         subject: 'Mastodon: Bekræft e-mail for %{instance}'
         title: Bekræft e-mailadresse
       reset_password_instructions:
         action: Skift adgangskode
         explanation: Du har anmodet om en ny kontoadgangskode.
-        extra: Har du ikke anmodet om dette, så ignorér denne e-mail. Din adgangskode skiftes først, når linket ovenfor er benyttet til at oprette en ny.
+        extra: Har du ikke anmodet om dette, så ignorér denne e-mail. Din adgangskode skiftes først, når en ny er oprettet vha. linket ovenfor.
         subject: 'Mastodon: Nulstil adgangskode-instruktioner'
         title: Adgangskodenulstilling
       two_factor_disabled:
