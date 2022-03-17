@@ -43,14 +43,14 @@ da:
         action: Skift adgangskode
         explanation: Du har anmodet om en ny kontoadgangskode.
         extra: Har du ikke anmodet om dette, så ignorér denne e-mail. Din adgangskode skiftes først, når en ny er oprettet vha. linket ovenfor.
-        subject: 'Mastodon: Nulstil adgangskode-instruktioner'
+        subject: 'Mastodon: Instruktioner til adgangskodenulstilling'
         title: Adgangskodenulstilling
       two_factor_disabled:
-        explanation: Tofaktorgodkendelse for din konto er blevet deaktiveret. Indlogning er nu kun mulig via email og adgangskode.
+        explanation: Tofaktorgodkendelse for kontoen er blevet deaktiveret. Indlogning er nu kun mulig via email og adgangskode.
         subject: 'Mastodon: Tofaktorgodkendelse deaktiveret'
         title: 2FA deaktiveret
       two_factor_enabled:
-        explanation: Tofaktorgodkendelse er blevet aktiveret for din konto. Et login-token genereret af den parrede TOTP-app vil være nødvendig.
+        explanation: Tofaktorgodkendelse er blevet aktiveret for kontoen. Indlogning vil kærve et token genereret af den parrede TOTP-app.
         subject: 'Mastodon: Tofaktorgodkendelse aktiveret'
         title: 2FA aktiveret
       two_factor_recovery_codes_changed:
@@ -69,18 +69,18 @@ da:
           subject: 'Mastodon: Sikkerhedsnøgle slettet'
           title: En af dine sikkerhedsnøgler er blevet slettet
       webauthn_disabled:
-        explanation: Godkendelse med sikkerhedsnøgler er blevet deaktiveret for din konto. Indlogning er nu kun mulig via token genereret af den parrede TOTP-app.
+        explanation: Godkendelse med sikkerhedsnøgler er blevet deaktiveret for kontoen. Indlogning er nu kun mulig via token genereret af den parrede TOTP-app.
         subject: 'Mastodon: Godkendelse med sikkerhedsnøgler deaktiveret'
         title: Sikkerhedsnøgler deaktiveret
       webauthn_enabled:
-        explanation: Sikkerhedsnøglegodkendelse er aktiveret for din konto. Din sikkerhedsnøgle kan nu bruges til indlogning.
+        explanation: Sikkerhedsnøglegodkendelse er aktiveret for kontoen. Din sikkerhedsnøgle kan nu bruges til indlogning.
         subject: 'Mastodon: Sikkerhedsnøglegodkendelse aktiveret'
         title: Sikkerhedsnøgler aktiveret
     omniauth_callbacks:
       failure: Kunne ikke godkende dig fra %{kind} fordi "%{reason}".
       success: Godkendt fra %{kind}-konto.
     passwords:
-      no_token: Denne side er kun tilgængelig via linket fra en adgangskodenulstillings e-mail. Husk i den forbindelse at benytte den fuldstændige URL fra e-mailen.
+      no_token: Denne side er kun tilgængelig via linket fra en e-mail til adgangskodenulstillings. Husk i den forbindelse at benytte den fuldstændige URL fra e-mailen.
       send_instructions: Er din e-mailadresse allerede registreret, e-mailes du et link til adgangskodenulstilling. Tjek spammappen, hvis e-mailen ikke ses i indbakken indenfor få minutter.
       send_paranoid_instructions: Er din e-mail-adresse allerede registreret, e-mailes du et link til adgangskodegendannelse. Tjek spammappen, hvis e-mailen ikke ses i indbakken indenfor få minutter.
       updated: Din adgangskode er skiftet, og du er nu logget ind.
