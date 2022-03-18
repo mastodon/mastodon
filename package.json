@@ -14,7 +14,9 @@
     "test:lint": "${npm_execpath} run test:lint:js && ${npm_execpath} run test:lint:sass",
     "test:lint:js": "eslint --ext=js . --cache",
     "test:lint:sass": "sass-lint -v",
-    "test:jest": "cross-env NODE_ENV=test jest"
+    "test:jest": "cross-env NODE_ENV=test jest",
+    "format": "prettier --write '**/*.{json,yml}",
+    "format-check": "prettier --write '**/*.{json,yml}"
   },
   "repository": {
     "type": "git",
