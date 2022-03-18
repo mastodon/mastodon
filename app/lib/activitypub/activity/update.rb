@@ -8,6 +8,8 @@ class ActivityPub::Activity::Update < ActivityPub::Activity
       update_account
     elsif equals_or_includes_any?(@object['type'], %w(Note Question))
       update_status
+    elsif converted_object_type?
+      Status.find_by(uri: object_uri, account_id: @account.id)
     end
   end
 

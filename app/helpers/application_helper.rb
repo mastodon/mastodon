@@ -9,9 +9,9 @@ module ApplicationHelper
 
   RTL_LOCALES = %i(
     ar
+    ckb
     fa
     he
-    ku
   ).freeze
 
   def friendly_number_to_human(number, **options)

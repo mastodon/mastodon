@@ -60,7 +60,7 @@ zh-CN:
       error:
         title: 发生错误
       new:
-        prompt_html: "%{client_name} 希望得到访问你帐号的许可。这是一个第三方应用。<strong>如果你不信任它，那么你不应该授权它。</strong>"
+        prompt_html: "%{client_name} 希望得到访问你账号的许可。这是一个第三方应用。<strong>如果你不信任它，那么你不应该授权它。</strong>"
         review_permissions: 检查权限
         title: 需要授权
       show:
@@ -72,7 +72,7 @@ zh-CN:
         revoke: 确定要撤销对此应用的授权吗？
       index:
         authorized_at: 授权于 %{date}
-        description_html: 这些是可以使用 API 访问你帐号的应用程序。如果这里有你不认识的应用程序，或者某个应用程序行为异常，你可以撤销其访问权限。
+        description_html: 这些是可以使用 API 访问你账号的应用程序。如果这里有你不认识的应用程序，或者某个应用程序行为异常，你可以撤销其访问权限。
         last_used_at: 最后一次使用 %{date}
         never_used: 从未使用
         scopes: 权限
@@ -118,8 +118,8 @@ zh-CN:
         read/write: 读写权限
         write: 仅写入权限
       title:
-        accounts: 帐号
-        admin/accounts: 管理员帐号
+        accounts: 账号
+        admin/accounts: 账号管理
         admin/all: 所有管理功能
         admin/reports: 管理报表
         all: 所有
@@ -148,10 +148,10 @@ zh-CN:
         title: 需要 OAuth 认证
     scopes:
       admin:read: 读取服务器上的所有数据
-      admin:read:accounts: 读取所有帐号的敏感信息
-      admin:read:reports: 读取所有举报和被举报帐号的敏感信息
+      admin:read:accounts: 读取所有账号的敏感信息
+      admin:read:reports: 读取所有举报和被举报账号的敏感信息
       admin:write: 修改服务器上的所有数据
-      admin:write:accounts: 对帐号执行管理操作
+      admin:write:accounts: 对账号执行管理操作
       admin:write:reports: 对举报执行管理操作
       crypto: 使用端到端加密
       follow: 关注或屏蔽用户
