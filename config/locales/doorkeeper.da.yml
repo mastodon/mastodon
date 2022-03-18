@@ -55,13 +55,13 @@ da:
     authorizations:
       buttons:
         authorize: Godkend
-        deny: Nægt
+        deny: Afvis
       error:
         title: En fejl opstod
       new:
-        prompt_html: "%{client_name} ønsker tilladelse til at tilgå din konto. Den er en tredjepartsapplikation. <strong>Er der ikke tillid til den, bør den ikke godkendes.</strong>"
+        prompt_html: "%{client_name} ønsker tilladelse til at tilgå din konto. Den er en tredjepartsapplikation. <strong>Har du ikke tillid til den, bør den ikke godkendes.</strong>"
         review_permissions: Gennemgå tilladelser
-        title: Godkendelse krævet
+        title: Godkendelse kræves
       show:
         title: Kopiér og indsæt denne godkendelseskode i applikationen.
     authorized_applications:
@@ -71,7 +71,7 @@ da:
         revoke: Sikker?
       index:
         authorized_at: Godkendt pr. %{date}
-        description_html: Disse er applikationer, som kan tilgå din konto vha. API'en. Er der applikationer her, som ikke genkendes eller udviser mærkelig adfærd, kan deres adgang tilbagekaldes.
+        description_html: Disse er applikationer, som kan tilgå din konto vha. API'en. Er her applikationer, som ikke genkendes eller udviser mærkværdig adfærd, kan deres adgangstilladelse ophæves.
         last_used_at: Senest brugt pr. %{date}
         never_used: Aldrig brugt
         scopes: Tilladelser
@@ -80,8 +80,8 @@ da:
     errors:
       messages:
         access_denied: Ressourceejeren eller godkendelsesserveren afviste anmodningen.
-        credential_flow_not_configured: Ressourceejeradgangskodeakkreditiv flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
-        invalid_client: Klientbekræftelse mislykkedes grundet en ukendt klient, ingen klientbekræftelse inkluderet, eller uunderstøttet bekræftelsesmetode.
+        credential_flow_not_configured: Ressourceejeradgangskodeakkreditiver-flow mislykkedes grundet ikke-opsat Doorkeeper.configure.resource_owner_from_credentials.
+        invalid_client: Klient autentikationen mislykkedes grundet en ukendt klient, ingen klient autentikation fulgte med, eller en ikke-understøttet metode.
         invalid_grant: Den leverede godkendelse er ugyldig, udløbet, tilbagekaldt, matcher ikke omdirigerings-URI brugt i godkendelsesanmodningen, eller er udstedt til en anden klient.
         invalid_redirect_uri: Inkluderede ormdirigerings-URI er ugyldig.
         invalid_request:
