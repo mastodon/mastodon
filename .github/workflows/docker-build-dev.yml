@@ -31,12 +31,12 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./Dockerfile.dev
+          file: .devcontainer/Dockerfile
           pull: true
           push: true
-          # build-args: |
-          #   arg1=value1
-          #   arg2=value2
+          build-args: |
+            VARIANT=3.0-bullseye
+            NODE_VERSION=14
           cache-from: type=registry,ref=mashirozx/mastodon:dev
           cache-to: type=inline
           tags: |
