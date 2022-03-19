@@ -24,7 +24,7 @@ services:
       DB_USER: postgres
       DB_PASS: postgres
       DB_PORT: '5432'
-      ES_ENABLED: 'true'
+      ES_ENABLED: 'false'
       ES_HOST: es
       ES_PORT: '9200'
     # Overrides default command so things don't shut down after the process ends.
@@ -55,23 +55,23 @@ services:
     networks:
       - internal_network
 
-  es:
-    # image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
-    image: mashirozx/elasticsearch-cnplugin:7.16.1
-    restart: unless-stopped
-    environment:
-      ES_JAVA_OPTS: -Xms512m -Xmx512m
-      cluster.name: es-mastodon
-      discovery.type: single-node
-      bootstrap.memory_lock: 'true'
-    volumes:
-      - es-data:/usr/share/elasticsearch/data
-    networks:
-      - internal_network
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
+  # es:
+  #   # image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+  #   image: mashirozx/elasticsearch-cnplugin:7.16.1
+  #   restart: unless-stopped
+  #   environment:
+  #     ES_JAVA_OPTS: -Xms512m -Xmx512m
+  #     cluster.name: es-mastodon
+  #     discovery.type: single-node
+  #     bootstrap.memory_lock: 'true'
+  #   volumes:
+  #     - es-data:/usr/share/elasticsearch/data
+  #   networks:
+  #     - internal_network
+  #   ulimits:
+  #     memlock:
+  #       soft: -1
+  #       hard: -1
 
 volumes:
   postgres-data:
