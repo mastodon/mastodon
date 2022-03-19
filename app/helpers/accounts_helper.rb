@@ -95,7 +95,7 @@ module AccountsHelper
       ].join(' '),
     ].join(', ')
 
-    [prepend_str, account.note].join(' Â· ')
+    [prepend_str, account.note].join(' · ')
   end
 
   def svg_logo

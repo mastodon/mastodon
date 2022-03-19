@@ -27,7 +27,7 @@ class Scheduler::UserCleanupScheduler
   end
 
   def clean_discarded_statuses!
-    Status.discarded.where('deleted_at <= ?', 30.days.ago).find_in_batches do |statuses|
+    Status.unscoped.discarded.where('deleted_at <= ?', 30.days.ago).find_in_batches do |statuses|
       RemovalWorker.push_bulk(statuses) do |status|
         [status.id, { 'immediate' => true }]
       end
