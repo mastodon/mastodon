@@ -51,7 +51,7 @@ vi:
     user_count_after:
       other: người dùng
     user_count_before: Nhà của
-    what_is_mastodon: Tham gia Mastodon
+    what_is_mastodon: Mastodon
   accounts:
     choices_html: "%{name} tôn vinh:"
     endorsements_hint: Bạn có thể tôn vinh những người bạn theo dõi và họ sẽ hiển thị ở giao diện web.
@@ -186,7 +186,7 @@ vi:
       roles:
         admin: Quản trị viên
         moderator: Kiểm duyệt viên
-        staff: Nhân viên
+        staff: Đội ngũ
         user: Người dùng
       search: Tìm kiếm
       search_same_email_domain: Tra cứu email
@@ -227,7 +227,7 @@ vi:
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
-        approve_appeal: Đồng ý kháng cáo
+        approve_appeal: Phê duyệt kháng cáo
         approve_user: Phê duyệt người dùng
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email
@@ -295,7 +295,7 @@ vi:
         destroy_announcement_html: "%{name} xóa thông báo %{target}"
         destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
         destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
-        destroy_domain_block_html: "%{name} bỏ chặn tên miền email %{target}"
+        destroy_domain_block_html: "%{name} bỏ chặn máy chủ %{target}"
         destroy_email_domain_block_html: "%{name} bỏ chặn tên miền email %{target}"
         destroy_instance_html: "%{name} thanh trừng máy chủ %{target}"
         destroy_ip_block_html: "%{name} bỏ chặn IP %{target}"
@@ -388,7 +388,7 @@ vi:
       interactions: tương tác
       media_storage: Dung lượng lưu trữ
       new_users: người dùng mới
-      opened_reports: báo cáo chưa xử lí
+      opened_reports: tổng báo cáo
       pending_appeals_html:
         other: "<strong>%{count}</strong> kháng cáo đang chờ"
       pending_reports_html:
@@ -584,20 +584,20 @@ vi:
       action_log: Nhật ký kiểm duyệt
       action_taken_by: Hành động được thực hiện bởi
       actions:
-        delete_description_html: Những tút bị báo cáo sẽ được xóa và 1 thẹo sẽ được ghi lại để giúp bạn lưu ý về tài khoản này trong tương lai.
-        mark_as_sensitive_description_html: Media trong báo cáo sẽ bị đánh dấu nhạy cảm và bạn nhận 1 lần cảnh cáo.
+        delete_description_html: Những tút bị báo cáo sẽ được xóa và 1 lần cảnh cáo sẽ được ghi lại để giúp bạn lưu ý về tài khoản này trong tương lai.
+        mark_as_sensitive_description_html: Media trong báo cáo sẽ bị đánh dấu nhạy cảm và họ nhận 1 lần cảnh cáo.
         other_description_html: Những tùy chọn để kiểm soát tài khoản và giao tiếp với tài khoản bị báo cáo.
-        resolve_description_html: Không có hành động nào áp dụng đối với tài khoản bị báo cáo, không có thẹo, và báo cáo sẽ được đóng.
+        resolve_description_html: Không có hành động nào áp dụng đối với tài khoản bị báo cáo, không có cảnh cáo, và báo cáo sẽ được đóng.
         silence_description_html: Trang cá nhân sẽ chỉ hiển thị với những người đã theo dõi hoặc tìm kiếm thủ công, hạn chế tối đa tầm ảnh hưởng của nó. Có thể đổi lại bình thường sau.
         suspend_description_html: Trang cá nhân và tất cả các nội dung sẽ không thể truy cập cho đến khi nó bị xóa hoàn toàn. Không thể tương tác với tài khoản. Đảo ngược trong vòng 30 ngày.
-      actions_description_html: Quyết định hướng xử lý báo cáo này. Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho họ, ngoại trừ nếu đó là <strong>Spam</strong>.
+      actions_description_html: Hướng xử lý báo cáo này. Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho họ, ngoại trừ <strong>Spam</strong>.
       add_to_report: Bổ sung báo cáo
       are_you_sure: Bạn có chắc không?
       assign_to_self: Giao cho tôi
       assigned: Người xử lý
       by_target_domain: Tên tài khoản bị báo cáo
       category: Phân loại
-      category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn trong giao tiếp với tài khoản báo cáo
+      category_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
       comment:
         none: Không có mô tả
       comment_description_html: 'Để cung cấp thêm thông tin, %{name} cho biết:'
@@ -628,7 +628,7 @@ vi:
       skip_to_actions: Kiểm duyệt ngay
       status: Trạng thái
       statuses: Nội dung bị báo cáo
-      statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn trong giao tiếp với tài khoản báo cáo
+      statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
       target_origin: Nguồn báo cáo
       title: Báo cáo
       unassign: Bỏ qua
@@ -703,8 +703,8 @@ vi:
         desc_html: Nếu tắt, bảng tin sẽ chỉ hiển thị nội dung do người dùng của máy chủ này tạo ra
         title: Bao gồm nội dung từ mạng liên hợp trên bảng tin không được xác thực
       show_staff_badge:
-        desc_html: Hiển thị huy hiệu nhân viên trên trang người dùng
-        title: Hiển thị huy hiệu nhân viên
+        desc_html: Hiện huy hiệu đội ngũ trên trang người dùng
+        title: Hiện huy hiệu đội ngũ
       site_description:
         desc_html: Nội dung giới thiệu về máy chủ. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể dùng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code>.
         title: Mô tả máy chủ
@@ -774,11 +774,11 @@ vi:
       approved: Đã cho phép
       disallow: Cấm
       links:
-        allow: Liên kết cho phép
-        allow_provider: Nguồn đăng cho phép
-        description_html: Đây là những liên kết được chia sẻ nhiều trên máy chủ của bạn. Nó có thể giúp người dùng tìm hiểu những gì đang xảy ra trên thế giới. Không có liên kết nào được hiển thị công khai cho đến khi bạn duyệt nguồn. Bạn cũng có thể cho phép hoặc từ chối từng liên kết riêng.
-        disallow: Liên kết cấm
-        disallow_provider: Nguồn đăng bị cấm
+        allow: Cho phép liên kết
+        allow_provider: Cho phép nguồn đăng
+        description_html: Đây là những liên kết được chia sẻ nhiều trên máy chủ của bạn. Nó có thể giúp người dùng tìm hiểu những gì đang xảy ra trên thế giới. Không có liên kết nào được hiển thị công khai cho đến khi bạn duyệt nguồn đăng. Bạn cũng có thể cho phép hoặc từ chối từng liên kết riêng.
+        disallow: Cấm liên kết
+        disallow_provider: Cấm nguồn đăng
         shared_by_over_week:
           one: một người chia sẻ trong tuần qua
           other: "%{count} người chia sẻ trong tuần qua"
@@ -796,8 +796,8 @@ vi:
         allow: Cho phép tút
         allow_account: Cho phép người đăng
         description_html: Đây là những tút đang được đăng lại và yêu thích rất nhiều trên máy chủ của bạn. Nó có thể giúp người dùng mới và người dùng cũ tìm thấy nhiều người hơn để theo dõi. Không có tút nào được hiển thị công khai cho đến khi bạn cho phép người đăng và người cho phép đề xuất tài khoản của họ cho người khác. Bạn cũng có thể cho phép hoặc từ chối từng tút riêng.
-        disallow: Không cho phép tút
-        disallow_account: Không cho phép người đăng
+        disallow: Cấm tút
+        disallow_account: Cấm người đăng
         not_discoverable: Tác giả đã chọn không tham gia mục khám phá
         shared_by:
           other: Được thích và đăng lại %{friendly_count} lần
@@ -817,7 +817,7 @@ vi:
         not_usable: Không được phép dùng
         peaked_on_and_decaying: Đỉnh điểm %{date}, giờ đang giảm
         title: Hashtag xu hướng
-        trendable: Có thể xuất hiện thành xu hướng
+        trendable: Có thể trở thành xu hướng
         trending_rank: 'Xu hướng #%{rank}'
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
@@ -1094,7 +1094,7 @@ vi:
     new:
       title: Thêm bộ lọc mới
   footer:
-    developers: Nhà phát triển
+    developers: Phát triển
     more: Nhiều hơn
     resources: Quy tắc
     trending_now: Xu hướng
@@ -1433,7 +1433,7 @@ vi:
     show_more: Đọc thêm
     show_newer: Mới hơn
     show_older: Cũ hơn
-    show_thread: Toàn chủ đề
+    show_thread: Xem chuỗi tút này
     sign_in_to_participate: Đăng nhập để trả lời tút này
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1609,7 +1609,7 @@ vi:
         none: Cảnh báo
         sensitive: Tài khoản đã bị đánh dấu nhạy cảm
         silence: Tài khoản bị hạn chế
-        suspend: Toài khoản bị vô hiệu hóa
+        suspend: Tài khoản bị vô hiệu hóa
     welcome:
       edit_profile_action: Cài đặt trang cá nhân
       edit_profile_step: Bạn có thể tùy chỉnh trang cá nhân của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn những người theo dõi mới phải được phê duyệt, hãy chuyển tài khoản sang trạng thái khóa.

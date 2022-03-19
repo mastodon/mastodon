@@ -71,13 +71,13 @@ vi:
       confirmations:
         revoke: Bạn có chắc không?
       index:
-        authorized_at: Cấp quyền vào %{date}
+        authorized_at: Cho phép vào %{date}
         description_html: Đây là những ứng dụng có thể truy cập tài khoản của bạn bằng API. Nếu có ứng dụng bạn không nhận ra ở đây hoặc ứng dụng hoạt động sai, bạn có thể thu hồi quyền truy cập của ứng dụng đó.
-        last_used_at: Dùng gần nhất vào %{date}
-        never_used: Chưa dùng bao giờ
+        last_used_at: Dùng lần cuối %{date}
+        never_used: Chưa dùng
         scopes: Quyền cho phép
         superapp: Đang dùng
-        title: Các ứng dụng đang cho phép
+        title: Các ứng dụng đang dùng
     errors:
       messages:
         access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
