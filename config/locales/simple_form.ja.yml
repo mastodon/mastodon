@@ -26,6 +26,8 @@ ja:
         scheduled_at: お知らせを今すぐ掲載する場合は空欄にしてください
         starts_at: オプションです。お知らせしたい事柄の期間が決まっている場合に使用します
         text: 投稿と同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
+      appeal:
+        text: 一度だけ異議を申し立てることができます
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをフォローするようになります
         avatar: '%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます'
@@ -115,6 +117,8 @@ ja:
         scheduled_at: 掲載予約日時
         starts_at: 予定開始日時
         text: お知らせ
+      appeal:
+        text: この決定を覆すべき理由を説明してください
       defaults:
         autofollow: 招待から参加後、あなたをフォロー
         avatar: アイコン
@@ -193,6 +197,7 @@ ja:
           sign_up_requires_approval: 登録を制限
         severity: ルール
       notification_emails:
+        appeal: モデレーターの判断に異議申し立てが行われました
         digest: タイムラインからピックアップしてメールで通知する
         favourite: お気に入り登録された時
         follow: フォローされた時
