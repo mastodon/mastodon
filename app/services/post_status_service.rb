@@ -145,7 +145,7 @@ class PostStatusService < BaseService
       return
     end
 
-    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > 9 || @options[:poll].present?
+    raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many_nine') if @options[:media_ids].size > 9 || @options[:poll].present?
 
     @media = @account.media_attachments.where(status_id: nil).where(id: @options[:media_ids].take(9).map(&:to_i))
 
@@ -254,7 +254,7 @@ class PostStatusService < BaseService
 
   def status_attributes
     remote_media_attachment = process_remote_attachments.take(9)
-
+    
     if !remote_media_attachment.blank?
       @media = @media.to_a.concat(remote_media_attachment)
       remote_media_attachment_ids = remote_media_attachment.map(&:id)
