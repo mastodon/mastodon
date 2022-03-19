@@ -151,7 +151,7 @@ http {
       proxy_hide_header x-amz-bucket-region;
       proxy_hide_header x-amzn-requestid;
       proxy_ignore_headers Set-Cookie;
-      proxy_pass $s3_backend$uri;
+      proxy_pass $s3_backend$uri$is_args$args;
       proxy_intercept_errors off;
 
       proxy_cache CACHE;
