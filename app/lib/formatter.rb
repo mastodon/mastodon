@@ -5,6 +5,7 @@ require 'singleton'
 class Formatter
   include Singleton
   include RoutingHelper
+  include FormattingHelper
 
   include ActionView::Helpers::TextHelper
 
@@ -39,12 +40,6 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def reformat(html)
-    sanitize(html, Sanitize::Config::MASTODON_STRICT)
-  rescue ArgumentError
-    ''
-  end
-
   def plaintext(status)
     return status.text if status.local?
 
@@ -66,10 +61,6 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def sanitize(html, config)
-    Sanitize.fragment(html, config)
-  end
-
   def format_field(account, str)
     html = begin
       if account.local?
@@ -82,17 +73,11 @@ class Formatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
-  def linkify(text, options = {})
-    TextFormatter.new(text, options).to_s
-  end
-
   private
 
-  def html_entities
-    @html_entities ||= HTMLEntities::Encoder.new('xhtml1', [])
-  end
-
-  def encode(html)
-    html_entities.encode(html)
+  def reformat(html)
+    Sanitize.fragment(html, Sanitize::Config::MASTODON_STRICT)
+  rescue ArgumentError
+    ''
   end
 end
