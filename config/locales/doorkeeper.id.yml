@@ -1,4 +1,3 @@
----
 id:
   activerecord:
     attributes:
@@ -73,6 +72,10 @@ id:
       index:
         authorized_at: Diberi hak otorisasi pada %{date}
         description_html: Ini adalah aplikasi yang dapat mengakses akun Anda menggunakan API. Jika ada aplikasi yang tidak Anda kenal di sini, atau aplikasi yang berperilaku aneh, Anda dapat mencabut hak aksesnya.
+        last_used_at: Terakhir dipakai pada %{date}
+        never_used: Tidak pernah dipakai
+        scopes: Hak akses
+        superapp: Internal
         title: Aplikasi yang anda izinkan
     errors:
       messages:
@@ -108,6 +111,33 @@ id:
       authorized_applications:
         destroy:
           notice: Aplikasi dicabut.
+    grouped_scopes:
+      access:
+        read: Akses baca-saja
+        read/write: Akses baca dan tulis
+        write: Akses tulis-saja
+      title:
+        accounts: Akun
+        admin/accounts: Administrasi akun
+        admin/all: Semua fungsi administratif
+        admin/reports: Administrasi laporan
+        all: Segalanya
+        blocks: Blokir
+        bookmarks: Markah
+        conversations: Percakapan
+        crypto: Enkripsi end-to-end
+        favourites: Favorit
+        filters: Saringan
+        follow: Hubungan
+        follows: Mengikuti
+        lists: Daftar
+        media: Lampiran media
+        mutes: Bisukan
+        notifications: Notifikasi
+        push: Notifikasi dorong
+        reports: Laporan
+        search: Pencarian
+        statuses: Kiriman
     layouts:
       admin:
         nav:
@@ -116,37 +146,39 @@ id:
       application:
         title: Otorisasi OAuth diperlukan
     scopes:
-      admin:read: baca semua data di server
-      admin:read:accounts: baca informasi sensitif semua akun
-      admin:read:reports: baca informasi sensitif semua laporan dan akun terlapor
-      admin:write: ubah semua data di server
-      admin:write:accounts: lakukan aksi moderasi akun
-      admin:write:reports: lakukan aksi moderasi laporan
+      "admin:read": baca semua data di server
+      "admin:read:accounts": baca informasi sensitif semua akun
+      "admin:read:reports": baca informasi sensitif semua laporan dan akun terlapor
+      "admin:write": ubah semua data di server
+      "admin:write:accounts": lakukan aksi moderasi akun
+      "admin:write:reports": lakukan aksi moderasi laporan
+      crypto: menggunakan enkripsi end-to-end
       follow: mengikuti, blokir, menghapus blokir, dan berhenti mengikuti akun
       push: terima notifikasi dorong
       read: membaca data pada akun anda
-      read:accounts: lihat informasi akun
-      read:blocks: lihat blokiran Anda
-      read:bookmarks: lihat markah Anda
-      read:favourites: lihat favorit Anda
-      read:filters: lihat saringan Anda
-      read:follows: lihat yang Anda ikuti
-      read:lists: lihat daftar Anda
-      read:mutes: lihat daftar bisu Anda
-      read:notifications: lihat notifikasi Anda
-      read:reports: lihat laporan Anda
-      read:search: cari atas nama Anda
-      read:statuses: lihat semua status
+      "read:accounts": lihat informasi akun
+      "read:blocks": lihat blokiran Anda
+      "read:bookmarks": lihat markah Anda
+      "read:favourites": lihat favorit Anda
+      "read:filters": lihat saringan Anda
+      "read:follows": lihat yang Anda ikuti
+      "read:lists": lihat daftar Anda
+      "read:mutes": lihat daftar bisu Anda
+      "read:notifications": lihat notifikasi Anda
+      "read:reports": lihat laporan Anda
+      "read:search": cari atas nama Anda
+      "read:statuses": lihat semua status
       write: memposting sebagai anda
-      write:accounts: ubah profil Anda
-      write:blocks: blokir akun dan domain
-      write:bookmarks: status markah
-      write:favourites: status favorit
-      write:filters: buat saringan
-      write:follows: ikuti orang
-      write:lists: buat daftar
-      write:media: unggah berkas media
-      write:mutes: bisukan orang dan percakapan
-      write:notifications: hapus notifikasi Anda
-      write:reports: laporkan orang lain
-      write:statuses: terbitkan status
+      "write:accounts": ubah profil Anda
+      "write:blocks": blokir akun dan domain
+      "write:bookmarks": status markah
+      "write:conversations": bisukan dan hapus percakapan
+      "write:favourites": status favorit
+      "write:filters": buat saringan
+      "write:follows": ikuti orang
+      "write:lists": buat daftar
+      "write:media": unggah berkas media
+      "write:mutes": bisukan orang dan percakapan
+      "write:notifications": hapus notifikasi Anda
+      "write:reports": laporkan orang lain
+      "write:statuses": terbitkan status
