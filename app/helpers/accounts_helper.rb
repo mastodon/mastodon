@@ -2,10 +2,12 @@
 
 module AccountsHelper
   def display_name(account, **options)
+    str = account.display_name.presence || account.username
+
     if options[:custom_emojify]
-      Formatter.instance.format_display_name(account, **options)
+      prerender_custom_emojis(h(str), account.emojis)
     else
-      account.display_name.presence || account.username
+      str
     end
   end
 

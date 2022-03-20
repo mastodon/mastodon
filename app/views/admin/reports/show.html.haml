@@ -27,7 +27,7 @@
             = fa_icon('lock') if @report.target_account.locked?
       - if @report.target_account.note.present?
         .account-card__bio.emojify
-          = Formatter.instance.simplified_format(@report.target_account, custom_emojify: true)
+          = prerender_custom_emojis(Formatter.instance.simplified_format(@report.target_account), @report.target_account.emojis)
       .account-card__actions
         .account-card__counters
           .account-card__counters__item

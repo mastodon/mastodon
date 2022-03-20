@@ -30,10 +30,11 @@
   .status__content.emojify{ :data => ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
     - if status.spoiler_text?
       %p<
-        %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: prefers_autoplay?)}&nbsp;
+        %span.p-summary> #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
     .e-content
-      = Formatter.instance.format(status, custom_emojify: true, autoplay: prefers_autoplay?)
+      = prerender_custom_emojis(Formatter.instance.format(status), status.emojis)
+
       - if status.preloadable_poll
         = render_poll_component(status)
 

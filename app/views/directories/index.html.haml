@@ -34,7 +34,7 @@
                 = fa_icon('lock') if account.locked?
         - if account.note.present?
           .account-card__bio.emojify
-            = Formatter.instance.simplified_format(account, custom_emojify: true)
+            = prerender_custom_emojis(Formatter.instance.simplified_format(account), account.emojis)
         - else
           .flex-spacer
         .account-card__actions
