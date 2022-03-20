@@ -8,9 +8,9 @@ module Extractor
   def extract_entities_with_indices(text, options = {}, &block)
     entities = begin
       extract_urls_with_indices(text, options) +
-      extract_hashtags_with_indices(text, :check_url_overlap => false) +
-      extract_mentions_or_lists_with_indices(text) +
-      extract_extra_uris_with_indices(text)
+        extract_hashtags_with_indices(text, check_url_overlap: false) +
+        extract_mentions_or_lists_with_indices(text) +
+        extract_extra_uris_with_indices(text)
     end
 
     return [] if entities.empty?
@@ -50,7 +50,7 @@ module Extractor
   end
 
   def extract_hashtags_with_indices(text, _options = {})
-    return [] unless text && text.index('#')
+    return [] unless text&.index('#')
 
     possible_entries = []
 
@@ -87,19 +87,19 @@ module Extractor
   end
 
   def extract_extra_uris_with_indices(text)
-    return [] unless text && text.index(":")
+    return [] unless text&.index(':')
 
     possible_entries = []
 
     text.scan(Twitter::TwitterText::Regex[:valid_extended_uri]) do
-      valid_uri_match_data = $~
+      valid_uri_match_data = $LAST_MATCH_INFO
 
       start_position = valid_uri_match_data.char_begin(3)
       end_position   = valid_uri_match_data.char_end(3)
 
       possible_entries << {
         url: valid_uri_match_data[3],
-        indices: [start_position, end_position]
+        indices: [start_position, end_position],
       }
     end
 

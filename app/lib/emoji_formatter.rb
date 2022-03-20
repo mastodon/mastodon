@@ -1,4 +1,4 @@
-# frozen_string_literal
+# frozen_string_literal: true
 
 class EmojiFormatter
   include RoutingHelper
@@ -34,29 +34,15 @@ class EmojiFormatter
       i += 1
 
       if invisible_depth.zero? && inside_shortname && html[i] == ':'
-        shortcode  = html[shortname_start_index + 1..i - 1]
+        inside_shortname = false
+        shortcode = html[shortname_start_index + 1..i - 1]
         char_after = html[i + 1]
 
-        if (char_after.nil? || !DISALLOWED_BOUNDING_REGEX.match?(char_after)) && (emoji = emoji_map[shortcode])
-          original_url, static_url = emoji
+        next unless (char_after.nil? || !DISALLOWED_BOUNDING_REGEX.match?(char_after)) && (emoji = emoji_map[shortcode])
 
-          replacement = begin
-            if animate?
-              image_tag(original_url, draggable: false, class: 'emojione', alt: ":#{shortcode}:", title: ":#{shortcode}:")
-            else
-              image_tag(original_url, draggable: false, class: 'emojione custom-emoji', alt: ":#{shortcode}:", title: ":#{shortcode}:", data: { original: original_url, static: static_url })
-            end
-          end
-
-          before_html = shortname_start_index.positive? ? html[last_index..shortname_start_index - 1] : ''
-
-          result << before_html
-          result << replacement
-
-          last_index = i + 1
-        end
-
-        inside_shortname = false
+        result << html[last_index..shortname_start_index - 1] if shortname_start_index.positive?
+        result << image_for_emoji(shortcode, emoji)
+        last_index = i + 1
       elsif tag_open_index && html[i] == '>'
         tag = html[tag_open_index..i]
         tag_open_index = nil
@@ -93,6 +79,16 @@ class EmojiFormatter
       0
     else
       1
+    end
+  end
+
+  def image_for_emoji(shortcode, emoji)
+    original_url, static_url = emoji
+
+    if animate?
+      image_tag(original_url, draggable: false, class: 'emojione', alt: ":#{shortcode}:", title: ":#{shortcode}:")
+    else
+      image_tag(original_url, draggable: false, class: 'emojione custom-emoji', alt: ":#{shortcode}:", title: ":#{shortcode}:", data: { original: original_url, static: static_url })
     end
   end
 
