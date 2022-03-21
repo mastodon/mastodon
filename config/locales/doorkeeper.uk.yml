@@ -69,6 +69,8 @@ uk:
       confirmations:
         revoke: Ви впевнені?
       index:
+        never_used: Ніколи не використовувалися
+        scopes: Дозволи
         title: Ваші авторизовані додатки
     errors:
       messages:
@@ -104,6 +106,23 @@ uk:
       authorized_applications:
         destroy:
           notice: Авторизацію додатка відкликано.
+    grouped_scopes:
+      title:
+        accounts: Облікові записи
+        admin/reports: Адміністрація звітів
+        all: Усе
+        blocks: Блокування
+        bookmarks: Закладки
+        conversations: Бесіди
+        crypto: Наскрізне шифрування
+        filters: Фільтри
+        lists: Списки
+        media: Мультимедійні вкладення
+        notifications: Сповіщення
+        push: Push-сповіщення
+        reports: Скарги
+        search: Пошук
+        statuses: Дописи
     layouts:
       admin:
         nav:
@@ -118,6 +137,7 @@ uk:
       admin:write: модифікувати всі дані на сервері
       admin:write:accounts: модерувати облікові записи
       admin:write:reports: модерувати скарги
+      crypto: використовувати наскрізне шифрування
       follow: змінювати стосунки облікового запису
       push: отримувати Ваші Push-повідомлення
       read: читати усі дані вашого облікового запису

@@ -696,6 +696,9 @@ ja:
       title: 投稿一覧
       with_media: メディアあり
     strikes:
+      actions:
+        mark_statuses_as_sensitive: "%{name} さんが %{target} さんの投稿を閲覧注意としてマークしました"
+        sensitive: "%{name} さんが %{target} さんのアカウントを閲覧注意としてマークしました"
       appeal_approved: 抗議済み
       appeal_pending: 保留中の抗議
     system_checks:
@@ -713,7 +716,7 @@ ja:
     trends:
       allow: 許可
       approved: 承認
-      disallow: 不許可
+      disallow: 拒否
       links:
         allow: リンクの許可
         allow_provider: 発行者の承認
@@ -728,8 +731,11 @@ ja:
         title: 発行者
       rejected: 拒否
       statuses:
-        allow: 投稿を許可する
-        disallow: 投稿を許可しない
+        allow: 掲載を許可
+        allow_account: 投稿者を許可
+        disallow: 掲載を拒否
+        disallow_account: 投稿者を拒否
+        title: トレンド投稿
       tags:
         current_score: 現在のスコア %{score}
         dashboard:
@@ -914,6 +920,7 @@ ja:
     explore_mastodon: "%{title}を探索"
   disputes:
     strikes:
+      action_taken: 取られた措置
       appeal: 抗議
       appeal_submitted_at: 抗議が送信されました
       appeals:
@@ -923,8 +930,13 @@ ja:
       recipient: 送信元
       title: "%{date}に%{action}"
       title_actions:
+        delete_statuses: 投稿の削除
         disable: アカウント凍結
+        mark_statuses_as_sensitive: 投稿を閲覧注意としてマーク
         none: 警告
+        sensitive: アカウントを閲覧注意としてマーク
+        silence: アカウントの制限
+        suspend: アカウントの一時停止
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
@@ -1097,6 +1109,9 @@ ja:
     carry_mutes_over_text: このユーザーは、あなたがミュートしていた %{acct} から引っ越しました。
     copy_account_note_text: このユーザーは %{acct} から引っ越しました。これは以前のメモです。
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} がサインアップしました"
     digest:
       action: 全ての通知を表示
       body: '最後のログイン（%{since}）からの出来事:'
@@ -1297,7 +1312,7 @@ ja:
     default_language: UIの表示言語
     disallowed_hashtags:
       other: '許可されていないハッシュタグが含まれています: %{tags}'
-    edited_at: "%{date} に編集"
+    edited_at_html: "%{date} 編集済み"
     errors:
       in_reply_not_found: あなたが返信しようとしている投稿は存在しないようです。
     open_in_web: Webで開く
@@ -1495,18 +1510,23 @@ ja:
         violation: コンテンツは以下のコミュニティガイドラインに違反しています
       explanation:
         disable: アカウントは使用できませんが、プロフィールやその他のデータはそのまま残ります。 データのバックアップをリクエストしたり、アカウント設定を変更したり、アカウントを削除したりできます。
+        mark_statuses_as_sensitive: あなたのいくつかの投稿は、 %{instance} のモデレータによって閲覧注意としてマークされています。これは、プレビューが表示される前にユーザが投稿内のメディアをタップする必要があることを意味します。あなたは将来投稿する際に自分自身でメディアを閲覧注意としてマークすることができます。
         sensitive: 今後、アップロードされたすべてのメディアファイルは閲覧注意としてマークされ、クリック解除式の警告で覆われるようになります。
         silence: アカウントが制限されています。このサーバーでは既にフォローしている人だけがあなたの投稿を見ることができます。 様々な発見機能から除外されるかもしれません。他の人があなたを手動でフォローすることは可能です。
       reason: '理由:'
       subject:
         disable: あなたのアカウント %{acct} は凍結されました
+        mark_statuses_as_sensitive: あなたの %{acct} の投稿は閲覧注意としてマークされました
         none: "%{acct} に対する警告"
+        sensitive: あなたの %{acct} の投稿はこれから閲覧注意としてマークされます
         silence: あなたのアカウント %{acct} はサイレンスにされました
         suspend: あなたのアカウント %{acct} は停止されました
       title:
         delete_statuses: 投稿が削除されました
         disable: アカウントが凍結されました
+        mark_statuses_as_sensitive: 閲覧注意としてマークされた投稿
         none: 警告
+        sensitive: 閲覧注意としてマークされたアカウント
         silence: アカウントがサイレンスにされました
         suspend: アカウントが停止されました
     welcome:
