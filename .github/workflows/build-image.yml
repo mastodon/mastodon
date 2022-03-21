@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - "main"
+      - 'main'
     tags:
-      - "*"
+      - '*'
   pull_request:
     paths:
       - .github/workflows/build-image.yml
