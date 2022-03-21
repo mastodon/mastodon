@@ -1,10 +1,45 @@
 require 'rails_helper'
 
-RSpec.describe Formatter do
-  let(:local_account)  { Fabricate(:account, domain: nil, username: 'alice') }
-  let(:remote_account) { Fabricate(:account, domain: 'remote.test', username: 'bob', url: 'https://remote.test/') }
+RSpec.describe TextFormatter do
+  describe '#to_s' do
+    let(:preloaded_accounts) { nil }
 
-  shared_examples 'encode and link URLs' do
+    subject { described_class.new(text, preloaded_accounts: preloaded_accounts).to_s }
+
+    context 'given text containing plain text' do
+      let(:text) { 'text' }
+
+      it 'paragraphizes the text' do
+        is_expected.to eq '<p>text</p>'
+      end
+    end
+
+    context 'given text containing line feeds' do
+      let(:text) { "line\nfeed" }
+
+      it 'removes line feeds' do
+        is_expected.not_to include "\n"
+      end
+    end
+
+    context 'given text containing linkable mentions' do
+      let(:preloaded_accounts) { [Fabricate(:account, username: 'alice')] }
+      let(:text) { '@alice' }
+
+      it 'creates a mention link' do
+        is_expected.to include '<a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span>'
+      end
+    end
+
+    context 'given text containing unlinkable mentions' do
+      let(:preloaded_accounts) { [] }
+      let(:text) { '@alice' }
+
+      it 'does not create a mention link' do
+        is_expected.to include '@alice'
+      end
+    end
+
     context 'given a stand-alone medium URL' do
       let(:text) { 'https://hackernoon.com/the-power-to-build-communities-a-response-to-mark-zuckerberg-3f2cac9148a4' }
 
@@ -251,7 +286,7 @@ RSpec.describe Formatter do
       end
     end
 
-    context 'given a stand-alone xmpp: URI' do
+    context 'given text with a stand-alone xmpp: URI' do
       let(:text) { 'xmpp:user@instance.com' }
 
       it 'matches the full URI' do
@@ -259,7 +294,7 @@ RSpec.describe Formatter do
       end
     end
 
-    context 'given a an xmpp: URI with a query-string' do
+    context 'given text with an xmpp: URI with a query-string' do
       let(:text) { 'please join xmpp:muc@instance.com?join right now' }
 
       it 'matches the full URI' do
@@ -273,175 +308,6 @@ RSpec.describe Formatter do
       it 'matches the full URI' do
         is_expected.to include 'href="magnet:?xt=urn:btih:c12fe1c06bba254a9dc9f519b335aa7c1367a88a"'
       end
-    end
-  end
-
-  describe '#format' do
-    subject { Formatter.instance.format(status) }
-
-    context 'given a post with local status' do
-      context 'given a reblogged post' do
-        let(:reblog) { Fabricate(:status, account: local_account, text: 'Hello world', uri: nil) }
-        let(:status) { Fabricate(:status, reblog: reblog) }
-
-        it 'returns original status with credit to its author' do
-          is_expected.to include 'RT <span class="h-card"><a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span> Hello world'
-        end
-      end
-
-      context 'given a post containing plain text' do
-        let(:status) { Fabricate(:status, text: 'text', uri: nil) }
-
-        it 'paragraphizes the text' do
-          is_expected.to eq '<p>text</p>'
-        end
-      end
-
-      context 'given a post containing line feeds' do
-        let(:status) { Fabricate(:status, text: "line\nfeed", uri: nil) }
-
-        it 'removes line feeds' do
-          is_expected.not_to include "\n"
-        end
-      end
-
-      context 'given a post containing linkable mentions' do
-        let(:status) { Fabricate(:status, mentions: [ Fabricate(:mention, account: local_account) ], text: '@alice') }
-
-        it 'creates a mention link' do
-          is_expected.to include '<a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span>'
-        end
-      end
-
-      context 'given a post containing unlinkable mentions' do
-        let(:status) { Fabricate(:status, text: '@alice', uri: nil) }
-
-        it 'does not create a mention link' do
-          is_expected.to include '@alice'
-        end
-      end
-
-      context do
-        subject do
-          status = Fabricate(:status, text: text, uri: nil)
-          Formatter.instance.format(status)
-        end
-
-        include_examples 'encode and link URLs'
-      end
-    end
-
-    context 'given a post with remote status' do
-      let(:status) { Fabricate(:status, account: remote_account, text: 'Beep boop') }
-
-      it 'reformats the post' do
-        is_expected.to eq 'Beep boop'
-      end
-    end
-  end
-
-  describe '#reformat' do
-    subject { Formatter.instance.reformat(text) }
-
-    context 'given a post containing plain text' do
-      let(:text) { 'Beep boop' }
-
-      it 'keeps the plain text' do
-        is_expected.to include 'Beep boop'
-      end
-    end
-
-    context 'given a post containing script tags' do
-      let(:text) { '<script>alert("Hello")</script>' }
-
-      it 'strips the scripts' do
-        is_expected.to_not include '<script>alert("Hello")</script>'
-      end
-    end
-
-    context 'given a post containing malicious classes' do
-      let(:text) { '<span class="mention	status__content__spoiler-link">Show more</span>' }
-
-      it 'strips the malicious classes' do
-        is_expected.to_not include 'status__content__spoiler-link'
-      end
-    end
-  end
-
-  describe '#plaintext' do
-    subject { Formatter.instance.plaintext(status) }
-
-    context 'given a post with local status' do
-      let(:status) { Fabricate(:status, text: '<p>a text by a nerd who uses an HTML tag in text</p>', uri: nil) }
-
-      it 'returns the raw text' do
-        is_expected.to eq '<p>a text by a nerd who uses an HTML tag in text</p>'
-      end
-    end
-
-    context 'given a post with remote status' do
-      let(:status) { Fabricate(:status, account: remote_account, text: '<script>alert("Hello")</script>') }
-
-      it 'returns tag-stripped text' do
-        is_expected.to eq ''
-      end
-    end
-  end
-
-  describe '#simplified_format' do
-    subject { Formatter.instance.simplified_format(account) }
-
-    context 'given a post with local status' do
-      let(:account) { Fabricate(:account, domain: nil, note: text) }
-
-      context 'given a post containing linkable mentions for local accounts' do
-        let(:text) { '@alice' }
-
-        before { local_account }
-
-        it 'creates a mention link' do
-          is_expected.to eq '<p><span class="h-card"><a href="https://cb6e6126.ngrok.io/@alice" class="u-url mention">@<span>alice</span></a></span></p>'
-        end
-      end
-
-      context 'given a post containing linkable mentions for remote accounts' do
-        let(:text) { '@bob@remote.test' }
-
-        before { remote_account }
-
-        it 'creates a mention link' do
-          is_expected.to eq '<p><span class="h-card"><a href="https://remote.test/" class="u-url mention">@<span>bob</span></a></span></p>'
-        end
-      end
-
-      context 'given a post containing unlinkable mentions' do
-        let(:text) { '@alice' }
-
-        it 'does not create a mention link' do
-          is_expected.to eq '<p>@alice</p>'
-        end
-      end
-
-      include_examples 'encode and link URLs'
-    end
-
-    context 'given a post with remote status' do
-      let(:text) { '<script>alert("Hello")</script>' }
-      let(:account) { Fabricate(:account, domain: 'remote', note: text) }
-
-      it 'reformats' do
-        is_expected.to_not include '<script>alert("Hello")</script>'
-      end
-    end
-  end
-
-  describe '#sanitize' do
-    let(:html) { '<script>alert("Hello")</script>' }
-
-    subject { Formatter.instance.sanitize(html, Sanitize::Config::MASTODON_STRICT) }
-
-    it 'sanitizes' do
-      is_expected.to eq ''
     end
   end
 end

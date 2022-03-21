@@ -12,7 +12,15 @@ RSpec.describe EmojiFormatter do
 
     let(:emojis) { [emoji] }
 
-    context 'given a post with an emoji shortcode at the start' do
+    context 'given text that is not marked as html-safe' do
+      let(:text) { 'Foo' }
+
+      it 'raises an argument error' do
+        expect { subject }.to raise_error ArgumentError
+      end
+    end
+
+    context 'given text with an emoji shortcode at the start' do
       let(:text) { preformat_text(':coolcat: Beep boop') }
 
       it 'converts the shortcode to an image tag' do
@@ -20,7 +28,7 @@ RSpec.describe EmojiFormatter do
       end
     end
 
-    context 'given a post with an emoji shortcode in the middle' do
+    context 'given text with an emoji shortcode in the middle' do
       let(:text) { preformat_text('Beep :coolcat: boop') }
 
       it 'converts the shortcode to an image tag' do
@@ -28,7 +36,7 @@ RSpec.describe EmojiFormatter do
       end
     end
 
-    context 'given a post with concatenated emoji shortcodes' do
+    context 'given text with concatenated emoji shortcodes' do
       let(:text) { preformat_text(':coolcat::coolcat:') }
 
       it 'does not touch the shortcodes' do
@@ -36,7 +44,7 @@ RSpec.describe EmojiFormatter do
       end
     end
 
-    context 'given a post with an emoji shortcode at the end' do
+    context 'given text with an emoji shortcode at the end' do
       let(:text) { preformat_text('Beep boop :coolcat:') }
 
       it 'converts the shortcode to an image tag' do

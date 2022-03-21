@@ -30,7 +30,7 @@ class TextFormatter
   end
 
   def to_s
-    return '' if text.blank?
+    return ''.html_safe if text.blank?
 
     html = rewrite do |entity|
       if entity[:url]

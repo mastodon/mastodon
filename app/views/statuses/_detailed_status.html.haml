@@ -21,7 +21,8 @@
         %span.p-summary> #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
     .e-content
-      = prerender_custom_emojis(Formatter.instance.format(status), status.emojis)
+      = prerender_custom_emojis(status_content_format(status), status.emojis)
+
       - if status.preloadable_poll
         = render_poll_component(status)
 
