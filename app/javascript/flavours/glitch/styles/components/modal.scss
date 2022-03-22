@@ -609,6 +609,15 @@
     color: $inverted-text-color;
   }
 
+  .status__content__spoiler-link {
+    color: $primary-text-color;
+    background: $ui-primary-color;
+
+    &:hover {
+      background: lighten($ui-primary-color, 8%);
+    }
+  }
+
   .dialog-option .poll__input {
     border-color: $inverted-text-color;
     color: $ui-secondary-color;
