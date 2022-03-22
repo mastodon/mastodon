@@ -103,7 +103,7 @@ class UpdateStatusService < BaseService
     @status.language     = valid_locale_cascade(@options[:language], @status.language, @status.account.user&.preferred_posting_language, I18n.default_locale)
 
     # We raise here to rollback the entire transaction
-    raise NoChangesSubmittedError unless @status.changed? || @poll_changed || @media_attachments_changed
+    raise NoChangesSubmittedError unless significant_changes?
 
     @status.edited_at = Time.now.utc
     @status.save!
@@ -150,5 +150,9 @@ class UpdateStatusService < BaseService
 
   def create_edit!
     @status.snapshot!(account_id: @account_id)
+  end
+
+  def significant_changes?
+    @status.changed? || @poll_changed || @media_attachments_changed || (@previous_expires_at != @status.preloadable_poll&.expires_at)
   end
 end

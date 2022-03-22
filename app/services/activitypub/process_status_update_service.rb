@@ -132,7 +132,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
 
-    raise NoChangesSubmittedError unless @status.changed? || @poll_changed || @media_attachments_changed
+    raise NoChangesSubmittedError unless significant_changes?
 
     @status.edited_at = @status_parser.edited_at
     @status.save!
@@ -252,6 +252,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def already_updated_more_recently?
     @status.edited_at.present? && @status_parser.edited_at.present? && @status.edited_at > @status_parser.edited_at
+  end
+
+  def significant_changes?
+    @status.changed? || @poll_changed || @media_attachments_changed || (@previous_expires_at != @status.preloadable_poll&.expires_at)
   end
 
   def reset_preview_card!
