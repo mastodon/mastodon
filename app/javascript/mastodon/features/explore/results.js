@@ -24,15 +24,15 @@ const appendLoadMore = (id, list, onLoadMore) => {
   }
 };
 
-const renderAccounts = (results, onLoadMore) => appendLoadMore('accounts', results.get('accounts').map(item => (
+const renderAccounts = (results, onLoadMore) => appendLoadMore('accounts', results.get('accounts', ImmutableList()).map(item => (
   <Account key={`account-${item}`} id={item} />
 )), onLoadMore);
 
-const renderHashtags = (results, onLoadMore) => appendLoadMore('hashtags', results.get('hashtags').map(item => (
+const renderHashtags = (results, onLoadMore) => appendLoadMore('hashtags', results.get('hashtags', ImmutableList()).map(item => (
   <Hashtag key={`tag-${item.get('name')}`} hashtag={item} />
 )), onLoadMore);
 
-const renderStatuses = (results, onLoadMore) => appendLoadMore('statuses', results.get('statuses').map(item => (
+const renderStatuses = (results, onLoadMore) => appendLoadMore('statuses', results.get('statuses', ImmutableList()).map(item => (
   <Status key={`status-${item}`} id={item} />
 )), onLoadMore);
 
