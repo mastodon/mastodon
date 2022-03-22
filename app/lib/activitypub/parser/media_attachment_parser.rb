@@ -9,9 +9,9 @@ class ActivityPub::Parser::MediaAttachmentParser
 
   # @param [MediaAttachment] previous_record
   def significantly_changes?(previous_record)
-    remote_url.presence != previous_record.remote_url.presence ||
-      thumbnail_remote_url.presence != previous_record.thumbnail_remote_url.presence ||
-      description.presence != previous_record.description.presence
+    remote_url != previous_record.remote_url ||
+      thumbnail_remote_url != previous_record.thumbnail_remote_url ||
+      description != previous_record.description
   end
 
   def remote_url
@@ -27,7 +27,9 @@ class ActivityPub::Parser::MediaAttachmentParser
   end
 
   def description
-    @json['summary'].presence || @json['name'].presence
+    str = @json['summary'].presence || @json['name'].presence
+    str = str.strip[0...MediaAttachment::MAX_DESCRIPTION_LENGTH] if str.present?
+    str
   end
 
   def focus
