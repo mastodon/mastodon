@@ -9,9 +9,9 @@ class ActivityPub::Parser::MediaAttachmentParser
 
   # @param [MediaAttachment] previous_record
   def significantly_changes?(previous_record)
-    remote_url != previous_record.remote_url ||
-      thumbnail_remote_url != previous_record.thumbnail_remote_url ||
-      description != previous_record.description
+    remote_url.presence != previous_record.remote_url.presence ||
+      thumbnail_remote_url.presence != previous_record.thumbnail_remote_url.presence ||
+      description.presence != previous_record.description.presence
   end
 
   def remote_url

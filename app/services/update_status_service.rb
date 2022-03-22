@@ -37,8 +37,8 @@ class UpdateStatusService < BaseService
 
     @status
   rescue NoChangesSubmittedError
-     # For calls that result in no changes, swallow the error
-     # but get back to the original state
+    # For calls that result in no changes, swallow the error
+    # but get back to the original state
 
     @status.reload
   end
