@@ -22,7 +22,7 @@
     class: Scheduler::EmailDomainBlockRefreshScheduler
     queue: scheduler
   trends_review_notifications_scheduler:
-    every: '2h'
+    every: '6h'
     class: Scheduler::Trends::ReviewNotificationsScheduler
     queue: scheduler
   media_cleanup_scheduler:
