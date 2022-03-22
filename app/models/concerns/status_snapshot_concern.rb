@@ -12,7 +12,11 @@ module StatusSnapshotConcern
   end
 
   def build_snapshot(account_id: nil, at_time: nil, rate_limit: true)
-    edits.new(
+    # We don't use `edits#new` here to avoid it having saved when the
+    # status is saved, since we want to control that manually
+
+    StatusEdit.new(
+      status_id: id,
       text: text,
       spoiler_text: spoiler_text,
       sensitive: sensitive,
