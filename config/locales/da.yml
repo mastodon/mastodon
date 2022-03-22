@@ -1,7 +1,6 @@
----
 da:
   about:
-    about_hashtag_html: Disse er offentlige indlæg tagget med <strong>#%{hashtag}</strong>, som man kan interagere med, hvis man har en konto hvor som helst i fediverset.
+    about_hashtag_html: 'Disse er offentlige indlæg tagget med <strong>#%{hashtag}</strong>, som man kan interagere med, hvis man har en konto hvor som helst i fediverset.'
     about_mastodon_html: 'Fremtidens sociale netværk: Ingen annoncer, ingen virksomhedsovervågning, etisk design og decentralisering! Vær ejer af egne data med Mastodon!'
     about_this: Om
     active_count_after: aktive
@@ -131,7 +130,7 @@ da:
       enable: Optø
       enable_sign_in_token_auth: Aktivér e-mailtoken godkendelse
       enabled: Aktiveret
-      enabled_msg: "%{username}s konto er optøet"
+      enabled_msg: '%{username}s konto er optøet'
       followers: Følgere
       follows: Følger
       header: Overskrift
@@ -149,7 +148,7 @@ da:
       media_attachments: Medievedhæftninger
       memorialize: Omdan til mindekonto
       memorialized: Memorialiseret
-      memorialized_msg: "%{username} gjort til mindekonto"
+      memorialized_msg: '%{username} gjort til mindekonto'
       moderation:
         active: Aktiv
         all: Alle
@@ -174,13 +173,13 @@ da:
       public: Offentlig
       push_subscription_expires: PuSH-abonnement udløber
       redownload: Opfrisk profil
-      redownloaded_msg: "%{username}s profil opfrisket fra oprindelsesserver"
+      redownloaded_msg: '%{username}s profil opfrisket fra oprindelsesserver'
       reject: Afvis
-      rejected_msg: "%{username}s tilmeldingsansøgning afvist"
+      rejected_msg: '%{username}s tilmeldingsansøgning afvist'
       remove_avatar: Fjern profilbillede
       remove_header: Fjern overskrift
-      removed_avatar_msg: "%{username}s profilbillede fjernet"
-      removed_header_msg: "%{username}s overskriftsbillede fjernet"
+      removed_avatar_msg: '%{username}s profilbillede fjernet'
+      removed_header_msg: '%{username}s overskriftsbillede fjernet'
       resend_confirmation:
         already_confirmed: Denne bruger er allerede bekræftet
         send: Gensend bekræftelses e-mail
@@ -218,14 +217,14 @@ da:
       suspension_reversible_hint_html: Kontoen er blevet suspenderet, og dens data fjernes helt d. %{date}. Indtil da kan kontoen genoprettes uden datatab mv. Ønsker alle kontodata fjernet straks, kan dette gøres nedenfor.
       title: Konti
       unblock_email: Afblokér e-mailadresse
-      unblocked_email_msg: "%{username}s e-mail-adresse afblokeret"
+      unblocked_email_msg: '%{username}s e-mail-adresse afblokeret'
       unconfirmed_email: Ubekræftet e-mail
       undo_sensitized: Fortryd gennemtving sensitiv
       undo_silenced: Fortryd begrænsning
       undo_suspension: Fortryd suspendering
-      unsilenced_msg: "%{username}s kontobegrænsning er fjernet"
+      unsilenced_msg: '%{username}s kontobegrænsning er fjernet'
       unsubscribe: Opsig abonnement
-      unsuspended_msg: "%{username}s konto er afsuspenderet"
+      unsuspended_msg: '%{username}s konto er afsuspenderet'
       username: Brugernavn
       view_domain: Vis domæneoversigt
       warn: Advar
@@ -865,7 +864,7 @@ da:
     new_report:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
-      subject: Ny anmeldelse for %{instance} (#%{id})
+      subject: 'Ny anmeldelse for %{instance} (#%{id})'
     new_trends:
       body: 'Flg. emner kræver revision, inden de kan vises offentligt:'
       new_trending_links:
@@ -1235,7 +1234,7 @@ da:
         other: "%{count} nye notifikationer siden senest besøg \U0001F418"
       title: I dit fravær...
     favourite:
-      body: "%{name} favoritmarkerede dit indlæg:"
+      body: '%{name} favoritmarkerede dit indlæg:'
       subject: "%{name} favoritmarkerede dit indlæg"
       title: Ny favorit
     follow:
@@ -1507,8 +1506,88 @@ da:
   tags:
     does_not_match_previous_name: matcher ikke det foregående navn
   terms:
-    body_html: "<p><h2>Fortrolighedspolitik</h2> \n<h3 id=\"collect\">Hvilke oplysninger indsamler vi?</h3> \n\n<ul>\n  <li><em>Grundlæggende kontooplysninger</em>: Opretter du dig på denne server, kan du blive bedt om at angive brugernavn, e-mailadresse og adgangskode. Du kan også angive yderligere profiloplysninger, såsom visningsnavn og biografi, samt uploade et profil- og overskriftsbillede. Brugernavn, visningsnavn, biografi, profil- og overskriftsbilleder vises altid offentligt.</li> \n  <li> <em>Indlæg, følgning og andre offentlige oplysninger</em>: Listen over personer, du følger, er offentligt tilgængelig, det samme gælder dine følgere. Når du sender en besked, gemmes dato og klokkeslæt såvel som det program, du sendte beskeden fra. Beskeder kan indeholde medievedhæftninger, såsom billeder og videoer. Offentlige og ulistede indlæg er offentligt tilgængelige. Når du fremhæver et indlæg på din profil, er det også offentligt tilgængelig information. Dine indlæg leveres til dine følgere, i visse tilfælde betyder det, at de leveres til forskellige servere, hvor kopier gemmes. Når du sletter indlæg, leveres det også til dine følgere. Genbloggingshandlinger eller favoritmarkeringer af andre indlæg sker altid i offentligt regi.</li>\n  <li><em>Direkte og kun-følgere indlæg</em>: Alle indlæg gemmes og behandles på serveren. Kun-følgere indlæg leveres til dine følgere og brugere, nævnt heri, og direkte indlæg leveres kun til brugere nævnt heri. I visse tilfælde betyder dette, at de leveres til forskellige servere, hvor kopier gemmes. Vi gør en bedste-evne indsats for at begrænse adgangen til disse indlæg til kun godkendte personer, men andre servere kan undlade dette tiltag. Det er derfor vigtigt at gennemgå de servere, dine følgere tilhører. Man kan via indstillingerne manuelt slå muligheden Godkend/Afvis nye følgere til/fra.<em>Husk dog på, at operatørerne af serveren og enhver modtagende server vil kunne se sådanne meddelelser</em>, og at modtagere vil kunne tage skærmfotos, kopiere eller på anden vis deler disse igen.<em> Del ingen sensitive mv. oplysninger over Mastodon.</em> </li>\n  <li> <em>IP'er og andre metadata</em>: Når der logges ind, registreres den IP-adresse, der logges ind fra, samt navnet på browser-applikationen. Du vil have alle indloggede sessioner tilgængelige mhp. gennemgang og tilbagekaldelse via indstillingerne. Den senest anvendte IP-adresse gemmes i op til 12 måneder. Vi kan også beholde serverlogfiler indeholdende IP-adressen for hver forespørgsel til vores server.</li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"use\">Hvad bruger vi dine oplysninger til?</h3>\n\n<p>Enhver oplysning indsamlet fra/om dig, kan blive brugt på flg. måder: </p>\n\n<ul>\n  <li>Til at levere Mastodon-kernfunktionalitet. Man kan kun interagere med andres indhold og indsende eget ditto, når man indlogget ind. Man kan f.eks. følge andre personer for at se deres kombinerede indlæg på sin egen personlige tidslinje.</li>\n  <li>Som hjælp til moderering af fællesskabet, f.eks. sammenligning af din IP-adresse med andre kendte mhp. at fastslå udelukkelsesomgåelse eller andre overtrædelser.</li>\n  <li>Den af dig angivne e-mailadresse kan bruges til at sende dig oplysninger, notifikationer om andre personer, som interagerer med dit indhold eller sender dig beskeder samt til at svare på henvendelser og/eller andre forespørgsler eller spørgsmål. </li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"protect\">Hvordan beskytter vi dine oplysninger?</h3>\n\n<p>Vi implementerer en vifte af sikkerhedsforanstaltninger for at sikre dine personlige oplysninger, når du angiver, indsender eller tilgår personlige oplysninger. Bl.a. sikres din browsersession samt trafikken mellem dine applikationer og API'en med SSL, og din adgangskode hashes vha. en stærk envejsalgoritme. Tofaktorgodkendelse kan endvidere aktiveres til yderligere adgangssikring af kontoen.</p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"data-retention\">Hvad er vores datalagringspolitik?</h3>\n\n<p>Vi vil efter bedste evne bestræbe os på at: </p>\n\n<ul>\n  <li>Ikke at beholde/lagre serverlogfiler indeholdende IP-adressen på alle forespørgsler til denne server, for så vidt at sådanne logfiler gemmes, længere end 90 dage.</li>\n  <li>Ikke at beholde/lagre IP-adresser tilknyttet registrerede brugere længere end 12 måneder.</li>\n</ul>\n\n<p>Du kan anmode om, og downloade, et arkiv af dit indhold, herunder indlæg, medievedhæftninger samt profil- og overskriftsbilleder </p>\n\n<p>Du kan til enhver tid slette din konto permanent.</p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"cookies\">Bruger vi cookies?</h3>\n\n<p>Ja. Cookies er små filer, som et websted eller dets tjenesteudbyder gemmer til din computers harddisk via din webbrowser (hvis du tillader det). Disse cookies gør det muligt for webstedet at genkende din browser og, hvis du har en registreret konto, associerer den med din registrerede konto.</p>\n\n<p>Vi bruger cookies til at forstå og gemme dine præferencer for fremtidige besøg.</p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"disclose\">Videregiver vi oplysninger til eksterne parter?</h3>\n\n<p>Vi hverken sælger, handler/bytter eller overfører på anden vis dine personlige identificerbare oplysninger til eksterne parter. Herfra undtaget er dog betroede tredjeparter, som hjælper os med at drive vores websted, drive vores forretning eller servicere dig, så længe parterne accepterer at holde disse oplysninger fortrolige. Vi kan også vælge at frigive dine oplysninger, såfremt vi mener, at frigivelsen er hensigtsmæssig ift. at overholde loven, håndhæve vores webstedspolitikker eller beskytte vores/andres rettigheder, ejendom eller sikkerhed.</p>\n\n<p>Dit offentlige indhold kan blive downloadet af andre servere i netværket. Dine offentlige og kun-følgere indlæg leveres til de servere, hvor dine tilhængere er hjemhørende, og direkte beskeder leveres til modtagerens servere, for så vidt som disse følgere/modtagere ikke er hjemhørende på denne server.</p>\n\n<p>Når du godkender en applikation til at bruge din konto, godkender du, afhængt af tilladelsesomfanget, at denne kan tilgå dine offentlige profiloplysninger, listen over dem, du følger, følgere, lister, alle indlæg og favoritter. Applikationer kan aldrig tilgå din e-mailadresse eller adgangskode.</p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"children\">Børns brug af webstedet</h3>\n\n<p>Hvis denne server er i EU eller EØS: Vores websted, produkter og tjenester er alle er alle beregnet på personer, som er fyldt 16 år. Er man ikke fyldt 16 år, så benyt ikke, jf. kravene i GDPR, (<a href=\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\">Generel Databeskyttelsesforordning</a>), dette websted.</p>\n\n<p>Hvis denne server er i USA: Vores websted, produkter og tjenester er alle rettet mod personer, som er fyldt 13 år. Er man ikke fyldt 13 år, så benyt ikke, jf. kravene i COPPA, (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\">Børns online fortrolighedsbeskyttelsesslov</a>), dette websted.</p>\n\n<p>Lovkrav kan afvige, hvis denne server befinder sig i et andet retsområde.</p>\n\n<hr class = \"spacer\" />\n\n<h3 id=\"changes\">Ændringer i vores Fortrolighedspolitik</h3>\n\n<p>Beslutter vi os for at ændre vores Fortrolighedspolitik, vil disse ændringer fremgå på denne side.</p>\n\n<p>Dette dokument er CC-BY-SA, og det blev senest opdateret 7. marts 2018.</p>\n\n<p> Oprindelig tilpasset fra <a href=\"https://github.com/discourse/discourse\"> Discourse privacy policy</a>.</p>\n"
-    title: Tjenestevilkår og Fortrolighedspolitik for %{instance}
+    body_html: |
+      <p><h2>Fortrolighedspolitik</h2> 
+      <h3 id="collect">Hvilke oplysninger indsamler vi?</h3> 
+
+      <ul>
+        <li><em>Grundlæggende kontooplysninger</em>: Opretter du dig på denne server, kan du blive bedt om at angive brugernavn, e-mailadresse og adgangskode. Du kan også angive yderligere profiloplysninger, såsom visningsnavn og biografi, samt uploade et profil- og overskriftsbillede. Brugernavn, visningsnavn, biografi, profil- og overskriftsbilleder vises altid offentligt.</li> 
+        <li> <em>Indlæg, følgning og andre offentlige oplysninger</em>: Listen over personer, du følger, er offentligt tilgængelig, det samme gælder dine følgere. Når du sender en besked, gemmes dato og klokkeslæt såvel som det program, du sendte beskeden fra. Beskeder kan indeholde medievedhæftninger, såsom billeder og videoer. Offentlige og ulistede indlæg er offentligt tilgængelige. Når du fremhæver et indlæg på din profil, er det også offentligt tilgængelig information. Dine indlæg leveres til dine følgere, i visse tilfælde betyder det, at de leveres til forskellige servere, hvor kopier gemmes. Når du sletter indlæg, leveres det også til dine følgere. Genbloggingshandlinger eller favoritmarkeringer af andre indlæg sker altid i offentligt regi.</li>
+        <li><em>Direkte og kun-følgere indlæg</em>: Alle indlæg gemmes og behandles på serveren. Kun-følgere indlæg leveres til dine følgere og brugere, nævnt heri, og direkte indlæg leveres kun til brugere nævnt heri. I visse tilfælde betyder dette, at de leveres til forskellige servere, hvor kopier gemmes. Vi gør en bedste-evne indsats for at begrænse adgangen til disse indlæg til kun godkendte personer, men andre servere kan undlade dette tiltag. Det er derfor vigtigt at gennemgå de servere, dine følgere tilhører. Man kan via indstillingerne manuelt slå muligheden Godkend/Afvis nye følgere til/fra.<em>Husk dog på, at operatørerne af serveren og enhver modtagende server vil kunne se sådanne meddelelser</em>, og at modtagere vil kunne tage skærmfotos, kopiere eller på anden vis deler disse igen.<em> Del ingen sensitive mv. oplysninger over Mastodon.</em> </li>
+        <li> <em>IP'er og andre metadata</em>: Når der logges ind, registreres den IP-adresse, der logges ind fra, samt navnet på browser-applikationen. Du vil have alle indloggede sessioner tilgængelige mhp. gennemgang og tilbagekaldelse via indstillingerne. Den senest anvendte IP-adresse gemmes i op til 12 måneder. Vi kan også beholde serverlogfiler indeholdende IP-adressen for hver forespørgsel til vores server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Hvad bruger vi dine oplysninger til?</h3>
+
+      <p>Enhver oplysning indsamlet fra/om dig, kan blive brugt på flg. måder: </p>
+
+      <ul>
+        <li>Til at levere Mastodon-kernfunktionalitet. Man kan kun interagere med andres indhold og indsende eget ditto, når man indlogget ind. Man kan f.eks. følge andre personer for at se deres kombinerede indlæg på sin egen personlige tidslinje.</li>
+        <li>Som hjælp til moderering af fællesskabet, f.eks. sammenligning af din IP-adresse med andre kendte mhp. at fastslå udelukkelsesomgåelse eller andre overtrædelser.</li>
+        <li>Den af dig angivne e-mailadresse kan bruges til at sende dig oplysninger, notifikationer om andre personer, som interagerer med dit indhold eller sender dig beskeder samt til at svare på henvendelser og/eller andre forespørgsler eller spørgsmål. </li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Hvordan beskytter vi dine oplysninger?</h3>
+
+      <p>Vi implementerer en vifte af sikkerhedsforanstaltninger for at sikre dine personlige oplysninger, når du angiver, indsender eller tilgår personlige oplysninger. Bl.a. sikres din browsersession samt trafikken mellem dine applikationer og API'en med SSL, og din adgangskode hashes vha. en stærk envejsalgoritme. Tofaktorgodkendelse kan endvidere aktiveres til yderligere adgangssikring af kontoen.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Hvad er vores datalagringspolitik?</h3>
+
+      <p>Vi vil efter bedste evne bestræbe os på at: </p>
+
+      <ul>
+        <li>Ikke at beholde/lagre serverlogfiler indeholdende IP-adressen på alle forespørgsler til denne server, for så vidt at sådanne logfiler gemmes, længere end 90 dage.</li>
+        <li>Ikke at beholde/lagre IP-adresser tilknyttet registrerede brugere længere end 12 måneder.</li>
+      </ul>
+
+      <p>Du kan anmode om, og downloade, et arkiv af dit indhold, herunder indlæg, medievedhæftninger samt profil- og overskriftsbilleder </p>
+
+      <p>Du kan til enhver tid slette din konto permanent.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="cookies">Bruger vi cookies?</h3>
+
+      <p>Ja. Cookies er små filer, som et websted eller dets tjenesteudbyder gemmer til din computers harddisk via din webbrowser (hvis du tillader det). Disse cookies gør det muligt for webstedet at genkende din browser og, hvis du har en registreret konto, associerer den med din registrerede konto.</p>
+
+      <p>Vi bruger cookies til at forstå og gemme dine præferencer for fremtidige besøg.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Videregiver vi oplysninger til eksterne parter?</h3>
+
+      <p>Vi hverken sælger, handler/bytter eller overfører på anden vis dine personlige identificerbare oplysninger til eksterne parter. Herfra undtaget er dog betroede tredjeparter, som hjælper os med at drive vores websted, drive vores forretning eller servicere dig, så længe parterne accepterer at holde disse oplysninger fortrolige. Vi kan også vælge at frigive dine oplysninger, såfremt vi mener, at frigivelsen er hensigtsmæssig ift. at overholde loven, håndhæve vores webstedspolitikker eller beskytte vores/andres rettigheder, ejendom eller sikkerhed.</p>
+
+      <p>Dit offentlige indhold kan blive downloadet af andre servere i netværket. Dine offentlige og kun-følgere indlæg leveres til de servere, hvor dine tilhængere er hjemhørende, og direkte beskeder leveres til modtagerens servere, for så vidt som disse følgere/modtagere ikke er hjemhørende på denne server.</p>
+
+      <p>Når du godkender en applikation til at bruge din konto, godkender du, afhængt af tilladelsesomfanget, at denne kan tilgå dine offentlige profiloplysninger, listen over dem, du følger, følgere, lister, alle indlæg og favoritter. Applikationer kan aldrig tilgå din e-mailadresse eller adgangskode.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Børns brug af webstedet</h3>
+
+      <p>Hvis denne server er i EU eller EØS: Vores websted, produkter og tjenester er alle er alle beregnet på personer, som er fyldt 16 år. Er man ikke fyldt 16 år, så benyt ikke, jf. kravene i GDPR, (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Generel Databeskyttelsesforordning</a>), dette websted.</p>
+
+      <p>Hvis denne server er i USA: Vores websted, produkter og tjenester er alle rettet mod personer, som er fyldt 13 år. Er man ikke fyldt 13 år, så benyt ikke, jf. kravene i COPPA, (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Børns online fortrolighedsbeskyttelsesslov</a>), dette websted.</p>
+
+      <p>Lovkrav kan afvige, hvis denne server befinder sig i et andet retsområde.</p>
+
+      <hr class = "spacer" />
+
+      <h3 id="changes">Ændringer i vores Fortrolighedspolitik</h3>
+
+      <p>Beslutter vi os for at ændre vores Fortrolighedspolitik, vil disse ændringer fremgå på denne side.</p>
+
+      <p>Dette dokument er CC-BY-SA, og det blev senest opdateret 7. marts 2018.</p>
+
+      <p> Oprindelig tilpasset fra <a href="https://github.com/discourse/discourse"> Discourse privacy policy</a>.</p>
+    title: "Tjenestevilkår og Fortrolighedspolitik for %{instance}"
   themes:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
