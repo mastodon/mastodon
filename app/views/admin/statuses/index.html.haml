@@ -4,7 +4,7 @@
 - content_for :page_title do
   = t('admin.statuses.title')
   \-
-  = "@#{@account.acct}"
+  = "@#{@account.pretty_acct}"
 
 .filters
   .filter-subset
