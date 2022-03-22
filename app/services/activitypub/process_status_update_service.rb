@@ -3,8 +3,6 @@
 class ActivityPub::ProcessStatusUpdateService < BaseService
   include JsonLdHelper
 
-  class NoChangesSubmittedError < StandardError; end
-
   def call(status, json)
     @json                      = json
     @status_parser             = ActivityPub::Parser::StatusParser.new(@json)
@@ -15,9 +13,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @poll_changed              = false
 
     # Only native types can be updated at the moment
-    return @status if !expected_type? || not_updated? || already_updated_more_recently?
+    return @status if !expected_type? || already_updated_more_recently?
 
-    previously_updated_at = status.edited_at.presence || status.created_at
+    last_edit_date = status.edited_at.presence || status.created_at
 
     # Only allow processing one create/update per status at a time
     RedisLock.acquire(lock_options) do |lock|
@@ -32,6 +30,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         end
 
         queue_poll_notifications!
+
+        next unless significant_changes?
+
         reset_preview_card!
         broadcast_updates!
       else
@@ -39,14 +40,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       end
     end
 
-    forward_activity! if @status_parser.edited_at.present? && @status_parser.edited_at > previously_updated_at
+    forward_activity! if significant_changes? && @status_parser.edited_at.present? && @status_parser.edited_at > last_edit_date
 
     @status
-  rescue NoChangesSubmittedError
-    # For calls that result in no changes, swallow the error
-    # but get back to the original state
-
-    @status.reload
   end
 
   private
@@ -131,10 +127,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status.spoiler_text = @status_parser.spoiler_text || ''
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
+    @status.edited_at    = @status_parser.edited_at || Time.now.utc if significant_changes?
 
-    raise NoChangesSubmittedError unless significant_changes?
-
-    @status.edited_at = @status_parser.edited_at
     @status.save!
   end
 
@@ -233,6 +227,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def create_edit!
+    return unless significant_changes?
+
     @status.snapshot!(account_id: @account.id, rate_limit: false)
   end
 
@@ -246,16 +242,12 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     mime_type.present? && !MediaAttachment.supported_mime_types.include?(mime_type)
   end
 
-  def not_updated?
-    @status_parser.edited_at.blank?
+  def significant_changes?
+    @status.text_changed? || @status.text_previously_changed? || @status.spoiler_text_changed? || @status.spoiler_text_previously_changed? || @media_attachments_changed || @poll_changed
   end
 
   def already_updated_more_recently?
     @status.edited_at.present? && @status_parser.edited_at.present? && @status.edited_at > @status_parser.edited_at
-  end
-
-  def significant_changes?
-    @status.changed? || @poll_changed || @media_attachments_changed || (@previous_expires_at != @status.preloadable_poll&.expires_at)
   end
 
   def reset_preview_card!
