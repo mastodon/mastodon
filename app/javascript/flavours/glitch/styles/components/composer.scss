@@ -425,54 +425,12 @@
     background-repeat: no-repeat;
     overflow: hidden;
 
-    textarea {
-      display: block;
-      position: absolute;
-      box-sizing: border-box;
-      bottom: 0;
-      left: 0;
-      margin: 0;
-      border: 0;
-      padding: 10px;
-      width: 100%;
-      color: $secondary-text-color;
-      background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
-      font-size: 14px;
-      font-family: inherit;
-      font-weight: 500;
-      opacity: 0;
-      z-index: 2;
-      transition: opacity .1s ease;
-
-      &:focus { color: $white }
-
-      &::placeholder {
-        opacity: 0.54;
-        color: $secondary-text-color;
-      }
-    }
-
     & > .close { mix-blend-mode: difference }
   }
 
-  &.active {
-    & > div {
-      textarea { opacity: 1 }
-    }
-  }
-}
-
-.composer--upload_form--actions {
-  background: linear-gradient(180deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  opacity: 0;
-  transition: opacity .1s ease;
-
   .icon-button {
     flex: 0 1 auto;
-    color: $ui-secondary-color;
+    color: $secondary-text-color;
     font-size: 14px;
     font-weight: 500;
     padding: 10px;
@@ -481,13 +439,26 @@
     &:hover,
     &:focus,
     &:active {
-      color: lighten($ui-secondary-color, 4%);
+      color: lighten($secondary-text-color, 7%);
     }
   }
 
-  &.active {
-    opacity: 1;
+  &__warning {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    background: linear-gradient(0deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
   }
+}
+
+.composer--upload_form--actions {
+  background: linear-gradient(180deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .composer--upload_form--progress {
