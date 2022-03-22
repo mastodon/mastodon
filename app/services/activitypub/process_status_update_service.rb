@@ -226,7 +226,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   def create_edits!
     return unless significant_changes?
 
-    @previous_edit.save! if @previous_edit
+    @previous_edit&.save!
     @status.snapshot!(account_id: @account.id, rate_limit: false)
   end
 
