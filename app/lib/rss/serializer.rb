@@ -42,10 +42,14 @@ class RSS::Serializer
       status.proper.spoiler_text
     else
       html = status_content_format(status.proper).to_str
+      after_html = ''
 
-      return html + '<p>' + status.proper.preloadable_poll.options.map { |o| "[ ] #{o}" }.join('<br />') + '</p>' if status.proper.preloadable_poll
+      if status.proper.preloadable_poll
+        poll_options_html = status.proper.preloadable_poll.options.map { |o| "[ ] #{o}" }.join('<br />')
+        after_html = "<p>#{poll_options_html}</p>"
+      end
 
-      html
+      "#{html}#{after_html}"
     end
   end
 end
