@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class RSS::Serializer
+  include FormattingHelper
+
   private
 
   def render_statuses(builder, statuses)
@@ -36,6 +38,14 @@ class RSS::Serializer
   end
 
   def status_description(status)
-    status.spoiler_text # FIXME: Re-add full content and inline poll options rendering
+    if status.proper.spoiler_text?
+      status.proper.spoiler_text
+    else
+      html = status_content_format(status.proper).to_str
+
+      return html + '<p>' + status.proper.preloadable_poll.options.map { |o| "[ ] #{o}" }.join('<br />') + '</p>' if status.proper.preloadable_poll
+
+      html
+    end
   end
 end
