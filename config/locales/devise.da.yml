@@ -37,21 +37,21 @@ da:
         title: Adgangskode skiftet
       reconfirmation_instructions:
         explanation: Bekræft den nye adresse for at skifte din e-mail.
-        extra: Er denne ændring ikke foranlediget af dig, så ignorér denne e-mail. Mastodon-kontoens e-mailadresse skiftes ikke, før linket ovenfor benyttes.
+        extra: Er denne ændring ikke foranlediget af dig, så ignorér denne e-mail. Mastodon-kontoens e-mailadresse kan kun skiftes vha. linket ovenfor.
         subject: 'Mastodon: Bekræft e-mail for %{instance}'
         title: Bekræft e-mailadresse
       reset_password_instructions:
         action: Skift adgangskode
         explanation: Du har anmodet om en ny kontoadgangskode.
-        extra: Har du ikke anmodet om dette, så ignorér denne e-mail. Din adgangskode skiftes først, når linket ovenfor er benyttet til at oprette en ny.
-        subject: 'Mastodon: Nulstil adgangskode-instruktioner'
+        extra: Har du ikke anmodet om dette, så ignorér denne e-mail. Din adgangskode skiftes først, når en ny er oprettet vha. linket ovenfor.
+        subject: 'Mastodon: Instruktioner til adgangskodenulstilling'
         title: Adgangskodenulstilling
       two_factor_disabled:
-        explanation: Tofaktorgodkendelse for din konto er blevet deaktiveret. Indlogning er nu kun mulig via email og adgangskode.
+        explanation: Tofaktorgodkendelse for kontoen er blevet deaktiveret. Indlogning er nu kun mulig via email og adgangskode.
         subject: 'Mastodon: Tofaktorgodkendelse deaktiveret'
         title: 2FA deaktiveret
       two_factor_enabled:
-        explanation: Tofaktorgodkendelse er blevet aktiveret for din konto. Et login-token genereret af den parrede TOTP-app vil være nødvendig.
+        explanation: Tofaktorgodkendelse er blevet aktiveret for kontoen. Indlogning vil kærve et token genereret af den parrede TOTP-app.
         subject: 'Mastodon: Tofaktorgodkendelse aktiveret'
         title: 2FA aktiveret
       two_factor_recovery_codes_changed:
@@ -70,38 +70,38 @@ da:
           subject: 'Mastodon: Sikkerhedsnøgle slettet'
           title: En af dine sikkerhedsnøgler er blevet slettet
       webauthn_disabled:
-        explanation: Godkendelse med sikkerhedsnøgler er blevet deaktiveret for din konto. Indlogning er nu kun mulig via token genereret af den parrede TOTP-app.
+        explanation: Godkendelse med sikkerhedsnøgler er blevet deaktiveret for kontoen. Indlogning er nu kun mulig via token genereret af den parrede TOTP-app.
         subject: 'Mastodon: Godkendelse med sikkerhedsnøgler deaktiveret'
         title: Sikkerhedsnøgler deaktiveret
       webauthn_enabled:
-        explanation: Sikkerhedsnøglegodkendelse er aktiveret for din konto. Din sikkerhedsnøgle kan nu bruges til indlogning.
+        explanation: Sikkerhedsnøglegodkendelse er aktiveret for kontoen. Din sikkerhedsnøgle kan nu bruges til indlogning.
         subject: 'Mastodon: Sikkerhedsnøglegodkendelse aktiveret'
         title: Sikkerhedsnøgler aktiveret
     omniauth_callbacks:
       failure: Kunne ikke godkende dig fra %{kind} fordi "%{reason}".
       success: Godkendt fra %{kind}-konto.
     passwords:
-      no_token: Denne side er kun tilgængelig via linket fra en adgangskodenulstillings e-mail. Husk i den forbindelse at benytte den fuldstændige URL fra e-mailen.
+      no_token: Denne side er kun tilgængelig via linket fra en e-mail til adgangskodenulstillings. Husk i den forbindelse at benytte den fuldstændige URL fra e-mailen.
       send_instructions: Er din e-mailadresse allerede registreret, e-mailes du et link til adgangskodenulstilling. Tjek spammappen, hvis e-mailen ikke ses i indbakken indenfor få minutter.
-      send_paranoid_instructions: Er din e-mail-adresse allerede registreret, e-mailes du et link til adgangskodegendannelse. Tjek spammappen, hvis e-mailen ikke ses i indbakken indenfor få minutter.
+      send_paranoid_instructions: Er din e-mailadresse allerede registreret, e-mailes du et link til adgangskodenulstilling. Tjek spammappen, hvis e-mailen ikke ses i indbakken indenfor få minutter.
       updated: Din adgangskode er skiftet, og du er nu logget ind.
       updated_not_active: Din adgangskode er skiftet.
     registrations:
       destroyed: Farvel! Din konto er nu annulleret. Vi håber snart at se dig igen.
-      signed_up: Velkommen! Du har nu tilmeldt dig.
-      signed_up_but_inactive: Du har nu oprettet dig. Da din konto endnu ikke er aktiveret, kan du dog pt. ikke logge ind.
-      signed_up_but_locked: Du har nu oprettet dig. Da din konto er låst, kan du pt. ikke logge ind.
-      signed_up_but_pending: En besked med et bekræftelseslink er e-mailet til dig. Når du har klikket på linket, gennemgår vi din ansøgning, og du får besked, hvis den godkendes.
-      signed_up_but_unconfirmed: En besked med et bekræftelseslink er e-mailet til dig. Følg linket for at aktivere din konto. Tjek din spammappe, hvis du ikke ser denne e-mail i din indbakke.
-      update_needs_confirmation: Du har opdateret din konto. Din nye e-mailadresse skal dog bekræftes. For at gøre dette, tjek din e-mail og følg bekræftelseslinket. Tjek din spammappe, hvis du ikke ser denne e-mail i din indbakke indenfor få minutter.
+      signed_up: Velkommen! Du er nu tilmeldt.
+      signed_up_but_inactive: Du har nu oprettet dig. Da din konto endnu ikke er aktiveret, kan du dog ikke logge ind med det samme.
+      signed_up_but_locked: Du har nu oprettet dig. Da din konto er låst, kan du ikke logge ind med det samme.
+      signed_up_but_pending: Et bekræftelseslink er e-mailet til dig. Når du har klikket på linket, gennemgår vi din ansøgning, og du får besked, hvis den godkendes.
+      signed_up_but_unconfirmed: Et bekræftelseslink er e-mailet til dig. Følg linket for at aktivere din konto. Tjek spammappen, hvis e-mailen ikke dukker op i indbakken.
+      update_needs_confirmation: Du har opdateret din konto. Din nye e-mailadresse skal nu bekræftes. Til dette formål er du blevet e-mailet et bekræftelseslink, så følg dette for at bekræfte den nye e-mailadresse. Ser du ikke e-mailen i din indbakke snarest, så tjek Spam-mappen.
       updated: Din konto er nu opdateret.
     sessions:
       already_signed_out: Du er nu logget ud.
       signed_in: Du er nu logget ind.
       signed_out: Du er nu logget ud.
     unlocks:
-      send_instructions: Instruktioner mailes til dig om, hvordan du oplåser din konto. Er denne e-mail ikke er i din indbakke inden for få minutter, så tjek spammappe.
-      send_paranoid_instructions: Findes din konto, mailes du instrukser om, hvordan du oplåser den. Ser du ikke denne e-mail i din indbakke undenfor få minutter, så tjek spammappen.
+      send_instructions: Instruktioner e-mailes til dig om, hvordan du oplåser din konto. Er e-mailen ikke er i din indbakke inden for få minutter, så tjek i Spam.
+      send_paranoid_instructions: Findes din konto, e-mailes du instrukser om, hvordan du oplåser den. Er e-mailen i din indbakke indenfor få minutter, så tjek i Spam.
       unlocked: Din konto er nu oplåst. Log ind for at fortsætte.
   errors:
     messages:

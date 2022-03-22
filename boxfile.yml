@@ -43,20 +43,19 @@ run.config:
 
   fs_watch: true
 
-
 deploy.config:
   extra_steps:
     - NODE_ENV=production bundle exec rake assets:precompile
   transform:
-    - "envsubst < /app/.env.nanobox > /app/.env.production"
+    - 'envsubst < /app/.env.nanobox > /app/.env.production'
     - |-
-        if [ -z "$LOCAL_DOMAIN" ]
-        then
-          . /app/.env.production
-          export LOCAL_DOMAIN
-        fi
-        erb /app/nanobox/nginx-web.conf.erb > /app/nanobox/nginx-web.conf
-        erb /app/nanobox/nginx-stream.conf.erb > /app/nanobox/nginx-stream.conf
+      if [ -z "$LOCAL_DOMAIN" ]
+      then
+        . /app/.env.production
+        export LOCAL_DOMAIN
+      fi
+      erb /app/nanobox/nginx-web.conf.erb > /app/nanobox/nginx-web.conf
+      erb /app/nanobox/nginx-stream.conf.erb > /app/nanobox/nginx-stream.conf
     - touch /app/log/production.log
   before_live:
     web.web:
@@ -65,11 +64,10 @@ deploy.config:
   after_live:
     worker.sidekiq:
       - |-
-          if [[ "${ES_ENABLED}" != "false" ]]
-          then
-            bin/tootctl search deploy
-          fi
-
+        if [[ "${ES_ENABLED}" != "false" ]]
+        then
+          bin/tootctl search deploy
+        fi
 
 web.web:
   start:
@@ -89,7 +87,6 @@ web.web:
     data.storage:
       - public/system
 
-
 web.stream:
   start:
     nginx: nginx -c /app/nanobox/nginx-stream.conf
@@ -102,7 +99,6 @@ web.stream:
 
   writable_dirs:
     - tmp
-
 
 worker.sidekiq:
   start:
@@ -122,7 +118,6 @@ worker.sidekiq:
   network_dirs:
     data.storage:
       - public/system
-
 
 data.db:
   image: nanobox/postgresql:9.6
@@ -144,7 +139,6 @@ data.db:
         do
           curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
         done
-
 
 data.elastic:
   image: nanobox/elasticsearch:5
@@ -171,7 +165,6 @@ data.elastic:
           curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
         done
 
-
 data.redis:
   image: nanobox/redis:4.0
 
@@ -190,7 +183,6 @@ data.redis:
         do
           curl -k -H "X-AUTH-TOKEN: ${WAREHOUSE_DATA_HOARDER_TOKEN}" https://${WAREHOUSE_DATA_HOARDER_HOST}:7410/blobs/${file} -X DELETE
         done
-
 
 data.storage:
   image: nanobox/unfs:0.9

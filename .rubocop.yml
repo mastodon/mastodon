@@ -5,17 +5,17 @@ AllCops:
   TargetRubyVersion: 2.5
   NewCops: disable
   Exclude:
-  - 'spec/**/*'
-  - 'db/**/*'
-  - 'app/views/**/*'
-  - 'config/**/*'
-  - 'bin/*'
-  - 'Rakefile'
-  - 'node_modules/**/*'
-  - 'Vagrantfile'
-  - 'vendor/**/*'
-  - 'lib/json_ld/*'
-  - 'lib/templates/**/*'
+    - 'spec/**/*'
+    - 'db/**/*'
+    - 'app/views/**/*'
+    - 'config/**/*'
+    - 'bin/*'
+    - 'Rakefile'
+    - 'node_modules/**/*'
+    - 'Vagrantfile'
+    - 'vendor/**/*'
+    - 'lib/json_ld/*'
+    - 'lib/templates/**/*'
 
 Bundler/OrderedGems:
   Enabled: false
