@@ -870,7 +870,8 @@
   .status__content__spoiler-link {
     background: $action-button-color;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: lighten($action-button-color, 7%);
       text-decoration: none;
     }
@@ -982,7 +983,7 @@
   text-transform: uppercase;
   line-height: 20px;
   cursor: pointer;
-  vertical-align: middle;
+  vertical-align: top;
 }
 
 .status__wrapper--filtered {
@@ -1041,42 +1042,6 @@
   .video-player,
   .audio-player {
     margin-top: 8px;
-  }
-
-  &.light {
-    .status__relative-time,
-    .status__visibility-icon {
-      color: $light-text-color;
-    }
-
-    .status__display-name {
-      color: $inverted-text-color;
-    }
-
-    .display-name {
-      color: $light-text-color;
-
-      strong {
-        color: $inverted-text-color;
-      }
-    }
-
-    .status__content {
-      color: $inverted-text-color;
-
-      a {
-        color: $highlight-text-color;
-      }
-
-      a.status__content__spoiler-link {
-        color: $primary-text-color;
-        background: $ui-primary-color;
-
-        &:hover {
-          background: lighten($ui-primary-color, 8%);
-        }
-      }
-    }
   }
 }
 
@@ -1646,7 +1611,8 @@ a.account__display-name {
     background: $ui-base-lighter-color;
     color: $inverted-text-color;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: lighten($ui-base-lighter-color, 7%);
       text-decoration: none;
     }
@@ -5156,6 +5122,15 @@ a.status-card.compact:hover {
   .status__content,
   .status__content p {
     color: $inverted-text-color;
+  }
+
+  .status__content__spoiler-link {
+    color: $primary-text-color;
+    background: $ui-primary-color;
+
+    &:hover {
+      background: lighten($ui-primary-color, 8%);
+    }
   }
 
   .dialog-option .poll__input {
