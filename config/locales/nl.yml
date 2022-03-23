@@ -820,7 +820,7 @@ nl:
     add_new: Nieuwe toevoegen
     errors:
       limit: Je hebt al het maximaal aantal hashtags uitgelicht
-    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare toots per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
+    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare berichten per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
       account: Profielen
@@ -901,7 +901,7 @@ nl:
       limit: Je hebt het maximaal aantal lijsten bereikt
   media_attachments:
     validations:
-      images_and_video: Een video kan niet aan een toot met afbeeldingen worden gekoppeld
+      images_and_video: Een video kan niet aan een bericht met afbeeldingen worden gekoppeld
       not_ready: Kan geen bestanden toevoegen die nog niet zijn verwerkt. Probeer het later opnieuw!
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   migrations:
@@ -954,8 +954,8 @@ nl:
         other: "%{count} nieuwe meldingen sinds jouw laatste bezoek \U0001F418"
       title: Tijdens jouw afwezigheid...
     favourite:
-      body: 'Jouw toot werd door %{name} aan diens favorieten toegevoegd:'
-      subject: "%{name} voegde jouw toot als favoriet toe"
+      body: 'Jouw bericht werd door %{name} aan diens favorieten toegevoegd:'
+      subject: "%{name} voegde jouw bericht als favoriet toe"
       title: Nieuwe favoriet
     follow:
       body: "%{name} volgt jou nu!"
@@ -974,11 +974,11 @@ nl:
     poll:
       subject: Een poll van %{name} is beëindigd
     reblog:
-      body: 'Jouw toot werd door %{name} geboost:'
-      subject: "%{name} boostte jouw toot"
+      body: 'Jouw bericht werd door %{name} geboost:'
+      subject: "%{name} boostte jouw bericht"
       title: Nieuwe boost
     status:
-      subject: "%{name} heeft zojuist een toot geplaatst"
+      subject: "%{name} heeft zojuist een bericht geplaatst"
   notifications:
     email_events: E-mailmeldingen voor gebeurtenissen
     email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
@@ -1053,17 +1053,17 @@ nl:
   remote_interaction:
     favourite:
       proceed: Doorgaan met toevoegen aan jouw favorieten
-      prompt: 'Je wilt de volgende toot aan jouw favorieten toevoegen:'
+      prompt: 'Je wilt het volgende bericht aan jouw favorieten toevoegen:'
     reblog:
       proceed: Doorgaan met boosten
-      prompt: 'Je wilt de volgende toot boosten:'
+      prompt: 'Je wilt het volgende bericht boosten:'
     reply:
       proceed: Doorgaan met reageren
-      prompt: 'Je wilt op de volgende toot reageren:'
+      prompt: 'Je wilt op het volgende bericht reageren:'
   scheduled_statuses:
-    over_daily_limit: Je hebt de limiet van %{limit} in te plannen toots voor die dag overschreden
-    over_total_limit: Je hebt de limiet van %{limit} in te plannen toots overschreden
-    too_soon: De datum voor de ingeplande toot moet in de toekomst liggen
+    over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
+    over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
+    too_soon: De datum voor het ingeplande bericht moet in de toekomst liggen
   sessions:
     activity: Laatst actief
     browser: Webbrowser
@@ -1144,12 +1144,12 @@ nl:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
     errors:
-      in_reply_not_found: De toot waarop je probeert te reageren lijkt niet te bestaan.
+      in_reply_not_found: Het bericht waarop je probeert te reageren lijkt niet te bestaan.
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
-      limit: Je hebt het maximaal aantal toots al vastgezet
-      ownership: Een toot van iemand anders kan niet worden vastgezet
+      limit: Je hebt het maximaal aantal bericht al vastgemaakt
+      ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
     poll:
       total_people:
@@ -1174,7 +1174,7 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   stream_entries:
-    pinned: Vastgemaakte toot
+    pinned: Vastgemaakt bericht
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
   tags:
