@@ -459,6 +459,17 @@ uk:
       back_to_warning: Попередження
       by_domain: Домен
       confirm_purge: Ви впевнені, що хочете видалити ці дані з цього домену?
+      content_policies:
+        policies:
+          reject_media: Відхилити медіа
+          reject_reports: Відхилити скарги
+          silence: Обмеження
+          suspend: Призупинити
+        policy: Правила
+        reason: Суспільна причина
+        title: Політика вмісту
+      dashboard:
+        instance_languages_dimension: Найуживаніші мови
       delivery:
         all: Усі
         clear: Очистити помилки доставляння
@@ -731,6 +742,10 @@ uk:
         rejected: Посилання цього публікатора можуть не будуть популярними
         title: Публікатори
       rejected: Відхилено
+      statuses:
+        allow: Дозволити оприлюднення
+        allow_account: Дозволити автора
+        disallow_account: Заборонити автора
       tags:
         current_score: Поточний результат %{score}
         dashboard:
@@ -1334,6 +1349,7 @@ uk:
       many: 'заборонених хештеґів: %{tags}'
       one: 'заборонений хештеґ: %{tags}'
       other: 'заборонених хештеґів: %{tags}'
+    edited_at_html: Відредаговано %{date}
     errors:
       in_reply_not_found: Статуса, на який ви намагаєтеся відповісти, не існує.
     open_in_web: Відкрити у вебі
@@ -1396,7 +1412,7 @@ uk:
       '2629746': 1 місяць
       '31556952': 1 рік
       '5259492': 2 місяці
-      '604800': 1 week
+      '604800': 1 тиждень
       '63113904': 2 роки
       '7889238': 3 місяці
     min_age_label: Поріг давності

@@ -23,7 +23,7 @@
                                       = image_tag full_asset_url(status.account.avatar.url), alt:''
                                     %td{ align: 'left' }
                                       %bdi= display_name(status.account)
-                                      = "@#{status.account.acct}"
+                                      = "@#{status.account.pretty_acct}"
 
                               - if status.spoiler_text?
                                 %div.auto-dir

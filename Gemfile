@@ -89,7 +89,7 @@ gem 'stoplight', '~> 2.2.1'
 gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
-gem 'tzinfo-data', '~> 1.2021'
+gem 'tzinfo-data', '~> 1.2022'
 gem 'webpacker', '~> 5.4'
 gem 'webpush', '~> 0.3'
 gem 'webauthn', '~> 3.0.0.alpha1'
@@ -131,11 +131,11 @@ group :development do
   gem 'better_errors', '~> 2.9'
   gem 'binding_of_caller', '~> 1.0'
   gem 'bullet', '~> 7.0'
-  gem 'letter_opener', '~> 1.7'
+  gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.25', require: false
-  gem 'rubocop-rails', '~> 2.13', require: false
+  gem 'rubocop', '~> 1.26', require: false
+  gem 'rubocop-rails', '~> 2.14', require: false
   gem 'brakeman', '~> 5.2', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 

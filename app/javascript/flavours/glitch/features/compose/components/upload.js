@@ -5,7 +5,6 @@ import Motion from 'flavours/glitch/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 import { isUserTouching } from 'flavours/glitch/util/is_mobile';
 
@@ -44,10 +43,16 @@ export default class Upload extends ImmutablePureComponent {
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12, }) }}>
           {({ scale }) => (
             <div style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>
-              <div className={classNames('composer--upload_form--actions', { active: true })}>
+              <div className='composer--upload_form--actions'>
                 <button className='icon-button' onClick={this.handleUndoClick}><Icon id='times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
                 {!isEditingStatus && (<button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='pencil' /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>)}
               </div>
+
+              {(media.get('description') || '').length === 0 && (
+                <div className='composer--upload_form--item__warning'>
+                  <button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='info-circle' /> <FormattedMessage id='upload_form.description_missing' defaultMessage='No description added' /></button>
+                </div>
+              )}
             </div>
           )}
         </Motion>

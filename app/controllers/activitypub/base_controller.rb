@@ -2,6 +2,7 @@
 
 class ActivityPub::BaseController < Api::BaseController
   skip_before_action :require_authenticated_user!
+  skip_around_action :set_locale
 
   private
 

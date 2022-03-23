@@ -716,7 +716,7 @@ ja:
     trends:
       allow: 許可
       approved: 承認
-      disallow: 不許可
+      disallow: 拒否
       links:
         allow: リンクの許可
         allow_provider: 発行者の承認
@@ -731,8 +731,11 @@ ja:
         title: 発行者
       rejected: 拒否
       statuses:
-        allow: 投稿を許可する
-        disallow: 投稿を許可しない
+        allow: 掲載を許可
+        allow_account: 投稿者を許可
+        disallow: 掲載を拒否
+        disallow_account: 投稿者を拒否
+        title: トレンド投稿
       tags:
         current_score: 現在のスコア %{score}
         dashboard:
@@ -1309,6 +1312,7 @@ ja:
     default_language: UIの表示言語
     disallowed_hashtags:
       other: '許可されていないハッシュタグが含まれています: %{tags}'
+    edited_at_html: "%{date} 編集済み"
     errors:
       in_reply_not_found: あなたが返信しようとしている投稿は存在しないようです。
     open_in_web: Webで開く

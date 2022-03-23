@@ -198,7 +198,8 @@
   .status__content__spoiler-link {
     background: lighten($ui-base-color, 30%);
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: lighten($ui-base-color, 33%);
       text-decoration: none;
     }
@@ -222,13 +223,13 @@
   background: lighten($ui-base-color, 30%);
   border: 0;
   color: $inverted-text-color;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 11px;
   padding: 0 5px;
   text-transform: uppercase;
   line-height: inherit;
   cursor: pointer;
-  vertical-align: bottom;
+  vertical-align: top;
 
   &:hover {
     background: lighten($ui-base-color, 33%);
@@ -760,7 +761,8 @@ a.status__display-name,
     background: $ui-base-lighter-color;
     color: $inverted-text-color;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: lighten($ui-base-color, 29%);
       text-decoration: none;
     }
