@@ -1,4 +1,3 @@
----
 nl:
   simple_form:
     hints:
@@ -11,14 +10,14 @@ nl:
         title: Optioneel. Niet zichtbaar voor de ontvanger
       admin_account_action:
         include_statuses: De gebruiker ziet welke toots verantwoordelijk zijn voor de moderatieactie of waarschuwing
-        send_email_notification: De gebruiker ontvangt een uitleg over wat er met hun account is gebeurd
+        send_email_notification: De gebruiker ontvangt een uitleg over wat er met diens account is gebeurd
         text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">presets voor waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
         types:
-          disable: Voorkom dat de gebruiker hun account gebruikt, maar verwijder of verberg de inhoud niet.
+          disable: Voorkom dat de gebruiker diens account gebruikt, maar verwijder of verberg de inhoud niet.
           none: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere actie wordt uitgevoerd.
           sensitive: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd.
-          silence: Voorkom dat de gebruiker openbare toots kan versturen, verberg hun toots en meldingen voor mensen die hen niet volgen.
+          silence: Voorkom dat de gebruiker openbare berichten kan versturen, verberg diens toots en meldingen voor mensen die diegene niet volgen.
           suspend: Alle interacties van en met dit account blokkeren en de inhoud verwijderen. Dit kan binnen dertig dagen worden teruggedraaid.
         warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       announcement:
@@ -195,7 +194,7 @@ nl:
         severity: Regel
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
-        favourite: Wanneer iemand jouw toot aan hun favorieten heeft toegevoegd
+        favourite: Wanneer iemand jouw toot aan diens favorieten heeft toegevoegd
         follow: Wanneer iemand jou is gaan volgen
         follow_request: Wanneer iemand jou wil volgen
         mention: Wanneer iemand jou heeft vermeld
@@ -208,7 +207,7 @@ nl:
         name: Hashtag
         trendable: Toestaan dat deze hashtag onder trends te zien valt
         usable: Toestaan dat deze hashtag in toots gebruikt mag worden
-    'no': Nee
+    'no': 'Nee'
     recommended: Aanbevolen
     required:
       mark: "*"
@@ -216,4 +215,4 @@ nl:
     title:
       sessions:
         webauthn: Gebruik een van uw beveiligingssleutels om in te loggen
-    'yes': Ja
+    'yes': 'Ja'
