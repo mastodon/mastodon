@@ -6,18 +6,18 @@ nl:
       account_migration:
         acct: Vul de gebruikersnaam@domein van het account in, waarnaartoe je wilt verhuizen
       account_warning_preset:
-        text: Je kunt voor toots specifieke tekst gebruiken, zoals URL's, hashtags en vermeldingen
+        text: Je kunt specifieke tekst voor berichten gebruiken, zoals URL's, hashtags en vermeldingen
         title: Optioneel. Niet zichtbaar voor de ontvanger
       admin_account_action:
-        include_statuses: De gebruiker ziet welke toots verantwoordelijk zijn voor de moderatieactie of waarschuwing
+        include_statuses: De gebruiker ziet welke berichten verantwoordelijk zijn voor de moderatieactie of waarschuwing
         send_email_notification: De gebruiker ontvangt een uitleg over wat er met diens account is gebeurd
-        text_html: Optioneel. Je kunt voor toots specifieke tekst gebruiken. Om tijd te besparen kun je <a href="%{path}">presets voor waarschuwingen toevoegen</a>
+        text_html: Optioneel. Je kunt specifieke tekst voor berichten gebruiken. Om tijd te besparen kun je <a href="%{path}">presets voor waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
         types:
           disable: Voorkom dat de gebruiker diens account gebruikt, maar verwijder of verberg de inhoud niet.
           none: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere actie wordt uitgevoerd.
           sensitive: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd.
-          silence: Voorkom dat de gebruiker openbare berichten kan versturen, verberg diens toots en meldingen voor mensen die diegene niet volgen.
+          silence: Voorkom dat de gebruiker openbare berichten kan versturen, verberg diens berichten en meldingen voor mensen die diegene niet volgen.
           suspend: Alle interacties van en met dit account blokkeren en de inhoud verwijderen. Dit kan binnen dertig dagen worden teruggedraaid.
         warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       announcement:
