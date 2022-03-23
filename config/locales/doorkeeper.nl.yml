@@ -59,6 +59,7 @@ nl:
       error:
         title: Er is een fout opgetreden
       new:
+        prompt_html: "%{client_name} heeft toestemming nodig om toegang te krijgen tot jouw account. Het betreft een third-party-toepassing.<strong>Als je dit niet vertrouwt, moet je geen toestemming verlenen.</strong>"
         review_permissions: Toestemmingen beoordelen
         title: Autorisatie vereist
       show:
@@ -69,6 +70,11 @@ nl:
       confirmations:
         revoke: Weet je het zeker?
       index:
+        authorized_at: Toestemming verleent op %{date}
+        last_used_at: Voor het laatst gebruikt op %{date}
+        never_used: Nooit gebruikt
+        scopes: Toestemmingen
+        superapp: Intern
         title: Jouw geautoriseerde toepassingen
     errors:
       messages:
@@ -145,7 +151,7 @@ nl:
       "admin:write": wijzig alle gegevens op de server
       "admin:write:accounts": moderatieacties op accounts uitvoeren
       "admin:write:reports": moderatieacties op rapportages uitvoeren
-      crypto: end-to-end encryption gebruiken
+      crypto: end-to-end-encryptie gebruiken
       follow: relaties tussen accounts bewerken
       push: jouw pushmeldingen ontvangen
       read: alle gegevens van jouw account lezen
