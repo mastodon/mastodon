@@ -229,7 +229,7 @@ nl:
         destroy_custom_emoji: Lokale emoji verwijderen
         destroy_domain_allow: Domeingoedkeuring verwijderen
         destroy_domain_block: Domeinblokkade verwijderen
-        destroy_email_domain_block: E-maildomeinblokkade verwijderen
+        destroy_email_domain_block: Blokkade van e-maildomein verwijderen
         destroy_ip_block: IP-regel verwijderen
         destroy_status: Toot verwijderen
         destroy_unavailable_domain: Niet beschikbaar domein verwijderen
@@ -245,11 +245,11 @@ nl:
         reset_password_user: Wachtwoord opnieuw instellen
         resolve_report: Rapportage oplossen
         sensitive_account: De media in jouw account als gevoelig markeren
-        silence_account: Account negeren
+        silence_account: Account beperken
         suspend_account: Account opschorten
         unassigned_report: Rapportage niet langer toewijzen
         unsensitive_account: De media in jouw account niet langer als gevoelig markeren
-        unsilence_account: Account niet langer negeren
+        unsilence_account: Account niet langer beperken
         unsuspend_account: Account niet langer opschorten
         update_announcement: Mededeling bijwerken
         update_custom_emoji: Lokale emoji bijwerken
@@ -606,7 +606,7 @@ nl:
         title: Hashtags toestaan om trending te worden zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
-        title: Trending hashtags
+        title: Trends
     site_uploads:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!
@@ -997,7 +997,7 @@ nl:
     code_hint: Voer de code in die door de authenticatie-app werd gegenereerd
     description_html: Na het instellen van <strong>tweestapsverificatie</strong> met een authenticatie-app, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren toegangscode.
     enable: Inschakelen
-    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app toegangscodes die je bij het inloggen moet invoeren."
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Vanaf nu genereert deze app toegangscodes die je bij het inloggen moet invoeren."
     manual_instructions: 'Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder de geheime code in platte tekst:'
     setup: Instellen
     wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server en die van jouw apparaat?
@@ -1093,7 +1093,7 @@ nl:
       adobe_air: Adobe Air
       android: Android
       blackberry: Blackberry
-      chrome_os: ChromeOS
+      chrome_os: Chrome OS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1332,7 +1332,7 @@ nl:
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
-    suspicious_sign_in_confirmation: Het lijkt er op dat je nog niet eerder op dit apparaat bent ingelogd, en je bent een tijdje niet ingelogd, dus sturen we een beveiligingscode naar je e-mailadres om te bevestigen dat jij het bent.
+    suspicious_sign_in_confirmation: Het lijkt er op dat je nog niet eerder op dit apparaat bent ingelogd, dus sturen we een beveiligingscode naar jouw e-mailadres om te bevestigen dat jij het bent.
   verification:
     explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie
