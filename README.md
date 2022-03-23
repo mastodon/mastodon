@@ -1,15 +1,45 @@
-**Mastodon fork for <https://hello.2heng.xin>**
+**Mastodon fork for <https://littlefo.rest>**
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/1644d6adc0f9d1bbae6a/maintainability)](https://codeclimate.com/github/mashirozx/mastodon/maintainability)
-[![DeepSource](https://deepsource.io/gh/mashirozx/mastodon.svg/?label=active+issues)](https://deepsource.io/gh/mashirozx/mastodon/?ref=repository-badge)
-[![CircleCI](https://circleci.com/gh/mashirozx/mastodon.svg?style=svg)](https://circleci.com/gh/tootsuite/mastodon)
 [![DockerHub](https://img.shields.io/docker/pulls/mashirozx/mastodon.svg?logo=docker&color=2496ED)](https://hub.docker.com/r/mashirozx/mastodon)
-[![Build and Push Alpha Image to Docker Hub](https://github.com/mashirozx/mastodon/workflows/Build%20and%20Push%20Alpha%20Image%20to%20Docker%20Hub/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml)
+[![Build Prod Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml)
+[![Build Dev Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-dev.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-dev.yml)
 
+[//]: # ([![DeepSource]&#40;https://deepsource.io/gh/mashirozx/mastodon.svg/?label=active+issues&#41;]&#40;https://deepsource.io/gh/mashirozx/mastodon/?ref=repository-badge&#41;)
 
-This is a rebase fork of tootsuite/mastodon, all local changes are rebased on the top. To pull the latest commits of this repo, use `git reset --hard origin/master` instead of `git pull`.
+[//]: # ([![CircleCI]&#40;https://circleci.com/gh/mashirozx/mastodon.svg?style=svg&#41;]&#40;https://circleci.com/gh/tootsuite/mastodon&#41;)
 
-To apply the new custom features, please add the necessary configurations first according to the file end of `.env.production.sample`.
+## Highlighted Features
+
+- Custom toot max character size with environment variable (see `.env.production.sample`).
+- Full Markdown support, demo [here](https://littlefo.rest/@mashiro/104670343090096501).
+- Media Sudoku (media attachments upper limit increases to 9), demo [here](https://littlefo.rest/@mashiro/105426865955962437).
+- Local-only toot support.
+- Quotation support like twitter (QT but not RT).
+- An easy-using translation button to translate toot in any language to your mother tongue with Google Translate (see specifications bellow).
+- A bunch of awesome themes.
+- Enhanced Elasticsearch experience with Chinese words segmentation support (see specifications bellow).
+- Login with GitHub and GitLab OAuth 2, try it now [here](https://littlefo.rest)!
+
+## Specifications
+
+This is a rebase fork of `tootsuite/mastodon`, all local changes are rebased on the top. To pull the latest commits of this repo, use `git reset --hard origin/master` instead of `git pull`.
+
+To enable the new custom features, please add the necessary configurations first according to the file end of `.env.production.sample`.
+
+The translation backend is [here](https://github.com/mashirozx/google-translate-server) and the Docker image [here](https://hub.docker.com/r/mashirozx/google-translate-server), see `docker-compose.yml`.
+
+**This project added the Chinese words segmentation support in Elasticsearch, please use this [Elasticsearch image](https://github.com/mashirozx/elasticsearch-cnplugin). Using the original version of Elasticsearch Engine may goes into error.**
+
+## Finally
+
+Thanks for the support of [JetBrains](https://jb.gg/OpenSourceSupport).
+
+[<img width="100" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" alt="JetBrains Logo (Main) logo.">](https://jb.gg/OpenSourceSupport)
+
+***
+*Below is the original README*
+***
 
 ![Mastodon](https://i.imgur.com/NhZc40l.png)
 ========
