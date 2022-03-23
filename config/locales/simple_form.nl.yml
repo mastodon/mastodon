@@ -25,7 +25,7 @@ nl:
         ends_at: Optioneel. De publicatie van de mededeling wordt op dit tijdstip automatisch beëindigd
         scheduled_at: Laat leeg om de mededeling meteen te publiceren
         starts_at: Optioneel. In het geval dat jouw mededeling aan een bepaald tijdvak is gebonden
-        text: Je kunt voor toots specifieke tekst gebruiken. Let op de ruimte die de mededeling op het scherm van de gebruiker inneemt
+        text: Je kunt specifieke tekst voor berichten gebruiken. Let op de ruimte die de mededeling op het scherm van de gebruiker inneemt
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -38,20 +38,20 @@ nl:
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
         inbox_url: Kopieer de URL van de voorpagina van de relayserver die je wil gebruiken
-        irreversible: Gefilterde toots verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
+        irreversible: Gefilterde berichten verdwijnen onomkeerbaar, zelfs als de filter later wordt verwijderd
         locale: De taal van de gebruikersomgeving, e-mails en pushmeldingen
         locked: Door het goedkeuren van volgers handmatig bepalen wie jou mag volgen
         password: Gebruik tenminste 8 tekens
         phrase: Komt overeen ongeacht hoofd-/kleine letters of een inhoudswaarschuwing
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
-        setting_aggregate_reblogs: Geen nieuwe boosts tonen voor toots die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
+        setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
         setting_display_media_show_all: Media altijd tonen
         setting_hide_network: Wie jij volgt en wie jou volgen wordt niet op jouw profiel getoond
-        setting_noindex: Heeft invloed op jouw openbare profiel en toots
-        setting_show_application: De toepassing de je gebruikt om te tooten wordt in de gedetailleerde weergave van de toot getoond
+        setting_noindex: Heeft invloed op jouw openbare profiel en pagina's met berichten
+        setting_show_application: De toepassing de je gebruikt om berichten te plaatsen wordt in de gedetailleerde weergave van het bericht getoond
         setting_use_blurhash: Wazige kleurovergangen zijn gebaseerd op de kleuren van de verborgen media, waarmee elk detail verdwijnt
         setting_use_pending_items: De tijdlijn wordt bijgewerkt door op het aantal nieuwe items te klikken, in plaats van dat deze automatisch wordt bijgewerkt
         username: Jouw gebruikersnaam is uniek op %{domain}
@@ -84,7 +84,7 @@ nl:
       tag:
         name: Je kunt elk woord met een hoofdletter beginnen, om zo bijvoorbeeld de tekst leesbaarder te maken
       user:
-        chosen_languages: Alleen toots in de aangevinkte talen worden op de openbare tijdlijnen getoond
+        chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
     labels:
       account:
         fields:
@@ -98,7 +98,7 @@ nl:
         text: Tekst van preset
         title: Titel
       admin_account_action:
-        include_statuses: Gerapporteerde toots aan de e-mail toevoegen
+        include_statuses: Gerapporteerde berichten aan de e-mail toevoegen
         send_email_notification: Meld dit per e-mail aan de gebruiker
         text: Aangepaste waarschuwing
         type: Actie
@@ -145,22 +145,22 @@ nl:
         setting_advanced_layout: Geavanceerde webomgeving inschakelen
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
-        setting_boost_modal: Vraag voor het boosten van een toot een bevestiging
-        setting_crop_images: Afbeeldingen bijsnijden tot 16x9 in toots op tijdlijnen
-        setting_default_language: Taal van jouw toots
-        setting_default_privacy: Standaardzichtbaarheid van jouw toots
+        setting_boost_modal: Vraag voor het boosten van een bericht een bevestiging
+        setting_crop_images: Afbeeldingen bijsnijden tot 16x9 in berichten op tijdlijnen
+        setting_default_language: Taal van jouw berichten
+        setting_default_privacy: Zichtbaarheid van nieuwe berichten
         setting_default_sensitive: Media altijd als gevoelig markeren
-        setting_delete_modal: Vraag voor het verwijderen van een toot een bevestiging
+        setting_delete_modal: Vraag voor het verwijderen van een bericht een bevestiging
         setting_disable_swiping: Swipebewegingen uitschakelen
         setting_display_media: Mediaweergave
         setting_display_media_default: Standaard
         setting_display_media_hide_all: Alles verbergen
         setting_display_media_show_all: Alles tonen
-        setting_expand_spoilers: Altijd toots met inhoudswaarschuwingen uitklappen
+        setting_expand_spoilers: Altijd berichten met inhoudswaarschuwingen uitklappen
         setting_hide_network: Jouw volgers en wie je volgt verbergen
-        setting_noindex: Jouw toots niet door zoekmachines laten indexeren
+        setting_noindex: Jouw berichten niet door zoekmachines laten indexeren
         setting_reduce_motion: Langzamere animaties
-        setting_show_application: Toepassing onthullen die je voor het verzenden van toots gebruikt
+        setting_show_application: Toepassing onthullen die je voor het verzenden van berichten gebruikt
         setting_system_font_ui: Standaardlettertype van jouw systeem gebruiken
         setting_theme: Thema website
         setting_trends: Trends van vandaag tonen
@@ -194,19 +194,19 @@ nl:
         severity: Regel
       notification_emails:
         digest: Periodiek e-mails met een samenvatting versturen
-        favourite: Wanneer iemand jouw toot aan diens favorieten heeft toegevoegd
+        favourite: Wanneer iemand jouw bericht aan diens favorieten heeft toegevoegd
         follow: Wanneer iemand jou is gaan volgen
         follow_request: Wanneer iemand jou wil volgen
         mention: Wanneer iemand jou heeft vermeld
         pending_account: Wanneer een nieuw account moet worden beoordeeld
-        reblog: Wanneer iemand jouw toot heeft geboost
+        reblog: Wanneer iemand jouw bericht heeft geboost
       rule:
         text: Regel
       tag:
         listable: Toestaan dat deze hashtag in zoekopdrachten en aanbevelingen te zien valt
         name: Hashtag
         trendable: Toestaan dat deze hashtag onder trends te zien valt
-        usable: Toestaan dat deze hashtag in toots gebruikt mag worden
+        usable: Toestaan dat deze hashtag in berichten gebruikt mag worden
     'no': 'Nee'
     recommended: Aanbevolen
     required:
