@@ -8,7 +8,7 @@
         = render 'application/card', account: current_account.moved_to_account
       .fields-row__column.fields-group.fields-row__column-6
         %p.hint
-          %span.positive-hint= t('migrations.redirecting_to', acct: current_account.moved_to_account.acct)
+          %span.positive-hint= t('migrations.redirecting_to', acct: current_account.moved_to_account.pretty_acct)
 
         %p.hint= t('migrations.cancel_explanation')
 
@@ -76,7 +76,7 @@
               - if migration.target_account.present?
                 = compact_account_link_to migration.target_account
               - else
-                = migration.acct
+                = migration.pretty_acct
 
             %td= number_with_delimiter migration.followers_count
 
