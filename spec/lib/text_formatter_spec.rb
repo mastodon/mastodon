@@ -258,7 +258,7 @@ RSpec.describe TextFormatter do
       let(:text) { %q{<img src="javascript:alert('XSS');">} }
 
       it 'escapes the HTML' do
-        is_expected.to include '<p>&lt;img src=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</p>'
+        is_expected.to include '<p>&lt;img src=&quot;javascript:alert(&#39;XSS&#39;);&quot;&gt;</p>'
       end
     end
 
