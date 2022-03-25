@@ -318,7 +318,7 @@ ku:
         reject_user_html: "%{name} tomarkirina ji %{target} nepejirand"
         remove_avatar_user_html: "%{name} avatara bikarhêner %{target} rakir"
         reopen_report_html: "%{name} ragihandina %{target} ji nû ve vekir"
-        reset_password_user_html: "%{name} pêborîna bikarhênerê %{target} ji nû ve saz kir"
+        reset_password_user_html: "%{name} borînpeyva bikarhêner %{target} ji nû ve saz kir"
         resolve_report_html: "%{name} ragihandina %{target} çareser kir"
         sensitive_account_html: "%{name} medyayê %{target} wekî hestiyarî nîşan kir"
         silence_account_html: "%{name} ajimêra %{target} bi sînor kir"
@@ -929,7 +929,7 @@ ku:
     didnt_get_confirmation: Te rêwerzên pejirandinê wernegirt?
     dont_have_your_security_key: Kilîda te ya ewlehiyê tune ye?
     forgot_password: Te borînpeyva xwe ji bîr kir?
-    invalid_reset_password_token: Ji nû ve sazkirina pêborînê nederbasdar e an jî qediya ye. Jkx daxwaza yeka nû bike.
+    invalid_reset_password_token: Ji nû ve sazkirina borînpeyvê nederbasdar e an jî qediya ye. Jkx daxwaza yeka nû bike.
     link_to_otp: Ji têlefona xwe an jî ji kodeke rizgarkirinê kodeke du-gavî binivîsine
     link_to_webauth: Amûra kilîta ewlehiya xwe bi kar bîne
     log_in_with: Têkeve bi riya
@@ -975,9 +975,9 @@ ku:
     title: '%{acct} bişopîne'
   challenge:
     confirm: Bidomîne
-    hint_html: "<strong>Nîşe:</strong>Ji bo demjimêreke din em ê pêborîna te careke din ji te nexwazin."
+    hint_html: "<strong>Nîşe:</strong>Ji bo demjimêreke din em ê borînpeyva te careke din ji te nexwazin."
     invalid_password: Borînpeyva nederbasdar
-    prompt: Ji bo bidomî lêborînê bipejirîne
+    prompt: Ji bo bidomî borînpeyvê bipejirîne
   crypto:
     errors:
       invalid_key: ed25519 ne derbasdare ne jî Curve25519 kilîta
@@ -1172,10 +1172,10 @@ ku:
   login_activities:
     authentication_methods:
       otp: sepandina rastandina du-gavî
-      password: pêborîn
+      password: borînpeyv
       sign_in_token: koda ewlehiyê bo e-nameyê
       webauthn: kilîtên ewlehiyê
-    description_html: Heke çalakiya ku nas nakî dibînî, çêtir dibe ku pêborîna xwe biguherînî û rastandina du-gavî çalak bikî.
+    description_html: Heke çalakiya ku nas nakî dibînî, çêtir dibe ku borînpeyva xwe biguherînî û rastandina du-gavî çalak bikî.
     empty: Dîroka piştrastkirinê tune ye
     failed_sign_in_html: Hewldana têketinê ser neket bi%{method} ji %{ip} (%{browser}) de
     successful_sign_in_html: Bi serkeftî têketin bi %{method} ji %{ip}(%{browser}) çêbû
@@ -1633,7 +1633,7 @@ ku:
     sign_in_token:
       details: 'Li vir hûrgiliyên hewldanê hene:'
       explanation: 'Me hewildanek têketina ajimêra te ji navnîşana IP ya nenas destnîşan kir. Ger ev tu bî, ji kerema xwe koda ewlehiyê ya jêr binivîsîne di rûpela jêpirsînê de:'
-      further_actions: 'Ger ev ne tu bî, ji kerema xwe re pêborîna xwe biguherîne û li ser ajimêra xwe rastkirina du-gavî çalak bike. Tu dikarî wê ji vê derê çê bikî:'
+      further_actions: 'Ku ev ne tu bî, ji kerema xwe re borînpeyvq xwe biguherîne û li ser ajimêra xwe rastkirina du-gavî çalak bike. Tu dikarî wê ji vê derê çê bikî:'
       subject: Ji kerema xwe re hewldanên têketinê piştrast bike
       title: Hewldanên têketinê
     warning:
@@ -1690,7 +1690,7 @@ ku:
     invalid_otp_token: Koda du-gavî ya nelê
     invalid_sign_in_token: Kilîda ewlehiyê a nelê
     otp_lost_help_html: Heke te gihîştina herduyan ji dest da, dibe ku tu bi %{email} re têkilî deyne
-    seamless_external_login: Te bi servîsekî biyanî re têketina xwe kir, ji ber vê yekê şîfre û e-name nayê bikaranîn.
+    seamless_external_login: Te bi rajekarke biyanî re têketina xwe kir, ji ber vê yekê borînpeyv û e-name nayê bikaranîn.
     signed_in_as: 'Têketin wekî:'
     suspicious_sign_in_confirmation: Xuya dike ku te berê têketin ji vê amûrê nekiriye, ji ber vê yekê em kodeke ewlehiyê ji navnîşana e-nameya te re dişînin da ku piştrast bikî ku tu ye an na.
   verification:
