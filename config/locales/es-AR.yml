@@ -779,6 +779,11 @@ es-AR:
         message_html: No definiste ninguna regla del servidor.
       sidekiq_process_check:
         message_html: No hay ningún proceso Sidekiq en ejecución para la/s cola/s %{value}. Por favor, revisá tu configuración de Sidekiq
+      elasticsearch_running_check:
+        message_html: No se pudo conectar a Elasticsearch. Por favor, revisá que se esté ejecutando, o deshabilitá la búsqueda de texto completo
+      elasticsearch_version_check:
+        message_html: "Versión incompatible de Elasticsearch: %{value}"
+        version_comparison: "Se está ejecutando la versión %{running_version} de Elasticsearch, mientras que la versión requerida es la %{required_version}"
     tags:
       review: Estado de revisión
       updated_msg: La configuración de la etiqueta se actualizó exitosamente
