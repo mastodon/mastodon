@@ -30,7 +30,7 @@ RSpec.describe LinkDetailsExtractor do
       let(:html) { '<!doctype html><link rel="canonical" href="null" />' }
 
       it 'ignores the canonical URLs' do
-        expect(subject.canonical_url).to eq 'https://foo.com/article'
+        expect(subject.canonical_url).to eq original_url
       end
     end
   end
