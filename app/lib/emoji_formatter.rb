@@ -28,7 +28,7 @@ class EmojiFormatter
     shortname_start_index = -1
     invisible_depth       = 0
     last_index            = 0
-    result                = StringIO.new
+    result                = ''.dup
 
     while i + 1 < html.size
       i += 1
@@ -63,7 +63,7 @@ class EmojiFormatter
 
     result << html[last_index..-1]
 
-    result.string.html_safe # rubocop:disable Rails/OutputSafety
+    result.html_safe # rubocop:disable Rails/OutputSafety
   end
 
   private

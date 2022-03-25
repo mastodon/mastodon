@@ -2,6 +2,7 @@
 
 class TextFormatter
   include ActionView::Helpers::TextHelper
+  include ERB::Util
   include RoutingHelper
 
   URL_PREFIX_REGEX = /\A(https?:\/\/(www\.)?|xmpp:)/.freeze
@@ -54,18 +55,18 @@ class TextFormatter
       entity[:indices].first
     end
 
-    result = StringIO.new
+    result = ''.dup
 
     last_index = entities.reduce(0) do |index, entity|
       indices = entity[:indices]
-      result << encode(text[index...indices.first])
+      result << h(text[index...indices.first])
       result << yield(entity)
       indices.last
     end
 
-    result << encode(text[last_index..-1])
+    result << h(text[last_index..-1])
 
-    result.string
+    result
   end
 
   def link_to_url(entity)
@@ -78,10 +79,10 @@ class TextFormatter
     cutoff      = url[prefix.length..-1].length > 30
 
     <<~HTML.squish
-      <a href="#{encode(url)}" target="_blank" rel="#{rel.join(' ')}"><span class="invisible">#{encode(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{encode(display_url)}</span><span class="invisible">#{encode(suffix)}</span></a>
+      <a href="#{h(url)}" target="_blank" rel="#{rel.join(' ')}"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
     HTML
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
-    encode(entity[:url])
+    h(entity[:url])
   end
 
   def link_to_hashtag(entity)
@@ -89,7 +90,7 @@ class TextFormatter
     url     = tag_url(hashtag)
 
     <<~HTML.squish
-      <a href="#{encode(url)}" class="mention hashtag" rel="tag">#<span>#{encode(hashtag)}</span></a>
+      <a href="#{h(url)}" class="mention hashtag" rel="tag">#<span>#{h(hashtag)}</span></a>
     HTML
   end
 
@@ -115,21 +116,15 @@ class TextFormatter
       account = entity_cache.mention(username, domain)
     end
 
-    return "@#{encode(entity[:screen_name])}" if account.nil?
+    return "@#{h(entity[:screen_name])}" if account.nil?
 
     url = ActivityPub::TagManager.instance.url_for(account)
     display_username = same_username_hits&.positive? || with_domains? ? account.pretty_acct : account.username
 
     <<~HTML.squish
-      <span class="h-card"><a href="#{encode(url)}" class="u-url mention">@<span>#{encode(display_username)}</span></a></span>
+      <span class="h-card"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
     HTML
   end
-
-  def html_entities_encoder
-    @html_entities_encoder ||= HTMLEntities::Encoder.new('xhtml1', [])
-  end
-
-  delegate :encode, to: :html_entities_encoder
 
   def entity_cache
     @entity_cache ||= EntityCache.instance
