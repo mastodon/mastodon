@@ -1,22 +1,21 @@
----
 ku:
   simple_form:
     hints:
       account_alias:
-        acct: Ajimêrê ku tu dixwazî bar bikî navê bikarhêner@domain diyar bike
+        acct: Ajimêrê ku tu dixwazî jê bar bikî navê bikarhêner@navpar diyar bike
       account_migration:
         acct: Ajimêrê ku tu dixwazî bar bikî navê bikarhêner@domain diyar bike
       account_warning_preset:
         text: Tu dikarî wek URLyan, hashtagan û şîroveyan, tootê ristesazî jî bikarbînî
         title: Bi dilê xwe ye. Ji wergir re nay xûyakirin
       admin_account_action:
-        include_statuses: Bikarhênerê bibîne kîjan toot dibin sedemê çalakî an jî agahdarî
+        include_statuses: Bikarhêner wê bibîne kîjan şandî dibin sedemê çalakî an jî agahdarikirina çavdêriyê
         send_email_notification: Bikarhêner dê ravekirinê tiştê ku bi ajimêra wan re qewimî bistîne
         text_html: Bi dili xwe ye. Tu dikarî hevoksazî ye toot bikarbînî. Tu dikarî <a href="%{path}"> pêşsazîyên hişyariyê lê zêde bikî </a> ji bo ku demê derbas nekî
         type_html: Hilbijêre ka tu yê çi bikî bi <strong>%{acct}</strong> re
         types:
-          disable: Nehêle bila bikarhêner ajimêrê xwe bikar bîne lê naverokan jê nebe an jî veneşêre.
-          none: Ji bo ku tu hişyariyekê ji bikarhêner re bişînî vê bi kar bîne, bêyî ku çalakiyeke din dest lê neda.
+          disable: Nehêle bikarhêner ajimêrê xwe bi kar bîne lê naverokan jê nabe an jî veneşêre.
+          none: Ji bo ku tu hişyariyekê ji bikarhêner re bişînî vê bi kar bîne, bêyî ku çalakiyeke din bikî.
           sensitive: Neçar bihêle ku ev bikarhêner hemû pêvekên medyayê hestiyar nîşan bike.
           silence: Pêşî li bikarhêneran bigire ku bikarhêner bi herkesî ra xûyabarî neşîne, post û agahdarîyên xwe ji mirovên ku wan naşopîne veşêre.
           suspend: Pêşîya hevbandorîya vî ajimêrê bigire û naveroka wê jê bibe. Di nava 30 rojan de tê vegerandin.
@@ -45,11 +44,9 @@ ku:
         irreversible: Tootên parzûnkirî êdî bê veger wenda bibe, heger parzûn paşê were rakirin jî nabe
         locale: Zimanê navrûyê bikarhêner, agahdarîyên e-name û pêl kirin
         locked: Bi destan daxwazên şopê hilbijêrîne da ku kî bikaribe te bişopîne
-        password: Herî kêm 8 karakter bikar bîne
+        password: Herî kêm 8 tîpan bi kar bîne
         phrase: Ji rewşa nivîsê tîpên girdek/hûrdek an jî ji hişyariya naveroka ya şandiyê wek serbixwe wê were hevbeş kirin
-        scopes: |-
-          Sepana ku dê kîjan maf bide bigihije APIyan.
-          Ger te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî.
+        scopes: "Sepana ku dê kîjan maf bide bigihije APIyan.\nGer te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî."
         setting_aggregate_reblogs: Bilindkirinên ku nû hatine weşan ji şandiyên di dema dawî de nîşan nede (tenê li ser bilindkirinên nû wergirtî bandor dike)
         setting_default_sensitive: Medyaya hestiyar berdestî ve tê veşartin û bi tikandin dikare were eşkere kirin
         setting_display_media_default: Medyaya wekî hestyarî hatiye nîşankirî ye veşêre
@@ -219,7 +216,7 @@ ku:
         name: Hashtag
         trendable: Bihêle ku ev hashtag werê xuyakirin di bin rojevê de
         usable: Bihêle ku şandî ev hashtag bi kar bînin
-    'no': Na
+    'no': 'Na'
     recommended: Pêşniyarkirî
     required:
       mark: "*"
@@ -227,4 +224,4 @@ ku:
     title:
       sessions:
         webauthn: Yek ji kilîtên ewlehiyê yên xwe bi kar bîne bo têketinê
-    'yes': Erê
+    'yes': 'Erê'
