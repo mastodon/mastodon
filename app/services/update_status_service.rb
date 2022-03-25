@@ -94,6 +94,8 @@ class UpdateStatusService < BaseService
       @poll_changed = true
       @status.poll_id = nil
     end
+
+    @poll_changed = true if @previous_expires_at != @status.preloadable_poll&.expires_at
   end
 
   def update_immediate_attributes!
@@ -153,6 +155,6 @@ class UpdateStatusService < BaseService
   end
 
   def significant_changes?
-    @status.changed? || @poll_changed || @media_attachments_changed || (@previous_expires_at != @status.preloadable_poll&.expires_at)
+    @status.changed? || @poll_changed || @media_attachments_changed
   end
 end

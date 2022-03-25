@@ -17,8 +17,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     last_edit_date = status.edited_at.presence || status.created_at
 
-    # To avoid any changes prior to this service affecting it
-    @status.clear_changes_information
+    # Since we rely on tracking of previous changes, ensure clean slate
+    status.clear_changes_information
 
     # Only allow processing one create/update per status at a time
     RedisLock.acquire(lock_options) do |lock|
