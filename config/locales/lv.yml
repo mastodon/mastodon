@@ -791,6 +791,11 @@ lv:
         message_html: Tu neesi definējis nevienu servera nosacījumu.
       sidekiq_process_check:
         message_html: Rindā(s) %{value} nedarbojas neviens Sidekiq process. Lūdzu, pārskati savu Sidekiq konfigurāciju
+      elasticsearch_running_check:
+        message_html: Nevarēja izveidot savienojumu ar Elasticsearch. Lūdzu, pārbaudi, vai tā darbojas, vai atspējo pilna teksta meklēšanu
+      elasticsearch_version_check:
+        message_html: "Nesaderīga Elasticsearch versija: %{value}"
+        version_comparison: "Darbojas Elasticsearch %{running_version}, tomēr ir nepieciešama %{required_version}"
     tags:
       review: Pārskatīt statusu
       updated_msg: Tēmtura uzstādījumi ir veiksmīgi atjaunināti
