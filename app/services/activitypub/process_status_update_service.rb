@@ -4,6 +4,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   include JsonLdHelper
 
   def call(status, json)
+    raise ArgumentError, 'Status has unsaved changes' if status.changed?
+
     @json                      = json
     @status_parser             = ActivityPub::Parser::StatusParser.new(@json)
     @uri                       = @status_parser.uri
