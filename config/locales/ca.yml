@@ -779,6 +779,11 @@ ca:
         message_html: No has definit cap norma del servidor.
       sidekiq_process_check:
         message_html: No hi ha cap procés de Sidekiq executant-se per a la cua (o cues) de %{value}. Si us plau revisa la teva configuració de Sidekiq
+      elasticsearch_running_check:
+        message_html: No s'ha pogut connectar a Elasticsearch. Si us plau verifica que estigui funcionant o desactiva la cerca de text complet
+      elasticsearch_version_check:
+        message_html: "Versió incompatible de Elasticsearch: %{value}"
+        version_comparison: "Elasticsearch %{running_version} està funcionant mentre %{required_version} és requerida"
     tags:
       review: Revisar l'estat
       updated_msg: Ajustaments d'etiquetes actualitzats amb èxit
