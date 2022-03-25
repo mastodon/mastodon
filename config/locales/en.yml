@@ -780,6 +780,11 @@ en:
         message_html: You haven't defined any server rules.
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
+      elasticsearch_running_check:
+        message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
+      elasticsearch_version_check:
+        message_html: "Incompatible Elasticsearch version: %{value}"
+        version_comparison: "Elasticsearch %{running_version} is running while %{required_version} is required"
     tags:
       review: Review status
       updated_msg: Hashtag settings updated successfully
