@@ -762,6 +762,11 @@ zh-TW:
     system_checks:
       database_schema_check:
         message_html: 有挂起的数据库迁移，请运行它们以确保应用程序按照预期运行。
+      elasticsearch_running_check:
+        message_html: 無法連接 Elasticsearch。請檢查是否正在執行中，或者已關閉全文搜尋。
+      elasticsearch_version_check:
+        message_html: '不相容的 Elasticsearch 版本：%{value}'
+        version_comparison: Elasticsearch %{running_version} 版正在執行，需要 %{required_version} 版。
       rules_check:
         action: 管理服务器规则
         message_html: 你没有定义任何服务器规则。
