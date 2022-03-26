@@ -10,7 +10,7 @@ module FormattingHelper
   end
 
   def extract_status_plain_text(status)
-    PlainTextFormatter.new(text, local).to_s
+    PlainTextFormatter.new(status.text, status.local?).to_s
   end
 
   def status_content_format(status)
