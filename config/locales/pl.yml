@@ -747,6 +747,11 @@ pl:
     system_checks:
       database_schema_check:
         message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
+      elasticsearch_running_check:
+        message_html: Nie można połączyć się z Elasticsearch. Sprawdź czy jest uruchomiony lub wyłącz wyszukiwanie pełnotekstowe
+      elasticsearch_version_check:
+        message_html: 'Niekompatybilna wersja Elasticsearch: %{value}'
+        version_comparison: Elasticsearch w wersji %{running_version} jest uruchomiony, ale wymagana wersja to %{required_version}
       rules_check:
         action: Zarządzaj regułami serwera
         message_html: Nie zdefiniowano żadnych reguł serwera.
