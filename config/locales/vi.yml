@@ -762,6 +762,11 @@ vi:
     system_checks:
       database_schema_check:
         message_html: Có cơ sở dữ liệu đang chờ xử lý. Xin khởi động nó để ứng dụng có thể hoạt động một cách ổn định nhất
+      elasticsearch_running_check:
+        message_html: Không thể kết nối Elasticsearch. Hãy kiểm tra xem nó có đang chạy, hay tìm kiếm full-text bị tắt
+      elasticsearch_version_check:
+        message_html: 'Phiên bản Elasticsearch không tương thích: %{value}'
+        version_comparison: Đang dùng Elasticsearch %{running_version} trong khi bắt buộc phải có %{required_version}
       rules_check:
         action: Sửa quy tắc máy chủ
         message_html: Bạn chưa cập nhật quy tắc máy chủ.
