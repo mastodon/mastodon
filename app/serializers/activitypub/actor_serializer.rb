@@ -195,7 +195,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
 
     def value
-      html_aware_format(object.value, object.account.value?, with_rel_me: true, with_domains: true, multiline: false)
+      html_aware_format(object.value, object.account.local?, with_rel_me: true, with_domains: true, multiline: false)
     end
   end
 
