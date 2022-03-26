@@ -10,11 +10,11 @@ module FormattingHelper
   end
 
   def extract_status_plain_text(status)
-    StatusFormatter.new(status).plain_text_content
+    PlainTextFormatter.new(text, local).to_s
   end
 
   def status_content_format(status)
-    StatusFormatter.new(status).format_content
+    html_aware_format(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
   end
 
   def account_bio_format(account)
