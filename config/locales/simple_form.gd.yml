@@ -26,6 +26,8 @@ gd:
         scheduled_at: Fàg seo bàn airson am brath-fios fhoillseachadh sa bhad
         starts_at: Roghainnean. Cleachd seo airson am brath-fios a chuingeachadh rè ama shònraichte
         text: '’S urrainn dhut co-chàradh puist a chleachdadh. Thoir an aire air am meud a chaitheas am brath-fios air sgrìn an luchd-chleachdaidh'
+      appeal:
+        text: Chan urrainn dhut ath-thagradh a dhèanamh air rabhadh ach aon turas
       defaults:
         autofollow: Leanaidh na daoine a chlàraicheas leis a cuireadh ort gu fèin-obrachail
         avatar: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
@@ -34,6 +36,7 @@ gd:
         current_password: A chùm tèarainteachd, cuir a-steach facal-faire a’ chunntais làithrich
         current_username: Airson seo a dhearbhadh, cuir a-steach ainm-cleachdaiche a’ chunntais làithrich
         digest: Cha dèid seo a chur ach nuair a bhios tu air ùine mhòr gun ghnìomh a ghabhail agus ma fhuair thu teachdaireachd phearsanta fhad ’s a bha thu air falbh
+        discoverable: Ceadaich gun lorg coigrich an cunntas agad le taic o mholaidhean, treandaichean is gleusan eile
         email: Thèid post-d dearbhaidh a chur thugad
         fields: Faodaidh tu suas ri 4 nithean a shealltainn mar chlàr air a’ phròifil agad
         header: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
@@ -59,6 +62,7 @@ gd:
       domain_allow:
         domain: '’S urrainn dhan àrainn seo dàta fhaighinn on fhrithealaiche seo agus thèid an dàta a thig a-steach uaithe a phròiseasadh ’s a stòradh'
       email_domain_block:
+        domain: Seo ainm na h-àrainne a nochdas san t-seòladh puist-d no sa chlàr MX a chleachdas e. Thèid an dearbhadh aig àm a’ chlàraidh.
         with_dns_records: Thèid oidhirp a dhèanamh air fuasgladh clàran DNS na h-àrainne a chaidh a thoirt seachad agus thèid na toraidhean a bhacadh cuideachd
       featured_tag:
         name: 'Mholamaid fear dhe na tagaichean seo:'
@@ -115,6 +119,8 @@ gd:
         scheduled_at: Cuir foillseachadh air an sgeideal
         starts_at: Toiseach an tachartais
         text: Brath-fios
+      appeal:
+        text: Mìnich carson a bu chòir an caochladh a chur orra
       defaults:
         autofollow: Thoir cuireadh dhaibh airson leantainn air a’ chunntas agad
         avatar: Avatar
@@ -193,6 +199,7 @@ gd:
           sign_up_requires_approval: Cuingich clàraidhean ùra
         severity: Riaghailt
       notification_emails:
+        appeal: Tha cuideigin ag ath-thagradh co-dhùnadh na maorsainneachd
         digest: Cuir puist-d le geàrr-chunntas
         favourite: Is annsa le cuideigin am post agad
         follow: Lean cuideigin ort
@@ -200,6 +207,8 @@ gd:
         mention: Thug cuideigin iomradh ort
         pending_account: Tha cunntas ùr feumach air lèirmheas
         reblog: Bhrosnaich cuideigin am post agad
+        report: Chaidh gearan ùr a chur a-null
+        trending_tag: Tha treand ùr ri lèirmheasadh
       rule:
         text: Riaghailt
       tag:
