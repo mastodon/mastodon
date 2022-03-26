@@ -60,6 +60,8 @@ nl:
       error:
         title: Er is een fout opgetreden
       new:
+        prompt_html: "%{client_name} heeft toestemming nodig om toegang te krijgen tot jouw account. Het betreft een third-party-toepassing.<strong>Als je dit niet vertrouwt, moet je geen toestemming verlenen.</strong>"
+        review_permissions: Toestemmingen beoordelen
         title: Autorisatie vereist
       show:
         title: Kopieer deze autorisatiecode en plak het in de toepassing.
@@ -69,6 +71,11 @@ nl:
       confirmations:
         revoke: Weet je het zeker?
       index:
+        authorized_at: Toestemming verleent op %{date}
+        last_used_at: Voor het laatst gebruikt op %{date}
+        never_used: Nooit gebruikt
+        scopes: Toestemmingen
+        superapp: Intern
         title: Jouw geautoriseerde toepassingen
     errors:
       messages:
@@ -104,6 +111,33 @@ nl:
       authorized_applications:
         destroy:
           notice: Toepassing ingetrokken.
+    grouped_scopes:
+      access:
+        read: Alleen leestoegang
+        read/write: Lees- en schrijftoegang
+        write: Alleen schrijftoegang
+      title:
+        accounts: Accounts
+        admin/accounts: Accountbeheer
+        admin/all: Alle beheerfuncties
+        admin/reports: Rapportagebeheer
+        all: Alles
+        blocks: Blokkeren
+        bookmarks: Bladwijzers
+        conversations: Gesprekken
+        crypto: End-to-end-encryptie
+        favourites: Favorieten
+        filters: Filters
+        follow: Relaties
+        follows: Volgend
+        lists: Lijsten
+        media: Mediabijlagen
+        mutes: Negeren
+        notifications: Meldingen
+        push: Pushmeldingen
+        reports: Rapportages
+        search: Zoeken
+        statuses: Berichten
     layouts:
       admin:
         nav:
@@ -118,6 +152,7 @@ nl:
       admin:write: wijzig alle gegevens op de server
       admin:write:accounts: moderatieacties op accounts uitvoeren
       admin:write:reports: moderatieacties op rapportages uitvoeren
+      crypto: end-to-end-encryptie gebruiken
       follow: relaties tussen accounts bewerken
       push: jouw pushmeldingen ontvangen
       read: alle gegevens van jouw account lezen
@@ -130,14 +165,15 @@ nl:
       read:lists: jouw lijsten bekijken
       read:mutes: jouw genegeerde gebruikers bekijken
       read:notifications: jouw meldingen bekijken
-      read:reports: jouw gerapporteerde toots bekijken
+      read:reports: jouw gerapporteerde berichten bekijken
       read:search: namens jou zoeken
-      read:statuses: alle toots bekijken
+      read:statuses: alle berichten bekijken
       write: alle gegevens van jouw account bewerken
       write:accounts: jouw profiel bewerken
       write:blocks: accounts en domeinen blokkeren
-      write:bookmarks: toots aan bladwijzers toevoegen
-      write:favourites: toots als favoriet markeren
+      write:bookmarks: berichten aan bladwijzers toevoegen
+      write:conversations: gespreken negeren en verwijderen
+      write:favourites: berichten als favoriet markeren
       write:filters: filters aanmaken
       write:follows: mensen volgen
       write:lists: lijsten aanmaken
@@ -145,4 +181,4 @@ nl:
       write:mutes: mensen en gesprekken negeren
       write:notifications: meldingen verwijderen
       write:reports: andere mensen rapporteren
-      write:statuses: toots publiceren
+      write:statuses: berichten plaatsen

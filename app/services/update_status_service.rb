@@ -4,6 +4,8 @@ class UpdateStatusService < BaseService
   include Redisable
   include LanguagesHelper
 
+  class NoChangesSubmittedError < StandardError; end
+
   # @param [Status] status
   # @param [Integer] account_id
   # @param [Hash] options
@@ -18,6 +20,8 @@ class UpdateStatusService < BaseService
     @status                    = status
     @options                   = options
     @account_id                = account_id
+    @media_attachments_changed = false
+    @poll_changed              = false
 
     Status.transaction do
       create_previous_edit!
@@ -33,18 +37,24 @@ class UpdateStatusService < BaseService
     broadcast_updates!
 
     @status
+  rescue NoChangesSubmittedError
+    # For calls that result in no changes, swallow the error
+    # but get back to the original state
+
+    @status.reload
   end
 
   private
 
   def update_media_attachments!
-    previous_media_attachments = @status.media_attachments.to_a
+    previous_media_attachments = @status.ordered_media_attachments.to_a
     next_media_attachments     = validate_media!
     added_media_attachments    = next_media_attachments - previous_media_attachments
 
     MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
 
     @status.ordered_media_attachment_ids = (@options[:media_ids] || []).map(&:to_i) & next_media_attachments.map(&:id)
+    @media_attachments_changed = previous_media_attachments.map(&:id) != @status.ordered_media_attachment_ids
     @status.media_attachments.reload
   end
 
@@ -70,20 +80,23 @@ class UpdateStatusService < BaseService
 
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
-      poll_changed = true if @options[:poll][:options] != poll.options || ActiveModel::Type::Boolean.new.cast(@options[:poll][:multiple]) != poll.multiple
+      @poll_changed = true if @options[:poll][:options] != poll.options || ActiveModel::Type::Boolean.new.cast(@options[:poll][:multiple]) != poll.multiple
 
       poll.options     = @options[:poll][:options]
       poll.hide_totals = @options[:poll][:hide_totals] || false
       poll.multiple    = @options[:poll][:multiple] || false
       poll.expires_in  = @options[:poll][:expires_in]
-      poll.reset_votes! if poll_changed
+      poll.reset_votes! if @poll_changed
       poll.save!
 
       @status.poll_id = poll.id
     elsif previous_poll.present?
       previous_poll.destroy
+      @poll_changed = true
       @status.poll_id = nil
     end
+
+    @poll_changed = true if @previous_expires_at != @status.preloadable_poll&.expires_at
   end
 
   def update_immediate_attributes!
@@ -92,8 +105,11 @@ class UpdateStatusService < BaseService
     @status.sensitive    = @options[:sensitive] || @options[:spoiler_text].present? if @options.key?(:sensitive) || @options.key?(:spoiler_text)
     @status.language     = valid_locale_cascade(@options[:language], @status.language, @status.account.user&.preferred_posting_language, I18n.default_locale)
     @status.content_type = @options[:content_type] || @status.content_type
-    @status.edited_at    = Time.now.utc
 
+    # We raise here to rollback the entire transaction
+    raise NoChangesSubmittedError unless significant_changes?
+
+    @status.edited_at = Time.now.utc
     @status.save!
   end
 
@@ -138,5 +154,9 @@ class UpdateStatusService < BaseService
 
   def create_edit!
     @status.snapshot!(account_id: @account_id)
+  end
+
+  def significant_changes?
+    @status.changed? || @poll_changed || @media_attachments_changed
   end
 end

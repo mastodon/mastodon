@@ -2,6 +2,7 @@
 
 class REST::AccountSerializer < ActiveModel::Serializer
   include RoutingHelper
+  include FormattingHelper
 
   attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
              :note, :url, :avatar, :avatar_static, :header, :header_static,
@@ -14,10 +15,12 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :suspended, if: :suspended?
 
   class FieldSerializer < ActiveModel::Serializer
+    include FormattingHelper
+
     attributes :name, :value, :verified_at
 
     def value
-      Formatter.instance.format_field(object.account, object.value)
+      html_aware_format(object.value, object.account.local?, with_rel_me: true, with_domains: true, multiline: false)
     end
   end
 
@@ -32,7 +35,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def note
-    object.suspended? ? '' : Formatter.instance.simplified_format(object)
+    object.suspended? ? '' : html_aware_format(object.note, object.local?)
   end
 
   def url

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::NoteSerializer < ActivityPub::Serializer
+  include FormattingHelper
+
   context_extensions :atom_uri, :conversation, :sensitive, :voters_count, :direct_message
 
   attributes :id, :type, :summary,
@@ -50,11 +52,11 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def content
-    Formatter.instance.format(object)
+    status_content_format(object)
   end
 
   def content_map
-    { object.language => Formatter.instance.format(object) }
+    { object.language => content }
   end
 
   def replies

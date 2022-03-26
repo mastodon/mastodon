@@ -134,7 +134,7 @@ class FetchLinkCardService < BaseService
     when 'video'
       @card.width            = embed[:width].presence  || 0
       @card.height           = embed[:height].presence || 0
-      @card.html             = Formatter.instance.sanitize(embed[:html], Sanitize::Config::MASTODON_OEMBED)
+      @card.html             = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
       @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no

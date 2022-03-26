@@ -480,6 +480,7 @@ ru:
       availability:
         no_failures_recorded: Сбоев в записи нет.
         title: Доступность
+        warning: Последняя попытка подключения к этому серверу не удалась
       back_to_all: Все узлы
       back_to_limited: Все ограниченные узлы
       back_to_warning: Все узлы требующие внимания
@@ -742,6 +743,7 @@ ru:
         none: "%{name} отправил(а) предупреждение %{target}"
         sensitive: "%{name} отметил(а) учетную запись %{target} как деликатную"
         silence: "%{name} ограничил(а) учетную запись %{target}"
+      appeal_approved: Обжаловано
       appeal_pending: Обжалование в обработке
     system_checks:
       database_schema_check:
@@ -806,6 +808,8 @@ ru:
       empty: Вы еще не определили пресеты предупреждений.
       title: Управление шаблонами предупреждений
   admin_mailer:
+    new_appeal:
+      subject: "%{username} обжалует решение модерации на %{instance}"
     new_pending_account:
       body: Ниже указана информация учётной записи. Вы можете одобрить или отклонить заявку.
       subject: Новая учётная запись для рассмотрения на %{instance} (%{username})
