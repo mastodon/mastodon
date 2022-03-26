@@ -774,6 +774,11 @@ it:
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
+      elasticsearch_running_check:
+        message_html: Impossibile connettersi a Elasticsearch. Verificare che sia in esecuzione o disabilitare la ricerca full-text
+      elasticsearch_version_check:
+        message_html: 'Versione Elasticsearch incompatibile: %{value}'
+        version_comparison: È in esecuzione la versione %{running_version} di Elasticsearch, ma è richiesta la versione %{required_version}
       rules_check:
         action: Gestisci regole del server
         message_html: Non hai definito alcuna regola del server.
