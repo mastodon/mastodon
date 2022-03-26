@@ -774,6 +774,11 @@ da:
     system_checks:
       database_schema_check:
         message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
+      elasticsearch_running_check:
+        message_html: Kunne ikke oprette forbindelse til Elasticsearch. Tjek, at den kører, eller deaktivér fuldtekstsøgning
+      elasticsearch_version_check:
+        message_html: 'Inkompatibel Elasticsearch-version: %{value}'
+        version_comparison: Elasticsearch %{running_version} kører, men %{required_version} kræves
       rules_check:
         action: Håndtér serverregler
         message_html: Ingen serverregler defineret.
