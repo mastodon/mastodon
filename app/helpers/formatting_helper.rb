@@ -22,6 +22,6 @@ module FormattingHelper
   end
 
   def account_field_value_format(field, with_rel_me: true)
-    html_aware_format(field.value, field.account.value?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
+    html_aware_format(field.value, field.account.local?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
   end
 end
