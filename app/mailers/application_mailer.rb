@@ -5,6 +5,7 @@ class ApplicationMailer < ActionMailer::Base
 
   helper :application
   helper :instance
+  helper :formatting
 
   protected
 
