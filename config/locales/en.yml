@@ -490,6 +490,7 @@ en:
           other: Failed attempts on %{count} different days.
         no_failures_recorded: No failures on record.
         title: Availability
+        warning: The last attempt to connect to this server has been unsuccessful
       back_to_all: All
       back_to_limited: Limited
       back_to_warning: Warning
@@ -774,6 +775,11 @@ en:
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_running_check:
+        message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
+      elasticsearch_version_check:
+        message_html: 'Incompatible Elasticsearch version: %{value}'
+        version_comparison: Elasticsearch %{running_version} is running while %{required_version} is required
       rules_check:
         action: Manage server rules
         message_html: You haven't defined any server rules.
@@ -1438,7 +1444,7 @@ en:
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
-    edited_at: Edited %{date}
+    edited_at_html: Edited %{date}
     errors:
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
     open_in_web: Open in web

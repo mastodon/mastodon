@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 ## Unreleased
 ### Added
 
-- **Add support for post editing** ([Gargron](https://github.com/mastodon/mastodon/pull/16697), [Gargron](https://github.com/mastodon/mastodon/pull/17727), [Gargron](https://github.com/mastodon/mastodon/pull/17728), [Gargron](https://github.com/mastodon/mastodon/pull/17320), [Gargron](https://github.com/mastodon/mastodon/pull/17404), [Gargron](https://github.com/mastodon/mastodon/pull/17390), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17335), [Gargron](https://github.com/mastodon/mastodon/pull/17696), [Gargron](https://github.com/mastodon/mastodon/pull/17745), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17740), [Gargron](https://github.com/mastodon/mastodon/pull/17697), [Gargron](https://github.com/mastodon/mastodon/pull/17648), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17531), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17499), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17498), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17380), [Gargron](https://github.com/mastodon/mastodon/pull/17373), [Gargron](https://github.com/mastodon/mastodon/pull/17334), [Gargron](https://github.com/mastodon/mastodon/pull/17333), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17699), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17748))
+- **Add support for incoming edited posts** ([Gargron](https://github.com/mastodon/mastodon/pull/16697), [Gargron](https://github.com/mastodon/mastodon/pull/17727), [Gargron](https://github.com/mastodon/mastodon/pull/17728), [Gargron](https://github.com/mastodon/mastodon/pull/17320), [Gargron](https://github.com/mastodon/mastodon/pull/17404), [Gargron](https://github.com/mastodon/mastodon/pull/17390), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17335), [Gargron](https://github.com/mastodon/mastodon/pull/17696), [Gargron](https://github.com/mastodon/mastodon/pull/17745), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17740), [Gargron](https://github.com/mastodon/mastodon/pull/17697), [Gargron](https://github.com/mastodon/mastodon/pull/17648), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17531), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17499), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17498), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17380), [Gargron](https://github.com/mastodon/mastodon/pull/17373), [Gargron](https://github.com/mastodon/mastodon/pull/17334), [Gargron](https://github.com/mastodon/mastodon/pull/17333), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17699), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17748))
   - Previous versions remain available for perusal and comparison
   - People who reblogged a post are notified when it's edited
   - New REST APIs:
@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file.
     - `GET /api/v1/statuses/:id/history`
     - `GET /api/v1/statuses/:id/source`
   - New streaming API event:
-    - `update`
+    - `status.update`
 - **Add appeals for moderator decisions** ([Gargron](https://github.com/mastodon/mastodon/pull/17364), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17725), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17566), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17652), [Gargron](https://github.com/mastodon/mastodon/pull/17616), [Gargron](https://github.com/mastodon/mastodon/pull/17615), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17554), [Gargron](https://github.com/mastodon/mastodon/pull/17523))
   - All default moderator decisions now notify the affected user by e-mail
   - They now link to an appeal page instead of suggesting replying to the e-mail
@@ -63,7 +63,7 @@ All notable changes to this project will be documented in this file.
 - Add `types` param to `GET /api/v1/notifications` in REST API ([Gargron](https://github.com/mastodon/mastodon/pull/17767))
 - **Add notifications for moderators about new sign-ups** ([Gargron](https://github.com/mastodon/mastodon/pull/16953), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17629))
   - When a new user confirms e-mail, moderators receive a notification
-  - New streaming API event:
+  - New notification type:
     - `admin.sign_up`
 - Add authentication history ([Gargron](https://github.com/mastodon/mastodon/pull/16408), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/16428), [baby-gnu](https://github.com/mastodon/mastodon/pull/16654))
 - Add ability to automatically delete old posts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16529), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17691), [tribela](https://github.com/mastodon/mastodon/pull/16653))
@@ -81,6 +81,7 @@ All notable changes to this project will be documented in this file.
 - Add lazy loading for emoji picker in web UI ([mashirozx](https://github.com/mastodon/mastodon/pull/16907), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17011))
 - Add single option votes tooltip in polls in web UI ([Brawaru](https://github.com/mastodon/mastodon/pull/16849))
 - Add confirmation modal when closing media edit modal with unsaved changes in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16518))
+- Add hint about missing media attachment description in web UI ([Gargron](https://github.com/mastodon/mastodon/pull/17845))
 - Add support for fetching Create and Announce activities by URI in ActivityPub ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16383))
 - Add `S3_FORCE_SINGLE_REQUEST` environment variable ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16866))
 - Add `OMNIAUTH_ONLY` environment variable ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17288), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17345))
@@ -130,6 +131,11 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 
+- Fix IDN domains not being rendered correctly in a few left-over places ([Gargron](https://github.com/mastodon/mastodon/pull/17848))
+- Fix Sanskrit translation not being used in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17820))
+- Fix Kurdish languages having the wrong language codes ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17812))
+- Fix pghero making database schema suggestions ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17807))
+- Fix encoding glitch in the OpenGraph description of a profile page ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17821))
 - Fix web manifest not permitting PWA usage from alternate domains ([HolgerHuo](https://github.com/mastodon/mastodon/pull/16714))
 - Fix not being able to edit media attachments for scheduled posts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17690))
 - Fix subscribed relay activities being recorded as boosts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17571))

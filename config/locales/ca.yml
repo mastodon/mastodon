@@ -1,7 +1,7 @@
 ---
 ca:
   about:
-    about_hashtag_html: Aquests són tuts públics etiquetats amb <strong>#%{hashtag}</strong>. Pots interactuar amb elles si tens un compte a qualsevol lloc del fedivers.
+    about_hashtag_html: Aquests són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Pots interactuar amb elles si tens un compte a qualsevol lloc del fedivers.
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Posseeix les teves dades amb Mastodon!'
     about_this: Quant a
     active_count_after: actiu
@@ -25,7 +25,7 @@ ca:
     instance_actor_flash: |
       Aquest compte és un actor virtual utilitzat per a representar al propi servidor i no cap usuari individual.
       S'utilitza per a propòsits de federació i no ha de ser bloquejat si no voleu bloquejar tota la instància, en aquest cas hauríeu d'utilitzar un bloqueig de domini.
-    learn_more: Més informació
+    learn_more: Aprèn més
     logged_in_as_html: Actualment has iniciat sessió com a %{username}.
     logout_before_registering: Ja has iniciat sessió.
     privacy_policy: Política de privadesa
@@ -35,12 +35,12 @@ ca:
     server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
     status_count_after:
-      one: estat
-      other: tuts
-    status_count_before: Que han escrit
+      one: publicació
+      other: publicacions
+    status_count_before: Que han publicat
     tagline: Segueix els teus amics i descobreix-ne de nous
     terms: Termes del servei
-    unavailable_content: Contingut no disponible
+    unavailable_content: Servidors moderats
     unavailable_content_description:
       domain: Servidor
       reason: Raó
@@ -78,10 +78,10 @@ ca:
     pin_errors:
       following: Has d'estar seguint la persona que vulguis avalar
     posts:
-      one: Tut
-      other: Tuts
-    posts_tab_heading: Tuts
-    posts_with_replies: Tuts i respostes
+      one: Publicació
+      other: Publicacions
+    posts_tab_heading: Publicacions
+    posts_with_replies: Publicacions i respostes
     roles:
       admin: Administrador
       bot: Bot
@@ -98,7 +98,7 @@ ca:
       created_msg: La nota de moderació s'ha creat correctament!
       destroyed_msg: Nota de moderació destruïda amb èxit!
     accounts:
-      add_email_domain_block: Afegir el domini de correu a la llista negra
+      add_email_domain_block: Bloquejar el domini de l'adreça de correu electrònic
       approve: Aprova
       approved_msg: L’aplicació del registre de %{username} s’ha aprovat amb èxit
       are_you_sure: N'estàs segur?
@@ -490,6 +490,7 @@ ca:
           other: Intents fallits en %{count} diferents dies.
         no_failures_recorded: Sense errors registrats.
         title: Disponibilitat
+        warning: El darrer intent de connectar a aquest servidor no ha tingut èxit
       back_to_all: Totes
       back_to_limited: Limitades
       back_to_warning: Avís
@@ -1437,7 +1438,7 @@ ca:
     disallowed_hashtags:
       one: 'conté una etiqueta no permesa: %{tags}'
       other: 'conté les etiquetes no permeses: %{tags}'
-    edited_at: Editat %{date}
+    edited_at_html: Editat %{date}
     errors:
       in_reply_not_found: El tut al qual intentes respondre sembla que no existeix.
     open_in_web: Obre en la web

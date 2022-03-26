@@ -46,6 +46,29 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       expect(status.reload.spoiler_text).to eq 'Show more'
     end
 
+    context 'with no changes at all' do
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Note',
+          content: 'Hello world',
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.edited?).to be false
+      end
+    end
+
     context 'with no changes and originally with no ordered_media_attachment_ids' do
       let(:payload) do
         {
@@ -61,8 +84,12 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
         subject.call(status, json)
       end
 
-      it 'does not record an update' do
-        expect(status.reload.edited?).to be false
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.edited?).to be false
       end
     end
 

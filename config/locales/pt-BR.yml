@@ -25,6 +25,7 @@ pt-BR:
       Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.
       É usado para propósitos de federação e não deve ser bloqueado a menos que queira bloquear toda a instância, o que no caso devia usar um bloqueio de domínio.
     learn_more: Saiba mais
+    logout_before_registering: Já está logado.
     privacy_policy: Política de Privacidade
     rules: Regras do servidor
     rules_html: 'Abaixo está um resumo das regras que você precisa seguir se você quer ter uma conta neste servidor do Mastodon:'
@@ -443,10 +444,14 @@ pt-BR:
       title: Recomendações de contas
       unsuppress: Restaurar recomendação de contas
     instances:
+      availability:
+        title: Disponibilidade
       back_to_all: Todas
       back_to_warning: Aviso
       by_domain: Domínio
       confirm_purge: Você tem certeza de que deseja excluir permanentemente os dados deste domínio?
+      content_policies:
+        policy: Políticas
       delivery:
         all: Todos
         clear: Limpar erros de entrega

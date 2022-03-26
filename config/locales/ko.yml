@@ -369,6 +369,7 @@ ko:
       enable: 활성화
       enabled: 활성됨
       enabled_msg: 성공적으로 활성화하였습니다
+      image_hint: "%{size} 이하의 PNG 또는 GIF"
       list: 목록에 추가
       listed: 목록에 실림
       new:
@@ -460,6 +461,7 @@ ko:
         resolve: 도메인 해결
         title: 새 이메일 도메인 차단
       no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
+      resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
       resolved_through_html: "%{domain}을 통해 해결됨"
       title: Email 도메인 차단
     follow_recommendations:
@@ -479,6 +481,7 @@ ko:
           other: 실패한 전달 시도 총 %{count}일.
         no_failures_recorded: 실패 기록이 없습니다.
         title: 가용성
+        warning: 이 서버에 대한 마지막 연결 시도가 성공적이지 않았습니다
       back_to_all: 전체
       back_to_limited: 제한됨
       back_to_warning: 경고
@@ -778,6 +781,7 @@ ko:
       links:
         allow: 링크 허용하기
         allow_provider: 출처 허용하기
+        description_html: 현재 서버에서 게시물을 볼 수 있는 계정에서 많이 공유되고 있는 링크들입니다. 사용자가 세상 돌아가는 상황을 파악하는 데 도움이 됩니다. 출처를 승인할 때까지 링크는 공개적으로 게시되지 않습니다. 각각의 링크를 개별적으로 허용하거나 거부할 수도 있습니다.
         disallow: 링크 거부하기
         disallow_provider: 출처 거부하기
         shared_by_over_week:
@@ -789,12 +793,14 @@ ko:
       pending_review: 심사 대기
       preview_card_providers:
         allowed: 이 출처의 링크는 유행 목록에 실릴 수 있습니다
+        description_html: 당신의 서버에서 많은 링크가 공유되고 있는 도메인들입니다. 링크의 도메인이 승인되기 전까지는 링크들은 공개적으로 트렌드에 게시되지 않습니다. 당신의 승인(또는 거절)은 서브도메인까지 확장됩니다.
         rejected: 이 출처의 링크는 유행 목록에 실릴 수 없습니다
         title: 출처
       rejected: 거부됨
       statuses:
         allow: 게시물 허용
         allow_account: 작성자 허용
+        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 즐겨찾기가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
         disallow: 게시물 불허
         disallow_account: 작성자 불허
         not_discoverable: 작성자가 발견되기를 원치 않습니다
@@ -809,6 +815,7 @@ ko:
           tag_servers_dimension: 상위 서버
           tag_servers_measure: 다른 서버들
           tag_uses_measure: 총 사용
+        description_html: 현재 서버에서 볼 수 있는 게시물에서 많이 공유되고 있는 해시태그들입니다. 현재 사람들이 무슨 이야기를 하고 있는지 사용자들이 파악할 수 있도록 도움이 됩니다. 승인하지 않는 한 해시태그는 공개적으로 게시되지 않습니다.
         listable: 추천될 수 있습니다
         not_listable: 추천될 수 없습니다
         not_trendable: 유행 목록에 나타나지 않습니다
@@ -841,6 +848,7 @@ ko:
         silence: 계정을 제한하는 것
         suspend: 계정을 정지하는 것
       body: "%{target} 님이 %{action_taken_by} 님에 의해 %{date}에 결정된 중재 결정에 대한 이의를 제기했습니다, 결정된 사항은 %{type}이었습니다. 작성내용은 다음과 같습니다:"
+      next_steps: 중재 결정사항을 되돌리기 위해서 상소를 승인하거나, 무시할 수 있습니다.
       subject: "%{username} 님이 %{instance}에서 발생한 중재 결정에 대해 소명을 제출했습니다"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
@@ -853,11 +861,15 @@ ko:
       body: '아래에 있는 항목들은 공개적으로 보여지기 전에 검토를 거쳐야 합니다:'
       new_trending_links:
         no_approved_links: 현재 승인된 유행 중인 링크가 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 링크를 앞지를 수 있으며, 이것은 현재 "%{lowest_link_title}"이고 %{lowest_link_score}점을 기록하고 있습니다.'
         title: 유행하는 링크
       new_trending_statuses:
         no_approved_statuses: 현재 승인된 유행 중인 게시물이 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 게시물을 앞지를 수 있으며, 이것은 현재 %{lowest_status_url}이고 %{lowest_status_score}점을 기록하고 있습니다.'
         title: 유행하는 게시물
       new_trending_tags:
+        no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 해시태그를 앞지를 수 있으며, 이것은 현재 #%{lowest_tag_name}이고 %{lowest_tag_score}점을 기록하고 있습니다.'
         title: 유행하는 해시태그
       subject: 새 트렌드가 %{instance}에서 심사 대기 중입니다
   aliases:
@@ -1407,7 +1419,7 @@ ko:
     default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
-    edited_at: "%{date}에 편집됨"
+    edited_at_html: "%{date}에 편집됨"
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
     open_in_web: Web으로 열기

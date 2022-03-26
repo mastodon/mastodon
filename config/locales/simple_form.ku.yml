@@ -3,204 +3,228 @@ ku:
   simple_form:
     hints:
       account_alias:
-        acct: دیاریکردنی username@domain ئەو هەژمارە کە دەتەوێت بیگوازیەوە لە
+        acct: Ajimêrê ku tu dixwazî bar bikî navê bikarhêner@domain diyar bike
       account_migration:
-        acct: دیاریکردنی username@domain ئەو هەژمارە کە دەتەوێت بیگوازیەوە لە
+        acct: Ajimêrê ku tu dixwazî bar bikî navê bikarhêner@domain diyar bike
       account_warning_preset:
-        text: دەتوانی ڕستەسازی ی توت بەکاربێنیت، وەک لینک، هاشتاگ و باسەکان
-        title: ئارەزوومەندانە. دیار نیە بۆ وەرگر
+        text: Tu dikarî wek URLyan, hashtagan û şîroveyan, tootê ristesazî jî bikarbînî
+        title: Bi dilê xwe ye. Ji wergir re nay xûyakirin
       admin_account_action:
-        include_statuses: بەکارهێنەرەکە دەبینێت کام توتی هۆکاری کرداری بەڕێوەبەر یان ئاگادارکردنەوە
-        send_email_notification: بەکارهێنەر ڕوننکردەوەیەک دەبینێت کە تێدا دەزانێت چی بە سەر هەژمارەکەی هاتووە
-        text_html: ئارزوومەندانە. دەتوانن وەک توتی ئاسایی بینووسن. دەتوانن بۆ کەمکردنەوەی کات <a href="%{path}">ئاگادارییەکان لە پێشەوە زیادبکەن</a>
-        type_html: گەرکتە لەگەڵ هەژمارەی <strong>%{acct}</strong> چی بکەیت
-        warning_preset_id: ئارەزوومەندانەیە. هێشتا دەتوانیت لە کۆتایی دەق شتێک زیاد بکەی
+        include_statuses: Bikarhênerê bibîne kîjan toot dibin sedemê çalakî an jî agahdarî
+        send_email_notification: Bikarhêner dê ravekirinê tiştê ku bi ajimêra wan re qewimî bistîne
+        text_html: Bi dili xwe ye. Tu dikarî hevoksazî ye toot bikarbînî. Tu dikarî <a href="%{path}"> pêşsazîyên hişyariyê lê zêde bikî </a> ji bo ku demê derbas nekî
+        type_html: Hilbijêre ka tu yê çi bikî bi <strong>%{acct}</strong> re
+        types:
+          disable: Nehêle bila bikarhêner ajimêrê xwe bikar bîne lê naverokan jê nebe an jî veneşêre.
+          none: Ji bo ku tu hişyariyekê ji bikarhêner re bişînî vê bi kar bîne, bêyî ku çalakiyeke din dest lê neda.
+          sensitive: Neçar bihêle ku ev bikarhêner hemû pêvekên medyayê hestiyar nîşan bike.
+          silence: Pêşî li bikarhêneran bigire ku bikarhêner bi herkesî ra xûyabarî neşîne, post û agahdarîyên xwe ji mirovên ku wan naşopîne veşêre.
+          suspend: Pêşîya hevbandorîya vî ajimêrê bigire û naveroka wê jê bibe. Di nava 30 rojan de tê vegerandin.
+        warning_preset_id: Bi dilê xwe ye. Tu hîn jî dikarî dawîya pêşsazkirî de nivîsek teybet li zêde bikî
       announcement:
-        all_day: کاتێک چاودێریکرا، تەنها بەروارەکانی مەودای کات پیشان دەدرێت
-        ends_at: ئارەزوومەندانەیە. ئەم کاتە راگەیەنراوەکە بە شێوەیەکی خۆکارانە بڵاوناکرێتەوە
-        scheduled_at: چۆڵ یبهێڵەوە بۆ بڵاوکردنەوەی دەستبەجێی بانگەوازەکە
-        starts_at: ئارەزوومەندانەیە. لە حاڵەتی ڕاگەیاندنی تۆ بەستراو بە مەودایەکی کاتی دیاریکراو
-        text: دەتوانیت ڕستەسازی توت بەکار بێنیت. تکایە بیر لەو بۆشاییە بکەوە کە بانگەوازەکە لەسەر شاشەی بەکارهێنەرەکە دەست نیشان دەکات
+        all_day: Dema were nîşankirin, tenê dîrokên navbera demê dê werin nîşan kirin
+        ends_at: Bi dilê xwe ye. Daxuyanî di vê demê de bi xweberî ji weşanê de rabe
+        scheduled_at: Vala bihêle ku yekcar daxûyanî were weşandin
+        starts_at: Bi dilê xwe ye. Heke daxûyanî ya te di demeke diyar ve girêdayî be
+        text: Tu dikarî hevoksazî yên toot bikarbînî. Ji kerema xwe cihê ku ev daxuyanî li ser dîmenderê bikarhêner bigire baldar be
+      appeal:
+        text: Tu dikarî tenê carekê îtîraza binpêkirinê bikî
       defaults:
-        autofollow: ئەو کەسانەی کە لە ڕێگەی بانگهێشتکردنەوە تۆمار دەکرێن بە خۆکارانە شوێنت دەکەون
-        avatar: PNG, GIF یان JPG. لە زۆربەی %{size}. دەبێتە ئەندازەیەکی کەمکراوە بۆ %{dimensions}px
-        bot: ئەم هەژمارە بەشێوەیەکی سەرەکی کردارە خۆکارانە ئەنجام دەدات و لەوانەیە چاودێری نەکرێت
-        context: یەک یان چەند دەقێک کە پالافتنەکە جێبەجێ بکات
-        current_password: بۆ مەبەستی پاراستن تکایە تێپەروشەی هەژمارەی ئێستاکەت بنووسە
-        current_username: بۆ دڵنیابوون، تکایە ناوی بەکارهێنەری ئەم هەژمارەیە بنووسە
-        digest: تەنیا دوای ماوەیەکی زۆر لە بێ چالاکیدەنێردرێت و تەنیا ئەگەر نامەیەکی کەسیت بۆ نووسرابێت
-        email: ئیمەیڵێکی پشتڕاستکردنەوەت بۆ دەنێردرێت
-        fields: دەتوانیت تا ٤بڕگەت هەبێت کە وەک خشتەیەک لەسەر پرۆفایلەکەت پیشان بدرێت
-        header: PNG, GIF یان JPG. لە زۆربەی %{size}. دەبێتە ئەندازەیەکی کەمکراوە بۆ %{dimensions}پیکسێڵ
-        inbox_url: نیشانەی پەڕەی سەرەکی ئەو رێڵە کە هەرەکتە بەکاریببەیت ڕوونووس دەکات
-        irreversible: توتە فلتەرکراوەکە بە شێوەیەکی نەگەڕاو فرەدەدرێن، تەنانەت ئەگەر فلتەردواتر لاببرێت
-        locale: زمانی ڕووکاری بەکارهێنەر، ئیمەیلەکان و ئاگانامەکان
-        locked: بە دەستی شوێنکەوتوانی خۆت پەسەند بکە
-        password: بەلایەنی کەمەوە ٨ نووسە بەکاربهێنە
-        phrase: سەربەخۆ لە بچکۆلی و گەورەیی پیتەکان، لەگەڵ دەقی ئەسڵی یان ئاگانامەکانی ناوەرۆکی توتەکان هاوئاهەنگ دەکرێت
-        scopes: APIـیەکانی بەرنامەنووسی کە ئەم ماڵپەڕە دەستپێگەیشتنی لەگەڵیان هیە. ئەگەر بەرزترین ئاست هەڵبژێرن ئیتر نیاز بە بژاردەی ئاستی نزم نییە.
-        setting_aggregate_reblogs: بۆ ئەو دووبارە توتانە کە بە نوێیی پێتان نیشان دراوە،دووبارە توتەکانی پێشتر زیاد مەکە(تەنها کاریگەری لەسەر توتەکانی ئەم دواییە هەیە)
-        setting_default_sensitive: میدیای هەستیار لە بنەڕەت شاراوەیە و دەتوانرێت بە کلیکیک ئاشکرا بکرێت
-        setting_display_media_default: شاردنەوەی ئەو میدیایانەی وەک هەستیار نیشانکراون
-        setting_display_media_hide_all: هەمیشە میدیا بشارەوە
-        setting_display_media_show_all: هەمیشە میدیا نیشان بدە
-        setting_hide_network: کێ دوای دەکەویت و کێ دوای تۆ دەکەوێت لە پرۆفایلەکەت پیشان نادرێت
-        setting_noindex: کاردەکاتە سەر پرۆفایل و لاپەڕە گشتیەکانت
-        setting_show_application: بەرنامەیەک کە بە یارمەتیت توت دەکەیت، لە دیمەنی وردی توتەکان پیشان دەدرێت
-        setting_use_blurhash: سێبەرەکان لە سەر بنەمای ڕەنگەکانی بەکارهاتوو لە وێنە داشاراوەکان دروست دەبن بەڵام وردەزانیاری وێنە تێیدا ڕوون نییە
-        setting_use_pending_items: لەجیاتی ئەوەی بە خۆکارانە کێشان هەبێت لە نووسراوەکان بە کرتەیەک بەڕۆژبوونی پێرستی نووسراوەکان بشارەوە
-        username: ناوی بەکارهێنەری ئێوە لەسەر %{domain} یەکتا دەبێت
-        whole_word: کاتێک کلیل‌وشە بریتییە لە ژمارە و پیت، تنەها کاتێک پەیدا دەبێت کە لەگەڵ گشتی وشە لە نێو دەقەکە هاوئاهەنگ بێت، نە تەنها لەگەڵ بەشێک لە وشە
+        autofollow: Mirovên ku bi rêya vexwendinê xwe tomar kirine ew ên bi xweberî te bişopînin
+        avatar: PNG, GIF an jî JPG. Herî zêde %{size} dê ber bi %{dimensions}px ve were kêmkirin
+        bot: Ji yên din re nîşan bike ku ajimêr bi piranî kiryarên xweberî dike û dibe ku neyê çavdêrî kirin
+        context: Yek an jî zêdetir girêdan divê parzûn were sepandin
+        current_password: Ji bo ewlehiyê ji kerema xwe şîfreya ajimêrê xwe niha têkevin
+        current_username: Ji bo piştrastkirinê, ji kerema xwe navê bikarhêner ya ajimêrê niha binvîse
+        digest: Tenê piştî demek dirêj neçalakiyê de û tenê di nebûna te da peyamên teybetî standî be tê şandin
+        discoverable: Mafê biden ku ajimêra te bi pêşniyar û taybetmendiyên din ji aliyê biyaniyan ve bê vedîtin
+        email: Ji te re e-name ya pejirandinê were
+        fields: Tu dikarî heya 4 hêmanan wekî tabloyek li ser profîla xwe nîşan bidî
+        header: PNG, GIF an jî JPG. Herî zêde %{size} ber bi %{dimensions}px ve were kêmkirin
+        inbox_url: URLyê di rûpela pêşî de guhêrkerê ku tu dixwazî bi kar bînî jê bigire
+        irreversible: Tootên parzûnkirî êdî bê veger wenda bibe, heger parzûn paşê were rakirin jî nabe
+        locale: Zimanê navrûyê bikarhêner, agahdarîyên e-name û pêl kirin
+        locked: Bi destan daxwazên şopê hilbijêrîne da ku kî bikaribe te bişopîne
+        password: Herî kêm 8 karakter bikar bîne
+        phrase: Ji rewşa nivîsê tîpên girdek/hûrdek an jî ji hişyariya naveroka ya şandiyê wek serbixwe wê were hevbeş kirin
+        scopes: |-
+          Sepana ku dê kîjan maf bide bigihije APIyan.
+          Ger te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî.
+        setting_aggregate_reblogs: Bilindkirinên ku nû hatine weşan ji şandiyên di dema dawî de nîşan nede (tenê li ser bilindkirinên nû wergirtî bandor dike)
+        setting_default_sensitive: Medyaya hestiyar berdestî ve tê veşartin û bi tikandin dikare were eşkere kirin
+        setting_display_media_default: Medyaya wekî hestyarî hatiye nîşankirî ye veşêre
+        setting_display_media_hide_all: Medyayê tim veşêre
+        setting_display_media_show_all: Medyayê tim nîşan bike
+        setting_hide_network: Kesên ku te dişopîne û kesên tu dişopînî ev ên profîla te de were veşartin
+        setting_noindex: Bandor li hemî profîla te û tootên rûpela te dike
+        setting_show_application: Navê sepana ku tu ji bo şandinê wê bi kar tîne dê di dîtinê berferh ên di şandiyên te de were xuyakirin
+        setting_use_blurhash: Gradyen xwe bi rengên dîtbarîyên veşartî ve radigire, lê belê hûrgilîyan diveşêre
+        setting_use_pending_items: Li şûna ku herkê wek bixweber bizivirînî nûvekirina demnameyê li paş tikandinekî veşêre
+        username: Navê te yê bikarhênerî li ser %{domain} de bêhempa be
+        whole_word: Dema peyvkilîd an jî hevok bi tenê alfahejmarî çêbe, bi tenê hemû bêjeyê re li hev bike wê pêk bê
       domain_allow:
-        domain: ئەم دۆمەینە دەتوانێت دراوە لە ئەم ڕاژە وەربگرێت و دراوەی ئەم دۆمەینە لێرە ڕێکدەخرین و پاشکەوت دەکرێن
+        domain: Ev navê navperê, ji vê rajekarê wê daneyan bistîne û daneyên ku jê bê wê were sazkirin û veşartin
       email_domain_block:
-        with_dns_records: هەوڵێک بۆ چارەسەرکردنی تۆمارەکانی DNSی دۆمەین دراوە کە ئەنجامەکان بلۆک دەکرێت
+        domain: Ev dikare bibe navê navparek ku di navnîşana e-nameyê de an tomara MX ya ku ew bi kar tîne de xuya dike. Ew ê di dema tomarkirinê de werin kontrolkirin.
+        with_dns_records: Hewl tê dayîn ku tomarên DNSê yên li qada jê re hatine dayîn were çareserkirin û encamên wê jî were astengkirin
       featured_tag:
-        name: 'لەوانەیە بتەوێت یەکێک لەمانە بەکاربهێنیت:'
+        name: 'Belkî tu yekê bi kar bînî çi van:'
       form_challenge:
-        current_password: تۆ دەچیتە ناو ناوچەی پارێزراو
+        current_password: Tu dikevî qadeke ewledar
       imports:
-        data: فایلی CSV هەناردەکراوە لە ڕاژەیەکی تری ماستۆدۆن
+        data: Pelê CSV-ê ji rajekareke din a Mastodon hate derxistin
       invite_request:
-        text: ئەمە یارمەتیمان دەدات بۆ پێداچوونەوەی بەرنامەکەت
+        text: Ev ê alikariya me bikê bo nirxandina sepanê te
       ip_block:
-        comment: دڵخوازە. لەبیرتە بۆچی ئەم یاسایەت زیاد کرد.
-        expires_in: ناونیشانی IP سەرچاوەی سنوردارن، هەندێک جار هاوبەشکراون و زۆر جار دەستەکان دەگۆڕن. لەبەر ئەم هۆیە، بلۆکی IP بێ نەناسراو پێشنیار نەکراوە.
-        ip: ناونیشانی IPv4 یان IPv6 تێبنووسە. دەتوانیت هەموو مەوداکان بلۆک بکەیت بە بەکارهێنانی داڕستانی CIDR. وریابە خۆت قفڵ مەکە!
+        comment: Bi dilê xwe ye. Ji bîr neke te çima ev bîranînê lê zêde kiriye.
+        expires_in: Navnîşanên IPyan çavkaniyên bi sînor in, carinan dihê parvekirin lê pirî caran dest diguherîne. Ji bo vê blokên IP ên nediyar nayê pêşniyarkirin.
+        ip: Têkeve navnîşana IPv4 an jî IPv6'yek. Tu dikarî bi hevoksazî ya CIDR re hemî valahîyan asteng bikî. Hay ji xwe hebe ku xwe derve nehêle!
         severities:
-          no_access: بلۆککردنی گەیشتن بە هەموو سەرچاوەکان
-          sign_up_requires_approval: نوێ ناوتۆمارکردن پێویستی بە ڕەزامەندی تۆیە
-        severity: هەڵبژێرە چی ڕوودەدات لەگەڵ داواکاریەکانی ئەم IP
+          no_access: Gihîştina hemî çavkaniyan asteng bike
+          sign_up_requires_approval: Tomarkirinên nû de pejirandina te pêwîste
+        severity: Daxwazên ku ji vê IPyê tên dê çi bibe hilbijêre
+      rule:
+        text: Ji bo bikarhênerên li ser vê rajekarê rêzikek an jî pêdivîyê pênase bike. Hewl bide ku rêzikê kin û xwerû bigire
       sessions:
-        otp: 'کۆدی دوو-فاکتۆر بنووسە کە لەلایەن ئەپی تەلەفۆنەکەتەوە دروست کراوە یان یەکێک لە کۆدەکانی هێنانەوەی خۆت بەکاربهێنە:'
-        webauthn: ئەگەر کلیلی USB بێت دڵنیابە لە تێکردنی و ئەگەر پێویست بوو، لێیبدە.
+        otp: 'Koda du-gavî a telefona xwe têkevê an jî yek ji wan kodên xilaskirinê têkevê:'
+        webauthn: Heke kilîta USB-yê be, jê ewle be ku wê têxinê û heke pêdivî be, pê li wê bike.
       tag:
-        name: ئێوە دەتوانن گەورەیی و بجکۆلیی پیتەکان دەستکاری بکەن تاکوو خوێنەوارتر دیاربن
+        name: Tîpan, mînak ji bo ku bêhtir paknivîs bibe, tenê rewşa tîpên girdek/hûrdek dikarî biguherînî
       user:
-        chosen_languages: کاتێک چاودێری کرا، تەنها توتەکان بە زمانە دیاریکراوەکان لە هێڵی‌کاتی گشتی پیشان دەدرێت
+        chosen_languages: Dema were nîşankirin, tenê parvekirinên bi zimanên hilbijartî dê di rêzikên giştî de werin nîşandan
     labels:
       account:
         fields:
-          name: ناونیشان
-          value: ناوەڕۆک
+          name: Nîşan
+          value: Naverok
       account_alias:
-        acct: چارەسەرکردنی هەژمارە کۆنەکە
+        acct: Destika ajimêrê te yê kevn
       account_migration:
-        acct: چارەسەرکردنی هەژمارە نوێکە
+        acct: Destika ajimêrê te yê nû
       account_warning_preset:
-        text: دەقی پێشوەختی ڕێکخستن
-        title: سەردێڕ
+        text: Nivîsa pêşsazkirî
+        title: Sernav
       admin_account_action:
-        include_statuses: لەخۆگرتنی توتەکانی گوزارشت لە ئیمەیل
-        send_email_notification: بەکارهێنەر ئاگادار بکەوە بۆ هەر ئیمەیڵێک
-        text: ئاگاداری تایبەتمەند
-        type: کردار
+        include_statuses: Şandiyên hatine ragihandinê jî têxe nav e-name yê
+        send_email_notification: Bikarhênerê bi e-name yê agahdar bike
+        text: Agahdarî ya kesane
+        type: Çalakî
         types:
-          disable: بەستن
-          none: ناردنی ئاگاداری
-          sensitive: هەستیار
-          silence: سنوور
-          suspend: ڕاگرتن
-        warning_preset_id: بەکاهێنانی ئاگاداری پێش وەختە
+          disable: Qerisî ye
+          none: Hişyariyek bişîne
+          sensitive: Hestiyar
+          silence: Bi sînor bike
+          suspend: Hatiye rawestandin
+        warning_preset_id: Hişyariyeke pêşsazkirî bi kar bîne
       announcement:
-        all_day: ڕووداوی هەموو ڕۆژەکە
-        ends_at: کۆتایی ڕووداو
-        scheduled_at: بڵاوکراوەکە خشتە بکە
-        starts_at: دەستپێکردنی ڕووداو
-        text: بانگەواز
+        all_day: Çalakiya tevahiya rojê
+        ends_at: Dawiya bûyerê
+        scheduled_at: Weşanê demsaz bike
+        starts_at: Destpêka bûyerê
+        text: Daxuyanî
+      appeal:
+        text: Şîrove bike çima divê ev biryar were berovajîkirin
       defaults:
-        autofollow: بانگهێشت کردن بۆ شوێنکەوتنی هەژمارەکەت
-        avatar: وێنۆچکە
-        bot: ئەمە هەژمارێکی ساختەیە
-        chosen_languages: پاڵاوتنی زمانەکان
-        confirm_new_password: پشتڕاستکردنەوەی تێپەڕوشەی نوێ
-        confirm_password: پشتڕاستکردنەوەی تێپەڕوشە
-        context: چوارچێوەی پاڵافتن
-        current_password: تێپەروشەی ئێستا
-        data: دراوه
-        discoverable: ئەم هەژمێرە لە پێرستی بژاردەی بەکارهێنەران نیشان بدە
-        display_name: ناوی پیشاندان
-        email: ناونیشانی ئیمەیڵ
-        expires_in: بەسەردەچێت پاش
-        fields: مێتاداتای پرۆفایل
-        header: سەرپەڕە
-        inbox_url: بەستەری سندوقی گواستنەوەی
-        irreversible: فرێدان لەجیاتی شاردنەوە
-        locale: زمانی پەڕەی بەکارهێنەر
-        locked: داخستنی هەژمارە
-        max_uses: زۆرترین ژمارەی بەکاربەرەکان
-        new_password: تێپەروشەی نوێ
-        note: دەربارەی ئیوە
-        otp_attempt: کۆدی دووقۆناغی هاتنەژوور
-        password: تێپەڕوشە
-        phrase: وشەکلیل یان دەستەواژە
-        setting_advanced_layout: چالاککردنی ڕووکاری وێبی پێشکەوتوو
-        setting_aggregate_reblogs: گرووپی توتەکان یەکبخە
-        setting_auto_play_gif: خۆکاربەخشکردنی GIFــەکان
-        setting_boost_modal: پیشاندانی دیالۆگی دووپاتکردنەوە پێش دوبارە توتاندن
-        setting_crop_images: لە تووتی نەکراوە،وینەکان لە ئەندازی ۱٦×۹ ببڕە
-        setting_default_language: زمانی نووسراوەکانتان
-        setting_default_privacy: چوارچێوەی تایبەتێتی ئێوە
-        setting_default_sensitive: هەمیشە نیشانکردنی میدیا وەک هەستیار
-        setting_delete_modal: نیساندانی پەیامی پەسەند کردن پاش سڕینەوە
-        setting_disable_swiping: جوڵەی سڕینەوە لە کاربخە
-        setting_display_media: پیشاندانی میدیا
-        setting_display_media_default: بنەڕەت
-        setting_display_media_hide_all: شاردنەوەی هەموو
-        setting_display_media_show_all: هەموو نیشان بدە
-        setting_expand_spoilers: هەمیشە ئەو توتانەی کە بە ئاگادارکردنەوەکانی ناوەڕۆکەوە نیشانەکراون، پیسان بدە
-        setting_hide_network: شاردنەوەی تۆڕەکەت
-        setting_noindex: داوا لە مەکینەی گەڕان بۆ پیشاننەدان لە دەئەنجامی گەڕانەکان
-        setting_reduce_motion: کەمکردنەوەی جوڵە لە ئەنیمەکان
-        setting_show_application: ئاشکراکردنی ئەپەکان بۆ ناردنی توتەکان
-        setting_system_font_ui: فۆنتی بنەڕەتی سیستەم بەکاربهێنە
-        setting_theme: ڕووکاری ماڵپەڕ
-        setting_trends: پیشاندانی نووسراوە بەرچاوکراوەی ئەمڕۆ
-        setting_unfollow_modal: پیشاندانی پەیامی پەسەندکردن پێش شوێن‌نەکەوتنی کەسێک
-        setting_use_blurhash: بەجیاتی وینەی داشاراوە، سێبەری ڕەنگاوڕەنگ نیشان بدە
-        setting_use_pending_items: دۆخی خاو
-        severity: ئاستی گرنگی
-        sign_in_token_attempt: کۆدی پاراستن
-        type: جۆری هاوردەکردن
-        username: ناوی بەکارهێنەر
-        username_or_email: ناوی بەکاهێنەر یان ئیمەیڵ
-        whole_word: هەموو وشەکە
+        autofollow: Ji bo şopandina ajimêra xwe vexwîne
+        avatar: Wêne
+        bot: Ev ajimêrekî bot e
+        chosen_languages: Parzûnê zimanan
+        confirm_new_password: Peborîna nû bipejirîne
+        confirm_password: Peborîn bipejirîne
+        context: Parzûnê naverokan
+        current_password: Pêborîna heyî
+        data: Dane
+        discoverable: Ji yên din re ajimêrê pêşniyar bike
+        display_name: Navê nîşandanê
+        email: Navnîşana E-nameyê
+        expires_in: Dîroka xilasbûyînê
+        fields: Profîla daneyên meta
+        header: Jormalper
+        honeypot: "%{label} (tijî neke)"
+        inbox_url: URLya guhêzkera wergirtî
+        irreversible: Li şûna veşartinê jê bibe
+        locale: Zimanê navrûyê
+        locked: Ajimêr kilît bike
+        max_uses: Hejmara bikaranîna herî zêde
+        new_password: Pêborîna nû
+        note: Jiyanname
+        otp_attempt: Koda du faktoran
+        password: Pêborîn
+        phrase: Peyvkilîd an jî hevok
+        setting_advanced_layout: Navrûya tevnê yê pêşketî çalak bike
+        setting_aggregate_reblogs: Di demnameyê de şandiyên bilindkirî kom bike
+        setting_auto_play_gif: GIF ên livok bi xweber bilîzine
+        setting_boost_modal: Gotûbêja pejirandinê nîşan bide berî ku şandî werê bilindkirin
+        setting_crop_images: Wêneyên di nav şandiyên ku nehatine berfireh kirin wek 16×9 jê bike
+        setting_default_language: Zimanê weşanê
+        setting_default_privacy: Ewlehiya weşanê
+        setting_default_sensitive: Her dem medya wek hestyar bide nîşan
+        setting_delete_modal: Berî ku peyamek were jêbirin, gotûbêja pejirandinê nîşan bide
+        setting_disable_swiping: Tevgerên dişiqite ne çalak bike
+        setting_display_media: Nîşandana medyayê
+        setting_display_media_default: Berdest
+        setting_display_media_hide_all: Hemûyan veşêre
+        setting_display_media_show_all: Hemûyan nîşan bide
+        setting_expand_spoilers: Şandîyên ku bi agahdarîyên naverokê va hatine nîşankirin her dem berfireh bike
+        setting_hide_network: Grafîka xwe ya civakî veşêre
+        setting_noindex: Bes e nexe di nav rêzên lêgerîna gerokan
+        setting_reduce_motion: Lîstikên livoka kêm bike
+        setting_show_application: Sepana ku ji bo şandina toot'a tê bikaranîn diyar bike
+        setting_system_font_ui: Curenivîsa berdest a pergalê bi kar bîne
+        setting_theme: Rûkarê malperê
+        setting_trends: Rojeva îro nîşan bide
+        setting_unfollow_modal: Gotûbêja pejirandinê nîşan bide berî ku dev ji şopa kesekî tê berdan
+        setting_use_blurhash: Ji bo medyaya veşartî de gradyanên rengîn nîşan bike
+        setting_use_pending_items: Awayê hêdî
+        severity: Asta girîngiyê
+        sign_in_token_attempt: Koda ewlehiyê
+        type: Cureya têxistinê
+        username: Navê bikarhêneriyê
+        username_or_email: Navê bikarhêner an jî e-name
+        whole_word: Hemû peyv
       email_domain_block:
-        with_dns_records: لەخۆگرتنی تۆمارەکانی MX و ئای پییەکانی دۆمەین
+        with_dns_records: Tomarên MX û IP yên hundirê navper lê zêde bike
       featured_tag:
-        name: هەشتاگ
+        name: Hashtag
       interactions:
-        must_be_follower: قەپاتکردنی ئاگانامەکان بێجگە لە شوێنکەوتووان
-        must_be_following: بەئاگانامەکان بلۆک بکە لە خەڵکێک کە پەیڕەویان ناکەیت
-        must_be_following_dm: پەیامەکانی ڕاستەوخۆ بلۆک بکە لەو کەسانەی کە، پەیڕەوی ناکەن
+        must_be_follower: Danezanên ji kesên ku ne şopînerên min tên asteng bike
+        must_be_following: Agahdariyan asteng bike ji kesên ku tu wan naşopînî
+        must_be_following_dm: Peyamên rasterast asteng bike ji kesên ku tu wan naşopînî
       invite:
-        comment: بۆچوون
+        comment: Şîrove
       invite_request:
-        text: بۆچی دەتەوێت بەشدار بیت?
+        text: Tu çima dixwazî beşdar bibî?
       ip_block:
-        comment: بۆچوون
+        comment: Şîrove
+        ip: IP
         severities:
-          no_access: بلۆککردنی ده‌ستپێگه‌یشتن
-          sign_up_requires_approval: سنووردارکردنی چوونەناو
-        severity: یاسا
+          no_access: Gihîştinê asteng bike
+          sign_up_requires_approval: Tomaran sînordar bike
+        severity: Rêbaz
       notification_emails:
-        digest: کورتکردنی ئاگادارییکەن لەیەک ئیمەیل
-        favourite: کەسێک دۆخی تۆی بەدڵ بوو
-        follow: کەسێک دوای تۆ کەوت
-        follow_request: کەسێک داوای کردووە کە بەدوات بکەوێت
-        mention: کەسێک باسی کردووی
-        pending_account: هەژمارەی نوێ پێویستی بە پێداچوونەوەهەیە
-        reblog: کاتێک کەسێک نووسراوەی ئێوە دووبارە توت دەکاتەوە
+        appeal: Kesek îtîrazê biryara çavdêr dike
+        digest: Kurte e-name bişîne
+        favourite: Kesekî şandiya te hez kir
+        follow: Kesekî te şopand
+        follow_request: Kesekî daxwaz kir bo şopandina te
+        mention: Kesekî qale te kir
+        pending_account: Pewîste ku ajimêra nû bihê lêkolînkirin
+        reblog: Kesekî şandiya te bilind kir
+        report: Ragihandina nû hate şandin
+        trending_tag: Rojeva nû pêdivî nirxandinê ye
+      rule:
+        text: Rêbaz
       tag:
-        listable: ڕیگەبدە ئەم هاشتاگە لە پێرستی هەڵبژاردەی بەکارهێنەران و پەڕەی گەڕان نیشان بدرێت
-        name: هەشتاگ
-        trendable: ڕێگەبدە ئەم هەشتاگە لە نووسراوەی بەرچاوکراو نیسان بدرێت
-        usable: ڕێگەبدە بە توتەکان بۆ بەکارهێنانی ئەم هەشتاگە
-    'no': نە
-    recommended: پێشنیارکراوە
+        listable: Bihêle ku ev hashtag werê xuyakirin di lêgerîn û pêşniyaran de
+        name: Hashtag
+        trendable: Bihêle ku ev hashtag werê xuyakirin di bin rojevê de
+        usable: Bihêle ku şandî ev hashtag bi kar bînin
+    'no': Na
+    recommended: Pêşniyarkirî
     required:
-      text: پێویستە
+      mark: "*"
+      text: pêdivî ye
     title:
       sessions:
-        webauthn: یەکێک لە کلیلەکانی پاراستن بەکاربهێنە بۆ چوونە ژوورەوە
-    'yes': بەڵێ
+        webauthn: Yek ji kilîtên ewlehiyê yên xwe bi kar bîne bo têketinê
+    'yes': Erê

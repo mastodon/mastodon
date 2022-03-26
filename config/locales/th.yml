@@ -52,6 +52,7 @@ th:
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
     choices_html: 'ตัวเลือกของ %{name}:'
+    endorsements_hint: คุณสามารถแนะนำผู้คนที่คุณติดตามจากส่วนติดต่อเว็บ และเขาจะปรากฏที่นี่
     featured_tags_hint: คุณสามารถแนะนำแฮชแท็กที่เฉพาะเจาะจงที่จะแสดงที่นี่
     follow: ติดตาม
     followers:
@@ -66,6 +67,8 @@ th:
     nothing_here: ไม่มีสิ่งใดที่นี่!
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
+    pin_errors:
+      following: คุณต้องกำลังติดตามคนที่คุณต้องการแนะนำอยู่แล้ว
     posts:
       other: โพสต์
     posts_tab_heading: โพสต์
@@ -152,10 +155,11 @@ th:
       not_subscribed: ไม่ได้บอกรับ
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
-      previous_strikes: การลงโทษก่อนหน้านี้
+      previous_strikes: การดำเนินการก่อนหน้านี้
       previous_strikes_description_html:
-        one: บัญชีนี้มี <strong>หนึ่ง</strong> การลงโทษ
-        other: บัญชีนี้มี <strong>%{count}</strong> การลงโทษ
+        one: บัญชีนี้มี <strong>หนึ่ง</strong> การดำเนินการ
+        other: บัญชีนี้มี <strong>%{count}</strong> การดำเนินการ
+        zero: บัญชีนี้ <strong>อยู่ในสถานะที่ดี</strong>
       promote: เลื่อนขั้น
       protocol: โปรโตคอล
       public: สาธารณะ
@@ -196,7 +200,7 @@ th:
       silence: จำกัด
       silenced: จำกัดอยู่
       statuses: โพสต์
-      strikes: การลงโทษก่อนหน้านี้
+      strikes: การดำเนินการก่อนหน้านี้
       subscribe: บอกรับ
       suspend: ระงับ
       suspended: ระงับอยู่
@@ -268,6 +272,7 @@ th:
         update_domain_block: อัปเดตการปิดกั้นโดเมน
         update_status: อัปเดตโพสต์
       actions:
+        approve_appeal_html: "%{name} ได้อนุมัติการอุทธรณ์การตัดสินใจในการควบคุมจาก %{target}"
         approve_user_html: "%{name} ได้อนุมัติการลงทะเบียนจาก %{target}"
         assigned_to_self_report_html: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
         change_email_user_html: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
@@ -298,6 +303,7 @@ th:
         enable_user_html: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         memorialize_account_html: "%{name} ได้เปลี่ยนบัญชีของ %{target} เป็นหน้าอนุสรณ์"
         promote_user_html: "%{name} ได้เลื่อนขั้นผู้ใช้ %{target}"
+        reject_appeal_html: "%{name} ได้ปฏิเสธการอุทธรณ์การตัดสินใจในการควบคุมจาก %{target}"
         reject_user_html: "%{name} ได้ปฏิเสธการลงทะเบียนจาก %{target}"
         remove_avatar_user_html: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report_html: "%{name} ได้เปิดรายงาน %{target} ใหม่"
@@ -354,6 +360,7 @@ th:
       enable: เปิดใช้งาน
       enabled: เปิดใช้งานอยู่
       enabled_msg: เปิดใช้งานอีโมจินั้นสำเร็จ
+      image_hint: PNG หรือ GIF สูงสุด %{size}
       list: แสดงรายการ
       listed: อยู่ในรายการ
       new:
@@ -549,6 +556,9 @@ th:
           other: "%{count} หมายเหตุ"
       action_log: รายการบันทึกการตรวจสอบ
       action_taken_by: ใช้การกระทำโดย
+      actions:
+        resolve_description_html: จะไม่ใช้การกระทำกับบัญชีที่รายงาน ไม่มีการบันทึกการดำเนินการ และจะปิดรายงาน
+      actions_description_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ หากคุณใช้การกระทำที่เป็นการลงโทษกับบัญชีที่รายงาน จะส่งการแจ้งเตือนอีเมลถึงเขา ยกเว้นเมื่อมีการเลือกหมวดหมู่ <strong>สแปม</strong>
       are_you_sure: คุณแน่ใจหรือไม่?
       assign_to_self: มอบหมายให้ฉัน
       assigned: ผู้ควบคุมที่ได้รับมอบหมาย
@@ -742,6 +752,8 @@ th:
         allow_account: อนุญาตผู้สร้าง
         disallow: ไม่อนุญาตโพสต์
         disallow_account: ไม่อนุญาตผู้สร้าง
+        shared_by:
+          other: แบ่งปันและชื่นชอบ %{friendly_count} ครั้ง
         title: โพสต์ที่กำลังนิยม
       tags:
         current_score: คะแนนปัจจุบัน %{score}
@@ -778,9 +790,13 @@ th:
         delete_statuses: เพื่อลบโพสต์ของเขา
         disable: เพื่ออายัดบัญชีของเขา
         mark_statuses_as_sensitive: เพื่อทำเครื่องหมายโพสต์ของเขาว่าละเอียดอ่อน
+        none: คำเตือน
         sensitive: เพื่อทำเครื่องหมายบัญชีของเขาว่าละเอียดอ่อน
         silence: เพื่อจำกัดบัญชีของเขา
         suspend: เพื่อระงับบัญชีของเขา
+      body: "%{target} กำลังอุทธรณ์การตัดสินใจในการควบคุมโดย %{action_taken_by} จาก %{date} ซึ่งเป็น %{type} เขาเขียนว่า:"
+      next_steps: คุณสามารถอนุมัติการอุทธรณ์เพื่อเลิกทำการตัดสินใจในการควบคุม หรือเพิกเฉยการอุทธรณ์
+      subject: "%{username} กำลังอุทธรณ์การตัดสินใจในการควบคุมใน %{instance}"
     new_pending_account:
       body: รายละเอียดของบัญชีใหม่อยู่ด้านล่าง คุณสามารถอนุมัติหรือปฏิเสธใบสมัครนี้
     new_report:
@@ -870,6 +886,7 @@ th:
       confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
       functional: บัญชีของคุณทำงานได้อย่างเต็มที่
       pending: ใบสมัครของคุณกำลังรอดำเนินการตรวจทานโดยพนักงานของเรา นี่อาจใช้เวลาสักครู่ คุณจะได้รับอีเมลหากใบสมัครของคุณได้รับการอนุมัติ
+      view_strikes: ดูการดำเนินการที่ผ่านมากับบัญชีของคุณ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
     use_security_key: ใช้กุญแจความปลอดภัย
@@ -935,11 +952,13 @@ th:
     strikes:
       action_taken: การกระทำที่ใช้
       appeal: อุทธรณ์
+      appeal_rejected: ปฏิเสธการอุทธรณ์แล้ว
       appeal_submitted_at: ส่งการอุทธรณ์แล้ว
       appeals:
         submit: ส่งการอุทธรณ์
       associated_report: รายงานที่เกี่ยวข้อง
       created_at: ลงวันที่
+      description_html: นี่คือการกระทำที่ใช้กับบัญชีของคุณและคำเตือนที่ส่งถึงคุณโดยพนักงานของ %{instance}
       recipient: ส่งถึง
       status: 'โพสต์ #%{id}'
       title: "%{action} จาก %{date}"
@@ -1098,6 +1117,7 @@ th:
     warning:
       before: 'ก่อนดำเนินการต่อ โปรดอ่านหมายเหตุเหล่านี้อย่างระมัดระวัง:'
       followers: การกระทำนี้จะย้ายผู้ติดตามทั้งหมดจากบัญชีปัจจุบันไปยังบัญชีใหม่
+      other_data: จะไม่ย้ายข้อมูลอื่น ๆ โดยอัตโนมัติ
   moderation:
     title: การควบคุม
   move_handler:
@@ -1220,6 +1240,9 @@ th:
     reply:
       proceed: ดำเนินการต่อเพื่อตอบกลับ
       prompt: 'คุณต้องการตอบกลับโพสต์นี้:'
+  reports:
+    errors:
+      invalid_rules: ไม่ได้อ้างอิงกฎที่ถูกต้อง
   scheduled_statuses:
     too_soon: วันที่ตามกำหนดการต้องอยู่ในอนาคต
   sessions:
@@ -1243,6 +1266,7 @@ th:
       weibo: Weibo
     current_session: เซสชันปัจจุบัน
     description: "%{browser} ใน %{platform}"
+    explanation: นี่คือเว็บเบราว์เซอร์ที่เข้าสู่ระบบบัญชี Mastodon ของคุณในปัจจุบัน
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1280,6 +1304,7 @@ th:
     profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
     statuses_cleanup: การลบโพสต์แบบอัตโนมัติ
+    strikes: การดำเนินการการควบคุม
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
     webauthn_authentication: กุญแจความปลอดภัย
   statuses:
@@ -1296,7 +1321,9 @@ th:
     default_language: เหมือนกับภาษาส่วนติดต่อ
     disallowed_hashtags:
       other: 'มีแฮชแท็กที่ไม่อนุญาต: %{tags}'
-    edited_at: แก้ไขเมื่อ %{date}
+    edited_at_html: แก้ไขเมื่อ %{date}
+    errors:
+      in_reply_not_found: ดูเหมือนว่าจะไม่มีโพสต์ที่คุณกำลังพยายามตอบกลับอยู่
     open_in_web: เปิดในเว็บ
     pin_errors:
       direct: ไม่สามารถปักหมุดโพสต์ที่ปรากฏแก่ผู้ใช้ที่กล่าวถึงเท่านั้น
@@ -1388,9 +1415,11 @@ th:
   user_mailer:
     appeal_approved:
       action: ไปยังบัญชีของคุณ
+      explanation: อนุมัติการอุทธรณ์การดำเนินการกับบัญชีของคุณเมื่อ %{strike_date} ที่คุณได้ส่งเมื่อ %{appeal_date} แล้ว บัญชีของคุณอยู่ในสถานะที่ดีอีกครั้งหนึ่ง
       subject: อนุมัติการอุทธรณ์ของคุณจาก %{date} แล้ว
       title: อนุมัติการอุทธรณ์แล้ว
     appeal_rejected:
+      explanation: ปฏิเสธการอุทธรณ์การดำเนินการกับบัญชีของคุณเมื่อ %{strike_date} ที่คุณได้ส่งเมื่อ %{appeal_date} แล้ว
       subject: ปฏิเสธการอุทธรณ์ของคุณจาก %{date} แล้ว
       title: ปฏิเสธการอุทธรณ์แล้ว
     backup_ready:
@@ -1409,6 +1438,12 @@ th:
       categories:
         spam: สแปม
         violation: เนื้อหาละเมิดหลักเกณฑ์ชุมชนดังต่อไปนี้
+      explanation:
+        delete_statuses: มีการพบว่าบางโพสต์ของคุณละเมิดหนึ่งหลักเกณฑ์ชุมชนหรือมากกว่าและได้รับการเอาออกโดยผู้ควบคุมของ %{instance} ในเวลาต่อมา
+        disable: คุณไม่สามารถใช้บัญชีของคุณได้อีกต่อไป แต่โปรไฟล์และข้อมูลอื่น ๆ ของคุณยังคงอยู่ในสภาพเดิม คุณสามารถขอข้อมูลสำรองของข้อมูลของคุณ เปลี่ยนการตั้งค่าบัญชี หรือลบบัญชีของคุณ
+        mark_statuses_as_sensitive: ทำเครื่องหมายบางโพสต์ของคุณว่าละเอียดอ่อนโดยผู้ควบคุมของ %{instance} แล้ว นี่หมายความว่าผู้คนจะต้องแตะสื่อในโพสต์ก่อนที่จะแสดงตัวอย่าง คุณสามารถทำเครื่องหมายสื่อว่าละเอียดอ่อนด้วยตัวคุณเองเมื่อโพสต์ในอนาคต
+        sensitive: จากนี้ไป จะทำเครื่องหมายไฟล์สื่อที่อัปโหลดทั้งหมดของคุณว่าละเอียดอ่อนและซ่อนอยู่หลังการคลิกไปยังคำเตือน
+        silence: คุณยังคงสามารถใช้บัญชีของคุณแต่เฉพาะผู้คนที่กำลังติดตามคุณอยู่แล้วเท่านั้นที่จะเห็นโพสต์ของคุณในเซิร์ฟเวอร์นี้ และอาจแยกคุณออกจากคุณลักษณะการค้นพบต่าง ๆ อย่างไรก็ตาม ผู้อื่นอาจยังติดตามคุณด้วยตนเอง
       reason: 'เหตุผล:'
       statuses: 'โพสต์ที่อ้างถึง:'
       subject:

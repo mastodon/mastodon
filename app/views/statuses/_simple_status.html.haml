@@ -8,7 +8,7 @@
         = visibility_icon status
       %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.edited?
-        %abbr{ title: t('statuses.edited_at', date: l(status.edited_at.to_date)) }
+        %abbr{ title: t('statuses.edited_at_html', date: l(status.edited_at.to_date)) }
           *
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
 
@@ -30,10 +30,11 @@
   .status__content.emojify{ :data => ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
     - if status.spoiler_text?
       %p<
-        %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: prefers_autoplay?)}&nbsp;
+        %span.p-summary> #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
     .e-content
-      = Formatter.instance.format(status, custom_emojify: true, autoplay: prefers_autoplay?)
+      = prerender_custom_emojis(status_content_format(status), status.emojis)
+
       - if status.preloadable_poll
         = render_poll_component(status)
 

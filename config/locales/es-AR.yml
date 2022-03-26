@@ -490,6 +490,7 @@ es-AR:
           other: Intentos fallidos en %{count} días.
         no_failures_recorded: No hay fallos en el registro.
         title: Disponibilidad
+        warning: El último intento de conexión a este servidor no fue exitoso
       back_to_all: Todos
       back_to_limited: Limitados
       back_to_warning: Advertencia
@@ -1437,7 +1438,7 @@ es-AR:
     disallowed_hashtags:
       one: 'contenía una etiqueta no permitida: %{tags}'
       other: 'contenía las etiquetas no permitidas: %{tags}'
-    edited_at: Editado %{date}
+    edited_at_html: Editado el %{date}
     errors:
       in_reply_not_found: El mensaje al que intentás responder no existe.
     open_in_web: Abrir en la web

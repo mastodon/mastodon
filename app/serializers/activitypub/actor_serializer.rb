@@ -2,6 +2,7 @@
 
 class ActivityPub::ActorSerializer < ActivityPub::Serializer
   include RoutingHelper
+  include FormattingHelper
 
   context :security
 
@@ -102,7 +103,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def summary
-    object.suspended? ? '' : Formatter.instance.simplified_format(object)
+    object.suspended? ? '' : html_aware_format(object.note, object.local?)
   end
 
   def icon
@@ -185,6 +186,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   class Account::FieldSerializer < ActivityPub::Serializer
+    include FormattingHelper
+
     attributes :type, :name, :value
 
     def type
@@ -192,7 +195,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
 
     def value
-      Formatter.instance.format_field(object.account, object.value)
+      html_aware_format(object.value, object.account.value?, with_rel_me: true, with_domains: true, multiline: false)
     end
   end
 

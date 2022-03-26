@@ -9,9 +9,9 @@ module ApplicationHelper
 
   RTL_LOCALES = %i(
     ar
+    ckb
     fa
     he
-    ku
   ).freeze
 
   def friendly_number_to_human(number, **options)
@@ -238,5 +238,9 @@ module ApplicationHelper
         h[scope.key] = scope
       end
     end.values
+  end
+
+  def prerender_custom_emojis(html, custom_emojis)
+    EmojiFormatter.new(html, custom_emojis, animate: prefers_autoplay?).to_s
   end
 end

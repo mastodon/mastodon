@@ -60,6 +60,8 @@ id:
       error:
         title: Ada yang error
       new:
+        prompt_html: "%{client_name} meminta izin untuk mengakses akun Anda. Ini adalah aplikasi pihak ketiga. <strong>Jika Anda tidak mempercayainya, Anda boleh tidak mengizinkannya.</strong>"
+        review_permissions: Tinjau izin
         title: Izin diperlukan
       show:
         title: Salin kode autorisasi dan tempelkan pada aplikasi.
@@ -69,6 +71,12 @@ id:
       confirmations:
         revoke: Anda yakin?
       index:
+        authorized_at: Diberi hak otorisasi pada %{date}
+        description_html: Ini adalah aplikasi yang dapat mengakses akun Anda menggunakan API. Jika ada aplikasi yang tidak Anda kenal di sini, atau aplikasi yang berperilaku aneh, Anda dapat mencabut hak aksesnya.
+        last_used_at: Terakhir dipakai pada %{date}
+        never_used: Tidak pernah dipakai
+        scopes: Hak akses
+        superapp: Internal
         title: Aplikasi yang anda izinkan
     errors:
       messages:
@@ -104,6 +112,33 @@ id:
       authorized_applications:
         destroy:
           notice: Aplikasi dicabut.
+    grouped_scopes:
+      access:
+        read: Akses baca-saja
+        read/write: Akses baca dan tulis
+        write: Akses tulis-saja
+      title:
+        accounts: Akun
+        admin/accounts: Administrasi akun
+        admin/all: Semua fungsi administratif
+        admin/reports: Administrasi laporan
+        all: Segalanya
+        blocks: Blokir
+        bookmarks: Markah
+        conversations: Percakapan
+        crypto: Enkripsi end-to-end
+        favourites: Favorit
+        filters: Saringan
+        follow: Hubungan
+        follows: Mengikuti
+        lists: Daftar
+        media: Lampiran media
+        mutes: Bisukan
+        notifications: Notifikasi
+        push: Notifikasi dorong
+        reports: Laporan
+        search: Pencarian
+        statuses: Kiriman
     layouts:
       admin:
         nav:
@@ -118,6 +153,7 @@ id:
       admin:write: ubah semua data di server
       admin:write:accounts: lakukan aksi moderasi akun
       admin:write:reports: lakukan aksi moderasi laporan
+      crypto: menggunakan enkripsi end-to-end
       follow: mengikuti, blokir, menghapus blokir, dan berhenti mengikuti akun
       push: terima notifikasi dorong
       read: membaca data pada akun anda
@@ -137,6 +173,7 @@ id:
       write:accounts: ubah profil Anda
       write:blocks: blokir akun dan domain
       write:bookmarks: status markah
+      write:conversations: bisukan dan hapus percakapan
       write:favourites: status favorit
       write:filters: buat saringan
       write:follows: ikuti orang

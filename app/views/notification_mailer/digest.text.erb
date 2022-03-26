@@ -3,9 +3,9 @@
 <%= raw t('notification_mailer.digest.body', since: l(@me.user_current_sign_in_at || @since), instance: root_url) %>
 <% @notifications.each do |notification| %>
 
-* <%= raw t('notification_mailer.digest.mention', name: notification.from_account.acct) %>
+* <%= raw t('notification_mailer.digest.mention', name: notification.from_account.pretty_acct) %>
 
-  <%= raw Formatter.instance.plaintext(notification.target_status) %>
+  <%= raw extract_plain_text(notification.target_status.text, notification.target_status.local?) %>
 
   <%= raw t('application_mailer.view')%> <%= web_url("statuses/#{notification.target_status.id}") %>
 <% end %>
