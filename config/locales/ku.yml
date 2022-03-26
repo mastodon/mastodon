@@ -773,6 +773,11 @@ ku:
     system_checks:
       database_schema_check:
         message_html: Koçberiyên databasê yên li bendê hene. Ji kerema xwe wan bişopîne da ku bicîh bikî ku sepan wekî ku tê hêvî kirin tevbigere
+      elasticsearch_running_check:
+        message_html: Bi Elasticsearch re nayê girêdan. Ji kerema xwe kontrol bike ku ew dixebite, an lêgerîna tev-nivîsî neçalak bike
+      elasticsearch_version_check:
+        message_html: 'Guhertoya Elasticsearch a nelihevhatî: %{value}'
+        version_comparison: Elasticsearch %{running_version} dixebite lê %{required_version} pêwîst e
       rules_check:
         action: Rêzikên rajekara bi rê ve bibe
         message_html: Te qet rêzikên rajekara diyar nekiriye.
