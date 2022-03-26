@@ -774,6 +774,11 @@ is:
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
+      elasticsearch_running_check:
+        message_html: Gat ekki tengst við Elasticsearch-leitina. Gakktu úr skugga um að hún sé í gangi, eða gerðu leit í öllum texta óvirka
+      elasticsearch_version_check:
+        message_html: 'Ósamhæfð útgáfa Elasticsearch-leitar: %{value}'
+        version_comparison: Elasticsearch %{running_version} er í gangi á meðan útgáfa %{required_version} er nauðsynleg
       rules_check:
         action: Sýsla með reglur netþjónsins
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
