@@ -768,6 +768,10 @@ fr:
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+      elasticsearch_running_check:
+        message_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche en plein texte
+      elasticsearch_version_check:
+        message_html: 'Version d’Elasticsearch incompatible : %{value}'
       rules_check:
         action: Gérer les règles du serveur
         message_html: Vous n'avez pas défini de règles pour le serveur.
