@@ -772,6 +772,7 @@ fr:
         message_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche en plein texte
       elasticsearch_version_check:
         message_html: 'Version d’Elasticsearch incompatible : %{value}'
+        version_comparison: Elasticsearch %{running_version} est en cours d’exécution alors que %{required_version} est requise
       rules_check:
         action: Gérer les règles du serveur
         message_html: Vous n'avez pas défini de règles pour le serveur.
@@ -1435,6 +1436,7 @@ fr:
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'
       other: 'contient les hashtags désactivés : %{tags}'
+    edited_at_html: Édité le %{date}
     errors:
       in_reply_not_found: Le message auquel vous essayez de répondre ne semble pas exister.
     open_in_web: Ouvrir sur le web
