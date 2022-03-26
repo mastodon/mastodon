@@ -166,6 +166,7 @@ module Mastodon
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
+    config.middleware.use Rack::Brotli
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
