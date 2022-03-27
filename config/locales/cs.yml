@@ -668,6 +668,11 @@ cs:
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
+      elasticsearch_running_check:
+        message_html: Nelze se připojit k Elasticsearch. Prosím zkontrolujte, že běží, nebo vypněte fulltextové vyhledávání
+      elasticsearch_version_check:
+        message_html: 'Nekompatibilní verze Elasticsearch: %{value}'
+        version_comparison: Je spuštěn Elasticsearch %{running_version} místo vyžadovaného %{required_version}
       rules_check:
         action: Spravovat pravidla serveru
         message_html: Nedefinovali jste žádná pravidla serveru.
