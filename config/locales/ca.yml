@@ -164,10 +164,6 @@ ca:
       pending: Revisió pendent
       perform_full_suspension: Suspèn
       previous_strikes: Accions anteriors
-      previous_strikes_description_html:
-        one: Aquest compte té <strong>una</strong> acció.
-        other: Aquest compte té <strong>%{count}</strong> accions.
-        zero: Aquest compte està <strong>al dia</strong>.
       promote: Promociona
       protocol: Protocol
       public: Públic
@@ -526,10 +522,6 @@ ca:
       delivery_error_hint: Si el lliurament no és possible per %{count} dies, serà automàticament marcat com a no lliurable.
       destroyed_msg: Les dades de %{domain} ara son en la cua per a esborrat imminent.
       empty: No s'han trobat dominis.
-      known_accounts:
-        one: "%{count} compte conegut"
-        other: "%{count} comptes coneguts"
-        zero: Cap compte conegut
       moderation:
         all: Totes
         limited: Limitades
@@ -798,10 +790,6 @@ ca:
         description_html: Aquests son enllaços que ara mateix s'estan compartint molt per els comptes que el teu servidor en veu les publicacions. Poden ajudar als teus usuaris a trobar què està passant en el món. Cap dels enllaços es mostra publicament fins que no aprovis el mitjà. També pots aceptar o rebutjar enllaços individuals.
         disallow: No permetre l'enllaç
         disallow_provider: No permetre el mitjà
-        shared_by_over_week:
-          one: Compartit per un usuari en la darrera setmana
-          other: Compartit per %{count} usuaris en la darrera setmana
-          zero: Compartit per ningú en la darrera setmana
         title: Enllaços en tendència
         usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
       pending_review: Revisió pendent
@@ -841,10 +829,6 @@ ca:
         trending_rank: 'Tendència #%{rank}'
         usable: Pot ser emprat
         usage_comparison: Usat %{today} vegades avui, comparat amb %{yesterday} d'ahir
-        used_by_over_week:
-          one: Emprat per un usuari en la darrera setmana
-          other: Emprat per %{count} usuaris en la darrera setmana
-          zero: Emprat per ningú en la darrera setmana
       title: Tendència
     warning_presets:
       add_new: Afegir-ne un de nou
