@@ -231,8 +231,8 @@ vi:
         approve_appeal: Phê duyệt kháng cáo
         approve_user: Phê duyệt người dùng
         assigned_to_self_report: Tự xử lý báo cáo
-        change_email_user: Đổi email
-        confirm_user: Xác thực
+        change_email_user: Đổi email người dùng
+        confirm_user: Xác thực người dùng
         create_account_warning: Cảnh cáo
         create_announcement: Tạo thông báo mới
         create_custom_emoji: Tạo emoji mới
@@ -282,8 +282,8 @@ vi:
         approve_appeal_html: "%{name} đã phê duyệt quyết định kiểm duyệt từ %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
         assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
-        change_email_user_html: "%{name} đã thay đổi địa chỉ email cho %{target}"
-        confirm_user_html: "%{name} xác nhận địa chỉ email của người dùng %{target}"
+        change_email_user_html: "%{name} đã thay đổi địa chỉ email của %{target}"
+        confirm_user_html: "%{name} đã xác thực địa chỉ email của %{target}"
         create_account_warning_html: "%{name} đã gửi cảnh cáo %{target}"
         create_announcement_html: "%{name} tạo thông báo mới %{target}"
         create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
@@ -311,7 +311,7 @@ vi:
         enable_user_html: "%{name} mở khóa cho người dùng %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user_html: "%{name} chỉ định vai trò cho %{target}"
-        reject_appeal_html: "%{name} đã phản đối quyết định kiểm duyệt từ %{target}"
+        reject_appeal_html: "%{name} đã từ chối kháng cáo của %{target}"
         reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report_html: "%{name} mở lại báo cáo %{target}"
@@ -331,8 +331,8 @@ vi:
         update_status_html: "%{name} cập nhật tút của %{target}"
       deleted_status: "(tút đã xóa)"
       empty: Không tìm thấy bản ghi.
-      filter_by_action: Lọc theo hành động
-      filter_by_user: Lọc theo người
+      filter_by_action: Theo hành động
+      filter_by_user: Theo người
       title: Nhật ký kiểm duyệt
     announcements:
       destroyed_msg: Xóa thông báo thành công!
