@@ -59,6 +59,7 @@ uk:
       error:
         title: Сталася помилка
       new:
+        review_permissions: Переглянути дозволи
         title: Необхідна авторизація
       show:
         title: Скопіюйте цей код авторизації та вставте його у додаток.
@@ -68,8 +69,11 @@ uk:
       confirmations:
         revoke: Ви впевнені?
       index:
+        authorized_at: Авторизовано %{date}
+        last_used_at: Востаннє використано %{date}
         never_used: Ніколи не використовувалися
         scopes: Дозволи
+        superapp: Внутрішній
         title: Ваші авторизовані додатки
     errors:
       messages:
@@ -106,17 +110,27 @@ uk:
         destroy:
           notice: Авторизацію додатка відкликано.
     grouped_scopes:
+      access:
+        read: Доступ без права внесення змін
+        read/write: Доступ до читання і запису
+        write: Доступ лише для запису
       title:
         accounts: Облікові записи
+        admin/accounts: Адміністрація облікових записів
+        admin/all: Усі адміністративні функції
         admin/reports: Адміністрація звітів
         all: Усе
         blocks: Блокування
         bookmarks: Закладки
         conversations: Бесіди
         crypto: Наскрізне шифрування
+        favourites: Вподобане
         filters: Фільтри
+        follow: Взаємозв'язки
+        follows: Підписки
         lists: Списки
         media: Мультимедійні вкладення
+        mutes: Заглушені
         notifications: Сповіщення
         push: Push-сповіщення
         reports: Скарги
@@ -156,6 +170,7 @@ uk:
       "write:accounts": змінювати ваш профіль
       "write:blocks": блокувати облікові записи і домени
       "write:bookmarks": додавати пости в закладки
+      "write:conversations": заглушити і видалити розмови
       "write:favourites": вподобані статуси
       "write:filters": створювати фільтри
       "write:follows": підписуйтесь на людей
