@@ -716,6 +716,8 @@ th:
         suspend: "%{name} ได้ระงับบัญชีของ %{target}"
       appeal_approved: อุทธรณ์แล้ว
     system_checks:
+      elasticsearch_version_check:
+        message_html: 'รุ่น Elasticsearch ที่เข้ากันไม่ได้: %{value}'
       rules_check:
         action: จัดการกฎของเซิร์ฟเวอร์
         message_html: คุณไม่ได้กำหนดกฎของเซิร์ฟเวอร์ใด ๆ
