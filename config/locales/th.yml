@@ -155,10 +155,6 @@ th:
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
       previous_strikes: การดำเนินการก่อนหน้านี้
-      previous_strikes_description_html:
-        one: บัญชีนี้มี <strong>หนึ่ง</strong> การดำเนินการ
-        other: บัญชีนี้มี <strong>%{count}</strong> การดำเนินการ
-        zero: บัญชีนี้ <strong>อยู่ในสถานะที่ดี</strong>
       promote: เลื่อนขั้น
       protocol: โปรโตคอล
       public: สาธารณะ
@@ -489,10 +485,6 @@ th:
       delivery_available: มีการจัดส่ง
       delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
       empty: ไม่พบโดเมน
-      known_accounts:
-        one: "%{count} บัญชีที่รู้จัก"
-        other: "%{count} บัญชีที่รู้จัก"
-        zero: ไม่มีบัญชีที่รู้จัก
       moderation:
         all: ทั้งหมด
         limited: จำกัดอยู่
@@ -736,10 +728,6 @@ th:
         allow_provider: อนุญาตผู้เผยแพร่
         disallow: ไม่อนุญาตลิงก์
         disallow_provider: ไม่อนุญาตผู้เผยแพร่
-        shared_by_over_week:
-          one: แบ่งปันโดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
-          other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
-          zero: ไม่มีใครแบ่งปันในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
         usage_comparison: แบ่งปัน %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
       pending_review: การตรวจทานที่รอดำเนินการ
@@ -774,10 +762,6 @@ th:
         trending_rank: 'กำลังนิยม #%{rank}'
         usable: สามารถใช้
         usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
-        used_by_over_week:
-          one: ใช้โดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
-          other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
-          zero: ไม่มีใครใช้ในช่วงสัปดาห์ที่ผ่านมา
       title: แนวโน้ม
     warning_presets:
       add_new: เพิ่มใหม่
