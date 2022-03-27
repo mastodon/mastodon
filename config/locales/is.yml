@@ -164,10 +164,6 @@ is:
       pending: Bíður eftir yfirlestri
       perform_full_suspension: Setja í bið
       previous_strikes: Fyrri refsingar
-      previous_strikes_description_html:
-        one: Þessi notandaaðgangur er með <strong>eina</strong> refsingu.
-        other: Þessi notandaaðgangur er með <strong>%{count}</strong> refsingar.
-        zero: Þessi notandaaðgangur er <strong>í góðu lagi</strong>.
       promote: Hækka í tign
       protocol: Samskiptamáti
       public: Opinber
@@ -526,10 +522,6 @@ is:
       delivery_error_hint: Ef afhending er ekki möguleg í %{count} daga, verður það sjálfkrafa merkt sem óafhendanlegt.
       destroyed_msg: Gögn frá %{domain} bíða núna eftir að vera eytt innan skamms.
       empty: Engin lén fundust.
-      known_accounts:
-        one: "%{count} þekktur notandaaðgangur"
-        other: "%{count} þekktir notendaaðgangar"
-        zero: Enginn þekktur notandaaðgangur
       moderation:
         all: Allt
         limited: Takmarkað
@@ -798,10 +790,6 @@ is:
         description_html: Þetta eru tenglar/slóðir sem mikið er deilt af notendum sem netþjónninn þinn sér færslur frá. Þeir geta hjálpað notendunum þínu við að finna út hvað sé í gangi í heiminum. Engir tenglar birtast opinberlega fyrr en þú hefur samþykkt útgefanda þeirra. Þú getur líka leyft eða hafnað eintökum tenglum.
         disallow: Ekki leyfa tengil
         disallow_provider: Ekki leyfa útgefanda
-        shared_by_over_week:
-          one: Deilt af einum aðila síðustu vikuna
-          other: Deilt af %{count} aðilum síðustu vikuna
-          zero: Ekki deilt af neinum aðila síðustu vikuna
         title: Vinsælir tenglar
         usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
       pending_review: Bíður eftir yfirlestri
@@ -841,10 +829,6 @@ is:
         trending_rank: 'Vinsæl #%{rank}'
         usable: Má nota
         usage_comparison: Notað %{today} sinnum í dag, samanborið við %{yesterday} í gær
-        used_by_over_week:
-          one: Notað af einum aðila síðustu vikuna
-          other: Notað af %{count} aðilum síðustu vikuna
-          zero: Ekki notað af neinum aðila síðustu vikuna
       title: Tilhneiging
     warning_presets:
       add_new: Bæta við nýju
