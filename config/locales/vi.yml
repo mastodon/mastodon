@@ -160,10 +160,6 @@ vi:
       pending: Chờ duyệt
       perform_full_suspension: Vô hiệu hóa
       previous_strikes: Lịch sử kiểm duyệt
-      previous_strikes_description_html:
-        one: Người dùng này có <strong>một</strong> lần cảnh cáo.
-        other: Người dùng này có <strong>%{count}</strong> lần cảnh cáo.
-        zero: Người dùng này <strong>chưa từng bị cảnh cáo</strong>.
       promote: Chỉ định vai trò
       protocol: Giao thức
       public: Công khai
@@ -515,10 +511,6 @@ vi:
       delivery_error_hint: Nếu không thể phân phối sau %{count} ngày, nó sẽ tự dộng đánh dấu là không thể phân phối.
       destroyed_msg: Dữ liệu từ %{domain} đã lên lịch để xóa.
       empty: Không có máy chủ nào.
-      known_accounts:
-        one: "%{count} người dùng đã biết"
-        other: "%{count} người dùng đã biết"
-        zero: Không có người dùng đã biết
       moderation:
         all: Tất cả
         limited: Hạn chế
@@ -786,10 +778,6 @@ vi:
         description_html: Đây là những liên kết được chia sẻ nhiều trên máy chủ của bạn. Nó có thể giúp người dùng tìm hiểu những gì đang xảy ra trên thế giới. Không có liên kết nào được hiển thị công khai cho đến khi bạn duyệt nguồn đăng. Bạn cũng có thể cho phép hoặc từ chối từng liên kết riêng.
         disallow: Cấm liên kết
         disallow_provider: Cấm nguồn đăng
-        shared_by_over_week:
-          one: một người chia sẻ trong tuần qua
-          other: '%{count} người chia sẻ trong tuần qua'
-          zero: Không ai chia sẻ trong tuần qua
         title: Liên kết xu hướng
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       pending_review: Đang chờ
@@ -828,10 +816,6 @@ vi:
         trending_rank: 'Xu hướng #%{rank}'
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
-        used_by_over_week:
-          one: Dùng bởi một người trong tuần qua
-          other: Dùng bởi %{count} người trong tuần qua
-          zero: Không ai dùng trong tuần qua
       title: Xu hướng
     warning_presets:
       add_new: Thêm mới
