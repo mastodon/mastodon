@@ -164,10 +164,6 @@ fi:
       pending: Odottaa tarkistusta
       perform_full_suspension: Siirrä kokonaan jäähylle
       previous_strikes: Aiemmat varoitukset
-      previous_strikes_description_html:
-        one: Tällä tilillä on <strong>yksi</strong> varoitus.
-        other: Tällä tilillä on <strong>%{count}</strong> varoitusta.
-        zero: Tämä tili on <strong>hyvässä kunnossa</strong>.
       promote: Ylennä
       protocol: Protokolla
       public: Julkinen
@@ -494,10 +490,6 @@ fi:
       delivery_error_hint: Jos toimitus ei ole mahdollista %{count} päivän aikana, se merkitään automaattisesti toimittamattomaksi.
       destroyed_msg: Tiedot %{domain} on nyt jonossa välitöntä poistoa varten.
       empty: Verkkotunnuksia ei löytynyt.
-      known_accounts:
-        one: "%{count} tunnettu tili"
-        other: "%{count} tunnettua tiliä"
-        zero: Ei tunnettua tiliä
       moderation:
         all: Kaikki
         limited: Rajoitettu
@@ -759,10 +751,6 @@ fi:
         description_html: Nämä ovat linkkejä, joita jaetaan tällä hetkellä paljon tileillä, joilta palvelimesi näkee viestejä. Se voi auttaa käyttäjiäsi saamaan selville, mitä maailmassa tapahtuu. Linkkejä ei näytetä julkisesti, ennen kuin hyväksyt julkaisijan. Voit myös sallia tai hylätä yksittäiset linkit.
         disallow: Hylkää linkki
         disallow_provider: Estä julkaisija
-        shared_by_over_week:
-          one: Jakanut yksi henkilö viimeisen viikon aikana
-          other: Jakanut %{count} henkilöä viimeisen viikon aikana
-          zero: Kukaan ei ole jakanut viimeisen viikon aikana
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
       pending_review: Odottaa tarkistusta
@@ -802,10 +790,6 @@ fi:
         trending_rank: 'Nousussa #%{rank}'
         usable: Voidaan käyttää
         usage_comparison: Käytetty %{today} kertaa tänään, verrattuna %{yesterday} eiliseen
-        used_by_over_week:
-          one: Yhden henkilön käyttämä viimeisen viikon aikana
-          other: Käyttänyt %{count} henkilöä viimeisen viikon aikana
-          zero: Ei kenenkään käytössä viimeisen viikon aikana
       title: Trendit
     warning_presets:
       add_new: Lisää uusi
