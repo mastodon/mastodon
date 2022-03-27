@@ -762,6 +762,11 @@ id:
     system_checks:
       database_schema_check:
         message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
+      elasticsearch_running_check:
+        message_html: Tidak dapat tersambung ke Elasticsearch. Pastikan itu berjalan, atau nonaktifkan pencarian teks penuh
+      elasticsearch_version_check:
+        message_html: 'Versi Elasticsearch tidak kompatibel: %{value}'
+        version_comparison: Elasticsearch %{running_version} sedang berjalan, sementara yang diwajibkan adalah %{required_version}
       rules_check:
         action: Kelola aturan server
         message_html: Anda belum menentukan aturan server apapun.
