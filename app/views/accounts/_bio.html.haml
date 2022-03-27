@@ -10,12 +10,12 @@
             - if field.verified?
               %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
                 = fa_icon 'check'
-            = prerender_custom_emojis(html_aware_format(field.value, account.local?, with_rel_me: true, with_domains: true, multiline: false), account.emojis)
+            = prerender_custom_emojis(account_field_value_format(field), account.emojis)
 
   = account_badge(account)
 
   - if account.note.present?
-    .account__header__content.emojify= prerender_custom_emojis(html_aware_format(account.note, account.local?), account.emojis)
+    .account__header__content.emojify= prerender_custom_emojis(account_bio_format(account), account.emojis)
 
   .public-account-bio__extra
     = t 'accounts.joined', date: l(account.created_at, format: :month)
