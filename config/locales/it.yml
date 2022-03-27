@@ -164,10 +164,6 @@ it:
       pending: Revisioni in attesa
       perform_full_suspension: Sospendi
       previous_strikes: Provvedimenti precedenti
-      previous_strikes_description_html:
-        one: Questo account ha <strong>una</strong> violazione.
-        other: Questo account ha <strong>%{count}</strong> violazioni.
-        zero: Questo account ha <strong>una buona reputazione</strong>.
       promote: Promuovi
       protocol: Protocollo
       public: Pubblico
@@ -526,10 +522,6 @@ it:
       delivery_error_hint: Se la consegna non è possibile per %{count} giorni, sarà automaticamente contrassegnata come non consegnabile.
       destroyed_msg: I dati da %{domain} sono in coda per l'eliminazione imminente.
       empty: Nessun dominio trovato.
-      known_accounts:
-        one: "%{count} account noto"
-        other: "%{count} account noti"
-        zero: Nessun account noto
       moderation:
         all: Tutto
         limited: Limitato
@@ -798,10 +790,6 @@ it:
         description_html: Questi sono collegamenti che attualmente vengono molto condivisi dagli account di cui il server vede i post. Può aiutare i tuoi utenti a scoprire cosa sta succedendo nel mondo. Nessun link viene visualizzato pubblicamente finché non si approva chi lo pubblica. È anche possibile permettere o rifiutare i singoli collegamenti.
         disallow: Non consentire link
         disallow_provider: Non consentire editore
-        shared_by_over_week:
-          one: Condiviso da una persona nell'ultima settimana
-          other: Condiviso da %{count} persone nell'ultima settimana
-          zero: Condiviso da nessuno nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
       pending_review: Revisione in sospeso
@@ -841,10 +829,6 @@ it:
         trending_rank: 'In tendenza #%{rank}'
         usable: Utilizzabile
         usage_comparison: Usato %{today} volte oggi, rispetto a %{yesterday} ieri
-        used_by_over_week:
-          one: Usato da una persona nell'ultima settimana
-          other: Usato da %{count} persone nell'ultima settimana
-          zero: Usato da nessuno nell'ultima settimana
       title: Tendenze
     warning_presets:
       add_new: Aggiungi nuovo
