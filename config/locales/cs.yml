@@ -445,6 +445,8 @@ cs:
       title: Doporučená sledování
       unsuppress: Obnovit doporučení sledování
     instances:
+      availability:
+        warning: Poslední pokus o připojení k tomuto serveru byl neúspěšný
       back_to_all: Vše
       back_to_limited: Omezený
       back_to_warning: Varování
@@ -1040,6 +1042,9 @@ cs:
     carry_mutes_over_text: Tento účet se přesunul z %{acct}, který jste skryli.
     copy_account_note_text: 'Tento účet se přesunul z %{acct}, zde byly Vaše předchozí poznámky o něm:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "Uživatel %{name} se zaregistroval"
     digest:
       action: Zobrazit všechna oznámení
       body: Zde najdete stručný souhrn zpráv, které jste zmeškali od vaší poslední návštěvy %{since}
