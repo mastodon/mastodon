@@ -164,10 +164,6 @@ es-MX:
       pending: Revisión pendiente
       perform_full_suspension: Suspender
       previous_strikes: Amonestaciones anteriores
-      previous_strikes_description_html:
-        one: Esta cuenta tiene <strong>una</strong> amonestación.
-        other: Esta cuenta tiene <strong>%{count}</strong> amonestaciones.
-        zero: Esta cuenta está <strong>en buen estado</strong>.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -526,10 +522,6 @@ es-MX:
       delivery_error_hint: Si la entrega no es posible a lo largo de %{count} días, se marcará automáticamente como no entregable.
       destroyed_msg: Los datos de %{domain} están ahora en cola para su inminente eliminación.
       empty: No se encontraron dominios.
-      known_accounts:
-        one: "%{count} cuenta conocida"
-        other: "%{count} cuentas conocidas"
-        zero: Ninguna cuenta conocida
       moderation:
         all: Todos
         limited: Limitado
@@ -774,6 +766,11 @@ es-MX:
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
+      elasticsearch_running_check:
+        message_html: No se pudo conectar a Elasticsearch. Por favor, comprueba que está ejecutándose, o desactiva la búsqueda de texto completo
+      elasticsearch_version_check:
+        message_html: 'Versión incompatible de Elasticsearch: %{value}'
+        version_comparison: Elasticsearch %{running_version} se está ejecutando pero se necesita Elasticsearch %{required_version}
       rules_check:
         action: Administrar reglas del servidor
         message_html: No ha definido ninguna regla del servidor.
@@ -793,10 +790,6 @@ es-MX:
         description_html: Estos son enlaces que actualmente están siendo compartidos mucho por las cuentas desde las que tu servidor ve los mensajes. Pueden ayudar a tus usuarios a averiguar qué está pasando en el mundo. Ningún enlace se muestren públicamente hasta que autorice al dominio. También puede permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar editor
-        shared_by_over_week:
-          one: Compartido por una persona en la última semana
-          other: Compartido por %{count} personas durante la última semana
-          zero: Compartido por nadie en la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado a %{yesterday} ayer
       pending_review: Revisión pendiente
@@ -836,10 +829,6 @@ es-MX:
         trending_rank: 'Tendencia n.º %{rank}'
         usable: Pueden usarse
         usage_comparison: Usada %{today} veces hoy, comparado con %{yesterday} ayer
-        used_by_over_week:
-          one: Usada por una persona durante la última semana
-          other: Usada por %{count} personas durante la última semana
-          zero: Usada por nadie en la última semana
       title: Tendencias
     warning_presets:
       add_new: Añadir nuevo
