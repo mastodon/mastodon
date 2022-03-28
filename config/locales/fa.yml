@@ -15,6 +15,7 @@ fa:
     contact: تماس
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
+    continue_to_web: در کارهٔ وب ادامه دهید
     discover_users: یافتن کاربران
     documentation: مستندات
     federation_hint_html: با حسابی روی %{instance} می‌توانید افراد روی هر کارساز ماستودون و بیش از آن را پی بگیرید.
@@ -24,6 +25,8 @@ fa:
       این حساب، بازیگری مجازی به نمایندگی خود کارساز بوده و کاربری واقعی نیست.
       این حساب برای مقاصد خودگردانی به کار می‌رفته و نباید مسدود شود؛ مگر این که بخواهید کل نمونه را مسدود کنید که در آن صورت نیز باید از انسداد دامنه استفاده کنید.
     learn_more: بیشتر بدانید
+    logged_in_as_html: شما هم‌اکنون به عنوان %{username} وارد شده‌اید.
+    logout_before_registering: شما هم‌اکنون وارد شده‌اید.
     privacy_policy: سیاست رازداری
     rules: قوانین کارساز
     rules_html: 'در زیر خلاصه‌ای از قوانینی که در صورت علاقه به داشتن حسابی روی این کارساز ماستودون، باید رعایت کنید آمده است:'
@@ -160,6 +163,7 @@ fa:
       not_subscribed: مشترک نیست
       pending: در انتظار بررسی
       perform_full_suspension: تعلیق
+      previous_strikes: اخطارهای قبلی
       promote: ترفیع‌دادن
       protocol: پروتکل
       public: عمومی
@@ -203,6 +207,7 @@ fa:
       statuses: نوشته‌ها
       strikes: اخطار های پیشین
       subscribe: اشتراک
+      suspend: تعلیق
       suspended: تعلیق‌شده
       suspension_irreversible: داده‌های این حساب به صورت بی‌بازگشت حذف شد. می‌توانید برای قابل استفاده کردنش، آن را نامعلّق کنید، ولی این کار هیچ داده‌ای را که از پیش داده، برنخواهد گرداند.
       suspension_reversible_hint_html: حساب معلّق شد و داده‌ها به صورت کامل در %{date} برداشته خواهند شد. تا آن زمان، حساب می‌تواند بی هیچ عوارضی بازگردانده شود. اگر می‌خواهید فوراً همهٔ داده‌های حساب را بردارید، می‌توانید در پایین این کار را بکنید.
@@ -223,6 +228,7 @@ fa:
       whitelisted: فهرست مجاز
     action_logs:
       action_types:
+        approve_appeal: پذیرش درخواست تجدیدنظر
         approve_user: تایید کاربر
         assigned_to_self_report: واگذاری گزارش
         change_email_user: تغییر رایانامه برای کاربر
@@ -254,6 +260,7 @@ fa:
         enable_user: به کار انداختن کاربر
         memorialize_account: یادسپاری حساب
         promote_user: ترفیع کاربر
+        reject_appeal: رد کردن درخواست تجدیدنظر
         reject_user: رد کاربر
         remove_avatar_user: برداشتن تصویر نمایه
         reopen_report: بازگشایی گزارش
@@ -272,6 +279,7 @@ fa:
         update_domain_block: به‌روزرسانی مسدودسازی دامنه
         update_status: به‌روز رسانی وضعیت
       actions:
+        approve_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} پذیرفت"
         approve_user_html: "%{name} ثبت نام %{target} را تایید کرد"
         assigned_to_self_report_html: "%{name} رسیدگی به گزارش %{target} را به عهده گرفت"
         change_email_user_html: "%{name} نشانی رایانامهٔ کاربر %{target} را عوض کرد"
@@ -303,6 +311,7 @@ fa:
         enable_user_html: "%{name} ورود را برای کاربر %{target} فعال کرد"
         memorialize_account_html: "%{name} حساب %{target} را تبدیل به صفحهٔ یادمان کرد"
         promote_user_html: "%{name} کاربر %{target} را ترفیع داد"
+        reject_appeal_html: "%{name} درخواست تجدیدنظر تصمیم مدیر را از %{target} رد کرد"
         reject_user_html: "%{name} ثبت نام %{target} را رد کرد"
         remove_avatar_user_html: "%{name} تصویر نمایهٔ %{target} را حذف کرد"
         reopen_report_html: "%{name} گزارش %{target} را دوباره به جریان انداخت"
@@ -380,6 +389,18 @@ fa:
       media_storage: ذخیره‌ساز رسانه
       new_users: کاربران جدید
       opened_reports: گزارش باز شده
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> درخواست تجدیدنظر در انتظار"
+        other: "<strong>%{count}</strong> درخواست تجدیدنظر در انتظار"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> گزارش در انتظار"
+        other: "<strong>%{count}</strong> گزارش در انتظار"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> هشتگ در انتظار"
+        other: "<strong>%{count}</strong> هشتگ در انتظار"
+      pending_users_html:
+        one: "<strong>%{count}</strong> کاربر در انتظار"
+        other: "<strong>%{count}</strong> کاربر در انتظار"
       resolved_reports: گزارش حل شده
       software: نرم‌افزار
       sources: منابع ثبت‌نام
@@ -388,6 +409,10 @@ fa:
       top_languages: زبان‌های فعّال‌تر
       top_servers: کاربران فعّال‌تر
       website: پایگاه وب
+    disputes:
+      appeals:
+        empty: هیچ درخواست تجدیدنظری یافت نشد
+        title: درخواست‌های تجدیدنظر
     domain_allows:
       add_new: مجاز کردن دامنه
       created_msg: دامنه با موفقیت مجاز شد
@@ -569,7 +594,7 @@ fa:
         desc_html: تعداد بوق‌های محلی، کاربران فعال، و کاربران تازه در هر هفته
         title: انتشار آمار تجمیعی دربارهٔ فعالیت کاربران
       bootstrap_timeline_accounts:
-        desc_html: نام‌های کاربری را با ویرگول از هم جدا کنید. تنها حساب‌های محلی و قفل‌نشده کار می‌کنند. اگر این‌جا را خالی بگذارید، به طور پیش‌فرض همهٔ مدیرهای این سرور پی‌گرفته خواهند شد.
+        desc_html: نام‌های کاربری را با ویرگول از هم جدا کنید. این حساب‌ها تضمین می‌شوند که در پیشنهادهای پی‌گیری نشان داده شوند
         title: پیگیری‌های پیش‌فرض برای کاربران تازه
       contact_information:
         email: ایمیل کاری
@@ -622,7 +647,7 @@ fa:
           open: همه می‌توانند ثبت نام کنند
         title: شرایط ثبت نام
       show_known_fediverse_at_about_page:
-        desc_html: اگر انتخاب شود، بوق‌های همهٔ سرورهای دیگر نیز در پیش‌نمایش این سرور نمایش می‌یابد. وگرنه فقط بوق‌های محلی نشان داده می‌شوند.
+        desc_html: اگر از کار انداخته شود، خط‌زمانی همگانی را محدود می‌کند؛ تا فقط محتوای محلّی را نمایش دهد.
         title: نمایش سرورهای دیگر در پیش‌نمایش این سرور
       show_staff_badge:
         desc_html: نمایش علامت همکار روی صفحهٔ کاربر
@@ -652,7 +677,7 @@ fa:
         title: بگذارید که برچسب‌های پرطرفدار بدون بازبینی قبلی نمایش داده شوند
       trends:
         desc_html: برچسب‌های عمومی که پیش‌تر بازبینی شده‌اند و هم‌اینک پرطرفدارند
-        title: برچسب‌های پرطرفدار
+        title: پرطرفدارها
     site_uploads:
       delete: پرونده بارگذاری شده را پاک کنید
       destroyed_msg: بارگذاری پایگاه با موفقیت حذف شد!
@@ -668,6 +693,9 @@ fa:
       no_status_selected: هیچ بوقی تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
       title: نوشته‌های حساب
       with_media: دارای عکس یا ویدیو
+    strikes:
+      appeal_approved: درخواست تجدیدنظر کرد
+      appeal_pending: درخواست تجدیدنظر در انتظار
     system_checks:
       database_schema_check:
         message_html: تعداد مهاجرت پایگاه داده در انتظار انجام هستند. لطفا آن‌ها را اجرا کنید تا اطمینان یابید که برنامه مطابق انتظار رفتار خواهد کرد
@@ -706,6 +734,7 @@ fa:
         not_listable: پیشنهاد نخواهد شد
         not_usable: غیر قابل استفاده
         title: برچسب‌های پرطرفدار
+        trending_rank: 'پرطرفدار #%{rank}'
         usable: قابل استفاده
       title: پرطرفدار
     warning_presets:
@@ -715,6 +744,10 @@ fa:
       empty: هنز هیچ پیش‌تنظیم هشداری را تعریف نکرده‌اید.
       title: مدیریت هشدارهای پیش‌فرض
   admin_mailer:
+    new_appeal:
+      actions:
+        none: یک هشدار
+        silence: برای محدود کردن حساب آنها
     new_pending_account:
       body: جزئیات حساب تازه این‌جاست. شما می‌توانید آن را تأیید یا رد کنید.
       subject: حساب تازه‌ای در %{instance} نیازمند بررسی است (%{username})
@@ -722,6 +755,9 @@ fa:
       body: "کاربر %{reporter} کاربر %{target} را گزارش داد"
       body_remote: کسی از %{domain} گزارش %{target} را فرستاده
       subject: 'گزارش تازه‌ای برای %{instance} (#%{id})'
+    new_trends:
+      new_trending_links:
+        no_approved_links: در حال حاضر هیچ پیوند پرطرفداری پذیرفته نشده است.
   aliases:
     add_new: ساختن نام مستعار
     created_msg: نام مستعار تازه با موفقیت ساخته شد. الان می‌توانید انتقال از حساب قدیمی را آغاز کنید.
@@ -860,6 +896,18 @@ fa:
     directory: شاخهٔ نمایه
     explanation: کاربران را بر اساس علاقه‌مندی‌هایشان بیابید
     explore_mastodon: گشت و گذار در %{title}
+  disputes:
+    strikes:
+      appeal: درخواست تجدیدنظر
+      appeal_rejected: درخواست تجدیدنظر رد شده است
+      appeal_submitted_at: درخواست تجدیدنظر فرستاده شد
+      appeals:
+        submit: فرستادن درخواست تجدیدنظر
+      title_actions:
+        none: هشدار
+      your_appeal_approved: درخواست تجدیدنظر شما پذیرفته شد
+      your_appeal_pending: شما یک درخواست تجدیدنظر فرستادید
+      your_appeal_rejected: درخواست تجدیدنظر شما رد شد
   domain_validator:
     invalid_domain: نام دامین معتبر نیست
   errors:
@@ -997,7 +1045,7 @@ fa:
       not_ready: پرونده‌هایی که پردازش را تمام نکرده‌اند نمی‌توانند پیوست شوند. یکبار دیگر امتحان کنید!
       too_many: نمی‌توان بیشتر از ۴ تصویر بارگذاری کرد
   migrations:
-    acct: username@domain حساب تازه
+    acct: جابه‌جایی به
     cancel: لغو انتقال
     cancel_explanation: با لغو انتقال، حساب شما دوباره فعال می‌شود، ولی این کار پیگیران شما را که به حساب دیگر منتقل شده‌اند برنمی‌گرداند.
     cancelled_msg: انتقال حساب با موفقیت لغو شد.
@@ -1294,7 +1342,7 @@ fa:
       '2629746': ۱ ماه
       '31556952': ۱ سال
       '5259492': ۲ ماه
-      '604800': 1 week
+      '604800': ۱ هفته
       '63113904': ۲ سال
       '7889238': ۳ ماه
     min_age_label: کرانهٔ سن
@@ -1416,6 +1464,15 @@ fa:
     recovery_instructions_html: اگر تلفن خود را گم کردید، می‌توانید با یکی از کدهای بازیابی زیر کنترل حساب خود را به دست بگیرید. <strong>این کدها را در جای امنی نگه دارید.</strong> مثلاً آن‌ها را چاپ کنید و کنار سایر مدارک مهم خود قرار دهید.
     webauthn: کلیدهای امنیتی
   user_mailer:
+    appeal_approved:
+      action: به حساب خودتان بروید
+      explanation: درخواست تجدیدنظر اخطار علیه حساب شما در %{strike_date} که در %{appeal_date} ارسال کرده‌اید، پذیرفته شده است. حساب شما بار دیگر در وضعیت خوبی قرار دارد.
+      subject: درخواست تجدیدنظر شما در %{date} پذیرفته شد
+      title: درخواست تجدیدنظر پذیرفته شد
+    appeal_rejected:
+      explanation: درخواست تجدیدنظر اخطار علیه حساب شما در %{strike_date} که در %{appeal_date} ارسال کرده‌اید، رد شده است.
+      subject: درخواست تجدیدنظر شما در %{date} رد شده است
+      title: درخواست تجدیدنظر رد شد
     backup_ready:
       explanation: شما یک نسخهٔ پشتیبان کامل از حساب خود را درخواست کردید. این پشتیبان الان آمادهٔ بارگیری است!
       subject: بایگانی شما آمادهٔ دریافت است
@@ -1427,6 +1484,8 @@ fa:
       subject: لطفاً تلاش برای ورود را تأیید کنید
       title: تلاش برای ورود
     warning:
+      appeal: فرستادن یک درخواست تجدیدنظر
+      appeal_description: اگر فکر می‌کنید این یک خطا است، می‌توانید یک درخواست تجدیدنظر به کارکنان %{instance} ارسال کنید.
       categories:
         spam: هرزنامه
       reason: 'دلیل:'
