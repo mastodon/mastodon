@@ -1,9 +1,5 @@
 name: Build container image
 
-strategy:
-  matrix:
-    os: [linux/arm64, linux/amd64]
-
 on:
   workflow_dispatch:
   push:
@@ -19,6 +15,9 @@ on:
 jobs:
   build-image:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [linux/arm64, linux/amd64]
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-qemu-action@v1
