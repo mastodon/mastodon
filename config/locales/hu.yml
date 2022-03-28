@@ -164,6 +164,9 @@ hu:
       pending: Engedélyezés alatt
       perform_full_suspension: Felfüggesztés
       previous_strikes: Korábbi szankciók
+      previous_strikes_description_html:
+        one: Ezt a fiókot <strong>egyszer</strong> szankcionálták.
+        other: Ezt a fiókot <strong>%{count}</strong> esetben szankcionálták.
       promote: Előléptetés
       protocol: Protokoll
       public: Nyilvános
@@ -522,6 +525,9 @@ hu:
       delivery_error_hint: Ha a kézbesítés lehetetlen %{count} napig, automatikusan kézbesíthetetlennek lesz megjelölve.
       destroyed_msg: A(z) %{domain} adatai sorba lettek állítva végleges törléshez.
       empty: Nem található domain.
+      known_accounts:
+        one: "%{count} ismert fiók"
+        other: "%{count} ismert fiók"
       moderation:
         all: Mind
         limited: Korlátozott
@@ -766,6 +772,11 @@ hu:
     system_checks:
       database_schema_check:
         message_html: Vannak esedékes adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, hogy az alkalmazás megfelelően működjön
+      elasticsearch_running_check:
+        message_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizze, hogy fut-e, vagy kapcsolja ki a teljes szöveges keresést.
+      elasticsearch_version_check:
+        message_html: 'Nem kompatibilis Elasticsearch verzió: %{value}'
+        version_comparison: Az Elasticsearch %{running_version} fut, de %{required_version} szükséges
       rules_check:
         action: Szerver szabályok menedzselése
         message_html: Még nem definiáltál egy szerver szabályt sem.
@@ -785,6 +796,9 @@ hu:
         description_html: Ezek olyan hivatkozások, melyeket a szervered által látott fiókok mostanában sokat osztanak meg. Ez segíthet a felhasználóidnak rátalálni arra, hogy mi történik a világban. Egy hivatkozást sem mutatunk meg nyilvánosan, amíg a közzétevőt jóvá nem hagytad. A hivatkozásokat külön is engedélyezheted vagy visszautasíthatod.
         disallow: Hivatkozás letiltása
         disallow_provider: Közzétevő letiltása
+        shared_by_over_week:
+          one: Egy ember osztotta meg a múlt héten
+          other: '%{count} ember osztotta meg a múlt héten'
         title: Felkapott hivatkozások
         usage_comparison: '%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest'
       pending_review: Áttekintésre vár
@@ -824,6 +838,9 @@ hu:
         trending_rank: '%{rank}. felkapott'
         usable: Használható
         usage_comparison: '%{today} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest'
+        used_by_over_week:
+          one: Egy ember használta a múlt héten
+          other: '%{count} ember használta a múlt héten'
       title: Trendek
     warning_presets:
       add_new: Új hozzáadása
