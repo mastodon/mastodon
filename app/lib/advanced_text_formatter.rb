@@ -9,7 +9,7 @@ class AdvancedTextFormatter < TextFormatter
 
     def block_code(code, _language)
       <<~HTML.squish
-        <pre><code>#{h(code).gsub("\n", '<br/>')}</code></pre>
+        <pre><code>#{ERB::Util.h(code).gsub("\n", '<br/>')}</code></pre>
       HTML
     end
 

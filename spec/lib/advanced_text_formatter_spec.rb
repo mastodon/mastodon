@@ -34,6 +34,14 @@ RSpec.describe AdvancedTextFormatter do
         end
       end
 
+      context 'given a block code' do
+        let(:text) { "test\n\n```\nint main(void) {\n  return 0;\n}\n```\n" }
+
+        it 'formats code using <pre> and <code>' do
+          is_expected.to include '<pre><code>int main'
+        end
+      end
+
       context 'given some quote' do
         let(:text) { "> foo\n\nbar" }
 
