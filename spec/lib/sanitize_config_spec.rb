@@ -41,18 +41,8 @@ describe Sanitize::Config do
     end
   end
 
-  describe '::MASTODON_STRICT' do
-    subject { Sanitize::Config::MASTODON_STRICT }
-
-    it_behaves_like 'common HTML sanitization'
-
-    it 'keeps a with href and rel tag' do
-      expect(Sanitize.fragment('<a href="http://example.com" rel="tag">Test</a>', subject)).to eq '<a href="http://example.com" rel="tag nofollow noopener noreferrer" target="_blank">Test</a>'
-    end
-  end
-
-  describe '::MASTODON_STRICT with outgoing toots' do
-    subject { Sanitize::Config::MASTODON_STRICT.merge(outgoing: true) }
+  describe '::MASTODON_OUTGOING' do
+    subject { Sanitize::Config::MASTODON_OUTGOING }
 
     around do |example|
       original_web_domain = Rails.configuration.x.web_domain
@@ -62,9 +52,9 @@ describe Sanitize::Config do
 
     it_behaves_like 'common HTML sanitization'
 
-    it 'keeps a with href and rel tag, not adding to rel if url is local' do
+    it 'keeps a with href and rel tag, not adding to rel or target if url is local' do
       Rails.configuration.x.web_domain = 'domain.test'
-      expect(Sanitize.fragment('<a href="http://domain.test/tags/foo" rel="tag">Test</a>', subject)).to eq '<a href="http://domain.test/tags/foo" rel="tag" target="_blank">Test</a>'
+      expect(Sanitize.fragment('<a href="http://domain.test/tags/foo" rel="tag">Test</a>', subject)).to eq '<a href="http://domain.test/tags/foo" rel="tag">Test</a>'
     end
   end
 end
