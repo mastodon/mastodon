@@ -796,6 +796,9 @@ da:
         description_html: Disse er links, som pt. deles meget af konti, som serveren ser indlæg fra. Det kan hjælpe ens brugere med at finde ud af, hvad der sker i verden. Ingen links vises offentligt, før man godkender udgiveren. Man kan også tillade/afvise individuelle links.
         disallow: Tillad ikke link
         disallow_provider: Tillad ikke udgiver
+        shared_by_over_week:
+          one: Delt af én person den seneste uge
+          other: Delt af %{count} personer den seneste uge
         title: Populære links
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
       pending_review: Afventer revision
@@ -835,6 +838,9 @@ da:
         trending_rank: 'Populær #%{rank}'
         usable: Kan anvendes
         usage_comparison: Anvendt %{today} gange i dag, sammenlignet med %{yesterday} i går
+        used_by_over_week:
+          one: Brugt af én person den seneste uge
+          other: Brugt af %{count} personer den seneste uge
       title: Trends
     warning_presets:
       add_new: Tilføj ny
