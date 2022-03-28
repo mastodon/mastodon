@@ -480,6 +480,9 @@ fr:
     instances:
       availability:
         failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
+        failures_recorded:
+          one: Tentative échouée pendant %{count} jour.
+          other: Tentatives échouées pendant %{count} jours différents.
         no_failures_recorded: Pas d'échec enregistré.
         title: Disponibilité
         warning: La dernière tentative de connexion à ce serveur a échoué
