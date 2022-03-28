@@ -103,7 +103,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def summary
-    object.suspended? ? '' : html_aware_format(object.note, object.local?)
+    object.suspended? ? '' : account_bio_format(object)
   end
 
   def icon
@@ -195,7 +195,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
 
     def value
-      html_aware_format(object.value, object.account.local?, with_rel_me: true, with_domains: true, multiline: false)
+      account_field_value_format(object)
     end
   end
 

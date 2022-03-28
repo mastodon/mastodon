@@ -3,6 +3,6 @@
 > ----
 >
 <% end %>
-> <%= raw word_wrap(extract_plain_text(status.text, status.local?), break_sequence: "\n> ") %>
+> <%= raw word_wrap(extract_status_plain_text(status), break_sequence: "\n> ") %>
 
 <%= raw t('application_mailer.view')%> <%= web_url("statuses/#{status.id}") %>

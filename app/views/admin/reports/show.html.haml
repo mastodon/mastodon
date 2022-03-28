@@ -23,7 +23,7 @@
             = fa_icon('lock') if @report.target_account.locked?
       - if @report.target_account.note.present?
         .account-card__bio.emojify
-          = prerender_custom_emojis(html_aware_format(@report.target_account.note, @report.target_account.local?), @report.target_account.emojis)
+          = prerender_custom_emojis(account_bio_format(@report.target_account), @report.target_account.emojis)
       .account-card__actions
         .account-card__counters
           .account-card__counters__item
