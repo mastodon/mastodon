@@ -164,6 +164,9 @@ fr:
       pending: En attente d’approbation
       perform_full_suspension: Suspendre
       previous_strikes: Sanctions précédentes
+      previous_strikes_description_html:
+        one: Ce compte a reçu <strong>%{count}</strong> sanction.
+        other: Ce compte a reçu <strong>%{count}</strong> sanctions.
       promote: Promouvoir
       protocol: Protocole
       public: Publique
@@ -516,6 +519,9 @@ fr:
       delivery_error_hint: Si la livraison n'est pas possible pendant %{count} jours, elle sera automatiquement marquée comme non livrable.
       destroyed_msg: Les données de %{domain} sont maintenant en file d'attente pour une suppression imminente.
       empty: Aucun domaine trouvé.
+      known_accounts:
+        one: "%{count} compte connu"
+        other: "%{count} comptes connus"
       moderation:
         all: Tout
         limited: Limité
@@ -784,6 +790,9 @@ fr:
         description_html: Ces liens sont actuellement énormément partagés par des comptes dont votre serveur voit les messages. Cela peut aider vos utilisateur⋅rice⋅s à découvrir ce qu'il se passe dans le monde. Aucun lien n'est publiquement affiché tant que vous n'avez pas approuvé le compte qui le publie. Vous pouvez également autoriser ou rejeter les liens individuellement.
         disallow: Interdire le lien
         disallow_provider: Interdire l'éditeur
+        shared_by_over_week:
+          one: Partagé par %{count} personne au cours de la dernière semaine
+          other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
       pending_review: En attente de révision
@@ -823,6 +832,9 @@ fr:
         trending_rank: 'Tendance #%{rank}'
         usable: Peut être utilisé
         usage_comparison: Utilisé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+        used_by_over_week:
+          one: Utilisé par %{count} personne au cours de la dernière semaine
+          other: Utilisé par %{count} personnes au cours de la dernière semaine
       title: Tendances
     warning_presets:
       add_new: Ajouter un nouveau
