@@ -164,6 +164,9 @@ sq:
       pending: Në pritje të shqyrtimit
       perform_full_suspension: Pezulloje
       previous_strikes: Paralajmërime të mëparshme
+      previous_strikes_description_html:
+        one: Kjo llogari ka <strong>një</strong> paralajmërim.
+        other: Kjo llogari ka <strong>%{count}</strong> paralajmërime.
       promote: Promovojeni
       protocol: Protokoll
       public: Publike
@@ -521,6 +524,9 @@ sq:
       delivery_error_hint: Nëse dërgimi s’është i mundshëm për %{count} ditë, do t’i vihet shenjë automatikisht si i padërgueshëm.
       destroyed_msg: Të dhënat prej %{domain} tani janë vënë në radhë për fshirje të menjëhershme.
       empty: S’u gjetën përkatësi.
+      known_accounts:
+        one: "%{count} llogari e njohur"
+        other: "%{count} llogari të njohura"
       moderation:
         all: Krejt
         limited: Të kufizuarat
@@ -789,6 +795,9 @@ sq:
         description_html: Këto janë lidhje që ndahen aktualisht shumë me llogari prej të cilave shërbyesi juaj sheh postime. Mund të ndihmojë përdoruesit tuaj të gjejnë se ç’po ndodh në botë. S’shfaqen lidhje publikisht, deri sa të miratoni botuesin. Mundeni edhe të lejoni ose hidhni poshtë lidhje individuale.
         disallow: Hiq lejimin e lidhjes
         disallow_provider: Mos e lejo botuesin
+        shared_by_over_week:
+          one: Ndarë me të tjerë nga një person gjatë javës së kaluar
+          other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
         title: Lidhje në modë
         usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
       pending_review: Në pritje të shqyrtimit
@@ -826,6 +835,9 @@ sq:
         trendable: Mund të shfaqet nën të modës
         usable: Mund të përdoret
         usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
+        used_by_over_week:
+          one: Përdorur nga një person gjatë javës së kaluar
+          other: Përdorur nga %{count} vetë gjatë javës së kaluar
       title: Në modë
     warning_presets:
       add_new: Shtoni të ri
