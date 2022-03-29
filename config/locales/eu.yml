@@ -578,6 +578,7 @@ eu:
         delete_description_html: Salatutako bidalketak ezabatuko dira eta abisu bat gordeko da, etorkizunean kontu berarekin elkarrekintzarik baduzu kontuan izan dezazun.
         mark_as_sensitive_description_html: Salatutako bidalketetako multimedia edukia hunkigarri bezala eta abisu bat gordeko da, etorkizunean kontu berarekin elkarrekintzarik baduzu kontuan izan dezazun.
         other_description_html: Ikusi kontuaren portaera kontrolatzeko eta salatutako kontuarekin komunikazioa pertsonalizatzeko aukera gehiago.
+        resolve_description_html: Ez da neurririk hartuko salatutako kontuaren aurka, ez da abisurik gordeko eta salaketa itxiko da.
         silence_description_html: Profila dagoeneko jarraitzen dutenei edo eskuz bilatzen dutenei bakarrik agertuko zaie, bere irismena asko mugatuz. Beti bota daiteke atzera.
         suspend_description_html: Profila eta bere eduki guztiak iritsiezinak bihurtuko dira, ezabatzen den arte. Kontuarekin ezin da interakziorik eduki. Atzera bota daiteke 30 eguneko epean.
       actions_description_html: Erabaki txosten hau konpontzeko ze ekintza hartu. Salatutako kontuaren aurka zigor ekintza bat hartzen baduzu, eposta jakinarazpen bat bidaliko zaie, <strong>Spam</strong> kategoria hautatzean ezik.
@@ -596,6 +597,7 @@ eu:
       forwarded: Birbidalia
       forwarded_to: 'Hona birbidalia: %{domain}'
       mark_as_resolved: Markatu konpondutako gisa
+      mark_as_sensitive: Markatu hunkigarri gisa
       mark_as_unresolved: Markatu konpondu gabeko gisa
       no_one_assigned: Inor ez
       notes:
@@ -607,6 +609,7 @@ eu:
         title: Oharrak
       notes_description_html: Ikusi eta idatzi oharrak beste moderatzaileentzat eta zuretzat etorkizunerako
       quick_actions_description_html: 'Hartu ekintza azkar bat edo korritu behera salatutako edukia ikusteko:'
+      remote_user_placeholder: '%{instance} instantziako urruneko erabiltzailea'
       reopen: Berrireki salaketa
       report: 'Salaketa #%{id}'
       reported_account: Salatutako kontua
@@ -738,7 +741,9 @@ eu:
       actions:
         delete_statuses: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketak ezabatu ditu"
         disable: "%{name} erabiltzailea %{target} erabiltzailearen kontua izoztu du"
+        mark_statuses_as_sensitive: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketak hunkigarri bezala markatu ditu"
         none: "%{name} erabiltzaileak abisua bidali dio %{target} erabiltzaileari"
+        sensitive: "%{name} erabiltzaileak %{target} erabiltzailearen kontua hunkigarri bezala markatu ditu"
     system_checks:
       database_schema_check:
         message_html: Aplikatu gabeko datu-basearen migrazioak daude. Exekutatu aplikazioak esperotako portaera izan dezan
