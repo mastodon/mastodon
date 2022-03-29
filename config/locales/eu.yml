@@ -461,9 +461,13 @@ eu:
       unsuppress: Berrezarri jarraitzeko gomendioa
     instances:
       availability:
+        description_html:
+          one: Domeinura entregatzeak arrakastarik gabe huts egiten badu <strong>egun %{count} </strong>igaro ondoren, ez da entregatzeko saiakera gehiago egingo, ez bada domeinu <em>horretatik</em> entregarik jasotzen.
+          other: Domeinura entregatzeak arrakastarik gabe huts egiten badu <strong>%{count} egun</strong> igaro ondoren, ez da entregatzeko saiakera gehiago egingo, ez bada domeinu <em>horretatik</em> entregarik jasotzen.
         failure_threshold_reached: Hutsegite atalasera iritsi da %{date} datan.
         no_failures_recorded: Ez dago hutsegiterik erregistroan.
         title: Egoera
+        warning: Zerbitzari honetara konektatzeko azken saiakerak huts egin du
       back_to_all: Guztiak
       back_to_limited: Mugatua
       back_to_warning: Abisua
@@ -486,6 +490,9 @@ eu:
         instance_followers_measure: gure jarraitzaileak hemen
         instance_follows_measure: beren jarraitzaileak hemen
         instance_languages_dimension: Hizkuntza nagusiak
+        instance_media_attachments_measure: multimedia eranskin biltegiratuta
+        instance_reports_measure: txosten berari buruz
+        instance_statuses_measure: bidalketa gordeta
       delivery:
         all: Guztiak
         clear: Garbitu banaketa erroreak
@@ -497,6 +504,9 @@ eu:
       delivery_error_hint: Banaketa ezin bada %{count} egunean egin, banaezin bezala markatuko da automatikoki.
       destroyed_msg: '%{domain} domeinuko datuak berehala ezabatzeko ilaran daude orain.'
       empty: Ez da domeinurik aurkitu.
+      known_accounts:
+        one: "Kontu ezagun %{count}"
+        other: "%{count} kontu ezagun"
       moderation:
         all: Denak
         limited: Mugatua
@@ -504,12 +514,14 @@ eu:
       private_comment: Iruzkin pribatua
       public_comment: Iruzkin publikoa
       purge: Ezabatu betiko
+      purge_description_html: Domeinu hau behin betiko lineaz kanpo dagoela uste baduzu, domeinuko kontu guztien erregistroak eta erlazionatutako datuak ezabatu ditzakezu biltegitik. Honek luze jo dezake.
       title: Federazioa
       total_blocked_by_us: Guk blokeatuta
       total_followed_by_them: Haiek jarraitua
       total_followed_by_us: Guk jarraitua
       total_reported: Heiei buruzko txostenak
       total_storage: Multimedia eranskinak
+      totals_time_period_hint_html: Behean bistaratutako guztizkoek datu guztiak hartzen dituzte barne.
     invites:
       deactivate_all: Desgaitu guztiak
       filter:
