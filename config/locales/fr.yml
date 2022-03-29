@@ -166,9 +166,8 @@ fr:
       perform_full_suspension: Suspendre
       previous_strikes: Sanctions précédentes
       previous_strikes_description_html:
-        one: Ce compte a reçu <strong>une</strong> sanction.
+        one: Ce compte a reçu <strong>%{count}</strong> sanction.
         other: Ce compte a reçu <strong>%{count}</strong> sanctions.
-        zero: Ce compte est <strong>en règle</strong>.
       promote: Promouvoir
       protocol: Protocole
       public: Publique
@@ -482,8 +481,12 @@ fr:
     instances:
       availability:
         failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
+        failures_recorded:
+          one: Tentative échouée pendant %{count} jour.
+          other: Tentatives échouées pendant %{count} jours différents.
         no_failures_recorded: Pas d'échec enregistré.
         title: Disponibilité
+        warning: La dernière tentative de connexion à ce serveur a échoué
       back_to_all: Tout
       back_to_limited: Limité
       back_to_warning: Avertissement
@@ -523,7 +526,6 @@ fr:
       known_accounts:
         one: "%{count} compte connu"
         other: "%{count} comptes connus"
-        zero: Pas de compte connu
       moderation:
         all: Tout
         limited: Limité
@@ -768,6 +770,11 @@ fr:
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+      elasticsearch_running_check:
+        message_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche en plein texte
+      elasticsearch_version_check:
+        message_html: 'Version d’Elasticsearch incompatible : %{value}'
+        version_comparison: Elasticsearch %{running_version} est en cours d’exécution alors que %{required_version} est requise
       rules_check:
         action: Gérer les règles du serveur
         message_html: Vous n'avez pas défini de règles pour le serveur.
@@ -788,9 +795,8 @@ fr:
         disallow: Interdire le lien
         disallow_provider: Interdire l'éditeur
         shared_by_over_week:
-          one: Partagé par une personne au cours de la semaine dernière
-          other: Partagé par %{count} personnes au cours de la semaine dernière
-          zero: Non partagé au cours de la semaine dernière
+          one: Partagé par %{count} personne au cours de la dernière semaine
+          other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
       pending_review: En attente de révision
@@ -831,9 +837,8 @@ fr:
         usable: Peut être utilisé
         usage_comparison: Utilisé %{today} fois aujourd'hui, comparé à %{yesterday} hier
         used_by_over_week:
-          one: Utilisé par une personne au cours de la semaine dernière
-          other: Utilisé par %{count} personnes au cours de la semaine dernière
-          zero: Non utilisé au cours de la semaine dernière
+          one: Utilisé par %{count} personne au cours de la dernière semaine
+          other: Utilisé par %{count} personnes au cours de la dernière semaine
       title: Tendances
     warning_presets:
       add_new: Ajouter un nouveau
@@ -1431,6 +1436,7 @@ fr:
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'
       other: 'contient les hashtags désactivés : %{tags}'
+    edited_at_html: Édité le %{date}
     errors:
       in_reply_not_found: Le message auquel vous essayez de répondre ne semble pas exister.
     open_in_web: Ouvrir sur le web

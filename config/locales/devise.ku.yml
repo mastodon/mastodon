@@ -8,10 +8,10 @@ ku:
     failure:
       already_authenticated: Jixwe te berê têketin kiriye.
       inactive: Ajimêra te hîn nehatiye çalakkirin.
-      invalid: Nederbasdar %{authentication_keys} an jî şîfre.
+      invalid: "%{authentication_keys} an jî borînpeyv nederbasdar e."
       last_attempt: Peşiya kilît kirina ajimêra te carek din jî biceribîne.
       locked: Ajimêra ye hat kilît kirin.
-      not_found_in_database: Nederbasdar %{authentication_keys} an jî şîfre.
+      not_found_in_database: "%{authentication_keys} an jî borînpeyv nederbasdar e."
       pending: Ajimêra te hîn tê vekolandin.
       timeout: Danişîna te qedîya. Ji kerema xwe ji bo berdewamiyê dîsa têkeve.
       unauthenticated: Peşiya berdewamiya te têketina xwe bike an jî xwe tomar bike.
@@ -33,10 +33,10 @@ ku:
         subject: 'Mastodon: E-name hate guhertin'
         title: Navnîşana e-nameya nû
       password_change:
-        explanation: Pêborîna ajimêra te hate guhertin.
+        explanation: Borînpeyva ajimêra te hate guhertin.
         extra: Heke te ajimêra xwe ne guhertiye. Ew tê wateya ku kesek ketiye ajimêrê te. Jkx pêborîna xwe zû biguherîne an jî bi rêveberiya rajekar re têkeve têkiliyê heke tu êdî nikare ajimêra xwe bi kar bînî.
         subject: 'Mastodon: pêborîn hate guhertin'
-        title: Pêborîn hate guhertin
+        title: Borînpeyv hate guhertin
       reconfirmation_instructions:
         explanation: Navnîşana nû piştrast bike da ku tu e-nameya xwe biguherînî.
         extra: |-
@@ -45,13 +45,13 @@ ku:
         subject: 'Mastodon: E-nameyê piştrast bike bo %{instance}'
         title: Navnîşana e-nameyê piştrast bike
       reset_password_instructions:
-        action: Pêborînê biguherîne
+        action: Borînpeyvê biguherîne
         explanation: Te ji bo ajimêra xwe daxwaza pêborîneke nû kiriye.
-        extra: Heke te ev daxwaz nekir, jkx guh nede vê e-nameyê. Pêborîna te wê neyê guhertin heya ku tu li girêdana Jêrin bitikînî û yeka nû çê bikî.
+        extra: Heke te ev daxwaz nekir, jkx guh nede vê e-nameyê. Borînpeyva te wê neyê guhertin heya ku tu li girêdana Jêrin bitikînî û yeka nû çê bikî.
         subject: 'Mastodon: rêwerzên jê birina pêborîn'
-        title: Pêborîn ji nû ve saz bike
+        title: Borînpeyv ji nû ve saz bike
       two_factor_disabled:
-        explanation: Ji bo ajimêrê te piştrastkirina du-faktorî hat asteng kirin. Niha tu tenê bi navnîşana e-name û şîfre ya xwe dikarî têketin bikî.
+        explanation: Ji bo ajimêrê te piştrastkirina du-faktorî hat asteng kirin. Niha tu tenê bi navnîşana e-name û borînpeyva xwe dikarî têketinê bikî.
         subject: 'Mastodon: piştrastkirina du- faktorî neçalak bike'
         title: 2FA Neçalak e
       two_factor_enabled:
@@ -85,11 +85,11 @@ ku:
       failure: Nikare ji %{kind} rastandinê bikê ji bo " %{reason}".
       success: Ji ajimêra %{kind} bi serkeftî hate rastandin.
     passwords:
-      no_token: Tu nikarî xwe bigihînî vê rûpelê bêyî ku tu ji e-nameya ji nû ve sazkirina pêborînê wernegerî. Heke tu ji e-nameya ji nû ve sazkirina pêborînê tê, ji kerema xwe pê ewle be ku tu girêdanê ya tevahî bi kar tînî.
-      send_instructions: Heke navnîşana te ya e-nameyê di danegeha me da hebê, tu yê di navnîşana xwe ya e-nameyê da girêdana rizgarkirina pêborînê bistînî. Heke te ev e-name wernegirtibe, ji kerema xwe peldanka xwe ya spamê kontrol bike.
-      send_paranoid_instructions: Heke navnîşana te ya e-nameyê di danegeha me da hebê, tu yê di navnîşana xwe ya e-nameyê da girêdana rizgarkirina pêborînê bistînî di hundir çend xulkan de. Heke te ev e-name wernegirtibe, ji kerema xwe peldanka xwe ya spamê kontrol bike.
-      updated: Pêborîna te bi serkeftî hate guhertin. Niha tu têketî ye.
-      updated_not_active: Pêborîna te bi serkeftî hate guhertin.
+      no_token: Tu nikarî xwe bigihînî vê rûpelê bêyî ku tu ji e-nameya ji nû ve sazkirina borînpeyvê wernegerî. Heke tu ji e-nameya ji nû ve sazkirina borînpeyvê tê, ji kerema xwe pê ewle be ku tu girêdanê ya tevahî bi kar tînî.
+      send_instructions: Heke navnîşana te ya e-nameyê di danegeha me da hebê, tu yê di navnîşana xwe ya e-nameyê da girêdana rizgarkirina borînpeyvê bistînî. Heke te ev e-name wernegirtibe, ji kerema xwe peldanka xwe ya spamê kontrol bike.
+      send_paranoid_instructions: Heke navnîşana te ya e-nameyê di danegeha me da hebê, tu yê di navnîşana xwe ya e-nameyê da girêdana rizgarkirina borînpeyvê bistînî di hundir çend xulkan de. Heke te ev e-name wernegirtibe, ji kerema xwe peldanka xwe ya spamê kontrol bike.
+      updated: Borînpeyva te bi serkeftî hate guhertin. Niha tu têketî ye.
+      updated_not_active: Borînpeyva te bi serkeftî hate guhertin.
     registrations:
       destroyed: Xatirê te! Ajimêra te bi serkeftî hate pûçkirin. Em hêvî dikin ku tu di nêzîk de te dîsa bibînin.
       signed_up: Bi xêr hatî! Te bi serkeftî tomarkirin kir.

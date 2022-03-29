@@ -165,10 +165,6 @@ de:
       pending: In Warteschlange
       perform_full_suspension: Verbannen
       previous_strikes: Vorherige Strikes
-      previous_strikes_description_html:
-        one: Dieses Konto hat <strong>einen</strong> Strike.
-        other: Dieses Konto hat <strong>%{count}</strong> Strikes.
-        zero: Dieses Konto ist <strong>in gutem Stand</strong>.
       promote: Befördern
       protocol: Protokoll
       public: Öffentlich
@@ -527,10 +523,6 @@ de:
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
       destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
-      known_accounts:
-        one: "%{count} bekanntes Konto"
-        other: "%{count} bekannte Konten"
-        zero: Kein bekanntes Konto
       moderation:
         all: Alle
         limited: Beschränkt
@@ -794,10 +786,6 @@ de:
         description_html: Dies sind Links, die derzeit von Konten geteilt werden, von denen dein Server Beiträge sieht. Es kann deinen Benutzern helfen, herauszufinden, was in der Welt vor sich geht. Es werden keine Links öffentlich angezeigt, bis du den Publisher genehmigst. Du kannst auch einzelne Links zulassen oder ablehnen.
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
-        shared_by_over_week:
-          one: In der letzten Woche geteilt von einer Person
-          other: In der letzten Woche geteilt von %{count} Personen
-          zero: Geteilt von niemandem in der letzten Woche
         title: Angesagte Links
         usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
       pending_review: Überprüfung ausstehend
@@ -837,10 +825,6 @@ de:
         trending_rank: 'Trend #%{rank}'
         usable: Kann verwendet werden
         usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
-        used_by_over_week:
-          one: In der letzten Woche genutzt von einer Person
-          other: In der letzten Woche genutzt von %{count} Personen
-          zero: Genutzt von niemandem in der letzten Woche
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
