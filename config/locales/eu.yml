@@ -744,9 +744,18 @@ eu:
         mark_statuses_as_sensitive: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketak hunkigarri bezala markatu ditu"
         none: "%{name} erabiltzaileak abisua bidali dio %{target} erabiltzaileari"
         sensitive: "%{name} erabiltzaileak %{target} erabiltzailearen kontua hunkigarri bezala markatu ditu"
+        silence: "%{name} erabiltzaileak %{target} kontua mugatu du"
+        suspend: "%{name} erabiltzaileak %{target} kontua kanporatu du"
+      appeal_approved: Apelatua
+      appeal_pending: Apelazioa zain
     system_checks:
       database_schema_check:
         message_html: Aplikatu gabeko datu-basearen migrazioak daude. Exekutatu aplikazioak esperotako portaera izan dezan
+      elasticsearch_running_check:
+        message_html: Ezin izan da Elasticsearch-era konektatu. Egiaztatu martxan dagoela edo desgaitu testu osoko bilaketa
+      elasticsearch_version_check:
+        message_html: 'Elasticsearch bertsio bateraezina: %{value}'
+        version_comparison: Elasticsearch %{running_version} exekutatzen ari da, baina %{required_version} behar da
       rules_check:
         action: Kudeatu zerbitzariaren arauak
         message_html: Ez duzu zerbitzariaren araurik definitu.
@@ -763,8 +772,12 @@ eu:
       links:
         allow: Onartu esteka
         allow_provider: Onartu argitaratzailea
+        description_html: Esteka hauek zure zerbitzariak ikusten dituen kontuek asko zabaltzen ari diren estekak dira. Zure erabiltzaileei munduan ze berri den jakiteko lagungarriak izan daitezke. Ez da estekarik bistaratzen argitaratzaileak onartu arte. Esteka bakoitza onartu edo baztertu dezakezu.
         disallow: Ukatu esteka
         disallow_provider: Ukatu argitaratzailea
+        shared_by_over_week:
+          one: Pertsona batek partekatua azken astean
+          other: '%{count} pertsonak partekatua azken astean'
         title: Esteken joerak
         usage_comparison: '%{today} aldiz partekatua gaur, atzo %{yesterday} aldiz'
       pending_review: Berrikusketaren zain
@@ -773,6 +786,11 @@ eu:
         rejected: Argitaratzaile honen estekek ezin dute joera izan
         title: Argitaratzaileak
       rejected: Ukatua
+      statuses:
+        allow: Onartu bidalketa
+        allow_account: Onartu egilea
+        disallow: Ez onartu bidalketa
+        disallow_account: Ez onartu egilea
       tags:
         current_score: Uneko emaitza%{score}
         dashboard:
@@ -806,6 +824,11 @@ eu:
       body: "%{reporter}(e)k %{target} salatu du"
       body_remote: '%{domain} domeinuko norbaitek %{target} salatu du'
       subject: 'Salaketa berria %{instance} instantzian (#%{id})'
+    new_trends:
+      new_trending_links:
+        title: Esteken joerak
+      new_trending_tags:
+        title: Traolak joeran
   aliases:
     add_new: Sortu ezizena
     created_msg: Ongi sortu da ezizena. Orain kontu zaharretik migratzen hasi zaitezke.
@@ -857,6 +880,7 @@ eu:
     invalid_reset_password_token: Pasahitza berrezartzeko token-a baliogabea da edo iraungitu du. Eskatu beste bat.
     link_to_otp: Erabili zure mugikorreko bi faktoreko kodea edo berreskuratze kode bat
     link_to_webauth: Erabili zure segurtasun gako gailua
+    log_in_with: 'Saioa hasi honekin:'
     login: Hasi saioa
     logout: Amaitu saioa
     migrate_account: Migratu beste kontu batera
@@ -878,6 +902,7 @@ eu:
     status:
       account_status: Kontuaren egoera
       confirming: E-mail baieztapena osatu bitartean zain.
+      functional: Zure kontua guztiz erabilgarri dago.
       pending: Zure eskaera gainbegiratzeko dago oraindik. Honek denbora behar lezake. Zure eskaera onartzen bada e-mail bat jasoko duzu.
       redirecting_to: Zure kontua ez dago aktibo orain %{acct} kontura birbideratzen duelako.
     too_fast: Formularioa azkarregi bidali duzu, saiatu berriro.
@@ -943,6 +968,12 @@ eu:
     directory: Profilen direktorioa
     explanation: Deskubritu erabiltzaileak interesen arabera
     explore_mastodon: Esploratu %{title}
+  disputes:
+    strikes:
+      appeal: Apelazioa
+      appeals:
+        submit: Bidali apelazioa
+      recipient: Honi zuzendua
   domain_validator:
     invalid_domain: ez da domeinu izen baliogarria
   errors:
