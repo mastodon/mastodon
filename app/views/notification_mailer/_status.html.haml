@@ -28,10 +28,10 @@
                               - if status.spoiler_text?
                                 %div.auto-dir
                                   %p
-                                    = Formatter.instance.format_spoiler(status)
+                                    = status.spoiler_text
 
                               %div.auto-dir
-                                = Formatter.instance.format(status)
+                                = status_content_format(status)
 
                                 - if status.ordered_media_attachments.size > 0
                                   %p

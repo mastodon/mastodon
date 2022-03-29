@@ -4,6 +4,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   include JsonLdHelper
 
   def call(status, json)
+    raise ArgumentError, 'Status has unsaved changes' if status.changed?
+
     @json                      = json
     @status_parser             = ActivityPub::Parser::StatusParser.new(@json)
     @uri                       = @status_parser.uri
@@ -17,16 +19,19 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
     last_edit_date = status.edited_at.presence || status.created_at
 
+    # Since we rely on tracking of previous changes, ensure clean slate
+    status.clear_changes_information
+
     # Only allow processing one create/update per status at a time
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
         Status.transaction do
-          create_previous_edit!
+          record_previous_edit!
           update_media_attachments!
           update_poll!
           update_immediate_attributes!
           update_metadata!
-          create_edit!
+          create_edits!
         end
 
         queue_poll_notifications!
@@ -216,19 +221,14 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     { redis: Redis.current, key: "create:#{@uri}", autorelease: 15.minutes.seconds }
   end
 
-  def create_previous_edit!
-    # We only need to create a previous edit when no previous edits exist, e.g.
-    # when the status has never been edited. For other cases, we always create
-    # an edit, so the step can be skipped
-
-    return if @status.edits.any?
-
-    @status.snapshot!(at_time: @status.created_at, rate_limit: false)
+  def record_previous_edit!
+    @previous_edit = @status.build_snapshot(at_time: @status.created_at, rate_limit: false) if @status.edits.empty?
   end
 
-  def create_edit!
+  def create_edits!
     return unless significant_changes?
 
+    @previous_edit&.save!
     @status.snapshot!(account_id: @account.id, rate_limit: false)
   end
 

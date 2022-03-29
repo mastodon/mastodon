@@ -80,6 +80,10 @@ class AccountFilter
       accounts_with_users.merge(User.pending)
     when 'suspended'
       Account.suspended
+    when 'disabled'
+      accounts_with_users.merge(User.disabled)
+    when 'silenced'
+      Account.silenced
     else
       raise "Unknown status: #{value}"
     end

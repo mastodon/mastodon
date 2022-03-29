@@ -35,6 +35,7 @@ class Status < ApplicationRecord
   include Paginable
   include Cacheable
   include StatusThreadingConcern
+  include StatusSnapshotConcern
   include RateLimitable
 
   rate_limit by: :account, family: :statuses
@@ -58,8 +59,6 @@ class Status < ApplicationRecord
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
-
-  has_many :edits, class_name: 'StatusEdit', inverse_of: :status, dependent: :destroy
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :bookmarks, inverse_of: :status, dependent: :destroy
@@ -210,24 +209,6 @@ class Status < ApplicationRecord
 
   def distributable?
     public_visibility? || unlisted_visibility?
-  end
-
-  def snapshot!(account_id: nil, at_time: nil, rate_limit: true)
-    edits.create!(
-      text: text,
-      spoiler_text: spoiler_text,
-      sensitive: sensitive,
-      ordered_media_attachment_ids: ordered_media_attachment_ids || media_attachments.pluck(:id),
-      media_descriptions: ordered_media_attachments.map(&:description),
-      poll_options: preloadable_poll&.options,
-      account_id: account_id || self.account_id,
-      created_at: at_time || edited_at,
-      rate_limit: rate_limit
-    )
-  end
-
-  def edited?
-    edited_at.present?
   end
 
   alias sign? distributable?

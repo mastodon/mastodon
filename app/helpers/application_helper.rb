@@ -239,4 +239,8 @@ module ApplicationHelper
       end
     end.values
   end
+
+  def prerender_custom_emojis(html, custom_emojis)
+    EmojiFormatter.new(html, custom_emojis, animate: prefers_autoplay?).to_s
+  end
 end

@@ -208,8 +208,12 @@ class User < ApplicationRecord
     confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial? && account.moved_to_account_id.nil?
   end
 
+  def unconfirmed?
+    !confirmed?
+  end
+
   def unconfirmed_or_pending?
-    !(confirmed? && approved?)
+    unconfirmed? || pending?
   end
 
   def inactive_message

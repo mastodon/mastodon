@@ -5,7 +5,7 @@
 
 * <%= raw t('notification_mailer.digest.mention', name: notification.from_account.pretty_acct) %>
 
-  <%= raw Formatter.instance.plaintext(notification.target_status) %>
+  <%= raw extract_status_plain_text(notification.target_status) %>
 
   <%= raw t('application_mailer.view')%> <%= web_url("statuses/#{notification.target_status.id}") %>
 <% end %>
