@@ -208,7 +208,7 @@ class LinkDetailsExtractor
   end
 
   def valid_url_or_nil(str, same_origin_only: false)
-    return if str.blank?
+    return if str.blank? || str == 'null'
 
     url = @original_url + Addressable::URI.parse(str)
 

@@ -84,7 +84,8 @@
     - else
       %span.negative-hint
         = t('admin.instances.availability.failures_recorded', count: @instance.delivery_failure_tracker.days)
-        = link_to t('admin.instances.delivery.clear'), clear_delivery_errors_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post } unless @instance.exhausted_deliveries_days.empty?
+        %span= link_to t('admin.instances.delivery.clear'), clear_delivery_errors_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post } unless @instance.exhausted_deliveries_days.empty?
+        %span= link_to t('admin.instances.delivery.stop'), stop_delivery_admin_instance_path(@instance), data: { confirm: t('admin.accounts.are_you_sure'), method: :post }
 
 - if @instance.purgeable?
   %p= t('admin.instances.purge_description_html')

@@ -37,7 +37,7 @@ class Trends::Query
   end
 
   def offset!(value)
-    @offset = value
+    @offset = value.to_i
     self
   end
 
@@ -46,7 +46,7 @@ class Trends::Query
   end
 
   def limit!(value)
-    @limit = value
+    @limit = value.to_i
     self
   end
 
