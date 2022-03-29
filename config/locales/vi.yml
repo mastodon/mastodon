@@ -160,6 +160,8 @@ vi:
       pending: Chờ duyệt
       perform_full_suspension: Vô hiệu hóa
       previous_strikes: Lịch sử kiểm duyệt
+      previous_strikes_description_html:
+        other: Người này bị cảnh cáo <strong>%{count}</strong> lần.
       promote: Chỉ định vai trò
       protocol: Giao thức
       public: Công khai
@@ -511,6 +513,8 @@ vi:
       delivery_error_hint: Nếu không thể phân phối sau %{count} ngày, nó sẽ tự dộng đánh dấu là không thể phân phối.
       destroyed_msg: Dữ liệu từ %{domain} đã lên lịch để xóa.
       empty: Không có máy chủ nào.
+      known_accounts:
+        other: "%{count} tài khoản đã biết"
       moderation:
         all: Tất cả
         limited: Hạn chế
@@ -778,6 +782,8 @@ vi:
         description_html: Đây là những liên kết được chia sẻ nhiều trên máy chủ của bạn. Nó có thể giúp người dùng tìm hiểu những gì đang xảy ra trên thế giới. Không có liên kết nào được hiển thị công khai cho đến khi bạn duyệt nguồn đăng. Bạn cũng có thể cho phép hoặc từ chối từng liên kết riêng.
         disallow: Cấm liên kết
         disallow_provider: Cấm nguồn đăng
+        shared_by_over_week:
+          other: '%{count} người chia sẻ tuần rồi'
         title: Liên kết xu hướng
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       pending_review: Đang chờ
@@ -816,6 +822,8 @@ vi:
         trending_rank: 'Xu hướng #%{rank}'
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
+        used_by_over_week:
+          other: '%{count} người dùng tuần rồi'
       title: Xu hướng
     warning_presets:
       add_new: Thêm mới
