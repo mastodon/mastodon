@@ -162,9 +162,7 @@ ko:
       perform_full_suspension: 정지시키기
       previous_strikes: 이전의 처벌들
       previous_strikes_description_html:
-        one: 이 계정은 <strong>한<strong> 번의 처벌이 있었습니다.
         other: 이 계정은 <strong>%{count}</strong> 번의 처벌이 있었습니다.
-        zero: 이 계정은 처벌 기록이 <strong>없습니다</strong>.
       promote: 승급
       protocol: 프로토콜
       public: 공개
@@ -481,6 +479,7 @@ ko:
           other: 실패한 전달 시도 총 %{count}일.
         no_failures_recorded: 실패 기록이 없습니다.
         title: 가용성
+        warning: 이 서버에 대한 마지막 연결 시도가 성공적이지 않았습니다
       back_to_all: 전체
       back_to_limited: 제한됨
       back_to_warning: 경고
@@ -518,9 +517,7 @@ ko:
       destroyed_msg: "%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다."
       empty: 도메인이 하나도 없습니다.
       known_accounts:
-        one: "%{count} 개의 알려진 계정"
         other: "%{count} 개의 알려진 계정"
-        zero: 알려진 계정이 없습니다
       moderation:
         all: 모두
         limited: 제한됨
@@ -764,6 +761,11 @@ ko:
     system_checks:
       database_schema_check:
         message_html: 데이터베이스 마이그레이션이 대기중입니다. 응용프로그램이 예상한대로 동작할 수 있도록 마이그레이션을 실행해 주세요
+      elasticsearch_running_check:
+        message_html: Elasticsearch에 연결할 수 없습니다. 실행중인지 확인하거나, 전문검색을 비활성화하세요
+      elasticsearch_version_check:
+        message_html: '호환되지 않는 Elasticsearch 버전: %{value}'
+        version_comparison: Elasticsearch %{required_version}버전이 필요하지만 %{running_version}버전이 실행 중입니다.
       rules_check:
         action: 서버 규칙 관리
         message_html: 아직 서버규칙을 정하지 않았습니다.
@@ -784,9 +786,7 @@ ko:
         disallow: 링크 거부하기
         disallow_provider: 출처 거부하기
         shared_by_over_week:
-          one: 지난 주 동안 한 명의 사람이 공유했습니다
           other: 지난 주 동안 %{count} 명의 사람들이 공유했습니다
-          zero: 지난 주 동안 공유한 사람이 없습니다
         title: 유행하는 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
       pending_review: 심사 대기
@@ -826,9 +826,7 @@ ko:
         usable: 사용 가능
         usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
         used_by_over_week:
-          one: 지난 주 동안 한 명의 사람이 사용했습니다
           other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
-          zero: 지난 주 동안 사용한 사람이 없습니다
       title: 유행
     warning_presets:
       add_new: 새로 추가

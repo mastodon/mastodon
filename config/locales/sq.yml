@@ -166,9 +166,8 @@ sq:
       perform_full_suspension: Pezulloje
       previous_strikes: Paralajmërime të mëparshme
       previous_strikes_description_html:
-        one: Kjo llogari ka <strong>one</strong> paralajmërim.
+        one: Kjo llogari ka <strong>një</strong> paralajmërim.
         other: Kjo llogari ka <strong>%{count}</strong> paralajmërime.
-        zero: Kjo llogari është <strong>në pozita të mira</strong>.
       promote: Promovojeni
       protocol: Protokoll
       public: Publike
@@ -373,6 +372,7 @@ sq:
       enable: Aktivizoje
       enabled: I aktivizuar
       enabled_msg: Ai emoxhi u aktivizua me sukses
+      image_hint: PNG ose GIF deri në %{size}
       list: Vëre në listë
       listed: Në listë
       new:
@@ -468,6 +468,7 @@ sq:
         title: Zë i ri email në listë bllokimesh
       no_email_domain_block_selected: S’u ndryshuan blloqe përkatësish email, ngaqë s’qe përzgjedhur ndonjë
       resolved_dns_records_hint_html: Emri i përkatësisë jep u përket përkatësive vijuese MX, që janë përgjegjëset për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Jini i kujdesshëm të mos bllokoni shërbime të njohur email-esh.</strong>
+      resolved_through_html: Zgjidhur përmes %{domain}
       title: Listë bllokimesh email-esh
     follow_recommendations:
       description_html: "<strong>Rekomandimet për ndjekje ndihmojnë përdoruesit e rinj të gjejnë shpejt lëndë me interes</strong>. Kur një përdorues nuk ka ndërvepruar mjaftueshëm me të tjerët, që të formohen rekomandime të personalizuara ndjekjeje, rekomandohen këto llogari. Ato përzgjidhen çdo ditë, prej një përzierje llogarish me shkallën më të lartë të angazhimit dhe numrin më të lartë të ndjekësve vendorë për një gjuhë të dhënë."
@@ -487,6 +488,7 @@ sq:
           one: Përpjekje e dështuar në %{count} ditë.
           other: Përpjekje e dështuar në %{count} ditë të ndryshme.
         no_failures_recorded: S’ka dështime të regjistruara.
+        warning: Përpjekja e fundit për t’u lidhur me këtë shërbyes ka qenë e pasuksesshme
       back_to_all: Krejt
       back_to_limited: E kufizuar
       back_to_warning: Kujdes
@@ -526,7 +528,6 @@ sq:
       known_accounts:
         one: "%{count} llogari e njohur"
         other: "%{count} llogari të njohura"
-        zero: Pa llogari të njohur
       moderation:
         all: Krejt
         limited: Të kufizuarat
@@ -771,6 +772,11 @@ sq:
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
+      elasticsearch_running_check:
+        message_html: S’u lidh dot me Elasticsearch. Ju lutemi, kontrolloni nëse ky xhiron, ose çaktivizoni kërkimin në tërë tekstin
+      elasticsearch_version_check:
+        message_html: 'Version Elasticsearch i papërputhshëm: %{value}'
+        version_comparison: Xhiron Elasticsearch %{running_version}, ndërkohë që është i domosdoshëm %{required_version}
       rules_check:
         action: Administroni rregulla shërbyesi
         message_html: S’keni përcaktuar ndonjë rregull shërbyesi.
@@ -791,9 +797,8 @@ sq:
         disallow: Hiq lejimin e lidhjes
         disallow_provider: Mos e lejo botuesin
         shared_by_over_week:
-          one: Ndarë nga një person javën e kaluar
-          other: Ndarë nga %{count} persona javën e kaluar
-          zero: E pandarë nga njeri gjatë javës së kaluar
+          one: Ndarë me të tjerë nga një person gjatë javës së kaluar
+          other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
         title: Lidhje në modë
         usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
       pending_review: Në pritje të shqyrtimit
@@ -832,9 +837,8 @@ sq:
         usable: Mund të përdoret
         usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
         used_by_over_week:
-          one: Përdorur nga një persona gjatë javës së kaluar
-          other: Përdorur nga %{count} persona gjatë javës së kaluar
-          zero: E papërdorur nga njeri gjatë javës së kaluar
+          one: Përdorur nga një person gjatë javës së kaluar
+          other: Përdorur nga %{count} vetë gjatë javës së kaluar
       title: Në modë
     warning_presets:
       add_new: Shtoni të ri
@@ -1408,6 +1412,7 @@ sq:
     profile: Profil
     relationships: Ndjekje dhe ndjekës
     statuses_cleanup: Fshirje e automatizuar postimesh
+    strikes: Paralajmërime nga moderimi
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
     webauthn_authentication: Kyçe sigurie
   statuses:
@@ -1428,6 +1433,7 @@ sq:
     disallowed_hashtags:
       one: 'përmbante një hashtag të palejuar: %{tags}'
       other: 'përmbante hashtag-ë të palejuar: %{tags}'
+    edited_at_html: Përpunuar më %{date}
     errors:
       in_reply_not_found: Gjendja të cilës po provoni t’i përgjigjeni s’duket se ekziston.
     open_in_web: Hape në internet

@@ -174,9 +174,10 @@ ru:
       perform_full_suspension: Блокировка
       previous_strikes: Предыдущие замечания
       previous_strikes_description_html:
-        one: У этой учетной записи <strong>одно</strong> замечание.
-        other: У этой учетной записи <strong>%{count}</strong> замечания.
-        zero: У этой учетной записи <strong>хорошая репутация</strong>.
+        few: У этой учётной записи <strong>%{count}</strong> замечания.
+        many: У этой учётной записи <strong>%{count}</strong> замечаний.
+        one: У этой учётной записи <strong>одно</strong> замечание.
+        other: У этой учетной записи <strong>%{count}</strong> замечание.
       promote: Повысить
       protocol: Протокол
       public: Публичный
@@ -480,6 +481,7 @@ ru:
       availability:
         no_failures_recorded: Сбоев в записи нет.
         title: Доступность
+        warning: Последняя попытка подключения к этому серверу не удалась
       back_to_all: Все узлы
       back_to_limited: Все ограниченные узлы
       back_to_warning: Все узлы требующие внимания
@@ -504,9 +506,10 @@ ru:
       destroyed_msg: Данные для домена %{domain} поставлены в очередь на удаление.
       empty: Домены не найдены.
       known_accounts:
+        few: "%{count} известные учётные записи"
+        many: "%{count} известных учётных записей"
         one: "%{count} известная учётная запись"
-        other: "%{count} известных учётных записей"
-        zero: Нет известных учётных записей
+        other: "%{count} известная учётная запись"
       moderation:
         all: Все
         limited: Ограниченные
@@ -742,10 +745,16 @@ ru:
         none: "%{name} отправил(а) предупреждение %{target}"
         sensitive: "%{name} отметил(а) учетную запись %{target} как деликатную"
         silence: "%{name} ограничил(а) учетную запись %{target}"
+      appeal_approved: Обжаловано
       appeal_pending: Обжалование в обработке
     system_checks:
       database_schema_check:
         message_html: Есть отложенные миграции базы данных. Запустите их, чтобы убедиться, что приложение работает должным образом
+      elasticsearch_running_check:
+        message_html: Не удалось подключиться к Elasticsearch. Пожалуйста, проверьте, что он запущен, или отключите полнотекстовый поиск
+      elasticsearch_version_check:
+        message_html: 'Несовместимая версия Elasticsearch: %{value}'
+        version_comparison: Запущен Elasticsearch %{running_version}, а необходим %{required_version}
       rules_check:
         action: Управление правилами сервера
         message_html: Вы не определили правила сервера.
@@ -765,9 +774,10 @@ ru:
         disallow: Запретить ссылку
         disallow_provider: Отклонить издание
         shared_by_over_week:
+          few: Поделилось %{count} человека за последнюю неделю
+          many: Поделилось %{count} человек за последнюю неделю
           one: Поделился один человек за последнюю неделю
-          other: Поделилось %{count} людей за последнюю неделю
-          zero: Никто не поделился за последнюю неделю
+          other: Поделился %{count} человек за последнюю неделю
         title: Актуальные ссылки
         usage_comparison: Поделились %{today} раз сегодня, по сравнению с %{yesterday} вчера
       pending_review: Ожидает рассмотрения
@@ -795,9 +805,10 @@ ru:
         usable: Может использоваться
         usage_comparison: Использовано %{today} сегодня, для сравнения вчера %{yesterday}
         used_by_over_week:
-          one: За последнюю неделю использовано одним человеком
-          other: За последнюю неделю использовано %{count} людьми
-          zero: За последнюю неделю никто не использовал
+          few: За последнюю неделю использовало %{count} человека
+          many: За последнюю неделю использовало %{count} человек
+          one: За последнюю неделю использовал один человек
+          other: За последнюю неделю использовал %{count} человек
       title: Популярное
     warning_presets:
       add_new: Добавить
@@ -806,6 +817,8 @@ ru:
       empty: Вы еще не определили пресеты предупреждений.
       title: Управление шаблонами предупреждений
   admin_mailer:
+    new_appeal:
+      subject: "%{username} обжалует решение модерации на %{instance}"
     new_pending_account:
       body: Ниже указана информация учётной записи. Вы можете одобрить или отклонить заявку.
       subject: Новая учётная запись для рассмотрения на %{instance} (%{username})

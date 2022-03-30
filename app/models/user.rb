@@ -91,11 +91,11 @@ class User < ApplicationRecord
   validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
-  validates_with BlacklistedEmailValidator, on: :create
+  validates_with BlacklistedEmailValidator, if: -> { !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
-  # Those are honeypot/antispam fields
+  # Honeypot/anti-spam fields
   attr_accessor :registration_form_time, :website, :confirm_password
 
   validates_with RegistrationFormTimeValidator, on: :create
@@ -208,8 +208,12 @@ class User < ApplicationRecord
     confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial? && account.moved_to_account_id.nil?
   end
 
+  def unconfirmed?
+    !confirmed?
+  end
+
   def unconfirmed_or_pending?
-    !(confirmed? && approved?)
+    unconfirmed? || pending?
   end
 
   def inactive_message

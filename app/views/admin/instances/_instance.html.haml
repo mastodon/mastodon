@@ -1,7 +1,7 @@
 .directory__tag
   = link_to admin_instance_path(instance) do
     %h4
-      = fa_icon 'warning fw' if instance.failing?
+      = fa_icon 'warning fw', title: t('admin.instances.availability.warning') if instance.failing?
       = instance.domain
 
       %small

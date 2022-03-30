@@ -160,9 +160,7 @@ zh-TW:
       perform_full_suspension: 停權
       previous_strikes: 先前的警示
       previous_strikes_description_html:
-        one: 此帳號已有 <strong>1</strong> 次警示。
         other: 此帳號已有 <strong>%{count}</strong> 次警示。
-        zero: 此帳號<strong>信譽良好</strong>。
       promote: 晉級
       protocol: 協議
       public: 公開
@@ -479,6 +477,7 @@ zh-TW:
           other: 錯誤嘗試於 %{count} 天。
         no_failures_recorded: 報告中沒有錯誤。
         title: 可用狀態
+        warning: 上一次嘗試連線至本伺服器失敗
       back_to_all: 所有
       back_to_limited: 受限制的
       back_to_warning: 警告
@@ -516,9 +515,7 @@ zh-TW:
       destroyed_msg: 來自 %{domain} 的資料現在正在佇列中等待刪除。
       empty: 找不到網域
       known_accounts:
-        one: "%{count} 個已知帳號"
         other: "%{count} 個已知帳號"
-        zero: 沒有已知帳號
       moderation:
         all: 全部
         limited: 限制
@@ -762,6 +759,11 @@ zh-TW:
     system_checks:
       database_schema_check:
         message_html: 有挂起的数据库迁移，请运行它们以确保应用程序按照预期运行。
+      elasticsearch_running_check:
+        message_html: 無法連接 Elasticsearch。請檢查是否正在執行中，或者已關閉全文搜尋。
+      elasticsearch_version_check:
+        message_html: 不相容的 Elasticsearch 版本：%{value}
+        version_comparison: Elasticsearch %{running_version} 版正在執行，需要 %{required_version} 版。
       rules_check:
         action: 管理服务器规则
         message_html: 你没有定义任何服务器规则。
@@ -782,9 +784,7 @@ zh-TW:
         disallow: 不允許連結
         disallow_provider: 不允許發行者
         shared_by_over_week:
-          one: 上週由 1 個人分享
-          other: 上週由 %{count} 個人分享
-          zero: 上週無人分享
+          other: 上週被 %{count} 名使用者分享
         title: 熱門連結
         usage_comparison: 於今日被 %{today} 人分享，相較於昨日 %{yesterday} 人
       pending_review: 等待審核中
@@ -824,9 +824,7 @@ zh-TW:
         usable: 可被使用
         usage_comparison: 於今日被使用 %{today} 次，相較於昨日 %{yesterday} 次
         used_by_over_week:
-          one: 上週被 1 個人使用
           other: 上週被 %{count} 個人使用
-          zero: 上週無人使用
       title: 熱門榜
     warning_presets:
       add_new: 新增

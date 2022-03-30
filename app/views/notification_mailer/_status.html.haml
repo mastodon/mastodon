@@ -23,15 +23,15 @@
                                       = image_tag full_asset_url(status.account.avatar.url), alt:''
                                     %td{ align: 'left' }
                                       %bdi= display_name(status.account)
-                                      = "@#{status.account.acct}"
+                                      = "@#{status.account.pretty_acct}"
 
                               - if status.spoiler_text?
                                 %div.auto-dir
                                   %p
-                                    = Formatter.instance.format_spoiler(status)
+                                    = status.spoiler_text
 
                               %div.auto-dir
-                                = Formatter.instance.format(status)
+                                = status_content_format(status)
 
                                 - if status.ordered_media_attachments.size > 0
                                   %p

@@ -166,9 +166,8 @@ da:
       perform_full_suspension: Suspendér
       previous_strikes: Tidligere anmeldelser (strikes)
       previous_strikes_description_html:
-        one: Denne konto har <strong>et</strong> anmeldelse.
+        one: Denne konto har <strong>en</strong> anmeldelse.
         other: Denne konto har <strong>%{count}</strong> anmeldelser.
-        zero: Denne konto er <strong>på god fod</strong>.
       promote: Forfrem
       protocol: Protokol
       public: Offentlig
@@ -490,6 +489,7 @@ da:
           other: Mislykkede forsøg på %{count} forskellige dage.
         no_failures_recorded: Ingen fejl noteret.
         title: Tilgængelighed
+        warning: Seneste forsøg på at oprette forbindelse til denne server mislykkedes
       back_to_all: Alle
       back_to_limited: Begrænset
       back_to_warning: Advarsel
@@ -529,7 +529,6 @@ da:
       known_accounts:
         one: "%{count} kendt konto"
         other: "%{count} kendte konti"
-        zero: Ingen kendt konto
       moderation:
         all: Alle
         limited: Begrænset
@@ -774,6 +773,11 @@ da:
     system_checks:
       database_schema_check:
         message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
+      elasticsearch_running_check:
+        message_html: Kunne ikke oprette forbindelse til Elasticsearch. Tjek, at den kører, eller deaktivér fuldtekstsøgning
+      elasticsearch_version_check:
+        message_html: 'Inkompatibel Elasticsearch-version: %{value}'
+        version_comparison: Elasticsearch %{running_version} kører, men %{required_version} kræves
       rules_check:
         action: Håndtér serverregler
         message_html: Ingen serverregler defineret.
@@ -794,9 +798,8 @@ da:
         disallow: Tillad ikke link
         disallow_provider: Tillad ikke udgiver
         shared_by_over_week:
-          one: Delt af én person i løbet af den seneste uge
-          other: Delt af %{count} personer i løbet af den seneste uge
-          zero: Ikke delt af nogen i løbet af den seneste uge
+          one: Delt af én person den seneste uge
+          other: Delt af %{count} personer den seneste uge
         title: Populære links
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
       pending_review: Afventer revision
@@ -837,9 +840,8 @@ da:
         usable: Kan anvendes
         usage_comparison: Anvendt %{today} gange i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
-          one: Anvendt af én person i løbet af den seneste uge
-          other: Anvendt af %{count} personer i løbet af den seneste uge
-          zero: Ikke anvendt af nogen i løbet af den seneste uge
+          one: Brugt af én person den seneste uge
+          other: Brugt af %{count} personer den seneste uge
       title: Trends
     warning_presets:
       add_new: Tilføj ny

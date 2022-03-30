@@ -169,10 +169,6 @@ lv:
       pending: Gaida pārskatīšanu
       perform_full_suspension: Apturēt
       previous_strikes: Iepriekšējie brīdinājumi
-      previous_strikes_description_html:
-        one: Šim kontam ir <strong>viens</strong> brīdinājums.
-        other: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
-        zero: Š konta <strong>stāvoklis ir labs</strong>.
       promote: Veicināt
       protocol: Protokols
       public: Publisks
@@ -501,6 +497,7 @@ lv:
           zero: Neizdevušies mēģinājumi %{count} dienās.
         no_failures_recorded: Nav reģistrētu kļūdu.
         title: Pieejamība
+        warning: Pēdējais mēģinājums izveidot savienojumu ar šo serveri ir bijis neveiksmīgs
       back_to_all: Visas
       back_to_limited: Ierobežotās
       back_to_warning: Brīdinājums
@@ -537,10 +534,6 @@ lv:
       delivery_error_hint: Ja piegāde nav iespējama %{count} dienas, tā tiks automātiski atzīmēta kā nepiegādājama.
       destroyed_msg: Dati no %{domain} tagad ir gaidīšanas rindā, lai tos drīzumā dzēstu.
       empty: Domēni nav atrasti.
-      known_accounts:
-        one: "%{count} zināms konts"
-        other: "%{count} zināmi konti"
-        zero: Nav zināmu kontu
       moderation:
         all: Visas
         limited: Ierobežotās
@@ -786,6 +779,11 @@ lv:
     system_checks:
       database_schema_check:
         message_html: Notiek datubāzu migrācijas. Lūdzu, palaid tās, lai nodrošinātu, ka lietojumprogramma darbojas, kā paredzēts
+      elasticsearch_running_check:
+        message_html: Nevarēja izveidot savienojumu ar Elasticsearch. Lūdzu, pārbaudi, vai tā darbojas, vai atspējo pilna teksta meklēšanu
+      elasticsearch_version_check:
+        message_html: 'Nesaderīga Elasticsearch versija: %{value}'
+        version_comparison: Darbojas Elasticsearch %{running_version}, tomēr ir nepieciešama %{required_version}
       rules_check:
         action: Pārvaldīt servera nosacījumus
         message_html: Tu neesi definējis nevienu servera nosacījumu.
@@ -805,10 +803,6 @@ lv:
         description_html: Šīs ir saites, kuras pašlaik bieži koplieto konti, no kuriem tavs serveris redz ziņas. Tas var palīdzēt taviem lietotājiem uzzināt, kas notiek pasaulē. Kamēr tu neapstiprini izdevēju, neviena saite netiek rādīta publiski. Vari arī atļaut vai noraidīt atsevišķas saites.
         disallow: Neatļaut saiti
         disallow_provider: Neatļaut publicētāju
-        shared_by_over_week:
-          one: Pēdējās nedēļas laikā kopīgoja viena persona
-          other: Pēdējās nedēļas laikā kopīgoja %{count} personas
-          zero: Pēdējās nedēļas laikā neviens nav kopīgojis
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
       pending_review: Gaida pārskatīšanu
@@ -849,10 +843,6 @@ lv:
         trending_rank: 'Populārākie #%{rank}'
         usable: Var tikt lietots
         usage_comparison: Šodien lietots %{today} reizes, salīdzinot ar %{yesterday} vakar
-        used_by_over_week:
-          one: Pēdējās nedēļas laikā izmantoja viens cilvēks
-          other: Pēdējās nedēļas laikā izmantoja %{count} personas
-          zero: Pēdējās nedēļas laikā neviens nav izmantojis
       title: Tendences
     warning_presets:
       add_new: Pievienot jaunu

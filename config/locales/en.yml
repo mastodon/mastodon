@@ -168,7 +168,6 @@ en:
       previous_strikes_description_html:
         one: This account has <strong>one</strong> strike.
         other: This account has <strong>%{count}</strong> strikes.
-        zero: This account is <strong>in good standing</strong>.
       promote: Promote
       protocol: Protocol
       public: Public
@@ -490,6 +489,7 @@ en:
           other: Failed attempts on %{count} different days.
         no_failures_recorded: No failures on record.
         title: Availability
+        warning: The last attempt to connect to this server has been unsuccessful
       back_to_all: All
       back_to_limited: Limited
       back_to_warning: Warning
@@ -529,7 +529,6 @@ en:
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
-        zero: No known account
       moderation:
         all: All
         limited: Limited
@@ -774,6 +773,11 @@ en:
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_running_check:
+        message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
+      elasticsearch_version_check:
+        message_html: 'Incompatible Elasticsearch version: %{value}'
+        version_comparison: Elasticsearch %{running_version} is running while %{required_version} is required
       rules_check:
         action: Manage server rules
         message_html: You haven't defined any server rules.
@@ -796,7 +800,6 @@ en:
         shared_by_over_week:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
-          zero: Shared by noone over the last week
         title: Trending links
         usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
       pending_review: Pending review
@@ -839,7 +842,6 @@ en:
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
-          zero: Used by noone over the last week
       title: Trends
     warning_presets:
       add_new: Add new

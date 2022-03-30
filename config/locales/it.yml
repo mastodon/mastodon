@@ -168,7 +168,6 @@ it:
       previous_strikes_description_html:
         one: Questo account ha <strong>una</strong> violazione.
         other: Questo account ha <strong>%{count}</strong> violazioni.
-        zero: Questo account ha <strong>una buona reputazione</strong>.
       promote: Promuovi
       protocol: Protocollo
       public: Pubblico
@@ -490,6 +489,7 @@ it:
           other: Tentativo fallito %{count} giorni differenti.
         no_failures_recorded: Nessun fallimento registrato.
         title: Disponibilità
+        warning: L'ultimo tentativo di connessione a questo server non è riuscito
       back_to_all: Tutto
       back_to_limited: Limitato
       back_to_warning: Avviso
@@ -529,7 +529,6 @@ it:
       known_accounts:
         one: "%{count} account noto"
         other: "%{count} account noti"
-        zero: Nessun account noto
       moderation:
         all: Tutto
         limited: Limitato
@@ -774,6 +773,11 @@ it:
     system_checks:
       database_schema_check:
         message_html: Ci sono migrazioni del database in attesa. Sei pregato di eseguirle per assicurarti che l'applicazione si comporti come previsto
+      elasticsearch_running_check:
+        message_html: Impossibile connettersi a Elasticsearch. Verificare che sia in esecuzione o disabilitare la ricerca full-text
+      elasticsearch_version_check:
+        message_html: 'Versione Elasticsearch incompatibile: %{value}'
+        version_comparison: È in esecuzione la versione %{running_version} di Elasticsearch, ma è richiesta la versione %{required_version}
       rules_check:
         action: Gestisci regole del server
         message_html: Non hai definito alcuna regola del server.
@@ -796,7 +800,6 @@ it:
         shared_by_over_week:
           one: Condiviso da una persona nell'ultima settimana
           other: Condiviso da %{count} persone nell'ultima settimana
-          zero: Condiviso da nessuno nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
       pending_review: Revisione in sospeso
@@ -839,7 +842,6 @@ it:
         used_by_over_week:
           one: Usato da una persona nell'ultima settimana
           other: Usato da %{count} persone nell'ultima settimana
-          zero: Usato da nessuno nell'ultima settimana
       title: Tendenze
     warning_presets:
       add_new: Aggiungi nuovo

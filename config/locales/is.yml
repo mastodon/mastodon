@@ -168,7 +168,6 @@ is:
       previous_strikes_description_html:
         one: Þessi notandaaðgangur er með <strong>eina</strong> refsingu.
         other: Þessi notandaaðgangur er með <strong>%{count}</strong> refsingar.
-        zero: Þessi notandaaðgangur er <strong>í góðu lagi</strong>.
       promote: Hækka í tign
       protocol: Samskiptamáti
       public: Opinber
@@ -490,6 +489,7 @@ is:
           other: Misheppnaðar tilraunir á %{count} mismunandi dögum.
         no_failures_recorded: Engar misheppnaðar tilraunir á skrá.
         title: Tiltækileiki
+        warning: Síðasta tilraun til að tengjast þessum netþjóni mistókst
       back_to_all: Allt
       back_to_limited: Takmarkað
       back_to_warning: Aðvörun
@@ -529,7 +529,6 @@ is:
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
         other: "%{count} þekktir notendaaðgangar"
-        zero: Enginn þekktur notandaaðgangur
       moderation:
         all: Allt
         limited: Takmarkað
@@ -774,6 +773,11 @@ is:
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
+      elasticsearch_running_check:
+        message_html: Gat ekki tengst við Elasticsearch-leitina. Gakktu úr skugga um að hún sé í gangi, eða gerðu leit í öllum texta óvirka
+      elasticsearch_version_check:
+        message_html: 'Ósamhæfð útgáfa Elasticsearch-leitar: %{value}'
+        version_comparison: Elasticsearch %{running_version} er í gangi á meðan útgáfa %{required_version} er nauðsynleg
       rules_check:
         action: Sýsla með reglur netþjónsins
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
@@ -796,7 +800,6 @@ is:
         shared_by_over_week:
           one: Deilt af einum aðila síðustu vikuna
           other: Deilt af %{count} aðilum síðustu vikuna
-          zero: Ekki deilt af neinum aðila síðustu vikuna
         title: Vinsælir tenglar
         usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
       pending_review: Bíður eftir yfirlestri
@@ -839,7 +842,6 @@ is:
         used_by_over_week:
           one: Notað af einum aðila síðustu vikuna
           other: Notað af %{count} aðilum síðustu vikuna
-          zero: Ekki notað af neinum aðila síðustu vikuna
       title: Tilhneiging
     warning_presets:
       add_new: Bæta við nýju

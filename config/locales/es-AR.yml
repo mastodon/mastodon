@@ -168,7 +168,6 @@ es-AR:
       previous_strikes_description_html:
         one: Esta cuenta tiene <strong>un</strong> incumplimiento.
         other: Esta cuenta tiene <strong>%{count}</strong> incumplimientos.
-        zero: Esta cuenta está <strong>en buen estado</strong>.
       promote: Promover
       protocol: Protocolo
       public: Pública
@@ -490,6 +489,7 @@ es-AR:
           other: Intentos fallidos en %{count} días.
         no_failures_recorded: No hay fallos en el registro.
         title: Disponibilidad
+        warning: El último intento de conexión a este servidor no fue exitoso
       back_to_all: Todos
       back_to_limited: Limitados
       back_to_warning: Advertencia
@@ -529,7 +529,6 @@ es-AR:
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentas conocidas"
-        zero: Ninguna cuenta conocida
       moderation:
         all: Todas
         limited: Limitadas
@@ -774,6 +773,11 @@ es-AR:
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecutalas para asegurarte de que la aplicación funciona según lo esperado
+      elasticsearch_running_check:
+        message_html: No se pudo conectar a Elasticsearch. Por favor, revisá que se esté ejecutando, o deshabilitá la búsqueda de texto completo
+      elasticsearch_version_check:
+        message_html: 'Versión incompatible de Elasticsearch: %{value}'
+        version_comparison: Se está ejecutando la versión %{running_version} de Elasticsearch, mientras que la versión requerida es la %{required_version}
       rules_check:
         action: Administrar reglas del servidor
         message_html: No definiste ninguna regla del servidor.
@@ -794,9 +798,8 @@ es-AR:
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
         shared_by_over_week:
-          one: Compartido por una persona en la última semana
-          other: Compartido por %{count} personas en la última semana
-          zero: Compartido por nadie en la última semana
+          one: Compartido por una persona durante la última semana
+          other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
       pending_review: Revisión pendiente
@@ -837,9 +840,8 @@ es-AR:
         usable: Pueden usarse
         usage_comparison: Usadas %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
         used_by_over_week:
-          one: Usada por una persona en la última semana
-          other: Usada por %{count} personas en la última semana
-          zero: Usada por nadie en la última semana
+          one: Usada por una persona durante la última semana
+          other: Usada por %{count} personas durante la última semana
       title: Tendencias
     warning_presets:
       add_new: Agregar nuevo

@@ -170,7 +170,6 @@ hu:
       previous_strikes_description_html:
         one: Ezt a fiókot <strong>egyszer</strong> szankcionálták.
         other: Ezt a fiókot <strong>%{count}</strong> esetben szankcionálták.
-        zero: Ez a fiók <strong>makulátlan</strong>.
       promote: Előléptetés
       protocol: Protokoll
       public: Nyilvános
@@ -492,6 +491,7 @@ hu:
           other: Sikertelen próbálkozás %{count} különböző napon.
         no_failures_recorded: Nem rögzítettünk hibát.
         title: Elérhetőség
+        warning: Sikertelen volt az utolsó csatlakozási próbálkozás ehhez a szerverhez
       back_to_all: Mind
       back_to_limited: Korlátozott
       back_to_warning: Figyelmeztetés
@@ -531,7 +531,6 @@ hu:
       known_accounts:
         one: "%{count} ismert fiók"
         other: "%{count} ismert fiók"
-        zero: Nincs ismert fiók
       moderation:
         all: Mind
         limited: Korlátozott
@@ -776,6 +775,11 @@ hu:
     system_checks:
       database_schema_check:
         message_html: Vannak esedékes adatbázis migrációink. Kérlek, futtasd őket, hogy biztosítsd, hogy az alkalmazás megfelelően működjön
+      elasticsearch_running_check:
+        message_html: Nem sikerült az Elasticsearchhöz kapcsolódni. Ellenőrizze, hogy fut-e, vagy kapcsolja ki a teljes szöveges keresést.
+      elasticsearch_version_check:
+        message_html: 'Nem kompatibilis Elasticsearch verzió: %{value}'
+        version_comparison: Az Elasticsearch %{running_version} fut, de %{required_version} szükséges
       rules_check:
         action: Szerver szabályok menedzselése
         message_html: Még nem definiáltál egy szerver szabályt sem.
@@ -796,9 +800,8 @@ hu:
         disallow: Hivatkozás letiltása
         disallow_provider: Közzétevő letiltása
         shared_by_over_week:
-          one: Egy ember osztotta meg az elmúlt héten
-          other: "%{count} ember osztotta meg az elmúlt héten"
-          zero: Senki sem osztotta meg az elmúlt héten
+          one: Egy ember osztotta meg a múlt héten
+          other: "%{count} ember osztotta meg a múlt héten"
         title: Felkapott hivatkozások
         usage_comparison: "%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest"
       pending_review: Áttekintésre vár
@@ -841,7 +844,6 @@ hu:
         used_by_over_week:
           one: Egy ember használta a múlt héten
           other: "%{count} ember használta a múlt héten"
-          zero: Senki sem használta a múlt héten
       title: Trendek
     warning_presets:
       add_new: Új hozzáadása

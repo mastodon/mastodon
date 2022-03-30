@@ -5,9 +5,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
     let!(:local_follower) { Fabricate(:user, current_sign_in_at: 1.hour.ago).account }
     let!(:list)           { Fabricate(:list, account: local_follower) }
 
-    subject do
-      -> { described_class.new.call(account) }
-    end
+    subject { described_class.new.call(account) }
 
     before do
       allow(FeedManager.instance).to receive(:merge_into_home).and_return(nil)
@@ -33,7 +31,7 @@ RSpec.describe UnsuspendAccountService, type: :service do
     end
 
     it 'marks account as unsuspended' do
-      is_expected.to change { account.suspended? }.from(true).to(false)
+      expect { subject }.to change { account.suspended? }.from(true).to(false)
     end
 
     include_examples 'common behavior' do
@@ -47,13 +45,13 @@ RSpec.describe UnsuspendAccountService, type: :service do
       end
 
       it "merges back into local followers' feeds" do
-        subject.call
+        subject
         expect(FeedManager.instance).to have_received(:merge_into_home).with(account, local_follower)
         expect(FeedManager.instance).to have_received(:merge_into_list).with(account, list)
       end
 
       it 'sends an update actor to followers and reporters' do
-        subject.call
+        subject
         expect(a_request(:post, remote_follower.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
         expect(a_request(:post, remote_reporter.inbox_url).with { |req| match_update_actor_request(req, account) }).to have_been_made.once
       end
@@ -75,18 +73,18 @@ RSpec.describe UnsuspendAccountService, type: :service do
         end
 
         it 're-fetches the account' do
-          subject.call
+          subject
           expect(resolve_account_service).to have_received(:call).with(account)
         end
 
         it "merges back into local followers' feeds" do
-          subject.call
+          subject
           expect(FeedManager.instance).to have_received(:merge_into_home).with(account, local_follower)
           expect(FeedManager.instance).to have_received(:merge_into_list).with(account, list)
         end
 
         it 'marks account as unsuspended' do
-          is_expected.to change { account.suspended? }.from(true).to(false)
+          expect { subject }.to change { account.suspended? }.from(true).to(false)
         end
       end
 
@@ -99,18 +97,18 @@ RSpec.describe UnsuspendAccountService, type: :service do
         end
 
         it 're-fetches the account' do
-          subject.call
+          subject
           expect(resolve_account_service).to have_received(:call).with(account)
         end
 
         it "does not merge back into local followers' feeds" do
-          subject.call
+          subject
           expect(FeedManager.instance).to_not have_received(:merge_into_home).with(account, local_follower)
           expect(FeedManager.instance).to_not have_received(:merge_into_list).with(account, list)
         end
 
         it 'does not mark the account as unsuspended' do
-          is_expected.not_to change { account.suspended? }
+          expect { subject }.not_to change { account.suspended? }
         end
       end
 
@@ -120,12 +118,12 @@ RSpec.describe UnsuspendAccountService, type: :service do
         end
 
         it 're-fetches the account' do
-          subject.call
+          subject
           expect(resolve_account_service).to have_received(:call).with(account)
         end
 
         it "does not merge back into local followers' feeds" do
-          subject.call
+          subject
           expect(FeedManager.instance).to_not have_received(:merge_into_home).with(account, local_follower)
           expect(FeedManager.instance).to_not have_received(:merge_into_list).with(account, list)
         end

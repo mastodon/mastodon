@@ -168,7 +168,6 @@ ca:
       previous_strikes_description_html:
         one: Aquest compte té <strong>una</strong> acció.
         other: Aquest compte té <strong>%{count}</strong> accions.
-        zero: Aquest compte està <strong>al dia</strong>.
       promote: Promociona
       protocol: Protocol
       public: Públic
@@ -490,6 +489,7 @@ ca:
           other: Intents fallits en %{count} diferents dies.
         no_failures_recorded: Sense errors registrats.
         title: Disponibilitat
+        warning: El darrer intent de connectar a aquest servidor no ha tingut èxit
       back_to_all: Totes
       back_to_limited: Limitades
       back_to_warning: Avís
@@ -529,7 +529,6 @@ ca:
       known_accounts:
         one: "%{count} compte conegut"
         other: "%{count} comptes coneguts"
-        zero: Cap compte conegut
       moderation:
         all: Totes
         limited: Limitades
@@ -774,6 +773,11 @@ ca:
     system_checks:
       database_schema_check:
         message_html: Hi ha pendents migracions de la base de dades. Si us plau executa-les per a assegurar que l'aplicació es comporta com s'espera
+      elasticsearch_running_check:
+        message_html: No s'ha pogut connectar a Elasticsearch. Si us plau verifica que estigui funcionant o desactiva la cerca de text complet
+      elasticsearch_version_check:
+        message_html: 'Versió incompatible de Elasticsearch: %{value}'
+        version_comparison: Elasticsearch %{running_version} està funcionant mentre %{required_version} és requerida
       rules_check:
         action: Gestiona les normes del servidor
         message_html: No has definit cap norma del servidor.
@@ -794,9 +798,8 @@ ca:
         disallow: No permetre l'enllaç
         disallow_provider: No permetre el mitjà
         shared_by_over_week:
-          one: Compartit per un usuari en la darrera setmana
-          other: Compartit per %{count} usuaris en la darrera setmana
-          zero: Compartit per ningú en la darrera setmana
+          one: Compartit per una persona en la darrera setmana
+          other: Compartit per %{count} persones en la darrera setmana
         title: Enllaços en tendència
         usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
       pending_review: Revisió pendent
@@ -837,9 +840,8 @@ ca:
         usable: Pot ser emprat
         usage_comparison: Usat %{today} vegades avui, comparat amb %{yesterday} d'ahir
         used_by_over_week:
-          one: Emprat per un usuari en la darrera setmana
-          other: Emprat per %{count} usuaris en la darrera setmana
-          zero: Emprat per ningú en la darrera setmana
+          one: Emprat per una persona en la darrera setmana
+          other: Emprat per %{count} persones en la darrera setmana
       title: Tendència
     warning_presets:
       add_new: Afegir-ne un de nou

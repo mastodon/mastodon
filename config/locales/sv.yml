@@ -160,10 +160,6 @@ sv:
       pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
       previous_strikes: Tidigare varningar
-      previous_strikes_description_html:
-        one: Detta konto har <strong>en</strong> varning.
-        other: Detta konto har <strong>%{count}</strong> varningar.
-        zero: Detta konto är <strong>i gott skick</strong>.
       promote: Befordra
       protocol: Protokoll
       public: Offentlig
@@ -404,6 +400,8 @@ sv:
       status: Status
       title: Följ rekommendationer
     instances:
+      availability:
+        warning: Det senaste försöket att ansluta till denna värddator har misslyckats
       back_to_all: Alla
       back_to_limited: Begränsat
       back_to_warning: Varning
