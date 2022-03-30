@@ -20,7 +20,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
     attributes :name, :value, :verified_at
 
     def value
-      html_aware_format(object.value, object.account.local?, with_rel_me: true, with_domains: true, multiline: false)
+      account_field_value_format(object)
     end
   end
 
@@ -35,7 +35,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def note
-    object.suspended? ? '' : html_aware_format(object.note, object.local?)
+    object.suspended? ? '' : account_bio_format(object)
   end
 
   def url

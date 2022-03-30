@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Extractor
+  MAX_DOMAIN_LENGTH = 253
+
   extend Twitter::TwitterText::Extractor
 
   module_function
@@ -30,6 +32,10 @@ module Extractor
       after      = $'
 
       unless Twitter::TwitterText::Regex[:end_mention_match].match?(after)
+        _, domain = screen_name.split('@')
+
+        next if domain.present? && domain.length > MAX_DOMAIN_LENGTH
+
         start_position = match_data.char_begin(1) - 1
         end_position   = match_data.char_end(1)
 

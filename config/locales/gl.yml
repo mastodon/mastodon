@@ -165,10 +165,6 @@ gl:
       pending: Revisión pendente
       perform_full_suspension: Suspender
       previous_strikes: Accións previas
-      previous_strikes_description_html:
-        one: Esta conta ten <strong>un</strong> evento.
-        other: Esta conta ten <strong>%{count}</strong> eventos.
-        zero: Esta conta ten <strong>boa reputación</strong>.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -527,10 +523,6 @@ gl:
       delivery_error_hint: Se non é posible a entrega durante %{count} días, será automáticamente marcado como non entregable.
       destroyed_msg: Os datos desde %{domain} están na cola para o borrado inminente.
       empty: Non se atopan dominios.
-      known_accounts:
-        one: "%{count} conta coñecida"
-        other: "%{count} contas coñecidas"
-        zero: Sen contas coñecidas
       moderation:
         all: Todo
         limited: Limitado
@@ -775,6 +767,11 @@ gl:
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
+      elasticsearch_running_check:
+        message_html: Non se puido conectar con Elasticsearch. Comproba que está funcionando, ou desactiva a busca por texto completo
+      elasticsearch_version_check:
+        message_html: 'Versión incompatible de Elasticsearch: %{value}'
+        version_comparison: Está executándose Elasticsearch %{running_version} pero requírese a %{required_version}
       rules_check:
         action: Xestionar regras do servidor
         message_html: Non tes definidas regras para o servidor.
@@ -794,10 +791,6 @@ gl:
         description_html: Estas son ligazóns que actualmente están sendo compartidas por moitas contas das que o teu servidor recibe publicación. Pode ser de utilidade para as túas usuarias para saber o que acontece polo mundo. Non se mostran ligazóns de xeito público a non ser que autorices a quen as publica. Tamén podes permitir ou rexeitar ligazóns de xeito individual.
         disallow: Denegar ligazón
         disallow_provider: Denegar orixe
-        shared_by_over_week:
-          one: Compartido por unha persoa na última semana
-          other: Compartido por %{count} persoas na última semana
-          zero: Non foi compartido na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
       pending_review: Revisión pendente
@@ -837,10 +830,6 @@ gl:
         trending_rank: 'En voga #%{rank}'
         usable: Pode ser usado
         usage_comparison: Utilizado %{today} veces hoxe, comparado coas %{yesterday} de onte
-        used_by_over_week:
-          one: Utilizado por unha persoa na última semana
-          other: Utilizado por %{count} persoas na última semana
-          zero: Non foi utilizado na última semana
       title: Tendencias
     warning_presets:
       add_new: Engadir novo

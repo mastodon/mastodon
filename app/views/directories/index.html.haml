@@ -34,7 +34,7 @@
                 = fa_icon('lock') if account.locked?
         - if account.note.present?
           .account-card__bio.emojify
-            = prerender_custom_emojis(html_aware_format(account.note, account.local?), account.emojis)
+            = prerender_custom_emojis(account_bio_format(account), account.emojis)
         - else
           .flex-spacer
         .account-card__actions
