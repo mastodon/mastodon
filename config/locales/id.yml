@@ -160,9 +160,7 @@ id:
       perform_full_suspension: Lakukan suspen penuh
       previous_strikes: Peringatan sebelumnya
       previous_strikes_description_html:
-        one: Akun ini mendapatkan <strong>satu</strong> peringatan.
-        other: Akun ini mendapatkan <strong>%{count}</strong> peringatan.
-        zero: Akun ini <strong>status bagus</strong>.
+        other: Akun ini mendapatkan <strong>%{count}</strong> hukuman.
       promote: Promosikan
       protocol: Protokol
       public: Publik
@@ -515,9 +513,7 @@ id:
       destroyed_msg: Data dari %{domain} masuk antrean dihapus dalam waktu dekat.
       empty: Domain tidak ditemukan.
       known_accounts:
-        one: "%{count} akun dikenal"
-        other: "%{count} akun dikenal"
-        zero: Tidak ada akun yang dikenal
+        other: "%{count} akun yang dikenal"
       moderation:
         all: Semua
         limited: Terbatas
@@ -761,6 +757,11 @@ id:
     system_checks:
       database_schema_check:
         message_html: Ada proses migrasi basis data tertunda. Silakan jalankan untuk memastikan aplikasi bekerja seperti yang diharapkan
+      elasticsearch_running_check:
+        message_html: Tidak dapat tersambung ke Elasticsearch. Pastikan itu berjalan, atau nonaktifkan pencarian teks penuh
+      elasticsearch_version_check:
+        message_html: 'Versi Elasticsearch tidak kompatibel: %{value}'
+        version_comparison: Elasticsearch %{running_version} sedang berjalan, sementara yang diwajibkan adalah %{required_version}
       rules_check:
         action: Kelola aturan server
         message_html: Anda belum menentukan aturan server apapun.
@@ -781,9 +782,7 @@ id:
         disallow: Batalkan izin tautan
         disallow_provider: Batalkan izin penerbit
         shared_by_over_week:
-          one: Dibagikan oleh satu orang lebih dari seminggu lalu
-          other: Dibagikan oleh %{count} orang lebih dari seminggu lalu
-          zero: Tidak dibagikan siapapun lebih dari seminggu lalu
+          other: Dibagikan oleh %{count} orang selama seminggu terakhir
         title: Tautan sedang tren
         usage_comparison: Dibagikan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
       pending_review: Tinjauan tertunda
@@ -823,9 +822,7 @@ id:
         usable: Dapat digunakan
         usage_comparison: Digunakan %{today} kali hari ini, dibandingkan %{yesterday} kemarin
         used_by_over_week:
-          one: Dipakai oleh satu orang lebih dari seminggu lalu
-          other: Dipakai oleh %{count} orang selama seminggu terakhir
-          zero: Tidak dipakai siapapun lebih dari seminggu lalu
+          other: Digunakan oleh %{count} orang selama seminggu terakhir
       title: Tren
     warning_presets:
       add_new: Tambah baru

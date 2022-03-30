@@ -168,7 +168,6 @@ es:
       previous_strikes_description_html:
         one: Esta cuenta tiene <strong>una</strong> amonestación.
         other: Esta cuenta tiene <strong>%{count}</strong> amonestaciones.
-        zero: Esta cuenta está <strong>en buen estado</strong>.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -530,7 +529,6 @@ es:
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentas conocidas"
-        zero: Ninguna cuenta conocida
       moderation:
         all: Todos
         limited: Limitado
@@ -775,6 +773,11 @@ es:
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
+      elasticsearch_running_check:
+        message_html: No se pudo conectar a Elasticsearch. Por favor, comprueba que está ejecutándose, o desactiva la búsqueda de texto completo
+      elasticsearch_version_check:
+        message_html: 'Versión incompatible de Elasticsearch: %{value}'
+        version_comparison: Elasticsearch %{running_version} se está ejecutando pero se necesita Elasticsearch %{required_version}
       rules_check:
         action: Administrar reglas del servidor
         message_html: No ha definido ninguna regla del servidor.
@@ -795,9 +798,8 @@ es:
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
         shared_by_over_week:
-          one: Compartido por una persona en la última semana
+          one: Compartido por una persona durante la última semana
           other: Compartido por %{count} personas durante la última semana
-          zero: Compartido por nadie en la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con %{yesterday} ayer
       pending_review: Revisión pendiente
@@ -840,7 +842,6 @@ es:
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
-          zero: Usada por nadie en la última semana
       title: Tendencias
     warning_presets:
       add_new: Añadir nuevo
