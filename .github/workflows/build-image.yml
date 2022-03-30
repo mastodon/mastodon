@@ -13,9 +13,6 @@ on:
 jobs:
   build-image:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [linux/arm64, linux/amd64]
     steps:
       - uses: actions/checkout@v2
       - uses: docker/setup-qemu-action@v1
@@ -38,7 +35,7 @@ jobs:
       - uses: docker/build-push-action@v2
         with:
           context: .
-          platforms: ${{ matrix.os }}
+          platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=registry,ref=tootsuite/mastodon:latest
