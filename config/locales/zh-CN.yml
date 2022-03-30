@@ -161,10 +161,6 @@ zh-CN:
       pending: 待审核
       perform_full_suspension: 封禁
       previous_strikes: 既往处罚
-      previous_strikes_description_html:
-        one: 此账号有<strong>1次</strong>处罚。
-        other: 此账号有<strong>%{count}次</strong>处罚。
-        zero: 此账号<strong>记录良好</strong>。
       promote: 升任
       protocol: 协议
       public: 公开页面
@@ -516,10 +512,6 @@ zh-CN:
       delivery_error_hint: 如果投递已不可用 %{count} 天，它将被自动标记为无法投递。
       destroyed_msg: "%{domain} 中的数据现在正在排队等待被立刻删除。"
       empty: 暂无域名。
-      known_accounts:
-        one: "%{count} 个已知帐户"
-        other: "%{count} 个已知帐户"
-        zero: 没有已知账户
       moderation:
         all: 全部
         limited: 受限的
@@ -782,10 +774,6 @@ zh-CN:
         description_html: 这些是当前此服务器可见账号的嘟文中被大量分享的链接。它可以帮助用户了解正在发生的事情。发布者获得批准前不会公开显示任何链接。你也可以批准或拒绝单个链接。
         disallow: 不允许链接
         disallow_provider: 不允许发布者
-        shared_by_over_week:
-          one: 过去一周内被 1 个人分享过
-          other: 过去一周内被 %{count} 个人分享过
-          zero: 过去一周内未被分享过
         title: 热门链接
         usage_comparison: 今日被分享 %{today} 次，前一日为 %{yesterday} 次
       pending_review: 待审核
@@ -824,10 +812,6 @@ zh-CN:
         trending_rank: '热门 #%{rank}'
         usable: 可以使用
         usage_comparison: 今日被使用 %{today} 次，前一日为 %{yesterday} 次
-        used_by_over_week:
-          one: 过去一周内被 1 个人使用过
-          other: 过去一周内被 %{count} 个人使用过
-          zero: 过去一周内未被使用过
       title: 流行趋势
     warning_presets:
       add_new: 添加新条目
