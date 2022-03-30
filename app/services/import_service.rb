@@ -20,6 +20,8 @@ class ImportService < BaseService
       import_domain_blocks!
     when 'bookmarks'
       import_bookmarks!
+    when 'lists'
+      import_lists!
     end
   end
 
@@ -121,6 +123,30 @@ class ImportService < BaseService
 
     statuses.each do |status|
       @account.bookmarks.find_or_create_by!(account: @account, status: status)
+    end
+  end
+
+  def import_lists!
+    parse_import_data!(['List name', 'Account address'])
+    items = @data.take(ROWS_PROCESSING_LIMIT).map { |row|
+      [row['List name'], row['Account address']]
+    }
+    list_titles = items.map {|row| row[0]}.uniq
+
+    if @import.overwrite?
+      List.where(title: list_titles, account: @account).destroy_all
+    end
+
+    items.each do |listname, accountname|
+      list = @account.lists.find_or_create_by!(account: @account, title: listname)
+      username, domain = accountname.split('@')
+
+      acct = domain == Rails.configuration.x.local_domain ? Account.find_local(username) : Account.find_remote(username, domain)
+      next if acct.nil?
+
+      unless list.accounts.include? acct
+        list.accounts << acct
+      end
     end
   end
 
