@@ -732,6 +732,11 @@ cs:
         disallow: Zakázat příspěvek
         disallow_account: Zakázat autora
         not_discoverable: Autor nepovolil navrhování svého účtu ostatním
+        shared_by:
+          one: Jednou sdílen nebo oblíben
+          few: '%{friendly_count} sdílení nebo oblíbení'
+          many: '%{friendly_count} sdílení nebo oblíbení'
+          other: '%{friendly_count} sdílení nebo oblíbení'
         title: Populární příspěvky
       tags:
         current_score: Aktuální skóre %{score}
@@ -773,11 +778,15 @@ cs:
       body_remote: Někdo z domény %{domain} nahlásil uživatele %{target}
       subject: 'Nové hlášení pro %{instance} (#%{id})'
     new_trends:
+      body: 'Následující položky vyžadují posouzení, než mohou být zobrazeny veřejně:'
       new_trending_links:
+        no_approved_links: Momentálně nejsou žádné schválené populární odkazy.
         title: Populární odkazy
       new_trending_statuses:
+        no_approved_statuses: Momentálně nejsou žádné schválené populární příspěvky.
         title: Populární příspěvky
       new_trending_tags:
+        no_approved_tags: Momentálně nejsou žádné schválené populární hashtagy.
         title: Populární hashtagy
       subject: Nové trendy k posouzení na %{instance}
   aliases:
