@@ -723,6 +723,11 @@ cs:
         rejected: Odkazy z tohoto vydavatele se neobjeví mezi populárními
         title: Vydavatelé
       rejected: Zamítnutí
+      statuses:
+        allow: Povolit příspěvek
+        allow_account: Povolit autora
+        disallow: Zakázat příspěvek
+        disallow_account: Zakázat autora
       tags:
         current_score: Aktuální skóre %{score}
         dashboard:
@@ -1297,10 +1302,10 @@ cs:
     content_warning: 'Varování o obsahu: %{warning}'
     default_language: Stejný jako jazyk rozhraní
     disallowed_hashtags:
-      one: 'obsahoval nepovolený hashtag: %{tags}'
-      few: 'obsahoval nepovolené hashtagy: %{tags}'
-      many: 'obsahoval nepovolené hashtagy: %{tags}'
-      other: 'obsahoval nepovolené hashtagy: %{tags}'
+      one: 'obsahoval zakázaný hashtag: %{tags}'
+      few: 'obsahoval zakázané hashtagy: %{tags}'
+      many: 'obsahoval zakázané hashtagy: %{tags}'
+      other: 'obsahoval zakázané hashtagy: %{tags}'
     errors:
       in_reply_not_found: Příspěvek, na který se pokoušíte odpovědět, neexistuje.
     open_in_web: Otevřít na webu
