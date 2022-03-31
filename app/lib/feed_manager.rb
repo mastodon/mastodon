@@ -5,7 +5,6 @@ require 'singleton'
 class FeedManager
   include Singleton
   include Redisable
-  include FormattingHelper
 
   # Maximum number of items stored in a single feed
   MAX_ITEMS = 400
@@ -501,16 +500,8 @@ class FeedManager
     return false if active_filters.empty?
 
     combined_regex = Regexp.union(active_filters)
-    status         = status.reblog if status.reblog?
 
-    combined_text = [
-      extract_status_plain_text(status),
-      status.spoiler_text,
-      status.preloadable_poll ? status.preloadable_poll.options.join("\n\n") : nil,
-      status.ordered_media_attachments.map(&:description).join("\n\n"),
-    ].compact.join("\n\n")
-
-    combined_regex.match?(combined_text)
+    combined_regex.match?(status.proper.searchable_text)
   end
 
   # Adds a status to an account's feed, returning true if a status was

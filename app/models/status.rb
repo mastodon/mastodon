@@ -160,6 +160,15 @@ class Status < ApplicationRecord
     ids.uniq
   end
 
+  def searchable_text
+    [
+      spoiler_text,
+      FormattingHelper.extract_status_plain_text(self),
+      preloadable_poll ? preloadable_poll.options.join("\n\n") : nil,
+      ordered_media_attachments.map(&:description).join("\n\n"),
+    ].compact.join("\n\n")
+  end
+
   def reply?
     !in_reply_to_id.nil? || attributes['reply']
   end
