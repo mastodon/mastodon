@@ -50,6 +50,32 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       expect(status.reload.spoiler_text).to eq 'Show more'
     end
 
+    context 'when the changes are only in sanitized-out HTML' do
+      let!(:status) { Fabricate(:status, text: '<p>Hello world <a href="https://joinmastodon.org" rel="nofollow">joinmastodon.org</a></p>', account: Fabricate(:account, domain: 'example.com')) }
+
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Note',
+          updated: '2021-09-08T22:39:25Z',
+          content: '<p>Hello world <a href="https://joinmastodon.org" rel="noreferrer">joinmastodon.org</a></p>',
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.edited?).to be false
+      end
+    end
+
     context 'when the status has not been explicitly edited' do
       let(:payload) do
         {
