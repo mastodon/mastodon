@@ -728,6 +728,7 @@ cs:
         allow_account: Povolit autora
         disallow: Zakázat příspěvek
         disallow_account: Zakázat autora
+        title: Populární příspěvky
       tags:
         current_score: Aktuální skóre %{score}
         dashboard:
@@ -766,6 +767,13 @@ cs:
       body: "Uživatel %{reporter} nahlásil uživatele %{target}"
       body_remote: Někdo z domény %{domain} nahlásil uživatele %{target}
       subject: 'Nové hlášení pro %{instance} (#%{id})'
+    new_trends:
+      new_trending_links:
+        title: Populární odkazy
+      new_trending_statuses:
+        title: Populární příspěvky
+      new_trending_tags:
+        title: Populární hashtagy
   aliases:
     add_new: Vytvořit alias
     created_msg: Nový alias byl úspěšně vytvořen. Nyní můžete zahájit přesun ze starého účtu.
