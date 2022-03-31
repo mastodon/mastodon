@@ -132,7 +132,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @status.spoiler_text = @status_parser.spoiler_text || ''
     @status.sensitive    = @account.sensitized? || @status_parser.sensitive || false
     @status.language     = @status_parser.language
-    @status.edited_at    = @status_parser.edited_at || Time.now.utc if significant_changes?
+
+    @significant_changes = text_significantly_changed? || @status.spoiler_text_changed? || @media_attachments_changed || @poll_changed
+
+    @status.edited_at = @status_parser.edited_at if significant_changes?
 
     @status.save!
   end
@@ -243,7 +246,14 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def significant_changes?
-    @status.text_changed? || @status.text_previously_changed? || @status.spoiler_text_changed? || @status.spoiler_text_previously_changed? || @media_attachments_changed || @poll_changed
+    @significant_changes
+  end
+
+  def text_significantly_changed?
+    return false unless @status.text_changed?
+
+    old, new = @status.text_change
+    HtmlAwareFormatter.new(old, false).to_s != HtmlAwareFormatter.new(new, false).to_s
   end
 
   def already_updated_more_recently?
