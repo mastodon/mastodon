@@ -1,5 +1,9 @@
 require 'rails_helper'
 
+def poll_option_json(name, votes)
+  { type: 'Note', name: name, replies: { type: 'Collection', totalItems: votes } }
+end
+
 RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
   let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }
 
@@ -70,6 +74,111 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
 
       it 'does not update the text' do
         expect(status.reload.text).to eq 'Hello world'
+      end
+    end
+
+    context 'when the status has not been explicitly edited and features a poll' do
+      let(:account)    { Fabricate(:account, domain: 'example.com') }
+      let!(:expiration) { 10.days.from_now.utc }
+      let!(:status) do
+        Fabricate(:status,
+          text: 'Hello world',
+          account: account,
+          poll_attributes: {
+            options: %w(Foo Bar),
+            account: account,
+            multiple: false,
+            hide_totals: false,
+            expires_at: expiration
+          }
+        )
+      end
+
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://example.com/foo',
+          type: 'Question',
+          content: 'Hello world',
+          endTime: expiration.iso8601,
+          oneOf: [
+            poll_option_json('Foo', 4),
+            poll_option_json('Bar', 3),
+          ],
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.reload.edited?).to be false
+      end
+
+      it 'does not update the text' do
+        expect(status.reload.text).to eq 'Hello world'
+      end
+
+      it 'updates tallies' do
+        expect(status.poll.reload.cached_tallies).to eq [4, 3]
+      end
+    end
+
+    context 'when the status changes a poll despite being not explicitly marked as updated' do
+      let(:account)    { Fabricate(:account, domain: 'example.com') }
+      let!(:expiration) { 10.days.from_now.utc }
+      let!(:status) do
+        Fabricate(:status,
+          text: 'Hello world',
+          account: account,
+          poll_attributes: {
+            options: %w(Foo Bar),
+            account: account,
+            multiple: false,
+            hide_totals: false,
+            expires_at: expiration
+          }
+        )
+      end
+
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://example.com/foo',
+          type: 'Question',
+          content: 'Hello world',
+          endTime: expiration.iso8601,
+          oneOf: [
+            poll_option_json('Foo', 4),
+            poll_option_json('Bar', 3),
+            poll_option_json('Baz', 3),
+          ],
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.reload.edited?).to be false
+      end
+
+      it 'does not update the text' do
+        expect(status.reload.text).to eq 'Hello world'
+      end
+
+      it 'does not update tallies' do
+        expect(status.poll.reload.cached_tallies).to eq [0, 0]
       end
     end
 
