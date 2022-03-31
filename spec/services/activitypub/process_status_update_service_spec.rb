@@ -46,6 +46,49 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       expect(status.reload.spoiler_text).to eq 'Show more'
     end
 
+    context 'when the status has not been explicitly edited' do
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Note',
+          content: 'Updated text',
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.reload.edited?).to be false
+      end
+
+      it 'does not update the text' do
+        expect(status.reload.text).to eq 'Hello world'
+      end
+    end
+
+    context 'when receiving an edit older than the latest processed' do
+      before do
+        status.snapshot!(at_time: status.created_at, rate_limit: false)
+        status.update!(text: 'Hello newer world', edited_at: Time.now.utc)
+        status.snapshot!(rate_limit: false)
+      end
+
+      it 'does not create any edits' do
+        expect { subject.call(status, json) }.not_to change { status.reload.edits.pluck(&:id) }
+      end
+
+      it 'does not update the text, spoiler_text or edited_at' do
+        expect { subject.call(status, json) }.not_to change { s = status.reload; [s.text, s.spoiler_text, s.edited_at] }
+      end
+    end
+
     context 'with no changes at all' do
       let(:payload) do
         {
