@@ -128,10 +128,8 @@ class ImportService < BaseService
 
   def import_lists!
     parse_import_data!(['List name', 'Account address'])
-    items = @data.take(ROWS_PROCESSING_LIMIT).map { |row|
-      [row['List name'], row['Account address']]
-    }
-    list_titles = items.map {|row| row[0]}.uniq
+    items = @data.take(ROWS_PROCESSING_LIMIT).map { |row| [row['List name'], row['Account address']] }
+    list_titles = items.map { |row| row[0] }.uniq
 
     if @import.overwrite?
       List.where(title: list_titles, account: @account).destroy_all
