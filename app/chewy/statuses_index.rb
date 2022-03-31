@@ -59,7 +59,7 @@ class StatusesIndex < Chewy::Index
     field :id, type: 'long'
     field :account_id, type: 'long'
 
-    field :text, type: 'text', value: ->(status) { [status.spoiler_text, extract_status_plain_text(status)].concat(status.ordered_media_attachments.map(&:description)).concat(status.preloadable_poll ? status.preloadable_poll.options : []).join("\n\n") } do
+    field :text, type: 'text', value: ->(status) { status.searchable_text } do
       field :stemmed, type: 'text', analyzer: 'content'
     end
 
