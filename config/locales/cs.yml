@@ -437,6 +437,9 @@ cs:
       add_new: Přidat
       created_msg: E-mailová doména úspěšně zablokována
       delete: Smazat
+      dns:
+        types:
+          mx: MX záznam
       domain: Doména
       new:
         create: Přidat doménu
@@ -781,14 +784,15 @@ cs:
       body: 'Následující položky vyžadují posouzení, než mohou být zobrazeny veřejně:'
       new_trending_links:
         no_approved_links: Momentálně nejsou žádné schválené populární odkazy.
-        requirements: 'Kterýkoliv z těchto kandidátů může předehnat schválený populární odkaz #%{rank}, kterým je momentálně "%{lowest_link_title}" se skóre %{lowest_link_score}.'
+        requirements: 'Kterýkoliv z těchto kandidátů by mohl předehnat schválený populární odkaz #%{rank}, kterým je momentálně "%{lowest_link_title}" se skóre %{lowest_link_score}.'
         title: Populární odkazy
       new_trending_statuses:
         no_approved_statuses: Momentálně nejsou žádné schválené populární příspěvky.
-        requirements: 'Kterýkoliv z těchto kandidátů může předehnat schválený populární příspěvek #%{rank}, kterým je momentálně %{lowest_status_url} se skóre %{lowest_status_score}.'
+        requirements: 'Kterýkoliv z těchto kandidátů by mohl předehnat schválený populární příspěvek #%{rank}, kterým je momentálně %{lowest_status_url} se skóre %{lowest_status_score}.'
         title: Populární příspěvky
       new_trending_tags:
         no_approved_tags: Momentálně nejsou žádné schválené populární hashtagy.
+        requirements: 'Kterýkoliv z těchto kandidátů by mohl předehnat schválený populární hashtag #%{rank}, kterým je momentálně #%{lowest_tag_name} se skóre %{lowest_tag_score}.'
         title: Populární hashtagy
       subject: Nové trendy k posouzení na %{instance}
   aliases:
