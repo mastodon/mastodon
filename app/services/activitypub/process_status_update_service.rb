@@ -17,7 +17,19 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     # Only native types can be updated at the moment
     return @status if !expected_type? || already_updated_more_recently?
 
-    last_edit_date = status.edited_at.presence || status.created_at
+    if @status_parser.edited_at.present? && (@status.edited_at.nil? || @status_parser.edited_at > @status.edited_at)
+      handle_explicit_update!
+    else
+      handle_implicit_update!
+    end
+
+    @status
+  end
+
+  private
+
+  def handle_explicit_update!
+    last_edit_date = @status.edited_at.presence || @status.created_at
 
     # Only allow processing one create/update per status at a time
     RedisLock.acquire(lock_options) do |lock|
@@ -42,12 +54,20 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       end
     end
 
-    forward_activity! if significant_changes? && @status_parser.edited_at.present? && @status_parser.edited_at > last_edit_date
-
-    @status
+    forward_activity! if significant_changes? && @status_parser.edited_at > last_edit_date
   end
 
-  private
+  def handle_implicit_update!
+    RedisLock.acquire(lock_options) do |lock|
+      if lock.acquired?
+        update_poll!(allow_significant_changes: false)
+      else
+        raise Mastodon::RaceConditionError
+      end
+    end
+
+    queue_poll_notifications!
+  end
 
   def update_media_attachments!
     previous_media_attachments     = @status.media_attachments.to_a
@@ -95,7 +115,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @media_attachments_changed = true if @status.ordered_media_attachment_ids != previous_media_attachments_ids
   end
 
-  def update_poll!
+  def update_poll!(allow_significant_changes: true)
     previous_poll        = @status.preloadable_poll
     @previous_expires_at = previous_poll&.expires_at
     poll_parser          = ActivityPub::Parser::PollParser.new(@json)
@@ -106,6 +126,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       # If for some reasons the options were changed, it invalidates all previous
       # votes, so we need to remove them
       @poll_changed = true if poll_parser.significantly_changes?(poll)
+      return if @poll_changed && !allow_significant_changes
 
       poll.last_fetched_at = Time.now.utc
       poll.options         = poll_parser.options
@@ -118,6 +139,8 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
       @status.poll_id = poll.id
     elsif previous_poll.present?
+      return unless allow_significant_changes
+
       previous_poll.destroy!
       @poll_changed = true
       @status.poll_id = nil
