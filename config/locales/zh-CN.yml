@@ -159,6 +159,8 @@ zh-CN:
       pending: 待审核
       perform_full_suspension: 封禁
       previous_strikes: 既往处罚
+      previous_strikes_description_html:
+        other: 此账号已有<strong>%{count}</strong>次处罚。
       promote: 升任
       protocol: 协议
       public: 公开页面
@@ -510,6 +512,8 @@ zh-CN:
       delivery_error_hint: 如果投递已不可用 %{count} 天，它将被自动标记为无法投递。
       destroyed_msg: '%{domain} 中的数据现在正在排队等待被立刻删除。'
       empty: 暂无域名。
+      known_accounts:
+        other: "%{count} 个已知账号"
       moderation:
         all: 全部
         limited: 受限的
