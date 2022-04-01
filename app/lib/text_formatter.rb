@@ -51,7 +51,7 @@ class TextFormatter
   def to_markdown_s
     return ''.html_safe if text.blank?
 
-    html = rewrite do |entity|
+    html = rewrite_markdown do |entity|
       if entity[:url]
         link_to_url(entity)
       elsif entity[:hashtag]
@@ -62,6 +62,7 @@ class TextFormatter
     end
 
     html = Kramdown::Document.new(html, build_kramdown_options).to_html
+
     html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
 
     html.html_safe # rubocop:disable Rails/OutputSafety
@@ -97,6 +98,25 @@ class TextFormatter
     end
 
     result << h(text[last_index..-1])
+
+    result
+  end
+
+  def rewrite_markdown
+    entities.sort_by! do |entity|
+      entity[:indices].first
+    end
+
+    result = ''.dup
+
+    last_index = entities.reduce(0) do |index, entity|
+      indices = entity[:indices]
+      result << text[index...indices.first]
+      result << yield(entity)
+      indices.last
+    end
+
+    result << text[last_index..-1]
 
     result
   end
