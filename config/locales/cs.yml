@@ -287,6 +287,7 @@ cs:
         update_domain_block: Změnit blokaci domény
         update_status: Aktualizovat Příspěvek
       actions:
+        approve_appeal_html: "Uživatel %{name} schválil odvolání proti rozhodnutí moderátora %{target}"
         approve_user_html: "%{name} schválil registraci od %{target}"
         assigned_to_self_report_html: "Uživatel %{name} si přidělil hlášení %{target}"
         change_email_user_html: "Uživatel %{name} změnil e-mailovou adresu uživatele %{target}"
@@ -318,7 +319,7 @@ cs:
         enable_user_html: "Uživatel %{name} povolil přihlašování pro uživatele %{target}"
         memorialize_account_html: "Uživatel %{name} změnil účet %{target} na „in memoriam“ stránku"
         promote_user_html: "Uživatel %{name} povýšil uživatele %{target}"
-        reject_appeal_html: "uživatel %{name} zamítl odvolání proti rozhodnutí moderátora %{target}"
+        reject_appeal_html: "Uživatel %{name} zamítl odvolání proti rozhodnutí moderátora %{target}"
         reject_user_html: "%{name} odmítl registraci od %{target}"
         remove_avatar_user_html: "Uživatel %{name} odstranil avatar uživatele %{target}"
         reopen_report_html: "Uživatel %{name} znovu otevřel hlášení %{target}"
@@ -971,6 +972,9 @@ cs:
     directory: Adresář profilů
     explanation: Objevujte uživatele podle jejich zájmů
     explore_mastodon: Prozkoumejte %{title}
+  disputes:
+    strikes:
+      your_appeal_rejected: Vaše odvolání bylo zamítnuto
   domain_validator:
     invalid_domain: není platné doménové jméno
   errors:
