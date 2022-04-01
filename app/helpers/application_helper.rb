@@ -21,7 +21,7 @@ module ApplicationHelper
     # override these values with a default of 3 digits of precision.
     options = options.merge(
       precision: 3,
-      strip_significant_zeros: true,
+      strip_insignificant_zeros: true,
       significant: true
     )
 
