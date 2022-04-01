@@ -85,7 +85,6 @@ Setting up your Hometown development environment is [exactly like setting up you
 You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository or submit translations using Crowdin. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
 
 **IRC channel**: #mastodon on irc.libera.chat
->>>>>>> v3.5.0
 
 ## License
 
