@@ -1,0 +1,74 @@
+// breakpoints
+$column-bp-1: 640px;
+$column-bp-2: 900px;
+$column-bp-3: 1366px;
+$column-bp-4: 1920px;
+$column-bp-5: 2560px;
+
+@mixin c1 {
+  @media screen and (max-width: $column-bp-1) {
+    @content;
+  }
+}
+
+@mixin c2 {
+  @media screen and (min-width: $column-bp-1 + 1px) and (max-width: $column-bp-2) {
+    @content;
+  }
+}
+
+@mixin c3 {
+  @media screen and (min-width: $column-bp-2 + 1px) and (max-width: $column-bp-3) {
+    @content;
+  }
+}
+
+@mixin c4 {
+  @media screen and (min-width: $column-bp-3 + 1px) and (max-width: $column-bp-4) {
+    @content;
+  }
+}
+
+@mixin c5 {
+  @media screen and (min-width: $column-bp-4 + 1px) and (max-width: $column-bp-5) {
+    @content;
+  }
+}
+
+@mixin c6 {
+  @media screen and (min-width: $column-bp-5 + 1px) {
+    @content;
+  }
+}
+
+.wider-column {
+  .columns-area > div {
+    @include c6 {
+      width: 16.667%;
+      max-width: 16.667%;
+    }
+    @include c5 {
+      width: 20%;
+      max-width: 20%;
+    }
+    @include c4 {
+      width: 25%;
+      max-width: 25%;
+    }
+    @include c3 {
+      width: 33.333%;
+      max-width: 33.333%;
+    }
+    @include c2 {
+      width: 50%;
+      max-width: 50%;
+    }
+  }
+
+  .columns-area > div > .column,
+  .columns-area > div > .mastodon-column-container > .column {
+    @include c1 {
+      width: 100%;
+    }
+  }    
+}

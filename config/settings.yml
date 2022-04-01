@@ -69,6 +69,8 @@ defaults: &defaults
   show_domain_blocks: 'disabled'
   show_domain_blocks_rationale: 'disabled'
   require_invite_text: false
+  bigger_publish: false
+  wider_column: false
 
 development:
   <<: *defaults
