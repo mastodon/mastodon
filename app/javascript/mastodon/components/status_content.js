@@ -236,9 +236,9 @@ export default class StatusContent extends React.PureComponent {
       template.innerHTML = `<fragment>${html}<fragment/>`;
       template.content.firstChild.querySelectorAll('.hashtag').forEach((e)=>{
         e.innerHTML = e.innerHTML.replace('#', '<span class="hash_char">#</span>');
-      })
-      return template.content.firstChild.innerHTML
-    }
+      });
+      return template.content.firstChild.innerHTML;
+    };
 
     const content = { __html: addHashtagMarkup(status.get('contentHtml')) };
     const spoilerContent = { __html: addHashtagMarkup(status.get('spoilerHtml')) };
@@ -265,7 +265,7 @@ export default class StatusContent extends React.PureComponent {
 
     const translationContainer = (
       getLocale().localeData[0].locale !== status.get('language') ?
-      <React.Fragment>
+      (<React.Fragment>
         <button
           tabIndex='-1' className={'status__content__show-translation-button'}
           onClick={this.handleTranslationClick.bind(this)}
@@ -298,7 +298,7 @@ export default class StatusContent extends React.PureComponent {
             <p className='translation-content'>{this.state.translation}</p>
           </section>
         </div>
-      </React.Fragment> : null
+      </React.Fragment>) : null
     );
 
     const showPollButton = (

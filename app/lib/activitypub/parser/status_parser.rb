@@ -2,6 +2,7 @@
 
 class ActivityPub::Parser::StatusParser
   include JsonLdHelper
+  include FormattingHelper
 
   # @param [Hash] json
   # @param [Hash] magic_values
@@ -30,7 +31,7 @@ class ActivityPub::Parser::StatusParser
 
   def text
     if @object['quoteUrl'].blank? && @object['_misskey_quote'].present?
-      Formatter.instance.linkify(@object['_misskey_content'])
+      linkify(@object['_misskey_content'])
     elsif @object['content'].present?
       @object['content']
     elsif content_language_map?

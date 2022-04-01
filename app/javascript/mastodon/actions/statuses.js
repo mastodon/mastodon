@@ -36,6 +36,7 @@ export const STATUS_FETCH_SOURCE_FAIL    = 'STATUS_FETCH_SOURCE_FAIL';
 
 export const QUOTE_REVEAL = 'QUOTE_REVEAL';
 export const QUOTE_HIDE   = 'QUOTE_HIDE';
+export const QUOTE_STATUS_COLLAPSE = 'QUOTE_STATUS_COLLAPSE';
 
 export function fetchStatusRequest(id, skipLoading) {
   return {
@@ -310,6 +311,14 @@ export function revealStatus(ids) {
 export function toggleStatusCollapse(id, isCollapsed) {
   return {
     type: STATUS_COLLAPSE,
+    id,
+    isCollapsed,
+  };
+}
+
+export function toggleQuoteStatusCollapse(id, isCollapsed) {
+  return {
+    type: QUOTE_STATUS_COLLAPSE,
     id,
     isCollapsed,
   };

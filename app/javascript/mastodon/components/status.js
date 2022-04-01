@@ -88,6 +88,7 @@ class Status extends ImmutablePureComponent {
     onToggleHidden: PropTypes.func,
     onToggleCollapsed: PropTypes.func,
     onQuoteToggleHidden: PropTypes.func,
+    onQuoteToggleCollapsed: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
@@ -208,6 +209,10 @@ class Status extends ImmutablePureComponent {
   handleExpandedQuoteToggle = () => {
     this.props.onQuoteToggleHidden(this._properStatus());
   };
+
+  handleQuoteCollapsedToggle = isCollapsed => {
+    this.props.onQuoteToggleCollapsed(this._properStatus(), isCollapsed);
+  }
 
   renderLoadingMediaGallery () {
     return <div className='media-gallery' style={{ height: '110px' }} />;
@@ -575,7 +580,7 @@ class Status extends ImmutablePureComponent {
                   height={70}
                   cacheWidth={this.props.cacheMediaWidth}
                   deployPictureInPicture={this.handleDeployPictureInPicture}
-                  />
+                />
               )}
             </Bundle>
           );
@@ -638,7 +643,19 @@ class Status extends ImmutablePureComponent {
         );
       }
 
-      if (quote_status.get('visibility') === 'unlisted' && contextType !== 'home') {
+      // TODO
+      // const quote_muted = false;
+
+      // if (quote_muted) {
+      //   quote = (
+      //     <div className={classNames('quote-status', `status-${quote_status.get('visibility')}`, { muted: this.props.muted })} data-id={quote_status.get('id')}>
+      //       <div className={classNames('status__content muted-quote', { 'status__content--with-action': this.context.router })}>
+      //         <FormattedMessage id='status.muted_quote' defaultMessage='Muted quote' />
+      //       </div>
+      //     </div>
+      //   );
+      // } else 
+      if (quote_status.get('visibility') === 'unlisted' && !!contextType && ['public', 'community', 'hashtag'].includes(contextType.split(':', 2)[0])) {
         unlistedQuoteText = intl.formatMessage({ id: 'status.unlisted_quote', defaultMessage: 'Unlisted quote content, click to expand' });
         quote = (
           <div className={classNames('quote-status', `status-${quote_status.get('visibility')}`, { muted: this.props.muted })} data-id={quote_status.get('id')}>
@@ -661,6 +678,7 @@ class Status extends ImmutablePureComponent {
               </a>
             </div>
             <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} onExpandedToggle={this.handleExpandedQuoteToggle} quote />
+            {/* <StatusContent status={quote_status} onClick={this.handleQuoteClick} expanded={!status.get('quote_hidden')} showThread={showThread} onExpandedToggle={this.handleExpandedQuoteToggle} collapsable onCollapsedToggle={this.handleQuoteCollapsedToggle} quote /> */}
             {quote_media}
           </div>
         );

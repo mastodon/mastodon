@@ -41,6 +41,8 @@ class Status < ApplicationRecord
   include StatusSnapshotConcern
   include RateLimitable
 
+  include FormattingHelper
+
   rate_limit by: :account, family: :statuses
 
   self.discard_column = :deleted_at
@@ -271,7 +273,13 @@ class Status < ApplicationRecord
   end
 
   def index_text
-    @index_text ||= [spoiler_text, Formatter.instance.plaintext(self)].concat(media_attachments.map(&:description)).concat(preloadable_poll ? preloadable_poll.options : []).concat(quote? ? ["QT: [#{quote.url || ActivityPub::TagManager.instance.url_for(quote)}]"] : []).filter(&:present?).join("\n\n")
+    @index_text ||= [
+      spoiler_text,
+      quote_status_content_format(self)]
+                      .concat(media_attachments.map(&:description))
+                      .concat(preloadable_poll ? preloadable_poll.options : [])
+                      .concat(quote? ? ["QT: [#{quote.url || ActivityPub::TagManager.instance.url_for(quote)}]"] : [])
+                      .filter(&:present?).join("\n\n")
   end
 
   def ordered_media_attachments

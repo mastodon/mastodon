@@ -14,10 +14,10 @@
   .status__content.emojify<
     - if status.spoiler_text?
       %p{ :style => ('margin-bottom: 0' unless current_account&.user&.setting_expand_spoilers) }<
-        %span.p-summary> #{Formatter.instance.format_spoiler(status)}&nbsp;
+        %span.p-summary> #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
     .e-content{ lang: status.language, style: "display: #{!current_account&.user&.setting_expand_spoilers && status.spoiler_text? ? 'none' : 'block'}" }
-      = Formatter.instance.format_in_quote(status, custom_emojify: true)
+      = prerender_custom_emojis(status_content_format(status), status.emojis)
 
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?

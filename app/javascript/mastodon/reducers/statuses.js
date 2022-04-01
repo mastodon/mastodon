@@ -15,6 +15,7 @@ import {
   STATUS_COLLAPSE,
   QUOTE_REVEAL,
   QUOTE_HIDE,
+  QUOTE_STATUS_COLLAPSE,
 } from '../actions/statuses';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
@@ -85,6 +86,8 @@ export default function statuses(state = initialState, action) {
     return state.withMutations(map => {
       action.ids.forEach(id => map.setIn([id, 'quote_hidden'], true));
     });
+  case QUOTE_STATUS_COLLAPSE:
+    return state.setIn([action.id, 'collapsed'], action.isCollapsed);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   default:
