@@ -435,6 +435,11 @@ cs:
       view: Zobrazit blokaci domény
     email_domain_blocks:
       add_new: Přidat
+      attempts_over_week:
+        one: "%{count} pokus o registraci za poslední týden"
+        few: "%{count} pokusy o registraci za poslední týden"
+        many: "%{count} pokusů o registraci za poslední týden"
+        other: "%{count} pokusů o registraci za poslední týden"
       created_msg: E-mailová doména úspěšně zablokována
       delete: Smazat
       dns:
@@ -444,6 +449,7 @@ cs:
       new:
         create: Přidat doménu
         title: Blokovat novou e-mailovou doménu
+      no_email_domain_block_selected: Žádné blokace e-mailové domény nebyly změněny, protože nebyly žádné vybrány
       resolved_dns_records_hint_html: Doménové jméno vede na následující MX domény, které jsou v konečném důsledku na starost přijímání e-mailů. Blokování MX domény zablokuje registrace z jakékoliv e-mailové adresy, která použícá stejnou MX doménu, i když je viditelné doméno jméno jiné. <strong>Dejte si pozor, abyste nezablokovali velké e-mailové poskytovatele.</strong>
       title: Blokované e-mailové domény
     follow_recommendations:
