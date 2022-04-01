@@ -41,32 +41,34 @@ $column-bp-5: 2560px;
   }
 }
 
-.columns-area > div {
-  @include c6 {
-    width: 16.667%;
-    max-width: 16.667%;
+.wider-column {
+  .columns-area > div {
+    @include c6 {
+      width: 16.667%;
+      max-width: 16.667%;
+    }
+    @include c5 {
+      width: 20%;
+      max-width: 20%;
+    }
+    @include c4 {
+      width: 25%;
+      max-width: 25%;
+    }
+    @include c3 {
+      width: 33.333%;
+      max-width: 33.333%;
+    }
+    @include c2 {
+      width: 50%;
+      max-width: 50%;
+    }
   }
-  @include c5 {
-    width: 20%;
-    max-width: 20%;
-  }
-  @include c4 {
-    width: 25%;
-    max-width: 25%;
-  }
-  @include c3 {
-    width: 33.333%;
-    max-width: 33.333%;
-  }
-  @include c2 {
-    width: 50%;
-    max-width: 50%;
-  }
-}
 
-.columns-area > div > .column,
-.columns-area > div > .mastodon-column-container > .column {
-  @include c1 {
-    width: 100%;
-  }
+  .columns-area > div > .column,
+  .columns-area > div > .mastodon-column-container > .column {
+    @include c1 {
+      width: 100%;
+    }
+  }    
 }
