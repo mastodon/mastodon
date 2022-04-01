@@ -82,6 +82,70 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Other",
+        "id": "report.categories.other"
+      },
+      {
+        "defaultMessage": "Spam",
+        "id": "report.categories.spam"
+      },
+      {
+        "defaultMessage": "Content violates one or more server rules",
+        "id": "report.categories.violation"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/admin/ReportReasonSelector.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Loading...",
+        "id": "loading_indicator.label"
+      },
+      {
+        "defaultMessage": "Sign-up month",
+        "id": "admin.dashboard.retention.cohort"
+      },
+      {
+        "defaultMessage": "New users",
+        "id": "admin.dashboard.retention.cohort_size"
+      },
+      {
+        "defaultMessage": "Average",
+        "id": "admin.dashboard.retention.average"
+      },
+      {
+        "defaultMessage": "User retention rate by day after sign-up",
+        "id": "admin.dashboard.daily_retention"
+      },
+      {
+        "defaultMessage": "User retention rate by month after sign-up",
+        "id": "admin.dashboard.monthly_retention"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/admin/Retention.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Trending now",
+        "id": "trends.trending_now"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/admin/Trends.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "(unprocessed)",
+        "id": "attachments_list.unprocessed"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/attachment_list.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{count} per week",
         "id": "autosuggest_hashtag.per_week"
       }
@@ -168,6 +232,27 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Edited {count, plural, one {{count} time} other {{count} times}}",
+        "id": "status.edited_x_times"
+      },
+      {
+        "defaultMessage": "{name} created {date}",
+        "id": "status.history.created"
+      },
+      {
+        "defaultMessage": "{name} edited {date}",
+        "id": "status.history.edited"
+      },
+      {
+        "defaultMessage": "Edited {date}",
+        "id": "status.edited"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/edited_timestamp/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "This page could not be displayed correctly. This error is likely caused by a browser add-on or automatic translation tools.",
         "id": "error.unexpected_crash.explanation_addons"
       },
@@ -233,15 +318,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Loading...",
-        "id": "loading_indicator.label"
-      }
-    ],
-    "path": "app/javascript/mastodon/components/loading_indicator.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "{number, plural, one {Hide image} other {Hide images}}",
         "id": "media_gallery.toggle_visible"
       },
@@ -290,8 +366,11 @@
       },
       {
         "defaultMessage": "You voted for this answer",
-        "description": "Tooltip of the \"voted\" checkmark in polls",
         "id": "poll.voted"
+      },
+      {
+        "defaultMessage": "{votes, plural, one {# vote} other {# votes}}",
+        "id": "poll.votes"
       },
       {
         "defaultMessage": "{count, plural, one {# person} other {# people}}",
@@ -336,20 +415,40 @@
         "id": "relative_time.just_now"
       },
       {
+        "defaultMessage": "just now",
+        "id": "relative_time.full.just_now"
+      },
+      {
         "defaultMessage": "{number}s",
         "id": "relative_time.seconds"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# second} other {# seconds}} ago",
+        "id": "relative_time.full.seconds"
       },
       {
         "defaultMessage": "{number}m",
         "id": "relative_time.minutes"
       },
       {
+        "defaultMessage": "{number, plural, one {# minute} other {# minutes}} ago",
+        "id": "relative_time.full.minutes"
+      },
+      {
         "defaultMessage": "{number}h",
         "id": "relative_time.hours"
       },
       {
+        "defaultMessage": "{number, plural, one {# hour} other {# hours}} ago",
+        "id": "relative_time.full.hours"
+      },
+      {
         "defaultMessage": "{number}d",
         "id": "relative_time.days"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# day} other {# days}} ago",
+        "id": "relative_time.full.days"
       },
       {
         "defaultMessage": "Moments remaining",
@@ -400,6 +499,10 @@
       {
         "defaultMessage": "Delete & re-draft",
         "id": "status.redraft"
+      },
+      {
+        "defaultMessage": "Edit",
+        "id": "status.edit"
       },
       {
         "defaultMessage": "Direct message @{name}",
@@ -562,6 +665,10 @@
       {
         "defaultMessage": "Direct",
         "id": "privacy.direct.short"
+      },
+      {
+        "defaultMessage": "Edited {date}",
+        "id": "status.edited"
       },
       {
         "defaultMessage": "Filtered",
@@ -1064,6 +1171,10 @@
       {
         "defaultMessage": "{publish}!",
         "id": "compose_form.publish_loud"
+      },
+      {
+        "defaultMessage": "Save changes",
+        "id": "compose_form.save_changes"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/compose_form.json"
@@ -1077,10 +1188,6 @@
       {
         "defaultMessage": "Search...",
         "id": "emoji_button.search"
-      },
-      {
-        "defaultMessage": "No emojos!! (╯°□°）╯︵ ┻━┻",
-        "id": "emoji_button.not_found"
       },
       {
         "defaultMessage": "Custom",
@@ -1125,6 +1232,10 @@
       {
         "defaultMessage": "Flags",
         "id": "emoji_button.flags"
+      },
+      {
+        "defaultMessage": "No matching emojis found",
+        "id": "emoji_button.not_found"
       }
     ],
     "path": "app/javascript/mastodon/features/compose/components/emoji_picker_dropdown.json"
@@ -1543,28 +1654,36 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Follow",
-        "id": "account.follow"
-      },
-      {
         "defaultMessage": "Unfollow",
         "id": "account.unfollow"
       },
       {
-        "defaultMessage": "Awaiting approval",
+        "defaultMessage": "Follow",
+        "id": "account.follow"
+      },
+      {
+        "defaultMessage": "Cancel follow request",
+        "id": "account.cancel_follow_request"
+      },
+      {
+        "defaultMessage": "Awaiting approval. Click to cancel follow request",
         "id": "account.requested"
       },
       {
-        "defaultMessage": "Unblock @{name}",
-        "id": "account.unblock"
+        "defaultMessage": "Unblock",
+        "id": "account.unblock_short"
       },
       {
-        "defaultMessage": "Unmute @{name}",
-        "id": "account.unmute"
+        "defaultMessage": "Unmute",
+        "id": "account.unmute_short"
       },
       {
         "defaultMessage": "Unfollow",
         "id": "confirmations.unfollow.confirm"
+      },
+      {
+        "defaultMessage": "Edit profile",
+        "id": "account.edit_profile"
       },
       {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
@@ -1579,12 +1698,8 @@
         "id": "account.followers"
       },
       {
-        "defaultMessage": "Never",
-        "id": "account.never_active"
-      },
-      {
-        "defaultMessage": "Last active",
-        "id": "account.last_status"
+        "defaultMessage": "Following",
+        "id": "account.following"
       }
     ],
     "path": "app/javascript/mastodon/features/directory/components/account_card.json"
@@ -1630,6 +1745,69 @@
       }
     ],
     "path": "app/javascript/mastodon/features/domain_blocks/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Explore",
+        "id": "explore.title"
+      },
+      {
+        "defaultMessage": "Search results",
+        "id": "explore.search_results"
+      },
+      {
+        "defaultMessage": "Posts",
+        "id": "explore.trending_statuses"
+      },
+      {
+        "defaultMessage": "Hashtags",
+        "id": "explore.trending_tags"
+      },
+      {
+        "defaultMessage": "News",
+        "id": "explore.trending_links"
+      },
+      {
+        "defaultMessage": "For you",
+        "id": "explore.suggested_follows"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/explore/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Could not find anything for these search terms",
+        "id": "search_results.nothing_found"
+      },
+      {
+        "defaultMessage": "All",
+        "id": "search_results.all"
+      },
+      {
+        "defaultMessage": "People",
+        "id": "search_results.accounts"
+      },
+      {
+        "defaultMessage": "Hashtags",
+        "id": "search_results.hashtags"
+      },
+      {
+        "defaultMessage": "Toots",
+        "id": "search_results.statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/explore/results.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Nothing is trending right now. Check back later!",
+        "id": "empty_column.explore_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/explore/statuses.json"
   },
   {
     "descriptors": [
@@ -1808,6 +1986,10 @@
         "id": "navigation_bar.community_timeline"
       },
       {
+        "defaultMessage": "Explore",
+        "id": "navigation_bar.explore"
+      },
+      {
         "defaultMessage": "Direct messages",
         "id": "navigation_bar.direct"
       },
@@ -1862,10 +2044,6 @@
       {
         "defaultMessage": "Getting started",
         "id": "getting_started.heading"
-      },
-      {
-        "defaultMessage": "Profile directory",
-        "id": "getting_started.directory"
       }
     ],
     "path": "app/javascript/mastodon/features/getting_started/index.json"
@@ -2247,8 +2425,12 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Show",
-        "id": "notifications.column_settings.filter_bar.show"
+        "defaultMessage": "Highlight unread notifications",
+        "id": "notifications.column_settings.unread_notifications.highlight"
+      },
+      {
+        "defaultMessage": "Show filter bar",
+        "id": "notifications.column_settings.filter_bar.show_bar"
       },
       {
         "defaultMessage": "Display all categories",
@@ -2279,8 +2461,8 @@
         "id": "notifications.permission_required"
       },
       {
-        "defaultMessage": "Unread notification markers",
-        "id": "notifications.column_settings.unread_markers.category"
+        "defaultMessage": "Unread notifications",
+        "id": "notifications.column_settings.unread_notifications.category"
       },
       {
         "defaultMessage": "Quick filter bar",
@@ -2313,6 +2495,14 @@
       {
         "defaultMessage": "New toots:",
         "id": "notifications.column_settings.status"
+      },
+      {
+        "defaultMessage": "Edits:",
+        "id": "notifications.column_settings.update"
+      },
+      {
+        "defaultMessage": "New sign-ups:",
+        "id": "notifications.column_settings.admin.sign_up"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
@@ -2397,6 +2587,14 @@
       {
         "defaultMessage": "{name} just posted",
         "id": "notification.status"
+      },
+      {
+        "defaultMessage": "{name} edited a post",
+        "id": "notification.update"
+      },
+      {
+        "defaultMessage": "{name} signed up",
+        "id": "notification.admin.sign_up"
       },
       {
         "defaultMessage": "{name} has requested to follow you",
@@ -2565,12 +2763,201 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "I don't like it",
+        "id": "report.reasons.dislike"
+      },
+      {
+        "defaultMessage": "It is not something you want to see",
+        "id": "report.reasons.dislike_description"
+      },
+      {
+        "defaultMessage": "It's spam",
+        "id": "report.reasons.spam"
+      },
+      {
+        "defaultMessage": "Malicious links, fake engagement, or repetitive replies",
+        "id": "report.reasons.spam_description"
+      },
+      {
+        "defaultMessage": "It violates server rules",
+        "id": "report.reasons.violation"
+      },
+      {
+        "defaultMessage": "You are aware that it breaks specific rules",
+        "id": "report.reasons.violation_description"
+      },
+      {
+        "defaultMessage": "It's something else",
+        "id": "report.reasons.other"
+      },
+      {
+        "defaultMessage": "The issue does not fit into other categories",
+        "id": "report.reasons.other_description"
+      },
+      {
+        "defaultMessage": "post",
+        "id": "report.category.title_status"
+      },
+      {
+        "defaultMessage": "profile",
+        "id": "report.category.title_account"
+      },
+      {
+        "defaultMessage": "Tell us what's going on with this {type}",
+        "id": "report.category.title"
+      },
+      {
+        "defaultMessage": "Choose the best match",
+        "id": "report.category.subtitle"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "report.next"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/report/category.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Type or paste additional comments",
+        "id": "report.placeholder"
+      },
+      {
+        "defaultMessage": "Is there anything else you think we should know?",
+        "id": "report.comment.title"
+      },
+      {
+        "defaultMessage": "The account is from another server. Send an anonymized copy of the report there as well?",
+        "id": "report.forward_hint"
+      },
+      {
+        "defaultMessage": "Forward to {target}",
+        "id": "report.forward"
+      },
+      {
+        "defaultMessage": "Submit report",
+        "id": "report.submit"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/report/comment.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Which rules are being violated?",
+        "id": "report.rules.title"
+      },
+      {
+        "defaultMessage": "Select all that apply",
+        "id": "report.rules.subtitle"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "report.next"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/report/rules.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Are there any posts that back up this report?",
+        "id": "report.statuses.title"
+      },
+      {
+        "defaultMessage": "Select all that apply",
+        "id": "report.statuses.subtitle"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "report.next"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/report/statuses.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Thanks for reporting, we'll look into this.",
+        "id": "report.thanks.title_actionable"
+      },
+      {
+        "defaultMessage": "Don't want to see this?",
+        "id": "report.thanks.title"
+      },
+      {
+        "defaultMessage": "While we review this, you can take action against @{name}:",
+        "id": "report.thanks.take_action_actionable"
+      },
+      {
+        "defaultMessage": "Here are your options for controlling what you see on Mastodon:",
+        "id": "report.thanks.take_action"
+      },
+      {
+        "defaultMessage": "Unfollow @{name}",
+        "id": "report.unfollow"
+      },
+      {
+        "defaultMessage": "You are following this account. To not see their posts in your home feed anymore, unfollow them.",
+        "id": "report.unfollow_explanation"
+      },
+      {
+        "defaultMessage": "Unfollow",
+        "id": "account.unfollow"
+      },
+      {
+        "defaultMessage": "Mute @{name}",
+        "id": "account.mute"
+      },
+      {
+        "defaultMessage": "You will not see their posts. They can still follow you and see your posts and will not know that they are muted.",
+        "id": "report.mute_explanation"
+      },
+      {
+        "defaultMessage": "Mute",
+        "id": "report.mute"
+      },
+      {
+        "defaultMessage": "Muted",
+        "id": "account.muted"
+      },
+      {
+        "defaultMessage": "Block @{name}",
+        "id": "account.block"
+      },
+      {
+        "defaultMessage": "You will not see their posts. They will not be able to see your posts or follow you. They will be able to tell that they are blocked.",
+        "id": "report.block_explanation"
+      },
+      {
+        "defaultMessage": "Block",
+        "id": "report.block"
+      },
+      {
+        "defaultMessage": "Blocked",
+        "id": "account.blocked"
+      },
+      {
+        "defaultMessage": "Done",
+        "id": "report.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/report/thanks.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Delete",
         "id": "status.delete"
       },
       {
         "defaultMessage": "Delete & re-draft",
         "id": "status.redraft"
+      },
+      {
+        "defaultMessage": "Edit",
+        "id": "status.edit"
       },
       {
         "defaultMessage": "Direct message @{name}",
@@ -2895,6 +3282,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{name} created {date}",
+        "id": "status.history.created"
+      },
+      {
+        "defaultMessage": "{name} edited {date}",
+        "id": "status.history.edited"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/compare_history_modal.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Cancel",
         "id": "confirmation_modal.cancel"
       }
@@ -2933,12 +3333,24 @@
         "id": "upload_modal.apply"
       },
       {
+        "defaultMessage": "Applying…",
+        "id": "upload_modal.applying"
+      },
+      {
         "defaultMessage": "A quick brown fox jumps over the lazy dog",
         "id": "upload_modal.description_placeholder"
       },
       {
         "defaultMessage": "Choose image",
         "id": "upload_modal.choose_image"
+      },
+      {
+        "defaultMessage": "You have unsaved changes to the media description or preview, discard them anyway?",
+        "id": "confirmations.discard_edit_media.message"
+      },
+      {
+        "defaultMessage": "Discard",
+        "id": "confirmations.discard_edit_media.confirm"
       },
       {
         "defaultMessage": "Describe for people with hearing loss",
@@ -3017,6 +3429,10 @@
       {
         "defaultMessage": "About this server",
         "id": "navigation_bar.info"
+      },
+      {
+        "defaultMessage": "Profile directory",
+        "id": "getting_started.directory"
       },
       {
         "defaultMessage": "Mobile apps",
@@ -3118,6 +3534,10 @@
         "id": "tabs_bar.notifications"
       },
       {
+        "defaultMessage": "Explore",
+        "id": "explore.title"
+      },
+      {
         "defaultMessage": "Local",
         "id": "tabs_bar.local_timeline"
       },
@@ -3142,10 +3562,6 @@
         "id": "navigation_bar.lists"
       },
       {
-        "defaultMessage": "Profile directory",
-        "id": "getting_started.directory"
-      },
-      {
         "defaultMessage": "Preferences",
         "id": "navigation_bar.preferences"
       },
@@ -3163,28 +3579,8 @@
         "id": "lightbox.close"
       },
       {
-        "defaultMessage": "Additional comments",
-        "id": "report.placeholder"
-      },
-      {
-        "defaultMessage": "Submit",
-        "id": "report.submit"
-      },
-      {
         "defaultMessage": "Report {target}",
         "id": "report.target"
-      },
-      {
-        "defaultMessage": "The report will be sent to your server moderators. You can provide an explanation of why you are reporting this account below:",
-        "id": "report.hint"
-      },
-      {
-        "defaultMessage": "The account is from another server. Send an anonymized copy of the report there as well?",
-        "id": "report.forward_hint"
-      },
-      {
-        "defaultMessage": "Forward to {target}",
-        "id": "report.forward"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/report_modal.json"

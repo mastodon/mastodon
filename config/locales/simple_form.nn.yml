@@ -14,6 +14,12 @@ nn:
         send_email_notification: Brukaren får ei forklåring av kva som har hendt med kontoen sin
         text_html: Valfritt. Du kan bruka tut-syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
         type_html: Vel det du vil gjera med <strong>%{acct}</strong>
+        types:
+          disable: Forhindre brukeren å bruke kontoen sin, men ikke slett eller skjule innholdet deres.
+          none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
+          sensitive: Tving alle denne brukerens medievedlegg til å bli markert som følsom.
+          silence: Hindre brukeren i å kunne skrive offentlig synlighet, skjule sine innlegg og varsler for personer som ikke kan følge dem.
+          suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet der. Reversibel innen 30 dager.
         warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       announcement:
         all_day: Når merka, vil berre datoane til tidsramma synast
@@ -29,7 +35,6 @@ nn:
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: Skriv inn brukarnamnet til den noverande kontoen for å stadfesta
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
-        discoverable: Profilmappen er en annen måte for kontoen din å nå et bredere publikum på
         email: Du får snart ein stadfestings-e-post
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
@@ -55,7 +60,6 @@ nn:
       domain_allow:
         domain: Dette domenet er i stand til å henta data frå denne tenaren og innkomande data vert handsama og lagra
       email_domain_block:
-        domain: Dette kan vera domenenamnet som synest i e-postaddressa, MX-recorden som domenet løyser til eller IP-adressa til tenaren som MX-record løyser til. Dei sjekkast ved brukarregistrering og registretinga vert avvist.
         with_dns_records: Eit forsøk på å løysa gjeve domene som DNS-data vil vera gjord og resultata vert svartelista
       featured_tag:
         name: 'Kanskje du vil nytta ein av desse:'
@@ -66,8 +70,15 @@ nn:
       invite_request:
         text: Dette kjem til å hjelpa oss med å gå gjennom søknaden din
       ip_block:
+        comment: Valgfritt. Husk hvorfor du la til denne regelen.
+        expires_in: IP-adressene er en helt begrenset ressurs, de deles og endres ofte hender. Ubestemte IP-blokker anbefales ikke.
+        ip: Skriv inn en IPv4 eller IPv6-adresse. Du kan blokkere alle områder ved å bruke CIDR-syntaksen. Pass på å ikke låse deg selv!
         severities:
           no_access: Blokker tilgang til alle ressurser
+          sign_up_requires_approval: Nye registreringer vil kreve din godkjenning
+        severity: Velg hva som vil skje med forespørsler fra denne IP
+      rule:
+        text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
       tag:
@@ -94,6 +105,7 @@ nn:
         types:
           disable: Slå av innlogging
           none: Gjer inkje
+          sensitive: Sensitiv
           silence: Togn
           suspend: Utvis og slett kontodata for godt
         warning_preset_id: Bruk åtvaringsoppsett
@@ -188,8 +200,6 @@ nn:
         mention: Send e-post når nokon nemner deg
         pending_account: Send e-post når ein ny konto treng gjennomgang
         reblog: Send e-post når nokon framhevar statusen din
-        report: Send e-post når nokon rapporterer noko
-        trending_tag: Ein emneknagg som ikkje er sett igjennom er på veg opp
       rule:
         text: Regler
       tag:

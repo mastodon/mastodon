@@ -6,13 +6,13 @@ hu:
       send_instructions: Néhány percen belül kapni fogsz egy levelet az e-mail cím megerősítésére vonatkozó utasításokkal. Kérjük, ellenőrizd a spam mappádat, ha nem látod az e-mailt a beérkezett e-mailek közt.
       send_paranoid_instructions: Ha az e-mail címed már szerepel az adatbázisunkban, néhány percen belül kapsz egy levelet az e-mail cím megerősítésére vonatkozó utasításokkal. Kérjük, ellenőrizd a spam mappád, ha nem látod az e-mailt.
     failure:
-      already_authenticated: Már be van jelentkezve.
+      already_authenticated: Már bejelentkeztél.
       inactive: A fiókod még nincs aktiválva.
       invalid: Helytelen %{authentication_keys} vagy jelszó.
       last_attempt: Már csak egy próbálkozásod maradt, mielőtt a fiókodat zároljuk.
       locked: A fiókodat zároltuk.
       not_found_in_database: Helytelen %{authentication_keys} vagy jelszó.
-      pending: A fiókod még felülvizsgálat alatt áll.
+      pending: A fiókod felülvizsgálat alatt áll, még mielőtt használhatnád.
       timeout: A munkameneted lejárt. Kérjük, a folytatáshoz jelentkezz be újra.
       unauthenticated: A folytatás előtt be kell jelentkezned vagy regisztrálnod kell.
       unconfirmed: A folytatás előtt meg kell erősítened az e-mail címed.
@@ -47,7 +47,7 @@ hu:
         subject: 'Mastodon: Jelszó visszaállítási lépések'
         title: Jelszó visszaállítása
       two_factor_disabled:
-        explanation: A fiókod kétfaktoros hitelesítését kikapcsoltuk. A bejelentkezés mostantól csak az e-mail cím és a jelszó használatával lesz lehetséges.
+        explanation: A fiókod kétlépcsős hitelesítését kikapcsoltuk. A bejelentkezés mostantól csak az e-mail cím és a jelszó használatával lesz lehetséges.
         subject: Kétlépcsős azonosítás kikapcsolva
         title: Kétlépcsős hitelesítés kikapcsolva
       two_factor_enabled:

@@ -9,9 +9,8 @@ RSpec.describe Admin::ConfirmationsController, type: :controller do
 
   describe 'POST #create' do
     it 'confirms the user' do
-      account = Fabricate(:account)
-      user = Fabricate(:user, confirmed_at: false, account: account)
-      post :create, params: { account_id: account.id }
+      user = Fabricate(:user, confirmed_at: false)
+      post :create, params: { account_id: user.account.id }
 
       expect(response).to redirect_to(admin_accounts_path)
       expect(user.reload).to be_confirmed
@@ -32,10 +31,9 @@ RSpec.describe Admin::ConfirmationsController, type: :controller do
   end
 
   describe 'POST #resernd' do
-    subject { post :resend, params: { account_id: account.id } }
+    subject { post :resend, params: { account_id: user.account.id } }
 
-    let(:account) { Fabricate(:account) }
-    let!(:user) { Fabricate(:user, confirmed_at: confirmed_at, account: account) }
+    let!(:user) { Fabricate(:user, confirmed_at: confirmed_at) }
 
     before do
       allow(UserMailer).to receive(:confirmation_instructions) { double(:email, deliver_later: nil) }

@@ -16,6 +16,7 @@ ru:
     contact: Связаться
     contact_missing: не указан
     contact_unavailable: неизв.
+    continue_to_web: Продолжить в веб-приложении
     discover_users: Найдите пользователей
     documentation: Документация
     federation_hint_html: С учётной записью на %{instance} вы сможете подписываться на людей с любого сервера Mastodon и не только.
@@ -25,6 +26,8 @@ ru:
       Эта учетная запись является виртуальным персонажем, используемым для представления самого сервера, а не какого-либо пользователя.
       Используется для целей федерации и не должен быть заблокирован, если вы не хотите заблокировать всю инстанцию, вместо этого лучше использовать доменную блокировку.
     learn_more: Узнать больше
+    logged_in_as_html: Вы вошли в систему как %{username}.
+    logout_before_registering: Вы уже вошли.
     privacy_policy: Политика конфиденциальности
     rules: Правила сервера
     rules_html: 'Ниже приведена сводка правил, которых вам нужно придерживаться, если вы хотите иметь учётную запись на этом сервере Мастодона:'
@@ -75,7 +78,6 @@ ru:
     media: Медиафайлы
     moved_html: "%{name} переехал(а) на %{new_profile_link}:"
     network_hidden: Эта информация недоступна
-    never_active: Никогда
     nothing_here: Здесь ничего нет!
     people_followed_by: Люди, на которых подписан(а) %{name}
     people_who_follow: Подписчики %{name}
@@ -102,12 +104,10 @@ ru:
     account_moderation_notes:
       create: Создать
       created_msg: Заметка модератора успешно создана!
-      delete: Удалить
       destroyed_msg: Заметка модератора успешно удалена!
     accounts:
       add_email_domain_block: Заблокировать e-mail домен
       approve: Подтвердить
-      approve_all: Подтвердить все
       approved_msg: Успешно одобрена заявка на регистрацию %{username}
       are_you_sure: Вы уверены?
       avatar: Аватар
@@ -122,11 +122,13 @@ ru:
       confirm: Подтвердить
       confirmed: Подтверждено
       confirming: Подтверждение
+      custom: Другое
       delete: Удалить данные
       deleted: Удалён
       demote: Разжаловать
       destroyed_msg: Данные %{username} поставлены в очередь на удаление
       disable: Заморозка
+      disable_sign_in_token_auth: Отключить аутентификацию по e-mail кодам
       disable_two_factor_authentication: Отключить 2FA
       disabled: Отключено
       display_name: Отображаемое имя
@@ -135,6 +137,7 @@ ru:
       email: E-mail
       email_status: Статус e-mail
       enable: Включить
+      enable_sign_in_token_auth: Включить аутентификацию по e-mail кодам
       enabled: Включен
       enabled_msg: Учётная запись %{username} успешно разморожена
       followers: Подписчики
@@ -159,7 +162,6 @@ ru:
         active: Действующие
         all: Все
         pending: В ожидании
-        silenced: Скрытые
         suspended: Заблокированные
         title: Модерация
       moderation_notes: Заметки модератора
@@ -170,6 +172,12 @@ ru:
       not_subscribed: Не подписаны
       pending: Ожидает рассмотрения
       perform_full_suspension: Блокировка
+      previous_strikes: Предыдущие замечания
+      previous_strikes_description_html:
+        few: У этой учётной записи <strong>%{count}</strong> замечания.
+        many: У этой учётной записи <strong>%{count}</strong> замечаний.
+        one: У этой учётной записи <strong>одно</strong> замечание.
+        other: У этой учетной записи <strong>%{count}</strong> замечание.
       promote: Повысить
       protocol: Протокол
       public: Публичный
@@ -177,7 +185,6 @@ ru:
       redownload: Обновить аватар
       redownloaded_msg: Профиль %{username} успешно обновлен из оригинала
       reject: Отклонить
-      reject_all: Отклонить все
       rejected_msg: Успешно отклонено приложение для регистрации %{username}
       remove_avatar: Удалить аватар
       remove_header: Убрать шапку
@@ -199,6 +206,10 @@ ru:
       search: Поиск
       search_same_email_domain: Другие пользователи с тем же доменом электронной почты
       search_same_ip: Другие пользователи с таким же IP
+      security_measures:
+        only_password: Только пароль
+        password_and_2fa: Пароль и 2FA
+        password_and_sign_in_token: Пароль и e-mail код
       sensitive: Отметить как «деликатного содержания»
       sensitized: отмечено как «деликатного характера»
       shared_inbox_url: URL общих входящих
@@ -208,12 +219,15 @@ ru:
       silence: Скрытие
       silenced: Заглушен
       statuses: Посты
+      strikes: Предыдущие замечания
       subscribe: Подписаться
+      suspend: Заблокировать
       suspended: Заморожен
       suspension_irreversible: Данные этой учётной записи были необратимо удалены. Вы можете разблокировать учетную запись, чтобы сделать её доступной, но это не восстановит ранее имевшиеся в ней данные.
       suspension_reversible_hint_html: Учётная запись была заблокирована, и данные будут полностью удалены %{date}. До этого момента её можно восстановить без каких-либо неприятных последствий. Если вы хотите немедленно удалить все данные учётной записи, вы можете сделать это ниже.
-      time_in_queue: Ожидание в очереди %{time}
       title: Учётные записи
+      unblock_email: Разблокировать e-mail адрес
+      unblocked_email_msg: E-mail адрес %{username} разблокирован
       unconfirmed_email: Неподтверждённый e-mail
       undo_sensitized: Убрать отметку «деликатного содержания»
       undo_silenced: Отменить скрытие
@@ -228,6 +242,8 @@ ru:
       whitelisted: В белом списке
     action_logs:
       action_types:
+        approve_appeal: Одобрить обжалование
+        approve_user: Утвердить
         assigned_to_self_report: Присвоение жалоб
         change_email_user: Изменение e-mail пользователей
         confirm_user: Подтверждение пользователей
@@ -250,11 +266,15 @@ ru:
         destroy_unavailable_domain: Исключение доменов из списка недоступных
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
+        disable_sign_in_token_auth_user: Отключение аутентификации по e-mail кодам у пользователей
         disable_user: Заморозка пользователей
         enable_custom_emoji: Включение эмодзи
+        enable_sign_in_token_auth_user: Включение аутентификации по e-mail кодам у пользователей
         enable_user: Разморозка пользователей
         memorialize_account: Присвоение пользователям статуса «мемориала»
         promote_user: Повышение пользователей
+        reject_appeal: Отклонить обжалование
+        reject_user: Отклонить
         remove_avatar_user: Удаление аватаров
         reopen_report: Возобновление жалоб
         reset_password_user: Сброс пароля пользователей
@@ -263,6 +283,7 @@ ru:
         silence_account: Скрытие пользователей
         suspend_account: Блокировка пользователей
         unassigned_report: Снятие жалоб
+        unblock_email_account: Разблокировать e-mail адрес
         unsensitive_account: Снятие с пользователей отметки «деликатного содержания»
         unsilence_account: Отмена скрытия пользователей
         unsuspend_account: Разблокировка пользователей
@@ -271,6 +292,7 @@ ru:
         update_domain_block: Изменение блокировки домена
         update_status: Изменение постов
       actions:
+        approve_user_html: "%{name} утвердил(а) регистрацию %{target}"
         assigned_to_self_report_html: "%{name} назначил(а) себя для решения жалобы %{target}"
         change_email_user_html: "%{name} сменил(а) e-mail пользователя %{target}"
         confirm_user_html: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
@@ -288,16 +310,20 @@ ru:
         destroy_domain_allow_html: "%{name} запретил(а) федерацию с доменом %{target}"
         destroy_domain_block_html: "%{name} снял(а) блокировку с домена %{target}"
         destroy_email_domain_block_html: "%{name} снял(а) блокировку с e-mail домена %{target}"
+        destroy_instance_html: "%{name} очистил(а) данные для домена %{target}"
         destroy_ip_block_html: "%{name} удалил(а) правило для IP %{target}"
         destroy_status_html: "%{name} удалил(а) пост пользователя %{target}"
         destroy_unavailable_domain_html: "%{name} возобновил доставку на узел %{target}"
         disable_2fa_user_html: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
         disable_custom_emoji_html: "%{name} отключил(а) эмодзи %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} отключил(а) аутентификацию по e-mail кодам для %{target}"
         disable_user_html: "%{name} заморозил(а) пользователя %{target}"
         enable_custom_emoji_html: "%{name} включил(а) эмодзи %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию по e-mail кодам для %{target}"
         enable_user_html: "%{name} разморозил(а) пользователя %{target}"
         memorialize_account_html: "%{name} перевел(а) учётную запись пользователя %{target} в статус памятника"
         promote_user_html: "%{name} повысил(а) пользователя %{target}"
+        reject_user_html: "%{name} отклонил(а) регистрацию %{target}"
         remove_avatar_user_html: "%{name} убрал(а) аватарку пользователя %{target}"
         reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
         reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
@@ -306,6 +332,7 @@ ru:
         silence_account_html: "%{name} наложил(а) ограничения на видимость постов пользователя %{target}"
         suspend_account_html: "%{name} заблокировал(а) учётную запись %{target}"
         unassigned_report_html: "%{name} снял(а) назначение жалобы %{target}"
+        unblock_email_account_html: "%{name} разблокировал(а) e-mail адрес %{target}"
         unsensitive_account_html: "%{name} снял(а) отметку файлов %{target} как «деликатного характера»"
         unsilence_account_html: "%{name} снял(а) ограничения видимости постов пользователя %{target}"
         unsuspend_account_html: "%{name} снял(а) блокировку с пользователя %{target}"
@@ -352,7 +379,7 @@ ru:
       enable: Включить
       enabled: Включено
       enabled_msg: Эмодзи успешно включено
-      image_hint: PNG до 50KB
+      image_hint: PNG или GIF до %{size}
       list: Список
       listed: В списке
       new:
@@ -369,32 +396,23 @@ ru:
       updated_msg: Эмодзи обновлён!
       upload: Загрузить
     dashboard:
-      authorized_fetch_mode: Защищённый режим
-      backlog: задачи
-      config: Конфигурация
-      feature_deletions: Удаление учётных записей
-      feature_invites: Пригласительные ссылки
-      feature_profile_directory: Каталог профилей
-      feature_registrations: Регистрация
-      feature_relay: Ретрансляторы
-      feature_timeline_preview: Предпросмотр ленты
-      features: Возможности
-      hidden_service: Федерация со скрытыми сервисами
-      open_reports: открытых жалоб
-      pending_tags: хэштеги, ожидающие проверки
-      pending_users: пользователи, ожидающие проверки
-      recent_users: Недавние пользователи
-      search: Полнотекстовый поиск
-      single_user_mode: Однопользовательский режим
+      active_users: активные пользователи
+      interactions: взаимодействия
+      media_storage: Медиа файлы
+      new_users: новые пользователи
+      opened_reports: жалоб открыто
+      resolved_reports: жалоб решено
       software: Программное обеспечение
+      sources: Источники регистрации
       space: Использовано места
       title: Панель управления
-      total_users: всего пользователей
-      trends: Актуальное
-      week_interactions: взаимодействий на этой неделе
-      week_users_active: активно на этой неделе
-      week_users_new: пользователей на этой неделе
-      whitelist_mode: Белый список
+      top_languages: Самые активные языки
+      top_servers: Самые активные серверы
+      website: Веб-сайт
+    disputes:
+      appeals:
+        empty: Обжалования не найдены.
+        title: Обжалования
     domain_allows:
       add_new: Внести в белый список
       created_msg: Домен добавлен в белый список
@@ -431,35 +449,25 @@ ru:
       reject_media_hint: Удаляет локально хранимый медиаконтент и запрещает его загрузку в будущем. Не имеет значения в случае блокировки.
       reject_reports: Отклонять жалобы
       reject_reports_hint: Игнорировать все жалобы с этого домена. Не имеет значения в случае блокировки.
-      rejecting_media: отклонение медиафайлов
-      rejecting_reports: отклонение жалоб
-      severity:
-        silence: скрывается
-        suspend: заблокирован
-      show:
-        affected_accounts:
-          few: "%{count} учетных записей в базе данных затронуты"
-          many: "%{count} учетных записей в базе данных затронуты"
-          one: Влияет на одну учётную запись в базе данных
-          other: "%{count} учетных записей в базе данных затронуты"
-        retroactive:
-          silence: Убрать скрытие постов учётных записей с этого узла
-          suspend: Снять блокировку со всех существующих учётных записей этого домена
-        title: Снять блокировку с домена %{domain}
-        undo: Отменить
       undo: Отменить блокировку домена
       view: Посмотреть доменные блокировки
     email_domain_blocks:
       add_new: Добавить новую
+      attempts_over_week:
+        few: "%{count} попытки за последнюю неделю"
+        many: "%{count} попыток за последнюю неделю"
+        one: "%{count} попытка за последнюю неделю"
+        other: "%{count} попыток регистрации за последнюю неделю"
       created_msg: E-mail домен внесён в список блокировки
       delete: Удалить
-      destroyed_msg: Домен убран из списка e-mail блокировки
+      dns:
+        types:
+          mx: Запись MX
       domain: Домен
-      empty: Никакие e-mail домены не блокируются.
-      from_html: с %{domain}
       new:
         create: Создать блокировку
         title: Новая блокировка по домену
+      resolved_through_html: Разрешено через %{domain}
       title: Блокировка e-mail доменов
     follow_recommendations:
       description_html: "<strong>Следуйте рекомендациям, чтобы помочь новым пользователям быстро находить интересный контент</strong>. Если пользователь не взаимодействовал с другими в достаточной степени, чтобы сформировать персонализированные рекомендации, вместо этого рекомендуется использовать эти учетные записи. Они пересчитываются на ежедневной основе на основе комбинации аккаунтов с наибольшим количеством недавних взаимодействий и наибольшим количеством местных подписчиков для данного языка."
@@ -470,45 +478,53 @@ ru:
       title: Рекомендации подписок
       unsuppress: Восстановить рекомендацию
     instances:
+      availability:
+        no_failures_recorded: Сбоев в записи нет.
+        title: Доступность
+        warning: Последняя попытка подключения к этому серверу не удалась
       back_to_all: Все узлы
       back_to_limited: Все ограниченные узлы
       back_to_warning: Все узлы требующие внимания
       by_domain: Домен
+      confirm_purge: Вы уверены, что хотите навсегда удалить данные с этого домена?
+      content_policies:
+        policy: Политика
+      dashboard:
+        instance_accounts_measure: сохраненные учетные записи
+        instance_languages_dimension: Популярные языки
+        instance_media_attachments_measure: сохраненные медиафайлы
+        instance_statuses_measure: сохраненные посты
       delivery:
         all: Все
         clear: Очистить ошибки доставки
         restart: Перезапустить доставку
         stop: Остановить доставку
-        title: По доступности
         unavailable: Недоступные
-        unavailable_message: Доставка невозможна
-        warning: Требующие внимания
-        warning_message:
-          few: Доставка невозможна %{count} дня
-          many: Доставка невозможна %{count} дней
-          one: Доставка невозможна %{count} день
-          other: Доставка невозможна %{count} дня
       delivery_available: Доставка возможна
       delivery_error_days: Дней ошибок доставки
       delivery_error_hint: Если доставка доставка не удастся в течение %{count} дней, он будет автоматически отмечен недоступным для доставки.
+      destroyed_msg: Данные для домена %{domain} поставлены в очередь на удаление.
       empty: Домены не найдены.
       known_accounts:
         few: "%{count} известные учётные записи"
         many: "%{count} известных учётных записей"
         one: "%{count} известная учётная запись"
-        other: "%{count} известных учётных записей"
+        other: "%{count} известная учётная запись"
       moderation:
         all: Все
         limited: Ограниченные
         title: Модерация
       private_comment: Приватный комментарий
       public_comment: Публичный комментарий
+      purge: Удалить данные
+      purge_description_html: Если вы считаете, что этот домен отключен навсегда, вы можете удалить все записи учетной записи и связанные с этим доменом данные из своего хранилища. Это может занять некоторое время.
       title: Федерация
       total_blocked_by_us: Заблокировано нами
       total_followed_by_them: Их подписчиков
       total_followed_by_us: Наших подписчиков
       total_reported: Жалобы на них
       total_storage: Медиафайлы
+      totals_time_period_hint_html: Итоги, показанные ниже, включают данные за всё время.
     invites:
       deactivate_all: Отключить все
       filter:
@@ -532,8 +548,6 @@ ru:
         title: Создать новое IP правило
       no_ip_block_selected: Не было изменено ни одного IP правила, так как не было выбрано ни одного
       title: IP правила
-    pending_accounts:
-      title: Ожидающие учетные записи (%{count})
     relationships:
       title: Связи %{acct}
     relays:
@@ -555,6 +569,7 @@ ru:
     report_notes:
       created_msg: Примечание жалобы создано!
       destroyed_msg: Примечание жалобы удалено!
+      today_at: Сегодня в %{time}
     reports:
       account:
         notes:
@@ -562,40 +577,55 @@ ru:
           many: "%{count} заметок"
           one: "%{count} заметка"
           other: "%{count} заметок"
-        reports:
-          few: "%{count} жалобы"
-          many: "%{count} жалоб"
-          one: "%{count} жалоба"
-          other: "%{count} жалоб"
+      action_log: Журнал событий
       action_taken_by: 'Действие предпринято:'
+      actions:
+        resolve_description_html: Никаких действий не будет выполнено относительно доложенного содержимого. Жалоба будет закрыта.
+        silence_description_html: Профиль будет просматриваем только пользователями, которые уже подписаны на него, либо открыли его вручную. Это действие можно отменить в любой момент.
+        suspend_description_html: Профиль и всё опубликованное в нём содержимое станут недоступны, пока в конечном итоге учётная запись не будет удалена. Пользователи не смогут взаимодействовать с этой учётной записью. Это действие можно отменить в течение 30 дней.
+      add_to_report: Прикрепить ещё
       are_you_sure: Вы уверены?
       assign_to_self: Назначить себе
       assigned: Назначенный модератор
       by_target_domain: Домен объекта жалобы
+      category: Категория
+      category_description_html: Причина, по которой были доложены этот пользователь или содержимое, будет указана при коммуникации с фигурирующим в жалобе пользователем
       comment:
         none: Нет
+      comment_description_html: 'В дополнение, %{name} добавил(а) следующий комментарий:'
       created_at: Создана
+      delete_and_resolve: Удалить посты
       forwarded: Переслано
       forwarded_to: Переслано на %{domain}
       mark_as_resolved: Отметить как решённую
+      mark_as_sensitive: Отметить как деликатное
       mark_as_unresolved: Отметить как нерешённую
+      no_one_assigned: Никто
       notes:
         create: Добавить заметку
         create_and_resolve: Разрешить с примечанием
         create_and_unresolve: Переоткрыть с примечанием
         delete: Удалить
         placeholder: Опишите, какие действия были приняты, или любые другие подробности…
+        title: Примечания
+      notes_description_html: Просмотрите или оставьте примечания для остальных модераторов и себя в будущем
+      remote_user_placeholder: удаленный пользователь из %{instance}
       reopen: Переоткрыть жалобу
       report: Жалоба №%{id}
       reported_account: Учётная запись нарушителя
       reported_by: Отправитель жалобы
       resolved: Решённые
       resolved_msg: Жалоба обработана, спасибо!
+      skip_to_actions: Перейти к действиям
       status: Статус
+      statuses: Содержимое относящееся к жалобе
+      statuses_description_html: Нарушающее правила содержимое будет процитировано при коммуникации с фигурирующим в жалобе аккаунтом
+      target_origin: Происхождение объекта жалобы
       title: Жалобы
       unassign: Снять назначение
       unresolved: Нерешённые
       updated_at: Обновлена
+      view_profile: Открыть профиль
     rules:
       add_new: Добавить правило
       delete: Удалить
@@ -697,42 +727,89 @@ ru:
       destroyed_msg: Файл успешно удалён.
     statuses:
       back_to_account: Назад к учётной записи
+      back_to_report: Вернуться к жалобе
       batch:
-        delete: Удалить
-        nsfw_off: Снять отметку «деликатного характера»
-        nsfw_on: Отметить как «деликатного характера»
+        remove_from_report: Убрать из жалобы
+        report: Пожаловаться
       deleted: Удалено
-      failed_to_execute: Не удалось выполнить
       media:
         title: Файлы мультимедиа
-      no_media: Без файлов
       no_status_selected: Ничего не изменилось, так как ни один пост не был выделен
       title: Посты пользователя
       with_media: С файлами
+    strikes:
+      actions:
+        delete_statuses: "%{name} удалил(а) посты %{target}"
+        disable: "%{name} заморозил(а) учётную запись %{target}"
+        mark_statuses_as_sensitive: "%{name} отметил(а) %{target} посты как деликатные"
+        none: "%{name} отправил(а) предупреждение %{target}"
+        sensitive: "%{name} отметил(а) учетную запись %{target} как деликатную"
+        silence: "%{name} ограничил(а) учетную запись %{target}"
+      appeal_approved: Обжаловано
+      appeal_pending: Обжалование в обработке
     system_checks:
       database_schema_check:
         message_html: Есть отложенные миграции базы данных. Запустите их, чтобы убедиться, что приложение работает должным образом
+      elasticsearch_running_check:
+        message_html: Не удалось подключиться к Elasticsearch. Пожалуйста, проверьте, что он запущен, или отключите полнотекстовый поиск
+      elasticsearch_version_check:
+        message_html: 'Несовместимая версия Elasticsearch: %{value}'
+        version_comparison: Запущен Elasticsearch %{running_version}, а необходим %{required_version}
       rules_check:
         action: Управление правилами сервера
         message_html: Вы не определили правила сервера.
       sidekiq_process_check:
         message_html: Ни один Sidekiq не запущен для %{value} очереди(-ей). Пожалуйста, просмотрите настройки Sidekiq
     tags:
-      accounts_today: Уникальных использований за сегодня
-      accounts_week: Уникальных использований за эту неделю
-      breakdown: Разбивка сегодняшнего использования по источникам
-      last_active: Последняя активность
-      most_popular: Самые популярные
-      most_recent: Последние
-      name: Хэштег
       review: Состояние проверки
-      reviewed: Проверенные
-      title: Хэштеги
-      trending_right_now: Популярно сейчас
-      unique_uses_today: "%{count} чел. пишут об этом"
-      unreviewed: Непроверенные
       updated_msg: Настройки хэштега обновлены
     title: Администрирование
+    trends:
+      allow: Разрешить
+      approved: Принятые
+      disallow: Отклонить
+      links:
+        allow: Разрешить ссылку
+        allow_provider: Разрешить издание
+        disallow: Запретить ссылку
+        disallow_provider: Отклонить издание
+        shared_by_over_week:
+          few: Поделилось %{count} человека за последнюю неделю
+          many: Поделилось %{count} человек за последнюю неделю
+          one: Поделился один человек за последнюю неделю
+          other: Поделился %{count} человек за последнюю неделю
+        title: Актуальные ссылки
+        usage_comparison: Поделились %{today} раз сегодня, по сравнению с %{yesterday} вчера
+      pending_review: Ожидает рассмотрения
+      preview_card_providers:
+        allowed: Ссылки этого издания могут отображаться в «актуальном»
+        rejected: Ссылки этого издания не будут отображаться в «актуальном»
+        title: Издатели
+      rejected: Отклонённые
+      statuses:
+        title: Популярные посты
+      tags:
+        current_score: Текущий счет %{score}
+        dashboard:
+          tag_accounts_measure: уникальных использований
+          tag_languages_dimension: Популярные языки
+          tag_servers_dimension: Самые популярные серверы
+          tag_uses_measure: всего использований
+        listable: Может предлагаться
+        not_listable: Не будет предлагаться
+        not_trendable: Не будет появляться в списке «актуального»
+        not_usable: Не может использоваться
+        peaked_on_and_decaying: Последний пик — %{date}, сейчас идёт на спад
+        title: Актуальные хэштеги
+        trendable: Может появляться в списке «актуального»
+        usable: Может использоваться
+        usage_comparison: Использовано %{today} сегодня, для сравнения вчера %{yesterday}
+        used_by_over_week:
+          few: За последнюю неделю использовало %{count} человека
+          many: За последнюю неделю использовало %{count} человек
+          one: За последнюю неделю использовал один человек
+          other: За последнюю неделю использовал %{count} человек
+      title: Популярное
     warning_presets:
       add_new: Добавить
       delete: Удалить
@@ -740,6 +817,8 @@ ru:
       empty: Вы еще не определили пресеты предупреждений.
       title: Управление шаблонами предупреждений
   admin_mailer:
+    new_appeal:
+      subject: "%{username} обжалует решение модерации на %{instance}"
     new_pending_account:
       body: Ниже указана информация учётной записи. Вы можете одобрить или отклонить заявку.
       subject: Новая учётная запись для рассмотрения на %{instance} (%{username})
@@ -747,9 +826,14 @@ ru:
       body: "%{reporter} подал(а) жалобу на %{target}"
       body_remote: Кто-то с узла %{domain} пожаловался на %{target}
       subject: Новая жалоба, узел %{instance} (№%{id})
-    new_trending_tag:
-      body: 'Хэштег #%{name} актуален сегодня, но не был проверен. Он не будет отображаться публично, если вы не одобрите его, или просто сохраните эту форму как есть, чтоб никогда больше о нём не слышать.'
-      subject: Новый хэштег для проверки на %{instance} (#%{name})
+    new_trends:
+      body: 'Прежде чем можно будет опубликовать, проверьте следующие элементы:'
+      new_trending_links:
+        title: Популярные ссылки
+      new_trending_statuses:
+        title: Популярные посты
+      new_trending_tags:
+        title: Популярные хэштеги
   aliases:
     add_new: Создать псевдоним
     created_msg: Новый псевдоним установлен. Теперь мы можете начать миграцию со старой учётной записи.
@@ -794,13 +878,14 @@ ru:
     description:
       prefix_invited_by_user: "@%{name} приглашает вас присоединиться к этому узлу Mastodon."
       prefix_sign_up: Зарегистрируйтесь в Mastodon уже сегодня!
-      suffix: Имея учётную запись, вы можете подписываться на людей, постить обновления, обмениваться сообщениями с пользователями любых узлов Mastodon и не только!
+      suffix: С учётной записью вы сможете подписываться на людей, публиковать обновления, обмениваться сообщениями с пользователями любых сообществ Mastodon и не только!
     didnt_get_confirmation: Не получили инструкцию для подтверждения?
     dont_have_your_security_key: У вас нет ключа безопасности?
     forgot_password: Забыли пароль?
     invalid_reset_password_token: Токен сброса пароля неверен или устарел. Пожалуйста, запросите новый.
     link_to_otp: Введите двухфакторный код с телефона или код восстановления
     link_to_webauth: Используйте устройство с ключом безопасности
+    log_in_with: Войти используя
     login: Войти
     logout: Выйти
     migrate_account: Перенос учётной записи
@@ -888,6 +973,29 @@ ru:
     directory: Каталог профилей
     explanation: Находите пользователей по интересам
     explore_mastodon: Изучайте %{title}
+  disputes:
+    strikes:
+      action_taken: Предпринятые меры
+      appeal_approved: Это замечание было успешно обжаловано и более не действительно
+      appeal_rejected: Апелляция была отклонена
+      appeal_submitted_at: Апелляция отправлена
+      appealed_msg: Ваша апелляция была отправлена. Если она будет одобрена, вы будете уведомлены.
+      appeals:
+        submit: Подать обжалование
+      associated_report: Связанные обращения
+      created_at: Дата
+      recipient: Адресовано
+      status: 'Пост #%{id}'
+      status_removed: Пост уже удален из системы
+      title: "%{action} от %{date}"
+      title_actions:
+        delete_statuses: Удаление поста
+        mark_statuses_as_sensitive: Помечать посты как деликатные
+        sensitive: Отметить учетную запись как деликатную
+        silence: Ограничение учетной записи
+      your_appeal_approved: Ваша апелляция одобрена
+      your_appeal_pending: Вы подали апелляцию
+      your_appeal_rejected: Ваша апелляция отклонена
   domain_validator:
     invalid_domain: не является корректным доменным именем
   errors:
@@ -956,9 +1064,10 @@ ru:
     changes_saved_msg: Изменения успешно сохранены!
     copy: Копировать
     delete: Удалить
-    no_batch_actions_available: На этой странице нет запланированных действий
+    none: Ничего
     order_by: Сортировка
     save_changes: Сохранить изменения
+    today: сегодня
     validation_errors:
       few: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
       many: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
@@ -966,26 +1075,6 @@ ru:
       other: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
   html_validator:
     invalid_markup: 'невалидная разметка HTML: %{error}'
-  identity_proofs:
-    active: Активно
-    authorize: Да, авторизовать
-    authorize_connection_prompt: Авторизовать эту криптографическую связь?
-    errors:
-      failed: Криптографическое соединение не установлено. Попробуйте ещё раз на %{provider}.
-      keybase:
-        invalid_token: Токены Keybase — это хэши от подписей и должны быть по длине в 66 hex-символов
-        verification_failed: Keybase не распознаёт этот токен как подпись пользователя %{kb_username}. Пожалуйста, повторите на Keybase.
-      wrong_user: Невозможно подтвердить пользователя %{proving}, будучи залогиненным как %{current}. Выполните вход как %{proving} и попробуйте ещё раз.
-    explanation_html: На этой странице отображаются криптографически подтверждённые идентификаторы — например, привязанный профиль Keybase. Это позволяет людям отправлять вам зашифрованные сообщения, а также доверять вашим постам.
-    i_am_html: Я %{username} на %{service}.
-    identity: Идентификатор
-    inactive: Неактивно
-    publicize_checkbox: 'И опубликуйте текст:'
-    publicize_toot: 'Подтверждено! Я %{username} на %{service}: %{url}'
-    remove: Удалить идентификатор
-    removed: Идентификатор учётной записи удалён
-    status: Статус
-    view_proof: Посмотреть подтверждение
   imports:
     errors:
       over_rows_processing_limit: содержит более %{count} строк
@@ -1018,10 +1107,10 @@ ru:
     generate: Сгенерировать
     invited_by: 'Вас пригласил(а):'
     max_uses:
-      few: "%{count} исп."
-      many: "%{count} исп."
-      one: 1 исп
-      other: "%{count} исп"
+      few: "%{count} раза"
+      many: "%{count} раз"
+      one: "%{count} раз"
+      other: "%{count} раза"
     max_uses_prompt: Без ограничения
     prompt: Создавайте и делитесь ссылками с другими, чтобы предоставить им доступом к этому узлу.
     table:
@@ -1031,6 +1120,17 @@ ru:
   lists:
     errors:
       limit: Вы достигли максимального числа списков
+  login_activities:
+    authentication_methods:
+      otp: приложение двухфакторной аутентификации
+      password: пароль
+      sign_in_token: код безопасности из e-mail
+      webauthn: ключи безопасности
+    description_html: Если вы видите неопознанное действие, смените пароль и/или включите двухфакторную авторизацию.
+    empty: Нет доступной истории входов
+    failed_sign_in_html: Неудачная попытка входа используя %{method} через %{browser} (%{ip})
+    successful_sign_in_html: Успешный вход используя %{method} через %{browser} (%{ip})
+    title: История входов
   media_attachments:
     validations:
       images_and_video: Нельзя добавить видео к посту с изображениями
@@ -1074,6 +1174,9 @@ ru:
     carry_mutes_over_text: Этот пользователь переехал с учётной записи %{acct}, которую вы добавили в список игнорирования.
     copy_account_note_text: 'Этот пользователь переехал с %{acct}, вот ваша предыдущая заметка о нём:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} зарегистрирован"
     digest:
       action: Просмотреть все уведомления
       body: Вот краткая сводка сообщений, которые вы пропустили с последнего захода %{since}
@@ -1115,6 +1218,8 @@ ru:
       title: Новое продвижение
     status:
       subject: "%{name} только что запостил(а)"
+    update:
+      subject: "%{name} изменил(а) пост"
   notifications:
     email_events: События для e-mail уведомлений
     email_events_hint: 'Выберите события, для которых вы хотели бы получать уведомления:'
@@ -1196,6 +1301,9 @@ ru:
     reply:
       proceed: Ответить
       prompt: 'Вы собираетесь ответить на этот пост:'
+  reports:
+    errors:
+      invalid_rules: не ссылается на действительные правила
   scheduled_statuses:
     over_daily_limit: Вы превысили лимит в %{limit} запланированных постов на указанный день
     over_total_limit: Вы превысили лимит на %{limit} запланированных постов
@@ -1241,6 +1349,7 @@ ru:
     revoke: Завершить
     revoke_success: Сессия завершена
     title: Сессии
+    view_authentication_history: Посмотреть историю входов с учётной записью
   settings:
     account: Учётная запись
     account_settings: Управление учётной записью
@@ -1249,11 +1358,10 @@ ru:
     authorized_apps: Приложения
     back: Назад в Mastodon
     delete: Удаление учётной записи
-    development: Разработка
+    development: Разработчикам
     edit_profile: Изменить профиль
     export: Экспорт данных
     featured_tags: Особенные хэштеги
-    identity_proofs: Идентификация
     import: Импорт
     import_and_export: Импорт и экспорт
     migrate: Миграция учётной записи
@@ -1261,6 +1369,7 @@ ru:
     preferences: Настройки
     profile: Профиль
     relationships: Подписки и подписчики
+    statuses_cleanup: Авто-удаление постов
     two_factor_authentication: Подтверждение входа
     webauthn_authentication: Ключи безопасности
   statuses:
@@ -1283,20 +1392,21 @@ ru:
         other: "%{count} видео"
     boosted_from_html: Продвижение польз. %{acct_link}
     content_warning: 'Спойлер: %{warning}'
+    default_language: Тот же, что язык интерфейса
     disallowed_hashtags:
       few: 'содержались запрещённые хэштеги: %{tags}'
       many: 'содержались запрещённые хэштеги: %{tags}'
       one: 'содержался запрещённый хэштег: %{tags}'
       other: 'содержались запрещённые хэштеги: %{tags}'
+    edited_at_html: Редактировано %{date}
     errors:
       in_reply_not_found: Пост, на который вы пытаетесь ответить, не существует или удалён.
-    language_detection: Определять язык автоматически
     open_in_web: Открыть в веб-версии
     over_character_limit: превышен лимит символов (%{max})
     pin_errors:
+      direct: Сообщения, видимые только упомянутым пользователям, не могут быть закреплены
       limit: Вы закрепили максимально возможное число постов
       ownership: Нельзя закрепить чужой пост
-      private: Нельзя закрепить непубличный пост
       reblog: Нельзя закрепить продвинутый пост
     poll:
       total_people:
@@ -1324,6 +1434,41 @@ ru:
       public_long: Показывать всем
       unlisted: Скрывать из лент
       unlisted_long: Показывать всем, но не отображать в публичных лентах
+  statuses_cleanup:
+    enabled: Автоматически удалять устаревшие посты
+    enabled_hint: Автоматически удаляет ваши посты после того, как они достигли определённого возраста, за некоторыми исключениями ниже.
+    exceptions: Исключения
+    explanation: Из-за того, что удаление постов — это ресурсоёмкий процесс, оно производится медленно со временем, когда сервер менее всего занят. По этой причине, посты могут удаляться не сразу, а спустя определённое время, по достижению возрастного порога.
+    ignore_favs: Игнорировать отметки «избранного»
+    ignore_reblogs: Игнорировать продвижения
+    interaction_exceptions: Исключения на основе взаимодействий
+    interaction_exceptions_explanation: 'Обратите внимание: нет никаких гарантий, что посты будут удалены, после того, как они единожды перешли порог по отметкам «избранного» или продвижений.'
+    keep_direct: Не удалять адресованные посты
+    keep_direct_hint: Не удалять ваши посты с «адресованной» видимостью.
+    keep_media: Не удалять посты с вложениями
+    keep_media_hint: Не удалять ваши посты, содержащие любые медийные вложения
+    keep_pinned: Не удалять закреплённые посты
+    keep_pinned_hint: Не удалять ваши посты, которые закреплены в профиле.
+    keep_polls: Не удалять опросы
+    keep_polls_hint: Не удалять ваши посты с опросами.
+    keep_self_bookmark: Не удалять закладки
+    keep_self_bookmark_hint: Не удалять ваши посты с закладками
+    keep_self_fav: Оставить посты, отмеченные «избранными»
+    keep_self_fav_hint: Не удалять ваши посты, если вы отметили их как «избранные».
+    min_age:
+      '1209600': 2 недели
+      '15778476': 6 месяцев
+      '2629746': 1 месяц
+      '31556952': 1 год
+      '5259492': 2 месяца
+      '604800': 1 неделя
+      '63113904': 2 года
+      '7889238': 3 месяца
+    min_age_label: Возрастной порог
+    min_favs: Порог отметок «избранного»
+    min_favs_hint: Не удаляет ваши посты, у которых количество отметок «избранного» достигло указанного выше значения. Оставьте поле пустым, чтобы удалять посты независимо от количества отметок.
+    min_reblogs: Порог продвижений
+    min_reblogs_hint: Не удаляет ваши посты, количество продвижений которых достигло указанного выше значения. Оставьте поле пустым, чтобы удалять посты независимо от количества продвижений.
   stream_entries:
     pinned: Закреплённый пост
     reblogged: продвинул(а)
@@ -1417,6 +1562,7 @@ ru:
     formats:
       default: "%d %b %Y, %H:%M"
       month: "%m.%Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Добавить
     disable: Отключить
@@ -1433,6 +1579,13 @@ ru:
     recovery_instructions_html: 'Пожалуйста, сохраните коды ниже в надёжном месте: они понадобятся, чтобы войти в учётную запись, если вы потеряете доступ к своему смартфону. Вы можете вручную переписать их, распечатать и спрятать среди важных документов или, например, в любимой книжке. <strong>Каждый код действителен только один раз</strong>.'
     webauthn: Ключи безопасности
   user_mailer:
+    appeal_approved:
+      action: Перейти к своему профилю
+      subject: Ваше обжалование от %{date} была одобрено
+      title: Обжалование одобрено
+    appeal_rejected:
+      subject: Ваше обжалование от %{date} отклонено
+      title: Обжалование отклонено
     backup_ready:
       explanation: Вы запросили архив всех данных вашей учётной записи Mastodon. Что ж, он готов к скачиванию.
       subject: Ваш архив готов к загрузке
@@ -1444,30 +1597,36 @@ ru:
       subject: Пожалуйста, подтвердите попытку входа
       title: Попытка входа
     warning:
+      appeal: Обжаловать
+      categories:
+        spam: Спам
+        violation: Содержимое нарушает следующие правила сообщества
       explanation:
-        disable: Пока ваша учётная запись заморожена, ваши данные остаются нетронутыми, но вы не можете производить никаких действий до разблокировки.
-        sensitive: Все загружаемые и прикреплённые вами медиафайлы будут расцениваться как «деликатного характера».
-        silence: Пока действуют данные ограничения, публикуемые вами посты будут видеть исключительно люди, которые на вас уже подписаны на этом узле, вы также можете быть исключены из различных публичных лент. Несмотря на это, остальные пользователи по-прежнему могут подписаться на вас, чтобы читать новые посты.
-        suspend: Ваша учётная запись заблокирована и все ваши посты и загруженные медиафайлы безвозвратно удалены с этого сервера и других серверов, где у вас были подписчики.
-      get_in_touch: Вы можете ответить на это письмо, чтобы связаться с сотрудниками %{instance}.
-      review_server_policies: Посмотреть правила сервера
-      statuses: 'В частности, для:'
+        delete_statuses: Было обнаружено, что некоторые из ваших постов нарушают одно или несколько правил сообщества, и они были удалены модераторами %{instance}.
+        disable: Вы не можете использовать свою учётную запись, однако ваш профиль и данные остаются нетронутыми. Вы можете запросить выгрузку своих данных, менять настройки, либо полностью удалить свою учётную запись.
+        sensitive: С этого момента, все прикрепляемые вами файлы будут отмечаться как «деликатного характера» и скрыты за предупреждением, требующими клика.
+        silence: Вы по-прежнему можете использовать свою учётную запись, но только пользователи, которые подписаны на вас, смогут видеть ваши публикации на данном узле. Вы также будете исключены из различных поисковых функций, однако пользователи всё ещё могут вручную подписаться на вас.
+        suspend: Вы больше не сможете использовать эту учётную запись и ваш профиль более недоступен к просмотру. Вы по-прежнему можете войти в учётную запись, чтобы запросить выгрузку своих данных, до тех пор, пока они не будут удалены спустя 30 дней (за исключением информации, которая не позволит вам обойти эту блокировку).
+      reason: 'Причина:'
+      statuses: 'Цитируемые посты:'
       subject:
+        delete_statuses: Опубликованные вами с учётной записи %{acct} посты были удалены
         disable: Ваша учётная запись %{acct} заморожена
         none: "%{acct} вынесено предупреждение"
-        sensitive: Ваша учётная запись %{acct} была отмечена как «деликатного содержания»
         silence: На учётную запись %{acct} наложены ограничения
         suspend: Ваша учётная запись %{acct} была заблокирована
       title:
+        delete_statuses: Ваши посты удалены
         disable: Учётная запись заморожена
+        mark_statuses_as_sensitive: Посты, отмеченные как деликатные
         none: Предупреждение
-        sensitive: Ваши медиафайлы отмечены как «деликатного характера»
+        sensitive: Учетная запись отмечена как деликатная
         silence: На учётную запись наложены ограничения
         suspend: Учётная запись заблокирована
     welcome:
       edit_profile_action: Настроить профиль
       edit_profile_step: Настройте свой профиль, загрузив аватарку, шапку, изменив отображаемое имя и ещё много чего. Если вы хотите вручную рассматривать и подтверждать подписчиков, можно закрыть свою учётную запись.
-      explanation: Несколько советов для новичков
+      explanation: Вот несколько советов для новичков
       final_action: Начать постить
       final_step: 'Начните постить! Ваши публичные посты могут видеть другие, например, в локальной ленте или по хэштегам, даже если у вас нет подписчиков. Вы также можете поздороваться с остальными и представиться, используя хэштег #приветствие.'
       full_handle: Ваше обращение

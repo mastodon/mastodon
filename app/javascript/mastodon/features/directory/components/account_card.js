@@ -7,31 +7,28 @@ import { makeGetAccount } from 'mastodon/selectors';
 import Avatar from 'mastodon/components/avatar';
 import DisplayName from 'mastodon/components/display_name';
 import Permalink from 'mastodon/components/permalink';
-import RelativeTimestamp from 'mastodon/components/relative_timestamp';
-import IconButton from 'mastodon/components/icon_button';
+import Button from 'mastodon/components/button';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';
 import ShortNumber from 'mastodon/components/short_number';
 import {
   followAccount,
   unfollowAccount,
-  blockAccount,
   unblockAccount,
   unmuteAccount,
 } from 'mastodon/actions/accounts';
 import { openModal } from 'mastodon/actions/modal';
-import { initMuteModal } from 'mastodon/actions/mutes';
+import classNames from 'classnames';
 
 const messages = defineMessages({
-  follow: { id: 'account.follow', defaultMessage: 'Follow' },
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
-  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval' },
-  unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
-  unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
-  unfollowConfirm: {
-    id: 'confirmations.unfollow.confirm',
-    defaultMessage: 'Unfollow',
-  },
+  follow: { id: 'account.follow', defaultMessage: 'Follow' },
+  cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Cancel follow request' },
+  requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
+  unblock: { id: 'account.unblock_short', defaultMessage: 'Unblock' },
+  unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
+  unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
+  edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
 });
 
 const makeMapStateToProps = () => {
@@ -75,18 +72,15 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onBlock(account) {
     if (account.getIn(['relationship', 'blocking'])) {
       dispatch(unblockAccount(account.get('id')));
-    } else {
-      dispatch(blockAccount(account.get('id')));
     }
   },
 
   onMute(account) {
     if (account.getIn(['relationship', 'muting'])) {
       dispatch(unmuteAccount(account.get('id')));
-    } else {
-      dispatch(initMuteModal(account));
     }
   },
+
 });
 
 export default
@@ -138,130 +132,92 @@ class AccountCard extends ImmutablePureComponent {
 
   handleMute = () => {
     this.props.onMute(this.props.account);
-  };
+  }
+
+  handleEditProfile = () => {
+    window.open('/settings/profile', '_blank');
+  }
 
   render() {
     const { account, intl } = this.props;
 
-    let buttons;
+    let actionBtn;
 
-    if (
-      account.get('id') !== me &&
-      account.get('relationship', null) !== null
-    ) {
-      const following = account.getIn(['relationship', 'following']);
-      const requested = account.getIn(['relationship', 'requested']);
-      const blocking = account.getIn(['relationship', 'blocking']);
-      const muting = account.getIn(['relationship', 'muting']);
-
-      if (requested) {
-        buttons = (
-          <IconButton
-            disabled
-            icon='hourglass'
-            title={intl.formatMessage(messages.requested)}
-          />
-        );
-      } else if (blocking) {
-        buttons = (
-          <IconButton
-            active
-            icon='unlock'
-            title={intl.formatMessage(messages.unblock, {
-              name: account.get('username'),
-            })}
-            onClick={this.handleBlock}
-          />
-        );
-      } else if (muting) {
-        buttons = (
-          <IconButton
-            active
-            icon='volume-up'
-            title={intl.formatMessage(messages.unmute, {
-              name: account.get('username'),
-            })}
-            onClick={this.handleMute}
-          />
-        );
-      } else if (!account.get('moved') || following) {
-        buttons = (
-          <IconButton
-            icon={following ? 'user-times' : 'user-plus'}
-            title={intl.formatMessage(
-              following ? messages.unfollow : messages.follow,
-            )}
-            onClick={this.handleFollow}
-            active={following}
-          />
-        );
+    if (me !== account.get('id')) {
+      if (!account.get('relationship')) { // Wait until the relationship is loaded
+        actionBtn = '';
+      } else if (account.getIn(['relationship', 'requested'])) {
+        actionBtn = <Button className={classNames('logo-button')} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.handleFollow} />;
+      } else if (account.getIn(['relationship', 'muting'])) {
+        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unmute)} onClick={this.handleMute} />;
+      } else if (!account.getIn(['relationship', 'blocking'])) {
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']) })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.handleFollow} />;
+      } else if (account.getIn(['relationship', 'blocking'])) {
+        actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock)} onClick={this.handleBlock} />;
       }
+    } else {
+      actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.edit_profile)} onClick={this.handleEditProfile} />;
     }
 
     return (
-      <div className='directory__card'>
-        <div className='directory__card__img'>
-          <img
-            src={
-              autoPlayGif ? account.get('header') : account.get('header_static')
-            }
-            alt=''
-          />
-        </div>
-
-        <div className='directory__card__bar'>
-          <Permalink
-            className='directory__card__bar__name'
-            href={account.get('url')}
-            to={`/accounts/${account.get('id')}`}
-          >
-            <Avatar account={account} size={48} />
-            <DisplayName account={account} />
-          </Permalink>
-
-          <div className='directory__card__bar__relationship account__relationship'>
-            {buttons}
+      <div className='account-card'>
+        <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='account-card__permalink'>
+          <div className='account-card__header'>
+            <img
+              src={
+                autoPlayGif ? account.get('header') : account.get('header_static')
+              }
+              alt=''
+            />
           </div>
-        </div>
 
-        <div className='directory__card__extra' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          <div className='account-card__title'>
+            <div className='account-card__title__avatar'><Avatar account={account} size={56} /></div>
+            <DisplayName account={account} />
+          </div>
+        </Permalink>
+
+        {account.get('note').length > 0 && (
           <div
-            className='account__header__content translate'
+            className='account-card__bio translate'
+            onMouseEnter={this.handleMouseEnter}
+            onMouseLeave={this.handleMouseLeave}
             dangerouslySetInnerHTML={{ __html: account.get('note_emojified') }}
           />
-        </div>
+        )}
 
-        <div className='directory__card__extra'>
-          <div className='accounts-table__count'>
-            <ShortNumber value={account.get('statuses_count')} />
-            <small>
-              <FormattedMessage id='account.posts' defaultMessage='Toots' />
-            </small>
+        <div className='account-card__actions'>
+          <div className='account-card__counters'>
+            <div className='account-card__counters__item'>
+              <ShortNumber value={account.get('statuses_count')} />
+              <small>
+                <FormattedMessage id='account.posts' defaultMessage='Toots' />
+              </small>
+            </div>
+
+            <div className='account-card__counters__item'>
+              <ShortNumber value={account.get('followers_count')} />{' '}
+              <small>
+                <FormattedMessage
+                  id='account.followers'
+                  defaultMessage='Followers'
+                />
+              </small>
+            </div>
+
+            <div className='account-card__counters__item'>
+              <ShortNumber value={account.get('following_count')} />{' '}
+              <small>
+                <FormattedMessage
+                  id='account.following'
+                  defaultMessage='Following'
+                />
+              </small>
+            </div>
           </div>
-          <div className='accounts-table__count'>
-            <ShortNumber value={account.get('followers_count')} />{' '}
-            <small>
-              <FormattedMessage
-                id='account.followers'
-                defaultMessage='Followers'
-              />
-            </small>
-          </div>
-          <div className='accounts-table__count'>
-            {account.get('last_status_at') === null ? (
-              <FormattedMessage
-                id='account.never_active'
-                defaultMessage='Never'
-              />
-            ) : (
-              <RelativeTimestamp timestamp={account.get('last_status_at')} />
-            )}{' '}
-            <small>
-              <FormattedMessage
-                id='account.last_status'
-                defaultMessage='Last active'
-              />
-            </small>
+
+          <div className='account-card__actions__button'>
+            {actionBtn}
           </div>
         </div>
       </div>

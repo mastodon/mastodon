@@ -23,6 +23,7 @@ uk:
     hosted_on: Mastodon розміщено на %{domain}
     instance_actor_flash: "Цей обліковий запис є віртуальною особою, яка використовується для представлення самого сервера, а не певного користувача. Він використовується для потреб федерації і не повинен бути заблокований, якщо тільки ви не хочете заблокувати весь сервер, у цьому випадку ви повинні скористатися блокуванням домену. \n"
     learn_more: Дізнатися більше
+    logout_before_registering: Ви вже увійшли.
     privacy_policy: Політика приватності
     rules: Правила сервера
     rules_html: 'Внизу наведено підсумок правил, яких ви повинні дотримуватися, якщо хочете мати обліковий запис на цьому сервері Mastodon:'
@@ -73,7 +74,6 @@ uk:
     media: Медіа
     moved_html: "%{name} переїхав до %{new_profile_link}:"
     network_hidden: Ця інформація недоступна
-    never_active: Ніколи
     nothing_here: Тут нічого немає!
     people_followed_by: Люди, на яких підписаний(-а) %{name}
     people_who_follow: Підписники %{name}
@@ -100,12 +100,10 @@ uk:
     account_moderation_notes:
       create: Залишити нотатку
       created_msg: Нотатку модератора успішно створено!
-      delete: Видалити
       destroyed_msg: Нотатку модератора успішно видалено!
     accounts:
       add_email_domain_block: Додати поштовий домен до чорного списку
       approve: Схвалити
-      approve_all: Схвалити всіх
       approved_msg: Заявку на реєстрацію %{username} затверджено
       are_you_sure: Ви впевнені?
       avatar: Аватар
@@ -120,11 +118,13 @@ uk:
       confirm: Зберегти
       confirmed: Збережено
       confirming: Зберігається
+      custom: Власне
       delete: Видалити дані
       deleted: Видалено
       demote: Усунути
       destroyed_msg: Дані %{username} тепер в черзі на негайне видалення
       disable: Вимкнути
+      disable_sign_in_token_auth: Вимкнути автентифікацію за допомогою е-пошти
       disable_two_factor_authentication: Вимкнути двофакторну авторизацію
       disabled: Вимкнено
       display_name: Відображуване ім'я
@@ -133,6 +133,7 @@ uk:
       email: Електронна пошта
       email_status: Статус електронної пошти
       enable: Увімкнути
+      enable_sign_in_token_auth: Увімкнути автентифікацію за допомогою е-пошти
       enabled: Увімкнено
       enabled_msg: Обліковий запис %{username} успішно розморожено
       followers: Підписники
@@ -157,7 +158,6 @@ uk:
         active: Активний
         all: Усі
         pending: Очікують
-        silenced: Заглушені
         suspended: Призупинені
         title: Модерація
       moderation_notes: Нотатки модераторів
@@ -175,7 +175,6 @@ uk:
       redownload: Оновити аватар
       redownloaded_msg: Профіль %{username} оновлено з джерела походження
       reject: Відхилити
-      reject_all: Відхилити усе
       rejected_msg: Заявку на реєстрацію %{username} відхилено
       remove_avatar: Видалити аватар
       remove_header: Видалити заголовок
@@ -197,6 +196,10 @@ uk:
       search: Пошук
       search_same_email_domain: Інші користувачі з тим самим поштовим доменом
       search_same_ip: Інші користувачі з тим самим IP
+      security_measures:
+        only_password: Лише пароль
+        password_and_2fa: Пароль та 2FA
+        password_and_sign_in_token: Пароль та токен з е-пошти
       sensitive: Делікатне
       sensitized: позначено делікатним
       shared_inbox_url: URL спільного вхідного кошика
@@ -207,11 +210,13 @@ uk:
       silenced: Заглушені
       statuses: Статуси
       subscribe: Підписатися
+      suspend: Призупинити
       suspended: Призупинені
       suspension_irreversible: Дані цього облікового запису безповоротно видалено. Ви можете розблокувати обліковий запис, щоб могти ним користуватися, але будь-які його дані не відновляться.
       suspension_reversible_hint_html: Обліковий запис заблоковано, а дані буде повністю вилучено %{date}. До цього часу обліковий запис можна відновити без будь-яких негативних наслідків. Якщо ви бажаєте вилучити всі дані облікового запису негайно, ви можете зробити це внизу.
-      time_in_queue: Очікує в черзі %{time}
       title: Облікові записи
+      unblock_email: Розблокувати адресу е-пошти
+      unblocked_email_msg: Адреса електронної пошти %{username} успішно розблокована
       unconfirmed_email: Непідтверджена адреса електронної пошти
       undo_sensitized: Скасувати позначення делікатним
       undo_silenced: Зняти глушення
@@ -226,6 +231,8 @@ uk:
       whitelisted: У білому списку
     action_logs:
       action_types:
+        approve_appeal: Затвердити апеляцію
+        approve_user: Затвердити користувачів
         assigned_to_self_report: Призначити звіт
         change_email_user: Змінити електронну пошту для користувача
         confirm_user: Підтвердити користувача
@@ -243,16 +250,21 @@ uk:
         destroy_domain_allow: Видалити дозвіл на домен
         destroy_domain_block: Видалити блокування домену
         destroy_email_domain_block: Видалити блокування поштового домену
+        destroy_instance: Очистити домен
         destroy_ip_block: Видалити правило IP
         destroy_status: Видалити пост
         destroy_unavailable_domain: Видалити недоступний домен
         disable_2fa_user: Вимкнути 2FA
         disable_custom_emoji: Вимкнути користувацькі емодзі
+        disable_sign_in_token_auth_user: Вимкнути автентифікацію за допомогою е-пошти для користувача
         disable_user: Відключити користувача
         enable_custom_emoji: Увімкнути користувацькі емодзі
+        enable_sign_in_token_auth_user: Увімкнути автентифікацію за допомогою е-пошти для користувача
         enable_user: Активувати користувача
         memorialize_account: Зробити обліковий запис меморіалом
         promote_user: Підвищити користувача
+        reject_appeal: Відхилити апеляцію
+        reject_user: Відхилити користувача
         remove_avatar_user: Видалити аватар
         reopen_report: Перевідкрити скаргу
         reset_password_user: Скинути пароль
@@ -261,6 +273,7 @@ uk:
         silence_account: Заглушити обліковий запис
         suspend_account: Призупинити обліковий запис
         unassigned_report: Видалити скаргу
+        unblock_email_account: Розблокувати адресу е-пошти
         unsensitive_account: Прибрати позначку "делікатне" з медіа вашого облікового запису
         unsilence_account: Розглушити обліковий запис
         unsuspend_account: Розморозити обліковий запис
@@ -269,6 +282,7 @@ uk:
         update_domain_block: Оновити блокування домену
         update_status: Оновити статус
       actions:
+        approve_user_html: "%{name} схвалює реєстрацію від %{target}"
         assigned_to_self_report_html: "%{name} створює скаргу %{target} на себе"
         change_email_user_html: "%{name} змінює поштову адресу користувача %{target}"
         confirm_user_html: "%{name} підтверджує стан поштової адреси користувача %{target}"
@@ -286,16 +300,20 @@ uk:
         destroy_domain_allow_html: "%{name} скасовує федерацію з доменом %{target}"
         destroy_domain_block_html: "%{name} розблокує домен %{target}"
         destroy_email_domain_block_html: "%{name} розблоковує домен електронної пошти %{target}"
+        destroy_instance_html: "%{name} очищує домен %{target}"
         destroy_ip_block_html: "%{name} видаляє правило для IP %{target}"
         destroy_status_html: "%{name} видаляє статус %{target}"
         destroy_unavailable_domain_html: "%{name} відновлює доставляння на домен %{target}"
         disable_2fa_user_html: "%{name} вимикає двоетапну перевірку для користувача %{target}"
         disable_custom_emoji_html: "%{name} вимикає емодзі %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} вимикає автентифікацію через е-пошту для %{target}"
         disable_user_html: "%{name} вимикає вхід для користувача %{target}"
         enable_custom_emoji_html: "%{name} вмикає емодзі %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} вмикає автентифікацію через е-пошту для %{target}"
         enable_user_html: "%{name} вмикає вхід для користувача %{target}"
         memorialize_account_html: "%{name} перетворює обліковий запис %{target} на сторінку пам'яті"
         promote_user_html: "%{name} підвищує користувача %{target}"
+        reject_user_html: "%{name} відхиляє реєстрацію від %{target}"
         remove_avatar_user_html: "%{name} прибирає аватар %{target}"
         reopen_report_html: "%{name} знову відкриває звіт %{target}"
         reset_password_user_html: "%{name} скидає пароль користувача %{target}"
@@ -304,6 +322,7 @@ uk:
         silence_account_html: "%{name} приглушує обліковий запис %{target}"
         suspend_account_html: "%{name} заморожує обліковий запис %{target}"
         unassigned_report_html: "%{name} прибирає призначення скарги %{target}"
+        unblock_email_account_html: "%{name} розблоковує електронну пошту %{target}"
         unsensitive_account_html: '%{name} прибирає позначку "делікатне" з медіа від %{target}'
         unsilence_account_html: "%{name} розглушує обліковий запис %{target}"
         unsuspend_account_html: "%{name} розморожує обліковий запис %{target}"
@@ -350,7 +369,7 @@ uk:
       enable: Увімкнути
       enabled: Увімкнено
       enabled_msg: Емодзі успішно увімкнене
-      image_hint: PNG розміром до 50 КБ
+      image_hint: PNG або GIF до %{size}
       list: Список
       listed: У списку
       new:
@@ -367,32 +386,23 @@ uk:
       updated_msg: Емодзі успішно оновлене!
       upload: Вивантажити
     dashboard:
-      authorized_fetch_mode: Безпечний режим
-      backlog: відкладені завдання
-      config: Налаштування
-      feature_deletions: Видалення облікових записів
-      feature_invites: Посилання-запрошення
-      feature_profile_directory: Каталог профілів
-      feature_registrations: Реєстрації
-      feature_relay: Ретранслятор дмухів між серверами
-      feature_timeline_preview: Передпоказ стрічки
-      features: Можливості
-      hidden_service: Федерація з прихованими сервісами
-      open_reports: відкриті скарги
-      pending_tags: хештеги, що очікують на перегляд
-      pending_users: користувачі, що очікують на перегляд
-      recent_users: Останні користувачі
-      search: Повнотекстовий пошук
-      single_user_mode: Режим одного користувача
+      active_users: активні користувачі
+      interactions: взаємодії
+      media_storage: Медіасховище
+      new_users: нові користувачі
+      opened_reports: звітів відкрито
+      resolved_reports: розв'язані звіти
       software: Програмне забезпечення
+      sources: Джерела реєстрації
       space: Використання дискового простору
       title: Приборна панель
-      total_users: користувачів загалом
-      trends: Тренди
-      week_interactions: дій за цей тиждень
-      week_users_active: активно протягом тижня
-      week_users_new: користувачів цього тижня
-      whitelist_mode: Режим білого списку
+      top_languages: Найактивніші мови
+      top_servers: Найактивніші сервери
+      website: Вебсайт
+    disputes:
+      appeals:
+        empty: Апеляцій не знайдено.
+        title: Апеляції
     domain_allows:
       add_new: Додати домен до білого списку
       created_msg: Домен було успішно додано до білого списку
@@ -424,35 +434,21 @@ uk:
       reject_media_hint: Видаляє медіаконтент, збережений локально, і забороняє його завантаження у майбутньому. Не має значення у випадку блокування
       reject_reports: Відхилити скарги
       reject_reports_hint: Ігнорувати всі скарги з цього домену. Не має значення у випадку блокування
-      rejecting_media: відхилення медіафайлів
-      rejecting_reports: відхилення скарг
-      severity:
-        silence: заглушені
-        suspend: призупинені
-      show:
-        affected_accounts:
-          few: Впливає на %{count} облікових записи у базі даних
-          many: Впливає на %{count} облікових записів у базі даних
-          one: Впливає на один обліковий запис у базі даних
-          other: Впливає на %{count} облікових записів у базі даних
-        retroactive:
-          silence: Зняти глушення з усіх існуючих заглушених облікових записів цього домену
-          suspend: Розморозити існуючі заморожені облікові записи з цього домену
-        title: Зняти блокування з домена %{domain}
-        undo: Відмінити
       undo: Відмінити
       view: Переглянути заблоковані домени
     email_domain_blocks:
       add_new: Додати
       created_msg: Успішно додано поштовий домен до чорного списку
       delete: Видалити
-      destroyed_msg: Успішно видалено поштовий домен з чорного списку
+      dns:
+        types:
+          mx: MX-запис
       domain: Домен
-      empty: Ніякі e-mail домени не блокуються.
-      from_html: з %{domain}
       new:
         create: Додати домен
+        resolve: Розв'язати домен
         title: Нове блокування поштового домену
+      resolved_through_html: Розв'язано через %{domain}
       title: Чорний список поштових доменів
     follow_recommendations:
       description_html: "<strong>Слідувати рекомендаціям та допомогти новим користувачам швидко знайти цікавий вміст</strong>. Коли користувачі не взаємодіяли з іншими людьми достатньо, щоб сформувати персоналізовані рекомендації, радимо замість цього вказувати ці облікові записи. Вони щоденно переобчислюються з масиву облікових записів з найбільшою кількістю недавніх взаємодій і найбільшою кількістю місцевих підписників розраховується для цієї мови."
@@ -467,35 +463,36 @@ uk:
       back_to_limited: Обмежені
       back_to_warning: Попередження
       by_domain: Домен
+      confirm_purge: Ви впевнені, що хочете видалити ці дані з цього домену?
+      content_policies:
+        policies:
+          reject_media: Відхилити медіа
+          reject_reports: Відхилити скарги
+          silence: Обмеження
+          suspend: Призупинити
+        policy: Правила
+        reason: Суспільна причина
+        title: Політика вмісту
+      dashboard:
+        instance_languages_dimension: Найуживаніші мови
       delivery:
         all: Усі
         clear: Очистити помилки доставляння
         restart: Перезапустити доставляння
         stop: Припинити доставляння
-        title: Доставляння
         unavailable: Недоступно
-        unavailable_message: Доставлення недоступне
-        warning: Попередження
-        warning_message:
-          few: Збій доставляння %{count} дні
-          many: Збій доставляння %{count} днів
-          one: Збій доставляння %{count} день
-          other: Збій доставляння %{count} днів
       delivery_available: Доставлення доступне
       delivery_error_days: Днів помилок доставляння
       delivery_error_hint: Якщо доставляння неможливе впродовж %{count} днів, воно автоматично позначиться недоставленим.
+      destroyed_msg: Дані з %{domain} тепер у черзі на видалення.
       empty: Доменів не знайдено.
-      known_accounts:
-        few: "%{count} відомих облікових записів"
-        many: "%{count} відомих облікових записів"
-        one: "%{count} відомий обліковий запис"
-        other: "%{count} відомих облікових записів"
       moderation:
         all: Усі
         limited: Обмежені
         title: Модерація
       private_comment: Приватний коментар
       public_comment: Публічний коментар
+      purge: Очисти
       title: Відомі інстанції
       total_blocked_by_us: Заблокованих нами
       total_followed_by_them: Вони стежать за
@@ -525,8 +522,6 @@ uk:
         title: Створити нове правило IP
       no_ip_block_selected: Жодних правил IP не було змінено, оскільки жодного не було вибрано
       title: Правила IP
-    pending_accounts:
-      title: Облікові записи у черзі (%{count})
     relationships:
       title: "%{acct} відносини"
     relays:
@@ -548,6 +543,7 @@ uk:
     report_notes:
       created_msg: Скарга успішно створена!
       destroyed_msg: Скарга успішно видалена!
+      today_at: Сьогодні о %{time}
     reports:
       account:
         notes:
@@ -555,40 +551,54 @@ uk:
           many: "%{count} приміток"
           one: "%{count} примітка"
           other: "%{count} приміток"
-        reports:
-          few: "%{count} скарги"
-          many: "%{count} скарг"
-          one: "%{count} скарга"
-          other: "%{count} скарг"
+      action_log: Журнал подій
       action_taken_by: Дія виконана
+      actions:
+        other_description_html: Більше опцій керування поведінкою облікового запису і налаштування комунікації з обліковим записом, на який поскаржилися.
+        silence_description_html: Профіль буде видимий лише тим, хто вже стежить за ним або знайде його самостійно, сильно обмежуючи його знаходження. Можна потім скасувати.
+        suspend_description_html: Профіль і весь його вміст буде недоступним, поки його не буде видалено. Взаємодія з обліковим записом буде неможливою.
+      add_to_report: Додати ще подробиць до скарги
       are_you_sure: Ви впевнені?
       assign_to_self: Призначити мені
       assigned: Призначений модератор
       by_target_domain: Домен облікового запису, на який скаржаться
+      category: Категорія
+      category_description_html: Причина скарги на цей обліковий запис та/або вміст, яку буде вказано у звіті
       comment:
         none: Немає
+      comment_description_html: 'Щоб надати більше відомостей, %{name} пише:'
       created_at: Створено
+      delete_and_resolve: Видалити дописи
       forwarded: Переслано
       forwarded_to: Переслано до %{domain}
       mark_as_resolved: Відмітити як вирішену
+      mark_as_sensitive: Позначити делікатним
       mark_as_unresolved: Відмітити як невирішену
+      no_one_assigned: Ніхто
       notes:
         create: Додати примітку
         create_and_resolve: Розв'язати з приміткою
         create_and_unresolve: Перевідкрити з приміткою
         delete: Видалити
         placeholder: Опишіть, які дії були виконані, або інші зміни, що стосуються справи...
+        title: Примітки
+      notes_description_html: Переглядайте та залишайте примітки для інших модераторів та для себе на майбутнє
       reopen: Перевідкрити скаргу
       report: 'Скарга #%{id}'
       reported_account: Обліковий запис порушника
       reported_by: Відправник скарги
       resolved: Вирішено
       resolved_msg: Скаргу успішно вирішено!
+      skip_to_actions: Перейти до дій
       status: Статус
+      statuses: Вміст, на який поскаржилися
+      statuses_description_html: Замінений вміст буде цитований у спілкуванні з обліковим записом, на який поскаржилися
+      target_origin: Походження облікового запису, на який скаржаться
       title: Скарги
       unassign: Зняти призначення
       unresolved: Невирішені
       updated_at: Оновлені
+      view_profile: Переглянути профіль
     rules:
       add_new: Додати правило
       delete: Видалити
@@ -692,18 +702,19 @@ uk:
       destroyed_msg: Завантаження сайту успішно видалено!
     statuses:
       back_to_account: Назад до сторінки облікового запису
+      back_to_report: Повернутися до сторінки скарги
       batch:
-        delete: Видалити
-        nsfw_off: Відмітити прийнятним
-        nsfw_on: Відмітити неприйнятним
+        remove_from_report: Вилучити зі скарги
+        report: Скарга
       deleted: Видалено
-      failed_to_execute: Не вийшло
       media:
         title: Медіа
-      no_media: Немає медіа
       no_status_selected: Жодного статуса не було змінено, оскільки жодного не було вибрано
       title: Статуси облікових записів
       with_media: З медіа
+    strikes:
+      actions:
+        delete_statuses: "%{name} видаляє допис від %{target}"
     system_checks:
       database_schema_check:
         message_html: Існують відкладені перенесення бази даних. Запустіть їх, щоб забезпечити очікувану роботу програми
@@ -713,21 +724,50 @@ uk:
       sidekiq_process_check:
         message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
     tags:
-      accounts_today: Унікальних використань за сьогодні
-      accounts_week: Унікальних використань за тиждень
-      breakdown: Аналіз використання за сьогодні за джерелом
-      last_active: За активністю
-      most_popular: За популярністю
-      most_recent: За часом створення
-      name: Хештеґ
       review: Переглянути статус
-      reviewed: Переглянуто
-      title: Хештеґи
-      trending_right_now: Популярні саме зараз
-      unique_uses_today: "%{count} постять сьогодні"
-      unreviewed: Не переглянуто
       updated_msg: Параметри хештеґів успішно оновлені
     title: Адміністрування
+    trends:
+      allow: Дозволити
+      approved: Схвалено
+      disallow: Заборонити
+      links:
+        allow: Дозволити посилання
+        allow_provider: Дозволити публікатора
+        disallow: Заборонити посилання
+        disallow_provider: Заборонити публікатора
+        title: Популярні посилання
+        usage_comparison: Сьогодні поширено %{today} разів, у порівнянні з %{yesterday} вчора
+      pending_review: Очікує перевірки
+      preview_card_providers:
+        allowed: Посилання цього публікатора можуть бути популярними
+        rejected: Посилання цього публікатора можуть не будуть популярними
+        title: Публікатори
+      rejected: Відхилено
+      statuses:
+        allow: Дозволити оприлюднення
+        allow_account: Дозволити автора
+        disallow: Заборонити допис
+        disallow_account: Заборонити автора
+      tags:
+        current_score: Поточний результат %{score}
+        dashboard:
+          tag_accounts_measure: унікальних використань
+          tag_languages_dimension: Найуживаніші мови
+          tag_servers_dimension: Найуживаніші сервери
+          tag_servers_measure: різні сервери
+          tag_uses_measure: всього використань
+        listable: Може бути запропоновано
+        not_listable: Не буде запропоновано
+        not_trendable: Не показуватиметься серед популярних
+        not_usable: Неможливо використати
+        peaked_on_and_decaying: Найвище %{date}, на разі спадає
+        title: Популярні хештеги
+        trendable: Може зʼявитися серед популярних
+        trending_rank: 'Популярність #%{rank}'
+        usable: Може бути використано
+        usage_comparison: Сьогодні використано %{today} разів, у порівнянні з %{yesterday} вчора
+      title: Популярні
     warning_presets:
       add_new: Додати новий
       delete: Видалити
@@ -735,6 +775,16 @@ uk:
       empty: Ви ще не визначили жодних попереджень.
       title: Управління шаблонами попереджень
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: щоб видалити їхні дописи
+        disable: щоб заморозити їхній обліковий запис
+        none: попередження
+        sensitive: щоб позначати їхній обліковий запис делікатним
+        silence: щоб обмежити їхній обліковий запис
+        suspend: щоб призупинити їхній обліковий запис
+      next_steps: Ви можете схвалити апеляцію, щоб скасувати рішення про модерацію або проігнорувати її.
+      subject: "%{username} апелює до рішення про модерацію на %{instance}"
     new_pending_account:
       body: Деталі нового облікового запису наведено нижче. Ви можете схвалити або відхилити цю заяву.
       subject: Новий обліковий запис надіслано на розгляд на %{instance} (%{username})
@@ -742,9 +792,6 @@ uk:
       body: "%{reporter} поскаржився(-лася) на %{target}"
       body_remote: Хтось з домену %{domain} поскаржився(-лася) на %{target}
       subject: Нова скарга до %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Хештег #%{name} сьогодні є в тренді, але раніше не переглядався. Він не відображатиметься публічно, якщо ви не дозволите це чи просто збережете форму, щоб ніколи більше про нього не чути.'
-      subject: Новий хештеґ надіслано на розгляд до %{instance} (#%{name})
   aliases:
     add_new: Створити псевдонім
     created_msg: Новий псевдонім успішно створено. Тепер ви можете починати переміщення зі старого облікового запису.
@@ -796,6 +843,7 @@ uk:
     invalid_reset_password_token: Токен скидання паролю неправильний або просрочений. Спробуйте попросити новий.
     link_to_otp: Введіть двофакторний код з вашого телефону або код відновлення
     link_to_webauth: Використовувати пристрій ключа безпеки
+    log_in_with: Увійти через
     login: Увійти
     logout: Вийти
     migrate_account: Переїхати на інший обліковий запис
@@ -817,7 +865,7 @@ uk:
     status:
       account_status: Статус облікового запису
       confirming: Очікуємо на завершення підтвердження за допомогою електронної пошти.
-      functional: Ваш обліковий запис повністю робочій.
+      functional: Ваш обліковий запис повністю робочий.
       pending: Ваша заява очікує на розгляд нашим персоналом. Це може зайняти деякий час. Ви отримаєте електронний лист, якщо ваша заява буде схвалена.
       redirecting_to: Ваш обліковий запис наразі неактивний, тому що він перенаправлений до %{acct}.
     too_fast: Форму подано занадто швидко, спробуйте ще раз.
@@ -883,6 +931,32 @@ uk:
     directory: Каталог профілів
     explanation: Шукайте користувачів за їх інтересами
     explore_mastodon: Досліджуйте %{title}
+  disputes:
+    strikes:
+      action_taken: Дію виконано
+      appeal: Апеляція
+      appeal_rejected: Апеляцію було відхилено
+      appeal_submitted_at: Апеляцію надіслано
+      appealed_msg: Вашу апеляцію було надіслано. Якщо її погодять, вам буде повідомлено про це.
+      appeals:
+        submit: Подати апеляцію
+      associated_report: Пов'язана скарга
+      created_at: Застарілі
+      recipient: Адресант
+      status: 'Допис #%{id}'
+      status_removed: Допис уже вилучено з системи
+      title: "%{action} від %{date}"
+      title_actions:
+        delete_statuses: Вилучення допису
+        disable: Заморожування облікового запису
+        mark_statuses_as_sensitive: Позначати дописи делікатними
+        none: Попередження
+        sensitive: Позначення облікового запису делікатним
+        silence: Обмеження облікового запису
+        suspend: Призупинення облікового запису
+      your_appeal_approved: Вашу апеляцію було схвалено
+      your_appeal_pending: Ви не подавали апеляцій
+      your_appeal_rejected: Вашу апеляцію було відхилено
   domain_validator:
     invalid_domain: не є допустимим ім'ям домену
   errors:
@@ -951,9 +1025,10 @@ uk:
     changes_saved_msg: Зміни успішно збережені!
     copy: Копіювати
     delete: Видалити
-    no_batch_actions_available: На цій сторінці немає запланованих дій
+    none: Немає
     order_by: Сортувати за
     save_changes: Зберегти зміни
+    today: сьогодні
     validation_errors:
       few: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
       many: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
@@ -961,26 +1036,6 @@ uk:
       other: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
   html_validator:
     invalid_markup: 'містить неприпустиму HTML розмітку: %{error}'
-  identity_proofs:
-    active: Активне
-    authorize: Так, авторизувати
-    authorize_connection_prompt: Авторизувати це зашифроване з'єднання?
-    errors:
-      failed: Не вдалося встановити це зашифроване з'єднання. Спробуйте ще раз за допомогою %{provider}.
-      keybase:
-        invalid_token: Токени Keybase - це хеші від підписів і повинні бути по довжині в 66 hex-символів
-        verification_failed: Keybase не розпізнає цей токен як підпис користувача Keybase %{kb_username}. Будь-ласка, спробуйте з Keybase.
-      wrong_user: Неможливо підтвердити користувача%{proving}, під час входу в систему як %{current}. Виконайте вхід як %{proving} і спробуйте ще раз.
-    explanation_html: На цій сторінці відображаються криптографічні підтверджені ідентифікатори - наприклад, прив'язаний профіль Keybase. Це дозволяє людям відправляти вам зашифровані повідомлення, а також довіряти вашим постам.
-    i_am_html: Я %{username} з %{service}.
-    identity: Ідентичність
-    inactive: Неактивний
-    publicize_checkbox: 'Та дмухнути це:'
-    publicize_toot: 'Це доведено! Я таки %{username} з %{service}: %{url}'
-    remove: Видалення підтвердження з облікового запису
-    removed: Підтвердження видалено з облікового запису
-    status: Стан перевірки
-    view_proof: Переглянути доказ
   imports:
     errors:
       over_rows_processing_limit: містить більше ніж %{count} рядків
@@ -1026,6 +1081,17 @@ uk:
   lists:
     errors:
       limit: Ви досягли максимальної кількості списків
+  login_activities:
+    authentication_methods:
+      otp: застосунок двофакторної автентифікації
+      password: пароль
+      sign_in_token: код безпеки е-поштою
+      webauthn: ключі безпеки
+    description_html: Якщо ви помітили невідомі вам дії, тоді подумайте про зміну свого пароля та можливість увімкнення двофакторної автентифікації.
+    empty: Немає історії входів
+    failed_sign_in_html: Не вдалося увійти з %{method} з %{ip} (%{browser})
+    successful_sign_in_html: Успішний вхід з %{method} з %{ip} (%{browser})
+    title: Історія входів
   media_attachments:
     validations:
       images_and_video: Не можна додати відео до статусу з зображеннями
@@ -1069,6 +1135,9 @@ uk:
     carry_mutes_over_text: Цей користувач переїхав з %{acct}, який ви заглушили.
     copy_account_note_text: 'Цей користувач був переміщений з %{acct}, ось ваші попередні нотатки:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} приєднується"
     digest:
       action: Показати усі сповіщення
       body: Коротко про пропущене вами з Вашого останнього входу %{since}
@@ -1110,6 +1179,8 @@ uk:
       title: Нове передмухування
     status:
       subject: "%{name} щойно опубліковано"
+    update:
+      subject: "%{name} змінює допис"
   notifications:
     email_events: Події, про які сповіщати електронною поштою
     email_events_hint: 'Оберіть події, про які ви хочете отримувати сповіщення:'
@@ -1191,6 +1262,9 @@ uk:
     reply:
       proceed: Перейти до відповіді
       prompt: 'Ви хочете відповісти на цей дмух:'
+  reports:
+    errors:
+      invalid_rules: не посилається на чинні правила
   scheduled_statuses:
     over_daily_limit: Ви перевищили ліміт в %{limit} запланованих дмухів на сьогодні
     over_total_limit: Ви перевищили ліміт в %{limit} запланованих дмухів
@@ -1236,6 +1310,7 @@ uk:
     revoke: Закінчити
     revoke_success: Сесія успішно закінчена
     title: Сесії
+    view_authentication_history: Переглянути історію входів вашого облікового запису
   settings:
     account: Обліковий запис
     account_settings: Налаштування облікового запису
@@ -1248,7 +1323,6 @@ uk:
     edit_profile: Редагувати профіль
     export: Експорт даних
     featured_tags: Рекомендовані хештеґи
-    identity_proofs: Докази ідентичності
     import: Імпорт
     import_and_export: Імпорт та експорт
     migrate: Міграція облікового запису
@@ -1256,6 +1330,7 @@ uk:
     preferences: Налаштування
     profile: Профіль
     relationships: Підписки та підписники
+    statuses_cleanup: Автовидалення допису
     two_factor_authentication: Двофакторна авторизація
     webauthn_authentication: Ключі безпеки
   statuses:
@@ -1278,20 +1353,21 @@ uk:
         other: "%{count} відео"
     boosted_from_html: Просунуто від %{acct_link}
     content_warning: 'Попередження про контент: %{warning}'
+    default_language: Така ж як і мова інтерфейсу
     disallowed_hashtags:
       few: 'заборонених хештеґа: %{tags}'
       many: 'заборонених хештеґів: %{tags}'
       one: 'заборонений хештеґ: %{tags}'
       other: 'заборонених хештеґів: %{tags}'
+    edited_at_html: Відредаговано %{date}
     errors:
       in_reply_not_found: Статуса, на який ви намагаєтеся відповісти, не існує.
-    language_detection: Автоматично визначати мову
     open_in_web: Відкрити у вебі
     over_character_limit: перевищено ліміт символів (%{max})
     pin_errors:
+      direct: Не можливо прикріпити дописи, які видимі лише згаданим користувачам
       limit: Ви вже закріпили максимальну кількість постів
       ownership: Не можна закріпити чужий пост
-      private: Не можна закріпити непублічний пост
       reblog: Не можна закріпити просунутий пост
     poll:
       total_people:
@@ -1319,6 +1395,41 @@ uk:
       public_long: Показувати всім
       unlisted: Приховувати зі стрічок
       unlisted_long: Показувати всім, але не відображати в публічних стрічках
+  statuses_cleanup:
+    enabled: Автовидалення давніх дописів
+    enabled_hint: Автоматично видаляє ваші дописи після досягнення вказаного вікового порогу, якщо вони не є одним з наведених винятків
+    exceptions: Винятки
+    explanation: Оскільки видалення дописів є складною операцією, то це відбувається повільно, коли сервер не дуже завантажено. З цієї причини ваші дописи можуть бути видалені через деякий час після досягнення вікового порогу.
+    ignore_favs: Ігнорувати обране
+    ignore_reblogs: Ігнорувати передмухнуті
+    interaction_exceptions: Винятки базуються на взаємодії
+    interaction_exceptions_explanation: Зверніть увагу, що немає гарантії, щоб дописи були видалені, якщо вони йдуть нижче улюблених або підсилювачів після того, як вони перейшли за них.
+    keep_direct: Зберігати приватні повідомлення
+    keep_direct_hint: Не видаляти ваших особистих повідомлень
+    keep_media: Зберігати повідомлення з вкладеними мультимедійними файлами
+    keep_media_hint: Не видаляти ваших дописів, у яких є вкладення медіа
+    keep_pinned: Зберігати закріплені дописи
+    keep_pinned_hint: Не вилучати прикріплені дописи
+    keep_polls: Залишити опитування
+    keep_polls_hint: Не видаляти опитувань
+    keep_self_bookmark: Не зберігати дописи, які ви додали до закладок
+    keep_self_bookmark_hint: Не видаляти ваші власні дописи, якщо ви їх додали до закладок
+    keep_self_fav: Залишати обрані дописи
+    keep_self_fav_hint: Не видаляти ваші власні дописи, якщо ви їх додали до обраних
+    min_age:
+      '1209600': 2 тижні
+      '15778476': 6 місяців
+      '2629746': 1 місяць
+      '31556952': 1 рік
+      '5259492': 2 місяці
+      '604800': 1 тиждень
+      '63113904': 2 роки
+      '7889238': 3 місяці
+    min_age_label: Поріг давності
+    min_favs: Залишати дописи в обраному більше ніж
+    min_favs_hint: Не видаляти ваших дописів, що отримали більше вказаної кількості додавання до закладок. Залиште порожнім, щоб видаляти дописи незалежно від кількості їхнього додавання до обраних
+    min_reblogs: Залишати дописи передмухнуті більше ніж
+    min_reblogs_hint: Не видаляти ваших дописів, що були передмухнуті більш ніж вказану кількість разів. Залиште порожнім, щоб видаляти дописи, попри кількість їхніх передмухів
   stream_entries:
     pinned: Закріплений пост
     reblogged: передмухнув(-ла)
@@ -1336,6 +1447,7 @@ uk:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Додати
     disable: Вимкнути
@@ -1352,6 +1464,12 @@ uk:
     recovery_instructions_html: У випадку втрати доступу до вашого телефону ви можете використати один з нижчевказаних кодів відновлення, щоб повернути доступ до вашого облікового запису. <strong>Тримайте коди відновлення у безпеці</strong>, наприклад, роздрукуйте їх та зберігайте разом з іншими важливими документами.
     webauthn: Ключі безпеки
   user_mailer:
+    appeal_approved:
+      action: Перейти у ваш обліковий запис
+      subject: Вашу апеляцію від %{date} було схвалено
+      title: Апеляцію схвалено
+    appeal_rejected:
+      title: Апеляцію відхилено
     backup_ready:
       explanation: Ви робили запит повної резервної копії вашого облікового запису Mastodon. Вона вже готова для завантаження!
       subject: Ваш архів готовий до завантаження
@@ -1363,24 +1481,26 @@ uk:
       subject: Будь ласка, підтвердіть спробу входу
       title: Спроба входу
     warning:
+      appeal: Подати апеляцію
+      categories:
+        spam: Спам
+        violation: Вміст порушує такі правила спільноти
       explanation:
-        disable: Поки ваш обліковий запис заморожений, його дані залишаються незмінними. Проте ви не зможете виконувати будь-які дії над обліковим записом, доки його не буде розблоковано.
-        sensitive: Ваші завантажені медіа-файли та пов'язані медіа вважатимуться делікатними.
-        silence: Поки ваш обліковий запис обмежено, ваші дмухи на цьому сервері бачитимуть лише ті люди, які вже слідкують за вами, а вас може бути виключено з різних публічних списків. Тим не менш, інші можуть слідкувати за вами вручну.
-        suspend: Ваш обліковий запис було призупинено, а всі ваші дмухи і вивантажені медіафайли - безповоротно видалено з цього сервера та серверів, де ви мали послідовників.
-      get_in_touch: Ви можете відповісти на цей електронний лист, щоб зконтактувати з працівниками %{instance}.
-      review_server_policies: Переглянути політики сервера
-      statuses: 'Зокрема, для:'
+        disable: Ви можете більше не використовувати свій обліковий запис, але ваш профіль та інші дані залишаються недоторканими. Ви можете надіслати запит на створення резервної копії ваших даних, змінити налаштування облікового запису або видалити свій обліковий запис.
+        sensitive: Відтепер усі ваші завантажені медіафайли будуть позначені делікатними й приховані за попередженням.
+        silence: Ви й надалі можете користуватися своїм обліковим записом, але ваші дописи на цьому сервері бачитимуть лише ті люди, які вже стежать за вами, а вас може бути виключено з різних можливостей виявлення. Проте, інші можуть почати стежити за вами вручну.
+        suspend: Ви більше не можете користуватися своїм обліковим записом, а ваші інші дані більше недоступні. Ви досі можете увійти, щоб надіслати запит на отримання резервної копії своїх даних до повного видалення впродовж приблизно 30 днів, але ми збережемо деякі основні дані, щоб унеможливити ухилення вами від призупинення.
+      reason: 'Причина:'
       subject:
+        delete_statuses: Ваші дописи на %{acct} були вилучені
         disable: Ваш обліковий запис %{acct} було заморожено
         none: Попередження для %{acct}
-        sensitive: Ваш обліковий запис %{acct} надсилав медіа позначені делікатними
         silence: Ваш обліковий запис %{acct} було обмежено
         suspend: Ваш обліковий запис %{acct} було призупинено
       title:
+        delete_statuses: Дописи вилучено
         disable: Обліковий запис заморожено
         none: Попередження
-        sensitive: Ваші медіа позначено делікатними
         silence: Ообліковий запис обмежено
         suspend: Обліковий запис призупинено
     welcome:

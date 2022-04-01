@@ -5,6 +5,7 @@ class Admin::SystemCheck
     Admin::SystemCheck::DatabaseSchemaCheck,
     Admin::SystemCheck::SidekiqProcessCheck,
     Admin::SystemCheck::RulesCheck,
+    Admin::SystemCheck::ElasticsearchCheck,
   ].freeze
 
   def self.perform

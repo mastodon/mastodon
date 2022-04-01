@@ -3,7 +3,7 @@ sv:
   simple_form:
     hints:
       account_alias:
-        acct: Ange användarnamn@domän för kontot du flyttar från
+        acct: Ange användarnamn@domän för kontot som du vill flytta från
       account_migration:
         acct: Ange användarnamn@domän för kontot du flyttar till
       account_warning_preset:
@@ -16,12 +16,16 @@ sv:
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
         types:
           disable: Förhindra användaren från att använda sitt konto, men ta inte bort eller dölj innehållet.
+          none: Använd det här för att skicka en varning till användaren, utan att trigga någon annan åtgärd.
+          sensitive: Tvinga denna användares alla mediebilagor att flaggas som känsliga.
         warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
         ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
         scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
         starts_at: Valfritt. Om ditt meddelande är bundet till ett visst tidsintervall
+      appeal:
+        text: Du kan endast överklaga en varning en gång
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
@@ -40,14 +44,31 @@ sv:
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
         username: Ditt användarnamn måste vara unikt på %{domain}
+      email_domain_block:
+        with_dns_records: Ett försök att lösa den givna domänens DNS-poster kommer att göras och resultaten kommer också att blockeras
       featured_tag:
         name: 'Du kan vilja använda en av dessa:'
+      form_challenge:
+        current_password: Du går in i ett säkert område
       imports:
         data: CSV-fil som exporteras från en annan Mastodon-instans
+      invite_request:
+        text: Det här kommer att hjälpa oss att granska din ansökan
+      ip_block:
+        comment: Valfritt. Kom ihåg varför du lade till denna regel.
+        expires_in: IP-adresser är en ändlig resurs, de delas ibland och byter ofta händer. Av den här anledningen så rekommenderas inte IP-blockeringar på obestämd tid.
+        ip: Ange en IPv4 eller IPv6-adress. Du kan blockera hela intervall med hjälp av CIDR-syntax. Var försiktig så att du inte låser ut dig själv!
+        severities:
+          no_access: Blockera åtkomst till alla resurser
+          sign_up_requires_approval: Nya registreringar kräver ditt godkännande
+        severity: Välj vad som ska hända med förfrågningar från denna IP
       rule:
         text: Beskriv en kort och enkel regel för användare på denna server
       sessions:
         otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
+        webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, knacka på den.
+      tag:
+        name: Du kan bara ändra bokstävernas typ av variant, till exempel för att göra det mer läsbart
       user:
         chosen_languages: När aktiverat så visas bara inlägg i dina valda språk i den offentliga tidslinjen
     labels:
@@ -60,8 +81,10 @@ sv:
       account_migration:
         acct: Namnet på det nya kontot
       account_warning_preset:
+        text: Förinställd text
         title: Rubrik
       admin_account_action:
+        include_statuses: Inkludera rapporterade inlägg i e-postmeddelandet
         send_email_notification: Meddela användaren via e-post
         text: Anpassad varning
         type: Åtgärd
@@ -71,6 +94,7 @@ sv:
           sensitive: Känslig
           silence: Tysta
           suspend: Stäng av
+        warning_preset_id: Använd en förinställd varning
       announcement:
         all_day: Heldagsevenemang
         ends_at: Evenemangets slut
@@ -162,8 +186,6 @@ sv:
         mention: Skicka e-post när någon nämner dig
         pending_account: Nytt konto behöver granskas
         reblog: Skicka e-post när någon knuffar din status
-        report: Ny rapport har skickats
-        trending_tag: En ogranskad hashtag trendar
       rule:
         text: Regel
       tag:

@@ -2,12 +2,12 @@
 
 class ActivityPub::ActorSerializer < ActivityPub::Serializer
   include RoutingHelper
+  include FormattingHelper
 
   context :security
 
   context_extensions :manually_approves_followers, :featured, :also_known_as,
-                     :moved_to, :property_value, :identity_proof,
-                     :discoverable, :olm, :suspended
+                     :moved_to, :property_value, :discoverable, :olm, :suspended
 
   attributes :id, :type, :following, :followers,
              :inbox, :outbox, :featured, :featured_tags,
@@ -103,7 +103,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def summary
-    object.suspended? ? '' : Formatter.instance.simplified_format(object)
+    object.suspended? ? '' : account_bio_format(object)
   end
 
   def icon
@@ -143,7 +143,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   def virtual_attachments
-    object.suspended? ? [] : (object.fields + object.identity_proofs.active)
+    object.suspended? ? [] : object.fields
   end
 
   def moved_to
@@ -186,6 +186,8 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
   end
 
   class Account::FieldSerializer < ActivityPub::Serializer
+    include FormattingHelper
+
     attributes :type, :name, :value
 
     def type
@@ -193,7 +195,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     end
 
     def value
-      Formatter.instance.format_field(object.account, object.value)
+      account_field_value_format(object)
     end
   end
 

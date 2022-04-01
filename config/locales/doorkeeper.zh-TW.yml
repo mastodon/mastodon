@@ -60,8 +60,8 @@ zh-TW:
       error:
         title: 發生錯誤
       new:
-        able_to: 這將允許其作：
-        prompt: 應用程式 %{client_name} 要求取得您帳號的存取權限
+        prompt_html: "%{client_name} 欲請求存取您帳號之權限。這是一個第三方應用程式。<strong>若您不信任該應用程式，請不要授權。</strong>"
+        review_permissions: 檢視權限
         title: 需要授權
       show:
         title: 複製此授權碼並貼上到應用程式中。
@@ -71,10 +71,12 @@ zh-TW:
       confirmations:
         revoke: 確定撤銷？
       index:
-        application: 應用程式
-        created_at: 授權於
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: 範圍
+        authorized_at: 於 %{date} 授權
+        description_html: 這些應用程式能透過 API 存取您的帳號。若有您不認得之應用程式，或應用程式行為異常，您可以於此註銷其存取權限。
+        last_used_at: 上次使用時間 %{date}
+        never_used: 從未使用
+        scopes: 權限
+        superapp: 內部
         title: 已授權的應用程式
     errors:
       messages:
@@ -110,6 +112,33 @@ zh-TW:
       authorized_applications:
         destroy:
           notice: 已撤銷應用程式。
+    grouped_scopes:
+      access:
+        read: 唯讀權限
+        read/write: 讀寫權限
+        write: 唯寫權限
+      title:
+        accounts: 帳號
+        admin/accounts: 帳號管理
+        admin/all: 所有管理功能
+        admin/reports: 檢舉報告管理
+        all: 全部
+        blocks: 封鎖
+        bookmarks: 書籤
+        conversations: 對話
+        crypto: 端到端加密
+        favourites: 最愛
+        filters: 過濾器
+        follow: 關係
+        follows: 跟隨的使用者
+        lists: 名單
+        media: 多媒體附加檔案
+        mutes: 靜音
+        notifications: 通知
+        push: 推播通知
+        reports: 檢舉報告
+        search: 搜尋
+        statuses: 嘟文
     layouts:
       admin:
         nav:
@@ -124,9 +153,10 @@ zh-TW:
       admin:write: 修改伺服器的所有資料
       admin:write:accounts: 對帳戶進行仲裁管理動作
       admin:write:reports: 對報告進行仲裁管理動作
+      crypto: 使用端到端加密
       follow: 修改帳戶關係
-      push: 接收帳號的推送通知
-      read: 讀取您所有的帳號資料
+      push: 接收帳戶的推播通知
+      read: 讀取您所有的帳戶資料
       read:accounts: 檢視帳戶資訊
       read:blocks: 檢視您的封鎖名單
       read:bookmarks: 檢視您的書籤
@@ -139,10 +169,11 @@ zh-TW:
       read:reports: 檢視您的檢舉
       read:search: 以你的身份搜尋
       read:statuses: 檢視所有嘟文
-      write: 修改您帳號的所有資料
+      write: 修改您帳戶的所有資料
       write:accounts: 修改您的個人檔案
       write:blocks: 封鎖帳戶及站台
       write:bookmarks: 書籤狀態
+      write:conversations: 靜音及刪除對話
       write:favourites: 收藏嘟文
       write:filters: 建立過濾條件
       write:follows: 關注其他人

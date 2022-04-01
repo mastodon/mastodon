@@ -27,6 +27,8 @@ id:
         scheduled_at: Biarkan kosong jika ingin menerbitkan pengumuman secara langsung
         starts_at: Opsional. Persiapan jika pengumuman Anda terikat pada rentang waktu tertentu
         text: Anda dapat menggunakan sintaks toot. Mohon perhatikan ruang pengumuman yang mungkin akan memenuhi layar pengguna
+      appeal:
+        text: Anda hanya dapat mengajukan banding peringatan sekali
       defaults:
         autofollow: Orang yang ingin mendaftar lewat undangan, otomatis mengikuti Anda
         avatar: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
@@ -35,7 +37,7 @@ id:
         current_password: Untuk tujuan keamanan mohon masukkan kata sandi akun ini
         current_username: Untuk konfirmasi, mohon masukkan nama pengguna akun ini
         digest: Hanya kirim setelah lama tidak aktif dan hanya jika Anda menerima pesan personal atas absensi Anda
-        discoverable: Direktori profil adalah cara lain agar akun Anda menyentuh audiens yang lebih luas
+        discoverable: Izinkan akun Anda ditemukan orang lain lewat rekomendasi, tren, dan fitur lain
         email: Anda akan dikirimi email konfirmasi
         fields: Anda bisa memiliki hingga 4 item utk ditampilkan sebagai tabel di profil Anda
         header: PNG, GIF atau JPG. Maksimal %{size}. Ukuran dikecilkan menjadi %{dimensions}px
@@ -61,7 +63,7 @@ id:
       domain_allow:
         domain: Domain ini dapat mengambil data dari server ini dan data yang diterima akan diproses dan disimpan
       email_domain_block:
-        domain: Ini bisa nama domain yang muncul di alamat email, data MX yang sedang diselesaikan oleh domain, atau IP server yang dipecahkan oleh data MX. Mereka akan dicek saat pendaftaran pengguna dan pendaftaran akan ditolak.
+        domain: Ini bisa berupa nama domain yang tampil di alamat email atau data MX yang memakainya. Mereka akan diperiksa saat mendaftar.
         with_dns_records: Usaha untuk menyelesaikan data DNS domain yang diberikan akan dilakukan dan hasilnya akan masuk daftar hitam
       featured_tag:
         name: 'Anda mungkin ingin pakai salah satu dari ini:'
@@ -118,6 +120,8 @@ id:
         scheduled_at: Jadwal publikasi
         starts_at: Awal mulai event
         text: Pengumuman
+      appeal:
+        text: Jelaskan mengapa keputusan ini perlu dibatalkan
       defaults:
         autofollow: Undang untuk mengikuti Anda
         avatar: Avatar
@@ -196,6 +200,7 @@ id:
           sign_up_requires_approval: Batasi pendaftaran
         severity: Aturan
       notification_emails:
+        appeal: Seseorang mengajukan banding tehadap keputusan moderator
         digest: Kirim email berisi rangkuman
         favourite: Kirim email saat seseorang menyukai status anda
         follow: Kirim email saat seseorang mengikuti anda
@@ -203,8 +208,8 @@ id:
         mention: Kirim email saat seseorang menyebut anda
         pending_account: Kirim email ketika akun baru perlu ditinjau
         reblog: Kirim email saat seseorang mem-boost status anda
-        report: Kirim email ketika laporan baru dikirim
-        trending_tag: Kirim email ketika tagar tak tertinjau jadi tren
+        report: Laporan baru dikirim
+        trending_tag: Tren baru harus ditinjau
       rule:
         text: Aturan
       tag:

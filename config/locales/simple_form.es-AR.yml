@@ -27,6 +27,8 @@ es-AR:
         scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
         starts_at: Opcional. En caso de que tu anuncio esté vinculado a un rango de tiempo específico
         text: Podés usar sintaxis de mensajes. Por favor, tené en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
+      appeal:
+        text: Sólo podés apelar un incumplimiento una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles'
@@ -35,7 +37,7 @@ es-AR:
         current_password: Por razones de seguridad, por favor, ingresá la contraseña de la cuenta actual
         current_username: Para confirmar, por favor, ingresá el nombre de usuario de la cuenta actual
         digest: Sólo enviado tras un largo periodo de inactividad, y sólo si recibiste mensajes personales en tu ausencia
-        discoverable: Permití que tu cuenta sea descubierta por extraños a través de recomendaciones y otras funciones
+        discoverable: Permití que tu cuenta sea descubierta por extraños a través de recomendaciones, tendencias y otras funciones
         email: Se te enviará un correo electrónico de confirmación
         fields: Podés tener hasta 4 elementos mostrados en una tabla en tu perfil
         header: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles'
@@ -52,7 +54,7 @@ es-AR:
         setting_display_media_hide_all: Siempre ocultar todos los medios
         setting_display_media_show_all: Siempre mostrar todos los medios
         setting_hide_network: Las cuentas que seguís y tus seguidores serán ocultados en tu perfil
-        setting_noindex: Afecta a tu perfil público y páginas de estado
+        setting_noindex: Afecta a tu perfil público y páginas de mensajes
         setting_show_application: La aplicación que usás para enviar mensajes se mostrará en la vista detallada de tus mensajes
         setting_use_blurhash: Los gradientes se basan en los colores de las imágenes ocultas pero haciendo borrosos los detalles
         setting_use_pending_items: Ocultar actualizaciones de la línea temporal detrás de un clic en lugar de desplazar automáticamente el flujo
@@ -61,7 +63,7 @@ es-AR:
       domain_allow:
         domain: Este dominio podrá recolectar datos de este servidor, y los datos entrantes serán procesados y archivados
       email_domain_block:
-        domain: Puede ser el nombre de dominio que aparece en la dirección de correo electrónico, el registro MX hacia el cual resuelve el dominio, o la dirección IP del servidor hacia el cual resuelve ese registro MX. Esto se comprobará en el momento del registro del usuario, y el registro será rechazado.
+        domain: Este puede ser el nombre de dominio que aparece en la dirección de correo electrónico o el registro MX que se use. Se revisarán al registrarse.
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también bloqueados
       featured_tag:
         name: 'Puede que quieras usar una de estas:'
@@ -118,6 +120,8 @@ es-AR:
         scheduled_at: Programar publicación
         starts_at: Inicio del evento
         text: Anuncio
+      appeal:
+        text: Explicá por qué esta decisión debería ser revertida
       defaults:
         autofollow: Invitar para seguir tu cuenta
         avatar: Avatar
@@ -196,6 +200,7 @@ es-AR:
           sign_up_requires_approval: Limitar registros
         severity: Regla
       notification_emails:
+        appeal: Alguien apela una solicitud de moderador
         digest: Enviar correos electrónicos compilatorios
         favourite: Una cuenta marca tu mensaje como favorito
         follow: Una cuenta te sigue
@@ -203,8 +208,8 @@ es-AR:
         mention: Una cuenta te menciona
         pending_account: Una nueva cuenta necesita revisión
         reblog: Una cuenta adhiere a tu mensaje
-        report: Se envía una nueva denuncia
-        trending_tag: Una etiqueta no revisada está en tendencia
+        report: Se envió una nueva denuncia
+        trending_tag: Una nueva tendencia requiere revisión
       rule:
         text: Regla
       tag:

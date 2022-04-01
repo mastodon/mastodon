@@ -12,4 +12,8 @@ class TagPolicy < ApplicationPolicy
   def update?
     staff?
   end
+
+  def review?
+    staff?
+  end
 end

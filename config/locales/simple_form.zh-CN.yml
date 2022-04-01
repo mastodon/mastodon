@@ -3,9 +3,9 @@ zh-CN:
   simple_form:
     hints:
       account_alias:
-        acct: 指定您想要迁移过来的原帐号：用户名@站点域名
+        acct: 指定你想要迁移过来的原账号：用户名@站点域名
       account_migration:
-        acct: 指定你想迁移过去的目标帐号：用户名@站点域名
+        acct: 指定你想迁移过去的目标账号：用户名@站点域名
       account_warning_preset:
         text: 你可以使用嘟文格式，例如加入 URL、话题标签和“@”
         title: 可选。对接收者不可见
@@ -27,6 +27,8 @@ zh-CN:
         scheduled_at: 留空的话，公告会立即发布。
         starts_at: 可选。你可以让你的公告只在特定时间段显示。
         text: 你可以使用嘟文格式。但请注意不要让公告占据用户太多屏幕空间。
+      appeal:
+        text: 你仅能对单次处罚提交一次申诉
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
@@ -35,7 +37,7 @@ zh-CN:
         current_password: 为了安全起见，请输入当前账号的密码
         current_username: 请输入当前账号的用户名以确认
         digest: 仅在你长时间未登录，且收到了私信时发送
-        discoverable: 用户目录能够让你的帐号广为人知
+        discoverable: 允许他人通过推荐、趋势和其他途径发现你的账户
         email: 我们会向你发送一封确认邮件
         fields: 这将会在个人资料页上以表格的形式展示，最多 4 个项目
         header: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
@@ -61,7 +63,7 @@ zh-CN:
       domain_allow:
         domain: 该站点将能够从该服务器上拉取数据，并处理和存储收到的数据。
       email_domain_block:
-        domain: 这里可以是邮箱地址中的域名部分、域名解析到的 MX 记录，或者 MX 记录解析到的域名。这些检查会在用户注册时进行，如果邮箱域名被封禁，那么注册会被拒绝。
+        domain: 这可以是电子邮件地址的域名或它使用的 MX 记录所指向的域名。用户注册时，系统会对此检查。
         with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
         name: 你可能想要使用以下之一：
@@ -74,7 +76,7 @@ zh-CN:
       ip_block:
         comment: 可选。请记住为什么你添加了此规则。
         expires_in: IP 地址是一种有限的资源，它们有时是共享的，并且常常变化。因此，不推荐无限期的 IP 封禁。
-        ip: 输入 IPv4 或 IPv6 地址。你可以使用 CIDR 语法屏蔽整个范围。小心不要屏蔽自己！
+        ip: 输入 IPv4 或 IPv6 地址。你可以使用 CIDR 语法屏蔽 IP 段。小心不要屏蔽自己！
         severities:
           no_access: 阻止访问所有资源
           sign_up_requires_approval: 新注册需要你的批准
@@ -94,14 +96,14 @@ zh-CN:
           name: 标签
           value: 内容
       account_alias:
-        acct: 处理旧帐号
+        acct: 处理旧账号
       account_migration:
         acct: 处理新账号
       account_warning_preset:
         text: 预置文本
         title: 标题
       admin_account_action:
-        include_statuses: 在电子邮件中包括已报告的嘟文
+        include_statuses: 在电子邮件中包括已举报的嘟文
         send_email_notification: 通过邮件提醒此用户
         text: 内容警告
         type: 动作
@@ -118,6 +120,8 @@ zh-CN:
         scheduled_at: 定时发布
         starts_at: 事件开始
         text: 公告
+      appeal:
+        text: 说明此结果应当被推翻的理由
       defaults:
         autofollow: 让被邀请人关注你的帐户
         avatar: 头像
@@ -177,7 +181,7 @@ zh-CN:
         username_or_email: 用户名或电子邮件地址
         whole_word: 整个词条
       email_domain_block:
-        with_dns_records: 包括改域名的 MX 记录和 IP 地址
+        with_dns_records: 包括该域名的 MX 记录和 IP 地址
       featured_tag:
         name: 话题标签
       interactions:
@@ -196,15 +200,16 @@ zh-CN:
           sign_up_requires_approval: 限制注册
         severity: 规则
       notification_emails:
+        appeal: 有人对审核结果提出申诉
         digest: 发送摘要邮件
         favourite: 当有用户喜欢了我的嘟文时，发送电子邮件提醒我
         follow: 当有用户关注我时，发送电子邮件提醒我
         follow_request: 当有用户向我发送关注请求时，发送电子邮件提醒我
         mention: 当有用户在嘟文中提及我时，发送电子邮件提醒我
-        pending_account: 在有帐号需要审核时，发送电子邮件提醒我
+        pending_account: 在有账号需要审核时，发送电子邮件提醒我
         reblog: 当有用户转嘟了我的嘟文时，发送电子邮件提醒我
-        report: 在提交新报告时，发送电子邮件提醒我
-        trending_tag: 当未经审核的话题成为当前热门时发邮件提醒
+        report: 新举报已提交
+        trending_tag: 新趋势待审核
       rule:
         text: 规则
       tag:

@@ -61,7 +61,6 @@ et:
     media: Meedia
     moved_html: "%{name} kolis %{new_profile_link}:"
     network_hidden: Neid andmeid pole saadaval
-    never_active: Mitte kunagi
     nothing_here: Siin pole midagi!
     people_followed_by: Inimesed, keda %{name} jälgib
     people_who_follow: Inimesed, kes jälgivad kasutajat %{name}
@@ -86,12 +85,10 @@ et:
     account_moderation_notes:
       create: Jäta teade
       created_msg: Moderatsiooniteade edukalt koostatud!
-      delete: Kustuta
       destroyed_msg: Moderatsiooniteade edukalt kustutatud!
     accounts:
       add_email_domain_block: Keela e-posti domeen
       approve: Kinnita
-      approve_all: Kinnita kõik
       are_you_sure: Olete kindel?
       avatar: Profiilipilt
       by_domain: Domeen
@@ -135,7 +132,6 @@ et:
         active: Aktiivne
         all: Kõik
         pending: Ootel
-        silenced: Vaigistatud
         suspended: Peatatud
         title: Moderatsioon
       moderation_notes: Moderatsiooniteated
@@ -152,7 +148,6 @@ et:
       push_subscription_expires: PuSH tellimus aegub
       redownload: Värskenda profiili
       reject: Hülga
-      reject_all: Hülga kõik
       remove_avatar: Kustuta profiilipilt
       remove_header: Kustuta päis
       resend_confirmation:
@@ -180,7 +175,6 @@ et:
       statuses: Staatuseid
       subscribe: Telli
       suspended: Peatatud
-      time_in_queue: Ootab järjekorras %{time}
       title: Kontod
       unconfirmed_email: Kinnitamata e-post
       undo_silenced: Võta vaigistus tagasi
@@ -264,7 +258,6 @@ et:
       enable: Luba
       enabled: Lubatud
       enabled_msg: Selle emotikoni lubamine õnnestus
-      image_hint: PNG kuni 50KB
       list: Loend
       listed: Nimekirjastatud
       new:
@@ -281,32 +274,9 @@ et:
       updated_msg: Emotikoni uuendamine õnnestus!
       upload: Lae üles
     dashboard:
-      authorized_fetch_mode: Autoriseeritud tõmberežiim
-      backlog: mahajäänud tööd
-      config: Konfiguratsioon
-      feature_deletions: Kontode kustutamised
-      feature_invites: Kutselingid
-      feature_profile_directory: Profiilikataloog
-      feature_registrations: Registreerimised
-      feature_relay: Föderatsiooni relee
-      feature_timeline_preview: Ajajoone eelvaade
-      features: Omadused
-      hidden_service: Föderatsioon peidetud teenustega
-      open_reports: ava teavitused
-      pending_tags: sildid ootamas ülevaadet
-      pending_users: kasutajad ootamas ülevaadet
-      recent_users: Hiljutised kasutajad
-      search: Täis teksti otsing
-      single_user_mode: Üksiku kasutaja režiim
       software: Tarkvara
       space: Kettakasutus
       title: Töölaud
-      total_users: kokku kasutajaid
-      trends: Trendid
-      week_interactions: interaktsioone see nädal
-      week_users_active: aktiivne see nädal
-      week_users_new: kasutajaid see nädal
-      whitelist_mode: Lubatud
     domain_allows:
       add_new: Luba domeen
       created_msg: Domeeni lubamine õnnestus
@@ -339,30 +309,13 @@ et:
       reject_media_hint: Kustutab kohalikult salvestatud meediafailid ja keeldub tulevikus rohkem allalaadimast. Ei puuduta peatamisi
       reject_reports: Lükka teavitused tagasi
       reject_reports_hint: Eira kõik teavitused sellelt domeenilt. Ei puuduta peatamisi
-      rejecting_media: keelan meediafaile
-      rejecting_reports: keelan teavitusi
-      severity:
-        silence: vaigistatud
-        suspend: peatatud
-      show:
-        affected_accounts:
-          one: Üks kasutaja andmebaasis mõjutatud
-          other: "%{count} kasutajat andmebaasis mõjutatud"
-        retroactive:
-          silence: Eemalda vaigistus mõjutatud kasutajatelt sellel domeenil
-          suspend: Lõpeta mõjutatud kasutajate peatamine sellel domeenil
-        title: Eemalda domeeniblokeering %{domain}
-        undo: Võta tagasi
       undo: Võta tagasi domeeniblokeering
       view: Vaata domeeniblokeeringut
     email_domain_blocks:
       add_new: Lisa uus
       created_msg: E-posti aadressi keelunimekirja lisamine õnnestus
       delete: Kustuta
-      destroyed_msg: E-posti aadressi keelunimekirjast kustutamine õnnestus
       domain: Domeen
-      empty: Ühtegi e-postidomeeni pole blokeeritud.
-      from_html: "%{domain}-ist"
       new:
         create: Lisa domeen
         title: Uus e-posti keelunimekirja sisend
@@ -370,9 +323,6 @@ et:
     instances:
       by_domain: Domeen
       delivery_available: Üleandmine on saadaval
-      known_accounts:
-        one: "%{count} teadaolev kasutaja"
-        other: "%{count} teadaolevat kasutajat"
       moderation:
         all: Kõik
         limited: Piiratud
@@ -392,8 +342,6 @@ et:
         available: Saadaval
         expired: Aegunud
       title: Kutsed
-    pending_accounts:
-      title: Ootel olevad kasutajad (%{count})
     relationships:
       title: "%{acct}-i suhted"
     relays:
@@ -420,9 +368,6 @@ et:
         notes:
           one: "%{count} märkus"
           other: "%{count} märkust"
-        reports:
-          one: "%{count} teavitus"
-          other: "%{count} teavitust"
       action_taken_by: Meetmeid kasutanud
       are_you_sure: Olete kindel?
       assign_to_self: Määra mulle
@@ -541,32 +486,14 @@ et:
       destroyed_msg: Üleslaetud fail edukalt kustutatud!
     statuses:
       back_to_account: Tagasi konto lehele
-      batch:
-        delete: Kustuta
-        nsfw_off: Märgi kui mitte tundlik
-        nsfw_on: Märgi kui tundlik
       deleted: Kustutatud
-      failed_to_execute: Täitmine ebaõnnestus
       media:
         title: Meedia
-      no_media: Meedia puudub
       no_status_selected: Mitte ühtegi staatust muudeti sest midagi polnud valitud
       title: Konto staatused
       with_media: Meediaga
     tags:
-      accounts_today: Unikaalseid kasutusi täna
-      accounts_week: Unikaalseid kasutusi see nädal
-      breakdown: Tänane kasutus allikate kohta
-      last_active: Viimati aktiivne
-      most_popular: Kõige populaarsemad
-      most_recent: Viimased
-      name: Silt
       review: Staatuse ülevaade
-      reviewed: Ülevaadatud
-      title: Sildid
-      trending_right_now: Praegu populaarsed
-      unique_uses_today: "%{count} inimest postitavad täna"
-      unreviewed: Üle vaatamata
       updated_msg: Sildi sätted edukalt uuendatud
     title: Administreerimine
     warning_presets:
@@ -582,9 +509,6 @@ et:
       body: "%{reporter} teavitas kasutajast %{target}"
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
       subject: Uus teavitus %{instance}-ile (#%{id})
-    new_trending_tag:
-      body: Silt %{name} on täna trendikas, aga pole eelnevalt üle vaadatud. Seda ei näidata avalikult, välja arvatud juhul, kui Te ise seda lubate või lihtsalt salvestage vorm nagu see on ning Te ei kuule sellest enam kunagi.
-      subject: Uus silt valmis ülevaatluseks serveril %{instance} (#%{name})
   aliases:
     add_new: Loo teine nimi
     created_msg: Teine nimi on edukalt loodud. Te saate nüüd alustada kolimist vanalt kontolt.
@@ -649,7 +573,6 @@ et:
     status:
       account_status: Konto olek
       confirming: Ootan e-posti kinnitust.
-      functional: Teie konto on täiesti töökorras.
       pending: Teie taotlus ootab ülevaadet meie personali poolt. See võib võtta mõnda aega. Kui Teie taotlus on vastu võetud, saadetakse Teile e-kiri.
       redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
     trouble_logging_in: Probleeme sisselogimisega?
@@ -775,7 +698,6 @@ et:
     changes_saved_msg: Muudatuste salvestamine õnnestus!
     copy: Kopeeri
     delete: Kustuta
-    no_batch_actions_available: Komplekttegevused pole sellel lehel saadaval
     order_by: Järjesta
     save_changes: Salvesta muudatused
     validation_errors:
@@ -783,26 +705,6 @@ et:
       other: Midagi pole ikka õigesti! Palun vaadake all olevad %{count} veateadet üle
   html_validator:
     invalid_markup: 'sisaldab valet HTMLi süntaksi: %{error}'
-  identity_proofs:
-    active: Aktiivne
-    authorize: Jah, luba
-    authorize_connection_prompt: Luba see krüptograafiline ühendus?
-    errors:
-      failed: Krüptograafiline ühendus ebaõnnestus. Palun proovi uuesti %{provider}-ist.
-      keybase:
-        invalid_token: Keybase võtmed on allkirjade hashid ja peavad olema 66 hex tähemärki
-        verification_failed: Keybase ei tunnista seda võtit kui kasutaja %{kb_username} omand. Palun proovige uuesti Keybasest.
-      wrong_user: Ei saa luua tõendit kontole %{proving} kui olete sisseloginud kui %{current}. Logige sisse kui %{proving} ja proovige uuesti.
-    explanation_html: Siin saate luua krüptograafilisi ühendusi oma teiste identiteetidega, nagu näiteks Keybase profiiliga. See võimaldab teistel kasutajatel saata Teile krüptitud sõnumeid ja usaldada sisu, mis Teie saadate neile.
-    i_am_html: Ma olen %{username} teenusel %{service}.
-    identity: Identiteet
-    inactive: Passiivne
-    publicize_checkbox: 'Ja tuututa seda:'
-    publicize_toot: 'See on tõestatud! Ma olen %{username} teenusel %{service}: %{url}'
-    remove: Eemalda isikutõend kontolt
-    removed: Isikutõendi eemaldamine oli edukas
-    status: Kinnituse staatus
-    view_proof: Vaata tõendit
   imports:
     modes:
       merge: Lõimi
@@ -1014,7 +916,6 @@ et:
     edit_profile: Muuda profiili
     export: Andmete eksportimine
     featured_tags: Esile toodud sildid
-    identity_proofs: Isikutõendid
     import: Impordi
     import_and_export: Import / eksport
     migrate: Konto migreerumine
@@ -1036,13 +937,11 @@ et:
       other: 'sisaldab ebasobivaid silte: %{tags}'
     errors:
       in_reply_not_found: Staatus, millele üritate vastata, ei näi enam eksisteerivat.
-    language_detection: Automaatselt tuvasta keel
     open_in_web: Ava veebis
     over_character_limit: tähtmärkide limiit %{max} ületatud
     pin_errors:
       limit: Te olete juba maksimum arvu lubatud tuututusi kinnitanud
       ownership: Kellegi teise tuututust ei saa kinnitada
-      private: Privaatset tuututust ei saa kinnitada
       reblog: Upitust ei saa kinnitada
     poll:
       total_people:
@@ -1093,13 +992,6 @@ et:
       subject: Teie arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
     warning:
-      explanation:
-        disable: Kuniks Teie konto on lukus, ei saa Te teha sellega ühtegi tegevust kuni see on lukust lahti tehtud.
-        silence: Kuniks Teie konto on limiteeritud, ainult need inimesed, kes Teid juba jälgivad, näevad Teie tuututusi sellel serveril ning Teid jäetakse välja avalikest nimekirjadest. Sellest hoolimata võivad inimesed Teid siiski jälgida.
-        suspend: Teie konto on peatatud ning kõik Teie tuututused ja üleslaetud meediafailid on jäädavalt kustutatud sellelt serverilt ning serveritelt, kus Teil oli jälgijad.
-      get_in_touch: Te saate sellele e-kirjale vastata, et võtta ühendust %{instance}-i personaliga.
-      review_server_policies: Vaadake üle serveri eeskirju
-      statuses: 'Täpsemalt:'
       subject:
         disable: Teie konto %{acct} on lukustatud
         none: Hoiatus kasutajale %{acct}

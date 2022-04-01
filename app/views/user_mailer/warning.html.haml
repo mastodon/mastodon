@@ -37,16 +37,26 @@
                           %tr
                             %td.column-cell.text-center
                               - unless @warning.none_action?
-                                %p= t "user_mailer.warning.explanation.#{@warning.action}"
+                                %p= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance
 
                               - unless @warning.text.blank?
-                                = Formatter.instance.linkify(@warning.text)
+                                = linkify(@warning.text)
 
-                              - if !@statuses.nil? && !@statuses.empty?
+                              - if @warning.report && !@warning.report.other?
+                                %p
+                                  %strong= t('user_mailer.warning.reason')
+                                  = t("user_mailer.warning.categories.#{@warning.report.category}")
+
+                                - if @warning.report.violation? && @warning.report.rule_ids.present?
+                                  %ul.rules-list
+                                    - @warning.report.rules.each do |rule|
+                                      %li= rule.text
+
+                              - unless @statuses.empty?
                                 %p
                                   %strong= t('user_mailer.warning.statuses')
 
-- if !@statuses.nil? && !@statuses.empty?
+- unless @statuses.empty?
   - @statuses.each_with_index do |status, i|
     = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true
 
@@ -67,8 +77,8 @@
                             %tbody
                               %tr
                                 %td.button-primary
-                                  = link_to about_more_url do
-                                    %span= t 'user_mailer.warning.review_server_policies'
+                                  = link_to disputes_strike_url(@warning) do
+                                    %span= t 'user_mailer.warning.appeal'
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
@@ -85,4 +95,4 @@
                         %tbody
                           %tr
                             %td.column-cell.text-center
-                              %p= t 'user_mailer.warning.get_in_touch', instance: @instance
+                              %p= t 'user_mailer.warning.appeal_description', instance: @instance

@@ -7,6 +7,12 @@
     %ul
       %li= filter_link_to t('admin.reports.unresolved'), resolved: nil
       %li= filter_link_to t('admin.reports.resolved'), resolved: '1'
+  .filter-subset
+    %strong= t('admin.reports.target_origin')
+    %ul
+      %li= filter_link_to t('admin.accounts.location.all'), target_origin: nil
+      %li= filter_link_to t('admin.accounts.location.local'), target_origin: 'local'
+      %li= filter_link_to t('admin.accounts.location.remote'), target_origin: 'remote'
 
 = form_tag admin_reports_url, method: 'GET', class: 'simple_form' do
   .fields-group
@@ -53,11 +59,11 @@
 
               %span.report-card__summary__item__content__icon{ title: t('admin.accounts.statuses') }
                 = fa_icon('comment')
-                = report.statuses.count
+                = report.status_ids.size
 
               %span.report-card__summary__item__content__icon{ title: t('admin.accounts.media_attachments') }
                 = fa_icon('camera')
-                = report.media_attachments.count
+                = report.media_attachments_count
 
               - if report.forwarded?
                 ·

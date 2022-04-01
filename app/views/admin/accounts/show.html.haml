@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = @account.acct
+  = @account.pretty_acct
 
 - if @account.instance_actor?
   .flash-message.notice
@@ -8,32 +8,24 @@
 = render 'application/card', account: @account
 
 - account = @account
-- proofs = account.identity_proofs.active
 - fields = account.fields
-- unless fields.empty? && proofs.empty? && account.note.blank?
+- unless fields.empty? && account.note.blank?
   .admin-account-bio
-    - unless fields.empty? && proofs.empty?
+    - unless fields.empty?
       %div
         .account__header__fields
-          - proofs.each do |proof|
-            %dl
-              %dt= proof.provider.capitalize
-              %dd.verified
-                = link_to fa_icon('check'), proof.badge.proof_url, class: 'verified__mark', title: t('accounts.link_verified_on', date: l(proof.updated_at))
-                = link_to proof.provider_username, proof.badge.profile_url
-
           - fields.each do |field|
             %dl
-              %dt.emojify{ title: field.name }= Formatter.instance.format_field(account, field.name, custom_emojify: true)
+              %dt.emojify{ title: field.name }= prerender_custom_emojis(h(field.name), account.emojis)
               %dd{ title: field.value, class: custom_field_classes(field) }
                 - if field.verified?
                   %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
                     = fa_icon 'check'
-                = Formatter.instance.format_field(account, field.value, custom_emojify: true)
+                = prerender_custom_emojis(account_field_value_format(field, with_rel_me: false), account.emojis)
 
     - if account.note.present?
       %div
-        .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+        .account__header__content.emojify= prerender_custom_emojis(account_bio_format(account), account.emojis)
 
 .dashboard__counters.admin-account-counters
   %div
@@ -79,7 +71,9 @@
           = t('admin.accounts.no_limits_imposed')
       .dashboard__counters__label= t 'admin.accounts.login_status'
 
-- unless @account.local? && @account.user.nil?
+- if @account.local? && @account.user.nil?
+  = link_to t('admin.accounts.unblock_email'), unblock_email_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unblock_email, @account) && CanonicalEmailBlock.where(reference_account_id: @account.id).exists?
+- else
   .table-wrapper
     %table.table.inline-table
       %tbody
@@ -129,10 +123,31 @@
               - else
                 = t('admin.accounts.confirming')
             %td= table_link_to 'refresh', t('admin.accounts.resend_confirmation.send'), resend_admin_account_confirmation_path(@account.id), method: :post if can?(:confirm, @account.user)
+          %tr
+            %th{ rowspan: can?(:reset_password, @account.user) ? 2 : 1 }= t('admin.accounts.security')
+            %td{ rowspan: can?(:reset_password, @account.user) ? 2 : 1 }
+              - if @account.user&.two_factor_enabled?
+                = t 'admin.accounts.security_measures.password_and_2fa'
+              - elsif @account.user&.skip_sign_in_token?
+                = t 'admin.accounts.security_measures.only_password'
+              - else
+                = t 'admin.accounts.security_measures.password_and_sign_in_token'
+            %td
+              - if @account.user&.two_factor_enabled?
+                = table_link_to 'unlock', t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete if can?(:disable_2fa, @account.user)
+              - elsif @account.user&.skip_sign_in_token?
+                = table_link_to 'lock', t('admin.accounts.enable_sign_in_token_auth'), admin_user_sign_in_token_authentication_path(@account.user.id), method: :post if can?(:enable_sign_in_token_auth, @account.user)
+              - else
+                = table_link_to 'unlock', t('admin.accounts.disable_sign_in_token_auth'), admin_user_sign_in_token_authentication_path(@account.user.id), method: :delete if can?(:disable_sign_in_token_auth, @account.user)
+
+          - if can?(:reset_password, @account.user)
+            %tr
+              %td
+                = table_link_to 'key', t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, data: { confirm: t('admin.accounts.are_you_sure') }
 
           %tr
             %th= t('simple_form.labels.defaults.locale')
-            %td= @account.user_locale
+            %td= standard_locale_name(@account.user_locale)
             %td
 
           %tr
@@ -141,12 +156,14 @@
               %time.formatted{ datetime: @account.created_at.iso8601, title: l(@account.created_at) }= l @account.created_at
             %td
 
-          - @account.user.recent_ips.each_with_index do |(_, ip), i|
+          - recent_ips = @account.user.ips.order(used_at: :desc).to_a
+
+          - recent_ips.each_with_index do |recent_ip, i|
             %tr
               - if i.zero?
-                %th{ rowspan: @account.user.recent_ips.size }= t('admin.accounts.most_recent_ip')
-              %td= ip
-              %td= table_link_to 'search', t('admin.accounts.search_same_ip'), admin_accounts_path(ip: ip)
+                %th{ rowspan: recent_ips.size }= t('admin.accounts.most_recent_ip')
+              %td= recent_ip.ip
+              %td= table_link_to 'search', t('admin.accounts.search_same_ip'), admin_accounts_path(ip: recent_ip.ip)
 
           %tr
             %th= t('admin.accounts.most_recent_activity')
@@ -221,9 +238,6 @@
 
       %div
         - if @account.local?
-          = link_to t('admin.accounts.reset_password'), admin_account_reset_path(@account.id), method: :create, class: 'button' if can?(:reset_password, @account.user)
-          - if @account.user&.otp_required_for_login?
-            = link_to t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete, class: 'button' if can?(:disable_2fa, @account.user)
           - if !@account.memorial? && @account.user_approved?
             = link_to t('admin.accounts.memorialize'), memorialize_admin_account_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }, class: 'button button--destructive' if can?(:memorialize, @account)
         - else
@@ -232,17 +246,28 @@
   %hr.spacer/
 
   - unless @warnings.empty?
-    = render @warnings
+
+    %h3= t 'admin.accounts.previous_strikes'
+
+    %p= t('admin.accounts.previous_strikes_description_html', count: @account.previous_strikes_count)
+
+    .account-strikes
+      = render @warnings
 
     %hr.spacer/
 
-  = render @moderation_notes
+  %h3= t 'admin.reports.notes.title'
+
+  %p= t 'admin.reports.notes_description_html'
+
+  .report-notes
+    = render partial: 'admin/report_notes/report_note', collection: @moderation_notes
 
   = simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |f|
-    = render 'shared/error_messages', object: @account_moderation_note
-
-    = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
     = f.hidden_field :target_account_id
+
+    .field-group
+      = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
 
     .actions
       = f.button :button, t('admin.account_moderation_notes.create'), type: :submit

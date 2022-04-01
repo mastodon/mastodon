@@ -9,7 +9,7 @@ development:
   <<: *default
   database: <%= ENV['DB_NAME'] || 'mastodon_development' %>
   username: <%= ENV['DB_USER'] %>
-  password: <%= ENV['DB_PASS'] %>
+  password: <%= (ENV['DB_PASS'] || '').to_json %>
   host: <%= ENV['DB_HOST'] %>
   port: <%= ENV['DB_PORT'] %>
 
@@ -20,7 +20,7 @@ test:
   <<: *default
   database: <%= ENV['DB_NAME'] || 'mastodon' %>_test<%= ENV['TEST_ENV_NUMBER'] %>
   username: <%= ENV['DB_USER'] %>
-  password: <%= ENV['DB_PASS'] %>
+  password: <%= (ENV['DB_PASS'] || '').to_json %>
   host: <%= ENV['DB_HOST'] %>
   port: <%= ENV['DB_PORT'] %>
 
@@ -28,8 +28,7 @@ production:
   <<: *default
   database: <%= ENV['DB_NAME'] || 'mastodon_production' %>
   username: <%= ENV['DB_USER'] || 'mastodon' %>
-  password: <%= ENV['DB_PASS'] || '' %>
+  password: <%= (ENV['DB_PASS'] || '').to_json %>
   host: <%= ENV['DB_HOST'] || 'localhost' %>
   port: <%= ENV['DB_PORT'] || 5432 %>
   prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
-

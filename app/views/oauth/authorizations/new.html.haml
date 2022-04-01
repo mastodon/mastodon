@@ -1,26 +1,38 @@
 - content_for :page_title do
   = t('doorkeeper.authorizations.new.title')
 
-.form-container
+.form-container.simple_form
   .oauth-prompt
-    %h2= t('doorkeeper.authorizations.new.prompt', client_name: @pre_auth.client.name)
+    %h3= t('doorkeeper.authorizations.new.title')
 
-    %p
-      = t('doorkeeper.authorizations.new.able_to')
-      != @pre_auth.scopes.map { |scope| t(scope, scope: [:doorkeeper, :scopes]) }.map { |s| "<strong>#{s}</strong>" }.to_sentence
+    %p= t('doorkeeper.authorizations.new.prompt_html', client_name: content_tag(:strong, @pre_auth.client.name))
 
-  = form_tag oauth_authorization_path, method: :post, class: 'simple_form' do
-    = hidden_field_tag :client_id, @pre_auth.client.uid
-    = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
-    = hidden_field_tag :state, @pre_auth.state
-    = hidden_field_tag :response_type, @pre_auth.response_type
-    = hidden_field_tag :scope, @pre_auth.scope
-    = button_tag t('doorkeeper.authorizations.buttons.authorize'), type: :submit
+    %h3= t('doorkeeper.authorizations.new.review_permissions')
 
-  = form_tag oauth_authorization_path, method: :delete, class: 'simple_form' do
-    = hidden_field_tag :client_id, @pre_auth.client.uid
-    = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
-    = hidden_field_tag :state, @pre_auth.state
-    = hidden_field_tag :response_type, @pre_auth.response_type
-    = hidden_field_tag :scope, @pre_auth.scope
-    = button_tag t('doorkeeper.authorizations.buttons.deny'), type: :submit, class: 'negative'
+    %ul.permissions-list
+      - grouped_scopes(@pre_auth.scopes).each do |scope|
+        %li.permissions-list__item
+          .permissions-list__item__icon
+            = fa_icon('check')
+          .permissions-list__item__text
+            .permissions-list__item__text__title
+              = t(scope.key, scope: [:doorkeeper, :grouped_scopes, :title])
+            .permissions-list__item__text__type
+              = t(scope.access, scope: [:doorkeeper, :grouped_scopes, :access])
+
+    .actions
+      = form_tag oauth_authorization_path, method: :post do
+        = hidden_field_tag :client_id, @pre_auth.client.uid
+        = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
+        = hidden_field_tag :state, @pre_auth.state
+        = hidden_field_tag :response_type, @pre_auth.response_type
+        = hidden_field_tag :scope, @pre_auth.scope
+        = button_tag t('doorkeeper.authorizations.buttons.authorize'), type: :submit
+
+      = form_tag oauth_authorization_path, method: :delete do
+        = hidden_field_tag :client_id, @pre_auth.client.uid
+        = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
+        = hidden_field_tag :state, @pre_auth.state
+        = hidden_field_tag :response_type, @pre_auth.response_type
+        = hidden_field_tag :scope, @pre_auth.scope
+        = button_tag t('doorkeeper.authorizations.buttons.deny'), type: :submit, class: 'negative'

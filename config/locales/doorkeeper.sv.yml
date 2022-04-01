@@ -37,7 +37,7 @@ sv:
       index:
         application: Applikation
         callback_url: Återkalls URL
-        delete: Ta bort
+        delete: Radera
         empty: Du har inga program.
         name: Namn
         new: Ny applikation
@@ -60,8 +60,7 @@ sv:
       error:
         title: Ett fel har uppstått
       new:
-        able_to: Det kommer att kunna
-        prompt: Applikation %{client_name} begär tillgång till ditt konto
+        review_permissions: Förhandsgranska behörigheter
         title: Godkännande krävs
       show:
         title: Kopiera denna behörighetskod och klistra in den i programmet.
@@ -71,10 +70,11 @@ sv:
       confirmations:
         revoke: Är du säker?
       index:
-        application: Applikation
-        created_at: Auktoriserad
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Omfattning
+        authorized_at: Auktoriserades %{date}
+        last_used_at: Användes senast %{date}
+        never_used: Aldrig använd
+        scopes: Behörigheter
+        superapp: Internt
         title: Dina behöriga ansökningar
     errors:
       messages:
@@ -110,6 +110,26 @@ sv:
       authorized_applications:
         destroy:
           notice: Applikation återkallas.
+    grouped_scopes:
+      title:
+        accounts: Konton
+        admin/accounts: Administrering av konton
+        admin/all: Alla administrativa funktioner
+        admin/reports: Administrering av rapporter
+        all: Allting
+        blocks: Blockeringar
+        bookmarks: Bokmärken
+        conversations: Konversationer
+        crypto: Ände-till-ände-kryptering
+        favourites: Favoriter
+        follow: Relationer
+        follows: Följer
+        lists: Listor
+        notifications: Aviseringar
+        push: Push-aviseringar
+        reports: Rapporter
+        search: Sök
+        statuses: Inlägg
     layouts:
       admin:
         nav:

@@ -22,30 +22,6 @@ class NotifyService < BaseService
     FeedManager.instance.filter?(:mentions, @notification.mention.status, @recipient)
   end
 
-  def blocked_status?
-    false
-  end
-
-  def blocked_favourite?
-    false
-  end
-
-  def blocked_follow?
-    false
-  end
-
-  def blocked_reblog?
-    false
-  end
-
-  def blocked_follow_request?
-    false
-  end
-
-  def blocked_poll?
-    false
-  end
-
   def following_sender?
     return @following_sender if defined?(@following_sender)
     @following_sender = @recipient.following?(@notification.from_account) || @recipient.requested?(@notification.from_account)
@@ -67,8 +43,29 @@ class NotifyService < BaseService
     message? && @notification.target_status.direct_visibility?
   end
 
+  # Returns true if the sender has been mentioned by the recipient up the thread
   def response_to_recipient?
-    @notification.target_status.in_reply_to_account_id == @recipient.id && @notification.target_status.thread&.direct_visibility?
+    return false if @notification.target_status.in_reply_to_id.nil?
+
+    # Using an SQL CTE to avoid unneeded back-and-forth with SQL server in case of long threads
+    !Status.count_by_sql([<<-SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @notification.from_account.id, depth_limit: 100]).zero?
+      WITH RECURSIVE ancestors(id, in_reply_to_id, mention_id, path, depth) AS (
+          SELECT s.id, s.in_reply_to_id, m.id, ARRAY[s.id], 0
+          FROM statuses s
+          LEFT JOIN mentions m ON m.silent = FALSE AND m.account_id = :sender_id AND m.status_id = s.id
+          WHERE s.id = :id
+        UNION ALL
+          SELECT s.id, s.in_reply_to_id, m.id, st.path || s.id, st.depth + 1
+          FROM ancestors st
+          JOIN statuses s ON s.id = st.in_reply_to_id
+          LEFT JOIN mentions m ON m.silent = FALSE AND m.account_id = :sender_id AND m.status_id = s.id
+          WHERE st.mention_id IS NULL AND NOT s.id = ANY(path) AND st.depth < :depth_limit
+      )
+      SELECT COUNT(*)
+      FROM ancestors st
+      JOIN statuses s ON s.id = st.id
+      WHERE st.mention_id IS NOT NULL AND s.visibility = 3
+    SQL
   end
 
   def from_staff?
@@ -100,15 +97,15 @@ class NotifyService < BaseService
 
     return blocked if message? && from_staff?
 
-    blocked ||= domain_blocking?                                 # Skip for domain blocked accounts
-    blocked ||= @recipient.blocking?(@notification.from_account) # Skip for blocked accounts
+    blocked ||= domain_blocking?
+    blocked ||= @recipient.blocking?(@notification.from_account)
     blocked ||= @recipient.muting_notifications?(@notification.from_account)
-    blocked ||= hellbanned?                                      # Hellban
-    blocked ||= optional_non_follower?                           # Options
-    blocked ||= optional_non_following?                          # Options
-    blocked ||= optional_non_following_and_direct?               # Options
+    blocked ||= hellbanned?
+    blocked ||= optional_non_follower?
+    blocked ||= optional_non_following?
+    blocked ||= optional_non_following_and_direct?
     blocked ||= conversation_muted?
-    blocked ||= send("blocked_#{@notification.type}?")           # Type-dependent filters
+    blocked ||= blocked_mention? if @notification.type == :mention
     blocked
   end
 
@@ -127,7 +124,7 @@ class NotifyService < BaseService
   def push_notification!
     return if @notification.activity.nil?
 
-    Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    Redis.current.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
     send_push_notifications!
   end
 

@@ -16,6 +16,7 @@ tr:
     contact: İletişim
     contact_missing: Ayarlanmadı
     contact_unavailable: Yok
+    continue_to_web: Web uygulamasına git
     discover_users: Kullanıcıları keşfet
     documentation: Belgeler
     federation_hint_html: "%{instance} hesabınızla, herhangi bir Mastodon sunucusundaki ve haricindeki kişileri takip edebilirsiniz."
@@ -25,6 +26,8 @@ tr:
       Bu hesap, herhangi bir kullanıcıyı değil sunucunun kendisini temsil etmek için kullanılan sanal bir aktördür.
       Federasyon amaçlı kullanılır ve tüm yansıyı engellemek istemediğiniz sürece engellenmemelidir; bu durumda bir etki alanı bloğu kullanmanız gerekir.
     learn_more: Daha fazla bilgi edinin
+    logged_in_as_html: Şu an %{username} olarak oturum açmışsınız.
+    logout_before_registering: Zaten oturumunuz açık.
     privacy_policy: Gizlilik politikası
     rules: Sunucu kuralları
     rules_html: 'Aşağıda, bu Mastodon sunucusu üzerinde bir hesap açmak istiyorsanız uymanız gereken kuralların bir özeti var:'
@@ -69,14 +72,13 @@ tr:
     media: Medya
     moved_html: "%{name}, %{new_profile_link} adresine taşındı:"
     network_hidden: Bu bilgi mevcut değil
-    never_active: Asla
     nothing_here: Burada henüz hiçbir gönderi yok!
     people_followed_by: Kullanıcı %{name}'in takip ettikleri
     people_who_follow: Kullanıcı %{name}'i takip edenler
     pin_errors:
       following: Onaylamak istediğiniz kişiyi zaten takip ediyor olmalısınız
     posts:
-      one: Toot
+      one: Gönderi
       other: Toot
     posts_tab_heading: Tootlar
     posts_with_replies: Tootlar ve yanıtlar
@@ -94,12 +96,10 @@ tr:
     account_moderation_notes:
       create: Not bırak
       created_msg: Denetim notu başarıyla oluşturuldu!
-      delete: Sil
       destroyed_msg: Denetim notu başarıyla yok edildi!
     accounts:
       add_email_domain_block: E-posta alan adını engelle
       approve: Onayla
-      approve_all: Tümünü onayla
       approved_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla onaylandı"
       are_you_sure: Emin misiniz?
       avatar: Profil resmi
@@ -114,11 +114,13 @@ tr:
       confirm: Onayla
       confirmed: Onaylandı
       confirming: Onaylanıyor
+      custom: Özel
       delete: Veriyi sil
       deleted: Silindi
       demote: Düşür
       destroyed_msg: "%{username} verilerinin hemen silinmesi için kuyruğa alındı"
       disable: Devre dışı
+      disable_sign_in_token_auth: E-posta token doğrulamayı devre dışı bırak
       disable_two_factor_authentication: 2AD kapat
       disabled: Kapalı
       display_name: Görünen isim
@@ -127,6 +129,7 @@ tr:
       email: E-posta
       email_status: E-posta durumu
       enable: Etkinleştir
+      enable_sign_in_token_auth: E-posta token doğrulamayı etkinleştir
       enabled: Etkin
       enabled_msg: "%{username} hesabı başarıyla çözüldü"
       followers: Takipçiler
@@ -151,7 +154,6 @@ tr:
         active: Etkin
         all: Hepsi
         pending: Bekliyor
-        silenced: Susturulanlar
         suspended: Uzaklaştırılanlar
         title: Denetim
       moderation_notes: Denetleme notları
@@ -162,6 +164,7 @@ tr:
       not_subscribed: Abone edilmedi
       pending: Bekleyen yorum
       perform_full_suspension: Askıya al
+      previous_strikes: Önceki eylemler
       promote: Yükselt
       protocol: Protokol
       public: Herkese açık
@@ -169,7 +172,6 @@ tr:
       redownload: Profili yenile
       redownloaded_msg: "%{username} kullanıcısının profili kökenden başarıyla yenilendi"
       reject: Reddet
-      reject_all: Tümünü reddet
       rejected_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla reddedildi"
       remove_avatar: Profil resmini kaldır
       remove_header: Üstbilgiyi kaldır
@@ -191,8 +193,12 @@ tr:
       search: Ara
       search_same_email_domain: Aynı e-posta alan adına sahip diğer kullanıcılar
       search_same_ip: Aynı IP adresine sahip diğer kullanıcılar
+      security_measures:
+        only_password: Sadece parola
+        password_and_2fa: Parola ve İki aşamalı doğrulama
+        password_and_sign_in_token: Parola ve e-posta tokeni
       sensitive: Hassas
-      sensitized: hassas olarak işaretlendi
+      sensitized: Hassas olarak işaretlendi
       shared_inbox_url: Paylaşılan gelen kutusu bağlantısı
       show:
         created_reports: Yapılan şikayetler
@@ -200,12 +206,15 @@ tr:
       silence: Sustur
       silenced: Susturulmuş
       statuses: Durumlar
+      strikes: Önceki eylemler
       subscribe: Abone ol
+      suspend: Askıya al
       suspended: Askıya alındı
       suspension_irreversible: Bu hesabın verileri geri dönüşümsüz olarak silindi. Hesabı kullanılabilir hale getirmek için hesabın askıya alınmasını kaldırabilirsiniz, ancak daha önce sahip olduğu herhangi bir veri kurtarılamaz.
       suspension_reversible_hint_html: Hesap askıya alındı ve veriler %{date} tarihinde tamamen kaldırılacak. O zamana kadar, hesap herhangi bir olumsuz etki olmaksızın geri yüklenebilir. Hesabın tüm verilerini hemen kaldırmak isterseniz, bunu aşağıdan yapabilirsiniz.
-      time_in_queue: "%{time} kuyruğunda bekliyor"
       title: Hesaplar
+      unblock_email: E-posta adresinin engelini kaldır
+      unblocked_email_msg: "%{username} kişisinin e-posta adresinin engeli başarıyla kaldırıldı"
       unconfirmed_email: Onaylanmamış e-posta
       undo_sensitized: Hassaslığı geri al
       undo_silenced: Susturmayı geri al
@@ -220,6 +229,8 @@ tr:
       whitelisted: Beyaz listede
     action_logs:
       action_types:
+        approve_appeal: İtirazı Kabul Et
+        approve_user: Kullanıcıyı Onayla
         assigned_to_self_report: Raporu Ata
         change_email_user: Kullanıcı E-postasını Değiştir
         confirm_user: Kullanıcıyı Onayla
@@ -237,16 +248,21 @@ tr:
         destroy_domain_allow: İzin Verilen Alan Adını Sil
         destroy_domain_block: Engellenen Alan Adını Sil
         destroy_email_domain_block: E-posta alan adı engelini sil
+        destroy_instance: Alan adını temizle
         destroy_ip_block: IP kuralını sil
         destroy_status: Durumu Sil
         destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
+        disable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı devre dışı bırak
         disable_user: Kullanıcıyı Devre Dışı Bırak
         enable_custom_emoji: Özel İfadeyi Etkinleştir
+        enable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı etkinleştir
         enable_user: Kullanıcıyı Etkinleştir
         memorialize_account: Hesabı Anıtlaştır
         promote_user: Kullanıcıyı Yükselt
+        reject_appeal: İtirazı Reddet
+        reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
         reopen_report: Şikayeti Tekrar Aç
         reset_password_user: Parolayı Sıfırla
@@ -255,6 +271,7 @@ tr:
         silence_account: Hesabı Sustur
         suspend_account: Hesabı Askıya Al
         unassigned_report: Rapor Atamasını Kaldır
+        unblock_email_account: E-posta adresinin engelini kaldır
         unsensitive_account: Hesabınızdaki medyayı hassas olarak işaretlemeyin
         unsilence_account: Hesabın Sesini Aç
         unsuspend_account: Hesabı Askıdan Kaldır
@@ -263,6 +280,8 @@ tr:
         update_domain_block: Engellenen Alan Adını Güncelle
         update_status: Durumu Güncelle
       actions:
+        approve_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını kabul etti"
+        approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
         assigned_to_self_report_html: "%{name} kendilerine %{target} adlı raporu verdi"
         change_email_user_html: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
         confirm_user_html: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
@@ -280,16 +299,21 @@ tr:
         destroy_domain_allow_html: "%{name}, %{target} alan adıyla birlik iznini kaldırdı"
         destroy_domain_block_html: "%{name}, %{target} alan adı engelini kaldırdı"
         destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
+        destroy_instance_html: "%{name}, %{target} alan adını temizledi"
         destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
+        disable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı devre dışı bıraktı"
         disable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı devre dışı bıraktı"
         enable_custom_emoji_html: "%{name}, %{target} emojisini etkinleştirdi"
+        enable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı etkinleştirdi"
         enable_user_html: "%{name}, %{target} kullanıcısı için oturum açmayı etkinleştirdi"
         memorialize_account_html: "%{name}, %{target} kullanıcısının hesabını bir anıt sayfaya dönüştürdü"
         promote_user_html: "%{name}, %{target} kullanıcısını yükseltti"
+        reject_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını reddetti"
+        reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
         reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
         reset_password_user_html: "%{name}, %{target} kullanıcısının parolasını sıfırladı"
@@ -298,6 +322,7 @@ tr:
         silence_account_html: "%{name}, %{target} kullanıcısının hesabını sessize aldı"
         suspend_account_html: "%{name}, %{target} kullanıcısının hesabını askıya aldı"
         unassigned_report_html: "%{name}, %{target} şikayetinin atamasını kaldırdı"
+        unblock_email_account_html: "%{name}, %{target} kişisinin e-posta adresinin engelini kaldırdı"
         unsensitive_account_html: "%{name}, %{target} kullanıcısının medyasının hassas işaretini kaldırdı"
         unsilence_account_html: "%{name}, %{target} kullanıcısının hesabının sessizliğini kaldırdı"
         unsuspend_account_html: "%{name}, %{target} kullanıcısının hesabının askı durumunu kaldırdı"
@@ -344,7 +369,7 @@ tr:
       enable: Etkinleştir
       enabled: Etkin
       enabled_msg: Bu emojiyi başarıyla etkinleştirdi
-      image_hint: 50 KB'a kadar PNG
+      image_hint: En fazla %{size} boyutunda PNG veya GIF
       list: Liste
       listed: Listelenen
       new:
@@ -361,32 +386,35 @@ tr:
       updated_msg: Emoji başarıyla güncellendi!
       upload: Yükle
     dashboard:
-      authorized_fetch_mode: Güvenli mod
-      backlog: bekleyen işler
-      config: Yapılandırma
-      feature_deletions: Hesap silme
-      feature_invites: Davet bağlantıları
-      feature_profile_directory: Profil Dizini
-      feature_registrations: Kayıtlar
-      feature_relay: Federasyon aktarıcısı
-      feature_timeline_preview: Zaman çizelgesi önizlemesi
-      features: Özellikler
-      hidden_service: Gizli servislere sahip federasyon
-      open_reports: raporları aç
-      pending_tags: inceleme için bekleyen hashtag'ler
-      pending_users: inceleme için bekleyen kullanıcılar
-      recent_users: Son kullanıcılar
-      search: Tam metin araması
-      single_user_mode: Tek kullanıcı modu
+      active_users: aktif kullanıcılar
+      interactions: etkileşimler
+      media_storage: Medya deposu
+      new_users: yeni kullanıcılar
+      opened_reports: açılan bildirimler
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> bekleyen itiraz"
+        other: "<strong>%{count}</strong> bekleyen itiraz"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> bekleyen bildirim"
+        other: "<strong>%{count}</strong> bekleyen bildirim"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> bekleyen etiket"
+        other: "<strong>%{count}</strong> bekleyen etiket"
+      pending_users_html:
+        one: "<strong>%{count}</strong> bekleyen kullanıcı"
+        other: "<strong>%{count}</strong> bekleyen kullanıcı"
+      resolved_reports: çözülmüş bildirimler
       software: Yazılım
+      sources: Kayıt kaynakları
       space: Alan kullanımı
       title: Kontrol Paneli
-      total_users: toplam kullanıcı
-      trends: Gündemler
-      week_interactions: bu haftaki etkileşimler
-      week_users_active: bu hafta aktif
-      week_users_new: bu hafta kullanıcılar
-      whitelist_mode: Beyaz liste modu
+      top_languages: En aktif diller
+      top_servers: En aktif sunucular
+      website: Web sitesi
+    disputes:
+      appeals:
+        empty: İtiraz bulunamadı.
+        title: İtirazlar
     domain_allows:
       add_new: Alan adını beyaz listeye al
       created_msg: Alan adı başarıyla beyaz listeye alındı
@@ -403,7 +431,7 @@ tr:
         create: Yeni blok oluştur
         hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez, fakat o hesapların üzerine otomatik olarak belirli yönetim metodlarını olarak uygular.
         severity:
-          desc_html: "<strong>Susturma</strong>, uygulanan hesabın gönderilerini, o hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong> hesabın bütün içeriğini, ortam dosyalarını ve profil verisini siler."
+          desc_html: "<strong>Susturma</strong>, uygulanan hesabın gönderilerini, o hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong> hesabın bütün içeriğini, medya dosyalarını ve profil verisini siler. Sadece medya dosyalarını reddetmek için <strong>Hiçbiri</strong> kullanın."
           noop: Yok
           silence: Sustur
           suspend: Uzaklaştır
@@ -414,37 +442,30 @@ tr:
       private_comment_hint: Denetleyiciler tarafından dahili kullanım için bu alan adı sınırlaması hakkında yorum.
       public_comment: Genel yorum
       public_comment_hint: Eğer alan adı sınırlamaları listesinin tanıtılması etkinleştirilmişse, genel kullanım için bu alan adı sınırlaması hakkında yorum.
-      reject_media: Ortam dosyalarını reddetme
-      reject_media_hint: Yerel olarak depolanmış ortam dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırma için uygun değildir
+      reject_media: Medya dosyalarını reddet
+      reject_media_hint: Yerel olarak depolanmış medya dosyalarını ve gelecekte indirilecek olanları reddeder. Uzaklaştırmalarla ilgisizdir
       reject_reports: Raporları reddet
       reject_reports_hint: Bu alan adından gelen tüm şikayetleri yok sayın. Uzaklaştırmalar için mevzu dışıdır
-      rejecting_media: ortam dosyalarını reddet
-      rejecting_reports: şikayetleri reddet
-      severity:
-        silence: susturulmuş
-        suspend: uzaklaştırılmış
-      show:
-        affected_accounts:
-          one: Veritabanındaki bir hesap etkilendi
-          other: Veritabanındaki %{count} hesap etkilendi
-        retroactive:
-          silence: Bu domaindeki tüm hesapların üzerindeki susturulma işlemini kaldır
-          suspend: Bu domaindeki tüm hesapların üzerindeki uzaklaştırma işlemini kaldır
-        title: "%{domain} domain'i için yapılan işlemi geri al"
-        undo: Geri al
       undo: Geri al
       view: Alan adı bloğunu görüntüle
     email_domain_blocks:
       add_new: Yeni ekle
+      attempts_over_week:
+        one: Son haftada %{count} deneme
+        other: Son haftada %{count} kayıt denemesi
       created_msg: E-posta alan adı kara listeye başarıyla eklendi
       delete: Sil
-      destroyed_msg: E-posta alan adı kara listeden başarıyla silindi
+      dns:
+        types:
+          mx: MX kaydı
       domain: Alan adı
-      empty: Şu anda hiçbir e-posta alan adı kara listeye alınmadı.
-      from_html: "%{domain} alan adından"
       new:
         create: Alan adı ekle
+        resolve: Alan adı çözümleme
         title: Yeni e-posta kara liste girişi
+      no_email_domain_block_selected: Seçim yapılmadığından hiç bir e-posta alan adı engeli değiştirilmedi
+      resolved_dns_records_hint_html: Alan adı aşağıdaki MX alan adlarına çözümleniyor, ancak hiç biri nihayetinde e-posta kabulünden sorum değil. Bir MX alan adını engellemek, görünen alan adı farklı osa bile aynı MX alan adını kullanan e-posta adreslerinden gelen kayıtları engelleyecektir. <strong>Başlıca e-posta sağlayıcıları engellememek için dikkatli olun.</strong>
+      resolved_through_html: "%{domain} aracılığıyla çözümlendi"
       title: E-posta kara listesi
     follow_recommendations:
       description_html: "<strong>Takip önerileri yeni kullanıcıların hızlı bir şekilde ilginç içerik bulmalarını sağlar</strong>. Eğer bir kullanıcı, kişisel takip önerileri almaya yetecek kadar başkalarıyla etkileşime girmediğinde, onun yerine bu hesaplar önerilir. Bu öneriler, verili bir dil için en yüksek takipçi sayısına ve en yüksek güncel meşguliyete sahip hesapların bir karışımdan günlük olarak hesaplanıyorlar."
@@ -455,41 +476,68 @@ tr:
       title: Takip önerileri
       unsuppress: Takip önerisini geri getir
     instances:
+      availability:
+        description_html:
+          one: Eğer alan adına teslimat <strong>%{count} gün</strong> boyunca başarısız olursa, alan adından bir teslimat <em>gelmedikçe</em> yeni bir iletim denemesi yapılmayacak.
+          other: Eğer alan adına teslimat <strong>%{count} farklı gün</strong> boyunca başarısız olursa, alan adından bir teslimat <em>gelmedikçe</em> yeni bir iletim denemesi yapılmayacak.
+        failure_threshold_reached: Başarısızlık eşiğine %{date} tarihinde ulaşıldı.
+        failures_recorded:
+          one: "%{count} gün başarısız girişim."
+          other: "%{count} farklı gün başarısız girişim."
+        no_failures_recorded: Kayıtlı başarısızlık yok.
+        title: Ulaşılabilirlik
+        warning: Bu sunucuya önceki bağlanma denemesi başarısız olmuştu
       back_to_all: Tümü
       back_to_limited: Sınırlı
       back_to_warning: Uyarı
       by_domain: Alan adı
+      confirm_purge: Bu alan adından verileri kalıcı olarak silmek istediğinizden emin misin?
+      content_policies:
+        comment: İç not
+        description_html: Bu alan adındaki ve alt alan adlarındaki tüm hesaplara uygulanacak içerik ilkeleri belirleyebilirsiniz.
+        policies:
+          reject_media: Medyayı reddet
+          reject_reports: Şikayetleri reddet
+          silence: Sınırla
+          suspend: Askıya al
+        policy: İlke
+        reason: Kamuya açık gerekçe
+        title: İçerik ilkeleri
+      dashboard:
+        instance_accounts_dimension: En çok takip edilen hesaplar
+        instance_accounts_measure: kayıtlı hesaplar
+        instance_followers_measure: oradaki takipçilerimiz
+        instance_follows_measure: buradaki takipçileri
+        instance_languages_dimension: En gözde diller
+        instance_media_attachments_measure: kayıtlı medya ekleri
+        instance_reports_measure: haklarındaki şikayetler
+        instance_statuses_measure: kayıtlı gönderiler
       delivery:
         all: Tümü
         clear: Teslimat hatalarını temizle
         restart: Teslimatı yeniden başlat
         stop: Teslimatı durdur
-        title: Teslimat
         unavailable: Mevcut Değil
-        unavailable_message: Teslimat mevcut değil
-        warning: Uyarı
-        warning_message:
-          one: Teslimat %{count} gündür başarısız
-          other: Teslimat %{count} gündür başarısız
       delivery_available: Teslimat mevcut
       delivery_error_days: Teslimat hatası günleri
       delivery_error_hint: Eğer teslimat %{count} gün boyunca mümkün olmazsa, otomatik olarak teslim edilemiyor olarak işaretlenecek.
+      destroyed_msg: "%{domain} alan adından veriler hemen silinmek üzere kuyruğa alındı."
       empty: Alan adı bulunamadı.
-      known_accounts:
-        one: "%{count} bilinen hesap"
-        other: "%{count} bilinen hesap"
       moderation:
         all: Tümü
         limited: Sınırlı
         title: Denetim
       private_comment: Özel yorum
       public_comment: Genel yorum
+      purge: Temizle
+      purge_description_html: Eğer bu alan adının temelli çevrimdışı olduğunu düşünüyorsanız, bu alanda adına ait tüm hesap kayıtlarını ve ilişkili tüm veriyi depolama alanınızdan kaldırabilirsiniz. Bu işlem uzun sürebilir.
       title: Bilinen Sunucular
       total_blocked_by_us: Tarafımızca engellenen
       total_followed_by_them: Onlar tarafından takip edilen
       total_followed_by_us: Tarafımızca takip edilen
       total_reported: Onlar hakkında şikayetler
       total_storage: Medya ekleri
+      totals_time_period_hint_html: Aşağıdaki gösterilen toplamlar, gelmiş geçmiş tüm veriyi içeriyor.
     invites:
       deactivate_all: Tümünü devre dışı bırak
       filter:
@@ -513,8 +561,6 @@ tr:
         title: Yeni IP kuralı oluştur
       no_ip_block_selected: Hiçbiri seçilmediğinden hiçbir IP kuralı değiştirilmedi
       title: IP kuralları
-    pending_accounts:
-      title: Bekleyen hesaplar (%{count})
     relationships:
       title: "%{acct} kişisinin ilişkileri"
     relays:
@@ -536,43 +582,66 @@ tr:
     report_notes:
       created_msg: Şikayet notu başarıyla oluşturuldu!
       destroyed_msg: Şikayet notu başarıyla silindi!
+      today_at: 'Bugün şu saatte: %{time}'
     reports:
       account:
         notes:
           one: "%{count} not"
           other: "%{count} not"
-        reports:
-          one: "%{count} şikayet"
-          other: "%{count} şikayet"
+      action_log: Denetim günlüğü
       action_taken_by: tarafından gerçekleştirilen eylem
+      actions:
+        delete_description_html: Bildirilen gönderiler silinecek ve aynı hesapla ileride yaşabileceğiniz etkileşimlerde çoğaltmanız için bir eylem kaydedilecek.
+        mark_as_sensitive_description_html: Bildirilen gönderilerdeki medya dosyaları hassas olarak işaretlenecek ve aynı hesapla ileride yaşayabileceğiniz etkileşimlerde kullanabilmeniz için bir eylem kaydedilecek.
+        other_description_html: Hesabın davranışını denetlemek ve bildirilen hesabın iletişimini yapılandırmak için daha fazla seçenek görün.
+        resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
+        silence_description_html: Profil sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir.
+        suspend_description_html: Profil ve tüm içeriği sonunda silinene kadar erişilmez olacak. Hesapla etkileşim mümkün olmayacak. 30 gün boyunca geri alınabilir.
+      actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
+      add_to_report: Bildirime daha fazlasını ekle
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
       assigned: Denetleyici atandı
       by_target_domain: Şikayet edilen hesabın alan adı
+      category: Kategori
+      category_description_html: Bu hesap ve/veya içeriğin bildirilme gerekçesi, bildirilen hesapla iletişimde alıntılanacaktır
       comment:
         none: Yok
+      comment_description_html: 'Daha fazla bilgi vermek için %{name} şunu yazdı:'
       created_at: Şikayet edildi
+      delete_and_resolve: Gönderileri sil
       forwarded: İletildi
       forwarded_to: "%{domain}'e iletildi"
       mark_as_resolved: Giderildi olarak işaretle
+      mark_as_sensitive: Hassas olarak işaretle
       mark_as_unresolved: Çözümlenmemiş olarak işaretle
+      no_one_assigned: Hiç kimse
       notes:
         create: Not Ekle
         create_and_resolve: Not ile çözümle
         create_and_unresolve: Not ile tekrar aç
         delete: Sil
         placeholder: Hangi işlemlerin yapıldığını, ya da diğer ilgili güncellemeleri açıklayın...
+        title: Notlar
+      notes_description_html: Kendiniz ve diğer moderatörler için not bırakın veya notları görüntüleyin
+      quick_actions_description_html: 'Hemen bir şey yapın veya bildirilen içeriği görmek için aşağı kaydırın:'
+      remote_user_placeholder: "%{instance}'dan uzak kullanıcı"
       reopen: Şikayeti tekrar aç
       report: 'Şikayet #%{id}'
       reported_account: Şikayet edilen hesap
       reported_by: Şikayet eden
       resolved: Giderildi
       resolved_msg: Şikayet başarıyla çözümlendi!
+      skip_to_actions: İşlemlere atla
       status: Durum
+      statuses: Bildirilen içerik
+      statuses_description_html: İncitici içerik, bildirilen hesapla iletişimde alıntılanacaktır
+      target_origin: Şikayet edilen hesabın kökeni
       title: Şikayetler
       unassign: Atamayı geri al
       unresolved: Giderilmedi
       updated_at: Güncellendi
+      view_profile: Profili görüntüle
     rules:
       add_new: Kural ekle
       delete: Sil
@@ -674,18 +743,27 @@ tr:
       destroyed_msg: Site yüklemesi başarıyla silindi!
     statuses:
       back_to_account: Hesap sayfasına geri dön
+      back_to_report: Bildirim sayfasına geri dön
       batch:
-        delete: Sil
-        nsfw_off: Hassas değil olarak işaretle
-        nsfw_on: Hassas olarak işaretle
+        remove_from_report: Bildirimden kaldır
+        report: Bildirim
       deleted: Silindi
-      failed_to_execute: Çalıştırılamadı
       media:
         title: Medya
-      no_media: Medya yok
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
       title: Hesap durumları
       with_media: Medya ile
+    strikes:
+      actions:
+        delete_statuses: "%{name}, %{target} kullanıcısının gönderilerini sildi"
+        disable: "%{name}, %{target} kullanıcısının hesabını dondurdu"
+        mark_statuses_as_sensitive: "%{name}, %{target} kullanıcısının gönderilerini hassas olarak işaretledi"
+        none: "%{name}, %{target} kullanıcısına bir uyarı gönderdi"
+        sensitive: "%{name}, %{target} kullanıcısının hesabını hassas olarak işaretledi"
+        silence: "%{name}, %{target} kullanıcısının hesabını kısıtladı"
+        suspend: "%{name}, %{target} kullanıcısının hesabını askıya aldı"
+      appeal_approved: İtiraz Edildi
+      appeal_pending: İtiraz bekliyor
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
@@ -695,21 +773,59 @@ tr:
       sidekiq_process_check:
         message_html: "%{value} kuyruk(lar)ı için herhangi bir Sidekiq süreci çalışmıyor. Lütfen Sidekiq yapılandırmanızı gözden geçirin"
     tags:
-      accounts_today: Bugünkü eşsiz kullanımlar
-      accounts_week: Bu haftaki eşsiz kullanımlar
-      breakdown: Bugünkü kullanımın kaynağa göre dağılımı
-      last_active: Son etkinlik
-      most_popular: En popüler
-      most_recent: En yeni
-      name: Etiket
       review: Durumu gözden geçir
-      reviewed: Gözden geçirildi
-      title: Etiketler
-      trending_right_now: Şu anda trend
-      unique_uses_today: bugün %{count} gönderi
-      unreviewed: Gözden geçirilmedi
       updated_msg: Etiket ayarları başarıyla güncellendi
     title: Yönetim
+    trends:
+      allow: İzin ver
+      approved: Onaylandı
+      disallow: İzin verme
+      links:
+        allow: Bağlantıya izin ver
+        allow_provider: Yayıncıya izin ver
+        description_html: Bu bağlantılar şu anda sunucunuzun gönderilerini gördüğü hesaplarca bolca paylaşılıyor. Kullanıcılarınızın dünyada neler olduğunu görmesine yardımcı olabilir. Yayıncıyı onaylamadığınız sürece hiçbir bağlantı herkese açık yayınlanmaz. Tekil bağlantıları onaylayabilir veya reddedebilirsiniz.
+        disallow: Bağlantıya izin verme
+        disallow_provider: Yayıncıya izin verme
+        title: Öne çıkan bağlantılar
+        usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
+      pending_review: İnceleme bekliyor
+      preview_card_providers:
+        allowed: Bu yayıncının bağlantıları öne çıkabilir
+        description_html: Sunucunuzda bağlantıları sıklıkla paylaşılan alan adları var. Bağlantının alan adı onaylanmadıkça, bağlantılar öne çıkmayacaktır. Onayınız (veya reddiniz) alt alan adlarını kapsar.
+        rejected: Bu yayıncının bağlantıları öne çıkmayacak
+        title: Yayıncılar
+      rejected: Reddedildi
+      statuses:
+        allow: Gönderiye izin ver
+        allow_account: Yazara izin ver
+        description_html: Bunlar, sunucunuzca bilinen, şu an sıklıkla paylaşılan ve beğenilen gönderilerdir. Yeni ve geri dönen kullanıcılarınızın takip etmesi için daha fazla kullanıcı bulmasına yararlar. Siz yazarı onaylamadığınız ve yazar hesabının başkalarına önerilmesine izin vermediği sürece gönderileri herkese açık olarak gösterilmez. Tekil gönderileri de onaylayabilir veya reddedebilirsiniz.
+        disallow: Gönderi iznini kaldır
+        disallow_account: Yazar iznini kaldır
+        not_discoverable: Yazar keşfedilebilir olmamayı seçiyor
+        shared_by:
+          one: Bir defa paylaşıldı veya favorilendi
+          other: "%{friendly_count} defa paylaşıldı veya favorilendi"
+        title: Öne çıkan gönderiler
+      tags:
+        current_score: Mevcut puan %{score}
+        dashboard:
+          tag_accounts_measure: tekil kullanımlar
+          tag_languages_dimension: En gözde diller
+          tag_servers_dimension: En gözde sunucular
+          tag_servers_measure: farklı sunucular
+          tag_uses_measure: toplam kullanım
+        description_html: Bunlar sunucunuzun gördüğü gönderilerde sıklıkla gözüken etiketlerdir. Kullanıcılarınızın, şu an en çok ne hakkında konuşulduğunu görmesine yardımcı olurlar. Onaylamadığınız sürece etiketler herkese açık görünmez.
+        listable: Önerilebilir
+        not_listable: Önerilmeyecek
+        not_trendable: Öne çıkanlar altında görünmeyecek
+        not_usable: Kullanılamaz
+        peaked_on_and_decaying: "%{date} tarihinde zirvedeydi, şimdi azalıyor"
+        title: Öne çıkan etiketler
+        trendable: Öne çıkanlar altında görünebilir
+        trending_rank: 'Öne çıkanlar #%{rank}'
+        usable: Kullanılabilir
+        usage_comparison: Bugün %{today} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
+      title: Öne çıkanlar
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
@@ -717,6 +833,18 @@ tr:
       empty: Henüz önceden ayarlanmış bir uyarı tanımlanmadı.
       title: Uyarı ön-ayarlarını yönet
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: gönderilerini silme
+        disable: hesaplarını dondurma
+        mark_statuses_as_sensitive: gönderilerini hassas olarak işaretleme
+        none: uyarı
+        sensitive: hesaplarını hassas olarak işaretleme
+        silence: hesaplarını kısıtlama
+        suspend: hesaplarını askıya alma
+      body: "%{target}, %{date} tarihinde %{action_taken_by} tarafından alınan %{type} yönetim kararına itiraz etti. Şunu yazdılar:"
+      next_steps: Yönetim kararını geri almak için itirazı onaylayabilir veya itirazı görmezden gelebilirsiniz.
+      subject: "%{username}, %{instance} hakkındaki bir yönetim kararına itiraz ediyor"
     new_pending_account:
       body: Yeni hesabın detayları aşağıdadır. Bu başvuruyu onaylayabilir ya da reddedebilirsiniz.
       subject: "%{instance} üzerinde gözden geçirmek için yeni hesap (%{username})"
@@ -724,9 +852,21 @@ tr:
       body: "%{reporter}, %{target} kişisini bildirdi"
       body_remote: "%{domain} alan adından birisi %{target} kişisini bildirdi"
       subject: "%{instance} için yeni şikayet (#%{id})"
-    new_trending_tag:
-      body: "#%{name} etiketi bugün trend, ancak daha önce incelenmedi. Siz izin vermediğiniz sürece herkese açık olarak gösterilmeyecek, ya da bir daha asla hakkında bir şey duymamak için olduğu şekliyle formu kaydedin."
-      subject: "%{instance} üzerinde gözden geçirmek için yeni etiket (#%{name})"
+    new_trends:
+      body: 'Aşağıdaki öğeler herkese açık olarak gösterilmeden önce gözden geçirilmelidir:'
+      new_trending_links:
+        no_approved_links: Şu anda onaylanmış öne çıkan bağlantı yok.
+        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_link_score} skoruna sahip "%{lowest_link_title}" olan #%{rank} onaylanmış öne çıkan bağlantıyı geçebilir.'
+        title: Öne çıkan bağlantılar
+      new_trending_statuses:
+        no_approved_statuses: Şu anda onaylanmış öne çıkan gönderi yok.
+        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_status_score} skoruna sahip "%{lowest_status_url}" olan #%{rank} onaylanmış öne çıkan gönderiyi geçebilir.'
+        title: Öne çıkan gönderiler
+      new_trending_tags:
+        no_approved_tags: Şu anda onaylanmış öne çıkan etiket yok.
+        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_tag_score} skoruna sahip "%{lowest_tag_name}" olan #%{rank} onaylanmış öne çıkan etiketi geçebilir.'
+        title: Öne çıkan etiketler
+      subject: "%{instance}, inceleme bekleyen yeni öne çıkan öğelere sahip"
   aliases:
     add_new: Takma ad oluştur
     created_msg: Yeni takma ad başarıyla oluşturuldu. Artık eski hesaptan taşınmayı başlatabilirsiniz.
@@ -767,7 +907,7 @@ tr:
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Sunucu kurallarını</a> ve <a href="%{terms_path}" target="_blank">hizmet şartlarını</a> kabul ediyorum
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Hizmet şartlarını</a> kabul ediyorum
     delete_account: Hesabı sil
-    delete_account_html: Hesabınızı silmek isterseniz, <a href="%{path}">buradan devam edebilirsiniz </a>. Onaylamanız istenecektir.
+    delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
     description:
       prefix_invited_by_user: "@%{name} sizi bu Mastodon sunucusuna katılmaya davet ediyor!"
       prefix_sign_up: Bugün Mastodon'a kaydolun!
@@ -778,10 +918,11 @@ tr:
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
     link_to_otp: Telefonunuzdan iki adımlı bir kod veya bir kurtarma kodu girin
     link_to_webauth: Güvenlik anahtarı cihazınızı kullanın
+    log_in_with: Şununla giriş yap
     login: Oturum aç
     logout: Oturumu kapat
     migrate_account: Farklı bir hesaba taşıyın
-    migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsanız, <a href="%{path}">buradan yapılandırabilirsiniz</a>.
+    migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsan, <a href="%{path}">buradan yapılandırabilirsin</a>.
     or_log_in_with: 'Veya şununla oturum açın:'
     providers:
       cas: CAS
@@ -802,6 +943,7 @@ tr:
       functional: Hesabınız tamamen kullanıma hazır.
       pending: Başvurunuz personelimiz tarafından gözden geçirilmeyi beklemektedir. Bu biraz zaman alabilir. Başvurunuz onaylanırsa bir e-posta alacaksınız.
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
+      view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
     trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
     use_security_key: Güvenlik anahtarını kullan
@@ -865,6 +1007,34 @@ tr:
     directory: Profil Dizini
     explanation: Kullanıcıları ilgi alanlarına göre keşfedin
     explore_mastodon: "%{title} sunucusunu keşfet"
+  disputes:
+    strikes:
+      action_taken: Yapılan işlem
+      appeal: İtiraz
+      appeal_approved: Eyleme başarılı bir şekilde itiraz edildi ve artık geçerli değil
+      appeal_rejected: İtiraz reddedildi
+      appeal_submitted_at: İtiraz gönderildi
+      appealed_msg: İtiraz gönderildi. Kabul edilirse bilgilendirileceksiniz.
+      appeals:
+        submit: İtirazı gönder
+      associated_report: İlişkili rapor
+      created_at: Tarih
+      description_html: Bunlar hesabınıza yönelik eylemler ve %{instance} yönetimi tarafından size gönderilen uyarılardır.
+      recipient: Kime
+      status: 'Gönderi #%{id}'
+      status_removed: Gönderi zaten sistemden kaldırıldı
+      title: "%{date} tarihli %{action}"
+      title_actions:
+        delete_statuses: Gönderi kaldırma
+        disable: Hesabın dondurulması
+        mark_statuses_as_sensitive: Gönderileri hassas olarak işaretleme
+        none: Uyarı
+        sensitive: Hesabı hassas olarak işaretleme
+        silence: Hesabın kısıtlanması
+        suspend: Hesabın askıya alınması
+      your_appeal_approved: İtirazınız onaylandı
+      your_appeal_pending: Bir itiraz gönderdiniz
+      your_appeal_rejected: İtirazınız reddedildi
   domain_validator:
     invalid_domain: geçerli bir alan adı değil
   errors:
@@ -889,7 +1059,7 @@ tr:
     archive_takeout:
       date: Tarih
       download: Arşivinizi indirin
-      hint_html: "<strong>Tootlarınızın ve yüklediğiniz ortamların</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub formatında olacaktır. Her 7 günde bir arşiv talep edebilirsiniz."
+      hint_html: "<strong>Gönderileriniz ve yüklediğiniz medya dosyalarının</strong> bir arşivini talep edebilirsiniz. Dışa aktarılan veriler, herhangi bir uyumlu yazılım tarafından okunabilen ActivityPub biçiminde olacaktır. Her 7 günde bir arşiv talep edebilirsiniz."
       in_progress: Arşivinizi derliyoruz...
       request: Arşivinizi isteyin
       size: Boyut
@@ -933,34 +1103,15 @@ tr:
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     copy: Kopyala
     delete: Sil
-    no_batch_actions_available: Bu sayfada toplu işlem yok
+    none: Hiçbiri
     order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
+    today: bugün
     validation_errors:
       one: Bir şeyler ters gitti! Lütfen aşağıdaki hatayı gözden geçiriniz
       other: Bir şeyler ters gitti! Lütfen aşağıdaki %{count} hatayı gözden geçiriniz
   html_validator:
     invalid_markup: 'geçersiz HTML markup içermektedir: %{error}'
-  identity_proofs:
-    active: Etkin
-    authorize: Evet, izin ver
-    authorize_connection_prompt: Bu kriptolu bağlantıyı yetkilendir?
-    errors:
-      failed: Kriptolu bağlantı başarısız oldu. Lütfen %{provider} üzerinden tekrar deneyin.
-      keybase:
-        invalid_token: Keybase belirteçleri imza hash'leridir ve 66 hex karakter içermelidir
-        verification_failed: Keybase, bu belirteci, %{kb_username} Keybase kullanıcısının imzası olarak tanımıyor. Lütfen Keybase'den tekrar deneyin.
-      wrong_user: "%{current} olarak giriş yaparken %{proving} için bir kanıt oluşturulamıyor. %{proving} olarak giriş yapın ve tekrar deneyin."
-    explanation_html: Burada, Keybase profili gibi diğer kimliklerinizi şifreli olarak bağlayabilirsiniz. Bu, diğer kişilerin size şifreli mesajlar göndermesini ve gönderdiğiniz içeriğe güvenmelerini sağlar.
-    i_am_html: Ben %{service} üzerinde %{username}.
-    identity: Kimlik
-    inactive: Pasif
-    publicize_checkbox: 'Ve bunu tootla:'
-    publicize_toot: 'İspatlandı! Ben %{service} üzerinde %{username}: %{url}'
-    remove: Hesaptan kanıtı kaldır
-    removed: Kanıt hesaptan başarıyla kaldırıldı
-    status: Doğrulama durumu
-    view_proof: Kanıtı görüntüle
   imports:
     errors:
       over_rows_processing_limit: "%{count} satırdan fazlasını içeriyor"
@@ -1004,6 +1155,17 @@ tr:
   lists:
     errors:
       limit: En yüksek liste sayısına ulaştınız
+  login_activities:
+    authentication_methods:
+      otp: iki aşamalı kimlik doğrulama uygulaması
+      password: parola
+      sign_in_token: e-posta güvenlik kodu
+      webauthn: güvenlik anahtarları
+    description_html: Eğer tanımadığınız bir faaliyet görüyorsanız, parolanızı değiştirmeyi ve iki aşamalı kimlik doğrulamayı etkinleştirmeyi düşünün.
+    empty: Kimlik doğrulama geçmişi yok
+    failed_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarısız oturum açma girişimi"
+    successful_sign_in_html: "%{method} yöntemiyle %{ip} (%{browser}) adresinden başarılı oturum açma"
+    title: Kimlik doğrulama geçmişi
   media_attachments:
     validations:
       images_and_video: Zaten resim içeren bir duruma video eklenemez
@@ -1047,6 +1209,9 @@ tr:
     carry_mutes_over_text: Bu kullanıcı sessize aldığınız %{acct} adresinden taşındı.
     copy_account_note_text: 'Bu kullanıcı %{acct} adresinden taşındı, işte onlarla ilgili önceki notlarınız:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} kaydoldu"
     digest:
       action: Tüm bildirimleri görüntüle
       body: Son ziyaretiniz olan %{since}'den beri'da kaçırdığınız şeylerin özeti
@@ -1084,6 +1249,8 @@ tr:
       title: Yeni boost
     status:
       subject: "%{name} az önce gönderdi"
+    update:
+      subject: "%{name} bir gönderiyi düzenledi"
   notifications:
     email_events: E-posta bildirimi gönderilecek etkinlikler
     email_events_hint: 'Bildirim almak istediğiniz olayları seçin:'
@@ -1165,6 +1332,9 @@ tr:
     reply:
       proceed: Yanıtlamak için devam edin
       prompt: 'Bu tootu yanıtlamak istiyorsunuz:'
+  reports:
+    errors:
+      invalid_rules: geçerli kurallara işaret etmez
   scheduled_statuses:
     over_daily_limit: O gün için %{limit} zamanlanmış toot sınırını aştınız
     over_total_limit: "%{limit} zamanlanmış toot sınırını aştınız"
@@ -1210,6 +1380,7 @@ tr:
     revoke: İptal Et
     revoke_success: Oturum başarıyla iptal edildi
     title: Oturumlar
+    view_authentication_history: Hesabınızın kimlik doğrulama geçmişini görüntüle
   settings:
     account: Hesap
     account_settings: Hesap ayarları
@@ -1222,7 +1393,6 @@ tr:
     edit_profile: Profili düzenle
     export: Veriyi dışa aktar
     featured_tags: Öne çıkan etiketler
-    identity_proofs: Kimlik kanıtları
     import: İçe aktar
     import_and_export: İçe ve dışa aktar
     migrate: Hesap taşıma
@@ -1230,6 +1400,8 @@ tr:
     preferences: Tercihler
     profile: Profil
     relationships: Takip edilenler ve takipçiler
+    statuses_cleanup: Otomatik gönderi silme
+    strikes: Moderasyon eylemleri
     two_factor_authentication: İki adımlı doğrulama
     webauthn_authentication: Güvenlik anahtarları
   statuses:
@@ -1246,18 +1418,19 @@ tr:
         other: "%{count} video"
     boosted_from_html: "%{acct_link} kişisinden boostladı"
     content_warning: 'İçerik uyarısı: %{warning}'
+    default_language: Arayüz diliyle aynı
     disallowed_hashtags:
       one: 'izin verilmeyen bir etiket içeriyordu: %{tags}'
       other: 'izin verilmeyen hashtag''leri içeriyordu: %{tags}'
+    edited_at_html: "%{date} tarihinde düzenlendi"
     errors:
       in_reply_not_found: Yanıtlamaya çalıştığınız durum yok gibi görünüyor.
-    language_detection: Dili otomatik olarak algıla
     open_in_web: Web sayfasında aç
     over_character_limit: "%{max} karakter limiti aşıldı"
     pin_errors:
+      direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
       limit: Hali hazırda maksimum sayıda tootu sabitlediniz
       ownership: Başkasının tootu sabitlenemez
-      private: Halka açık olmayan toot sabitlenemez
       reblog: Bir boost sabitlenemez
     poll:
       total_people:
@@ -1281,6 +1454,41 @@ tr:
       public_long: Herkese açık zaman tüneline gönder
       unlisted: Listelenmemiş
       unlisted_long: Herkes görebilir fakat herkese açık zaman tünellerinde listelenmez
+  statuses_cleanup:
+    enabled: Eski gönderileri otomatik olarak sil
+    enabled_hint: Belirli bir zaman eşiğine ulaşan eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler
+    exceptions: İstisnalar
+    explanation: Gönderi silme maliyetli bir iş olduğu için, sunucu çok yoğun olmadığında yavaş yavaş yapılmaktadır. Bu nedenle, gönderilerinizin zaman eşiği geldiğinde silinmesi belirli bir süre alabilir.
+    ignore_favs: Beğenileri yoksay
+    ignore_reblogs: Teşvikleri yoksay
+    interaction_exceptions: Etkileşimlere dayalı istisnalar
+    interaction_exceptions_explanation: Bir kere değerlendirmeye alındıktan sonra, belirtilen beğeni veya teşvik eşiğinin altında düşünce gönderilerin silinmesinin bir güvencesi yok.
+    keep_direct: Doğrudan iletileri sakla
+    keep_direct_hint: Herhangi bir doğrudan iletinizi silmez
+    keep_media: Görüntü eki olan gönderileri sakla
+    keep_media_hint: Herhangi bir medya eki olan gönderinizi silmez
+    keep_pinned: Sabitlenmiş gönderileri sakla
+    keep_pinned_hint: Herhangi bir sabitlenmiş gönderinizi silmez
+    keep_polls: Anketleri sakla
+    keep_polls_hint: Herhangi bir anketinizi silmez
+    keep_self_bookmark: Yer imi olarak eklenmiş gönderileri sakla
+    keep_self_bookmark_hint: Herhangi bir yer imi olarak eklenmiş gönderinizi silmez
+    keep_self_fav: Beğendiğiniz gönderileri sakla
+    keep_self_fav_hint: Kendi gönderilerinizi beğenmişseniz silmez
+    min_age:
+      '1209600': 2 hafta
+      '15778476': 6 ay
+      '2629746': 1 ay
+      '31556952': 1 yıl
+      '5259492': 2 ay
+      '604800': 1 hafta
+      '63113904': 2 yıl
+      '7889238': 3 ay
+    min_age_label: Zaman eşiği
+    min_favs: Şundan daha fazla beğenilen gönderileri sakla
+    min_favs_hint: Bu belirtilenden daha fazla beğeni alan gönderilerinizin herhangi birini silmez. Beğeni sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
+    min_reblogs: Şundan daha fazla teşvik edilen gönderileri sakla
+    min_reblogs_hint: Bu belirtilenden daha fazla teşvik edilen gönderilerinizin herhangi birini silmez. Teşvik sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
   stream_entries:
     pinned: Sabitlenmiş toot
     reblogged: boostladı
@@ -1378,6 +1586,7 @@ tr:
     formats:
       default: "%d %b %Y %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Ekle
     disable: 2FA'yı devre dışı bırak
@@ -1394,6 +1603,15 @@ tr:
     recovery_instructions_html: 'Eğer telefonunuza erişiminizi kaybederseniz, aşağıdaki kurtarma kodlarından birini kullanarak hesabınıza giriş yapabilirsiniz. Kurtarma kodlarınızı güvenli halde tutunuz. Örneğin: kodların çıktısını alıp diğer önemli belgeleriniz ile birlikte saklayabilirsiniz.'
     webauthn: Güvenlik anahtarları
   user_mailer:
+    appeal_approved:
+      action: Hesabınıza gidin
+      explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız onaylandı. Hesabınız artık tekrar iyi durumda."
+      subject: "%{date} tarihli itirazınız kabul edildi"
+      title: İtiraz onaylandı
+    appeal_rejected:
+      explanation: "%{appeal_date} tarihinde gönderdiğiniz, hesabınıza yönelik %{strike_date} tarihli eyleme itirazınız reddedildi."
+      subject: "%{date} tarihli itirazınız reddedildi"
+      title: İtiraz reddedildi
     backup_ready:
       explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
       subject: Arşiviniz indirilmeye hazır
@@ -1405,24 +1623,34 @@ tr:
       subject: Lütfen oturum açma girişimini onaylayın
       title: Oturum açma girişimi
     warning:
+      appeal: Bir itiraz gönder
+      appeal_description: Bunun bir hata olduğunu düşünüyorsanız, %{instance} sunucusunun personeline bir itiraz gönderebilirsiniz.
+      categories:
+        spam: İstenmeyen
+        violation: İçerik aşağıdaki topluluk ilkelerini ihlal ediyor
       explanation:
-        disable: Hesabınız donmuşken, hesap verileriniz bozulmadan kalır, ancak kilidi açılıncaya kadar herhangi bir işlem gerçekleştiremezsiniz.
-        sensitive: Yüklediğiniz medya dosyalarınız ve bağlantılı medyanız hassas olarak değerlendirilecektir.
-        silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucuda tootlarınızı görecek ve çeşitli halka açık listelerin dışında tutulabilirsiniz. Ancak, diğerleri hala sizi manuel olarak takip edebilir.
-        suspend: Hesabınız askıya alındı ve tüm tootlarınız ve yüklediğiniz medya dosyalarınız bu sunucudan ve takipçilerinizin bulunduğu sunuculardan geri alınamaz şekilde kaldırıldı.
-      get_in_touch: "%{instance} çalışanlarıyla iletişim kurmak için bu e-postayı yanıtlayabilirsiniz."
-      review_server_policies: Sunucu politikalarını inceleyin
-      statuses: 'Özellikle, şunun için:'
+        delete_statuses: Bazı gönderilerinizin, topluluk ilkelerimizden bir veya daha fazlasını ihlal ettiği görüldü ve daha sonra %{instance} moderatörleri tarafından kaldırıldılar.
+        disable: Artık hesabınızı kullanamazsınız, ancak profil ve diğer veri sağlam. Verinizin bir yedeğini isteyebilir, hesap ayarlarınızı değiştirebilir veya hesabınızı silebilirsiniz.
+        mark_statuses_as_sensitive: Gönderilerinizin bazıları %{instance} moderatörleri tarafından hassas olarak işaretlendi. Bu nedenle bir önizleme görüntülenmeden önce insanların gönderilerinizdeki medya dosyalarına dokunması gerekiyor. Gelecekte gönderimde bulunurken medya dosyalarını hassas olarak işaretleyebilirsiniz.
+        sensitive: Artık tüm yüklenmiş medya dosyalarınız hassas olarak işaretlenecek ve üzerine tıklanarak açılacak şekilde bir uyarının ardına gizlenecektir.
+        silence: Hesabınız sınırlı iken, yalnızca sizi takip eden kişiler bu sunucudaki gönderilenizi görecek ve çeşitli keşif özelliklerinin dışında bırakılabilirsiniz. Ancak, başkaları sizi manuel olarak hala takip edebilir.
+        suspend: Hesabınızı artık kullanamazsınız ve profiliniz ve diğer veri artık erişilebilir değil. Yaklaşık 30 gün içinde silinene kadar verinizin bir yedeğini istemek için giriş yapabilirsiniz, ancak askıdan kaçınmanızı önlemek için bazı temel veriyi saklayabiliriz.
+      reason: 'Gerekçe:'
+      statuses: 'Sözü geçen gönderiler:'
       subject:
+        delete_statuses: "%{acct} hesabınızdaki gönderiler kaldırıldı"
         disable: "%{acct} hesabınız donduruldu"
+        mark_statuses_as_sensitive: "%{acct} hesabındaki gönderiler hassas olarak işaretlendi"
         none: "%{acct} için uyarı"
-        sensitive: Hesabınızdan yayınlanan %{acct} medyanız hassas olarak işaretlendi
+        sensitive: "%{acct} hesabınızdaki gönderiler artık hassas olarak işaretlenecek"
         silence: "%{acct} hesabınız sınırlandırıldı"
         suspend: "%{acct} hesabınız askıya alındı"
       title:
+        delete_statuses: Kaldırılan gönderiler
         disable: Hesap donduruldu
+        mark_statuses_as_sensitive: Gönderiler hassas olarak işaretlendi
         none: Uyarı
-        sensitive: Medyanız hassas olarak işaretlendi
+        sensitive: Hesap hassas olarak işaretlendi
         silence: Hesap sınırlandırıldı
         suspend: Hesap askıya alındı
     welcome:

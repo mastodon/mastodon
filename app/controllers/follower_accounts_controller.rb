@@ -15,13 +15,13 @@ class FollowerAccountsController < ApplicationController
       format.html do
         expires_in 0, public: true unless user_signed_in?
 
-        next if @account.user_hides_network?
+        next if @account.hide_collections?
 
         follows
       end
 
       format.json do
-        raise Mastodon::NotPermittedError if page_requested? && @account.user_hides_network?
+        raise Mastodon::NotPermittedError if page_requested? && @account.hide_collections?
 
         expires_in(page_requested? ? 0 : 3.minutes, public: public_fetch_mode?)
 
@@ -82,10 +82,10 @@ class FollowerAccountsController < ApplicationController
   end
 
   def restrict_fields_to
-    if page_requested? || !@account.user_hides_network?
+    if page_requested? || !@account.hide_collections?
       # Return all fields
     else
-      %i(id type totalItems)
+      %i(id type total_items)
     end
   end
 end

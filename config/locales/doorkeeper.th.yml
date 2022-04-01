@@ -60,8 +60,8 @@ th:
       error:
         title: เกิดข้อผิดพลาด
       new:
-        able_to: แอปจะสามารถ
-        prompt: แอปพลิเคชัน %{client_name} ขอเข้าถึงบัญชีของคุณ
+        prompt_html: "%{client_name} ต้องการสิทธิอนุญาตเพื่อเข้าถึงบัญชีของคุณ แอปพลิเคชันเป็นแอปพลิเคชันจากบุคคลที่สาม <strong>หากคุณไม่เชื่อถือแอปพลิเคชัน คุณไม่ควรอนุญาตแอปพลิเคชัน</strong>"
+        review_permissions: ตรวจทานสิทธิอนุญาต
         title: ต้องมีการอนุญาต
       show:
         title: คัดลอกรหัสการอนุญาตนี้แล้ววางลงในแอปพลิเคชัน
@@ -71,20 +71,25 @@ th:
       confirmations:
         revoke: คุณแน่ใจหรือไม่?
       index:
-        application: แอปพลิเคชัน
-        created_at: อนุญาตเมื่อ
-        date_format: "%d/%m/%Y %H:%M:%S"
-        scopes: ขอบเขต
+        authorized_at: อนุญาตเมื่อ %{date}
+        description_html: นี่คือแอปพลิเคชันที่สามารถเข้าถึงบัญชีของคุณโดยใช้ API หากมีแอปพลิเคชันที่คุณไม่รู้จักที่นี่ หรือแอปพลิเคชันทำงานผิดปกติ คุณสามารถเพิกถอนการเข้าถึงของแอปพลิเคชัน
+        last_used_at: ใช้ล่าสุดเมื่อ %{date}
+        never_used: ไม่เคยใช้
+        scopes: สิทธิอนุญาต
+        superapp: ภายใน
         title: แอปพลิเคชันที่ได้รับอนุญาตของคุณ
     errors:
       messages:
         access_denied: เจ้าของทรัพยากรหรือเซิร์ฟเวอร์การอนุญาตปฏิเสธคำขอ
         invalid_request:
           missing_param: 'พารามิเตอร์ที่จำเป็นขาดหายไป: %{value}'
+        invalid_scope: ขอบเขตที่ขอไม่ถูกต้อง ไม่รู้จัก หรือผิดรูปแบบ
         invalid_token:
           expired: โทเคนการเข้าถึงหมดอายุแล้ว
           revoked: เพิกถอนโทเคนการเข้าถึงแล้ว
           unknown: โทเคนการเข้าถึงไม่ถูกต้อง
+        resource_owner_authenticator_not_configured: การค้นหาเจ้าของทรัพยากรล้มเหลวเนื่องจากไม่ได้กำหนดค่า Doorkeeper.configure.resource_owner_authenticator
+        unauthorized_client: ไคลเอ็นต์ไม่ได้รับอนุญาตให้ทำคำขอนี้โดยใช้วิธีการนี้
         unsupported_response_type: เซิร์ฟเวอร์การอนุญาตไม่รองรับชนิดการตอบสนองนี้
     flash:
       applications:
@@ -97,6 +102,33 @@ th:
       authorized_applications:
         destroy:
           notice: เพิกถอนแอปพลิเคชันแล้ว
+    grouped_scopes:
+      access:
+        read: การเข้าถึงแบบอ่านเท่านั้น
+        read/write: การเข้าถึงแบบอ่านและเขียน
+        write: การเข้าถึงแบบเขียนเท่านั้น
+      title:
+        accounts: บัญชี
+        admin/accounts: การดูแลบัญชี
+        admin/all: ฟังก์ชันการดูแลทั้งหมด
+        admin/reports: การดูแลรายงาน
+        all: ทุกอย่าง
+        blocks: การปิดกั้น
+        bookmarks: ที่คั่นหน้า
+        conversations: การสนทนา
+        crypto: การเข้ารหัสแบบต้นทางถึงปลายทาง
+        favourites: รายการโปรด
+        filters: ตัวกรอง
+        follow: ความสัมพันธ์
+        follows: การติดตาม
+        lists: รายการ
+        media: ไฟล์แนบสื่อ
+        mutes: การซ่อน
+        notifications: การแจ้งเตือน
+        push: การแจ้งเตือนแบบผลัก
+        reports: การรายงาน
+        search: ค้นหา
+        statuses: โพสต์
     layouts:
       admin:
         nav:
@@ -111,6 +143,7 @@ th:
       admin:write: ปรับเปลี่ยนข้อมูลทั้งหมดในเซิร์ฟเวอร์
       admin:write:accounts: ทำการกระทำการควบคุมบัญชี
       admin:write:reports: ทำการกระทำการควบคุมรายงาน
+      crypto: ใช้การเข้ารหัสแบบต้นทางถึงปลายทาง
       follow: ปรับเปลี่ยนความสัมพันธ์ของบัญชี
       push: รับการแจ้งเตือนแบบผลักของคุณ
       read: อ่านข้อมูลบัญชีทั้งหมดของคุณ
@@ -125,12 +158,13 @@ th:
       read:notifications: ดูการแจ้งเตือนของคุณ
       read:reports: ดูรายงานของคุณ
       read:search: ค้นหาในนามของคุณ
-      read:statuses: ดูสถานะทั้งหมด
+      read:statuses: ดูโพสต์ทั้งหมด
       write: ปรับเปลี่ยนข้อมูลบัญชีทั้งหมดของคุณ
       write:accounts: ปรับเปลี่ยนโปรไฟล์ของคุณ
       write:blocks: ปิดกั้นบัญชีและโดเมน
-      write:bookmarks: เพิ่มที่คั่นหน้าสถานะ
-      write:favourites: ชื่นชอบสถานะ
+      write:bookmarks: เพิ่มที่คั่นหน้าโพสต์
+      write:conversations: ซ่อนและลบการสนทนา
+      write:favourites: ชื่นชอบโพสต์
       write:filters: สร้างตัวกรอง
       write:follows: ติดตามผู้คน
       write:lists: สร้างรายการ
@@ -138,4 +172,4 @@ th:
       write:mutes: ซ่อนผู้คนและการสนทนา
       write:notifications: ล้างการแจ้งเตือนของคุณ
       write:reports: รายงานผู้คนอื่น ๆ
-      write:statuses: เผยแพร่สถานะ
+      write:statuses: เผยแพร่โพสต์

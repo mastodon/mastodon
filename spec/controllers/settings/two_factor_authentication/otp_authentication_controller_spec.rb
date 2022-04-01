@@ -18,7 +18,7 @@ describe Settings::TwoFactorAuthentication::OtpAuthenticationController do
           user.update(otp_required_for_login: true)
         end
 
-        it 'redirects to two factor authentciation methods list page' do
+        it 'redirects to two factor authentication methods list page' do
           get :show
 
           expect(response).to redirect_to settings_two_factor_authentication_methods_path

@@ -17,6 +17,7 @@ ast:
   doorkeeper:
     applications:
       buttons:
+        authorize: Autorizar
         cancel: Encaboxar
         destroy: Destruyir
         edit: Editar
@@ -40,11 +41,11 @@ ast:
         scopes: Ámbitos
         title: 'Aplicación: %{name}'
     authorizations:
+      buttons:
+        authorize: Autorizar
+        deny: Negar
       error:
         title: Asocedió un fallu
-      new:
-        able_to: Va ser a
-        prompt: L'aplicación %{client_name} solicitó l'accesu a la to cuenta
       show:
         title: Copia esti códigu d'autorización y apiégalu na aplicación.
     authorized_applications:
@@ -53,10 +54,7 @@ ast:
       confirmations:
         revoke: "¿De xuru?"
       index:
-        application: Aplicación
-        created_at: Data d'autorización
-        date_format: "%H:%M:%S %d-%m-%Y"
-        scopes: Ámbitos
+        scopes: Permisos
         title: Les aplicaciones qu'autoricesti
     errors:
       messages:
@@ -69,6 +67,9 @@ ast:
         temporarily_unavailable: Anguaño'l sirvidor d'autorizaciones nun ye a remanar la solicitú pola mor d'una sobrecarga temporal o caltenimientu del sirvidor.
         unauthorized_client: El veceru nun ta autorizáu pa facer esta solicitú usando esti métodu.
         unsupported_response_type: El sirvidor d'autorización nun sofita esta triba de rempuesta.
+    grouped_scopes:
+      title:
+        notifications: Avisos
     layouts:
       admin:
         nav:

@@ -91,11 +91,13 @@ Rails.application.configure do
 
   # E-mails
   outgoing_email_address = ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')
-  outgoing_mail_domain   = Mail::Address.new(outgoing_email_address).domain
+  outgoing_email_domain  = Mail::Address.new(outgoing_email_address).domain
+
   config.action_mailer.default_options = {
     from: outgoing_email_address,
     reply_to: ENV['SMTP_REPLY_TO'],
-    'Message-ID': -> { "<#{Mail.random_tag}@#{outgoing_mail_domain}>" },
+    return_path: ENV['SMTP_RETURN_PATH'],
+    message_id: -> { "<#{Mail.random_tag}@#{outgoing_email_domain}>" },
   }
 
   config.action_mailer.smtp_settings = {
@@ -105,11 +107,11 @@ Rails.application.configure do
     :password             => ENV['SMTP_PASSWORD'].presence,
     :domain               => ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
     :authentication       => ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
-    :ca_file              => ENV['SMTP_CA_FILE'].presence,
+    :ca_file              => ENV['SMTP_CA_FILE'].presence || '/etc/ssl/certs/ca-certificates.crt',
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
-    :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
-    :tls                  => ENV['SMTP_TLS'].presence,
-    :ssl                  => ENV['SMTP_SSL'].presence,
+    :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] != 'false',
+    :tls                  => ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
+    :ssl                  => ENV['SMTP_SSL'].presence && ENV['SMTP_SSL'] == 'true',
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
@@ -118,7 +120,7 @@ Rails.application.configure do
     'Server'                 => 'Mastodon',
     'X-Frame-Options'        => 'DENY',
     'X-Content-Type-Options' => 'nosniff',
-    'X-XSS-Protection'       => '1; mode=block',
+    'X-XSS-Protection'       => '0',
     'Permissions-Policy'     => 'interest-cohort=()',
   }
 

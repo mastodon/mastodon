@@ -21,12 +21,9 @@ RSpec.describe Admin::AccountsController, type: :controller do
       expect(AccountFilter).to receive(:new) do |params|
         h = params.to_h
 
-        expect(h[:local]).to eq '1'
-        expect(h[:remote]).to eq '1'
+        expect(h[:origin]).to eq 'local'
         expect(h[:by_domain]).to eq 'domain'
-        expect(h[:active]).to eq '1'
-        expect(h[:silenced]).to eq '1'
-        expect(h[:suspended]).to eq '1'
+        expect(h[:status]).to eq 'active'
         expect(h[:username]).to eq 'username'
         expect(h[:display_name]).to eq 'display name'
         expect(h[:email]).to eq 'local-part@domain'
@@ -36,12 +33,9 @@ RSpec.describe Admin::AccountsController, type: :controller do
       end
 
       get :index, params: {
-        local: '1',
-        remote: '1',
+        origin: 'local',
         by_domain: 'domain',
-        active: '1',
-        silenced: '1',
-        suspended: '1',
+        status: 'active',
         username: 'username',
         display_name: 'display name',
         email: 'local-part@domain',
@@ -67,7 +61,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
   describe 'GET #show' do
     let(:current_user) { Fabricate(:user, admin: true) }
-    let(:account) { Fabricate(:account, username: 'bob') }
+    let(:account) { Fabricate(:account) }
 
     it 'returns http success' do
       get :show, params: { id: account.id }
@@ -79,7 +73,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
     subject { post :memorialize, params: { id: account.id } }
 
     let(:current_user) { Fabricate(:user, admin: current_user_admin) }
-    let(:account) { Fabricate(:account, user: user) }
+    let(:account) { user.account }
     let(:user) { Fabricate(:user, admin: target_user_admin) }
 
     context 'when user is admin' do
@@ -131,7 +125,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
     subject { post :enable, params: { id: account.id } }
 
     let(:current_user) { Fabricate(:user, admin: admin) }
-    let(:account) { Fabricate(:account, user: user) }
+    let(:account) { user.account }
     let(:user) { Fabricate(:user, disabled: true) }
 
     context 'when user is admin' do
@@ -195,6 +189,36 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
       it 'fails to remove avatar' do
         is_expected.to have_http_status :forbidden
+      end
+    end
+  end
+
+  describe 'POST #unblock_email' do
+    subject { post :unblock_email, params: { id: account.id } }
+
+    let(:current_user) { Fabricate(:user, admin: admin) }
+    let(:account) { Fabricate(:account, suspended: true) }
+    let!(:email_block) { Fabricate(:canonical_email_block, reference_account: account) }
+
+    context 'when user is admin' do
+      let(:admin) { true }
+
+      it 'succeeds in removing email blocks' do
+        expect { subject }.to change { CanonicalEmailBlock.where(reference_account: account).count }.from(1).to(0)
+      end
+
+      it 'redirects to admin account path' do
+        subject
+        expect(response).to redirect_to admin_account_path(account.id)
+      end
+    end
+
+    context 'when user is not admin' do
+      let(:admin) { false }
+
+      it 'fails to remove avatar' do
+        subject
+        expect(response).to have_http_status :forbidden
       end
     end
   end

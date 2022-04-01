@@ -56,6 +56,6 @@
 
 - if include_threads && !embedded_view? && !user_signed_in?
   .entry{ class: entry_classes }
-    = link_to new_user_session_path, class: 'load-more load-gap' do
+    = link_to_login class: 'load-more load-gap' do
       = fa_icon 'comments'
       = t('statuses.sign_in_to_participate')

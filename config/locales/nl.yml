@@ -1,7 +1,7 @@
 ---
 nl:
   about:
-    about_hashtag_html: Dit zijn openbare toots die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.
+    about_hashtag_html: Dit zijn openbare berichten die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.
     about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
     about_this: Over deze server
     active_count_after: actief
@@ -31,7 +31,7 @@ nl:
     source_code: Broncode
     status_count_after:
       one: toot
-      other: toots
+      other: berichten
     status_count_before: Zij schreven
     tagline: Vrienden volgen en nieuwe ontdekken
     terms: Gebruiksvoorwaarden
@@ -41,8 +41,8 @@ nl:
       reason: 'Reden:'
       rejecting_media: 'Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken:'
       rejecting_media_title: Mediabestanden geweigerd
-      silenced: Toots van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
-      silenced_title: Genegeerde servers
+      silenced: Berichten van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
+      silenced_title: Beperkte servers
       suspended: Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.
       suspended_title: Opgeschorte servers
     unavailable_content_html: Met Mastodon kun je in het algemeen berichten bekijken van en communiceren met gebruikers van elke andere server in de fediverse. Dit zijn de uitzonderingen die door deze server zijn gemaakt en expliciet alleen hier gelden.
@@ -67,7 +67,6 @@ nl:
     media: Media
     moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
     network_hidden: Deze informatie is niet beschikbaar
-    never_active: Nooit
     nothing_here: Hier is niets!
     people_followed_by: Mensen die %{name} volgen
     people_who_follow: Mensen die %{name} volgen
@@ -75,9 +74,9 @@ nl:
       following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
     posts:
       one: Toot
-      other: Toots
-    posts_tab_heading: Toots
-    posts_with_replies: Toots en reacties
+      other: Berichten
+    posts_tab_heading: Berichten
+    posts_with_replies: Berichten en reacties
     roles:
       admin: Beheerder
       bot: Bot
@@ -92,12 +91,10 @@ nl:
     account_moderation_notes:
       create: Laat een opmerking achter
       created_msg: Aanmaken van opmerking voor moderatoren geslaagd!
-      delete: Verwijderen
       destroyed_msg: Verwijderen van opmerking voor moderatoren geslaagd!
     accounts:
       add_email_domain_block: E-maildomein blokkeren
       approve: Goedkeuren
-      approve_all: Alles goedkeuren
       approved_msg: Het goedkeuren van het registratieverzoek van %{username} is geslaagd
       are_you_sure: Weet je het zeker?
       avatar: Avatar
@@ -112,6 +109,7 @@ nl:
       confirm: Bevestigen
       confirmed: Bevestigd
       confirming: Bevestiging
+      custom: Handmatig
       delete: Gegevens verwijderen
       deleted: Verwijderd
       demote: Degraderen
@@ -149,7 +147,6 @@ nl:
         active: Actief
         all: Alles
         pending: In afwachting
-        silenced: Genegeerd
         suspended: Opgeschort
         title: Moderatie
       moderation_notes: Opmerkingen voor moderatoren
@@ -167,7 +164,6 @@ nl:
       redownload: Profiel vernieuwen
       redownloaded_msg: Het herstellen van het oorspronkelijke profiel van %{username} is geslaagd
       reject: Afkeuren
-      reject_all: Alles afkeuren
       rejected_msg: Het afwijzen van het registratieverzoek van %{username} is geslaagd
       remove_avatar: Avatar verwijderen
       remove_header: Omslagfoto verwijderen
@@ -189,7 +185,7 @@ nl:
       search: Zoeken
       search_same_email_domain: Andere gebruikers met hetzelfde e-maildomein
       search_same_ip: Andere gebruikers met hetzelfde IP-adres
-      sensitive: Gevoelig
+      sensitive: Gevoelig forceren
       sensitized: als gevoelig gemarkeerd
       shared_inbox_url: Gedeelde inbox-URL
       show:
@@ -197,16 +193,15 @@ nl:
         targeted_reports: Door anderen gerapporteerd
       silence: Beperken
       silenced: Beperkt
-      statuses: Toots
+      statuses: Berichten
       subscribe: Abonneren
       suspended: Opgeschort
       suspension_irreversible: De gegevens van dit account zijn onomkeerbaar verwijderd. Je kunt het opschorten van dit account ongedaan maken zodat het weer valt te gebruiken, maar de verwijderde gegevens worden hiermee niet hersteld.
       suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
-      time_in_queue: "%{time} in de wachtrij"
       title: Accounts
       unconfirmed_email: Onbevestigd e-mailadres
-      undo_sensitized: Niet meer als gevoelig markeren
-      undo_silenced: Niet langer negeren
+      undo_sensitized: Niet meer als gevoelig forceren
+      undo_silenced: Niet langer beperken
       undo_suspension: Niet langer opschorten
       unsilenced_msg: Het opheffen van de beperkingen van %{username} zijn geslaagd
       unsubscribe: Opzeggen
@@ -234,7 +229,7 @@ nl:
         destroy_custom_emoji: Lokale emoji verwijderen
         destroy_domain_allow: Domeingoedkeuring verwijderen
         destroy_domain_block: Domeinblokkade verwijderen
-        destroy_email_domain_block: E-maildomeinblokkade verwijderen
+        destroy_email_domain_block: Blokkade van e-maildomein verwijderen
         destroy_ip_block: IP-regel verwijderen
         destroy_status: Toot verwijderen
         destroy_unavailable_domain: Niet beschikbaar domein verwijderen
@@ -250,16 +245,16 @@ nl:
         reset_password_user: Wachtwoord opnieuw instellen
         resolve_report: Rapportage oplossen
         sensitive_account: De media in jouw account als gevoelig markeren
-        silence_account: Account negeren
+        silence_account: Account beperken
         suspend_account: Account opschorten
         unassigned_report: Rapportage niet langer toewijzen
         unsensitive_account: De media in jouw account niet langer als gevoelig markeren
-        unsilence_account: Account niet langer negeren
+        unsilence_account: Account niet langer beperken
         unsuspend_account: Account niet langer opschorten
         update_announcement: Mededeling bijwerken
         update_custom_emoji: Lokale emoji bijwerken
         update_domain_block: Domeinblokkade bijwerken
-        update_status: Toot bijwerken
+        update_status: Bericht bijwerken
       actions:
         assigned_to_self_report_html: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user_html: "%{name} veranderde het e-mailadres van gebruiker %{target}"
@@ -279,7 +274,7 @@ nl:
         destroy_domain_block_html: Domein %{target} is door %{name} gedeblokkeerd
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
-        destroy_status_html: Toot van %{target} is door %{name} verwijderd
+        destroy_status_html: Bericht van %{target} is door %{name} verwijderd
         destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
         disable_2fa_user_html: De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld
         disable_custom_emoji_html: Emoji %{target} is door %{name} uitgeschakeld
@@ -302,8 +297,8 @@ nl:
         update_announcement_html: "%{name} heeft de mededeling %{target} bijgewerkt"
         update_custom_emoji_html: Emoji %{target} is door %{name} bijgewerkt
         update_domain_block_html: "%{name} heeft de domeinblokkade bijgewerkt voor %{target}"
-        update_status_html: "%{name} heeft de toots van %{target} bijgewerkt"
-      deleted_status: "(verwijderde toot}"
+        update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
+      deleted_status: "(verwijderd bericht}"
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
       filter_by_user: Op gebruiker filteren
@@ -342,7 +337,6 @@ nl:
       enable: Inschakelen
       enabled: Ingeschakeld
       enabled_msg: Inschakelen van deze emoji geslaagd
-      image_hint: PNG van max. 50KB
       list: In lijst
       listed: Weergegeven
       new:
@@ -359,32 +353,9 @@ nl:
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
     dashboard:
-      authorized_fetch_mode: Veilige modus
-      backlog: achterstallige taken
-      config: Configuratie
-      feature_deletions: Verwijderen van account
-      feature_invites: Uitnodigingen
-      feature_profile_directory: Gebruikersgids
-      feature_registrations: Registraties
-      feature_relay: Federatierelay
-      feature_timeline_preview: Voorvertoning van tijdlijn
-      features: Functies
-      hidden_service: Federatie met verborgen diensten
-      open_reports: onopgeloste rapportages
-      pending_tags: hashtags die op een beoordeling wachten
-      pending_users: gebruikers die op een beoordeling wachten
-      recent_users: Recente gebruikers
-      search: In volledige tekst zoeken
-      single_user_mode: Modus voor één gebruiker
       software: Software
       space: Ruimtegebruik
       title: Dashboard
-      total_users: gebruikers in totaal
-      trends: Trends
-      week_interactions: interacties deze week
-      week_users_active: actieve gebruikers deze week
-      week_users_new: nieuwe gebruikers deze week
-      whitelist_mode: Beperkte federatiemodus
     domain_allows:
       add_new: Federatie met domein goedkeuren
       created_msg: Federatie met domein is succesvol goedgekeurd
@@ -416,30 +387,13 @@ nl:
       reject_media_hint: Verwijderd lokaal opgeslagen mediabestanden en weigert deze in de toekomst te downloaden. Irrelevant voor opgeschorte domeinen
       reject_reports: Rapportages weigeren
       reject_reports_hint: Alle rapportages die vanaf dit domein komen negeren. Irrelevant voor opgeschorte domeinen
-      rejecting_media: mediabestanden worden geweigerd
-      rejecting_reports: rapportages worden geweigerd
-      severity:
-        silence: genegeerd
-        suspend: opgeschort
-      show:
-        affected_accounts:
-          one: Eén account in de database aangepast
-          other: "%{count} accounts in de database aangepast"
-        retroactive:
-          silence: Alle genegeerde accounts van dit domein niet langer negeren
-          suspend: Alle opgeschorte accounts van dit domein niet langer opschorten
-        title: Domeinblokkade voor %{domain} ongedaan maken
-        undo: Ongedaan maken
       undo: domeinblokkade ongedaan maken
       view: Domeinblokkade bekijken
     email_domain_blocks:
       add_new: Nieuwe toevoegen
       created_msg: Blokkeren e-maildomein geslaagd
       delete: Verwijderen
-      destroyed_msg: Deblokkeren e-maildomein geslaagd
       domain: Domein
-      empty: Momenteel worden er geen e-maildomeinen geblokkeerd.
-      from_html: van %{domain}
       new:
         create: Blokkeren
         title: Nieuw e-maildomein blokkeren
@@ -462,20 +416,11 @@ nl:
         clear: Bezorgfouten weghalen
         restart: Bezorging herstarten
         stop: Bezorging beëindigen
-        title: Bezorging
         unavailable: Niet beschikbaar
-        unavailable_message: Bezorging is niet beschikbaar
-        warning: Waarschuwing
-        warning_message:
-          one: Bezorgingsfout voor %{count} dag
-          other: Bezorgfout voor %{count} dagen
       delivery_available: Bezorging is mogelijk
       delivery_error_days: Dagen met bezorgfouten
       delivery_error_hint: Wanneer de bezorging voor %{count} dagen niet mogelijk is, wordt de bezorging automatisch als niet beschikbaar gemarkeerd.
       empty: Geen domeinen gevonden.
-      known_accounts:
-        one: "%{count} bekend account"
-        other: "%{count} bekende accounts"
       moderation:
         all: Alles
         limited: Beperkt
@@ -511,18 +456,16 @@ nl:
         title: Nieuwe IP-regel aanmaken
       no_ip_block_selected: Er zijn geen IP-regels veranderd, omdat er geen een was geselecteerd
       title: IP-regels
-    pending_accounts:
-      title: Accounts in afwachting (%{count})
     relationships:
       title: Relaties van %{acct}
     relays:
       add_new: Nieuwe relayserver toevoegen
       delete: Verwijderen
-      description_html: Een <strong>federatierelay</strong> is een tussenliggende server die grote hoeveelheden openbare toots uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content uit de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
+      description_html: Een <strong>federatierelay</strong> is een tussenliggende server die grote hoeveelheden openbare berichten uitwisselt tussen servers die zich hierop hebben geabonneerd. <strong>Het kan kleine en middelgrote servers helpen om content van de fediverse te ontdekken</strong>, waarvoor anders lokale gebruikers handmatig mensen van externe servers moeten volgen.
       disable: Uitschakelen
       disabled: Uitgeschakeld
       enable: Inschakelen
-      enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare toots van deze relayserver abonneren en stuurt het de openbare toots van jouw server naar de relayserver.
+      enable_hint: Eenmaal ingeschakeld gaat jouw server zich op alle openbare berichten van deze relayserver abonneren en stuurt het de openbare berichten van jouw server naar de relayserver.
       enabled: Ingeschakeld
       inbox_url: Relay-URL
       pending: Aan het wachten op toestemming van de relayserver
@@ -539,9 +482,6 @@ nl:
         notes:
           one: "%{count} opmerking"
           other: "%{count} opmerkingen"
-        reports:
-          one: "%{count} rapportage"
-          other: "%{count} rapportages"
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -566,7 +506,7 @@ nl:
       reported_by: Gerapporteerd door
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
-      status: Toot
+      status: Bericht
       title: Rapportages
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
@@ -580,7 +520,7 @@ nl:
       title: Serverregels
     settings:
       activity_api_enabled:
-        desc_html: Wekelijks overzicht van de hoeveelheid lokale toots, actieve gebruikers en nieuwe registraties
+        desc_html: Wekelijks overzicht van de hoeveelheid lokale berichten, actieve gebruikers en nieuwe registraties
         title: Statistieken over gebruikersactiviteit via de API publiceren
       bootstrap_timeline_accounts:
         desc_html: Meerdere gebruikersnamen met komma's scheiden. Deze accounts worden in ieder geval aan nieuwe gebruikers aanbevolen
@@ -593,7 +533,7 @@ nl:
         title: Aangepaste CSS
       default_noindex:
         desc_html: Heeft invloed op alle gebruikers die deze instelling niet zelf hebben veranderd
-        title: Toots van gebruikers standaard niet door zoekmachines laten indexeren
+        title: Berichten van gebruikers standaard niet door zoekmachines laten indexeren
       domain_blocks:
         all: Aan iedereen
         disabled: Aan niemand
@@ -621,7 +561,7 @@ nl:
           desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
           title: Bericht wanneer registratie is uitgeschakeld
         deletion:
-          desc_html: Toestaan dat iedereen hun eigen account kan verwijderen
+          desc_html: Toestaan dat iedereen diens eigen account kan verwijderen
           title: Verwijderen account toestaan
         min_invite_role:
           disabled: Niemand
@@ -666,23 +606,17 @@ nl:
         title: Hashtags toestaan om trending te worden zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
-        title: Trending hashtags
+        title: Trends
     site_uploads:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!
     statuses:
       back_to_account: Terug naar accountpagina
-      batch:
-        delete: Verwijderen
-        nsfw_off: Als niet gevoelig markeren
-        nsfw_on: Als gevoelig markeren
       deleted: Verwijderd
-      failed_to_execute: Uitvoeren mislukt
       media:
         title: Media
-      no_media: Geen media
-      no_status_selected: Er werden geen toots gewijzigd, omdat er geen enkele werd geselecteerd
-      title: Toots van account
+      no_status_selected: Er werden geen berichten gewijzigd, omdat er geen enkele werd geselecteerd
+      title: Berichten van account
       with_media: Met media
     system_checks:
       database_schema_check:
@@ -693,19 +627,7 @@ nl:
       sidekiq_process_check:
         message_html: Er draait geen Sidekiqproces voor de wachtrij(en) %{value}. Controleer je Sidekiqconfiguratie
     tags:
-      accounts_today: Aantal verschillende keren vandaag gebruikt
-      accounts_week: Aantal verschillende keren deze week gebruikt
-      breakdown: Uitsplitsing van het gebruik van vandaag naar bron
-      last_active: Laatst actief
-      most_popular: Meest populair
-      most_recent: Meest recent
-      name: Hashtag
       review: Status beoordelen
-      reviewed: Beoordeeld
-      title: Hashtags
-      trending_right_now: Op dit moment trending
-      unique_uses_today: "%{count} keer vandaag gebruikt"
-      unreviewed: Niet beoordeeld
       updated_msg: Instellingen hashtag succesvol bijgewerkt
     title: Beheer
     warning_presets:
@@ -722,9 +644,6 @@ nl:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: Nieuwe rapportage op %{instance} (#%{id})
-    new_trending_tag:
-      body: 'De hashtag #%{name} is vandaag trending, maar is nog niet beoordeeld. Het wordt niet in het openbaar getoond alvorens je de hashtag goedkeurt. Je kunt ook het formulier zoals het nu is opslaan, waarna je er niks meer over zult horen.'
-      subject: Nieuwe hashtag te beoordelen op %{instance} (#%{name})
   aliases:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
@@ -743,14 +662,14 @@ nl:
       guide_link: https://crowdin.com/project/mastodon/nl
       guide_link_text: Iedereen kan bijdragen.
     sensitive_content: Gevoelige inhoud
-    toot_layout: Lay-out van toots
+    toot_layout: Lay-out van berichten
   application_mailer:
     notification_preferences: E-mailvoorkeuren wijzigen
     salutation: "%{name},"
     settings: 'E-mailvoorkeuren wijzigen: %{link}'
     view: 'Bekijk:'
     view_profile: Profiel bekijken
-    view_status: Toot bekijken
+    view_status: Bericht bekijken
   applications:
     created: Aanmaken toepassing geslaagd
     destroyed: Verwijderen toepassing geslaagd
@@ -797,7 +716,6 @@ nl:
     status:
       account_status: Accountstatus
       confirming: Aan het wachten totdat de e-mail is bevestigd.
-      functional: Jouw account is volledig operationeel.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
@@ -850,8 +768,8 @@ nl:
     success_msg: Jouw account is succesvol verwijderd
     warning:
       before: 'Lees deze tekst zorgvuldig voordat je verder gaat:'
-      caches: Toots en media die op andere servers zijn opgeslagen kunnen daar achterblijven
-      data_removal: Jouw toots en andere gegevens worden permanent verwijderd
+      caches: Berichten en media die op andere servers zijn opgeslagen kunnen daar achterblijven
+      data_removal: Jouw berichten en andere gegevens worden permanent verwijderd
       email_change_html: Je kunt <a href="%{path}">je e-mailadres wijzigen</a> zonder dat je jouw account hoeft te verwijderen
       email_contact_html: Wanneer het nog steeds niet aankomt, kun je voor hulp e-mailen naar <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Wanneer je de bevestigingsmail niet hebt ontvangen, kun je deze <a href="%{path}">opnieuw aanvragen</a>
@@ -887,7 +805,7 @@ nl:
     archive_takeout:
       date: Datum
       download: Jouw archief downloaden
-      hint_html: Je kunt een archief opvragen van jouw <strong>toots en geüploade media</strong>. De geëxporteerde gegevens zijn in het ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen. Je kunt elke 7 dagen een kopie van je archief aanvragen.
+      hint_html: Je kunt een archief opvragen van jouw <strong>berichten en geüploade media</strong>. De geëxporteerde gegevens zijn in het ActivityPub-formaat, dat door hiervoor geschikte software valt uit te lezen. Je kunt elke 7 dagen een kopie van je archief aanvragen.
       in_progress: Jouw archief wordt samengesteld...
       request: Jouw archief opvragen
       size: Omvang
@@ -902,7 +820,7 @@ nl:
     add_new: Nieuwe toevoegen
     errors:
       limit: Je hebt al het maximaal aantal hashtags uitgelicht
-    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare toots per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
+    hint_html: "<strong>Wat zijn uitgelichte hashtags?</strong> Deze worden prominent op jouw openbare profiel getoond en stelt mensen in staat om jouw openbare berichten per hashtag te bekijken. Het zijn een goed hulpmiddel om creatieve werkzaamheden of langetermijnprojecten bij te houden."
   filters:
     contexts:
       account: Profielen
@@ -931,7 +849,6 @@ nl:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
     delete: Verwijderen
-    no_batch_actions_available: Geen batchacties op deze pagina beschikbaar
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
     validation_errors:
@@ -939,26 +856,6 @@ nl:
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
   html_validator:
     invalid_markup: 'bevat ongeldige HTML-opmaak: %{error}'
-  identity_proofs:
-    active: Actief
-    authorize: Ja, autoriseren
-    authorize_connection_prompt: Deze cryptografische verbinding autoriseren?
-    errors:
-      failed: De cryptografische verbinding is mislukt. Probeer het opnieuw vanaf %{provider}.
-      keybase:
-        invalid_token: Keybasetokens zijn hashes van handtekeningen en moeten een lengte hebben van 66 hexadecimale tekens
-        verification_failed: Keybase herkent deze token niet als een handtekening van Keybasegebruiker %{kb_username}. Probeer het opnieuw vanuit Keybase.
-      wrong_user: Er kan geen bewijs worden aangemaakt voor %{proving} terwijl je bent ingelogd als %{current}. Log in als %{proving} en probeer het opnieuw.
-    explanation_html: Hier kun je met behulp van cryptografie jouw andere identiteiten verbinden, zoals een Keybaseprofiel. Hiermee kunnen andere mensen jou versleutelde berichten sturen en inhoud die jij verstuurt vertrouwen.
-    i_am_html: Ik ben %{username} op %{service}.
-    identity: Identiteit
-    inactive: Inactief
-    publicize_checkbox: 'En toot dit:'
-    publicize_toot: 'Het is bewezen! Ik ben %{username} op %{service}: %{url}'
-    remove: Bewijs uit account verwijderen
-    removed: Bewijs is succesvol uit account verwijderd
-    status: Verificatiestatus
-    view_proof: Bekijk bewijs
   imports:
     errors:
       over_rows_processing_limit: bevat meer dan %{count} rijen
@@ -1004,7 +901,7 @@ nl:
       limit: Je hebt het maximaal aantal lijsten bereikt
   media_attachments:
     validations:
-      images_and_video: Een video kan niet aan een toot met afbeeldingen worden gekoppeld
+      images_and_video: Een video kan niet aan een bericht met afbeeldingen worden gekoppeld
       not_ready: Kan geen bestanden toevoegen die nog niet zijn verwerkt. Probeer het later opnieuw!
       too_many: Er kunnen niet meer dan 4 afbeeldingen toegevoegd worden
   migrations:
@@ -1057,8 +954,8 @@ nl:
         other: "%{count} nieuwe meldingen sinds jouw laatste bezoek \U0001F418"
       title: Tijdens jouw afwezigheid...
     favourite:
-      body: 'Jouw toot werd door %{name} aan hun favorieten toegevoegd:'
-      subject: "%{name} voegde jouw toot als favoriet toe"
+      body: 'Jouw bericht werd door %{name} aan diens favorieten toegevoegd:'
+      subject: "%{name} voegde jouw bericht als favoriet toe"
       title: Nieuwe favoriet
     follow:
       body: "%{name} volgt jou nu!"
@@ -1077,11 +974,11 @@ nl:
     poll:
       subject: Een poll van %{name} is beëindigd
     reblog:
-      body: 'Jouw toot werd door %{name} geboost:'
-      subject: "%{name} boostte jouw toot"
+      body: 'Jouw bericht werd door %{name} geboost:'
+      subject: "%{name} boostte jouw bericht"
       title: Nieuwe boost
     status:
-      subject: "%{name} heeft zojuist een toot geplaatst"
+      subject: "%{name} heeft zojuist een bericht geplaatst"
   notifications:
     email_events: E-mailmeldingen voor gebeurtenissen
     email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
@@ -1100,7 +997,7 @@ nl:
     code_hint: Voer de code in die door de authenticatie-app werd gegenereerd
     description_html: Na het instellen van <strong>tweestapsverificatie</strong> met een authenticatie-app, kun je alleen inloggen als je jouw mobiele telefoon bij je hebt. Hiermee genereer je namelijk de in te voeren toegangscode.
     enable: Inschakelen
-    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Van nu af aan genereert deze app toegangscodes die je bij het inloggen moet invoeren."
+    instructions_html: "<strong>Scan deze QR-code in Google Authenticator of een soortgelijke app op jouw mobiele telefoon</strong>. Vanaf nu genereert deze app toegangscodes die je bij het inloggen moet invoeren."
     manual_instructions: 'Voor het geval je de QR-code niet kunt scannen en het handmatig moet invoeren, vind je hieronder de geheime code in platte tekst:'
     setup: Instellen
     wrong_code: De ingevoerde code is ongeldig! Klopt de systeemtijd van de server en die van jouw apparaat?
@@ -1156,17 +1053,17 @@ nl:
   remote_interaction:
     favourite:
       proceed: Doorgaan met toevoegen aan jouw favorieten
-      prompt: 'Je wilt de volgende toot aan jouw favorieten toevoegen:'
+      prompt: 'Je wilt het volgende bericht aan jouw favorieten toevoegen:'
     reblog:
       proceed: Doorgaan met boosten
-      prompt: 'Je wilt de volgende toot boosten:'
+      prompt: 'Je wilt het volgende bericht boosten:'
     reply:
       proceed: Doorgaan met reageren
-      prompt: 'Je wilt op de volgende toot reageren:'
+      prompt: 'Je wilt op het volgende bericht reageren:'
   scheduled_statuses:
-    over_daily_limit: Je hebt de limiet van %{limit} in te plannen toots voor die dag overschreden
-    over_total_limit: Je hebt de limiet van %{limit} in te plannen toots overschreden
-    too_soon: De datum voor de ingeplande toot moet in de toekomst liggen
+    over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
+    over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
+    too_soon: De datum voor het ingeplande bericht moet in de toekomst liggen
   sessions:
     activity: Laatst actief
     browser: Webbrowser
@@ -1196,7 +1093,7 @@ nl:
       adobe_air: Adobe Air
       android: Android
       blackberry: Blackberry
-      chrome_os: ChromeOS
+      chrome_os: Chrome OS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1220,7 +1117,6 @@ nl:
     edit_profile: Profiel bewerken
     export: Exporteren
     featured_tags: Uitgelichte hashtags
-    identity_proofs: Identiteitsbewijzen
     import: Importeren
     import_and_export: Importeren en exporteren
     migrate: Accountmigratie
@@ -1248,14 +1144,12 @@ nl:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
     errors:
-      in_reply_not_found: De toot waarop je probeert te reageren lijkt niet te bestaan.
-    language_detection: Taal automatisch detecteren
+      in_reply_not_found: Het bericht waarop je probeert te reageren lijkt niet te bestaan.
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
-      limit: Je hebt het maximaal aantal toots al vastgezet
-      ownership: Een toot van iemand anders kan niet worden vastgezet
-      private: Alleen openbare toots kunnen worden vastgezet
+      limit: Je hebt het maximaal aantal bericht al vastgemaakt
+      ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
     poll:
       total_people:
@@ -1280,7 +1174,7 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   stream_entries:
-    pinned: Vastgemaakte toot
+    pinned: Vastgemaakt bericht
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
   tags:
@@ -1403,24 +1297,14 @@ nl:
       subject: Bevestig de inlogpoging
       title: Inlogpoging
     warning:
-      explanation:
-        disable: Zolang jouw account is bevroren blijven jouw accountgegevens intact, maar kun je geen handelingen uitvoeren totdat het account is vrijgegeven.
-        sensitive: De mediabestanden die je upload en gekoppelde media worden als gevoelig behandeld.
-        silence: Zolang jouw account wordt beperkt, kunnen alleen mensen die jou al volgen jouw toots op deze server zien. Tevens ben je niet zichtbaar in meldingen, gesprekken en op openbare tijdlijnen. Anderen kunnen je echter wel handmatig volgen.
-        suspend: Jouw account is opgeschort. Jouw toots en geüploade media zijn onomkeerbaar van deze server verwijderd, en ook o.a. van de servers waar jij volgers had.
-      get_in_touch: Je kunt deze e-mail beantwoorden om in contact te komen met de medewerkers van %{instance}.
-      review_server_policies: Serverbeleid bekijken
-      statuses: 'Met name voor:'
       subject:
         disable: Jouw account %{acct} is bevroren
         none: Waarschuwing voor %{acct}
-        sensitive: De door jouw account %{acct} geplaatste media is als gevoelig gemarkeerd
         silence: Jouw account %{acct} is nu beperkt
         suspend: Jouw account %{acct} is opgeschort
       title:
         disable: Account bevroren
         none: Waarschuwing
-        sensitive: Jouw media is als gevoelig gemarkeerd
         silence: Account beperkt
         suspend: Account opgeschort
     welcome:
@@ -1448,7 +1332,7 @@ nl:
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
-    suspicious_sign_in_confirmation: Het lijkt er op dat je nog niet eerder op dit apparaat bent ingelogd, en je bent een tijdje niet ingelogd, dus sturen we een beveiligingscode naar je e-mailadres om te bevestigen dat jij het bent.
+    suspicious_sign_in_confirmation: Het lijkt er op dat je nog niet eerder op dit apparaat bent ingelogd, dus sturen we een beveiligingscode naar jouw e-mailadres om te bevestigen dat jij het bent.
   verification:
     explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie

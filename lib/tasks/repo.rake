@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-REPOSITORY_NAME = 'tootsuite/mastodon'
+REPOSITORY_NAME = 'mastodon/mastodon'
 
 namespace :repo do
   desc 'Generate the AUTHORS.md file'
@@ -34,7 +34,7 @@ namespace :repo do
 
     file << <<~FOOTER
 
-      This document is provided for informational purposes only. Since it is only updated once per release, the version you are looking at may be currently out of date. To see the full list of contributors, consider looking at the [git history](https://github.com/tootsuite/mastodon/graphs/contributors) instead.
+      This document is provided for informational purposes only. Since it is only updated once per release, the version you are looking at may be currently out of date. To see the full list of contributors, consider looking at the [git history](https://github.com/mastodon/mastodon/graphs/contributors) instead.
     FOOTER
   end
 
@@ -96,7 +96,8 @@ namespace :repo do
     end.uniq.compact
 
     missing_available_locales = locales_in_files - I18n.available_locales
-    missing_locale_names = I18n.available_locales.reject { |locale| SettingsHelper::HUMAN_LOCALES.key?(locale) }
+    supported_locale_codes    = Set.new(LanguagesHelper::SUPPORTED_LOCALES.keys + LanguagesHelper::REGIONAL_LOCALE_NAMES.keys)
+    missing_locale_names      = I18n.available_locales.reject { |locale| supported_locale_codes.include?(locale) }
 
     critical = false
 
@@ -123,7 +124,7 @@ namespace :repo do
 
     unless missing_locale_names.empty?
       puts pastel.yellow("You are missing human-readable names for these locales: #{pastel.bold(missing_locale_names.join(', '))}")
-      puts pastel.yellow("Add them to #{pastel.bold('HUMAN_LOCALES')} in app/helpers/settings_helper.rb or remove the locales from #{pastel.bold('I18n.available_locales')} in config/application.rb")
+      puts pastel.yellow("Add them to app/helpers/languages_helper.rb or remove the locales from #{pastel.bold('I18n.available_locales')} in config/application.rb")
     end
 
     if critical

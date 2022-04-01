@@ -8,6 +8,7 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
     allow(view).to receive(:site_title).and_return('example site')
     allow(view).to receive(:new_user).and_return(User.new)
     allow(view).to receive(:use_seamless_external_login?).and_return(false)
+    allow(view).to receive(:current_account).and_return(nil)
   end
 
   it 'has valid open graph tags' do
@@ -17,7 +18,7 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
       site_short_description: 'something',
       site_description: 'something',
       version_number: '1.0',
-      source_url: 'https://github.com/tootsuite/mastodon',
+      source_url: 'https://github.com/mastodon/mastodon',
       open_registrations: false,
       thumbnail: nil,
       hero: nil,

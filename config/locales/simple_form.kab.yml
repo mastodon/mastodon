@@ -11,7 +11,6 @@ kab:
         type_html: Fren d acu ara txedmeḍ s <strong>%{acct}</strong>
       defaults:
         autofollow: Imdanen ara ijerrden s usnebgi-inek, ad k-ḍefṛen s wudem awurman
-        discoverable: Tabdert n yimaγnuten d udem-nniḍen i umiḍan-ik akken ad yettwassen ugar
         email: Ad n-teṭṭfeḍ imayl i usentem
         irreversible: Tijewwaqin i tessazedgeḍ ad ttwakksent i lebda, ula ma tekkseḍ imsizdeg-nni ar zdat
         locale: Tutlayt n ugrudem, imaylen d tilγa
@@ -45,6 +44,7 @@ kab:
         types:
           disable: Sens anekcum
           none: Ur teg kra
+          sensitive: Amḥulfu
           silence: Sgugem
           suspend: Ḥbes di leεḍil
       announcement:
@@ -78,6 +78,7 @@ kab:
         setting_theme: Asental n wesmel
         setting_use_pending_items: Askar aleγwayan
         sign_in_token_attempt: Tangalt n tɣellist
+        type: Anaw n uktar
         username: Isem n useqdac
         username_or_email: Isem n useqdac neγ imal
         whole_word: Awal akk
@@ -89,16 +90,21 @@ kab:
         text: Acimi tebγiḍ ad ternuḍ iman-ik?
       ip_block:
         comment: Awennit
+        ip: IP
         severities:
           no_access: Sewḥel anekcum
         severity: Alugen
       notification_emails:
+        follow: Yeḍfer-ik·im-id walbɛaḍ
         mention: Yuder-ik·em-id walbɛaḍ
         reblog: Yella win yesselhan adda-dik·im
+      rule:
+        text: Alugen
       tag:
         name: Ahacṭag
     'no': Ala
     recommended: Yettuwelleh
     required:
+      mark: "*"
       text: ilaq
     'yes': Ih

@@ -2,7 +2,7 @@
 
 class FetchLinkCardService < BaseService
   URL_PATTERN = %r{
-    (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceeding chars
+    (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
     (                                                                                                                           #   $2 URL
       (https?:\/\/)                                                                                                             #   $3 Protocol (required)
       (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $4 Domain(s)
@@ -13,12 +13,12 @@ class FetchLinkCardService < BaseService
   }iox
 
   def call(status)
-    @status = status
-    @url    = parse_urls
+    @status       = status
+    @original_url = parse_urls
 
-    return if @url.nil? || @status.preview_cards.any?
+    return if @original_url.nil? || @status.preview_cards.any?
 
-    @url = @url.to_s
+    @url = @original_url.to_s
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -31,7 +31,7 @@ class FetchLinkCardService < BaseService
 
     attach_card if @card&.persisted?
   rescue HTTP::Error, OpenSSL::SSL::SSLError, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
-    Rails.logger.debug "Error fetching link #{@url}: #{e}"
+    Rails.logger.debug "Error fetching link #{@original_url}: #{e}"
     nil
   end
 
@@ -47,6 +47,12 @@ class FetchLinkCardService < BaseService
     return @html if defined?(@html)
 
     Request.new(:get, @url).add_headers('Accept' => 'text/html', 'User-Agent' => Mastodon::Version.user_agent + ' Bot').perform do |res|
+      # We follow redirects, and ideally we want to save the preview card for
+      # the destination URL and not any link shortener in-between, so here
+      # we set the URL to the one of the last response in the redirect chain
+      @url  = res.request.uri.to_s
+      @card = PreviewCard.find_or_initialize_by(url: @url) if @card.url != @url
+
       if res.code == 200 && res.mime_type == 'text/html'
         @html_charset = res.charset
         @html = res.body_with_limit
@@ -60,15 +66,19 @@ class FetchLinkCardService < BaseService
   def attach_card
     @status.preview_cards << @card
     Rails.cache.delete(@status)
+    Trends.links.register(@status)
   end
 
   def parse_urls
-    if @status.local?
-      urls = @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
-    else
-      html  = Nokogiri::HTML(@status.text)
-      links = html.css('a')
-      urls  = links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
+    urls = begin
+      if @status.local?
+        @status.text.scan(URL_PATTERN).map { |array| Addressable::URI.parse(array[1]).normalize }
+      else
+        document = Nokogiri::HTML(@status.text)
+        links    = document.css('a')
+
+        links.filter_map { |a| Addressable::URI.parse(a['href']) unless skip_link?(a) }.filter_map(&:normalize)
+      end
     end
 
     urls.reject { |uri| bad_url?(uri) }.first
@@ -79,18 +89,16 @@ class FetchLinkCardService < BaseService
     uri.host.blank? || TagManager.instance.local_url?(uri.to_s) || !%w(http https).include?(uri.scheme)
   end
 
-  # rubocop:disable Naming/MethodParameterName
-  def mention_link?(a)
+  def mention_link?(anchor)
     @status.mentions.any? do |mention|
-      a['href'] == ActivityPub::TagManager.instance.url_for(mention.account)
+      anchor['href'] == ActivityPub::TagManager.instance.url_for(mention.account)
     end
   end
 
-  def skip_link?(a)
+  def skip_link?(anchor)
     # Avoid links for hashtags and mentions (microformats)
-    a['rel']&.include?('tag') || a['class']&.match?(/u-url|h-card/) || mention_link?(a)
+    anchor['rel']&.include?('tag') || anchor['class']&.match?(/u-url|h-card/) || mention_link?(anchor)
   end
-  # rubocop:enable Naming/MethodParameterName
 
   def attempt_oembed
     service         = FetchOEmbedService.new
@@ -126,7 +134,7 @@ class FetchLinkCardService < BaseService
     when 'video'
       @card.width            = embed[:width].presence  || 0
       @card.height           = embed[:height].presence || 0
-      @card.html             = Formatter.instance.sanitize(embed[:html], Sanitize::Config::MASTODON_OEMBED)
+      @card.html             = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
       @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no
@@ -139,42 +147,14 @@ class FetchLinkCardService < BaseService
   def attempt_opengraph
     return if html.nil?
 
-    detector = CharlockHolmes::EncodingDetector.new
-    detector.strip_tags = true
+    link_details_extractor = LinkDetailsExtractor.new(@url, @html, @html_charset)
 
-    guess      = detector.detect(@html, @html_charset)
-    encoding   = guess&.fetch(:confidence, 0).to_i > 60 ? guess&.fetch(:encoding, nil) : nil
-    page       = Nokogiri::HTML(@html, nil, encoding)
-    player_url = meta_property(page, 'twitter:player')
-
-    if player_url && !bad_url?(Addressable::URI.parse(player_url))
-      @card.type   = :video
-      @card.width  = meta_property(page, 'twitter:player:width') || 0
-      @card.height = meta_property(page, 'twitter:player:height') || 0
-      @card.html   = content_tag(:iframe, nil, src: player_url,
-                                               width: @card.width,
-                                               height: @card.height,
-                                               allowtransparency: 'true',
-                                               scrolling: 'no',
-                                               frameborder: '0')
-    else
-      @card.type = :link
-    end
-
-    @card.title            = meta_property(page, 'og:title').presence || page.at_xpath('//title')&.content || ''
-    @card.description      = meta_property(page, 'og:description').presence || meta_property(page, 'description') || ''
-    @card.image_remote_url = (Addressable::URI.parse(@url) + meta_property(page, 'og:image')).to_s if meta_property(page, 'og:image')
-
-    return if @card.title.blank? && @card.html.blank?
-
-    @card.save_with_optional_image!
-  end
-
-  def meta_property(page, property)
-    page.at_xpath("//meta[contains(concat(' ', normalize-space(@property), ' '), ' #{property} ')]")&.attribute('content')&.value || page.at_xpath("//meta[@name=\"#{property}\"]")&.attribute('content')&.value
+    @card = PreviewCard.find_or_initialize_by(url: link_details_extractor.canonical_url) if link_details_extractor.canonical_url != @card.url
+    @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
+    @card.save_with_optional_image! unless @card.title.blank? && @card.html.blank?
   end
 
   def lock_options
-    { redis: Redis.current, key: "fetch:#{@url}" }
+    { redis: Redis.current, key: "fetch:#{@original_url}", autorelease: 15.minutes.seconds }
   end
 end

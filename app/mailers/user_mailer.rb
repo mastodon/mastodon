@@ -160,16 +160,36 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def warning(user, warning, status_ids = nil)
+  def warning(user, warning)
     @resource = user
     @warning  = warning
     @instance = Rails.configuration.x.local_domain
-    @statuses = Status.where(id: status_ids).includes(:account) if status_ids.is_a?(Array)
+    @statuses = @warning.statuses.includes(:account, :preloadable_poll, :media_attachments, active_mentions: [:account])
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email,
            subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{user.account.local_username_and_domain}"),
-           reply_to: Setting.site_contact_email
+           reply_to: ENV['SMTP_REPLY_TO']
+    end
+  end
+
+  def appeal_approved(user, appeal)
+    @resource = user
+    @instance = Rails.configuration.x.local_domain
+    @appeal   = appeal
+
+    I18n.with_locale(@resource.locale || I18n.default_locale) do
+      mail to: @resource.email, subject: I18n.t('user_mailer.appeal_approved.subject', date: l(@appeal.created_at))
+    end
+  end
+
+  def appeal_rejected(user, appeal)
+    @resource = user
+    @instance = Rails.configuration.x.local_domain
+    @appeal   = appeal
+
+    I18n.with_locale(@resource.locale || I18n.default_locale) do
+      mail to: @resource.email, subject: I18n.t('user_mailer.appeal_rejected.subject', date: l(@appeal.created_at))
     end
   end
 
@@ -186,7 +206,7 @@ class UserMailer < Devise::Mailer
     I18n.with_locale(@resource.locale || I18n.default_locale) do
       mail to: @resource.email,
            subject: I18n.t('user_mailer.sign_in_token.subject'),
-           reply_to: Setting.site_contact_email
+           reply_to: ENV['SMTP_REPLY_TO']
     end
   end
 end

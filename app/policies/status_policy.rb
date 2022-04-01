@@ -39,6 +39,10 @@ class StatusPolicy < ApplicationPolicy
   alias unreblog? destroy?
 
   def update?
+    staff? || owned?
+  end
+
+  def review?
     staff?
   end
 

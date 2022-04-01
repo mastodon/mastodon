@@ -142,10 +142,11 @@ class ResolveAccountService < BaseService
   end
 
   def queue_deletion!
-    AccountDeletionWorker.perform_async(@account.id, reserve_username: false, skip_activitypub: true)
+    @account.suspend!(origin: :remote)
+    AccountDeletionWorker.perform_async(@account.id, { 'reserve_username' => false, 'skip_activitypub' => true })
   end
 
   def lock_options
-    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}" }
+    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}", autorelease: 15.minutes.seconds }
   end
 end

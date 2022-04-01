@@ -2,10 +2,12 @@
 
 module AccountsHelper
   def display_name(account, **options)
+    str = account.display_name.presence || account.username
+
     if options[:custom_emojify]
-      Formatter.instance.format_display_name(account, **options)
+      prerender_custom_emojis(h(str), account.emojis)
     else
-      account.display_name.presence || account.username
+      str
     end
   end
 
@@ -80,22 +82,22 @@ module AccountsHelper
   def account_description(account)
     prepend_str = [
       [
-        number_to_human(account.statuses_count, strip_insignificant_zeros: true),
+        number_to_human(account.statuses_count, precision: 3, strip_insignificant_zeros: true),
         I18n.t('accounts.posts', count: account.statuses_count),
       ].join(' '),
 
       [
-        number_to_human(account.following_count, strip_insignificant_zeros: true),
+        number_to_human(account.following_count, precision: 3, strip_insignificant_zeros: true),
         I18n.t('accounts.following', count: account.following_count),
       ].join(' '),
 
       [
-        number_to_human(account.followers_count, strip_insignificant_zeros: true),
+        number_to_human(account.followers_count, precision: 3, strip_insignificant_zeros: true),
         I18n.t('accounts.followers', count: account.followers_count),
       ].join(' '),
     ].join(', ')
 
-    [prepend_str, account.note].join(' Â· ')
+    [prepend_str, account.note].join(' · ')
   end
 
   def svg_logo

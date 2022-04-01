@@ -27,6 +27,8 @@ es:
         scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
         starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
         text: Puedes usar la sintaxis de publicaciones. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
+      appeal:
+        text: Sólo puedes apelar una amonestación una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -35,7 +37,7 @@ es:
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
-        discoverable: El directorio del perfil es otra forma en la que su cuenta puede llegar a un público más amplio
+        discoverable: Permite que tu cuenta sea descubierta por extraños a través de recomendaciones, tendencias y otras características
         email: Se le enviará un correo de confirmación
         fields: Puedes tener hasta 4 elementos mostrándose como una tabla en tu perfil
         header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -61,7 +63,7 @@ es:
       domain_allow:
         domain: Este dominio podrá obtener datos de este servidor y los datos entrantes serán procesados y archivados
       email_domain_block:
-        domain: Puede ser el nombre de dominio que aparece en la dirección de correo, el registro MX hacia el cual resuelve el dominio, o la IP del servidor hacia el cual resuelve ese registro MX. Esto se comprobará en el momento del alta del usuario y el alta se rechazará.
+        domain: Este puede ser el nombre de dominio que aparece en la dirección de correo electrónico o el registro MX que utiliza. Se comprobarán al registrarse.
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
         name: 'Puede que quieras usar uno de estos:'
@@ -118,8 +120,11 @@ es:
         scheduled_at: Programar publicación
         starts_at: Comienzo del evento
         text: Anuncio
+      appeal:
+        text: Explica por qué esta decisión debe ser revertida
       defaults:
         autofollow: Invitar a seguir tu cuenta
+        avatar: Avatar
         bot: Esta es una cuenta bot
         chosen_languages: Filtrar idiomas
         confirm_new_password: Confirmar nueva contraseña
@@ -127,7 +132,7 @@ es:
         context: Filtrar contextos
         current_password: Contraseña actual
         data: Información
-        discoverable: Listar esta cuenta en el directorio
+        discoverable: Sugerir la cuenta a otros
         display_name: Nombre para mostrar
         email: Dirección de correo electrónico
         expires_in: Expirar tras
@@ -135,7 +140,7 @@ es:
         header: Img. cabecera
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
-        irreversible: Dejar en lugar de ocultar
+        irreversible: Rechazar en lugar de ocultar
         locale: Idioma
         locked: Hacer privada esta cuenta
         max_uses: Máx. número de usos
@@ -189,11 +194,13 @@ es:
         text: "¿Por qué quiere unirse usted?"
       ip_block:
         comment: Comentario
+        ip: IP
         severities:
           no_access: Bloquear acceso
           sign_up_requires_approval: Limitar registros
         severity: Regla
       notification_emails:
+        appeal: Alguien ha apelado una decisión de moderación
         digest: Enviar resumen de correos electrónicos
         favourite: Enviar correo electrónico cuando alguien de a favorito en su publicación
         follow: Enviar correo electrónico cuando alguien te siga
@@ -201,8 +208,8 @@ es:
         mention: Enviar correo electrónico cuando alguien te mencione
         pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
-        report: Enviar un correo cuando se envía un nuevo informe
-        trending_tag: Enviar correo electrónico cuando una etiqueta no revisada está de tendencia
+        report: Nuevo informe enviado
+        trending_tag: Una nueva tendencia requiere revisión
       rule:
         text: Norma
       tag:
@@ -210,8 +217,10 @@ es:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a las publicaciones usar esta etiqueta
+    'no': 'No'
     recommended: Recomendado
     required:
+      mark: "*"
       text: necesario
     title:
       sessions:

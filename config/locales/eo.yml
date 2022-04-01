@@ -25,6 +25,7 @@ eo:
       Ĉi tiu konto estas virtuala ulo uzata por reprezenti la servilon mem kaj ne iun apartan uzanton.
       Ĝi estas uzata por frataraj celoj kaj ĝi ne devus esti blokita krom se vi volas bloki la tutan servilon, tiuokaze vi devus uzi domajnan blokadon.
     learn_more: Lerni pli
+    logout_before_registering: Vi jam salutis.
     privacy_policy: Privateca politiko
     rules: Reguloj de la servilo
     see_whats_happening: Vidi kio okazas
@@ -61,7 +62,6 @@ eo:
     media: Aŭdovidaĵoj
     moved_html: "%{name} moviĝis al %{new_profile_link}:"
     network_hidden: Tiu informo ne estas disponebla
-    never_active: Neniam
     nothing_here: Estas nenio ĉi tie!
     people_followed_by: Sekvatoj de %{name}
     people_who_follow: Sekvantoj de %{name}
@@ -86,12 +86,10 @@ eo:
     account_moderation_notes:
       create: Lasi noton
       created_msg: Kontrola noto sukcese kreita!
-      delete: Forigi
       destroyed_msg: Kontrola noto sukcese detruita!
     accounts:
       add_email_domain_block: Bloki retadresan domajnon
       approve: Aprobi
-      approve_all: Aprobi ĉiujn
       are_you_sure: Ĉu vi certas?
       avatar: Profilbildo
       by_domain: Domajno
@@ -139,7 +137,6 @@ eo:
         active: Aktiva
         all: Ĉio
         pending: Pritraktata
-        silenced: Silentigita
         suspended: Haltigita
         title: Kontrolado
       moderation_notes: Kontrolaj notoj
@@ -156,7 +153,6 @@ eo:
       push_subscription_expires: Eksvalidiĝo de la abono al PuSH
       redownload: Aktualigi profilon
       reject: Malakcepti
-      reject_all: Malaprobi ĉiujn
       remove_avatar: Forigi profilbildon
       remove_header: Forigi kapan bildon
       resend_confirmation:
@@ -175,6 +171,10 @@ eo:
       search: Serĉi
       search_same_email_domain: Aliaj uzantoj kun la sama retpoŝta domajno
       search_same_ip: Aliaj uzantoj kun la sama IP
+      security_measures:
+        only_password: Nur pasvorto
+        password_and_2fa: Pasvorto kaj 2FA
+        password_and_sign_in_token: Pasvorto kaj retpoŝta ĵetono
       sensitive: Tikla
       sensitized: markita tikla
       shared_inbox_url: URL de kunhavigita leterkesto
@@ -186,7 +186,6 @@ eo:
       statuses: Mesaĝoj
       subscribe: Aboni
       suspended: Haltigita
-      time_in_queue: Atendado en atendovico %{time}
       title: Kontoj
       unconfirmed_email: Nekonfirmita retadreso
       undo_sensitized: Malfari sentema
@@ -200,6 +199,7 @@ eo:
       whitelisted: En la blanka listo
     action_logs:
       action_types:
+        approve_user: Aprobu Uzanton
         assigned_to_self_report: Atribui Raporton
         change_email_user: Ŝanĝi retadreson de uzanto
         confirm_user: Konfermi uzanto
@@ -218,6 +218,7 @@ eo:
         destroy_email_domain_block: Forigi blokadon de retpoŝta domajno
         destroy_ip_block: Forigi IP-regulon
         destroy_status: Forigi mesaĝon
+        destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malebligi Propran Emoĝion
         disable_user: Malebligi uzanton
@@ -307,7 +308,6 @@ eo:
       enable: Ebligi
       enabled: Ebligita
       enabled_msg: Tiu emoĝio estis sukcese ebligita
-      image_hint: PNG ĝis 50KB
       list: Listo
       listed: Listigita
       new:
@@ -324,32 +324,15 @@ eo:
       updated_msg: Emoĝio sukcese ĝisdatigita!
       upload: Alŝuti
     dashboard:
-      authorized_fetch_mode: Sekura reĝimo
-      backlog: postigitaj taskoj
-      config: Agordado
-      feature_deletions: Forigo de kontoj
-      feature_invites: Invitaj ligiloj
-      feature_profile_directory: Profilujo
-      feature_registrations: Registriĝoj
-      feature_relay: Federacia ripetilo
-      feature_timeline_preview: Templinio antaŭvidi
-      features: Funkcioj
-      hidden_service: Federacio kun kaŝitaj servoj
-      open_reports: nesolvitaj signaloj
-      pending_tags: kradvortoj atendantaj revizion
-      pending_users: uzantoj atendantaj revizion
-      recent_users: Lastatempaj uzantoj
-      search: Tutteksta serĉado
-      single_user_mode: Unuuzanta reĝimo
+      active_users: aktivaj uzantoj
+      interactions: interago
+      media_storage: Aŭdvidaĵa memorilo
+      new_users: novaj uzantoj
       software: Programo
       space: Memorspaca uzado
       title: Kontrolpanelo
-      total_users: uzantoj sume
-      trends: Furoraĵoj
-      week_interactions: interagoj tiusemajne
-      week_users_active: aktivaj tiusemajne
-      week_users_new: uzantoj tiusemajne
-      whitelist_mode: En la blanka listo
+      top_servers: Plej aktivaj serviloj
+      website: Retejo
     domain_allows:
       add_new: Aldoni domajnon al la blanka listo
       created_msg: Domajno estis sukcese aldonita al la blanka listo
@@ -378,30 +361,13 @@ eo:
       reject_media_hint: Forigas aŭdovidaĵojn loke konservitajn kaj rifuzas alŝuti ajnan estonte. Ne koncernas haltigojn
       reject_reports: Malakcepti signalojn
       reject_reports_hint: Ignori ĉiujn signalojn el tiu domajno. Ne koncernas haltigojn
-      rejecting_media: aŭdovidaj dosieroj malakceptiĝas
-      rejecting_reports: malakceptas signalojn
-      severity:
-        silence: silentigita
-        suspend: haltigita
-      show:
-        affected_accounts:
-          one: Unu konto en la datumbazo esta influita
-          other: "%{count} kontoj en la datumbazo estas influitaj"
-        retroactive:
-          silence: Malkaŝi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
-          suspend: Malhaltigi ĉiujn kontojn, kiuj ekzistas en ĉi tiu domajno
-        title: Malfari blokadon de domajno %{domain}
-        undo: Malfari
       undo: Malfari
       view: Vidi domajna blokado
     email_domain_blocks:
       add_new: Aldoni novan
       created_msg: Retadreso sukcese aldonita al la nigra listo
       delete: Forigi
-      destroyed_msg: Retadreso sukcese forigita de la nigra listo
       domain: Domajno
-      empty: Neniu retadresa domajno nune estas en la nigra listo.
-      from_html: de %{domain}
       new:
         create: Aldoni domajnon
         title: Nova blokado de retadresa domajno
@@ -413,14 +379,14 @@ eo:
       suppressed: Subpremita
       title: Rekomendoj de sekvado
     instances:
+      back_to_all: Ĉiuj
+      back_to_limited: Limigita
+      back_to_warning: Averta
       by_domain: Domajno
       delivery:
-        warning: Averto
+        all: Ĉiuj
       delivery_available: Liverado disponeblas
       empty: Neniuj domajnoj trovitaj.
-      known_accounts:
-        one: "%{count} konata konto"
-        other: "%{count} konataj kontoj"
       moderation:
         all: Ĉiuj
         limited: Limigita
@@ -456,8 +422,6 @@ eo:
         title: Krei novan IP-regulon
       no_ip_block_selected: Neniu IP-regulo estis ŝanĝita ĉar neniu estis elektita
       title: IP-reguloj
-    pending_accounts:
-      title: Pritraktataj kontoj (%{count})
     relationships:
       title: Rilatoj de %{acct}
     relays:
@@ -483,9 +447,6 @@ eo:
         notes:
           one: "%{count} noto"
           other: "%{count} notoj"
-        reports:
-          one: "%{count} signalo"
-          other: "%{count} signaloj"
       action_taken_by: Ago farita de
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
@@ -537,7 +498,7 @@ eo:
         all: Al ciuj
         disabled: Al neniu
         title: Vidi domajna blokado
-        users: Al ensalutintaj lokaj uzantoj
+        users: Al salutintaj lokaj uzantoj
       domain_blocks_rationale:
         title: Montri la kialon
       hero:
@@ -604,15 +565,9 @@ eo:
       delete: Forigi elŝutitan dosieron
     statuses:
       back_to_account: Reveni al konta paĝo
-      batch:
-        delete: Forigi
-        nsfw_off: Marki netikla
-        nsfw_on: Marki tikla
       deleted: Forigita
-      failed_to_execute: Ekigo malsukcesa
       media:
         title: Aŭdovidaĵoj
-      no_media: Neniu aŭdovidaĵo
       no_status_selected: Neniu mesaĝo estis ŝanĝita ĉar neniu estis elektita
       title: Mesaĝoj de la konto
       with_media: Kun aŭdovidaĵoj
@@ -623,19 +578,7 @@ eo:
         action: Administri servilajn regulojn
         message_html: Vi ne difinis iujn servilajn regulojn.
     tags:
-      accounts_today: Unikaj uzoj hodiaŭ
-      accounts_week: Unikaj uzoj je ĉi tiu semajno
-      breakdown: Disigo de la hodiaŭa uzo per fonto
-      last_active: Laste aktiva
-      most_popular: La plej populara
-      most_recent: Plej lasta
-      name: Kradvorto
       review: La statuso de la recenzo
-      reviewed: Recenzis
-      title: Kradvortoj
-      trending_right_now: Nunaj furoraĵoj
-      unique_uses_today: "%{count} uzas hodiaŭ"
-      unreviewed: Ne recenzis
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
     title: Administrado
     warning_presets:
@@ -651,9 +594,6 @@ eo:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
       subject: Nova signalo por %{instance} (#%{id})
-    new_trending_tag:
-      body: 'La kradvorto #%{name} furoras hodiaŭ, sed ankoraŭ ne estis kontrolita. Ĝi ne aperos publike sen via aprobo. Se vi ne volas tion, simple konservu la formularon tiel kiel.'
-      subject: Nova kradvorto kontrolebla en %{instance} (#%{name})
   aliases:
     add_new: Krei alinomon
     created_msg: Kreis novan alinomon sukcese. Vi povas inici la transloki el la malnovan konton nun.
@@ -662,7 +602,7 @@ eo:
     remove: Malligili alinomon
   appearance:
     advanced_web_interface: Altnivela retpaĝa interfaco
-    advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara tempolinio, kaj ajna kvanto de listoj kaj kradvortoj.'
+    advanced_web_interface_hint: 'Se vi volas uzi la tutan larĝecon de via ekrano, la kompleksa reta interfaco permesas al vi agordi multajn malsamajn kolumnojn por vidi tiom da informoj kiom vi volas samtempe: Hejmo, sciigoj, fratara templinio, kaj ajna kvanto de listoj kaj kradvortoj.'
     animations_and_accessibility: Animacioj kaj alirebleco
     confirmation_dialogs: Konfirmaj fenestroj
     discovery: Eltrovo
@@ -702,8 +642,9 @@ eo:
     forgot_password: Pasvorto forgesita?
     invalid_reset_password_token: Ĵetono por restarigi pasvorton nevalida aŭ eksvalida. Bonvolu peti novan.
     link_to_webauth: Uzi vian sekurecan ŝlosilon
-    login: Ensaluti
-    logout: Elsaluti
+    log_in_with: Ensaluti per
+    login: Saluti
+    logout: Adiaŭi
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
     or_log_in_with: Aŭ ensaluti per
@@ -720,7 +661,6 @@ eo:
       title: Agordi
     status:
       account_status: Statuso de la konto
-      functional: Via konto estas plene funkcianta.
     too_fast: Formularo sendita tro rapide, klopodu denove.
     trouble_logging_in: Ĝeni ensaluti?
     use_security_key: Uzi sekurecan ŝlosilon
@@ -854,24 +794,6 @@ eo:
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
   html_validator:
     invalid_markup: 'havas nevalidan HTML-markadon: %{error}'
-  identity_proofs:
-    active: Aktiva
-    authorize: Jes, permesi
-    authorize_connection_prompt: Permesi ĉi tiu ĉifrikan conekton?
-    errors:
-      failed: La ĉifrika conekto nefaris. Peti provu denove el %{provider}.
-      keybase:
-        invalid_token: Keybase signo estas haŝoj de subskribo kaj devi 66 deksesuma leteroj
-        verification_failed: Keybase ne rekoni ĉi tiu signo kiel subskribo de Keybase uzanto %{kb_username}. Peti provu denove el Keybase.
-      wrong_user: Ne povas krei por %{proving} dum ensalutis kiel %{current}. Ensaluti kiel %{proving} kaj provu denove.
-    explanation_html: Ĉi tie vi povas ĉifrika konekti via alia identicoj, kiel Keybase profilon. ĉi tiu igi aliaj popoloj sendi al vi ĉifritaj mesaĝoj kaj fidi kontento vi sendi al ilin.
-    i_am_html: Mi estas %{username} en %{service}.
-    identity: Identeco
-    inactive: Malaktiva
-    publicize_checkbox: 'Kaj fajfi ĉi tio:'
-    publicize_toot: 'I estas pruvita! Mi estas %{username} sur %{service}: %{url}'
-    status: Confirmo statuso
-    view_proof: Vidi pruvo
   imports:
     modes:
       merge: Kunigi
@@ -913,6 +835,12 @@ eo:
   lists:
     errors:
       limit: Vi atingis la maksimuman kvanton de listoj
+  login_activities:
+    authentication_methods:
+      password: pasvorto
+      sign_in_token: retpoŝta sekureca kodo
+      webauthn: sekurecaj ŝlosiloj
+    title: Aŭtentiga historio
   media_attachments:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
@@ -1034,7 +962,7 @@ eo:
     mutual: Reciproka
     primary: Primara
     relationship: Rilato
-    remove_selected_domains: Forigi ĉiuj sekvantojn el la selektitajn domajnojn
+    remove_selected_domains: Forigi ĉiujn sekvantojn el la selektitaj domajnoj
     remove_selected_followers: Forigi selektitajn sekvantojn
     remove_selected_follows: Ne plu sekvi elektitajn uzantojn
     status: Statuso de la konto
@@ -1112,7 +1040,6 @@ eo:
     edit_profile: Redakti profilon
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
-    identity_proofs: Pruvo de identeco
     import: Importi
     import_and_export: Alporto kaj elporto
     migrate: Konta migrado
@@ -1139,13 +1066,11 @@ eo:
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
       other: 'enhavis malpermesitan kradvorton: %{tags}'
-    language_detection: Aŭtomate detekti la lingvon
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
-      private: Mesaĝo nepublika ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
     poll:
       total_people:
@@ -1169,6 +1094,20 @@ eo:
       public_long: Ĉiuj povas vidi
       unlisted: Nelistigita
       unlisted_long: Ĉiuj povas vidi, sed nelistigita en publikaj templinioj
+  statuses_cleanup:
+    enabled: Aŭtomate forigi malnovajn postojn
+    exceptions: Esceptoj
+    ignore_favs: Ignori ŝatatajn
+    ignore_reblogs: Ignori akcelojn
+    min_age:
+      '1209600': 2 semajnoj
+      '15778476': 6 monatoj
+      '2629746': 1 monato
+      '31556952': 1 jaro
+      '5259492': 2 monatoj
+      '604800': 1 week
+      '63113904': 2 jaroj
+      '7889238': 3 monatoj
   stream_entries:
     pinned: Alpinglita
     reblogged: diskonigita
@@ -1205,12 +1144,6 @@ eo:
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
     warning:
-      explanation:
-        disable: Dum via konto estas frostigita, via kontaj datumoj restas intaktaj, sed vi ne povas plenumi iujn agojn ĝis ĝi estas malhaltigita.
-        silence: Dum via konto estas limigita, nur tiuj, kiuj jam sekvas vin, vidos viajn mesaĝojn en ĉi tiu servilo, kaj vi povus esti ekskludita de diversaj publikaj listoj. Tamen, aliaj ankoraŭ povas mane sekvi vin.
-        suspend: Via konto estis haltigita, kaj ĉiuj el viaj mesaĝoj kaj alŝutitaj aŭdovidaj dosieroj estis nemalfareble forigitaj de ĉi tiu servilo, kaj de la serviloj, kie vi havis sekvantojn.
-      review_server_policies: Superrigardi servilajn politikojn
-      statuses: 'Specife, per:'
       subject:
         disable: Via konto %{acct} estas frostigita
         none: Averto por %{acct}
@@ -1244,7 +1177,7 @@ eo:
     invalid_sign_in_token: Nevalida sekureca kodo
     otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
-    signed_in_as: 'Ensalutinta kiel:'
+    signed_in_as: 'Salutinta kiel:'
   verification:
     explanation_html: 'Vi povas <strong>pruvi, ke vi estas la posedanto de la ligiloj en viaj profilaj metadatumoj</strong>. Por fari tion, la alligita retejo devas enhavi ligilon reen al via Mastodon-profilo. La religilo <strong>devas</strong> havi la atributon <code>rel="me"</code>. Ne gravas la teksta enhavo de la religilo. Jen ekzemplo:'
     verification: Kontrolo

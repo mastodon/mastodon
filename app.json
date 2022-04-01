@@ -1,8 +1,8 @@
 {
   "name": "Mastodon",
   "description": "A GNU Social-compatible microblogging server",
-  "repository": "https://github.com/tootsuite/mastodon",
-  "logo": "https://github.com/tootsuite.png",
+  "repository": "https://github.com/mastodon/mastodon",
+  "logo": "https://github.com/mastodon.png",
   "env": {
     "HEROKU": {
       "description": "Leave this as true",
@@ -95,8 +95,5 @@
   "scripts": {
     "postdeploy": "bundle exec rails db:migrate && bundle exec rails db:seed"
   },
-  "addons": [
-    "heroku-postgresql",
-    "heroku-redis"
-  ]
+  "addons": ["heroku-postgresql", "heroku-redis"]
 }

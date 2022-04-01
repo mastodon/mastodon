@@ -5,6 +5,7 @@ require 'singleton'
 class FeedManager
   include Singleton
   include Redisable
+  include FormattingHelper
 
   # Maximum number of items stored in a single feed
   MAX_ITEMS = 400
@@ -53,46 +54,50 @@ class FeedManager
   # Add a status to a home feed and send a streaming API update
   # @param [Account] account
   # @param [Status] status
+  # @param [Boolean] update
   # @return [Boolean]
-  def push_to_home(account, status)
+  def push_to_home(account, status, update: false)
     return false unless add_to_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
 
     trim(:home, account.id)
-    PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}") if push_update_required?("timeline:#{account.id}")
+    PushUpdateWorker.perform_async(account.id, status.id, "timeline:#{account.id}", { 'update' => update }) if push_update_required?("timeline:#{account.id}")
     true
   end
 
   # Remove a status from a home feed and send a streaming API update
   # @param [Account] account
   # @param [Status] status
+  # @param [Boolean] update
   # @return [Boolean]
-  def unpush_from_home(account, status)
+  def unpush_from_home(account, status, update: false)
     return false unless remove_from_feed(:home, account.id, status, account.user&.aggregates_reblogs?)
 
-    redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    redis.publish("timeline:#{account.id}", Oj.dump(event: :delete, payload: status.id.to_s)) unless update
     true
   end
 
   # Add a status to a list feed and send a streaming API update
   # @param [List] list
   # @param [Status] status
+  # @param [Boolean] update
   # @return [Boolean]
-  def push_to_list(list, status)
+  def push_to_list(list, status, update: false)
     return false if filter_from_list?(status, list) || !add_to_feed(:list, list.id, status, list.account.user&.aggregates_reblogs?)
 
     trim(:list, list.id)
-    PushUpdateWorker.perform_async(list.account_id, status.id, "timeline:list:#{list.id}") if push_update_required?("timeline:list:#{list.id}")
+    PushUpdateWorker.perform_async(list.account_id, status.id, "timeline:list:#{list.id}", { 'update' => update }) if push_update_required?("timeline:list:#{list.id}")
     true
   end
 
   # Remove a status from a list feed and send a streaming API update
   # @param [List] list
   # @param [Status] status
+  # @param [Boolean] update
   # @return [Boolean]
-  def unpush_from_list(list, status)
+  def unpush_from_list(list, status, update: false)
     return false unless remove_from_feed(:list, list.id, status, list.account.user&.aggregates_reblogs?)
 
-    redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s))
+    redis.publish("timeline:list:#{list.id}", Oj.dump(event: :delete, payload: status.id.to_s)) unless update
     true
   end
 
@@ -444,14 +449,14 @@ class FeedManager
 
     return false if active_filters.empty?
 
-    combined_regex = active_filters.reduce { |memo, obj| Regexp.union(memo, obj) }
+    combined_regex = Regexp.union(active_filters)
     status         = status.reblog if status.reblog?
 
     combined_text = [
-      Formatter.instance.plaintext(status),
+      extract_status_plain_text(status),
       status.spoiler_text,
       status.preloadable_poll ? status.preloadable_poll.options.join("\n\n") : nil,
-      status.media_attachments.map(&:description).join("\n\n"),
+      status.ordered_media_attachments.map(&:description).join("\n\n"),
     ].compact.join("\n\n")
 
     combined_regex.match?(combined_text)
@@ -494,7 +499,7 @@ class FeedManager
       end
     else
       # A reblog may reach earlier than the original status because of the
-      # delay of the worker deliverying the original status, the late addition
+      # delay of the worker delivering the original status, the late addition
       # by merging timelines, and other reasons.
       # If such a reblog already exists, just do not re-insert it into the feed.
       return false unless redis.zscore(reblog_key, status.id).nil?

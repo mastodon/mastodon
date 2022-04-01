@@ -64,7 +64,6 @@ bn:
     media: ছবি বা ভিডিও
     moved_html: "%{name} চলে গেছে %{new_profile_link} তে:"
     network_hidden: এই তথ্যটি নেই
-    never_active: কখনও না
     nothing_here: এখানে কিছুই নেই!
     people_followed_by: "%{name} যাদেরকে অনুসরণ করে"
     people_who_follow: যারা %{name} কে অনুসরণ করে
@@ -89,12 +88,10 @@ bn:
     account_moderation_notes:
       create: কিছু লিখুন
       created_msg: প্রশাসনবস্তুত লেখাটি সঠিকভাবে তৈরী হয়েছে!
-      delete: মুছে ফেলা
       destroyed_msg: প্রশাসনবস্তুত লেখাটি সঠিকভাবে মুছে ফেলা হয়েছে!
     accounts:
       add_email_domain_block: নিষিদ্ধ করা ই-মেইল ডোমেইন
       approve: অনুমোদন দিন
-      approve_all: প্রত্যেক কে অনুমতি দিন
       are_you_sure: আপনি কি নিশ্চিত ?
       avatar: অবতার
       by_domain: ওয়েবসাইট/কার্যক্ষেত্র
@@ -139,7 +136,6 @@ bn:
         active: চালু
         all: সব
         pending: অপেক্ষিত আছে
-        silenced: নীরব করা হয়েছে
         suspended: স্থগিত করা হয়েছে
         title: প্রশাসনা
       moderation_notes: প্রশাসনের কিছু লেখা
@@ -156,7 +152,6 @@ bn:
       push_subscription_expires: PuSH সাবস্ক্রিপশনের মেয়াদ শেষ হয়ে গেছে
       redownload: প্রোফাইল সতেজ করুন
       reject: প্রত্যাখ্যান করুন
-      reject_all: সব প্রত্যাখ্যান করুন
       remove_avatar: অবতার অপসারণ করুন
       remove_header: হেডার এর ছবি অপসারণ করুন
       resend_confirmation:
@@ -184,7 +179,6 @@ bn:
       statuses: স্থিতিগুলি
       subscribe: সদস্যতা
       suspended: স্থগিত করা হয়েছে
-      time_in_queue: কাতারে অপেক্ষা করছে %{time}
       title: একাউন্ট সমূহ
       unconfirmed_email: অনিশ্চিত ইমেল
       undo_silenced: নীরবতা পূর্বাবস্থা
@@ -240,7 +234,6 @@ bn:
       enable: সক্রিয়
       enabled: সক্রিয়
       enabled_msg: সফলভাবে সেই ইমোজি সক্ষম করা হয়েছে
-      image_hint: ৫০কেবি অবধি পিএনজি
       list: তালিকা
       listed: তালিকাভুক্ত
       new:
@@ -257,32 +250,9 @@ bn:
       updated_msg: ইমোজি সফলভাবে আপডেট হয়েছে!
       upload: আপলোড
     dashboard:
-      authorized_fetch_mode: সুরক্ষিত মোড
-      backlog: ব্যাকলগ জবগুলি
-      config: কনফিগারেশন
-      feature_deletions: মোছা অ্যাকাউন্টগুলি
-      feature_invites: আমন্ত্রণ লিঙ্কগুলি
-      feature_profile_directory: প্রোফাইল ডিরেক্টরি
-      feature_registrations: নিবন্ধনগুলি
-      feature_relay: ফেডারেশন রিলে
-      feature_timeline_preview: পূর্বদর্শন সময়রেখা
-      features: বৈশিষ্ট্যগুলি
-      hidden_service: লুকানো সেবা সহ ফেডারেশন
-      open_reports: খোলার রিপোর্টগুলি
-      pending_tags: যে হ্যাশট্যাগগুলি পুনঃমূল্যায়নার জন্য অপেক্ষা করছে
-      pending_users: যে ব্যবহারকারী পুনঃমূল্যায়নার জন্য অপেক্ষা করছে
-      recent_users: সাম্প্রতিক ব্যবহারকারীরা
-      search: সম্পূর্ণ পাঠ্য অনুসন্ধান
-      single_user_mode: একক ব্যবহারকারী মোড
       software: সফটওয়্যার
       space: স্থান ব্যবহার
       title: ড্যাশবোর্ড
-      total_users: মোট ব্যবহারকারী
-      trends: প্রবণতাগুলি
-      week_interactions: এই সপ্তাহে মিথষ্ক্রিয়াগুলি
-      week_users_active: এই সপ্তাহে সক্রিয় ব্যাবহারকারিরা
-      week_users_new: এই সপ্তাহে ব্যাবহারকারিরা
-      whitelist_mode: সীমিত ফেডারেশন মোড
     instances:
       moderation:
         limited: সীমিত
@@ -303,8 +273,6 @@ bn:
         expired: মেয়াদোত্তীর্ণ
         title: ফিল্টার
       title: আমন্ত্রণগুলি
-    pending_accounts:
-      title: মুলতুবি থাকা অ্যাকাউন্টগুলি (%{count})
     relationships:
       title: "%{acct} এর সম্পর্কগুলি"
     relays:

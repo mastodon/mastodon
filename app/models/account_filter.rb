@@ -2,18 +2,15 @@
 
 class AccountFilter
   KEYS = %i(
-    local
-    remote
-    by_domain
-    active
-    pending
-    silenced
-    suspended
+    origin
+    status
+    permissions
     username
+    by_domain
     display_name
     email
     ip
-    staff
+    invited_by
     order
   ).freeze
 
@@ -21,13 +18,14 @@ class AccountFilter
 
   def initialize(params)
     @params = params
-    set_defaults!
   end
 
   def results
-    scope = Account.includes(:user).reorder(nil)
+    scope = Account.includes(:account_stat, user: [:ips, :invite_request]).without_instance_actor.reorder(nil)
 
     params.each do |key, value|
+      next if key.to_s == 'page'
+
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
 
@@ -36,30 +34,16 @@ class AccountFilter
 
   private
 
-  def set_defaults!
-    params['local']  = '1' if params['remote'].blank?
-    params['active'] = '1' if params['suspended'].blank? && params['silenced'].blank? && params['pending'].blank?
-    params['order']  = 'recent' if params['order'].blank?
-  end
-
   def scope_for(key, value)
     case key.to_s
-    when 'local'
-      Account.local.without_instance_actor
-    when 'remote'
-      Account.remote
+    when 'origin'
+      origin_scope(value)
+    when 'permissions'
+      permissions_scope(value)
+    when 'status'
+      status_scope(value)
     when 'by_domain'
       Account.where(domain: value)
-    when 'active'
-      Account.without_suspended
-    when 'pending'
-      accounts_with_users.merge(User.pending)
-    when 'disabled'
-      accounts_with_users.merge(User.disabled)
-    when 'silenced'
-      Account.silenced
-    when 'suspended'
-      Account.suspended
     when 'username'
       Account.matches_username(value)
     when 'display_name'
@@ -67,9 +51,9 @@ class AccountFilter
     when 'email'
       accounts_with_users.merge(User.matches_email(value))
     when 'ip'
-      valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value)) : Account.none
-    when 'staff'
-      accounts_with_users.merge(User.staff)
+      valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value).group('users.id, accounts.id')) : Account.none
+    when 'invited_by'
+      invited_by_scope(value)
     when 'order'
       order_scope(value)
     else
@@ -77,21 +61,60 @@ class AccountFilter
     end
   end
 
-  def order_scope(value)
-    case value
+  def origin_scope(value)
+    case value.to_s
+    when 'local'
+      Account.local
+    when 'remote'
+      Account.remote
+    else
+      raise "Unknown origin: #{value}"
+    end
+  end
+
+  def status_scope(value)
+    case value.to_s
     when 'active'
-      params['remote'] ? Account.joins(:account_stat).by_recent_status : Account.joins(:user).by_recent_sign_in
+      Account.without_suspended
+    when 'pending'
+      accounts_with_users.merge(User.pending)
+    when 'suspended'
+      Account.suspended
+    when 'disabled'
+      accounts_with_users.merge(User.disabled)
+    when 'silenced'
+      Account.silenced
+    else
+      raise "Unknown status: #{value}"
+    end
+  end
+
+  def order_scope(value)
+    case value.to_s
+    when 'active'
+      accounts_with_users.left_joins(:account_stat).order(Arel.sql('coalesce(users.current_sign_in_at, account_stats.last_status_at, to_timestamp(0)) desc, accounts.id desc'))
     when 'recent'
       Account.recent
-    when 'alphabetic'
-      Account.alphabetic
     else
       raise "Unknown order: #{value}"
     end
   end
 
+  def invited_by_scope(value)
+    Account.left_joins(user: :invite).merge(Invite.where(user_id: value.to_s))
+  end
+
+  def permissions_scope(value)
+    case value.to_s
+    when 'staff'
+      accounts_with_users.merge(User.staff)
+    else
+      raise "Unknown permissions: #{value}"
+    end
+  end
+
   def accounts_with_users
-    Account.joins(:user)
+    Account.left_joins(:user)
   end
 
   def valid_ip?(value)

@@ -41,6 +41,26 @@
 
 module Mastodon
   module MigrationHelpers
+    class CorruptionError < StandardError
+      attr_reader :index_name
+
+      def initialize(index_name)
+        @index_name = index_name
+
+        super "The index `#{index_name}` seems to be corrupted, it contains duplicate rows. " \
+          'For information on how to fix this, see our documentation: ' \
+          'https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/'
+      end
+
+      def cause
+        nil
+      end
+
+      def backtrace
+        []
+      end
+    end
+
     # Model that can be used for querying permissions of a SQL user.
     class Grant < ActiveRecord::Base
       self.table_name = 'information_schema.role_table_grants'
@@ -281,7 +301,7 @@ module Mastodon
       table = Arel::Table.new(table_name)
 
       total = estimate_rows_in_table(table_name).to_i
-      if total == 0
+      if total < 1
         count_arel = table.project(Arel.star.count.as('count'))
         count_arel = yield table, count_arel if block_given?
 
@@ -786,6 +806,24 @@ module Mastodon
       name = name.to_s
 
       columns(table).find { |column| column.name == name }
+    end
+
+    # Update the configuration of an index by creating a new one and then
+    # removing the old one
+    def update_index(table_name, index_name, columns, **index_options)
+      if index_name_exists?(table_name, "#{index_name}_new") && index_name_exists?(table_name, index_name)
+        remove_index table_name, "#{index_name}_new"
+      end
+
+      begin
+        add_index table_name, columns, **index_options.merge(name: "#{index_name}_new", algorithm: :concurrently)
+      rescue ActiveRecord::RecordNotUnique
+        remove_index table_name, name: "#{index_name}_new"
+        raise CorruptionError.new(index_name)
+      end
+
+      remove_index table_name, name: index_name if index_name_exists?(table_name, index_name)
+      rename_index table_name, "#{index_name}_new", index_name
     end
 
     # This will replace the first occurrence of a string in a column with

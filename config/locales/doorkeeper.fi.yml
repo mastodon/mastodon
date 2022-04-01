@@ -60,8 +60,7 @@ fi:
       error:
         title: Tapahtui virhe
       new:
-        able_to: Se voi
-        prompt: Sovellus %{client_name} pyytää lupaa käyttää tiliäsi
+        review_permissions: Tarkista käyttöoikeudet
         title: Valtuutus vaaditaan
       show:
         title: Kopioi tämä valtuutuskoodi ja liitä se sovellukseen.
@@ -71,10 +70,10 @@ fi:
       confirmations:
         revoke: Oletko varma?
       index:
-        application: Sovellus
-        created_at: Valtuutettu
-        date_format: "%d/%m/%Y %H:%M:%S"
+        last_used_at: Viimeksi käytetty %{date}
+        never_used: Ei käytetty
         scopes: Oikeudet
+        superapp: Sisäinen
         title: Valtuutetut sovellukset
     errors:
       messages:
@@ -83,6 +82,10 @@ fi:
         invalid_client: Asiakasohjelman valtuutus epäonnistui, koska asiakas on tuntematon, asiakkaan valtuutus ei ollut mukana tai valtuutustapaa ei tueta.
         invalid_grant: Valtuutuslupa on virheellinen, umpeutunut, peruttu, valtuutuspyynnössä käytettyä uudelleenohjaus-URI:tä vastaamaton tai myönnetty toiselle asiakkaalle.
         invalid_redirect_uri: Uudelleenohjaus-URI on virheellinen.
+        invalid_request:
+          missing_param: 'Vaadittu parametri puuttuu: %{value}.'
+          request_not_authorized: Pyyntö on hyväksyttävä. Vaadittu parametri pyynnön hyväksymiseksi puuttuu tai on virheellinen.
+          unknown: Pyynnöstä puuttuu vaadittu parametri, se sisältää tukemattoman parametriarvon tai on muulla tavoin väärin muotoiltu.
         invalid_resource_owner: Annetut resurssin omistajan tunnnukset ovat virheelliset, tai resurssin omistajaa ei löydy
         invalid_scope: Pyydetyt oikeudet ovat virheellisiä, tuntemattomia tai väärin muotoiltuja.
         invalid_token:
@@ -106,6 +109,30 @@ fi:
       authorized_applications:
         destroy:
           notice: Sovellus peruttu.
+    grouped_scopes:
+      access:
+        read: Vain luku
+        read/write: Luku- ja kirjoitusoikeudet
+        write: Vain kirjoitus
+      title:
+        accounts: Tilit
+        all: Kaikki
+        blocks: Torjutut
+        bookmarks: Kirjanmerkit
+        conversations: Keskustelut
+        crypto: Päästä päähän -salaus
+        favourites: Suosikit
+        filters: Suodattimet
+        follow: Liitokset
+        follows: Seuraa
+        lists: Listat
+        media: Medialiitteet
+        mutes: Mykistykset
+        notifications: Ilmoitukset
+        push: Push-ilmoitukset
+        reports: Raportit
+        search: Hae
+        statuses: Viestit
     layouts:
       admin:
         nav:
@@ -115,16 +142,36 @@ fi:
         title: OAuth-valtuutus tarvitaan
     scopes:
       admin:read: lukea kaikkia tietoja palvelimelta
-      admin:read:accounts: lukea arkaluontoista sisältöä kaikista tileistä
+      admin:read:accounts: lue arkaluontoinen sisältö kaikilta tileiltä
+      admin:read:reports: lue arkaluonteiset tiedot kaikista raporteista ja raportoiduista tileistä
       admin:write: muokata kaikkia tietoja palvelimella
+      admin:write:accounts: suorita moderointitoiminnot tileillä
+      admin:write:reports: suorita moderointitoiminnot raporteissa
       follow: seurata, estää, perua eston ja lopettaa tilien seuraaminen
       push: vastaanottaa push-ilmoituksesi
       read: lukea tilin tietoja
       read:accounts: nähdä tilin tiedot
+      read:blocks: katso lohkosi
+      read:bookmarks: katso kirjanmerkkisi
+      read:favourites: katso suosikkisi
+      read:filters: katso suodattimesi
+      read:follows: katso ketä seuraat
+      read:lists: katso listasi
+      read:mutes: katso mykistyksesi
+      read:notifications: katso ilmoitukset
+      read:reports: katso raporttisi
+      read:search: haku sinun puolesta
+      read:statuses: katso kaikki viestit
       write: julkaista puolestasi
       write:accounts: muokata profiiliasi
+      write:blocks: estää tilit ja palvelimet
+      write:bookmarks: kirjanmerkki viestit
+      write:favourites: suosikki viestit
       write:filters: luoda suodattimia
       write:follows: seurata ihmisiä
       write:lists: luoda listoja
       write:media: lähettää mediatiedostoja
+      write:mutes: mykistää ihmisiä ja keskusteluja
       write:notifications: tyhjentää ilmoituksesi
+      write:reports: raportoi muille ihmisille
+      write:statuses: julkaise viestejä

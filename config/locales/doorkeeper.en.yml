@@ -60,8 +60,8 @@ en:
       error:
         title: An error has occurred
       new:
-        able_to: It will be able to
-        prompt: Application %{client_name} requests access to your account
+        prompt_html: "%{client_name} would like permission to access your account. It is a third-party application. <strong>If you do not trust it, then you should not authorize it.</strong>"
+        review_permissions: Review permissions
         title: Authorization required
       show:
         title: Copy this authorization code and paste it to the application.
@@ -71,10 +71,12 @@ en:
       confirmations:
         revoke: Are you sure?
       index:
-        application: Application
-        created_at: Authorized
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Scopes
+        authorized_at: Authorized on %{date}
+        description_html: These are applications that can access your account using the API. If there are applications you do not recognize here, or an application is misbehaving, you can revoke its access.
+        last_used_at: Last used on %{date}
+        never_used: Never used
+        scopes: Permissions
+        superapp: Internal
         title: Your authorized applications
     errors:
       messages:
@@ -110,6 +112,33 @@ en:
       authorized_applications:
         destroy:
           notice: Application revoked.
+    grouped_scopes:
+      access:
+        read: Read-only access
+        read/write: Read and write access
+        write: Write-only access
+      title:
+        accounts: Accounts
+        admin/accounts: Administration of accounts
+        admin/all: All administrative functions
+        admin/reports: Administration of reports
+        all: Everything
+        blocks: Blocks
+        bookmarks: Bookmarks
+        conversations: Conversations
+        crypto: End-to-end encryption
+        favourites: Favourites
+        filters: Filters
+        follow: Relationships
+        follows: Follows
+        lists: Lists
+        media: Media attachments
+        mutes: Mutes
+        notifications: Notifications
+        push: Push notifications
+        reports: Reports
+        search: Search
+        statuses: Posts
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ en:
       admin:write: modify all data on the server
       admin:write:accounts: perform moderation actions on accounts
       admin:write:reports: perform moderation actions on reports
+      crypto: use end-to-end encryption
       follow: modify account relationships
       push: receive your push notifications
       read: read all your account's data
@@ -138,12 +168,13 @@ en:
       read:notifications: see your notifications
       read:reports: see your reports
       read:search: search on your behalf
-      read:statuses: see all statuses
+      read:statuses: see all posts
       write: modify all your account's data
       write:accounts: modify your profile
       write:blocks: block accounts and domains
-      write:bookmarks: bookmark statuses
-      write:favourites: favourite statuses
+      write:bookmarks: bookmark posts
+      write:conversations: mute and delete conversations
+      write:favourites: favourite posts
       write:filters: create filters
       write:follows: follow people
       write:lists: create lists
@@ -151,4 +182,4 @@ en:
       write:mutes: mute people and conversations
       write:notifications: clear your notifications
       write:reports: report other people
-      write:statuses: publish statuses
+      write:statuses: publish posts

@@ -35,7 +35,6 @@ pl:
         current_password: Ze względów bezpieczeństwa wprowadź hasło obecnego konta
         current_username: Aby potwierdzić, wprowadź nazwę użytkownika obecnego konta
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
-        discoverable: Katalog profilu jest jednym ze sposobów, dzięki którym Twoje konto dotrze do szerszego grona
         email: Otrzymasz e-mail potwierdzający
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
@@ -48,9 +47,9 @@ pl:
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
         setting_aggregate_reblogs: Nie pokazuj nowych podbić dla wpisów, które zostały niedawno podbite (dotyczy tylko nowo otrzymanych podbić)
         setting_default_sensitive: Wrażliwe multimedia są domyślnie schowane i mogą być odkryte kliknięciem
-        setting_display_media_default: Ukrywaj zawartość oznaczoną jako wrażliwa
-        setting_display_media_hide_all: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
-        setting_display_media_show_all: Nie ukrywaj zawartości multimedialnej oznaczonej jako wrażliwa
+        setting_display_media_default: Ukrywaj zawartość multimedialną oznaczoną jako wrażliwa
+        setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
+        setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną
         setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
@@ -61,7 +60,7 @@ pl:
       domain_allow:
         domain: Ta domena będzie mogła pobierać dane z serwera, a dane przychodzące z niej będą przetwarzane i przechowywane
       email_domain_block:
-        domain: Może to być nazwa domeny pojawiająca się w adresu e-mail, rekord MX na który rozwiązuje domena lub IP serwera na który rozwiązuje rekord MX. Będą one wykrywane i odrzucane przy rejestracji.
+        domain: To może być nazwa domeny, która pojawia się w adresie e-mail lub rekordzie MX, którego używa. Zostaną one sprawdzone przy rejestracji.
         with_dns_records: Zostanie wykonana próba rozwiązania rekordów DNS podanej domeny, a wyniki również zostaną dodane na czarną listę
       featured_tag:
         name: 'Sugerujemy użycie jednego z następujących:'
@@ -203,8 +202,6 @@ pl:
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
-        report: Powiadamiaj mnie e-mailem, gdy zostanie utworzone nowe zgłoszenie
-        trending_tag: Nieprzejrzany hashtag jest na czasie
       rule:
         text: Zasada
       tag:

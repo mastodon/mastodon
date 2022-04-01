@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'wicg-inert';
+import { createBrowserHistory } from 'history';
 import { multiply } from 'color-blend';
 
 export default class ModalRoot extends React.PureComponent {
+
+  static contextTypes = {
+    router: PropTypes.object,
+  };
 
   static propTypes = {
     children: PropTypes.node,
@@ -13,6 +18,7 @@ export default class ModalRoot extends React.PureComponent {
       g: PropTypes.number,
       b: PropTypes.number,
     }),
+    ignoreFocus: PropTypes.bool,
   };
 
   activeElement = this.props.children ? document.activeElement : null;
@@ -48,6 +54,7 @@ export default class ModalRoot extends React.PureComponent {
   componentDidMount () {
     window.addEventListener('keyup', this.handleKeyUp, false);
     window.addEventListener('keydown', this.handleKeyDown, false);
+    this.history = this.context.router ? this.context.router.history : createBrowserHistory();
   }
 
   componentWillReceiveProps (nextProps) {
@@ -66,15 +73,51 @@ export default class ModalRoot extends React.PureComponent {
       // immediately selectable, we have to wait for observers to run, as
       // described in https://github.com/WICG/inert#performance-and-gotchas
       Promise.resolve().then(() => {
-        this.activeElement.focus({ preventScroll: true });
+        if (!this.props.ignoreFocus) {
+          this.activeElement.focus({ preventScroll: true });
+        }
         this.activeElement = null;
       }).catch(console.error);
+
+      this._handleModalClose();
+    }
+    if (this.props.children && !prevProps.children) {
+      this._handleModalOpen();
+    }
+    if (this.props.children) {
+      this._ensureHistoryBuffer();
     }
   }
 
   componentWillUnmount () {
     window.removeEventListener('keyup', this.handleKeyUp);
     window.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  _handleModalOpen () {
+    this._modalHistoryKey = Date.now();
+    this.unlistenHistory = this.history.listen((_, action) => {
+      if (action === 'POP') {
+        this.props.onClose();
+      }
+    });
+  }
+
+  _handleModalClose () {
+    if (this.unlistenHistory) {
+      this.unlistenHistory();
+    }
+    const { state } = this.history.location;
+    if (state && state.mastodonModalKey === this._modalHistoryKey) {
+      this.history.goBack();
+    }
+  }
+
+  _ensureHistoryBuffer () {
+    const { pathname, state } = this.history.location;
+    if (!state || state.mastodonModalKey !== this._modalHistoryKey) {
+      this.history.push(pathname, { ...state, mastodonModalKey: this._modalHistoryKey });
+    }
   }
 
   getSiblings = () => {

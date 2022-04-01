@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::StatusesController, type: :controller do
   render_views
 
-  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user)  { Fabricate(:user) }
   let(:app)   { Fabricate(:application, name: 'Test app', website: 'http://testapp.com') }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, application: app, scopes: scopes) }
 
@@ -102,6 +102,23 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         expect(Status.find_by(id: status.id)).to be nil
       end
     end
+
+    describe 'PUT #update' do
+      let(:scopes) { 'write:statuses' }
+      let(:status) { Fabricate(:status, account: user.account) }
+
+      before do
+        put :update, params: { id: status.id, status: 'I am updated' }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'updates the status' do
+        expect(status.reload.text).to eq 'I am updated'
+      end
+    end
   end
 
   context 'without an oauth token' do
@@ -113,7 +130,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       let(:status) { Fabricate(:status, account: user.account, visibility: :private) }
 
       describe 'GET #show' do
-        it 'returns http unautharized' do
+        it 'returns http unauthorized' do
           get :show, params: { id: status.id }
           expect(response).to have_http_status(404)
         end
@@ -124,7 +141,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
           Fabricate(:status, account: user.account, thread: status)
         end
 
-        it 'returns http unautharized' do
+        it 'returns http unauthorized' do
           get :context, params: { id: status.id }
           expect(response).to have_http_status(404)
         end

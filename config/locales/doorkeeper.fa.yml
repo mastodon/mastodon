@@ -29,7 +29,7 @@ fa:
       edit:
         title: ویرایش برنامه
       form:
-        error: اوخ! ببینید چیزی را اشتباهی در فرم وارد نکرده‌اید؟
+        error: اوخ! ببینید چیزی را اشتباهی در فرم وارد نکرده‌اید
       help:
         native_redirect_uri: برای آزمایش‌های محلی %{native_redirect_uri} را به کار ببرید
         redirect_uri: هر URI را در یک سطر جدا بنویسید
@@ -60,8 +60,7 @@ fa:
       error:
         title: خطایی رخ داد
       new:
-        able_to: اجازه خواهد داشت
-        prompt: برنامهٔ %{client_name} می‌خواهد به حساب شما دسترسی داشته باشد
+        review_permissions: بازبینی اجازه‌ها
         title: نیاز به اجازه دادن
       show:
         title: این کد مجوز را کپی کرده و در برنامه وارد کنید.
@@ -71,9 +70,6 @@ fa:
       confirmations:
         revoke: آیا مطمئن هستید؟
       index:
-        application: برنامه
-        created_at: مجازشده از
-        date_format: "%Y-%m-%d%H:%M:%S"
         scopes: اجازه‌ها
         title: برنامه‌های مجاز
     errors:
@@ -110,6 +106,29 @@ fa:
       authorized_applications:
         destroy:
           notice: برنامه فسخ شد.
+    grouped_scopes:
+      access:
+        read: فقط دسترسی خواندن
+        read/write: دسترسی خواندن و نوشتن
+        write: فقط دسترسی نوشتن
+      title:
+        accounts: حساب‌ها
+        all: همه چیز
+        blocks: مسدودها
+        bookmarks: نشانک‌ها
+        conversations: گفت‌وگوها
+        crypto: رمزگذاری سرتاسری
+        favourites: پسندیده‌ها
+        filters: پالایه‌ها
+        follows: پی‌گرفتگان
+        lists: سیاهه‌ها
+        media: پیوست‌های رسانه‌ای
+        mutes: خموش‌ها
+        notifications: آگاهی‌ها
+        push: آگاهی‌های ارسالی
+        reports: گزارش‌ها
+        search: جست‌وجو
+        statuses: فرسته‌ها
     layouts:
       admin:
         nav:
@@ -124,16 +143,17 @@ fa:
       admin:write: تغییر تمام داده‌ها روی کارساز
       admin:write:accounts: انجام کنش مدیریتی روی حساب‌ها
       admin:write:reports: انجام کنش مدیریتی روی گزارش‌ها
+      crypto: از رمزگذاری سرتاسر استفاده کنید
       follow: پیگیری، مسدودسازی، لغو مسدودسازی، و لغو پیگیری حساب‌ها
-      push: برای حساب خود اعلان‌های لحظه‌ای دریافت کنید
+      push: دریافت آگاهی‌ای ارسالیتان
       read: خواندن اطلاعات حساب شما
       read:accounts: دیدن اطّلاعات حساب
-      read:blocks: دیدن انسدادهایتان
+      read:blocks: دیدن مسدودهایتان
       read:bookmarks: دیدن نشانک‌هایتان
       read:favourites: دیدن برگزیده‌هایتان
       read:filters: دیدن پالایه‌هایتان
       read:follows: دیدن پی‌گیری‌هایتان
-      read:lists: دیدن فهرست‌هایتان
+      read:lists: دیدن سیاهه‌هایتان
       read:mutes: دیدن خموشی‌هایتان
       read:notifications: دیدن آگاهی‌هایتان
       read:reports: دیدن گزارش‌هایتان
@@ -143,10 +163,11 @@ fa:
       write:accounts: تغییر نمایه‌تان
       write:blocks: انسداد حساب‌ها و دامنه‌ها
       write:bookmarks: نشانک‌گذاری وضعیت‌ها
+      write:conversations: مکالمات را بی‌صدا و حذف کنید
       write:favourites: برگزیدن وضعیت‌ها
       write:filters: ایحاد پالایش‌ها
       write:follows: پی‌گیری افراد
-      write:lists: ایجاد فهرست‌ها
+      write:lists: ایجاد سیاهه‌ها
       write:media: بارگذاری پرونده‌های رسانه
       write:mutes: خموش کردن افراد و گفت‌وگوها
       write:notifications: پام‌سازی آگاهی‌هایتان

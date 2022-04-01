@@ -18,13 +18,13 @@ export default class StatusList extends ImmutablePureComponent {
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
     trackScroll: PropTypes.bool,
-    shouldUpdateScroll: PropTypes.func,
     isLoading: PropTypes.bool,
     isPartial: PropTypes.bool,
     hasMore: PropTypes.bool,
     prepend: PropTypes.node,
     emptyMessage: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
+    withCounters: PropTypes.bool,
     timelineId: PropTypes.string,
   };
 
@@ -77,7 +77,7 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, featuredStatusIds, shouldUpdateScroll, onLoadMore, timelineId, ...other }  = this.props;
+    const { statusIds, featuredStatusIds, onLoadMore, timelineId, ...other }  = this.props;
     const { isLoading, isPartial } = other;
 
     if (isPartial) {
@@ -101,6 +101,7 @@ export default class StatusList extends ImmutablePureComponent {
           contextType={timelineId}
           scrollKey={this.props.scrollKey}
           showThread
+          withCounters={this.props.withCounters}
         />
       ))
     ) : null;
@@ -115,12 +116,13 @@ export default class StatusList extends ImmutablePureComponent {
           onMoveDown={this.handleMoveDown}
           contextType={timelineId}
           showThread
+          withCounters={this.props.withCounters}
         />
       )).concat(scrollableContent);
     }
 
     return (
-      <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} shouldUpdateScroll={shouldUpdateScroll} ref={this.setRef}>
+      <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
         {scrollableContent}
       </ScrollableList>
     );

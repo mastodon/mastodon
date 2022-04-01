@@ -2,8 +2,11 @@
 es-MX:
   activerecord:
     attributes:
+      poll:
+        expires_at: Vencimiento
+        options: Opciones
       user:
-        agreement: Acuerdo de Servicio
+        agreement: Contrato de servicio
         email: Dirección de correo electrónico
         locale: Idioma
         password: Contraseña
@@ -16,7 +19,12 @@ es-MX:
         account:
           attributes:
             username:
+              invalid: solo puede contener letras, números y guiones bajos
               reserved: está reservado
+        status:
+          attributes:
+            reblog:
+              taken: del estado ya existe
         user:
           attributes:
             email:

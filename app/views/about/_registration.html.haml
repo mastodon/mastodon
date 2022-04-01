@@ -1,17 +1,20 @@
-.simple_form__overlay-area{ class: (closed_registrations? && @instance_presenter.closed_registrations_message.present?) ? 'simple_form__overlay-area__blurred' : '' }
+- disabled = closed_registrations? || omniauth_only? || current_account.present?
+- show_message = disabled && (current_user.present? || @instance_presenter.closed_registrations_message.present?)
+
+.simple_form__overlay-area{ class: show_message ? 'simple_form__overlay-area__blurred' : '' }
   = simple_form_for(new_user, url: user_registration_path, namespace: 'registration', html: { novalidate: false }) do |f|
     %p.lead= t('about.federation_hint_html', instance: content_tag(:strong, site_title))
 
     .fields-group
       = f.simple_fields_for :account do |account_fields|
-        = account_fields.input :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}", hint: false, disabled: closed_registrations?
+        = account_fields.input :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}", hint: false, disabled: disabled
 
-      = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'off' }, hint: false, disabled: closed_registrations?
-      = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off', :minlength => User.password_length.first, :maxlength => User.password_length.last }, hint: false, disabled: closed_registrations?
-      = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'off' }, hint: false, disabled: closed_registrations?
+      = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'off' }, hint: false, disabled: disabled
+      = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'new-password', :minlength => User.password_length.first, :maxlength => User.password_length.last }, hint: false, disabled: disabled
+      = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'new-password' }, hint: false, disabled: disabled
 
-      = f.input :confirm_password, as: :string, placeholder: t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), :autocomplete => 'off' }, hint: false, disabled: closed_registrations?
-      = f.input :website, as: :url, placeholder: t('simple_form.labels.defaults.honeypot', label: 'Website'), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: 'Website'), :autocomplete => 'off' }, hint: false, disabled: closed_registrations?
+      = f.input :confirm_password, as: :string, placeholder: t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: t('simple_form.labels.defaults.password')), :autocomplete => 'off' }, hint: false, disabled: disabled
+      = f.input :website, as: :url, placeholder: t('simple_form.labels.defaults.honeypot', label: 'Website'), required: false, input_html: { 'aria-label' => t('simple_form.labels.defaults.honeypot', label: 'Website'), :autocomplete => 'off' }, hint: false, disabled: disabled
 
     - if approved_registrations?
       .fields-group
@@ -19,13 +22,16 @@
           = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text
 
     .fields-group
-      = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path), required: true, disabled: closed_registrations?
+      = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', rules_path: about_more_path, terms_path: terms_path), required: true, disabled: disabled
 
     .actions
-      = f.button :button, sign_up_message, type: :submit, class: 'button button-primary', disabled: closed_registrations?
+      = f.button :button, sign_up_message, type: :submit, class: 'button button-primary', disabled: disabled
 
-  - if closed_registrations? && @instance_presenter.closed_registrations_message.present?
+  - if show_message
     .simple_form__overlay-area__overlay
       .simple_form__overlay-area__overlay__content.rich-formatting
         .block-icon= fa_icon 'warning'
-        = @instance_presenter.closed_registrations_message.html_safe
+        - if current_account.present?
+          = t('about.logout_before_registering')
+        - else
+          = @instance_presenter.closed_registrations_message.html_safe

@@ -13,6 +13,14 @@ class UserPolicy < ApplicationPolicy
     admin? && !record.staff?
   end
 
+  def disable_sign_in_token_auth?
+    staff?
+  end
+
+  def enable_sign_in_token_auth?
+    staff?
+  end
+
   def confirm?
     staff? && !record.confirmed?
   end
@@ -34,7 +42,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def promote?
-    admin? && promoteable?
+    admin? && promotable?
   end
 
   def demote?
@@ -43,7 +51,7 @@ class UserPolicy < ApplicationPolicy
 
   private
 
-  def promoteable?
+  def promotable?
     record.approved? && (!record.staff? || !record.admin?)
   end
 

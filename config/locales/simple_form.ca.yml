@@ -27,6 +27,8 @@ ca:
         scheduled_at: Deixa-ho en blanc per a publicar l’anunci immediatament
         starts_at: Opcional. En el cas que el teu anunci estigui vinculat a un interval de temps específic
         text: Pots utilitzar sintaxi d'un tut. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
+      appeal:
+        text: Només pots emetre una apel·lació per cada acció
       defaults:
         autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
         avatar: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
@@ -35,36 +37,36 @@ ca:
         current_password: Per motius de seguretat si us plau entra la contrasenya del compte actual
         current_username: Per a confirmar, si us plau entra el nom d'usuari del compte actual
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
-        discoverable: El directori de perfils és una altra manera per quin el teu compte pot assolir una audiència més àmplia
+        discoverable: Permet que el teu compte sigui descobert per estranys grácies a les sugerències, etiquetes i altres característiques
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
         inbox_url: Copia l'URL des de la pàgina principal del relay que vols utilitzar
         irreversible: Els tuts filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
-        locale: El llenguatge de l’interfície d’usuari, els correus i les notificacions push
+        locale: L'idioma de la interfície d’usuari, els correus i les notificacions push
         locked: Requereix que aprovis manualment els seguidors
         password: Utilitza com a mínim 8 caràcters
         phrase: Es combinarà independentment del format en el text o l'avís de contingut del tut
         scopes: A quines API es permetrà a l'aplicació accedir. Si selecciones un àmbit d'alt nivell, no cal que seleccionis un d'individual.
-        setting_aggregate_reblogs: No mostra els nous impulsos dels tuts que ja s'han impulsat recentment (només afecta als impulsos nous rebuts)
-        setting_default_sensitive: Els mèdia sensibles estan ocults per defecte i es poden revelar amb un clic
-        setting_display_media_default: Amaga els multimèdia marcats com a sensibles
+        setting_aggregate_reblogs: No mostrar els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els impulsos nous rebuts)
+        setting_default_sensitive: El contingut gràfic sensible està ocult per defecte i es pot revelar amb un clic
+        setting_display_media_default: Ocultar el contigut gràfic marcat com a sensible
         setting_display_media_hide_all: Oculta sempre tot el contingut multimèdia
-        setting_display_media_show_all: Mostra sempre els elements multimèdia marcats com a sensibles
+        setting_display_media_show_all: Mostrar sempre el contingut gràfic marcat com a sensible
         setting_hide_network: Qui tu segueixes i els que et segueixen a tu no es mostraran en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
-        setting_show_application: L'aplicació que fas servir per a publicar es mostrarà a la vista detallada dels teus tuts
+        setting_show_application: L'aplicació que fas servir per a publicar es mostrarà a la vista detallada de les publicacions
         setting_use_blurhash: Els degradats es basen en els colors de les imatges ocultes, però enfosqueixen els detalls
-        setting_use_pending_items: Amaga les actualitzacions de la línia de temps després d'un clic en comptes de desplaçar-se automàticament
+        setting_use_pending_items: Amagar les actualitzacions de la línia de temps després d'un clic en comptes de desplaçar-se automàticament
         username: El teu nom d'usuari serà únic a %{domain}
         whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
       domain_allow:
         domain: Aquest domini podrà obtenir dades d’aquest servidor i les dades entrants d’aquests seran processades i emmagatzemades
       email_domain_block:
-        domain: Això pot ser el nom del domini que es veu en l’adreça de correu electrònic, el registre MX al que resol el domini o l’IP del servidor al que resol el registre MX. Es comprovaran amb el registre d’usuari i es rebutjarà la inscripció.
+        domain: Aquest pot ser el nom del domini que es mostra en l'adreça de correu o el registre MX que utilitza. Es revisaran ql registrar-se.
         with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
-        name: 'És possible que vulguis utilitzar un d''aquests:'
+        name: 'És possible que vulguis utilitzar una d''aquestes:'
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -118,8 +120,11 @@ ca:
         scheduled_at: Programa la publicació
         starts_at: Inici del esdeveniment
         text: Anunci
+      appeal:
+        text: Explica perquè aquesta decisió hauria de ser revertida
       defaults:
         autofollow: Convida a seguir el teu compte
+        avatar: Avatar
         bot: Aquest compte és un bot
         chosen_languages: Filtrar llengües
         confirm_new_password: Confirma la contrasenya nova
@@ -127,7 +132,7 @@ ca:
         context: Filtre els contextos
         current_password: Contrasenya actual
         data: Informació
-        discoverable: Mostra aquest compte en el directori
+        discoverable: Mostra aquest compte en el directori de perfils
         display_name: Nom visible
         email: Adreça de correu electrònic
         expires_in: Expira després
@@ -136,8 +141,8 @@ ca:
         honeypot: "%{label} (no omplir)"
         inbox_url: URL de la safata d'entrada del relay
         irreversible: Cau en lloc d'ocultar
-        locale: Llengua de la interfície
-        locked: Fes aquest compte privat
+        locale: Idioma de la interfície
+        locked: Torna aquest compte privat
         max_uses: Nombre màxim d'usos
         new_password: Contrasenya nova
         note: Biografia
@@ -145,29 +150,29 @@ ca:
         password: Contrasenya
         phrase: Paraula clau o frase
         setting_advanced_layout: Activar l’interfície web avançada
-        setting_aggregate_reblogs: Agrupa impulsos en les línies de temps
-        setting_auto_play_gif: Reproducció automàtica de GIFs animats
-        setting_boost_modal: Mostra la finestra de confirmació abans d'impulsar
+        setting_aggregate_reblogs: Agrupar impulsos en les línies de temps
+        setting_auto_play_gif: Reproduir automàticament els GIFs animats
+        setting_boost_modal: Mostrar la finestra de confirmació abans d'impulsar
         setting_crop_images: Retalla les imatges en tuts no ampliats a 16x9
-        setting_default_language: Llengua de les publicacions
+        setting_default_language: Idioma de les publicacions
         setting_default_privacy: Privacitat de les publicacions
-        setting_default_sensitive: Marca sempre els elements multimèdia com a sensibles
-        setting_delete_modal: Mostra la finestra de confirmació abans d'esborrar un tut
+        setting_default_sensitive: Marcar sempre el contingut gràfic com a sensible
+        setting_delete_modal: Mostrar la finestra de confirmació abans d'esborrar un tut
         setting_disable_swiping: Desactivar les animacions
         setting_display_media: Visualització multimèdia
         setting_display_media_default: Per defecte
         setting_display_media_hide_all: Amaga-ho tot
         setting_display_media_show_all: Mostra-ho tot
-        setting_expand_spoilers: Sempre amplia els tuts marcats amb advertències de contingut
-        setting_hide_network: Amaga la teva xarxa
-        setting_noindex: Desactivació de la indexació del motor de cerca
-        setting_reduce_motion: Redueix el moviment en animacions
-        setting_show_application: Revela l'aplicació utilitzada per enviar tuts
-        setting_system_font_ui: Utilitza el tipus de lletra predeterminat del sistema
+        setting_expand_spoilers: Sempre ampliar els tuts marcats amb advertències de contingut
+        setting_hide_network: Amagar la teva xarxa
+        setting_noindex: Desactivar la indexació dels motors de cerca
+        setting_reduce_motion: Reduir el moviment de les animacions
+        setting_show_application: Revelar l'aplicació utilitzada per fer les publicacions
+        setting_system_font_ui: Utilitzar el tipus de lletra predeterminat del sistema
         setting_theme: Tema del lloc
         setting_trends: Mostra les tendències d'avui
-        setting_unfollow_modal: Mostra el diàleg de confirmació abans de deixar de seguir a algú
-        setting_use_blurhash: Mostra degradats de colors per als Mèdia amagats
+        setting_unfollow_modal: Mostrar el diàleg de confirmació abans de deixar de seguir a algú
+        setting_use_blurhash: Mostrar degradats de colors per al contigut gràfic ocult
         setting_use_pending_items: Mode lent
         severity: Severitat
         sign_in_token_attempt: Codi de seguretat
@@ -181,28 +186,30 @@ ca:
         name: Etiqueta
       interactions:
         must_be_follower: Blocar les notificacions de persones que no et segueixen
-        must_be_following: Bloca les notificacions de persones que no segueixes
-        must_be_following_dm: Bloca els missatges directes de persones que no segueixes
+        must_be_following: Blocar les notificacions de persones que no segueixes
+        must_be_following_dm: Blocar els missatges directes de persones que no segueixes
       invite:
         comment: Comenta
       invite_request:
         text: Per què vols unir-te?
       ip_block:
         comment: Comentari
+        ip: IP
         severities:
           no_access: Bloquejar l’accés
           sign_up_requires_approval: Limitar els registres
         severity: Regla
       notification_emails:
-        digest: Envia un resum per correu electrònic
-        favourite: Envia un correu electrònic si algú marca com a preferit el teu estat
-        follow: Envia un correu electrònic si algú et segueix
+        appeal: Algú ha apel·lat una decisió de moderació
+        digest: Enviar un resum per correu electrònic
+        favourite: Algú marca com a preferit el teu estat
+        follow: Algú t'ha seguit
         follow_request: Envia un correu electrònic si algú sol·licita seguir-te
-        mention: Envia un correu electrònic si algú et menciona
-        pending_account: Envia un correu electrònic quan es necessiti revisar un compte nou
-        reblog: Envia un correu electrònic si algú comparteix el teu estat
-        report: Envia un correu electrònic quan s'enviï un nou informe
-        trending_tag: Envia un correu quan una etiqueta sense revisar està en tendència
+        mention: Algú t'ha esmentat
+        pending_account: Un nou compte necessita revisió
+        reblog: Algú comparteix el teu estat
+        report: Nou informe és emés
+        trending_tag: Nova tendència requereix revisió
       rule:
         text: Norma
       tag:
@@ -210,8 +217,10 @@ ca:
         name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
         usable: Permet als tuts emprar aquesta etiqueta
+    'no': 'No'
     recommended: Recomanat
     required:
+      mark: "*"
       text: necessari
     title:
       sessions:

@@ -27,6 +27,8 @@ gl:
         scheduled_at: Déixao baleiro para publicar o anuncio de xeito inmediato
         starts_at: Opcional. No caso de que o teu anuncio estea vinculado a un intre de tempo específico
         text: Podes empregar a sintaxe na publicación. Ten en conta o espazo que ocupará o anuncio na pantalla da usuaria
+      appeal:
+        text: Só podes apelar a decisión unha vez
       defaults:
         autofollow: As persoas que se conectaron a través dun convite seguirante automáticamente
         avatar: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
@@ -35,7 +37,7 @@ gl:
         current_password: Por razóns de seguridade, introduce o contrasinal da conta actual
         current_username: Para confirmar, introduce o nome de usuaria da conta actual
         digest: Enviar só tras un longo período de inactividade e só se recibiches algunha mensaxe directa na tua ausencia
-        discoverable: Permite que a túa conta poida ser descuberta por persoas descoñecidas a través de recomendacións e outras ferramentas
+        discoverable: Permite que a túa conta poida ser descuberta por persoas descoñecidas a través de recomendacións, tendencias e outras ferramentas
         email: Ímosche enviar un correo de confirmación
         fields: Podes ter ate 4 elementos no teu perfil mostrados como unha táboa
         header: PNG, GIF ou JPG. Máximo %{size}. Será reducida a %{dimensions}px
@@ -52,16 +54,16 @@ gl:
         setting_display_media_hide_all: Ocultar sempre os medios
         setting_display_media_show_all: Mostrar sempre os medios marcados como sensibles
         setting_hide_network: Non se mostrará no teu perfil quen te segue e a quen estás a seguir
-        setting_noindex: Afecta ao teu perfil público e páxinas de estado
+        setting_noindex: Afecta ao teu perfil público e páxinas de publicación
         setting_show_application: A aplicación que estás a utilizar para enviar publicacións mostrarase na vista detallada da publicación
         setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esborranchando todos os detalles
-        setting_use_pending_items: Ocultar as actualizacións da liña temporal tras un click no lugar de desprazar automáticamente os comentarios
+        setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
         username: O teu nome de usuaria será único en %{domain}
         whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
       domain_allow:
         domain: Este dominio estará en disposición de obter datos desde este servidor e datos de entrada a el poderán ser procesados e gardados
       email_domain_block:
-        domain: Esto pode ser o nome de dominio que aparece no enderezo do correo, o rexistro MX que resolve o dominio, ou o IP do servidor que resolve o rexistro MX. Estos confrontaranse contra o rexistro da usuaria e o rexistro será rexeitado.
+        domain: Este pode ser o nome de dominio que aparece no enderezo de email ou o rexistro MX que utiliza. Será comprobado no momento do rexistro.
         with_dns_records: Vaise facer un intento de resolver os rexistros DNS proporcionados e os resultados tamén irán a lista de bloqueo
       featured_tag:
         name: 'Poderías usar algunha destas:'
@@ -70,7 +72,7 @@ gl:
       imports:
         data: Ficheiro CSV exportado desde outro servidor Mastodon
       invite_request:
-        text: Esto axudaranos a revisar a tua aplicación
+        text: Esto axudaranos a revisar a tua solicitude
       ip_block:
         comment: Opcional. Lembrar a razón para engadir esta regra.
         expires_in: Os enderezos IP son un recurso finito, a veces son compartidos e cambian de mans con frecuencia. Por esta razón, non se recomendan os bloqueos indefinidos de IPs.
@@ -82,7 +84,7 @@ gl:
       rule:
         text: Describe unha regra ou requerimento para as usuarias deste servidor. Intenta que sexa curta e simple
       sessions:
-        otp: 'Introduce o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
+        otp: 'Escribe o código do segundo factor creado pola aplicación do teu móbil ou usa un dos códigos de recuperación:'
         webauthn: Se é unha chave USB asegúrate de que está conectada e preme o botón.
       tag:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
@@ -118,6 +120,8 @@ gl:
         scheduled_at: Publicación programada
         starts_at: Comezo do acontecemento
         text: Anuncio
+      appeal:
+        text: Indica a razón pola que habería que reverter a decisión
       defaults:
         autofollow: Convida a seguir a tua conta
         avatar: Avatar
@@ -136,7 +140,7 @@ gl:
         header: Cabeceira
         honeypot: "%{label} (non completar)"
         inbox_url: URL da caixa de entrada do repetidor
-        irreversible: Soltar en lugar de agochar
+        irreversible: Desbotar en lugar de agochar
         locale: Idioma da interface
         locked: Requerir aprobar seguimento
         max_uses: Número máximo de usos
@@ -146,7 +150,7 @@ gl:
         password: Contrasinal
         phrase: Palabra chave ou frase
         setting_advanced_layout: Activar interface web avanzada
-        setting_aggregate_reblogs: Agrupar promocións nas liñas temporais
+        setting_aggregate_reblogs: Agrupar promocións nas cronoloxías
         setting_auto_play_gif: Reprodución automática de GIFs animados
         setting_boost_modal: Pedir confirmación antes de promocionar
         setting_crop_images: Recortar imaxes a 16x9 en publicacións non despregadas
@@ -196,6 +200,7 @@ gl:
           sign_up_requires_approval: Limitar o rexistro
         severity: Regra
       notification_emails:
+        appeal: Alguén apelou contra a decisión da moderación
         digest: Enviar correos con resumos
         favourite: Enviar un correo cando alguén marca como favorita unha das tuas publicacións
         follow: Enviar un correo cando alguén te segue
@@ -203,8 +208,8 @@ gl:
         mention: Enviar un correo cando alguén te menciona
         pending_account: Enviar un correo cando unha nova conta precisa revisión
         reblog: Enviar un correo cando alguén promociona a tua mensaxe
-        report: Enviar un correo cando se envíe unha denuncia
-        trending_tag: Un cancelo ser revisar está sendo tendencia
+        report: Enviouse unha nova denuncia
+        trending_tag: Hai que revisar unha nova tendencia
       rule:
         text: Regra
       tag:

@@ -1,1 +1,32 @@
+---
 lv:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Deadline
+        options: Izvēles
+      user:
+        agreement: Pakalpojuma līgums
+        email: E-pasta adrese
+        locale: Lokalizācija
+        password: Parole
+      user/account:
+        username: Lietotājvārds
+      user/invite_request:
+        text: Iemesls
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: drīkst saturēt tikai burtus, ciparus un pasvītras
+              reserved: ir rezervēts
+        status:
+          attributes:
+            reblog:
+              taken: ziņa jau pastāv
+        user:
+          attributes:
+            email:
+              blocked: lieto neatļautu epasta pakalpojuma sniedzēju
+              unreachable: šķiet, ka neeksistē

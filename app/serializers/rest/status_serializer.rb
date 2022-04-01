@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class REST::StatusSerializer < ActiveModel::Serializer
+  include FormattingHelper
+
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :url, :replies_count, :reblogs_count,
-             :favourites_count, :local_only, :activity_pub_type
+             :favourites_count, :edited_at, :local_only, :activity_pub_type
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -19,7 +21,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   belongs_to :application, if: :show_application?
   belongs_to :account, serializer: REST::AccountSerializer
 
-  has_many :media_attachments, serializer: REST::MediaAttachmentSerializer
+  has_many :ordered_media_attachments, key: :media_attachments, serializer: REST::MediaAttachmentSerializer
   has_many :ordered_mentions, key: :mentions
   has_many :tags
   has_many :emojis, serializer: REST::CustomEmojiSerializer
@@ -75,7 +77,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   end
 
   def content
-    Formatter.instance.format(object)
+    status_content_format(object)
   end
 
   def url
@@ -126,7 +128,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     current_user? &&
       current_user.account_id == object.account_id &&
       !object.reblog? &&
-      %w(public unlisted).include?(object.visibility)
+      %w(public unlisted private).include?(object.visibility)
   end
 
   def source_requested?

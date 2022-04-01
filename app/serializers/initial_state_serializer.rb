@@ -24,6 +24,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       source_url: Mastodon::Version.source_url,
       version: Mastodon::Version.to_s,
       invites_enabled: Setting.min_invite_role == 'user',
+      limited_federation_mode: Rails.configuration.x.whitelist_mode,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
       trends: Setting.trends,

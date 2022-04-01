@@ -68,6 +68,10 @@ class AccountsController < ApplicationController
     [replies_requested?, media_requested?, tag_requested?, params[:max_id].present?, params[:min_id].present?].none?
   end
 
+  def filtered_pinned_statuses
+    @account.pinned_statuses.where(visibility: [:public, :unlisted])
+  end
+
   def filtered_statuses
     default_statuses.tap do |statuses|
       statuses.merge!(hashtag_scope)    if tag_requested?
@@ -148,6 +152,13 @@ class AccountsController < ApplicationController
 
   def tag_requested?
     request.path.split('.').first.end_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
+  end
+
+  def cached_filtered_status_pins
+    cache_collection(
+      filtered_pinned_statuses,
+      Status
+    )
   end
 
   def cached_filtered_status_page

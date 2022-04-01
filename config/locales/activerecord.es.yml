@@ -2,6 +2,9 @@
 es:
   activerecord:
     attributes:
+      poll:
+        expires_at: Vencimiento
+        options: Opciones
       user:
         agreement: Acuerdo de Servicio
         email: Dirección de correo electrónico
@@ -16,7 +19,12 @@ es:
         account:
           attributes:
             username:
+              invalid: solo puede contener letras, números y guiones bajos
               reserved: está reservado
+        status:
+          attributes:
+            reblog:
+              taken: del estado ya existe
         user:
           attributes:
             email:

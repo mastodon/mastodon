@@ -22,55 +22,16 @@ class Api::V1::Accounts::StatusesController < Api::BaseController
   end
 
   def cached_account_statuses
-    statuses = truthy_param?(:pinned) ? pinned_scope : permitted_account_statuses
-
-    statuses.merge!(only_media_scope) if truthy_param?(:only_media)
-    statuses.merge!(no_replies_scope) if truthy_param?(:exclude_replies)
-    statuses.merge!(no_reblogs_scope) if truthy_param?(:exclude_reblogs)
-    statuses.merge!(hashtag_scope)    if params[:tagged].present?
-
     cache_collection_paginated_by_id(
-      statuses,
+      AccountStatusesFilter.new(@account, current_account, params).results,
       Status,
       limit_param(DEFAULT_STATUSES_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
   end
 
-  def permitted_account_statuses
-    @account.statuses.permitted_for(@account, current_account)
-  end
-
-  def only_media_scope
-    Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id)
-  end
-
-  def pinned_scope
-    return Status.none if @account.blocking?(current_account)
-
-    @account.pinned_statuses
-  end
-
-  def no_replies_scope
-    Status.without_replies
-  end
-
-  def no_reblogs_scope
-    Status.without_reblogs
-  end
-
-  def hashtag_scope
-    tag = Tag.find_normalized(params[:tagged])
-
-    if tag
-      Status.tagged_with(tag.id)
-    else
-      Status.none
-    end
-  end
-
   def pagination_params(core_params)
-    params.slice(:limit, :only_media, :exclude_replies).permit(:limit, :only_media, :exclude_replies).merge(core_params)
+    params.slice(:limit, *AccountStatusesFilter::KEYS).permit(:limit, *AccountStatusesFilter::KEYS).merge(core_params)
   end
 
   def insert_pagination_headers

@@ -13,8 +13,8 @@ module Mastodon
       true
     end
 
-    MIN_SUPPORTED_VERSION = 2019_10_01_213028
-    MAX_SUPPORTED_VERSION = 2021_05_07_001928
+    MIN_SUPPORTED_VERSION = 2019_10_01_213028 # rubocop:disable Style/NumericLiterals
+    MAX_SUPPORTED_VERSION = 2022_03_16_233212 # rubocop:disable Style/NumericLiterals
 
     # Stubs to enjoy ActiveRecord queries while not depending on a particular
     # version of the code/database
@@ -44,6 +44,7 @@ module Mastodon
     class WebauthnCredential < ApplicationRecord; end
     class FollowRecommendationSuppression < ApplicationRecord; end
     class CanonicalEmailBlock < ApplicationRecord; end
+    class Appeal < ApplicationRecord; end
 
     class PreviewCard < ApplicationRecord
       self.inheritance_column = false
@@ -84,13 +85,15 @@ module Mastodon
 
         owned_classes = [
           Status, StatusPin, MediaAttachment, Poll, Report, Tombstone, Favourite,
-          Follow, FollowRequest, Block, Mute, AccountIdentityProof,
+          Follow, FollowRequest, Block, Mute,
           AccountModerationNote, AccountPin, AccountStat, ListAccount,
           PollVote, Mention
         ]
         owned_classes << AccountDeletionRequest if ActiveRecord::Base.connection.table_exists?(:account_deletion_requests)
         owned_classes << AccountNote if ActiveRecord::Base.connection.table_exists?(:account_notes)
         owned_classes << FollowRecommendationSuppression if ActiveRecord::Base.connection.table_exists?(:follow_recommendation_suppressions)
+        owned_classes << AccountIdentityProof if ActiveRecord::Base.connection.table_exists?(:account_identity_proofs)
+        owned_classes << Appeal if ActiveRecord::Base.connection.table_exists?(:appeals)
 
         owned_classes.each do |klass|
           klass.where(account_id: other_account.id).find_each do |record|
@@ -120,6 +123,12 @@ module Mastodon
             record.update_attribute(:reference_account_id, id)
           end
         end
+
+        if ActiveRecord::Base.connection.table_exists?(:appeals)
+          Appeal.where(account_warning_id: other_account.id).find_each do |record|
+            record.update_attribute(:account_warning_id, id)
+          end
+        end
       end
     end
 
@@ -139,17 +148,22 @@ module Mastodon
       @prompt = TTY::Prompt.new
 
       if ActiveRecord::Migrator.current_version < MIN_SUPPORTED_VERSION
-        @prompt.warn 'Your version of the database schema is too old and is not supported by this script.'
-        @prompt.warn 'Please update to at least Mastodon 3.0.0 before running this script.'
+        @prompt.error 'Your version of the database schema is too old and is not supported by this script.'
+        @prompt.error 'Please update to at least Mastodon 3.0.0 before running this script.'
         exit(1)
       elsif ActiveRecord::Migrator.current_version > MAX_SUPPORTED_VERSION
         @prompt.warn 'Your version of the database schema is more recent than this script, this may cause unexpected errors.'
-        exit(1) unless @prompt.yes?('Continue anyway?')
+        exit(1) unless @prompt.yes?('Continue anyway? (Yes/No)')
+      end
+
+      if Sidekiq::ProcessSet.new.any?
+        @prompt.error 'It seems Sidekiq is running. All Mastodon processes need to be stopped when using this script.'
+        exit(1)
       end
 
       @prompt.warn 'This task will take a long time to run and is potentially destructive.'
       @prompt.warn 'Please make sure to stop Mastodon and have a backup.'
-      exit(1) unless @prompt.yes?('Continue?')
+      exit(1) unless @prompt.yes?('Continue? (Yes/No)')
 
       deduplicate_users!
       deduplicate_account_domain_blocks!
@@ -193,7 +207,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring index_accounts_on_username_and_domain_lower…'
-      if ActiveRecord::Migrator.current_version < 20200620164023
+      if ActiveRecord::Migrator.current_version < 20200620164023 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :accounts, 'lower (username), lower(domain)', name: 'index_accounts_on_username_and_domain_lower', unique: true
       else
         ActiveRecord::Base.connection.add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true
@@ -236,12 +250,14 @@ module Mastodon
         end
       end
 
-      ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
-        users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
-        @prompt.warn "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
+      if ActiveRecord::Migrator.current_version < 20220118183010 # rubocop:disable Style/NumericLiterals
+        ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
+          users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
+          @prompt.warn "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
 
-        users.each do |user|
-          user.update!(remember_token: nil)
+          users.each do |user|
+            user.update!(remember_token: nil)
+          end
         end
       end
 
@@ -257,8 +273,13 @@ module Mastodon
       @prompt.say 'Restoring users indexes…'
       ActiveRecord::Base.connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
       ActiveRecord::Base.connection.add_index :users, ['email'], name: 'index_users_on_email', unique: true
-      ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true
-      ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+      ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if ActiveRecord::Migrator.current_version < 20220118183010
+
+      if ActiveRecord::Migrator.current_version < 20220310060641 # rubocop:disable Style/NumericLiterals
+        ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+      else
+        ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, where: 'reset_password_token IS NOT NULL', opclass: :text_pattern_ops
+      end
     end
 
     def deduplicate_account_domain_blocks!
@@ -274,6 +295,8 @@ module Mastodon
     end
 
     def deduplicate_account_identity_proofs!
+      return unless ActiveRecord::Base.connection.table_exists?(:account_identity_proofs)
+
       remove_index_if_exists!(:account_identity_proofs, 'index_account_proofs_on_account_and_provider_and_username')
 
       @prompt.say 'Removing duplicate account identity proofs…'
@@ -315,7 +338,11 @@ module Mastodon
       end
 
       @prompt.say 'Restoring conversations indexes…'
-      ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true
+      if ActiveRecord::Migrator.current_version < 20220307083603 # rubocop:disable Style/NumericLiterals
+        ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true
+      else
+        ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true, where: 'uri IS NOT NULL', opclass: :text_pattern_ops
+      end
     end
 
     def deduplicate_custom_emojis!
@@ -428,7 +455,11 @@ module Mastodon
       end
 
       @prompt.say 'Restoring media_attachments indexes…'
-      ActiveRecord::Base.connection.add_index :media_attachments, ['shortcode'], name: 'index_media_attachments_on_shortcode', unique: true
+      if ActiveRecord::Migrator.current_version < 20220310060626 # rubocop:disable Style/NumericLiterals
+        ActiveRecord::Base.connection.add_index :media_attachments, ['shortcode'], name: 'index_media_attachments_on_shortcode', unique: true
+      else
+        ActiveRecord::Base.connection.add_index :media_attachments, ['shortcode'], name: 'index_media_attachments_on_shortcode', unique: true, where: 'shortcode IS NOT NULL', opclass: :text_pattern_ops
+      end
     end
 
     def deduplicate_preview_cards!
@@ -457,7 +488,11 @@ module Mastodon
       end
 
       @prompt.say 'Restoring statuses indexes…'
-      ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true
+      if ActiveRecord::Migrator.current_version < 20220310060706 # rubocop:disable Style/NumericLiterals
+        ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true
+      else
+        ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true, where: 'uri IS NOT NULL', opclass: :text_pattern_ops
+      end
     end
 
     def deduplicate_tags!
@@ -500,7 +535,7 @@ module Mastodon
       accounts = accounts.sort_by(&:id).reverse
 
       @prompt.warn "Multiple local accounts were found for username '#{accounts.first.username}'."
-      @prompt.warn 'All those accounts are distinct accounts but only the most recently-created one is fully-functionnal.'
+      @prompt.warn 'All those accounts are distinct accounts but only the most recently-created one is fully-functional.'
 
       accounts.each_with_index do |account, idx|
         @prompt.say '%2d. %s: created at: %s; updated at: %s; last logged in at: %s; statuses: %5d; last status at: %s' % [idx, account.username, account.created_at, account.updated_at, account.user&.last_sign_in_at&.to_s || 'N/A', account.account_stat&.statuses_count || 0, account.account_stat&.last_status_at || 'N/A']
