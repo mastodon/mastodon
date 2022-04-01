@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 module FormattingHelper
-  def html_aware_format(text, local, options = {})
-    HtmlAwareFormatter.new(text, local, options).to_s
+  def html_aware_format(text, content_type, local, options = {})
+    case content_type
+    when 'text/markdown'
+      HtmlAwareFormatter.new(text, local, options).to_markdown_s
+    else # when 'text/plain'
+      HtmlAwareFormatter.new(text, local, options).to_s
+    end
   end
 
   def linkify(text, options = {})
@@ -15,7 +20,7 @@ module FormattingHelper
   module_function :extract_status_plain_text
 
   def status_content_format(status)
-    html_aware_format(status.text, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
+    html_aware_format(status.text, status.content_type, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
   end
 
   def rss_status_content_format(status)
@@ -45,10 +50,16 @@ module FormattingHelper
   end
 
   def account_bio_format(account)
-    html_aware_format(account.note, account.local?)
+    html_aware_format(account.note, default_content_type, account.local?)
   end
 
   def account_field_value_format(field, with_rel_me: true)
-    html_aware_format(field.value, field.account.local?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
+    html_aware_format(field.value, default_content_type, field.account.local?, with_rel_me: with_rel_me, with_domains: true, multiline: false)
+  end
+
+  private
+
+  def default_content_type
+    'text/plain'
   end
 end

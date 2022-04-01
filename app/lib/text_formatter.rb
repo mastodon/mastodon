@@ -48,7 +48,39 @@ class TextFormatter
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
+  def to_markdown_s
+    return ''.html_safe if text.blank?
+
+    html = rewrite do |entity|
+      if entity[:url]
+        link_to_url(entity)
+      elsif entity[:hashtag]
+        link_to_hashtag(entity)
+      elsif entity[:screen_name]
+        link_to_mention(entity)
+      end
+    end
+
+    html = Kramdown::Document.new(html, build_kramdown_options).to_html
+    html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
+
+    html.html_safe # rubocop:disable Rails/OutputSafety
+  end
+
   private
+
+  def build_kramdown_options
+    {
+      input: :mastodon,
+      entity_output: :as_input,
+      syntax_highlighter: 'rouge',
+      syntax_highlighter_opts: {
+        guess_lang: true,
+        # line_numbers: true, # useless!
+        # inline_theme: 'base16.light' # do not use this!
+      }
+    }
+  end
 
   def rewrite
     entities.sort_by! do |entity|
