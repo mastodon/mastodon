@@ -27,6 +27,8 @@ ja:
         scheduled_at: お知らせを今すぐ掲載する場合は空欄にしてください
         starts_at: オプションです。お知らせしたい事柄の期間が決まっている場合に使用します
         text: ほたと同じ構文を使用できます。アナウンスが占める画面のスペースに注意してください
+      appeal:
+        text: 一度だけ異議を申し立てることができます
       defaults:
         autofollow: 招待から登録した人が自動的にあなたをひらちょんするようになります
         avatar: "%{size}までのPNG、GIF、JPGが利用可能です。%{dimensions}pxまで縮小されます"
@@ -35,8 +37,6 @@ ja:
         current_password: 現在のアカウントのパスワードを入力してください
         current_username: 確認のため、現在のアカウントのユーザー名を入力してください
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
-        discoverable: ディレクトリはあなたのアカウントをより多くの人に見つけてもらうためのひとつの手段です
-        discoverable_no_directory: ディレクトリ機能を使用して、あなたのアカウントを他の人から見つけられるようにします
         email: 確認のメールが送信されます
         fields: プロフィールに表として4つまでの項目を表示することができます
         header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
@@ -118,6 +118,8 @@ ja:
         scheduled_at: 掲載予約日時
         starts_at: 予定開始日時
         text: お知らせ
+      appeal:
+        text: この決定を覆すべき理由を説明してください
       defaults:
         autofollow: 招待から参加後、あなたをひらちょん
         avatar: アイコン
@@ -196,6 +198,7 @@ ja:
           sign_up_requires_approval: 登録を制限
         severity: ルール
       notification_emails:
+        appeal: モデレーターの判断に異議申し立てが行われました
         digest: タイムラインからピックアップしてメールで通知する
         favourite: お気に入り登録された時
         follow: ひらちょんされた時
@@ -203,6 +206,8 @@ ja:
         mention: 返信が来た時
         pending_account: 新しいアカウントの承認が必要な時
         reblog: ほたがブーストされた時
+        report: 新しいレポートが送信されました
+        trending_tag: 新しいトレンドタグにはレビューが必要です
       rule:
         text: ルール
       tag:

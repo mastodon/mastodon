@@ -4,6 +4,8 @@ class UpdateStatusService < BaseService
   include Redisable
   include LanguagesHelper
 
+  class NoChangesSubmittedError < StandardError; end
+
   # @param [Status] status
   # @param [Integer] account_id
   # @param [Hash] options
@@ -34,21 +36,25 @@ class UpdateStatusService < BaseService
     broadcast_updates!
 
     @status
+  rescue NoChangesSubmittedError
+    # For calls that result in no changes, swallow the error
+    # but get back to the original state
+
+    @status.reload
   end
 
   private
 
   def update_media_attachments!
-    previous_media_attachments = @status.media_attachments.to_a
+    previous_media_attachments = @status.ordered_media_attachments.to_a
     next_media_attachments     = validate_media!
-    removed_media_attachments  = previous_media_attachments - next_media_attachments
     added_media_attachments    = next_media_attachments - previous_media_attachments
 
-    MediaAttachment.where(id: removed_media_attachments.map(&:id)).update_all(status_id: nil)
     MediaAttachment.where(id: added_media_attachments.map(&:id)).update_all(status_id: @status.id)
 
+    @status.ordered_media_attachment_ids = (@options[:media_ids] || []).map(&:to_i) & next_media_attachments.map(&:id)
+    @media_attachments_changed = previous_media_attachments.map(&:id) != @status.ordered_media_attachment_ids
     @status.media_attachments.reload
-    @media_attachments_changed = true if removed_media_attachments.any? || added_media_attachments.any?
   end
 
   def validate_media!
@@ -88,15 +94,20 @@ class UpdateStatusService < BaseService
       @poll_changed = true
       @status.poll_id = nil
     end
+
+    @poll_changed = true if @previous_expires_at != @status.preloadable_poll&.expires_at
   end
 
   def update_immediate_attributes!
     @status.text         = @options[:text].presence || @options.delete(:spoiler_text) || '' if @options.key?(:text)
     @status.spoiler_text = @options[:spoiler_text] || '' if @options.key?(:spoiler_text)
     @status.sensitive    = @options[:sensitive] || @options[:spoiler_text].present? if @options.key?(:sensitive) || @options.key?(:spoiler_text)
-    @status.language     = valid_locale_or_nil(@options[:language] || @status.language || @status.account.user&.preferred_posting_language || I18n.default_locale)
-    @status.edited_at    = Time.now.utc
+    @status.language     = valid_locale_cascade(@options[:language], @status.language, @status.account.user&.preferred_posting_language, I18n.default_locale)
 
+    # We raise here to rollback the entire transaction
+    raise NoChangesSubmittedError unless significant_changes?
+
+    @status.edited_at = Time.now.utc
     @status.save!
   end
 
@@ -136,16 +147,14 @@ class UpdateStatusService < BaseService
 
     return if @status.edits.any?
 
-    @status.snapshot!(
-      media_attachments_changed: false,
-      at_time: @status.created_at
-    )
+    @status.snapshot!(at_time: @status.created_at, rate_limit: false)
   end
 
   def create_edit!
-    @status.snapshot!(
-      media_attachments_changed: @media_attachments_changed || @poll_changed,
-      account_id: @account_id
-    )
+    @status.snapshot!(account_id: @account_id)
+  end
+
+  def significant_changes?
+    @status.changed? || @poll_changed || @media_attachments_changed
   end
 end

@@ -16,6 +16,7 @@ sv:
     contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: Ej tillämplig
+    continue_to_web: Fortsätt till webbtjänst
     discover_users: Upptäck användare
     documentation: Dokumentation
     federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
@@ -23,6 +24,8 @@ sv:
     hosted_on: Mastodon-värd på %{domain}
     instance_actor_flash: "Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. \n"
     learn_more: Lär dig mer
+    logged_in_as_html: Inloggad som %{username}.
+    logout_before_registering: Du är redan inloggad.
     privacy_policy: Integritetspolicy
     rules: Serverns regler
     rules_html: 'Nedan en sammanfattning av kontoreglerna för denna Mastodonserver:'
@@ -67,7 +70,6 @@ sv:
     media: Media
     moved_html: "%{name} har flyttat till %{new_profile_link}:"
     network_hidden: Denna information är inte tillgänglig
-    never_active: Aldrig
     nothing_here: Det finns inget här!
     people_followed_by: Personer som %{name} följer
     people_who_follow: Personer som följer %{name}
@@ -158,10 +160,6 @@ sv:
       pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
       previous_strikes: Tidigare varningar
-      previous_strikes_description_html:
-        one: Detta konto har <strong>en</strong> varning.
-        other: Detta konto har <strong>%{count}</strong> varningar.
-        zero: Detta konto är <strong>i gott skick</strong>.
       promote: Befordra
       protocol: Protokoll
       public: Offentlig
@@ -328,7 +326,6 @@ sv:
       enable: Aktivera
       enabled: Aktiverad
       enabled_msg: Aktiverade den emoji utan problem
-      image_hint: PNG upp till 50KB
       list: Lista
       listed: Noterade
       new:
@@ -387,17 +384,6 @@ sv:
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
       reject_reports: Avvisa rapporter
       reject_reports_hint: Ignorera alla rapporter som kommer från den här domänen. Gäller inte för avstängningar
-      rejecting_media: avvisar media-filer
-      rejecting_reports: avvisar rapporter
-      severity:
-        silence: tystad
-        suspend: avstängd
-      show:
-        retroactive:
-          silence: Ta bort tysta ner från alla befintliga konton på den här domänen
-          suspend: Ta bort suspendering från alla befintliga konton på den här domänen
-        title: Ångra domänblockering för %{domain}
-        undo: Ångra
       undo: Ångra
       view: Visa domänblock
     email_domain_blocks:
@@ -414,6 +400,8 @@ sv:
       status: Status
       title: Följ rekommendationer
     instances:
+      availability:
+        warning: Det senaste försöket att ansluta till denna värddator har misslyckats
       back_to_all: Alla
       back_to_limited: Begränsat
       back_to_warning: Varning
@@ -423,10 +411,7 @@ sv:
         clear: Rensa leverans-fel
         restart: Starta om leverans
         stop: Stoppa leverans
-        title: Leverans
         unavailable: Ej tillgänglig
-        unavailable_message: Leverans otillgängligt
-        warning: Varning
       delivery_available: Leverans är tillgängligt
       empty: Inga domäner hittades.
       moderation:
@@ -1101,7 +1086,7 @@ sv:
     disallowed_hashtags:
       one: 'innehöll en otillåten hashtag: %{tags}'
       other: 'innehöll de otillåtna hashtagarna: %{tags}'
-    edited_at: 'Ändrad: %{date}'
+    edited_at_html: 'Ändrad: %{date}'
     errors:
       in_reply_not_found: Statusen du försöker svara på existerar inte.
     open_in_web: Öppna på webben
@@ -1155,6 +1140,7 @@ sv:
       '2629746': 1 månad
       '31556952': 1 år
       '5259492': 2 månader
+      '604800': 1 vecka
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Åldersgräns

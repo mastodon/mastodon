@@ -10,6 +10,12 @@ class Admin::Metrics::Measure
     tag_accounts: Admin::Metrics::Measure::TagAccountsMeasure,
     tag_uses: Admin::Metrics::Measure::TagUsesMeasure,
     tag_servers: Admin::Metrics::Measure::TagServersMeasure,
+    instance_accounts: Admin::Metrics::Measure::InstanceAccountsMeasure,
+    instance_media_attachments: Admin::Metrics::Measure::InstanceMediaAttachmentsMeasure,
+    instance_reports: Admin::Metrics::Measure::InstanceReportsMeasure,
+    instance_statuses: Admin::Metrics::Measure::InstanceStatusesMeasure,
+    instance_follows: Admin::Metrics::Measure::InstanceFollowsMeasure,
+    instance_followers: Admin::Metrics::Measure::InstanceFollowersMeasure,
   }.freeze
 
   def self.retrieve(measure_keys, start_at, end_at, params)

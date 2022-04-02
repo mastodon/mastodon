@@ -128,13 +128,13 @@ class Account < ApplicationRecord
            :approved?,
            :pending?,
            :disabled?,
+           :unconfirmed?,
            :unconfirmed_or_pending?,
            :role,
            :admin?,
            :moderator?,
            :staff?,
            :locale,
-           :hides_network?,
            :shows_application?,
            to: :user,
            prefix: true,
@@ -349,11 +349,11 @@ class Account < ApplicationRecord
   end
 
   def hides_followers?
-    hide_collections? || user_hides_network?
+    hide_collections?
   end
 
   def hides_following?
-    hide_collections? || user_hides_network?
+    hide_collections?
   end
 
   def object_type

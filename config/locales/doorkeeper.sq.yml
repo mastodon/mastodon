@@ -60,8 +60,8 @@ sq:
       error:
         title: Ndodhi një gabim
       new:
-        able_to: Do të jetë në gjendje të
-        prompt: Aplikacioni %{client_name} kërkon hyrje në llogarinë tuaj
+        prompt_html: "%{client_name} do të donte leje të hyjë në llogarinë tuaj. Është një aplikacion palësh të treta. <strong>Nëse s’i zini besë, atëherë s’duhet ta autorizoni.</strong>"
+        review_permissions: Shqyrtoni leje
         title: Lypset autorizim
       show:
         title: Kopjojeni këtë kod autorizimi dhe ngjiteni te aplikacioni.
@@ -71,10 +71,12 @@ sq:
       confirmations:
         revoke: A jeni i sigurt?
       index:
-        application: Aplikacion
-        created_at: I autorizuar
-        date_format: "%d.%m.%Y, %H:%M:%S"
-        scopes: Fushëveprime
+        authorized_at: Autorizuar më %{date}
+        description_html: Këto janë aplikacione që mund të hyjnë në llogarinë tuaj duke përdorur API-n. Nëse këtu ka aplikacione që nuk i njihni, ose një aplikacion po sillet ndryshe nga sa pritet, mund t’i shfuqiozoni hyrjen.
+        last_used_at: Përdorur së fundi më %{date}
+        never_used: I papërdorur ndonjëherë
+        scopes: Leje
+        superapp: I brendshëm
         title: Aplikacionet tuaja të autorizuar
     errors:
       messages:
@@ -110,6 +112,33 @@ sq:
       authorized_applications:
         destroy:
           notice: Aplikacioni u shfuqizua.
+    grouped_scopes:
+      access:
+        read: Hyrje vetëm për lexim
+        read/write: Hyrje për lexim dhe shkrim
+        write: Hyrje vetëm për shkrim
+      title:
+        accounts: Llogari
+        admin/accounts: Administrim llogarish
+        admin/all: Krejt funksionet administrative
+        admin/reports: Administrim i raporteve
+        all: Gjithçka
+        blocks: Blloqe
+        bookmarks: Faqerojtës
+        conversations: Biseda
+        crypto: Fshehtëzim skaj-më-skaj
+        favourites: Të parapëlqyer
+        filters: Filtra
+        follow: Marrëdhënie
+        follows: Ndjekje
+        lists: Lista
+        media: Bashkëngjitje media
+        mutes: Heshtime
+        notifications: Njoftime
+        push: Njoftime Push
+        reports: Raportime
+        search: Kërkim
+        statuses: Postime
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ sq:
       admin:write: të përpunojë krejt të dhënat në shërbyes
       admin:write:accounts: të kryejë veprime moderimi në llogaritë
       admin:write:reports: të kryejë veprime moderimi në raportime
+      crypto: përdor fshehtëzim skaj-më-skaj
       follow: të ndryshojë marrëdhënie llogarish
       push: të marrë njoftime push për ju
       read: të lexojë krejt të dhënat e llogarisë tuaj
@@ -143,6 +173,7 @@ sq:
       write:accounts: të ndryshojë profilin tuaj
       write:blocks: të bllokojë llogari dhe përkatësi
       write:bookmarks: të faqeruajë gjendje
+      write:conversations: heshtoni dhe fshini biseda
       write:favourites: të parapëlqejë gjendje
       write:filters: të krijojë filtra
       write:follows: të ndjekë persona

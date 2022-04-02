@@ -88,7 +88,7 @@ module LanguagesHelper
     ko: ['Korean', '한국어'].freeze,
     kr: ['Kanuri', 'Kanuri'].freeze,
     ks: ['Kashmiri', 'कश्मीरी'].freeze,
-    ku: ['Kurdish', 'Kurdî'].freeze,
+    ku: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     kv: ['Komi', 'коми кыв'].freeze,
     kw: ['Cornish', 'Kernewek'].freeze,
     ky: ['Kyrgyz', 'Кыргызча'].freeze,
@@ -108,7 +108,7 @@ module LanguagesHelper
     ml: ['Malayalam', 'മലയാളം'].freeze,
     mn: ['Mongolian', 'Монгол хэл'].freeze,
     mr: ['Marathi', 'मराठी'].freeze,
-    ms: ['Malay', 'Bahasa Malaysia'].freeze,
+    ms: ['Malay', 'Bahasa Melayu'].freeze,
     mt: ['Maltese', 'Malti'].freeze,
     my: ['Burmese', 'ဗမာစာ'].freeze,
     na: ['Nauru', 'Ekakairũ Naoero'].freeze,
@@ -117,7 +117,7 @@ module LanguagesHelper
     ne: ['Nepali', 'नेपाली'].freeze,
     ng: ['Ndonga', 'Owambo'].freeze,
     nl: ['Dutch', 'Nederlands'].freeze,
-    nn: ['Norwegian Nynorsk', 'Norsk nynorsk'].freeze,
+    nn: ['Norwegian Nynorsk', 'Norsk Nynorsk'].freeze,
     no: ['Norwegian', 'Norsk'].freeze,
     nr: ['Southern Ndebele', 'isiNdebele'].freeze,
     nv: ['Navajo', 'Diné bizaad'].freeze,
@@ -188,8 +188,9 @@ module LanguagesHelper
 
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
+    ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
-    kmr: ['Northern Kurdish', 'Kurmancî'].freeze,
+    kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
@@ -239,6 +240,15 @@ module LanguagesHelper
     return unless valid_locale?(code)
 
     code
+  end
+
+  def valid_locale_cascade(*arr)
+    arr.each do |str|
+      locale = valid_locale_or_nil(str)
+      return locale if locale.present?
+    end
+
+    nil
   end
 
   def valid_locale?(locale)

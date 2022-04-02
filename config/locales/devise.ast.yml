@@ -13,6 +13,7 @@ ast:
       pending: La cuenta ta entá en revisión.
       timeout: La sesión caducó. Volvi aniciar sesión pa siguir.
       unauthenticated: Precises aniciar sesión o rexistrate enantes de siguir.
+      unconfirmed: Tienes de confirmar la direición de corréu electrónicu enantes de siguir.
     mailer:
       confirmation_instructions:
         explanation: Creesti una cuenta en %{host} con esta direición de corréu. Tas a un calcu d'activala. Si nun fuisti tu, inora esti corréu.
@@ -42,6 +43,8 @@ ast:
       updated_not_active: La contraseña camudó con correutamente.
     registrations:
       signed_up: "¡Afáyate! Rexistréstite correutamente."
+      signed_up_but_inactive: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la to cuenta entá nun s'activó.
+      signed_up_but_locked: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la to cuenta ta bloquiada.
       signed_up_but_unconfirmed: Unvióse un mensaxe de confirmación a la direición de corréu. Sigui l'enllaz p'activar la cuenta. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
       updated: La cuenta anovóse correutamente.
     sessions:

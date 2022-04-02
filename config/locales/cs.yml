@@ -75,7 +75,6 @@ cs:
     media: Média
     moved_html: "%{name} se přesunul a na %{new_profile_link}:"
     network_hidden: Tato informace není k dispozici
-    never_active: Nikdy
     nothing_here: Nic tu není!
     people_followed_by: Lidé, které sleduje %{name}
     people_who_follow: Lidé, kteří sledují %{name}
@@ -169,6 +168,11 @@ cs:
       not_subscribed: Neodebírá
       pending: Čeká na posouzení
       perform_full_suspension: Pozastavit
+      previous_strikes_description_html:
+        few: Tento účet má <strong>%{count}</strong> strajky.
+        many: Tento účet má <strong>%{count}</strong> strajků.
+        one: Tento účet má <strong>jeden</strong> strajk.
+        other: Tento účet má <strong>%{count}</strong> strajků.
       promote: Povýšit
       protocol: Protokol
       public: Veřejný
@@ -367,7 +371,7 @@ cs:
       enable: Povolit
       enabled: Povoleno
       enabled_msg: Emoji bylo úspěšně povoleno
-      image_hint: PNG až do 50 KB
+      image_hint: PNG nebo GIF do %{size}
       list: Uvést
       listed: Uvedeno
       new:
@@ -428,17 +432,6 @@ cs:
       reject_media_hint: Odstraní lokálně uložené mediální soubory a odmítne jejich stahování v budoucnosti. Nepodstatné pro pozastavení
       reject_reports: Odmítat hlášení
       reject_reports_hint: Ignorovat všechna hlášení pocházející z této domény. Nepodstatné pro pozastavení
-      rejecting_media: odmítají se mediální soubory
-      rejecting_reports: odmítají se hlášení
-      severity:
-        silence: omezena
-        suspend: pozastaveno
-      show:
-        retroactive:
-          silence: Vzít zpět omezení existujících dotčených účtů z této domény
-          suspend: Zrušit pozastavení existujících ovlivněných účtů z této domény
-        title: Zrušit blokaci domény %{domain}
-        undo: Odvolat
       undo: Odvolat blokaci domény
       view: Zobrazit blokaci domény
     email_domain_blocks:
@@ -459,6 +452,8 @@ cs:
       title: Doporučená sledování
       unsuppress: Obnovit doporučení sledování
     instances:
+      availability:
+        warning: Poslední pokus o připojení k tomuto serveru byl neúspěšný
       back_to_all: Vše
       back_to_limited: Omezený
       back_to_warning: Varování
@@ -469,15 +464,7 @@ cs:
         clear: Vymazat chyby doručení
         restart: Restartovat doručování
         stop: Zastavit doručování
-        title: Doručování
         unavailable: Nedostupný
-        unavailable_message: Doručování nedostupné
-        warning: Varování
-        warning_message:
-          few: Doručení selhává %{count} dny
-          many: Doručení selhává %{count} dnů
-          one: Doručení selhává %{count} den
-          other: Doručení selhává %{count} dnů
       delivery_available: Doručení je k dispozici
       delivery_error_days: Dny chybného doručování
       delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
@@ -548,12 +535,15 @@ cs:
           one: "%{count} poznámka"
           other: "%{count} poznámek"
       action_taken_by: Akci vykonal uživatel
-      are_you_sure: Opravu?
+      are_you_sure: Jste si jisti?
       assign_to_self: Přidělit ke mně
       assigned: Přiřazený moderátor
       by_target_domain: Doména nahlášeného účtu
+      category: Kategorie
+      category_description_html: Důvod nahlášení tohoto účtu a/nebo obsahu bude uveden v komunikaci s nahlášeným účtem
       comment:
         none: Žádné
+      comment_description_html: 'Pro upřesnění uživatel %{name} napsal:'
       created_at: Nahlášené
       forwarded: Přeposláno
       forwarded_to: Přeposláno na %{domain}
@@ -565,13 +555,19 @@ cs:
         create_and_unresolve: Znovu otevřít s poznámkou
         delete: Smazat
         placeholder: Popište, jaké akce byly vykonány, nebo jakékoliv jiné související aktuality…
+        title: Poznámky
+      notes_description_html: Zobrazit a zanechat poznámky pro ostatní moderátory i sebe v budoucnu
+      remote_user_placeholder: vzdálený uživatel z %{instance}
       reopen: Znovu otevřít hlášení
       report: 'Nahlásit #%{id}'
       reported_account: Nahlášený účet
       reported_by: Nahlášeno uživatelem
       resolved: Vyřešeno
       resolved_msg: Hlášení úspěšně vyřešeno!
+      skip_to_actions: Přeskočit k akcím
       status: Stav
+      statuses: Nahlášený obsah
+      statuses_description_html: Obsah porušující pravidla bude uveden v komunikaci s nahlášeným účtem
       target_origin: Původ nahlášeného účtu
       title: Hlášení
       unassign: Odebrat
@@ -687,6 +683,11 @@ cs:
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
+      elasticsearch_running_check:
+        message_html: Nelze se připojit k Elasticsearch. Prosím zkontrolujte, že běží, nebo vypněte fulltextové vyhledávání
+      elasticsearch_version_check:
+        message_html: 'Nekompatibilní verze Elasticsearch: %{value}'
+        version_comparison: Je spuštěn Elasticsearch %{running_version} místo vyžadovaného %{required_version}
       rules_check:
         action: Spravovat pravidla serveru
         message_html: Nedefinovali jste žádná pravidla serveru.
@@ -1062,6 +1063,9 @@ cs:
     carry_mutes_over_text: Tento účet se přesunul z %{acct}, který jste skryli.
     copy_account_note_text: 'Tento účet se přesunul z %{acct}, zde byly Vaše předchozí poznámky o něm:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: Uživatel %{name} se zaregistroval
     digest:
       action: Zobrazit všechna oznámení
       body: Zde najdete stručný souhrn zpráv, které jste zmeškali od vaší poslední návštěvy %{since}
@@ -1103,6 +1107,8 @@ cs:
       title: Nový boost
     status:
       subject: Nový příspěvek od %{name}
+    update:
+      subject: Uživatel %{name} upravil příspěvek
   notifications:
     email_events: Události pro e-mailová oznámení
     email_events_hint: 'Vyberte události, pro které chcete dostávat oznámení:'
@@ -1184,6 +1190,9 @@ cs:
     reply:
       proceed: Pokračovat k odpovědi
       prompt: 'Chcete odpovědět na tento příspěvek:'
+  reports:
+    errors:
+      invalid_rules: neodkazuje na platná pravidla
   scheduled_statuses:
     over_daily_limit: Překročili jste limit %{limit} příspěvků naplánovaných na tento den
     over_total_limit: Překročili jste limit %{limit} naplánovaných příspěvků
@@ -1272,6 +1281,7 @@ cs:
         other: "%{count} videí"
     boosted_from_html: Boostnuto z %{acct_link}
     content_warning: 'Varování o obsahu: %{warning}'
+    default_language: Stejný jako jazyk rozhraní
     disallowed_hashtags:
       few: 'obsahoval nepovolené hashtagy: %{tags}'
       many: 'obsahoval nepovolené hashtagy: %{tags}'
@@ -1339,6 +1349,7 @@ cs:
       '2629746': 1 měsíc
       '31556952': 1 rok
       '5259492': 2 měsíce
+      '604800': 1 week
       '63113904': 2 roky
       '7889238': 3 měsíce
     min_age_label: Hranice stáří
@@ -1470,6 +1481,8 @@ cs:
       subject: Potvrďte prosím pokus o přihlášení
       title: Pokus o přihlášení
     warning:
+      explanation:
+        delete_statuses: Bylo shledáno, že některé vaše příspěvky porušují jednu nebo více zásad komunity a následně byly odstraněny moderátory %{instance}.
       subject:
         disable: Váš účet %{acct} byl zmrazen
         none: Varování pro %{acct}

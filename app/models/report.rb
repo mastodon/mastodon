@@ -63,8 +63,20 @@ class Report < ApplicationRecord
     Status.with_discarded.where(id: status_ids)
   end
 
-  def media_attachments
-    MediaAttachment.where(status_id: status_ids)
+  def media_attachments_count
+    statuses_to_query = []
+    count = 0
+
+    statuses.pluck(:id, :ordered_media_attachment_ids).each do |id, ordered_ids|
+      if ordered_ids.nil?
+        statuses_to_query << id
+      else
+        count += ordered_ids.size
+      end
+    end
+
+    count += MediaAttachment.where(status_id: statuses_to_query).count unless statuses_to_query.empty?
+    count
   end
 
   def rules
@@ -129,6 +141,6 @@ class Report < ApplicationRecord
   def validate_rule_ids
     return unless violation?
 
-    errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids.size
+    errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids&.size
   end
 end
