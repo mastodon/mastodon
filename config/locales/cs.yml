@@ -740,6 +740,10 @@ cs:
         delete_statuses: "Uživatel %{name} smazal příspěvky %{target}"
         disable: "Uživatel %{name} zmrazil účet %{target}"
         mark_statuses_as_sensitive: "Uživatel %{name} označil příspěvky %{target} jako citlivé"
+        none: "Uživatel %{name} poslal %{target} varování"
+        sensitive: "Uživatel %{name} označil účet %{target} jako citlivý"
+        silence: "Uživatel %{name} omezil účet %{target}"
+        suspend: "Uživatel %{name} pozastavil účet %{target}"
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
