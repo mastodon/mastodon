@@ -293,7 +293,7 @@ cs:
         assigned_to_self_report_html: "Uživatel %{name} si přidělil hlášení %{target}"
         change_email_user_html: "Uživatel %{name} změnil e-mailovou adresu uživatele %{target}"
         confirm_user_html: "Uživatel %{name} potvrdil e-mailovou adresu uživatele %{target}"
-        create_account_warning_html: "Uživatel %{name} poslal varování uživateli %{target}"
+        create_account_warning_html: "Uživatel %{name} poslal %{target} varování"
         create_announcement_html: "Uživatel %{name} vytvořil nové oznámení %{target}"
         create_custom_emoji_html: "Uživatel %{name} nahrál nové emoji %{target}"
         create_domain_allow_html: "Uživatel %{name} povolil federaci s doménou %{target}"
@@ -601,6 +601,7 @@ cs:
       forwarded: Přeposláno
       forwarded_to: Přeposláno na %{domain}
       mark_as_resolved: Označit jako vyřešené
+      mark_as_sensitive: Označit jako citlivé
       mark_as_unresolved: Označit jako nevyřešené
       notes:
         create: Přidat poznámku
@@ -734,6 +735,11 @@ cs:
       no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
       title: Příspěvky účtu
       with_media: S médii
+    strikes:
+      actions:
+        delete_statuses: "Uživatel %{name} smazal příspěvky %{target}"
+        disable: "Uživatel %{name} zmrazil účet %{target}"
+        mark_statuses_as_sensitive: "Uživatel %{name} označil příspěvky %{target} jako citlivé"
     system_checks:
       database_schema_check:
         message_html: Na spuštění čekají databázové migrace. Nechte je prosím proběhnout pro zajištění očekávaného chování aplikace
