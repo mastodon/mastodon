@@ -831,6 +831,14 @@ cs:
       title: Spravovat předlohy pro varování
   admin_mailer:
     new_appeal:
+      actions:
+        delete_statuses: smazání jeho příspěvků
+        disable: zmrazení jeho účtu
+        mark_statuses_as_sensitive: označení jeho příspěvků jako citlivých
+        none: varování
+        sensitive: označení jeho účtu jako citlivého
+        silence: omezení jeho účtu
+        suspend: pozastavení jeho účtu
       body: "Uživatel %{target} se odvolává proti rozhodnutí moderátora %{action_taken_by} z %{date}, kterým bylo %{type}. Napsal:"
       next_steps: Můžete schválit odvolání pro vrácení rozhodnutí moderátora, nebo to ignorovat.
       subject: "Uživatel %{username} se odvolává proti rozhodnutí moderátora na %{instance}"
