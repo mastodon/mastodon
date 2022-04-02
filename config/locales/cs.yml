@@ -814,6 +814,8 @@ cs:
   admin_mailer:
     new_appeal:
       body: "Uživatel %{target} se odvolává proti rozhodnutí moderátora %{action_taken_by} z %{date}, kterým bylo %{type}. Napsal:"
+      next_steps: Můžete schválit odvolání pro vrácení rozhodnutí moderátora, nebo to ignorovat.
+      subject: "Uživatel %{username} se odvolává proti rozhodnutí moderátora na %{instance}"
     new_pending_account:
       body: Detaily nového účtu jsou uvedeny níže. Tuto žádost můžete schválit nebo zamítnout.
       subject: Nový účet na serveru %{instance} čekající na posouzení (%{username})
