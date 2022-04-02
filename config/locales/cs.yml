@@ -1593,6 +1593,7 @@ cs:
     warning:
       explanation:
         delete_statuses: Bylo shledáno, že některé vaše příspěvky porušují jednu nebo více zásad komunity a následně byly odstraněny moderátory %{instance}.
+      statuses: 'Předmětné příspěvky:'
       subject:
         disable: Váš účet %{acct} byl zmrazen
         none: Varování pro %{acct}
@@ -1600,7 +1601,9 @@ cs:
         suspend: Váš účet %{acct} byl pozastaven
       title:
         disable: Účet zmrazen
+        mark_statuses_as_sensitive: Příspěvky označeny jako citlivé
         none: Varování
+        sensitive: Účet označen jako citlivý
         silence: Účet omezen
         suspend: Účet pozastaven
     welcome:
