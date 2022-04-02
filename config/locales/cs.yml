@@ -812,6 +812,8 @@ cs:
       empty: Zatím jste nedefinovali žádné předlohy varování.
       title: Spravovat předlohy pro varování
   admin_mailer:
+    new_appeal:
+      body: "Uživatel %{target} se odvolává proti rozhodnutí moderátora %{action_taken_by} z %{date}, kterým bylo %{type}. Napsal:"
     new_pending_account:
       body: Detaily nového účtu jsou uvedeny níže. Tuto žádost můžete schválit nebo zamítnout.
       subject: Nový účet na serveru %{instance} čekající na posouzení (%{username})
