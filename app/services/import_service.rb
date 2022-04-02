@@ -128,22 +128,26 @@ class ImportService < BaseService
 
   def import_lists!
     parse_import_data!(['List name', 'Account address'])
-    items = @data.take(ROWS_PROCESSING_LIMIT).map { |row| [row['List name'], row['Account address']] }
-    list_titles = items.map { |row| row[0] }.uniq
+    items = @data.take(ROWS_PROCESSING_LIMIT).group_by { |row| row['List name'] }.to_h
 
     if @import.overwrite?
-      List.where(title: list_titles, account: @account).destroy_all
+      @account.lists.where(title: items.keys).destroy_all
     end
 
-    items.each do |listname, accountname|
-      list = @account.lists.find_or_create_by!(account: @account, title: listname)
-      username, domain = accountname.split('@')
+    account_lists = {}
 
-      acct = domain == Rails.configuration.x.local_domain ? Account.find_local(username) : Account.find_remote(username, domain)
-      next if acct.nil?
+    items.each_key do |listname|
+      account_lists[listname] = @account.lists.find_or_create_by!(account: @account, title: listname)
+    end
 
-      unless list.accounts.include? acct
-        list.accounts << acct
+    items.each_value do |list_accounts|
+      list_accounts.map { |x| [x['List name'], x['Account address']] }.each do |listname, accountname|
+        list = account_lists[listname]
+        username, domain = accountname.split('@')
+        acct = TagManager.instance.local_domain?(domain) ? Account.find_local(username) : Account.find_remote(username, domain)
+        unless acct.nil? || list.accounts&.include?(acct)
+          list.accounts << acct
+        end
       end
     end
   end
