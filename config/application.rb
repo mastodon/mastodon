@@ -164,7 +164,6 @@ module Mastodon
     config.active_job.queue_adapter = :sidekiq
 
     config.middleware.use Rack::Attack
-    config.middleware.use Rack::Deflater
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'
