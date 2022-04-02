@@ -198,7 +198,7 @@ cs:
       roles:
         admin: Administrátor
         moderator: Moderátor
-        staff: Člen personálu
+        staff: Personál
         user: Uživatel
       search: Hledat
       search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
@@ -687,7 +687,7 @@ cs:
         desc_html: Je-li vypnuto, bude veřejná časová osa, na kterou odkazuje hlavní stránka serveru, omezena pouze na místní obsah
         title: Zahrnout federovaný obsah na neautentizované stránce veřejné časové osy
       show_staff_badge:
-        desc_html: Zobrazit na stránce uživatele odznak člena personálu
+        desc_html: Zobrazit na stránce uživatele odznak personálu
         title: Zobrazit odznak personálu
       site_description:
         desc_html: Úvodní odstavec v API. Popište, čím se tento server Mastodon odlišuje od ostatních, a cokoliv jiného, co je důležité. Můžete zde používat HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
@@ -980,6 +980,7 @@ cs:
     explore_mastodon: Prozkoumejte %{title}
   disputes:
     strikes:
+      description_html: Toto jsou kroky podniknuté proti vašemu účtu a varování, která vám byla poslána personálem %{instance}.
       your_appeal_rejected: Vaše odvolání bylo zamítnuto
   domain_validator:
     invalid_domain: není platné doménové jméno
