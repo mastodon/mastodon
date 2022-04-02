@@ -766,6 +766,11 @@ de:
     system_checks:
       database_schema_check:
         message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führen Sie sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
+      elasticsearch_running_check:
+        message_html: Verbindung mit Elasticsearch konnte nicht hergestellt werden. Bitte prüfe ob Elasticsearch läuft oder deaktiviere die Volltextsuche
+      elasticsearch_version_check:
+        message_html: 'Inkompatible Elasticsearch-Version: %{value}'
+        version_comparison: Elasticsearch %{running_version} läuft, aber %{required_version} wird benötigt
       rules_check:
         action: Serverregeln verwalten
         message_html: Sie haben keine Serverregeln definiert.
