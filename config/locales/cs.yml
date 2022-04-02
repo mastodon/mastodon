@@ -999,6 +999,9 @@ cs:
   disputes:
     strikes:
       description_html: Toto jsou kroky podniknuté proti vašemu účtu a varování, která vám byla poslána personálem %{instance}.
+      title_actions:
+        mark_statuses_as_sensitive: Označení příspěvků jako citlivých
+        sensitive: Označení účtu jako citlivého
       your_appeal_rejected: Vaše odvolání bylo zamítnuto
   domain_validator:
     invalid_domain: není platné doménové jméno
@@ -1607,7 +1610,9 @@ cs:
       statuses: 'Předmětné příspěvky:'
       subject:
         disable: Váš účet %{acct} byl zmrazen
+        mark_statuses_as_sensitive: Vaše příspěvky pod %{acct} byly označeny jako citlivé
         none: Varování pro %{acct}
+        sensitive: Vaše příspěvky pod %{acct} budou od nynějška označeny jako citlivé
         silence: Váš účet %{acct} byl omezen
         suspend: Váš účet %{acct} byl pozastaven
       title:
