@@ -495,6 +495,12 @@ cs:
       unsuppress: Obnovit doporučení sledování
     instances:
       availability:
+        description_html:
+          one: Pokud doručování na doménu selhává nepřerušeně <strong>%{count} den</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          few: Pokud doručování na doménu selhává nepřerušeně <strong>%{count} dny</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          many: Pokud doručování na doménu selhává nepřerušeně <strong>%{count} dnů</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          other: Pokud doručování na doménu selhává nepřerušeně <strong>%{count} dnů</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+        failure_threshold_reached: Prahu selhání dosaženo %{date}.
         warning: Poslední pokus o připojení k tomuto serveru byl neúspěšný
       back_to_all: Vše
       back_to_limited: Omezený
