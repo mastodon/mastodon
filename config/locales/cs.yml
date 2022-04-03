@@ -643,6 +643,7 @@ cs:
       mark_as_resolved: Označit jako vyřešené
       mark_as_sensitive: Označit jako citlivé
       mark_as_unresolved: Označit jako nevyřešené
+      no_one_assigned: Nikdo
       notes:
         create: Přidat poznámku
         create_and_resolve: Vyřešit s poznámkou
@@ -1645,6 +1646,7 @@ cs:
     formats:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Přidat
     disable: Vypnout 2FA
@@ -1683,11 +1685,15 @@ cs:
     warning:
       appeal: Podat odvolání
       appeal_description: Pokud se domníváte, že se jedná o chybu, můžete podat odvolání personálu %{instance}.
+      categories:
+        violation: Obsah porušuje následující zásady komunity
       explanation:
         delete_statuses: Bylo shledáno, že některé vaše příspěvky porušují jednu nebo více zásad komunity a následně byly odstraněny moderátory %{instance}.
         mark_statuses_as_sensitive: Některé vaše příspěvky byly označeny jako citlivé moderátory %{instance}. To znamená, že pro zobrazení náhledu médií v příspěvcích na ně budou muset lidé nejprve kliknout. Média můžete při psaní budoucích příspěvků označit jako citlivá sami.
+      reason: 'Důvod:'
       statuses: 'Předmětné příspěvky:'
       subject:
+        delete_statuses: Vaše příspěvky na %{acct} byly odstraněny
         disable: Váš účet %{acct} byl zmrazen
         mark_statuses_as_sensitive: Vaše příspěvky pod %{acct} byly označeny jako citlivé
         none: Varování pro %{acct}
@@ -1695,6 +1701,7 @@ cs:
         silence: Váš účet %{acct} byl omezen
         suspend: Váš účet %{acct} byl pozastaven
       title:
+        delete_statuses: Příspěvky odstraněny
         disable: Účet zmrazen
         mark_statuses_as_sensitive: Příspěvky označeny jako citlivé
         none: Varování
