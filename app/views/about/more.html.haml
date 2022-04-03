@@ -17,11 +17,11 @@
         .row__information-board
           .information-board__section
             %span= t 'about.user_count_before'
-            %strong= friendly_number_to_human @instance_presenter.user_count
+            %strong{ title: @instance_presenter.user_count }= friendly_number_to_human @instance_presenter.user_count
             %span= t 'about.user_count_after', count: @instance_presenter.user_count
           .information-board__section
             %span= t 'about.status_count_before'
-            %strong= friendly_number_to_human @instance_presenter.status_count
+            %strong{ title: @instance_presenter.status_count }= friendly_number_to_human @instance_presenter.status_count
             %span= t 'about.status_count_after', count: @instance_presenter.status_count
         .row__mascot
           .landing-page__mascot
