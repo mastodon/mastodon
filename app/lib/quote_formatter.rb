@@ -1,0 +1,2 @@
+class QuoteFormatter
+end
