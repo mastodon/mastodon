@@ -74,6 +74,8 @@ cs:
         description_html: Toto jsou aplikace, které mohou přistupovat k vašemu účtu s použitím API. Pokud jsou zde aplikace, které nepoznáváte, nebo se aplikace nechová správně, můžete odvolat její přístup.
         last_used_at: Naposledy použito %{date}
         never_used: Nikdy nepoužito
+        scopes: Oprávnění
+        superapp: Interní
         title: Vaše autorizované aplikace
     errors:
       messages:
@@ -150,6 +152,7 @@ cs:
       "admin:write": měnit všechna data na serveru
       "admin:write:accounts": provádět moderátorské akce s účty
       "admin:write:reports": provádět moderátorské akce s hlášeními
+      crypto: používat end-to-end šifrování
       follow: upravovat vztahy mezi profily
       push: přijímat vaše push oznámení
       read: vidět všechna data vašeho účtu
@@ -169,6 +172,7 @@ cs:
       "write:accounts": měnit váš profil
       "write:blocks": blokovat účty a domény
       "write:bookmarks": přidávat příspěvky do záložek
+      "write:conversations": skrývat a mazat konverzace
       "write:favourites": oblibovat si příspěvky
       "write:filters": vytvářet filtry
       "write:follows": sledovat lidi
