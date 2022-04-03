@@ -517,6 +517,11 @@ cs:
       content_policies:
         comment: Interní poznámka
         description_html: Můžete definovat politiky obsahu, které budou aplikovány na všechny účty z této domény i jakoukoliv z jejích subdomén.
+        policies:
+          reject_media: Odmítat média
+          reject_reports: Odmítat hlášení
+          silence: Omezit
+          suspend: Pozastavit
         policy: Politika
         reason: Veřejný důvod
         title: Politiky obsahu
@@ -559,6 +564,7 @@ cs:
       total_followed_by_us: Sledované námi
       total_reported: Hlášení o nich
       total_storage: Mediální přílohy
+      totals_time_period_hint_html: Níže zobrazené součty zahrnují data za celou dobu.
     invites:
       deactivate_all: Deaktivovat vše
       filter:
