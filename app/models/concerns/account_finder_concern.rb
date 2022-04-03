@@ -25,7 +25,20 @@ module AccountFinderConcern
     def find_remote(username, domain)
       AccountFinder.new(username, domain).account
     end
+
+    def find_local_or_remote(username, domain)
+      TagManager.instance.local_domain?(domain) ? find_local(username) : find_remote(username, domain)
+    end
+
+    def validate_account_string(account_string)
+      match = ACCOUNT_STRING_RE.match(account_string)
+
+      [match[:username], match[:domain]] if match
+    end
   end
+
+  # Placing this constant above the previous block breaks tests
+  ACCOUNT_STRING_RE = /^@?(?<username>#{Account::USERNAME_RE})(?:@(?<domain>[[:word:]\.\-]+))?$/i
 
   class AccountFinder
     attr_reader :username, :domain
