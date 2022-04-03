@@ -497,16 +497,25 @@ cs:
       availability:
         description_html:
           one: Pokud doručování na doménu selhává nepřerušeně <strong>%{count} den</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
-          few: Pokud doručování na doménu selhává nepřerušeně <strong>%{count} dny</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
-          many: Pokud doručování na doménu selhává nepřerušeně <strong>%{count} dnů</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
-          other: Pokud doručování na doménu selhává nepřerušeně <strong>%{count} dnů</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          few: Pokud doručování na doménu selhává nepřerušeně ve <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          many: Pokud doručování na doménu selhává nepřerušeně v <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          other: Pokud doručování na doménu selhává nepřerušeně v <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
         failure_threshold_reached: Prahu selhání dosaženo %{date}.
+        failures_recorded:
+          one: Neúspěšný pokus v %{count} dni.
+          few: Neúspěšné pokusy ve %{count} různých dnech.
+          many: Neúspěšné pokusy ve %{count} různých dnech.
+          other: Neúspěšné pokusy ve %{count} různých dnech.
+        no_failures_recorded: Žádné zaznamenané selhání.
+        title: Dostupnost
         warning: Poslední pokus o připojení k tomuto serveru byl neúspěšný
       back_to_all: Vše
       back_to_limited: Omezený
       back_to_warning: Varování
       by_domain: Doména
       confirm_purge: Jste si jisti, že chcete nevratně smazat data z této domény?
+      content_policies:
+        comment: Interní poznámka
       delivery:
         all: Vše
         clear: Vymazat chyby doručení
