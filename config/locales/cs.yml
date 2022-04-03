@@ -245,16 +245,16 @@ cs:
         create_account_warning: Vytvořit varování
         create_announcement: Nové oznámení
         create_custom_emoji: Vytvořit vlastní emoji
-        create_domain_allow: Povolit doménu
-        create_domain_block: Zablokovat doménu
+        create_domain_allow: Vytvořit povolení domény
+        create_domain_block: Vytvořit blokaci domény
         create_email_domain_block: Zablokovat e-mailovou doménu
         create_ip_block: Vytvořit IP pravidlo
         create_unavailable_domain: Vytvořit nedostupnou doménu
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
         destroy_custom_emoji: Odstranit vlastní emoji
-        destroy_domain_allow: Odstranit povolenou doménu
-        destroy_domain_block: Odstranit blokování domény
+        destroy_domain_allow: Odstranit povolení domény
+        destroy_domain_block: Odstranit blokaci domény
         destroy_email_domain_block: Smazat blokaci e-mailové domény
         destroy_instance: Odmazat doménu
         destroy_ip_block: Smazat IP pravidlo
@@ -439,9 +439,9 @@ cs:
     domain_blocks:
       add_new: Přidat novou blokaci domény
       created_msg: Blokace domény se právě vyřizuje
-      destroyed_msg: Blokace domény byla zrušena
+      destroyed_msg: Blokace domény byla vrácena
       domain: Doména
-      edit: Upravit doménovou blokaci
+      edit: Upravit blokaci domény
       existing_domain_block_html: Pro účet %{name} jste už nastavili přísnější omezení, nejprve jej <a href="%{unblock_url}">odblokujte</a>.
       new:
         create: Vytvořit blokaci
@@ -462,7 +462,7 @@ cs:
       reject_media_hint: Odstraní lokálně uložené mediální soubory a odmítne jejich stahování v budoucnosti. Nepodstatné pro pozastavení
       reject_reports: Odmítat hlášení
       reject_reports_hint: Ignorovat všechna hlášení pocházející z této domény. Nepodstatné pro pozastavení
-      undo: Odvolat blokaci domény
+      undo: Vrátit blokaci domény
       view: Zobrazit blokaci domény
     email_domain_blocks:
       add_new: Přidat
@@ -654,7 +654,7 @@ cs:
       domain_blocks:
         all: Všem
         disabled: Nikomu
-        title: Zobrazit blokované domény
+        title: Zobrazit blokace domén
         users: Přihlášeným místním uživatelům
       domain_blocks_rationale:
         title: Zobrazit odůvodnění
