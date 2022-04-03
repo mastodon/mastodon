@@ -630,6 +630,7 @@ cs:
         silence_description_html: Profil bude viditelný pouze těm, kdo ho již sledují nebo jej ručně vyhledají, což značně omezí jeho dosah. Lze vždy vrátit zpět.
         suspend_description_html: Profil a veškerý jeho obsah se stane nedostupným, dokud nebude časem smazán. Interakce s účtem nebude možná. Vratné do 30 dnů.
       actions_description_html: Rozhodněte, který krok učinit pro vyřešení tohoto hlášení. Pokud podniknete kárný krok proti nahlášenému účtu, bude mu zasláno e-mailové oznámení, s výjimkou případu, kdy je zvolena kategorie <strong>Spam</strong>.
+      add_to_report: Přidat do hlášení další
       are_you_sure: Jste si jisti?
       assign_to_self: Přidělit ke mně
       assigned: Přiřazený moderátor
@@ -774,6 +775,9 @@ cs:
       destroyed_msg: Upload stránky byl úspěšně smazán!
     statuses:
       back_to_account: Zpět na stránku účtu
+      back_to_report: Zpět na stránku hlášení
+      batch:
+        remove_from_report: Odebrat z hlášení
       deleted: Smazáno
       media:
         title: Média
@@ -1697,6 +1701,7 @@ cs:
         disable: Nemůžete už používat svůj účet, ale váš profil a další data zůstávají nedotčeny. Můžete si vyžádat zálohu svých dat, měnit nastavení účtu nebo ho smazat.
         mark_statuses_as_sensitive: Některé vaše příspěvky byly označeny jako citlivé moderátory %{instance}. To znamená, že pro zobrazení náhledu médií v příspěvcích na ně budou muset lidé nejprve kliknout. Média můžete při psaní budoucích příspěvků označit jako citlivá sami.
         sensitive: Odteď budou všechny vámi nahrané mediální soubory označeny jako citlivé a skryté za proklikávacím varováním.
+        silence: Můžete nadále používat svůj účet, ale pouze lidé, kteří vás již sledovali, uvidí vaše příspěvky na tomto serveru a můžete být vynecháni z různých doporučovacích funkcí. Ostatní vás však stále mohou začít ručně sledovat.
         suspend: Nemůžete už používat svůj účet a váš profil a ostatní data již nejsou dostupná. Stále se můžete přihlásit pro vyžádání zálohy svých dat, dokud nebudou za přibližně 30 dnů zcela smazána, ale ponecháme si některé základní údaje, abychom vám zabránili v obcházení pozastavení.
       reason: 'Důvod:'
       statuses: 'Předmětné příspěvky:'
