@@ -1,4 +1,3 @@
----
 cs:
   activerecord:
     attributes:
@@ -60,12 +59,13 @@ cs:
       error:
         title: Vyskytla se chyba
       new:
+        prompt_html: "%{client_name} si přeje oprávnění pro přístup k vašemu účtu. Je to aplikace třetí strany. <strong>Pokud jí nedůvěřujete, pak byste ji neměli autorizovat.</strong>"
         title: Je vyžadována autorizace
       show:
         title: Zkopírujte tento autorizační kód a vložte ho do aplikace.
     authorized_applications:
       buttons:
-        revoke: Zamítnout
+        revoke: Odvolat
       confirmations:
         revoke: Opravdu?
       index:
@@ -75,7 +75,7 @@ cs:
         access_denied: Vlastník zdroje či autorizační server žádost zamítl.
         credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
         invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
-        invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo zamítnuto, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
+        invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo odvoláno, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
         invalid_redirect_uri: URI pro přesměrování není platné.
         invalid_request:
           missing_param: 'Chybí potřebný parametr: %{value}.'
@@ -85,7 +85,7 @@ cs:
         invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo špatně formulovaný.
         invalid_token:
           expired: Přístupový token vypršel
-          revoked: Přístupový token byl zamítnut
+          revoked: Přístupový token byl odvolán
           unknown: Přístupový token je neplatný
         resource_owner_authenticator_not_configured: Nález Resource Owner selhal, protože Doorkeeper.configure.resource_owner_authenticator nebylo nakonfigurováno.
         server_error: Autorizační server se setkal s neočekávanou chybou, která mu zabránila ve vykonání požadavku.
@@ -103,7 +103,7 @@ cs:
           notice: Aplikace aktualizována.
       authorized_applications:
         destroy:
-          notice: Aplikace zamítnuta.
+          notice: Aplikace odvolána.
     layouts:
       admin:
         nav:
@@ -112,37 +112,37 @@ cs:
       application:
         title: Je požadována autorizace OAuth
     scopes:
-      admin:read: číst všechna data na serveru
-      admin:read:accounts: číst citlivé informace všech účtů
-      admin:read:reports: číst citlivé informace všech nahlášení a nahlášených účtů
-      admin:write: měnit všechna data na serveru
-      admin:write:accounts: provádět moderátorské akce s účty
-      admin:write:reports: provádět moderátorské akce s hlášeními
+      "admin:read": číst všechna data na serveru
+      "admin:read:accounts": číst citlivé informace všech účtů
+      "admin:read:reports": číst citlivé informace všech nahlášení a nahlášených účtů
+      "admin:write": měnit všechna data na serveru
+      "admin:write:accounts": provádět moderátorské akce s účty
+      "admin:write:reports": provádět moderátorské akce s hlášeními
       follow: upravovat vztahy mezi profily
       push: přijímat vaše push oznámení
       read: vidět všechna data vašeho účtu
-      read:accounts: vidět informace o účtech
-      read:blocks: vidět vaše blokace
-      read:bookmarks: vidět vaše záložky
-      read:favourites: vidět vaše oblíbené příspěvky
-      read:filters: vidět vaše filtry
-      read:follows: vidět vaše sledování
-      read:lists: vidět vaše seznamy
-      read:mutes: vidět vaše skrytí
-      read:notifications: vidět vaše oznámení
-      read:reports: vidět vaše hlášení
-      read:search: vyhledávat za vás
-      read:statuses: vidět všechny příspěvky
+      "read:accounts": vidět informace o účtech
+      "read:blocks": vidět vaše blokace
+      "read:bookmarks": vidět vaše záložky
+      "read:favourites": vidět vaše oblíbené příspěvky
+      "read:filters": vidět vaše filtry
+      "read:follows": vidět vaše sledování
+      "read:lists": vidět vaše seznamy
+      "read:mutes": vidět vaše skrytí
+      "read:notifications": vidět vaše oznámení
+      "read:reports": vidět vaše hlášení
+      "read:search": vyhledávat za vás
+      "read:statuses": vidět všechny příspěvky
       write: měnit všechna data vašeho účtu
-      write:accounts: měnit váš profil
-      write:blocks: blokovat účty a domény
-      write:bookmarks: přidávat příspěvky do záložek
-      write:favourites: oblibovat si příspěvky
-      write:filters: vytvářet filtry
-      write:follows: sledovat lidi
-      write:lists: vytvářet seznamy
-      write:media: nahrávat mediální soubory
-      write:mutes: skrývat lidi a konverzace
-      write:notifications: mazat vaše oznámení
-      write:reports: nahlašovat jiné uživatele
-      write:statuses: zveřejňovat příspěvky
+      "write:accounts": měnit váš profil
+      "write:blocks": blokovat účty a domény
+      "write:bookmarks": přidávat příspěvky do záložek
+      "write:favourites": oblibovat si příspěvky
+      "write:filters": vytvářet filtry
+      "write:follows": sledovat lidi
+      "write:lists": vytvářet seznamy
+      "write:media": nahrávat mediální soubory
+      "write:mutes": skrývat lidi a konverzace
+      "write:notifications": mazat vaše oznámení
+      "write:reports": nahlašovat jiné uživatele
+      "write:statuses": zveřejňovat příspěvky
