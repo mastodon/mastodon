@@ -1653,8 +1653,10 @@ cs:
     webauthn: Bezpečnostní klíče
   user_mailer:
     appeal_approved:
+      subject: Vaše odvolání ze dne %{date} bylo schváleno
       title: Odvolání schváleno
     appeal_rejected:
+      explanation: Odvolání proti prohřešku vašeho účtu ze dne %{strike_date}, které jste podali %{appeal_date}, bylo zamítnuto.
       subject: Vaše odvolání z %{date} bylo zamítnuto
       title: Odvolání zamítnuto
     backup_ready:
