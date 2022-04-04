@@ -8,11 +8,30 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 RUN echo "Etc/UTC" > /etc/localtime && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends \
-	bison build-essential ca-certificates wget python3 apt-utils git  \
-	libyaml-dev libgdbm-dev libreadline-dev libjemalloc-dev \
-	libicu-dev libidn11-dev libpq-dev \
+	# Generic OS
+	apt-utils \
+	ca-certificates \
+	python3 \
+	wget \
+	# Generic Build
+	bison \
+	build-essential \
+	git \
+	# Ruby Build
+	libffi-dev \
+	libgdbm-dev \
+	libicu-dev \
+	libidn11-dev \
+	libjemalloc-dev \
+	libncurses5-dev \
+	libpq-dev \
+	libreadline-dev \
+	libssl-dev \
+	libyaml-dev \
 	shared-mime-info \
-	libncurses5-dev libffi-dev zlib1g-dev libssl-dev && \
+	zlib1g-dev \
+	&& \
+	rm -rf /var/cache/* && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV PATH="/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin:${PATH}"
@@ -88,10 +107,27 @@ ARG GID=991
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 RUN echo "Etc/UTC" > /etc/localtime && \
 	apt-get update && \
-	apt-get install -y --no-install-recommends whois wget \
-	libssl1.1 libpq5 imagemagick ffmpeg libjemalloc2 \
-	libicu66 libidn11 libyaml-0-2 \
-	file ca-certificates tzdata libreadline8 tini apt-utils && \
+	apt-get install -y --no-install-recommends \
+	# Generic OS
+	apt-utils \
+	ca-certificates \
+	file \
+	tini \
+	tzdata \
+	wget \
+	whois \
+	# Mastodon Runtime
+	ffmpeg \
+	imagemagick \
+	libicu66 \
+	libidn11 \
+	libjemalloc2 \
+	libpq5 \
+	libprotobuf17 \
+	libreadline8 \
+	libssl1.1 \
+	libyaml-0-2 \
+	&& \
 	addgroup --gid $GID mastodon && \
 	useradd -m -u $UID -g $GID -d /opt/mastodon mastodon && \
 	ln -s /opt/mastodon /mastodon && \
