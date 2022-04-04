@@ -101,7 +101,7 @@ gem 'rdf-normalize', '~> 0.5'
 group :development, :test do
   gem 'fabrication', '~> 2.27'
   gem 'fuubar', '~> 2.5'
-  gem 'i18n-tasks', '~> 0.9', require: false
+  gem 'i18n-tasks', '~> 1.0', require: false
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 5.1'
