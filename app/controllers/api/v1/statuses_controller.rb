@@ -8,6 +8,7 @@ class Api::V1::StatusesController < Api::BaseController
   before_action :require_user!, except:  [:show, :context]
   before_action :set_status, only:       [:show, :context]
   before_action :set_thread, only:       [:create]
+  before_action :set_circle, only:       [:create]
 
   override_rate_limit_headers :create, family: :statuses
 
@@ -38,6 +39,7 @@ class Api::V1::StatusesController < Api::BaseController
     @status = PostStatusService.new.call(current_user.account,
                                          text: status_params[:status],
                                          thread: @thread,
+                                         circle: @circle,
                                          media_ids: status_params[:media_ids],
                                          sensitive: status_params[:sensitive],
                                          spoiler_text: status_params[:spoiler_text],
@@ -77,10 +79,17 @@ class Api::V1::StatusesController < Api::BaseController
     render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
   end
 
+  def set_circle
+    @circle = status_params[:circle_id].blank? ? nil : current_account.owned_circles.find(status_params[:circle_id])
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: I18n.t('statuses.errors.circle_not_found') }, status: 404
+  end
+
   def status_params
     params.permit(
       :status,
       :in_reply_to_id,
+      :circle_id,
       :sensitive,
       :spoiler_text,
       :visibility,

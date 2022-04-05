@@ -13,17 +13,22 @@ RSpec.describe ActivityPub::Activity::Create do
     }.with_indifferent_access
   end
 
+  let(:delivered_to_account_id) { nil }
+
+  let(:dereferenced_object_json) { nil }
+
   before do
     sender.update(uri: ActivityPub::TagManager.instance.uri_for(sender))
 
     stub_request(:get, 'http://example.com/attachment.png').to_return(request_fixture('avatar.txt'))
     stub_request(:get, 'http://example.com/emoji.png').to_return(body: attachment_fixture('emojo.png'))
     stub_request(:get, 'http://example.com/emojib.png').to_return(body: attachment_fixture('emojo.png'), headers: { 'Content-Type' => 'application/octet-stream' })
+    stub_request(:get, 'http://example.com/object/123').to_return(body: Oj.dump(dereferenced_object_json), headers: { 'Content-Type' => 'application/activitypub+json' })
   end
 
   describe '#perform' do
     context 'when fetching' do
-      subject { described_class.new(json, sender) }
+      subject { described_class.new(json, sender, delivered_to_account_id: delivered_to_account_id) }
 
       before do
         subject.perform
@@ -40,6 +45,54 @@ RSpec.describe ActivityPub::Activity::Create do
 
         it 'does not create a status' do
           expect(sender.statuses.count).to be_zero
+        end
+      end
+
+      context 'when object is a URI' do
+        let(:object_json) { 'http://example.com/object/123' }
+
+        let(:dereferenced_object_json) do
+          {
+            id: 'http://example.com/object/123',
+            type: 'Note',
+            content: 'Lorem ipsum',
+            to: 'https://www.w3.org/ns/activitystreams#Public',
+          }
+        end
+
+        it 'dereferences object from URI' do
+          expect(a_request(:get, 'http://example.com/object/123')).to have_been_made.once
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.visibility).to eq 'public'
+        end
+      end
+
+      context 'when object is a bearcap' do
+        let(:object_json) { 'bear:?u=http://example.com/object/123&t=hoge' }
+
+        let(:dereferenced_object_json) do
+          {
+            id: 'http://example.com/object/123',
+            type: 'Note',
+            content: 'Lorem ipsum',
+          }
+        end
+
+        it 'dereferences object from URI' do
+          expect(a_request(:get, 'http://example.com/object/123').with(headers: { 'Authorization' => 'Bearer hoge' })).to have_been_made.once
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.uri).to eq 'http://example.com/object/123'
+          expect(status.visibility).to eq 'direct'
         end
       end
 
@@ -218,12 +271,15 @@ RSpec.describe ActivityPub::Activity::Create do
       context 'limited' do
         let(:recipient) { Fabricate(:account) }
 
+        let(:delivered_to_account_id) { recipient.id }
+
         let(:object_json) do
           {
             id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
             type: 'Note',
             content: 'Lorem ipsum',
-            to: ActivityPub::TagManager.instance.uri_for(recipient),
+            to: [],
+            cc: [],
           }
         end
 
@@ -236,7 +292,7 @@ RSpec.describe ActivityPub::Activity::Create do
 
         it 'creates silent mention' do
           status = sender.statuses.first
-          expect(status.mentions.first).to be_silent
+          expect(status.mentions.find_by(account: recipient)).to be_silent
         end
       end
 

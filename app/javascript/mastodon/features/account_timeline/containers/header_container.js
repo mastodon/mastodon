@@ -126,6 +126,12 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }));
   },
 
+  onAddToCircle(account){
+    dispatch(openModal('CIRCLE_ADDER', {
+      accountId: account.get('id'),
+    }));
+  },
+
 });
 
 export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Header));

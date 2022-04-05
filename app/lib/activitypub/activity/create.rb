@@ -85,6 +85,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     resolve_thread(@status)
     fetch_replies(@status)
     distribute(@status)
+    forward_for_conversation
     forward_for_reply
   end
 
@@ -109,7 +110,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         sensitive: @account.sensitized? || @object['sensitive'] || false,
         visibility: visibility_from_audience,
         thread: replied_to_status,
-        conversation: conversation_from_uri(@object['conversation']),
+        conversation: conversation_from_context,
         media_attachment_ids: process_attachments.take(4).map(&:id),
         poll: process_poll,
       }
@@ -117,8 +118,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_audience
+    conversation_uri = value_or_id(@object['context'])
+
     (audience_to + audience_cc).uniq.each do |audience|
-      next if ActivityPub::TagManager.instance.public_collection?(audience)
+      next if ActivityPub::TagManager.instance.public_collection?(audience) || audience == conversation_uri
 
       # Unlike with tags, there is no point in resolving accounts we don't already
       # know here, because silent mentions would only be used for local access
@@ -340,15 +343,47 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     ActivityPub::FetchRepliesWorker.perform_async(status.id, uri) unless uri.nil?
   end
 
-  def conversation_from_uri(uri)
-    return nil if uri.nil?
-    return Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(uri, 'Conversation')) if OStatus::TagManager.instance.local_id?(uri)
+  def conversation_from_context
+    atom_uri = @object['conversation']
 
-    begin
-      Conversation.find_or_create_by!(uri: uri)
-    rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
-      retry
+    conversation = begin
+      if atom_uri.present? && OStatus::TagManager.instance.local_id?(atom_uri)
+        Conversation.find_by(id: OStatus::TagManager.instance.unique_tag_to_local_id(atom_uri, 'Conversation'))
+      elsif atom_uri.present? && @object['context'].present?
+        Conversation.find_by(uri: atom_uri)
+      elsif atom_uri.present?
+        begin
+          Conversation.find_or_create_by!(uri: atom_uri)
+        rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+          retry
+        end
+      end
     end
+
+    return conversation if @object['context'].nil?
+
+    uri                  = value_or_id(@object['context'])
+    context_conversation = ActivityPub::TagManager.instance.uri_to_resource(uri, Conversation)
+    conversation       ||= context_conversation
+
+    return conversation if (conversation.present? && (conversation.local? || conversation.uri == uri)) || !uri.start_with?('https://')
+
+    conversation_json = begin
+      if @object['context'].is_a?(Hash) && !invalid_origin?(uri)
+        @object['context']
+      else
+        fetch_resource(uri, true)
+      end
+    end
+
+    return conversation if conversation_json.blank?
+
+    conversation = context_conversation if context_conversation.present?
+    conversation ||= Conversation.new
+    conversation.uri = uri
+    conversation.inbox_url = conversation_json['inbox']
+    conversation.save! if conversation.changed?
+    conversation
   end
 
   def visibility_from_audience
@@ -490,6 +525,12 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def tombstone_exists?
     Tombstone.exists?(uri: object_uri)
+  end
+
+  def forward_for_conversation
+    return unless audience_to.include?(value_or_id(@object['context'])) && @json['signature'].present? && @status.conversation.local?
+
+    ActivityPub::ForwardDistributionWorker.perform_async(@status.conversation_id, Oj.dump(@json))
   end
 
   def forward_for_reply

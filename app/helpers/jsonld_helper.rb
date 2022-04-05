@@ -49,13 +49,12 @@ module JsonLdHelper
     !uri.start_with?('http://', 'https://')
   end
 
+  def same_origin?(url_a, url_b)
+    Addressable::URI.parse(url_a).host.casecmp(Addressable::URI.parse(url_b).host).zero?
+  end
+
   def invalid_origin?(url)
-    return true if unsupported_uri_scheme?(url)
-
-    needle   = Addressable::URI.parse(url).host
-    haystack = Addressable::URI.parse(@account.uri).host
-
-    !haystack.casecmp(needle).zero?
+    unsupported_uri_scheme?(url) || !same_origin?(url, @account.uri)
   end
 
   def canonicalize(json)

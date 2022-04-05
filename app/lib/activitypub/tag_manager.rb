@@ -25,8 +25,11 @@ class ActivityPub::TagManager
     when :person
       target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)
     when :note, :comment, :activity
-      return activity_account_status_url(target.account, target) if target.reblog?
-      short_account_status_url(target.account, target)
+      if target.reblog?
+        activity_account_status_url(target.account, target)
+      else
+        short_account_status_url(target.account, target)
+      end
     end
   end
 
@@ -37,10 +40,15 @@ class ActivityPub::TagManager
     when :person
       target.instance_actor? ? instance_actor_url : account_url(target)
     when :note, :comment, :activity
-      return activity_account_status_url(target.account, target) if target.reblog?
-      account_status_url(target.account, target)
+      if target.reblog?
+        activity_account_status_url(target.account, target)
+      else
+        account_status_url(target.account, target)
+      end
     when :emoji
       emoji_url(target)
+    when :conversation
+      context_url(target)
     end
   end
 
@@ -78,7 +86,9 @@ class ActivityPub::TagManager
       [COLLECTIONS[:public]]
     when 'unlisted', 'private'
       [account_followers_url(status.account)]
-    when 'direct', 'limited'
+    when 'limited'
+      status.conversation_id.present? ? [uri_for(status.conversation)] : []
+    when 'direct'
       if status.account.silenced?
         # Only notify followers if the account is locally silenced
         account_ids = status.active_mentions.pluck(:account_id)
@@ -116,7 +126,7 @@ class ActivityPub::TagManager
       cc << COLLECTIONS[:public]
     end
 
-    unless status.direct_visibility? || status.limited_visibility?
+    unless status.direct_visibility?
       if status.account.silenced?
         # Only notify followers if the account is locally silenced
         account_ids = status.active_mentions.pluck(:account_id)

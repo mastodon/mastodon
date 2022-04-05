@@ -23,6 +23,10 @@ class BatchedRemoveStatusService < BaseService
       status.send(:unlink_from_conversations)
     end
 
+    status_ids_with_capability_tokens = statuses.local.joins(:capability_tokens).where.not(capability_tokens: { id: nil }).pluck(:id)
+    status_ids_with_capability_tokens += Status.where(reblog_of_id: statuses).local.joins(:capability_tokens).where.not(capability_tokens: { id: nil }).pluck(:id)
+    status_ids_with_capability_tokens.each_slice(50) { |slice| StatusCapabilityToken.where(status_id: slice).delete_all }
+
     # We do not batch all deletes into one to avoid having a long-running
     # transaction lock the database, but we use the delete method instead
     # of destroy to avoid all callbacks. We rely on foreign keys to

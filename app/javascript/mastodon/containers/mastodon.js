@@ -6,6 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
 import UI from '../features/ui';
 import { fetchCustomEmojis } from '../actions/custom_emojis';
+import { fetchCircles } from '../actions/circles';
 import { hydrateStore } from '../actions/store';
 import { connectUserStream } from '../actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
@@ -21,6 +22,7 @@ const hydrateAction = hydrateStore(initialState);
 
 store.dispatch(hydrateAction);
 store.dispatch(fetchCustomEmojis());
+store.dispatch(fetchCircles());
 
 const createIdentityContext = state => ({
   signedIn: !!state.meta.me,
