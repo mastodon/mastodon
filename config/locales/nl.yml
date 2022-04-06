@@ -1290,12 +1290,6 @@ nl:
       explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
-    sign_in_token:
-      details: 'Hier zijn details van de poging:'
-      explanation: 'We hebben een inlogpoging op je account ontdekt vanaf een onbekend IP-adres. Als jij dit bent, vul dan de beveiligingscode hieronder in op de inlog-uitdagingspagina:'
-      further_actions: 'Als jij dit niet was, verander dan je wachtwoord en schakel tweestapsverificatie voor je account in. Dat kun je hier doen:'
-      subject: Bevestig de inlogpoging
-      title: Inlogpoging
     warning:
       subject:
         disable: Jouw account %{acct} is bevroren
@@ -1326,13 +1320,10 @@ nl:
       title: Welkom aan boord %{name}!
   users:
     follow_limit_reached: Je kunt niet meer dan %{limit} accounts volgen
-    generic_access_help_html: Problemen met toegang tot je account? Neem dan contact op met %{email} voor assistentie
     invalid_otp_token: Ongeldige tweestaps-toegangscode
-    invalid_sign_in_token: Ongeldige beveiligingscode
     otp_lost_help_html: Als je toegang tot beiden kwijt bent geraakt, neem dan contact op via %{email}
     seamless_external_login: Je bent ingelogd via een externe dienst, daarom zijn wachtwoorden en e-mailinstellingen niet beschikbaar.
     signed_in_as: 'Ingelogd als:'
-    suspicious_sign_in_confirmation: Het lijkt er op dat je nog niet eerder op dit apparaat bent ingelogd, dus sturen we een beveiligingscode naar jouw e-mailadres om te bevestigen dat jij het bent.
   verification:
     explanation_html: 'Je kunt <strong>jezelf verifiëren als de eigenaar van de links in de metadata van jouw profiel</strong>. Hiervoor moet op de gelinkte website een link terug naar jouw Mastodonprofiel staan. Deze link <strong>moet</strong> het <code>rel="me"</code>-attribuut bevatten. De omschrijving van de link maakt niet uit. Hier is een voorbeeld:'
     verification: Verificatie
