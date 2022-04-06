@@ -208,7 +208,6 @@ cs:
       security_measures:
         only_password: Pouze heslo
         password_and_2fa: Heslo a 2FA
-        password_and_sign_in_token: Heslo a e-mailový token
       sensitive: Citlivý
       sensitized: označen jako citlivý
       shared_inbox_url: URL sdílené příchozí schránky
@@ -1686,12 +1685,6 @@ cs:
       explanation: Vyžádali jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!
       subject: Váš archiv je připraven ke stažení
       title: Stažení archivu
-    sign_in_token:
-      details: 'Zde jsou podrobnosti pokusu:'
-      explanation: 'Zjistili jsme, že se někdo pokusil k vašemu přihlásit z neznámé IP adresy. Pokud jste to vy, zadejte níže uvedený kód na přihlašovací stránce s výzvou:'
-      further_actions: 'Pokud jste to nebyli vy, změňte prosím své heslo a zapněte si dvoufázově ověřování svého účtu. Můžete tak učinit hned tady:'
-      subject: Potvrďte prosím pokus o přihlášení
-      title: Pokus o přihlášení
     warning:
       appeal: Podat odvolání
       appeal_description: Pokud se domníváte, že se jedná o chybu, můžete podat odvolání personálu %{instance}.
@@ -1742,13 +1735,10 @@ cs:
       title: Vítejte na palubě, %{name}!
   users:
     follow_limit_reached: Nemůžete sledovat více než %{limit} lidí
-    generic_access_help_html: Máte potíže s přístupem ke svému účtu? Můžete nás kontaktovat pro pomoc na %{email}
     invalid_otp_token: Neplatný kód pro dvoufázové ověřování
-    invalid_sign_in_token: Neplatný bezpečnostní kód
     otp_lost_help_html: Pokud jste ztratili přístup k oběma, spojte se s %{email}
     seamless_external_login: Jste přihlášeni přes externí službu, nastavení hesla a e-mailu proto nejsou dostupná.
     signed_in_as: 'Přihlášeni jako:'
-    suspicious_sign_in_confirmation: Zdá se, že se z tohoto zařízení přihlašujete poprvé, proto pro ověření přihlášení na vaši e-mailovou adresu posíláme bezpečnostní kód.
   verification:
     explanation_html: 'Můžete se <strong>ověřit jako vlastník odkazů v metadatech profilu</strong>. Pro tento účel musí stránka v odkazu obsahovat odkaz zpět na váš profil na Mastodonu. Odkaz zpět <strong>musí</strong> mít atribut <code>rel="me"</code>. Na textu odkazu nezáleží. Zde je příklad:'
     verification: Ověření
