@@ -198,7 +198,6 @@ es-AR:
       security_measures:
         only_password: Sólo contraseña
         password_and_2fa: Contraseña y 2FA
-        password_and_sign_in_token: Contraseña y token por correo electrónico
       sensitive: Forzar como sensible
       sensitized: Marcado como sensible
       shared_inbox_url: Dirección web de la bandeja de entrada compartida
@@ -1632,12 +1631,6 @@ es-AR:
       explanation: Solicitaste un resguardo completo de tu cuenta de Mastodon. ¡Ya está listo para descargar!
       subject: Tu archivo historial está listo para descargar
       title: Descargar archivo historial
-    sign_in_token:
-      details: 'Acá están los detalles del intento:'
-      explanation: 'Detectamos un intento de inicio de sesión en tu cuenta desde una dirección IP no reconocida. Si fuiste vos, por favor, ingresá el código de seguridad de abajo en la página del desafío:'
-      further_actions: 'Si no eras vos, por favor, cambiá tu contraseña y habilitá la autenticación de dos factores en tu cuenta. Podés hacerlo acá:'
-      subject: Por favor, confirmá el intento de inicio de sesión
-      title: Intento de inicio de sesión
     warning:
       appeal: Enviar una apelación
       appeal_description: Si creés que esto es un error, podés enviar una apelación al equipo de %{instance}.
@@ -1688,13 +1681,10 @@ es-AR:
       title: '¡Bienvenido a bordo, %{name}!'
   users:
     follow_limit_reached: No podés seguir a más de %{limit} cuentas
-    generic_access_help_html: '¿Tenés problemas para acceder a tu cuenta? Podés ponerte en contacto con %{email} para obtener ayuda'
     invalid_otp_token: Código de dos factores no válido
-    invalid_sign_in_token: Código de seguridad no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, podés ponerte en contacto con %{email}
     seamless_external_login: Iniciaste sesión desde un servicio externo, así que la configuración de contraseña y correo electrónico no están disponibles.
     signed_in_as: 'Iniciaste sesión como:'
-    suspicious_sign_in_confirmation: Parece que no iniciaste sesión desde este dispositivo antes, y no iniciaste sesión durante un tiempo, así que te estamos enviando un código de seguridad a tu dirección de correo electrónico para confirmar que sos vos.
   verification:
     explanation_html: 'Podés <strong>verificarte a vos mismo como el propietario de los enlaces en los metadatos de tu perfil</strong>. Para eso, el sitio web del enlace debe contener un enlace de vuelta a tu perfil de Mastodon. El enlace en tu sitio <strong>debe</strong> tener un atributo <code>rel="me"</code>. El contenido del texto del enlace no importa. Acá tenés un ejemplo:'
     verification: Verificación
