@@ -16,7 +16,7 @@ class Api::V1::Trends::TagsController < Api::BaseController
   def set_tags
     @tags = begin
       if Setting.trends
-        Trends.tags.query.allowed.limit(limit_param(DEFAULT_TAGS_LIMIT))
+        Trends.tags.query.allowed.offset(offset_param).limit(limit_param(DEFAULT_TAGS_LIMIT))
       else
         []
       end
