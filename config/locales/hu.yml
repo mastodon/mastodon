@@ -198,7 +198,6 @@ hu:
       security_measures:
         only_password: Csak jelszó
         password_and_2fa: Jelszó és kétlépcsős hitelesítés
-        password_and_sign_in_token: Jelszó és e-mail token
       sensitive: Kényes
       sensitized: kényesnek jelölve
       shared_inbox_url: Megosztott bejövő üzenetek URL
@@ -1632,12 +1631,6 @@ hu:
       explanation: A Mastodon fiókod teljes mentését kérted. A mentés kész ás letölthető!
       subject: Az adataidról készült archív letöltésre kész
       title: Archiválás
-    sign_in_token:
-      details: 'Itt vannak a kísérlet részletei:'
-      explanation: 'Fiókodba történő belépési kísérletet fogtunk ismeretlen IP címről. Ha te vagy az, kérlek az alábbi biztonsági kódot írd be a bejelentkező oldal ezt kérő részén:'
-      further_actions: 'Ha nem te voltál, változtasd meg a jelszavadat és engedélyezd a két-faktoros azonosítást a fiókodban. Itt megteheted:'
-      subject: Erősítsd meg a megkísérelt belépést
-      title: Belépési kísérlet
     warning:
       appeal: Fellebbezés beküldése
       appeal_description: Ha azt gondolod, hogy ez hibás, beküldhetsz egy fellebbezést a(z) %{instance} szerver csapatának.
@@ -1688,13 +1681,10 @@ hu:
       title: Üdv a fedélzeten, %{name}!
   users:
     follow_limit_reached: Nem követhetsz több, mint %{limit} embert
-    generic_access_help_html: Nem tudod elérni a fiókodat? Segítségért lépj kapcsolatba velünk ezen %{email}
     invalid_otp_token: Érvénytelen ellenőrző kód
-    invalid_sign_in_token: Érvénytelen biztonsági kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
     seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail beállítások nem elérhetőek.
     signed_in_as: 'Bejelentkezve mint'
-    suspicious_sign_in_confirmation: Úgy tűnik, erről az eszközről még sosem léptél be és egy ideje már nem láttunk, ezért egy biztonsági kódot küldünk az email címedre, hogy megerősítsd, tényleg te vagy az.
   verification:
     explanation_html: 'A profilodon <strong>hitelesítheted magad, mint az itt található linkek tulajdonosa</strong>. Ehhez a linkelt weboldalnak tartalmaznia kell egy linket vissza a Mastodon profilodra. Ennek <strong>tartalmaznia kell</strong> a <code>rel="me"</code> attribútumot. A link szövege bármi lehet. Itt egy példa:'
     verification: Hitelesítés
