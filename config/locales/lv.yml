@@ -168,6 +168,10 @@ lv:
       pending: Gaida pārskatīšanu
       perform_full_suspension: Apturēt
       previous_strikes: Iepriekšējie brīdinājumi
+      previous_strikes_description_html:
+        zero: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
+        one: Šim kontam ir <strong>viens</strong> brīdinājums.
+        other: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
       promote: Veicināt
       protocol: Protokols
       public: Publisks
@@ -532,6 +536,10 @@ lv:
       delivery_error_hint: Ja piegāde nav iespējama %{count} dienas, tā tiks automātiski atzīmēta kā nepiegādājama.
       destroyed_msg: Dati no %{domain} tagad ir gaidīšanas rindā, lai tos drīzumā dzēstu.
       empty: Domēni nav atrasti.
+      known_accounts:
+        zero: "%{count} zināmu kontu"
+        one: "%{count} zināms konts"
+        other: "%{count} zināmi konti"
       moderation:
         all: Visas
         limited: Ierobežotās
@@ -801,6 +809,10 @@ lv:
         description_html: Šīs ir saites, kuras pašlaik bieži koplieto konti, no kuriem tavs serveris redz ziņas. Tas var palīdzēt taviem lietotājiem uzzināt, kas notiek pasaulē. Kamēr tu neapstiprini izdevēju, neviena saite netiek rādīta publiski. Vari arī atļaut vai noraidīt atsevišķas saites.
         disallow: Neatļaut saiti
         disallow_provider: Neatļaut publicētāju
+        shared_by_over_week:
+          zero: Pēdējās nedēļas laikā kopīgoja %{count} personas
+          one: Pēdējās nedēļas laikā kopīgoja viena persona
+          other: Pēdējās nedēļas laikā kopīgoja %{count} personas
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
       pending_review: Gaida pārskatīšanu
@@ -841,6 +853,10 @@ lv:
         trending_rank: 'Populārākie #%{rank}'
         usable: Var tikt lietots
         usage_comparison: Šodien lietots %{today} reizes, salīdzinot ar %{yesterday} vakar
+        used_by_over_week:
+          zero: Pēdējās nedēļas laikā izmantoja %{count} personas
+          one: Pēdējās nedēļas laikā izmantoja viens cilvēks
+          other: Pēdējās nedēļas laikā izmantoja %{count} personas
       title: Tendences
     warning_presets:
       add_new: Pievienot jaunu
