@@ -192,7 +192,6 @@ zh-CN:
       security_measures:
         only_password: 仅密码
         password_and_2fa: 密码和双重认证
-        password_and_sign_in_token: 密码和电子邮件令牌
       sensitive: 敏感内容
       sensitized: 已标记为敏感内容
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
@@ -1603,12 +1602,6 @@ zh-CN:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
       subject: 你的存档已经准备完毕
       title: 存档导出
-    sign_in_token:
-      details: '该尝试详情如下：'
-      explanation: '我们检查到有来自未经识别的 IP 地址的登录请求。如果这确实是你，请在登录确认页面输入下方的安全码：'
-      further_actions: '如果这不是你，请更换你的密码并且在你的账号上开启双重认证。你可以在这里设置：'
-      subject: 请确认登录请求：
-      title: 登录请求
     warning:
       appeal: 提交申诉
       appeal_description: 如果你认为此结果有误，可以向 %{instance} 的工作人员提交申诉。
@@ -1659,13 +1652,10 @@ zh-CN:
       title: '%{name}，欢迎你的加入！'
   users:
     follow_limit_reached: 你不能关注超过 %{limit} 个人
-    generic_access_help_html: 登录账号出现问题？你可以向 %{email} 寻求帮助
     invalid_otp_token: 输入的双重认证代码无效
-    invalid_sign_in_token: 无效安全码
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
     signed_in_as: '当前登录的帐户：'
-    suspicious_sign_in_confirmation: 你似乎没有在这台设备上登录过，并且你也有很久没有登录过了，所以我们给你的电子邮箱发了封邮件，想确认一下确实是你。
   verification:
     explanation_html: '你可以 <strong>验证自己是个人资料元数据中的某个链接的所有者</strong>。 为此，被链接网站必须包含一个到你的 Mastodon 主页的链接。链接中 <strong>必须</strong> 包括 <code>rel="me"</code> 属性。链接的文本内容可以随意填写。例如：'
     verification: 验证
