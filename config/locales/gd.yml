@@ -208,7 +208,6 @@ gd:
       security_measures:
         only_password: Facal-faire a-mhàin
         password_and_2fa: Facal-faire ’s dà-cheumnach
-        password_and_sign_in_token: Facal-faire ’s tòcan puist-d
       sensitive: Spàrr an fhrionasachd air
       sensitized: Chaidh comharradh gu bheil e frionasach
       shared_inbox_url: URL a’ bhogsa a-steach cho-roinnte
@@ -1606,12 +1605,6 @@ gd:
       explanation: Dh’iarr thu lethbhreac-glèidhidh slàn dhen chunntas Mastodon agad. Tha e deis ri luchdadh a-nuas a-nis!
       subject: Tha an tasg-lann agad deis ri luchdadh a-nuas
       title: Tasg-lann dhut
-    sign_in_token:
-      details: 'Seo mion-fhiosrachadh mun oidhirp:'
-      explanation: 'Mhothaich sinn do dh’oidhirp clàraidh a-steach dhan chunntas agad o sheòladh IP nach aithne dhuinn. Mas e tusa a bh’ ann, cuir a-steach an còd tèarainteachd gu h-ìosal air duilleag dùbhlan a’ chlàraidh a-steach:'
-      further_actions: 'Mur e tusa a bh’ ann, atharraich am facal-faire agad agus cuir an comas an dearbhadh dà-cheumnach air a’ chunntas agad. ’S urrainn dhut sin a dhèanamh an-seo:'
-      subject: Dearbh an oidhirp air clàradh a-steach
-      title: Oidhirp clàraidh a-steach
     warning:
       appeal: Cuir ath-thagradh a-null
       appeal_description: Ma tha thu dhen bheachd gur e mearachd a th’ ann, ’s urrainn dhut ath-thagradh a chur a-null gun sgioba aig %{instance}.
@@ -1662,13 +1655,10 @@ gd:
       title: Fàilte air bòrd, %{name}!
   users:
     follow_limit_reached: Chan urrainn dhut leantainn air còrr is %{limit} daoine
-    generic_access_help_html: A bheil trioblaid agad le inntrigeadh a’ chunntais agad? ’S urrainn dhut fios a chur gu %{email} airson taic
     invalid_otp_token: Còd dà-cheumnach mì-dhligheach
-    invalid_sign_in_token: Còd tèarainteachd mì-dhligheach
     otp_lost_help_html: Ma chaill thu an t-inntrigeadh dhan dà chuid diubh, ’s urrainn dhut fios a chur gu %{email}
     seamless_external_login: Rinn thu clàradh a-steach le seirbheis on taobh a-muigh, mar sin chan eil roghainnean an fhacail-fhaire ’s a’ phuist-d ri làimh dhut.
     signed_in_as: 'Chlàraich thu a-steach mar:'
-    suspicious_sign_in_confirmation: Tha coltas nach do rinn thu clàradh a-steach on uidheam seo cheana. Air an adhbhar sin, cuiridh sinn còd tèarainteachd dhan t-seòladh puist-d agad ach an dearbhamaid gur e tusa a th’ ann.
   verification:
     explanation_html: '’S urrainn dhut <strong>dearbhadh gur e seilbheadair nan ceanglaichean ann am meata-dàta na pròifil agad a th’ annad</strong>. Airson sin a dhèanamh, feumaidh ceangal air ais dhan phròifil Mastodon a bhith aig an làrach-lìn cheangailte. <strong>Feumaidh</strong> buadh <code>rel="me"</code> a bhith aig a’ cheangal air ais. Chan eil e gu diofar dè an t-susbaint a tha ann an teacsa a’ cheangail. Seo ball-eisimpleir dhut:'
     verification: Dearbhadh
