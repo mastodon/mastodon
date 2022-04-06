@@ -198,7 +198,6 @@ da:
       security_measures:
         only_password: Kun adgangskode
         password_and_2fa: Adgangskode og 2FA
-        password_and_sign_in_token: Adgangskode og e-mailtoken
       sensitive: Gennemtving sensitiv
       sensitized: Markeret som sensitiv
       shared_inbox_url: Delt indbakke-URL
@@ -1628,12 +1627,6 @@ da:
       explanation: Den anmodede fulde sikkerhedskopi af din Mastodon-konto er nu klar til download!
       subject: Dit arkiv er klar til download
       title: Arkiv download
-    sign_in_token:
-      details: 'Her er nogle detaljer om forsøget:'
-      explanation: 'Der er registreret et forsøg på at logge ind på din konto fra en ukendt IP-adresse. Er dette er dig, så angiv nedenstående sikkerhedskode på log ind-bekræftelsessiden:'
-      further_actions: 'Var dette ikke dig, så ændr adgangskoden og aktivér tofaktorgodkendelse på din konto, hvilket kan gøres hér:'
-      subject: Bekræft indlogningsforsøg
-      title: Indlogningsforsøg
     warning:
       appeal: Indgiv appel
       appeal_description: Mener du, at dette er en fejl, kan der indgives en appel til %{instance}-personalet.
@@ -1684,13 +1677,10 @@ da:
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan maks. følge %{limit} personer
-    generic_access_help_html: Problemer med at tilgå din konto? Du kan kontakte %{email} for hjælp
     invalid_otp_token: Ugyldig tofaktorkode
-    invalid_sign_in_token: Ugyldig sikkerhedskode
     otp_lost_help_html: Har du mistet adgang til begge, kan du kontakte %{email}
     seamless_external_login: Du er logget ind via en ekstern tjeneste, så adgangskode- og e-mailindstillinger er utilgængelige.
     signed_in_as: 'Logget ind som:'
-    suspicious_sign_in_confirmation: Du lader ikke at have logget ind fra denne enhed før, og du har ikke logget ind i et stykke tid, så der sendes en sikkerhedskode til din e-mailadresse mhp. at bekræfte din identitet.
   verification:
     explanation_html: 'Du kan <strong>bekræfte dig selv som ejer af linkene i din profilmetadata</strong>. For at gøre det, skal det linkede websted indeholde et link pegende tilbage til din Mastodon-profil. Returlinket <strong>skal</strong> have en <code>rel="mig"</code>-attribut. Linkets tekstindhold betyder ikke noget. Her er et eksempel:'
     verification: Bekræftelse
