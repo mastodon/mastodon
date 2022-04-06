@@ -198,7 +198,6 @@ is:
       security_measures:
         only_password: Aðeins lykilorð
         password_and_2fa: Lykilorð og 2-þátta auðkenning
-        password_and_sign_in_token: Lykilorð og teikn í tölvupósti
       sensitive: Viðkvæmt
       sensitized: merkt sem viðkvæmt
       shared_inbox_url: Slóð á sameiginlegt innhólf
@@ -1632,12 +1631,6 @@ is:
       explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum. Það er núna tilbúið til niðurhals!
       subject: Safnskráin þín er tilbúin til niðurhals
       title: Taka út í safnskrá
-    sign_in_token:
-      details: 'Hér eru nánari upplýsingar um atvikið:'
-      explanation: 'Við sjáum að reynt hefur verið að skrá sig inn á aðganginn þinn frá óþekktu IP-vistfangi. Ef það varst þú, skaltu setja inn öryggiskóðann neðst á staðfestingarsíðu innskráningar:'
-      further_actions: 'Ef þetta varst ekki þú, skaltu endilega skipta um lykilorð og virkja tveggja-þrepa auðkenningu fyrir aðganginn þinn. Þú getur gert það hér:'
-      subject: Endilega staðfestu tilraun til innskráningar
-      title: Tilraun til innskráningar
     warning:
       appeal: Ssenda inn áfrýjun
       appeal_description: Ef þú álítur að um mistök sé að ræða, geturðu sent áfrýjun til umsjónarmanna %{instance}.
@@ -1688,13 +1681,10 @@ is:
       title: Velkomin/n um borð, %{name}!
   users:
     follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum
-    generic_access_help_html: Vandamál við að tengjast aðgangnum þínum? Þú getur sett þig í samband við %{email} til að fá aðstoð
     invalid_otp_token: Ógildur tveggja-þátta kóði
-    invalid_sign_in_token: Ógildur öryggiskóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
-    suspicious_sign_in_confirmation: Það virðist sem þú hafir ekki skráð þig inn af þessu tæki áður og að nokkur tími sé liðinn frá því þú hefur skráð þig inn, þannig að við erum að senda þér öryggiskóða á tölvupóstfangið þitt til að staðfesta að þetta sért þú.
   verification:
     explanation_html: 'Þú getur <strong>vottað að þú sért eigandi og ábyrgur fyrir tenglunum í lýsigögnum notandasniðsins þíns</strong>. Til að það virki, þurfa vefsvæðin sem vísað er í að innihalda tengil til baka í Mastodon-notandasniðið. Tengillinn sem vísar til baka <strong>verður</strong> að vera með <code>rel="me"</code> eigindi. Textinn í tenglinum skiptir ekki máli. Hérna er dæmi:'
     verification: Sannprófun
