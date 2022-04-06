@@ -190,7 +190,6 @@ nn:
       security_measures:
         only_password: Bare passord
         password_and_2fa: Passord og 2FA
-        password_and_sign_in_token: Passord og e-post token
       sensitized: Merket som følsom
       shared_inbox_url: Delt Innboks URL
       show:
@@ -1250,12 +1249,6 @@ nn:
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
-    sign_in_token:
-      details: 'Her er forsøksdetaljane:'
-      explanation: 'Vi oppdaget et forsøk på å logge på kontoen fra en ukjent IP-adresse. Hvis dette er deg, vennligst skriv inn sikkerhetskoden nedenfor på påloggingssiden:'
-      further_actions: 'Om dette ikkje var deg, so venlegast endra passordet ditt og skruv på tostegsgodkjenning på kontoen din. Du kan gjera det her:'
-      subject: Venlegast stadfest forsøket på å logga inn
-      title: Forsøk på å logga inn
     warning:
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
@@ -1286,13 +1279,10 @@ nn:
       title: Velkomen om bord, %{name}!
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
-    generic_access_help_html: Har du vanskar med tilgjenge til kontoen din? Tak gjerne kontakt med %{email}
     invalid_otp_token: Ugyldig tostegskode
-    invalid_sign_in_token: Ugild trygdenykel
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     seamless_external_login: Du er logga inn gjennom eit eksternt reiskap, so passord og e-postinstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
-    suspicious_sign_in_confirmation: Det verkar ikkje som du har logga inn frå dette reiskapet før, og du har ikkje logga inn på ei stund, difor sender me deg ein trygdekode til e-post-addressa di for å stadfesta at det er deg.
   verification:
     explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
     verification: Stadfesting
