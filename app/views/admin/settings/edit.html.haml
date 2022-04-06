@@ -96,7 +96,7 @@
       = f.input :trends, as: :boolean, wrapper: :with_label, label: t('admin.settings.trends.title'), hint: t('admin.settings.trends.desc_html')
 
     .fields-group
-      = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, label: t('admin.settings.trendable_by_default.title'), hint: t('admin.settings.trendable_by_default.desc_html')
+      = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, label: t('admin.settings.trendable_by_default.title'), hint: t('admin.settings.trendable_by_default.desc_html'), recommended: :not_recommended
 
     .fields-group
       = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
