@@ -198,7 +198,6 @@ eu:
       security_measures:
         only_password: Soilik pasahitza
         password_and_2fa: Pasahitza eta 2FA
-        password_and_sign_in_token: Pasahitza eta e-posta tokena
       sensitive: Hunkigarria
       sensitized: hunkigarri gisa markatua
       shared_inbox_url: Partekatutako sarrera ontziaren URL-a
@@ -1532,12 +1531,6 @@ eu:
       explanation: Zure Mastodon kontuaren babes-kopia osoa eskatu duzu. Deskargatzeko prest dago!
       subject: Zure artxiboa deskargatzeko prest dago
       title: Artxiboa jasotzea
-    sign_in_token:
-      details: 'Hemen daude saiakeraren xehetasunak:'
-      explanation: 'IP helbide ezezagun batetik zure kontuan saioa hasteko saiakera bat detektatu dugu. Zu bazara, sartu beheko segurtasun kodea saioa hasteko erronkaren orrian:'
-      further_actions: 'Ez bazara zu, aldatu zure pasahitza eta gaitu bi faktoreko autentifikazioa zure kontuan. Hemen egin dezakezu:'
-      subject: Berretsi saioa hasteko saiakera
-      title: Saioa hasteko saiakera
     warning:
       subject:
         disable: Zure  %{acct} kontua izoztu da
@@ -1568,13 +1561,10 @@ eu:
       title: Ongi etorri, %{name}!
   users:
     follow_limit_reached: Ezin dituzu %{limit} pertsona baino gehiago jarraitu
-    generic_access_help_html: Arazoak dituzu zure kontura sartzeko? Jarri harremanetan %{email} helbidearekin laguntzarako
     invalid_otp_token: Bi faktoreetako kode baliogabea
-    invalid_sign_in_token: Segurtasun kode baliogabea
     otp_lost_help_html: 'Bietara sarbidea galdu baduzu, jarri kontaktuan hemen: %{email}'
     seamless_external_login: Kanpo zerbitzu baten bidez hasi duzu saioa, beraz pasahitza eta e-mail ezarpenak ez daude eskuragarri.
     signed_in_as: 'Saioa honela hasita:'
-    suspicious_sign_in_confirmation: Dirudienez inoiz ez duzu saioa hasi gailu honetatik eta aspaldian ez duzu saiorik hasi. Horregatik, segurtasun kode bat bidaliko dizugu zure e-posta helbidera zu zarela egiaztatzeko.
   verification:
     explanation_html: 'Ezin duzu <strong>zure burua zure profileko metadatuen esteken jabe gisa egiaztatu</strong>. Horretarako, estekatutako webgunean zure Mastodon profilera daraman esteka bat egon behar du. Mastodonera daraman esteka horrek<strong>derrigorrez</strong> <code>rel="me"</code> artibutua izan behar du . Estekaren testuak ez du axola. Hona adibide bat:'
     verification: Egiaztaketa
