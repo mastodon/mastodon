@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::AccountsController < Api::BaseController
-  protect_from_forgery with: :exception
-
   include Authorization
   include AccountableConcern
 
