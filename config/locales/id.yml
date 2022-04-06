@@ -193,7 +193,6 @@ id:
       security_measures:
         only_password: Hanya kata sandi
         password_and_2fa: Kata sandi dan 2FA
-        password_and_sign_in_token: Kata sandi dan token email
       sensitive: Sensitif
       sensitized: ditandai sebagai sensitif
       shared_inbox_url: URL kotak masuk bersama
@@ -1605,12 +1604,6 @@ id:
       explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
       subject: Arsip Anda sudah siap diunduh
       title: Ambil arsip
-    sign_in_token:
-      details: 'Ini dia rincian usaha masuk akun:'
-      explanation: 'Kami mendeteksi usaha masuk ke akun Anda dari alamat IP tak dikenal. Jika ini Anda, mohon masukkan kode keamanan di bawah pada halaman masuk:'
-      further_actions: 'Jika ini bukan Anda, mohon ganti kata sandi dan aktifkan autentikasi dua-faktor pada akun Anda. Anda bisa melakukannya di sini:'
-      subject: Harap konfirmasi usaha masuk akun
-      title: Usaha masuk akun
     warning:
       appeal: Ajukan banding
       appeal_description: Jika Anda yakin ini galat, Anda dapat mengajukan banding ke staf %{instance}.
@@ -1661,13 +1654,10 @@ id:
       title: Selamat datang, %{name}!
   users:
     follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang
-    generic_access_help_html: Mengalami masalah saat akses akun? Anda mungkin perlu menghubungi %{email} untuk mencari bantuan
     invalid_otp_token: Kode dua faktor tidak cocok
-    invalid_sign_in_token: Kode keamanan tidak valid
     otp_lost_help_html: Jika Anda kehilangan akses keduanya, Anda dapat menghubungi %{email}
     seamless_external_login: Anda masuk via layanan eksternal, sehingga pengaturan kata sandi dan email tidak tersedia.
     signed_in_as: 'Masuk sebagai:'
-    suspicious_sign_in_confirmation: Anda terlihat belum pernah masuk dari perangkat ini, dan sudah lama Anda tidak masuk akun, sehingga kami mengirim kode keamanan ke alamat email Anda untuk mengonfirmasi bahwa ini adalah Anda.
   verification:
     explanation_html: 'Anda dapat <strong>memverifikasi diri Anda sebagai pemiliki tautan pada metadata profil</strong>. Situsweb yang ditautkan haruslah berisi tautan ke profil Mastodon Anda. Tautan tersebut <strong>harus</strong> memiliki atribut <code>rel="me"</code>. Isi teks tautan tidaklah penting. Ini contohnya:'
     verification: Verifikasi
