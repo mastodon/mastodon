@@ -199,7 +199,6 @@ lv:
       security_measures:
         only_password: Tikai parole
         password_and_2fa: Parole un 2FA
-        password_and_sign_in_token: Parole un e-pasta marķieris
       sensitive: Sensitīvs
       sensitized: Atzīmēts kā sensitīvs
       shared_inbox_url: Koplietotās iesūtnes URL
@@ -1655,12 +1654,6 @@ lv:
       explanation: Tu pieprasīji pilnu sava Mastodon konta dublējumu. Tagad tas ir gatavs lejupielādei!
       subject: Tavs arhīvs ir gatavs lejupielādei
       title: Arhīva līdzņemšana
-    sign_in_token:
-      details: 'Šeit ir sīkāka informācija par mēģinājumu:'
-      explanation: 'Mēs atklājām mēģinājumu pierakstīties tavā kontā no neatpazītas IP adreses. Ja tas esi tu, lūdzu, ievadi zemāk esošo drošības kodu pierakstīšanās izaicinājumu lapā:'
-      further_actions: 'Ja tas nebiji tu, lūdzu, nomaini paroli un savā kontā iespējo divfaktoru autentifikāciju. To var izdarīt šeit:'
-      subject: Lūdzu, apstiprini pierakstīšanās mēģinājumu
-      title: Pierakstīšanās mēģinājums
     warning:
       appeal: Iesniegt apelāciju
       appeal_description: Ja uzskatāt, ka tā ir kļūda, varat iesniegt apelāciju %{instance} darbiniekiem.
@@ -1711,13 +1704,10 @@ lv:
       title: Laipni lūgts uz borta, %{name}!
   users:
     follow_limit_reached: Tu nevari sekot vairāk par %{limit} cilvēkiem
-    generic_access_help_html: Vai nevari piekļūt savam kontam? Lai saņemtu palīdzību, tu vari sazināties ar %{email}
     invalid_otp_token: Nederīgs divfaktora kods
-    invalid_sign_in_token: Nederīgs drošības kods
     otp_lost_help_html: Ja esi zaudējis piekļuvi abiem, tu vari sazināties ar %{email}
     seamless_external_login: Tu esi pieteicies, izmantojot ārēju pakalpojumu, tāpēc paroles un e-pasta iestatījumi nav pieejami.
     signed_in_as: 'Pierakstījies kā:'
-    suspicious_sign_in_confirmation: Šķiet, ka tu iepriekš neesi pieteicies no šīs ierīces, tāpēc mēs nosūtām drošības kodu uz tavu e-pasta adresi, lai apstiprinātu, ka tas esi tu.
   verification:
     explanation_html: 'Tu vari <strong>apstiprināt sevi kā sava profila metadatos esošo saišu īpašnieku</strong>. Lai to izdarītu, saistītajā vietnē ir jābūt saitei uz tavu Mastodon profilu. Atpakaļsaitē <strong>jābūt</strong> atribūtam <code>rel="me"</code>. Saites teksta saturam nav nozīmes. Šeit ir piemērs:'
     verification: Pārbaude
