@@ -188,7 +188,6 @@ sv:
       security_measures:
         only_password: Endast lösenord
         password_and_2fa: Lösenord och 2FA
-        password_and_sign_in_token: Lösenord och e-post token
       sensitive: Känsligt
       sensitized: markerad som känsligt
       shared_inbox_url: Delad inkorg URL
@@ -1264,10 +1263,6 @@ sv:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
-    sign_in_token:
-      details: 'Här är detaljerna för försöket:'
-      further_actions: 'Om det inte var du, vänligen ändra ditt lösenord och aktivera tvåfaktor-autentisering i ditt konto. Du kan göra det här:'
-      title: Inloggningsförsök
     warning:
       reason: 'Anledning:'
       subject:
@@ -1299,9 +1294,7 @@ sv:
       title: Välkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan inte följa fler än %{limit} personer
-    generic_access_help_html: Har du problem med att komma åt ditt konto? Du kan komma i kontakt med %{email} för assistans
     invalid_otp_token: Ogiltig tvåfaktorskod
-    invalid_sign_in_token: Ogiltig säkerhetskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
