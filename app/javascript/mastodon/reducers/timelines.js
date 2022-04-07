@@ -87,10 +87,19 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
           insertedIds = insertedIds.unshift(null);
         }
 
-        return oldIds.take(firstIndex).concat(
+        let result = oldIds.take(firstIndex).concat(
           insertedIds,
           oldIds.skip(lastIndex),
         );
+
+        // If we are disconnected, ensure there is a gap marker at the top, otherwise,
+        // re-connecting and receiving a status without first expanding the timeline
+        // may lead to missed statuses
+        if (result.size > 0 && result.first() !== null && !mMap.get('online')) {
+          result = result.unshift(null);
+        }
+
+        return result;
       });
     }
   }));
