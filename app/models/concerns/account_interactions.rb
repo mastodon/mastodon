@@ -98,6 +98,8 @@ module AccountInteractions
     has_many :conversation_mutes, dependent: :destroy
     has_many :domain_blocks, class_name: 'AccountDomainBlock', dependent: :destroy
     has_many :announcement_mutes, dependent: :destroy
+
+    after_create :create_default_circle
   end
 
   def follow!(other_account, reblogs: nil, notify: nil, uri: nil, rate_limit: false, bypass_limit: false)
@@ -282,6 +284,10 @@ module AccountInteractions
   end
 
   private
+
+  def create_default_circle
+    circles.create(name: 'inner circle')
+  end
 
   def remove_potential_friendship(other_account, mutual = false)
     PotentialFriendshipTracker.remove(id, other_account.id)
