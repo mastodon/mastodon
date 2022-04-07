@@ -812,7 +812,7 @@ module Mastodon
     # removing the old one
     def update_index(table_name, index_name, columns, **index_options)
       if index_name_exists?(table_name, "#{index_name}_new") && index_name_exists?(table_name, index_name)
-        remove_index table_name, "#{index_name}_new"
+        remove_index table_name, name: "#{index_name}_new"
       elsif index_name_exists?(table_name, "#{index_name}_new")
         # Very unlikely case where the script has been interrupted during/after removal but before renaming
         rename_index table_name, "#{index_name}_new", index_name
