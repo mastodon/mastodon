@@ -87,19 +87,10 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
           insertedIds = insertedIds.unshift(null);
         }
 
-        let result = oldIds.take(firstIndex).concat(
+        return oldIds.take(firstIndex).concat(
           insertedIds,
           oldIds.skip(lastIndex),
         );
-
-        // If we are disconnected, ensure there is a gap marker at the top, otherwise,
-        // re-connecting and receiving a status without first expanding the timeline
-        // may lead to missed statuses
-        if (result.size > 0 && result.first() !== null && !mMap.get('online')) {
-          result = result.unshift(null);
-        }
-
-        return result;
       });
     }
   }));
@@ -180,6 +171,17 @@ const updateTop = (state, timeline, top) => {
   }));
 };
 
+const reconnectTimeline = (state, usePendingItems) => {
+  if (state.get('online')) {
+    return state;
+  }
+
+  return state.withMutations(mMap => {
+    mMap.update(usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items);
+    mMap.set('online', true);
+  });
+};
+
 export default function timelines(state = initialState, action) {
   switch(action.type) {
   case TIMELINE_LOAD_PENDING:
@@ -205,7 +207,7 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:
-    return state.update(action.timeline, initialTimeline, map => map.set('online', true));
+    return state.update(action.timeline, initialTimeline, map => reconnectTimeline(map, action.usePendingItems));
   case TIMELINE_DISCONNECT:
     return state.update(
       action.timeline,

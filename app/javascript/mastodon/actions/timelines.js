@@ -184,6 +184,7 @@ export function connectTimeline(timeline) {
   return {
     type: TIMELINE_CONNECT,
     timeline,
+    usePendingItems: preferPendingItems,
   };
 };
 
