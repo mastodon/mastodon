@@ -16,7 +16,7 @@ import {
   ACCOUNT_MUTE_SUCCESS,
   ACCOUNT_UNFOLLOW_SUCCESS,
 } from '../actions/accounts';
-import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import compareId from '../compare_id';
 
 const initialState = ImmutableMap();
@@ -32,6 +32,13 @@ const initialTimeline = ImmutableMap({
 });
 
 const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent, usePendingItems) => {
+  // This method is pretty tricky because:
+  // - existing items in the timeline might be out of order
+  // - the existing timeline may have gaps, most often explicitly noted with a `null` item
+  // - ideally, we don't want it to reorder existing items of the timeline
+  // - `statuses` may include items that are already included in the timeline
+  // - this function can be called either to fill in a gap, or load newer items
+
   return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
     mMap.set('isLoading', false);
     mMap.set('isPartial', isPartial);
@@ -46,15 +53,33 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
       mMap.update(usePendingItems ? 'pendingItems' : 'items', ImmutableList(), oldIds => {
         const newIds = statuses.map(status => status.get('id'));
 
-        const lastIndex = oldIds.findLastIndex(id => id !== null && compareId(id, newIds.last()) >= 0) + 1;
-        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && compareId(id, newIds.first()) > 0);
+        // Now this gets tricky, as we don't necessarily know for sure where the gap to fill is
+        // and some items in the timeline may not be properly ordered.
 
-        if (firstIndex < 0) {
-          return (isPartial ? newIds.unshift(null) : newIds).concat(oldIds.skip(lastIndex));
+        // However, we know that `newIds.last()` is the oldest item that was requested and that
+        // there is no “hole” between `newIds.last()` and `newIds.first()`.
+
+        // First, find the furthest (if properly sorted, oldest) item in the timeline that is
+        // newer than the oldest fetched one, as it's most likely that it delimits the gap.
+        // Start the gap *after* that item.
+        const lastIndex = oldIds.findLastIndex(id => id !== null && compareId(id, newIds.last()) >= 0) + 1;
+
+        // Then, try to find the furthest (if properly sorted, oldest) item in the timeline that
+        // is newer than the most recent fetched one, as it delimits a section comprised of only
+        // items present in `newIds` (or that were deleted from the server, so should be removed
+        // anyway).
+        // Stop the gap *after* that item.
+        const firstIndex = oldIds.take(lastIndex).findLastIndex(id => id !== null && compareId(id, newIds.first()) > 0) + 1;
+
+        // Make sure we aren't inserting duplicates
+        let insertedIds = ImmutableOrderedSet(newIds).subtract(oldIds.take(firstIndex), oldIds.skip(lastIndex)).toList();
+        // Finally, insert a gap marker if the data is marked as partial by the server
+        if (isPartial && (firstIndex === 0 || oldIds.get(firstIndex - 1) !== null)) {
+          insertedIds = insertedIds.unshift(null);
         }
 
-        return oldIds.take(firstIndex + 1).concat(
-          isPartial && oldIds.get(firstIndex) !== null ? newIds.unshift(null) : newIds,
+        return oldIds.take(firstIndex).concat(
+          insertedIds,
           oldIds.skip(lastIndex),
         );
       });
