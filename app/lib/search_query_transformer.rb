@@ -89,11 +89,9 @@ class SearchQueryTransformer < Parslet::Transform
       when 'from'
         @filter = :account_id
 
-        username, domain = Account.validate_account_string(term)
-        raise Mastodon::SyntaxError if username.nil?
-
-        account = Account.find_local_or_remote(username, domain)
-        raise Mastodon::NotFound if account.nil?
+        username, domain = term.gsub(/\A@/, '').split('@')
+        domain           = nil if TagManager.instance.local_domain?(domain)
+        account          = Account.find_remote!(username, domain)
 
         @term = account.id
       else
