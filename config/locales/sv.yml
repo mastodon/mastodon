@@ -1,8 +1,7 @@
----
 sv:
   about:
-    about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
-    about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
+    about_hashtag_html: 'Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.'
+    about_mastodon_html: 'Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.'
     about_this: Om
     active_count_after: aktiv
     active_footnote: Månatligen Aktiva användare (MAU)
@@ -22,7 +21,9 @@ sv:
     federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
     get_apps: Prova en mobilapp
     hosted_on: Mastodon-värd på %{domain}
-    instance_actor_flash: "Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. \n"
+    instance_actor_flash: |
+      Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. 
+
     learn_more: Lär dig mer
     logged_in_as_html: Inloggad som %{username}.
     logout_before_registering: Du är redan inloggad.
@@ -202,7 +203,7 @@ sv:
       suspended: Avstängd / Avstängt
       title: Konton
       unblock_email: Avblockera e-postadress
-      unblocked_email_msg: "%{username}s e-postadress avblockerad"
+      unblocked_email_msg: '%{username}s e-postadress avblockerad'
       unconfirmed_email: Obekräftad E-postadress
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
@@ -621,7 +622,7 @@ sv:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
-      subject: Ny rapport för %{instance} (#%{id})
+      subject: 'Ny rapport för %{instance} (#%{id})'
   aliases:
     add_new: Skapa alias
     remove: Avlänka alias
@@ -905,9 +906,6 @@ sv:
       new_followers_summary:
         one: Du har också förvärvat en ny följare! Jippie!
         other: Du har också fått %{count} nya följare medans du var iväg! Otroligt!
-      subject:
-        one: "1 nytt meddelande sedan ditt senaste besök 🐘"
-        other: "%{count} nya meddelanden sedan ditt senaste besök 🐘"
       title: I din frånvaro...
     favourite:
       body: 'Din status favoriserades av %{name}:'
