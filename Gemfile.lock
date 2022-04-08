@@ -262,7 +262,7 @@ GEM
     fuubar (2.5.1)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
-    gitlab-omniauth-openid-connect (0.5.0)
+    gitlab-omniauth-openid-connect (0.9.1)
       addressable (~> 2.7)
       omniauth (~> 1.9)
       openid_connect (~> 1.2)
@@ -278,7 +278,7 @@ GEM
       hamlit (>= 1.2.0)
       railties (>= 4.0.1)
     hashdiff (1.0.1)
-    hashie (4.1.0)
+    hashie (5.0.0)
     highline (2.0.3)
     hiredis (0.6.3)
     hkdf (0.3.0)
@@ -417,7 +417,7 @@ GEM
     omniauth-saml (1.10.3)
       omniauth (~> 1.3, >= 1.3.2)
       ruby-saml (~> 1.9)
-    openid_connect (1.2.0)
+    openid_connect (1.3.0)
       activemodel
       attr_required (>= 1.0.0)
       json-jwt (>= 1.5.0)
@@ -470,7 +470,7 @@ GEM
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-oauth2 (1.16.0)
+    rack-oauth2 (1.19.0)
       activesupport
       attr_required
       httpclient
@@ -635,7 +635,7 @@ GEM
     stoplight (2.2.1)
     strong_migrations (0.7.9)
       activerecord (>= 5)
-    swd (1.2.0)
+    swd (1.3.0)
       activesupport (>= 3)
       attr_required (>= 0.0.5)
       httpclient (>= 2.4)
@@ -691,7 +691,7 @@ GEM
       safety_net_attestation (~> 0.4.0)
       securecompare (~> 1.0)
       tpm-key_attestation (~> 0.9.0)
-    webfinger (1.1.0)
+    webfinger (1.2.0)
       activesupport
       httpclient (>= 2.4)
     webmock (3.14.0)
@@ -757,7 +757,7 @@ DEPENDENCIES
   fog-core (<= 2.1.0)
   fog-openstack (~> 0.3)
   fuubar (~> 2.5)
-  gitlab-omniauth-openid-connect (~> 0.5.0)
+  gitlab-omniauth-openid-connect (~> 0.9.1)
   hamlit-rails (~> 0.2)
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
