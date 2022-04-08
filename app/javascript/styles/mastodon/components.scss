@@ -1009,6 +1009,43 @@
   .audio-player {
     margin-top: 8px;
   }
+
+  &.light {
+    .status__relative-time,
+    .status__visibility-icon {
+      color: $light-text-color;
+    }
+
+    .status__display-name {
+      color: $inverted-text-color;
+    }
+
+    .display-name {
+      color: $light-text-color;
+
+      strong {
+        color: $inverted-text-color;
+      }
+    }
+
+    .status__content {
+      color: $inverted-text-color;
+
+      a {
+        color: $highlight-text-color;
+      }
+
+      a.status__content__spoiler-link {
+        color: $primary-text-color;
+        background: $ui-primary-color;
+
+        &:hover,
+        &:focus {
+          background: lighten($ui-primary-color, 8%);
+        }
+      }
+    }
+  }
 }
 
 .status__relative-time,
@@ -1153,43 +1190,6 @@
   .video-player,
   .audio-player {
     margin-top: 8px;
-  }
-
-  &.light {
-    .status__relative-time,
-    .status__visibility-icon {
-      color: $light-text-color;
-    }
-
-    .status__display-name {
-      color: $inverted-text-color;
-    }
-
-    .display-name {
-      color: $light-text-color;
-
-      strong {
-        color: $inverted-text-color;
-      }
-    }
-
-    .status__content {
-      color: $inverted-text-color;
-
-      a {
-        color: $highlight-text-color;
-      }
-
-      a.status__content__spoiler-link {
-        color: $primary-text-color;
-        background: $ui-primary-color;
-
-        &:hover,
-        &:focus {
-          background: lighten($ui-primary-color, 8%);
-        }
-      }
-    }
   }
 }
 

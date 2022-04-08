@@ -59,7 +59,7 @@ class Trends::Query
     @records
   end
 
-  delegate :each, :empty?, :first, :last, to: :records
+  delegate :each, :empty?, :first, :last, :size, to: :records
 
   def to_ary
     records.dup
