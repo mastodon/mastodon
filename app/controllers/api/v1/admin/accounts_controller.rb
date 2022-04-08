@@ -65,8 +65,9 @@ class Api::V1::Admin::AccountsController < Api::BaseController
 
   def destroy
     authorize @account, :destroy?
+    json = render_to_body json: @account, serializer: REST::Admin::AccountSerializer
     Admin::AccountDeletionWorker.perform_async(@account.id)
-    render json: @account, serializer: REST::Admin::AccountSerializer
+    render json: json
   end
 
   def unsensitive
