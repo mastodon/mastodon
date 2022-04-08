@@ -22,25 +22,11 @@ class Trends::Statuses < Trends::Base
     private
 
     def apply_scopes(scope)
-      scope.includes(:account)
-    end
-
-    def perform_queries
-      return super if @account.nil?
-
-      statuses        = super
-      account_ids     = statuses.map(&:account_id)
-      account_domains = statuses.map(&:account_domain)
-
-      preloaded_relations = {
-        blocking: Account.blocking_map(account_ids, @account.id),
-        blocked_by: Account.blocked_by_map(account_ids, @account.id),
-        muting: Account.muting_map(account_ids, @account.id),
-        following: Account.following_map(account_ids, @account.id),
-        domain_blocking_by_domain: Account.domain_blocking_map_by_domain(account_domains, @account.id),
-      }
-
-      statuses.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
+      if @account.nil?
+        scope
+      else
+        scope.not_excluded_by_account(@account).not_domain_blocked_by_account(@account)
+      end
     end
   end
 
