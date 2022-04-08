@@ -1,8 +1,7 @@
----
-'no':
+"no":
   about:
-    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
-    about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
+    about_hashtag_html: 'Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.'
+    about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
     about_this: Om
     active_count_after: aktive
     active_footnote: Månedlige aktive brukere (MAU)
@@ -21,7 +20,9 @@
     federation_hint_html: Med en konto på %{instance} vil du kunne følge folk på enhver Mastodon-tjener, og mer til.
     get_apps: Prøv en mobilapp
     hosted_on: Mastodon driftet på %{domain}
-    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
+    instance_actor_flash: |
+      Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. 
+
     learn_more: Lær mer
     privacy_policy: Privatlivsretningslinjer
     rules: Server regler
@@ -602,7 +603,7 @@
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Noen fra %{domain} har rapportert %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
   aliases:
     add_new: Lag et alias
     empty: Du har ingen aliaser.
@@ -892,9 +893,6 @@
       new_followers_summary:
         one: I tillegg har du fått en ny følger mens du var borte. Hurra!
         other: I tillegg har du har fått %{count} nye følgere mens du var borte! Imponerende!
-      subject:
-        one: "1 ny hendelse siden ditt siste besøk 🐘"
-        other: "%{count} nye hendelser siden ditt siste besøk 🐘"
       title: I ditt fravær…
     favourite:
       body: 'Statusen din ble likt av %{name}:'
@@ -1104,7 +1102,7 @@
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg på for å delta i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
       private: Privat
