@@ -272,6 +272,7 @@ eo:
         reject_user_html: "%{name} malakceptis registriĝon de %{target}"
         remove_avatar_user_html: "%{name} forigis profilbildon de %{target}"
         reopen_report_html: "%{name} remalfermis signalon %{target}"
+        update_announcement_html: "%{name} ĝisdatigis anoncon %{target}"
       deleted_status: "(forigita mesaĝo)"
       empty: Neniu protokolo trovita.
       filter_by_action: Filtri per ago
@@ -331,6 +332,8 @@ eo:
       interactions: interago
       media_storage: Aŭdvidaĵa memorilo
       new_users: novaj uzantoj
+      opened_reports: raportoj malfermitaj
+      resolved_reports: raportoj solvitaj
       software: Programo
       space: Memorspaca uzado
       title: Kontrolpanelo
@@ -382,10 +385,22 @@ eo:
       suppressed: Subpremita
       title: Rekomendoj de sekvado
     instances:
+      availability:
+        title: Disponebleco
       back_to_all: Ĉiuj
       back_to_limited: Limigita
       back_to_warning: Averta
       by_domain: Domajno
+      content_policies:
+        policies:
+          reject_reports: Malakcepti raportojn
+      dashboard:
+        instance_accounts_dimension: Plej sekvataj kontoj
+        instance_accounts_measure: konservitaj kontoj
+        instance_followers_measure: niaj sekvantoj tie
+        instance_follows_measure: iliaj sekvantoj ĉi tie
+        instance_reports_measure: raportoj pri ili
+        instance_statuses_measure: konservitaj afiŝoj
       delivery:
         all: Ĉiuj
       delivery_available: Liverado disponeblas
@@ -445,35 +460,42 @@ eo:
     report_notes:
       created_msg: Signala noto sukcese kreita!
       destroyed_msg: Signala noto sukcese forigita!
+      today_at: Hodiaŭ je %{time}
     reports:
       account:
         notes:
           one: "%{count} noto"
           other: "%{count} notoj"
       action_taken_by: Ago farita de
+      add_to_report: Aldoni pli al raporto
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
       assigned: Asignita kontrolanto
       by_target_domain: Domajno de la signalita konto
+      category: Kategorio
       comment:
         none: Nenio
       created_at: Signalita
+      delete_and_resolve: Forigi afiŝojn
       forwarded: Plusendita
       forwarded_to: Plusendita al %{domain}
       mark_as_resolved: Marki solvita
       mark_as_unresolved: Marki nesolvita
+      no_one_assigned: Neniu
       notes:
         create: Aldoni noton
         create_and_resolve: Solvi per noto
         create_and_unresolve: Remalfermi per noto
         delete: Forigi
         placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
+        title: Notoj
       reopen: Remalfermi signalon
       report: 'Signalo #%{id}'
       reported_account: Signalita konto
       reported_by: Signalita de
       resolved: Solvitaj
       resolved_msg: Signalo sukcese solvita!
+      skip_to_actions: Salti al agoj
       status: Mesaĝoj
       title: Signaloj
       unassign: Malasigni
