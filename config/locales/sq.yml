@@ -1,7 +1,6 @@
----
 sq:
   about:
-    about_hashtag_html: Këto janë mesazhe publike të etiketuara me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.
+    about_hashtag_html: 'Këto janë mesazhe publike të etiketuara me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.'
     about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
     about_this: Mbi
     active_count_after: aktive
@@ -57,7 +56,7 @@ sq:
     user_count_before: Shtëpi e
     what_is_mastodon: Ç’është Mastodon-i?
   accounts:
-    choices_html: 'Zgjedhje të %{name}:'
+    choices_html: "Zgjedhje të %{name}:"
     endorsements_hint: Mund t’i mbështesni personat që nga ndërfaqja web, dhe do të shfaqen këtu.
     featured_tags_hint: Mund të zgjidhni hashtag-ë të veçantë që do të shfaqen këtu.
     follow: Ndiqeni
@@ -118,7 +117,7 @@ sq:
       delete: Fshiji të dhënat
       deleted: U fshi
       demote: Zhgradoje
-      destroyed_msg: Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme
+      destroyed_msg: "Të dhënat e %{username} tani janë vënë në radhë për fshirje të menjëhershme"
       disable: Çaktivizoje
       disable_sign_in_token_auth: Çaktivizo mirëfilltësim me token email-i
       disable_two_factor_authentication: Çaktivizoni 2FA-në
@@ -149,7 +148,7 @@ sq:
       media_attachments: Bashkëngjitje media
       memorialize: Shndërroje në përkujtimore
       memorialized: U shndërrua në përkujtimore
-      memorialized_msg: "%{username} u kthye me sukses në një llogari përkujtimore"
+      memorialized_msg: '%{username} u kthye me sukses në një llogari përkujtimore'
       moderation:
         active: Aktiv
         all: Krejt
@@ -566,7 +565,7 @@ sq:
       no_ip_block_selected: S’u ndryshua ndonjë rregull IP, ngaqë s’u përzgjodh ndonjë i tillë
       title: Rregulla IP
     relationships:
-      title: Marrëdhënie të %{acct}
+      title: "Marrëdhënie të %{acct}"
     relays:
       add_new: Shtoni rele të re
       delete: Fshije
@@ -863,7 +862,7 @@ sq:
     new_report:
       body: "%{reporter} ka raportuar %{target}"
       body_remote: Dikush nga %{domain} ka raportuar %{target}
-      subject: Raportim i ri për %{instance} (#%{id})
+      subject: 'Raportim i ri për %{instance} (#%{id})'
     new_trends:
       body: 'Gjërat vijuese lypin një shqyrtim, përpara se të mund të shfaqen publikisht:'
       new_trending_links:
@@ -1030,7 +1029,7 @@ sq:
       created_at: Datuar
       description_html: Këto janë veprime të ndërmara kundër llogarisë tuaj dhe sinjalizime që ju janë dërguar nga stafi i %{instance}.
       recipient: Drejtuar
-      status: "#%{id} postimi"
+      status: '#%{id} postimi'
       status_removed: Postim i hequr tashmë nga sistemi
       title: "%{action} prej %{date}"
       title_actions:
@@ -1228,17 +1227,14 @@ sq:
       new_followers_summary:
         one: Veç kësaj, u bëtë me një ndjekës të ri, teksa s’ishit këtu! Ëhë!
         other: Veç kësaj, u bëtë me %{count} ndjekës të rinj, teksa s’ishit këtu! Shkëlqyeshëm!
-      subject:
-        one: "1 njoftim i ri që nga vizita juaj e fundit 🐘"
-        other: "%{count} njoftime të reja që nga vizita juaj e fundit 🐘"
       title: Gjatë mungesës tuaj…
     favourite:
       body: 'Gjendja juaj u parapëlqye nga %{name}:'
       subject: "%{name} parapëlqeu gjendjen tuaj"
       title: E parapëlqyer e re
     follow:
-      body: Tani ju ndjek %{name}!
-      subject: Tani ju ndjek %{name}
+      body: "Tani ju ndjek %{name}!"
+      subject: "Tani ju ndjek %{name}"
       title: Ndjekës i ri
     follow_request:
       action: Administroni kërkesa ndjekjeje
@@ -1586,7 +1582,7 @@ sq:
       <p>Ky dokument është CC-BY-SA. U përditësua së fundi më 7 mars, 2018.</p>
 
       <p>Përshtatur fillimisht nga <a href="https://github.com/discourse/discourse">rregullat e privatësisë në Discourse</a>.</p>
-    title: Kushte Shërbimi dhe Rregulla Privatësie te %{instance}
+    title: "Kushte Shërbimi dhe Rregulla Privatësie te %{instance}"
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
