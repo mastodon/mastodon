@@ -172,7 +172,6 @@ oc:
       security_measures:
         only_password: Sonque senhal
         password_and_2fa: Senhal e 2FA
-        password_and_sign_in_token: Senhal e geton via mail
       sensitive: Sensible
       sensitized: marcar coma sensible
       shared_inbox_url: URL de recepcion partejada
@@ -814,8 +813,8 @@ oc:
         one: Avètz un nòu seguidor dempuèi vòstra darrièra visita ! Ouà !
         other: Avètz %{count} nòus seguidors dempuèi vòstra darrièra visita ! Qué crane !
       subject:
-        one: "Una nòva notificacion dempuèi vòstra darrièra visita \U0001F418"
-        other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita \U0001F418"
+        one: "Una nòva notificacion dempuèi vòstra darrièra visita 🐘"
+        other: "%{count} nòvas notificacions dempuèi vòstra darrièra visita 🐘"
       title: Pendent vòstra abséncia…
     favourite:
       body: "%{name} a mes vòstre estatut en favorit :"
@@ -1183,7 +1182,6 @@ oc:
   users:
     follow_limit_reached: Podètz pas sègre mai de %{limit} personas
     invalid_otp_token: Còdi d’autentificacion en dos temps invalid
-    invalid_sign_in_token: Còdi de seguretat invalid
     otp_lost_help_html: Se perdatz l’accès al dos, podètz benlèu contactar %{email}
     seamless_external_login: Sètz connectat via un servici extèrn, los paramètres de senhal e de corrièl son doncas pas disponibles.
     signed_in_as: 'Session a :'

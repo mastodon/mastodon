@@ -165,7 +165,7 @@ vi:
       protocol: Giao thức
       public: Công khai
       push_subscription_expires: Đăng ký PuSH hết hạn
-      redownload: Làm mới trang cá nhân
+      redownload: Làm mới trang hồ sơ
       redownloaded_msg: Đã tiếp nhận tài khoản %{username} thành công
       reject: Từ chối
       rejected_msg: Đã từ chối đăng ký tài khoản %{username}
@@ -192,13 +192,12 @@ vi:
       security_measures:
         only_password: Chỉ mật khẩu
         password_and_2fa: Mật khẩu và 2FA
-        password_and_sign_in_token: Mật khẩu và email
       sensitive: Nhạy cảm
       sensitized: Đánh dấu nhạy cảm
       shared_inbox_url: Hộp thư của máy chủ người này
       show:
-        created_reports: Lượt báo cáo
-        targeted_reports: Báo cáo bởi người khác
+        created_reports: Gửi báo cáo
+        targeted_reports: Bị báo cáo
       silence: Ẩn
       silenced: Hạn chế
       statuses: Tút
@@ -225,8 +224,8 @@ vi:
       whitelisted: Danh sách trắng
     action_logs:
       action_types:
-        approve_appeal: Phê duyệt kháng cáo
-        approve_user: Phê duyệt người dùng
+        approve_appeal: Chấp nhận kháng cáo
+        approve_user: Chấp nhận người dùng
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email người dùng
         confirm_user: Xác thực người dùng
@@ -252,7 +251,7 @@ vi:
         disable_custom_emoji: Vô hiệu hóa emoji
         disable_sign_in_token_auth_user: Tắt xác thực bằng email cho người dùng
         disable_user: Vô hiệu hóa đăng nhập
-        enable_custom_emoji: Cho phép Emoji
+        enable_custom_emoji: Cho phép emoji
         enable_sign_in_token_auth_user: Bật xác thực bằng email cho người dùng
         enable_user: Bỏ vô hiệu hóa đăng nhập
         memorialize_account: Đánh dấu tưởng niệm
@@ -272,11 +271,11 @@ vi:
         unsilence_account: Bỏ hạn chế
         unsuspend_account: Bỏ vô hiệu hóa
         update_announcement: Cập nhật thông báo
-        update_custom_emoji: Cập nhật Emoji
+        update_custom_emoji: Cập nhật emoji
         update_domain_block: Cập nhật máy chủ chặn
         update_status: Cập nhật tút
       actions:
-        approve_appeal_html: "%{name} đã phê duyệt quyết định kiểm duyệt từ %{target}"
+        approve_appeal_html: "%{name} đã chấp nhận kháng cáo của %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
         assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
         change_email_user_html: "%{name} đã thay đổi địa chỉ email của %{target}"
@@ -582,11 +581,11 @@ vi:
       action_taken_by: Hành động được thực hiện bởi
       actions:
         delete_description_html: Những tút bị báo cáo sẽ được xóa và 1 lần cảnh cáo sẽ được ghi lại để giúp bạn lưu ý về tài khoản này trong tương lai.
-        mark_as_sensitive_description_html: Media trong báo cáo sẽ bị đánh dấu nhạy cảm và họ nhận 1 lần cảnh cáo.
+        mark_as_sensitive_description_html: Media trong các tút bị báo cáo sẽ được đánh dấu là nhạy cảm và 1 lần cảnh cáo sẽ được ghi lại để giúp bạn nắm bắt nhanh những vi phạm của cùng một tài khoản.
         other_description_html: Những tùy chọn để kiểm soát tài khoản và giao tiếp với tài khoản bị báo cáo.
         resolve_description_html: Không có hành động nào áp dụng đối với tài khoản bị báo cáo, không có cảnh cáo, và báo cáo sẽ được đóng.
-        silence_description_html: Trang cá nhân sẽ chỉ hiển thị với những người đã theo dõi hoặc tìm kiếm thủ công, hạn chế tối đa tầm ảnh hưởng của nó. Có thể đổi lại bình thường sau.
-        suspend_description_html: Trang cá nhân và tất cả các nội dung sẽ không thể truy cập cho đến khi nó bị xóa hoàn toàn. Không thể tương tác với tài khoản. Đảo ngược trong vòng 30 ngày.
+        silence_description_html: Trang hồ sơ sẽ chỉ hiển thị với những người đã theo dõi hoặc tìm kiếm thủ công, hạn chế tối đa tầm ảnh hưởng của nó. Có thể đổi lại bình thường sau.
+        suspend_description_html: Trang hồ sơ và tất cả các nội dung sẽ không thể truy cập cho đến khi nó bị xóa hoàn toàn. Không thể tương tác với tài khoản. Đảo ngược trong vòng 30 ngày.
       actions_description_html: Hướng xử lý báo cáo này. Nếu áp đặt trừng phạt, một email thông báo sẽ được gửi cho họ, ngoại trừ <strong>Spam</strong>.
       add_to_report: Bổ sung báo cáo
       are_you_sure: Bạn có chắc không?
@@ -631,7 +630,7 @@ vi:
       unassign: Bỏ qua
       unresolved: Chờ xử lý
       updated_at: Cập nhật lúc
-      view_profile: Xem trang cá nhân
+      view_profile: Xem trang hồ sơ
     rules:
       add_new: Thêm quy tắc
       delete: Xóa bỏ
@@ -874,7 +873,7 @@ vi:
     remove: Bỏ liên kết bí danh
   appearance:
     advanced_web_interface: Bố cục
-    advanced_web_interface_hint: 'Giao diện nhiều cột cho phép bạn chuyển bố cục hiển thị thành nhiều cột khác nhau. Bao gồm: Bảng tin, thông báo, thế giới, cũng như danh sách và hashtag. Rất thích hợp nếu bạn đang dùng màn hình rộng.'
+    advanced_web_interface_hint: 'Bố cục nhiều cột cho phép bạn chuyển bố cục hiển thị thành nhiều cột khác nhau. Bao gồm: Bảng tin, thông báo, thế giới, cũng như danh sách và hashtag. Thích hợp nếu bạn đang dùng màn hình rộng.'
     animations_and_accessibility: Bảng tin
     confirmation_dialogs: Hộp thoại xác nhận
     discovery: Khám phá
@@ -889,7 +888,7 @@ vi:
     salutation: "%{name},"
     settings: 'Thay đổi tùy chọn email: %{link}'
     view: 'Chi tiết:'
-    view_profile: Xem trang cá nhân
+    view_profile: Xem trang hồ sơ
     view_status: Xem tút
   applications:
     created: Đơn đăng ký được tạo thành công
@@ -920,7 +919,7 @@ vi:
     login: Đăng nhập
     logout: Đăng xuất
     migrate_account: Chuyển sang tài khoản khác
-    migrate_account_html: Nếu bạn muốn bỏ tài khoản này để dùng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập nó ở đây</a>.
+    migrate_account_html: Nếu bạn muốn bỏ tài khoản này để dùng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập tại đây</a>.
     or_log_in_with: Hoặc đăng nhập bằng
     providers:
       cas: CAS
@@ -954,7 +953,7 @@ vi:
     following: Chúc mừng! Bạn đã trở thành người theo dõi
     post_follow:
       close: Bạn có thể đóng cửa sổ này rồi.
-      return: Xem trang cá nhân
+      return: Xem trang hồ sơ
       web: Mở trong Mastodon
     title: Theo dõi %{acct}
   challenge:
@@ -1007,7 +1006,7 @@ vi:
     explore_mastodon: Thành viên %{title}
   disputes:
     strikes:
-      action_taken: Hành động đã thực hiện
+      action_taken: Hành động thực hiện
       appeal: Khiếu nại
       appeal_approved: Khiếu nại đã được chấp nhận và cảnh cáo không còn giá trị
       appeal_rejected: Khiếu nại bị từ chối
@@ -1061,21 +1060,21 @@ vi:
       in_progress: Đang tổng hợp dữ liệu của bạn...
       request: Tải về dữ liệu của bạn
       size: Dung lượng
-    blocks: Người bạn chặn
+    blocks: Người chặn
     bookmarks: Tút đã lưu
     csv: CSV
-    domain_blocks: Máy chủ bạn chặn
+    domain_blocks: Máy chủ chặn
     lists: Danh sách
-    mutes: Người bạn ẩn
+    mutes: Người ẩn
     storage: Tập tin
   featured_tags:
     add_new: Thêm mới
     errors:
       limit: Bạn đã đạt tới số lượng hashtag tối đa
-    hint_html: "<strong>Hashtag thường dùng</strong> là gì? Chúng là những hashtag sẽ được hiển thị nổi bật trên trang cá nhân của bạn, cho phép mọi người tìm kiếm các bài đăng công khai của bạn có chứa các hashtag đó. Tính năng này có thể dùng để đánh dấu chuỗi tác phẩm sáng tạo hoặc dự án dài hạn."
+    hint_html: "<strong>Hashtag thường dùng</strong> là gì? Chúng là những hashtag sẽ được hiển thị nổi bật trên trang hồ sơ của bạn, cho phép mọi người tìm kiếm các bài đăng công khai của bạn có chứa các hashtag đó. Tính năng này có thể dùng để đánh dấu chuỗi tác phẩm sáng tạo hoặc dự án dài hạn."
   filters:
     contexts:
-      account: Trang cá nhân
+      account: Trang hồ sơ
       home: Bảng tin
       notifications: Thông báo
       public: Tin công khai
@@ -1195,9 +1194,9 @@ vi:
       cooldown: Bạn sẽ bị hạn chế chuyển sang tài khoản mới trong thời gian sắp tới
       disabled_account: Tài khoản này sẽ không thể tiếp tục dùng nữa. Tuy nhiên, bạn có quyền truy cập để xuất dữ liệu cũng như kích hoạt lại.
       followers: Hành động này sẽ chuyển tất cả người theo dõi từ tài khoản hiện tại sang tài khoản mới
-      only_redirect_html: Ngoài ra, bạn có thể <a href="%{path}">đặt chuyển hướng trên trang cá nhân của bạn</a>.
+      only_redirect_html: Ngoài ra, bạn có thể <a href="%{path}">đặt chuyển hướng trên trang hồ sơ của bạn</a>.
       other_data: Dữ liệu khác sẽ không được di chuyển tự động
-      redirect: Trang cá nhân hiện tại của bạn sẽ hiển thị thông báo chuyển hướng và bị loại khỏi kết quả tìm kiếm
+      redirect: Trang hồ sơ hiện tại của bạn sẽ hiển thị thông báo chuyển hướng và bị loại khỏi kết quả tìm kiếm
   moderation:
     title: Kiểm duyệt
   move_handler:
@@ -1215,7 +1214,7 @@ vi:
       new_followers_summary:
         other: Ngoài ra, bạn đã có %{count} người theo dõi mới trong khi đi chơi! Ngạc nhiên chưa!
       subject:
-        other: "%{count} thông báo mới kể từ lần truy cập trước \U0001F418"
+        other: "%{count} thông báo mới kể từ lần truy cập trước 🐘"
       title: Khi bạn offline...
     favourite:
       body: Tút của bạn vừa được thích bởi %{name}
@@ -1287,7 +1286,7 @@ vi:
   preferences:
     other: Khác
     posting_defaults: Mặc định cho tút
-    public_timelines: Bảng tin máy chủ
+    public_timelines: Bảng tin
   reactions:
     errors:
       limit_reached: Bạn không nên thao tác liên tục
@@ -1384,7 +1383,7 @@ vi:
     back: Quay lại Mastodon
     delete: Xóa tài khoản
     development: Lập trình
-    edit_profile: Trang cá nhân
+    edit_profile: Sửa hồ sơ
     export: Xuất dữ liệu
     featured_tags: Hashtag thường dùng
     import: Nhập dữ liệu
@@ -1392,7 +1391,7 @@ vi:
     migrate: Chuyển tài khoản sang máy chủ khác
     notifications: Thông báo
     preferences: Chung
-    profile: Trang cá nhân
+    profile: Hồ sơ
     relationships: Quan hệ
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
@@ -1490,7 +1489,7 @@ vi:
 
       <ul>
       <li><em>Thông tin tài khoản cơ bản</em>: Nếu bạn đăng ký trên máy chủ này, bạn phải cung cấp tên người dùng, địa chỉ email và mật khẩu. Bạn cũng có thể tùy chọn bổ sung tên hiển thị, tiểu sử, ảnh đại diện, ảnh bìa. Tên người dùng, tên hiển thị, tiểu sử, ảnh hồ sơ và ảnh bìa luôn được hiển thị công khai.</li>
-      <li><em>Tút, lượt theo dõi và nội dung công khai khác</em>: Danh sách những người bạn theo dõi được liệt kê công khai, cũng tương tự như danh sách những người theo dõi bạn. Khi bạn đăng tút, ngày giờ và ứng dụng sử dụng được lưu trữ. Tút có thể chứa tệp đính kèm hình ảnh và video. Tút công khai và tút mở sẽ hiển thị công khai. Khi bạn đăng một tút trên trang cá nhân của bạn, đó là nội dung công khai. Tút của bạn sẽ gửi đến những người theo dõi của bạn, đồng nghĩa với việc sẽ có các bản sao được lưu trữ ở máy chủ của họ. Khi bạn xóa bài viết, bản sao từ những người theo dõi của bạn cũng bị xóa theo. Hành động chia sẻ hoặc thích một tút luôn luôn là công khai.</li>
+      <li><em>Tút, lượt theo dõi và nội dung công khai khác</em>: Danh sách những người bạn theo dõi được liệt kê công khai, cũng tương tự như danh sách những người theo dõi bạn. Khi bạn đăng tút, ngày giờ và ứng dụng sử dụng được lưu trữ. Tút có thể chứa tệp đính kèm hình ảnh và video. Tút công khai và tút mở sẽ hiển thị công khai. Khi bạn đăng một tút trên trang hồ sơ của bạn, đó là nội dung công khai. Tút của bạn sẽ gửi đến những người theo dõi của bạn, đồng nghĩa với việc sẽ có các bản sao được lưu trữ ở máy chủ của họ. Khi bạn xóa bài viết, bản sao từ những người theo dõi của bạn cũng bị xóa theo. Hành động chia sẻ hoặc thích một tút luôn luôn là công khai.</li>
       <li><em>Tin nhắn và tút dành cho người theo dõi</em>: Toàn bộ tút được lưu trữ và xử lý trên máy chủ. Các tút dành cho người theo dõi được gửi đến những người theo dõi và những người được gắn thẻ trong tút. Còn các tin nhắn chỉ được gửi đến cho người nhận. Điều đó có nghĩa là chúng được gửi đến các máy chủ khác nhau và có các bản sao được lưu trữ ở đó. Chúng tôi đề nghị chỉ cho những người được ủy quyền truy cập vào đó, nhưng không phải máy chủ nào cũng làm như vậy. Do đó, điều quan trọng là phải xem xét kỹ máy chủ của người theo dõi của bạn. Bạn có thể thiết lập tự mình phê duyệt và từ chối người theo dõi mới trong cài đặt. <em>Xin lưu ý rằng quản trị viên máy chủ của bạn và bất kỳ máy chủ của người nhận nào cũng có thể xem các tin nhắn</em>. Người nhận tin nhắn có thể chụp màn hình, sao chép hoặc chia sẻ lại chúng. <em>Không nên chia sẻ bất kỳ thông tin rủi ro nào trên Mastodon.</em></li>
       <li> <em>Địa chỉ IP và siêu dữ liệu khác</em>: Khi bạn đăng nhập, chúng tôi ghi nhớ địa chỉ IP đăng nhập cũng như tên trình duyệt của bạn. Tất cả các phiên đăng nhập sẽ để bạn xem xét và hủy bỏ trong phần cài đặt. Địa chỉ IP sử dụng được lưu trữ tối đa 12 tháng. Chúng tôi cũng có thể giữ lại nhật ký máy chủ bao gồm địa chỉ IP của những lượt đăng ký tài khoản trên máy chủ của chúng tôi. </li>
       </ul><hr class="spacer" />
@@ -1521,7 +1520,7 @@ vi:
       <h3 id="disclose">Chúng tôi có tiết lộ bất cứ thông tin nào ra ngoài không?</h3>
       <p>Chúng tôi không bán, trao đổi hoặc chuyển nhượng thông tin nhận dạng cá nhân của bạn cho bên thứ ba. Trừ khi bên thứ ba đó đang hỗ trợ chúng tôi điều hành Mastodon, tiến hành kinh doanh hoặc phục vụ bạn, miễn là các bên đó đồng ý giữ bí mật thông tin này. Chúng tôi cũng có thể tiết lộ thông tin của bạn nếu việc công bố là để tuân thủ luật pháp, thực thi quy tắc máy chủ của chúng tôi hoặc bảo vệ quyền, tài sản hợp pháp hoặc sự an toàn của chúng tôi hoặc bất kỳ ai.</p>
       <p>Nội dung công khai của bạn có thể được tải xuống bởi các máy chủ khác trong mạng liên hợp. Các tút công khai hay dành cho người theo dõi được gửi đến các máy chủ nơi người theo dõi của bạn là thành viên và tin nhắn được gửi đến máy chủ của người nhận, cho đến khi những người theo dõi hoặc người nhận đó chuyển sang một máy chủ khác.</p>
-      <p>Nếu bạn cho phép một ứng dụng sử dụng tài khoản của mình, tùy thuộc vào phạm vi quyền bạn phê duyệt, ứng dụng có thể truy cập thông tin trang cá nhân, danh sách người theo dõi, danh sách của bạn, tất cả tút và lượt thích của bạn. Các ứng dụng không bao giờ có thể truy cập địa chỉ e-mail hoặc mật khẩu của bạn.</p>
+      <p>Nếu bạn cho phép một ứng dụng sử dụng tài khoản của mình, tùy thuộc vào phạm vi quyền bạn phê duyệt, ứng dụng có thể truy cập thông tin trang hồ sơ, danh sách người theo dõi, danh sách của bạn, tất cả tút và lượt thích của bạn. Các ứng dụng không bao giờ có thể truy cập địa chỉ e-mail hoặc mật khẩu của bạn.</p>
       <hr class="spacer" />
       <h3 id="children">Cấm trẻ em sử dụng</h3>
       <p>Nếu máy chủ này ở EU hoặc EEA: Trang web của chúng tôi, các sản phẩm và dịch vụ đều dành cho những người trên 16 tuổi. Nếu bạn dưới 16 tuổi, xét theo GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Quy định bảo vệ dữ liệu chung</a>) thì không được sử dụng trang web này. </p>
@@ -1559,7 +1558,7 @@ vi:
     webauthn: Khóa bảo mật
   user_mailer:
     appeal_approved:
-      action: Đến trang cá nhân của bạn
+      action: Đến trang hồ sơ của bạn
       explanation: Khiếu nại về tài khoản của bạn vào %{strike_date}, được gửi lúc %{appeal_date} đã được chấp nhận. Tài khoản của bạn đã có thể sử dụng bình thường.
       subject: Khiếu nại của bạn từ %{date} đã được chấp nhận
       title: Khiếu nại đã được chấp nhận
@@ -1571,12 +1570,13 @@ vi:
       explanation: Bạn đã yêu cầu sao lưu toàn bộ tài khoản Mastodon của mình. Bây giờ có thể tải về!
       subject: Dữ liệu cá nhân của bạn đã sẵn sàng để tải về
       title: Nhận dữ liệu cá nhân
-    sign_in_token:
-      details: 'Chi tiết cụ thể:'
-      explanation: 'Tài khoản của bạn vừa đăng nhập từ một địa chỉ IP lạ. Nếu thật là bạn, hãy nhập mã an toàn bên dưới vào trang đăng nhập:'
-      further_actions: 'Nếu không phải là bạn, hãy lập tức thay đổi mật khẩu và kích hoạt xác thực hai bước ở đây:'
-      subject: Xác nhận đăng nhập
-      title: Đăng nhập
+    suspicious_sign_in:
+      change_password: đổi mật khẩu của bạn
+      details: 'Chi tiết thông tin đăng nhập:'
+      explanation: Chúng tôi phát hiện lần đăng nhập bất thường tài khoản của bạn từ một địa chỉ IP mới.
+      further_actions_html: Nếu đó không phải là bạn, chúng tôi khuyến nghị %{action} lập tức và bật xác thực hai bước để giữ tài khoản được an toàn.
+      subject: Đăng nhập tài khoản từ địa chỉ IP mới
+      title: Lần đăng nhập mới
     warning:
       appeal: Gửi khiếu nại
       appeal_description: Nếu bạn nghĩ đây chỉ là nhầm lẫn, hãy gửi một khiếu nại cho %{instance}.
@@ -1601,7 +1601,7 @@ vi:
         silence: Tài khoản %{acct} của bạn đã bị hạn chế
         suspend: Tài khoản %{acct} của bạn đã bị vô hiệu hóa
       title:
-        delete_statuses: Tút đã bị xóa
+        delete_statuses: Xóa tút
         disable: Tài khoản bị đóng băng
         mark_statuses_as_sensitive: Tút đã bị đánh dấu nhạy cảm
         none: Cảnh báo
@@ -1609,8 +1609,8 @@ vi:
         silence: Tài khoản bị hạn chế
         suspend: Tài khoản bị vô hiệu hóa
     welcome:
-      edit_profile_action: Cài đặt trang cá nhân
-      edit_profile_step: Bạn có thể tùy chỉnh trang cá nhân của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn những người theo dõi mới phải được phê duyệt, hãy chuyển tài khoản sang trạng thái khóa.
+      edit_profile_action: Cài đặt trang hồ sơ
+      edit_profile_step: Bạn có thể chỉnh sửa trang hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Nếu bạn muốn tự phê duyệt những người theo dõi mới, hãy chuyển tài khoản sang trạng thái khóa.
       explanation: Dưới đây là một số mẹo để giúp bạn bắt đầu
       final_action: Viết tút mới
       final_step: 'Viết tút mới! Ngay cả khi chưa có người theo dõi, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và trong hashtag. Hãy giới thiệu bản thân với hashtag #introduction.'
@@ -1627,15 +1627,12 @@ vi:
       title: Xin chào %{name}!
   users:
     follow_limit_reached: Bạn chỉ có thể theo dõi tối đa %{limit} người
-    generic_access_help_html: Gặp trục trặc với tài khoản? Liên hệ %{email} để được trợ giúp
     invalid_otp_token: Mã xác thực hai bước không hợp lệ
-    invalid_sign_in_token: Mã an toàn không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập với tư cách là:'
-    suspicious_sign_in_confirmation: Đây là lần đầu tiên bạn đăng nhập trên thiết bị này. Vì vậy, chúng tôi sẽ gửi một mã an toàn đến email của bạn để xác thực danh tính.
   verification:
-    explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các trang web</strong> ở đầu trang cá nhân của bạn. Để xác minh, trang web <strong>phải chèn mã</strong> <code>rel="me"</code>. Văn bản thay thế cho liên kết không quan trọng. Đây là một ví dụ:'
+    explanation_html: 'Bạn có thể <strong>xác minh mình là chủ sở hữu của các trang web</strong> ở đầu trang hồ sơ của bạn. Để xác minh, trang web <strong>phải chèn mã</strong> <code>rel="me"</code>. Văn bản thay thế cho liên kết không quan trọng. Đây là một ví dụ:'
     verification: Xác minh
   webauthn_credentials:
     add: Thêm khóa bảo mật mới

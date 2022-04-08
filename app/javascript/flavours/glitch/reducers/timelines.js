@@ -177,6 +177,17 @@ const updateTop = (state, timeline, top) => {
   }));
 };
 
+const reconnectTimeline = (state, usePendingItems) => {
+  if (state.get('online')) {
+    return state;
+  }
+
+  return state.withMutations(mMap => {
+    mMap.update(usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items);
+    mMap.set('online', true);
+  });
+};
+
 export default function timelines(state = initialState, action) {
   switch(action.type) {
   case TIMELINE_LOAD_PENDING:
@@ -202,7 +213,7 @@ export default function timelines(state = initialState, action) {
   case TIMELINE_SCROLL_TOP:
     return updateTop(state, action.timeline, action.top);
   case TIMELINE_CONNECT:
-    return state.update(action.timeline, initialTimeline, map => map.set('online', true));
+    return state.update(action.timeline, initialTimeline, map => reconnectTimeline(map, action.usePendingItems));
   case TIMELINE_DISCONNECT:
     return state.update(
       action.timeline,

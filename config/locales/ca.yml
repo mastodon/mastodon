@@ -199,7 +199,6 @@ ca:
       security_measures:
         only_password: Només contrasenya
         password_and_2fa: Contrasenya i 2FA
-        password_and_sign_in_token: Contrasenya i token per correu
       sensitive: Sensible
       sensitized: marcar com a sensible
       shared_inbox_url: URL de la safata d'entrada compartida
@@ -1237,8 +1236,8 @@ ca:
         one: A més, has adquirit un nou seguidor durant la teva absència! Visca!
         other: A més, has adquirit %{count} nous seguidors mentre estaves fora! Increïble!
       subject:
-        one: "1 notificació nova des de la darrera visita \U0001F418"
-        other: "%{count} notificacions noves des de la darrera visita \U0001F418"
+        one: "1 notificació nova des de la darrera visita 🐘"
+        other: "%{count} notificacions noves des de la darrera visita 🐘"
       title: Durant la teva absència…
     favourite:
       body: "%{name} ha marcat com a favorit el teu estat:"
@@ -1633,12 +1632,13 @@ ca:
       explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
       subject: El teu arxiu està preparat per a descàrrega
       title: Recollida del arxiu
-    sign_in_token:
-      details: 'Aquí es mostren els detalls del intent:'
-      explanation: 'Hem detectat un intent d’inici de sessió al teu compte des d’una IP desconeguda. Si ets tu, si us plau introdueix el codi de seguretat a sota, en la pàgina de desafiament d’inici de sessió:'
-      further_actions: 'Si no has estat tu, si us plau canvia la contrasenya i activa l’autenticació de dos factors del teu compte. Pots fer-ho aquí:'
-      subject: Si us plau confirma l’intent d’inici de sessió
-      title: Intent d’inici de sessió
+    suspicious_sign_in:
+      change_password: canvia la teva contrasenya
+      details: 'Aquí estan els detalls del inici de sessió:'
+      explanation: Hem detectat un inici de sessió del teu compte des d'una nova adreça IP.
+      further_actions_html: Si no has estat tu, recomanem que tu %{action} immediatament i activis l'autenticació de dos-factors per a mantenir el teu compte segur.
+      subject: El teu compte ha estat accedit des d'una nova adreça IP
+      title: Un nou inici de sessió
     warning:
       appeal: Trametre una apel·lació
       appeal_description: Si creus que això és un error pots emetre una apel·lació al equip de %{instance}.
@@ -1689,13 +1689,10 @@ ca:
       title: Benvingut a bord, %{name}!
   users:
     follow_limit_reached: No pots seguir més de %{limit} persones
-    generic_access_help_html: Problemes accedint al teu compte? Pots contactar amb %{email} per a demanar assistència
     invalid_otp_token: El codi de dos factors no és correcte
-    invalid_sign_in_token: Codi de seguretat invàlid
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
-    suspicious_sign_in_confirmation: Aparentment no has iniciat sessió des d’aquest dispositiu abans i no ho has fet des de fa cert temps per tant t’enviarem un codi de seguretat al teu correu electrònic per a confirmar que ets tu.
   verification:
     explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
     verification: Verificació

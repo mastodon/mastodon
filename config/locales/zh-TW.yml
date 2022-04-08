@@ -192,7 +192,6 @@ zh-TW:
       security_measures:
         only_password: 僅使用密碼
         password_and_2fa: 密碼及二重因素驗證
-        password_and_sign_in_token: 密碼及電子信箱 token 驗證
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
       shared_inbox_url: 共享收件箱網址
@@ -1217,7 +1216,7 @@ zh-TW:
       new_followers_summary:
         other: 此外，您在離開時獲得了 %{count} 位新的追蹤者！超棒的！
       subject:
-        other: "從您上次造訪以來有 %{count} 個新通知 \U0001F418"
+        other: "從您上次造訪以來有 %{count} 個新通知 🐘"
       title: 你不在的時候...
     favourite:
       body: '你的嘟文被 %{name} 加入了最愛:'
@@ -1604,12 +1603,13 @@ zh-TW:
       explanation: 你要求的 Mastodon 帳戶完整備份檔案現已就緒，可供下載!
       subject: 你的備份檔已可供下載
       title: 檔案匯出
-    sign_in_token:
-      details: 以下是嘗試登入的詳細資訊：
-      explanation: 我們偵測到有人試圖從陌生的 IP 位置登入您的帳號。如果這是您，請在「登入確認」頁面輸入安全碼：
-      further_actions: 如果這不是你，請立即到這裡變更你的密碼，並啟用兩步驟驗證：
-      subject: 請確認登入嘗試
-      title: 登入嘗試
+    suspicious_sign_in:
+      change_password: 變更密碼
+      details: 以下是該登入之詳細資訊：
+      explanation: 我們偵測到有新 IP 地址登入您的帳號
+      further_actions_html: 如果這個不是您，我們建議您立即 %{action} ，並且啟用二階段驗證 (2FA) 以確保帳號安全。
+      subject: 您的帳號已被新 IP 地址存取
+      title: 新登入
     warning:
       appeal: 遞交申訴
       appeal_description: 若您認為這是錯誤，您可以向 %{instance} 的工作人員提出申訴。
@@ -1660,13 +1660,10 @@ zh-TW:
       title: "%{name} 歡迎你的加入！"
   users:
     follow_limit_reached: 您無法追蹤多於 %{limit} 個人
-    generic_access_help_html: 存取您的帳號時遇到困難？您可以透過 %{email} 取得協助
     invalid_otp_token: 兩階段認證碼不正確
-    invalid_sign_in_token: 安全碼無效
     otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼與電子郵件。
     signed_in_as: 目前登入的帳戶：
-    suspicious_sign_in_confirmation: 您之前似乎未從此裝置登入過，再加上您也有一段時間沒有登入了，因此我們剛剛傳送了安全碼到您的電子郵件地址以確認真的是您。
   verification:
     explanation_html: 您在 Mastodon 個人資料頁上所列出的連結，可以用此方式<strong>驗證您確實掌控該連結網頁的內容</strong>。您可以在連結的網頁上加上一個連回 Mastodon 個人資料頁的連結，該連結的原始碼 <strong>必須</strong>包含<code>rel="me"</code>屬性。連結的顯示文字可自由發揮，以下為範例：
     verification: 驗證連結

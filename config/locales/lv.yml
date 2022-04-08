@@ -169,6 +169,10 @@ lv:
       pending: Gaida pārskatīšanu
       perform_full_suspension: Apturēt
       previous_strikes: Iepriekšējie brīdinājumi
+      previous_strikes_description_html:
+        one: Šim kontam ir <strong>viens</strong> brīdinājums.
+        other: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
+        zero: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
       promote: Veicināt
       protocol: Protokols
       public: Publisks
@@ -200,7 +204,6 @@ lv:
       security_measures:
         only_password: Tikai parole
         password_and_2fa: Parole un 2FA
-        password_and_sign_in_token: Parole un e-pasta marķieris
       sensitive: Sensitīvs
       sensitized: Atzīmēts kā sensitīvs
       shared_inbox_url: Koplietotās iesūtnes URL
@@ -534,6 +537,10 @@ lv:
       delivery_error_hint: Ja piegāde nav iespējama %{count} dienas, tā tiks automātiski atzīmēta kā nepiegādājama.
       destroyed_msg: Dati no %{domain} tagad ir gaidīšanas rindā, lai tos drīzumā dzēstu.
       empty: Domēni nav atrasti.
+      known_accounts:
+        one: "%{count} zināms konts"
+        other: "%{count} zināmi konti"
+        zero: "%{count} zināmu kontu"
       moderation:
         all: Visas
         limited: Ierobežotās
@@ -604,7 +611,7 @@ lv:
       action_taken_by: Veiktā darbība
       actions:
         delete_description_html: Raksti, par kurām ziņots, tiks dzēsti, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākos pārkāpumus saistībā ar to pašu kontu.
-        mark_as_sensitive_description_html: Mediju faili ziņojumos, par kuriem ziņots, tiks atzīmēti kā sensitīvi, un tiks reģistrēts brīdinājums, lai palīdzētu tev palielināt tā paša konta turpmākās refrakcijas.
+        mark_as_sensitive_description_html: Mediju faili ziņojumos, par kuriem ziņots, tiks atzīmēti kā sensitīvi, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākus pārkāpumus saistībā ar to pašu kontu.
         other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
         resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
         silence_description_html: Profils būs redzams tikai tiem, kas jau tam seko vai manuāli apskata, stingri ierobežojot tās sasniedzamību. Šo vienmēr var atgriezt.
@@ -803,6 +810,10 @@ lv:
         description_html: Šīs ir saites, kuras pašlaik bieži koplieto konti, no kuriem tavs serveris redz ziņas. Tas var palīdzēt taviem lietotājiem uzzināt, kas notiek pasaulē. Kamēr tu neapstiprini izdevēju, neviena saite netiek rādīta publiski. Vari arī atļaut vai noraidīt atsevišķas saites.
         disallow: Neatļaut saiti
         disallow_provider: Neatļaut publicētāju
+        shared_by_over_week:
+          one: Pēdējās nedēļas laikā kopīgoja viena persona
+          other: Pēdējās nedēļas laikā kopīgoja %{count} personas
+          zero: Pēdējās nedēļas laikā kopīgoja %{count} personas
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
       pending_review: Gaida pārskatīšanu
@@ -843,6 +854,10 @@ lv:
         trending_rank: 'Populārākie #%{rank}'
         usable: Var tikt lietots
         usage_comparison: Šodien lietots %{today} reizes, salīdzinot ar %{yesterday} vakar
+        used_by_over_week:
+          one: Pēdējās nedēļas laikā izmantoja viens cilvēks
+          other: Pēdējās nedēļas laikā izmantoja %{count} personas
+          zero: Pēdējās nedēļas laikā izmantoja %{count} personas
       title: Tendences
     warning_presets:
       add_new: Pievienot jaunu
@@ -1241,8 +1256,8 @@ lv:
         other: Turklāt, atrodoties prom, esi ieguvis %{count} jaunus sekotājus! Apbrīnojami!
         zero: "%{count} jaunu sekotāju!"
       subject:
-        one: "1 jauns paziņojums kopš tava pēdējā apmeklējuma \U0001F418"
-        other: "%{count} jauni paziņojumi kopš tava pēdējā apmeklējuma \U0001F418"
+        one: "1 jauns paziņojums kopš tava pēdējā apmeklējuma 🐘"
+        other: "%{count} jauni paziņojumi kopš tava pēdējā apmeklējuma 🐘"
         zero: "%{count} jaunu paziņojumu"
       title: Tavas prombūtnes laikā...
     favourite:
@@ -1656,12 +1671,13 @@ lv:
       explanation: Tu pieprasīji pilnu sava Mastodon konta dublējumu. Tagad tas ir gatavs lejupielādei!
       subject: Tavs arhīvs ir gatavs lejupielādei
       title: Arhīva līdzņemšana
-    sign_in_token:
-      details: 'Šeit ir sīkāka informācija par mēģinājumu:'
-      explanation: 'Mēs atklājām mēģinājumu pierakstīties tavā kontā no neatpazītas IP adreses. Ja tas esi tu, lūdzu, ievadi zemāk esošo drošības kodu pierakstīšanās izaicinājumu lapā:'
-      further_actions: 'Ja tas nebiji tu, lūdzu, nomaini paroli un savā kontā iespējo divfaktoru autentifikāciju. To var izdarīt šeit:'
-      subject: Lūdzu, apstiprini pierakstīšanās mēģinājumu
-      title: Pierakstīšanās mēģinājums
+    suspicious_sign_in:
+      change_password: mainīt paroli
+      details: 'Šeit ir detalizēta informācija par pierakstīšanos:'
+      explanation: Esam konstatējuši pierakstīšanos tavā kontā no jaunas IP adreses.
+      further_actions_html: Ja tas nebiji tu, iesakām nekavējoties %{action} un iespējot divu faktoru autentifikāciju, lai tavs konts būtu drošībā.
+      subject: Tavam kontam ir piekļūts no jaunas IP adreses
+      title: Jauna pierakstīšanās
     warning:
       appeal: Iesniegt apelāciju
       appeal_description: Ja uzskatāt, ka tā ir kļūda, varat iesniegt apelāciju %{instance} darbiniekiem.
@@ -1712,13 +1728,10 @@ lv:
       title: Laipni lūgts uz borta, %{name}!
   users:
     follow_limit_reached: Tu nevari sekot vairāk par %{limit} cilvēkiem
-    generic_access_help_html: Vai nevari piekļūt savam kontam? Lai saņemtu palīdzību, tu vari sazināties ar %{email}
     invalid_otp_token: Nederīgs divfaktora kods
-    invalid_sign_in_token: Nederīgs drošības kods
     otp_lost_help_html: Ja esi zaudējis piekļuvi abiem, tu vari sazināties ar %{email}
     seamless_external_login: Tu esi pieteicies, izmantojot ārēju pakalpojumu, tāpēc paroles un e-pasta iestatījumi nav pieejami.
     signed_in_as: 'Pierakstījies kā:'
-    suspicious_sign_in_confirmation: Šķiet, ka tu iepriekš neesi pieteicies no šīs ierīces, tāpēc mēs nosūtām drošības kodu uz tavu e-pasta adresi, lai apstiprinātu, ka tas esi tu.
   verification:
     explanation_html: 'Tu vari <strong>apstiprināt sevi kā sava profila metadatos esošo saišu īpašnieku</strong>. Lai to izdarītu, saistītajā vietnē ir jābūt saitei uz tavu Mastodon profilu. Atpakaļsaitē <strong>jābūt</strong> atribūtam <code>rel="me"</code>. Saites teksta saturam nav nozīmes. Šeit ir piemērs:'
     verification: Pārbaude

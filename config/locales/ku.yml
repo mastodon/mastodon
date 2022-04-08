@@ -199,7 +199,6 @@ ku:
       security_measures:
         only_password: Têne borînpeyv
         password_and_2fa: Borînpeyv û 2FA
-        password_and_sign_in_token: Borînpeyv û navnîşana e-nameyê
       sensitive: Hêz-hestiyar
       sensitized: Wek hestiyar hatiye nîşankirin
       shared_inbox_url: URLya wergirtiyên parvekirî
@@ -1239,8 +1238,8 @@ ku:
         one: Herwiha, dema tu dûr bûyî te şopînerek nû bi dest xist! Bijî!
         other: Herwiha, dema tu dûr bûyî te %{count} şopînerek nû bi dest xist! Bijî!
       subject:
-        one: "1 agahdarî ji serdana te ya herî dawî ji \U0001F418"
-        other: "%{count} agahdarî ji serdana te ya herî dawî ji \U0001F418"
+        one: "1 agahdarî ji serdana te ya herî dawî ji 🐘"
+        other: "%{count} agahdarî ji serdana te ya herî dawî ji 🐘"
       title: Di tunebûna te de...
     favourite:
       body: 'Şandiya te hate bijartin ji alî %{name} ve:'
@@ -1635,12 +1634,10 @@ ku:
       explanation: Te yedekîya tijê ya ajimêrê xwe Mastodonê xwest. Niha ji daxistinê re amade ye!
       subject: Arşîva te amede ye bo daxistinê
       title: Pakêtkirina arşîvan
-    sign_in_token:
-      details: 'Li vir hûrgiliyên hewldanê hene:'
-      explanation: 'Me hewildanek têketina ajimêra te ji navnîşana IP ya nenas destnîşan kir. Ger ev tu bî, ji kerema xwe koda ewlehiyê ya jêr binivîsîne di rûpela jêpirsînê de:'
-      further_actions: 'Ku ev ne tu bî, ji kerema xwe re borînpeyva xwe biguherîne û li ser ajimêra xwe rastkirina du-gavî çalak bike. Tu dikarî wê ji vê derê çê bikî:'
-      subject: Ji kerema xwe re hewldanên têketinê piştrast bike
-      title: Hewldanên têketinê
+    suspicious_sign_in:
+      change_password: borînpeyva xwe biguherîne
+      details: 'Li vir hûrgiliyên hewldanên têketinê hene:'
+      title: Têketineke nû
     warning:
       appeal: Îtîrazekê bişîne
       appeal_description: Heke tu bawer dikî ku ev şaşetiyeke, tu dikarî îtîrazekê ji karmendên %{instance} re bişînî.
@@ -1691,13 +1688,10 @@ ku:
       title: Bi xêr hatî, %{name}!
   users:
     follow_limit_reached: Tu nikarî zêdetirî %{limit} kesan bişopînî
-    generic_access_help_html: Di gihîştina ajimêrê te de pirsgirêk heye? Tu dikarî ji bo alîkariyê bi %{email} re têkilî deyne
     invalid_otp_token: Koda du-gavî ya nelê
-    invalid_sign_in_token: Kilîda ewlehiyê a nelê
     otp_lost_help_html: Heke te gihîştina herduyan ji dest da, dibe ku tu bi %{email} re têkilî deyne
     seamless_external_login: Te bi rajekarke biyanî re têketina xwe kir, ji ber vê yekê borînpeyv û e-name nayê bikaranîn.
     signed_in_as: 'Têketin wekî:'
-    suspicious_sign_in_confirmation: Xuya dike ku te berê têketin ji vê amûrê nekiriye, ji ber vê yekê em kodeke ewlehiyê ji navnîşana e-nameya te re dişînin da ku piştrast bikî ku tu ye an na.
   verification:
     explanation_html: 'Tu dikarî <strong>xwe wekî xwediyê girêdanên li daneyê meta profîla xwe piştrast bikî</strong>. Ji bo vê, hewceye girêda malperê di nav profîla te ya mastodonê de girêdanekî paş hebe. Girêdana paş<strong>hewceye</strong> taybetîyek <code>rel="me"</code>hebe. Naveroka nivîsa girêdanê ne girîng e. Ev jî mînakek e:'
     verification: Piştrastkirin

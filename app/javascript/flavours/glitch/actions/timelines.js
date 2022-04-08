@@ -138,6 +138,22 @@ export function expandTimeline(timelineId, path, params = {}, done = noOp) {
   };
 };
 
+export function fillTimelineGaps(timelineId, path, params = {}, done = noOp) {
+  return (dispatch, getState) => {
+    const timeline = getState().getIn(['timelines', timelineId], ImmutableMap());
+    const items = timeline.get('items');
+    const nullIndexes = items.map((statusId, index) => statusId === null ? index : null);
+    const gaps = nullIndexes.map(index => index > 0 ? items.get(index - 1) : null);
+
+    // Only expand at most two gaps to avoid doing too many requests
+    done = gaps.take(2).reduce((done, maxId) => {
+      return (() => dispatch(expandTimeline(timelineId, path, { ...params, maxId }, done)));
+    }, done);
+
+    done();
+  };
+}
+
 export const expandHomeTimeline            = ({ maxId } = {}, done = noOp) => expandTimeline('home', '/api/v1/timelines/home', { max_id: maxId }, done);
 export const expandPublicTimeline          = ({ maxId, onlyMedia, onlyRemote, allowLocalOnly } = {}, done = noOp) => expandTimeline(`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, allow_local_only: !!allowLocalOnly, max_id: maxId, only_media: !!onlyMedia }, done);
 export const expandCommunityTimeline       = ({ maxId, onlyMedia } = {}, done = noOp) => expandTimeline(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, max_id: maxId, only_media: !!onlyMedia }, done);
@@ -155,6 +171,11 @@ export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = 
     local: local,
   }, done);
 };
+
+export const fillHomeTimelineGaps      = (done = noOp) => fillTimelineGaps('home', '/api/v1/timelines/home', {}, done);
+export const fillPublicTimelineGaps    = ({ onlyMedia, onlyRemote, allowLocalOnly } = {}, done = noOp) => fillTimelineGaps(`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, only_media: !!onlyMedia, allow_local_only: !!allowLocalOnly }, done);
+export const fillCommunityTimelineGaps = ({ onlyMedia } = {}, done = noOp) => fillTimelineGaps(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, only_media: !!onlyMedia }, done);
+export const fillListTimelineGaps      = (id, done = noOp) => fillTimelineGaps(`list:${id}`, `/api/v1/timelines/list/${id}`, {}, done);
 
 export function expandTimelineRequest(timeline, isLoadingMore) {
   return {
@@ -199,6 +220,7 @@ export function connectTimeline(timeline) {
   return {
     type: TIMELINE_CONNECT,
     timeline,
+    usePendingItems: preferPendingItems,
   };
 };
 
