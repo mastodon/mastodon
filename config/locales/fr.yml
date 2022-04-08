@@ -199,7 +199,6 @@ fr:
       security_measures:
         only_password: Mot de passe uniquement
         password_and_2fa: Mot de passe et 2FA
-        password_and_sign_in_token: Mot de passe et jeton par courriel
       sensitive: Sensible
       sensitized: marqué comme sensible
       shared_inbox_url: URL de la boite de réception partagée
@@ -1234,8 +1233,8 @@ fr:
         one: De plus, vous avez un·e nouvel·le abonné·e ! Youpi !
         other: De plus, vous avez %{count} abonné·e·s de plus ! Incroyable !
       subject:
-        one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
-        other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
+        one: "Une nouvelle notification depuis votre dernière visite 🐘"
+        other: "%{count} nouvelles notifications depuis votre dernière visite 🐘"
       title: Pendant votre absence…
     favourite:
       body: "%{name} a ajouté votre message à ses favoris :"
@@ -1630,12 +1629,11 @@ fr:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
       title: Récupération de l’archive
-    sign_in_token:
-      details: 'Voici les détails de la tentative :'
-      explanation: 'Nous avons détecté une tentative de connexion à votre compte à partir d’une adresse IP non reconnue. Si c’est vous, veuillez entrer le code de sécurité ci-dessous sur la page de négociation de connexion :'
-      further_actions: 'S’il ne s’agit pas de vous, veuillez changer votre mot de passe et activer l’authentification à deux facteurs sur votre compte. Vous pouvez le faire ici :'
-      subject: Veuillez confirmer la tentative de connexion
-      title: Tentative de connexion
+    suspicious_sign_in:
+      change_password: changer votre mot de passe
+      explanation: Nous avons détecté une connexion à votre compte à partir d’une nouvelle adresse IP.
+      further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
+      title: Une nouvelle connexion
     warning:
       appeal: Faire appel
       appeal_description: Si vous pensez qu'il s'agit d'une erreur, vous pouvez faire appel auprès de l'équipe de %{instance}.
@@ -1686,13 +1684,10 @@ fr:
       title: Bienvenue à bord, %{name} !
   users:
     follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
-    generic_access_help_html: Rencontrez-vous des difficultés d’accès à votre compte ? Vous pouvez contacter %{email} pour obtenir de l’aide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
-    invalid_sign_in_token: Code de sécurité non valide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
-    suspicious_sign_in_confirmation: Il semblerait que vous ne vous êtes pas connecté depuis cet appareil auparavant et que vous ne vous êtes pas connecté depuis un moment, alors nous envoyons un code de sécurité à votre adresse courriel pour confirmer qu’il s’agit bien de vous.
   verification:
     explanation_html: 'Vous pouvez <strong>vous vérifier en tant que propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong> avoir un attribut <code>rel="me"</code> . Le texte du lien n’a pas d’importance. Voici un exemple :'
     verification: Vérification

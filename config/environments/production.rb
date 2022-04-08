@@ -95,10 +95,11 @@ Rails.application.configure do
 
   config.action_mailer.default_options = {
     from: outgoing_email_address,
-    reply_to: ENV['SMTP_REPLY_TO'],
-    return_path: ENV['SMTP_RETURN_PATH'],
     message_id: -> { "<#{Mail.random_tag}@#{outgoing_email_domain}>" },
   }
+
+  config.action_mailer.default_options[:reply_to]    = ENV['SMTP_REPLY_TO'] if ENV['SMTP_REPLY_TO'].present?
+  config.action_mailer.default_options[:return_path] = ENV['SMTP_RETURN_PATH'] if ENV['SMTP_RETURN_PATH'].present?
 
   config.action_mailer.smtp_settings = {
     :port                 => ENV['SMTP_PORT'],

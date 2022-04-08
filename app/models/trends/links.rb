@@ -30,7 +30,6 @@ class Trends::Links < Trends::Base
   def refresh(at_time = Time.now.utc)
     preview_cards = PreviewCard.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq)
     calculate_scores(preview_cards, at_time)
-    trim_older_items
   end
 
   def request_review
@@ -101,6 +100,8 @@ class Trends::Links < Trends::Base
       })
     end
 
+    trim_older_items
+
     # Clean up localized sets by calculating the intersection with the main
     # set. We do this instead of just deleting the localized sets to avoid
     # having moments where the API returns empty results
@@ -108,7 +109,7 @@ class Trends::Links < Trends::Base
     redis.pipelined do
       Trends.available_locales.each do |locale|
         redis.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
-        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:allowed"], aggregate: 'max')
       end
     end
   end

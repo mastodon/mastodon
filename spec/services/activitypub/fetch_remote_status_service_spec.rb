@@ -195,7 +195,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
       let(:existing_status) { Fabricate(:status, account: sender, text: 'Foo', uri: note[:id]) }
 
       context 'with a Note object' do
-        let(:object) { note }
+        let(:object) { note.merge(updated: '2021-09-08T22:39:25Z') }
 
         it 'updates status' do
           existing_status.reload
@@ -211,7 +211,7 @@ RSpec.describe ActivityPub::FetchRemoteStatusService, type: :service do
             id: "https://#{valid_domain}/@foo/1234/create",
             type: 'Create',
             actor: ActivityPub::TagManager.instance.uri_for(sender),
-            object: note,
+            object: note.merge(updated: '2021-09-08T22:39:25Z'),
           }
         end
 
