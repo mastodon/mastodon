@@ -1,7 +1,6 @@
----
 hu:
   about:
-    about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> hashtaggel ellátott nyilvános bejegyzések. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
+    about_hashtag_html: 'Ezek a <strong>#%{hashtag}</strong> hashtaggel ellátott nyilvános bejegyzések. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.'
     about_mastodon_html: 'A jövő közösségi hálózata: Hirdetések és céges megfigyelés nélkül, etikus dizájnnal és decentralizációval! Legyél a saját adataid ura a Mastodonnal!'
     about_this: Névjegy
     active_count_after: aktív
@@ -21,7 +20,7 @@ hu:
     documentation: Dokumentáció
     federation_hint_html: Egy %{instance} fiókkal bármely más Mastodon szerveren vagy a föderációban lévő felhasználót követni tudsz.
     get_apps: Próbálj ki egy mobil appot
-    hosted_on: "%{domain} Mastodon szerver"
+    hosted_on: '%{domain} Mastodon szerver'
     instance_actor_flash: |
       Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét
       felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni, hacsak nem akarod a teljes szervert kitiltani, mely esetben a domain tiltásának használata javasolt.
@@ -44,11 +43,11 @@ hu:
     unavailable_content_description:
       domain: Szerver
       reason: 'Indok:'
-      rejecting_media: A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.
+      rejecting_media: 'A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.'
       rejecting_media_title: Kiszűrt média
       silenced: 'Az ezen szerverekről származó bejegyzéseket elrejtjük a nyilvános idővonalakról és beszélgetésekből, a rajtuk lévő felhasználók műveleteiről nem küldünk értesítéseket, hacsak nem követed őket:'
       silenced_title: Elnémított szerverek
-      suspended: Nem fogsz tudni követni senkit ebből a szerverből, és nem kerül feldolgozásra vagy tárolásra a tőle származó adat, és nincs adatcsere.
+      suspended: 'Nem fogsz tudni követni senkit ebből a szerverből, és nem kerül feldolgozásra vagy tárolásra a tőle származó adat, és nincs adatcsere.'
       suspended_title: Felfüggesztett szerverek
     unavailable_content_html: A Mastodon általában mindenféle tartalomcserét és interakciót lehetővé tesz bármelyik szerverrel a fediverzumban. Ezek azok a kivételek, melyek a mi szerverünkön érvényben vannak.
     user_count_after:
@@ -65,9 +64,7 @@ hu:
       one: Követő
       other: Követő
     following: Követett
-    instance_actor_flash: |-
-      Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét
-      felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni.
+    instance_actor_flash: "Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét\nfelhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni."
     joined: Csatlakozott %{date}
     last_active: utoljára aktív
     link_verified_on: 'A hivatkozás tulajdonosa ekkor volt ellenőrizve: %{date}'
@@ -75,8 +72,8 @@ hu:
     moved_html: "%{name} ide költözött: %{new_profile_link}"
     network_hidden: Ez az információ nem elérhető
     nothing_here: Nincs itt semmi!
-    people_followed_by: "%{name} követettjei"
-    people_who_follow: "%{name} követői"
+    people_followed_by: '%{name} követettjei'
+    people_who_follow: '%{name} követői'
     pin_errors:
       following: Ehhez szükséges, hogy kövesd már a felhasználót
     posts:
@@ -94,7 +91,7 @@ hu:
   admin:
     account_actions:
       action: Művelet végrehajtása
-      title: "%{acct} moderálása"
+      title: '%{acct} moderálása'
     account_moderation_notes:
       create: Új moderációs bejegyzés
       created_msg: Moderációs bejegyzés létrehozva!
@@ -112,7 +109,7 @@ hu:
         label: E-mail megváltoztatása
         new_email: Új e-mail
         submit: E-mail megváltoztatása
-        title: "%{username} felhasználó e-mail változás"
+        title: '%{username} felhasználó e-mail változás'
       confirm: Megerősítés
       confirmed: Megerősítve
       confirming: Megerősítés alatt
@@ -120,7 +117,7 @@ hu:
       delete: Adatok törlése
       deleted: Törölve
       demote: Lefokozás
-      destroyed_msg: A %{username} fiók adatai bekerültek a végleges törlése váró sorba
+      destroyed_msg: "A %{username} fiók adatai bekerültek a végleges törlése váró sorba"
       disable: Kikapcsolás
       disable_sign_in_token_auth: Tokenes e-mail hitelesítés letiltása
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
@@ -175,7 +172,7 @@ hu:
       public: Nyilvános
       push_subscription_expires: A PuSH feliratkozás elévül
       redownload: Profilkép frissítése
-      redownloaded_msg: "%{username} profilját sikeresen frissítettük az eredetiből"
+      redownloaded_msg: '%{username} profilját sikeresen frissítettük az eredetiből'
       reject: Elutasítás
       rejected_msg: A %{username} fiók regisztrációs kérelmét sikeresen elutasítottuk
       remove_avatar: Profilkép eltávolítása
@@ -435,7 +432,7 @@ hu:
         create: Tiltás létrehozása
         hint: A domain tiltása nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
-          desc_html: A <strong>Némítás</strong> elrejti az adott felhasználó bejegyzéseit mindenki elől, aki nem követi őt. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani.
+          desc_html: "A <strong>Némítás</strong> elrejti az adott felhasználó bejegyzéseit mindenki elől, aki nem követi őt. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani."
           noop: Egyik sem
           silence: Némítás
           suspend: Felfüggesztés
@@ -634,7 +631,7 @@ hu:
       quick_actions_description_html: 'Hozz egy gyors intézkedést, vagy görgess le a bejelentett tartalomhoz:'
       remote_user_placeholder: 'a távoli felhasználó innen: %{instance}'
       reopen: Bejelentés újranyitása
-      report: "#%{id} számú jelentés"
+      report: '#%{id} számú jelentés'
       reported_account: Bejelentett fiók
       reported_by: 'Jelentette:'
       resolved: Megoldott
@@ -800,9 +797,9 @@ hu:
         disallow_provider: Közzétevő letiltása
         shared_by_over_week:
           one: Egy ember osztotta meg a múlt héten
-          other: "%{count} ember osztotta meg a múlt héten"
+          other: '%{count} ember osztotta meg a múlt héten'
         title: Felkapott hivatkozások
-        usage_comparison: "%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest"
+        usage_comparison: '%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest'
       pending_review: Áttekintésre vár
       preview_card_providers:
         allowed: A közzétevő hivatkozásai felkapottak lehetnek
@@ -837,12 +834,12 @@ hu:
         peaked_on_and_decaying: 'Ekkor volt a csúcson: %{date}, most hanyatlik'
         title: Felkapott hashtagek
         trendable: Megjelenhet a trendek alatt
-        trending_rank: "%{rank}. felkapott"
+        trending_rank: '%{rank}. felkapott'
         usable: Használható
-        usage_comparison: "%{today} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest"
+        usage_comparison: '%{today} alkalommal lett ma használva, a tegnapi %{yesterday} alkalomhoz képest'
         used_by_over_week:
           one: Egy ember használta a múlt héten
-          other: "%{count} ember használta a múlt héten"
+          other: '%{count} ember használta a múlt héten'
       title: Trendek
     warning_presets:
       add_new: Új hozzáadása
@@ -976,7 +973,7 @@ hu:
       close: Akár be is zárhatod ezt az ablakot.
       return: A felhasználó profiljának mutatása
       web: Megtekintés a weben
-    title: "%{acct} követése"
+    title: '%{acct} követése'
   challenge:
     confirm: Folytatás
     hint_html: "<strong>Hasznos:</strong> Nem fogjuk megint a jelszavadat kérdezni a következő órában."
@@ -1024,7 +1021,7 @@ hu:
   directories:
     directory: Profilok
     explanation: Találj másokra érdeklődésük alapján
-    explore_mastodon: "%{title} felfedezése"
+    explore_mastodon: '%{title} felfedezése'
   disputes:
     strikes:
       action_taken: Intézkedés
@@ -1237,9 +1234,6 @@ hu:
       new_followers_summary:
         one: Sőt, egy új követőd is lett, amióta nem jártál itt. Hurrá!
         other: Sőt, %{count} új követőd is lett, amióta nem jártál itt. Hihetetlen!
-      subject:
-        one: "Egy új értesítésed érkezett legutóbbi látogatásod óta 🐘"
-        other: "%{count} új értesítésed érkezett legutóbbi látogatásod óta 🐘"
       title: Amíg távol voltál…
     favourite:
       body: 'A bejegyzésedet kedvencnek jelölte %{name}:'
@@ -1256,11 +1250,11 @@ hu:
       title: Új követési kérelem
     mention:
       action: Válasz
-      body: "%{name} megemlített téged:"
-      subject: "%{name} megemlített téged"
+      body: '%{name} megemlített téged:'
+      subject: '%{name} megemlített téged'
       title: Új említés
     poll:
-      subject: "%{name} szavazása véget ért"
+      subject: '%{name} szavazása véget ért'
     reblog:
       body: 'A bejegyzésedet %{name} megtolta:'
       subject: "%{name} megtolta a bejegyzésedet"
@@ -1463,7 +1457,7 @@ hu:
     show_older: Régebbiek mutatása
     show_thread: Szál mutatása
     sign_in_to_participate: Jelentkezz be, hogy részt vehess a beszélgetésben
-    title: "%{name}: „%{quote}”"
+    title: '%{name}: „%{quote}”'
     visibilities:
       direct: Közvetlen
       private: Csak követőknek
@@ -1694,7 +1688,7 @@ hu:
     invalid_otp_token: Érvénytelen ellenőrző kód
     otp_lost_help_html: Ha mindkettőt elvesztetted, kérhetsz segítséget itt %{email}
     seamless_external_login: Külső szolgáltatáson keresztül jelentkeztél be, így a jelszó és e-mail beállítások nem elérhetőek.
-    signed_in_as: Bejelentkezve mint
+    signed_in_as: 'Bejelentkezve mint'
   verification:
     explanation_html: 'A profilodon <strong>hitelesítheted magad, mint az itt található linkek tulajdonosa</strong>. Ehhez a linkelt weboldalnak tartalmaznia kell egy linket vissza a Mastodon profilodra. Ennek <strong>tartalmaznia kell</strong> a <code>rel="me"</code> attribútumot. A link szövege bármi lehet. Itt egy példa:'
     verification: Hitelesítés
