@@ -1,8 +1,7 @@
----
 sr-Latn:
   about:
-    about_hashtag_html: Ovo su javni statusi tagovani sa <strong>#%{hashtag}</strong>. Možete odgovarati na njih ako imate nalog bilo gde u fediversu.
-    about_mastodon_html: Mastodont je društvena mreža bazirana na otvorenim protokolima i slobodnom softveru otvorenog koda. Decentralizovana je kao što je decentralizovana e-pošta.
+    about_hashtag_html: 'Ovo su javni statusi tagovani sa <strong>#%{hashtag}</strong>. Možete odgovarati na njih ako imate nalog bilo gde u fediversu.'
+    about_mastodon_html: 'Mastodont je društvena mreža bazirana na otvorenim protokolima i slobodnom softveru otvorenog koda. Decentralizovana je kao što je decentralizovana e-pošta.'
     about_this: O instanci
     contact: Kontakt
     contact_missing: Nije postavljeno
@@ -213,7 +212,7 @@ sr-Latn:
   admin_mailer:
     new_report:
       body: "%{reporter} je prijavio %{target}"
-      subject: Nova prijava za %{instance} (#%{id})
+      subject: 'Nova prijava za %{instance} (#%{id})'
   application_mailer:
     settings: 'Promeni podešavanja e-pošte: %{link}'
     view: 'Pogledaj:'
@@ -269,7 +268,7 @@ sr-Latn:
     '404': Strana koju ste tražili ne postoji.
     '406': This page is not available in the requested format.
     '410': Strana koju ste tražili više ne postoji.
-    '422': 
+    '422':
     '429': Uspored
     '500':
       content: Izvinjavamo se, nešto je pošlo po zlu sa ove strane.
@@ -284,8 +283,8 @@ sr-Latn:
     changes_saved_msg: Izmene uspešno sačuvane!
     save_changes: Snimi izmene
     validation_errors:
-      few: Nešto nije baš kako treba! Pregledajte %{count} greške ispod
       one: Nešto nije baš kako treba! Pregledajte greške ispod
+      few: Nešto nije baš kako treba! Pregledajte %{count} greške ispod
       other: Nešto nije baš kako treba! Pregledajte %{count} grešaka ispod
   imports:
     preface: Možete uvesti podatke koje ste izvezli sa druge instance, kao što su liste ljudi koje ste pratili ili blokirali.
@@ -308,8 +307,8 @@ sr-Latn:
     expires_in_prompt: Nikad
     generate: Generiši
     max_uses:
-      few: "%{count} korišćenja"
       one: 1 korišćenje
+      few: "%{count} korišćenja"
       other: "%{count} korišćenja"
     max_uses_prompt: Bez ograničenja
     prompt: Generiši i podeli linkove sa drugima da im odobrite pristup ovoj instanci
@@ -333,15 +332,11 @@ sr-Latn:
       body: Evo kratak pregled šta ste propustili od poslednje posete od %{since}
       mention: "%{name} Vas je pomenuo u:"
       new_followers_summary:
-        few: Dobili ste %{count} nova pratioca! Sjajno!
         one: Dobili ste jednog novog pratioca! Jeee!
+        few: Dobili ste %{count} nova pratioca! Sjajno!
         other: Dobili ste %{count} novih pratioca! Sjajno!
-      subject:
-        few: "%{count} nova obaveštenja od poslednje posete 🐘"
-        one: "1 novo obaveštenje od poslednje posete 🐘"
-        other: "%{count} novih obaveštenja od poslednje posete 🐘"
     favourite:
-      body: "%{name} je postavio kao omiljen Vaš status:"
+      body: '%{name} je postavio kao omiljen Vaš status:'
       subject: "%{name} je postavio kao omiljen Vaš status"
     follow:
       body: "%{name} Vas je zapratio!"
@@ -350,10 +345,10 @@ sr-Latn:
       body: "%{name} je zatražio da Vas zaprati"
       subject: 'Pratioci na čekanju: %{name}'
     mention:
-      body: "%{name} Vas je pomenuo u:"
-      subject: "%{name} Vas je pomenuo"
+      body: '%{name} Vas je pomenuo u:'
+      subject: '%{name} Vas je pomenuo'
     reblog:
-      body: "%{name} Vam je podržao(la) status:"
+      body: '%{name} Vam je podržao(la) status:'
       subject: "%{name} je podržao(la) Vaš status"
   pagination:
     next: Sledeći
@@ -422,7 +417,7 @@ sr-Latn:
     reblogged: podržano
     sensitive_content: Osetljiv sadržaj
   terms:
-    title: Uslovi korišćenja i politika privatnosti instance %{instance}
+    title: "Uslovi korišćenja i politika privatnosti instance %{instance}"
   themes:
     default: Mastodont
   two_factor_authentication:
