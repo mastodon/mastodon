@@ -165,6 +165,9 @@ pt-PT:
       pending: Pendente de revisão
       perform_full_suspension: Fazer suspensão completa
       previous_strikes: Punições anteriores
+      previous_strikes_description_html:
+        one: Esta conta tem <strong>1</strong> punição.
+        other: Esta conta tem <strong>%{count}</strong> punições.
       promote: Promover
       protocol: Protocolo
       public: Público
@@ -196,7 +199,6 @@ pt-PT:
       security_measures:
         only_password: Apenas palavra-passe
         password_and_2fa: Palavra-passe e 2FA
-        password_and_sign_in_token: Palavra-passe e token por e-mail
       sensitive: Marcar como sensível
       sensitized: marcada como sensível
       shared_inbox_url: URL da caixa de entrada compartilhada
@@ -523,6 +525,9 @@ pt-PT:
       delivery_error_hint: Se a entrega não for possível durante %{count} dias, será automaticamente marcada como não realizável.
       destroyed_msg: Dados de %{domain} estão agora na fila para iminente eliminação.
       empty: Não foram encontrados domínios.
+      known_accounts:
+        one: "%{count} conta conhecida"
+        other: "%{count} contas conhecidas"
       moderation:
         all: Todas
         limited: Limitadas
@@ -791,6 +796,9 @@ pt-PT:
         description_html: Estes são links que atualmente estão a ser frequentemente partilhados por contas visiveis pelo seu servidor. Eles podem ajudar os seus utilizador a descobrir o que está a acontecer no mundo. Nenhum link é exibido publicamente até que aprove o editor. Também pode permitir ou rejeitar links individualmente.
         disallow: Não permitir link
         disallow_provider: Não permitir editor
+        shared_by_over_week:
+          one: Partilhado por uma pessoa na última semana
+          other: Partilhado por %{count} pessoas na última semana
         title: Links em destaque
         usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
       pending_review: Pendente de revisão
@@ -830,6 +838,9 @@ pt-PT:
         trending_rank: 'Tendência #%{rank}'
         usable: Pode ser utilizada
         usage_comparison: Utilizada %{today} vezes hoje, em comparação com %{yesterday} ontem
+        used_by_over_week:
+          one: Utilizada por uma pessoa na última semana
+          other: Utilizada por %{count} pessoas na última semana
       title: Tendências
     warning_presets:
       add_new: Adicionar novo
@@ -1621,12 +1632,6 @@ pt-PT:
       explanation: Pediste uma cópia completa da tua conta Mastodon. Ela já está pronta para descarregares!
       subject: O teu arquivo está pronto para descarregar
       title: Arquivo de ficheiros
-    sign_in_token:
-      details: 'Aqui estão os detalhes da tentativa:'
-      explanation: 'Detectamos uma tentativa de entrar na sua conta a partir de um endereço IP não reconhecido. Se é você, por favor, insira o código de segurança abaixo na página de acesso:'
-      further_actions: 'Se não foi você, por favor altere a sua palavra-passe e ative a autenticação em duas etapzs na sua conta. Pode fazê-lo aqui:'
-      subject: Por favor, confirme a tentativa de acesso
-      title: Tentativa de acesso
     warning:
       appeal: Submeter um recurso
       appeal_description: Se acredita que isso é um erro, pode submeter um recurso para a equipa de %{instance}.
@@ -1677,13 +1682,10 @@ pt-PT:
       title: Bem-vindo a bordo, %{name}!
   users:
     follow_limit_reached: Não podes seguir mais do que %{limit} pessoas
-    generic_access_help_html: Problemas para aceder à sua conta? Pode entrar em contacto com %{email} para obter ajuda
     invalid_otp_token: Código de autenticação inválido
-    invalid_sign_in_token: Cógido de segurança inválido
     otp_lost_help_html: Se perdeu acesso a ambos, pode entrar em contacto com %{email}
     seamless_external_login: Tu estás ligado via um serviço externo. Por isso, as configurações da palavra-passe e do e-mail não estão disponíveis.
     signed_in_as: 'Registado como:'
-    suspicious_sign_in_confirmation: Parece que não iniciou sessão através deste dispositivo antes, e não acede à sua conta há algum tempo. Portanto, enviámos um código de segurança para o seu endereço de e-mail para confirmar que é você.
   verification:
     explanation_html: 'Pode <strong>comprovar que é o dono dos links nos metadados do seu perfil</strong>. Para isso, o website para o qual o link aponta tem de conter um link para o seu perfil do Mastodon. Esse link <strong>tem</strong> de ter um atributo <code>rel="me"</code>. O conteúdo do texto não é relevante. Aqui está um exemplo:'
     verification: Verificação

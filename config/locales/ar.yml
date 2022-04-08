@@ -209,7 +209,6 @@ ar:
       security_measures:
         only_password: كلمة المرور فقط
         password_and_2fa: كلمة المرور و 2FA
-        password_and_sign_in_token: كلمة المرور ورمز البريد الإلكتروني
       sensitive: حساس
       sensitized: مُعَين كمنشور حساس
       shared_inbox_url: رابط الصندوق المُشترَك للبريد الوارد
@@ -460,10 +459,22 @@ ar:
       title: اقتراحات المتابعة
       unsuppress: إستعادة إقتراحات المتابعة
     instances:
+      availability:
+        title: التوفر
       back_to_all: الكل
       back_to_limited: محدود
       back_to_warning: تحذير
       by_domain: النطاق
+      content_policies:
+        comment: ملاحظة داخلية
+        policies:
+          reject_media: رفض الوسائط
+          reject_reports: رفض الشكاوى
+        policy: القواعد
+        reason: السبب العلني
+        title: سياسات المحتوى
+      dashboard:
+        instance_languages_dimension: اللغات الأكثر استخدامًا
       delivery:
         all: الكل
         clear: مسح أخطاء التسليم
@@ -556,6 +567,7 @@ ar:
       forwarded: أُعيد توجيهه
       forwarded_to: أُعيد توجيهه إلى %{domain}
       mark_as_resolved: اعتبار الشكوى كمحلولة
+      mark_as_sensitive: تعيينه كمنشور حساس
       mark_as_unresolved: علم كغير محلولة
       no_one_assigned: لا أحد
       notes:
@@ -721,6 +733,12 @@ ar:
       preview_card_providers:
         title: الناشرون
       rejected: مرفوض
+      statuses:
+        allow: السماح بالمنشور
+        allow_account: السماح للناشر
+        disallow: رفض المنشور
+        disallow_account: رفض الناشر
+        title: المنشورات المتداولة
       tags:
         current_score: التقييم الحالي %{score}
         dashboard:
@@ -764,6 +782,8 @@ ar:
       body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: تقرير جديد ل%{instance} (#%{id})
     new_trends:
+      new_trending_links:
+        title: الروابط المتداولة
       new_trending_statuses:
         title: المنشورات الشائعة
       new_trending_tags:
@@ -841,6 +861,7 @@ ar:
     status:
       account_status: حالة الحساب
       confirming: في انتظار اكتمال تأكيد البريد الإلكتروني.
+      functional: حسابك يعمل بشكل كامل.
       pending: إن طلبك قيد المراجعة من قبل فريقنا. قد يستغرق هذا بعض الوقت. سوف تتلقى بريدا إلكترونيا إذا تمت الموافقة على طلبك.
       redirecting_to: حسابك غير نشط لأنه تم تحويله حاليا إلى %{acct}.
     too_fast: تم إرسال النموذج بسرعة كبيرة، حاول مرة أخرى.
@@ -1302,7 +1323,7 @@ ar:
     preferences: التفضيلات
     profile: الملف التعريفي
     relationships: المتابِعون والمتابَعون
-    statuses_cleanup: حذف المنشور الآلي
+    statuses_cleanup: الحذف الآلي للمنشورات
     two_factor_authentication: المُصادقة بخُطوَتَيْن
     webauthn_authentication: مفاتيح الأمان
   statuses:
@@ -1339,6 +1360,7 @@ ar:
       other: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       two: 'يحتوي على وسوم غير مسموح بها: %{tags}'
       zero: 'يحتوي على وسوم غير مسموح بها: %{tags}'
+    edited_at_html: عُدّل في %{date}
     errors:
       in_reply_not_found: إنّ المنشور الذي تحاول الرد عليه غير موجود على ما يبدو.
     open_in_web: افتح في الويب
@@ -1405,7 +1427,7 @@ ar:
       '31556952': سنة واحدة
       '5259492': شهران
       '604800': أسبوع
-      '63113904': أسبوعان
+      '63113904': سنتان
       '7889238': 3 أشهر
     min_age_label: عتبة العمر
     min_favs: إبقاء المشاركات المفضلة أكثر من
@@ -1414,7 +1436,7 @@ ar:
     min_reblogs_hint: لن تُحذف أي من منشوراتك التي أعيد مشاركتها أكثر من هذا العدد من المرات. اتركه فارغاً لحذف المنشورات بغض النظر عن عدد إعادات المشاركة
   stream_entries:
     pinned: منشور مثبّت
-    reblogged: رقّاه
+    reblogged: شارَكَه
     sensitive_content: محتوى حساس
   tags:
     does_not_match_previous_name: لا يطابق الإسم السابق
@@ -1538,12 +1560,9 @@ ar:
       explanation: لقد قمت بطلب نسخة كاملة لحسابك على ماستدون. إنها متوفرة الآن للتنزيل!
       subject: نسخة بيانات حسابك جاهزة للتنزيل
       title: المغادرة بأرشيف الحساب
-    sign_in_token:
-      details: 'وفيما يلي تفاصيل المحاولة:'
-      explanation: 'اكتشفنا محاولة لتسجيل الدخول إلى حسابك من عنوان IP غير معروف. إذا كان هذا أنت ، يرجى إدخال رمز الأمان أدناه في صفحة تحدي تسجيل الدخول:'
-      further_actions: 'إذا لم يكن ذلك صادر منك، يرجى تغيير كلمتك السرية وتنشيط المصادقة الثنائية في حسابك. يمكنك القيام بذلك هنا:'
-      subject: الرجاء تأكيد محاولة الولوج
-      title: محاولة الولوج
+    suspicious_sign_in:
+      change_password: غيّر كلمتك السرية
+      subject: تم النفاذ عبر حسابك من خلال عنوان إيبي جديد
     warning:
       appeal: تقديم طعن
       appeal_description: إذا كنت تعتقد أن هذا خطأ، يمكنك تقديم طعن إلى فريق %{instance}.
@@ -1554,6 +1573,7 @@ ar:
         sensitive: من الآن فصاعدا، سيتم وضع علامة على جميع ملفات الوسائط التي يتم تحميلها على أنها حساسة وستكون مخفية خلف تحذير يُنقر.
         silence: لا يزال بإمكانك استخدام حسابك ولكن فقط الأشخاص الذين يتابعونك فقط يمكنهم رؤية منشوراتك على هذا الخادم، وقد يتم استبعادك من ميزات الاكتشاف المختلفة. قد يتبعك آخرون على كل حال يدوياً.
       reason: 'السبب:'
+      statuses: 'المنشورات المذكورة:'
       subject:
         disable: تم تجميد حسابك %{acct}
         none: تحذير إلى %{acct}
@@ -1586,13 +1606,10 @@ ar:
       title: أهلاً بك، %{name}!
   users:
     follow_limit_reached: لا يمكنك متابعة أكثر مِن %{limit} أشخاص
-    generic_access_help_html: صادفت مشكلة في الوصول إلى حسابك؟ اتصل بـ %{email} للحصول على المساعدة
     invalid_otp_token: رمز المصادقة بخطوتين غير صالح
-    invalid_sign_in_token: رمز الآمان غير صحيح
     otp_lost_help_html: إن فقدتَهُما ، يمكنك الاتصال بـ %{email}
     seamless_external_login: لقد قمت بتسجيل الدخول عبر خدمة خارجية، إنّ إعدادات الكلمة السرية و البريد الإلكتروني غير متوفرة.
     signed_in_as: 'تم تسجيل دخولك بصفة:'
-    suspicious_sign_in_confirmation: يبدو أنك لم تقم بتسجيل الدخول عبر هذا الجهاز من قبل، ولم تقم بتسجيل الدخول لفترة منذ مدة، لذلك نقوم بإرسال رمز الأمان إلى عنوان بريدك الإلكتروني للتأكد من أنه أنت من قام بالطلب.
   verification:
     explanation_html: 'يمكنك <strong>التحقق من نفسك كمالك لروابط البيانات التعريفية على صفحتك الشخصية</strong>. لذلك، يجب أن يحتوي الموقع المقترِن على رابط إلى صفحتك التعريفية الشخصية على ماستدون. الرابط الخلفي <strong>يجب أن</strong> يحتوي على رمز <code>rel="me"</code>. محتوى النص في الرابط غير مهم. على سبيل المثال:'
     verification: التحقق

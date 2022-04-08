@@ -194,7 +194,6 @@ ko:
       security_measures:
         only_password: 암호만
         password_and_2fa: 암호와 2단계 인증
-        password_and_sign_in_token: 암호와 이메일 토큰
       sensitive: 민감함
       sensitized: 민감함으로 설정됨
       shared_inbox_url: 공유된 inbox URL
@@ -290,7 +289,7 @@ ko:
         create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
         create_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}를 차단했습니다"
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
-        create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지"
+        create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_custom_emoji_html: "%{name} 님이 %{target} 에모지를 삭제했습니다"
@@ -1411,7 +1410,7 @@ ko:
         other: "%{count} 이미지"
       video:
         other: "%{count}개의 영상"
-    boosted_from_html: "%{acct_link} 님으로부터 부스트"
+    boosted_from_html: "%{acct_link}의 글을 부스트"
     content_warning: '열람 주의: %{warning}'
     default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
@@ -1564,7 +1563,7 @@ ko:
 
       <h3 id="changes">개인정보 정책의 변경</h3>
 
-      <p>만약 우리의 개인정보 정책이 바뀐다면, 이 페이지에 바뀐 정책이 포스트 됩니다.</p>
+      <p>만약 우리의 개인정보 정책이 바뀐다면, 이 페이지에 바뀐 정책이 게시됩니다.</p>
 
       <p>이 문서는 CC-BY-SA 라이센스입니다. 마지막 업데이트는 2018년 3월 7일입니다.</p>
 
@@ -1608,12 +1607,13 @@ ko:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
-    sign_in_token:
-      details: '시도에 대한 상세 내용입니다:'
-      explanation: '알 수 없는 IP로부터 당신의 계정에 대한 로그인 시도를 감지했습니다. 이것이 당신이라면, 아래의 보안 코드를 로그인 시도 페이지에 입력하세요:'
-      further_actions: '이것이 당신이 아니라면 암호를 바꾸고 계정의 2-factor 인증을 활성화 하세요. 여기에서 할 수 있습니다:'
-      subject: 로그인 시도를 확인해 주십시오
-      title: 로그인 시도
+    suspicious_sign_in:
+      change_password: 암호 변경
+      details: '로그인에 대한 상세 정보입니다:'
+      explanation: 새로운 IP 주소에서 내 계정에 로그인한 것을 감지했습니다.
+      further_actions_html: 직접 로그인한 것이 아니라면, 지금 바로 %{action}과 2단계 인증을 활성화하여 계정을 안전하게 보호하시길 권해드립니다.
+      subject: 계정이 새로운 IP에서 접근됨
+      title: 새로운 로그인
     warning:
       appeal: 이의 제출하기
       appeal_description: 이것이 오류라고 생각한다면, %{instance}의 중재자에게 이의신청을 할 수 있습니다.
@@ -1664,13 +1664,10 @@ ko:
       title: 환영합니다 %{name} 님!
   users:
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
-    generic_access_help_html: 계정 로그인에 문제가 있나요? %{email} 로 도움을 요청할 수 있습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
-    invalid_sign_in_token: 잘못된 보안 코드
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
-    suspicious_sign_in_confirmation: 이 기기에서 로그인 한 적이 없거나, 로그인 한 지 오래된 것으로보입니다. 본인임을 확인하기 위해 이메일 주소로 보안 코드를 보냈습니다.
   verification:
     explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
     verification: 검증

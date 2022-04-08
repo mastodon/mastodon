@@ -165,6 +165,9 @@ gl:
       pending: Revisión pendente
       perform_full_suspension: Suspender
       previous_strikes: Accións previas
+      previous_strikes_description_html:
+        one: Esta conta ten <strong>un</strong> aviso.
+        other: Esta conta ten <strong>%{count}</strong> avisos.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -196,7 +199,6 @@ gl:
       security_measures:
         only_password: Só contrasinal
         password_and_2fa: Contrasinal e 2FA
-        password_and_sign_in_token: Contrasinal e token nun email
       sensitive: Forzar como sensible
       sensitized: Marcado como sensible
       shared_inbox_url: URL da caixa de entrada compartida
@@ -523,6 +525,9 @@ gl:
       delivery_error_hint: Se non é posible a entrega durante %{count} días, será automáticamente marcado como non entregable.
       destroyed_msg: Os datos desde %{domain} están na cola para o borrado inminente.
       empty: Non se atopan dominios.
+      known_accounts:
+        one: "%{count} conta coñecida"
+        other: "%{count} contas coñecidas"
       moderation:
         all: Todo
         limited: Limitado
@@ -592,7 +597,7 @@ gl:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: As publicacións denunciadas van ser eliminadas e gárdase un aviso para axudarche a xestionar futuras infraccións desta conta.
-        mark_as_sensitive_description_html: O multimedia das publicacións denunciadas vai ser marcado como sensible e apúntase un aviso para axudarche a facer seguimento das infraccións da mesma conta.
+        mark_as_sensitive_description_html: Os multimedia das publicacións denunciadas serán marcados como sensibles e engadirase un aviso para axudarche a xestionar futuras infraccións da mesma conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardan avisos, e a denuncia arquivada.
         silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
@@ -791,6 +796,9 @@ gl:
         description_html: Estas son ligazóns que actualmente están sendo compartidas por moitas contas das que o teu servidor recibe publicación. Pode ser de utilidade para as túas usuarias para saber o que acontece polo mundo. Non se mostran ligazóns de xeito público a non ser que autorices a quen as publica. Tamén podes permitir ou rexeitar ligazóns de xeito individual.
         disallow: Denegar ligazón
         disallow_provider: Denegar orixe
+        shared_by_over_week:
+          one: Compartido por unha persoa na última semana
+          other: Compartido por %{count} persoas na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
       pending_review: Revisión pendente
@@ -830,6 +838,9 @@ gl:
         trending_rank: 'En voga #%{rank}'
         usable: Pode ser usado
         usage_comparison: Utilizado %{today} veces hoxe, comparado coas %{yesterday} de onte
+        used_by_over_week:
+          one: Utilizado por unha persoa na última semana
+          other: Utilizado por %{count} persoas na última semana
       title: Tendencias
     warning_presets:
       add_new: Engadir novo
@@ -1621,12 +1632,13 @@ gl:
       explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
       subject: O teu ficheiro xa está preparado para descargar
       title: Leve o ficheiro
-    sign_in_token:
-      details: 'Detalles sobre o intento:'
-      explanation: 'Detectamos un intento de acceso coa túa conta desde un enderezo IP descoñecido. Se es ti, escribe o código de seguridade inferior na páxina de desafío de conexión:'
-      further_actions: 'Se non foches ti, cambia agora o contrasinal e activa o segundo factor de autenticación para a túa conta. Pódelo facer aquí:'
-      subject: Por favor confirma o intento de conexión
-      title: Intento de conexión
+    suspicious_sign_in:
+      change_password: cambia o teu contrasinal
+      details: 'Estos son os detalles do acceso:'
+      explanation: Detectamos que accedeches á conta desde un novo enderezo IP.
+      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente e activa o segundo factor de autenticación para manter conta segura.
+      subject: Accedeuse á túa conta desde novos enderezos IP
+      title: Novo acceso
     warning:
       appeal: Enviar unha apelación
       appeal_description: Se cres que esto é un erro, podes enviar un recurso á administración de %{instance}.
@@ -1677,13 +1689,10 @@ gl:
       title: Benvida, %{name}!
   users:
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas
-    generic_access_help_html: Problemas para acceder a conta? Podes contactar con %{email} para obter axuda
     invalid_otp_token: O código do segundo factor non é válido
-    invalid_sign_in_token: Código de seguridade non válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
     seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
-    suspicious_sign_in_confirmation: Semella que non entraches antes usando este dispositivo, así que ímosche enviar un código de seguridade ao teu enderezo de email para confirmar que es ti.
   verification:
     explanation_html: 'Podes <strong>validarte a ti mesma como a dona das ligazóns nos metadatos do teu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí tes un exemplo:'
     verification: Validación

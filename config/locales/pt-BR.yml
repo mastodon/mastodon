@@ -193,7 +193,6 @@ pt-BR:
       security_measures:
         only_password: Somente senha
         password_and_2fa: Senha e 2FA
-        password_and_sign_in_token: Token de senha e e-mail
       sensitive: Sensíveis
       sensitized: marcadas como sensíveis
       shared_inbox_url: Link da caixa de entrada compartilhada
@@ -1448,12 +1447,6 @@ pt-BR:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
-    sign_in_token:
-      details: 'Aqui estão os detalhes da tentativa:'
-      explanation: 'Detectamos uma tentativa de acessar sua conta a partir de um endereço IP não reconhecido. Se for você, insira o código de segurança abaixo na página de desafio:'
-      further_actions: 'Se não foi você, por favor mude sua senha e ative a autenticação de dois fatores em sua conta. Você pode fazê-lo aqui:'
-      subject: Por favor, confirme a tentativa de acesso
-      title: Tentativa de acesso
     warning:
       appeal: Enviar uma contestação
       categories:
@@ -1494,13 +1487,10 @@ pt-BR:
       title: Boas vindas, %{name}!
   users:
     follow_limit_reached: Você não pode seguir mais de %{limit} pessoas
-    generic_access_help_html: Problemas para acessar sua conta? Você pode entrar em contato com %{email} para obter ajuda
     invalid_otp_token: Código de dois fatores inválido
-    invalid_sign_in_token: Cógido de segurança inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
-    suspicious_sign_in_confirmation: Parece que você não fez login deste dispositivo antes, e você não fez login por um tempo. Portanto, estamos enviando um código de segurança para o seu endereço de e-mail para confirmar que é você.
   verification:
     explanation_html: 'Você pode <strong>verificar os links nos metadados do seu perfil</strong>. Para isso, o site citado deve conter um link de volta para o seu perfil do Mastodon. O link de volta <strong>deve</strong> conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa. Aqui está um exemplo:'
     verification: Verificação
