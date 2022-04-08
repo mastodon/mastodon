@@ -7,6 +7,10 @@ import {
   expandHomeTimeline,
   connectTimeline,
   disconnectTimeline,
+  fillHomeTimelineGaps,
+  fillPublicTimelineGaps,
+  fillCommunityTimelineGaps,
+  fillListTimelineGaps,
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
@@ -35,6 +39,7 @@ const randomUpTo = max =>
  * @param {Object.<string, string>} params
  * @param {Object} options
  * @param {function(Function, Function): void} [options.fallback]
+ * @param {function(): void} [options.fillGaps]
  * @param {function(object): boolean} [options.accept]
  * @return {function(): void}
  */
@@ -60,6 +65,10 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         if (pollingId) {
           clearTimeout(pollingId);
           pollingId = null;
+        }
+
+        if (options.fillGaps) {
+          dispatch(options.fillGaps());
         }
       },
 
@@ -119,7 +128,7 @@ const refreshHomeTimelineAndNotification = (dispatch, done) => {
  * @return {function(): void}
  */
 export const connectUserStream = () =>
-  connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification });
+  connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification, fillGaps: fillHomeTimelineGaps });
 
 /**
  * @param {Object} options
@@ -127,7 +136,7 @@ export const connectUserStream = () =>
  * @return {function(): void}
  */
 export const connectCommunityStream = ({ onlyMedia } = {}) =>
-  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`);
+  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
 
 /**
  * @param {Object} options
@@ -137,7 +146,7 @@ export const connectCommunityStream = ({ onlyMedia } = {}) =>
  * @return {function(): void}
  */
 export const connectPublicStream = ({ onlyMedia, onlyRemote, allowLocalOnly } = {}) =>
-  connectTimelineStream(`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`);
+  connectTimelineStream(`public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : (allowLocalOnly ? ':allow_local_only' : '')}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote, allowLocalOnly }) });
 
 /**
  * @param {string} columnId
@@ -160,4 +169,4 @@ export const connectDirectStream = () =>
  * @return {function(): void}
  */
 export const connectListStream = listId =>
-  connectTimelineStream(`list:${listId}`, 'list', { list: listId });
+  connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });
