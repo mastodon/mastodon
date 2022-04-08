@@ -197,7 +197,7 @@ eo:
       whitelisted: En la blanka listo
     action_logs:
       action_types:
-        approve_user: Aprobu Uzanton
+        approve_user: Aprobi Uzanton
         assigned_to_self_report: Atribui Raporton
         change_email_user: Ŝanĝi retadreson de uzanto
         confirm_user: Konfermi uzanto
@@ -224,6 +224,7 @@ eo:
         enable_user: Ebligi uzanton
         memorialize_account: Memorigu Konton
         promote_user: Promocii Uzanton
+        reject_user: Malakcepti Uzanton
         remove_avatar_user: Forigi profilbildon
         reopen_report: Remalfermi signalon
         reset_password_user: Restarigi pasvorton
@@ -240,6 +241,7 @@ eo:
         update_domain_block: Ĝigdatigi domajnan blokadon
         update_status: Ĝisdatigi staton
       actions:
+        approve_user_html: "%{name} aprobis registriĝon de %{target}"
         assigned_to_self_report_html: "%{name} asignis signalon %{target} al si mem"
         change_email_user_html: "%{name} ŝanĝis retadreson de uzanto %{target}"
         confirm_user_html: "%{name} konfirmis retadreson de uzanto %{target}"
@@ -265,6 +267,7 @@ eo:
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user_html: "%{name} plirangigis uzanton %{target}"
+        reject_user_html: "%{name} malakceptis registriĝon de %{target}"
         remove_avatar_user_html: "%{name} forigis profilbildon de %{target}"
         reopen_report_html: "%{name} remalfermis signalon %{target}"
       deleted_status: "(forigita mesaĝo)"
@@ -785,6 +788,7 @@ eo:
     delete: Forigi
     order_by: Ordigi de
     save_changes: Konservi ŝanĝojn
+    today: hodiaŭ
     validation_errors:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
