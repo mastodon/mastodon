@@ -595,6 +595,7 @@ sq:
       action_taken_by: Veprimi i ndërmarrë nga
       actions:
         delete_description_html: Postimet e raportuara do të fshihen dhe do të regjistrohet një paralajmërim, për t’ju ndihmuar të përshkallëzoni hapat në rast shkeljesh të ardhme nga e njëjta llogari.
+        mark_as_sensitive_description_html: Medias te postimet e raportuara do t’i vihet shenjë si me spec dhe për të do të regjistrohet një paralajmërim, për t’ju ndihmuar të përshkallëzoni masat tuaja mbi shkelje të ardhshme nga e njëjta llogari.
         other_description_html: Shihni më tepër mundësi për kontroll të sjelljes së një llogari dhe përshtatni komunikimin me llogarinë e raportuar.
         resolve_description_html: Ndaj llogarisë së raportuar nuk do të ndërmerret ndonjë veprim, s’do të regjistrohet ndonjë paralajmërim dhe raporti do të mbyllet.
         silence_description_html: Profili do të jetë i dukshëm vetëm për ata që e ndjekin tashmë, ose që e kërkojnë dorazi, duke reduktuar rëndë përhapjen e tij. Mundet përherë të prapakthehet.
@@ -1227,6 +1228,9 @@ sq:
       new_followers_summary:
         one: Veç kësaj, u bëtë me një ndjekës të ri, teksa s’ishit këtu! Ëhë!
         other: Veç kësaj, u bëtë me %{count} ndjekës të rinj, teksa s’ishit këtu! Shkëlqyeshëm!
+      subject:
+        one: "1 njoftim i ri që nga vizita juaj e fundit 🐘"
+        other: "%{count} njoftime të reja që nga vizita juaj e fundit 🐘"
       title: Gjatë mungesës tuaj…
     favourite:
       body: 'Gjendja juaj u parapëlqye nga %{name}:'
@@ -1621,6 +1625,13 @@ sq:
       explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E keni gati për shkarkim!
       subject: Arkivi juaj është gati për shkarkim
       title: Marrje arkivi me vete
+    suspicious_sign_in:
+      change_password: ndryshoni fjalëkalimin tuaj
+      details: 'Ja hollësitë për hyrjen:'
+      explanation: Kemi pikasur një hyrje në llogarinë tuaj që nga adresë e re IP.
+      further_actions_html: Nëse s’ishit ju, këshillojmë të %{action} menjëherë dhe të aktivizoni mirëfilltësim dyfaktorësh, për ta mbajtur llogarinë tuaj të sigurt.
+      subject: Llogaria juaj është përdorur që nga një adresë e re IP
+      title: Hyrje e re
     warning:
       appeal: Parashtroni një apelim
       appeal_description: Nëse besoni se është gabim, mund t’i parashtroni një apelim stafit të %{instance}.
