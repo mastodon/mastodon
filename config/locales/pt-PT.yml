@@ -1234,6 +1234,9 @@ pt-PT:
       new_followers_summary:
         one: Tens um novo seguidor! Boa!
         other: Tens %{count} novos seguidores! Fantástico!
+      subject:
+        one: "1 nova notificação desde o seu último acesso 🐘"
+        other: "%{count} novas notificações desde o seu último acesso 🐘"
       title: Enquanto estiveste ausente…
     favourite:
       body: 'O teu post foi adicionado aos favoritos por %{name}:'
@@ -1628,6 +1631,13 @@ pt-PT:
       explanation: Pediste uma cópia completa da tua conta Mastodon. Ela já está pronta para descarregares!
       subject: O teu arquivo está pronto para descarregar
       title: Arquivo de ficheiros
+    suspicious_sign_in:
+      change_password: alterar a sua palavra-passe
+      details: 'Aqui estão os detalhes do inicio de sessão:'
+      explanation: Detetamos um inicio de sessão na sua conta a partir de um novo endereço IP.
+      further_actions_html: Se não foi você, recomendamos que %{action} imediatamente e ative a autenticação de dois fatores para manter a sua conta segura.
+      subject: A sua conta foi acessada a partir de um novo endereço IP
+      title: Novo inicio de sessão
     warning:
       appeal: Submeter um recurso
       appeal_description: Se acredita que isso é um erro, pode submeter um recurso para a equipa de %{instance}.
