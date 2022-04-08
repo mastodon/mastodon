@@ -158,10 +158,18 @@ class NotifyService < BaseService
   end
 
   def email_needed?
-    !recipient_online? && @recipient.user.settings.notification_emails[@notification.type.to_s]
+    (!recipient_online? || always_send_emails?) && send_email_for_notification_type?
   end
 
   def recipient_online?
     subscribed_to_streaming_api? || subscribed_to_web_push?
+  end
+
+  def always_send_emails?
+    @recipient.user.settings.always_send_emails
+  end
+
+  def send_email_for_notification_type?
+    @recipient.user.settings.notification_emails[@notification.type.to_s]
   end
 end
