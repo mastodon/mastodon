@@ -1,7 +1,6 @@
----
 gl:
   about:
-    about_hashtag_html: Estas son publicacións públicas etiquetadas con <strong>#%{hashtag}</strong>. Podes interactuar con elas se tes unha conta nalgures do fediverso.
+    about_hashtag_html: 'Estas son publicacións públicas etiquetadas con <strong>#%{hashtag}</strong>. Podes interactuar con elas se tes unha conta nalgures do fediverso.'
     about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
     about_this: Acerca de
     active_count_after: activas
@@ -22,9 +21,8 @@ gl:
     federation_hint_html: Cunha conta en %{instance} poderás seguir ás persoas en calquera servidor do Mastodon e alén.
     get_apps: Probar unha aplicación móbil
     hosted_on: Mastodon aloxado en %{domain}
-    instance_actor_flash: 'Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
-
-      '
+    instance_actor_flash: |
+      Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
     learn_more: Saber máis
     logged_in_as_html: Entraches como %{username}.
     logout_before_registering: Xa iniciaches sesión.
@@ -57,7 +55,7 @@ gl:
     user_count_before: Fogar de
     what_is_mastodon: Qué é Mastodon?
   accounts:
-    choices_html: 'Escollas de %{name}:'
+    choices_html: "Escollas de %{name}:"
     endorsements_hint: Podes suxerir a persoas que segues dende a interface web, e amosaranse aquí.
     featured_tags_hint: Podes destacar determinados cancelos que se amosarán aquí.
     follow: Seguir
@@ -118,7 +116,7 @@ gl:
       delete: Eliminar datos
       deleted: Eliminado
       demote: Rebaixar
-      destroyed_msg: Os datos de %{username} están na cola para ser eliminados axiña
+      destroyed_msg: "Os datos de %{username} están na cola para ser eliminados axiña"
       disable: Desactivar
       disable_sign_in_token_auth: Desactivar a autenticación por token nun email
       disable_two_factor_authentication: Desactivar 2FA
@@ -567,7 +565,7 @@ gl:
       no_ip_block_selected: Non se cambiou ningunha regra iP porque non seleccionaches ningunha
       title: Regras IP
     relationships:
-      title: Relacións de %{acct}
+      title: "Relacións de %{acct}"
     relays:
       add_new: Engadir un novo repetidor
       delete: Eliminar
@@ -867,7 +865,7 @@ gl:
     new_report:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
-      subject: Novo informe sobre %{instance} (#%{id})
+      subject: 'Novo informe sobre %{instance} (#%{id})'
     new_trends:
       body: 'Os seguintes elementos precisan revisión antes de ser mostrados públicamente:'
       new_trending_links:
@@ -892,7 +890,7 @@ gl:
     remove: Desligar alcume
   appearance:
     advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: Se queres empregar todo o ancho da túa pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, cronoloxía federada, calquera número de listaxes e cancelos.
+    advanced_web_interface_hint: 'Se queres empregar todo o ancho da túa pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, cronoloxía federada, calquera número de listaxes e cancelos.'
     animations_and_accessibility: Animacións e accesibilidade
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -929,7 +927,7 @@ gl:
       prefix_sign_up: Rexístrate agora en Mastodon!
       suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de Mastodon e moito máis!
     didnt_get_confirmation: Non recibeu as instruccións de confirmación?
-    dont_have_your_security_key: "¿Non tes a túa chave de seguridade?"
+    dont_have_your_security_key: '¿Non tes a túa chave de seguridade?'
     forgot_password: Esqueceu o contrasinal?
     invalid_reset_password_token: O testemuño para restablecer o contrasinal non é válido ou caducou. Por favor solicite un novo.
     link_to_otp: Escribe o código do segundo factor do móbil ou un código de recuperación
@@ -1235,17 +1233,14 @@ gl:
       new_followers_summary:
         one: Ademáis, ten unha nova seguidora desde entón! Ben!
         other: Ademáis, obtivo %{count} novas seguidoras desde entón! Tremendo!
-      subject:
-        one: "1 nova notificación desde a súa última visita 🐘"
-        other: "%{count} novas notificacións desde a súa última visita 🐘"
       title: Na súa ausencia...
     favourite:
       body: 'A túa publicación foi marcada como favorita por %{name}:'
       subject: "%{name} marcou como favorita a túa publicación"
       title: Nova favorita
     follow:
-      body: Agora %{name} séguete!
-      subject: Agora %{name} séguete
+      body: "Agora %{name} séguete!"
+      subject: "Agora %{name} séguete"
       title: Nova seguidora
     follow_request:
       action: Xestionar peticións de seguimento
@@ -1702,7 +1697,7 @@ gl:
       error: Houbo un problema ó engadir a chave de seguridade, inténtao outra vez.
       success: Engadeuse correctamente a chave de seguridade.
     delete: Eliminar
-    delete_confirmation: "¿Tes a certeza de que queres eliminar a chave de seguridade?"
+    delete_confirmation: '¿Tes a certeza de que queres eliminar a chave de seguridade?'
     description_html: Se activas a <strong>autenticación con chave de seguridade</strong>, pediráseche que uses unha das túas chaves para acceder.
     destroy:
       error: Houbo un problema ó eliminar a túa chave de seguridade, inténtao outra vez.
