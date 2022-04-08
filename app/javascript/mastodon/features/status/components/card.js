@@ -32,7 +32,7 @@ const trim = (text, len) => {
     return text;
   }
 
-  return text.substring(0, cut) + (text.length > len ? '…' : '');
+  return text.slice(0, cut) + (text.length > len ? '…' : '');
 };
 
 const domParser = new DOMParser();

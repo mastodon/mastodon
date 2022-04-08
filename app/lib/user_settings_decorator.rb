@@ -40,6 +40,7 @@ class UserSettingsDecorator
     user.settings['crop_images']         = crop_images_preference if change?('setting_crop_images')
     user.settings['bigger_publish']      = bigger_publish_preference if change?('setting_bigger_publish')
     user.settings['wider_column']        = wider_column_preference if change?('setting_wider_column')
+    user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
   end
 
   def merged_notification_emails
@@ -140,6 +141,10 @@ class UserSettingsDecorator
 
   def wider_column_preference
     boolean_cast_setting 'setting_wider_column'
+  end
+
+  def always_send_emails_preference
+    boolean_cast_setting 'setting_always_send_emails'
   end
 
   def boolean_cast_setting(key)

@@ -13,14 +13,6 @@ class UserPolicy < ApplicationPolicy
     admin? && !record.staff?
   end
 
-  def disable_sign_in_token_auth?
-    staff?
-  end
-
-  def enable_sign_in_token_auth?
-    staff?
-  end
-
   def confirm?
     staff? && !record.confirmed?
   end

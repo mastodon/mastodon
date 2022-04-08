@@ -173,6 +173,11 @@ gd:
       pending: A’ feitheamh air lèirmheas
       perform_full_suspension: Cuir à rèim
       previous_strikes: Rabhaidhean roimhe
+      previous_strikes_description_html:
+        few: Fhuair an cunntas seo <strong>%{count}</strong> rabhaidhean.
+        one: Fhuair an cunntas seo <strong>%{count}</strong> rabhadh.
+        other: Fhuair an cunntas seo <strong>%{count}</strong> rabhadh.
+        two: Fhuair an cunntas seo <strong>%{count}</strong> rabhadh.
       promote: Àrdaich
       protocol: Pròtacal
       public: Poblach
@@ -204,7 +209,6 @@ gd:
       security_measures:
         only_password: Facal-faire a-mhàin
         password_and_2fa: Facal-faire ’s dà-cheumnach
-        password_and_sign_in_token: Facal-faire ’s tòcan puist-d
       sensitive: Spàrr an fhrionasachd air
       sensitized: Chaidh comharradh gu bheil e frionasach
       shared_inbox_url: URL a’ bhogsa a-steach cho-roinnte
@@ -545,6 +549,11 @@ gd:
       delivery_error_hint: Mura gabh a lìbhrigeadh fad %{count} là(ithean), thèid comharra a chur ris gu fèin-obrachail a dh’innseas nach gabh a lìbhrigeadh.
       destroyed_msg: Tha an dàta o %{domain} air ciutha an sguabaidh às aithghearr.
       empty: Cha deach àrainn a lorg.
+      known_accounts:
+        few: "%{count} cunntasan as aithne dhuinn"
+        one: "%{count} chunntas as aithne dhuinn"
+        other: "%{count} cunntas as aithne dhuinn"
+        two: "%{count} chunntas as aithne dhuinn"
       moderation:
         all: Na h-uile
         limited: Cuingichte
@@ -616,7 +625,6 @@ gd:
       action_taken_by: Chaidh an gnìomh a ghabhail le
       actions:
         delete_description_html: Thèid na postaichean le gearan orra a sguabadh às agus rabhadh a chlàradh gus do chuideachadh ach am bi thu nas teinne le droch-ghiùlan on aon chunntas sam àm ri teachd.
-        mark_as_sensitive_description_html: Thèid comharra an fhrionasachd a chur ris na meadhanan sna postaichean le gearan orra agus rabhadh a chlàradh gus do chuideachadh ach am bi thu nas teinne le droch-ghiùlan on aon chunntas sam àm ri teachd.
         other_description_html: Seall barrachd roghainnean airson giùlan a’ chunntais a stiùireadh agus an conaltradh leis a’ chunntas a chaidh gearan a dhèanamh mu dhèidhinn a ghnàthachadh.
         resolve_description_html: Cha dèid gnìomh sam bith a ghabhail an aghaidh a’ chunntais le gearan air agus thèid an gearan a dhùnadh gun rabhadh a chlàradh.
         silence_description_html: Chan fhaic ach an fheadhainn a tha a’ leantainn oirre mu thràth no a lorgas a làimh i a’ phròifil seo agus cuingichidh seo uiread nan daoine a ruigeas i gu mòr. Gabhaidh seo a neo-dhèanamh uair sam bith.
@@ -815,6 +823,11 @@ gd:
         description_html: Seo na ceanglaichean a tha ’gan co-roinneadh le iomadh cunntas on a chì am frithealaiche agad na postaichean. Faodaidh iad a bhith ’nan cuideachadh dhan luchd-cleachdaidh ach am faigh iad a-mach dè tha tachairt air an t-saoghal. Cha dèid ceanglaichean a shealltainn gu poblach gus an aontaich thu ris an fhoillsichear. ’S urrainn dhut ceanglaichean àraidh a cheadachadh no a dhiùltadh cuideachd.
         disallow: Na ceadaich an ceangal
         disallow_provider: Na ceadaich am foillsichear
+        shared_by_over_week:
+          few: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
+          one: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
+          other: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
+          two: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
         title: Ceanglaichean a’ treandadh
         usage_comparison: Chaidh a cho-roinneadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
       pending_review: A’ feitheamh air lèirmheas
@@ -856,6 +869,11 @@ gd:
         trending_rank: 'A’ treandadh #%{rank}'
         usable: Gabhaidh a chleachdadh
         usage_comparison: Chaidh a chleachdadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
+        used_by_over_week:
+          few: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
+          one: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
+          other: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
+          two: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
       title: Treandaichean
     warning_presets:
       add_new: Cuir fear ùr ris
@@ -1257,10 +1275,10 @@ gd:
         other: Cuideachd, bhuannaich thu %{count} luchd-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
         two: Cuideachd, bhuannaich thu %{count} neach-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
       subject:
-        few: "%{count} brathan ùra on tadhal mu dheireadh agad \U0001F418"
-        one: "%{count} bhrath ùr on tadhal mu dheireadh agad \U0001F418"
-        other: "%{count} brath ùr on tadhal mu dheireadh agad \U0001F418"
-        two: "%{count} bhrath ùr on tadhal mu dheireadh agad \U0001F418"
+        few: "%{count} brathan ùra on tadhal mu dheireadh agad 🐘"
+        one: "%{count} bhrath ùr on tadhal mu dheireadh agad 🐘"
+        other: "%{count} brath ùr on tadhal mu dheireadh agad 🐘"
+        two: "%{count} bhrath ùr on tadhal mu dheireadh agad 🐘"
       title: Fhad ’s a bha thu air falbh…
     favourite:
       body: 'Is annsa le %{name} am post agad:'
@@ -1589,12 +1607,6 @@ gd:
       explanation: Dh’iarr thu lethbhreac-glèidhidh slàn dhen chunntas Mastodon agad. Tha e deis ri luchdadh a-nuas a-nis!
       subject: Tha an tasg-lann agad deis ri luchdadh a-nuas
       title: Tasg-lann dhut
-    sign_in_token:
-      details: 'Seo mion-fhiosrachadh mun oidhirp:'
-      explanation: 'Mhothaich sinn do dh’oidhirp clàraidh a-steach dhan chunntas agad o sheòladh IP nach aithne dhuinn. Mas e tusa a bh’ ann, cuir a-steach an còd tèarainteachd gu h-ìosal air duilleag dùbhlan a’ chlàraidh a-steach:'
-      further_actions: 'Mur e tusa a bh’ ann, atharraich am facal-faire agad agus cuir an comas an dearbhadh dà-cheumnach air a’ chunntas agad. ’S urrainn dhut sin a dhèanamh an-seo:'
-      subject: Dearbh an oidhirp air clàradh a-steach
-      title: Oidhirp clàraidh a-steach
     warning:
       appeal: Cuir ath-thagradh a-null
       appeal_description: Ma tha thu dhen bheachd gur e mearachd a th’ ann, ’s urrainn dhut ath-thagradh a chur a-null gun sgioba aig %{instance}.
@@ -1645,13 +1657,10 @@ gd:
       title: Fàilte air bòrd, %{name}!
   users:
     follow_limit_reached: Chan urrainn dhut leantainn air còrr is %{limit} daoine
-    generic_access_help_html: A bheil trioblaid agad le inntrigeadh a’ chunntais agad? ’S urrainn dhut fios a chur gu %{email} airson taic
     invalid_otp_token: Còd dà-cheumnach mì-dhligheach
-    invalid_sign_in_token: Còd tèarainteachd mì-dhligheach
     otp_lost_help_html: Ma chaill thu an t-inntrigeadh dhan dà chuid diubh, ’s urrainn dhut fios a chur gu %{email}
     seamless_external_login: Rinn thu clàradh a-steach le seirbheis on taobh a-muigh, mar sin chan eil roghainnean an fhacail-fhaire ’s a’ phuist-d ri làimh dhut.
     signed_in_as: 'Chlàraich thu a-steach mar:'
-    suspicious_sign_in_confirmation: Tha coltas nach do rinn thu clàradh a-steach on uidheam seo cheana. Air an adhbhar sin, cuiridh sinn còd tèarainteachd dhan t-seòladh puist-d agad ach an dearbhamaid gur e tusa a th’ ann.
   verification:
     explanation_html: '’S urrainn dhut <strong>dearbhadh gur e seilbheadair nan ceanglaichean ann am meata-dàta na pròifil agad a th’ annad</strong>. Airson sin a dhèanamh, feumaidh ceangal air ais dhan phròifil Mastodon a bhith aig an làrach-lìn cheangailte. <strong>Feumaidh</strong> buadh <code>rel="me"</code> a bhith aig a’ cheangal air ais. Chan eil e gu diofar dè an t-susbaint a tha ann an teacsa a’ cheangail. Seo ball-eisimpleir dhut:'
     verification: Dearbhadh

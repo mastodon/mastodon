@@ -936,8 +936,8 @@ sc:
         one: In prus, %{count} persone noa ti sighit dae cando fias assente. Incredìbile!
         other: In prus, %{count} persones noas ti sighint dae cando fias assente. Incredìbile!
       subject:
-        one: "1 notìfica noa dae s'ùrtima visita tua \U0001F418"
-        other: "%{count} notìficas noas dae s'ùrtima visita tua \U0001F418"
+        one: "1 notìfica noa dae s'ùrtima visita tua 🐘"
+        other: "%{count} notìficas noas dae s'ùrtima visita tua 🐘"
       title: Durante s'ausèntzia tua...
     favourite:
       body: "%{name} at marcadu comente a preferidu s'istadu tuo:"
@@ -1286,12 +1286,6 @@ sc:
       explanation: As pedidu una còpia de seguresa totale de su contu de Mastodon tuo. Immoe est pronta pro s'iscarrigamentu!
       subject: S'archìviu tuo est prontu pro èssere iscarrigadu
       title: Collida dae s'archìviu
-    sign_in_token:
-      details: 'Custos sunt is detàllios de su tentativu:'
-      explanation: 'Amus rilevadu unu tentativu de identificatzione in su contu tuo dae un''indiritzu IP non reconnotu. Si fias tue, inserta su còdighe de seguresa in bàsciu in sa pàgina de disafiu de identificatzione:'
-      further_actions: 'Si non fias tue, càmbia sa crae tua e ativa s''autenticatzione in duos passos in su contu tuo. Ddu podes fàghere inoghe:'
-      subject: Cunfirma su tentativu de identificatzione
-      title: Tentativu de identificatzione
     warning:
       subject:
         disable: Su contu tuo %{acct} est istadu cungeladu
@@ -1322,13 +1316,10 @@ sc:
       title: Ti donamus su benebènnidu, %{name}!
   users:
     follow_limit_reached: Non podes sighire prus de %{limit} persones
-    generic_access_help_html: Tenes problemas a intrare in su contu tuo? Podes cuntatare a %{email} pro retzire agiudu
     invalid_otp_token: Còdighe a duas fases non vàlidu
-    invalid_sign_in_token: Còdighe de seguresa non vàlidu
     otp_lost_help_html: Si as pèrdidu s'atzessu a ambos, podes cuntatare a %{email}
     seamless_external_login: As abertu sa sessione pro mèdiu de unu servìtziu esternu, e pro custa resone is cunfiguratziones de sa crae de intrada e de posta eletrònica non sunt a disponimentu.
     signed_in_as: 'Sessione aberta comente:'
-    suspicious_sign_in_confirmation: Paret chi no as mai abertu sa sessione dae custu dispositivu e est dae unu pagu de tempus chi no intras in Mastodon, duncas ti semus imbiende unu còdighe de seguresa a s'indiritzu de posta eletrònica tuo pro cunfirmare chi ses tue.
   verification:
     explanation_html: 'Ti podes <strong>verificare a sa sola comente mere de is ligòngios in is metadatos de su profilu tuo</strong>. Pro ddu fàghere su situ ligadu depet cuntènnere unu ligòngiu chi torret a su profilu de Mastodon tuo. Su ligòngiu in su situ <strong>depet</strong> tènnere un''atributu <code>rel="me"</code>. Su testu cuntenutu in su ligòngiu no est de importu. Custu est un''esèmpiu:'
     verification: Verìfica

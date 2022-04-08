@@ -8,7 +8,6 @@ Warden::Manager.after_set_user except: :fetch do |user, warden|
     value: session_id,
     expires: 1.year.from_now,
     httponly: true,
-    secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
     same_site: :lax,
   }
 end
@@ -23,7 +22,6 @@ Warden::Manager.after_fetch do |user, warden|
       value: session_id,
       expires: 1.year.from_now,
       httponly: true,
-      secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
       same_site: :lax,
     }
   else
@@ -265,7 +263,7 @@ Devise.setup do |config|
 
   # Options to be passed to the created cookie. For instance, you can set
   # secure: true in order to force SSL only cookies.
-  config.rememberable_options = { secure: true }
+  config.rememberable_options = {}
 
   # ==> Configuration for :validatable
   # Range for password length.
