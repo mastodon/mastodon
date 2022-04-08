@@ -1,7 +1,6 @@
----
 nn:
   about:
-    about_hashtag_html: Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.
+    about_hashtag_html: 'Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.'
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     about_this: Om oss
     active_count_after: aktiv
@@ -20,8 +19,10 @@ nn:
     documentation: Dokumentasjon
     federation_hint_html: Med ein konto på %{instance} kan du fylgja folk på kva som helst slags Mastod-tenar og meir.
     get_apps: Prøv ein mobilapp
-    hosted_on: "%{domain} er vert for Mastodon"
-    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
+    hosted_on: '%{domain} er vert for Mastodon'
+    instance_actor_flash: |
+      Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. 
+
     learn_more: Lær meir
     privacy_policy: Personvernsreglar
     rules: Server regler
@@ -608,7 +609,7 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -908,9 +909,6 @@ nn:
       new_followers_summary:
         one: Du har forresten fått deg ein ny fylgjar mens du var borte! Hurra!
         other: Du har forresten fått deg %{count} nye fylgjarar mens du var borte! Hurra!
-      subject:
-        one: "1 nytt varsel sidan siste gong du var innom 🐘"
-        other: "%{count} nye varsel sidan siste gong du var innom 🐘"
       title: Mens du var borte...
     favourite:
       body: 'Statusen din vart merkt som favoritt av %{name}:'
@@ -1123,7 +1121,7 @@ nn:
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg inn for å verta med i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
       private: Berre fylgjarar
@@ -1220,7 +1218,7 @@ nn:
       <p>Dette dokumentet er lisensiert under CC BY-SA. Den engelske originalversjonen ble sist oppdatert den 7. mars 2018. Den norske oversettelsen ble sist oppdatert den 13. desember 2019.</p>
 
       <p>Opprinnelig modifisert utifra <a href="https://github.com/discourse/discourse">Discourse sine privatlivsretningslinjer</a>.</p>
-    title: Tenestevilkår og personvernsvilkår for %{instance}
+    title: "Tenestevilkår og personvernsvilkår for %{instance}"
   themes:
     contrast: Mastodon (Høg kontrast)
     default: Mastodon (Mørkt)
