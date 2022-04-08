@@ -65,8 +65,8 @@ class Trends::Base
   end
 
   def trim_older_items
-    redis.zremrangebyscore("#{key_prefix}:all", '-inf', '(1')
-    redis.zremrangebyscore("#{key_prefix}:allowed", '-inf', '(1')
+    redis.zremrangebyscore("#{key_prefix}:all", '-inf', '(0.3')
+    redis.zremrangebyscore("#{key_prefix}:allowed", '-inf', '(0.3')
   end
 
   def score_at_rank(rank)
