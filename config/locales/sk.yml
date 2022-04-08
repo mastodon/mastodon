@@ -895,10 +895,10 @@ sk:
         one: A ešte, kým si bol/a preč, si získal/a jedného nového následovateľa! Hurá!
         other: A ešte, kým si bol/a preč, si získal/a %{count} nových následovateľov! Hurá!
       subject:
-        few: "%{count} nových oboznámení od tvojej poslednej návštevy \U0001F418"
-        many: "%{count} nových oboznámení od tvojej poslednej návštevy \U0001F418"
-        one: "Jedno nové oboznámenie od tvojej poslednej návštevy \U0001F418"
-        other: "%{count} nové oboznámenia od tvojej poslednej návštevy \U0001F418"
+        few: "%{count} nových oboznámení od tvojej poslednej návštevy 🐘"
+        many: "%{count} nových oboznámení od tvojej poslednej návštevy 🐘"
+        one: "Jedno nové oboznámenie od tvojej poslednej návštevy 🐘"
+        other: "%{count} nové oboznámenia od tvojej poslednej návštevy 🐘"
       title: Zatiaľ čo si bol/a preč…
     favourite:
       body: 'Tvoj príspevok bol uložený medzi obľúbené užívateľa %{name}:'
@@ -1144,9 +1144,6 @@ sk:
       explanation: Vyžiadal/a si si úplnú zálohu svojho Mastodon účtu. Táto záloha je teraz pripravená na stiahnutie!
       subject: Tvoj archív je pripravený na stiahnutie
       title: Odber archívu
-    sign_in_token:
-      subject: Prosím potvrď pokus o prihlásenie
-      title: Pokus o prihlásenie
     warning:
       subject:
         disable: Tvoj účet %{acct} bol zamrazený
@@ -1181,7 +1178,6 @@ sk:
     otp_lost_help_html: Pokiaľ si stratil/a prístup k obom, môžeš dať vedieť %{email}
     seamless_external_login: Si prihlásená/ý cez externú službu, takže nastavenia hesla a emailu ti niesú prístupné.
     signed_in_as: 'Prihlásená/ý ako:'
-    suspicious_sign_in_confirmation: Vyzerá to, že si sa predtým z tohto zariadenia ešte neprihlasoval/a, takže ti na tvoju emailovú adresu pošleme bezpečnostný kód, aby sa potvrdilo, že si to ty.
   verification:
     explanation_html: 'Môžeš sa <strong>overiť ako majiteľ odkazov v metadátach tvojho profilu</strong>. Na to ale musí odkazovaná stránka obsahovať odkaz späť na tvoj Mastodon profil. Tento spätný odkaz <strong>musí</strong> mať prívlastok <code>rel="me"</code>. Na texte odkazu nezáleží. Tu je príklad:'
     verification: Overenie

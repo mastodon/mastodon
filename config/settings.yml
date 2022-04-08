@@ -43,10 +43,10 @@ defaults: &defaults
   trending_status_cw: true
   crop_images: true
   notification_emails:
-    follow: false
+    follow: true
     reblog: false
     favourite: false
-    mention: false
+    mention: true
     follow_request: true
     digest: true
     report: true
@@ -55,6 +55,7 @@ defaults: &defaults
     trending_link: false
     trending_status: false
     appeal: true
+  always_send_emails: false
   interactions:
     must_be_follower: false
     must_be_following: false

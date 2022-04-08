@@ -43,6 +43,7 @@ class UserSettingsDecorator
     user.settings['use_pending_items']   = use_pending_items_preference if change?('setting_use_pending_items')
     user.settings['trends']              = trends_preference if change?('setting_trends')
     user.settings['crop_images']         = crop_images_preference if change?('setting_crop_images')
+    user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
   end
 
   def merged_notification_emails
@@ -155,6 +156,10 @@ class UserSettingsDecorator
 
   def crop_images_preference
     boolean_cast_setting 'setting_crop_images'
+  end
+
+  def always_send_emails_preference
+    boolean_cast_setting 'setting_always_send_emails'
   end
 
   def boolean_cast_setting(key)

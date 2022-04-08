@@ -27,6 +27,8 @@ cs:
         scheduled_at: Pro okamžité zveřejnění ponechte prázdné
         starts_at: Volitelné. Jen pokud je oznámení vázáno na konkrétní časové období
         text: Můžete použít syntax příspěvků. Mějte prosím na paměti, kolik prostoru oznámení zabere na obrazovce uživatele
+      appeal:
+        text: Proti prohřešku se můžete odvolat jen jednou
       defaults:
         autofollow: Lidé, kteří se zaregistrují na základě pozvánky, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
@@ -61,6 +63,7 @@ cs:
       domain_allow:
         domain: Tato doména bude moci stahovat data z tohoto serveru a příchozí data z ní budou zpracována a uložena
       email_domain_block:
+        domain: Toto může být doménové jméno, které je v e-mailové adrese nebo MX záznam, který používá. Budou zkontrolovány při registraci.
         with_dns_records: Dojde k pokusu o překlad DNS záznamů dané domény a výsledky budou rovněž zablokovány
       featured_tag:
         name: 'Nejspíš budete chtít použít jeden z těchto:'
@@ -105,11 +108,11 @@ cs:
         text: Vlastní varování
         type: Akce
         types:
-          disable: Deaktivovat přihlašování
+          disable: Zmrazit
           none: Nic nedělat
           sensitive: Citlivý
-          silence: Ztišit
-          suspend: Pozastavit účet a nenávratně smazat jeho data
+          silence: Omezit
+          suspend: Pozastavit
         warning_preset_id: Použít předlohu pro varování
       announcement:
         all_day: Celodenní událost
@@ -117,6 +120,8 @@ cs:
         scheduled_at: Naplánovat zveřejnění
         starts_at: Začátek události
         text: Oznámení
+      appeal:
+        text: Vysvětlete proč by toto rozhodnutí mělo být vráceno
       defaults:
         autofollow: Pozvat ke sledování vašeho účtu
         avatar: Avatar
@@ -195,6 +200,7 @@ cs:
           sign_up_requires_approval: Omezit registrace
         severity: Pravidlo
       notification_emails:
+        appeal: Někdo se odvolává proti rozhodnutí moderátora
         digest: Posílat e-maily s přehledem
         favourite: Někdo si oblíbil váš příspěvek
         follow: Někdo vás začal sledovat
@@ -202,6 +208,8 @@ cs:
         mention: Někdo vás zmínil
         pending_account: Je třeba posoudit nový účet
         reblog: Někdo boostnul váš příspěvek
+        report: Je odesláno nové hlášení
+        trending_tag: Nový trend vyžaduje posouzení
       rule:
         text: Pravidlo
       tag:
