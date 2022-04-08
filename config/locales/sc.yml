@@ -1,7 +1,6 @@
----
 sc:
   about:
-    about_hashtag_html: Custos sunt tuts pùblicos etichetados cun <strong>#%{hashtag}</strong>. Bi podes intrare in cuntatu si tenes unu contu in cale si siat logu de su fediversu.
+    about_hashtag_html: 'Custos sunt tuts pùblicos etichetados cun <strong>#%{hashtag}</strong>. Bi podes intrare in cuntatu si tenes unu contu in cale si siat logu de su fediversu.'
     about_mastodon_html: 'Sa rete sotziale de su benidore: sena publitzidade, sena vigilàntzia corporativa, disinnu èticu e detzentralizatzione! Sias mere de is datos tuos cun Mastodon!'
     about_this: Informatziones
     active_count_after: ativu
@@ -21,9 +20,8 @@ sc:
     federation_hint_html: Cun unu contu in %{instance} as a pòdere sighire persones in cale si siat serbidore de Mastodon o de su fediversu.
     get_apps: Proa un'aplicatzione mòbile
     hosted_on: Mastodon allogiadu in %{domain}
-    instance_actor_flash: 'Custu contu est un''atore virtuale impreadu pro rapresentare su pròpiu serbidore, no est un''utente individuale. Benit impreadu pro punnas de federatzione e no ddu dias dèpere blocare si non boles blocare su domìniu intreu, e in cussu casu dias dèpere impreare unu blocu de domìniu.
-
-      '
+    instance_actor_flash: |
+      Custu contu est un'atore virtuale impreadu pro rapresentare su pròpiu serbidore, no est un'utente individuale. Benit impreadu pro punnas de federatzione e no ddu dias dèpere blocare si non boles blocare su domìniu intreu, e in cussu casu dias dèpere impreare unu blocu de domìniu.
     learn_more: Àteras informatziones
     privacy_policy: Polìtica de riservadesa
     rules: Règulas de su serbidore
@@ -54,7 +52,7 @@ sc:
     user_count_before: Allogiadu dae
     what_is_mastodon: Ite est Mastodon?
   accounts:
-    choices_html: 'Sèberos de %{name}:'
+    choices_html: "Sèberos de %{name}:"
     endorsements_hint: Podes cussigiare gente chi sighis dae s'interfache web, e at a aparèssere inoghe.
     featured_tags_hint: Podes evidentziare etichetas ispetzìficas chi ant a èssere ammustradas inoghe.
     follow: Sighi
@@ -114,7 +112,7 @@ sc:
       delete: Cantzella datos
       deleted: Cantzelladu
       demote: Degrada
-      destroyed_msg: Is datos de %{username} sunt a sa coa pro èssere cantzellados luego
+      destroyed_msg: "Is datos de %{username} sunt a sa coa pro èssere cantzellados luego"
       disable: Disativa
       disable_two_factor_authentication: Disativa 2FA
       disabled: Disativadu
@@ -288,7 +286,7 @@ sc:
         silence_account_html: "%{name} at postu su contu de %{target} a sa muda"
         suspend_account_html: "%{name} at suspèndidu su contu de %{target}"
         unassigned_report_html: "%{name} at bogadu s'assignatzione de s'informe %{target}"
-        unsensitive_account_html: '%{name} at bogadu sa marcadura "sensìbile" a s''elementu multimediale de %{target}'
+        unsensitive_account_html: "%{name} at bogadu sa marcadura \"sensìbile\" a s'elementu multimediale de %{target}"
         unsilence_account_html: "%{name} at ativadu is notìficas pro su contu de %{target}"
         unsuspend_account_html: "%{name} at bogadu sa suspensione de su contu de %{target}"
         update_announcement_html: "%{name} at atualizadu s'annùntziu %{target}"
@@ -443,7 +441,7 @@ sc:
       no_ip_block_selected: Peruna règula IP est istada mudada dae chi non nd'as seletzionadu
       title: Règulas IP
     relationships:
-      title: relatziones de %{acct}
+      title: "relatziones de %{acct}"
     relays:
       add_new: Agiunghe unu ripetidore nou
       delete: Cantzella
@@ -629,7 +627,7 @@ sc:
     new_report:
       body: "%{reporter} at sinnaladu %{target}"
       body_remote: Una persone de su domìniu %{domain} at sinnaladu %{target}
-      subject: Informe nou pro %{instance} (#%{id})
+      subject: 'Informe nou pro %{instance} (#%{id})'
   aliases:
     add_new: Crea unu nomìngiu
     created_msg: Nomìngiu creadu. Immoe podes cumintzare a tramudare dae su contu betzu.
@@ -935,12 +933,9 @@ sc:
       new_followers_summary:
         one: In prus, %{count} persone noa ti sighit dae cando fias assente. Incredìbile!
         other: In prus, %{count} persones noas ti sighint dae cando fias assente. Incredìbile!
-      subject:
-        one: "1 notìfica noa dae s'ùrtima visita tua 🐘"
-        other: "%{count} notìficas noas dae s'ùrtima visita tua 🐘"
       title: Durante s'ausèntzia tua...
     favourite:
-      body: "%{name} at marcadu comente a preferidu s'istadu tuo:"
+      body: '%{name} at marcadu comente a preferidu s''istadu tuo:'
       subject: "%{name} at marcadu comente a preferidu s'istadu tuo"
       title: Preferidu nou
     follow:
@@ -954,13 +949,13 @@ sc:
       title: Rechesta de sighidura noa
     mention:
       action: Risponde
-      body: "%{name} t'at mentovadu in:"
-      subject: "%{name} t'at mentovadu"
+      body: '%{name} t''at mentovadu in:'
+      subject: '%{name} t''at mentovadu'
       title: Mèntovu nou
     poll:
       subject: Su sondàgiu de %{name} est acabadu
     reblog:
-      body: "%{name} at cumpartzidu s'istadu tuo:"
+      body: '%{name} at cumpartzidu s''istadu tuo:'
       subject: "%{name} at cumpartzidu s'istadu tuo"
       title: Cumpartzidura noa
     status:
