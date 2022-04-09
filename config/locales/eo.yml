@@ -644,6 +644,8 @@ eo:
       body_remote: Iu de %{domain} signalis %{target}
       subject: 'Nova signalo por %{instance} (#%{id})'
     new_trends:
+      new_trending_links:
+        title: Tendencantaj ligiloj
       new_trending_tags:
         title: Tendencantaj kradvortoj
   aliases:
@@ -769,6 +771,10 @@ eo:
     directory: Profilujo
     explanation: Malkovru uzantojn per iliaj interesoj
     explore_mastodon: Esplori %{title}
+  disputes:
+    strikes:
+      title_actions:
+        delete_statuses: Forigo de afiŝo
   domain_validator:
     invalid_domain: ne estas valida domajna nomo
   errors:
@@ -916,6 +922,7 @@ eo:
     set_redirect: Agordi alidirekton
     warning:
       only_redirect_html: Alie, vi povas <a href="%{path}">nur aldoni alidirekton en via profilo</a>.
+      other_data: Neniu alia datumo estos movita aŭtomate
   moderation:
     title: Kontrolado
   notification_mailer:
@@ -951,6 +958,8 @@ eo:
       title: Nova diskonigo
     status:
       subject: "%{name} ĵus afiŝita"
+    update:
+      subject: "%{name} redaktis afiŝon"
   notifications:
     email_events: Eventoj por retpoŝtaj sciigoj
     email_events_hint: 'Elekti la eventojn pri kioj vi volas ricevi sciigojn:'
