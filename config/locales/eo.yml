@@ -593,8 +593,11 @@ eo:
         title: Furoraj kradvortoj
     site_uploads:
       delete: Forigi elŝutitan dosieron
+      destroyed_msg: Reteja alŝuto sukcese forigita!
     statuses:
       back_to_account: Reveni al konta paĝo
+      batch:
+        report: Raporti
       deleted: Forigita
       media:
         title: Aŭdovidaĵoj
@@ -611,6 +614,22 @@ eo:
       review: La statuso de la recenzo
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
     title: Administrado
+    trends:
+      links:
+        allow: Permesi ligilon
+        disallow: Malpermesi ligilon
+        title: Tendencantaj ligiloj
+      statuses:
+        allow: Permesi afiŝon
+        allow_account: Permesi aŭtoron
+        disallow: Malpermesi afiŝon
+        disallow_account: Malpermesi aŭtoron
+        title: Tendencantaj afiŝoj
+      tags:
+        dashboard:
+          tag_servers_measure: malsamaj serviloj
+        not_usable: Ne povas esti uzata
+        title: Tendencantaj kradvortoj
     warning_presets:
       add_new: Aldoni novan
       delete: Forigi
@@ -624,6 +643,9 @@ eo:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
       subject: 'Nova signalo por %{instance} (#%{id})'
+    new_trends:
+      new_trending_tags:
+        title: Tendencantaj kradvortoj
   aliases:
     add_new: Krei alinomon
     created_msg: Kreis novan alinomon sukcese. Vi povas inici la transloki el la malnovan konton nun.
