@@ -638,6 +638,7 @@ eo:
         title: Tendencantaj afiŝoj
       tags:
         dashboard:
+          tag_accounts_measure: unikaj uzoj
           tag_servers_measure: malsamaj serviloj
         not_usable: Ne povas esti uzata
         title: Tendencantaj kradvortoj
@@ -647,6 +648,9 @@ eo:
       edit_preset: Redakti avertan antaŭagordon
       title: Administri avertajn antaŭagordojn
   admin_mailer:
+    new_appeal:
+      actions:
+        disable: por malebligi ties konton
     new_pending_account:
       body: La detaloj de la nova konto estas sube. Vi povas aprobi aŭ Malakcepti ĉi kandidatiĝo.
       subject: Nova konto atendas por recenzo en %{instance} (%{username})
