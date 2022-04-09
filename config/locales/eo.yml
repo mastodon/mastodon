@@ -397,6 +397,7 @@ eo:
       content_policies:
         policies:
           reject_reports: Malakcepti raportojn
+        policy: Politiko
       dashboard:
         instance_accounts_dimension: Plej sekvataj kontoj
         instance_accounts_measure: konservitaj kontoj
@@ -610,6 +611,7 @@ eo:
       actions:
         delete_statuses: "%{name} forigis afiŝojn de %{target}"
         disable: "%{name} malebligis la konton de %{target}"
+      appeal_approved: Apelaciita
     system_checks:
       database_schema_check:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
@@ -627,6 +629,7 @@ eo:
         allow: Permesi ligilon
         disallow: Malpermesi ligilon
         title: Tendencantaj ligiloj
+      pending_review: Atendante revizion
       statuses:
         allow: Permesi afiŝon
         allow_account: Permesi aŭtoron
