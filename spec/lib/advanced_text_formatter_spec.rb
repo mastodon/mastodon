@@ -50,6 +50,14 @@ RSpec.describe AdvancedTextFormatter do
         end
       end
 
+      context 'given text with a local-domain mention' do
+        let(:text) { 'foo https://cb6e6126.ngrok.io/about/more' }
+
+        it 'creates a link' do
+          is_expected.to include '<a href="https://cb6e6126.ngrok.io/about/more"'
+        end
+      end
+
       context 'given text containing linkable mentions' do
         let(:preloaded_accounts) { [Fabricate(:account, username: 'alice')] }
         let(:text) { '@alice' }
