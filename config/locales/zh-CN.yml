@@ -794,7 +794,7 @@ zh-CN:
       statuses:
         allow: 允许嘟文
         allow_account: 允许作者
-        description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。它可以帮助新用户和老用户发现更多可关注的账号。发布者获得批准前不会公开显示任何嘟文。同时发布者还需要允许其账号被推荐给其他用户。你也可以批准或拒绝单条嘟文。
+        description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。这些嘟文可以帮助新老用户找到更多可关注的账号。批准发布者且发布者允许将其账号推荐给其他用户前，不会公开显示任何嘟文。你也可以批准或拒绝单条嘟文。
         disallow: 禁止本嘟文
         disallow_account: 禁止本作者
         not_discoverable: 发布者未选择可被发现
@@ -1449,7 +1449,7 @@ zh-CN:
     ignore_favs: 取消喜欢
     ignore_reblogs: 忽略转嘟
     interaction_exceptions: 基于互动的例外
-    interaction_exceptions_explanation: 请注意，如果嘟文超出转嘟和喜欢的阈值之后，又降到阈值以下，不能保证会被删除。
+    interaction_exceptions_explanation: 请注意，如果嘟文超出转嘟和喜欢的阈值之后，又降到阈值以下，则可能不会被删除。
     keep_direct: 保留私信
     keep_direct_hint: 不会删除你的任何私信
     keep_media: 保留带媒体附件的嘟文
@@ -1473,9 +1473,9 @@ zh-CN:
       '7889238': 3个月
     min_age_label: 过期阈值
     min_favs: 保留如下嘟文：喜欢数超过
-    min_favs_hint: 喜欢数超过该阈值的的嘟文不被删除。如果留空，则无视喜欢数，直接删除。
+    min_favs_hint: 喜欢数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少喜欢，都将被删除。
     min_reblogs: 保留如下嘟文：转嘟数超过
-    min_reblogs_hint: 转嘟数超过该阈值的的嘟文不被删除。如果留空，则无视被转嘟的数量，直接删除。
+    min_reblogs_hint: 转嘟数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少转嘟，都将被删除。
   stream_entries:
     pinned: 置顶嘟文
     reblogged: 转嘟
