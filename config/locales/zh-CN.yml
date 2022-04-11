@@ -385,7 +385,7 @@ zh-CN:
       interactions: 互动数
       media_storage: 媒体存储
       new_users: 新用户
-      opened_reports: 被发起的举报
+      opened_reports: 收到的举报
       pending_appeals_html:
         other: "<strong>%{count}</strong> 个待处理申诉"
       pending_reports_html:
@@ -787,16 +787,16 @@ zh-CN:
       pending_review: 待审核
       preview_card_providers:
         allowed: 来自此发布者的链接可进入流行列表
-        description_html: 这些域名所属的链接经常在此服务器上被分享。在对应域名获得批准前链接不会公开显示在趋势中。批准和拒绝操作也会对子域名生效。
+        description_html: 这些域名所属的链接经常在此服务器上被分享。在对应域名获得批准前链接不会公开显示在热门中。批准和拒绝操作也会对子域名生效。
         rejected: 来自此发布者的链接不会进入流行列表
         title: 发布者
       rejected: 已拒绝
       statuses:
         allow: 允许嘟文
-        allow_account: 允许作者
+        allow_account: 允许发布者
         description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。这些嘟文可以帮助新老用户找到更多可关注的账号。批准发布者且发布者允许将其账号推荐给其他用户前，不会公开显示任何嘟文。你也可以批准或拒绝单条嘟文。
-        disallow: 禁止本嘟文
-        disallow_account: 禁止本作者
+        disallow: 禁止嘟文
+        disallow_account: 禁止发布者
         not_discoverable: 发布者未选择可被发现
         shared_by:
           other: 被分享和喜欢%{friendly_count}次
