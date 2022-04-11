@@ -581,6 +581,7 @@ zh-CN:
       action_taken_by: 操作执行者
       actions:
         delete_description_html: 被举报的嘟文将被删除，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
+        mark_as_sensitive_description_html: 被举报的嘟文将被标记为敏感，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
         other_description_html: 查看更多控制该账号行为的选项，并自定义编写与被举报账号的通信。
         resolve_description_html: 不会对被举报账号采取任何动作，举报将被关闭，也不会留下处罚记录。
         silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。可随时撤销。
@@ -1212,6 +1213,8 @@ zh-CN:
       mention: "%{name} 在嘟文中提到了你："
       new_followers_summary:
         other: 而且，你不在的时候，有 %{count} 个人关注了你！好棒！
+      subject:
+        other: "自上次访问以来，收到 %{count} 条新通知 🐘"
       title: 在你不在的这段时间……
     favourite:
       body: '你的嘟文被 %{name} 喜欢了：'
@@ -1600,6 +1603,13 @@ zh-CN:
       explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
       subject: 你的存档已经准备完毕
       title: 存档导出
+    suspicious_sign_in:
+      change_password: 更改密码
+      details: '以下是该次登录的详细信息：'
+      explanation: 我们检测到有新 IP 地址登录了您的账号。
+      further_actions_html: 如果不是您自己的操作，我们建议您立即 %{action} 并启用双重验证，确保账号安全。
+      subject: 已有新 IP 地址访问了您的账号
+      title: 新登录
     warning:
       appeal: 提交申诉
       appeal_description: 如果你认为此结果有误，可以向 %{instance} 的工作人员提交申诉。
