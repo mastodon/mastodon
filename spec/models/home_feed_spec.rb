@@ -21,11 +21,16 @@ RSpec.describe HomeFeed, type: :model do
         )
       end
 
-      it 'gets statuses with ids in the range from redis' do
+      it 'gets statuses with ids in the range from redis with database' do
         results = subject.get(3)
 
-        expect(results.map(&:id)).to eq [3, 2]
+        expect(results.map(&:id)).to eq [3, 2, 1]
         expect(results.first.attributes.keys).to eq %w(id updated_at)
+      end
+
+      it 'with min_id present' do
+        results = subject.get(3, nil, nil, 0)
+        expect(results.map(&:id)).to eq [3, 2, 1]
       end
     end
 
@@ -34,10 +39,15 @@ RSpec.describe HomeFeed, type: :model do
         Redis.current.set("account:#{account.id}:regeneration", true)
       end
 
-      it 'returns nothing' do
+      it 'returns from database' do
         results = subject.get(3)
 
-        expect(results.map(&:id)).to eq []
+        expect(results.map(&:id)).to eq [10, 3, 2]
+      end
+
+      it 'with min_id present' do
+        results = subject.get(3, nil, nil, 0)
+        expect(results.map(&:id)).to eq [3, 2, 1]
       end
     end
   end
