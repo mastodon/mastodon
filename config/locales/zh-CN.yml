@@ -788,7 +788,7 @@ zh-CN:
       preview_card_providers:
         allowed: 来自此发布者的链接可进入流行列表
         description_html: 这些域名所属的链接经常在此服务器上被分享。在对应域名获得批准前链接不会公开显示在热门中。批准和拒绝操作也会对子域名生效。
-        rejected: 来自此发布者的链接不会进入流行列表
+        rejected: 来自此发布者的链接不会进入热门列表
         title: 发布者
       rejected: 已拒绝
       statuses:
@@ -812,11 +812,11 @@ zh-CN:
         description_html: 这些是当前此服务器可见嘟文中大量出现的标签。它可以帮助用户发现其他人正关注的话题。在获得批准前不会公开显示任何标签。
         listable: 可被推荐
         not_listable: 不会被推荐
-        not_trendable: 不会出现在流行列表中
+        not_trendable: 不会出现在热门列表中
         not_usable: 不可使用
         peaked_on_and_decaying: 在 %{date} 达到峰值，下降中
         title: 热门标签
-        trendable: 可显示在流行列表中
+        trendable: 可显示在热门列表中
         trending_rank: '热门 #%{rank}'
         usable: 可以使用
         usage_comparison: 今日被使用 %{today} 次，前一日为 %{yesterday} 次
@@ -853,11 +853,11 @@ zh-CN:
       body: '以下项目需要审核才能公开显示：'
       new_trending_links:
         no_approved_links: 当前没有经过批准的热门链接。
-        requirements: '以下候选均可超过 #%{rank} 已批准趋势链接，当前为 "%{lowest_link_title}"，分数为 %{lowest_link_score}。'
+        requirements: '以下候选均可超过 #%{rank} 已批准热门链接，当前为 "%{lowest_link_title}"，分数为 %{lowest_link_score}。'
         title: 热门链接
       new_trending_statuses:
         no_approved_statuses: 当前没有经过批准的热门链接。
-        requirements: '以下候选均可超过 #%{rank} 已批准趋势嘟文，当前为 %{lowest_status_url} 分数为 %{lowest_status_score}。'
+        requirements: '以下候选均可超过 #%{rank} 已批准热门嘟文，当前为 %{lowest_status_url} 分数为 %{lowest_status_score}。'
         title: 热门嘟文
       new_trending_tags:
         no_approved_tags: 目前没有经批准的热门标签。
