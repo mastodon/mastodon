@@ -62,7 +62,7 @@ class Account < ApplicationRecord
   )
 
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
-  MENTION_RE    = /(@(?:[:word:]+(?:#{USERNAME_RE})?)+?(?:@(?:[:word:\.\-]+[:word:]+)+?)?)/i
+  MENTION_RE    = /(@(?:#{USERNAME_RE})+?(?:@(?:[:word:\.\-]+[:word:]+)+?)?)/i
   URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
 
   include Attachmentable
