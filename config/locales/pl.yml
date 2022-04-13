@@ -15,6 +15,7 @@ pl:
     contact: Kontakt
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
+    continue_to_web: Kontynuuj przez aplikację webową
     discover_users: Odkrywaj użytkowników
     documentation: Dokumentacja
     federation_hint_html: Z kontem na %{instance}, możesz śledzić użytkowników każdego serwera Mastodona i nie tylko.
@@ -24,6 +25,8 @@ pl:
       To konto jest wirtualnym nadawcą, używanym do reprezentacji serwera, a nie jakiegokolwiek użytkownika.
       Jest używane w celu federowania i nie powinno być blokowane, chyba że chcesz zablokować całą instację, w takim przypadku użyj blokady domeny.
     learn_more: Dowiedz się więcej
+    logged_in_as_html: Jesteś obecnie zalogowany/a jako %{username}.
+    logout_before_registering: Jesteś już zalogowany/a.
     privacy_policy: Polityka prywatności
     rules: Regulamin serwera
     rules_html: 'Poniżej znajduje się podsumowanie zasad, których musisz przestrzegać, jeśli chcesz mieć konto na tym serwerze Mastodona:'
@@ -372,6 +375,7 @@ pl:
       enable: Włącz
       enabled: Włączone
       enabled_msg: Pomyślnie przywrócono emoji
+      image_hint: PNG lub GIF do %{size}
       list: Dodaj do listy
       listed: Widoczne
       new:
@@ -483,6 +487,11 @@ pl:
       title: Polecane konta
       unsuppress: Przywróć polecenie śledzenia konta
     instances:
+      availability:
+        failure_threshold_reached: Próg niepowodzenia osiągnięty dnia %{date}.
+        no_failures_recorded: Brak błędów w rejestrze.
+        title: Dostępność
+        warning: Ostatnia próba połączenia z tym serwerem zakończyła się niepowodzeniem
       back_to_all: Wszystkie
       back_to_limited: Ograniczone
       back_to_warning: Ostrzeżenie
@@ -1451,7 +1460,7 @@ pl:
       '2629746': 1 miesiąc
       '31556952': 1 rok
       '5259492': 2 miesiące
-      '604800': 1 week
+      '604800': 1 tydzień
       '63113904': 2 lata
       '7889238': 3 miesiące
     min_age_label: Próg wieku
@@ -1575,6 +1584,13 @@ pl:
   user_mailer:
     appeal_approved:
       action: Przejdź do swojego konta
+      explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało zatwierdzone. Twoje konto jest ponownie w dobrej kondycji.
+      subject: Twoje odwołanie z dnia %{date} zostało zatwierdzone
+      title: Odwołanie zatwierdzone
+    appeal_rejected:
+      explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało odrzucone.
+      subject: Twoje odwołanie z dnia %{date} zostało odrzucone
+      title: Odwołanie odrzucone
     backup_ready:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
@@ -1587,10 +1603,13 @@ pl:
       subject: Uzyskano dostęp do twojego konta z nowego adresu IP
       title: Nowe logowanie
     warning:
+      appeal: Złóż odwołanie
+      appeal_description: Jeśli uważasz, że zaszło nieporozumienie, możesz złożyć odwołanie do zespołu %{instance}.
       categories:
         spam: Spam
         violation: Zawartość narusza następujące wytyczne społeczności
       explanation:
+        delete_statuses: Stwierdzono, że niektóre z twoich wpisów łamią jedną lub więcej wytycznych dla społeczności, przez co zostały usunięte przez moderatorów %{instance}.
         disable: Nie możesz już używać swojego konta, ale Twój profil i inne dane pozostają nienaruszone. Możesz poprosić o kopię swoich danych, zmienić ustawienia konta lub usunąć swoje konto.
         mark_statuses_as_sensitive: Niektóre z Twoich postów zostały oznaczone jako wrażliwe przez moderatorów %{instance}. Oznacza to, że ludzie będą musieli dotknąć mediów w postach przed wyświetleniem podglądu. Możesz oznaczyć media jako wrażliwe podczas publikowania w przyszłości.
         sensitive: Od teraz wszystkie przesłane pliki multimedialne będą oznaczone jako wrażliwe i ukryte za ostrzeżeniem kliknięcia.
