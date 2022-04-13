@@ -875,6 +875,7 @@ pl:
         no_approved_tags: Obecnie nie ma żadnych zatwierdzonych popularnych hasztagów.
         requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych teraz hasztagów, który wynosi obecnie %{lowest_tag_name} z wynikiem %{lowest_tag_score}.'
         title: Popularne hasztagi
+      subject: Nowe popularne do przeglądu na %{instance}
   aliases:
     add_new: Utwórz alias
     created_msg: Pomyślnie utworzono nowy alias. Możesz teraz rozpocząć przenoszenie ze starego konta.
@@ -948,8 +949,10 @@ pl:
     status:
       account_status: Stan konta
       confirming: Oczekiwanie na potwierdzenie adresu e-mail.
+      functional: Twoje konto jest w pełni funkcjonalne.
       pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
+      view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     trouble_logging_in: Masz problem z zalogowaniem się?
     use_security_key: Użyj klucza bezpieczeństwa
@@ -1025,6 +1028,7 @@ pl:
         submit: Zgłoś odwołanie
       associated_report: Powiązany raport
       created_at: Data
+      description_html: Są to działania podjęte przeciwko Twojemu kontu i ostrzeżenia wysłane do ciebie przez administrację %{instance}.
       recipient: Adresowane do
       status: 'Post #%{id}'
       status_removed: Post został już usunięty z systemu
@@ -1257,6 +1261,8 @@ pl:
       title: Nowe podbicie
     status:
       subject: "%{name} właśnie opublikował(a) wpis"
+    update:
+      subject: "%{name} edytował/a wpis"
   notifications:
     email_events: 'Powiadamiaj e-mailem o:'
     email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
@@ -1407,6 +1413,7 @@ pl:
     profile: Profil
     relationships: Śledzeni i śledzący
     statuses_cleanup: Automatyczne usuwanie posta
+    strikes: Ostrzeżenia moderacyjne
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     webauthn_authentication: Klucze bezpieczeństwa
   statuses:
@@ -1435,6 +1442,7 @@ pl:
       few: 'zawiera niedozwolone hashtagi: %{tags}'
       many: 'zawiera niedozwolone hashtagi: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
+    edited_at_html: Edytowane %{date}
     errors:
       in_reply_not_found: Post, na który próbujesz odpowiedzieć, nie istnieje.
     open_in_web: Otwórz w przeglądarce
