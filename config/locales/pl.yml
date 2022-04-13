@@ -497,6 +497,26 @@ pl:
       back_to_warning: Ostrzeżenie
       by_domain: Domena
       confirm_purge: Czy na pewno chcesz trwale usunąć dane z tej domeny?
+      content_policies:
+        comment: Wewnętrzna notatka
+        description_html: Możesz zdefiniować zasady treści, które zostaną zastosowane do wszystkich kont z tej domeny i jej subdomen.
+        policies:
+          reject_media: Odrzucaj media
+          reject_reports: Odrzucaj zgłoszenia
+          silence: Ogranicz
+          suspend: Zawieś
+        policy: Polityka
+        reason: Powód publiczny
+        title: Polityki zawartości
+      dashboard:
+        instance_accounts_dimension: Najczęściej śledzone konta
+        instance_accounts_measure: przechowywane konta
+        instance_followers_measure: nasi śledzący tam
+        instance_follows_measure: ich śledzący tutaj
+        instance_languages_dimension: Najpopularniejsze języki
+        instance_media_attachments_measure: przechowywane załączniki multimedialne
+        instance_reports_measure: zgłoszenia dotyczące ich
+        instance_statuses_measure: przechowywane wpisy
       delivery:
         all: Wszystkie
         clear: Wyczyść błędy w doręczaniu
@@ -515,12 +535,14 @@ pl:
       private_comment: Prywatny komentarz
       public_comment: Publiczny komentarz
       purge: Wyczyść
+      purge_description_html: Jeśli uważasz, że ta domena została zamknięta na dobre, możesz usunąć wszystkie rejestry konta i powiązane dane z tej domeny z pamięci. Proces ten może chwilę potrwać.
       title: Znane instancje
       total_blocked_by_us: Zablokowane przez nas
       total_followed_by_them: Śledzeni przez nich
       total_followed_by_us: Śledzeni przez nas
       total_reported: Zgłoszenia dotyczące ich
       total_storage: Załączniki multimedialne
+      totals_time_period_hint_html: Poniższe sumy zawierają dane od początku serwera.
     invites:
       deactivate_all: Unieważnij wszystkie
       filter:
@@ -610,6 +632,7 @@ pl:
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
       quick_actions_description_html: 'Wykonaj szybkie działanie lub przewiń w dół, aby zobaczyć zgłoszoną zawartość:'
+      remote_user_placeholder: zdalny użytkownik z %{instance}
       reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
       reported_account: Zgłoszone konto
@@ -838,6 +861,7 @@ pl:
       body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
       new_trending_links:
         no_approved_links: Obecnie nie ma zatwierdzonych linków trendów.
+        title: Popularne linki
   aliases:
     add_new: Utwórz alias
     created_msg: Pomyślnie utworzono nowy alias. Możesz teraz rozpocząć przenoszenie ze starego konta.
