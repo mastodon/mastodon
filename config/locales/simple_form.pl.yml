@@ -26,6 +26,8 @@ pl:
         scheduled_at: Pozostaw puste, aby opublikować ogłoszenie natychmiastowo
         starts_at: Nieobowiązkowe. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
         text: Możesz używać składni wpisu. Pamiętaj o tym, ile miejsca zajmie ogłoszenie na ekranie użytkownika
+      appeal:
+        text: Możesz wysłać odwołanie do ostrzeżenia tylko raz
       defaults:
         autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
         avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
@@ -34,6 +36,7 @@ pl:
         current_password: Ze względów bezpieczeństwa wprowadź hasło obecnego konta
         current_username: Aby potwierdzić, wprowadź nazwę użytkownika obecnego konta
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
+        discoverable: Pozwala na odkrywanie twojego konta przez nieznajomych poprzez rekomendacje, popularne wpisy i inne funkcje
         email: Otrzymasz e-mail potwierdzający
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
@@ -117,6 +120,8 @@ pl:
         scheduled_at: Zaplanuj publikację
         starts_at: Początek wydarzenia
         text: Ogłoszenie
+      appeal:
+        text: Wyjaśnij, dlaczego ta decyzja powinna zostać cofnięta
       defaults:
         autofollow: Zapraszaj do śledzenia swojego konta
         avatar: Awatar
@@ -196,6 +201,7 @@ pl:
           sign_up_requires_approval: Ogranicz rejestracje
         severity: Reguła
       notification_emails:
+        appeal: Ktoś odwołuje się od decyzji moderatora
         digest: Wysyłaj podsumowania e-mailem
         favourite: Powiadamiaj mnie e-mailem, gdy ktoś polubi mój wpis
         follow: Powiadamiaj mnie e-mailem, gdy ktoś zacznie mnie śledzić
@@ -203,6 +209,8 @@ pl:
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
+        report: Nowy raport został wysłany
+        trending_tag: Nowe popularne wymagają przeglądu
       rule:
         text: Zasada
       tag:
