@@ -130,7 +130,7 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
-           :disable_swiping,
+           :disable_swiping, :always_send_emails,
            to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code

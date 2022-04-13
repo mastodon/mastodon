@@ -37,12 +37,12 @@ class Trends::Base
     Trends::Query.new(key_prefix, klass)
   end
 
-  def score(id)
-    redis.zscore("#{key_prefix}:all", id) || 0
+  def score(id, locale: nil)
+    redis.zscore([key_prefix, 'all', locale].compact.join(':'), id) || 0
   end
 
-  def rank(id)
-    redis.zrevrank("#{key_prefix}:allowed", id)
+  def rank(id, locale: nil)
+    redis.zrevrank([key_prefix, 'allowed', locale].compact.join(':'), id)
   end
 
   def currently_trending_ids(allowed, limit)
@@ -65,8 +65,8 @@ class Trends::Base
   end
 
   def trim_older_items
-    redis.zremrangebyscore("#{key_prefix}:all", '-inf', '(1')
-    redis.zremrangebyscore("#{key_prefix}:allowed", '-inf', '(1')
+    redis.zremrangebyscore("#{key_prefix}:all", '-inf', '(0.3')
+    redis.zremrangebyscore("#{key_prefix}:allowed", '-inf', '(0.3')
   end
 
   def score_at_rank(rank)
