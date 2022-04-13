@@ -803,14 +803,17 @@ pl:
       pending_review: Oczekuje na przegląd
       preview_card_providers:
         allowed: Linki od tego wydawcy mogą podlegać trendom
+        description_html: Są to domeny, z których linki są często udostępniane na Twoim serwerze. Linki nie będą się rozwijały publicznie, chyba że domena linku zostanie zatwierdzona. Twoja zgoda (lub odrzucenie) rozciąga się na subdomeny.
         rejected: Linki od tego wydawcy nie mogą podlegać trendom
         title: Wydawcy
       rejected: Odrzucono
       statuses:
         allow: Zezwól na post
         allow_account: Zezwól na autora
+        description_html: Są to wpisy, o których Twój serwer wie i które są obecnie często udostępniane i dodawane do ulubionych. Może to pomóc nowym i powracającym użytkownikom znaleźć więcej osób do śledzenia. Żadne posty nie są wyświetlane publicznie, dopóki nie zatwierdzisz autora, a autor ustawi zezwolenie na wyświetlanie się w katalogu. Możesz również zezwolić lub odrzucić poszczególne posty.
         disallow: Nie zezwalaj na post
         disallow_account: Nie zezwalaj na autora
+        not_discoverable: Autor nie włączył opcji, by być wyświetlany w katalogu
         title: Popularne teraz
       tags:
         current_score: Bieżący wynik %{score}
@@ -820,6 +823,7 @@ pl:
           tag_servers_dimension: Najlepsze serwery
           tag_servers_measure: różne serwery
           tag_uses_measure: użyć łącznie
+        description_html: To są hasztagi, które obecnie pojawiają się w wielu wpisach, które widzisz na serwerze. Może to pomóc Twoim użytkownikom dowiedzieć się, o czym obecnie ludzie najchętniej rozmawiają. Żadne hasztagi nie są wyświetlane publicznie, dopóki ich nie zaakceptujesz.
         listable: Można zasugerować
         not_listable: Nie można zasugerować
         not_trendable: Nie pojawia się pod trendami
@@ -861,7 +865,16 @@ pl:
       body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
       new_trending_links:
         no_approved_links: Obecnie nie ma zatwierdzonych linków trendów.
+        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych linków, który wynosi obecnie "%{lowest_link_title}" z wynikiem %{lowest_link_score}.'
         title: Popularne linki
+      new_trending_statuses:
+        no_approved_statuses: Obecnie nie ma zatwierdzonych popularnych linków.
+        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych teraz wpisów, który wynosi obecnie %{lowest_status_url} z wynikiem %{lowest_status_score}.'
+        title: Popularne teraz
+      new_trending_tags:
+        no_approved_tags: Obecnie nie ma żadnych zatwierdzonych popularnych hasztagów.
+        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych teraz hasztagów, który wynosi obecnie %{lowest_tag_name} z wynikiem %{lowest_tag_score}.'
+        title: Popularne hasztagi
   aliases:
     add_new: Utwórz alias
     created_msg: Pomyślnie utworzono nowy alias. Możesz teraz rozpocząć przenoszenie ze starego konta.
