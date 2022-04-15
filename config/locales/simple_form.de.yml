@@ -1,4 +1,3 @@
----
 de:
   simple_form:
     hints:
@@ -49,6 +48,7 @@ de:
         phrase: Wird schreibungsunabhängig mit dem Text und Inhaltswarnung eines Beitrags verglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
+        setting_always_send_emails: Normalerweise werden E-Mail-Benachrichtigungen nicht gesendet, wenn du Mastodon aktiv verwendest
         setting_default_sensitive: NSFW-Medien werden erst nach einem Klick sichtbar
         setting_display_media_default: Verstecke Medien, die als NSFW markiert sind
         setting_display_media_hide_all: Alle Medien immer verstecken
@@ -151,6 +151,7 @@ de:
         phrase: Schlagwort oder Satz
         setting_advanced_layout: Fortgeschrittene Benutzeroberfläche benutzen
         setting_aggregate_reblogs: Gruppiere erneut geteilte Beiträge auf der Startseite
+        setting_always_send_emails: E-Mail-Benachrichtigungen immer senden
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
         setting_crop_images: Bilder in nicht ausgeklappten Beiträgen auf 16:9 zuschneiden
@@ -217,7 +218,7 @@ de:
         name: Hashtag
         trendable: Erlaube es diesen Hashtag in den Trends erscheinen zu lassen
         usable: Beiträge erlauben, diesen Hashtag zu verwenden
-    'no': Nein
+    'no': 'Nein'
     recommended: Empfohlen
     required:
       mark: "*"
@@ -225,4 +226,4 @@ de:
     title:
       sessions:
         webauthn: Verwende einer deiner Sicherheitsschlüssel zum Anmelden
-    'yes': Ja
+    'yes': 'Ja'
