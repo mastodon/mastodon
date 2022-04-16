@@ -44,10 +44,8 @@ class HomeFeed < Feed
   protected
 
   def from_database(limit, max_id, since_id, min_id)
-    scope = Status.where(account: @account.following)
-    scope = scope.left_outer_joins(:mentions)
-    scope = scope.where(visibility: %i(public unlisted private)).or(scope.where(mentions: { account_id: @account.id })).group(Status.arel_table[:id])
-    scope = scope.or(Status.where(account: @account))
+    scope = Status.where(account: @account).or(Status.where(account: @account.following))
+    scope = scope.where(visibility: %i(public unlisted private))
     scope
       .to_a_paginated_by_id(limit, min_id: min_id, max_id: max_id, since_id: since_id)
       .reject { |status| FeedManager.instance.filter?(:home, status, @account) }
