@@ -53,7 +53,8 @@ class TextFormatter
 
     html = rewrite_markdown do |entity|
       if entity[:url]
-        link_to_url(entity)
+        # link_to_url(entity)
+        entity[:url]
       elsif entity[:hashtag]
         link_to_hashtag(entity)
       elsif entity[:screen_name]
