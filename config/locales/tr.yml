@@ -184,7 +184,7 @@ tr:
         send: Doğrulama epostasını yeniden gönder
         success: Onay e-postası başarıyla gönderildi!
       reset: Sıfırla
-      reset_password: Şifreyi sıfırla
+      reset_password: Parolayı sıfırla
       resubscribe: Yeniden abone ol
       role: İzinler
       roles:
@@ -918,7 +918,7 @@ tr:
     your_token: Erişim belirteciniz
   auth:
     apply_for_account: Davet et
-    change_password: Şifre
+    change_password: Parola
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Sunucu kurallarını</a> ve <a href="%{terms_path}" target="_blank">hizmet şartlarını</a> kabul ediyorum
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Hizmet şartlarını</a> kabul ediyorum
     delete_account: Hesabı sil
@@ -929,7 +929,7 @@ tr:
       suffix: Bir hesapla, kişileri takip edebilir, güncellemeler gönderebilir, herhangi bir Mastodon sunucusundan kullanıcılarla mesaj alışverişinde bulunabilir ve daha birçok şey yapabilirsin!
     didnt_get_confirmation: Doğrulama talimatlarını almadınız mı?
     dont_have_your_security_key: Güvenlik anahtarınız yok mu?
-    forgot_password: Şifrenizi mi unuttunuz?
+    forgot_password: Parolanızı mı unuttunuz?
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
     link_to_otp: Telefonunuzdan iki adımlı bir kod veya bir kurtarma kodu girin
     link_to_webauth: Güvenlik anahtarı cihazınızı kullanın
@@ -945,9 +945,9 @@ tr:
     register: Kaydol
     registration_closed: "%{instance} yeni üyeler kabul etmemektedir"
     resend_confirmation: Onaylama talimatlarını tekrar gönder
-    reset_password: Şifreyi sıfırla
+    reset_password: Parolayı sıfırla
     security: Güvenlik
-    set_new_password: Yeni şifre belirle
+    set_new_password: Yeni parola belirle
     setup:
       email_below_hint_html: Eğer aşağıdaki e-posta adresi yanlışsa, onu burada değiştirebilir ve yeni bir doğrulama e-postası alabilirsiniz.
       email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
@@ -977,8 +977,8 @@ tr:
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
-    invalid_password: Geçersiz şifre
-    prompt: Devam etmek için şifreyi doğrulayın
+    invalid_password: Geçersiz parola
+    prompt: Devam etmek için parolanızı doğrulayın
   crypto:
     errors:
       invalid_key: geçerli bir Ed25519 veya Curve25519 anahtarı değil
@@ -1002,7 +1002,7 @@ tr:
       x_months: "%{count}ay"
       x_seconds: "%{count}sn"
   deletes:
-    challenge_not_passed: Girdiğiniz bilgi doğru değildi
+    challenge_not_passed: Girdiğiniz bilgi hatalı
     confirm_password: Kimliğinizi doğrulamak için mevcut parolanızı girin
     confirm_username: Prosedürü doğrulamak için kullanıcı adınızı girin
     proceed: Hesabı sil
