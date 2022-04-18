@@ -15,6 +15,12 @@ module Mastodon
       Setting.registrations_mode = 'open'
       say('OK', :green)
     end
+    
+    desc 'approved', 'Approved registrations'
+    def approved
+      Setting.registrations_mode = 'approved'
+      say('OK', :green)
+    end
 
     desc 'close', 'Close registrations'
     def close
