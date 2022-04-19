@@ -1,7 +1,6 @@
----
 ca:
   about:
-    about_hashtag_html: Aquests són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Pots interactuar amb elles si tens un compte a qualsevol lloc del fedivers.
+    about_hashtag_html: 'Aquests són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Pots interactuar amb elles si tens un compte a qualsevol lloc del fedivers.'
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Posseeix les teves dades amb Mastodon!'
     about_this: Quant a
     active_count_after: actiu
@@ -43,7 +42,7 @@ ca:
     unavailable_content: Servidors moderats
     unavailable_content_description:
       domain: Servidor
-      reason: Raó
+      reason: Motiu
       rejecting_media: 'Els arxius multimèdia d''aquests servidors no seran processats o emmagatzemats i cap miniatura serà mostrada, requerint clic manual a través de l''arxiu original:'
       rejecting_media_title: Mèdia filtrat
       silenced: 'Les publicacions d''aquests servidors seran amagades en les línies de temps públiques i en les converses, i cap notificació serà generada de les interaccions dels seus usuaris, llevat que estiguis seguint-los:'
@@ -57,7 +56,7 @@ ca:
     user_count_before: Tenim
     what_is_mastodon: Què és Mastodon?
   accounts:
-    choices_html: 'Eleccions de %{name}:'
+    choices_html: "Eleccions de %{name}:"
     endorsements_hint: Pots recomanar persones que segueixes a l'interfície de web, que apareixeran aquí.
     featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
@@ -118,7 +117,7 @@ ca:
       delete: Esborra les dades
       deleted: Esborrats
       demote: Degrada
-      destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
+      destroyed_msg: "Les dades de %{username} son a la cua per a ser esborrades en breu"
       disable: Inhabilita
       disable_sign_in_token_auth: Desactivar l'autenticació de token per correu
       disable_two_factor_authentication: Desactiva 2FA
@@ -503,7 +502,7 @@ ca:
           silence: Límit
           suspend: Suspèn
         policy: Política
-        reason: Raó pública
+        reason: Motiu públic
         title: Polítiques de contingut
       dashboard:
         instance_accounts_dimension: Comptes més seguits
@@ -567,7 +566,7 @@ ca:
       no_ip_block_selected: No s’ha canviat cap regla IP perquè no s’han seleccionat
       title: Regles IP
     relationships:
-      title: relacions del %{acct}
+      title: "relacions del %{acct}"
     relays:
       add_new: Afegiu un nou relay
       delete: Esborra
@@ -609,7 +608,7 @@ ca:
       assigned: Moderador assignat
       by_target_domain: Domini del compte reportat
       category: Categoria
-      category_description_html: La raó que aquest compte o contingut ha estat reportat serà citat en la comunicació amb el compte reportat
+      category_description_html: El motiu pel qual aquest compte o contingut ha estat reportat serà citat en la comunicació amb el compte reportat
       comment:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
@@ -867,7 +866,7 @@ ca:
     new_report:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
-      subject: Informe nou per a %{instance} (#%{id})
+      subject: 'Informe nou per a %{instance} (#%{id})'
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -995,7 +994,7 @@ ca:
       about_x_years: "%{count} anys"
       almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
-      less_than_x_minutes: fa %{count} minuts
+      less_than_x_minutes: "fa %{count} minuts"
       less_than_x_seconds: Ara mateix
       over_x_years: "%{count} anys"
       x_days: "%{count} dies"
@@ -1240,7 +1239,7 @@ ca:
         other: "%{count} notificacions noves des de la teva darrera visita 🐘"
       title: Durant la teva absència…
     favourite:
-      body: "%{name} ha marcat com a favorit el teu estat:"
+      body: '%{name} ha marcat com a favorit el teu estat:'
       subject: "%{name} ha marcat com a favorit el teu estat"
       title: Favorit nou
     follow:
@@ -1254,13 +1253,13 @@ ca:
       title: Nova sol·licitud de seguiment
     mention:
       action: Respon
-      body: "%{name} t'ha mencionat en:"
-      subject: "%{name} t'ha mencionat"
+      body: '%{name} t''ha mencionat en:'
+      subject: '%{name} t''ha mencionat'
       title: Menció nova
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     reblog:
-      body: "%{name} ha impulsat el teu estat:"
+      body: '%{name} ha impulsat el teu estat:'
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
     status:
@@ -1403,7 +1402,7 @@ ca:
     aliases: Àlies de compte
     appearance: Aparença
     authorized_apps: Aplicacions autoritzades
-    back: Torna a Mastodon
+    back: Tornar a Mastodon
     delete: Eliminació del compte
     development: Desenvolupament
     edit_profile: Edita el perfil
@@ -1652,7 +1651,7 @@ ca:
         sensitive: A partir d'ara, tots els mèdia pujats seran marcats com a sensibles i ocultats darrera un avís.
         silence: Encara pots fer servir el teu compte però només la gent que ja t'està seguint veuran les teves publicacions en aquest servidor i tu podries ser exclòs de les diverses opcions de descobriment. De totes maneres altres podrien encara seguir-te manualment.
         suspend: Ja no pots utilitzar el teu compte i el teu perfil i altres dades ja no son accessibles. Encara pots iniciar sessió per a demanar una copia de les teves dades fins que siguin totalment eliminades als 30 dies però es mantindran les dades bàsiques per evitar que esquivis la suspensió.
-      reason: 'Raó:'
+      reason: 'Motiu:'
       statuses: 'Publicacions citades:'
       subject:
         delete_statuses: Les teves publicacions de %{acct} han estat esborrades
