@@ -1,71 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe HomeFeed, type: :model do
-  let(:account)  { Fabricate(:account) }
-  let(:followed) { Fabricate(:account) }
-  let(:other)    { Fabricate(:account) }
+  let(:account) { Fabricate(:account) }
 
   subject { described_class.new(account) }
 
   describe '#get' do
     before do
-      account.follow!(followed)
-
-      Fabricate(:status, account: account,  id: 1)
-      Fabricate(:status, account: account,  id: 2)
-      status = Fabricate(:status, account: followed, id: 3)
-      Fabricate(:mention, account: account, status: status)
-      Fabricate(:status, account: account,  id: 10)
-      Fabricate(:status, account: other,    id: 11)
-      Fabricate(:status, account: followed, id: 12, visibility: :private)
-      Fabricate(:status, account: followed, id: 13, visibility: :direct)
+      Fabricate(:status, account: account, id: 1)
+      Fabricate(:status, account: account, id: 2)
+      Fabricate(:status, account: account, id: 3)
+      Fabricate(:status, account: account, id: 10)
     end
 
     context 'when feed is generated' do
       before do
-        FeedManager.instance.populate_home(account)
+        Redis.current.zadd(
+          FeedManager.instance.key(:home, account.id),
+          [[4, 4], [3, 3], [2, 2], [1, 1]]
+        )
       end
 
-      it 'gets statuses with ids in the range from redis with database' do
+      it 'gets statuses with ids in the range from redis' do
         results = subject.get(3)
 
-        expect(results.map(&:id)).to eq [12, 10, 3]
+        expect(results.map(&:id)).to eq [3, 2]
         expect(results.first.attributes.keys).to eq %w(id updated_at)
-      end
-
-      it 'with since_id present' do
-        results = subject.get(3, nil, 3, nil)
-        expect(results.map(&:id)).to eq [12, 10]
-      end
-
-      it 'with min_id present' do
-        results = subject.get(3, nil, nil, 0)
-        expect(results.map(&:id)).to eq [3, 2, 1]
-      end
-    end
-
-    context 'when feed is only partial' do
-      before do
-        FeedManager.instance.populate_home(account)
-
-        Redis.current.zremrangebyrank(FeedManager.instance.key(:home, account.id), 0, -2)
-      end
-
-      it 'gets statuses with ids in the range from redis with database' do
-        results = subject.get(3)
-
-        expect(results.map(&:id)).to eq [12, 10, 3]
-        expect(results.first.attributes.keys).to eq %w(id updated_at)
-      end
-
-      it 'with since_id present' do
-        results = subject.get(3, nil, 3, nil)
-        expect(results.map(&:id)).to eq [12, 10]
-      end
-
-      it 'with min_id present' do
-        results = subject.get(3, nil, nil, 0)
-        expect(results.map(&:id)).to eq [3, 2, 1]
       end
     end
 
@@ -74,20 +34,10 @@ RSpec.describe HomeFeed, type: :model do
         Redis.current.set("account:#{account.id}:regeneration", true)
       end
 
-      it 'returns from database' do
+      it 'returns nothing' do
         results = subject.get(3)
 
-        expect(results.map(&:id)).to eq [12, 10, 3]
-      end
-
-      it 'with since_id present' do
-        results = subject.get(3, nil, 3, nil)
-        expect(results.map(&:id)).to eq [12, 10]
-      end
-
-      it 'with min_id present' do
-        results = subject.get(3, nil, nil, 0)
-        expect(results.map(&:id)).to eq [3, 2, 1]
+        expect(results.map(&:id)).to eq []
       end
     end
   end
