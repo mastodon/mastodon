@@ -522,6 +522,9 @@ de:
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
       destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
+      known_accounts:
+        one: "%{count} bekanntes Konto"
+        other: "%{count} bekannte Konten"
       moderation:
         all: Alle
         limited: Beschränkt
@@ -790,6 +793,9 @@ de:
         description_html: Dies sind Links, die derzeit von Konten geteilt werden, von denen dein Server Beiträge sieht. Es kann deinen Benutzern helfen, herauszufinden, was in der Welt vor sich geht. Es werden keine Links öffentlich angezeigt, bis du den Publisher genehmigst. Du kannst auch einzelne Links zulassen oder ablehnen.
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
+        shared_by_over_week:
+          one: In der letzten Woche von einer Person geteilt
+          other: In der letzten Woche von %{count} Personen geteilt
         title: Angesagte Links
         usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
       pending_review: Überprüfung ausstehend
@@ -829,6 +835,9 @@ de:
         trending_rank: 'Trend #%{rank}'
         usable: Kann verwendet werden
         usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
+        used_by_over_week:
+          one: In der letzten Woche von einer Person genutzt
+          other: In der letzten Woche von %{count} Personen genutzt
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
@@ -1223,9 +1232,6 @@ de:
       new_followers_summary:
         one: Außerdem ist dir seit du weg warst ein weiteres Wesen gefolgt! Juhu!
         other: Außerdem sind dir seit du weg warst %{count} weitere Wesen gefolgt! Großartig!
-      subject:
-        one: "1 neue Mitteilung seit deinem letzten Besuch 🐘"
-        other: "%{count} neue Mitteilungen seit deinem letzten Besuch 🐘"
       title: In deiner Abwesenheit...
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'

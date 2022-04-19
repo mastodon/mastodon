@@ -27,7 +27,7 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
       next if ActivityPub::TagManager.instance.local_uri?(uri)
 
       status = ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: local_follower)
-      next unless status.account_id == @account.id
+      next unless status&.account_id == @account.id
 
       status.id
     rescue ActiveRecord::RecordInvalid => e
