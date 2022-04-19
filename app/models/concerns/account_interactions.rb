@@ -286,7 +286,7 @@ module AccountInteractions
   private
 
   def create_default_circle
-    circles.create(name: 'inner circle')
+    owned_circles.create(title: 'inner circle')
   end
 
   def remove_potential_friendship(other_account, mutual = false)

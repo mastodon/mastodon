@@ -681,4 +681,11 @@ describe AccountInteractions do
       end
     end
   end
+
+  describe 'default circle' do
+    it 'creates an inner circle for new accounts' do
+      expect(account.owned_circles.count).to eq 1
+      expect(account.owned_circles.first.title).to eq 'inner circle'
+    end
+  end
 end
