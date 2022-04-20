@@ -808,9 +808,13 @@ ja:
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: 投稿を削除する
         mark_statuses_as_sensitive: 閲覧注意としてマーク
         none: 警告
         sensitive: アカウントを閲覧注意にする
+        silence: アカウントを制限する
+      next_steps: モデレーションの決定を取り消すために申し立てを承認するか、無視することができます。
+      subject: "%{instance} で %{username} からモデレーションへの申し立てが届きました。"
     new_pending_account:
       body: 新しいアカウントの詳細は以下の通りです。この申請を承認または却下することができます。
       subject: '%{instance} で新しいアカウント (%{username}) が承認待ちです'
@@ -974,7 +978,10 @@ ja:
     strikes:
       action_taken: 取られた措置
       appeal: 抗議
+      appeal_approved: このストライクは申し立てが承認され、有効ではありません。
+      appeal_rejected: 申し立ては拒否されました
       appeal_submitted_at: 抗議が送信されました
+      appealed_msg: 申し立てが送信されました。承認されると通知されます。
       appeals:
         submit: 抗議を送信
       associated_report: 関連する通報
@@ -992,6 +999,9 @@ ja:
         sensitive: アカウントを閲覧注意としてマーク
         silence: アカウントの制限
         suspend: アカウントの一時停止
+      your_appeal_approved: 申し立てが承認されました
+      your_appeal_pending: 申し立てを送信しました
+      your_appeal_rejected: 申し立ては拒否されました
   domain_validator:
     invalid_domain: は無効なドメイン名です
   errors:
@@ -1549,7 +1559,12 @@ ja:
   user_mailer:
     appeal_approved:
       action: アカウントへ
+      explanation: '%{strike_date} のストライクに対して、あなたが %{appeal_date} に行った申し立ては承認されました。アカウントは正常な状態に戻りました。'
+      subject: '%{date} の申し立てが承認されました'
+      title: 申し立てが承認されました。
     appeal_rejected:
+      explanation: '%{strike_date} のストライクに対して、あなたが %{appeal_date} に行った申し立ては却下されました。'
+      subject: '%{date} の申し立てが拒否されました'
       title: 却下された抗議
     backup_ready:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
@@ -1564,6 +1579,7 @@ ja:
       title: 新しいサインイン
     warning:
       appeal: 抗議を送信
+      appeal_description: これが間違いだと思われる場合は、 %{instance} のスタッフに申し立てすることができます。
       categories:
         spam: スパム
         violation: コンテンツは以下のコミュニティガイドラインに違反しています
