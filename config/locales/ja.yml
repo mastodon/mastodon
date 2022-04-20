@@ -715,8 +715,11 @@ ja:
       with_media: メディアあり
     strikes:
       actions:
+        delete_statuses: "%{name} さんが %{target} さんの投稿を削除しました"
         mark_statuses_as_sensitive: "%{name} さんが %{target} さんの投稿を閲覧注意としてマークしました"
+        none: "%{name} が %{target} に警告を送信しました"
         sensitive: "%{name} さんが %{target} さんのアカウントを閲覧注意としてマークしました"
+        suspend: "%{name} さんが %{target} さんのアカウントを停止しました"
       appeal_approved: 抗議済み
       appeal_pending: 保留中の抗議
     system_checks:
@@ -724,6 +727,9 @@ ja:
         message_html: 未実行のデータベースマイグレーションがあります。実行して正常に動作するようにしてください。
       elasticsearch_running_check:
         message_html: Elasticsearchに接続できませんでした。Elasticsearchが実行されていることを確認するか、全文検索を無効にしてください。
+      elasticsearch_version_check:
+        message_html: '互換性のない Elasticsearch バージョン: %{value}'
+        version_comparison: Elasticsearch %{running_version} が実行されていますが、 %{required_version} が必要です
       rules_check:
         action: サーバーのルールを管理
         message_html: サーバーのルールを定義していません。
@@ -800,6 +806,7 @@ ja:
         title: トレンド投稿
       new_trending_tags:
         title: トレンドハッシュタグ
+      subject: '%{instance} で新しいトレンド が審査待ちです'
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
@@ -873,6 +880,7 @@ ja:
     status:
       account_status: アカウントの状態
       confirming: メールアドレスの確認が完了するのを待っています。
+      functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
       redirecting_to: アカウントは %{acct} に引っ越し設定されているため非アクティブになっています。
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
@@ -948,6 +956,8 @@ ja:
       associated_report: 関連する通報
       created_at: 日時
       recipient: 送信元
+      status: '投稿 #%{id}'
+      status_removed: 既に削除されています
       title: "%{date}に%{action}"
       title_actions:
         delete_statuses: 投稿の削除
@@ -1509,12 +1519,21 @@ ja:
     recovery_instructions_html: 携帯電話を紛失した場合、以下の内どれかのリカバリーコードを使用してアカウントへアクセスすることができます。<strong>リカバリーコードは大切に保全してください。</strong>たとえば印刷してほかの重要な書類と一緒に保管することができます。
     webauthn: セキュリティキー
   user_mailer:
+    appeal_approved:
+      action: アカウントへ
     appeal_rejected:
       title: 却下された抗議
     backup_ready:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
       subject: アーカイブの準備ができました
       title: アーカイブの取り出し
+    suspicious_sign_in:
+      change_password: パスワードを変更する
+      details: 'ログインの詳細は以下のとおりです:'
+      explanation: 新しいIPアドレスからあなたのアカウントへのサインインが検出されました。
+      further_actions_html: あなたがログインしていない場合は、すぐに %{action} し、アカウントを安全に保つために二段階認証を有効にすることをお勧めします。
+      subject: 新しいIPアドレスからのアクセスがありました
+      title: 新しいサインイン
     warning:
       appeal: 抗議を送信
       categories:
@@ -1527,6 +1546,7 @@ ja:
         silence: アカウントが制限されています。このサーバーでは既にフォローしている人だけがあなたの投稿を見ることができます。 様々な発見機能から除外されるかもしれません。他の人があなたを手動でフォローすることは可能です。
       reason: '理由:'
       subject:
+        delete_statuses: '%{acct} の投稿が削除されました'
         disable: あなたのアカウント %{acct} は凍結されました
         mark_statuses_as_sensitive: あなたの %{acct} の投稿は閲覧注意としてマークされました
         none: '%{acct} に対する警告'
