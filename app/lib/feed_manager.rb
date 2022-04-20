@@ -424,22 +424,24 @@ class FeedManager
   # @param [Symbol] context
   # @return [Boolean]
   def phrase_filtered?(status, receiver_id, context)
-    active_filters = Rails.cache.fetch("filters:#{receiver_id}") { CustomFilter.where(account_id: receiver_id).active_irreversible.to_a }.to_a
+    active_filters = Rails.cache.fetch("filters:v2:#{receiver_id}") do
+      CustomFilterKeyword.includes(:custom_filter).where(custom_filter: { account_id: receiver_id, irreversible: true }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()')).to_a
+    end.to_a
 
-    active_filters.select! { |filter| filter.context.include?(context.to_s) && !filter.expired? }
+    active_filters.select! { |filter| filter.custom_filter.context.include?(context.to_s) && !filter.custom_filter.expired? }
+
+    return false if active_filters.empty?
 
     active_filters.map! do |filter|
       if filter.whole_word
-        sb = /\A[[:word:]]/.match?(filter.phrase) ? '\b' : ''
-        eb = /[[:word:]]\z/.match?(filter.phrase) ? '\b' : ''
+        sb = /\A[[:word:]]/.match?(filter.keyword) ? '\b' : ''
+        eb = /[[:word:]]\z/.match?(filter.keyword) ? '\b' : ''
 
-        /(?mix:#{sb}#{Regexp.escape(filter.phrase)}#{eb})/
+        /(?mix:#{sb}#{Regexp.escape(filter.keyword)}#{eb})/
       else
-        /#{Regexp.escape(filter.phrase)}/i
+        /#{Regexp.escape(filter.keyword)}/i
       end
     end
-
-    return false if active_filters.empty?
 
     combined_regex = Regexp.union(active_filters)
 

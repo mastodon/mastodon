@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+class REST::LegacyFilterSerializer < ActiveModel::Serializer
+  attributes :id, :phrase, :context, :whole_word, :expires_at,
+             :irreversible
+
+  delegate :context, :expires_at, :irreversible, to: :custom_filter
+
+  def id
+    object.id.to_s
+  end
+
+  def phrase
+    object.keyword
+  end
+
+  private
+
+  def custom_filter
+    object.custom_filter
+  end
+end

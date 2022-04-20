@@ -27,8 +27,9 @@ class CustomFilter < ApplicationRecord
   include Redisable
 
   belongs_to :account
+  has_many :keywords, class_name: 'CustomFilterKeyword', foreign_key: :custom_filter_id, inverse_of: :custom_filter, dependent: :destroy
 
-  validates :phrase, :context, presence: true
+  validates :title, :context, presence: true
   validate :context_must_be_valid
   validate :irreversible_must_be_within_context
 
@@ -51,7 +52,7 @@ class CustomFilter < ApplicationRecord
   end
 
   def remove_cache
-    Rails.cache.delete("filters:#{account_id}")
+    Rails.cache.delete("filters:v2:#{account_id}")
     redis.publish("timeline:#{account_id}", Oj.dump(event: :filters_changed))
   end
 
