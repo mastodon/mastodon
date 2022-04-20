@@ -158,6 +158,8 @@ ja:
       not_subscribed: 購読していない
       pending: 承認待ち
       perform_full_suspension: 活動を完全に停止させる
+      previous_strikes_description_html:
+        other: <strong>%{count}</strong> ストライクがあります。
       promote: 昇格
       protocol: プロトコル
       public: パブリック
@@ -460,15 +462,20 @@ ja:
       title: おすすめフォロー
       unsuppress: おすすめフォローを復元
     instances:
+      availability:
+        no_failures_recorded: 失敗は記録されていません。
+        title: 可用性
       back_to_all: すべて
       back_to_limited: 制限あり
       back_to_warning: 警告あり
       by_domain: ドメイン
       confirm_purge: このドメインを完全にブロックしてもよろしいですか？
       content_policies:
+        description_html: このドメインとそのサブドメインのすべてのアカウントに適用されるコンテンツポリシーを定義できます。
         policies:
           reject_media: メディアを拒否する
           reject_reports: 通報を拒否
+          silence: 制限
           suspend: サスペンド
         policy: ポリシー
         reason: 公開理由
@@ -476,7 +483,9 @@ ja:
       dashboard:
         instance_accounts_dimension: 最もフォローされているアカウント
         instance_accounts_measure: 保存されたアカウント
+        instance_languages_dimension: 人気の言語
         instance_media_attachments_measure: 保存されたメディア
+        instance_reports_measure: 通報
         instance_statuses_measure: 保存された投稿
       delivery:
         all: すべて
@@ -557,6 +566,7 @@ ja:
       action_log: 監査ログ
       action_taken_by: 通報処理者
       actions:
+        mark_as_sensitive_description_html: 報告された投稿のメディアは閲覧注意となり、ストライクが記録され、同じアカウントによる今後の違反行為のエスカレーションに役立てられます。
         suspend_description_html: プロフィールとすべてのコンテンツは、最終的に削除されるまでアクセスできなくなります。アカウントとのやり取りは不可能です。30日以内に取り消し可能です。
       actions_description_html: このレポートを解決するために取るアクションを決定します。 報告されたアカウントに対して懲罰的な措置を取った場合、メール通知が送信されます <strong>スパム</strong> カテゴリが選択されている場合を除きます。
       add_to_report: 通報にさらに追加
@@ -790,6 +800,7 @@ ja:
   admin_mailer:
     new_appeal:
       actions:
+        mark_statuses_as_sensitive: 閲覧注意としてマーク
         none: 警告
         sensitive: アカウントを閲覧注意にする
     new_pending_account:
@@ -800,11 +811,15 @@ ja:
       body_remote: '%{domain} の誰かが %{target} を通報しました'
       subject: '%{instance} の新しい通報 (#%{id})'
     new_trends:
+      body: '以下の項目は、公開する前に審査が必要です。'
       new_trending_links:
+        no_approved_links: 承認されたトレンドリンクはありません。
         title: トレンドリンク
       new_trending_statuses:
+        no_approved_statuses: 承認されたトレンド投稿はありません。
         title: トレンド投稿
       new_trending_tags:
+        no_approved_tags: 承認されたトレンドハッシュタグはありません。
         title: トレンドハッシュタグ
       subject: '%{instance} で新しいトレンド が審査待ちです'
   aliases:
@@ -955,6 +970,7 @@ ja:
         submit: 抗議を送信
       associated_report: 関連する通報
       created_at: 日時
+      description_html: これらは、%{instance} のスタッフがあなたのアカウントに対して行った措置や、あなたに送られた警告です。
       recipient: 送信元
       status: '投稿 #%{id}'
       status_removed: 既に削除されています
@@ -1148,6 +1164,8 @@ ja:
       mention: "%{name} さんがあなたに返信しました:"
       new_followers_summary:
         other: また、離れている間に%{count} 人の新たなフォロワーを獲得しました！
+      subject:
+        other: "前回の訪問から%{count} 件の新しい通知 🐘"
       title: 不在の間に…
     favourite:
       body: '%{name} さんにお気に入り登録された、あなたの投稿があります:'
@@ -1545,6 +1563,7 @@ ja:
         sensitive: 今後、アップロードされたすべてのメディアファイルは閲覧注意としてマークされ、クリック解除式の警告で覆われるようになります。
         silence: アカウントが制限されています。このサーバーでは既にフォローしている人だけがあなたの投稿を見ることができます。 様々な発見機能から除外されるかもしれません。他の人があなたを手動でフォローすることは可能です。
       reason: '理由:'
+      statuses: '投稿:'
       subject:
         delete_statuses: '%{acct} の投稿が削除されました'
         disable: あなたのアカウント %{acct} は凍結されました
