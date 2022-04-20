@@ -158,6 +158,7 @@ ja:
       not_subscribed: 購読していない
       pending: 承認待ち
       perform_full_suspension: 活動を完全に停止させる
+      previous_strikes: 以前のストライク
       previous_strikes_description_html:
         other: <strong>%{count}</strong> ストライクがあります。
       promote: 昇格
@@ -569,8 +570,10 @@ ja:
       action_log: 監査ログ
       action_taken_by: 通報処理者
       actions:
+        delete_description_html: 報告された投稿は削除され、ストライクが記録されます。同じアカウントによる今後の違反行為のエスカレーションに役立てられます。
         mark_as_sensitive_description_html: 報告された投稿のメディアは閲覧注意となり、ストライクが記録され、同じアカウントによる今後の違反行為のエスカレーションに役立てられます。
         other_description_html: アカウントの動作を制御するためのオプションや、報告されたアカウントへの通信をカスタマイズするためのオプションを確認してください。
+        resolve_description_html: 報告されたアカウントに対していかなる措置も取られず、ストライクも記録されず、報告は終了します。
         silence_description_html: 既にフォローしている人、または自分で参照した人にのみ表示されるため、プロフィールが届く範囲が大きく制限されます。いつでも元に戻すことができます。
         suspend_description_html: プロフィールとすべてのコンテンツは、最終的に削除されるまでアクセスできなくなります。アカウントとのやり取りは不可能です。30日以内に取り消し可能です。
       actions_description_html: このレポートを解決するために取るアクションを決定します。 報告されたアカウントに対して懲罰的な措置を取った場合、メール通知が送信されます <strong>スパム</strong> カテゴリが選択されている場合を除きます。
@@ -809,10 +812,12 @@ ja:
     new_appeal:
       actions:
         delete_statuses: 投稿を削除する
+        disable: アカウントを無効にする
         mark_statuses_as_sensitive: 閲覧注意としてマーク
         none: 警告
         sensitive: アカウントを閲覧注意にする
         silence: アカウントを制限する
+        suspend: アカウントを停止する
       next_steps: モデレーションの決定を取り消すために申し立てを承認するか、無視することができます。
       subject: "%{instance} で %{username} からモデレーションへの申し立てが届きました。"
     new_pending_account:
@@ -1295,6 +1300,9 @@ ja:
     reply:
       proceed: 返信する
       prompt: '返信しようとしています:'
+  reports:
+    errors:
+      invalid_rules: 有効なルールを参照していません
   scheduled_statuses:
     over_daily_limit: その日予約できる投稿数 %{limit} を超えています
     over_total_limit: 予約できる投稿数 %{limit} を超えています
