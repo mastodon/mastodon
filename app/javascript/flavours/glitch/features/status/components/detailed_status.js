@@ -134,10 +134,6 @@ class DetailedStatus extends ImmutablePureComponent {
       outerStyle.height = `${this.state.height}px`;
     }
 
-    if (status.get('poll')) {
-      media.push(<PollContainer pollId={status.get('poll')} />);
-      mediaIcons.push('tasks');
-    }
     if (usingPiP) {
       media.push(<PictureInPicturePlaceholder />);
       mediaIcons.push('video-camera');
@@ -200,6 +196,11 @@ class DetailedStatus extends ImmutablePureComponent {
     } else if (status.get('card')) {
       media.push(<Card sensitive={status.get('sensitive')} onOpenMedia={this.props.onOpenMedia} card={status.get('card')} />);
       mediaIcons.push('link');
+    }
+
+    if (status.get('poll')) {
+      media.push(<PollContainer pollId={status.get('poll')} />);
+      mediaIcons.push('tasks');
     }
 
     if (status.get('application')) {
