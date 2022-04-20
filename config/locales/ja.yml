@@ -464,6 +464,7 @@ ja:
       unsuppress: おすすめフォローを復元
     instances:
       availability:
+        failure_threshold_reached: '%{date} に失敗のしきい値に達しました。'
         no_failures_recorded: 失敗は記録されていません。
         title: 可用性
       back_to_all: すべて
@@ -760,6 +761,7 @@ ja:
       links:
         allow: リンクの許可
         allow_provider: 発行者の承認
+        description_html: これらは、多くのユーザーに共有されているリンクです。あなたのユーザーが世の中の動きを知るのに役立ちます。あなたが公開者を承認するまで、リンクは一般に表示されません。また、個別のリンクの許可・拒否も可能です。
         disallow: リンクの拒否
         disallow_provider: 発行者の拒否
         title: トレンドリンク
@@ -767,6 +769,7 @@ ja:
       pending_review: 保留中
       preview_card_providers:
         allowed: この発行者からのリンクを許可
+        description_html: これらは、よく共有されるリンク元のドメインです。リンク先のドメインが承認されない限り、リンクは公開されません。承認（または拒否）はサブドメインにも及びます。
         rejected: この発行者からのリンクを拒否
         title: 発行者
       rejected: 拒否
@@ -784,6 +787,7 @@ ja:
           tag_servers_dimension: 人気のサーバー
           tag_servers_measure: その他のサーバー
           tag_uses_measure: 合計利用数
+        description_html: これらは、多くの投稿に使用されているハッシュタグです。あなたのユーザーが、人々が今一番話題にしていることを知るのに役立ちます。あなたが承認するまで、ハッシュタグは一般に表示されません。
         listable: おすすめに表示する
         not_listable: おすすめに表示しない
         not_trendable: トレンドに表示しない
@@ -902,6 +906,7 @@ ja:
       functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
       redirecting_to: アカウントは %{acct} に引っ越し設定されているため非アクティブになっています。
+      view_strikes: 過去のストライクを表示
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     trouble_logging_in: ログインできませんか？
     use_security_key: セキュリティキーを使用
@@ -1346,6 +1351,7 @@ ja:
     profile: プロフィール
     relationships: フォロー・フォロワー
     statuses_cleanup: 投稿の自動削除
+    strikes: モデレーションストライク
     two_factor_authentication: 二段階認証
     webauthn_authentication: セキュリティキー
   statuses:
@@ -1562,6 +1568,7 @@ ja:
         spam: スパム
         violation: コンテンツは以下のコミュニティガイドラインに違反しています
       explanation:
+        delete_statuses: あなたの投稿のいくつかは、1つ以上のコミュニティガイドラインに違反していることが判明し、%{instance} のモデレータによって削除されました。
         disable: アカウントは使用できませんが、プロフィールやその他のデータはそのまま残ります。 データのバックアップをリクエストしたり、アカウント設定を変更したり、アカウントを削除したりできます。
         mark_statuses_as_sensitive: あなたのいくつかの投稿は、 %{instance} のモデレータによって閲覧注意としてマークされています。これは、プレビューが表示される前にユーザが投稿内のメディアをタップする必要があることを意味します。あなたは将来投稿する際に自分自身でメディアを閲覧注意としてマークすることができます。
         sensitive: 今後、アップロードされたすべてのメディアファイルは閲覧注意としてマークされ、クリック解除式の警告で覆われるようになります。
