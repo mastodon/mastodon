@@ -59,9 +59,9 @@ class ActivityPub::DistributionWorker
       if @status.limited_visibility?
         DeliveryFailureTracker.without_unavailable(Account.remote.joins(:mentions).merge(@status.mentions).pluck(:inbox_url))
       elsif @status.in_reply_to_local_account? && @status.distributable?
-        @account.delivery_followers.or(@status.thread.account.delivery_followers).inboxes
+        @account.followers.or(@status.thread.account.followers).inboxes
       else
-        @account.delivery_followers.inboxes
+        @account.followers.inboxes
       end
     end
   end
