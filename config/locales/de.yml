@@ -165,6 +165,9 @@ de:
       pending: In Warteschlange
       perform_full_suspension: Verbannen
       previous_strikes: Vorherige Strikes
+      previous_strikes_description_html:
+        one: Dieses Konto hat <strong>einen</strong> Strike.
+        other: Dieses Konto hat <strong>%{count}</strong> Strikes.
       promote: Befördern
       protocol: Protokoll
       public: Öffentlich
@@ -220,7 +223,7 @@ de:
       undo_suspension: Verbannung aufheben
       unsilenced_msg: "%{username}'s Konto erfolgreich freigegeben"
       unsubscribe: Abbestellen
-      unsuspended_msg: "%{username}'s Konto erfolgreich freigegeben"
+      unsuspended_msg: Konto von %{username} erfolgreich freigegeben
       username: Profilname
       view_domain: Übersicht für Domain anzeigen
       warn: Warnen
@@ -1232,6 +1235,9 @@ de:
       new_followers_summary:
         one: Außerdem ist dir seit du weg warst ein weiteres Wesen gefolgt! Juhu!
         other: Außerdem sind dir seit du weg warst %{count} weitere Wesen gefolgt! Großartig!
+      subject:
+        one: "1 neue Mitteilung seit deinem letzten Besuch 🐘"
+        other: "%{count} neue Mitteilungen seit deinem letzten Besuch 🐘"
       title: In deiner Abwesenheit...
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
@@ -1628,6 +1634,13 @@ de:
       explanation: Du hast ein vollständiges Backup von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
       subject: Dein Archiv ist bereit zum Download
       title: Archiv-Download
+    suspicious_sign_in:
+      change_password: dein Passwort zu ändern
+      details: 'Hier sind die Details des Versuchs:'
+      explanation: Wir haben eine Anmeldung zu deinem Konto von einer neuen IP-Adresse festgestellt.
+      further_actions_html: Wenn du das nicht warst, empfehlen wir dir, %{action} und die Zwei-Faktor-Authentifizierung zu aktivieren, um dein Konto sicher zu halten.
+      subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
+      title: Eine neue Anmeldung
     warning:
       appeal: Einspruch einsenden
       appeal_description: Wenn du glaubst, dass dies ein Fehler ist, kannst du einen Einspruch an die Mitarbeiter von %{instance} senden.
