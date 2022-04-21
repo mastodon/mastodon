@@ -441,6 +441,8 @@ ja:
       view: ドメインブロックを表示
     email_domain_blocks:
       add_new: 新規追加
+      attempts_over_week:
+        other: "先週は%{count}回サインアップが試みられました"
       created_msg: メールドメインブロックに追加しました
       delete: 消去
       dns:
@@ -466,8 +468,11 @@ ja:
     instances:
       availability:
         failure_threshold_reached: '%{date} に失敗のしきい値に達しました。'
+        failures_recorded:
+          other: '%{count}日間試行に失敗しました。'
         no_failures_recorded: 失敗は記録されていません。
         title: 可用性
+        warning: このサーバーへの最後の接続試行に失敗しました
       back_to_all: すべて
       back_to_limited: 制限あり
       back_to_warning: 警告あり
@@ -734,9 +739,11 @@ ja:
     strikes:
       actions:
         delete_statuses: "%{name} さんが %{target} さんの投稿を削除しました"
+        disable: "%{name}さんが%{target}さんを凍結しました"
         mark_statuses_as_sensitive: "%{name} さんが %{target} さんの投稿を閲覧注意としてマークしました"
         none: "%{name} が %{target} に警告を送信しました"
         sensitive: "%{name} さんが %{target} さんのアカウントを閲覧注意としてマークしました"
+        silence: "%{name}さんが%{target}さんを制限しました"
         suspend: "%{name} さんが %{target} さんのアカウントを停止しました"
       appeal_approved: 抗議済み
       appeal_pending: 保留中の抗議
@@ -767,6 +774,8 @@ ja:
         description_html: これらは、多くのユーザーに共有されているリンクです。あなたのユーザーが世の中の動きを知るのに役立ちます。あなたが公開者を承認するまで、リンクは一般に表示されません。また、個別のリンクの許可・拒否も可能です。
         disallow: リンクの拒否
         disallow_provider: 発行者の拒否
+        shared_by_over_week:
+          other: 先週%{count}人に共有されました
         title: トレンドリンク
         usage_comparison: 今日は %{today} 回、昨日は %{yesterday} 回共有されました
       pending_review: 保留中
@@ -801,6 +810,8 @@ ja:
         trending_rank: '人気: %{rank} 位'
         usable: 使用を許可
         usage_comparison: 今日は %{today} 回、昨日は %{yesterday} 回使用されました。
+        used_by_over_week:
+          other: 先週%{count}人に使用されました
       title: トレンド
     warning_presets:
       add_new: 追加
