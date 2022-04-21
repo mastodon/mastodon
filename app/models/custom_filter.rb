@@ -16,6 +16,8 @@
 class CustomFilter < ApplicationRecord
   self.ignored_columns = %w(whole_word)
 
+  alias_attribute :title, :phrase
+
   VALID_CONTEXTS = %w(
     home
     notifications

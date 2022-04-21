@@ -1130,8 +1130,14 @@ en:
       invalid_context: None or invalid context supplied
       invalid_irreversible: Irreversible filtering only works with home or notifications context
     index:
+      contexts: Filters in %{contexts}
       delete: Delete
       empty: You have no filters.
+      expires_in: Expires in %{distance}
+      expires_on: Expires on %{date}
+      keywords:
+        one: "%{count} keyword"
+        other: "%{count} keywords"
       title: Filters
     new:
       title: Add new filter

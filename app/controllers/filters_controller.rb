@@ -4,12 +4,11 @@ class FiltersController < ApplicationController
   layout 'admin'
 
   before_action :authenticate_user!
-  before_action :set_filters, only: :index
   before_action :set_filter, only: [:edit, :update, :destroy]
   before_action :set_body_classes
 
   def index
-    @filters = current_account.custom_filters.order(:phrase)
+    @filters = current_account.custom_filters.includes(:keywords).order(:phrase)
   end
 
   def new
@@ -43,10 +42,6 @@ class FiltersController < ApplicationController
   end
 
   private
-
-  def set_filters
-    @filters = current_account.custom_filters
-  end
 
   def set_filter
     @filter = current_account.custom_filters.find(params[:id])
