@@ -1,6 +1,7 @@
+---
 is:
   about:
-    about_hashtag_html: 'Þetta eru opinberar færslur sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.'
+    about_hashtag_html: Þetta eru opinberar færslur sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -117,7 +118,7 @@ is:
       delete: Eyða gögnum
       deleted: Eytt
       demote: Lækka í tign
-      destroyed_msg: "Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt"
+      destroyed_msg: Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt
       disable: Gera óvirkt
       disable_sign_in_token_auth: Gera óvirka auðkenningu með teikni í tölvupósti
       disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
@@ -566,11 +567,11 @@ is:
       no_ip_block_selected: Engum IP-reglum var breytt því ekkert var valið
       title: IP-reglur
     relationships:
-      title: "Vensl %{acct}"
+      title: Vensl %{acct}
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
-      description_html: <strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra færslna við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum.
+      description_html: "<strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra færslna við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum."
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
@@ -866,7 +867,7 @@ is:
     new_report:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
-      subject: 'Ný kæra vegna %{instance} (#%{id})'
+      subject: Ný kæra vegna %{instance} (#%{id})
     new_trends:
       body: 'Eftirfarandi atriði þarfnast yfirferðar áður en hægt er að birta þau opinberlega:'
       new_trending_links:
@@ -1253,13 +1254,13 @@ is:
       title: Ný beiðni um að fylgjast með
     mention:
       action: Svara
-      body: '%{name} minntist á þig í:'
-      subject: '%{name} minntist á þig'
+      body: "%{name} minntist á þig í:"
+      subject: "%{name} minntist á þig"
       title: Ný tilvísun
     poll:
       subject: Könnun frá %{name} er lokið
     reblog:
-      body: '%{name} endurbirti færsluna þína:'
+      body: "%{name} endurbirti færsluna þína:"
       subject: "%{name} endurbirti færsluna þína"
       title: Ný endurbirting
     status:
@@ -1460,7 +1461,7 @@ is:
     show_older: Sýna eldri
     show_thread: Birta þráð
     sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
-    title: '%{name}: „%{quote}‟'
+    title: "%{name}: „%{quote}‟"
     visibilities:
       direct: Beint
       private: Einungis fylgjendur
