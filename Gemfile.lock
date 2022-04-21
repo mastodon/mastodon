@@ -216,7 +216,7 @@ GEM
       multi_json
     encryptor (3.0.0)
     erubi (1.10.0)
-    et-orbi (1.2.6)
+    et-orbi (1.2.7)
       tzinfo
     excon (0.76.0)
     fabrication (2.28.0)
@@ -264,8 +264,8 @@ GEM
       fog-json (>= 1.0)
       ipaddress (>= 0.8)
     formatador (0.2.5)
-    fugit (1.5.2)
-      et-orbi (~> 1.1, >= 1.1.8)
+    fugit (1.5.3)
+      et-orbi (~> 1, >= 1.2.7)
       raabro (~> 1.4)
     fuubar (2.5.1)
       rspec-core (~> 3.0)
@@ -607,7 +607,7 @@ GEM
       redis (>= 4.2.0)
     sidekiq-bulk (0.2.0)
       sidekiq
-    sidekiq-scheduler (3.1.1)
+    sidekiq-scheduler (3.2.0)
       e2mmap
       redis (>= 3, < 5)
       rufus-scheduler (~> 3.2)
@@ -832,7 +832,7 @@ DEPENDENCIES
   scenic (~> 1.6)
   sidekiq (~> 6.4)
   sidekiq-bulk (~> 0.2.0)
-  sidekiq-scheduler (~> 3.1)
+  sidekiq-scheduler (~> 3.2)
   sidekiq-unique-jobs (~> 7.1)
   simple-navigation (~> 4.3)
   simple_form (~> 5.1)
