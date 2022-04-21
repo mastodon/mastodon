@@ -1,6 +1,6 @@
 .fields-row
   .fields-row__column.fields-row__column-6.fields-group
-    = f.input :phrase, as: :string, wrapper: :with_label, hint: false
+    = f.input :title, as: :string, wrapper: :with_label, hint: false
   .fields-row__column.fields-row__column-6.fields-group
     = f.input :expires_in, wrapper: :with_label, collection: [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].map(&:to_i), label_method: lambda { |i| I18n.t("invites.expires_in.#{i}") }, include_blank: I18n.t('invites.expires_in_prompt')
 
@@ -12,5 +12,7 @@
 .fields-group
   = f.input :irreversible, wrapper: :with_label
 
-.fields-group
-  = f.input :whole_word, wrapper: :with_label
+%hr.spacer/
+
+= f.simple_fields_for :keywords do |keyword|
+  = render 'keyword_fields', f: keyword
