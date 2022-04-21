@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_13_110711) do
+ActiveRecord::Schema.define(version: 2022_06_13_110802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -356,7 +356,6 @@ ActiveRecord::Schema.define(version: 2022_06_13_110711) do
     t.boolean "irreversible", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "whole_word", default: true, null: false
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
   end
 

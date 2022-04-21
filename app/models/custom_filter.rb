@@ -8,13 +8,14 @@
 #  expires_at   :datetime
 #  phrase       :text             default(""), not null
 #  context      :string           default([]), not null, is an Array
-#  whole_word   :boolean          default(TRUE), not null
 #  irreversible :boolean          default(FALSE), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
 
 class CustomFilter < ApplicationRecord
+  self.ignored_columns = %w(whole_word)
+
   VALID_CONTEXTS = %w(
     home
     notifications
