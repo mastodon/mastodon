@@ -478,6 +478,9 @@ fr:
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
       availability:
+        description_html:
+          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
+          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
         failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
         failures_recorded:
           one: Tentative échouée pendant %{count} jour.
