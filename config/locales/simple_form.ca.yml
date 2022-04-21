@@ -1,4 +1,3 @@
----
 ca:
   simple_form:
     hints:
@@ -10,7 +9,7 @@ ca:
         text: Pots utilitzar totes les sintaxi com ara URL, etiquetes i mencions
         title: Opcional. No és visible per al destinatari
       admin_account_action:
-        include_statuses: L'usuari veurà quins tuts han causat l'acció de moderació o avís
+        include_statuses: L'usuari veurà quines publicacions han causat l'acció de moderació o avís
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
         text_html: Opcional. Pots utilitzar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
@@ -18,7 +17,7 @@ ca:
           disable: Evita que l'usuari faci ús del seu compte però no li esborra o amaga els seus continguts.
           none: Fes servir això per a enviar un avís al usuari sense desencadenar cap altre acció.
           sensitive: Obliga a marcar tots els fitxers multi mèdia adjunts com a sensibles.
-          silence: Evita que l'usuari sigui capaç de publicar amb visibilitat publica, amaga els tuts i notificacions de usuaris que no el segueixen.
+          silence: Evitar que l'usuari sigui capaç de publicar amb visibilitat pública, amagar les seves publicacions i notificacions d'usuaris que no el segueixen.
           suspend: Evita qualsevol interacció de o a aquest compte i esborra els seus continguts. Reversible en un termini de 30 dies.
         warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       announcement:
@@ -26,7 +25,7 @@ ca:
         ends_at: Opcional. En aquest moment, l’anunci deixarà automàticament d'estar publicat
         scheduled_at: Deixa-ho en blanc per a publicar l’anunci immediatament
         starts_at: Opcional. En el cas que el teu anunci estigui vinculat a un interval de temps específic
-        text: Pots utilitzar sintaxi d'un tut. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
+        text: Pots utilitzar la sintaxi de publicacions. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
       appeal:
         text: Només pots emetre una apel·lació per cada acció
       defaults:
@@ -42,11 +41,11 @@ ca:
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
         inbox_url: Copia l'URL des de la pàgina principal del relay que vols utilitzar
-        irreversible: Els tuts filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
+        irreversible: Les publicacions filtrades desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
         locale: L'idioma de la interfície d’usuari, els correus i les notificacions push
         locked: Requereix que aprovis manualment els seguidors
         password: Utilitza com a mínim 8 caràcters
-        phrase: Es combinarà independentment del format en el text o l'avís de contingut del tut
+        phrase: Es combinarà independentment del format en el text o l'avís de contingut de la publicació
         scopes: A quines API es permetrà a l'aplicació accedir. Si selecciones un àmbit d'alt nivell, no cal que seleccionis un d'individual.
         setting_aggregate_reblogs: No mostrar els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els impulsos nous rebuts)
         setting_always_send_emails: Normalment, les notificacions per correu electrònic no s'enviaran si estàs fent servir activament Mastodon
@@ -90,7 +89,7 @@ ca:
       tag:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
-        chosen_languages: Quan estigui marcat, només es mostraran els tuts de les llengües seleccionades en les línies de temps públiques
+        chosen_languages: Quan estigui marcat, només es mostraran les publicacions en les llengües seleccionades en les línies de temps públiques
     labels:
       account:
         fields:
@@ -104,7 +103,7 @@ ca:
         text: Text predefinit
         title: Títol
       admin_account_action:
-        include_statuses: Inclou tuts reportats en el correu electrònic
+        include_statuses: Inclou les publicacions reportades en el correu electrònic
         send_email_notification: Notifica l'usuari per correu electrònic
         text: Avís personalitzat
         type: Acció
@@ -155,17 +154,17 @@ ca:
         setting_always_send_emails: Envia sempre notificacions per correu electrònic
         setting_auto_play_gif: Reproduir automàticament els GIFs animats
         setting_boost_modal: Mostrar la finestra de confirmació abans d'impulsar
-        setting_crop_images: Retalla les imatges en tuts no ampliats a 16x9
+        setting_crop_images: Retalla les imatges en publicacions no ampliades a 16x9
         setting_default_language: Idioma de les publicacions
         setting_default_privacy: Privacitat de les publicacions
         setting_default_sensitive: Marcar sempre el contingut gràfic com a sensible
-        setting_delete_modal: Mostrar la finestra de confirmació abans d'esborrar un tut
+        setting_delete_modal: Mostrar la finestra de confirmació abans d'esborrar una publicació
         setting_disable_swiping: Desactivar les animacions
         setting_display_media: Visualització multimèdia
         setting_display_media_default: Per defecte
         setting_display_media_hide_all: Amaga-ho tot
         setting_display_media_show_all: Mostra-ho tot
-        setting_expand_spoilers: Sempre ampliar els tuts marcats amb advertències de contingut
+        setting_expand_spoilers: Sempre ampliar les publicacions marcades amb advertències de contingut
         setting_hide_network: Amagar la teva xarxa
         setting_noindex: Desactivar la indexació dels motors de cerca
         setting_reduce_motion: Reduir el moviment de les animacions
@@ -218,7 +217,7 @@ ca:
         listable: Permet que aquesta etiqueta aparegui en les cerques i en el directori de perfils
         name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
-        usable: Permet als tuts emprar aquesta etiqueta
+        usable: Permetre a les publicacions emprar aquesta etiqueta
     'no': 'No'
     recommended: Recomanat
     required:
@@ -227,4 +226,4 @@ ca:
     title:
       sessions:
         webauthn: Usa una de les teves claus de seguretat per a iniciar sessió
-    'yes': Sí
+    'yes': 'Sí'
