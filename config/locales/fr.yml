@@ -1,7 +1,6 @@
----
 fr:
   about:
-    about_hashtag_html: Voici des messages publics tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec si vous avez un compte n’importe où dans le fédiverse.
+    about_hashtag_html: 'Voici des messages publics tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec si vous avez un compte n’importe où dans le fédiverse.'
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
     about_this: À propos
     active_count_after: actif·ve·s
@@ -118,7 +117,7 @@ fr:
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
-      destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
+      destroyed_msg: "Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment"
       disable: Geler
       disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -567,7 +566,7 @@ fr:
       no_ip_block_selected: Aucune règle IP n’a été modifiée car aucune n’a été sélectionnée
       title: Règles IP
     relationships:
-      title: Relations de %{acct}
+      title: "Relations de %{acct}"
     relays:
       add_new: Ajouter un nouveau relais
       delete: Supprimer
@@ -867,16 +866,16 @@ fr:
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
-      subject: Nouveau signalement sur %{instance} (#%{id})
+      subject: 'Nouveau signalement sur %{instance} (#%{id})'
     new_trends:
       body: 'Les éléments suivants doivent être approuvés avant de pouvoir être affichés publiquement :'
       new_trending_links:
         no_approved_links: Il n'y a pas de lien tendance approuvé actuellement.
-        requirements: N'importe quel élément de la sélection pourrait surpasser le lien tendance approuvé n°%{rank}, qui est actuellement « %{lowest_link_title} » avec un résultat de %{lowest_link_score}.
+        requirements: 'N''importe quel élément de la sélection pourrait surpasser le lien tendance approuvé n°%{rank}, qui est actuellement « %{lowest_link_title} » avec un résultat de %{lowest_link_score}.'
         title: Liens tendance
       new_trending_statuses:
         no_approved_statuses: Il n'y a pas de message tendance approuvé actuellement.
-        requirements: N'importe quel élément de la sélection pourrait surpasser le message tendance approuvé n°%{rank}, qui est actuellement « %{lowest_status_url} » avec un résultat de %{lowest_status_score}.
+        requirements: 'N''importe quel élément de la sélection pourrait surpasser le message tendance approuvé n°%{rank}, qui est actuellement « %{lowest_status_url} » avec un résultat de %{lowest_status_score}.'
         title: Messages tendance
       new_trending_tags:
         no_approved_tags: Il n'y a pas de hashtag tendance approuvé actuellement.
@@ -1240,7 +1239,7 @@ fr:
         other: "%{count} nouvelles notifications depuis votre dernière visite 🐘"
       title: Pendant votre absence…
     favourite:
-      body: "%{name} a ajouté votre message à ses favoris :"
+      body: '%{name} a ajouté votre message à ses favoris :'
       subject: "%{name} a ajouté votre message à ses favoris"
       title: Nouveau favori
     follow:
@@ -1254,8 +1253,8 @@ fr:
       title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
-      body: "%{name} vous a mentionné⋅e dans :"
-      subject: "%{name} vous a mentionné·e"
+      body: '%{name} vous a mentionné⋅e dans :'
+      subject: '%{name} vous a mentionné·e'
       title: Nouvelle mention
     poll:
       subject: Un sondage de %{name} est terminé
@@ -1461,7 +1460,7 @@ fr:
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
-    title: "%{name} : « %{quote} »"
+    title: '%{name} : « %{quote} »'
     visibilities:
       direct: Direct
       private: Abonné⋅e⋅s uniquement
@@ -1593,7 +1592,7 @@ fr:
       <p>Ce document est publié sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 7 mars 2018.</p>
 
       <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
-    title: Conditions d’utilisation et politique de confidentialité de %{instance}
+    title: "Conditions d’utilisation et politique de confidentialité de %{instance}"
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)
