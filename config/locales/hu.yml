@@ -516,6 +516,7 @@ hu:
       delivery:
         all: Mind
         clear: Kézbesítési hibák törlése
+        failing: Sikertelen
         restart: Kézbesítés újraindítása
         stop: Kézbesítés leállítása
         unavailable: Nem elérhető
@@ -1234,6 +1235,9 @@ hu:
       new_followers_summary:
         one: Sőt, egy új követőd is lett, amióta nem jártál itt. Hurrá!
         other: Sőt, %{count} új követőd is lett, amióta nem jártál itt. Hihetetlen!
+      subject:
+        one: "1 új értesítés az utolsó látogatásod óta 🐘"
+        other: "%{count} új értesítés az utolsó látogatásod óta 🐘"
       title: Amíg távol voltál…
     favourite:
       body: 'A bejegyzésedet kedvencnek jelölte %{name}:'
