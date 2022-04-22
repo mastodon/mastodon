@@ -588,6 +588,10 @@ Rails.application.routes.draw do
       resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
       resources :suggestions, only: [:index]
+      resources :filters,     only: [:index, :create, :show, :update, :destroy] do
+        resources :keywords, only: [:index, :create], controller: 'filters/keywords'
+      end
+      resources :filter_keywords, only: [:show, :update, :destroy], controller: 'filters/keywords'
 
       namespace :admin do
         resources :accounts, only: [:index]

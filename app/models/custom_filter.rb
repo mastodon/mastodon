@@ -49,6 +49,14 @@ class CustomFilter < ApplicationRecord
     [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].find { |expires_in| expires_in.from_now >= expires_at }
   end
 
+  def filter_action
+    irreversible? ? :hide : :warn
+  end
+
+  def filter_action=(action)
+    self.irreversible = action.to_s == 'hide'
+  end
+
   private
 
   def clean_up_contexts
