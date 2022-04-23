@@ -145,11 +145,13 @@ class Status < ApplicationRecord
       ids += favourites.where(account: Account.local).pluck(:account_id)
       ids += reblogs.where(account: Account.local).pluck(:account_id)
       ids += bookmarks.where(account: Account.local).pluck(:account_id)
+      ids += poll.votes.where(account: Account.local).pluck(:account_id) if poll.present?
     else
       ids += preloaded.mentions[id] || []
       ids += preloaded.favourites[id] || []
       ids += preloaded.reblogs[id] || []
       ids += preloaded.bookmarks[id] || []
+      ids += preloaded.votes[id] || []
     end
 
     ids.uniq
