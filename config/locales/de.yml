@@ -1,7 +1,8 @@
+---
 de:
   about:
-    about_hashtag_html: 'Das sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.'
-    about_mastodon_html: 'Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).'
+    about_hashtag_html: Das sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.
+    about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
     about_this: Über diesen Server
     active_count_after: aktiv
     active_footnote: Monatlich Aktive User (MAU)
@@ -43,11 +44,11 @@ de:
     unavailable_content_description:
       domain: Server
       reason: 'Grund:'
-      rejecting_media: 'Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles anklicken auf den anderen Server erfordert.'
+      rejecting_media: Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles anklicken auf den anderen Server erfordert.
       rejecting_media_title: Gefilterte Medien
-      silenced: 'Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.'
+      silenced: Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.
       silenced_title: Stummgeschaltete Server
-      suspended: 'Du kannst niemanden von diesem Server folgen, und keine Daten werden verarbeitet oder gespeichert und keine Daten ausgetauscht.'
+      suspended: Du kannst niemanden von diesem Server folgen, und keine Daten werden verarbeitet oder gespeichert und keine Daten ausgetauscht.
       suspended_title: Gesperrte Server
     unavailable_content_html: Mastodon erlaubt es dir generell, mit Inhalten zu interagieren, diese anzuzeigen und mit anderen Nutzern im Fediversum über Server hinweg zu interagieren. Dies sind die Ausnahmen, die auf diesem bestimmten Server gemacht wurden.
     user_count_after:
@@ -99,7 +100,7 @@ de:
     accounts:
       add_email_domain_block: E-Mail-Domain blacklisten
       approve: Akzeptieren
-      approved_msg: '%{username}''s Anmeldeantrag erfolgreich genehmigt'
+      approved_msg: "%{username}'s Anmeldeantrag erfolgreich genehmigt"
       are_you_sure: Bist du sicher?
       avatar: Profilbild
       by_domain: Domain
@@ -130,7 +131,7 @@ de:
       enable: Freischalten
       enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentifizierung per E-Mail
       enabled: Freigegeben
-      enabled_msg: '%{username}''s Konto erfolgreich freigegeben'
+      enabled_msg: "%{username}'s Konto erfolgreich freigegeben"
       followers: Follower
       follows: Folgt
       header: Titelbild
@@ -148,7 +149,7 @@ de:
       media_attachments: Dateien
       memorialize: In Gedenkmal verwandeln
       memorialized: Memorialisiert
-      memorialized_msg: '%{username} wurde erfolgreich in ein memorialisiertes Konto umgewandelt'
+      memorialized_msg: "%{username} wurde erfolgreich in ein memorialisiertes Konto umgewandelt"
       moderation:
         active: Aktiv
         all: Alle
@@ -174,11 +175,11 @@ de:
       redownload: Profil neu laden
       redownloaded_msg: Profil von %{username} erfolgreich von Ursprung aktualisiert
       reject: Ablehnen
-      rejected_msg: '%{username}''s Anmeldeantrag erfolgreich abgelehnt'
+      rejected_msg: "%{username}'s Anmeldeantrag erfolgreich abgelehnt"
       remove_avatar: Profilbild entfernen
       remove_header: Titelbild entfernen
       removed_avatar_msg: Profilbild von %{username} erfolgreich entfernt
-      removed_header_msg: '%{username}''s Titelbild wurde erfolgreich entfernt'
+      removed_header_msg: "%{username}'s Titelbild wurde erfolgreich entfernt"
       resend_confirmation:
         already_confirmed: Diese_r Benutzer_in wurde bereits bestätigt
         send: Bestätigungs-E-Mail erneut senden
@@ -220,7 +221,7 @@ de:
       undo_sensitized: Nicht mehr als NSFW markieren
       undo_silenced: Stummschaltung aufheben
       undo_suspension: Verbannung aufheben
-      unsilenced_msg: '%{username}''s Konto erfolgreich freigegeben'
+      unsilenced_msg: "%{username}'s Konto erfolgreich freigegeben"
       unsubscribe: Abbestellen
       unsuspended_msg: Konto von %{username} erfolgreich freigegeben
       username: Profilname
@@ -566,7 +567,7 @@ de:
       no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurden
       title: IP-Regeln
     relationships:
-      title: "Beziehungen von %{acct}"
+      title: Beziehungen von %{acct}
     relays:
       add_new: Neues Relay hinzufügen
       delete: Löschen
@@ -816,7 +817,7 @@ de:
         not_discoverable: Der Autor hat sich nicht dafür entschieden, entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
-          other: '%{friendly_count} mal geteilt oder favorisiert'
+          other: "%{friendly_count} mal geteilt oder favorisiert"
         title: Angesagte Beiträge
       tags:
         current_score: Aktuelle Punktzahl %{score}
@@ -866,7 +867,7 @@ de:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
-      subject: 'Neue Meldung auf %{instance} (#%{id})'
+      subject: Neue Meldung auf %{instance} (#%{id})
     new_trends:
       body: 'Die folgenden Einträge müssen überprüft werden, bevor sie öffentlich angezeigt werden können:'
       new_trending_links:
@@ -891,7 +892,7 @@ de:
     remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
-    advanced_web_interface_hint: 'Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.'
+    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, erlaubt dir die fortgeschrittene Benutzeroberfläche viele unterschiedliche Spalten auf einmal zu sehen, wie z.B. deine Startseite, Benachrichtigungen, das gesamte bekannte Netz, deine Listen und beliebige Hashtags.
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
@@ -973,7 +974,7 @@ de:
       close: Oder du schließt einfach dieses Fenster.
       return: Zeige das Profil
       web: In der Benutzeroberfläche öffnen
-    title: '%{acct} folgen'
+    title: "%{acct} folgen"
   challenge:
     confirm: Fortfahren
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
@@ -1253,13 +1254,13 @@ de:
       title: Neue Folge-Anfrage
     mention:
       action: Antworten
-      body: '%{name} hat dich erwähnt:'
-      subject: '%{name} hat dich erwähnt'
+      body: "%{name} hat dich erwähnt:"
+      subject: "%{name} hat dich erwähnt"
       title: Neue Erwähnung
     poll:
       subject: Eine Umfrage von %{name} ist beendet
     reblog:
-      body: '%{name} hat deinen Beitrag geteilt:'
+      body: "%{name} hat deinen Beitrag geteilt:"
       subject: "%{name} hat deinen Beitrag geteilt"
       title: Dein Beitrag wurde geteilt
     status:
