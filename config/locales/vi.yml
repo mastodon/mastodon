@@ -699,7 +699,7 @@ vi:
         title: Chế độ đăng ký
       show_known_fediverse_at_about_page:
         desc_html: Nếu tắt, bảng tin sẽ chỉ hiển thị nội dung do người dùng của máy chủ này tạo ra
-        title: Bao gồm nội dung từ mạng liên hợp trên bảng tin không được xác thực
+        title: Bao gồm nội dung từ mạng liên hợp trên bảng tin không được cho phép
       show_staff_badge:
         desc_html: Hiện huy hiệu đội ngũ trên trang người dùng
         title: Hiện huy hiệu đội ngũ
@@ -1154,11 +1154,11 @@ vi:
       limit: Bạn đã đạt đến số lượng danh sách tối đa
   login_activities:
     authentication_methods:
-      otp: xác thực 2 bước
+      otp: xác minh 2 bước
       password: mật khẩu
       sign_in_token: mã an toàn email
       webauthn: khóa bảo mật
-    description_html: Nếu có lần đăng nhập đáng ngờ, hãy đổi ngay mật khẩu và bật xác thực hai bước.
+    description_html: Nếu có lần đăng nhập đáng ngờ, hãy đổi ngay mật khẩu và bật xác minh 2 bước.
     empty: Không có lịch sử đăng nhập
     failed_sign_in_html: Đăng nhập thất bại bằng %{method} từ %{ip} (%{browser})
     successful_sign_in_html: Đăng nhập thành công bằng %{method} từ %{ip} (%{browser})
@@ -1261,8 +1261,8 @@ vi:
           thousand: K
           trillion: T
   otp_authentication:
-    code_hint: Nhập mã được tạo bởi ứng dụng xác thực của bạn để xác nhận
-    description_html: Nếu kích hoạt <strong>xác thực hai bước</strong> thông qua ứng dụng, bạn sẽ đăng nhập bằng mã token được tạo bởi chính điện thoại của bạn.
+    code_hint: Nhập mã được tạo bởi ứng dụng xác minh của bạn để xác nhận
+    description_html: Nếu kích hoạt <strong>xác minh 2 bước</strong> thông qua ứng dụng, bạn sẽ đăng nhập bằng mã token được tạo bởi chính điện thoại của bạn.
     enable: Kích hoạt
     instructions_html: "<strong>Quét mã QR bằng Google Authenticator hoặc một ứng dụng TOTP tương tự trên điện thoại của bạn</strong>. Kể từ bây giờ, ứng dụng đó sẽ tạo những token để bạn đăng nhập."
     manual_instructions: 'Nếu bạn không thể quét mã QR, đây sẽ là dòng chữ gợi ý:'
@@ -1397,7 +1397,7 @@ vi:
     relationships: Quan hệ
     statuses_cleanup: Tự động xóa tút cũ
     strikes: Lần cảnh cáo
-    two_factor_authentication: Xác thực hai bước
+    two_factor_authentication: Xác minh 2 bước
     webauthn_authentication: Khóa bảo mật
   statuses:
     attached:
@@ -1546,14 +1546,14 @@ vi:
   two_factor_authentication:
     add: Thêm
     disable: Vô hiệu hóa
-    disabled_success: Đã vô hiệu hóa xác thực hai bước
+    disabled_success: Đã vô hiệu hóa xác minh 2 bước
     edit: Sửa
-    enabled: Đã kích hoạt xác thực hai bước
-    enabled_success: Xác thực hai bước được kích hoạt thành công
+    enabled: Đã kích hoạt xác minh 2 bước
+    enabled_success: Xác minh 2 bước được kích hoạt thành công
     generate_recovery_codes: Tạo mã khôi phục
     lost_recovery_codes: Mã khôi phục cho phép bạn lấy lại quyền truy cập vào tài khoản của mình nếu bạn mất điện thoại. Nếu bạn bị mất mã khôi phục, bạn có thể tạo lại chúng ở đây. Mã khôi phục cũ của bạn sẽ bị vô hiệu.
-    methods: Phương pháp xác thực
-    otp: Ứng dụng xác thực
+    methods: Phương pháp xác minh
+    otp: Ứng dụng xác minh
     recovery_codes: Mã phục hồi dự phòng
     recovery_codes_regenerated: Mã khôi phục được phục hồi thành công
     recovery_instructions_html: Nếu bạn bị mất điện thoại, hãy dùng một trong các mã khôi phục bên dưới để lấy lại quyền truy cập vào tài khoản của mình. <strong>Giữ mã khôi phục an toàn</strong>. Ví dụ, bạn có thể in chúng ra giấy.
@@ -1576,7 +1576,7 @@ vi:
       change_password: đổi mật khẩu của bạn
       details: 'Chi tiết thông tin đăng nhập:'
       explanation: Chúng tôi phát hiện lần đăng nhập bất thường tài khoản của bạn từ một địa chỉ IP mới.
-      further_actions_html: Nếu đó không phải là bạn, chúng tôi khuyến nghị %{action} lập tức và bật xác thực hai bước để giữ tài khoản được an toàn.
+      further_actions_html: Nếu đó không phải là bạn, chúng tôi khuyến nghị %{action} lập tức và bật xác minh hai bước để giữ tài khoản được an toàn.
       subject: Đăng nhập tài khoản từ địa chỉ IP mới
       title: Lần đăng nhập mới
     warning:
@@ -1629,7 +1629,7 @@ vi:
       title: Xin chào %{name}!
   users:
     follow_limit_reached: Bạn chỉ có thể theo dõi tối đa %{limit} người
-    invalid_otp_token: Mã xác thực hai bước không hợp lệ
+    invalid_otp_token: Mã xác minh 2 bước không hợp lệ
     otp_lost_help_html: Nếu bạn mất quyền truy cập vào cả hai, bạn có thể đăng nhập bằng %{email}
     seamless_external_login: Bạn đã đăng nhập thông qua một dịch vụ bên ngoài, vì vậy mật khẩu và email không khả dụng.
     signed_in_as: 'Đăng nhập với tư cách là:'
@@ -1651,5 +1651,5 @@ vi:
     nickname_hint: Nhập tên mới cho khóa bảo mật của bạn
     not_enabled: Bạn chưa kích hoạt WebAuthn
     not_supported: Trình duyệt của bạn không hỗ trợ khóa bảo mật
-    otp_required: Để dùng khóa bảo mật, trước tiên hãy kích hoạt xác thực hai bước.
+    otp_required: Để dùng khóa bảo mật, trước tiên hãy kích hoạt xác minh 2 bước.
     registered_on: Đăng ký vào %{date}
