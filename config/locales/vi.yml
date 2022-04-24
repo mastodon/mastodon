@@ -721,7 +721,7 @@ vi:
         title: Hình thu nhỏ của máy chủ
       timeline_preview:
         desc_html: Hiển thị dòng thời gian công khai trên trang đích và cho phép API truy cập vào dòng thời gian công khai mà không cần cho phép
-        title: Cho phép truy cập không xác thực vào dòng thời gian công cộng
+        title: Cho phép truy cập vào dòng thời gian công cộng không cần cho phép
       title: Cài đặt trang web
       trendable_by_default:
         desc_html: Ảnh hưởng đến các hashtag chưa được cho phép trước đây
@@ -911,11 +911,11 @@ vi:
       prefix_invited_by_user: "@%{name} mời bạn tham gia máy chủ Mastodon này!"
       prefix_sign_up: Tham gia Mastodon ngay hôm nay!
       suffix: Với tài khoản, bạn sẽ có thể theo dõi mọi người, đăng tút và nhắn tin với người dùng từ bất kỳ máy chủ Mastodon khác!
-    didnt_get_confirmation: Gửi lại email xác thực?
+    didnt_get_confirmation: Gửi lại email xác minh?
     dont_have_your_security_key: Bạn có khóa bảo mật chưa?
     forgot_password: Quên mật khẩu
     invalid_reset_password_token: Mã đặt lại mật khẩu không hợp lệ hoặc hết hạn. Vui lòng yêu cầu một cái mới.
-    link_to_otp: Nhập mã xác thực từ điện thoại hoặc mã phục hồi
+    link_to_otp: Nhập mã xác minh từ điện thoại hoặc mã khôi phục
     link_to_webauth: Nhập khóa bảo mật từ thiết bị
     log_in_with: Đăng nhập bằng
     login: Đăng nhập
@@ -928,18 +928,18 @@ vi:
       saml: SAML
     register: Đăng ký
     registration_closed: "%{instance} tạm ngưng đăng ký mới"
-    resend_confirmation: Gửi lại email xác thực
+    resend_confirmation: Gửi lại email xác minh
     reset_password: Đặt lại mật khẩu
     security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
       email_below_hint_html: Nếu địa chỉ email dưới đây không chính xác, bạn có thể thay đổi địa chỉ tại đây và nhận email xác nhận mới.
-      email_settings_hint_html: Email xác thực đã được gửi tới %{email}. Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
+      email_settings_hint_html: Email xác minh đã được gửi tới %{email}. Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
       title: Thiết lập
     status:
       account_status: Trạng thái tài khoản
-      confirming: Đang chờ xác thực email.
-      functional: Tài khoản của bạn đã được xác thực.
+      confirming: Đang chờ xác minh email.
+      functional: Tài khoản của bạn đã được xác minh.
       pending: Đơn đăng ký của bạn đang chờ phê duyệt. Điều này có thể mất một thời gian. Bạn sẽ nhận được email nếu đơn đăng ký của bạn được chấp thuận.
       redirecting_to: Tài khoản của bạn không hoạt động vì hiện đang chuyển hướng đến %{acct}.
       view_strikes: Xem những lần cảnh cáo cũ
