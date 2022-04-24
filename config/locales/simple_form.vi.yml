@@ -1,4 +1,3 @@
----
 vi:
   simple_form:
     hints:
@@ -12,7 +11,7 @@ vi:
       admin_account_action:
         include_statuses: Người dùng sẽ thấy các tút nào của họ bị kiểm duyệt
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
-        text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
+        text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">mẫu có sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
           disable: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút.
@@ -219,7 +218,7 @@ vi:
         name: Hashtag
         trendable: Cho phép xuất hiện trong xu hướng
         usable: Cho phép dùng trong tút
-    'no': Tắt
+    'no': 'Tắt'
     recommended: Đề xuất
     required:
       mark: "*"
@@ -227,4 +226,4 @@ vi:
     title:
       sessions:
         webauthn: Dùng một trong những khóa bảo mật của bạn để đăng nhập
-    'yes': Bật
+    'yes': 'Bật'
