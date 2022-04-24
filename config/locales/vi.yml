@@ -124,7 +124,7 @@ vi:
       email: Email
       email_status: Trạng thái
       enable: Mở lại
-      enable_sign_in_token_auth: Bật xác thực bằng email
+      enable_sign_in_token_auth: Bật xác minh bằng email
       enabled: Đã duyệt
       enabled_msg: Đã kích hoạt lại tài khoản %{username} thành công
       followers: Người theo dõi
@@ -175,7 +175,7 @@ vi:
       removed_avatar_msg: Đã xóa bỏ ảnh đại diện của %{username}
       removed_header_msg: Đã xóa bỏ ảnh bìa của %{username}
       resend_confirmation:
-        already_confirmed: Người dùng này đã được xác thực
+        already_confirmed: Người dùng này đã được xác minh
         send: Gửi lại email xác nhận
         success: Email xác nhận đã gửi thành công!
       reset: Đặt lại
@@ -211,7 +211,7 @@ vi:
       title: Tài khoản
       unblock_email: Mở khóa địa chỉ email
       unblocked_email_msg: Mở khóa thành công địa chỉ email của %{username}
-      unconfirmed_email: Email chưa được xác thực
+      unconfirmed_email: Email chưa được xác minh
       undo_sensitized: Đánh dấu bình thường
       undo_silenced: Bỏ hạn chế
       undo_suspension: Bỏ vô hiệu hóa
@@ -229,7 +229,7 @@ vi:
         approve_user: Chấp nhận người dùng
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email người dùng
-        confirm_user: Xác thực người dùng
+        confirm_user: Xác minh người dùng
         create_account_warning: Nhắc nhở người dùng
         create_announcement: Tạo thông báo mới
         create_custom_emoji: Tạo emoji
@@ -250,10 +250,10 @@ vi:
         destroy_unavailable_domain: Xóa máy chủ không khả dụng
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
-        disable_sign_in_token_auth_user: Tắt xác thực bằng email cho người dùng
+        disable_sign_in_token_auth_user: Vô hiệu hóa xác minh bằng email cho người dùng
         disable_user: Vô hiệu hóa đăng nhập
         enable_custom_emoji: Cho phép emoji
-        enable_sign_in_token_auth_user: Bật xác thực bằng email cho người dùng
+        enable_sign_in_token_auth_user: Bật xác minh bằng email cho người dùng
         enable_user: Bỏ vô hiệu hóa đăng nhập
         memorialize_account: Đánh dấu tưởng niệm
         promote_user: Chỉ định vai trò
@@ -280,7 +280,7 @@ vi:
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
         assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
         change_email_user_html: "%{name} đã thay đổi địa chỉ email của %{target}"
-        confirm_user_html: "%{name} đã xác thực địa chỉ email của %{target}"
+        confirm_user_html: "%{name} đã xác minh địa chỉ email của %{target}"
         create_account_warning_html: "%{name} đã nhắc nhở %{target}"
         create_announcement_html: "%{name} tạo thông báo mới %{target}"
         create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
@@ -299,12 +299,12 @@ vi:
         destroy_ip_block_html: "%{name} bỏ chặn IP %{target}"
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục phân phối với máy chủ %{target}"
-        disable_2fa_user_html: "%{name} đã vô hiệu hóa xác thực hai bước của %{target}"
+        disable_2fa_user_html: "%{name} đã vô hiệu hóa xác minh hai bước của %{target}"
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} tắt xác thực email của %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} vô hiệu hóa xác minh email của %{target}"
         disable_user_html: "%{name} vô hiệu hóa đăng nhập %{target}"
         enable_custom_emoji_html: "%{name} cho phép Emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} bật xác thực email của %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} bật xác minh email của %{target}"
         enable_user_html: "%{name} bỏ vô hiệu hóa đăng nhập %{target}"
         memorialize_account_html: "%{name} đã biến tài khoản %{target} thành một trang tưởng niệm"
         promote_user_html: "%{name} chỉ định vai trò cho %{target}"
@@ -720,7 +720,7 @@ vi:
         desc_html: Bản xem trước thông qua OpenGraph và API. Khuyến nghị 1200x630px
         title: Hình thu nhỏ của máy chủ
       timeline_preview:
-        desc_html: Hiển thị dòng thời gian công khai trên trang đích và cho phép API truy cập vào dòng thời gian công khai mà không cần xác thực
+        desc_html: Hiển thị dòng thời gian công khai trên trang đích và cho phép API truy cập vào dòng thời gian công khai mà không cần cho phép
         title: Cho phép truy cập không xác thực vào dòng thời gian công cộng
       title: Cài đặt trang web
       trendable_by_default:
