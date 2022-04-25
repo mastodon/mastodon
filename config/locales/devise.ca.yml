@@ -69,16 +69,16 @@ ca:
           subject: 'Mastodon: clau de seguretat esborrada'
           title: Una de les teves claus de seguretat ha estat esborrada
       webauthn_disabled:
-        explanation: S'ha desactivat l'autenticació amb claus de seguretat per al teu compte. L'inici de sessió és ara possible emprant només el token generat per l'aplicació TOTP.
-        subject: 'Mastodon: S''ha desactivat l''autenticació amb claus de seguretat'
+        explanation: S'ha desactivat l'autenticació amb claus de seguretat per al teu compte. Ara només pots iniciar la sessió usant el token generat per l'aplicació TOTP.
+        subject: 'Mastodon: s''ha desactivat l''autenticació amb claus de seguretat'
         title: Claus de seguretat desactivades
       webauthn_enabled:
-        explanation: S'ha activat l'autenticació amb claus de seguretat. La teva clau de seguretat por ser emprada per a iniciar sessió.
-        subject: 'Mastodon: Autenticació amb clau de seguretat activada'
+        explanation: S'ha activat l'autenticació amb claus de seguretat. Ja pots usar la teva clau de seguretat per iniciar sessió.
+        subject: 'Mastodon: autenticació amb clau de seguretat activada'
         title: Claus de seguretat activades
     omniauth_callbacks:
-      failure: No podem autenticar-te des de %{kind} degut a "%{reason}".
-      success: Autenticat amb èxit des del compte %{kind}.
+      failure: No s'ha pogut autenticar des de %{kind} degut a "%{reason}".
+      success: Autenticat correctament des del compte %{kind}.
     passwords:
       no_token: No pots accedir a aquesta pàgina sense provenir des del correu de restabliment de la contrasenya. Si vens des del correu de restabliment de contrasenya, assegura't que estàs emprant l'adreça completa proporcionada.
       send_instructions: Si el teu correu electrònic existeix en la nostra base de dades, rebràs en pocs minuts un enllaç de restabliment de contrasenya en l'adreça de correu. Si us plau verifica la teva carpeta de correu brossa si no has rebut aquest correu.
