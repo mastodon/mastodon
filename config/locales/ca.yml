@@ -1,45 +1,44 @@
----
 ca:
   about:
-    about_hashtag_html: Aquestes són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Pots interactuar amb elles si tens un compte a qualsevol lloc del fedivers.
-    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Posseeix les teves dades amb Mastodon!'
+    about_hashtag_html: 'Aquestes són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Hi pots interactuar si tens un compte a qualsevol lloc del fedivers.'
+    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
     about_this: Quant a
     active_count_after: actiu
     active_footnote: Usuaris actius mensuals (UAM)
     administered_by: 'Administrat per:'
     api: API
-    apps: Apps mòbils
-    apps_platforms: Utilitza Mastodon des de iOS, Android i altres plataformes
-    browse_directory: Navega per el directori de perfils i filtra segons interessos
-    browse_local_posts: Navega un flux en directe de publicacions públiques d’aquest servidor
-    browse_public_posts: Navega per una transmissió en directe de publicacions públiques a Mastodon
+    apps: Aplicacions mòbils
+    apps_platforms: Utilitza Mastodon des d'iOS, Android i altres plataformes
+    browse_directory: Navega pel directori de perfils i filtra segons interessos
+    browse_local_posts: Navega per una transmissió en directe de les publicacions públiques d’aquest servidor
+    browse_public_posts: Navega per una transmissió en directe de les publicacions públiques a Mastodon
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
     continue_to_web: Continua a l'aplicació web
-    discover_users: Descobrir usuaris
+    discover_users: Descobreix usuaris
     documentation: Documentació
-    federation_hint_html: Amb un compte de %{instance} podràs seguir persones de qualsevol servidor Mastodon i altres.
-    get_apps: Provar una aplicació mòbil
+    federation_hint_html: Amb un compte de %{instance}, podràs seguir persones de qualsevol servidor Mastodon i de molts més.
+    get_apps: Prova una aplicació mòbil
     hosted_on: Mastodon allotjat a %{domain}
     instance_actor_flash: |
-      Aquest compte és un actor virtual utilitzat per a representar al propi servidor i no cap usuari individual.
-      S'utilitza per a propòsits de federació i no ha de ser bloquejat si no voleu bloquejar tota la instància, en aquest cas hauríeu d'utilitzar un bloqueig de domini.
-    learn_more: Aprèn més
+      Aquest compte és un actor virtual usat per representar el servidor i no qualsevol usuari individual.
+      Es fa servir per a propòsits de federació i no s'ha de ser bloquejar si no voleu bloquejar tota la instància. En aquest cas, hauríeu d'utilitzar un bloqueig de domini.
+    learn_more: Més informació
     logged_in_as_html: Actualment has iniciat sessió com a %{username}.
     logout_before_registering: Ja has iniciat sessió.
     privacy_policy: Política de privadesa
     rules: Normes del servidor
-    rules_html: 'El de sota és un resum de les normes que has de seguir si vols tenir un compte en aquest servidor de Mastodon:'
+    rules_html: 'A continuació, es mostra un resum de les normes que has de seguir si vols tenir un compte en aquest servidor de Mastodon:'
     see_whats_happening: Mira què està passant
     server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
     status_count_after:
       one: publicació
       other: publicacions
-    status_count_before: Que han publicat
+    status_count_before: Qui ha publicat
     tagline: Segueix els teus amics i descobreix-ne de nous
-    terms: Termes del servei
+    terms: Condicions de servei
     unavailable_content: Servidors moderats
     unavailable_content_description:
       domain: Servidor
@@ -57,7 +56,7 @@ ca:
     user_count_before: Tenim
     what_is_mastodon: Què és Mastodon?
   accounts:
-    choices_html: 'Eleccions de %{name}:'
+    choices_html: "Eleccions de %{name}:"
     endorsements_hint: Pots recomanar persones que segueixes a l'interfície de web, que apareixeran aquí.
     featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
@@ -118,7 +117,7 @@ ca:
       delete: Esborra les dades
       deleted: Esborrats
       demote: Degrada
-      destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
+      destroyed_msg: "Les dades de %{username} son a la cua per a ser esborrades en breu"
       disable: Inhabilita
       disable_sign_in_token_auth: Desactivar l'autenticació de token per correu
       disable_two_factor_authentication: Desactiva 2FA
@@ -568,7 +567,7 @@ ca:
       no_ip_block_selected: No s’ha canviat cap regla IP perquè no s’han seleccionat
       title: Regles IP
     relationships:
-      title: relacions del %{acct}
+      title: "relacions del %{acct}"
     relays:
       add_new: Afegiu un nou relay
       delete: Esborra
@@ -868,7 +867,7 @@ ca:
     new_report:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
-      subject: Informe nou per a %{instance} (#%{id})
+      subject: 'Informe nou per a %{instance} (#%{id})'
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -996,7 +995,7 @@ ca:
       about_x_years: "%{count} anys"
       almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
-      less_than_x_minutes: fa %{count} minuts
+      less_than_x_minutes: "fa %{count} minuts"
       less_than_x_seconds: Ara mateix
       over_x_years: "%{count} anys"
       x_days: "%{count} dies"
@@ -1241,7 +1240,7 @@ ca:
         other: "%{count} notificacions noves des de la teva darrera visita 🐘"
       title: Durant la teva absència…
     favourite:
-      body: "%{name} ha marcat com a favorit el teu estat:"
+      body: '%{name} ha marcat com a favorit el teu estat:'
       subject: "%{name} ha marcat com a favorit el teu estat"
       title: Favorit nou
     follow:
@@ -1255,13 +1254,13 @@ ca:
       title: Nova sol·licitud de seguiment
     mention:
       action: Respon
-      body: "%{name} t'ha mencionat en:"
-      subject: "%{name} t'ha mencionat"
+      body: '%{name} t''ha mencionat en:'
+      subject: '%{name} t''ha mencionat'
       title: Menció nova
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     reblog:
-      body: "%{name} ha impulsat el teu estat:"
+      body: '%{name} ha impulsat el teu estat:'
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
     status:
