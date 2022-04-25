@@ -7,22 +7,22 @@ ca:
     failure:
       already_authenticated: Ja estàs registrat.
       inactive: El teu compte encara no s'ha activat.
-      invalid: '%{authentication_keys} o contrasenya no són vàlids.'
-      last_attempt: Tens un intent més, abans que es bloquegi el compte.
+      invalid: '%{authentication_keys} o la contrasenya no són vàlids.'
+      last_attempt: Tens un intent més abans que es bloquegi el compte.
       locked: El compte s'ha bloquejat.
-      not_found_in_database: '%{authentication_keys} o contrasenya no són vàlids.'
+      not_found_in_database: '%{authentication_keys} o la contrasenya no són vàlids.'
       pending: El teu compte encara està en revisió.
-      timeout: La sessió ha expirat. Inicia sessió una altra vegada per a continuar.
+      timeout: La sessió ha expirat. Torna a iniciar la sessió per continuar.
       unauthenticated: Cal iniciar sessió o registrar-se abans de continuar.
       unconfirmed: Has de confirmar l'adreça de correu electrònic abans de continuar.
     mailer:
       confirmation_instructions:
         action: Verifica l'adreça de correu
         action_with_app: Confirma i torna a %{app}
-        explanation: Has creat un compte a %{host} amb aquesta adreça de correu electrònic. Estàs a un sol clic de l'activació. Si no fos així, ignora aquest correu electrònic.
-        explanation_when_pending: Has sol·licitat una invitació a %{host} amb aquesta adreça de correu electrònic. Un cop confirmis la teva adreça de correu electrònic revisarem la teva sol·licitud. No es pot iniciar la sessió fins llavors. Si la teva sol·licitud és rebutjada les teves dades s’eliminaran, de manera que no s’exigirà cap altra acció. Si no has estat tu qui ha fet aquest sol·licitud si us plau ignora aquest correu electrònic.
-        extra_html: Si us plau consulta també <a href="%{terms_path}"> les regles del servidor</a> i <a href="%{policy_path}"> les nostres condicions de servei</a>.
-        subject: 'Mastodon: Instruccions de confirmació per a %{instance}'
+        explanation: Has creat un compte a %{host} amb aquesta adreça de correu electrònic. Estàs a un sol clic d'activar-lo. Si no ho has fet tu, ignora aquest correu electrònic.
+        explanation_when_pending: Has sol·licitat una invitació a %{host} amb aquesta adreça de correu electrònic. Un cop confirmis la teva adreça de correu electrònic, revisarem la teva sol·licitud. Pots iniciar la sessió per canviar els detalls o eliminar el teu compte, però no pots accedir a la majoria de les funcions fins que s'hagi aprovat. Si es rebutja la teva sol·licitud, les teves dades s’eliminaran, de manera que no se t’exigirà cap més acció. Si no has estat tu qui ha fet aquesta sol·licitud, si us plau ignora aquest correu electrònic.
+        extra_html: Si us plau, consulta també a <a href="%{terms_path}"> les regles del servidor</a> i a <a href="%{policy_path}"> les nostres condicions de servei</a>.
+        subject: 'Mastodon: instruccions de confirmació per a %{instance}'
         title: Verifica l'adreça de correu
       email_changed:
         explanation: 'L''adreça de correu del teu compte s''està canviant a:'
