@@ -84,7 +84,7 @@ class DeleteAccountService < BaseService
   end
 
   def purge_content!
-    PurgeAccountService.new.call(@account, **@options)
+    AccountPurgeWorker.perform_async(@account.id, @options.slice(:reserve_username, :skip_side_effects).stringify_keys)
   end
 
   def purge_profile!

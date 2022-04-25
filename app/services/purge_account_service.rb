@@ -71,12 +71,7 @@ class PurgeAccountService < BaseService
   # @option [Boolean] :skip_side_effects Side effects are ActivityPub and streaming API payloads
   def call(account, **options)
     @account = account
-    @options = { reserve_username: true }.merge(options)
-
-    if @account.local? && @account.user_unconfirmed_or_pending?
-      @options[:reserve_username]  = false
-      @options[:skip_side_effects] = true
-    end
+    @options = options
 
     purge_content!
   end
