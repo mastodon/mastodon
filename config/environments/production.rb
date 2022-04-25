@@ -42,7 +42,7 @@ Rails.application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Allow to specify public IP of reverse proxy if it's needed
-  config.action_dispatch.trusted_proxies = ENV['TRUSTED_PROXY_IP'].split.map { |item| IPAddr.new(item) } if ENV['TRUSTED_PROXY_IP'].present?
+  config.action_dispatch.trusted_proxies = ENV['TRUSTED_PROXY_IP'].split(/(?:\s*,\s*|\s+)/).map { |item| IPAddr.new(item) } if ENV['TRUSTED_PROXY_IP'].present?
 
   config.force_ssl = true
   config.ssl_options = {
