@@ -30,24 +30,24 @@ ca:
         text: Només pots emetre una apel·lació per cada acció
       defaults:
         autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
-        avatar: PNG, GIF o JPG de màxim %{size}. S'escalarà a %{dimensions}px
+        avatar: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
         bot: Notifica que aquest compte realitza principalment accions automatitzades i que pot no estar controlat per cap persona
         context: Un o diversos contextos en què s'ha d'aplicar el filtre
         current_password: Per motius de seguretat, introdueix la contrasenya del compte actual
         current_username: Per confirmar-ho, introdueix el nom d'usuari del compte actual
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
-        discoverable: Permet que el teu compte sigui descobert per estranys grácies a les sugerències, etiquetes i altres característiques
+        discoverable: Permet que el teu compte sigui descobert per desconeguts a través de recomanacions, etiquetes i altres característiques
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
-        header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
-        inbox_url: Copia l'URL des de la pàgina principal del relay que vols utilitzar
-        irreversible: Les publicacions filtrades desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
+        header: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
+        inbox_url: Copia l'URL de la pàgina principal del relay que vols utilitzar
+        irreversible: Les publicacions filtrades desapareixeran de manera irreversible, fins i tot si el filtre s'elimina més tard
         locale: L'idioma de la interfície d’usuari, els correus i les notificacions push
-        locked: Requereix que aprovis manualment els seguidors
+        locked: Controla manualment qui et pot seguir i aprovar les peticions
         password: Utilitza com a mínim 8 caràcters
         phrase: Es combinarà independentment del format en el text o l'avís de contingut de la publicació
-        scopes: A quines API es permetrà a l'aplicació accedir. Si selecciones un àmbit d'alt nivell, no cal que seleccionis un d'individual.
-        setting_aggregate_reblogs: No mostrar els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els impulsos nous rebuts)
+        scopes: API permeses per accedir a l'aplicació. Si selecciones un àmbit de nivell superior, no cal que en seleccions un d'individual.
+        setting_aggregate_reblogs: No mostris els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els nous impulsos rebuts)
         setting_always_send_emails: Normalment, les notificacions per correu electrònic no s'enviaran si estàs fent servir activament Mastodon
         setting_default_sensitive: El contingut gràfic sensible està ocult per defecte i es pot revelar amb un clic
         setting_display_media_default: Ocultar el contigut gràfic marcat com a sensible
