@@ -26,43 +26,43 @@ ca:
         title: Verifica l'adreça de correu
       email_changed:
         explanation: 'L''adreça de correu del teu compte s''està canviant a:'
-        extra: Si no has canviat el teu correu electrònic és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador del servidor si no pots accedir al teu compte.
+        extra: Si no has canviat el teu correu electrònic, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador del servidor si no pots accedir al teu compte.
         subject: 'Mastodon: s''ha canviat l''adreça electrònica'
-        title: Adreça de correu electrònic nova
+        title: Nova adreça de correu electrònic
       password_change:
         explanation: S'ha canviat la contrasenya del teu compte.
         extra: Si no has canviat la teva contrasenya, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador del servidor si no pots accedir al teu compte.
-        subject: 'Mastodon: Contrasenya canviada'
+        subject: 'Mastodon: contrasenya canviada'
         title: Contrasenya canviada
       reconfirmation_instructions:
         explanation: Confirma la nova adreça per canviar el teu correu electrònic.
-        extra: Si no has iniciat aquest canvi, ignora aquest correu electrònic. L'adreça electrònica del compte de Mastodon no canviarà fins que accedeixis a l'enllaç de dalt.
+        extra: Si tu no has iniciat aquest canvi, ignora aquest correu electrònic. L'adreça de correu electrònic del compte de Mastodon no canviarà fins que no accedeixis a l'enllaç que hi ha a dalt.
         subject: 'Mastodon: confirma l''adreça electrònica per a %{instance}'
         title: Verifica l'adreça de correu electrònic
       reset_password_instructions:
-        action: Canviar contrasenya
+        action: Canvia la contrasenya
         explanation: Has sol·licitat una contrasenya nova per al teu compte.
-        extra: Si no ho has sol·licitat, ignora aquest correu electrònic. La teva contrasenya no canviarà fins que accedeixis a l'enllaç de dalt i creis un de nou.
-        subject: 'Mastodon: Instruccions per a reiniciar contrasenya'
+        extra: Si no l'has sol·licitat, ignora aquest correu electrònic. La teva contrasenya no canviarà fins que no accedeixis a l'enllaç que hi ha a dalt i en creïs una de nova.
+        subject: 'Mastodon: instruccions per reiniciar la contrasenya'
         title: Contrasenya restablerta
       two_factor_disabled:
-        explanation: L´autenticació de dos factors pel teu compte ha estat desactivat. L'inici de sessió és ara possible utilitzant només l'adreça de correu electrònic i la contrasenya.
-        subject: 'Mastodon: autenticació de dos factors desactivada'
-        title: 2FA desactivat
+        explanation: L'autenticació de doble factor per al teu compte s'ha desactivat. Ara només pots iniciar la sessió fent servir la teva adreça de correu electrònic i la contrasenya.
+        subject: 'Mastodon: autenticació de doble factor desactivada'
+        title: AF2 desactivat
       two_factor_enabled:
-        explanation: L'autenticació de dos factors ha estat habilitada pel teu compte. Un token generat per l'aplicació d'emparellat TOTP serà requerit per a iniciar sessió.
-        subject: 'Mastodon: autenticació de dos factors activada'
-        title: 2FA activat
+        explanation: L'autenticació de doble factor s'ha habilitat per al teu compte. Per iniciar la sessió, es requerirà un token generat per l'aplicació TOTP que hagis emparellat.
+        subject: 'Mastodon: autenticació de doble factor activada'
+        title: AF2 activat
       two_factor_recovery_codes_changed:
-        explanation: Els codis de recuperació anteriors han estat invalidats i s'han generat uns de nous.
-        subject: 'Mastodon: codis de recuperació de Dos factors regenerats'
-        title: 2FA codis de recuperació canviats
+        explanation: Els codis de recuperació anteriors ja no són vàlids i se n'han generat de nous.
+        subject: 'Mastodon: codis de recuperació de doble factor regenerats'
+        title: Codis de recuperació A2F canviats
       unlock_instructions:
-        subject: 'Mastodon: Instruccions de desbloqueig'
+        subject: 'Mastodon: instruccions per desbloquejar'
       webauthn_credential:
         added:
-          explanation: La següent clau de seguretat s'ha afegit al teu compte
-          subject: 'Mastodon: Nova clau de seguretat'
+          explanation: S'ha afegit la següent clau de seguretat al vostre compte
+          subject: 'Mastodon: nova clau de seguretat'
           title: S'ha afegit una nova clau de seguretat
         deleted:
           explanation: La següent clau de seguretat s'ha esborrat del teu compte
