@@ -1,4 +1,3 @@
----
 ca:
   activerecord:
     attributes:
@@ -6,7 +5,7 @@ ca:
         expires_at: Data límit
         options: Opcions
       user:
-        agreement: Acord de servei
+        agreement: Acord sobre serveis
         email: Adreça de correu electrònic
         locale: Idioma
         password: Contrasenya
@@ -19,7 +18,7 @@ ca:
         account:
           attributes:
             username:
-              invalid: ha de contenir només lletres, números i subratllats
+              invalid: només pot contenir lletres, números i guions baixos
               reserved: està reservat
         status:
           attributes:
