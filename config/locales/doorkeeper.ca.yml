@@ -1,4 +1,3 @@
----
 ca:
   activerecord:
     attributes:
@@ -25,46 +24,46 @@ ca:
         edit: Edita
         submit: Envia
       confirmations:
-        destroy: Estàs segur?
+        destroy: N'estàs segur?
       edit:
         title: Edita l'aplicació
       form:
         error: Ep! Comprova el formulari per a possibles errors
       help:
-        native_redirect_uri: Utilitza %{native_redirect_uri} per a proves locals
-        redirect_uri: Utilitza una línia per URI
-        scopes: Separa els àmbits amb espais. Deixa-ho en blanc per a utilitzar els àmbits per defecte.
+        native_redirect_uri: Usa %{native_redirect_uri} per a proves locals
+        redirect_uri: Usa una línia per URI
+        scopes: Separa els àmbits amb espais. Deixa-ho en blanc per usar els àmbits per defecte.
       index:
         application: Aplicació
         callback_url: URL de retorn
         delete: Suprimeix
         empty: No tens cap aplicació.
         name: Nom
-        new: Aplicació nova
+        new: Nova aplicació
         scopes: Àmbits
         show: Mostra
         title: Les teves aplicacions
       new:
-        title: Aplicació nova
+        title: Nova aplicació
       show:
         actions: Accions
         application_id: Id de l'aplicació
-        callback_urls: Callback URL
+        callback_urls: URL de retorn
         scopes: Àmbits
-        secret: Secret
+        secret: Clau secreta de client
         title: 'Aplicació: %{name}'
     authorizations:
       buttons:
         authorize: Autoritza
         deny: Desautoritza
       error:
-        title: S'a produit un error
+        title: S'ha produït un error
       new:
-        prompt_html: "%{client_name} voldria permís per a accedir el teu compte. És una aplicació de tercers. <strong>Si no hi confies no hauries d'autoritzar-la.</strong>"
+        prompt_html: "%{client_name} vol permís per accedir el teu compte. És una aplicació de tercers. <strong>Si no hi confies, no hauries d'autoritzar-la.</strong>"
         review_permissions: Revisa els permisos
         title: Cal autorizació
       show:
-        title: Copia aquest codi d'autorització i enganxa'l en l'aplicació.
+        title: Copia aquest codi d'autorització i enganxa'l a l'aplicació.
     authorized_applications:
       buttons:
         revoke: Revoca
@@ -72,9 +71,9 @@ ca:
         revoke: N'estàs segur?
       index:
         authorized_at: Autoritzada el %{date}
-        description_html: Aquestes son les aplicacions que poden accedir al teu compte usant l'API. Si aquí hi ha aplicacions que no reconeixes o una aplicació es comporta malament, pots revocar el seu accés.
-        last_used_at: Darrera utilització el %{date}
-        never_used: Mai usat
+        description_html: Aquestes són les aplicacions que poden accedir al teu compte usant l'API. Si hi ha aplicacions que no reconeixes o hi ha una aplicació que no funciona bé, pots revocar-ne l'accés.
+        last_used_at: Usada per últim cop el %{date}
+        never_used: No s'ha usat mai
         scopes: Permisos
         superapp: Interna
         title: Les teves aplicacions autoritzades
@@ -147,39 +146,39 @@ ca:
       application:
         title: OAuth autorització requerida
     scopes:
-      admin:read: llegir totes les dades en el servidor
-      admin:read:accounts: llegir l'informació sensible de tots els comptes
-      admin:read:reports: llegir l'informació sensible de tots els informes i comptes reportats
-      admin:write: modificar totes les dades en el servidor
-      admin:write:accounts: fer l'acció de moderació en els comptes
-      admin:write:reports: fer l'acció de moderació en els informes
+      "admin:read": llegir totes les dades en el servidor
+      "admin:read:accounts": llegir l'informació sensible de tots els comptes
+      "admin:read:reports": llegir l'informació sensible de tots els informes i comptes reportats
+      "admin:write": modificar totes les dades en el servidor
+      "admin:write:accounts": fer l'acció de moderació en els comptes
+      "admin:write:reports": fer l'acció de moderació en els informes
       crypto: usa xifrat d'extrem a extrem
       follow: modificar relacions dels comptes
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte
-      read:accounts: veure informació dels comptes
-      read:blocks: veure els teus bloqueigs
-      read:bookmarks: veure els teus marcadors
-      read:favourites: veure els teus favorits
-      read:filters: veure els teus filtres
-      read:follows: veure els teus seguiments
-      read:lists: veure les teves llistes
-      read:mutes: veure els teus silenciats
-      read:notifications: veure les teves notificacions
-      read:reports: veure els teus informes
-      read:search: cerca en nom teu
-      read:statuses: veure tots les publicacions
+      "read:accounts": veure informació dels comptes
+      "read:blocks": veure els teus bloqueigs
+      "read:bookmarks": veure els teus marcadors
+      "read:favourites": veure els teus favorits
+      "read:filters": veure els teus filtres
+      "read:follows": veure els teus seguiments
+      "read:lists": veure les teves llistes
+      "read:mutes": veure els teus silenciats
+      "read:notifications": veure les teves notificacions
+      "read:reports": veure els teus informes
+      "read:search": cerca en nom teu
+      "read:statuses": veure tots les publicacions
       write: modificar totes les dades del teu compte
-      write:accounts: modifica el teu perfil
-      write:blocks: bloqueja comptes i dominis
-      write:bookmarks: publicacions a marcadors
-      write:conversations: silencia i esborra converses
-      write:favourites: afavorir publicacions
-      write:filters: crear filtres
-      write:follows: seguir usuaris
-      write:lists: crear llistes
-      write:media: pujar fitxers multimèdia
-      write:mutes: silencia usuaris i converses
-      write:notifications: esborra les teves notificacions
-      write:reports: informe d’altres persones
-      write:statuses: publicar publicacions
+      "write:accounts": modifica el teu perfil
+      "write:blocks": bloqueja comptes i dominis
+      "write:bookmarks": publicacions a marcadors
+      "write:conversations": silencia i esborra converses
+      "write:favourites": afavorir publicacions
+      "write:filters": crear filtres
+      "write:follows": seguir usuaris
+      "write:lists": crear llistes
+      "write:media": pujar fitxers multimèdia
+      "write:mutes": silencia usuaris i converses
+      "write:notifications": esborra les teves notificacions
+      "write:reports": informe d’altres persones
+      "write:statuses": publicar publicacions
