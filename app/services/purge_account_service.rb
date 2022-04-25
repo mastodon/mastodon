@@ -79,7 +79,6 @@ class PurgeAccountService < BaseService
     end
 
     purge_content!
-    fulfill_deletion_request!
   end
 
   private
@@ -87,6 +86,7 @@ class PurgeAccountService < BaseService
   def purge_content!
     purge_statuses!
     purge_mentions!
+    nullify_in_reply_to_account_id!
     purge_media_attachments!
     purge_polls!
     purge_generated_notifications!
@@ -106,6 +106,10 @@ class PurgeAccountService < BaseService
 
   def purge_mentions!
     @account.mentions.reorder(nil).where.not(status_id: reported_status_ids).in_batches.delete_all
+  end
+
+  def nullify_in_reply_to_account_id!
+    Status.where(in_reply_to_account_id: @account.id).in_batches.update_all(in_reply_to_account_id: nil)
   end
 
   def purge_media_attachments!
@@ -155,10 +159,6 @@ class PurgeAccountService < BaseService
 
     FeedManager.instance.clean_feeds!(:home, [@account.id])
     FeedManager.instance.clean_feeds!(:list, @account.owned_lists.pluck(:id))
-  end
-
-  def fulfill_deletion_request!
-    @account.deletion_request&.destroy
   end
 
   def purge_association(association_name)
