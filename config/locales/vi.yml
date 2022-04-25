@@ -51,7 +51,7 @@ vi:
     user_count_after:
       other: người dùng
     user_count_before: Nhà của
-    what_is_mastodon: Mastodon
+    what_is_mastodon: Mastodon là gì?
   accounts:
     choices_html: "%{name} tôn vinh:"
     endorsements_hint: Bạn có thể tôn vinh những người bạn theo dõi và họ sẽ hiển thị ở giao diện web.
@@ -263,12 +263,12 @@ vi:
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xử lý báo cáo
         sensitive_account: Áp đặt nhạy cảm
-        silence_account: Áp đặt hạn chế
+        silence_account: Áp đặt ẩn
         suspend_account: Áp đặt vô hiệu hóa
         unassigned_report: Báo cáo chưa xử lý
         unblock_email_account: Mở khóa địa chỉ email
         unsensitive_account: Bỏ nhạy cảm
-        unsilence_account: Bỏ hạn chế
+        unsilence_account: Bỏ ẩn
         unsuspend_account: Bỏ vô hiệu hóa
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật emoji
@@ -503,6 +503,7 @@ vi:
       delivery:
         all: Toàn bộ
         clear: Xóa phân phối lỗi
+        failing: Mất kết nối
         restart: Khởi động lại phân phối
         stop: Ngưng phân phối
         unavailable: Không khả dụng
@@ -968,7 +969,7 @@ vi:
   date:
     formats:
       default: "%-d %B, %Y"
-      with_month_name: "%B %d, %Y"
+      with_month_name: "%-d tháng %-m, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} giờ"
@@ -1538,7 +1539,7 @@ vi:
     mastodon-light: Mastodon (Sáng)
   time:
     formats:
-      default: "%d.%m.%Y %H:%M"
+      default: "%-d.%m.%Y %H:%M"
       month: "%B %Y"
       time: "%H:%M"
   two_factor_authentication:
