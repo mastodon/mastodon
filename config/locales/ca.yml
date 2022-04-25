@@ -43,13 +43,13 @@ ca:
     unavailable_content_description:
       domain: Servidor
       reason: Motiu
-      rejecting_media: 'Els arxius multimèdia d''aquests servidors no seran processats o emmagatzemats i cap miniatura serà mostrada, requerint clic manual a través de l''arxiu original:'
-      rejecting_media_title: Mèdia filtrat
-      silenced: 'Les publicacions d''aquests servidors seran amagades en les línies de temps públiques i en les converses, i cap notificació serà generada de les interaccions dels seus usuaris, llevat que estiguis seguint-los:'
-      silenced_title: Servidors silenciats
-      suspended: 'Cap dada d''aquests servidors serà processada, emmagatzemada o intercanviada, fent impossible qualsevol interacció o comunicació amb els usuaris d''aquests servidors:'
+      rejecting_media: 'Els arxius multimèdia d''aquests servidors no seran processats ni emmagatzemats. No es mostrarà cap miniatura i caldrà fer clic en l''arxiu original:'
+      rejecting_media_title: Arxius multimèdia filtrats
+      silenced: 'Les publicacions d''aquests servidors s''ocultaran en les línies de temps públiques i en les converses. No es generarà cap notificació de les interaccions dels seus usuaris, tret que els segueixis:'
+      silenced_title: Servidors limitats
+      suspended: 'No es processaran, emmagatzemaran ni s''intercanviaran dades d''aquests servidors i serà impossible interactuar o comunicar-se amb els usuaris d''aquests servidors:'
       suspended_title: Servidors suspesos
-    unavailable_content_html: Mastodon generalment et permet veure el contingut i interaccionar amb els usuaris de qualsevol altre servidor en el fedivers. Aquestes són les excepcions que s'han fet en aquest servidor particular.
+    unavailable_content_html: En general, Mastodon et permet veure el contingut i interaccionar amb els usuaris de qualsevol altre servidor del fedivers. Aquestes són les excepcions que s'han fet en aquest servidor particular.
     user_count_after:
       one: usuari
       other: usuaris
@@ -57,7 +57,7 @@ ca:
     what_is_mastodon: Què és Mastodon?
   accounts:
     choices_html: "Eleccions de %{name}:"
-    endorsements_hint: Pots recomanar persones que segueixes a l'interfície de web, que apareixeran aquí.
+    endorsements_hint: Pots recomanar persones que segueixes des de la interfície de web i apareixeran aquí.
     featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
     followers:
