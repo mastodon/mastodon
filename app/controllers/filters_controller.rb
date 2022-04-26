@@ -12,7 +12,7 @@ class FiltersController < ApplicationController
   end
 
   def new
-    @filter = current_account.custom_filters.build
+    @filter = current_account.custom_filters.build(action: :warn)
     @filter.keywords.build
   end
 
@@ -48,7 +48,7 @@ class FiltersController < ApplicationController
   end
 
   def resource_params
-    params.require(:custom_filter).permit(:title, :expires_in, :irreversible, context: [], keywords_attributes: [:id, :keyword, :whole_word, :_destroy])
+    params.require(:custom_filter).permit(:title, :expires_in, :filter_action, context: [], keywords_attributes: [:id, :keyword, :whole_word, :_destroy])
   end
 
   def set_body_classes
