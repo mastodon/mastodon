@@ -22,7 +22,7 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   private
 
   def process_items(items)
-    status_ids = items.filter_map do |item|
+    status_ids = items&.filter_map do |item|
       uri = value_or_id(item)
       next if ActivityPub::TagManager.instance.local_uri?(uri)
 
