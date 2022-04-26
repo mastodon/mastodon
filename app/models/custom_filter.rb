@@ -3,20 +3,21 @@
 #
 # Table name: custom_filters
 #
-#  id           :bigint(8)        not null, primary key
-#  account_id   :bigint(8)
-#  expires_at   :datetime
-#  phrase       :text             default(""), not null
-#  context      :string           default([]), not null, is an Array
-#  irreversible :boolean          default(FALSE), not null
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id         :bigint           not null, primary key
+#  account_id :bigint
+#  expires_at :datetime
+#  phrase     :text             default(""), not null
+#  context    :string           default([]), not null, is an Array
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  action     :integer          default(0), not null
 #
 
 class CustomFilter < ApplicationRecord
-  self.ignored_columns = %w(whole_word)
+  self.ignored_columns = %w(whole_word irreversible)
 
   alias_attribute :title, :phrase
+  alias_attribute :filter_action, :action
 
   VALID_CONTEXTS = %w(
     home
@@ -29,6 +30,8 @@ class CustomFilter < ApplicationRecord
   include Expireable
   include Redisable
 
+  enum action: [:warn, :hide], _suffix: :action
+
   belongs_to :account
   has_many :keywords, class_name: 'CustomFilterKeyword', foreign_key: :custom_filter_id, inverse_of: :custom_filter, dependent: :destroy
   accepts_nested_attributes_for :keywords, reject_if: :all_blank, allow_destroy: true
@@ -37,7 +40,7 @@ class CustomFilter < ApplicationRecord
   validate :context_must_be_valid
   validate :irreversible_must_be_within_context
 
-  scope :active_irreversible, -> { where(irreversible: true).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()')) }
+  scope :active_irreversible, -> { where(action: :hide).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()')) }
 
   before_validation :clean_up_contexts
   after_commit :remove_cache
@@ -49,12 +52,12 @@ class CustomFilter < ApplicationRecord
     [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].find { |expires_in| expires_in.from_now >= expires_at }
   end
 
-  def filter_action
-    irreversible? ? :hide : :warn
+  def irreversible=(value)
+    self.action = value ? :hide : :warn
   end
 
-  def filter_action=(action)
-    self.irreversible = action.to_s == 'hide'
+  def irreversible?
+    hide_action?
   end
 
   private

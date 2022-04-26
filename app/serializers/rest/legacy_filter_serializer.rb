@@ -4,7 +4,7 @@ class REST::LegacyFilterSerializer < ActiveModel::Serializer
   attributes :id, :phrase, :context, :whole_word, :expires_at,
              :irreversible
 
-  delegate :context, :expires_at, :irreversible, to: :custom_filter
+  delegate :context, :expires_at, to: :custom_filter
 
   def id
     object.id.to_s
@@ -12,6 +12,10 @@ class REST::LegacyFilterSerializer < ActiveModel::Serializer
 
   def phrase
     object.keyword
+  end
+
+  def irreversible
+    custom_filter.irreversible?
   end
 
   private

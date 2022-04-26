@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_13_110802) do
+ActiveRecord::Schema.define(version: 2022_06_13_110903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -353,9 +353,9 @@ ActiveRecord::Schema.define(version: 2022_06_13_110802) do
     t.datetime "expires_at"
     t.text "phrase", default: "", null: false
     t.string "context", default: [], null: false, array: true
-    t.boolean "irreversible", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "action", default: 0, null: false
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
   end
 

@@ -425,7 +425,7 @@ class FeedManager
   # @return [Boolean]
   def phrase_filtered?(status, receiver_id, context)
     active_filters = Rails.cache.fetch("filters:v2:#{receiver_id}") do
-      CustomFilterKeyword.includes(:custom_filter).where(custom_filter: { account_id: receiver_id, irreversible: true }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()')).to_a
+      CustomFilterKeyword.includes(:custom_filter).where(custom_filter: { account_id: receiver_id, action: :hide }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()')).to_a
     end.to_a
 
     active_filters.select! { |filter| filter.custom_filter.context.include?(context.to_s) && !filter.custom_filter.expired? }
