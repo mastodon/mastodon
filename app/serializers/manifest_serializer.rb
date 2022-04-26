@@ -27,6 +27,13 @@ class ManifestSerializer < ActiveModel::Serializer
         src: '/android-chrome-192x192.png',
         sizes: '192x192',
         type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: '/maskable-icon-200x200.png',
+        sizes: '200x200',
+        type: 'image/png',
+        purpose: 'maskable',
       },
     ]
   end
