@@ -157,10 +157,10 @@ class FeedManager
   # @param [Account] into_account
   # @return [void]
   def unmerge_from_home(from_account, into_account)
-    timeline_key      = key(:home, into_account.id)
-    oldest_home_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
+    timeline_key        = key(:home, into_account.id)
+    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
 
-    from_account.statuses.select('id, reblog_of_id').where('id > ?', oldest_home_score).reorder(nil).find_each do |status|
+    from_account.statuses.select('id, reblog_of_id').where(id: timeline_status_ids).reorder(nil).find_each do |status|
       remove_from_feed(:home, into_account.id, status, into_account.user&.aggregates_reblogs?)
     end
   end
@@ -170,10 +170,10 @@ class FeedManager
   # @param [List] list
   # @return [void]
   def unmerge_from_list(from_account, list)
-    timeline_key      = key(:list, list.id)
-    oldest_list_score = redis.zrange(timeline_key, 0, 0, with_scores: true)&.first&.last&.to_i || 0
+    timeline_key        = key(:list, list.id)
+    timeline_status_ids = redis.zrange(timeline_key, 0, -1)
 
-    from_account.statuses.select('id, reblog_of_id').where('id > ?', oldest_list_score).reorder(nil).find_each do |status|
+    from_account.statuses.select('id, reblog_of_id').where(id: timeline_status_ids).reorder(nil).find_each do |status|
       remove_from_feed(:list, list.id, status, list.account.user&.aggregates_reblogs?)
     end
   end
