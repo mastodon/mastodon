@@ -38,9 +38,6 @@ class CustomFilter < ApplicationRecord
 
   validates :title, :context, presence: true
   validate :context_must_be_valid
-  validate :irreversible_must_be_within_context
-
-  scope :active_irreversible, -> { where(action: :hide).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()')) }
 
   before_validation :clean_up_contexts
   after_commit :remove_cache
@@ -73,9 +70,5 @@ class CustomFilter < ApplicationRecord
 
   def context_must_be_valid
     errors.add(:context, I18n.t('filters.errors.invalid_context')) if context.empty? || context.any? { |c| !VALID_CONTEXTS.include?(c) }
-  end
-
-  def irreversible_must_be_within_context
-    errors.add(:irreversible, I18n.t('filters.errors.invalid_irreversible')) if irreversible? && !context.include?('home') && !context.include?('notifications')
   end
 end
