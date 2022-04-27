@@ -33,6 +33,11 @@ namespace :tests do
         puts 'AccountConversation records not created as expected'
         exit(1)
       end
+
+      if Account.find(-99).private_key.blank?
+        puts 'Instance actor does not have a private key'
+        exit(1)
+      end
     end
 
     desc 'Populate the database with test data for 2.4.0'
