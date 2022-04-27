@@ -796,12 +796,12 @@ ko:
       statuses:
         allow: 게시물 허용
         allow_account: 작성자 허용
-        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 즐겨찾기가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
+        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
         disallow: 게시물 불허
         disallow_account: 작성자 불허
         not_discoverable: 작성자가 발견되기를 원치 않습니다
         shared_by:
-          other: '%{friendly_count} 번 공유되고 즐겨찾기 되었습니다'
+          other: '%{friendly_count} 번 공유되고 마음에 들어했습니다'
         title: 유행하는 게시물
       tags:
         current_score: 현재 %{score}점
@@ -1221,7 +1221,7 @@ ko:
     favourite:
       body: '당신의 게시물을 %{name} 님이 마음에 들어했습니다:'
       subject: "%{name} 님이 내 게시물을 마음에 들어했습니다"
-      title: 새 즐겨찾기
+      title: 새 좋아요
     follow:
       body: "%{name} 님이 나를 팔로우 했습니다!"
       subject: "%{name} 님이 나를 팔로우 했습니다"
@@ -1319,8 +1319,8 @@ ko:
     reason_html: "<strong>왜 이 과정이 필요하죠?</strong><code>%{instance}</code>는 당신이 가입한 서버가 아닐 것입니다, 당신의 홈 서버로 먼저 가야 합니다."
   remote_interaction:
     favourite:
-      proceed: 즐겨찾기 진행
-      prompt: '이 게시물을 즐겨찾기 하려고 합니다:'
+      proceed: 좋아요 진행
+      prompt: '이 게시물을 좋아요 하려고 합니다:'
     reblog:
       proceed: 부스트 진행
       prompt: '이 게시물을 부스트 하려 합니다:'
@@ -1448,10 +1448,10 @@ ko:
     enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
     exceptions: 예외
     explanation: 게시물 삭제는 많은 성능이 필요하기 때문에, 서버에서 바쁘지 않을 때 시간을 들여서 천천히 진행합니다. 이런 이유로, 당신의 게시물은 아마도 정해진 기간보다 좀 더 시간이 지난 이후에 삭제될 것입니다.
-    ignore_favs: 즐겨찾기 무시
+    ignore_favs: 좋아요 무시
     ignore_reblogs: 부스트 무시
     interaction_exceptions: 상호작용에 기반한 예외들
-    interaction_exceptions_explanation: 즐겨찾기나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되는 것을 보장하지 못합니다.
+    interaction_exceptions_explanation: 좋아요나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되는 것을 보장하지 못합니다.
     keep_direct: 다이렉트 메시지 유지
     keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
     keep_media: 미디어가 있는 게시물 유지
@@ -1462,8 +1462,8 @@ ko:
     keep_polls_hint: 투표를 삭제하지 않습니다
     keep_self_bookmark: 북마크된 게시물 유지
     keep_self_bookmark_hint: 내 스스로 북마크한 본인의 게시물을 삭제하지 않습니다
-    keep_self_fav: 즐겨찾기한 게시물 유지
-    keep_self_fav_hint: 내 스스로 즐겨찾기한 본인의 게시물을 삭제하지 않습니다
+    keep_self_fav: 마음에 들어한 게시물 유지
+    keep_self_fav_hint: 내 스스로 마음에  들어한 본인의 게시물을 삭제하지 않습니다
     min_age:
       '1209600': 2 주
       '15778476': 6 개월
@@ -1474,8 +1474,8 @@ ko:
       '63113904': 2 년
       '7889238': 3 개월
     min_age_label: 기한
-    min_favs: 해당 횟수 이상 즐겨찾기된 게시물 유지
-    min_favs_hint: 이 횟수 이상의 즐겨찾기가 된 게시물은 삭제하지 않습니다. 즐겨찾기 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
+    min_favs: 해당 횟수 이상 좋아요된 게시물 유지
+    min_favs_hint: 이 횟수 이상의 좋아요가 된 게시물은 삭제하지 않습니다. 좋아요 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
     min_reblogs: 해당 횟수 이상 부스트된 게시물 유지
     min_reblogs_hint: 이 횟수 이상의 부스트가 된 게시물은 삭제하지 않습니다. 부스트 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
   stream_entries:
