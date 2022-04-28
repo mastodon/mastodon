@@ -145,7 +145,7 @@ export default class ColumnSettings extends React.PureComponent {
         </div>
 
         <div role='group' aria-labelledby='notifications-status'>
-          <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.status' defaultMessage='New toots:' /></span>
+          <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.status' defaultMessage='New posts:' /></span>
 
           <div className='column-settings__row'>
             <SettingToggle disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'status']} onChange={onChange} label={alertStr} />
