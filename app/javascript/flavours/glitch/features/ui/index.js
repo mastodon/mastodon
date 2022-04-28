@@ -11,6 +11,7 @@ import { uploadCompose, resetCompose, changeComposeSpoilerness } from 'flavours/
 import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
 import { fetchFilters } from 'flavours/glitch/actions/filters';
+import { fetchRules } from 'flavours/glitch/actions/rules';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
 import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/util/react_router_helpers';
@@ -402,6 +403,7 @@ class UI extends React.Component {
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
     setTimeout(() => this.props.dispatch(fetchFilters()), 500);
+    setTimeout(() => this.props.dispatch(fetchRules()), 3000);
   }
 
   componentDidMount () {
