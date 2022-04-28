@@ -26,7 +26,7 @@ zh-CN:
 
       '
     learn_more: 了解详情
-    logged_in_as_html: 你当前是以 %{username} 登录的。
+    logged_in_as_html: 您当前以 %{username} 登录。
     logout_before_registering: 您已登录。
     privacy_policy: 隐私政策
     rules: 服务器规则
@@ -46,7 +46,7 @@ zh-CN:
       rejecting_media: 来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。
       rejecting_media_title: 被过滤的媒体文件
       silenced: 来自这些服务器上的帖子将不会出现在公共时间轴和会话中，通知功能也不会提醒这些用户的动态；只有你关注了这些用户，才会收到用户互动的通知消息。
-      silenced_title: 已隐藏的服务器
+      silenced_title: 已限制的服务器
       suspended: 这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。
       suspended_title: 已被封禁的服务器
     unavailable_content_html: 通常来说，在 Mastodon 上，你可以浏览联邦宇宙中任何一台服务器上的内容，并且和上面的用户互动。但是某些站点上不排除会有例外。
@@ -505,6 +505,7 @@ zh-CN:
       delivery:
         all: 全部
         clear: 清理投递错误
+        failing: 发送失败
         restart: 重新投递
         stop: 停止投递
         unavailable: 不可用
