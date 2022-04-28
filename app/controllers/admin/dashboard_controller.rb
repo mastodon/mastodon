@@ -2,6 +2,8 @@
 
 module Admin
   class DashboardController < BaseController
+    include Redisable
+
     def index
       @system_checks         = Admin::SystemCheck.perform
       @time_period           = (29.days.ago.to_date...Time.now.utc.to_date)
@@ -15,10 +17,10 @@ module Admin
 
     def redis_info
       @redis_info ||= begin
-        if Redis.current.is_a?(Redis::Namespace)
-          Redis.current.redis.info
+        if redis.is_a?(Redis::Namespace)
+          redis.redis.info
         else
-          Redis.current.info
+          redis.info
         end
       end
     end
