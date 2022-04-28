@@ -517,6 +517,7 @@ de:
       delivery:
         all: Alle
         clear: Zustellfehler löschen
+        failing: Schlägt fehl
         restart: Lieferung neu starten
         stop: Lieferung stoppen
         unavailable: Nicht verfügbar
@@ -659,8 +660,8 @@ de:
         desc_html: Anzahl der lokal geposteten Beiträge, aktiven Nutzern und neuen Registrierungen in wöchentlichen Zusammenfassungen
         title: Veröffentliche gesamte Statistiken über Benutzeraktivitäten
       bootstrap_timeline_accounts:
-        desc_html: Mehrere Profilnamen durch Kommata trennen. Funktioniert nur mit lokalen und nicht gesperrten Konten. Standardwert bei freigelassenem Feld sind alle lokalen Admins.
-        title: Konten, denen Neu-Angemeldete automatisch folgen
+        desc_html: Mehrere Profilnamen durch Kommata trennen. Diese Accounts werden immer in den Folgemempfehlungen angezeigt
+        title: Konten, die Neu-Angemeldete empfohlen bekommen sollen
       contact_information:
         email: Öffentliche E-Mail-Adresse
         username: Profilname für die Kontaktaufnahme
@@ -1233,8 +1234,8 @@ de:
       body: Hier ist eine kurze Zusammenfassung der Nachrichten, die du seit deinem letzten Besuch am %{since} verpasst hast
       mention: "%{name} hat dich erwähnt:"
       new_followers_summary:
-        one: Außerdem ist dir seit du weg warst ein weiteres Wesen gefolgt! Juhu!
-        other: Außerdem sind dir seit du weg warst %{count} weitere Wesen gefolgt! Großartig!
+        one: Außerdem ist dir seit du weg warst ein weiteres Konto gefolgt! Juhu!
+        other: Außerdem sind dir seit du weg warst %{count} weitere Konten gefolgt! Großartig!
       subject:
         one: "1 neue Mitteilung seit deinem letzten Besuch 🐘"
         other: "%{count} neue Mitteilungen seit deinem letzten Besuch 🐘"
