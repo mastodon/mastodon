@@ -1,4 +1,3 @@
----
 ckb:
   activerecord:
     attributes:
@@ -107,37 +106,37 @@ ckb:
       application:
         title: داوای ڕێپێدانی OAuth
     scopes:
-      admin:read: خوێندنەوەی هەموو داتاکان لەسەر ڕاژەکارەکە
-      admin:read:accounts: زانیاری هەستیاری هەموو هەژمارەکان بخوێنەوە
-      admin:read:reports: زانیاری هەستیاری هەموو گوزارشت و هەژمارە گوزارشتکراوەکان بخوێنەوە
-      admin:write: دەستکاری هەموو داتاکان بکە لەسەر ڕاژەکار
-      admin:write:accounts: ئەنجامدانی کاری میانڕەوی لەسەر هەژمارەکان
-      admin:write:reports: ئەنجامدانی کاری میانڕەوی لەسەر گوزارشتەکان
+      "admin:read": خوێندنەوەی هەموو داتاکان لەسەر ڕاژەکارەکە
+      "admin:read:accounts": زانیاری هەستیاری هەموو هەژمارەکان بخوێنەوە
+      "admin:read:reports": زانیاری هەستیاری هەموو گوزارشت و هەژمارە گوزارشتکراوەکان بخوێنەوە
+      "admin:write": دەستکاری هەموو داتاکان بکە لەسەر ڕاژەکار
+      "admin:write:accounts": ئەنجامدانی کاری میانڕەوی لەسەر هەژمارەکان
+      "admin:write:reports": ئەنجامدانی کاری میانڕەوی لەسەر گوزارشتەکان
       follow: دەستکاریکردنی پەیوەندییەکانی هەژمارەی بەکارهێنەر
       push: وەرگرتنی ئاگانامەکانی پاڵنان
       read: هەموو دراوەکانی هەژمارەکەت بخوێنەوە
-      read:accounts: بینینی زانیاری هەژمارەکان
-      read:blocks: بینینی بلۆکەکانت
-      read:bookmarks: نیشانەکان ببینە
-      read:favourites: بینینی دڵخوازەکانت
-      read:filters: بینینی پاڵافتنەکانت
-      read:follows: سەیری شوێنکەوتەکانت بکە
-      read:lists: بینینی لیستەکانت
-      read:mutes: بێدەنگەکانت ببینە
-      read:notifications: ئاگانامەکانت ببینە
-      read:reports: سەیری گوزارشەکانت بکە
-      read:search: گەڕان لە جیاتی تۆ
-      read:statuses: بینینی هەموو بارودۆخەکان
+      "read:accounts": بینینی زانیاری هەژمارەکان
+      "read:blocks": بینینی بلۆکەکانت
+      "read:bookmarks": نیشانەکان ببینە
+      "read:favourites": بینینی دڵخوازەکانت
+      "read:filters": بینینی پاڵافتنەکانت
+      "read:follows": سەیری شوێنکەوتەکانت بکە
+      "read:lists": بینینی لیستەکانت
+      "read:mutes": بێدەنگەکانت ببینە
+      "read:notifications": ئاگانامەکانت ببینە
+      "read:reports": سەیری گوزارشەکانت بکە
+      "read:search": گەڕان لە جیاتی تۆ
+      "read:statuses": بینینی هەموو بارودۆخەکان
       write: دەستکاری هەموو داتاکانی هەژمارەکەت بکە
-      write:accounts: دەستکاری پرۆفایلەکەت بکە
-      write:blocks: بلۆک کردنی هەژمارەکەی دۆمەینەکان
-      write:bookmarks: بارەکانی نیشانکەر
-      write:favourites: دۆخی دڵخوازەکان
-      write:filters: پاڵێوەر دروست بکە
-      write:follows: دوای خەڵک بکەوە
-      write:lists: دروستکردنی لیستەکان
-      write:media: پەڕگەی میدیا باربکە
-      write:mutes: بێدەنگکردنی خەڵک و گفتوگۆکان
-      write:notifications: ئاگانامەکانت بسڕیەوە
-      write:reports: گوزارشتکردنی کەسانی تر
-      write:statuses: بڵاوکردنەوەی بارودۆخەکان
+      "write:accounts": دەستکاری پرۆفایلەکەت بکە
+      "write:blocks": بلۆک کردنی هەژمارەکەی دۆمەینەکان
+      "write:bookmarks": بارەکانی نیشانکەر
+      "write:favourites": دۆخی دڵخوازەکان
+      "write:filters": پاڵێوەر دروست بکە
+      "write:follows": دوای خەڵک بکەوە
+      "write:lists": دروستکردنی لیستەکان
+      "write:media": پەڕگەی میدیا باربکە
+      "write:mutes": بێدەنگکردنی خەڵک و گفتوگۆکان
+      "write:notifications": ئاگانامەکانت بسڕیەوە
+      "write:reports": گوزارشتکردنی کەسانی تر
+      "write:statuses": بڵاوکردنەوەی بارودۆخەکان
