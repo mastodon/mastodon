@@ -2,6 +2,7 @@
 
 class ActivityPub::ProcessStatusUpdateService < BaseService
   include JsonLdHelper
+  include Redisable
 
   def call(status, json)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
@@ -241,7 +242,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "create:#{@uri}", autorelease: 15.minutes.seconds }
+    { redis: redis, key: "create:#{@uri}", autorelease: 15.minutes.seconds }
   end
 
   def record_previous_edit!
