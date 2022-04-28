@@ -86,7 +86,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>alt</kbd>+<kbd>n</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.toot' defaultMessage='to start a brand new toot' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.toot' defaultMessage='to start a brand new post' /></td>
               </tr>
               <tr>
                 <td><kbd>alt</kbd>+<kbd>x</kbd></td>
@@ -122,7 +122,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>d</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.direct' defaultMessage='to open direct messages column' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.conversations' defaultMessage='to open conversations column' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>s</kbd></td>
@@ -134,7 +134,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>p</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.pinned' defaultMessage='to open pinned toots list' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.pinned' defaultMessage='to open pinned posts list' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>u</kbd></td>
