@@ -220,6 +220,8 @@ RSpec.describe ResolveAccountService, type: :service do
           return_values << described_class.new.call('foo@ap.example.com')
         rescue ActiveRecord::RecordNotUnique
           fail_occurred = true
+        ensure
+          RedisConfiguration.pool.checkin if Thread.current[:redis]
         end
       end
     end
