@@ -1,1 +1,185 @@
-en-GB:
+---
+en:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Application name
+        redirect_uri: Redirect URI
+        scopes: Scopes
+        website: Application website
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: cannot contain a fragment.
+              invalid_uri: must be a valid URI.
+              relative_uri: must be an absolute URI.
+              secured_uri: must be an HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Authorize
+        cancel: Cancel
+        destroy: Destroy
+        edit: Edit
+        submit: Submit
+      confirmations:
+        destroy: Are you sure?
+      edit:
+        title: Edit application
+      form:
+        error: Whoops! Check your form for possible errors
+      help:
+        native_redirect_uri: Use %{native_redirect_uri} for local tests
+        redirect_uri: Use one line per URI
+        scopes: Separate scopes with spaces. Leave blank to use the default scopes.
+      index:
+        application: Application
+        callback_url: Callback URL
+        delete: Delete
+        empty: You have no applications.
+        name: Name
+        new: New application
+        scopes: Scopes
+        show: Show
+        title: Your applications
+      new:
+        title: New application
+      show:
+        actions: Actions
+        application_id: Client key
+        callback_urls: Callback URLs
+        scopes: Scopes
+        secret: Client secret
+        title: 'Application: %{name}'
+    authorizations:
+      buttons:
+        authorize: Authorize
+        deny: Deny
+      error:
+        title: An error has occurred
+      new:
+        prompt_html: "%{client_name} would like permission to access your account. It is a third-party application. <strong>If you do not trust it, then you should not authorize it.</strong>"
+        review_permissions: Review permissions
+        title: Authorization required
+      show:
+        title: Copy this authorization code and paste it to the application.
+    authorized_applications:
+      buttons:
+        revoke: Revoke
+      confirmations:
+        revoke: Are you sure?
+      index:
+        authorized_at: Authorized on %{date}
+        description_html: These are applications that can access your account using the API. If there are applications you do not recognize here, or an application is misbehaving, you can revoke its access.
+        last_used_at: Last used on %{date}
+        never_used: Never used
+        scopes: Permissions
+        superapp: Internal
+        title: Your authorized applications
+    errors:
+      messages:
+        access_denied: The resource owner or authorization server denied the request.
+        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
+        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
+        invalid_redirect_uri: The redirect uri included is not valid.
+        invalid_request:
+          missing_param: 'Missing required parameter: %{value}.'
+          request_not_authorized: Request need to be authorized. Required parameter for authorizing request is missing or invalid.
+          unknown: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
+        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
+        invalid_scope: The requested scope is invalid, unknown, or malformed.
+        invalid_token:
+          expired: The access token expired
+          revoked: The access token was revoked
+          unknown: The access token is invalid
+        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
+        server_error: The authorization server encountered an unexpected condition which prevented it from fulfilling the request.
+        temporarily_unavailable: The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
+        unauthorized_client: The client is not authorized to perform this request using this method.
+        unsupported_grant_type: The authorization grant type is not supported by the authorization server.
+        unsupported_response_type: The authorization server does not support this response type.
+    flash:
+      applications:
+        create:
+          notice: Application created.
+        destroy:
+          notice: Application deleted.
+        update:
+          notice: Application updated.
+      authorized_applications:
+        destroy:
+          notice: Application revoked.
+    grouped_scopes:
+      access:
+        read: Read-only access
+        read/write: Read and write access
+        write: Write-only access
+      title:
+        accounts: Accounts
+        admin/accounts: Administration of accounts
+        admin/all: All administrative functions
+        admin/reports: Administration of reports
+        all: Everything
+        blocks: Blocks
+        bookmarks: Bookmarks
+        conversations: Conversations
+        crypto: End-to-end encryption
+        favourites: Favourites
+        filters: Filters
+        follow: Relationships
+        follows: Follows
+        lists: Lists
+        media: Media attachments
+        mutes: Mutes
+        notifications: Notifications
+        push: Push notifications
+        reports: Reports
+        search: Search
+        statuses: Posts
+    layouts:
+      admin:
+        nav:
+          applications: Applications
+          oauth2_provider: OAuth2 Provider
+      application:
+        title: OAuth authorization required
+    scopes:
+      admin:read: read all data on the server
+      admin:read:accounts: read sensitive information of all accounts
+      admin:read:reports: read sensitive information of all reports and reported accounts
+      admin:write: modify all data on the server
+      admin:write:accounts: perform moderation actions on accounts
+      admin:write:reports: perform moderation actions on reports
+      crypto: use end-to-end encryption
+      follow: modify account relationships
+      push: receive your push notifications
+      read: read all your account's data
+      read:accounts: see accounts information
+      read:blocks: see your blocks
+      read:bookmarks: see your bookmarks
+      read:favourites: see your favourites
+      read:filters: see your filters
+      read:follows: see your follows
+      read:lists: see your lists
+      read:mutes: see your mutes
+      read:notifications: see your notifications
+      read:reports: see your reports
+      read:search: search on your behalf
+      read:statuses: see all posts
+      write: modify all your account's data
+      write:accounts: modify your profile
+      write:blocks: block accounts and domains
+      write:bookmarks: bookmark posts
+      write:conversations: mute and delete conversations
+      write:favourites: favourite posts
+      write:filters: create filters
+      write:follows: follow people
+      write:lists: create lists
+      write:media: upload media files
+      write:mutes: mute people and conversations
+      write:notifications: clear your notifications
+      write:reports: report other people
+      write:statuses: publish posts
