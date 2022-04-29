@@ -60,6 +60,23 @@ it:
         title: Codici di recupero 2FA modificati
       unlock_instructions:
         subject: 'Mastodon: Istruzioni di sblocco'
+      webauthn_credential:
+        added:
+          explanation: La seguente chiave di sicurezza è stata aggiunta al tuo account
+          subject: 'Mastodon: Nuova chiave di sicurezza'
+          title: È stata aggiunta una nuova chiave di sicurezza
+        deleted:
+          explanation: La seguente chiave di sicurezza è stata cancellata dal tuo account
+          subject: 'Mastodon: Chiave di sicurezza cancellata'
+          title: Una delle tue chiavi di sicurezza è stata cancellata
+      webauthn_disabled:
+        explanation: L'autenticazione con le chiavi di sicurezza è stata disabilitata per il tuo account. L'accesso è ora possibile utilizzando solo il codice generato dall'app TOTP abbinata.
+        subject: 'Mastodon: Autenticazione con chiavi di sicurezza disabilitata'
+        title: Chiavi di sicurezza disattivate
+      webauthn_enabled:
+        explanation: L'autenticazione con chiave di sicurezza è stata attivata per il tuo account. La chiave di sicurezza può ora essere utilizzata per l'accesso.
+        subject: 'Mastodon: Autenticazione della chiave di sicurezza abilitata'
+        title: Chiave di sicurezza abilitata
     omniauth_callbacks:
       failure: Impossibile autenticarti da %{kind} perché "%{reason}".
       success: Autenticato con successo con account %{kind}.

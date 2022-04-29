@@ -1,0 +1,18 @@
+= simple_form_for(resource,
+                  as: resource_name,
+                  url: session_path(resource_name),
+                  html: { method: :post, id: 'otp-authentication-form' }.merge(hidden ? { class: 'hidden' } : {})) do |f|
+  %p.hint.authentication-hint= t('simple_form.hints.sessions.otp')
+
+  .fields-group
+    = f.input :otp_attempt, type: :number, wrapper: :with_label, label: t('simple_form.labels.defaults.otp_attempt'), input_html: { 'aria-label' => t('simple_form.labels.defaults.otp_attempt'), :autocomplete => 'off' }, autofocus: true
+
+  .actions
+    = f.button :button, t('auth.login'), type: :submit
+
+  - if Setting.site_contact_email.present?
+    %p.hint.subtle-hint= t('users.otp_lost_help_html', email: mail_to(Setting.site_contact_email, nil))
+
+  - if @webauthn_enabled
+    .form-footer
+      = link_to(t('auth.link_to_webauth'), '#', id: 'link-to-webauthn')

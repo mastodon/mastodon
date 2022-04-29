@@ -65,8 +65,17 @@ is:
         data: CSV-skrá sem flutt hefur verið út af öðrum Mastodon-þjóni
       invite_request:
         text: Þetta mun hjálpa okkur við að yfirfara umsóknina þína
+      ip_block:
+        comment: Valfrjálst. Mundu hvers vegna þú bættir þessari reglu við.
+        expires_in: IP-vistföng eru ekki óendanleg, þeim er stundum deilt og skipta oftu um eigendur. Af þessum ástæðum er ekki mælt með ótakmörkuðum lokunum á blokkir IP-vistfanga.
+        ip: Settu inn IPv4 eða IPv6 vistfang. Þú getur lokað á svið vistfanga með því að nota CIDR-framsetningu. Gættu þess að loka ekki sjálfa/n þig úti!
+        severities:
+          no_access: Loka á aðgang að öllum tilföngum
+          sign_up_requires_approval: Nýskráningar munu þurfa samþykki þitt
+        severity: Veldu hvað munir gerast við beiðnir frá þessu IP-vistfangi
       sessions:
         otp: 'Settu inn tveggja-þátta kóðann sem farsímaforritið útbjó eða notaðu einn af endurheimtukóðunum þínum:'
+        webauthn: Ef þetta er USB-lykill, gakktu úr skugga um að honum sé stungið í samband og ef þörf þykir að ýta á hann.
       tag:
         name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
       user:
@@ -91,6 +100,7 @@ is:
         types:
           disable: Gera innskráningu óvirka
           none: Gera ekkert
+          sensitive: Viðkvæmt
           silence: Hylja
           suspend: Setja í bið og eyða endanlega gögnum notandaaðgangsins
         warning_preset_id: Nota forstillta aðvörun
@@ -116,6 +126,7 @@ is:
         expires_in: Rennur út eftir
         fields: Lýsigögn notandasniðs
         header: Síðuhaus
+        honeypot: "%{label} (ekki fylla út)"
         inbox_url: URL-slóð á innhólf endurvarpa
         irreversible: Fella niður í staðinn fyrir að fela
         locale: Tungumál viðmóts
@@ -135,6 +146,7 @@ is:
         setting_default_privacy: Gagnaleynd færslna
         setting_default_sensitive: Alltaf merkja myndefni sem viðkvæmt
         setting_delete_modal: Birta staðfestingarglugga áður en tísti er eytt
+        setting_disable_swiping: Gera strokuhreyfingar óvirkar
         setting_display_media: Birting myndefnis
         setting_display_media_default: Sjálfgefið
         setting_display_media_hide_all: Fela allt
@@ -168,6 +180,13 @@ is:
         comment: Athugasemd
       invite_request:
         text: Hvers vegna viltu taka þátt?
+      ip_block:
+        comment: Athugasemd
+        ip: IP-vistfang
+        severities:
+          no_access: Loka á aðgang
+          sign_up_requires_approval: Takmarka nýskráningar
+        severity: Regla
       notification_emails:
         digest: Senda uppsafnaðan tölvupóst
         favourite: Einhver setti stöðufærslu þína í eftirlæti
@@ -188,4 +207,7 @@ is:
     required:
       mark: "*"
       text: nauðsynlegt
+    title:
+      sessions:
+        webauthn: Nota einn af öryggislyklunum þínum til að skrá inn
     'yes': Já

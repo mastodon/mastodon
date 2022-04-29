@@ -21,7 +21,9 @@ gl:
     federation_hint_html: Cunha conta en %{instance} poderás seguir ás persoas en calquera servidor do Mastodon e alén.
     get_apps: Probar unha aplicación móbil
     hosted_on: Mastodon aloxado en %{domain}
-    instance_actor_flash: Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
+    instance_actor_flash: 'Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
+
+'
     learn_more: Saber máis
     privacy_policy: Política de privacidade
     see_whats_happening: Ver o que está a acontecer
@@ -58,6 +60,7 @@ gl:
       one: Seguidora
       other: Seguidoras
     following: Seguindo
+    instance_actor_flash: Esta conta é un actor virtual utilizado para representar ó servidor mesmo e non a unha usuaria individual. Utilízase por motivos de federación e non debería estar suspendida.
     joined: Uniuse en %{date}
     last_active: última actividade
     link_verified_on: A propiedade desta ligazón foi verificada en %{date}
@@ -96,6 +99,7 @@ gl:
       add_email_domain_block: Bloquear o dominio do email
       approve: Aprobar
       approve_all: Aprobar todos
+      approved_msg: Aprobada a solicitude da aplicación de conexión de %{username}
       are_you_sure: Está segura?
       avatar: Imaxe de perfil
       by_domain: Dominio
@@ -109,8 +113,10 @@ gl:
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Estase a confirmar
+      delete: Eliminar datos
       deleted: Eliminado
       demote: Rebaixar
+      destroyed_msg: Os datos de %{username} están na cola para ser eliminados axiña
       disable: Desactivar
       disable_two_factor_authentication: Desactivar 2FA
       disabled: Desactivado
@@ -121,10 +127,12 @@ gl:
       email_status: Estado do email
       enable: Activar
       enabled: Activado
+      enabled_msg: Desbloqueada a conta de %{username}
       followers: Seguidoras
       follows: Seguindo
       header: Cabeceira
       inbox_url: URL da caixa de entrada
+      invite_request_text: Razóns para unirte
       invited_by: Convidada por
       ip: IP
       joined: Uniuse
@@ -136,6 +144,8 @@ gl:
       login_status: Estado da sesión
       media_attachments: Multimedia adxunta
       memorialize: Converter en lembranza
+      memorialized: Na lembranza
+      memorialized_msg: Convertiuse %{username} nunha conta para a lembranza
       moderation:
         active: Activa
         all: Todo
@@ -156,10 +166,14 @@ gl:
       public: Público
       push_subscription_expires: A subscrición PuSH expira
       redownload: Actualizar perfil
+      redownloaded_msg: Actualizado o perfil de %{username} desde a orixe
       reject: Rexeitar
       reject_all: Rexeitar todo
+      rejected_msg: Rexeitada a solicitude da aplicación de conexión de %{username}
       remove_avatar: Eliminar imaxe de perfil
       remove_header: Eliminar cabeceira
+      removed_avatar_msg: Eliminado a imaxe de avatar de %{username}
+      removed_header_msg: Eliminada a imaxe de cabeceira de %{username}
       resend_confirmation:
         already_confirmed: Esta usuaria xa está confirmada
         send: Reenviar o email de confirmación
@@ -176,22 +190,30 @@ gl:
       search: Procurar
       search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
+      sensitive: Sensible
+      sensitized: marcado como sensible
       shared_inbox_url: URL da caixa de entrada compartida
       show:
         created_reports: Denuncias feitas
         targeted_reports: Denuncias feitas por outros
-      silence: Acalar
-      silenced: Acalada
+      silence: Silenciar
+      silenced: Silenciado
       statuses: Estados
       subscribe: Subscribirse
       suspended: Suspendida
+      suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta. Podes reactivar a conta para facela usable novamente pero non recuperará os datos eliminados.
+      suspension_reversible_hint_html: Esta conta foi suspendida, e os datos serán totalmente eliminados o %{date}. Ata entón, a conta pode ser restaurada sen danos. Se desexas eliminar agora mesmo todos os datos da conta, podes facelo aquí embaixo.
       time_in_queue: Agardando na cola %{time}
       title: Contas
       unconfirmed_email: Email non confirmado
+      undo_sensitized: Desmarcar sensible
       undo_silenced: Desfacer acalar
       undo_suspension: Desfacer suspensión
+      unsilenced_msg: Retirado o límite da conta %{username}
       unsubscribe: Desbotar a subscrición
+      unsuspended_msg: Desbloqueada a conta de %{username}
       username: Nome de usuaria
+      view_domain: Ver resumo para o dominio
       warn: Aviso
       web: Web
       whitelisted: Listaxe branca
@@ -206,12 +228,14 @@ gl:
         create_domain_allow: Crear permiso de dominio
         create_domain_block: Crear bloqueo de dominio
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
+        create_ip_block: Crear regra IP
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
         destroy_custom_emoji: Eliminar emoticona personalizada
         destroy_domain_allow: Eliminar permiso de dominio
         destroy_domain_block: Eliminar bloqueo de dominio
         destroy_email_domain_block: Eliminar bloqueo de dominio de correo electrónico
+        destroy_ip_block: Eliminar regra IP
         destroy_status: Eliminar estado
         disable_2fa_user: Desactivar 2FA
         disable_custom_emoji: Desactivar emoticona personalizada
@@ -224,13 +248,16 @@ gl:
         reopen_report: Reabrir denuncia
         reset_password_user: Restabelecer contrasinal
         resolve_report: Resolver denuncia
+        sensitive_account: Marca o multimedia da túa conta como sensible
         silence_account: Silenciar conta
         suspend_account: Suspender conta
         unassigned_report: Desasignar denuncia
+        unsensitive_account: Retira a marca de sensible do multimedia da conta
         unsilence_account: Deixar de silenciar conta
         unsuspend_account: Retirar suspensión de conta
         update_announcement: Actualizar anuncio
         update_custom_emoji: Actualizar emoticona personalizada
+        update_domain_block: Actualizar bloqueo do dominio
         update_status: Actualizar estado
       actions:
         assigned_to_self_report: "%{name} atribuíu a denuncia %{target} a el mesmo"
@@ -242,12 +269,14 @@ gl:
         create_domain_allow: "%{name} engadiu á listaxe branca o dominio %{target}"
         create_domain_block: "%{name} bloqueou o dominio %{target}"
         create_email_domain_block: "%{name} engadiu á listaxe negra o dominio de email %{target}"
+        create_ip_block: "%{name} creou regra para IP %{target}"
         demote_user: "%{name} degradou a usuaria %{target}"
         destroy_announcement: "%{name} eliminou o anuncio %{target}"
         destroy_custom_emoji: "%{name} eliminou a emoticona %{target}"
         destroy_domain_allow: "%{name} eliminou o dominio %{target} da listaxe branca"
         destroy_domain_block: "%{name} desbloqueou o dominio %{target}"
         destroy_email_domain_block: "%{name} engadiu á lista branca o dominio de email %{target}"
+        destroy_ip_block: "%{name} eliminou regra para IP %{target}"
         destroy_status: "%{name} eliminou o estado de %{target}"
         disable_2fa_user: "%{name} desactivou o requirimento de dobre factor para a usuaria %{target}"
         disable_custom_emoji: "%{name} desactivou a emoticona %{target}"
@@ -260,13 +289,16 @@ gl:
         reopen_report: "%{name} reabriu a denuncia %{target}"
         reset_password_user: "%{name} restableceu o contrasinal da usuaria %{target}"
         resolve_report: "%{name} resolveu a denuncia %{target}"
+        sensitive_account: "%{name} marcou o multimedia de %{target} como sensible"
         silence_account: "%{name} silenciou a conta de %{target}"
         suspend_account: "%{name} suspendeu a conta de %{target}"
         unassigned_report: "%{name} deixou de atribuír a denuncia %{target}"
+        unsensitive_account: "%{name} desmarcou o multimedia de %{target} como sensible"
         unsilence_account: "%{name} deixou de silenciar a conta de %{target}"
         unsuspend_account: "%{name} desactivou a suspensión da conta de %{target}"
         update_announcement: "%{name} actualizou o anuncio %{target}"
         update_custom_emoji: "%{name} actualizou a emoticona %{target}"
+        update_domain_block: "%{name} actualizou o bloqueo do dominio %{target}"
         update_status: "%{name} actualizou o estado de %{target}"
       deleted_status: "(estado eliminado)"
       empty: Non se atoparon rexistros.
@@ -370,6 +402,8 @@ gl:
           silence: Silenciar
           suspend: Suspender
         title: Novo bloqueo de dominio
+      obfuscate: Ofuscar o nome de dominio
+      obfuscate_hint: Ofuscar parcialmente o nome do dominio na lista se está activada a publicación da lista de limitacións de dominio
       private_comment: Comentario privado
       private_comment_hint: Comentar sobre esta limitación de dominio para uso interno polos moderadores.
       public_comment: Comentario público
@@ -409,6 +443,7 @@ gl:
     instances:
       by_domain: Dominio
       delivery_available: Entrega dispoñíbel
+      empty: Non se atopan dominios.
       known_accounts:
         one: "%{count} conta coñecida"
         other: "%{count} contas coñecidas"
@@ -432,6 +467,21 @@ gl:
         expired: Expirado
         title: Filtro
       title: Convites
+    ip_blocks:
+      add_new: Crear regra
+      created_msg: Engadeuse a nova regra IP
+      delete: Eliminar
+      expires_in:
+        '1209600': 2 semanas
+        '15778476': 6 meses
+        '2629746': 1 mes
+        '31556952': 1 ano
+        '86400': 1 día
+        '94670856': 3 anos
+      new:
+        title: Crear nova regra IP
+      no_ip_block_selected: Non se cambiou ningunha regra iP porque non seleccionaches ningunha
+      title: Regras IP
     pending_accounts:
       title: Contas pendentes (%{count})
     relationships:
@@ -471,6 +521,8 @@ gl:
       comment:
         none: Ningún
       created_at: Denunciado
+      forwarded: Reenviado
+      forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resolto
       mark_as_unresolved: Marcar como non resolto
       notes:
@@ -514,6 +566,7 @@ gl:
       domain_blocks_rationale:
         title: Amosar motivo
       enable_bootstrap_timeline_accounts:
+        desc_html: Facer que as novas usuarias sigan automáticamente certas contas para que así a cronoloxía inicial non esté baleira
         title: Activar seguimentos por omisión para novas usuarias
       hero:
         desc_html: Amosado na páxina principal. Polo menos 600x100px recomendados. Se non está definido, estará por defecto a miniatura do servidor
@@ -540,6 +593,9 @@ gl:
         min_invite_role:
           disabled: Ninguén
           title: Permitir convites por
+        require_invite_text:
+          desc_html: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
+          title: Require que as novas usuarias completen solicitude de texto do convite
       registrations_mode:
         modes:
           approved: Precisa aprobación para rexistrarse
@@ -585,7 +641,7 @@ gl:
       delete: Eliminar o ficheiro subido
       destroyed_msg: Eliminado correctamente o subido!
     statuses:
-      back_to_account: Voltar a páxina da conta
+      back_to_account: Volver a páxina da conta
       batch:
         delete: Eliminar
         nsfw_off: Marcar como non sensible
@@ -679,8 +735,11 @@ gl:
       prefix_sign_up: Rexístrate agora en Mastodon!
       suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de Mastodon e moito máis!
     didnt_get_confirmation: Non recibeu as instruccións de confirmación?
+    dont_have_your_security_key: "¿Non tes a túa chave de seguridade?"
     forgot_password: Esqueceu o contrasinal?
     invalid_reset_password_token: O testemuño para restablecer o contrasinal non é válido ou caducou. Por favor solicite un novo.
+    link_to_otp: Escribe o código do segundo factor do móbil ou un código de recuperación
+    link_to_webauth: Usa o teu dispositivo de chave de seguridade
     login: Conectar
     logout: Desconectar
     migrate_account: Mover a unha conta diferente
@@ -691,7 +750,7 @@ gl:
       saml: SAML
     register: Rexistro
     registration_closed: "%{instance} non está a aceptar novas usuarias"
-    resend_confirmation: Voltar a enviar intruccións de confirmación
+    resend_confirmation: Reenviar as intruccións de confirmación
     reset_password: Restablecer contrasinal
     security: Seguranza
     set_new_password: Estabelecer novo contrasinal
@@ -705,7 +764,9 @@ gl:
       functional: A súa conta está totalmente operativa.
       pending: A túa aplicación está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a aplicación está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
+    too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     trouble_logging_in: Problemas para conectar?
+    use_security_key: Usa chave de seguridade
   authorize_follow:
     already_following: Xa está a seguir esta conta
     already_requested: Xa tes enviada unha solicitude de seguimento a esa conta
@@ -730,6 +791,7 @@ gl:
   date:
     formats:
       default: "%d %b, %Y"
+      with_month_name: "%d %B, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -794,6 +856,7 @@ gl:
       request: Solicite o ficheiro
       size: Tamaño
     blocks: Bloqueos
+    bookmarks: Marcadores
     csv: CSV
     domain_blocks: Bloqueos de dominio
     lists: Listaxes
@@ -861,6 +924,8 @@ gl:
     status: Estado da validación
     view_proof: Ver proba
   imports:
+    errors:
+      over_rows_processing_limit: contén máis de %{count} filas
     modes:
       merge: Fusionar
       merge_long: Manter os rexistros actuais e engadir novos
@@ -870,6 +935,7 @@ gl:
     success: Os seus datos foron correctamente subidos e serán procesados ao momento
     types:
       blocking: Lista de bloqueo
+      bookmarks: Marcadores
       domain_blocking: Lista de bloqueo de dominios
       following: Lista de seguimento
       muting: Lista de usuarias acaladas
@@ -930,7 +996,7 @@ gl:
     warning:
       backreference_required: Tes que configurar primeiro a nova conta para referenciar hacia esta
       before: 'Antes de seguir, por favor lé estas notas con atención:'
-      cooldown: Tras a migración existe un período de calma durante o cal non poderás voltar a migrar de novo
+      cooldown: Tras a migración existe un período de calma durante o cal non poderás volver a migrar de novo
       disabled_account: Tras o cambio a túa conta actual non será totalmente usable, pero terás acceso a exportar os datos e tamén a reactivación.
       followers: Esta acción moverá todas as túas seguidoras desde a conta actual a nova conta
       only_redirect_html: De xeito alternativo, podes <a href="%{path}">simplemente por unha redirección no perfil</a>.
@@ -990,6 +1056,14 @@ gl:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: Escribe o código creado pola app de autenticación para confirmar
+    description_html: Se activas a <strong>autenticación con dous factores</strong> utilizando unha app de autenticación, ó conectarte pedirémosche que teñas o móbil á man, para crear o código que precisas para conectarte.
+    enable: Activar
+    instructions_html: "<strong>Escanea este código QR na túa app TOTP no móbil ou Google Authenticator</strong>. A partir de agora, a app creará códigos que terás que escribir cando te conectes."
+    manual_instructions: 'Se non podes escanear o código QR e tes que escribilo á man, aquí tes o código en texto plano:'
+    setup: Configurar
+    wrong_code: O código escrito non é válido! ¿é correcta a hora no dispositivo e no servidor?
   pagination:
     newer: Máis novo
     next: Seguinte
@@ -1018,6 +1092,7 @@ gl:
   relationships:
     activity: Actividade da conta
     dormant: En repouso
+    follow_selected_followers: Seguir seguidoras seleccionadas
     followers: Seguidoras
     following: Seguindo
     invited: Convidado
@@ -1099,7 +1174,7 @@ gl:
     aliases: Alcumes da conta
     appearance: Aparencia
     authorized_apps: Apps autorizadas
-    back: Voltar a Mastodon
+    back: Volver a Mastodon
     delete: Eliminación da conta
     development: Desenvolvemento
     edit_profile: Editar perfil
@@ -1114,6 +1189,7 @@ gl:
     profile: Perfil
     relationships: Seguindo e seguidoras
     two_factor_authentication: Validar Dobre Factor
+    webauthn_authentication: Chaves de seguridade
   spam_check:
     spam_detected: Esto é un informe automatizado. Detectouse Spam.
   statuses:
@@ -1152,6 +1228,8 @@ gl:
         other: "%{count} votos"
       vote: Votar
     show_more: Mostrar máis
+    show_newer: Mostrar o máis novo
+    show_older: Mostrar o máis vello
     show_thread: Amosar fío
     sign_in_to_participate: Conéctese para participar na conversa
     title: '%{name}: "%{quote}"'
@@ -1164,19 +1242,19 @@ gl:
       unlisted_long: Visible para calquera, pero non listado en liñas de tempo públicas
   stream_entries:
     pinned: Mensaxe fixada
-    reblogged: promovida
+    reblogged: comparteu
     sensitive_content: Contido sensible
   tags:
     does_not_match_previous_name: non concorda co nome anterior
   terms:
     body_html: |
-      <h2>Intimidade</h2>
+      <h2>Privacidade</h2>
       <h3 id="collect">Qué información recollemos?</h3>
 
       <ul>
       <li><em>Información básica da conta</em>: Se se rexistra en este servidor, pediráselle un nome de usuaria, un enderezo de correo electrónico e un contrasinal. De xeito adicional tamén poderá introducir información como un nome público e biografía, tamén subir unha fotografía de perfil e unha imaxe para a cabeceira. O nome de usuaria, o nome público, a biografía e as imaxes de perfil e cabeceira sempre se mostran publicamente.</li>
-      <li><em>Publicacións, seguimento e outra información pública</em>: O listado das persoas que segue é un listado público, o mesmo acontece coas súas seguidoras. Cando evía unha mensaxe, a data e hora gárdanse así como o aplicativo que utilizou para enviar a mensaxe. As publicacións poderían conter ficheiros de medios anexos, como fotografías e vídeos. As publicacións públicas e as non listadas están dispoñibles de xeito público. Cando destaca unha publicación no seu perfil tamén é pública. As publicacións son enviadas as súas seguidoras, en algúns casos pode acontecer que estén en diferentes servidores e gárdanse copias neles. Cando elemina unha publicación tamén se envía as súas seguidoras. A acción de voltar a publicar ou marcar como favorita outra publicación sempre é pública.</li>
-      <li><em>Mensaxes directas e só para seguidoras</em>: Todas as mensaxes gárdanse e procésanse no servidor. As mensaxes só para seguidoras son entregadas as súas seguidoras e as usuarias que son mencionadas en elas, e as mensaxes directas entréganse só as usuarias mencionadas en elas. En algúns casos esto implica que son entregadas a diferentes servidores e gárdanse copias alí. Facemos un esforzo sincero para limitar o acceso a esas publicacións só as persoas autorizadas, pero outros servidores poderían non ser tan escrupulosos. Polo tanto, é importante revisar os servidores onde se hospedan as súas seguidoras. Nos axustes pode activar a opción de aprovar ou rexeitar novas seguidoras de xeito manual. <em>Teña en conta que a administración do servidor e todos os outros servidores implicados poden ver as mensaxes.</em>, e as destinatarias poderían facer capturas de pantalla, copiar e voltar a compartir as mensaxes. <em>Non comparta información comprometida en Mastodon.</em></li>
+      <li><em>Publicacións, seguimento e outra información pública</em>: O listado das persoas que segue é un listado público, o mesmo acontece coas súas seguidoras. Cando evía unha mensaxe, a data e hora gárdanse así como o aplicativo que utilizou para enviar a mensaxe. As publicacións poderían conter ficheiros de medios anexos, como fotografías e vídeos. As publicacións públicas e as non listadas están dispoñibles de xeito público. Cando destaca unha publicación no seu perfil tamén é pública. As publicacións son enviadas as súas seguidoras, en algúns casos pode acontecer que estén en diferentes servidores e gárdanse copias neles. Cando elemina unha publicación tamén se envía as súas seguidoras. A acción de volver a publicar ou marcar como favorita outra publicación sempre é pública.</li>
+      <li><em>Mensaxes directas e só para seguidoras</em>: Todas as mensaxes gárdanse e procésanse no servidor. As mensaxes só para seguidoras son entregadas as súas seguidoras e as usuarias que son mencionadas en elas, e as mensaxes directas entréganse só as usuarias mencionadas en elas. En algúns casos esto implica que son entregadas a diferentes servidores e gárdanse copias alí. Facemos un esforzo sincero para limitar o acceso a esas publicacións só as persoas autorizadas, pero outros servidores poderían non ser tan escrupulosos. Polo tanto, é importante revisar os servidores onde se hospedan as súas seguidoras. Nos axustes pode activar a opción de aprovar ou rexeitar novas seguidoras de xeito manual. <em>Teña en conta que a administración do servidor e todos os outros servidores implicados poden ver as mensaxes.</em>, e as destinatarias poderían facer capturas de pantalla, copiar e volver a compartir as mensaxes. <em>Non comparta información comprometida en Mastodon.</em></li>
       <li><em>IPs e outros metadatos</em>: Cando se conecta, gravamos o IP desde onde se conecta, así como o nome do aplicativo desde onde o fai. Todas as sesións conectadas están dispoñibles para revisar e revogar nos axustes. O último enderezo IP utilizado gárdase ate por 12 meses. Tamén poderiamos gardar informes do servidor que inclúan o enderezo IP de cada petición ao servidor.</li>
       </ul>
 
@@ -1260,25 +1338,24 @@ gl:
       default: "%d %b, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Introducir o código xerado polo seu aplicativo de autenticación para confirmar
-    description_html: Se activa a <strong>autenticación de dobre factor</strong>, a conexión pediralle estar en posesión do seu teléfono, que creará testemuños para poder entrar.
+    add: Engadir
     disable: Deshabilitar
-    enable: Habilitar
+    disabled_success: Autenticación con doble factor desactivada
+    edit: Editar
     enabled: A autenticación de dobre-factor está activada
     enabled_success: Activouse con éxito a autenticación de dobre-factor
     generate_recovery_codes: Xerar códigos de recuperación
-    instructions_html: "<strong>Escanea este código QR en Google Authenticator ou aplicación TOTP no teu teléfono</strong>. Desde agora, esta aplicación proporcionará testemuños que debes introducir ao conectarte."
     lost_recovery_codes: Os códigos de recuperación permítenlle recuperar o acceso a súa conta si perde o teléfono. Si perde os códigos de recuperación, pode restauralos aquí. Os seus códigos de recuperación anteriores serán invalidados.
-    manual_instructions: 'Si non pode escanear o código QR e precisa introducilo manualmente, aquí está o testemuño secreto en texto plano:'
+    methods: Métodos para o segundo factor
+    otp: App autenticadora
     recovery_codes: Códigos de recuperación do respaldo
     recovery_codes_regenerated: Códigos de recuperación xerados correctamente
     recovery_instructions_html: Si perdese o acceso ao seu teléfono, pode utilizar un dos códigos inferiores de recuperación para recuperar o acceso a súa conta. <strong>Garde os códigos en lugar seguro</strong>. Por exemplo, pode imprimilos e gardalos xunto con outros documentos importantes.
-    setup: Configurar
-    wrong_code: O código introducido non é válido! Son correctas as horas no dispositivo e o servidor?
+    webauthn: Chaves de seguridade
   user_mailer:
     backup_ready:
-      explanation: Solicitou un respaldo completo da súa conta de Mastodon. Xa está listo para descargar!
-      subject: O seu ficheiro xa está listo para descargar
+      explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
+      subject: O teu ficheiro xa está preparado para descargar
       title: Leve o ficheiro
     sign_in_token:
       details: 'Detalles sobre o intento:'
@@ -1289,6 +1366,7 @@ gl:
     warning:
       explanation:
         disable: Cando a súa conta está conxelada, os datos permanecen intactos, pero non pode levar a fin accións ate que se desbloquea.
+        sensitive: Os teus ficheiros e ligazóns a multimedia serán tratados como sensibles.
         silence: Mentras a conta está limitada, só a xente que actualmente te segue verá os teus toots en este servidor, e poderías estar excluída de varias listaxes públicas. Porén, outras persoas poderíante seguir de xeito manual.
         suspend: A súa conta foi suspendida, e todos os seus toots e medios subidos foron eliminados de este servidor de xeito irreversible, e dos servidores onde tivese seguidoras.
       get_in_touch: Pode responder a este correo para contactar coa administración de %{instance}.
@@ -1297,16 +1375,18 @@ gl:
       subject:
         disable: A súa conta %{acct} foi conxelada
         none: Aviso para %{acct}
+        sensitive: Ó publicar multimedia a túa conta %{acct} foi marcada como sensible
         silence: A súa conta %{acct} foi limitada
         suspend: A súa conta %{acct} foi suspendida
       title:
         disable: Conta conxelada
         none: Aviso
+        sensitive: O teu multimedia foi marcado como sensible
         silence: Conta limitada
         suspend: Conta suspendida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Podes personalizar o teu perfil subindo un avatar, cabeceira, cambiar o nome público e aínda máis. Se restrinxes a tua conta podes revisar a conta das persoas que solicitan seguirte antes de permitirlles o acceso aos teus toots.
+      edit_profile_step: Podes personalizar o teu perfil subindo un avatar, cabeceira, cambiar o nome público e aínda máis. Se restrinxes a túa conta podes revisar a conta das persoas que solicitan seguirte antes de permitirlles o acceso aos teus toots.
       explanation: Aquí ten alunhas endereitas para ir aprendendo
       final_action: Comece a publicar
       final_step: 'Publica! Incluso sen seguidoras as túas mensaxes serán vistas por outras, por exemplo na liña temporal local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'
@@ -1322,9 +1402,11 @@ gl:
       tips: Consellos
       title: Benvida, %{name}!
   users:
+    blocked_email_provider: Este provedor de email non está permitido
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas
     generic_access_help_html: Problemas para acceder a conta? Podes contactar con %{email} para obter axuda
     invalid_email: O enderezo de correo non é válido
+    invalid_email_mx: Semella que o enderezo de email non existe
     invalid_otp_token: O código do segundo factor non é válido
     invalid_sign_in_token: Código de seguridade non válido
     otp_lost_help_html: Si perde o acceso a ambos, pode contactar con %{email}
@@ -1334,3 +1416,20 @@ gl:
   verification:
     explanation_html: 'Podes <strong>validarte a ti mesma como a dona das ligazóns nos metadatos do teu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí tes un exemplo:'
     verification: Validación
+  webauthn_credentials:
+    add: Engadir nova chave de seguridade
+    create:
+      error: Houbo un problema ó engadir a chave de seguridade, inténtao outra vez.
+      success: Engadeuse correctamente a chave de seguridade.
+    delete: Eliminar
+    delete_confirmation: "¿Tes a certeza de que queres eliminar a chave de seguridade?"
+    description_html: Se activas a <strong>autenticación con chave de seguridade</strong>, ó conectarte pediráseche que uses unha das túas chaves.
+    destroy:
+      error: Houbo un problema ó eliminar a túa chave de seguridade, inténtao outra vez.
+      success: Eliminouse correctamente a chave de seguridade.
+    invalid_credential: Chave de seguridade non válida
+    nickname_hint: Escribe un alcume para a túa nova chave de seguridade
+    not_enabled: Aínda non tes activado WebAuthn
+    not_supported: Este navegador non ten soporte para chaves de seguridade
+    otp_required: Para usar chaves de seguridade tes que activar primeiro o segundo factor.
+    registered_on: Rexistrado o %{date}

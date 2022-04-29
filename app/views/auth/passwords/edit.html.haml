@@ -1,14 +1,14 @@
 - content_for :page_title do
   = t('auth.set_new_password')
 
-= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, novalidate: false }) do |f|
   = render 'shared/error_messages', object: resource
 
   - if !use_seamless_external_login? || resource.encrypted_password.present?
     = f.input :reset_password_token, as: :hidden
 
     .fields-group
-      = f.input :password, wrapper: :with_label, autofocus: true, label: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off' }, required: true
+      = f.input :password, wrapper: :with_label, autofocus: true, label: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'off', :minlength => User.password_length.first, :maxlength => User.password_length.last }, required: true
     .fields-group
       = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'off' }, required: true
 

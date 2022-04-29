@@ -229,14 +229,6 @@ he:
       following: רשימת נעקבים
       muting: רשימת השתקות
     upload: יבוא
-  invites:
-    expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
@@ -294,19 +286,12 @@ he:
     formats:
       default: "%d %b %Y, %H:%M"
   two_factor_authentication:
-    code_hint: לאישור, יש להקליד את הקוד שיוצר על ידי ישום האימות
-    description_html: לאחר הפעלת <strong>אימות דו-שלבי</strong>, ניתן יהיה להכנס רק כל עוד ברשותך טלפון, שייצר עבורך קודים שיאפשרו כניסה.
     disable: כיבוי
-    enable: הפעלה
     enabled_success: אימות דו-שלבי הופעל בהצלחה
     generate_recovery_codes: ייצור קודי אחזור
-    instructions_html: "<strong>יש לסרוק קוד QR זה בעזרת Google Authenticator או ישום TOTP דומה על טלפונך</strong>. מעתה ואילך, ישום זה יוכל ליצר קודים לשימוש לצורך כניסה."
     lost_recovery_codes: קודי האחזור מאפשרים אחזור גישה לחשבון במידה ומכשירך אבד. במידה וקודי האחזור אבדו, ניתן לייצרם מחדש כאן. תוקף קודי האחזור הישנים יפוג.
-    manual_instructions: 'במידה ולא ניתן לסרוק את קוד ה-QR אלא יש צורך להקליד אותו ידנית, להלן סוד כמוס בלתי מוצפן:'
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
-    setup: הכנה
-    wrong_code: הקוד שהוזן שגוי! האם הזמן בשרת והזמן במכשירך נכונים?
   users:
     invalid_email: כתובת הדוא"ל אינה חוקית
     invalid_otp_token: קוד דו-שלבי שגוי

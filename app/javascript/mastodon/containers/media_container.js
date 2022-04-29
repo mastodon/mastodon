@@ -30,6 +30,7 @@ export default class MediaContainer extends PureComponent {
     media: null,
     index: null,
     time: null,
+    backgroundColor: null,
   };
 
   handleOpenMedia = (media, index) => {
@@ -52,7 +53,16 @@ export default class MediaContainer extends PureComponent {
     document.body.classList.remove('with-modals--active');
     document.documentElement.style.marginRight = 0;
 
-    this.setState({ media: null, index: null, time: null });
+    this.setState({
+      media: null,
+      index: null,
+      time: null,
+      backgroundColor: null,
+    });
+  }
+
+  setBackgroundColor = color => {
+    this.setState({ backgroundColor: color });
   }
 
   render () {
@@ -85,13 +95,14 @@ export default class MediaContainer extends PureComponent {
             );
           })}
 
-          <ModalRoot onClose={this.handleCloseMedia}>
+          <ModalRoot backgroundColor={this.state.backgroundColor} onClose={this.handleCloseMedia}>
             {this.state.media && (
               <MediaModal
                 media={this.state.media}
                 index={this.state.index || 0}
                 time={this.state.time}
                 onClose={this.handleCloseMedia}
+                onChangeBackgroundColor={this.setBackgroundColor}
               />
             )}
           </ModalRoot>

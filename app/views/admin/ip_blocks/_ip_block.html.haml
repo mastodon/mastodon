@@ -1,0 +1,11 @@
+.batch-table__row
+  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+    = f.check_box :ip_block_ids, { multiple: true, include_hidden: false }, ip_block.id
+  .batch-table__row__content
+    .batch-table__row__content__text
+      %samp= "#{ip_block.ip}/#{ip_block.ip.prefix}"
+      - if ip_block.comment.present?
+        •
+        = ip_block.comment
+      %br/
+      = t("simple_form.labels.ip_block.severities.#{ip_block.severity}")

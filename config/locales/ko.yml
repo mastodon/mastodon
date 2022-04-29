@@ -57,6 +57,7 @@ ko:
     followers:
       other: 팔로워
     following: 팔로잉
+    instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
     joined: "%{date}에 가입함"
     last_active: 최근 활동
     link_verified_on: "%{date}에 이 링크의 소유가 확인되었습니다"
@@ -94,6 +95,7 @@ ko:
       add_email_domain_block: 이 이메일 도메인을 차단하기
       approve: 승인
       approve_all: 모두 승인
+      approved_msg: 성공적으로 %{username}의 가입 신청서를 승인했습니다
       are_you_sure: 정말로 실행하시겠습니까?
       avatar: 아바타
       by_domain: 도메인
@@ -107,8 +109,10 @@ ko:
       confirm: 확인
       confirmed: 확인됨
       confirming: 확인 중
+      delete: 데이터 삭제
       deleted: 삭제됨
       demote: 강등
+      destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 큐에 들어갔습니다"
       disable: 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
       disabled: 비활성화된
@@ -119,10 +123,12 @@ ko:
       email_status: 이메일 상태
       enable: 활성화
       enabled: 활성
+      enabled_msg: "%{username}의 계정을 성공적으로 얼리기 해제하였습니다"
       followers: 팔로워 수
       follows: 팔로잉 수
       header: 헤더
       inbox_url: 수신함 URL
+      invite_request_text: 가입 하려는 이유
       invited_by: 초대자
       ip: IP
       joined: 가입
@@ -134,6 +140,8 @@ ko:
       login_status: 로그인 상태
       media_attachments: 첨부된 미디어
       memorialize: 메모리엄으로 전환
+      memorialized: 기념비화 됨
+      memorialized_msg: 성공적으로 %{username}를 기념비 계정으로 전환하였습니다
       moderation:
         active: 활동
         all: 전체
@@ -154,13 +162,17 @@ ko:
       public: 전체 공개
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 프로필 업데이트
+      redownloaded_msg: 성공적으로 %{username}의 프로필을 원본으로부터 업데이트 하였습니다
       reject: 거부
       reject_all: 모두 거부
+      rejected_msg: 성공적으로 %{username}의 가입 신청서를 반려하였습니다
       remove_avatar: 아바타 지우기
       remove_header: 헤더 삭제
+      removed_avatar_msg: 성공적으로 %{username}의 아바타 이미지를 삭제하였습니다
+      removed_header_msg: 성공적으로 %{username}의 헤더 이미지를 삭제하였습니다
       resend_confirmation:
         already_confirmed: 이 사용자는 이미 확인되었습니다
-        send: 다시 확인 이메일
+        send: 확인 메일 다시 보내기
         success: 확인 이메일이 전송되었습니다!
       reset: 초기화
       reset_password: 암호 초기화
@@ -174,6 +186,8 @@ ko:
       search: 검색
       search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
+      sensitive: 민감함
+      sensitized: 민감함으로 설정됨
       shared_inbox_url: 공유된 inbox URL
       show:
         created_reports: 이 계정에서 제출된 신고
@@ -183,13 +197,19 @@ ko:
       statuses: 툿 수
       subscribe: 구독하기
       suspended: 정지 됨
+      suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제 됩니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
+      suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
       time_in_queue: "%{time}동안 기다림"
       title: 계정
       unconfirmed_email: 미확인 된 이메일 주소
+      undo_sensitized: 민감함으로 설정 취소
       undo_silenced: 침묵 해제
       undo_suspension: 정지 해제
+      unsilenced_msg: 성공적으로 %{username} 계정을 제한 해제했습니다
       unsubscribe: 구독 해제
+      unsuspended_msg: 성공적으로 %{username} 계정을 정지 해제했습니다
       username: 아이디
+      view_domain: 도메인의 요약 보기
       warn: 경고
       web: 웹
       whitelisted: 허용 목록
@@ -204,12 +224,14 @@ ko:
         create_domain_allow: 도메인 허용 생성
         create_domain_block: 도메인 차단 추가
         create_email_domain_block: 이메일 도메인 차단 생성
+        create_ip_block: IP 규칙 만들기
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
         destroy_email_domain_block: 이메일 도메인 차단 삭제
+        destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
@@ -222,13 +244,16 @@ ko:
         reopen_report: 신고 다시 열기
         reset_password_user: 암호 재설정
         resolve_report: 신고 처리
+        sensitive_account: 당신의 계정의 미디어를 민감함으로 표시
         silence_account: 계정 침묵
         suspend_account: 계정 정지
         unassigned_report: 신고 맡기 취소
+        unsensitive_account: 당신의 계정의 미디어를 민감함으로 표시하지 않음
         unsilence_account: 계정 침묵 취소
         unsuspend_account: 계정 정지 취소
         update_announcement: 공지사항 업데이트
         update_custom_emoji: 커스텀 에모지 업데이트
+        update_domain_block: 도메인 차단 갱신
         update_status: 게시물 게시
       actions:
         assigned_to_self_report: "%{name}이 리포트 %{target}을 자신에게 할당했습니다"
@@ -237,15 +262,17 @@ ko:
         create_account_warning: "%{name}가 %{target}에게 경고 보냄"
         create_announcement: "%{name} 님이 새 공지 %{target}을 만들었습니다"
         create_custom_emoji: "%{name}이 새로운 에모지 %{target}를 추가했습니다"
-        create_domain_allow: "%{name} 님이 %{target} 도메인을 화이트리스트에 넣었습니다"
+        create_domain_allow: "%{name} 님이 %{target} 도메인을 허용리스트에 넣었습니다"
         create_domain_block: "%{name}이 도메인 %{target}를 차단했습니다"
         create_email_domain_block: "%{name}이 이메일 도메인 %{target}를 차단했습니다"
+        create_ip_block: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
         demote_user: "%{name}이 %{target}을 강등했습니다"
         destroy_announcement: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_custom_emoji: "%{name}이 %{target} 에모지를 삭제함"
-        destroy_domain_allow: "%{name} 님이 %{target} 도메인을 화이트리스트에서 제거하였습니다"
+        destroy_domain_allow: "%{name} 님이 %{target} 도메인을 허용리스트에서 제거하였습니다"
         destroy_domain_block: "%{name}이 도메인 %{target}의 차단을 해제했습니다"
-        destroy_email_domain_block: "%{name}이 이메일 도메인 %{target}을 화이트리스트에 넣었습니다"
+        destroy_email_domain_block: "%{name}이 이메일 도메인 %{target}을 허용리스트에 넣었습니다"
+        destroy_ip_block: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
         destroy_status: "%{name}이 %{target}의 툿을 삭제했습니다"
         disable_2fa_user: "%{name}이 %{target}의 2FA를 비활성화 했습니다"
         disable_custom_emoji: "%{name}이 에모지 %{target}를 비활성화 했습니다"
@@ -258,13 +285,16 @@ ko:
         reopen_report: "%{name}이 리포트 %{target}을 다시 열었습니다"
         reset_password_user: "%{name}이 %{target}의 암호를 초기화했습니다"
         resolve_report: "%{name}이 %{target} 신고를 처리됨으로 변경하였습니다"
+        sensitive_account: "%{name} 님이 %{target}의 미디어를 민감함으로 표시했습니다"
         silence_account: "%{name}이 %{target}의 계정을 침묵시켰습니다"
         suspend_account: "%{name}이 %{target}의 계정을 정지시켰습니다"
         unassigned_report: "%{name}이 리포트 %{target}을 할당 해제했습니다"
+        unsensitive_account: "%{name} 님이 %{target}의 미디어를 민감하지 않음으로 표시했습니다"
         unsilence_account: "%{name}이 %{target}에 대한 침묵을 해제했습니다"
         unsuspend_account: "%{name}이 %{target}에 대한 정지를 해제했습니다"
         update_announcement: "%{name} 님이 공지 %{target}을 갱신했습니다"
         update_custom_emoji: "%{name}이 에모지 %{target}를 업데이트 했습니다"
+        update_domain_block: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
         update_status: "%{name}이 %{target}의 상태를 업데이트 했습니다"
       deleted_status: "(삭제됨)"
       empty: 로그를 찾을 수 없습니다
@@ -346,9 +376,9 @@ ko:
       week_interactions: 이번 주의 상호작용
       week_users_active: 이번 주의 활성 사용자
       week_users_new: 이번 주의 신규 유저
-      whitelist_mode: 화이트리스트 모드
+      whitelist_mode: 제한된 페더레이션 모드
     domain_allows:
-      add_new: 허용 된 도메인
+      add_new: 도메인 허용
       created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
       destroyed_msg: 도메인이 허용 목록에서 제거되었습니다
       undo: 허용 목록에서 제외
@@ -370,6 +400,8 @@ ko:
           silence: 침묵
           suspend: 정지
         title: 새로운 도메인 차단
+      obfuscate: 도메인 이름 난독화
+      obfuscate_hint: 도메인 제한 목록을 공개하는 경우 도메인 이름의 일부를 난독화 합니다
       private_comment: 비공개 주석
       private_comment_hint: 이 도메인 제한에 대한 주석은 중재자를 위해 내부적으로 사용 됩니다.
       public_comment: 공개 주석
@@ -408,6 +440,7 @@ ko:
     instances:
       by_domain: 도메인
       delivery_available: 전송 가능
+      empty: 도메인이 하나도 없습니다.
       known_accounts:
         other: 알려진 계정 %{count}개
       moderation:
@@ -430,6 +463,21 @@ ko:
         expired: 만료됨
         title: 필터
       title: 초대
+    ip_blocks:
+      add_new: 규칙 만들기
+      created_msg: 성공적으로 새 IP 규칙을 만들었습니다
+      delete: 삭제
+      expires_in:
+        '1209600': 2 주
+        '15778476': 6 달
+        '2629746': 1 달
+        '31556952': 1 년
+        '86400': 1 일
+        '94670856': 3 년
+      new:
+        title: 새 IP 규칙 만들기
+      no_ip_block_selected: 아무 것도 선택 되지 않아 어떤 IP 규칙도 변경 되지 않았습니다
+      title: IP 규칙들
     pending_accounts:
       title: 대기중인 계정 (%{count})
     relationships:
@@ -447,7 +495,7 @@ ko:
       pending: 릴레이의 승인 대기중
       save_and_enable: 저장하고 활성화
       setup: 릴레이 연결 설정
-      signatures_not_enabled: 시큐어모드나 화이트리스트모드를 사용하고 있다면 릴레이는 제대로 동작하지 않을 것입니다
+      signatures_not_enabled: 시큐어모드나 제한된 페더레이션 모드를 사용하고 있다면 릴레이는 제대로 동작하지 않을 것입니다
       status: 상태
       title: 릴레이
     report_notes:
@@ -467,6 +515,8 @@ ko:
       comment:
         none: 없음
       created_at: 리포트 시각
+      forwarded: 전달됨
+      forwarded_to: "%{domain}에게 전달됨"
       mark_as_resolved: 해결 완료 처리
       mark_as_unresolved: 미해결로 표시
       notes:
@@ -510,6 +560,7 @@ ko:
       domain_blocks_rationale:
         title: 사유 보여주기
       enable_bootstrap_timeline_accounts:
+        desc_html: 새 사용자들이 자동으로 설정 된 계정들을 팔로우 하도록 해서 그들의 홈 피드가 빈 상태로 시작하지 않도록 합니다
         title: 새 유저가 팔로우할 계정을 보여주기
       hero:
         desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 서버의 썸네일이 사용 됩니다
@@ -536,6 +587,9 @@ ko:
         min_invite_role:
           disabled: 아무도 못 하게
           title: 초대링크를 만들 수 있는 권한
+        require_invite_text:
+          desc_html: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
+          title: 새 사용자가 초대 요청 글을 작성해야 하도록
       registrations_mode:
         modes:
           approved: 가입하려면 승인이 필요함
@@ -675,8 +729,11 @@ ko:
       prefix_sign_up: 마스토돈에 가입하세요!
       suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 유저와도 메시지를 주고 받을 수 있습니다!
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
+    dont_have_your_security_key: 보안 키가 없습니까?
     forgot_password: 비밀번호를 잊어버리셨습니까?
     invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
+    link_to_otp: 휴대폰의 2차 코드 혹은 복구 키를 입력해 주세요
+    link_to_webauth: 보안 키 장치 사용
     login: 로그인
     logout: 로그아웃
     migrate_account: 계정 옮기기
@@ -701,7 +758,9 @@ ko:
       functional: 계정이 완벽히 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
+    too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
+    use_security_key: 보안 키 사용
   authorize_follow:
     already_following: 이미 이 계정을 팔로우 하고 있습니다
     already_requested: 이미 이 계정에게 팔로우 요청을 보냈습니다
@@ -726,6 +785,7 @@ ko:
   date:
     formats:
       default: "%Y-%b-%d"
+      with_month_name: "%Y-%B-%d"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}시간"
@@ -790,6 +850,7 @@ ko:
       request: 아카이브 요청하기
       size: 크기
     blocks: 차단
+    bookmarks: 보관함
     csv: CSV
     domain_blocks: 도메인 차단
     lists: 리스트
@@ -856,6 +917,8 @@ ko:
     status: 인증 상태
     view_proof: 증명 보기
   imports:
+    errors:
+      over_rows_processing_limit: "%{count}개 이상의 열을 포함합니다"
     modes:
       merge: 병합
       merge_long: 기존 것을 그대로 둔 채 새로 추가
@@ -865,6 +928,7 @@ ko:
     success: 파일이 정상적으로 업로드 되었으며, 현재 처리 중입니다
     types:
       blocking: 차단한 계정 목록
+      bookmarks: 보관함
       domain_blocking: 도메인 차단 목록
       following: 팔로우 중인 계정 목록
       muting: 뮤트 중인 계정 목록
@@ -982,6 +1046,14 @@ ko:
           quadrillion: Q
           thousand: K
           trillion: T
+  otp_authentication:
+    code_hint: 확인을 위해 인증 애플리케이션에 생성된 코드를 입력해 주십시오
+    description_html: 인증기 앱으로 <strong>2단계 인증</strong>을 활성화 하면 로그인 시 입력 할 토큰을 생성해 주는 전화기가 필요합니다.
+    enable: 활성화
+    instructions_html: "<strong>Google Authenticator, 또는 타 TOTP 애플리케이션에서 이 QR 코드를 스캔해 주십시오.</strong> 이후 로그인 시에는 이 애플리케이션에서 생성되는 코드가 필요합니다."
+    manual_instructions: 'QR 코드를 스캔할 수 없어 수동으로 등록을 원하시는 경우 이 비밀 코드를 사용해 주십시오:'
+    setup: 설정
+    wrong_code: 코드가 올바르지 않습니다! 서버와 휴대전화 간의 시각이 일치하나요?
   pagination:
     newer: 새로운 툿
     next: 다음
@@ -1010,6 +1082,7 @@ ko:
   relationships:
     activity: 계정 활동
     dormant: 휴면
+    follow_selected_followers: 선택한 팔로워들을 팔로우
     followers: 팔로워
     following: 팔로잉
     invited: 초대됨
@@ -1048,40 +1121,40 @@ ko:
     activity: 마지막 활동
     browser: 브라우저
     browsers:
-      alipay: 알리페이
-      blackberry: 블랙베리
-      chrome: 크롬
-      edge: 엣지
-      electron: 일렉트론
-      firefox: 파이어폭스
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: 알 수 없는 브라우저
-      ie: IE
-      micro_messenger: 마이크로메신저
-      nokia: 노키아 S40 Ovi 브라우저
-      opera: 오페라
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi 브라우저
+      opera: Opera
       otter: Otter
       phantom_js: PhantomJS
       qq: QQ 브라우저
-      safari: 사파리
+      safari: Safari
       uc_browser: UC브라우저
-      weibo: 웨이보
+      weibo: Weibo
     current_session: 현재 세션
     description: "%{platform}의 %{browser}"
     explanation: 내 마스토돈 계정에 현재 로그인 중인 웹 브라우저 목록입니다.
     ip: IP
     platforms:
-      adobe_air: 어도비 에어
-      android: 안드로이드
-      blackberry: 블랙베리
-      chrome_os: 크롬OS
-      firefox_os: 파이어폭스OS
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
       ios: iOS
-      linux: 리눅스
-      mac: 맥
+      linux: Linux
+      mac: macOS
       other: 알 수 없는 플랫폼
-      windows: 윈도우즈
-      windows_mobile: 윈도우즈 모바일
-      windows_phone: 윈도우즈 폰
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: 삭제
     revoke_success: 세션이 성공적으로 삭제되었습니다
     title: 세션
@@ -1106,6 +1179,7 @@ ko:
     profile: 프로필
     relationships: 팔로잉과 팔로워
     two_factor_authentication: 2단계 인증
+    webauthn_authentication: 보안 키
   spam_check:
     spam_detected: 이것은 자동화 된 신고입니다. 스팸이 감지되었습니다.
   statuses:
@@ -1138,6 +1212,8 @@ ko:
         other: "%{count}명 투표함"
       vote: 투표
     show_more: 더 보기
+    show_newer: 새로운 것 표시
+    show_older: 오래된 것 표시
     show_thread: 글타래 보기
     sign_in_to_participate: 로그인 하여 이 대화에 참여하기
     title: '%{name}: "%{quote}"'
@@ -1246,21 +1322,20 @@ ko:
       default: "%Y년 %m월 %d일 %H:%M"
       month: "%Y년 %b"
   two_factor_authentication:
-    code_hint: 확인하기 위해서 인증 애플리케이션에서 표시된 코드를 입력해 주십시오
-    description_html: "<strong>2단계 인증</strong>을 활성화 하면 로그인 시 전화로 인증 코드를 받을 필요가 있습니다."
+    add: 추가
     disable: 비활성화
-    enable: 활성화
+    disabled_success: 2단계 인증이 비활성화 되었습니다.
+    edit: 편집
     enabled: 2단계 인증이 활성화 되어 있습니다
     enabled_success: 2단계 인증이 활성화 되었습니다
     generate_recovery_codes: 복구 코드 생성
-    instructions_html: "<strong>Google Authenticator, 또는 타 TOTP 애플리케이션에서 이 QR 코드를 스캔해 주십시오.</strong> 이후 로그인 시에는 이 애플리케이션에서 생성되는 코드가 필요합니다."
     lost_recovery_codes: 복구 코드를 사용하면 휴대전화를 분실한 경우에도 계정에 접근할 수 있게 됩니다. 복구 코드를 분실한 경우에도 여기서 다시 생성할 수 있지만, 예전 복구 코드는 비활성화 됩니다.
-    manual_instructions: 'QR 코드를 스캔할 수 없어 수동으로 등록을 원하시는 경우 이 비밀 코드를 사용해 주십시오:'
+    methods: 2단계 인증
+    otp: 인증 앱
     recovery_codes: 복구 코드
     recovery_codes_regenerated: 복구 코드가 다시 생성되었습니다
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
-    setup: 초기 설정
-    wrong_code: 코드가 올바르지 않습니다. 서버와 휴대전화 간의 시각이 일치하나요?
+    webauthn: 보안 키
   user_mailer:
     backup_ready:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
@@ -1275,6 +1350,7 @@ ko:
     warning:
       explanation:
         disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
+        sensitive: 당신의 업로드 한 미디어 파일들과 링크된 미디어들은 민감함으로 취급됩니다.
         silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 툿을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
         suspend: 당신의 계정은 정지 되었으며, 모든 툿과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
       get_in_touch: 이 메일에 대해 답장해서 %{instance}의 스태프와 연락 할 수 있습니다.
@@ -1283,11 +1359,13 @@ ko:
       subject:
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         none: "%{acct}에게의 경고"
+        sensitive: 당신의 계정 %{acct}에서 포스팅 하는 미디어는 민감함으로 설정되었습니다
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
         disable: 계정 동결 됨
         none: 경고
+        sensitive: 당신의 미디어는 민감함으로 표시되었습니다
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:
@@ -1308,9 +1386,11 @@ ko:
       tips: 팁
       title: 환영합니다 %{name} 님!
   users:
+    blocked_email_provider: 허용된 이메일 제공자가 아닙니다
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
     generic_access_help_html: 계정 로그인에 문제가 있나요? %{email} 로 도움을 요청할 수 있습니다
     invalid_email: 메일 주소가 올바르지 않습니다
+    invalid_email_mx: 이메일 주소가 존재하지 않는 것 같습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
     invalid_sign_in_token: 잘못된 보안 코드
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
@@ -1320,3 +1400,20 @@ ko:
   verification:
     explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
     verification: 검증
+  webauthn_credentials:
+    add: 보안 키 추가
+    create:
+      error: 보안 키를 추가하는데 문제가 발생했습니다. 다시 시도해보십시오.
+      success: 보안 키가 성공적으로 추가되었습니다.
+    delete: 삭제
+    delete_confirmation: 정말로 이 보안 키를 삭제하시겠습니까?
+    description_html: "<strong>보안 키 인증</strong>을 활성화 하면, 로그인 시 보안 키 중 하나가 필요합니다."
+    destroy:
+      error: 보안 키를 삭제하는데 문제가 발생했습니다. 다시 시도해보십시오.
+      success: 보안 키가 성공적으로 삭제되었습니다.
+    invalid_credential: 잘못된 보안 키
+    nickname_hint: 새 보안 키의 별명을 입력해 주세요
+    not_enabled: 아직 WebAuthn을 활성화 하지 않았습니다.
+    not_supported: 이 브라우저는 보안 키를 지원하지 않습니다
+    otp_required: 보안 키를 사용하기 위해서는 2단계 인증을 먼저 활성화 해 주세요
+    registered_on: "%{date} 에 등록됨"

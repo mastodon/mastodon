@@ -98,14 +98,6 @@ io:
       blocking: Listo de blokusiti
       following: Listo de sequati
     upload: Kargar
-  invites:
-    expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
   notification_mailer:
     digest:
       body: Yen mikra rezumo di to, depos ke tu laste vizitis en %{since}
@@ -159,11 +151,8 @@ io:
     reblogged: diskonocigita
     sensitive_content: Titiliva kontenajo
   two_factor_authentication:
-    description_html: Se tu posibligas <strong>dufaktora autentikigo</strong>, tu bezonos tua poshtelefonilo por enirar, nam ol kreos nombri, quin tu devos enskribar.
     disable: Extingar
-    enable: Acendar
     generate_recovery_codes: Generate Recovery Codes
-    instructions_html: "<strong>Skanez ta QR-kodexo per Google Authenticator o per simila apliko di tua poshtelefonilo</strong>. De lore, la apliko kreos nombri, quin tu devos enskribar."
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
   users:
     invalid_email: La retpost-adreso ne esas valida

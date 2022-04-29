@@ -1,0 +1,80 @@
+---
+zgh:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: ⵉⵙⵏ ⵏ ⵜⵙⵏⵙⵉ
+        redirect_uri: ⵜⴰⵏⵙⴰ ⵏ ⵓⵙⵉⴼⴹ
+        website: ⴰⵙⵉⵜ ⵡⵉⴱ ⵏ ⵜⵙⵏⵙⵉ
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: ⵙⵙⵓⵔⴳ
+        cancel: ⵙⵔ
+        edit: ⵙⵏⴼⵍ
+        submit: ⴰⵣⵏ
+      confirmations:
+        destroy: ⵉⵙ ⵏⵉⵜ?
+      edit:
+        title: ⵙⵏⴼⵍ ⵜⵉⵙⵏⵙⵉ
+      help:
+        native_redirect_uri: ⵙⵎⵔⵙ %{native_redirect_uri} ⵉ ⵉⵔⵉⵎⵏ ⵉⴷⵖⴰⵔⴰⵜⵏ
+        redirect_uri: ⵙⵎⵔⵙ ⵢⴰⵏ ⵓⵣⴳⵉⴳ ⵉ ⵢⴰⵜ ⵜⵖⵓⵏⵉ
+      index:
+        application: ⵜⵉⵙⵏⵙⵉ
+        delete: ⴽⴽⵙ
+        empty: ⵓⵔ ⵖⵓⵔⴽ ⴽⵔⴰ ⵏ ⵜⵙⵏⵙⵉⵡⵉⵏ.
+        name: ⵉⵙⵎ
+        new: ⵜⵉⵙⵏⵙⵉ ⵜⴰⵎⴰⵢⵏⵓⵜ
+        show: ⵙⵎⴰⵍ
+        title: ⵜⵉⵙⵏⵙⵉⵡⵉⵏ ⵏⵏⴽ
+      new:
+        title: ⵜⵉⵙⵏⵙⵉ ⵜⴰⵎⴰⵢⵏⵓⵜ
+      show:
+        actions: ⵜⵉⴳⴰⵡⵉⵏ
+        title: ⵜⵉⵙⵏⵙⵉ %{name}
+    authorizations:
+      buttons:
+        authorize: ⵙⵙⵓⵔⴳ
+        deny: ⴰⴳⵢ
+      new:
+        prompt: ⵜⵙⵙⵓⵜⵓⵔ ⵜⵙⵏⵙⵉ %{client_name} ⴰⵙⴰⴷⴼ ⵖⵔ ⵓⵎⵉⴹⴰⵏ ⵏⵏⴽ
+    authorized_applications:
+      confirmations:
+        revoke: ⵉⵙ ⵏⵉⵜ?
+      index:
+        application: ⵜⵉⵙⵏⵙⵉ
+        created_at: ⵜⴻⵜⵜⵓⵙⵓⵔⴳ
+        date_format: "%d-%m-%Y %H:%M:%S"
+        title: ⵜⵉⵙⵏⵙⵉⵡⵉⵏ ⵏⵏⴽ ⵉⵜⵜⵓⵙⵓⵔⴷⵏ
+    flash:
+      applications:
+        create:
+          notice: ⵜⴻⵜⵜⵓⵙⵏⴼⵍⵓⵍ ⵜⵙⵏⵙⵉ.
+        destroy:
+          notice: ⵜⴻⵜⵜⵡⴰⴽⴽⵙ ⵜⵙⵏⵙⵉ.
+        update:
+          notice: ⵜⴻⵜⵜⵓⵙⴷⵖⵉ ⵜⵙⵏⵙⵉ.
+    layouts:
+      admin:
+        nav:
+          applications: ⵜⵉⵙⵏⵙⵉⵡⵉⵏ
+    scopes:
+      admin:read: ⵖⵔ ⵉⴼⵙⴽⴰ ⴰⴽⴽⵯ ⴳ ⵓⵎⴰⴽⴽⴰⵢ
+      admin:write: ⵙⵏⴼⵍ ⵉⴼⵙⴽⴰ ⴰⴽⴽⵯ ⴳ ⵓⵎⴰⴽⴽⴰⵢ
+      read: ⵖⵔ ⵉⴼⵙⴽⴰ ⴰⴽⴽⵯ ⵏ ⵓⵎⵉⴹⴰⵏ
+      read:filters: ⵥⵕ ⵉⵙⵜⴰⵢⵏ ⵏⵏⴽ
+      read:follows: ⵥⵕ ⵉⵎⴹⴼⴰⵔⵏ ⵏⵏⴽ
+      read:lists: ⵥⵕ ⵜⵉⵍⴳⴰⵎⵉⵏ ⵏⵏⴽ
+      read:notifications: ⵥⵕ ⵜⵉⵏⵖⵎⵉⵙⵉⵏ ⵏⵏⴽ
+      read:search: ⵔⵣⵓ ⵙ ⵢⵉⵙⵎ ⵏⵏⴽ
+      read:statuses: ⵥⵕ ⴰⴷⴷⴰⴷⵏ ⴰⴽⴽⵯ
+      write: ⵙⵏⴼⵍ ⵉⴼⵙⴽⴰ ⵏ ⵓⵎⵉⴹⴰⵏ ⵏⵏⴽ
+      write:accounts: ⵙⵏⴼⵍ ⵉⴼⵔⵙ ⵏⵏⴽ
+      write:blocks: ⴳⴷⵍ ⵉⵎⵉⴹⴰⵏⵏ ⴷ ⵢⵉⴳⵔⴰⵏ
+      write:follows: ⴹⴼⵕ ⵎⵉⴷⴷⵏ
+      write:lists: ⵙⵏⴼⵍⵓⵍ ⵜⵉⵍⴳⴰⵎⵉⵏ
+      write:mutes: ⵥⵥⵉⵥⵏ ⵎⵉⴷⴷⵏ ⴷ ⵉⵎⵙⴰⵡⴰⵍⵏ
+      write:notifications: ⵙⴼⴹ ⵜⵉⵏⵖⵎⵉⵙⵉⵏ ⵏⵏⴽ
+      write:reports: ⵎⵍ ⵎⵉⴷⴷⵏ ⵏⵏⵉⴹⵏ
+      write:statuses: ⴼⵙⵔ ⵜⵉⵥⵕⴰⴳⵉⵏ

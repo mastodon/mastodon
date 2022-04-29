@@ -4,22 +4,38 @@ require 'resolv'
 
 class EmailMxValidator < ActiveModel::Validator
   def validate(user)
-    user.errors.add(:email, I18n.t('users.invalid_email')) if invalid_mx?(user.email)
+    domain = get_domain(user.email)
+
+    if domain.nil?
+      user.errors.add(:email, I18n.t('users.invalid_email'))
+    else
+      ips, hostnames = resolve_mx(domain)
+      if ips.empty?
+        user.errors.add(:email, I18n.t('users.invalid_email_mx'))
+      elsif on_blacklist?(hostnames + ips)
+        user.errors.add(:email, I18n.t('users.blocked_email_provider'))
+      end
+    end
   end
 
   private
 
-  def invalid_mx?(value)
+  def get_domain(value)
     _, domain = value.split('@', 2)
 
-    return true if domain.nil?
+    return nil if domain.nil?
 
-    domain    = TagManager.instance.normalize_domain(domain)
+    TagManager.instance.normalize_domain(domain)
+  rescue Addressable::URI::InvalidURIError
+    nil
+  end
+
+  def resolve_mx(domain)
     hostnames = []
     ips       = []
 
     Resolv::DNS.open do |dns|
-      dns.timeouts = 1
+      dns.timeouts = 5
 
       hostnames = dns.getresources(domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
 
@@ -29,9 +45,7 @@ class EmailMxValidator < ActiveModel::Validator
       end
     end
 
-    ips.empty? || on_blacklist?(hostnames + ips)
-  rescue Addressable::URI::InvalidURIError
-    true
+    [ips, hostnames]
   end
 
   def on_blacklist?(values)

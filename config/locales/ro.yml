@@ -680,21 +680,14 @@ ro:
       default: "%d %m, %Y, %H:%M"
       month: "%m %Y"
   two_factor_authentication:
-    code_hint: Introduceți codul generat de aplicația dvs de autentificare pentru a confirma
-    description_html: Dacă activați <strong>autentificarea în doi pași</strong>, autentificarea va necesita ca tu să fii în posesia telefonului tău, ceea ce va genera token-uri pentru ca tu să intri.
     disable: Dezactivează
-    enable: Activează
     enabled: Autentificare în doi pași este activată
     enabled_success: Autentificarea în doi pași activată cu succes
     generate_recovery_codes: Generează coduri de recuperare
-    instructions_html: "<strong>Scanați acest cod QR în Google Authenticator sau o aplicație TOTP similiară de pe telefonul dvs.</strong>. De acum înainte, acea aplicație va genera token-uri pe care va trebui să îi introduceți atunci când vă conectați."
     lost_recovery_codes: Codurile de recuperare vă permit să redobândiți accesul la contul dvs. dacă vă pierdeți telefonul. Dacă ți-ai pierdut codurile de recuperare, le poți regenera aici. Codurile tale vechi de recuperare vor fi invalidate.
-    manual_instructions: 'Dacă nu puteți scana codul QR și trebuie să-l introduceți manual, aici este textul simplu pentru cheia secretă:'
     recovery_codes: Copie a codurilor de recuperare
     recovery_codes_regenerated: Coduri de recuperare regenerate cu succes
     recovery_instructions_html: Dacă îți pierzi vreodată accesul la telefon, poți folosi unul dintre codurile de recuperare de mai jos pentru a recâștiga accesul la contul tău. <strong>Păstrați codurile de recuperare în condiții de siguranță</strong>. De exemplu, le puteți tipări și stoca cu alte documente importante.
-    setup: Configurare
-    wrong_code: Codul introdus nu a fost valid! Orele serverului și timpul dispozitivului sunt corecte?
   user_mailer:
     backup_ready:
       explanation: Ai solicitat o copie de rezervă completă a contului tău. Acum este gata pentru descărcare!

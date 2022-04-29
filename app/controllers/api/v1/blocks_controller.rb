@@ -18,6 +18,8 @@ class Api::V1::BlocksController < Api::BaseController
 
   def paginated_blocks
     @paginated_blocks ||= Block.eager_load(target_account: :account_stat)
+                               .joins(:target_account)
+                               .merge(Account.without_suspended)
                                .where(account: current_account)
                                .paginate_by_max_id(
                                  limit_param(DEFAULT_ACCOUNTS_LIMIT),

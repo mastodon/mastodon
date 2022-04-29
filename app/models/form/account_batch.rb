@@ -9,6 +9,8 @@ class Form::AccountBatch
 
   def save
     case action
+    when 'follow'
+      follow!
     when 'unfollow'
       unfollow!
     when 'remove_from_followers'
@@ -23,6 +25,12 @@ class Form::AccountBatch
   end
 
   private
+
+  def follow!
+    accounts.find_each do |target_account|
+      FollowService.new.call(current_account, target_account)
+    end
+  end
 
   def unfollow!
     accounts.find_each do |target_account|
@@ -69,6 +77,6 @@ class Form::AccountBatch
     records = accounts.includes(:user)
 
     records.each { |account| authorize(account.user, :reject?) }
-           .each { |account| SuspendAccountService.new.call(account, reserve_email: false, reserve_username: false) }
+           .each { |account| DeleteAccountService.new.call(account, reserve_email: false, reserve_username: false) }
   end
 end

@@ -21,7 +21,9 @@ eu:
     federation_hint_html: "%{instance} instantzian kontu bat izanda edozein Mastodon zerbitzariko jendea jarraitu ahal izango duzu, eta harago ere."
     get_apps: Probatu mugikorrerako aplikazio bat
     hosted_on: Mastodon %{domain} domeinuan ostatatua
-    instance_actor_flash: Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke.
+    instance_actor_flash: 'Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke.
+
+'
     learn_more: Ikasi gehiago
     privacy_policy: Pribatutasun politika
     see_whats_happening: Ikusi zer gertatzen ari den
@@ -1230,21 +1232,14 @@ eu:
       default: "%Y(e)ko %b %d, %H:%M"
       month: "%Y(e)ko %b"
   two_factor_authentication:
-    code_hint: Sartu zure autentifikazio aplikazioak sortutako kodea berresteko
-    description_html: "<strong>Bi faktoreetako autentifikazioa</strong> gaitzen baduzu, saioa hasteko telefonoa eskura izan beharko duzu, honek zuk sartu behar dituzun kodeak sortuko dituelako."
     disable: Desgaitu
-    enable: Gaitu
     enabled: Bi faktoreetako autentifikazioa gaituta dago
     enabled_success: Bi faktoreetako autentifikazioa ongi gaitu da
     generate_recovery_codes: Sortu berreskuratze kodeak
-    instructions_html: "<strong>Eskaneatu QR kode hau Google Authentiocator edo antzeko TOTTP aplikazio batekin zure telefonoan</strong>. Hortik aurrera, aplikazio horrek saioa hasteko sartu behar dituzun kodeak sortuko ditu."
     lost_recovery_codes: Berreskuratze kodeek telefonoa galtzen baduzu kontura sarbidea berreskuratzea ahalbideko dizute. Berreskuratze kodeak galdu badituzu, hemen birsortu ditzakezu. Zure berreskuratze kode zaharrak indargabetuko dira,.
-    manual_instructions: 'Ezin baduzu QR kodea eskaneatu eta eskuz sartu behar baduzu, hona sekretua testu hutsean:'
     recovery_codes: Berreskuratze kodeen babes-kopia
     recovery_codes_regenerated: Berreskuratze kodeak ongi sortu dira
     recovery_instructions_html: Zure telefonora sarbidea galtzen baduzu, beheko berreskuratze kode bat erabili dezakezu kontura berriro sartu ahal izateko. <strong>Gore barreskuratze kodeak toki seguruan</strong>. Adibidez inprimatu eta dokumentu garrantzitsuekin batera gorde.
-    setup: Ezarri
-    wrong_code: Sartutako kodea baliogabea da! Zerbitzariaren eta gailuaren erlojuak ondo ezarrita daude?
   user_mailer:
     backup_ready:
       explanation: Zure Mastodon kontuaren babes-kopia osoa eskatu duzu. Deskargatzeko prest dago!

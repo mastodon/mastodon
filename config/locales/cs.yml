@@ -1285,21 +1285,14 @@ cs:
       default: "%d. %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Pro potvrzení zadejte kód vygenerovaný vaší ověřovací aplikací
-    description_html: Zapnete-li <strong>dvoufázové ověřování</strong>, budete pro přihlašování potřebovat telefon, který vám vygeneruje přístupové tokeny, které musíte zadat.
     disable: Vypnout
-    enable: Zapnout
     enabled: Dvoufázové ověřování je zapnuto
     enabled_success: Dvoufázové ověřování bylo úspěšně zapnuto
     generate_recovery_codes: Vygenerovat záložní kódy
-    instructions_html: "<strong>Naskenujte tento QR kód Google Authenticatorem nebo jinou TOTP aplikací na svém telefonu</strong>. Od teď bude tato aplikace generovat tokeny, které budete muset zadat při přihlášení."
     lost_recovery_codes: Záložní kódy vám dovolí dostat se k vašemu účtu, pokud ztratíte telefon. Ztratíte-li záložní kódy, můžete je zde znovu vygenerovat. Vaše staré záložní kódy budou zneplatněny.
-    manual_instructions: 'Nemůžete-li QR kód naskenovat a je potřeba ho zadat ručně, zde je secret v prostém textu:'
     recovery_codes: Záložní kódy pro obnovu
     recovery_codes_regenerated: Záložní kódy byly úspěšně znovu vygenerovány
     recovery_instructions_html: Ztratíte-li někdy přístup ke svému telefonu, můžete k získání přístupu k účtu použít jeden ze záložních kódů. <strong>Uchovejte tyto kódy v bezpečí</strong>. Můžete si je například vytisknout a uložit je mezi jiné důležité dokumenty.
-    setup: Nastavit
-    wrong_code: Zadaný kód byl neplatný! Je čas na serveru a na zařízení správný?
   user_mailer:
     backup_ready:
       explanation: Vyžádali jste si úplnou zálohu svého účtu Mastodon. Nyní je připravena ke stažení!

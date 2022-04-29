@@ -12,6 +12,10 @@ Chewy.settings = {
   sidekiq: { queue: 'pull' },
 }
 
+# We use our own async strategy even outside the request-response
+# cycle, which takes care of checking if ElasticSearch is enabled
+# or not. However, mind that for the Rails console, the :urgent
+# strategy is set automatically with no way to override it.
 Chewy.root_strategy              = :custom_sidekiq
 Chewy.request_strategy           = :custom_sidekiq
 Chewy.use_after_commit_callbacks = false
@@ -37,6 +41,7 @@ Elasticsearch::Transport::Client.prepend Module.new {
     super arguments
   end
 }
+
 Elasticsearch::API::Indices::IndicesClient.prepend Module.new {
   def create(arguments = {})
     arguments[:include_type_name] = true

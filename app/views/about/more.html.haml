@@ -2,7 +2,7 @@
   = site_hostname
 
 - content_for :header_tags do
-  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+  = javascript_pack_tag 'public', crossorigin: 'anonymous'
   = render partial: 'shared/og'
 
 .grid-4
@@ -17,11 +17,11 @@
         .row__information-board
           .information-board__section
             %span= t 'about.user_count_before'
-            %strong= number_with_delimiter @instance_presenter.user_count
+            %strong= number_to_human @instance_presenter.user_count, strip_insignificant_zeros: true
             %span= t 'about.user_count_after', count: @instance_presenter.user_count
           .information-board__section
             %span= t 'about.status_count_before'
-            %strong= number_with_delimiter @instance_presenter.status_count
+            %strong= number_to_human @instance_presenter.status_count, strip_insignificant_zeros: true
             %span= t 'about.status_count_after', count: @instance_presenter.status_count
         .row__mascot
           .landing-page__mascot

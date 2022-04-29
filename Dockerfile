@@ -4,7 +4,7 @@ FROM ubuntu:20.04 as build-dep
 SHELL ["bash", "-c"]
 
 # Install Node v12 (LTS)
-ENV NODE_VER="12.16.3"
+ENV NODE_VER="12.20.0"
 RUN ARCH= && \
   dpkgArch="$(dpkg --print-architecture)" && \
   case "${dpkgArch##*-}" in \
@@ -36,10 +36,11 @@ RUN apt update && \
   ./autogen.sh && \
   ./configure --prefix=/opt/jemalloc && \
   make -j$(nproc) > /dev/null && \
-  make install_bin install_include install_lib
+  make install_bin install_include install_lib && \
+  cd .. && rm -rf jemalloc-$JE_VER $JE_VER.tar.gz
 
 # Install Ruby
-ENV RUBY_VER="2.6.6"
+ENV RUBY_VER="2.7.2"
 ENV CPPFLAGS="-I/opt/jemalloc/include"
 ENV LDFLAGS="-L/opt/jemalloc/lib/"
 RUN apt update && \
@@ -56,7 +57,8 @@ RUN apt update && \
   --disable-install-doc && \
   ln -s /opt/jemalloc/lib/* /usr/lib/ && \
   make -j$(nproc) > /dev/null && \
-  make install
+  make install && \
+  cd .. && rm -rf ruby-$RUBY_VER.tar.gz ruby-$RUBY_VER
 
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
@@ -106,11 +108,14 @@ RUN apt -y --no-install-recommends install \
   rm -rf /var/lib/apt/lists/*
 
 # Add tini
-ENV TINI_VERSION="0.18.0"
-ENV TINI_SUM="12d20136605531b09a2c2dac02ccee85e1b874eb322ef6baf7561cd93f93c855"
-ADD https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini /tini
-RUN echo "$TINI_SUM tini" | sha256sum -c -
-RUN chmod +x /tini
+ENV TINI_VERSION="0.19.0"
+RUN dpkgArch="$(dpkg --print-architecture)" && \
+  ARCH=$dpkgArch && \
+  wget https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-$ARCH \
+  https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-$ARCH.sha256sum && \
+  cat tini-$ARCH.sha256sum | sha256sum -c - && \
+  mv tini-$ARCH /tini && rm tini-$ARCH.sha256sum && \
+  chmod +x /tini
 
 # Copy over mastodon source, and dependencies from building, and set permissions
 COPY --chown=mastodon:mastodon . /opt/mastodon

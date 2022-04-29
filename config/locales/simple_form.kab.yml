@@ -26,6 +26,10 @@ kab:
         name: 'Ahat ad tebγuḍ ad tesqedceḍ yiwen gar-asen:'
       imports:
         data: Afaylu CSV id yusan seg uqeddac-nniḍen n Maṣṭudun
+      ip_block:
+        comment: D afrayan. Cfu ɣef wayɣer i terniḍ alugen-a.
+        severities:
+          no_access: Sewḥel anekcu ɣer akk tiɣbula
     labels:
       account:
         fields:
@@ -42,6 +46,7 @@ kab:
           disable: Sens anekcum
           none: Ur teg kra
           silence: Sgugem
+          suspend: Ḥbes di leεḍil
       announcement:
         ends_at: Tagara n tedyant
         text: Alɣu
@@ -82,8 +87,15 @@ kab:
         comment: Awennit
       invite_request:
         text: Acimi tebγiḍ ad ternuḍ iman-ik?
+      ip_block:
+        comment: Awennit
+        ip: IP
+        severities:
+          no_access: Sewḥel anekcum
+        severity: Alugen
       notification_emails:
         mention: Yuder-ik·em-id walbɛaḍ
+        reblog: Yella win yesselhan adda-dik·im
       tag:
         name: Ahacṭag
     'no': Ala

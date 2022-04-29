@@ -21,7 +21,9 @@
     federation_hint_html: Med en konto på %{instance} vil du kunne følge folk på enhver Mastodon-tjener, og mer til.
     get_apps: Prøv en mobilapp
     hosted_on: Mastodon driftet på %{domain}
-    instance_actor_flash: Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet.
+    instance_actor_flash: 'Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet.
+
+'
     learn_more: Lær mer
     privacy_policy: Privatlivsretningslinjer
     see_whats_happening: Se hva som skjer
@@ -38,8 +40,11 @@
       domain: Tjener
       reason: Årsak
       rejecting_media: 'Mediafiler fra disse tjenerne vil ikke bli behandlet eller lagret, og ingen miniatyrbilder vil bli vist, noe som vil kreve manuell klikking for å besøke den opprinnelige filen:'
+      rejecting_media_title: Filtrert media
       silenced: 'Innlegg fra disse tjenerne vil bli skjult fra offentlige tidslinjer og samtaler, og ingen varslinger vil bli generert fra disse brukernes samhandlinger, med mindre du følger dem:'
+      silenced_title: Stilnede tjenere
       suspended: 'Ingen data fra disse tjenerne vil bli behandlet, lagret, eller utvekslet, noe som vil gjøre enhver samhandling eller kommunikasjon med brukere fra disse tjenerne umulig:'
+      suspended_title: Suspenderte tjenere
     unavailable_content_html: Mastodon lar deg vanligvis se innhold fra og samhandle med brukere fra enhver annen tjener i strømiverset. Dette er unntakene som har blitt gjort på denne spesifikke tjeneren.
     user_count_after:
       one: bruker
@@ -106,6 +111,7 @@
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
+      delete: Slett data
       deleted: Slettet
       demote: Degrader
       disable: Deaktiver
@@ -187,8 +193,11 @@
       unconfirmed_email: Ubekreftet E-postadresse
       undo_silenced: Angre målbinding
       undo_suspension: Angre utvisning
+      unsilenced_msg: Opphevde vellykket begrensningen av %{username} sin konto
       unsubscribe: Avslutt abonnementet
+      unsuspended_msg: Opphevde vellykket suspenderingen av %{username} sin konto
       username: Brukernavn
+      view_domain: Vis sammendrag for domenet
       warn: Advar
       web: Nett
       whitelisted: Hvitelistet
@@ -203,12 +212,16 @@
         create_domain_allow: Opprett domene tillatt
         create_domain_block: Opprett domene-blokk
         create_email_domain_block: Opprett e-post domeneblokk
+        create_ip_block: Opprett IP-regel
         demote_user: Degrader bruker
         destroy_announcement: Slett kunngjøringen
         destroy_custom_emoji: Slett den tilpassede emojien
+        destroy_ip_block: Slett IP-regel
         destroy_status: Slett statusen
         disable_2fa_user: Skru av 2-trinnsinnlogging
+        disable_custom_emoji: Skru av tilpassede emojier
         disable_user: Deaktiver bruker
+        enable_custom_emoji: Skru på tilpassede emojier
         enable_user: Aktiver bruker
         promote_user: Promoter bruker
         remove_avatar_user: Fjern Avatar
@@ -231,12 +244,14 @@
         create_domain_allow: "%{name} hvitelistet domenet %{target}"
         create_domain_block: "%{name} blokkerte domenet %{target}"
         create_email_domain_block: "%{name} svartelistet e-postdomenet %{target}"
+        create_ip_block: "%{name} opprettet en regel for IP-en %{target}"
         demote_user: "%{name} degraderte bruker %{target}"
         destroy_announcement: "%{name} slettet kunngjøring %{target}"
         destroy_custom_emoji: "%{name} ødela emojien %{target}"
         destroy_domain_allow: "%{name} fjernet domenet %{target} fra hvitelisten"
         destroy_domain_block: "%{name} fjernet blokkeringen av domenet %{target}"
         destroy_email_domain_block: "%{name} hvitelistet e-postdomenet %{target}"
+        destroy_ip_block: "%{name} slettet en regel for IP-en %{target}"
         destroy_status: "%{name} fjernet status av %{target}"
         disable_2fa_user: "%{name} deaktiverte tofaktor-autentiseringskravet for bruker %{target}"
         disable_custom_emoji: "%{name} deaktiverte emoji %{target}"
@@ -421,6 +436,20 @@
         expired: Utløpt
         title: Filtrer
       title: Invitasjoner
+    ip_blocks:
+      add_new: Opprett regel
+      created_msg: La vellykket til en ny IP-regel
+      delete: Slett
+      expires_in:
+        '1209600': 2 uker
+        '15778476': 6 måneder
+        '2629746': 1 måned
+        '31556952': 1 år
+        '86400': 1 dag
+        '94670856': 3 år
+      new:
+        title: Opprett ny IP-regel
+      title: IP-regler
     pending_accounts:
       title: Avventende brukere (%{count})
     relationships:
@@ -650,8 +679,11 @@
       prefix_sign_up: Meld deg opp på Mastodon i dag!
       suffix: Med en konto, vil kunne følge folk, legge ut oppdateringer, og utveksle meldinger med brukere fra enhver Mastodon-tjener, og mer til!
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
+    dont_have_your_security_key: Har du ikke sikkerhetsnøkkelen din?
     forgot_password: Har du glemt passordet ditt?
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
+    link_to_otp: Skriv inn en 2-trinnskode fra din 2-trinnspåloggingsenhet eller en gjenopprettingskode
+    link_to_webauth: Bruk sikkerhetsnøkkel-enheten din
     login: Logg på
     logout: Logg ut
     migrate_account: Flytt til en annen konto
@@ -677,6 +709,7 @@
       pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
     trouble_logging_in: Har du problemer med å logge på?
+    use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du følger allerede denne kontoen
     error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
@@ -693,6 +726,10 @@
     hint_html: "<strong>Tips:</strong> Vi ber deg ikke om passordet ditt igjen i løpet av neste time."
     invalid_password: Ugyldig passord
     prompt: Bekreft passordet for å fortsette
+  crypto:
+    errors:
+      invalid_key: er ikke en gyldig Ed25519- eller Curve25519-nøkkel
+      invalid_signature: er ikke en gyldig Ed25519-signatur
   date:
     formats:
       default: "%b %d, %Y"
@@ -861,23 +898,39 @@
     acct: brukernavn@domene til den nye kontoen
     cancel: Avbryt omdirigeringen
     cancel_explanation: Å avbryte omdirigeringen vil reaktivere din nåværende konto, men vil ikke bringe tilbake følgere som har blitt flyttet til den kontoen.
+    cancelled_msg: Avbrøt omdirigeringen med suksess.
     errors:
       already_moved: er den samme kontoen du allerede har flyttet til
+      missing_also_known_as: er ikke en av denne kontoens aliaser
       move_to_self: kan ikke være den nåværende kontoen
       not_found: ble ikke funnet
       on_cooldown: Du er i en nedkjølingsperiode
     followers_count: Følgere på flyttetidspunktet
     incoming_migrations: Flytte fra en annen konto
     incoming_migrations_html: For å flytte fra en annen konto til denne, må du først <a href="%{path}">sette opp et kontoalias</a>.
+    moved_msg: Kontoen din omdirigeres nå til %{acct}, og følgerne dine blir flyttet over.
+    not_redirecting: Kontoen din omdirigeres ikke til noen andre kontoer for øyeblikket.
+    on_cooldown: Du har nylig overført kontoen din. Denne funksjonen blir tilgjengelig igjen om %{count} dager.
     past_migrations: Tidligere migreringer
     proceed_with_move: Flytt følgere
+    redirected_msg: Kontoen din omdirigeres nå til %{acct}.
+    redirecting_to: Kontoen din omdirigeres til %{acct}.
     set_redirect: Bestem omdirigering
     warning:
+      backreference_required: Den nye kontoen må først settes opp til å henvise tilbake til denne
       before: 'Før du fortsetter, vennligst les disse notisene nøye:'
+      cooldown: Etter flytting er det en nedkjølingsperiode der du ikke vil kunne flytte igjen
       disabled_account: Din nåværende konto vil ikke være fullt brukbar etterpå. Men du vil ha tilgang til dataeksportering såvel som reaktivering.
+      followers: Denne handlingen vil flytte alle følgere fra den nåværende kontoen til den nye kontoen
+      only_redirect_html: Alternativt kan du velge å <a href="%{path}">bare legge ut en omdirigering på profilen din</a>.
       other_data: Ingen andre data vil bli flyttet automatisk
+      redirect: Profilen til din nåværende konto vil bli oppdatert med en omdirigeringsnotis og bli fjernet fra søk
   moderation:
     title: Moderasjon
+  move_handler:
+    carry_blocks_over_text: Denne brukeren flyttet fra %{acct}, som du hadde blokkert.
+    carry_mutes_over_text: Denne brukeren flyttet fra %{acct}, som du hadde dempet.
+    copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   notification_mailer:
     digest:
       action: Vis alle varslinger
@@ -926,6 +979,14 @@
           quadrillion: Kvd
           thousand: T
           trillion: Trl
+  otp_authentication:
+    code_hint: Skriv inn koden generert av autentiseringsappen din for å bekrefte
+    description_html: Hvis du skrur på <strong>2-trinnsautentisering</strong> ved hjelp av en autentiseringsapp, vil pålogging kreve at du er i besittelse av autentiseringsenheten din, som genererer sjetonger som du skal skrive inn.
+    enable: Aktiver
+    instructions_html: "<strong>Skann denne QR-koden i Authy, Google Autentisering, eller en lignende TOTP-app på en av dine enheter</strong>. Fra nå av, vil den appen generere sjetonger som du vil måtte skrive inn når du logger på."
+    manual_instructions: 'Hvis du ikke kan skanne QR-koden og må skrive den inn manuelt, her er tekstkoden i ren tekst:'
+    setup: Sett opp
+    wrong_code: Den innskrevne koden var ugyldig! Er tjenertiden og enhetstiden riktige?
   pagination:
     newer: Nyere
     next: Neste
@@ -984,6 +1045,10 @@
     reply:
       proceed: Fortsett til svaret
       prompt: 'Du ønsker å svare på denne tuten:'
+  scheduled_statuses:
+    over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
+    over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
+    too_soon: Den planlagte datoen må være i fremtiden
   sessions:
     activity: Siste aktivitet
     browser: Nettleser
@@ -1046,10 +1111,14 @@
     profile: Profil
     relationships: Følginger og følgere
     two_factor_authentication: Tofaktorautentisering
+    webauthn_authentication: Sikkerhetsnøkler
   spam_check:
     spam_detected: Dette er en automatisert rapport. Spam har blitt oppdaget.
   statuses:
     attached:
+      audio:
+        one: "%{count} lyd"
+        other: "%{count} lyd"
       description: 'Vedlagt: %{attached}'
       image:
         one: "%{count} bilde"
@@ -1183,25 +1252,27 @@
       default: "%-d. %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Tast koden som ble generert av din autentiseringsapp for å bekrefte
-    description_html: Hvis du skrur på <strong>tofaktorautentisering</strong> må du ha din telefon for å logge inn. Denne vil generere koder som du må taste inn.
+    add: Legg til
     disable: Skru av
-    enable: Skru på
+    disabled_success: 2-trinnsautentisering ble vellykket skrudd av
+    edit: Redigering
     enabled: To-faktor autentisering er aktivert
     enabled_success: Aktivering av tofaktorautentisering vellykket
     generate_recovery_codes: Generér gjenopprettingskoder
-    instructions_html: "<strong>Scan denne QR-koden med Google Authenticator eller en lignende app på telefonen din</strong>. Fra nå av vil denne applikasjonen generere koder for deg som skal brukes under innlogging."
     lost_recovery_codes: Gjenopprettingskoder lar deg gjenoppnå tilgang til din konto hvis du mister din telefon. Hvis du har mistet gjenopprettingskodene, kan du regenerere dem her. Dine gamle gjenopprettingskoder vil bli ugyldige.
-    manual_instructions: 'Hvis du ikke får scannet QR-koden må du skrive inn følgende kode manuelt:'
+    methods: 2-trinnsmetoder
+    otp: Autentiseringsapp
     recovery_codes: Reservekoder
     recovery_codes_regenerated: Generering av reservekoder fullført
     recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
-    setup: Sett opp
-    wrong_code: Den angitte koden var ugyldig! Stemmer instansens tid overalt med enhetens tid?
+    webauthn: Sikkerhetsnøkler
   user_mailer:
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
+    sign_in_token:
+      details: 'Her er detaljene om forsøket:'
+      title: Påloggingsforsøk
     warning:
       explanation:
         disable: Mens kontoen din er fryst, forblir dine kontodata intakt, men du kan ikke utføre noen handlinger før den har blitt tint opp.
@@ -1238,11 +1309,24 @@
       tips: Tips
       title: Velkommen ombord, %{name}!
   users:
+    blocked_email_provider: Denne E-postleverandøren er ikke tillatt
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
     invalid_email: E-postaddressen er ugyldig
     invalid_otp_token: Ugyldig to-faktorkode
+    invalid_sign_in_token: Ugyldig sikkerhetskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     signed_in_as: 'Innlogget som:'
   verification:
     explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
     verification: Bekreftelse
+  webauthn_credentials:
+    add: Legg til ny sikkerhetsnøkkel
+    create:
+      success: Sikkerhetsnøkkelen din ble vellykket lagt til.
+    delete: Slett
+    delete_confirmation: Er du sikker på at du vil slette denne sikkerhetsnøkkelen?
+    destroy:
+      success: Sikkerhetsnøkkelen din ble vellykket slettet.
+    invalid_credential: Ugyldig sikkerhetsnøkkel
+    not_supported: Denne nettleseren støtter ikke sikkerhetsnøkler
+    registered_on: Registrert den %{date}

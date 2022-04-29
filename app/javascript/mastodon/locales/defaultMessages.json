@@ -168,8 +168,16 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "This page could not be displayed correctly. This error is likely caused by a browser add-on or automatic translation tools.",
+        "id": "error.unexpected_crash.explanation_addons"
+      },
+      {
         "defaultMessage": "Due to a bug in our code or a browser compatibility issue, this page could not be displayed correctly.",
         "id": "error.unexpected_crash.explanation"
+      },
+      {
+        "defaultMessage": "Try disabling them and refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.",
+        "id": "error.unexpected_crash.next_steps_addons"
       },
       {
         "defaultMessage": "Try refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.",
@@ -264,6 +272,15 @@
       }
     ],
     "path": "app/javascript/mastodon/components/missing_indicator.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Put it back",
+        "id": "picture_in_picture.restore"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/picture_in_picture_placeholder.json"
   },
   {
     "descriptors": [
@@ -421,7 +438,7 @@
         "id": "status.reblog"
       },
       {
-        "defaultMessage": "Boost to original audience",
+        "defaultMessage": "Boost with original visibility",
         "id": "status.reblog_private"
       },
       {
@@ -636,6 +653,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
+      },
+      {
+        "defaultMessage": "Profile unavailable",
+        "id": "empty_column.account_unavailable"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_gallery/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Toots",
         "id": "account.posts"
       },
@@ -685,6 +715,10 @@
       {
         "defaultMessage": "Older toots",
         "id": "timeline_hint.resources.statuses"
+      },
+      {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
       },
       {
         "defaultMessage": "Profile unavailable",
@@ -795,6 +829,14 @@
       {
         "defaultMessage": "Show boosts from @{name}",
         "id": "account.show_reblogs"
+      },
+      {
+        "defaultMessage": "Notify me when @{name} posts",
+        "id": "account.enable_notifications"
+      },
+      {
+        "defaultMessage": "Stop notifying me when @{name} posts",
+        "id": "account.disable_notifications"
       },
       {
         "defaultMessage": "Pinned toots",
@@ -1305,15 +1347,15 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Media is marked as sensitive",
+        "defaultMessage": "{count, plural, one {Media is marked as sensitive} other {Media is marked as sensitive}}",
         "id": "compose_form.sensitive.marked"
       },
       {
-        "defaultMessage": "Media is not marked as sensitive",
+        "defaultMessage": "{count, plural, one {Media is not marked as sensitive} other {Media is not marked as sensitive}}",
         "id": "compose_form.sensitive.unmarked"
       },
       {
-        "defaultMessage": "Mark media as sensitive",
+        "defaultMessage": "{count, plural, one {Mark media as sensitive} other {Mark media as sensitive}}",
         "id": "compose_form.sensitive.hide"
       }
     ],
@@ -2126,12 +2168,28 @@
         "id": "confirmations.delete_list.confirm"
       },
       {
+        "defaultMessage": "Any followed user",
+        "id": "lists.replies_policy.followed"
+      },
+      {
+        "defaultMessage": "No one",
+        "id": "lists.replies_policy.none"
+      },
+      {
+        "defaultMessage": "Members of the list",
+        "id": "lists.replies_policy.list"
+      },
+      {
         "defaultMessage": "Edit list",
         "id": "lists.edit"
       },
       {
         "defaultMessage": "Delete list",
         "id": "lists.delete"
+      },
+      {
+        "defaultMessage": "Show replies to:",
+        "id": "lists.replies_policy.title"
       },
       {
         "defaultMessage": "There is nothing in this list yet. When members of this list post new statuses, they will appear here.",
@@ -2219,6 +2277,14 @@
         "id": "notifications.column_settings.push"
       },
       {
+        "defaultMessage": "Desktop notifications are unavailable due to previously denied browser permissions request",
+        "id": "notifications.permission_denied"
+      },
+      {
+        "defaultMessage": "Desktop notifications are unavailable because the required permission has not been granted.",
+        "id": "notifications.permission_required"
+      },
+      {
         "defaultMessage": "Quick filter bar",
         "id": "notifications.column_settings.filter_bar.category"
       },
@@ -2245,6 +2311,10 @@
       {
         "defaultMessage": "Poll results:",
         "id": "notifications.column_settings.poll"
+      },
+      {
+        "defaultMessage": "New toots:",
+        "id": "notifications.column_settings.status"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
@@ -2272,6 +2342,10 @@
         "id": "notifications.filter.follows"
       },
       {
+        "defaultMessage": "Updates from people you follow",
+        "id": "notifications.filter.statuses"
+      },
+      {
         "defaultMessage": "All",
         "id": "notifications.filter.all"
       }
@@ -2290,6 +2364,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/follow_request.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Grant permission.",
+        "id": "notifications.grant_permission"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/grant_permission_button.json"
   },
   {
     "descriptors": [
@@ -2314,11 +2397,36 @@
         "id": "notification.reblog"
       },
       {
+        "defaultMessage": "{name} just posted",
+        "id": "notification.status"
+      },
+      {
         "defaultMessage": "{name} has requested to follow you",
         "id": "notification.follow_request"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notification.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Never miss a thing",
+        "id": "notifications_permission_banner.title"
+      },
+      {
+        "defaultMessage": "To receive notifications when Mastodon isn't open, enable desktop notifications. You can control precisely which types of interactions generate desktop notifications through the {icon} button above once they're enabled.",
+        "id": "notifications_permission_banner.how_to_control"
+      },
+      {
+        "defaultMessage": "Enable desktop notifications",
+        "id": "notifications_permission_banner.enable"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/notifications_permission_banner.json"
   },
   {
     "descriptors": [
@@ -2329,6 +2437,10 @@
       {
         "defaultMessage": "Clear notifications",
         "id": "notifications.clear"
+      },
+      {
+        "defaultMessage": "Desktop notifications can't be enabled, as browser permission has been denied before",
+        "id": "notifications.permission_denied_alert"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/containers/column_settings_container.json"
@@ -2340,11 +2452,69 @@
         "id": "column.notifications"
       },
       {
+        "defaultMessage": "Mark every notification as read",
+        "id": "notifications.mark_as_read"
+      },
+      {
         "defaultMessage": "You don't have any notifications yet. Interact with others to start the conversation.",
         "id": "empty_column.notifications"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Reply",
+        "id": "status.reply"
+      },
+      {
+        "defaultMessage": "Reply to thread",
+        "id": "status.replyAll"
+      },
+      {
+        "defaultMessage": "Boost",
+        "id": "status.reblog"
+      },
+      {
+        "defaultMessage": "Boost with original visibility",
+        "id": "status.reblog_private"
+      },
+      {
+        "defaultMessage": "Unboost",
+        "id": "status.cancel_reblog_private"
+      },
+      {
+        "defaultMessage": "This post cannot be boosted",
+        "id": "status.cannot_reblog"
+      },
+      {
+        "defaultMessage": "Favourite",
+        "id": "status.favourite"
+      },
+      {
+        "defaultMessage": "Reply",
+        "id": "confirmations.reply.confirm"
+      },
+      {
+        "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
+        "id": "confirmations.reply.message"
+      },
+      {
+        "defaultMessage": "Expand this status",
+        "id": "status.open"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/picture_in_picture/components/footer.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/picture_in_picture/components/header.json"
   },
   {
     "descriptors": [
@@ -2421,7 +2591,7 @@
         "id": "status.reblog"
       },
       {
-        "defaultMessage": "Boost to original audience",
+        "defaultMessage": "Boost with original visibility",
         "id": "status.reblog_private"
       },
       {
@@ -2622,15 +2792,6 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "View context",
-        "id": "lightbox.view_context"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/ui/components/audio_modal.json"
-  },
-  {
-    "descriptors": [
-      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       },
@@ -2786,6 +2947,14 @@
         "id": "upload_form.description"
       },
       {
+        "defaultMessage": "Analyzing picture…",
+        "id": "upload_modal.analyzing_picture"
+      },
+      {
+        "defaultMessage": "Preparing OCR…",
+        "id": "upload_modal.preparing_ocr"
+      },
+      {
         "defaultMessage": "Edit media",
         "id": "upload_modal.edit_media"
       },
@@ -2796,10 +2965,6 @@
       {
         "defaultMessage": "Change thumbnail",
         "id": "upload_form.thumbnail"
-      },
-      {
-        "defaultMessage": "Analyzing picture…",
-        "id": "upload_modal.analyzing_picture"
       },
       {
         "defaultMessage": "Detect text from picture",
@@ -2887,16 +3052,28 @@
       {
         "defaultMessage": "Next",
         "id": "lightbox.next"
-      },
-      {
-        "defaultMessage": "View context",
-        "id": "lightbox.view_context"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/media_modal.json"
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "{number, plural, one {# minute} other {# minutes}}",
+        "id": "intervals.full.minutes"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# hour} other {# hours}}",
+        "id": "intervals.full.hours"
+      },
+      {
+        "defaultMessage": "{number, plural, one {# day} other {# days}}",
+        "id": "intervals.full.days"
+      },
+      {
+        "defaultMessage": "Indefinite",
+        "id": "mute_modal.indefinite"
+      },
       {
         "defaultMessage": "Are you sure you want to mute {name}?",
         "id": "confirmations.mute.message"
@@ -2908,6 +3085,10 @@
       {
         "defaultMessage": "Hide notifications from this user?",
         "id": "mute_modal.hide_notifications"
+      },
+      {
+        "defaultMessage": "Duration",
+        "id": "mute_modal.duration"
       },
       {
         "defaultMessage": "Cancel",
@@ -3039,11 +3220,15 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "View context",
-        "id": "lightbox.view_context"
+        "defaultMessage": "Compress image view box",
+        "id": "lightbox.compress"
+      },
+      {
+        "defaultMessage": "Expand image view box",
+        "id": "lightbox.expand"
       }
     ],
-    "path": "app/javascript/mastodon/features/ui/components/video_modal.json"
+    "path": "app/javascript/mastodon/features/ui/components/zoomable_image.json"
   },
   {
     "descriptors": [

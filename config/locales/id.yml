@@ -1,7 +1,7 @@
 ---
 id:
   about:
-    about_hashtag_html: Ini adalah toot public yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
+    about_hashtag_html: Ini adalah toot publik yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
     active_count_after: aktif
@@ -21,7 +21,9 @@ id:
     federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
     get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
-    instance_actor_flash: Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
+    instance_actor_flash: 'Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain.
+
+'
     learn_more: Pelajari selengkapnya
     privacy_policy: Kebijakan Privasi
     see_whats_happening: Lihat apa yang sedang terjadi
@@ -37,8 +39,11 @@ id:
       domain: Server
       reason: Alasan
       rejecting_media: 'Berkas media dari server ini tak akan diproses dan disimpan, dan tak akan ada gambar kecil yang ditampilkan, perlu klik manual utk menuju berkas asli:'
+      rejecting_media_title: Media yang disaring
       silenced: 'Pos dari server ini akan disembunyikan dari linimasa publik dan percakapan, dan takkan ada notifikasi yang dibuat dari interaksi pengguna mereka, kecuali Anda mengikuti mereka:'
+      silenced_title: Server yang dibisukan
       suspended: 'Takkan ada data yang diproses, disimpan, dan ditukarkan dari server ini, sehingga interaksi atau komunikasi dengan pengguna dari server ini tak mungkin dilakukan:'
+      suspended_title: Server yang ditangguhkan
     unavailable_content_html: Mastodon umumnya mengizinkan Anda untuk melihat konten dan berinteraksi dengan pengguna dari server lain di fediverse. Ini adalah pengecualian yang dibuat untuk beberapa server.
     user_count_after:
       other: pengguna
@@ -52,6 +57,7 @@ id:
     followers:
       other: Pengikut
     following: Mengikuti
+    instance_actor_flash: Akun ini adalah aktor virtual yang merepresentasikan server itu sendiri dan bukan pengguna individu. Ini dipakai untuk tujuan gabungan dan seharusnya tidak ditangguhkan.
     joined: Bergabung pada %{date}
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
@@ -86,9 +92,10 @@ id:
       delete: Hapus
       destroyed_msg: Catatan moderasi berhasil dihapus!
     accounts:
-      add_email_domain_block: Masukkan domain surel ke daftar hitam
+      add_email_domain_block: Masukkan domain email ke daftar hitam
       approve: Terima
       approve_all: Terima semua
+      approved_msg: Berhasil menerima pendaftaran %{username}
       are_you_sure: Anda yakin?
       avatar: Avatar
       by_domain: Domian
@@ -102,8 +109,10 @@ id:
       confirm: Konfirmasi
       confirmed: Dikonfirmasi
       confirming: Mengkonfirmasi
+      delete: Hapus data
       deleted: Terhapus
       demote: Turunkan
+      destroyed_msg: Data %{username} masuk antrean untuk dihapus segera
       disable: Nonaktifkan
       disable_two_factor_authentication: Nonaktifkan 2FA
       disabled: Dinonaktifkan
@@ -114,10 +123,12 @@ id:
       email_status: Status Email
       enable: Aktifkan
       enabled: Diaktifkan
+      enabled_msg: Berhasil mencairkan akun %{username}
       followers: Pengikut
       follows: Mengikut
       header: Tajuk
       inbox_url: URL Kotak masuk
+      invite_request_text: Alasan bergabung
       invited_by: Diundang oleh
       ip: IP
       joined: Bergabung
@@ -129,6 +140,8 @@ id:
       login_status: Status login
       media_attachments: Lampiran media
       memorialize: Ubah menjadi memoriam
+      memorialized: Dikenang
+      memorialized_msg: Berhasil mengubah akun %{username} menjadi akun memorial
       moderation:
         active: Aktif
         all: Semua
@@ -149,10 +162,14 @@ id:
       public: Publik
       push_subscription_expires: Langganan PuSH telah kadaluarsa
       redownload: Muat ulang profil
+      redownloaded_msg: Berhasil menyegarkan profil %{username} dari asal
       reject: Tolak
       reject_all: Tolak semua
+      rejected_msg: Berhasil menolak permintaan pendaftaran %{username}
       remove_avatar: Hapus avatar
       remove_header: Hapus header
+      removed_avatar_msg: Berhasil menghapus gambar avatar %{username}
+      removed_header_msg: Berhasil menghapus gambar header %{username}
       resend_confirmation:
         already_confirmed: Pengguna ini sudah dikonfirmasi
         send: Kirim ulang email konfirmasi
@@ -167,8 +184,10 @@ id:
         staff: Staf
         user: Pengguna
       search: Cari
-      search_same_email_domain: Pengguna lain dengan domain surel yang sama
+      search_same_email_domain: Pengguna lain dengan domain email yang sama
       search_same_ip: Pengguna lain dengan IP yang sama
+      sensitive: Sensitif
+      sensitized: ditandai sebagai sensitif
       shared_inbox_url: URL kotak masuk bersama
       show:
         created_reports: Laporan yang dibuat oleh akun ini
@@ -178,65 +197,82 @@ id:
       statuses: Status
       subscribe: Langganan
       suspended: Disuspen
+      suspension_irreversible: Data akun ini telah dihapus secara permanen. Anda dapat mengaktifkan akun agar tetap bisa dipakai lagi tapi data sebelumnya tidak dapat dikembalikan.
+      suspension_reversible_hint_html: Akun telah ditangguhkan, dan data akan dihapus total pada %{date}. Sebelum tanggal tersebut, akun dapat dikembalikan tanpa efek apapun. Jika Anda ingin menghapus segera semua data, Anda dapat melakukan sesuai keterangan di bawah.
       time_in_queue: Menunggu dalam antrean %{time}
       title: Akun
       unconfirmed_email: Email belum dikonfirmasi
+      undo_sensitized: Batalkan sensitif
       undo_silenced: Undo mendiamkan
       undo_suspension: Undo suspen
+      unsilenced_msg: Berhasil membuka batasan akun %{username}
       unsubscribe: Berhenti langganan
+      unsuspended_msg: Berhasil membuka penangguhan akun %{username}
       username: Nama pengguna
+      view_domain: Tampilkan ringkasan domain
       warn: Beri Peringatan
       web: Web
       whitelisted: Masuk daftar putih
     action_logs:
       action_types:
-        change_email_user: Ubah Surel untuk Pengguna
+        assigned_to_self_report: Berikan laporan
+        change_email_user: Ubah Email untuk Pengguna
         confirm_user: Konfirmasi Pengguna
         create_account_warning: Buat Peringatan
         create_announcement: Buat Pengumuman
         create_custom_emoji: Buat Emoji Khusus
         create_domain_allow: Buat Izin Domain
         create_domain_block: Buat Blokir Domain
-        create_email_domain_block: Buat Surel Blokir Domain
+        create_email_domain_block: Buat Email Blokir Domain
+        create_ip_block: Buat aturan IP
         demote_user: Turunkan Pengguna
         destroy_announcement: Hapus Pengumuman
         destroy_custom_emoji: Hapus Emoji Khusus
         destroy_domain_allow: Hapus Izin Domain
         destroy_domain_block: Hapus Blokir Domain
-        destroy_email_domain_block: Hapus surel blokir domain
+        destroy_email_domain_block: Hapus email blokir domain
+        destroy_ip_block: Hapus aturan IP
         destroy_status: Hapus Status
         disable_2fa_user: Nonaktifkan 2FA
         disable_custom_emoji: Nonaktifkan Emoji Khusus
         disable_user: Nonaktifkan Pengguna
         enable_custom_emoji: Aktifkan Emoji Khusus
         enable_user: Aktifkan Pengguna
+        memorialize_account: Kenang Akun
         promote_user: Promosikan Pengguna
         remove_avatar_user: Hapus Avatar
         reopen_report: Buka Lagi Laporan
         reset_password_user: Atur Ulang Kata sandi
+        resolve_report: Selesaikan Laporan
+        sensitive_account: Tandai media di akun Anda sebagai sensitif
         silence_account: Bisukan Akun
         suspend_account: Tangguhkan Akun
+        unassigned_report: Batalkan Pemberian Laporan
+        unsensitive_account: Batalkan tanda media di akun Anda dari sensitif
         unsilence_account: Lepas Status Bisu Akun
         unsuspend_account: Lepas Status Tangguh Akun
         update_announcement: Perbarui Pengumuman
         update_custom_emoji: Perbarui Emoji Khusus
+        update_domain_block: Perbarui Blokir Domain
         update_status: Perbarui Status
       actions:
         assigned_to_self_report: "%{name} menugaskan laporan %{target} kpd dirinya sendiri"
-        change_email_user: "%{name} mengubah alamat surel pengguna %{target}"
-        confirm_user: "%{name} mengonfirmasi alamat surel pengguna %{target}"
+        change_email_user: "%{name} mengubah alamat email pengguna %{target}"
+        confirm_user: "%{name} mengonfirmasi alamat email pengguna %{target}"
         create_account_warning: "%{name} mengirim peringatan untuk %{target}"
         create_announcement: "%{name} membuat pengumuman baru %{target}"
         create_custom_emoji: "%{name} mengunggah emoji baru %{target}"
         create_domain_allow: "%{name} memasukkan ke daftar putih domain %{target}"
         create_domain_block: "%{name} memblokir domain %{target}"
-        create_email_domain_block: "%{name} memasukkan ke daftar hitam domain surel %{target}"
+        create_email_domain_block: "%{name} memblokir domain email %{target}"
+        create_ip_block: "%{name} membuat aturan untuk IP %{target}"
         demote_user: "%{name} menurunkan pengguna %{target}"
         destroy_announcement: "%{name} menghapus pengumuman %{target}"
         destroy_custom_emoji: "%{name} menghapus emoji %{target}"
         destroy_domain_allow: "%{name} menghapus domain %{target} dari daftar putih"
         destroy_domain_block: "%{name} membuka blokir domain %{target}"
-        destroy_email_domain_block: "%{name} memasukkan ke daftar putih surel domain %{target}"
+        destroy_email_domain_block: "%{name} membuka blokir domain email %{target}"
+        destroy_ip_block: "%{name} menghapus aturan untuk IP %{target}"
         destroy_status: "%{name} menghapus status %{target}"
         disable_2fa_user: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
         disable_custom_emoji: "%{name} mematikan emoji %{target}"
@@ -249,13 +285,16 @@ id:
         reopen_report: "%{name} membuka ulang laporan %{target}"
         reset_password_user: "%{name} mereset kata sandi pengguna %{target}"
         resolve_report: "%{name} menyelesaikan laporan %{target}"
+        sensitive_account: "%{name} menandai media %{target} sebagai sensitif"
         silence_account: "%{name} membungkam akun %{target}"
         suspend_account: "%{name} menangguhkan akun %{target}"
         unassigned_report: "%{name} tidak menugaskan laporan %{target}"
+        unsensitive_account: "%{name} membatalkan tanda media %{target} sebagai sensitif"
         unsilence_account: "%{name} menghapus bungkaman akun %{target}"
         unsuspend_account: "%{name} menghapus penangguhan akun %{target}"
         update_announcement: "%{name} memperbarui pengumuman %{target}"
         update_custom_emoji: "%{name} memperbarui emoji %{target}"
+        update_domain_block: "%{name} memperbarui blokir domain untuk %{target}"
         update_status: "%{name} memperbarui status %{target}"
       deleted_status: "(status dihapus)"
       empty: Log tidak ditemukan.
@@ -299,6 +338,7 @@ id:
       listed: Terdaftar
       new:
         title: Tambah emoji kustom baru
+      not_permitted: Anda tidak diizinkan untuk melakukan tindakan ini
       overwrite: Timpa
       shortcode: Kode pendek
       shortcode_hint: Sedikitnya 2 karakter, hanya karakter alfanumerik dan garis bawah
@@ -383,19 +423,20 @@ id:
       view: Lihat blokir domain
     email_domain_blocks:
       add_new: Tambah baru
-      created_msg: Berhasil menambahkan domain surel ke daftar hitam
+      created_msg: Berhasil memblokir domain email
       delete: Hapus
-      destroyed_msg: Berhasil menghapus domain surel dari daftar hitam
+      destroyed_msg: Berhasil membuka blokiran domain email
       domain: Domain
-      empty: Tidak ada domain surel yang masuk daftar hitam.
+      empty: Tidak ada domain email yang diblokir.
       from_html: dari %{domain}
       new:
         create: Tambah domain
-        title: Entri daftar hitam surel baru
-      title: Daftar hitam surel
+        title: Blokir domain email baru
+      title: Domain email terblokir
     instances:
       by_domain: Domain
       delivery_available: Pengiriman tersedia
+      empty: Domain tidak ditemukan.
       known_accounts:
         other: "%{count} akun yang dikenal"
       moderation:
@@ -418,6 +459,21 @@ id:
         expired: Kedaluwarsa
         title: Saring
       title: Undang
+    ip_blocks:
+      add_new: Buat aturan
+      created_msg: Berhasil menambah aturan IP baru
+      delete: Hapus
+      expires_in:
+        '1209600': 2 minggu
+        '15778476': 6 bulan
+        '2629746': 1 bulan
+        '31556952': 1 tahun
+        '86400': 1 hari
+        '94670856': 3 tahun
+      new:
+        title: Buat aturan IP baru
+      no_ip_block_selected: Tak ada aturan IP yang berubah karena tak ada yang dipilih
+      title: Aturan IP
     pending_accounts:
       title: Akun tertunda (%{count})
     relationships:
@@ -455,6 +511,8 @@ id:
       comment:
         none: Tidak ada
       created_at: Dilaporkan
+      forwarded: Diteruskan
+      forwarded_to: Diteruskan ke %{domain}
       mark_as_resolved: Tandai telah diseleseikan
       mark_as_unresolved: Tandai belum terselesaikan
       notes:
@@ -498,6 +556,7 @@ id:
       domain_blocks_rationale:
         title: Tampilkan alasan
       enable_bootstrap_timeline_accounts:
+        desc_html: Buat pengguna baru mengikuti akun yang sudah dipilih agar beranda mereka tidak kosong
         title: Aktifkan opsi ikuti otomatis untuk pengguna baru
       hero:
         desc_html: Ditampilkan di halaman depan. Direkomendasikan minimal 600x100px. Jika tidak diatur, kembali ke server gambar kecil
@@ -524,6 +583,9 @@ id:
         min_invite_role:
           disabled: Tidak ada satu pun
           title: Izinkan undangan oleh
+        require_invite_text:
+          desc_html: Saat pendaftaran harus disetujui manual, buat input teks "Mengapa Anda ingin bergabung?" sebagai hal wajib bukan opsional
+          title: Pengguna baru harus memasukkan alasan bergabung
       registrations_mode:
         modes:
           approved: Persetujuan diperlukan untuk mendaftar
@@ -621,6 +683,7 @@ id:
     add_new: Buat alias
     created_msg: Berhasil membuat alias baru. Sekarang Anda dapat memulai pindah dari akun lama.
     deleted_msg: Berhasil menghapus alias. Pindah dari akun tersebut ke sini tidak akan lagi bisa dilakukan.
+    empty: Anda tidak memiliki alias.
     hint_html: Jika Anda ingin pindah dari akun lain ke sini, Anda dapat membuat alias, yang dilakukan sebelum Anda setuju dengan memindah pengikut dari akun lama ke akun sini. Aksi ini <strong>tidak berbahaya dan tidak bisa dikembalikan</strong>. <strong>Pemindahan akun dimulai dari akun lama</strong>.
     remove: Hapus tautan alias
   appearance:
@@ -662,8 +725,11 @@ id:
       prefix_sign_up: Daftar ke Mastodon hari ini!
       suffix: Dengan sebuah akun, Anda dapat mengikuti orang, mengirim pembaruan, dan bertukar pesan dengan pengguna dari server Mastodon mana pun dan lainnya!
     didnt_get_confirmation: Tidak menerima petunjuk konfirmasi?
+    dont_have_your_security_key: Tidak memiliki kunci keamanan?
     forgot_password: Lupa kata sandi?
     invalid_reset_password_token: Token reset kata sandi tidak valid atau kedaluwarsa. Silakan minta yang baru.
+    link_to_otp: Masukkan kode dua-faktor dari ponsel Anda atau dari kode pemulihan
+    link_to_webauth: Gunakan perangkat kunci keamanan Anda
     login: Masuk
     logout: Keluar
     migrate_account: Pindah ke akun berbeda
@@ -679,16 +745,18 @@ id:
     security: Identitas
     set_new_password: Tentukan kata sandi baru
     setup:
-      email_below_hint_html: Jika alamat surel di bawah tidak benar, Anda dapat menggantinya di sini dan menerima konfirmasi surel baru.
-      email_settings_hint_html: Konfirmasi surel telah dikirim ke %{email}. Jika alamat surel tidak benar, Anda dapat mengubahnya di setelan akun.
+      email_below_hint_html: Jika alamat email di bawah tidak benar, Anda dapat menggantinya di sini dan menerima email konfirmasi baru.
+      email_settings_hint_html: Email konfirmasi telah dikirim ke %{email}. Jika alamat email tidak benar, Anda dapat mengubahnya di pengaturan akun.
       title: Atur
     status:
       account_status: Status akun
-      confirming: Menunggu konfirmasi surel diselesaikan.
+      confirming: Menunggu konfirmasi email diselesaikan.
       functional: Akun Anda kini beroperasi penuh.
-      pending: Lamaran Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima sebuah surel jika lamaran Anda diterima.
+      pending: Permintaan Anda sedang ditinjau oleh staf kami. Ini mungkin butuh beberapa waktu. Anda akan menerima email jika permintaan Anda diterima.
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
+    too_fast: Formulir dikirim terlalu cepat, coba lagi.
     trouble_logging_in: Kesulitan masuk?
+    use_security_key: Gunakan kunci keamanan
   authorize_follow:
     already_following: Anda sudah mengikuti akun ini
     already_requested: Anda sudah mengirimkan permintaan untuk mengikuti akun tersebut
@@ -706,9 +774,14 @@ id:
     hint_html: "<strong>Tip:</strong> Kami tidak akan meminta kata sandi Anda lagi untuk beberapa jam ke depan."
     invalid_password: Kata sandi tidak valid
     prompt: Konfirmasi kata sandi untuk melanjutkan
+  crypto:
+    errors:
+      invalid_key: bukan kunci Ed25519 atau Curve25519 yang valid
+      invalid_signature: bukan tanda tangan Ed25519 yang valid
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}j"
@@ -733,9 +806,9 @@ id:
       before: 'Sebelum melanjutkan, silakan baca catatan ini dengan hati-hati:'
       caches: Konten yang telah tersimpan di server lain mungkin akan tetap di sana
       data_removal: Kiriman Anda dan data lainnya akan dihapus secara permanen
-      email_change_html: Anda dapat <a href="%{path}">mengubah alamat surel Anda</a> tanpa perlu menghapus akun
-      email_contact_html: Jika pesan belum diterima, Anda dapat mengirim surel <a href="mailto:%{email}">%{email}</a> sebagai bantuan
-      email_reconfirmation_html: Jika Anda tidak menerima konfirmasi surel, <a href="%{path}">Anda dapat memintanya lagi</a>
+      email_change_html: Anda dapat <a href="%{path}">mengubah alamat email Anda</a> tanpa perlu menghapus akun
+      email_contact_html: Jika pesan belum diterima, Anda dapat mengirim email ke <a href="mailto:%{email}">%{email}</a> untuk mencari bantuan
+      email_reconfirmation_html: Jika Anda tidak menerima email konfirmasi, <a href="%{path}">Anda dapat memintanya lagi</a>
       irreversible: Anda tidak akan bisa lagi mengembalikan atau mengaktifkan kembali akun Anda
       more_details_html: Lebih detailnya, lihat <a href="%{terms_path}">kebijakan privasi</a>.
       username_available: Nama pengguna Anda akan tersedia lagi
@@ -773,6 +846,7 @@ id:
       request: Meminta arsip Anda
       size: Ukuran
     blocks: Anda blokir
+    bookmarks: Markah
     csv: CSV
     domain_blocks: Blokir domain
     lists: Daftar
@@ -834,9 +908,13 @@ id:
     inactive: Tidak aktif
     publicize_checkbox: 'Dan toot ini:'
     publicize_toot: 'Terbukti! Saya adalah %{username} di %{service}: %{url}'
+    remove: Hapus bukti dari akun
+    removed: Berhasil menghapus bukti dari akun
     status: Status verifikasi
     view_proof: Lihat bukti
   imports:
+    errors:
+      over_rows_processing_limit: berisi lebih dari %{count} baris
     modes:
       merge: Gabung
       merge_long: Pertahankan rekaman yang sudah ada dan buat baru
@@ -846,6 +924,7 @@ id:
     success: Data anda berhasil diupload dan akan diproses sesegera mungkin
     types:
       blocking: Daftar diblokir
+      bookmarks: Markah
       domain_blocking: Daftar blokir domain
       following: Daftar diikuti
       muting: Daftar didiamkan
@@ -899,6 +978,7 @@ id:
     on_cooldown: Anda baru saja memindahkan akun Anda. Fungsi ini akan tersedia kembali %{count} hari lagi.
     past_migrations: Migrasi lampau
     proceed_with_move: Pindahkan pengikut
+    redirected_msg: Akun Anda sedang dialihkan ke %{acct}.
     redirecting_to: Akun Anda dialihkan ke %{acct}.
     set_redirect: Atur peralihan
     warning:
@@ -912,6 +992,10 @@ id:
       redirect: Pemberitahuan peralihan akan dimunculkan pada akun profil Anda dan akun akan dikecualikan dari pencarian
   moderation:
     title: Moderasi
+  move_handler:
+    carry_blocks_over_text: Pengguna ini pindah dari %{acct}, yang telah Anda blokir sebelumnya.
+    carry_mutes_over_text: Pengguna ini pindah dari %{acct}, yang telah Anda bisukan sebelumnya.
+    copy_account_note_text: 'Pengguna ini pindah dari %{acct}, ini dia pesan Anda sebelumnya tentang mereka:'
   notification_mailer:
     digest:
       action: Lihat semua notifikasi
@@ -945,7 +1029,7 @@ id:
       subject: "%{name} mem-boost status anda"
       title: Boost baru
   notifications:
-    email_events: Event untuk notifikasi surel
+    email_events: Event untuk notifikasi email
     email_events_hint: 'Pilih event yang ingin Anda terima notifikasinya:'
     other_settings: Pengaturan notifikasi lain
   number:
@@ -958,6 +1042,14 @@ id:
           quadrillion: Kdt
           thousand: Rb
           trillion: T
+  otp_authentication:
+    code_hint: Masukkan kode yang dibuat oleh aplikasi autentikator sebagai konfirmasi
+    description_html: Jika Anda mengaktifkan <strong>autentikasi dua-faktor</strong> menggunakan aplikasi autentikator, Anda membutuhkan ponsel untuk masuk akun, yang akan membuat token untuk dimasukkan.
+    enable: Aktifkan
+    instructions_html: "<strong>Pindai kode QR ini dengan Google Authenticator anda atau aplikasi TOTP lainnya di ponsel anda</strong>. Mulai sekarang, aplikasi tersebut akan membuat token yang bisa anda gunakan untuk masuk akun."
+    manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya secara manual, ini dia kode rahasia yang harus dimasukkan:'
+    setup: Persiapan
+    wrong_code: Kode yang dimasukkan tidak cocok! Apakah waktu server dan waktu di ponsel sudah benar?
   pagination:
     newer: Lebih baru
     next: Selanjutnya
@@ -986,6 +1078,7 @@ id:
   relationships:
     activity: Aktivitas akun
     dormant: Terbengkalai
+    follow_selected_followers: Ikuti pengikut yang dipilih
     followers: Pengikut
     following: Mengikuti
     invited: Diundang
@@ -1082,10 +1175,13 @@ id:
     profile: Profil
     relationships: Ikuti dan pengikut
     two_factor_authentication: Autentikasi Two-factor
+    webauthn_authentication: Kunci keamanan
   spam_check:
     spam_detected: Ini adalah laporan otomatis. Spam terdeteksi.
   statuses:
     attached:
+      audio:
+        other: "%{count} audio"
       description: 'Terlampir: %{attached}'
       image:
         other: "%{count} gambar"
@@ -1112,6 +1208,8 @@ id:
         other: "%{count} memilih"
       vote: Memilih
     show_more: Tampilkan selengkapnya
+    show_newer: Tampilkan lebih baru
+    show_older: Tampilkan lebih lama
     show_thread: Tampilkan utas
     sign_in_to_participate: Masuk untuk mengikuti percakapan
     title: '%{name}: "%{quote}"'
@@ -1129,6 +1227,87 @@ id:
   tags:
     does_not_match_previous_name: tidak cocok dengan nama sebelumnya
   terms:
+    body_html: |
+      <h2>Privacy Policy</h2>
+      <h3 id="collect">What information do we collect?</h3>
+
+      <ul>
+      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Site usage by children</h3>
+
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Ketentuan Layanan dan Kebijakan Privasi"
   themes:
     contrast: Mastodon (Kontras tinggi)
@@ -1139,42 +1318,50 @@ id:
       default: "%d %b %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Masukkan kode yang dibuat oleh app autentikator sebagai konfirmasi
-    description_html: Jika anda menaktifkan ototentikasi dua faktor, saat login anda harus menggunakan telepon anda  untuk membuat token supaya anda bisa masuk.
+    add: Tambah
     disable: Matikan
-    enable: Aktifkan
+    disabled_success: Autentikasi dua-faktor berhasil dinonaktifkan
+    edit: Edit
     enabled: Otentifikasi dua faktor aktif
     enabled_success: Ototentikasi dua faktor telah diaktifkan
     generate_recovery_codes: Buat Kode Pemulihan
-    instructions_html: "<strong>Pindai kode QR ini pada Otentikator Google anda atau aplikasi TOTP lainnya di telepon anda</strong>. Mulai sekarang, aplikasi tersebut akan membuat token yang bisa anda gunakan untuk login."
     lost_recovery_codes: Kode pemulihan bisa anda gunakan untuk mendapatkan kembali akses pada akun anda jika anda kehilangan handphone anda. Jika anda kehilangan kode pemulihan, anda bisa membuatnya ulang disini. Kode pemulihan anda yang lama tidak akan bisa digunakan lagi.
-    manual_instructions: 'Jika anda tidak bisa memindai kode QR dan harus memasukkannya secara manual, ini dia kode yang harus dimasukkan:'
+    methods: Metode dua-faktor
+    otp: Aplikasi autentikator
     recovery_codes: Kode pemulihan cadangan
     recovery_codes_regenerated: Kode Pemulihan berhasil dibuat ulang
     recovery_instructions_html: Jika anda kehilangan akses pada handphone anda, anda bisa menggunakan kode pemulihan dibawah ini untuk mendapatkan kembali akses pada akun anda. Simpan kode pemulihan anda baik-baik, misalnya dengan mencetaknya atau menyimpannya bersama dokumen penting lainnya.
-    setup: Persiapan
-    wrong_code: Kode yang dimasukkan tidak cocok! Apa waktu server dan waktu di handphone sudah cocok?
+    webauthn: Kunci keamanan
   user_mailer:
     backup_ready:
       explanation: Cadangan penuh akun Mastodon Anda sudah dapat diunduh!
       subject: Arsip Anda sudah siap diunduh
       title: Ambil arsip
+    sign_in_token:
+      details: 'Ini dia rincian usaha masuk akun:'
+      explanation: 'Kami mendeteksi usaha masuk ke akun Anda dari alamat IP tak dikenal. Jika ini Anda, mohon masukkan kode keamanan di bawah pada halaman masuk:'
+      further_actions: 'Jika ini bukan Anda, mohon ganti kata sandi dan aktifkan autentikasi dua-faktor pada akun Anda. Anda bisa melakukannya di sini:'
+      subject: Harap konfirmasi usaha masuk akun
+      title: Usaha masuk akun
     warning:
       explanation:
         disable: Saat akun Anda beku, data Anda tetap utuh. Anda tidak akan dapat melakukan apa-apa sampai akun Anda tidak lagi dikunci.
+        sensitive: Berkas media dan media tertaut yang Anda unggah akan dianggap sebagai sensitif.
         silence: Saat akun Anda dibatasi, hanya akun yang Anda ikuti yang dapat melihat toot Anda di server ini. Akun Anda mungkin akan dikecualikan dari daftar publik. Akun lain dapat mengikuti akun Anda secara manual.
         suspend: Akun Anda telah ditangguhkan. Semua toot dan media yang Anda unggah dihapus secara permanen dari server ini, dan server tempat Anda memiliki pengikut.
-      get_in_touch: Anda dapat membalas surel ini untuk menghubungi pengurus %{instance}.
+      get_in_touch: Anda dapat membalas email ini untuk menghubungi pengurus %{instance}.
       review_server_policies: Tinjau kebijakan server
       statuses: 'Khususnya untuk:'
       subject:
         disable: Akun Anda %{acct} telah dibekukan
         none: Peringatan untuk %{acct}
+        sensitive: Postingan media akun Anda %{acct} telah ditandai sebagai sensitif
         silence: Akun Anda %{acct} telah dibatasi
         suspend: Akun Anda %{acct} telah ditangguhkan
       title:
         disable: Akun dibekukan
         none: Peringatan
+        sensitive: Media Anda telah ditandai sebagai sensitif
         silence: Akun dibatasi
         suspend: Akun ditangguhkan
     welcome:
@@ -1186,7 +1373,7 @@ id:
       full_handle: Penanganan penuh Anda
       full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
       review_preferences_action: Ubah preferensi
-      review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti surel untuk menerima pesan, atau tingkat privasi bawaan untuk kiriman Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
+      review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti email untuk menerima pesan, atau tingkat privasi bawaan untuk postingan Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
       subject: Selamat datang di Mastodon
       tip_federated_timeline: Linimasa gabungan adalah ruang yang menampilkan jaringan Mastodon. Tapi ini hanya berisi tetangga orang-orang yang Anda ikuti, jadi tidak sepenuhnya komplet.
       tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
@@ -1195,12 +1382,34 @@ id:
       tips: Tips
       title: Selamat datang, %{name}!
   users:
+    blocked_email_provider: Layanan email ini tidak diizinkan
     follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang
+    generic_access_help_html: Mengalami masalah saat akses akun? Anda mungkin perlu menghubungi %{email} untuk mencari bantuan
     invalid_email: Alamat email tidak cocok
+    invalid_email_mx: Alamat email ini sepertinya tidak ada
     invalid_otp_token: Kode dua faktor tidak cocok
+    invalid_sign_in_token: Kode keamanan tidak valid
     otp_lost_help_html: Jika Anda kehilangan akses keduanya, Anda dapat menghubungi %{email}
-    seamless_external_login: Anda masuk via layanan eksternal, sehingga setelan kata sandi dan surel tidak tersedia.
+    seamless_external_login: Anda masuk via layanan eksternal, sehingga pengaturan kata sandi dan email tidak tersedia.
     signed_in_as: 'Masuk sebagai:'
+    suspicious_sign_in_confirmation: Anda terlihat belum pernah masuk dari perangkat ini, dan sudah lama Anda tidak masuk akun, sehingga kami mengirim kode keamanan ke alamat email Anda untuk mengonfirmasi bahwa ini adalah Anda.
   verification:
     explanation_html: 'Anda dapat <strong>memverifikasi diri Anda sebagai pemiliki tautan pada metadata profil</strong>. Situsweb yang ditautkan haruslah berisi tautan ke profil Mastodon Anda. Tautan tersebut <strong>harus</strong> memiliki atribut <code>rel="me"</code>. Isi teks tautan tidaklah penting. Ini contohnya:'
     verification: Verifikasi
+  webauthn_credentials:
+    add: Tambahkan kunci keamanan baru
+    create:
+      error: Terjadi masalah saat menambahkan kunci keamanan. Silakan coba lagi.
+      success: Kunci keamanan Anda berhasil ditambahkan.
+    delete: Hapus
+    delete_confirmation: Yakin ingin menghapus kunci keamanan ini?
+    description_html: Jika Anda mengaktifkan <strong>autentikasi kunci keamanan</strong>, proses masuk Anda akan memerlukan salah satu kunci keamanan Anda.
+    destroy:
+      error: Terjadi masalah saat menghapus kunci keamanan Anda. Silakan coba lagi.
+      success: Kunci keamanan Anda berhasil dihapus.
+    invalid_credential: Kunci keamanan tidak valid
+    nickname_hint: Masukkan panggilan kunci keamanan baru Anda
+    not_enabled: Anda belum mengaktifkan WebAuthn
+    not_supported: Peramban ini tidak mendukung kunci keamanan
+    otp_required: Untuk menggunakan kunci keamanan harap aktifkan autentikasi dua-faktor.
+    registered_on: Terdaftar pada %{date}

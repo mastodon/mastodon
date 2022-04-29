@@ -15,7 +15,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   private
 
   def create_encrypted_message
-    return reject_payload! if invalid_origin?(@object['id']) || @options[:delivered_to_account_id].blank?
+    return reject_payload! if invalid_origin?(object_uri) || @options[:delivered_to_account_id].blank?
 
     target_account = Account.find(@options[:delivered_to_account_id])
     target_device  = target_account.devices.find_by(device_id: @object.dig('to', 'deviceId'))
@@ -43,7 +43,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def create_status
-    return reject_payload! if unsupported_object_type? || invalid_origin?(@object['id']) || Tombstone.exists?(uri: @object['id']) || !related_to_local_activity?
+    return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists? || !related_to_local_activity?
 
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
@@ -90,7 +90,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     fetch_replies(@status)
     check_for_spam
     distribute(@status)
-    forward_for_reply if @status.distributable?
+    forward_for_reply
   end
 
   def find_existing_status
@@ -102,8 +102,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def process_status_params
     @params = begin
       {
-        uri: @object['id'],
-        url: object_url || @object['id'],
+        uri: object_uri,
+        url: object_url || object_uri,
         account: @account,
         text: text_from_content || '',
         language: detected_language,
@@ -111,7 +111,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         created_at: @object['published'],
         override_timestamps: @options[:override_timestamps],
         reply: @object['inReplyTo'].present?,
-        sensitive: @object['sensitive'] || false,
+        sensitive: @account.sensitized? || @object['sensitive'] || false,
         visibility: visibility_from_audience,
         thread: replied_to_status,
         conversation: conversation_from_uri(@object['conversation']),
@@ -228,6 +228,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     emoji ||= CustomEmoji.new(domain: @account.domain, shortcode: shortcode, uri: uri)
     emoji.image_remote_url = image_url
     emoji.save
+  rescue Seahorse::Client::NetworkingError
+    nil
   end
 
   def process_attachments
@@ -250,6 +252,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         media_attachment.save
       rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
         RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+      rescue Seahorse::Client::NetworkingError
+        nil
       end
     end
 
@@ -313,7 +317,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     RedisLock.acquire(poll_lock_options) do |lock|
       if lock.acquired?
         already_voted = poll.votes.where(account: @account).exists?
-        poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: @object['id'])
+        poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: object_uri)
       else
         raise Mastodon::RaceConditionError
       end
@@ -385,7 +389,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def text_from_content
-    return Formatter.instance.linkify([[text_from_name, text_from_summary.presence].compact.join("\n\n"), object_url || @object['id']].join(' ')) if converted_object_type?
+    return Formatter.instance.linkify([[text_from_name, text_from_summary.presence].compact.join("\n\n"), object_url || object_uri].join(' ')) if converted_object_type?
 
     if @object['content'].present?
       @object['content']
@@ -484,12 +488,16 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     Account.local.where(username: local_usernames).exists?
   end
 
+  def tombstone_exists?
+    Tombstone.exists?(uri: object_uri)
+  end
+
   def check_for_spam
     SpamCheck.perform(@status)
   end
 
   def forward_for_reply
-    return unless @json['signature'].present? && reply_to_local?
+    return unless @status.distributable? && @json['signature'].present? && reply_to_local?
 
     ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
   end
@@ -507,7 +515,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def lock_options
-    { redis: Redis.current, key: "create:#{@object['id']}" }
+    { redis: Redis.current, key: "create:#{object_uri}" }
   end
 
   def poll_lock_options

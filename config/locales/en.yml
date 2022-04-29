@@ -60,6 +60,7 @@ en:
       one: Follower
       other: Followers
     following: Following
+    instance_actor_flash: This account is a virtual actor used to represent the server itself and not any individual user. It is used for federation purposes and should not be suspended.
     joined: Joined %{date}
     last_active: last active
     link_verified_on: Ownership of this link was checked on %{date}
@@ -98,6 +99,7 @@ en:
       add_email_domain_block: Block e-mail domain
       approve: Approve
       approve_all: Approve all
+      approved_msg: Successfully approved %{username}'s sign-up application
       are_you_sure: Are you sure?
       avatar: Avatar
       by_domain: Domain
@@ -111,22 +113,26 @@ en:
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
+      delete: Delete data
       deleted: Deleted
       demote: Demote
-      disable: Disable
+      destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
+      disable: Freeze
       disable_two_factor_authentication: Disable 2FA
-      disabled: Disabled
+      disabled: Frozen
       display_name: Display name
       domain: Domain
       edit: Edit
       email: Email
       email_status: Email status
-      enable: Enable
+      enable: Unfreeze
       enabled: Enabled
+      enabled_msg: Successfully unfroze %{username}'s account
       followers: Followers
       follows: Follows
       header: Header
       inbox_url: Inbox URL
+      invite_request_text: Reasons for joining
       invited_by: Invited by
       ip: IP
       joined: Joined
@@ -138,6 +144,8 @@ en:
       login_status: Login status
       media_attachments: Media attachments
       memorialize: Turn into memoriam
+      memorialized: Memorialized
+      memorialized_msg: Successfully turned %{username} into a memorial account
       moderation:
         active: Active
         all: All
@@ -158,10 +166,14 @@ en:
       public: Public
       push_subscription_expires: PuSH subscription expires
       redownload: Refresh profile
+      redownloaded_msg: Successfully refreshed %{username}'s profile from origin
       reject: Reject
       reject_all: Reject all
+      rejected_msg: Successfully rejected %{username}'s sign-up application
       remove_avatar: Remove avatar
       remove_header: Remove header
+      removed_avatar_msg: Successfully removed %{username}'s avatar image
+      removed_header_msg: Successfully removed %{username}'s header image
       resend_confirmation:
         already_confirmed: This user is already confirmed
         send: Resend confirmation email
@@ -178,22 +190,30 @@ en:
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
+      sensitive: Sensitive
+      sensitized: marked as sensitive
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: Made reports
         targeted_reports: Reported by others
-      silence: Silence
-      silenced: Silenced
+      silence: Limit
+      silenced: Limited
       statuses: Statuses
       subscribe: Subscribe
       suspended: Suspended
+      suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
+      suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       time_in_queue: Waiting in queue %{time}
       title: Accounts
       unconfirmed_email: Unconfirmed email
+      undo_sensitized: Undo sensitive
       undo_silenced: Undo silence
       undo_suspension: Undo suspension
+      unsilenced_msg: Successfully unlimited %{username}'s account
       unsubscribe: Unsubscribe
+      unsuspended_msg: Successfully unsuspended %{username}'s account
       username: Username
+      view_domain: View summary for domain
       warn: Warn
       web: Web
       whitelisted: Allowed for federation
@@ -208,12 +228,14 @@ en:
         create_domain_allow: Create Domain Allow
         create_domain_block: Create Domain Block
         create_email_domain_block: Create E-mail Domain Block
+        create_ip_block: Create IP rule
         demote_user: Demote User
         destroy_announcement: Delete Announcement
         destroy_custom_emoji: Delete Custom Emoji
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
         destroy_email_domain_block: Delete e-mail domain block
+        destroy_ip_block: Delete IP rule
         destroy_status: Delete Status
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
@@ -226,13 +248,16 @@ en:
         reopen_report: Reopen Report
         reset_password_user: Reset Password
         resolve_report: Resolve Report
+        sensitive_account: Mark the media in your account as sensitive
         silence_account: Silence Account
         suspend_account: Suspend Account
         unassigned_report: Unassign Report
+        unsensitive_account: Unmark the media in your account as sensitive
         unsilence_account: Unsilence Account
         unsuspend_account: Unsuspend Account
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
+        update_domain_block: Update Domain Block
         update_status: Update Status
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
@@ -244,12 +269,14 @@ en:
         create_domain_allow: "%{name} allowed federation with domain %{target}"
         create_domain_block: "%{name} blocked domain %{target}"
         create_email_domain_block: "%{name} blocked e-mail domain %{target}"
+        create_ip_block: "%{name} created rule for IP %{target}"
         demote_user: "%{name} demoted user %{target}"
         destroy_announcement: "%{name} deleted announcement %{target}"
         destroy_custom_emoji: "%{name} destroyed emoji %{target}"
         destroy_domain_allow: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block: "%{name} unblocked domain %{target}"
         destroy_email_domain_block: "%{name} unblocked e-mail domain %{target}"
+        destroy_ip_block: "%{name} deleted rule for IP %{target}"
         destroy_status: "%{name} removed status by %{target}"
         disable_2fa_user: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji: "%{name} disabled emoji %{target}"
@@ -262,13 +289,16 @@ en:
         reopen_report: "%{name} reopened report %{target}"
         reset_password_user: "%{name} reset password of user %{target}"
         resolve_report: "%{name} resolved report %{target}"
+        sensitive_account: "%{name} marked %{target}'s media as sensitive"
         silence_account: "%{name} silenced %{target}'s account"
         suspend_account: "%{name} suspended %{target}'s account"
         unassigned_report: "%{name} unassigned report %{target}"
+        unsensitive_account: "%{name} unmarked %{target}'s media as sensitive"
         unsilence_account: "%{name} unsilenced %{target}'s account"
         unsuspend_account: "%{name} unsuspended %{target}'s account"
         update_announcement: "%{name} updated announcement %{target}"
         update_custom_emoji: "%{name} updated emoji %{target}"
+        update_domain_block: "%{name} updated domain block for %{target}"
         update_status: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
       empty: No logs found.
@@ -372,6 +402,8 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain block
+      obfuscate: Obfuscate domain name
+      obfuscate_hint: Partially obfuscate the domain name in the list if advertising the list of domain limitations is enabled
       private_comment: Private comment
       private_comment_hint: Comment about this domain limitation for internal use by the moderators.
       public_comment: Public comment
@@ -411,6 +443,7 @@ en:
     instances:
       by_domain: Domain
       delivery_available: Delivery is available
+      empty: No domains found.
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
@@ -434,6 +467,21 @@ en:
         expired: Expired
         title: Filter
       title: Invites
+    ip_blocks:
+      add_new: Create rule
+      created_msg: Successfully added new IP rule
+      delete: Delete
+      expires_in:
+        '1209600': 2 weeks
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 day
+        '94670856': 3 years
+      new:
+        title: Create new IP rule
+      no_ip_block_selected: No IP rules were changed as none were selected
+      title: IP rules
     pending_accounts:
       title: Pending accounts (%{count})
     relationships:
@@ -473,6 +521,8 @@ en:
       comment:
         none: None
       created_at: Reported
+      forwarded: Forwarded
+      forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
       mark_as_unresolved: Mark as unresolved
       notes:
@@ -516,6 +566,7 @@ en:
       domain_blocks_rationale:
         title: Show rationale
       enable_bootstrap_timeline_accounts:
+        desc_html: Make new users automatically follow configured accounts so their home feed doesn't start out empty
         title: Enable default follows for new users
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
@@ -542,6 +593,9 @@ en:
         min_invite_role:
           disabled: No one
           title: Allow invitations by
+        require_invite_text:
+          desc_html: When registrations require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
+          title: Require new users to enter a reason to join
       registrations_mode:
         modes:
           approved: Approval required for sign up
@@ -681,8 +735,11 @@ en:
       prefix_sign_up: Sign up on Mastodon today!
       suffix: With an account, you will be able to follow people, post updates and exchange messages with users from any Mastodon server and more!
     didnt_get_confirmation: Didn't receive confirmation instructions?
+    dont_have_your_security_key: Don't have your security key?
     forgot_password: Forgot your password?
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
+    link_to_otp: Enter a two-factor code from your phone or a recovery code
+    link_to_webauth: Use your security key device
     login: Log in
     logout: Logout
     migrate_account: Move to a different account
@@ -707,7 +764,9 @@ en:
       functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+    too_fast: Form submitted too fast, try again.
     trouble_logging_in: Trouble logging in?
+    use_security_key: Use security key
   authorize_follow:
     already_following: You are already following this account
     already_requested: You have already sent a follow request to that account
@@ -732,6 +791,7 @@ en:
   date:
     formats:
       default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}h"
@@ -796,6 +856,7 @@ en:
       request: Request your archive
       size: Size
     blocks: You block
+    bookmarks: Bookmarks
     csv: CSV
     domain_blocks: Domain blocks
     lists: Lists
@@ -809,7 +870,7 @@ en:
   filters:
     contexts:
       account: Profiles
-      home: Home timeline
+      home: Home and lists
       notifications: Notifications
       public: Public timelines
       thread: Conversations
@@ -863,6 +924,8 @@ en:
     status: Verification status
     view_proof: View proof
   imports:
+    errors:
+      over_rows_processing_limit: contains more than %{count} rows
     modes:
       merge: Merge
       merge_long: Keep existing records and add new ones
@@ -872,6 +935,7 @@ en:
     success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Blocking list
+      bookmarks: Bookmarks
       domain_blocking: Domain blocking list
       following: Following list
       muting: Muting list
@@ -993,6 +1057,14 @@ en:
           thousand: K
           trillion: T
           unit: ''
+  otp_authentication:
+    code_hint: Enter the code generated by your authenticator app to confirm
+    description_html: If you enable <strong>two-factor authentication</strong> using an authenticator app, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
+    enable: Enable
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    setup: Set up
+    wrong_code: The entered code was invalid! Are server time and device time correct?
   pagination:
     newer: Newer
     next: Next
@@ -1021,6 +1093,7 @@ en:
   relationships:
     activity: Account activity
     dormant: Dormant
+    follow_selected_followers: Follow selected followers
     followers: Followers
     following: Following
     invited: Invited
@@ -1117,6 +1190,7 @@ en:
     profile: Profile
     relationships: Follows and followers
     two_factor_authentication: Two-factor Auth
+    webauthn_authentication: Security keys
   spam_check:
     spam_detected: This is an automated report. Spam has been detected.
   statuses:
@@ -1155,6 +1229,8 @@ en:
         other: "%{count} votes"
       vote: Vote
     show_more: Show more
+    show_newer: Show newer
+    show_older: Show older
     show_thread: Show thread
     sign_in_to_participate: Sign in to participate in the conversation
     title: '%{name}: "%{quote}"'
@@ -1263,21 +1339,20 @@ en:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Enter the code generated by your authenticator app to confirm
-    description_html: If you enable <strong>two-factor authentication</strong>, logging in will require you to be in possession of your phone, which will generate tokens for you to enter.
-    disable: Disable
-    enable: Enable
+    add: Add
+    disable: Disable 2FA
+    disabled_success: Two-factor authentication successfully disabled
+    edit: Edit
     enabled: Two-factor authentication is enabled
     enabled_success: Two-factor authentication successfully enabled
     generate_recovery_codes: Generate recovery codes
-    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
     lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
-    manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
+    methods: Two-factor methods
+    otp: Authenticator app
     recovery_codes: Backup recovery codes
     recovery_codes_regenerated: Recovery codes successfully regenerated
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
-    setup: Set up
-    wrong_code: The entered code was invalid! Are server time and device time correct?
+    webauthn: Security keys
   user_mailer:
     backup_ready:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
@@ -1291,20 +1366,23 @@ en:
       title: Sign in attempt
     warning:
       explanation:
-        disable: While your account is frozen, your account data remains intact, but you cannot perform any actions until it is unlocked.
-        silence: While your account is limited, only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: Your account has been suspended, and all of your toots and your uploaded media files have been irreversibly removed from this server, and servers where you had followers.
+        disable: You can no longer login to your account or use it in any other way, but your profile and other data remains intact.
+        sensitive: Your uploaded media files and linked media will be treated as sensitive.
+        silence: You can still use your account but only people who are already following you will see your toots on this server, and you may be excluded from various public listings. However, others may still manually follow you.
+        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed, but we will retain some data to prevent you from evading the suspension.
       get_in_touch: You can reply to this e-mail to get in touch with the staff of %{instance}.
       review_server_policies: Review server policies
       statuses: 'Specifically, for:'
       subject:
         disable: Your account %{acct} has been frozen
         none: Warning for %{acct}
+        sensitive: Your account %{acct} posting media has been marked as sensitive
         silence: Your account %{acct} has been limited
         suspend: Your account %{acct} has been suspended
       title:
         disable: Account frozen
         none: Warning
+        sensitive: Your media has been marked as sensitive
         silence: Account limited
         suspend: Account suspended
     welcome:
@@ -1325,9 +1403,11 @@ en:
       tips: Tips
       title: Welcome aboard, %{name}!
   users:
+    blocked_email_provider: This e-mail provider isn't allowed
     follow_limit_reached: You cannot follow more than %{limit} people
     generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     invalid_email: The e-mail address is invalid
+    invalid_email_mx: The e-mail address does not seem to exist
     invalid_otp_token: Invalid two-factor code
     invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
@@ -1337,3 +1417,20 @@ en:
   verification:
     explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification
+  webauthn_credentials:
+    add: Add new security key
+    create:
+      error: There was a problem adding your security key. Please try again.
+      success: Your security key was successfully added.
+    delete: Delete
+    delete_confirmation: Are you sure you want to delete this security key?
+    description_html: If you enable <strong>security key authentication</strong>, logging in will require you to use one of your security keys.
+    destroy:
+      error: There was a problem deleting you security key. Please try again.
+      success: Your security key was successfully deleted.
+    invalid_credential: Invalid security key
+    nickname_hint: Enter the nickname of your new security key
+    not_enabled: You haven't enabled WebAuthn yet
+    not_supported: This browser doesn't support security keys
+    otp_required: To use security keys please enable two-factor authentication first.
+    registered_on: Registered on %{date}

@@ -55,7 +55,7 @@ th:
       domain_allow:
         domain: โดเมนนี้จะสามารถดึงข้อมูลจากเซิร์ฟเวอร์นี้และจะประมวลผลและจัดเก็บข้อมูลขาเข้าจากโดเมน
       email_domain_block:
-        with_dns_records: จะทำการพยายามแปลงที่อยู่ระเบียน DNS ของโดเมนที่กำหนดและจะขึ้นบัญชีดำผลลัพธ์เช่นกัน
+        with_dns_records: จะทำการพยายามแปลงที่อยู่ระเบียน DNS ของโดเมนที่กำหนดและจะปิดกั้นผลลัพธ์เช่นกัน
       featured_tag:
         name: 'คุณอาจต้องการใช้หนึ่งในนี้:'
       form_challenge:
@@ -64,6 +64,9 @@ th:
         data: ไฟล์ CSV ที่ส่งออกจากเซิร์ฟเวอร์ Mastodon อื่น
       invite_request:
         text: นี่จะช่วยให้เราตรวจทานใบสมัครของคุณ
+      ip_block:
+        severities:
+          no_access: ปิดกั้นการเข้าถึงทรัพยากรทั้งหมด
       sessions:
         otp: 'ป้อนรหัสสองปัจจัยที่สร้างโดยแอปในโทรศัพท์ของคุณหรือใช้หนึ่งในรหัสกู้คืนของคุณ:'
       tag:
@@ -88,10 +91,11 @@ th:
         text: คำเตือนที่กำหนดเอง
         type: การกระทำ
         types:
-          disable: ปิดใช้งานการเข้าสู่ระบบ
-          none: ไม่ทำสิ่งใด
-          silence: ทำให้เงียบ
-          suspend: ระงับและลบข้อมูลบัญชีอย่างถาวร
+          disable: อายัด
+          none: ส่งคำเตือน
+          sensitive: ละเอียดอ่อน
+          silence: จำกัด
+          suspend: ระงับ
         warning_preset_id: ใช้คำเตือนที่ตั้งไว้ล่วงหน้า
       announcement:
         all_day: เหตุการณ์ตลอดทั้งวัน
@@ -134,6 +138,7 @@ th:
         setting_default_privacy: ความเป็นส่วนตัวของการโพสต์
         setting_default_sensitive: ทำเครื่องหมายสื่อว่าละเอียดอ่อนเสมอ
         setting_delete_modal: แสดงกล่องโต้ตอบการยืนยันก่อนลบโพสต์
+        setting_disable_swiping: ปิดใช้งานการเคลื่อนไหวในการปัด
         setting_display_media: การแสดงสื่อ
         setting_display_media_default: ค่าเริ่มต้น
         setting_display_media_hide_all: ซ่อนทั้งหมด
@@ -167,6 +172,13 @@ th:
         comment: ความคิดเห็น
       invite_request:
         text: ทำไมคุณจึงต้องการเข้าร่วม?
+      ip_block:
+        comment: ความคิดเห็น
+        ip: IP
+        severities:
+          no_access: ปิดกั้นการเข้าถึง
+          sign_up_requires_approval: จำกัดการลงทะเบียน
+        severity: กฎ
       notification_emails:
         digest: ส่งอีเมลสรุป
         favourite: ใครสักคนได้ชื่นชอบสถานะของคุณ

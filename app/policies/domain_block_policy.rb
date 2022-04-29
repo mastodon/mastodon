@@ -13,6 +13,10 @@ class DomainBlockPolicy < ApplicationPolicy
     admin?
   end
 
+  def update?
+    admin?
+  end
+
   def destroy?
     admin?
   end

@@ -111,7 +111,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :controller do
 
   describe 'POST #unsuspend' do
     before do
-      account.touch(:suspended_at)
+      account.suspend!
       post :unsuspend, params: { id: account.id }
     end
 
@@ -124,6 +124,24 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :controller do
 
     it 'unsuspends account' do
       expect(account.reload.suspended?).to be false
+    end
+  end
+
+  describe 'POST #unsensitive' do
+    before do
+      account.touch(:sensitized_at)
+      post :unsensitive, params: { id: account.id }
+    end
+
+    it_behaves_like 'forbidden for wrong scope', 'write:statuses'
+    it_behaves_like 'forbidden for wrong role', 'user'
+
+    it 'returns http success' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'unsensitives account' do
+      expect(account.reload.sensitized?).to be false
     end
   end
 

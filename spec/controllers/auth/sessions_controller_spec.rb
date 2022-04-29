@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'webauthn/fake_client'
 
 RSpec.describe Auth::SessionsController, type: :controller do
   render_views
@@ -183,90 +184,170 @@ RSpec.describe Auth::SessionsController, type: :controller do
     end
 
     context 'using two-factor authentication' do
-      let!(:user) do
-        Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+      context 'with OTP enabled as second factor' do
+        let!(:user) do
+          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+        end
+
+        let!(:recovery_codes) do
+          codes = user.generate_otp_backup_codes!
+          user.save
+          return codes
+        end
+
+        context 'using email and password' do
+          before do
+            post :create, params: { user: { email: user.email, password: user.password } }
+          end
+
+          it 'renders two factor authentication page' do
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_otp_authentication_form")
+          end
+        end
+
+        context 'using upcase email and password' do
+          before do
+            post :create, params: { user: { email: user.email.upcase, password: user.password } }
+          end
+
+          it 'renders two factor authentication page' do
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_otp_authentication_form")
+          end
+        end
+
+        context 'using a valid OTP' do
+          before do
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+          end
+
+          it 'redirects to home' do
+            expect(response).to redirect_to(root_path)
+          end
+
+          it 'logs the user in' do
+            expect(controller.current_user).to eq user
+          end
+        end
+
+        context 'when the server has an decryption error' do
+          before do
+            allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
+            post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+          end
+
+          it 'shows a login error' do
+            expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
+          end
+
+          it "doesn't log the user in" do
+            expect(controller.current_user).to be_nil
+          end
+        end
+
+        context 'using a valid recovery code' do
+          before do
+            post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+          end
+
+          it 'redirects to home' do
+            expect(response).to redirect_to(root_path)
+          end
+
+          it 'logs the user in' do
+            expect(controller.current_user).to eq user
+          end
+        end
+
+        context 'using an invalid OTP' do
+          before do
+            post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+          end
+
+          it 'shows a login error' do
+            expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
+          end
+
+          it "doesn't log the user in" do
+            expect(controller.current_user).to be_nil
+          end
+        end
       end
 
-      let!(:recovery_codes) do
-        codes = user.generate_otp_backup_codes!
-        user.save
-        return codes
-      end
-
-      context 'using email and password' do
-        before do
-          post :create, params: { user: { email: user.email, password: user.password } }
+      context 'with WebAuthn and OTP enabled as second factor' do
+        let!(:user) do
+          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
         end
 
-        it 'renders two factor authentication page' do
-          expect(controller).to render_template("two_factor")
-        end
-      end
-
-      context 'using upcase email and password' do
-        before do
-          post :create, params: { user: { email: user.email.upcase, password: user.password } }
+        let!(:recovery_codes) do
+          codes = user.generate_otp_backup_codes!
+          user.save
+          return codes
         end
 
-        it 'renders two factor authentication page' do
-          expect(controller).to render_template("two_factor")
-        end
-      end
-
-      context 'using a valid OTP' do
-        before do
-          post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
-        end
-
-        it 'redirects to home' do
-          expect(response).to redirect_to(root_path)
+        let!(:webauthn_credential) do
+          user.update(webauthn_id: WebAuthn.generate_user_id)
+          public_key_credential = WebAuthn::Credential.from_create(fake_client.create)
+          user.webauthn_credentials.create(
+            nickname: 'SecurityKeyNickname',
+            external_id: public_key_credential.id,
+            public_key: public_key_credential.public_key,
+            sign_count: '1000'
+           )
+          user.webauthn_credentials.take
         end
 
-        it 'logs the user in' do
-          expect(controller.current_user).to eq user
-        end
-      end
+        let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http' }://#{Rails.configuration.x.web_domain}" }
 
-      context 'when the server has an decryption error' do
-        before do
-          allow_any_instance_of(User).to receive(:validate_and_consume_otp!).and_raise(OpenSSL::Cipher::CipherError)
-          post :create, params: { user: { otp_attempt: user.current_otp } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
-        end
+        let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
-        it 'shows a login error' do
-          expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
-        end
+        let(:challenge) { WebAuthn::Credential.options_for_get.challenge }
 
-        it "doesn't log the user in" do
-          expect(controller.current_user).to be_nil
-        end
-      end
+        let(:sign_count) { 1234 }
 
-      context 'using a valid recovery code' do
-        before do
-          post :create, params: { user: { otp_attempt: recovery_codes.first } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+        let(:fake_credential) { fake_client.get(challenge: challenge, sign_count: sign_count) }
+
+        context 'using email and password' do
+          before do
+            post :create, params: { user: { email: user.email, password: user.password } }
+          end
+
+          it 'renders webauthn authentication page' do
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_webauthn_form")
+          end
         end
 
-        it 'redirects to home' do
-          expect(response).to redirect_to(root_path)
+        context 'using upcase email and password' do
+          before do
+            post :create, params: { user: { email: user.email.upcase, password: user.password } }
+          end
+
+          it 'renders webauthn authentication page' do
+            expect(controller).to render_template("two_factor")
+            expect(controller).to render_template(partial: "_webauthn_form")
+          end
         end
 
-        it 'logs the user in' do
-          expect(controller.current_user).to eq user
-        end
-      end
+        context 'using a valid webauthn credential' do
+          before do
+            @controller.session[:webauthn_challenge] = challenge
 
-      context 'using an invalid OTP' do
-        before do
-          post :create, params: { user: { otp_attempt: 'wrongotp' } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
-        end
+            post :create, params: { user: { credential: fake_credential } }, session: { attempt_user_id: user.id, attempt_user_updated_at: user.updated_at.to_s }
+          end
 
-        it 'shows a login error' do
-          expect(flash[:alert]).to match I18n.t('users.invalid_otp_token')
-        end
+          it 'instructs the browser to redirect to home' do
+            expect(body_as_json[:redirect_path]).to eq(root_path)
+          end
 
-        it "doesn't log the user in" do
-          expect(controller.current_user).to be_nil
+          it 'logs the user in' do
+            expect(controller.current_user).to eq user
+          end
+
+          it 'updates the sign count' do
+            expect(webauthn_credential.reload.sign_count).to eq(sign_count)
+          end
         end
       end
     end

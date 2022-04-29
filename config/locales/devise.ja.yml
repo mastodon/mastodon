@@ -60,6 +60,23 @@ ja:
         title: 二段階認証のリカバリーコードが変更されました
       unlock_instructions:
         subject: 'Mastodon: アカウントのロックの解除'
+      webauthn_credential:
+        added:
+          explanation: 次のセキュリティキーがアカウントに追加されました
+          subject: 'Mastodon: セキュリティキーが追加されました'
+          title: 新しいセキュリティキーが追加されました
+        deleted:
+          explanation: 次のセキュリティキーがアカウントから削除されました
+          subject: 'Mastodon: セキュリティキーが削除されました'
+          title: セキュリティキーが削除されました
+      webauthn_disabled:
+        explanation: アカウントのセキュリティキーによる認証が無効になりました。ペアリングされたTOTPアプリによって生成されたトークンのみを使用してログインが可能になりました。
+        subject: 'Mastodon: セキュリティキー認証が無効になりました'
+        title: セキュリティキーは無効になっています
+      webauthn_enabled:
+        explanation: あなたのアカウントでセキュリティキー認証が有効になりました。セキュリティキーをログインに使用できるようになりました。
+        subject: 'Mastodon: セキュリティキー認証が有効になりました'
+        title: セキュリティキーは有効になっています
     omniauth_callbacks:
       failure: "%{reason}によって%{kind}からのアクセスを認証できませんでした。"
       success: "%{kind}からのアクセスは正常に認証されました。"

@@ -6,12 +6,13 @@
 
     - if cdn_host?
       %link{ rel: 'dns-prefetch', href: cdn_host }/
+      %meta{ name: 'cdn-host', content: cdn_host }/
 
     - if storage_host?
       %link{ rel: 'dns-prefetch', href: storage_host }/
 
-    = stylesheet_pack_tag 'common', media: 'all'
-    = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all'
+    = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
+    = stylesheet_pack_tag Setting.default_settings['theme'], media: 'all', crossorigin: 'anonymous'
     = javascript_pack_tag 'common', integrity: true, crossorigin: 'anonymous'
     = javascript_pack_tag "locale_#{I18n.locale}", integrity: true, crossorigin: 'anonymous'
     = render_initial_state

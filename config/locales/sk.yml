@@ -42,7 +42,9 @@ sk:
       domain: Server
       reason: 'Dôvod:'
       rejecting_media: 'Mediálne súbory z týchto serverov nebudú spracované, alebo ukladané, a nebudú z nich zobrazované žiadne náhľady, vyžadujúc ručné prekliknutie priamo až k pôvodnému súboru:'
+      rejecting_media_title: Triedené médiá
       silenced: 'Príspevky z týchto serverov budú skryté z verejných osí a z konverzácií, a nebudú vytvorené žiadné oboznámena ohľadom aktivity ich užívateľov, pokiaľ ich nenásleduješ:'
+      silenced_title: Utíšené servery
     unavailable_content_html: Vo všeobecnosti, Mastodon ti dovoľuje vidieť obsah, a komunikovať s užívateľmi akéhokoľvek iného serveru v rámci fediversa. Toto sú výnimky, ktoré boli vytvorené na tomto konkrétnom serveri.
     user_count_after:
       few: užívateľov
@@ -1159,26 +1161,22 @@ sk:
     formats:
       default: "%b %d, %R, %H:%M"
   two_factor_authentication:
-    code_hint: Pre potvrdenie teraz zadaj kód vygenerovaný pomocou tvojej overovacej aplikácie
-    description_html: Ak povolíš <strong> dvojfázové overovanie</strong>, na prihlásenie potom budeš potrebovať svoj telefón, ktorý vygeneruje prístupové kódy, čo musíš zadať.
     disable: Zakáž
-    enable: Povoľ
     enabled: Dvojfázové overovanie je povolené
     enabled_success: Dvojfázové overovanie úspešne povolené
     generate_recovery_codes: Vygeneruj zálohové kódy
-    instructions_html: "<strong>Naskenuj tento QR kód do Google Autentikátora, alebo do podobnej TOTP aplikácie pomocou svojho telefónu.</strong> Od tejto chvíle bude táto aplikácia pre teba generovať kódy ktoré musíš zadať aby si sa prihlásil/a."
     lost_recovery_codes: Zálohové kódy ti umožnia dostať sa k svojmu účtu ak stratíš telefón. Pokiaľ si stratila svoje zálohové kódy, môžeš si ich tu znovu vygenerovať. Tvoje staré zálohové kódy budú zneplatnené.
-    manual_instructions: 'Pokiaľ nemôžeš oskenovať daný QR kód, a potrebuješ ho zadať ručne, tu je tajomstvo v textovom formáte:'
     recovery_codes: Zálohuj kódy pre obnovu
     recovery_codes_regenerated: Zálohové kódy boli úspešne zvova vygenerované
     recovery_instructions_html: Keď hocikedy stratíš prístup k svojmu telefónu, môžeš použiť jeden z prístupových kódov nižšie pre obnovenie prístupu k svojmu účtu. <strong>Skladuj tieto prístupové kódy na bezpečnom mieste</strong>. Napríklad ich môžeš vytlačiť a uložiť ich spolu s inými dôležitými dokumentami.
-    setup: Nastav
-    wrong_code: Zadaný kód bol neplatný! Je serverový čas a čas na zariadení správny?
   user_mailer:
     backup_ready:
       explanation: Vyžiadal/a si si úplnú zálohu svojho Mastodon účtu. Táto záloha je teraz pripravená na stiahnutie!
       subject: Tvoj archív je pripravený na stiahnutie
       title: Odber archívu
+    sign_in_token:
+      subject: Prosím potvrď pokus o prihlásenie
+      title: Pokus o prihlásenie
     warning:
       explanation:
         disable: Pokiaľ je tvoj účet zamrazený, tvoje dáta zostávajú nedoknuté, ale nemôžeš v rámci neho nič robiť, až kým nebude odomknutý.

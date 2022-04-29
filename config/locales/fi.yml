@@ -875,21 +875,14 @@ fi:
     formats:
       default: "%d.%m.%Y klo %H.%M"
   two_factor_authentication:
-    code_hint: Vahvista syöttämällä todentamissovelluksen generoima koodi
-    description_html: Jos otat käyttöön <strong>kaksivaiheisen todentamisen</strong>, kirjautumiseen vaaditaan puhelin, jolla voidaan luoda kirjautumistunnuksia.
     disable: Poista käytöstä
-    enable: Ota käyttöön
     enabled: Kaksivaiheinen todentaminen käytössä
     enabled_success: Kaksivaiheisen todentamisen käyttöönotto onnistui
     generate_recovery_codes: Luo palautuskoodit
-    instructions_html: "<strong>Lue tämä QR-koodi puhelimen Google Authenticator- tai vastaavalla TOTP-sovelluksella</strong>. Sen jälkeen sovellus luo tunnuksia, joita tarvitset sisäänkirjautuessasi."
     lost_recovery_codes: Palautuskoodien avulla voit käyttää tiliä, jos menetät puhelimesi. Jos olet hukannut palautuskoodit, voit luoda uudet tästä. Vanhat palautuskoodit poistetaan käytöstä.
-    manual_instructions: 'Jos et voi lukea QR-koodia ja haluat syöttää sen käsin, tässä on salainen koodi tekstinä:'
     recovery_codes: Varapalautuskoodit
     recovery_codes_regenerated: Uusien palautuskoodien luonti onnistui
     recovery_instructions_html: Jos menetät puhelimesi, voit kirjautua tilillesi jollakin alla olevista palautuskoodeista. <strong>Pidä palautuskoodit hyvässä tallessa</strong>. Voit esimerkiksi tulostaa ne ja säilyttää muiden tärkeiden papereiden joukossa.
-    setup: Ota käyttöön
-    wrong_code: Annettu koodi oli virheellinen! Ovatko palvelimen aika ja laitteen aika oikein?
   user_mailer:
     backup_ready:
       explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!

@@ -58,6 +58,16 @@ td {
   vertical-align: top;
 }
 
+.auto-dir {
+  p {
+    unicode-bidi: plaintext;
+  }
+
+  a {
+    unicode-bidi: isolate;
+  }
+}
+
 .email-table,
 .content-section,
 .column,
@@ -96,7 +106,7 @@ body {
 .col-3,
 .col-4,
 .col-5,
-.col-6, {
+.col-6 {
   font-size: 0;
   display: inline-block;
   width: 100%;

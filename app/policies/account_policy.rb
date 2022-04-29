@@ -14,10 +14,22 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def suspend?
-    staff? && !record.user&.staff?
+    staff? && !record.user&.staff? && !record.instance_actor?
+  end
+
+  def destroy?
+    record.suspended_temporarily? && admin?
   end
 
   def unsuspend?
+    staff? && record.suspension_origin_local?
+  end
+
+  def sensitive?
+    staff? && !record.user&.staff?
+  end
+
+  def unsensitive?
     staff?
   end
 
@@ -50,6 +62,6 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def memorialize?
-    admin? && !record.user&.admin?
+    admin? && !record.user&.admin? && !record.instance_actor?
   end
 end

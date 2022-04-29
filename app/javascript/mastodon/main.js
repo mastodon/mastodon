@@ -1,4 +1,5 @@
 import * as registerPushNotifications from './actions/push_notifications';
+import { setupBrowserNotifications } from './actions/notifications';
 import { default as Mastodon, store } from './containers/mastodon';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -22,6 +23,7 @@ function main() {
     const props = JSON.parse(mountNode.getAttribute('data-props'));
 
     ReactDOM.render(<Mastodon {...props} />, mountNode);
+    store.dispatch(setupBrowserNotifications());
     if (process.env.NODE_ENV === 'production') {
       // avoid offline in dev mode because it's harder to debug
       require('offline-plugin/runtime').install();

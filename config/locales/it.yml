@@ -60,6 +60,7 @@ it:
       one: Seguace
       other: Seguaci
     following: Segui
+    instance_actor_flash: Questo account è un attore virtuale usato per rappresentare il server stesso e non un singolo utente. Viene utilizzato per scopi federativi e non dovrebbe essere sospeso.
     joined: Dal %{date}
     last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
@@ -98,6 +99,7 @@ it:
       add_email_domain_block: Inserisci il dominio email nella blacklist
       approve: Approva
       approve_all: Approva tutto
+      approved_msg: Richiesta di registrazione di %{username} approvata
       are_you_sure: Sei sicuro?
       avatar: Immagine di profilo
       by_domain: Dominio
@@ -111,8 +113,10 @@ it:
       confirm: Conferma
       confirmed: Confermato
       confirming: Confermando
+      delete: Elimina dati
       deleted: Cancellato
       demote: Declassa
+      destroyed_msg: I dati di %{username} sono ora in coda per essere eliminati tra poco
       disable: Disabilita
       disable_two_factor_authentication: Disabilita l'autenticazione a due fattori
       disabled: Disabilitato
@@ -123,10 +127,12 @@ it:
       email_status: Stato email
       enable: Abilita
       enabled: Abilitato
+      enabled_msg: L'account di %{username} è stato scongelato
       followers: Follower
       follows: Segue
       header: Intestazione
       inbox_url: URL inbox
+      invite_request_text: Motivi per l'iscrizione
       invited_by: Invitato da
       ip: IP
       joined: Iscritto da
@@ -138,6 +144,8 @@ it:
       login_status: Stato login
       media_attachments: Media allegati
       memorialize: Trasforma in memoriam
+      memorialized: Memorializzato
+      memorialized_msg: Hai trasformato %{username} in un account commemorativo
       moderation:
         active: Attivo
         all: Tutto
@@ -158,10 +166,14 @@ it:
       public: Pubblico
       push_subscription_expires: Sottoscrizione PuSH scaduta
       redownload: Aggiorna avatar
+      redownloaded_msg: Il profilo di %{username} è stato aggiornato dall'origine
       reject: Rifiuta
       reject_all: Rifiuta tutto
+      rejected_msg: Richiesta di registrazione di %{username} rifiutata
       remove_avatar: Rimuovi avatar
       remove_header: Rimuovi intestazione
+      removed_avatar_msg: Immagine dell'avatar di %{username} eliminata
+      removed_header_msg: Immagine di intestazione di %{username} eliminata
       resend_confirmation:
         already_confirmed: Questo utente è già confermato
         send: Reinvia email di conferma
@@ -178,6 +190,8 @@ it:
       search: Cerca
       search_same_email_domain: Altri utenti con lo stesso dominio e-mail
       search_same_ip: Altri utenti con lo stesso IP
+      sensitive: Sensibile
+      sensitized: contrassegnato come sensibile
       shared_inbox_url: URL Inbox Condiviso
       show:
         created_reports: Rapporti creati da questo account
@@ -187,13 +201,19 @@ it:
       statuses: Stati
       subscribe: Sottoscrivi
       suspended: Sospeso
+      suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile. È possibile annullare la sospensione dell'account per renderlo utilizzabile, ma non recupererà alcuno dei dati precedenti.
+      suspension_reversible_hint_html: L'account è stato sospeso e i dati saranno completamente eliminati il %{date}. Fino ad allora, l'account può essere ripristinato senza effetti negativi. Se si desidera eliminare immediatamente tutti i dati dell'account, è possibile farlo qui sotto.
       time_in_queue: Attesa in coda %{time}
       title: Account
       unconfirmed_email: Email non confermata
+      undo_sensitized: Annulla sensibile
       undo_silenced: Rimuovi silenzia
       undo_suspension: Rimuovi sospensione
+      unsilenced_msg: Sono stati tolti i limiti dell'account di %{username}
       unsubscribe: Annulla l'iscrizione
+      unsuspended_msg: È stata eliminata la sospensione dell'account di %{username}
       username: Nome utente
+      view_domain: Visualizza riepilogo per dominio
       warn: Avverti
       web: Web
       whitelisted: Nella whitelist
@@ -208,12 +228,14 @@ it:
         create_domain_allow: Crea permesso di dominio
         create_domain_block: Crea blocco di dominio
         create_email_domain_block: Crea blocco dominio e-mail
+        create_ip_block: Crea regola IP
         demote_user: Degrada l'utente
         destroy_announcement: Cancella annuncio
         destroy_custom_emoji: Cancella emoji personalizzata
         destroy_domain_allow: Cancella permesso di dominio
         destroy_domain_block: Cancella blocco di dominio
         destroy_email_domain_block: Cancella blocco dominio e-mail
+        destroy_ip_block: Elimina regola IP
         destroy_status: Cancella stato
         disable_2fa_user: Disabilita l'autenticazione a due fattori
         disable_custom_emoji: Disabilita emoji personalizzata
@@ -226,13 +248,16 @@ it:
         reopen_report: Riapri report
         reset_password_user: Reimposta password
         resolve_report: Risolvi report
+        sensitive_account: Contrassegna il media nel tuo profilo come sensibile
         silence_account: Silenzia account
         suspend_account: Sospendi account
         unassigned_report: Disassegna report
+        unsensitive_account: Deseleziona il media nel tuo profilo come sensibile
         unsilence_account: De-silenzia account
         unsuspend_account: Annulla la sospensione dell'account
         update_announcement: Aggiorna annuncio
         update_custom_emoji: Aggiorna emoji personalizzata
+        update_domain_block: Aggiorna blocco di dominio
         update_status: Aggiorna stato
       actions:
         assigned_to_self_report: "%{name} ha assegnato il rapporto %{target} a se stesso"
@@ -244,12 +269,14 @@ it:
         create_domain_allow: "%{name} ha messo il dominio %{target} nella whitelist"
         create_domain_block: "%{name} ha bloccato il dominio %{target}"
         create_email_domain_block: "%{name} ha messo il dominio email %{target} nella blacklist"
+        create_ip_block: "%{name} ha creato la regola per l'IP %{target}"
         demote_user: "%{name} ha degradato l'utente %{target}"
         destroy_announcement: "%{name} ha eliminato l'annuncio %{target}"
         destroy_custom_emoji: "%{name} ha distrutto l'emoji %{target}"
         destroy_domain_allow: "%{name} ha tolto il dominio %{target} dalla whitelist"
         destroy_domain_block: "%{name} ha sbloccato il dominio %{target}"
         destroy_email_domain_block: "%{name}ha messo il dominio email %{target} nella whitelist"
+        destroy_ip_block: "%{name} ha eliminato la regola per l'IP %{target}"
         destroy_status: "%{name} ha eliminato lo status di %{target}"
         disable_2fa_user: "%{name} ha disabilitato l'obbligo dei due fattori per l'utente %{target}"
         disable_custom_emoji: "%{name} ha disabilitato l'emoji %{target}"
@@ -262,13 +289,16 @@ it:
         reopen_report: "%{name} ha riaperto il rapporto %{target}"
         reset_password_user: "%{name} ha reimpostato la password dell'utente %{target}"
         resolve_report: "%{name} ha risolto il rapporto %{target}"
+        sensitive_account: "%{name} ha contrassegnato il media di %{target} come sensibile"
         silence_account: "%{name} ha silenziato l'account di %{target}"
         suspend_account: "%{name} ha sospeso l'account di %{target}"
         unassigned_report: "%{name} report non assegnato %{target}"
+        unsensitive_account: "%{name} ha deselezionato il media di %{target} come sensibile"
         unsilence_account: "%{name} ha de-silenziato l'account di %{target}"
         unsuspend_account: "%{name} ha annullato la sospensione dell'account di %{target}"
         update_announcement: "%{name} ha aggiornato l'annuncio %{target}"
         update_custom_emoji: "%{name} ha aggiornato l'emoji %{target}"
+        update_domain_block: "%{name} ha aggiornato il blocco di dominio per %{target}"
         update_status: "%{name} stato aggiornato da %{target}"
       deleted_status: "(stato cancellato)"
       empty: Nessun log trovato.
@@ -372,6 +402,8 @@ it:
           silence: Silenzia
           suspend: Sospendi
         title: Nuovo blocco dominio
+      obfuscate: Nascondi nome di dominio
+      obfuscate_hint: Nascondere parzialmente il nome di dominio, se è abilitata la visualizzazione pubblica dell'elenco delle limitazioni di dominio
       private_comment: Commento privato
       private_comment_hint: Commento su questa limitazione di dominio per uso interno da parte dei moderatori.
       public_comment: Commento pubblico
@@ -411,6 +443,7 @@ it:
     instances:
       by_domain: Dominio
       delivery_available: Distribuzione disponibile
+      empty: Nessun dominio trovato.
       known_accounts:
         one: "%{count} account noto"
         other: "%{count} account noti"
@@ -434,6 +467,21 @@ it:
         expired: Scaduto
         title: Filtro
       title: Inviti
+    ip_blocks:
+      add_new: Crea regola
+      created_msg: Nuova regola IP aggiunta
+      delete: Elimina
+      expires_in:
+        '1209600': 2 settimane
+        '15778476': 6 mesi
+        '2629746': 1 mese
+        '31556952': 1 anno
+        '86400': 1 giorno
+        '94670856': 3 anni
+      new:
+        title: Crea una nuova regola IP
+      no_ip_block_selected: Nessuna regola IP è stata modificata poiché nessuna è stata selezionata
+      title: Regole IP
     pending_accounts:
       title: Account in attesa (%{count})
     relationships:
@@ -473,6 +521,8 @@ it:
       comment:
         none: Nessuno
       created_at: Segnalato
+      forwarded: Inoltrato
+      forwarded_to: Inoltrato a %{domain}
       mark_as_resolved: Segna come risolto
       mark_as_unresolved: Segna come non risolto
       notes:
@@ -516,6 +566,7 @@ it:
       domain_blocks_rationale:
         title: Mostra motivazione
       enable_bootstrap_timeline_accounts:
+        desc_html: I nuovi utenti seguiranno automaticamente gli account configurati, in modo che il loro home feed all'inizio non sia vuoto
         title: Abilita seguiti predefiniti per i nuovi utenti
       hero:
         desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
@@ -542,6 +593,9 @@ it:
         min_invite_role:
           disabled: Nessuno
           title: Permetti inviti da
+        require_invite_text:
+          desc_html: Quando le iscrizioni richiedono l'approvazione manuale, rendere la richiesta “Perché si desidera iscriversi?” obbligatoria invece che opzionale
+          title: Richiedi ai nuovi utenti di rispondere alla richiesta di motivazione per l'iscrizione
       registrations_mode:
         modes:
           approved: Approvazione richiesta per le iscrizioni
@@ -683,8 +737,11 @@ it:
       prefix_sign_up: Iscriviti oggi a Mastodon!
       suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Mastodon e altro ancora!
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
+    dont_have_your_security_key: Non hai la tua chiave di sicurezza?
     forgot_password: Hai dimenticato la tua password?
     invalid_reset_password_token: Il token di reimpostazione della password non è valido o è scaduto. Per favore richiedine uno nuovo.
+    link_to_otp: Inserisci un codice a due fattori dal tuo telefono o un codice di recupero
+    link_to_webauth: Usa il tuo dispositivo chiave di sicurezza
     login: Entra
     logout: Esci da Mastodon
     migrate_account: Sposta ad un account differente
@@ -709,7 +766,9 @@ it:
       functional: Il tuo account è pienamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
+    too_fast: Modulo inviato troppo velocemente, riprova.
     trouble_logging_in: Problemi di accesso?
+    use_security_key: Usa la chiave di sicurezza
   authorize_follow:
     already_following: Stai già seguendo questo account
     already_requested: Hai già mandato una richiesta di seguire questo account
@@ -734,6 +793,7 @@ it:
   date:
     formats:
       default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ore"
@@ -798,6 +858,7 @@ it:
       request: Chiedi il tuo archivio
       size: Dimensioni
     blocks: Stai bloccando
+    bookmarks: Segnalibri
     csv: CSV
     domain_blocks: Blocchi di dominio
     lists: Liste
@@ -865,6 +926,8 @@ it:
     status: Stato della verifica
     view_proof: Vedi prova
   imports:
+    errors:
+      over_rows_processing_limit: contiene più di %{count} righe
     modes:
       merge: Fondi
       merge_long: Mantieni record esistenti e aggiungine di nuovi
@@ -874,6 +937,7 @@ it:
     success: Le tue impostazioni sono state importate correttamente e verranno applicate in breve tempo
     types:
       blocking: Lista dei bloccati
+      bookmarks: Segnalibri
       domain_blocking: Lista dei domini bloccati
       following: Lista dei seguiti
       muting: Lista dei silenziati
@@ -994,6 +1058,14 @@ it:
           quadrillion: P
           thousand: k
           trillion: T
+  otp_authentication:
+    code_hint: Inserisci il codice generato dall'app di autenticazione per confermare
+    description_html: Se abiliti <strong>l'autenticazione a due fattori</strong> utilizzando un'app di autenticazione, per accedere sarà necessario essere in possesso del telefono, che genererà dei codici per l'accesso.
+    enable: Abilita
+    instructions_html: "<strong>Scansiona questo codice QR in Google Authenticator o in un'applicazione TOTP simile sul tuo telefono</strong>. D'ora in poi, quell'app genererà i codici che dovrai inserire quando accedi."
+    manual_instructions: 'Se non riesci a scansionare il codice QR e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
+    setup: Configura
+    wrong_code: Il codice inserito non è valido! Controlla che l'ora del server e l'ora del dispositivo siano esatte.
   pagination:
     newer: Più recente
     next: Avanti
@@ -1022,6 +1094,7 @@ it:
   relationships:
     activity: Attività dell'account
     dormant: Dormiente
+    follow_selected_followers: Segui i seguaci selezionati
     followers: Seguaci
     following: Seguiti
     invited: Invitato
@@ -1118,6 +1191,7 @@ it:
     profile: Profilo
     relationships: Follows e followers
     two_factor_authentication: Autenticazione a due fattori
+    webauthn_authentication: Chiavi di sicurezza
   spam_check:
     spam_detected: Questo è un rapporto automatico. È stato rilevato dello spam.
   statuses:
@@ -1156,6 +1230,8 @@ it:
         other: "%{count} voti"
       vote: Vota
     show_more: Mostra di più
+    show_newer: Mostra più nuovi
+    show_older: Mostra più vecchi
     show_thread: Mostra thread
     sign_in_to_participate: Accedi per partecipare alla conversazione
     title: '%{name}: "%{quote}"'
@@ -1267,21 +1343,20 @@ it:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
   two_factor_authentication:
-    code_hint: Inserisci il codice generato dalla tua app di autenticazione
-    description_html: Se abiliti <strong>l'autorizzazione a due fattori</strong>, entrare nel tuo account ti richiederà di avere vicino il tuo telefono, il quale ti genererà un codice per eseguire l'accesso.
+    add: Aggiungi
     disable: Disabilita
-    enable: Abilita
+    disabled_success: Autenticazione a due fattori disattivata
+    edit: Modifica
     enabled: È abilitata l'autenticazione a due fattori
     enabled_success: Autenticazione a due fattori attivata con successo
     generate_recovery_codes: Genera codici di recupero
-    instructions_html: "<strong>Scannerizza questo QR code con Google Authenticator o un'app TOTP simile sul tuo telefono</strong>. Da ora in poi, quell'applicazione genererà codici da inserire necessariamente per eseguire l'accesso."
     lost_recovery_codes: I codici di recupero ti permettono di accedere al tuo account se perdi il telefono. Se hai perso i tuoi codici di recupero, puoi rigenerarli qui. Quelli vecchi saranno annullati.
-    manual_instructions: 'Se non puoi scannerizzare il QR code e hai bisogno di inserirlo manualmente, questo è il codice segreto in chiaro:'
+    methods: Metodi a due fattori
+    otp: App di autenticazione
     recovery_codes: Codici di recupero del backup
     recovery_codes_regenerated: I codici di recupero sono stati rigenerati
     recovery_instructions_html: Se perdi il telefono, puoi usare uno dei codici di recupero qui sotto per riottenere l'accesso al tuo account. <strong>Conserva i codici di recupero in un posto sicuro</strong>. Ad esempio puoi stamparli e conservarli insieme ad altri documenti importanti.
-    setup: Configura
-    wrong_code: Il codice inserito non è corretto! Assicurati che l'orario del server e l'orario del dispositivo siano corretti.
+    webauthn: Chiavi di sicurezza
   user_mailer:
     backup_ready:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
@@ -1296,6 +1371,7 @@ it:
     warning:
       explanation:
         disable: Mentre il tuo account è congelato, i tuoi dati dell'account rimangono intatti, ma non potrai eseguire nessuna azione fintanto che non viene sbloccato.
+        sensitive: I tuoi file multimediali caricati e multimedia collegati saranno trattati come sensibili.
         silence: Mentre il tuo account è limitato, solo le persone che già ti seguono possono vedere i tuoi toot su questo server, e potresti essere escluso da vari elenchi pubblici. Comunque, altri possono manualmente seguirti.
         suspend: Il tuo account è stato sospeso, e tutti i tuoi toot ed i tuoi file media caricati sono stati irreversibilmente rimossi da questo server, e dai server dove avevi dei seguaci.
       get_in_touch: Puoi rispondere a questa email per entrare in contatto con lo staff di %{instance}.
@@ -1304,11 +1380,13 @@ it:
       subject:
         disable: Il tuo account %{acct} è stato congelato
         none: Avviso per %{acct}
+        sensitive: Il multimedia in pubblicazione del tuo profilo %{acct} è stato contrassegnato come sensibile
         silence: Il tuo account %{acct} è stato limitato
         suspend: Il tuo account %{acct} è stato sospeso
       title:
         disable: Account congelato
         none: Avviso
+        sensitive: Il tuo multimedia è stato contrassegnato come sensibile
         silence: Account limitato
         suspend: Account sospeso
     welcome:
@@ -1329,9 +1407,11 @@ it:
       tips: Suggerimenti
       title: Benvenuto a bordo, %{name}!
   users:
+    blocked_email_provider: Questo provider di posta non è consentito
     follow_limit_reached: Non puoi seguire più di %{limit} persone
     generic_access_help_html: Problemi nell'accesso al tuo account? Puoi contattare %{email} per assistenza
     invalid_email: L'indirizzo email inserito non è valido
+    invalid_email_mx: L'indirizzo e-mail non sembra esistere
     invalid_otp_token: Codice d'accesso non valido
     invalid_sign_in_token: Codice di sicurezza non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
@@ -1341,3 +1421,20 @@ it:
   verification:
     explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
     verification: Verifica
+  webauthn_credentials:
+    add: Aggiungi una nuova chiave di sicurezza
+    create:
+      error: Si è verificato un problema durante l'aggiunta della chiave di sicurezza. Dovresti riprovare.
+      success: La chiave di sicurezza è stata aggiunta.
+    delete: Cancella
+    delete_confirmation: Sei sicuro di voler cancellare questa chiave di sicurezza?
+    description_html: Se abiliti <strong>l'autenticazione con chiave di sicurezza</strong>, per accedere sarà necessario utilizzare una delle tue chiavi di sicurezza.
+    destroy:
+      error: Si è verificato un problema durante la cancellazione della chiave di sicurezza. Dovresti riprovare.
+      success: La chiave di sicurezza è stata cancellata.
+    invalid_credential: Chiave di sicurezza non valida
+    nickname_hint: Inserisci il soprannome della tua nuova chiave di sicurezza
+    not_enabled: Non hai ancora abilitato WebAuthn
+    not_supported: Questo browser non supporta le chiavi di sicurezza
+    otp_required: Per utilizzare le chiavi di sicurezza, prima abilita l'autenticazione a due fattori.
+    registered_on: Registrato il %{date}

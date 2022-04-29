@@ -1,9 +1,186 @@
-Changelog
-=========
+# Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.3.0] - 2020-12-27
+
+### Added
+
+- **Add hotkeys for audio/video control in web UI** ([Gargron](https://github.com/tootsuite/mastodon/pull/15158), [Gargron](https://github.com/tootsuite/mastodon/pull/15198))
+  - `Space` and `k` to toggle playback
+  - `m` to toggle mute
+  - `f` to toggle fullscreen
+  - `j` and `l` to go back and forward by 10 seconds
+  - `.` and `,` to go back and forward by a frame (video only)
+- Add expand/compress button on media modal in web UI ([mashirozx](https://github.com/tootsuite/mastodon/pull/15068), [mashirozx](https://github.com/tootsuite/mastodon/pull/15088), [mashirozx](https://github.com/tootsuite/mastodon/pull/15094))
+- Add border around 🕺 emoji in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14769))
+- Add border around 🐞 emoji in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14712))
+- Add home link to the getting started column when home isn't mounted ([ThibG](https://github.com/tootsuite/mastodon/pull/14707))
+- Add option to disable swiping motions across the web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13885))
+- **Add pop-out player for audio/video in web UI** ([Gargron](https://github.com/tootsuite/mastodon/pull/14870), [Gargron](https://github.com/tootsuite/mastodon/pull/15157), [Gargron](https://github.com/tootsuite/mastodon/pull/14915), [noellabo](https://github.com/tootsuite/mastodon/pull/15309))
+  - Continue watching/listening when you scroll away
+  - Action bar to interact with/open toot from the pop-out player
+- Add unread notification markers in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14818), [ThibG](https://github.com/tootsuite/mastodon/pull/14960), [ThibG](https://github.com/tootsuite/mastodon/pull/14954), [noellabo](https://github.com/tootsuite/mastodon/pull/14897), [noellabo](https://github.com/tootsuite/mastodon/pull/14907))
+- Add paragraph about browser add-ons when encountering errors in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14801))
+- Add import and export for bookmarks ([ThibG](https://github.com/tootsuite/mastodon/pull/14956))
+- Add cache buster feature for media files ([Gargron](https://github.com/tootsuite/mastodon/pull/15155))
+  - If you have a proxy cache in front of object storage, deleted files will persist until the cache expires
+  - If enabled, cache buster will make a special request to the proxy to signal a cache reset
+- Add duration option to the mute function ([aquarla](https://github.com/tootsuite/mastodon/pull/13831))
+- Add replies policy option to the list function ([ThibG](https://github.com/tootsuite/mastodon/pull/9205), [trwnh](https://github.com/tootsuite/mastodon/pull/15304))
+- Add `og:published_time` OpenGraph tags on toots ([nornagon](https://github.com/tootsuite/mastodon/pull/14865))
+- **Add option to be notified when a followed user posts** ([Gargron](https://github.com/tootsuite/mastodon/pull/13546), [ThibG](https://github.com/tootsuite/mastodon/pull/14896), [Gargron](https://github.com/tootsuite/mastodon/pull/14822))
+  - If you don't want to miss a toot, click the bell button!
+- Add client-side validation in password change forms ([ThibG](https://github.com/tootsuite/mastodon/pull/14564))
+- Add client-side validation in the registration form ([ThibG](https://github.com/tootsuite/mastodon/pull/14560), [ThibG](https://github.com/tootsuite/mastodon/pull/14599))
+- Add support for Gemini URLs ([joshleeb](https://github.com/tootsuite/mastodon/pull/15013))
+- Add app shortcuts to web app manifest ([mkljczk](https://github.com/tootsuite/mastodon/pull/15234))
+- Add WebAuthn as an alternative 2FA method ([santiagorodriguez96](https://github.com/tootsuite/mastodon/pull/14466), [jiikko](https://github.com/tootsuite/mastodon/pull/14806))
+- Add honeypot fields and minimum fill-out time for sign-up form ([ThibG](https://github.com/tootsuite/mastodon/pull/15276))
+- Add icon for mutual relationships in relationship manager ([noellabo](https://github.com/tootsuite/mastodon/pull/15149))
+- Add follow selected followers button in relationship manager ([noellabo](https://github.com/tootsuite/mastodon/pull/15148))
+- **Add subresource integrity for JS and CSS assets** ([Gargron](https://github.com/tootsuite/mastodon/pull/15096))
+  - If you use a CDN for static assets (JavaScript, CSS, and so on), you have to trust that the CDN does not modify the assets maliciously
+  - Subresource integrity compares server-generated asset digests with what's actually served from the CDN and prevents such attacks
+- Add `ku`, `sa`, `sc`, `zgh` to available locales ([ykzts](https://github.com/tootsuite/mastodon/pull/15138))
+- Add ability to force an account to mark media as sensitive ([noellabo](https://github.com/tootsuite/mastodon/pull/14361))
+- **Add ability to block access or limit sign-ups from chosen IPs** ([Gargron](https://github.com/tootsuite/mastodon/pull/14963), [ThibG](https://github.com/tootsuite/mastodon/pull/15263))
+  - Add rules for IPs or CIDR ranges that automatically expire after a configurable amount of time
+  - Choose the severity of the rule, either blocking all access or merely limiting sign-ups
+- **Add support for reversible suspensions through ActivityPub** ([Gargron](https://github.com/tootsuite/mastodon/pull/14989))
+  - Servers can signal that one of their accounts has been suspended
+  - During suspension, the account can only delete its own content
+  - A reversal of the suspension can be signalled the same way
+  - A local suspension always overrides a remote one
+- Add indication to admin UI of whether a report has been forwarded ([ThibG](https://github.com/tootsuite/mastodon/pull/13237))
+- Add display of reasons for joining of an account in admin UI ([mashirozx](https://github.com/tootsuite/mastodon/pull/15265))
+- Add option to obfuscate domain name in public list of domain blocks ([Gargron](https://github.com/tootsuite/mastodon/pull/15355))
+- Add option to make reasons for joining required on sign-up ([ThibG](https://github.com/tootsuite/mastodon/pull/15326), [ThibG](https://github.com/tootsuite/mastodon/pull/15358), [ThibG](https://github.com/tootsuite/mastodon/pull/15385), [ThibG](https://github.com/tootsuite/mastodon/pull/15405))
+- Add ActivityPub follower synchronization mechanism ([ThibG](https://github.com/tootsuite/mastodon/pull/14510), [ThibG](https://github.com/tootsuite/mastodon/pull/15026))
+- Add outbox attribute to instance actor ([ThibG](https://github.com/tootsuite/mastodon/pull/14721))
+- Add featured hashtags as an ActivityPub collection ([Gargron](https://github.com/tootsuite/mastodon/pull/11595), [noellabo](https://github.com/tootsuite/mastodon/pull/15277))
+- Add support for dereferencing objects through bearcaps ([Gargron](https://github.com/tootsuite/mastodon/pull/14683), [noellabo](https://github.com/tootsuite/mastodon/pull/14981))
+- Add `S3_READ_TIMEOUT` environment variable ([tateisu](https://github.com/tootsuite/mastodon/pull/14952))
+- Add `ALLOWED_PRIVATE_ADDRESSES` environment variable ([ThibG](https://github.com/tootsuite/mastodon/pull/14722))
+- Add `--fix-permissions` option to `tootctl media remove-orphans` ([Gargron](https://github.com/tootsuite/mastodon/pull/14383), [uist1idrju3i](https://github.com/tootsuite/mastodon/pull/14715))
+- Add `tootctl accounts merge` ([Gargron](https://github.com/tootsuite/mastodon/pull/15201), [ThibG](https://github.com/tootsuite/mastodon/pull/15264), [ThibG](https://github.com/tootsuite/mastodon/pull/15256))
+  - Has someone changed their domain or subdomain thereby creating two accounts where there should be one?
+  - This command will fix it on your end
+- Add `tootctl maintenance fix-duplicates` ([ThibG](https://github.com/tootsuite/mastodon/pull/14860), [Gargron](https://github.com/tootsuite/mastodon/pull/15223), [ThibG](https://github.com/tootsuite/mastodon/pull/15373))
+  - Index corruption in the database?
+  - This command is for you
+- **Add support for managing multiple stream subscriptions in a single connection** ([Gargron](https://github.com/tootsuite/mastodon/pull/14524), [Gargron](https://github.com/tootsuite/mastodon/pull/14566), [mfmfuyu](https://github.com/tootsuite/mastodon/pull/14859), [zunda](https://github.com/tootsuite/mastodon/pull/14608))
+  - Previously, getting live updates for multiple timelines required opening a HTTP or WebSocket connection for each
+  - More connections means more resource consumption on both ends, not to mention the (ever so slight) delay when establishing a new connection
+  - Now, with just a single WebSocket connection you can subscribe and unsubscribe to and from multiple streams
+- Add support for limiting results by both `min_id` and `max_id` at the same time in REST API ([tateisu](https://github.com/tootsuite/mastodon/pull/14776))
+- Add `GET /api/v1/accounts/:id/featured_tags` to REST API ([noellabo](https://github.com/tootsuite/mastodon/pull/11817), [noellabo](https://github.com/tootsuite/mastodon/pull/15270))
+- Add stoplight for object storage failures, return HTTP 503 in REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/13043))
+- Add optional `tootctl remove media` cronjob in Helm chart ([dunn](https://github.com/tootsuite/mastodon/pull/14396))
+- Add clean error message when `RAILS_ENV` is unset ([ThibG](https://github.com/tootsuite/mastodon/pull/15381))
+
+### Changed
+
+- **Change media modals look in web UI** ([Gargron](https://github.com/tootsuite/mastodon/pull/15217), [Gargron](https://github.com/tootsuite/mastodon/pull/15221), [Gargron](https://github.com/tootsuite/mastodon/pull/15284), [Gargron](https://github.com/tootsuite/mastodon/pull/15283), [Kjwon15](https://github.com/tootsuite/mastodon/pull/15308), [noellabo](https://github.com/tootsuite/mastodon/pull/15305), [ThibG](https://github.com/tootsuite/mastodon/pull/15417))
+  - Background of the overlay matches the color of the image
+  - Action bar to interact with or open the toot from the modal
+- Change order of announcements in admin UI to be newest-first ([ThibG](https://github.com/tootsuite/mastodon/pull/15091))
+- **Change account suspensions to be reversible by default** ([Gargron](https://github.com/tootsuite/mastodon/pull/14726), [ThibG](https://github.com/tootsuite/mastodon/pull/15152), [ThibG](https://github.com/tootsuite/mastodon/pull/15106), [ThibG](https://github.com/tootsuite/mastodon/pull/15100), [ThibG](https://github.com/tootsuite/mastodon/pull/15099), [noellabo](https://github.com/tootsuite/mastodon/pull/14855), [ThibG](https://github.com/tootsuite/mastodon/pull/15380), [Gargron](https://github.com/tootsuite/mastodon/pull/15420), [Gargron](https://github.com/tootsuite/mastodon/pull/15414))
+  - Suspensions no longer equal deletions
+  - A suspended account can be unsuspended with minimal consequences for 30 days
+  - Immediate deletion of data is still available as an explicit option
+  - Suspended accounts can request an archive of their data through the UI
+- Change REST API to return empty data for suspended accounts (14765)
+- Change web UI to show empty profile for suspended accounts ([Gargron](https://github.com/tootsuite/mastodon/pull/14766), [Gargron](https://github.com/tootsuite/mastodon/pull/15345))
+- Change featured hashtag suggestions to be recently used instead of most used ([abcang](https://github.com/tootsuite/mastodon/pull/14760))
+- Change direct toots to appear in the home feed again ([Gargron](https://github.com/tootsuite/mastodon/pull/14711), [ThibG](https://github.com/tootsuite/mastodon/pull/15182), [noellabo](https://github.com/tootsuite/mastodon/pull/14727))
+  - Return to treating all toots the same instead of trying to retrofit direct visibility into an instant messaging model
+- Change email address validation to return more specific errors ([ThibG](https://github.com/tootsuite/mastodon/pull/14565))
+- Change HTTP signature requirements to include `Digest` header on `POST` requests ([ThibG](https://github.com/tootsuite/mastodon/pull/15069))
+- Change click area of video/audio player buttons to be bigger in web UI ([ariasuni](https://github.com/tootsuite/mastodon/pull/15049))
+- Change order of filters by alphabetic by "keyword or phrase" ([ariasuni](https://github.com/tootsuite/mastodon/pull/15050))
+- Change suspension of remote accounts to also undo outgoing follows ([ThibG](https://github.com/tootsuite/mastodon/pull/15188))
+- Change string "Home" to "Home and lists" in the filter creation screen ([ariasuni](https://github.com/tootsuite/mastodon/pull/15139))
+- Change string "Boost to original audience" to "Boost with original visibility" in web UI ([3n-k1](https://github.com/tootsuite/mastodon/pull/14598))
+- Change string "Show more" to "Show newer" and "Show older" on public pages ([ariasuni](https://github.com/tootsuite/mastodon/pull/15052))
+- Change order of announcements to be reverse chronological in web UI ([dariusk](https://github.com/tootsuite/mastodon/pull/15065), [dariusk](https://github.com/tootsuite/mastodon/pull/15070))
+- Change RTL detection to rely on unicode-bidi paragraph by paragraph in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/14573))
+- Change visibility icon next to timestamp to be clickable in web UI ([ariasuni](https://github.com/tootsuite/mastodon/pull/15053), [mayaeh](https://github.com/tootsuite/mastodon/pull/15055))
+- Change public thread view to hide "Show thread" link ([ThibG](https://github.com/tootsuite/mastodon/pull/15266))
+- Change number format on about page from full to shortened ([Gargron](https://github.com/tootsuite/mastodon/pull/15327))
+- Change how scheduled tasks run in multi-process environments ([noellabo](https://github.com/tootsuite/mastodon/pull/15314))
+  - New dedicated queue `scheduler`
+  - Runs by default when Sidekiq is executed with no options
+  - Has to be added manually in a multi-process environment
+
+### Removed
+
+- Remove fade-in animation from modals in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/15199))
+- Remove auto-redirect to direct messages in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/15142))
+- Remove obsolete IndexedDB operations from web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/14730))
+- Remove dependency on unused and unmaintained http_parser.rb gem ([ThibG](https://github.com/tootsuite/mastodon/pull/14574))
+
+### Fixed
+
+- Fix layout on about page when contact account has a long username ([ThibG](https://github.com/tootsuite/mastodon/pull/15357))
+- Fix follow limit preventing re-following of a moved account ([Gargron](https://github.com/tootsuite/mastodon/pull/14207), [ThibG](https://github.com/tootsuite/mastodon/pull/15384))
+- **Fix deletes not reaching every server that interacted with toot** ([Gargron](https://github.com/tootsuite/mastodon/pull/15200))
+  - Previously, delete of a toot would be primarily sent to the followers of its author, people mentioned in the toot, and people who reblogged the toot
+  - Now, additionally, it is ensured that it is sent to people who replied to it, favourited it, and to the person it replies to even if that person is not mentioned
+- Fix resolving an account through its non-canonical form (i.e. alternate domain) ([ThibG](https://github.com/tootsuite/mastodon/pull/15187))
+- Fix sending redundant ActivityPub events when processing remote account deletion ([ThibG](https://github.com/tootsuite/mastodon/pull/15104))
+- Fix Move handler not being triggered when failing to fetch target account ([ThibG](https://github.com/tootsuite/mastodon/pull/15107))
+- Fix downloading remote media files when server returns empty filename ([ThibG](https://github.com/tootsuite/mastodon/pull/14867))
+- Fix account processing failing because of large collections ([ThibG](https://github.com/tootsuite/mastodon/pull/15027))
+- Fix not being able to unfavorite toots one has lost access to ([ThibG](https://github.com/tootsuite/mastodon/pull/15192))
+- Fix not being able to unbookmark toots one has lost access to ([ThibG](https://github.com/tootsuite/mastodon/pull/14604))
+- Fix possible casing inconsistencies in hashtag search ([ThibG](https://github.com/tootsuite/mastodon/pull/14906))
+- Fix updating account counters when association is not yet created ([Gargron](https://github.com/tootsuite/mastodon/pull/15108))
+- Fix cookies not having a SameSite attribute ([Gargron](https://github.com/tootsuite/mastodon/pull/15098))
+- Fix poll ending notifications being created for each vote ([ThibG](https://github.com/tootsuite/mastodon/pull/15071))
+- Fix multiple boosts of a same toot erroneously appearing in TL ([ThibG](https://github.com/tootsuite/mastodon/pull/14759))
+- Fix asset builds not picking up `CDN_HOST` change ([ThibG](https://github.com/tootsuite/mastodon/pull/14381))
+- Fix desktop notifications permission prompt in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/14985), [Gargron](https://github.com/tootsuite/mastodon/pull/15141), [ThibG](https://github.com/tootsuite/mastodon/pull/13543), [ThibG](https://github.com/tootsuite/mastodon/pull/15176))
+  - Some time ago, browsers added a requirement that desktop notification prompts could only be displayed in response to a user-generated event (such as a click)
+  - This means that for some time, users who haven't already given the permission before were not getting a prompt and as such were not receiving desktop notifications
+- Fix "Mark media as sensitive" string not supporting pluralizations in other languages in web UI ([ariasuni](https://github.com/tootsuite/mastodon/pull/15051))
+- Fix glitched image uploads when canvas read access is blocked in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/15180))
+- Fix some account gallery items having empty labels in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/15073))
+- Fix alt-key hotkeys activating while typing in a text field in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14942))
+- Fix wrong seek bar width on media player in web UI ([mfmfuyu](https://github.com/tootsuite/mastodon/pull/15060))
+- Fix logging out on mobile in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14901))
+- Fix wrong click area for GIFVs in media modal in web UI ([noellabo](https://github.com/tootsuite/mastodon/pull/14615))
+- Fix unreadable placeholder text color in high contrast theme in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/14803))
+- Fix scrolling issues when closing some dropdown menus in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14606))
+- Fix notification filter bar incorrectly filtering gaps in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14808))
+- Fix disabled boost icon being replaced by private boost icon on hover in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14456))
+- Fix hashtag detection in compose form being different to server-side in web UI ([kedamaDQ](https://github.com/tootsuite/mastodon/pull/14484), [ThibG](https://github.com/tootsuite/mastodon/pull/14513))
+- Fix home last read marker mishandling gaps in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14809))
+- Fix unnecessary re-rendering of various components when typing in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/15286))
+- Fix notifications being unnecessarily re-rendered in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/15312))
+- Fix column swiping animation logic in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/15301))
+- Fix inefficiency when fetching hashtag timeline ([noellabo](https://github.com/tootsuite/mastodon/pull/14861), [akihikodaki](https://github.com/tootsuite/mastodon/pull/14662))
+- Fix inefficiency when fetching bookmarks ([akihikodaki](https://github.com/tootsuite/mastodon/pull/14674))
+- Fix inefficiency when fetching favourites ([akihikodaki](https://github.com/tootsuite/mastodon/pull/14673))
+- Fix inefficiency when fetching media-only account timeline ([akihikodaki](https://github.com/tootsuite/mastodon/pull/14675))
+- Fix inefficieny when deleting accounts ([Gargron](https://github.com/tootsuite/mastodon/pull/15387), [ThibG](https://github.com/tootsuite/mastodon/pull/15409), [ThibG](https://github.com/tootsuite/mastodon/pull/15407), [ThibG](https://github.com/tootsuite/mastodon/pull/15408), [ThibG](https://github.com/tootsuite/mastodon/pull/15402), [ThibG](https://github.com/tootsuite/mastodon/pull/15416), [Gargron](https://github.com/tootsuite/mastodon/pull/15421))
+- Fix redundant query when processing batch actions on custom emojis ([niwatori24](https://github.com/tootsuite/mastodon/pull/14534))
+- Fix slow distinct queries where grouped queries are faster ([Gargron](https://github.com/tootsuite/mastodon/pull/15287))
+- Fix performance on instances list in admin UI ([Gargron](https://github.com/tootsuite/mastodon/pull/15282))
+- Fix server actor appearing in list of accounts in admin UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14567))
+- Fix "bootstrap timeline accounts" toggle in site settings in admin UI ([ThibG](https://github.com/tootsuite/mastodon/pull/15325))
+- Fix PostgreSQL secret name for cronjob in Helm chart ([metal3d](https://github.com/tootsuite/mastodon/pull/15072))
+- Fix Procfile not being compatible with herokuish ([acuteaura](https://github.com/tootsuite/mastodon/pull/12685))
+- Fix installation of tini being split into multiple steps in Dockerfile ([ryncsn](https://github.com/tootsuite/mastodon/pull/14686))
+
+### Security
+
+- Fix streaming API allowing connections to persist after access token invalidation ([Gargron](https://github.com/tootsuite/mastodon/pull/15111))
+- Fix 2FA/sign-in token sessions being valid after password change ([Gargron](https://github.com/tootsuite/mastodon/pull/14802))
+- Fix resolving accounts sometimes creating duplicate records for a given ActivityPub identifier ([ThibG](https://github.com/tootsuite/mastodon/pull/15364))
+
 ## [3.2.2] - 2020-12-19
+
 ### Added
 
 - Add `tootctl maintenance fix-duplicates` ([ThibG](https://github.com/tootsuite/mastodon/pull/14860), [Gargron](https://github.com/tootsuite/mastodon/pull/15223))
@@ -30,6 +207,7 @@ All notable changes to this project will be documented in this file.
 - Fix resolving accounts sometimes creating duplicate records for a given ActivityPub identifier ([ThibG](https://github.com/tootsuite/mastodon/pull/15364))
 
 ## [3.2.1] - 2020-10-19
+
 ### Added
 
 - Add support for latest HTTP Signatures spec draft ([ThibG](https://github.com/tootsuite/mastodon/pull/14556))
@@ -59,6 +237,7 @@ All notable changes to this project will be documented in this file.
 - Fix files served as `application/octet-stream` being rejected without attempting mime type detection ([ThibG](https://github.com/tootsuite/mastodon/pull/14452))
 
 ## [3.2.0] - 2020-07-27
+
 ### Added
 
 - Add `SMTP_SSL` environment variable ([OmmyZhang](https://github.com/tootsuite/mastodon/pull/14309))
@@ -194,7 +373,7 @@ All notable changes to this project will be documented in this file.
 - Fix unique username constraint for local users not being enforced in database ([ThibG](https://github.com/tootsuite/mastodon/pull/14099))
 - Fix unnecessary gap under video modal in web UI ([mfmfuyu](https://github.com/tootsuite/mastodon/pull/14098))
 - Fix 2FA and sign in token pages not respecting user locale ([mfmfuyu](https://github.com/tootsuite/mastodon/pull/14087))
-- Fix unapproved users being able to view profiles when in limited-federation mode *and* requiring approval for sign-ups ([ThibG](https://github.com/tootsuite/mastodon/pull/14093))
+- Fix unapproved users being able to view profiles when in limited-federation mode _and_ requiring approval for sign-ups ([ThibG](https://github.com/tootsuite/mastodon/pull/14093))
 - Fix initial audio volume not corresponding to what's displayed in audio player in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14057))
 - Fix timelines sometimes jumping when closing modals in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/14019))
 - Fix memory usage of downloading remote files ([Gargron](https://github.com/tootsuite/mastodon/pull/14184), [Gargron](https://github.com/tootsuite/mastodon/pull/14181), [noellabo](https://github.com/tootsuite/mastodon/pull/14356))
@@ -211,14 +390,16 @@ All notable changes to this project will be documented in this file.
   - Only then proceed to start removing their data (slow)
   - Clear out media attachments in a separate worker (slow)
 
-## [v3.1.5] - 2020-07-07
+## [3.1.5] - 2020-07-07
+
 ### Security
 
 - Fix media attachment enumeration ([ThibG](https://github.com/tootsuite/mastodon/pull/14254))
 - Change rate limits for various paths ([Gargron](https://github.com/tootsuite/mastodon/pull/14253))
 - Fix other sessions not being logged out on password change ([Gargron](https://github.com/tootsuite/mastodon/pull/14252))
 
-## [v3.1.4] - 2020-05-14
+## [3.1.4] - 2020-05-14
+
 ### Added
 
 - Add `vi` to available locales ([taicv](https://github.com/tootsuite/mastodon/pull/13542))
@@ -257,7 +438,7 @@ All notable changes to this project will be documented in this file.
 - Fix regression in `tootctl media remove-orphans` ([Gargron](https://github.com/tootsuite/mastodon/pull/13405))
 - Fix old unique jobs digests not having been cleaned up ([Gargron](https://github.com/tootsuite/mastodon/pull/13683))
 - Fix own following/followers not showing muted users ([ThibG](https://github.com/tootsuite/mastodon/pull/13614))
-- Fix list of followed people ignoring sorting on Follows & Followers page  ([taras2358](https://github.com/tootsuite/mastodon/pull/13676))
+- Fix list of followed people ignoring sorting on Follows & Followers page ([taras2358](https://github.com/tootsuite/mastodon/pull/13676))
 - Fix wrong pgHero Content-Security-Policy when `CDN_HOST` is set ([ThibG](https://github.com/tootsuite/mastodon/pull/13595))
 - Fix needlessly deduplicating usernames on collisions with remote accounts when signing-up through SAML/CAS ([kaiyou](https://github.com/tootsuite/mastodon/pull/13581))
 - Fix page incorrectly scrolling when bringing up dropdown menus in web UI ([ThibG](https://github.com/tootsuite/mastodon/pull/13574))
@@ -285,7 +466,8 @@ All notable changes to this project will be documented in this file.
   - For apps that self-register on behalf of every individual user (such as most mobile apps), this is a non-issue
   - The issue only affects developers of apps who are shared between multiple users, such as server-side apps like cross-posters
 
-## [v3.1.3] - 2020-04-05
+## [3.1.3] - 2020-04-05
+
 ### Added
 
 - Add ability to filter audit log in admin UI ([Gargron](https://github.com/tootsuite/mastodon/pull/13381))
@@ -359,6 +541,7 @@ All notable changes to this project will be documented in this file.
 - Fix re-sending of e-mail confirmation not being rate limited ([Gargron](https://github.com/tootsuite/mastodon/pull/13360))
 
 ## [v3.1.2] - 2020-02-27
+
 ### Added
 
 - Add `--reset-password` option to `tootctl accounts modify` ([ThibG](https://github.com/tootsuite/mastodon/pull/13126))
@@ -385,11 +568,13 @@ All notable changes to this project will be documented in this file.
 - Fix leak of arbitrary statuses through unfavourite action in REST API ([Gargron](https://github.com/tootsuite/mastodon/pull/13161))
 
 ## [3.1.1] - 2020-02-10
+
 ### Fixed
 
 - Fix yanked dependency preventing installation ([mayaeh](https://github.com/tootsuite/mastodon/pull/13059))
 
 ## [3.1.0] - 2020-02-09
+
 ### Added
 
 - Add bookmarks ([ThibG](https://github.com/tootsuite/mastodon/pull/7107), [Gargron](https://github.com/tootsuite/mastodon/pull/12494), [Gomasy](https://github.com/tootsuite/mastodon/pull/12381))
@@ -554,6 +739,7 @@ All notable changes to this project will be documented in this file.
 - Fix settings pages being cacheable by the browser ([Gargron](https://github.com/tootsuite/mastodon/pull/12714))
 
 ## [3.0.1] - 2019-10-10
+
 ### Added
 
 - Add `tootctl media usage` command ([Gargron](https://github.com/tootsuite/mastodon/pull/12115))
@@ -587,6 +773,7 @@ All notable changes to this project will be documented in this file.
 - Fix `tootctl accounts cull` advertising unused option flag ([Kjwon15](https://github.com/tootsuite/mastodon/pull/12074))
 
 ## [3.0.0] - 2019-10-03
+
 ### Added
 
 - Add "not available" label to unloaded media attachments in web UI ([Gargron](https://github.com/tootsuite/mastodon/pull/11715), [Gargron](https://github.com/tootsuite/mastodon/pull/11745))
@@ -783,6 +970,7 @@ All notable changes to this project will be documented in this file.
 - Fix performance of GIF re-encoding and always strip EXIF data from videos ([Gargron](https://github.com/tootsuite/mastodon/pull/12057))
 
 ## [2.9.3] - 2019-08-10
+
 ### Added
 
 - Add GIF and WebP support for custom emojis ([Gargron](https://github.com/tootsuite/mastodon/pull/11519))
@@ -842,6 +1030,7 @@ All notable changes to this project will be documented in this file.
 - Fix blocked domains still being able to fill database with account records ([Gargron](https://github.com/tootsuite/mastodon/pull/11219))
 
 ## [2.9.2] - 2019-06-22
+
 ### Added
 
 - Add `short_description` and `approval_required` to `GET /api/v1/instance` ([Gargron](https://github.com/tootsuite/mastodon/pull/11146))
@@ -856,6 +1045,7 @@ All notable changes to this project will be documented in this file.
 - Fix audio not being downloaded from remote servers ([Gargron](https://github.com/tootsuite/mastodon/pull/11145))
 
 ## [2.9.1] - 2019-06-22
+
 ### Added
 
 - Add moderation API ([Gargron](https://github.com/tootsuite/mastodon/pull/9387))
@@ -881,6 +1071,7 @@ All notable changes to this project will be documented in this file.
 - Fix scrolling behaviour in compose form ([ThibG](https://github.com/tootsuite/mastodon/pull/11093))
 
 ## [2.9.0] - 2019-06-13
+
 ### Added
 
 - **Add single-column mode in web UI** ([Gargron](https://github.com/tootsuite/mastodon/pull/10807), [Gargron](https://github.com/tootsuite/mastodon/pull/10848), [Gargron](https://github.com/tootsuite/mastodon/pull/11003), [Gargron](https://github.com/tootsuite/mastodon/pull/10961), [Hanage999](https://github.com/tootsuite/mastodon/pull/10915), [noellabo](https://github.com/tootsuite/mastodon/pull/10917), [abcang](https://github.com/tootsuite/mastodon/pull/10859), [Gargron](https://github.com/tootsuite/mastodon/pull/10820), [Gargron](https://github.com/tootsuite/mastodon/pull/10835), [Gargron](https://github.com/tootsuite/mastodon/pull/10809), [Gargron](https://github.com/tootsuite/mastodon/pull/10963), [noellabo](https://github.com/tootsuite/mastodon/pull/10883), [Hanage999](https://github.com/tootsuite/mastodon/pull/10839))
@@ -935,6 +1126,7 @@ All notable changes to this project will be documented in this file.
 - Fix login sometimes redirecting to paths that are not pages ([Gargron](https://github.com/tootsuite/mastodon/pull/11019))
 
 ## [2.8.4] - 2019-05-24
+
 ### Fixed
 
 - Fix delivery not retrying on some inbox errors that should be retriable ([ThibG](https://github.com/tootsuite/mastodon/pull/10812))
@@ -946,6 +1138,7 @@ All notable changes to this project will be documented in this file.
 - Require specific OAuth scopes for specific endpoints of the streaming API, instead of merely requiring a token for all endpoints, and allow using WebSockets protocol negotiation to specify the access token instead of using a query string ([ThibG](https://github.com/tootsuite/mastodon/pull/10818))
 
 ## [2.8.3] - 2019-05-19
+
 ### Added
 
 - Add `og:image:alt` OpenGraph tag ([BenLubar](https://github.com/tootsuite/mastodon/pull/10779))
@@ -968,6 +1161,7 @@ All notable changes to this project will be documented in this file.
 - Fix "invited by" not showing up in admin UI ([ThibG](https://github.com/tootsuite/mastodon/pull/10791))
 
 ## [2.8.2] - 2019-05-05
+
 ### Added
 
 - Add `SOURCE_TAG` environment variable ([ushitora-anqou](https://github.com/tootsuite/mastodon/pull/10698))
@@ -980,6 +1174,7 @@ All notable changes to this project will be documented in this file.
 - Fix closing video modal scrolling timelines to top ([ThibG](https://github.com/tootsuite/mastodon/pull/10695))
 
 ## [2.8.1] - 2019-05-04
+
 ### Added
 
 - Add link to existing domain block when trying to block an already-blocked domain ([ThibG](https://github.com/tootsuite/mastodon/pull/10663))
@@ -1019,6 +1214,7 @@ All notable changes to this project will be documented in this file.
 - Fix confirmation modals being too narrow for a secondary action button ([ThibG](https://github.com/tootsuite/mastodon/pull/10586))
 
 ## [2.8.0] - 2019-04-10
+
 ### Added
 
 - Add polls ([Gargron](https://github.com/tootsuite/mastodon/pull/10111), [ThibG](https://github.com/tootsuite/mastodon/pull/10155), [Gargron](https://github.com/tootsuite/mastodon/pull/10184), [ThibG](https://github.com/tootsuite/mastodon/pull/10196), [Gargron](https://github.com/tootsuite/mastodon/pull/10248), [ThibG](https://github.com/tootsuite/mastodon/pull/10255), [ThibG](https://github.com/tootsuite/mastodon/pull/10322), [Gargron](https://github.com/tootsuite/mastodon/pull/10138), [Gargron](https://github.com/tootsuite/mastodon/pull/10139), [Gargron](https://github.com/tootsuite/mastodon/pull/10144), [Gargron](https://github.com/tootsuite/mastodon/pull/10145),[Gargron](https://github.com/tootsuite/mastodon/pull/10146), [Gargron](https://github.com/tootsuite/mastodon/pull/10148), [Gargron](https://github.com/tootsuite/mastodon/pull/10151), [ThibG](https://github.com/tootsuite/mastodon/pull/10150), [Gargron](https://github.com/tootsuite/mastodon/pull/10168), [Gargron](https://github.com/tootsuite/mastodon/pull/10165), [Gargron](https://github.com/tootsuite/mastodon/pull/10172), [Gargron](https://github.com/tootsuite/mastodon/pull/10170), [Gargron](https://github.com/tootsuite/mastodon/pull/10171), [Gargron](https://github.com/tootsuite/mastodon/pull/10186), [Gargron](https://github.com/tootsuite/mastodon/pull/10189), [ThibG](https://github.com/tootsuite/mastodon/pull/10200), [rinsuki](https://github.com/tootsuite/mastodon/pull/10203), [Gargron](https://github.com/tootsuite/mastodon/pull/10213), [Gargron](https://github.com/tootsuite/mastodon/pull/10246), [Gargron](https://github.com/tootsuite/mastodon/pull/10265), [Gargron](https://github.com/tootsuite/mastodon/pull/10261), [ThibG](https://github.com/tootsuite/mastodon/pull/10333), [Gargron](https://github.com/tootsuite/mastodon/pull/10352), [ThibG](https://github.com/tootsuite/mastodon/pull/10140), [ThibG](https://github.com/tootsuite/mastodon/pull/10142), [ThibG](https://github.com/tootsuite/mastodon/pull/10141), [ThibG](https://github.com/tootsuite/mastodon/pull/10162), [ThibG](https://github.com/tootsuite/mastodon/pull/10161), [ThibG](https://github.com/tootsuite/mastodon/pull/10158), [ThibG](https://github.com/tootsuite/mastodon/pull/10156), [ThibG](https://github.com/tootsuite/mastodon/pull/10160), [Gargron](https://github.com/tootsuite/mastodon/pull/10185), [Gargron](https://github.com/tootsuite/mastodon/pull/10188), [ThibG](https://github.com/tootsuite/mastodon/pull/10195), [ThibG](https://github.com/tootsuite/mastodon/pull/10208), [Gargron](https://github.com/tootsuite/mastodon/pull/10187), [ThibG](https://github.com/tootsuite/mastodon/pull/10214), [ThibG](https://github.com/tootsuite/mastodon/pull/10209))
@@ -1102,6 +1298,7 @@ All notable changes to this project will be documented in this file.
 - Fix `tootctl accounts cull` sometimes removing accounts that are temporarily unreachable ([BenLubar](https://github.com/tootsuite/mastodon/pull/10460))
 
 ## [2.7.4] - 2019-03-05
+
 ### Fixed
 
 - Fix web UI not cleaning up notifications after block ([Gargron](https://github.com/tootsuite/mastodon/pull/10108))
@@ -1116,6 +1313,7 @@ All notable changes to this project will be documented in this file.
 - Fix edit profile page crash for suspended-then-unsuspended users ([ThibG](https://github.com/tootsuite/mastodon/pull/10178))
 
 ## [2.7.3] - 2019-02-23
+
 ### Added
 
 - Add domain filter to the admin federation page ([ThibG](https://github.com/tootsuite/mastodon/pull/10071))
@@ -1133,6 +1331,7 @@ All notable changes to this project will be documented in this file.
 - Change custom emojis to randomize stored file name ([hinaloe](https://github.com/tootsuite/mastodon/pull/10090))
 
 ## [2.7.2] - 2019-02-17
+
 ### Added
 
 - Add support for IPv6 in e-mail validation ([zoc](https://github.com/tootsuite/mastodon/pull/10009))
@@ -1174,6 +1373,7 @@ All notable changes to this project will be documented in this file.
 - Change error graphic to hover-to-play ([Gargron](https://github.com/tootsuite/mastodon/pull/10055))
 
 ## [2.7.1] - 2019-01-28
+
 ### Fixed
 
 - Fix SSO authentication not working due to missing agreement boolean ([Gargron](https://github.com/tootsuite/mastodon/pull/9915))
@@ -1188,6 +1388,7 @@ All notable changes to this project will be documented in this file.
 - Fix missing strong style for landing page description ([Kjwon15](https://github.com/tootsuite/mastodon/pull/9892))
 
 ## [2.7.0] - 2019-01-20
+
 ### Added
 
 - Add link for adding a user to a list from their profile ([namelessGonbai](https://github.com/tootsuite/mastodon/pull/9062))
@@ -1317,6 +1518,7 @@ All notable changes to this project will be documented in this file.
 - Add tombstones for remote statuses to prevent replay attacks ([ThibG](https://github.com/tootsuite/mastodon/pull/9830))
 
 ## [2.6.5] - 2018-12-01
+
 ### Changed
 
 - Change lists to display replies to others on the list and list owner ([ThibG](https://github.com/tootsuite/mastodon/pull/9324))
@@ -1326,11 +1528,13 @@ All notable changes to this project will be documented in this file.
 - Fix failures caused by commonly-used JSON-LD contexts being unavailable ([ThibG](https://github.com/tootsuite/mastodon/pull/9412))
 
 ## [2.6.4] - 2018-11-30
+
 ### Fixed
 
 - Fix yarn dependencies not installing due to yanked event-stream package ([Gargron](https://github.com/tootsuite/mastodon/pull/9401))
 
 ## [2.6.3] - 2018-11-30
+
 ### Added
 
 - Add hyphen to characters allowed in remote usernames ([ThibG](https://github.com/tootsuite/mastodon/pull/9345))
@@ -1350,6 +1554,7 @@ All notable changes to this project will be documented in this file.
 - Fix TLS handshake timeout not being enforced ([Gargron](https://github.com/tootsuite/mastodon/pull/9381))
 
 ## [2.6.2] - 2018-11-23
+
 ### Added
 
 - Add Page to whitelisted ActivityPub types ([mbajur](https://github.com/tootsuite/mastodon/pull/9188))
@@ -1384,12 +1589,14 @@ All notable changes to this project will be documented in this file.
 - Fix HTTP connection timeout of 10s not being enforced ([Gargron](https://github.com/tootsuite/mastodon/pull/9329))
 
 ## [2.6.1] - 2018-10-30
+
 ### Fixed
 
 - Fix resolving resources by URL not working due to a regression in [valerauko](https://github.com/tootsuite/mastodon/pull/9132) ([Gargron](https://github.com/tootsuite/mastodon/pull/9171))
 - Fix reducer error in web UI when a conversation has no last status ([Gargron](https://github.com/tootsuite/mastodon/pull/9173))
 
 ## [2.6.0] - 2018-10-30
+
 ### Added
 
 - Add link ownership verification ([Gargron](https://github.com/tootsuite/mastodon/pull/8703))
@@ -1494,11 +1701,13 @@ All notable changes to this project will be documented in this file.
 - Fix handling of content types with profile ([valerauko](https://github.com/tootsuite/mastodon/pull/9132))
 
 ## [2.5.2] - 2018-10-12
+
 ### Security
 
 - Fix XSS vulnerability ([Gargron](https://github.com/tootsuite/mastodon/pull/8959))
 
 ## [2.5.1] - 2018-10-07
+
 ### Fixed
 
 - Fix database migrations for PostgreSQL below 9.5 ([Gargron](https://github.com/tootsuite/mastodon/pull/8903))

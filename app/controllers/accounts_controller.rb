@@ -29,8 +29,7 @@ class AccountsController < ApplicationController
         end
 
         @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
-        @statuses        = filtered_status_page
-        @statuses        = cache_collection(@statuses, Status)
+        @statuses        = cached_filtered_status_page
         @rss_url         = rss_url
 
         unless @statuses.empty?
@@ -103,6 +102,10 @@ class AccountsController < ApplicationController
     params[:username]
   end
 
+  def skip_temporary_suspension_response?
+    request.format == :json
+  end
+
   def rss_url
     if tag_requested?
       short_account_tag_url(@account, params[:tag], format: 'rss')
@@ -143,8 +146,13 @@ class AccountsController < ApplicationController
     request.path.split('.').first.ends_with?(Addressable::URI.parse("/tagged/#{params[:tag]}").normalize)
   end
 
-  def filtered_status_page
-    filtered_statuses.paginate_by_id(PAGE_SIZE, params_slice(:max_id, :min_id, :since_id))
+  def cached_filtered_status_page
+    cache_collection_paginated_by_id(
+      filtered_statuses,
+      Status,
+      PAGE_SIZE,
+      params_slice(:max_id, :min_id, :since_id)
+    )
   end
 
   def params_slice(*keys)

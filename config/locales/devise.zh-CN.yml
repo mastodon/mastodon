@@ -60,6 +60,23 @@ zh-CN:
         title: 双重验证的恢复码已更改
       unlock_instructions:
         subject: Mastodon：帐户解锁信息
+      webauthn_credential:
+        added:
+          explanation: 以下安全密钥已添加到您的帐户
+          subject: Mastodon：新的安全密钥
+          title: 已添加一个新的安全密钥
+        deleted:
+          explanation: 以下安全密钥已从您的账户中删除
+          subject: Mastodon：安全密钥已删除
+          title: 您的安全密钥之一已被删除
+      webauthn_disabled:
+        explanation: 您的帐户已禁用安全密钥认证。现在只能使用配对的 TOTP 应用程序生成的令牌登录。
+        subject: Mastodon：安全密钥认证已禁用
+        title: 安全密钥已禁用
+      webauthn_enabled:
+        explanation: 您的帐户已启用安全密钥身份验证。您的安全密钥现在可以用于登录。
+        subject: Mastodon：安全密钥认证已启用
+        title: 已启用安全密钥
     omniauth_callbacks:
       failure: 由于%{reason}，无法从%{kind}获得授权。
       success: 成功地从%{kind}获得授权。
@@ -70,13 +87,13 @@ zh-CN:
       updated: 你的密码已修改成功，你现在已登录。
       updated_not_active: 你的密码已修改成功。
     registrations:
-      destroyed: 再见！你的帐户已成功销毁。我们希望很快可以再见到你。
+      destroyed: 再见！你的帐户已成功注销。我们希望很快可以再见到你。
       signed_up: 欢迎！你已注册成功。
-      signed_up_but_inactive: 你已注册，但尚未激活帐户。
-      signed_up_but_locked: 你已注册，但帐户被锁定了。
-      signed_up_but_pending: 一封带有确认链接的邮件已经发送到了您的邮箱。 在您点击确认链接后，我们将会审核您的申请。审核通过后，我们将会通知您。
+      signed_up_but_inactive: 你已成功注册，但因尚未激活帐户所以无法登陆。
+      signed_up_but_locked: 你已成功注册，但因帐户被锁定所以无法登陆。
+      signed_up_but_pending: 一封带有确认链接的邮件已经发送到了你的邮箱。 在你点击确认链接后，我们将会审核你的申请。审核通过后，我们将会通知你。
       signed_up_but_unconfirmed: 一封带有确认链接的邮件已经发送至你的邮箱，请点击邮件中的链接以激活你的帐户。如果没有，请检查你的垃圾邮件。
-      update_needs_confirmation: 信息更新成功，但我们需要验证你的新电子邮件地址，请点击邮件中的链接以确认。如果没有，请检查你的垃圾邮箱。
+      update_needs_confirmation: 帐号信息更新成功，但我们需要验证你的新电子邮件地址，请点击邮件中的链接以确认。如果没有，请检查你的垃圾邮箱。
       updated: 帐户资料更新成功。
     sessions:
       already_signed_out: 已成功登出。
@@ -84,12 +101,12 @@ zh-CN:
       signed_out: 已成功登出。
     unlocks:
       send_instructions: 几分钟后，你将收到一封解锁帐户的邮件。如果没有，请检查你的垃圾邮箱。
-      send_paranoid_instructions: 如果你的邮箱存在于我们的数据库中，你将收到一封解锁帐户的邮件。如果没有，请检查你的垃圾邮箱。
+      send_paranoid_instructions: 如果你的帐号存在于数据库中，你将收到一封指引你解锁帐户的邮件。如果没有，请检查你的垃圾邮箱。
       unlocked: 你的帐户已成功解锁。登录以继续。
   errors:
     messages:
       already_confirmed: 已经确认成功，请尝试登录
-      confirmation_period_expired: 必须在 %{period}以内确认。请重新发起请求
+      confirmation_period_expired: 必须在 %{period} 以内确认。请重新发起请求
       expired: 已过期。请重新发起请求
       not_found: 未找到
       not_locked: 未被锁定

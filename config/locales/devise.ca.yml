@@ -53,7 +53,7 @@ ca:
         subject: 'Mastodon: autenticació de dos factors desactivada'
         title: 2FA desactivat
       two_factor_enabled:
-        explanation: L'autenticació de dos factors ha estat habilitada pel teu compte. Un token generat pel emparellat TOTP app serà requerit per a iniciar sessió.
+        explanation: L'autenticació de dos factors ha estat habilitada pel teu compte. Un token generat per l'aplicació d'emparellat TOTP serà requerit per a iniciar sessió.
         subject: 'Mastodon: autenticació de dos factors activada'
         title: 2FA activat
       two_factor_recovery_codes_changed:
@@ -62,9 +62,26 @@ ca:
         title: 2FA codis de recuperació canviats
       unlock_instructions:
         subject: 'Mastodon: Instruccions per a desbloquejar'
+      webauthn_credential:
+        added:
+          explanation: La següent clau de seguretat s'ha afegit al teu compte
+          subject: 'Mastodon: Nova clau de seguretat'
+          title: S'ha afegit una nova clau de seguretat
+        deleted:
+          explanation: La següent clau de seguretat s'ha esborrat del teu compte
+          subject: 'Mastodon: clau de seguretat esborrada'
+          title: Una de les teves claus de seguretat ha estat esborrada
+      webauthn_disabled:
+        explanation: S'ha desactivat l'autenticació amb claus de seguretat per al teu compte. L'inici de sessió és ara possible emprant només el token generat per l'aplicació TOTP.
+        subject: 'Mastodon: S''ha desactivat l''autenticació amb claus de seguretat'
+        title: Claus de seguretat desactivades
+      webauthn_enabled:
+        explanation: S'ha activat l'autenticació amb claus de seguretat. La teva clau de seguretat por ser emprada per a iniciar sessió.
+        subject: 'Mastodon: Autenticació amb clau de seguretat activada'
+        title: Claus de seguretat activades
     omniauth_callbacks:
-      failure: No podem autentificar-te des de %{kind} degut a "%{reason}".
-      success: Autentificat amb èxit des del compte %{kind}.
+      failure: No podem autenticar-te des de %{kind} degut a "%{reason}".
+      success: Autenticat amb èxit des del compte %{kind}.
     passwords:
       no_token: No pots accedir a aquesta pàgina sense provenir des del correu de restabliment de la contrasenya. Si vens des del correu de restabliment de contrasenya, assegura't que estàs emprant l'adreça completa proporcionada.
       send_instructions: Si el teu correu electrònic existeix en la nostra base de dades, rebràs en pocs minuts un enllaç de restabliment de contrasenya en l'adreça de correu. Si us plau verifica la teva carpeta de correu brossa if no rebut aquest correu.

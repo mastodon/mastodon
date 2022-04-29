@@ -8,7 +8,7 @@ vi:
     failure:
       already_authenticated: Bạn đã đăng nhập rồi.
       inactive: Tài khoản của bạn chưa được kich hoạt.
-      invalid: Nhập sai %{authentication_keys} hoặc mật khẩu.
+      invalid: "%{authentication_keys} hoặc mật khẩu không khớp."
       last_attempt: Nếu thử sai lần nữa, tài khoản của bạn sẽ bị khóa.
       locked: Tài khoản của bạn bị khóa.
       not_found_in_database: "%{authentication_keys} không có trong dữ liệu."
@@ -21,8 +21,8 @@ vi:
         action: Xác thực địa chỉ email
         action_with_app: Xác nhận và quay lại %{app}
         explanation: Bạn đã tạo một tài khoản trên %{host} với địa chỉ email này. Chỉ cần một cú nhấp chuột nữa để kích hoạt nó. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
-        explanation_when_pending: Bạn đã đăng ký %{host} với địa chỉ email này. Chúng tôi chỉ xem xét đơn đăng ký sau khi bạn xác thực địa chỉ email. Bạn có thể đăng nhập để thay đổi chi tiết hoặc xóa tài khoản của mình, nhưng bạn không thể truy cập hầu hết các chức năng cho đến khi tài khoản của bạn được chấp thuận. Nếu bạn bị từ chối, dữ liệu của bạn sẽ bị xóa, do đó bạn sẽ không cần phải thực hiện thêm hành động nào nữa. Nếu đây không phải là bạn, xin vui lòng bỏ qua email này.
-        extra_html: Xin đọc kỹ <a href="%{terms_path}">nội quy máy chủ</a> và <a href="%{policy_path}">điều khoản dịch vụ</a> của chúng tôi.
+        explanation_when_pending: Bạn vừa đăng ký %{host} với địa chỉ email này. Chúng tôi chỉ xem xét đơn đăng ký sau khi bạn xác thực địa chỉ email. Bạn có thể đăng nhập để thay đổi chi tiết hoặc xóa tài khoản của mình, nhưng bạn không thể sử dụng đầy đủ tính năng cho đến khi tài khoản được xác thực. Nếu bạn bị từ chối, dữ liệu của bạn sẽ bị xóa, do đó bạn sẽ không cần phải làm gì thêm nữa. Nếu không phải do bạn đăng ký, xin vui lòng bỏ qua email này.
+        extra_html: Xin đọc kỹ <a href="%{terms_path}">quy tắc máy chủ</a> và <a href="%{policy_path}">chính sách riêng tư</a> của chúng tôi.
         subject: 'Mastodon: Xác thực email cho %{instance}'
         title: Xác thực địa chỉ email
       email_changed:
@@ -60,28 +60,45 @@ vi:
         title: Mã khôi phục xác thực hai yếu tố đã thay đổi
       unlock_instructions:
         subject: 'Mastodon: Hướng dẫn mở khóa'
+      webauthn_credential:
+        added:
+          explanation: Khóa bảo mật này đã được thêm vào tài khoản của bạn
+          subject: 'Mastodon: Khóa bảo mật mới'
+          title: Vừa thêm một khóa bảo mật mới
+        deleted:
+          explanation: Khóa bảo mật này đã bị xóa khỏi tài khoản của bạn
+          subject: 'Mastodon: Xóa khóa bảo mật'
+          title: Một trong những khóa bảo mật của bạn vừa bị xóa
+      webauthn_disabled:
+        explanation: Bạn vừa vô hiệu hóa xác thực tài khoản bằng khóa bảo mật. Từ bây giờ, bạn sẽ dùng ứng dụng TOTP để tạo token đăng nhập.
+        subject: 'Mastodon: Vô hiệu hóa xác thực bằng khóa bảo mật'
+        title: Đã vô hiệu hóa khóa bảo mật
+      webauthn_enabled:
+        explanation: Bạn vừa kích hoạt xác thực tài khoản bằng khóa bảo mật. Từ bây giờ, khóa bảo mật của bạn sẽ được dùng để đăng nhập.
+        subject: 'Mastodon: Kích hoạt xác thực bằng khóa bảo mật'
+        title: Đã kích hoạt khóa bảo mật
     omniauth_callbacks:
       failure: Không thể xác thực bạn từ %{kind} bởi vì "%{reason}".
-      success: Xác thực thành công từ tài khoản %{kind}.
+      success: Xác thực tài khoản %{kind} thành công.
     passwords:
-      no_token: Bạn chỉ có thể truy cập trang này khi chuyển tiếp từ email phục hồi mật khẩu. Nếu vẫn không được, vui lòng chắc chắn rằng bạn đã sử dụng chính xác URL được cung cấp.
+      no_token: Bạn chỉ có thể truy cập trang này khi nhận được email phục hồi mật khẩu. Nếu vẫn không được, vui lòng chắc chắn rằng bạn đã dùng chính xác URL được cung cấp.
       send_instructions: Nếu địa chỉ email của bạn tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được liên kết khôi phục mật khẩu tại địa chỉ email của bạn sau vài phút. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
       send_paranoid_instructions: Nếu địa chỉ email của bạn tồn tại trong cơ sở dữ liệu của chúng tôi, bạn sẽ nhận được liên kết khôi phục mật khẩu tại địa chỉ email của bạn sau vài phút. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
       updated: Mật khẩu của bạn đã được thay đổi thành công. Hiện tại bạn đã đăng nhập.
       updated_not_active: Mật khẩu của bạn đã được thay đổi thành công.
     registrations:
-      destroyed: Tạm biệt! Tài khoản của bạn đã hủy thành công. Hi vọng chúng tôi sẽ sớm gặp lại bạn.
+      destroyed: Tạm biệt! Tài khoản của bạn đã bị hủy. Hi vọng chúng tôi sẽ sớm gặp lại bạn.
       signed_up: Chúc mừng! Bạn đã đăng ký thành công.
-      signed_up_but_inactive: Bạn đã đăng ký thành công. Tuy nhiên, chúng tôi không thể đăng nhập cho bạn vì tài khoản của bạn chưa được kích hoạt.
+      signed_up_but_inactive: Bạn đã đăng ký thành công. Tuy nhiên, bạn cần phải kích hoạt tài khoản mới có thể đăng nhập.
       signed_up_but_locked: Bạn đã đăng ký thành công. Tuy nhiên, chúng tôi không thể đăng nhập cho bạn vì tài khoản của bạn bị khóa.
       signed_up_but_pending: Một email xác thực đã được gửi đến địa chỉ email của bạn. Sau khi bạn nhấp vào liên kết, chúng tôi sẽ xem xét đơn đăng ký của bạn và thông báo nếu đơn được chấp thuận.
       signed_up_but_unconfirmed: Một email xác thực đã được gửi đến địa chỉ email của bạn. Hãy nhấp vào liên kết trong email để kích hoạt tài khoản của bạn. Nếu không thấy, hãy kiểm tra mục thư rác.
       update_needs_confirmation: Bạn đã cập nhật tài khoản thành công, nhưng chúng tôi cần xác thực địa chỉ email mới của bạn. Vui lòng kiểm tra email và nhấp vào liên kết xác thực. Nếu bạn không thấy email, hãy kiểm tra trong thư rác.
       updated: Tài khoản của bạn đã được cập nhật thành công.
     sessions:
-      already_signed_out: Hoàn tất đăng xuất.
+      already_signed_out: Đã đăng xuất.
       signed_in: Đã đăng nhập thành công.
-      signed_out: Hoàn tất đăng xuất.
+      signed_out: Đã đăng xuất.
     unlocks:
       send_instructions: Bạn sẽ nhận được một email hướng dẫn về cách mở khóa tài khoản của bạn trong vài phút tới. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.
       send_paranoid_instructions: Nếu tài khoản của bạn tồn tại, bạn sẽ nhận được email hướng dẫn cách mở khóa trong vài phút tới. Xin kiểm tra thư mục thư rác nếu như bạn không thấy email này.

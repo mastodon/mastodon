@@ -2,7 +2,6 @@
 
 module Settings
   class PicturesController < BaseController
-    before_action :authenticate_user!
     before_action :set_account
     before_action :set_picture
 

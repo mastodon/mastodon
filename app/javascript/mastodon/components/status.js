@@ -17,6 +17,7 @@ import { HotKeys } from 'react-hotkeys';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import { displayMedia } from '../initial_state';
+import PictureInPicturePlaceholder from 'mastodon/components/picture_in_picture_placeholder';
 
 // We use the component (and not the container) since we do not want
 // to use the progress bar to show download progress
@@ -95,6 +96,11 @@ class Status extends ImmutablePureComponent {
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
     scrollKey: PropTypes.string,
+    deployPictureInPicture: PropTypes.func,
+    pictureInPicture: ImmutablePropTypes.contains({
+      inUse: PropTypes.bool,
+      available: PropTypes.bool,
+    }),
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -104,6 +110,8 @@ class Status extends ImmutablePureComponent {
     'account',
     'muted',
     'hidden',
+    'unread',
+    'pictureInPicture',
   ];
 
   state = {
@@ -184,8 +192,13 @@ class Status extends ImmutablePureComponent {
     return <div className='audio-player' style={{ height: '110px' }} />;
   }
 
-  handleOpenVideo = (media, options) => {
-    this.props.onOpenVideo(media, options);
+  handleOpenVideo = (options) => {
+    const status = this._properStatus();
+    this.props.onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), options);
+  }
+
+  handleOpenMedia = (media, index) => {
+    this.props.onOpenMedia(this._properStatus().get('id'), media, index);
   }
 
   handleHotkeyOpenMedia = e => {
@@ -195,14 +208,19 @@ class Status extends ImmutablePureComponent {
     e.preventDefault();
 
     if (status.get('media_attachments').size > 0) {
-      if (status.getIn(['media_attachments', 0, 'type']) === 'audio') {
-        // TODO: toggle play/paused?
-      } else if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
-        onOpenVideo(status.getIn(['media_attachments', 0]), { startTime: 0 });
+      if (status.getIn(['media_attachments', 0, 'type']) === 'video') {
+        onOpenVideo(status.get('id'), status.getIn(['media_attachments', 0]), { startTime: 0 });
       } else {
-        onOpenMedia(status.get('media_attachments'), 0);
+        onOpenMedia(status.get('id'), status.get('media_attachments'), 0);
       }
     }
+  }
+
+  handleDeployPictureInPicture = (type, mediaProps) => {
+    const { deployPictureInPicture } = this.props;
+    const status = this._properStatus();
+
+    deployPictureInPicture(status, type, mediaProps);
   }
 
   handleHotkeyReply = e => {
@@ -265,7 +283,7 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
 
-    const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey } = this.props;
+    const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey, pictureInPicture } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -336,7 +354,9 @@ class Status extends ImmutablePureComponent {
       status  = status.get('reblog');
     }
 
-    if (status.get('media_attachments').size > 0) {
+    if (pictureInPicture.get('inUse')) {
+      media = <PictureInPicturePlaceholder width={this.props.cachedMediaWidth} />;
+    } else if (status.get('media_attachments').size > 0) {
       if (this.props.muted) {
         media = (
           <AttachmentList
@@ -361,6 +381,7 @@ class Status extends ImmutablePureComponent {
                 width={this.props.cachedMediaWidth}
                 height={110}
                 cacheWidth={this.props.cacheMediaWidth}
+                deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
               />
             )}
           </Bundle>
@@ -373,6 +394,7 @@ class Status extends ImmutablePureComponent {
             {Component => (
               <Component
                 preview={attachment.get('preview_url')}
+                frameRate={attachment.getIn(['meta', 'original', 'frame_rate'])}
                 blurhash={attachment.get('blurhash')}
                 src={attachment.get('url')}
                 alt={attachment.get('description')}
@@ -382,6 +404,7 @@ class Status extends ImmutablePureComponent {
                 sensitive={status.get('sensitive')}
                 onOpenVideo={this.handleOpenVideo}
                 cacheWidth={this.props.cacheMediaWidth}
+                deployPictureInPicture={pictureInPicture.get('available') ? this.handleDeployPictureInPicture : undefined}
                 visible={this.state.showMedia}
                 onToggleVisibility={this.handleToggleMediaVisibility}
               />
@@ -396,7 +419,7 @@ class Status extends ImmutablePureComponent {
                 media={status.get('media_attachments')}
                 sensitive={status.get('sensitive')}
                 height={110}
-                onOpenMedia={this.props.onOpenMedia}
+                onOpenMedia={this.handleOpenMedia}
                 cacheWidth={this.props.cacheMediaWidth}
                 defaultWidth={this.props.cachedMediaWidth}
                 visible={this.state.showMedia}
@@ -409,7 +432,7 @@ class Status extends ImmutablePureComponent {
     } else if (status.get('spoiler_text').length === 0 && status.get('card')) {
       media = (
         <Card
-          onOpenMedia={this.props.onOpenMedia}
+          onOpenMedia={this.handleOpenMedia}
           card={status.get('card')}
           compact
           cacheWidth={this.props.cacheMediaWidth}
@@ -438,14 +461,16 @@ class Status extends ImmutablePureComponent {
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), read: unread === false, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef}>
           {prepend}
 
-          <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted, read: unread === false })} data-id={status.get('id')}>
+          <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted })} data-id={status.get('id')}>
             <div className='status__expand' onClick={this.handleExpandClick} role='presentation' />
             <div className='status__info'>
-              <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'><RelativeTimestamp timestamp={status.get('created_at')} /></a>
-              <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>
+              <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
+                <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>
+                <RelativeTimestamp timestamp={status.get('created_at')} />
+              </a>
 
               <a onClick={this.handleAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} title={status.getIn(['account', 'acct'])} className='status__display-name' target='_blank' rel='noopener noreferrer'>
                 <div className='status__avatar'>

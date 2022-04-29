@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { List as ImmutableList, is } from 'immutable';
+import { List as ImmutableList, Map as ImmutableMap, is } from 'immutable';
 import { me } from '../initial_state';
 
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
@@ -119,6 +119,16 @@ export const makeGetStatus = () => {
       });
     },
   );
+};
+
+export const makeGetPictureInPicture = () => {
+  return createSelector([
+    (state, { id }) => state.get('picture_in_picture').statusId === id,
+    (state) => state.getIn(['meta', 'layout']) !== 'mobile',
+  ], (inUse, available) => ImmutableMap({
+    inUse: inUse && available,
+    available,
+  }));
 };
 
 const getAlertsBase = state => state.get('alerts');

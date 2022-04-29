@@ -30,7 +30,7 @@ class Form::CustomEmojiBatch
   private
 
   def custom_emojis
-    CustomEmoji.where(id: custom_emoji_ids)
+    @custom_emojis ||= CustomEmoji.where(id: custom_emoji_ids)
   end
 
   def update!

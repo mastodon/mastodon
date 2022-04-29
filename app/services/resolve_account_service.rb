@@ -5,8 +5,6 @@ class ResolveAccountService < BaseService
   include DomainControlHelper
   include WebfingerHelper
 
-  class WebfingerRedirectError < StandardError; end
-
   # Find or create an account record for a remote user. When creating,
   # look up the user's webfinger and fetch ActivityPub data
   # @param [String, Account] uri URI in the username@domain format or account record
@@ -41,13 +39,18 @@ class ResolveAccountService < BaseService
 
     @account ||= Account.find_remote(@username, @domain)
 
-    return @account if @account&.local? || !webfinger_update_due?
+    if gone_from_origin? && not_yet_deleted?
+      queue_deletion!
+      return
+    end
+
+    return @account if @account&.local? || gone_from_origin? || !webfinger_update_due?
 
     # Now it is certain, it is definitely a remote account, and it
     # either needs to be created, or updated from fresh data
 
     fetch_account!
-  rescue Webfinger::Error, WebfingerRedirectError, Oj::ParseError => e
+  rescue Webfinger::Error, Oj::ParseError => e
     Rails.logger.debug "Webfinger query for #{@uri} failed: #{e}"
     nil
   end
@@ -91,8 +94,10 @@ class ResolveAccountService < BaseService
     @username, @domain = split_acct(@webfinger.subject)
 
     unless confirmed_username.casecmp(@username).zero? && confirmed_domain.casecmp(@domain).zero?
-      raise WebfingerRedirectError, "The URI #{uri} tries to hijack #{@username}@#{@domain}"
+      raise Webfinger::RedirectError, "The URI #{uri} tries to hijack #{@username}@#{@domain}"
     end
+  rescue Webfinger::GoneError
+    @gone = true
   end
 
   def split_acct(acct)
@@ -127,11 +132,16 @@ class ResolveAccountService < BaseService
     @actor_url ||= @webfinger.link('self', 'href')
   end
 
-  def actor_json
-    return @actor_json if defined?(@actor_json)
+  def gone_from_origin?
+    @gone
+  end
 
-    json        = fetch_resource(actor_url, false)
-    @actor_json = supported_context?(json) && equals_or_includes_any?(json['type'], ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES) ? json : nil
+  def not_yet_deleted?
+    @account.present? && !@account.local?
+  end
+
+  def queue_deletion!
+    AccountDeletionWorker.perform_async(@account.id, reserve_username: false, skip_activitypub: true)
   end
 
   def lock_options

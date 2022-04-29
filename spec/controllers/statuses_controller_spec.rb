@@ -24,15 +24,28 @@ describe StatusesController do
     let(:account) { Fabricate(:account) }
     let(:status)  { Fabricate(:status, account: account) }
 
-    context 'when account is suspended' do
-      let(:account) { Fabricate(:account, suspended: true) }
-
+    context 'when account is permanently suspended' do
       before do
+        account.suspend!
+        account.deletion_request.destroy
+
         get :show, params: { account_username: account.username, id: status.id }
       end
 
       it 'returns http gone' do
         expect(response).to have_http_status(410)
+      end
+    end
+
+    context 'when account is temporarily suspended' do
+      before do
+        account.suspend!
+
+        get :show, params: { account_username: account.username, id: status.id }
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
       end
     end
 
@@ -676,15 +689,28 @@ describe StatusesController do
     let(:account) { Fabricate(:account) }
     let(:status)  { Fabricate(:status, account: account) }
 
-    context 'when account is suspended' do
-      let(:account) { Fabricate(:account, suspended: true) }
-
+    context 'when account is permanently suspended' do
       before do
+        account.suspend!
+        account.deletion_request.destroy
+
         get :activity, params: { account_username: account.username, id: status.id }
       end
 
       it 'returns http gone' do
         expect(response).to have_http_status(410)
+      end
+    end
+
+    context 'when account is temporarily suspended' do
+      before do
+        account.suspend!
+
+        get :activity, params: { account_username: account.username, id: status.id }
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
       end
     end
 

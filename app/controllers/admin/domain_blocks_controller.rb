@@ -29,6 +29,7 @@ module Admin
           @domain_block = existing_domain_block
           @domain_block.update(resource_params)
         end
+
         if @domain_block.save
           DomainBlockWorker.perform_async(@domain_block.id)
           log_action :create, @domain_block
@@ -40,7 +41,7 @@ module Admin
     end
 
     def update
-      authorize :domain_block, :create?
+      authorize :domain_block, :update?
 
       @domain_block.update(update_params)
 
@@ -48,7 +49,7 @@ module Admin
 
       if @domain_block.save
         DomainBlockWorker.perform_async(@domain_block.id, severity_changed)
-        log_action :create, @domain_block
+        log_action :update, @domain_block
         redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
       else
         render :edit
@@ -73,11 +74,11 @@ module Admin
     end
 
     def update_params
-      params.require(:domain_block).permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment)
+      params.require(:domain_block).permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
     end
 
     def resource_params
-      params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment)
+      params.require(:domain_block).permit(:domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
     end
   end
 end

@@ -40,8 +40,11 @@ da:
       domain: Server
       reason: Årsag
       rejecting_media: 'Medie filer fra disse servere vil ikke blive behandlet eller gemt, og ingen miniaturebilleder vil blive vist, som kræver tilgang til den originale fil:'
+      rejecting_media_title: Filtrerede medier
       silenced: 'Posteringer fra disse servere vil være skjulte i den offentlige tidslinje feed eller beskeder og ingen notifikationer vil blive genereret fra brugere du ikke følger:'
+      silenced_title: Dæmpede servere
       suspended: 'Ingen date fra disse servere vil blive behandlet, gemt eller udvekslet, at interagere eller kommunikere med brugere fra disse servere er ikke muligt:'
+      suspended_title: Suspenderede servere
     unavailable_content_html: Mastodon tillader dig generelt at se indhold og interagere med brugere fra enhver anden server i fediverset. Dette er undtagelser der er foretaget på netop denne server.
     user_count_after:
       one: bruger
@@ -50,6 +53,7 @@ da:
     what_is_mastodon: Hvad er Mastodon?
   accounts:
     choices_html: "%{name}s valg:"
+    endorsements_hint: Du kan støtte folk du følger fra web-interface, og de vil dukke op her.
     featured_tags_hint: Du kan tilføje specifikke hashtags der vil blive vist her.
     follow: Følg
     followers:
@@ -91,6 +95,7 @@ da:
       delete: Slet
       destroyed_msg: Moderator notat succesfuldt destrueret!
     accounts:
+      add_email_domain_block: Bloker e-mail domæne
       approve: Godkend
       approve_all: Godkend alle
       are_you_sure: Er du sikker?
@@ -106,6 +111,7 @@ da:
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
+      delete: Slet data
       deleted: Slettet
       demote: Degrader
       disable: Deaktiver
@@ -133,6 +139,7 @@ da:
       login_status: Status på login
       media_attachments: Medie bilag
       memorialize: Omdan til et memoriam
+      memorialized: Memorialiseret
       moderation:
         active: Aktiv
         all: Alle
@@ -172,6 +179,8 @@ da:
         user: Bruger
       search: Søg
       search_same_ip: Andre brugere med den samme IP-adresse
+      sensitive: Følsomt
+      sensitized: markeret som følsomt
       shared_inbox_url: Link til delt indbakke
       show:
         created_reports: Anmeldelser oprettet
@@ -188,16 +197,37 @@ da:
       undo_suspension: Fortryd udelukkelse
       unsubscribe: Abonner ikke længere
       username: Brugernavn
+      view_domain: Vis resumé for domæne
       warn: Advar
       web: Web
       whitelisted: Hvidlistet
     action_logs:
       action_types:
+        assigned_to_self_report: Tildel rapport
+        change_email_user: Ændre e-mail for bruger
         confirm_user: Bekræft bruger
+        create_account_warning: Opret advarsel
+        create_announcement: Opret bekendtgørelse
+        create_domain_allow: Opret domæne tillad
+        create_domain_block: Opret domæneblokering
+        create_ip_block: Opret IP-regel
+        destroy_announcement: Slet bekendtgørelse
+        destroy_domain_block: Slet domæneblokering
+        destroy_email_domain_block: Slet e-mail domæne blokering
+        destroy_ip_block: Slet IP-regel
         destroy_status: Slet status
         disable_2fa_user: Slet 2FA
         disable_user: Deaktiver brugeren
         enable_user: Aktiver brugeren
+        remove_avatar_user: Fjern profilbillede
+        reopen_report: Genåben rapport
+        reset_password_user: Nulstil adgangskode
+        resolve_report: Løs rapport
+        silence_account: Dæmp konto
+        suspend_account: Suspendér Konto
+        unsilence_account: Fjern dæmpelse af konto
+        update_announcement: Opdater bekendtgørelse
+        update_status: Opdater status
       actions:
         assigned_to_self_report: "%{name} tildelte anmeldelsen %{target} til sig selv"
         change_email_user: "%{name} ændrede email adressen for brugeren %{target}"
@@ -207,11 +237,13 @@ da:
         create_domain_allow: "%{name} godkendte domænet %{target}"
         create_domain_block: "%{name} blokerede domænet %{target}"
         create_email_domain_block: "%{name} sortlistede email domænet %{target}"
+        create_ip_block: "%{name} oprettede regel for IP %{target}"
         demote_user: "%{name} degraderede %{target}"
         destroy_custom_emoji: "%{name} fjernede emoji %{target}"
         destroy_domain_allow: "%{name} fjernede godkendelsen af domænet %{target}"
         destroy_domain_block: "%{name} fjernede blokeringen af domænet %{target}"
         destroy_email_domain_block: "%{name} hvid-listede email domænet %{target}"
+        destroy_ip_block: "%{name} slettede reglen for IP %{target}"
         destroy_status: "%{name} fjernede statussen fra %{target}"
         disable_2fa_user: "%{name} deaktiverede to faktor kravet for brugeren %{target}"
         disable_custom_emoji: "%{name} deaktiverede humørikonet %{target}"
@@ -232,9 +264,23 @@ da:
         update_custom_emoji: "%{name} opdaterede humørikonet %{target}"
         update_status: "%{name} opdaterede status for %{target}"
       deleted_status: "(slettet status)"
+      empty: Ingen logs fundet.
       filter_by_action: Filtrer efter handling
       filter_by_user: Filtrer efter bruger
       title: Revisionslog
+    announcements:
+      destroyed_msg: Bekendtgørelsen blev slettet!
+      edit:
+        title: Rediger bekendtgørelse
+      empty: Ingen bekendtgørelser fundet.
+      live: Direkte
+      new:
+        create: Opret bekendtgørelse
+        title: Ny bekendtgørelse
+      published_msg: Bekendtgørelsen blev slettet!
+      scheduled_for: Planlagt til %{time}
+      title: Bekendtgørelser
+      updated_msg: Bekendtgørelsen blev opdateret!
     custom_emojis:
       assign_category: Vælg kategori
       by_domain: Domæne
@@ -257,6 +303,7 @@ da:
       listed: Listet
       new:
         title: Tilføj nyt brugerdefineret humørikon
+      not_permitted: Du har ikke tilladelse til at udføre denne handling
       overwrite: Overskriv
       shortcode: Kortkode
       shortcode_hint: Mindst 2 tegn, kun alfabetiske tegn og understreger
@@ -323,6 +370,7 @@ da:
       rejecting_media: afviser mediefiler
       rejecting_reports: afviser anmeldelser
       severity:
+        silence: dæmpet
         suspend: suspenderet
       show:
         affected_accounts:
@@ -341,6 +389,7 @@ da:
       delete: Slet
       destroyed_msg: Fjernede succesfuldt email domænet fra sortliste
       domain: Domæne
+      empty: Ingen e-mail-domæner er i øjeblikket blokeret.
       from_html: fra %{domain}
       new:
         create: Tilføj domæne
@@ -349,15 +398,21 @@ da:
     instances:
       by_domain: Domæne
       delivery_available: Levering er tilgængelig
+      known_accounts:
+        one: "%{count} kendt konto"
+        other: "%{count} kendte konti"
       moderation:
         all: Alle
         limited: Begrænset
+        title: Moderation
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       title: Førderation
       total_blocked_by_us: Blokeret af os
       total_followed_by_them: Fulgt af dem
       total_followed_by_us: Fulgt af os
+      total_reported: Rapporter om dem
+      total_storage: Vedhæftede medier
     invites:
       deactivate_all: Deaktiver alle
       filter:
@@ -366,6 +421,25 @@ da:
         expired: Udløbet
         title: Filtre
       title: Invitationer
+    ip_blocks:
+      add_new: Opret regel
+      created_msg: Ny IP-regel blev tilføjet
+      delete: Slet
+      expires_in:
+        '1209600': 2 uger
+        '15778476': 6 måneder
+        '2629746': 1 måned
+        '31556952': 1 år
+        '86400': 1 dag
+        '94670856': 3 år
+      new:
+        title: Opret ny IP-regel
+      no_ip_block_selected: Ingen IP-regler blev ændret, da ingen blev valgt
+      title: IP-regler
+    pending_accounts:
+      title: Afventende konti (%{count})
+    relationships:
+      title: "%{acct}'s relationer"
     relays:
       add_new: Tilføj nyt relay
       delete: Slet
@@ -379,16 +453,22 @@ da:
       pending: Venter på godkendelse fra relæet
       save_and_enable: Gem og aktiver
       setup: Opsæt en videresendelses forbindelse
+      signatures_not_enabled: Relæer fungerer ikke korrekt, mens sikker tilstand eller begrænset føderationstilstand er aktiveret
       status: Status
       title: Videresendelser
     report_notes:
       created_msg: Anmeldelse note blev oprettet!
       destroyed_msg: Anmeldelse note blev slettet!
     reports:
+      account:
+        reports:
+          one: "%{count} rapport"
+          other: "%{count} rapporter"
       action_taken_by: Handling udført af
       are_you_sure: Er du sikker?
       assign_to_self: Tildel til mig
       assigned: Tildelt moderator
+      by_target_domain: Domæne for rapporteret konto
       comment:
         none: Ingen
       created_at: Anmeldt
@@ -428,6 +508,8 @@ da:
         all: Til alle
         disabled: Til ingen
         title: Vis domæne blokeringer
+      enable_bootstrap_timeline_accounts:
+        title: Aktiver standard følger for nye brugere
       hero:
         desc_html: Vist på forsiden. Mindst 600x100px anbefales. Hvis ikke sat, vil dette falde tilbage til billedet fra serveren
         title: Billede af helt
@@ -437,6 +519,9 @@ da:
       preview_sensitive_media:
         desc_html: Forhåndsvisninger af links på andre websider vil vise et miniaturebillede selv hvis mediet er markeret som følsomt
         title: Vis følsomt medie i OpenGraph forhåndsvisninger
+      profile_directory:
+        desc_html: Tillad bruger at kunne blive fundet
+        title: Aktivér profilmappe
       registrations:
         closed_message:
           desc_html: Vist på forsiden når registreringer er lukkede. Du kan bruge HTML tags
@@ -449,8 +534,10 @@ da:
           title: Tillad invitationer af
       registrations_mode:
         modes:
+          approved: Godkendelse påkrævet for tilmelding
           none: Ingen kan tilmelde sig
           open: Alle kan tilmelde sig
+        title: Tilstand for registreringer
       show_known_fediverse_at_about_page:
         desc_html: Når slået til, vil det vise trut fra hele det kendte fedivers på forhåndsvisning. Ellers vil det kun vise lokale trut.
         title: Vis kendte fedivers på tidslinje forhåndsvisning
@@ -470,6 +557,8 @@ da:
         desc_html: Du kan skrive din egen privatlivpolitik, servicevilkår, eller lignende. Du kan bruge HTML tags
         title: Brugerdefineret servicevilkår
       site_title: Navn af serveren
+      spam_check_enabled:
+        title: Anti-spam automatisering
       thumbnail:
         desc_html: Brugt til forhåndsvisninger via OpenGraph og API. 1200x630px anbefales
         title: Miniaturebillede for serveren
@@ -477,6 +566,10 @@ da:
         desc_html: Vis offentlig tidslinje på landingssiden
         title: Tidslinje forhåndsvisning
       title: Indstillinger for side
+      trends:
+        title: Populære hashtags
+    site_uploads:
+      delete: Slet oplagt fil
     statuses:
       back_to_account: Tilbage til kontosiden
       batch:
@@ -495,10 +588,22 @@ da:
       accounts_today: Unikke brug i dag
       accounts_week: Unikke brug denne uge
       context: Kontekst
+      directory: I mappe
+      in_directory: "%{count} i mappe"
       last_active: Sidst aktiv
       most_popular: Mest populære
       most_recent: Seneste
+      name: Hashtag
+      review: Gennemgå status
+      reviewed: Gennemgået
+      title: Hashtags
+      trending_right_now: Populære lige nu
+      unique_uses_today: "%{count} indlæg i dag"
+      unreviewed: Ikke gennemlæst
+      updated_msg: Hashtag-indstillinger opdateret
+    title: Administration
     warning_presets:
+      add_new: Tilføj ny
       delete: Slet
   admin_mailer:
     new_report:
@@ -507,8 +612,11 @@ da:
       subject: Ny anmeldelse for %{instance} (#%{id})
   aliases:
     add_new: Opret alias
+    empty: Du har ingen aliasser.
   appearance:
+    advanced_web_interface: Avanceret webgrænseflade
     animations_and_accessibility: Animationer og tilgængelighed
+    confirmation_dialogs: Bekræftelsesdialoger
     discovery: Opdagelse
     localization:
       body: Mastodon oversættes af frivillige.
@@ -536,8 +644,10 @@ da:
     delete_account: Slet konto
     delete_account_html: Hvis du ønsker at slette din konto, kan du <a href="%{path}">gøre det her</a>. Du vil blive bedt om bekræftelse.
     description:
+      prefix_invited_by_user: "@%{name} inviterer dig til at deltage i denne Mastodons server!"
       prefix_sign_up: Tilmeld dig Mastodon i dag!
     didnt_get_confirmation: Har du endnu ikke modtaget instrukser for bekræftelse?
+    dont_have_your_security_key: Har du ikke dine sikkerhedsnøgler?
     forgot_password: Glemt dit kodeord?
     invalid_reset_password_token: Adgangskode nulstillings token er ugyldig eller udløbet. Anmod venligst om en ny.
     login: Log ind
@@ -545,17 +655,26 @@ da:
     migrate_account: Flyt til en anden konto
     migrate_account_html: Hvis du ønsker at omdirigere denne konto til en anden, kan du <a href="%{path}">gøre det her</a>.
     or_log_in_with: Eller log in med
+    providers:
+      cas: CAS
+      saml: SAML
     register: Opret dig
     registration_closed: "%{instance} accepterer ikke nye medlemmer"
     resend_confirmation: Gensend bekræftelses instrukser
     reset_password: Nulstil kodeord
     security: Sikkerhed
     set_new_password: Sæt et nyt kodeord
+    setup:
+      email_settings_hint_html: Bekræftelsesmailen blev sendt til %{email}. Hvis denne e-mailadresse ikke er korrekt, kan du ændre den i kontoindstillinger.
+      title: Opsætning
     status:
       account_status: Kontostatus
+      confirming: Venter på at e-mail bekræftelsen er fuldført.
     trouble_logging_in: Har du problemer med at logge på?
+    use_security_key: Brug sikkerhedsnøgle
   authorize_follow:
     already_following: Du følger allerede denne konto
+    already_requested: Du har allerede sendt en følgeanmodning til denne konto
     error: Der opstod desværre en fejl under søgningen af denne fjerne konto
     follow: Følg
     follow_request: 'Du har anmodet om at følge:'
@@ -567,8 +686,17 @@ da:
     title: Følg %{acct}
   challenge:
     confirm: Fortsæt
+    hint_html: "<strong>Tip:</strong> We won't ask you for your password again for the next hour."
     invalid_password: Ugyldig adgangskode
     prompt: Bekræft din adgangskode for at fortsætte
+  crypto:
+    errors:
+      invalid_key: er ikke en gyldig Ed25519 eller Curve25519 nøgle
+      invalid_signature: er ikke en gylidig Ed25519 signatur
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -576,18 +704,26 @@ da:
       about_x_years: "%{count}år"
       almost_x_years: "%{count}år"
       half_a_minute: Lige nu
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Lige nu
       over_x_years: "%{count}år"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
       x_months: "%{count}md"
+      x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: De oplysninger, du indtastede var ikke korrekte
     confirm_password: Indtast dit nuværende kodeord for at bekræfte din identitet
+    confirm_username: Indtast dit brugernavn for at bekræfte proceduren
     proceed: Slet konto
     success_msg: Din konto er nu blevet slettet
     warning:
+      email_change_html: Du kan <a href="%{path}">ændre din e-mail-adresse</a> uden at slette din konto
       username_available: Dit brugernavn vil blive tilgængeligt igen
       username_unavailable: Dit brugernavn vil forblive utilgængeligt
   directories:
     directory: Profilliste
+    explanation: Opdag brugere baseret på deres interesser
     explore_mastodon: Uforsk %{title}
   domain_validator:
     invalid_domain: er ikke et gyldigt domænenavn
@@ -604,7 +740,7 @@ da:
     '500':
       content: Beklager men der gik noget galt i vores ende.
       title: Siden er ikke korrekt
-    '503': The page could not be served due to a temporary server failure.
+    '503': Siden kunne ikke serveres på grund af en midlertidig serverfejl.
     noscript_html: For at bruge Mastodon web applikationen, aktiver JavaScript. Alternativt kan du prøve en af disse <a href="%{apps_path}">apps</a> til Mastodon for din platform.
   existing_username_validator:
     not_found: kunne ikke finde en lokal bruger med dette brugenavn
@@ -618,11 +754,16 @@ da:
       request: Anmod om dit arkiv
       size: Størrelse
     blocks: Du blokerer
+    bookmarks: Bogmærker
     csv: CSV
     domain_blocks: Domæne blokeringer
     lists: Lister
     mutes: Du dæmper
     storage: Medie lager
+  featured_tags:
+    add_new: Tilføj ny
+    errors:
+      limit: Du har allerede vist det maksimale antal hashtags
   filters:
     contexts:
       account: Profiler
@@ -637,6 +778,7 @@ da:
       invalid_irreversible: Uigenkaldelig filtrering virker kun med hjem eller notifikations kontekst
     index:
       delete: Slet
+      empty: Du har ingen filtre.
       title: Filtrer
     new:
       title: Tilføj nyt filter
@@ -656,15 +798,27 @@ da:
       one: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende fejl forneden
       other: Der er noget der ikke er helt som det bør være! Tag lige et kig på følgende %{count} fejl forneden
   identity_proofs:
+    active: Aktiv
+    authorize: Ja, tillad
     i_am_html: Jeg er %{username} på %{service}.
     identity: Identitet
+    inactive: Inaktiv
+    publicize_checkbox: 'Og toot dette:'
+    publicize_toot: 'Det er bevist! Jeg er %{username} på %{service}: %{url}'
+    remove: Fjern bevis fra konto
+    removed: Beviset er fjernet fra kontoen
+    status: Status for verifikation
+    view_proof: Se bevis
   imports:
     modes:
+      merge: Sammenflet
       overwrite: Overskriv
     preface: Du kan importere data du har eksporteret fra en anden server, så som en liste over folk du følger eller blokerer.
     success: Dine data blev succesfuldt uploaded og vil nu blive behandlet hurtigst muligt
     types:
       blocking: Blokeringsliste
+      bookmarks: Bogmærker
+      domain_blocking: Domæne blokeringsliste
       following: Følgningsliste
       muting: Liste over dæmpninger
     upload: Læg op
@@ -697,12 +851,23 @@ da:
   media_attachments:
     validations:
       images_and_video: Kan ikke vedhæfte en video til en status der allerede har billeder
+      not_ready: Kan ikke vedhæfte filer, der ikke er færdige med behandlingen. Prøv igen om et øjeblik!
       too_many: Kan ikke vedhæfte mere en 4 filer
   migrations:
     acct: username@domain af den nye konto
     errors:
+      missing_also_known_as: er ikke et alias for denne konto
+      move_to_self: kan ikke være den nuværende konto
       not_found: kunne ikke bive fundet
+      on_cooldown: Du er på nedkøling
+    followers_count: Følgere på tidspunktet for flytningen
+    incoming_migrations: Flytter fra en anden konto
+    past_migrations: Tidligere migrationer
     proceed_with_move: Flyt følgere
+    redirected_msg: Din konto omdirigerer nu til %{acct}.
+    redirecting_to: Din konto omdirigerer til %{acct}.
+    warning:
+      other_data: Ingen andre data vil blive flyttet automatisk
   moderation:
     title: Moderatering
   notification_mailer:
@@ -739,12 +904,19 @@ da:
       body: 'Din status blev fremhævet af %{name}:'
       subject: "%{name} fremhævede din status"
       title: Ny fremhævelse
+  notifications:
+    email_events: Begivenheder for e-mail-meddelelser
+    other_settings: Andre indstillinger for notifikationer
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: mia.
           million: mio.
+  otp_authentication:
+    enable: Aktiver
+    wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedstid korrekt?
   pagination:
     newer: Nyere
     next: Næste
@@ -754,22 +926,36 @@ da:
   polls:
     errors:
       already_voted: Du har allerede stemt i denne afstemning
+      duplicate_options: indeholder dublerede elementer
       duration_too_long: er for langt ude i fremtiden
       duration_too_short: er for tidligy
       expired: Denne afstemning er allerede afsluttet
+      invalid_choice: Den valgte stemmeindstilling findes ikke
+      over_character_limit: kan ikke være længere end %{max} tegn hver
+      too_few_options: skal have mere end et element
+      too_many_options: kan ikke indeholde flere end %{max} elementer
   preferences:
     other: Andet
     public_timelines: Offentlige tidslinjer
+  reactions:
+    errors:
+      limit_reached: Grænsen for forskellige reaktioner er nået
+      unrecognized_emoji: er ikke en genkendt emoji
   relationships:
     activity: Aktivitet for konto
+    follow_selected_followers: Følg valgte følgere
     followers: Følgere
     following: Følger
+    invited: Inviteret
     last_active: Sidst aktiv
     most_recent: Seneste
     moved: Flyttet
     mutual: Fælles
     primary: Primær
     relationship: Relation
+    remove_selected_domains: Fjern alle følgere fra de valgte domæner
+    remove_selected_followers: Fjern valgte følgere
+    remove_selected_follows: Følg ikke valgte brugere
     status: Status for konto
   remote_follow:
     acct: Indtast dit brugernavn@domæne du vil handle fra
@@ -777,6 +963,8 @@ da:
     no_account_html: Har du ikke en konto? Du kan <a href='%{sign_up_path}' target='_blank'>oprette dig her</a>
     proceed: Fortsæt for at følge
     prompt: 'Du er ved at følge:'
+  scheduled_statuses:
+    too_soon: Den planlagte dato skal være i fremtiden
   sessions:
     activity: Sidste aktivitet
     browser: Browser
@@ -821,6 +1009,7 @@ da:
   settings:
     account: Konto
     account_settings: Kontoindstillinger
+    aliases: Konto-aliaser
     appearance: Udseende
     authorized_apps: Godkendte apps
     back: Tilbage til Mastodon
@@ -828,6 +1017,7 @@ da:
     development: Udvikling
     edit_profile: Rediger profil
     export: Data eksportering
+    featured_tags: Fremhævede hashtags
     import: Importer
     import_and_export: Importer og eksporter
     migrate: Konto migrering
@@ -836,8 +1026,12 @@ da:
     profile: Profil
     relationships: Følger og følgere
     two_factor_authentication: To-faktor godkendelse
+    webauthn_authentication: Sikkerhedsnøgler
   statuses:
     attached:
+      audio:
+        one: "%{count} lyd"
+        other: "%{count} lyd"
       description: 'Vedhæftede: %{attached}'
       image:
         one: "%{count} billede"
@@ -859,10 +1053,19 @@ da:
       private: Ikke offentlige trut kan ikke blive fastgjort
       reblog: Fremhævede trut kan ikke fastgøres
     poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} personer"
+      total_votes:
+        one: "%{count} stemme"
+        other: "%{count} stemmer"
       vote: Stem
     show_more: Vis mere
+    show_newer: Vis nyere
+    show_older: Vis ældre
     show_thread: Vis tråd
     sign_in_to_participate: Log ind for at deltage i samtalen
+    title: '%{name}: "%{quote}"'
     visibilities:
       private: Kun-følgere
       private_long: Vis kun til følgere
@@ -874,6 +1077,8 @@ da:
     pinned: Fastgjort trut
     reblogged: fremhævede
     sensitive_content: Følsomt indhold
+  tags:
+    does_not_match_previous_name: stemmer ikke overens med det forrige navn
   terms:
     body_html: "<p><h2> Privatlivspolitik </h2> \n<h3 id=\"collect\">Hvilke information indsamler vi?</h3> \n\n<ul>\n  <li><em>Grundlæggende kontoinformation </em>: Hvis du registrerer dig på denne server, bliver du måske bedt om at indtaste et brugernavn, en e-mail-adresse og et kodeord. Du kan også indtaste yderligere profiloplysninger, såsom et visningsnavn og biografi, og uploade et profilbillede og headerbillede. Brugernavnet, visningsnavnet, biografien, profilbilledet og hovedbilledet vises altid offentligt. </li> \n  <li> <em>Stillinger, følgende og andre offentlige oplysninger </em>: Listen over personer du følger er offentliggjort, det samme gælder for dine tilhængere. Når du sender en besked, gemmes datoen og klokkeslættet såvel som det program, du sendte beskeden fra. Meddelelser kan indeholde medievedhæftninger, som f.eks. Billeder og videoer. Offentlige og unoterede indlæg er offentligt tilgængelige. Når du har et indlæg på din profil, er det også offentligt tilgængelig information. Dine indlæg leveres til dine tilhængere, i nogle tilfælde betyder det, at de leveres til forskellige servere, og der gemmes kopier der. Når du sletter indlæg, leveres det også til dine tilhængere. Handlingen med reblogging eller favorisering af et andet indlæg er altid offentligt. </li>\n  <li><em> Direkte og efterfølger-kun indlæg </ em>: Alle indlæg gemmes og behandles på serveren. Følgere-kun indlæg leveres til dine tilhængere og brugere, der er nævnt i dem, og direkte indlæg leveres kun til brugere nævnt i dem. I nogle tilfælde betyder det, at de leveres til forskellige servere, og der gemmes kopier der. Vi gør en god tro for at begrænse adgangen til disse stillinger kun til autoriserede personer, men andre servere kan undlade at gøre det. Derfor er det vigtigt at gennemgå de servere, dine tilhængere tilhører. Du kan skifte en mulighed for at godkende og afvise nye følgere manuelt i indstillingerne. <em> Vær opmærksom på, at operatørerne af serveren og enhver modtagende server muligvis kan se sådanne meddelelser </em>, og at modtagere muligvis skærmbilleder, kopierer eller på anden vis deler dem igen. <em> Del ikke nogen farlig information over Mastodon. </em> </li>\n  <li> <em> IP'er og andre metadata </em>: Når du logger ind, registrerer vi den IP-adresse, du logger ind fra, samt navnet på din browser-applikation. Alle indloggede sessioner er tilgængelige til din anmeldelse og tilbagekaldelse i indstillingerne. Den seneste anvendte IP-adresse gemmes i op til 12 måneder. Vi kan også beholde serverlogfiler, som indeholder IP-adressen til hver anmodning til vores server. </li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"use\">Hvad bruger vi dine oplysninger til? </h3>\n\n<p> Enhver af de oplysninger, vi indsamler fra dig, kan bruges på følgende måder: </p>\n\n<ul>\n  <li> At levere kernen funktionalitet Mastodon. Du kan kun interagere med andres indhold og indsende dit eget indhold, når du er logget ind. Du kan f.eks. Følge andre personer for at se deres kombinerede indlæg på din egen personlige tidslinje. </li>\n  <li> For at hjælpe moderering af samfundet, f.eks. sammenligning af din IP-adresse med andre kendte, for at bestemme forbud mod unddragelse eller andre overtrædelser. </li>\n  <li> Den e-mail-adresse, du angiver, kan bruges til at sende dig oplysninger, meddelelser om andre personer, der interagerer med dit indhold eller sender dig beskeder, og for at svare på henvendelser og / eller andre forespørgsler eller spørgsmål. </li>\n</ul>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"protect\">Hvordan beskytter vi dine oplysninger? </h3>\n\n<p> Vi implementerer en række sikkerhedsforanstaltninger for at opretholde sikkerheden for dine personlige oplysninger, når du indtaster, indsender eller har adgang til dine personlige oplysninger. Bl.a. er din browsersession samt trafikken mellem dine applikationer og API'en sikret med SSL, og din adgangskode er hashed ved hjælp af en stærk envejsalgoritme. Du kan muligvis aktivere tofaktors godkendelse for yderligere at sikre adgang til din konto. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"data-retention\"> Hvad er vores data retention politik? </h3>\n\n<p> Vi vil gøre en god tro indsats for at: </p>\n\n<ul>\n  <li> Behold serverlogfiler, der indeholder IP-adressen på alle anmodninger til denne server, for så vidt som sådanne logfiler holdes, ikke mere end 90 dage. </li>\n  <li> Behold de IP-adresser, der er forbundet med registrerede brugere, ikke mere end 12 måneder. </li>\n</ul>\n\n<p> Du kan anmode om og downloade et arkiv af dit indhold, herunder dine indlæg, medievedhæftninger, profilbillede og headerbillede. </p>\n\n<p> Du kan til enhver tid slette din konto. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"cookies\"> Bruger vi cookies? </h3>\n\n<p> Ja. Cookies er små filer, som et websted eller dets tjenesteudbyder overfører til din computers harddisk via din webbrowser (hvis du tillader det). Disse cookies gør det muligt for webstedet at genkende din browser og, hvis du har en registreret konto, associerer den med din registrerede konto. </p>\n\n<p> Vi bruger cookies til at forstå og gemme dine præferencer til fremtidige besøg. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"disclose\"> Viser vi nogen information til eksterne parter? </h3>\n\n<p> Vi sælger ikke, handler eller på anden måde overfører dine personlige identificerbare oplysninger til eksterne parter. Dette omfatter ikke tillid til tredjeparter, der hjælper os med at drive vores hjemmeside, udføre vores forretning eller servicere dig, så længe parterne er enige om at holde disse oplysninger fortrolige. Vi kan også frigive dine oplysninger, når vi mener, at udgivelsen er hensigtsmæssig for at overholde loven, håndhæve vores webstedspolitikker eller beskytte vores eller andre rettigheder, ejendom eller sikkerhed. </p>\n\n<p> Dit offentlige indhold kan downloades af andre servere i netværket. Dine offentlige og efterfølger-kun indlæg leveres til de servere, hvor dine tilhængere er bosat, og direkte meddelelser leveres til modtagerens servere, for så vidt som disse tilhængere eller modtagere opholder sig på en anden server end dette. </p>\n\n<p> Når du autoriserer et program til at bruge din konto, afhænger det af omfanget af tilladelser, du godkender, det kan få adgang til dine offentlige profiloplysninger, din følgende liste, dine tilhængere, dine lister, alle dine indlæg og dine favoritter. Applikationer kan aldrig få adgang til din e-mail-adresse eller adgangskode. </p>\n\n<hr class=\"spacer\" />\n\n<h3 id=\"children\"> Bebyggelse af børn </h3>\n\n<p> Hvis denne server er i EU eller EØS: Vores websted, produkter og tjenester er alle rettet mod personer, der er mindst 16 år gamle. Hvis du er under 16 år, skal du ikke bruge dette websted efter kravene i GDPR (<a href=\"https://en.wikipedia.org/wiki/General_Data_Protection_Regulation\"> Generel databeskyttelsesforordning </a>). . </p>\n\n<p> Hvis denne server er i USA: Vores websted, produkter og tjenester er alle rettet mod personer, der er mindst 13 år. Hvis du er under 13 år, skal du ikke bruge kravene i COPPA (<a href=\"https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act\"> Børns online beskyttelse af personlige oplysninger </a>) dette websted. </p>\n\n<p> Lovkrav kan være anderledes, hvis denne server er i en anden jurisdiktion. </p>\n\n<hr class = \"spacer\" />\n\n<h3 id=\"changes\"> Ændringer i vores privatlivspolitik </h3>\n\n<p> Hvis vi beslutter os for at ændre vores privatlivspolitik, vil vi sende disse ændringer på denne side. </p>\n\n<p> Dette dokument er CC-BY-SA. Det blev senest opdateret 7. marts 2018. </p>\n\n<p> Oprindelig tilpasset fra <a href=\"https://github.com/discourse/discourse\"> Discourse privacy policy </a>.</p>\n"
     title: Vilkår og privatlivpolitik for %{instance}
@@ -881,28 +1086,40 @@ da:
     contrast: Mastodon (Høj kontrast)
     default: Mastodont (Mørk)
     mastodon-light: Mastodon (Lys)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
   two_factor_authentication:
-    code_hint: Indtast koden der er genereret af din app for at bekræfte
-    description_html: Hvis du aktiverer <strong>to-faktor godkendelse</strong>, vil du være nødt til at være i besiddelse af din telefon, der genererer tokens som du skal indtaste, når du logger ind.
+    add: Tilføj
     disable: Deaktiver
-    enable: Aktiver
+    edit: Rediger
     enabled: To-faktor godkendelse er aktiveret
     enabled_success: To-faktor godkendelse succesfuldt aktiveret
     generate_recovery_codes: Generer gendannelseskoder
-    instructions_html: "<strong>Scan denne QR kode i Google Autehnticator eller lignende TOTP app på din telefon</strong>. Fra nu af vil den app generere koder som du vil være nødt til at indtaste når du logger ind."
     lost_recovery_codes: Gendannelseskoder vil lade dig få adgang til din konto hvis du mister din telefon. Hvis du har mistet dine gendannelseskoder, kan du regenerere dem her. Dine gamle gendannelseskoder vil blive ugyldige.
-    manual_instructions: 'Hvis du ikke kan scanne QR koden er er nødt til at skrive koden ind manuelt, kan er din almindelig tekst secret:'
+    methods: To-faktor metoder
     recovery_codes: Reserve koder
     recovery_codes_regenerated: Reserve koder blev succesfuldt regenereret
     recovery_instructions_html: Hvis du nogensinde mister adgang til din telefon, kan du bruge en af genoprettelses koderne forneden for at få adgang til din konto. <strong>Gem gendannelses koderne et sikkert sted</strong>. Foreksempel kan du printe dem ud og gemme dem sammen med andre vigtige dokumenter.
-    setup: Sæt op
-    wrong_code: Den indtastede kode var ugyldig! Er serverens tid og enhedens tid korrekte?
+    webauthn: Sikkerhedsnøgler
   user_mailer:
     backup_ready:
       explanation: Din anmodning for fuld backup af din Mastodon konto. Den er nu klar til at blive hentet!
       subject: Dit arkiv er klar til at blive hentet ned
       title: Udpluk af arkiv
+    sign_in_token:
+      details: 'Her er detaljer om forsøget:'
+      subject: Bekræft venligst forsøg på at logge ind
+      title: Login forsøg
     warning:
+      review_server_policies: Gennemgå serverpolitikker
+      statuses: 'Især for:'
+      subject:
+        disable: Din konto %{acct} er blevet frosset
+        none: Advarsel for %{acct}
+        silence: Din konto %{acct} er blevet begrænset
+        suspend: Din konto %{acct} er blevet suspenderet
       title:
         disable: Konto frosset
         none: Advarsel
@@ -926,11 +1143,27 @@ da:
       tips: Råd
       title: Velkommen ombord, %{name}!
   users:
+    blocked_email_provider: Denne e-mail-udbyder er ikke tilladt
     follow_limit_reached: Du kan ikke følge mere end %{limit} personer
+    generic_access_help_html: Har du problemer med at få adgang til din konto? Du kan komme i kontakt med %{email} for hjælp
     invalid_email: E-mail adressen er ugyldig
+    invalid_email_mx: E-mail-adressen virker ikke til at eksistere
     invalid_otp_token: Ugyldig to-faktor kode
+    invalid_sign_in_token: Ugyldig sikkerhedskode
     otp_lost_help_html: Hvis du har mistet adgang til begge, kan du få kontakt via %{email}
     seamless_external_login: Du er logget ind via en ekstern service, så er kodeord og e-mail indstillinger ikke tilgængelige.
     signed_in_as: 'Logget ind som:'
   verification:
     verification: Verificering
+  webauthn_credentials:
+    add: Tilføj ny sikkerhedsnøgle
+    create:
+      success: Din sikkerhedsnøgle blev tilføjet.
+    delete: Slet
+    destroy:
+      success: Din sikkerhedsnøgle blev slettet.
+    invalid_credential: Ugyldig sikkerhedsnøgle
+    nickname_hint: Indtast kaldenavnet på din nye sikkerhedsnøgle
+    not_enabled: Du har endnu ikke aktiveret WebAuthn
+    not_supported: Denne browser understøtter ikke sikkerhedsnøgler
+    registered_on: Registreret den %{date}

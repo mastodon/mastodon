@@ -151,6 +151,12 @@ RSpec.describe User, type: :model do
       expect(user.reload.otp_required_for_login).to be false
     end
 
+    it 'saves nil for otp_secret' do
+      user = Fabricate.build(:user, otp_secret: 'oldotpcode')
+      user.disable_two_factor!
+      expect(user.reload.otp_secret).to be nil
+    end
+
     it 'saves cleared otp_backup_codes' do
       user = Fabricate.build(:user, otp_backup_codes: %w(dummy dummy))
       user.disable_two_factor!

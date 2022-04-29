@@ -15,6 +15,10 @@ sv:
         text_html: Extra. Du kan använda toot syntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
         warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
+      announcement:
+        all_day: När det är markerat visas endast datum för tidsintervallet
+        ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
+        scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
@@ -49,20 +53,27 @@ sv:
       account_warning_preset:
         title: Rubrik
       admin_account_action:
+        text: Anpassad varning
         types:
+          disable: Inaktivera inloggning
           none: Gör ingenting
+          silence: Tysta
       defaults:
         autofollow: Bjud in till att följa ditt konto
         bot: Detta är ett botkonto
         chosen_languages: Filtrera språk
         confirm_new_password: Bekräfta nytt lösenord
         confirm_password: Bekräfta lösenord
+        context: Filter sammanhang
         current_password: Nuvarande lösenord
+        data: Data
+        discoverable: Lista detta konto i katalogen
         display_name: Visningsnamn
         email: E-postadress
         expires_in: Förfaller efter
         fields: Profil-metadata
         header: Bakgrundsbild
+        honeypot: "%{label} (fyll inte i)"
         locale: Språk
         locked: Lås konto
         max_uses: Högst antal  användningar
@@ -78,7 +89,9 @@ sv:
         setting_default_privacy: Postintegritet
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan du raderar en toot
+        setting_disable_swiping: Inaktivera svepande rörelser
         setting_display_media: Mediavisning
+        setting_display_media_default: Standard
         setting_display_media_hide_all: Dölj alla
         setting_display_media_show_all: Visa alla
         setting_hide_network: Göm ditt nätverk

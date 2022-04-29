@@ -1,0 +1,25 @@
+.directory__tag
+  = link_to admin_instance_path(instance) do
+    %h4
+      = instance.domain
+      %small
+        - if instance.domain_block
+          - first_item = true
+          - if !instance.domain_block.noop?
+            = t("admin.domain_blocks.severity.#{instance.domain_block.severity}")
+            - first_item = false
+          - unless instance.domain_block.suspend?
+            - if instance.domain_block.reject_media?
+              - unless first_item
+                &bull;
+              = t('admin.domain_blocks.rejecting_media')
+              - first_item = false
+            - if instance.domain_block.reject_reports?
+              - unless first_item
+                &bull;
+              = t('admin.domain_blocks.rejecting_reports')
+        - elsif whitelist_mode?
+          = t('admin.accounts.whitelisted')
+        - else
+          = t('admin.accounts.no_limits_imposed')
+    .trends__item__current{ title: t('admin.instances.known_accounts', count: instance.accounts_count) }= number_to_human instance.accounts_count, strip_insignificant_zeros: true

@@ -2,7 +2,7 @@
 
 module Settings
   module Exports
-    class FollowingAccountsController < ApplicationController
+    class FollowingAccountsController < BaseController
       include ExportControllerConcern
 
       def index

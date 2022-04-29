@@ -1,3 +1,6 @@
 - if object.errors.any?
   .flash-message.alert#error_explanation
     %strong= t('generic.validation_errors', count: object.errors.count)
+- object.errors[:base].each do |error|
+  .flash-message.alert
+    %strong= error

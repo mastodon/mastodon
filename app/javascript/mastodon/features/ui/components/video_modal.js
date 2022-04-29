@@ -3,9 +3,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Video from 'mastodon/features/video';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
-import Icon from 'mastodon/components/icon';
+import Footer from 'mastodon/features/picture_in_picture/components/footer';
+import { getAverageFromBlurhash } from 'mastodon/blurhash';
 
 export const previewState = 'previewVideoModal';
 
@@ -13,13 +12,14 @@ export default class VideoModal extends ImmutablePureComponent {
 
   static propTypes = {
     media: ImmutablePropTypes.map.isRequired,
-    status: ImmutablePropTypes.map,
+    statusId: PropTypes.string,
     options: PropTypes.shape({
       startTime: PropTypes.number,
       autoPlay: PropTypes.bool,
       defaultVolume: PropTypes.number,
     }),
     onClose: PropTypes.func.isRequired,
+    onChangeBackgroundColor: PropTypes.func.isRequired,
   };
 
   static contextTypes = {
@@ -27,36 +27,35 @@ export default class VideoModal extends ImmutablePureComponent {
   };
 
   componentDidMount () {
-    if (this.context.router) {
-      const history = this.context.router.history;
+    const { router } = this.context;
+    const { media, onChangeBackgroundColor, onClose } = this.props;
 
-      history.push(history.location.pathname, previewState);
+    if (router) {
+      router.history.push(router.history.location.pathname, previewState);
+      this.unlistenHistory = router.history.listen(() => onClose());
+    }
 
-      this.unlistenHistory = history.listen(() => {
-        this.props.onClose();
-      });
+    const backgroundColor = getAverageFromBlurhash(media.get('blurhash'));
+
+    if (backgroundColor) {
+      onChangeBackgroundColor(backgroundColor);
     }
   }
 
   componentWillUnmount () {
-    if (this.context.router) {
+    const { router } = this.context;
+
+    if (router) {
       this.unlistenHistory();
 
-      if (this.context.router.history.location.state === previewState) {
-        this.context.router.history.goBack();
+      if (router.history.location.state === previewState) {
+        router.history.goBack();
       }
     }
   }
 
-  handleStatusClick = e => {
-    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      this.context.router.history.push(`/statuses/${this.props.status.get('id')}`);
-    }
-  }
-
   render () {
-    const { media, status, onClose } = this.props;
+    const { media, statusId, onClose } = this.props;
     const options = this.props.options || {};
 
     return (
@@ -64,22 +63,21 @@ export default class VideoModal extends ImmutablePureComponent {
         <div className='video-modal__container'>
           <Video
             preview={media.get('preview_url')}
+            frameRate={media.getIn(['meta', 'original', 'frame_rate'])}
             blurhash={media.get('blurhash')}
             src={media.get('url')}
-            startTime={options.startTime}
+            currentTime={options.startTime}
             autoPlay={options.autoPlay}
-            defaultVolume={options.defaultVolume}
+            volume={options.defaultVolume}
             onCloseVideo={onClose}
             detailed
             alt={media.get('description')}
           />
         </div>
 
-        {status && (
-          <div className={classNames('media-modal__meta')}>
-            <a href={status.get('url')} onClick={this.handleStatusClick}><Icon id='comments' /> <FormattedMessage id='lightbox.view_context' defaultMessage='View context' /></a>
-          </div>
-        )}
+        <div className='media-modal__overlay'>
+          {statusId && <Footer statusId={statusId} withOpenButton onClose={onClose} />}
+        </div>
       </div>
     );
   }

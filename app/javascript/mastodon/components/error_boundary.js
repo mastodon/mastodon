@@ -66,17 +66,31 @@ export default class ErrorBoundary extends React.PureComponent {
   }
 
   render() {
-    const { hasError, copied } = this.state;
+    const { hasError, copied, errorMessage } = this.state;
 
     if (!hasError) {
       return this.props.children;
     }
 
+    const likelyBrowserAddonIssue = errorMessage && errorMessage.includes('NotFoundError');
+
     return (
       <div className='error-boundary'>
         <div>
-          <p className='error-boundary__error'><FormattedMessage id='error.unexpected_crash.explanation' defaultMessage='Due to a bug in our code or a browser compatibility issue, this page could not be displayed correctly.' /></p>
-          <p><FormattedMessage id='error.unexpected_crash.next_steps' defaultMessage='Try refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.' /></p>
+          <p className='error-boundary__error'>
+            { likelyBrowserAddonIssue ? (
+              <FormattedMessage id='error.unexpected_crash.explanation_addons' defaultMessage='This page could not be displayed correctly. This error is likely caused by a browser add-on or automatic translation tools.' />
+            ) : (
+              <FormattedMessage id='error.unexpected_crash.explanation' defaultMessage='Due to a bug in our code or a browser compatibility issue, this page could not be displayed correctly.' />
+            )}
+          </p>
+          <p>
+            { likelyBrowserAddonIssue ? (
+              <FormattedMessage id='error.unexpected_crash.next_steps_addons' defaultMessage='Try disabling them and refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.' />
+            ) : (
+              <FormattedMessage id='error.unexpected_crash.next_steps' defaultMessage='Try refreshing the page. If that does not help, you may still be able to use Mastodon through a different browser or native app.' />
+            )}
+          </p>
           <p className='error-boundary__footer'>Mastodon v{version} · <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='errors.unexpected_crash.report_issue' defaultMessage='Report issue' /></a> · <button onClick={this.handleCopyStackTrace} className={copied ? 'copied' : ''}><FormattedMessage id='errors.unexpected_crash.copy_stacktrace' defaultMessage='Copy stacktrace to clipboard' /></button></p>
         </div>
       </div>

@@ -21,6 +21,7 @@ sv:
         action: Verifiera e-postadress
         action_with_app: Bekräfta och återgå till %{app}
         explanation: Du har skapat ett konto på %{host} med den här e-postadressen. Du är ett klick bort från att aktivera det. Om det inte var du ignorerar det här e-postmeddelandet.
+        explanation_when_pending: Du ansökte om en inbjudan till %{host} med denna e-postadress. När du har bekräftat din e-postadress kommer vi att granska din ansökan. Du kan logga in för att ändra dina uppgifter eller ta bort ditt konto, men du kan inte komma åt de flesta funktionerna förrän ditt konto har godkänts. Om din ansökan avvisas kommer dina uppgifter att tas bort, så ingen ytterligare åtgärd kommer att krävas av dig. Om detta inte var du, vänligen ignorera detta mail.
         extra_html: Kolla gärna också <a href="%{terms_path}">instansens regler</a> och <a href="%{policy_path}">våra användarvillkor</a>.
         subject: 'Mastodon: Bekräftelsesinstruktioner för %{instance}'
         title: Verifiera e-postadress
@@ -59,6 +60,18 @@ sv:
         title: 2FA-återställningskoder ändrades
       unlock_instructions:
         subject: 'Mastodon: Lås upp instruktioner'
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: Ny säkerhetsnyckel'
+          title: En ny säkerhetsnyckel har lagts till
+        deleted:
+          explanation: Följande säkerhetsnyckel har tagits bort från ditt konto
+          subject: 'Mastodon: Säkerhetsnyckeln borttagen'
+          title: En av dina säkerhetsnycklar har tagits bort
+      webauthn_disabled:
+        title: Säkerhetsnycklar inaktiverade
+      webauthn_enabled:
+        title: Säkerhetsnycklar aktiverade
     omniauth_callbacks:
       failure: Det gick inte att autentisera dig från %{kind} för "%{reason}".
       success: Autentiserad från %{kind} konto.
@@ -73,6 +86,7 @@ sv:
       signed_up: Välkommen! Du har nu registrerat dig.
       signed_up_but_inactive: Du har nu registrerat dig. Vi kunde dock inte logga in dig eftersom ditt konto ännu inte är aktiverat.
       signed_up_but_locked: Du har nu registrerat dig. Vi kunde dock inte logga in eftersom ditt konto är låst.
+      signed_up_but_pending: Ett meddelande med en bekräftelselänk har skickats till din e-postadress. När du klickar på länken kommer vi att granska din ansökan. Du kommer att meddelas om den godkänns.
       signed_up_but_unconfirmed: Ett meddelande med en bekräftelselänk har skickats till din e-postadress. Vänligen följ länken för att aktivera ditt konto. Kontrollera din skräppostmapp om du inte fick det här e-postmeddelandet.
       update_needs_confirmation: Du har uppdaterat ditt konto med framgång, men vi måste verifiera din nya e-postadress. Vänligen kolla din email och följ bekräfta länken för att bekräfta din nya e-postadress. Kontrollera din spammapp om du inte fick det här e-postmeddelandet.
       updated: Ditt konto har uppdaterats utan problem.

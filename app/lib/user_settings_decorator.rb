@@ -27,6 +27,7 @@ class UserSettingsDecorator
     user.settings['display_media']       = display_media_preference if change?('setting_display_media')
     user.settings['expand_spoilers']     = expand_spoilers_preference if change?('setting_expand_spoilers')
     user.settings['reduce_motion']       = reduce_motion_preference if change?('setting_reduce_motion')
+    user.settings['disable_swiping']     = disable_swiping_preference if change?('setting_disable_swiping')
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
     user.settings['theme']               = theme_preference if change?('setting_theme')
@@ -86,6 +87,10 @@ class UserSettingsDecorator
 
   def reduce_motion_preference
     boolean_cast_setting 'setting_reduce_motion'
+  end
+
+  def disable_swiping_preference
+    boolean_cast_setting 'setting_disable_swiping'
   end
 
   def noindex_preference

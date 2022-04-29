@@ -89,7 +89,7 @@ module Paperclip
       end
     end
 
-    # rubocop:disable Style/MethodParameterName
+    # rubocop:disable Naming/MethodParameterName
     def rgb_to_hsl(r, g, b)
       r /= 255.0
       g /= 255.0
@@ -156,7 +156,7 @@ module Paperclip
 
       [(r * 255).round, (g * 255).round, (b * 255).round]
     end
-    # rubocop:enable Style/MethodParameterName
+    # rubocop:enable Naming/MethodParameterName
 
     def lighten_or_darken(color, by)
       hue, saturation, light = rgb_to_hsl(color.r, color.g, color.b)

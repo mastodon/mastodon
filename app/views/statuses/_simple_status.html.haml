@@ -1,10 +1,13 @@
+:ruby
+  hide_show_thread ||= false
+
 .status{ class: "status-#{status.visibility}" }
   .status__info
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__relative-time u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
+      %span.status__visibility-icon><
+        = visibility_icon status
       %time.time-ago{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
-    %span.status__visibility-icon
-      = visibility_icon status
 
     .p-author.h-card
       = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'status__display-name u-url', target: stream_link_target, rel: 'noopener noreferrer' do
@@ -17,7 +20,7 @@
         %span.display-name
           %bdi
             %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: autoplay)
-          &nbsp;
+          = ' '
           %span.display-name__account
             = acct(status.account)
             = fa_icon('lock') if status.account.locked?
@@ -26,7 +29,7 @@
       %p<
         %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: autoplay)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
-    .e-content{ dir: rtl_status?(status) ? 'rtl' : 'ltr' }
+    .e-content
       = Formatter.instance.format(status, custom_emojify: true, autoplay: autoplay)
       - if status.preloadable_poll
         = react_component :poll, disabled: true, poll: ActiveModelSerializers::SerializableResource.new(status.preloadable_poll, serializer: REST::PollSerializer, scope: current_user, scope_name: :current_user).as_json do
@@ -35,30 +38,29 @@
   - if !status.media_attachments.empty?
     - if status.media_attachments.first.video?
       - video = status.media_attachments.first
-      = react_component :video, src: full_asset_url(video.file.url(:original)), preview: full_asset_url(video.thumbnail.present? ? video.thumbnail.url : video.file.url(:small)), blurhash: video.blurhash, sensitive: status.sensitive?, width: 610, height: 343, inline: true, alt: video.description do
+      = react_component :video, src: full_asset_url(video.file.url(:original)), preview: full_asset_url(video.thumbnail.present? ? video.thumbnail.url : video.file.url(:small)), blurhash: video.blurhash, sensitive: sensitized?(status, current_account), width: 610, height: 343, inline: true, alt: video.description do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - elsif status.media_attachments.first.audio?
       - audio = status.media_attachments.first
       = react_component :audio, src: full_asset_url(audio.file.url(:original)), poster: full_asset_url(audio.thumbnail.present? ? audio.thumbnail.url : status.account.avatar_static_url), backgroundColor: audio.file.meta.dig('colors', 'background'), foregroundColor: audio.file.meta.dig('colors', 'foreground'), accentColor: audio.file.meta.dig('colors', 'accent'), width: 610, height: 343, alt: audio.description, duration: audio.file.meta.dig('original', 'duration') do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
     - else
-      = react_component :media_gallery, height: 343, sensitive: status.sensitive?, autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
+      = react_component :media_gallery, height: 343, sensitive: sensitized?(status, current_account), autoplay: autoplay, media: status.media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json } do
         = render partial: 'statuses/attachment_list', locals: { attachments: status.media_attachments }
   - elsif status.preview_card
-    = react_component :card, sensitive: status.sensitive?, 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
+    = react_component :card, sensitive: sensitized?(status, current_account), 'maxDescription': 160, card: ActiveModelSerializers::SerializableResource.new(status.preview_card, serializer: REST::PreviewCardSerializer).as_json
 
-  - if !status.in_reply_to_id.nil? && status.in_reply_to_account_id == status.account.id
+  - if !status.in_reply_to_id.nil? && status.in_reply_to_account_id == status.account.id && !hide_show_thread
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'status__content__read-more-button', target: stream_link_target, rel: 'noopener noreferrer' do
       = t 'statuses.show_thread'
 
   .status__action-bar
-    .status__action-bar__counter
-      = link_to remote_interaction_path(status, type: :reply), class: 'status__action-bar-button icon-button modal-button' do
-        - if status.in_reply_to_id.nil?
-          = fa_icon 'reply fw'
-        - else
-          = fa_icon 'reply-all fw'
-      .status__action-bar__counter__label= obscured_counter status.replies_count
+    = link_to remote_interaction_path(status, type: :reply), class: 'status__action-bar-button icon-button icon-button--with-counter modal-button' do
+      - if status.in_reply_to_id.nil?
+        = fa_icon 'reply fw'
+      - else
+        = fa_icon 'reply-all fw'
+      %span.icon-button__counter= obscured_counter status.replies_count
     = link_to remote_interaction_path(status, type: :reblog), class: 'status__action-bar-button icon-button modal-button' do
       - if status.distributable?
         = fa_icon 'retweet fw'

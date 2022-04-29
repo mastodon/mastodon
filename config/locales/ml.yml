@@ -1,32 +1,52 @@
 ---
 ml:
   about:
+    about_this: കുറിച്ച്
+    api: API
+    apps: മൊബൈൽ ആപ്പുകൾ
+    contact: ബന്ധപ്പെടുക
     contact_missing: സജ്ജമാക്കിയിട്ടില്ല
     contact_unavailable: ലഭ്യമല്ല
     discover_users: ഉപയോഗ്‌താക്കളെ കണ്ടെത്തുക
+    get_apps: മൊബൈൽ ആപ്പ് പരീക്ഷിക്കുക
     learn_more: കൂടുതൽ പഠിക്കുക
     privacy_policy: സ്വകാര്യതാ നയം
     see_whats_happening: എന്തൊക്കെ സംഭവിക്കുന്നു എന്ന് കാണുക
+    source_code: സോഴ്സ് കോഡ്
     status_count_before: ആരാൽ എഴുതപ്പെട്ടു
     tagline: സുഹൃത്തുക്കളെ പിന്തുടരുകയും പുതിയവരെ കണ്ടെത്തുകയും ചെയ്യുക
     terms: സേവന വ്യവസ്ഥകൾ
     unavailable_content: ലഭ്യമല്ലാത്ത ഉള്ളടക്കം
     unavailable_content_description:
+      domain: സെർവർ
       reason: കാരണം
     what_is_mastodon: എന്താണ് മാസ്റ്റഡോൺ?
   accounts:
     follow: പിന്തുടരുക
-    following: നിങ്ങൾ പിന്തുടരുന്നവർ
+    following: പിന്തുടരുന്നു
     joined: "%{date} ൽ ചേർന്നു"
     last_active: അവസാനം സജീവമായിരുന്നത്
     link_verified_on: സന്ധിയുടെ ഉടമസ്ഥാവസ്‌കാശം %{date} ൽ പരിശോധിക്കപ്പെട്ടു
     media: മാധ്യമങ്ങൾ
     moved_html: "%{name}, %{new_profile_link} ലേക്ക് നീങ്ങിയിരിക്കുന്നു:"
+    network_hidden: ഈ വിവരം ലഭ്യമല്ല
+    nothing_here: ഇവിടെ ഒന്നുമില്ല!
+    posts_tab_heading: ടൂട്ടുകൾ
+    posts_with_replies: ടൂട്ടുകളും മറുപടികളും
+    roles:
+      admin: അഡ്‌മിന്‍
+      bot: ബോട്ട്
+      group: ഗ്രൂപ്പ്
+    unavailable: പ്രൊഫൈൽ ലഭ്യമല്ല
   admin:
     account_moderation_notes:
       delete: മായ്ക്കുക
     accounts:
+      add_email_domain_block: ഇ-മെയിൽ ഡൊമെയ്ൻ തടയുക
       approve: അംഗീകരിക്കുക
+      approve_all: എല്ലാം അംഗീകരിക്കുക
+      are_you_sure: നിങ്ങൾക്ക് ഉറപ്പാണോ?
+      avatar: അവതാർ
       by_domain: മേഖല
       change_email:
         changed_msg: അംഗത്തിന്റെ ഇലക്ട്രോണിക് കത്തിന്റെ മേൽവിലാസം വിജയകരമായി മാറ്റിയിരിക്കുന്നു!
@@ -37,6 +57,8 @@ ml:
         title: "%{username} ന്റെ ഇലക്ട്രോണിക് കത്ത് മേൽവിലാസം മാറ്റുക"
       confirm: നിജപ്പെടുത്തുക
       confirmed: നിജപ്പെടുത്തി
+      confirming: സ്ഥിരീകരിക്കുന്നു
+      delete: ഡാറ്റ ഇല്ലാതാക്കുക
       deleted: മായിച്ചു
       demote: തരം താഴ്ത്തുക
       disable: പ്രവര്‍ത്തന രഹിതമാക്കുക
@@ -44,6 +66,56 @@ ml:
       disabled: പ്രവർത്തന രഹിതമാക്കപ്പെട്ടിരിക്കുന്നു
       display_name: കാണപ്പെടുന്ന നാമം
       domain: മേഖല
+      edit: തിരുത്തുക
+      email: ഇമെയിൽ
+      header: തലക്കെട്ട്
+      location:
+        all: എല്ലാം
+      moderation:
+        active: സജീവമാണ്
+        all: എല്ലാം
+      resend_confirmation:
+        send: സ്ഥിരീകരണ ഇമെയിൽ വീണ്ടും അയയ്ക്കുക
+        success: സ്ഥിരീകരണ ഇമെയിൽ വിജയകരമായി അയച്ചു!
+      reset: പുനഃക്രമീകരിക്കുക
+      reset_password: പാസ്‌വേഡ് പുനഃക്രമീകരിക്കുക
+      role: അനുമതികൾ
+      roles:
+        user: ഉപയോക്താവ്
+      search: തിരയുക
+      title: അക്കൗണ്ടുകൾ
+      unconfirmed_email: സ്ഥിരീകരിക്കാത്ത ഇമെയിൽ
+      username: ഉപയോക്തൃനാമം
+      web: വെബ്
+    action_logs:
+      action_types:
+        confirm_user: ഉപയോക്താവിനെ സ്ഥിരീകരിക്കുക
+        remove_avatar_user: അവതാർ നീക്കംചെയ്യുക
+        reset_password_user: പാസ്‌വേഡ് പുനഃക്രമീകരിക്കുക
+    custom_emojis:
+      copy: പകര്‍ത്തുക
+      create_new_category: പുതിയ വിഭാഗം സൃഷ്ടിക്കുക
+      delete: ഇല്ലാതാക്കുക
+      emoji: ഇമോജി
+    dashboard:
+      feature_profile_directory: പ്രൊഫൈൽ ഡയറക്ടറി
+      features: സവിശേഷതകൾ
+      title: ഡാഷ്ബോർഡ്
+      total_users: മൊത്തം ഉപയോക്താക്കൾ
+      trends: ട്രെൻഡുകൾ
+    email_domain_blocks:
+      add_new: പുതിയത് ചേര്‍ക്കുക
+      delete: ഇല്ലാതാക്കുക
+      domain: ഡൊമൈന്‍
+      new:
+        create: ഡൊമൈൻ ചേര്‍ക്കുക
+    invites:
+      filter:
+        all: എല്ലാം
+  authorize_follow:
+    following: 'വിജയകരം! നിങ്ങൾ ഇപ്പോൾ പിന്തുടരുന്നു:'
+  directories:
+    directory: പ്രൊഫൈൽ ഡയറക്ടറി
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -54,11 +126,18 @@ ml:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
-  invites:
-    expires_in:
-      '1800': 30 minutes
-      '21600': 6 hours
-      '3600': 1 hour
-      '43200': 12 hours
-      '604800': 1 week
-      '86400': 1 day
+  filters:
+    contexts:
+      notifications: അറിയിപ്പുകൾ
+  generic:
+    all: എല്ലാം
+  notification_mailer:
+    digest:
+      action: എല്ലാ അറിയിപ്പുകളും കാണിക്കുക
+    follow:
+      body: "%{name} ഇപ്പോൾ നിങ്ങളെ പിന്തുടരുന്നു!"
+      subject: "%{name} ഇപ്പോൾ നിങ്ങളെ പിന്തുടരുന്നു"
+  relationships:
+    following: പിന്തുടരുന്നു
+  settings:
+    notifications: അറിയിപ്പുകൾ
