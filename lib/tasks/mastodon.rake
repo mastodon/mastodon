@@ -40,8 +40,8 @@ namespace :mastodon do
         q.default 'warn'
       end
 
-      prompt.say "\n"      
-      
+      prompt.say "\n"
+
       using_docker        = prompt.yes?('Are you using Docker to run Mastodon?')
       db_connection_works = false
 
