@@ -33,6 +33,15 @@ namespace :mastodon do
 
       prompt.say "\n"
 
+      prompt.say('What level of logging would you prefer? debug, info, warn, error, fatal')
+      env['RAILS_LOG_LEVEL'] = prompt.ask('Log level:') do |q|
+        q.required true
+        q.modify :strip
+        q.default 'warn'
+      end
+
+      prompt.say "\n"      
+      
       using_docker        = prompt.yes?('Are you using Docker to run Mastodon?')
       db_connection_works = false
 
