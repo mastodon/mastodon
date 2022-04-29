@@ -2,6 +2,7 @@
 
 class Settings::ExportsController < Settings::BaseController
   include Authorization
+  include Redisable
 
   skip_before_action :require_functional!
 
@@ -28,6 +29,6 @@ class Settings::ExportsController < Settings::BaseController
   end
 
   def lock_options
-    { redis: Redis.current, key: "backup:#{current_user.id}" }
+    { redis: redis, key: "backup:#{current_user.id}" }
   end
 end

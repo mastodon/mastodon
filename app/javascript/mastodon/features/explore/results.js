@@ -100,7 +100,7 @@ class Results extends React.PureComponent {
           <button onClick={this.handleSelectAll} className={type === 'all' && 'active'}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
           <button onClick={this.handleSelectAccounts} className={type === 'accounts' && 'active'}><FormattedMessage id='search_results.accounts' defaultMessage='People' /></button>
           <button onClick={this.handleSelectHashtags} className={type === 'hashtags' && 'active'}><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></button>
-          <button onClick={this.handleSelectStatuses} className={type === 'statuses' && 'active'}><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></button>
+          <button onClick={this.handleSelectStatuses} className={type === 'statuses' && 'active'}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
         </div>
 
         <div className='explore__search-results'>
