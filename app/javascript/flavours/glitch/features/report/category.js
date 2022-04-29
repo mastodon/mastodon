@@ -64,12 +64,10 @@ class Category extends React.PureComponent {
     const { category, startedFrom, rules, intl } = this.props;
 
     const options = rules.size > 0 ? [
-      'dislike',
       'spam',
       'violation',
       'other',
     ] : [
-      'dislike',
       'spam',
       'other',
     ];
