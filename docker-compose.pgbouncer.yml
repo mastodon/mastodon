@@ -20,12 +20,11 @@ services:
        - DB_USER=${DB_USER}
        - DB_PASSWORD=${DB_PASS}
        - DB_HOST=${DB_HOST}
-       - DB_HOST=${DB_HOST}
        - DB_NAME=${DB_NAME} 
        - POOL_MODE=transaction
        - ADMIN_USERS=postgres,mastodon
     ports:
-      - "6432:6432"
+      - "5432:5432"
     depends_on:
       - db
 
@@ -74,6 +73,7 @@ services:
       - '127.0.0.1:3000:3000'
     depends_on:
       - db
+      - pgbouncer
       - redis
       # - es
     volumes:
@@ -95,6 +95,7 @@ services:
       - '127.0.0.1:4000:4000'
     depends_on:
       - db
+      - pgbouncer
       - redis
 
   sidekiq:
@@ -105,6 +106,7 @@ services:
     command: bundle exec sidekiq
     depends_on:
       - db
+      - pgbouncer
       - redis
     networks:
       - external_network
