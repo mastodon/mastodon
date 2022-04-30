@@ -1,4 +1,3 @@
----
 sq:
   simple_form:
     hints:
@@ -49,6 +48,7 @@ sq:
         phrase: Do të kërkohet përputhje pavarësish se teksti ose sinjalizimi mbi lëndën e një mesazhi është shkruar me të mëdha apo me të vogla
         scopes: Cilat API do të lejohen të përdorin aplikacioni. Nëse përzgjidhni një shkallë të epërme, nuk ju duhet të përzgjidhni individualet një nga një.
         setting_aggregate_reblogs: Mos shfaq përforcime të reja për mesazhe që janë përforcuar tani së fundi (prek vetëm përforcime të marra rishtas)
+        setting_always_send_emails: Normalisht s’do të dërgohen njoftime, kur përdorni aktivisht Mastodon-in
         setting_default_sensitive: Media rezervat fshihet, si parazgjedhje, dhe mund të shfaqet me një klikim
         setting_display_media_default: Fshih media me shenjën rezervat
         setting_display_media_hide_all: Fshih përherë mediat
@@ -151,6 +151,7 @@ sq:
         phrase: Fjalëkyç ose frazë
         setting_advanced_layout: Aktivizo ndërfaqe web të thelluar
         setting_aggregate_reblogs: Grupoji përforcimet në rrjedha kohore
+        setting_always_send_emails: Dërgo përherë njoftime me email
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
         setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
         setting_crop_images: Në mesazhe jo të zgjerueshëm, qethi figurat në 16x9
@@ -217,7 +218,7 @@ sq:
         name: Hashtag
         trendable: Lejoje këtë hashtag të shfaqet në prirje
         usable: Lejoji mesazhet të përdorin këtë hashtag
-    'no': Jo
+    'no': 'Jo'
     recommended: E rekomanduar
     required:
       mark: "*"
@@ -225,4 +226,4 @@ sq:
     title:
       sessions:
         webauthn: Që të bëhet hyrja, përdorni një nga kyçet tuaj të sigurisë
-    'yes': Po
+    'yes': 'Po'
