@@ -254,7 +254,7 @@ class Status < ApplicationRecord
       media_attachments
     else
       map = media_attachments.index_by(&:id)
-      ordered_media_attachment_ids.map { |media_attachment_id| map[media_attachment_id] }
+      ordered_media_attachment_ids.filter_map { |media_attachment_id| map[media_attachment_id] }
     end
   end
 
