@@ -19,7 +19,7 @@ services:
     environment:
        - DB_USER=${DB_USER}
        - DB_PASSWORD=${DB_PASS}
-       - DB_HOST=${DB_HOST}
+       - DB_HOST=db
        - DB_NAME=${DB_NAME} 
        - POOL_MODE=transaction
        - ADMIN_USERS=postgres,mastodon
