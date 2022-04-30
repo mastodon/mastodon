@@ -11,15 +11,14 @@ services:
       - external_network
       - internal_network
     volumes:
-    - ./data/postgres:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
 
   redis:
-    image: redis:4.0-alpine
+    image: redis:6.0-alpine
     networks:
       - internal_network
     volumes:
-    - ./data/redis:/data
-
+      - redis:/data
 
   web:
     build:
@@ -36,7 +35,7 @@ services:
     env_file: .env.development
     command: bash -c "rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-    - ".:/opt/mastodon"
+      - ".:/opt/mastodon"
     networks:
       - external_network
       - internal_network
@@ -53,7 +52,7 @@ services:
     env_file: .env.development
     command: yarn start
     volumes:
-    - ".:/opt/mastodon"
+      - ".:/opt/mastodon"
     ports:
       - "4000:4000"
     networks:
@@ -71,7 +70,7 @@ services:
       - external_network
       - internal_network
     volumes:
-    - ".:/opt/mastodon"
+      - ".:/opt/mastodon"
     depends_on:
       - db
       - redis
@@ -82,6 +81,12 @@ services:
       - "9394:9394"
     networks:
       - external_network
+
+volumes:
+  db:
+    driver: local
+  redis:
+    driver: local
 
 networks:
   external_network:

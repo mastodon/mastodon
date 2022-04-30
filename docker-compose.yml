@@ -3,22 +3,22 @@ services:
   db:
     image: postgres:9.6-alpine
     volumes:
-      - /var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     shm_size: 256mb
     networks:
       - internal_network
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres"]
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
 
   redis:
     restart: always
     image: redis:6.0-alpine
     volumes:
-      - /var/data/docker-data/catgram-redis:/data
+      - redis:/data
     networks:
       - internal_network
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: [ "CMD", "redis-cli", "ping" ]
 
   #  es:
   #    restart: always
@@ -58,7 +58,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "wget -q --spider --proxy=off localhost:3000/health || exit 1",
+          "wget -q --spider --proxy=off localhost:3000/health || exit 1"
         ]
     ports:
       - "127.0.0.1:3000:3000"
@@ -67,8 +67,6 @@ services:
       - redis
       - prometheus_exporter
     #      - es
-    volumes:
-      - ./public/system:/mastodon/public/system
 
   streaming:
     build:
@@ -85,7 +83,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1",
+          "wget -q --spider --proxy=off localhost:4000/api/v1/streaming/health || exit 1"
         ]
     ports:
       - "127.0.0.1:4000:4000"
@@ -107,8 +105,6 @@ services:
     networks:
       - external_network
       - internal_network
-    volumes:
-      - ./public/system:/mastodon/public/system
 
   prometheus_exporter:
     image: 563848776164.dkr.ecr.us-west-2.amazonaws.com/prometheus_exporter:latest
@@ -133,6 +129,12 @@ services:
 #    networks:
 #      - external_network
 #      - internal_network
+
+volumes:
+  db:
+    driver: local
+  redis:
+    driver: local
 
 networks:
   external_network:
