@@ -510,12 +510,31 @@ hy:
     title: Ադմինիստարցիա
     trends:
       allow: Թոյլատրել
+      approved: Հաստատուած
+      disallow: Արգելուած
+      preview_card_providers:
+        title: Հրապարակողներ
+      rejected: Մերժուած
+      statuses:
+        disallow: Արգելել գրառումը
+        disallow_account: Արգելել հեղինակին
+        title: Թրենդային գրառումներ
+      tags:
+        listable: Կարող է առաջարկուել
+        not_listable: Չի կարող առաջարկուել
+        not_usable: Չի կարող օգտագործուել
+        title: Թրենդային պիտակներ
+        usable: Կարող է օգտագործուել
+      title: Թրենդներ
     warning_presets:
       add_new: Ավելացնել նորը
       delete: Ջնջել
   admin_mailer:
     new_report:
       subject: 'Նոր բողոք %{instance}ի համար(#%{id})'
+    new_trends:
+      new_trending_statuses:
+        title: Թրենդային գրառումներ
   appearance:
     advanced_web_interface: Սյունակավոր ինտերֆեյս
     advanced_web_interface_hint: 'Եթէ ցանկանում ես օգտագործել էկրանիդ ամբողջ լայնքը, ապա ընդլայնուած վեբ ինտերֆեյսով հնարաւոր է էկրանը բաժանել սիւնակների՝ զուգահեռ տեսնելու տարբեր տիպի ինֆորմացիա՝ տեղական հոսքը, ծանուցումները, ֆեդերացված հոսքը, և ցանկացած թվի ցուցակ ու հեշթեգ։'
@@ -562,6 +581,7 @@ hy:
       account_status: Հաշուի կարգավիճակ
       pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
     trouble_logging_in: Մուտք գործելու խնդիրնե՞ր կան։
+    use_security_key: Օգտագործել անվտանգութեան բանալի
   authorize_follow:
     already_following: Դու արդէն հետեւում ես այս հաշուին
     already_requested: Դու արդէն ուղարկել ես հետեւմանն յայտ այս հաշուին
@@ -666,8 +686,10 @@ hy:
     changes_saved_msg: Փոփոխութիւնները յաջող պահուած են
     copy: Պատճենել
     delete: Ջնջել
+    none: Ոչ մի
     order_by: Դասաւորել ըստ
     save_changes: Պահպանել փոփոխութիւնները
+    today: այսօր
   imports:
     errors:
       over_rows_processing_limit: տողերի քանակը աւելին է քան %{count}-ը
@@ -718,6 +740,7 @@ hy:
     past_migrations: Նախոդ միգրացիաները
     proceed_with_move: Տեղափոխել հետեւորդներին
     redirecting_to: Քո հաշիւը վերահասցեաորում է %{acct}-ին
+    set_redirect: Կարգաւորել վերահասցէաւորումը
     warning:
       followers: Այս քայլով քո բոլոր հետեւորդներին այս հաշուից կը տեղափոխես դէպի նորը
       only_redirect_html: Որպէս այլընտրանք, կարող ես ուղղակի <a href="%{path}">վերահասցէաւորել քո հաշիւը</a>
@@ -725,8 +748,12 @@ hy:
   moderation:
     title: Մոդերացիա
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name}-ը գրանցուած է"
     digest:
       action: Դիտել բոլոր ծանուցումները
+      mention: "%{name} նշել է քեզ՝"
       title: Երբ բացակայ էիր...
     favourite:
       body: 'Քո գրառումը հաւանել է %{name}-ը։'
@@ -751,6 +778,8 @@ hy:
       title: Նոր տարածում
     status:
       subject: "%{name}-ը հենց նոր գրառում արեց"
+    update:
+      subject: "%{name}-ը փոխել է գրառումը"
   notifications:
     email_events_hint: 'Ընտրիր իրադարձութիւնները, որոնց վերաբերեալ ցանկանում ես ստանալ ծանուցումներ․'
     other_settings: Ծանուցումների այլ կարգաւորումներ
@@ -882,6 +911,7 @@ hy:
         one: "%{count} վիդեո"
         other: "%{count} վիդեո"
     content_warning: 'Նախազգուշացում։ %{warning}'
+    edited_at_html: Խմբագրուած՝ %{date}
     open_in_web: Բացել վէբում
     over_character_limit: '%{max} նիշի սահմանը գերազանցուած է'
     poll:
@@ -914,7 +944,7 @@ hy:
       '2629746': 1 ամիս
       '31556952': 1 տարի
       '5259492': 2 ամիս
-      '604800': 1 week
+      '604800': 1 շաբաթ
       '63113904': 2 տարի
       '7889238': 3 ամիս
   stream_entries:
@@ -1014,6 +1044,7 @@ hy:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Ավելացնել
     disable: Անջատել
@@ -1029,11 +1060,17 @@ hy:
     recovery_codes_regenerated: Վերականգման կոդերը հաջողութեամբ ստեղծուել են
     webauthn: Անվտանգութեան բանալիներ
   user_mailer:
+    suspicious_sign_in:
+      title: Նոր մուտք
     warning:
+      categories:
+        spam: Սպամ
+      reason: 'Պատճառ՝'
       subject:
         disable: Քո %{acct} հաշիւը սառեցուել է
         none: Նախազգուշացուեմ %{acct}-ին
       title:
+        delete_statuses: Գրառումները ջնջուած են
         disable: Հաշիւը սառեցուած է
         none: Զգուշացում
         silence: Հաշիւը սահմանափակուած է
