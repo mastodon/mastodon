@@ -853,6 +853,7 @@ da:
       actions:
         delete_statuses: for sletning af vedkommendes indlæg
         disable: for frysning af vedkommendes konto
+        mark_statuses_as_sensitive: for at markere deres indlæg som følsomme
         none: en advarsel
         sensitive: for markering af vedkommendes konto som sensitiv
         silence: for begrænsning af vedkommendes konto
@@ -1041,7 +1042,9 @@ da:
       title_actions:
         delete_statuses: Indlægsfjernelse
         disable: Kontofrysning
+        mark_statuses_as_sensitive: Markering af indlæg som følsomme
         none: Advarsel
+        sensitive: Markering af konto som følsom
         silence: Kontobegrænsning
         suspend: Kontosuspendering
       your_appeal_approved: Din appel er godkendt
@@ -1551,6 +1554,7 @@ da:
     suspicious_sign_in:
       change_password: skift din adgangskode
       explanation: Indlogning på din konto fra en ny IP-adresse detekteret.
+      further_actions_html: Hvis dette ikke var dig, anbefaler vi, at du %{action} med det samme og aktiverer to-faktor godkendelse for at holde din konto sikker.
       subject: Din konto er blevet tilgået fra en ny IP-adresse
       title: Ny indlogning
     warning:
