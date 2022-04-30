@@ -2,12 +2,17 @@
 
 class RedisConfiguration
   class << self
+    def establish_pool(new_pool_size)
+      @pool&.shutdown(&:close)
+      @pool = ConnectionPool.new(size: new_pool_size) { new.connection }
+    end
+
     def with
       pool.with { |redis| yield redis }
     end
 
     def pool
-      @pool ||= ConnectionPool.new(size: pool_size) { new.connection }
+      @pool ||= establish_pool(pool_size)
     end
 
     def pool_size
