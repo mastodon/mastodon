@@ -1,8 +1,7 @@
----
 pt-PT:
   about:
-    about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.
-    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
+    about_hashtag_html: 'Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.'
+    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.'
     about_this: Sobre esta instância
     active_count_after: activo
     active_footnote: Utilizadores activos mensais (UAM)
@@ -57,7 +56,7 @@ pt-PT:
     user_count_before: Casa para
     what_is_mastodon: O que é o Mastodon?
   accounts:
-    choices_html: 'escolhas de %{name}:'
+    choices_html: "escolhas de %{name}:"
     endorsements_hint: Você pode, através da interface web, escolher endossar pessoas que segue, e elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
@@ -118,7 +117,7 @@ pt-PT:
       delete: Eliminar dados
       deleted: Eliminada
       demote: Despromoveu
-      destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
+      destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Congelar
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar 2FA
@@ -568,7 +567,7 @@ pt-PT:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Eliminar
@@ -868,7 +867,7 @@ pt-PT:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
-      subject: Nova denúncia para %{instance} (#%{id})
+      subject: 'Nova denúncia para %{instance} (#%{id})'
     new_trends:
       body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
       new_trending_links:
@@ -1256,7 +1255,7 @@ pt-PT:
     mention:
       action: Responder
       body: 'Foste mencionado por %{name}:'
-      subject: "%{name} mencionou-te"
+      subject: '%{name} mencionou-te'
       title: Nova menção
     poll:
       subject: Uma votação realizada por %{name} terminou
@@ -1672,15 +1671,15 @@ pt-PT:
         silence: Conta limitada
         suspend: Conta suspensa
     welcome:
-      edit_profile_action: Configura o perfil
-      edit_profile_step: Podes personalizar o teu perfil carregando uma imagem de perfil e de cabeçalho ou alterando o nome a exibir, entre outras opções. Se preferires rever os novos seguidores antes deles te poderem seguir, podes tornar a tua conta privada.
-      explanation: Aqui estão algumas dicas para começares
+      edit_profile_action: Configurar o perfil
+      edit_profile_step: Pode personalizar o seu perfil carregando uma imagem de perfil e de cabeçalho ou alterando o nome a exibir, entre outras opções. Se preferir rever os novos seguidores antes de estes o poderem seguir, pode tornar a sua conta privada.
+      explanation: Aqui estão algumas dicas para começar
       final_action: Começa a publicar
       final_step: 'Começa a publicar! Mesmo sem seguidores, as tuas mensagens públicas podem ser vistas por outros, por exemplo, na cronologia local e em hashtags. Tu podes querer apresentar-te na hashtag #introductions.'
-      full_handle: O teu nome completo
-      full_handle_hint: Isto é o que você diria aos seus amigos para que eles lhe possam enviar mensagens ou seguir a partir de outra instância.
+      full_handle: O seu nome completo
+      full_handle_hint: Isto é o que tem de facultar aos seus amigos para que eles lhe possam enviar mensagens ou seguir a partir de outra instância.
       review_preferences_action: Alterar preferências
-      review_preferences_step: Certifique-se de configurar as suas preferências, tais como os e-mails que gostaria de receber ou o nível de privacidade que deseja que as suas publicações tenham por defeito. Se não sofres de enjoo, podes ativar a opção de auto-iniciar GIFs.
+      review_preferences_step: Certifique-se de configurar as suas preferências, tais como os e-mails que gostaria de receber ou o nível de privacidade que deseja que as suas publicações tenham por defeito. Se não sofre de enjoo de movimento, pode ativar a opção de auto-iniciar GIFs.
       subject: Bem-vindo ao Mastodon
       tip_federated_timeline: A cronologia federativa é uma visão global da rede Mastodon. Mas só inclui pessoas que os teus vizinhos subscrevem, por isso não é uma visão completa.
       tip_following: Segues o(s) administrador(es) do teu servidor por defeito. Para encontrar mais pessoas interessantes, procura nas cronologias local e federada.
