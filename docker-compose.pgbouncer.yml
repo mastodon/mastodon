@@ -13,6 +13,22 @@ services:
     environment:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
 
+  pgbouncer:
+    image: edoburu/pgbouncer
+    env_file: .env.production
+    environment:
+       - DB_USER=${DB_USER}
+       - DB_PASSWORD=${DB_PASS}
+       - DB_HOST=${DB_HOST}
+       - DB_HOST=${DB_HOST}
+       - DB_NAME=${DB_NAME} 
+       - POOL_MODE=transaction
+       - ADMIN_USERS=postgres,mastodon
+    ports:
+      - "6432:6432"
+    depends_on:
+      - db
+
   redis:
     restart: always
     image: redis:6-alpine
