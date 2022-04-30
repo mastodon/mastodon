@@ -336,22 +336,18 @@ class Status < ApplicationRecord
     end
 
     def reload_stale_associations!(cached_items)
-      account_ids = []
-
-      cached_items.each do |item|
-        account_ids << item.account_id
-        account_ids << item.reblog.account_id if item.reblog?
-      end
-
-      account_ids.uniq!
+      account_ids = cached_items.each_with_object([]) do |item, arr|
+        arr << item.account_id
+        arr << item.reblog&.account_id if item.reblog?
+      end.compact.uniq
 
       return if account_ids.empty?
 
-      accounts = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
+      accounts_map = Account.where(id: account_ids).includes(:account_stat, :user).index_by(&:id)
 
       cached_items.each do |item|
-        item.account = accounts[item.account_id]
-        item.reblog.account = accounts[item.reblog.account_id] if item.reblog?
+        item.account        = accounts_map[item.account_id]
+        item.reblog.account = accounts_map[item.reblog.account_id] if item.reblog? && item.reblog
       end
     end
 
