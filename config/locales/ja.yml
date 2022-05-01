@@ -115,7 +115,7 @@ ja:
       destroyed_msg: "%{username}さんのデータは完全に削除されるよう登録されました"
       disable: 無効化
       disable_sign_in_token_auth: メールトークン認証を無効にする
-      disable_two_factor_authentication: 二段階認証を無効にする
+      disable_two_factor_authentication: 二要素認証を無効にする
       disabled: 無効
       display_name: 表示名
       domain: ドメイン
@@ -247,7 +247,7 @@ ja:
         destroy_ip_block: IPルールを削除
         destroy_status: 投稿を削除
         destroy_unavailable_domain: 配送できないドメインを削除
-        disable_2fa_user: 二段階認証を無効化
+        disable_2fa_user: 二要素認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
         disable_sign_in_token_auth_user: ユーザーのメールトークン認証を無効にする
         disable_user: ユーザーを無効化
@@ -298,7 +298,7 @@ ja:
         destroy_ip_block_html: "%{name}さんが IP %{target}のルールを削除しました"
         destroy_status_html: "%{name}さんが%{target}さんの投稿を削除しました"
         destroy_unavailable_domain_html: "%{name}がドメイン %{target}への配送を再開しました"
-        disable_2fa_user_html: "%{name}さんが%{target}さんの二段階認証を無効化しました"
+        disable_2fa_user_html: "%{name}さんが%{target}さんの二要素認証を無効化しました"
         disable_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を無効化しました"
         disable_sign_in_token_auth_user_html: "%{name}さんが%{target}さんのメールトークン認証を無効にしました"
         disable_user_html: "%{name}さんが%{target}さんのログインを無効化しました"
@@ -900,7 +900,7 @@ ja:
     dont_have_your_security_key: セキュリティキーを持っていませんか？
     forgot_password: パスワードをお忘れですか？
     invalid_reset_password_token: パスワードリセットトークンが正しくないか期限切れです。もう一度リクエストしてください。
-    link_to_otp: 携帯電話から二段階認証コードを入力するか、リカバリーコードを入力してください
+    link_to_otp: 携帯電話から二要素認証コードを入力するか、リカバリーコードを入力してください
     link_to_webauth: セキュリティキーを使用する
     log_in_with: 次の方法でログイン
     login: ログイン
@@ -1382,7 +1382,7 @@ ja:
     relationships: フォロー・フォロワー
     statuses_cleanup: 投稿の自動削除
     strikes: モデレーションストライク
-    two_factor_authentication: 二段階認証
+    two_factor_authentication: 二要素認証
     webauthn_authentication: セキュリティキー
   statuses:
     attached:
@@ -1497,7 +1497,7 @@ ja:
 
       <h3 id="protect">情報をどのように保護しますか？</h3>
 
-      <p>私たちはあなたが入力・送信する際や自身の情報にアクセスする際に個人情報を安全に保つため、さまざまなセキュリティ上の対策を実施します。特にブラウザーセッションだけでなくアプリケーションとAPI間の通信もSSLによって保護されます。またパスワードは強力な不可逆アルゴリズムでハッシュ化されます。二段階認証を有効にし、アカウントへのアクセスをさらに安全にすることができます。</p>
+      <p>私たちはあなたが入力・送信する際や自身の情報にアクセスする際に個人情報を安全に保つため、さまざまなセキュリティ上の対策を実施します。特にブラウザーセッションだけでなくアプリケーションとAPI間の通信もSSLによって保護されます。またパスワードは強力な不可逆アルゴリズムでハッシュ化されます。二要素認証を有効にし、アカウントへのアクセスをさらに安全にすることができます。</p>
 
       <hr class="spacer" />
 
@@ -1564,10 +1564,10 @@ ja:
   two_factor_authentication:
     add: 追加
     disable: 無効化
-    disabled_success: 二段階認証が無効になりました
+    disabled_success: 二要素認証が無効になりました
     edit: 編集
-    enabled: 二段階認証は有効になっています
-    enabled_success: 二段階認証が有効になりました
+    enabled: 二要素認証は有効になっています
+    enabled_success: 二要素認証が有効になりました
     generate_recovery_codes: リカバリーコードを生成
     lost_recovery_codes: リカバリーコードを使用すると携帯電話を紛失した場合でもアカウントにアクセスできるようになります。 リカバリーコードを紛失した場合もここで再生成することができますが、古いリカバリーコードは無効になります。
     methods: 方式
@@ -1594,7 +1594,7 @@ ja:
       change_password: パスワードを変更する
       details: 'ログインの詳細は以下のとおりです:'
       explanation: 新しいIPアドレスからあなたのアカウントへのサインインが検出されました。
-      further_actions_html: あなたがログインしていない場合は、すぐに%{action}し、アカウントを安全に保つために二段階認証を有効にすることをお勧めします。
+      further_actions_html: あなたがログインしていない場合は、すぐに%{action}し、アカウントを安全に保つために二要素認証を有効にすることをお勧めします。
       subject: 新しいIPアドレスからのアクセスがありました
       title: 新しいサインイン
     warning:
@@ -1647,7 +1647,7 @@ ja:
       title: ようこそ、%{name}さん！
   users:
     follow_limit_reached: あなたは現在 %{limit}人以上フォローできません
-    invalid_otp_token: 二段階認証コードが間違っています
+    invalid_otp_token: 二要素認証コードが間違っています
     otp_lost_help_html: どちらも使用できない場合、%{email}に連絡を取ると解決できるかもしれません
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
@@ -1669,5 +1669,5 @@ ja:
     nickname_hint: セキュリティキーの名前を入力してください
     not_enabled: まだセキュリティキーを有効にしていません
     not_supported: このブラウザはセキュリティキーに対応していないようです
-    otp_required: セキュリティキーを使用するには、まず二段階認証を有効にしてください。
+    otp_required: セキュリティキーを使用するには、まず二要素認証を有効にしてください。
     registered_on: '%{date}に登録'
