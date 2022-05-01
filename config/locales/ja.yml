@@ -168,11 +168,11 @@ ja:
       redownload: プロフィールを更新
       redownloaded_msg: '%{username}のプロフィールを正常に更新しました'
       reject: 却下
-      rejected_msg: '%{username} の登録申請を却下しました'
+      rejected_msg: '%{username}さんの登録申請を却下しました'
       remove_avatar: アイコンを削除
       remove_header: ヘッダーを削除
-      removed_avatar_msg: '%{username} のアバター画像を削除しました'
-      removed_header_msg: '%{username} のヘッダー画像を削除しました'
+      removed_avatar_msg: '%{username}さんのアバター画像を削除しました'
+      removed_header_msg: '%{username}さんのヘッダー画像を削除しました'
       resend_confirmation:
         already_confirmed: メールアドレスは確認済みです
         send: 確認メールを再送
@@ -188,10 +188,10 @@ ja:
         user: ユーザー
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
-      search_same_ip: 同じ IP のユーザーを検索
+      search_same_ip: 同じIPのユーザーを検索
       security_measures:
         only_password: パスワードのみ
-        password_and_2fa: パスワードと 2FA
+        password_and_2fa: パスワードと二段階認証
       sensitive: 閲覧注意
       sensitized: 閲覧注意としてマーク済み
       shared_inbox_url: Shared inbox URL
@@ -206,17 +206,17 @@ ja:
       suspend: サスペンド
       suspended: 停止済み
       suspension_irreversible: このアカウントのデータは削除され元に戻せなくなります。後日アカウントの凍結を解除することはできますがデータは元に戻せません。
-      suspension_reversible_hint_html: アカウントは停止されており、データは %{date} に完全に削除されます。それまではアカウントを元に戻すことができます。今すぐ完全に削除したい場合は以下から行うことができます。
+      suspension_reversible_hint_html: アカウントは停止されており、データは%{date}に完全に削除されます。それまではアカウントを元に戻すことができます。今すぐ完全に削除したい場合は以下から行うことができます。
       title: アカウント
       unblock_email: メールアドレスのブロックを解除
-      unblocked_email_msg: '%{username} のメールアドレスのブロックを解除しました'
+      unblocked_email_msg: '%{username}さんのメールアドレスのブロックを解除しました'
       unconfirmed_email: 確認待ちのメールアドレス
       undo_sensitized: 閲覧注意から戻す
       undo_silenced: サイレンスから戻す
       undo_suspension: 停止から戻す
-      unsilenced_msg: '%{username} のサイレンス解除に成功しました'
+      unsilenced_msg: '%{username}さんのサイレンス解除に成功しました'
       unsubscribe: 購読の解除
-      unsuspended_msg: '%{username} の無効化を解除しました'
+      unsuspended_msg: '%{username}さんの無効化を解除しました'
       username: ユーザー名
       view_domain: ドメインの概要を表示
       warn: 警告
@@ -319,10 +319,10 @@ ja:
         unassigned_report_html: "%{name}さんが通報 %{target}の担当を外しました"
         unblock_email_account_html: "%{name}さんがドメイン %{target}のブロックを解除しました"
         unsensitive_account_html: "%{name}さんが%{target}さんのメディアの閲覧注意を解除しました"
-        unsilence_account_html: "%{name} さんが %{target} さんのサイレンスを解除しました"
-        unsuspend_account_html: "%{name} さんが %{target} さんの停止を解除しました"
-        update_announcement_html: "%{name} さんがお知らせ %{target} を更新しました"
-        update_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を更新しました"
+        unsilence_account_html: "%{name}さんが%{target}さんのサイレンスを解除しました"
+        unsuspend_account_html: "%{name}さんが%{target}さんの停止を解除しました"
+        update_announcement_html: "%{name}さんがお知らせ %{target}を更新しました"
+        update_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を更新しました"
         update_domain_block_html: "%{name}さんが%{target}のドメインブロックを更新しました"
         update_status_html: "%{name}さんが%{target}さんの投稿を更新しました"
       deleted_status: "(削除済)"
@@ -538,7 +538,7 @@ ja:
       delete: 削除
       expires_in:
         '1209600': 2週間
-        '15778476': 6ヶ月
+        '15778476': 半年
         '2629746': 1ヶ月
         '31556952': 1年
         '86400': 1日
