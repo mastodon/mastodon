@@ -1092,12 +1092,12 @@ ja:
     save_changes: 変更を保存
     today: 今日
     validation_errors:
-      other: エラーが発生しました！ 以下の%{count}個のエラーを確認してください
+      other: エラーが発生しました！ 以下の%{count}件のエラーを確認してください
   html_validator:
     invalid_markup: '無効なHTMLマークアップが含まれています: %{error}'
   imports:
     errors:
-      over_rows_processing_limit: '%{count} 行以上'
+      over_rows_processing_limit: '%{count}行以上'
     modes:
       merge: 統合
       merge_long: 現在のレコードを保持したまま新しいものを追加します
@@ -1187,50 +1187,50 @@ ja:
   moderation:
     title: モデレーション
   move_handler:
-    carry_blocks_over_text: このユーザーは、あなたがブロックしていた %{acct} から引っ越しました。
-    carry_mutes_over_text: このユーザーは、あなたがミュートしていた %{acct} から引っ越しました。
-    copy_account_note_text: 'このユーザーは %{acct} から引っ越しました。これは以前のメモです。'
+    carry_blocks_over_text: このユーザーは、あなたがブロックしていた%{acct}から引っ越しました。
+    carry_mutes_over_text: このユーザーは、あなたがミュートしていた%{acct}から引っ越しました。
+    copy_account_note_text: 'このユーザーは%{acct}から引っ越しました。これは以前のメモです。'
   notification_mailer:
     admin:
       sign_up:
-        subject: "%{name} がサインアップしました"
+        subject: "%{name}さんがサインアップしました"
     digest:
       action: 全ての通知を表示
       body: '最後のログイン（%{since}）からの出来事:'
-      mention: "%{name} さんがあなたに返信しました:"
+      mention: "%{name}さんがあなたに返信しました:"
       new_followers_summary:
-        other: また、離れている間に%{count} 人の新たなフォロワーを獲得しました！
+        other: また、離れている間に%{count}人の新たなフォロワーを獲得しました！
       subject:
-        other: "前回の訪問から%{count} 件の新しい通知 🐘"
+        other: "前回の訪問から%{count}件の新しい通知 🐘"
       title: 不在の間に…
     favourite:
-      body: '%{name} さんにお気に入り登録された、あなたの投稿があります:'
-      subject: "%{name} さんにお気に入りに登録されました"
+      body: '%{name}さんにお気に入り登録された、あなたの投稿があります:'
+      subject: "%{name}さんにお気に入りに登録されました"
       title: 新たなお気に入り登録
     follow:
-      body: "%{name} さんにフォローされています！"
-      subject: "%{name} さんにフォローされています"
+      body: "%{name}さんにフォローされています！"
+      subject: "%{name}さんにフォローされています"
       title: 新たなフォロワー
     follow_request:
       action: フォローリクエストの管理
-      body: "%{name} さんがあなたにフォローをリクエストしました"
-      subject: '%{name} さんからのフォローリクエスト'
+      body: "%{name}さんがあなたにフォローをリクエストしました"
+      subject: '%{name}さんからのフォローリクエスト'
       title: 新たなフォローリクエスト
     mention:
       action: 返信
-      body: '%{name} さんから返信がありました:'
-      subject: '%{name} さんに返信されました'
+      body: '%{name}さんから返信がありました:'
+      subject: '%{name}さんに返信されました'
       title: 新たな返信
     poll:
-      subject: '%{name}  さんの投票が終了しました'
+      subject: '%{name} さんの投票が終了しました'
     reblog:
-      body: '%{name} さんにブーストされた、あなたの投稿があります:'
-      subject: "%{name} さんにブーストされました"
+      body: '%{name}さんにブーストされた、あなたの投稿があります:'
+      subject: "%{name}さんにブーストされました"
       title: 新たなブースト
     status:
-      subject: "%{name} さんが投稿しました"
+      subject: "%{name}さんが投稿しました"
     update:
-      subject: "%{name} さんが投稿を更新しました"
+      subject: "%{name}さんが投稿を更新しました"
   notifications:
     email_events: メールによる通知
     email_events_hint: '受信する通知を選択:'
@@ -1316,8 +1316,8 @@ ja:
     errors:
       invalid_rules: 有効なルールを参照していません
   scheduled_statuses:
-    over_daily_limit: その日予約できる投稿数 %{limit} を超えています
-    over_total_limit: 予約できる投稿数 %{limit} を超えています
+    over_daily_limit: その日予約できる投稿数 %{limit}を超えています
+    over_total_limit: 予約できる投稿数 %{limit}を超えています
     too_soon: より先の時間を指定してください
   sessions:
     activity: 最後のアクティビティ
@@ -1341,7 +1341,7 @@ ja:
       uc_browser: UCBrowser
       weibo: Weibo
     current_session: 現在のセッション
-    description: "%{platform} 上の %{browser}"
+    description: "%{platform}上の%{browser}"
     explanation: あなたのMastodonアカウントに現在ログインしているウェブブラウザの一覧です。
     ip: IP
     platforms:
