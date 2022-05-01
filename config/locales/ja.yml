@@ -505,8 +505,8 @@ ja:
         unavailable: 配送不可
       delivery_available: 配送可能
       delivery_error_days: 配送エラー発生日
-      delivery_error_hint: '%{count} 日間配送ができない場合は、自動的に配送不可としてマークされます。'
-      destroyed_msg: '%{domain} からのデータは、すぐに削除されるように、キューに追加されました。'
+      delivery_error_hint: '%{count}日間配送ができない場合は、自動的に配送不可としてマークされます。'
+      destroyed_msg: '%{domain}からのデータは、すぐに削除されるように、キューに追加されました。'
       empty: ドメインが見つかりませんでした。
       known_accounts:
         other: "既知のアカウント数 %{count}"
@@ -572,7 +572,7 @@ ja:
     reports:
       account:
         notes:
-          other: "%{count} 件のメモ"
+          other: "%{count}件のメモ"
       action_log: 監査ログ
       action_taken_by: 通報処理者
       actions:
@@ -582,7 +582,7 @@ ja:
         resolve_description_html: 報告されたアカウントに対していかなる措置も取られず、ストライクも記録されず、報告は終了します。
         silence_description_html: 既にフォローしている人、または自分で参照した人にのみ表示されるため、プロフィールが届く範囲が大きく制限されます。いつでも元に戻すことができます。
         suspend_description_html: プロフィールとすべてのコンテンツは、最終的に削除されるまでアクセスできなくなります。アカウントとのやり取りは不可能です。30日以内に取り消し可能です。
-      actions_description_html: このレポートを解決するために取るアクションを決定します。 報告されたアカウントに対して懲罰的な措置を取った場合、メール通知が送信されます <strong>スパム</strong> カテゴリが選択されている場合を除きます。
+      actions_description_html: このレポートを解決するために取るアクションを決定します。 報告されたアカウントに対して懲罰的な措置を取った場合、メール通知が送信されますが<strong>スパム</strong>カテゴリが選択されている場合を除きます。
       add_to_report: 通報にさらに追加
       are_you_sure: 本当に実行しますか？
       assign_to_self: 担当になる
