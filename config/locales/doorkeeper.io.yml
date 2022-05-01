@@ -66,7 +66,7 @@ io:
         title: Kopiez ca permisnumero e glutinez adsur la apliko.
     authorized_applications:
       buttons:
-        revoke: Desaprobez
+        revoke: Deaprobez
       confirmations:
         revoke: Ka vu esas certa?
       index:
@@ -88,7 +88,7 @@ io:
           missing_param: 'Bezonita parametro: %{value}.'
           request_not_authorized: Demando bezonas permisesar. Bezonita parametro por permisar demando ne existas o esas nevalida.
           unknown: La demando ne havas bezonita parametro, inkluzas nesuportita parametro o malformesas.
-        invalid_resource_owner: Provizita resursproprietantpermiso esas nevalida o resursproprietanto ne existas
+        invalid_resource_owner: Provizita resursproprietantidenteso esas nevalida o resursproprietanto ne existas
         invalid_scope: La demandita skopo esas nevalida, nesavata o malformata.
         invalid_token:
           expired: La acesficho expiris
@@ -98,7 +98,7 @@ io:
         server_error: Permisservilo trovas neanticipata situeso quo preventas ol finar la demando.
         temporarily_unavailable: Permisservilo nu ne povas direktar la demando pro provizora eceso o servilmanteno.
         unauthorized_client: La kliento ne permisesis agar ca demando per ca metodo.
-        unsupported_grant_type: Permistipo ne suportesas da permisservilo.
+        unsupported_grant_type: Permisprovizontipo ne suportesas da permisservilo.
         unsupported_response_type: La permisservilo ne suportas ca responsotipo.
     flash:
       applications:
