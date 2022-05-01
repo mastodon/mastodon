@@ -1,10 +1,11 @@
----
 io:
   activerecord:
     attributes:
       doorkeeper/application:
         name: Nomo
         redirect_uri: URI di plussendo
+        scopes: Skopi
+        website: Apliksito
     errors:
       models:
         doorkeeper/application:
@@ -31,14 +32,32 @@ io:
       help:
         native_redirect_uri: Uzez %{native_redirect_uri} por lokala probi
         redirect_uri: Uzez un lineo por singla URI
+        scopes: Separez skopi per spaci. Lasez quale vakua por uzar originala skopi.
       index:
+        application: Apliko
+        callback_url: Retrovokligilo
+        delete: Efacez
+        empty: Vu ne havas apliki.
+        name: Nomo
         new: New Application
+        scopes: Skopi
+        show: Montrez
+        title: Vua apliki
       new:
         title: New Application
       show:
+        actions: Agi
         application_id: Application Id
         callback_urls: Callback urls
+        scopes: Skopi
         secret: Secret
+        title: 'Apliko: %{name}'
+    authorizations:
+      buttons:
+        authorize: Permisez
+        deny: Despermisez
+      error:
+        title: Eroro eventis
     scopes:
       follow: follow, block, unblock and unfollow accounts
       read: read your account's data
