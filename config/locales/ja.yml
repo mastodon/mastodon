@@ -592,11 +592,11 @@ ja:
       category_description_html: 選択した理由は通報されたアカウントへの連絡時に引用されます
       comment:
         none: なし
-      comment_description_html: '%{name} からの詳細情報:'
+      comment_description_html: '%{name}からの詳細情報:'
       created_at: 通報日時
       delete_and_resolve: 投稿を削除
       forwarded: 転送済み
-      forwarded_to: '%{domain} に転送されました'
+      forwarded_to: '%{domain}に転送されました'
       mark_as_resolved: 解決済みとしてマーク
       mark_as_sensitive: 閲覧注意にする
       mark_as_unresolved: 未解決に戻す
@@ -609,9 +609,9 @@ ja:
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
         title: メモ
       notes_description_html: 他のモデレーターと将来の自分にメモを残してください
-      remote_user_placeholder: '%{instance} からのリモートユーザー'
+      remote_user_placeholder: '%{instance}からのリモートユーザー'
       reopen: 未解決に戻す
-      report: '通報#%{id}'
+      report: '通報 #%{id}'
       reported_account: 報告対象アカウント
       reported_by: 報告者
       resolved: 解決済み
@@ -703,7 +703,7 @@ ja:
         desc_html: あなたのサーバーにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
         title: カスタム詳細説明
       site_short_description:
-        desc_html: サイドバーと meta タグに表示されます。Mastodon とは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、サーバーの説明が使用されます。
+        desc_html: サイドバーとmetaタグに表示されます。Mastodonとは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、サーバーの説明が使用されます。
         title: 短いサーバーの説明
       site_terms:
         desc_html: 独自のプライバシーポリシーや利用規約、その他の法的根拠を記述できます。HTMLタグが使えます
@@ -713,7 +713,7 @@ ja:
         desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
         title: サーバーのサムネイル
       timeline_preview:
-        desc_html: ランディングページに公開タイムラインへのリンクを表示し、認証なしでの公開タイムラインへの API アクセスを許可します
+        desc_html: ランディングページに公開タイムラインへのリンクを表示し、認証なしでの公開タイムラインへのAPIアクセスを許可します
         title: 公開タイムラインへの未認証のアクセスを許可する
       title: サイト設定
       trendable_by_default:
@@ -739,13 +739,13 @@ ja:
       with_media: メディアあり
     strikes:
       actions:
-        delete_statuses: "%{name} さんが %{target} さんの投稿を削除しました"
+        delete_statuses: "%{name}さんが%{target}さんの投稿を削除しました"
         disable: "%{name}さんが%{target}さんを凍結しました"
-        mark_statuses_as_sensitive: "%{name} さんが %{target} さんの投稿を閲覧注意としてマークしました"
-        none: "%{name} が %{target} に警告を送信しました"
-        sensitive: "%{name} さんが %{target} さんのアカウントを閲覧注意としてマークしました"
+        mark_statuses_as_sensitive: "%{name}さんが%{target}さんの投稿を閲覧注意としてマークしました"
+        none: "%{name}さんが%{target}さんに警告を送信しました"
+        sensitive: "%{name}さんが%{target}さんのアカウントを閲覧注意としてマークしました"
         silence: "%{name}さんが%{target}さんを制限しました"
-        suspend: "%{name} さんが %{target} さんのアカウントを停止しました"
+        suspend: "%{name}さんが%{target}さんのアカウントを停止しました"
       appeal_approved: 抗議済み
       appeal_pending: 保留中の抗議
     system_checks:
@@ -755,12 +755,12 @@ ja:
         message_html: Elasticsearchに接続できませんでした。Elasticsearchが実行されていることを確認するか、全文検索を無効にしてください。
       elasticsearch_version_check:
         message_html: '互換性のない Elasticsearch バージョン: %{value}'
-        version_comparison: Elasticsearch %{running_version} が実行されていますが、 %{required_version} が必要です
+        version_comparison: Elasticsearch %{running_version}が実行されていますが、%{required_version}が必要です
       rules_check:
         action: サーバーのルールを管理
         message_html: サーバーのルールを定義していません。
       sidekiq_process_check:
-        message_html: '%{value} キューに対応するSidekiq プロセスがありません。Sidekiq の設定を確認してください。'
+        message_html: '%{value}キューに対応するSidekiqプロセスがありません。Sidekiqの設定を確認してください。'
     tags:
       review: 審査状況
       updated_msg: ハッシュタグ設定が更新されました
@@ -831,14 +831,14 @@ ja:
         silence: アカウントを制限する
         suspend: アカウントを停止する
       next_steps: モデレーションの決定を取り消すために申し立てを承認するか、無視することができます。
-      subject: "%{instance} で %{username} からモデレーションへの申し立てが届きました。"
+      subject: "%{instance}で%{username}さんからモデレーションへの申し立てが届きました。"
     new_pending_account:
       body: 新しいアカウントの詳細は以下の通りです。この申請を承認または却下することができます。
-      subject: '%{instance} で新しいアカウント (%{username}) が承認待ちです'
+      subject: '%{instance}で新しいアカウント (%{username}) が承認待ちです'
     new_report:
-      body: "%{reporter} が %{target} を通報しました"
-      body_remote: '%{domain} の誰かが %{target} を通報しました'
-      subject: '%{instance} の新しい通報 (#%{id})'
+      body: "%{reporter}さんが%{target}さんを通報しました"
+      body_remote: '%{domain}の誰かが%{target}さんを通報しました'
+      subject: '%{instance}の新しい通報 (#%{id})'
     new_trends:
       body: '以下の項目は、公開する前に審査が必要です。'
       new_trending_links:
@@ -850,7 +850,7 @@ ja:
       new_trending_tags:
         no_approved_tags: 承認されたトレンドハッシュタグはありません。
         title: トレンドハッシュタグ
-      subject: '%{instance} で新しいトレンド が審査待ちです'
+      subject: '%{instance}で新しいトレンドが審査待ちです'
   aliases:
     add_new: エイリアスを作成
     created_msg: エイリアスを作成しました。これで以前のアカウントから引っ越しを開始できます。
@@ -859,7 +859,7 @@ ja:
     hint_html: 他のアカウントからこのアカウントにフォロワーを引き継いで引っ越したい場合、ここでエイリアスを作成しておく必要があります。エイリアス自体は<strong>無害で、取り消す</strong>ことができます。<strong>引っ越しは以前のアカウント側から開始する必要があります</strong>。
     remove: エイリアスを削除
   appearance:
-    advanced_web_interface: 上級者向け UI
+    advanced_web_interface: 上級者向けUI
     advanced_web_interface_hint: 'ディスプレイを幅いっぱいまで活用したい場合、上級者向け UI をおすすめします。ホーム、通知、連合タイムライン、更にはリストやハッシュタグなど、様々な異なるカラムから望む限りの情報を一度に受け取れるような設定が可能になります。'
     animations_and_accessibility: アニメーションとアクセシビリティー
     confirmation_dialogs: 確認ダイアログ
