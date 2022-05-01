@@ -805,12 +805,12 @@ ja:
         not_listable: おすすめに表示しない
         not_trendable: トレンドに表示しない
         not_usable: 使用を禁止
-        peaked_on_and_decaying: '%{date} 以降、しばらく使われていません'
+        peaked_on_and_decaying: '%{date}以降、しばらく使われていません'
         title: トレンドタグ
         trendable: トレンドに表示する
-        trending_rank: '人気: %{rank} 位'
+        trending_rank: '人気: %{rank}位'
         usable: 使用を許可
-        usage_comparison: 今日は %{today} 回、昨日は %{yesterday} 回使用されました。
+        usage_comparison: 今日は%{today}回、昨日は%{yesterday}回使用されました。
         used_by_over_week:
           other: 週間%{count}人に使用されました
       title: トレンド
@@ -888,14 +888,14 @@ ja:
   auth:
     apply_for_account: 登録を申請する
     change_password: パスワード
-    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">サーバーのルール</a> と <a href="%{terms_path}" target="_blank">プライバシーポリシー</a> に同意します
-    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">利用規約</a> に同意します
+    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">サーバーのルール</a>と<a href="%{terms_path}" target="_blank">プライバシーポリシー</a>に同意します
+    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">利用規約</a>に同意します
     delete_account: アカウントの削除
-    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a> から手続きが行えます。削除する前に、確認画面があります。
+    delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除する前に、確認画面があります。
     description:
-      prefix_invited_by_user: "@%{name} があなたをこの Mastodon サーバーに招待しました"
-      prefix_sign_up: 今すぐ Mastodon を始めよう！
-      suffix: アカウントがあれば、どんな Mastodon 互換サーバーのユーザーでもフォローしたりメッセージをやり取りできるようになります！
+      prefix_invited_by_user: "@%{name}さんがあなたをこのMastodonサーバーに招待しました"
+      prefix_sign_up: 今すぐMastodonを始めよう！
+      suffix: アカウントがあれば、どんなMastodon互換サーバーのユーザーでもフォローしたりメッセージをやり取りできるようになります！
     didnt_get_confirmation: 確認メールを受信できませんか？
     dont_have_your_security_key: セキュリティキーを持っていませんか？
     forgot_password: パスワードをお忘れですか？
@@ -1038,7 +1038,7 @@ ja:
     noscript_html: Mastodonのウェブアプリケーションを利用する場合はJavaScriptを有効にしてください。またはあなたのプラットフォーム向けの<a href="%{apps_path}">Mastodonネイティブアプリ</a>を探すことができます。
   existing_username_validator:
     not_found: そのようなユーザー名はローカルに見つかりませんでした
-    not_found_multiple: '%{usernames} は見つかりませんでした'
+    not_found_multiple: '%{usernames}さんは見つかりませんでした'
   exports:
     archive_takeout:
       date: 日時
@@ -1117,12 +1117,12 @@ ja:
     delete: 無効化
     expired: 期限切れ
     expires_in:
-      '1800': 30 分
-      '21600': 6 時間
-      '3600': 1 時間
-      '43200': 12 時間
-      '604800': 1 週間
-      '86400': 1 日
+      '1800': 30分
+      '21600': 6時間
+      '3600': 1時間
+      '43200': 12時間
+      '604800': 1週間
+      '86400': 1日
     expires_in_prompt: 無期限
     generate: 招待リンクを作成
     invited_by: '次の人に招待されました:'
