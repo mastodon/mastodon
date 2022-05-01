@@ -108,6 +108,25 @@ io:
           notice: Apliko efacesis.
         update:
           notice: Apliko novigesis.
+      authorized_applications:
+        destroy:
+          notice: Apliko aprobesis.
+    grouped_scopes:
+      access:
+        read: Lekto-nura aceso
+        read/write: Lekto e skrib-nura aceso
+        write: Skrib-nura aceso
+      title:
+        accounts: Konti
+        admin/accounts: Administrar di konti
+        admin/all: Omna administrofuncioni
+        admin/reports: Administro di raporti
+        all: Omno
+        blocks: Restriktita
+        bookmarks: Libromarki
+        conversations: Konversi
+        crypto: Intersequanta chifro
+        favourites: Favorati
     scopes:
       follow: follow, block, unblock and unfollow accounts
       read: read your account's data
