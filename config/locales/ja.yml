@@ -778,7 +778,7 @@ ja:
         shared_by_over_week:
           other: 週間%{count}人に共有されました
         title: トレンドリンク
-        usage_comparison: 今日は %{today} 回、昨日は %{yesterday} 回共有されました
+        usage_comparison: 今日は%{today}回、昨日は%{yesterday}回共有されました
       pending_review: 保留中
       preview_card_providers:
         allowed: この発行者からのリンクを許可
@@ -1301,7 +1301,7 @@ ja:
     no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
     proceed: フォローする
     prompt: 'フォローしようとしています:'
-    reason_html: "<strong>なぜこの手順が必要でしょうか？</strong><code>%{instance}</code>はあなたが登録されているサーバーではないかもしれないので、まずあなたのサーバーに転送する必要があります。"
+    reason_html: "<strong>なぜこの手順が必要でしょうか？</strong>　<code>%{instance}</code>はあなたが登録されているサーバーではないかもしれないので、まずあなたのサーバーに転送する必要があります。"
   remote_interaction:
     favourite:
       proceed: お気に入り登録する
@@ -1367,7 +1367,7 @@ ja:
     aliases: アカウントエイリアス
     appearance: 外観
     authorized_apps: 認証済みアプリ
-    back: Mastodon に戻る
+    back: Mastodonに戻る
     delete: アカウントの削除
     development: 開発
     edit_profile: プロフィールを編集
@@ -1579,12 +1579,12 @@ ja:
   user_mailer:
     appeal_approved:
       action: アカウントへ
-      explanation: '%{strike_date} のストライクに対して、あなたが %{appeal_date} に行った申し立ては承認されました。アカウントは正常な状態に戻りました。'
-      subject: '%{date} の申し立てが承認されました'
+      explanation: '%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては承認されました。アカウントは正常な状態に戻りました。'
+      subject: '%{date}の申し立てが承認されました'
       title: 申し立てが承認されました。
     appeal_rejected:
-      explanation: '%{strike_date} のストライクに対して、あなたが %{appeal_date} に行った申し立ては却下されました。'
-      subject: '%{date} の申し立てが拒否されました'
+      explanation: '%{strike_date}のストライクに対して、あなたが%{appeal_date}に行った申し立ては却下されました。'
+      subject: '%{date}の申し立てが拒否されました'
       title: 却下された抗議
     backup_ready:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
@@ -1594,32 +1594,32 @@ ja:
       change_password: パスワードを変更する
       details: 'ログインの詳細は以下のとおりです:'
       explanation: 新しいIPアドレスからあなたのアカウントへのサインインが検出されました。
-      further_actions_html: あなたがログインしていない場合は、すぐに %{action} し、アカウントを安全に保つために二段階認証を有効にすることをお勧めします。
+      further_actions_html: あなたがログインしていない場合は、すぐに%{action}し、アカウントを安全に保つために二段階認証を有効にすることをお勧めします。
       subject: 新しいIPアドレスからのアクセスがありました
       title: 新しいサインイン
     warning:
       appeal: 抗議を送信
-      appeal_description: これが間違いだと思われる場合は、 %{instance} のスタッフに申し立てすることができます。
+      appeal_description: これが間違いだと思われる場合は、%{instance}のスタッフに申し立てすることができます。
       categories:
         spam: スパム
         violation: コンテンツは以下のコミュニティガイドラインに違反しています
       explanation:
-        delete_statuses: あなたの投稿のいくつかは、1つ以上のコミュニティガイドラインに違反していることが判明し、%{instance} のモデレータによって削除されました。
+        delete_statuses: あなたの投稿のいくつかは、1つ以上のコミュニティガイドラインに違反していることが判明し、%{instance}のモデレータによって削除されました。
         disable: アカウントは使用できませんが、プロフィールやその他のデータはそのまま残ります。 データのバックアップをリクエストしたり、アカウント設定を変更したり、アカウントを削除したりできます。
-        mark_statuses_as_sensitive: あなたのいくつかの投稿は、 %{instance} のモデレータによって閲覧注意としてマークされています。これは、プレビューが表示される前にユーザが投稿内のメディアをタップする必要があることを意味します。あなたは将来投稿する際に自分自身でメディアを閲覧注意としてマークすることができます。
+        mark_statuses_as_sensitive: あなたのいくつかの投稿は、%{instance}のモデレータによって閲覧注意としてマークされています。これは、プレビューが表示される前にユーザが投稿内のメディアをタップする必要があることを意味します。あなたは将来投稿する際に自分自身でメディアを閲覧注意としてマークすることができます。
         sensitive: 今後、アップロードされたすべてのメディアファイルは閲覧注意としてマークされ、クリック解除式の警告で覆われるようになります。
         silence: アカウントが制限されています。このサーバーでは既にフォローしている人だけがあなたの投稿を見ることができます。 様々な発見機能から除外されるかもしれません。他の人があなたを手動でフォローすることは可能です。
         suspend: アカウントは使用できなくなり、プロフィールなどのデータにもアクセスできなくなります。約30日後にデータが完全に削除されるまでは、ログインしてデータのバックアップを要求することができますが、アカウントの停止回避を防ぐために一部の基本データを保持します。
       reason: '理由:'
       statuses: '投稿:'
       subject:
-        delete_statuses: '%{acct} の投稿が削除されました'
-        disable: あなたのアカウント %{acct} は凍結されました
-        mark_statuses_as_sensitive: あなたの %{acct} の投稿は閲覧注意としてマークされました
-        none: '%{acct} に対する警告'
-        sensitive: あなたの %{acct} の投稿はこれから閲覧注意としてマークされます
-        silence: あなたのアカウント %{acct} はサイレンスにされました
-        suspend: あなたのアカウント %{acct} は停止されました
+        delete_statuses: '%{acct}さんの投稿が削除されました'
+        disable: あなたのアカウント %{acct}は凍結されました
+        mark_statuses_as_sensitive: あなたの%{acct}の投稿は閲覧注意としてマークされました
+        none: '%{acct}に対する警告'
+        sensitive: あなたの%{acct}の投稿はこれから閲覧注意としてマークされます
+        silence: あなたのアカウント %{acct}はサイレンスにされました
+        suspend: あなたのアカウント %{acct}は停止されました
       title:
         delete_statuses: 投稿が削除されました
         disable: アカウントが凍結されました
