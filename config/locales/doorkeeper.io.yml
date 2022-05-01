@@ -73,6 +73,13 @@ io:
         authorized_at: Permisesis ye %{date}
         description_html: Co esas apliki quo povas acesar vua konto per API. Se existas apliki quon vu ne rikonocas hike, o apliko misfuncionas, vu povas desaprobar ola aceso.
         last_used_at: Antee uzesis ye %{date}
+        never_used: Nulaloke uzesas
+        scopes: Permisi
+        superapp: Interna
+        title: Vua permisita apliki
+    errors:
+      messages:
+        access_denied: Resursproprietanto o permisservilo refuzis la demando.
     scopes:
       follow: follow, block, unblock and unfollow accounts
       read: read your account's data
