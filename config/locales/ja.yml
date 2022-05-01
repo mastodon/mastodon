@@ -191,7 +191,7 @@ ja:
       search_same_ip: 同じIPのユーザーを検索
       security_measures:
         only_password: パスワードのみ
-        password_and_2fa: パスワードと二段階認証
+        password_and_2fa: パスワードと二要素認証
       sensitive: 閲覧注意
       sensitized: 閲覧注意としてマーク済み
       shared_inbox_url: Shared inbox URL
@@ -1003,7 +1003,7 @@ ja:
         submit: 抗議を送信
       associated_report: 関連する通報
       created_at: 日時
-      description_html: これらは、%{instance} のスタッフがあなたのアカウントに対して行った措置や、あなたに送られた警告です。
+      description_html: これらは、%{instance}のスタッフがあなたのアカウントに対して行った措置や、あなたに送られた警告です。
       recipient: 送信元
       status: '投稿 #%{id}'
       status_removed: 既に削除されています
@@ -1139,14 +1139,14 @@ ja:
       limit: リストの上限に達しました
   login_activities:
     authentication_methods:
-      otp: 2要素認証
+      otp: 二要素認証アプリ
       password: パスワード
-      sign_in_token: 電子メールセキュリティコード
+      sign_in_token: メールセキュリティコード
       webauthn: セキュリティキー
-    description_html: 認識できないアクティビティが表示された場合は、パスワードの変更と2要素認証の有効化を検討してください。
+    description_html: 認識できないアクティビティが表示された場合は、パスワードの変更と二要素認証の有効化を検討してください。
     empty: 利用可能な認証履歴がありません
-    failed_sign_in_html: '%{ip} (%{browser}) からの %{method} を利用したサインインに失敗しました。'
-    successful_sign_in_html: '%{ip} (%{browser}) からの %{method} を利用したサインインに成功しました'
+    failed_sign_in_html: '%{ip} (%{browser}) から%{method}を利用したサインインに失敗しました。'
+    successful_sign_in_html: '%{ip} (%{browser}) から%{method}を利用したサインインに成功しました'
     title: 認証履歴
   media_attachments:
     validations:
