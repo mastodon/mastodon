@@ -63,13 +63,13 @@ ja:
     instance_actor_flash: このアカウントは、個々のユーザーではなく、サーバー自体を表すために使用される仮想のユーザーです。 連合のために使用されるため、停止しないで下さい。
     joined: '%{date}に登録'
     last_active: 最後の活動
-    link_verified_on: このリンクの所有権は %{date} に確認されました
+    link_verified_on: このリンクの所有権は%{date}に確認されました
     media: メディア
-    moved_html: "%{name} さんは引っ越しました %{new_profile_link}:"
+    moved_html: "%{name}さんは%{new_profile_link}に引っ越しました:"
     network_hidden: この情報は利用できません
     nothing_here: 何もありません！
-    people_followed_by: '%{name} さんがフォロー中のアカウント'
-    people_who_follow: '%{name} さんをフォロー中のアカウント'
+    people_followed_by: '%{name}さんがフォロー中のアカウント'
+    people_who_follow: '%{name}さんをフォロー中のアカウント'
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
@@ -94,7 +94,7 @@ ja:
     accounts:
       add_email_domain_block: メールドメインブロックに追加
       approve: 承認
-      approved_msg: '%{username} の登録申請を承認しました'
+      approved_msg: '%{username}さんの登録申請を承認しました'
       are_you_sure: 本当に実行しますか？
       avatar: アイコン
       by_domain: ドメイン
@@ -104,7 +104,7 @@ ja:
         label: メールアドレスを変更
         new_email: 新しいメールアドレス
         submit: メールアドレスの変更
-        title: '%{username} さんのメールアドレスを変更'
+        title: '%{username}さんのメールアドレスを変更'
       confirm: 確認
       confirmed: 確認済み
       confirming: 確認中
@@ -112,7 +112,7 @@ ja:
       delete: データを削除する
       deleted: 削除済み
       demote: 降格
-      destroyed_msg: "%{username} のデータは完全に削除されるよう登録されました"
+      destroyed_msg: "%{username}さんのデータは完全に削除されるよう登録されました"
       disable: 無効化
       disable_sign_in_token_auth: メールトークン認証を無効にする
       disable_two_factor_authentication: 二段階認証を無効にする
@@ -275,31 +275,31 @@ ja:
         update_domain_block: ドメインブロックを更新
         update_status: 投稿を更新
       actions:
-        approve_appeal_html: "%{name} さんが %{target} からの抗議を承認しました"
-        approve_user_html: "%{target} から登録された %{name} さんを承認しました"
-        assigned_to_self_report_html: "%{name} さんが通報 %{target} を自身の担当に割り当てました"
-        change_email_user_html: "%{name} さんが %{target} さんのメールアドレスを変更しました"
-        confirm_user_html: "%{name} さんが %{target} さんのメールアドレスを確認済みにしました"
-        create_account_warning_html: "%{name} さんが %{target} さんに警告メールを送信しました"
-        create_announcement_html: "%{name} さんが新しいお知らせ %{target} を作成しました"
-        create_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を追加しました"
-        create_domain_allow_html: "%{name} さんが %{target} の連合を許可しました"
-        create_domain_block_html: "%{name} さんがドメイン %{target} をブロックしました"
-        create_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックに追加しました"
-        create_ip_block_html: "%{name} さんが IP %{target} のルールを作成しました"
-        create_unavailable_domain_html: "%{name} がドメイン %{target} への配送を停止しました"
-        demote_user_html: "%{name} さんが %{target} さんを降格しました"
-        destroy_announcement_html: "%{name} さんがお知らせ %{target} を削除しました"
-        destroy_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を削除しました"
-        destroy_domain_allow_html: "%{name} さんが %{target} の連合許可を外しました"
-        destroy_domain_block_html: "%{name} さんがドメイン %{target} のブロックを外しました"
-        destroy_email_domain_block_html: "%{name} さんが %{target} をメールドメインブロックから外しました"
-        destroy_instance_html: "%{name} さんが %{target} をドメインブロックしました"
-        destroy_ip_block_html: "%{name} さんが IP %{target} のルールを削除しました"
-        destroy_status_html: "%{name} さんが %{target} さんの投稿を削除しました"
-        destroy_unavailable_domain_html: "%{name} がドメイン %{target} への配送を再開しました"
-        disable_2fa_user_html: "%{name} さんが %{target} さんの二段階認証を無効化しました"
-        disable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を無効化しました"
+        approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
+        approve_user_html: "%{target}から登録された%{name}さんを承認しました"
+        assigned_to_self_report_html: "%{name}さんが通報 %{target}を自身の担当に割り当てました"
+        change_email_user_html: "%{name}さんが%{target}さんのメールアドレスを変更しました"
+        confirm_user_html: "%{name}さんが%{target}さんのメールアドレスを確認済みにしました"
+        create_account_warning_html: "%{name}さんが%{target}さんに警告メールを送信しました"
+        create_announcement_html: "%{name}さんが新しいお知らせ %{target}を作成しました"
+        create_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を追加しました"
+        create_domain_allow_html: "%{name}さんが%{target}の連合を許可しました"
+        create_domain_block_html: "%{name}さんがドメイン %{target}をブロックしました"
+        create_email_domain_block_html: "%{name}さんが%{target}をメールドメインブロックに追加しました"
+        create_ip_block_html: "%{name}さんがIP %{target}のルールを作成しました"
+        create_unavailable_domain_html: "%{name}がドメイン %{target}への配送を停止しました"
+        demote_user_html: "%{name}さんが%{target}さんを降格しました"
+        destroy_announcement_html: "%{name}さんがお知らせ %{target}を削除しました"
+        destroy_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を削除しました"
+        destroy_domain_allow_html: "%{name}さんが%{target}の連合許可を外しました"
+        destroy_domain_block_html: "%{name}さんがドメイン %{target}のブロックを外しました"
+        destroy_email_domain_block_html: "%{name}さんが%{target}をメールドメインブロックから外しました"
+        destroy_instance_html: "%{name}さんがドメイン %{target}をブロックしました"
+        destroy_ip_block_html: "%{name}さんが IP %{target}のルールを削除しました"
+        destroy_status_html: "%{name}さんが%{target}さんの投稿を削除しました"
+        destroy_unavailable_domain_html: "%{name}がドメイン %{target}への配送を再開しました"
+        disable_2fa_user_html: "%{name}さんが%{target}さんの二段階認証を無効化しました"
+        disable_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を無効化しました"
         disable_sign_in_token_auth_user_html: "%{name} が %{target} のメールトークン認証を無効にしました"
         disable_user_html: "%{name} さんが %{target} さんのログインを無効化しました"
         enable_custom_emoji_html: "%{name} さんがカスタム絵文字 %{target} を有効化しました"
