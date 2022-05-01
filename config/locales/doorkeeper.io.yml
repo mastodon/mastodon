@@ -80,6 +80,14 @@ io:
     errors:
       messages:
         access_denied: Resursproprietanto o permisservilo refuzis la demando.
+        credential_flow_not_configured: Resursproprietantpasvortidentesesofluo faliis pro ke Doorkeeper.configure.resource_owner_from_credentials ne ajustesis.
+        invalid_client: Klientpermiso falias pro nesavita kliento, neinkluzita klientpermiso o nesuportita permismetodo.
+        invalid_grant: Provizita permiso esis nevalida, expiris, deaprobesis, ne parigas uzita ridirektoligilo dum permisdemando o facesis a altra kliento.
+        invalid_redirect_uri: La inkluzita ridirektoligilo esas nevalida.
+        invalid_request:
+          missing_param: 'Bezonita parametro: %{value}.'
+          request_not_authorized: Demando bezonas permisesar. Bezonita parametro por permisar demando ne existas o esas nevalida.
+          unknown: La demando ne havas bezonita parametro, inkluzas nesuportita parametro o malformesas.
     scopes:
       follow: follow, block, unblock and unfollow accounts
       read: read your account's data
