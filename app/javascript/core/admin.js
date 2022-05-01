@@ -101,4 +101,14 @@ ready(() => {
 
   const registrationMode = document.getElementById('form_admin_settings_registrations_mode');
   if (registrationMode) onChangeRegistrationMode(registrationMode);
+
+  document.querySelector('a#add-instance-button')?.addEventListener('click', (e) => {
+    const domain = document.getElementById('by_domain')?.value;
+
+    if (domain) {
+      const url = new URL(event.target.href);
+      url.searchParams.set('_domain', domain);
+      e.target.href = url;
+    }
+  });
 });

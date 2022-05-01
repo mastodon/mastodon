@@ -22,7 +22,7 @@ const messages = defineMessages({
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   explore: { id: 'navigation_bar.explore', defaultMessage: 'Explore' },
-  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
+  direct: { id: 'column.conversations', defaultMessage: 'Conversations' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
@@ -30,7 +30,7 @@ const messages = defineMessages({
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
-  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
+  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
@@ -130,7 +130,7 @@ class GettingStarted extends ImmutablePureComponent {
     }
 
     navItems.push(
-      <ColumnLink key='direct' icon='envelope' text={intl.formatMessage(messages.direct)} to='/conversations' />,
+      <ColumnLink key='direct' icon='at' text={intl.formatMessage(messages.direct)} to='/conversations' />,
       <ColumnLink key='bookmark' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />,
       <ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
       <ColumnLink key='lists' icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />,

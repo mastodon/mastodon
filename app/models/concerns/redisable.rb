@@ -6,6 +6,6 @@ module Redisable
   private
 
   def redis
-    Thread.current[:redis] ||= RedisConfiguration.new.connection
+    Thread.current[:redis] ||= RedisConfiguration.pool.checkout
   end
 end
