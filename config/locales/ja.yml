@@ -912,21 +912,21 @@ ja:
       cas: CAS
       saml: SAML
     register: 登録する
-    registration_closed: "%{instance} は現在、新規登録停止中です"
+    registration_closed: "%{instance}は現在、新規登録停止中です"
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
     security: セキュリティ
     set_new_password: 新しいパスワード
     setup:
       email_below_hint_html: 下記のメールアドレスが間違っている場合、ここで変更することで新たに確認メールを受信できます。
-      email_settings_hint_html: 確認用のメールを %{email} に送信しました。メールアドレスが正しくない場合、以下より変更することができます。
+      email_settings_hint_html: 確認用のメールを%{email}に送信しました。メールアドレスが正しくない場合、以下より変更することができます。
       title: セットアップ
     status:
       account_status: アカウントの状態
       confirming: メールアドレスの確認が完了するのを待っています。
       functional: アカウントは完全に機能しています。
       pending: あなたの申請は現在サーバー管理者による審査待ちです。これにはしばらくかかります。申請が承認されるとメールが届きます。
-      redirecting_to: アカウントは %{acct} に引っ越し設定されているため非アクティブになっています。
+      redirecting_to: アカウントは%{acct}に引っ越し設定されているため非アクティブになっています。
       view_strikes: 過去のストライクを表示
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
     trouble_logging_in: ログインできませんか？
@@ -1167,13 +1167,13 @@ ja:
     followers_count: 引き継がれるフォロワー
     incoming_migrations: 別のアカウントから引っ越す
     incoming_migrations_html: 別のアカウントからこのアカウントに引っ越すには、まず<a href="%{path}">アカウントエイリアスを作成</a>する必要があります。
-    moved_msg: アカウントは %{acct} に引っ越し設定されており、フォロワーは引っ越し先に引き継がれています。
+    moved_msg: アカウントは%{acct}に引っ越し設定されており、フォロワーは引っ越し先に引き継がれています。
     not_redirecting: アカウントは現在引っ越し設定されていません。
-    on_cooldown: あなたは最近アカウントを引っ越しました。この機能は %{count} 日後に再度利用できるようになります。
+    on_cooldown: あなたは最近アカウントを引っ越しました。この機能は%{count}日後に再度利用できるようになります。
     past_migrations: 過去の引っ越し
     proceed_with_move: フォロワーを引き継ぐ
-    redirected_msg: あなたのアカウントは現在 %{acct} にリダイレクトされています。
-    redirecting_to: アカウントは %{acct} に引っ越し設定されています。
+    redirected_msg: あなたのアカウントは現在%{acct}にリダイレクトされています。
+    redirecting_to: アカウントは%{acct}に引っ越し設定されています。
     set_redirect: 引っ越しを設定
     warning:
       backreference_required: まずは引っ越し先のアカウントでこのアカウントに対しエイリアスを作成する必要があります
@@ -1387,13 +1387,13 @@ ja:
   statuses:
     attached:
       audio:
-        other: "%{count} 本のオーディオ"
+        other: "%{count}本のオーディオ"
       description: '添付: %{attached}'
       image:
-        other: "%{count} 枚の画像"
+        other: "%{count}枚の画像"
       video:
-        other: "%{count} 本の動画"
-    boosted_from_html: '%{acct_link} からブースト'
+        other: "%{count}本の動画"
+    boosted_from_html: '%{acct_link}からブースト'
     content_warning: '閲覧注意: %{warning}'
     default_language: UIの表示言語
     disallowed_hashtags:
@@ -1402,7 +1402,7 @@ ja:
     errors:
       in_reply_not_found: あなたが返信しようとしている投稿は存在しないようです。
     open_in_web: Webで開く
-    over_character_limit: 上限は %{max}文字までです
+    over_character_limit: 上限は%{max}文字です
     pin_errors:
       direct: 返信したユーザーのみに表示される投稿はピン留めできません
       limit: 固定できる投稿数の上限に達しました
@@ -1410,7 +1410,7 @@ ja:
       reblog: ブーストを固定することはできません
     poll:
       total_people:
-        other: "%{count} 人"
+        other: "%{count}人"
       total_votes:
         other: "%{count}票"
       vote: 投票
