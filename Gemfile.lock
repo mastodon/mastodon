@@ -203,7 +203,6 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
-    e2mmap (0.1.0)
     ed25519 (1.3.0)
     elasticsearch (7.13.3)
       elasticsearch-api (= 7.13.3)
@@ -607,12 +606,10 @@ GEM
       redis (>= 4.2.0)
     sidekiq-bulk (0.2.0)
       sidekiq
-    sidekiq-scheduler (3.2.0)
-      e2mmap
-      redis (>= 3, < 5)
+    sidekiq-scheduler (4.0.0)
+      redis (>= 4.2.0)
       rufus-scheduler (~> 3.2)
-      sidekiq (>= 3)
-      thwait
+      sidekiq (>= 4)
       tilt (>= 1.4.0)
     sidekiq-unique-jobs (7.1.21)
       brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
@@ -656,8 +653,6 @@ GEM
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
-    thwait (0.2.0)
-      e2mmap
     tilt (2.0.10)
     tpm-key_attestation (0.9.0)
       bindata (~> 2.4)
@@ -832,7 +827,7 @@ DEPENDENCIES
   scenic (~> 1.6)
   sidekiq (~> 6.4)
   sidekiq-bulk (~> 0.2.0)
-  sidekiq-scheduler (~> 3.2)
+  sidekiq-scheduler (~> 4.0)
   sidekiq-unique-jobs (~> 7.1)
   simple-navigation (~> 4.3)
   simple_form (~> 5.1)
