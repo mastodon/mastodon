@@ -32,7 +32,7 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
     return collection_or_uri if collection_or_uri.is_a?(Hash)
     return if invalid_origin?(collection_or_uri)
 
-    fetch_resource_without_id_validation(collection_or_uri, nil, true, local_follower)
+    fetch_resource_without_id_validation(collection_or_uri, local_follower, true)
   end
 
   def process_items(items)
