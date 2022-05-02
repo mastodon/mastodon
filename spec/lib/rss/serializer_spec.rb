@@ -14,10 +14,11 @@ describe RSS::Serializer do
     subject { RSS::Serializer.new.send(:status_title, status) }
 
     context 'on a toot with long text' do
-      let(:text) { "This toot's text is longer than the allowed number of characters" }
+      let(:text) { "This toot's text is longer than the allowed number of characters and it should be truncated" +
+        " to a text up to 128 characters long!!"}
 
       it 'truncates toot text appropriately' do
-        expect(subject).to eq "#{account.acct}: “This toot's text is longer tha…”"
+        expect(subject).to eq "#{account.acct}: “This toot's text is longer than the allowed number of characters and it should be truncated to a text up to 128 characters long!…”"
       end
     end
 
