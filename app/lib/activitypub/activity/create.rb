@@ -377,6 +377,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     !replied_to_status.nil? && replied_to_status.account.local?
   end
 
+  def reply_blocked?
+    !replied_to_status.account.blocking?(@account) && !replied_to_status.account.domain_blocking?(@account.domain)
+  end
+
   def related_to_local_activity?
     fetch? || followed_by_local_accounts? || requested_through_relay? ||
       responds_to_followed_account? || addresses_local_accounts?
@@ -401,7 +405,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def forward_for_reply
-    return unless @status.distributable? && @json['signature'].present? && reply_to_local?
+    return unless @status.distributable? && @json['signature'].present? && reply_to_local? && !reply_blocked?
 
     ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
   end
