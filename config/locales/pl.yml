@@ -801,6 +801,7 @@ pl:
         disallow_provider: Nie zezwalaj na wydawcę
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
+      only_allowed: Tylko dozwolone
       pending_review: Oczekuje na przegląd
       preview_card_providers:
         allowed: Linki od tego wydawcy mogą podlegać trendom
@@ -835,7 +836,13 @@ pl:
         trending_rank: 'Popularne #%{rank}'
         usable: Może być użyty
         usage_comparison: Używane %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
+        used_by_over_week:
+          few: Użyte przez %{count} osoby w ciągu ostatniego tygodnia
+          many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
+          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
+          other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
       title: Na czasie
+      trending: Popularne
     warning_presets:
       add_new: Dodaj nowy
       delete: Usuń
@@ -1235,6 +1242,11 @@ pl:
         many: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
         one: Dodatkowo, w czasie nieobecności zaczęła śledzić Cię jedna osoba Gratulacje!
         other: Dodatkowo, zaczęło Cię śledzić %{count} nowych osób! Wspaniale!
+      subject:
+        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty 🐘"
+        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
+        one: "1 nowe powiadomienie od Twojej ostatniej wizyty 🐘"
+        other: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
       title: W trakcie Twojej nieobecności…
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'

@@ -1,1 +1,32 @@
+---
 io:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Fina dato
+        options: Selektaji
+      user:
+        agreement: Servokonkordo
+        email: Retpostoadreso
+        locale: Regiono
+        password: Pasvorto
+      user/account:
+        username: Uzantonomo
+      user/invite_request:
+        text: Rezono
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: mustas konsistar nur literi, nombri e sublinei
+              reserved: rezervitas
+        status:
+          attributes:
+            reblog:
+              taken: de postajo ja existas
+        user:
+          attributes:
+            email:
+              blocked: uzas nepermisata retpostodomeno
+              unreachable: semblas ne existar
