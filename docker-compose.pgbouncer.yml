@@ -27,7 +27,7 @@ services:
       - POSTGRESQL_PORT=5432
       - PGBOUNCER_DATABASE=mastodon_production
       - PGBOUNCER_POOL_MODE=transaction
-      - PGBOUNCER_AUTH_TYPE=plain
+      - PGBOUNCER_AUTH_TYPE=trust
     depends_on:
       - db
     networks:
