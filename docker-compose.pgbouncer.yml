@@ -14,17 +14,22 @@ services:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
 
   pgbouncer:
-    image: edoburu/pgbouncer
-    env_file: .env.production
+    image: docker.io/bitnami/pgbouncer:1.17.0
+    ports:
+      - 6432:6432
     environment:
-       - DB_USER=${DB_USER}
-       - DB_PASSWORD=${DB_PASS}
-       - DB_HOST=db
-       - DB_NAME=${DB_NAME} 
-       - POOL_MODE=transaction
-       - ADMIN_USERS=postgres,mastodon
+      - POSTGRESQL_USERNAME=${DB_USER}
+      - POSTGRESQL_PASSWORD=${DB_PASS}
+      - POSTGRESQL_HOST=db
+      - POSTGRESQL_DATABASE=${DB_NAME}
+      - POSTGRESQL_PORT=5432
+      - PGBOUNCER_DATABASE=${DB_NAME}
+      - PGBOUNCER_POOL_MODE=transaction
+      - PGBOUNCER_AUTH_TYPE=trust
     depends_on:
       - db
+    networks:
+      - internal_network
 
   redis:
     restart: always
