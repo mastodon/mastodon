@@ -25,7 +25,6 @@ services:
       - POSTGRESQL_PORT=5432
       - PGBOUNCER_DATABASE=${DB_NAME}
       - PGBOUNCER_POOL_MODE=transaction
-      - PGBOUNCER_AUTH_TYPE=trust
     depends_on:
       - db
     networks:
