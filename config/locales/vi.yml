@@ -1,7 +1,6 @@
----
 vi:
   about:
-    about_hashtag_html: Đây là các tút <strong>#%{hashtag}</strong> trên mạng liên hợp. Bạn có thể tương tác với chúng sau khi đăng nhập.
+    about_hashtag_html: 'Đây là các tút <strong>#%{hashtag}</strong> trên mạng liên hợp. Bạn có thể tương tác với chúng sau khi đăng nhập.'
     about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
     about_this: Giới thiệu
     active_count_after: hoạt động
@@ -21,8 +20,10 @@ vi:
     documentation: Tài liệu
     federation_hint_html: Đăng ký tài khoản %{instance} là bạn có thể giao tiếp với bất cứ ai trên bất kỳ máy chủ Mastodon nào và còn hơn thế nữa.
     get_apps: Ứng dụng di động
-    hosted_on: "%{domain} vận hành nhờ Mastodon"
-    instance_actor_flash: "Đây là một tài khoản ảo được sử dụng để đại diện cho máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên chặn trừ khi bạn muốn chặn toàn bộ máy chủ. \n"
+    hosted_on: '%{domain} vận hành nhờ Mastodon'
+    instance_actor_flash: |
+      Đây là một tài khoản ảo được sử dụng để đại diện cho máy chủ chứ không phải bất kỳ người dùng cá nhân nào. Nó được sử dụng cho mục đích liên kết và không nên chặn trừ khi bạn muốn chặn toàn bộ máy chủ. 
+
     learn_more: Tìm hiểu
     logged_in_as_html: Bạn đã đăng nhập %{username}.
     logout_before_registering: Bạn đã đăng nhập.
@@ -112,7 +113,7 @@ vi:
       delete: Xóa dữ liệu
       deleted: Đã xóa
       demote: Xóa vai trò
-      destroyed_msg: Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ
+      destroyed_msg: "Dữ liệu %{username} sẽ được lên lịch xóa ngay bây giờ"
       disable: Khóa
       disable_sign_in_token_auth: Vô hiệu hóa xác minh bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác minh 2 bước
@@ -553,11 +554,11 @@ vi:
       no_ip_block_selected: Bạn chưa chọn bất kỳ IP nào
       title: Những IP bị chặn
     relationships:
-      title: Mối quan hệ của %{acct}
+      title: "Mối quan hệ của %{acct}"
     relays:
       add_new: Thêm liên hợp mới
       delete: Loại bỏ
-      description_html: "<strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người dùng ở máy chủ này vẫn có thể theo dõi người dùng khác trên các máy chủ khác."
+      description_html: <strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người dùng ở máy chủ này vẫn có thể theo dõi người dùng khác trên các máy chủ khác.
       disable: Tắt
       disabled: Đã tắt
       enable: Kích hoạt
@@ -782,7 +783,7 @@ vi:
         disallow: Cấm liên kết
         disallow_provider: Cấm nguồn đăng
         shared_by_over_week:
-          other: "%{count} người chia sẻ tuần rồi"
+          other: '%{count} người chia sẻ tuần rồi'
         title: Liên kết xu hướng
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       pending_review: Đang chờ
@@ -822,7 +823,7 @@ vi:
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
-          other: "%{count} người dùng tuần rồi"
+          other: '%{count} người dùng tuần rồi'
       title: Xu hướng
     warning_presets:
       add_new: Thêm mới
@@ -849,7 +850,7 @@ vi:
     new_report:
       body: "%{reporter} vừa báo cáo %{target}"
       body_remote: Ai đó từ %{domain} đã báo cáo %{target}
-      subject: "(%{instance}) Báo cáo #%{id}"
+      subject: '(%{instance}) Báo cáo #%{id}'
     new_trends:
       body: 'Các mục sau đây cần được xem xét trước khi chúng hiển thị công khai:'
       new_trending_links:
@@ -950,8 +951,8 @@ vi:
     already_requested: Bạn vừa gửi một yêu cầu theo dõi tới người này
     error: Rất tiếc, đã xảy ra lỗi khi tìm kiếm tài khoản từ nơi khác
     follow: Theo dõi
-    follow_request: Bạn đã gửi yêu cầu theo dõi tới
-    following: Chúc mừng! Bạn đã trở thành người theo dõi
+    follow_request: 'Bạn đã gửi yêu cầu theo dõi tới'
+    following: 'Chúc mừng! Bạn đã trở thành người theo dõi'
     post_follow:
       close: Bạn có thể đóng cửa sổ này rồi.
       return: Xem trang hồ sơ
@@ -1218,11 +1219,11 @@ vi:
         other: "%{count} thông báo mới kể từ lần đăng nhập cuối 🐘"
       title: Khi bạn offline...
     favourite:
-      body: Tút của bạn vừa được thích bởi %{name}
+      body: 'Tút của bạn vừa được thích bởi %{name}'
       subject: "%{name} vừa thích tút của bạn"
       title: Lượt thích mới
     follow:
-      body: Bạn vừa được %{name} theo dõi!
+      body: "Bạn vừa được %{name} theo dõi!"
       subject: "%{name} vừa theo dõi bạn"
       title: Người theo dõi mới
     follow_request:
@@ -1238,11 +1239,11 @@ vi:
     poll:
       subject: Cuộc bình chọn của %{name} kết thúc
     reblog:
-      body: Tút của bạn vừa được %{name} đăng lại
+      body: 'Tút của bạn vừa được %{name} đăng lại'
       subject: "%{name} vừa đăng lại tút của bạn"
       title: Lượt đăng lại mới
     status:
-      subject: Bài đăng mới từ %{name}
+      subject: "Bài đăng mới từ %{name}"
     update:
       subject: "%{name} đã sửa một tút"
   notifications:
@@ -1322,10 +1323,10 @@ vi:
       prompt: 'Bạn muốn thích tút này:'
     reblog:
       proceed: Tiếp tục đăng lại
-      prompt: Bạn có muốn đăng lại tút này?
+      prompt: 'Bạn có muốn đăng lại tút này?'
     reply:
       proceed: Tiếp tục trả lời
-      prompt: Bạn có muốn trả lời tút này?
+      prompt: 'Bạn có muốn trả lời tút này?'
   reports:
     errors:
       invalid_rules: không đúng với quy tắc
@@ -1532,7 +1533,7 @@ vi:
       <p>Nếu có thay đổi chính sách bảo mật, chúng tôi sẽ đăng những thay đổi đó ở mục này.</p>
       <p>Tài liệu này phát hành dưới hình thức CC-BY-SA và được cập nhật lần cuối vào ngày 7 tháng 3 năm 2018.</p>
       <p>Chỉnh sửa và hoàn thiện từ <a href="https://github.com/discourse/discourse">Discourse</a>.</p>
-    title: Quy tắc của %{instance}
+    title: "Quy tắc của %{instance}"
   themes:
     contrast: Mastodon (Độ tương phản cao)
     default: Mastodon (Tối)
