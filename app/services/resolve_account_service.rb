@@ -66,7 +66,7 @@ class ResolveAccountService < BaseService
       @username = @account.username
       @domain   = @account.domain
     else
-      @username, @domain = uri.split('@')
+      @username, @domain = uri.strip.gsub(/\A@/, '').split('@')
     end
 
     @domain = begin
