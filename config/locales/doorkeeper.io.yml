@@ -128,7 +128,47 @@ io:
         crypto: Intersequanta chifro
         favourites: Favorati
         filters: Filtrili
+        follow: Relataji
+        follows: Sequati
+        lists: Listi
+        media: Mediatachaji
+        mutes: Silencigati
+        notifications: Avizi
+        push: Pulsavizi
+        reports: Raporti
+        search: Trovez
+        statuses: Posti
+    layouts:
+      admin:
+        nav:
+          applications: Apliki
+          oauth2_provider: Provizanto di OAuth2
+      application:
+        title: Permiso di OAuth bezonesas
     scopes:
+      "admin:read": lektez omna informi di la servilo
+      "admin:read:accounts": lektez privata informo di omna konti
+      "admin:read:reports": lektez privata informo di omna raportigo e raportigita konti
+      "admin:write": modifikez omna informi di la servilo
+      "admin:write:accounts": jerez konti
+      "admin:write:reports": jerez raportigo
+      crypto: uzas intersequanta chifro
       follow: follow, block, unblock and unfollow accounts
+      push: ganez vua pulsavizi
       read: read your account's data
+      "read:accounts": videz kontinformo
+      "read:blocks": videz restrikti
+      "read:bookmarks": videz vua libromarki
+      "read:favourites": videz vua favorati
+      "read:filters": videz vua filtrili
+      "read:follows": videz vua sequinti
+      "read:lists": videz vua listi
+      "read:mutes": videz vua silencigi
+      "read:notifications": videz vua avizi
+      "read:reports": videz vua rapotigi
+      "read:search": trovez por vu
+      "read:statuses": videz omna posti
       write: post on your behalf
+      "write:accounts": modifikez vua porfilo
+      "write:blocks": restriktez konti e domeni
+      "write:bookmarks": libromarkez posti
