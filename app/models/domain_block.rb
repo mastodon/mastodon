@@ -16,6 +16,7 @@
 #
 
 class DomainBlock < ApplicationRecord
+  include Paginable
   include DomainNormalizable
   include DomainMaterializable
 
