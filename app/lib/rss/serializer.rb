@@ -21,11 +21,11 @@ class RSS::Serializer
   end
 
   def status_title(status)
-    preview = status.proper.spoiler_text.presence || status.proper.text
+    preview = status.proper.spoiler_text.presence || PlainTextFormatter.new(status.text, status.local?).to_s
 
-    if preview.length > 30 || preview[0, 30].include?("\n")
-      preview = preview[0, 30]
-      preview = preview[0, preview.index("\n").presence || 30] + '…'
+    if preview.length > 128 || preview[0, 128].include?("\n")
+      preview = preview[0, 128]
+      preview = preview[0, preview.index("\n").presence || 128] + '…'
     end
 
     preview = "#{status.proper.spoiler_text.present? ? 'CW ' : ''}“#{preview}”#{status.proper.sensitive? ? ' (sensitive)' : ''}"
