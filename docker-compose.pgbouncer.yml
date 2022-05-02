@@ -20,18 +20,19 @@ services:
     ports:
       - 6432:6432
     environment:
-      - POSTGRESQL_USERNAME=${DB_USER}
-      - POSTGRESQL_PASSWORD=${DB_PASS}
+      - POSTGRESQL_USERNAME=mastodon
+      - POSTGRESQL_PASSWORDxxxxxxxxxxxxx
       - POSTGRESQL_HOST=db
-      - POSTGRESQL_DATABASE=${DB_NAME}
+      - POSTGRESQL_DATABASE=mastodon_production
       - POSTGRESQL_PORT=5432
-      - PGBOUNCER_DATABASE=${DB_NAME}
+      - PGBOUNCER_DATABASE=mastodon_production
       - PGBOUNCER_POOL_MODE=transaction
-      - PGBOUNCER_AUTH_TYPE=trust
+      - PGBOUNCER_AUTH_TYPE=plain
     depends_on:
       - db
     networks:
       - internal_network
+
 
   redis:
     restart: always
