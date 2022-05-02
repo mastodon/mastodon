@@ -27,7 +27,7 @@ const messages = defineMessages({
   community: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   logout: { id: 'navigation_bar.logout', defaultMessage: 'Logout' },
-  compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new toot' },
+  compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
   logoutMessage: { id: 'confirmations.logout.message', defaultMessage: 'Are you sure you want to log out?' },
   logoutConfirm: { id: 'confirmations.logout.confirm', defaultMessage: 'Log out' },
 });

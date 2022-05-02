@@ -11,8 +11,8 @@ fr:
     apps: Applications mobiles
     apps_platforms: Utilisez Mastodon depuis iOS, Android et d’autres plates-formes
     browse_directory: Parcourir l’annuaire des profils et filtrer par centres d’intérêts
-    browse_local_posts: Parcourir un flux en direct de messages publics depuis ce serveur
-    browse_public_posts: Parcourir un flux en direct de messages publics sur Mastodon
+    browse_local_posts: Parcourir en direct un flux de messages publics depuis ce serveur
+    browse_public_posts: Parcourir en direct un flux de messages publics sur Mastodon
     contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
@@ -31,13 +31,13 @@ fr:
     privacy_policy: Politique de confidentialité
     rules: Règles du serveur
     rules_html: 'Voici un résumé des règles que vous devez suivre si vous voulez avoir un compte sur ce serveur de Mastodon :'
-    see_whats_happening: Voir ce qui se passe
+    see_whats_happening: Quoi de neuf
     server_stats: 'Statistiques du serveur :'
     source_code: Code source
     status_count_after:
       one: message
       other: messages
-    status_count_before: Ayant publié
+    status_count_before: Qui a publié
     tagline: Suivez vos ami·e·s et découvrez-en de nouveaux·elles
     terms: Conditions d’utilisation
     unavailable_content: Serveurs modérés
@@ -91,14 +91,14 @@ fr:
     unfollow: Ne plus suivre
   admin:
     account_actions:
-      action: Effectuer une action
+      action: Effectuer l'action
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
       create: Laisser une remarque
       created_msg: Note de modération créée avec succès !
       destroyed_msg: Note de modération supprimée avec succès !
     accounts:
-      add_email_domain_block: Mettre le domaine du courriel sur liste noire
+      add_email_domain_block: Bloquer ce domaine de courriel
       approve: Approuver
       approved_msg: La demande d’inscription de %{username} a été approuvée avec succès
       are_you_sure: Voulez-vous vraiment faire ça ?
@@ -479,6 +479,9 @@ fr:
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
       availability:
+        description_html:
+          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
+          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
         failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
         failures_recorded:
           one: Tentative échouée pendant %{count} jour.
@@ -514,6 +517,7 @@ fr:
       delivery:
         all: Tout
         clear: Effacer les erreurs de livraison
+        failing: Échouant
         restart: Redémarrer la livraison
         stop: Arrêter la livraison
         unavailable: Indisponible
@@ -1232,6 +1236,9 @@ fr:
       new_followers_summary:
         one: De plus, vous avez un·e nouvel·le abonné·e ! Youpi !
         other: De plus, vous avez %{count} abonné·e·s de plus ! Incroyable !
+      subject:
+        one: "Une nouvelle notification depuis votre dernière visite 🐘"
+        other: "%{count} nouvelles notifications depuis votre dernière visite 🐘"
       title: Pendant votre absence…
     favourite:
       body: "%{name} a ajouté votre message à ses favoris :"
@@ -1628,8 +1635,10 @@ fr:
       title: Récupération de l’archive
     suspicious_sign_in:
       change_password: changer votre mot de passe
+      details: 'Voici les détails de la connexion :'
       explanation: Nous avons détecté une connexion à votre compte à partir d’une nouvelle adresse IP.
       further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
+      subject: Votre compte a été accédé à partir d'une nouvelle adresse IP
       title: Une nouvelle connexion
     warning:
       appeal: Faire appel

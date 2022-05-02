@@ -160,6 +160,9 @@ sv:
       pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
       previous_strikes: Tidigare varningar
+      previous_strikes_description_html:
+        one: Detta konto har <strong>en</strong> varning.
+        other: Detta konto har <strong>%{count}</strong> varningar.
       promote: Befordra
       protocol: Protokoll
       public: Offentlig
@@ -263,6 +266,8 @@ sv:
         create_announcement_html: "%{name} skapade tillkännagivande %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
         create_domain_block_html: "%{name} blockerade domänen %{target}"
+        create_email_domain_block_html: "%{name} svartlistade e-postdomän %{target}"
+        create_ip_block_html: "%{name} skapade regel för IP %{target}"
         destroy_custom_emoji_html: "%{name} förstörde emoji %{target}"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
         destroy_email_domain_block_html: "%{name} avblockerade e-postdomän %{target}"
@@ -325,6 +330,7 @@ sv:
       enable: Aktivera
       enabled: Aktiverad
       enabled_msg: Aktiverade den emoji utan problem
+      image_hint: PNG eller GIF upp till %{size}
       list: Lista
       listed: Noterade
       new:

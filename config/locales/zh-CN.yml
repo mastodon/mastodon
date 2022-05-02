@@ -21,12 +21,12 @@ zh-CN:
     documentation: 文档
     federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容Mastodon的服务器上的人。
     get_apps: 尝试移动应用
-    hosted_on: 运行在 %{domain} 上的 Mastodon 实例
+    hosted_on: 运行在 %{domain} 上的 Mastodon 站点
     instance_actor_flash: '这个账号是个虚拟账号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
 
       '
     learn_more: 了解详情
-    logged_in_as_html: 你当前是以 %{username} 登录的。
+    logged_in_as_html: 您当前以 %{username} 登录。
     logout_before_registering: 您已登录。
     privacy_policy: 隐私政策
     rules: 服务器规则
@@ -46,7 +46,7 @@ zh-CN:
       rejecting_media: 来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。
       rejecting_media_title: 被过滤的媒体文件
       silenced: 来自这些服务器上的帖子将不会出现在公共时间轴和会话中，通知功能也不会提醒这些用户的动态；只有你关注了这些用户，才会收到用户互动的通知消息。
-      silenced_title: 已隐藏的服务器
+      silenced_title: 已限制的服务器
       suspended: 这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。
       suspended_title: 已被封禁的服务器
     unavailable_content_html: 通常来说，在 Mastodon 上，你可以浏览联邦宇宙中任何一台服务器上的内容，并且和上面的用户互动。但是某些站点上不排除会有例外。
@@ -81,7 +81,7 @@ zh-CN:
     roles:
       admin: 管理员
       bot: 机器人
-      group: 组
+      group: 群组
       moderator: 监察员
     unavailable: 个人资料不可用
     unfollow: 取消关注
@@ -505,6 +505,7 @@ zh-CN:
       delivery:
         all: 全部
         clear: 清理投递错误
+        failing: 发送失败
         restart: 重新投递
         stop: 停止投递
         unavailable: 不可用
@@ -930,7 +931,7 @@ zh-CN:
     registration_closed: "%{instance} 目前不接收新成员"
     resend_confirmation: 重新发送确认邮件
     reset_password: 重置密码
-    security: 帐户安全
+    security: 账户安全
     set_new_password: 设置新密码
     setup:
       email_below_hint_html: 如果下面的电子邮箱地址是错误的，你可以在这里修改并重新发送新的确认邮件。

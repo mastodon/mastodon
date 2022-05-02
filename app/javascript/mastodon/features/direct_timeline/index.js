@@ -10,7 +10,7 @@ import { connectDirectStream } from '../../actions/streaming';
 import ConversationsListContainer from './containers/conversations_list_container';
 
 const messages = defineMessages({
-  title: { id: 'column.direct', defaultMessage: 'Direct messages' },
+  title: { id: 'column.conversations', defaultMessage: 'Conversations' },
 });
 
 export default @connect()
@@ -76,7 +76,7 @@ class DirectTimeline extends React.PureComponent {
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} label={intl.formatMessage(messages.title)}>
         <ColumnHeader
-          icon='envelope'
+          icon='at'
           active={hasUnread}
           title={intl.formatMessage(messages.title)}
           onPin={this.handlePin}
@@ -91,7 +91,7 @@ class DirectTimeline extends React.PureComponent {
           scrollKey={`direct_timeline-${columnId}`}
           timelineId='direct'
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}
+          emptyMessage={<FormattedMessage id='empty_column.conversations' defaultMessage="Once you send or receive a post that's only visible to people mentioned in it, it will show up here." />}
         />
       </Column>
     );

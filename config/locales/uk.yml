@@ -392,6 +392,21 @@ uk:
       media_storage: Медіасховище
       new_users: нові користувачі
       opened_reports: звітів відкрито
+      pending_reports_html:
+        few: "<strong>%{count}</strong> звіти у черзі"
+        many: "<strong>%{count}</strong> звітів у черзі"
+        one: "<strong>%{count}</strong> звіт у черзі"
+        other: "<strong>%{count}</strong> звіти у черзі"
+      pending_tags_html:
+        few: "<strong>%{count}</strong> хештеґи у черзі"
+        many: "<strong>%{count}</strong> хештеґів у черзі"
+        one: "<strong>%{count}</strong> хештеґ у черзі"
+        other: "<strong>%{count}</strong> хештеґа у черзі"
+      pending_users_html:
+        few: "<strong>%{count}</strong> користувачі у черзі"
+        many: "<strong>%{count}</strong> користувачів у черзі"
+        one: "<strong>%{count}</strong> користувач у черзі"
+        other: "<strong>%{count}</strong> користувача у черзі"
       resolved_reports: розв'язані звіти
       software: Програмне забезпечення
       sources: Джерела реєстрації
@@ -439,6 +454,11 @@ uk:
       view: Переглянути заблоковані домени
     email_domain_blocks:
       add_new: Додати
+      attempts_over_week:
+        few: "%{count} спроби входу за останній тиждень"
+        many: "%{count} спроб входу за останній тиждень"
+        one: "%{count} спроба за останній тиждень"
+        other: "%{count} спроби входу за останній тиждень"
       created_msg: Успішно додано поштовий домен до чорного списку
       delete: Видалити
       dns:
@@ -489,6 +509,7 @@ uk:
       delivery:
         all: Усі
         clear: Очистити помилки доставляння
+        failing: Невдалі
         restart: Перезапустити доставляння
         stop: Припинити доставляння
         unavailable: Недоступно
@@ -1513,6 +1534,11 @@ uk:
       subject: Ваш архів готовий до завантаження
       title: Винесення архіву
     suspicious_sign_in:
+      change_password: змінити свій пароль
+      details: 'Відомості про вхід:'
+      explanation: Ми виявили вхід до вашого облікового запису з нової IP-адреси.
+      further_actions_html: Якщо це були не ви. Радимо вам негайно %{action} й увімкнути двоетапну перевірку, щоб уберегти свій обліковий запис.
+      subject: До вашого облікового запису отримано доступ з нової IP-адреси
       title: Новий вхід
     warning:
       appeal: Подати апеляцію

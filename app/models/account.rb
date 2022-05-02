@@ -559,6 +559,12 @@ class Account < ApplicationRecord
   before_validation :prepare_username, on: :create
   before_destroy :clean_feed_manager
 
+  def ensure_keys!
+    return unless local? && private_key.blank? && public_key.blank?
+    generate_keys
+    save!
+  end
+
   private
 
   def prepare_contents

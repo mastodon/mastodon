@@ -165,6 +165,9 @@ de:
       pending: In Warteschlange
       perform_full_suspension: Verbannen
       previous_strikes: Vorherige Strikes
+      previous_strikes_description_html:
+        one: Dieses Konto hat <strong>einen</strong> Strike.
+        other: Dieses Konto hat <strong>%{count}</strong> Strikes.
       promote: Befördern
       protocol: Protokoll
       public: Öffentlich
@@ -220,7 +223,7 @@ de:
       undo_suspension: Verbannung aufheben
       unsilenced_msg: "%{username}'s Konto erfolgreich freigegeben"
       unsubscribe: Abbestellen
-      unsuspended_msg: "%{username}'s Konto erfolgreich freigegeben"
+      unsuspended_msg: Konto von %{username} erfolgreich freigegeben
       username: Profilname
       view_domain: Übersicht für Domain anzeigen
       warn: Warnen
@@ -514,6 +517,7 @@ de:
       delivery:
         all: Alle
         clear: Zustellfehler löschen
+        failing: Schlägt fehl
         restart: Lieferung neu starten
         stop: Lieferung stoppen
         unavailable: Nicht verfügbar
@@ -656,8 +660,8 @@ de:
         desc_html: Anzahl der lokal geposteten Beiträge, aktiven Nutzern und neuen Registrierungen in wöchentlichen Zusammenfassungen
         title: Veröffentliche gesamte Statistiken über Benutzeraktivitäten
       bootstrap_timeline_accounts:
-        desc_html: Mehrere Profilnamen durch Kommata trennen. Funktioniert nur mit lokalen und nicht gesperrten Konten. Standardwert bei freigelassenem Feld sind alle lokalen Admins.
-        title: Konten, denen Neu-Angemeldete automatisch folgen
+        desc_html: Mehrere Profilnamen durch Kommata trennen. Diese Accounts werden immer in den Folgemempfehlungen angezeigt
+        title: Konten, die Neu-Angemeldete empfohlen bekommen sollen
       contact_information:
         email: Öffentliche E-Mail-Adresse
         username: Profilname für die Kontaktaufnahme
@@ -1230,8 +1234,11 @@ de:
       body: Hier ist eine kurze Zusammenfassung der Nachrichten, die du seit deinem letzten Besuch am %{since} verpasst hast
       mention: "%{name} hat dich erwähnt:"
       new_followers_summary:
-        one: Außerdem ist dir seit du weg warst ein weiteres Wesen gefolgt! Juhu!
-        other: Außerdem sind dir seit du weg warst %{count} weitere Wesen gefolgt! Großartig!
+        one: Außerdem ist dir seit du weg warst ein weiteres Konto gefolgt! Juhu!
+        other: Außerdem sind dir seit du weg warst %{count} weitere Konten gefolgt! Großartig!
+      subject:
+        one: "1 neue Mitteilung seit deinem letzten Besuch 🐘"
+        other: "%{count} neue Mitteilungen seit deinem letzten Besuch 🐘"
       title: In deiner Abwesenheit...
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
@@ -1628,6 +1635,13 @@ de:
       explanation: Du hast ein vollständiges Backup von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
       subject: Dein Archiv ist bereit zum Download
       title: Archiv-Download
+    suspicious_sign_in:
+      change_password: dein Passwort zu ändern
+      details: 'Hier sind die Details des Versuchs:'
+      explanation: Wir haben eine Anmeldung zu deinem Konto von einer neuen IP-Adresse festgestellt.
+      further_actions_html: Wenn du das nicht warst, empfehlen wir dir, %{action} und die Zwei-Faktor-Authentifizierung zu aktivieren, um dein Konto sicher zu halten.
+      subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
+      title: Eine neue Anmeldung
     warning:
       appeal: Einspruch einsenden
       appeal_description: Wenn du glaubst, dass dies ein Fehler ist, kannst du einen Einspruch an die Mitarbeiter von %{instance} senden.
@@ -1664,7 +1678,7 @@ de:
       edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du deine Folgenden vorher überprüfen möchtest, bevor sie dir folgen können, dann kannst du dein Profil sperren.
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Fang an zu posten
-      final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beitrage von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Vielleicht möchtest du dich vorstellen mit dem #introductions-Hashtag.'
+      final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Vielleicht möchtest du dich vorstellen mit dem #introductions-Hashtag.'
       full_handle: Dein vollständiger Benutzername
       full_handle_hint: Dies ist was du deinen Freunden sagen kannst, damit sie dich anschreiben oder von einem anderen Server folgen können.
       review_preferences_action: Einstellungen ändern
