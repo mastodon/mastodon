@@ -22,7 +22,7 @@ const messages = defineMessages({
   settings_subheading: { id: 'column_subheading.settings', defaultMessage: 'Settings' },
   community_timeline: { id: 'navigation_bar.community_timeline', defaultMessage: 'Local timeline' },
   explore: { id: 'navigation_bar.explore', defaultMessage: 'Explore' },
-  direct: { id: 'column.conversations', defaultMessage: 'Conversations' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
   bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },

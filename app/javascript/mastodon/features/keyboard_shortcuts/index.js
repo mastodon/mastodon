@@ -122,7 +122,7 @@ class KeyboardShortcuts extends ImmutablePureComponent {
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>d</kbd></td>
-                <td><FormattedMessage id='keyboard_shortcuts.conversations' defaultMessage='to open conversations column' /></td>
+                <td><FormattedMessage id='keyboard_shortcuts.direct' defaultMessage='to open direct messages column' /></td>
               </tr>
               <tr>
                 <td><kbd>g</kbd>+<kbd>s</kbd></td>
