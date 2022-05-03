@@ -489,18 +489,40 @@ pt-BR:
         title: Disponibilidade
         warning: A última tentativa de se conectar a este servidor não foi bem sucedida
       back_to_all: Todas
+      back_to_limited: Limitado
       back_to_warning: Aviso
       by_domain: Domínio
       confirm_purge: Você tem certeza de que deseja excluir permanentemente os dados deste domínio?
       content_policies:
+        comment: Nota interna
+        description_html: Você pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
+        policies:
+          reject_media: Rejeitar mídia
+          reject_reports: Rejeitar relatórios
+          silence: Limite
+          suspend: Suspender
         policy: Políticas
+        reason: Razão pública
+        title: Políticas de conteúdo
+      dashboard:
+        instance_accounts_dimension: Contas mais seguidas
+        instance_accounts_measure: contas armazenadas
+        instance_followers_measure: nossos seguidores lá
+        instance_follows_measure: seus seguidores aqui
+        instance_languages_dimension: Idiomas principais
+        instance_media_attachments_measure: anexos de mídia armazenados
+        instance_reports_measure: relatórios sobre eles
+        instance_statuses_measure: publicações armazenadas
       delivery:
         all: Todos
         clear: Limpar erros de entrega
+        failing: Falhando
         restart: Reiniciar a entrega
         stop: Parar entrega
         unavailable: Indisponível
       delivery_available: Envio disponível
+      delivery_error_days: Dias de erro de entrega
+      delivery_error_hint: Se a entrega não for possível durante %{count} dias, será automaticamente marcada como não realizável.
       empty: Nenhum domínio encontrado.
       moderation:
         all: Todos
