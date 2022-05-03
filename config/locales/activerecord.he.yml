@@ -1,13 +1,31 @@
----
 he:
   activerecord:
+    attributes:
+      poll:
+        expires_at: מועד אחרון
+        options: ברירות
+      user:
+        agreement: הסכם שירות
+        email: כתובת דוא"ל
+        locale: הגדרות אזוריות
+        password: סיסמא
+      user/account:
+        username: שם משתמש/ת
+      user/invite_request:
+        text: סיבה
     errors:
       models:
         account:
           attributes:
             username:
               invalid: ספרות, אותיות לטיניות וקו תחתי בלבד
+              reserved: שמור
         status:
           attributes:
             reblog:
               taken: של החצרוץ כבר קיים
+        user:
+          attributes:
+            email:
+              blocked: עושה שימוש בספק דוא"ל אסור
+              unreachable: נראה שלא קיים
