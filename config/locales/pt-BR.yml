@@ -964,9 +964,23 @@ pt-BR:
   disputes:
     strikes:
       action_taken: Ações tomadas
-      appeal: Apelação
+      appeal: Recurso
       appeal_approved: Este recurso foi contestado e não é mais válido
+      appeal_rejected: O recurso foi rejeitado
+      appeal_submitted_at: Recurso enviado
+      appealed_msg: Seu recurso foi enviado. Se ele for aprovado, você será notificado.
+      appeals:
+        submit: Enviar recurso
+      associated_report: Relatório associado
+      created_at: Datado
+      description_html: Estas são ações tomadas contra sua conta e avisos que foram enviados a você pela equipe de %{instance}.
+      recipient: Endereçado para
+      status: 'Postagem #%{id}'
+      status_removed: Postagem já removida do sistema
+      title: "%{action} de %{date}"
       title_actions:
+        delete_statuses: Remoção de publicações
+        disable: Congelamento de conta
         none: Aviso
         sensitive: Marcar a conta como sensível
         silence: Limitação da conta
