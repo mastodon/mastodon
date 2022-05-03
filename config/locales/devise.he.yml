@@ -40,7 +40,14 @@ he:
         subject: 'מסטודון: נא לאשר כתובת דוא"ל עבור %{instance}'
         title: אימות כתובת דוא״ל
       reset_password_instructions:
+        action: שינוי סיסמא
+        explanation: ביקשת סיסמא חדשה לחשבון.
+        extra: אם לא ביקשת את זה, נא להתעלם מדוא"ל זה. סיסמתך לא תשתנה עוד שתלחץ הקישורית לעיל ותיוצר סיסמא חדשה.
         subject: 'מסטודון: הוראות לאיפוס סיסמא'
+        title: איפוס סיסמה
+      two_factor_disabled:
+        explanation: האימות הדו-גורמי לחשבונך בוטל. ניתן עתה להכנס לחשבון עם כתובת דוא"ל וסיסמא בלבד.
+        subject: 'מסטודון: אימות דו גורמי מושבת'
       unlock_instructions:
         subject: 'מסטודון: הוראות לביטול נעילה'
     omniauth_callbacks:
