@@ -1,4 +1,3 @@
----
 io:
   devise:
     confirmations:
@@ -12,18 +11,35 @@ io:
       last_attempt: Tu ankore povas probar unfoye ante ke tua konto esos extingita.
       locked: Tua konto esas extingita.
       not_found_in_database: Nejusta %{authentication_keys}.
+      pending: Vua konti ankore kontrolesas.
       timeout: Tua kunsido expiris. Voluntez rienirar por durar.
       unauthenticated: Tu devas enirar o membreskar por durar.
       unconfirmed: Tu devas konfirmar tua konto por durar.
     mailer:
       confirmation_instructions:
-        subject: Instrucioni por konfirmar %{instance}
+        action: Verifikez retpostadreso
+        action_with_app: Konfirmez e retrovenez a %{app}
+        explanation: Vu kreis konto che %{host} per ca retpostadreso. Vu povas facile aktivigar lu. Se vu ne agis lu, ignorez ca retposto.
+        extra_html: Anke videz <a href="%{terms_path}">reguli di la servilo</a> e <a href="%{policy_path}">nia servokondicioni</a>.
+        subject: 'Instrucioni por konfirmar %{instance}'
+        title: Verifikez retpostadreso
+      email_changed:
+        explanation: 'Retpostadreso di vua konto chanjesas a:'
+        subject: 'Mastodon: Retpostadreso chanjesis'
+        title: Nova retpostadreso
       password_change:
-        subject: Tua pasvorto chanjesis senprobleme.
+        explanation: La pasvorto di vua konto chanjesis.
+        subject: 'Tua pasvorto chanjesis senprobleme.'
+        title: Pasvorto chanjesis
+      reconfirmation_instructions:
+        explanation: Konfirmez la nova adreso por chanjar vua retpostadreso.
+        extra: Se ca chanjo ne komencesis da vu, ignorez ca retposto. La retpostadreso por konto di Mastodon ne chanjesos til vu acesas la supera ligilo.
+        subject: 'Mastodon: Konfirmez retpostadreso por %{instance}'
+        title: Verifikez retpostadreso
       reset_password_instructions:
-        subject: Instrucioni por chanjar la pasvorto
+        subject: 'Instrucioni por chanjar la pasvorto'
       unlock_instructions:
-        subject: Instructioni por riacendar la konto
+        subject: 'Instructioni por riacendar la konto'
     omniauth_callbacks:
       failure: 'Ni ne povis autentikigar tu per %{kind}: ''%{reason}''.'
       success: Autentikigita senprobleme per %{kind}.
