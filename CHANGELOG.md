@@ -3,10 +3,12 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
-## [3.5.2] - 2022-05-03
+## [3.5.2] - 2022-05-04
 ### Added
 
 - Add warning on direct messages screen in web UI ([Gargron](https://github.com/mastodon/mastodon/pull/18289))
+  - We already had a warning when composing a direct message, it has now been reworded to be more clear
+  - Same warning is now displayed when viewing sent and received direct messages
 - Add ability to set approval-based registration through tootctl ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18248))
 - Add pre-filling of domain from search filter in domain allow/block admin UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18172))
 
@@ -17,11 +19,16 @@ All notable changes to this project will be documented in this file.
 - Change half-life of trending posts from 6 hours to 2 hours ([Gargron](https://github.com/mastodon/mastodon/pull/18182))
 - Change full-text search feature to also include polls you have voted in ([tribela](https://github.com/mastodon/mastodon/pull/18070))
 - Change Redis from using one connection per process, to using a connection pool ([Gargron](https://github.com/mastodon/mastodon/pull/18135), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/18160), [Gargron](https://github.com/mastodon/mastodon/pull/18171))
+  - Different threads no longer have to wait on a mutex over a single connection
+  - However, this does increase the number of Redis connections by a fair amount
+  - In the future, we are planning to optimize Redis use so that a thread does not consume a connection all the time, but only when needed
 
 ## Removed
 
 - Remove IP matching from e-mail domain blocks ([Gargron](https://github.com/mastodon/mastodon/pull/18190))
-
+  - The IPs of the blocked e-mail domain or its MX records are no longer checked
+  - Previously it was too easy to block e-mail providers by mistake
+  
 ## Fixed
 
 - Fix compatibility with Friendica's pinned posts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18254), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/18260))
