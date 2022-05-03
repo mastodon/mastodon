@@ -370,6 +370,7 @@ pt-BR:
       enable: Ativar
       enabled: Ativado
       enabled_msg: Emoji ativado com sucesso
+      image_hint: PNG ou GIF até %{size}
       list: Listar
       listed: Listado
       new:
@@ -391,6 +392,18 @@ pt-BR:
       media_storage: Armazenamento de mídia
       new_users: novos usuários
       opened_reports: denúncias abertas
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> recurso pendente"
+        other: "<strong>%{count}</strong> recursos pendentes"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> relatório pendente"
+        other: "<strong>%{count}</strong> relatórios pendentes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> hashtag pendente"
+        other: "<strong>%{count}</strong> hashtags pendentes"
+      pending_users_html:
+        one: "<strong>%{count}</strong> usuário pendente"
+        other: "<strong>%{count}</strong> usuários pendentes"
       resolved_reports: denúncias solucionadas
       software: Software
       sources: Origem das inscrições
@@ -401,6 +414,7 @@ pt-BR:
       website: Site
     disputes:
       appeals:
+        empty: Nenhum recurso encontrado.
         title: Apelações
     domain_allows:
       add_new: Permitir domínio
@@ -437,13 +451,20 @@ pt-BR:
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
+      attempts_over_week:
+        one: "%{count} tentativa na última semana"
+        other: "%{count} tentativas de inscrição na última semana"
       created_msg: Domínio de e-mail adicionado à lista negra com sucesso
       delete: Excluir
+      dns:
+        types:
+          mx: Registro MX
       domain: Domínio
       new:
         create: Adicionar domínio
         resolve: Resolver domínio
         title: Nova entrada de lista negra de e-mail
+      no_email_domain_block_selected: Nenhum bloco de domínio de e-mail foi alterado, pois nenhum foi selecionado
       title: Lista de negra de e-mail
     follow_recommendations:
       description_html: "<strong>A recomendação de contas ajuda os novos usuários a encontrar rapidamente conteúdo interessante</strong>. Quando um usuário ainda não tiver interagido o suficiente para gerar recomendações de contas, essas contas serão recomendadas. Essas recomendações são recalculadas diariamente a partir de uma lista de contas com alto engajamento e maior número de seguidores locais em uma dada língua."
