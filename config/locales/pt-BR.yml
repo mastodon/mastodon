@@ -230,7 +230,7 @@ pt-BR:
       whitelisted: Permitido
     action_logs:
       action_types:
-        approve_appeal: Aprovar Apelo
+        approve_appeal: Aprovar recurso
         approve_user: Aprovar Usuário
         assigned_to_self_report: Adicionar relatório
         change_email_user: Editar e-mail do usuário
@@ -249,6 +249,7 @@ pt-BR:
         destroy_domain_allow: Excluir domínio permitido
         destroy_domain_block: Excluir Bloqueio de Domínio
         destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
+        destroy_instance: Limpar Domínio
         destroy_ip_block: Excluir regra de IP
         destroy_status: Excluir Status
         destroy_unavailable_domain: Deletar domínio indisponível
@@ -281,6 +282,7 @@ pt-BR:
         update_status: Editar Status
       actions:
         approve_appeal_html: "%{name} aprovou o recurso de decisão de moderação de %{target}"
+        approve_user_html: "%{name} aprovado inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} para si"
         change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do usuário %{target}"
@@ -298,6 +300,7 @@ pt-BR:
         destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
         destroy_domain_block_html: "%{name} deixou de bloquear domínio %{target}"
         destroy_email_domain_block_html: "%{name} adicionou domínio de e-mail %{target} à lista branca"
+        destroy_instance_html: "%{name} purgou o domínio %{target}"
         destroy_ip_block_html: "%{name} excluiu regra para o IP %{target}"
         destroy_status_html: "%{name} excluiu post de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
@@ -310,6 +313,7 @@ pt-BR:
         enable_user_html: "%{name} ativou o login para %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o usuário %{target}"
+        reject_appeal_html: "%{name} rejeitou recurso de decisão de moderação de %{target}"
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report_html: "%{name} reabriu a denúncia %{target}"
