@@ -1559,17 +1559,27 @@ pt-BR:
   user_mailer:
     appeal_approved:
       action: Acessar perfil
-      explanation: O recurso do ataque contra sua conta em %{strike_date} que você enviou em %{appeal_date} foi aprovado. Sua conta está novamente em situação regular.
+      explanation: O recurso do ataque contra sua conta em %{strike_date} que você submeteu em %{appeal_date} foi aprovado. Sua conta está novamente em situação regular.
       subject: Seu recurso de %{date} foi aprovado
       title: Contestação aprovada
     appeal_rejected:
+      explanation: O recurso do ataque contra sua conta em %{strike_date} que você submeteu em %{appeal_date} foi rejeitado.
+      subject: Seu recurso de %{date} foi rejeitado
       title: Contestação rejeitada
     backup_ready:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
+    suspicious_sign_in:
+      change_password: Altere sua senha
+      details: 'Aqui estão os detalhes do acesso:'
+      explanation: Detectamos um login em sua conta a partir de um novo endereço IP.
+      further_actions_html: Se não foi você, recomendamos que você %{action} imediatamente e ative a autenticação de dois fatores para manter sua conta segura.
+      subject: Sua conta foi acessada a partir de um novo endereço IP
+      title: Um novo login
     warning:
       appeal: Enviar uma contestação
+      appeal_description: Se você acredita que isso é um erro, você pode enviar um apelo para a equipe de %{instance}.
       categories:
         spam: Spam
         violation: O conteúdo viola as seguintes diretrizes da comunidade
