@@ -37,7 +37,19 @@ io:
         subject: 'Mastodon: Konfirmez retpostadreso por %{instance}'
         title: Verifikez retpostadreso
       reset_password_instructions:
+        action: Chanjez pasvorto
+        explanation: Vu demandis nova pasvorto por vua konto.
+        extra: Se vu ne demandas co, ignorez ca retposto. Vua pasvorto ne chanjesas til vu acesas la supera ligilo e kreas novo.
         subject: 'Instrucioni por chanjar la pasvorto'
+        title: Richanjo di pasvorto
+      two_factor_disabled:
+        explanation: 2-faktorverifiko por vua konto deaktivigesis. Eniro esas nun posible per nur retpostadreso e pasvorto.
+        subject: 'Mastodon: 2-faktorverifiko deaktivigesis'
+        title: 2FA deaktivigesis
+      two_factor_enabled:
+        explanation: 2-faktorverifiko aktivigesis por vua konto. Fisho quo facesis da parigita apliko TOTP bezonesos por eniro.
+        subject: 'Mastodon: 2-faktorverifiko aktivigesis'
+        title: 2FA aktivigesis
       unlock_instructions:
         subject: 'Instructioni por riacendar la konto'
     omniauth_callbacks:
