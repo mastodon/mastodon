@@ -16,7 +16,7 @@ const messages = defineMessages({
   unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but opted-out of discovery features' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
-  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Only people I mention' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
