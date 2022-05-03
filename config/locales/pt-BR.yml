@@ -465,6 +465,8 @@ pt-BR:
         resolve: Resolver domínio
         title: Nova entrada de lista negra de e-mail
       no_email_domain_block_selected: Nenhum bloco de domínio de e-mail foi alterado, pois nenhum foi selecionado
+      resolved_dns_records_hint_html: O nome de domínio resolve os seguintes domínios MX, que são responsáveis finais por aceitar o e-mail. Bloquear um domínio MX bloqueará inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
+      resolved_through_html: Resolvido através de %{domain}
       title: Lista de negra de e-mail
     follow_recommendations:
       description_html: "<strong>A recomendação de contas ajuda os novos usuários a encontrar rapidamente conteúdo interessante</strong>. Quando um usuário ainda não tiver interagido o suficiente para gerar recomendações de contas, essas contas serão recomendadas. Essas recomendações são recalculadas diariamente a partir de uma lista de contas com alto engajamento e maior número de seguidores locais em uma dada língua."
