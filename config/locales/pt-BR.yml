@@ -981,10 +981,14 @@ pt-BR:
       title_actions:
         delete_statuses: Remoção de publicações
         disable: Congelamento de conta
+        mark_statuses_as_sensitive: Marcar as postagens como sensíveis
         none: Aviso
         sensitive: Marcar a conta como sensível
         silence: Limitação da conta
         suspend: Suspensão de conta
+      your_appeal_approved: Seu recurso foi aprovado
+      your_appeal_pending: Você submeteu um recurso
+      your_appeal_rejected: Seu recurso foi rejeitado
   domain_validator:
     invalid_domain: não é um nome de domínio válido
   errors:
@@ -1109,6 +1113,7 @@ pt-BR:
     authentication_methods:
       otp: autenticação de dois fatores
       password: senha
+      sign_in_token: código de segurança do e-mail
       webauthn: chaves de segurança
     description_html: Se você vir atividades suspeitas ou não reconhecidas, considere alterar sua senha e ativar a autenticação de dois fatores.
     empty: Sem histórico de autenticação disponível
@@ -1158,6 +1163,9 @@ pt-BR:
     carry_mutes_over_text: Este usuário mudou de %{acct}, que você havia silenciado.
     copy_account_note_text: 'Este usuário saiu de %{acct}, aqui estão suas notas anteriores sobre ele:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} se inscreveu"
     digest:
       action: Ver todas as notificações
       body: Aqui está um breve resumo das mensagens que você perdeu desde o seu último acesso em %{since}
@@ -1165,6 +1173,9 @@ pt-BR:
       new_followers_summary:
         one: Você tem um novo seguidor! Uia!
         other: Você tem %{count} novos seguidores! AÊÊÊ!
+      subject:
+        one: "Uma nova notificação desde o seu último acesso 🐘"
+        other: "%{count} novas notificações desde o seu último acesso 🐘"
       title: Enquanto você estava ausente...
     favourite:
       body: '%{name} favoritou seu toot:'
@@ -1192,6 +1203,8 @@ pt-BR:
       title: Novo boost
     status:
       subject: "%{name} acabou de postar"
+    update:
+      subject: "%{name} editou uma publicação"
   notifications:
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os eventos que deseja receber notificações:'
@@ -1273,6 +1286,9 @@ pt-BR:
     reply:
       proceed: Continue para responder
       prompt: 'Você responderá este toot:'
+  reports:
+    errors:
+      invalid_rules: não faz referência a regras válidas
   scheduled_statuses:
     over_daily_limit: Você excedeu o limite de %{limit} toots agendados para esse dia
     over_total_limit: Você excedeu o limite de %{limit} toots agendados
@@ -1339,6 +1355,7 @@ pt-BR:
     profile: Perfil
     relationships: Seguindo e seguidores
     statuses_cleanup: Exclusão automatizada de publicações
+    strikes: Moderação de ataques
     two_factor_authentication: Autenticação de dois fatores
     webauthn_authentication: Chaves de segurança
   statuses:
@@ -1355,9 +1372,11 @@ pt-BR:
         other: "%{count} vídeos"
     boosted_from_html: Boost de %{acct_link}
     content_warning: 'Aviso de Conteúdo: %{warning}'
+    default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha hashtag não permitida: %{tags}'
       other: 'continha hashtags não permitidas: %{tags}'
+    edited_at_html: Editado em %{date}
     errors:
       in_reply_not_found: O toot que você quer responder parece não existir.
     open_in_web: Abrir no navegador
@@ -1521,6 +1540,7 @@ pt-BR:
     formats:
       default: "%H:%M em %d de %b de %Y"
       month: "%b de %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Adicionar
     disable: Desativar
@@ -1539,6 +1559,8 @@ pt-BR:
   user_mailer:
     appeal_approved:
       action: Acessar perfil
+      explanation: O recurso do ataque contra sua conta em %{strike_date} que você enviou em %{appeal_date} foi aprovado. Sua conta está novamente em situação regular.
+      subject: Seu recurso de %{date} foi aprovado
       title: Contestação aprovada
     appeal_rejected:
       title: Contestação rejeitada
