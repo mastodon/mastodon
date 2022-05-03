@@ -9,7 +9,7 @@ const messages = defineMessages({
   public: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
-  direct: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  direct: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
 });
 
 export default @injectIntl

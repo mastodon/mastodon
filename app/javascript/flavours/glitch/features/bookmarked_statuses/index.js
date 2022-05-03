@@ -70,7 +70,7 @@ class Bookmarks extends ImmutablePureComponent {
     const { intl, statusIds, columnId, multiColumn, hasMore, isLoading } = this.props;
     const pinned = !!columnId;
 
-    const emptyMessage = <FormattedMessage id='empty_column.bookmarked_statuses' defaultMessage="You don't have any bookmarked toots yet. When you bookmark one, it will show up here." />;
+    const emptyMessage = <FormattedMessage id='empty_column.bookmarked_statuses' defaultMessage="You don't have any bookmarked posts yet. When you bookmark one, it will show up here." />;
 
     return (
       <Column bindToDocument={!multiColumn} ref={this.setRef} name='bookmarks'>

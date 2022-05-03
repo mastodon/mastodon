@@ -29,7 +29,7 @@ zh-CN:
     logged_in_as_html: 您当前以 %{username} 登录。
     logout_before_registering: 您已登录。
     privacy_policy: 隐私政策
-    rules: 服务器规则
+    rules: 实例规则
     rules_html: 如果你想要在此Mastodon服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：
     see_whats_happening: 看看有什么新鲜事
     server_stats: 服务器统计数据：
@@ -787,6 +787,7 @@ zh-CN:
           other: 过去一周内被 %{count} 个人分享过
         title: 热门链接
         usage_comparison: 今日被分享 %{today} 次，前一日为 %{yesterday} 次
+      only_allowed: 仅显示已允许的内容
       pending_review: 待审核
       preview_card_providers:
         allowed: 来自此发布者的链接可进入流行列表
@@ -826,6 +827,7 @@ zh-CN:
         used_by_over_week:
           other: 过去一周内被 %{count} 个人使用过
       title: 流行趋势
+      trending: 当前热门
     warning_presets:
       add_new: 添加新条目
       delete: 删除
@@ -904,7 +906,7 @@ zh-CN:
   auth:
     apply_for_account: 请求邀请
     change_password: 密码
-    checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">服务器规则</a> 和 <a href="%{terms_path}" target="_blank">服务条款</a>
+    checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">实例规则</a> 和 <a href="%{terms_path}" target="_blank">服务条款</a>
     checkbox_agreement_without_rules_html: 我同意 <a href="%{terms_path}" target="_blank">服务条款</a>
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
