@@ -84,6 +84,10 @@ he:
         invalid_client: הרשאת הלקוח נכשלה עקב לקוח שאינו ידוע, חוסר בהרשאת לקוח או שיטת הרשאה שאינה נתמכת.
         invalid_grant: חוזה ההרשאה המצורף אינו חוקי, אינו תקף, מבוטל, או שאינו מתאים לקישורית ההפניה שבשימוש על ידי בקשת ההרשאה, או שהופק על ידי לקוח אחר.
         invalid_redirect_uri: קישורית ההפניה המצורפת אינה חוקית.
+        invalid_request:
+          missing_param: 'חסר פרמטר נדרש: %{value}.'
+          request_not_authorized: יש לאשר את הבקשה. פרמטר הנדרש על מנת לאשר את הבקשה חסר או לקוי.
+          unknown: הבקשה חסרה פרמטר נדרש, כוללת ערך שלא נתמך או לקויה בדרך אחרת.
         invalid_resource_owner: הרשאות בעלי המשאב שהוזנו אינן חוקיות, או שלא ניתן למצוא את בעלי המשאב
         invalid_scope: התחום המבוקש אינו חוקי, אינו ידוע, או שתצורותו שגויה.
         invalid_token:
@@ -107,6 +111,33 @@ he:
       authorized_applications:
         destroy:
           notice: הישום בוטל.
+    grouped_scopes:
+      access:
+        read: גישה לקריאה בלבד
+        read/write: גישה לקריאה ולכתיבה
+        write: גישה לכתיבה בלבד
+      title:
+        accounts: חשבונות
+        admin/accounts: חשבונות ניהול
+        admin/all: כל פעולות האדמין
+        admin/reports: ניהול דיווחים
+        all: הכל
+        blocks: חסימות
+        bookmarks: סימניות
+        conversations: שיחות
+        crypto: הצפנה מקצה לקצה
+        favourites: חיבובים
+        filters: מסננים
+        follow: יחסים
+        follows: נעקבים
+        lists: רשימות
+        media: קבצי מדיה מצורפים
+        mutes: השתקות
+        notifications: התראות
+        push: התראות בדחיפה
+        reports: דיווחים
+        search: חיפוש
+        statuses: חצרוצים
     layouts:
       admin:
         nav:
@@ -115,6 +146,14 @@ he:
       application:
         title: נדרשת הרשאת OAuth
     scopes:
+      "admin:read": לקרוא את כל המידע על השרת
+      "admin:read:accounts": לקרוא מידע רגיש בכל החשבונות
+      "admin:read:reports": לקרוא מידע רגיש בכל הדוחות וכל החשבונות המדווחים
+      "admin:write": לשנות את כל המידע על השרת
+      "admin:write:accounts": ביצוע פעולות הנהלה על חשבונות
+      "admin:write:reports": ביצוע פעולות הנהלה על חשבונות
+      crypto: שימוש בהצפנה מקצה לקצה
       follow: לעקוב, לחסום, להסיר חסימה ולהפסיק לעקוב אחרי חשבונות
+      push: קבלת התראות בדחיפה
       read: לקרוא את המידע שבחשבונך
       write: להפיץ הודעות בשמך
