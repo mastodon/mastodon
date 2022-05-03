@@ -1,4 +1,3 @@
----
 he:
   activerecord:
     attributes:
@@ -38,6 +37,7 @@ he:
         application: יישום
         callback_url: כתובת גישה חוזרת (Callback URL)
         delete: למחוק
+        empty: אין לך אפליקציות.
         name: שם
         new: ישום חדש
         scopes: תחומים
@@ -59,6 +59,8 @@ he:
       error:
         title: התרחשה שגיאה
       new:
+        prompt_html: "%{client_name} מעוניין בהרשאה לגשת לחשבונך. זוהי אפליקציית צד-שלישי. <strong>אם יש סיבה לא לבטוח בה, נא לא לאשר.</strong>"
+        review_permissions: עיון בהרשאות
         title: נדרשת הרשאה
       show:
         title: יש להעתיק את קוד ההרשאה הזה ולהדביקו ביישום שביקש אותו.
@@ -68,6 +70,12 @@ he:
       confirmations:
         revoke: בטוח?
       index:
+        authorized_at: אושר ב-%{date}
+        description_html: אלה אפליקציות שיכולות לגשת לחשבונך בעזרת הממשק. אם ישנן כאן אפליקציות שאינך מזהה, או אפליקציה שאינה פועלת כראוי, ניתן להסיר את הגישה שלה.
+        last_used_at: נראה לאחרונה ב-%{date}
+        never_used: מעולם לא היה בשימוש
+        scopes: הרשאות
+        superapp: פנימי
         title: ישומיך המאושרים
     errors:
       messages:
