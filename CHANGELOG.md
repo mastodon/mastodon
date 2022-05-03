@@ -21,7 +21,7 @@ All notable changes to this project will be documented in this file.
 - Change Redis from using one connection per process, to using a connection pool ([Gargron](https://github.com/mastodon/mastodon/pull/18135), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/18160), [Gargron](https://github.com/mastodon/mastodon/pull/18171))
   - Different threads no longer have to wait on a mutex over a single connection
   - However, this does increase the number of Redis connections by a fair amount
-  - In the future, we are planning to optimize Redis use so that a thread does not consume a connection all the time, but only when needed
+  - We are planning to optimize Redis use so that the pool can be made smaller in the future
 
 ## Removed
 
