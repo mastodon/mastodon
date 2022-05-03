@@ -523,7 +523,11 @@ pt-BR:
       delivery_available: Envio disponível
       delivery_error_days: Dias de erro de entrega
       delivery_error_hint: Se a entrega não for possível durante %{count} dias, será automaticamente marcada como não realizável.
+      destroyed_msg: Dados de %{domain} agora estão na fila para exclusão iminente.
       empty: Nenhum domínio encontrado.
+      known_accounts:
+        one: "%{count} conta conhecida"
+        other: "%{count} contas conhecidas"
       moderation:
         all: Todos
         limited: Limitados
@@ -531,12 +535,14 @@ pt-BR:
       private_comment: Comentário privado
       public_comment: Comentário público
       purge: Limpar
+      purge_description_html: Se você acredita que este domínio está offline definitivamente, você pode excluir todos os registros de conta e dados associados deste domínio do seu armazenamento. Isso pode demorar um pouco.
       title: Federação
       total_blocked_by_us: Bloqueado por nós
       total_followed_by_them: Seguidos por eles
       total_followed_by_us: Seguidos por nós
       total_reported: Denúncias sobre eles
       total_storage: Mídias anexadas
+      totals_time_period_hint_html: Os totais exibidos abaixo incluem dados para todo o tempo.
     invites:
       deactivate_all: Desativar todos
       filter:
@@ -581,6 +587,7 @@ pt-BR:
     report_notes:
       created_msg: Nota de denúncia criada com sucesso!
       destroyed_msg: Nota de denúncia excluída com sucesso!
+      today_at: Hoje às %{time}
     reports:
       account:
         notes:
@@ -806,6 +813,14 @@ pt-BR:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: 'Nova denúncia sobre %{instance} (#%{id})'
+    new_trends:
+      new_trending_statuses:
+        title: Publicações em alta
+      new_trending_tags:
+        no_approved_tags: No momento, não há hashtags de tendências aprovadas.
+        requirements: 'Qualquer um desses candidatos poderia ultrapassar a hashtag de tendência aprovada #%{rank} , que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
+        title: Hashtags em alta
+      subject: Novas tendências para revisão em %{instance}
   aliases:
     add_new: Criar alias
     created_msg: Um novo alias foi criado com sucesso. Agora você pode iniciar a mudança da conta antiga.
@@ -857,6 +872,7 @@ pt-BR:
     invalid_reset_password_token: Código de alteração de senha é inválido ou expirou. Por favor, solicite um novo.
     link_to_otp: Digite um código de duas etapas do seu telefone ou um código de recuperação
     link_to_webauth: Use seu dispositivo de chave de segurança
+    log_in_with: Iniciar sessão com
     login: Entrar
     logout: Sair
     migrate_account: Mudar-se para outra conta
@@ -878,8 +894,10 @@ pt-BR:
     status:
       account_status: Status da conta
       confirming: Confirmação por e-mail pendente.
+      functional: Sua conta está totalmente operacional.
       pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
+      view_strikes: Veja os ataques anteriores contra a sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     trouble_logging_in: Problemas para entrar?
     use_security_key: Usar chave de segurança
@@ -915,8 +933,10 @@ pt-BR:
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Agora
+      less_than_x_minutes: "%{count}min"
       less_than_x_seconds: Agora
       over_x_years: "%{count}a"
+      x_days: "%{count}dias"
       x_minutes: "%{count}min"
       x_months: "%{count}m"
       x_seconds: "%{count}seg"
@@ -943,6 +963,9 @@ pt-BR:
     explore_mastodon: Explore o %{title}
   disputes:
     strikes:
+      action_taken: Ações tomadas
+      appeal: Apelação
+      appeal_approved: Este recurso foi contestado e não é mais válido
       title_actions:
         none: Aviso
         sensitive: Marcar a conta como sensível
