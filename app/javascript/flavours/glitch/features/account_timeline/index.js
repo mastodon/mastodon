@@ -44,7 +44,7 @@ const mapStateToProps = (state, { params: { acct, id }, withReplies = false }) =
 };
 
 const RemoteHint = ({ url }) => (
-  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.statuses' defaultMessage='Older toots' />} />
+  <TimelineHint url={url} resource={<FormattedMessage id='timeline_hint.resources.statuses' defaultMessage='Older posts' />} />
 );
 
 RemoteHint.propTypes = {
@@ -156,7 +156,7 @@ class AccountTimeline extends ImmutablePureComponent {
     } else if (remote && statusIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {
-      emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No toots here!' />;
+      emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts found' />;
     }
 
     const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;
