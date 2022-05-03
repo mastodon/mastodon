@@ -1,7 +1,6 @@
----
 ca:
   about:
-    about_hashtag_html: Aquestes són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Hi pots interactuar si tens un compte a qualsevol lloc del fedivers.
+    about_hashtag_html: 'Aquestes són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Hi pots interactuar si tens un compte a qualsevol lloc del fedivers.'
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
     about_this: Quant a
     active_count_after: actiu
@@ -57,7 +56,7 @@ ca:
     user_count_before: Tenim
     what_is_mastodon: Què és Mastodon?
   accounts:
-    choices_html: 'Eleccions de %{name}:'
+    choices_html: "Eleccions de %{name}:"
     endorsements_hint: Pots recomanar persones que segueixes des de la interfície de web i apareixeran aquí.
     featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
@@ -118,7 +117,7 @@ ca:
       delete: Esborra les dades
       deleted: Eliminat
       demote: Degrada
-      destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
+      destroyed_msg: "Les dades de %{username} son a la cua per a ser esborrades en breu"
       disable: Inhabilita
       disable_sign_in_token_auth: Desactivar l'autenticació de token per correu
       disable_two_factor_authentication: Desactiva 2FA
@@ -568,7 +567,7 @@ ca:
       no_ip_block_selected: No s’ha canviat cap regla IP perquè no s’han seleccionat
       title: Regles IP
     relationships:
-      title: relacions del %{acct}
+      title: "relacions del %{acct}"
     relays:
       add_new: Afegiu un nou relay
       delete: Esborra
@@ -870,7 +869,7 @@ ca:
     new_report:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
-      subject: Informe nou per a %{instance} (#%{id})
+      subject: 'Informe nou per a %{instance} (#%{id})'
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -998,7 +997,7 @@ ca:
       about_x_years: "%{count} anys"
       almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
-      less_than_x_minutes: fa %{count} minuts
+      less_than_x_minutes: "fa %{count} minuts"
       less_than_x_seconds: Ara mateix
       over_x_years: "%{count} anys"
       x_days: "%{count} dies"
@@ -1124,7 +1123,7 @@ ca:
     delete: Esborra
     none: Cap
     order_by: Ordena per
-    save_changes: Desar els canvis
+    save_changes: Desa els canvis
     today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
@@ -1150,7 +1149,7 @@ ca:
     upload: Carrega
   in_memoriam_html: En Memòria.
   invites:
-    delete: Desactivar
+    delete: Desactiva
     expired: Caducat
     expires_in:
       '1800': 30 minuts
@@ -1243,7 +1242,7 @@ ca:
         other: "%{count} notificacions noves des de la teva darrera visita 🐘"
       title: Durant la teva absència…
     favourite:
-      body: "%{name} ha marcat com a favorit el teu estat:"
+      body: '%{name} ha marcat com a favorit el teu estat:'
       subject: "%{name} ha marcat com a favorit el teu estat"
       title: Favorit nou
     follow:
@@ -1257,13 +1256,13 @@ ca:
       title: Nova sol·licitud de seguiment
     mention:
       action: Respon
-      body: "%{name} t'ha mencionat en:"
-      subject: "%{name} t'ha mencionat"
+      body: '%{name} t''ha mencionat en:'
+      subject: '%{name} t''ha mencionat'
       title: Menció nova
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     reblog:
-      body: "%{name} ha impulsat el teu estat:"
+      body: '%{name} ha impulsat el teu estat:'
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
     status:
@@ -1399,7 +1398,7 @@ ca:
     revoke: Revoca
     revoke_success: S'ha revocat la sessió amb èxit
     title: Sessions
-    view_authentication_history: Veure l'historial d'autenticació del teu compte
+    view_authentication_history: Mostra l'historial d'autenticació del compte
   settings:
     account: Compte
     account_settings: Configuració del compte
@@ -1474,7 +1473,7 @@ ca:
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
   statuses_cleanup:
-    enabled: Esborrar automàticament publicacions antigues
+    enabled: Esborra automàticament publicacions antigues
     enabled_hint: Suprimeix automàticament les teves publicacions quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
     exceptions: Excepcions
     explanation: Com que suprimir publicacions és una operació cara, es fa lentament amb el pas del temps i quan el servidor no està ocupat. Per aquest motiu, és possible que les teves publicacions se suprimeixin un temps després d’assolir el llindar d’edat.
@@ -1503,7 +1502,7 @@ ca:
       '604800': 1 setmana
       '63113904': 2 anys
       '7889238': 3 mesos
-    min_age_label: Llindar d'edat
+    min_age_label: Antiguitat
     min_favs: Mantenir les publicacions afavorides més de
     min_favs_hint: No suprimeix cap de les teves publicacions que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per suprimir publicacions independentment del nombre de favorits que tinguin
     min_reblogs: Mantenir les publicacions impulsades més de
