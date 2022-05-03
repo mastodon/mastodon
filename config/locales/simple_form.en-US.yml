@@ -1,0 +1,230 @@
+---
+en-US:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Specify the username@domain of the account you want to move from
+      account_migration:
+        acct: Specify the username@domain of the account you want to move to
+      account_warning_preset:
+        text: You can use post syntax, such as URLs, hashtags and mentions
+        title: Optional. Not visible to the recipient
+      admin_account_action:
+        include_statuses: The user will see which posts have caused the moderation action or warning
+        send_email_notification: The user will receive an explanation of what happened with their account
+        text_html: Optional. You can use post syntax. You can <a href="%{path}">add warning presets</a> to save time
+        type_html: Choose what to do with <strong>%{acct}</strong>
+        types:
+          disable: Prevent the user from using their account, but do not delete or hide their contents.
+          none: Use this to send a warning to the user, without triggering any other action.
+          sensitive: Force all this user's media attachments to be flagged as sensitive.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days.
+        warning_preset_id: Optional. You can still add custom text to end of the preset
+      announcement:
+        all_day: When checked, only the dates of the time range will be displayed
+        ends_at: Optional. Announcement will be automatically unpublished at this time
+        scheduled_at: Leave blank to publish the announcement immediately
+        starts_at: Optional. In case your announcement is bound to a specific time range
+        text: You can use post syntax. Please be mindful of the space the announcement will take up on the user's screen
+      appeal:
+        text: You can only appeal a strike once
+      defaults:
+        autofollow: People who sign up through the invite will automatically follow you
+        avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
+        bot: Signal to others that the account mainly performs automated actions and might not be monitored
+        context: One or multiple contexts where the filter should apply
+        current_password: For security purposes please enter the password of the current account
+        current_username: To confirm, please enter the username of the current account
+        digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
+        discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
+        email: You will be sent a confirmation e-mail
+        fields: You can have up to 4 items displayed as a table on your profile
+        header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
+        inbox_url: Copy the URL from the frontpage of the relay you want to use
+        irreversible: Filtered posts will disappear irreversibly, even if filter is later removed
+        locale: The language of the user interface, e-mails and push notifications
+        locked: Manually control who can follow you by approving follow requests
+        password: Use at least 8 characters
+        phrase: Will be matched regardless of casing in text or content warning of a post
+        scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
+        setting_aggregate_reblogs: Do not show new boosts for posts that have been recently boosted (only affects newly-received boosts)
+        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
+        setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
+        setting_display_media_default: Hide media marked as sensitive
+        setting_display_media_hide_all: Always hide media
+        setting_display_media_show_all: Always show media
+        setting_hide_network: Who you follow and who follows you will be hidden on your profile
+        setting_noindex: Affects your public profile and post pages
+        setting_show_application: The application you use to post will be displayed in the detailed view of your posts
+        setting_use_blurhash: Gradients are based on the colors of the hidden visuals but obfuscate any details
+        setting_use_pending_items: Hide timeline updates behind a click instead of automatically scrolling the feed
+        username: Your username will be unique on %{domain}
+        whole_word: When the keyword or phrase is alphanumeric only, it will only be applied if it matches the whole word
+      domain_allow:
+        domain: This domain will be able to fetch data from this server and incoming data from it will be processed and stored
+      email_domain_block:
+        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
+        with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
+      featured_tag:
+        name: 'You might want to use one of these:'
+      form_challenge:
+        current_password: You are entering a secure area
+      imports:
+        data: CSV file exported from another Mastodon server
+      invite_request:
+        text: This will help us review your application
+      ip_block:
+        comment: Optional. Remember why you added this rule.
+        expires_in: IP addresses are a finite resource, they are sometimes shared and often change hands. For this reason, indefinite IP blocks are not recommended.
+        ip: Enter an IPv4 or IPv6 address. You can block entire ranges using the CIDR syntax. Be careful not to lock yourself out!
+        severities:
+          no_access: Block access to all resources
+          sign_up_requires_approval: New sign-ups will require your approval
+        severity: Choose what will happen with requests from this IP
+      rule:
+        text: Describe a rule or requirement for users on this server. Try to keep it short and simple
+      sessions:
+        otp: 'Enter the two-factor code generated by your phone app or use one of your recovery codes:'
+        webauthn: If it's an USB key be sure to insert it and, if necessary, tap it.
+      tag:
+        name: You can only change the casing of the letters, for example, to make it more readable
+      user:
+        chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
+    labels:
+      account:
+        fields:
+          name: Label
+          value: Content
+      account_alias:
+        acct: Handle of the old account
+      account_migration:
+        acct: Handle of the new account
+      account_warning_preset:
+        text: Preset text
+        title: Title
+      admin_account_action:
+        include_statuses: Include reported posts in the e-mail
+        send_email_notification: Notify the user per e-mail
+        text: Custom warning
+        type: Action
+        types:
+          disable: Freeze
+          none: Send a warning
+          sensitive: Sensitive
+          silence: Limit
+          suspend: Suspend
+        warning_preset_id: Use a warning preset
+      announcement:
+        all_day: All-day event
+        ends_at: End of event
+        scheduled_at: Schedule publication
+        starts_at: Start of event
+        text: Announcement
+      appeal:
+        text: Explain why this decision should be reversed
+      defaults:
+        autofollow: Invite to follow your account
+        avatar: Avatar
+        bot: This is a bot account
+        chosen_languages: Filter languages
+        confirm_new_password: Confirm new password
+        confirm_password: Confirm password
+        context: Filter contexts
+        current_password: Current password
+        data: Data
+        discoverable: Suggest account to others
+        display_name: Display name
+        email: E-mail address
+        expires_in: Expire after
+        fields: Profile metadata
+        header: Header
+        honeypot: "%{label} (do not fill in)"
+        inbox_url: URL of the relay inbox
+        irreversible: Drop instead of hide
+        locale: Interface language
+        locked: Require follow requests
+        max_uses: Max number of uses
+        new_password: New password
+        note: Bio
+        otp_attempt: Two-factor code
+        password: Password
+        phrase: Keyword or phrase
+        setting_advanced_layout: Enable advanced web interface
+        setting_aggregate_reblogs: Group boosts in timelines
+        setting_always_send_emails: Always send e-mail notifications
+        setting_auto_play_gif: Auto-play animated GIFs
+        setting_boost_modal: Show confirmation dialog before boosting
+        setting_crop_images: Crop images in non-expanded posts to 16x9
+        setting_default_language: Posting language
+        setting_default_privacy: Posting privacy
+        setting_default_sensitive: Always mark media as sensitive
+        setting_delete_modal: Show confirmation dialog before deleting a post
+        setting_disable_swiping: Disable swiping motions
+        setting_display_media: Media display
+        setting_display_media_default: Default
+        setting_display_media_hide_all: Hide all
+        setting_display_media_show_all: Show all
+        setting_expand_spoilers: Always expand posts marked with content warnings
+        setting_hide_network: Hide your social graph
+        setting_noindex: Opt-out of search engine indexing
+        setting_reduce_motion: Reduce motion in animations
+        setting_show_application: Disclose application used to send posts
+        setting_system_font_ui: Use system's default font
+        setting_theme: Site theme
+        setting_trends: Show today's trends
+        setting_unfollow_modal: Show confirmation dialog before unfollowing someone
+        setting_use_blurhash: Show colorful gradients for hidden media
+        setting_use_pending_items: Slow mode
+        severity: Severity
+        sign_in_token_attempt: Security code
+        type: Import type
+        username: Username
+        username_or_email: Username or Email
+        whole_word: Whole word
+      email_domain_block:
+        with_dns_records: Include MX records and IPs of the domain
+      featured_tag:
+        name: Hashtag
+      interactions:
+        must_be_follower: Block notifications from non-followers
+        must_be_following: Block notifications from people you don't follow
+        must_be_following_dm: Block direct messages from people you don't follow
+      invite:
+        comment: Comment
+      invite_request:
+        text: Why do you want to join?
+      ip_block:
+        comment: Comment
+        ip: IP
+        severities:
+          no_access: Block access
+          sign_up_requires_approval: Limit sign-ups
+        severity: Rule
+      notification_emails:
+        appeal: Someone appeals a moderator decision
+        digest: Send digest e-mails
+        favourite: Someone favorited your post
+        follow: Someone followed you
+        follow_request: Someone requested to follow you
+        mention: Someone mentioned you
+        pending_account: New account needs review
+        reblog: Someone boosted your post
+        report: New report is submitted
+        trending_tag: New trend requires review
+      rule:
+        text: Rule
+      tag:
+        listable: Allow this hashtag to appear in searches and suggestions
+        name: Hashtag
+        trendable: Allow this hashtag to appear under trends
+        usable: Allow posts to use this hashtag
+    'no': 'No'
+    recommended: Recommended
+    required:
+      mark: "*"
+      text: required
+    title:
+      sessions:
+        webauthn: Use one of your security keys to sign in
+    'yes': 'Yes'
