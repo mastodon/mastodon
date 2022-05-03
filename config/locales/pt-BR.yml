@@ -478,7 +478,16 @@ pt-BR:
       unsuppress: Restaurar recomendação de contas
     instances:
       availability:
+        description_html:
+          one: Se a entrega ao domínio falhar <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>de</em> do domínio seja recebida.
+          other: Se a entrega ao domínio falhar em <strong>%{count} dias diferentes</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>de</em> do domínio seja recebida.
+        failure_threshold_reached: Limite de falhas atingido em %{date}.
+        failures_recorded:
+          one: Falha na tentativa em %{count} dia.
+          other: Tentativas falhas em %{count} dias diferentes.
+        no_failures_recorded: Sem falhas no registro.
         title: Disponibilidade
+        warning: A última tentativa de se conectar a este servidor não foi bem sucedida
       back_to_all: Todas
       back_to_warning: Aviso
       by_domain: Domínio
