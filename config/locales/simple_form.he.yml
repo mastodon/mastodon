@@ -67,20 +67,59 @@ he:
         with_dns_records: ייעשה נסיון למצוא את רשומות ה-DNS של דומיין נתון והתוצאות ייחסמו גם הן
       featured_tag:
         name: 'אולי תרצה/י להשתמש באחד מאלה:'
+      form_challenge:
+        current_password: את.ה נכנס. ת לאזור מאובטח
       imports:
         data: קובץ CSV שיוצא משרת מסטודון אחר
+      invite_request:
+        text: זה יעזור לנו בסקירת הבקשה שלך
+      ip_block:
+        comment: רשות. זכור/י מדוע הוספת את הכלל הזה.
+        expires_in: כתובות IP הם משאב מוגבל, לפעמים הם משותפים ולעתים קרובות מחליפים ידיים. לכן, חסימות IP לצמיתות לא מומלצות.
+        ip: נא להכניס כתובת IPv4 או IPv6. ניתן לחסום תחומים שלמים על ידי שימוש בתחביר CIDR. זהירות לא לנעול את עצמכם בחוץ!
+        severities:
+          no_access: חסימת גישה לכל המשאבים
+          sign_up_requires_approval: הרשמות חדשות ידרשו את אישורך
+        severity: נא לבחור מה יקרה לבקשות מכתובת IP זו
+      rule:
+        text: נא לתאר את הכלל או הדרישה למשתמשים משרת זה. על התיאור להיות קצר ובהיר
       sessions:
         otp: 'נא להקליד קוד אימות דו-שלבי ממכשירך או להשתמש באחד מקודי אחזור הגישה שלך:'
     labels:
+      account:
+        fields:
+          name: תווית
+          value: תוכן
+      account_alias:
+        acct: שם משתמש של החשבון הישן
+      account_migration:
+        acct: שם משתמש של החשבון החדש
+      account_warning_preset:
+        text: טקסט קבוע מראש
+        title: כותרת
+      admin_account_action:
+        include_statuses: כלול חצרוצים מדווחים בהודעת הדוא"ל
+        send_email_notification: יידע את המשתמש באמצעות דוא"ל
+        text: התראה בהתאמה אישית
+        type: פעולה
+        types:
+          disable: הקפא
+          none: שלח התרעה
+          sensitive: רגיש
       defaults:
         avatar: תמונת פרופיל
+        bot: זהו חשבון מסוג בוט
+        chosen_languages: סינון שפות
         confirm_new_password: אישור סיסמא חדשה
         confirm_password: אישור סיסמא
+        context: סינון לפי הקשר
         current_password: סיסמא נוכחית
         data: מידע
+        discoverable: הצע חשבון לאחרים
         display_name: שם להצגה
         email: כתובת דוא"ל
         expires_in: תפוגה לאחר
+        fields: נתוני-על של הפרופיל
         header: ראשה
         locale: שפה
         locked: הפוך חשבון לפרטי
