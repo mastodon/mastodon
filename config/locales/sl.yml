@@ -45,9 +45,12 @@ sl:
     unavailable_content_description:
       domain: Strežnik
       reason: Razlog
+      rejecting_media: 'Medijske datoteke s teh strežnikov ne bodo obdelane ali shranjene, nobene ogledne sličice ne bodo prikazane, kar bo zahtevalo ročno klikanje po izvorni datoteki:'
       rejecting_media_title: Filtrirane datoteke
+      silenced: 'Objave s teh strežnikov bodo skrite v javnih časovnicah ter pogovorih in nobena obvestila ne bodo izdelana iz interakcij njihovih uporabnikov, razen če jim sledite:'
       silenced_title: Omejeni strežniki
       suspended_title: Suspendirani strežniki
+    unavailable_content_html: Mastodon vam splošno omogoča ogled vsebin in interakcijo z uporabniki iz vseh drugih strežnikov v fediverzumu. To so izjeme, opravljene na tem strežniku.
     user_count_after:
       one: uporabnik
       two: uporabnika
@@ -221,6 +224,7 @@ sl:
       unconfirmed_email: Nepotrjena e-pošta
       undo_silenced: Razveljavi utišanje
       undo_suspension: Razveljavi suspendiranje
+      unsilenced_msg: Uspešno razveljavljena omejitev računa uporabnika %{username}
       unsubscribe: Odjavi se od naročnine
       unsuspended_msg: Uspešno preklican suspenz računa uporabnika %{username}
       username: Uporabniško ime
@@ -240,6 +244,7 @@ sl:
         create_custom_emoji: Ustvari emodži po meri
         create_domain_allow: Ustvari odobritev domene
         create_domain_block: Ustvari blokado domene
+        create_email_domain_block: Ustvari blokado domene e-pošte
         create_ip_block: Ustvari pravilo IP
         create_unavailable_domain: Ustvari domeno, ki ni na voljo
         demote_user: Ponižaj uporabnika
@@ -247,11 +252,14 @@ sl:
         destroy_custom_emoji: Izbriši emodži po meri
         destroy_domain_allow: Izbriši odobritev domene
         destroy_domain_block: Izbriši blokado domene
+        destroy_email_domain_block: Izbriši blokado domene e-pošte
+        destroy_instance: Očisti domeno
         destroy_ip_block: Izbriši pravilo IP
         destroy_status: Izbriši objavo
         destroy_unavailable_domain: Izbriši domeno, ki ni na voljo
         disable_2fa_user: Onemogoči
         disable_custom_emoji: Onemogoči emodži po meri
+        disable_sign_in_token_auth_user: Onemogoči overjanje z žetonom po e-pošti za uporabnika
         disable_user: Onemogoči uporabnika
         enable_custom_emoji: Omogoči emodži po meri
         enable_sign_in_token_auth_user: Omogoči overjanje z žetonom po e-pošti za uporabnika
@@ -284,13 +292,16 @@ sl:
         create_domain_block_html: "%{name} je blokiral/a domeno %{target}"
         create_email_domain_block_html: "%{name} je dal/a na črni seznam e-pošto domene %{target}"
         create_ip_block_html: "%{name} je ustvaril/a pravilo za IP %{target}"
+        create_unavailable_domain_html: "%{name} je prekinil/a dostavo v domeno %{target}"
         demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
         destroy_announcement_html: "%{name} je izbrisal/a obvestilo %{target}"
         destroy_custom_emoji_html: "%{name} je uničil/a emotikone %{target}"
         destroy_domain_block_html: "%{name} je odblokiral/a domeno %{target}"
         destroy_email_domain_block_html: "%{name} je odblokiral/a e-pošto domene %{target}"
+        destroy_instance_html: "%{name} je očistil/a domeno %{target}"
         destroy_ip_block_html: "%{name} je izbrisal/a pravilo za IP %{target}"
         destroy_status_html: "%{name} je odstranil/a objavo uporabnika %{target}"
+        destroy_unavailable_domain_html: "%{name} je nadaljeval/a dostav v domeno %{target}"
         disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
         disable_user_html: "%{name} je onemogočil/a prijavo za uporabnika %{target}"
@@ -305,6 +316,8 @@ sl:
         silence_account_html: "%{name} je omejil/a račun uporabnika %{target}"
         suspend_account_html: "%{name} je suspendiral/a račun uporabnika %{target}"
         unassigned_report_html: "%{name} je preklical dodelitev prijave uporabnika %{target}"
+        unblock_email_account_html: "%{name} je odblokiral/a e-poštni naslov uporabnika %{target}"
+        unsensitive_account_html: "%{name} je odznačil/a medije računa %{target}'s kot občutljive"
         unsilence_account_html: "%{name} je preklical omejitev računa %{target}"
         unsuspend_account_html: "%{name} je preklical suspenz računa %{target}"
         update_announcement_html: "%{name} je posodobil/a objavo %{target}"
