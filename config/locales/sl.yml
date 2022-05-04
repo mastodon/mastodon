@@ -402,7 +402,17 @@ sl:
       unsuppress: Obnovi sledenje priporočilom
     instances:
       availability:
+        description_html:
+          one: Če dostava v domeno spodleti <strong>%{count} dan</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
+          two: Če dostava v domeno spodleti <strong>%{count} različna dneva</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
+          few: Če dostava v domeno spodleti <strong>%{count} različne dni</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
+          other: Če dostava v domeno spodleti <strong>%{count} različne dni</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
         failure_threshold_reached: Prag neuspelih poskusov dosežen %{date}.
+        failures_recorded:
+          one: Neuspel poskus %{count} različen dan.
+          two: Neuspeli poskusi %{count} različnih dni.
+          few: Neuspeli poskusi %{count} različnih dni.
+          other: Neuspeli poskusi %{count} različnih dni.
         no_failures_recorded: Ni zabeleženih neuspelih poskusov.
         title: Razpoložljivost
       back_to_all: Vse
@@ -641,16 +651,33 @@ sl:
         dashboard:
           tag_languages_dimension: Naj jeziki
           tag_servers_dimension: Naj strežniki
+        listable: Je moč predlagati
+        not_listable: Ne bo predlagano
+        not_trendable: Se ne bo pojavilo med trendi
+        not_usable: Ni mogoče uporabiti
+        peaked_on_and_decaying: Vrh dne %{date}, zdaj v upadu
+        title: Ključniki v trendu
+        trendable: Se lahko pojavi med trendi
+        trending_rank: 'V trendu #%{rank}'
+        usable: Je moč uporabiti
       title: Trendi
+      trending: V porastu
     warning_presets:
       add_new: Dodaj novo
       delete: Izbriši
       edit_preset: Uredi prednastavitev opozoril
+      empty: Zaenkrat še niste določili nobenih opozorilnih prednastavitev.
       title: Upravljaj prednastavitev opozoril
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: brisanje njihovih objav,
+        disable: zamrznitev njihovega računa,
+        mark_statuses_as_sensitive: označitev njihovih objav kot občutljivih,
         none: opozorilo
+        sensitive: označitev njihovega računa kot občutljivega,
+        silence: omejitev njihovega računa,
+        suspend: suspenz njihovega računa,
     new_pending_account:
       body: Podrobnosti o novem računu so navedene spodaj. To aplikacijo lahko odobrite ali zavrnete.
       subject: Nov račun za pregled na %{instance} (%{username})
@@ -658,18 +685,24 @@ sl:
       body: "%{reporter} je prijavil %{target}"
       body_remote: Nekdo iz %{domain} je prijavil %{target}
       subject: 'Nove prijave za %{instance} (#%{id})'
+  aliases:
+    empty: Nimate vzdevkov.
+    remove: Razveži vzdevek
   appearance:
     advanced_web_interface: Napredni spletni vmesnik
     advanced_web_interface_hint: 'Če želite uporabiti celotno širino zaslona, vam napredni spletni vmesnik omogoča, da si nastavite več različnih stolpcev in da si hkrati ogledate toliko informacij, kot želite: domačo stran, obvestila, združeno časovnico, poljubno število seznamov in ključnikov.'
     animations_and_accessibility: Animacije in dostopnost
     confirmation_dialogs: Potrditvena okna
+    discovery: Odkrito
     localization:
       body: Mastodon prevajamo prostovoljci.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Vsakdo lahko prispeva.
     sensitive_content: Občutljiva vsebina
+    toot_layout: Postavitev objave
   application_mailer:
     notification_preferences: Spremenite e-poštne nastavitve
+    salutation: "%{name},"
     settings: 'Spremenite e-poštne nastavitve: %{link}'
     view: 'Pogled:'
     view_profile: Ogled profila
@@ -689,6 +722,9 @@ sl:
     checkbox_agreement_without_rules_html: Strinjam se s <a href="%{terms_path}" target="_blank">pogoji storitve</a>
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
+    description:
+      prefix_invited_by_user: "@%{name} vas vabi, da se pridružite temu strežniku Mastodon!"
+      prefix_sign_up: Še danes se priključite Mastodonu!
     didnt_get_confirmation: Niste prejeli navodil za potrditev?
     dont_have_your_security_key: Ali imate svoj varnostni ključ?
     forgot_password: Ste pozabili svoje geslo?
@@ -771,6 +807,7 @@ sl:
       email_change_html: <a href="%{path}">Svoj e-naslov lahko spremenite</a> brez izbrisa svojega računa
       email_contact_html: Če še vedno ni dostavljeno, lahko za pomoč pošljete e-sporočilo na naslov <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Če niste prejeli potrditvenega e-sporočila, lahko <a href="%{path}">znova zaprosite zanj</a>
+      irreversible: Vašega računa ne boste mogli obnoviti ali ponovno aktivirati
       more_details_html: Za podrobnosti glejte <a href="%{terms_path}">politiko zasebnosti</a>.
       username_available: Vaše uporabniško ime bo znova na voljo
       username_unavailable: Vaše uporabniško ime še vedno ne bo na voljo
@@ -780,13 +817,17 @@ sl:
     explore_mastodon: Razišči %{title}
   disputes:
     strikes:
+      action_taken: Izvedeno dejanje
       appeal: Pritoži se
+      appeal_approved: Pritožba na ukrep je bila uspešna in ukrep ni več veljaven
       appeal_rejected: Pritožba je bila zavržena
       appeal_submitted_at: Pritožba oddana
+      appealed_msg: Vaša pritožba je oddana. Če bo odobrena, boste o tem obveščeni.
       appeals:
         submit: Pošlji pritožbo
       associated_report: Povezana prijava
       created_at: Datum
+      description_html: To so dejanja, izvedena proti vašemu računu ter opozorila, ki so vam jih poslali sodelavci %{instance}.
       recipient: Naslovljeno na
       status: 'Objava #%{id}'
       status_removed: Objava je že odstranjena iz sistema
@@ -817,7 +858,7 @@ sl:
     '500':
       content: Žal nam je, toda na našem koncu je prišlo do napake.
       title: Ta stran ni pravilna
-    '503': The page could not be served due to a temporary server failure.
+    '503': Strani ni mogoče postreči zaradi začasne odpovedi strežnika.
     noscript_html: Če želite uporabljati spletno aplikacijo Mastodon, omogočite JavaScript. Druga možnost je, da za svojo platformo poskusite eno od <a href="%{apps_path}">lastnih aplikacij</a> za Mastodon.
   existing_username_validator:
     not_found: s tem uporabniškim imenom ni bilo mogoče najti lokalnega uporabnika
@@ -930,10 +971,13 @@ sl:
       otp: aplikacija za dvoravenjsko overjanje
       password: geslo
       webauthn: varnostni ključi
+    empty: Zgodovina overjanja ni na voljo
+    successful_sign_in_html: Uspešna prijava z metodo %{method} iz %{ip} (%{browser})
     title: Zgodovina overjanja
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti stanju, ki že vsebuje slike
+      not_ready: Datotek, katerih obdelava ni dokončana, ni mogoče pripeti. Poskusite znova kmalu!
       too_many: Ni možno priložiti več kot 4 datoteke
   migrations:
     acct: username@domain novega računa
@@ -949,10 +993,16 @@ sl:
     incoming_migrations: Selitev iz drugega računa
     past_migrations: Pretekle migracije
     proceed_with_move: Premakni sledilce
+    redirected_msg: Vaš račun se zdaj preusmerja na %{acct}.
+    redirecting_to: Vaš račun se preusmerja na %{acct}.
+    set_redirect: Nastavi preusmeritev
     warning:
+      backreference_required: Novi račun je potrebno najprej prilagoditi, da se bo skliceval nazaj na tega
       before: 'Pred nadaljevanjem previdno preberite naslednje opombe:'
   moderation:
     title: Moderiranje
+  move_handler:
+    copy_account_note_text: 'Ta uporabnik se je preselil iz %{acct}, tukaj so vaše poprejšnje opombe o njem:'
   notification_mailer:
     admin:
       sign_up:
@@ -1020,6 +1070,7 @@ sl:
     enable: Omogoči
     instructions_html: "<strong>Skenirajte to QR-kodo z Google Authenticator ali s podobno aplikacijo TOTP na vašem telefnu</strong>. Od zdaj naprej bo ta aplikacija ustvarjala žetone, ki jih boste morali vnesti ob prijavi."
     manual_instructions: 'Če ne morete skenirati QR-kode in jo morate vnesti ročno, je tu skrivnost v tekstovni obliki:'
+    setup: Vzpostavi
     wrong_code: Vnesena koda je neveljavna! Ali sta čas strežnika in čas naprave pravilna?
   pagination:
     newer: Novejše
@@ -1174,9 +1225,12 @@ sl:
       few: 'vsebuje nedovoljene ključnike: %{tags}'
       other: 'vsebuje nedovoljenih ključnikov: %{tags}'
     edited_at_html: Urejeno %{date}
+    errors:
+      in_reply_not_found: Objava, na katero želite odgovoriti, ne obstaja.
     open_in_web: Odpri na spletu
     over_character_limit: omejitev %{max} znakov je presežena
     pin_errors:
+      direct: Objav, ki so vidne samo omenjenum uporabnikom, ni mogoče pripenjati
       limit: Pripeli ste največje število tutov
       ownership: Trob nekoga drugega ne more biti pripet
       reblog: Spodbuda ne more biti pripeta
