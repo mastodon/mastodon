@@ -760,6 +760,13 @@ sl:
     confirm_username: Vnesite svoje uporabniško ime, da potrdite postopek
     proceed: Izbriši račun
     success_msg: Vaš račun je bil uspešno izbrisan
+    warning:
+      before: 'Pred nadaljevanjem previdno preberite naslednje opombe:'
+      data_removal: Vaše objave in drugi podatki bodo trajno odstranjeni
+      email_change_html: <a href="%{path}">Svoj e-naslov lahko spremenite</a> brez izbrisa svojega računa
+      more_details_html: Za podrobnosti glejte <a href="%{terms_path}">politiko zasebnosti</a>.
+      username_available: Vaše uporabniško ime bo znova na voljo
+      username_unavailable: Vaše uporabniško ime še vedno ne bo na voljo
   directories:
     directory: Imenik profilov
     explanation: Odkrijte uporabnike glede na njihove interese
@@ -776,21 +783,25 @@ sl:
       recipient: Naslovljeno na
       status: 'Objava #%{id}'
       status_removed: Objava je že odstranjena iz sistema
+      title: "%{action} dne %{date}"
       title_actions:
         delete_statuses: Odstranitev objave
         disable: Zamrznitev računa
+        mark_statuses_as_sensitive: Označevanje objav kot občutljivih
         none: Opozorilo
+        sensitive: Označevanj računa kot občutljivega
         silence: Omejitev računa
+        suspend: Suspenz računa
       your_appeal_approved: Vaša pritožba je bila odobrena
       your_appeal_pending: Oddali ste pritožbo
       your_appeal_rejected: Vaša pritožba je bila zavržena
   domain_validator:
     invalid_domain: ni veljavno ime domene
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Zahteva, ki ste jo oddali, je neveljavna ali nepravilno oblikovana.
     '403': Nimate dovoljenja za ogled te strani.
     '404': Iskana stran ne obstaja.
-    '406': This page is not available in the requested format.
+    '406': Ta stran ni na voljo v zahtevani obliki.
     '410': Iskana stran ne obstaja več.
     '422':
       content: Varnostno preverjanje ni uspelo. Ali blokirate piškotke?
@@ -918,6 +929,14 @@ sl:
     acct: username@domain novega računa
     cancel: Prekliči preusmeritev
     cancelled_msg: Preusmeritev je bila uspešno preklicana.
+    errors:
+      already_moved: je isti račun, na katerega ste se že preselili
+      missing_also_known_as: ni vzdevek za ta račun
+      move_to_self: ne more biti trenutni račun
+      not_found: ni mogoče najti
+      on_cooldown: Ste na ohlajanju
+    followers_count: Sledilcev ob času selitve
+    incoming_migrations: Selitev iz drugega računa
     past_migrations: Pretekle migracije
     proceed_with_move: Premakni sledilce
     warning:
@@ -1000,6 +1019,7 @@ sl:
       duration_too_long: je predaleč v prihodnosti
       duration_too_short: je prezgodaj
       expired: Glasovanje se je že zaključilo
+      invalid_choice: Izbrana možnost glasovanja ne obstaja
       over_character_limit: ne more biti daljše od %{max} znakov
       too_few_options: mora imeti več kot en element
       too_many_options: ne more vsebovati več kot %{max} elementov
@@ -1010,6 +1030,7 @@ sl:
   reactions:
     errors:
       limit_reached: Dosežena omejitev različnih reakcij/odzivov
+      unrecognized_emoji: ni prepoznan emotikon
   relationships:
     activity: Dejavnost računa
     dormant: Skrit
@@ -1092,6 +1113,7 @@ sl:
     revoke: Prekliči
     revoke_success: Seja je bila uspešno preklicana
     title: Seje
+    view_authentication_history: Oglejte si zgodovino overjanja za vaš račun
   settings:
     account: Račun
     account_settings: Nastavitve računa
@@ -1166,8 +1188,13 @@ sl:
     ignore_favs: Prezri priljubljene
     keep_direct: Ohrani neposredna sporočila
     keep_direct_hint: Ne izbriše nobenega izmed vaših neposrednih sporočil
+    keep_pinned: Ohrani pripete objave
+    keep_pinned_hint: Ne izbriše nobene od vaših pripetih objav
     keep_polls: Ohrani ankete
     keep_polls_hint: Ne izbriše vaših anket
+    keep_self_bookmark: Ohrani objave z zaznamki
+    keep_self_bookmark_hint: Ne izbriše vaših lastnih objav, če ste jih postavili med zaznamke
+    keep_self_fav: Ohrani priljubljene objave
     keep_self_fav_hint: Ne izbriše vaših lastnih objav, če ste jih postavili med priljubljene
     min_age:
       '1209600': 2 tedna
@@ -1276,6 +1303,7 @@ sl:
     mastodon-light: Mastodon (Svetla)
   time:
     formats:
+      default: "%b %d %Y, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
   two_factor_authentication:
