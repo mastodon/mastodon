@@ -60,6 +60,7 @@ fa:
       error:
         title: خطایی رخ داد
       new:
+        prompt_html: "%{client_name} خواهان اجازه دسترسی به حساب کاربری شماست. <strong>اگر به آن اعتماد ندارید، نباید تاییدش کنید.</strong>"
         review_permissions: بازبینی اجازه‌ها
         title: نیاز به اجازه دادن
       show:
@@ -70,7 +71,12 @@ fa:
       confirmations:
         revoke: آیا مطمئن هستید؟
       index:
+        authorized_at: تایید شده در %{date}
+        description_html: اینها نرم‌افزار هایی هستند که می‌توانند به حساب کاربری شما با استفاده از رابط نرم‌افزاری دسترسی پیدا کنند. اگر نرم‌افزار های در اینجا هستند که نمی‌شناسید، یا نرم‌افزاری که رفتار مشکوک دارد، می‌توانید دسترسی اش را باطل کنید.
+        last_used_at: آخرین استفاده در %{date}
+        never_used: هرگز استفاده نشده
         scopes: اجازه‌ها
+        superapp: داخلی
         title: برنامه‌های مجاز
     errors:
       messages:
@@ -113,6 +119,9 @@ fa:
         write: فقط دسترسی نوشتن
       title:
         accounts: حساب‌ها
+        admin/accounts: مدیریت حساب های کاربری
+        admin/all: تمامی عملکرد های مدیریتی
+        admin/reports: مدیریت بازخورد ها
         all: همه چیز
         blocks: مسدودها
         bookmarks: نشانک‌ها
@@ -120,6 +129,7 @@ fa:
         crypto: رمزگذاری سرتاسری
         favourites: پسندیده‌ها
         filters: پالایه‌ها
+        follow: ارتباطات
         follows: پی‌گرفتگان
         lists: سیاهه‌ها
         media: پیوست‌های رسانه‌ای

@@ -3,6 +3,58 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.5.2] - 2022-05-04
+### Added
+
+- Add warning on direct messages screen in web UI ([Gargron](https://github.com/mastodon/mastodon/pull/18289))
+  - We already had a warning when composing a direct message, it has now been reworded to be more clear
+  - Same warning is now displayed when viewing sent and received direct messages
+- Add ability to set approval-based registration through tootctl ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18248))
+- Add pre-filling of domain from search filter in domain allow/block admin UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18172))
+
+## Changed
+
+- Change name of “Direct” visibility to “Mentioned people only” in web UI ([Gargron](https://github.com/mastodon/mastodon/pull/18146), [Gargron](https://github.com/mastodon/mastodon/pull/18289), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/18291))
+- Change trending posts to only show one post from each account ([Gargron](https://github.com/mastodon/mastodon/pull/18181))
+- Change half-life of trending posts from 6 hours to 2 hours ([Gargron](https://github.com/mastodon/mastodon/pull/18182))
+- Change full-text search feature to also include polls you have voted in ([tribela](https://github.com/mastodon/mastodon/pull/18070))
+- Change Redis from using one connection per process, to using a connection pool ([Gargron](https://github.com/mastodon/mastodon/pull/18135), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/18160), [Gargron](https://github.com/mastodon/mastodon/pull/18171))
+  - Different threads no longer have to wait on a mutex over a single connection
+  - However, this does increase the number of Redis connections by a fair amount
+  - We are planning to optimize Redis use so that the pool can be made smaller in the future
+
+## Removed
+
+- Remove IP matching from e-mail domain blocks ([Gargron](https://github.com/mastodon/mastodon/pull/18190))
+  - The IPs of the blocked e-mail domain or its MX records are no longer checked
+  - Previously it was too easy to block e-mail providers by mistake
+  
+## Fixed
+
+- Fix compatibility with Friendica's pinned posts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18254), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/18260))
+- Fix error when looking up handle with surrounding spaces in REST API ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18225))
+- Fix double render error when authorizing interaction ([Gargron](https://github.com/mastodon/mastodon/pull/18203))
+- Fix error when a post references an invalid media attachment ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18211))
+- Fix error when trying to revoke OAuth token without supplying a token ([Gargron](https://github.com/mastodon/mastodon/pull/18205))
+- Fix error caused by missing subject in Webfinger response ([Gargron](https://github.com/mastodon/mastodon/pull/18204))
+- Fix error on attempting to delete an account moderation note ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18196))
+- Fix light-mode emoji borders in web UI ([Gaelan](https://github.com/mastodon/mastodon/pull/18131))
+- Fix being able to scroll away from the loading bar in web UI ([Gargron](https://github.com/mastodon/mastodon/pull/18170))
+- Fix error when a bookmark or favorite has been reported and deleted ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18174))
+- Fix being offered empty “Server rules violation” report option in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18165))
+- Fix temporary network errors preventing from authorizing interactions with remote accounts ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18161))
+- Fix incorrect link in "new trending tags" email ([cdzombak](https://github.com/mastodon/mastodon/pull/18156))
+- Fix missing indexes on some foreign keys ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18157))
+- Fix n+1 query on feed merge and populate operations ([Gargron](https://github.com/mastodon/mastodon/pull/18111))
+- Fix feed unmerge worker being exceptionally slow in some conditions ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18110))
+- Fix PeerTube videos appearing with an erroneous “Edited at” marker ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18100))
+- Fix instance actor being created incorrectly when running through migrations ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18109))
+- Fix web push notifications containing HTML entities ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18071))
+- Fix inconsistent parsing of `TRUSTED_PROXY_IP` ([ykzts](https://github.com/mastodon/mastodon/pull/18051))
+- Fix error when fetching pinned posts ([tribela](https://github.com/mastodon/mastodon/pull/18030))
+- Fix wrong optimization in feed populate operation ([dogelover911](https://github.com/mastodon/mastodon/pull/18009))
+- Fix error in alias settings page ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18004))
+
 ## [3.5.1] - 2022-04-08
 ### Added
 
