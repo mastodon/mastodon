@@ -1,19 +1,28 @@
 sl:
   simple_form:
     hints:
+      account_alias:
+        acct: Določite uporabniškoime@domena računa, od katerega se želite preseliti
+      account_migration:
+        acct: Določite uporabniškoime@domena računa, na katerega se želite preseliti
       account_warning_preset:
         text: Lahko uporabite skladnjo tuta, kot so URL-ji, ključniki in omembe
         title: Neobvezno. Ni vidno prejemniku
       admin_account_action:
+        include_statuses: Uporabnik vidi, katere objave so povzročile dejanje moderiranja ali opozorilo
         send_email_notification: Uporabnik bo prejel razlago, kaj se je zgodilo z njihovim računom
         text_html: Neobvezno. Lahko uporabite skladnjo tuta. <a href="%{path}">Prednastavite opozorila</a>, da prihranite čas
         type_html: Izberite, kaj boste storili z <strong>%{acct}</strong>
+        types:
+          disable: Preprečite uporabniku, da uporablja svoj račun, vendar ne izbrišite ali skrijte njegove vsebine.
+          none: Uporabite to, da pošljete opozorilo uporabnik, ne da bi sprožili kakšno drugo dejanje.
         warning_preset_id: Neobvezno. Še vedno lahko dodate besedilo po meri na konec prednastavitve
       defaults:
         autofollow: Osebe, ki se prijavijo prek povabila, vas bodo samodejno sledile
         avatar: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         bot: Ta račun v glavnem opravlja samodejna dejanja in morda ni pod nadzorom
         context: En ali več kontekstov, kjer naj se uporabi filter
+        current_password: Iz varnostnih razlogov vnesite geslo trenutnega računa
         current_username: Za potrditev vnesite uporabniško ime trenutnega računa
         digest: Pošlje se le po dolgem obdobju nedejavnosti in samo, če ste prejeli osebna sporočila v vaši odsotnosti
         email: Poslali vam bomo potrditveno e-pošto
@@ -42,6 +51,7 @@ sl:
         domain: Ta domena bo lahko prejela podatke s tega strežnika, dohodni podatki z nje pa bodo obdelani in shranjeni
       email_domain_block:
         domain: To je lahko ime domene, ki se pokaže v e-poštnem naslovu, ali zapis MX, ki ga uporablja. Ob prijavi bo preverjeno.
+        with_dns_records: Poskus razrešitve zapisov DNS danih domen bo izveden in rezultati bodo prav tako blokirani
       featured_tag:
         name: 'Morda boste želeli uporabiti eno od teh:'
       form_challenge:
@@ -52,12 +62,19 @@ sl:
         text: To nam bo pomagalo pregledati vašo prijavo
       ip_block:
         comment: Neobvezno. Spomnite se, zakaj ste dodali to pravilo.
+        expires_in: Naslovi IP so končno imejen vir, včasij si jih delimo in pogosto menjajo rabo. Zato nedoločeni bloki IP niso priporočeni.
+        ip: Vnesite naslov IPv4 oz. IPv6. S skladnjo CIDR lahko blokirate celotne obsege. Pazite, da se ne zaklenete ven!
         severities:
           no_access: Blokiraj dostop do vseh virov
           sign_up_requires_approval: Za nove registracije bo potrebna vaša odobritev
         severity: Izberite, kaj se bo zgodilo z zahtevami iz tega IP-naslova
+      rule:
+        text: Opišite pravilo ali zahtevo za uporabnike na tem strežniku. Poskusite biti kratki in jasni
       sessions:
         otp: 'Vnesite dvomestno kodo, ki je ustvarjena z aplikacijo na telefonu, ali uporabite eno od vaših obnovitvenih kod:'
+        webauthn: Če gre za ključek USB, ga ne pozabite vstaviti in, če je potrebno, tapniti.
+      tag:
+        name: Spremenite lahko le npr. velikost črk (velike/male), da je bolj berljivo
       user:
         chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazani samo trobi v izbranih jezikih
     labels:
