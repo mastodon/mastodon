@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 import { toShortNumber, pluralReady, DECIMAL_UNITS } from '../utils/numbers';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
@@ -114,4 +114,4 @@ ShortNumberCounter.propTypes = {
   value: PropTypes.arrayOf(PropTypes.number),
 };
 
-export default React.memo(ShortNumber);
+export default memo(ShortNumber);

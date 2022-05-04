@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import { PureComponent } from 'react';
+import { createPortal } from 'react-dom';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
@@ -20,7 +20,7 @@ if (initialState) {
   store.dispatch(hydrateStore(initialState));
 }
 
-export default class TimelineContainer extends React.PureComponent {
+export default class TimelineContainer extends PureComponent {
 
   static propTypes = {
     locale: PropTypes.string.isRequired,
@@ -46,14 +46,14 @@ export default class TimelineContainer extends React.PureComponent {
     return (
       <IntlProvider locale={locale} messages={messages}>
         <Provider store={store}>
-          <Fragment>
+          <>
             {timeline}
 
-            {ReactDOM.createPortal(
+            {createPortal(
               <ModalContainer />,
               document.getElementById('modal-container'),
             )}
-          </Fragment>
+          </>
         </Provider>
       </IntlProvider>
     );

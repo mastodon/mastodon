@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 
 export default @connect(mapStateToProps)
 @injectIntl
-class Explore extends React.PureComponent {
+class Explore extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -67,7 +67,7 @@ class Explore extends React.PureComponent {
           {isSearching ? (
             <SearchResults />
           ) : (
-            <React.Fragment>
+            <>
               <div className='account__section-headline'>
                 <NavLink exact to='/explore'><FormattedMessage id='explore.trending_statuses' defaultMessage='Posts' /></NavLink>
                 <NavLink exact to='/explore/tags'><FormattedMessage id='explore.trending_tags' defaultMessage='Hashtags' /></NavLink>
@@ -81,7 +81,7 @@ class Explore extends React.PureComponent {
                 <Route path='/explore/suggestions' component={Suggestions} />
                 <Route exact path={['/explore', '/explore/posts', '/search']} component={Statuses} componentParams={{ multiColumn }} />
               </Switch>
-            </React.Fragment>
+            </>
           )}
         </div>
       </Column>

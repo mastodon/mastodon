@@ -1,9 +1,9 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ShortNumber from 'mastodon/components/short_number';
 import { FormattedMessage } from 'react-intl';
 
-export default class AutosuggestHashtag extends React.PureComponent {
+export default class AutosuggestHashtag extends PureComponent {
 
   static propTypes = {
     tag: PropTypes.shape({

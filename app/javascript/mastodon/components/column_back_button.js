@@ -1,10 +1,10 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import Icon from 'mastodon/components/icon';
 import { createPortal } from 'react-dom';
 
-export default class ColumnBackButton extends React.PureComponent {
+export default class ColumnBackButton extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

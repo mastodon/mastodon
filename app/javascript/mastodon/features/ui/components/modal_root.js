@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 import Base from 'mastodon/components/modal_root';
@@ -39,7 +39,7 @@ const MODAL_COMPONENTS = {
   'COMPARE_HISTORY': CompareHistoryModal,
 };
 
-export default class ModalRoot extends React.PureComponent {
+export default class ModalRoot extends PureComponent {
 
   static propTypes = {
     type: PropTypes.string,

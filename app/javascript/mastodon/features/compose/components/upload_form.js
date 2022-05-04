@@ -1,4 +1,3 @@
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import UploadProgressContainer from '../containers/upload_progress_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';

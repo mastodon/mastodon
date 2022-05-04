@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -84,7 +83,7 @@ class FollowRecommendations extends ImmutablePureComponent {
           </div>
 
           {!isLoading && (
-            <React.Fragment>
+            <>
               <div className='column-list'>
                 {suggestions.size > 0 ? suggestions.map(suggestion => (
                   <Account key={suggestion.get('account')} id={suggestion.get('account')} />
@@ -99,7 +98,7 @@ class FollowRecommendations extends ImmutablePureComponent {
                 <img src={imageGreeting} alt='' className='column-actions__background' />
                 <Button onClick={this.handleDone}><FormattedMessage id='follow_recommendations.done' defaultMessage='Done' /></Button>
               </div>
-            </React.Fragment>
+            </>
           )}
         </div>
       </Column>

@@ -1,9 +1,10 @@
 import './public-path';
+
 import escapeTextContentForBrowser from 'escape-html';
-import loadPolyfills from '../mastodon/load_polyfills';
-import ready from '../mastodon/ready';
-import { start } from '../mastodon/common';
-import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
+import loadPolyfills from 'mastodon/load_polyfills';
+import ready from 'mastodon/ready';
+import { start } from 'mastodon/common';
+import loadKeyboardExtensions from 'mastodon/load_keyboard_extensions';
 import 'cocoon-js-vanilla';
 
 start();
@@ -25,16 +26,16 @@ window.addEventListener('message', e => {
 });
 
 function main() {
-  const IntlMessageFormat = require('intl-messageformat').default;
-  const { timeAgoString } = require('../mastodon/components/relative_timestamp');
-  const { delegate } = require('@rails/ujs');
-  const emojify = require('../mastodon/features/emoji/emoji').default;
-  const { getLocale } = require('../mastodon/locales');
+  const { delegate }                   = require('@rails/ujs');
+  const { createBrowserHistory }       = require('history');
+  const { default: IntlMessageFormat } = require('intl-messageformat');
+  const { createRoot }                 = require('react-dom/client');
+  const Rellax                         = require('rellax');
+  const { timeAgoString }              = require('mastodon/components/relative_timestamp');
+  const { default: emojify }           = require('mastodon/features/emoji/emoji');
+  const { getLocale }                  = require('mastodon/locales');
+
   const { messages } = getLocale();
-  const React = require('react');
-  const ReactDOM = require('react-dom');
-  const Rellax = require('rellax');
-  const { createBrowserHistory } = require('history');
 
   const scrollToDetailedStatus = () => {
     const history = createBrowserHistory();
@@ -99,8 +100,9 @@ function main() {
           });
 
           const content = document.createElement('div');
+          const root    = createRoot(content);
 
-          ReactDOM.render(<MediaContainer locale={locale} components={reactComponents} />, content);
+          root.render(<MediaContainer locale={locale} components={reactComponents} />);
           document.body.appendChild(content);
           scrollToDetailedStatus();
         })

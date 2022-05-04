@@ -1,4 +1,3 @@
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -282,10 +281,10 @@ class Header extends ImmutablePureComponent {
             {!suspended && (
               <div className='account__header__tabs__buttons'>
                 {!hidden && (
-                  <React.Fragment>
+                  <>
                     {actionBtn}
                     {bellBtn}
-                  </React.Fragment>
+                  </>
                 )}
 
                 <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />

@@ -1,4 +1,3 @@
-import React from 'react';
 import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
 import ImmutablePropTypes from 'react-immutable-proptypes';

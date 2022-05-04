@@ -1,10 +1,10 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { FormattedMessage } from 'react-intl';
 
-export default class UploadArea extends React.PureComponent {
+export default class UploadArea extends PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,

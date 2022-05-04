@@ -1,4 +1,3 @@
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

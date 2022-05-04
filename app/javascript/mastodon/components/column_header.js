@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
@@ -13,7 +13,7 @@ const messages = defineMessages({
 });
 
 export default @injectIntl
-class ColumnHeader extends React.PureComponent {
+class ColumnHeader extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

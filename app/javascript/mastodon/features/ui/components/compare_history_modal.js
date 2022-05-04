@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default @connect(mapStateToProps, mapDispatchToProps)
-class CompareHistoryModal extends React.PureComponent {
+class CompareHistoryModal extends PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,
@@ -64,10 +64,10 @@ class CompareHistoryModal extends React.PureComponent {
         <div className='compare-history-modal__container'>
           <div className='status__content'>
             {currentVersion.get('spoiler_text').length > 0 && (
-              <React.Fragment>
+              <>
                 <div className='translate' dangerouslySetInnerHTML={spoilerContent} />
                 <hr />
-              </React.Fragment>
+              </>
             )}
 
             <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} />

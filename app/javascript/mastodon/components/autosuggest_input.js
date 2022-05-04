@@ -1,4 +1,3 @@
-import React from 'react';
 import AutosuggestAccountContainer from '../features/compose/containers/autosuggest_account_container';
 import AutosuggestEmoji from './autosuggest_emoji';
 import AutosuggestHashtag from './autosuggest_hashtag';
@@ -152,7 +151,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     this.input.focus();
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.suggestions !== this.props.suggestions && nextProps.suggestions.size > 0 && this.state.suggestionsHidden && this.state.focused) {
       this.setState({ suggestionsHidden: false });
     }

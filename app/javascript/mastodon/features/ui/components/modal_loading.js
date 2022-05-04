@@ -1,5 +1,3 @@
-import React from 'react';
-
 import LoadingIndicator from '../../../components/loading_indicator';
 
 // Keep the markup in sync with <BundleModalError />

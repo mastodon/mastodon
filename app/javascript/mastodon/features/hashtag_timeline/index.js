@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
@@ -16,7 +16,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 export default @connect(mapStateToProps)
-class HashtagTimeline extends React.PureComponent {
+class HashtagTimeline extends PureComponent {
 
   disconnects = [];
 
@@ -103,7 +103,7 @@ class HashtagTimeline extends React.PureComponent {
     dispatch(expandHashtagTimeline(id, { tags, local }));
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     const { dispatch, params } = this.props;
     const { id, tags, local } = nextProps.params;
 

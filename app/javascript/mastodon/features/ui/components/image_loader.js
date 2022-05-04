@@ -1,10 +1,10 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { LoadingBar } from 'react-redux-loading-bar';
 import ZoomableImage from './zoomable_image';
 
-export default class ImageLoader extends React.PureComponent {
+export default class ImageLoader extends PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
@@ -43,7 +43,7 @@ export default class ImageLoader extends React.PureComponent {
     this.loadImage(this.props);
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (this.props.src !== nextProps.src) {
       this.loadImage(nextProps);
     }

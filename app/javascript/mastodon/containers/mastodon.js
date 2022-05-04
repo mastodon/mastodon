@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import configureStore from '../store/configureStore';
@@ -28,7 +28,7 @@ const createIdentityContext = state => ({
   accessToken: state.meta.access_token,
 });
 
-export default class Mastodon extends React.PureComponent {
+export default class Mastodon extends PureComponent {
 
   static propTypes = {
     locale: PropTypes.string.isRequired,

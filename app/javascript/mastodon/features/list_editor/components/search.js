@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl } from 'react-intl';
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
-class Search extends React.PureComponent {
+class Search extends PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,

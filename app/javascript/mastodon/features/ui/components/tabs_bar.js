@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, withRouter } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
@@ -26,7 +26,7 @@ export function getLink (index) {
 
 export default @injectIntl
 @withRouter
-class TabsBar extends React.PureComponent {
+class TabsBar extends PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -75,7 +75,7 @@ class TabsBar extends React.PureComponent {
     return (
       <div className='tabs-bar__wrapper'>
         <nav className='tabs-bar' ref={this.setRef}>
-          {links.map(link => React.cloneElement(link, { key: link.props.to, onClick: this.handleClick, 'aria-label': formatMessage({ id: link.props['data-preview-title-id'] }) }))}
+          {links.map(link => cloneElement(link, { key: link.props.to, onClick: this.handleClick, 'aria-label': formatMessage({ id: link.props['data-preview-title-id'] }) }))}
         </nav>
 
         <div id='tabs-bar__portal' />

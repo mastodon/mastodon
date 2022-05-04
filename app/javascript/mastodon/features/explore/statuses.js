@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusList from 'mastodon/components/status_list';
@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
 });
 
 export default @connect(mapStateToProps)
-class Statuses extends React.PureComponent {
+class Statuses extends PureComponent {
 
   static propTypes = {
     statusIds: ImmutablePropTypes.list,

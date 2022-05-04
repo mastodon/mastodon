@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -69,7 +69,7 @@ const removeExtraLineBreaks = str => str.replace(/\n\n/g, '******')
   .replace(/\n/g, ' ')
   .replace(/\*\*\*\*\*\*/g, '\n\n');
 
-class ImageLoader extends React.PureComponent {
+class ImageLoader extends PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
@@ -317,7 +317,7 @@ class FocalPointModal extends ImmutablePureComponent {
             {focals && <p><FormattedMessage id='upload_modal.hint' defaultMessage='Click or drag the circle on the preview to choose the focal point which will always be in view on all thumbnails.' /></p>}
 
             {thumbnailable && (
-              <React.Fragment>
+              <>
                 <label className='setting-text-label' htmlFor='upload-modal__thumbnail'><FormattedMessage id='upload_form.thumbnail' defaultMessage='Change thumbnail' /></label>
 
                 <Button disabled={isUploadingThumbnail} text={intl.formatMessage(messages.chooseImage)} onClick={this.handleFileInputClick} />
@@ -337,7 +337,7 @@ class FocalPointModal extends ImmutablePureComponent {
                 </label>
 
                 <hr className='setting-divider' />
-              </React.Fragment>
+              </>
             )}
 
             <label className='setting-text-label' htmlFor='upload-modal__description'>

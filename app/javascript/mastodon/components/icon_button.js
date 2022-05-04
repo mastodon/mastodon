@@ -1,10 +1,10 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import AnimatedNumber from 'mastodon/components/animated_number';
 
-export default class IconButton extends React.PureComponent {
+export default class IconButton extends PureComponent {
 
   static propTypes = {
     className: PropTypes.string,
@@ -44,7 +44,7 @@ export default class IconButton extends React.PureComponent {
     deactivate: false,
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!nextProps.animate) return;
 
     if (this.props.active && !nextProps.active) {
@@ -126,9 +126,9 @@ export default class IconButton extends React.PureComponent {
     }
 
     let contents = (
-      <React.Fragment>
+      <>
         <Icon id={icon} fixedWidth aria-hidden='true' /> {typeof counter !== 'undefined' && <span className='icon-button__counter'><AnimatedNumber value={counter} obfuscate={obfuscateCount} /></span>}
-      </React.Fragment>
+      </>
     );
 
     if (href) {

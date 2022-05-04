@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import Icon from 'mastodon/components/icon';
 import Button from 'mastodon/components/button';
 import IconButton from 'mastodon/components/icon_button';
@@ -14,7 +14,7 @@ const messages = defineMessages({
 
 export default @connect()
 @injectIntl
-class NotificationsPermissionBanner extends React.PureComponent {
+class NotificationsPermissionBanner extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

@@ -1,4 +1,3 @@
-import React from 'react';
 import Column from '../ui/components/column';
 import ColumnLink from '../ui/components/column_link';
 import ColumnSubheading from '../ui/components/column_subheading';

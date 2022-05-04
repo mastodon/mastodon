@@ -1,7 +1,7 @@
 // @ts-check
 
 import { decode } from 'blurhash';
-import React, { useRef, useEffect } from 'react';
+import { memo, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 /**
@@ -62,4 +62,4 @@ Blurhash.propTypes = {
   dummy: PropTypes.bool,
 };
 
-export default React.memo(Blurhash);
+export default memo(Blurhash);

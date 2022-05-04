@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'mastodon/components/icon';
 import { removePictureInPicture } from 'mastodon/actions/picture_in_picture';
@@ -7,7 +7,7 @@ import { debounce } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 
 export default @connect()
-class PictureInPicturePlaceholder extends React.PureComponent {
+class PictureInPicturePlaceholder extends PureComponent {
 
   static propTypes = {
     width: PropTypes.number,

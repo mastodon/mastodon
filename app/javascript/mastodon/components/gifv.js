@@ -1,7 +1,7 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export default class GIFV extends React.PureComponent {
+export default class GIFV extends PureComponent {
 
   static propTypes = {
     src: PropTypes.string.isRequired,
@@ -19,7 +19,7 @@ export default class GIFV extends React.PureComponent {
     this.setState({ loading: false });
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.src !== this.props.src) {
       this.setState({ loading: true });
     }

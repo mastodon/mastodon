@@ -1,9 +1,9 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import Icon from 'mastodon/components/icon';
 
-export default class ClearColumnButton extends React.PureComponent {
+export default class ClearColumnButton extends PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired,

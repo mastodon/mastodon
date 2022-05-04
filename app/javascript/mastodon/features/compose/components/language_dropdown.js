@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import TextIconButton from './text_icon_button';
@@ -34,7 +34,7 @@ const icons = {
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
-class LanguageDropdownMenu extends React.PureComponent {
+class LanguageDropdownMenu extends PureComponent {
 
   static propTypes = {
     style: PropTypes.object,
@@ -257,7 +257,7 @@ class LanguageDropdownMenu extends React.PureComponent {
 }
 
 export default @injectIntl
-class LanguageDropdown extends React.PureComponent {
+class LanguageDropdown extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string,

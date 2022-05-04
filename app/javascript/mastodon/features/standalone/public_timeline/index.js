@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -20,7 +20,7 @@ const mapStateToProps = (state, { local }) => {
 };
 
 export default @connect(mapStateToProps)
-class PublicTimeline extends React.PureComponent {
+class PublicTimeline extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

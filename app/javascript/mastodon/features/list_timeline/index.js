@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -32,7 +32,7 @@ const mapStateToProps = (state, props) => ({
 
 export default @connect(mapStateToProps)
 @injectIntl
-class ListTimeline extends React.PureComponent {
+class ListTimeline extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -78,7 +78,7 @@ class ListTimeline extends React.PureComponent {
     this.disconnect = dispatch(connectListStream(id));
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     const { dispatch } = this.props;
     const { id } = nextProps.params;
 

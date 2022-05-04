@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { makeGetAccount } from '../../../selectors';
 import ImmutablePureComponent from 'react-immutable-pure-component';

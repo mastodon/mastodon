@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
@@ -7,7 +7,7 @@ import GrantPermissionButton from './grant_permission_button';
 import SettingToggle from './setting_toggle';
 import { isStaff } from 'mastodon/initial_state';
 
-export default class ColumnSettings extends React.PureComponent {
+export default class ColumnSettings extends PureComponent {
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,

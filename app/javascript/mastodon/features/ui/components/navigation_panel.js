@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import Icon from 'mastodon/components/icon';

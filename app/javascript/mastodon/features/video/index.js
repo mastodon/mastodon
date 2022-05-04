@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { is } from 'immutable';
@@ -95,7 +95,7 @@ export const fileNameFromURL = str => {
 };
 
 export default @injectIntl
-class Video extends React.PureComponent {
+class Video extends PureComponent {
 
   static propTypes = {
     preview: PropTypes.string,
@@ -391,7 +391,7 @@ class Video extends React.PureComponent {
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!is(nextProps.visible, this.props.visible) && nextProps.visible !== undefined) {
       this.setState({ revealed: nextProps.visible });
     }

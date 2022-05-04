@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
@@ -10,7 +10,7 @@ const messages = defineMessages({
   placeholder: { id: 'account_note.placeholder', defaultMessage: 'Click to add a note' },
 });
 
-class InlineAlert extends React.PureComponent {
+class InlineAlert extends PureComponent {
 
   static propTypes = {
     show: PropTypes.bool,
@@ -22,7 +22,7 @@ class InlineAlert extends React.PureComponent {
 
   static TRANSITION_DELAY = 200;
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (!this.props.show && nextProps.show) {
       this.setState({ mountMessage: true });
     } else if (this.props.show && !nextProps.show) {
@@ -59,11 +59,11 @@ class AccountNote extends ImmutablePureComponent {
     saved: false,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this._reset();
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     const accountWillChange = !is(this.props.account, nextProps.account);
     const newState = {};
 

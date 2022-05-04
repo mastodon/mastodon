@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { blockDomain, unblockDomain } from '../actions/domain_blocks';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';

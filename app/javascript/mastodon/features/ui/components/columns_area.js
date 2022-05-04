@@ -1,4 +1,4 @@
-import React from 'react';
+import { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -78,7 +78,7 @@ class ColumnsArea extends ImmutablePureComponent {
     renderComposePanel: !(this.mediaQuery && this.mediaQuery.matches),
   }
 
-  componentWillReceiveProps() {
+  UNSAFE_componentWillReceiveProps() {
     if (typeof this.pendingIndex !== 'number' && this.lastIndex !== getIndex(this.context.router.history.location.pathname)) {
       this.setState({ shouldAnimate: false });
     }
@@ -104,7 +104,7 @@ class ColumnsArea extends ImmutablePureComponent {
     this.setState({ shouldAnimate: true });
   }
 
-  componentWillUpdate(nextProps) {
+  UNSAFE_componentWillUpdate(nextProps) {
     if (this.props.singleColumn !== nextProps.singleColumn && nextProps.singleColumn) {
       this.node.removeEventListener('wheel', this.handleWheel);
     }
@@ -191,7 +191,7 @@ class ColumnsArea extends ImmutablePureComponent {
     const icon = link.props['data-preview-icon'];
 
     const view = (index === columnIndex) ?
-      React.cloneElement(this.props.children) :
+      cloneElement(this.props.children) :
       <ColumnLoading title={title} icon={icon} />;
 
     return (
@@ -263,7 +263,7 @@ class ColumnsArea extends ImmutablePureComponent {
           );
         })}
 
-        {React.Children.map(children, child => React.cloneElement(child, { multiColumn: true }))}
+        {Children.map(children, child => cloneElement(child, { multiColumn: true }))}
       </div>
     );
   }

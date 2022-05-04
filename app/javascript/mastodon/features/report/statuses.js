@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ const mapStateToProps = (state, { accountId }) => ({
 });
 
 export default @connect(mapStateToProps)
-class Statuses extends React.PureComponent {
+class Statuses extends PureComponent {
 
   static propTypes = {
     onNextStep: PropTypes.func.isRequired,
@@ -34,7 +34,7 @@ class Statuses extends React.PureComponent {
     const { availableStatusIds, selectedStatusIds, onToggle, isLoading } = this.props;
 
     return (
-      <React.Fragment>
+      <>
         <h3 className='report-dialog-modal__title'><FormattedMessage id='report.statuses.title' defaultMessage='Are there any posts that back up this report?' /></h3>
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.statuses.subtitle' defaultMessage='Select all that apply' /></p>
 
@@ -54,7 +54,7 @@ class Statuses extends React.PureComponent {
         <div className='report-dialog-modal__actions'>
           <Button onClick={this.handleNextClick}><FormattedMessage id='report.next' defaultMessage='Next' /></Button>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
@@ -10,7 +10,7 @@ import { autoPlayGif } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
-export default class StatusContent extends React.PureComponent {
+export default class StatusContent extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,

@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 });
 
 export default @connect(mapStateToProps)
-class Tags extends React.PureComponent {
+class Tags extends PureComponent {
 
   static propTypes = {
     hashtags: ImmutablePropTypes.list,

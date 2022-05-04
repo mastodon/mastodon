@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
@@ -6,7 +6,7 @@ import { getLocale } from '../locales';
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
 
-export default class AdminComponent extends React.PureComponent {
+export default class AdminComponent extends PureComponent {
 
   static propTypes = {
     locale: PropTypes.string.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { injectIntl, defineMessages } from 'react-intl';
 import PropTypes from 'prop-types';
 
@@ -122,7 +122,7 @@ const timeRemainingString = (intl, date, now, timeGiven = true) => {
 };
 
 export default @injectIntl
-class RelativeTimestamp extends React.Component {
+class RelativeTimestamp extends Component {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
@@ -149,7 +149,7 @@ class RelativeTimestamp extends React.Component {
       this.state.now !== nextState.now;
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (this.props.timestamp !== nextProps.timestamp) {
       this.setState({ now: this.props.intl.now() });
     }
@@ -159,7 +159,7 @@ class RelativeTimestamp extends React.Component {
     this._scheduleNextUpdate(this.props, this.state);
   }
 
-  componentWillUpdate (nextProps, nextState) {
+  UNSAFE_componentWillUpdate (nextProps, nextState) {
     this._scheduleNextUpdate(nextProps, nextState);
   }
 

@@ -1,8 +1,8 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default class RadioButton extends React.PureComponent {
+export default class RadioButton extends PureComponent {
 
   static propTypes = {
     value: PropTypes.string.isRequired,

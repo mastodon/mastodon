@@ -1,4 +1,3 @@
-import React from 'react';
 import Column from '../ui/components/column';
 import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';

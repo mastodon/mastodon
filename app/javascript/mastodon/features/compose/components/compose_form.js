@@ -1,4 +1,3 @@
-import React from 'react';
 import CharacterCounter from './character_counter';
 import Button from '../../../components/button';
 import ImmutablePropTypes from 'react-immutable-proptypes';

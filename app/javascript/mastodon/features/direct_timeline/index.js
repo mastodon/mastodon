@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Column from '../../components/column';
@@ -15,7 +15,7 @@ const messages = defineMessages({
 
 export default @connect()
 @injectIntl
-class DirectTimeline extends React.PureComponent {
+class DirectTimeline extends PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

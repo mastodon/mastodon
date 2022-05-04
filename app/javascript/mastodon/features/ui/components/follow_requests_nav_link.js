@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
 
 export default @withRouter
 @connect(mapStateToProps)
-class FollowRequestsNavLink extends React.Component {
+class FollowRequestsNavLink extends Component {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,

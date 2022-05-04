@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
@@ -38,7 +38,7 @@ const mapDispatchToProps = dispatch => {
 
 export default @connect(makeMapStateToProps, mapDispatchToProps)
 @injectIntl
-class BlockModal extends React.PureComponent {
+class BlockModal extends PureComponent {
 
   static propTypes = {
     account: PropTypes.object.isRequired,

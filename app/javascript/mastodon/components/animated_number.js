@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedNumber } from 'react-intl';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
@@ -15,7 +15,7 @@ const obfuscatedCount = count => {
   }
 };
 
-export default class AnimatedNumber extends React.PureComponent {
+export default class AnimatedNumber extends PureComponent {
 
   static propTypes = {
     value: PropTypes.number.isRequired,
@@ -26,7 +26,7 @@ export default class AnimatedNumber extends React.PureComponent {
     direction: 1,
   };
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.value > this.props.value) {
       this.setState({ direction: 1 });
     } else if (nextProps.value < this.props.value) {

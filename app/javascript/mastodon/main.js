@@ -1,11 +1,10 @@
-import * as registerPushNotifications from './actions/push_notifications';
-import { setupBrowserNotifications } from './actions/notifications';
-import { default as Mastodon, store } from './containers/mastodon';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ready from './ready';
+import { createRoot } from 'react-dom/client';
+import * as registerPushNotifications from 'mastodon/actions/push_notifications';
+import { setupBrowserNotifications } from 'mastodon/actions/notifications';
+import { default as Mastodon, store } from 'mastodon/containers/mastodon';
+import ready from 'mastodon/ready';
 
-const perf = require('./performance');
+const perf = require('mastodon/performance');
 
 function main() {
   perf.start('main()');
@@ -20,9 +19,10 @@ function main() {
 
   ready(() => {
     const mountNode = document.getElementById('mastodon');
-    const props = JSON.parse(mountNode.getAttribute('data-props'));
+    const root      = createRoot(mountNode);
+    const props     = JSON.parse(mountNode.getAttribute('data-props'));
 
-    ReactDOM.render(<Mastodon {...props} />, mountNode);
+    root.render(<Mastodon {...props} />);
     store.dispatch(setupBrowserNotifications());
     if (process.env.NODE_ENV === 'production') {
       // avoid offline in dev mode because it's harder to debug

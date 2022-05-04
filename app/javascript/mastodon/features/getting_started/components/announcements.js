@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ReactSwipeableViews from 'react-swipeable-views';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -149,7 +149,7 @@ class Content extends ImmutablePureComponent {
 
 }
 
-class Emoji extends React.PureComponent {
+class Emoji extends PureComponent {
 
   static propTypes = {
     emoji: PropTypes.string.isRequired,

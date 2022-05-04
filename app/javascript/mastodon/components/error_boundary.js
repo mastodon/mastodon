@@ -1,10 +1,10 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { version, source_url } from 'mastodon/initial_state';
 import StackTrace from 'stacktrace-js';
 
-export default class ErrorBoundary extends React.PureComponent {
+export default class ErrorBoundary extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node,

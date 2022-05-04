@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Overlay from 'react-overlays/lib/Overlay';
@@ -11,7 +11,7 @@ const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
 });
 
-class SearchPopout extends React.PureComponent {
+class SearchPopout extends PureComponent {
 
   static propTypes = {
     style: PropTypes.object,
@@ -45,7 +45,7 @@ class SearchPopout extends React.PureComponent {
 }
 
 export default @injectIntl
-class Search extends React.PureComponent {
+class Search extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,

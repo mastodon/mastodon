@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusContent from 'mastodon/components/status_content';
@@ -8,7 +8,7 @@ import RelativeTimestamp from 'mastodon/components/relative_timestamp';
 import Option from './option';
 import MediaAttachments from 'mastodon/components/media_attachments';
 
-export default class StatusCheckBox extends React.PureComponent {
+export default class StatusCheckBox extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,

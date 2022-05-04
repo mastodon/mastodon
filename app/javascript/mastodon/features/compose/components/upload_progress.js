@@ -1,10 +1,10 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import Icon from 'mastodon/components/icon';
 
-export default class UploadProgress extends React.PureComponent {
+export default class UploadProgress extends PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,

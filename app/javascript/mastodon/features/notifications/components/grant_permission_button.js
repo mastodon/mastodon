@@ -1,8 +1,8 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-export default class GrantPermissionButton extends React.PureComponent {
+export default class GrantPermissionButton extends PureComponent {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired,

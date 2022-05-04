@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -30,7 +30,7 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-class SensitiveButton extends React.PureComponent {
+class SensitiveButton extends PureComponent {
 
   static propTypes = {
     active: PropTypes.bool,

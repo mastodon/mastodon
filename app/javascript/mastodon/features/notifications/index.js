@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -67,7 +67,7 @@ const mapStateToProps = state => ({
 
 export default @connect(mapStateToProps)
 @injectIntl
-class Notifications extends React.PureComponent {
+class Notifications extends PureComponent {
 
   static propTypes = {
     columnId: PropTypes.string,
@@ -89,7 +89,7 @@ class Notifications extends React.PureComponent {
     trackScroll: true,
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.dispatch(mountNotifications());
   }
 

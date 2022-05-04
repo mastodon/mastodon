@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import { PureComponent } from 'react';
 import { HotKeys } from 'react-hotkeys';
 import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
@@ -108,7 +108,7 @@ const keyMap = {
   openMedia: 'e',
 };
 
-class SwitchingColumnsArea extends React.PureComponent {
+class SwitchingColumnsArea extends PureComponent {
 
   static propTypes = {
     children: PropTypes.node,
@@ -116,7 +116,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     mobile: PropTypes.bool,
   };
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     if (this.props.mobile) {
       document.body.classList.toggle('layout-single-column', true);
       document.body.classList.toggle('layout-multiple-columns', false);
@@ -204,7 +204,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 export default @connect(mapStateToProps)
 @injectIntl
 @withRouter
-class UI extends React.PureComponent {
+class UI extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,

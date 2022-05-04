@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { submitReport } from 'mastodon/actions/reports';
 import { expandAccountTimeline } from 'mastodon/actions/timelines';

@@ -1,8 +1,8 @@
-import React from 'react';
+import { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-export default class Icon extends React.PureComponent {
+export default class Icon extends PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,

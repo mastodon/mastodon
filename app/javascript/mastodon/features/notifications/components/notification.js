@@ -1,4 +1,3 @@
-import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { injectIntl, FormattedMessage, defineMessages } from 'react-intl';
 import { HotKeys } from 'react-hotkeys';
