@@ -293,9 +293,29 @@ he:
       actions:
         approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
         approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
+        assigned_to_self_report_html: "%{name} הקצה/תה דו\"ח %{target} לעצמם"
         change_email_user_html: "%{name} שינה/תה את כתובת הדוא\"ל של המשתמש %{target}"
         confirm_user_html: "%{name} אישר/ה את כותבת הדו\"אל של המשתמש %{target}"
         create_account_warning_html: "%{name} שלח/ה אזהרה ל %{target}"
+        create_announcement_html: "%{name} יצר/ה הכרזה חדשה %{target}"
+        create_custom_emoji_html: "%{name} העלו אמוג'י חדש %{target}"
+        create_domain_allow_html: "%{name} אישר/ה פדרציה עם הדומיין %{target}"
+        create_domain_block_html: "%{name} חסם/ה את הדומיין %{target}"
+        create_email_domain_block_html: "%{name} חסם/ה את דומיין הדוא\"ל %{target}"
+        create_ip_block_html: "%{name} יצר/ה כלל עבור IP %{target}"
+        create_unavailable_domain_html: "%{name} הפסיק/ה משלוח לדומיין %{target}"
+        demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
+        destroy_announcement_html: "%{name} מחק/ה את ההכרזה %{target}"
+        destroy_custom_emoji_html: "%{name} השמיד/ה את האמוג'י %{target}"
+        destroy_domain_allow_html: "%{name} לא התיר/ה פדרציה עם הדומיין %{target}"
+        destroy_domain_block_html: "%{name} הסיר/ה חסימה מהדומיין %{target}"
+        destroy_email_domain_block_html: "%{name} הסיר/ה חסימה מדומיין הדוא\"ל %{target}"
+        destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
+        destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
+        destroy_status_html: "%{name} הסיר/ה חצרוץ מאת %{target}"
+        destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
+        disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
+        disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
         unblock_email_account_html: "%{name} הסיר/ה חסימה מחשבון הדוא\"ל של %{target}"
         unsensitive_account_html: "%{name} ביטל/ה את סימון המדיה של %{target} כרגישה"
         unsilence_account_html: "%{name} ביטל/ה ההגבלה מהחשבון של %{target}"
@@ -1035,14 +1055,33 @@ he:
     pin_errors:
       direct: לא ניתן לקבע חצרוצים שנראותם מוגבלת למכותבים בלבד
       limit: הגעת למספר החצרוצים המוצמדים המירבי.
+      ownership: חצרוצים של אחרים לא יכולים להיות מוצמדים
+      reblog: אין אפשרות להצמיד הדהודים
+    poll:
+      vote: הצבעה
     show_more: עוד
+    show_newer: הצג חדשים יותר
+    show_older: הצג ישנים יותר
+    show_thread: הצג שרשור
+    title: '%{name}: "%{quote}"'
     visibilities:
+      direct: ישיר
       private: לעוקבים בלבד
       private_long: להצגה לעוקבים בלבד
       public: פומבי
       public_long: כולם יוכלו לקרוא
       unlisted: מוסתר
       unlisted_long: פומבי, אבל לא להצגה בפיד הציבורי
+  statuses_cleanup:
+    enabled: מחק חצרוצים ישנים אוטומטית
+    enabled_hint: מוחק אוטומטית את חצרוציך לכשהגיעו לסף גיל שנקבע מראש, אלא אם הם תואמים את אחת ההחרגות למטה
+    exceptions: החרגות
+    explanation: היות ומחיקת חצרוצים היא פעולה יקרה במשאבים, היא נעשית לאט לאורך זמן כאשר השרת לא עסוק במשימות אחרות. לכן, ייתכן שהחצרוצים שלך ימחקו מעט אחרי שיגיעו לסף הגיל שהוגדר.
+    ignore_favs: התעלם ממחובבים
+    ignore_reblogs: התעלם מהדהודים
+    interaction_exceptions: החרגות מבוססות אינטראקציות
+    interaction_exceptions_explanation: שים.י לב שאין עֲרֻבָּה למחיקת חצרוצים אם הם יורדים מתחת לסף החיבובים או ההדהודים לאחר הסריקה הראשונית.
+    keep_direct: שמירת הודעות ישירות
   stream_entries:
     reblogged: הודהד
     sensitive_content: תוכן רגיש
