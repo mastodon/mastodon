@@ -1,14 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe FetchRemoteStatusService, type: :service do
-  let(:account) { Fabricate(:account) }
+  let(:account) { Fabricate(:account, domain: 'example.org', uri: 'https://example.org/foo') }
   let(:prefetched_body) { nil }
-  let(:valid_domain) { Rails.configuration.x.local_domain }
 
   let(:note) do
     {
       '@context': 'https://www.w3.org/ns/activitystreams',
-      id: "https://#{valid_domain}/@foo/1234",
+      id: "https://example.org/@foo/1234",
       type: 'Note',
       content: 'Lorem ipsum',
       attributedTo: ActivityPub::TagManager.instance.uri_for(account),
@@ -20,7 +19,6 @@ RSpec.describe FetchRemoteStatusService, type: :service do
     let(:prefetched_body) { Oj.dump(note) }
 
     before do
-      account.update(uri: ActivityPub::TagManager.instance.uri_for(account))
       subject
     end
 
