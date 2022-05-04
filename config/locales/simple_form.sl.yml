@@ -1,4 +1,3 @@
----
 sl:
   simple_form:
     hints:
@@ -122,6 +121,7 @@ sl:
         phrase: Ključna beseda ali fraza
         setting_advanced_layout: Omogoči napredni spletni vmesnik
         setting_aggregate_reblogs: Skupinske spodbude na časovnicah
+        setting_always_send_emails: Vedno pošlji e-obvestila
         setting_auto_play_gif: Samodejno predvajanje animiranih GIF-ov
         setting_boost_modal: Pred sunkom pokaži potrditveno okno
         setting_crop_images: Obreži slike v nerazširjenih objavah v razmerju 16:9
@@ -129,6 +129,7 @@ sl:
         setting_default_privacy: Zasebnost objave
         setting_default_sensitive: Vedno označi medije kot občutljive
         setting_delete_modal: Pred brisanjem troba prikaži okno za pritrditev
+        setting_disable_swiping: Onemogoči poteze drsanja
         setting_display_media: Prikaz medijev
         setting_display_media_default: Privzeto
         setting_display_media_hide_all: Skrij vse
@@ -170,6 +171,7 @@ sl:
           sign_up_requires_approval: Omeji število prijav
         severity: Pravilo
       notification_emails:
+        appeal: Nekdo se je pritožil na odločitev moderatorja
         digest: Pošlji izvlečke e-pošt
         favourite: Pošlji e-pošto, ko nekdo doda vaše stanje med priljubljene
         follow: Pošlji e-pošto, ko vas nekdo sledi
@@ -186,7 +188,7 @@ sl:
         name: Ključnik
         trendable: Dovoli, da se ta ključnik pojavi med trendi
         usable: Dovoli, da objave uporabljajo ta ključnik
-    'no': Ne
+    'no': 'Ne'
     recommended: Priporočeno
     required:
       mark: "*"
@@ -194,4 +196,4 @@ sl:
     title:
       sessions:
         webauthn: Za prijavo uporabite eno od svojih varnostnih kod
-    'yes': Da
+    'yes': 'Da'
