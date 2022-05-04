@@ -692,7 +692,18 @@ he:
         desc_html: ניתן לכתוב מדיניות פרטיות, תנאי שירות ושאר מסמכים חוקיים בעצמך. ניתן להשתמש בתגי HTML
         title: תנאי שירות יחודיים
       site_title: כותרת האתר
+      thumbnail:
+        desc_html: משמש לתצוגה מקדימה דרך OpenGraph והממשק. מומלץ 1200x630px
+        title: תמונה ממוזערת מהשרת
+      timeline_preview:
+        desc_html: הצגת קישורית לפיד הפומבי מדף הנחיתה והרשאה לממשק לגשת לפיד הפומבי ללא אימות
+        title: הרשאת גישה בלתי מאומתת לפיד הפומבי
       title: הגדרות אתר
+      trendable_by_default:
+        desc_html: משפיע על האשתגיות שלא נאסרו קודם לכן
+        title: הרשאה להאשתגיות להופיע בנושאים החמים ללא אישור מוקדם
+      trends:
+        desc_html: הצגה פומבית של תוכן שנסקר בעבר ומופיע כרגע בנושאים החמים
     statuses:
       back_to_report: חזרה לעמוד הדיווח
       batch:
@@ -861,6 +872,8 @@ he:
     title: לעקוב אחרי %{acct}
   challenge:
     confirm: המשך
+    hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
+    invalid_password: סיסמא שגויה
   datetime:
     distance_in_words:
       about_x_hours: "%{count} שעות"
@@ -875,6 +888,8 @@ he:
       x_minutes: "%{count} דקות"
       x_months: "%{count} חודשים"
       x_seconds: "%{count} שניות"
+  deletes:
+    proceed: מחיקת חשבון
   directories:
     directory: מדריך פרופילים
     explanation: גלו משתמשים בהתבסס על תחומי העניין שלהם
