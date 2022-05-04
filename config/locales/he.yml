@@ -597,7 +597,11 @@ he:
       pending: ממתין לאישור הממסר
       save_and_enable: שמור והפעל
       setup: הגדר חיבור לממסר
+      signatures_not_enabled: ממסרים לא עובדים נכון כשמאופשרים מצב מאובטח או מצב פדרציה מוגבל
+      status: מצב
+      title: ממסרים
     report_notes:
+      created_msg: הערה על דו"ח נוצרה בהצלחה!
       destroyed_msg: הערה על דו"ח נמחקה בהצלחה!
       today_at: היום, ב%{time}
     reports:
@@ -851,6 +855,24 @@ he:
         not_listable: לא תוצענה
         not_trendable: לא תופענה תחת נושאים חמים
         not_usable: לא שמישות
+        peaked_on_and_decaying: הגיע לשיא ב-%{date}, ודועך עכשיו
+        title: האשתגיות חמות
+        trendable: עשויה להופיע תחת נושאים חמים
+        trending_rank: 'מדורגת #%{rank}'
+        usable: ניתנת לשימוש
+        usage_comparison: שומשה %{today} פעמים היום, לעומת %{yesterday} אתמול
+        used_by_over_week:
+          one: הוצגה על ידי משתמש בודד במשך השבוע שעבר
+          two: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
+          many: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
+          other: הוצגה על ידי %{count} משתמשים במשך השבוע שעבר
+      title: נושאים חמים
+      trending: נושאים חמים
+    warning_presets:
+      add_new: הוספת חדש
+      delete: למחוק
+      edit_preset: ערוך/י טקסט מוכן מראש לאזהרה
+      empty: לא הגדרת עדיין שום טקסט מוכן מראש לאזהרה.
   admin_mailer:
     new_trends:
       new_trending_links:
