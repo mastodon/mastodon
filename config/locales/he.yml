@@ -928,6 +928,9 @@ he:
     remove: הסרת שם נרדף
   appearance:
     advanced_web_interface: ממשק ווב מתקדם
+    advanced_web_interface_hint: 'אם ברצונך לעשות שימוש במלוא רוחב המסך, ממשק הווב המתקדם מאפשר לך להגדיר עמודות רבות ושונות כדי לראות בו זמנית כמה מידע שתרצה/י: פיד הבית, התראות, פרהסיה ומספר כלשהו של רשימות והאשתגיות.'
+    animations_and_accessibility: הנפשות ונגישות
+    confirmation_dialogs: חלונות אישור
     discovery: גילוי
     localization:
       body: מסטודון מתורגם על ידי מתנדבים.
@@ -1006,13 +1009,16 @@ he:
     post_follow:
       close: או, פשוט לסגור חלון זה.
       return: הצג את פרופיל המשתמש
+      web: מעבר לווב
     title: לעקוב אחרי %{acct}
   challenge:
     confirm: המשך
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
     invalid_password: סיסמא שגויה
+    prompt: אשר/י סיסמא להמשך
   crypto:
     errors:
+      invalid_key: זהו לא מפתח Ed25519 או Curve25519 קביל
       invalid_signature: היא לא חתימת Ed25519 קבילה
   date:
     formats:
@@ -1237,6 +1243,9 @@ he:
     incoming_migrations_html: כדי לעבור מחשבון אחר לחשבון זה, עליך ראשית <a href="%{path}">ליצור שם נרדף לחשבון</a>.
     moved_msg: חשבונך מופנה עתה ל-%{acct} וכל עוקביך מועברים לשם.
     not_redirecting: חשבונכם לא מפנה לשום חשבון אחר כעת.
+    on_cooldown: חשבונך היגר לאחרונה. אפשרות זו תאופשר מחדש בעוד %{count} ימים.
+    past_migrations: הגירות עבר
+    proceed_with_move: העברת עוקבים
     redirected_msg: חשבונכם כעת מפנה ל%{acct}.
     redirecting_to: חשבונכם מפנה ל%{acct}.
     set_redirect: הגדר הפניה
@@ -1338,10 +1347,17 @@ he:
       duration_too_short: מוקדם מדי
       expired: סקר זה כבר הסתיים
       invalid_choice: ההצבעה שנבחרה אינה קיימת
+      over_character_limit: לא יכולים להיות יותר מ-%{max} תוים כל אחד
+      too_few_options: חייב להכיל יותר מפריט אחד
+      too_many_options: לא יכול להכיל יותר מ-%{max} פריטים
   preferences:
     other: שונות
     posting_defaults: ברירות מחדל לחצרוץ
     public_timelines: פידים פומביים
+  reactions:
+    errors:
+      limit_reached: גבול מספר התגובות השונות הושג
+      unrecognized_emoji: הוא לא אמוג'י מוכר
   relationships:
     activity: רמת פעילות
     dormant: רדומים
@@ -1362,13 +1378,26 @@ he:
   remote_follow:
     acct: נא להקליד שם_משתמש@קהילה מהם ברצונך לעקוב
     missing_resource: לא ניתן למצוא קישורית להפניה לחשבונך
+    no_account_html: אין לך חשבון? ניתן <a href='%{sign_up_path}' target='_blank'>להרשם כאן</a>
     proceed: להמשיך ולעקוב
     prompt: 'לעקוב אחרי:'
+    reason_html: "<strong>למה שלב זה הכרחי?</strong> <code>%{instance}</code> עשוי לא להיות השרת בו את/ה רשום/ה, כך שנצטרך קודם כל להעביר אותך לשרת הבית."
   remote_interaction:
+    favourite:
+      proceed: המשך לחיבוב
+      prompt: 'ברצונך לחבב חצרוץ זה:'
     reblog:
       proceed: המשיכו להדהוד 
+      prompt: 'ברצונך להדהד חצרוץ זה:'
     reply:
       proceed: המשיבו לתגובה
+      prompt: 'ברצונך להשיב לחצרוץ זה:'
+  reports:
+    errors:
+      invalid_rules: לא מתייחס לכללים קבילים
+  scheduled_statuses:
+    over_daily_limit: חרגת מהמספר המקסימלי של חצרוצים מתוזמנים להיום, שהוא %{limit}
+    over_total_limit: חרגת מהמספר המקסימלי של חצרוצים מתוזמנים, שהוא %{limit}
   sessions:
     activity: פעילות אחרונה
     browser: דפדפן
