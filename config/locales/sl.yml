@@ -449,6 +449,11 @@ sl:
       delivery_available: Na voljo je dostava
       delivery_error_days: Dnevi napak pri dostavi
       empty: Ni zadetkov med domenami.
+      known_accounts:
+        one: "%{count} znan račun"
+        two: "%{count} znana računa"
+        few: "%{count} znani računi"
+        other: "%{count} znani računi"
       moderation:
         all: Vse
         limited: Omejeno
@@ -660,6 +665,7 @@ sl:
         trendable: Se lahko pojavi med trendi
         trending_rank: 'V trendu #%{rank}'
         usable: Je moč uporabiti
+        usage_comparison: Danes uporabljeno %{today}-krat, včeraj pa %{yesterday}-krat
       title: Trendi
       trending: V porastu
     warning_presets:
@@ -678,6 +684,7 @@ sl:
         sensitive: označitev njihovega računa kot občutljivega,
         silence: omejitev njihovega računa,
         suspend: suspenz njihovega računa,
+      subject: "%{username} se je pritožil na moderatorsko odločitev na %{instance}"
     new_pending_account:
       body: Podrobnosti o novem računu so navedene spodaj. To aplikacijo lahko odobrite ali zavrnete.
       subject: Nov račun za pregled na %{instance} (%{username})
@@ -685,7 +692,19 @@ sl:
       body: "%{reporter} je prijavil %{target}"
       body_remote: Nekdo iz %{domain} je prijavil %{target}
       subject: 'Nove prijave za %{instance} (#%{id})'
+    new_trends:
+      body: 'Naslednji elementi potrebujejo pregled, preden jih je možno javno prikazati:'
+      new_trending_links:
+        no_approved_links: Trenutno ni odobrenih povezav v trendu.
+        title: Povezave v trendu
+      new_trending_statuses:
+        no_approved_statuses: Trenutno ni odobrenih objav v trendu.
+        title: Trendne objave
+      new_trending_tags:
+        title: Ključniki v trendu
+      subject: Novi trendi za pregled na %{instance}
   aliases:
+    add_new: Ustvari vzdevek
     empty: Nimate vzdevkov.
     remove: Razveži vzdevek
   appearance:
@@ -999,9 +1018,12 @@ sl:
     warning:
       backreference_required: Novi račun je potrebno najprej prilagoditi, da se bo skliceval nazaj na tega
       before: 'Pred nadaljevanjem previdno preberite naslednje opombe:'
+      other_data: Nobeni drugi podatki se ne bodo preselili samodejno
   moderation:
     title: Moderiranje
   move_handler:
+    carry_blocks_over_text: Ta uporabnik se je preselil iz računa %{acct}, ki ste ga blokirali.
+    carry_mutes_over_text: Ta uporabnik se je preselil iz računa %{acct}, ki ste ga utišali.
     copy_account_note_text: 'Ta uporabnik se je preselil iz %{acct}, tukaj so vaše poprejšnje opombe o njem:'
   notification_mailer:
     admin:
@@ -1268,6 +1290,7 @@ sl:
     keep_direct: Ohrani neposredna sporočila
     keep_direct_hint: Ne izbriše nobenega izmed vaših neposrednih sporočil
     keep_media: Ohrani objave z medijskimi priponkami
+    keep_media_hint: Ne izbriše nobene vaših objav, ki imajo medijske priponke
     keep_pinned: Ohrani pripete objave
     keep_pinned_hint: Ne izbriše nobene od vaših pripetih objav
     keep_polls: Ohrani ankete
@@ -1427,6 +1450,7 @@ sl:
         violation: Vsebina krši naslednja navodila skupnosti
       explanation:
         disable: Svojega računa ne morete več uporabljati, vendar vaš profil in drugi podatki ostajajo nedotaknjeni. Zahtevate lahko varnostno kopiranje svojih podatkov, spremenite nastavitve računa ali izbrišete svoj račun.
+        sensitive: Odslej bodo vse vaše naložene medijske datoteke označene kot občutljive in skrite za opozorilom, ki ga je potrebno klikniti.
       reason: 'Razlog:'
       statuses: 'Citirane objave:'
       subject:
