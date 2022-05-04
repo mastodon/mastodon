@@ -344,8 +344,19 @@ sl:
       media_storage: Shramba za medije
       new_users: novih uporabnikov
       opened_reports: odprtih poročil
+      pending_tags_html:
+        one: "<strong>%{count}</strong> čakajoči ključnik"
+        two: "<strong>%{count}</strong> čakajoča ključnika"
+        few: "<strong>%{count}</strong> čakajoči ključniki"
+        other: "<strong>%{count}</strong> čakajočih ključnikov"
+      pending_users_html:
+        one: "<strong>%{count}</strong> čakajoči uporabnik"
+        two: "<strong>%{count}</strong> čakajoča uporabnika"
+        few: "<strong>%{count}</strong> čakajoči uporabniki"
+        other: "<strong>%{count}</strong> čakajočih uporabnikov"
       resolved_reports: razrešenih poročil
       software: Programska oprema
+      sources: Viri registracij
       space: Uporaba prostora
       title: Nadzorna plošča
       top_languages: Najbolj dejavni jeziki
@@ -538,6 +549,7 @@ sl:
       forwarded: Posredovano
       forwarded_to: Posredovano na %{domain}
       mark_as_resolved: Označi kot rešeno
+      mark_as_sensitive: Označi, kot občutljivo
       mark_as_unresolved: Označi kot nerešeno
       no_one_assigned: Nihče
       notes:
@@ -548,6 +560,7 @@ sl:
         placeholder: Opišite dejanja, ki ste jih izvedli, ali katere koli druge posodobitve...
         title: Zapiski
       quick_actions_description_html: 'Opravite hitro dejanje ali podrsajte navzdol, da si ogledate poročano vsebino:'
+      remote_user_placeholder: oddaljeni uporabnik iz %{instance}
       reopen: Ponovno odpri prijavo
       report: 'Prijavi #%{id}'
       reported_account: Prijavljeni račun
@@ -557,6 +570,7 @@ sl:
       skip_to_actions: Preskoči na dejanja
       status: Stanje
       statuses: Naznanjene vsebine
+      target_origin: Izvor prijavljenega računa
       title: Prijave
       unassign: Odstopljeni
       unresolved: Nerešeni
@@ -645,7 +659,11 @@ sl:
         desc_html: Prikaži javno časovnico na ciljni strani
         title: Predogled časovnice
       title: Nastavitve strani
+      trendable_by_default:
+        desc_html: Velja za ključnike, ki niso bili poprej onemogočeni
+        title: Dovoli, da so ključniki v trendu brez predhodnega pregleda
       trends:
+        desc_html: Javno prikaži poprej pregledano vsebino, ki je trenutno v trendu
         title: Trendi
     site_uploads:
       delete: Izbriši naloženo datoteko
@@ -764,12 +782,15 @@ sl:
       body: 'Naslednji elementi potrebujejo pregled, preden jih je možno javno prikazati:'
       new_trending_links:
         no_approved_links: Trenutno ni odobrenih povezav v trendu.
+        requirements: 'Vsak od teh kandidatov bi lahko presegel odobreno povezavo v trendu št. %{rank}, ki je trenutno %{lowest_link_title} z rezultatom %{lowest_link_score}.'
         title: Povezave v trendu
       new_trending_statuses:
         no_approved_statuses: Trenutno ni odobrenih objav v trendu.
+        requirements: 'Vsak od teh kandidatov bi lahko presegel odobreno trendno objavo št. %{rank}, ki je trenutno %{lowest_status_url} z rezultatom %{lowest_status_score}.'
         title: Trendne objave
       new_trending_tags:
         no_approved_tags: Trenutno ni odobrenih ključnikov v trendu.
+        requirements: 'Vsak od teh kandidatov bi lahko presegel odobreni ključnik v trendu št. %{rank}, ki je trenutno %{lowest_tag_name} z rezultatom %{lowest_tag_score}.'
         title: Ključniki v trendu
       subject: Novi trendi za pregled na %{instance}
   aliases:
@@ -1063,6 +1084,7 @@ sl:
     authentication_methods:
       otp: aplikacija za dvoravenjsko overjanje
       password: geslo
+      sign_in_token: varnostna koda po e-pošti
       webauthn: varnostni ključi
     description_html: Če opazite dejavnost, ki je ne prepoznate kot svoje, razmislite o spremembi svojega gesla in omogočanju dvoravenskega overjanja.
     empty: Zgodovina overjanja ni na voljo
@@ -1100,6 +1122,7 @@ sl:
       backreference_required: Novi račun je potrebno najprej prilagoditi, da se bo skliceval nazaj na tega
       before: 'Pred nadaljevanjem previdno preberite naslednje opombe:'
       cooldown: Po selitvi sledi čakalna doba, v kateri računa ne boste mogli ponovno seliti
+      disabled_account: Vaš trenutni račun zatem ne bo polno uporaben. Vendar pa boste imeli dostop do izvoza podatkov kot tudi do ponovne aktivacije.
       followers: S tem dejanjem boste preselili vse sledilce iz trenutnega računa na novi račun
       only_redirect_html: Namesto tega lahko <a href="%{path}">na svojem profilu zgolj vzpostavite preusmeritev</a>.
       other_data: Nobeni drugi podatki se ne bodo preselili samodejno
