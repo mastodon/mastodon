@@ -738,6 +738,7 @@ th:
           other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
         usage_comparison: แบ่งปัน %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
+      only_allowed: อนุญาตเท่านั้น
       pending_review: การตรวจทานที่รอดำเนินการ
       preview_card_providers:
         allowed: ลิงก์จากผู้เผยแพร่นี้สามารถขึ้นแนวโน้ม
@@ -773,6 +774,7 @@ th:
         used_by_over_week:
           other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
       title: แนวโน้ม
+      trending: กำลังนิยม
     warning_presets:
       add_new: เพิ่มใหม่
       delete: ลบ
@@ -794,6 +796,7 @@ th:
       subject: "%{username} กำลังอุทธรณ์การตัดสินใจในการควบคุมใน %{instance}"
     new_pending_account:
       body: รายละเอียดของบัญชีใหม่อยู่ด้านล่าง คุณสามารถอนุมัติหรือปฏิเสธใบสมัครนี้
+      subject: บัญชีใหม่สำหรับตรวจทานใน %{instance} (%{username})
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
@@ -957,6 +960,7 @@ th:
       description_html: นี่คือการกระทำที่ใช้กับบัญชีของคุณและคำเตือนที่ส่งถึงคุณโดยพนักงานของ %{instance}
       recipient: ส่งถึง
       status: 'โพสต์ #%{id}'
+      status_removed: เอาโพสต์ออกจากระบบไปแล้ว
       title: "%{action} จาก %{date}"
       title_actions:
         delete_statuses: การเอาโพสต์ออก
@@ -985,6 +989,7 @@ th:
       content: เราขออภัย แต่มีบางอย่างผิดพลาดในส่วนของเรา
       title: หน้านี้ไม่ถูกต้อง
     '503': ไม่สามารถให้บริการหน้าได้เนื่องจากเซิร์ฟเวอร์ล้มเหลวชั่วคราว
+    noscript_html: เพื่อใช้แอปพลิเคชันเว็บ Mastodon โปรดเปิดใช้งาน JavaScript หรืออีกวิธีหนึ่ง ลองหนึ่งใน <a href="%{apps_path}">แอปเนทีฟ</a> สำหรับ Mastodon สำหรับแพลตฟอร์มของคุณ
   existing_username_validator:
     not_found: ไม่พบผู้ใช้ในเซิร์ฟเวอร์ที่มีชื่อผู้ใช้นั้น
     not_found_multiple: ไม่พบ %{usernames}
