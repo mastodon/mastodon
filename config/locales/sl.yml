@@ -37,7 +37,7 @@ sl:
       one: stanje
       two: stanja
       few: stanja
-      other: stanj
+      other: objav
     status_count_before: Ki so avtorji
     tagline: Sledite prijateljem in odkrijte nove
     terms: Pogoji storitve
@@ -208,6 +208,7 @@ sl:
       security_measures:
         only_password: Samo geslo
         password_and_2fa: Geslo in 2FA
+      sensitive: Vsili občutljivo
       sensitized: Označeno kot občutljivo
       shared_inbox_url: URL mape "Prejeto v skupni rabi"
       show:
@@ -215,7 +216,7 @@ sl:
         targeted_reports: Prijavili drugi
       silence: Utišaj
       silenced: Utišan
-      statuses: Stanja
+      statuses: Objave
       strikes: Predhodni ukrepi
       subscribe: Naroči
       suspend: Suspendiraj
@@ -337,7 +338,7 @@ sl:
         update_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         update_domain_block_html: "%{name} je posodobil/a domenski blok za %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
-      deleted_status: "(izbrisano stanje)"
+      deleted_status: "(izbrisana objava)"
       empty: Ni najdenih zapisnikov.
       filter_by_action: Filtriraj po dejanjih
       filter_by_user: Filtriraj po uporabnikih
@@ -485,6 +486,7 @@ sl:
       resolved_through_html: Razrešeno prek %{domain}
       title: Črni seznam e-pošt
     follow_recommendations:
+      description_html: "<strong>Sledi priporočilom pomaga novim uporabnikom, da hitro najdejo zanimivo vsebino</strong>. Če uporabnik ni dovolj komuniciral z drugimi, da bi oblikoval prilagojena priporočila za sledenje, se namesto tega priporočajo ti računi. Dnevno se ponovno izračunajo iz kombinacije računov z najvišjimi nedavnimi angažiranostmi in najvišjim številom krajevnih sledilcev za določen jezik."
       language: Za jezik
       status: Stanje
       suppress: Zatri sledenje priporočilom
@@ -602,6 +604,7 @@ sl:
       pending: Čakanje na odobritev releja
       save_and_enable: Shrani in omogoči
       setup: Nastavi povezavo releja
+      signatures_not_enabled: Posredovanja ne bodo delovala pravilno, ko je omogočen varni način ali omejen način federacije
       status: Stanje
       title: Releji
     report_notes:
@@ -620,6 +623,7 @@ sl:
       actions:
         delete_description_html: Prijavljene objave bodo izbrisane in ukrep bo zabeležen, da vam pomaga stopnjevati ukrepe ob naslednjih kršitvah z istega računa.
         mark_as_sensitive_description_html: Mediji v prijavljenih objavah bodo označeni kot občutljivi in ukrep bo zabeležen, da vam pomaga stopnjevati ukrepe ob naslednjih kršitvah z istega računa.
+        other_description_html: Oglejte si več možnosti za nadzor vedenja računa in prilagodite komunikacijo s prijavljenim računom.
         resolve_description_html: Proti prijavljenemu računu ne bo izvedeno nobeno dejanje, noben ukrep ne bo zabeležen in prijava bo zaprta.
         silence_description_html: Profil bo viden samo tistim, ki mu že sledijo ali ga ročno poiščejo, s čimer bo resno omejen njegov doseg. To je vedno možno povrniti.
         suspend_description_html: Profil in vsa njegova vsebina bodo postali nedosegljivi, dokler niso dokončno izbrisani. Interakcija z računom ne bo možna. Povrnitev je možna v času 30 dni.
@@ -677,7 +681,7 @@ sl:
       title: Pravila strežnika
     settings:
       activity_api_enabled:
-        desc_html: Številke lokalno objavljenih stanj, aktivnih uporabnikov in novih registracij na tedenskih seznamih
+        desc_html: Številke lokalno objavljenih objav, aktivnih uporabnikov in novih registracij na tedenskih seznamih
         title: Objavi združeno statistiko o dejavnosti uporabnikov
       bootstrap_timeline_accounts:
         desc_html: Več uporabniških imen ločite z vejico. Deluje samo na lokalnih in odklenjenih računih. Privzeto, ko je prazno, je pri vseh lokalnih skrbnikih.
@@ -776,8 +780,8 @@ sl:
       deleted: Izbrisano
       media:
         title: Mediji
-      no_status_selected: Nobeno stanje ni bilo spremenjeno, ker ni bilo izbrano nobeno
-      title: Stanja računa
+      no_status_selected: Nobena objava ni bila spremenjena, ker ni bila nobena izbrana
+      title: Objave računa
       with_media: Z mediji
     strikes:
       actions:
@@ -937,7 +941,7 @@ sl:
     settings: 'Spremenite e-poštne nastavitve: %{link}'
     view: 'Pogled:'
     view_profile: Ogled profila
-    view_status: Ogled stanja
+    view_status: Pokaži objavo
   applications:
     created: Aplikacija je bila uspešno ustvarjena
     destroyed: Aplikacija je bila uspešno izbrisana
@@ -1119,6 +1123,7 @@ sl:
     add_new: Dodaj novo
     errors:
       limit: Ste že dodali največje število ključnikov
+    hint_html: "<strong>Kaj so izpostavljeni ključniki?</strong> Prikazani so vidno na vašem javnem profilu in ljudem omogočajo brskanje po vaših javnih objavah posebej pod temi ključniki. So odlično orodje za spremljanje ustvarjalnih del ali dolgoročnih projektov."
   filters:
     contexts:
       account: Profili
@@ -1216,7 +1221,7 @@ sl:
     title: Zgodovina overjanja
   media_attachments:
     validations:
-      images_and_video: Videoposnetka ni mogoče priložiti stanju, ki že vsebuje slike
+      images_and_video: Videoposnetka ni mogoče priložiti objavi, ki že vsebuje slike
       not_ready: Datotek, katerih obdelava ni dokončana, ni mogoče pripeti. Poskusite znova kmalu!
       too_many: Ni možno priložiti več kot 4 datoteke
   migrations:
@@ -1276,8 +1281,8 @@ sl:
         other: "%{count} novih obvestil od vašega zadnjega obiska 🐘"
       title: V vaši odsotnosti...
     favourite:
-      body: '%{name} je vzljubil/a vaše stanje:'
-      subject: "%{name} je vzljubil/a vaše stanje"
+      body: '%{name} je vzljubil/a vašo objavo:'
+      subject: "%{name} je vzljubil/a vašo objavo"
       title: Novo priljubljeno
     follow:
       body: "%{name} vam sedaj sledi!"
@@ -1296,9 +1301,9 @@ sl:
     poll:
       subject: Anketa, ki jo je pripravil/a %{name}, se je iztekla
     reblog:
-      body: '%{name} je spodbudil/a vaše stanje:'
-      subject: "%{name} je spodbudil/a vaše stanje"
-      title: Nova spodbuda
+      body: 'Vašo objavo je izpostavil/a %{name}:'
+      subject: "%{name} je izpostavil/a vašo objavo"
+      title: Nova izpostavitev
     status:
       subject: "%{name} je pravkar objavil/a"
     update:
@@ -1379,8 +1384,8 @@ sl:
       proceed: Nadaljuj s priljubljenim
       prompt: 'Ali želite vzljubiti ta tut:'
     reblog:
-      proceed: Nadaljuj s spodbudo
-      prompt: 'Ali želite spodbuditi ta tut:'
+      proceed: Nadaljuj s izpostavljanjem
+      prompt: 'Ali želite izpostaviti ta tut:'
     reply:
       proceed: Nadaljuj z odgovorom
       prompt: 'Ali želite odgovoriti na ta tut:'
@@ -1474,7 +1479,7 @@ sl:
         two: "%{count} video posnetka"
         few: "%{count} video posnetki"
         other: "%{count} video posnetkov"
-    boosted_from_html: Spodbujeno iz %{acct_link}
+    boosted_from_html: Izpostavljeno z računa %{acct_link}
     content_warning: 'Opozorilo o vsebini: %{warning}'
     default_language: Enak kot jezik vmesnika
     disallowed_hashtags:
@@ -1491,7 +1496,7 @@ sl:
       direct: Objav, ki so vidne samo omenjenum uporabnikom, ni mogoče pripenjati
       limit: Pripeli ste največje število tutov
       ownership: Trob nekoga drugega ne more biti pripet
-      reblog: Spodbuda ne more biti pripeta
+      reblog: Izpostavitev ne more biti pripeta
     poll:
       total_people:
         one: "%{count} Oseba"
@@ -1524,8 +1529,9 @@ sl:
     exceptions: Izjeme
     explanation: Ker je brisanje objav draga operacija, se to postopoma izvaja počasi, ko strežnik sicer ni zaseden. Zaradi tega se lahko vaše objave izbrišejo nekaj časa po tem, ko dosežejo starostni prag.
     ignore_favs: Prezri priljubljene
+    ignore_reblogs: Prezri izpostavitve
     interaction_exceptions: Izjeme na osnovi interakcije
-    interaction_exceptions_explanation: Upoštevajte, da ni nobene garancije za objave, ki bodo izbrisane, če padejo pod prag priljubljenosti ali promocije, ko so ga že enkrat presegle.
+    interaction_exceptions_explanation: Upoštevajte, da ni nobene garancije za objave, ki bodo izbrisane, če padejo pod prag priljubljenosti ali izpostavljenosti, ko so ga že enkrat presegle.
     keep_direct: Ohrani neposredna sporočila
     keep_direct_hint: Ne izbriše nobenega izmed vaših neposrednih sporočil
     keep_media: Ohrani objave z medijskimi priponkami
@@ -1551,10 +1557,10 @@ sl:
     min_favs: Obrži objave priljubljene vsaj
     min_favs_hint: Ne izbriše nobene od vaših objav, ki je prejela vsaj takšno količino priljubljenih. Pustite prazno, če želite izbrisati objave ne glede na število všečkov
     min_reblogs: Obdrži objave izpostavljene vsaj
-    min_reblogs_hint: Ne izbriše nobene od vaših objav, ki je bila vsaj tolikokrat podprta. Pustite prazno, če želite izbrisati objave ne glede na število potrditev
+    min_reblogs_hint: Ne izbriše nobene od vaših objav, ki je bila vsaj tolikokrat podprta. Pustite prazno, če želite izbrisati objave ne glede na število izpostavitev
   stream_entries:
     pinned: Pripet trob
-    reblogged: spodbujen
+    reblogged: izpostavljeno
     sensitive_content: Občutljiva vsebina
   tags:
     does_not_match_previous_name: se ne ujema s prejšnjim imenom
