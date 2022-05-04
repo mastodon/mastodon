@@ -459,6 +459,11 @@ he:
       view: צפייה בחסימת דומיינים
     email_domain_blocks:
       add_new: הוספת חדש
+      attempts_over_week:
+        one: "%{count} נסיון במשך השבוע שעבר"
+        two: "%{count} נסיונות הרשמה במשך השבוע שעבר"
+        many: "%{count} נסיונות הרשמה במשך השבוע שעבר"
+        other: "%{count} נסיונות הרשמה במשך השבוע שעבר"
       created_msg: כתובת מייל נחסמה בהצלחה
       new:
         resolve: פתור דומיין
@@ -541,8 +546,15 @@ he:
       new:
         title: יצירת כלל IP
     report_notes:
+      destroyed_msg: הערה על דו"ח נמחקה בהצלחה!
       today_at: היום, ב%{time}
     reports:
+      account:
+        notes:
+          one: "הערה %{count}"
+          two: "%{count} הערות"
+          many: "%{count} הערות"
+          other: "%{count} הערות"
       action_log: ביקורת יומן
       action_taken_by: פעולה בוצעה ע"י
       actions:
@@ -625,6 +637,11 @@ he:
         disabled: לאף אחד
         title: צפיה בחסימת דומיינים
         users: למשתמשים מקומיים מחוברים
+      domain_blocks_rationale:
+        title: הצגת רציונל
+      hero:
+        desc_html: מוצגת בדף הראשי. מומלץ לפחות 600x100px. אם לא נבחר, מוצגת במקום תמונה מוקטנת מהשרת
+        title: תמונת גיבור
       registrations:
         closed_message:
           desc_html: מוצג על הדף הראשי כאשר ההרשמות סגורות. ניתן להשתמש בתגיות HTML
@@ -1014,6 +1031,19 @@ he:
       duration_too_short: מוקדם מדי
       expired: סקר זה כבר הסתיים
       invalid_choice: ההצבעה שנבחרה אינה קיימת
+  preferences:
+    other: שונות
+    posting_defaults: ברירות מחדל לחצרוץ
+    public_timelines: פידים פומביים
+  relationships:
+    activity: רמת פעילות
+    dormant: רדומים
+    follow_selected_followers: עקוב אחר הנעקבים שנבחרו
+    followers: עוקבים
+    following: נעקבים
+    invited: הוזמנו
+    last_active: פעילות אחרונה
+    most_recent: העדכניות ביותר
   remote_follow:
     acct: נא להקליד שם_משתמש@קהילה מהם ברצונך לעקוב
     missing_resource: לא ניתן למצוא קישורית להפניה לחשבונך
@@ -1249,7 +1279,19 @@ he:
   users:
     follow_limit_reached: לא תוכל לעקוב אחר יותר מ %{limit} אנשים
     invalid_otp_token: קוד דו-שלבי שגוי
+    signed_in_as: 'מחובר בתור:'
+  verification:
+    verification: אימות
   webauthn_credentials:
+    add: הוספת מפתח אבטחה חדש
+    create:
+      error: היתה בעיה בהוספת מפתח האבטחה. נסה שנית.
+      success: מפתח האבטחה הוסף בהצלחה.
+    delete: למחוק
+    delete_confirmation: האם אתה בטוח שברצונך למחוק מפתח אבטחה זה?
+    destroy:
+      error: היתה בעיה במחיקת מפתח האבטחה. נסה בשנית.
+      success: מפתח האבטחה נמחק בהצלחה.
     invalid_credential: אסימון אבטחה לא תקין
     nickname_hint: הכנס.י כינוי למפתח האבטחה החדש שלך
     not_enabled: לא אפשרת את WebAuthn עדיין
