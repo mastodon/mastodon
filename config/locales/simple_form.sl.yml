@@ -6,12 +6,12 @@ sl:
       account_migration:
         acct: Določite uporabniškoime@domena računa, na katerega se želite preseliti
       account_warning_preset:
-        text: Lahko uporabite skladnjo tuta, kot so URL-ji, ključniki in omembe
+        text: Lahko uporabite skladnjo objave, kot so URL-ji, ključniki in omembe
         title: Neobvezno. Ni vidno prejemniku
       admin_account_action:
         include_statuses: Uporabnik vidi, katere objave so povzročile dejanje moderiranja ali opozorilo
         send_email_notification: Uporabnik bo prejel razlago, kaj se je zgodilo z njihovim računom
-        text_html: Neobvezno. Lahko uporabite skladnjo tuta. <a href="%{path}">Prednastavite opozorila</a>, da prihranite čas
+        text_html: Neobvezno. Lahko uporabite skladnjo objave. <a href="%{path}">Prednastavite opozorila</a>, da prihranite čas
         type_html: Izberite, kaj boste storili z <strong>%{acct}</strong>
         types:
           disable: Preprečite uporabniku, da uporablja svoj račun, vendar ne izbrišite ali skrijte njegove vsebine.
@@ -41,13 +41,13 @@ sl:
         fields: Na svojem profilu lahko imate do 4 predmete prikazane kot tabelo.
         header: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         inbox_url: Kopirajte URL naslov s prve strani releja, ki ga želite uporabiti
-        irreversible: Filtrirani trobi bodo nepovratno izginili, tudi če je filter kasneje odstranjen
+        irreversible: Filtrirane objave bodo nepovratno izginile, tudi če je filter kasneje odstranjen
         locale: Jezik uporabniškega vmesnika, e-poštnih sporočil in potisnih obvestil
         locked: Zahteva, da ročno odobrite sledilce
         password: Uporabite najmanj 8 znakov
-        phrase: Se bo ujemal, ne glede na začetnice v tekstu ali opozorilo o vsebini troba
+        phrase: Se bo ujemal, ne glede na začetnice v besedilu ali opozorilo o vsebini objave
         scopes: Do katerih API-jev bo imel program dostop. Če izberete obseg najvišje ravni, vam ni treba izbrati posameznih.
-        setting_aggregate_reblogs: Ne prikažite novih izpostavitev za tute, ki so bili nedavno izpostavljeni (vpliva samo na novo prejete spodbude)
+        setting_aggregate_reblogs: Ne prikažite novih izpostavitev za objave, ki so bile nedavno izpostavljene (vpliva samo na novo prejete izpostavitve)
         setting_always_send_emails: Običajno e-obvestila ne bodo poslana, če ste na Mastodonu dejavni
         setting_default_sensitive: Občutljivi mediji so privzeto skriti in jih je mogoče razkriti s klikom
         setting_display_media_default: Skrij medij, ki je označen kot občutljiv
@@ -55,7 +55,7 @@ sl:
         setting_display_media_show_all: Vedno pokaži medij, ki je označen kot občutljiv
         setting_hide_network: Kogar spremljate in kdo vas spremlja ne bo prikazano na vašem profilu
         setting_noindex: Vpliva na vaš javni profil in na strani z objavami
-        setting_show_application: Aplikacija, ki jo uporabljate za tutanje, bo prikazana v podrobnem pogledu vaših tutov
+        setting_show_application: Aplikacija, ki jo uporabljate za objavljanje, bo prikazana v podrobnem pogledu vaših objav
         setting_use_blurhash: Gradienti temeljijo na barvah skrite vizualne slike, vendar zakrivajo vse podrobnosti
         setting_use_pending_items: Skrij posodobitev časovnice za klikom namesto samodejnega posodabljanja
         username: Vaše uporabniško ime bo edinstveno na %{domain}
@@ -89,7 +89,7 @@ sl:
       tag:
         name: Spremenite lahko le npr. velikost črk (velike/male), da je bolj berljivo
       user:
-        chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazani samo trobi v izbranih jezikih
+        chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazane samo objave v izbranih jezikih
     labels:
       account:
         fields:
@@ -158,17 +158,17 @@ sl:
         setting_default_language: Jezik objavljanja
         setting_default_privacy: Zasebnost objave
         setting_default_sensitive: Vedno označi medije kot občutljive
-        setting_delete_modal: Pred brisanjem troba prikaži okno za pritrditev
+        setting_delete_modal: Pred brisanjem objave prikaži okno za pritrditev
         setting_disable_swiping: Onemogoči poteze drsanja
         setting_display_media: Prikaz medijev
         setting_display_media_default: Privzeto
         setting_display_media_hide_all: Skrij vse
         setting_display_media_show_all: Prikaži vse
-        setting_expand_spoilers: Vedno razširi trobe, označene z opozorili o vsebini
+        setting_expand_spoilers: Vedno razširi objave, označene z opozorili o vsebini
         setting_hide_network: Skrij svoje omrežje
         setting_noindex: Odsotnost indeksiranja iskalnikov
         setting_reduce_motion: Zmanjšanje premikanja v animacijah
-        setting_show_application: Razkrij aplikacijo za pošiljanje tutov
+        setting_show_application: Razkrij aplikacijo za pošiljanje objav
         setting_system_font_ui: Uporabi privzeto pisavo sistema
         setting_theme: Tema strani
         setting_trends: Pokaži današnje trende
