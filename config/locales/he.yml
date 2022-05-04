@@ -642,13 +642,30 @@ he:
       hero:
         desc_html: מוצגת בדף הראשי. מומלץ לפחות 600x100px. אם לא נבחר, מוצגת במקום תמונה מוקטנת מהשרת
         title: תמונת גיבור
+      mascot:
+        desc_html: מוצגת בכל מיני דפים. מומלץ לפחות 293×205px. אם לא נבחר, מוצג במקום קמע ברירת המחדל
+        title: תמונת קמע
+      peers_api_enabled:
+        desc_html: שמות דומיינים ששרת זה נתקל בהם ברחבי הפדרציה
+        title: פרסם רשימה של שרתים שנתגלו דרך הממשק
+      preview_sensitive_media:
+        desc_html: תצוגה מקדימה של קישוריות לאתרים אחרים יוצגו כתמונה מוקטנת אפילו אם המדיה מסומנת כרגישה
+        title: הצגת מדיה רגישה בתצוגה מקדימה של OpenGraph
+      profile_directory:
+        desc_html: הרשאה למשתמשים להתגלות
+        title: הרשאה לספריית פרופילים
       registrations:
         closed_message:
           desc_html: מוצג על הדף הראשי כאשר ההרשמות סגורות. ניתן להשתמש בתגיות HTML
           title: מסר סגירת הרשמות
+        deletion:
+          desc_html: הרשאה לכולם למחוק את חשבונם
+          title: פתיחת מחיקת חשבון
         min_invite_role:
           disabled: אף אחד
           title: אפשר הזמנות לפי
+        require_invite_text:
+          desc_html: כאשר הרשמות דורשות אישור ידני, הפיכת טקסט ה"מדוע את/ה רוצה להצטרף" להכרחי במקום אופציונלי
       site_description:
         desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא. ניתן להשתמש בתגיות HTML, ובמיוחד ב־<code> &lt; a&gt; </code> ו־<code> &lt; em&gt; </code> .
         title: תיאור האתר
@@ -924,6 +941,30 @@ he:
       following: רשימת נעקבים
       muting: רשימת השתקות
     upload: יבוא
+  invites:
+    expires_in:
+      '1800': 30 minutes
+      '21600': 6 hours
+      '3600': 1 hour
+      '43200': 12 hours
+      '604800': 1 week
+      '86400': יום אחד
+    expires_in_prompt: לעולם לא
+    generate: צור קישור להזמנה
+    invited_by: 'הוזמנת ע"י'
+    max_uses_prompt: ללא הגבלה
+    prompt: צור ושתף קישורים לאחרים על מנת להעניק גישה לשרת זה
+    table:
+      expires_at: פוקעת ב
+      uses: שימושים
+    title: הזמנת אנשים
+  lists:
+    errors:
+      limit: הגעת למספר הרשימות המירבי.
+  login_activities:
+    authentication_methods:
+      otp: יישומון אימות דו-שלבי
+      password: סיסמא
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
@@ -1044,13 +1085,29 @@ he:
     invited: הוזמנו
     last_active: פעילות אחרונה
     most_recent: העדכניות ביותר
+    moved: הועברו
+    mutual: הדדיים
+    primary: עיקריים
+    relationship: יחסים
+    remove_selected_domains: הסר את כל העוקבים משמות המתחם שסומנו
+    remove_selected_followers: הסר את העוקבים שסומנו
+    remove_selected_follows: בטל מעקב אחר המשתמשים שסומנו
+    status: מצב חשבון
   remote_follow:
     acct: נא להקליד שם_משתמש@קהילה מהם ברצונך לעקוב
     missing_resource: לא ניתן למצוא קישורית להפניה לחשבונך
     proceed: להמשיך ולעקוב
     prompt: 'לעקוב אחרי:'
+  remote_interaction:
+    reblog:
+      proceed: המשיכו להדהוד 
+    reply:
+      proceed: המשיבו לתגובה
   sessions:
+    activity: פעילות אחרונה
+    browser: דפדפן
     browsers:
+      generic: דפדפן לא ידוע
       opera: אופרה
       phantom_js: PhantomJS
       qq: דפדפן QQ
@@ -1143,6 +1200,7 @@ he:
     show_newer: הצג חדשים יותר
     show_older: הצג ישנים יותר
     show_thread: הצג שרשור
+    sign_in_to_participate: הכנס כדי להשתתף בשיחה
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: ישיר
@@ -1177,14 +1235,21 @@ he:
       '15778476': חצי שנה
       '2629746': חודש
       '31556952': שנה
-      '5259492': 2 months
-      '604800': 1 week
-      '63113904': 2 years
-      '7889238': 3 months
+      '5259492': חודשיים
+      '604800': שבוע
+      '63113904': שנתיים
+      '7889238': 3 חודשים
+    min_age_label: סף גיל
+    min_favs: השאר חצרוצים מחובבים לפחות
+    min_reblogs: שמור חצרוצים מהודהדים לפחות
   stream_entries:
+    pinned: חצרוץ מוצמד
     reblogged: הודהד
     sensitive_content: תוכן רגיש
+  tags:
+    does_not_match_previous_name: לא תואם את השם האחרון
   themes:
+    contrast: מסטודון (ניגודיות גבוהה)
     default: מסטודון (כהה)
     mastodon-light: מסטודון (בהיר)
   time:
@@ -1279,6 +1344,7 @@ he:
   users:
     follow_limit_reached: לא תוכל לעקוב אחר יותר מ %{limit} אנשים
     invalid_otp_token: קוד דו-שלבי שגוי
+    seamless_external_login: את.ה מחובר דרך שירות חיצוני, לכן אפשרויות הסיסמא והדוא"ל לא מאופשרות.
     signed_in_as: 'מחובר בתור:'
   verification:
     verification: אימות
