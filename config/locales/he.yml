@@ -28,8 +28,8 @@ he:
     logged_in_as_html: הנך מחובר/ת כרגע כ-%{username}.
     logout_before_registering: חשבון זה כבר מחובר.
     privacy_policy: מדיניות פרטיות
-    rules: חוקי השרת
-    rules_html: 'להלן סיכום החוקים שעליך לעקוב אחריהם על מנת להשתמש בחשבון בשרת מסטודון זה:'
+    rules: כללי השרת
+    rules_html: 'להלן סיכום הכללים שעליך לעקוב אחריהם על מנת להשתמש בחשבון בשרת מסטודון זה:'
     see_whats_happening: מה קורה כעת
     server_stats: 'סטטיסטיקות שרת:'
     source_code: קוד מקור
@@ -123,8 +123,11 @@ he:
       confirming: המאשר
       custom: התאמה אישית
       delete: מחיקת חשבון
+      deleted: מחוקים
       demote: הורדה בדרגה
+      destroyed_msg: "הנתונים של %{username} נכנסו לתור המחיקה וצפויים להימחק באופן מיידי"
       disable: לחסום
+      disable_sign_in_token_auth: השעיית הזדהות באמצעות אסימון בדוא"ל של משתמש
       disable_two_factor_authentication: ביטול הזדהות דו-שלבית
       disabled: נחסם
       display_name: שם לתצוגה
@@ -133,11 +136,17 @@ he:
       email: דוא"ל
       email_status: סטטוס דוא"ל
       enable: לאפשר
+      enable_sign_in_token_auth: הפעלת אסימון הזדהות בדוא"ל של משתמש
       enabled: מאופשר
+      enabled_msg: ביטול השעית החשבון של %{username} בוצע בהצלחה
       followers: עוקבים
       follows: נעקבים
+      header: כותרת
       inbox_url: כתובת תיבה נכנסת
+      invite_request_text: סיבות להצטרפות
+      invited_by: הוזמן על ידי
       ip: כתובת IP
+      joined: תאריך הצטרפות
       location:
         all: הכל
         local: מקומי
@@ -146,14 +155,20 @@ he:
       login_status: מצב חיבור
       media_attachments: תוספות מדיה
       memorialize: הפוך לדף זכרון
+      memorialized: מונצחים
+      memorialized_msg: החשבון %{username} הונצח בהצלחה
       moderation:
         all: הכל
+        pending: בהמתנה
         suspended: מושהים
         title: ניהול קהילה
       moderation_notes: הודעות מנחה
       most_recent_activity: פעילות עדכנית
       most_recent_ip: כתובות אחרונות
+      no_account_selected: לא בוצעו שינויים בחשבונות ל שכן לא נבחרו חשבונות
+      no_limits_imposed: לא הוטלו הגבלות
       not_subscribed: לא רשום
+      pending: ממתינים לסקירה
       perform_full_suspension: ביצוע השעייה מלאה
       promote: להעלות בדרגה
       protocol: פרטיכל
@@ -1025,5 +1040,12 @@ he:
       title:
         delete_statuses: פוסטים שהוסרו
         disable: חשבון קפוא
+        mark_statuses_as_sensitive: חצרוצים סומנו כרגישים
+        none: אזהרה
+        sensitive: החשבון סומן כרגיש
+        silence: חשבון מוגבל
+        suspend: חשבון מושעה
+    welcome:
+      edit_profile_action: הגדרת פרופיל
   users:
     invalid_otp_token: קוד דו-שלבי שגוי
