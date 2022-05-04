@@ -657,6 +657,18 @@ sl:
         silence: "%{name} je omejil/a račun uporabnika %{target}"
         suspend: "%{name} je suspendiral/a račun uporabnika %{target}"
       appeal_approved: Pritoženo
+      appeal_pending: Čakajoč na ugovor
+    system_checks:
+      elasticsearch_running_check:
+        message_html: Povezava z Elasticsearch ni uspela. Preverite, da deluje, ali onemogočite iskanje po vsem besedilu
+      elasticsearch_version_check:
+        message_html: 'Nezdružljiva različica Elasticsearch: %{value}'
+        version_comparison: Izvaja se Elasticsearch %{running_version}, zahtevana pa je različica %{required_version}
+      rules_check:
+        action: Upravljaj pravila strežnika
+        message_html: Nobenih pravil strežnika niste določili.
+    tags:
+      review: Stanje pregleda
     title: Upravljanje
     trends:
       allow: Dovoli
@@ -1020,6 +1032,7 @@ sl:
   migrations:
     acct: username@domain novega računa
     cancel: Prekliči preusmeritev
+    cancel_explanation: Preklic preusmeritve ponovno aktivira vaš trenutni račun, vendar ne povrne sledilcev, ki so bili preseljeni na tisti račun.
     cancelled_msg: Preusmeritev je bila uspešno preklicana.
     errors:
       already_moved: je isti račun, na katerega ste se že preselili
@@ -1029,6 +1042,10 @@ sl:
       on_cooldown: Ste na ohlajanju
     followers_count: Sledilcev ob času selitve
     incoming_migrations: Selitev iz drugega računa
+    incoming_migrations_html: Če se želite preseliti iz drugega računa na tega, morate najprej <a href="%{path}">ustvariti vzdevek računa</a>.
+    moved_msg: Vaš račun se zdaj preusmerja na %{acct} in vaši sledilci so preseljeni.
+    not_redirecting: Vaš račun trenutno ne preusmerja na noben drug račun.
+    on_cooldown: Nedavno ste migrirali svoj račun. Funkcija bo znova na voljo čez %{count} dni.
     past_migrations: Pretekle migracije
     proceed_with_move: Premakni sledilce
     redirected_msg: Vaš račun se zdaj preusmerja na %{acct}.
@@ -1037,7 +1054,11 @@ sl:
     warning:
       backreference_required: Novi račun je potrebno najprej prilagoditi, da se bo skliceval nazaj na tega
       before: 'Pred nadaljevanjem previdno preberite naslednje opombe:'
+      cooldown: Po selitvi sledi čakalna doba, v kateri računa ne boste mogli ponovno seliti
+      followers: S tem dejanjem boste preselili vse sledilce iz trenutnega računa na novi račun
+      only_redirect_html: Namesto tega lahko <a href="%{path}">na svojem profilu zgolj vzpostavite preusmeritev</a>.
       other_data: Nobeni drugi podatki se ne bodo preselili samodejno
+      redirect: Profil vašega trenutnega računa bo posodobljen z obvestilom o preusmeritvi in bo izključen iz iskanj
   moderation:
     title: Moderiranje
   move_handler:
@@ -1246,6 +1267,11 @@ sl:
     webauthn_authentication: Varnostni ključi
   statuses:
     attached:
+      audio:
+        one: "%{count} zvočni posnetek"
+        two: "%{count} zvočna posnetka"
+        few: "%{count} zvočni posnetki"
+        other: "%{count} zvočnih posnetkov"
       description: 'Priloženo: %{attached}'
       image:
         one: "%{count} slika"
@@ -1303,9 +1329,11 @@ sl:
       unlisted_long: Vsi lahko vidijo, vendar ni objavljeno na javnih časovnicah
   statuses_cleanup:
     enabled: Samodejno izbriši stare objave
+    enabled_hint: Samodejno izbriše vaše objave, ko dosežejo določen starostni prag, razen če ne ustrezajo eni od spodnjih izjem
     exceptions: Izjeme
     ignore_favs: Prezri priljubljene
     interaction_exceptions: Izjeme na osnovi interakcije
+    interaction_exceptions_explanation: Upoštevajte, da ni nobene garancije za objave, ki bodo izbrisane, če padejo pod prag priljubljenosti ali promocije, ko so ga že enkrat presegle.
     keep_direct: Ohrani neposredna sporočila
     keep_direct_hint: Ne izbriše nobenega izmed vaših neposrednih sporočil
     keep_media: Ohrani objave z medijskimi priponkami
@@ -1329,7 +1357,9 @@ sl:
       '7889238': 3 mesece
     min_age_label: Starostna meja
     min_favs: Obrži objave priljubljene vsaj
+    min_favs_hint: Ne izbriše nobene od vaših objav, ki je prejela vsaj takšno količino priljubljenih. Pustite prazno, če želite izbrisati objave ne glede na število všečkov
     min_reblogs: Obdrži objave izpostavljene vsaj
+    min_reblogs_hint: Ne izbriše nobene od vaših objav, ki je bila vsaj tolikokrat podprta. Pustite prazno, če želite izbrisati objave ne glede na število potrditev
   stream_entries:
     pinned: Pripet trob
     reblogged: spodbujen
@@ -1446,8 +1476,11 @@ sl:
   user_mailer:
     appeal_approved:
       action: Pojdite na svoj račun
+      explanation: Pritožbi na ukrep proti vašemu računu z dne %{strike_date}, ki ste jo oddali dne %{appeal_date}, je bilo ugodeno. Vaš račun je znova nesporen.
+      subject: Vaši pritožbi z dne %{date} je bilo ugodeno
       title: Pritožbi ugodeno
     appeal_rejected:
+      explanation: Pritožba na ukrep proti vašemu računu z dne %{strike_date}, ki ste jo oddali dne %{appeal_date}, je bila zavrnjena.
       subject: Vaša pritožba z dne %{date} je bila zavrnjena
       title: Pritožba zavrnjena
     backup_ready:
