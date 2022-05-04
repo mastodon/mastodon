@@ -1167,9 +1167,13 @@ sl:
     suspicious_sign_in:
       change_password: spremenite svoje geslo
       details: 'Tukaj so podrobnosti prijave:'
+      explanation: Zaznali smo prijavo v vaš račun z novega naslova IP.
+      further_actions_html: Če to niste bili vi, priporočamo da takoj ukrepate (%{action}) in omogočite dvo-ravensko overjanje (2FA), da ohranite račun varen.
+      subject: Do vašega računa je bil opravljen dostop z novega naslova IP
       title: Nova prijava
     warning:
       appeal: Pošlji pritožbo
+      appeal_description: Če menite, da gre za napako, lahko pošljete pritožbo osebju %{instance}.
       categories:
         spam: Neželeno
       reason: 'Razlog:'
