@@ -1,7 +1,8 @@
+---
 he:
   about:
-    about_hashtag_html: 'אלו סטטוסים פומביים המתוייגים בתור<strong>#%{hashtag}</strong>. ניתן להגיב, להדהד או לחבב אותם אם יש לך חשבון בכל מקום בפדרציה.'
-    about_mastodon_html: 'מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.'
+    about_hashtag_html: אלו סטטוסים פומביים המתוייגים בתור<strong>#%{hashtag}</strong>. ניתן להגיב, להדהד או לחבב אותם אם יש לך חשבון בכל מקום בפדרציה.
+    about_mastodon_html: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
     about_this: אודות שרת זה
     active_count_after: פעיל
     active_footnote: משתמשים פעילים חודשית (MAU)
@@ -34,10 +35,10 @@ he:
     server_stats: 'סטטיסטיקות שרת:'
     source_code: קוד מקור
     status_count_after:
-      one: חצרוץ
-      two: חצרוצים
       many: חצרוצים
+      one: חצרוץ
       other: חצרוצים
+      two: חצרוצים
     status_count_before: שכתבו
     tagline: מעקב אחרי חברים וגילוי חדשים
     terms: תנאי שימוש
@@ -53,22 +54,22 @@ he:
       suspended_title: שרתים מושעים
     unavailable_content_html: ככלל מסטודון מאפשר לך לצפות בתוכן ולתקשר עם משתמשים בכל שרת בפדרציה. אלו הם היוצאים מן הכלל שהוגדרו עבור שרת זה.
     user_count_after:
-      one: משתמש
-      two: משתמשים
       many: משתמשים
+      one: משתמש
       other: משתמשים
+      two: משתמשים
     user_count_before: ביתם של
     what_is_mastodon: מה זה מסטודון?
   accounts:
-    choices_html: "בחירותיו/ה של %{name}:"
+    choices_html: 'בחירותיו/ה של %{name}:'
     endorsements_hint: תוכל/י להמליץ על אנשים לעקוב אחריהם דרך ממשק הווב, והם יופיעו כאן.
     featured_tags_hint: תוכל/י להציג האשתגיות ספציפיות והן תופענה כאן.
     follow: לעקוב
     followers:
-      one: עוקב
-      two: עוקבים
       many: עוקבים
+      one: עוקב
       other: עוקבים
+      two: עוקבים
     following: נעקבים
     instance_actor_flash: חשבון זה הינו פועל וירטואלי המשמש לייצוג השרת עצמו ולא אף משתמש ספציפי. הוא משמש למטרות פדרציה ואין להשעותו.
     joined: הצטרף/ה ב-%{date}
@@ -83,10 +84,10 @@ he:
     pin_errors:
       following: עליך לעקוב אחרי חשבון לפני שניתן יהיה להמליץ עליו
     posts:
-      one: חצרוץ
-      two: חצרוצים
       many: חצרוצים
+      one: חצרוץ
       other: חצרוצים
+      two: חצרוצים
     posts_tab_heading: חצרוצים
     posts_with_replies: חצרוצים ותגובות
     roles:
@@ -227,7 +228,7 @@ he:
         suspend_account: השעיית חשבון
         unassigned_report: ביטול הקצאת דו"ח
       actions:
-        unblock_email_account_html: "%{name} הסיר/ה חסימה מחשבון הדוא\"ל של %{target}"
+        unblock_email_account_html: '%{name} הסיר/ה חסימה מחשבון הדוא"ל של %{target}'
         unsensitive_account_html: "%{name} ביטל/ה את סימון המדיה של %{target} כרגישה"
         unsilence_account_html: "%{name} ביטל/ה ההגבלה מהחשבון של %{target}"
         unsuspend_account_html: "%{name} ביטל/ה את ההשעיה של החשבון של %{target}"
@@ -314,16 +315,16 @@ he:
     instances:
       availability:
         description_html:
-          one: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
-          two: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
           many: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
+          one: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
           other: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
+          two: אם משלוח לדומיין נכשל במשך <strong>%{count} ימים שונים</strong> ולא מצליח, נסיונות משלוח נוספים לא יעשו אלא אם התקבל משלוח <em>מ</em>הדומיין.
         failure_threshold_reached: סף כשלון הושג ב-%{date}.
         failures_recorded:
-          one: נסיון כושל ביום %{count}.
-          two: נסיונות כושלים ב-%{count} ימים שונים.
           many: נסיונות כושלים ב-%{count} ימים שונים.
+          one: נסיון כושל ביום %{count}.
           other: נסיונות כושלים ב-%{count} ימים שונים.
+          two: נסיונות כושלים ב-%{count} ימים שונים.
         no_failures_recorded: לא נמצאו כשלונות.
         title: זמינות
         warning: הנסיון האחרון להתחבר לשרת זה לא עלה בהצלחה
@@ -365,10 +366,10 @@ he:
       destroyed_msg: מידע מ-%{domain} נמצא עתה בתור למחיקה מיידית.
       empty: לא נמצאו דומיינים.
       known_accounts:
-        one: "חשבון ידוע %{count}"
-        two: "%{count} חשבונות ידועים"
         many: "%{count} חשבונות ידועים"
+        one: חשבון ידוע %{count}
         other: "%{count} חשבונות ידועים"
+        two: "%{count} חשבונות ידועים"
       title: שרתים מוכרים
     report_notes:
       today_at: היום, ב%{time}
@@ -506,10 +507,10 @@ he:
         disallow: לא לאשר קישורית
         disallow_provider: לא לאשר מפרסם
         shared_by_over_week:
-          one: הופץ על ידי אדם אחד בשבוע האחרון
-          two: הופץ על ידי %{count} אנשים בשבוע האחרון
           many: הופץ על ידי %{count} אנשים בשבוע האחרון
+          one: הופץ על ידי אדם אחד בשבוע האחרון
           other: הופץ על ידי %{count} אנשים בשבוע האחרון
+          two: הופץ על ידי %{count} אנשים בשבוע האחרון
         title: קישוריות חמות
         usage_comparison: הופץ %{today} פעמים היום, לעומת %{yesterday} אתמול
       only_allowed: רק כאלה שהותרו
@@ -567,7 +568,7 @@ he:
       content: בדיקת אבטחה נכשלה. החסמת עוגיותיך מפנינו?
       title: בדיקת בטיחות נכשלה
     '429': הוחנק
-    '500':
+    '500': 
     '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: רשימת חסימות
@@ -602,19 +603,19 @@ he:
       mention: "%{name} פנה אליך ב:"
     favourite:
       body: 'חצרוצך חובב על ידי %{name}:'
-      subject: "חצרוצך חובב על ידי %{name}"
+      subject: חצרוצך חובב על ידי %{name}
     follow:
       body: "%{name} עכשיו במעקב אחריך!"
       subject: "%{name} עכשיו במעקב אחריך"
     follow_request:
-      body: "התקבלה בקשת מעקב מ־%{name}"
+      body: התקבלה בקשת מעקב מ־%{name}
       subject: 'בקשת מעקב בהמתנה: %{name}'
     mention:
       body: 'התקבלה פניה עבורך מאת %{name} ב:'
       subject: התקבלה פניה עבורך מאת %{name}
     reblog:
       body: 'חצרוצך הודהד על ידי %{name}:'
-      subject: "חצרוצך הודהד על ידי%{name}"
+      subject: חצרוצך הודהד על ידי%{name}
     update:
       subject: "%{name} ערכו פוסט"
   pagination:

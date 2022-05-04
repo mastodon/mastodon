@@ -1,3 +1,4 @@
+---
 he:
   activerecord:
     attributes:
@@ -146,20 +147,20 @@ he:
       application:
         title: נדרשת הרשאת OAuth
     scopes:
-      "admin:read": לקרוא את כל המידע על השרת
-      "admin:read:accounts": לקרוא מידע רגיש בכל החשבונות
-      "admin:read:reports": לקרוא מידע רגיש בכל הדוחות וכל החשבונות המדווחים
-      "admin:write": לשנות את כל המידע על השרת
-      "admin:write:accounts": ביצוע פעולות הנהלה על חשבונות
-      "admin:write:reports": ביצוע פעולות הנהלה על חשבונות
+      admin:read: לקרוא את כל המידע על השרת
+      admin:read:accounts: לקרוא מידע רגיש בכל החשבונות
+      admin:read:reports: לקרוא מידע רגיש בכל הדוחות וכל החשבונות המדווחים
+      admin:write: לשנות את כל המידע על השרת
+      admin:write:accounts: ביצוע פעולות הנהלה על חשבונות
+      admin:write:reports: ביצוע פעולות הנהלה על חשבונות
       crypto: שימוש בהצפנה מקצה לקצה
       follow: לעקוב, לחסום, להסיר חסימה ולהפסיק לעקוב אחרי חשבונות
       push: קבלת התראות בדחיפה
       read: לקרוא את המידע שבחשבונך
-      "read:accounts": צפיה במידע על חשבונות
-      "read:blocks": צפייה בחסימות
-      "read:bookmarks": צפייה בסימניות
-      "read:favourites": צפייה בחיבובים
-      "read:filters": צפייה במסננים
-      "read:follows": צפייה בנעקבים
+      read:accounts: צפיה במידע על חשבונות
+      read:blocks: צפייה בחסימות
+      read:bookmarks: צפייה בסימניות
+      read:favourites: צפייה בחיבובים
+      read:filters: צפייה במסננים
+      read:follows: צפייה בנעקבים
       write: להפיץ הודעות בשמך
