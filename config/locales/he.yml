@@ -544,14 +544,46 @@ he:
         description_html: אלו הן האשתגיות שמופיעות הרבה כרגע בחצרוצים המגיעים לשרת. זה עשוי לעזור למשתמשיך למצוא על מה אנשים מרבים לדבר כרגע. שום האשתגיות לא יוצגו בפומבי עד שתאושרנה.
         listable: ניתנות להצעה
         not_listable: לא תוצענה
+        not_trendable: לא תופענה תחת נושאים חמים
+        not_usable: לא שמישות
+  appearance:
+    discovery: גילוי
+    localization:
+      body: מסטודון מתורגם על ידי מתנדבים.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: כולם יכולים לתרום.
+    sensitive_content: תוכן רגיש
+    toot_layout: פריסת חצרוץ
   application_mailer:
+    notification_preferences: שינוי העדפות דוא"ל
+    salutation: "%{name},"
     settings: 'שינוי הגדרות דוא"ל: %{link}'
     view: 'תצוגה:'
+    view_profile: צפיה בפרופיל
+    view_status: הצגת חצרוץ
   applications:
+    created: ישום נוצר בהצלחה
+    destroyed: ישום נמחק בהצלחה
     invalid_url: כתובת הקישורית אינה חוקית
+    regenerate_token: יצירת אסימון גישה מחדש
+    token_regenerated: אסימון גישה יוצר מחדש בהצלחה
+    warning: זהירות רבה נדרשת עם מידע זה. אין לחלוק אותו אף פעם עם אף אחד!
+    your_token: אסימון הגישה שלך
   auth:
+    apply_for_account: בקשת הזמנה
+    change_password: סיסמא
+    checkbox_agreement_html: אני מסכים/ה ל<a href="%{rules_path}" target="_blank">כללי השרת</a> ול<a href="%{terms_path}" target="_blank">תנאי השימוש</a>
+    checkbox_agreement_without_rules_html: אני מסכים/ה ל<a href="%{terms_path}" target="_blank">תנאי השימוש</a>
+    delete_account: מחיקת חשבון
+    delete_account_html: אם ברצונך למחוק את החשבון, ניתן <a href="%{path}">להמשיך כאן</a>. תתבקש/י לספק אישור נוסף.
+    description:
+      prefix_invited_by_user: "@%{name} מזמין אותך להצטרף לשרת זה במסטודון!"
+      prefix_sign_up: הרשם/י למסטודון היום!
+      suffix: כבעל/ת חשבון, תוכל/י לעקוב אחרי אנשים, לפרסם עדכונים ולהחליף מסרים עם משתמשים מכל שרת מסטודון ועוד!
     didnt_get_confirmation: לא התקבלו הוראות אימות?
+    dont_have_your_security_key: אין לך מפתח אבטחה?
     forgot_password: הנשתכחה סיסמתך?
+    invalid_reset_password_token: אסימון איפוס הסיסמא לא תקין או פג תוקף. נא לבקש אחד חדש.
     log_in_with: התחבר באמצעות
     login: כניסה
     logout: יציאה
