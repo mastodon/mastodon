@@ -30,6 +30,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
     end
 
     return if activity_json.nil? || object_uri.nil? || !trustworthy_attribution?(@json['id'], actor_uri)
+    return ActivityPub::TagManager.instance.uri_to_resource(object_uri, Status) if ActivityPub::TagManager.instance.local_uri?(object_uri)
 
     actor = account_from_uri(actor_uri)
 
