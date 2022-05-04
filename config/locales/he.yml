@@ -291,6 +291,9 @@ he:
         update_domain_block: עדכון חסימת שם מתחם
         update_status: סטטוס עדכון
       actions:
+        change_email_user_html: "%{name} שינה/תה את כתובת הדוא\"ל של המשתמש %{target}"
+        confirm_user_html: "%{name} אישר/ה את כותבת הדו\"אל של המשתמש %{target}"
+        create_account_warning_html: "%{name} שלח/ה אזהרה ל %{target}"
         unblock_email_account_html: "%{name} הסיר/ה חסימה מחשבון הדוא\"ל של %{target}"
         unsensitive_account_html: "%{name} ביטל/ה את סימון המדיה של %{target} כרגישה"
         unsilence_account_html: "%{name} ביטל/ה ההגבלה מהחשבון של %{target}"
@@ -346,6 +349,14 @@ he:
       not_permitted: אין לך הרשאות לביצוע פעולה זו
       overwrite: לדרוס
       shortcode: קוד קצר
+      title: יצגנים מותאמים אישית
+      upload: העלאה
+    dashboard:
+      active_users: משתמשים פעילים
+      interactions: אינטראקציות
+      media_storage: נפח אחסון מדיה
+      new_users: משתמשים חדשים
+      opened_reports: דו"חות פתוחים
     domain_blocks:
       add_new: הוספת חדש
       created_msg: חסימת שרת בתהליך
@@ -434,6 +445,9 @@ he:
         many: "%{count} חשבונות ידועים"
         other: "%{count} חשבונות ידועים"
       title: שרתים מוכרים
+    invites:
+      filter:
+        all: כל ההזמנות
     report_notes:
       today_at: היום, ב%{time}
     reports:
@@ -523,6 +537,9 @@ he:
         closed_message:
           desc_html: מוצג על הדף הראשי כאשר ההרשמות סגורות<br>ניתן להשתמש בתגיות HTML
           title: מסר סגירת הרשמות
+        min_invite_role:
+          disabled: אף אחד
+          title: אפשר הזמנות לפי
       site_description:
         desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא. ניתן להשתמש בתגיות HTML, ובמיוחד ב־<code> &lt; a&gt; </code> ו־<code> &lt; em&gt; </code> .
         title: תיאור האתר
