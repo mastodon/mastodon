@@ -646,18 +646,27 @@ he:
   domain_validator:
     invalid_domain: הוא לא שם דומיין קביל
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': הבקשה שהגשת לא תקינה.
     '403': חסרות לך הרשאות לצפיה בעמוד זה.
     '404': הדף המבוקש לא קיים.
-    '406': This page is not available in the requested format.
+    '406': הדף לא זמין בפורמט המבוקש.
     '410': הדף המבוקש כבר לא קיים.
     '422':
       content: בדיקת אבטחה נכשלה. החסמת עוגיותיך מפנינו?
       title: בדיקת בטיחות נכשלה
     '429': הוחנק
     '500':
-    '503': The page could not be served due to a temporary server failure.
+      content: אנו מצטערות, אבל משהו השתבש בצד שלנו.
+      title: דף זה אינו נכון
+    '503': לא ניתן להציג דף זה עקב תקלת שרת זמנית.
+    noscript_html: על מנת להשתמש ביישום הווב של מסטודון, נא לאפשר שימוש בג'אווהסקריפט. לחילופין אפשר לנסות את אחת ה<a href="%{apps_path}">אפליקציות הילידיות</a> שלנו המתאימה לסביבתך.
+  existing_username_validator:
+    not_found: לא נמצא משתמש מקומי בשם זה
+    not_found_multiple: לא נמצאו %{usernames}
   exports:
+    archive_takeout:
+      date: תאריך
+      download: הורדת הארכיון שלך
     blocks: רשימת חסימות
     mutes: רשימת השתקות
     storage: אחסון מדיה
