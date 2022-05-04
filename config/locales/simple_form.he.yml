@@ -55,6 +55,18 @@ he:
         setting_display_media_show_all: גלה מדיה תמיד
         setting_hide_network: עוקבייך ונעקבייך יוסתרו בפרופילך
         setting_noindex: משפיע על הפרופיל הציבורי שלך ועמודי ההודעות
+        setting_show_application: היישום בו נעשה שימוש כדי לחצרץ יופיע בתצוגה המפורטת של החצרוץ
+        setting_use_blurhash: הגראדיינטים מבוססים על תוכן התמונה המוסתרת, אבל מסתירים את כל הפרטים
+        setting_use_pending_items: הסתר עדכוני פיד מאחורי קליק במקום לגלול את הפיד אוטומטית
+        username: שם המשתמש שלך יהיה ייחודי ב-%{domain}
+        whole_word: אם מילת מפתח או ביטוי הם אלפאנומריים בלבד, הם יופעלו רק אם נמצאה התאמה למילה שלמה
+      domain_allow:
+        domain: דומיין זה יוכל לייבא מידע משרת זה והמידע המגיע ממנו יעובד ויאופסן
+      email_domain_block:
+        domain: זה יכול להיות שם הדומיין המופיע בכתובת הדוא"ל או רשומת ה-MX בה הוא משתמש. הם ייבדקו בהרשמה.
+        with_dns_records: ייעשה נסיון למצוא את רשומות ה-DNS של דומיין נתון והתוצאות ייחסמו גם הן
+      featured_tag:
+        name: 'אולי תרצה/י להשתמש באחד מאלה:'
       imports:
         data: קובץ CSV שיוצא משרת מסטודון אחר
       sessions:
@@ -82,11 +94,21 @@ he:
         setting_default_privacy: פרטיות ההודעות
         setting_default_sensitive: תמיד לתת סימון "רגיש" למדיה
         setting_delete_modal: להראות תיבת אישור לפני מחיקת חיצרוץ
+        setting_display_media: תצוגת מדיה
+        setting_display_media_default: ברירת מחדל
+        setting_display_media_hide_all: להסתיר הכל
+        setting_display_media_show_all: להציג הכול
+        setting_expand_spoilers: להרחיב תמיד חצרוצים מסומנים באזהרת תוכן
+        setting_hide_network: להחביא את הגרף החברתי שלך
         setting_noindex: לבקש הסתרה ממנועי חיפוש
         setting_reduce_motion: הפחתת תנועה בהנפשות
+        setting_show_application: הצגת הישום ששימש לחצרוץ
         setting_system_font_ui: להשתמש בגופן ברירת המחדל של המערכת
         setting_theme: ערכת העיצוב של האתר
+        setting_trends: הצגת הנושאים החמים
         setting_unfollow_modal: להראות תיבת אישור לפני הפסקת מעקב אחרי אחרים
+        setting_use_blurhash: הצגת גראדיינטים צבעוניים למדיה מוסתרת
+        setting_use_pending_items: מצב איטי
         severity: חומרה
         type: סוג יבוא
         username: שם משתמש
