@@ -407,6 +407,11 @@ he:
         two: "<strong>%{count}</strong> ערעורים ממתינים"
         many: "<strong>%{count}</strong> ערעורים ממתינים"
         other: "<strong>%{count}</strong> ערעורים ממתינים"
+      pending_reports_html:
+        one: "דו\"ח <strong>%{count}</strong> ממתין"
+        two: "<strong>%{count}</strong> דוחות ממתינים"
+        many: "<strong>%{count}</strong> דוחות ממתינים"
+        other: "<strong>%{count}</strong> דוחות ממתינים"
       pending_tags_html:
         one: "<strong>%{count}</strong> האשתג ממתין"
         two: "<strong>%{count}</strong> האשתגיות ממתינות"
@@ -911,6 +916,16 @@ he:
         title: חצרוצים לוהטים
       new_trending_tags:
         no_approved_tags: אין כרגע שום האשתגיות חמות מאושרות.
+        requirements: 'כל אחת מהמועמדות האלה עשויה לעבור את ההאשתגית החמה המאושרת מדרגה %{rank}, שהיא כרגע %{lowest_tag_name} עם ציון של %{lowest_tag_score}.'
+        title: האשתגיות חמות
+      subject: נושאים חמים חדשים מוכנים לסקירה ב-%{instance}
+  aliases:
+    add_new: יצירת שם נרדף
+    created_msg: שם נרדף חדש נוצר בהצלחה. ניתן להתחיל עכשיו את המעבר מהחשבון הישן.
+    deleted_msg: שם נרדף הוסר בהצלחה. מעבר מהחשבון ההוא לזה לא אפשרי יותר.
+    empty: אין לך שמות נרדפים.
+    hint_html: אם ברצונך לעבור מחשבון אחר לחשבון הזה, כאן ניתן ליצור שם נרדף, הנדרש לפני שאפשר יהיה להמשיך עם העברת עוקבים מהחשבון הישן לזה. הפעולה עצמה <strong>הפיכה ובלתי מזיקה</strong>. <strong>הגירת החשבון מופעלת מהחשבון הישן</strong>.
+    remove: הסרת שם נרדף
   appearance:
     advanced_web_interface: ממשק ווב מתקדם
     discovery: גילוי
@@ -1176,6 +1191,11 @@ he:
     expires_in_prompt: לעולם לא
     generate: צור קישור להזמנה
     invited_by: 'הוזמנת ע"י'
+    max_uses:
+      one: שימוש אחד
+      two: "%{count} שימושים"
+      many: "%{count} שימושים"
+      other: "%{count} שימושים"
     max_uses_prompt: ללא הגבלה
     prompt: צור ושתף קישורים לאחרים על מנת להעניק גישה לשרת זה
     table:
@@ -1441,6 +1461,16 @@ he:
       ownership: חצרוצים של אחרים לא יכולים להיות מוצמדים
       reblog: אין אפשרות להצמיד הדהודים
     poll:
+      total_people:
+        one: "איש/ה %{count}"
+        two: "%{count} אנשים"
+        many: "%{count} אנשים"
+        other: "%{count} אנשים"
+      total_votes:
+        one: "קול %{count}"
+        two: "%{count} קולות"
+        many: "%{count} קולות"
+        other: "%{count} קולות"
       vote: הצבעה
     show_more: עוד
     show_newer: הצג חדשים יותר
