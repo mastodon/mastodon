@@ -1326,7 +1326,7 @@
         "id": "privacy.private.long"
       },
       {
-        "defaultMessage": "Only people I mention",
+        "defaultMessage": "Mentioned people only",
         "id": "privacy.direct.short"
       },
       {
@@ -1616,12 +1616,20 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Conversations",
-        "id": "column.conversations"
+        "defaultMessage": "Direct messages",
+        "id": "column.direct"
       },
       {
-        "defaultMessage": "Once you send or receive a post that's only visible to people mentioned in it, it will show up here.",
-        "id": "empty_column.conversations"
+        "defaultMessage": "Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.",
+        "id": "compose_form.encryption_warning"
+      },
+      {
+        "defaultMessage": "Learn more",
+        "id": "compose_form.direct_message_warning_learn_more"
+      },
+      {
+        "defaultMessage": "You don't have any direct messages yet. When you send or receive one, it will show up here.",
+        "id": "empty_column.direct"
       }
     ],
     "path": "app/javascript/mastodon/features/direct_timeline/index.json"
@@ -1965,8 +1973,8 @@
         "id": "navigation_bar.explore"
       },
       {
-        "defaultMessage": "Conversations",
-        "id": "column.conversations"
+        "defaultMessage": "Direct messages",
+        "id": "navigation_bar.direct"
       },
       {
         "defaultMessage": "Bookmarks",
@@ -2222,8 +2230,8 @@
         "id": "keyboard_shortcuts.federated"
       },
       {
-        "defaultMessage": "to open conversations column",
-        "id": "keyboard_shortcuts.conversations"
+        "defaultMessage": "to open direct messages column",
+        "id": "keyboard_shortcuts.direct"
       },
       {
         "defaultMessage": "to open \"get started\" column",
@@ -3526,8 +3534,8 @@
         "id": "tabs_bar.federated_timeline"
       },
       {
-        "defaultMessage": "Conversations",
-        "id": "column.conversations"
+        "defaultMessage": "Direct messages",
+        "id": "navigation_bar.direct"
       },
       {
         "defaultMessage": "Favourites",
