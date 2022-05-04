@@ -250,6 +250,38 @@ he:
         create: יצירת הכרזה
         title: הכרזה חדשה
       publish: פרסום
+      published_msg: ההכרזה פורסמה בהצלחה!
+      scheduled_for: מתוזמן ל-%{time}
+      scheduled_msg: ההכרזה תוזמנה לפרסום!
+      title: הכרזות
+      unpublish: ביטול פרסום
+      unpublished_msg: פרסום ההכרזה בוטל בהצלחה!
+      updated_msg: ההכרזה עודכנה בהצלחה!
+    custom_emojis:
+      assign_category: הקצאת קטגוריה
+      by_domain: לפי קהילה
+      copied_msg: עותק מקומי של האמוג'י נוצר בהצלחה
+      copy: להעתיק
+      copy_failed_msg: לא ניתן ליצור עותק מקומי של האמוג'י הזה
+      create_new_category: צור קטגוריה חדשה
+      created_msg: אמוג'י נוצר בהצלחה!
+      delete: למחוק
+      destroyed_msg: אמוג'י הושמד בהצלחה!
+      disable: השבתה
+      disabled: מושבת
+      disabled_msg: השבתת אמוג'י זה בוצעה בהצלחה
+      emoji: אמוג'י
+      enable: לאפשר
+      enabled: מאופשר
+      enabled_msg: אמוג'י זה אופשר בהצלחה
+      image_hint: PNG או GIF עד לגודל %{size}
+      list: רשימה
+      listed: ברשימה
+      new:
+        title: הוספת אמוג'י מיוחד חדש
+      not_permitted: אין לך הרשאות לביצוע פעולה זו
+      overwrite: לדרוס
+      shortcode: קוד קצר
     domain_blocks:
       add_new: הוספת חדש
       created_msg: חסימת שרת בתהליך
@@ -266,6 +298,11 @@ he:
       reject_media: חסימת קבצי מדיה
       reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים בעתיד. לא רלוונטי להשעיות
       undo: ביטול
+    email_domain_blocks:
+      no_email_domain_block_selected: לא בוצעו שינויים לחסימת דומייני דוא"ל שכן לא נבחרו דומיינים
+      resolved_dns_records_hint_html: שם הדומיין מוביל לדומייניי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת דומיין MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בדומיין MX זה, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
+      resolved_through_html: נמצא דרך %{domain}
+      title: דומייניי דוא"ל חסומים
     instances:
       delivery:
         failing: נכשל
