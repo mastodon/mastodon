@@ -704,13 +704,29 @@ he:
         title: הרשאה להאשתגיות להופיע בנושאים החמים ללא אישור מוקדם
       trends:
         desc_html: הצגה פומבית של תוכן שנסקר בעבר ומופיע כרגע בנושאים החמים
+        title: נושאים חמים
+    site_uploads:
+      delete: מחיקת קובץ שהועלה
+      destroyed_msg: העלאת אתר נמחקה בהצלחה!
     statuses:
+      back_to_account: חזרה לדף החשבון
       back_to_report: חזרה לעמוד הדיווח
       batch:
         remove_from_report: הסרה מהדיווח
         report: דווח
+      deleted: מחוקים
+      media:
+        title: מדיה
+      no_status_selected: לא בוצעו שינויים בחצרוצים שכן לא נבחרו חצרוצים
+      title: חצרוצי חשבון
+      with_media: עם מדיה
     strikes:
       actions:
+        delete_statuses: "%{name} מחק/ה את חצרוציו של %{target}"
+        disable: "%{name} הקפיא/ה את חשבונו של %{target}"
+        mark_statuses_as_sensitive: "%{name} סימנה את חצרוציו של %{target} כרגישים"
+        none: "%{name} שלח/ה אזהרה ל-%{target}"
+        sensitive: "%{name} סימן/ה את חשבונו של %{target} כרגיש"
         silence: "%{name} הגביל/ה את חשבונו/ה של %{target}"
         suspend: "%{name} השעה/תה את חשבונו/ה של %{target}"
       appeal_approved: עורער
@@ -874,6 +890,13 @@ he:
     confirm: המשך
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
     invalid_password: סיסמא שגויה
+  crypto:
+    errors:
+      invalid_signature: היא לא חתימת Ed25519 קבילה
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} שעות"
@@ -889,7 +912,13 @@ he:
       x_months: "%{count} חודשים"
       x_seconds: "%{count} שניות"
   deletes:
+    challenge_not_passed: המידע שהכנסת לא היה נכון
+    confirm_password: נא להכניס את הסיסמא הנוכחית כדי לוודא את זהותך
+    confirm_username: נא להכניס את שם המשתמש כדאי לאשר את הפעולה
     proceed: מחיקת חשבון
+    success_msg: חשבונך נמחק בהצלחה
+    warning:
+      before: 'לפני שנמשיך, נא לקרוא בזהירות את ההערות הבאות:'
   directories:
     directory: מדריך פרופילים
     explanation: גלו משתמשים בהתבסס על תחומי העניין שלהם
