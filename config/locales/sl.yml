@@ -280,7 +280,11 @@ sl:
         silence_account_html: "%{name} je omejil/a račun uporabnika %{target}"
         suspend_account_html: "%{name} je suspendiral/a račun uporabnika %{target}"
         unassigned_report_html: "%{name} je preklical dodelitev prijave uporabnika %{target}"
+        update_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
+        update_domain_block_html: "%{name} je posodobil/a domenski blok za %{target}"
+        update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
       deleted_status: "(izbrisano stanje)"
+      empty: Ni najdenih zapisnikov.
       filter_by_action: Filtriraj po dejanjih
       filter_by_user: Filtriraj po uporabnikih
       title: Dnevnik revizije
@@ -295,6 +299,7 @@ sl:
         title: Novo obvestilo
       publish: Objavi
       published_msg: Obvestilo je bilo uspešno objavljeno!
+      scheduled_for: Načrtovano ob %{time}
       scheduled_msg: Obvestilo ima načrtovano objavo!
       title: Obvestila
       unpublish: Umakni iz objave
@@ -336,6 +341,7 @@ sl:
     dashboard:
       active_users: dejavnih uporabnikov
       interactions: interakcij
+      media_storage: Shramba za medije
       new_users: novih uporabnikov
       opened_reports: odprtih poročil
       resolved_reports: razrešenih poročil
@@ -448,6 +454,7 @@ sl:
         unavailable: Ni na voljo
       delivery_available: Na voljo je dostava
       delivery_error_days: Dnevi napak pri dostavi
+      destroyed_msg: Podatki iz %{domain} so zdaj v vrsti za takojšnje brisanje.
       empty: Ni zadetkov med domenami.
       known_accounts:
         one: "%{count} znan račun"
@@ -510,6 +517,12 @@ sl:
       destroyed_msg: Opomba o prijavi je uspešno izbrisana!
       today_at: Danes ob %{time}
     reports:
+      account:
+        notes:
+          one: "%{count} opomba"
+          two: "%{count} opombi"
+          few: "%{count} opombe"
+          other: "%{count} opomb"
       action_taken_by: Dejanje, ki ga je sprejel
       add_to_report: Dodaj več v prijavo
       are_you_sure: Ali ste prepričani?
@@ -598,6 +611,8 @@ sl:
         min_invite_role:
           disabled: Nihče
           title: Dovoli vabila od
+        require_invite_text:
+          title: Zahteva, da novi uprorabniki navedejo razlog, zakaj se želijo registrirati
       registrations_mode:
         modes:
           approved: Potrebna je odobritev za prijavo
@@ -667,8 +682,11 @@ sl:
       rules_check:
         action: Upravljaj pravila strežnika
         message_html: Nobenih pravil strežnika niste določili.
+      sidekiq_process_check:
+        message_html: Noben proces Sidekiq ne poteka za %{value} vrst. Preglejte svojo prilagoditev Sidekiq
     tags:
       review: Stanje pregleda
+      updated_msg: Nastavitve ključnikov uspešno posodobljene
     title: Upravljanje
     trends:
       allow: Dovoli
@@ -676,11 +694,36 @@ sl:
       disallow: Ne dovoli
       links:
         allow: Dovoli povezavo
+        allow_provider: Dovoli izdajatelja
+        disallow: Ne dovoli povezave
+        disallow_provider: Ne dovoli izdajatelja
+        title: Povezave v trendu
+      only_allowed: Samo dovoljeni
       pending_review: Čakajoče na pregled
+      preview_card_providers:
+        allowed: Povezave tega izdajatelja so lahko v trendu
+        rejected: Povezave tega izdajatelja ne bodo v trendu
+        title: Izdajatelji
+      rejected: Zavrnjen
+      statuses:
+        allow: Dovoli objavo
+        allow_account: Dovoli avtorja
+        disallow: Ne dovoli objave
+        disallow_account: Ne dovoli avtorja
+        shared_by:
+          one: Deljeno ali priljubljeno %{friendly_count}-krat
+          two: Deljeno ali priljubljeno %{friendly_count}-krat
+          few: Deljeno ali priljubljeno %{friendly_count}-krat
+          other: Deljeno ali priljubljeno %{friendly_count}-krat
+        title: Trendne objave
       tags:
+        current_score: Trenutni rezultat %{score}
         dashboard:
+          tag_accounts_measure: enkratnih uporab
           tag_languages_dimension: Naj jeziki
           tag_servers_dimension: Naj strežniki
+          tag_servers_measure: različnih strežnikov
+          tag_uses_measure: uporab skupaj
         listable: Je moč predlagati
         not_listable: Ne bo predlagano
         not_trendable: Se ne bo pojavilo med trendi
@@ -726,6 +769,7 @@ sl:
         no_approved_statuses: Trenutno ni odobrenih objav v trendu.
         title: Trendne objave
       new_trending_tags:
+        no_approved_tags: Trenutno ni odobrenih ključnikov v trendu.
         title: Ključniki v trendu
       subject: Novi trendi za pregled na %{instance}
   aliases:
@@ -851,6 +895,7 @@ sl:
     success_msg: Vaš račun je bil uspešno izbrisan
     warning:
       before: 'Pred nadaljevanjem previdno preberite naslednje opombe:'
+      caches: Vsebina, ki jo medpomnijo drugi strežniki, lahko vztraja
       data_removal: Vaše objave in drugi podatki bodo trajno odstranjeni
       email_change_html: <a href="%{path}">Svoj e-naslov lahko spremenite</a> brez izbrisa svojega računa
       email_contact_html: Če še vedno ni dostavljeno, lahko za pomoč pošljete e-sporočilo na naslov <a href="mailto:%{email}">%{email}</a>
