@@ -1398,12 +1398,23 @@ he:
   scheduled_statuses:
     over_daily_limit: חרגת מהמספר המקסימלי של חצרוצים מתוזמנים להיום, שהוא %{limit}
     over_total_limit: חרגת מהמספר המקסימלי של חצרוצים מתוזמנים, שהוא %{limit}
+    too_soon: תאריך התזמון חייב להיות בעתיד
   sessions:
     activity: פעילות אחרונה
     browser: דפדפן
     browsers:
+      alipay: Alipay
+      blackberry: בלקברי
+      chrome: כרום
+      edge: מייקרוסופט אדג'
+      electron: אלקטרון
+      firefox: פיירפוקס
       generic: דפדפן לא ידוע
+      ie: אינטרנט אקספלורר
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
       opera: אופרה
+      otter: Otter
       phantom_js: PhantomJS
       qq: דפדפן QQ
       safari: ספארי
@@ -1527,6 +1538,7 @@ he:
     keep_direct: שמירת הודעות ישירות
     keep_direct_hint: לא מוחק אך אחת מההודעות הישירות שלך
     keep_media: שמור חצרוצים עם מדיה
+    keep_media_hint: לא מוחק את חצרוציך שמצורפים אליהם קבצי מדיה
     keep_pinned: שמור חצרוצים מוצמדים
     keep_pinned_hint: לא מוחק אף אחד מהחצרוצים המוצמדים שלך
     keep_polls: שמור סקרים
@@ -1546,13 +1558,17 @@ he:
       '7889238': 3 חודשים
     min_age_label: סף גיל
     min_favs: השאר חצרוצים מחובבים לפחות
+    min_favs_hint: לא מוחק מי מחצרוציך שקיבלו לפחות את המספר הזה של חיבובים. להשאיר ריק כדי למחוק חצרוצים ללא קשר למספר החיבובים שקיבלו
     min_reblogs: שמור חצרוצים מהודהדים לפחות
+    min_reblogs_hint: לא מוחק מי מחצרוציך שקיבלו לפחות את המספר הזה של הדהודים. להשאיר ריק כדי למחוק חצרוצים ללא קשר למספר ההדהודים שקיבלו
   stream_entries:
     pinned: חצרוץ מוצמד
     reblogged: הודהד
     sensitive_content: תוכן רגיש
   tags:
     does_not_match_previous_name: לא תואם את השם האחרון
+  terms:
+    title: "תנאי שימוש ומדיניות פרטיות ב-%{instance}"
   themes:
     contrast: מסטודון (ניגודיות גבוהה)
     default: מסטודון (כהה)
@@ -1649,6 +1665,7 @@ he:
   users:
     follow_limit_reached: לא תוכל לעקוב אחר יותר מ %{limit} אנשים
     invalid_otp_token: קוד דו-שלבי שגוי
+    otp_lost_help_html: אם איבדת גישה לשניהם, ניתן ליצור קשר ב-%{email}
     seamless_external_login: את.ה מחובר דרך שירות חיצוני, לכן אפשרויות הסיסמא והדוא"ל לא מאופשרות.
     signed_in_as: 'מחובר בתור:'
   verification:
