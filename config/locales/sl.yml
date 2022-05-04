@@ -49,6 +49,7 @@ sl:
       rejecting_media_title: Filtrirane datoteke
       silenced: 'Objave s teh strežnikov bodo skrite v javnih časovnicah ter pogovorih in nobena obvestila ne bodo izdelana iz interakcij njihovih uporabnikov, razen če jim sledite:'
       silenced_title: Omejeni strežniki
+      suspended: 'Nobeni podatki s teh strežnikov ne bodo obdelani, shranjeni ali izmenjani, zaradi česar je nemogoča kakršna koli interakcija ali komunikacija z uporabniki s teh strežnikov:'
       suspended_title: Suspendirani strežniki
     unavailable_content_html: Mastodon vam splošno omogoča ogled vsebin in interakcijo z uporabniki iz vseh drugih strežnikov v fediverzumu. To so izjeme, opravljene na tem strežniku.
     user_count_after:
@@ -60,6 +61,7 @@ sl:
     what_is_mastodon: Kaj je Mastodon?
   accounts:
     choices_html: "%{name} izbire:"
+    endorsements_hint: Osebe, ki jim sledite, lahko podprete prek spletnega vmesnika in prikazane bodo tukaj.
     featured_tags_hint: Izpostavite lahko določene ključnike, ki bodo prikazani na tem mestu.
     follow: Sledi
     followers:
@@ -68,6 +70,7 @@ sl:
       few: Sledilci
       other: Sledilcev
     following: Sledim
+    instance_actor_flash: Ta račun je navidezni akter, ki se uporablja za predstavljanje strežnika samega in ne posameznega uporabnika. Uporablja se za namene federacije in se ne sme začasno ustaviti.
     joined: Se je pridružil na %{date}
     last_active: zadnja dejavnost
     link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
@@ -218,6 +221,7 @@ sl:
       suspend: Suspendiraj
       suspended: Suspendiran
       suspension_irreversible: Podatki tega računa so bili nepovrazno izbrisani. Račun lahko vrnete iz suspenza, da bo ponovno uporaben, vendar preteklih podatkov ne boste mogli obnoviti.
+      suspension_reversible_hint_html: Račun je bil suspendiran, podatki pa bodo v celoti odstranjeni %{date}. Do takrat je mogoče račun obnoviti brez negativnih posledic. Če želite takoj odstraniti vse podatke računa, lahko to storite spodaj.
       title: Računi
       unblock_email: Odblokiraj e-poštni naslov
       unblocked_email_msg: E-poštni naslov uporabnika %{username} uspešno odblokiran
@@ -284,6 +288,7 @@ sl:
         update_status: Posodobi objavo
       actions:
         approve_appeal_html: "%{name} je ugodil pritožbi uporabnika %{target} na moderatorsko odločitev"
+        approve_user_html: "%{name} je odobril/a registracijo iz %{target}"
         assigned_to_self_report_html: "%{name} je dodelil/a prijavo %{target} sebi"
         change_email_user_html: "%{name} je spremenil/a naslov e-pošte uporabnika %{target}"
         confirm_user_html: "%{name} je potrdil/a naslov e-pošte uporabnika %{target}"
@@ -307,15 +312,20 @@ sl:
         destroy_unavailable_domain_html: "%{name} je nadaljeval/a dostav v domeno %{target}"
         disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} je onemogočil/a overjanje z žetonom po e-pošti za uporabnika %{target}"
         disable_user_html: "%{name} je onemogočil/a prijavo za uporabnika %{target}"
         enable_custom_emoji_html: "%{name} je omogočil/a emotikone %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} je omogočil/a overjanje z žetonom po e-pošti za uporabnika %{target}"
         enable_user_html: "%{name} je omogočil/a prijavo za uporabnika %{target}"
         memorialize_account_html: "%{name} je spremenil/a račun uporabnika %{target} v spominsko stran"
         promote_user_html: "%{name} je povišal/a uporabnika %{target}"
+        reject_appeal_html: "%{name} je zavrnil/a pritožbo uporabnika %{target} na moderatorsko odločitev"
+        reject_user_html: "%{name} je zavrnil/a registracijo iz %{target}"
         remove_avatar_user_html: "%{name} je odstranil podobo (avatar) uporabnika %{target}"
         reopen_report_html: "%{name} je ponovno odprl/a prijavo %{target}"
         reset_password_user_html: "%{name} je ponastavil/a geslo uporabnika %{target}"
         resolve_report_html: "%{name} je razrešil/a prijavo %{target}"
+        sensitive_account_html: "%{name} je označil/a medije računa %{target}'s kot občutljive"
         silence_account_html: "%{name} je omejil/a račun uporabnika %{target}"
         suspend_account_html: "%{name} je suspendiral/a račun uporabnika %{target}"
         unassigned_report_html: "%{name} je preklical dodelitev prijave uporabnika %{target}"
@@ -444,7 +454,9 @@ sl:
       obfuscate: Zakrij ime domene
       obfuscate_hint: Delno zakrij ime domene na seznamu, če je omogočeno oglaševanje omejitev seznama domen
       private_comment: Zasebni komentar
+      private_comment_hint: Komentar o tej omejitvi domene za interno uporabo moderatorjev.
       public_comment: Javni komentar
+      public_comment_hint: Komentar o tej omejitvi domene za širšo javnost, če je omogočeno oglaševanje seznama omejitev domene.
       reject_media: Zavrni predstavnostne datoteke
       reject_media_hint: Odstrani lokalno shranjene predstavnostne datoteke in zavrača prenašanje le-teh v prihodnosti. Za suspenzije ni pomembno
       reject_reports: Zavrnjene prijave
@@ -542,6 +554,7 @@ sl:
         title: Moderiranje
       private_comment: Zasebni komentar
       public_comment: Javni komentar
+      purge: Očisti
       purge_description_html: Če menite, da je ta domena trajno nedosegljiva, lahko v svoji shrambi izbrišete vse zapise računov in povezane podatke iz te domene. To lahko vzame nekaj časa.
       title: Federacija
       total_blocked_by_us: Blokirano iz naše strani
@@ -1675,6 +1688,8 @@ sl:
         delete_statuses: Za nekatere vaših objav se je izkazalo, da kršijo eno ali več pravil skupnosti, zato so jih moderatorji %{instance} posledično odstranili.
         disable: Svojega računa ne morete več uporabljati, vendar vaš profil in drugi podatki ostajajo nedotaknjeni. Zahtevate lahko varnostno kopiranje svojih podatkov, spremenite nastavitve računa ali izbrišete svoj račun.
         sensitive: Odslej bodo vse vaše naložene medijske datoteke označene kot občutljive in skrite za opozorilom, ki ga je potrebno klikniti.
+        silence: Še vedno lahko uporabljate svoj račun, vendar bodo samo osebe, ki vas že spremljajo, videle vaše objave na tem strežniku in morda boste izključeni iz različnih funkcij odkrivanja. Vendar vam lahko drugi še vedno ročno sledijo.
+        suspend: Ne morete več uporabljati svojega računa, vaš profil in drugi podatki pa niso več dostopni. Še vedno se lahko prijavite in zahtevate varnostno kopijo svojih podatkov, dokler podatki niso v celoti odstranjeni v približno 30 dneh, vendar bomo ohranili nekaj osnovnih podatkov, da preprečimo, da bi se izognili suspenzu.
       reason: 'Razlog:'
       statuses: 'Citirane objave:'
       subject:
