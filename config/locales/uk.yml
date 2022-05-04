@@ -489,6 +489,12 @@ uk:
       unsuppress: Відновити поради щодо підписок
     instances:
       availability:
+        failures_recorded:
+          one: Невдалих спроб за %{count} день.
+          few: Невдалих спроб за %{count} різні дні.
+          many: Невдалих спроб за %{count} різних днів.
+          other: Невдалих спроб за %{count} різних днів.
+        no_failures_recorded: Проблем щодо запису немає.
         title: Доступність
       back_to_all: Усі
       back_to_limited: Обмежені
@@ -790,6 +796,7 @@ uk:
         disallow_provider: Заборонити публікатора
         title: Популярні посилання
         usage_comparison: Сьогодні поширено %{today} разів, у порівнянні з %{yesterday} вчора
+      only_allowed: Тільки дозволене
       pending_review: Очікує перевірки
       preview_card_providers:
         allowed: Посилання цього публікатора можуть бути популярними
