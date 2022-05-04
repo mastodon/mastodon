@@ -85,6 +85,11 @@ he:
         text: נא לתאר את הכלל או הדרישה למשתמשים משרת זה. על התיאור להיות קצר ובהיר
       sessions:
         otp: 'נא להקליד קוד אימות דו-שלבי ממכשירך או להשתמש באחד מקודי אחזור הגישה שלך:'
+        webauthn: אם זהו מכשיר USB יש לוודא שהוא מוכנס, ואם יש צורך, להקיש עליו.
+      tag:
+        name: ניתן רק להחליף בין אותיות קטנות וגדולות, למשל כדי לשפר את הקריאות
+      user:
+        chosen_languages: אם פעיל, רק חצרוצים בשפות הנבחרות יוצגו לפידים הפומביים
     labels:
       account:
         fields:
@@ -106,6 +111,17 @@ he:
           disable: הקפא
           none: שלח התרעה
           sensitive: רגיש
+          silence: הגבלה
+          suspend: השעייה
+        warning_preset_id: השתמש/י בטקסט מוכן מראש לאזהרה
+      announcement:
+        all_day: אירוע למשך כל היום
+        ends_at: סוף האירוע
+        scheduled_at: תיזמון פרסום
+        starts_at: תחילת האירוע
+        text: הכרזה
+      appeal:
+        text: הסבר מדוע יש להפוך את ההחלטה
       defaults:
         avatar: תמונת פרופיל
         bot: זהו חשבון מסוג בוט
@@ -119,8 +135,10 @@ he:
         display_name: שם להצגה
         email: כתובת דוא"ל
         expires_in: תפוגה לאחר
-        fields: נתוני-על של הפרופיל
+        fields: מטא-נתונים על הפרופיל
         header: ראשה
+        honeypot: "%{label} (לא למלא)"
+        irreversible: הסרה במקום הסתרה
         locale: שפה
         locked: הפוך חשבון לפרטי
         max_uses: מספר מרבי של שימושים
@@ -128,6 +146,7 @@ he:
         note: אודות
         otp_attempt: קוד אימות דו-שלבי
         password: סיסמא
+        phrase: מילת מפתח או ביטוי
         setting_advanced_layout: אפשר ממשק ווב מתקדם
         setting_aggregate_reblogs: קבץ הדהודים זהים
         setting_always_send_emails: תמיד שלח התראות לדוא"ל
