@@ -723,6 +723,10 @@ he:
   html_validator:
     invalid_markup: 'מכיל קוד HTML לא תקין: %{error}'
   imports:
+    errors:
+      over_rows_processing_limit: מכיל יותר מ-%{count} עמודות
+    modes:
+      merge: מיזוג
     preface: ניתן ליבא מידע מסויים כגון כל הנעקבים או המשתמשים החסומים לתוך חשבונך על שרת זה, מתוך קבצים שנוצרו על ידי יצוא משרת אחר כגון רשימת הנעקבים והחסומים שלך.
     success: כל המידע יובא בהצלחה, ויעובד בזמן הקרוב
     types:
@@ -739,25 +743,58 @@ he:
     redirected_msg: חשבונכם כעת מפנה ל%{acct}.
     redirecting_to: חשבונכם מפנה ל%{acct}.
     set_redirect: הגדר הפניה
+    warning:
+      backreference_required: ראשית יש להגדיר את החשבון החדש כך שיצביע לאחור לעבר חשבון זה
+      before: 'לפני שנמשיך, נא לקרוא בזהירות את ההערות הבאות:'
+      cooldown: לאחר המעבר ישנה תקופת המתנה בה לא ניתן לעבור שוב
+      disabled_account: חשבונך הנוכחי לא יהיה שמיש לחלוטין לאחר מכן. עם זאת, ניתן יהיה לגשת ליצוא המידע, וכמו כן להפעילו מחדש.
+      followers: פעולה זו תעביר את כל העוקבים מהחשבון הנוכחי לחשבון החדש
+      only_redirect_html: לחילופין, ניתן להסתפק ב<a href="%{path}">הכוונה מחדש בפרופילך</a>.
+      other_data: שום מידע לא יועבר אוטומטית
+      redirect: פרופיל חשבונך הנוכחי יעודכן עם הודעת הכוונה מחדש ויוחרג מחיפושים
+  moderation:
+    title: ניהול קהילה
+  move_handler:
+    carry_blocks_over_text: חשבון זה עבר מ-%{acct}, אותו חסמת בעבר.
+    carry_mutes_over_text: חשבון זה עבר מ-%{acct}, אותו השתקת בעבר.
+    copy_account_note_text: 'חשבון זה הועבר מ-%{acct}, הנה הערותיך הקודמות לגביהם:'
   notification_mailer:
     admin:
       sign_up:
         subject: "%{name} נרשמו"
     digest:
+      action: הצגת כל ההתראות
       body: להלן סיכום זריז של הדברים שקרו על מאז ביקורך האחרון ב-%{since}
       mention: "%{name} פנה אליך ב:"
+      new_followers_summary:
+        one: חוץ מזה, נוסף לך עוקב חדש בזמן שלא היית! הידד!
+        two: חוץ מזה, נוספו לך %{count} עוקבים חדשים בזמן שלא היית! מדהים!
+        many: חוץ מזה, נוספו לך %{count} עוקבים חדשים בזמן שלא היית! מדהים!
+        other: חוץ מזה, נוספו לך %{count} עוקבים חדשים בזמן שלא היית! מדהים!
+      subject:
+        one: "התראה חדשה אחת מאז ביקורך האחרון 🐘"
+        two: "%{count} התראות חדשות מאז ביקורך האחרון 🐘"
+        many: "%{count} התראות חדשות מאז ביקורך האחרון 🐘"
+        other: "%{count} התראות חדשות מאז ביקורך האחרון 🐘"
+      title: בהעדרך...
     favourite:
       body: 'חצרוצך חובב על ידי %{name}:'
       subject: "חצרוצך חובב על ידי %{name}"
+      title: חיבוב חדש
     follow:
       body: "%{name} עכשיו במעקב אחריך!"
       subject: "%{name} עכשיו במעקב אחריך"
+      title: עוקב/ת חדש/ה
     follow_request:
+      action: ניהול בקשות מעקב
       body: "התקבלה בקשת מעקב מ־%{name}"
       subject: 'בקשת מעקב בהמתנה: %{name}'
+      title: בקשת מעקב חדשה
     mention:
+      action: תגובה
       body: 'התקבלה פניה עבורך מאת %{name} ב:'
       subject: התקבלה פניה עבורך מאת %{name}
+      title: אזכור חדש
     reblog:
       body: 'חצרוצך הודהד על ידי %{name}:'
       subject: "חצרוצך הודהד על ידי%{name}"
