@@ -8,6 +8,7 @@ class Trends::Tags < Trends::Base
     review_threshold: 3,
     max_score_cooldown: 2.days.freeze,
     max_score_halflife: 4.hours.freeze,
+    decay_threshold: 1,
   }
 
   def register(status, at_time = Time.now.utc)
@@ -26,7 +27,6 @@ class Trends::Tags < Trends::Base
   def refresh(at_time = Time.now.utc)
     tags = Tag.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq)
     calculate_scores(tags, at_time)
-    trim_older_items
   end
 
   def request_review
@@ -53,6 +53,8 @@ class Trends::Tags < Trends::Base
   private
 
   def calculate_scores(tags, at_time)
+    items = []
+
     tags.each do |tag|
       expected  = tag.history.get(at_time - 1.day).accounts.to_f
       expected  = 1.0 if expected.zero?
@@ -79,11 +81,16 @@ class Trends::Tags < Trends::Base
 
       decaying_score = max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
 
-      add_to_and_remove_from_subsets(tag.id, decaying_score, {
-        all: true,
-        allowed: tag.trendable?,
-      })
+      next unless decaying_score >= options[:decay_threshold]
+
+      items << { score: decaying_score, item: tag }
     end
+
+    replace_items('', items)
+  end
+
+  def filter_for_allowed_items(items)
+    items.select { |item| item[:item].trendable? }
   end
 
   def would_be_trending?(id)

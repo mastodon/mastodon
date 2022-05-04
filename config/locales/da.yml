@@ -801,6 +801,7 @@ da:
           other: Delt af %{count} personer den seneste uge
         title: Populære links
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
+      only_allowed: Kun tilladte
       pending_review: Afventer revision
       preview_card_providers:
         allowed: Links fra denne udgiver kan trende
@@ -842,6 +843,7 @@ da:
           one: Brugt af én person den seneste uge
           other: Brugt af %{count} personer den seneste uge
       title: Trends
+      trending: Populært
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
@@ -853,6 +855,7 @@ da:
       actions:
         delete_statuses: for sletning af vedkommendes indlæg
         disable: for frysning af vedkommendes konto
+        mark_statuses_as_sensitive: for at markere deres indlæg som følsomme
         none: en advarsel
         sensitive: for markering af vedkommendes konto som sensitiv
         silence: for begrænsning af vedkommendes konto
@@ -1026,6 +1029,7 @@ da:
     strikes:
       action_taken: Handling foretaget
       appeal: Appel
+      appeal_approved: Kontoanmeldelsen er blevet appelleret og er ikke længere gyldig
       appeal_rejected: Appellen er afvist
       appeal_submitted_at: Appel indgivet
       appealed_msg: Din appel er indgivet. Godkendes den, underrettes du.
@@ -1041,7 +1045,9 @@ da:
       title_actions:
         delete_statuses: Indlægsfjernelse
         disable: Kontofrysning
+        mark_statuses_as_sensitive: Markering af indlæg som følsomme
         none: Advarsel
+        sensitive: Markering af konto som følsom
         silence: Kontobegrænsning
         suspend: Kontosuspendering
       your_appeal_approved: Din appel er godkendt
@@ -1550,7 +1556,9 @@ da:
       title: Arkiv download
     suspicious_sign_in:
       change_password: skift din adgangskode
+      details: 'Her er nogle detaljer om login-forsøget:'
       explanation: Indlogning på din konto fra en ny IP-adresse detekteret.
+      further_actions_html: Hvis dette ikke var dig, anbefaler vi, at du %{action} med det samme og aktiverer to-faktor godkendelse for at holde din konto sikker.
       subject: Din konto er blevet tilgået fra en ny IP-adresse
       title: Ny indlogning
     warning:

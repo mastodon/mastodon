@@ -1,11 +1,14 @@
 - content_for :page_title do
   = t('admin.instances.title')
 
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
 - content_for :heading_actions do
   - if whitelist_mode?
-    = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button'
+    = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button', id: 'add-instance-button'
   - else
-    = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'
+    = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button', id: 'add-instance-button'
 
 .filters
   .filter-subset

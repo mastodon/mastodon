@@ -30,6 +30,11 @@ class ResolveURLService < BaseService
   end
 
   def process_url_from_db
+    if [500, 502, 503, 504, nil].include?(fetch_resource_service.response_code)
+      account = Account.find_by(uri: @url)
+      return account unless account.nil?
+    end
+
     return unless @on_behalf_of.present? && [401, 403, 404].include?(fetch_resource_service.response_code)
 
     # It may happen that the resource is a private toot, and thus not fetchable,

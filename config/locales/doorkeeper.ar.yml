@@ -60,6 +60,7 @@ ar:
       error:
         title: حدث هناك خطأ
       new:
+        review_permissions: مراجعة الصلاحيات
         title: إذن بالتصريح
       show:
         title: قم بنسخ رمز المصادقة و إلصاقه على التطبيق.
@@ -69,6 +70,8 @@ ar:
       confirmations:
         revoke: متأكد ؟
       index:
+        authorized_at: تاريخ التخويل %{date}
+        description_html: يمكن لهذه التطبيقات الوصول إلى حسابك من باستخدام الـ API. إذا وجدت تطبيقات لا تتعرف عليها أو لا تعمل بشكل طبيعي ، فيمكنك إبطال وصولها لحسابك.
         last_used_at: آخر استخدام في %{date}
         never_used: لم يُستخدَم قط
         scopes: الصلاحيات
@@ -119,6 +122,7 @@ ar:
         admin/all: جميع المهام الإدارية
         admin/reports: إدارة التقارير
         all: كل شيء
+        blocks: تم حجبها
         bookmarks: الفواصل المرجعية
         conversations: المحادثات
         crypto: التشفير من الطرف إلى نهاية الطرف
@@ -128,6 +132,7 @@ ar:
         follows: الإشتراكات
         lists: القوائم
         media: الوسائط المرفقة
+        mutes: تم كتمها
         notifications: الإشعارات
         push: الإخطارات المدفوعة
         reports: الشكاوى
@@ -167,6 +172,7 @@ ar:
       write:accounts: تعديل صفحتك التعريفية
       write:blocks: حجب الحسابات و النطاقات
       write:bookmarks: الإحتفاظ بالمنشورات في الفواصل المرجعية
+      write:conversations: كتم وحذف المحادثات
       write:favourites: الإعجاب بمنشورات
       write:filters: إنشاء عوامل تصفية
       write:follows: متابَعة الأشخاص

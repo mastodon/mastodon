@@ -303,7 +303,7 @@ cs:
         create_domain_allow_html: Uživatel %{name} povolil federaci s doménou %{target}
         create_domain_block_html: Uživatel %{name} zablokoval doménu %{target}
         create_email_domain_block_html: Uživatel %{name} zablokoval e-mailovou doménu %{target}
-        create_ip_block_html: "%{name} vytvořil pravidlo pro IP %{target}"
+        create_ip_block_html: Uživatel %{name} vytvořil pravidlo pro IP %{target}
         create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
@@ -500,10 +500,10 @@ cs:
     instances:
       availability:
         description_html:
-          few: Pokud doručování na doménu selhává nepřerušeně ve <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
-          many: Pokud doručování na doménu selhává nepřerušeně v <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
-          one: Pokud doručování na doménu selhává nepřerušeně <strong>%{count} den</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
-          other: Pokud doručování na doménu selhává nepřerušeně v <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          few: Pokud doručování na doménu selže ve <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          many: Pokud doručování na doménu selže v <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          one: Pokud doručování na doménu selže <strong>%{count} den</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
+          other: Pokud doručování na doménu selže v <strong>%{count} různých dnech</strong>, nebudou činěny žádné další pokusy o doručení, dokud nedorazí doručení <em>od</em> domény.
         failure_threshold_reached: Prahu selhání dosaženo %{date}.
         failures_recorded:
           few: Neúspěšné pokusy ve %{count} různých dnech.
@@ -514,7 +514,7 @@ cs:
         title: Dostupnost
         warning: Poslední pokus o připojení k tomuto serveru byl neúspěšný
       back_to_all: Vše
-      back_to_limited: Omezený
+      back_to_limited: Omezená
       back_to_warning: Varování
       by_domain: Doména
       confirm_purge: Jste si jisti, že chcete nevratně smazat data z této domény?
@@ -541,9 +541,10 @@ cs:
       delivery:
         all: Vše
         clear: Vymazat chyby doručení
+        failing: Selhává
         restart: Restartovat doručování
         stop: Zastavit doručování
-        unavailable: Nedostupný
+        unavailable: Nedostupná
       delivery_available: Doručení je k dispozici
       delivery_error_days: Dny chybného doručování
       delivery_error_hint: Není-li možné doručení po dobu %{count} dnů, bude automaticky označen za nedoručitelný.
@@ -831,6 +832,7 @@ cs:
           other: Sdílený %{count} lidmi za poslední týden
         title: Populární odkazy
         usage_comparison: Za dnešek %{today} sdílení, oproti %{yesterday} včera
+      only_allowed: Jen povolené
       pending_review: Čeká na posouzení
       preview_card_providers:
         allowed: Odkazy z tohoto vydavatele se smí objevovat mezi populárními
@@ -876,6 +878,7 @@ cs:
           one: Použit jedním člověkem za poslední týden
           other: Použit %{count} lidmi za poslední týden
       title: Trendy
+      trending: Populární
     warning_presets:
       add_new: Přidat nové
       delete: Smazat
@@ -931,9 +934,9 @@ cs:
     confirmation_dialogs: Potvrzovací dialogy
     discovery: Objevování
     localization:
-      body: Mastodon je přeložen do češtiny díky dobrovolníkům.
+      body: Mastodon je překládán dobrovolníky.
       guide_link: https://cs.crowdin.com/project/mastodon
-      guide_link_text: Každý může pomoci.
+      guide_link_text: Zapojit se může každý.
     sensitive_content: Citlivý obsah
     toot_layout: Rozložení příspěvků
   application_mailer:

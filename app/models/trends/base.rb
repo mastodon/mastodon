@@ -64,33 +64,38 @@ class Trends::Base
     redis.expire(used_key(at_time), 1.day.seconds)
   end
 
-  def trim_older_items
-    redis.zremrangebyscore("#{key_prefix}:all", '-inf', '(0.3')
-    redis.zremrangebyscore("#{key_prefix}:allowed", '-inf', '(0.3')
-  end
-
   def score_at_rank(rank)
     redis.zrevrange("#{key_prefix}:allowed", 0, rank, with_scores: true).last&.last || 0
   end
 
-  # @param [Integer] id
-  # @param [Float] score
-  # @param [Hash<String, Boolean>] subsets
-  def add_to_and_remove_from_subsets(id, score, subsets = {})
-    subsets.each_key do |subset|
-      key = [key_prefix, subset].compact.join(':')
+  def replace_items(suffix, items)
+    tmp_prefix    = "#{key_prefix}:tmp:#{SecureRandom.alphanumeric(6)}#{suffix}"
+    allowed_items = filter_for_allowed_items(items)
 
-      if score.positive? && subsets[subset]
-        redis.zadd(key, score, id)
-      else
-        redis.zrem(key, id)
-      end
+    redis.pipelined do |pipeline|
+      items.each { |item| pipeline.zadd("#{tmp_prefix}:all", item[:score], item[:item].id) }
+      allowed_items.each { |item| pipeline.zadd("#{tmp_prefix}:allowed", item[:score], item[:item].id) }
+
+      rename_set(pipeline, "#{tmp_prefix}:all", "#{key_prefix}:all#{suffix}", items)
+      rename_set(pipeline, "#{tmp_prefix}:allowed", "#{key_prefix}:allowed#{suffix}", allowed_items)
     end
+  end
+
+  def filter_for_allowed_items(items)
+    raise NotImplementedError
   end
 
   private
 
   def used_key(at_time)
     "#{key_prefix}:used:#{at_time.beginning_of_day.to_i}"
+  end
+
+  def rename_set(pipeline, from_key, to_key, set_items)
+    if set_items.empty?
+      pipeline.del(to_key)
+    else
+      pipeline.rename(from_key, to_key)
+    end
   end
 end
