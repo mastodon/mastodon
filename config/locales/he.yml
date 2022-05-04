@@ -584,20 +584,46 @@ he:
     dont_have_your_security_key: אין לך מפתח אבטחה?
     forgot_password: הנשתכחה סיסמתך?
     invalid_reset_password_token: אסימון איפוס הסיסמא לא תקין או פג תוקף. נא לבקש אחד חדש.
+    link_to_otp: נא להכניס את קוד האימות הדו-גורמי מהטלפון או את קוד האחזור
+    link_to_webauth: נא להשתמש במכשיר מפתח האבטחה
     log_in_with: התחבר באמצעות
     login: כניסה
     logout: יציאה
+    migrate_account: מעבר לחשבון אחר
+    migrate_account_html: אם ברצונך להכווין את החשבון לעבר חשבון אחר, ניתן <a href="%{path}">להגדיר זאת כאן</a>.
+    or_log_in_with: או התחבר באמצעות
+    providers:
+      cas: CAS
+      saml: SAML
     register: הרשמה
+    registration_closed: "%{instance} לא מקבל חברים חדשים"
     resend_confirmation: שלח הוראות אימות בשנית
     reset_password: איפוס סיסמא
     security: החלפת סיסמא
     set_new_password: שינוי סיסמא
+    setup:
+      email_below_hint_html: אם כתובת הדוא"ל להלן לא נכונה, ניתן לשנותה כאן ולקבל דוא"ל אישור חדש.
+      email_settings_hint_html: דוא"ל האישור נשלח ל-%{email}. אם כתובת הדוא"ל הזו לא נכונה, ניתן לשנותה בהגדרות החשבון.
+      title: הגדרות
     status:
+      account_status: מצב חשבון
+      confirming: ממתין שדוא"ל האישור יושלם.
       functional: החשבון שלכם פעיל לגמרי.
+      pending: בקשתך ממתינה לאישור על ידי הצוות שלנו. זה עשוי לקחת זמן מה. דוא"ל יישלח אליך אם בקשתך התקבלה.
       redirecting_to: חשבונכם לא פעיל כעת מכיוון שמפנה ל%{acct}.
+      view_strikes: צפיה בעברות קודמות שנרשמו נגד חשבונך
+    too_fast: הטופס הוגש מהר מדי, נסה/י שוב.
+    trouble_logging_in: בעיה להתחבר לאתר?
+    use_security_key: שימוש במפתח אבטחה
   authorize_follow:
+    already_following: את/ה כבר עוקב/ת אחרי חשבון זה
+    already_requested: כבר נשלחה בקשת מעקב לחשבון זה
     error: למרבה הצער, היתה שגיאה בחיפוש החשבון המרוחק
     follow: לעקוב
+    follow_request: 'שלחת בקשת מעקב ל:'
+    following: 'הצלחה! הינך עוקב עכשיו אחרי:'
+    post_follow:
+      close: או, פשוט לסגור חלון זה.
     title: לעקוב אחרי %{acct}
   datetime:
     distance_in_words:
@@ -613,6 +639,12 @@ he:
       x_minutes: "%{count} דקות"
       x_months: "%{count} חודשים"
       x_seconds: "%{count} שניות"
+  disputes:
+    strikes:
+      your_appeal_pending: הגשת ערעור
+      your_appeal_rejected: ערעורך נדחה
+  domain_validator:
+    invalid_domain: הוא לא שם דומיין קביל
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': חסרות לך הרשאות לצפיה בעמוד זה.
