@@ -70,7 +70,7 @@ he:
       imports:
         data: קובץ CSV שיוצא משרת מסטודון אחר
       sessions:
-        otp: 'נא להקליד קוד אימות דו-שלבי ממכשירך או קוד אחזור גישה.'
+        otp: 'נא להקליד קוד אימות דו-שלבי ממכשירך או להשתמש באחד מקודי אחזור הגישה שלך:'
     labels:
       defaults:
         avatar: תמונת פרופיל
@@ -110,20 +110,54 @@ he:
         setting_use_blurhash: הצגת גראדיינטים צבעוניים למדיה מוסתרת
         setting_use_pending_items: מצב איטי
         severity: חומרה
+        sign_in_token_attempt: קוד אבטחה
         type: סוג יבוא
         username: שם משתמש
+        username_or_email: שם משתמש או דוא"ל
+        whole_word: מילה שלמה
+      email_domain_block:
+        with_dns_records: לכלול רשומות MX וכתובות IP של הדומיין
+      featured_tag:
+        name: האשתג
       interactions:
         must_be_follower: חסימת התראות משאינם עוקבים
         must_be_following: חסימת התראות משאינם נעקבים
         must_be_following_dm: חסימת הודעות ישירות מכותבים שאינם במעקב
+      invite:
+        comment: הערה
+      invite_request:
+        text: למה תרצה/י להצטרף?
+      ip_block:
+        comment: הערה
+        ip: IP
+        severities:
+          no_access: חסימת גישה
+          sign_up_requires_approval: הגבלת הרשמות
+        severity: כלל
       notification_emails:
+        appeal: מישהם מערערים על החלטת מנהל קהילה
         digest: שליחת הודעות דוא"ל מסכמות
         favourite: שליחת דוא"ל כשמחבבים חצרוץ
         follow: שליחת דוא"ל כשנוספות עוקבות
         follow_request: שליחת דוא"ל כשמבקשים לעקוב
         mention: שליחת דוא"ל כשפונים אלייך
+        pending_account: נדרשת סקירה של חשבון חדש
         reblog: שליחת דוא"ל כשמהדהדים חצרוץ שלך
+        report: דו"ח חדש הוגש
+        trending_tag: נושאים חמים חדשים דורשים סקירה
+      rule:
+        text: כלל
+      tag:
+        listable: הרשה/י להאשתג זה להופיע בחיפושים והצעות
+        name: האשתג
+        trendable: הרשה/י להאשתג זה להופיע תחת נושאים חמים
+        usable: הרשה/י לחצרוצים להכיל האשתג זה
     'no': 'לא'
+    recommended: מומלץ
     required:
+      mark: "*"
       text: שדה חובה
+    title:
+      sessions:
+        webauthn: נא להשתמש באחד ממפתחות האבטחה שלך כדי להכנס
     'yes': 'כן'
