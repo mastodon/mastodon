@@ -128,6 +128,7 @@ sl:
       enable: Omogoči
       enable_sign_in_token_auth: Omogoči overjanje z žetonom po e-pošti
       enabled: Omogočeno
+      enabled_msg: Uspešno odmrznjen račun uporabnika %{username}
       followers: Sledilci
       follows: Sledi
       header: Glava
@@ -240,6 +241,7 @@ sl:
         resolve_report: Razreši poročilo
         silence_account: Omeji račun
         suspend_account: Začasno prekini račun
+        unassigned_report: Prekliči dodelitev poročila
         unblock_email_account: Odblokiraj e-poštni naslov
         unsilence_account: Razveljavi omejitev računa
         unsuspend_account: Prekliči začasno prekinitev računa
@@ -247,6 +249,37 @@ sl:
         update_custom_emoji: Posodobi emodži po meri
         update_domain_block: Posodobi blokado domene
         update_status: Posodobi objavo
+      actions:
+        assigned_to_self_report_html: "%{name} je dodelil/a poročilo %{target} sebi"
+        change_email_user_html: "%{name} je spremenil/a naslov e-pošte uporabnika %{target}"
+        confirm_user_html: "%{name} je potrdil/a naslov e-pošte uporabnika %{target}"
+        create_account_warning_html: "%{name} je poslal/a opozorilo %{target}"
+        create_announcement_html: "%{name} je ustvarila/a novo obvestilo %{target}"
+        create_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
+        create_domain_block_html: "%{name} je blokiral/a domeno %{target}"
+        create_email_domain_block_html: "%{name} je dal/a na črni seznam e-pošto domene %{target}"
+        create_ip_block_html: "%{name} je ustvaril/a pravilo za IP %{target}"
+        demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
+        destroy_announcement_html: "%{name} je izbrisal/a obvestilo %{target}"
+        destroy_custom_emoji_html: "%{name} je uničil/a emotikone %{target}"
+        destroy_domain_block_html: "%{name} je odblokiral/a domeno %{target}"
+        destroy_email_domain_block_html: "%{name} je odblokiral/a e-pošto domene %{target}"
+        destroy_ip_block_html: "%{name} je izbrisal/a pravilo za IP %{target}"
+        destroy_status_html: "%{name} je odstranil/a objavo uporabnika %{target}"
+        disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
+        disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
+        disable_user_html: "%{name} je onemogočil/a prijavo za uporabnika %{target}"
+        enable_custom_emoji_html: "%{name} je omogočil/a emotikone %{target}"
+        enable_user_html: "%{name} je omogočil/a prijavo za uporabnika %{target}"
+        memorialize_account_html: "%{name} je spremenil/a račun uporabnika %{target} v spominsko stran"
+        promote_user_html: "%{name} je povišal/a uporabnika %{target}"
+        remove_avatar_user_html: "%{name} je odstranil podobo (avatar) uporabnika %{target}"
+        reopen_report_html: "%{name} je ponovno odprl/a prijavo %{target}"
+        reset_password_user_html: "%{name} je ponastavil/a geslo uporabnika %{target}"
+        resolve_report_html: "%{name} je razrešil/a prijavo %{target}"
+        silence_account_html: "%{name} je omejil/a račun uporabnika %{target}"
+        suspend_account_html: "%{name} je suspendiral/a račun uporabnika %{target}"
+        unassigned_report_html: "%{name} je preklical dodelitev prijave uporabnika %{target}"
       deleted_status: "(izbrisano stanje)"
       filter_by_action: Filtriraj po dejanjih
       filter_by_user: Filtriraj po uporabnikih
@@ -357,6 +390,7 @@ sl:
     follow_recommendations:
       language: Za jezik
       status: Stanje
+      title: Sledi priporočilom
     instances:
       availability:
         failure_threshold_reached: Prag neuspelih poskusov dosežen %{date}.
@@ -389,9 +423,13 @@ sl:
       delivery:
         all: Vse
         clear: Počisti napake dostave
+        failing: Spodletuje
+        restart: Ponovno zaženi dostavo
         stop: Ustavi dostavo
         unavailable: Ni na voljo
       delivery_available: Na voljo je dostava
+      delivery_error_days: Dnevi napak pri dostavi
+      empty: Ni zadetkov med domenami.
       moderation:
         all: Vse
         limited: Omejeno
@@ -412,9 +450,11 @@ sl:
         all: Vse
         available: Razpoložljivo
         expired: Potekel
+        title: Filter
       title: Povabila
     ip_blocks:
       add_new: Ustvari pravilo
+      created_msg: Uspešno dodano novo pravilo IP
       delete: Izbriši
       expires_in:
         '1209600': 2 tedna
@@ -444,6 +484,7 @@ sl:
     report_notes:
       created_msg: Opomba o prijavi je uspešno ustvarjena!
       destroyed_msg: Opomba o prijavi je uspešno izbrisana!
+      today_at: Danes ob %{time}
     reports:
       action_taken_by: Dejanje, ki ga je sprejel
       are_you_sure: Ali ste prepričani?
