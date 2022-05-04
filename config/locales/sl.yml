@@ -190,13 +190,15 @@ sl:
       search_same_ip: Drugi uporabniki z istim IP
       security_measures:
         only_password: Samo geslo
+      sensitized: Označeno kot občutljivo
       shared_inbox_url: URL mape "Prejeto v skupni rabi"
       show:
-        created_reports: Narejene prijave
+        created_reports: Opravljene prijave
         targeted_reports: Prijavili drugi
       silence: Utišaj
       silenced: Utišan
       statuses: Stanja
+      strikes: Predhodni ukrepi
       subscribe: Naroči
       suspend: Suspendiraj
       suspended: Suspendiran
@@ -214,7 +216,7 @@ sl:
       action_types:
         approve_appeal: Odobri pritožbo
         approve_user: Odobri uporabnika
-        assigned_to_self_report: Dodeli poročilo
+        assigned_to_self_report: Dodeli prijavo
         change_email_user: Spremeni e-poštni naslov uporabnika
         confirm_user: Potrdi uporabnika
         create_account_warning: Ustvari opozorilo
@@ -243,10 +245,10 @@ sl:
         remove_avatar_user: Odstrani avatar
         reopen_report: Ponovno odpri prijavo
         reset_password_user: Ponastavi geslo
-        resolve_report: Razreši poročilo
+        resolve_report: Razreši prijavo
         silence_account: Omeji račun
         suspend_account: Začasno prekini račun
-        unassigned_report: Prekliči dodelitev poročila
+        unassigned_report: Prekliči dodelitev prijave
         unblock_email_account: Odblokiraj e-poštni naslov
         unsilence_account: Razveljavi omejitev računa
         unsuspend_account: Prekliči začasno prekinitev računa
@@ -256,7 +258,7 @@ sl:
         update_status: Posodobi objavo
       actions:
         approve_appeal_html: "%{name} je ugodil pritožbi uporabnika %{target} na moderatorsko odločitev"
-        assigned_to_self_report_html: "%{name} je dodelil/a poročilo %{target} sebi"
+        assigned_to_self_report_html: "%{name} je dodelil/a prijavo %{target} sebi"
         change_email_user_html: "%{name} je spremenil/a naslov e-pošte uporabnika %{target}"
         confirm_user_html: "%{name} je potrdil/a naslov e-pošte uporabnika %{target}"
         create_account_warning_html: "%{name} je poslal/a opozorilo %{target}"
@@ -352,7 +354,7 @@ sl:
       interactions: interakcij
       media_storage: Shramba za medije
       new_users: novih uporabnikov
-      opened_reports: odprtih poročil
+      opened_reports: odprtih prijav
       pending_appeals_html:
         one: "<strong>%{count}</strong> čakajoča pritožba"
         two: "<strong>%{count}</strong> čakajoči pritožbi"
@@ -373,7 +375,7 @@ sl:
         two: "<strong>%{count}</strong> čakajoča uporabnika"
         few: "<strong>%{count}</strong> čakajoči uporabniki"
         other: "<strong>%{count}</strong> čakajočih uporabnikov"
-      resolved_reports: razrešenih poročil
+      resolved_reports: razrešenih prijav
       software: Programska oprema
       sources: Viri registracij
       space: Uporaba prostora
@@ -469,7 +471,7 @@ sl:
         description_html: Določite lahko pravila (t.i. politike), ki bodo veljale za vse račune te domene ter vseh njenih poddomen.
         policies:
           reject_media: Zavrni večpredstavnost
-          reject_reports: Zarvni poročila
+          reject_reports: Zavrni prijave
           silence: Omeji
           suspend: Suspendiraj
         policy: Pravila
@@ -482,7 +484,7 @@ sl:
         instance_follows_measure: njihovih sledilcev tukaj
         instance_languages_dimension: Naj jeziki
         instance_media_attachments_measure: shranjenih predstavnostnih priponk
-        instance_reports_measure: poročil o njih
+        instance_reports_measure: prijav o njih
         instance_statuses_measure: shanjenih objav
       delivery:
         all: Vse
@@ -511,7 +513,7 @@ sl:
       total_blocked_by_us: Blokirano iz naše strani
       total_followed_by_them: Oni ti sledijo
       total_followed_by_us: Mi ti sledimo
-      total_reported: Poročila o njih
+      total_reported: Prijave o njih
       total_storage: Predstavnostne priloge
       totals_time_period_hint_html: Spodaj prikazani seštevki vključujejo podatke za celotno obdobje.
     invites:
@@ -569,6 +571,9 @@ sl:
       action_taken_by: Dejanje, ki ga je sprejel
       actions:
         delete_description_html: Prijavljene objave bodo izbrisane in ukrep bo zabeležen, da vam pomaga stopnjevati ukrepe ob naslednjih kršitvah z istega računa.
+        resolve_description_html: Proti prijavljenemu računu ne bo izvedeno nobeno dejanje, noben ukrep ne bo zabeležen in prijava bo zaprta.
+        silence_description_html: Profil bo viden samo tistim, ki mu že sledijo ali ga ročno poiščejo, s čimer bo resno omejen njegov doseg. To je vedno možno povrniti.
+        suspend_description_html: Profil in vsa njegova vsebina bodo postali nedosegljivi, dokler niso dokončno izbrisani. Interakcija z računom ne bo možna. Povrnitev je možna v času 30 dni.
       add_to_report: Dodaj več v prijavo
       are_you_sure: Ali ste prepričani?
       assign_to_self: Dodeli meni
@@ -578,6 +583,7 @@ sl:
       category_description_html: Razlog, zakaj je ta račun in/ali vsebina prijavljena, bo naveden v komunikaciji z računom iz prijave
       comment:
         none: Brez
+      comment_description_html: 'V pojasnilo je %{name} zapisal/a:'
       created_at: Prijavljeno
       delete_and_resolve: Izbriši objave
       forwarded: Posredovano
@@ -591,19 +597,21 @@ sl:
         create_and_resolve: Razreši z opombo
         create_and_unresolve: Ponovo odpri z opombo
         delete: Izbriši
-        placeholder: Opišite dejanja, ki ste jih izvedli, ali katere koli druge posodobitve...
+        placeholder: Opišite dejanja, ki ste jih izvedli, ali katere koli druge posodobitve ...
         title: Zapiski
-      quick_actions_description_html: 'Opravite hitro dejanje ali podrsajte navzdol, da si ogledate poročano vsebino:'
+      notes_description_html: Pokaži in pusti opombe drugim moderatorjem in sebi v prihodnosti
+      quick_actions_description_html: 'Opravite hitro dejanje ali podrsajte navzdol, da si ogledate prijavljeno vsebino:'
       remote_user_placeholder: oddaljeni uporabnik iz %{instance}
       reopen: Ponovno odpri prijavo
       report: 'Prijavi #%{id}'
       reported_account: Prijavljeni račun
-      reported_by: Prijavljen od
+      reported_by: Prijavil/a
       resolved: Razrešeni
       resolved_msg: Prijava je uspešno razrešena!
       skip_to_actions: Preskoči na dejanja
       status: Stanje
-      statuses: Naznanjene vsebine
+      statuses: Prijavljena vsebina
+      statuses_description_html: Žaljiva vsebina bo citirana v komunikaciji z računom iz prijave
       target_origin: Izvor prijavljenega računa
       title: Prijave
       unassign: Odstopljeni
@@ -629,6 +637,8 @@ sl:
       custom_css:
         desc_html: Spremeni videz z naloženim CSS na vsaki strani
         title: CSS po meri
+      default_noindex:
+        desc_html: Vpliva na vse uporabnike, ki niso sami spremenili te nastavitve
       domain_blocks:
         all: Vsem
         disabled: Nikomur
@@ -660,6 +670,7 @@ sl:
           disabled: Nihče
           title: Dovoli vabila od
         require_invite_text:
+          desc_html: Če registracije zahtevajo ročno potrditev, nastavite vnos besedila pod »Zakaj se želite pridružiti?« za obveznega
           title: Zahteva, da novi uprorabniki navedejo razlog, zakaj se želijo registrirati
       registrations_mode:
         modes:
@@ -704,9 +715,9 @@ sl:
       destroyed_msg: Prenos na strežnik uspešno izbrisan!
     statuses:
       back_to_account: Nazaj na stran računa
-      back_to_report: Nazaj na stran poročila
+      back_to_report: Nazaj na stran prijave
       batch:
-        remove_from_report: Odstrani iz poročila
+        remove_from_report: Odstrani iz prijave
         report: Poročaj
       deleted: Izbrisano
       media:
@@ -726,6 +737,8 @@ sl:
       appeal_approved: Pritoženo
       appeal_pending: Čakajoč na ugovor
     system_checks:
+      database_schema_check:
+        message_html: Na čakanju so migracije zbirke podatkov. Prosimo, izvedite jih, da zagotovite, da se program vede pričakovano
       elasticsearch_running_check:
         message_html: Povezava z Elasticsearch ni uspela. Preverite, da deluje, ali onemogočite iskanje po vsem besedilu
       elasticsearch_version_check:
@@ -749,6 +762,11 @@ sl:
         allow_provider: Dovoli izdajatelja
         disallow: Ne dovoli povezave
         disallow_provider: Ne dovoli izdajatelja
+        shared_by_over_week:
+          one: Delila %{count} oseba v zadnjem tednu
+          two: Delili %{count} osebi v zadnjem tednu
+          few: Delile %{count} osebe v zadnjem tednu
+          other: Delilo %{count} oseb v zadnjem tednu
         title: Povezave v trendu
       only_allowed: Samo dovoljeni
       pending_review: Čakajoče na pregled
@@ -762,6 +780,7 @@ sl:
         allow_account: Dovoli avtorja
         disallow: Ne dovoli objave
         disallow_account: Ne dovoli avtorja
+        not_discoverable: Avtor ni dovolil, da bi ga bilo moč odkriti
         shared_by:
           one: Deljeno ali priljubljeno %{friendly_count}-krat
           two: Deljeno ali priljubljeno %{friendly_count}-krat
@@ -786,6 +805,11 @@ sl:
         trending_rank: 'V trendu #%{rank}'
         usable: Je moč uporabiti
         usage_comparison: Danes uporabljeno %{today}-krat, včeraj pa %{yesterday}-krat
+        used_by_over_week:
+          one: Uporabila %{count} oseba v zadnjem tednu
+          two: Uporabili %{count} osebi v zadnjem tednu
+          few: Uporabile %{count} osebe v zadnjem tednu
+          other: Uporabilo %{count} oseb v zadnjem tednu
       title: Trendi
       trending: V porastu
     warning_presets:
