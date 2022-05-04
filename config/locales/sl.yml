@@ -481,6 +481,7 @@ sl:
         resolve: Razreši domeno
         title: Nov vnos e-pošte na črni seznam
       no_email_domain_block_selected: Nobena domena e-računa ni bila spremenjena, ker nobena ni bila izbrana
+      resolved_dns_records_hint_html: Ime domene se razreši na naslednje domene MX, ki so končno odgovorne za sprejemanje e-pošte. Blokiranje domene MX bo blokiralo prijave s poljubnega e-poštnega naslova, ki uporablja isto domeno MX, tudi če je vidno ime domene drugačno. <strong>Pazite, da ne blokirate večjih ponudnikov e-pošte.</strong>
       resolved_through_html: Razrešeno prek %{domain}
       title: Črni seznam e-pošt
     follow_recommendations:
@@ -622,6 +623,7 @@ sl:
         resolve_description_html: Proti prijavljenemu računu ne bo izvedeno nobeno dejanje, noben ukrep ne bo zabeležen in prijava bo zaprta.
         silence_description_html: Profil bo viden samo tistim, ki mu že sledijo ali ga ročno poiščejo, s čimer bo resno omejen njegov doseg. To je vedno možno povrniti.
         suspend_description_html: Profil in vsa njegova vsebina bodo postali nedosegljivi, dokler niso dokončno izbrisani. Interakcija z računom ne bo možna. Povrnitev je možna v času 30 dni.
+      actions_description_html: Odločite se, katere ukrepe boste sprejeli za rešitev te prijave. Če sprejmete kazenski ukrep proti prijavljenemu računu, mu bo poslano e-poštno obvestilo, razen če je izbrana kategorija <strong>Neželena pošta</strong>.
       add_to_report: Dodaj več v prijavo
       are_you_sure: Ali ste prepričani?
       assign_to_self: Dodeli meni
@@ -812,6 +814,7 @@ sl:
       links:
         allow: Dovoli povezavo
         allow_provider: Dovoli izdajatelja
+        description_html: To so povezave, ki jih trenutno veliko delijo računi, iz katerih vaš strežnik vidi objave. Vašim uporabnikom lahko pomaga izvedeti, kaj se dogaja po svetu. Nobene povezave niso javno prikazane, dokler ne odobrite izdajatelja. Posamezne povezave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli povezave
         disallow_provider: Ne dovoli izdajatelja
         shared_by_over_week:
@@ -825,12 +828,14 @@ sl:
       pending_review: Čakajoče na pregled
       preview_card_providers:
         allowed: Povezave tega izdajatelja so lahko v trendu
+        description_html: To so domene, iz katerih se povezave pogosto delijo na vašem strežniku. Povezave ne bodo javno objavljene, razen če je domena povezave odobrena. Vaša odobritev (ali zavrnitev) se nanaša na poddomene.
         rejected: Povezave tega izdajatelja ne bodo v trendu
         title: Izdajatelji
       rejected: Zavrnjen
       statuses:
         allow: Dovoli objavo
         allow_account: Dovoli avtorja
+        description_html: To so objave, za katere vaš strežnik ve, da so trenutno v skupni rabi in med priljubljenimi. Vašim novim uporabnikom in uporabnikom, ki se vračajo, lahko pomaga najti več oseb, ki jim bodo sledili. Nobena objava ni javno prikazana, dokler avtorja ne odobrite in avtor ne dovoli, da se njegov račun predlaga drugim. Posamezne objave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli objave
         disallow_account: Ne dovoli avtorja
         not_discoverable: Avtor ni dovolil, da bi ga bilo moč odkriti
@@ -848,6 +853,7 @@ sl:
           tag_servers_dimension: Naj strežniki
           tag_servers_measure: različnih strežnikov
           tag_uses_measure: uporab skupaj
+        description_html: To so ključniki, ki se trenutno pojavljajo v številnih objavah, ki jih vidi vaš strežnik. Uporabnikom lahko pomaga ugotoviti, o čem ljudje trenutno največ govorijo. Noben ključnik ni javno prikazan, dokler ga ne odobrite.
         listable: Je moč predlagati
         not_listable: Ne bo predlagano
         not_trendable: Se ne bo pojavilo med trendi
@@ -911,6 +917,7 @@ sl:
     created_msg: Uspešno ustvarjen novi vzdevek. Zdaj lahko pričnete s selitvijo s starega računa.
     deleted_msg: Uspešno odstranjen vzdevek. Selitev iz tistega računa na tega ne bo več možna.
     empty: Nimate vzdevkov.
+    hint_html: Če se želite preseliti iz drugega računa v tega, lahko tukaj ustvarite vzdevek, ki je potreben, preden lahko nadaljujete s selitvijo sledilcev iz starega računa v tega. To dejanje je samo po sebi <strong>neškodljivo in povratno</strong>. <strong>Selitev računa sprožite iz starega računa</strong>.
     remove: Razveži vzdevek
   appearance:
     advanced_web_interface: Napredni spletni vmesnik
@@ -1515,6 +1522,7 @@ sl:
     enabled: Samodejno izbriši stare objave
     enabled_hint: Samodejno izbriše vaše objave, ko dosežejo določen starostni prag, razen če ne ustrezajo eni od spodnjih izjem
     exceptions: Izjeme
+    explanation: Ker je brisanje objav draga operacija, se to postopoma izvaja počasi, ko strežnik sicer ni zaseden. Zaradi tega se lahko vaše objave izbrišejo nekaj časa po tem, ko dosežejo starostni prag.
     ignore_favs: Prezri priljubljene
     interaction_exceptions: Izjeme na osnovi interakcije
     interaction_exceptions_explanation: Upoštevajte, da ni nobene garancije za objave, ki bodo izbrisane, če padejo pod prag priljubljenosti ali promocije, ko so ga že enkrat presegle.
@@ -1687,6 +1695,7 @@ sl:
       explanation:
         delete_statuses: Za nekatere vaših objav se je izkazalo, da kršijo eno ali več pravil skupnosti, zato so jih moderatorji %{instance} posledično odstranili.
         disable: Svojega računa ne morete več uporabljati, vendar vaš profil in drugi podatki ostajajo nedotaknjeni. Zahtevate lahko varnostno kopiranje svojih podatkov, spremenite nastavitve računa ali izbrišete svoj račun.
+        mark_statuses_as_sensitive: Nekatere vaše objave so moderatorji %{instance} označili kot občutljive. To pomeni, da se bodo morale osebe dotakniti medijskih vsebin v objavah, preden se prikaže predogled. Med objavljanjem v prihodnosti lahko sami označite medijske vsebine kot občutljive.
         sensitive: Odslej bodo vse vaše naložene medijske datoteke označene kot občutljive in skrite za opozorilom, ki ga je potrebno klikniti.
         silence: Še vedno lahko uporabljate svoj račun, vendar bodo samo osebe, ki vas že spremljajo, videle vaše objave na tem strežniku in morda boste izključeni iz različnih funkcij odkrivanja. Vendar vam lahko drugi še vedno ročno sledijo.
         suspend: Ne morete več uporabljati svojega računa, vaš profil in drugi podatki pa niso več dostopni. Še vedno se lahko prijavite in zahtevate varnostno kopijo svojih podatkov, dokler podatki niso v celoti odstranjeni v približno 30 dneh, vendar bomo ohranili nekaj osnovnih podatkov, da preprečimo, da bi se izognili suspenzu.
