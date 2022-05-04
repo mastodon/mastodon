@@ -881,8 +881,23 @@ he:
         disable: כדי להקפיא את חשבונם
         mark_statuses_as_sensitive: כדי לסמן את חצרוציהם כרגישים
         none: אזהרה
+        sensitive: כדי לסמן את חשבונם כרגיש
+        silence: כדי להגביל את חשבונם
+        suspend: כדי להשעות את חשבונם
+      body: "%{target} מערערים על החלטת מנהלי הקהילה ב-%{action_taken_by} מתאריך %{date}, שהיה %{type}. הם כתבו:"
+      next_steps: ניתן לאשר את הערער כדי להפוך את החלטת מנהלי הקהילה, או להתעלם ממנו.
+      subject: "%{username} מערערים על החלטת מנהלי הקהילה במופע %{instance}"
+    new_pending_account:
+      body: פרטי החשבון החדש מובאים להלן. ניתן לאשר או לדחות את הבקשה.
+      subject: חשבון חדש מובא לסקירה ב-%{instance} (%{username})
+    new_report:
+      body: "%{reporter} דיווחו על %{target}"
+      body_remote: מישהם מהמופע %{domain} דיווחו על %{target}
+      subject: 'דו"ח חדש מהמופע %{instance} (#%{id})'
     new_trends:
+      body: 'הפריטים הבאים זקוקים לסקירה לפני שניתן יהיה להציגם פומבית:'
       new_trending_links:
+        no_approved_links: אין כרגע שום קישוריות חמות מאושרות.
         title: נושאים חמים
       new_trending_statuses:
         title: חצרוצים לוהטים
