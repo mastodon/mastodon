@@ -924,8 +924,12 @@ he:
       many: 'מכיל את ההאשתגיות האסורות: %{tags}'
       other: 'מכיל את ההאשתגיות האסורות: %{tags}'
     edited_at_html: נערך ב-%{date}
+    errors:
+      in_reply_not_found: נראה שהחצרוץ שאת/ה מנסה להגיב לו לא קיים.
     open_in_web: פתח ברשת
     over_character_limit: חריגה מגבול התווים של %{max}
+    pin_errors:
+      direct: לא ניתן לקבע חצרוצים שנראותם מוגבלת למכותבים בלבד
     show_more: עוד
     visibilities:
       private: לעוקבים בלבד
@@ -937,15 +941,25 @@ he:
   stream_entries:
     reblogged: הודהד
     sensitive_content: תוכן רגיש
+  themes:
+    default: מסטודון (כהה)
+    mastodon-light: מסטודון (בהיר)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
+      month: "%b %Y"
       time: "%H:%M"
   two_factor_authentication:
+    add: הוספה
     disable: כיבוי
+    disabled_success: אימות דו-גורמי בוטל בהצלחה
+    edit: עריכה
+    enabled: אימות דו-גורמי הופעל
     enabled_success: אימות דו-שלבי הופעל בהצלחה
     generate_recovery_codes: ייצור קודי אחזור
     lost_recovery_codes: קודי האחזור מאפשרים אחזור גישה לחשבון במידה ומכשירך אבד. במידה וקודי האחזור אבדו, ניתן לייצרם מחדש כאן. תוקף קודי האחזור הישנים יפוג.
+    methods: שיטות אימות דו-גורמי
+    otp: יישום אימות
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
   user_mailer:
