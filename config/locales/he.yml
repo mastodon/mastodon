@@ -291,6 +291,8 @@ he:
         update_domain_block: עדכון חסימת שם מתחם
         update_status: סטטוס עדכון
       actions:
+        approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
+        approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
         change_email_user_html: "%{name} שינה/תה את כתובת הדוא\"ל של המשתמש %{target}"
         confirm_user_html: "%{name} אישר/ה את כותבת הדו\"אל של המשתמש %{target}"
         create_account_warning_html: "%{name} שלח/ה אזהרה ל %{target}"
@@ -367,16 +369,22 @@ he:
     disputes:
       appeals:
         empty: לא נמצאו ערעורים.
+        title: ערעורים
+    domain_allows:
+      add_new: אפשר מַאֲחָד (פדרציה) עם שם המתחם
+      undo: אסור מַאֲחָד (פדרציה) עם שם המתחם
     domain_blocks:
       add_new: הוספת חדש
       created_msg: חסימת שרת בתהליך
       destroyed_msg: חסימת שרת בוטלה
       domain: שרת
+      edit: עריכת חסימת שם מתחם
       new:
         create: יצירת חסימה
         hint: חסימת השרת לא תמנע יצירת רישומי חשבון במסד הנתונים, אבל תבצע פעולות ניהול קהילה מסוימות על חשבונות אלו אוטומטית ורטרואקטיבית.
         severity:
           desc_html: "<strong>השתקה</strong> תחביא הודעות מחשבון זה לכל מי שלא עוקב אחריו. <strong>השעייה</strong> תסיר מהשרת את כל התוכן, מדיה ותכונות הפרופיל שמקושרות לחשבון זה. <strong>כלום</strong> כדי לחסום קבצי מדיה בלבד."
+          noop: ללא
           silence: השתקה
           suspend: השעייה
         title: חסימת שרת חדשה
@@ -458,6 +466,10 @@ he:
     invites:
       filter:
         all: כל ההזמנות
+    ip_blocks:
+      add_new: צור כלל
+      new:
+        title: יצירת כלל IP
     report_notes:
       today_at: היום, ב%{time}
     reports:
@@ -939,6 +951,7 @@ he:
     prompt: 'לעקוב אחרי:'
   sessions:
     browsers:
+      opera: אופרה
       phantom_js: PhantomJS
       qq: דפדפן QQ
       safari: ספארי
@@ -1021,6 +1034,7 @@ he:
     over_character_limit: חריגה מגבול התווים של %{max}
     pin_errors:
       direct: לא ניתן לקבע חצרוצים שנראותם מוגבלת למכותבים בלבד
+      limit: הגעת למספר החצרוצים המוצמדים המירבי.
     show_more: עוד
     visibilities:
       private: לעוקבים בלבד
