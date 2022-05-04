@@ -437,9 +437,24 @@ he:
     settings:
       activity_api_enabled:
         desc_html: מספר החצרוצים שפורסמו מקומית, משתמשים פעילים, והרשמות חדשות בדליים שבועיים
+        title: פרסום סטטיסטיקות מקובצות עבור פעילות משתמשים בממשק
+      bootstrap_timeline_accounts:
+        desc_html: הפרדת משתמשים מרובים בפסיק. למשתמשים אלה מובטח שהם יכללו בהמלצות המעקב
+        title: המלצה על חשבונות אלה למשתמשים חדשים
       contact_information:
         email: נא להקליד כתובת דוא"ל פומבית
         username: נא להכניס שם משתמש
+      custom_css:
+        desc_html: שינוי המראה בעזרת CSS הנטען בכל דף
+        title: CSS יחודי
+      default_noindex:
+        desc_html: משפיע על כל המשתמשים שלא שינו את ההגדרה בעצמם
+        title: לא לכלול משתמשים במנוע החיפוש כברירת מחדל
+      domain_blocks:
+        all: לכולם
+        disabled: לאף אחד
+        title: צפיה בחסימת דומיינים
+        users: למשתמשים מקומיים מחוברים
       registrations:
         closed_message:
           desc_html: מוצג על הדף הראשי כאשר ההרשמות סגורות<br>ניתן להשתמש בתגיות HTML
@@ -457,7 +472,36 @@ he:
       batch:
         remove_from_report: הסרה מהדיווח
         report: דווח
+    strikes:
+      actions:
+        silence: "%{name} הגביל/ה את חשבונו/ה של %{target}"
+        suspend: "%{name} השעה/תה את חשבונו/ה של %{target}"
+      appeal_approved: עורער
+      appeal_pending: בהמתנה לערעור
+    system_checks:
+      database_schema_check:
+        message_html: נדרשות הגירות מבני נתונים. אנא הריצו אותן כדי להבטיח שהיישום מתנהג כצפוי
+      elasticsearch_running_check:
+        message_html: לא ניתן להתחבר לחיפוש אלסטיק. בדקו בבקשה הוא רץ, או בטלו את חיפוש הטקסט המלא
+      elasticsearch_version_check:
+        message_html: 'גרסת חיפוש אלסטיק לא מתאימה: %{value}'
+        version_comparison: גרסת חיפוש אלסטיק %{running_version} רצה בעוד גרסא %{required_version} נדרשת
+      rules_check:
+        action: ניהול כללי שרת
+        message_html: לא הוגדרו שום כללי שרת.
+      sidekiq_process_check:
+        message_html: שום הליכי Sidekiq לא רצים עבור %{value} תור(ות). בחנו בבקשה את הגדרות Sidekiq
+    tags:
+      review: סקירת מצב
+      updated_msg: הגדרות האשתג עודכנו בהצלחה
     title: ניהול
+    trends:
+      allow: לאפשר
+      approved: אישור
+      disallow: לא לאשר
+      links:
+        allow: אישור קישורית
+        allow_provider: אישור מפרסם
   application_mailer:
     settings: 'שינוי הגדרות דוא"ל: %{link}'
     view: 'תצוגה:'
