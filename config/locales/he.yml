@@ -868,16 +868,62 @@ he:
       mac: macOS
       other: סביבה לא ידועה
       windows: חלונות
+      windows_mobile: חלונות מובייל
+      windows_phone: טלפון חלונות
+    revoke: שלילה
+    revoke_success: החיבור נשלל בהצלחה
+    title: מכשירים מחוברים
+    view_authentication_history: צפיה בהיסטוריית התחברויות לחשבונך
   settings:
+    account: חשבון
+    account_settings: הגדרות חשבון
+    aliases: שמות נרדפים לחשבון
+    appearance: תצוגה
     authorized_apps: ישומים מאושרים
     back: חזרה למסטודון
+    delete: מחיקת חשבון
+    development: פיתוח
     edit_profile: עריכת פרופיל
     export: יצוא מידע
+    featured_tags: האשתגיות נבחרות
     import: יבוא
+    import_and_export: יבוא ויצוא
+    migrate: הגירת חשבון
+    notifications: התראות
     preferences: העדפות
+    profile: פרופיל
+    relationships: נעקבים ועוקבים
+    statuses_cleanup: מחיקת חצרוצים אוטומטית
+    strikes: עבירות מנהלתיות
     two_factor_authentication: אימות דו-שלבי
+    webauthn_authentication: מפתחות אבטחה
   statuses:
+    attached:
+      audio:
+        one: "אודיו %{count}"
+        two: "%{count} אודיו"
+        many: "%{count} אודיו"
+        other: "%{count} אודיו"
+      description: 'מצורף: %{attached}'
+      image:
+        one: "תמונה %{count}"
+        two: "%{count} תמונות"
+        many: "%{count} תמונות"
+        other: "%{count} תמונות"
+      video:
+        one: "סרטון %{count}"
+        two: "%{count} סרטונים"
+        many: "%{count} סרטונים"
+        other: "%{count} סרטונים"
+    boosted_from_html: הודהד מ-%{acct_link}
+    content_warning: 'אזהרת תוכן: %{warning}'
     default_language: זהה לשפת ממשק
+    disallowed_hashtags:
+      one: 'מכיל את ההאשתג האסור: %{tags}'
+      two: 'מכיל את ההאשתגיות האסורות: %{tags}'
+      many: 'מכיל את ההאשתגיות האסורות: %{tags}'
+      other: 'מכיל את ההאשתגיות האסורות: %{tags}'
+    edited_at_html: נערך ב-%{date}
     open_in_web: פתח ברשת
     over_character_limit: חריגה מגבול התווים של %{max}
     show_more: עוד
