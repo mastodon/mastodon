@@ -667,12 +667,61 @@ he:
     archive_takeout:
       date: תאריך
       download: הורדת הארכיון שלך
+      hint_html: ניתן לבקש ארכיון של <strong>חצרוציך וקבצי המדיה</strong> שלך. המידע המיוצא יהיה בפורמט אקטיביטיפאב, שיכול להיקרא על ידי כל תוכנה התומכת בו. ניתן לבקש ארכיון מדי 7 ימים.
+      in_progress: מייצר את הארכיון שלך...
+      request: לבקש את הארכיון שלך
+      size: גודל
     blocks: רשימת חסימות
+    bookmarks: סימניות
+    csv: CSV
+    domain_blocks: חסימות דומיינים
+    lists: רשימות
     mutes: רשימת השתקות
     storage: אחסון מדיה
+  featured_tags:
+    add_new: הוספת חדש
+    errors:
+      limit: המספר המירבי של האשתגיות כבר מוצג
+    hint_html: "<strong>מהן האשתגיות נבחרות?</strong> הן מוצגות במובלט בפרופיל הפומבי שלך ומאפשר לאנשים לעיין בחצרוציך הפומביים המסמונים בהאשתגיות אלה. הן כלי אדיר למעקב אחר עבודות יצירה ופרוייקטים לטווח ארוך."
+  filters:
+    contexts:
+      account: פרופילים
+      home: בית ורשימות
+      notifications: התראות
+      public: פידים פומביים
+      thread: שיחות
+    edit:
+      title: ערוך מסנן
+    errors:
+      invalid_context: לא סופק הקשר או הקשר לא תקין
+      invalid_irreversible: סינון בלתי הפיך עובד רק בהקשר פיד הבית או התראות
+    index:
+      delete: למחוק
+      empty: אין לך מסננים.
+      title: מסננים
+    new:
+      title: הוספת מסנן חדש
+  footer:
+    developers: מפתחות
+    more: עוד…
+    resources: משאבים
+    trending_now: נושאים חמים
   generic:
+    all: הכל
     changes_saved_msg: השינויים נשמרו בהצלחה!
+    copy: להעתיק
+    delete: למחוק
+    none: כלום
+    order_by: מיין לפי
     save_changes: שמור שינויים
+    today: היום
+    validation_errors:
+      one: משהו עדיין לא בסדר! נא לעיין בשגיאה להלן
+      two: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
+      many: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
+      other: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן
+  html_validator:
+    invalid_markup: 'מכיל קוד HTML לא תקין: %{error}'
   imports:
     preface: ניתן ליבא מידע מסויים כגון כל הנעקבים או המשתמשים החסומים לתוך חשבונך על שרת זה, מתוך קבצים שנוצרו על ידי יצוא משרת אחר כגון רשימת הנעקבים והחסומים שלך.
     success: כל המידע יובא בהצלחה, ויעובד בזמן הקרוב
