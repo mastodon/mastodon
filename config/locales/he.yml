@@ -99,11 +99,14 @@ he:
   admin:
     account_actions:
       action: בצע/י פעולה
+      title: ביצוע פעולות הנהלה על %{acct}
     account_moderation_notes:
       create: ליצור
       created_msg: הודעת מנחה נוצרה בהצלחה!
       destroyed_msg: הודעת מנחה נמחקה בהצלחה!
     accounts:
+      add_email_domain_block: חסמו לגמרי את שם המתחם (דומיין) של הדוא"ל
+      approve: אשר
       are_you_sure: בטוח?
       by_domain: שם מתחם
       confirm: אישור
@@ -960,10 +963,34 @@ he:
     lost_recovery_codes: קודי האחזור מאפשרים אחזור גישה לחשבון במידה ומכשירך אבד. במידה וקודי האחזור אבדו, ניתן לייצרם מחדש כאן. תוקף קודי האחזור הישנים יפוג.
     methods: שיטות אימות דו-גורמי
     otp: יישום אימות
+    recovery_codes: קודי אחזור
     recovery_codes_regenerated: קודי האחזור יוצרו בהצלחה
     recovery_instructions_html: במידה והגישה למכשירך תאבד, ניתן לייצר קודי אחזור למטה על מנת לאחזר גישה לחשבונך בכל עת. <strong>נא לשמור על קודי הגישה במקום בטוח</strong>. לדוגמא על ידי הדפסתם ושמירתם עם מסמכים חשובים אחרים, או שימוש בתוכנה ייעודית לניהול סיסמאות וסודות.
+    webauthn: מפתחות אבטחה
   user_mailer:
+    appeal_approved:
+      action: מעבר לחשבונך
+      explanation: הערעור על העברה שנרשמה כנגד חשבונך ב-%{strike_date} שהגשת ב-%{appeal_date} התקבל. חשבונך חזר להיות נקי מכל רבב.
+      subject: ערעורך מתאריך %{date} התקבל
+      title: הערעור התקבל
+    appeal_rejected:
+      explanation: הערעור על העברה שנרשמה כנגד חשבונך ב-%{strike_date} שהגשת ב-%{appeal_date} נדחה.
+      subject: ערעורך מתאריך %{date} נדחה
+      title: הערעור נדחה
+    backup_ready:
+      explanation: ביקשת גיבוי מלא של חשבון המסטודון שלך. הוא מוכן להורדה!
+      subject: הארכיון שלך מוכן להורדה
+      title: הוצאת ארכיון
+    suspicious_sign_in:
+      change_password: שינוי הסיסמא שלך
+      details: 'הנה פרטי ההתחברות:'
+      explanation: זיהינו התחברות לחשבונך מכתובת IP חדשה.
+      further_actions_html: אם לא את/ה התחברת, אנו ממליצים שתבצע/י %{action} מיידית ותאפשר/י אימות דו גורמי על מנת לשמור על החשבון בטוח.
+      subject: נרשמה גישה לחשבונך מכתובת IP חדשה
+      title: התחברות חדשה
     warning:
+      appeal: הגשת ערעור
+      appeal_description: אם את/ה מאמין/ה שזו טעות, ניתן להגיש ערעור לצוות של %{instance}.
       categories:
         spam: ספאם
       reason: 'סיבה:'
