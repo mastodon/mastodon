@@ -28,38 +28,6 @@
     "iOS >= 9",
     "not dead"
   ],
-  "jest": {
-    "testEnvironment": "jsdom",
-    "projects": [
-      "<rootDir>/app/javascript/mastodon"
-    ],
-    "testPathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/vendor/",
-      "<rootDir>/config/",
-      "<rootDir>/log/",
-      "<rootDir>/public/",
-      "<rootDir>/tmp/"
-    ],
-    "setupFiles": [
-      "raf/polyfill"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/app/javascript/mastodon/test_setup.js"
-    ],
-    "collectCoverageFrom": [
-      "app/javascript/mastodon/**/*.js",
-      "!app/javascript/mastodon/features/emoji/emoji_compressed.js",
-      "!app/javascript/mastodon/locales/locale-data/*.js",
-      "!app/javascript/mastodon/service_worker/entry.js",
-      "!app/javascript/mastodon/test_setup.js"
-    ],
-    "coverageDirectory": "<rootDir>/coverage",
-    "moduleDirectories": [
-      "<rootDir>/node_modules",
-      "<rootDir>/app/javascript"
-    ]
-  },
   "private": true,
   "dependencies": {
     "@babel/core": "^7.17.10",
@@ -184,6 +152,7 @@
     "eslint-plugin-promise": "~6.0.0",
     "eslint-plugin-react": "~7.29.4",
     "jest": "^28.0.3",
+    "jest-environment-jsdom": "^28.0.2",
     "prettier": "^2.6.2",
     "raf": "^3.4.1",
     "react-intl-translations-manager": "^5.0.3",
