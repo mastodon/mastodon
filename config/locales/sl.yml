@@ -1,15 +1,15 @@
 sl:
   about:
-    about_hashtag_html: 'To so javni tuti, označeni z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediverse-u.'
+    about_hashtag_html: 'To so javne objave, označene z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediverzumu.'
     about_mastodon_html: 'Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.'
     about_this: O Mastodonu
-    active_count_after: dejaven
+    active_count_after: dejavnih
     active_footnote: Aktivni mesečni uporabniki (AMU)
     administered_by: 'Upravlja:'
     api: API (programerski vmesnik aplikacije)
     apps: Mobilne aplikacije
     apps_platforms: Uporabljajte Mastodon iz iOS, Android ali iz drugih platform
-    browse_directory: Brskajte po imeniku profilov in filtriranje po interesih
+    browse_directory: Brskajte po imeniku profilov in jih filtrirajte po interesih
     browse_local_posts: Prebrskaj živi tok javnih objav s tega strežnika
     browse_public_posts: Brskajte javnih objav v živo na Mastodonu
     contact: Kontakt
@@ -18,7 +18,7 @@ sl:
     continue_to_web: Nadaljuj v spletno aplikacijo
     discover_users: Odkrijte uporabnike
     documentation: Dokumentacija
-    federation_hint_html: Z računom na %{instance} boste lahko spremljali ljudi na kateremkoli Mastodon strežniku.
+    federation_hint_html: Z računom na %{instance} boste lahko spremljali osebe na poljubnem strežniku Mastodon.
     get_apps: Poskusite mobilno aplikacijo
     hosted_on: Mastodon gostuje na %{domain}
     instance_actor_flash: |
@@ -86,9 +86,9 @@ sl:
       one: Tut
       two: Tuta
       few: Tuti
-      other: Tutov
-    posts_tab_heading: Tuti
-    posts_with_replies: Tuti in odgovori
+      other: Objav
+    posts_tab_heading: Objave
+    posts_with_replies: Objave in odgovori
     roles:
       admin: Skrbnik
       bot: Robot
@@ -597,11 +597,11 @@ sl:
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
-      description_html: <strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih tutov med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih.
+      description_html: <strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih objav med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih.
       disable: Onemogoči
       disabled: Onemogočeno
       enable: Omogoči
-      enable_hint: Ko je omogočen, se bo vaš strežnik naročil na vse javne tute iz tega releja in začel pošiljati javne tute tega strežnika.
+      enable_hint: Ko je omogočen, se bo vaš strežnik naročil na vse javne objave iz tega releja in začel pošiljati javne objave tega strežnika.
       enabled: Omogočeno
       inbox_url: URL releja
       pending: Čakanje na odobritev releja
@@ -740,7 +740,7 @@ sl:
           open: Vsakdo se lahko prijavi
         title: Način registracije
       show_known_fediverse_at_about_page:
-        desc_html: Ko preklopite, bo prikazal tute vseh znanih fediverse-ov v predogledu. V nasprotnem primeru bodo prikazani samo lokalni tuti.
+        desc_html: Ko preklopite, bo prikazal objave vseh znanih fediverzumov v predogledu. V nasprotnem primeru bodo prikazane samo krajevne objave.
         title: Pokaži znane fediverse-e v predogledu časovnice
       show_staff_badge:
         desc_html: Prikaži značko osebja na uporabniški strani
@@ -1111,7 +1111,7 @@ sl:
     archive_takeout:
       date: Datum
       download: Prenesi svoj arhiv
-      hint_html: Zahtevate lahko arhiv vaših <strong>tutov in naloženih medijev</strong>. Izvoženi podatki bodo v formatu ActivityPub, ki ga bo mogoče brati s katerokoli skladno programsko opremo. Arhiv lahko zahtevate vsakih 7 dni.
+      hint_html: Zahtevate lahko arhiv vaših <strong>objav in naloženih medijev</strong>. Izvoženi podatki bodo v zapisu ActivityPub, ki ga bo mogoče brati s poljubno skladno programsko opremo. Arhiv lahko zahtevate vsakih 7 dni.
       in_progress: Prevajanje arhiva...
       request: Zahtevajte svoj arhiv
       size: Velikost
@@ -1385,19 +1385,19 @@ sl:
   remote_interaction:
     favourite:
       proceed: Nadaljuj s priljubljenim
-      prompt: 'Ali želite vzljubiti ta tut:'
+      prompt: 'Želite vzljubiti to objavo:'
     reblog:
       proceed: Nadaljuj s izpostavljanjem
-      prompt: 'Ali želite izpostaviti ta tut:'
+      prompt: 'Želite izpostaviti to objavo:'
     reply:
       proceed: Nadaljuj z odgovorom
-      prompt: 'Ali želite odgovoriti na ta tut:'
+      prompt: 'Želite odgovoriti na to objavo:'
   reports:
     errors:
       invalid_rules: se ne sklicuje na veljavna pravila
   scheduled_statuses:
-    over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih tutov
-    over_total_limit: Presegli ste omejitev %{limit} načrtovanih tutov
+    over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih objav
+    over_total_limit: Presegli ste omejitev %{limit} načrtovanih objav
     too_soon: Načrtovani datum mora biti v prihodnosti
   sessions:
     activity: Zadnja dejavnost
@@ -1497,8 +1497,8 @@ sl:
     over_character_limit: omejitev %{max} znakov je presežena
     pin_errors:
       direct: Objav, ki so vidne samo omenjenum uporabnikom, ni mogoče pripenjati
-      limit: Pripeli ste največje število tutov
-      ownership: Trob nekoga drugega ne more biti pripet
+      limit: Pripeli ste največje število objav
+      ownership: Objava nekoga drugega ne more biti pripeta
       reblog: Izpostavitev ne more biti pripeta
     poll:
       total_people:
@@ -1562,7 +1562,7 @@ sl:
     min_reblogs: Obdrži objave izpostavljene vsaj
     min_reblogs_hint: Ne izbriše nobene od vaših objav, ki je bila vsaj tolikokrat podprta. Pustite prazno, če želite izbrisati objave ne glede na število izpostavitev
   stream_entries:
-    pinned: Pripet trob
+    pinned: Pripeta objava
     reblogged: izpostavljeno
     sensitive_content: Občutljiva vsebina
   tags:
