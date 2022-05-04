@@ -632,6 +632,9 @@ sl:
       title: Nastavitve strani
       trends:
         title: Trendi
+    site_uploads:
+      delete: Izbriši naloženo datoteko
+      destroyed_msg: Prenos na strežnik uspešno izbrisan!
     statuses:
       back_to_account: Nazaj na stran računa
       back_to_report: Nazaj na stran poročila
@@ -644,6 +647,16 @@ sl:
       no_status_selected: Nobeno stanje ni bilo spremenjeno, ker ni bilo izbrano nobeno
       title: Stanja računa
       with_media: Z mediji
+    strikes:
+      actions:
+        delete_statuses: "%{name} je izbrisal/a objave uporabnika %{target}"
+        disable: "%{name} je zamrznil/a račun uporabnika %{target}"
+        mark_statuses_as_sensitive: "%{name} je označil/a objave računa %{target} kot občutljive"
+        none: "%{name} je poslal/a opozorilo %{target}"
+        sensitive: "%{name} je označil/a račun %{target} kot občutljiv"
+        silence: "%{name} je omejil/a račun uporabnika %{target}"
+        suspend: "%{name} je suspendiral/a račun uporabnika %{target}"
+      appeal_approved: Pritoženo
     title: Upravljanje
     trends:
       allow: Dovoli
@@ -705,6 +718,8 @@ sl:
       subject: Novi trendi za pregled na %{instance}
   aliases:
     add_new: Ustvari vzdevek
+    created_msg: Uspešno ustvarjen novi vzdevek. Zdaj lahko pričnete s selitvijo s starega računa.
+    deleted_msg: Uspešno odstranjen vzdevek. Selitev iz tistega računa na tega ne bo več možna.
     empty: Nimate vzdevkov.
     remove: Razveži vzdevek
   appearance:
@@ -773,12 +788,14 @@ sl:
       confirming: Čakanje na potrditev e-pošte.
       functional: Vaš račun je polno opravilen.
       pending: Naše osebje preverja vašo prijavo. To lahko traja nekaj časa. Če bo vaša prijava odobrena, boste prejeli e-pošto.
+      redirecting_to: Vaš račun ni dejaven, ker trenutno preusmerja na račun %{acct}.
       view_strikes: Pokaži pretekle ukrepe proti mojemu računu
     too_fast: Obrazec oddan prehitro, poskusite znova.
     trouble_logging_in: Težave pri prijavi?
     use_security_key: Uporabi varnostni ključ
   authorize_follow:
     already_following: Temu računu že sledite
+    already_requested: Temu računu ste že poslali zahtevo po sledenju
     error: Na žalost je prišlo do napake pri iskanju oddaljenega računa
     follow: Sledi
     follow_request: 'Prošnjo za sledenje se poslali:'
@@ -990,7 +1007,9 @@ sl:
       otp: aplikacija za dvoravenjsko overjanje
       password: geslo
       webauthn: varnostni ključi
+    description_html: Če opazite dejavnost, ki je ne prepoznate kot svoje, razmislite o spremembi svojega gesla in omogočanju dvoravenskega overjanja.
     empty: Zgodovina overjanja ni na voljo
+    failed_sign_in_html: Spodletela prijava z metodo %{method} iz %{ip} (%{browser})
     successful_sign_in_html: Uspešna prijava z metodo %{method} iz %{ip} (%{browser})
     title: Zgodovina overjanja
   media_attachments:
