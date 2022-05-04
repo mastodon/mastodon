@@ -795,19 +795,79 @@ he:
       body: 'התקבלה פניה עבורך מאת %{name} ב:'
       subject: התקבלה פניה עבורך מאת %{name}
       title: אזכור חדש
+    poll:
+      subject: סקר מאת %{name} הסתיים
     reblog:
       body: 'חצרוצך הודהד על ידי %{name}:'
       subject: "חצרוצך הודהד על ידי%{name}"
+      title: הדהוד חדש
+    status:
+      subject: "%{name} בדיוק חצרץ"
     update:
       subject: "%{name} ערכו פוסט"
+  notifications:
+    email_events: ארועים להתראות דוא"ל
+    email_events_hint: 'בחר/י ארועים עבורים תרצה/י לקבל התראות:'
+    other_settings: הגדרות התראות אחרות
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: מליארד
+          million: מליון
+          quadrillion: קוואדריליון
+          thousand: אלף
+          trillion: טריליון
+  otp_authentication:
+    code_hint: על מנת לאשר, נא להכניס את הקוד שיוצר על ידי יישום האימות שלך
+    description_html: אם אופשר <strong>אימות דו-גורמי</strong> בעזרת אפליקציית אימות, כניסה לאתר תדרוש שימוש בטלפון ליצירת אסימוני כניסה עבורך.
+    enable: לאפשר
+    instructions_html: "<strong>נא לסרוק את קוד ה-QR בעזרת Google Authenticator או יישום TOTP דומה בטלפונך</strong>. מעתה ואילך, יישום זה ייצר אסימונים שיש להזין בזמן הכניסה לאתר."
+    manual_instructions: 'אם לא ניתן לסרוק את קוד ה-QR ויש להכניסו ידנית, הנה הסוד כטקסט:'
+    setup: הגדרה
+    wrong_code: הקוד שהוכנס אינו תקין! האם זמן השרת וזמן המכשיר נכונים?
   pagination:
+    newer: חדש יותר
     next: הבא
+    older: ישן יותר
     prev: הקודם
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: כבר הצבעת בסקר זה
+      duplicate_options: מכיל פריטים כפולים
+      duration_too_long: רחוק מדי בעתיד
+      duration_too_short: מוקדם מדי
+      expired: סקר זה כבר הסתיים
+      invalid_choice: ההצבעה שנבחרה אינה קיימת
   remote_follow:
     acct: נא להקליד שם_משתמש@קהילה מהם ברצונך לעקוב
     missing_resource: לא ניתן למצוא קישורית להפניה לחשבונך
     proceed: להמשיך ולעקוב
     prompt: 'לעקוב אחרי:'
+  sessions:
+    browsers:
+      phantom_js: PhantomJS
+      qq: דפדפן QQ
+      safari: ספארי
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: חיבור נוכחי
+    description: "%{browser} על %{platform}"
+    explanation: אלה הם הדפדפנים המחוברים כרגע לחשבון המסטודון שלך.
+    ip: IP
+    platforms:
+      adobe_air: אדובה אייר
+      android: אנדרואיד
+      blackberry: בלקברי
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: לינוקס
+      mac: macOS
+      other: סביבה לא ידועה
+      windows: חלונות
   settings:
     authorized_apps: ישומים מאושרים
     back: חזרה למסטודון
