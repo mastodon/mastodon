@@ -117,6 +117,7 @@ sl:
       deleted: Izbrisano
       demote: Degradiraj
       disable: Onemogoči
+      disable_sign_in_token_auth: Onemogoči overjanje z žetonom po e-pošti
       disable_two_factor_authentication: Onemogoči 2FA
       disabled: Onemogočeno
       display_name: Prikazno ime
@@ -125,6 +126,7 @@ sl:
       email: E-pošta
       email_status: Stanje e-pošte
       enable: Omogoči
+      enable_sign_in_token_auth: Omogoči overjanje z žetonom po e-pošti
       enabled: Omogočeno
       followers: Sledilci
       follows: Sledi
@@ -1033,16 +1035,19 @@ sl:
     keep_direct_hint: Ne izbriše nobenega izmed vaših neposrednih sporočil
     keep_polls: Ohrani ankete
     keep_polls_hint: Ne izbriše vaših anket
+    keep_self_fav_hint: Ne izbriše vaših lastnih objav, če ste jih postavili med priljubljene
     min_age:
       '1209600': 2 tedna
       '15778476': 6 mesecev
       '2629746': 1 mesec
       '31556952': 1 leto
       '5259492': 2 meseca
-      '604800': 1 week
+      '604800': 1 teden
       '63113904': 2 leti
       '7889238': 3 mesece
     min_age_label: Starostna meja
+    min_favs: Obrži objave priljubljene vsaj
+    min_reblogs: Obdrži objave izpostavljene vsaj
   stream_entries:
     pinned: Pripet trob
     reblogged: spodbujen
@@ -1149,6 +1154,7 @@ sl:
     enabled_success: Dvofaktorsko preverjanje pristnosti je uspešno omogočeno
     generate_recovery_codes: Ustvari kode za obnovitev
     lost_recovery_codes: Obnovitvene kode vam omogočajo, da ponovno pridobite dostop do svojega računa, če izgubite telefon. Če ste izgubili obnovitvene kode, jih lahko obnovite tukaj. Vaše stare obnovitvene kode bodo neveljavne.
+    methods: Dvofaktorske metode
     otp: Avtentikacijska aplikacija
     recovery_codes: Varnostna kopija obnovitvenih kod
     recovery_codes_regenerated: Obnovitvene kode so bile uspešno regenerirane
@@ -1176,6 +1182,9 @@ sl:
       appeal_description: Če menite, da gre za napako, lahko pošljete pritožbo osebju %{instance}.
       categories:
         spam: Neželeno
+        violation: Vsebina krši naslednja navodila skupnosti
+      explanation:
+        disable: Svojega računa ne morete več uporabljati, vendar vaš profil in drugi podatki ostajajo nedotaknjeni. Zahtevate lahko varnostno kopiranje svojih podatkov, spremenite nastavitve računa ali izbrišete svoj račun.
       reason: 'Razlog:'
       statuses: 'Citirane objave:'
       subject:
