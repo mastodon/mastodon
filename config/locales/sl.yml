@@ -295,8 +295,11 @@ sl:
         title: Novo obvestilo
       publish: Objavi
       published_msg: Obvestilo je bilo uspešno objavljeno!
+      scheduled_msg: Obvestilo ima načrtovano objavo!
       title: Obvestila
       unpublish: Umakni iz objave
+      unpublished_msg: Obvestilo je bilo uspešno umaknjeno!
+      updated_msg: Obvestilo je bilo uspešno posodobljeno!
     custom_emojis:
       assign_category: Dodeli kategorijo
       by_domain: Domena
@@ -319,11 +322,13 @@ sl:
       listed: Navedeno
       new:
         title: Dodaj nove emotikone
+      not_permitted: Nimate pravic za izvedbo tega dejanja.
       overwrite: Prepiši
       shortcode: Kratka koda
       shortcode_hint: Najmanj 2 znaka, samo alfanumerični znaki in podčrtaji
       title: Emotikoni po meri
       uncategorized: Brez kategorije
+      unlist: Ne prikaži na seznamu
       unlisted: Neuvrščeni
       update_failed_msg: Tega emotikona ni bilo mogoče posodobiti
       updated_msg: Emotikon je uspešno posodobljen!
@@ -764,6 +769,8 @@ sl:
       before: 'Pred nadaljevanjem previdno preberite naslednje opombe:'
       data_removal: Vaše objave in drugi podatki bodo trajno odstranjeni
       email_change_html: <a href="%{path}">Svoj e-naslov lahko spremenite</a> brez izbrisa svojega računa
+      email_contact_html: Če še vedno ni dostavljeno, lahko za pomoč pošljete e-sporočilo na naslov <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Če niste prejeli potrditvenega e-sporočila, lahko <a href="%{path}">znova zaprosite zanj</a>
       more_details_html: Za podrobnosti glejte <a href="%{terms_path}">politiko zasebnosti</a>.
       username_available: Vaše uporabniško ime bo znova na voljo
       username_unavailable: Vaše uporabniško ime še vedno ne bo na voljo
@@ -874,6 +881,8 @@ sl:
   html_validator:
     invalid_markup: 'vsebuje neveljavno oznako HTML: %{error}'
   imports:
+    errors:
+      over_rows_processing_limit: vsebuje več kot %{count} vrstic
     modes:
       merge: Združi
       merge_long: Ohrani obstoječe zapise in dodaj nove
@@ -918,6 +927,7 @@ sl:
       limit: Dosegli ste največje število seznamov
   login_activities:
     authentication_methods:
+      otp: aplikacija za dvoravenjsko overjanje
       password: geslo
       webauthn: varnostni ključi
     title: Zgodovina overjanja
@@ -956,6 +966,11 @@ sl:
         two: Prav tako ste pridobili %{count} nova sledilca, ko ste bili odsotni! Juhu!
         few: Prav tako ste pridobili %{count} nove sledilce, ko ste bili odsotni! Juhu!
         other: Prav tako ste pridobili %{count} novih sledilcev, ko ste bili odsotni! Juhu!
+      subject:
+        one: "%{count} novo obvestilo od vašega zadnjega obiska 🐘"
+        two: "%{count} novi obvestili od vašega zadnjega obiska 🐘"
+        few: "%{count} nova obvestila od vašega zadnjega obiska 🐘"
+        other: "%{count} novih obvestil od vašega zadnjega obiska 🐘"
       title: V vaši odsotnosti...
     favourite:
       body: '%{name} je vzljubil/a vaše stanje:'
@@ -1133,6 +1148,8 @@ sl:
     preferences: Nastavitve
     profile: Profil
     relationships: Sledenja in sledilci
+    statuses_cleanup: Samodejno brisanje objav
+    strikes: Ukrepi morediranja
     two_factor_authentication: Dvofaktorsko overjanje
     webauthn_authentication: Varnostni ključi
   statuses:
@@ -1150,6 +1167,7 @@ sl:
         other: "%{count} video posnetkov"
     boosted_from_html: Spodbujeno iz %{acct_link}
     content_warning: 'Opozorilo o vsebini: %{warning}'
+    default_language: Enak kot jezik vmesnika
     disallowed_hashtags:
       one: 'vsebuje nedovoljeni ključnik: %{tags}'
       two: 'vsebuje nedovoljena ključnika: %{tags}'
@@ -1163,6 +1181,11 @@ sl:
       ownership: Trob nekoga drugega ne more biti pripet
       reblog: Spodbuda ne more biti pripeta
     poll:
+      total_people:
+        one: "%{count} Oseba"
+        two: "%{count} osebi"
+        few: "%{count} osebe"
+        other: "%{count} oseb"
       total_votes:
         one: "%{count} glas"
         two: "%{count} glasova"
@@ -1176,6 +1199,7 @@ sl:
     sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
     title: '%{name}: »%{quote}«'
     visibilities:
+      direct: Neposredno
       private: Samo sledilci
       private_long: Prikaži samo sledilcem
       public: Javno
@@ -1186,8 +1210,10 @@ sl:
     enabled: Samodejno izbriši stare objave
     exceptions: Izjeme
     ignore_favs: Prezri priljubljene
+    interaction_exceptions: Izjeme na osnovi interakcije
     keep_direct: Ohrani neposredna sporočila
     keep_direct_hint: Ne izbriše nobenega izmed vaših neposrednih sporočil
+    keep_media: Ohrani objave z medijskimi priponkami
     keep_pinned: Ohrani pripete objave
     keep_pinned_hint: Ne izbriše nobene od vaših pripetih objav
     keep_polls: Ohrani ankete
@@ -1326,6 +1352,7 @@ sl:
       action: Pojdite na svoj račun
       title: Pritožbi ugodeno
     appeal_rejected:
+      subject: Vaša pritožba z dne %{date} je bila zavrnjena
       title: Pritožba zavrnjena
     backup_ready:
       explanation: Zahtevali ste popolno varnostno kopijo računa Mastodon. Zdaj je pripravljen za prenos!
@@ -1351,7 +1378,9 @@ sl:
       subject:
         delete_statuses: Vaše objave na %{acct} so bile odstranjene
         disable: Vaš račun %{acct} je zamrznjen
+        mark_statuses_as_sensitive: Vaše objave na računu %{acct} so bile označene kot občutljive
         none: Opozorila za %{acct}
+        sensitive: Vaše objave na računu %{acct} bodo odslej označene kot občutljive
         silence: Vaš račun %{acct} je omejen
         suspend: Vaš račun %{acct} je suspendiran
       title:
