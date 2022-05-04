@@ -16,7 +16,16 @@ sl:
         types:
           disable: Preprečite uporabniku, da uporablja svoj račun, vendar ne izbrišite ali skrijte njegove vsebine.
           none: Uporabite to, da pošljete opozorilo uporabnik, ne da bi sprožili kakšno drugo dejanje.
+          sensitive: Vsilite, da so vse medijske priponke tega uporabnika označene kot občutljive.
+          silence: Prepreči uporabniku, da lahko objavlja javno, skrije njihove objave in obvestila pred osebami, ki mu ne sledijo.
+          suspend: Prepreči vsakršno interakcijo od ali do tega računa in izbriše njegovo vsebino. Povratno v roku 30 dni.
         warning_preset_id: Neobvezno. Še vedno lahko dodate besedilo po meri na konec prednastavitve
+      announcement:
+        all_day: Če je potrjeno, bodo prikazani le datumi časovnega obsega
+        ends_at: Neobvezno. Obvestilo bo samodejno neobjavljeno v navedenem času
+        scheduled_at: Pustite prazno, da objavite obvestilo takoj
+        starts_at: Neobvezno. V primeru, da je vaše obvestilo vezano na določen časovni obseg
+        text: Uporabite lahko skladnjo objav. Pazite na prostor, ki ga zavzame obvestilo na zaslonu uporabnika
       defaults:
         autofollow: Osebe, ki se prijavijo prek povabila, vas bodo samodejno sledile
         avatar: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
