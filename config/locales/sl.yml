@@ -238,6 +238,7 @@ sl:
         resolve_report: Razreši poročilo
         silence_account: Omeji račun
         suspend_account: Začasno prekini račun
+        unblock_email_account: Odblokiraj e-poštni naslov
         unsilence_account: Razveljavi omejitev računa
         unsuspend_account: Prekliči začasno prekinitev računa
         update_announcement: Posodobi objavo
@@ -297,10 +298,17 @@ sl:
       interactions: interakcij
       new_users: novih uporabnikov
       opened_reports: odprtih poročil
+      resolved_reports: razrešenih poročil
       software: Programska oprema
       space: Uporaba prostora
       title: Nadzorna plošča
+      top_languages: Najbolj dejavni jeziki
+      top_servers: Najbolj dejavni strežniki
       website: Spletišče
+    disputes:
+      appeals:
+        empty: Ni najdenih pritožb.
+        title: Pritožbe
     domain_allows:
       add_new: Dodaj domeno na beli seznam
       created_msg: Domena je bila uspešno dodana na beli seznam
@@ -1214,9 +1222,11 @@ sl:
     delete: Izbriši
     delete_confirmation: Ali ste prepričani, da želite izbrisati ta varnostni ključ?
     destroy:
+      error: Pri brisanju vašega varnostnega ključa je prišlo do težav. Poskusite znova.
       success: Vaš varnostni ključ je bil uspešno izbrisan.
     invalid_credential: Neveljaven varnostni ključ
     nickname_hint: Vnesite vzdevek svojega novega varnostnega ključa
     not_enabled: Niste še omogočili WebAuthn
     not_supported: Ta brskalnik ne podpira varnostnih ključev
+    otp_required: Za uporabo varnostnih ključev morate najprej omogočiti 2FA (dvostopenjsko overjanje).
     registered_on: Datum registracije %{date}
