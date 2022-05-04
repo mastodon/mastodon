@@ -465,8 +465,15 @@ he:
         many: "%{count} נסיונות הרשמה במשך השבוע שעבר"
         other: "%{count} נסיונות הרשמה במשך השבוע שעבר"
       created_msg: כתובת מייל נחסמה בהצלחה
+      delete: מחיקה
+      dns:
+        types:
+          mx: רשומת MX
+      domain: דומיין
       new:
+        create: הוספת דומיין
         resolve: פתור דומיין
+        title: חסימת דומיין דוא"ל
       no_email_domain_block_selected: לא בוצעו שינויים לחסימת דומייני דוא"ל שכן לא נבחרו דומיינים
       resolved_dns_records_hint_html: שם הדומיין מוביל לדומייניי ה-MX הבאים, שהם בסופו של דבר אחראיים לקבלת דוא"ל. חסימת דומיין MX תוביל לחסימת הרשמות מכל כתובת דוא"ל שעושה שימוש בדומיין MX זה, אפילו אם הדומיין הגלוי שונה. <strong>יש להמנע מלחסום ספקי דוא"ל מובילים.</strong>
       resolved_through_html: נמצא דרך %{domain}
@@ -537,6 +544,13 @@ he:
         two: "%{count} חשבונות ידועים"
         many: "%{count} חשבונות ידועים"
         other: "%{count} חשבונות ידועים"
+      moderation:
+        all: הכל
+        limited: מוגבלים
+        title: ניהול קהילה
+      private_comment: הערה פרטית
+      public_comment: תגובה פומבית
+      purge: טיהור
       title: שרתים מוכרים
     invites:
       filter:
@@ -947,9 +961,15 @@ he:
       description_html: אלו הן הפעולות שננקטו כנגד חשבונך והאזהרות שנשלחו אליך על ידי צוות %{instance}.
       recipient: הנמען
       status: 'חצרוץ #%{id}'
+      status_removed: החצרוץ כבר הוסר מהמערכת
+      title: "%{action} מתאריך %{date}"
       title_actions:
+        delete_statuses: הסרת חצרוץ
+        disable: הקפאת חשבון
+        mark_statuses_as_sensitive: סימון חצרוצים כרגישים
         none: אזהרה
         sensitive: סימו חשבון כרגיש
+        silence: הגבלת חשבון
         suspend: השעית חשבון
       your_appeal_approved: ערעורך התקבל
       your_appeal_pending: הגשת ערעור
@@ -1038,6 +1058,7 @@ he:
       over_rows_processing_limit: מכיל יותר מ-%{count} עמודות
     modes:
       merge: מיזוג
+      merge_long: שמירת רשומות קיימות והוספת חדשות
       overwrite: דריסה
       overwrite_long: החלף רשומות נוכחיות בחדשות
     preface: ניתן ליבא מידע מסויים כגון כל הנעקבים או המשתמשים החסומים לתוך חשבונך על שרת זה, מתוך קבצים שנוצרו על ידי יצוא משרת אחר כגון רשימת הנעקבים והחסומים שלך.
@@ -1078,11 +1099,31 @@ he:
       password: סיסמא
       sign_in_token: קוד אימות בדוא"ל
       webauthn: מפתחות אבטחה
+    description_html: אם את/ה רואה פעילות שאינך מזהה, אנא שנה/י את סיסמתך והפעל/י אימות דו-גורמי.
+    empty: הסטוריית אימותים אינה זמינה
+    failed_sign_in_html: נסיון כניסה כושל בשיטת %{method} מכתובת %{ip} (%{browser})
+    successful_sign_in_html: נסיון כניסה מוצלח בשיטה %{method} מכתובת %{ip} (%{browser})
+    title: הסטוריית אימותים
   media_attachments:
     validations:
       images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
+      not_ready: לא ניתן להצמיד קבצים שהעלאתם לא הסתיימה. נסה/י שוב בעוד רגע!
       too_many: לא ניתן להוסיף יותר מארבעה קבצים
   migrations:
+    acct: עבר אל
+    cancel: ביטול הפניה
+    cancel_explanation: ביטול ההפניה יפעיל מחדש את החשבון הנוכחי, אבל לא יחזיר את העוקבים שהועברו לחשבון החדש.
+    cancelled_msg: ההפניה בוטלה בהצלחה.
+    errors:
+      already_moved: זה אותו החשבון שכבר עברת אליו
+      missing_also_known_as: לא שם נרדף של החשבון הזה
+      move_to_self: לא יכול להיות החשבון הנוכחי
+      not_found: לא נמצאו
+      on_cooldown: את/ה בתקופת צינון
+    followers_count: עוקבים בזמן המעבר
+    incoming_migrations: מעבר לחשבון אחר
+    incoming_migrations_html: כדי לעבור מחשבון אחר לחשבון זה, עליך ראשית <a href="%{path}">ליצור שם נרדף לחשבון</a>.
+    moved_msg: חשבונך מופנה עתה ל-%{acct} וכל עוקביך מועברים לשם.
     not_redirecting: חשבונכם לא מפנה לשום חשבון אחר כעת.
     redirected_msg: חשבונכם כעת מפנה ל%{acct}.
     redirecting_to: חשבונכם מפנה ל%{acct}.
