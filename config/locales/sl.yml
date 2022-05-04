@@ -47,6 +47,7 @@ sl:
       reason: Razlog
       rejecting_media_title: Filtrirane datoteke
       silenced_title: Omejeni strežniki
+      suspended_title: Suspendirani strežniki
     user_count_after:
       one: uporabnik
       two: uporabnika
@@ -145,6 +146,7 @@ sl:
       login_status: Stanje prijave
       media_attachments: Predstavnostne priloge
       memorialize: Spremenite v spomin
+      memorialized: Spomenificirano
       moderation:
         active: Dejaven
         all: Vse
@@ -164,9 +166,12 @@ sl:
       public: Javen
       push_subscription_expires: Naročnina PuSH preteče
       redownload: Osveži profil
+      redownloaded_msg: Uspešno osvežen profil %{username} iz izvirnika
       reject: Zavrni
       remove_avatar: Odstrani podobo
       remove_header: Odstrani glavo
+      removed_avatar_msg: Uspešno odstranjena slika avatarja uporabnika %{username}
+      removed_header_msg: Uspešno odstranjena naslovna slika uporabnika %{username}
       resend_confirmation:
         already_confirmed: Ta uporabnik je že potrjen
         send: Ponovno pošlji potrditveno e-pošto
@@ -250,6 +255,7 @@ sl:
         update_domain_block: Posodobi blokado domene
         update_status: Posodobi objavo
       actions:
+        approve_appeal_html: "%{name} je ugodil pritožbi uporabnika %{target} na moderatorsko odločitev"
         assigned_to_self_report_html: "%{name} je dodelil/a poročilo %{target} sebi"
         change_email_user_html: "%{name} je spremenil/a naslov e-pošte uporabnika %{target}"
         confirm_user_html: "%{name} je potrdil/a naslov e-pošte uporabnika %{target}"
@@ -280,6 +286,9 @@ sl:
         silence_account_html: "%{name} je omejil/a račun uporabnika %{target}"
         suspend_account_html: "%{name} je suspendiral/a račun uporabnika %{target}"
         unassigned_report_html: "%{name} je preklical dodelitev prijave uporabnika %{target}"
+        unsilence_account_html: "%{name} je preklical omejitev računa %{target}"
+        unsuspend_account_html: "%{name} je preklical suspenz računa %{target}"
+        update_announcement_html: "%{name} je posodobil/a objavo %{target}"
         update_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         update_domain_block_html: "%{name} je posodobil/a domenski blok za %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
@@ -344,6 +353,16 @@ sl:
       media_storage: Shramba za medije
       new_users: novih uporabnikov
       opened_reports: odprtih poročil
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> čakajoča pritožba"
+        two: "<strong>%{count}</strong> čakajoči pritožbi"
+        few: "<strong>%{count}</strong> čakajoče pritožbe"
+        other: "<strong>%{count}</strong> čakajočih pritožb"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> čakajoča prijava"
+        two: "<strong>%{count}</strong> čakajoči prijavi"
+        few: "<strong>%{count}</strong> čakajoče prijave"
+        other: "<strong>%{count}</strong> čakajočih prijav"
       pending_tags_html:
         one: "<strong>%{count}</strong> čakajoči ključnik"
         two: "<strong>%{count}</strong> čakajoča ključnika"
@@ -387,6 +406,8 @@ sl:
           silence: Utišaj
           suspend: Suspendiraj
         title: Nov domenski blok
+      obfuscate: Zakrij ime domene
+      obfuscate_hint: Delno zakrij ime domene na seznamu, če je omogočeno oglaševanje omejitev seznama domen
       private_comment: Zasebni komentar
       public_comment: Javni komentar
       reject_media: Zavrni predstavnostne datoteke
@@ -397,6 +418,11 @@ sl:
       view: Pokaži domenski blok
     email_domain_blocks:
       add_new: Dodaj novo
+      attempts_over_week:
+        one: "%{count} poskus prijave zadnji teden"
+        two: "%{count} poskusa prijave zadnji teden"
+        few: "%{count} poskusi prijave zadnji teden"
+        other: "%{count} poskusov prijave zadnji teden"
       created_msg: Domena e-pošte je bila uspešno dodana na črni seznam
       delete: Izbriši
       dns:
@@ -432,10 +458,12 @@ sl:
           other: Neuspeli poskusi %{count} različnih dni.
         no_failures_recorded: Ni zabeleženih neuspelih poskusov.
         title: Razpoložljivost
+        warning: Zadnji poskus povezave na ta strežnik je spodletel
       back_to_all: Vse
       back_to_limited: Omejeno
       back_to_warning: Opozorilo
       by_domain: Domena
+      confirm_purge: Ali ste prepričani, da želite trajno izbrisati podatke s te domene?
       content_policies:
         comment: Interna opomba
         description_html: Določite lahko pravila (t.i. politike), ki bodo veljale za vse račune te domene ter vseh njenih poddomen.
@@ -507,7 +535,10 @@ sl:
         '94670856': 3 leta
       new:
         title: Ustvari novo pravilo IP
+      no_ip_block_selected: Nobeno pravilo IP ni bilo spremenjeno, ker nobeno ni bilo izbrano
       title: IP-pravila
+    relationships:
+      title: "Odnosi računa %{acct}"
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
@@ -534,7 +565,10 @@ sl:
           two: "%{count} opombi"
           few: "%{count} opombe"
           other: "%{count} opomb"
+      action_log: Revizijski zapisnik
       action_taken_by: Dejanje, ki ga je sprejel
+      actions:
+        delete_description_html: Prijavljene objave bodo izbrisane in ukrep bo zabeležen, da vam pomaga stopnjevati ukrepe ob naslednjih kršitvah z istega računa.
       add_to_report: Dodaj več v prijavo
       are_you_sure: Ali ste prepričani?
       assign_to_self: Dodeli meni
@@ -1622,6 +1656,7 @@ sl:
       success: Vaš varnostni ključ je bil uspešno dodan.
     delete: Izbriši
     delete_confirmation: Ali ste prepričani, da želite izbrisati ta varnostni ključ?
+    description_html: Če omogočite <strong>overjanje z varnostnim ključem</strong>, boste morali ob prijavi uporabiti enega od svojih varnostnih ključev.
     destroy:
       error: Pri brisanju vašega varnostnega ključa je prišlo do težav. Poskusite znova.
       success: Vaš varnostni ključ je bil uspešno izbrisan.
