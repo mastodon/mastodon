@@ -61,19 +61,44 @@ he:
     what_is_mastodon: מה זה מסטודון?
   accounts:
     choices_html: "בחירותיו/ה של %{name}:"
+    endorsements_hint: תוכל/י להמליץ על אנשים לעקוב אחריהם דרך ממשק הווב, והם יופיעו כאן.
+    featured_tags_hint: תוכל/י להציג האשתגיות ספציפיות והן תופענה כאן.
     follow: לעקוב
+    followers:
+      one: עוקב
+      two: עוקבים
+      many: עוקבים
+      other: עוקבים
     following: נעקבים
+    instance_actor_flash: חשבון זה הינו פועל וירטואלי המשמש לייצוג השרת עצמו ולא אף משתמש ספציפי. הוא משמש למטרות פדרציה ואין להשעותו.
+    joined: הצטרף/ה ב-%{date}
+    last_active: פעילות אחרונה
+    link_verified_on: בעלות על קישורית זו נבדקה לאחרונה ב-%{date}
     media: מדיה
     moved_html: "%{name} עבר(ה) אל %{new_profile_link}:"
+    network_hidden: מידע זה אינו זמין
     nothing_here: אין פה שום דבר!
     people_followed_by: הנעקבים של %{name}
     people_who_follow: העוקבים של %{name}
+    pin_errors:
+      following: עליך לעקוב אחרי חשבון לפני שניתן יהיה להמליץ עליו
+    posts:
+      one: חצרוץ
+      two: חצרוצים
+      many: חצרוצים
+      other: חצרוצים
+    posts_tab_heading: חצרוצים
     posts_with_replies: חצרוצים ותגובות
     roles:
       admin: מנהל
+      bot: בוט
+      group: קבוצה
       moderator: מנחה
+    unavailable: פרופיל לא זמין
     unfollow: הפסקת מעקב
   admin:
+    account_actions:
+      action: בצע/י פעולה
     account_moderation_notes:
       create: ליצור
       created_msg: הודעת מנחה נוצרה בהצלחה!
@@ -144,11 +169,28 @@ he:
       subscribe: הרשמה
       suspend: השעייה
       title: חשבונות
+      unblocked_email_msg: הסרת חסימה מכתובת הדוא"ל של %{username} בוצעה בהצלחה
+      unconfirmed_email: כתובת דוא"ל לא מאומתת
+      undo_sensitized: בטל רגישות לכח
       undo_silenced: ביטול השתקה
       undo_suspension: ביטול השעייה
+      unsilenced_msg: ביטול הגבלה לחשבונו של %{username} בוצע בהצלחה
       unsubscribe: הפסקת הרשמה
+      unsuspended_msg: הסרת השעיה מהחשבון של %{username} בוצעה בהצלחה
       username: שם משתמש
+      view_domain: צפיה בסיכום שרת
+      warn: אזהרה
       web: רשת
+      whitelisted: מותר לפדרציה
+    action_logs:
+      action_types:
+        approve_appeal: אישור ערעור
+        approve_user: אישור משתמש
+        assigned_to_self_report: הקצאת דו"ח
+        change_email_user: שינוי כתובת דוא"ל למשתמש
+        confirm_user: אשר משתמש
+        create_account_warning: יצירת אזהרה
+        create_announcement: יצירת הכרזה
     domain_blocks:
       add_new: הוספת חדש
       created_msg: חסימת שרת בתהליך
