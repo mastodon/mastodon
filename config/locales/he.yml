@@ -349,15 +349,39 @@ he:
         instance_followers_measure: עוקבינו שם
         instance_follows_measure: עוקביהם כאן
         instance_languages_dimension: שפות מובילות
+        instance_media_attachments_measure: קבצי מדיה מאופסנים
+        instance_reports_measure: דו"חות אודותיהם
+        instance_statuses_measure: חצרוצים מאופסנים
       delivery:
+        all: הכל
+        clear: ניקוי שגיאות משלוח
         failing: נכשל
+        restart: אתחול משלוח מחדש
+        stop: הפסקת משלוח
+        unavailable: לא זמין
+      delivery_available: משלוח זמין
+      delivery_error_days: ימי שגיאת משלוח
+      delivery_error_hint: אם לא התאפשר משלוח במשך %{count} ימים, הוא יסומן אוטומטית כבלתי ניתן למשלוח.
+      destroyed_msg: מידע מ-%{domain} נמצא עתה בתור למחיקה מיידית.
+      empty: לא נמצאו דומיינים.
+      known_accounts:
+        one: "חשבון ידוע %{count}"
+        two: "%{count} חשבונות ידועים"
+        many: "%{count} חשבונות ידועים"
+        other: "%{count} חשבונות ידועים"
       title: שרתים מוכרים
     report_notes:
       today_at: היום, ב%{time}
     reports:
+      action_log: ביקורת יומן
+      action_taken_by: פעולה בוצעה ע"י
       actions:
         delete_description_html: הפוסטים המדווחים יימחקו ותרשם עבירה על מנת להקל בהעלאה של דיווחים עתידיים על אותה חשבון.
+        mark_as_sensitive_description_html: המדיה בחצרוצים מדווחים תסומן כרגישה ועבירה תרשם כדי לעזור לך להסלים באינטראקציות עתידיות עם אותו החשבון.
+        other_description_html: ראו אפשרויות נוספות לשליטה בהתנהגות החשבון וכדי לבצע התאמות בתקשורת עם החשבון המדווח.
         resolve_description_html: אף פעולה לא תבוצע נגד החשבון עליו דווח, לא תירשם עבירה, והדיווח ייסגר.
+        silence_description_html: הפרופיל יהיה גלוי אך ורק לאלה שכבר עוקבים אחריו או לאלה שיחפשו אותו ידנית, מה שיגביל מאד את תפוצתו. ניתן תמיד להחזיר את המצב לקדמותו.
+        suspend_description_html: הפרופיל וכל תכולתו יחסמו לכל גישה עד שבסופו של דבר ימחקו. כל תקשורת עם החשבון תהיה בלתי אפשרית. ניתן לביטול תוך 30 יום.
       add_to_report: הוספת פרטים לדיווח
       are_you_sure: 100% על בטוח?
       category: קטגוריה
