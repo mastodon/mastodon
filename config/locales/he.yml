@@ -158,6 +158,7 @@ he:
       memorialized: מונצחים
       memorialized_msg: החשבון %{username} הונצח בהצלחה
       moderation:
+        active: פעילים
         all: הכל
         pending: בהמתנה
         suspended: מושהים
@@ -170,11 +171,24 @@ he:
       not_subscribed: לא רשום
       pending: ממתינים לסקירה
       perform_full_suspension: ביצוע השעייה מלאה
+      previous_strikes: פסילות קודמות
+      previous_strikes_description_html:
+        one: לחשבון הזה פסילה <strong>אחת</strong>.
+        two: לחשבון הזה <strong>%{count}</strong> פסילות.
+        many: לחשבון הזה יש <strong>%{count}</strong> פסילות.
+        other: לחשבון הזה <strong>%{count}</strong> פסילות.
       promote: להעלות בדרגה
       protocol: פרטיכל
       public: פומבי
       push_subscription_expires: הרשמה להודעות בדחיפה פגה
       redownload: לקריאה מחדש של האווטאר
+      redownloaded_msg: הפרופיל של %{username} רוענן בהצלחה מהמקור
+      reject: דחויים
+      rejected_msg: בקשת ההרשמה של %{username} נדחתה בהצלחה
+      remove_avatar: הסרת תמונת פרופיל
+      remove_header: הסרת כותרת
+      removed_avatar_msg: תמונת הפרופיל של %{username} הוסרה בהצלחה
+      removed_header_msg: תמונת הראשה של %{username} הוסרה בהצלחה
       resend_confirmation:
         already_confirmed: משתמש זה כבר אושר
         send: שלח מחדש דוא"ל אימות
@@ -186,17 +200,28 @@ he:
       roles:
         admin: מנהל מערכת
         moderator: מנחה דיונים
+        staff: צוות
         user: משתמש(ת)
       search: חיפוש
+      search_same_email_domain: משתמשים אחרים מאותו דומיין דוא"ל
+      search_same_ip: משתמשים אחרים מאותה כתובת IP
+      security_measures:
+        only_password: סיסמא בלבד
+        password_and_2fa: סיסמא ואימות דו-גורמי
+      sensitive: מאולצים לרגישות
+      sensitized: מסומנים כרגישים
       shared_inbox_url: תיבה משותפת לדואר נכנס
       show:
         created_reports: דיווחים מאת חשבון זה
         targeted_reports: דיווחים נגד חשבון זה
       silence: השתקה
+      silenced: מוגבלים
       statuses: הודעות
       strikes: עבירות קודמות
       subscribe: הרשמה
       suspend: השעייה
+      suspended: מושעים
+      suspension_irreversible: המידע בחשבון זה נמחק באופן בלתי הפיך. ניתן להסיר את ההשעיה מהחשבון על מנת להחזיר אותו למצב שמיש, אבל שום מידע שהיה בבעלותו לא ישוחזר.
       title: חשבונות
       unblocked_email_msg: הסרת חסימה מכתובת הדוא"ל של %{username} בוצעה בהצלחה
       unconfirmed_email: כתובת דוא"ל לא מאומתת
@@ -255,6 +280,11 @@ he:
         silence_account: הגבלת חשבון
         suspend_account: השעיית חשבון
         unassigned_report: ביטול הקצאת דו"ח
+        unsuspend_account: ביטול השעיית חשבון
+        update_announcement: עדכון הכרזה
+        update_custom_emoji: עדכון סמלון מותאם אישית
+        update_domain_block: עדכון חסימת שם מתחם
+        update_status: סטטוס עדכון
       actions:
         unblock_email_account_html: "%{name} הסיר/ה חסימה מחשבון הדוא\"ל של %{target}"
         unsensitive_account_html: "%{name} ביטל/ה את סימון המדיה של %{target} כרגישה"
