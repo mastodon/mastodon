@@ -551,14 +551,41 @@ he:
       private_comment: הערה פרטית
       public_comment: תגובה פומבית
       purge: טיהור
+      purge_description_html: אם יש יסוד להניח שדומיין זה מנותק לעד, ניתן למחוק את כל רשומות החשבונות והמידע המשוייך לדומיין זה משטח האפסון שלך. זה עשוי לקחת זמן מה.
       title: שרתים מוכרים
+      total_blocked_by_us: חסום על ידינו
+      total_followed_by_them: נעקב על ידם
+      total_followed_by_us: נעקב על ידינו
+      total_reported: דוחות אודותיהם
+      total_storage: קבצי מדיה מצורפים
+      totals_time_period_hint_html: הסכומים המוצגים להלן כוללים מידע מכל הזמנים.
     invites:
+      deactivate_all: להשבית הכל
       filter:
         all: כל ההזמנות
+        available: זמין
+        expired: פג תוקף
+        title: מסנן
+      title: הזמנות
     ip_blocks:
       add_new: צור כלל
+      created_msg: כלל IP חדש הוסף בהצלחה
+      delete: למחוק
+      expires_in:
+        '1209600': שבועיים
+        '15778476': 6 חודשים
+        '2629746': חודש אחד
+        '31556952': שנה אחת
+        '86400': יום אחד
+        '94670856': 3 שנים
       new:
         title: יצירת כלל IP
+      no_ip_block_selected: שום כלל IP לא שונה כי שום כלל IP לא נבחר
+      title: כללי IP
+    relationships:
+      title: "היחסים של %{acct}"
+    relays:
+      add_new: הוספת ממסר חדש
     report_notes:
       destroyed_msg: הערה על דו"ח נמחקה בהצלחה!
       today_at: היום, ב%{time}
