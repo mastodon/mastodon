@@ -45,6 +45,7 @@ sl:
     unavailable_content_description:
       domain: Strežnik
       reason: Razlog
+      rejecting_media_title: Filtrirane datoteke
       silenced_title: Omejeni strežniki
     user_count_after:
       one: uporabnik
@@ -83,6 +84,8 @@ sl:
     roles:
       admin: Skrbnik
       bot: Robot
+      group: Skupina
+      moderator: Mod
     unavailable: Profil ni na voljo
     unfollow: Prenehaj slediti
   admin:
@@ -201,28 +204,45 @@ sl:
       whitelisted: Na belem seznamu
     action_logs:
       action_types:
+        approve_appeal: Odobri pritožbo
         approve_user: Odobri uporabnika
         assigned_to_self_report: Dodeli poročilo
         change_email_user: Spremeni e-poštni naslov uporabnika
         confirm_user: Potrdi uporabnika
         create_account_warning: Ustvari opozorilo
         create_announcement: Ustvari obvestilo
+        create_custom_emoji: Ustvari emodži po meri
+        create_domain_allow: Ustvari odobritev domene
+        create_domain_block: Ustvari blokado domene
         create_ip_block: Ustvari pravilo IP
         create_unavailable_domain: Ustvari domeno, ki ni na voljo
         demote_user: Ponižaj uporabnika
         destroy_announcement: Izbriši obvestilo
+        destroy_custom_emoji: Izbriši emodži po meri
         destroy_domain_allow: Izbriši odobritev domene
         destroy_domain_block: Izbriši blokado domene
         destroy_ip_block: Izbriši pravilo IP
         destroy_status: Izbriši objavo
+        destroy_unavailable_domain: Izbriši domeno, ki ni na voljo
         disable_2fa_user: Onemogoči
+        disable_custom_emoji: Onemogoči emodži po meri
         disable_user: Onemogoči uporabnika
+        enable_custom_emoji: Omogoči emodži po meri
         enable_user: Omogoči uporabnika
+        promote_user: Povišaj uporabnika
+        reject_appeal: Zavrni pritožbo
         reject_user: Zavrni uporabnika
         remove_avatar_user: Odstrani avatar
         reopen_report: Ponovno odpri prijavo
         reset_password_user: Ponastavi geslo
+        resolve_report: Razreši poročilo
         silence_account: Omeji račun
+        suspend_account: Začasno prekini račun
+        unsilence_account: Razveljavi omejitev računa
+        unsuspend_account: Prekliči začasno prekinitev računa
+        update_announcement: Posodobi objavo
+        update_custom_emoji: Posodobi emodži po meri
+        update_domain_block: Posodobi blokado domene
         update_status: Posodobi objavo
       deleted_status: "(izbrisano stanje)"
       filter_by_action: Filtriraj po dejanjih
@@ -1001,6 +1021,8 @@ sl:
       unlisted: Ni prikazano
       unlisted_long: Vsi lahko vidijo, vendar ni objavljeno na javnih časovnicah
   statuses_cleanup:
+    keep_direct: Ohrani neposredna sporočila
+    keep_direct_hint: Ne izbriše nobenega izmed vaših neposrednih sporočil
     keep_polls: Ohrani ankete
     keep_polls_hint: Ne izbriše vaših anket
     min_age:
@@ -1017,6 +1039,8 @@ sl:
     pinned: Pripet trob
     reblogged: spodbujen
     sensitive_content: Občutljiva vsebina
+  tags:
+    does_not_match_previous_name: se ne ujema s prejšnjim imenom
   terms:
     body_html: |
       <h2>Pravilnik o zasebnosti</h2>
@@ -1104,26 +1128,46 @@ sl:
     contrast: Mastodon (Visok kontrast)
     default: Mastodon (Temna)
     mastodon-light: Mastodon (Svetla)
+  time:
+    formats:
+      month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Dodaj
     disable: Onemogoči
+    disabled_success: Dvofaktorsko preverjanje pristnosti je uspešno onemogočeno
     edit: Uredi
     enabled: Dvofaktorsko preverjanje pristnosti je omogočeno
     enabled_success: Dvofaktorsko preverjanje pristnosti je uspešno omogočeno
     generate_recovery_codes: Ustvari kode za obnovitev
     lost_recovery_codes: Obnovitvene kode vam omogočajo, da ponovno pridobite dostop do svojega računa, če izgubite telefon. Če ste izgubili obnovitvene kode, jih lahko obnovite tukaj. Vaše stare obnovitvene kode bodo neveljavne.
+    otp: Avtentikacijska aplikacija
     recovery_codes: Varnostna kopija obnovitvenih kod
     recovery_codes_regenerated: Obnovitvene kode so bile uspešno regenerirane
     recovery_instructions_html: Če kdaj izgubite dostop do telefona, lahko uporabite eno od spodnjih obnovitvenih kod, da ponovno pridobite dostop do svojega računa. <strong>Shranite obnovitvene kode</strong>. Lahko jih natisnete in shranite z drugimi pomembnimi dokumenti.
     webauthn: Varnostni ključi
   user_mailer:
+    appeal_approved:
+      action: Pojdite na svoj račun
+      title: Pritožbi ugodeno
+    appeal_rejected:
+      title: Pritožba zavrnjena
     backup_ready:
       explanation: Zahtevali ste popolno varnostno kopijo računa Mastodon. Zdaj je pripravljen za prenos!
       subject: Vaš arhiv je pripravljen za prenos
       title: Prevzem arhiva
+    suspicious_sign_in:
+      change_password: spremenite svoje geslo
+      details: 'Tukaj so podrobnosti prijave:'
+      title: Nova prijava
     warning:
+      appeal: Pošlji pritožbo
+      categories:
+        spam: Neželeno
       reason: 'Razlog:'
+      statuses: 'Citirane objave:'
       subject:
+        delete_statuses: Vaše objave na %{acct} so bile odstranjene
         disable: Vaš račun %{acct} je zamrznjen
         none: Opozorila za %{acct}
         silence: Vaš račun %{acct} je omejen
@@ -1131,7 +1175,9 @@ sl:
       title:
         delete_statuses: Objave odstranjene
         disable: Račun je zamrznjen
+        mark_statuses_as_sensitive: Objave, označene kot občuljive
         none: Opozorilo
+        sensitive: Račun je označen kot občutljiv
         silence: Račun je omejen
         suspend: Račun je suspendiran
     welcome:
@@ -1163,10 +1209,14 @@ sl:
   webauthn_credentials:
     add: Dodaj nov varnostni ključ
     create:
+      error: Pri dodajanju vašega varnostnega ključa je prišlo do težav. Poskusite znova.
       success: Vaš varnostni ključ je bil uspešno dodan.
     delete: Izbriši
     delete_confirmation: Ali ste prepričani, da želite izbrisati ta varnostni ključ?
     destroy:
       success: Vaš varnostni ključ je bil uspešno izbrisan.
     invalid_credential: Neveljaven varnostni ključ
+    nickname_hint: Vnesite vzdevek svojega novega varnostnega ključa
+    not_enabled: Niste še omogočili WebAuthn
     not_supported: Ta brskalnik ne podpira varnostnih ključev
+    registered_on: Datum registracije %{date}
