@@ -382,26 +382,61 @@ he:
         resolve_description_html: אף פעולה לא תבוצע נגד החשבון עליו דווח, לא תירשם עבירה, והדיווח ייסגר.
         silence_description_html: הפרופיל יהיה גלוי אך ורק לאלה שכבר עוקבים אחריו או לאלה שיחפשו אותו ידנית, מה שיגביל מאד את תפוצתו. ניתן תמיד להחזיר את המצב לקדמותו.
         suspend_description_html: הפרופיל וכל תכולתו יחסמו לכל גישה עד שבסופו של דבר ימחקו. כל תקשורת עם החשבון תהיה בלתי אפשרית. ניתן לביטול תוך 30 יום.
+      actions_description_html: בחר/י איזו פעולה לבצע על מנת לפתור את הדו"ח. אם תופעל פעולת ענישה כנגד החשבון המדווח, הודעת דוא"ל תשלח אליהם, אלא אם נבחרה קטגוריית ה<strong>ספאם</strong>.
       add_to_report: הוספת פרטים לדיווח
       are_you_sure: 100% על בטוח?
+      assign_to_self: הקצה אלי
+      assigned: מנחה מוקצה
+      by_target_domain: דומיין החשבון המדווח
       category: קטגוריה
+      category_description_html: הסיבה בגללה חשבון זה ו/או תוכנו דווחו תצוטט בתקשורת עם החשבון המדווח
       comment:
         none: ללא
       comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
+      created_at: מדווח
+      delete_and_resolve: מחיקת חצרוצים
+      forwarded: קודם
+      forwarded_to: קודם ל-%{domain}
       mark_as_resolved: סימון כפתור
+      mark_as_sensitive: סימון כרגיש
+      mark_as_unresolved: סימון כלא פתור
       no_one_assigned: אף אחד
       notes:
+        create: הוספת הערה
+        create_and_resolve: פתרון עם הערה
+        create_and_unresolve: פתיחה מחדש עם הערה
+        delete: מחיקה
+        placeholder: תאר/י אילו פעולות ננקטו, או עדכונים קשורים אחרים...
         title: הערות
+      notes_description_html: צפייה והשארת הערות למנחים אחרים או לעצמך העתידי
+      quick_actions_description_html: 'נקוט/י פעולה מהירה או גלול/י למטה לצפייה בתוכן המדווח:'
+      remote_user_placeholder: המשתמש המרוחק מ-%{instance}
+      reopen: פתיחת דו"ח מחדש
       report: 'דווח על #%{id}'
       reported_account: חשבון מדווח
       reported_by: דווח על ידי
       resolved: פתור
+      resolved_msg: הדו"ח נפתר בהצלחה!
+      skip_to_actions: דלג/י לפעולות
       status: הודעה
       statuses: התוכן עליו דווח
+      statuses_description_html: התוכן הפוגע יצוטט בתקשורת עם החשבון המדווח
+      target_origin: מקור החשבון המדווח
       title: דיווחים
+      unassign: ביטול הקצאה
       unresolved: לא פתור
+      updated_at: עודכן
       view_profile: צפה בפרופיל
+    rules:
+      add_new: הוספת כלל
+      delete: מחיקה
+      description_html: בעוד הרוב טוען שקרא והסכים לתנאי השימוש, אנשים לא נוטים לקרוא אותם עד הסוף עד שמתעוררת בעיה. <strong>כדי שיקל לראות את כללי השרת במבט, יש לספקם כרשימת נקודות.</strong> כדאי לשמור על הכללים קצרים ופשוטים, אבל מאידך גם לא לפצל אותם ליותר מדי נקודות נפרדות.
+      edit: עריכת כלל
+      empty: שום כללי שרת לא הוגדרו עדיין.
+      title: כללי שרת
     settings:
+      activity_api_enabled:
+        desc_html: מספר החצרוצים שפורסמו מקומית, משתמשים פעילים, והרשמות חדשות בדליים שבועיים
       contact_information:
         email: נא להקליד כתובת דוא"ל פומבית
         username: נא להכניס שם משתמש
