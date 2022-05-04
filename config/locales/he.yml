@@ -919,11 +919,22 @@ he:
     success_msg: חשבונך נמחק בהצלחה
     warning:
       before: 'לפני שנמשיך, נא לקרוא בזהירות את ההערות הבאות:'
+      caches: מידע שהוטמן על ידי שרתים אחרים עשוי להתמיד
+      data_removal: חצרוציך וכל מידע אחר יוסרו לתמיד
+      email_change_html: ניתן <a href="%{path}">לשנות את כתובת הדוא"ל שלך</a> מבלי למחוק את החשבון
+      email_contact_html: אם הוא עדיין לא הגיע, ניתן לקבל עזרה על ידי משלוח דואל ל-<a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: אם לא מתקבל דוא"ל האישור, ניתן <a href="%{path}">לבקש אותו שוב</a>
+      irreversible: לא ניתן יהיה לשחזר או להפעיל מחדש את חשבונך
+      more_details_html: לפרטים נוספים, ראו את <a href="%{terms_path}">מדיניות הפרטיות</a>.
+      username_available: שם המשתמש שלך שוב יהיה זמין
+      username_unavailable: שם המשתמש שלך יישאר בלתי זמין
   directories:
     directory: מדריך פרופילים
     explanation: גלו משתמשים בהתבסס על תחומי העניין שלהם
+    explore_mastodon: חקור את %{title}
   disputes:
     strikes:
+      action_taken: הפעולה שבוצעה
       appeal: ערער
       appeal_approved: הערעור על פסילה זו התקבל
       appeal_rejected: ערעור זה נדחה
@@ -931,6 +942,11 @@ he:
       appealed_msg: הערעור שלך הוגש. במידה ויאושר, תיודע.
       appeals:
         submit: הגש ערעור
+      associated_report: הדו"ח המשויך
+      created_at: מתאריך
+      description_html: אלו הן הפעולות שננקטו כנגד חשבונך והאזהרות שנשלחו אליך על ידי צוות %{instance}.
+      recipient: הנמען
+      status: 'חצרוץ #%{id}'
       title_actions:
         none: אזהרה
         sensitive: סימו חשבון כרגיש
