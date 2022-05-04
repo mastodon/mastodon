@@ -101,7 +101,7 @@ module StatusesHelper
     when 'private'
       fa_icon 'lock fw'
     when 'direct'
-      fa_icon 'envelope fw'
+      fa_icon 'at fw'
     end
   end
 
