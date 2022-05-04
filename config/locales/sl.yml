@@ -372,6 +372,7 @@ sl:
       reject_reports: Zavrnjene prijave
       reject_reports_hint: Prezri vse prijave, ki pridejo iz te domene. Za suspenzije ni pomembno
       undo: Razveljavi domenski blok
+      view: Pokaži domenski blok
     email_domain_blocks:
       add_new: Dodaj novo
       created_msg: Domena e-pošte je bila uspešno dodana na črni seznam
@@ -390,7 +391,10 @@ sl:
     follow_recommendations:
       language: Za jezik
       status: Stanje
+      suppress: Zatri sledenje priporočilom
+      suppressed: Zatrto
       title: Sledi priporočilom
+      unsuppress: Obnovi sledenje priporočilom
     instances:
       availability:
         failure_threshold_reached: Prag neuspelih poskusov dosežen %{date}.
@@ -487,14 +491,19 @@ sl:
       today_at: Danes ob %{time}
     reports:
       action_taken_by: Dejanje, ki ga je sprejel
+      add_to_report: Dodaj več v prijavo
       are_you_sure: Ali ste prepričani?
       assign_to_self: Dodeli meni
       assigned: Dodeljen moderator
+      by_target_domain: Domena prijavljenega računa
       category: Kategorija
+      category_description_html: Razlog, zakaj je ta račun in/ali vsebina prijavljena, bo naveden v komunikaciji z računom iz prijave
       comment:
         none: Brez
       created_at: Prijavljeno
       delete_and_resolve: Izbriši objave
+      forwarded: Posredovano
+      forwarded_to: Posredovano na %{domain}
       mark_as_resolved: Označi kot rešeno
       mark_as_unresolved: Označi kot nerešeno
       no_one_assigned: Nihče
@@ -676,8 +685,10 @@ sl:
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
     didnt_get_confirmation: Niste prejeli navodil za potrditev?
+    dont_have_your_security_key: Ali imate svoj varnostni ključ?
     forgot_password: Ste pozabili svoje geslo?
     invalid_reset_password_token: Žeton za ponastavitev gesla je neveljaven ali je potekel. Zahtevajte novo.
+    link_to_webauth: Vnesite svojo napravo za varnostni ključ
     log_in_with: Prijavi se s
     login: Prijava
     logout: Odjava
@@ -702,6 +713,8 @@ sl:
       confirming: Čakanje na potrditev e-pošte.
       functional: Vaš račun je polno opravilen.
       pending: Naše osebje preverja vašo prijavo. To lahko traja nekaj časa. Če bo vaša prijava odobrena, boste prejeli e-pošto.
+      view_strikes: Pokaži pretekle ukrepe proti mojemu računu
+    too_fast: Obrazec oddan prehitro, poskusite znova.
     trouble_logging_in: Težave pri prijavi?
     use_security_key: Uporabi varnostni ključ
   authorize_follow:
@@ -719,11 +732,30 @@ sl:
     confirm: Nadaljuj
     invalid_password: Neveljavno geslo
     prompt: Potrdite geslo za nadaljevanje
+  crypto:
+    errors:
+      invalid_key: ni veljaven ključ Ed25519 ali Curve25519
+      invalid_signature: ni veljaven podpis Ed25519
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%B %d %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count} u"
+      about_x_months: "%{count} m"
+      about_x_years: "%{count} l"
+      almost_x_years: "%{count} l"
       half_a_minute: Pravkar
+      less_than_x_minutes: "%{count} min"
       less_than_x_seconds: Pravkar
+      over_x_years: "%{count} l"
+      x_days: "%{count} d"
+      x_minutes: "%{count} min"
+      x_months: "%{count} m"
+      x_seconds: "%{count} s"
   deletes:
+    challenge_not_passed: Podatki, ki ste jih vnesli, niso pravilni
     confirm_password: Vnesite svoje trenutno geslo, da potrdite svojo identiteto
     confirm_username: Vnesite svoje uporabniško ime, da potrdite postopek
     proceed: Izbriši račun
@@ -734,10 +766,26 @@ sl:
     explore_mastodon: Razišči %{title}
   disputes:
     strikes:
+      appeal: Pritoži se
+      appeal_rejected: Pritožba je bila zavržena
+      appeal_submitted_at: Pritožba oddana
+      appeals:
+        submit: Pošlji pritožbo
+      associated_report: Povezana prijava
+      created_at: Datum
+      recipient: Naslovljeno na
+      status: 'Objava #%{id}'
+      status_removed: Objava je že odstranjena iz sistema
       title_actions:
         delete_statuses: Odstranitev objave
+        disable: Zamrznitev računa
         none: Opozorilo
         silence: Omejitev računa
+      your_appeal_approved: Vaša pritožba je bila odobrena
+      your_appeal_pending: Oddali ste pritožbo
+      your_appeal_rejected: Vaša pritožba je bila zavržena
+  domain_validator:
+    invalid_domain: ni veljavno ime domene
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nimate dovoljenja za ogled te strani.
@@ -766,6 +814,7 @@ sl:
       size: Velikost
     blocks: Blokirate
     bookmarks: Zaznamki
+    csv: CSV
     domain_blocks: Bloki domene
     lists: Seznami
     mutes: Utišate
@@ -788,6 +837,7 @@ sl:
       invalid_irreversible: Nepovratno filtriranje deluje le v kontekstu doma ali obvestil
     index:
       delete: Izbriši
+      empty: Nimate filtrov.
       title: Filtri
     new:
       title: Dodaj nov filter
@@ -859,17 +909,25 @@ sl:
     authentication_methods:
       password: geslo
       webauthn: varnostni ključi
+    title: Zgodovina overjanja
   media_attachments:
     validations:
       images_and_video: Videoposnetka ni mogoče priložiti stanju, ki že vsebuje slike
       too_many: Ni možno priložiti več kot 4 datoteke
   migrations:
     acct: username@domain novega računa
+    cancel: Prekliči preusmeritev
+    cancelled_msg: Preusmeritev je bila uspešno preklicana.
     past_migrations: Pretekle migracije
     proceed_with_move: Premakni sledilce
+    warning:
+      before: 'Pred nadaljevanjem previdno preberite naslednje opombe:'
   moderation:
     title: Moderiranje
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} se je vpisal/a"
     digest:
       action: Prikaži vsa obvestila
       body: Tukaj je kratek povzetek sporočil, ki ste jih zamudili od vašega zadnjega obiska v %{since}
@@ -898,19 +956,43 @@ sl:
       body: '%{name} vas je omenil/a v:'
       subject: '%{name} vas je omenil/a'
       title: Nova omemba
+    poll:
+      subject: Anketa, ki jo je pripravil/a %{name}, se je iztekla
     reblog:
       body: '%{name} je spodbudil/a vaše stanje:'
       subject: "%{name} je spodbudil/a vaše stanje"
       title: Nova spodbuda
+    status:
+      subject: "%{name} je pravkar objavil/a"
     update:
       subject: "%{name} je uredil(a) objavo"
+  notifications:
+    email_events: Dogodki za e-obvestila
+    email_events_hint: 'Izberite dogodke, za katere želite prejmati obvestila:'
+    other_settings: Druge nastavitve obvestil
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   otp_authentication:
+    code_hint: Za potrditev vnesite kodo, ki jo je ustvarila aplikacija za preverjanje pristnosti
+    description_html: Če omogočite <strong>dvofaktorsko preverjanje pristnosti</strong> z aplikacijo za overjanje, boste za prijavo morali imeti pri sebi svoj telefon, s katerim boste ustvarili žetone za vstop.
     enable: Omogoči
+    instructions_html: "<strong>Skenirajte to QR-kodo z Google Authenticator ali s podobno aplikacijo TOTP na vašem telefnu</strong>. Od zdaj naprej bo ta aplikacija ustvarjala žetone, ki jih boste morali vnesti ob prijavi."
+    manual_instructions: 'Če ne morete skenirati QR-kode in jo morate vnesti ročno, je tu skrivnost v tekstovni obliki:'
+    wrong_code: Vnesena koda je neveljavna! Ali sta čas strežnika in čas naprave pravilna?
   pagination:
     newer: Novejše
     next: Naprej
     older: Starejše
     prev: Nazaj
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Na tej anketi ste že glasovali
@@ -925,10 +1007,16 @@ sl:
     other: Ostalo
     posting_defaults: Privzete nastavitev objavljanja
     public_timelines: Javne časovnice
+  reactions:
+    errors:
+      limit_reached: Dosežena omejitev različnih reakcij/odzivov
   relationships:
     activity: Dejavnost računa
     dormant: Skrit
     follow_selected_followers: Sledi izbranim sledilcem
+    followers: Sledilci
+    following: Sledi
+    invited: Vabljeni
     last_active: Zadnja dejavnost
     most_recent: Najnovejša
     moved: Prestavljeno
@@ -1064,6 +1152,7 @@ sl:
     show_older: Pokaži starejše
     show_thread: Pokaži nit
     sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
+    title: '%{name}: »%{quote}«'
     visibilities:
       private: Samo sledilci
       private_long: Prikaži samo sledilcem
@@ -1072,6 +1161,9 @@ sl:
       unlisted: Ni prikazano
       unlisted_long: Vsi lahko vidijo, vendar ni objavljeno na javnih časovnicah
   statuses_cleanup:
+    enabled: Samodejno izbriši stare objave
+    exceptions: Izjeme
+    ignore_favs: Prezri priljubljene
     keep_direct: Ohrani neposredna sporočila
     keep_direct_hint: Ne izbriše nobenega izmed vaših neposrednih sporočil
     keep_polls: Ohrani ankete
