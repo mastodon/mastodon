@@ -402,6 +402,11 @@ he:
       media_storage: נפח אחסון מדיה
       new_users: משתמשים חדשים
       opened_reports: דו"חות פתוחים
+      pending_appeals_html:
+        one: "ערעור <strong>%{count}</strong> ממתין"
+        two: "<strong>%{count}</strong> ערעורים ממתינים"
+        many: "<strong>%{count}</strong> ערעורים ממתינים"
+        other: "<strong>%{count}</strong> ערעורים ממתינים"
       pending_tags_html:
         one: "<strong>%{count}</strong> האשתג ממתין"
         two: "<strong>%{count}</strong> האשתגיות ממתינות"
@@ -898,9 +903,14 @@ he:
       body: 'הפריטים הבאים זקוקים לסקירה לפני שניתן יהיה להציגם פומבית:'
       new_trending_links:
         no_approved_links: אין כרגע שום קישוריות חמות מאושרות.
+        requirements: 'כל אחד מהמועמדים האלה עשוי לעבור את הקישורית החמה המאושרת מדרגה %{rank}, שהיא כרגע %{lowest_link_title} עם ציון של %{lowest_link_score}.'
         title: נושאים חמים
       new_trending_statuses:
+        no_approved_statuses: אין כרגע שום חצרוצים חמים מאושרים.
+        requirements: 'כל אחד מהמועמדים האלה עשוי לעבור החצרוץ החם המאושר מדרגה %{rank}, שההא כרגע %{lowest_status_url} עם ציון של %{lowest_status_score}.'
         title: חצרוצים לוהטים
+      new_trending_tags:
+        no_approved_tags: אין כרגע שום האשתגיות חמות מאושרות.
   appearance:
     advanced_web_interface: ממשק ווב מתקדם
     discovery: גילוי
@@ -1591,6 +1601,7 @@ he:
       success: מפתח האבטחה הוסף בהצלחה.
     delete: למחוק
     delete_confirmation: האם אתה בטוח שברצונך למחוק מפתח אבטחה זה?
+    description_html: אם יאופשר <strong>אימות במפתח אבטחה</strong>, כניסה לאתר תדרוש שימוש באחד ממפתחות האבטחה שלך.
     destroy:
       error: היתה בעיה במחיקת מפתח האבטחה. נסה בשנית.
       success: מפתח האבטחה נמחק בהצלחה.
