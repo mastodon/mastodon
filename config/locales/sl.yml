@@ -57,6 +57,7 @@ sl:
     what_is_mastodon: Kaj je Mastodon?
   accounts:
     choices_html: "%{name} izbire:"
+    featured_tags_hint: Izpostavite lahko določene ključnike, ki bodo prikazani na tem mestu.
     follow: Sledi
     followers:
       one: Sledilec
@@ -100,6 +101,7 @@ sl:
     accounts:
       add_email_domain_block: Blokiraj domeno e-pošte
       approve: Odobri
+      approved_msg: Uspešno odobrena aplikacija prijave uporabnika %{username}
       are_you_sure: Ali ste prepričani?
       avatar: Podoba
       by_domain: Domena
@@ -117,6 +119,7 @@ sl:
       delete: Izbriši podatke
       deleted: Izbrisano
       demote: Degradiraj
+      destroyed_msg: "Podatki uporabnika %{username} so zdaj v vrsti za trajen izbris"
       disable: Onemogoči
       disable_sign_in_token_auth: Onemogoči overjanje z žetonom po e-pošti
       disable_two_factor_authentication: Onemogoči 2FA
@@ -147,6 +150,7 @@ sl:
       media_attachments: Predstavnostne priloge
       memorialize: Spremenite v spomin
       memorialized: Spomenificirano
+      memorialized_msg: Uspešno preoblikovan %{username} v spominski račun
       moderation:
         active: Dejaven
         all: Vse
@@ -161,6 +165,12 @@ sl:
       not_subscribed: Ni naročen
       pending: Čakanje na pregled
       perform_full_suspension: Suspendiraj
+      previous_strikes: Predhodni ukrepi
+      previous_strikes_description_html:
+        one: Ta račun ima <strong>%{count}</strong> ukrep.
+        two: Ta račun ima <strong>%{count}</strong> ukrepa.
+        few: Ta račun ima <strong>%{count}</strong> ukrepe.
+        other: Ta račun ima <strong>%{count}</strong> ukrepov.
       promote: Promoviraj
       protocol: Protokol
       public: Javen
@@ -168,6 +178,7 @@ sl:
       redownload: Osveži profil
       redownloaded_msg: Uspešno osvežen profil %{username} iz izvirnika
       reject: Zavrni
+      rejected_msg: Uspešno zavrnjena aplikacija prijave uporabnika %{username}
       remove_avatar: Odstrani podobo
       remove_header: Odstrani glavo
       removed_avatar_msg: Uspešno odstranjena slika avatarja uporabnika %{username}
@@ -190,6 +201,7 @@ sl:
       search_same_ip: Drugi uporabniki z istim IP
       security_measures:
         only_password: Samo geslo
+        password_and_2fa: Geslo in 2FA
       sensitized: Označeno kot občutljivo
       shared_inbox_url: URL mape "Prejeto v skupni rabi"
       show:
@@ -203,6 +215,7 @@ sl:
       suspend: Suspendiraj
       suspended: Suspendiran
       title: Računi
+      unblock_email: Odblokiraj e-poštni naslov
       unconfirmed_email: Nepotrjena e-pošta
       undo_silenced: Razveljavi utišanje
       undo_suspension: Razveljavi suspendiranje
@@ -571,6 +584,7 @@ sl:
       action_taken_by: Dejanje, ki ga je sprejel
       actions:
         delete_description_html: Prijavljene objave bodo izbrisane in ukrep bo zabeležen, da vam pomaga stopnjevati ukrepe ob naslednjih kršitvah z istega računa.
+        mark_as_sensitive_description_html: Mediji v prijavljenih objavah bodo označeni kot občutljivi in ukrep bo zabeležen, da vam pomaga stopnjevati ukrepe ob naslednjih kršitvah z istega računa.
         resolve_description_html: Proti prijavljenemu računu ne bo izvedeno nobeno dejanje, noben ukrep ne bo zabeležen in prijava bo zaprta.
         silence_description_html: Profil bo viden samo tistim, ki mu že sledijo ali ga ročno poiščejo, s čimer bo resno omejen njegov doseg. To je vedno možno povrniti.
         suspend_description_html: Profil in vsa njegova vsebina bodo postali nedosegljivi, dokler niso dokončno izbrisani. Interakcija z računom ne bo možna. Povrnitev je možna v času 30 dni.
@@ -621,6 +635,7 @@ sl:
     rules:
       add_new: Dodaj pravilo
       delete: Izbriši
+      description_html: Večina trdi, da so prebrali in da se strinjajo s pogoji rabe storitve, vendar le-teh ponavadi ne preberejo, dokler ne pride do težav. <strong>Poenostavite in naredite pravila svojega strežnika vidna na prvi pogled tako, da jih izpišete v označenem seznamu.</strong>Posamezna pravila skušajte ohraniti kratka in enostavna, ne razbijajte pa jih v preveč različnih točk.
       edit: Uredi pravilo
       empty: Zaenkrat še ni opredeljenih pravil.
       title: Pravila strežnika
@@ -639,11 +654,14 @@ sl:
         title: CSS po meri
       default_noindex:
         desc_html: Vpliva na vse uporabnike, ki niso sami spremenili te nastavitve
+        title: Privzeto izvzemi uporabnike iz indeksiranja iskalnika
       domain_blocks:
         all: Vsem
         disabled: Nikomur
         title: Domenske bloke pokaži
         users: Prijavljenim krajevnim uporabnikom
+      domain_blocks_rationale:
+        title: Pokaži razlago
       hero:
         desc_html: Prikazano na sprednji strani. Priporoča se vsaj 600x100px. Ko ni nastavljen, se vrne na sličico strežnika
         title: Slika junaka
@@ -768,6 +786,7 @@ sl:
           few: Delile %{count} osebe v zadnjem tednu
           other: Delilo %{count} oseb v zadnjem tednu
         title: Povezave v trendu
+        usage_comparison: Danes deljeno %{today}-krat, včeraj pa %{yesterday}-krat
       only_allowed: Samo dovoljeni
       pending_review: Čakajoče na pregled
       preview_card_providers:
@@ -828,6 +847,8 @@ sl:
         sensitive: označitev njihovega računa kot občutljivega,
         silence: omejitev njihovega računa,
         suspend: suspenz njihovega računa,
+      body: "%{target} se pritožuje na moderatorsko odločitev %{action_taken_by} z dne %{date}, ki je bila %{type}. Zapisal/a je:"
+      next_steps: Pritožbi lahko ugodite in s tem razveljavite moderatorsko odločitev ali pa jo prezrete.
       subject: "%{username} se je pritožil na moderatorsko odločitev na %{instance}"
     new_pending_account:
       body: Podrobnosti o novem računu so navedene spodaj. To aplikacijo lahko odobrite ali zavrnete.
@@ -1627,6 +1648,7 @@ sl:
         spam: Neželeno
         violation: Vsebina krši naslednja navodila skupnosti
       explanation:
+        delete_statuses: Za nekatere vaših objav se je izkazalo, da kršijo eno ali več pravil skupnosti, zato so jih moderatorji %{instance} posledično odstranili.
         disable: Svojega računa ne morete več uporabljati, vendar vaš profil in drugi podatki ostajajo nedotaknjeni. Zahtevate lahko varnostno kopiranje svojih podatkov, spremenite nastavitve računa ali izbrišete svoj račun.
         sensitive: Odslej bodo vse vaše naložene medijske datoteke označene kot občutljive in skrite za opozorilom, ki ga je potrebno klikniti.
       reason: 'Razlog:'
