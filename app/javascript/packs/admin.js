@@ -4,6 +4,24 @@ import ready from '../mastodon/ready';
 
 const batchCheckboxClassName = '.batch-checkbox input[type="checkbox"]';
 
+const setAnnouncementEndsAttributes = (target) => {
+  const valid = target?.value && target?.validity?.valid;
+  const element = document.querySelector('input[type="datetime-local"]#announcement_ends_at');
+  if (valid) {
+    element.classList.remove('optional');
+    element.required = true;
+    element.min = target.value;
+  } else {
+    element.classList.add('optional');
+    element.removeAttribute('required');
+    element.removeAttribute('min');
+  }
+};
+
+delegate(document, 'input[type="datetime-local"]#announcement_starts_at', 'change', ({ target }) => {
+  setAnnouncementEndsAttributes(target);
+});
+
 delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
   [].forEach.call(document.querySelectorAll(batchCheckboxClassName), (content) => {
     content.checked = target.checked;
@@ -109,6 +127,11 @@ ready(() => {
       e.target.href = url;
     }
   });
+
+  const announcementStartsAt = document.querySelector('input[type="datetime-local"]#announcement_starts_at');
+  if (announcementStartsAt) {
+    setAnnouncementEndsAttributes(announcementStartsAt);
+  }
 
   const React    = require('react');
   const ReactDOM = require('react-dom');
