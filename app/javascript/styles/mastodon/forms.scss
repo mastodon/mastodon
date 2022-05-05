@@ -377,6 +377,7 @@ code {
   input[type="email"],
   input[type="password"],
   input[type="url"],
+  input[type="datetime-local"],
   textarea {
     box-sizing: border-box;
     font-size: 16px;
@@ -417,7 +418,8 @@ code {
   input[type="text"],
   input[type="number"],
   input[type="email"],
-  input[type="password"] {
+  input[type="password"],
+  input[type="datetime-local"] {
     &:focus:invalid:not(:placeholder-shown),
     &:required:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
@@ -433,6 +435,7 @@ code {
     input[type="number"],
     input[type="email"],
     input[type="password"],
+    input[type="datetime-local"],
     textarea,
     select {
       border-color: lighten($error-red, 12%);
