@@ -106,6 +106,20 @@ const onChangeRegistrationMode = (target) => {
   });
 };
 
+const convertUTCDateTimeToLocal = (value) => {
+  const date = new Date(value + 'Z');
+  const twoChars = (x) => (x.toString().padStart(2, '0'));
+  return `${date.getFullYear()}-${twoChars(date.getMonth()+1)}-${twoChars(date.getDate())}T${twoChars(date.getHours())}:${twoChars(date.getMinutes())}`;
+};
+
+const convertLocalDatetimeToUTC = (value) => {
+  const re = /^([0-9]{4,})-([0-9]{2})-([0-9]{2})T([0-9]{2}):([0-9]{2})/;
+  const match = re.exec(value);
+  const date = new Date(match[1], match[2] - 1, match[3], match[4], match[5]);
+  const fullISO8601 = date.toISOString();
+  return fullISO8601.slice(0, fullISO8601.indexOf('T') + 6);
+};
+
 delegate(document, '#form_admin_settings_registrations_mode', 'change', ({ target }) => onChangeRegistrationMode(target));
 
 ready(() => {
@@ -126,6 +140,23 @@ ready(() => {
       url.searchParams.set('_domain', domain);
       e.target.href = url;
     }
+  });
+
+  [].forEach.call(document.querySelectorAll('input[type="datetime-local"]'), element => {
+    if (element.value) {
+      element.value = convertUTCDateTimeToLocal(element.value);
+    }
+    if (element.placeholder) {
+      element.placeholder = convertUTCDateTimeToLocal(element.placeholder);
+    }
+  });
+
+  delegate(document, 'form', 'submit', ({ target }) => {
+    [].forEach.call(target.querySelectorAll('input[type="datetime-local"]'), element => {
+      if (element.value && element.validity.valid) {
+        element.value = convertLocalDatetimeToUTC(element.value);
+      }
+    });
   });
 
   const announcementStartsAt = document.querySelector('input[type="datetime-local"]#announcement_starts_at');
