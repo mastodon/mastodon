@@ -11,8 +11,8 @@ fr:
     apps: Applications mobiles
     apps_platforms: Utilisez Mastodon depuis iOS, Android et d’autres plates-formes
     browse_directory: Parcourir l’annuaire des profils et filtrer par centres d’intérêts
-    browse_local_posts: Parcourir un flux en direct de messages publics depuis ce serveur
-    browse_public_posts: Parcourir un flux en direct de messages publics sur Mastodon
+    browse_local_posts: Parcourir en direct un flux de messages publics depuis ce serveur
+    browse_public_posts: Parcourir en direct un flux de messages publics sur Mastodon
     contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
@@ -31,13 +31,13 @@ fr:
     privacy_policy: Politique de confidentialité
     rules: Règles du serveur
     rules_html: 'Voici un résumé des règles que vous devez suivre si vous voulez avoir un compte sur ce serveur de Mastodon :'
-    see_whats_happening: Voir ce qui se passe
+    see_whats_happening: Quoi de neuf
     server_stats: 'Statistiques du serveur :'
     source_code: Code source
     status_count_after:
       one: message
       other: messages
-    status_count_before: Ayant publié
+    status_count_before: Qui a publié
     tagline: Suivez vos ami·e·s et découvrez-en de nouveaux·elles
     terms: Conditions d’utilisation
     unavailable_content: Serveurs modérés
@@ -91,14 +91,14 @@ fr:
     unfollow: Ne plus suivre
   admin:
     account_actions:
-      action: Effectuer une action
+      action: Effectuer l'action
       title: Effectuer une action de modération sur %{acct}
     account_moderation_notes:
       create: Laisser une remarque
       created_msg: Note de modération créée avec succès !
       destroyed_msg: Note de modération supprimée avec succès !
     accounts:
-      add_email_domain_block: Mettre le domaine du courriel sur liste noire
+      add_email_domain_block: Bloquer ce domaine de courriel
       approve: Approuver
       approved_msg: La demande d’inscription de %{username} a été approuvée avec succès
       are_you_sure: Voulez-vous vraiment faire ça ?
@@ -166,9 +166,8 @@ fr:
       perform_full_suspension: Suspendre
       previous_strikes: Sanctions précédentes
       previous_strikes_description_html:
-        one: Ce compte a reçu <strong>une</strong> sanction.
+        one: Ce compte a reçu <strong>%{count}</strong> sanction.
         other: Ce compte a reçu <strong>%{count}</strong> sanctions.
-        zero: Ce compte est <strong>en règle</strong>.
       promote: Promouvoir
       protocol: Protocole
       public: Publique
@@ -200,7 +199,6 @@ fr:
       security_measures:
         only_password: Mot de passe uniquement
         password_and_2fa: Mot de passe et 2FA
-        password_and_sign_in_token: Mot de passe et jeton par courriel
       sensitive: Sensible
       sensitized: marqué comme sensible
       shared_inbox_url: URL de la boite de réception partagée
@@ -481,9 +479,16 @@ fr:
       unsuppress: Rétablir les recommandations d'abonnement
     instances:
       availability:
+        description_html:
+          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
+          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
         failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
+        failures_recorded:
+          one: Tentative échouée pendant %{count} jour.
+          other: Tentatives échouées pendant %{count} jours différents.
         no_failures_recorded: Pas d'échec enregistré.
         title: Disponibilité
+        warning: La dernière tentative de connexion à ce serveur a échoué
       back_to_all: Tout
       back_to_limited: Limité
       back_to_warning: Avertissement
@@ -512,6 +517,7 @@ fr:
       delivery:
         all: Tout
         clear: Effacer les erreurs de livraison
+        failing: Échouant
         restart: Redémarrer la livraison
         stop: Arrêter la livraison
         unavailable: Indisponible
@@ -523,7 +529,6 @@ fr:
       known_accounts:
         one: "%{count} compte connu"
         other: "%{count} comptes connus"
-        zero: Pas de compte connu
       moderation:
         all: Tout
         limited: Limité
@@ -768,6 +773,11 @@ fr:
     system_checks:
       database_schema_check:
         message_html: Vous avez des migrations de base de données en attente. Veuillez les exécuter pour vous assurer que l'application se comporte comme prévu
+      elasticsearch_running_check:
+        message_html: Impossible de se connecter à Elasticsearch. Veuillez vérifier qu’il est en cours d’exécution ou désactiver la recherche en plein texte
+      elasticsearch_version_check:
+        message_html: 'Version d’Elasticsearch incompatible : %{value}'
+        version_comparison: Elasticsearch %{running_version} est en cours d’exécution alors que %{required_version} est requise
       rules_check:
         action: Gérer les règles du serveur
         message_html: Vous n'avez pas défini de règles pour le serveur.
@@ -788,11 +798,11 @@ fr:
         disallow: Interdire le lien
         disallow_provider: Interdire l'éditeur
         shared_by_over_week:
-          one: Partagé par une personne au cours de la semaine dernière
-          other: Partagé par %{count} personnes au cours de la semaine dernière
-          zero: Non partagé au cours de la semaine dernière
+          one: Partagé par %{count} personne au cours de la dernière semaine
+          other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
+      only_allowed: Seuls autorisés
       pending_review: En attente de révision
       preview_card_providers:
         allowed: Les liens de cet éditeur peuvent être tendance
@@ -831,10 +841,10 @@ fr:
         usable: Peut être utilisé
         usage_comparison: Utilisé %{today} fois aujourd'hui, comparé à %{yesterday} hier
         used_by_over_week:
-          one: Utilisé par une personne au cours de la semaine dernière
-          other: Utilisé par %{count} personnes au cours de la semaine dernière
-          zero: Non utilisé au cours de la semaine dernière
+          one: Utilisé par %{count} personne au cours de la dernière semaine
+          other: Utilisé par %{count} personnes au cours de la dernière semaine
       title: Tendances
+      trending: Tendances
     warning_presets:
       add_new: Ajouter un nouveau
       delete: Supprimer
@@ -1229,8 +1239,8 @@ fr:
         one: De plus, vous avez un·e nouvel·le abonné·e ! Youpi !
         other: De plus, vous avez %{count} abonné·e·s de plus ! Incroyable !
       subject:
-        one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
-        other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
+        one: "Une nouvelle notification depuis votre dernière visite 🐘"
+        other: "%{count} nouvelles notifications depuis votre dernière visite 🐘"
       title: Pendant votre absence…
     favourite:
       body: "%{name} a ajouté votre message à ses favoris :"
@@ -1431,6 +1441,7 @@ fr:
     disallowed_hashtags:
       one: 'contient un hashtag désactivé : %{tags}'
       other: 'contient les hashtags désactivés : %{tags}'
+    edited_at_html: Édité le %{date}
     errors:
       in_reply_not_found: Le message auquel vous essayez de répondre ne semble pas exister.
     open_in_web: Ouvrir sur le web
@@ -1624,12 +1635,13 @@ fr:
       explanation: Vous avez demandé une sauvegarde complète de votre compte Mastodon. Elle est maintenant prête à être téléchargée !
       subject: Votre archive est prête à être téléchargée
       title: Récupération de l’archive
-    sign_in_token:
-      details: 'Voici les détails de la tentative :'
-      explanation: 'Nous avons détecté une tentative de connexion à votre compte à partir d’une adresse IP non reconnue. Si c’est vous, veuillez entrer le code de sécurité ci-dessous sur la page de négociation de connexion :'
-      further_actions: 'S’il ne s’agit pas de vous, veuillez changer votre mot de passe et activer l’authentification à deux facteurs sur votre compte. Vous pouvez le faire ici :'
-      subject: Veuillez confirmer la tentative de connexion
-      title: Tentative de connexion
+    suspicious_sign_in:
+      change_password: changer votre mot de passe
+      details: 'Voici les détails de la connexion :'
+      explanation: Nous avons détecté une connexion à votre compte à partir d’une nouvelle adresse IP.
+      further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
+      subject: Votre compte a été accédé à partir d'une nouvelle adresse IP
+      title: Une nouvelle connexion
     warning:
       appeal: Faire appel
       appeal_description: Si vous pensez qu'il s'agit d'une erreur, vous pouvez faire appel auprès de l'équipe de %{instance}.
@@ -1680,13 +1692,10 @@ fr:
       title: Bienvenue à bord, %{name} !
   users:
     follow_limit_reached: Vous ne pouvez pas suivre plus de %{limit} personnes
-    generic_access_help_html: Rencontrez-vous des difficultés d’accès à votre compte ? Vous pouvez contacter %{email} pour obtenir de l’aide
     invalid_otp_token: Le code d’authentification à deux facteurs est invalide
-    invalid_sign_in_token: Code de sécurité non valide
     otp_lost_help_html: Si vous perdez accès aux deux, vous pouvez contacter %{email}
     seamless_external_login: Vous êtes connecté via un service externe, donc les paramètres concernant le mot de passe et le courriel ne sont pas disponibles.
     signed_in_as: 'Connecté·e en tant que :'
-    suspicious_sign_in_confirmation: Il semblerait que vous ne vous êtes pas connecté depuis cet appareil auparavant et que vous ne vous êtes pas connecté depuis un moment, alors nous envoyons un code de sécurité à votre adresse courriel pour confirmer qu’il s’agit bien de vous.
   verification:
     explanation_html: 'Vous pouvez <strong>vous vérifier en tant que propriétaire des liens dans les métadonnées de votre profil</strong>. Pour cela, le site web lié doit contenir un lien vers votre profil Mastodon. Le lien de retour <strong>doit</strong> avoir un attribut <code>rel="me"</code> . Le texte du lien n’a pas d’importance. Voici un exemple :'
     verification: Vérification

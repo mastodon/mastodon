@@ -168,7 +168,6 @@ de:
       previous_strikes_description_html:
         one: Dieses Konto hat <strong>einen</strong> Strike.
         other: Dieses Konto hat <strong>%{count}</strong> Strikes.
-        zero: Dieses Konto ist <strong>in gutem Stand</strong>.
       promote: Befördern
       protocol: Protokoll
       public: Öffentlich
@@ -200,7 +199,6 @@ de:
       security_measures:
         only_password: Nur Passwort
         password_and_2fa: Passwort und 2FA
-        password_and_sign_in_token: Passwort und E-Mail-Token
       sensitive: NSFW
       sensitized: Als NSFW markieren
       shared_inbox_url: Geteilte Posteingang-URL
@@ -225,7 +223,7 @@ de:
       undo_suspension: Verbannung aufheben
       unsilenced_msg: "%{username}'s Konto erfolgreich freigegeben"
       unsubscribe: Abbestellen
-      unsuspended_msg: "%{username}'s Konto erfolgreich freigegeben"
+      unsuspended_msg: Konto von %{username} erfolgreich freigegeben
       username: Profilname
       view_domain: Übersicht für Domain anzeigen
       warn: Warnen
@@ -373,6 +371,7 @@ de:
       enable: Aktivieren
       enabled: Aktiviert
       enabled_msg: Das Emoji wurde aktiviert
+      image_hint: PNG oder GIF bis %{size}
       list: Liste
       listed: Gelistet
       new:
@@ -489,6 +488,7 @@ de:
           other: Fehlgeschlagener Versuch am %{count}. Tag.
         no_failures_recorded: Keine Fehler bei der Aufzeichnung.
         title: Verfügbarkeit
+        warning: Der letzte Versuch, sich mit diesem Server zu verbinden, war nicht erfolgreich
       back_to_all: Alle
       back_to_limited: Beschränkt
       back_to_warning: Warnung
@@ -517,6 +517,7 @@ de:
       delivery:
         all: Alle
         clear: Zustellfehler löschen
+        failing: Schlägt fehl
         restart: Lieferung neu starten
         stop: Lieferung stoppen
         unavailable: Nicht verfügbar
@@ -528,7 +529,6 @@ de:
       known_accounts:
         one: "%{count} bekanntes Konto"
         other: "%{count} bekannte Konten"
-        zero: Kein bekanntes Konto
       moderation:
         all: Alle
         limited: Beschränkt
@@ -598,7 +598,7 @@ de:
       action_taken_by: Maßnahme ergriffen durch
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
-        mark_as_sensitive_description_html: Der gemeldete Beitrag wird als NSFW markiert und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
+        mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
         other_description_html: Weitere Optionen zur Kontrolle des Kontoverhaltens und zur Anpassung der Kommunikation an das gemeldete Konto.
         resolve_description_html: Es wird keine Maßnahme gegen den gemeldeten Account ergriffen, es wird kein Strike verzeichnet und die Meldung wird geschlossen.
         silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die es bereits verfolgen oder manuell nachschlagen und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
@@ -660,8 +660,8 @@ de:
         desc_html: Anzahl der lokal geposteten Beiträge, aktiven Nutzern und neuen Registrierungen in wöchentlichen Zusammenfassungen
         title: Veröffentliche gesamte Statistiken über Benutzeraktivitäten
       bootstrap_timeline_accounts:
-        desc_html: Mehrere Profilnamen durch Kommata trennen. Funktioniert nur mit lokalen und nicht gesperrten Konten. Standardwert bei freigelassenem Feld sind alle lokalen Admins.
-        title: Konten, denen Neu-Angemeldete automatisch folgen
+        desc_html: Mehrere Profilnamen durch Kommata trennen. Diese Accounts werden immer in den Folgemempfehlungen angezeigt
+        title: Konten, die Neu-Angemeldete empfohlen bekommen sollen
       contact_information:
         email: Öffentliche E-Mail-Adresse
         username: Profilname für die Kontaktaufnahme
@@ -773,6 +773,11 @@ de:
     system_checks:
       database_schema_check:
         message_html: Es gibt ausstehende Datenbankmigrationen. Bitte führen Sie sie aus, um sicherzustellen, dass sich die Anwendung wie erwartet verhält
+      elasticsearch_running_check:
+        message_html: Verbindung mit Elasticsearch konnte nicht hergestellt werden. Bitte prüfe ob Elasticsearch läuft oder deaktiviere die Volltextsuche
+      elasticsearch_version_check:
+        message_html: 'Inkompatible Elasticsearch-Version: %{value}'
+        version_comparison: Elasticsearch %{running_version} läuft, aber %{required_version} wird benötigt
       rules_check:
         action: Serverregeln verwalten
         message_html: Sie haben keine Serverregeln definiert.
@@ -793,9 +798,8 @@ de:
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
         shared_by_over_week:
-          one: In der letzten Woche geteilt von einer Person
-          other: In der letzten Woche geteilt von %{count} Personen
-          zero: Geteilt von niemandem in der letzten Woche
+          one: In der letzten Woche von einer Person geteilt
+          other: In der letzten Woche von %{count} Personen geteilt
         title: Angesagte Links
         usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
       pending_review: Überprüfung ausstehend
@@ -836,9 +840,8 @@ de:
         usable: Kann verwendet werden
         usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
         used_by_over_week:
-          one: In der letzten Woche genutzt von einer Person
-          other: In der letzten Woche genutzt von %{count} Personen
-          zero: Genutzt von niemandem in der letzten Woche
+          one: In der letzten Woche von einer Person genutzt
+          other: In der letzten Woche von %{count} Personen genutzt
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
@@ -1231,11 +1234,11 @@ de:
       body: Hier ist eine kurze Zusammenfassung der Nachrichten, die du seit deinem letzten Besuch am %{since} verpasst hast
       mention: "%{name} hat dich erwähnt:"
       new_followers_summary:
-        one: Außerdem ist dir seit du weg warst ein weiteres Wesen gefolgt! Juhu!
-        other: Außerdem sind dir seit du weg warst %{count} weitere Wesen gefolgt! Großartig!
+        one: Außerdem ist dir seit du weg warst ein weiteres Konto gefolgt! Juhu!
+        other: Außerdem sind dir seit du weg warst %{count} weitere Konten gefolgt! Großartig!
       subject:
-        one: "1 neue Mitteilung seit deinem letzten Besuch \U0001F418"
-        other: "%{count} neue Mitteilungen seit deinem letzten Besuch \U0001F418"
+        one: "1 neue Mitteilung seit deinem letzten Besuch 🐘"
+        other: "%{count} neue Mitteilungen seit deinem letzten Besuch 🐘"
       title: In deiner Abwesenheit...
     favourite:
       body: 'Dein Beitrag wurde von %{name} favorisiert:'
@@ -1436,6 +1439,7 @@ de:
     disallowed_hashtags:
       one: 'enthält einen verbotenen Hashtag: %{tags}'
       other: 'enthält verbotene Hashtags: %{tags}'
+    edited_at_html: Bearbeitet %{date}
     errors:
       in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
     open_in_web: Im Web öffnen
@@ -1631,12 +1635,13 @@ de:
       explanation: Du hast ein vollständiges Backup von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
       subject: Dein Archiv ist bereit zum Download
       title: Archiv-Download
-    sign_in_token:
+    suspicious_sign_in:
+      change_password: dein Passwort zu ändern
       details: 'Hier sind die Details des Versuchs:'
-      explanation: 'Wir haben einen Versuch festgestellt, sich mit deinem Konto von einer nicht erkannten IP-Adresse anzumelden. Wenn du das bist, gib bitte den Sicherheitscode unten auf der Anmeldecode-Seite ein:'
-      further_actions: 'Wenn du das nicht warst, ändere bitte dein Passwort und aktiviere die Zwei-Faktor-Authentifizierung in deinem Konto. Du kannst das hier tun:'
-      subject: Bitte bestätige den Anmeldeversuch
-      title: Anmeldeversuch
+      explanation: Wir haben eine Anmeldung zu deinem Konto von einer neuen IP-Adresse festgestellt.
+      further_actions_html: Wenn du das nicht warst, empfehlen wir dir, %{action} und die Zwei-Faktor-Authentifizierung zu aktivieren, um dein Konto sicher zu halten.
+      subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
+      title: Eine neue Anmeldung
     warning:
       appeal: Einspruch einsenden
       appeal_description: Wenn du glaubst, dass dies ein Fehler ist, kannst du einen Einspruch an die Mitarbeiter von %{instance} senden.
@@ -1673,7 +1678,7 @@ de:
       edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du deine Folgenden vorher überprüfen möchtest, bevor sie dir folgen können, dann kannst du dein Profil sperren.
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Fang an zu posten
-      final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beitrage von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Vielleicht möchtest du dich vorstellen mit dem #introductions-Hashtag.'
+      final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Vielleicht möchtest du dich vorstellen mit dem #introductions-Hashtag.'
       full_handle: Dein vollständiger Benutzername
       full_handle_hint: Dies ist was du deinen Freunden sagen kannst, damit sie dich anschreiben oder von einem anderen Server folgen können.
       review_preferences_action: Einstellungen ändern
@@ -1687,13 +1692,10 @@ de:
       title: Willkommen an Bord, %{name}!
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
-    generic_access_help_html: Probleme beim Zugriff auf dein Konto? Du kannst dich mit %{email} in Verbindung setzen, um Hilfe zu erhalten
     invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
-    invalid_sign_in_token: Ungültiger Sicherheitscode
     otp_lost_help_html: Wenn Du beides nicht mehr weißt, melde Dich bei uns unter der E-Mailadresse %{email}
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
-    suspicious_sign_in_confirmation: Du hast dich anscheinend seit einer ganzen Weile noch nicht von diesem Gerät eingeloggt, also senden wir einen Sicherheitscode an deine E-Mail-Adresse, um zu bestätigen, dass du es bist.
   verification:
     explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext ist dabei egal. Hier ist ein Beispiel:'
     verification: Verifizierung

@@ -165,10 +165,6 @@ fi:
       pending: Odottaa tarkistusta
       perform_full_suspension: Siirrä kokonaan jäähylle
       previous_strikes: Aiemmat varoitukset
-      previous_strikes_description_html:
-        one: Tällä tilillä on <strong>yksi</strong> varoitus.
-        other: Tällä tilillä on <strong>%{count}</strong> varoitusta.
-        zero: Tämä tili on <strong>hyvässä kunnossa</strong>.
       promote: Ylennä
       protocol: Protokolla
       public: Julkinen
@@ -200,7 +196,6 @@ fi:
       security_measures:
         only_password: Vain salasana
         password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
-        password_and_sign_in_token: Salasana ja sähköpostitunnus
       sensitive: Pakotus arkaluontoiseksi
       sensitized: Merkitty arkaluontoiseksi
       shared_inbox_url: Jaetun saapuvan postilaatikon osoite
@@ -495,10 +490,6 @@ fi:
       delivery_error_hint: Jos toimitus ei ole mahdollista %{count} päivän aikana, se merkitään automaattisesti toimittamattomaksi.
       destroyed_msg: Tiedot %{domain} on nyt jonossa välitöntä poistoa varten.
       empty: Verkkotunnuksia ei löytynyt.
-      known_accounts:
-        one: "%{count} tunnettu tili"
-        other: "%{count} tunnettua tiliä"
-        zero: Ei tunnettua tiliä
       moderation:
         all: Kaikki
         limited: Rajoitettu
@@ -566,7 +557,6 @@ fi:
       action_taken_by: Toimenpiteen tekijä
       actions:
         delete_description_html: Ilmoitetut viestit poistetaan ja kirjataan varoitus, joka auttaa sinua saman tilin tulevista rikkomuksista.
-        mark_as_sensitive_description_html: Ilmoitettujen viestien media merkitään arkaluonteisiksi ja varoitus tallennetaan, jotta voit lisätä saman tilin tulevia rikkomuksia.
         other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja ilmoitetun tilin viestinnän mukauttamiseksi.
         resolve_description_html: Ilmoitettua tiliä vastaan ei ryhdytä toimenpiteisiin, varoitusta ei kirjata ja raportti suljetaan.
         silence_description_html: Profiili näkyy vain niille, jotka jo seuraavat sitä tai etsivät sen manuaalisesti, mikä rajoittaa merkittävästi kattavuutta. Se voidaan aina palauttaa.
@@ -760,10 +750,6 @@ fi:
         description_html: Nämä ovat linkkejä, joita jaetaan tällä hetkellä paljon tileillä, joilta palvelimesi näkee viestejä. Se voi auttaa käyttäjiäsi saamaan selville, mitä maailmassa tapahtuu. Linkkejä ei näytetä julkisesti, ennen kuin hyväksyt julkaisijan. Voit myös sallia tai hylätä yksittäiset linkit.
         disallow: Hylkää linkki
         disallow_provider: Estä julkaisija
-        shared_by_over_week:
-          one: Jakanut yksi henkilö viimeisen viikon aikana
-          other: Jakanut %{count} henkilöä viimeisen viikon aikana
-          zero: Kukaan ei ole jakanut viimeisen viikon aikana
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
       pending_review: Odottaa tarkistusta
@@ -803,10 +789,6 @@ fi:
         trending_rank: 'Nousussa #%{rank}'
         usable: Voidaan käyttää
         usage_comparison: Käytetty %{today} kertaa tänään, verrattuna %{yesterday} eiliseen
-        used_by_over_week:
-          one: Yhden henkilön käyttämä viimeisen viikon aikana
-          other: Käyttänyt %{count} henkilöä viimeisen viikon aikana
-          zero: Ei kenenkään käytössä viimeisen viikon aikana
       title: Trendit
     warning_presets:
       add_new: Lisää uusi
@@ -1201,9 +1183,6 @@ fi:
       new_followers_summary:
         one: Olet myös saanut yhden uuden seuraajan! Juhuu!
         other: Olet myös saanut %{count} uutta seuraajaa! Aivan mahtavaa!
-      subject:
-        one: "1 uusi ilmoitus viime käyntisi jälkeen \U0001F418"
-        other: "%{count} uutta ilmoitusta viime käyntisi jälkeen \U0001F418"
       title: Poissaollessasi…
     favourite:
       body: "%{name} tykkäsi tilastasi:"
@@ -1516,12 +1495,6 @@ fi:
       explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
-    sign_in_token:
-      details: 'Tässä yrityksen yksityiskohtia:'
-      explanation: 'Tunnistimme sisäänkirjautumisyrityksen tunnistamattomasta IP-osoitteesta. Jos se olit sinä, syötä alla oleva turvakoodi sisäänkirjautumissivulle:'
-      further_actions: 'Jos tämä et ollut sinä, vaihda salasanasi ja ota käyttöön kaksivaiheinen todennus tililläsi. Voit tehdä sen täällä:'
-      subject: Ole hyvä ja vahvista sisäänkirjautumisyritys
-      title: Sisäänkirjautumisyritys
     warning:
       appeal: Lähetä valitus
       appeal_description: Jos uskot, että tämä on virhe, voit hakea muutosta henkilökunnalta %{instance}.
@@ -1572,13 +1545,10 @@ fi:
       title: Tervetuloa mukaan, %{name}!
   users:
     follow_limit_reached: Et voi seurata yli %{limit} henkilöä
-    generic_access_help_html: Onko sinulla pääsy tiliisi? Voit ottaa yhteyttä %{email} saadaksesi apua
     invalid_otp_token: Virheellinen kaksivaiheisen todentamisen koodi
-    invalid_sign_in_token: Virheellinen turvakoodi
     otp_lost_help_html: Jos sinulla ei ole pääsyä kumpaankaan, voit ottaa yhteyttä osoitteeseen %{email}
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut henkilönä:'
-    suspicious_sign_in_confirmation: Et ilmeisesti ole kirjautunut sisään tältä laitteelta aikaisemmin, joten lähetämme sähköpostiisi turvakoodin vahvistaaksesi, että se olet sinä.
   verification:
     explanation_html: 'Voit <strong>vahvistaa itsesi profiilisi metatietojen linkkien omistajaksi.</strong>. Tätä varten linkitetyn verkkosivuston on sisällettävä linkki takaisin Mastodon -profiiliisi. Palauttavalla linkillä <strong>täytyy</strong> olla <code>rel="minä"</code> tuntomerkki. Linkin tekstisisällöllä ei ole väliä. Tässä on esimerkki:'
     verification: Vahvistus

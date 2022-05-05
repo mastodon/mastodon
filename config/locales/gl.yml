@@ -166,9 +166,8 @@ gl:
       perform_full_suspension: Suspender
       previous_strikes: Accións previas
       previous_strikes_description_html:
-        one: Esta conta ten <strong>un</strong> evento.
-        other: Esta conta ten <strong>%{count}</strong> eventos.
-        zero: Esta conta ten <strong>boa reputación</strong>.
+        one: Esta conta ten <strong>un</strong> aviso.
+        other: Esta conta ten <strong>%{count}</strong> avisos.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -200,7 +199,6 @@ gl:
       security_measures:
         only_password: Só contrasinal
         password_and_2fa: Contrasinal e 2FA
-        password_and_sign_in_token: Contrasinal e token nun email
       sensitive: Forzar como sensible
       sensitized: Marcado como sensible
       shared_inbox_url: URL da caixa de entrada compartida
@@ -486,10 +484,11 @@ gl:
           other: Se fallan as entregas ao dominio por <strong>%{count} días diferentes</strong>, non se farán máis intentos a menos que se reciba unha solicitude <em>desde</em> ese dominio.
         failure_threshold_reached: Acadouse o límite de fallos o %{date}.
         failures_recorded:
-          one: Intento fallido por %{count} día.
+          one: Intento fallido durante %{count} día.
           other: Intentos fallidos durante %{count} días distintos.
         no_failures_recorded: Non hai fallos rexistrados.
         title: Dispoñibilidade
+        warning: Fallou o último intento de conectar con este servidor
       back_to_all: Todo
       back_to_limited: Limitado
       back_to_warning: Aviso
@@ -518,6 +517,7 @@ gl:
       delivery:
         all: Todo
         clear: Eliminar erros na entrega
+        failing: Con fallos
         restart: Restablecer a entrega
         stop: Deter a entrega
         unavailable: Non dispoñible
@@ -529,7 +529,6 @@ gl:
       known_accounts:
         one: "%{count} conta coñecida"
         other: "%{count} contas coñecidas"
-        zero: Sen contas coñecidas
       moderation:
         all: Todo
         limited: Limitado
@@ -599,7 +598,7 @@ gl:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: As publicacións denunciadas van ser eliminadas e gárdase un aviso para axudarche a xestionar futuras infraccións desta conta.
-        mark_as_sensitive_description_html: O multimedia das publicacións denunciadas vai ser marcado como sensible e apúntase un aviso para axudarche a facer seguimento das infraccións da mesma conta.
+        mark_as_sensitive_description_html: Os multimedia das publicacións denunciadas serán marcados como sensibles e engadirase un aviso para axudarche a xestionar futuras infraccións da mesma conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardan avisos, e a denuncia arquivada.
         silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
@@ -774,6 +773,11 @@ gl:
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
+      elasticsearch_running_check:
+        message_html: Non se puido conectar con Elasticsearch. Comproba que está funcionando, ou desactiva a busca por texto completo
+      elasticsearch_version_check:
+        message_html: 'Versión incompatible de Elasticsearch: %{value}'
+        version_comparison: Está executándose Elasticsearch %{running_version} pero requírese a %{required_version}
       rules_check:
         action: Xestionar regras do servidor
         message_html: Non tes definidas regras para o servidor.
@@ -796,9 +800,9 @@ gl:
         shared_by_over_week:
           one: Compartido por unha persoa na última semana
           other: Compartido por %{count} persoas na última semana
-          zero: Non foi compartido na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
+      only_allowed: Só as permitidas
       pending_review: Revisión pendente
       preview_card_providers:
         allowed: As ligazóns desta orixe poden estar en voga
@@ -839,8 +843,8 @@ gl:
         used_by_over_week:
           one: Utilizado por unha persoa na última semana
           other: Utilizado por %{count} persoas na última semana
-          zero: Non foi utilizado na última semana
       title: Tendencias
+      trending: Tendencias
     warning_presets:
       add_new: Engadir novo
       delete: Eliminar
@@ -866,7 +870,7 @@ gl:
     new_report:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
-      subject: Novo informe sobre %{instance} (#%{id})
+      subject: Nova denuncia sobre %{instance} (#%{id})
     new_trends:
       body: 'Os seguintes elementos precisan revisión antes de ser mostrados públicamente:'
       new_trending_links:
@@ -1235,8 +1239,8 @@ gl:
         one: Ademáis, ten unha nova seguidora desde entón! Ben!
         other: Ademáis, obtivo %{count} novas seguidoras desde entón! Tremendo!
       subject:
-        one: "1 nova notificación desde a súa última visita \U0001F418"
-        other: "%{count} novas notificacións desde a súa última visita \U0001F418"
+        one: "1 nova notificación desde a última visita 🐘"
+        other: "%{count} novas notificacións desde a última visita 🐘"
       title: Na súa ausencia...
     favourite:
       body: 'A túa publicación foi marcada como favorita por %{name}:'
@@ -1506,7 +1510,7 @@ gl:
     min_reblogs_hint: Non elimina ningunha das túas publicacións se foron promovidas máis deste número de veces. Deixa en branco para eliminar publicacións independentemente do seu número de promocións
   stream_entries:
     pinned: Publicación fixada
-    reblogged: promovido
+    reblogged: promoveu
     sensitive_content: Contido sensible
   tags:
     does_not_match_previous_name: non concorda co nome anterior
@@ -1631,12 +1635,13 @@ gl:
       explanation: Solicitaches os datos completos da túa conta de Mastodon. Xa está preparados para descargar!
       subject: O teu ficheiro xa está preparado para descargar
       title: Leve o ficheiro
-    sign_in_token:
-      details: 'Detalles sobre o intento:'
-      explanation: 'Detectamos un intento de acceso coa túa conta desde un enderezo IP descoñecido. Se es ti, escribe o código de seguridade inferior na páxina de desafío de conexión:'
-      further_actions: 'Se non foches ti, cambia agora o contrasinal e activa o segundo factor de autenticación para a túa conta. Pódelo facer aquí:'
-      subject: Por favor confirma o intento de conexión
-      title: Intento de conexión
+    suspicious_sign_in:
+      change_password: cambia o teu contrasinal
+      details: 'Estos son os detalles do acceso:'
+      explanation: Detectamos que accedeches á conta desde un novo enderezo IP.
+      further_actions_html: Se non foches ti, recomendámosche %{action} inmediatamente e activa o segundo factor de autenticación para manter conta segura.
+      subject: Accedeuse á túa conta desde novos enderezos IP
+      title: Novo acceso
     warning:
       appeal: Enviar unha apelación
       appeal_description: Se cres que esto é un erro, podes enviar un recurso á administración de %{instance}.
@@ -1687,13 +1692,10 @@ gl:
       title: Benvida, %{name}!
   users:
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas
-    generic_access_help_html: Problemas para acceder a conta? Podes contactar con %{email} para obter axuda
     invalid_otp_token: O código do segundo factor non é válido
-    invalid_sign_in_token: Código de seguridade non válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
     seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
-    suspicious_sign_in_confirmation: Semella que non entraches antes usando este dispositivo, así que ímosche enviar un código de seguridade ao teu enderezo de email para confirmar que es ti.
   verification:
     explanation_html: 'Podes <strong>validarte a ti mesma como a dona das ligazóns nos metadatos do teu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí tes un exemplo:'
     verification: Validación

@@ -168,7 +168,6 @@ es:
       previous_strikes_description_html:
         one: Esta cuenta tiene <strong>una</strong> amonestación.
         other: Esta cuenta tiene <strong>%{count}</strong> amonestaciones.
-        zero: Esta cuenta está <strong>en buen estado</strong>.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -200,7 +199,6 @@ es:
       security_measures:
         only_password: Sólo contraseña
         password_and_2fa: Contraseña y 2FA
-        password_and_sign_in_token: Contraseña y token de correo electrónico
       sensitive: Sensible
       sensitized: marcado como sensible
       shared_inbox_url: URL de bandeja compartida
@@ -490,6 +488,7 @@ es:
           other: Intentos fallidos en %{count} días diferentes.
         no_failures_recorded: No hay fallos en el registro.
         title: Disponibilidad
+        warning: El último intento de conexión a este servidor no ha tenido éxito
       back_to_all: Todos
       back_to_limited: Limitados
       back_to_warning: Advertencia
@@ -518,6 +517,7 @@ es:
       delivery:
         all: Todos
         clear: Limpiar errores de entrega
+        failing: Fallando
         restart: Reiniciar entrega
         stop: Detener entrega
         unavailable: No disponible
@@ -529,7 +529,6 @@ es:
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentas conocidas"
-        zero: Ninguna cuenta conocida
       moderation:
         all: Todos
         limited: Limitado
@@ -599,7 +598,7 @@ es:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: Los mensajes denunciados serán eliminados y se registrará una amonestación para ayudarte a escalar en futuras infracciones por la misma cuenta.
-        mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar futuras acciones sobre la misma cuenta.
+        mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
         silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
@@ -774,6 +773,11 @@ es:
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecútalas para asegurarte de que la aplicación funciona como debería
+      elasticsearch_running_check:
+        message_html: No se pudo conectar a Elasticsearch. Por favor, comprueba que está ejecutándose, o desactiva la búsqueda de texto completo
+      elasticsearch_version_check:
+        message_html: 'Versión incompatible de Elasticsearch: %{value}'
+        version_comparison: Elasticsearch %{running_version} se está ejecutando pero se necesita Elasticsearch %{required_version}
       rules_check:
         action: Administrar reglas del servidor
         message_html: No ha definido ninguna regla del servidor.
@@ -794,11 +798,11 @@ es:
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
         shared_by_over_week:
-          one: Compartido por una persona en la última semana
+          one: Compartido por una persona durante la última semana
           other: Compartido por %{count} personas durante la última semana
-          zero: Compartido por nadie en la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con %{yesterday} ayer
+      only_allowed: Sólo permitido
       pending_review: Revisión pendiente
       preview_card_providers:
         allowed: Los enlaces de este medio pueden ser tendencia
@@ -839,8 +843,8 @@ es:
         used_by_over_week:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
-          zero: Usada por nadie en la última semana
       title: Tendencias
+      trending: En tendencia
     warning_presets:
       add_new: Añadir nuevo
       delete: Borrar
@@ -1235,8 +1239,8 @@ es:
         one: "¡Ademas, has adquirido un nuevo seguidor mientras no estabas! ¡Hurra!"
         other: "¡Ademas, has adquirido %{count} nuevos seguidores mientras no estabas! ¡Genial!"
       subject:
-        one: "1 nueva notificación desde tu última visita \U0001F418"
-        other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
+        one: "1 nueva notificación desde tu última visita 🐘"
+        other: "%{count} nuevas notificaciones desde tu última visita 🐘"
       title: En tu ausencia…
     favourite:
       body: 'Tu estado fue marcado como favorito por %{name}:'
@@ -1631,12 +1635,13 @@ es:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
       title: Descargar archivo
-    sign_in_token:
-      details: 'Aquí están los detalles del intento:'
-      explanation: 'Hemos detectado un intento de inicio de sesión en tu cuenta desde una dirección IP no reconocida. Si has sido tú, por favor ingresa el siguiente código de seguridad en la página del desafío:'
-      further_actions: 'Si no has sido tú, por favor cambia tu contraseña y habilita la autenticación de dos factores en tu cuenta. Puedes hacerlo aquí:'
-      subject: Por favor, confirma el intento de inicio de sesión
-      title: Intento de inicio de sesión
+    suspicious_sign_in:
+      change_password: cambies tu contraseña
+      details: 'Aquí están los detalles del inicio de sesión:'
+      explanation: Hemos detectado un inicio de sesión en tu cuenta desde una nueva dirección IP.
+      further_actions_html: Si fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos factores para mantener tu cuenta segura.
+      subject: Tu cuenta ha sido accedida desde una nueva dirección IP
+      title: Un nuevo inicio de sesión
     warning:
       appeal: Enviar una apelación
       appeal_description: Si crees que esto es un error, puedes enviar una apelación al equipo de %{instance}.
@@ -1687,13 +1692,10 @@ es:
       title: Te damos la bienvenida a bordo, %{name}!
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
-    generic_access_help_html: "¿Tienes problemas para acceder a tu cuenta? Puedes ponerte en contacto con %{email} para conseguir ayuda"
     invalid_otp_token: Código de dos factores incorrecto
-    invalid_sign_in_token: Código de seguridad no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
-    suspicious_sign_in_confirmation: Parece que no has iniciado sesión desde este dispositivo antes, y no has iniciado sesión durante un tiempo, así que estamos enviando un código de seguridad a tu dirección de correo electrónico para confirmar que eres tú.
   verification:
     explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodon. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
     verification: Verificación

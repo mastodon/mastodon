@@ -189,7 +189,6 @@
       security_measures:
         only_password: Bare passord
         password_and_2fa: Passord og 2FA
-        password_and_sign_in_token: Passord og e-post token
       sensitized: Merket som følsom
       shared_inbox_url: Delt Innboks URL
       show:
@@ -893,9 +892,6 @@
       new_followers_summary:
         one: I tillegg har du fått en ny følger mens du var borte. Hurra!
         other: I tillegg har du har fått %{count} nye følgere mens du var borte! Imponerende!
-      subject:
-        one: "1 ny hendelse siden ditt siste besøk \U0001F418"
-        other: "%{count} nye hendelser siden ditt siste besøk \U0001F418"
       title: I ditt fravær…
     favourite:
       body: 'Statusen din ble likt av %{name}:'
@@ -1230,12 +1226,6 @@
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
-    sign_in_token:
-      details: 'Her er detaljene om forsøket:'
-      explanation: 'Vi oppdaget et forsøk på å logge på kontoen fra en ukjent IP-adresse. Hvis dette er deg, vennligst skriv inn sikkerhetskoden nedenfor på påloggingssiden:'
-      further_actions: 'Hvis dette ikke var deg, vennligst endre passordet ditt og aktivere to-faktor autentisering på kontoen din. Du kan gjøre det her:'
-      subject: Bekreft forsøk på å logge inn
-      title: Påloggingsforsøk
     warning:
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
@@ -1266,13 +1256,10 @@
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
-    generic_access_help_html: Problemer med å få tilgang til din konto? Du kan kontakte %{email} for assistanse
     invalid_otp_token: Ugyldig to-faktorkode
-    invalid_sign_in_token: Ugyldig sikkerhetskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     seamless_external_login: Du er logget inn via en ekstern tjeneste, så passord og e-post innstillinger er ikke tilgjengelige.
     signed_in_as: 'Innlogget som:'
-    suspicious_sign_in_confirmation: Du ser ikke ut til å ha logget inn fra denne enheten før, og du har ikke logget inn en stund, så vi sender en sikkerhetskode til din e-postadresse for å bekrefte at det er deg.
   verification:
     explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
     verification: Bekreftelse

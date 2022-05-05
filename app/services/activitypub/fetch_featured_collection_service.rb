@@ -7,24 +7,48 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
     return if account.featured_collection_url.blank? || account.suspended? || account.local?
 
     @account = account
-    @json    = fetch_resource(@account.featured_collection_url, true)
+    @json    = fetch_resource(@account.featured_collection_url, true, local_follower)
 
-    return unless supported_context?
+    return unless supported_context?(@json)
 
-    case @json['type']
-    when 'Collection', 'CollectionPage'
-      process_items @json['items']
-    when 'OrderedCollection', 'OrderedCollectionPage'
-      process_items @json['orderedItems']
-    end
+    process_items(collection_items(@json))
   end
 
   private
 
+  def collection_items(collection)
+    collection = fetch_collection(collection['first']) if collection['first'].present?
+    return unless collection.is_a?(Hash)
+
+    case collection['type']
+    when 'Collection', 'CollectionPage'
+      collection['items']
+    when 'OrderedCollection', 'OrderedCollectionPage'
+      collection['orderedItems']
+    end
+  end
+
+  def fetch_collection(collection_or_uri)
+    return collection_or_uri if collection_or_uri.is_a?(Hash)
+    return if invalid_origin?(collection_or_uri)
+
+    fetch_resource_without_id_validation(collection_or_uri, local_follower, true)
+  end
+
   def process_items(items)
-    status_ids = items.map { |item| value_or_id(item) }
-                      .filter_map { |uri| ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: local_follower) unless ActivityPub::TagManager.instance.local_uri?(uri) }
-                      .filter_map { |status| status.id if status.account_id == @account.id }
+    status_ids = items.filter_map do |item|
+      uri = value_or_id(item)
+      next if ActivityPub::TagManager.instance.local_uri?(uri)
+
+      status = ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: local_follower)
+      next unless status&.account_id == @account.id
+
+      status.id
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.debug "Invalid pinned status #{uri}: #{e.message}"
+      nil
+    end
+
     to_remove = []
     to_add    = status_ids
 
@@ -43,11 +67,9 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
     end
   end
 
-  def supported_context?
-    super(@json)
-  end
-
   def local_follower
-    @local_follower ||= @account.followers.local.without_suspended.first
+    return @local_follower if defined?(@local_follower)
+
+    @local_follower = @account.followers.local.without_suspended.first
   end
 end

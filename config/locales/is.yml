@@ -168,7 +168,6 @@ is:
       previous_strikes_description_html:
         one: Þessi notandaaðgangur er með <strong>eina</strong> refsingu.
         other: Þessi notandaaðgangur er með <strong>%{count}</strong> refsingar.
-        zero: Þessi notandaaðgangur er <strong>í góðu lagi</strong>.
       promote: Hækka í tign
       protocol: Samskiptamáti
       public: Opinber
@@ -200,7 +199,6 @@ is:
       security_measures:
         only_password: Aðeins lykilorð
         password_and_2fa: Lykilorð og 2-þátta auðkenning
-        password_and_sign_in_token: Lykilorð og teikn í tölvupósti
       sensitive: Viðkvæmt
       sensitized: merkt sem viðkvæmt
       shared_inbox_url: Slóð á sameiginlegt innhólf
@@ -490,6 +488,7 @@ is:
           other: Misheppnaðar tilraunir á %{count} mismunandi dögum.
         no_failures_recorded: Engar misheppnaðar tilraunir á skrá.
         title: Tiltækileiki
+        warning: Síðasta tilraun til að tengjast þessum netþjóni mistókst
       back_to_all: Allt
       back_to_limited: Takmarkað
       back_to_warning: Aðvörun
@@ -518,6 +517,7 @@ is:
       delivery:
         all: Allt
         clear: Hreinsa afhendingarvillur
+        failing: Mistekst
         restart: Endurræsa afhendingu
         stop: Stöðva afhendingu
         unavailable: Ekki tiltækt
@@ -529,7 +529,6 @@ is:
       known_accounts:
         one: "%{count} þekktur notandaaðgangur"
         other: "%{count} þekktir notendaaðgangar"
-        zero: Enginn þekktur notandaaðgangur
       moderation:
         all: Allt
         limited: Takmarkað
@@ -774,6 +773,11 @@ is:
     system_checks:
       database_schema_check:
         message_html: Það eru fyrirliggjandi yfirfærslur á gagnagrunnum. Keyrðu þær til að tryggja að forritið hegði sér eins og skyldi
+      elasticsearch_running_check:
+        message_html: Gat ekki tengst við Elasticsearch-leitina. Gakktu úr skugga um að hún sé í gangi, eða gerðu leit í öllum texta óvirka
+      elasticsearch_version_check:
+        message_html: 'Ósamhæfð útgáfa Elasticsearch-leitar: %{value}'
+        version_comparison: Elasticsearch %{running_version} er í gangi á meðan útgáfa %{required_version} er nauðsynleg
       rules_check:
         action: Sýsla með reglur netþjónsins
         message_html: Þú hefur ekki skilgreint neinar reglur fyrir netþjón.
@@ -796,9 +800,9 @@ is:
         shared_by_over_week:
           one: Deilt af einum aðila síðustu vikuna
           other: Deilt af %{count} aðilum síðustu vikuna
-          zero: Ekki deilt af neinum aðila síðustu vikuna
         title: Vinsælir tenglar
         usage_comparison: Deilt %{today} sinnum í dag, samanborið við %{yesterday} í gær
+      only_allowed: Aðeins leyfð
       pending_review: Bíður eftir yfirlestri
       preview_card_providers:
         allowed: Tenglar frá þessum útgefanda geta verið með í vinsældum
@@ -839,8 +843,8 @@ is:
         used_by_over_week:
           one: Notað af einum aðila síðustu vikuna
           other: Notað af %{count} aðilum síðustu vikuna
-          zero: Ekki notað af neinum aðila síðustu vikuna
       title: Tilhneiging
+      trending: Vinsælt
     warning_presets:
       add_new: Bæta við nýju
       delete: Eyða
@@ -1235,8 +1239,8 @@ is:
         one: Að auki, þú hefur fengið einn nýjan fylgjanda á meðan þú varst fjarverandi! Húh!
         other: Að auki, þú hefur fengið %{count} nýja fylgjendur á meðan þú varst fjarverandi! Frábært!
       subject:
-        one: "1 ný tilkynning síðan þú leist inn síðast \U0001F418"
-        other: "%{count} nýjar tilkynningar síðan þú leist inn síðast \U0001F418"
+        one: "1 ný tilkynning síðan þú leist inn síðast 🐘"
+        other: "%{count} nýjar tilkynningar síðan þú leist inn síðast 🐘"
       title: Á meðan þú varst fjarverandi...
     favourite:
       body: 'Færslan þín var sett í eftirlæti af %{name}:'
@@ -1631,12 +1635,13 @@ is:
       explanation: Þú baðst um fullt öryggisafrit af Mastodon notandaaðgangnum þínum. Það er núna tilbúið til niðurhals!
       subject: Safnskráin þín er tilbúin til niðurhals
       title: Taka út í safnskrá
-    sign_in_token:
-      details: 'Hér eru nánari upplýsingar um atvikið:'
-      explanation: 'Við sjáum að reynt hefur verið að skrá sig inn á aðganginn þinn frá óþekktu IP-vistfangi. Ef það varst þú, skaltu setja inn öryggiskóðann neðst á staðfestingarsíðu innskráningar:'
-      further_actions: 'Ef þetta varst ekki þú, skaltu endilega skipta um lykilorð og virkja tveggja-þrepa auðkenningu fyrir aðganginn þinn. Þú getur gert það hér:'
-      subject: Endilega staðfestu tilraun til innskráningar
-      title: Tilraun til innskráningar
+    suspicious_sign_in:
+      change_password: breytir lykilorðinu þínu
+      details: 'Hér eru nánari upplýsingar um innskráninguna:'
+      explanation: Við greindum innskráningu inn á aðganginn þinn frá nýju IP-vistfangi.
+      further_actions_html: Ef þetta varst ekki þú, þá mælum við með að þú %{action} strax og virkjir tveggja-þátta auðkenningu til að halda aðgangnum þínum öruggum.
+      subject: Skráð hefur verið inn á aðganginn þinn frá nýju IP-vistfangi
+      title: Ný innskráning
     warning:
       appeal: Ssenda inn áfrýjun
       appeal_description: Ef þú álítur að um mistök sé að ræða, geturðu sent áfrýjun til umsjónarmanna %{instance}.
@@ -1687,13 +1692,10 @@ is:
       title: Velkomin/n um borð, %{name}!
   users:
     follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum
-    generic_access_help_html: Vandamál við að tengjast aðgangnum þínum? Þú getur sett þig í samband við %{email} til að fá aðstoð
     invalid_otp_token: Ógildur tveggja-þátta kóði
-    invalid_sign_in_token: Ógildur öryggiskóði
     otp_lost_help_html: Ef þú hefur misst aðganginn að hvoru tveggja, geturðu sett þig í samband við %{email}
     seamless_external_login: Innskráning þín er í gegnum utanaðkomandi þjónustu, þannig að stillingar fyrir lykilorð og tölvupóst eru ekki aðgengilegar.
     signed_in_as: 'Skráð inn sem:'
-    suspicious_sign_in_confirmation: Það virðist sem þú hafir ekki skráð þig inn af þessu tæki áður og að nokkur tími sé liðinn frá því þú hefur skráð þig inn, þannig að við erum að senda þér öryggiskóða á tölvupóstfangið þitt til að staðfesta að þetta sért þú.
   verification:
     explanation_html: 'Þú getur <strong>vottað að þú sért eigandi og ábyrgur fyrir tenglunum í lýsigögnum notandasniðsins þíns</strong>. Til að það virki, þurfa vefsvæðin sem vísað er í að innihalda tengil til baka í Mastodon-notandasniðið. Tengillinn sem vísar til baka <strong>verður</strong> að vera með <code>rel="me"</code> eigindi. Textinn í tenglinum skiptir ekki máli. Hérna er dæmi:'
     verification: Sannprófun

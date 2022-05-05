@@ -20,7 +20,7 @@
                                       = image_tag full_pack_url('media/images/mailer/icon_reply.png'), alt: ''
 
                               %h1= t 'notification_mailer.mention.title'
-                              %p.lead= t('notification_mailer.mention.body', name: @status.account.acct)
+                              %p.lead= t('notification_mailer.mention.body', name: @status.account.pretty_acct)
 
 = render 'status', status: @status
 

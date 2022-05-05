@@ -8,14 +8,15 @@ class Trends::Links < Trends::Base
     review_threshold: 3,
     max_score_cooldown: 2.days.freeze,
     max_score_halflife: 8.hours.freeze,
+    decay_threshold: 1,
   }
 
   def register(status, at_time = Time.now.utc)
-    original_status = status.reblog? ? status.reblog : status
+    original_status = status.proper
 
-    return unless original_status.public_visibility? && status.public_visibility? &&
-                  !original_status.account.silenced? && !status.account.silenced? &&
-                  !original_status.spoiler_text?
+    return unless (original_status.public_visibility? && status.public_visibility?) &&
+                  !(original_status.account.silenced? || status.account.silenced?) &&
+                  !(original_status.spoiler_text? || original_status.sensitive?)
 
     original_status.preview_cards.each do |preview_card|
       add(preview_card, status.account_id, at_time) if preview_card.appropriate_for_trends?
@@ -30,7 +31,6 @@ class Trends::Links < Trends::Base
   def refresh(at_time = Time.now.utc)
     preview_cards = PreviewCard.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq)
     calculate_scores(preview_cards, at_time)
-    trim_older_items
   end
 
   def request_review
@@ -62,6 +62,9 @@ class Trends::Links < Trends::Base
   private
 
   def calculate_scores(preview_cards, at_time)
+    global_items = []
+    locale_items = Hash.new { |h, key| h[key] = [] }
+
     preview_cards.each do |preview_card|
       expected  = preview_card.history.get(at_time - 1.day).accounts.to_f
       expected  = 1.0 if expected.zero?
@@ -88,29 +91,21 @@ class Trends::Links < Trends::Base
 
       decaying_score = max_score * (0.5**((at_time.to_f - max_time.to_f) / options[:max_score_halflife].to_f))
 
-      add_to_and_remove_from_subsets(preview_card.id, decaying_score, {
-        all: true,
-        allowed: preview_card.trendable?,
-      })
+      next unless decaying_score >= options[:decay_threshold]
 
-      next unless valid_locale?(preview_card.language)
-
-      add_to_and_remove_from_subsets(preview_card.id, decaying_score, {
-        "all:#{preview_card.language}" => true,
-        "allowed:#{preview_card.language}" => preview_card.trendable?,
-      })
+      global_items << { score: decaying_score, item:  preview_card }
+      locale_items[preview_card.language] << { score: decaying_score, item: preview_card } if valid_locale?(preview_card.language)
     end
 
-    # Clean up localized sets by calculating the intersection with the main
-    # set. We do this instead of just deleting the localized sets to avoid
-    # having moments where the API returns empty results
+    replace_items('', global_items)
 
-    redis.pipelined do
-      Trends.available_locales.each do |locale|
-        redis.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
-        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
-      end
+    Trends.available_locales.each do |locale|
+      replace_items(":#{locale}", locale_items[locale])
     end
+  end
+
+  def filter_for_allowed_items(items)
+    items.select { |item| item[:item].trendable? }
   end
 
   def would_be_trending?(id)

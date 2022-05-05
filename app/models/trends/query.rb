@@ -14,8 +14,8 @@ class Trends::Query
     @records = []
     @loaded  = false
     @allowed = false
-    @limit   = -1
-    @offset  = 0
+    @limit   = nil
+    @offset  = nil
   end
 
   def allowed!
@@ -37,7 +37,7 @@ class Trends::Query
   end
 
   def offset!(value)
-    @offset = value
+    @offset = value.to_i
     self
   end
 
@@ -46,7 +46,7 @@ class Trends::Query
   end
 
   def limit!(value)
-    @limit = value
+    @limit = value.to_i
     self
   end
 
@@ -59,7 +59,7 @@ class Trends::Query
     @records
   end
 
-  delegate :each, :empty?, :first, :last, to: :records
+  delegate :each, :empty?, :first, :last, :size, to: :records
 
   def to_ary
     records.dup
@@ -73,7 +73,10 @@ class Trends::Query
     if tmp_ids.empty?
       klass.none
     else
-      klass.joins("join unnest(array[#{tmp_ids.join(',')}]) with ordinality as x (id, ordering) on #{klass.table_name}.id = x.id").reorder('x.ordering')
+      scope = klass.joins("join unnest(array[#{tmp_ids.join(',')}]) with ordinality as x (id, ordering) on #{klass.table_name}.id = x.id").reorder('x.ordering')
+      scope = scope.offset(@offset) if @offset.present?
+      scope = scope.limit(@limit) if @limit.present?
+      scope
     end
   end
 
@@ -93,7 +96,7 @@ class Trends::Query
   end
 
   def ids
-    redis.zrevrange(key, @offset, @limit.positive? ? @limit - 1 : @limit).map(&:to_i)
+    redis.zrevrange(key, 0, -1).map(&:to_i)
   end
 
   def perform_queries

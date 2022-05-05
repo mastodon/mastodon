@@ -3,20 +3,20 @@ ku:
   simple_form:
     hints:
       account_alias:
-        acct: Ajimêrê ku tu dixwazî bar bikî navê bikarhêner@domain diyar bike
+        acct: Ajimêrê ku tu dixwazî jê bar bikî navê bikarhêner@navpar diyar bike
       account_migration:
-        acct: Ajimêrê ku tu dixwazî bar bikî navê bikarhêner@domain diyar bike
+        acct: Ajimêrê ku tu dixwazî bar bikî bo wê navê bikarhêner@navpar diyar bike
       account_warning_preset:
-        text: Tu dikarî wek URLyan, hashtagan û şîroveyan, tootê ristesazî jî bikarbînî
+        text: Tu dikarî hevoksaziya şandiyê wekî URL, hashtag û şîroveyan, bi kar bînî
         title: Bi dilê xwe ye. Ji wergir re nay xûyakirin
       admin_account_action:
-        include_statuses: Bikarhênerê bibîne kîjan toot dibin sedemê çalakî an jî agahdarî
+        include_statuses: Bikarhêner wê bibîne kîjan şandî dibin sedemê çalakî an jî agahdarikirina çavdêriyê
         send_email_notification: Bikarhêner dê ravekirinê tiştê ku bi ajimêra wan re qewimî bistîne
-        text_html: Bi dili xwe ye. Tu dikarî hevoksazî ye toot bikarbînî. Tu dikarî <a href="%{path}"> pêşsazîyên hişyariyê lê zêde bikî </a> ji bo ku demê derbas nekî
+        text_html: Bi dilê xwe ye. Tu dikarî hevoksaziye şandiyê bi kar bînî. Tu dikarî <a href="%{path}"> pêşsaziyên hişyariyê tevlî bikî </a> ji bo ku demê derbas nekî
         type_html: Hilbijêre ka tu yê çi bikî bi <strong>%{acct}</strong> re
         types:
-          disable: Nehêle bila bikarhêner ajimêrê xwe bikar bîne lê naverokan jê nebe an jî veneşêre.
-          none: Ji bo ku tu hişyariyekê ji bikarhêner re bişînî vê bi kar bîne, bêyî ku çalakiyeke din dest lê neda.
+          disable: Nehêle bikarhêner ajimêrê xwe bi kar bîne lê naverokan jê nabe an jî veneşêre.
+          none: Ji bo ku tu hişyariyekê ji bikarhêner re bişînî vê bi kar bîne, bêyî ku çalakiyeke din bikî.
           sensitive: Neçar bihêle ku ev bikarhêner hemû pêvekên medyayê hestiyar nîşan bike.
           silence: Pêşî li bikarhêneran bigire ku bikarhêner bi herkesî ra xûyabarî neşîne, post û agahdarîyên xwe ji mirovên ku wan naşopîne veşêre.
           suspend: Pêşîya hevbandorîya vî ajimêrê bigire û naveroka wê jê bibe. Di nava 30 rojan de tê vegerandin.
@@ -26,7 +26,7 @@ ku:
         ends_at: Bi dilê xwe ye. Daxuyanî di vê demê de bi xweberî ji weşanê de rabe
         scheduled_at: Vala bihêle ku yekcar daxûyanî were weşandin
         starts_at: Bi dilê xwe ye. Heke daxûyanî ya te di demeke diyar ve girêdayî be
-        text: Tu dikarî hevoksazî yên toot bikarbînî. Ji kerema xwe cihê ku ev daxuyanî li ser dîmenderê bikarhêner bigire baldar be
+        text: Tu dikarî hevoksaziya şandiyê bi kar bînî. Ji kerema xwe bila haya te ji cihê ku ev daxuyanî li ser dîmenderê bikarhêner bigire hebe
       appeal:
         text: Tu dikarî tenê carekê îtîraza binpêkirinê bikî
       defaults:
@@ -34,7 +34,7 @@ ku:
         avatar: PNG, GIF an jî JPG. Herî zêde %{size} dê ber bi %{dimensions}px ve were kêmkirin
         bot: Ji yên din re nîşan bike ku ajimêr bi piranî kiryarên xweberî dike û dibe ku neyê çavdêrî kirin
         context: Yek an jî zêdetir girêdan divê parzûn were sepandin
-        current_password: Ji bo ewlehiyê ji kerema xwe şîfreya ajimêrê xwe niha têkevin
+        current_password: Ji bo ewlehiyê ji kerema xwe borînpeyva ajimêrê xwe têxe
         current_username: Ji bo piştrastkirinê, ji kerema xwe navê bikarhêner ya ajimêrê niha binvîse
         digest: Tenê piştî demek dirêj neçalakiyê de û tenê di nebûna te da peyamên teybetî standî be tê şandin
         discoverable: Mafê biden ku ajimêra te bi pêşniyar û taybetmendiyên din ji aliyê biyaniyan ve bê vedîtin
@@ -42,21 +42,22 @@ ku:
         fields: Tu dikarî heya 4 hêmanan wekî tabloyek li ser profîla xwe nîşan bidî
         header: PNG, GIF an jî JPG. Herî zêde %{size} ber bi %{dimensions}px ve were kêmkirin
         inbox_url: URLyê di rûpela pêşî de guhêrkerê ku tu dixwazî bi kar bînî jê bigire
-        irreversible: Tootên parzûnkirî êdî bê veger wenda bibe, heger parzûn paşê were rakirin jî nabe
+        irreversible: Şandiyên parzûnkirî êdî bê veger wenda bibe, heger parzûn paşê were rakirin jî nabe
         locale: Zimanê navrûyê bikarhêner, agahdarîyên e-name û pêl kirin
         locked: Bi destan daxwazên şopê hilbijêrîne da ku kî bikaribe te bişopîne
-        password: Herî kêm 8 karakter bikar bîne
+        password: Herî kêm 8 tîpan bi kar bîne
         phrase: Ji rewşa nivîsê tîpên girdek/hûrdek an jî ji hişyariya naveroka ya şandiyê wek serbixwe wê were hevbeş kirin
         scopes: |-
           Sepana ku dê kîjan maf bide bigihije APIyan.
           Ger te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî.
         setting_aggregate_reblogs: Bilindkirinên ku nû hatine weşan ji şandiyên di dema dawî de nîşan nede (tenê li ser bilindkirinên nû wergirtî bandor dike)
+        setting_always_send_emails: Dema ku tu Mastodon bi rengek çalak bi kar tînî, bi gelemperî agahdariya e-nameyê nayê şandin
         setting_default_sensitive: Medyaya hestiyar berdestî ve tê veşartin û bi tikandin dikare were eşkere kirin
         setting_display_media_default: Medyaya wekî hestyarî hatiye nîşankirî ye veşêre
         setting_display_media_hide_all: Medyayê tim veşêre
         setting_display_media_show_all: Medyayê tim nîşan bike
         setting_hide_network: Kesên ku te dişopîne û kesên tu dişopînî ev ên profîla te de were veşartin
-        setting_noindex: Bandor li hemî profîla te û tootên rûpela te dike
+        setting_noindex: Bandor li hemî profîla te û şandiyên rûpela te dike
         setting_show_application: Navê sepana ku tu ji bo şandinê wê bi kar tîne dê di dîtinê berferh ên di şandiyên te de were xuyakirin
         setting_use_blurhash: Gradyen xwe bi rengên dîtbarîyên veşartî ve radigire, lê belê hûrgilîyan diveşêre
         setting_use_pending_items: Li şûna ku herkê wek bixweber bizivirînî nûvekirina demnameyê li paş tikandinekî veşêre
@@ -129,10 +130,10 @@ ku:
         avatar: Wêne
         bot: Ev ajimêrekî bot e
         chosen_languages: Parzûnê zimanan
-        confirm_new_password: Peborîna nû bipejirîne
-        confirm_password: Peborîn bipejirîne
+        confirm_new_password: Borînpeyva nû bipejirîne
+        confirm_password: Borînpeyvê bipejirîne
         context: Parzûnê naverokan
-        current_password: Pêborîna heyî
+        current_password: Borînpeyva heyî
         data: Dane
         discoverable: Ji yên din re ajimêrê pêşniyar bike
         display_name: Navê nîşandanê
@@ -144,15 +145,16 @@ ku:
         inbox_url: URLya guhêzkera wergirtî
         irreversible: Li şûna veşartinê jê bibe
         locale: Zimanê navrûyê
-        locked: Ajimêr qefl bike
+        locked: Ajimêr kilît bike
         max_uses: Hejmara bikaranîna herî zêde
-        new_password: Pêborîna nû
+        new_password: Borînpeyva nû
         note: Jiyanname
         otp_attempt: Koda du faktoran
-        password: Pêborîn
+        password: Borînpeyv
         phrase: Peyvkilîd an jî hevok
         setting_advanced_layout: Navrûya tevnê yê pêşketî çalak bike
         setting_aggregate_reblogs: Di demnameyê de şandiyên bilindkirî kom bike
+        setting_always_send_emails: Her dem agahdariya e-nameyê bişîne
         setting_auto_play_gif: GIF ên livok bi xweber bilîzine
         setting_boost_modal: Gotûbêja pejirandinê nîşan bide berî ku şandî werê bilindkirin
         setting_crop_images: Wêneyên di nav şandiyên ku nehatine berfireh kirin wek 16×9 jê bike
@@ -169,7 +171,7 @@ ku:
         setting_hide_network: Grafîka xwe ya civakî veşêre
         setting_noindex: Bes e nexe di nav rêzên lêgerîna gerokan
         setting_reduce_motion: Lîstikên livoka kêm bike
-        setting_show_application: Sepana ku ji bo şandina toot'a tê bikaranîn diyar bike
+        setting_show_application: Sepana ku ji bo şandina şandiyan tê bikaranîn diyar bike
         setting_system_font_ui: Curenivîsa berdest a pergalê bi kar bîne
         setting_theme: Rûkarê malperê
         setting_trends: Rojeva îro nîşan bide

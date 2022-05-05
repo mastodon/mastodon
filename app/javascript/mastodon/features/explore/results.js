@@ -24,15 +24,15 @@ const appendLoadMore = (id, list, onLoadMore) => {
   }
 };
 
-const renderAccounts = (results, onLoadMore) => appendLoadMore('accounts', results.get('accounts').map(item => (
+const renderAccounts = (results, onLoadMore) => appendLoadMore('accounts', results.get('accounts', ImmutableList()).map(item => (
   <Account key={`account-${item}`} id={item} />
 )), onLoadMore);
 
-const renderHashtags = (results, onLoadMore) => appendLoadMore('hashtags', results.get('hashtags').map(item => (
+const renderHashtags = (results, onLoadMore) => appendLoadMore('hashtags', results.get('hashtags', ImmutableList()).map(item => (
   <Hashtag key={`tag-${item.get('name')}`} hashtag={item} />
 )), onLoadMore);
 
-const renderStatuses = (results, onLoadMore) => appendLoadMore('statuses', results.get('statuses').map(item => (
+const renderStatuses = (results, onLoadMore) => appendLoadMore('statuses', results.get('statuses', ImmutableList()).map(item => (
   <Status key={`status-${item}`} id={item} />
 )), onLoadMore);
 
@@ -100,7 +100,7 @@ class Results extends React.PureComponent {
           <button onClick={this.handleSelectAll} className={type === 'all' && 'active'}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
           <button onClick={this.handleSelectAccounts} className={type === 'accounts' && 'active'}><FormattedMessage id='search_results.accounts' defaultMessage='People' /></button>
           <button onClick={this.handleSelectHashtags} className={type === 'hashtags' && 'active'}><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></button>
-          <button onClick={this.handleSelectStatuses} className={type === 'statuses' && 'active'}><FormattedMessage id='search_results.statuses' defaultMessage='Toots' /></button>
+          <button onClick={this.handleSelectStatuses} className={type === 'statuses' && 'active'}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
         </div>
 
         <div className='explore__search-results'>

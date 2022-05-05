@@ -48,7 +48,7 @@ sq:
       rejecting_media_title: Media e filtruar
       silenced: 'Postimet prej këtyre shërbyesve do të jenë të fshehura në rrjedha kohore dhe biseda publike, dhe prej ndërveprimeve të përdoruesve të tyre s’do të prodhohen njoftime, veç në i ndjekshi:'
       silenced_title: Shërbyes të heshtuar
-      suspended: 'S’do të përpunohen, depozitohen apo shkëmbehen të dhëna prej këtyre shërbyesve, duke e bërë të pamundur çfarëdo ndërveprimi apo komunikimi me përdorues prej këtyre shërbyesve:'
+      suspended: 'Prej këtyre shërbyesve s’do të përpunohen, depozitohen apo shkëmbehen të dhëna, duke e bërë të pamundur çfarëdo ndërveprimi apo komunikimi me përdorues prej këtyre shërbyesve:'
       suspended_title: Shërbyes të pezulluar
     unavailable_content_html: Mastodon-i përgjithësisht ju lejon të shihni lëndë nga përdorues dhe të ndërveproni me të tillë prej cilitdo shërbyes në fedivers. Këto janë përjashtimet që janë bërë në këtë shërbyes.
     user_count_after:
@@ -166,9 +166,8 @@ sq:
       perform_full_suspension: Pezulloje
       previous_strikes: Paralajmërime të mëparshme
       previous_strikes_description_html:
-        one: Kjo llogari ka <strong>one</strong> paralajmërim.
+        one: Kjo llogari ka <strong>një</strong> paralajmërim.
         other: Kjo llogari ka <strong>%{count}</strong> paralajmërime.
-        zero: Kjo llogari është <strong>në pozita të mira</strong>.
       promote: Promovojeni
       protocol: Protokoll
       public: Publike
@@ -200,7 +199,6 @@ sq:
       security_measures:
         only_password: Vetëm fjalëkalim
         password_and_2fa: Fjalëkalim dhe 2FA
-        password_and_sign_in_token: Fjalëkalim dhe token email-i
       sensitive: Rezervat
       sensitized: iu vu shenjë si rezervat
       shared_inbox_url: URL kutie të përbashkët mesazhesh
@@ -373,6 +371,7 @@ sq:
       enable: Aktivizoje
       enabled: I aktivizuar
       enabled_msg: Ai emoxhi u aktivizua me sukses
+      image_hint: PNG ose GIF deri në %{size}
       list: Vëre në listë
       listed: Në listë
       new:
@@ -468,6 +467,7 @@ sq:
         title: Zë i ri email në listë bllokimesh
       no_email_domain_block_selected: S’u ndryshuan blloqe përkatësish email, ngaqë s’qe përzgjedhur ndonjë
       resolved_dns_records_hint_html: Emri i përkatësisë jep u përket përkatësive vijuese MX, që janë përgjegjëset për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Jini i kujdesshëm të mos bllokoni shërbime të njohur email-esh.</strong>
+      resolved_through_html: Zgjidhur përmes %{domain}
       title: Listë bllokimesh email-esh
     follow_recommendations:
       description_html: "<strong>Rekomandimet për ndjekje ndihmojnë përdoruesit e rinj të gjejnë shpejt lëndë me interes</strong>. Kur një përdorues nuk ka ndërvepruar mjaftueshëm me të tjerët, që të formohen rekomandime të personalizuara ndjekjeje, rekomandohen këto llogari. Ato përzgjidhen çdo ditë, prej një përzierje llogarish me shkallën më të lartë të angazhimit dhe numrin më të lartë të ndjekësve vendorë për një gjuhë të dhënë."
@@ -487,6 +487,7 @@ sq:
           one: Përpjekje e dështuar në %{count} ditë.
           other: Përpjekje e dështuar në %{count} ditë të ndryshme.
         no_failures_recorded: S’ka dështime të regjistruara.
+        warning: Përpjekja e fundit për t’u lidhur me këtë shërbyes ka qenë e pasuksesshme
       back_to_all: Krejt
       back_to_limited: E kufizuar
       back_to_warning: Kujdes
@@ -526,7 +527,6 @@ sq:
       known_accounts:
         one: "%{count} llogari e njohur"
         other: "%{count} llogari të njohura"
-        zero: Pa llogari të njohur
       moderation:
         all: Krejt
         limited: Të kufizuarat
@@ -596,7 +596,7 @@ sq:
       action_taken_by: Veprimi i ndërmarrë nga
       actions:
         delete_description_html: Postimet e raportuara do të fshihen dhe do të regjistrohet një paralajmërim, për t’ju ndihmuar të përshkallëzoni hapat në rast shkeljesh të ardhme nga e njëjta llogari.
-        mark_as_sensitive_description_html: Media në postimet e raportuar do të shënohet si rezervat dhe do të regjistrohet një paralajmërim për t’ju ndihmuar ta shpini çështjen më tej, në rast shkeljesh të ardhshme nga e njëjta llogari.
+        mark_as_sensitive_description_html: Medias te postimet e raportuara do t’i vihet shenjë si me spec dhe për të do të regjistrohet një paralajmërim, për t’ju ndihmuar të përshkallëzoni masat tuaja mbi shkelje të ardhshme nga e njëjta llogari.
         other_description_html: Shihni më tepër mundësi për kontroll të sjelljes së një llogari dhe përshtatni komunikimin me llogarinë e raportuar.
         resolve_description_html: Ndaj llogarisë së raportuar nuk do të ndërmerret ndonjë veprim, s’do të regjistrohet ndonjë paralajmërim dhe raporti do të mbyllet.
         silence_description_html: Profili do të jetë i dukshëm vetëm për ata që e ndjekin tashmë, ose që e kërkojnë dorazi, duke reduktuar rëndë përhapjen e tij. Mundet përherë të prapakthehet.
@@ -771,6 +771,11 @@ sq:
     system_checks:
       database_schema_check:
         message_html: Ka migrime bazash të dhënash pezull. Ju lutemi, kryejini, për të qenë të sigurt se aplikacioni sillet siç priteet
+      elasticsearch_running_check:
+        message_html: S’u lidh dot me Elasticsearch. Ju lutemi, kontrolloni nëse ky xhiron, ose çaktivizoni kërkimin në tërë tekstin
+      elasticsearch_version_check:
+        message_html: 'Version Elasticsearch i papërputhshëm: %{value}'
+        version_comparison: Xhiron Elasticsearch %{running_version}, ndërkohë që është i domosdoshëm %{required_version}
       rules_check:
         action: Administroni rregulla shërbyesi
         message_html: S’keni përcaktuar ndonjë rregull shërbyesi.
@@ -791,9 +796,8 @@ sq:
         disallow: Hiq lejimin e lidhjes
         disallow_provider: Mos e lejo botuesin
         shared_by_over_week:
-          one: Ndarë nga një person javën e kaluar
-          other: Ndarë nga %{count} persona javën e kaluar
-          zero: E pandarë nga njeri gjatë javës së kaluar
+          one: Ndarë me të tjerë nga një person gjatë javës së kaluar
+          other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
         title: Lidhje në modë
         usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
       pending_review: Në pritje të shqyrtimit
@@ -832,9 +836,8 @@ sq:
         usable: Mund të përdoret
         usage_comparison: Përdorur %{today} herë sot, krahasuar me %{yesterday} dje
         used_by_over_week:
-          one: Përdorur nga një persona gjatë javës së kaluar
-          other: Përdorur nga %{count} persona gjatë javës së kaluar
-          zero: E papërdorur nga njeri gjatë javës së kaluar
+          one: Përdorur nga një person gjatë javës së kaluar
+          other: Përdorur nga %{count} vetë gjatë javës së kaluar
       title: Në modë
     warning_presets:
       add_new: Shtoni të ri
@@ -1227,8 +1230,8 @@ sq:
         one: Veç kësaj, u bëtë me një ndjekës të ri, teksa s’ishit këtu! Ëhë!
         other: Veç kësaj, u bëtë me %{count} ndjekës të rinj, teksa s’ishit këtu! Shkëlqyeshëm!
       subject:
-        one: "1 njoftim i ri që nga vizita juaj e fundit \U0001F418"
-        other: "%{count} njoftime të reja që nga vizita juaj e fundit \U0001F418"
+        one: "1 njoftim i ri që nga vizita juaj e fundit 🐘"
+        other: "%{count} njoftime të reja që nga vizita juaj e fundit 🐘"
       title: Gjatë mungesës tuaj…
     favourite:
       body: 'Gjendja juaj u parapëlqye nga %{name}:'
@@ -1408,6 +1411,7 @@ sq:
     profile: Profil
     relationships: Ndjekje dhe ndjekës
     statuses_cleanup: Fshirje e automatizuar postimesh
+    strikes: Paralajmërime nga moderimi
     two_factor_authentication: Mirëfilltësim Dyfaktorësh
     webauthn_authentication: Kyçe sigurie
   statuses:
@@ -1428,6 +1432,7 @@ sq:
     disallowed_hashtags:
       one: 'përmbante një hashtag të palejuar: %{tags}'
       other: 'përmbante hashtag-ë të palejuar: %{tags}'
+    edited_at_html: Përpunuar më %{date}
     errors:
       in_reply_not_found: Gjendja të cilës po provoni t’i përgjigjeni s’duket se ekziston.
     open_in_web: Hape në internet
@@ -1621,12 +1626,13 @@ sq:
       explanation: Kërkuat një kopjeruajtje të plotë të llogarisë tuaj Mastodon. E keni gati për shkarkim!
       subject: Arkivi juaj është gati për shkarkim
       title: Marrje arkivi me vete
-    sign_in_token:
-      details: 'Ja hollësitë e përpjekjes:'
-      explanation: 'Pikasëm një përpjekje për të bërë hyrje në llogarinë tuaj nga një adresë IP jo e pranuar. Nëse ky jeni ju, ju lutemi jepni kodin e sigurisë më poshtë te faqja e pyetjes për hyrje:'
-      further_actions: 'Nëse ky s’qetë ju, ju lutemi, ndryshoni fjalëkalimin tuaj dhe aktivizoni në llogarinë tuaj mirëfilltësim dyfaktorësh. Këtë mund ta bëni këtu:'
-      subject: Ju lutemi, ripohoni përpjekje hyrjeje
-      title: Përpjekje hyrjeje
+    suspicious_sign_in:
+      change_password: ndryshoni fjalëkalimin tuaj
+      details: 'Ja hollësitë për hyrjen:'
+      explanation: Kemi pikasur një hyrje në llogarinë tuaj që nga adresë e re IP.
+      further_actions_html: Nëse s’ishit ju, këshillojmë të %{action} menjëherë dhe të aktivizoni mirëfilltësim dyfaktorësh, për ta mbajtur llogarinë tuaj të sigurt.
+      subject: Llogaria juaj është përdorur që nga një adresë e re IP
+      title: Hyrje e re
     warning:
       appeal: Parashtroni një apelim
       appeal_description: Nëse besoni se është gabim, mund t’i parashtroni një apelim stafit të %{instance}.
@@ -1677,13 +1683,10 @@ sq:
       title: Mirë se vini, %{name}!
   users:
     follow_limit_reached: S’mund të ndiqni më tepër se %{limit} persona
-    generic_access_help_html: Problem me hyrjen në llogarinë tuaj? Për asistencë mund të lidheni me %{email}
     invalid_otp_token: Kod dyfaktorësh i pavlefshëm
-    invalid_sign_in_token: Kod sigurie i pavlefshëm
     otp_lost_help_html: Nëse humbët hyrjen te të dy, mund të lidheni me %{email}
     seamless_external_login: Jeni futur përmes një shërbimi të jashtëm, ndaj s’ka rregullime fjalëkalimi dhe email.
     signed_in_as: 'I futur si:'
-    suspicious_sign_in_confirmation: Duket se s’keni hyrë më parë nga kjo pajisje, dhe se keni kohë pa bërë hyrje, ndaj po ju dërgojmë një kod sigurie te adresa juaj email, që të ripohoni se jeni ju.
   verification:
     explanation_html: 'Mundeni <strong>të verifikoni veten si i zoti i lidhjeve te tejtëdhënat e profilit tuaj</strong>. Për këtë, sajti i lidhur duhet të përmbajë një lidhje për te profili juaj Mastodon. Lidhje për te ajo <strong>duhet</strong> të ketë një atribut <code>rel="me"</code>. Lënda tekst e lidhjes nuk ngre peshë. Ja një shembull:'
     verification: Verifikim

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
+  include FormattingHelper
+
   def perform
     dereference_object!
 
@@ -115,7 +117,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         language: @status_parser.language,
         spoiler_text: converted_object_type? ? '' : (@status_parser.spoiler_text || ''),
         created_at: @status_parser.created_at,
-        edited_at: @status_parser.edited_at,
+        edited_at: @status_parser.edited_at && @status_parser.edited_at != @status_parser.created_at ? @status_parser.edited_at : nil,
         override_timestamps: @options[:override_timestamps],
         reply: @status_parser.reply,
         sensitive: @account.sensitized? || @status_parser.sensitive || false,
@@ -367,7 +369,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def converted_text
-    Formatter.instance.linkify([@status_parser.title.presence, @status_parser.spoiler_text.presence, @status_parser.url || @status_parser.uri].compact.join("\n\n"))
+    linkify([@status_parser.title.presence, @status_parser.spoiler_text.presence, @status_parser.url || @status_parser.uri].compact.join("\n\n"))
   end
 
   def unsupported_media_type?(mime_type)

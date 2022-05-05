@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = @account.acct
+  = @account.pretty_acct
 
 - if @account.instance_actor?
   .flash-message.notice
@@ -16,16 +16,16 @@
         .account__header__fields
           - fields.each do |field|
             %dl
-              %dt.emojify{ title: field.name }= Formatter.instance.format_field(account, field.name, custom_emojify: true)
+              %dt.emojify{ title: field.name }= prerender_custom_emojis(h(field.name), account.emojis)
               %dd{ title: field.value, class: custom_field_classes(field) }
                 - if field.verified?
                   %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
                     = fa_icon 'check'
-                = Formatter.instance.format_field(account, field.value, custom_emojify: true)
+                = prerender_custom_emojis(account_field_value_format(field, with_rel_me: false), account.emojis)
 
     - if account.note.present?
       %div
-        .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+        .account__header__content.emojify= prerender_custom_emojis(account_bio_format(account), account.emojis)
 
 .dashboard__counters.admin-account-counters
   %div
@@ -128,17 +128,11 @@
             %td{ rowspan: can?(:reset_password, @account.user) ? 2 : 1 }
               - if @account.user&.two_factor_enabled?
                 = t 'admin.accounts.security_measures.password_and_2fa'
-              - elsif @account.user&.skip_sign_in_token?
-                = t 'admin.accounts.security_measures.only_password'
               - else
-                = t 'admin.accounts.security_measures.password_and_sign_in_token'
+                = t 'admin.accounts.security_measures.only_password'
             %td
               - if @account.user&.two_factor_enabled?
                 = table_link_to 'unlock', t('admin.accounts.disable_two_factor_authentication'), admin_user_two_factor_authentication_path(@account.user.id), method: :delete if can?(:disable_2fa, @account.user)
-              - elsif @account.user&.skip_sign_in_token?
-                = table_link_to 'lock', t('admin.accounts.enable_sign_in_token_auth'), admin_user_sign_in_token_authentication_path(@account.user.id), method: :post if can?(:enable_sign_in_token_auth, @account.user)
-              - else
-                = table_link_to 'unlock', t('admin.accounts.disable_sign_in_token_auth'), admin_user_sign_in_token_authentication_path(@account.user.id), method: :delete if can?(:disable_sign_in_token_auth, @account.user)
 
           - if can?(:reset_password, @account.user)
             %tr

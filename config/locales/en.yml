@@ -168,7 +168,6 @@ en:
       previous_strikes_description_html:
         one: This account has <strong>one</strong> strike.
         other: This account has <strong>%{count}</strong> strikes.
-        zero: This account is <strong>in good standing</strong>.
       promote: Promote
       protocol: Protocol
       public: Public
@@ -200,7 +199,6 @@ en:
       security_measures:
         only_password: Only password
         password_and_2fa: Password and 2FA
-        password_and_sign_in_token: Password and e-mail token
       sensitive: Force-sensitive
       sensitized: Marked as sensitive
       shared_inbox_url: Shared inbox URL
@@ -490,6 +488,7 @@ en:
           other: Failed attempts on %{count} different days.
         no_failures_recorded: No failures on record.
         title: Availability
+        warning: The last attempt to connect to this server has been unsuccessful
       back_to_all: All
       back_to_limited: Limited
       back_to_warning: Warning
@@ -518,6 +517,7 @@ en:
       delivery:
         all: All
         clear: Clear delivery errors
+        failing: Failing
         restart: Restart delivery
         stop: Stop delivery
         unavailable: Unavailable
@@ -529,7 +529,6 @@ en:
       known_accounts:
         one: "%{count} known account"
         other: "%{count} known accounts"
-        zero: No known account
       moderation:
         all: All
         limited: Limited
@@ -599,7 +598,7 @@ en:
       action_taken_by: Action taken by
       actions:
         delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
-        mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future refractions by the same account.
+        mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
         other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
         silence_description_html: The profile will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted.
@@ -774,6 +773,11 @@ en:
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_running_check:
+        message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
+      elasticsearch_version_check:
+        message_html: 'Incompatible Elasticsearch version: %{value}'
+        version_comparison: Elasticsearch %{running_version} is running while %{required_version} is required
       rules_check:
         action: Manage server rules
         message_html: You haven't defined any server rules.
@@ -796,9 +800,9 @@ en:
         shared_by_over_week:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
-          zero: Shared by noone over the last week
         title: Trending links
         usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+      only_allowed: Only allowed
       pending_review: Pending review
       preview_card_providers:
         allowed: Links from this publisher can trend
@@ -839,8 +843,8 @@ en:
         used_by_over_week:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
-          zero: Used by noone over the last week
       title: Trends
+      trending: Trending
     warning_presets:
       add_new: Add new
       delete: Delete
@@ -1235,8 +1239,8 @@ en:
         one: Also, you have acquired one new follower while being away! Yay!
         other: Also, you have acquired %{count} new followers while being away! Amazing!
       subject:
-        one: "1 new notification since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
+        one: "1 new notification since your last visit 🐘"
+        other: "%{count} new notifications since your last visit 🐘"
       title: In your absence...
     favourite:
       body: 'Your post was favourited by %{name}:'
@@ -1632,12 +1636,13 @@ en:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
-    sign_in_token:
-      details: 'Here are details of the attempt:'
-      explanation: 'We detected an attempt to sign in to your account from an unrecognized IP address. If this is you, please enter the security code below on the sign in challenge page:'
-      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
-      subject: Please confirm attempted sign in
-      title: Sign in attempt
+    suspicious_sign_in:
+      change_password: change your password
+      details: 'Here are details of the sign-in:'
+      explanation: We've detected a sign-in to your account from a new IP address.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Your account has been accessed from a new IP address
+      title: A new sign-in
     warning:
       appeal: Submit an appeal
       appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.
@@ -1688,13 +1693,10 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
-    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     invalid_otp_token: Invalid two-factor code
-    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
-    suspicious_sign_in_confirmation: You appear to not have logged in from this device before, so we're sending a security code to your e-mail address to confirm that it's you.
   verification:
     explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification

@@ -16,6 +16,7 @@ pl:
     contact: Kontakt
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
+    continue_to_web: Kontynuuj przez aplikację webową
     discover_users: Odkrywaj użytkowników
     documentation: Dokumentacja
     federation_hint_html: Z kontem na %{instance}, możesz śledzić użytkowników każdego serwera Mastodona i nie tylko.
@@ -25,6 +26,8 @@ pl:
       To konto jest wirtualnym nadawcą, używanym do reprezentacji serwera, a nie jakiegokolwiek użytkownika.
       Jest używane w celu federowania i nie powinno być blokowane, chyba że chcesz zablokować całą instację, w takim przypadku użyj blokady domeny.
     learn_more: Dowiedz się więcej
+    logged_in_as_html: Jesteś obecnie zalogowany/a jako %{username}.
+    logout_before_registering: Jesteś już zalogowany/a.
     privacy_policy: Polityka prywatności
     rules: Regulamin serwera
     rules_html: 'Poniżej znajduje się podsumowanie zasad, których musisz przestrzegać, jeśli chcesz mieć konto na tym serwerze Mastodona:'
@@ -170,10 +173,6 @@ pl:
       pending: Oczekuje na przegląd
       perform_full_suspension: Zawieś
       previous_strikes: Poprzednie ostrzeżenia
-      previous_strikes_description_html:
-        one: To konto ma <strong>jedno</strong> ostrzeżenie.
-        other: To konto ma <strong>%{count}</strong> ostrzeżeń.
-        zero: To konto jest <strong>w dobrym stanie</strong>.
       promote: Podnieś uprawnienia
       protocol: Protokół
       public: Publiczne
@@ -205,7 +204,6 @@ pl:
       security_measures:
         only_password: Tylko hasło
         password_and_2fa: Hasło i 2FA
-        password_and_sign_in_token: Hasło i token e-mail
       sensitive: Wrażliwe
       sensitized: oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
@@ -378,6 +376,7 @@ pl:
       enable: Włącz
       enabled: Włączone
       enabled_msg: Pomyślnie przywrócono emoji
+      image_hint: PNG lub GIF do %{size}
       list: Dodaj do listy
       listed: Widoczne
       new:
@@ -489,11 +488,36 @@ pl:
       title: Polecane konta
       unsuppress: Przywróć polecenie śledzenia konta
     instances:
+      availability:
+        failure_threshold_reached: Próg niepowodzenia osiągnięty dnia %{date}.
+        no_failures_recorded: Brak błędów w rejestrze.
+        title: Dostępność
+        warning: Ostatnia próba połączenia z tym serwerem zakończyła się niepowodzeniem
       back_to_all: Wszystkie
       back_to_limited: Ograniczone
       back_to_warning: Ostrzeżenie
       by_domain: Domena
       confirm_purge: Czy na pewno chcesz trwale usunąć dane z tej domeny?
+      content_policies:
+        comment: Wewnętrzna notatka
+        description_html: Możesz zdefiniować zasady treści, które zostaną zastosowane do wszystkich kont z tej domeny i jej subdomen.
+        policies:
+          reject_media: Odrzucaj media
+          reject_reports: Odrzucaj zgłoszenia
+          silence: Ogranicz
+          suspend: Zawieś
+        policy: Polityka
+        reason: Powód publiczny
+        title: Polityki zawartości
+      dashboard:
+        instance_accounts_dimension: Najczęściej śledzone konta
+        instance_accounts_measure: przechowywane konta
+        instance_followers_measure: nasi śledzący tam
+        instance_follows_measure: ich śledzący tutaj
+        instance_languages_dimension: Najpopularniejsze języki
+        instance_media_attachments_measure: przechowywane załączniki multimedialne
+        instance_reports_measure: zgłoszenia dotyczące ich
+        instance_statuses_measure: przechowywane wpisy
       delivery:
         all: Wszystkie
         clear: Wyczyść błędy w doręczaniu
@@ -512,12 +536,14 @@ pl:
       private_comment: Prywatny komentarz
       public_comment: Publiczny komentarz
       purge: Wyczyść
+      purge_description_html: Jeśli uważasz, że ta domena została zamknięta na dobre, możesz usunąć wszystkie rejestry konta i powiązane dane z tej domeny z pamięci. Proces ten może chwilę potrwać.
       title: Znane instancje
       total_blocked_by_us: Zablokowane przez nas
       total_followed_by_them: Śledzeni przez nich
       total_followed_by_us: Śledzeni przez nas
       total_reported: Zgłoszenia dotyczące ich
       total_storage: Załączniki multimedialne
+      totals_time_period_hint_html: Poniższe sumy zawierają dane od początku serwera.
     invites:
       deactivate_all: Unieważnij wszystkie
       filter:
@@ -574,7 +600,7 @@ pl:
       action_taken_by: Działanie podjęte przez
       actions:
         delete_description_html: Zgłoszone posty zostaną usunięte, a zdarzenie zostanie zapisane, aby pomóc w eskalacji przyszłych wykroczeń na tym samym koncie.
-        mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
+        mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagrane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
         other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
         resolve_description_html: Nie zostaną podjęte żadne działania przeciwko zgłoszonemu sprawozdaniu, zdarzenie nie zostanie zarejestrowane, a zgłoszenie zostanie zamknięte.
         silence_description_html: Profil będzie widoczny tylko dla tych, którzy go już obserwują lub szukaj ręcznie, poważnie ograniczając jego zasięg. Może być zawsze cofnięty.
@@ -607,6 +633,7 @@ pl:
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
       quick_actions_description_html: 'Wykonaj szybkie działanie lub przewiń w dół, aby zobaczyć zgłoszoną zawartość:'
+      remote_user_placeholder: zdalny użytkownik z %{instance}
       reopen: Otwórz ponownie
       report: 'Zgłoszenie #%{id}'
       reported_account: Zgłoszone konto
@@ -748,6 +775,11 @@ pl:
     system_checks:
       database_schema_check:
         message_html: Istnieją oczekujące migracje bazy danych. Uruchom je, aby upewnić się, że aplikacja działa tak, jak powinna
+      elasticsearch_running_check:
+        message_html: Nie można połączyć się z Elasticsearch. Sprawdź czy jest uruchomiony lub wyłącz wyszukiwanie pełnotekstowe
+      elasticsearch_version_check:
+        message_html: 'Niekompatybilna wersja Elasticsearch: %{value}'
+        version_comparison: Elasticsearch w wersji %{running_version} jest uruchomiony, ale wymagana wersja to %{required_version}
       rules_check:
         action: Zarządzaj regułami serwera
         message_html: Nie zdefiniowano żadnych reguł serwera.
@@ -769,17 +801,21 @@ pl:
         disallow_provider: Nie zezwalaj na wydawcę
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
+      only_allowed: Tylko dozwolone
       pending_review: Oczekuje na przegląd
       preview_card_providers:
         allowed: Linki od tego wydawcy mogą podlegać trendom
+        description_html: Są to domeny, z których linki są często udostępniane na Twoim serwerze. Linki nie będą się rozwijały publicznie, chyba że domena linku zostanie zatwierdzona. Twoja zgoda (lub odrzucenie) rozciąga się na subdomeny.
         rejected: Linki od tego wydawcy nie mogą podlegać trendom
         title: Wydawcy
       rejected: Odrzucono
       statuses:
         allow: Zezwól na post
         allow_account: Zezwól na autora
+        description_html: Są to wpisy, o których Twój serwer wie i które są obecnie często udostępniane i dodawane do ulubionych. Może to pomóc nowym i powracającym użytkownikom znaleźć więcej osób do śledzenia. Żadne posty nie są wyświetlane publicznie, dopóki nie zatwierdzisz autora, a autor ustawi zezwolenie na wyświetlanie się w katalogu. Możesz również zezwolić lub odrzucić poszczególne posty.
         disallow: Nie zezwalaj na post
         disallow_account: Nie zezwalaj na autora
+        not_discoverable: Autor nie włączył opcji, by być wyświetlany w katalogu
         title: Popularne teraz
       tags:
         current_score: Bieżący wynik %{score}
@@ -789,6 +825,7 @@ pl:
           tag_servers_dimension: Najlepsze serwery
           tag_servers_measure: różne serwery
           tag_uses_measure: użyć łącznie
+        description_html: To są hasztagi, które obecnie pojawiają się w wielu wpisach, które widzisz na serwerze. Może to pomóc Twoim użytkownikom dowiedzieć się, o czym obecnie ludzie najchętniej rozmawiają. Żadne hasztagi nie są wyświetlane publicznie, dopóki ich nie zaakceptujesz.
         listable: Można zasugerować
         not_listable: Nie można zasugerować
         not_trendable: Nie pojawia się pod trendami
@@ -799,7 +836,13 @@ pl:
         trending_rank: 'Popularne #%{rank}'
         usable: Może być użyty
         usage_comparison: Używane %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
+        used_by_over_week:
+          few: Użyte przez %{count} osoby w ciągu ostatniego tygodnia
+          many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
+          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
+          other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
       title: Na czasie
+      trending: Popularne
     warning_presets:
       add_new: Dodaj nowy
       delete: Usuń
@@ -830,6 +873,17 @@ pl:
       body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
       new_trending_links:
         no_approved_links: Obecnie nie ma zatwierdzonych linków trendów.
+        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych linków, który wynosi obecnie "%{lowest_link_title}" z wynikiem %{lowest_link_score}.'
+        title: Popularne linki
+      new_trending_statuses:
+        no_approved_statuses: Obecnie nie ma zatwierdzonych popularnych linków.
+        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych teraz wpisów, który wynosi obecnie %{lowest_status_url} z wynikiem %{lowest_status_score}.'
+        title: Popularne teraz
+      new_trending_tags:
+        no_approved_tags: Obecnie nie ma żadnych zatwierdzonych popularnych hasztagów.
+        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych teraz hasztagów, który wynosi obecnie %{lowest_tag_name} z wynikiem %{lowest_tag_score}.'
+        title: Popularne hasztagi
+      subject: Nowe popularne do przeglądu na %{instance}
   aliases:
     add_new: Utwórz alias
     created_msg: Pomyślnie utworzono nowy alias. Możesz teraz rozpocząć przenoszenie ze starego konta.
@@ -903,8 +957,10 @@ pl:
     status:
       account_status: Stan konta
       confirming: Oczekiwanie na potwierdzenie adresu e-mail.
+      functional: Twoje konto jest w pełni funkcjonalne.
       pending: Twoje zgłoszenie czeka na zatwierdzenie przez nas. Może to trochę potrwać. Jeżeli zgłoszenie zostanie przyjęte, otrzymasz wiadomość e-mail.
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
+      view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     trouble_logging_in: Masz problem z zalogowaniem się?
     use_security_key: Użyj klucza bezpieczeństwa
@@ -980,6 +1036,7 @@ pl:
         submit: Zgłoś odwołanie
       associated_report: Powiązany raport
       created_at: Data
+      description_html: Są to działania podjęte przeciwko Twojemu kontu i ostrzeżenia wysłane do ciebie przez administrację %{instance}.
       recipient: Adresowane do
       status: 'Post #%{id}'
       status_removed: Post został już usunięty z systemu
@@ -1186,10 +1243,10 @@ pl:
         one: Dodatkowo, w czasie nieobecności zaczęła śledzić Cię jedna osoba Gratulacje!
         other: Dodatkowo, zaczęło Cię śledzić %{count} nowych osób! Wspaniale!
       subject:
-        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty \U0001F418"
-        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
-        one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
-        other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
+        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty 🐘"
+        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
+        one: "1 nowe powiadomienie od Twojej ostatniej wizyty 🐘"
+        other: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
       title: W trakcie Twojej nieobecności…
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'
@@ -1217,6 +1274,8 @@ pl:
       title: Nowe podbicie
     status:
       subject: "%{name} właśnie opublikował(a) wpis"
+    update:
+      subject: "%{name} edytował/a wpis"
   notifications:
     email_events: 'Powiadamiaj e-mailem o:'
     email_events_hint: 'Wybierz wydarzenia, o których chcesz otrzymywać powiadomienia:'
@@ -1367,6 +1426,7 @@ pl:
     profile: Profil
     relationships: Śledzeni i śledzący
     statuses_cleanup: Automatyczne usuwanie posta
+    strikes: Ostrzeżenia moderacyjne
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     webauthn_authentication: Klucze bezpieczeństwa
   statuses:
@@ -1395,6 +1455,7 @@ pl:
       many: 'zawiera niedozwolone hashtagi: %{tags}'
       one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
+    edited_at_html: Edytowane %{date}
     errors:
       in_reply_not_found: Post, na który próbujesz odpowiedzieć, nie istnieje.
     open_in_web: Otwórz w przeglądarce
@@ -1457,7 +1518,7 @@ pl:
       '2629746': 1 miesiąc
       '31556952': 1 rok
       '5259492': 2 miesiące
-      '604800': 1 week
+      '604800': 1 tydzień
       '63113904': 2 lata
       '7889238': 3 miesiące
     min_age_label: Próg wieku
@@ -1581,21 +1642,32 @@ pl:
   user_mailer:
     appeal_approved:
       action: Przejdź do swojego konta
+      explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało zatwierdzone. Twoje konto jest ponownie w dobrej kondycji.
+      subject: Twoje odwołanie z dnia %{date} zostało zatwierdzone
+      title: Odwołanie zatwierdzone
+    appeal_rejected:
+      explanation: Twoje odwołanie dotyczące ostrzeżenia nałożonego na twoje konto dnia %{strike_date}, które zostało wysłane dnia %{appeal_date} zostało odrzucone.
+      subject: Twoje odwołanie z dnia %{date} zostało odrzucone
+      title: Odwołanie odrzucone
     backup_ready:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
       title: Odbiór archiwum
-    sign_in_token:
-      details: 'Oto szczegóły próby:'
-      explanation: 'Wykryliśmy próbę zalogowania na Twoje konto z adresu IP którego nie możemy rozpoznać. Jeżeli to Ty, wprowadź poniższy kod na stronie logowania:'
-      further_actions: 'Jeśli to nie Ty, zmień swoje hasło i włącz weryfikację dwuetapową na swoim koncie. Możesz to zrobić tutaj:'
-      subject: Potwierdź próbę zalogowania
-      title: Próba logowania
+    suspicious_sign_in:
+      change_password: zmień hasło
+      details: 'Oto szczegóły logowania:'
+      explanation: Wykryliśmy logowanie na Twoje konto z nowego adresu IP.
+      further_actions_html: Jeśli to nie Ty, zalecamy %{action} natychmiastowo i włącz uwierzytelnianie dwuetapowe, aby Twoje konto było bezpieczne.
+      subject: Uzyskano dostęp do twojego konta z nowego adresu IP
+      title: Nowe logowanie
     warning:
+      appeal: Złóż odwołanie
+      appeal_description: Jeśli uważasz, że zaszło nieporozumienie, możesz złożyć odwołanie do zespołu %{instance}.
       categories:
         spam: Spam
         violation: Zawartość narusza następujące wytyczne społeczności
       explanation:
+        delete_statuses: Stwierdzono, że niektóre z twoich wpisów łamią jedną lub więcej wytycznych dla społeczności, przez co zostały usunięte przez moderatorów %{instance}.
         disable: Nie możesz już używać swojego konta, ale Twój profil i inne dane pozostają nienaruszone. Możesz poprosić o kopię swoich danych, zmienić ustawienia konta lub usunąć swoje konto.
         mark_statuses_as_sensitive: Niektóre z Twoich postów zostały oznaczone jako wrażliwe przez moderatorów %{instance}. Oznacza to, że ludzie będą musieli dotknąć mediów w postach przed wyświetleniem podglądu. Możesz oznaczyć media jako wrażliwe podczas publikowania w przyszłości.
         sensitive: Od teraz wszystkie przesłane pliki multimedialne będą oznaczone jako wrażliwe i ukryte za ostrzeżeniem kliknięcia.
@@ -1638,13 +1710,10 @@ pl:
       title: Witaj na pokładzie, %{name}!
   users:
     follow_limit_reached: Nie możesz śledzić więcej niż %{limit} osób
-    generic_access_help_html: Nie możesz uzyskać dostępu do konta? Skontaktuj się z %{email} aby uzyskać pomoc
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
-    invalid_sign_in_token: Nieprawidłowy kod zabezpieczający
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'
-    suspicious_sign_in_confirmation: Wygląda na to, że nie logowałeś się wcześniej z tego urządzenia i przez jakiś czas nie logowałeś się, więc wysłaliśmy na Twój adres e-mail kod zabezpieczający, aby potwierdzić, że to Ty.
   verification:
     explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela stron, do których odnośniki znajdują się w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
     verification: Weryfikacja

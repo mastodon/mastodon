@@ -187,7 +187,6 @@ zh-HK:
       security_measures:
         only_password: 僅密碼
         password_and_2fa: 密碼和兩步認證
-        password_and_sign_in_token: 密碼與 e-mail 驗證碼
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
       shared_inbox_url: 公共收件箱（Shared Inbox）URL
@@ -595,7 +594,7 @@ zh-HK:
         desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
         title: 本站詳細資訊
       site_short_description:
-        desc_html: 顯示在側邊欄和網頁標籤(meta tags)。以一句話描述Mastodon是甚麼，有甚麼令這個伺服器脫\U000294D9而出。
+        desc_html: "顯示在側邊欄和網頁標籤(meta tags)。以一句話描述Mastodon是甚麼，有甚麼令這個伺服器脫𩓙而出。"
         title: 伺服器短描述
       site_terms:
         desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
@@ -964,8 +963,6 @@ zh-HK:
       mention: "%{name} 在此提及了你︰"
       new_followers_summary:
         other: 你新獲得了 %{count} 位關注者了！好厲害！
-      subject:
-        other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
       title: 在你不在的這段時間……
     favourite:
       body: 你的文章被 %{name} 喜愛：
@@ -1335,12 +1332,6 @@ zh-HK:
       explanation: 你要求的 Mastodon 帳號完整備份檔案現已就緒，可供下載。
       subject: 你的備份檔已可供下載
       title: 檔案匯出
-    sign_in_token:
-      details: 這是嘗試的詳細資訊
-      explanation: 我們發現有人嘗試以未使用過的 IP 位址登入到你的帳號。 如果這個登入的人是你，請在「登入請求」頁面上輸入以下安全代碼：
-      further_actions: 如果這不是你，請到這裏更改你的密碼，並啟用雙重認證：
-      subject: 請確認登入請求
-      title: 登入請求
     warning:
       subject:
         disable: 你的帳號 %{acct} 已經被涷結
@@ -1371,13 +1362,10 @@ zh-HK:
       title: 歡迎 %{name} 加入！
   users:
     follow_limit_reached: 你不能關注多於%{limit} 人
-    generic_access_help_html: 不能登入？你可以寄電郵至 %{email} 尋求協助
     invalid_otp_token: 雙重認證碼不正確
-    invalid_sign_in_token: 無效的安全碼
     otp_lost_help_html: 如果這兩者你均無法登入，你可以聯繫 %{email}
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：
-    suspicious_sign_in_confirmation: 你似乎未曾從此設備登入，而你又有一段時間沒有登入了。我們剛剛把安全碼傳送到你的電郵地址，請查看你的電郵信箱，以確認你是帳號擁有者本人。
   verification:
     explanation_html: 你可以<strong>認證個人資料頁面的元數據 (Metadata) 連結是屬於你的</strong>。要認證，那些連結的目的地網站必須有一條回到你 Mastodon 個人頁面的連結，而且連結<strong>必須</strong>具有<code>rel="me"</code>屬性。連結的文字內容都不會影響認證。這裏有一個例子：
     verification: 驗證

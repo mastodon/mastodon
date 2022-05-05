@@ -4,12 +4,12 @@
   .batch-table__row__content
     .status__content><
       - if status.proper.spoiler_text.blank?
-        = Formatter.instance.format(status.proper, custom_emojify: true)
+        = prerender_custom_emojis(status_content_format(status.proper), status.proper.emojis)
       - else
         %details<
           %summary><
-            %strong> Content warning: #{Formatter.instance.format_spoiler(status.proper)}
-          = Formatter.instance.format(status.proper, custom_emojify: true)
+            %strong> Content warning: #{prerender_custom_emojis(h(status.proper.spoiler_text), status.proper.emojis)}
+          = prerender_custom_emojis(status_content_format(status.proper), status.proper.emojis)
 
     - unless status.proper.ordered_media_attachments.empty?
       - if status.proper.ordered_media_attachments.first.video?

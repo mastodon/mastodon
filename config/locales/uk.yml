@@ -16,6 +16,7 @@ uk:
     contact: Зв'язатися
     contact_missing: Не зазначено
     contact_unavailable: Недоступно
+    continue_to_web: Перейти до вебзастосунку
     discover_users: Знайдіть цікавих користувачів
     documentation: Документація
     federation_hint_html: З обліковим записом на %{instance} ви зможете слідкувати за людьми на будь-якому сервері Mastodon та поза ним.
@@ -23,6 +24,7 @@ uk:
     hosted_on: Mastodon розміщено на %{domain}
     instance_actor_flash: "Цей обліковий запис є віртуальною особою, яка використовується для представлення самого сервера, а не певного користувача. Він використовується для потреб федерації і не повинен бути заблокований, якщо тільки ви не хочете заблокувати весь сервер, у цьому випадку ви повинні скористатися блокуванням домену. \n"
     learn_more: Дізнатися більше
+    logged_in_as_html: Зараз ви увійшли як %{username}.
     logout_before_registering: Ви вже увійшли.
     privacy_policy: Політика приватності
     rules: Правила сервера
@@ -199,7 +201,6 @@ uk:
       security_measures:
         only_password: Лише пароль
         password_and_2fa: Пароль та 2FA
-        password_and_sign_in_token: Пароль та токен з е-пошти
       sensitive: Делікатне
       sensitized: позначено делікатним
       shared_inbox_url: URL спільного вхідного кошика
@@ -391,6 +392,21 @@ uk:
       media_storage: Медіасховище
       new_users: нові користувачі
       opened_reports: звітів відкрито
+      pending_reports_html:
+        few: "<strong>%{count}</strong> звіти у черзі"
+        many: "<strong>%{count}</strong> звітів у черзі"
+        one: "<strong>%{count}</strong> звіт у черзі"
+        other: "<strong>%{count}</strong> звіти у черзі"
+      pending_tags_html:
+        few: "<strong>%{count}</strong> хештеґи у черзі"
+        many: "<strong>%{count}</strong> хештеґів у черзі"
+        one: "<strong>%{count}</strong> хештеґ у черзі"
+        other: "<strong>%{count}</strong> хештеґа у черзі"
+      pending_users_html:
+        few: "<strong>%{count}</strong> користувачі у черзі"
+        many: "<strong>%{count}</strong> користувачів у черзі"
+        one: "<strong>%{count}</strong> користувач у черзі"
+        other: "<strong>%{count}</strong> користувача у черзі"
       resolved_reports: розв'язані звіти
       software: Програмне забезпечення
       sources: Джерела реєстрації
@@ -438,12 +454,22 @@ uk:
       view: Переглянути заблоковані домени
     email_domain_blocks:
       add_new: Додати
+      attempts_over_week:
+        few: "%{count} спроби входу за останній тиждень"
+        many: "%{count} спроб входу за останній тиждень"
+        one: "%{count} спроба за останній тиждень"
+        other: "%{count} спроби входу за останній тиждень"
       created_msg: Успішно додано поштовий домен до чорного списку
       delete: Видалити
+      dns:
+        types:
+          mx: MX-запис
       domain: Домен
       new:
         create: Додати домен
+        resolve: Розв'язати домен
         title: Нове блокування поштового домену
+      resolved_through_html: Розв'язано через %{domain}
       title: Чорний список поштових доменів
     follow_recommendations:
       description_html: "<strong>Слідувати рекомендаціям та допомогти новим користувачам швидко знайти цікавий вміст</strong>. Коли користувачі не взаємодіяли з іншими людьми достатньо, щоб сформувати персоналізовані рекомендації, радимо замість цього вказувати ці облікові записи. Вони щоденно переобчислюються з масиву облікових записів з найбільшою кількістю недавніх взаємодій і найбільшою кількістю місцевих підписників розраховується для цієї мови."
@@ -454,12 +480,15 @@ uk:
       title: Поради щодо підписок
       unsuppress: Відновити поради щодо підписок
     instances:
+      availability:
+        title: Доступність
       back_to_all: Усі
       back_to_limited: Обмежені
       back_to_warning: Попередження
       by_domain: Домен
       confirm_purge: Ви впевнені, що хочете видалити ці дані з цього домену?
       content_policies:
+        comment: Внутрішня примітка
         policies:
           reject_media: Відхилити медіа
           reject_reports: Відхилити скарги
@@ -469,10 +498,18 @@ uk:
         reason: Суспільна причина
         title: Політика вмісту
       dashboard:
+        instance_accounts_dimension: Найвідстежуваніші облікові записи
+        instance_accounts_measure: розміщені облікові записи
+        instance_followers_measure: наші підписники там
+        instance_follows_measure: їхні підписники тут
         instance_languages_dimension: Найуживаніші мови
+        instance_media_attachments_measure: розміщені медіавкладення
+        instance_reports_measure: звітів про них
+        instance_statuses_measure: розміщені дописи
       delivery:
         all: Усі
         clear: Очистити помилки доставляння
+        failing: Невдалі
         restart: Перезапустити доставляння
         stop: Припинити доставляння
         unavailable: Недоступно
@@ -482,9 +519,10 @@ uk:
       destroyed_msg: Дані з %{domain} тепер у черзі на видалення.
       empty: Доменів не знайдено.
       known_accounts:
+        few: "%{count} відомі облікові записи"
+        many: "%{count} відомих облікових записів"
         one: "%{count} відомий обліковий запис"
         other: "%{count} відомих облікових записів"
-        zero: Немає відомих облікових записів
       moderation:
         all: Усі
         limited: Обмежені
@@ -571,6 +609,7 @@ uk:
       forwarded: Переслано
       forwarded_to: Переслано до %{domain}
       mark_as_resolved: Відмітити як вирішену
+      mark_as_sensitive: Позначити делікатним
       mark_as_unresolved: Відмітити як невирішену
       no_one_assigned: Ніхто
       notes:
@@ -581,6 +620,7 @@ uk:
         placeholder: Опишіть, які дії були виконані, або інші зміни, що стосуються справи...
         title: Примітки
       notes_description_html: Переглядайте та залишайте примітки для інших модераторів та для себе на майбутнє
+      remote_user_placeholder: віддалений користувач із %{instance}
       reopen: Перевідкрити скаргу
       report: 'Скарга #%{id}'
       reported_account: Обліковий запис порушника
@@ -713,6 +753,14 @@ uk:
     strikes:
       actions:
         delete_statuses: "%{name} видаляє допис від %{target}"
+        disable: "%{name} заморожує обліковий запис %{target}"
+        mark_statuses_as_sensitive: "%{name} позначає допис від %{target} делікатним"
+        none: "%{name} надсилає попередження до %{target}"
+        sensitive: "%{name} позначає обліковий запис %{target} делікатним"
+        silence: "%{name} обмежує обліковий запис %{target}"
+        suspend: "%{name} заморожує обліковий запис %{target}"
+      appeal_approved: Оскаржено
+      appeal_pending: Оскарження в очікуванні
     system_checks:
       database_schema_check:
         message_html: Існують відкладені перенесення бази даних. Запустіть їх, щоб забезпечити очікувану роботу програми
@@ -745,7 +793,9 @@ uk:
       statuses:
         allow: Дозволити оприлюднення
         allow_account: Дозволити автора
+        disallow: Заборонити допис
         disallow_account: Заборонити автора
+        title: Популярні дописи
       tags:
         current_score: Поточний результат %{score}
         dashboard:
@@ -764,6 +814,11 @@ uk:
         trending_rank: 'Популярність #%{rank}'
         usable: Може бути використано
         usage_comparison: Сьогодні використано %{today} разів, у порівнянні з %{yesterday} вчора
+        used_by_over_week:
+          few: Використали %{count} людини за минулий тиждень
+          many: Використали %{count} людей за минулий тиждень
+          one: Використала одна людина за минулий тиждень
+          other: Використали %{count} людей за минулий тиждень
       title: Популярні
     warning_presets:
       add_new: Додати новий
@@ -776,6 +831,7 @@ uk:
       actions:
         delete_statuses: щоб видалити їхні дописи
         disable: щоб заморозити їхній обліковий запис
+        mark_statuses_as_sensitive: позначати їхні повідомлення делікатними
         none: попередження
         sensitive: щоб позначати їхній обліковий запис делікатним
         silence: щоб обмежити їхній обліковий запис
@@ -789,6 +845,16 @@ uk:
       body: "%{reporter} поскаржився(-лася) на %{target}"
       body_remote: Хтось з домену %{domain} поскаржився(-лася) на %{target}
       subject: Нова скарга до %{instance} (#%{id})
+    new_trends:
+      new_trending_links:
+        title: Популярні посилання
+      new_trending_statuses:
+        no_approved_statuses: На цей час немає схвалених популярних дописів.
+        title: Популярні дописи
+      new_trending_tags:
+        no_approved_tags: На цей час немає схвалених популярних хештегів.
+        title: Популярні хештеги
+      subject: Нове популярне до розгляду на %{instance}
   aliases:
     add_new: Створити псевдонім
     created_msg: Новий псевдонім успішно створено. Тепер ви можете починати переміщення зі старого облікового запису.
@@ -862,6 +928,7 @@ uk:
     status:
       account_status: Статус облікового запису
       confirming: Очікуємо на завершення підтвердження за допомогою електронної пошти.
+      functional: Ваш обліковий запис повністю робочий.
       pending: Ваша заява очікує на розгляд нашим персоналом. Це може зайняти деякий час. Ви отримаєте електронний лист, якщо ваша заява буде схвалена.
       redirecting_to: Ваш обліковий запис наразі неактивний, тому що він перенаправлений до %{acct}.
     too_fast: Форму подано занадто швидко, спробуйте ще раз.
@@ -938,13 +1005,16 @@ uk:
         submit: Подати апеляцію
       associated_report: Пов'язана скарга
       created_at: Застарілі
+      recipient: Адресант
       status: 'Допис #%{id}'
       status_removed: Допис уже вилучено з системи
       title: "%{action} від %{date}"
       title_actions:
         delete_statuses: Вилучення допису
         disable: Заморожування облікового запису
+        mark_statuses_as_sensitive: Позначати дописи делікатними
         none: Попередження
+        sensitive: Позначення облікового запису делікатним
         silence: Обмеження облікового запису
         suspend: Призупинення облікового запису
       your_appeal_approved: Вашу апеляцію було схвалено
@@ -983,7 +1053,7 @@ uk:
     csv: CSV
     domain_blocks: Блокування доменів
     lists: Списки
-    mutes: Список глушення
+    mutes: Список нехтуваних
     storage: Ваш медіаконтент
   featured_tags:
     add_new: Додати новий
@@ -1125,9 +1195,12 @@ uk:
     title: Модерація
   move_handler:
     carry_blocks_over_text: Цей користувач переїхав з %{acct}, який ви заблокували.
-    carry_mutes_over_text: Цей користувач переїхав з %{acct}, який ви заглушили.
+    carry_mutes_over_text: Цей користувач переїхав з %{acct}, який ви нехтуєте.
     copy_account_note_text: 'Цей користувач був переміщений з %{acct}, ось ваші попередні нотатки:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} приєднується"
     digest:
       action: Показати усі сповіщення
       body: Коротко про пропущене вами з Вашого останнього входу %{since}
@@ -1137,11 +1210,6 @@ uk:
         many: У Вас з'явилось %{count} нових підписників! Чудово!
         one: Також, у Вас з'явився новий підписник, коли ви були відсутні! Ура!
         other: Також, у Вас з'явилось %{count} нових підписників, поки ви були відсутні! Чудово!
-      subject:
-        few: "%{count} нові сповіщення з Вашого останнього входу \U0001F418"
-        many: "%{count} нових сповіщень з Вашого останнього входу \U0001F418"
-        one: "1 нове сповіщення з Вашого останнього входу \U0001F418"
-        other: "%{count} нових сповіщень з Вашого останнього входу \U0001F418"
       title: Поки ви були відсутні...
     favourite:
       body: 'Ваш статус подобається %{name}:'
@@ -1459,17 +1527,19 @@ uk:
       subject: Вашу апеляцію від %{date} було схвалено
       title: Апеляцію схвалено
     appeal_rejected:
+      subject: Вашу апеляцію від %{date} було відхилено
       title: Апеляцію відхилено
     backup_ready:
       explanation: Ви робили запит повної резервної копії вашого облікового запису Mastodon. Вона вже готова для завантаження!
       subject: Ваш архів готовий до завантаження
       title: Винесення архіву
-    sign_in_token:
-      details: 'Детальніше про спробу входу:'
-      explanation: 'Ми виявили спробу входу до вашого облікового запису з невідомої IP-адреси. Якщо це ви, будь ласка, введіть наведений нижче код безпеки на сторінці входу:'
-      further_actions: 'Якщо це були не ви, будь ласка, змініть свій пароль та увімкніть двофакторну автентифікацію для вашого облікового запису. Ви можете зробити це тут:'
-      subject: Будь ласка, підтвердіть спробу входу
-      title: Спроба входу
+    suspicious_sign_in:
+      change_password: змінити свій пароль
+      details: 'Відомості про вхід:'
+      explanation: Ми виявили вхід до вашого облікового запису з нової IP-адреси.
+      further_actions_html: Якщо це були не ви. Радимо вам негайно %{action} й увімкнути двоетапну перевірку, щоб уберегти свій обліковий запис.
+      subject: До вашого облікового запису отримано доступ з нової IP-адреси
+      title: Новий вхід
     warning:
       appeal: Подати апеляцію
       categories:
@@ -1490,7 +1560,9 @@ uk:
       title:
         delete_statuses: Дописи вилучено
         disable: Обліковий запис заморожено
+        mark_statuses_as_sensitive: Дописи позначено делікатними
         none: Попередження
+        sensitive: Обліковий запис позначено делікатним
         silence: Ообліковий запис обмежено
         suspend: Обліковий запис призупинено
     welcome:
@@ -1512,13 +1584,10 @@ uk:
       title: Ласкаво просимо, %{name}!
   users:
     follow_limit_reached: Не можна слідкувати більш ніж за %{limit} людей
-    generic_access_help_html: Не вдається отримати доступ до облікового запису? Ви можете зв'язатися з %{email} для допомоги
     invalid_otp_token: Введено неправильний код
-    invalid_sign_in_token: Хибний код безпеки
     otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
     seamless_external_login: Ви увійшли за допомогою зовнішнього сервісу, тому налаштування паролю та електронної пошти недоступні.
     signed_in_as: 'Ви увійшли як:'
-    suspicious_sign_in_confirmation: Здається, ви не входили до цього облікового запису з цього пристрою, а також не входили взагалі деякий час, таким чином ми надсилаємо код безпеки на вашу адресу електронної пошти, щоб підтвердити, що це ви.
   verification:
     explanation_html: 'Володіння посиланнями у профілі <strong>можна підтвердити</strong>. Для цього на зазначеному сайті повинна міститися посилання на ваш профіль Mastodon, а у самому посиланні <strong>повинен</strong> бути атрибут <code>rel="me"</code>. Що всередині посилання - значення не має. Ось вам приклад посилання:'
     verification: Підтвердження

@@ -59,9 +59,7 @@ module Mastodon
         index.specification.lock!
       end
 
-      db_config = ActiveRecord::Base.configurations[Rails.env].dup
-      db_config['pool'] = options[:concurrency] + 1
-      ActiveRecord::Base.establish_connection(db_config)
+      reset_connection_pools!
 
       pool    = Concurrent::FixedThreadPool.new(options[:concurrency])
       added   = Concurrent::AtomicFixnum.new(0)
@@ -139,6 +137,9 @@ module Mastodon
                 sleep 1
               rescue => e
                 progress.log pastel.red("Error importing #{index}: #{e}")
+              ensure
+                RedisConfiguration.pool.checkin if Thread.current[:redis]
+                Thread.current[:redis] = nil
               end
             end
           end

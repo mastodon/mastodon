@@ -40,7 +40,7 @@
                                 %p= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance
 
                               - unless @warning.text.blank?
-                                = Formatter.instance.linkify(@warning.text)
+                                = linkify(@warning.text)
 
                               - if @warning.report && !@warning.report.other?
                                 %p

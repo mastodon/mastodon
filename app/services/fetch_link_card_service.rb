@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FetchLinkCardService < BaseService
+  include Redisable
+
   URL_PATTERN = %r{
     (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
     (                                                                                                                           #   $2 URL
@@ -134,7 +136,7 @@ class FetchLinkCardService < BaseService
     when 'video'
       @card.width            = embed[:width].presence  || 0
       @card.height           = embed[:height].presence || 0
-      @card.html             = Formatter.instance.sanitize(embed[:html], Sanitize::Config::MASTODON_OEMBED)
+      @card.html             = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
       @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no
@@ -155,6 +157,6 @@ class FetchLinkCardService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "fetch:#{@original_url}", autorelease: 15.minutes.seconds }
+    { redis: redis, key: "fetch:#{@original_url}", autorelease: 15.minutes.seconds }
   end
 end

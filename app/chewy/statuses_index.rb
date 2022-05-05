@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class StatusesIndex < Chewy::Index
+  include FormattingHelper
+
   settings index: { refresh_interval: '15m' }, analysis: {
     filter: {
       english_stop: {
@@ -53,11 +55,16 @@ class StatusesIndex < Chewy::Index
     data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
   end
 
+  crutch :votes do |collection|
+    data = ::PollVote.joins(:poll).where(poll: { status_id: collection.map(&:id) }).where(account: Account.local).pluck(:status_id, :account_id)
+    data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
+  end
+
   root date_detection: false do
     field :id, type: 'long'
     field :account_id, type: 'long'
 
-    field :text, type: 'text', value: ->(status) { [status.spoiler_text, Formatter.instance.plaintext(status)].concat(status.ordered_media_attachments.map(&:description)).concat(status.preloadable_poll ? status.preloadable_poll.options : []).join("\n\n") } do
+    field :text, type: 'text', value: ->(status) { status.searchable_text } do
       field :stemmed, type: 'text', analyzer: 'content'
     end
 

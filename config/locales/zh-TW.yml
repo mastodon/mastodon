@@ -160,9 +160,7 @@ zh-TW:
       perform_full_suspension: 停權
       previous_strikes: 先前的警示
       previous_strikes_description_html:
-        one: 此帳號已有 <strong>1</strong> 次警示。
         other: 此帳號已有 <strong>%{count}</strong> 次警示。
-        zero: 此帳號<strong>信譽良好</strong>。
       promote: 晉級
       protocol: 協議
       public: 公開
@@ -194,7 +192,6 @@ zh-TW:
       security_measures:
         only_password: 僅使用密碼
         password_and_2fa: 密碼及二重因素驗證
-        password_and_sign_in_token: 密碼及電子信箱 token 驗證
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
       shared_inbox_url: 共享收件箱網址
@@ -479,6 +476,7 @@ zh-TW:
           other: 錯誤嘗試於 %{count} 天。
         no_failures_recorded: 報告中沒有錯誤。
         title: 可用狀態
+        warning: 上一次嘗試連線至本伺服器失敗
       back_to_all: 所有
       back_to_limited: 受限制的
       back_to_warning: 警告
@@ -507,6 +505,7 @@ zh-TW:
       delivery:
         all: 所有
         clear: 清除遞送錯誤
+        failing: 發送失敗
         restart: 重新啟動遞送
         stop: 停止遞送
         unavailable: 無法使用
@@ -516,9 +515,7 @@ zh-TW:
       destroyed_msg: 來自 %{domain} 的資料現在正在佇列中等待刪除。
       empty: 找不到網域
       known_accounts:
-        one: "%{count} 個已知帳號"
         other: "%{count} 個已知帳號"
-        zero: 沒有已知帳號
       moderation:
         all: 全部
         limited: 限制
@@ -762,6 +759,11 @@ zh-TW:
     system_checks:
       database_schema_check:
         message_html: 有挂起的数据库迁移，请运行它们以确保应用程序按照预期运行。
+      elasticsearch_running_check:
+        message_html: 無法連接 Elasticsearch。請檢查是否正在執行中，或者已關閉全文搜尋。
+      elasticsearch_version_check:
+        message_html: 不相容的 Elasticsearch 版本：%{value}
+        version_comparison: Elasticsearch %{running_version} 版正在執行，需要 %{required_version} 版。
       rules_check:
         action: 管理服务器规则
         message_html: 你没有定义任何服务器规则。
@@ -782,11 +784,10 @@ zh-TW:
         disallow: 不允許連結
         disallow_provider: 不允許發行者
         shared_by_over_week:
-          one: 上週由 1 個人分享
-          other: 上週由 %{count} 個人分享
-          zero: 上週無人分享
+          other: 上週被 %{count} 名使用者分享
         title: 熱門連結
         usage_comparison: 於今日被 %{today} 人分享，相較於昨日 %{yesterday} 人
+      only_allowed: 僅允許
       pending_review: 等待審核中
       preview_card_providers:
         allowed: 此發行者之連結能登上熱門
@@ -824,10 +825,9 @@ zh-TW:
         usable: 可被使用
         usage_comparison: 於今日被使用 %{today} 次，相較於昨日 %{yesterday} 次
         used_by_over_week:
-          one: 上週被 1 個人使用
           other: 上週被 %{count} 個人使用
-          zero: 上週無人使用
       title: 熱門榜
+      trending: 熱門
     warning_presets:
       add_new: 新增
       delete: 刪除
@@ -1219,7 +1219,7 @@ zh-TW:
       new_followers_summary:
         other: 此外，您在離開時獲得了 %{count} 位新的追蹤者！超棒的！
       subject:
-        other: "從您上次造訪以來有 %{count} 個新通知 \U0001F418"
+        other: "從您上次造訪以來有 %{count} 個新通知 🐘"
       title: 你不在的時候...
     favourite:
       body: '你的嘟文被 %{name} 加入了最愛:'
@@ -1606,12 +1606,13 @@ zh-TW:
       explanation: 你要求的 Mastodon 帳戶完整備份檔案現已就緒，可供下載!
       subject: 你的備份檔已可供下載
       title: 檔案匯出
-    sign_in_token:
-      details: 以下是嘗試登入的詳細資訊：
-      explanation: 我們偵測到有人試圖從陌生的 IP 位置登入您的帳號。如果這是您，請在「登入確認」頁面輸入安全碼：
-      further_actions: 如果這不是你，請立即到這裡變更你的密碼，並啟用兩步驟驗證：
-      subject: 請確認登入嘗試
-      title: 登入嘗試
+    suspicious_sign_in:
+      change_password: 變更密碼
+      details: 以下是該登入之詳細資訊：
+      explanation: 我們偵測到有新 IP 地址登入您的帳號
+      further_actions_html: 如果這個不是您，我們建議您立即 %{action} ，並且啟用二階段驗證 (2FA) 以確保帳號安全。
+      subject: 您的帳號已被新 IP 地址存取
+      title: 新登入
     warning:
       appeal: 遞交申訴
       appeal_description: 若您認為這是錯誤，您可以向 %{instance} 的工作人員提出申訴。
@@ -1662,13 +1663,10 @@ zh-TW:
       title: "%{name} 歡迎你的加入！"
   users:
     follow_limit_reached: 您無法追蹤多於 %{limit} 個人
-    generic_access_help_html: 存取您的帳號時遇到困難？您可以透過 %{email} 取得協助
     invalid_otp_token: 兩階段認證碼不正確
-    invalid_sign_in_token: 安全碼無效
     otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼與電子郵件。
     signed_in_as: 目前登入的帳戶：
-    suspicious_sign_in_confirmation: 您之前似乎未從此裝置登入過，再加上您也有一段時間沒有登入了，因此我們剛剛傳送了安全碼到您的電子郵件地址以確認真的是您。
   verification:
     explanation_html: 您在 Mastodon 個人資料頁上所列出的連結，可以用此方式<strong>驗證您確實掌控該連結網頁的內容</strong>。您可以在連結的網頁上加上一個連回 Mastodon 個人資料頁的連結，該連結的原始碼 <strong>必須</strong>包含<code>rel="me"</code>屬性。連結的顯示文字可自由發揮，以下為範例：
     verification: 驗證連結

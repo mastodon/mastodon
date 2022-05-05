@@ -166,9 +166,8 @@ da:
       perform_full_suspension: Suspendér
       previous_strikes: Tidligere anmeldelser (strikes)
       previous_strikes_description_html:
-        one: Denne konto har <strong>et</strong> anmeldelse.
+        one: Denne konto har <strong>en</strong> anmeldelse.
         other: Denne konto har <strong>%{count}</strong> anmeldelser.
-        zero: Denne konto er <strong>på god fod</strong>.
       promote: Forfrem
       protocol: Protokol
       public: Offentlig
@@ -200,7 +199,6 @@ da:
       security_measures:
         only_password: Kun adgangskode
         password_and_2fa: Adgangskode og 2FA
-        password_and_sign_in_token: Adgangskode og e-mailtoken
       sensitive: Gennemtving sensitiv
       sensitized: Markeret som sensitiv
       shared_inbox_url: Delt indbakke-URL
@@ -490,6 +488,7 @@ da:
           other: Mislykkede forsøg på %{count} forskellige dage.
         no_failures_recorded: Ingen fejl noteret.
         title: Tilgængelighed
+        warning: Seneste forsøg på at oprette forbindelse til denne server mislykkedes
       back_to_all: Alle
       back_to_limited: Begrænset
       back_to_warning: Advarsel
@@ -529,7 +528,6 @@ da:
       known_accounts:
         one: "%{count} kendt konto"
         other: "%{count} kendte konti"
-        zero: Ingen kendt konto
       moderation:
         all: Alle
         limited: Begrænset
@@ -774,6 +772,11 @@ da:
     system_checks:
       database_schema_check:
         message_html: Databasemigreringer afventer. Kør dem for at sikre den forventede adfærd fra applikationen
+      elasticsearch_running_check:
+        message_html: Kunne ikke oprette forbindelse til Elasticsearch. Tjek, at den kører, eller deaktivér fuldtekstsøgning
+      elasticsearch_version_check:
+        message_html: 'Inkompatibel Elasticsearch-version: %{value}'
+        version_comparison: Elasticsearch %{running_version} kører, men %{required_version} kræves
       rules_check:
         action: Håndtér serverregler
         message_html: Ingen serverregler defineret.
@@ -794,11 +797,11 @@ da:
         disallow: Tillad ikke link
         disallow_provider: Tillad ikke udgiver
         shared_by_over_week:
-          one: Delt af én person i løbet af den seneste uge
-          other: Delt af %{count} personer i løbet af den seneste uge
-          zero: Ikke delt af nogen i løbet af den seneste uge
+          one: Delt af én person den seneste uge
+          other: Delt af %{count} personer den seneste uge
         title: Populære links
         usage_comparison: Delt %{today} gange i dag, sammenlignet med %{yesterday} i går
+      only_allowed: Kun tilladte
       pending_review: Afventer revision
       preview_card_providers:
         allowed: Links fra denne udgiver kan trende
@@ -837,10 +840,10 @@ da:
         usable: Kan anvendes
         usage_comparison: Anvendt %{today} gange i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
-          one: Anvendt af én person i løbet af den seneste uge
-          other: Anvendt af %{count} personer i løbet af den seneste uge
-          zero: Ikke anvendt af nogen i løbet af den seneste uge
+          one: Brugt af én person den seneste uge
+          other: Brugt af %{count} personer den seneste uge
       title: Trends
+      trending: Populært
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
@@ -852,6 +855,7 @@ da:
       actions:
         delete_statuses: for sletning af vedkommendes indlæg
         disable: for frysning af vedkommendes konto
+        mark_statuses_as_sensitive: for at markere deres indlæg som følsomme
         none: en advarsel
         sensitive: for markering af vedkommendes konto som sensitiv
         silence: for begrænsning af vedkommendes konto
@@ -1025,6 +1029,7 @@ da:
     strikes:
       action_taken: Handling foretaget
       appeal: Appel
+      appeal_approved: Kontoanmeldelsen er blevet appelleret og er ikke længere gyldig
       appeal_rejected: Appellen er afvist
       appeal_submitted_at: Appel indgivet
       appealed_msg: Din appel er indgivet. Godkendes den, underrettes du.
@@ -1040,7 +1045,9 @@ da:
       title_actions:
         delete_statuses: Indlægsfjernelse
         disable: Kontofrysning
+        mark_statuses_as_sensitive: Markering af indlæg som følsomme
         none: Advarsel
+        sensitive: Markering af konto som følsom
         silence: Kontobegrænsning
         suspend: Kontosuspendering
       your_appeal_approved: Din appel er godkendt
@@ -1231,8 +1238,8 @@ da:
         one: Under dit fravær har du har også fået en ny følger! Sådan!
         other: Under dit fravær har du har også fået %{count} nye følgere! Sådan!
       subject:
-        one: "1 ny notifikation siden senest besøg \U0001F418"
-        other: "%{count} nye notifikationer siden senest besøg \U0001F418"
+        one: "1 ny notifikation siden senest besøg 🐘"
+        other: "%{count} nye notifikationer siden senest besøg 🐘"
       title: I dit fravær...
     favourite:
       body: "%{name} favoritmarkerede dit indlæg:"
@@ -1547,12 +1554,13 @@ da:
       explanation: Den anmodede fulde sikkerhedskopi af din Mastodon-konto er nu klar til download!
       subject: Dit arkiv er klar til download
       title: Arkiv download
-    sign_in_token:
-      details: 'Her er nogle detaljer om forsøget:'
-      explanation: 'Der er registreret et forsøg på at logge ind på din konto fra en ukendt IP-adresse. Er dette er dig, så angiv nedenstående sikkerhedskode på log ind-bekræftelsessiden:'
-      further_actions: 'Var dette ikke dig, så ændr adgangskoden og aktivér tofaktorgodkendelse på din konto, hvilket kan gøres hér:'
-      subject: Bekræft indlogningsforsøg
-      title: Indlogningsforsøg
+    suspicious_sign_in:
+      change_password: skift din adgangskode
+      details: 'Her er nogle detaljer om login-forsøget:'
+      explanation: Indlogning på din konto fra en ny IP-adresse detekteret.
+      further_actions_html: Hvis dette ikke var dig, anbefaler vi, at du %{action} med det samme og aktiverer to-faktor godkendelse for at holde din konto sikker.
+      subject: Din konto er blevet tilgået fra en ny IP-adresse
+      title: Ny indlogning
     warning:
       appeal: Indgiv appel
       appeal_description: Mener du, at dette er en fejl, kan der indgives en appel til %{instance}-personalet.
@@ -1603,13 +1611,10 @@ da:
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan maks. følge %{limit} personer
-    generic_access_help_html: Problemer med at tilgå din konto? Du kan kontakte %{email} for hjælp
     invalid_otp_token: Ugyldig tofaktorkode
-    invalid_sign_in_token: Ugyldig sikkerhedskode
     otp_lost_help_html: Har du mistet adgang til begge, kan du kontakte %{email}
     seamless_external_login: Du er logget ind via en ekstern tjeneste, så adgangskode- og e-mailindstillinger er utilgængelige.
     signed_in_as: 'Logget ind som:'
-    suspicious_sign_in_confirmation: Du lader ikke at have logget ind fra denne enhed før, og du har ikke logget ind i et stykke tid, så der sendes en sikkerhedskode til din e-mailadresse mhp. at bekræfte din identitet.
   verification:
     explanation_html: 'Du kan <strong>bekræfte dig selv som ejer af linkene i din profilmetadata</strong>. For at gøre det, skal det linkede websted indeholde et link pegende tilbage til din Mastodon-profil. Returlinket <strong>skal</strong> have en <code>rel="mig"</code>-attribut. Linkets tekstindhold betyder ikke noget. Her er et eksempel:'
     verification: Bekræftelse

@@ -168,7 +168,6 @@ tr:
       previous_strikes_description_html:
         one: Bu hesap için <strong>bir</strong> eylem yapılmış.
         other: Bu hesap için <strong>%{count}</strong> eylem yapılmış.
-        zero: Bu hesap <strong>hali iyi durumda</strong>.
       promote: Yükselt
       protocol: Protokol
       public: Herkese açık
@@ -186,7 +185,7 @@ tr:
         send: Doğrulama epostasını yeniden gönder
         success: Onay e-postası başarıyla gönderildi!
       reset: Sıfırla
-      reset_password: Şifreyi sıfırla
+      reset_password: Parolayı sıfırla
       resubscribe: Yeniden abone ol
       role: İzinler
       roles:
@@ -200,7 +199,6 @@ tr:
       security_measures:
         only_password: Sadece parola
         password_and_2fa: Parola ve İki aşamalı doğrulama
-        password_and_sign_in_token: Parola ve e-posta tokeni
       sensitive: Hassas
       sensitized: Hassas olarak işaretlendi
       shared_inbox_url: Paylaşılan gelen kutusu bağlantısı
@@ -490,6 +488,7 @@ tr:
           other: "%{count} farklı gün başarısız girişim."
         no_failures_recorded: Kayıtlı başarısızlık yok.
         title: Ulaşılabilirlik
+        warning: Bu sunucuya önceki bağlanma denemesi başarısız olmuştu
       back_to_all: Tümü
       back_to_limited: Sınırlı
       back_to_warning: Uyarı
@@ -518,6 +517,7 @@ tr:
       delivery:
         all: Tümü
         clear: Teslimat hatalarını temizle
+        failing: Hata
         restart: Teslimatı yeniden başlat
         stop: Teslimatı durdur
         unavailable: Mevcut Değil
@@ -529,7 +529,6 @@ tr:
       known_accounts:
         one: "%{count} bilinen hesap"
         other: "%{count} bilinen hesap"
-        zero: Bilinen hesap yok
       moderation:
         all: Tümü
         limited: Sınırlı
@@ -599,7 +598,7 @@ tr:
       action_taken_by: tarafından gerçekleştirilen eylem
       actions:
         delete_description_html: Bildirilen gönderiler silinecek ve aynı hesapla ileride yaşabileceğiniz etkileşimlerde çoğaltmanız için bir eylem kaydedilecek.
-        mark_as_sensitive_description_html: Bildirilen gönderilerdeki medya dosyaları hassas olarak işaretlenecek ve aynı hesapla ileride yaşayabileceğiniz etkileşimlerde kullanabilmeniz için bir eylem kaydedilecek.
+        mark_as_sensitive_description_html: Bildirilen gönderilerdeki medya dosyaları hassas olarak işaretlenecek ve aynı hesabın gelecekteki ihlallerinde daha yetkili makamlara bildirmenize yardımcı olmak için bir eylem kaydedilecek.
         other_description_html: Hesabın davranışını denetlemek ve bildirilen hesabın iletişimini yapılandırmak için daha fazla seçenek görün.
         resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
         silence_description_html: Profil sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir.
@@ -774,6 +773,11 @@ tr:
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
+      elasticsearch_running_check:
+        message_html: Elasticsearch'e bağlanılamıyor. Çalıştığından emin olun veya tüm metin aramayı devre dışı bırakın
+      elasticsearch_version_check:
+        message_html: 'Uyumsuz Elasticsearch sürümü: %{value}'
+        version_comparison: Elasticsearch %{running_version} sürümü çalışıyor, ancak %{required_version} sürümü gerekiyor
       rules_check:
         action: Sunucu kurallarını yönet
         message_html: Herhangi bir sunucu kuralı belirlemediniz.
@@ -796,9 +800,9 @@ tr:
         shared_by_over_week:
           one: Geçen hafta bir kişi paylaştı
           other: Geçen hafta %{count} kişi paylaştı
-          zero: Geçen hafta kimse paylaşmadı
         title: Öne çıkan bağlantılar
         usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
+      only_allowed: Sadece izin verilenler
       pending_review: İnceleme bekliyor
       preview_card_providers:
         allowed: Bu yayıncının bağlantıları öne çıkabilir
@@ -839,8 +843,8 @@ tr:
         used_by_over_week:
           one: Geçen hafta bir kişi tarafından kullanıldı
           other: Geçen hafta %{count} kişi tarafından kullanıldı
-          zero: Geçen hafta kimse tarafından kullanılmadı
       title: Öne çıkanlar
+      trending: Öne çıkanlar
     warning_presets:
       add_new: Yeni ekle
       delete: Sil
@@ -918,7 +922,7 @@ tr:
     your_token: Erişim belirteciniz
   auth:
     apply_for_account: Davet et
-    change_password: Şifre
+    change_password: Parola
     checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Sunucu kurallarını</a> ve <a href="%{terms_path}" target="_blank">hizmet şartlarını</a> kabul ediyorum
     checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Hizmet şartlarını</a> kabul ediyorum
     delete_account: Hesabı sil
@@ -929,7 +933,7 @@ tr:
       suffix: Bir hesapla, kişileri takip edebilir, güncellemeler gönderebilir, herhangi bir Mastodon sunucusundan kullanıcılarla mesaj alışverişinde bulunabilir ve daha birçok şey yapabilirsin!
     didnt_get_confirmation: Doğrulama talimatlarını almadınız mı?
     dont_have_your_security_key: Güvenlik anahtarınız yok mu?
-    forgot_password: Şifrenizi mi unuttunuz?
+    forgot_password: Parolanızı mı unuttunuz?
     invalid_reset_password_token: Parola sıfırlama belirteci geçersiz veya süresi dolmuş. Lütfen yeni bir tane talep edin.
     link_to_otp: Telefonunuzdan iki adımlı bir kod veya bir kurtarma kodu girin
     link_to_webauth: Güvenlik anahtarı cihazınızı kullanın
@@ -945,9 +949,9 @@ tr:
     register: Kaydol
     registration_closed: "%{instance} yeni üyeler kabul etmemektedir"
     resend_confirmation: Onaylama talimatlarını tekrar gönder
-    reset_password: Şifreyi sıfırla
+    reset_password: Parolayı sıfırla
     security: Güvenlik
-    set_new_password: Yeni şifre belirle
+    set_new_password: Yeni parola belirle
     setup:
       email_below_hint_html: Eğer aşağıdaki e-posta adresi yanlışsa, onu burada değiştirebilir ve yeni bir doğrulama e-postası alabilirsiniz.
       email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
@@ -977,8 +981,8 @@ tr:
   challenge:
     confirm: Devam et
     hint_html: "<strong>İpucu:</strong> Önümüzdeki saat boyunca sana parolanı sormayacağız."
-    invalid_password: Geçersiz şifre
-    prompt: Devam etmek için şifreyi doğrulayın
+    invalid_password: Geçersiz parola
+    prompt: Devam etmek için parolanızı doğrulayın
   crypto:
     errors:
       invalid_key: geçerli bir Ed25519 veya Curve25519 anahtarı değil
@@ -1002,7 +1006,7 @@ tr:
       x_months: "%{count}ay"
       x_seconds: "%{count}sn"
   deletes:
-    challenge_not_passed: Girdiğiniz bilgi doğru değildi
+    challenge_not_passed: Girdiğiniz bilgi hatalı
     confirm_password: Kimliğinizi doğrulamak için mevcut parolanızı girin
     confirm_username: Prosedürü doğrulamak için kullanıcı adınızı girin
     proceed: Hesabı sil
@@ -1235,8 +1239,8 @@ tr:
         one: Ayrıca, uzaktayken yeni bir takipçi kazandınız! Yaşasın!
         other: Ayrıca, uzaktayken %{count} yeni takipçi kazandınız! İnanılmaz!
       subject:
-        one: "Son ziyaretinizden bu yana 1 yeni bildirim \U0001F418"
-        other: "Son ziyaretinizden bu yana %{count} yeni bildirim \U0001F418"
+        one: "Son ziyaretinizden bu yana 1 yeni bildirim 🐘"
+        other: "Son ziyaretinizden bu yana %{count} yeni bildirim 🐘"
       title: Senin yokluğunda...
     favourite:
       body: "%{name} durumunu beğendi:"
@@ -1278,7 +1282,7 @@ tr:
           billion: Mr
           million: Mn
           quadrillion: Kn
-          thousand: Bn
+          thousand: Bin
           trillion: Tn
   otp_authentication:
     code_hint: Onaylamak için authenticator uygulamanız tarafından oluşturulan kodu girin
@@ -1631,12 +1635,13 @@ tr:
       explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
       subject: Arşiviniz indirilmeye hazır
       title: Arşiv paketlemesi
-    sign_in_token:
-      details: 'İşte bu girişimin ayrıntıları:'
-      explanation: 'Tanınmayan bir IP adresinden hesabınızda oturum açma denemesi tespit ettik. Bu sizseniz, lütfen oturum açma sorgulama sayfasına aşağıdaki güvenlik kodunu girin:'
-      further_actions: 'Bu siz değildiyseniz, lütfen şifrenizi değiştirin ve hesabınızda iki faktörlü kimlik doğrulamayı etkinleştirin. Bunu buradan yapabilirsiniz:'
-      subject: Lütfen oturum açma girişimini onaylayın
-      title: Oturum açma girişimi
+    suspicious_sign_in:
+      change_password: parolanızı değiştirin
+      details: 'Oturum açma ayrıntıları şöyledir:'
+      explanation: Hesabınıza yeni bir IP adresinden oturum açıldığını farkettik.
+      further_actions_html: Eğer oturum açan siz değildiyseniz, hesabınızı güvenli tutmanız için hemen %{action} yapmanızı ve iki aşamalı yetkilendirmeyi etkinleştirmenizi öneriyoruz.
+      subject: Hesabınıza yeni bir IP adresinden erişim oldu
+      title: Yeni bir oturum açma
     warning:
       appeal: Bir itiraz gönder
       appeal_description: Bunun bir hata olduğunu düşünüyorsanız, %{instance} sunucusunun personeline bir itiraz gönderebilirsiniz.
@@ -1687,13 +1692,10 @@ tr:
       title: Gemiye hoşgeldin, %{name}!
   users:
     follow_limit_reached: "%{limit} kişiden daha fazlasını takip edemezsiniz"
-    generic_access_help_html: Hesabınıza erişirken sorun mu yaşıyorsunuz? Yardım için %{email} ile iletişime geçebilirsiniz
     invalid_otp_token: Geçersiz iki adımlı doğrulama kodu
-    invalid_sign_in_token: Geçersiz güvenlik kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Oturum açtı:'
-    suspicious_sign_in_confirmation: Bu cihazdan daha önce oturum açmamış gibi görünüyorsunuz ve bir süredir oturum açmamışsınız, bu yüzden kimliğinizi doğrulamak için e-posta adresinize bir güvenlik kodu gönderiyoruz.
   verification:
     explanation_html: '<strong>Profil meta verisindeki bağlantıların sahibi olarak kendinizi doğrulayabilirsiniz</strong>. Bunun için, link verilen web sitesi Mastodon profilinize geri bir link içermelidir. Geri link bir <code>rel="me"</code> özelliğine sahip <strong>olmalıdır</strong>. Bağlantının metin içeriği önemli değildir. İşte bir örnek:'
     verification: Doğrulama

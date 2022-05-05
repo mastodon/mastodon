@@ -33,6 +33,7 @@ export default class Counter extends React.PureComponent {
     label: PropTypes.string.isRequired,
     href: PropTypes.string,
     params: PropTypes.object,
+    target: PropTypes.string,
   };
 
   state = {
@@ -54,7 +55,7 @@ export default class Counter extends React.PureComponent {
   }
 
   render () {
-    const { label, href } = this.props;
+    const { label, href, target } = this.props;
     const { loading, data } = this.state;
 
     let content;
@@ -100,7 +101,7 @@ export default class Counter extends React.PureComponent {
 
     if (href) {
       return (
-        <a href={href} className='sparkline'>
+        <a href={href} className='sparkline' target={target}>
           {inner}
         </a>
       );

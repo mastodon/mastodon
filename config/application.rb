@@ -27,7 +27,6 @@ require_relative '../lib/sanitize_ext/sanitize_config'
 require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
 require_relative '../lib/paperclip/attachment_extensions'
-require_relative '../lib/paperclip/storage_extensions'
 require_relative '../lib/paperclip/lazy_thumbnail'
 require_relative '../lib/paperclip/gif_transcoder'
 require_relative '../lib/paperclip/transcoder'
@@ -36,12 +35,12 @@ require_relative '../lib/paperclip/response_with_limit_adapter'
 require_relative '../lib/terrapin/multi_pipe_extensions'
 require_relative '../lib/mastodon/snowflake'
 require_relative '../lib/mastodon/version'
+require_relative '../lib/mastodon/rack_middleware'
 require_relative '../lib/devise/two_factor_ldap_authenticatable'
 require_relative '../lib/devise/two_factor_pam_authenticatable'
 require_relative '../lib/chewy/strategy/custom_sidekiq'
 require_relative '../lib/webpacker/manifest_extensions'
 require_relative '../lib/webpacker/helper_extensions'
-require_relative '../lib/action_dispatch/cookie_jar_extensions'
 require_relative '../lib/rails/engine_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
@@ -166,6 +165,7 @@ module Mastodon
 
     config.middleware.use Rack::Attack
     config.middleware.use Rack::Deflater
+    config.middleware.use Mastodon::RackMiddleware
 
     config.to_prepare do
       Doorkeeper::AuthorizationsController.layout 'modal'

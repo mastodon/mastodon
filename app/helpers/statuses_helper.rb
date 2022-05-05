@@ -113,20 +113,6 @@ module StatusesHelper
     end
   end
 
-  private
-
-  def simplified_text(text)
-    text.dup.tap do |new_text|
-      URI.extract(new_text).each do |url|
-        new_text.gsub!(url, '')
-      end
-
-      new_text.gsub!(Account::MENTION_RE, '')
-      new_text.gsub!(Tag::HASHTAG_RE, '')
-      new_text.gsub!(/\s+/, '')
-    end
-  end
-
   def embedded_view?
     params[:controller] == EMBEDDED_CONTROLLER && params[:action] == EMBEDDED_ACTION
   end

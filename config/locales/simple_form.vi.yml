@@ -5,14 +5,14 @@ vi:
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
-        acct: Nhập tên_người_dùng@máy chủ của tài khoản bạn muốn dời sang
+        acct: tên_người_dùng@máy chủ của tài khoản bạn muốn chuyển sang
       account_warning_preset:
         text: Bạn có thể dùng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
       admin_account_action:
         include_statuses: Người dùng sẽ thấy các tút nào của họ bị kiểm duyệt
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
-        text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
+        text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">mẫu có sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
           disable: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút.
@@ -39,7 +39,7 @@ vi:
         digest: Chỉ gửi sau một thời gian dài không hoạt động hoặc khi bạn nhận được tin nhắn (trong thời gian vắng mặt)
         discoverable: Cho phép tài khoản của bạn xuất hiện trong gợi ý theo dõi, xu hướng và những tính năng khác
         email: Bạn sẽ được gửi một email xác nhận
-        fields: Được phép tạo tối đa 4 mục trên trang cá nhân của bạn
+        fields: Được phép thêm tối đa 4 mục trên trang hồ sơ của bạn
         header: PNG, GIF hoặc JPG. Kích cỡ tối đa %{size}. Sẽ bị nén xuống %{dimensions}px
         inbox_url: Sao chép URL của máy chủ mà bạn muốn dùng
         irreversible: Các tút đã lọc sẽ không thể phục hồi, kể cả sau khi xóa bộ lọc
@@ -48,16 +48,17 @@ vi:
         password: Dùng ít nhất 8 ký tự
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn quyền hạn cấp cao nhất, bạn không cần chọn từng phạm vi.
-        setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiển thị trên bảng tin nữa
-        setting_default_sensitive: Mặc định là nội dung nhạy cảm và chỉ hiển thị nếu nhấn vào
+        setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiện trên bảng tin nữa
+        setting_always_send_emails: Bình thường thì email thông báo sẽ không gửi khi bạn đang dùng Mastodon
+        setting_default_sensitive: Mặc định là nội dung nhạy cảm và chỉ hiện nếu nhấn vào
         setting_display_media_default: Làm mờ những thứ được đánh dấu là nhạy cảm
         setting_display_media_hide_all: Không hiển thị
-        setting_display_media_show_all: Luôn luôn hiển thị
-        setting_hide_network: Ẩn những người bạn theo dõi và những người theo dõi bạn trên trang cá nhân
+        setting_display_media_show_all: Luôn hiển thị
+        setting_hide_network: Ẩn những người bạn theo dõi và những người theo dõi bạn trên trang hồ sơ
         setting_noindex: Ảnh hưởng đến trang cá nhân và tút của bạn
-        setting_show_application: Tên ứng dụng bạn dùng để đăng tút sẽ hiện trong chi tiết bài đăng
+        setting_show_application: Tên ứng dụng bạn dùng để đăng tút sẽ hiện trong chi tiết của tút
         setting_use_blurhash: Lớp phủ mờ dựa trên màu sắc của hình ảnh nhạy cảm
-        setting_use_pending_items: Dồn lại toàn bộ tút mới và chỉ hiển thị khi nhấp chuột vào
+        setting_use_pending_items: Dồn lại toàn bộ tút mới và chỉ hiển thị khi nhấn vào
         username: Tên người dùng của bạn sẽ là duy nhất trên %{domain}
         whole_word: Khi từ khóa hoặc cụm từ là chữ và số, nó sẽ chỉ hiện ra những từ chính xác như vậy
       domain_allow:
@@ -84,7 +85,7 @@ vi:
       rule:
         text: Mô tả một quy tắc bắt buộc trên máy chủ này. Nên để ngắn và đơn giản.
       sessions:
-        otp: 'Nhập mã xác thực hai bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
+        otp: 'Nhập mã xác minh 2 bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
       tag:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
@@ -109,7 +110,7 @@ vi:
         type: Hành động
         types:
           disable: Khóa
-          none: Cảnh cáo
+          none: Nhắc nhở
           sensitive: Nhạy cảm
           silence: Hạn chế
           suspend: Vô hiệu hóa
@@ -132,7 +133,7 @@ vi:
         context: Áp dụng
         current_password: Mật khẩu hiện tại
         data: Dữ liệu
-        discoverable: Liệt kê tài khoản trên danh sách thành viên
+        discoverable: Đề xuất tài khoản
         display_name: Tên hiển thị
         email: Địa chỉ email
         expires_in: Hết hạn sau
@@ -146,11 +147,12 @@ vi:
         max_uses: Số lần dùng tối đa
         new_password: Mật khẩu mới
         note: Tiểu sử
-        otp_attempt: Xác thực hai bước
+        otp_attempt: Mã xác minh 2 bước
         password: Mật khẩu
         phrase: Từ khóa hoặc cụm từ
-        setting_advanced_layout: Bật giao diện nhiều cột
+        setting_advanced_layout: Bật bố cục nhiều cột
         setting_aggregate_reblogs: Không hiện lượt đăng lại trùng lặp
+        setting_always_send_emails: Luôn gửi email thông báo
         setting_auto_play_gif: Tự động phát ảnh GIF
         setting_boost_modal: Yêu cầu xác nhận trước khi đăng lại tút
         setting_crop_images: Hiển thị ảnh theo tỉ lệ 16x9
@@ -163,7 +165,7 @@ vi:
         setting_display_media_default: Mặc định
         setting_display_media_hide_all: Ẩn toàn bộ
         setting_display_media_show_all: Hiện toàn bộ
-        setting_expand_spoilers: Luôn hiển thị đầy đủ nội dung tút
+        setting_expand_spoilers: Luôn hiển thị tút có nội dung ẩn
         setting_hide_network: Ẩn quan hệ của bạn
         setting_noindex: Không xuất hiện trong công cụ tìm kiếm
         setting_reduce_motion: Giảm chuyển động ảnh GIF
@@ -171,7 +173,7 @@ vi:
         setting_system_font_ui: Dùng phông chữ mặc định của hệ thống
         setting_theme: Giao diện
         setting_trends: Hiển thị xu hướng hôm nay
-        setting_unfollow_modal: Yêu cầu xác nhận trước khi hủy theo dõi ai đó
+        setting_unfollow_modal: Yêu cầu xác nhận trước khi ngưng theo dõi ai đó
         setting_use_blurhash: Làm mờ trước ảnh/video nhạy cảm
         setting_use_pending_items: Không tự động cập nhật bảng tin
         severity: Mức độ nghiêm trọng

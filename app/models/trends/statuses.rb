@@ -7,6 +7,7 @@ class Trends::Statuses < Trends::Base
     threshold: 5,
     review_threshold: 3,
     score_halflife: 2.hours.freeze,
+    decay_threshold: 0.3,
   }
 
   class Query < Trends::Query
@@ -22,30 +23,16 @@ class Trends::Statuses < Trends::Base
     private
 
     def apply_scopes(scope)
-      scope.includes(:account)
-    end
-
-    def perform_queries
-      return super if @account.nil?
-
-      statuses        = super
-      account_ids     = statuses.map(&:account_id)
-      account_domains = statuses.map(&:account_domain)
-
-      preloaded_relations = {
-        blocking: Account.blocking_map(account_ids, @account.id),
-        blocked_by: Account.blocked_by_map(account_ids, @account.id),
-        muting: Account.muting_map(account_ids, @account.id),
-        following: Account.following_map(account_ids, @account.id),
-        domain_blocking_by_domain: Account.domain_blocking_map_by_domain(account_domains, @account.id),
-      }
-
-      statuses.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
+      if @account.nil?
+        scope
+      else
+        scope.not_excluded_by_account(@account).not_domain_blocked_by_account(@account)
+      end
     end
   end
 
   def register(status, at_time = Time.now.utc)
-    add(status.proper, status.account_id, at_time) if eligible?(status)
+    add(status.proper, status.account_id, at_time) if eligible?(status.proper)
   end
 
   def add(status, _account_id, at_time = Time.now.utc)
@@ -62,7 +49,6 @@ class Trends::Statuses < Trends::Base
   def refresh(at_time = Time.now.utc)
     statuses = Status.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq).includes(:account, :media_attachments)
     calculate_scores(statuses, at_time)
-    trim_older_items
   end
 
   def request_review
@@ -89,51 +75,45 @@ class Trends::Statuses < Trends::Base
   private
 
   def eligible?(status)
-    original_status = status.proper
-
-    original_status.public_visibility? &&
-      original_status.account.discoverable? && !original_status.account.silenced? &&
-      original_status.spoiler_text.blank? && !original_status.sensitive? && !original_status.reply?
+    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && status.spoiler_text.blank? && !status.sensitive? && !status.reply?
   end
 
   def calculate_scores(statuses, at_time)
-    redis.pipelined do
-      statuses.each do |status|
-        expected  = 1.0
-        observed  = (status.reblogs_count + status.favourites_count).to_f
+    global_items = []
+    locale_items = Hash.new { |h, key| h[key] = [] }
 
-        score = begin
-          if expected > observed || observed < options[:threshold]
-            0
-          else
-            ((observed - expected)**2) / expected
-          end
+    statuses.each do |status|
+      expected  = 1.0
+      observed  = (status.reblogs_count + status.favourites_count).to_f
+
+      score = begin
+        if expected > observed || observed < options[:threshold]
+          0
+        else
+          ((observed - expected)**2) / expected
         end
-
-        decaying_score = score * (0.5**((at_time.to_f - status.created_at.to_f) / options[:score_halflife].to_f))
-
-        add_to_and_remove_from_subsets(status.id, decaying_score, {
-          all: true,
-          allowed: status.trendable? && status.account.discoverable?,
-        })
-
-        next unless valid_locale?(status.language)
-
-        add_to_and_remove_from_subsets(status.id, decaying_score, {
-          "all:#{status.language}" => true,
-          "allowed:#{status.language}" => status.trendable? && status.account.discoverable?,
-        })
       end
 
-      # Clean up localized sets by calculating the intersection with the main
-      # set. We do this instead of just deleting the localized sets to avoid
-      # having moments where the API returns empty results
+      decaying_score = score * (0.5**((at_time.to_f - status.created_at.to_f) / options[:score_halflife].to_f))
 
-      Trends.available_locales.each do |locale|
-        redis.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
-        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
-      end
+      next unless decaying_score >= options[:decay_threshold]
+
+      global_items << { score: decaying_score, item: status }
+      locale_items[status.language] << { account_id: status.account_id, score: decaying_score, item: status } if valid_locale?(status.language)
     end
+
+    replace_items('', global_items)
+
+    Trends.available_locales.each do |locale|
+      replace_items(":#{locale}", locale_items[locale])
+    end
+  end
+
+  def filter_for_allowed_items(items)
+    # Show only one status per account, pick the one with the highest score
+    # that's also eligible to trend
+
+    items.group_by { |item| item[:account_id] }.values.filter_map { |account_items| account_items.select { |item| item[:item].trendable? && item[:item].account.discoverable? }.max_by { |item| item[:score] } }
   end
 
   def would_be_trending?(id)
