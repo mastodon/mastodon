@@ -31,7 +31,6 @@ class Announcement < ApplicationRecord
   validates :starts_at, presence: true, if: -> { ends_at.present? }
   validates :ends_at, presence: true, if: -> { starts_at.present? }
 
-  before_validation :set_all_day
   before_validation :set_published, on: :create
 
   def publish!
@@ -84,10 +83,6 @@ class Announcement < ApplicationRecord
   end
 
   private
-
-  def set_all_day
-    self.all_day = false if starts_at.blank? || ends_at.blank?
-  end
 
   def set_published
     return unless scheduled_at.blank? || scheduled_at.past?
