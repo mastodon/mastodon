@@ -29,7 +29,7 @@ zh-TW:
     logout_before_registering: 您已經登入了！
     privacy_policy: 隱私權政策
     rules: 伺服器規則
-    rules_html: '以下是您若想在此 Mastodon 伺服器建立帳戶必須遵守的規則總結：'
+    rules_html: '以下是您若想在此 Mastodon 伺服器建立帳號必須遵守的規則總結：'
     see_whats_happening: 看看發生什麼事
     server_stats: '伺服器統計：'
     source_code: 原始碼
@@ -95,7 +95,7 @@ zh-TW:
     accounts:
       add_email_domain_block: 將電子郵件網域加入黑名單
       approve: 批准
-      approved_msg: 成功審核了%{username} 的新帳戶申請
+      approved_msg: 成功審核了%{username} 的新帳號申請
       are_you_sure: 您確定嗎?
       avatar: 頭像
       by_domain: 站點
@@ -142,7 +142,7 @@ zh-TW:
         title: 位置
       login_status: 登入狀態
       media_attachments: 多媒體附件
-      memorialize: 設定為追悼帳戶
+      memorialize: 設定為追悼帳號
       memorialized: 被悼念的
       memorialized_msg: 成功將%{username} 的帳號變為紀念帳號
       moderation:
@@ -251,10 +251,10 @@ zh-TW:
         disable_2fa_user: 停用兩階段認證
         disable_custom_emoji: 停用自訂顏文字
         disable_sign_in_token_auth_user: 停用使用者電子信箱 token 驗證
-        disable_user: 停用帳戶
+        disable_user: 停用帳號
         enable_custom_emoji: 啓用自訂顏文字
         enable_sign_in_token_auth_user: 啟用使用者電子信箱 token 驗證
-        enable_user: 啓用帳戶
+        enable_user: 啓用帳號
         memorialize_account: 設定成紀念帳號
         promote_user: 把用戶升級
         reject_appeal: 駁回申訴
@@ -421,7 +421,7 @@ zh-TW:
       existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先把他<a href="%{unblock_url}">取消封鎖</a>。
       new:
         create: 新增封鎖
-        hint: 站點封鎖動作並不會阻止帳戶紀錄被新增至資料庫，但會自動回溯性地對那些帳戶套用特定管理設定。
+        hint: 站點封鎖動作並不會阻止帳號紀錄被新增至資料庫，但會自動回溯性地對那些帳號套用特定管理設定。
         severity:
           desc_html: "「<strong>靜音</strong>」令該站點下使用者的嘟文，設定為只對關注者顯示，沒有關注的人會看不到。「<strong>停權</strong>」會刪除將該站點下使用者的嘟文、媒體檔案和個人資料。「<strong>無</strong>」則會拒絕接收來自該站點的媒體檔案。"
           noop: 無
@@ -593,7 +593,7 @@ zh-TW:
       are_you_sure: 你確定嗎?
       assign_to_self: 指派給自己
       assigned: 指派負責人
-      by_target_domain: 檢舉帳戶之網域
+      by_target_domain: 檢舉帳號之網域
       category: 分類
       category_description_html: 此帳號及/或被檢舉內容之原因會被引用在檢舉帳號通知中
       comment:
@@ -627,7 +627,7 @@ zh-TW:
       status: 嘟文
       statuses: 被檢舉的內容
       statuses_description_html: 侵犯性違規內容會被引用在檢舉帳號通知中
-      target_origin: 檢舉帳戶之來源
+      target_origin: 檢舉帳號之來源
       title: 檢舉
       unassign: 取消指派
       unresolved: 未解決
@@ -645,7 +645,7 @@ zh-TW:
         desc_html: 本站使用者發佈的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
         title: 公開使用者活躍度的統計數據
       bootstrap_timeline_accounts:
-        desc_html: 以半形逗號分隔多個使用者名。只能加入來自本站且未開啟保護的帳號。如果留空，則預設關注本站所有管理員。
+        desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則預設關注本站所有管理員。
         title: 新使用者預設關注
       contact_information:
         email: 用於聯絡的公開電子信箱地址
@@ -683,8 +683,8 @@ zh-TW:
           desc_html: 關閉註冊時顯示在首頁的內容，可使用 HTML 標籤
           title: 關閉註冊訊息
         deletion:
-          desc_html: 允許所有人刪除自己的帳戶
-          title: 開放刪除帳戶的權限
+          desc_html: 允許所有人刪除自己的帳號
+          title: 開放刪除帳號的權限
         min_invite_role:
           disabled: 沒有人
           title: 允許發送邀請的身份
@@ -742,7 +742,7 @@ zh-TW:
       media:
         title: 媒體檔案
       no_status_selected: 因未選擇嘟文而未變更。
-      title: 帳戶嘟文
+      title: 帳號嘟文
       with_media: 含有媒體檔案
     strikes:
       actions:
@@ -870,10 +870,10 @@ zh-TW:
       subject: '%{instance} 有待審核之新熱門'
   aliases:
     add_new: 建立別名
-    created_msg: 成功建立別名。您可以自舊帳戶開始轉移。
-    deleted_msg: 成功移除別名。您將無法再由舊帳戶轉移到目前的帳戶。
+    created_msg: 成功建立別名。您可以自舊帳號開始轉移。
+    deleted_msg: 成功移除別名。您將無法再由舊帳號轉移到目前的帳號。
     empty: 您目前沒有任何別名。
-    hint_html: 如果想由其他帳戶轉移到此帳戶，您可以在此處建立別名，稍後系統將容許您把關注者由舊帳戶轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳戶的遷移程序需要在舊帳戶啟動</strong>。
+    hint_html: 如果想由其他帳號轉移到此帳號，您可以在此處創建別名，稍後系統將容許您把關注者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
     remove: 取消連結別名
   appearance:
     advanced_web_interface: 進階網頁介面
@@ -911,8 +911,8 @@ zh-TW:
     delete_account_html: 如果你想刪除你的帳號，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     description:
       prefix_invited_by_user: "@%{name} 邀請您加入這個 Mastodon 伺服器！"
-      prefix_sign_up: 現在就註冊 Mastodon 帳戶吧！
-      suffix: 有了帳戶，就可以從任何 Mastodon 伺服器關注任何人、發發廢嘟，並且與任何 Mastodon 伺服器的使用者交流，以及更多！
+      prefix_sign_up: 現在就註冊 Mastodon 帳號吧！
+      suffix: 有了帳號，就可以從任何 Mastodon 伺服器關注任何人、發發廢嘟，並且與任何 Mastodon 伺服器的使用者交流，以及更多！
     didnt_get_confirmation: 沒有收到驗證信?
     dont_have_your_security_key: 找不到您的安全金鑰？
     forgot_password: 忘記密碼？
@@ -936,7 +936,7 @@ zh-TW:
     set_new_password: 設定新密碼
     setup:
       email_below_hint_html: 如果此電子郵件地址不正確，您可於此修改並接收郵件進行認證。
-      email_settings_hint_html: 請確認電子信件是否寄至 %{email} 。如果不對的話，可以在帳戶設定裡變更。
+      email_settings_hint_html: 請確認 e-mail 是否傳送到 %{email} 。如果不對的話，可以從帳號設定修改。
       title: 設定
     status:
       account_status: 帳號狀態
@@ -1173,25 +1173,25 @@ zh-TW:
       not_ready: 修但幾勒！不能附加未完成處理的檔案欸，咁按呢？
       too_many: 無法加入超過 4 個檔案
   migrations:
-    acct: 新帳戶的 使用者名稱@站點網域
+    acct: 新帳號的 使用者名稱@站點網域
     cancel: 取消重導向
-    cancel_explanation: 取消重新導向將會重新啟用目前帳戶，但不會還原已移至該帳號的關注者。
+    cancel_explanation: 取消重導向將會重新啓用目前帳號，但不會還原已移至該帳號的關注者。
     cancelled_msg: 成功取消重導向。
     errors:
-      already_moved: 與已經重導向的帳戶相同
-      missing_also_known_as: 不是這個帳戶的別名
-      move_to_self: 不能是目前帳戶
+      already_moved: 與已經重導向的帳號相同
+      missing_also_known_as: 不是這個帳號的別名
+      move_to_self: 不能是目前帳號
       not_found: 找不到
       on_cooldown: 你正在處於冷卻（CD）狀態
     followers_count: 轉移時的追隨者
-    incoming_migrations: 自另一個帳戶轉移
+    incoming_migrations: 自另一個帳號轉移
     incoming_migrations_html: 要從其他帳號移動到此帳號的話，首先您必須<a href="%{path}">建立帳號別名</a>。
     moved_msg: 您的帳號正被重新導向到 %{acct}，您的追蹤者也會同步轉移至該帳號。
     not_redirecting: 您的帳號目前尚未重新導向到任何其他帳號。
     on_cooldown: 您最近已轉移過您的帳號。此功能將在 %{count} 天後可再度使用。
     past_migrations: 以往的轉移紀錄
     proceed_with_move: 移動關注者
-    redirected_msg: 您的帳戶現在指向 %{acct}
+    redirected_msg: 您的帳號現在指向 %{acct}
     redirecting_to: 您的帳號目前正被重新導向到 %{acct}
     set_redirect: 設定重新導向
     warning:
@@ -1313,7 +1313,7 @@ zh-TW:
     remove_selected_domains: 從所選網域中移除所有追隨者
     remove_selected_followers: 移除所選的跟隨者
     remove_selected_follows: 取消跟隨所選使用者
-    status: 帳戶狀態
+    status: 帳號狀態
   remote_follow:
     acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
@@ -1361,7 +1361,7 @@ zh-TW:
       weibo: 新浪微博
     current_session: 目前的 session
     description: "%{platform} 上的 %{browser}"
-    explanation: 這些是現在正登入於你的 Mastodon 帳戶的瀏覽器。
+    explanation: 這些是現在正登入於您 Mastodon 帳號的瀏覽器。
     ip: IP 位址
     platforms:
       adobe_air: Adobe Air
@@ -1381,20 +1381,20 @@ zh-TW:
     title: 作業階段
     view_authentication_history: 檢視您帳號的身份驗證歷史紀錄
   settings:
-    account: 帳戶
-    account_settings: 帳戶設定
-    aliases: 帳戶別名
+    account: 帳號
+    account_settings: 帳號設定
+    aliases: 帳號別名
     appearance: 外觀設定
     authorized_apps: 已授權應用程式
     back: 回到 Mastodon
-    delete: 刪除帳戶
+    delete: 刪除帳號
     development: 開發
     edit_profile: 編輯使用者資訊
     export: 匯出
     featured_tags: 推薦標籤
     import: 匯入
     import_and_export: 匯入及匯出
-    migrate: 帳戶搬遷
+    migrate: 帳號搬遷
     notifications: 通知
     preferences: 偏好設定
     profile: 使用者資訊
@@ -1591,7 +1591,7 @@ zh-TW:
     otp: 驗證應用程式
     recovery_codes: 備份備用驗證碼
     recovery_codes_regenerated: 成功產生新的備用驗證碼
-    recovery_instructions_html: 如果你的手機無法使用，你可以使用下列任意一個備用驗證碼來重新獲得帳戶的訪問權。<strong>請妥善保管好你的備用驗證碼</strong>（例如，你可以將它們列印出來，與你的其他重要文件放在一起）。
+    recovery_instructions_html: 如果你的手機無法使用，您可以使用下列任意一個備用驗證碼來重新獲得帳號的訪問權。<strong>請妥善保管好您的備用驗證碼</strong>（例如，可以將它們列印出來，與您的其他重要文件放在一起）。
     webauthn: 安全金鑰
   user_mailer:
     appeal_approved:
@@ -1604,7 +1604,7 @@ zh-TW:
       subject: 您在 %{date} 提出的申訴已被駁回
       title: 申訴被駁回
     backup_ready:
-      explanation: 你要求的 Mastodon 帳戶完整備份檔案現已就緒，可供下載!
+      explanation: 您要求的 Mastodon 帳號完整備份檔案現已就緒，可供下載！
       subject: 你的備份檔已可供下載
       title: 檔案匯出
     suspicious_sign_in:
@@ -1647,11 +1647,11 @@ zh-TW:
         suspend: 帳號己被停用
     welcome:
       edit_profile_action: 設定個人資料
-      edit_profile_step: 你可以設定你的個人資料，包括上傳頭像、橫幅圖片、變更顯示名稱等等。如果你想在新的關注者關注你之前對他們進行審核，你也可以選擇為你的帳戶設為「私人」。
+      edit_profile_step: 您可以設定您的個人資料，包括上傳頭像、橫幅圖片、變更顯示名稱等等。如果想在新的關注者關注您之前對他們進行審核，您也可以選擇為您的帳號設為「私人」。
       explanation: 下面是幾個小幫助，希望它們能幫到你
       final_action: 開始嘟嘟
       final_step: '開始嘟嘟吧! 即使你現在沒有關注者，其他人仍然能在本站時間軸或著話題標籤等地方看到你的公開嘟文。試著用 #introductions 這個話題標籤介紹一下自己吧。'
-      full_handle: 你的完整帳戶名稱
+      full_handle: 您的完整帳號名稱
       full_handle_hint: 你需要把這告訴你的朋友們，這樣他們就能從另一個伺服器向你發送訊息或著關注你。
       review_preferences_action: 變更偏好設定
       review_preferences_step: 記得調整你的偏好設定，比如你想接收什麼類型的電子郵件，或著你想把你的嘟文可見範圍預設設定什麼級別。如果你沒有暈車的話，考慮一下啟用「自動播放 GIF 動畫」這個選項吧。
@@ -1667,7 +1667,7 @@ zh-TW:
     invalid_otp_token: 兩階段認證碼不正確
     otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
     seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼與電子郵件。
-    signed_in_as: '目前登入的帳戶：'
+    signed_in_as: '目前登入的帳號：'
   verification:
     explanation_html: '您在 Mastodon 個人資料頁上所列出的連結，可以用此方式<strong>驗證您確實掌控該連結網頁的內容</strong>。您可以在連結的網頁上加上一個連回 Mastodon 個人資料頁的連結，該連結的原始碼 <strong>必須</strong>包含<code>rel="me"</code>屬性。連結的顯示文字可自由發揮，以下為範例：'
     verification: 驗證連結
