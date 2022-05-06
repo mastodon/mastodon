@@ -29,13 +29,13 @@ zh-TW:
       appeal:
         text: 您只能對警示提出一次申訴
       defaults:
-        autofollow: 通過邀請網址註冊的使用者將自動關注你
+        autofollow: 通過邀請網址註冊的使用者將自動跟隨您
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會等比例縮減成 %{dimensions} 像素
         bot: 此帳號主要執行自動操作且可能未被監控
         context: 應該套用過濾器的一項或多項內容
         current_password: 因安全因素，請輸入目前帳號的密碼
         current_username: 請輸入目前帳號的使用者名稱以確認
-        digest: 僅在你長時間未登入且在未登入期間收到私訊時傳送
+        digest: 僅在您長時間未登入且在未登入期間收到私訊時傳送
         discoverable: 允許陌生人透過推薦、熱門趨勢及其他功能發現您的帳號
         email: 您將收到一封確認電子郵件
         fields: 您可在個人資料上有至多 4 個以表格形式顯示的項目
@@ -43,7 +43,7 @@ zh-TW:
         inbox_url: 從您想要使用的中繼首頁複製網址
         irreversible: 已過濾的嘟文將會不可逆的消失，即便過濾器移除之後也一樣
         locale: 使用者介面、電子信件和推送通知的語言
-        locked: 需要您手動核准關注請求
+        locked: 需要您手動批准跟隨請求
         password: 使用至少 8 個字元
         phrase: 無論是嘟文的本文或是內容警告都會被過濾
         scopes: 允許讓應用程式存取的 API。 若您選擇最高階範圍，則無須選擇個別項目。
@@ -53,7 +53,7 @@ zh-TW:
         setting_display_media_default: 隱藏標為敏感的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
         setting_display_media_show_all: 總是顯示標為敏感的媒體
-        setting_hide_network: 你關注的人與關注你的人將不會在你的個人資料頁上顯示
+        setting_hide_network: 您跟隨的人與跟隨您的人將不會在您的個人資料頁上顯示
         setting_noindex: 會影響您的公開個人資料與嘟文頁面
         setting_show_application: 您用來發嘟文的應用程式將會在您嘟文的詳細檢視顯示
         setting_use_blurhash: 漸層圖樣是基於隱藏媒體內容顏色產生，所有細節會變得模糊
@@ -123,7 +123,7 @@ zh-TW:
       appeal:
         text: 解釋為什麼要撤銷這個決定
       defaults:
-        autofollow: 邀請別人關注您的帳號
+        autofollow: 邀請別人跟隨您的帳號
         avatar: 大頭貼
         bot: 此帳號是台機器人
         chosen_languages: 過濾語言
@@ -172,7 +172,7 @@ zh-TW:
         setting_system_font_ui: 使用系統預設字型
         setting_theme: 站點主題
         setting_trends: 顯示本日趨勢
-        setting_unfollow_modal: 取消關注某人前先詢問我
+        setting_unfollow_modal: 取消跟隨某人前先詢問我
         setting_use_blurhash: 將隱藏媒體以彩色漸變圖樣表示
         setting_use_pending_items: 限速模式
         severity: 優先級
@@ -186,9 +186,9 @@ zh-TW:
       featured_tag:
         name: '「#」標籤'
       interactions:
-        must_be_follower: 封鎖非關注者的通知
-        must_be_following: 封鎖您未關注之使用者的通知
-        must_be_following_dm: 封鎖您未關注之使用者的私訊
+        must_be_follower: 封鎖非跟隨者的通知
+        must_be_following: 封鎖您未跟隨之使用者的通知
+        must_be_following_dm: 封鎖您未跟隨之使用者的私訊
       invite:
         comment: 備註
       invite_request:
@@ -203,12 +203,12 @@ zh-TW:
       notification_emails:
         appeal: 有人對管理員的決定提出上訴
         digest: 傳送摘要信件
-        favourite: 當有使用者喜歡你的嘟文時，傳送電子信件通知
-        follow: 當有使用者關注你時，傳送電子信件通知
-        follow_request: 當有使用者請求關注你時，傳送電子信件通知
-        mention: 當有使用者在嘟文提及你時，傳送電子信件通知
+        favourite: 當有使用者喜歡您的嘟文時，傳送電子信件通知
+        follow: 當有使用者跟隨您時，傳送電子信件通知
+        follow_request: 當有使用者請求跟隨您時，傳送電子信件通知
+        mention: 當有使用者在嘟文提及您時，傳送電子信件通知
         pending_account: 需要審核的新帳號
-        reblog: 當有使用者轉嘟你的嘟文時，傳送電子信件通知
+        reblog: 當有使用者轉嘟您的嘟文時，傳送電子信件通知
         report: 新回報已遞交
         trending_tag: 新趨勢需要審閱
       rule:
