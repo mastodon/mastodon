@@ -1,4 +1,3 @@
----
 zh-TW:
   simple_form:
     hints:
@@ -7,19 +6,19 @@ zh-TW:
       account_migration:
         acct: 指定要移動至的帳號的「使用者名稱@網域名稱」
       account_warning_preset:
-        text: 您可使用嘟文語法，例如網址、「#」標籤和提及功能
+        text: '您可使用嘟文語法，例如網址、「#」標籤和提及功能'
         title: 可選。不會向收件者顯示
       admin_account_action:
         include_statuses: 使用者可看到導致檢舉或警告的嘟文
-        send_email_notification: 使用者將收到帳戶發生之事情的解釋
+        send_email_notification: 使用者將收到帳號發生之事情的解釋
         text_html: 選用。您能使用嘟文語法。您可 <a href="%{path}">新增警告預設</a> 來節省時間
         type_html: 設定要使用 <strong>%{acct}</strong> 做的事
         types:
-          disable: 禁止該使用者使用他們的帳戶，但是不刪除或隱藏他們的內容。
+          disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
           none: 使用這個寄送警告給該使用者，而不進行其他動作。
           sensitive: 強制標記此使用者所有媒體為敏感內容。
-          silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳戶中隱藏嘟文和通知。
-          suspend: 禁止所有對該帳戶任何互動，並且刪除其內容。三十日內可以撤回。
+          silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳號中隱藏嘟文和通知。
+          suspend: 禁止所有對該帳號任何互動，並且刪除其內容。三十日內可以撤回。
         warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
       announcement:
         all_day: 核取後，只會顯示出時間範圍中的日期部分
@@ -32,10 +31,10 @@ zh-TW:
       defaults:
         autofollow: 通過邀請網址註冊的使用者將自動關注你
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會等比例縮減成 %{dimensions} 像素
-        bot: 此帳戶主要執行自動操作且可能未被監控
+        bot: 此帳號主要執行自動操作且可能未被監控
         context: 應該套用過濾器的一項或多項內容
-        current_password: 因安全因素，請輸入目前帳戶的密碼
-        current_username: 請輸入目前帳戶的使用者名稱以確認
+        current_password: 因安全因素，請輸入目前帳號的密碼
+        current_username: 請輸入目前帳號的使用者名稱以確認
         digest: 僅在你長時間未登入且在未登入期間收到私訊時傳送
         discoverable: 允許陌生人透過推薦、熱門趨勢及其他功能發現您的帳號
         email: 您將收到一封確認電子郵件
@@ -67,7 +66,7 @@ zh-TW:
         domain: 這可以是顯示在電子郵件中的網域名稱，或是其使用的 MX 紀錄。其將在註冊時檢查。
         with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，解析結果一致者將一併封鎖
       featured_tag:
-        name: 您可能想使用其中一個：
+        name: '您可能想使用其中一個：'
       form_challenge:
         current_password: 您正要進入安全區域
       imports:
@@ -85,7 +84,7 @@ zh-TW:
       rule:
         text: 說明使用者在此伺服器上需遵守的規則或條款。試著維持各項條款簡短而明瞭。
       sessions:
-        otp: 請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：
+        otp: '請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：'
         webauthn: 如果它是 USB 安全金鑰的話，請確認已正確插入，如有需要請觸擊。
       tag:
         name: 您只能變更大小寫，例如，以使其更易讀。
@@ -113,7 +112,7 @@ zh-TW:
           none: 什麼也不做
           sensitive: 有雷小心
           silence: 安靜
-          suspend: 停權並不可逆的刪除帳戶資料
+          suspend: 停權並不可逆的刪除帳號資料
         warning_preset_id: 使用警告預設
       announcement:
         all_day: 全天活動
@@ -124,16 +123,16 @@ zh-TW:
       appeal:
         text: 解釋為什麼要撤銷這個決定
       defaults:
-        autofollow: 邀請別人關注你的帳戶
+        autofollow: 邀請別人關注您的帳號
         avatar: 大頭貼
-        bot: 此帳戶是台機器人
+        bot: 此帳號是台機器人
         chosen_languages: 過濾語言
         confirm_new_password: 確認新密碼
         confirm_password: 確認密碼
         context: 過濾情境
         current_password: 目前密碼
         data: 資料
-        discoverable: 在目錄列出此帳戶
+        discoverable: 在目錄列出此帳號
         display_name: 顯示名稱
         email: 電子信箱地址
         expires_in: 失效時間
@@ -143,7 +142,7 @@ zh-TW:
         inbox_url: 中繼收件匣的 URL
         irreversible: 放棄而非隱藏
         locale: 介面語言
-        locked: 鎖定帳戶
+        locked: 鎖定帳號
         max_uses: 最大使用次數
         new_password: 新密碼
         note: 簡介
@@ -185,7 +184,7 @@ zh-TW:
       email_domain_block:
         with_dns_records: 包括網域的 MX 記錄和 IP 位址
       featured_tag:
-        name: "「#」標籤"
+        name: '「#」標籤'
       interactions:
         must_be_follower: 封鎖非關注者的通知
         must_be_following: 封鎖您未關注之使用者的通知
@@ -208,7 +207,7 @@ zh-TW:
         follow: 當有使用者關注你時，傳送電子信件通知
         follow_request: 當有使用者請求關注你時，傳送電子信件通知
         mention: 當有使用者在嘟文提及你時，傳送電子信件通知
-        pending_account: 需要審核的新帳戶
+        pending_account: 需要審核的新帳號
         reblog: 當有使用者轉嘟你的嘟文時，傳送電子信件通知
         report: 新回報已遞交
         trending_tag: 新趨勢需要審閱
@@ -219,7 +218,7 @@ zh-TW:
         name: 主題標籤
         trendable: 允許此主題標籤在趨勢下顯示
         usable: 允許嘟文使用此主題標籤
-    'no': 否
+    'no': '否'
     recommended: 建議
     required:
       mark: "*"
@@ -227,4 +226,4 @@ zh-TW:
     title:
       sessions:
         webauthn: 使用您的安全金鑰來登入
-    'yes': 是
+    'yes': '是'
