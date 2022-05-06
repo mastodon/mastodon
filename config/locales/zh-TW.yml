@@ -55,12 +55,12 @@ zh-TW:
     what_is_mastodon: 什麼是 Mastodon?
   accounts:
     choices_html: "%{name} 的選擇："
-    endorsements_hint: 推薦您已經關注的人，把他們釘在您的個人頁面。
+    endorsements_hint: 推薦您已經跟隨的人，將他們釘選在您的個人頁面。
     featured_tags_hint: 您可以推薦不同主題標籤，它們也會在此處出現。
-    follow: 關注
+    follow: 跟隨
     followers:
-      other: 關注者
-    following: 正在關注
+      other: 跟隨者
+    following: 正在跟隨
     instance_actor_flash: 這個帳號是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為站點聯盟且不應被停權。
     joined: 加入於 %{date}
     last_active: 上次活躍時間
@@ -69,10 +69,10 @@ zh-TW:
     moved_html: "%{name} 已經搬遷到 %{new_profile_link}:"
     network_hidden: 此訊息不可用
     nothing_here: 暫時沒有內容可供顯示!
-    people_followed_by: '%{name} 關注的人'
-    people_who_follow: 關注 %{name} 的人
+    people_followed_by: '%{name} 跟隨的人'
+    people_who_follow: 跟隨 %{name} 的人
     pin_errors:
-      following: 您只能推薦您正在關注的使用者。
+      following: 您只能推薦您正在跟隨的使用者。
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
@@ -83,7 +83,7 @@ zh-TW:
       group: 群組
       moderator: 版主
     unavailable: 無法取得個人檔案
-    unfollow: 取消關注
+    unfollow: 取消跟隨
   admin:
     account_actions:
       action: 執行動作
@@ -127,8 +127,8 @@ zh-TW:
       enable_sign_in_token_auth: 啟用電子信箱 token 驗證
       enabled: 已啟用
       enabled_msg: 成功解除 %{username} 帳號的凍結
-      followers: 關注者
-      follows: 正在關注
+      followers: 跟隨者
+      follows: 正在跟隨
       header: 開頭
       inbox_url: 收件箱 (Inbox) URL
       invite_request_text: 加入原因
@@ -423,7 +423,7 @@ zh-TW:
         create: 新增封鎖
         hint: 站點封鎖動作並不會阻止帳號紀錄被新增至資料庫，但會自動回溯性地對那些帳號套用特定管理設定。
         severity:
-          desc_html: "「<strong>靜音</strong>」令該站點下使用者的嘟文，設定為只對關注者顯示，沒有關注的人會看不到。「<strong>停權</strong>」會刪除將該站點下使用者的嘟文、媒體檔案和個人資料。「<strong>無</strong>」則會拒絕接收來自該站點的媒體檔案。"
+          desc_html: "「<strong>靜音</strong>」令該站點下使用者的嘟文，設定為只對跟隨者顯示，沒有跟隨的人會看不到。「<strong>停權</strong>」會刪除將該站點下使用者的嘟文、媒體檔案和個人資料。「<strong>無</strong>」則會拒絕接收來自該站點的媒體檔案。"
           noop: 無
           silence: 靜音
           suspend: 停權
@@ -525,8 +525,8 @@ zh-TW:
       purge_description_html: 若您相信此網域將永久離線，您可以自儲存空間中刪除該網域所有帳號紀錄及相關資料。這可能花費一些時間。
       title: 聯邦
       total_blocked_by_us: 被我們封鎖
-      total_followed_by_them: 被他們關注
-      total_followed_by_us: 被我們關注
+      total_followed_by_them: 被他們跟隨
+      total_followed_by_us: 被我們跟隨
       total_reported: 關於他們的舉報
       total_storage: 多媒體附檔
       totals_time_period_hint_html: 以下顯示之總和包含所有時間的資料。
@@ -558,7 +558,7 @@ zh-TW:
     relays:
       add_new: 新增中繼站
       delete: 刪除
-      description_html: <strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦中探索內容</strong>，而無須本地使用者手動關注遠端伺服器的其他使用者。
+      description_html: <strong>聯邦中繼站</strong> 是種中繼伺服器，會在訂閱並推送至此中繼站的伺服器之間交換大量的公開嘟文。<strong>中繼站也能協助小型或中型伺服器從聯邦宇宙中探索內容</strong>，而無須本地使用者手動跟隨遠端伺服器的其他使用者。
       disable: 停用
       disabled: 停用
       enable: 啟用
@@ -645,8 +645,8 @@ zh-TW:
         desc_html: 本站使用者發佈的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
         title: 公開使用者活躍度的統計數據
       bootstrap_timeline_accounts:
-        desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則預設關注本站所有管理員。
-        title: 新使用者預設關注
+        desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則預設跟隨本站所有管理員。
+        title: 新使用者預設跟隨
       contact_information:
         email: 用於聯絡的公開電子信箱地址
         username: 請輸入使用者名稱
@@ -873,7 +873,7 @@ zh-TW:
     created_msg: 成功建立別名。您可以自舊帳號開始轉移。
     deleted_msg: 成功移除別名。您將無法再由舊帳號轉移到目前的帳號。
     empty: 您目前沒有任何別名。
-    hint_html: 如果想由其他帳號轉移到此帳號，您可以在此處創建別名，稍後系統將容許您把關注者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
+    hint_html: 如果想由其他帳號轉移到此帳號，您可以在此處創建別名，稍後系統將容許您把跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
     remove: 取消連結別名
   appearance:
     advanced_web_interface: 進階網頁介面
@@ -912,7 +912,7 @@ zh-TW:
     description:
       prefix_invited_by_user: "@%{name} 邀請您加入這個 Mastodon 伺服器！"
       prefix_sign_up: 現在就註冊 Mastodon 帳號吧！
-      suffix: 有了帳號，就可以從任何 Mastodon 伺服器關注任何人、發發廢嘟，並且與任何 Mastodon 伺服器的使用者交流，以及更多！
+      suffix: 有了帳號，就可以從任何 Mastodon 伺服器跟隨任何人、發發廢嘟，並且與任何 Mastodon 伺服器的使用者交流，以及更多！
     didnt_get_confirmation: 沒有收到驗證信?
     dont_have_your_security_key: 找不到您的安全金鑰？
     forgot_password: 忘記密碼？
@@ -952,14 +952,14 @@ zh-TW:
     already_following: 您已經跟隨了這個使用者
     already_requested: 您早已向該帳戶寄送追蹤請求
     error: 對不起，搜尋其他站點使用者出現錯誤
-    follow: 關注
-    follow_request: '關注請求已經發送給：'
+    follow: 跟隨
+    follow_request: '跟隨請求已發送給：'
     following: '成功！您正在跟隨：'
     post_follow:
       close: 您可以直接關閉此頁面。
       return: 顯示個人資料頁
       web: 返回本站
-    title: 關注 %{acct}
+    title: 跟隨 %{acct}
   challenge:
     confirm: 繼續
     hint_html: "<strong>温馨小提醒：</strong> 我們在接下來一小時內不會再要求您輸入密碼。"
@@ -1122,7 +1122,7 @@ zh-TW:
       merge_long: 保留現有記錄並新增紀錄
       overwrite: 覆蓋
       overwrite_long: 以新的紀錄覆蓋目前紀錄
-    preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括關注的使用者、封鎖的使用者名單。
+    preface: 您可以在此匯入您在其他伺服器所匯出的資料檔，包括跟隨的使用者、封鎖的使用者名單。
     success: 資料檔上傳成功，正在匯入，請稍候
     types:
       blocking: 您封鎖的使用者名單
@@ -1175,7 +1175,7 @@ zh-TW:
   migrations:
     acct: 新帳號的 使用者名稱@站點網域
     cancel: 取消重導向
-    cancel_explanation: 取消重導向將會重新啓用目前帳號，但不會還原已移至該帳號的關注者。
+    cancel_explanation: 取消重導向將會重新啓用目前帳號，但不會還原已移至該帳號的跟隨者。
     cancelled_msg: 成功取消重導向。
     errors:
       already_moved: 與已經重導向的帳號相同
@@ -1190,7 +1190,7 @@ zh-TW:
     not_redirecting: 您的帳號目前尚未重新導向到任何其他帳號。
     on_cooldown: 您最近已轉移過您的帳號。此功能將在 %{count} 天後可再度使用。
     past_migrations: 以往的轉移紀錄
-    proceed_with_move: 移動關注者
+    proceed_with_move: 移動跟隨者
     redirected_msg: 您的帳號現在指向 %{acct}
     redirecting_to: 您的帳號目前正被重新導向到 %{acct}
     set_redirect: 設定重新導向
@@ -1229,12 +1229,12 @@ zh-TW:
     follow:
       body: "%{name} 開始跟隨您！"
       subject: "%{name} 開始跟隨您"
-      title: 新的關注者
+      title: 新的跟隨者
     follow_request:
-      action: 處理關注請求
+      action: 處理跟隨請求
       body: "%{name} 要求跟隨您"
       subject: '等待跟隨您的使用者︰ %{name}'
-      title: 新的關注請求
+      title: 新的跟隨請求
     mention:
       action: 回覆
       body: '%{name} 在嘟文中提及您:'
@@ -1319,7 +1319,7 @@ zh-TW:
     missing_resource: 無法找到資源
     no_account_html: 還沒有帳號？您可以<a href='%{sign_up_path}' target='_blank'>於這裡註冊</a>
     proceed: 下一步
-    prompt: '您希望關注:'
+    prompt: '您希望跟隨：'
     reason_html: "<strong>為什麼要經過這個步驟？</strong>因為<code>%{instance}</code>未必是您註冊的伺服器，我們需要先將您帶回您駐在的伺服器。"
   remote_interaction:
     favourite:
@@ -1441,7 +1441,7 @@ zh-TW:
     title: '%{name}：「%{quote}」'
     visibilities:
       direct: 私訊
-      private: 僅關注者
+      private: 僅限跟隨者
       private_long: 只有跟隨您的人能看到
       public: 公開
       public_long: 所有人都能看到
@@ -1647,26 +1647,26 @@ zh-TW:
         suspend: 帳號己被停用
     welcome:
       edit_profile_action: 設定個人資料
-      edit_profile_step: 您可以設定您的個人資料，包括上傳頭像、橫幅圖片、變更顯示名稱等等。如果想在新的關注者關注您之前對他們進行審核，您也可以選擇為您的帳號設為「私人」。
+      edit_profile_step: 您可以設定您的個人資料，包括上傳頭像、橫幅圖片、變更顯示名稱等等。如果想在新的跟隨者跟隨您之前對他們進行審核，您也可以選擇為您的帳號設為「私人」。
       explanation: 下面是幾個小幫助，希望它們能幫到您
       final_action: 開始嘟嘟
       final_step: '開始嘟嘟吧！即使您現在沒有跟隨者，其他人仍然能在本站時間軸或著話題標籤等地方看到您的公開嘟文。試著用 #introductions 這個話題標籤介紹一下自己吧。'
       full_handle: 您的完整帳號名稱
-      full_handle_hint: 您需要把這告訴你的朋友們，這樣他們就能從另一個伺服器向您發送訊息或著關注您。
+      full_handle_hint: 您需要把這告訴你的朋友們，這樣他們就能從另一個伺服器向您發送訊息或著跟隨您。
       review_preferences_action: 變更偏好設定
-      review_preferences_step: 記得調整你的偏好設定，比如你想接收什麼類型的電子郵件，或著你想把你的嘟文可見範圍預設設定什麼級別。如果你沒有暈車的話，考慮一下啟用「自動播放 GIF 動畫」這個選項吧。
+      review_preferences_step: 記得調整您的偏好設定，比如想接收什麼類型的電子郵件，或著想把您的嘟文可見範圍預設設定什麼級別。如果您沒有暈車的話，考慮一下啟用「自動播放 GIF 動畫」這個選項吧。
       subject: 歡迎來到 Mastodon
-      tip_federated_timeline: 跨站公共時間軸可以讓你一窺更廣闊的 Mastodon 網路。不過，由於它們只顯示你的鄰居們所訂閱的內容，所以並不是全部。
-      tip_following: 預設情況下，你會自動關注你所在站點的管理員。想結交更多有趣的人的話，記得多逛逛本站時間軸與跨站公共時間軸哦。
-      tip_local_timeline: 本站時間軸可以讓你一窺 %{instance} 上的使用者。他們就是離你最近的鄰居！
-      tip_mobile_webapp: 如果你的行動裝置瀏覽器允許你將 Mastodon 新增到主螢幕，你就能夠接收推送訊息。它就像手機APP一樣好用!
+      tip_federated_timeline: 跨站公共時間軸可以讓您一窺更廣闊的 Mastodon 網路。不過，由於它們只顯示您的鄰居們所訂閱的內容，所以並不是全部。
+      tip_following: 預設情況下，您會自動跟隨您所在站點的管管。想結交更多有趣的人的話，請記得多逛逛本站時間軸與跨站公共時間軸哦。
+      tip_local_timeline: 本站時間軸可以讓您一窺 %{instance} 上的使用者。他們就是離您最近的鄰居！
+      tip_mobile_webapp: 如果您的行動裝置瀏覽器允許將 Mastodon 新增到主螢幕，您就能夠接收推播通知。它就像手機 APP 一樣好用！
       tips: 小幫手
-      title: '%{name} 歡迎你的加入！'
+      title: '%{name} 誠摯歡迎您的加入！'
   users:
     follow_limit_reached: 您無法追蹤多於 %{limit} 個人
     invalid_otp_token: 兩階段認證碼不正確
-    otp_lost_help_html: 如果你無法訪問這兩者，可以通過 %{email} 與我們聯繫
-    seamless_external_login: 由於你是從外部系統登入，所以不能設定密碼與電子郵件。
+    otp_lost_help_html: 如果您無法訪問這兩者，可以透過 %{email} 與我們聯繫
+    seamless_external_login: 由於您是由外部系統登入，所以不能設定密碼與電子郵件。
     signed_in_as: '目前登入的帳號：'
   verification:
     explanation_html: '您在 Mastodon 個人資料頁上所列出的連結，可以用此方式<strong>驗證您確實掌控該連結網頁的內容</strong>。您可以在連結的網頁上加上一個連回 Mastodon 個人資料頁的連結，該連結的原始碼 <strong>必須</strong>包含<code>rel="me"</code>屬性。連結的顯示文字可自由發揮，以下為範例：'
@@ -1675,7 +1675,7 @@ zh-TW:
     add: 新增安全金鑰
     create:
       error: 新增安全金鑰時出現了問題。請再試一次。
-      success: 你已成功加入安全金鑰。
+      success: 您已成功加入安全金鑰。
     delete: 刪除
     delete_confirmation: 您確定要移除這把安全金鑰嗎？
     description_html: 如果您啟用<strong>安全金鑰驗證</strong>的話，您將在登入時需要使用其中一把安全金鑰。
