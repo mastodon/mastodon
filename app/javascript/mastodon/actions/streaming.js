@@ -7,9 +7,14 @@ import {
   expandHomeTimeline,
   connectTimeline,
   disconnectTimeline,
+  fillHomeTimelineGaps,
+  fillPublicTimelineGaps,
+  fillCommunityTimelineGaps,
+  fillListTimelineGaps,
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
+import { updateStatus } from './statuses';
 import {
   fetchAnnouncements,
   updateAnnouncements,
@@ -34,6 +39,7 @@ const randomUpTo = max =>
  * @param {Object.<string, string>} params
  * @param {Object} options
  * @param {function(Function, Function): void} [options.fallback]
+ * @param {function(): void} [options.fillGaps]
  * @param {function(object): boolean} [options.accept]
  * @return {function(): void}
  */
@@ -60,6 +66,10 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
           clearTimeout(pollingId);
           pollingId = null;
         }
+
+        if (options.fillGaps) {
+          dispatch(options.fillGaps());
+        }
       },
 
       onDisconnect() {
@@ -74,6 +84,9 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         switch(data.event) {
         case 'update':
           dispatch(updateTimeline(timelineId, JSON.parse(data.payload), options.accept));
+          break;
+        case 'status.update':
+          dispatch(updateStatus(JSON.parse(data.payload)));
           break;
         case 'delete':
           dispatch(deleteFromTimelines(data.payload));
@@ -115,7 +128,7 @@ const refreshHomeTimelineAndNotification = (dispatch, done) => {
  * @return {function(): void}
  */
 export const connectUserStream = () =>
-  connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification });
+  connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification, fillGaps: fillHomeTimelineGaps });
 
 /**
  * @param {Object} options
@@ -123,7 +136,7 @@ export const connectUserStream = () =>
  * @return {function(): void}
  */
 export const connectCommunityStream = ({ onlyMedia } = {}) =>
-  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`);
+  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
 
 /**
  * @param {Object} options
@@ -132,7 +145,7 @@ export const connectCommunityStream = ({ onlyMedia } = {}) =>
  * @return {function(): void}
  */
 export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
-  connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`);
+  connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) });
 
 /**
  * @param {string} columnId
@@ -155,4 +168,4 @@ export const connectDirectStream = () =>
  * @return {function(): void}
  */
 export const connectListStream = listId =>
-  connectTimelineStream(`list:${listId}`, 'list', { list: listId });
+  connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });

@@ -2,6 +2,7 @@
 
 module RoutingHelper
   extend ActiveSupport::Concern
+
   include Rails.application.routes.url_helpers
   include ActionView::Helpers::AssetTagHelper
   include Webpacker::Helper
@@ -21,8 +22,6 @@ module RoutingHelper
   def full_pack_url(source, **options)
     full_asset_url(asset_pack_path(source, **options))
   end
-
-  private
 
   def use_storage?
     Rails.configuration.x.use_s3 || Rails.configuration.x.use_swift

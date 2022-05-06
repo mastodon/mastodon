@@ -27,6 +27,8 @@ sq:
         scheduled_at: Që lajmërimi të botohet menjëherë, lëreni të zbrazët
         starts_at: Opsionale. Në rast se lajmërimi juaj është i lidhur me një interval kohor të caktuar
         text: Mund të përdorni sintaksë mesazhesh. Ju lutemi, mos harroni që hapësira e lajmërimit do të hajë vend në ekranin e përdoruesit
+      appeal:
+        text: Një paralajmërim mund ta apeloni vetëm një herë
       defaults:
         autofollow: Personat që regjistrohen përmes ftesës do t’ju ndjekin vetvetiu
         avatar: PNG, GIF ose JPG. Maksimumi %{size}. Do të zvogëlohen në %{dimensions}px
@@ -35,7 +37,7 @@ sq:
         current_password: Për qëllime sigurie, ju lutemi, jepni fjalëkalimin e llogarisë së tanishme
         current_username: Që ta ripohoni, ju lutemi, jepni emrin e përdoruesit të llogarisë së tanishme
         digest: I dërguar vetëm pas një periudhe të gjatë pasiviteti dhe vetëm nëse keni marrë ndonjë mesazh personal gjatë mungesës tuaj
-        discoverable: Drejtoria e profileve është një rrugë tjetër përmes së cilës llogaria juaj mund të mbërrijë te një publik më i gjerë
+        discoverable: Lejoni që llogaria juaj të zbulohet nga të huaj përmes rekomandimesh, gjërash në modë dhe veçorish të tjera
         email: Do t’ju dërgohet një email ripohimi
         fields: Te profili juaj mund të keni deri në 4 objekte të shfaqur si tabelë
         header: PNG, GIF ose JPG. E shumta %{size}. Do të ripërmasohet në %{dimensions}px
@@ -47,6 +49,7 @@ sq:
         phrase: Do të kërkohet përputhje pavarësish se teksti ose sinjalizimi mbi lëndën e një mesazhi është shkruar me të mëdha apo me të vogla
         scopes: Cilat API do të lejohen të përdorin aplikacioni. Nëse përzgjidhni një shkallë të epërme, nuk ju duhet të përzgjidhni individualet një nga një.
         setting_aggregate_reblogs: Mos shfaq përforcime të reja për mesazhe që janë përforcuar tani së fundi (prek vetëm përforcime të marra rishtas)
+        setting_always_send_emails: Normalisht s’do të dërgohen njoftime, kur përdorni aktivisht Mastodon-in
         setting_default_sensitive: Media rezervat fshihet, si parazgjedhje, dhe mund të shfaqet me një klikim
         setting_display_media_default: Fshih media me shenjën rezervat
         setting_display_media_hide_all: Fshih përherë mediat
@@ -61,7 +64,7 @@ sq:
       domain_allow:
         domain: Kjo përkatësi do të jetë në gjendje të sjellë të dhëna prej këtij shërbyesi dhe të dhënat ardhëse prej tij do të përpunohen dhe depozitohen
       email_domain_block:
-        domain: Ky mund të jetë emri i përkatësisë që shfaqet te adresa email, zëri MX që i takon asaj përkatësie, ose IP-ja e shërbyesit te i cili shpie ai zë MX. Këto do të kontrollohen gjatë regjistrimit të përdoruesit dhe regjistrimi do të hidhet poshtë.
+        domain: Ky mund të jetë emri i përkatësisë që shfaqet te adresa email, ose zëri MX që përdor. Do të kontrollohen gjatë regjistrimit.
         with_dns_records: Do të bëhet një përpjekje për ftillimin e zërave DNS të përkatësisë së dhënë dhe do të futen në listë bllokimesh edhe përfundimet
       featured_tag:
         name: 'Mund të doni të përdorni një nga këto:'
@@ -118,6 +121,8 @@ sq:
         scheduled_at: Planifikoji botimin
         starts_at: Fillim i aktit
         text: Lajmërim
+      appeal:
+        text: Shpjegoni pse duhet përmbysur ky vendim
       defaults:
         autofollow: Ftesë për ndjekje të llogarisë tuaj
         avatar: Avatar
@@ -147,6 +152,7 @@ sq:
         phrase: Fjalëkyç ose frazë
         setting_advanced_layout: Aktivizo ndërfaqe web të thelluar
         setting_aggregate_reblogs: Grupoji përforcimet në rrjedha kohore
+        setting_always_send_emails: Dërgo përherë njoftime me email
         setting_auto_play_gif: Vetëluaji GIF-et e animuar
         setting_boost_modal: Shfaq dialog ripohimi përpara përforcimi
         setting_crop_images: Në mesazhe jo të zgjerueshëm, qethi figurat në 16x9
@@ -196,6 +202,7 @@ sq:
           sign_up_requires_approval: Kufizo regjistrime
         severity: Rregull
       notification_emails:
+        appeal: Dikush apelon një vendim moderatori
         digest: Dërgo email-e përmbledhës
         favourite: Dikush parapëlqeu gjendjen tuaj
         follow: Dikush filloi t’ju ndjekë
@@ -204,7 +211,7 @@ sq:
         pending_account: Llogaria e re lyp shqyrtim
         reblog: Dikush përforcoi gjendjen tuaj
         report: Parashtrohet raportim i ri
-        trending_tag: Një hashtag i pashqyrtuar zë e bëhet popullor
+        trending_tag: Për gjëra të reja në modë lypset shqyrtim
       rule:
         text: Rregull
       tag:

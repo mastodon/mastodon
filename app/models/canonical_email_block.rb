@@ -24,4 +24,8 @@ class CanonicalEmailBlock < ApplicationRecord
   def self.block?(email)
     where(canonical_email_hash: email_to_canonical_email_hash(email)).exists?
   end
+
+  def self.find_blocks(email)
+    where(canonical_email_hash: email_to_canonical_email_hash(email))
+  end
 end

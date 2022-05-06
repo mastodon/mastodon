@@ -34,7 +34,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def promote?
-    admin? && promoteable?
+    admin? && promotable?
   end
 
   def demote?
@@ -43,7 +43,7 @@ class UserPolicy < ApplicationPolicy
 
   private
 
-  def promoteable?
+  def promotable?
     record.approved? && (!record.staff? || !record.admin?)
   end
 

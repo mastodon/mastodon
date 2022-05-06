@@ -8,6 +8,7 @@ th:
       user:
         agreement: ข้อตกลงการให้บริการ
         email: ที่อยู่อีเมล
+        locale: ตำแหน่งที่ตั้ง
         password: รหัสผ่าน
       user/account:
         username: ชื่อผู้ใช้
@@ -19,6 +20,7 @@ th:
           attributes:
             username:
               invalid: ต้องมีเฉพาะตัวอักษร, ตัวเลข และขีดล่างเท่านั้น
+              reserved: ถูกสงวนไว้
         status:
           attributes:
             reblog:
@@ -27,3 +29,4 @@ th:
           attributes:
             email:
               blocked: ใช้ผู้ให้บริการอีเมลที่ไม่ได้รับอนุญาต
+              unreachable: ดูเหมือนว่าจะไม่มีอยู่

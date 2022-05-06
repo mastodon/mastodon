@@ -69,7 +69,6 @@ co:
     media: Media
     moved_html: "%{name} hà cambiatu di contu, avà hè nant’à %{new_profile_link}:"
     network_hidden: St'infurmazione ùn hè micca dispunibule
-    never_active: Mai
     nothing_here: Ùn c’hè nunda quì!
     people_followed_by: Seguitati da %{name}
     people_who_follow: Seguitanu %{name}
@@ -94,12 +93,10 @@ co:
     account_moderation_notes:
       create: Creà una nota
       created_msg: Nota di muderazione creata!
-      delete: Toglie
       destroyed_msg: Nota di muderazione sguassata!
     accounts:
       add_email_domain_block: Mette u duminiu e-mail in lista nera
       approve: Appruvà
-      approve_all: Appruvà tuttu
       approved_msg: A dumanda d'arregistramente di %{username} hè stata appruvata
       are_you_sure: Site sicuru·a?
       avatar: Ritrattu di prufile
@@ -119,14 +116,16 @@ co:
       demote: Ritrugradà
       destroyed_msg: I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu
       disable: Disattivà
+      disable_sign_in_token_auth: Disattivà l'autentificazione à codice e-mail
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
-      disabled: Disattivatu
+      disabled: Ghjacciatu
       display_name: Nome pubblicu
       domain: Duminiu
       edit: Mudificà
       email: E-mail
       email_status: Statutu di l’e-mail
       enable: Riattivà
+      enable_sign_in_token_auth: Attivà l'autentificazione à codice e-mail
       enabled: Attivatu
       enabled_msg: U contu di %{username} hè statu riattivatu
       followers: Abbunati
@@ -151,7 +150,6 @@ co:
         active: Attivu
         all: Tutti
         pending: In attesa
-        silenced: Silenzati
         suspended: Suspesi
         title: Muderazione
       moderation_notes: Note di muderazione
@@ -169,7 +167,6 @@ co:
       redownload: Mette à ghjornu u prufile
       redownloaded_msg: U prufile di %{username} hè statu attualizatu da l'urighjine
       reject: Righjittà
-      reject_all: Righjittà tutti
       rejected_msg: A dumanda d'arregistramente di %{username} hè stata righjittata
       remove_avatar: Toglie l’avatar
       remove_header: Toglie a cuprendula
@@ -191,6 +188,9 @@ co:
       search: Cercà
       search_same_email_domain: Altri utilizatori cù listessu duminiu d'e-mail
       search_same_ip: Altri utilizatori cù listessa IP
+      security_measures:
+        only_password: Solu a chjave d'accessu
+        password_and_2fa: Chjave d’accessu è A2F
       sensitive: Sensibile
       sensitized: indicatu cum’è sensibile
       shared_inbox_url: URL di l’inbox spartuta
@@ -204,7 +204,6 @@ co:
       suspended: Suspesu
       suspension_irreversible: I dati di stu contu sò stati irreversibilamente sguassati. Pudete annullà a suspensione di u contu per u rende utilizabile ma ùn pudete micca ricuperà i dati pricedenti.
       suspension_reversible_hint_html: U contu hè statu suspesu, è i so dati saranu sguassati u %{date}. Da quì à là, u contu pò esse ricuperatu senza prublemu. S'e voi vulete toglie tutti i dati di u contu avà, pudete fallu quì sottu.
-      time_in_queue: 'Attesa in fila: %{time}'
       title: Conti
       unconfirmed_email: E-mail micca cunfirmatu
       undo_sensitized: Annullà sensibile
@@ -220,6 +219,7 @@ co:
       whitelisted: In a lista bianca
     action_logs:
       action_types:
+        approve_user: Appruvà l'utilizatore
         assigned_to_self_report: Assignà signalamentu
         change_email_user: Mudificà l'E-mail di l'Utilizatore
         confirm_user: Cunfirmà Utilizatore
@@ -242,11 +242,14 @@ co:
         destroy_unavailable_domain: Toglie duminiu micca dispunibule
         disable_2fa_user: Disattivà l’identificazione à 2 fattori
         disable_custom_emoji: Disattivà Emoji Persunalizata
+        disable_sign_in_token_auth_user: Disattivà l'Autentificazione à Codice E-Mail
         disable_user: Disattivà Utilizatore
         enable_custom_emoji: Attivà Emoji Persunalizata
+        enable_sign_in_token_auth_user: Attivà l'Autentificazione à Codice E-Mail
         enable_user: Attivà utilizatore
         memorialize_account: Trasfurmà contu in mimuriale
         promote_user: Prumove Utilizatore
+        reject_user: Righjittà l'utilizatore
         remove_avatar_user: Toglie Avatar
         reopen_report: Riapre Signalamentu
         reset_password_user: Riinizializà Chjave d'Accessu
@@ -344,7 +347,6 @@ co:
       enable: Attivà
       enabled: Attivate
       enabled_msg: L’emoji hè stata attivata
-      image_hint: PNG di 50Ko o menu
       list: Listà
       listed: Listata
       new:
@@ -361,32 +363,18 @@ co:
       updated_msg: L’emoji hè stata messa à ghjornu!
       upload: Caricà
     dashboard:
-      authorized_fetch_mode: Modu ricuperazione auturizata
-      backlog: travagli in attesa
-      config: Cunfigurazione
-      feature_deletions: Sguassamenti di conti
-      feature_invites: Ligami d'invitazione
-      feature_profile_directory: Annuariu di i prufili
-      feature_registrations: Arregistramenti
-      feature_relay: Ripetitore di federazione
-      feature_timeline_preview: Vista di a linea pubblica
-      features: Funziunalità
-      hidden_service: Federazione cù servizii piattati
-      open_reports: signalamenti aperti
-      pending_tags: hashtag in attesa di verificazione
-      pending_users: utilizatori in attesa di rivista
-      recent_users: Utilizatori ricenti
-      search: Ricerca di testu sanu
-      single_user_mode: Modu utilizatore unicu
+      active_users: utilizatori attivi
+      interactions: interazzione
+      media_storage: Spaziu di i media
+      new_users: novi utilizatori
+      opened_reports: signalamenti aperti
+      resolved_reports: signalamenti risolti
       software: Lugiziale
       space: Usu di u spaziu
       title: Quatru di strumenti
-      total_users: utilizatori in tutale
-      trends: Tindenze
-      week_interactions: interazzione sta settimana
-      week_users_active: attivi sta settimana
-      week_users_new: utilizatori sta settimana
-      whitelist_mode: Modu lista bianca
+      top_languages: Lingue e più attive
+      top_servers: Servori i più attivi
+      website: Situ web
     domain_allows:
       add_new: Aghjunghje à a lista bianca
       created_msg: U duminiu hè statu aghjuntu à a lista bianca
@@ -418,30 +406,13 @@ co:
       reject_media_hint: Sguassa tutti i media caricati è ricusa caricamenti futuri. Inutile per una suspensione
       reject_reports: Righjittà i riporti
       reject_reports_hint: Ignurà tutti i signalamenti chì venenu d'issu duminiu. Senz'oghjettu pè e suspensione
-      rejecting_media: righjettu di i fugliali media
-      rejecting_reports: righjettu di i signalamenti
-      severity:
-        silence: silenzatu
-        suspend: suspesu
-      show:
-        affected_accounts:
-          one: Un contu tuccatu indè a database
-          other: "%{count} conti tuccati indè a database"
-        retroactive:
-          silence: Ùn silenzà più i conti affettati di stu duminiu
-          suspend: Ùn suspende più i conti affettati di stu duminiu
-        title: Ùn bluccà più u duminiu %{domain}
-        undo: Annullà
       undo: Annullà u blucchime di duminiu
       view: Vede blucchime di duminiu
     email_domain_blocks:
       add_new: Aghjunghje
       created_msg: U blucchime di u duminiu d’e-mail hè attivu
       delete: Toglie
-      destroyed_msg: U blucchime di u duminiu d’e-mail ùn hè più attivu
       domain: Duminiu
-      empty: Ùn c'hè manc'un duminiu d'email in lista nera.
-      from_html: da %{domain}
       new:
         create: Creà un blucchime
         title: Nova iscrizzione nant’a lista nera e-mail
@@ -463,20 +434,11 @@ co:
         clear: Sguassà l'errori di distribuzione
         restart: Riprincipià a distribuzione
         stop: Firmà a distribuzione
-        title: Distribuzione
         unavailable: Indispunibule
-        unavailable_message: Distribuzione micca dispunibule
-        warning: Avertimentu
-        warning_message:
-          one: Errore di distribuzione per %{count} ghjornu
-          other: Errore di distribuzione per %{count} ghjorni
       delivery_available: Distribuzione dispunibule
       delivery_error_days: Ghjorni d'errori di a distribuzione
       delivery_error_hint: S'ellu ùn si pò distribuì à u duminiu per %{count} ghjorni, sarà autumaticamente marcatu cum'è indistribuibile.
       empty: Mancun duminiu trovu.
-      known_accounts:
-        one: "%{count} contu cunnisciutu"
-        other: "%{count} conti cunnisciuti"
       moderation:
         all: Tuttu
         limited: Limitatu
@@ -512,8 +474,6 @@ co:
         title: Creà una nova regula IP
       no_ip_block_selected: E regule ùn sò micca state mudificate perchè manc'un'era selezziunata
       title: Regule IP
-    pending_accounts:
-      title: Conti in attesa (%{count})
     relationships:
       title: Rilazione di %{acct}
     relays:
@@ -540,9 +500,6 @@ co:
         notes:
           one: "%{count} nota"
           other: "%{count} note"
-        reports:
-          one: "%{count} riportu"
-          other: "%{count} riporti"
       action_taken_by: Intervenzione di
       are_you_sure: Site sicuru·a?
       assign_to_self: Assignallu à mè
@@ -568,6 +525,7 @@ co:
       resolved: Scioltu è chjosu
       resolved_msg: Signalamentu scioltu!
       status: Statutu
+      target_origin: Urighjine di u contu signalatu
       title: Signalamenti
       unassign: Disassignà
       unresolved: Micca sciolti
@@ -671,15 +629,9 @@ co:
       destroyed_msg: Fugliale sguassatu da u situ!
     statuses:
       back_to_account: Ritornu à a pagina di u contu
-      batch:
-        delete: Toglie
-        nsfw_off: Indicà cum’è micca sensibile
-        nsfw_on: Indicà cum’è sensibile
       deleted: Sguassatu
-      failed_to_execute: Esecuzione impussibule
       media:
         title: Media
-      no_media: Nisun media
       no_status_selected: I statuti ùn sò micca stati mudificati perchè manc'unu era selezziunatu
       title: Statuti di u contu
       with_media: Cù media
@@ -688,21 +640,29 @@ co:
         action: Amministrà e regule di u servore
         message_html: Ùn avete micca ancu difinitu di regula per u servore.
     tags:
-      accounts_today: Usi unichi oghji
-      accounts_week: Usi unichi sta settimana
-      breakdown: Ditagli di l'usu d'oghji per origine
-      last_active: Ultima attività
-      most_popular: Più pupulari
-      most_recent: Più ricente
-      name: Hashtag
       review: Statutu di verificazione
-      reviewed: Verificatu
-      title: Hashtag
-      trending_right_now: Tendenze avà
-      unique_uses_today: "%{count} pustendu oghji"
-      unreviewed: Micca verificatu
       updated_msg: Parametri di i hashtag messi à ghjornu
     title: Amministrazione
+    trends:
+      allow: Auturizà
+      approved: Appruvatu
+      disallow: Difende
+      links:
+        allow: Auturizà u ligame
+      pending_review: In attesa di rivista
+      preview_card_providers:
+        title: Pubblicatori
+      rejected: Righittate
+      tags:
+        current_score: Score attuale %{score}
+        dashboard:
+          tag_accounts_measure: usi unichi
+          tag_languages_dimension: Lingue principale
+          tag_servers_measure: servori sfarenti
+          tag_uses_measure: usi tutali
+        not_usable: Ùn pò esse usatu
+        title: Tendenze di hashtag
+        usable: Pò esse usatu
     warning_presets:
       add_new: Aghjunghje
       delete: Sguassà
@@ -716,9 +676,6 @@ co:
       body: "%{reporter} hà palisatu %{target}"
       body_remote: Qualch’unu da %{domain} hà palisatu %{target}
       subject: Novu signalamentu nant’à %{instance} (#%{id})
-    new_trending_tag:
-      body: 'U hashtag #%{name} hè in e tendenze oghji, mà ùn hè micca verificatu. Ùn sarà micca mustratu à u pubblicu eccettu s''ellu hè auturizatu, o pudete ancu salvà u furmulariu cusì per ùn mai più avè à ne sente parlà.'
-      subject: Novu hashtag in attesa di rivista nant'à %{instance} (#%{name})
   aliases:
     add_new: Creà un pseudonimu
     created_msg: Novu pseudonimu creatu. Pudete avà inizià u trasferimentu da u vechju contu.
@@ -791,7 +748,6 @@ co:
     status:
       account_status: Statutu di u contu
       confirming: In attesa di a cumplezzione di a cunfirmazione di l'e-mail.
-      functional: U vostru contu hè uperaziunale.
       pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
       redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
     too_fast: Furmulariu mandatu troppu prestu, ripruvate.
@@ -925,7 +881,6 @@ co:
     changes_saved_msg: Cambiamenti salvati!
     copy: Cupià
     delete: Sguassà
-    no_batch_actions_available: Alcun'azzione di gruppu nant'à sta pagina
     order_by: Urdinà da
     save_changes: Salvà e mudificazione
     validation_errors:
@@ -933,26 +888,6 @@ co:
       other: Qualcosa ùn và bè! Verificate %{count} prublemi quì sottu
   html_validator:
     invalid_markup: 'cuntene codice HTML invalidu: %{error}'
-  identity_proofs:
-    active: Attiva
-    authorize: Ié, auturizà
-    authorize_connection_prompt: Auturizà sta cunnessione crittograffica?
-    errors:
-      failed: A cunnessione crittograffica s'hè fiascata. Ripruvate da %{provider}.
-      keybase:
-        invalid_token: E fiscie Keybase sò hash di firme è duvenu fà 66 caratteri esadecimali (0-9 A-F)
-        verification_failed: Keybase ùn ricunosce micca sta fiscia cum'una firma di l'utilizatore Keybase %{kb_username}. Ripruvate da Keybase.
-      wrong_user: Ùn si pò micca creà una prova per %{proving} mentre chì site cunnettatu·a cum'è %{current}. Cunnettatevi cum'è %{proving} è ripruvate.
-    explanation_html: Quì pudete cunnettà crittografficamente e vostre altre identità, cum'è per esempiu un prufile Keybase. Quessu permette à d'altre persone di mandà vi missaghji crittati, è d'affiducià i cuntinuti chì mandate.
-    i_am_html: Sò %{username} nant'à %{service}.
-    identity: Identità
-    inactive: Inattiva
-    publicize_checkbox: 'È mandà stu statutu:'
-    publicize_toot: 'Hè pruvata! Sò %{username} nant’à %{service}: %{url}'
-    remove: Sguassà a prova da u contu
-    removed: Prova sguassata da u contu
-    status: Statutu di a verificazione
-    view_proof: Vede a prova
   imports:
     errors:
       over_rows_processing_limit: cuntene più di %{count} filari
@@ -996,6 +931,12 @@ co:
   lists:
     errors:
       limit: Ùn pudete più creà altre liste
+  login_activities:
+    authentication_methods:
+      otp: app d'identificazione à dui fattori
+      password: chjave d’accessu
+      sign_in_token: codice di sicurità d'un e-mail
+      webauthn: chjave di sicurità
   media_attachments:
     validations:
       images_and_video: Ùn si pò micca aghjunghje un filmettu à un statutu chì hà digià ritratti
@@ -1046,9 +987,6 @@ co:
       new_followers_summary:
         one: Avete ancu un’abbunatu novu!
         other: Avete ancu %{count} abbunati novi!
-      subject:
-        one: "Una nutificazione nova dapoi à a vostr’ultima visita \U0001F418"
-        other: "%{count} nutificazione nove dapoi à a vostr’ultima visita \U0001F418"
       title: Dapoi l’ultima volta…
     favourite:
       body: "%{name} hà aghjuntu u vostru statutu à i so favuriti :"
@@ -1214,7 +1152,6 @@ co:
     edit_profile: Mudificà u prufile
     export: Spurtazione d’infurmazione
     featured_tags: Hashtag in vista
-    identity_proofs: Prove d'identità
     import: Impurtazione
     import_and_export: Impurtazione è spurtazione
     migrate: Migrazione di u contu
@@ -1243,13 +1180,11 @@ co:
       other: 'cuntene l’hashtag disattivati: %{tags}'
     errors:
       in_reply_not_found: U statutu à quellu avete pruvatu di risponde ùn sembra micca esiste.
-    language_detection: Truvà a lingua autumaticamente
     open_in_web: Apre nant’à u web
     over_character_limit: site sopr’à a limita di %{max} caratteri
     pin_errors:
       limit: Avete digià puntarulatu u numeru massimale di statuti
       ownership: Pudete puntarulà solu unu di i vostri propii statuti
-      private: Ùn pudete micca puntarulà un statutu ch’ùn hè micca pubblicu
       reblog: Ùn pudete micca puntarulà una spartera
     poll:
       total_people:
@@ -1273,6 +1208,34 @@ co:
       public_long: Tuttu u mondu pò vede
       unlisted: Micca listatu
       unlisted_long: Tuttu u mondu pò vede, mà micca indè e linee pubbliche
+  statuses_cleanup:
+    exceptions: Eccezzione
+    keep_direct: Cunservà i missaghji diretti
+    keep_direct_hint: Ùn sguassa micca i vostri missaghji diretti
+    keep_media: Cunservà i statuti cù fugliali aghjunti
+    keep_media_hint: Ùn sguassa micca i vostri missaghji chì anu fugliali aghjunti
+    keep_pinned: Cunservà i statuti puntarulati
+    keep_pinned_hint: Ùn sguassa micca i vostri missaghji chì sò puntarulati
+    keep_polls: Cunservà i scandagli
+    keep_polls_hint: Ùn sguassa micca i vostri missaghji ch'anu scandagli
+    keep_self_bookmark: Cunservà i statuti ch'avete segnalibrati
+    keep_self_bookmark_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri segnalibri
+    keep_self_fav: Cunservà i statuti ch'avete favurizati
+    keep_self_fav_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri favuriti
+    min_age:
+      '1209600': 2 settimane
+      '15778476': 6 mesi
+      '2629746': 1 mese
+      '31556952': 1 annu
+      '5259492': 2 mesi
+      '604800': 1 week
+      '63113904': 2 anni
+      '7889238': 3 mesi
+    min_age_label: Età minima
+    min_favs: Cunservà i statuti favurizzati più di
+    min_favs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di favuriti. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di favuriti
+    min_reblogs: Cunservà i statuti spartuti più di
+    min_reblogs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di spartere. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di spartere
   stream_entries:
     pinned: Statutu puntarulatu
     reblogged: hà spartutu
@@ -1390,31 +1353,15 @@ co:
       explanation: Avete dumandatu un’archiviu cumpletu di u vostru contu Mastodon. Avà hè prontu per scaricà!
       subject: U vostru archiviu hè prontu à scaricà
       title: Archiviu prontu
-    sign_in_token:
-      details: 'Ditagli di u tentativu quì sottu:'
-      explanation: 'Avemu ditettatu un tentativu di cunnessione nant''à u vostru contu da un''indirizzu IP ch''ùn avemu micca ricunisciutu. S''ellu era voi, vi pricuremu d''entrà u codice di sicurità quì sottu nant''à a pagina di cunfirmazione di cunnessione:'
-      further_actions: 'S''ellu ùn era micca voi, duvete cambià a vostra chjave d''accessu è attivà l''identificazione à dui fattori nant''à u vostru contu. Pudete fà quessi quì:'
-      subject: Cunfirmate u tentativu di cunnessione
-      title: Tentativu di cunnessione
     warning:
-      explanation:
-        disable: Quandu u vostru contu hè ghjacciatu, i vostri dati stannu intatti, mà ùn pudete fà nunda fin'à ch'ellu sia sbluccatu.
-        sensitive: I vostri media caricati è in ligami saranu trattati cum'è sensibili.
-        silence: Quandu u vostru contu hè limitatu, solu quelli chì sò digià abbunati à u vostru contu viderenu i vostri statuti nant'à quessu servore, è puderete esse esclusu·a di parechje liste pubbliche. Però, altri conti puderenu sempre seguitavi.
-        suspend: U vostru contu hè statu suspesu, è tutti i vo statuti è fugliali media caricati sò stati sguassati di manera irreversibile di stu servore, è di i servori induve aviate abbunati.
-      get_in_touch: Pudete risponde à quest'e-mail per cuntattà a squadra di muderazione di %{instance}.
-      review_server_policies: Leghje e pulitiche di u servore
-      statuses: 'Più pricisamente, per:'
       subject:
         disable: U vostru contu %{acct} hè statu ghjacciatu
         none: Avertimentu pè %{acct}
-        sensitive: I media di u vostru contu %{acct} sò stati marcati cum'è sensibili
         silence: U vostru contu %{acct} hè statu limitatu
         suspend: U vostru contu %{acct} hè statu suspesu
       title:
         disable: Contu ghjacciatu
         none: Avertimentu
-        sensitive: U vostru media hè statu marcatu cum'è sensibile
         silence: Contu limitatu
         suspend: Contu suspesu
     welcome:
@@ -1436,13 +1383,10 @@ co:
       title: Benvenutu·a, %{name}!
   users:
     follow_limit_reached: Ùn pidete seguità più di %{limit} conti
-    generic_access_help_html: Prublemi d'accessu à u vostru contu? Pudete cuntattà %{email} per ottene aiutu
     invalid_otp_token: U codice d’identificazione ùn hè currettu
-    invalid_sign_in_token: Codice di sicurità micca validu
     otp_lost_help_html: S’è voi avete persu i dui, pudete cuntattà %{email}
     seamless_external_login: Site cunnettatu·a dapoi un serviziu esternu, allora i parametri di chjave d’accessu è d’indirizzu e-mail ùn so micca dispunibili.
     signed_in_as: 'Cunnettatu·a cum’è:'
-    suspicious_sign_in_confirmation: Ci pare ch'ùn vi site mai cunnettatu·a da quess'apparechju, è ùn vi site micca cunnettatu·a dapoi una stonda, allora vi mandemu un codice di sicurità à u vostr'indirizzu e-mail per cunfirmà chì site voi.
   verification:
     explanation_html: 'Pudete <strong>verificavi cum''è u pruprietariu di i ligami in i metadati di u vostru prufile</strong>. Per quessa, u vostru situ deve avè un ligame versu a vostra pagina Mastodon. U ligame <strong>deve</strong> avè un''attributu <code>rel="me"</code>. U cuntenutu di u testu di u ligame ùn hè micca impurtante. Eccu un''esempiu:'
     verification: Verificazione

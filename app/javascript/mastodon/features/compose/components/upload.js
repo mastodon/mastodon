@@ -5,7 +5,6 @@ import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 
 export default class Upload extends ImmutablePureComponent {
@@ -18,6 +17,7 @@ export default class Upload extends ImmutablePureComponent {
     media: ImmutablePropTypes.map.isRequired,
     onUndo: PropTypes.func.isRequired,
     onOpenFocalPoint: PropTypes.func.isRequired,
+    isEditingStatus: PropTypes.func.isRequired,
   };
 
   handleUndoClick = e => {
@@ -31,7 +31,7 @@ export default class Upload extends ImmutablePureComponent {
   }
 
   render () {
-    const { media } = this.props;
+    const { media, isEditingStatus } = this.props;
     const focusX = media.getIn(['meta', 'focus', 'x']);
     const focusY = media.getIn(['meta', 'focus', 'y']);
     const x = ((focusX /  2) + .5) * 100;
@@ -42,10 +42,16 @@ export default class Upload extends ImmutablePureComponent {
         <Motion defaultStyle={{ scale: 0.8 }} style={{ scale: spring(1, { stiffness: 180, damping: 12 }) }}>
           {({ scale }) => (
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>
-              <div className={classNames('compose-form__upload__actions', { active: true })}>
+              <div className='compose-form__upload__actions'>
                 <button className='icon-button' onClick={this.handleUndoClick}><Icon id='times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
-                <button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='pencil' /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>
+                {!isEditingStatus && (<button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='pencil' /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>)}
               </div>
+
+              {(media.get('description') || '').length === 0 && (
+                <div className='compose-form__upload__warning'>
+                  <button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='info-circle' /> <FormattedMessage id='upload_form.description_missing' defaultMessage='No description added' /></button>
+                </div>
+              )}
             </div>
           )}
         </Motion>

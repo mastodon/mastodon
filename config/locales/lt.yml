@@ -46,7 +46,6 @@ lt:
     account_moderation_notes:
       create: Palikti žinutę
       created_msg: Moderavimo žinutė sėkimngai sukurta!
-      delete: Ištrinti
       destroyed_msg: Moderacijos žinutė sėkmingai ištrinta!
     accounts:
       are_you_sure: Ar esate įsitikinęs?
@@ -91,7 +90,6 @@ lt:
       moderation:
         active: Aktyvus
         all: Visi
-        silenced: Užtildytas
         suspended: Užrakintas
         title: Moderacija
       moderation_notes: Medaracijos žinutės
@@ -153,7 +151,6 @@ lt:
       emoji: Jaustukas
       enable: Įjungti
       enabled_msg: Šis jaustukas sėkmingai įjungtas
-      image_hint: PNG failo dydis iki 50KB
       listed: Įtrauktas į sąrašą
       new:
         title: Pridėti naują jaustuką
@@ -166,27 +163,9 @@ lt:
       updated_msg: Jaustukas sėkmingai pakeistas!
       upload: Įkelti
     dashboard:
-      backlog: Neatlikti darbai
-      config: Konfiguracija
-      feature_deletions: Paskyrų šalinimas
-      feature_invites: Pakivetimo nuorodos
-      feature_profile_directory: Profilio direktorija
-      feature_registrations: Registracijos
-      feature_relay: Federacijos perjungėjas
-      features: Išskirtinumai
-      hidden_service: Federacija su paslėptomis paslaugomis
-      open_reports: atidaryti skundai
-      recent_users: Neseni vartotojai
-      search: Pilno teksto paieška
-      single_user_mode: Vieno vartotojo būsena
       software: Programinė įranga
       space: Naudojama atmintis
       title: Pagrindinis puslapis
-      total_users: viso vartotoju
-      trends: Tendencijos
-      week_interactions: naudojimai šią savaitę
-      week_users_active: aktyvūs šią savaitę
-      week_users_new: vartotojai šią savaitę
     domain_blocks:
       add_new: Pridėti naują domeno bloką
       created_msg: Domeno užblokavimas nagrinėjamas
@@ -207,23 +186,11 @@ lt:
       reject_media_hint: Panaikina lokaliai saugomus medijos failus bei atsisako jų parsisiuntimo ateityje. Neliečia užblokavimu
       reject_reports: Atmesti skundai
       reject_reports_hint: Ignoruoti visus skundus, kurie siunčiami iš šio domeno. Neliečia užblokavimu
-      rejecting_media: atmetami medijos failai
-      rejecting_reports: atmetami skundai
-      severity:
-        silence: užtildytas
-        suspend: uždraustas
-      show:
-        retroactive:
-          silence: Atitildyti visus egzistuojančius vartotojus šiame domene
-          suspend: Atblokuotis visus egzistuojančius vartotojus šiame domene
-        title: Atkurti domeno blokavimą domenui %{domain}
-        undo: Atkurti
       undo: Atkurti domeno bloką
     email_domain_blocks:
       add_new: Pridėti naują
       created_msg: El pašto domenas sėkmingai pridėtas į juodąjį sąrašą
       delete: Ištrinti
-      destroyed_msg: El pašto adresas sėkmingai pašalintas iš juodojo sąrašo
       domain: Domenas
       new:
         create: Pridėto domeną
@@ -361,19 +328,11 @@ lt:
       title: Tinklalapio nustatymai
     statuses:
       back_to_account: Atgal į paskyros puslapį
-      batch:
-        delete: Ištrinti
-        nsfw_off: Pažymėti kaip ne jautrią informaciją
-        nsfw_on: Pažymėti kaip jautrią informaciją
-      failed_to_execute: Nesėkmingas veiksmas
       media:
         title: Medija
-      no_media: Nėra medijos
       no_status_selected: Jokie statusai nebuvo pakeisti, nes niekas nepasirinkta
       title: Paskyros statusai
       with_media: Su medija
-    tags:
-      title: Saitažodžiai(#)
     title: Administracija
     warning_presets:
       add_new: Pridėti naują
@@ -637,13 +596,11 @@ lt:
       description: 'Pridėta: %{attached}'
     boosted_from_html: Pakelta iš %{acct_link}
     content_warning: 'Turinio įspėjimas: %{warning}'
-    language_detection: Automatiškai nustatyti kalbą
     open_in_web: Atidaryti naudojan Web
     over_character_limit: pasiektas %{max} simbolių limitas
     pin_errors:
       limit: Jūs jau prisegėte maksimalų toot'ų skaičų
       ownership: Kitų vartotojų toot'ai negali būti prisegti
-      private: Ne vieši toot'ai negali būti prisegti
       reblog: Pakeltos žinutės negali būti prisegtos
     show_more: Daugiau
     sign_in_to_participate: Prisijunkite jeigu norite dalyvauti pokalbyje
@@ -758,11 +715,6 @@ lt:
       subject: Jūsų archyvas paruoštas parsisiuntimui
       title: Archyvas išimtas
     warning:
-      explanation:
-        disable: Kol Jūsų paskyra užšaldyta, Jūsų duomenys tebėra matomi, tačiau jūs negalite atlikti jokių veiksmu, tol, kol užšaldymas panaikintas.
-        silence: Kol Jūsų paskyra limituota, tik žmonės, kurie jus jau sekė matus Jūsų toot'us serveryje, Jūs taip pat būsite išimtas iš viešųjų sąrašų. Tačiau, kiti gali jus rasti, savo rankomis.
-        suspend: Jūsų paskyra buvo užrakinta, ir visi Jūsų toot'ai, medijos failai, buvo panaikinti iš šio serverio, ir visų kitų serverių, kur turėjote sekėjų.
-      review_server_policies: Apžvelgti serverio politiką
       subject:
         disable: Jūsų paskyra %{acct} buvo užšaldyta
         none: Įspėjmas vartotojui %{acct}

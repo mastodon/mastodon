@@ -15,6 +15,7 @@ cy:
     contact: Cyswllt
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
+    continue_to_web: Parhau i app gwe
     discover_users: Darganfod defnyddwyr
     documentation: Dogfennaeth
     federation_hint_html: Gyda cyfrif ar %{instance}, gallwch dilyn pobl ar unrhyw gweinydd Mastodon, a thu hwnt.
@@ -24,7 +25,11 @@ cy:
       Mae'r cyfrif hwn yn actor rhithwir a ddefnyddir i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol.
       Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei rwystro oni bai eich bod am rwystro'r achos cyfan, ac os felly dylech ddefnyddio bloc parth.
     learn_more: Dysu mwy
+    logged_in_as_html: Rydych chi wedi mewngofnodi fel %{username}.
+    logout_before_registering: Rydych chi eisoes wedi mewngofnodi.
     privacy_policy: Polisi preifatrwydd
+    rules: Rheolau gweinydd
+    rules_html: 'Isod mae crynodeb o''r rheolau y mae angen i chi eu dilyn os ydych chi am gael cyfrif ar y gweinydd hwn o Mastodon:'
     see_whats_happening: Gweld beth sy'n digwydd
     server_stats: 'Ystadegau gweinydd:'
     source_code: Cod ffynhonnell
@@ -77,7 +82,6 @@ cy:
     media: Cyfryngau
     moved_html: 'Mae %{name} wedi symud i %{new_profile_link}:'
     network_hidden: Nid yw'r wybodaeth hyn ar gael
-    never_active: Peidiwch byth
     nothing_here: Does dim byd yma!
     people_followed_by: Pobl y mae %{name} yn ei ddilyn
     people_who_follow: Pobl sy'n dilyn %{name}
@@ -94,6 +98,7 @@ cy:
     posts_with_replies: Tŵtiau ac atebion
     roles:
       admin: Gweinyddwr
+      bot: Bot
       group: Grŵp
       moderator: Safonwr
     unavailable: Proffil ddim ar gael
@@ -105,12 +110,10 @@ cy:
     account_moderation_notes:
       create: Gadael nodyn
       created_msg: Crewyd nodyn goruwchwylio yn llwyddiannus!
-      delete: Dileu
       destroyed_msg: Dinistrwyd nodyn goruwchwylio yn llwyddiannus!
     accounts:
       add_email_domain_block: Cosbrestru parth e-bost
       approve: Cymeradwyo
-      approve_all: Cymeradwyo pob un
       are_you_sure: Ydych chi'n siŵr?
       avatar: Afatar
       by_domain: Parth
@@ -124,6 +127,7 @@ cy:
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       confirming: Cadarnhau
+      delete: Dileu data
       deleted: Wedi dileu
       demote: Diraddio
       disable: Diffodd
@@ -141,6 +145,7 @@ cy:
       header: Pennawd
       inbox_url: URL Mewnflwch
       invited_by: Gwahoddwyd gan
+      ip: IP
       joined: Ymunodd
       location:
         all: Popeth
@@ -154,7 +159,6 @@ cy:
         active: Yn weithredol
         all: Popeth
         pending: Yn aros
-        silenced: Wedi ei dawelu
         suspended: Wedi ei atal
         title: Goruwchwyliad
       moderation_notes: Nodiadau goruwchwylio
@@ -166,11 +170,11 @@ cy:
       pending: Yn aros am adolygiad
       perform_full_suspension: Atal
       promote: Hyrwyddo
+      protocol: Protocol
       public: Cyhoeddus
       push_subscription_expires: Tanysgrifiad gwthiadwy yn dod i ben
       redownload: Adnewyddu proffil
       reject: Gwrthod
-      reject_all: Gwrthod pob un
       remove_avatar: Dileu afatar
       remove_header: Dileu pennawd
       resend_confirmation:
@@ -196,8 +200,8 @@ cy:
       silenced: Tawelwyd
       statuses: Statysau
       subscribe: Tanysgrifio
+      suspend: Atal
       suspended: Ataliwyd
-      time_in_queue: Yn aros yn y rhestr am %{time}
       title: Cyfrifon
       unconfirmed_email: E-bost heb ei gadarnhau
       undo_silenced: Dadwneud tawelu
@@ -224,6 +228,7 @@ cy:
         destroy_domain_allow: Dileu Alluogiad Parth
         destroy_domain_block: Dileu Gwaharddiad Parth
         destroy_email_domain_block: Dileu gwaharddiad parth ebost
+        destroy_ip_block: Dileu rheol IP
         destroy_status: Dileu Statws
         disable_2fa_user: Diffodd 2FA
         disable_custom_emoji: Analluogi Emoji Addasiedig
@@ -279,7 +284,6 @@ cy:
       enable: Galluogi
       enabled: Wedi ei alluogi
       enabled_msg: Llwyddwyd i alluogi yr emoji hwnnw
-      image_hint: PNG hyd at 50KB
       list: Rhestr
       listed: Rhestredig
       new:
@@ -296,32 +300,9 @@ cy:
       updated_msg: Llwyddwyd i ddiweddaru'r emoji!
       upload: Uwchlwytho
     dashboard:
-      authorized_fetch_mode: Modd nôl awdurdodedig
-      backlog: tasgau heb eu cwblhau
-      config: Cyfluniad
-      feature_deletions: Dileadau cyfrif
-      feature_invites: Dolenni gwahodd
-      feature_profile_directory: Cyfeiriadur proffil
-      feature_registrations: Cofrestriadau
-      feature_relay: Relái ffederasiwn
-      feature_timeline_preview: Rhagolwg o'r ffrwd
-      features: Nodweddion
-      hidden_service: Ffederasiwn a gwasanaethau cudd
-      open_reports: adroddiadau agored
-      pending_tags: hashnodau yn aros am adolygiad
-      pending_users: defnyddwyr yn aros am adolygiad
-      recent_users: Defnyddwyr diweddar
-      search: Chwilio testun llawn
-      single_user_mode: Modd un defnyddiwr
       software: Meddalwedd
       space: Defnydd o ofod
       title: Dangosfwrdd
-      total_users: cyfanswm defnyddwyr
-      trends: Tueddiadau
-      week_interactions: ymadweithiau yr wythnos hon
-      week_users_active: gweithredol yr wythnos hon
-      week_users_new: defnyddwyr yr wythnos hon
-      whitelist_mode: Modd rhestr wen
     domain_allows:
       add_new: Rhestrwch parth
       created_msg: Rhestrwyd wen parth yn llwyddiannus
@@ -351,34 +332,16 @@ cy:
       reject_media_hint: Dileu dogfennau cyfryngau wedi eu cadw yn lleol ac yn gwrthod i lawrlwytho unrhyw rai yn y dyfodol. Amherthnasol i ataliadau
       reject_reports: Gwrthod adroddiadau
       reject_reports_hint: Anwybyddu'r holl adroddiadau sy'n dod o'r parth hwn. Amherthnasol i ataliadau
-      rejecting_media: Yn gwrthod ffeiliau cyfryngau
-      rejecting_reports: Yn gwrthod adroddiadau
-      severity:
-        silence: tawelu
-        suspend: ataliedig
-      show:
-        affected_accounts:
-          few: Effeithiwyd ar %{count} gyfrifon
-          many: Effeithiwyd ar %{count} gyfrifon
-          one: Effeithiwyd ar un cyfrif
-          other: Effeithiwyd ar %{count} gyfrifon
-          two: Effeithiwyd ar %{count} gyfrifon
-          zero: Effeithiwyd ar %{count} gyfrifon
-        retroactive:
-          silence: Dad-dawelu pob cyfri presennol o'r parth hwn
-          suspend: Dad-atal pob cyfrif o'r parth hwn sy'n bodoli
-        title: Dadwneud blocio parth ar gyfer %{domain}
-        undo: Dadwneud
       undo: Dadwneud bloc parth
       view: Gweld bloc parth
     email_domain_blocks:
       add_new: Ychwanegu
       created_msg: Llwyddwyd i ychwanegu parth e-bost i'r gosbrestr
       delete: Dileu
-      destroyed_msg: Llwyddwyd i ddileu parth e-bost o'r gosbrestr
+      dns:
+        types:
+          mx: Cofnod MX
       domain: Parth
-      empty: Dim parthiau ebost ar y rhestr rhwystro.
-      from_html: o %{domain}
       new:
         create: Ychwanegu parth
         title: Cofnod newydd yng nghosbrestr e-byst
@@ -386,13 +349,6 @@ cy:
     instances:
       by_domain: Parth
       delivery_available: Mae'r cyflenwad ar gael
-      known_accounts:
-        few: "%{count} cyfrifon hysbys"
-        many: "%{count} cyfrifon hysbys"
-        one: "%{count} cyfrif hysbys"
-        other: "%{count} cyfrifon hysbys"
-        two: "%{count} cyfrifon hysbys"
-        zero: "%{count} cyfrifon hysbys"
       moderation:
         all: Pob
         limited: Gyfyngedig
@@ -413,8 +369,6 @@ cy:
         expired: Wedi dod i ben
         title: Hidlo
       title: Gwahoddiadau
-    pending_accounts:
-      title: Cyfrifau yn aros (%{count})
     relationships:
       title: Perthnasau %{acct}
     relays:
@@ -445,13 +399,6 @@ cy:
           other: "%{count} o nodiadau"
           two: "%{count} o nodiadau"
           zero: "%{count} nodyn"
-        reports:
-          few: "%{count} o adroddiadau"
-          many: "%{count} o adroddiadau"
-          one: "%{count} adroddiad"
-          other: "%{count} o adroddiadau"
-          two: "%{count} o adroddiadau"
-          zero: "%{count} adroddiad"
       action_taken_by: Gwnaethpwyd hyn gan
       are_you_sure: Ydych chi'n sicr?
       assign_to_self: Aseinio i mi
@@ -570,34 +517,18 @@ cy:
       destroyed_msg: Uwchlwythiad wefan wedi'i ddileu yn lwyddianus!
     statuses:
       back_to_account: Yn ôl i dudalen y cyfrif
-      batch:
-        delete: Dileu
-        nsfw_off: Marcio fel nad yw'n sensitif
-        nsfw_on: Marcio'n sensitif
       deleted: Dilëwyd
-      failed_to_execute: Methwyd a gweithredu
       media:
         title: Cyfryngau
-      no_media: Dim cyfryngau
       no_status_selected: Ni newidwyd dim statws achos ni ddewiswyd dim un
       title: Statysau cyfrif
       with_media: A chyfryngau
     tags:
-      accounts_today: Defyddau unigol heddiw
-      accounts_week: Defnyddau unigol yr wythnos hon
-      breakdown: Ymddatodiad o ddefnyddiaeth heddiw wrth ffynhonnell
-      last_active: Yn weithredol ddiwethaf
-      most_popular: Mwyaf poblogaidd
-      most_recent: Mwyaf diweddar
-      name: Hashnod
       review: Adolygu statws
-      reviewed: Wedi'i adolygu
-      title: Hashnodau
-      trending_right_now: Yn tueddu nawr
-      unique_uses_today: "%{count} yn postio heddiw"
-      unreviewed: Heb ei adolygu
       updated_msg: Gosodiadau hashnodau wedi'i diweddaru'n llwyddiannus
     title: Gweinyddiaeth
+    trends:
+      only_allowed: Derbyniwyd yn unig
     warning_presets:
       add_new: Ychwanegu newydd
       delete: Dileu
@@ -611,9 +542,6 @@ cy:
       body: Mae %{reporter} wedi cwyno am %{target}
       body_remote: Mae rhywun o %{domain} wedi cwyno am %{target}
       subject: Cwyn newydd am %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Mae''r hashnod #%{name} yn tueddu heddiw, ond nid yw''r hashnod wedi''i adolygu''n gynt. Ni fydd o''n cael ei arddangos yn gyhoeddus oni bai bod chi''n ei ganiataú, neu arbedwch y ffurflen fel y mae i fyth clywed amdano eto.'
-      subject: Hashnod newydd i fynnu ar gyfer adolygiad ar %{instance} (%{name})
   aliases:
     add_new: Creu enw arall
     created_msg: Wedi creu enw arall yn llwyddianus. Gallwch nawr dechrau'r symudiad o'r hen gyfrif.
@@ -678,7 +606,6 @@ cy:
     status:
       account_status: Statws cyfrif
       confirming: Aros i gadarnhad e-bost gael ei gwblhau.
-      functional: Mae eich cyfrif yn gwbl weithredol.
       pending: Mae'ch cais yn aros i gael ei adolygu gan ein staff. Gall hyn gymryd cryn amser. Byddwch yn derbyn e-bost os caiff eich cais ei gymeradwyo.
       redirecting_to: Mae eich cyfrif yn anactif oherwydd ei fod ar hyn o bryd yn ailgyfeirio i %{acct}.
     trouble_logging_in: Trafferdd mewngofnodi?
@@ -804,7 +731,6 @@ cy:
     changes_saved_msg: Llwyddwyd i gadw y newidiadau!
     copy: Copïo
     delete: Dileu
-    no_batch_actions_available: Dim gweithredau llwyth ar gael ar y dudalen hon
     order_by: Trefnu wrth
     save_changes: Cadw newidiadau
     validation_errors:
@@ -816,26 +742,6 @@ cy:
       zero: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod os gwelwch yn dda
   html_validator:
     invalid_markup: 'yn cynnwys marciad HTML annilys: %{error}'
-  identity_proofs:
-    active: Yn weithredol
-    authorize: Ie, awdurdodi
-    authorize_connection_prompt: Awdurdodi y cysylltiad cryptograffig hon?
-    errors:
-      failed: Methwyd y cysylltiad cryptograffig. Ceisiwch eto o %{provider}, os gwelwch yn dda.
-      keybase:
-        invalid_token: Mae tocynnau keybase yn hashiau o llofnodau ac mae rhaid iddynt bod yn 66 cymeriadau hecs
-        verification_failed: Nid yw Keybase yn adnabod y tocyn hyn fel llofnod defnyddiwr Keybase %{kb_username}. Cesiwch eto o Keybase, os gwelwch yn dda.
-      wrong_user: Ni all greu prawf ar gyfer %{proving} tra wedi mewngofnodi fel %{current}. Mewngofnodi fel %{proving} a cheisiwch eto.
-    explanation_html: Fama gallwch cysylltu i'ch hunanieithau arall yn cryptograffig, er enghraifft proffil Keybase. Mae hyn yn gadael pobl arall i anfon chi negeseuon amgryptiedig a ymddiried mewn cynnwys rydych yn eich anfon iddynt.
-    i_am_html: Rydw i'n %{username} ar %{service}.
-    identity: Hunaniaeth
-    inactive: Anweithgar
-    publicize_checkbox: 'A thŵtiwch hon:'
-    publicize_toot: 'Wedi profi! Rydw i''n %{username} ar %{service}: %{url}'
-    remove: Tynnu prawf o'r cyfrif
-    removed: Wedi tynnu prawf o'r cyfrif yn llwyddiannus
-    status: Statws gwirio
-    view_proof: Gweld prawf
   imports:
     modes:
       merge: Cyfuno
@@ -934,13 +840,6 @@ cy:
         other: Hefyd, rydych wedi ennill %{count} dilynwr newydd tra eich bod i ffwrdd! Hwrê!
         two: Hefyd, rydych wedi ennill %{count} dilynwr newydd tra eich bod i ffwrdd! Hwrê!
         zero: Hefyd, rydych wedi ennill %{count} dilynwr newydd tra eich bod i ffwrdd! Hwrê!
-      subject:
-        few: "%{count} hysbysiad newydd ers eich ymweliad diwethaf"
-        many: "%{count} hysbysiad newydd ers eich ymweliad diwethaf"
-        one: 1 hysbysiad newydd ers eich ymweliad diwethaf
-        other: "%{count} hysbysiad newydd ers eich ymweliad diwethaf"
-        two: "%{count} hysbysiad newydd ers eich ymweliad diwethaf"
-        zero: "%{count} hysbysiad newydd ers eich ymweliad diwethaf"
       title: Yn eich absenoldeb...
     favourite:
       body: 'Cafodd eich statws ei hoffi gan %{name}:'
@@ -1071,7 +970,6 @@ cy:
     edit_profile: Golygu proffil
     export: Allforio data
     featured_tags: Hashnodau Nodedig
-    identity_proofs: Profiadau Hunaniaeth
     import: Mewnforio
     import_and_export: Mewnfori ac allfori
     migrate: Mudo cyfrif
@@ -1115,13 +1013,11 @@ cy:
       zero: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
     errors:
       in_reply_not_found: Nid yw'r statws rydych yn ceisio ymateb i yn edrych fel ei fod yn bodoli.
-    language_detection: Canfod iaith yn awtomataidd
     open_in_web: Agor yn y wê
     over_character_limit: wedi mynd heibio'r uchafswm nodyn o %{max}
     pin_errors:
       limit: Yr ydych wedi pinio yr uchafswm posib o dŵtiau
       ownership: Ni ellir pinio tŵt rhywun arall
-      private: Ni ellir pinio tŵt nad yw'n gyhoeddus
       reblog: Ni ellir pinio bŵstiau
     poll:
       total_people:
@@ -1256,20 +1152,7 @@ cy:
       explanation: Fe wnaethoch chi gais am gopi wrth gefn llawn o'ch cyfrif Mastodon. Mae nawr yn barod i'w lawrlwytho!
       subject: Mae eich archif yn barod i'w lawrlwytho
       title: Allfudo archif
-    sign_in_token:
-      details: 'Dyma''r manylion o''r ceisiad:'
-      explanation: 'Wnaethom ni synhwyro ceisiad i fewngofnodi i''ch cyfrif o gyfeiriad IP anabyddiedig. Os mae hyn yn chi, mewnbynnwch y cod diogelwch isod i fewn i''r dudalen herio mewngofnodiad:'
-      further_actions: 'Os nad oedd hyn yn chi, newidwch eich cyfrinair ac alluogi awdurdodi dauffactor ar eich cyfrif. Gallwch gwneud hyn fama:'
-      subject: Cadarnhewch yr ymgais mewngofnodi
-      title: Ymgais mewngofnodi
     warning:
-      explanation:
-        disable: Er bod eich cyfrif wedi'i rewi, mae eich data cyfrif yn parhau i fod yn gyfan, ond ni allwch chi berfformio unrhyw gamau nes ei ddatgloi.
-        silence: Pan mae eich cyfrif yn gyfyngiedig, dim ond pobl sydd yn barod yn eich dilyn yn gweld eich tŵtiau ar y gweinydd hon, a efallai byddwch yn cael eich tynnu o restrau cyhoeddus. Er hyn, gall eraill eich dilyn chi wrth law.
-        suspend: Mae eich cyfrif wedi cael ei wahardd, a mae gyd o'ch tŵtiau a'ch ffeiliau cyfrwng uwchlwythadwy wedi cael eu tynnu or gweinydd yn barhaol, ac o weinyddau ble yr oedd eich dilynwyr.
-      get_in_touch: Gallwch ymateb i'r e-bost hwn i gysylltu â staff %{instance}.
-      review_server_policies: Adolygu polisïau'r gweinydd
-      statuses: 'Yn benodol, ar gyfer:'
       subject:
         disable: Mae'ch cyfrif %{acct} wedi'i rewi
         none: Rhybudd am %{acct}
@@ -1299,13 +1182,10 @@ cy:
       title: Croeso, %{name}!
   users:
     follow_limit_reached: Nid oes modd i chi ddilyn mwy na %{limit} o bobl
-    generic_access_help_html: Cael trafferth yn cyrchu eich cyfrif? Efallai hoffwch cysylltu â %{email} am gymorth
     invalid_otp_token: Côd dau-ffactor annilys
-    invalid_sign_in_token: Cod diogelwch annilys
     otp_lost_help_html: Os colloch chi fynediad i'r ddau, mae modd i chi gysylltu a %{email}
     seamless_external_login: Yr ydych wedi'ch mewngofnodi drwy wasanaeth allanol, felly nid yw gosodiadau cyfrinair ac e-bost ar gael.
     signed_in_as: 'Wedi mewngofnodi fel:'
-    suspicious_sign_in_confirmation: Mae'n edrych fel nad ydych wedi mewngofnodi o'r dyfais hyn o'r blaen, a nid ydych wedi mewngofnodi am sbel, felly rydym yn anfon cod diogelwch i'ch cyfeiriad ebost i gadarnhau bod chi yw hi.
   verification:
     explanation_html: 'Mae modd i chi <strong>ddilysu eich hun fel perchenog y dolenni yn metadata eich proffil</strong>. Rhaid i''r wefan a dolen iddi gynnwys dolen yn ôl i''ch proffil Mastodon. <strong>Rhaid</strong> i''r ddolen yn ôl gael nodwedd <code>rel="fi"</code>. Nid oes ots beth yw cynnwys testun y ddolen. Dyma enghraifft:'
     verification: Dilysu

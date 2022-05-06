@@ -1,29 +1,21 @@
-- proofs = account.identity_proofs.active
 - fields = account.fields
 
 .public-account-bio
-  - unless fields.empty? && proofs.empty?
+  - unless fields.empty?
     .account__header__fields
-      - proofs.each do |proof|
-        %dl
-          %dt= proof.provider.capitalize
-          %dd.verified
-            = link_to fa_icon('check'), proof.badge.proof_url, class: 'verified__mark', title: t('accounts.link_verified_on', date: l(proof.updated_at))
-            = link_to proof.provider_username, proof.badge.profile_url
-
       - fields.each do |field|
         %dl
-          %dt.emojify{ title: field.name }= Formatter.instance.format_field(account, field.name, custom_emojify: true)
+          %dt.emojify{ title: field.name }= prerender_custom_emojis(h(field.name), account.emojis)
           %dd{ title: field.value, class: custom_field_classes(field) }
             - if field.verified?
               %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
                 = fa_icon 'check'
-            = Formatter.instance.format_field(account, field.value, custom_emojify: true)
+            = prerender_custom_emojis(account_field_value_format(field), account.emojis)
 
   = account_badge(account)
 
   - if account.note.present?
-    .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+    .account__header__content.emojify= prerender_custom_emojis(account_bio_format(account), account.emojis)
 
   .public-account-bio__extra
     = t 'accounts.joined', date: l(account.created_at, format: :month)

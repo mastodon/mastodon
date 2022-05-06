@@ -9,6 +9,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
+  before_action :set_strikes, only: [:edit, :update]
   before_action :set_instance_presenter, only: [:new, :create, :update]
   before_action :set_body_classes, only: [:new, :create, :edit, :update]
   before_action :require_not_suspended!, only: [:update]
@@ -81,11 +82,15 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || !allowed_registrations?
+    redirect_to root_path if single_user_mode? || omniauth_only? || !allowed_registrations?
   end
 
   def allowed_registrations?
     Setting.registrations_mode != 'none' || @invite&.valid_for_use?
+  end
+
+  def omniauth_only?
+    ENV['OMNIAUTH_ONLY'] == 'true'
   end
 
   def invite_code
@@ -107,8 +112,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def set_invite
-    invite = invite_code.present? ? Invite.find_by(code: invite_code) : nil
-    @invite = invite&.valid_for_use? ? invite : nil
+    @invite = begin
+      invite = Invite.find_by(code: invite_code) if invite_code.present?
+      invite if invite&.valid_for_use?
+    end
   end
 
   def determine_layout
@@ -117,6 +124,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def set_sessions
     @sessions = current_user.session_activations
+  end
+
+  def set_strikes
+    @strikes = current_account.strikes.recent.latest
   end
 
   def require_not_suspended!

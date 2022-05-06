@@ -46,7 +46,10 @@
 
     .landing__grid__column.landing__grid__column-login
       .box-widget
-        = render 'login'
+        - if current_user.present?
+          = render 'logged_in'
+        - else
+          = render 'login'
 
       .hero-widget
         - if @instance_presenter.hero.present? || @instance_presenter.thumbnail.present?

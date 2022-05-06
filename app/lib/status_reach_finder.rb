@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 class StatusReachFinder
-  def initialize(status)
-    @status = status
+  # @param [Status] status
+  # @param [Hash] options
+  # @option options [Boolean] :unsafe
+  def initialize(status, options = {})
+    @status  = status
+    @options = options
   end
 
   def inboxes
@@ -38,7 +42,7 @@ class StatusReachFinder
   end
 
   def replied_to_account_id
-    @status.in_reply_to_account_id
+    @status.in_reply_to_account_id if distributable?
   end
 
   def reblog_of_account_id
@@ -49,21 +53,26 @@ class StatusReachFinder
     @status.mentions.pluck(:account_id)
   end
 
+  # Beware: Reblogs can be created without the author having had access to the status
   def reblogs_account_ids
-    @status.reblogs.pluck(:account_id)
+    @status.reblogs.pluck(:account_id) if distributable? || unsafe?
   end
 
+  # Beware: Favourites can be created without the author having had access to the status
   def favourites_account_ids
-    @status.favourites.pluck(:account_id)
+    @status.favourites.pluck(:account_id) if distributable? || unsafe?
   end
 
+  # Beware: Replies can be created without the author having had access to the status
   def replies_account_ids
-    @status.replies.pluck(:account_id)
+    @status.replies.pluck(:account_id) if distributable? || unsafe?
   end
 
   def followers_inboxes
-    if @status.in_reply_to_local_account? && @status.distributable?
+    if @status.in_reply_to_local_account? && distributable?
       @status.account.followers.or(@status.thread.account.followers).inboxes
+    elsif @status.direct_visibility? || @status.limited_visibility?
+      []
     else
       @status.account.followers.inboxes
     end
@@ -75,5 +84,13 @@ class StatusReachFinder
     else
       []
     end
+  end
+
+  def distributable?
+    @status.public_visibility? || @status.unlisted_visibility?
+  end
+
+  def unsafe?
+    @options[:unsafe]
   end
 end

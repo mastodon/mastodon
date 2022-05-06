@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require_relative '../../lib/mastodon/sidekiq_middleware'
+
 Sidekiq.configure_server do |config|
   config.redis = REDIS_SIDEKIQ_PARAMS
 
   config.server_middleware do |chain|
-    chain.add SidekiqErrorHandler
+    chain.add Mastodon::SidekiqMiddleware
   end
 
   config.server_middleware do |chain|

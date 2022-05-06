@@ -1,11 +1,14 @@
 - content_for :page_title do
   = t('admin.instances.title')
 
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
 - content_for :heading_actions do
   - if whitelist_mode?
-    = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button'
+    = link_to t('admin.domain_allows.add_new'), new_admin_domain_allow_path, class: 'button', id: 'add-instance-button'
   - else
-    = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button'
+    = link_to t('admin.domain_blocks.add_new'), new_admin_domain_block_path, class: 'button', id: 'add-instance-button'
 
 .filters
   .filter-subset
@@ -17,22 +20,11 @@
         %li= filter_link_to t('admin.instances.moderation.limited'), limited: '1'
 
   .filter-subset
-    %strong= t('admin.instances.delivery.title')
+    %strong= t('admin.instances.availability.title')
     %ul
-      %li= filter_link_to t('admin.instances.delivery.all'), warning: nil, unavailable: nil
-      %li= filter_link_to t('admin.instances.delivery.warning'), warning: '1', unavailable: nil
-      %li= filter_link_to t('admin.instances.delivery.unavailable'), warning: nil, unavailable: '1'
-
-  .back-link
-    = link_to admin_instances_path() do
-      %i.fa.fa-chevron-left.fa-fw
-      = t('admin.instances.back_to_all')
-    = link_to admin_instances_path(limited: 1) do
-      %i.fa.fa-chevron-left.fa-fw
-      = t('admin.instances.back_to_limited')
-    = link_to admin_instances_path(warning: 1) do
-      %i.fa.fa-chevron-left.fa-fw
-      = t('admin.instances.back_to_warning')
+      %li= filter_link_to t('admin.instances.delivery.all'), availability: nil
+      %li= filter_link_to t('admin.instances.delivery.failing'), availability: 'failing'
+      %li= filter_link_to t('admin.instances.delivery.unavailable'), availability: 'unavailable'
 
 - unless whitelist_mode?
   = form_tag admin_instances_url, method: 'GET', class: 'simple_form' do

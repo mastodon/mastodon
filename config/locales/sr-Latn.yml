@@ -27,7 +27,6 @@ sr-Latn:
     account_moderation_notes:
       create: Napravi
       created_msg: Moderatorska beleška uspešno napravljena!
-      delete: Obriši
       destroyed_msg: Moderatorska beleška uspešno obrisana!
     accounts:
       are_you_sure: Da li ste sigurni?
@@ -59,7 +58,6 @@ sr-Latn:
       memorialize: Prebaci u in memoriam
       moderation:
         all: Svi
-        silenced: Ućutkani
         suspended: Suspendovani
         title: Moderacija
       moderation_notes: Moderatorske beleške
@@ -111,7 +109,6 @@ sr-Latn:
       emoji: Emotikon
       enable: Omogući
       enabled_msg: Emotikon uspešno omogućen
-      image_hint: PNG do 50KB
       listed: Izlistan
       new:
         title: Dodaj novi proizvoljni emotikon
@@ -139,22 +136,11 @@ sr-Latn:
         title: Novo blokiranje domena
       reject_media: Odbaci multimediju
       reject_media_hint: Uklanja lokalno uskladištene multimedijske fajlove i odbija da ih skida na dalje. Nebitno je za suspenziju
-      show:
-        affected_accounts:
-          few: Utiče na %{count} naloga u bazi
-          one: Utiče na jedan nalog u bazi
-          other: Utiče na %{count} naloga u bazi
-        retroactive:
-          silence: Ugasi ućutkivanje za sve postojeće naloge sa ovog domena
-          suspend: Ugasi suspenzije za sve postojeće naloge sa ovog domena
-        title: Poništi blokadu domena za domen %{domain}
-        undo: Poništi
       undo: Poništi
     email_domain_blocks:
       add_new: Dodaj novuAdd new
       created_msg: Uspešno dodao domen e-pošte na crnu listu
       delete: Ukloni
-      destroyed_msg: Uspešno uklonjen domen e-pošte sa crne liste
       domain: Domen
       new:
         create: Dodaj domen
@@ -219,14 +205,8 @@ sr-Latn:
       title: Postavke sajta
     statuses:
       back_to_account: Nazad na stranu naloga
-      batch:
-        delete: Obriši
-        nsfw_off: NSFW isključen
-        nsfw_on: NSFW uključen
-      failed_to_execute: Neuspelo izvršavanje
       media:
         title: Multimedija
-      no_media: Bez multimedije
       title: Statusi naloga
       with_media: Sa multimedijom
     title: Administracija
@@ -356,10 +336,6 @@ sr-Latn:
         few: Dobili ste %{count} nova pratioca! Sjajno!
         one: Dobili ste jednog novog pratioca! Jeee!
         other: Dobili ste %{count} novih pratioca! Sjajno!
-      subject:
-        few: "%{count} nova obaveštenja od poslednje posete \U0001F418"
-        one: "1 novo obaveštenje od poslednje posete \U0001F418"
-        other: "%{count} novih obaveštenja od poslednje posete \U0001F418"
     favourite:
       body: "%{name} je postavio kao omiljen Vaš status:"
       subject: "%{name} je postavio kao omiljen Vaš status"
@@ -428,7 +404,6 @@ sr-Latn:
     pin_errors:
       limit: Već imate prikačen najveći broj tutova
       ownership: Tuđi tutovi ne mogu da se prikače
-      private: Tutovi koji nisu javni ne mogu da se prikače
       reblog: Podrška ne može da se prikači
     show_more: Prikaži još
     visibilities:

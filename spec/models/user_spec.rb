@@ -89,6 +89,19 @@ RSpec.describe User, type: :model do
         expect(User.matches_email('specified')).to match_array([specified])
       end
     end
+
+    describe 'matches_ip' do
+      it 'returns a relation of users whose ip address is matching with the given CIDR' do
+        user1 = Fabricate(:user)
+        user2 = Fabricate(:user)
+        Fabricate(:session_activation, user: user1, ip: '2160:2160::22', session_id: '1')
+        Fabricate(:session_activation, user: user1, ip: '2160:2160::23', session_id: '2')
+        Fabricate(:session_activation, user: user2, ip: '2160:8888::24', session_id: '3')
+        Fabricate(:session_activation, user: user2, ip: '2160:8888::25', session_id: '4')
+
+        expect(User.matches_ip('2160:2160::/32')).to match_array([user1])
+      end
+    end
   end
 
   let(:account) { Fabricate(:account, username: 'alice') }
@@ -194,12 +207,12 @@ RSpec.describe User, type: :model do
     end
 
     it "returns 'private' if user has not configured default privacy setting and account is locked" do
-      user = Fabricate(:user, account: Fabricate(:account, locked: true))
+      user = Fabricate(:account, locked: true).user
       expect(user.setting_default_privacy).to eq 'private'
     end
 
     it "returns 'public' if user has not configured default privacy setting and account is not locked" do
-      user = Fabricate(:user, account: Fabricate(:account, locked: false))
+      user = Fabricate(:account, locked: false).user
       expect(user.setting_default_privacy).to eq 'public'
     end
   end
@@ -248,7 +261,7 @@ RSpec.describe User, type: :model do
 
   it_behaves_like 'Settings-extended' do
     def create!
-      User.create!(account: Fabricate(:account), email: 'foo@mastodon.space', password: 'abcd1234', agreement: true)
+      User.create!(account: Fabricate(:account, user: nil), email: 'foo@mastodon.space', password: 'abcd1234', agreement: true)
     end
 
     def fabricate
@@ -341,6 +354,34 @@ RSpec.describe User, type: :model do
 
     it 'enables user' do
       expect(user).to have_attributes(disabled: false)
+    end
+  end
+
+  describe '#reset_password!' do
+    subject(:user) { Fabricate(:user, password: 'foobar12345') }
+
+    let!(:session_activation) { Fabricate(:session_activation, user: user) }
+    let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
+    let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
+
+    before do
+      user.reset_password!
+    end
+
+    it 'changes the password immediately' do
+      expect(user.external_or_valid_password?('foobar12345')).to be false
+    end
+
+    it 'deactivates all sessions' do
+      expect(user.session_activations.count).to eq 0
+    end
+
+    it 'revokes all access tokens' do
+      expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
+    end
+
+    it 'removes push subscriptions' do
+      expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
     end
   end
 

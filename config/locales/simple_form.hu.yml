@@ -3,7 +3,7 @@ hu:
   simple_form:
     hints:
       account_alias:
-        acct: Adjad meg annak a fióknak a felhasználóneve@domainjét, ahonnan át szeretnéd mozgatni
+        acct: Add meg annak a fióknak a felhasználónév@domain párosát, ahonnan át szeretnéd mozgatni
       account_migration:
         acct: Add meg a fióknév@domain fiókot, melybe költözni szeretnél
       account_warning_preset:
@@ -20,13 +20,15 @@ hu:
           sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg kényesként.
           silence: Megakadályozzuk, hogy ez a felhasználó nyilvános láthatóságú bejegyzést tegyen közzé, elrejtjük a bejegyzéseit és a róla szóló értesítéseket azok elől, akik nem közvetlen követői.
           suspend: Minden interakciót megakadályozunk ezzel a fiókkal és töröljük a tartalmát. 30 napon belül még visszacsinálható.
-        warning_preset_id: Opcionális. A figyelmeztetés végére saját szöveget is írhatsz
+        warning_preset_id: Nem kötelező. A figyelmeztetés végére saját szöveget is írhatsz.
       announcement:
         all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
         ends_at: Opcionális. A közleményt ekkor automatikusan levesszük
         scheduled_at: Hagyd üresen, hogy a közleményt azonnal közzétegyük
         starts_at: Opcionális. Akkor használd, ha a közleményed adott időintervallumra vonatkozik
         text: Használhatod a bejegyzések szintaxisát. Ügyelj arra, hogy mennyi helyet foglal el majd a közlemény a felhasználó képernyőjén
+      appeal:
+        text: Egy vétséget csak egyszer fellebbezhetsz meg
       defaults:
         autofollow: Akik meghívón keresztül regisztrálnak, automatikusan követni fognak téged
         avatar: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -35,7 +37,7 @@ hu:
         current_password: Biztonsági okok miatt kérlek, írd be a jelenlegi fiók jelszavát
         current_username: A jóváhagyáshoz írd be a jelenlegi fiók felhasználói nevét
         digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
-        discoverable: A profil adatbázis egy újabb mód, ahogyan a fiókod szélesebb tömegeket érhet el
+        discoverable: Engedélyezzük, hogy a fiókod idegenek által megtalálható legyen javaslatokon, trendeken és más funkciókon keresztül
         email: Kapsz egy megerősítő e-mailt
         fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
         header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -47,6 +49,7 @@ hu:
         phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalom-figyelmeztetések mögött is
         scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
         setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan bejegyzésekhez, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
+        setting_always_send_emails: Alapesetben nem küldünk e-mail értesítéseket, ha aktívan használod a Mastodont
         setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
         setting_display_media_default: Kényes tartalomnak jelölt média elrejtése
         setting_display_media_hide_all: Mindig minden média elrejtése
@@ -61,7 +64,7 @@ hu:
       domain_allow:
         domain: Ez a domain adatot kérhet le a szerverünkről és az ettől érkező adatokat feldolgozzuk és mentjük
       email_domain_block:
-        domain: Lehet domain név, mely az email címben szerepel, MX rekord, amire a domain hivatkozik vagy a szerver IP címe, amire az MX rekord hivatkozik. Ezeket regisztrációkor ellenőrizzük és visszautasítjuk a regisztrációt, ha szükséges.
+        domain: Ez lehet az e-mail címben szereplő domain név vagy az MX rekord, melyet ez használ. Ezeket feliratkozáskor ellenőrizzük.
         with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
       featured_tag:
         name: 'Ezeket esetleg használhatod:'
@@ -103,7 +106,7 @@ hu:
       admin_account_action:
         include_statuses: Tedd az e-mailbe a bejelentett bejegyzéseket
         send_email_notification: Figyelmeztessük a felhasználót e-mailben
-        text: Egyedi figyelmeztetés
+        text: Egyéni figyelmeztetés
         type: Művelet
         types:
           disable: Letiltás
@@ -118,6 +121,8 @@ hu:
         scheduled_at: Közlemény időzítése
         starts_at: Esemény kezdete
         text: Közlemény
+      appeal:
+        text: Magyarázd el, miért kellene visszavonni ezt a döntést
       defaults:
         autofollow: Meghívás a fiókod követésére
         avatar: Profilkép
@@ -132,7 +137,7 @@ hu:
         display_name: Megjelenített név
         email: E-mail cím
         expires_in: Elévül
-        fields: Profil metaadatok
+        fields: Profil metaadatai
         header: Fejléc
         honeypot: "%{label} (ne töltsd ki)"
         inbox_url: Relé inbox-hoz tartozó URL
@@ -147,6 +152,7 @@ hu:
         phrase: Kulcsszó vagy kifejezés
         setting_advanced_layout: Haladó webes felület engedélyezése
         setting_aggregate_reblogs: Megtolások csoportosítása az idővonalakon
+        setting_always_send_emails: E-mail értesítések küldése mindig
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megerősítés kérése megtolás előtt
         setting_crop_images: Képek 16x9-re vágása nem kinyitott bejegyzéseknél
@@ -196,6 +202,7 @@ hu:
           sign_up_requires_approval: Regisztrációk korlátozása
         severity: Szabály
       notification_emails:
+        appeal: Valaki fellebbez egy moderátori döntéssel szemben
         digest: Összevont e-mailek küldése
         favourite: Valaki kedvencnek jelölte a bejegyzésedet
         follow: E-mail küldése, amikor valaki követni kezd téged
@@ -203,14 +210,14 @@ hu:
         mention: E-mail küldése, amikor valaki megemlít téged
         pending_account: E-mail küldése, ha új fiókot kell engedélyezni
         reblog: Valaki megtolta a bejegyzésedet
-        report: E-mail küldése, ha új bejelentés érkezett
-        trending_tag: E-mail küldése, ha egy még nem látott hashtag trendi lett
+        report: Új bejelentést küldtek be
+        trending_tag: Új trend felülvizsgálatra vár
       rule:
         text: Szabály
       tag:
         listable: A hashtag megjelenhet a profiladatbázisban
         name: Hashtag
-        trendable: A hashtag megjelenhet a trendek között
+        trendable: A hashtag megjelenhet a felkapottak között
         usable: Bejegyzések használhatják ezt a hashtaget
     'no': Nem
     recommended: Ajánlott

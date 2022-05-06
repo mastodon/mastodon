@@ -4,10 +4,11 @@ require 'rails_helper'
 
 RSpec.describe ActivityPub::RepliesController, type: :controller do
   let(:status) { Fabricate(:status, visibility: parent_visibility) }
-  let(:remote_reply_id) { nil }
-  let(:remote_account) { nil }
+  let(:remote_account)  { Fabricate(:account, domain: 'foobar.com') }
+  let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
+  let(:remote_querier) { nil }
 
-  shared_examples 'cachable response' do
+  shared_examples 'cacheable response' do
     it 'does not set cookies' do
       expect(response.cookies).to be_empty
       expect(response.headers['Set-Cookies']).to be nil
@@ -23,8 +24,151 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
     end
   end
 
+  shared_examples 'common behavior' do
+    context 'when status is private' do
+      let(:parent_visibility) { :private }
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when status is direct' do
+      let(:parent_visibility) { :direct }
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
+  end
+
+  shared_examples 'disallowed access' do
+    context 'when status is public' do
+      let(:parent_visibility) { :public }
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    it_behaves_like 'common behavior'
+  end
+
+  shared_examples 'allowed access' do
+    context 'when account is permanently suspended' do
+      let(:parent_visibility) { :public }
+
+      before do
+        status.account.suspend!
+        status.account.deletion_request.destroy
+      end
+
+      it 'returns http gone' do
+        expect(response).to have_http_status(410)
+      end
+    end
+
+    context 'when account is temporarily suspended' do
+      let(:parent_visibility) { :public }
+
+      before do
+        status.account.suspend!
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when status is public' do
+      let(:parent_visibility) { :public }
+      let(:json) { body_as_json }
+      let(:page_json) { json[:first] }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns application/activity+json' do
+        expect(response.media_type).to eq 'application/activity+json'
+      end
+
+      it_behaves_like 'cacheable response'
+
+      context 'without only_other_accounts' do
+        it "returns items with thread author's replies" do
+          expect(page_json).to be_a Hash
+          expect(page_json[:items]).to be_an Array
+          expect(page_json[:items].size).to eq 1
+          expect(page_json[:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
+        end
+
+        context 'when there are few self-replies' do
+          it 'points next to replies from other people' do
+            expect(page_json).to be_a Hash
+            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=true', 'page=true')
+          end
+        end
+
+        context 'when there are many self-replies' do
+          before do
+            10.times { Fabricate(:status, account: status.account, thread: status, visibility: :public) }
+          end
+
+          it 'points next to other self-replies' do
+            expect(page_json).to be_a Hash
+            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=false', 'page=true')
+          end
+        end
+      end
+
+      context 'with only_other_accounts' do
+        let(:only_other_accounts) { 'true' }
+
+        it 'returns items with other public or unlisted replies' do
+          expect(page_json).to be_a Hash
+          expect(page_json[:items]).to be_an Array
+          expect(page_json[:items].size).to eq 3
+        end
+
+        it 'only inlines items that are local and public or unlisted replies' do
+          inlined_replies = page_json[:items].select { |x| x.is_a?(Hash) }
+          public_collection = ActivityPub::TagManager::COLLECTIONS[:public]
+          expect(inlined_replies.all? { |item| item[:to].include?(public_collection) || item[:cc].include?(public_collection) }).to be true
+          expect(inlined_replies.all? { |item| ActivityPub::TagManager.instance.local_uri?(item[:id]) }).to be true
+        end
+
+        it 'uses ids for remote toots' do
+          remote_replies = page_json[:items].select { |x| !x.is_a?(Hash) }
+          expect(remote_replies.all? { |item| item.is_a?(String) && !ActivityPub::TagManager.instance.local_uri?(item) }).to be true
+        end
+
+        context 'when there are few replies' do
+          it 'does not have a next page' do
+            expect(page_json).to be_a Hash
+            expect(page_json[:next]).to be_nil
+          end
+        end
+
+        context 'when there are many replies' do
+          before do
+            10.times { Fabricate(:status, thread: status, visibility: :public) }
+          end
+
+          it 'points next to other replies' do
+            expect(page_json).to be_a Hash
+            expect(Addressable::URI.parse(page_json[:next]).query.split('&')).to include('only_other_accounts=true', 'page=true')
+          end
+        end
+      end
+    end
+
+    it_behaves_like 'common behavior'
+  end
+
   before do
-    allow(controller).to receive(:signed_request_account).and_return(remote_account)
+    stub_const 'ActivityPub::RepliesController::DESCENDANTS_LIMIT', 5
+    allow(controller).to receive(:signed_request_account).and_return(remote_querier)
 
     Fabricate(:status, thread: status, visibility: :public)
     Fabricate(:status, thread: status, visibility: :public)
@@ -32,215 +176,36 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
     Fabricate(:status, account: status.account, thread: status, visibility: :public)
     Fabricate(:status, account: status.account, thread: status, visibility: :private)
 
-    Fabricate(:status, account: remote_account, thread: status, visibility: :public, uri: remote_reply_id) if remote_reply_id
+    Fabricate(:status, account: remote_account, thread: status, visibility: :public, uri: remote_reply_id)
   end
 
   describe 'GET #index' do
+    subject(:response) { get :index, params: { account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts } }
+    let(:only_other_accounts) { nil }
+
     context 'with no signature' do
-      subject(:response) { get :index, params: { account_username: status.account.username, status_id: status.id } }
-      subject(:body) { body_as_json }
-
-      context 'when account is permanently suspended' do
-        let(:parent_visibility) { :public }
-
-        before do
-          status.account.suspend!
-          status.account.deletion_request.destroy
-        end
-
-        it 'returns http gone' do
-          expect(response).to have_http_status(410)
-        end
-      end
-
-      context 'when account is temporarily suspended' do
-        let(:parent_visibility) { :public }
-
-        before do
-          status.account.suspend!
-        end
-
-        it 'returns http forbidden' do
-          expect(response).to have_http_status(403)
-        end
-      end
-
-      context 'when status is public' do
-        let(:parent_visibility) { :public }
-
-        it 'returns http success' do
-          expect(response).to have_http_status(200)
-        end
-
-        it 'returns application/activity+json' do
-          expect(response.media_type).to eq 'application/activity+json'
-        end
-
-        it_behaves_like 'cachable response'
-
-        it 'returns items with account\'s own replies' do
-          expect(body[:first]).to be_a Hash
-          expect(body[:first][:items]).to be_an Array
-          expect(body[:first][:items].size).to eq 1
-          expect(body[:first][:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
-        end
-      end
-
-      context 'when status is private' do
-        let(:parent_visibility) { :private }
-
-        it 'returns http not found' do
-          expect(response).to have_http_status(404)
-        end
-      end
-
-      context 'when status is direct' do
-        let(:parent_visibility) { :direct }
-
-        it 'returns http not found' do
-          expect(response).to have_http_status(404)
-        end
-      end
+      it_behaves_like 'allowed access'
     end
 
     context 'with signature' do
-      let(:remote_account) { Fabricate(:account, domain: 'example.com') }
-      let(:only_other_accounts) { nil }
+      let(:remote_querier) { Fabricate(:account, domain: 'example.com') }
 
-      context do
-        before do
-          get :index, params: { account_username: status.account.username, status_id: status.id, only_other_accounts: only_other_accounts }
-        end
-
-        context 'when status is public' do
-          let(:parent_visibility) { :public }
-
-          it 'returns http success' do
-            expect(response).to have_http_status(200)
-          end
-
-          it 'returns application/activity+json' do
-            expect(response.media_type).to eq 'application/activity+json'
-          end
-
-          it_behaves_like 'cachable response'
-
-          context 'without only_other_accounts' do
-            it 'returns items with account\'s own replies' do
-              json = body_as_json
-
-              expect(json[:first]).to be_a Hash
-              expect(json[:first][:items]).to be_an Array
-              expect(json[:first][:items].size).to eq 1
-              expect(json[:first][:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
-            end
-          end
-
-          context 'with only_other_accounts' do
-            let(:only_other_accounts) { 'true' }
-
-            it 'returns items with other public or unlisted replies' do
-              json = body_as_json
-
-              expect(json[:first]).to be_a Hash
-              expect(json[:first][:items]).to be_an Array
-              expect(json[:first][:items].size).to eq 2
-              expect(json[:first][:items].all? { |item| item[:to].include?(ActivityPub::TagManager::COLLECTIONS[:public]) || item[:cc].include?(ActivityPub::TagManager::COLLECTIONS[:public]) }).to be true
-            end
-
-            context 'with remote responses' do
-              let(:remote_reply_id) { 'foo' }
-
-              it 'returned items are all inlined local toots or are ids' do
-                json = body_as_json
-
-                expect(json[:first]).to be_a Hash
-                expect(json[:first][:items]).to be_an Array
-                expect(json[:first][:items].size).to eq 3
-                expect(json[:first][:items].all? { |item| item.is_a?(Hash) ? ActivityPub::TagManager.instance.local_uri?(item[:id]) : item.is_a?(String) }).to be true
-                expect(json[:first][:items]).to include remote_reply_id
-              end
-            end
-          end
-        end
-
-        context 'when status is private' do
-          let(:parent_visibility) { :private }
-
-          it 'returns http not found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-
-        context 'when status is direct' do
-          let(:parent_visibility) { :direct }
-
-          it 'returns http not found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-      end
+      it_behaves_like 'allowed access'
 
       context 'when signed request account is blocked' do
         before do
-          status.account.block!(remote_account)
-          get :index, params: { account_username: status.account.username, status_id: status.id }
+          status.account.block!(remote_querier)
         end
 
-        context 'when status is public' do
-          let(:parent_visibility) { :public }
-
-          it 'returns http not found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-
-        context 'when status is private' do
-          let(:parent_visibility) { :private }
-
-          it 'returns http not found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-
-        context 'when status is direct' do
-          let(:parent_visibility) { :direct }
-
-          it 'returns http not found' do
-            expect(response).to have_http_status(404)
-          end
-        end
+        it_behaves_like 'disallowed access'
       end
 
       context 'when signed request account is domain blocked' do
         before do
-          status.account.block_domain!(remote_account.domain)
-          get :index, params: { account_username: status.account.username, status_id: status.id }
+          status.account.block_domain!(remote_querier.domain)
         end
 
-        context 'when status is public' do
-          let(:parent_visibility) { :public }
-
-          it 'returns http not found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-
-        context 'when status is private' do
-          let(:parent_visibility) { :private }
-
-          it 'returns http not found' do
-            expect(response).to have_http_status(404)
-          end
-        end
-
-        context 'when status is direct' do
-          let(:parent_visibility) { :direct }
-
-          it 'returns http not found' do
-            expect(response).to have_http_status(404)
-          end
-        end
+        it_behaves_like 'disallowed access'
       end
     end
   end

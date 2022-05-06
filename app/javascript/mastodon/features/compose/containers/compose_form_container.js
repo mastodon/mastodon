@@ -22,10 +22,12 @@ const mapStateToProps = state => ({
   caretPosition: state.getIn(['compose', 'caretPosition']),
   preselectDate: state.getIn(['compose', 'preselectDate']),
   isSubmitting: state.getIn(['compose', 'is_submitting']),
+  isEditing: state.getIn(['compose', 'id']) !== null,
   isChangingUpload: state.getIn(['compose', 'is_changing_upload']),
   isUploading: state.getIn(['compose', 'is_uploading']),
   showSearch: state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']),
   anyMedia: state.getIn(['compose', 'media_attachments']).size > 0,
+  isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 checks:
   argument-count:
     enabled: false
@@ -34,5 +34,8 @@ plugins:
   sass-lint:
     enabled: true
 exclude_patterns:
-- spec/
-- vendor/asset
+  - spec/
+  - vendor/asset/
+
+  - app/javascript/mastodon/locales/**/*.json
+  - config/locales/**/*.yml

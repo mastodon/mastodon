@@ -56,10 +56,6 @@ Twitter has a feature called "quote tweeting" that lets you embed what someone e
 
 <img width="600" src="http://tinysubversions.com/pics/quote-tweet.png" alt="An example of a quote tweet from Twitter.">
 
-But it's also open to abuse with people quote-tweeting things they disagree with to encourage a pile-on from their followers. There's been a lot of debate among Mastodon users as to whether the good of this feature outweighs the bad. So far, Mastodon has avoided implementing quoting.
-
-What does this have to do with content types? Well, if we support an `Article` content type and a `Note` content type, we can support quoting for an `Article` but not for a `Note`. In practice this means that you can quote blog posts and news articles, but you can't quote a quick personal microblog note.
-
 > Hometown doesn't support quoting articles yet... but it will.
 
 ## Better list management
@@ -85,10 +81,14 @@ Hometown uses [semantic versioning](https://semver.org) and follows a versioning
 ## Contributing to Hometown
 
 Setting up your Hometown development environment is [exactly like setting up your Mastodon development environment](https://docs.joinmastodon.org/dev/overview/). Pull requests should be made to the `hometown-dev` branch, which is our default branch in Github.
+=======
+You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository or submit translations using Crowdin. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
+
+**IRC channel**: #mastodon on irc.libera.chat
 
 ## License
 
-Copyright (C) 2016-2021 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
+Copyright (C) 2016-2022 Eugen Rochko & other Mastodon contributors (see [AUTHORS.md](AUTHORS.md))
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

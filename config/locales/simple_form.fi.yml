@@ -3,54 +3,124 @@ fi:
   simple_form:
     hints:
       account_alias:
-        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus mistä haluat siirtyä
+        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, josta haluat siirtyä
       account_migration:
-        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus mihin haluat siirtyä
+        acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, johon haluat siirtyä
       account_warning_preset:
+        text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, hashtageja ja mainintoja
         title: Vapaaehtoinen. Ei näytetä vastaanottajalle
       admin_account_action:
-        include_statuses: Käyttäjä näkee mitkä tuuttaukset johtivat toimenpiteeseen tai varoitukseen
+        include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
         send_email_notification: Käyttäjä saa selityksen mitä tapahtui hänen tililleen
+        text_html: Valinnainen. Voit käyttää julkaisun syntaksia. Voit <a href="%{path}">lisätä varoitusasetuksia</a> säästääksesi aikaa
         type_html: Valitse mitä teet käyttäjälle <strong>%{acct}</strong>
+        types:
+          disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
+          none: Käytä tätä lähettääksesi varoituksen käyttäjälle käynnistämättä mitään muita toimintoja.
+          sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluontoisiksi.
+          silence: Estä käyttäjää pystymästä julkaisemaan julkisessa näkyvyydessä, piilota käyttäjän viestit ja ilmoitukset ihmisiltä, jotka eivät seuraa käyttäjää.
+          suspend: Estä vuorovaikutus tililtä tai tilille ja poista sen sisältö. Palautettavissa 30 päivän kuluessa.
+        warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
+        all_day: Kun valittu, vain valittu aikaväli näytetään
+        ends_at: Valinnainen. Ilmoitus tullaan poistamaan automaattisesti tällä hetkellä
         scheduled_at: Jätä tyhjäksi julkaistaksesi ilmoituksen välittömästi
+        starts_at: Valinnainen. Jos ilmoituksesi on sidottu tiettyyn aikaväliin
+        text: Voit käyttää julkaisun syntaksia. Muista, kuinka paljon tilaa ilmoitus vie käyttäjän näytöltä
+      appeal:
+        text: Voit valittaa varoituksesta vain kerran
       defaults:
+        autofollow: Henkilöt, jotka rekisteröityvät kutsun kautta, seuraavat sinua automaattisesti
         avatar: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
         bot: Tämä tili suorittaa enimmäkseen automaattisia toimintoja eikä sitä ehkä valvota
+        context: Yksi tai useampi asiayhteys, jossa suodattimen pitäisi olla käytössä
+        current_password: Turvallisuussyistä kirjoita nykyisen tilin salasana
+        current_username: Vahvista kirjoittamalla nykyisen tilin käyttäjätunnus
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
-        discoverable: Profiilihakemisto on toinen tapa, jolla tilisi voi tavoittaa laajemman yleisön
         email: Sinulle lähetetään vahvistussähköposti
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
+        inbox_url: Kopioi URL-osoite sen viestin etusivulta, jota haluat käyttää
+        irreversible: Suodatetut julkaisut katoavat lopullisesti, vaikka suodatin poistettaisiin myöhemmin
+        locale: Käyttöliittymän, sähköpostien ja ilmoitusten kieli
         locked: Sinun täytyy hyväksyä seuraajat manuaalisesti
+        password: Käytä vähintään 8 merkkiä
+        phrase: Täytetään riippumatta julkaisun kirjainkoon tai sisällön varoituksesta
+        scopes: Mihin sovellusliittymiin sovellus pääsee käsiksi. Jos valitset ylätason laajuuden, sinun ei tarvitse valita yksittäisiä.
+        setting_aggregate_reblogs: Älä näytä uusia tehosteita viesteille, joita on äskettäin tehostettu (koskee vain äskettäin saatuja tehosteita)
+        setting_default_sensitive: Arkaluontoinen media on oletuksena piilotettu ja se voidaan näyttää yhdellä napsautuksella
         setting_display_media_default: Piilota arkaluonteiseksi merkitty media
         setting_display_media_hide_all: Piilota aina kaikki media
         setting_display_media_show_all: Näytä aina arkaluonteiseksi merkitty media
+        setting_hide_network: Ketä seuraat ja kuka seuraa sinua, piilotetaan profiiliisi
         setting_noindex: Vaikuttaa julkiseen profiiliisi ja tilasivuihisi
-        setting_show_application: Tuuttaamiseen käyttämäsi sovellus näkyy tuuttauksiesi yksityiskohtaisessa näkymässä
+        setting_show_application: Viestittelyyn käyttämäsi sovellus näkyy viestiesi yksityiskohtaisessa näkymässä
         setting_use_blurhash: Liukuvärit perustuvat piilotettujen kuvien väreihin, mutta sumentavat yksityiskohdat
+        setting_use_pending_items: Piilota aikajanan päivitykset napsautuksen taakse sen sijaan, että vierittäisi syötettä automaattisesti
+        username: Käyttäjänimesi tulee olemaan yksilöllinen %{domain}
+        whole_word: Kun avainsana tai lause on vain aakkosnumeerinen, se otetaan käyttöön, jos se vastaa koko sanaa
+      domain_allow:
+        domain: Tämä verkkotunnus voi noutaa tietoja tältä palvelimelta ja sieltä saapuvat tiedot käsitellään ja tallennetaan
+      email_domain_block:
+        domain: Tämä voi olla se verkkotunnus, joka näkyy sähköpostiosoitteessa tai MX tietueessa jota se käyttää. Ne tarkistetaan rekisteröitymisen yhteydessä.
+        with_dns_records: Annetun verkkotunnuksen DNS-tietueet yritetään ratkaista ja tulokset myös estetään
+      featured_tag:
+        name: 'Voit halutessasi käyttää jotakin näistä:'
+      form_challenge:
+        current_password: Olet menossa suojatulle alueelle
       imports:
         data: Toisesta Mastodon-instanssista tuotu CSV-tiedosto
+      invite_request:
+        text: Tämä auttaa meitä arvioimaan sovellustasi
+      ip_block:
+        comment: Valinnainen. Muista miksi lisäsit tämän säännön.
+        expires_in: IP-osoitteet ovat rajallinen resurssi, joskus niitä jaetaan ja vaihtavat usein omistajaa. Tästä syystä epämääräisiä IP-lohkoja ei suositella.
+        ip: Kirjoita IPv4- tai IPv6-osoite. Voit estää kokonaisia alueita käyttämällä CIDR-syntaksia. Varo, että et lukitse itseäsi!
+        severities:
+          no_access: Estä pääsy kaikkiin resursseihin
+          sign_up_requires_approval: Uudet rekisteröitymiset edellyttävät hyväksyntääsi
+        severity: Valitse, mitä tapahtuu tämän IP-osoitteen pyynnöille
+      rule:
+        text: Kuvaile sääntöä tai vaatimusta tämän palvelimen käyttäjille. Yritä pitää se lyhyenä ja yksinkertaisena
       sessions:
         otp: Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.
+        webauthn: Jos kyseessä on USB-avain, muista laittaa se paikalleen ja tarvittaessa napauttaa sitä.
+      tag:
+        name: Voit muuttaa esimerkiksi kirjaimia paremmin luettavaksi
+      user:
+        chosen_languages: Kun valittu, vain valituilla kielillä julkaistut viestit näkyvät julkisilla aikajanoilla
     labels:
       account:
         fields:
           name: Nimike
           value: Sisältö
+      account_alias:
+        acct: Vanhan tilin käsittely
+      account_migration:
+        acct: Uuden tilin käsittely
       account_warning_preset:
+        text: Esiasetettu teksti
         title: Otsikko
       admin_account_action:
+        include_statuses: Sisällytä raportoidut viestit sähköpostiin
+        send_email_notification: Ilmoita käyttäjälle sähköpostitse
         text: Mukautettu varoitus
         type: Toimenpide
         types:
           disable: Poista kirjautuminen käytöstä
           none: Älä tee mitään
+          sensitive: Arkaluontoinen
           silence: Hiljennä
           suspend: Poista käytöstä ja tuhoa käyttäjätunnuksen tiedot peruuttamattomasti
+        warning_preset_id: Käytä varoitusmallia
       announcement:
         all_day: Koko päivän kestävä tapahtuma
+        ends_at: Tapahtuman loppu
+        scheduled_at: Ajasta julkaisu
+        starts_at: Tapahtuman alku
         text: Ilmoitus
+      appeal:
+        text: Perustele, miksi tämä päätös olisi kumottava
       defaults:
         autofollow: Kutsu seuraamaan tiliäsi
         avatar: Profiilikuva
@@ -67,6 +137,9 @@ fi:
         expires_in: Vanhenee
         fields: Profiilin metadata
         header: Otsakekuva
+        honeypot: "%{label} (älä täytä)"
+        inbox_url: Välityspostilaatikon URL-osoite
+        irreversible: Pudota piilottamisen sijaan
         locale: Kieli
         locked: Lukitse tili
         max_uses: Käyttökertoja enintään
@@ -83,19 +156,22 @@ fi:
         setting_default_language: Julkaisujen kieli
         setting_default_privacy: Julkaisun näkyvyys
         setting_default_sensitive: Merkitse media aina arkaluontoiseksi
-        setting_delete_modal: Kysy vahvistusta ennen tuuttauksen poistamista
+        setting_delete_modal: Kysy vahvistusta ennen viestin poistamista
+        setting_disable_swiping: Poista pyyhkäisyt käytöstä
         setting_display_media: Median näyttäminen
         setting_display_media_default: Oletus
         setting_display_media_hide_all: Piilota kaikki
         setting_display_media_show_all: Näytä kaikki
+        setting_expand_spoilers: Laajenna aina sisältövaroituksilla merkityt viestit
         setting_hide_network: Piilota verkkosi
         setting_noindex: Jättäydy pois hakukoneindeksoinnista
         setting_reduce_motion: Vähennä animaatioiden liikettä
-        setting_show_application: Näytä sovellus mistä lähetät tuuttauksia
+        setting_show_application: Näytä sovellus mistä lähetät viestejä
         setting_system_font_ui: Käytä järjestelmän oletusfonttia
         setting_theme: Sivuston teema
         setting_trends: Näytä päivän trendit
         setting_unfollow_modal: Kysy vahvistusta, ennen kuin lopetat seuraamisen
+        setting_use_blurhash: Näytä värikkäät liukuvärit piilotetulle medialle
         setting_use_pending_items: Hidastila
         severity: Vakavuus
         sign_in_token_attempt: Turvakoodi
@@ -115,7 +191,15 @@ fi:
         comment: Kommentoi
       invite_request:
         text: Miksi haluat liittyä?
+      ip_block:
+        comment: Kommentti
+        ip: IP
+        severities:
+          no_access: Estä pääsy
+          sign_up_requires_approval: Rajoita rekisteröitymisiä
+        severity: Sääntö
       notification_emails:
+        appeal: Joku valittaa valvojan päätöksestä
         digest: Lähetä koosteviestejä sähköpostitse
         favourite: Lähetä sähköposti, kun joku tykkää tilastasi
         follow: Lähetä sähköposti, kun joku seuraa sinua
@@ -123,12 +207,21 @@ fi:
         mention: Lähetä sähköposti, kun sinut mainitaan
         pending_account: Uusi tili tarvitsee tarkastusta
         reblog: Lähetä sähköposti, kun joku buustaa julkaisusi
+        report: Uusi raportti on lähetetty
+        trending_tag: Uusi trendi vaatii tarkastelua
+      rule:
+        text: Sääntö
       tag:
+        listable: Salli tämän hashtagin näkyä hauissa ja ehdotuksissa
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
-        usable: Salli tuuttauksien käyttää tätä aihetunnistetta
+        usable: Salli postauksien käyttää tätä aihetunnistetta
     'no': Ei
     recommended: Suositeltu
     required:
+      mark: "*"
       text: pakollinen tieto
+    title:
+      sessions:
+        webauthn: Käytä jotakin suojausavainta kirjautuaksesi sisään
     'yes': Kyllä

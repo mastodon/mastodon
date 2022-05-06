@@ -16,39 +16,44 @@ class Scheduler::FollowRecommendationsScheduler
     AccountSummary.refresh
     FollowRecommendation.refresh
 
-    fallback_recommendations = FollowRecommendation.limit(SET_SIZE).index_by(&:account_id)
+    fallback_recommendations = FollowRecommendation.order(rank: :desc).limit(SET_SIZE)
 
-    I18n.available_locales.each do |locale|
+    Trends.available_locales.each do |locale|
       recommendations = begin
         if AccountSummary.safe.filtered.localized(locale).exists? # We can skip the work if no accounts with that language exist
-          FollowRecommendation.localized(locale).limit(SET_SIZE).index_by(&:account_id)
+          FollowRecommendation.localized(locale).order(rank: :desc).limit(SET_SIZE).map { |recommendation| [recommendation.account_id, recommendation.rank] }
         else
-          {}
+          []
         end
       end
 
       # Use language-agnostic results if there are not enough language-specific ones
-      missing = SET_SIZE - recommendations.keys.size
+      missing = SET_SIZE - recommendations.size
 
-      if missing.positive?
+      if missing.positive? && fallback_recommendations.size.positive?
+        max_fallback_rank = fallback_recommendations.first.rank || 0
+
+        # Language-specific results should be above language-agnostic ones,
+        # otherwise language-agnostic ones will always overshadow them
+        recommendations.map! { |(account_id, rank)| [account_id, rank + max_fallback_rank] }
+
         added = 0
 
-        # Avoid duplicate results
-        fallback_recommendations.each_value do |recommendation|
-          next if recommendations.key?(recommendation.account_id)
+        fallback_recommendations.each do |recommendation|
+          next if recommendations.any? { |(account_id, _)| account_id == recommendation.account_id }
 
-          recommendations[recommendation.account_id] = recommendation
+          recommendations << [recommendation.account_id, recommendation.rank]
           added += 1
 
           break if added >= missing
         end
       end
 
-      redis.pipelined do
-        redis.del(key(locale))
+      redis.multi do |multi|
+        multi.del(key(locale))
 
-        recommendations.each_value do |recommendation|
-          redis.zadd(key(locale), recommendation.rank, recommendation.account_id)
+        recommendations.each do |(account_id, rank)|
+          multi.zadd(key(locale), rank, account_id)
         end
       end
     end

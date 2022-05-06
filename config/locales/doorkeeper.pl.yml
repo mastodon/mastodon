@@ -60,8 +60,8 @@ pl:
       error:
         title: Wystapił błąd
       new:
-        able_to: Uzyska
-        prompt: Aplikacja %{client_name} prosi o dostęp do Twojego konta
+        prompt_html: "%{client_name} chciałby uzyskać pozwolenie na dostęp do Twojego konta. Jest to aplikacja zewnętrzna. <strong>Jeśli jej nie ufasz, nie powinno się jej autoryzować.</strong>"
+        review_permissions: Sprawdź uprawnienia
         title: Wymagana jest autoryzacja
       show:
         title: Skopiuj kod uwierzytelniający i wklej go w aplikacji.
@@ -71,10 +71,12 @@ pl:
       confirmations:
         revoke: Czy na pewno?
       index:
-        application: Aplikacja
-        created_at: Autoryzowana
-        date_format: "%d.%m.%Y %H:%M:%S"
-        scopes: Zakresy
+        authorized_at: Autoryzowano %{date}
+        description_html: Są to aplikacje, które mogą uzyskać dostęp do Twojego konta za pomocą API. Jeśli są tu aplikacje, których nie rozpoznajesz lub aplikacja zachowuje się nieprawidłowo, możesz usunąć jej dostęp.
+        last_used_at: Ostatnio używane %{date}
+        never_used: Nigdy nieużywane
+        scopes: Uprawnienia
+        superapp: Wewnętrzne
         title: Twoje autoryzowane aplikacje
     errors:
       messages:
@@ -110,6 +112,33 @@ pl:
       authorized_applications:
         destroy:
           notice: Unieważniono aplikację.
+    grouped_scopes:
+      access:
+        read: Dostęp w trybie tylko do odczytu
+        read/write: Uprawnienia do odczytu i zapisu
+        write: Dostęp w trybie tylko do odczytu
+      title:
+        accounts: Konta
+        admin/accounts: Zarządzanie kontami użytkowników
+        admin/all: Wszystkie opcje administratora
+        admin/reports: Zarządzanie zgłoszeniami
+        all: Wszystko
+        blocks: Zablokowane
+        bookmarks: Zakładki
+        conversations: Konwersacje
+        crypto: Szyfrowanie End-to-End
+        favourites: Ulubione
+        filters: Filtry
+        follow: Relacje
+        follows: Śledzenia
+        lists: Listy
+        media: Załączniki multimedialne
+        mutes: Wyciszenia
+        notifications: Powiadomienia
+        push: Powiadomienia push
+        reports: Zgłoszenia
+        search: Szukaj
+        statuses: Wpisy
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ pl:
       admin:write: zmodyfikuj wszystkie dane na serwerze
       admin:write:accounts: wykonaj działania moderacyjne na kontach
       admin:write:reports: wykonaj działania moderacyjne na zgłoszeniach
+      crypto: użyj szyfrowania end-to-end
       follow: możliwość śledzenia kont
       push: otrzymywanie powiadomień push dla Twojego konta
       read: możliwość odczytu wszystkich danych konta
@@ -143,6 +173,7 @@ pl:
       write:accounts: możliwość modyfikowania informacji o koncie
       write:blocks: możliwość blokowania domen i użytkowników
       write:bookmarks: możliwość dodawania wpisów do zakładek
+      write:conversations: wycisz i usuń konwersacje
       write:favourites: możliwość dodawnia wpisów do ulubionych
       write:filters: możliwość tworzenia filtrów
       write:follows: możliwość śledzenia ludzi

@@ -6,6 +6,7 @@ class ReportFilter
     account_id
     target_account_id
     by_target_domain
+    target_origin
   ).freeze
 
   attr_reader :params
@@ -18,7 +19,7 @@ class ReportFilter
     scope = Report.unresolved
 
     params.each do |key, value|
-      scope = scope.merge scope_for(key, value)
+      scope = scope.merge scope_for(key, value), rewhere: true
     end
 
     scope
@@ -34,8 +35,21 @@ class ReportFilter
       Report.where(account_id: value)
     when :target_account_id
       Report.where(target_account_id: value)
+    when :target_origin
+      target_origin_scope(value)
     else
       raise "Unknown filter: #{key}"
+    end
+  end
+
+  def target_origin_scope(value)
+    case value.to_sym
+    when :local
+      Report.where(target_account: Account.local)
+    when :remote
+      Report.where(target_account: Account.remote)
+    else
+      raise "Unknown value: #{value}"
     end
   end
 end

@@ -4,10 +4,14 @@ require 'rails_helper'
 
 RSpec.describe AdminMailer, type: :mailer do
   describe '.new_report' do
-    let(:sender)    { Fabricate(:account, username: 'John', user: Fabricate(:user)) }
-    let(:recipient) { Fabricate(:account, username: 'Mike', user: Fabricate(:user, locale: :en)) }
+    let(:sender)    { Fabricate(:account, username: 'John') }
+    let(:recipient) { Fabricate(:account, username: 'Mike') }
     let(:report)    { Fabricate(:report, account: sender, target_account: recipient) }
     let(:mail)      { described_class.new_report(recipient, report) }
+
+    before do
+      recipient.user.update(locale: :en)
+    end
 
     it 'renders the headers' do
       expect(mail.subject).to eq("New report for cb6e6126.ngrok.io (##{report.id})")

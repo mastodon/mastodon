@@ -1,5 +1,13 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
 - content_for :page_title do
   = t('admin.dashboard.title')
+
+- content_for :heading_actions do
+  = l(@time_period.first)
+  = ' - '
+  = l(@time_period.last)
 
 - unless @system_checks.empty?
   .flash-message-stack
@@ -9,131 +17,55 @@
         - if message.action
           = link_to t("admin.system_checks.#{message.key}.action"), message.action
 
-.dashboard__counters
-  %div
-    = link_to admin_accounts_url(local: 1, recent: 1) do
-      .dashboard__counters__num{ title: number_with_delimiter(@users_count, strip_insignificant_zeros: true) }
-        = friendly_number_to_human @users_count
-      .dashboard__counters__label= t 'admin.dashboard.total_users'
-  %div
-    %div
-      .dashboard__counters__num{ title: number_with_delimiter(@registrations_week, strip_insignificant_zeros: true) }
-        = friendly_number_to_human @registrations_week
-      .dashboard__counters__label= t 'admin.dashboard.week_users_new'
-  %div
-    %div
-      .dashboard__counters__num{ title: number_with_delimiter(@logins_week, strip_insignificant_zeros: true) }
-        = friendly_number_to_human @logins_week
-      .dashboard__counters__label= t 'admin.dashboard.week_users_active'
-  %div
-    = link_to admin_pending_accounts_path do
-      .dashboard__counters__num{ title: number_with_delimiter(@pending_users_count, strip_insignificant_zeros: true) }
-        = friendly_number_to_human @pending_users_count
-      .dashboard__counters__label= t 'admin.dashboard.pending_users'
-  %div
-    = link_to admin_reports_url do
-      .dashboard__counters__num{ title: number_with_delimiter(@reports_count, strip_insignificant_zeros: true) }
-        = friendly_number_to_human @reports_count
-      .dashboard__counters__label= t 'admin.dashboard.open_reports'
-  %div
-    = link_to admin_tags_path(pending_review: '1') do
-      .dashboard__counters__num{ title: number_with_delimiter(@pending_tags_count, strip_insignificant_zeros: true) }
-        = friendly_number_to_human @pending_tags_count
-      .dashboard__counters__label= t 'admin.dashboard.pending_tags'
-  %div
-    %div
-      .dashboard__counters__num{ title: number_with_delimiter(@interactions_week, strip_insignificant_zeros: true) }
-        = friendly_number_to_human @interactions_week
-      .dashboard__counters__label= t 'admin.dashboard.week_interactions'
-  %div
-    = link_to sidekiq_url do
-      .dashboard__counters__num{ title: number_with_delimiter(@queue_backlog, strip_insignificant_zeros: true) }
-        = friendly_number_to_human @queue_backlog
-      .dashboard__counters__label= t 'admin.dashboard.backlog'
+.dashboard
+  .dashboard__item
+    = react_admin_component :counter, measure: 'new_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.new_users'), href: admin_accounts_path(origin: 'local')
 
-.dashboard__widgets
-  .dashboard__widgets__users
-    %div
-      %h4= t 'admin.dashboard.recent_users'
-      %ul
-        - @recent_users.each do |user|
-          %li= admin_account_link_to(user.account)
+  .dashboard__item
+    = react_admin_component :counter, measure: 'active_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.active_users'), href: admin_accounts_path(origin: 'local')
 
-  .dashboard__widgets__features
-    %div
-      %h4= t 'admin.dashboard.features'
-      %ul
-        %li
-          = feature_hint(link_to(t('admin.dashboard.feature_registrations'), edit_admin_settings_path), @registrations_enabled)
-        %li
-          = feature_hint(link_to(t('admin.dashboard.feature_invites'), edit_admin_settings_path), @invites_enabled)
-        %li
-          = feature_hint(link_to(t('admin.dashboard.feature_deletions'), edit_admin_settings_path), @deletions_enabled)
-        %li
-          = feature_hint(link_to(t('admin.dashboard.feature_profile_directory'), edit_admin_settings_path), @profile_directory)
-        %li
-          = feature_hint(link_to(t('admin.dashboard.feature_timeline_preview'), edit_admin_settings_path), @timeline_preview)
-        %li
-          = feature_hint(link_to(t('admin.dashboard.trends'), edit_admin_settings_path), @trends_enabled)
-        %li
-          = feature_hint(link_to(t('admin.dashboard.feature_relay'), admin_relays_path), @relay_enabled)
+  .dashboard__item
+    = react_admin_component :counter, measure: 'interactions', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.interactions')
 
-  .dashboard__widgets__versions
-    %div
-      %h4= t 'admin.dashboard.software'
-      %ul
-        %li
-          Hometown
-          %span.pull-right= @version
-        %li
-          Ruby
-          %span.pull-right= "#{RUBY_VERSION}p#{RUBY_PATCHLEVEL}"
-        %li
-          PostgreSQL
-          %span.pull-right= @database_version
-        %li
-          Redis
-          %span.pull-right= @redis_version
+  .dashboard__item
+    = react_admin_component :counter, measure: 'opened_reports', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.opened_reports'), href: admin_reports_path
 
-  .dashboard__widgets__space
-    %div
-      %h4= t 'admin.dashboard.space'
-      %ul
-        %li
-          PostgreSQL
-          %span.pull-right= number_to_human_size @database_size
-        %li
-          Redis
-          %span.pull-right= number_to_human_size @redis_size
+  .dashboard__item
+    = react_admin_component :counter, measure: 'resolved_reports', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.resolved_reports'), href: admin_reports_path(resolved: '1')
 
-  .dashboard__widgets__config
-    %div
-      %h4= t 'admin.dashboard.config'
-      %ul
-        %li
-          = feature_hint(t('admin.dashboard.search'), @search_enabled)
-        %li
-          = feature_hint(t('admin.dashboard.single_user_mode'), @single_user_mode)
-        %li
-          = feature_hint(t('admin.dashboard.authorized_fetch_mode'), @authorized_fetch)
-        %li
-          = feature_hint(t('admin.dashboard.whitelist_mode'), @whitelist_enabled)
-        %li
-          = feature_hint('LDAP', @ldap_enabled)
-        %li
-          = feature_hint('CAS', @cas_enabled)
-        %li
-          = feature_hint('SAML', @saml_enabled)
-        %li
-          = feature_hint('PAM', @pam_enabled)
-        %li
-          = feature_hint(t('admin.dashboard.hidden_service'), @hidden_service)
+  .dashboard__item
+    = link_to admin_reports_path, class: 'dashboard__quick-access' do
+      %span= t('admin.dashboard.pending_reports_html', count: @pending_reports_count)
+      = fa_icon 'chevron-right fw'
 
-  .dashboard__widgets__trends
-    %div
-      %h4= t 'admin.dashboard.trends'
-      %ul
-        - @trending_hashtags.each do |tag|
-          %li
-            = link_to content_tag(:span, "##{tag.name}", class: !tag.trendable? && !tag.reviewed? ? 'warning-hint' : (!tag.trendable? ? 'negative-hint' : nil)), admin_tag_path(tag.id)
-            %span.pull-right= number_with_delimiter(tag.history[0][:accounts].to_i)
+    = link_to admin_accounts_path(status: 'pending'), class: 'dashboard__quick-access' do
+      %span= t('admin.dashboard.pending_users_html', count: @pending_users_count)
+      = fa_icon 'chevron-right fw'
+
+    = link_to admin_trends_tags_path(status: 'pending_review'), class: 'dashboard__quick-access' do
+      %span= t('admin.dashboard.pending_tags_html', count: @pending_tags_count)
+      = fa_icon 'chevron-right fw'
+
+    = link_to admin_disputes_appeals_path(status: 'pending'), class: 'dashboard__quick-access' do
+      %span= t('admin.dashboard.pending_appeals_html', count: @pending_appeals_count)
+      = fa_icon 'chevron-right fw'
+  .dashboard__item
+    = react_admin_component :dimension, dimension: 'sources', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.sources')
+
+  .dashboard__item
+    = react_admin_component :dimension, dimension: 'languages', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.top_languages')
+
+  .dashboard__item
+    = react_admin_component :dimension, dimension: 'servers', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.top_servers')
+
+  .dashboard__item.dashboard__item--span-double-column
+    = react_admin_component :retention, start_at: @time_period.last - 6.months,   end_at: @time_period.last, frequency: 'month'
+
+  .dashboard__item.dashboard__item--span-double-row
+    = react_admin_component :trends, limit: 7
+
+  .dashboard__item
+    = react_admin_component :dimension, dimension: 'software_versions', start_at: @time_period.first, end_at: @time_period.last, limit: 4, label: t('admin.dashboard.software')
+
+  .dashboard__item
+    = react_admin_component :dimension, dimension: 'space_usage', start_at: @time_period.first, end_at: @time_period.last, limit: 3, label: t('admin.dashboard.space')

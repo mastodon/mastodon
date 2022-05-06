@@ -15,8 +15,8 @@ class FixReblogsInFeeds < ActiveRecord::Migration[5.1]
     # feed, with an entry in a reblog tracking zset (where the score
     # is once again set to the reblogging status' ID, and the value
     # is set to the reblogged status' ID). This is safe for Redis'
-    # float coersion because in this reblog tracking zset, we only
-    # need the rebloggging status' ID to be able to stop tracking
+    # float conversion because in this reblog tracking zset, we only
+    # need the reblogging status' ID to be able to stop tracking
     # entries after they have gotten too far down the feed, which
     # does not require an exact value.
 

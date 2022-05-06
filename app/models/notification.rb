@@ -35,6 +35,8 @@ class Notification < ApplicationRecord
     follow_request
     favourite
     poll
+    update
+    admin.sign_up
   ).freeze
 
   TARGET_STATUS_INCLUDES_BY_TYPE = {
@@ -43,6 +45,7 @@ class Notification < ApplicationRecord
     mention: [mention: :status],
     favourite: [favourite: :status],
     poll: [poll: :status],
+    update: :status,
   }.freeze
 
   belongs_to :account, optional: true
@@ -60,23 +63,13 @@ class Notification < ApplicationRecord
 
   scope :without_suspended, -> { joins(:from_account).merge(Account.without_suspended) }
 
-  scope :browserable, ->(exclude_types = [], account_id = nil) {
-    types = TYPES - exclude_types.map(&:to_sym)
-
-    if account_id.nil?
-      where(type: types)
-    else
-      where(type: types, from_account_id: account_id)
-    end
-  }
-
   def type
     @type ||= (super || LEGACY_TYPE_CLASS_MAP[activity_type]).to_sym
   end
 
   def target_status
     case type
-    when :status
+    when :status, :update
       status
     when :reblog
       status&.reblog
@@ -90,6 +83,23 @@ class Notification < ApplicationRecord
   end
 
   class << self
+    def browserable(types: [], exclude_types: [], from_account_id: nil)
+      requested_types = begin
+        if types.empty?
+          TYPES
+        else
+          types.map(&:to_sym) & TYPES
+        end
+      end
+
+      requested_types -= exclude_types.map(&:to_sym)
+
+      all.tap do |scope|
+        scope.merge!(where(from_account_id: from_account_id)) if from_account_id.present?
+        scope.merge!(where(type: requested_types)) unless requested_types.size == TYPES.size
+      end
+    end
+
     def preload_cache_collection_target_statuses(notifications, &_block)
       notifications.group_by(&:type).each do |type, grouped_notifications|
         associations = TARGET_STATUS_INCLUDES_BY_TYPE[type]
@@ -110,7 +120,7 @@ class Notification < ApplicationRecord
         cached_status = cached_statuses_by_id[notification.target_status.id]
 
         case notification.type
-        when :status
+        when :status, :update
           notification.status = cached_status
         when :reblog
           notification.status.reblog = cached_status
@@ -140,6 +150,8 @@ class Notification < ApplicationRecord
       self.from_account_id = activity&.account_id
     when 'Mention'
       self.from_account_id = activity&.status&.account_id
+    when 'Account'
+      self.from_account_id = activity&.id
     end
   end
 end

@@ -6,7 +6,6 @@ ast:
         autofollow: La xente que se rexistre pente la invitación va siguite automáticamente
         bot: Esta cuenta fai principalmente aiciones automatizaes y podría nun supervisase
         digest: Namái s'unvia dempués d'un periodu llargu d'inactividá y namái si recibiesti cualesquier mensaxe personal na to ausencia
-        discoverable: El direutoru de perfiles ye otru mou de facer qu'una cuenta llegué a una audiencia más amplia
         email: Vamos unviate un corréu de confirmación
         irreversible: Los barritos peñeraos van desapaecer de mou irreversible, magar que se desanicie la peñera dempués
         password: Usa 8 caráuteres polo menos
@@ -21,6 +20,9 @@ ast:
         data: El ficheru CSV esportáu dende otra instancia de Mastodon
       invite_request:
         text: Esto va ayudanos a revisar la to aplicación
+      ip_block:
+        comment: Opcional. Acuérdate por qué amestesti esta regla.
+        expires_in: Les direiciones IP son un recursu finitu, suelen compartise y cambiar de manes. Por esti motivu, nun s'aconseyen los bloqueos de direiciones IP indefiníos.
       sessions:
         otp: 'Introduz el códigu de dos pasos xeneráu pola aplicación autenticadora o usa unu de los códigos de recuperación:'
     labels:
@@ -51,7 +53,6 @@ ast:
         header: Testera
         irreversible: Escartar en cuentes d'anubrir
         locale: Llingua de la interfaz
-        locked: Bloquiar la cuenta
         max_uses: Númberu máximu d'usos
         new_password: Contraseña nueva
         note: Biografía
@@ -72,7 +73,8 @@ ast:
         setting_unfollow_modal: Amosar el diálogu de confirmación enantes de dexar de siguir a daquién
         setting_use_pending_items: Mou lentu
         severity: Severidá
-        type: Triba de la importación
+        sign_in_token_attempt: Códigu de seguranza
+        type: Tipu de la importación
         username: Nome d'usuariu
         username_or_email: Nome d'usuariu o corréu
         whole_word: La pallabra entera
@@ -84,6 +86,8 @@ ast:
         must_be_following_dm: Bloquiar los mensaxes direutos de persones que nun sigues
       invite_request:
         text: "¿Por qué quies xunite?"
+      ip_block:
+        ip: IP
       notification_emails:
         favourite: Daquién marcó como favoritu un estáu de to
         follow: Daquién te sigue
@@ -95,5 +99,6 @@ ast:
     'no': Non
     recommended: Aconséyase
     required:
+      mark: "*"
       text: ríquese
     'yes': Sí

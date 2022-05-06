@@ -11,6 +11,11 @@
 #
 
 class EmailDomainBlock < ApplicationRecord
+  self.ignored_columns = %w(
+    ips
+    last_refresh_at
+  )
+
   include DomainNormalizable
 
   belongs_to :parent, class_name: 'EmailDomainBlock', optional: true
@@ -18,27 +23,39 @@ class EmailDomainBlock < ApplicationRecord
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
-  def with_dns_records=(val)
-    @with_dns_records = ActiveModel::Type::Boolean.new.cast(val)
+  # Used for adding multiple blocks at once
+  attr_accessor :other_domains
+
+  def history
+    @history ||= Trends::History.new('email_domain_blocks', id)
   end
 
-  def with_dns_records?
-    @with_dns_records
-  end
+  def self.block?(domain_or_domains, attempt_ip: nil)
+    domains = Array(domain_or_domains).map do |str|
+      domain = begin
+        if str.include?('@')
+          str.split('@', 2).last
+        else
+          str
+        end
+      end
 
-  alias with_dns_records with_dns_records?
-
-  def self.block?(email)
-    _, domain = email.split('@', 2)
-
-    return true if domain.nil?
-
-    begin
-      domain = TagManager.instance.normalize_domain(domain)
+      TagManager.instance.normalize_domain(domain) if domain.present?
     rescue Addressable::URI::InvalidURIError
-      return true
+      nil
     end
 
-    where(domain: domain).exists?
+    # If some of the inputs passed in are invalid, we definitely want to
+    # block the attempt, but we also want to register hits against any
+    # other valid matches
+
+    blocked = domains.any?(&:nil?)
+
+    where(domain: domains).find_each do |block|
+      blocked = true
+      block.history.add(attempt_ip) if attempt_ip.present?
+    end
+
+    blocked
   end
 end

@@ -24,8 +24,8 @@ class InstancePresenter
     Rails.cache.fetch('user_count') { User.confirmed.joins(:account).merge(Account.without_suspended).count }
   end
 
-  def active_user_count(weeks = 4)
-    Rails.cache.fetch("active_user_count/#{weeks}") { Redis.current.pfcount(*(0...weeks).map { |i| "activity:logins:#{i.weeks.ago.utc.to_date.cweek}" }) }
+  def active_user_count(num_weeks = 4)
+    Rails.cache.fetch("active_user_count/#{num_weeks}") { ActivityTracker.new('activity:logins', :unique).sum(num_weeks.weeks.ago) }
   end
 
   def status_count

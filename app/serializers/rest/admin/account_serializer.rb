@@ -9,6 +9,7 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
   attribute :created_by_application_id, if: :created_by_application?
   attribute :invited_by_account_id, if: :invited?
 
+  has_many :ips, serializer: REST::Admin::IpSerializer
   has_one :account, serializer: REST::AccountSerializer
 
   def id
@@ -17,10 +18,6 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
 
   def email
     object.user_email
-  end
-
-  def ip
-    object.user_current_sign_in_ip.to_s.presence
   end
 
   def role
@@ -73,5 +70,13 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
 
   def created_by_application?
     object.user&.created_by_application_id&.present?
+  end
+
+  def ips
+    object.user&.ips
+  end
+
+  def ip
+    ips&.first
   end
 end

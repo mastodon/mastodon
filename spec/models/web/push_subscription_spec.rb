@@ -29,7 +29,7 @@ RSpec.describe Web::PushSubscription, type: :model do
       context "when notification is a #{type}" do
         let(:notification_type) { type }
 
-        it "returns boolean corresonding to alert setting" do
+        it "returns boolean corresponding to alert setting" do
           expect(subject.pushable?(notification)).to eq data[:alerts][type]
         end
       end

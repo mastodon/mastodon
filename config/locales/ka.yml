@@ -42,7 +42,6 @@ ka:
     account_moderation_notes:
       create: დატოვეთ ჩანაწერი
       created_msg: მოდერაციის ჩანაწერი წარმატებით შეიქმნა!
-      delete: გაუქმება
       destroyed_msg: მოდერაციის ჩანაწერი წარმატებით გაუქმდა!
     accounts:
       are_you_sure: დარწმუნებული ხარ?
@@ -83,7 +82,6 @@ ka:
       memorialize: აქციე მემორანდუმად
       moderation:
         all: ყველა
-        silenced: გაჩუმებული
         suspended: შეჩერებული
         title: მოდერაცია
       moderation_notes: მოდერაციის ჩანაწერები
@@ -141,7 +139,6 @@ ka:
       emoji: ემოჯი
       enable: ჩართვა
       enabled_msg: წარმატებით ჩაირთო ეს ემოჯი
-      image_hint: PNG 50კბმდე
       listed: ჩამოთვლილი
       new:
         title: ახალი პერსონალიზირებული ემოჯის დამატება
@@ -154,26 +151,9 @@ ka:
       updated_msg: ემოჯი წარმატებით განახლდა!
       upload: ატვირთვა
     dashboard:
-      backlog: დაუსრულებელი საქმეები
-      config: კონფიგურაცია
-      feature_deletions: ანგარიშის გაუქმებები
-      feature_invites: მოწვევის ბმულები
-      feature_registrations: რეგისტრაციები
-      feature_relay: ფედერაციის რილეი
-      features: ფუნქციები
-      hidden_service: ფედერაცია დამალულ სერვისებთან
-      open_reports: ღია რეპორტები
-      recent_users: ახალი მომხმარებლები
-      search: სრული-ტექსტის ძიება
-      single_user_mode: ერთ-მომხმარებლიანი რეჟიმი
       software: პროგრამა
       space: მოცულობის მოხმარება
       title: დაფა
-      total_users: სულ მომხმარებლები
-      trends: ტრენდები
-      week_interactions: ამ კვირის ინტერაქციები
-      week_users_active: აქტიური ამ კვირას
-      week_users_new: ამ კვირის მომხმარებლები
     domain_blocks:
       add_new: ახლის დამატება
       created_msg: დომენის ბლოკი ახლა პროცესირების ქვეშაა
@@ -190,21 +170,11 @@ ka:
         title: ახალი დომენის ბლოკი
       reject_media: მედია ფაილების უარყოფა
       reject_media_hint: შლის ლოკალურად შენახულ მედია ფაილებს და უარყოფს სამომავლო გადმოტვირთებს. შეუსაბამო შეჩერებებისთვის
-      show:
-        affected_accounts:
-          one: გავლენა იქონია მონაცემთა ბაზაში ერთ ანგარიშზე
-          other: გავლენა იქონიო მონაცემთა ბაზაში %{count} ანგარიშზე
-        retroactive:
-          silence: ამ დომენში ყველა არსებულ ანგარიშზე გაჩუმების მოშორება
-          suspend: ამ დომენში ყველა არსებულ ანგარიშზე შეჩერების მოშორება
-        title: უკუაქციეთ დომენის ბლოკი %{domain} დომენზე
-        undo: უკუქცევა
       undo: უკუქცევა
     email_domain_blocks:
       add_new: ახლის დამატება
       created_msg: ელ-ფოსტის დომენი წარმატებით დაემატა შავ სიას
       delete: გაუქმება
-      destroyed_msg: ელ-ფოსტის დომენი წარმატებით ამოიშალა შავი სიიდან
       domain: დომენი
       new:
         create: დომენის დამატება
@@ -315,14 +285,8 @@ ka:
       title: საიტის პარამეტრები
     statuses:
       back_to_account: უკან ანგარიშის გვერდისკენ
-      batch:
-        delete: გაუქმება
-        nsfw_off: მონიშნე არა-მგრძნობიარედ
-        nsfw_on: მონიშნე მგრძნობიარედ
-      failed_to_execute: ვერ გაეშვა
       media:
         title: მედია
-      no_media: არაა მედია
       no_status_selected: სატუსები არ შეცვლილა, რადგან არცერთი არ მონიშნულა
       title: ანგარიშის სტატუსები
       with_media: მედიით
@@ -498,9 +462,6 @@ ka:
       new_followers_summary:
         one: ასევე, არყოფნისას შეგეძინათ ერთი ახალი მიმდევარი! იეი!
         other: ასევე, არყოფნისას შეგეძინათ %{count} ახალი მიმდევარი! შესანიშნავია!
-      subject:
-        one: "1 ახალი შეტყობინება თქვენი ბოლო სტუმრობის შემდეგ \U0001F418"
-        other: "%{count} ახალი შეტყობინება თქვენი ბოლო სტუმრობის შემდეგ \U0001F418"
       title: თქვენს არყოფნაში...
     favourite:
       body: 'თქვენი სტატუსი ფავორიტი გახადა %{name}-მა:'
@@ -613,13 +574,11 @@ ka:
     disallowed_hashtags:
       one: 'მოიცავდა აკრძალულ ჰეშტეგს: %{tags}'
       other: 'მოიცავს აკრძალულ ჰეშტეგს: %{tags}'
-    language_detection: ავტომატურად დადგინდეს ენა
     open_in_web: ვებში გახნსა
     over_character_limit: ნიშნების ლიმიტი გადასცდა %{max}-ს
     pin_errors:
       limit: ტუტების მაქსიმალური რაოდენობა უკვე აპინეთ
       ownership: სხვისი ტუტი ვერ აიპინება
-      private: არა-საჯარო ტუტი ვერ აიპინება
       reblog: ბუსტი ვერ აიპინება
     show_more: მეტის ჩვენება
     sign_in_to_participate: საუბარში მონაწილეობისთვის გაიარეთ ავტორიზაცია

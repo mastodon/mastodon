@@ -3,31 +3,11 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "04dbbc249b989db2e0119bbb0f59c9818e12889d2b97c529cdc0b1526002ba4b",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/models/report.rb",
-      "line": 113,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "Admin::ActionLog.from(\"(#{[Admin::ActionLog.where(:target_type => \"Report\", :target_id => id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Account\", :target_id => target_account_id, :created_at => ((created_at..updated_at))).unscope(:order), Admin::ActionLog.where(:target_type => \"Status\", :target_id => status_ids, :created_at => ((created_at..updated_at))).unscope(:order)].map do\n \"(#{query.to_sql})\"\n end.join(\" UNION ALL \")}) AS admin_action_logs\")",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Report",
-        "method": "history"
-      },
-      "user_input": "Admin::ActionLog.where(:target_type => \"Status\", :target_id => status_ids, :created_at => ((created_at..updated_at))).unscope(:order)",
-      "confidence": "High",
-      "note": ""
-    },
-    {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
       "fingerprint": "19df3740b8d02a9fe0eb52c939b4b87d3a2a591162a6adfa8d64e9c26aeebe6d",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/status.rb",
-      "line": 100,
+      "line": 106,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "result.joins(\"INNER JOIN statuses_tags t#{id} ON t#{id}.status_id = statuses.id AND t#{id}.tag_id = #{id}\")",
       "render_path": null,
@@ -37,6 +17,26 @@
         "method": null
       },
       "user_input": "id",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "30dfe36e87fe1b8f239df9a33d576e44a9863f73b680198d4713be6540ae61d3",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/trends/query.rb",
+      "line": 76,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "klass.joins(\"join unnest(array[#{ids.join(\",\")}]) with ordinality as x (id, ordering) on #{klass.table_name}.id = x.id\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Trends::Query",
+        "method": "to_arel"
+      },
+      "user_input": "ids.join(\",\")",
       "confidence": "Weak",
       "note": ""
     },
@@ -58,6 +58,56 @@
       },
       "user_input": "RemoteFollow.new(resource_params).interact_address_for(Status.find(params[:id]))",
       "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "71cf98c8235b5cfa9946b5db8fdc1a2f3a862566abb34e4542be6f3acae78233",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/admin/disputes/appeals/_appeal.html.haml",
+      "line": 7,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "t((Unresolved Model).new.strike.action, :scope => \"admin.strikes.actions\", :name => content_tag(:span, (Unresolved Model).new.strike.account.username, :class => \"username\"), :target => content_tag(:span, (Unresolved Model).new.account.username, :class => \"target\"))",
+      "render_path": [
+        {
+          "type": "template",
+          "name": "admin/disputes/appeals/index",
+          "line": 20,
+          "file": "app/views/admin/disputes/appeals/index.html.haml",
+          "rendered": {
+            "name": "admin/disputes/appeals/_appeal",
+            "file": "app/views/admin/disputes/appeals/_appeal.html.haml"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "admin/disputes/appeals/_appeal"
+      },
+      "user_input": "(Unresolved Model).new.strike",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "75fcd147b7611763ab6915faf8c5b0709e612b460f27c05c72d8b9bd0a6a77f8",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "lib/mastodon/snowflake.rb",
+      "line": 87,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "connection.execute(\"CREATE OR REPLACE FUNCTION timestamp_id(table_name text)\\nRETURNS bigint AS\\n$$\\n  DECLARE\\n    time_part bigint;\\n    sequence_base bigint;\\n    tail bigint;\\n  BEGIN\\n    time_part := (\\n      -- Get the time in milliseconds\\n      ((date_part('epoch', now()) * 1000))::bigint\\n      -- And shift it over two bytes\\n      << 16);\\n\\n    sequence_base := (\\n      'x' ||\\n      -- Take the first two bytes (four hex characters)\\n      substr(\\n        -- Of the MD5 hash of the data we documented\\n        md5(table_name || '#{SecureRandom.hex(16)}' || time_part::text),\\n        1, 4\\n      )\\n    -- And turn it into a bigint\\n    )::bit(16)::bigint;\\n\\n    -- Finally, add our sequence number to our base, and chop\\n    -- it to the last two bytes\\n    tail := (\\n      (sequence_base + nextval(table_name || '_id_seq'))\\n      & 65535);\\n\\n    -- Return the time part and the sequence part. OR appears\\n    -- faster here than addition, but they're equivalent:\\n    -- time_part has no trailing two bytes, and tail is only\\n    -- the last two bytes.\\n    RETURN time_part | tail;\\n  END\\n$$ LANGUAGE plpgsql VOLATILE;\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Mastodon::Snowflake",
+        "method": "define_timestamp_id"
+      },
+      "user_input": "SecureRandom.hex(16)",
+      "confidence": "Medium",
       "note": ""
     },
     {
@@ -87,7 +137,7 @@
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/admin/reports_controller.rb",
-      "line": 78,
+      "line": 90,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
       "code": "params.permit(:resolved, :account_id, :target_account_id)",
       "render_path": null,
@@ -101,23 +151,23 @@
       "note": ""
     },
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "9ccb9ba6a6947400e187d515e0bf719d22993d37cfc123c824d7fafa6caa9ac3",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "lib/mastodon/snowflake.rb",
-      "line": 87,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "connection.execute(\"        CREATE OR REPLACE FUNCTION timestamp_id(table_name text)\\n        RETURNS bigint AS\\n        $$\\n          DECLARE\\n            time_part bigint;\\n            sequence_base bigint;\\n            tail bigint;\\n          BEGIN\\n            time_part := (\\n              -- Get the time in milliseconds\\n              ((date_part('epoch', now()) * 1000))::bigint\\n              -- And shift it over two bytes\\n              << 16);\\n\\n            sequence_base := (\\n              'x' ||\\n              -- Take the first two bytes (four hex characters)\\n              substr(\\n                -- Of the MD5 hash of the data we documented\\n                md5(table_name ||\\n                  '#{SecureRandom.hex(16)}' ||\\n                  time_part::text\\n                ),\\n                1, 4\\n              )\\n            -- And turn it into a bigint\\n            )::bit(16)::bigint;\\n\\n            -- Finally, add our sequence number to our base, and chop\\n            -- it to the last two bytes\\n            tail := (\\n              (sequence_base + nextval(table_name || '_id_seq'))\\n              & 65535);\\n\\n            -- Return the time part and the sequence part. OR appears\\n            -- faster here than addition, but they're equivalent:\\n            -- time_part has no trailing two bytes, and tail is only\\n            -- the last two bytes.\\n            RETURN time_part | tail;\\n          END\\n        $$ LANGUAGE plpgsql VOLATILE;\\n\")",
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "ab5035dd1a9f8c3a8d92fb2c37e8fe86fede4f87c91b71aa32e89c9eede602fc",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/api/v1/notifications_controller.rb",
+      "line": 81,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.permit(:account_id, :types => ([]), :exclude_types => ([]))",
       "render_path": null,
       "location": {
         "type": "method",
-        "class": "Mastodon::Snowflake",
-        "method": "define_timestamp_id"
+        "class": "Api::V1::NotificationsController",
+        "method": "browserable_params"
       },
-      "user_input": "SecureRandom.hex(16)",
-      "confidence": "Medium",
+      "user_input": ":account_id",
+      "confidence": "High",
       "note": ""
     },
     {
@@ -141,35 +191,45 @@
       "note": ""
     },
     {
-      "warning_type": "Redirect",
-      "warning_code": 18,
-      "fingerprint": "ba699ddcc6552c422c4ecd50d2cd217f616a2446659e185a50b05a0f2dad8d33",
-      "check_name": "Redirect",
-      "message": "Possible unprotected redirect",
-      "file": "app/controllers/media_controller.rb",
-      "line": 20,
-      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
-      "code": "redirect_to(MediaAttachment.attached.find_by!(:shortcode => ((params[:id] or params[:medium_id]))).file.url(:original))",
-      "render_path": null,
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "cd5cfd7f40037fbfa753e494d7129df16e358bfc43ef0da3febafbf4ee1ed3ac",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in `link_to` href",
+      "file": "app/views/admin/trends/links/_preview_card.html.haml",
+      "line": 7,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to((Unresolved Model).new.title, (Unresolved Model).new.url)",
+      "render_path": [
+        {
+          "type": "template",
+          "name": "admin/trends/links/index",
+          "line": 49,
+          "file": "app/views/admin/trends/links/index.html.haml",
+          "rendered": {
+            "name": "admin/trends/links/_preview_card",
+            "file": "app/views/admin/trends/links/_preview_card.html.haml"
+          }
+        }
+      ],
       "location": {
-        "type": "method",
-        "class": "MediaController",
-        "method": "show"
+        "type": "template",
+        "template": "admin/trends/links/_preview_card"
       },
-      "user_input": "MediaAttachment.attached.find_by!(:shortcode => ((params[:id] or params[:medium_id]))).file.url(:original)",
-      "confidence": "High",
+      "user_input": "(Unresolved Model).new.url",
+      "confidence": "Weak",
       "note": ""
     },
     {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
-      "fingerprint": "e867661b2c9812bc8b75a5df12b28e2a53ab97015de0638b4e732fe442561b28",
+      "fingerprint": "f9de0ca4b04ae4b51b74d98db14dcbb6dae6809e627b58e711019cf9b4a47866",
       "check_name": "PermitAttributes",
       "message": "Potentially dangerous key allowed for mass assignment",
       "file": "app/controllers/api/v1/reports_controller.rb",
-      "line": 36,
+      "line": 26,
       "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
-      "code": "params.permit(:account_id, :comment, :forward, :status_ids => ([]))",
+      "code": "params.permit(:account_id, :comment, :category, :forward, :status_ids => ([]), :rule_ids => ([]))",
       "render_path": null,
       "location": {
         "type": "method",
@@ -181,6 +241,6 @@
       "note": ""
     }
   ],
-  "updated": "2021-05-11 20:22:27 +0900",
-  "brakeman_version": "5.0.1"
+  "updated": "2022-03-22 07:48:32 +0100",
+  "brakeman_version": "5.2.1"
 }

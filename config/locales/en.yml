@@ -16,6 +16,7 @@ en:
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
+    continue_to_web: Continue to web app
     discover_users: Discover users
     documentation: Documentation
     federation_hint_html: With an account on %{instance} you'll be able to follow people on any Hometown or Mastodon server and beyond.
@@ -25,6 +26,8 @@ en:
       This account is a virtual actor used to represent the server itself and not any individual user.
       It is used for federation purposes and should not be blocked unless you want to block the whole instance, in which case you should use a domain block.
     learn_more: Learn more
+    logged_in_as_html: You are currently logged in as %{username}.
+    logout_before_registering: You are already logged in.
     privacy_policy: Privacy policy
     rules: Server rules
     rules_html: 'Below is a summary of rules you need to follow if you want to have an account on this server of Mastodon:'
@@ -44,7 +47,7 @@ en:
       rejecting_media: 'Media files from these servers will not be processed or stored, and no thumbnails will be displayed, requiring manual click-through to the original file:'
       rejecting_media_title: Filtered media
       silenced: 'Posts from these servers will be hidden in public timelines and conversations, and no notifications will be generated from their users interactions, unless you are following them:'
-      silenced_title: Silenced servers
+      silenced_title: Limited servers
       suspended: 'No data from these servers will be processed, stored or exchanged, making any interaction or communication with users from these servers impossible:'
       suspended_title: Suspended servers
     unavailable_content_html: Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.
@@ -69,7 +72,6 @@ en:
     media: Media
     moved_html: "%{name} has moved to %{new_profile_link}:"
     network_hidden: This information is not available
-    never_active: Never
     nothing_here: There is nothing here!
     people_followed_by: People whom %{name} follows
     people_who_follow: People who follow %{name}
@@ -94,12 +96,10 @@ en:
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
-      delete: Delete
       destroyed_msg: Moderation note successfully destroyed!
     accounts:
       add_email_domain_block: Block e-mail domain
       approve: Approve
-      approve_all: Approve all
       approved_msg: Successfully approved %{username}'s sign-up application
       are_you_sure: Are you sure?
       avatar: Avatar
@@ -114,11 +114,13 @@ en:
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
+      custom: Custom
       delete: Delete data
       deleted: Deleted
       demote: Demote
       destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
       disable: Freeze
+      disable_sign_in_token_auth: Disable e-mail token authentication
       disable_two_factor_authentication: Disable 2FA
       disabled: Frozen
       display_name: Display name
@@ -127,6 +129,7 @@ en:
       email: Email
       email_status: Email status
       enable: Unfreeze
+      enable_sign_in_token_auth: Enable e-mail token authentication
       enabled: Enabled
       enabled_msg: Successfully unfroze %{username}'s account
       followers: Followers
@@ -151,7 +154,6 @@ en:
         active: Active
         all: All
         pending: Pending
-        silenced: Silenced
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
@@ -162,6 +164,10 @@ en:
       not_subscribed: Not subscribed
       pending: Pending review
       perform_full_suspension: Suspend
+      previous_strikes: Previous strikes
+      previous_strikes_description_html:
+        one: This account has <strong>one</strong> strike.
+        other: This account has <strong>%{count}</strong> strikes.
       promote: Promote
       protocol: Protocol
       public: Public
@@ -169,7 +175,6 @@ en:
       redownload: Refresh profile
       redownloaded_msg: Successfully refreshed %{username}'s profile from origin
       reject: Reject
-      reject_all: Reject all
       rejected_msg: Successfully rejected %{username}'s sign-up application
       remove_avatar: Remove avatar
       remove_header: Remove header
@@ -191,8 +196,11 @@ en:
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
-      sensitive: Sensitive
-      sensitized: marked as sensitive
+      security_measures:
+        only_password: Only password
+        password_and_2fa: Password and 2FA
+      sensitive: Force-sensitive
+      sensitized: Marked as sensitive
       shared_inbox_url: Shared inbox URL
       show:
         created_reports: Made reports
@@ -200,17 +208,20 @@ en:
       silence: Limit
       silenced: Limited
       statuses: Posts
+      strikes: Previous strikes
       subscribe: Subscribe
+      suspend: Suspend
       suspended: Suspended
       suspension_irreversible: The data of this account has been irreversibly deleted. You can unsuspend the account to make it usable but it will not recover any data it previously had.
       suspension_reversible_hint_html: The account has been suspended, and the data will be fully removed on %{date}. Until then, the account can be restored without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
-      time_in_queue: Waiting in queue %{time}
       title: Accounts
+      unblock_email: Unblock email address
+      unblocked_email_msg: Successfully unblocked %{username}'s email address
       unconfirmed_email: Unconfirmed email
-      undo_sensitized: Undo sensitive
-      undo_silenced: Undo silence
+      undo_sensitized: Undo force-sensitive
+      undo_silenced: Undo limit
       undo_suspension: Undo suspension
-      unsilenced_msg: Successfully unlimited %{username}'s account
+      unsilenced_msg: Successfully undid limit of %{username}'s account
       unsubscribe: Unsubscribe
       unsuspended_msg: Successfully unsuspended %{username}'s account
       username: Username
@@ -220,6 +231,8 @@ en:
       whitelisted: Allowed for federation
     action_logs:
       action_types:
+        approve_appeal: Approve Appeal
+        approve_user: Approve User
         assigned_to_self_report: Assign Report
         change_email_user: Change E-mail for User
         confirm_user: Confirm User
@@ -236,33 +249,41 @@ en:
         destroy_custom_emoji: Delete Custom Emoji
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
-        destroy_email_domain_block: Delete e-mail domain block
+        destroy_email_domain_block: Delete E-mail Domain Block
+        destroy_instance: Purge Domain
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
+        disable_sign_in_token_auth_user: Disable E-mail Token Authentication for User
         disable_user: Disable User
         enable_custom_emoji: Enable Custom Emoji
+        enable_sign_in_token_auth_user: Enable E-mail Token Authentication for User
         enable_user: Enable User
         memorialize_account: Memorialize Account
         promote_user: Promote User
+        reject_appeal: Reject Appeal
+        reject_user: Reject User
         remove_avatar_user: Remove Avatar
         reopen_report: Reopen Report
         reset_password_user: Reset Password
         resolve_report: Resolve Report
-        sensitive_account: Mark the media in your account as sensitive
-        silence_account: Silence Account
+        sensitive_account: Force-Sensitive Account
+        silence_account: Limit Account
         suspend_account: Suspend Account
         unassigned_report: Unassign Report
-        unsensitive_account: Unmark the media in your account as sensitive
-        unsilence_account: Unsilence Account
+        unblock_email_account: Unblock email address
+        unsensitive_account: Undo Force-Sensitive Account
+        unsilence_account: Undo Limit Account
         unsuspend_account: Unsuspend Account
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
         update_domain_block: Update Domain Block
         update_status: Update Post
       actions:
+        approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
+        approve_user_html: "%{name} approved sign-up from %{target}"
         assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
         change_email_user_html: "%{name} changed the e-mail address of user %{target}"
         confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
@@ -280,26 +301,32 @@ en:
         destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block_html: "%{name} unblocked domain %{target}"
         destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
+        destroy_instance_html: "%{name} purged domain %{target}"
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} disabled e-mail token authentication for %{target}"
         disable_user_html: "%{name} disabled login for user %{target}"
         enable_custom_emoji_html: "%{name} enabled emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} enabled e-mail token authentication for %{target}"
         enable_user_html: "%{name} enabled login for user %{target}"
         memorialize_account_html: "%{name} turned %{target}'s account into a memoriam page"
         promote_user_html: "%{name} promoted user %{target}"
+        reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
+        reject_user_html: "%{name} rejected sign-up from %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
         reopen_report_html: "%{name} reopened report %{target}"
         reset_password_user_html: "%{name} reset password of user %{target}"
         resolve_report_html: "%{name} resolved report %{target}"
         sensitive_account_html: "%{name} marked %{target}'s media as sensitive"
-        silence_account_html: "%{name} silenced %{target}'s account"
+        silence_account_html: "%{name} limited %{target}'s account"
         suspend_account_html: "%{name} suspended %{target}'s account"
         unassigned_report_html: "%{name} unassigned report %{target}"
+        unblock_email_account_html: "%{name} unblocked %{target}'s email address"
         unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
-        unsilence_account_html: "%{name} unsilenced %{target}'s account"
+        unsilence_account_html: "%{name} undid limit of %{target}'s account"
         unsuspend_account_html: "%{name} unsuspended %{target}'s account"
         update_announcement_html: "%{name} updated announcement %{target}"
         update_custom_emoji_html: "%{name} updated emoji %{target}"
@@ -344,7 +371,7 @@ en:
       enable: Enable
       enabled: Enabled
       enabled_msg: Successfully enabled that emoji
-      image_hint: PNG up to 50KB
+      image_hint: PNG or GIF up to %{size}
       list: List
       listed: Listed
       new:
@@ -361,32 +388,35 @@ en:
       updated_msg: Emoji successfully updated!
       upload: Upload
     dashboard:
-      authorized_fetch_mode: Secure mode
-      backlog: backlogged jobs
-      config: Configuration
-      feature_deletions: Account deletions
-      feature_invites: Invite links
-      feature_profile_directory: Profile directory
-      feature_registrations: Registrations
-      feature_relay: Federation relay
-      feature_timeline_preview: Timeline preview
-      features: Features
-      hidden_service: Federation with hidden services
-      open_reports: open reports
-      pending_tags: hashtags waiting for review
-      pending_users: users waiting for review
-      recent_users: Recent users
-      search: Full-text search
-      single_user_mode: Single user mode
+      active_users: active users
+      interactions: interactions
+      media_storage: Media storage
+      new_users: new users
+      opened_reports: reports opened
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> pending appeal"
+        other: "<strong>%{count}</strong> pending appeals"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> pending report"
+        other: "<strong>%{count}</strong> pending reports"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> pending hashtag"
+        other: "<strong>%{count}</strong> pending hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> pending user"
+        other: "<strong>%{count}</strong> pending users"
+      resolved_reports: reports resolved
       software: Software
+      sources: Sign-up sources
       space: Space usage
       title: Dashboard
-      total_users: users in total
-      trends: Trends
-      week_interactions: interactions this week
-      week_users_active: active this week
-      week_users_new: users this week
-      whitelist_mode: Limited federation mode
+      top_languages: Top active languages
+      top_servers: Top active servers
+      website: Website
+    disputes:
+      appeals:
+        empty: No appeals found.
+        title: Appeals
     domain_allows:
       add_new: Allow federation with domain
       created_msg: Domain has been successfully allowed for federation
@@ -418,33 +448,26 @@ en:
       reject_media_hint: Removes locally stored media files and refuses to download any in the future. Irrelevant for suspensions
       reject_reports: Reject reports
       reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
-      rejecting_media: rejecting media files
-      rejecting_reports: rejecting reports
-      severity:
-        silence: silenced
-        suspend: suspended
-      show:
-        affected_accounts:
-          one: One account in the database affected
-          other: "%{count} accounts in the database affected"
-        retroactive:
-          silence: Unsilence existing affected accounts from this domain
-          suspend: Unsuspend existing affected accounts from this domain
-        title: Undo domain block for %{domain}
-        undo: Undo
       undo: Undo domain block
       view: View domain block
     email_domain_blocks:
       add_new: Add new
+      attempts_over_week:
+        one: "%{count} attempt over the last week"
+        other: "%{count} sign-up attempts over the last week"
       created_msg: Successfully blocked e-mail domain
       delete: Delete
-      destroyed_msg: Successfully unblocked e-mail domain
+      dns:
+        types:
+          mx: MX record
       domain: Domain
-      empty: No e-mail domains currently blocked.
-      from_html: from %{domain}
       new:
         create: Add domain
+        resolve: Resolve domain
         title: Block new e-mail domain
+      no_email_domain_block_selected: No e-mail domain blocks were changed as none were selected
+      resolved_dns_records_hint_html: The domain name resolves to the following MX domains, which are ultimately responsible for accepting e-mail. Blocking an MX domain will block sign-ups from any e-mail address which uses the same MX domain, even if the visible domain name is different. <strong>Be careful not to block major e-mail providers.</strong>
+      resolved_through_html: Resolved through %{domain}
       title: Blocked e-mail domains
     follow_recommendations:
       description_html: "<strong>Follow recommendations help new users quickly find interesting content</strong>. When a user has not interacted with others enough to form personalized follow recommendations, these accounts are recommended instead. They are re-calculated on a daily basis from a mix of accounts with the highest recent engagements and highest local follower counts for a given language."
@@ -455,25 +478,53 @@ en:
       title: Follow recommendations
       unsuppress: Restore follow recommendation
     instances:
+      availability:
+        description_html:
+          one: If delivering to the domain fails <strong>%{count} day</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+          other: If delivering to the domain fails on <strong>%{count} different days</strong> without succeeding, no further delivery attempts will be made unless a delivery <em>from</em> the domain is received.
+        failure_threshold_reached: Failure threshold reached on %{date}.
+        failures_recorded:
+          one: Failed attempt on %{count} day.
+          other: Failed attempts on %{count} different days.
+        no_failures_recorded: No failures on record.
+        title: Availability
+        warning: The last attempt to connect to this server has been unsuccessful
       back_to_all: All
       back_to_limited: Limited
       back_to_warning: Warning
       by_domain: Domain
+      confirm_purge: Are you sure you want to permanently delete data from this domain?
+      content_policies:
+        comment: Internal note
+        description_html: You can define content policies that will be applied to all accounts from this domain and any of its subdomains.
+        policies:
+          reject_media: Reject media
+          reject_reports: Reject reports
+          silence: Limit
+          suspend: Suspend
+        policy: Policy
+        reason: Public reason
+        title: Content policies
+      dashboard:
+        instance_accounts_dimension: Most followed accounts
+        instance_accounts_measure: stored accounts
+        instance_followers_measure: our followers there
+        instance_follows_measure: their followers here
+        instance_languages_dimension: Top languages
+        instance_media_attachments_measure: stored media attachments
+        instance_reports_measure: reports about them
+        instance_statuses_measure: stored posts
       delivery:
         all: All
         clear: Clear delivery errors
+        failing: Failing
         restart: Restart delivery
         stop: Stop delivery
-        title: Delivery
         unavailable: Unavailable
-        unavailable_message: Delivery unavailable
-        warning: Warning
-        warning_message:
-          one: Delivery failure %{count} day
-          other: Delivery failure %{count} days
       delivery_available: Delivery is available
       delivery_error_days: Delivery error days
       delivery_error_hint: If delivery is not possible for %{count} days, it will be automatically marked as undeliverable.
+      destroyed_msg: Data from %{domain} is now queued for imminent deletion.
       empty: No domains found.
       known_accounts:
         one: "%{count} known account"
@@ -484,12 +535,15 @@ en:
         title: Moderation
       private_comment: Private comment
       public_comment: Public comment
+      purge: Purge
+      purge_description_html: If you believe this domain is offline for good, you can delete all account records and associated data from this domain from your storage. This may take a while.
       title: Federation
       total_blocked_by_us: Blocked by us
       total_followed_by_them: Followed by them
       total_followed_by_us: Followed by us
       total_reported: Reports about them
       total_storage: Media attachments
+      totals_time_period_hint_html: The totals displayed below include data for all time.
     invites:
       deactivate_all: Deactivate all
       filter:
@@ -513,8 +567,6 @@ en:
         title: Create new IP rule
       no_ip_block_selected: No IP rules were changed as none were selected
       title: IP rules
-    pending_accounts:
-      title: Pending accounts (%{count})
     relationships:
       title: "%{acct}'s relationships"
     relays:
@@ -536,43 +588,66 @@ en:
     report_notes:
       created_msg: Report note successfully created!
       destroyed_msg: Report note successfully deleted!
+      today_at: Today at %{time}
     reports:
       account:
         notes:
           one: "%{count} note"
           other: "%{count} notes"
-        reports:
-          one: "%{count} report"
-          other: "%{count} reports"
+      action_log: Audit log
       action_taken_by: Action taken by
+      actions:
+        delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
+        mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
+        other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
+        resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
+        silence_description_html: The profile will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted.
+        suspend_description_html: The profile and all its contents will become inaccessible until it is eventually deleted. Interacting with the account will be impossible. Reversible within 30 days.
+      actions_description_html: Decide which action to take to resolve this report. If you take a punitive action against the reported account, an e-mail notification will be sent to them, except when the <strong>Spam</strong> category is selected.
+      add_to_report: Add more to report
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
       by_target_domain: Domain of reported account
+      category: Category
+      category_description_html: The reason this account and/or content was reported will be cited in communication with the reported account
       comment:
         none: None
+      comment_description_html: 'To provide more information, %{name} wrote:'
       created_at: Reported
+      delete_and_resolve: Delete posts
       forwarded: Forwarded
       forwarded_to: Forwarded to %{domain}
       mark_as_resolved: Mark as resolved
+      mark_as_sensitive: Mark as sensitive
       mark_as_unresolved: Mark as unresolved
+      no_one_assigned: No one
       notes:
         create: Add note
         create_and_resolve: Resolve with note
         create_and_unresolve: Reopen with note
         delete: Delete
         placeholder: Describe what actions have been taken, or any other related updates...
+        title: Notes
+      notes_description_html: View and leave notes to other moderators and your future self
+      quick_actions_description_html: 'Take a quick action or scroll down to see reported content:'
+      remote_user_placeholder: the remote user from %{instance}
       reopen: Reopen report
       report: 'Report #%{id}'
       reported_account: Reported account
       reported_by: Reported by
       resolved: Resolved
       resolved_msg: Report successfully resolved!
+      skip_to_actions: Skip to actions
       status: Status
+      statuses: Reported content
+      statuses_description_html: Offending content will be cited in communication with the reported account
+      target_origin: Origin of reported account
       title: Reports
       unassign: Unassign
       unresolved: Unresolved
       updated_at: Updated
+      view_profile: View profile
     rules:
       add_new: Add rule
       delete: Delete
@@ -667,49 +742,109 @@ en:
         desc_html: Affects hashtags that have not been previously disallowed
         title: Allow hashtags to trend without prior review
       trends:
-        desc_html: Publicly display previously reviewed hashtags that are currently trending
-        title: Trending hashtags
+        desc_html: Publicly display previously reviewed content that is currently trending
+        title: Trends
     site_uploads:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!
     statuses:
       back_to_account: Back to account page
+      back_to_report: Back to report page
       batch:
-        delete: Delete
-        nsfw_off: Mark as not sensitive
-        nsfw_on: Mark as sensitive
+        remove_from_report: Remove from report
+        report: Report
       deleted: Deleted
-      failed_to_execute: Failed to execute
       media:
         title: Media
-      no_media: No media
       no_status_selected: No posts were changed as none were selected
       title: Account posts
       with_media: With media
+    strikes:
+      actions:
+        delete_statuses: "%{name} deleted %{target}'s posts"
+        disable: "%{name} froze %{target}'s account"
+        mark_statuses_as_sensitive: "%{name} marked %{target}'s posts as sensitive"
+        none: "%{name} sent a warning to %{target}"
+        sensitive: "%{name} marked %{target}'s account as sensitive"
+        silence: "%{name} limited %{target}'s account"
+        suspend: "%{name} suspended %{target}'s account"
+      appeal_approved: Appealed
+      appeal_pending: Appeal pending
     system_checks:
       database_schema_check:
         message_html: There are pending database migrations. Please run them to ensure the application behaves as expected
+      elasticsearch_running_check:
+        message_html: Could not connect to Elasticsearch. Please check that it is running, or disable full-text search
+      elasticsearch_version_check:
+        message_html: 'Incompatible Elasticsearch version: %{value}'
+        version_comparison: Elasticsearch %{running_version} is running while %{required_version} is required
       rules_check:
         action: Manage server rules
         message_html: You haven't defined any server rules.
       sidekiq_process_check:
         message_html: No Sidekiq process running for the %{value} queue(s). Please review your Sidekiq configuration
     tags:
-      accounts_today: Unique uses today
-      accounts_week: Unique uses this week
-      breakdown: Breakdown of today's usage by source
-      last_active: Recently used
-      most_popular: Most popular
-      most_recent: Recently created
-      name: Hashtag
       review: Review status
-      reviewed: Reviewed
-      title: Hashtags
-      trending_right_now: Trending right now
-      unique_uses_today: "%{count} posting today"
-      unreviewed: Not reviewed
       updated_msg: Hashtag settings updated successfully
     title: Administration
+    trends:
+      allow: Allow
+      approved: Approved
+      disallow: Disallow
+      links:
+        allow: Allow link
+        allow_provider: Allow publisher
+        description_html: These are links that are currently being shared a lot by accounts that your server sees posts from. It can help your users find out what's going on in the world. No links are displayed publicly until you approve the publisher. You can also allow or reject individual links.
+        disallow: Disallow link
+        disallow_provider: Disallow publisher
+        shared_by_over_week:
+          one: Shared by one person over the last week
+          other: Shared by %{count} people over the last week
+        title: Trending links
+        usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+      only_allowed: Only allowed
+      pending_review: Pending review
+      preview_card_providers:
+        allowed: Links from this publisher can trend
+        description_html: These are domains from which links are often shared on your server. Links will not trend publicly unless the domain of the link is approved. Your approval (or rejection) extends to subdomains.
+        rejected: Links from this publisher won't trend
+        title: Publishers
+      rejected: Rejected
+      statuses:
+        allow: Allow post
+        allow_account: Allow author
+        description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
+        disallow: Disallow post
+        disallow_account: Disallow author
+        not_discoverable: Author has not opted-in to being discoverable
+        shared_by:
+          one: Shared or favourited one time
+          other: Shared and favourited %{friendly_count} times
+        title: Trending posts
+      tags:
+        current_score: Current score %{score}
+        dashboard:
+          tag_accounts_measure: unique uses
+          tag_languages_dimension: Top languages
+          tag_servers_dimension: Top servers
+          tag_servers_measure: different servers
+          tag_uses_measure: total uses
+        description_html: These are hashtags that are currently appearing in a lot of posts that your server sees. It can help your users find out what people are talking the most about at the moment. No hashtags are displayed publicly until you approve them.
+        listable: Can be suggested
+        not_listable: Won't be suggested
+        not_trendable: Won't appear under trends
+        not_usable: Cannot be used
+        peaked_on_and_decaying: Peaked on %{date}, now decaying
+        title: Trending hashtags
+        trendable: Can appear under trends
+        trending_rank: 'Trending #%{rank}'
+        usable: Can be used
+        usage_comparison: Used %{today} times today, compared to %{yesterday} yesterday
+        used_by_over_week:
+          one: Used by one person over the last week
+          other: Used by %{count} people over the last week
+      title: Trends
+      trending: Trending
     warning_presets:
       add_new: Add new
       delete: Delete
@@ -717,6 +852,18 @@ en:
       empty: You haven't defined any warning presets yet.
       title: Manage warning presets
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: to delete their posts
+        disable: to freeze their account
+        mark_statuses_as_sensitive: to mark their posts as sensitive
+        none: a warning
+        sensitive: to mark their account as sensitive
+        silence: to limit their account
+        suspend: to suspend their account
+      body: "%{target} is appealing a moderation decision by %{action_taken_by} from %{date}, which was %{type}. They wrote:"
+      next_steps: You can approve the appeal to undo the moderation decision, or ignore it.
+      subject: "%{username} is appealing a moderation decision on %{instance}"
     new_pending_account:
       body: The details of the new account are below. You can approve or reject this application.
       subject: New account up for review on %{instance} (%{username})
@@ -724,9 +871,21 @@ en:
       body: "%{reporter} has reported %{target}"
       body_remote: Someone from %{domain} has reported %{target}
       subject: New report for %{instance} (#%{id})
-    new_trending_tag:
-      body: 'The hashtag #%{name} is trending today, but has not been previously reviewed. It will not be displayed publicly unless you allow it to, or just save the form as it is to never hear about it again.'
-      subject: New hashtag up for review on %{instance} (#%{name})
+    new_trends:
+      body: 'The following items need a review before they can be displayed publicly:'
+      new_trending_links:
+        no_approved_links: There are currently no approved trending links.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending link, which is currently "%{lowest_link_title}" with a score of %{lowest_link_score}.'
+        title: Trending links
+      new_trending_statuses:
+        no_approved_statuses: There are currently no approved trending posts.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending post, which is currently %{lowest_status_url} with a score of %{lowest_status_score}.'
+        title: Trending posts
+      new_trending_tags:
+        no_approved_tags: There are currently no approved trending hashtags.
+        requirements: 'Any of these candidates could surpass the #%{rank} approved trending hashtag, which is currently #%{lowest_tag_name} with a score of %{lowest_tag_score}.'
+        title: Trending hashtags
+      subject: New trends up for review on %{instance}
   aliases:
     add_new: Create alias
     created_msg: Successfully created a new alias. You can now initiate the move from the old account.
@@ -778,6 +937,7 @@ en:
     invalid_reset_password_token: Password reset token is invalid or expired. Please request a new one.
     link_to_otp: Enter a two-factor code from your phone or a recovery code
     link_to_webauth: Use your security key device
+    log_in_with: Log in with
     login: Log in
     logout: Logout
     migrate_account: Move to a different account
@@ -802,6 +962,7 @@ en:
       functional: Your account is fully operational.
       pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
+      view_strikes: View past strikes against your account
     too_fast: Form submitted too fast, try again.
     trouble_logging_in: Trouble logging in?
     use_security_key: Use security key
@@ -865,6 +1026,34 @@ en:
     directory: Profile directory
     explanation: Discover users based on their interests
     explore_mastodon: Explore %{title}
+  disputes:
+    strikes:
+      action_taken: Action taken
+      appeal: Appeal
+      appeal_approved: This strike has been successfully appealed and is no longer valid
+      appeal_rejected: The appeal has been rejected
+      appeal_submitted_at: Appeal submitted
+      appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
+      appeals:
+        submit: Submit appeal
+      associated_report: Associated report
+      created_at: Dated
+      description_html: These are actions taken against your account and warnings that have been sent to you by the staff of %{instance}.
+      recipient: Addressed to
+      status: 'Post #%{id}'
+      status_removed: Post already removed from system
+      title: "%{action} from %{date}"
+      title_actions:
+        delete_statuses: Post removal
+        disable: Freezing of account
+        mark_statuses_as_sensitive: Marking of posts as sensitive
+        none: Warning
+        sensitive: Marking of account as sensitive
+        silence: Limitation of account
+        suspend: Suspension of account
+      your_appeal_approved: Your appeal has been approved
+      your_appeal_pending: You have submitted an appeal
+      your_appeal_rejected: Your appeal has been rejected
   domain_validator:
     invalid_domain: is not a valid domain name
   errors:
@@ -934,34 +1123,15 @@ en:
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     delete: Delete
-    no_batch_actions_available: No batch actions available on this page
+    none: None
     order_by: Order by
     save_changes: Save changes
+    today: today
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
   html_validator:
     invalid_markup: 'contains invalid HTML markup: %{error}'
-  identity_proofs:
-    active: Active
-    authorize: Yes, authorize
-    authorize_connection_prompt: Authorize this cryptographic connection?
-    errors:
-      failed: The cryptographic connection failed. Please try again from %{provider}.
-      keybase:
-        invalid_token: Keybase tokens are hashes of signatures and must be 66 hex characters
-        verification_failed: Keybase does not recognize this token as a signature of Keybase user %{kb_username}. Please retry from Keybase.
-      wrong_user: Cannot create a proof for %{proving} while logged in as %{current}. Log in as %{proving} and try again.
-    explanation_html: Here you can cryptographically connect your other identities from other platforms, such as Keybase. This lets other people send you encrypted messages on those platforms and allows them to trust that the content you send them comes from you.
-    i_am_html: I am %{username} on %{service}.
-    identity: Identity
-    inactive: Inactive
-    publicize_checkbox: 'And post this:'
-    publicize_toot: 'It is proven! I am %{username} on %{service}: %{url}'
-    remove: Remove proof from account
-    removed: Successfully removed proof from account
-    status: Verification status
-    view_proof: View proof
   imports:
     errors:
       over_rows_processing_limit: contains more than %{count} rows
@@ -1005,6 +1175,17 @@ en:
   lists:
     errors:
       limit: You have reached the maximum amount of lists
+  login_activities:
+    authentication_methods:
+      otp: two-factor authentication app
+      password: password
+      sign_in_token: e-mail security code
+      webauthn: security keys
+    description_html: If you see activity that you don't recognize, consider changing your password and enabling two-factor authentication.
+    empty: No authentication history available
+    failed_sign_in_html: Failed sign-in attempt with %{method} from %{ip} (%{browser})
+    successful_sign_in_html: Successful sign-in with %{method} from %{ip} (%{browser})
+    title: Authentication history
   media_attachments:
     validations:
       images_and_video: Cannot attach a video to a post that already contains images
@@ -1048,6 +1229,9 @@ en:
     carry_mutes_over_text: This user moved from %{acct}, which you had muted.
     copy_account_note_text: 'This user moved from %{acct}, here were your previous notes about them:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} signed up"
     digest:
       action: View all notifications
       body: Here is a brief summary of the messages you missed since your last visit on %{since}
@@ -1056,8 +1240,8 @@ en:
         one: Also, you have acquired one new follower while being away! Yay!
         other: Also, you have acquired %{count} new followers while being away! Amazing!
       subject:
-        one: "1 new notification since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
+        one: "1 new notification since your last visit 🐘"
+        other: "%{count} new notifications since your last visit 🐘"
       title: In your absence...
     favourite:
       body: 'Your post was favourited by %{name}:'
@@ -1085,6 +1269,8 @@ en:
       title: New boost
     status:
       subject: "%{name} just posted"
+    update:
+      subject: "%{name} edited a post"
   notifications:
     email_events: Events for e-mail notifications
     email_events_hint: 'Select events that you want to receive notifications for:'
@@ -1167,6 +1353,9 @@ en:
     reply:
       proceed: Proceed to reply
       prompt: 'You want to reply to this post:'
+  reports:
+    errors:
+      invalid_rules: does not reference valid rules
   scheduled_statuses:
     over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
     over_total_limit: You have exceeded the limit of %{limit} scheduled posts
@@ -1212,6 +1401,7 @@ en:
     revoke: Revoke
     revoke_success: Session successfully revoked
     title: Sessions
+    view_authentication_history: View authentication history of your account
   settings:
     account: Account
     account_settings: Account settings
@@ -1224,7 +1414,6 @@ en:
     edit_profile: Edit profile
     export: Data export
     featured_tags: Featured hashtags
-    identity_proofs: Identity proofs
     import: Import
     import_and_export: Import and export
     migrate: Account migration
@@ -1232,6 +1421,8 @@ en:
     preferences: Preferences
     profile: Profile
     relationships: Follows and followers
+    statuses_cleanup: Automated post deletion
+    strikes: Moderation strikes
     two_factor_authentication: Two-factor Auth
     webauthn_authentication: Security keys
   statuses:
@@ -1248,19 +1439,20 @@ en:
         other: "%{count} videos"
     boosted_from_html: Boosted from %{acct_link}
     content_warning: 'Content warning: %{warning}'
+    default_language: Same as interface language
     disallowed_hashtags:
       one: 'contained a disallowed hashtag: %{tags}'
       other: 'contained the disallowed hashtags: %{tags}'
+    edited_at_html: Edited %{date}
     errors:
       in_reply_not_found: The post you are trying to reply to does not appear to exist.
-    language_detection: Automatically detect language
     local_only: Local-only
     open_in_web: Open in web
     over_character_limit: character limit of %{max} exceeded
     pin_errors:
+      direct: Posts that are only visible to mentioned users cannot be pinned
       limit: You have already pinned the maximum number of posts
       ownership: Someone else's post cannot be pinned
-      private: Non-public posts cannot be pinned
       reblog: A boost cannot be pinned
     poll:
       total_people:
@@ -1284,6 +1476,41 @@ en:
       public_long: Everyone can see
       unlisted: Unlisted
       unlisted_long: Everyone can see, but not listed on public timelines
+  statuses_cleanup:
+    enabled: Automatically delete old posts
+    enabled_hint: Automatically deletes your posts once they reach a specified age threshold, unless they match one of the exceptions below
+    exceptions: Exceptions
+    explanation: Because deleting posts is an expensive operation, this is done slowly over time when the server is not otherwise busy. For this reason, your posts may be deleted a while after they reach the age threshold.
+    ignore_favs: Ignore favourites
+    ignore_reblogs: Ignore boosts
+    interaction_exceptions: Exceptions based on interactions
+    interaction_exceptions_explanation: Note that there is no guarantee for posts to be deleted if they go below the favourite or boost threshold after having once gone over them.
+    keep_direct: Keep direct messages
+    keep_direct_hint: Doesn't delete any of your direct messages
+    keep_media: Keep posts with media attachments
+    keep_media_hint: Doesn't delete any of your posts that have media attachments
+    keep_pinned: Keep pinned posts
+    keep_pinned_hint: Doesn't delete any of your pinned posts
+    keep_polls: Keep polls
+    keep_polls_hint: Doesn't delete any of your polls
+    keep_self_bookmark: Keep posts you bookmarked
+    keep_self_bookmark_hint: Doesn't delete your own posts if you have bookmarked them
+    keep_self_fav: Keep posts you favourited
+    keep_self_fav_hint: Doesn't delete your own posts if you have favourited them
+    min_age:
+      '1209600': 2 weeks
+      '15778476': 6 months
+      '2629746': 1 month
+      '31556952': 1 year
+      '5259492': 2 months
+      '604800': 1 week
+      '63113904': 2 years
+      '7889238': 3 months
+    min_age_label: Age threshold
+    min_favs: Keep posts favourited at least
+    min_favs_hint: Doesn't delete any of your posts that has received at least this amount of favourites. Leave blank to delete posts regardless of their number of favourites
+    min_reblogs: Keep posts boosted at least
+    min_reblogs_hint: Doesn't delete any of your posts that has been boosted at least this number of times. Leave blank to delete posts regardless of their number of boosts
   stream_entries:
     pinned: Pinned post
     reblogged: boosted
@@ -1383,6 +1610,7 @@ en:
     formats:
       default: "%b %d, %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Add
     disable: Disable 2FA
@@ -1399,35 +1627,55 @@ en:
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. <strong>Keep the recovery codes safe</strong>. For example, you may print them and store them with other important documents.
     webauthn: Security keys
   user_mailer:
+    appeal_approved:
+      action: Go to your account
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been approved. Your account is once again in good standing.
+      subject: Your appeal from %{date} has been approved
+      title: Appeal approved
+    appeal_rejected:
+      explanation: The appeal of the strike against your account on %{strike_date} that you submitted on %{appeal_date} has been rejected.
+      subject: Your appeal from %{date} has been rejected
+      title: Appeal rejected
     backup_ready:
       explanation: You requested a full backup of your %{title} account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
-    sign_in_token:
-      details: 'Here are details of the attempt:'
-      explanation: 'We detected an attempt to sign in to your account from an unrecognized IP address. If this is you, please enter the security code below on the sign in challenge page:'
-      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
-      subject: Please confirm attempted sign in
-      title: Sign in attempt
+    suspicious_sign_in:
+      change_password: change your password
+      details: 'Here are details of the sign-in:'
+      explanation: We've detected a sign-in to your account from a new IP address.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Your account has been accessed from a new IP address
+      title: A new sign-in
     warning:
+      appeal: Submit an appeal
+      appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.
+      categories:
+        spam: Spam
+        violation: Content violates the following community guidelines
       explanation:
-        disable: You can no longer login to your account or use it in any other way, but your profile and other data remains intact.
-        sensitive: Your uploaded media files and linked media will be treated as sensitive.
-        silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various public listings. However, others may still manually follow you.
-        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed, but we will retain some data to prevent you from evading the suspension.
-      get_in_touch: You can reply to this e-mail to get in touch with the staff of %{instance}.
-      review_server_policies: Review server policies
-      statuses: 'Specifically, for:'
+        delete_statuses: Some of your posts have been found to violate one or more community guidelines and have been subsequently removed by the moderators of %{instance}.
+        disable: You can no longer use your account, but your profile and other data remains intact. You can request a backup of your data, change account settings or delete your account.
+        mark_statuses_as_sensitive: Some of your posts have been marked as sensitive by the moderators of %{instance}. This means that people will need to tap the media in the posts before a preview is displayed. You can mark media as sensitive yourself when posting in the future.
+        sensitive: From now on, all your uploaded media files will be marked as sensitive and hidden behind a click-through warning.
+        silence: You can still use your account but only people who are already following you will see your posts on this server, and you may be excluded from various discovery features. However, others may still manually follow you.
+        suspend: You can no longer use your account, and your profile and other data are no longer accessible. You can still login to request a backup of your data until the data is fully removed in about 30 days, but we will retain some basic data to prevent you from evading the suspension.
+      reason: 'Reason:'
+      statuses: 'Posts cited:'
       subject:
+        delete_statuses: Your posts on %{acct} have been removed
         disable: Your account %{acct} has been frozen
+        mark_statuses_as_sensitive: Your posts on %{acct} have been marked as sensitive
         none: Warning for %{acct}
-        sensitive: Your account %{acct} posting media has been marked as sensitive
+        sensitive: Your posts on %{acct} will be marked as sensitive from now on
         silence: Your account %{acct} has been limited
         suspend: Your account %{acct} has been suspended
       title:
+        delete_statuses: Posts removed
         disable: Account frozen
+        mark_statuses_as_sensitive: Posts marked as sensitive
         none: Warning
-        sensitive: Your media has been marked as sensitive
+        sensitive: Account marked as sensitive
         silence: Account limited
         suspend: Account suspended
     welcome:
@@ -1449,13 +1697,10 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
-    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     invalid_otp_token: Invalid two-factor code
-    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
-    suspicious_sign_in_confirmation: You appear to not have logged in from this device before, so we're sending a security code to your e-mail address to confirm that it's you.
   verification:
     explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your %{instance} profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification

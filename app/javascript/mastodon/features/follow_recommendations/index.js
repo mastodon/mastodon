@@ -68,7 +68,7 @@ class FollowRecommendations extends ImmutablePureComponent {
       }
     }));
 
-    router.history.push('/timelines/home');
+    router.history.push('/home');
   }
 
   render () {

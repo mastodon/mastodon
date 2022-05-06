@@ -12,11 +12,11 @@ describe Admin::ReportNotesController do
   describe 'POST #create' do
     subject { post :create, params: params }
 
-    let(:report) { Fabricate(:report, action_taken: action_taken, action_taken_by_account_id: account_id) }
+    let(:report) { Fabricate(:report, action_taken_at: action_taken, action_taken_by_account_id: account_id) }
 
     context 'when parameter is valid' do
       context 'when report is unsolved' do
-        let(:action_taken) { false }
+        let(:action_taken) { nil }
         let(:account_id) { nil }
 
         context 'when create_and_resolve flag is on' do
@@ -41,7 +41,7 @@ describe Admin::ReportNotesController do
       end
 
       context 'when report is resolved' do
-        let(:action_taken) { true }
+        let(:action_taken) { Time.now.utc }
         let(:account_id) { user.account.id }
 
         context 'when create_and_unresolve flag is on' do
@@ -68,7 +68,7 @@ describe Admin::ReportNotesController do
 
     context 'when parameter is invalid' do
       let(:params) { { report_note: { content: '', report_id: report.id } } }
-      let(:action_taken) { false }
+      let(:action_taken) { nil }
       let(:account_id) { nil }
 
       it 'renders admin/reports/show' do

@@ -21,12 +21,12 @@ RSpec.describe DeleteAccountService, type: :service do
     let!(:favourite_notification) { Fabricate(:notification, account: local_follower, activity: favourite, type: :favourite) }
     let!(:follow_notification) { Fabricate(:notification, account: local_follower, activity: active_relationship, type: :follow) }
 
-    subject do
-      -> { described_class.new.call(account) }
-    end
+    let!(:account_note) { Fabricate(:account_note, account: account) }
+
+    subject { described_class.new.call(account) }
 
     it 'deletes associated owned records' do
-      is_expected.to change {
+      expect { subject }.to change {
         [
           account.statuses,
           account.media_attachments,
@@ -35,12 +35,13 @@ RSpec.describe DeleteAccountService, type: :service do
           account.active_relationships,
           account.passive_relationships,
           account.polls,
+          account.account_notes,
         ].map(&:count)
-      }.from([2, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0])
+      }.from([2, 1, 1, 1, 1, 1, 1, 1]).to([0, 0, 0, 0, 0, 0, 0, 0])
     end
 
     it 'deletes associated target records' do
-      is_expected.to change {
+      expect { subject }.to change {
         [
           AccountPin.where(target_account: account),
         ].map(&:count)
@@ -48,7 +49,7 @@ RSpec.describe DeleteAccountService, type: :service do
     end
 
     it 'deletes associated target notifications' do
-      is_expected.to change {
+      expect { subject }.to change {
         [
           'poll', 'favourite', 'status', 'mention', 'follow'
         ].map { |type| Notification.where(type: type).count }
@@ -70,7 +71,7 @@ RSpec.describe DeleteAccountService, type: :service do
       let!(:local_follower) { Fabricate(:account) }
 
       it 'sends a delete actor activity to all known inboxes' do
-        subject.call
+        subject
         expect(a_request(:post, "https://alice.com/inbox")).to have_been_made.once
         expect(a_request(:post, "https://bob.com/inbox")).to have_been_made.once
       end
@@ -87,8 +88,8 @@ RSpec.describe DeleteAccountService, type: :service do
       let!(:account) { Fabricate(:account, inbox_url: 'https://bob.com/inbox', protocol: :activitypub) }
       let!(:local_follower) { Fabricate(:account) }
 
-      it 'sends a reject follow to follwer inboxes' do
-        subject.call
+      it 'sends a reject follow to follower inboxes' do
+        subject
         expect(a_request(:post, account.inbox_url)).to have_been_made.once
       end
     end

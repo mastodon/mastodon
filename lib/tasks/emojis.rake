@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-def gen_border(codepoint)
+def gen_border(codepoint, color)
   input = Rails.root.join('public', 'emoji', "#{codepoint}.svg")
   dest = Rails.root.join('public', 'emoji', "#{codepoint}_border.svg")
   doc = File.open(input) { |f| Nokogiri::XML(f) }
@@ -19,7 +19,7 @@ def gen_border(codepoint)
 
     border_elem.delete('fill')
 
-    border_elem['stroke'] = 'white'
+    border_elem['stroke'] = color
     border_elem['stroke-linejoin'] = 'round'
     border_elem['stroke-width'] = '4px'
 
@@ -45,7 +45,7 @@ end
 namespace :emojis do
   desc 'Generate a unicode to filename mapping'
   task :generate do
-    source = 'http://www.unicode.org/Public/emoji/12.0/emoji-test.txt'
+    source = 'http://www.unicode.org/Public/emoji/13.1/emoji-test.txt'
     codes  = []
     dest   = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
 
@@ -91,12 +91,16 @@ namespace :emojis do
   desc 'Generate emoji variants with white borders'
   task :generate_borders do
     src = Rails.root.join('app', 'javascript', 'mastodon', 'features', 'emoji', 'emoji_map.json')
-    emojis = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴🐞🕺📱📲🚲👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️'
+    emojis_light = '👽⚾🐔☁️💨🕊️👀🍥👻🐐❕❔⛸️🌩️🔊🔇📃🌧️🐏🍚🍙🐓🐑💀☠️🌨️🔉🔈💬💭🏐🏳️⚪⬜◽◻️▫️'
+    emojis_dark = '🎱🐜⚫🖤⬛◼️◾◼️✒️▪️💣🎳📷📸♣️🕶️✴️🔌💂‍♀️📽️🍳🦍💂🔪🕳️🕹️🕋🖊️🖋️💂‍♂️🎤🎓🎥🎼♠️🎩🦃📼📹🎮🐃🏴🐞🕺📱📲🚲'
 
     map = Oj.load(File.read(src))
 
-    emojis.each_grapheme_cluster do |emoji|
-      gen_border map[emoji]
+    emojis_light.each_grapheme_cluster do |emoji|
+      gen_border map[emoji], 'black'
+    end
+    emojis_dark.each_grapheme_cluster do |emoji|
+      gen_border map[emoji], 'white'
     end
   end
 end

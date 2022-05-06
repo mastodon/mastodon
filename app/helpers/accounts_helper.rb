@@ -2,10 +2,12 @@
 
 module AccountsHelper
   def display_name(account, **options)
+    str = account.display_name.presence || account.username
+
     if options[:custom_emojify]
-      Formatter.instance.format_display_name(account, **options)
+      prerender_custom_emojis(h(str), account.emojis)
     else
-      account.display_name.presence || account.username
+      str
     end
   end
 
@@ -95,10 +97,14 @@ module AccountsHelper
       ].join(' '),
     ].join(', ')
 
-    [prepend_str, account.note].join(' Â· ')
+    [prepend_str, account.note].join(' · ')
   end
 
   def svg_logo
+    content_tag(:svg, tag(:use, 'xlink:href' => '#hometownlogo'), 'viewBox' => '0 0 216.4144 232.00976')
+  end
+
+  def svg_logo_full
     content_tag(:svg, tag(:use, 'xlink:href' => '#hometownlogo'), 'viewBox' => '0 0 216.4144 232.00976')
   end
 end

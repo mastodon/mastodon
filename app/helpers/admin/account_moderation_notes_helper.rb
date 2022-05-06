@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Admin::AccountModerationNotesHelper
-  def admin_account_link_to(account)
+  def admin_account_link_to(account, path: nil)
     return if account.nil?
 
-    link_to admin_account_path(account.id), class: name_tag_classes(account), title: account.acct do
+    link_to path || admin_account_path(account.id), class: name_tag_classes(account), title: account.acct do
       safe_join([
                   image_tag(account.avatar.url, width: 15, height: 15, alt: display_name(account), class: 'avatar'),
                   content_tag(:span, account.acct, class: 'username'),

@@ -33,14 +33,24 @@ class ColumnSettings extends React.PureComponent {
   tags (mode) {
     let tags = this.props.settings.getIn(['tags', mode]) || [];
 
-    if (tags.toJSON) {
-      return tags.toJSON();
+    if (tags.toJS) {
+      return tags.toJS();
     } else {
       return tags;
     }
   };
 
-  onSelect = mode => value => this.props.onChange(['tags', mode], value);
+  onSelect = mode => value => {
+    const oldValue = this.tags(mode);
+
+    // Prevent changes that add more than 4 tags, but allow removing
+    // tags that were already added before
+    if ((value.length > 4) && !(value < oldValue)) {
+      return;
+    }
+
+    this.props.onChange(['tags', mode], value);
+  };
 
   onToggle = () => {
     if (this.state.open && this.hasTags()) {

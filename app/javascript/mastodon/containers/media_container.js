@@ -7,7 +7,7 @@ import { getLocale } from 'mastodon/locales';
 import { getScrollbarWidth } from 'mastodon/utils/scrollbar';
 import MediaGallery from 'mastodon/components/media_gallery';
 import Poll from 'mastodon/components/poll';
-import Hashtag from 'mastodon/components/hashtag';
+import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import ModalRoot from 'mastodon/components/modal_root';
 import MediaModal from 'mastodon/features/ui/components/media_modal';
 import Video from 'mastodon/features/video';
@@ -43,7 +43,7 @@ export default class MediaContainer extends PureComponent {
 
   handleOpenVideo = (options) => {
     const { components } = this.props;
-    const { media } = JSON.parse(components[options.componetIndex].getAttribute('data-props'));
+    const { media } = JSON.parse(components[options.componentIndex].getAttribute('data-props'));
     const mediaList = fromJS(media);
 
     document.body.classList.add('with-modals--active');
@@ -87,7 +87,7 @@ export default class MediaContainer extends PureComponent {
               ...(hashtag ? { hashtag: fromJS(hashtag) } : {}),
 
               ...(componentName === 'Video' ? {
-                componetIndex: i,
+                componentIndex: i,
                 onOpenVideo: this.handleOpenVideo,
               } : {
                 onOpenMedia: this.handleOpenMedia,

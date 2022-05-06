@@ -17,7 +17,7 @@ import status_lists from './status_lists';
 import mutes from './mutes';
 import blocks from './blocks';
 import boosts from './boosts';
-import reports from './reports';
+import rules from './rules';
 import contexts from './contexts';
 import compose from './compose';
 import search from './search';
@@ -32,12 +32,13 @@ import filters from './filters';
 import conversations from './conversations';
 import suggestions from './suggestions';
 import polls from './polls';
-import identity_proofs from './identity_proofs';
 import trends from './trends';
 import missed_updates from './missed_updates';
 import announcements from './announcements';
 import markers from './markers';
 import picture_in_picture from './picture_in_picture';
+import accounts_map from './accounts_map';
+import history from './history';
 
 const reducers = {
   announcements,
@@ -52,6 +53,7 @@ const reducers = {
   status_lists,
   accounts,
   accounts_counters,
+  accounts_map,
   statuses,
   relationships,
   settings,
@@ -59,7 +61,7 @@ const reducers = {
   mutes,
   blocks,
   boosts,
-  reports,
+  rules,
   contexts,
   compose,
   search,
@@ -67,7 +69,6 @@ const reducers = {
   notifications,
   height_cache,
   custom_emojis,
-  identity_proofs,
   lists,
   listEditor,
   listAdder,
@@ -79,6 +80,7 @@ const reducers = {
   missed_updates,
   markers,
   picture_in_picture,
+  history,
 };
 
 export default combineReducers(reducers);

@@ -1,0 +1,47 @@
+- content_for :page_title do
+  = t('admin.trends.statuses.title')
+
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+%p= t('admin.trends.statuses.description_html')
+
+%hr.spacer/
+
+= form_tag admin_trends_statuses_path, method: 'GET', class: 'simple_form' do
+  - Trends::StatusFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
+
+  .filters
+    .filter-subset.filter-subset--with-select
+      %strong= t('admin.follow_recommendations.language')
+      .input.select.optional
+        = select_tag :locale, options_for_select(Trends.available_locales.map { |key| [standard_locale_name(key), key]}, params[:locale]), include_blank: true
+    .filter-subset
+      %strong= t('admin.trends.trending')
+      %ul
+        %li= filter_link_to t('generic.all'), trending: nil
+        %li= filter_link_to t('admin.trends.only_allowed'), trending: 'allowed'
+
+= form_for(@form, url: batch_admin_trends_statuses_path) do |f|
+  = hidden_field_tag :page, params[:page] || 1
+
+  - Trends::StatusFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
+
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        = f.button safe_join([fa_icon('check'), t('admin.trends.statuses.allow')]), name: :approve, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('check'), t('admin.trends.statuses.allow_account')]), name: :approve_accounts, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('times'), t('admin.trends.statuses.disallow')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+        = f.button safe_join([fa_icon('times'), t('admin.trends.statuses.disallow_account')]), name: :reject_accounts, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+    .batch-table__body
+      - if @statuses.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'status', collection: @statuses, locals: { f: f }
+
+= paginate @statuses

@@ -27,6 +27,8 @@ eu:
         scheduled_at: Laga hutsik iragarpena berehala argitaratzeko
         starts_at: Aukerakoa. Zure iragarpena denbora-tarte batera lotuta dagoenerako
         text: Tootetako sintaxia erabili dezakezu. Kontuan izan iragarpenak erabiltzailearen pantailan hartuko duen neurria
+      appeal:
+        text: Abisu bati errekurtsoa behin bakarrik jarri diezaiokezu
       defaults:
         autofollow: Gonbidapena erabiliz izena ematen dutenek automatikoki jarraituko dizute
         avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
@@ -35,7 +37,7 @@ eu:
         current_password: Segurtasunagatik sartu uneko kontuaren pasahitza
         current_username: Berresteko sartu uneko kontuaren erabiltzaile-izena
         digest: Jarduerarik gabeko epe luze bat eta gero mezu pertsonalen bat jaso baduzu, besterik ez
-        discoverable: Profilen direktorioa zure kontua jende gehiagok irakurtzeko modu bat da
+        discoverable: Baimendu zure kontua ezezagunek aurkitu ahal izatea gomendio, joera eta beste ezaugarrien bidez
         email: Baieztapen e-mail bat bidaliko zaizu
         fields: 4 elementu bistaratu ditzakezu taula batean zure profilean
         header: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px eskalara txikituko da
@@ -61,7 +63,7 @@ eu:
       domain_allow:
         domain: Domeinu honek zerbitzari honetatik datuak hartu ahal izango ditu eta bertatik jasotako informazioa prozesatu eta gordeko da
       email_domain_block:
-        domain: Hau e-mail helbidean agertzen den domeinua izan daiteke, honen MX erregistroa, edo MX erregistroaren IP helbidea. Hauek erabiltzaileak izena ematean egiaztatuko dira eta atzera botako da.
+        domain: Hau eposta helbidean agertzen den domeinu-izena edo MX erregistroak erabiltzen duena izan daiteke. Izen-ematean egiaztatuko dira.
         with_dns_records: Emandako domeinuaren DNS erregistroak ebazteko saiakera bat egingo da eta emaitzak ere zerrenda beltzean sartuko dira
       featured_tag:
         name: 'Hauetakoren bat erabili zenezake:'
@@ -118,6 +120,8 @@ eu:
         scheduled_at: Programatu argitaratzea
         starts_at: Ekitaldiaren hasiera
         text: Iragarpena
+      appeal:
+        text: Azaldu zergatik bota behar litzatekeen atzera erabaki hau
       defaults:
         autofollow: Gonbidatu zure kontua jarraitzera
         avatar: Abatarra
@@ -196,6 +200,7 @@ eu:
           sign_up_requires_approval: Mugatu izen emateak
         severity: Araua
       notification_emails:
+        appeal: Norbaitek moderatzailearen erabakia eskatu du
         digest: Bidali laburpenak e-mail bidez
         favourite: Bidali e-mail bat norbaitek zure mezua gogoko duenean
         follow: Bidali e-mail bat norbaitek jarraitzen zaituenean
@@ -203,8 +208,8 @@ eu:
         mention: Bidali e-mail bat norbaitek zu aipatzean
         pending_account: Bidali e-mail bat kontu bat berrikusi behar denean
         reblog: Bidali e-mail bat norbaitek zure mezuari bultzada ematen badio
-        report: Bidali e-maila txosten berri bat aurkezten denean
-        trending_tag: Bidali e-mail bat errebisatu gabeko traola bat joeran dagoenean
+        report: Salaketa berria bidali da
+        trending_tag: Joera berriak berrikuspena behar du
       rule:
         text: Araua
       tag:

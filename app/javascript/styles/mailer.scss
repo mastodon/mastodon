@@ -440,6 +440,10 @@ h5 {
     background: $success-green;
   }
 
+  &.warning-icon td {
+    background: $gold-star;
+  }
+
   &.alert-icon td {
     background: $error-red;
   }
@@ -536,6 +540,10 @@ ul {
       color: $ui-primary-color;
     }
   }
+}
+
+ul.rules-list {
+  padding-top: 0;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {

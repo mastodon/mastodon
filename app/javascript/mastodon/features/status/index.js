@@ -29,6 +29,7 @@ import {
   muteStatus,
   unmuteStatus,
   deleteStatus,
+  editStatus,
   hideStatus,
   revealStatus,
 } from '../../actions/statuses';
@@ -273,6 +274,10 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleEditClick = (status, history) => {
+    this.props.dispatch(editStatus(status.get('id'), history));
+  }
+
   handleDirectClick = (account, router) => {
     this.props.dispatch(directCompose(account, router));
   }
@@ -396,7 +401,7 @@ class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyOpenProfile = () => {
-    this.context.router.history.push(`/accounts/${this.props.status.getIn(['account', 'id'])}`);
+    this.context.router.history.push(`/@${this.props.status.getIn(['account', 'acct'])}`);
   }
 
   handleHotkeyToggleHidden = () => {
@@ -567,6 +572,7 @@ class Status extends ImmutablePureComponent {
                   onReblog={this.handleReblogClick}
                   onBookmark={this.handleBookmarkClick}
                   onDelete={this.handleDeleteClick}
+                  onEdit={this.handleEditClick}
                   onDirect={this.handleDirectClick}
                   onMention={this.handleMentionClick}
                   onMute={this.handleMuteClick}

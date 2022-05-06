@@ -31,10 +31,10 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
     follow_request = FollowRequest.create!(account: @account, target_account: target_account, uri: @json['id'])
 
     if target_account.locked? || @account.silenced?
-      NotifyService.new.call(target_account, :follow_request, follow_request)
+      LocalNotificationWorker.perform_async(target_account.id, follow_request.id, 'FollowRequest', 'follow_request')
     else
       AuthorizeFollowService.new.call(@account, target_account)
-      NotifyService.new.call(target_account, :follow, ::Follow.find_by(account: @account, target_account: target_account))
+      LocalNotificationWorker.perform_async(target_account.id, ::Follow.find_by(account: @account, target_account: target_account).id, 'Follow', 'follow')
     end
   end
 

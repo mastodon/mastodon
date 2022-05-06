@@ -16,6 +16,7 @@ ko:
     contact: 연락처
     contact_missing: 미설정
     contact_unavailable: 없음
+    continue_to_web: 웹앱에서 계속하기
     discover_users: 유저 발견하기
     documentation: 문서
     federation_hint_html: "%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다."
@@ -25,6 +26,8 @@ ko:
       이 계정은 가상의 actor로서 개인 유저가 아닌 서버 자체를 나타냅니다.
       이것은 페더레이션을 목적으로 사용 되며 인스턴스 전체를 차단하려 하지 않는 이상 차단하지 않아야 합니다, 그 경우에는 도메인 차단을 사용하세요.
     learn_more: 자세히
+    logged_in_as_html: 현재 %{username}으로 로그인 했습니다.
+    logout_before_registering: 이미 로그인 했습니다.
     privacy_policy: 개인정보 정책
     rules: 서버 규칙
     rules_html: '아래의 글은 이 마스토돈 서버에 계정이 있다면 따라야 할 규칙의 요약입니다:'
@@ -46,7 +49,7 @@ ko:
       silenced_title: 침묵 된 서버들
       suspended: 이 서버의 아무도 팔로우 할 수 없으며, 어떤 데이터도 처리되거나 저장 되지 않고 데이터가 교환 되지도 않습니다.
       suspended_title: 금지된 서버들
-    unavailable_content_html: 마스토돈은 일반적으로 별무리에 있는 어떤 서버의 유저와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
+    unavailable_content_html: 마스토돈은 일반적으로 연합우주에 있는 어떤 서버의 유저와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
     user_count_after:
       other: 명
     user_count_before: 사용자 수
@@ -66,7 +69,6 @@ ko:
     media: 미디어
     moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
     network_hidden: 이 정보는 사용할 수 없습니다
-    never_active: 없음
     nothing_here: 아무 것도 없습니다!
     people_followed_by: "%{name} 님이 팔로우 중인 계정"
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
@@ -90,12 +92,10 @@ ko:
     account_moderation_notes:
       create: 중재 기록 작성하기
       created_msg: 중재 기록이 성공적으로 작성되었습니다!
-      delete: 삭제
       destroyed_msg: 중재 기록이 성공적으로 삭제되었습니다!
     accounts:
       add_email_domain_block: 이 이메일 도메인을 차단하기
       approve: 승인
-      approve_all: 모두 승인
       approved_msg: 성공적으로 %{username}의 가입 신청서를 승인했습니다
       are_you_sure: 정말로 실행하시겠습니까?
       avatar: 아바타
@@ -110,11 +110,13 @@ ko:
       confirm: 확인
       confirmed: 확인됨
       confirming: 확인 중
+      custom: 사용자 지정
       delete: 데이터 삭제
       deleted: 삭제됨
       demote: 강등
-      destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 큐에 들어갔습니다"
+      destroyed_msg: "%{username}의 데이터는 곧 삭제되도록 대기열에 들어갔습니다"
       disable: 비활성화
+      disable_sign_in_token_auth: 이메일 토큰 인증 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
       disabled: 비활성화된
       display_name: 이름
@@ -123,10 +125,11 @@ ko:
       email: 이메일
       email_status: 이메일 상태
       enable: 활성화
+      enable_sign_in_token_auth: 이메일 토큰 인증 활성화
       enabled: 활성
       enabled_msg: "%{username}의 계정을 성공적으로 얼리기 해제하였습니다"
-      followers: 팔로워 수
-      follows: 팔로잉 수
+      followers: 팔로워
+      follows: 팔로잉
       header: 헤더
       inbox_url: 수신함 URL
       invite_request_text: 가입 하려는 이유
@@ -140,14 +143,13 @@ ko:
         title: 위치
       login_status: 로그인 상태
       media_attachments: 첨부된 미디어
-      memorialize: 메모리엄으로 전환
-      memorialized: 기념비화 됨
-      memorialized_msg: 성공적으로 %{username}를 기념비 계정으로 전환하였습니다
+      memorialize: 추모비로 전환
+      memorialized: 추모비화 됨
+      memorialized_msg: 성공적으로 %{username}를 추모비 계정으로 전환하였습니다
       moderation:
         active: 활동
         all: 전체
         pending: 대기중
-        silenced: 침묵 중
         suspended: 정지 중
         title: 중재
       moderation_notes: 중재 기록
@@ -158,14 +160,16 @@ ko:
       not_subscribed: 구독하지 않음
       pending: 심사 대기
       perform_full_suspension: 정지시키기
+      previous_strikes: 이전의 처벌들
+      previous_strikes_description_html:
+        other: 이 계정은 <strong>%{count}</strong> 번의 처벌이 있었습니다.
       promote: 승급
       protocol: 프로토콜
-      public: 전체 공개
+      public: 공개
       push_subscription_expires: PuSH 구독 기간 만료
       redownload: 프로필 업데이트
       redownloaded_msg: 성공적으로 %{username}의 프로필을 원본으로부터 업데이트 하였습니다
       reject: 거부
-      reject_all: 모두 거부
       rejected_msg: 성공적으로 %{username}의 가입 신청서를 반려하였습니다
       remove_avatar: 아바타 지우기
       remove_header: 헤더 삭제
@@ -187,6 +191,9 @@ ko:
       search: 검색
       search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
+      security_measures:
+        only_password: 암호만
+        password_and_2fa: 암호와 2단계 인증
       sensitive: 민감함
       sensitized: 민감함으로 설정됨
       shared_inbox_url: 공유된 inbox URL
@@ -195,13 +202,16 @@ ko:
         targeted_reports: 이 계정에 대한 신고
       silence: 침묵
       silenced: 침묵 됨
-      statuses: 게시물 수
+      statuses: 게시물
+      strikes: 이전의 처벌들
       subscribe: 구독하기
+      suspend: 정지
       suspended: 정지 됨
-      suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제 됩니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
+      suspension_irreversible: 이 계정의 데이터는 복구할 수 없도록 삭제되었습니다. 계정을 정지 해제함으로서 계정을 다시 사용 가능하게 할 수 있지만 이전에 삭제한 어떤 데이터도 복구되지 않습니다.
       suspension_reversible_hint_html: 계정이 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 어떤 안 좋은 효과 없이 계정이 복구 될 수 있습니다. 만약 지금 당장 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 행할 수 있습니다.
-      time_in_queue: "%{time}동안 기다림"
       title: 계정
+      unblock_email: 이메일 주소 차단 해제
+      unblocked_email_msg: "%{username}의 이메일 주소를 성공적으로 차단 해제했습니다"
       unconfirmed_email: 미확인 된 이메일 주소
       undo_sensitized: 민감함으로 설정 취소
       undo_silenced: 침묵 해제
@@ -216,6 +226,8 @@ ko:
       whitelisted: 허용 목록
     action_logs:
       action_types:
+        approve_appeal: 이의제기 승인
+        approve_user: 사용자 승인
         assigned_to_self_report: 신고 맡기
         change_email_user: 사용자의 이메일 변경
         confirm_user: 사용자 확인
@@ -233,16 +245,21 @@ ko:
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
         destroy_email_domain_block: 이메일 도메인 차단 삭제
+        destroy_instance: 도메인 제거
         destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
+        disable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 비활성화
         disable_user: 사용자 비활성화
         enable_custom_emoji: 커스텀 에모지 활성화
+        enable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 활성화
         enable_user: 사용자 활성화
-        memorialize_account: 계정을 장기 저장
+        memorialize_account: 추모계정으로 전환
         promote_user: 사용자 승급
+        reject_appeal: 이의제기 거절
+        reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
         reset_password_user: 암호 재설정
@@ -251,6 +268,7 @@ ko:
         silence_account: 계정 침묵
         suspend_account: 계정 정지
         unassigned_report: 신고 맡기 취소
+        unblock_email_account: 이메일 주소 차단 해제
         unsensitive_account: 당신의 계정의 미디어를 민감함으로 표시하지 않음
         unsilence_account: 계정 침묵 취소
         unsuspend_account: 계정 정지 취소
@@ -259,6 +277,8 @@ ko:
         update_domain_block: 도메인 차단 갱신
         update_status: 게시물 게시
       actions:
+        approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 승인했습니다"
+        approve_user_html: "%{name} 님이 %{target}의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
         change_email_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 변경했습니다"
         confirm_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 승인했습니다"
@@ -269,23 +289,28 @@ ko:
         create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
         create_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}를 차단했습니다"
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
-        create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지"
+        create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_custom_emoji_html: "%{name} 님이 %{target} 에모지를 삭제했습니다"
         destroy_domain_allow_html: "%{name} 님이 %{target} 도메인과의 연합을 금지했습니다"
         destroy_domain_block_html: "%{name} 님이 도메인 %{target}의 차단을 해제했습니다"
         destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
+        destroy_instance_html: "%{name} 님이 도메인 %{target}를 제거했습니다"
         destroy_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
         destroy_status_html: "%{name} 님이 %{target}의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target}의 2FA를 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화 했습니다"
+        disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화 했습니다"
         disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화 했습니다"
         enable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 활성화 했습니다"
+        enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화 했습니다"
         enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화 했습니다"
-        memorialize_account_html: "%{name} 님이 %{target}의 계정을 기념비 페이지로 전환했습니다"
+        memorialize_account_html: "%{name} 님이 %{target}의 계정을 추모비 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
+        reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 거절했습니다"
+        reject_user_html: "%{name} 님이 %{target}의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target}의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
         reset_password_user_html: "%{name} 님이 사용자 %{target}의 암호를 초기화했습니다"
@@ -294,6 +319,7 @@ ko:
         silence_account_html: "%{name} 님이 %{target}의 계정을 침묵시켰습니다"
         suspend_account_html: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
         unassigned_report_html: "%{name} 님이 신고 %{target}을 할당 해제했습니다"
+        unblock_email_account_html: "%{name} 님이 %{target}의 이메일 주소를 차단 해제했습니다."
         unsensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감하지 않음으로 표시했습니다"
         unsilence_account_html: "%{name} 님이 %{target}의 계정에 대한 침묵을 해제했습니다"
         unsuspend_account_html: "%{name} 님이 %{target}의 계정에 대한 정지를 해제했습니다"
@@ -340,8 +366,8 @@ ko:
       enable: 활성화
       enabled: 활성됨
       enabled_msg: 성공적으로 활성화하였습니다
-      image_hint: 50KB 이하의 PNG
-      list: 목록
+      image_hint: "%{size} 이하의 PNG 또는 GIF"
+      list: 목록에 추가
       listed: 목록에 실림
       new:
         title: 새 커스텀 에모지 추가
@@ -357,32 +383,31 @@ ko:
       updated_msg: 에모지가 성공적으로 업데이트 되었습니다!
       upload: 업로드
     dashboard:
-      authorized_fetch_mode: 인증 된 페치 모드
-      backlog: 미처리 된 작업
-      config: 설정
-      feature_deletions: 계정 삭제
-      feature_invites: 초대 링크
-      feature_profile_directory: 프로필 책자
-      feature_registrations: 가입
-      feature_relay: 연합 릴레이
-      feature_timeline_preview: 타임라인 미리보기
-      features: 기능
-      hidden_service: 히든 서비스와의 연합
-      open_reports: 미해결 신고
-      pending_tags: 심사를 기다리는 해시태그
-      pending_users: 심사를 기다리는 유저
-      recent_users: 최근 가입 한 유저
-      search: 전문 검색
-      single_user_mode: 싱글 유저 모드
+      active_users: 활성 사용자
+      interactions: 상호 작용
+      media_storage: 미디어 저장소
+      new_users: 새로운 사용자
+      opened_reports: 신고 열림
+      pending_appeals_html:
+        other: "<strong>%{count}</strong> 개의 대기 중인 이의제기"
+      pending_reports_html:
+        other: "<strong>%{count}</strong> 건의 대기 중인 신고"
+      pending_tags_html:
+        other: "<strong>%{count}</strong> 개의 대기 중인 해시태그"
+      pending_users_html:
+        other: "<strong>%{count}</strong> 명의 대기 중인 사용자"
+      resolved_reports: 신고 해결됨
       software: 소프트웨어
+      sources: 가입 출처
       space: 디스크 사용량
       title: 대시보드
-      total_users: 총 유저 수
-      trends: 트렌드
-      week_interactions: 이번 주의 상호작용
-      week_users_active: 이번 주의 활성 사용자
-      week_users_new: 이번 주의 신규 유저
-      whitelist_mode: 제한된 페더레이션 모드
+      top_languages: 상위 활성 언어
+      top_servers: 상위 활성 서버
+      website: 웹사이트
+    disputes:
+      appeals:
+        empty: 이의제기 없음.
+        title: 이의제기
     domain_allows:
       add_new: 도메인 허용
       created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
@@ -400,7 +425,7 @@ ko:
         hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 중재 규칙을 적용하게 할 수 있습니다.
         severity:
           desc_html: |-
-            <strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 툿을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다.
+            <strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 게시물을 보이지 않게 합니다. <strong>정지</strong>는 계정의 컨텐츠, 미디어, 프로필 데이터를 삭제합니다.
             미디어 파일만을 거부하고 싶다면 <strong>없음</strong>으로 두세요.
           noop: 없음
           silence: 침묵
@@ -416,75 +441,98 @@ ko:
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지와는 관계 없습니다
       reject_reports: 신고 거부
       reject_reports_hint: 이 도메인으로부터의 모든 신고를 무시합니다. 정지와는 무관합니다
-      rejecting_media: 미디어 거부
-      rejecting_reports: 신고 거부
-      severity:
-        silence: 침묵
-        suspend: 정지
-      show:
-        affected_accounts:
-          other: 데이터베이스 중 %{count}개의 계정에 영향을 끼칩니다
-        retroactive:
-          silence: 이 도메인에 존재하는 모든 계정의 침묵를 해제
-          suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
-        title: "%{domain}의 도메인 차단을 해제"
-        undo: 실행 취소
       undo: 도메인 차단 취소
       view: 도메인 차단 보기
     email_domain_blocks:
       add_new: 새로 추가
+      attempts_over_week:
+        other: 지난 주 동안 %{count} 건의 가입 시도가 있었습니다
       created_msg: 이메일 도메인 차단 규칙을 생성했습니다
       delete: 삭제
-      destroyed_msg: 이메일 도메인 차단 규칙을 삭제했습니다
+      dns:
+        types:
+          mx: MX 레코드
       domain: 도메인
-      empty: 현재 블랙리스트에 등록한 이메일 도메인이 없습니다
-      from_html: "%{domain}에서"
       new:
         create: 차단 규칙 생성
+        resolve: 도메인 해결
         title: 새 이메일 도메인 차단
+      no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
+      resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
+      resolved_through_html: "%{domain}을 통해 해결됨"
       title: Email 도메인 차단
     follow_recommendations:
       description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
-      language: 할당할 언어
-      status: 게시물
+      language: 언어 필터
+      status: 상태
       suppress: 팔로우 추천 숨기기
       suppressed: 숨겨짐
       title: 팔로우 추천
       unsuppress: 팔로우 추천 복원
     instances:
+      availability:
+        description_html:
+          other: 도메인에 대한 전달이 성공 없이 <strong>%{count}</strong>일 실패한다면, 이후의 전달 시도는 해당 도메인<em>에서</em> 전달이 오기 전까지는 만들어지지 않습니다.
+        failure_threshold_reached: "%{date}에 실패 임계점에 도달했습니다."
+        failures_recorded:
+          other: 실패한 전달 시도 총 %{count}일.
+        no_failures_recorded: 실패 기록이 없습니다.
+        title: 가용성
+        warning: 이 서버에 대한 마지막 연결 시도가 성공적이지 않았습니다
       back_to_all: 전체
       back_to_limited: 제한됨
       back_to_warning: 경고
       by_domain: 도메인
+      confirm_purge: 정말로 이 도메인의 데이터를 영구적으로 삭제하길 원하십니까?
+      content_policies:
+        comment: 내부 참고사항
+        description_html: 이 도메인과 하위 도메인의 모든 계정에 적용될 콘텐츠 정책을 정의할 수 있습니다.
+        policies:
+          reject_media: 미디어 거부
+          reject_reports: 신고 거부
+          silence: 제한
+          suspend: 정지
+        policy: 정책
+        reason: 공개적인 사유
+        title: 콘텐츠 정책
+      dashboard:
+        instance_accounts_dimension: 제일 많이 팔로우된 계정
+        instance_accounts_measure: 보관된 계정
+        instance_followers_measure: 저쪽을 팔로우 하는 우리의 팔로워 수
+        instance_follows_measure: 우리를 팔로우 하는 저쪽의 팔로워 수
+        instance_languages_dimension: 상위 언어
+        instance_media_attachments_measure: 보관된 미디어 첨부파일
+        instance_reports_measure: 이들에 대한 신고
+        instance_statuses_measure: 보관된 게시물
       delivery:
         all: 전체
         clear: 전달 에러 초기화
+        failing: 실패중
         restart: 전달 재시작
         stop: 전달 중지
-        title: 전달
         unavailable: 사용불가
-        unavailable_message: 전달 불가
-        warning: 경고
-        warning_message:
-          other: 전달 실패 %{count}일
       delivery_available: 전송 가능
       delivery_error_days: 전달 에러가 난 날짜들
       delivery_error_hint: 만약 %{count}일동안 전달이 불가능하다면, 자동으로 전달불가로 표시됩니다.
+      destroyed_msg: "%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다."
       empty: 도메인이 하나도 없습니다.
       known_accounts:
-        other: 알려진 계정 %{count}개
+        other: "%{count} 개의 알려진 계정"
       moderation:
         all: 모두
         limited: 제한됨
         title: 중재
       private_comment: 비공개 주석
       public_comment: 공개 주석
+      purge: 제거
+      purge_description_html: 이 도메인이 영구적으로 오프라인 상태라고 생각되면 스토리지에서 이 도메인의 모든 계정 레코드와 관련 데이터를 삭제할 수 있습니다. 이 작업은 시간이 좀 걸릴 수 있습니다.
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
       total_followed_by_them: 우리를 팔로우
       total_followed_by_us: 우리가 한 팔로우
       total_reported: 이들에 대한 신고
       total_storage: 미디어 첨부
+      totals_time_period_hint_html: 아래에 표시된 총계에는 모든 시간에 대한 데이터가 포함됩니다.
     invites:
       deactivate_all: 전부 비활성화
       filter:
@@ -508,18 +556,16 @@ ko:
         title: 새 IP 규칙 만들기
       no_ip_block_selected: 아무 것도 선택 되지 않아 어떤 IP 규칙도 변경 되지 않았습니다
       title: IP 규칙들
-    pending_accounts:
-      title: 대기중인 계정 (%{count})
     relationships:
       title: "%{acct}의 관계"
     relays:
       add_new: 릴레이 추가
       delete: 삭제
-      description_html: "<strong>연합 릴레이</strong>는 서버들 사이에서 많은 양의 공개 게시물을 구독하고 중개하는 서버입니다. <strong>이것은 중소 규모의 서버에서 별무리를 발견하는 데에 도움을 줄 수 있습니다</strong>, 이제 로컬 유저들이 다른 서버의 유저들을 수동으로 팔로우 하지 않아도 됩니다."
+      description_html: "<strong>연합 릴레이</strong>는 서버들 사이에서 많은 양의 공개 게시물을 구독하고 중개하는 서버입니다. <strong>이것은 중소 규모의 서버에서 연합우주를 발견하는 데에 도움을 줄 수 있습니다</strong>, 이제 로컬 유저들이 다른 서버의 유저들을 수동으로 팔로우 하지 않아도 됩니다."
       disable: 비활성화
       disabled: 비활성화 됨
       enable: 활성화
-      enable_hint: 활성화 되면, 이 릴레이의 모든 공개 게시물을 구독하고 이 서버의 공개 툿을 전송하게 됩니다.
+      enable_hint: 활성화 되면, 이 릴레이의 모든 공개 게시물을 구독하고 이 서버의 공개 게시물을 전송하게 됩니다.
       enabled: 활성화 됨
       inbox_url: 릴레이 URL
       pending: 릴레이의 승인 대기중
@@ -531,41 +577,65 @@ ko:
     report_notes:
       created_msg: 리포트 노트가 성공적으로 작성되었습니다!
       destroyed_msg: 리포트 노트가 성공적으로 삭제되었습니다!
+      today_at: 오늘 %{time}
     reports:
       account:
         notes:
           other: "%{count}개의 기록"
-        reports:
-          other: "%{count}개의 신고"
+      action_log: 감사 기록
       action_taken_by: 신고 처리자
+      actions:
+        delete_description_html: 신고된 게시물은 삭제될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
+        mark_as_sensitive_description_html: 신고된 게시물의 미디어는 민감함으로 표시될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
+        other_description_html: 계정 동작을 제어하고 신고된 계정과의 의사소통을 사용자 지정하기 위한 추가 옵션을 봅니다.
+        resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
+        silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
+        suspend_description_html: 프로필과 모든 컨텐츠가 최종적으로 삭제될 때까지 접근 불가상태가 됩니다. 이 계정과의 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다.
+      actions_description_html: 이 보고서를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면 <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 이메일 알림이 해당 계정으로 전송됩니다.
+      add_to_report: 신고에 더 추가하기
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
       assigned: 할당 된 중재자
       by_target_domain: 신고된 계정의 도메인
+      category: 카테고리
+      category_description_html: 이 계정 또는 게시물이 신고된 이유는 신고된 계정과의 의사소통 과정에 인용됩니다
       comment:
         none: 없음
+      comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
       created_at: 리포트 시각
+      delete_and_resolve: 게시물 삭제
       forwarded: 전달됨
       forwarded_to: "%{domain}에게 전달됨"
       mark_as_resolved: 해결 완료 처리
+      mark_as_sensitive: 민감함으로 설정
       mark_as_unresolved: 미해결로 표시
+      no_one_assigned: 아무도 없음
       notes:
         create: 기록 추가
         create_and_resolve: 기록을 작성하고 해결됨으로 표시
         create_and_unresolve: 기록 작성과 함께 미해결로 표시
         delete: 삭제
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
+        title: 노트
+      notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
+      quick_actions_description_html: '보고된 콘텐츠를 보려면 빠른 조치를 취하거나 아래로 스크롤하세요:'
+      remote_user_placeholder: "%{instance}의 리모트 사용자"
       reopen: 리포트 다시 열기
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
       reported_by: 신고자
       resolved: 해결됨
       resolved_msg: 리포트가 성공적으로 해결되었습니다!
+      skip_to_actions: 작업으로 건너뛰기
       status: 상태
+      statuses: 신고된 컨텐츠
+      statuses_description_html: 문제가 되는 컨텐츠는 신고된 계정에게 인용되어 전달됩니다
+      target_origin: 신고된 계정의 소속
       title: 신고
       unassign: 할당 해제
       unresolved: 미해결
       updated_at: 업데이트 시각
+      view_profile: 프로필 보기
     rules:
       add_new: 규칙 추가
       delete: 삭제
@@ -631,7 +701,7 @@ ko:
           open: 누구나 가입 할 수 있음
         title: 가입 모드
       show_known_fediverse_at_about_page:
-        desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 툿을 표시합니다. 비활성화시 로컬에 있는 툿만 표시 됩니다.
+        desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 게시물을 표시합니다. 비활성화시 로컬에 있는 게시물만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
       show_staff_badge:
         desc_html: 유저 페이지에 스태프 배지를 표시합니다
@@ -667,42 +737,99 @@ ko:
       destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!
     statuses:
       back_to_account: 계정으로 돌아가기
+      back_to_report: 신고 페이지로 돌아가기
       batch:
-        delete: 삭제
-        nsfw_off: NSFW 끄기
-        nsfw_on: NSFW 켜기
+        remove_from_report: 신고에서 제거
+        report: 신고
       deleted: 삭제됨
-      failed_to_execute: 실행을 실패하였습니다
       media:
         title: 미디어
-      no_media: 미디어 없음
       no_status_selected: 아무 게시물도 선택 되지 않아 아무 것도 바뀌지 않았습니다
       title: 계정 게시물
       with_media: 미디어 있음
+    strikes:
+      actions:
+        delete_statuses: "%{name} 님이 %{target}의 게시물을 지웠습니다"
+        disable: "%{name} 님이 %{target}의 계정을 동결시켰습니다"
+        mark_statuses_as_sensitive: "%{name} 님이 %{target}의 게시물을 민감함으로 표시했습니다"
+        none: "%{name} 님이 %{target}에게 경고를 보냈습니다"
+        sensitive: "%{name} 님이 %{target}의 계정을 민감함으로 표시했습니다"
+        silence: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
+        suspend: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
+      appeal_approved: 이의제기됨
+      appeal_pending: 이의제기 대기중
     system_checks:
       database_schema_check:
         message_html: 데이터베이스 마이그레이션이 대기중입니다. 응용프로그램이 예상한대로 동작할 수 있도록 마이그레이션을 실행해 주세요
+      elasticsearch_running_check:
+        message_html: Elasticsearch에 연결할 수 없습니다. 실행중인지 확인하거나, 전문검색을 비활성화하세요
+      elasticsearch_version_check:
+        message_html: '호환되지 않는 Elasticsearch 버전: %{value}'
+        version_comparison: Elasticsearch %{required_version}버전이 필요하지만 %{running_version}버전이 실행 중입니다.
       rules_check:
         action: 서버 규칙 관리
         message_html: 아직 서버규칙을 정하지 않았습니다.
       sidekiq_process_check:
         message_html: "%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요"
     tags:
-      accounts_today: 오늘의 순 사용자
-      accounts_week: 금주의 순 사용자
-      breakdown: 소스별 오늘의 사용량 분석
-      last_active: 최근에 사용됨
-      most_popular: 최고 인기
-      most_recent: 최근에 추가됨
-      name: 해시태그
       review: 심사 상태
-      reviewed: 심사 됨
-      title: 해시태그
-      trending_right_now: 지금 유행 중
-      unique_uses_today: 오늘 %{count}명이 포스팅
-      unreviewed: 심사 되지 않음
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
+    trends:
+      allow: 허용
+      approved: 승인됨
+      disallow: 거부
+      links:
+        allow: 링크 허용하기
+        allow_provider: 출처 허용하기
+        description_html: 현재 서버에서 게시물을 볼 수 있는 계정에서 많이 공유되고 있는 링크들입니다. 사용자가 세상 돌아가는 상황을 파악하는 데 도움이 됩니다. 출처를 승인할 때까지 링크는 공개적으로 게시되지 않습니다. 각각의 링크를 개별적으로 허용하거나 거부할 수도 있습니다.
+        disallow: 링크 거부하기
+        disallow_provider: 출처 거부하기
+        shared_by_over_week:
+          other: 지난 주 동안 %{count} 명의 사람들이 공유했습니다
+        title: 유행하는 링크
+        usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
+      only_allowed: 허용된 것만
+      pending_review: 심사 대기
+      preview_card_providers:
+        allowed: 이 출처의 링크는 유행 목록에 실릴 수 있습니다
+        description_html: 당신의 서버에서 많은 링크가 공유되고 있는 도메인들입니다. 링크의 도메인이 승인되기 전까지는 링크들은 공개적으로 트렌드에 게시되지 않습니다. 당신의 승인(또는 거절)은 서브도메인까지 확장됩니다.
+        rejected: 이 출처의 링크는 유행 목록에 실릴 수 없습니다
+        title: 출처
+      rejected: 거부됨
+      statuses:
+        allow: 게시물 허용
+        allow_account: 작성자 허용
+        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
+        disallow: 게시물 불허
+        disallow_account: 작성자 불허
+        not_discoverable: 작성자가 발견되기를 원치 않습니다
+        shared_by:
+          other: "%{friendly_count} 번 공유되고 마음에 들어했습니다"
+        title: 유행하는 게시물
+      tags:
+        current_score: 현재 %{score}점
+        dashboard:
+          tag_accounts_measure: 고유한 사용
+          tag_languages_dimension: 상위 언어
+          tag_servers_dimension: 상위 서버
+          tag_servers_measure: 다른 서버들
+          tag_uses_measure: 총 사용
+        description_html: 현재 서버에서 볼 수 있는 게시물에서 많이 공유되고 있는 해시태그들입니다. 현재 사람들이 무슨 이야기를 하고 있는지 사용자들이 파악할 수 있도록 도움이 됩니다. 승인하지 않는 한 해시태그는 공개적으로 게시되지 않습니다.
+        listable: 추천될 수 있습니다
+        not_listable: 추천될 수 없습니다
+        not_trendable: 유행 목록에 나타나지 않습니다
+        not_usable: 사용불가
+        peaked_on_and_decaying: "%{date}에 고점을 찍고, 떨어지고 있습니다"
+        title: 유행하는 해시태그
+        trendable: 유행 목록에 나타날 수 있습니다
+        trending_rank: "#%{rank}위로 유행 중"
+        usable: 사용 가능
+        usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
+        used_by_over_week:
+          other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
+      title: 유행
+      trending: 유행중
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
@@ -710,6 +837,18 @@ ko:
       empty: 아직 어떤 경고 틀도 정의되지 않았습니다.
       title: 경고 틀 관리
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: 게시물을 삭제하는 것
+        disable: 계정을 동결시키는 것
+        mark_statuses_as_sensitive: 게시물을 민감함으로 표시하는 것
+        none: 경고
+        sensitive: 계정을 민감함으로 표시하는 것
+        silence: 계정을 제한하는 것
+        suspend: 계정을 정지하는 것
+      body: "%{target} 님이 %{action_taken_by} 님에 의해 %{date}에 결정된 중재 결정에 대한 이의를 제기했습니다, 결정된 사항은 %{type}이었습니다. 작성내용은 다음과 같습니다:"
+      next_steps: 중재 결정사항을 되돌리기 위해서 상소를 승인하거나, 무시할 수 있습니다.
+      subject: "%{username} 님이 %{instance}에서 발생한 중재 결정에 대해 소명을 제출했습니다"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
       subject: "%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다"
@@ -717,9 +856,21 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
-    new_trending_tag:
-      body: '오늘 #%{name} 해시태그가 유행하고 있습니다, 하지만 심사 된 적이 없습니다. 허용하지 않는 한 공개적으로 나타나지 않습니다. 또는 그냥 저장을 눌러 더이상 나타나지 않게 할 수 있습니다.'
-      subject: 새 해시태그가 %{instance}에서 심사 대기 중입니다(#%{name})
+    new_trends:
+      body: '아래에 있는 항목들은 공개적으로 보여지기 전에 검토를 거쳐야 합니다:'
+      new_trending_links:
+        no_approved_links: 현재 승인된 유행 중인 링크가 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 링크를 앞지를 수 있으며, 이것은 현재 "%{lowest_link_title}"이고 %{lowest_link_score}점을 기록하고 있습니다.'
+        title: 유행하는 링크
+      new_trending_statuses:
+        no_approved_statuses: 현재 승인된 유행 중인 게시물이 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 게시물을 앞지를 수 있으며, 이것은 현재 %{lowest_status_url}이고 %{lowest_status_score}점을 기록하고 있습니다.'
+        title: 유행하는 게시물
+      new_trending_tags:
+        no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 해시태그를 앞지를 수 있으며, 이것은 현재 #%{lowest_tag_name}이고 %{lowest_tag_score}점을 기록하고 있습니다.'
+        title: 유행하는 해시태그
+      subject: 새 트렌드가 %{instance}에서 심사 대기 중입니다
   aliases:
     add_new: 별칭 만들기
     created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
@@ -771,6 +922,7 @@ ko:
     invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
     link_to_otp: 휴대폰의 2차 코드 혹은 복구 키를 입력해 주세요
     link_to_webauth: 보안 키 장치 사용
+    log_in_with: 다음으로 로그인
     login: 로그인
     logout: 로그아웃
     migrate_account: 계정 옮기기
@@ -795,6 +947,7 @@ ko:
       functional: 계정이 완벽히 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
+      view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
     use_security_key: 보안 키 사용
@@ -821,7 +974,7 @@ ko:
       invalid_signature: 유효하지 않은 Ed25519 서명
   date:
     formats:
-      default: "%Y-%b-%d"
+      default: "%Y-%m-%d"
       with_month_name: "%Y년 %B %d일"
   datetime:
     distance_in_words:
@@ -858,6 +1011,34 @@ ko:
     directory: 프로필 책자
     explanation: 관심사에 대한 유저들을 발견합니다
     explore_mastodon: "%{title} 탐사하기"
+  disputes:
+    strikes:
+      action_taken: 내려진 징계
+      appeal: 이의제기
+      appeal_approved: 이 중재기록은 소명이 받아들여졌으며 더이상 유효하지 않습니다
+      appeal_rejected: 소명이 기각되었습니다
+      appeal_submitted_at: 이의제기 접수됨
+      appealed_msg: 당신의 이의제기가 접수되었습니다. 만약 승인된다면, 알림을 받게 될 것입니다.
+      appeals:
+        submit: 이의 제출
+      associated_report: 관련된 신고
+      created_at: 날짜
+      description_html: 이 결정사항들은 당신에 계정에 대해 행해졌고 %{instance}의 스태프에 의해 경고가 발송되었습니다.
+      recipient: 수신자
+      status: '게시물 #%{id}'
+      status_removed: 게시물이 이미 시스템에서 지워졌습니다
+      title: "%{action} (%{date}에)"
+      title_actions:
+        delete_statuses: 게시물 삭제
+        disable: 계정 동결
+        mark_statuses_as_sensitive: 게시물을 민감함으로 표시
+        none: 경고
+        sensitive: 계정을 민감함으로 표시
+        silence: 계정의 제한
+        suspend: 계정 정지
+      your_appeal_approved: 당신의 소명이 받아들여졌습니다
+      your_appeal_pending: 소명을 제출했습니다
+      your_appeal_rejected: 당신의 소명이 기각되었습니다
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
@@ -926,33 +1107,14 @@ ko:
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
     delete: 삭제
-    no_batch_actions_available: 이 페이지에서 수행할 수 있는 일괄작업이 없습니다
+    none: 없음
     order_by: 순서
     save_changes: 변경 사항을 저장
+    today: 오늘
     validation_errors:
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
   html_validator:
     invalid_markup: '올바르지 않은 HTML 마크업을 포함하고 있습니다: %{error}'
-  identity_proofs:
-    active: 활성
-    authorize: 네, 인증합니다
-    authorize_connection_prompt: 이 암호화 연결을 인증합니까?
-    errors:
-      failed: 암호화 연결에 실패했습니다. %{provider}에서 다시 시도해 주세요.
-      keybase:
-        invalid_token: 키베이스 토큰은 서명의 해시이며 66자의 16진수 문자여야 합니다
-        verification_failed: 키베이스가 이 토큰을 키베이스 유저 %{kb_username}의 서명으로 인식하지 못했습니다. 키베이스에서 다시 시도하세요.
-      wrong_user: "%{current}로 로그인 한 상태에서는 %{proving}에 대한 증명을 할 수 없습니다. %{proving}으로 로그인 한 후 다시 시도하세요."
-    explanation_html: 키베이스와 같은 다른 명의에 대한 암호화 연결을 할 수 있습니다. 이것으로 다른 사람들이 당신에게 암호화 된 메시지를 보낼 수 있고 당신의 메시지를 믿을 수 있습니다.
-    i_am_html: 나는 %{service}의 %{username} 입니다.
-    identity: 신원
-    inactive: 비활성
-    publicize_checkbox: '그리고 이것을 툿 하세요:'
-    publicize_toot: '증명되었습니다! 저는 %{service}에 있는 %{username}입니다: %{url}'
-    remove: 계정증명 삭제
-    removed: 성공적으로 계정증명을 삭제했습니다
-    status: 인증 상태
-    view_proof: 증명 보기
   imports:
     errors:
       over_rows_processing_limit: "%{count}개 이상의 열을 포함합니다"
@@ -970,7 +1132,7 @@ ko:
       following: 팔로우 중인 계정 목록
       muting: 뮤트 중인 계정 목록
     upload: 업로드
-  in_memoriam_html: 메모리엄에 있음.
+  in_memoriam_html: 고인의 계정입니다.
   invites:
     delete: 비활성화
     expired: 만료됨
@@ -995,6 +1157,17 @@ ko:
   lists:
     errors:
       limit: 리스트 최대치에 도달했습니다
+  login_activities:
+    authentication_methods:
+      otp: 2단계 인증 앱
+      password: 암호
+      sign_in_token: 이메일 보안 코드
+      webauthn: 보안 키
+    description_html: 확인되지 않은 활동이 보인다면, 암호를 바꾸거나 2단계 인증을 활성화 하는 것을 고려해 보세요.
+    empty: 인증 이력이 존재하지 않습니다
+    failed_sign_in_html: 실패한 로그인 시도 %{method} %{ip} (%{browser})
+    successful_sign_in_html: 성공한 로그인 시도 %{method} %{ip} (%{browser})
+    title: 인증 이력
   media_attachments:
     validations:
       images_and_video: 이미 사진이 첨부 된 게시물엔 동영상을 첨부 할 수 없습니다
@@ -1038,19 +1211,22 @@ ko:
     carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} 님이 가입했습니다"
     digest:
       action: 모든 알림 보기
       body: 마지막 로그인(%{since}) 이후로 일어난 일들에 관한 요약
-      mention: "%{name} 님이 답장했습니다:"
+      mention: "%{name} 님이 나를 언급했습니다:"
       new_followers_summary:
         other: 게다가, 접속하지 않은 동안 %{count} 명의 팔로워가 생겼습니다!
       subject:
-        other: "%{count}건의 새로운 알림 \U0001F418"
+        other: 마지막 방문 이후로 %{count} 건의 새로운 알림
       title: 당신이 없는 동안에...
     favourite:
-      body: "%{name} 님이 내 게시물을 즐겨찾기에 등록했습니다:"
-      subject: "%{name} 님이 내 게시물을 즐겨찾기에 등록했습니다"
-      title: 새 즐겨찾기
+      body: '당신의 게시물을 %{name} 님이 마음에 들어했습니다:'
+      subject: "%{name} 님이 내 게시물을 마음에 들어했습니다"
+      title: 새 좋아요
     follow:
       body: "%{name} 님이 나를 팔로우 했습니다!"
       subject: "%{name} 님이 나를 팔로우 했습니다"
@@ -1062,17 +1238,19 @@ ko:
       title: 새 팔로우 요청
     mention:
       action: 답장
-      body: "%{name} 님이 답장을 보냈습니다:"
-      subject: "%{name} 님이 답장을 보냈습니다"
+      body: "%{name} 님이 나를 언급했습니다:"
+      subject: "%{name} 님이 나를 언급했습니다"
       title: 새 멘션
     poll:
       subject: "%{name}의 투표가 종료되었습니다"
     reblog:
-      body: "%{name} 님이 내 게시물을 부스트 했습니다:"
+      body: '당신의 게시물을 %{name} 님이 부스트 했습니다:'
       subject: "%{name} 님이 내 게시물을 부스트 했습니다"
       title: 새 부스트
     status:
       subject: "%{name} 님이 방금 게시물을 올렸습니다"
+    update:
+      subject: "%{name} 님이 게시물을 수정했습니다"
   notifications:
     email_events: 이메일 알림에 대한 이벤트
     email_events_hint: '알림 받을 이벤트를 선택해주세요:'
@@ -1146,14 +1324,17 @@ ko:
     reason_html: "<strong>왜 이 과정이 필요하죠?</strong><code>%{instance}</code>는 당신이 가입한 서버가 아닐 것입니다, 당신의 홈 서버로 먼저 가야 합니다."
   remote_interaction:
     favourite:
-      proceed: 즐겨찾기 진행
-      prompt: '이 게시물을 즐겨찾기 하려고 합니다:'
+      proceed: 좋아요 진행
+      prompt: '이 게시물을 좋아요 하려고 합니다:'
     reblog:
       proceed: 부스트 진행
       prompt: '이 게시물을 부스트 하려 합니다:'
     reply:
       proceed: 답장 진행
       prompt: '이 게시물에 답장을 하려 합니다:'
+  reports:
+    errors:
+      invalid_rules: 올바른 규칙을 포함하지 않습니다
   scheduled_statuses:
     over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 게시물 제한을 초과합니다
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
@@ -1199,6 +1380,7 @@ ko:
     revoke: 삭제
     revoke_success: 세션이 성공적으로 삭제되었습니다
     title: 세션
+    view_authentication_history: 내 계정에 대한 인증 이력 보기
   settings:
     account: 계정
     account_settings: 계정 설정
@@ -1211,7 +1393,6 @@ ko:
     edit_profile: 프로필 편집
     export: 데이터 내보내기
     featured_tags: 추천 해시태그
-    identity_proofs: 신원 증명
     import: 데이터 가져오기
     import_and_export: 가져오기 / 내보내기
     migrate: 계정 이동
@@ -1219,6 +1400,8 @@ ko:
     preferences: 사용자 설정
     profile: 프로필
     relationships: 팔로잉과 팔로워
+    statuses_cleanup: 게시물 자동 삭제
+    strikes: 중재 기록
     two_factor_authentication: 2단계 인증
     webauthn_authentication: 보안 키
   statuses:
@@ -1230,19 +1413,20 @@ ko:
         other: "%{count} 이미지"
       video:
         other: "%{count}개의 영상"
-    boosted_from_html: "%{acct_link} 님으로부터 부스트"
+    boosted_from_html: "%{acct_link}의 글을 부스트"
     content_warning: '열람 주의: %{warning}'
+    default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
+    edited_at_html: "%{date}에 편집됨"
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
-    language_detection: 자동으로 언어 감지
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
+      direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
-      private: 비공개 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
     poll:
       total_people:
@@ -1264,6 +1448,41 @@ ko:
       public_long: 누구나 볼 수 있으며, 공개 타임라인에 표시됩니다
       unlisted: 공개 타임라인 비공개
       unlisted_long: 누구나 볼 수 있지만, 공개 타임라인에는 표시되지 않습니다
+  statuses_cleanup:
+    enabled: 오래된 게시물 자동 삭제
+    enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
+    exceptions: 예외
+    explanation: 게시물 삭제는 많은 성능이 필요하기 때문에, 서버에서 바쁘지 않을 때 시간을 들여서 천천히 진행합니다. 이런 이유로, 당신의 게시물은 아마도 정해진 기간보다 좀 더 시간이 지난 이후에 삭제될 것입니다.
+    ignore_favs: 좋아요 무시
+    ignore_reblogs: 부스트 무시
+    interaction_exceptions: 상호작용에 기반한 예외들
+    interaction_exceptions_explanation: 좋아요나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되는 것을 보장하지 못합니다.
+    keep_direct: 다이렉트 메시지 유지
+    keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
+    keep_media: 미디어가 있는 게시물 유지
+    keep_media_hint: 미디어가 첨부된 게시물을 삭제하지 않습니다
+    keep_pinned: 고정된 게시물 유지
+    keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
+    keep_polls: 투표 유지
+    keep_polls_hint: 투표를 삭제하지 않습니다
+    keep_self_bookmark: 북마크된 게시물 유지
+    keep_self_bookmark_hint: 내 스스로 북마크한 본인의 게시물을 삭제하지 않습니다
+    keep_self_fav: 마음에 들어한 게시물 유지
+    keep_self_fav_hint: 내 스스로 마음에  들어한 본인의 게시물을 삭제하지 않습니다
+    min_age:
+      '1209600': 2 주
+      '15778476': 6 개월
+      '2629746': 1 개월
+      '31556952': 1 년
+      '5259492': 2 개월
+      '604800': 1주일
+      '63113904': 2 년
+      '7889238': 3 개월
+    min_age_label: 기한
+    min_favs: 해당 횟수 이상 좋아요된 게시물 유지
+    min_favs_hint: 이 횟수 이상의 좋아요가 된 게시물은 삭제하지 않습니다. 좋아요 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
+    min_reblogs: 해당 횟수 이상 부스트된 게시물 유지
+    min_reblogs_hint: 이 횟수 이상의 부스트가 된 게시물은 삭제하지 않습니다. 부스트 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
   stream_entries:
     pinned: 고정된 게시물
     reblogged: 님이 부스트 했습니다
@@ -1276,8 +1495,8 @@ ko:
       <h3 id="collect">우리가 어떤 정보를 수집하나요?</h3>
 
       <ul>
-      <li><em>기본 계정 정보</em>: 이 서버에 가입하실 때 유저네임, 이메일 주소, 패스워드 등을 입력 받게 됩니다. 추가적으로 디스플레이네임이나 자기소개, 프로필 이미지, 헤더 이미지 등의 프로필 정보를 입력하게 됩니다. 유저네임, 디스플레이네임, 자기소개, 프로필 이미지와 헤더 이미지는 언제나 공개적으로 게시됩니다.</li>
-      <li><em>게시물, 팔로잉, 기타 공개된 정보</em>: 당신이 팔로우 하는 사람들의 리스트는 공개됩니다. 당신을 팔로우 하는 사람들도 마찬가지입니다. 당신이 게시물을 작성하는 경우, 응용프로그램이 메시지를 받았을 때의 날짜와 시간이 기록 됩니다. 게시물은 그림이나 영상 등의 미디어를 포함할 수 있습니다. 퍼블릭과 미표시(unlisted) 게시물은 공개적으로 접근이 가능합니다. 프로필에 게시물을 고정하는 경우 마찬가지로 공개적으로 접근 가능한 정보가 됩니다. 당신의 게시물들은 당신의 팔로워들에게 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송되고 그곳에 사본이 저장 됩니다. 당신이 게시물을 삭제하는 경우 이 또한 당신의 팔로워들에게 전송 됩니다. 다른 게시물을 리블로깅 하거나 즐겨찾기 하는 경우 이는 언제나 공개적으로 제공 됩니다.</li>
+      <li><em>기본 계정 정보</em>: 이 서버에 가입하실 때 사용자명, 이메일 주소, 패스워드 등을 입력 받게 됩니다. 추가적으로 표시되는 이름이나 자기소개, 프로필 이미지, 헤더 이미지 등의 프로필 정보를 입력하게 됩니다. 사용자명, 표시되는 이름, 자기소개, 프로필 이미지와 헤더 이미지는 언제나 공개적으로 게시됩니다.</li>
+      <li><em>게시물, 팔로잉, 기타 공개된 정보</em>: 당신이 팔로우 하는 사람들의 리스트는 공개됩니다. 당신을 팔로우 하는 사람들도 마찬가지입니다. 당신이 게시물을 작성하는 경우, 응용프로그램이 메시지를 받았을 때의 날짜와 시간이 기록 됩니다. 게시물은 그림이나 영상 등의 미디어를 포함할 수 있습니다. 퍼블릭과 미표시(unlisted) 게시물은 공개적으로 접근이 가능합니다. 프로필에 게시물을 고정하는 경우 마찬가지로 공개적으로 접근 가능한 정보가 됩니다. 당신의 게시물들은 당신의 팔로워들에게 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송되고 그곳에 사본이 저장 됩니다. 당신이 게시물을 삭제하는 경우 이 또한 당신의 팔로워들에게 전송 됩니다. 다른 게시물을 리블로깅 하거나 좋아요 하는 경우 이는 언제나 공개적으로 제공 됩니다.</li>
       <li><em>DM, 팔로워 공개 게시물</em>: 모든 게시물들은 서버에서 처리되고 저장됩니다. 팔로워 공개 게시물은 당신의 팔로워와 멘션 된 사람들에게 전달이 됩니다. 다이렉트 메시지는 멘션 된 사람들에게만 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송 되고 그곳에 사본이 저장됨을 의미합니다. 우리는 이 게시물들이 권한을 가진 사람들만 열람이 가능하도록 노력을 할 것이지만 다른 서버에서는 이것이 실패할 수도 있습니다. 그러므로 당신의 팔로워들이 속한 서버를 재확인하는 것이 중요합니다. 당신은 새 팔로워를 수동으로 승인하거나 거절하도록 설정을 변경할 수 있습니다. <em>해당 서버의 운영자는 서버가 받는 메시지를 열람할 수 있다는 것을 항상 염두해 두세요</em>, 그리고 수신자들은 스크린샷을 찍거나 복사하는 등의 방법으로 다시 공유할 수 있습니다. <em>위험한 정보를 마스토돈을 통해 공유하지 마세요.</em></li>
       <li><em>IP와 기타 메타데이터</em>: 당신이 로그인 하는 경우 IP 주소와 브라우저의 이름을 저장합니다. 모든 세션은 당신이 검토하고 취소할 수 있도록 설정에서 제공 됩니다. 마지막으로 사용 된 IP 주소는 최대 12개월 간 저장됩니다. 또한, 모든 요청에 대해 IP주소를 포함한 정보를 로그에 저장할 수 있습니다.</li>
       </ul>
@@ -1308,7 +1527,7 @@ ko:
 
       <ul>
       <li>IP를 포함해 이 서버에 전송 되는 모든 요청에 대한 로그는 90일을 초과하여 저장되지 않습니다.</li>
-      <li>가입 된 유저의 IP 정보는 12개월을 초과하여 저장 되지 않습니다.</li>
+      <li>가입 된 사용자의 IP 정보는 12개월을 초과하여 저장 되지 않습니다.</li>
       </ul>
 
       <p>당신은 언제든지 게시물, 미디어 첨부, 프로필 이미지, 헤더 이미지를 포함한 당신의 컨텐트에 대한 아카이브를 요청하고 다운로드 할 수 있습니다.</p>
@@ -1331,7 +1550,7 @@ ko:
 
       <p>당신의 공개 게시물은 네트워크에 속한 다른 서버가 다운로드 할 수 있습니다. 당신의 팔로워나 수신자가 이 서버가 아닌 다른 곳에 존재하는 경우 당신의 공개, 팔로워 공개 게시물은 당신의 팔로워가 존재하는 서버로 전송되며, 다이렉트메시지는 수신자가 존재하는 서버로 전송 됩니다.</p>
 
-      <p>당신이 계정을 사용하기 위해 응용프로그램을 승인하는 경우 당신이 허용한 권한에 따라 응용프로그램은 당신의 공개 계정정보, 팔로잉 리스트, 팔로워 리스트, 게시물, 즐겨찾기 등에 접근이 가능해집니다. 응용프로그램은 절대로 당신의 이메일 주소나 패스워드에 접근할 수 없습니다.</p>
+      <p>당신이 계정을 사용하기 위해 응용프로그램을 승인하는 경우 당신이 허용한 권한에 따라 응용프로그램은 당신의 공개 계정정보, 팔로잉 리스트, 팔로워 리스트, 게시물, 좋아요 등에 접근이 가능해집니다. 응용프로그램은 절대로 당신의 이메일 주소나 패스워드에 접근할 수 없습니다.</p>
 
       <hr class="spacer" />
 
@@ -1347,7 +1566,7 @@ ko:
 
       <h3 id="changes">개인정보 정책의 변경</h3>
 
-      <p>만약 우리의 개인정보 정책이 바뀐다면, 이 페이지에 바뀐 정책이 포스트 됩니다.</p>
+      <p>만약 우리의 개인정보 정책이 바뀐다면, 이 페이지에 바뀐 정책이 게시됩니다.</p>
 
       <p>이 문서는 CC-BY-SA 라이센스입니다. 마지막 업데이트는 2018년 3월 7일입니다.</p>
 
@@ -1361,6 +1580,7 @@ ko:
     formats:
       default: "%Y년 %m월 %d일 %H:%M"
       month: "%Y년 %b"
+      time: "%H:%M"
   two_factor_authentication:
     add: 추가
     disable: 비활성화
@@ -1377,35 +1597,55 @@ ko:
     recovery_instructions_html: 휴대전화를 분실한 경우, 아래 복구 코드 중 하나를 사용해 계정에 접근할 수 있습니다. <strong>복구 코드는 안전하게 보관해 주십시오.</strong> 이 코드를 인쇄해 중요한 서류와 함께 보관하는 것도 좋습니다.
     webauthn: 보안 키
   user_mailer:
+    appeal_approved:
+      action: 내 계정으로 가기
+      explanation: "%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했으며 승낙되었습니다. 당신의 계정은 정상적인 상태로 돌아왔습니다."
+      subject: "%{date}에 작성한 소명이 승인되었습니다"
+      title: 소명이 받아들여짐
+    appeal_rejected:
+      explanation: "%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했지만 거절되었습니다."
+      subject: "%{date}에 작성한 소명이 거절되었습니다"
+      title: 이의제기가 거절되었습니다
     backup_ready:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
-    sign_in_token:
-      details: '시도에 대한 상세 내용입니다:'
-      explanation: '알 수 없는 IP로부터 당신의 계정에 대한 로그인 시도를 감지했습니다. 이것이 당신이라면, 아래의 보안 코드를 로그인 시도 페이지에 입력하세요:'
-      further_actions: '이것이 당신이 아니라면 암호를 바꾸고 계정의 2-factor 인증을 활성화 하세요. 여기에서 할 수 있습니다:'
-      subject: 로그인 시도를 확인해 주십시오
-      title: 로그인 시도
+    suspicious_sign_in:
+      change_password: 암호 변경
+      details: '로그인에 대한 상세 정보입니다:'
+      explanation: 새로운 IP 주소에서 내 계정에 로그인한 것을 감지했습니다.
+      further_actions_html: 직접 로그인한 것이 아니라면, 지금 바로 %{action}과 2단계 인증을 활성화하여 계정을 안전하게 보호하시길 권해드립니다.
+      subject: 계정이 새로운 IP에서 접근됨
+      title: 새로운 로그인
     warning:
+      appeal: 이의 제출하기
+      appeal_description: 이것이 오류라고 생각한다면, %{instance}의 중재자에게 이의신청을 할 수 있습니다.
+      categories:
+        spam: 스팸
+        violation: 컨텐츠가 다음의 커뮤니티 규정을 위반합니다
       explanation:
-        disable: 당신의 계정이 동결 된 동안 당신의 계정은 유지 됩니다. 하지만 잠금이 풀릴 때까지 당신은 아무 것도 할 수 없습니다.
-        sensitive: 당신의 업로드 한 미디어 파일들과 링크된 미디어들은 민감함으로 취급됩니다.
-        silence: 당신의 계정이 제한 된 동안엔 당신의 팔로워 이외엔 게시물을 받아 볼 수 없고 공개 리스팅에서 제외 됩니다. 하지만 다른 사람들은 여전히 당신을 팔로우 가능합니다.
-        suspend: 당신의 계정은 정지 되었으며, 모든 툿과 업로드 한 미디어가 서버에서 삭제 되어 되돌릴 수 없습니다.
-      get_in_touch: 이 메일에 대해 답장해서 %{instance}의 스태프와 연락 할 수 있습니다.
-      review_server_policies: 서버 정책 검토하기
-      statuses: '구체적으로:'
+        delete_statuses: 귀하의 게시물 중 일부가 하나 이상의 커뮤니티 가이드라인을 위반한 것으로 확인되어 %{instance} 모더레이터에 의해 삭제되었습니다.
+        disable: 당신은 더이상 당신의 계정을 사용할 수 없습니다, 하지만 프로필과 다른 데이터들은 여전히 그대로 남아있습니다. 당신의 데이터에 대한 백업을 요청하거나, 계정 설정을 변경 또는 계정을 삭제할 수 있습니다.
+        mark_statuses_as_sensitive: 당신의 몇몇 게시물들은 %{instance}의 중재자에 의해 민감함으로 설정되었습니다. 이것은 사람들이 미리보기를 보기 전에 미디어를 한번 눌러야 함을 의미합니다. 당신은 스스로도 자신의 게시물을 작성할 때 미디어를 민감함으로 설정할 수 있습니다.
+        sensitive: 지금부터는, 당신이 업로드한 미디어 파일들은 민감함 표시가 뜨게 되고 클릭해야만 볼 수 있다는 경고문 뒤에 가려지게 됩니다.
+        silence: 당신은 여전히 당신의 계정을 사용할 수 있지만 당신을 팔로우 하고 있는 사람들만 당신의 게시물을 볼 수 있으며, 여러가지 탐색 기능에서 제외됩니다. 하지만, 여전히 다른 사람들은 수동으로 당신을 팔로우 할 수 있습니다.
+        suspend: 당신은 더이상 당신의 계정을 사용할 수 없으며, 프로필과 데이터는 접근 불가능하게 됩니다. 데이터가 완전히 삭제되기 전인 30일동안은 여전히 백업을 요청하기 위해 로그인 할 수 있습니다, 하지만 계정 정지를 회피하는 것을 방지하기 위하여 몇 가지 정보는 유지됩니다.
+      reason: '사유:'
+      statuses: '인용된 게시물:'
       subject:
+        delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다
         disable: 당신의 계정 %{acct}가 동결 되었습니다
+        mark_statuses_as_sensitive: "%{acct}로 작성한 당신의 게시물은 민감한 것으로 표시되었습니다"
         none: "%{acct}에게의 경고"
-        sensitive: 당신의 계정 %{acct}에서 포스팅 하는 미디어는 민감함으로 설정되었습니다
+        sensitive: "%{acct}로 작성되는 당신의 게시물은 이제부터 민감한 것으로 표시됩니다"
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
+        delete_statuses: 게시물 삭제됨
         disable: 계정 동결 됨
+        mark_statuses_as_sensitive: 게시물이 민감함으로 표시됨
         none: 경고
-        sensitive: 당신의 미디어는 민감함으로 표시되었습니다
+        sensitive: 계정이 민감함으로 표시됨
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:
@@ -1427,13 +1667,10 @@ ko:
       title: 환영합니다 %{name} 님!
   users:
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
-    generic_access_help_html: 계정 로그인에 문제가 있나요? %{email} 로 도움을 요청할 수 있습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
-    invalid_sign_in_token: 잘못된 보안 코드
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
-    suspicious_sign_in_confirmation: 이 기기에서 로그인 한 적이 없거나, 로그인 한 지 오래된 것으로보입니다. 본인임을 확인하기 위해 이메일 주소로 보안 코드를 보냈습니다.
   verification:
     explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
     verification: 검증
@@ -1448,7 +1685,7 @@ ko:
     destroy:
       error: 보안 키를 삭제하는데 문제가 발생했습니다. 다시 시도해보십시오.
       success: 보안 키가 성공적으로 삭제되었습니다.
-    invalid_credential: 잘못된 보안 키
+    invalid_credential: 올바르지 않은 보안 키
     nickname_hint: 새 보안 키의 별명을 입력해 주세요
     not_enabled: 아직 WebAuthn을 활성화 하지 않았습니다.
     not_supported: 이 브라우저는 보안 키를 지원하지 않습니다
