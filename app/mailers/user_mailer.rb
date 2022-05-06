@@ -7,6 +7,7 @@ class UserMailer < Devise::Mailer
   helper :application
   helper :instance
   helper :statuses
+  helper :formatting
 
   helper RoutingHelper
 
@@ -167,9 +168,7 @@ class UserMailer < Devise::Mailer
     @statuses = @warning.statuses.includes(:account, :preloadable_poll, :media_attachments, active_mentions: [:account])
 
     I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email,
-           subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{user.account.local_username_and_domain}"),
-           reply_to: ENV['SMTP_REPLY_TO']
+      mail to: @resource.email, subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{user.account.local_username_and_domain}")
     end
   end
 
@@ -193,7 +192,7 @@ class UserMailer < Devise::Mailer
     end
   end
 
-  def sign_in_token(user, remote_ip, user_agent, timestamp)
+  def suspicious_sign_in(user, remote_ip, user_agent, timestamp)
     @resource   = user
     @instance   = Rails.configuration.x.local_domain
     @remote_ip  = remote_ip
@@ -201,12 +200,8 @@ class UserMailer < Devise::Mailer
     @detection  = Browser.new(user_agent)
     @timestamp  = timestamp.to_time.utc
 
-    return unless @resource.active_for_authentication?
-
     I18n.with_locale(@resource.locale || I18n.default_locale) do
-      mail to: @resource.email,
-           subject: I18n.t('user_mailer.sign_in_token.subject'),
-           reply_to: ENV['SMTP_REPLY_TO']
+      mail to: @resource.email, subject: I18n.t('user_mailer.suspicious_sign_in.subject')
     end
   end
 end

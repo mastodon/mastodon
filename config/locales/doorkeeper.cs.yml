@@ -60,22 +60,30 @@ cs:
       error:
         title: Vyskytla se chyba
       new:
+        prompt_html: "%{client_name} si přeje oprávnění pro přístup k vašemu účtu. Je to aplikace třetí strany. <strong>Pokud jí nedůvěřujete, pak byste ji neměli autorizovat.</strong>"
+        review_permissions: Zkontrolujte oprávnění
         title: Je vyžadována autorizace
       show:
         title: Zkopírujte tento autorizační kód a vložte ho do aplikace.
     authorized_applications:
       buttons:
-        revoke: Zamítnout
+        revoke: Odvolat
       confirmations:
         revoke: Opravdu?
       index:
+        authorized_at: Autorizována %{date}
+        description_html: Toto jsou aplikace, které mohou přistupovat k vašemu účtu s použitím API. Pokud jsou zde aplikace, které nepoznáváte, nebo se aplikace nechová správně, můžete odvolat její přístup.
+        last_used_at: Naposledy použito %{date}
+        never_used: Nikdy nepoužito
+        scopes: Oprávnění
+        superapp: Interní
         title: Vaše autorizované aplikace
     errors:
       messages:
         access_denied: Vlastník zdroje či autorizační server žádost zamítl.
         credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
         invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
-        invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo zamítnuto, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
+        invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo odvoláno, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
         invalid_redirect_uri: URI pro přesměrování není platné.
         invalid_request:
           missing_param: 'Chybí potřebný parametr: %{value}.'
@@ -85,7 +93,7 @@ cs:
         invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo špatně formulovaný.
         invalid_token:
           expired: Přístupový token vypršel
-          revoked: Přístupový token byl zamítnut
+          revoked: Přístupový token byl odvolán
           unknown: Přístupový token je neplatný
         resource_owner_authenticator_not_configured: Nález Resource Owner selhal, protože Doorkeeper.configure.resource_owner_authenticator nebylo nakonfigurováno.
         server_error: Autorizační server se setkal s neočekávanou chybou, která mu zabránila ve vykonání požadavku.
@@ -103,7 +111,34 @@ cs:
           notice: Aplikace aktualizována.
       authorized_applications:
         destroy:
-          notice: Aplikace zamítnuta.
+          notice: Aplikace odvolána.
+    grouped_scopes:
+      access:
+        read: Přístup pouze pro čtení
+        read/write: Přístup ke čtení a zápisu
+        write: Přístup pouze pro zápis
+      title:
+        accounts: Účty
+        admin/accounts: Správa účtů
+        admin/all: Všechny správcovské funkce
+        admin/reports: Správa hlášení
+        all: Všechno
+        blocks: Blokace
+        bookmarks: Záložky
+        conversations: Konverzace
+        crypto: End-to-end šifrování
+        favourites: Oblíbení
+        filters: Filtry
+        follow: Vztahy
+        follows: Sledovaní
+        lists: Seznamy
+        media: Mediální přílohy
+        mutes: Skrytí
+        notifications: Oznámení
+        push: Push oznámení
+        reports: Hlášení
+        search: Hledání
+        statuses: Příspěvky
     layouts:
       admin:
         nav:
@@ -118,6 +153,7 @@ cs:
       admin:write: měnit všechna data na serveru
       admin:write:accounts: provádět moderátorské akce s účty
       admin:write:reports: provádět moderátorské akce s hlášeními
+      crypto: používat end-to-end šifrování
       follow: upravovat vztahy mezi profily
       push: přijímat vaše push oznámení
       read: vidět všechna data vašeho účtu
@@ -137,6 +173,7 @@ cs:
       write:accounts: měnit váš profil
       write:blocks: blokovat účty a domény
       write:bookmarks: přidávat příspěvky do záložek
+      write:conversations: skrývat a mazat konverzace
       write:favourites: oblibovat si příspěvky
       write:filters: vytvářet filtry
       write:follows: sledovat lidi

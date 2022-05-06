@@ -141,6 +141,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   class ApplicationSerializer < ActiveModel::Serializer
     attributes :name, :website
+
+    def website
+      object.website.presence
+    end
   end
 
   class MentionSerializer < ActiveModel::Serializer

@@ -199,7 +199,6 @@ it:
       security_measures:
         only_password: Solo password
         password_and_2fa: Password e autenticazione a due fattori
-        password_and_sign_in_token: Password e codice via email
       sensitive: Sensibile
       sensitized: contrassegnato come sensibile
       shared_inbox_url: URL Inbox Condiviso
@@ -598,7 +597,7 @@ it:
       action_taken_by: Azione intrapresa da
       actions:
         delete_description_html: I post segnalati saranno eliminati e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
-        mark_as_sensitive_description_html: I media nei post segnalati saranno segnati come sensibili e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una violazione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna violazione registrata, e la segnalazione sarà chiusa.
         silence_description_html: Il profilo sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato.
@@ -1239,8 +1238,8 @@ it:
         one: E inoltre hai ricevuto un nuovo seguace mentre eri assente! Urrà!
         other: Inoltre, hai acquisito %{count} nuovi seguaci mentre eri assente! Incredibile!
       subject:
-        one: "1 nuova notifica dalla tua ultima visita \U0001F418"
-        other: "%{count} nuove notifiche dalla tua ultima visita \U0001F418"
+        one: "1 nuova notifica dalla tua ultima visita 🐘"
+        other: "%{count} nuove notifiche dalla tua ultima visita 🐘"
       title: In tua assenza…
     favourite:
       body: 'Il tuo status è stato apprezzato da %{name}:'
@@ -1638,12 +1637,13 @@ it:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
-    sign_in_token:
-      details: 'Questi sono i dettagli del tentativo:'
-      explanation: 'Abbiamo rilevato un tentativo di accedere al tuo account da un indirizzo IP non riconosciuto. Se sei tu, inserisci il codice di sicurezza qui sotto nella pagina di controllo dell''accesso:'
-      further_actions: 'Se non sei stato tu, cambia la password e abilita l''autenticazione a due fattori sul tuo account. Puoi farlo qui:'
-      subject: Conferma il tentativo di accesso
-      title: Tentativo di accesso
+    suspicious_sign_in:
+      change_password: cambia la tua password
+      details: 'Questi sono i dettagli del tentativo di accesso:'
+      explanation: Abbiamo rilevato un accesso al tuo account da un nuovo indirizzo IP.
+      further_actions_html: Se non eri tu, ti consigliamo di %{action} subito e di abilitare l'autenticazione a due fattori per mantenere il tuo account al sicuro.
+      subject: C'è stato un accesso al tuo account da un nuovo indirizzo IP
+      title: Un nuovo accesso
     warning:
       appeal: Presenta un appello
       appeal_description: Se credi che si tratti di un errore, puoi presentare un appello allo staff di %{instance}.
@@ -1694,13 +1694,10 @@ it:
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
-    generic_access_help_html: Problemi nell'accesso al tuo account? Puoi contattare %{email} per assistenza
     invalid_otp_token: Codice d'accesso non valido
-    invalid_sign_in_token: Codice di sicurezza non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
-    suspicious_sign_in_confirmation: Sembra che tu non abbia effettuato l'accesso da questo dispositivo prima d'ora, e non hai effettuato l'accesso per un po', quindi inviamo un codice di sicurezza al tuo indirizzo e-mail per confermare che sei proprio tu.
   verification:
     explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
     verification: Verifica

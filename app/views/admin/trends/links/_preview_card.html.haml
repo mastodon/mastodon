@@ -18,9 +18,9 @@
 
       = t('admin.trends.links.shared_by_over_week', count: preview_card.history.reduce(0) { |sum, day| sum + day.accounts })
 
-      - if preview_card.trendable? && (rank = Trends.links.rank(preview_card.id))
+      - if preview_card.trendable? && (rank = Trends.links.rank(preview_card.id, locale: params[:locale].presence))
         •
-        %abbr{ title: t('admin.trends.tags.current_score', score: Trends.links.score(preview_card.id)) }= t('admin.trends.tags.trending_rank', rank: rank + 1)
+        %abbr{ title: t('admin.trends.tags.current_score', score: Trends.links.score(preview_card.id, locale: params[:locale].presence)) }= t('admin.trends.tags.trending_rank', rank: rank + 1)
 
         - if preview_card.decaying?
           •

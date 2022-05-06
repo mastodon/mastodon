@@ -189,7 +189,6 @@ ja:
       security_measures:
         only_password: パスワードのみ
         password_and_2fa: パスワードと 2FA
-        password_and_sign_in_token: パスワードとメールトークン
       sensitive: 閲覧注意
       sensitized: 閲覧注意としてマーク済み
       shared_inbox_url: Shared inbox URL
@@ -1115,7 +1114,7 @@ ja:
       new_followers_summary:
         other: また、離れている間に%{count} 人の新たなフォロワーを獲得しました！
       subject:
-        other: "新しい%{count}件の通知 \U0001F418"
+        other: "新しい%{count}件の通知 🐘"
       title: 不在の間に…
     favourite:
       body: "%{name} さんにお気に入り登録された、あなたの投稿があります:"
@@ -1493,12 +1492,6 @@ ja:
       explanation: Mastodonアカウントのアーカイブを受け付けました。今すぐダウンロードできます！
       subject: アーカイブの準備ができました
       title: アーカイブの取り出し
-    sign_in_token:
-      details: '検出したログインの詳細は以下のとおりです:'
-      explanation: '認識できないIPアドレスから、あなたのアカウントへのログインを検出しました。あなたがログインしようとしている場合は、ログインページに以下のセキュリティコードを入力してください:'
-      further_actions: '心当たりがない場合、パスワードを変更し二段階認証を有効にしてください。こちらから設定できます:'
-      subject: ログイン試行を確認してください
-      title: ログインを検出しました
     warning:
       appeal: 抗議を送信
       categories:
@@ -1544,13 +1537,10 @@ ja:
       title: ようこそ、%{name}！
   users:
     follow_limit_reached: あなたは現在 %{limit} 人以上フォローできません
-    generic_access_help_html: アクセスできませんか？ %{email} に問い合わせることができます。
     invalid_otp_token: 二段階認証コードが間違っています
-    invalid_sign_in_token: 無効なセキュリティコードです
     otp_lost_help_html: どちらも使用できない場合、%{email} に連絡を取ると解決できるかもしれません
     seamless_external_login: あなたは外部サービスを介してログインしているため、パスワードとメールアドレスの設定は利用できません。
     signed_in_as: '下記でログイン中:'
-    suspicious_sign_in_confirmation: おかえりなさい。このデバイスからのアクセスは初めてなので、セキュリティ確保のためにメールでセキュリティーコードを送信しました。
   verification:
     explanation_html: <strong>プロフィール内のリンクの所有者であることを認証することができます</strong>。そのためにはリンクされたウェブサイトにMastodonプロフィールへのリンクが含まれている必要があります。リンクには<code>rel="me"</code>属性を<strong>必ず</strong>与えなければなりません。リンクのテキストについては重要ではありません。以下は例です：
     verification: 認証

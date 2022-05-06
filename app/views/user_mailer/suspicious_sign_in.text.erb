@@ -1,17 +1,15 @@
-<%= t 'user_mailer.sign_in_token.title' %>
+<%= t 'user_mailer.suspicious_sign_in.title' %>
 
 ===
 
-<%= t 'user_mailer.sign_in_token.explanation' %>
+<%= t 'user_mailer.suspicious_sign_in.explanation' %>
 
-=> <%= @resource.sign_in_token %>
-
-<%= t 'user_mailer.sign_in_token.details' %>
+<%= t 'user_mailer.suspicious_sign_in.details' %>
 
 <%= t('sessions.ip') %>: <%= @remote_ip %>
 <%= t('sessions.browser') %>: <%= t('sessions.description', browser: t("sessions.browsers.#{@detection.id}", default: "#{@detection.id}"), platform: t("sessions.platforms.#{@detection.platform.id}", default: "#{@detection.platform.id}")) %>
 <%= l(@timestamp) %>
 
-<%= t 'user_mailer.sign_in_token.further_actions' %>
+<%= t 'user_mailer.suspicious_sign_in.further_actions_html', action: t('user_mailer.suspicious_sign_in.change_password') %>
 
 => <%= edit_user_registration_url %>

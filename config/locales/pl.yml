@@ -201,7 +201,6 @@ pl:
       security_measures:
         only_password: Tylko hasło
         password_and_2fa: Hasło i 2FA
-        password_and_sign_in_token: Hasło i token e-mail
       sensitive: Wrażliwe
       sensitized: oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
@@ -570,7 +569,7 @@ pl:
       action_taken_by: Działanie podjęte przez
       actions:
         delete_description_html: Zgłoszone posty zostaną usunięte, a zdarzenie zostanie zapisane, aby pomóc w eskalacji przyszłych wykroczeń na tym samym koncie.
-        mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
+        mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagrane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
         other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
         resolve_description_html: Nie zostaną podjęte żadne działania przeciwko zgłoszonemu sprawozdaniu, zdarzenie nie zostanie zarejestrowane, a zgłoszenie zostanie zamknięte.
         silence_description_html: Profil będzie widoczny tylko dla tych, którzy go już obserwują lub szukaj ręcznie, poważnie ograniczając jego zasięg. Może być zawsze cofnięty.
@@ -1187,10 +1186,10 @@ pl:
         one: Dodatkowo, w czasie nieobecności zaczęła śledzić Cię jedna osoba Gratulacje!
         other: Dodatkowo, zaczęło Cię śledzić %{count} nowych osób! Wspaniale!
       subject:
-        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty \U0001F418"
-        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
-        one: "1 nowe powiadomienie od Twojej ostatniej wizyty \U0001F418"
-        other: "%{count} nowych powiadomień od Twojej ostatniej wizyty \U0001F418"
+        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty 🐘"
+        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
+        one: "1 nowe powiadomienie od Twojej ostatniej wizyty 🐘"
+        other: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
       title: W trakcie Twojej nieobecności…
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'
@@ -1586,12 +1585,13 @@ pl:
       explanation: Zażądałeś pełnej kopii zapasowej konta na Mastodonie. Jest ona dostępna do pobrania!
       subject: Twoje archiwum jest gotowe do pobrania
       title: Odbiór archiwum
-    sign_in_token:
-      details: 'Oto szczegóły próby:'
-      explanation: 'Wykryliśmy próbę zalogowania na Twoje konto z adresu IP którego nie możemy rozpoznać. Jeżeli to Ty, wprowadź poniższy kod na stronie logowania:'
-      further_actions: 'Jeśli to nie Ty, zmień swoje hasło i włącz weryfikację dwuetapową na swoim koncie. Możesz to zrobić tutaj:'
-      subject: Potwierdź próbę zalogowania
-      title: Próba logowania
+    suspicious_sign_in:
+      change_password: zmień hasło
+      details: 'Oto szczegóły logowania:'
+      explanation: Wykryliśmy logowanie na Twoje konto z nowego adresu IP.
+      further_actions_html: Jeśli to nie Ty, zalecamy %{action} natychmiastowo i włącz uwierzytelnianie dwuetapowe, aby Twoje konto było bezpieczne.
+      subject: Uzyskano dostęp do twojego konta z nowego adresu IP
+      title: Nowe logowanie
     warning:
       categories:
         spam: Spam
@@ -1639,13 +1639,10 @@ pl:
       title: Witaj na pokładzie, %{name}!
   users:
     follow_limit_reached: Nie możesz śledzić więcej niż %{limit} osób
-    generic_access_help_html: Nie możesz uzyskać dostępu do konta? Skontaktuj się z %{email} aby uzyskać pomoc
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
-    invalid_sign_in_token: Nieprawidłowy kod zabezpieczający
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
     signed_in_as: 'Zalogowany jako:'
-    suspicious_sign_in_confirmation: Wygląda na to, że nie logowałeś się wcześniej z tego urządzenia i przez jakiś czas nie logowałeś się, więc wysłaliśmy na Twój adres e-mail kod zabezpieczający, aby potwierdzić, że to Ty.
   verification:
     explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela stron, do których odnośniki znajdują się w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
     verification: Weryfikacja

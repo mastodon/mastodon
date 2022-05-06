@@ -165,6 +165,9 @@ tr:
       pending: Bekleyen yorum
       perform_full_suspension: Askıya al
       previous_strikes: Önceki eylemler
+      previous_strikes_description_html:
+        one: Bu hesap için <strong>bir</strong> eylem yapılmış.
+        other: Bu hesap için <strong>%{count}</strong> eylem yapılmış.
       promote: Yükselt
       protocol: Protokol
       public: Herkese açık
@@ -196,7 +199,6 @@ tr:
       security_measures:
         only_password: Sadece parola
         password_and_2fa: Parola ve İki aşamalı doğrulama
-        password_and_sign_in_token: Parola ve e-posta tokeni
       sensitive: Hassas
       sensitized: Hassas olarak işaretlendi
       shared_inbox_url: Paylaşılan gelen kutusu bağlantısı
@@ -523,6 +525,9 @@ tr:
       delivery_error_hint: Eğer teslimat %{count} gün boyunca mümkün olmazsa, otomatik olarak teslim edilemiyor olarak işaretlenecek.
       destroyed_msg: "%{domain} alan adından veriler hemen silinmek üzere kuyruğa alındı."
       empty: Alan adı bulunamadı.
+      known_accounts:
+        one: "%{count} bilinen hesap"
+        other: "%{count} bilinen hesap"
       moderation:
         all: Tümü
         limited: Sınırlı
@@ -592,7 +597,6 @@ tr:
       action_taken_by: tarafından gerçekleştirilen eylem
       actions:
         delete_description_html: Bildirilen gönderiler silinecek ve aynı hesapla ileride yaşabileceğiniz etkileşimlerde çoğaltmanız için bir eylem kaydedilecek.
-        mark_as_sensitive_description_html: Bildirilen gönderilerdeki medya dosyaları hassas olarak işaretlenecek ve aynı hesapla ileride yaşayabileceğiniz etkileşimlerde kullanabilmeniz için bir eylem kaydedilecek.
         other_description_html: Hesabın davranışını denetlemek ve bildirilen hesabın iletişimini yapılandırmak için daha fazla seçenek görün.
         resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
         silence_description_html: Profil sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir.
@@ -767,6 +771,11 @@ tr:
     system_checks:
       database_schema_check:
         message_html: Beklemede olan veritabanı güncellemeleri mevcut. Uygulamanın beklenildiği gibi çalışması için lütfen onları çalıştırın
+      elasticsearch_running_check:
+        message_html: Elasticsearch'e bağlanılamıyor. Çalıştığından emin olun veya tüm metin aramayı devre dışı bırakın
+      elasticsearch_version_check:
+        message_html: 'Uyumsuz Elasticsearch sürümü: %{value}'
+        version_comparison: Elasticsearch %{running_version} sürümü çalışıyor, ancak %{required_version} sürümü gerekiyor
       rules_check:
         action: Sunucu kurallarını yönet
         message_html: Herhangi bir sunucu kuralı belirlemediniz.
@@ -786,6 +795,9 @@ tr:
         description_html: Bu bağlantılar şu anda sunucunuzun gönderilerini gördüğü hesaplarca bolca paylaşılıyor. Kullanıcılarınızın dünyada neler olduğunu görmesine yardımcı olabilir. Yayıncıyı onaylamadığınız sürece hiçbir bağlantı herkese açık yayınlanmaz. Tekil bağlantıları onaylayabilir veya reddedebilirsiniz.
         disallow: Bağlantıya izin verme
         disallow_provider: Yayıncıya izin verme
+        shared_by_over_week:
+          one: Geçen hafta bir kişi paylaştı
+          other: Geçen hafta %{count} kişi paylaştı
         title: Öne çıkan bağlantılar
         usage_comparison: Bugün %{today} kere paylaşıldı, dün %{yesterday} kere paylaşılmıştı
       pending_review: İnceleme bekliyor
@@ -825,6 +837,9 @@ tr:
         trending_rank: 'Öne çıkanlar #%{rank}'
         usable: Kullanılabilir
         usage_comparison: Bugün %{today} kere kullanıldı, dün %{yesterday} kere kullanılmıştı
+        used_by_over_week:
+          one: Geçen hafta bir kişi tarafından kullanıldı
+          other: Geçen hafta %{count} kişi tarafından kullanıldı
       title: Öne çıkanlar
     warning_presets:
       add_new: Yeni ekle
@@ -1220,8 +1235,8 @@ tr:
         one: Ayrıca, uzaktayken yeni bir takipçi kazandınız! Yaşasın!
         other: Ayrıca, uzaktayken %{count} yeni takipçi kazandınız! İnanılmaz!
       subject:
-        one: "Son ziyaretinizden bu yana 1 yeni bildirim \U0001F418"
-        other: "Son ziyaretinizden bu yana %{count} yeni bildirim \U0001F418"
+        one: "Son ziyaretinizden bu yana 1 yeni bildirim 🐘"
+        other: "Son ziyaretinizden bu yana %{count} yeni bildirim 🐘"
       title: Senin yokluğunda...
     favourite:
       body: "%{name} durumunu beğendi:"
@@ -1616,12 +1631,13 @@ tr:
       explanation: Mastodon hesabınızın tam yedeğini istemiştiniz. Şimdi indirilebilir durumda!
       subject: Arşiviniz indirilmeye hazır
       title: Arşiv paketlemesi
-    sign_in_token:
-      details: 'İşte bu girişimin ayrıntıları:'
-      explanation: 'Tanınmayan bir IP adresinden hesabınızda oturum açma denemesi tespit ettik. Bu sizseniz, lütfen oturum açma sorgulama sayfasına aşağıdaki güvenlik kodunu girin:'
-      further_actions: 'Bu siz değildiyseniz, lütfen şifrenizi değiştirin ve hesabınızda iki faktörlü kimlik doğrulamayı etkinleştirin. Bunu buradan yapabilirsiniz:'
-      subject: Lütfen oturum açma girişimini onaylayın
-      title: Oturum açma girişimi
+    suspicious_sign_in:
+      change_password: parolanızı değiştirin
+      details: 'Oturum açma ayrıntıları şöyledir:'
+      explanation: Hesabınıza yeni bir IP adresinden oturum açıldığını farkettik.
+      further_actions_html: Eğer oturum açan siz değildiyseniz, hesabınızı güvenli tutmanız için hemen %{action} yapmanızı ve iki aşamalı yetkilendirmeyi etkinleştirmenizi öneriyoruz.
+      subject: Hesabınıza yeni bir IP adresinden erişim oldu
+      title: Yeni bir oturum açma
     warning:
       appeal: Bir itiraz gönder
       appeal_description: Bunun bir hata olduğunu düşünüyorsanız, %{instance} sunucusunun personeline bir itiraz gönderebilirsiniz.
@@ -1672,13 +1688,10 @@ tr:
       title: Gemiye hoşgeldin, %{name}!
   users:
     follow_limit_reached: "%{limit} kişiden daha fazlasını takip edemezsiniz"
-    generic_access_help_html: Hesabınıza erişirken sorun mu yaşıyorsunuz? Yardım için %{email} ile iletişime geçebilirsiniz
     invalid_otp_token: Geçersiz iki adımlı doğrulama kodu
-    invalid_sign_in_token: Geçersiz güvenlik kodu
     otp_lost_help_html: Her ikisine de erişiminizi kaybettiyseniz, %{email} ile irtibata geçebilirsiniz
     seamless_external_login: Harici bir servis aracılığıyla oturum açtınız, bu nedenle parola ve e-posta ayarları mevcut değildir.
     signed_in_as: 'Oturum açtı:'
-    suspicious_sign_in_confirmation: Bu cihazdan daha önce oturum açmamış gibi görünüyorsunuz ve bir süredir oturum açmamışsınız, bu yüzden kimliğinizi doğrulamak için e-posta adresinize bir güvenlik kodu gönderiyoruz.
   verification:
     explanation_html: '<strong>Profil meta verisindeki bağlantıların sahibi olarak kendinizi doğrulayabilirsiniz</strong>. Bunun için, link verilen web sitesi Mastodon profilinize geri bir link içermelidir. Geri link bir <code>rel="me"</code> özelliğine sahip <strong>olmalıdır</strong>. Bağlantının metin içeriği önemli değildir. İşte bir örnek:'
     verification: Doğrulama

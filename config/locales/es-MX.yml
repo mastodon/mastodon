@@ -165,6 +165,9 @@ es-MX:
       pending: Revisión pendiente
       perform_full_suspension: Suspender
       previous_strikes: Amonestaciones anteriores
+      previous_strikes_description_html:
+        one: Esta cuenta tiene <strong>una</strong> amonestación.
+        other: Esta cuenta tiene <strong>%{count}</strong> amonestaciones.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -196,7 +199,6 @@ es-MX:
       security_measures:
         only_password: Sólo contraseña
         password_and_2fa: Contraseña y 2FA
-        password_and_sign_in_token: Contraseña y token de correo electrónico
       sensitive: Sensible
       sensitized: marcado como sensible
       shared_inbox_url: URL de bandeja compartida
@@ -523,6 +525,9 @@ es-MX:
       delivery_error_hint: Si la entrega no es posible a lo largo de %{count} días, se marcará automáticamente como no entregable.
       destroyed_msg: Los datos de %{domain} están ahora en cola para su inminente eliminación.
       empty: No se encontraron dominios.
+      known_accounts:
+        one: "%{count} cuenta conocida"
+        other: "%{count} cuentas conocidas"
       moderation:
         all: Todos
         limited: Limitado
@@ -592,7 +597,7 @@ es-MX:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: Los mensajes denunciados serán eliminados y se registrará una amonestación para ayudarte a escalar en futuras infracciones por la misma cuenta.
-        mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar futuras acciones sobre la misma cuenta.
+        mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
         silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
@@ -791,6 +796,9 @@ es-MX:
         description_html: Estos son enlaces que actualmente están siendo compartidos mucho por las cuentas desde las que tu servidor ve los mensajes. Pueden ayudar a tus usuarios a averiguar qué está pasando en el mundo. Ningún enlace se muestren públicamente hasta que autorice al dominio. También puede permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar editor
+        shared_by_over_week:
+          one: Compartido por una persona durante la última semana
+          other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado a %{yesterday} ayer
       pending_review: Revisión pendiente
@@ -830,6 +838,9 @@ es-MX:
         trending_rank: Tendencia n.º %{rank}
         usable: Pueden usarse
         usage_comparison: Usada %{today} veces hoy, comparado con %{yesterday} ayer
+        used_by_over_week:
+          one: Usada por una persona durante la última semana
+          other: Usada por %{count} personas durante la última semana
       title: Tendencias
     warning_presets:
       add_new: Añadir nuevo
@@ -1225,8 +1236,8 @@ es-MX:
         one: "¡Ademas, has adquirido un nuevo seguidor mientras no estabas! ¡Hurra!"
         other: "¡Ademas, has adquirido %{count} nuevos seguidores mientras no estabas! ¡Genial!"
       subject:
-        one: "1 nueva notificación desde tu última visita \U0001F418"
-        other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
+        one: "1 nueva notificación desde tu última visita 🐘"
+        other: "%{count} nuevas notificaciones desde tu última visita 🐘"
       title: En tu ausencia…
     favourite:
       body: 'Tu estado fue marcado como favorito por %{name}:'
@@ -1621,12 +1632,6 @@ es-MX:
       explanation: Has solicitado una copia completa de tu cuenta de Mastodon. ¡Ya está preparada para descargar!
       subject: Tu archivo está preparado para descargar
       title: Descargar archivo
-    sign_in_token:
-      details: 'Aquí están los detalles del intento:'
-      explanation: 'Hemos detectado un intento de inicio de sesión en tu cuenta desde una dirección IP no reconocida. Si has sido tú, por favor ingresa el siguiente código de seguridad en la página del desafío:'
-      further_actions: 'Si no has sido tú, por favor cambia tu contraseña y habilita la autenticación de dos factores en tu cuenta. Puedes hacerlo aquí:'
-      subject: Por favor, confirma el intento de inicio de sesión
-      title: Intento de inicio de sesión
     warning:
       appeal: Enviar una apelación
       appeal_description: Si crees que esto es un error, puedes enviar una apelación al equipo de %{instance}.
@@ -1677,13 +1682,10 @@ es-MX:
       title: Te damos la bienvenida a bordo, %{name}!
   users:
     follow_limit_reached: No puedes seguir a más de %{limit} personas
-    generic_access_help_html: "¿Tienes problemas para acceder a tu cuenta? Puedes ponerte en contacto con %{email} para conseguir ayuda"
     invalid_otp_token: Código de dos factores incorrecto
-    invalid_sign_in_token: Código de seguridad no válido
     otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
     seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
     signed_in_as: 'Sesión iniciada como:'
-    suspicious_sign_in_confirmation: Parece que no has iniciado sesión desde este dispositivo antes, y no has iniciado sesión durante un tiempo, así que estamos enviando un código de seguridad a tu dirección de correo electrónico para confirmar que eres tú.
   verification:
     explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Mastodon. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
     verification: Verificación

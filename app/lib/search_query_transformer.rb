@@ -88,14 +88,14 @@ class SearchQueryTransformer < Parslet::Transform
       case prefix
       when 'from'
         @filter = :account_id
-        username, domain = term.split('@')
-        account = Account.find_remote(username, domain)
 
-        raise "Account not found: #{term}" unless account
+        username, domain = term.gsub(/\A@/, '').split('@')
+        domain           = nil if TagManager.instance.local_domain?(domain)
+        account          = Account.find_remote!(username, domain)
 
         @term = account.id
       else
-        raise "Unknown prefix: #{prefix}"
+        raise Mastodon::SyntaxError
       end
     end
   end

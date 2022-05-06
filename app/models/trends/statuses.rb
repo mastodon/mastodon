@@ -6,7 +6,7 @@ class Trends::Statuses < Trends::Base
   self.default_options = {
     threshold: 5,
     review_threshold: 3,
-    score_halflife: 2.hours.freeze,
+    score_halflife: 6.hours.freeze,
   }
 
   class Query < Trends::Query
@@ -22,25 +22,11 @@ class Trends::Statuses < Trends::Base
     private
 
     def apply_scopes(scope)
-      scope.includes(:account)
-    end
-
-    def perform_queries
-      return super if @account.nil?
-
-      statuses        = super
-      account_ids     = statuses.map(&:account_id)
-      account_domains = statuses.map(&:account_domain)
-
-      preloaded_relations = {
-        blocking: Account.blocking_map(account_ids, @account.id),
-        blocked_by: Account.blocked_by_map(account_ids, @account.id),
-        muting: Account.muting_map(account_ids, @account.id),
-        following: Account.following_map(account_ids, @account.id),
-        domain_blocking_by_domain: Account.domain_blocking_map_by_domain(account_domains, @account.id),
-      }
-
-      statuses.reject { |status| StatusFilter.new(status, @account, preloaded_relations).filtered? }
+      if @account.nil?
+        scope
+      else
+        scope.not_excluded_by_account(@account).not_domain_blocked_by_account(@account)
+      end
     end
   end
 
@@ -62,7 +48,6 @@ class Trends::Statuses < Trends::Base
   def refresh(at_time = Time.now.utc)
     statuses = Status.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq).includes(:account, :media_attachments)
     calculate_scores(statuses, at_time)
-    trim_older_items
   end
 
   def request_review
@@ -125,13 +110,15 @@ class Trends::Statuses < Trends::Base
         })
       end
 
+      trim_older_items
+
       # Clean up localized sets by calculating the intersection with the main
       # set. We do this instead of just deleting the localized sets to avoid
       # having moments where the API returns empty results
 
       Trends.available_locales.each do |locale|
         redis.zinterstore("#{key_prefix}:all:#{locale}", ["#{key_prefix}:all:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
-        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:all"], aggregate: 'max')
+        redis.zinterstore("#{key_prefix}:allowed:#{locale}", ["#{key_prefix}:allowed:#{locale}", "#{key_prefix}:allowed"], aggregate: 'max')
       end
     end
   end
