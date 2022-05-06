@@ -1,8 +1,7 @@
----
 sl:
   about:
-    about_hashtag_html: To so javne objave, označene z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediverzumu.
-    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
+    about_hashtag_html: 'To so javne objave, označene z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediverzumu.'
+    about_mastodon_html: 'Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.'
     about_this: O Mastodonu
     active_count_after: dejavnih
     active_footnote: Aktivni mesečni uporabniki (AMU)
@@ -35,10 +34,10 @@ sl:
     server_stats: 'Statistika strežnika:'
     source_code: Izvorna koda
     status_count_after:
-      few: stanja
       one: stanje
-      other: objav
       two: stanja
+      few: stanja
+      other: objav
     status_count_before: Ki so avtorji
     tagline: Sledite prijateljem in odkrijte nove
     terms: Pogoji storitve
@@ -54,10 +53,10 @@ sl:
       suspended_title: Suspendirani strežniki
     unavailable_content_html: Mastodon vam splošno omogoča ogled vsebin in interakcijo z uporabniki iz vseh drugih strežnikov v fediverzumu. To so izjeme, opravljene na tem strežniku.
     user_count_after:
-      few: uporabniki
       one: uporabnik
-      other: uporabnikov
       two: uporabnika
+      few: uporabniki
+      other: uporabnikov
     user_count_before: Dom za
     what_is_mastodon: Kaj je Mastodon?
   accounts:
@@ -66,10 +65,10 @@ sl:
     featured_tags_hint: Izpostavite lahko določene ključnike, ki bodo prikazani na tem mestu.
     follow: Sledi
     followers:
-      few: Sledilci
       one: Sledilec
-      other: Sledilcev
       two: Sledilca
+      few: Sledilci
+      other: Sledilcev
     following: Sledim
     instance_actor_flash: Ta račun je navidezni akter, ki se uporablja za predstavljanje strežnika samega in ne posameznega uporabnika. Uporablja se za namene federacije in se ne sme začasno ustaviti.
     joined: Se je pridružil na %{date}
@@ -84,10 +83,10 @@ sl:
     pin_errors:
       following: Verjetno že sledite osebi, ki jo želite potrditi
     posts:
-      few: Tuti
       one: Tut
-      other: Objav
       two: Tuta
+      few: Tuti
+      other: Objav
     posts_tab_heading: Objave
     posts_with_replies: Objave in odgovori
     roles:
@@ -126,7 +125,7 @@ sl:
       delete: Izbriši podatke
       deleted: Izbrisano
       demote: Degradiraj
-      destroyed_msg: Podatki uporabnika %{username} so zdaj v vrsti za trajen izbris
+      destroyed_msg: "Podatki uporabnika %{username} so zdaj v vrsti za trajen izbris"
       disable: Onemogoči
       disable_sign_in_token_auth: Onemogoči overjanje z žetonom po e-pošti
       disable_two_factor_authentication: Onemogoči 2FA
@@ -174,10 +173,10 @@ sl:
       perform_full_suspension: Suspendiraj
       previous_strikes: Predhodni ukrepi
       previous_strikes_description_html:
-        few: Ta račun ima <strong>%{count}</strong> ukrepe.
         one: Ta račun ima <strong>%{count}</strong> ukrep.
-        other: Ta račun ima <strong>%{count}</strong> ukrepov.
         two: Ta račun ima <strong>%{count}</strong> ukrepa.
+        few: Ta račun ima <strong>%{count}</strong> ukrepe.
+        other: Ta račun ima <strong>%{count}</strong> ukrepov.
       promote: Promoviraj
       protocol: Protokol
       public: Javen
@@ -404,25 +403,25 @@ sl:
       new_users: novih uporabnikov
       opened_reports: odprtih prijav
       pending_appeals_html:
-        few: "<strong>%{count}</strong> čakajoče pritožbe"
         one: "<strong>%{count}</strong> čakajoča pritožba"
-        other: "<strong>%{count}</strong> čakajočih pritožb"
         two: "<strong>%{count}</strong> čakajoči pritožbi"
+        few: "<strong>%{count}</strong> čakajoče pritožbe"
+        other: "<strong>%{count}</strong> čakajočih pritožb"
       pending_reports_html:
-        few: "<strong>%{count}</strong> čakajoče prijave"
         one: "<strong>%{count}</strong> čakajoča prijava"
-        other: "<strong>%{count}</strong> čakajočih prijav"
         two: "<strong>%{count}</strong> čakajoči prijavi"
+        few: "<strong>%{count}</strong> čakajoče prijave"
+        other: "<strong>%{count}</strong> čakajočih prijav"
       pending_tags_html:
-        few: "<strong>%{count}</strong> čakajoči ključniki"
         one: "<strong>%{count}</strong> čakajoči ključnik"
-        other: "<strong>%{count}</strong> čakajočih ključnikov"
         two: "<strong>%{count}</strong> čakajoča ključnika"
+        few: "<strong>%{count}</strong> čakajoči ključniki"
+        other: "<strong>%{count}</strong> čakajočih ključnikov"
       pending_users_html:
-        few: "<strong>%{count}</strong> čakajoči uporabniki"
         one: "<strong>%{count}</strong> čakajoči uporabnik"
-        other: "<strong>%{count}</strong> čakajočih uporabnikov"
         two: "<strong>%{count}</strong> čakajoča uporabnika"
+        few: "<strong>%{count}</strong> čakajoči uporabniki"
+        other: "<strong>%{count}</strong> čakajočih uporabnikov"
       resolved_reports: razrešenih prijav
       software: Programska oprema
       sources: Viri registracij
@@ -471,10 +470,10 @@ sl:
     email_domain_blocks:
       add_new: Dodaj novo
       attempts_over_week:
-        few: "%{count} poskusi prijave zadnji teden"
         one: "%{count} poskus prijave zadnji teden"
-        other: "%{count} poskusov prijave zadnji teden"
         two: "%{count} poskusa prijave zadnji teden"
+        few: "%{count} poskusi prijave zadnji teden"
+        other: "%{count} poskusov prijave zadnji teden"
       created_msg: Domena e-pošte je bila uspešno dodana na črni seznam
       delete: Izbriši
       dns:
@@ -500,16 +499,16 @@ sl:
     instances:
       availability:
         description_html:
-          few: Če dostava v domeno spodleti <strong>%{count} različne dni</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
           one: Če dostava v domeno spodleti <strong>%{count} dan</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
-          other: Če dostava v domeno spodleti <strong>%{count} različne dni</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
           two: Če dostava v domeno spodleti <strong>%{count} različna dneva</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
+          few: Če dostava v domeno spodleti <strong>%{count} različne dni</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
+          other: Če dostava v domeno spodleti <strong>%{count} različne dni</strong> brez uspeha, ne bo nadaljnjih poskusov dostopa, razen če je prejeta dostava <em>iz</em> domene.
         failure_threshold_reached: Prag neuspelih poskusov dosežen %{date}.
         failures_recorded:
-          few: Neuspeli poskusi %{count} različnih dni.
           one: Neuspel poskus %{count} različen dan.
-          other: Neuspeli poskusi %{count} različnih dni.
           two: Neuspeli poskusi %{count} različnih dni.
+          few: Neuspeli poskusi %{count} različnih dni.
+          other: Neuspeli poskusi %{count} različnih dni.
         no_failures_recorded: Ni zabeleženih neuspelih poskusov.
         title: Razpoložljivost
         warning: Zadnji poskus povezave na ta strežnik je spodletel
@@ -551,10 +550,10 @@ sl:
       destroyed_msg: Podatki iz %{domain} so zdaj v vrsti za takojšnje brisanje.
       empty: Ni zadetkov med domenami.
       known_accounts:
-        few: "%{count} znani računi"
         one: "%{count} znan račun"
-        other: "%{count} znani računi"
         two: "%{count} znana računa"
+        few: "%{count} znani računi"
+        other: "%{count} znani računi"
       moderation:
         all: Vse
         limited: Omejeno
@@ -594,11 +593,11 @@ sl:
       no_ip_block_selected: Nobeno pravilo IP ni bilo spremenjeno, ker nobeno ni bilo izbrano
       title: IP-pravila
     relationships:
-      title: Odnosi računa %{acct}
+      title: "Odnosi računa %{acct}"
     relays:
       add_new: Dodaj nov rele
       delete: Izbriši
-      description_html: "<strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih objav med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih."
+      description_html: <strong>Rele federacije</strong> je posredniški strežnik, ki si izmenjuje velike količine javnih objav med strežniki, ki so se naročili in objavili na njem. <strong>Majhnim in srednjim strežnikom lahko pomaga pri odkrivanju vsebine iz sistema fediverse</strong>, kar bi sicer zahtevalo, da lokalni uporabniki ročno sledijo druge osebe na oddaljenih strežnikih.
       disable: Onemogoči
       disabled: Onemogočeno
       enable: Omogoči
@@ -618,10 +617,10 @@ sl:
     reports:
       account:
         notes:
-          few: "%{count} opombe"
           one: "%{count} opomba"
-          other: "%{count} opomb"
           two: "%{count} opombi"
+          few: "%{count} opombe"
+          other: "%{count} opomb"
       action_log: Revizijski zapisnik
       action_taken_by: Dejanje, ki ga je sprejel
       actions:
@@ -826,10 +825,10 @@ sl:
         disallow: Ne dovoli povezave
         disallow_provider: Ne dovoli izdajatelja
         shared_by_over_week:
-          few: Delile %{count} osebe v zadnjem tednu
           one: Delila %{count} oseba v zadnjem tednu
-          other: Delilo %{count} oseb v zadnjem tednu
           two: Delili %{count} osebi v zadnjem tednu
+          few: Delile %{count} osebe v zadnjem tednu
+          other: Delilo %{count} oseb v zadnjem tednu
         title: Povezave v trendu
         usage_comparison: Danes deljeno %{today}-krat, včeraj pa %{yesterday}-krat
       only_allowed: Samo dovoljeni
@@ -848,10 +847,10 @@ sl:
         disallow_account: Ne dovoli avtorja
         not_discoverable: Avtor ni dovolil, da bi ga bilo moč odkriti
         shared_by:
-          few: Deljeno ali priljubljeno %{friendly_count}-krat
           one: Deljeno ali priljubljeno %{friendly_count}-krat
-          other: Deljeno ali priljubljeno %{friendly_count}-krat
           two: Deljeno ali priljubljeno %{friendly_count}-krat
+          few: Deljeno ali priljubljeno %{friendly_count}-krat
+          other: Deljeno ali priljubljeno %{friendly_count}-krat
         title: Trendne objave
       tags:
         current_score: Trenutni rezultat %{score}
@@ -873,10 +872,10 @@ sl:
         usable: Je moč uporabiti
         usage_comparison: Danes uporabljeno %{today}-krat, včeraj pa %{yesterday}-krat
         used_by_over_week:
-          few: Uporabile %{count} osebe v zadnjem tednu
           one: Uporabila %{count} oseba v zadnjem tednu
-          other: Uporabilo %{count} oseb v zadnjem tednu
           two: Uporabili %{count} osebi v zadnjem tednu
+          few: Uporabile %{count} osebe v zadnjem tednu
+          other: Uporabilo %{count} oseb v zadnjem tednu
       title: Trendi
       trending: V porastu
     warning_presets:
@@ -904,20 +903,20 @@ sl:
     new_report:
       body: "%{reporter} je prijavil %{target}"
       body_remote: Nekdo iz %{domain} je prijavil %{target}
-      subject: Nove prijave za %{instance} (#%{id})
+      subject: 'Nove prijave za %{instance} (#%{id})'
     new_trends:
       body: 'Naslednji elementi potrebujejo pregled, preden jih je možno javno prikazati:'
       new_trending_links:
         no_approved_links: Trenutno ni odobrenih povezav v trendu.
-        requirements: Vsak od teh kandidatov bi lahko presegel odobreno povezavo v trendu št. %{rank}, ki je trenutno %{lowest_link_title} z rezultatom %{lowest_link_score}.
+        requirements: 'Vsak od teh kandidatov bi lahko presegel odobreno povezavo v trendu št. %{rank}, ki je trenutno %{lowest_link_title} z rezultatom %{lowest_link_score}.'
         title: Povezave v trendu
       new_trending_statuses:
         no_approved_statuses: Trenutno ni odobrenih objav v trendu.
-        requirements: Vsak od teh kandidatov bi lahko presegel odobreno trendno objavo št. %{rank}, ki je trenutno %{lowest_status_url} z rezultatom %{lowest_status_score}.
+        requirements: 'Vsak od teh kandidatov bi lahko presegel odobreno trendno objavo št. %{rank}, ki je trenutno %{lowest_status_url} z rezultatom %{lowest_status_score}.'
         title: Trendne objave
       new_trending_tags:
         no_approved_tags: Trenutno ni odobrenih ključnikov v trendu.
-        requirements: Vsak od teh kandidatov bi lahko presegel odobreni ključnik v trendu št. %{rank}, ki je trenutno %{lowest_tag_name} z rezultatom %{lowest_tag_score}.
+        requirements: 'Vsak od teh kandidatov bi lahko presegel odobreni ključnik v trendu št. %{rank}, ki je trenutno %{lowest_tag_name} z rezultatom %{lowest_tag_score}.'
         title: Ključniki v trendu
       subject: Novi trendi za pregled na %{instance}
   aliases:
@@ -1161,10 +1160,10 @@ sl:
     save_changes: Shrani spremembe
     today: danes
     validation_errors:
-      few: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napake
       one: Nekaj še ni čisto v redu! Spodaj si oglejte napako
-      other: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napak
       two: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napaki
+      few: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napake
+      other: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napak
   html_validator:
     invalid_markup: 'vsebuje neveljavno oznako HTML: %{error}'
   imports:
@@ -1199,10 +1198,10 @@ sl:
     generate: Ustvari
     invited_by: 'Povabil/a vas je:'
     max_uses:
-      few: "%{count} uporabe"
       one: 1 uporaba
-      other: "%{count} uporab"
       two: "%{count} uporabi"
+      few: "%{count} uporabe"
+      other: "%{count} uporab"
     max_uses_prompt: Brez omejitve
     prompt: Ustvarite in delite povezave z drugimi, da omogočite dostop do tega strežnika
     table:
@@ -1274,18 +1273,18 @@ sl:
       body: Tukaj je kratek povzetek sporočil, ki ste jih zamudili od vašega zadnjega obiska v %{since}
       mention: "%{name} vas je omenil/a v:"
       new_followers_summary:
-        few: Prav tako ste pridobili %{count} nove sledilce, ko ste bili odsotni! Juhu!
         one: Prav tako ste pridobili enega novega sledilca, ko ste bili odsotni! Juhu!
-        other: Prav tako ste pridobili %{count} novih sledilcev, ko ste bili odsotni! Juhu!
         two: Prav tako ste pridobili %{count} nova sledilca, ko ste bili odsotni! Juhu!
+        few: Prav tako ste pridobili %{count} nove sledilce, ko ste bili odsotni! Juhu!
+        other: Prav tako ste pridobili %{count} novih sledilcev, ko ste bili odsotni! Juhu!
       subject:
-        few: "%{count} nova obvestila od vašega zadnjega obiska 🐘"
         one: "%{count} novo obvestilo od vašega zadnjega obiska 🐘"
-        other: "%{count} novih obvestil od vašega zadnjega obiska 🐘"
         two: "%{count} novi obvestili od vašega zadnjega obiska 🐘"
+        few: "%{count} nova obvestila od vašega zadnjega obiska 🐘"
+        other: "%{count} novih obvestil od vašega zadnjega obiska 🐘"
       title: V vaši odsotnosti...
     favourite:
-      body: "%{name} je vzljubil/a vašo objavo:"
+      body: '%{name} je vzljubil/a vašo objavo:'
       subject: "%{name} je vzljubil/a vašo objavo"
       title: Novo priljubljeno
     follow:
@@ -1299,8 +1298,8 @@ sl:
       title: Nova prošnja za sledenje
     mention:
       action: Odgovori
-      body: "%{name} vas je omenil/a v:"
-      subject: "%{name} vas je omenil/a"
+      body: '%{name} vas je omenil/a v:'
+      subject: '%{name} vas je omenil/a'
       title: Nova omemba
     poll:
       subject: Anketa, ki jo je pripravil/a %{name}, se je iztekla
@@ -1468,29 +1467,29 @@ sl:
   statuses:
     attached:
       audio:
-        few: "%{count} zvočni posnetki"
         one: "%{count} zvočni posnetek"
-        other: "%{count} zvočnih posnetkov"
         two: "%{count} zvočna posnetka"
+        few: "%{count} zvočni posnetki"
+        other: "%{count} zvočnih posnetkov"
       description: 'Priloženo: %{attached}'
       image:
-        few: "%{count} slike"
         one: "%{count} slika"
-        other: "%{count} slik"
         two: "%{count} sliki"
+        few: "%{count} slike"
+        other: "%{count} slik"
       video:
-        few: "%{count} video posnetki"
         one: "%{count} video posnetek"
-        other: "%{count} video posnetkov"
         two: "%{count} video posnetka"
+        few: "%{count} video posnetki"
+        other: "%{count} video posnetkov"
     boosted_from_html: Izpostavljeno z računa %{acct_link}
     content_warning: 'Opozorilo o vsebini: %{warning}'
     default_language: Enak kot jezik vmesnika
     disallowed_hashtags:
-      few: 'vsebuje nedovoljene ključnike: %{tags}'
       one: 'vsebuje nedovoljeni ključnik: %{tags}'
-      other: 'vsebuje nedovoljenih ključnikov: %{tags}'
       two: 'vsebuje nedovoljena ključnika: %{tags}'
+      few: 'vsebuje nedovoljene ključnike: %{tags}'
+      other: 'vsebuje nedovoljenih ključnikov: %{tags}'
     edited_at_html: Urejeno %{date}
     errors:
       in_reply_not_found: Objava, na katero želite odgovoriti, ne obstaja.
@@ -1503,22 +1502,22 @@ sl:
       reblog: Izpostavitev ne more biti pripeta
     poll:
       total_people:
-        few: "%{count} osebe"
         one: "%{count} Oseba"
-        other: "%{count} oseb"
         two: "%{count} osebi"
+        few: "%{count} osebe"
+        other: "%{count} oseb"
       total_votes:
-        few: "%{count} glasovi"
         one: "%{count} glas"
-        other: "%{count} glasov"
         two: "%{count} glasova"
+        few: "%{count} glasovi"
+        other: "%{count} glasov"
       vote: Glasuj
     show_more: Pokaži več
     show_newer: Pokaži novejše
     show_older: Pokaži starejše
     show_thread: Pokaži nit
     sign_in_to_participate: Prijavite se, če želite sodelovati v pogovoru
-    title: "%{name}: »%{quote}«"
+    title: '%{name}: »%{quote}«'
     visibilities:
       direct: Neposredno
       private: Samo sledilci
