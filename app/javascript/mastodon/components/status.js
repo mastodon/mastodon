@@ -56,7 +56,7 @@ const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
-  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
   edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
 });
 
@@ -349,7 +349,7 @@ class Status extends ImmutablePureComponent {
       prepend = (
         <div className='status__prepend'>
           <div className='status__prepend-icon-wrapper'><Icon id='thumb-tack' className='status__prepend-icon' fixedWidth /></div>
-          <FormattedMessage id='status.pinned' defaultMessage='Pinned toot' />
+          <FormattedMessage id='status.pinned' defaultMessage='Pinned post' />
         </div>
       );
     } else if (status.get('reblog', null) !== null && typeof status.get('reblog') === 'object') {

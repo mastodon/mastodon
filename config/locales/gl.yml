@@ -484,7 +484,7 @@ gl:
           other: Se fallan as entregas ao dominio por <strong>%{count} días diferentes</strong>, non se farán máis intentos a menos que se reciba unha solicitude <em>desde</em> ese dominio.
         failure_threshold_reached: Acadouse o límite de fallos o %{date}.
         failures_recorded:
-          one: Intento fallido por %{count} día.
+          one: Intento fallido durante %{count} día.
           other: Intentos fallidos durante %{count} días distintos.
         no_failures_recorded: Non hai fallos rexistrados.
         title: Dispoñibilidade
@@ -517,6 +517,7 @@ gl:
       delivery:
         all: Todo
         clear: Eliminar erros na entrega
+        failing: Con fallos
         restart: Restablecer a entrega
         stop: Deter a entrega
         unavailable: Non dispoñible
@@ -801,6 +802,7 @@ gl:
           other: Compartido por %{count} persoas na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
+      only_allowed: Só as permitidas
       pending_review: Revisión pendente
       preview_card_providers:
         allowed: As ligazóns desta orixe poden estar en voga
@@ -842,6 +844,7 @@ gl:
           one: Utilizado por unha persoa na última semana
           other: Utilizado por %{count} persoas na última semana
       title: Tendencias
+      trending: Tendencias
     warning_presets:
       add_new: Engadir novo
       delete: Eliminar
@@ -867,7 +870,7 @@ gl:
     new_report:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
-      subject: Novo informe sobre %{instance} (#%{id})
+      subject: Nova denuncia sobre %{instance} (#%{id})
     new_trends:
       body: 'Os seguintes elementos precisan revisión antes de ser mostrados públicamente:'
       new_trending_links:
@@ -1236,8 +1239,8 @@ gl:
         one: Ademáis, ten unha nova seguidora desde entón! Ben!
         other: Ademáis, obtivo %{count} novas seguidoras desde entón! Tremendo!
       subject:
-        one: "1 nova notificación desde a súa última visita 🐘"
-        other: "%{count} novas notificacións desde a súa última visita 🐘"
+        one: "1 nova notificación desde a última visita 🐘"
+        other: "%{count} novas notificacións desde a última visita 🐘"
       title: Na súa ausencia...
     favourite:
       body: 'A túa publicación foi marcada como favorita por %{name}:'
@@ -1507,7 +1510,7 @@ gl:
     min_reblogs_hint: Non elimina ningunha das túas publicacións se foron promovidas máis deste número de veces. Deixa en branco para eliminar publicacións independentemente do seu número de promocións
   stream_entries:
     pinned: Publicación fixada
-    reblogged: promovido
+    reblogged: promoveu
     sensitive_content: Contido sensible
   tags:
     does_not_match_previous_name: non concorda co nome anterior

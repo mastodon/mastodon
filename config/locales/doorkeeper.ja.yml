@@ -60,6 +60,8 @@ ja:
       error:
         title: エラーが発生しました
       new:
+        prompt_html: "%{client_name}があなたのアカウントにアクセスする許可を求めています。<strong>心当たりが無い場合はアクセス許可しないでください。</strong>"
+        review_permissions: アクセス許可を確認
         title: 認証が必要です
       show:
         title: 認証コードをコピーしてアプリに貼り付けて下さい。
@@ -69,10 +71,12 @@ ja:
       confirmations:
         revoke: 本当に取り消しますか？
       index:
-        authorized_at: "%{date} に承認されました"
+        authorized_at: "%{date}に承認されました"
+        description_html: これらは、APIを使用してアカウントにアクセスできるアプリケーションです。ここに見覚えのないアプリケーションがある場合、またはアプリケーションの動作がおかしい場合、そのアクセスを取り消すことができます。
         last_used_at: 最終使用日 %{date}
         never_used: 使用されていない
         scopes: 権限
+        superapp: 内部
         title: 認証済みアプリ
     errors:
       messages:
@@ -91,7 +95,7 @@ ja:
           expired: アクセストークンの有効期限が切れています
           revoked: アクセストークンは取り消されています
           unknown: アクセストークンが無効です
-        resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticator が設定されていないため、リソース所有者の検索に失敗しました。
+        resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticatorが設定されていないため、リソース所有者の検索に失敗しました。
         server_error: 認証サーバーに予期せぬ例外が発生したため、リクエストを実行できなくなりました。
         temporarily_unavailable: 現在、認証サーバーに一時的な過負荷が掛かっているか、またはメンテナンス中のため、リクエストを処理できません。
         unauthorized_client: クライアントはこのメゾットで要求を実行する権限がありません。
@@ -115,13 +119,18 @@ ja:
         write: 書き込み専用アクセス
       title:
         accounts: アカウント
+        admin/accounts: アカウント管理
+        admin/all: すべての管理機能
+        admin/reports: 通報の管理
         all: すべて
         blocks: ブロック
         bookmarks: ブックマーク
+        conversations: 会話
         crypto: エンドツーエンド暗号化
         favourites: お気に入り
         filters: フィルター
         follow: フォロー・フォロワー
+        follows: フォロー
         lists: リスト
         media: メディアの添付
         mutes: ミュート
@@ -164,6 +173,7 @@ ja:
       write:accounts: プロフィールの変更
       write:blocks: ユーザーのブロックやドメインの非表示
       write:bookmarks: 投稿のブックマーク登録
+      write:conversations: 会話のミュートと削除
       write:favourites: 投稿のお気に入り登録
       write:filters: フィルターの変更
       write:follows: あなたの代わりにフォロー、アンフォロー

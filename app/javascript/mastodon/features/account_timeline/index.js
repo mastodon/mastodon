@@ -156,7 +156,7 @@ class AccountTimeline extends ImmutablePureComponent {
     } else if (remote && statusIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {
-      emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts here!' />;
+      emptyMessage = <FormattedMessage id='empty_column.account_timeline' defaultMessage='No posts found' />;
     }
 
     const remoteMessage = remote ? <RemoteHint url={remoteUrl} /> : null;

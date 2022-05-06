@@ -519,6 +519,7 @@ ku:
       delivery:
         all: Hemû
         clear: Çewtiyên gihandinê paqij bike
+        failing: Têkçûn
         restart: Gihandinê nû va bike
         stop: Gehandinê rawestîne
         unavailable: Nederbasdar
@@ -1238,8 +1239,8 @@ ku:
         one: Herwiha, dema tu dûr bûyî te şopînerek nû bi dest xist! Bijî!
         other: Herwiha, dema tu dûr bûyî te %{count} şopînerek nû bi dest xist! Bijî!
       subject:
-        one: "1 agahdarî ji serdana te ya herî dawî ji 🐘"
-        other: "%{count} agahdarî ji serdana te ya herî dawî ji 🐘"
+        one: "1 agahdarî ji serdana te ya herî dawî 🐘"
+        other: "%{count} agahdarî ji serdana te ya herî dawî 🐘"
       title: Di tunebûna te de...
     favourite:
       body: 'Şandiya te hate bijartin ji alî %{name} ve:'
@@ -1637,6 +1638,9 @@ ku:
     suspicious_sign_in:
       change_password: borînpeyva xwe biguherîne
       details: 'Li vir hûrgiliyên hewldanên têketinê hene:'
+      explanation: Me têketineke nû ji ajimêra te ji navnîşaneke IP ya nû dît.
+      further_actions_html: Ku ev ne tu bû, em ji te re pêşniyar dikin ku tu di tavilê de %{action} bikî û piştrastkirina du-gavî çalak bikî da ku ajimêra te di ewlehiyê de bimîne.
+      subject: Ajimêra te ji navnîşaneke IP ya nû ve hatiye gihîştin
       title: Têketineke nû
     warning:
       appeal: Îtîrazekê bişîne

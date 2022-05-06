@@ -519,6 +519,7 @@ hu:
       delivery:
         all: Mind
         clear: Kézbesítési hibák törlése
+        failing: Sikertelen
         restart: Kézbesítés újraindítása
         stop: Kézbesítés leállítása
         unavailable: Nem elérhető
@@ -803,6 +804,7 @@ hu:
           other: "%{count} ember osztotta meg a múlt héten"
         title: Felkapott hivatkozások
         usage_comparison: "%{today} alkalommal lett ma megosztva, a tegnapi %{yesterday} alkalomhoz képest"
+      only_allowed: Csak engedélyezett
       pending_review: Áttekintésre vár
       preview_card_providers:
         allowed: A közzétevő hivatkozásai felkapottak lehetnek
@@ -844,6 +846,7 @@ hu:
           one: Egy ember használta a múlt héten
           other: "%{count} ember használta a múlt héten"
       title: Trendek
+      trending: Felkapott
     warning_presets:
       add_new: Új hozzáadása
       delete: Törlés
@@ -1238,8 +1241,8 @@ hu:
         one: Sőt, egy új követőd is lett, amióta nem jártál itt. Hurrá!
         other: Sőt, %{count} új követőd is lett, amióta nem jártál itt. Hihetetlen!
       subject:
-        one: "Egy új értesítésed érkezett legutóbbi látogatásod óta 🐘"
-        other: "%{count} új értesítésed érkezett legutóbbi látogatásod óta 🐘"
+        one: "1 új értesítés az utolsó látogatásod óta 🐘"
+        other: "%{count} új értesítés az utolsó látogatásod óta 🐘"
       title: Amíg távol voltál…
     favourite:
       body: 'A bejegyzésedet kedvencnek jelölte %{name}:'

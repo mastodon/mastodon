@@ -5,14 +5,14 @@ vi:
       account_alias:
         acct: Nhập tên_người_dùng@máy chủ của tài khoản cũ
       account_migration:
-        acct: Nhập tên_người_dùng@máy chủ của tài khoản bạn muốn dời sang
+        acct: tên_người_dùng@máy chủ của tài khoản bạn muốn chuyển sang
       account_warning_preset:
         text: Bạn có thể dùng URL, hashtag và nhắc đến
         title: Tùy chọn. Không cho người nhận xem
       admin_account_action:
         include_statuses: Người dùng sẽ thấy các tút nào của họ bị kiểm duyệt
         send_email_notification: Người dùng sẽ nhận được lời giải thích về những gì xảy ra với tài khoản của họ
-        text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">cảnh cáo cài sẵn</a> để tiết kiệm thời gian
+        text_html: Tùy chọn. Bạn nên dùng <a href="%{path}">mẫu có sẵn</a> để tiết kiệm thời gian
         type_html: Chọn làm gì với <strong>%{acct}</strong>
         types:
           disable: Tạm khóa đăng nhập tài khoản, nhưng không xóa hoặc ẩn tút.
@@ -49,6 +49,7 @@ vi:
         phrase: Sẽ được hiện thị trong văn bản hoặc cảnh báo nội dung của một tút
         scopes: API nào ứng dụng sẽ được phép truy cập. Nếu bạn chọn quyền hạn cấp cao nhất, bạn không cần chọn từng phạm vi.
         setting_aggregate_reblogs: Nếu một tút đã được đăng lại thì những lượt đăng lại sau sẽ không hiện trên bảng tin nữa
+        setting_always_send_emails: Bình thường thì email thông báo sẽ không gửi khi bạn đang dùng Mastodon
         setting_default_sensitive: Mặc định là nội dung nhạy cảm và chỉ hiện nếu nhấn vào
         setting_display_media_default: Làm mờ những thứ được đánh dấu là nhạy cảm
         setting_display_media_hide_all: Không hiển thị
@@ -84,7 +85,7 @@ vi:
       rule:
         text: Mô tả một quy tắc bắt buộc trên máy chủ này. Nên để ngắn và đơn giản.
       sessions:
-        otp: 'Nhập mã xác thực hai bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
+        otp: 'Nhập mã xác minh 2 bước được tạo bởi ứng dụng điện thoại của bạn hoặc dùng một trong các mã khôi phục của bạn:'
         webauthn: Nếu đây là USB key, hãy cắm vào và thử xoay chiều.
       tag:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
@@ -109,7 +110,7 @@ vi:
         type: Hành động
         types:
           disable: Khóa
-          none: Cảnh cáo
+          none: Nhắc nhở
           sensitive: Nhạy cảm
           silence: Hạn chế
           suspend: Vô hiệu hóa
@@ -146,11 +147,12 @@ vi:
         max_uses: Số lần dùng tối đa
         new_password: Mật khẩu mới
         note: Tiểu sử
-        otp_attempt: Xác thực hai bước
+        otp_attempt: Mã xác minh 2 bước
         password: Mật khẩu
         phrase: Từ khóa hoặc cụm từ
         setting_advanced_layout: Bật bố cục nhiều cột
         setting_aggregate_reblogs: Không hiện lượt đăng lại trùng lặp
+        setting_always_send_emails: Luôn gửi email thông báo
         setting_auto_play_gif: Tự động phát ảnh GIF
         setting_boost_modal: Yêu cầu xác nhận trước khi đăng lại tút
         setting_crop_images: Hiển thị ảnh theo tỉ lệ 16x9

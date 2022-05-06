@@ -160,6 +160,9 @@ sv:
       pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
       previous_strikes: Tidigare varningar
+      previous_strikes_description_html:
+        one: Detta konto har <strong>en</strong> varning.
+        other: Detta konto har <strong>%{count}</strong> varningar.
       promote: Befordra
       protocol: Protokoll
       public: Offentlig
@@ -263,6 +266,8 @@ sv:
         create_announcement_html: "%{name} skapade tillkännagivande %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
         create_domain_block_html: "%{name} blockerade domänen %{target}"
+        create_email_domain_block_html: "%{name} svartlistade e-postdomän %{target}"
+        create_ip_block_html: "%{name} skapade regel för IP %{target}"
         destroy_custom_emoji_html: "%{name} förstörde emoji %{target}"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
         destroy_email_domain_block_html: "%{name} avblockerade e-postdomän %{target}"
@@ -325,6 +330,7 @@ sv:
       enable: Aktivera
       enabled: Aktiverad
       enabled_msg: Aktiverade den emoji utan problem
+      image_hint: PNG eller GIF upp till %{size}
       list: Lista
       listed: Noterade
       new:
@@ -405,6 +411,12 @@ sv:
       back_to_limited: Begränsat
       back_to_warning: Varning
       by_domain: Domän
+      content_policies:
+        policies:
+          silence: Gräns
+        policy: Policy
+        reason: Offentlig orsak
+        title: Riktlinjer för innehåll
       delivery:
         all: Alla
         clear: Rensa leverans-fel
@@ -419,6 +431,7 @@ sv:
         title: Moderering
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
+      purge: Rensa
       title: Kända instanser
       total_blocked_by_us: Blockerad av oss
       total_followed_by_them: Följs av dem
@@ -465,6 +478,7 @@ sv:
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
+      today_at: Idag kl. %{time}
     reports:
       account:
         notes:
@@ -595,6 +609,8 @@ sv:
       delete: Radera uppladdad fil
     statuses:
       back_to_account: Tillbaka till kontosidan
+      batch:
+        report: Rapportera
       deleted: Raderad
       media:
         title: Media
@@ -605,19 +621,26 @@ sv:
         delete_statuses: "%{name} raderade %{target}s inlägg"
         disable: "%{name} frös %{target}s konto"
         silence: "%{name} begränsade %{target}s konto"
+      appeal_approved: Överklagad
     system_checks:
       rules_check:
         action: Hantera serverregler
         message_html: Du har inte definierat några serverregler.
     title: Administration
     trends:
+      allow: Tillåt
+      approved: Godkänd
       statuses:
         allow: Godkänn inlägg
         allow_account: Godkänn författare
+      title: Trender
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
   admin_mailer:
+    new_appeal:
+      actions:
+        none: en varning
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
@@ -747,6 +770,8 @@ sv:
     strikes:
       created_at: Daterad
       status: 'Inlägg #%{id}'
+      title_actions:
+        none: Varning
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
@@ -810,6 +835,7 @@ sv:
     delete: Radera
     order_by: Sortera efter
     save_changes: Spara ändringar
+    today: idag
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
@@ -898,6 +924,9 @@ sv:
     carry_mutes_over_text: Den här användaren flyttade från %{acct} som du hade tystat.
     copy_account_note_text: 'Den här användaren flyttade från %{acct}, här var dina föregående anteckningar om dem:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} registrerade sig"
     digest:
       action: Visa alla aviseringar
       body: Här är en kort sammanfattning av de meddelanden du missade sedan ditt senaste besök på %{since}
@@ -905,9 +934,6 @@ sv:
       new_followers_summary:
         one: Du har också förvärvat en ny följare! Jippie!
         other: Du har också fått %{count} nya följare medans du var iväg! Otroligt!
-      subject:
-        one: "1 nytt meddelande sedan ditt senaste besök 🐘"
-        other: "%{count} nya meddelanden sedan ditt senaste besök 🐘"
       title: I din frånvaro...
     favourite:
       body: 'Din status favoriserades av %{name}:'
@@ -935,6 +961,8 @@ sv:
       title: Ny knuff
     status:
       subject: "%{name} publicerade nyss"
+    update:
+      subject: "%{name} redigerade ett inlägg"
   notifications:
     email_events: Händelser för e-postaviseringar
     email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
@@ -1264,14 +1292,17 @@ sv:
       title: Arkivuttagning
     suspicious_sign_in:
       change_password: Ändra ditt lösenord
+      title: En ny inloggning
     warning:
       reason: 'Anledning:'
+      statuses: 'Inlägg citerades:'
       subject:
         disable: Ditt konto %{acct} har blivit fruset
         none: Varning för %{acct}
         silence: Ditt konto %{acct} har blivit begränsat
         suspend: Ditt konto %{acct} har stängts av
       title:
+        delete_statuses: Inlägg borttagna
         disable: Kontot fruset
         none: Varning
         silence: Kontot begränsat
@@ -1307,4 +1338,6 @@ sv:
     delete_confirmation: Är du säker på att du vill ta bort denna säkerhetsnyckel?
     destroy:
       success: Din säkerhetsnyckel har raderats.
+    invalid_credential: Ogiltig säkerhetsnyckel
     not_enabled: Du har inte aktiverat WebAuthn än
+    registered_on: Registrerad den %{date}
