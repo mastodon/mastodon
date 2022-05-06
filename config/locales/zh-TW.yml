@@ -94,7 +94,7 @@ zh-TW:
       destroyed_msg: 成功刪除管理備忘!
     accounts:
       add_email_domain_block: 將電子郵件網域加入黑名單
-      approve: 核准
+      approve: 批准
       approved_msg: 成功審核了%{username} 的新帳戶申請
       are_you_sure: 您確定嗎?
       avatar: 頭像
@@ -257,7 +257,7 @@ zh-TW:
         enable_user: 啓用帳戶
         memorialize_account: 設定成紀念帳戶
         promote_user: 把用戶升級
-        reject_appeal: 回絕申訴
+        reject_appeal: 駁回申訴
         reject_user: 回絕使用者
         remove_avatar_user: 刪除大頭貼
         reopen_report: 重開舉報
@@ -276,7 +276,7 @@ zh-TW:
         update_domain_block: 更新封鎖網域
         update_status: 更新狀態
       actions:
-        approve_appeal_html: "%{name} 批准了來自 %{target} 的審核決定上訴"
+        approve_appeal_html: "%{name} 批准了來自 %{target} 的審核決定申訴"
         approve_user_html: "%{name} 批准了從 %{target} 而來的註冊"
         assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
         change_email_user_html: "%{name} 變更了使用者 %{target} 的電子信箱地址"
@@ -308,7 +308,7 @@ zh-TW:
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳戶"
         promote_user_html: "%{name} 對使用者 %{target} 進行了晉級操作"
-        reject_appeal_html: "%{name} 回絕了來自 %{target} 的審核決定上訴"
+        reject_appeal_html: "%{name} 回絕了來自 %{target} 的審核決定申訴"
         reject_user_html: "%{name} 回絕了從 %{target} 而來的註冊"
         remove_avatar_user_html: "%{name} 移除了 %{target} 的大頭貼"
         reopen_report_html: "%{name} 重新開啟 %{target} 的檢舉"
@@ -843,11 +843,11 @@ zh-TW:
         sensitive: 要將他們的帳號標記為含有敏感內容
         silence: 要限制他們的帳號
         suspend: 要停權他們的帳號
-      body: "%{target} 正在就 %{date} 的 %{action_taken_by} 做出的審核決定提出上訴，該決定是 %{type}。他們寫道："
+      body: "%{target} 正在就 %{date} 的 %{action_taken_by} 做出的審核決定提出申訴，該決定是 %{type}。他們寫道："
       next_steps: 您可以批准申訴以還原審核決定，或是忽略它。
       subject: "%{username} 正在申訴 %{instance} 上的審核決定"
     new_pending_account:
-      body: 以下是新帳戶的詳細資訊。您可以同意或拒絕這項申請。
+      body: 以下是新帳號的詳細資訊。您可以同意或拒絕這項申請。
       subject: '%{instance} 上有新帳戶 (%{username}) 待審核'
     new_report:
       body: "%{reporter} 檢舉了使用者 %{target}"
@@ -1013,15 +1013,17 @@ zh-TW:
       action_taken: 採取的行動
       appeal: 申訴
       appeal_approved: 此警示已成功申訴，不再有效
-      appeal_rejected: 申訴已被回絕
+      appeal_rejected: 申訴已被駁回
       appeal_submitted_at: 申訴已遞交
       appealed_msg: 您的申訴已遞交。若其被批准，您將會被通知。
       appeals:
         submit: 遞交申訴
+      approve_appeal: 批准申訴
       associated_report: 相關報告
       created_at: 過時的
       description_html: 這些是 %{instance} 的管理員向您發送的針對您的帳號採取的措施與警告。
       recipient: 此致
+      reject_appeal: 駁回申訴
       status: '嘟文編號 #%{id}'
       status_removed: 嘟文已從系統中移除
       title: "%{action} 來自 %{date}"
@@ -1035,7 +1037,7 @@ zh-TW:
         suspend: 帳號停權
       your_appeal_approved: 您的申訴已被批准
       your_appeal_pending: 您已遞交申訴
-      your_appeal_rejected: 您的申訴已被回絕
+      your_appeal_rejected: 您的申訴已被駁回
   domain_validator:
     invalid_domain: 並非一個有效域名
   errors:
@@ -1598,9 +1600,9 @@ zh-TW:
       subject: 您在 %{date} 提出的申訴已獲批准
       title: 申訴已批准
     appeal_rejected:
-      explanation: 您在 %{appeal_date} 遞交的針對您帳號的 %{strike_date} 警示的申訴已被回絕。
-      subject: 您在 %{date} 提出的申訴已被回絕
-      title: 申訴被回絕
+      explanation: 您在 %{appeal_date} 遞交的針對您帳號的 %{strike_date} 警示的申訴已被駁回。
+      subject: 您在 %{date} 提出的申訴已被駁回
+      title: 申訴被駁回
     backup_ready:
       explanation: 你要求的 Mastodon 帳戶完整備份檔案現已就緒，可供下載!
       subject: 你的備份檔已可供下載
