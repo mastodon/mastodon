@@ -348,16 +348,6 @@ export default function compose(state = initialState, action) {
     return state.set('is_changing_upload', true);
   case COMPOSE_REPLY_CANCEL:
   case COMPOSE_RESET:
-    return state.withMutations(map => {
-      map.set('in_reply_to', null);
-      map.set('text', '');
-      map.set('spoiler', false);
-      map.set('spoiler_text', '');
-      map.set('privacy', state.get('default_privacy'));
-      map.set('poll', null);
-      map.set('federation', state.get('default_federation'));
-      map.set('idempotencyKey', uuid());
-    });
   case COMPOSE_SUBMIT_SUCCESS:
     return clearAll(state);
   case COMPOSE_SUBMIT_FAIL:

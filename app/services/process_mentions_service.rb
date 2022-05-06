@@ -65,7 +65,7 @@ class ProcessMentionsService < BaseService
 
   def assign_mentions!
     @current_mentions.each do |mention|
-      mention.save if mention.new_record? && ()
+      mention.save if mention.new_record?
     end
 
     # If previous mentions are no longer contained in the text, convert them
