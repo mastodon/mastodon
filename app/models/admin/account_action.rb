@@ -92,6 +92,10 @@ class Admin::AccountAction
       text: text_for_warning,
       status_ids: status_ids
     )
+
+    # A log entry is only interesting if the warning contains
+    # custom text from someone. Otherwise it's just noise.
+    log_action(:create, @warning) if @warning.text.present?
   end
 
   def process_reports!
