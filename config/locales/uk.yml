@@ -171,12 +171,12 @@ uk:
       not_subscribed: Не підписані
       pending: Відгук в очікуванні
       perform_full_suspension: Призупинити
-      previous_strikes: Попередні скарги
+      previous_strikes: Попередні попередження
       previous_strikes_description_html:
-        one: У цього облікового запису є <strong>одна</strong> скарга.
-        few: У цього облікового запису є <strong>%{count}</strong> скарги.
-        many: У цього облікового запису є <strong>%{count}</strong> скарг.
-        other: У цього облікового запису є <strong>%{count}</strong> скарг.
+        one: У цього облікового запису є <strong>одне</strong> попередження.
+        few: У цього облікового запису є <strong>%{count}</strong> попередження.
+        many: У цього облікового запису є <strong>%{count}</strong> попереджень.
+        other: У цього облікового запису є <strong>%{count}</strong> попереджень.
       promote: Просунути
       protocol: Протокол
       public: Публічний
@@ -323,6 +323,7 @@ uk:
         enable_user_html: "%{name} вмикає вхід для користувача %{target}"
         memorialize_account_html: "%{name} перетворює обліковий запис %{target} на сторінку пам'яті"
         promote_user_html: "%{name} підвищує користувача %{target}"
+        reject_appeal_html: "%{name} відхилили звернення на оскарження рішення від %{target}"
         reject_user_html: "%{name} відхиляє реєстрацію від %{target}"
         remove_avatar_user_html: "%{name} прибирає аватар %{target}"
         reopen_report_html: "%{name} знову відкриває звіт %{target}"
@@ -483,6 +484,7 @@ uk:
         create: Додати домен
         resolve: Розв'язати домен
         title: Нове блокування поштового домену
+      no_email_domain_block_selected: Жодні налаштування блокування доменів електронної пошти не було змінено, оскільки жоден з них не було обрано
       resolved_through_html: Розв'язано через %{domain}
       title: Чорний список поштових доменів
     follow_recommendations:
@@ -839,6 +841,7 @@ uk:
           many: Використали %{count} людей за минулий тиждень
           other: Використали %{count} людей за минулий тиждень
       title: Популярні
+      trending: Популярне
     warning_presets:
       add_new: Додати новий
       delete: Видалити
@@ -1408,6 +1411,7 @@ uk:
     profile: Профіль
     relationships: Підписки та підписники
     statuses_cleanup: Автовидалення допису
+    strikes: Попередження модераторів
     two_factor_authentication: Двофакторна авторизація
     webauthn_authentication: Ключі безпеки
   statuses:
