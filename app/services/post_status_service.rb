@@ -63,11 +63,13 @@ class PostStatusService < BaseService
   end
 
   def process_status!
+    @status = @account.statuses.new(status_attributes)
+    process_mentions_service.call(@status, save_records: false)
+
     # The following transaction block is needed to wrap the UPDATEs to
     # the media attachments when the status is created
-
     ApplicationRecord.transaction do
-      @status = @account.statuses.create!(status_attributes)
+      @status.save!
     end
   end
 
@@ -93,7 +95,6 @@ class PostStatusService < BaseService
 
   def postprocess_status!
     process_hashtags_service.call(@status)
-    process_mentions_service.call(@status)
     Trends.tags.register(@status)
     LinkCrawlWorker.perform_async(@status.id)
     DistributionWorker.perform_async(@status.id)
