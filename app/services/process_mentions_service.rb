@@ -3,10 +3,10 @@
 class ProcessMentionsService < BaseService
   include Payloadable
 
-  # Scan status for mentions and fetch remote mentioned users, create
-  # local mention pointers, send Salmon notifications to mentioned
-  # remote users
+  # Scan status for mentions and fetch remote mentioned users,
+  # and create local mention pointers
   # @param [Status] status
+  # @param [Boolean] save_records Whether to save records in database
   def call(status, save_records: true)
     @status = status
     @save_records = save_records
