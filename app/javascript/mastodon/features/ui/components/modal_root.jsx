@@ -13,6 +13,7 @@ import AudioModal from './audio_modal';
 import ConfirmationModal from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
 import ImageModal from './image_modal';
+import UnexpectedMentionsModal from './unexpected_mentions_modal';
 import {
   MuteModal,
   BlockModal,
@@ -48,6 +49,7 @@ const MODAL_COMPONENTS = {
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
+  'UNEXPECTED_MENTIONS': () => Promise.resolve({ default: UnexpectedMentionsModal }),
 };
 
 export default class ModalRoot extends React.PureComponent {
