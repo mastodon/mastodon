@@ -148,7 +148,60 @@ export function directCompose(account, routerHistory) {
   };
 }
 
-export function submitCompose(routerHistory) {
+function resolveMentions(state, text, expectedMentions, unresolvedMentions) {
+  const mentionReSource = '@([a-z0-9_]+(?:[a-z0-9_\\.-]+[a-z0-9_]+)?(?:@[\\p{L}\\p{N}_-]+\\.[\\p{L}\\p{N}]{2,})?)';
+  const mentionRe = new RegExp(mentionReSource, 'gui');
+  const matcherRe = new RegExp(`^((${mentionReSource})[^\\S\\r\\n]+)*(${mentionReSource})`, 'gui');
+  const leadingMentionsText = text.match(matcherRe);
+
+  if (leadingMentionsText) {
+    for (const match of leadingMentionsText[0].matchAll(mentionRe)) {
+      const acct = match[1];
+
+      let accountId = state.getIn(['accounts_map', acct]);
+
+      if (!accountId && !unresolvedMentions.includes(acct)) {
+        unresolvedMentions.push(acct);
+      }
+
+      if (accountId && !expectedMentions.includes(accountId)) {
+        expectedMentions.push(accountId);
+      }
+    }
+  }
+};
+
+function handleUnexpectedMentions(routerHistory, extraAccounts, expectedMentions, unresolvedMentions) {
+  return (dispatch, getState) => {
+    // It is possible that some accounts failed to resolve due to case-sensitive comparison.
+    // Check whether this may be the case
+    for (const acct of unresolvedMentions) {
+      const index = extraAccounts.findIndex((account) => {
+        //TODO: handle IDN
+        return (acct.toLowerCase() === account.acct.toLowerCase());
+      });
+
+      if (index >= 0) {
+        expectedMentions.push(extraAccounts[index].id);
+        extraAccounts.splice(index, 1);
+      }
+    }
+
+    if (extraAccounts.length === 0) {
+      dispatch(submitCompose(routerHistory, expectedMentions));
+    } else {
+      //TODO: rewrite and move elsewhere
+      dispatch(openModal('UNEXPECTED_MENTIONS', {
+        extraAccounts: extraAccounts,
+        onConfirm: () => {
+          dispatch(submitCompose(routerHistory, expectedMentions.concat(extraAccounts.map((account) => account.id))));
+        },
+      }));
+    }
+  };
+};
+
+export function submitCompose(routerHistory, acceptExtraMentions = null) {
   return function (dispatch, getState) {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
@@ -156,6 +209,18 @@ export function submitCompose(routerHistory) {
 
     if ((!status || !status.length) && media.size === 0) {
       return;
+    }
+
+    // When writing a private or direct status, warn the user if they mention someone in the middle of the
+    // status.
+    let expectedMentions = acceptExtraMentions;
+    let unresolvedMentions = [];
+    if (statusId === null && ['private', 'direct'].includes(getState().getIn(['compose', 'privacy']))) {
+      if (!expectedMentions) {
+        expectedMentions = [];
+      }
+
+      resolveMentions(getState(), status, expectedMentions, unresolvedMentions);
     }
 
     dispatch(submitComposeRequest());
@@ -193,6 +258,7 @@ export function submitCompose(routerHistory) {
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        allowed_mentions: expectedMentions,
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -229,7 +295,14 @@ export function submitCompose(routerHistory) {
         insertIfOnline(`account:${response.data.account.id}`);
       }
     }).catch(function (error) {
-      dispatch(submitComposeFail(error));
+      if (error.response && error.response.status === 422 && error.response.data.unexpected_accounts) {
+        let extraAccounts = error.response.data.unexpected_accounts;
+        dispatch(importFetchedAccounts(extraAccounts));
+        dispatch(submitComposeFail(error, true));
+        dispatch(handleUnexpectedMentions(routerHistory, extraAccounts, expectedMentions, unresolvedMentions));
+      } else {
+        dispatch(submitComposeFail(error));
+      }
     });
   };
 }
@@ -247,10 +320,11 @@ export function submitComposeSuccess(status) {
   };
 }
 
-export function submitComposeFail(error) {
+export function submitComposeFail(error, skipAlert = false) {
   return {
     type: COMPOSE_SUBMIT_FAIL,
     error: error,
+    skipAlert: skipAlert,
   };
 }
 

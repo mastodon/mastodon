@@ -5287,6 +5287,12 @@ a.status-card.compact:hover {
   width: 480px;
   position: relative;
   flex-direction: column;
+
+  .item-list {
+    text-align: start;
+    padding: 10px;
+    list-style: disc inside;
+  }
 }
 
 .actions-modal {
