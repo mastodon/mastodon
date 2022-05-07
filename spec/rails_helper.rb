@@ -13,7 +13,6 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 WebMock.disable_net_connect!(allow: Chewy.settings[:host])
-Redis.current = Redis::Namespace.new("mastodon_test#{ENV['TEST_ENV_NUMBER']}", redis: Redis.current)
 Sidekiq::Testing.inline!
 Sidekiq.logger = nil
 
@@ -44,6 +43,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Paperclip::Shoulda::Matchers
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include Redisable
 
   config.before :each, type: :feature do
     https = ENV['LOCAL_HTTPS'] == 'true'
@@ -60,9 +60,7 @@ RSpec.configure do |config|
 
   config.after :each do
     Rails.cache.clear
-
-    keys = Redis.current.keys
-    Redis.current.del(keys) if keys.any?
+    redis.del(redis.keys)
   end
 end
 

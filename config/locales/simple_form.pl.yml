@@ -27,6 +27,8 @@ pl:
         scheduled_at: Pozostaw puste, aby opublikować ogłoszenie natychmiastowo
         starts_at: Nieobowiązkowe. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
         text: Możesz używać składni wpisu. Pamiętaj o tym, ile miejsca zajmie ogłoszenie na ekranie użytkownika
+      appeal:
+        text: Możesz wysłać odwołanie do ostrzeżenia tylko raz
       defaults:
         autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
         avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
@@ -35,8 +37,7 @@ pl:
         current_password: Ze względów bezpieczeństwa wprowadź hasło obecnego konta
         current_username: Aby potwierdzić, wprowadź nazwę użytkownika obecnego konta
         digest: Wysyłane tylko po długiej nieaktywności, jeżeli w tym czasie otrzymaleś jakąś wiadomość bezpośrednią
-        discoverable: Katalog profilu jest jednym ze sposobów, dzięki którym Twoje konto dotrze do szerszego grona
-        discoverable_no_directory: Pozwól na odkrywanie Twojego konta przez nieznajomych poprzez rekomendacje i inne funkcje
+        discoverable: Pozwala na odkrywanie twojego konta przez nieznajomych poprzez rekomendacje, popularne wpisy i inne funkcje
         email: Otrzymasz e-mail potwierdzający
         fields: Możesz ustawić maksymalnie 4 niestandardowe pola wyświetlane jako tabela na Twoim profilu
         header: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
@@ -48,10 +49,11 @@ pl:
         phrase: Zostanie wykryte nawet, gdy znajduje się za ostrzeżeniem o zawartości
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
         setting_aggregate_reblogs: Nie pokazuj nowych podbić dla wpisów, które zostały niedawno podbite (dotyczy tylko nowo otrzymanych podbić)
+        setting_always_send_emails: Powiadomienia e-mail zwykle nie będą wysyłane, gdy używasz Mastodon
         setting_default_sensitive: Wrażliwe multimedia są domyślnie schowane i mogą być odkryte kliknięciem
-        setting_display_media_default: Ukrywaj zawartość oznaczoną jako wrażliwa
-        setting_display_media_hide_all: Zawsze oznaczaj zawartość multimedialną jako wrażliwą
-        setting_display_media_show_all: Nie ukrywaj zawartości multimedialnej oznaczonej jako wrażliwa
+        setting_display_media_default: Ukrywaj zawartość multimedialną oznaczoną jako wrażliwa
+        setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
+        setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną
         setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
@@ -62,7 +64,7 @@ pl:
       domain_allow:
         domain: Ta domena będzie mogła pobierać dane z serwera, a dane przychodzące z niej będą przetwarzane i przechowywane
       email_domain_block:
-        domain: Może to być nazwa domeny pojawiająca się w adresu e-mail, rekord MX na który rozwiązuje domena lub IP serwera na który rozwiązuje rekord MX. Będą one wykrywane i odrzucane przy rejestracji.
+        domain: To może być nazwa domeny, która pojawia się w adresie e-mail lub rekordzie MX, którego używa. Zostaną one sprawdzone przy rejestracji.
         with_dns_records: Zostanie wykonana próba rozwiązania rekordów DNS podanej domeny, a wyniki również zostaną dodane na czarną listę
       featured_tag:
         name: 'Sugerujemy użycie jednego z następujących:'
@@ -119,6 +121,8 @@ pl:
         scheduled_at: Zaplanuj publikację
         starts_at: Początek wydarzenia
         text: Ogłoszenie
+      appeal:
+        text: Wyjaśnij, dlaczego ta decyzja powinna zostać cofnięta
       defaults:
         autofollow: Zapraszaj do śledzenia swojego konta
         avatar: Awatar
@@ -148,6 +152,7 @@ pl:
         phrase: Słowo kluczowe lub fraza
         setting_advanced_layout: Włącz zaawansowany interfejs użytkownika
         setting_aggregate_reblogs: Grupuj podbicia na osiach czasu
+        setting_always_send_emails: Zawsze wysyłaj powiadomienia e-mail
         setting_auto_play_gif: Automatycznie odtwarzaj animowane GIFy
         setting_boost_modal: Pytaj o potwierdzenie przed podbiciem
         setting_crop_images: Przycinaj obrazki w nierozwiniętych wpisach do 16x9
@@ -197,6 +202,7 @@ pl:
           sign_up_requires_approval: Ogranicz rejestracje
         severity: Reguła
       notification_emails:
+        appeal: Ktoś odwołuje się od decyzji moderatora
         digest: Wysyłaj podsumowania e-mailem
         favourite: Powiadamiaj mnie e-mailem, gdy ktoś polubi mój wpis
         follow: Powiadamiaj mnie e-mailem, gdy ktoś zacznie mnie śledzić
@@ -204,8 +210,8 @@ pl:
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis
-        report: Powiadamiaj mnie e-mailem, gdy zostanie utworzone nowe zgłoszenie
-        trending_tag: Nieprzejrzany hashtag jest na czasie
+        report: Nowy raport został wysłany
+        trending_tag: Nowe popularne wymagają przeglądu
       rule:
         text: Zasada
       tag:

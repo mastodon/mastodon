@@ -1,0 +1,83 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Update 'VARIANT' to pick a version of Ruby: 3, 3.1, 3.0, 2, 2.7, 2.6
+        # Append -bullseye or -buster to pin to an OS version.
+        # Use -bullseye variants on local arm64/Apple Silicon.
+        VARIANT: '3.0-bullseye'
+        # Optional Node.js version to install
+        NODE_VERSION: '14'
+    volumes:
+      - ..:/workspaces/mastodon:cached
+    environment:
+      RAILS_ENV: development
+      NODE_ENV: development
+
+      REDIS_HOST: redis
+      REDIS_PORT: '6379'
+      DB_HOST: db
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_PORT: '5432'
+      ES_ENABLED: 'true'
+      ES_HOST: es
+      ES_PORT: '9200'
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+    networks:
+      - external_network
+      - internal_network
+    user: vscode
+
+  db:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    networks:
+      - internal_network
+
+  redis:
+    image: redis:6-alpine
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    networks:
+      - internal_network
+
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.2
+    restart: unless-stopped
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      cluster.name: es-mastodon
+      discovery.type: single-node
+      bootstrap.memory_lock: 'true'
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    networks:
+      - internal_network
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+volumes:
+  postgres-data:
+  redis-data:
+  es-data:
+
+networks:
+  external_network:
+  internal_network:
+    internal: true

@@ -90,6 +90,20 @@
         .column-4 {
           display: none;
         }
+
+        .column-2 h4 {
+          display: none;
+        }
+      }
+    }
+
+    .legal-xs {
+      display: none;
+      text-align: center;
+      padding-top: 20px;
+
+      @media screen and (max-width: $no-gap-breakpoint) {
+        display: block;
       }
     }
 
@@ -105,7 +119,8 @@
       }
     }
 
-    ul a {
+    ul a,
+    .legal-xs a {
       text-decoration: none;
       color: lighten($ui-base-color, 34%);
 

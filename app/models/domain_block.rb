@@ -30,6 +30,14 @@ class DomainBlock < ApplicationRecord
   scope :with_user_facing_limitations, -> { where(severity: [:silence, :suspend]).or(where(reject_media: true)) }
   scope :by_severity, -> { order(Arel.sql('(CASE severity WHEN 0 THEN 1 WHEN 1 THEN 2 WHEN 2 THEN 0 END), reject_media, domain')) }
 
+  def policies
+    if suspend?
+      [:suspend]
+    else
+      [severity.to_sym, reject_media? ? :reject_media : nil, reject_reports? ? :reject_reports : nil].reject { |policy| policy == :noop || policy.nil? }
+    end
+  end
+
   class << self
     def suspend?(domain)
       !!rule_for(domain)&.suspend?

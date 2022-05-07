@@ -67,7 +67,6 @@
     media: Media
     moved_html: "%{name} har flyttet til %{new_profile_link}:"
     network_hidden: Denne informasjonen er ikke tilgjengelig
-    never_active: Aldri
     nothing_here: Det er ingenting her!
     people_followed_by: Folk som %{name} følger
     people_who_follow: Folk som følger %{name}
@@ -92,12 +91,10 @@
     account_moderation_notes:
       create: Lag
       created_msg: Moderasjonsnotat laget uten problem!
-      delete: Slett
       destroyed_msg: Moderasjonsnotat slettet uten problem!
     accounts:
       add_email_domain_block: Svartelist E-postdomenet
       approve: Godkjenn
-      approve_all: Godkjenn alle
       approved_msg: Godkjent %{username} sin registreringsapplikasjon
       are_you_sure: Er du sikker?
       avatar: Profilbilde
@@ -151,7 +148,6 @@
         active: Aktive
         all: Alle
         pending: Avventer
-        silenced: Målbundet
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsnotater
@@ -169,7 +165,6 @@
       redownload: Oppdater avatar
       redownloaded_msg: Oppdatert %{username} sin profil fra opprinnelse
       reject: Avslå
-      reject_all: Avslå alle
       rejected_msg: Vellykket avvist %{username} sin registreringsapplikasjon
       remove_avatar: Fjern profilbilde
       remove_header: Fjern overskrift
@@ -194,7 +189,6 @@
       security_measures:
         only_password: Bare passord
         password_and_2fa: Passord og 2FA
-        password_and_sign_in_token: Passord og e-post token
       sensitized: Merket som følsom
       shared_inbox_url: Delt Innboks URL
       show:
@@ -207,7 +201,6 @@
       suspended: Suspendert
       suspension_irreversible: Dataene fra denne kontoen har blitt ikke reverserbart slettet. Du kan oppheve suspenderingen av kontoen for å gjøre den brukbart, men den vil ikke gjenopprette alle data den tidligere har hatt.
       suspension_reversible_hint_html: Kontoen har blitt suspendert, og dataene vil bli fullstendig fjernet den %{date}. Frem til da kan kontoen gjenopprettes uten negative effekter. Hvis du ønsker å fjerne alle kontoens data umiddelbart, kan du gjøre det nedenfor.
-      time_in_queue: Venter i kø %{time}
       title: Kontoer
       unconfirmed_email: Ubekreftet E-postadresse
       undo_silenced: Angre målbinding
@@ -222,6 +215,7 @@
       whitelisted: Hvitelistet
     action_logs:
       action_types:
+        approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
         change_email_user: Endre brukerens E-postadresse
         confirm_user: Bekreft brukeren
@@ -243,6 +237,7 @@
         enable_custom_emoji: Skru på tilpassede emojier
         enable_user: Aktiver bruker
         promote_user: Promoter bruker
+        reject_user: Avvis bruker
         remove_avatar_user: Fjern Avatar
         reopen_report: Gjenåpne rapporten
         reset_password_user: Tilbakestill passord
@@ -254,11 +249,13 @@
         update_custom_emoji: Oppdater tilpasset Emoji
         update_status: Oppdater statusen
       actions:
+        approve_user_html: "%{name} godkjente registrering fra %{target}"
         create_custom_emoji_html: "%{name} lastet opp ny emoji %{target}"
         create_domain_allow_html: "%{name} tillatt føderasjon med domenet %{target}"
         create_domain_block_html: "%{name} blokkert domene %{target}"
         create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
+        reject_user_html: "%{name} avslo registrering fra %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
       deleted_status: "(statusen er slettet)"
       empty: Ingen loggføringer ble funnet.
@@ -299,7 +296,6 @@
       enable: Aktivere
       enabled: Skrudd på
       enabled_msg: Aktiverte emojien uten problem
-      image_hint: PNG opp til 50KB
       list: Før opp
       listed: Oppførte
       new:
@@ -321,15 +317,6 @@
       media_storage: Medialagring
       new_users: nye brukere
       opened_reports: rapporter åpnet
-      pending_reports_html:
-        one: "<strong>1</strong> ventende rapport"
-        other: "<strong>%{count}</strong> ventende rapporter"
-      pending_tags_html:
-        one: "<strong>1</strong> ventende hashtag"
-        other: "<strong>%{count}</strong> ventende hashtags"
-      pending_users_html:
-        one: "<strong>1</strong> ventende bruker"
-        other: "<strong>%{count}</strong> ventende brukere"
       resolved_reports: rapporter løst
       software: Programvare
       sources: Kilder for registreringer
@@ -369,30 +356,13 @@
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       reject_reports: Avslå rapporter
       reject_reports_hint: Ignorer alle rapporter som kommer fra dette domenet. Irrelevant for utvisninger
-      rejecting_media: avviser mediafiler
-      rejecting_reports: avslår rapporter
-      severity:
-        silence: stilnet
-        suspend: suspendert
-      show:
-        affected_accounts:
-          one: En konto i databasen påvirket
-          other: "%{count} kontoer i databasen påvirket"
-        retroactive:
-          silence: Avmålbind alle eksisterende kontoer fre dette domenet
-          suspend: Avutvis alle eksisterende kontoer fra dette domenet
-        title: Angre domeneblokkering for %{domain}
-        undo: Angre
       undo: Angre
       view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Fjern
-      destroyed_msg: E-postdomenet har blitt fjernet fra blokkeringslisten uten problemer
       domain: Domene
-      empty: Ingen e-mail-domener er sortelistet på dette tidspunkt.
-      from_html: fra %{domain}
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
@@ -415,13 +385,8 @@
         clear: Feil ved fjerning
         restart: Starte levering
         stop: Stopp levering
-        title: Levering
         unavailable: Ikke tilgjengelig
-        warning: Advarsel
       delivery_available: Levering er tilgjengelig
-      known_accounts:
-        one: "%{count} kjent konto"
-        other: "%{count} kjente kontoer"
       moderation:
         all: Alt
         limited: Begrenset
@@ -457,8 +422,6 @@
         title: Opprett ny IP-regel
       no_ip_block_selected: Ingen IP-regler ble endret da ingen ble valgt
       title: IP-regler
-    pending_accounts:
-      title: Avventende brukere (%{count})
     relationships:
       title: "%{acct} sitt forhold"
     relays:
@@ -485,9 +448,6 @@
         notes:
           one: "%{count} notis"
           other: "%{count} notiser"
-        reports:
-          one: "%{count} rapport"
-          other: "%{count} rapporter"
       action_taken_by: Handling utført av
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
@@ -617,15 +577,9 @@
       destroyed_msg: Vellykket sletting av sideopplasting!
     statuses:
       back_to_account: Tilbake til kontosiden
-      batch:
-        delete: Slett
-        nsfw_off: NSFW AV
-        nsfw_on: NSFW PÅ
       deleted: Slettet
-      failed_to_execute: Utføring mislyktes
       media:
         title: Media
-      no_media: Ingen media
       no_status_selected: Ingen statuser ble endret da ingen ble valgt
       title: Kontostatuser
       with_media: Med media
@@ -636,18 +590,7 @@
         action: Behandle serverregler
         message_html: Du har ikke definert noen serverregler.
     tags:
-      accounts_today: Ulike brukere i dag
-      accounts_week: Unike brukstilfeller denne uken
-      last_active: Senest aktiv
-      most_popular: Mest populært
-      most_recent: Nyligst
-      name: Emneknagg
       review: Gjennomgangsstatus
-      reviewed: Gjennomgått
-      title: Emneknagger
-      trending_right_now: Trender akkurat nå
-      unique_uses_today: "%{count} legger ut om det i dag"
-      unreviewed: Ikke gjennomgått
     title: Administrasjon
     warning_presets:
       add_new: Legg til ny
@@ -660,8 +603,6 @@
       body: "%{reporter} har rapportert %{target}"
       body_remote: Noen fra %{domain} har rapportert %{target}
       subject: Ny rapport for %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
   aliases:
     add_new: Lag et alias
     empty: Du har ingen aliaser.
@@ -731,7 +672,6 @@
     status:
       account_status: Kontostatus
       confirming: Venter på at e-postbekreftelsen er fullført.
-      functional: Kontoen din er fullt operativt.
       pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
     trouble_logging_in: Har du problemer med å logge på?
@@ -856,26 +796,10 @@
     delete: Slett
     order_by: Sorter etter
     save_changes: Lagre endringer
+    today: i dag
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
-  identity_proofs:
-    active: Aktive
-    authorize: Ja, autoriser
-    authorize_connection_prompt: Vil du autorisere denne kryptografiske forbindelsen?
-    errors:
-      keybase:
-        verification_failed: Keybase kjenner ikke igjen denne sjetongen som en signatur for Keybase-brukeren %{kb_username}. Vennligst prøv igjen gjennom Keybase.
-      wrong_user: Kan ikke lage et bevis for %{proving} mens du er logget på som %{current}. Logg på som %{proving} og prøv igjen.
-    explanation_html: Her kan du kryptografisk koble til dine andre enheter, f.eks. en Keybase-profil. Dette lar andre folk sende deg krypterte meldinger og stole på innhold som du sender dem.
-    i_am_html: Jeg er %{username} på %{service}.
-    identity: Identitet
-    inactive: Inaktive
-    publicize_checkbox: 'Og tut ut dette:'
-    publicize_toot: 'Det er bevist! Jeg er %{username} på %{service}: %{url}'
-    remove: Fjern bevis fra kontoen
-    status: Verifiseringsstatus
-    view_proof: Se bevis
   imports:
     modes:
       merge: Slå sammen
@@ -968,9 +892,6 @@
       new_followers_summary:
         one: I tillegg har du fått en ny følger mens du var borte. Hurra!
         other: I tillegg har du har fått %{count} nye følgere mens du var borte! Imponerende!
-      subject:
-        one: "1 ny hendelse siden ditt siste besøk \U0001F418"
-        other: "%{count} nye hendelser siden ditt siste besøk \U0001F418"
       title: I ditt fravær…
     favourite:
       body: 'Statusen din ble likt av %{name}:'
@@ -1135,7 +1056,6 @@
     edit_profile: Endre profil
     export: Dataeksport
     featured_tags: Utvalgte emneknagger
-    identity_proofs: Identitetsbevis
     import: Importér
     import_and_export: Importer og eksporter
     migrate: Kontomigrering
@@ -1161,13 +1081,12 @@
     content_warning: 'Innholdsadvarsel: %{warning}'
     errors:
       in_reply_not_found: Posten du prøver å svare ser ikke ut til eksisterer.
-    language_detection: Oppdag språk automatisk
     open_in_web: Åpne i nettleser
     over_character_limit: grense på %{max} tegn overskredet
     pin_errors:
+      direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
       limit: Du har allerede festet det maksimale antall tuter
       ownership: Kun egne tuter kan festes
-      private: Kun offentlige tuter kan festes
       reblog: En fremheving kan ikke festes
     poll:
       total_people:
@@ -1307,31 +1226,15 @@
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
-    sign_in_token:
-      details: 'Her er detaljene om forsøket:'
-      explanation: 'Vi oppdaget et forsøk på å logge på kontoen fra en ukjent IP-adresse. Hvis dette er deg, vennligst skriv inn sikkerhetskoden nedenfor på påloggingssiden:'
-      further_actions: 'Hvis dette ikke var deg, vennligst endre passordet ditt og aktivere to-faktor autentisering på kontoen din. Du kan gjøre det her:'
-      subject: Bekreft forsøk på å logge inn
-      title: Påloggingsforsøk
     warning:
-      explanation:
-        disable: Mens kontoen din er fryst, forblir dine kontodata intakt, men du kan ikke utføre noen handlinger før den har blitt tint opp.
-        sensitive: De opplastede mediefilene og linket vil bli behandlet som sensitive.
-        silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
-        suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
-      get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
-      review_server_policies: Gjennomgå serverretningslinjer
-      statuses: 'Spesifikt for å:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
         none: Advarsel for %{acct}
-        sensitive: Din konto %{acct} medier har blitt merket som følsom
         silence: Kontoen din, %{acct}, har blitt begrenset
         suspend: Kontoen din, %{acct}, har blitt suspendert
       title:
         disable: Kontoen er fryst
         none: Advarsel
-        sensitive: Mediet ditt er markert som følsom
         silence: Kontoen er begrenset
         suspend: Kontoen er suspendert
     welcome:
@@ -1353,13 +1256,10 @@
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer
-    generic_access_help_html: Problemer med å få tilgang til din konto? Du kan kontakte %{email} for assistanse
     invalid_otp_token: Ugyldig to-faktorkode
-    invalid_sign_in_token: Ugyldig sikkerhetskode
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     seamless_external_login: Du er logget inn via en ekstern tjeneste, så passord og e-post innstillinger er ikke tilgjengelige.
     signed_in_as: 'Innlogget som:'
-    suspicious_sign_in_confirmation: Du ser ikke ut til å ha logget inn fra denne enheten før, og du har ikke logget inn en stund, så vi sender en sikkerhetskode til din e-postadresse for å bekrefte at det er deg.
   verification:
     explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
     verification: Bekreftelse

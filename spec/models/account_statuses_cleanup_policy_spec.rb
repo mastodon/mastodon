@@ -495,7 +495,7 @@ RSpec.describe AccountStatusesCleanupPolicy, type: :model do
       end
 
       it 'returns only normal statuses for deletion' do
-        expect(subject.pluck(:id).sort).to eq [very_old_status.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id].sort
+        expect(subject.pluck(:id)).to match_array([very_old_status.id, faved4.id, faved5.id, reblogged4.id, reblogged5.id])
       end
     end
 

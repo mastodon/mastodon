@@ -29,7 +29,6 @@ cy:
         current_password: At ddibenion diogelwch, nodwch gyfrinair y cyfrif cyfredol
         current_username: I gadarnhau, nodwch enw defnyddiwr y cyfrif cyfredol
         digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
-        discoverable: Mae'r cyfeirlyfr proffil yn ffordd arall y gall eich cyfrif gyrraedd cynulleidfa ehangach
         email: Byddwch yn derbyn e-bost i gadarnhau
         fields: Mae modd i chi arddangos hyd at 4 eitem fel tabl ar eich proffil
         header: PNG, GIF neu JPG. %{size} ar y mwyaf. Ceith ei israddio i %{dimensions}px
@@ -55,7 +54,7 @@ cy:
       domain_allow:
         domain: Bydd y parth hwn yn gallu nôl data o'r gweinydd hwn a bydd data sy'n dod i mewn ohono yn cael ei brosesu a'i storio
       email_domain_block:
-        domain: Gall hyn fod yr enw parth sy'n dangos yn yr ebost, y cofnod MX mae'r parth yn adfer i, neu'r cyfeiriad IP o'r gweinydd mae'r cofnod MX yn adfer i. Bydd y rhain yn cael eu gwirio wrth i defnyddiwr cofrestru, a chaiff y cofrestriad ei wrthod.
+        domain: Gall hwn fod yr enw parth sy'n ymddangos yn y cyfeiriad e-bost neu'r cofnod MX y mae'n ei ddefnyddio. Byddant yn cael eu gwirio wrth gofrestru.
         with_dns_records: Bydd ceisiad i adfer cofnodau DNS y parth penodol yn cael ei wneud, a bydd y canlyniadau hefyd yn cael ei gosbrestru
       featured_tag:
         name: 'Efallai hoffech defnyddio un o''r rhain:'
@@ -174,8 +173,9 @@ cy:
         mention: Anfon e-bost pan mae rhywun yn eich crybwyll
         pending_account: Anfon ebost pan mae cyfrif newydd angen adolygiad
         reblog: Anfon e-bost pan mae rhywun yn bŵstio eich statws
-        report: Anfon e-bost pan y cyflwynir adroddiad newydd
-        trending_tag: Anfonwch e-bost pan fydd hashnod heb ei adolygu yn tueddu
+        report: Cyflwynwyd adroddiad newydd
+      rule:
+        text: Rheol
       tag:
         listable: Gadewch i'r hashnod hwn ymddangos mewn chwiliadau ac ar y cyfeiriadur proffil
         name: Hashnod
@@ -184,5 +184,6 @@ cy:
     'no': Na
     recommended: Argymhellwyd
     required:
+      mark: "*"
       text: gofynnol
     'yes': Ie

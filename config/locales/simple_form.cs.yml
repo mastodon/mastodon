@@ -27,6 +27,8 @@ cs:
         scheduled_at: Pro okamžité zveřejnění ponechte prázdné
         starts_at: Volitelné. Jen pokud je oznámení vázáno na konkrétní časové období
         text: Můžete použít syntax příspěvků. Mějte prosím na paměti, kolik prostoru oznámení zabere na obrazovce uživatele
+      appeal:
+        text: Proti prohřešku se můžete odvolat jen jednou
       defaults:
         autofollow: Lidé, kteří se zaregistrují na základě pozvánky, vás budou automaticky sledovat
         avatar: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
@@ -35,8 +37,7 @@ cs:
         current_password: Z bezpečnostních důvodů prosím zadejte heslo současného účtu
         current_username: Potvrďte prosím tuto akci zadáním uživatelského jména aktuálního účtu
         digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdrželi osobní zprávy
-        discoverable: Umožnit objevení vašeho účtu neznámými uživateli skrze doporučení, adresář profilů a další funkce
-        discoverable_no_directory: Umožnit objevení vašeho účtu neznámými uživateli skrze doporučení a další funkce
+        discoverable: Umožnit, aby mohli váš účet objevit neznámí lidé pomocí doporučení, trendů a dalších funkcí
         email: Bude vám poslán potvrzovací e-mail
         fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
         header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
@@ -48,6 +49,7 @@ cs:
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v textu příspěvku či varování o obsahu
         scopes: Která API bude aplikaci povoleno používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
         setting_aggregate_reblogs: Nezobrazovat nové boosty pro příspěvky, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
+        setting_always_send_emails: Jinak nebudou e-mailové notifikace posílány, když Mastodon aktivně používáte
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
         setting_display_media_default: Skrývat média označená jako citlivá
         setting_display_media_hide_all: Vždy skrývat média
@@ -62,7 +64,7 @@ cs:
       domain_allow:
         domain: Tato doména bude moci stahovat data z tohoto serveru a příchozí data z ní budou zpracována a uložena
       email_domain_block:
-        domain: Toto může být název domény v e-mailové adresy, její MX záznam nebo IP adresa odpovídající MX záznamu. Při registraci uživatele dojde k jejich kontrole a registrace bude zamítnuta.
+        domain: Toto může být doménové jméno, které je v e-mailové adrese nebo MX záznam, který používá. Budou zkontrolovány při registraci.
         with_dns_records: Dojde k pokusu o překlad DNS záznamů dané domény a výsledky budou rovněž zablokovány
       featured_tag:
         name: 'Nejspíš budete chtít použít jeden z těchto:'
@@ -107,11 +109,11 @@ cs:
         text: Vlastní varování
         type: Akce
         types:
-          disable: Deaktivovat přihlašování
+          disable: Zmrazit
           none: Nic nedělat
           sensitive: Citlivý
-          silence: Ztišit
-          suspend: Pozastavit účet a nenávratně smazat jeho data
+          silence: Omezit
+          suspend: Pozastavit
         warning_preset_id: Použít předlohu pro varování
       announcement:
         all_day: Celodenní událost
@@ -119,6 +121,8 @@ cs:
         scheduled_at: Naplánovat zveřejnění
         starts_at: Začátek události
         text: Oznámení
+      appeal:
+        text: Vysvětlete proč by toto rozhodnutí mělo být vráceno
       defaults:
         autofollow: Pozvat ke sledování vašeho účtu
         avatar: Avatar
@@ -148,6 +152,7 @@ cs:
         phrase: Klíčové slovo či fráze
         setting_advanced_layout: Povolit pokročilé webové rozhraní
         setting_aggregate_reblogs: Seskupovat boosty v časových osách
+        setting_always_send_emails: Vždy posílat e-mailová oznámení
         setting_auto_play_gif: Automaticky přehrávat animace GIF
         setting_boost_modal: Před boostnutím zobrazovat potvrzovací okno
         setting_crop_images: Ořezávat obrázky v nerozbalených příspěvcích na 16x9
@@ -167,7 +172,7 @@ cs:
         setting_show_application: Odhalit aplikaci použitou k odeslání příspěvků
         setting_system_font_ui: Použít výchozí písmo systému
         setting_theme: Vzhled stránky
-        setting_trends: Zobrazit dnes populární hashtagy
+        setting_trends: Zobrazit dnešní trendy
         setting_unfollow_modal: Před zrušením sledování zobrazovat potvrzovací okno
         setting_use_blurhash: Zobrazit pro skrytá média barevné gradienty
         setting_use_pending_items: Pomalý režim
@@ -197,6 +202,7 @@ cs:
           sign_up_requires_approval: Omezit registrace
         severity: Pravidlo
       notification_emails:
+        appeal: Někdo se odvolává proti rozhodnutí moderátora
         digest: Posílat e-maily s přehledem
         favourite: Někdo si oblíbil váš příspěvek
         follow: Někdo vás začal sledovat
@@ -205,7 +211,7 @@ cs:
         pending_account: Je třeba posoudit nový účet
         reblog: Někdo boostnul váš příspěvek
         report: Je odesláno nové hlášení
-        trending_tag: Neposouzený hashtag je populární
+        trending_tag: Nový trend vyžaduje posouzení
       rule:
         text: Pravidlo
       tag:

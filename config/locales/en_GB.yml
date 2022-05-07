@@ -220,7 +220,6 @@ en_GB:
       emoji: Emoji
       enable: Enable
       enabled_msg: Successfully enabled that emoji
-      image_hint: PNG up to 50KB
       listed: Listed
       new:
         title: Add new custom emoji
@@ -701,8 +700,8 @@ en_GB:
         one: Also, you have acquired one new follower while being away! Yay!
         other: Also, you have acquired %{count} new followers while being away! Amazing!
       subject:
-        one: "1 new notification since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
+        one: "1 new notification since your last visit 🐘"
+        other: "%{count} new notifications since your last visit 🐘"
       title: In your absence...
     favourite:
       body: 'Your status was favourited by %{name}:'
@@ -986,7 +985,7 @@ en_GB:
     enabled: Two-factor authentication is enabled
     enabled_success: Two-factor authentication successfully enabled
     generate_recovery_codes: Generate recovery codes
-    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similiar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
+    instructions_html: "<strong>Scan this QR code into Google Authenticator or a similar TOTP app on your phone</strong>. From now on, that app will generate tokens that you will have to enter when logging in."
     lost_recovery_codes: Recovery codes allow you to regain access to your account if you lose your phone. If you've lost your recovery codes, you can regenerate them here. Your old recovery codes will be invalidated.
     manual_instructions: 'If you can''t scan the QR code and need to enter it manually, here is the plain-text secret:'
     recovery_codes: Backup recovery codes

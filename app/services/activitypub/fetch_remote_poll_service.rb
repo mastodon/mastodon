@@ -8,6 +8,6 @@ class ActivityPub::FetchRemotePollService < BaseService
 
     return unless supported_context?(json)
 
-    ActivityPub::ProcessPollService.new.call(poll, json)
+    ActivityPub::ProcessStatusUpdateService.new.call(poll.status, json)
   end
 end

@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import ClearColumnButton from './clear_column_button';
 import GrantPermissionButton from './grant_permission_button';
 import SettingToggle from './setting_toggle';
+import { isStaff } from 'mastodon/initial_state';
 
 export default class ColumnSettings extends React.PureComponent {
 
@@ -144,7 +145,7 @@ export default class ColumnSettings extends React.PureComponent {
         </div>
 
         <div role='group' aria-labelledby='notifications-status'>
-          <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.status' defaultMessage='New toots:' /></span>
+          <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.status' defaultMessage='New posts:' /></span>
 
           <div className='column-settings__row'>
             <SettingToggle disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'status']} onChange={onChange} label={alertStr} />
@@ -153,6 +154,30 @@ export default class ColumnSettings extends React.PureComponent {
             <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'status']} onChange={onChange} label={soundStr} />
           </div>
         </div>
+
+        <div role='group' aria-labelledby='notifications-update'>
+          <span id='notifications-update' className='column-settings__section'><FormattedMessage id='notifications.column_settings.update' defaultMessage='Edits:' /></span>
+
+          <div className='column-settings__row'>
+            <SettingToggle disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'update']} onChange={onChange} label={alertStr} />
+            {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'update']} onChange={this.onPushChange} label={pushStr} />}
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['shows', 'update']} onChange={onChange} label={showStr} />
+            <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'update']} onChange={onChange} label={soundStr} />
+          </div>
+        </div>
+
+        {isStaff && (
+          <div role='group' aria-labelledby='notifications-admin-sign-up'>
+            <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.admin.sign_up' defaultMessage='New sign-ups:' /></span>
+
+            <div className='column-settings__row'>
+              <SettingToggle disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'admin.sign_up']} onChange={onChange} label={alertStr} />
+              {showPushSettings && <SettingToggle prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'admin.sign_up']} onChange={this.onPushChange} label={pushStr} />}
+              <SettingToggle prefix='notifications' settings={settings} settingPath={['shows', 'admin.sign_up']} onChange={onChange} label={showStr} />
+              <SettingToggle prefix='notifications' settings={settings} settingPath={['sounds', 'admin.sign_up']} onChange={onChange} label={soundStr} />
+            </div>
+          </div>
+        )}
       </div>
     );
   }

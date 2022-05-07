@@ -27,6 +27,8 @@ en:
         scheduled_at: Leave blank to publish the announcement immediately
         starts_at: Optional. In case your announcement is bound to a specific time range
         text: You can use post syntax. Please be mindful of the space the announcement will take up on the user's screen
+      appeal:
+        text: You can only appeal a strike once
       defaults:
         autofollow: People who sign up through the invite will automatically follow you
         avatar: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
@@ -35,8 +37,7 @@ en:
         current_password: For security purposes please enter the password of the current account
         current_username: To confirm, please enter the username of the current account
         digest: Only sent after a long period of inactivity and only if you have received any personal messages in your absence
-        discoverable: Allow your account to be discovered by strangers through recommendations, profile directory and other features
-        discoverable_no_directory: Allow your account to be discovered by strangers through recommendations and other features
+        discoverable: Allow your account to be discovered by strangers through recommendations, trends and other features
         email: You will be sent a confirmation e-mail
         fields: You can have up to 4 items displayed as a table on your profile
         header: PNG, GIF or JPG. At most %{size}. Will be downscaled to %{dimensions}px
@@ -48,6 +49,7 @@ en:
         phrase: Will be matched regardless of casing in text or content warning of a post
         scopes: Which APIs the application will be allowed to access. If you select a top-level scope, you don't need to select individual ones.
         setting_aggregate_reblogs: Do not show new boosts for posts that have been recently boosted (only affects newly-received boosts)
+        setting_always_send_emails: Normally e-mail notifications won't be sent when you are actively using Mastodon
         setting_default_sensitive: Sensitive media is hidden by default and can be revealed with a click
         setting_display_media_default: Hide media marked as sensitive
         setting_display_media_hide_all: Always hide media
@@ -62,7 +64,7 @@ en:
       domain_allow:
         domain: This domain will be able to fetch data from this server and incoming data from it will be processed and stored
       email_domain_block:
-        domain: This can be the domain name that shows up in the e-mail address, the MX record that domain resolves to, or IP of the server that MX record resolves to. Those will be checked upon user sign-up and the sign-up will be rejected.
+        domain: This can be the domain name that shows up in the e-mail address or the MX record it uses. They will be checked upon sign-up.
         with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
       featured_tag:
         name: 'You might want to use one of these:'
@@ -119,6 +121,8 @@ en:
         scheduled_at: Schedule publication
         starts_at: Start of event
         text: Announcement
+      appeal:
+        text: Explain why this decision should be reversed
       defaults:
         autofollow: Invite to follow your account
         avatar: Avatar
@@ -148,6 +152,7 @@ en:
         phrase: Keyword or phrase
         setting_advanced_layout: Enable advanced web interface
         setting_aggregate_reblogs: Group boosts in timelines
+        setting_always_send_emails: Always send e-mail notifications
         setting_auto_play_gif: Auto-play animated GIFs
         setting_boost_modal: Show confirmation dialog before boosting
         setting_crop_images: Crop images in non-expanded posts to 16x9
@@ -197,6 +202,7 @@ en:
           sign_up_requires_approval: Limit sign-ups
         severity: Rule
       notification_emails:
+        appeal: Someone appeals a moderator decision
         digest: Send digest e-mails
         favourite: Someone favourited your post
         follow: Someone followed you
@@ -204,8 +210,8 @@ en:
         mention: Someone mentioned you
         pending_account: New account needs review
         reblog: Someone boosted your post
-        report: A new report is submitted
-        trending_tag: A new trend requires approval
+        report: New report is submitted
+        trending_tag: New trend requires review
       rule:
         text: Rule
       tag:

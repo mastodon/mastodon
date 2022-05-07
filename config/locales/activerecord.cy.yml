@@ -5,13 +5,28 @@ cy:
       poll:
         expires_at: Terfyn amser
         options: Dewisiadau
+      user:
+        agreement: Cytundeb gwasanaeth
+        email: Cyfeiriad e-bost
+        locale: Locale
+        password: Cyfrinair
+      user/account:
+        username: Enw defnyddiwr
+      user/invite_request:
+        text: Rheswm
     errors:
       models:
         account:
           attributes:
             username:
               invalid: dim ond llythrennau, rhifau a tanlinellau
+              reserved: yn neilltuedig
         status:
           attributes:
             reblog:
               taken: o'r statws yn bodoli'n barod
+        user:
+          attributes:
+            email:
+              blocked: yn defnyddio darparwr e-bost nas caniateir
+              unreachable: nid yw'n bodoli

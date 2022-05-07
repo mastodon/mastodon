@@ -70,3 +70,6 @@ if ENV['PAM_ENABLED'] == 'true'
       env: { email: 'pam@example.com' }
     }
 end
+
+# Catch serialization warnings early
+Sidekiq.strict_args!

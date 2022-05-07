@@ -9,33 +9,36 @@ class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::Base
     'tag_servers'
   end
 
-  def total
+  protected
+
+  def perform_total_query
     tag.statuses.where('statuses.id BETWEEN ? AND ?', Mastodon::Snowflake.id_at(@start_at, with_random: false), Mastodon::Snowflake.id_at(@end_at, with_random: false)).joins(:account).count('distinct accounts.domain')
   end
 
-  def previous_total
+  def perform_previous_total_query
     tag.statuses.where('statuses.id BETWEEN ? AND ?', Mastodon::Snowflake.id_at(@start_at - length_of_period, with_random: false), Mastodon::Snowflake.id_at(@end_at - length_of_period, with_random: false)).joins(:account).count('distinct accounts.domain')
   end
 
-  def data
+  def perform_data_query
     sql = <<-SQL.squish
       SELECT axis.*, (
-        SELECT count(*) AS value
+        SELECT count(distinct accounts.domain) AS value
         FROM statuses
-        WHERE statuses.id BETWEEN $1 AND $2
+        INNER JOIN statuses_tags ON statuses.id = statuses_tags.status_id
+        INNER JOIN accounts ON statuses.account_id = accounts.id
+        WHERE statuses_tags.tag_id = $1
+          AND statuses.id BETWEEN $2 AND $3
           AND date_trunc('day', statuses.created_at)::date = axis.day
       )
       FROM (
-        SELECT generate_series(date_trunc('day', $3::timestamp)::date, date_trunc('day', $4::timestamp)::date, ('1 day')::interval) AS day
+        SELECT generate_series(date_trunc('day', $4::timestamp)::date, date_trunc('day', $5::timestamp)::date, ('1 day')::interval) AS day
       ) as axis
     SQL
 
-    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, Mastodon::Snowflake.id_at(@start_at, with_random: false)], [nil, Mastodon::Snowflake.id_at(@end_at, with_random: false)], [nil, @start_at], [nil, @end_at]])
+    rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, params[:id].to_i], [nil, Mastodon::Snowflake.id_at(@start_at, with_random: false)], [nil, Mastodon::Snowflake.id_at(@end_at, with_random: false)], [nil, @start_at], [nil, @end_at]])
 
     rows.map { |row| { date: row['day'], value: row['value'].to_s } }
   end
-
-  protected
 
   def tag
     @tag ||= Tag.find(params[:id])

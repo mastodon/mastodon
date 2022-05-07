@@ -38,6 +38,12 @@ class MediaAttachment < ApplicationRecord
 
   MAX_DESCRIPTION_LENGTH = 1_500
 
+  IMAGE_LIMIT = 10.megabytes
+  VIDEO_LIMIT = 40.megabytes
+
+  MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
+  MAX_VIDEO_FRAME_RATE   = 60
+
   IMAGE_FILE_EXTENSIONS = %w(.jpg .jpeg .png .gif).freeze
   VIDEO_FILE_EXTENSIONS = %w(.webm .mp4 .m4v .mov).freeze
   AUDIO_FILE_EXTENSIONS = %w(.ogg .oga .mp3 .wav .flac .opus .aac .m4a .3gp .wma).freeze
@@ -75,6 +81,7 @@ class MediaAttachment < ApplicationRecord
   VIDEO_FORMAT = {
     format: 'mp4',
     content_type: 'video/mp4',
+    vfr_frame_rate_threshold: MAX_VIDEO_FRAME_RATE,
     convert_options: {
       output: {
         'loglevel' => 'fatal',
@@ -152,12 +159,6 @@ class MediaAttachment < ApplicationRecord
     all: '-quality 90 -strip +set modify-date +set create-date',
   }.freeze
 
-  IMAGE_LIMIT = 10.megabytes
-  VIDEO_LIMIT = 40.megabytes
-
-  MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
-  MAX_VIDEO_FRAME_RATE   = 60
-
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
   belongs_to :scheduled_status, inverse_of: :media_attachments, optional: true
@@ -184,7 +185,7 @@ class MediaAttachment < ApplicationRecord
   remotable_attachment :thumbnail, IMAGE_LIMIT, suppress_errors: true, download_on_assign: false
 
   validates :account, presence: true
-  validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }, if: :local?
+  validates :description, length: { maximum: MAX_DESCRIPTION_LENGTH }
   validates :file, presence: true, if: :local?
   validates :thumbnail, absence: true, if: -> { local? && !audio_or_video? }
 
@@ -206,6 +207,10 @@ class MediaAttachment < ApplicationRecord
 
   def needs_redownload?
     file.blank? && remote_url.present?
+  end
+
+  def significantly_changed?
+    description_previously_changed? || thumbnail_updated_at_previously_changed? || file_meta_previously_changed?
   end
 
   def larger_media_format?
@@ -253,7 +258,6 @@ class MediaAttachment < ApplicationRecord
   after_commit :enqueue_processing, on: :create
   after_commit :reset_parent_cache, on: :update
 
-  before_create :prepare_description, unless: :local?
   before_create :set_unknown_type
   before_create :set_processing
 
@@ -299,10 +303,6 @@ class MediaAttachment < ApplicationRecord
 
   def set_unknown_type
     self.type = :unknown if file.blank? && !type_changed?
-  end
-
-  def prepare_description
-    self.description = description.strip[0...MAX_DESCRIPTION_LENGTH] unless description.nil?
   end
 
   def set_type_and_extension

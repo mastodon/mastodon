@@ -4,6 +4,10 @@
 - content_for :header_tags do
   = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
+%p= t('admin.trends.tags.description_html')
+
+%hr.spacer/
+
 .filters
   .filter-subset
     %strong= t('admin.tags.review')
@@ -13,12 +17,10 @@
       %li= filter_link_to t('admin.trends.rejected'), status: 'rejected'
       %li= filter_link_to safe_join([t('admin.accounts.moderation.pending'), "(#{Tag.pending_review.count})"], ' '), status: 'pending_review'
 
-%hr.spacer/
-
 = form_for(@form, url: batch_admin_trends_tags_path) do |f|
   = hidden_field_tag :page, params[:page] || 1
 
-  - TagFilter::KEYS.each do |key|
+  - Trends::TagFilter::KEYS.each do |key|
     = hidden_field_tag key, params[key] if params[key].present?
 
   .batch-table.optional

@@ -60,8 +60,7 @@ pt-BR:
       error:
         title: Ocorreu um erro
       new:
-        able_to: Poderá
-        prompt: O aplicativo %{client_name} solicita acesso à sua conta
+        review_permissions: Analisar permissões
         title: Autorização necessária
       show:
         title: Copie este código de autorização e cole no aplicativo.
@@ -71,10 +70,9 @@ pt-BR:
       confirmations:
         revoke: Você tem certeza?
       index:
-        application: Aplicativos
-        created_at: Autorizados
-        date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Autorizações
+        never_used: Nunca usado
+        scopes: Permissões
+        superapp: Interno
         title: Aplicativos autorizados
     errors:
       messages:
@@ -110,6 +108,24 @@ pt-BR:
       authorized_applications:
         destroy:
           notice: Aplicativo revogado.
+    grouped_scopes:
+      title:
+        accounts: Contas
+        all: Tudo
+        blocks: Blocos
+        bookmarks: Salvos
+        conversations: Conversas
+        crypto: Criptografia de ponta a ponta
+        favourites: Favoritos
+        filters: Filtros
+        follow: Relações
+        lists: Listas
+        media: Mídias anexadas
+        notifications: Notificações
+        push: Notificações push
+        reports: Denúncias
+        search: Buscar
+        statuses: Posts
     layouts:
       admin:
         nav:

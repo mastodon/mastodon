@@ -15,7 +15,7 @@ ko:
         text_html: 선택사항. 게시물 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
         type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
         types:
-          disable: 사용자가 계정을 사용하는 것을 막지만, 그들의 게시물을 삭제하거나 숨기지는 않습니다.
+          disable: 사용자가 계정을 사용하는 것을 막지만, 그의 게시물을 삭제하거나 숨기지는 않습니다.
           none: 이것을 사용해서 어떤 동작도 하지 않고, 사용자에게 경고를 보냅니다.
           sensitive: 이 사용자의 모든 미디어 첨부를 민감함으로 강제 설정합니다.
           silence: 이 사용자가 공개 설정으로 게시물을 작성할 수 없도록 하고, 그를 팔로우 하지 않는 사람에게는 이 사용자의 게시물과 알림을 숨깁니다.
@@ -27,6 +27,8 @@ ko:
         scheduled_at: 공백으로 두면 공지사항이 곧바로 발행 됩니다
         starts_at: 공지사항이 특정한 시간에 종속 될 때를 위한 옵션입니다
         text: 게시물 문법을 사용할 수 있습니다. 공지사항은 사용자의 화면 상단 공간을 차지한다는 것을 명심하세요
+      appeal:
+        text: 처벌에 대해 단 한 번만 이의제기를 할 수 있습니다
       defaults:
         autofollow: 이 초대를 통해 가입하는 사람은 당신을 자동으로 팔로우 하게 됩니다
         avatar: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
@@ -35,8 +37,7 @@ ko:
         current_password: 보안을 위해 현재 계정의 암호를 입력해주세요
         current_username: 확인을 위해, 현재 계정의 사용자명을 입력해주세요
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
-        discoverable: 당신의 계정을 추천과 기타 기능들에 의해 다른 사람들이 발견할 수 있게 허용합니다
-        discoverable_no_directory: 당신의 계정을 추천과 기타 기능들에 의해 다른 사람들이 발견할 수 있도록 허용합니다
+        discoverable: 추천, 트렌드 및 기타 기능을 통해 낯선 사람이 귀하의 계정을 찾을 수 있도록 허용합니다
         email: 당신은 확인 메일을 받게 됩니다
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
@@ -48,6 +49,7 @@ ko:
         phrase: 게시물 내용이나 열람주의 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
+        setting_always_send_emails: 기본적으로 마스토돈을 활동적으로 사용하고 있을 때에는 이메일 알림이 보내지지 않습니다
         setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
         setting_display_media_default: 민감함으로 설정 된 미디어 가리기
         setting_display_media_hide_all: 항상 모든 미디어를 가리기
@@ -62,7 +64,7 @@ ko:
       domain_allow:
         domain: 이 도메인은 이 서버에서 데이터를 가져갈 수 있고 이 도메인에서 보내진 데이터는 처리되고 저장 됩니다
       email_domain_block:
-        domain: 이것은 이메일 주소에 보이는 도메인 네임이거나, 도메인이 향하는 MX 레코드이거나, 또는 MX 레코드가 향하는 IP 주소일 수 있습니다. 이것들은 사용자가 가입 할 때 확인 되며 가입은 반려될 것입니다.
+        domain: 이메일에 표시되는 도메인 네임이거나 그것이 사용하는 MX 레코드일 수 있습니다. 가입시에 검증됩니다.
         with_dns_records: 입력한 도메인의 DNS를 조회를 시도하여 나온 값도 차단됩니다
       featured_tag:
         name: '이것들을 사용하면 좋을 것 같습니다:'
@@ -119,6 +121,8 @@ ko:
         scheduled_at: 발행 일정
         starts_at: 이벤트 시작
         text: 공지사항
+      appeal:
+        text: 이 결정이 왜 번복되어야 하는지에 대해 설명해주세요
       defaults:
         autofollow: 초대를 통한 팔로우
         avatar: 아바타
@@ -148,6 +152,7 @@ ko:
         phrase: 키워드 또는 문장
         setting_advanced_layout: 고급 웹 UI 활성화
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
+        setting_always_send_emails: 항상 이메일 알림 보내기
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
         setting_crop_images: 확장되지 않은 게시물의 이미지를 16x9로 자르기
@@ -197,15 +202,16 @@ ko:
           sign_up_requires_approval: 가입 제한
         severity: 규칙
       notification_emails:
+        appeal: 누군가가 중재자의 결정에 이의를 제기했을 때
         digest: 요약 이메일 보내기
-        favourite: 누군가 내 상태를 즐겨찾기로 등록했을 때 이메일 보내기
-        follow: 누군가 나를 팔로우 했을 때 이메일 보내기
-        follow_request: 누군가 나를 팔로우 하길 원할 때 이메일 보내기
-        mention: 누군가 나에게 답장했을 때 이메일 보내기
-        pending_account: 새 계정이 심사가 필요할 때 이메일 보내기
-        reblog: 누군가 내 툿을 부스트 했을 때 이메일 보내기
-        report: 새 신고 등록시 이메일로 알리기
-        trending_tag: 리뷰 되지 않은 해시태그가 유행할 때 이메일 보내기
+        favourite: 누군가 내 상태를 마음에 들어했을 때
+        follow: 누군가 나를 팔로우 했을 때
+        follow_request: 누군가 나를 팔로우 하길 원할 때
+        mention: 누군가 나를 언급했을 때
+        pending_account: 새 계정이 심사가 필요할 때
+        reblog: 누군가 내 툿을 부스트 했을 때
+        report: 새 신고가 접수되었을 때
+        trending_tag: 새 트렌드에 대한 리뷰가 필요할 때
       rule:
         text: 규칙
       tag:

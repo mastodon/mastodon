@@ -65,6 +65,24 @@
     }
   }
 
+  &.horizontal-table {
+    border-collapse: collapse;
+    border-style: hidden;
+
+    & > tbody > tr > th,
+    & > tbody > tr > td {
+      padding: 11px 10px;
+      background: transparent;
+      border: 1px solid lighten($ui-base-color, 8%);
+      color: $secondary-text-color;
+    }
+
+    & > tbody > tr > th {
+      color: $darker-text-color;
+      font-weight: 600;
+    }
+  }
+
   &.batch-table {
     & > thead > tr > th {
       background: $ui-base-color;
@@ -217,6 +235,7 @@ a.table-action-link {
     &__content {
       padding-top: 12px;
       padding-bottom: 16px;
+      overflow: hidden;
 
       &--unpadded {
         padding: 0;
@@ -242,6 +261,11 @@ a.table-action-link {
 
       &__text {
         flex: 1 1 auto;
+      }
+
+      &__quote {
+        padding: 12px;
+        padding-top: 0;
       }
 
       &__extra {
@@ -297,4 +321,10 @@ a.table-action-link {
       display: none;
     }
   }
+}
+
+.one-liner {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

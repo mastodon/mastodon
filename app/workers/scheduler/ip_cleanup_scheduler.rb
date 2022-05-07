@@ -16,8 +16,9 @@ class Scheduler::IpCleanupScheduler
 
   def clean_ip_columns!
     SessionActivation.where('updated_at < ?', IP_RETENTION_PERIOD.ago).in_batches.destroy_all
-    User.where('current_sign_in_at < ?', IP_RETENTION_PERIOD.ago).in_batches.update_all(last_sign_in_ip: nil, current_sign_in_ip: nil, sign_up_ip: nil)
+    User.where('current_sign_in_at < ?', IP_RETENTION_PERIOD.ago).in_batches.update_all(sign_up_ip: nil)
     LoginActivity.where('created_at < ?', IP_RETENTION_PERIOD.ago).in_batches.destroy_all
+    Doorkeeper::AccessToken.where('last_used_at < ?', IP_RETENTION_PERIOD.ago).in_batches.update_all(last_used_ip: nil)
   end
 
   def clean_expired_ip_blocks!

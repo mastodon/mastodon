@@ -5,7 +5,9 @@ class Admin::Metrics::Dimension::SourcesDimension < Admin::Metrics::Dimension::B
     'sources'
   end
 
-  def data
+  protected
+
+  def perform_query
     sql = <<-SQL.squish
       SELECT oauth_applications.name, count(*) AS value
       FROM users

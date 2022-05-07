@@ -60,8 +60,6 @@ oc:
       error:
         title: I a agut un error
       new:
-        able_to: Aquesta aplicacion poirà
-        prompt: L’aplicacion %{client_name} demanda l’accès al vòstre compte
         title: Cal l’autorizacion
       show:
         title: Copiatz lo còdi d’autorizacion e pegatz-lo dins l’aplicacion.
@@ -71,10 +69,6 @@ oc:
       confirmations:
         revoke: Ne sètz segur ?
       index:
-        application: Aplicacion
-        created_at: Creacion
-        date_format: "%-d %b. de %Y %Ho%M %S"
-        scopes: Encastres
         title: Las vòstras aplicacions autorizadas
     errors:
       messages:
@@ -110,6 +104,15 @@ oc:
       authorized_applications:
         destroy:
           notice: Aplicacion revocada.
+    grouped_scopes:
+      title:
+        accounts: Comptes
+        bookmarks: Marcadors
+        filters: Filtres
+        lists: Listas
+        media: Fichièrs junts
+        notifications: Notificacions
+        search: Recercar
     layouts:
       admin:
         nav:

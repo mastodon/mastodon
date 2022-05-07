@@ -27,6 +27,8 @@ es:
         scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
         starts_at: Opcional. En caso de que su anuncio esté vinculado a un intervalo de tiempo específico
         text: Puedes usar la sintaxis de publicaciones. Por favor ten en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
+      appeal:
+        text: Sólo puedes apelar una amonestación una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -35,8 +37,7 @@ es:
         current_password: Por razones de seguridad por favor ingrese la contraseña de la cuenta actual
         current_username: Para confirmar, por favor ingrese el nombre de usuario de la cuenta actual
         digest: Solo enviado tras un largo periodo de inactividad y solo si has recibido mensajes personales durante tu ausencia
-        discoverable: Permite que tu cuenta sea encontrada por desconocidos por medio de recomendaciones y otras herramientas
-        discoverable_no_directory: Permite que tu cuenta sea encontrada por desconocidos por medio de recomendaciones y otras herramientas
+        discoverable: Permite que tu cuenta sea descubierta por extraños a través de recomendaciones, tendencias y otras características
         email: Se le enviará un correo de confirmación
         fields: Puedes tener hasta 4 elementos mostrándose como una tabla en tu perfil
         header: PNG, GIF o JPG. Máximo %{size}. Será escalado a %{dimensions}px
@@ -48,6 +49,7 @@ es:
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de una publicación
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevos retoots para las publicaciones que han sido recientemente retooteadas (sólo afecta a los retoots recibidos recientemente)
+        setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un click
         setting_display_media_default: Ocultar contenido multimedia marcado como sensible
         setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
@@ -62,7 +64,7 @@ es:
       domain_allow:
         domain: Este dominio podrá obtener datos de este servidor y los datos entrantes serán procesados y archivados
       email_domain_block:
-        domain: Puede ser el nombre de dominio que aparece en la dirección de correo, el registro MX hacia el cual resuelve el dominio, o la IP del servidor hacia el cual resuelve ese registro MX. Esto se comprobará en el momento del alta del usuario y el alta se rechazará.
+        domain: Este puede ser el nombre de dominio que aparece en la dirección de correo electrónico o el registro MX que utiliza. Se comprobarán al registrarse.
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
         name: 'Puede que quieras usar uno de estos:'
@@ -119,6 +121,8 @@ es:
         scheduled_at: Programar publicación
         starts_at: Comienzo del evento
         text: Anuncio
+      appeal:
+        text: Explica por qué esta decisión debe ser revertida
       defaults:
         autofollow: Invitar a seguir tu cuenta
         avatar: Avatar
@@ -137,7 +141,7 @@ es:
         header: Img. cabecera
         honeypot: "%{label} (no rellenar)"
         inbox_url: URL de la entrada de relés
-        irreversible: Dejar en lugar de ocultar
+        irreversible: Rechazar en lugar de ocultar
         locale: Idioma
         locked: Hacer privada esta cuenta
         max_uses: Máx. número de usos
@@ -148,6 +152,7 @@ es:
         phrase: Palabra clave o frase
         setting_advanced_layout: Habilitar interfaz web avanzada
         setting_aggregate_reblogs: Agrupar retoots en las líneas de tiempo
+        setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar ventana de confirmación antes de retootear
         setting_crop_images: Recortar a 16x9 las imágenes de las publicaciones no expandidas
@@ -197,6 +202,7 @@ es:
           sign_up_requires_approval: Limitar registros
         severity: Regla
       notification_emails:
+        appeal: Alguien ha apelado una decisión de moderación
         digest: Enviar resumen de correos electrónicos
         favourite: Enviar correo electrónico cuando alguien de a favorito en su publicación
         follow: Enviar correo electrónico cuando alguien te siga
@@ -204,8 +210,8 @@ es:
         mention: Enviar correo electrónico cuando alguien te mencione
         pending_account: Enviar correo electrónico cuando una nueva cuenta necesita revisión
         reblog: Enviar correo electrónico cuando alguien comparta su publicación
-        report: Enviar un correo cuando se envía un nuevo informe
-        trending_tag: Enviar correo electrónico cuando una etiqueta no revisada está de tendencia
+        report: Nuevo informe enviado
+        trending_tag: Una nueva tendencia requiere revisión
       rule:
         text: Norma
       tag:

@@ -4,7 +4,15 @@ br:
     attributes:
       doorkeeper/application:
         name: Anv an arload
+        redirect_uri: Dazkas URI
         website: Lec'hienn an arload
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              invalid_uri: eo ret bezañ un URI reizh.
+              secured_uri: eo ret bezañ un HTTPS/SSL URI.
   doorkeeper:
     applications:
       buttons:
@@ -12,11 +20,21 @@ br:
         cancel: Nullañ
         destroy: Distrujañ
         edit: Aozañ
+        submit: Kas
       confirmations:
         destroy: Ha sur oc'h ?
+      edit:
+        title: Kemmañ an arload
+      form:
+        error: Hopala! Gwiriit ho frammenn rak fazioù a c'hell bezañ enni
+      help:
+        native_redirect_uri: Implijit %{native_redirect_uri} evit amprouadennoù lec'hel
+        redirect_uri: Implijit ul linenn evit pep URI
       index:
         application: Arload
+        callback_url: URL adc'halv
         delete: Dilemel
+        empty: Arloadoù ebet ganeoc'h.
         name: Anv
         new: Arload nevez
         show: Diskouez
@@ -24,16 +42,46 @@ br:
       new:
         title: Arload nevez
       show:
+        actions: Obererezhioù
+        application_id: Alc'hwez an arval
+        callback_urls: URLoù adc'halv
         title: 'Arload : %{name}'
     authorizations:
       buttons:
         authorize: Aotren
+        deny: Nac'hañ
+      error:
+        title: Ur fazi a zo degouezhet
+      new:
+        title: Aotre rekis
+      show:
+        title: Eilennit kod aotre-se ha pegit en arload.
     authorized_applications:
+      buttons:
+        revoke: Skarzhañ
       confirmations:
         revoke: Ha sur oc'h ?
       index:
-        application: Arload
-        date_format: "%d-%m-%Y %H:%M:%S"
+        title: Hoc'h arloadoù aotreet
+    errors:
+      messages:
+        access_denied: Perc'henn an danvez pe ar servijer aotre nac'het ar reket.
+        invalid_grant: An aotre pourvezhet a zo direizh, aet da dermen, skarzhet, roet d'un arval all pe ne glot ket gant an URI dazkas implijet.
+        invalid_redirect_uri: An URI dazkas n'eo ket reizh.
+        invalid_request:
+          missing_param: 'Un arventenn a vank: %{value}.'
+          request_not_authorized: Ret eo d'ar reket bezañ aotreet. Arventenn rekis evit aotren ar reket a zo direizh pe diank.
+          unknown: Ar reket a vank un arventenn rekis, a enlaak un dalvoud arventenn dianavezet, pe a zo faziek en ur mod all.
+        invalid_resource_owner: Testenioù perc'henn an danvez pourvezet n'int ket reizh, pe perc'henn an danvez ne c'hell ket bezañ kavet
+        invalid_token:
+          expired: Ar jedouer moned a zo aet da dermen
+          revoked: Ar jedouer moned a zo skarzhet
+          unknown: Ar jedouer moned a zo direizh
+        server_error: Ur fazi digortozet a c'hoarveze hag a vire ar servijer aotre ouzh klokaat ar reket.
+        temporarily_unavailable: Ar servijer aotre ne c'hall ket seveniñ ar reket abalamour d'ur soulgarg pe d'ur gempenn.
+        unauthorized_client: An arval n'eo ket aotreet seveniñ ar reket-mañ er mod-se.
+        unsupported_grant_type: Diembreg eo seurt aotre gant ar servijer aotre.
+        unsupported_response_type: Diembreg eo seurt respontoù gant ar servijer aotre.
     flash:
       applications:
         create:
@@ -42,11 +90,47 @@ br:
           notice: Dilamet eo bet an arload.
         update:
           notice: Hizivaet eo bet an arload.
+      authorized_applications:
+        destroy:
+          notice: Skarzhet eo bet an arload.
     layouts:
       admin:
         nav:
           applications: Arloadoù
+          oauth2_provider: OAuth2 Pourvezer
+      application:
+        title: OAuth aotre rekis
     scopes:
+      admin:read: lenn holl titouroù ar servijer
+      admin:read:accounts: lenn titouroù kizidik an holl kontoù
+      admin:read:reports: lenn titouroù kizidik an holl danevelloù hag an holl kontoù danevellet
+      admin:write: kemmañ holl titouroù ar servijer
+      admin:write:accounts: ober evezherezh war ar c'hontoù
+      admin:write:reports: ober evezherezh war an danevelloù
+      follow: kemmañ darempredoù ho kont
+      push: resev ho kemennoù push
+      read: lenn holl titouroù ho kont
+      read:accounts: gwelout titouroù ar c'hontoù
+      read:blocks: gwelout ar pezh a zo stanket ganeoc'h
+      read:bookmarks: gwelout ho sinedoù
+      read:favourites: gwelout ho muiañ-karet
+      read:filters: gwelout ho siloù
+      read:follows: gwelout ar pezh a zo heuliet ganeoc'h
       read:lists: gwelout ho listennoù
+      read:mutes: gwelout traoù pe kontoù kuzhet ganeoc'h
+      read:notifications: gwellout ho kemennoù
+      read:reports: gwelout ho tanevelloù
+      read:statuses: gwelout an holl toudoù
+      write: kemmañ holl titouroù ho kont
+      write:accounts: kemmañ ho profil
+      write:blocks: berzañ kontoù ha domanioù
+      write:bookmarks: toudoù enrollet evel sinedoù
+      write:favourites: merkañ toudoù evel muiañ-karet
+      write:filters: krouiñ siloù
+      write:follows: heuliañ an dud
       write:lists: krouiñ listennoù
+      write:media: pellgargañ restroù media
+      write:mutes: kuzhat tud ha kaozeadennoù
+      write:notifications: skarzhañ ho kemennoù
+      write:reports: danevellañ tud all
       write:statuses: embann toudoù

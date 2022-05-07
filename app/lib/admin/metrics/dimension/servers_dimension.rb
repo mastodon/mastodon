@@ -5,7 +5,9 @@ class Admin::Metrics::Dimension::ServersDimension < Admin::Metrics::Dimension::B
     'servers'
   end
 
-  def data
+  protected
+
+  def perform_query
     sql = <<-SQL.squish
       SELECT accounts.domain, count(*) AS value
       FROM statuses

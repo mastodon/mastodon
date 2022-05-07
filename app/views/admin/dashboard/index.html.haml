@@ -19,10 +19,10 @@
 
 .dashboard
   .dashboard__item
-    = react_admin_component :counter, measure: 'new_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.new_users'), href: admin_accounts_path
+    = react_admin_component :counter, measure: 'new_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.new_users'), href: admin_accounts_path(origin: 'local')
 
   .dashboard__item
-    = react_admin_component :counter, measure: 'active_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.active_users'), href: admin_accounts_path
+    = react_admin_component :counter, measure: 'active_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.active_users'), href: admin_accounts_path(origin: 'local')
 
   .dashboard__item
     = react_admin_component :counter, measure: 'interactions', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.interactions')
@@ -38,7 +38,7 @@
       %span= t('admin.dashboard.pending_reports_html', count: @pending_reports_count)
       = fa_icon 'chevron-right fw'
 
-    = link_to admin_pending_accounts_path, class: 'dashboard__quick-access' do
+    = link_to admin_accounts_path(status: 'pending'), class: 'dashboard__quick-access' do
       %span= t('admin.dashboard.pending_users_html', count: @pending_users_count)
       = fa_icon 'chevron-right fw'
 
@@ -46,6 +46,9 @@
       %span= t('admin.dashboard.pending_tags_html', count: @pending_tags_count)
       = fa_icon 'chevron-right fw'
 
+    = link_to admin_disputes_appeals_path(status: 'pending'), class: 'dashboard__quick-access' do
+      %span= t('admin.dashboard.pending_appeals_html', count: @pending_appeals_count)
+      = fa_icon 'chevron-right fw'
   .dashboard__item
     = react_admin_component :dimension, dimension: 'sources', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.sources')
 

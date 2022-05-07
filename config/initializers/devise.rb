@@ -1,28 +1,27 @@
 require 'devise/strategies/authenticatable'
 
 Warden::Manager.after_set_user except: :fetch do |user, warden|
-  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
-    session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
-  else
-    session_id = user.activate_session(warden.request)
-  end
+  session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
+  session_id = user.activate_session(warden.request) unless user.session_activations.active?(session_id)
 
   warden.cookies.signed['_session_id'] = {
     value: session_id,
     expires: 1.year.from_now,
     httponly: true,
-    secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
     same_site: :lax,
   }
 end
 
 Warden::Manager.after_fetch do |user, warden|
-  if user.session_active?(warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'])
+  session_id = warden.cookies.signed['_session_id'] || warden.raw_session['auth_id']
+
+  if session_id && (session = user.session_activations.find_by(session_id: session_id))
+    session.update(ip: warden.request.remote_ip) if session.ip != warden.request.remote_ip
+
     warden.cookies.signed['_session_id'] = {
-      value: warden.cookies.signed['_session_id'] || warden.raw_session['auth_id'],
+      value: session_id,
       expires: 1.year.from_now,
       httponly: true,
-      secure: (Rails.env.production? || ENV['LOCAL_HTTPS'] == 'true'),
       same_site: :lax,
     }
   else
@@ -264,7 +263,7 @@ Devise.setup do |config|
 
   # Options to be passed to the created cookie. For instance, you can set
   # secure: true in order to force SSL only cookies.
-  config.rememberable_options = { secure: true }
+  config.rememberable_options = {}
 
   # ==> Configuration for :validatable
   # Range for password length.

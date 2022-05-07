@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::AccountActionsController < Api::BaseController
-  before_action -> { doorkeeper_authorize! :'admin:write', :'admin:write:accounts' }
+  before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:accounts' }
   before_action :require_staff!
   before_action :set_account
 

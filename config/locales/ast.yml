@@ -5,6 +5,7 @@ ast:
     about_mastodon_html: 'La rede social del futuru: ¡ensin anuncios nin vixilancia, con un diseñu éticu y descentralizáu! Controla los tos datos con Mastodon.'
     about_this: Tocante a
     administered_by: 'Alministráu por:'
+    api: API
     apps: Aplicaciones pa móviles
     apps_platforms: Usa Mastodon dende Android, iOS y otres plataformes
     contact: Contautu
@@ -12,22 +13,22 @@ ast:
     contact_unavailable: N/D
     discover_users: Usuarios nuevos
     documentation: Documentación
-    federation_hint_html: Con una cuenta en %{instance} vas ser a siguir a persones de cualesquier sirvidor de Mastodon y más.
+    federation_hint_html: Con una cuenta en %{instance} vas ser a siguir a persones de cualesquier sirvidor de Mastodon y facer más coses.
     get_apps: En preseos móviles
     hosted_on: Mastodon ta agospiáu en %{domain}
-    learn_more: Deprender más
+    learn_more: Saber más
     privacy_policy: Política de privacidá
     server_stats: 'Estadístiques del sirvidor:'
     source_code: Códigu fonte
     status_count_after:
-      one: estáu
-      other: estaos
+      one: artículu
+      other: artículos
     status_count_before: Que crearon
-    tagline: Sigui a persones y conoz a más
+    tagline: Sigui a persones y conoz a más xente
     terms: Términos del serviciu
     unavailable_content_description:
       domain: Sirvidor
-      reason: Razón
+      reason: Motivu
     user_count_after:
       one: usuariu
       other: usuarios
@@ -41,31 +42,32 @@ ast:
     joined: Xunióse en %{date}
     moved_html: "%{name} mudóse a %{new_profile_link}:"
     network_hidden: Esta información nun ta disponible
-    never_active: Enxamás
     nothing_here: "¡Equí nun hai nada!"
     people_followed_by: Persones a les que sigue %{name}
     people_who_follow: Persones que siguen a %{name}
     posts:
-      one: Barritu
-      other: Barritos
-    posts_tab_heading: Barritos
+      one: Artículu
+      other: Artículos
+    posts_tab_heading: Artículos
     posts_with_replies: Barritos y rempuestes
     roles:
       bot: Robó
   admin:
     accounts:
-      approve_all: Aprobar too
       are_you_sure: "¿De xuru?"
+      avatar: Avatar
       by_domain: Dominiu
       domain: Dominiu
       email: Corréu
       followers: Siguidores
+      ip: IP
       location:
         local: Llocal
         title: Allugamientu
+      most_recent_activity: L'actividá más recién
+      most_recent_ip: La IP más recién
       protocol: Protocolu
       reject: Refugar
-      reject_all: Refugar too
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
         send: Reunviar les instrucciones
@@ -75,42 +77,61 @@ ast:
         moderator: Llendador
         user: Usuariu
       statuses: Estaos
-      time_in_queue: Esperando na cola %{time}
       title: Cuentes
       username: Nome d'usuariu
     announcements:
-      destroyed_msg: "¡L'anunciu desanicióse con ésitu!"
+      destroyed_msg: "¡L'anunciu desanicióse correutamente!"
       new:
         title: Anunciu nuevu
-      published_msg: "¡L'anunciu espublizóse con ésitu!"
+      published_msg: "¡L'anunciu espublizóse coreutamente!"
       title: Anuncios
+      updated_msg: "¡L'anunciu anovóse correutamente!"
     custom_emojis:
       by_domain: Dominiu
       copy_failed_msg: Nun pudo facese una copia llocal d'esi fustaxe
       emoji: Fustaxe
+      not_permitted: Nun tienes permisu pa facer esta aición
       update_failed_msg: Nun pudo anovase esi fustaxe
+    dashboard:
+      interactions: interaiciones
+      media_storage: Almacenamientu multimedia
+      software: Software
+      top_languages: Les llingües más actives
+      website: Sitiu web
     domain_blocks:
       domain: Dominiu
+      private_comment: Comentariu priváu
+      public_comment: Comentariu públicu
     email_domain_blocks:
       domain: Dominiu
     instances:
+      availability:
+        title: Disponibilidá
       by_domain: Dominiu
+      content_policies:
+        comment: Nota interna
+        policy: Política
+        reason: Motivu públicu
+      private_comment: Comentariu priváu
+      public_comment: Comentariu públicu
       title: Federación
     invites:
       filter:
         available: Disponible
         expired: Caducó
       title: Invitaciones
-    pending_accounts:
-      title: Cuentes pendientes (%{count})
+    ip_blocks:
+      expires_in:
+        '1209600': 2 selmanes
+        '15778476': 6 meses
+        '2629746': 1 mes
+        '31556952': 1 añu
+        '86400': 1 día
+        '94670856': 3 años
     relays:
       save_and_enable: Guardar y activar
       status: Estáu
     reports:
-      account:
-        reports:
-          one: "%{count} informe"
-          other: "%{count} informes"
       are_you_sure: "¿De xuru?"
       status: Estáu
       title: Informes
@@ -122,12 +143,6 @@ ast:
         title: Descripción del sirvidor
       site_title: Nome del sirvidor
       title: Axustes del sitiu
-    statuses:
-      failed_to_execute: Fallu al executar
-    tags:
-      most_recent: Lo más recién
-      name: Etiqueta
-      title: Etiquetes
     title: Alministración
   admin_mailer:
     new_pending_account:
@@ -135,13 +150,11 @@ ast:
     new_report:
       body: "%{reporter} informó de %{target}"
       body_remote: Daquién dende %{domain} informó de %{target}
-    new_trending_tag:
-      body: 'Güei la etiqueta #%{name} ye tendencia pero nun se revisó anteriormente. Nun va amosase públicamente a nun ser que lo permitas o guardes el formulariu como ta pa nun saber más d''ello.'
   aliases:
     empty: Nun tienes nomatos.
   appearance:
     advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si quies asegúrate de que s''use tol anchor de la pantalla, la interfaz web avanzada permítete configurar munches columnes estremaes pa ver tanta información al empar como quieras: Aniciu, avisos, llinia temporal federada, cualesquier cantidá de llistes y etiquetes...'
+    advanced_web_interface_hint: 'Si quies asegúrate de que s''use tol llargor de la pantalla, la interfaz web avanzada permítete configurar munches columnes estremaes pa ver tanta información al empar como quieras: Aniciu, avisos, llinia temporal federada, cualesquier cantidá de llistes y etiquetes...'
     animations_and_accessibility: Animaciones y accesibilidá
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrición
@@ -155,8 +168,8 @@ ast:
     warning: Ten munchu curiáu con estos datos, ¡enxamás nun los compartas con naide!
   auth:
     change_password: Contraseña
-    checkbox_agreement_html: Aceuto les <a href="%{rules_path}" target="_blank">regles del sirvidor</a> y los <a href="%{terms_path}" target="_blank">términos del serviciu</a>
-    checkbox_agreement_without_rules_html: Aceuto los <a href="%{terms_path}" target="_blank"> términos del serviciu</a>
+    checkbox_agreement_html: Acepto les <a href="%{rules_path}" target="_blank">regles del sirvidor</a> y los <a href="%{terms_path}" target="_blank">términos del serviciu</a>
+    checkbox_agreement_without_rules_html: Acepto los <a href="%{terms_path}" target="_blank"> términos del serviciu</a>
     delete_account: Desaniciu de la cuenta
     delete_account_html: Si deseyes desaniciar la to cuenta, pues <a href="%{path}">siguir equí</a>. Va pidísete la confirmación.
     description:
@@ -167,9 +180,12 @@ ast:
     login: Aniciar sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">configuralo equí</a>.
+    providers:
+      cas: CAS
+      saml: SAML
     register: Rexistrase
     security: Seguranza
-    trouble_logging_in: "¿Problemes col aniciu de sesión?"
+    trouble_logging_in: "¿Tienes problemes col aniciu de sesión?"
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
     already_requested: Yá unviesti una solicitú de siguimientu a esa cuenta
@@ -181,8 +197,16 @@ ast:
       web: Dir a la web
   datetime:
     distance_in_words:
-      half_a_minute: Púramente agora
-      less_than_x_seconds: Púramente agora
+      about_x_hours: "%{count} h"
+      about_x_years: "%{count} a"
+      almost_x_years: "%{count} a"
+      half_a_minute: Puramente agora
+      less_than_x_minutes: "%{count} m"
+      less_than_x_seconds: Puramente agora
+      over_x_years: "%{count} a"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
+      x_seconds: "%{count} s"
   deletes:
     challenge_not_passed: La información qu'introduxesti nun yera correuta
     confirm_password: Introduz la contraseña pa verificar la to identidá
@@ -193,10 +217,13 @@ ast:
     directory: Direutoriu de perfiles
     explanation: y descubri a usuarios según los sos intereses
     explore_mastodon: Esplora %{title}
+  disputes:
+    strikes:
+      appeal_rejected: Refugóse l'apellación
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nun tienes permisu pa ver esta páxina.
-    '404': La páxina que tabes guetando nun ta equí.
+    '404': La páxina que busques nun ta equí.
     '406': Esta páxina nun ta disponible nel formatu solicitáu.
     '410': La páxina que tabes guetando yá nun esiste.
     '422':
@@ -204,7 +231,7 @@ ast:
       title: Falló la verificación de seguranza
     '429': Ficiéronse milenta solicitúes
     '500': 
-    '503': The page could not be served due to a temporary server failure.
+    '503': Nun se pudo sirvir la páxina pola mor d'un fallu temporal del sirvidor.
   exports:
     archive_takeout:
       date: Data
@@ -216,6 +243,7 @@ ast:
     blocks: Xente que bloquiesti
     lists: Llistes
     mutes: Xente que silenciesti
+    storage: Almacenamientu multimedia
   featured_tags:
     add_new: Amestar
   filters:
@@ -234,13 +262,10 @@ ast:
     resources: Recursos
   generic:
     all: Too
-    changes_saved_msg: "¡Los cambeos guardáronse con ésitu!"
+    changes_saved_msg: "¡Los cambeos guardáronse correutamente!"
     order_by: Clasificación
-    save_changes: Guardar cambeos
-  identity_proofs:
-    authorize: Sí, autorizar
-    i_am_html: Soi %{username} de %{service}.
-    identity: Identidá
+    save_changes: Guardar los cambeos
+    today: güei
   imports:
     modes:
       merge: Mecíu
@@ -254,6 +279,7 @@ ast:
       following: Llista de siguidores
       muting: Llista de xente silenciao
     upload: Xubir
+  in_memoriam_html: N'alcordanza.
   invites:
     delete: Desactivar
     expired: Caducó
@@ -281,8 +307,8 @@ ast:
       limit: Algamesti la cantidá máxima de llistes
   media_attachments:
     validations:
-      images_and_video: Nun pue axuntase un videu a un estáu que yá contién imáxenes
-      too_many: Nun puen axuntase más de 4 ficheros
+      images_and_video: Nun se pue axuntar nengún videu a un artículu que yá contién imáxenes
+      too_many: Nun se puen axuntar más de 4 ficheros
   migrations:
     acct: nome_usuariu@dominiu de la cuenta nueva
     incoming_migrations: Mudase dende otra cuenta
@@ -346,14 +372,38 @@ ast:
   sessions:
     browser: Restolador
     browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Restolador desconocíu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      uc_browser: UCBrowser
+      weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
+    ip: IP
     platforms:
-      mac: Mac
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: GNU/Linux
+      mac: macOS
       other: plataforma desconocida
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
     revoke: Revocar
-    revoke_success: La sesión revocóse con esitu
+    revoke_success: La sesión revocóse correutamente
     title: Sesiones
   settings:
     account: Cuenta
@@ -384,11 +434,9 @@ ast:
         one: "%{count} videu"
         other: "%{count} vídeos"
     boosted_from_html: Compartióse'l barritu dende %{acct_link}
-    language_detection: Deteutala automáticamente
     pin_errors:
       limit: Yá fixesti'l númberu máximu de barritos
-      ownership: Nun pue fixase'l barritu d'otra persona
-      private: Nun puen fixase los barritos que nun seyan públicos
+      ownership: Nun se pue fixar l'artículu d'otru perfil
       reblog: Nun pue fixase un barritu compartíu
     poll:
       total_people:
@@ -405,6 +453,16 @@ ast:
       public_long: Tol mundu puen velos
       unlisted: Nun llistar
       unlisted_long: Tol mundu puen velos pero nun se llisten nes llinies temporales públiques
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 selmanes
+      '15778476': 6 meses
+      '2629746': 1 mes
+      '31556952': 1 añu
+      '5259492': 2 meses
+      '604800': 1 selmana
+      '63113904': 2 años
+      '7889238': 3 meses
   stream_entries:
     pinned: Barritu fixáu
     reblogged: compartió
@@ -418,16 +476,15 @@ ast:
   two_factor_authentication:
     disable: Desactivar
     enabled: L'autenticación en dos pasos ta activada
-    enabled_success: L'autenticación en dos pasos activóse con ésitu
+    enabled_success: L'autenticación en dos pasos activóse correutamente
     generate_recovery_codes: Xenerar códigos de recuperación
     lost_recovery_codes: Los códigos de recuperación permítente recuperar l'accesu a la cuenta si pierdes el teléfonu. Si tamién pierdes estos códigos, pues rexeneralos equí. Los códigos de recuperación vieyos van invalidase.
     recovery_codes: Códigos de recuperación
-    recovery_codes_regenerated: Los códigos de recuperación rexeneráronse con ésitu
+    recovery_codes_regenerated: Los códigos de recuperación rexeneráronse correutamente
     webauthn: Claves d'autenticación
   user_mailer:
     warning:
-      explanation:
-        suspend: La to cuenta suspendióse y tolos espublizamientos qu'espublizares desaniciáronse de mou irreversible d'esti sirvidor y sirvidores onde teníes siguidores.
+      reason: 'Motivu:'
       subject:
         suspend: Suspendióse la cuenta %{acct}
       title:
@@ -438,6 +495,7 @@ ast:
       subject: Afáyate en Mastodon
       tips: Conseyos
   users:
+    follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu nun ye válidu
     otp_lost_help_html: Si pierdes l'accesu, contauta con %{email}
     seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que los axustes de la contraseña y corréu nun tán disponibles.

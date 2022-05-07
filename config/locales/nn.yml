@@ -67,7 +67,6 @@ nn:
     media: Media
     moved_html: "%{name} har flytta til %{new_profile_link}:"
     network_hidden: Denne informasjonen er ikkje tilgjengeleg
-    never_active: Aldri
     nothing_here: Her er det ingenting!
     people_followed_by: Folk som %{name} fylgjer
     people_who_follow: Folk som fylgjer %{name}
@@ -92,12 +91,10 @@ nn:
     account_moderation_notes:
       create: Legg igjen merknad
       created_msg: Moderatormerknad er laga!
-      delete: Slett
       destroyed_msg: Moderatormerknad er utsletta!
     accounts:
       add_email_domain_block: Gøym e-postdomene
       approve: Godtak
-      approve_all: Godtak alle
       approved_msg: Godkjent %{username} sin registreringsapplikasjon
       are_you_sure: Er du sikker?
       avatar: Bilete
@@ -151,7 +148,6 @@ nn:
         active: Aktiv
         all: Alle
         pending: Ventar på svar
-        silenced: Dempa
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsmerknader
@@ -169,7 +165,6 @@ nn:
       redownload: Last inn profil på nytt
       redownloaded_msg: Oppdatert %{username} sin profil fra opprinnelse
       reject: Avvis
-      reject_all: Avvis alle
       rejected_msg: Vellykket avvist %{username} sin registreringsapplikasjon
       remove_avatar: Fjern bilete
       remove_header: Fjern overskrift
@@ -194,7 +189,6 @@ nn:
       security_measures:
         only_password: Bare passord
         password_and_2fa: Passord og 2FA
-        password_and_sign_in_token: Passord og e-post token
       sensitized: Merket som følsom
       shared_inbox_url: Delt Innboks URL
       show:
@@ -207,7 +201,6 @@ nn:
       suspended: Utvist
       suspension_irreversible: Dataene fra denne kontoen har blitt ikke reverserbart slettet. Du kan oppheve suspenderingen av kontoen for å gjøre den brukbart, men den vil ikke gjenopprette alle data den tidligere har hatt.
       suspension_reversible_hint_html: Kontoen har blitt suspendert, og dataene vil bli fullstendig fjernet den %{date}. Frem til da kan kontoen gjenopprettes uten negative effekter. Hvis du ønsker å fjerne alle kontoens data umiddelbart, kan du gjøre det nedenfor.
-      time_in_queue: Ventar i kø %{time}
       title: Kontoar
       unconfirmed_email: E-post utan stadfesting
       undo_silenced: Angr målbinding
@@ -222,6 +215,7 @@ nn:
       whitelisted: Kvitlista
     action_logs:
       action_types:
+        approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
         change_email_user: Byt e-post for brukar
         confirm_user: Stadfest brukar
@@ -246,6 +240,7 @@ nn:
         enable_custom_emoji: Skruv på tilpassa emoji
         enable_user: Skruv på brukar
         promote_user: Forfrem brukar
+        reject_user: Avvis bruker
         remove_avatar_user: Fjern avatar
         reopen_report: Opn rapport opp att
         reset_password_user: Tilbakestill passord
@@ -257,11 +252,13 @@ nn:
         update_custom_emoji: Oppdater tilpassa emoji
         update_status: Oppdater tut
       actions:
+        approve_user_html: "%{name} godkjente registrering fra %{target}"
         create_custom_emoji_html: "%{name} lastet opp ny emoji %{target}"
         create_domain_allow_html: "%{name} tillatt føderasjon med domenet %{target}"
         create_domain_block_html: "%{name} blokkert domene %{target}"
         create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
+        reject_user_html: "%{name} avslo registrering fra %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
       deleted_status: "(sletta status)"
       empty: Ingen loggar funne.
@@ -302,7 +299,6 @@ nn:
       enable: Slå på
       enabled: Slege på
       enabled_msg: Aktiverte kjensleteikn
-      image_hint: PNG opp til 50 kB
       list: Oppfør
       listed: Oppført
       new:
@@ -319,9 +315,19 @@ nn:
       updated_msg: Kjensleteiknet er oppdatert!
       upload: Last opp
     dashboard:
+      active_users: aktive brukere
+      interactions: interaksjoner
+      media_storage: Medialagring
+      new_users: nye brukere
+      opened_reports: rapporter åpnet
+      resolved_reports: rapporter løst
       software: Programvare
+      sources: Kilder for registreringer
       space: Lagrinsplass nytta
       title: Dashbord
+      top_languages: Mest aktive språk
+      top_servers: Mest aktive servere
+      website: Nettside
     domain_allows:
       add_new: Kvitlist domene
       created_msg: Domene er vorte kvitlista
@@ -353,30 +359,13 @@ nn:
       reject_media_hint: Fjernar mediefiler som er lagra lokalt og nektar å lasta ned andre i framtida. Har ikkje noko å seia for utvisingar
       reject_reports: Avvis rapportar
       reject_reports_hint: Ignorer alle rapportar frå dette domenet. Har ikkje noko å seia for utvisingar
-      rejecting_media: avviser mediefiler
-      rejecting_reports: avviser rapportar
-      severity:
-        silence: dempa
-        suspend: utvist
-      show:
-        affected_accounts:
-          one: Éin konto i databasen vert påverka
-          other: "%{count} kontoar i databasen vert påverka"
-        retroactive:
-          silence: Avmålbind alle eksisterende kontoer fre dette domenet
-          suspend: Avutvis alle eksisterende kontoer fra dette domenet
-        title: Angre domeneblokkering for %{domain}
-        undo: Angr
       undo: Angre
       view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Slett
-      destroyed_msg: E-postdomenet har blitt fjernet fra blokkeringslisten uten problemer
       domain: Domene
-      empty: Ingen e-mail-domener er sortelistet på dette tidspunkt.
-      from_html: frå %{domain}
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
@@ -399,13 +388,8 @@ nn:
         clear: Feil ved fjerning
         restart: Starte levering
         stop: Stopp levering
-        title: Levering
         unavailable: Ikke tilgjengelig
-        warning: Advarsel
       delivery_available: Levering er tilgjengelig
-      known_accounts:
-        one: "%{count} kjend konto"
-        other: "%{count} kjende kontoar"
       moderation:
         all: Alle
         limited: Avgrensa
@@ -441,8 +425,6 @@ nn:
         title: Opprett ny IP-regel
       no_ip_block_selected: Ingen IP-regler ble endret da ingen ble valgt
       title: IP-regler
-    pending_accounts:
-      title: Kontoar som ventar (%{count})
     relationships:
       title: "%{acct} sitt forhold"
     relays:
@@ -469,9 +451,6 @@ nn:
         notes:
           one: "%{count} notis"
           other: "%{count} notiser"
-        reports:
-          one: "%{count} rapport"
-          other: "%{count} rapporter"
       action_taken_by: Handling gjort av
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
@@ -601,15 +580,9 @@ nn:
       destroyed_msg: Vellukka sletting av sideopplasting!
     statuses:
       back_to_account: Tilbake til kontosida
-      batch:
-        delete: Slett
-        nsfw_off: NSFW AV
-        nsfw_on: NSFW PÅ
       deleted: Sletta
-      failed_to_execute: Lét seg ikkje gjera
       media:
         title: Media
-      no_media: Ingen media
       no_status_selected: Ingen statusar vart endra sidan ingen vart valde
       title: Kontostatusar
       with_media: Med media
@@ -620,19 +593,7 @@ nn:
         action: Behandle serverregler
         message_html: Du har ikke definert noen serverregler.
     tags:
-      accounts_today: Ulike brukarar i dag
-      accounts_week: Unike brukstilfeller denne uken
-      breakdown: Oversyn over bruk i dag etter kjelde
-      last_active: Sist aktiv
-      most_popular: Mest populær
-      most_recent: Nyast
-      name: Emneknagg
       review: Sjå gjennom status
-      reviewed: Gjennomgått
-      title: Emneknaggar
-      trending_right_now: Populært no
-      unique_uses_today: "%{count} legg ut i dag"
-      unreviewed: Ikkje gjennomgått
       updated_msg: Emneknagginnstillingane er oppdaterte
     title: Leiing
     warning_presets:
@@ -648,9 +609,6 @@ nn:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
       subject: Ny rapport for %{instance} (#%{id})
-    new_trending_tag:
-      body: 'Emneknaggen #%{name} trender i dag, men den har ikke blitt gjennomgått tidligere. Den vil ikke bli vist offentlig med mindre du tillater at den blir det, eller du kan bare lagre skjemaet slik det er for å aldri høre om det igjen.'
-      subject: Ny emneknagg ventar gjennomgang på %{instance} (#%{name})
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -722,7 +680,6 @@ nn:
     status:
       account_status: Kontostatus
       confirming: Ventar på stadfesting av e-post.
-      functional: Kontoen din er oppe og går.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
     trouble_logging_in: Får du ikkje logga inn?
@@ -850,33 +807,14 @@ nn:
     changes_saved_msg: Alle endringane vart lagra!
     copy: Kopier
     delete: Slett
-    no_batch_actions_available: Ingen batch-handlingar tilgjengelege på denne sida
     order_by: Sorter etter
     save_changes: Lagr endringar
+    today: i dag
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   html_validator:
     invalid_markup: 'rommar ugild HTML-kode: %{error}'
-  identity_proofs:
-    active: Aktiv
-    authorize: Ja, stadfest
-    authorize_connection_prompt: Vil du autorisere denne kryptografiske forbindelsen?
-    errors:
-      failed: Den kryptografiske tilkoplinga gjekk gale. Venlegast prøv om att frå %{provider}.
-      keybase:
-        verification_failed: Keybase kjenner ikke igjen denne sjetongen som en signatur for Keybase-brukeren %{kb_username}. Vennligst prøv igjen gjennom Keybase.
-      wrong_user: Kan ikke lage et bevis for %{proving} mens du er logget på som %{current}. Logg på som %{proving} og prøv igjen.
-    explanation_html: Her kan du kryptografisk koble til dine andre enheter, f.eks. en Keybase-profil. Dette lar andre folk sende deg krypterte meldinger og stole på innhold som du sender dem.
-    i_am_html: Eg er %{username} på %{service}.
-    identity: Identitet
-    inactive: Uaktiv
-    publicize_checkbox: 'Og tut dette:'
-    publicize_toot: 'Det er prova! Eg er %{username} på %{service}: %{url}'
-    remove: Fjern prov frå konto
-    removed: Vellukka fjerning av prov frå konto
-    status: Stadfestingsstatus
-    view_proof: Sjå prov
   imports:
     modes:
       merge: Set saman
@@ -970,9 +908,6 @@ nn:
       new_followers_summary:
         one: Du har forresten fått deg ein ny fylgjar mens du var borte! Hurra!
         other: Du har forresten fått deg %{count} nye fylgjarar mens du var borte! Hurra!
-      subject:
-        one: "1 nytt varsel sidan siste gong du var innom \U0001F418"
-        other: "%{count} nye varsel sidan siste gong du var innom \U0001F418"
       title: Mens du var borte...
     favourite:
       body: 'Statusen din vart merkt som favoritt av %{name}:'
@@ -1137,7 +1072,6 @@ nn:
     edit_profile: Endr profil
     export: Dataeksport
     featured_tags: Utvalgte emneknagger
-    identity_proofs: Identitetsprov
     import: Hent inn
     import_and_export: Importer og eksporter
     migrate: Kontoflytting
@@ -1166,13 +1100,12 @@ nn:
       other: 'inneheldt emneknaggen som ikkje var tillaten: %{tags}'
     errors:
       in_reply_not_found: Det ser ut til at tutet du freistar å svara ikkje finst.
-    language_detection: Kjenn att språk automatisk
     open_in_web: Opn på nett
     over_character_limit: øvregrensa for teikn, %{max}, er nådd
     pin_errors:
+      direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
       limit: Du har allereie festa så mange tut som det går an å festa
       ownership: Du kan ikkje festa andre sine tut
-      private: Du kan ikkje festa uoffentlege tut
       reblog: Ei framheving kan ikkje festast
     poll:
       total_people:
@@ -1312,31 +1245,15 @@ nn:
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
-    sign_in_token:
-      details: 'Her er forsøksdetaljane:'
-      explanation: 'Vi oppdaget et forsøk på å logge på kontoen fra en ukjent IP-adresse. Hvis dette er deg, vennligst skriv inn sikkerhetskoden nedenfor på påloggingssiden:'
-      further_actions: 'Om dette ikkje var deg, so venlegast endra passordet ditt og skruv på tostegsgodkjenning på kontoen din. Du kan gjera det her:'
-      subject: Venlegast stadfest forsøket på å logga inn
-      title: Forsøk på å logga inn
     warning:
-      explanation:
-        disable: Mens kontoen din er fryst, forblir dine kontodata intakt, men du kan ikke utføre noen handlinger før den har blitt tint opp.
-        sensitive: De opplastede mediefilene og linket vil bli behandlet som sensitive.
-        silence: Mens kontoen din er begrenset, vil bare folk som allerede følger deg se dine tuter på denne tjeneren, og du kan bli ekskludert fra diverse offentlige oppføringer. Men andre kan fortsatt følge deg manuelt.
-        suspend: Kontoen din har blitt suspendert, og alle dine tuter og opplastede media har blitt ugjenkallelig fjernet fra denne tjeneren, og fra tjenere der du hadde følgere.
-      get_in_touch: Du kan svare på denne E-posten for å komme i kontakt med styret i %{instance}.
-      review_server_policies: Gjennomgå serverretningslinjer
-      statuses: 'Spesifikt for å:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
         none: Åtvaring for %{acct}
-        sensitive: Din konto %{acct} medier har blitt merket som følsom
         silence: Kontoen din, %{acct}, er vorten avgrensa
         suspend: Kontoen din, %{acct}, er vorten utvist
       title:
         disable: Konto frosen
         none: Åtvaring
-        sensitive: Mediet ditt er markert som følsom
         silence: Konto avgrensa
         suspend: Konto utvist
     welcome:
@@ -1358,13 +1275,10 @@ nn:
       title: Velkomen om bord, %{name}!
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk
-    generic_access_help_html: Har du vanskar med tilgjenge til kontoen din? Tak gjerne kontakt med %{email}
     invalid_otp_token: Ugyldig tostegskode
-    invalid_sign_in_token: Ugild trygdenykel
     otp_lost_help_html: Hvis du mistet tilgangen til begge deler, kan du komme i kontakt med %{email}
     seamless_external_login: Du er logga inn gjennom eit eksternt reiskap, so passord og e-postinstillingar er ikkje tilgjengelege.
     signed_in_as: 'Logga inn som:'
-    suspicious_sign_in_confirmation: Det verkar ikkje som du har logga inn frå dette reiskapet før, og du har ikkje logga inn på ei stund, difor sender me deg ein trygdekode til e-post-addressa di for å stadfesta at det er deg.
   verification:
     explanation_html: 'Du kan <strong>bekrefte at du selv er eieren av lenkene i din profilmetadata</strong>. For å gjøre det, må det tillenkede nettstedet inneholde en lenke som fører tilbake til Mastodon-profilen din. Lenken tilbake <strong>må</strong> ha en <code>rel="me"</code>-attributt. Tekstinnholdet til lenken er irrelevant. Her er et eksempel:'
     verification: Stadfesting

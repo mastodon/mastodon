@@ -66,7 +66,6 @@ zh-HK:
     media: 媒體
     moved_html: "%{name} 已經轉移到 %{new_profile_link}："
     network_hidden: 此信息不可用
-    never_active: 永不
     nothing_here: 暫時未有內容可以顯示！
     people_followed_by: "%{name} 關注的人"
     people_who_follow: 關注 %{name} 的人
@@ -90,12 +89,10 @@ zh-HK:
     account_moderation_notes:
       create: 加入管理紀錄
       created_msg: 已新增管理紀錄
-      delete: 刪除
       destroyed_msg: 管理紀錄已被刪除
     accounts:
       add_email_domain_block: 封鎖電郵網域
       approve: 核准
-      approve_all: 全部批准
       approved_msg: 成功審核了%{username} 的新帳號申請
       are_you_sure: 你確定嗎？
       avatar: 頭像
@@ -149,7 +146,6 @@ zh-HK:
         active: 活躍
         all: 全部
         pending: 處理中
-        silenced: 被靜音的
         suspended: 已停權
         title: 管理操作
       moderation_notes: 管理備註
@@ -167,7 +163,6 @@ zh-HK:
       redownload: 更新頁面
       redownloaded_msg: 成功重新載入 %{username} 的個人資料頁面
       reject: 拒絕
-      reject_all: 全部拒絕
       rejected_msg: 成功拒絕了 %{username} 的新帳號申請
       remove_avatar: 刪除頭像
       remove_header: 移除頁面頂端
@@ -192,7 +187,6 @@ zh-HK:
       security_measures:
         only_password: 僅密碼
         password_and_2fa: 密碼和兩步認證
-        password_and_sign_in_token: 密碼與 e-mail 驗證碼
       sensitive: 敏感内容
       sensitized: 已標記為敏感內容
       shared_inbox_url: 公共收件箱（Shared Inbox）URL
@@ -206,7 +200,6 @@ zh-HK:
       suspended: 已停權
       suspension_irreversible: 已永久刪除此帳號的數據。你可以取消此帳號的停權狀態，但帳號的資料已被永久刪除。
       suspension_reversible_hint_html: 此帳戶已被停權及所有數據將會於 %{date} 被刪除。在此之前，你仍可以完全回復帳號。如果你想即時刪除此帳戶的資料，可以在下面進行操作。
-      time_in_queue: 排隊中 %{time}
       title: 帳號
       unconfirmed_email: 未確認的電郵
       undo_sensitized: 取消敏感狀態
@@ -350,7 +343,6 @@ zh-HK:
       enable: 啟用
       enabled: 已啟用
       enabled_msg: 已啟用表情符號
-      image_hint: PNG 格式，最大 50KB
       list: 列出
       listed: 已列出
       new:
@@ -401,29 +393,13 @@ zh-HK:
       reject_media_hint: 刪除本地緩存的媒體檔案，再也不在未來下載這個站點的檔案。和自動刪除無關
       reject_reports: 拒絕檢舉個案
       reject_reports_hint: 忽略所有來自此站點的檢舉。與停權無關
-      rejecting_media: 拒絕媒體檔案
-      rejecting_reports: 拒絕檢舉中
-      severity:
-        silence: 已靜音
-        suspend: 已停權
-      show:
-        affected_accounts:
-          other: 將影響到資料庫中的 %{count} 個帳號
-        retroactive:
-          silence: 對此域名的所有帳號取消靜音
-          suspend: 對此域名的所有帳號取消除名
-        title: 撤銷 %{domain} 的域名阻隔
-        undo: 撤銷
       undo: 撤銷域名阻隔
       view: 顯示正被阻隔的網域
     email_domain_blocks:
       add_new: 新增
       created_msg: 已新增電郵網域阻隔
       delete: 刪除
-      destroyed_msg: 已刪除電郵網域阻隔
       domain: 網域
-      empty: 現時並沒有電郵域名被阻隔。
-      from_html: 由%{domain}
       new:
         create: 新增網域
         title: 新增電郵網域阻隔
@@ -446,18 +422,11 @@ zh-HK:
         clear: 清除遞送錯誤
         restart: 重新啟動遞送
         stop: 停止遞送
-        title: 遞送
         unavailable: 離線
-        unavailable_message: 無法遞送
-        warning: 警告
-        warning_message:
-          other: 遞送失敗 %{count} 天
       delivery_available: 可傳送
       delivery_error_days: 遞送失敗天數
       delivery_error_hint: 若 %{count} 天皆無法達成遞送，將會被自動標記為離線。
       empty: 找不到域名。
-      known_accounts:
-        other: "%{count} 已知的帳號"
       moderation:
         all: 全部
         limited: 限制
@@ -493,8 +462,6 @@ zh-HK:
         title: 新增 IP 規則
       no_ip_block_selected: 因未選擇 IP 規則而未有任何變更。
       title: IP 規則
-    pending_accounts:
-      title: 待處理帳戶（%{count}）
     relationships:
       title: "%{acct} 的關係"
     relays:
@@ -520,8 +487,6 @@ zh-HK:
       account:
         notes:
           other: "%{count} 則備註"
-        reports:
-          other: "%{count} 則舉報"
       action_taken_by: 操作執行者
       are_you_sure: 你確認嗎？
       assign_to_self: 指派給自己
@@ -629,7 +594,7 @@ zh-HK:
         desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
         title: 本站詳細資訊
       site_short_description:
-        desc_html: 顯示在側邊欄和網頁標籤(meta tags)。以一句話描述Mastodon是甚麼，有甚麼令這個伺服器脫\U000294D9而出。
+        desc_html: "顯示在側邊欄和網頁標籤(meta tags)。以一句話描述Mastodon是甚麼，有甚麼令這個伺服器脫𩓙而出。"
         title: 伺服器短描述
       site_terms:
         desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
@@ -653,15 +618,9 @@ zh-HK:
       destroyed_msg: 成功刪除站台的上傳項目！
     statuses:
       back_to_account: 返回帳戶信息頁
-      batch:
-        delete: 刪除
-        nsfw_off: 取消 NSFW 標記
-        nsfw_on: 添加 NSFW 標記
       deleted: 已刪除
-      failed_to_execute: 執行失敗
       media:
         title: 媒體檔案
-      no_media: 不含媒體檔案
       no_status_selected: 因未選擇嘟文而未變更。
       title: 帳戶文章
       with_media: 含有媒體檔案
@@ -674,19 +633,7 @@ zh-HK:
       sidekiq_process_check:
         message_html: 沒有 %{value} 佇列的 Sidekiq 處理程序。請檢查 Sidekiq 設定檔案
     tags:
-      accounts_today: 今日特殊使用
-      accounts_week: 今週特殊使用
-      breakdown: 根據來源剖析是日用量
-      last_active: 上次活躍
-      most_popular: 最熱門
-      most_recent: 最近
-      name: 主題標籤
       review: 審核文章
-      reviewed: 已審核
-      title: 主題標籤
-      trending_right_now: 最新趨勢
-      unique_uses_today: 今天嘟了 %{count} 則
-      unreviewed: 未審核
       updated_msg: 成功更新主題標籤設定
     title: 管理
     warning_presets:
@@ -703,9 +650,6 @@ zh-HK:
       body: "%{reporter} 舉報了 %{target}"
       body_remote: 來自 %{domain} 的人舉報了 %{target}
       subject: 針對 %{instance} 的舉報（#%{id}）
-    new_trending_tag:
-      body: '今天流行使用未被審核的 #%{name} 主題標籤。在你允許之前，它不會被公開地顯示，你亦可以無視它使它不再污染你的眼睛。'
-      subject: 在 %{instance} 上未審核的主題標籤 (%{name})
   aliases:
     add_new: 建立別名 (Alias)
     created_msg: 成功建立別名 (alias)。你可以從舊帳號開始轉移。
@@ -778,7 +722,6 @@ zh-HK:
     status:
       account_status: 帳戶文章
       confirming: 正在等待確認電郵地址。
-      functional: 你的帳戶可以正常使用。
       pending: 管理員正在處理你的申請。可能會需要一點時間處理。我們將會在申請被批準的時候馬上寄電郵給你。
       redirecting_to: 你的帳戶因為正在重新定向到 %{acct}，所以暫時被停用。
     too_fast: 你太快遞交了，請再試一次。
@@ -912,33 +855,12 @@ zh-HK:
     changes_saved_msg: 已成功儲存修改。
     copy: 複製
     delete: 刪除
-    no_batch_actions_available: 此頁目沒有可用的批次操作
     order_by: 排序
     save_changes: 儲存修改
     validation_errors:
       other: 提交的資料有 %{count} 項問題
   html_validator:
     invalid_markup: 含有無效的HTML標記：%{error}
-  identity_proofs:
-    active: 活躍
-    authorize: 是的，請授權
-    authorize_connection_prompt: 授權此加密通訊？
-    errors:
-      failed: 加密通訊失敗。請在%{provider} 重試。
-      keybase:
-        invalid_token: Keybase tokens必定為66個16位元字符的簽名檔散列。
-        verification_failed: Keybase不能識別此令牌為Keybase用戶%{kb_username} 的簽名。請在Keybase再試一次。
-      wrong_user: 未能以%{current} 為 %{proving} 建立身份驗證。請登入為%{proving} 再試一次。
-    explanation_html: 在此你連結其他網路平台（如 Keybase）上的加密身份。讓其他人可以在那些平台上，傳送加密信息給你，並驗證你的身份。
-    i_am_html: 我是 %{service} 上的 %{username}
-    identity: 身份
-    inactive: 停用
-    publicize_checkbox: 發表文章：
-    publicize_toot: 驗證成功！我在%{service} 是%{username} ：%{url}
-    remove: 刪除帳號的驗證
-    removed: 成功刪除身份驗證
-    status: 確認狀態
-    view_proof: 查看證明
   imports:
     errors:
       over_rows_processing_limit: 包含超過 %{count} 行
@@ -1041,8 +963,6 @@ zh-HK:
       mention: "%{name} 在此提及了你︰"
       new_followers_summary:
         other: 你新獲得了 %{count} 位關注者了！好厲害！
-      subject:
-        other: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
       title: 在你不在的這段時間……
     favourite:
       body: 你的文章被 %{name} 喜愛：
@@ -1209,7 +1129,6 @@ zh-HK:
     edit_profile: 修改個人資料
     export: 匯出
     featured_tags: 推薦的標籤
-    identity_proofs: 身份驗證
     import: 匯入
     import_and_export: 匯入及匯出
     migrate: 帳戶遷移
@@ -1235,13 +1154,11 @@ zh-HK:
       other: 包含不允許的標籤： %{tags}
     errors:
       in_reply_not_found: 你所回覆的嘟文並不存在。
-    language_detection: 自動偵測語言
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
     pin_errors:
       limit: 你所置頂的文章數量已經達到上限
       ownership: 不能置頂他人的文章
-      private: 不能置頂非公開的文章
       reblog: 不能置頂轉推
     poll:
       total_people:
@@ -1290,6 +1207,7 @@ zh-HK:
       '2629746': 1 個月
       '31556952': 1 年
       '5259492': 2 個月
+      '604800': 1 week
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 按時間篩選
@@ -1414,31 +1332,15 @@ zh-HK:
       explanation: 你要求的 Mastodon 帳號完整備份檔案現已就緒，可供下載。
       subject: 你的備份檔已可供下載
       title: 檔案匯出
-    sign_in_token:
-      details: 這是嘗試的詳細資訊
-      explanation: 我們發現有人嘗試以未使用過的 IP 位址登入到你的帳號。 如果這個登入的人是你，請在「登入請求」頁面上輸入以下安全代碼：
-      further_actions: 如果這不是你，請到這裏更改你的密碼，並啟用雙重認證：
-      subject: 請確認登入請求
-      title: 登入請求
     warning:
-      explanation:
-        disable: 你不能以任何方式登入或使用你的帳號，但你的個人資料頁面和其他資料仍保持完整。
-        sensitive: 你上載的媒體檔案和連結媒體將被標記為敏感項目。
-        silence: 你仍然可以使用你的帳號，但只有你現時的追隨者會看見你在此伺服器的嘟文。你或從公開名冊中被剔除。但是其他人仍然可以主動關注你。
-        suspend: 你將不能使用您的帳號，你的個人資料頁面及其他資料將不能再被取得。你仍可在資料被完全刪除前請求下載你的數據，但我們仍會保留一部份資料，以防止有人規避停權處罰。
-      get_in_touch: 你可以回覆此電郵來跟我們(%{instance})聯絡
-      review_server_policies: 審視伺服器政策
-      statuses: 特別是：
       subject:
         disable: 你的帳號 %{acct} 已經被涷結
         none: 警告帳號%{acct}
-        sensitive: 你的帳號 %{acct} 的媒體已被標記為敏感內容
         silence: 你的帳號 %{acct} 已經被限制
         suspend: 你的帳號 %{acct} 已經被停權
       title:
         disable: 帳號涷結
         none: 警告
-        sensitive: 你的媒體已被標記為敏感內容
         silence: 賬戶已被限制
         suspend: 帳號已停用
     welcome:
@@ -1460,13 +1362,10 @@ zh-HK:
       title: 歡迎 %{name} 加入！
   users:
     follow_limit_reached: 你不能關注多於%{limit} 人
-    generic_access_help_html: 不能登入？你可以寄電郵至 %{email} 尋求協助
     invalid_otp_token: 雙重認證碼不正確
-    invalid_sign_in_token: 無效的安全碼
     otp_lost_help_html: 如果這兩者你均無法登入，你可以聯繫 %{email}
     seamless_external_login: 因為你正在使用第三方服務登入，所以不能設定密碼和電郵。
     signed_in_as: 目前登入的帳戶：
-    suspicious_sign_in_confirmation: 你似乎未曾從此設備登入，而你又有一段時間沒有登入了。我們剛剛把安全碼傳送到你的電郵地址，請查看你的電郵信箱，以確認你是帳號擁有者本人。
   verification:
     explanation_html: 你可以<strong>認證個人資料頁面的元數據 (Metadata) 連結是屬於你的</strong>。要認證，那些連結的目的地網站必須有一條回到你 Mastodon 個人頁面的連結，而且連結<strong>必須</strong>具有<code>rel="me"</code>屬性。連結的文字內容都不會影響認證。這裏有一個例子：
     verification: 驗證

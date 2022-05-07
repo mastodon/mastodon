@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FollowRecommendationFilter
+  include Redisable
+
   KEYS = %i(
     language
     status
@@ -17,7 +19,7 @@ class FollowRecommendationFilter
     if params['status'] == 'suppressed'
       Account.joins(:follow_recommendation_suppression).order(FollowRecommendationSuppression.arel_table[:id].desc).to_a
     else
-      account_ids = Redis.current.zrevrange("follow_recommendations:#{@language}", 0, -1).map(&:to_i)
+      account_ids = redis.zrevrange("follow_recommendations:#{@language}", 0, -1).map(&:to_i)
       accounts    = Account.where(id: account_ids).index_by(&:id)
 
       account_ids.map { |id| accounts[id] }.compact

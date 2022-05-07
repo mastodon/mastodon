@@ -7,11 +7,11 @@ class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dim
     'software_versions'
   end
 
-  def data
+  protected
+
+  def perform_query
     [mastodon_version, ruby_version, postgresql_version, redis_version]
   end
-
-  private
 
   def mastodon_version
     value = Mastodon::Version.to_s

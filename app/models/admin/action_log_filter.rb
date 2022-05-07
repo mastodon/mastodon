@@ -8,9 +8,13 @@ class Admin::ActionLogFilter
   ).freeze
 
   ACTION_TYPE_MAP = {
+    approve_appeal: { target_type: 'Appeal', action: 'approve' }.freeze,
+    reject_appeal: { target_type: 'Appeal', action: 'reject' }.freeze,
     assigned_to_self_report: { target_type: 'Report', action: 'assigned_to_self' }.freeze,
     change_email_user: { target_type: 'User', action: 'change_email' }.freeze,
     confirm_user: { target_type: 'User', action: 'confirm' }.freeze,
+    approve_user: { target_type: 'User', action: 'approve' }.freeze,
+    reject_user: { target_type: 'User', action: 'reject' }.freeze,
     create_account_warning: { target_type: 'AccountWarning', action: 'create' }.freeze,
     create_announcement: { target_type: 'Announcement', action: 'create' }.freeze,
     create_custom_emoji: { target_type: 'CustomEmoji', action: 'create' }.freeze,
@@ -24,6 +28,7 @@ class Admin::ActionLogFilter
     destroy_domain_allow: { target_type: 'DomainAllow', action: 'destroy' }.freeze,
     destroy_domain_block: { target_type: 'DomainBlock', action: 'destroy' }.freeze,
     destroy_email_domain_block: { target_type: 'EmailDomainBlock', action: 'destroy' }.freeze,
+    destroy_instance: { target_type: 'Instance', action: 'destroy' }.freeze,
     destroy_unavailable_domain: { target_type: 'UnavailableDomain', action: 'destroy' }.freeze,
     destroy_status: { target_type: 'Status', action: 'destroy' }.freeze,
     disable_2fa_user: { target_type: 'User', action: 'disable' }.freeze,
@@ -47,6 +52,7 @@ class Admin::ActionLogFilter
     update_announcement: { target_type: 'Announcement', action: 'update' }.freeze,
     update_custom_emoji: { target_type: 'CustomEmoji', action: 'update' }.freeze,
     update_status: { target_type: 'Status', action: 'update' }.freeze,
+    unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
   }.freeze
 
   attr_reader :params

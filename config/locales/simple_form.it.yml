@@ -7,12 +7,12 @@ it:
       account_migration:
         acct: Indica il nomeutente@dominio dell'account al quale vuoi trasferirti
       account_warning_preset:
-        text: Puoi usare la sintassi dei toot, come URL, hashtag e menzioni
+        text: Puoi usare la sintassi dei post, come URL, hashtag e menzioni
         title: Opzionale. Non visibile al destinatario
       admin_account_action:
-        include_statuses: L'utente vedrà quali toot hanno causato l'azione di moderazione o l'avviso
+        include_statuses: L'utente vedrà quali post hanno causato l'azione di moderazione o l'avviso
         send_email_notification: L'utente riceverà una spiegazione di ciò che è successo con suo account
-        text_html: Opzionale. Puoi usare la sintassi dei toot. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
+        text_html: Opzionale. Puoi usare la sintassi dei post. Puoi <a href="%{path}">aggiungere avvisi preimpostati</a> per risparmiare tempo
         type_html: Decidi cosa fare con <strong>%{acct}</strong>
         types:
           disable: Impedisce all'utente di utilizzare il suo account, ma non elimina o nasconde i suoi contenuti.
@@ -26,7 +26,9 @@ it:
         ends_at: Opzionale. L'annuncio verrà automaticamente ritirato in questo momento
         scheduled_at: Lascia vuoto per pubblicare immediatamente l'annuncio
         starts_at: Opzionale. Quando l'annuncio è legato a un intervallo di tempo specifico
-        text: Puoi usare la sintassi dei toot. Tieni presente lo spazio che l'annuncio occuperà nello schermo dell'utente
+        text: Puoi usare la sintassi dei post. Tieni presente lo spazio che l'annuncio occuperà nello schermo dell'utente
+      appeal:
+        text: Puoi appellarti solo una volta
       defaults:
         autofollow: Le persone che si iscrivono attraverso l'invito ti seguiranno automaticamente
         avatar: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
@@ -35,19 +37,19 @@ it:
         current_password: Per motivi di sicurezza inserisci la password dell'account attuale
         current_username: Per confermare, inserisci il nome utente dell'account attuale
         digest: Inviata solo dopo un lungo periodo di inattività e solo se hai ricevuto qualche messaggio personale in tua assenza
-        discoverable: La directory dei profili è un altro modo in cui il tuo account può raggiungere un pubblico più ampio
-        discoverable_no_directory: Consenti al tuo profilo di esser scoperto da sconosciuti tramite consigli e altre funzionalità
+        discoverable: Consenti al tuo account di essere scoperto da sconosciuti tramite consigli, tendenze e altre funzionalità
         email: Ti manderemo una email di conferma
         fields: Puoi avere fino a 4 voci visualizzate come una tabella sul tuo profilo
         header: PNG, GIF o JPG. Al massimo %{size}. Verranno scalate a %{dimensions}px
         inbox_url: Copia la URL dalla pagina iniziale del ripetitore che vuoi usare
-        irreversible: I toot filtrati scompariranno in modo irreversibile, anche se il filtro viene eliminato
+        irreversible: I post filtrati scompariranno in modo irreversibile, anche se il filtro viene eliminato
         locale: La lingua dell'interfaccia utente, di email e notifiche push
         locked: Richiede che approvi i follower manualmente
         password: Usa almeno 8 caratteri
         phrase: Il confronto sarà eseguito ignorando minuscole/maiuscole e i content warning
         scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un ambito di alto livello, non c'è bisogno di selezionare quelle singole.
         setting_aggregate_reblogs: Non mostrare nuove condivisioni per toot che sono stati condivisi di recente (ha effetto solo sulle nuove condivisioni)
+        setting_always_send_emails: Normalmente le notifiche e-mail non vengono inviate quando si utilizza attivamente Mastodon
         setting_default_sensitive: Media con contenuti sensibili sono nascosti in modo predefinito e possono essere rivelati con un click
         setting_display_media_default: Nascondi media segnati come sensibili
         setting_display_media_hide_all: Nascondi sempre tutti i media
@@ -62,7 +64,7 @@ it:
       domain_allow:
         domain: Questo dominio potrà recuperare i dati da questo server e i dati in arrivo da esso verranno elaborati e memorizzati
       email_domain_block:
-        domain: Questo può essere il nome del dominio che fa parte dell'indirizzo email, il record MX a cui il dominio si risolve o l'indirizzo IP del server a cui il record MX si risolve. Saranno verificati alla registrazione da parte dell'utente e la sua iscrizione sarà respinta.
+        domain: Questo può essere il nome di dominio che appare nell'indirizzo e-mail o nel record MX che utilizza. Verranno controllati al momento dell'iscrizione.
         with_dns_records: Sarà effettuato un tentativo di risolvere i record DNS del dominio in questione e i risultati saranno inseriti anche nella blacklist
       featured_tag:
         name: 'Eccone alcuni che potresti usare:'
@@ -119,6 +121,8 @@ it:
         scheduled_at: Programma la pubblicazione
         starts_at: Inizio dell'evento
         text: Annuncio
+      appeal:
+        text: Spiega perché la decisione dovrebbe essere annullata
       defaults:
         autofollow: Invita a seguire il tuo account
         avatar: Immagine di profilo
@@ -148,25 +152,26 @@ it:
         phrase: Parola chiave o frase
         setting_advanced_layout: Abilita interfaccia web avanzata
         setting_aggregate_reblogs: Raggruppa condivisioni in timeline
-        setting_auto_play_gif: Play automatico GIF animate
+        setting_always_send_emails: Manda sempre notifiche via email
+        setting_auto_play_gif: Riproduci automaticamente le GIF animate
         setting_boost_modal: Mostra dialogo di conferma prima del boost
-        setting_crop_images: Ritaglia immagini in toot non espansi a 16x9
+        setting_crop_images: Ritaglia immagini in post non espansi a 16x9
         setting_default_language: Lingua dei post
         setting_default_privacy: Privacy dei post
         setting_default_sensitive: Segna sempre i media come sensibili
-        setting_delete_modal: Mostra dialogo di conferma prima di eliminare un toot
+        setting_delete_modal: Mostra dialogo di conferma prima di eliminare un post
         setting_disable_swiping: Disabilita i movimenti di scorrimento
         setting_display_media: Visualizzazione dei media
         setting_display_media_default: Predefinita
         setting_display_media_hide_all: Nascondi tutti
         setting_display_media_show_all: Mostra tutti
-        setting_expand_spoilers: Espandi sempre toot con content warning
+        setting_expand_spoilers: Espandi sempre post con content warning
         setting_hide_network: Nascondi la tua rete
         setting_noindex: Non farti indicizzare dai motori di ricerca
         setting_reduce_motion: Riduci movimento nelle animazioni
-        setting_show_application: Rendi pubblica l'applicazione usata per inviare i toot
+        setting_show_application: Rendi pubblica l'applicazione usata per inviare i post
         setting_system_font_ui: Usa il carattere predefinito del sistema
-        setting_theme: Tema sito
+        setting_theme: Tema del sito
         setting_trends: Mostra tendenze di oggi
         setting_unfollow_modal: Chiedi conferma prima di smettere di seguire qualcuno
         setting_use_blurhash: Mostra i gradienti colorati per i media nascosti
@@ -197,22 +202,23 @@ it:
           sign_up_requires_approval: Limita iscrizioni
         severity: Regola
       notification_emails:
+        appeal: Qualcuno ricorre contro una decisione del moderatore
         digest: Invia email riassuntive
-        favourite: Invia email quando segna come preferito al tuo stato
+        favourite: Qualcuno ha apprezzato il tuo post
         follow: Invia email quando qualcuno ti segue
         follow_request: Invia email quando qualcuno chiede di seguirti
         mention: Invia email quando qualcuno ti menziona
         pending_account: Invia e-mail quando un nuovo account richiede l'approvazione
-        reblog: Invia email quando qualcuno condivide un tuo toot
-        report: Manda una mail quando viene inviato un nuovo rapporto
-        trending_tag: Invia e-mail quando un hashtag non controllato è in tendenza
+        reblog: Qualcuno ha condiviso il tuo post
+        report: Una nuova segnalazione è stata inviata
+        trending_tag: La nuova tendenza richiede un controllo
       rule:
         text: Regola
       tag:
         listable: Permetti a questo hashtag di apparire nella directory dei profili
         name: Hashtag
         trendable: Permetti a questo hashtag di apparire nelle tendenze
-        usable: Permetti ai toot di utilizzare questo hashtag
+        usable: Permetti ai post di usare questo hashtag
     'no': 'No'
     recommended: Consigliato
     required:

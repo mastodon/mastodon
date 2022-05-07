@@ -3,6 +3,7 @@ br:
   about:
     about_this: Diàr-benn
     active_count_after: oberiant
+    api: API
     apps: Arloadoù pellgomz
     apps_platforms: Ober get Mastodoñ àr iOS, Android ha savennoù arall
     contact: Darempred
@@ -35,7 +36,6 @@ br:
       other: Heulier·ez
       two: Heulier·ez
     following: O heuliañ
-    never_active: Birviken
     posts:
       few: Toud
       many: Toud
@@ -51,8 +51,6 @@ br:
     unavailable: Profil dihegerz
     unfollow: Diheuliañ
   admin:
-    account_moderation_notes:
-      delete: Dilemel
     accounts:
       by_domain: Domani
       change_email:
@@ -72,13 +70,11 @@ br:
         remote: A-bell
       moderation:
         active: Oberiant
-        silenced: Mudet
         suspended: Astalet
       perform_full_suspension: Astalañ
       protocol: Komenad
       public: Publik
       reject: Nac'hañ
-      reject_all: Nac'hañ pep hini
       remove_header: Dilemel an talbenn
       reset: Adderaouekaat
       reset_password: Adderaouekaat ar ger-tremen
@@ -120,16 +116,10 @@ br:
           noop: Hini ebet
           silence: Mudañ
           suspend: Astalañ
-      severity:
-        silence: mudet
-        suspend: astalet
-      show:
-        undo: Dizober
     email_domain_blocks:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
       domain: Domani
-      from_html: eus %{domain}
       new:
         create: Ouzhpenniñ un domani
     instances:
@@ -166,13 +156,7 @@ br:
       site_title: Anv ar servijer
       title: Arventennoù al lec'hienn
     statuses:
-      batch:
-        delete: Dilemel
       deleted: Dilamet
-      no_media: Media ebet
-    tags:
-      name: Ger-klik
-      title: Gerioù-klik
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
@@ -244,8 +228,6 @@ br:
     copy: Eilañ
     delete: Dilemel
     order_by: Urzhiañ dre
-  identity_proofs:
-    identity: Identelezh
   invites:
     expires_in:
       '1800': 30 munutenn
@@ -329,5 +311,26 @@ br:
     welcome:
       edit_profile_action: Kefluniañ ar profil
       subject: Donemat e Mastodoñ
+      title: Degemer mat e bourzh, %{name}!
+  users:
+    signed_in_as: 'Aet-tre evel:'
+  verification:
+    explanation_html: 'Gallout a rit <strong>gwiriañ c''hwi a zo perc''henn. ez liammoù metadata ho profil</strong>. Ret eo d''al lec''hienn web staget enderc''hel ul liamm evit mont d''ho profil Mastodon. <strong>Ret eo<strong> d''al liamm-se enderc''hel un doarenn <code>rel="me"</code>. Ne ra forzh an destenn a zo e-barzh al liamm. Setu ur skouer:'
+    verification: Amprouadur
   webauthn_credentials:
+    add: Ouzphennañ un alc'hwez surentez nevez
+    create:
+      error: Ur guden a oa en ur ouzphennañ hoc'h alc'hwez surentez. Mar plij, klaskit c'hoazh.
+      success: Hoc'h alc'hwez surentez a zo bet ouzphennet gant berzh.
     delete: Dilemel
+    delete_confirmation: Sur oc'h e fell deoc'h dilemel an alc'hwez surentez-se ?
+    description_html: Ma'z eo aotreet <strong>dilesadur dre alc'hwez surentez</strong>, ret e vo deoc'h implijout unan eus hoc'h alc'hwezioù surentez evit mont-tre.
+    destroy:
+      error: Ur gudenn a oa en ur zilemel hoc'h alc'hwez surentez. Mar plij, klaskit c'hoazh.
+      success: Hoc'h alc'hwez surentez a zo bet dilamet gant berzh.
+    invalid_credential: Alc'hwez surentez direizh
+    nickname_hint: Skrivit lesanv hoc'h alc'hwez surentez nevez
+    not_enabled: WebAuthn n'eo ket aotreet ganeoc'h c'hoazh
+    not_supported: Alc'hwezioù surentez a zo diembreg gant ar merdeer-se
+    otp_required: Evit implijout alc'hwezioù surentez, aotrit dilesadur dre eil-elfenn da gentañ.
+    registered_on: Enrollet d'ar %{date}

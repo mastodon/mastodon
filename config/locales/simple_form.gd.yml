@@ -27,6 +27,8 @@ gd:
         scheduled_at: Fàg seo bàn airson am brath-fios fhoillseachadh sa bhad
         starts_at: Roghainnean. Cleachd seo airson am brath-fios a chuingeachadh rè ama shònraichte
         text: "’S urrainn dhut co-chàradh puist a chleachdadh. Thoir an aire air am meud a chaitheas am brath-fios air sgrìn an luchd-chleachdaidh"
+      appeal:
+        text: Chan urrainn dhut ath-thagradh a dhèanamh air rabhadh ach aon turas
       defaults:
         autofollow: Leanaidh na daoine a chlàraicheas leis a cuireadh ort gu fèin-obrachail
         avatar: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
@@ -35,8 +37,7 @@ gd:
         current_password: A chùm tèarainteachd, cuir a-steach facal-faire a’ chunntais làithrich
         current_username: Airson seo a dhearbhadh, cuir a-steach ainm-cleachdaiche a’ chunntais làithrich
         digest: Cha dèid seo a chur ach nuair a bhios tu air ùine mhòr gun ghnìomh a ghabhail agus ma fhuair thu teachdaireachd phearsanta fhad ’s a bha thu air falbh
-        discoverable: Ceadaich gun lorg coigrich an cunntas agad le taic o mholaidhean is gleusan eile
-        discoverable_no_directory: Ceadaich gun lorg coigrich an cunntas agad le taic o mholaidhean is gleusan eile
+        discoverable: Ceadaich gun rùraich coigrich an cunntas agad le taic o mholaidhean, treandaichean is gleusan eile
         email: Thèid post-d dearbhaidh a chur thugad
         fields: Faodaidh tu suas ri 4 nithean a shealltainn mar chlàr air a’ phròifil agad
         header: PNG, GIF or JPG. %{size} air a char as motha. Thèid a sgèileadh sìos gu %{dimensions}px
@@ -48,6 +49,7 @@ gd:
         phrase: Thèid a mhaidseadh gun aire air litrichean mòra ’s beaga no air rabhadh susbainte puist
         scopes: Na APIan a dh’fhaodas an aplacaid inntrigeadh. Ma thaghas tu sgòp air ìre as àirde, cha leig thu leas sgòpaichean fa leth a thaghadh.
         setting_aggregate_reblogs: Na seall brosnachaidhean ùra do phostaichean a chaidh a bhrosnachadh o chionn goirid (cha doir seo buaidh ach air brosnachaidhean ùra o seo a-mach)
+        setting_always_send_emails: Mar as àbhaist, cha dèid brathan puist-d a chur nuair a a bhios tu ri Mastodon gu cunbhalach
         setting_default_sensitive: Thèid meadhanan frionasach fhalach a ghnàth is gabhaidh an nochdadh le briogadh orra
         setting_display_media_default: Falaich meadhanan ris a bheil comharra gu bheil iad frionasach
         setting_display_media_hide_all: Falaich na meadhanan an-còmhnaidh
@@ -62,7 +64,7 @@ gd:
       domain_allow:
         domain: "’S urrainn dhan àrainn seo dàta fhaighinn on fhrithealaiche seo agus thèid an dàta a thig a-steach uaithe a phròiseasadh ’s a stòradh"
       email_domain_block:
-        domain: Gabhaidh an t-ainm àrainne a nochdas san t-seòladh puist-d a chleachdadh no an clàr MX dhan dèid an àrainn fhuasgladh no IP an fhrithealaiche dhan dèid an clàr MX fuasgladh. Thèid an dearbhadh nuair a chlàraicheas cleachdaiche ùr leinn is thèid an clàradh a dhiùltadh.
+        domain: Seo ainm na h-àrainne a nochdas san t-seòladh puist-d no sa chlàr MX a chleachdas e. Thèid an dearbhadh aig àm a’ chlàraidh.
         with_dns_records: Thèid oidhirp a dhèanamh air fuasgladh clàran DNS na h-àrainne a chaidh a thoirt seachad agus thèid na toraidhean a bhacadh cuideachd
       featured_tag:
         name: 'Mholamaid fear dhe na tagaichean seo:'
@@ -110,7 +112,7 @@ gd:
           disable: Reòth
           none: Cuir rabhadh
           sensitive: Frionasach
-          silence: Crìoch
+          silence: Cuingich
           suspend: Cuir à rèim
         warning_preset_id: Cleachd rabhadh ro-shuidhichte
       announcement:
@@ -119,6 +121,8 @@ gd:
         scheduled_at: Cuir foillseachadh air an sgeideal
         starts_at: Toiseach an tachartais
         text: Brath-fios
+      appeal:
+        text: Mìnich carson a bu chòir an caochladh a chur orra
       defaults:
         autofollow: Thoir cuireadh dhaibh airson leantainn air a’ chunntas agad
         avatar: Avatar
@@ -148,6 +152,7 @@ gd:
         phrase: Facal no abairt-luirg
         setting_advanced_layout: Cuir an comas an eadar-aghaidh-lìn adhartach
         setting_aggregate_reblogs: Buidhnich na brosnachaidhean air an loidhne-ama
+        setting_always_send_emails: Cuir brathan puist-d an-còmhnaidh
         setting_auto_play_gif: Cluich GIFs beòthaichte gu fèin-obrachail
         setting_boost_modal: Seall còmhradh dearbhaidh mus dèan thu brosnachadh
         setting_crop_images: Beàrr na dealbhan sna postaichean gun leudachadh air 16x9
@@ -182,8 +187,8 @@ gd:
       featured_tag:
         name: Taga hais
       interactions:
-        must_be_follower: Mùch na brathan nach eil o luchd-leantainn
-        must_be_following: Mùch na brathan o dhaoine air nach lean thu
+        must_be_follower: Bac na brathan nach eil o luchd-leantainn
+        must_be_following: Bac na brathan o dhaoine air nach lean thu
         must_be_following_dm: Bac teachdaireachdan dìreach o dhaoine air nach lean thu
       invite:
         comment: Beachd
@@ -197,6 +202,7 @@ gd:
           sign_up_requires_approval: Cuingich clàraidhean ùra
         severity: Riaghailt
       notification_emails:
+        appeal: Tha cuideigin ag ath-thagradh co-dhùnadh na maorsainneachd
         digest: Cuir puist-d le geàrr-chunntas
         favourite: Is annsa le cuideigin am post agad
         follow: Lean cuideigin ort
@@ -205,7 +211,7 @@ gd:
         pending_account: Tha cunntas ùr feumach air lèirmheas
         reblog: Bhrosnaich cuideigin am post agad
         report: Chaidh gearan ùr a chur a-null
-        trending_tag: Tha taga hais gun lèirmheas a’ treandadh
+        trending_tag: Tha treand ùr ri lèirmheasadh
       rule:
         text: Riaghailt
       tag:

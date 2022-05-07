@@ -19,10 +19,10 @@ ja:
     mailer:
       confirmation_instructions:
         action: メールアドレスの確認
-        action_with_app: 確認し %{app} に戻る
+        action_with_app: 確認し%{app}に戻る
         explanation: このメールアドレスで%{host}にアカウントを作成しました。アカウントの有効化まであと一歩です。なお、もし心当たりがない場合は、申し訳ありませんがこのメールを無視してください。
-        explanation_when_pending: このメールアドレスで %{host} への登録を申請しました。あなたがメールアドレスを確認したら、サーバー管理者が申請を審査します。ログインして一部設定を変更したりアカウントを削除できますが、ほとんどの機能は申請が承認されるまで利用できません。申請が却下された場合、あなたのデータは削除されますので以降の操作は必要ありません。もし心当たりがない場合、申し訳ありませんがこのメールを無視してください。
-        extra_html: あわせて、<a href="%{terms_path}">サーバーのルール</a> と <a href="%{policy_path}">利用規約</a> もお読みください。
+        explanation_when_pending: このメールアドレスで%{host}への登録を申請しました。あなたがメールアドレスを確認したら、サーバー管理者が申請を審査します。ログインして一部設定を変更したりアカウントを削除できますが、ほとんどの機能は申請が承認されるまで利用できません。申請が却下された場合、あなたのデータは削除されますので以降の操作は必要ありません。もし心当たりがない場合、申し訳ありませんがこのメールを無視してください。
+        extra_html: あわせて、<a href="%{terms_path}">サーバーのルール</a>と<a href="%{policy_path}">利用規約</a>もお読みください。
         subject: 'Mastodon: メールアドレスの確認 %{instance}'
         title: メールアドレスの確認
       email_changed:
@@ -47,17 +47,17 @@ ja:
         subject: 'Mastodon: パスワード再発行'
         title: パスワード再発行
       two_factor_disabled:
-        explanation: あなたのアカウントの二段階認証が無効化されました。メールとパスワードのみでログインできます。
-        subject: 'Mastodon: 二段階認証が無効になりました'
-        title: 二段階認証が無効化されました
+        explanation: あなたのアカウントの二要素認証が無効化されました。メールとパスワードのみでログインできます。
+        subject: 'Mastodon: 二要素認証が無効になりました'
+        title: 二要素認証が無効化されました
       two_factor_enabled:
-        explanation: あなたのアカウントの二段階認証が有効化されました。ログインするには TOTP アプリで生成されたコードが必要です。
-        subject: 'Mastodon: 二段階認証が有効になりました'
-        title: 二段階認証が有効化されました
+        explanation: あなたのアカウントの二要素認証が有効化されました。ログインするには TOTP アプリで生成されたコードが必要です。
+        subject: 'Mastodon: 二要素認証が有効になりました'
+        title: 二要素認証が有効化されました
       two_factor_recovery_codes_changed:
         explanation: 以前のリカバリーコードが無効化され、新しいコードが生成されました。
-        subject: 'Mastodon: 二段階認証のリカバリーコードが再生成されました'
-        title: 二段階認証のリカバリーコードが変更されました
+        subject: 'Mastodon: 二要素認証のリカバリーコードが再生成されました'
+        title: 二要素認証のリカバリーコードが変更されました
       unlock_instructions:
         subject: 'Mastodon: アカウントのロックの解除'
       webauthn_credential:

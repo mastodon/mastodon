@@ -10,15 +10,15 @@ fr:
         text: Vous pouvez utiliser la syntaxe des messages, comme les URL, les hashtags et les mentions
         title: Facultatif. Invisible pour le destinataire
       admin_account_action:
-        include_statuses: L’utilisateur verra quels messages sont la source de l’action de modération ou de l’avertissement
+        include_statuses: L’utilisateur·rice verra quels messages sont la source de l’action de modération ou de l’avertissement
         send_email_notification: L’utilisateur recevra une explication de ce qu’il s’est passé avec son compte
         text_html: Optionnel. Vous pouvez utilisez la syntaxe des messages. Vous pouvez <a href="%{path}">ajouter des modèles d’avertissement</a> pour économiser du temps
         type_html: Choisir que faire avec <strong>%{acct}</strong>
         types:
-          disable: Empêcher l’utilisateur d’utiliser son compte, mais ne pas supprimer ou masquer son contenu.
-          none: Utilisez ceci pour envoyer un avertissement à l’utilisateur, sans déclencher aucune autre action.
-          sensitive: Forcer toutes les pièces jointes de cet utilisateur à être signalées comme sensibles.
-          silence: Empêcher l’utilisateur de poster avec une visibilité publique, cacher ses messages et ses notifications aux personnes qui ne les suivent pas.
+          disable: Empêcher l’utilisateur·rice d’utiliser son compte, mais ne pas supprimer ou masquer son contenu.
+          none: Utilisez ceci pour envoyer un avertissement à l’utilisateur·rice, sans déclencher aucune autre action.
+          sensitive: Forcer toutes les pièces jointes de cet·te utilisateur·rice à être signalées comme sensibles.
+          silence: Empêcher l’utilisateur·rice de poster avec une visibilité publique, cacher ses messages et ses notifications aux personnes qui ne les suivent pas.
           suspend: Empêcher toute interaction depuis ou vers ce compte et supprimer son contenu. Réversible dans les 30 jours.
         warning_preset_id: Optionnel. Vous pouvez toujours ajouter un texte personnalisé à la fin de la présélection
       announcement:
@@ -26,7 +26,9 @@ fr:
         ends_at: Optionnel. L’annonce sera automatiquement dépubliée à ce moment
         scheduled_at: Laisser vide pour publier l’annonce immédiatement
         starts_at: Optionnel. Si votre annonce est liée à une période spécifique
-        text: Vous pouvez utiliser la syntaxe des messages. Veuillez prendre en compte l’espace que l'annonce prendra sur l’écran de l'utilisateur
+        text: Vous pouvez utiliser la syntaxe des messages. Veuillez prendre en compte l’espace que l'annonce prendra sur l’écran de l'utilisateur·rice
+      appeal:
+        text: Vous ne pouvez faire appel d'une sanction qu'une seule fois
       defaults:
         autofollow: Les personnes qui s’inscrivent grâce à l’invitation vous suivront automatiquement
         avatar: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
@@ -35,25 +37,25 @@ fr:
         current_password: Pour des raisons de sécurité, veuillez saisir le mot de passe du compte courant
         current_username: Pour confirmer, veuillez saisir le nom d'utilisateur du compte courant
         digest: Uniquement envoyé après une longue période d’inactivité et uniquement si vous avez reçu des messages personnels pendant votre absence
-        discoverable: L’annuaire des profils est une autre façon pour votre compte d’atteindre une plus grande audience
-        discoverable_no_directory: Permettre à des inconnu·e·s de découvrir votre compte par le biais des recommandations et autres fonctionnalités
+        discoverable: Permettre à votre compte d’être découvert par des inconnus par le biais de recommandations, de tendances et d’autres fonctionnalités
         email: Vous recevrez un courriel de confirmation
         fields: Vous pouvez avoir jusqu’à 4 éléments affichés en tant que tableau sur votre profil
         header: Au format PNG, GIF ou JPG. %{size} maximum. Sera réduit à %{dimensions}px
         inbox_url: Copiez l’URL depuis la page d’accueil du relais que vous souhaitez utiliser
         irreversible: Les messages filtrés disparaîtront pour toujours, même si le filtre est supprimé plus tard
         locale: La langue de l’interface, des courriels et des notifications
-        locked: Nécessite que vous approuviez manuellement chaque abonné
+        locked: Nécessite que vous approuviez manuellement chaque abonné·e
         password: Utilisez au moins 8 caractères
         phrase: Sera filtré peu importe la casse ou l’avertissement de contenu du message
         scopes: À quelles APIs l’application sera autorisée à accéder. Si vous sélectionnez une permission générale, vous n’avez pas besoin de sélectionner les permissions plus précises.
         setting_aggregate_reblogs: Ne pas afficher les nouveaux partages pour les messages déjà récemment partagés (n’affecte que les partages futurs)
+        setting_always_send_emails: Normalement, les notifications par courriel ne seront pas envoyées lorsque vous utilisez Mastodon activement
         setting_default_sensitive: Les médias sensibles sont cachés par défaut et peuvent être révélés d’un simple clic
         setting_display_media_default: Masquer les médias marqués comme sensibles
         setting_display_media_hide_all: Toujours masquer les médias
         setting_display_media_show_all: Toujours montrer les médias
         setting_hide_network: Ceux que vous suivez et ceux qui vous suivent ne seront pas affichés sur votre profil
-        setting_noindex: Affecte votre profil public ainsi que vos statuts
+        setting_noindex: Affecte votre profil public ainsi que vos messages
         setting_show_application: Le nom de l’application que vous utilisez pour publier sera affichée dans la vue détaillée de vos messages
         setting_use_blurhash: Les dégradés sont basés sur les couleurs des images cachées mais n’en montrent pas les détails
         setting_use_pending_items: Cacher les mises à jour des fils d’actualités derrière un clic, au lieu de les afficher automatiquement
@@ -62,7 +64,7 @@ fr:
       domain_allow:
         domain: Ce domaine pourra récupérer des données de ce serveur et les données entrantes seront traitées et stockées
       email_domain_block:
-        domain: Ceci peut être le nom de domaine qui apparaît dans le courriel, l’enregistrement MX que le domaine résout, ou l’IP du serveur auquel l’enregistrement MX résout. Celles-ci seront vérifiées lors de l’inscription de l’utilisateur et l’inscription sera rejetée.
+        domain: Cela peut être le nom de domaine qui apparaît dans l'adresse courriel ou l'enregistrement MX qu'il utilise. Une vérification sera faite à l'inscription.
         with_dns_records: Une tentative de résolution des enregistrements DNS du domaine donné sera effectuée et les résultats seront également mis sur liste noire
       featured_tag:
         name: 'Vous pourriez vouloir utiliser l’un d’entre eux :'
@@ -75,7 +77,7 @@ fr:
       ip_block:
         comment: Optionnel. Pour ne pas oublier pourquoi vous avez ajouté cette règle.
         expires_in: Les adresses IP sont une ressource finie, elles sont parfois partagées et changent souvent de mains. Pour cette raison, les blocages d’IP indéfiniment ne sont pas recommandés.
-        ip: Entrez une adresse IPv4 ou IPv6. Vous pouvez bloquer des plages entières en utilisant la syntaxe CIDR. Faites attention à ne pas vous bloquer vous-même!
+        ip: Entrez une adresse IPv4 ou IPv6. Vous pouvez bloquer des plages entières en utilisant la syntaxe CIDR. Faites attention à ne pas vous bloquer vous-même !
         severities:
           no_access: Bloquer l’accès à toutes les ressources
           sign_up_requires_approval: Les nouvelles inscriptions nécessiteront votre approbation
@@ -119,6 +121,8 @@ fr:
         scheduled_at: Planifier la publication
         starts_at: Début de l’événement
         text: Annonce
+      appeal:
+        text: Expliquez pourquoi cette décision devrait être annulée
       defaults:
         autofollow: Invitation à suivre votre compte
         avatar: Image de profil
@@ -129,8 +133,8 @@ fr:
         context: Contextes du filtre
         current_password: Mot de passe actuel
         data: Données
-        discoverable: Proposer ce compte aux autres
-        display_name: Afficher le nom
+        discoverable: Suggérer ce compte aux autres
+        display_name: Nom public
         email: Adresse courriel
         expires_in: Expire après
         fields: Métadonnées du profil
@@ -148,6 +152,7 @@ fr:
         phrase: Mot-clé ou phrase
         setting_advanced_layout: Activer l’interface Web avancée
         setting_aggregate_reblogs: Grouper les partages dans les fils d’actualités
+        setting_always_send_emails: Toujours envoyer les notifications par courriel
         setting_auto_play_gif: Lire automatiquement les GIFs animés
         setting_boost_modal: Demander confirmation avant de partager un message
         setting_crop_images: Recadrer en 16x9 les images des messages qui ne sont pas ouverts en vue détaillée
@@ -197,6 +202,7 @@ fr:
           sign_up_requires_approval: Limite des inscriptions
         severity: Règle
       notification_emails:
+        appeal: Une personne fait appel d'une décision des modérateur·rice·s
         digest: Envoyer des courriels récapitulatifs
         favourite: Quelqu’un a ajouté mon message à ses favoris
         follow: Quelqu’un vient de me suivre
@@ -204,8 +210,8 @@ fr:
         mention: Quelqu’un me mentionne
         pending_account: Nouveau compte en attente d’approbation
         reblog: Quelqu’un a partagé mon message
-        report: Un nouveau rapport est envoyé
-        trending_tag: Un hashtag non approuvé est dans les tendances
+        report: Nouveau signalement soumis
+        trending_tag: Nouvelle tendance nécessitant supervision
       rule:
         text: Règle
       tag:

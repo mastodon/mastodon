@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Accounts::PinsController, type: :controller do
-  let(:john)  { Fabricate(:user, account: Fabricate(:account, username: 'john')) }
-  let(:kevin) { Fabricate(:user, account: Fabricate(:account, username: 'kevin')) }
+  let(:john)  { Fabricate(:user) }
+  let(:kevin) { Fabricate(:user) }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: john.id, scopes: 'write:accounts') }
 
   before do

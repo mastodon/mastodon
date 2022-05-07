@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: "/"
+    directory: '/'
     schedule:
       interval: weekly
     open-pull-requests-limit: 99
@@ -14,7 +14,7 @@ updates:
       - dependency-type: direct
 
   - package-ecosystem: bundler
-    directory: "/"
+    directory: '/'
     schedule:
       interval: weekly
     open-pull-requests-limit: 99

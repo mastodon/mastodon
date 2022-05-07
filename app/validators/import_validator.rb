@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 class ImportValidator < ActiveModel::Validator
   KNOWN_HEADERS = [
     'Account address',

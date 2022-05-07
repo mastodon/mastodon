@@ -4,7 +4,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :controller do
   render_views
 
   let(:role)   { 'moderator' }
-  let(:user)   { Fabricate(:user, role: role, account: Fabricate(:account, username: 'alice')) }
+  let(:user)   { Fabricate(:user, role: role) }
   let(:scopes) { 'admin:read admin:write' }
   let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:report) { Fabricate(:report) }

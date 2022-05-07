@@ -1,8 +1,8 @@
 version: 2.1
 
 orbs:
-  ruby: circleci/ruby@1.2.0
-  node: circleci/node@4.7.0
+  ruby: circleci/ruby@1.4.1
+  node: circleci/node@5.0.1
 
 executors:
   default:
@@ -23,7 +23,7 @@ executors:
         environment:
           POSTGRES_USER: root
           POSTGRES_HOST_AUTH_METHOD: trust
-      - image: circleci/redis:6-alpine
+      - image: cimg/redis:6.2
 
 commands:
   install-system-dependencies:
@@ -32,7 +32,7 @@ commands:
           name: Install system dependencies
           command: |
             sudo apt-get update
-            sudo apt-get install -y libicu-dev libidn11-dev libprotobuf-dev protobuf-compiler
+            sudo apt-get install -y libicu-dev libidn11-dev
   install-ruby-dependencies:
     parameters:
       ruby-version:
@@ -45,7 +45,7 @@ commands:
             bundle config without 'development production'
           name: Set bundler settings
       - ruby/install-deps:
-          bundler-version: '2.2.31'
+          bundler-version: '2.3.8'
           key: ruby<< parameters.ruby-version >>-gems-v1
   wait-db:
     steps:
@@ -122,8 +122,62 @@ jobs:
           command: ./bin/rails db:create
           name: Create database
       - run:
+          command: ./bin/rails db:migrate VERSION=20171010025614
+          name: Run migrations up to v2.0.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2
+          name: Populate database with test data
+      - run:
+          command: ./bin/rails db:migrate VERSION=20180514140000
+          name: Run migrations up to v2.4.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2_4
+          name: Populate database with test data
+      - run:
           command: ./bin/rails db:migrate
-          name: Run migrations
+          name: Run all remaining migrations
+      - run:
+          command: ./bin/rails tests:migrations:check_database
+          name: Check migration result
+
+  test-two-step-migrations:
+    executor:
+      name: default
+      ruby-version: '3.0'
+    steps:
+      - checkout
+      - install-system-dependencies
+      - install-ruby-dependencies:
+          ruby-version: '3.0'
+      - wait-db
+      - run:
+          command: ./bin/rails db:create
+          name: Create database
+      - run:
+          command: ./bin/rails db:migrate VERSION=20171010025614
+          name: Run migrations up to v2.0.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2
+          name: Populate database with test data
+      - run:
+          command: ./bin/rails db:migrate VERSION=20180514140000
+          name: Run pre-deployment migrations up to v2.4.0
+          environment:
+            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2_4
+          name: Populate database with test data
+      - run:
+          command: ./bin/rails db:migrate
+          name: Run all pre-deployment migrations
+          environment:
+            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+      - run:
+          command: ./bin/rails db:migrate
+          name: Run all post-deployment remaining migrations
+      - run:
+          command: ./bin/rails tests:migrations:check_database
+          name: Check migration result
 
 workflows:
   version: 2
@@ -140,6 +194,9 @@ workflows:
           requires:
             - build
       - test-migrations:
+          requires:
+            - build
+      - test-two-step-migrations:
           requires:
             - build
       - node/run:

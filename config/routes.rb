@@ -166,6 +166,12 @@ Rails.application.routes.draw do
     resources :custom_emojis, only: [:index, :new, :create]
   end
 
+  namespace :disputes do
+    resources :strikes, only: [:show, :index] do
+      resource :appeal, only: [:create]
+    end
+  end
+
   resources :media, only: [:show] do
     get :player
   end
@@ -187,9 +193,14 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
 
     resources :domain_allows, only: [:new, :create, :show, :destroy]
-    resources :domain_blocks, only: [:new, :create, :show, :destroy, :update, :edit]
+    resources :domain_blocks, only: [:new, :create, :destroy, :update, :edit]
 
-    resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
+    resources :email_domain_blocks, only: [:index, :new, :create] do
+      collection do
+        post :batch
+      end
+    end
+
     resources :action_logs, only: [:index]
     resources :warning_presets, except: [:new]
 
@@ -216,7 +227,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :instances, only: [:index, :show], constraints: { id: /[^\/]+/ } do
+    resources :instances, only: [:index, :show, :destroy], constraints: { id: /[^\/]+/ } do
       member do
         post :clear_delivery_errors
         post :restart_delivery
@@ -227,14 +238,14 @@ Rails.application.routes.draw do
     resources :rules
 
     resources :reports, only: [:index, :show] do
+      resources :actions, only: [:create], controller: 'reports/actions'
+
       member do
         post :assign_to_self
         post :unassign
         post :reopen
         post :resolve
       end
-
-      resources :reported_statuses, only: [:create]
     end
 
     resources :report_notes, only: [:create, :destroy]
@@ -251,12 +262,23 @@ Rails.application.routes.draw do
         post :memorialize
         post :approve
         post :reject
+        post :unblock_email
+      end
+
+      collection do
+        post :batch
       end
 
       resource :change_email, only: [:show, :update]
       resource :reset, only: [:create]
       resource :action, only: [:new, :create], controller: 'account_actions'
-      resources :statuses, only: [:index, :show, :create, :update, :destroy]
+
+      resources :statuses, only: [:index] do
+        collection do
+          post :batch
+        end
+      end
+
       resources :relationships, only: [:index]
 
       resource :confirmation, only: [:create] do
@@ -273,17 +295,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :pending_accounts, only: [:index] do
-      collection do
-        post :approve_all
-        post :reject_all
-        post :batch
-      end
-    end
-
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
-      resource :sign_in_token_authentication, only: [:create, :destroy]
     end
 
     resources :custom_emojis, only: [:index, :new, :create] do
@@ -315,11 +328,26 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :statuses, only: [:index] do
+        collection do
+          post :batch
+        end
+      end
+
       namespace :links do
         resources :preview_card_providers, only: [:index], path: :publishers do
           collection do
             post :batch
           end
+        end
+      end
+    end
+
+    namespace :disputes do
+      resources :appeals, only: [:index] do
+        member do
+          post :approve
+          post :reject
         end
       end
     end
@@ -333,7 +361,7 @@ Rails.application.routes.draw do
 
     # JSON / REST API
     namespace :v1 do
-      resources :statuses, only: [:create, :show, :destroy] do
+      resources :statuses, only: [:create, :show, :update, :destroy] do
         scope module: :statuses do
           resources :reblogged_by, controller: :reblogged_by_accounts, only: :index
           resources :favourited_by, controller: :favourited_by_accounts, only: :index
@@ -351,6 +379,9 @@ Rails.application.routes.draw do
 
           resource :pin, only: :create
           post :unpin, to: 'pins#destroy'
+
+          resource :history, only: :show
+          resource :source, only: :show
         end
 
         member do
@@ -424,6 +455,7 @@ Rails.application.routes.draw do
       namespace :trends do
         resources :links, only: [:index]
         resources :tags, only: [:index]
+        resources :statuses, only: [:index]
       end
 
       namespace :emails do
@@ -462,6 +494,7 @@ Rails.application.routes.draw do
         resource :search, only: :show, controller: :search
         resource :lookup, only: :show, controller: :lookup
         resources :relationships, only: :index
+        resources :familiar_followers, only: :index
       end
 
       resources :accounts, only: [:create, :show] do
@@ -519,7 +552,7 @@ Rails.application.routes.draw do
           resource :action, only: [:create], controller: 'account_actions'
         end
 
-        resources :reports, only: [:index, :show] do
+        resources :reports, only: [:index, :update, :show] do
           member do
             post :assign_to_self
             post :unassign
@@ -530,6 +563,8 @@ Rails.application.routes.draw do
 
         namespace :trends do
           resources :tags, only: [:index]
+          resources :links, only: [:index]
+          resources :statuses, only: [:index]
         end
 
         post :measures, to: 'measures#create'
@@ -542,6 +577,10 @@ Rails.application.routes.draw do
       resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
       resources :suggestions, only: [:index]
+
+      namespace :admin do
+        resources :accounts, only: [:index]
+      end
     end
 
     namespace :web do

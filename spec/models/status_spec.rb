@@ -267,56 +267,84 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '.permitted_for' do
-    subject { described_class.permitted_for(target_account, account).pluck(:visibility) }
+  describe '.tagged_with' do
+    let(:tag1)     { Fabricate(:tag) }
+    let(:tag2)     { Fabricate(:tag) }
+    let(:tag3)     { Fabricate(:tag) }
+    let!(:status1) { Fabricate(:status, tags: [tag1]) }
+    let!(:status2) { Fabricate(:status, tags: [tag2]) }
+    let!(:status3) { Fabricate(:status, tags: [tag3]) }
+    let!(:status4) { Fabricate(:status, tags: []) }
+    let!(:status5) { Fabricate(:status, tags: [tag1, tag2, tag3]) }
 
-    let(:target_account) { alice }
-    let(:account) { bob }
-    let!(:public_status) { Fabricate(:status, account: target_account, visibility: 'public') }
-    let!(:unlisted_status) { Fabricate(:status, account: target_account, visibility: 'unlisted') }
-    let!(:private_status) { Fabricate(:status, account: target_account, visibility: 'private') }
-
-    let!(:direct_status) do
-      Fabricate(:status, account: target_account, visibility: 'direct').tap do |status|
-        Fabricate(:mention, status: status, account: account)
+    context 'when given one tag' do
+      it 'returns the expected statuses' do
+        expect(Status.tagged_with([tag1.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status5.id])
+        expect(Status.tagged_with([tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status5.id])
+        expect(Status.tagged_with([tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status3.id, status5.id])
       end
     end
 
-    let!(:other_direct_status) do
-      Fabricate(:status, account: target_account, visibility: 'direct').tap do |status|
-        Fabricate(:mention, status: status)
+    context 'when given multiple tags' do
+      it 'returns the expected statuses' do
+        expect(Status.tagged_with([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status2.id, status5.id])
+        expect(Status.tagged_with([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status3.id, status5.id])
+        expect(Status.tagged_with([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status3.id, status5.id])
+      end
+    end
+  end
+
+  describe '.tagged_with_all' do
+    let(:tag1)     { Fabricate(:tag) }
+    let(:tag2)     { Fabricate(:tag) }
+    let(:tag3)     { Fabricate(:tag) }
+    let!(:status1) { Fabricate(:status, tags: [tag1]) }
+    let!(:status2) { Fabricate(:status, tags: [tag2]) }
+    let!(:status3) { Fabricate(:status, tags: [tag3]) }
+    let!(:status4) { Fabricate(:status, tags: []) }
+    let!(:status5) { Fabricate(:status, tags: [tag1, tag2]) }
+
+    context 'when given one tag' do
+      it 'returns the expected statuses' do
+        expect(Status.tagged_with_all([tag1.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status5.id])
+        expect(Status.tagged_with_all([tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status5.id])
+        expect(Status.tagged_with_all([tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status3.id])
       end
     end
 
-    context 'given nil' do
-      let(:account) { nil }
-      let(:direct_status) { nil }
-      it { is_expected.to eq(%w(unlisted public)) }
-    end
-
-    context 'given blocked account' do
-      before do
-        target_account.block!(account)
+    context 'when given multiple tags' do
+      it 'returns the expected statuses' do
+        expect(Status.tagged_with_all([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status5.id])
+        expect(Status.tagged_with_all([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
+        expect(Status.tagged_with_all([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to eq []
       end
-
-      it { is_expected.to be_empty }
     end
+  end
 
-    context 'given same account' do
-      let(:account) { target_account }
-      it { is_expected.to eq(%w(direct direct private unlisted public)) }
-    end
+  describe '.tagged_with_none' do
+    let(:tag1)     { Fabricate(:tag) }
+    let(:tag2)     { Fabricate(:tag) }
+    let(:tag3)     { Fabricate(:tag) }
+    let!(:status1) { Fabricate(:status, tags: [tag1]) }
+    let!(:status2) { Fabricate(:status, tags: [tag2]) }
+    let!(:status3) { Fabricate(:status, tags: [tag3]) }
+    let!(:status4) { Fabricate(:status, tags: []) }
+    let!(:status5) { Fabricate(:status, tags: [tag1, tag2, tag3]) }
 
-    context 'given followed account' do
-      before do
-        account.follow!(target_account)
+    context 'when given one tag' do
+      it 'returns the expected statuses' do
+        expect(Status.tagged_with_none([tag1.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status3.id, status4.id])
+        expect(Status.tagged_with_none([tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status3.id, status4.id])
+        expect(Status.tagged_with_none([tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status2.id, status4.id])
       end
-
-      it { is_expected.to eq(%w(direct private unlisted public)) }
     end
 
-    context 'given unfollowed account' do
-      it { is_expected.to eq(%w(direct unlisted public)) }
+    context 'when given multiple tags' do
+      it 'returns the expected statuses' do
+        expect(Status.tagged_with_none([tag1.id, tag2.id]).reorder(:id).pluck(:id).uniq).to match_array([status3.id, status4.id])
+        expect(Status.tagged_with_none([tag1.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status2.id, status4.id])
+        expect(Status.tagged_with_none([tag2.id, tag3.id]).reorder(:id).pluck(:id).uniq).to match_array([status1.id, status4.id])
+      end
     end
   end
 

@@ -21,8 +21,12 @@
 
       - if current_user.staff?
         = ff.input :report, as: :boolean, wrapper: :with_label
+        = ff.input :appeal, as: :boolean, wrapper: :with_label
         = ff.input :pending_account, as: :boolean, wrapper: :with_label
         = ff.input :trending_tag, as: :boolean, wrapper: :with_label
+
+  .fields-group
+    = f.input :setting_always_send_emails, as: :boolean, wrapper: :with_label
 
   .fields-group
     = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|

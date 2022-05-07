@@ -5,6 +5,7 @@ class Api::BaseController < ApplicationController
   DEFAULT_ACCOUNTS_LIMIT = 40
 
   include RateLimitHeaders
+  include AccessTokenTrackingConcern
 
   skip_before_action :store_current_location
   skip_before_action :require_functional!, unless: :whitelist_mode?
@@ -13,8 +14,6 @@ class Api::BaseController < ApplicationController
   before_action :set_cache_headers
 
   protect_from_forgery with: :null_session
-
-  skip_around_action :set_locale
 
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422

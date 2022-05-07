@@ -17,7 +17,6 @@ defaults: &defaults
   timeline_preview: true
   show_staff_badge: true
   default_sensitive: false
-  hide_network: false
   unfollow_modal: false
   boost_modal: false
   delete_modal: true
@@ -39,15 +38,17 @@ defaults: &defaults
   trendable_by_default: false
   crop_images: true
   notification_emails:
-    follow: false
+    follow: true
     reblog: false
     favourite: false
-    mention: false
+    mention: true
     follow_request: true
     digest: true
     report: true
     pending_account: true
     trending_tag: true
+    appeal: true
+  always_send_emails: false
   interactions:
     must_be_follower: false
     must_be_following: false

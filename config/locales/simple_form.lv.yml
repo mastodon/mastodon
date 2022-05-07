@@ -27,6 +27,8 @@ lv:
         scheduled_at: Lai nekavējoties publicētu paziņojumu, atstāj tukšu
         starts_at: Neobligāts. Ja tavs paziņojums ir saistīts ar noteiktu laika diapazonu
         text: Varari izmantot ziņu sintaksi. Lūdzu, apdomā lauku, ko paziņojums aizņems lietotāja ekrānā
+      appeal:
+        text: Brīdinājumu var pārsūdzēt tikai vienu reizi
       defaults:
         autofollow: Cilvēki, kuri reģistrējas, izmantojot uzaicinājumu, automātiski sekos tev
         avatar: PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions} px
@@ -35,8 +37,7 @@ lv:
         current_password: Drošības nolūkos, lūdzu, ievadi pašreizējā konta paroli
         current_username: Lai apstiprinātu, lūdzu, ievadi pašreizējā konta paroli
         digest: Sūta tikai pēc ilgstošas neaktivitātes un tikai tad, ja savas prombūtnes laikā neesi saņēmis personiskas ziņas
-        discoverable: Ļauj svešiniekiem atklāt savu kontu caur ieteikumiem, profila direktoriju un citām iespējām
-        discoverable_no_directory: Ļauj svešiniekiem atklāt savu kontu caur ieteikumiem un citām iespējām
+        discoverable: Ļauj svešiniekiem atklāt savu kontu caur ieteikumiem, tendencēm un citām iespējām
         email: Tev tiks nosūtīts apstiprinājuma e-pasts
         fields: Savā profilā kā tabulu vari parādīt līdz 4 vienumiem
         header: PNG, GIF vai JPG. Ne vairāk kā %{size}. Tiks samazināts līdz %{dimensions}px
@@ -48,6 +49,7 @@ lv:
         phrase: Tiks saskaņots neatkarīgi no ziņas teksta reģistra vai satura brīdinājuma
         scopes: Kuriem API lietojumprogrammai būs atļauta piekļuve. Ja izvēlies augstākā līmeņa tvērumu, tev nav jāatlasa atsevišķi vienumi.
         setting_aggregate_reblogs: Nerādīt jaunus palielinājumus ziņām, kas nesen tika palielinātas (ietekmē tikai nesen saņemtos palielinājumus)
+        setting_always_send_emails: Parasti e-pasta paziņojumi netiek sūtīti, kad aktīvi izmantojat Mastodon
         setting_default_sensitive: Sensitīvi mediji pēc noklusējuma ir paslēpti, un tos var atklāt, noklikšķinot
         setting_display_media_default: Paslēpt mediju, kas atzīmēts kā sensitīvs
         setting_display_media_hide_all: Vienmēr slēpt medijus
@@ -62,7 +64,7 @@ lv:
       domain_allow:
         domain: Šis domēns varēs izgūt datus no šī servera, un no tā ienākošie dati tiks apstrādāti un saglabāti
       email_domain_block:
-        domain: Tas var būt domēna nosaukums, kas redzams e-pasta adresē, MX ieraksts, kuru domēns atrisina, vai servera IP, uz kuru tiek atrisināts MX ieraksts. Tie tiks pārbaudīti, reģistrējoties lietotājam, un reģistrācija tiks noraidīta.
+        domain: Tas var būt domēna nosaukums, kas tiek parādīts e-pasta adresē vai izmantotajā MX ierakstā. Tie tiks pārbaudīti reģistrācijas laikā.
         with_dns_records: Tiks mēģināts atrisināt dotā domēna DNS ierakstus, un rezultāti arī tiks bloķēti
       featured_tag:
         name: 'Iespējams, vēlēsies izmantot kādu no šīm:'
@@ -119,6 +121,8 @@ lv:
         scheduled_at: Ieplānot publikāciju
         starts_at: Pasākuma sākums
         text: Paziņojums
+      appeal:
+        text: Paskaidrojiet, kāpēc šis lēmums ir jāatceļ
       defaults:
         autofollow: Uzaicini sekot tavam kontam
         avatar: Avatars
@@ -148,6 +152,7 @@ lv:
         phrase: Atslēgvārds vai frāze
         setting_advanced_layout: Iespējot paplašināto web interfeisu
         setting_aggregate_reblogs: Grupēt paaugstinājumus ziņu lentās
+        setting_always_send_emails: Vienmēr sūtīt e-pasta paziņojumus
         setting_auto_play_gif: Automātiski atskaņot animētos GIF
         setting_boost_modal: Parādīt apstiprinājuma dialogu pirms paaugstināšanas
         setting_crop_images: Apgrieziet attēlus neizvērstajās ziņās līdz 16x9
@@ -197,6 +202,7 @@ lv:
           sign_up_requires_approval: Ierobežot reģistrēšanos
         severity: Noteikumi
       notification_emails:
+        appeal: Kāds pārsūdz moderatora lēmumu
         digest: Sūtīt kopsavilkumu e-pastus
         favourite: Kāds izcēla tavu ziņu
         follow: Kāds uzsāka tev sekot
@@ -205,7 +211,7 @@ lv:
         pending_account: Jāpārskata jaunu kontu
         reblog: Kāds paaugstināja tavu ziņu
         report: Tika iesniegts jauns ziņojums
-        trending_tag: Kļūst populārs nepārskatīts tēmturis
+        trending_tag: Jaunā tendence ir jāpārskata
       rule:
         text: Noteikumi
       tag:

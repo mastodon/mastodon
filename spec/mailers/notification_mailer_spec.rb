@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe NotificationMailer, type: :mailer do
-  let(:receiver)       { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:receiver)       { Fabricate(:user) }
   let(:sender)         { Fabricate(:account, username: 'bob') }
   let(:foreign_status) { Fabricate(:status, account: sender, text: 'The body of the foreign status') }
   let(:own_status)     { Fabricate(:status, account: receiver.account, text: 'The body of the own status') }

@@ -5,14 +5,14 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
 
   let!(:alice)  { Fabricate(:account) }
   let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
-  let!(:jeff)   { Fabricate(:user).account }
+  let!(:jeff)   { Fabricate(:account) }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
   let(:status1) { PostStatusService.new.call(alice, text: 'Hello @bob@example.com') }
   let(:status2) { PostStatusService.new.call(alice, text: 'Another status') }
 
   before do
-    allow(Redis.current).to receive_messages(publish: nil)
+    allow(redis).to receive_messages(publish: nil)
 
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
 
@@ -40,11 +40,11 @@ RSpec.describe BatchedRemoveStatusService, type: :service do
   end
 
   it 'notifies streaming API of followers' do
-    expect(Redis.current).to have_received(:publish).with("timeline:#{jeff.id}", any_args).at_least(:once)
+    expect(redis).to have_received(:publish).with("timeline:#{jeff.id}", any_args).at_least(:once)
   end
 
   it 'notifies streaming API of public timeline' do
-    expect(Redis.current).to have_received(:publish).with('timeline:public', any_args).at_least(:once)
+    expect(redis).to have_received(:publish).with('timeline:public', any_args).at_least(:once)
   end
 
   it 'sends delete activity to followers' do

@@ -38,7 +38,7 @@ class SilentErrorBoundary extends React.Component {
  *
  * @type {(displayNumber: JSX.Element, pluralReady: number) => JSX.Element}
  */
-const accountsCountRenderer = (displayNumber, pluralReady) => (
+export const accountsCountRenderer = (displayNumber, pluralReady) => (
   <FormattedMessage
     id='trends.counter_by_accounts'
     defaultMessage='{count, plural, one {{counter} person} other {{counter} people}} talking'

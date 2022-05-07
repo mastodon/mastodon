@@ -89,4 +89,86 @@ describe JsonLdHelper do
       expect(fetch_resource_without_id_validation('https://host.test/')).to eq({})
     end
   end
+
+  context 'compaction and forwarding' do
+    let(:json) do
+      {
+        '@context' => [
+          'https://www.w3.org/ns/activitystreams',
+          'https://w3id.org/security/v1',
+          {
+            'obsolete' => 'http://ostatus.org#',
+            'convo' => 'obsolete:conversation',
+            'new' => 'https://obscure-unreleased-test.joinmastodon.org/#',
+          },
+        ],
+        'type' => 'Create',
+        'to' => ['https://www.w3.org/ns/activitystreams#Public'],
+        'object' => {
+          'id' => 'https://example.com/status',
+          'type' => 'Note',
+          'inReplyTo' => nil,
+          'convo' => 'https://example.com/conversation',
+          'tag' => [
+            {
+              'type' => 'Mention',
+              'href' => ['foo'],
+            }
+          ],
+        },
+        'signature' => {
+          'type' => 'RsaSignature2017',
+          'created' => '2022-02-02T12:00:00Z',
+          'creator' => 'https://example.com/actor#main-key',
+          'signatureValue' => 'some-sig',
+        },
+      }
+    end
+
+    describe '#compact' do
+      it 'properly compacts JSON-LD with alternative context definitions' do
+        expect(compact(json).dig('object', 'conversation')).to eq 'https://example.com/conversation'
+      end
+
+      it 'compacts single-item arrays' do
+        expect(compact(json).dig('object', 'tag', 'href')).to eq 'foo'
+      end
+
+      it 'compacts the activistreams Public collection' do
+        expect(compact(json)['to']).to eq 'as:Public'
+      end
+
+      it 'properly copies signature' do
+        expect(compact(json)['signature']).to eq json['signature']
+      end
+    end
+
+    describe 'patch_for_forwarding!' do
+      it 'properly patches incompatibilities' do
+        json['object'].delete('convo')
+        compacted = compact(json)
+        patch_for_forwarding!(json, compacted)
+        expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
+        expect(compacted.dig('object', 'tag', 0, 'href')).to eq ['foo']
+        expect(safe_for_forwarding?(json, compacted)).to eq true
+      end
+    end
+
+    describe 'safe_for_forwarding?' do
+      it 'deems a safe compacting as such' do
+        json['object'].delete('convo')
+        compacted = compact(json)
+        deemed_compatible = patch_for_forwarding!(json, compacted)
+        expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
+        expect(safe_for_forwarding?(json, compacted)).to eq true
+      end
+
+      it 'deems an unsafe compacting as such' do
+        compacted = compact(json)
+        deemed_compatible = patch_for_forwarding!(json, compacted)
+        expect(compacted['to']).to eq ['https://www.w3.org/ns/activitystreams#Public']
+        expect(safe_for_forwarding?(json, compacted)).to eq false
+      end
+    end
+  end
 end

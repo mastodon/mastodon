@@ -7,7 +7,9 @@ class Admin::Metrics::Dimension::LanguagesDimension < Admin::Metrics::Dimension:
     'languages'
   end
 
-  def data
+  protected
+
+  def perform_query
     sql = <<-SQL.squish
       SELECT locale, count(*) AS value
       FROM users
@@ -20,6 +22,6 @@ class Admin::Metrics::Dimension::LanguagesDimension < Admin::Metrics::Dimension:
 
     rows = ActiveRecord::Base.connection.select_all(sql, nil, [[nil, @start_at], [nil, @end_at], [nil, @limit]])
 
-    rows.map { |row| { key: row['locale'], human_key: human_locale(row['locale']), value: row['value'].to_s } }
+    rows.map { |row| { key: row['locale'], human_key: standard_locale_name(row['locale']), value: row['value'].to_s } }
   end
 end

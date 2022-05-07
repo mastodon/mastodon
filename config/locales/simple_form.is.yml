@@ -7,12 +7,12 @@ is:
       account_migration:
         acct: Tilgreindu notandanafn@lén á notandaaðgangnum sem þú vilt flytjast til
       account_warning_preset:
-        text: Þú getur notað sömu skilgreiningar og fyrir tíst, svo sem URL-slóðir, myllumerki og tilvísanir
+        text: Þú getur notað sömu skilgreiningar og fyrir færslur, svo sem URL-slóðir, myllumerki og tilvísanir
         title: Valkvætt. Ekki sýnilegt viðtakandanum
       admin_account_action:
-        include_statuses: Notandinn mun sjá hvaða tíst hafa valdið viðbrögðum umsjónarmanns eða aðvörun kerfisins
+        include_statuses: Notandinn mun sjá hvaða færslur hafa valdið viðbrögðum umsjónarmanns eða aðvörun kerfisins
         send_email_notification: Notandinn mun fá útskýringar á því hvað gerðist með notandaaðganginn hans
-        text_html: Valfrjálst. Þú getur notað sömu skilgreiningar og fyrir tíst. Þú getur <a href="%{path}">bætt inn forstilltum aðvörunum</a> til að spara tíma
+        text_html: Valfrjálst. Þú getur notað sömu skilgreiningar og fyrir færslur. Þú getur <a href="%{path}">bætt inn forstilltum aðvörunum</a> til að spara tíma
         type_html: Veldu hvað eigi að gera við <strong>%{acct}</strong>
         types:
           disable: Koma í veg fyrir að notandinn noti aðganginn sinn, en ekki eyða eða fela efnið þeirra.
@@ -26,7 +26,9 @@ is:
         ends_at: Valfrjálst. Auglýsing verðut tekin úr birtingu á þessum tíma
         scheduled_at: Skildu þetta eftir autt til að birta auglýsinguna samstundis
         starts_at: Valfrjálst. Notað ef auglýsing er bundin við tiltekinn tímaramma
-        text: Þú getur notað sömu skilgreiningar og fyrir tíst. Hafðu í huga það pláss sem auglýsingin mun taka á skjá notandans
+        text: Þú getur notað sömu skilgreiningar og fyrir færslur. Hafðu í huga það pláss sem auglýsingin mun taka á skjá notandans
+      appeal:
+        text: Þú getur aðeins áfrýjað refsingu einu sinni
       defaults:
         autofollow: Fólk sem skráir sig í gegnum boðið mun sjálfkrafa fylgjast með þér
         avatar: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
@@ -35,34 +37,34 @@ is:
         current_password: Í öryggisskyni skaltu setja inn lykilorðið fyrir þennan notandaaðgang
         current_username: Til að staðfesta skaltu setja inn notandanafnið fyrir þennan notandaaðgang
         digest: Er aðeins sent eftir lengri tímabil án virkni og þá aðeins ef þú hefur fengið persónuleg skilaboð á meðan þú hefur ekki verið á línunni
-        discoverable: Persónusniðamappan er önnur leið til að láta notandaaðganginn þinn ná til fleiri lesenda
-        discoverable_no_directory: Gerðu öðrum kleift að finna aðganginn þinn í gegnum meðmæli og annað slíkt
+        discoverable: Gerðu öðrum kleift að finna aðganginn þinn í gegnum meðmæli, vinsældir og annað slíkt
         email: Þú munt fá sendan staðfestingarpóst
         fields: Þú getur birt allt að 4 atriði sem töflu á notandasniðinu þínu
         header: PNG, GIF eða JPG. Mest %{size}. Verður smækkað í %{dimensions}px
         inbox_url: Afritaðu slóðina af forsíðu endurvarpans sem þú vilt nota
-        irreversible: Síuð tíst munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
+        irreversible: Síaðar færslur munu hverfa óendurkræft, jafnvel þó sían sé seinna fjarlægð
         locale: Tungumál notandaviðmótsins, tölvupósts og ýti-tilkynninga
         locked: Krefst þess að þú samþykkir fylgjendur handvirkt
         password: Notaðu minnst 8 stafi
-        phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í tísti
+        phrase: Verður notað til samsvörunar burtséð frá stafstöðu texta eða viðvörunar vegna efnis í færslu
         scopes: Að hvaða API-kerfisviðmótum forritið fær aðgang. Ef þú velur efsta-stigs svið, þarftu ekki að gefa einstakar heimildir.
-        setting_aggregate_reblogs: Ekki sýna nýjar endurbirtingar á tístum sem hafa nýlega verið endurbirt (hefur bara áhrif á ný-mótteknar endurbirtingar)
+        setting_aggregate_reblogs: Ekki sýna nýjar endurbirtingar á færslum sem hafa nýlega verið endurbirtar (hefur bara áhrif á ný-mótteknar endurbirtingar)
+        setting_always_send_emails: Venjulega eru tilkynningar í tölvupósti ekki sendar þegar þú ert virk/ur í að nota Mastodon
         setting_default_sensitive: Viðkvæmt myndefni er sjálfgefið falið og er hægt að birta með smelli
         setting_display_media_default: Fela myndefni sem merkt er viðkvæmt
         setting_display_media_hide_all: Alltaf fela allt myndefni
         setting_display_media_show_all: Alltaf birta myndefni sem merkt er viðkvæmt
         setting_hide_network: Hverjum þú fylgist með og hverjir fylgjast með þér verður ekki birt á notandasniðinu þínu
-        setting_noindex: Hefur áhrif á opinbera notandasniðið þitt og stöðusíður
-        setting_show_application: Nafnið á forritinu sem þú notar til að tísta mun birtast í ítarlegri sýn á tístunum þínum
+        setting_noindex: Hefur áhrif á opinbera notandasniðið þitt og færslusíður
+        setting_show_application: Nafnið á forritinu sem þú notar til að senda færslur mun birtast í ítarlegri sýn á færslunum þínum
         setting_use_blurhash: Litstiglarnir byggja á litunum í földu myndunum, en gera öll smáatriði óskýr
         setting_use_pending_items: Fela uppfærslur tímalínu þar til smellt er, í stað þess að hún skruni streyminu sjálfvirkt
         username: Notandanafnið þitt verður einstakt á %{domain}
-        whole_word: Þegar stikkorð eða frasi er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
+        whole_word: Þegar stikkorð eða setning er einungis tölur og bókstafir, verður það aðeins notað ef það samsvarar heilu orði
       domain_allow:
         domain: Þetta lén mun geta sótt gögn af þessum vefþjóni og tekið verður á móti innsendum gögnum frá léninu til vinnslu og geymslu
       email_domain_block:
-        domain: Þetta getur verið heiti lénsins sem birtist í tölvupóstfanginu, MX-færslan sem það lén beinist að, eða IP-vistfang netþjónsins sem sú MX-færsla beinist að. Þetta verður athugað um leið og notandi skráir sig, og verður þá skráningunni hafnað.
+        domain: Þetta getur verið lénið sem birtist í tölvupóstfanginu eða MX-færslunni sem það notar. Þetta verður yfirfarið við nýskráningu.
         with_dns_records: Tilraun verður gerð til að leysa DNS-færslur uppgefins léns og munu niðurstöðurnar einnig verða útilokaðar
       featured_tag:
         name: 'Þú gætir viljað nota eitt af þessum:'
@@ -88,7 +90,7 @@ is:
       tag:
         name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
       user:
-        chosen_languages: Þegar merkt er við þetta, birtast einungis tíst á völdum tungumálum á opinberum tímalínum
+        chosen_languages: Þegar merkt er við þetta, birtast einungis færslur á völdum tungumálum á opinberum tímalínum
     labels:
       account:
         fields:
@@ -102,7 +104,7 @@ is:
         text: Forstilltur texti
         title: Titill
       admin_account_action:
-        include_statuses: Innifela kærð tíst í tölvupóstinum
+        include_statuses: Innifela kærðar færslur í tölvupóstinum
         send_email_notification: Láta notanda vita með tölvupósti
         text: Sérsniðin aðvörun
         type: Aðgerð
@@ -119,10 +121,12 @@ is:
         scheduled_at: Áætla birtingu
         starts_at: Upphaf atburðar
         text: Auglýsing
+      appeal:
+        text: Útskýrðu af hverju ætti að afturkalla þessa ákvörðun
       defaults:
         autofollow: Bjóða að fylgjast með aðgangnum þínum
         avatar: Auðkennismynd
-        bot: Þetta er aðgangur fyrir róbót
+        bot: Þetta er aðgangur fyrir vélmenni
         chosen_languages: Sía tungumál
         confirm_new_password: Staðfestu nýja lykilorðið
         confirm_password: Staðfestu lykilorðið
@@ -145,26 +149,27 @@ is:
         note: Æviágrip
         otp_attempt: Teggja-þátta kóði
         password: Lykilorð
-        phrase: Stikkorð eða frasi
+        phrase: Stikkorð eða setning
         setting_advanced_layout: Virkja ítarlegt vefviðmót
         setting_aggregate_reblogs: Hópa endurbirtingar í tímalínum
+        setting_always_send_emails: Alltaf senda tilkynningar í tölvupósti
         setting_auto_play_gif: Spila sjálfkrafa GIF-hreyfimyndir
         setting_boost_modal: Sýna staðfestingarglugga fyrir endurbirtingu
-        setting_crop_images: Utansníða myndir í ekki útfelldum tístum í 16x9
+        setting_crop_images: Utansníða myndir í ekki-útfelldum færslum í 16x9
         setting_default_language: Tungumál sem skrifað er á
         setting_default_privacy: Gagnaleynd færslna
         setting_default_sensitive: Alltaf merkja myndefni sem viðkvæmt
-        setting_delete_modal: Birta staðfestingarglugga áður en tísti er eytt
+        setting_delete_modal: Birta staðfestingarglugga áður en færslu er eytt
         setting_disable_swiping: Gera strokuhreyfingar óvirkar
         setting_display_media: Birting myndefnis
         setting_display_media_default: Sjálfgefið
         setting_display_media_hide_all: Fela allt
         setting_display_media_show_all: Birta allt
-        setting_expand_spoilers: Alltaf útfella tíst sem eru með aðvörun vegna efnisins
+        setting_expand_spoilers: Alltaf útfella færslur sem eru með aðvörun vegna efnisins
         setting_hide_network: Fela netkerfið þitt
         setting_noindex: Afþakka atriðaskráningu í leitarvélum
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
-        setting_show_application: Upplýsa um forrit sem er til að senda tíst
+        setting_show_application: Upplýsa um forrit sem er til að senda færslur
         setting_system_font_ui: Nota sjálfgefið letur kerfisins
         setting_theme: Þema vefsvæðis
         setting_trends: Birta það sem er efst á baugi í dag
@@ -197,22 +202,23 @@ is:
           sign_up_requires_approval: Takmarka nýskráningar
         severity: Regla
       notification_emails:
+        appeal: Einhver áfrýjar ákvörðun umsjónarmanns
         digest: Senda uppsafnaðan tölvupóst
-        favourite: Einhver setti stöðufærslu þína í eftirlæti
+        favourite: Einhver setti færslu þína í eftirlæti
         follow: Einhver fylgist núna með þér
         follow_request: Einhver hefur beðið um að fylgjast með þér
         mention: Einhver minntist á þig
         pending_account: Nýr notandaaðgangur þarfnast yfirferðar
-        reblog: Einhver endurbirti stöðufærslu þína
+        reblog: Einhver endurbirti færsluna þína
         report: Ný kæra hefur verið send inn
-        trending_tag: Óyfirfarið myllumerki er í umræðunni
+        trending_tag: Ný tilhneiging krefst yfirferðar
       rule:
         text: Regla
       tag:
         listable: Leyfa þessu myllumerki að birtast í leitum og í persónusniðamöppunni
         name: Myllumerki
         trendable: Leyfa þessu myllumerki að birtast undir tilhneigingum
-        usable: Leyfa tístum að nota þetta myllumerki
+        usable: Leyfa færslum að nota þetta myllumerki
     'no': Nei
     recommended: Mælt með
     required:

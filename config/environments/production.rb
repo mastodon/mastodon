@@ -42,7 +42,7 @@ Rails.application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Allow to specify public IP of reverse proxy if it's needed
-  config.action_dispatch.trusted_proxies = ENV['TRUSTED_PROXY_IP'].split.map { |item| IPAddr.new(item) } if ENV['TRUSTED_PROXY_IP'].present?
+  config.action_dispatch.trusted_proxies = ENV['TRUSTED_PROXY_IP'].split(/(?:\s*,\s*|\s+)/).map { |item| IPAddr.new(item) } if ENV['TRUSTED_PROXY_IP'].present?
 
   config.force_ssl = true
   config.ssl_options = {
@@ -91,12 +91,15 @@ Rails.application.configure do
 
   # E-mails
   outgoing_email_address = ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')
-  outgoing_mail_domain   = Mail::Address.new(outgoing_email_address).domain
+  outgoing_email_domain  = Mail::Address.new(outgoing_email_address).domain
+
   config.action_mailer.default_options = {
     from: outgoing_email_address,
-    reply_to: ENV['SMTP_REPLY_TO'],
-    'Message-ID': -> { "<#{Mail.random_tag}@#{outgoing_mail_domain}>" },
+    message_id: -> { "<#{Mail.random_tag}@#{outgoing_email_domain}>" },
   }
+
+  config.action_mailer.default_options[:reply_to]    = ENV['SMTP_REPLY_TO'] if ENV['SMTP_REPLY_TO'].present?
+  config.action_mailer.default_options[:return_path] = ENV['SMTP_RETURN_PATH'] if ENV['SMTP_RETURN_PATH'].present?
 
   config.action_mailer.smtp_settings = {
     :port                 => ENV['SMTP_PORT'],
@@ -107,9 +110,9 @@ Rails.application.configure do
     :authentication       => ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
     :ca_file              => ENV['SMTP_CA_FILE'].presence || '/etc/ssl/certs/ca-certificates.crt',
     :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
-    :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] || true,
-    :tls                  => ENV['SMTP_TLS'].presence,
-    :ssl                  => ENV['SMTP_SSL'].presence,
+    :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] != 'false',
+    :tls                  => ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
+    :ssl                  => ENV['SMTP_SSL'].presence && ENV['SMTP_SSL'] == 'true',
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
@@ -118,7 +121,7 @@ Rails.application.configure do
     'Server'                 => 'Mastodon',
     'X-Frame-Options'        => 'DENY',
     'X-Content-Type-Options' => 'nosniff',
-    'X-XSS-Protection'       => '1; mode=block',
+    'X-XSS-Protection'       => '0',
     'Permissions-Policy'     => 'interest-cohort=()',
   }
 

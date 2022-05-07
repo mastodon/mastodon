@@ -1,0 +1,13 @@
+<%= raw t('application_mailer.salutation', name: display_name(@me)) %>
+
+<%= raw t('admin_mailer.new_trends.body') %>
+
+<% unless @links.empty? %>
+<%= render 'new_trending_links' %>
+<% end %>
+<% unless @tags.empty? %>
+<%= render 'new_trending_tags' unless @tags.empty? %>
+<% end %>
+<% unless @statuses.empty? %>
+<%= render 'new_trending_statuses' unless @statuses.empty? %>
+<% end %>

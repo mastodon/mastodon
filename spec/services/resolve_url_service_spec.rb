@@ -7,13 +7,27 @@ describe ResolveURLService, type: :service do
 
   describe '#call' do
     it 'returns nil when there is no resource url' do
-      url     = 'http://example.com/missing-resource'
+      url           = 'http://example.com/missing-resource'
+      known_account = Fabricate(:account, uri: url)
       service = double
 
       allow(FetchResourceService).to receive(:new).and_return service
+      allow(service).to receive(:response_code).and_return(404)
       allow(service).to receive(:call).with(url).and_return(nil)
 
       expect(subject.call(url)).to be_nil
+    end
+
+    it 'returns known account on temporary error' do
+      url           = 'http://example.com/missing-resource'
+      known_account = Fabricate(:account, uri: url)
+      service = double
+
+      allow(FetchResourceService).to receive(:new).and_return service
+      allow(service).to receive(:response_code).and_return(500)
+      allow(service).to receive(:call).with(url).and_return(nil)
+
+      expect(subject.call(url)).to eq known_account
     end
 
     context 'searching for a remote private status' do
