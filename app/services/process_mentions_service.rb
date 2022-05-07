@@ -56,6 +56,7 @@ class ProcessMentionsService < BaseService
       next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
       mention   = @previous_mentions.find { |x| x.account_id == mentioned_account.id }
+      mention ||= @current_mentions.find  { |x| x.account_id == mentioned_account.id }
       mention ||= @status.mentions.new(account: mentioned_account)
 
       @current_mentions << mention

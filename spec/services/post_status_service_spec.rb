@@ -151,6 +151,15 @@ RSpec.describe PostStatusService, type: :service do
     end.to raise_error(an_instance_of(PostStatusService::UnexpectedMentionsError).and having_attributes(accounts: [unexpected_mentioned_account]))
   end
 
+  it 'processes duplicate mentions correctly' do
+    account = Fabricate(:account)
+    mentioned_account = Fabricate(:account, username: 'alice')
+
+    expect do
+      subject.call(account, text: '@alice @alice @alice hey @alice')
+    end.not_to raise_error
+  end
+
   it 'processes hashtags' do
     hashtags_service = double(:process_hashtags_service)
     allow(hashtags_service).to receive(:call)

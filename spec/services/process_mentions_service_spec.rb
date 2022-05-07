@@ -47,6 +47,19 @@ RSpec.describe ProcessMentionsService, type: :service do
         end
       end
 
+      context 'mentioning a user several times when not saving records' do
+        let!(:remote_user) { Fabricate(:account, username: 'remote_user', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
+        let(:status)       { Fabricate(:status, account: account, text: "Hello @#{remote_user.acct} @#{remote_user.acct} @#{remote_user.acct}", visibility: :public) }
+
+        before do
+          subject.call(status, save_records: false)
+        end
+
+        it 'creates exactly one mention' do
+          expect(status.mentions.size).to eq 1
+        end
+      end
+
       context 'with an IDN domain' do
         let!(:remote_user) { Fabricate(:account, username: 'sneak', protocol: :activitypub, domain: 'xn--hresiar-mxa.ch', inbox_url: 'http://example.com/inbox') }
         let!(:status) { Fabricate(:status, account: account, text: "Hello @sneak@hæresiar.ch") }
