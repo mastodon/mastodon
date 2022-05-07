@@ -141,6 +141,16 @@ RSpec.describe PostStatusService, type: :service do
     expect(mention_service).to have_received(:call).with(status, save_records: false)
   end
 
+  it 'safeguards mentions' do
+    account = Fabricate(:account)
+    mentioned_account = Fabricate(:account, username: 'alice')
+    unexpected_mentioned_account = Fabricate(:account, username: 'bob')
+
+    expect do
+      subject.call(account, text: '@alice hm, @bob is really annoying lately', allowed_mentions: [mentioned_account.id])
+    end.to raise_error(an_instance_of(PostStatusService::UnexpectedMentionsError).and having_attributes(accounts: [unexpected_mentioned_account]))
+  end
+
   it 'processes hashtags' do
     hashtags_service = double(:process_hashtags_service)
     allow(hashtags_service).to receive(:call)

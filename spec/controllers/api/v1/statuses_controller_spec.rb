@@ -133,6 +133,23 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         end
       end
 
+      context 'with a safeguard' do
+        let!(:alice) { Fabricate(:account, username: 'alice') }
+        let!(:bob)   { Fabricate(:account, username: 'bob') }
+
+        before do
+          post :create, params: { status: '@alice hm, @bob is really annoying lately', allowed_mentions: [alice.id] }
+        end
+
+        it 'returns http unprocessable entity' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'returns serialized extra accounts in body' do
+          expect(body_as_json[:unexpected_accounts].map { |a| a.slice(:id, :acct) }).to eq [{ id: bob.id.to_s, acct: bob.acct }]
+        end
+      end
+
       context 'with missing parameters' do
         before do
           post :create, params: {}
