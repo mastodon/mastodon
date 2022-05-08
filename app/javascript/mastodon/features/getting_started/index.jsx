@@ -58,8 +58,6 @@ const badgeDisplay = (number, limit) => {
   }
 };
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
 class GettingStarted extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -153,3 +151,5 @@ class GettingStarted extends ImmutablePureComponent {
   }
 
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(GettingStarted));
