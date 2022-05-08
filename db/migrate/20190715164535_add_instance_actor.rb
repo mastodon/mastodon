@@ -2,8 +2,6 @@ class AddInstanceActor < ActiveRecord::Migration[5.2]
   class Account < ApplicationRecord
     # Dummy class, to make migration possible across version changes
     validates :username, uniqueness: { scope: :domain, case_sensitive: false }
-<<<<<<< HEAD
-=======
 
     before_create :generate_keys
 
@@ -12,7 +10,6 @@ class AddInstanceActor < ActiveRecord::Migration[5.2]
       self.private_key = keypair.to_pem
       self.public_key  = keypair.public_key.to_pem
     end
->>>>>>> hometown-dev-3.5.2
   end
 
   def up
