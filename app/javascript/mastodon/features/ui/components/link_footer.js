@@ -68,7 +68,7 @@ class LinkFooter extends React.PureComponent {
           />
           <FormattedMessage
             id='getting_started.hometown_open_source_notice'
-            defaultMessage='Hometown is also open source, at {hometown} (v1.0.5).'
+            defaultMessage='Hometown is also open source, at {hometown}.'
             values={{ hometown: <span><a href='https://github.com/hometown-fork/hometown' rel='noopener' target='_blank'>hometown-fork/hometown</a></span> }}
           />
         </p>
