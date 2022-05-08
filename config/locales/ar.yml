@@ -295,6 +295,7 @@ ar:
         update_domain_block: تحديث كتلة النطاق
         update_status: تحديث الحالة
       actions:
+        approve_user_html: قبل %{name} تسجيل %{target}
         assigned_to_self_report_html: قام %{name} بتعيين التقرير %{target} لأنفسهم
         change_email_user_html: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
         confirm_user_html: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
@@ -324,6 +325,7 @@ ar:
         enable_user_html: قام %{name} بتنشيط تسجيل الدخول للمستخدم %{target}
         memorialize_account_html: قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
         promote_user_html: قام %{name} بترويج المستخدم %{target}
+        reject_user_html: رفض %{name} تسجيل %{target}
         remove_avatar_user_html: قام %{name} بإزالة صورة %{target} الرمزية
         reopen_report_html: قام %{name} بإعادة فتح الشكوى %{target}
         reset_password_user_html: قام %{name} بإعادة تعيين كلمة مرور المستخدم %{target}
@@ -762,6 +764,7 @@ ar:
         usable: يمكن استخدامه
         usage_comparison: تم استخدامه %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
       title: المتداوَلة
+      trending: المتداولة
     warning_presets:
       add_new: إضافة واحد جديد
       delete: حذف
@@ -1564,7 +1567,10 @@ ar:
       title: المغادرة بأرشيف الحساب
     suspicious_sign_in:
       change_password: غيّر كلمتك السرية
+      details: 'فيما يلي تفاصيل تسجيل الدخول:'
+      explanation: لقد اكتشفنا تسجيل دخول إلى حسابك من عنوان IP جديد.
       subject: تم النفاذ عبر حسابك من خلال عنوان إيبي جديد
+      title: تسجيل دخول جديد
     warning:
       appeal: تقديم طعن
       appeal_description: إذا كنت تعتقد أن هذا خطأ، يمكنك تقديم طعن إلى فريق %{instance}.

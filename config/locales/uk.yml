@@ -170,6 +170,12 @@ uk:
       not_subscribed: Не підписані
       pending: Відгук в очікуванні
       perform_full_suspension: Призупинити
+      previous_strikes: Попередні скарги
+      previous_strikes_description_html:
+        few: У цього облікового запису є <strong>%{count}</strong> скарги.
+        many: У цього облікового запису є <strong>%{count}</strong> скарг.
+        one: У цього облікового запису є <strong>одна</strong> скарга.
+        other: У цього облікового запису є <strong>%{count}</strong> скарг.
       promote: Просунути
       protocol: Протокол
       public: Публічний
@@ -210,6 +216,7 @@ uk:
       silence: Глушення
       silenced: Заглушені
       statuses: Статуси
+      strikes: Попередні скарги
       subscribe: Підписатися
       suspend: Призупинити
       suspended: Призупинені
@@ -392,6 +399,11 @@ uk:
       media_storage: Медіасховище
       new_users: нові користувачі
       opened_reports: звітів відкрито
+      pending_appeals_html:
+        few: "<strong>%{count}</strong> апеляції в черзі"
+        many: "<strong>%{count}</strong> апеляцій в черзі"
+        one: "<strong>%{count}</strong> апеляція в черзі"
+        other: "<strong>%{count}</strong> апеляції в черзі"
       pending_reports_html:
         few: "<strong>%{count}</strong> звіти у черзі"
         many: "<strong>%{count}</strong> звітів у черзі"
@@ -481,6 +493,12 @@ uk:
       unsuppress: Відновити поради щодо підписок
     instances:
       availability:
+        failures_recorded:
+          few: Невдалих спроб за %{count} різні дні.
+          many: Невдалих спроб за %{count} різних днів.
+          one: Невдалих спроб за %{count} день.
+          other: Невдалих спроб за %{count} різних днів.
+        no_failures_recorded: Проблем щодо запису немає.
         title: Доступність
       back_to_all: Усі
       back_to_limited: Обмежені
@@ -784,6 +802,7 @@ uk:
         disallow_provider: Заборонити публікатора
         title: Популярні посилання
         usage_comparison: Сьогодні поширено %{today} разів, у порівнянні з %{yesterday} вчора
+      only_allowed: Тільки дозволене
       pending_review: Очікує перевірки
       preview_card_providers:
         allowed: Посилання цього публікатора можуть бути популярними
@@ -1551,6 +1570,7 @@ uk:
         silence: Ви й надалі можете користуватися своїм обліковим записом, але ваші дописи на цьому сервері бачитимуть лише ті люди, які вже стежать за вами, а вас може бути виключено з різних можливостей виявлення. Проте, інші можуть почати стежити за вами вручну.
         suspend: Ви більше не можете користуватися своїм обліковим записом, а ваші інші дані більше недоступні. Ви досі можете увійти, щоб надіслати запит на отримання резервної копії своїх даних до повного видалення впродовж приблизно 30 днів, але ми збережемо деякі основні дані, щоб унеможливити ухилення вами від призупинення.
       reason: 'Причина:'
+      statuses: 'Цитовані дописи:'
       subject:
         delete_statuses: Ваші дописи на %{acct} були вилучені
         disable: Ваш обліковий запис %{acct} було заморожено
