@@ -77,15 +77,17 @@
     .fields-group
       = f.input :preview_sensitive_media, as: :boolean, wrapper: :with_label, label: t('admin.settings.preview_sensitive_media.title'), hint: t('admin.settings.preview_sensitive_media.desc_html')
 
-    .fields-group
-      = f.input :profile_directory, as: :boolean, wrapper: :with_label, label: t('admin.settings.profile_directory.title'), hint: t('admin.settings.profile_directory.desc_html')
+  .fields-group
+    = f.input :profile_directory, as: :boolean, wrapper: :with_label, label: t('admin.settings.profile_directory.title'), hint: t('admin.settings.profile_directory.desc_html')
 
+  - unless whitelist_mode?
     .fields-group
       = f.input :trends, as: :boolean, wrapper: :with_label, label: t('admin.settings.trends.title'), hint: t('admin.settings.trends.desc_html')
 
     .fields-group
       = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, label: t('admin.settings.trendable_by_default.title'), hint: t('admin.settings.trendable_by_default.desc_html')
 
+  - unless whitelist_mode?
     .fields-group
       = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
 
@@ -101,7 +103,7 @@
       = f.input :show_domain_blocks_rationale, wrapper: :with_label, collection: %i(disabled users all), label: t('admin.settings.domain_blocks_rationale.title'), label_method: lambda { |value| t("admin.settings.domain_blocks.#{value}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   .fields-group
-    = f.input :site_extended_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description_extended.title'), hint: t('admin.settings.site_description_extended.desc_html'), input_html: { rows: 8 } unless whitelist_mode?
+    = f.input :site_extended_description, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_description_extended.title'), hint: t('admin.settings.site_description_extended.desc_html'), input_html: { rows: 8 }
     = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
     = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
     = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }, label: t('admin.settings.custom_css.title'), hint: t('admin.settings.custom_css.desc_html')

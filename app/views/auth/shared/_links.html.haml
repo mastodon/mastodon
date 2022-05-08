@@ -5,7 +5,7 @@
     - if controller_name != 'sessions'
       %li= link_to_login t('auth.login')
 
-    - if controller_name != 'registrations'
+    - if controller_name != 'registrations' && !whitelist_mode?
       %li= link_to t('auth.register'), available_sign_up_path
 
     - if controller_name != 'passwords' && controller_name != 'registrations'

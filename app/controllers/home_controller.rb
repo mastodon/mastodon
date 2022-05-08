@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   end
 
   def default_redirect_path
-    if request.path.start_with?('/web') || whitelist_mode?
+    if request.path.start_with?('/web')
       new_user_session_path
     elsif single_user_mode?
       short_account_path(Account.local.without_suspended.where('id > 0').first)
