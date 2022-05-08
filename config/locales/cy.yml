@@ -7,6 +7,7 @@ cy:
     active_count_after: yn weithredol
     active_footnote: Defnyddwyr Gweithredol Misol (DGM)
     administered_by: 'Gweinyddir gan:'
+    api: API
     apps: Apiau symudol
     apps_platforms: Defnyddio Mastodon o iOS, Android a phlatfformau eraill
     browse_directory: Pori cyfeiriadur proffil a hidlo wrth diddordebau
@@ -24,7 +25,7 @@ cy:
     instance_actor_flash: |
       Mae'r cyfrif hwn yn actor rhithwir a ddefnyddir i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol.
       Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei rwystro oni bai eich bod am rwystro'r achos cyfan, ac os felly dylech ddefnyddio bloc parth.
-    learn_more: Dysu mwy
+    learn_more: Dysgu mwy
     logged_in_as_html: Rydych chi wedi mewngofnodi fel %{username}.
     logout_before_registering: Rydych chi eisoes wedi mewngofnodi.
     privacy_policy: Polisi preifatrwydd
@@ -40,7 +41,7 @@ cy:
       other: statwsau
       two: statwsau
       zero: statwsau
-    status_count_before: Ysgriffennwyd gan
+    status_count_before: Ysgrifennwyd gan
     tagline: Dilyn ffrindiau a darganfod rhai newydd
     terms: Telerau gwasanaeth
     unavailable_content: Cynnwys nad yw ar gael
@@ -76,6 +77,7 @@ cy:
       two: Dilynwyr
       zero: Dilynwyr
     following: Yn dilyn
+    instance_actor_flash: Mae'r cyfrif hwn yn actor rhithwir a ddefnyddir i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol. Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei atal.
     joined: Ymunodd %{date}
     last_active: diweddaraf
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
@@ -347,6 +349,8 @@ cy:
         title: Cofnod newydd yng nghosbrestr e-byst
       title: Cosbrestr e-bost
     instances:
+      back_to_all: Popeth
+      back_to_warning: Rhybudd
       by_domain: Parth
       delivery_available: Mae'r cyflenwad ar gael
       moderation:
@@ -1036,6 +1040,7 @@ cy:
         zero: "%{count} pleidlais"
       vote: Pleidleisio
     show_more: Dangos mwy
+    show_older: Dangos pethau hŷn
     show_thread: Dangos edefyn
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
     visibilities:
