@@ -192,7 +192,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     attribute :context, key: :@context
 
     def context
-      {"name" => "schema:name"}
+      { 'name' => 'schema:name' }
     end
 
     def type
