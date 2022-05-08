@@ -189,6 +189,11 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
     include FormattingHelper
 
     attributes :type, :name, :value
+    attribute :context, key: :@context
+
+    def context
+      {"name" => "schema:name"}
+    end
 
     def type
       'PropertyValue'
