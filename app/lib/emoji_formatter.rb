@@ -11,6 +11,8 @@ class EmojiFormatter
   # @param [Array<CustomEmoji>] custom_emojis
   # @param [Hash] options
   # @option options [Boolean] :animate
+  # @option options [String] :class
+  # @option options [String] :style
   def initialize(html, custom_emojis, options = {})
     raise ArgumentError unless html.html_safe?
 
@@ -85,14 +87,29 @@ class EmojiFormatter
   def image_for_emoji(shortcode, emoji)
     original_url, static_url = emoji
 
-    if animate?
-      image_tag(original_url, draggable: false, class: 'emojione', alt: ":#{shortcode}:", title: ":#{shortcode}:")
-    else
-      image_tag(original_url, draggable: false, class: 'emojione custom-emoji', alt: ":#{shortcode}:", title: ":#{shortcode}:", data: { original: original_url, static: static_url })
-    end
+    image_tag(
+      animate? ? original_url : static_url,
+      image_attributes.merge(alt: ":#{shortcode}:", title: ":#{shortcode}:", data: image_data_attributes(original_url, static_url))
+    )
+  end
+
+  def image_attributes
+    { draggable: false, class: image_class_names, style: image_style }
+  end
+
+  def image_data_attributes(original_url, static_url)
+    { original: original_url, static: static_url } unless animate?
+  end
+
+  def image_class_names
+    @options[:class] || 'emojione custom-emoji'
+  end
+
+  def image_style
+    @options[:style]
   end
 
   def animate?
-    @options[:animate]
+    @options[:animate] || @options.key?(:style)
   end
 end
