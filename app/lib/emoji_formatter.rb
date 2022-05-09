@@ -101,7 +101,7 @@ class EmojiFormatter
   end
 
   def image_class_names
-    'emojione custom-emoji'
+    animate? ? 'emojione' : 'emojione custom-emoji'
   end
 
   def image_style
