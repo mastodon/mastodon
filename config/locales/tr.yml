@@ -1355,6 +1355,11 @@ tr:
   reports:
     errors:
       invalid_rules: geçerli kurallara işaret etmez
+  rss:
+    content_warning: 'İçerik uyarısı:'
+    descriptions:
+      account: '@%{acct} hesabından herkese açık gönderiler'
+      tag: '#%{hashtag} etiketli herkese açık gönderiler'
   scheduled_statuses:
     over_daily_limit: O gün için %{limit} zamanlanmış toot sınırını aştınız
     over_total_limit: '%{limit} zamanlanmış toot sınırını aştınız'
