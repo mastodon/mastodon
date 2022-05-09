@@ -40,8 +40,7 @@ module FormattingHelper
     prerender_custom_emojis(
       safe_join([before_html, html, after_html]),
       status.emojis,
-      class: 'wp-smiley', # For highest feed reader compatibility
-      style: 'width: 1.1em; height: 1.1em; vertical-align: middle; margin: -.2ex .15em .2ex' # As fallback
+      style: 'width: 1.1em; height: 1.1em; object-fit: contain; vertical-align: middle; margin: -.2ex .15em .2ex'
     ).to_str
   end
 

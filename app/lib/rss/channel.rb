@@ -31,6 +31,18 @@ class RSS::Channel < RSS::Element
     append_element('description', str)
   end
 
+  def generator(str)
+    append_element('generator', str)
+  end
+
+  def icon(str)
+    append_element('webfeeds:icon', str)
+  end
+
+  def logo(str)
+    append_element('webfeeds:logo', str)
+  end
+
   def item(&block)
     @root << RSS::Item.with(&block)
   end

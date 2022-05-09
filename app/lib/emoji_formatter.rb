@@ -11,7 +11,6 @@ class EmojiFormatter
   # @param [Array<CustomEmoji>] custom_emojis
   # @param [Hash] options
   # @option options [Boolean] :animate
-  # @option options [String] :class
   # @option options [String] :style
   def initialize(html, custom_emojis, options = {})
     raise ArgumentError unless html.html_safe?
@@ -94,7 +93,7 @@ class EmojiFormatter
   end
 
   def image_attributes
-    { draggable: false, class: image_class_names, style: image_style }
+    { rel: 'emoji', draggable: false, width: 16, height: 16, class: image_class_names, style: image_style }
   end
 
   def image_data_attributes(original_url, static_url)
@@ -102,7 +101,7 @@ class EmojiFormatter
   end
 
   def image_class_names
-    @options[:class] || 'emojione custom-emoji'
+    'emojione custom-emoji'
   end
 
   def image_style

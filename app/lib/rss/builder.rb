@@ -22,8 +22,9 @@ class RSS::Builder
   def wrap_in_document
     Ox::Document.new(version: '1.0').tap do |document|
       document << Ox::Element.new('rss').tap do |rss|
-        rss['version']     = '2.0'
-        rss['xmlns:media'] = 'http://search.yahoo.com/mrss/'
+        rss['version']        = '2.0'
+        rss['xmlns:webfeeds'] = 'http://webfeeds.org/rss/1.0'
+        rss['xmlns:media']    = 'http://search.yahoo.com/mrss/'
 
         rss << @dsl.to_element
       end
