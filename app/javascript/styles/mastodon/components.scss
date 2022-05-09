@@ -5290,8 +5290,25 @@ a.status-card.compact:hover {
 
   .item-list {
     text-align: start;
-    padding: 10px;
-    list-style: disc inside;
+    margin-top: 15px;
+    overflow-y: auto;
+
+    &.light {
+      .display-name {
+        color: $light-text-color;
+
+        strong {
+          color: $inverted-text-color;
+        }
+      }
+    }
+
+    .account {
+      border: 0;
+      padding: 0;
+      margin-top: 8px;
+    }
+
   }
 }
 
@@ -5795,6 +5812,12 @@ a.status-card.compact:hover {
 .confirmation-modal__container,
 .report-modal__target {
   text-align: center;
+}
+
+.confirmation-modal__container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .block-modal,

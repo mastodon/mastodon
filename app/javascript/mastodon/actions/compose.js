@@ -190,9 +190,8 @@ function handleUnexpectedMentions(routerHistory, extraAccounts, expectedMentions
     if (extraAccounts.length === 0) {
       dispatch(submitCompose(routerHistory, expectedMentions));
     } else {
-      //TODO: rewrite and move elsewhere
       dispatch(openModal('UNEXPECTED_MENTIONS', {
-        extraAccounts: extraAccounts,
+        extraAccountIds: extraAccounts.map((account) => account.id),
         onConfirm: () => {
           dispatch(submitCompose(routerHistory, expectedMentions.concat(extraAccounts.map((account) => account.id))));
         },

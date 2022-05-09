@@ -39,10 +39,12 @@ class Account extends ImmutablePureComponent {
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
+    interactive: PropTypes.bool,
   };
 
   static defaultProps = {
     size: 46,
+    interactive: true,
   };
 
   handleFollow = () => {
@@ -70,7 +72,7 @@ class Account extends ImmutablePureComponent {
   };
 
   render () {
-    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size } = this.props;
+    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size, interactive } = this.props;
 
     if (!account) {
       return (
@@ -137,17 +139,29 @@ class Account extends ImmutablePureComponent {
       mute_expires_at =  <div><RelativeTimestamp timestamp={account.get('mute_expires_at')} futureDate /></div>;
     }
 
+    const contents = (
+      <React.Fragment>
+        <div className='account__avatar-wrapper'><Avatar account={account} size={size} /></div>
+        {mute_expires_at}
+        <DisplayName account={account} />
+      </React.Fragment>
+    );
+
     return (
       <div className='account'>
         <div className='account__wrapper'>
-          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={size} /></div>
-            {mute_expires_at}
-            <DisplayName account={account} />
-          </Link>
+          { interactive ? (
+            <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+              {contents}
+            </Link>
+          ) : (
+            <span key={account.get('id')} className='account__display-name' title={account.get('acct')}>
+              {contents}
+            </span>
+          )}
 
           <div className='account__relationship'>
-            {buttons}
+            {interactive && buttons}
           </div>
         </div>
       </div>
