@@ -1355,6 +1355,11 @@ it:
   reports:
     errors:
       invalid_rules: non fa riferimento a regole valide
+  rss:
+    content_warning: 'Avviso sul contenuto:'
+    descriptions:
+      account: Post pubblici di @%{acct}
+      tag: 'Post pubblici taggati #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
     over_total_limit: Hai superato il limite di %{limit} post programmati
