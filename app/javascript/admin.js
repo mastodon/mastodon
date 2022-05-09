@@ -1,6 +1,6 @@
-import './public-path';
+import 'mastodon/public-path';
 import { delegate } from '@rails/ujs';
-import ready from '../mastodon/ready';
+import ready from 'mastodon/ready';
 
 const batchCheckboxClassName = '.batch-checkbox input[type="checkbox"]';
 
@@ -170,8 +170,8 @@ ready(() => {
     const componentName  = element.getAttribute('data-admin-component');
     const { locale, ...componentProps } = JSON.parse(element.getAttribute('data-props'));
 
-    import('../mastodon/containers/admin_component').then(({ default: AdminComponent }) => {
-      return import('../mastodon/components/admin/' + componentName).then(({ default: Component }) => {
+    import('mastodon/containers/admin_component').then(({ default: AdminComponent }) => {
+      return import('mastodon/components/admin/' + componentName).then(({ default: Component }) => {
         ReactDOM.render((
           <AdminComponent locale={locale}>
             <Component {...componentProps} />

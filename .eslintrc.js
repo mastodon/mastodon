@@ -8,10 +8,6 @@ module.exports = {
     jest: true,
   },
 
-  globals: {
-    ATTACHMENT_HOST: false,
-  },
-
   parser: '@babel/eslint-parser',
 
   plugins: [

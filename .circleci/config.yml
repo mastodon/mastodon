@@ -65,7 +65,7 @@ jobs:
       - install-ruby-dependencies:
           ruby-version: '3.0'
       - node/install-packages:
-          cache-version: v1
+          cache-version: v2
           pkg-manager: yarn
       - run:
           command: ./bin/rails assets:precompile
@@ -214,7 +214,7 @@ workflows:
           requires:
             - build
       - node/run:
-          cache-version: v1
+          cache-version: v2
           name: test-webui
           pkg-manager: yarn
           requires:

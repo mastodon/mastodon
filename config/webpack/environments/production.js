@@ -1,39 +1,16 @@
-// Note: You must restart bin/webpack-dev-server for changes to take effect
-
 const { createHash } = require('crypto');
 const { readFileSync } = require('fs');
 const { resolve } = require('path');
-const { merge } = require('webpack-merge');
+const { merge } = require('shakapacker');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const TerserPlugin = require('terser-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 const { InjectManifest } = require('workbox-webpack-plugin');
-const sharedConfig = require('./shared');
+const baseConfig = require('./base');
 
-const root = resolve(__dirname, '..', '..');
+const root = resolve(__dirname, '..', '..', '..');
 
-module.exports = merge(sharedConfig, {
-  mode: 'production',
-  devtool: 'source-map',
-  stats: 'normal',
-  bail: true,
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true,
-      }),
-    ],
-  },
-
+/** @type {import('webpack').Configuration} */
+const productionConfig = {
   plugins: [
-    new CompressionPlugin({
-      filename: '[path][base].gz[query]',
-      cache: true,
-      test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
-    }),
     new BundleAnalyzerPlugin({ // generates report.html
       analyzerMode: 'static',
       openAnalyzer: false,
@@ -63,4 +40,6 @@ module.exports = merge(sharedConfig, {
       swSrc: resolve(root, 'app', 'javascript', 'mastodon', 'service_worker', 'entry.js'),
     }),
   ],
-});
+};
+
+module.exports = merge({}, baseConfig, productionConfig);

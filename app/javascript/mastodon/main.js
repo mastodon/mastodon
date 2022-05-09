@@ -39,6 +39,7 @@ function main() {
           console.error(err);
         });
     }
+
     perf.stop('main()');
   });
 }

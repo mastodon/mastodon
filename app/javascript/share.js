@@ -1,11 +1,11 @@
-import './public-path';
-import loadPolyfills from '../mastodon/load_polyfills';
-import { start } from '../mastodon/common';
+import 'mastodon/public-path';
+import loadPolyfills from 'mastodon/load_polyfills';
+import { start } from 'mastodon/common';
 
 start();
 
 function loaded() {
-  const ComposeContainer = require('../mastodon/containers/compose_container').default;
+  const ComposeContainer = require('mastodon/containers/compose_container').default;
   const React = require('react');
   const ReactDOM = require('react-dom');
   const mountNode = document.getElementById('mastodon-compose');
@@ -17,7 +17,7 @@ function loaded() {
 }
 
 function main() {
-  const ready = require('../mastodon/ready').default;
+  const ready = require('mastodon/ready').default;
   ready(loaded);
 }
 

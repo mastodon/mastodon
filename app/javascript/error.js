@@ -1,5 +1,5 @@
-import './public-path';
-import ready from '../mastodon/ready';
+import 'mastodon/public-path';
+import ready from 'mastodon/ready';
 
 ready(() => {
   const image = document.querySelector('img');

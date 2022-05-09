@@ -1,7 +1,6 @@
-module.exports = ({ env }) => ({
+module.exports = () => ({
   plugins: {
     autoprefixer: {},
     'postcss-object-fit-images': {},
-    cssnano: env === 'production' ? {} : false,
   },
 });
