@@ -178,10 +178,10 @@ function resolveMentions(state, text, expectedMentions, unresolvedMentions) {
       }
     }
   }
-};
+}
 
 function handleUnexpectedMentions(routerHistory, extraAccounts, expectedMentions, unresolvedMentions) {
-  return (dispatch, getState) => {
+  return (dispatch) => {
     // It is possible that some accounts failed to resolve due to case-sensitive comparison.
     // Check whether this may be the case
     for (const acct of unresolvedMentions) {
@@ -207,7 +207,7 @@ function handleUnexpectedMentions(routerHistory, extraAccounts, expectedMentions
       }));
     }
   };
-};
+}
 
 export function submitCompose(routerHistory, acceptExtraMentions = null) {
   return function (dispatch, getState) {
