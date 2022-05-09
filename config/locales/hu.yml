@@ -1356,8 +1356,10 @@ hu:
     errors:
       invalid_rules: nem hivatkozik érvényes szabályra
   rss:
+    content_warning: 'Tartalmi figyelmeztetés:'
     descriptions:
       account: Nyilvános bejegyzések @%{acct} fióktól
+      tag: 'Nyilvános bejegyzések #%{hashtag} tag-gel jelölve'
   scheduled_statuses:
     over_daily_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os napi limitet
     over_total_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os limitet
@@ -1440,7 +1442,7 @@ hu:
         one: "%{count} videó"
         other: "%{count} videó"
     boosted_from_html: Megtolva innen %{acct_link}
-    content_warning: 'Tartalom figyelmeztetés: %{warning}'
+    content_warning: 'Tartalmi figyelmeztetés: %{warning}'
     default_language: Felhasználói felület nyelvével azonos
     disallowed_hashtags:
       one: 'tiltott hashtaget tartalmaz: %{tags}'
