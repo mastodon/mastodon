@@ -788,6 +788,11 @@ uk:
     system_checks:
       database_schema_check:
         message_html: Існують відкладені перенесення бази даних. Запустіть їх, щоб забезпечити очікувану роботу програми
+      elasticsearch_running_check:
+        message_html: Не вдалося під'єднатися до Elasticsearch. Перевірте, чи він запущений або вимкніть повнотекстовий пошук
+      elasticsearch_version_check:
+        message_html: 'Несумісна версія Elasticsear: %{value}'
+        version_comparison: Запущено Elasticsearch %{running_version}, але вимагається %{required_version}
       rules_check:
         action: Керування правилами сервера
         message_html: Ви не визначили будь-які правила сервера.
@@ -806,6 +811,11 @@ uk:
         allow_provider: Дозволити публікатора
         disallow: Заборонити посилання
         disallow_provider: Заборонити публікатора
+        shared_by_over_week:
+          one: Поширила одна людина за останній тиждень
+          few: Поширили %{count} людини за останній тиждень
+          many: Поширили %{count} людей за останній тиждень
+          other: Поширили %{count} людей за останній тиждень
         title: Популярні посилання
         usage_comparison: Сьогодні поширено %{today} разів, у порівнянні з %{yesterday} вчора
       only_allowed: Тільки дозволене
@@ -873,6 +883,7 @@ uk:
       subject: 'Нова скарга до %{instance} (#%{id})'
     new_trends:
       new_trending_links:
+        no_approved_links: На цей час немає схвалених популярних посилань.
         title: Популярні посилання
       new_trending_statuses:
         no_approved_statuses: На цей час немає схвалених популярних дописів.
@@ -1356,6 +1367,8 @@ uk:
   reports:
     errors:
       invalid_rules: не посилається на чинні правила
+  rss:
+    content_warning: 'Попередження про матеріали:'
   scheduled_statuses:
     over_daily_limit: Ви перевищили ліміт в %{limit} запланованих дмухів на сьогодні
     over_total_limit: Ви перевищили ліміт в %{limit} запланованих дмухів
