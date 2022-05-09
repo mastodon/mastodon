@@ -29,9 +29,9 @@ class UnexpectedMentionsModal extends React.PureComponent {
           defaultMessage='This message is about to be sent to all mentioned users, including the following ones:'
         />
 
-       <ul className='item-list light'>
-         { extraAccountIds.map((accountId) => <li><AccountContainer id={accountId} interactive={false} /></li>) }
-       </ul>
+        <ul className='item-list light'>
+          { extraAccountIds.map((accountId) => <li key={accountId}><AccountContainer id={accountId} interactive={false} /></li>) }
+        </ul>
       </>
     );
 
