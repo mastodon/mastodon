@@ -1,7 +1,25 @@
----
 io:
   simple_form:
     hints:
+      account_alias:
+        acct: Partikulare pozez uzantonomo@domeno di konto quon vua volas ektransferesar
+      account_migration:
+        acct: Partikulare pozez uzantonomo@domeno di konto quon vua volas entransferesar
+      account_warning_preset:
+        text: Vu povas uzar postosintaxo tale URL, hashtagi e mencioni
+        title: Neobligata. Nevidebla da recevanto
+      admin_account_action:
+        include_statuses: Uzanto vidos quala posti quo kauzigas jero o averto
+        send_email_notification: Uzanto ganos expliko pri quo eventas a olia konto
+        text_html: Neobligata. Vu povas uzar postosintaxo. Vu povas <a href="%{path}">insertar avertofixiti</a> por sparar tempo
+        type_html: Selektez ago per <strong>%{acct}</strong>
+        types:
+          disable: Preventez uzanto de uzar olia konto ma ne efacez o celez olia kontenaji.
+          none: Uzez co por sendar averto a la uzanto sen eventigar irga altra ago.
+          sensitive: Koaktez omna mediiatachaji da ca uzanto markigesar quale sentiva.
+          silence: Preventez la uzanto de povar postar per publika videbleso, celez olia posti e avizi de personi quo ne sequas oli.
+          suspend: Preventez irga interago de o a ca konto e efacez ola kontenaji. Inversebla til 30 dii.
+        warning_preset_id: Neobligata. Vu povas ankore insertar kustume texto a extremajo di fixito
       defaults:
         avatar: En la formato PNG, GIF o JPG. Til %{size}. Esos mikrigita a %{dimensions}px
         header: En la formato PNG, GIF o JPG. Til %{size}. Esos mikrigita a %{dimensions}px
@@ -9,7 +27,7 @@ io:
       imports:
         data: Dosiero CSV de altra instaluro di Mastodon
       sessions:
-        otp: Enter the Two-factor code from your phone or use one of your recovery codes.
+        otp: 'Enter the Two-factor code from your phone or use one of your recovery codes.'
     labels:
       defaults:
         avatar: Profilimajo
