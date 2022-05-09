@@ -23,6 +23,7 @@ class UserSettingsDecorator
     user.settings['unfollow_modal']      = unfollow_modal_preference if change?('setting_unfollow_modal')
     user.settings['boost_modal']         = boost_modal_preference if change?('setting_boost_modal')
     user.settings['delete_modal']        = delete_modal_preference if change?('setting_delete_modal')
+    user.settings['mention_modal']       = mention_modal_preference if change?('setting_mention_modal')
     user.settings['auto_play_gif']       = auto_play_gif_preference if change?('setting_auto_play_gif')
     user.settings['display_media']       = display_media_preference if change?('setting_display_media')
     user.settings['expand_spoilers']     = expand_spoilers_preference if change?('setting_expand_spoilers')
@@ -67,6 +68,10 @@ class UserSettingsDecorator
 
   def delete_modal_preference
     boolean_cast_setting 'setting_delete_modal'
+  end
+
+  def mention_modal_preference
+    boolean_cast_setting 'setting_mention_modal'
   end
 
   def system_font_ui_preference

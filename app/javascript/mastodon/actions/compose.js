@@ -10,6 +10,7 @@ import { useEmoji } from './emojis';
 import { importFetchedAccounts, importFetchedStatus } from './importer';
 import { openModal } from './modal';
 import { updateTimeline } from './timelines';
+import { mentionModal } from 'mastodon/initial_state';
 
 /** @type {AbortController | undefined} */
 let fetchComposeSuggestionsAccountsController;
@@ -214,7 +215,7 @@ export function submitCompose(routerHistory, acceptExtraMentions = null) {
     // status.
     let expectedMentions = acceptExtraMentions;
     let unresolvedMentions = [];
-    if (statusId === null && ['private', 'direct'].includes(getState().getIn(['compose', 'privacy']))) {
+    if (mentionModal && statusId === null && ['private', 'direct'].includes(getState().getIn(['compose', 'privacy']))) {
       if (!expectedMentions) {
         expectedMentions = [];
       }

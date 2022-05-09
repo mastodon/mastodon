@@ -62,6 +62,7 @@
  * @property {string} locale
  * @property {string | null} mascot
  * @property {string=} me
+ * @property {boolean} mentions_enabled
  * @property {string=} moved_to_account_id
  * @property {string=} owner
  * @property {boolean} profile_directory
@@ -115,6 +116,7 @@ export const forceSingleColumn = !getMeta('advanced_layout');
 export const limitedFederationMode = getMeta('limited_federation_mode');
 export const mascot = getMeta('mascot');
 export const me = getMeta('me');
+export const mentionModal = getMeta('mention_modal');
 export const movedToAccountId = getMeta('moved_to_account_id');
 export const owner = getMeta('owner');
 export const profile_directory = getMeta('profile_directory');

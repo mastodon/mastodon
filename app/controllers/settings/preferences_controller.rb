@@ -39,6 +39,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_unfollow_modal,
       :setting_boost_modal,
       :setting_delete_modal,
+      :setting_mention_modal,
       :setting_auto_play_gif,
       :setting_display_media,
       :setting_expand_spoilers,
