@@ -2,26 +2,26 @@
 it:
   about:
     about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
-    about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
+    about_mastodon_html: 'Hometown è adattato da Mastodon, un social network decentralizzato senza pubblicità, senza controllo da parte di qualche azienda privata e design etico.'
     about_this: A proposito di questo server
     active_count_after: attivo
     active_footnote: Utenti Attivi Mensili (MAU)
     administered_by: 'Amministrato da:'
     api: API
     apps: Applicazioni per dispositivi mobili
-    apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
+    apps_platforms: Usa %{title} da iOS, Android e altre piattaforme
     browse_directory: Sfoglia la directory dei profili e filtra per interessi
     browse_local_posts: Sfoglia il flusso di post pubblici in tempo reale su questo server
-    browse_public_posts: Sfoglia il flusso di post pubblici in tempo reale su Mastodon
+    browse_public_posts: Sfoglia il flusso di post pubblici in tempo reale su %{title}
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
     continue_to_web: Continua all'app web
     discover_users: Scopri utenti
     documentation: Documentazione
-    federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Mastodon e oltre.
+    federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Hometown o Mastodon e oltre.
     get_apps: Prova un'app per smartphone
-    hosted_on: Mastodon ospitato su %{domain}
+    hosted_on: Hometown ospitato su %{domain}
     instance_actor_flash: |
       Questo account è un attore virtuale utilizzato per rappresentare il server stesso e non un particolare utente.
       È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
@@ -30,7 +30,7 @@ it:
     logout_before_registering: Hai già effettuato l'accesso.
     privacy_policy: Politica della privacy
     rules: Regole del server
-    rules_html: 'Di seguito è riportato un riassunto delle regole che devi seguire se vuoi avere un account su questo server di Mastodon:'
+    rules_html: 'Di seguito è riportato un riassunto delle regole che devi seguire se vuoi avere un account su questo server di Hometown:'
     see_whats_happening: Guarda cosa succede
     server_stats: 'Statistiche del server:'
     source_code: Codice sorgente
@@ -55,7 +55,7 @@ it:
       one: utente
       other: utenti
     user_count_before: Home di
-    what_is_mastodon: Che cos'è Mastodon?
+    what_is_mastodon: Che cos'è Hometown/Mastodon?
   accounts:
     choices_html: 'Suggerimenti da %{name}:'
     endorsements_hint: 'Puoi segnalare persone che segui e che apprezzi dall''interfaccia web: saranno mostrate qui.'
@@ -719,13 +719,13 @@ it:
         desc_html: Mostra un distintivo dello staff sulla pagina dell'utente
         title: Mostra badge staff
       site_description:
-        desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Mastodon e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
+        desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Hometown e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrizione del server
       site_description_extended:
         desc_html: Un posto adatto le regole di comportamento, linee guida e altre cose specifiche del vostro server. Potete usare marcatori HTML
         title: Informazioni estese personalizzate
       site_short_description:
-        desc_html: Mostrato nella barra laterale e nei tag meta. Descrive in un paragrafo che cos'è Mastodon e che cosa rende questo server speciale. Se vuoto, sarà usata la descrizione predefinita del server.
+        desc_html: Mostrato nella barra laterale e nei tag meta. Descrive in un paragrafo che cos'è Hometown e che cosa rende questo server speciale. Se vuoto, sarà usata la descrizione predefinita del server.
         title: Breve descrizione del server
       site_terms:
         desc_html: Potete scrivere la vostra politica sulla privacy, condizioni del servizio o altre informazioni legali. Potete usare tag HTML
@@ -928,9 +928,9 @@ it:
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
     description:
-      prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server Mastodon!"
-      prefix_sign_up: Iscriviti oggi a Mastodon!
-      suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Mastodon e altro ancora!
+      prefix_invited_by_user: "@%{name} ti invita a iscriverti a questo server Hometown!"
+      prefix_sign_up: Iscriviti oggi a Hometown!
+      suffix: Con un account, sarai in grado di seguire le persone, pubblicare aggiornamenti e scambiare messaggi con gli utenti da qualsiasi server di Hometown e altro ancora!
     didnt_get_confirmation: Non hai ricevuto le istruzioni di conferma?
     dont_have_your_security_key: Non hai la tua chiave di sicurezza?
     forgot_password: Hai dimenticato la tua password?
@@ -939,7 +939,7 @@ it:
     link_to_webauth: Usa il tuo dispositivo chiave di sicurezza
     log_in_with: Accedi con
     login: Entra
-    logout: Esci da Mastodon
+    logout: Esci
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or_log_in_with: Oppure accedi con
@@ -1070,7 +1070,7 @@ it:
       content: Siamo spiacenti, ma qualcosa non ha funzionato dal nostro lato.
       title: Questa pagina non è corretta
     '503': La pagina non può essere trasmessa a causa di un errore temporaneo del server.
-    noscript_html: Per usare l'interfaccia web di Mastodon dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Mastodon per la tua piattaforma.
+    noscript_html: Per usare l'interfaccia web di %{title} dovi abilitare JavaScript. In alternativa puoi provare una delle <a href="%{apps_path}">app native</a> per Hometown/Mastodon per la tua piattaforma.
   existing_username_validator:
     not_found: impossibile trovare un utente locale con quel nome utente
     not_found_multiple: impossibile trovare %{usernames}
@@ -1381,7 +1381,7 @@ it:
       weibo: Weibo
     current_session: Sessione corrente
     description: "%{browser} su %{platform}"
-    explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account Mastodon.
+    explanation: Questi sono i browser da cui attualmente è avvenuto l'accesso al tuo account %{title}.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1406,7 +1406,7 @@ it:
     aliases: Alias dell'account
     appearance: Interfaccia
     authorized_apps: Applicazioni autorizzate
-    back: Torna a Mastodon
+    back: Torna a casa
     delete: Cancellazione account
     development: Sviluppo
     edit_profile: Modifica profilo
@@ -1524,7 +1524,7 @@ it:
       <li><em>I post, i seguiti ed altre informazioni pubbliche</em>: L'elenco di persone che segui viene elencata pubblicamente, la stessa cosa è vera per i tuoi seguaci. Quando invii un messaggio, la data e l'orario sono memorizzati così come l'applicazione da cui hai inviato il messaggio.
       I messaggi potrebbero contenere allegati media, come immagini e video. I post pubblici e non elencati sono disponibili pubblicamente. Quando mostri un post sul tuo profilo, anche questo diventa disponibile pubblicamente. I tuoi post sono consegnati ai tuoi seguaci, in alcuni casi significa che sono consegnati a server differenti e che lì sono memorizzate delle copie. Quando elimini i post, anche questo viene notificato ai tuoi seguaci. L'azione di ripubblicare o preferire un altro post è sempre pubblica.</li>
       <li><em>Post diretti e solo per i seguaci</em>: Tutti i post sono archiviati ed elaborati sul server. I post solo per seguaci sono consegnati ai tuoi seguaci ed agli utenti che vi hai menzionato, ed i post diretti sono consegnati solo agli utenti in essi menzionati. In alcuni casi significa che sono consegnati a server differenti e che lì sono memorizzate delle copie. Compiamo uno sforzo in buona fede per limitare l'accesso a questi post solo a persone autorizzate, ma gli altri server potrebbero non riuscire a fare ciò. Dunque, è importante rivedere i server a cui appartengono i tuoi seguaci. Potresti attivare/disattivare un'opzione per approvare e rifiutare i nuovi seguaci manualmente nelle impostazioni.
-      <em>Sei pregato di tenere a mente che gli operatori del server e di ogni server ricevente potrebbero visualizzare tali messaggi</em> e che i riceventi potrebbero fotografarli, copiarlo o altrimenti ricondividerli. <em>Non condividere alcuna informazione pericolosa su Mastodon.</em></li>
+      <em>Sei pregato di tenere a mente che gli operatori del server e di ogni server ricevente potrebbero visualizzare tali messaggi</em> e che i riceventi potrebbero fotografarli, copiarlo o altrimenti ricondividerli. <em>Non condividere alcuna informazione pericolosa su Hometown/Mastodon.</em></li>
       <li><em>IP ed altri metadati</em>: Quando accedi, registriamo l'indirizzo IP da cui accedi, così come il nome della tua applicazione browser. Tutte le sessioni accedute sono disponibili per la tua revisione e revoca nelle impostazioni. L'ultimo indirizzo IP usato è memorizzato anche fino a 12 mesi. Potremmo anche trattenere i registri del server che includono l'indirizzo IP di ogni richiesta al nostro server.</li>
       </ul>
 
@@ -1535,7 +1535,7 @@ it:
       <p>Ogni informazioni che raccogliamo da te potrebbe essere usata nei modi seguenti:</p>
 
       <ul>
-      <li>Per fornire la funzionalità principale di Mastodon. Puoi interagire solo con il contenuto di altre persone ed postare i tuoi contenuti quando sei acceduto. Per esempio, potresti seguire altre persone per vedere i loro post combinati nella timeline principale personalizzata e tua.</li>
+      <li>Per fornire la funzionalità principale di Hometown/Mastodon. Puoi interagire solo con il contenuto di altre persone ed postare i tuoi contenuti quando sei acceduto. Per esempio, potresti seguire altre persone per vedere i loro post combinati nella timeline principale personalizzata e tua.</li>
       <li>Per aiutare a moderare la comunità, per esempio comparando il tuo indirizzo IP con altri noti per determinare evasioni dei ban o altre violazioni.</li>
       <li>L'indirizzo email che fornisci potrebbe essere usato per inviarti informazioni, notifiche sull'interazione di altre persone con i tuoi contenuti o inviarti messaggi e per rispondere a interrogativi e/o altre richieste o domande.</li>
       </ul>
@@ -1604,6 +1604,8 @@ it:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)
     mastodon-light: Mastodon (chiaro)
+    macaron: Macaron (chiaro pastello)
+    fairy-floss: Fairy Floss (scuro pastello)
   time:
     formats:
       default: "%d %b %Y, %H:%M"
@@ -1635,7 +1637,7 @@ it:
       subject: Il tuo appello del %{date} è stato respinto
       title: Appello respinto
     backup_ready:
-      explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
+      explanation: Hai richiesto un backup completo del tuo account %{title}. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
     suspicious_sign_in:
@@ -1686,11 +1688,11 @@ it:
       full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un altro server.
       review_preferences_action: Cambia preferenze
       review_preferences_step: Dovresti impostare le tue preferenze, ad esempio quali email vuoi ricevere oppure il livello predefinito di privacy per i tuoi post. Se le immagini in movimento non ti danno fastidio, puoi abilitare l'animazione automatica delle GIF.
-      subject: Benvenuto/a su Mastodon
+      subject: Benvenuto/a su %{title}
       tip_federated_timeline: La timeline federata visualizza uno dopo l'altro i messaggi pubblicati su Mastodon. Ma comprende solo gli utenti seguiti dai tuoi vicini, quindi non è completa.
       tip_following: Per impostazione predefinita, segui gli amministratori del tuo server. Per trovare utenti più interessanti, dà un'occhiata alle timeline locale e federata.
       tip_local_timeline: La timeline locale visualizza uno dopo l'altro i messaggi degli utenti di %{instance}. Questi sono i tuoi vicini!
-      tip_mobile_webapp: Se il tuo browser mobile ti dà la possibilità di aggiungere Mastodon allo schermo, puoi ricevere le notifiche. Funziona un po' come un'app natova!
+      tip_mobile_webapp: Se il tuo browser mobile ti dà la possibilità di aggiungere %{instance} allo schermo, puoi ricevere le notifiche. Funziona un po' come un'app natova!
       tips: Suggerimenti
       title: Benvenuto a bordo, %{name}!
   users:
@@ -1700,7 +1702,7 @@ it:
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
   verification:
-    explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
+    explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo %{instance}. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
     verification: Verifica
   webauthn_credentials:
     add: Aggiungi una nuova chiave di sicurezza
