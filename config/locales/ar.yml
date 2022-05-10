@@ -482,6 +482,7 @@ ar:
         title: سياسات المحتوى
       dashboard:
         instance_accounts_dimension: الحسابات الأكثر متابعة
+        instance_accounts_measure: حسابات مخزنة
         instance_languages_dimension: اللغات الأكثر استخدامًا
       delivery:
         all: الكل
@@ -562,6 +563,8 @@ ar:
           other: "%{count} ملاحظات"
       action_log: سجل المراجعة
       action_taken_by: تم اتخاذ الإجراء مِن طرف
+      actions:
+        resolve_description_html: ولن يُتخذ أي إجراء ضد الحساب المبلّغ عنه، ولن تسلَّط عليه أية عقوبة، وسوف يُغلق التقرير.
       add_to_report: أضف المزيد إلى التقرير
       are_you_sure: هل أنت متأكد ؟
       assign_to_self: عين لي
@@ -570,6 +573,7 @@ ar:
       category: الفئة
       comment:
         none: لا شيء
+      comment_description_html: 'لتوفير المزيد من المعلومات، كتب %{name}:'
       created_at: ذكرت
       delete_and_resolve: احذف المنشورات
       forwarded: أُعيد توجيهه
@@ -713,6 +717,8 @@ ar:
       title: منشورات الحساب
       with_media: تحتوي على وسائط
     strikes:
+      actions:
+        suspend: "قام %{name} بتعليق حساب %{target}"
       appeal_approved: طُعِن فيه
       appeal_pending: طعن قيد المراجعة
     system_checks:
