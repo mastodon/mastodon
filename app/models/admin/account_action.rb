@@ -164,8 +164,8 @@ class Admin::AccountAction
 
   def reports
     @reports ||= begin
-      if type == 'none' && with_report?
-        [report]
+      if type == 'none'
+        with_report? ? [report] : []
       else
         Report.where(target_account: target_account).unresolved
       end
