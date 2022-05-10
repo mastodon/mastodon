@@ -1354,6 +1354,11 @@ gl:
   reports:
     errors:
       invalid_rules: non fai referencia a regras válidas
+  rss:
+    content_warning: 'Aviso sobre o contido:'
+    descriptions:
+      account: Publicacións públicas de @%{acct}
+      tag: 'Publicacións públicas con #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Excedeches o límite de %{limit} publicacións programadas para ese día
     over_total_limit: Excedeches o límite de %{limit} publicacións programadas
