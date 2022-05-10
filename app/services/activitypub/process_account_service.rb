@@ -227,7 +227,22 @@ class ActivityPub::ProcessAccountService < BaseService
   def property_values
     return unless @json['attachment'].is_a?(Array)
 
-    as_array(@json['attachment']).select { |attachment| attachment['type'] == 'PropertyValue' }.map { |attachment| attachment.slice('name', 'value') }
+    values = as_array(@json['attachment']).select { |attachment| attachment['type'] == 'PropertyValue' }.map do |attachment|
+      {
+        name: attachment['name'] || attachment['schema:name'],
+        value: attachment['value'],
+      }
+    end
+    values.presence || legacy_property_values
+  end
+
+  def legacy_property_values
+    as_array(@json['attachment']).select { |attachment| attachment['type'] == 'http://schema.org#PropertyValue' }.map do |attachment|
+      {
+        name: attachment['name'] || attachment['as:name'],
+        value: attachment['value'] || attachment['http://schema.org#value'],
+      }
+    end
   end
 
   def mismatching_origin?(url)

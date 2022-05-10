@@ -73,7 +73,8 @@ module JsonLdHelper
   end
 
   def canonicalize(json)
-    graph = RDF::Graph.new << JSON::LD::API.toRdf(json, documentLoader: method(:load_jsonld_context))
+    # The deep_dup call below is required until https://github.com/ruby-rdf/json-ld/issues/54 is fixed
+    graph = RDF::Graph.new << JSON::LD::API.toRdf(json.deep_dup, documentLoader: method(:load_jsonld_context))
     graph.dump(:normalize)
   end
 
