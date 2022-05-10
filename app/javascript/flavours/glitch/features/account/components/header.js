@@ -82,6 +82,7 @@ class Header extends ImmutablePureComponent {
     onEditAccountNote: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
+    hidden: PropTypes.bool,
   };
 
   openEditProfile = () => {
@@ -115,7 +116,7 @@ class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl, domain } = this.props;
+    const { account, hidden, intl, domain } = this.props;
 
     if (!account) {
       return null;
@@ -270,23 +271,29 @@ class Header extends ImmutablePureComponent {
             {info}
           </div>
 
-          <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />
+          {!(suspended || hidden) && <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />}
         </div>
 
         <div className='account__header__bar'>
           <div className='account__header__tabs'>
             <a className='avatar' href={account.get('url')} rel='noopener noreferrer' target='_blank'>
-              <Avatar account={account} size={90} />
+              <Avatar account={suspended || hidden ? undefined : account} size={90} />
             </a>
 
             <div className='spacer' />
 
-            <div className='account__header__tabs__buttons'>
-              {actionBtn}
-              {bellBtn}
+            {!suspended && (
+              <div className='account__header__tabs__buttons'>
+                {!hidden && (
+                  <React.Fragment>
+                    {actionBtn}
+                    {bellBtn}
+                  </React.Fragment>
+                )}
 
-              <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
-            </div>
+                <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
+              </div>
+            )}
           </div>
 
           <div className='account__header__tabs__name'>
@@ -298,7 +305,7 @@ class Header extends ImmutablePureComponent {
 
           <AccountNoteContainer account={account} />
 
-          {!suspended && (
+          {!(suspended || hidden) && (
             <div className='account__header__extra'>
               <div className='account__header__bio'>
                 { fields.size > 0 && (

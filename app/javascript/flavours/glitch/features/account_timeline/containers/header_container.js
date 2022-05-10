@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { makeGetAccount, getAccountHidden } from 'flavours/glitch/selectors';
 import Header from '../components/header';
 import {
   followAccount,
@@ -34,6 +34,7 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, accountId),
     domain: state.getIn(['meta', 'domain']),
+    hidden: getAccountHidden(state, accountId),
   });
 
   return mapStateToProps;

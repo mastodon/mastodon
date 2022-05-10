@@ -88,6 +88,8 @@ export const PINNED_ACCOUNTS_EDITOR_SUGGESTIONS_CHANGE = 'PINNED_ACCOUNTS_EDITOR
 export const PINNED_ACCOUNTS_EDITOR_RESET = 'PINNED_ACCOUNTS_EDITOR_RESET';
 
 
+export const ACCOUNT_REVEAL = 'ACCOUNT_REVEAL';
+
 export function fetchAccount(id) {
   return (dispatch, getState) => {
     dispatch(fetchRelationships([id]));
@@ -797,6 +799,11 @@ export function unpinAccountFail(error) {
     error,
   };
 };
+
+export const revealAccount = id => ({
+  type: ACCOUNT_REVEAL,
+  id,
+});
 
 export function fetchPinnedAccounts() {
   return (dispatch, getState) => {
