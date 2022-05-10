@@ -1427,10 +1427,10 @@ zh-CN:
     open_in_web: 在站内打开
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
-      direct: 仅被提及的用户可见的嘟文不能被固定
+      direct: 仅对被提及的用户可见的帖子不能被置顶
       limit: 你所固定的嘟文数量已达到上限
-      ownership: 不能固定其他人的嘟文
-      reblog: 不能固定转嘟
+      ownership: 不能置顶别人的嘟文
+      reblog: 不能置顶转嘟
     poll:
       total_people:
         other: "%{count} 人"
@@ -1464,7 +1464,7 @@ zh-CN:
     keep_direct_hint: 不会删除你的任何私信
     keep_media: 保留带媒体附件的嘟文
     keep_media_hint: 不会删除任何包含媒体附件的嘟文
-    keep_pinned: 保留固定的嘟文
+    keep_pinned: 保留置顶嘟文
     keep_pinned_hint: 没有删除任何你已经固定的嘟文
     keep_polls: 保留投票
     keep_polls_hint: 不会删除你的任何投票
@@ -1487,7 +1487,7 @@ zh-CN:
     min_reblogs: 保留如下嘟文：转嘟数超过
     min_reblogs_hint: 转嘟数超过该阈值的的嘟文不会被删除。如果留空，则无论嘟文获得多少转嘟，都将被删除。
   stream_entries:
-    pinned: 固定的嘟文
+    pinned: 置顶嘟文
     reblogged: 转嘟
     sensitive_content: 敏感内容
   tags:
@@ -1629,7 +1629,7 @@ zh-CN:
       explanation:
         delete_statuses: 你的一些嘟文被发现违反了一条或多条社区准则，并已被 %{instance} 的监察员删除。
         disable: 你不能再使用你的帐户，但你的个人资料和其他数据保持不变。你可以请求数据备份，更改账户设置或删除账户。
-        mark_statuses_as_sensitive: 你的一些嘟文已经被 %{instance} 检察员标记为敏感内容。这意味着人们需要在嘟文中点击媒体，才能显示媒体预览。你可以在今后发嘟时自行将媒体标记为敏感内容。
+        mark_statuses_as_sensitive: 你的一些嘟文已经被 %{instance} 检察员标记为敏感内容。这意味着别人需要在嘟文中点击媒体，才能显示媒体预览。你可以在今后发嘟时自行将媒体标记为敏感内容。
         sensitive: 即刻起，你上传的所有媒体文件都将被标记为敏感内容并隐藏，在点击警告后才能查看。
         silence: 你可以继续使用你的账号，但只有已关注你的人才能在看到你在此服务器上的嘟文，并且你会被排除在各类公共列表之外。其他用户仍可以手动关注你。
         suspend: 你不能再使用你的帐户，并且你的个人资料和其他数据都将无法访问。在大约30天内，你仍可以登录并请求数据备份，之后相关数据将被完全删除。我们会保留一些基础数据以避免封禁失效。
@@ -1640,7 +1640,7 @@ zh-CN:
         disable: 你的帐户 %{acct} 已被冻结
         mark_statuses_as_sensitive: 你在 %{acct} 的嘟文已被标记为敏感内容
         none: 对 %{acct} 的警告
-        sensitive: 你在 %{acct} 的嘟文将从此被标记为敏感内容
+        sensitive: 你在 %{acct} 的嘟文今后将被标记为敏感内容
         silence: 你的帐户 %{acct} 已被隐藏
         suspend: 你的帐户 %{acct} 已被封禁。
       title:
