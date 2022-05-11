@@ -1069,10 +1069,12 @@ sl:
       appealed_msg: Vaša pritožba je oddana. Če bo odobrena, boste o tem obveščeni.
       appeals:
         submit: Pošlji pritožbo
+      approve_appeal: Ugodi pritožbi
       associated_report: Povezana prijava
       created_at: Datum
       description_html: To so dejanja, izvedena proti vašemu računu ter opozorila, ki so vam jih poslali sodelavci %{instance}.
       recipient: Naslovljeno na
+      reject_appeal: Zavrni pritožbo
       status: 'Objava #%{id}'
       status_removed: Objava je že odstranjena iz sistema
       title: "%{action} dne %{date}"
@@ -1395,6 +1397,11 @@ sl:
   reports:
     errors:
       invalid_rules: se ne sklicuje na veljavna pravila
+  rss:
+    content_warning: 'Opozorilo o vsebini:'
+    descriptions:
+      account: Javne objave @%{acct}
+      tag: 'Javne objave s ključnikom #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Za ta dan ste presegli omejitev %{limit} načrtovanih objav
     over_total_limit: Presegli ste omejitev %{limit} načrtovanih objav
