@@ -82,6 +82,7 @@ class Header extends ImmutablePureComponent {
     onEditAccountNote: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
+    hidden: PropTypes.bool,
   };
 
   openEditProfile = () => {
@@ -115,7 +116,7 @@ class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl, domain, identity_proofs } = this.props;
+    const { account, hidden, intl, domain } = this.props;
 
     if (!account) {
       return null;
@@ -270,23 +271,29 @@ class Header extends ImmutablePureComponent {
             {info}
           </div>
 
-          <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />
+          {!(suspended || hidden) && <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />}
         </div>
 
         <div className='account__header__bar'>
           <div className='account__header__tabs'>
             <a className='avatar' href={account.get('url')} rel='noopener noreferrer' target='_blank'>
-              <Avatar account={account} size={90} />
+              <Avatar account={suspended || hidden ? undefined : account} size={90} />
             </a>
 
             <div className='spacer' />
 
-            <div className='account__header__tabs__buttons'>
-              {actionBtn}
-              {bellBtn}
+            {!suspended && (
+              <div className='account__header__tabs__buttons'>
+                {!hidden && (
+                  <React.Fragment>
+                    {actionBtn}
+                    {bellBtn}
+                  </React.Fragment>
+                )}
 
-              <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
-            </div>
+                <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
+              </div>
+            )}
           </div>
 
           <div className='account__header__tabs__name'>
@@ -298,23 +305,11 @@ class Header extends ImmutablePureComponent {
 
           <AccountNoteContainer account={account} />
 
-          {!suspended && (
+          {!(suspended || hidden) && (
             <div className='account__header__extra'>
               <div className='account__header__bio'>
-                { (fields.size > 0 || identity_proofs.size > 0) && (
+                { fields.size > 0 && (
                   <div className='account__header__fields'>
-                    {identity_proofs.map((proof, i) => (
-                      <dl key={i}>
-                        <dt dangerouslySetInnerHTML={{ __html: proof.get('provider') }} className='translate' />
-
-                        <dd className='verified'>
-                          <a href={proof.get('proof_url')} target='_blank' rel='noopener noreferrer'><span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(proof.get('updated_at'), dateFormatOptions) })}>
-                            <Icon id='check' className='verified__mark' />
-                          </span></a>
-                          <a href={proof.get('profile_url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={{ __html: ' '+proof.get('provider_username') }} className='translate' /></a>
-                        </dd>
-                      </dl>
-                    ))}
                     {fields.map((pair, i) => (
                       <dl key={i}>
                         <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} />

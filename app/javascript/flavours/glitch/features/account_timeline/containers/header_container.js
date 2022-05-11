@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { makeGetAccount } from 'flavours/glitch/selectors';
+import { makeGetAccount, getAccountHidden } from 'flavours/glitch/selectors';
 import Header from '../components/header';
 import {
   followAccount,
@@ -22,7 +22,6 @@ import { blockDomain, unblockDomain } from 'flavours/glitch/actions/domain_block
 import { initEditAccountNote } from 'flavours/glitch/actions/account_notes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { unfollowModal } from 'flavours/glitch/util/initial_state';
-import { List as ImmutableList } from 'immutable';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
@@ -35,7 +34,7 @@ const makeMapStateToProps = () => {
   const mapStateToProps = (state, { accountId }) => ({
     account: getAccount(state, accountId),
     domain: state.getIn(['meta', 'domain']),
-    identity_proofs: state.getIn(['identity_proofs', accountId], ImmutableList()),
+    hidden: getAccountHidden(state, accountId),
   });
 
   return mapStateToProps;

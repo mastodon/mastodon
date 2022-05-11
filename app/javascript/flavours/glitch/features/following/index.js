@@ -19,6 +19,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import TimelineHint from 'flavours/glitch/components/timeline_hint';
+import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
+import { getAccountHidden } from 'flavours/glitch/selectors';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
   const accountId = id || state.getIn(['accounts_map', acct]);
@@ -37,6 +39,8 @@ const mapStateToProps = (state, { params: { acct, id } }) => {
     accountIds: state.getIn(['user_lists', 'following', accountId, 'items']),
     hasMore: !!state.getIn(['user_lists', 'following', accountId, 'next']),
     isLoading: state.getIn(['user_lists', 'following', accountId, 'isLoading'], true),
+    suspended: state.getIn(['accounts', accountId, 'suspended'], false),
+    hidden: getAccountHidden(state, accountId),
   };
 };
 
@@ -62,6 +66,8 @@ class Following extends ImmutablePureComponent {
     hasMore: PropTypes.bool,
     isLoading: PropTypes.bool,
     isAccount: PropTypes.bool,
+    suspended: PropTypes.bool,
+    hidden: PropTypes.bool,
     remote: PropTypes.bool,
     remoteUrl: PropTypes.string,
     multiColumn: PropTypes.bool,
@@ -107,7 +113,7 @@ class Following extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds, hasMore, isAccount, multiColumn, isLoading, remote, remoteUrl } = this.props;
+    const { accountId, accountIds, hasMore, isAccount, multiColumn, isLoading, suspended, hidden, remote, remoteUrl } = this.props;
 
     if (!isAccount) {
       return (
@@ -127,7 +133,13 @@ class Following extends ImmutablePureComponent {
 
     let emptyMessage;
 
-    if (remote && accountIds.isEmpty()) {
+    const forceEmptyState = suspended || hidden;
+
+    if (suspended) {
+      emptyMessage = <FormattedMessage id='empty_column.account_suspended' defaultMessage='Account suspended' />;
+    } else if (hidden) {
+      emptyMessage = <LimitedAccountHint accountId={accountId} />;
+    } else if (remote && accountIds.isEmpty()) {
       emptyMessage = <RemoteHint url={remoteUrl} />;
     } else {
       emptyMessage = <FormattedMessage id='account.follows.empty' defaultMessage="This user doesn't follow anyone yet." />;
@@ -141,7 +153,7 @@ class Following extends ImmutablePureComponent {
 
         <ScrollableList
           scrollKey='following'
-          hasMore={hasMore}
+          hasMore={!forceEmptyState && hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
           prepend={<HeaderContainer accountId={this.props.accountId} hideTabs />}
