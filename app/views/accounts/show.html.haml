@@ -19,6 +19,14 @@
 
 = render 'header', account: @account, with_bio: true
 
+- if user_signed_in?
+  .info-widget
+    = fa_icon 'info-circle fw'
+    = t('accounts.viewing_public')
+    = link_to web_url("@#{@account.acct}") do
+      = t('accounts.view_in_web')
+      = fa_icon 'chevron-right fw'
+
 .grid
   .column-0
     .h-feed

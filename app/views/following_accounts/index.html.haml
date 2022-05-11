@@ -7,6 +7,14 @@
 
 = render 'accounts/header', account: @account
 
+- if user_signed_in?
+  .info-widget
+    = fa_icon 'info-circle fw'
+    = t('accounts.viewing_public')
+    = link_to web_url("@#{@account.acct}/following") do
+      = t('accounts.view_in_web')
+      = fa_icon 'chevron-right fw'
+
 - if @account.hide_collections?
   .nothing-here= t('accounts.network_hidden')
 - elsif user_signed_in? && @account.blocking?(current_account)

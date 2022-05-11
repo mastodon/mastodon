@@ -17,6 +17,14 @@
   = render 'og_description', activity: @status
   = render 'og_image', activity: @status, account: @account
 
+- if user_signed_in?
+  .info-widget
+    = fa_icon 'info-circle fw'
+    = t('statuses.viewing_public')
+    = link_to web_url("@#{@status.account.acct}/#{@status.id}") do
+      = t('statuses.view_in_web')
+      = fa_icon 'chevron-right fw'
+
 .grid
   .column-0
     .activity-stream.h-entry
