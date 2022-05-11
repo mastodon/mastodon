@@ -5,6 +5,7 @@ class ResolveAccountService < BaseService
   include DomainControlHelper
   include WebfingerHelper
   include Redisable
+  include Lockable
 
   # Find or create an account record for a remote user. When creating,
   # look up the user's webfinger and fetch ActivityPub data
@@ -108,12 +109,8 @@ class ResolveAccountService < BaseService
   def fetch_account!
     return unless activitypub_ready?
 
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url)
-      else
-        raise Mastodon::RaceConditionError
-      end
+    with_lock("resolve:#{@username}@#{@domain}") do
+      @account = ActivityPub::FetchRemoteAccountService.new.call(actor_url)
     end
 
     @account
@@ -145,9 +142,5 @@ class ResolveAccountService < BaseService
   def queue_deletion!
     @account.suspend!(origin: :remote)
     AccountDeletionWorker.perform_async(@account.id, { 'reserve_username' => false, 'skip_activitypub' => true })
-  end
-
-  def lock_options
-    { redis: redis, key: "resolve:#{@username}@#{@domain}", autorelease: 15.minutes.seconds }
   end
 end
