@@ -12,7 +12,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   private
 
   def delete_person
-    with_lock("delete_in_progress:#{@account.id}", raise_on_failure: false) do
+    with_lock("delete_in_progress:#{@account.id}", autorelease: 2.hours, raise_on_failure: false) do
       DeleteAccountService.new.call(@account, reserve_username: false, skip_activitypub: true)
     end
   end
