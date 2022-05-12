@@ -6,6 +6,8 @@ class VoteService < BaseService
   include Redisable
 
   def call(account, poll, choices)
+    return if choices.empty?
+
     authorize_with account, poll, :vote?
 
     @account = account
