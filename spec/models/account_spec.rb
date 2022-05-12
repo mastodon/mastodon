@@ -940,6 +940,10 @@ RSpec.describe Account, type: :model do
       it 'returns every usable non-suspended account' do
         expect(Account.searchable).to match_array([silenced_local, silenced_remote, local_account, remote_account])
       end
+
+      it 'does not mess with previously-applied scopes' do
+        expect(Account.where.not(id: remote_account.id).searchable).to match_array([silenced_local, silenced_remote, local_account])
+      end
     end
   end
 
