@@ -422,8 +422,9 @@ RSpec.describe Account, type: :model do
   end
 
   describe '.advanced_search_for' do
+    let(:account) { Fabricate(:account) }
+
     it 'accepts ?, \, : and space as delimiter' do
-      account = Fabricate(:account)
       match = Fabricate(
         :account,
         display_name: 'A & l & i & c & e',
@@ -437,18 +438,17 @@ RSpec.describe Account, type: :model do
 
     it 'limits by 10 by default' do
       11.times { Fabricate(:account, display_name: "Display Name") }
-      results = Account.search_for("display")
+      results = Account.advanced_search_for("display", account)
       expect(results.size).to eq 10
     end
 
     it 'accepts arbitrary limits' do
       2.times { Fabricate(:account, display_name: "Display Name") }
-      results = Account.search_for("display", 1)
+      results = Account.advanced_search_for("display", account, 1)
       expect(results.size).to eq 1
     end
 
     it 'ranks followed accounts higher' do
-      account = Fabricate(:account)
       match = Fabricate(:account, username: "Matching")
       followed_match = Fabricate(:account, username: "Matcher")
       Fabricate(:follow, account: account, target_account: followed_match)
