@@ -525,23 +525,19 @@ module Mastodon
       dry_run = options[:dry_run] ? ' (dry run)' : ''
 
       query = Account.remote.where.not(actor_type: %i(Application Service))
-      query = query.where.missing(:mentions)
-      query = query.where.missing(:favourites)
-      query = query.where.missing(:statuses)
-      query = query.joins('left outer join follows as a on accounts.id = a.account_id')
-      query = query.joins('left outer join follows as b on accounts.id = b.target_account_id')
+      query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM statuses WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM follows WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM blocks WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM mutes WHERE target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM reports WHERE target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM follow_requests WHERE account_id = accounts.id OR target_account_id = accounts.id)')
 
       _, deleted = parallelize_with_progress(query) do |account|
         next if account.bot? || account.group?
-        next if account.suspended_permanently?
+        next if account.suspended?
         next if account.silenced?
-        next if Block.where(account: account).or(Block.where(target_account: account)).exists?
-        next if Mute.where(target_account: account).exists?
-
-        next if account.mentions.any?
-        next if account.favourites.any?
-        next if account.statuses.any?
-        next if account.following.any? || account.followers.any?
 
         account.destroy unless options[:dry_run]
         1
