@@ -60,8 +60,22 @@ io:
         setting_use_pending_items: Celez tempolineonovi dop kliktar e ne automatike movigar niuzeto
         username: Vua uzantonomo esos nura che %{domain}
         whole_word: Kande klefvorto o fraz esas nur litera e nombra, ol nur aplikesos se ol parigesas la tota vorto
+      domain_allow:
+        domain: Ca domeno povas ganar informi de ca servilo e venanta informo de ol procedagesos e sparesos
+      email_domain_block:
+        domain: Co povas esas domennomo quo montresas che retposto o registrajo MX quon ol uzas. Oli kontrolesos kande registro.
+        with_dns_records: Probo di rezolvar registri DNS di la domeno agesos e rezulti anke preventesos
+      featured_tag:
+        name: 'Vu forsan volas uzar 1 de co:'
+      form_challenge:
+        current_password: Vu eniras sekura areo
       imports:
         data: Dosiero CSV de altra instaluro di Mastodon
+      invite_request:
+        text: Co helpos ni kontrolar vua apliko
+      ip_block:
+        comment: Neobligata. Memorez por quo vu insertas ca regulo.
+        expires_in: IP-Adresi esas finita resurs, oli kelkafoye partigesas e frequenta uzesas da multa personi. Do, nedefinita IP-restrikti ne rekomendesas.
       sessions:
         otp: 'Enter the Two-factor code from your phone or use one of your recovery codes.'
     labels:
