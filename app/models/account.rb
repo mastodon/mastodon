@@ -461,9 +461,11 @@ class Account < ApplicationRecord
           accounts.*,
           ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
         FROM accounts
+        LEFT JOIN users ON accounts.id = users.account_id
         WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
           AND accounts.suspended_at IS NULL
           AND accounts.moved_to_account_id IS NULL
+          AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
         ORDER BY rank DESC
         LIMIT :limit OFFSET :offset
       SQL
