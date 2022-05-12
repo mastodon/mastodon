@@ -488,6 +488,84 @@ RSpec.describe Account, type: :model do
         results = Account.advanced_search_for('A?l\i:c e', account, 10, true)
         expect(results).to eq []
       end
+
+      it 'does not return suspended users' do
+        match = Fabricate(
+          :account,
+          display_name: 'Display Name',
+          username: 'username',
+          domain: 'example.com',
+          suspended: true
+        )
+
+        results = Account.advanced_search_for('username', account, 10, true)
+        expect(results).to eq []
+      end
+
+      it 'does not return unapproved users' do
+        match = Fabricate(
+          :account,
+          display_name: 'Display Name',
+          username: 'username'
+        )
+
+        match.user.update(approved: false)
+
+        results = Account.advanced_search_for('username', account, 10, true)
+        expect(results).to eq []
+      end
+
+      it 'does not return unconfirmed users' do
+        match = Fabricate(
+          :account,
+          display_name: 'Display Name',
+          username: 'username'
+        )
+
+        match.user.update(confirmed_at: nil)
+
+        results = Account.advanced_search_for('username', account, 10, true)
+        expect(results).to eq []
+      end
+    end
+
+    it 'does not return suspended users' do
+      match = Fabricate(
+        :account,
+        display_name: 'Display Name',
+        username: 'username',
+        domain: 'example.com',
+        suspended: true
+      )
+
+      results = Account.advanced_search_for('username', account)
+      expect(results).to eq []
+    end
+
+    it 'does not return unapproved users' do
+      match = Fabricate(
+        :account,
+        display_name: 'Display Name',
+        username: 'username'
+      )
+
+      match.user.update(approved: false)
+
+      results = Account.advanced_search_for('username', account)
+      expect(results).to eq []
+    end
+
+    it 'does not return unconfirmed users' do
+      match = Fabricate(
+        :account,
+        display_name: 'Display Name',
+        username: 'username'
+      )
+
+      match.user.update(confirmed_at: nil)
+
+      results = Account.advanced_search_for('username', account)
+      expect(results).to eq []
     end
 
     it 'accepts ?, \, : and space as delimiter' do
