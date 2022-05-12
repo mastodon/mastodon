@@ -424,6 +424,33 @@ RSpec.describe Account, type: :model do
   describe '.advanced_search_for' do
     let(:account) { Fabricate(:account) }
 
+    context 'when limiting search to followed accounts' do
+      it 'accepts ?, \, : and space as delimiter' do
+        match = Fabricate(
+          :account,
+          display_name: 'A & l & i & c & e',
+          username: 'username',
+          domain: 'example.com'
+        )
+        account.follow!(match)
+
+        results = Account.advanced_search_for('A?l\i:c e', account, 10, true)
+        expect(results).to eq [match]
+      end
+
+      it 'does not return non-followed accounts' do
+        match = Fabricate(
+          :account,
+          display_name: 'A & l & i & c & e',
+          username: 'username',
+          domain: 'example.com'
+        )
+
+        results = Account.advanced_search_for('A?l\i:c e', account, 10, true)
+        expect(results).to eq []
+      end
+    end
+
     it 'accepts ?, \, : and space as delimiter' do
       match = Fabricate(
         :account,
