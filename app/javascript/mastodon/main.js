@@ -1,9 +1,9 @@
-import * as registerPushNotifications from './actions/push_notifications';
-import { setupBrowserNotifications } from './actions/notifications';
-import { default as Mastodon, store } from './containers/mastodon';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ready from './ready';
+import * as registerPushNotifications from 'mastodon/actions/push_notifications';
+import { setupBrowserNotifications } from 'mastodon/actions/notifications';
+import Mastodon, { store } from 'mastodon/containers/mastodon';
+import ready from 'mastodon/ready';
 
 const perf = require('./performance');
 
@@ -24,10 +24,20 @@ function main() {
 
     ReactDOM.render(<Mastodon {...props} />, mountNode);
     store.dispatch(setupBrowserNotifications());
-    if (process.env.NODE_ENV === 'production') {
-      // avoid offline in dev mode because it's harder to debug
-      require('offline-plugin/runtime').install();
-      store.dispatch(registerPushNotifications.register());
+
+    if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+      import('workbox-window')
+        .then(({ Workbox }) => {
+          const wb = new Workbox('/sw.js');
+
+          return wb.register();
+        })
+        .then(() => {
+          store.dispatch(registerPushNotifications.register());
+        })
+        .catch(err => {
+          console.error(err);
+        });
     }
     perf.stop('main()');
   });
