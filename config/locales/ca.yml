@@ -1518,6 +1518,9 @@ ca:
     pinned: Publicació fixada
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
+  strikes:
+    errors:
+      too_late: És massa tard per a apel·lar aquesta acció
   tags:
     does_not_match_previous_name: no coincideix amb el nom anterior
   terms:
@@ -1630,11 +1633,11 @@ ca:
   user_mailer:
     appeal_approved:
       action: Ves al teu compte
-      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat aprovada. El teu compte està un cop més al dia.
+      explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
       subject: La teva apel·lació de %{date} ha estat aprovada
       title: Apel·lació aprovada
     appeal_rejected:
-      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat rebutjada.
+      explanation: L'apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat rebutjada.
       subject: La teva apel·lació del %{date} ha estat rebutjada
       title: Apel·lació rebutjada
     backup_ready:
@@ -1650,7 +1653,7 @@ ca:
       title: Un nou inici de sessió
     warning:
       appeal: Trametre una apel·lació
-      appeal_description: Si creus que això és un error pots emetre una apel·lació al equip de %{instance}.
+      appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.
       categories:
         spam: Contingut brossa
         violation: El contingut viola les següents guies de la comunitat
