@@ -172,6 +172,11 @@ pl:
       pending: Oczekuje na przegląd
       perform_full_suspension: Zawieś
       previous_strikes: Poprzednie ostrzeżenia
+      previous_strikes_description_html:
+        one: To konto ma <strong>jedno</strong> ostrzeżenie.
+        few: To konto ma <strong>%{count}</strong> ostrzeżenia.
+        many: To konto ma <strong>%{count}</strong> ostrzeżeń.
+        other: To konto ma <strong>%{count}</strong> ostrzeżeń.
       promote: Podnieś uprawnienia
       protocol: Protokół
       public: Publiczne
@@ -464,6 +469,11 @@ pl:
       view: Zobacz blokadę domeny
     email_domain_blocks:
       add_new: Dodaj nową
+      attempts_over_week:
+        one: "%{count} próba w ciągu ostatniego tygodnia"
+        few: "%{count} próby w ciągu ostatniego tygodnia"
+        many: "%{count} prób w ciągu ostatniego tygodnia"
+        other: "%{count} prób w ciągu ostatniego tygodnia"
       created_msg: Pomyślnie utworzono blokadę domeny e-mail
       delete: Usuń
       dns:
@@ -489,6 +499,11 @@ pl:
     instances:
       availability:
         failure_threshold_reached: Próg niepowodzenia osiągnięty dnia %{date}.
+        failures_recorded:
+          one: Nieudane próby %{count} dnia.
+          few: Nieudane próby w %{count} różnych dniach.
+          many: Nieudane próby w %{count} różnych dniach.
+          other: Nieudane próby w %{count} różnych dniach.
         no_failures_recorded: Brak błędów w rejestrze.
         title: Dostępność
         warning: Ostatnia próba połączenia z tym serwerem zakończyła się niepowodzeniem
@@ -520,6 +535,7 @@ pl:
       delivery:
         all: Wszystkie
         clear: Wyczyść błędy w doręczaniu
+        failing: Niepowodzenie
         restart: Uruchom ponownie doręczenie
         stop: Zatrzymaj doręczanie
         unavailable: Niedostępne
@@ -528,6 +544,11 @@ pl:
       delivery_error_hint: Jeżeli doręczanie nie będzie możliwe przez %{count} dni, zostanie automatycznie oznaczona jako nie do doręczania.
       destroyed_msg: Dane z %{domain} są teraz w kolejce do bezpośredniego usunięcia.
       empty: Nie znaleziono domen.
+      known_accounts:
+        one: "%{count} znane konto"
+        few: "%{count} znane konta"
+        many: "%{count} znanych kont"
+        other: "%{count} znane konta"
       moderation:
         all: Wszystkie
         limited: Ograniczone
@@ -1536,6 +1557,9 @@ pl:
     pinned: Przypięty wpis
     reblogged: podbił
     sensitive_content: Wrażliwa zawartość
+  strikes:
+    errors:
+      too_late: Jest za późno na odwołanie się do tego ostrzeżenia
   tags:
     does_not_match_previous_name: nie pasuje do poprzedniej nazwy
   terms:
