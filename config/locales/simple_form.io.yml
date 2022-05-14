@@ -76,8 +76,16 @@ io:
       ip_block:
         comment: Neobligata. Memorez por quo vu insertas ca regulo.
         expires_in: IP-Adresi esas finita resurs, oli kelkafoye partigesas e frequenta uzesas da multa personi. Do, nedefinita IP-restrikti ne rekomendesas.
+        ip: Tipez adreso di IPv4 o IPv6. Vu povas restrikar tota porteo per sintaxo CIDR. Sorgemez por ke vu ne klefklozas su!
+        severities:
+          no_access: Restriktez aceso a omna resursi
+          sign_up_requires_approval: Nova registro bezonos vua aprobo
+        severity: Selektez quo eventos kun demandi de ca IP
+      rule:
+        text: Deskriptez regulo o bezonaj por uzanti en ca servilo. Vu debas lasar lu esar korta e simpla
       sessions:
         otp: 'Enter the Two-factor code from your phone or use one of your recovery codes.'
+        webauthn: Se ol esas klefo di USB, certigar ke vu insertas e se bezonesas, tushetez.
     labels:
       defaults:
         avatar: Profilimajo
