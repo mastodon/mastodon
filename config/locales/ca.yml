@@ -230,7 +230,7 @@ ca:
       whitelisted: Llista blanca
     action_logs:
       action_types:
-        approve_appeal: Aprova Apel·lació
+        approve_appeal: Aprova l'apel·lació
         approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna l'informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
@@ -262,7 +262,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
-        reject_appeal: Rebutja Apel·lació
+        reject_appeal: Rebutja l'apel·lació
         reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
         reopen_report: Reobre l'informe
@@ -414,7 +414,7 @@ ca:
       website: Lloc web
     disputes:
       appeals:
-        empty: Cap apel·lació trobada.
+        empty: No s'ha trobat cap apel·lació.
         title: Apel·lacions
     domain_allows:
       add_new: Dominis autoritzats
@@ -1030,17 +1030,17 @@ ca:
       action_taken: Acció presa
       appeal: Apel·lació
       appeal_approved: L'acció ha estat apel·lada amb èxit i ja no és vàlida
-      appeal_rejected: L'apel·lació ha estat rebutjada
-      appeal_submitted_at: Apel·lació tramesa
-      appealed_msg: La teva apel·lació ha estat emesa. Si és aprovada, seràs notificat.
+      appeal_rejected: S'ha rebutjat l'apel·lació
+      appeal_submitted_at: Apel·lació enviada
+      appealed_msg: La teva apel·lació s'ha enviat. Et notificarem si s'aprova.
       appeals:
-        submit: Apel·lació emesa
-      approve_appeal: Aprova apel·lació
+        submit: Envia l'apel·lació
+      approve_appeal: Aprova l'apel·lació
       associated_report: Informe associat
       created_at: Datada
       description_html: Aquestes son accions preses contra el teu compte i avisos que se t'han enviat per l'equip de %{instance}.
       recipient: Dirigida a
-      reject_appeal: Rebutja apel·lació
+      reject_appeal: Rebutja l'apel·lació
       status: 'Publicació #%{id}'
       status_removed: Publicació ja esborrada del sistema
       title: "%{action} del %{date}"
@@ -1053,7 +1053,7 @@ ca:
         silence: Limitació del compte
         suspend: Suspensió del compte
       your_appeal_approved: La teva apel·lació s'ha aprovat
-      your_appeal_pending: Has tramés una apel·lació
+      your_appeal_pending: Has enviat una apel·lació
       your_appeal_rejected: La teva apel·lació ha estat rebutjada
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
@@ -1633,11 +1633,11 @@ ca:
   user_mailer:
     appeal_approved:
       action: Ves al teu compte
-      explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
-      subject: La teva apel·lació de %{date} ha estat aprovada
+      explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
+      subject: La teva apel·lació del %{date} ha estat aprovada
       title: Apel·lació aprovada
     appeal_rejected:
-      explanation: L'apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat rebutjada.
+      explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat rebutjada.
       subject: La teva apel·lació del %{date} ha estat rebutjada
       title: Apel·lació rebutjada
     backup_ready:
@@ -1652,7 +1652,7 @@ ca:
       subject: El teu compte ha estat accedit des d'una nova adreça IP
       title: Un nou inici de sessió
     warning:
-      appeal: Trametre una apel·lació
+      appeal: Envia una apel·lació
       appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.
       categories:
         spam: Contingut brossa
