@@ -181,15 +181,49 @@ io:
         username: Uzernomo
         username_or_email: Uzantonomo o retposto
         whole_word: Tota vorto
+      email_domain_block:
+        with_dns_records: Inkluzez registraji MX e IPi di domeno
+      featured_tag:
+        name: Hashtago
       interactions:
         must_be_follower: Celar la savigi da homi, qui ne sequas tu
         must_be_following: Celar la savigi da homi, quin tu ne sequas
+        must_be_following_dm: Obstruktez direta mesaji de personi quon vu ne sequas
+      invite:
+        comment: Komento
+      invite_request:
+        text: Por quo vu volas juntar?
+      ip_block:
+        comment: Komento
+        ip: IP
+        severities:
+          no_access: Depermisez aceso
+          sign_up_requires_approval: Limitigez registri
+        severity: Regulo
       notification_emails:
+        appeal: Ulu apelas jererdecidajo
         digest: Sendar rezuma retpost-mesaji
         favourite: Sendar retpost-mesajo, kande ulu favoras mesajo da tu
         follow: Sendar retpost-mesajo, kande ulu sequeskas tu
         follow_request: Sendar retpost-mesajo, kande ulu diskonocigas mesajo da tu
         mention: Sendar retpost-mesajo, kande ulu mencionas tu
+        pending_account: Nova konto bezonas kontrolo
         reblog: Sendar retpost-mesajo, kande ulu diskonocigas mesajo da tu
+        report: Nova raport sendesas
+        trending_tag: Nova tendenco bezonas kontrolo
+      rule:
+        text: Regulo
+      tag:
+        listable: Permisez ca hashtago aparar en trovaji e sugestaji
+        name: Hashtago
+        trendable: Permisez ca hashtago aparar che tendenci
+        usable: Permisez posti uzar ca hashtago
+    'no': 'Ne'
+    recommended: Rekomendito
     required:
+      mark: "*"
       text: bezonata
+    title:
+      sessions:
+        webauthn: Uzez 1 de vua sekuresklefti por enirar
+    'yes': 'Yes'
