@@ -1,1 +1,32 @@
+---
 af:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Sperdatum
+        options: Keuses
+      user:
+        agreement: Diensooreenkoms
+        email: E-pos adres
+        locale: Plaaslik
+        password: Wagwoord
+      user/account:
+        username: Gebruikersnaam
+      user/invite_request:
+        text: Rede
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: moet slegs letters, nommers en onderstrepe bevat
+              reserved: is gereserveer
+        status:
+          attributes:
+            reblog:
+              taken: van plasing bestaan reeds
+        user:
+          attributes:
+            email:
+              blocked: maak gebruik van 'n e-pos verskaffer wat nie toegelaat word nie
+              unreachable: blyk nie te bestaan nie

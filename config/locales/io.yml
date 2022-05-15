@@ -71,6 +71,10 @@ io:
     distance_in_words:
       half_a_minute: Jus
       less_than_x_seconds: Jus
+  disputes:
+    strikes:
+      approve_appeal: Aprobez rikonsidero
+      reject_appeal: Refusez rikonsidero
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -127,6 +131,11 @@ io:
     missing_resource: La URL di plussendado ne povis esar trovita
     proceed: Durar por plussendar
     prompt: 'Tu sequeskos:'
+  rss:
+    content_warning: 'Kontenajaverto:'
+    descriptions:
+      account: Publika posti de @%{acct}
+      tag: 'Publika posti kun tago #%{hashtag}'
   settings:
     authorized_apps: Yurizita apliki
     back: Retro a Mastodon
@@ -146,6 +155,9 @@ io:
   stream_entries:
     reblogged: diskonocigita
     sensitive_content: Titiliva kontenajo
+  strikes:
+    errors:
+      too_late: Ol esas tro tarda ye apelar ca strekizo
   two_factor_authentication:
     disable: Extingar
     generate_recovery_codes: Generate Recovery Codes

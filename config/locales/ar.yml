@@ -380,6 +380,7 @@ ar:
       enable: تفعيل
       enabled: مُشغَّل
       enabled_msg: تم تنشيط ذاك الإيموجي بنجاح
+      image_hint: ملف PNG أو GIF لا يتعدى %{size}
       list: القائمة
       listed: مُدرَج
       new:
@@ -470,16 +471,20 @@ ar:
       back_to_limited: محدود
       back_to_warning: تحذير
       by_domain: النطاق
+      confirm_purge: هل أنت متأكد من أنك تريد حذف البيانات من هذا النطاق بشكل دائم؟
       content_policies:
         comment: ملاحظة داخلية
+        description_html: يمكنك تحديد سياسات المحتوى التي سيتم تطبيقها على جميع حسابات هذا النطاق وأي من نطاقاته الفرعية.
         policies:
           reject_media: رفض الوسائط
           reject_reports: رفض الشكاوى
+          silence: كتم
         policy: القواعد
         reason: السبب العلني
         title: سياسات المحتوى
       dashboard:
         instance_accounts_dimension: الحسابات الأكثر متابعة
+        instance_accounts_measure: حسابات مخزنة
         instance_languages_dimension: اللغات الأكثر استخدامًا
       delivery:
         all: الكل
@@ -560,6 +565,8 @@ ar:
           zero: "%{count} ملاحظات"
       action_log: سجل المراجعة
       action_taken_by: تم اتخاذ الإجراء مِن طرف
+      actions:
+        resolve_description_html: ولن يُتخذ أي إجراء ضد الحساب المبلّغ عنه، ولن تسلَّط عليه أية عقوبة، وسوف يُغلق التقرير.
       add_to_report: أضف المزيد إلى التقرير
       are_you_sure: هل أنت متأكد ؟
       assign_to_self: عين لي
@@ -568,6 +575,7 @@ ar:
       category: الفئة
       comment:
         none: لا شيء
+      comment_description_html: 'لتوفير المزيد من المعلومات، كتب %{name}:'
       created_at: ذكرت
       delete_and_resolve: احذف المنشورات
       forwarded: أُعيد توجيهه
@@ -583,6 +591,7 @@ ar:
         delete: حذف
         placeholder: قم بوصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى ذات علاقة...
         title: الملاحظات
+      remote_user_placeholder: المستخدم البعيد من %{instance}
       reopen: إعادة فتح الشكوى
       report: 'الشكوى #%{id}'
       reported_account: حساب مُبلّغ عنه
@@ -710,6 +719,8 @@ ar:
       title: منشورات الحساب
       with_media: تحتوي على وسائط
     strikes:
+      actions:
+        suspend: قام %{name} بتعليق حساب %{target}
       appeal_approved: طُعِن فيه
       appeal_pending: طعن قيد المراجعة
     system_checks:
@@ -943,9 +954,11 @@ ar:
       appealed_msg: تم تقديم طعنك. إذا تمت الموافقة عليه، سيتم إبلاغك.
       appeals:
         submit: تقديم طعن
+      approve_appeal: الموافقة على الطعن
       associated_report: التقرير المتربط
       created_at: بتاريخ
       recipient: موجّه إلى
+      reject_appeal: رفض الطعن
       status: 'المنشور #%{id}'
       title: "%{action} في %{date}"
       title_actions:
@@ -1263,6 +1276,10 @@ ar:
     reply:
       proceed: المواصلة إلى الرد
       prompt: 'ترغب في الرد على هذا المنشور:'
+  rss:
+    content_warning: 'تحذير عن المحتوى:'
+    descriptions:
+      account: منشورات للعلن مِن @%{acct}
   scheduled_statuses:
     over_daily_limit: لقد تجاوزتَ حد الـ %{limit} منشورات مُبَرمَجة مسموح بها اليوم
     over_total_limit: لقد بلغت حد الـ %{limit} مِن المنشورات المبرمَجة
@@ -1329,6 +1346,7 @@ ar:
     profile: الملف التعريفي
     relationships: المتابِعون والمتابَعون
     statuses_cleanup: الحذف الآلي للمنشورات
+    strikes: عقوبات الإشراف
     two_factor_authentication: المُصادقة بخُطوَتَيْن
     webauthn_authentication: مفاتيح الأمان
   statuses:
@@ -1578,11 +1596,15 @@ ar:
         spam: مزعج
         violation: ينتهك المحتوى المبادئ التوجيهية التالية للمجتمع
       explanation:
+        delete_statuses: لوحظ أنّ بعض منشوراتك تخالف واحدة أو أكثر من المبادئ التوجيهية للمجتمع وقد تم إزالتها إثر ذلك من قِبل مشرفي %{instance}.
+        disable: تم إيقاف حسابك، لكن ملفك الشخصي وكافة بياناتك لا زالت سليمة. يمكنك طلب نسخة احتياطية من بياناتك وتغيير إعدادات حسابك أو حذفه.
         sensitive: من الآن فصاعدا، سيتم وضع علامة على جميع ملفات الوسائط التي يتم تحميلها على أنها حساسة وستكون مخفية خلف تحذير يُنقر.
         silence: لا يزال بإمكانك استخدام حسابك ولكن فقط الأشخاص الذين يتابعونك فقط يمكنهم رؤية منشوراتك على هذا الخادم، وقد يتم استبعادك من ميزات الاكتشاف المختلفة. قد يتبعك آخرون على كل حال يدوياً.
+        suspend: لم يعد بإمكانك استخدام حسابك، والوصول إلى ملفك الشخصي والبيانات الأخرى. لا يزال بإمكانك تسجيل الدخول لطلب نسخة احتياطية من بياناتك حتى تتم إزالة البيانات بالكامل في غضون 30 يوما. ولكننا سنحتفظ ببعض البيانات الأساسية لمنعك من التهرب من عقوبة تعليق الحساب.
       reason: 'السبب:'
       statuses: 'المنشورات المذكورة:'
       subject:
+        delete_statuses: تم إزالة منشوراتك على %{acct}
         disable: تم تجميد حسابك %{acct}
         none: تحذير إلى %{acct}
         silence: إنّ حسابك %{acct} محدود

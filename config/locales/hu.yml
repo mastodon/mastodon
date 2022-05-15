@@ -40,7 +40,7 @@ hu:
     status_count_before: Eddig
     tagline: Kövess barátokat és találj újakat
     terms: Felhasználási feltételek
-    unavailable_content: A tartalom nem elérhető
+    unavailable_content: Kimoderált szerverek
     unavailable_content_description:
       domain: Szerver
       reason: 'Indok:'
@@ -1038,10 +1038,12 @@ hu:
       appealed_msg: A fellebbezésedet beküldtük. Ha jóváhagyták, értesítünk.
       appeals:
         submit: Fellebbezés beküldése
+      approve_appeal: Fellebbezés jóváhagyása
       associated_report: Társított bejelentés
       created_at: Dátum
       description_html: Ezek a fiókoddal szemben elvégzett műveletek és figyelmeztetések, melyeket a %{instance} szerver csapata küldött.
       recipient: Címzett
+      reject_appeal: Fellebbezés elutasítása
       status: 'Bejegyzés #%{id}'
       status_removed: A bejegyzést már eltávolítottuk a rendszerből
       title: "%{action} ekkor: %{date}"
@@ -1356,6 +1358,11 @@ hu:
   reports:
     errors:
       invalid_rules: nem hivatkozik érvényes szabályra
+  rss:
+    content_warning: 'Tartalmi figyelmeztetés:'
+    descriptions:
+      account: Nyilvános bejegyzések a(z) @%{acct} fióktól
+      tag: 'Ezzel jelölt nyilvános bejegyzések: #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os napi limitet
     over_total_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os limitet
@@ -1438,7 +1445,7 @@ hu:
         one: "%{count} videó"
         other: "%{count} videó"
     boosted_from_html: Megtolva innen %{acct_link}
-    content_warning: 'Tartalom figyelmeztetés: %{warning}'
+    content_warning: 'Tartalmi figyelmeztetés: %{warning}'
     default_language: Felhasználói felület nyelvével azonos
     disallowed_hashtags:
       one: 'tiltott hashtaget tartalmaz: %{tags}'

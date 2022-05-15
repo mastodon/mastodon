@@ -1038,10 +1038,12 @@ it:
       appealed_msg: Il tuo appello è stato presentato. Se sarà approvato, sarai informato.
       appeals:
         submit: Presenta un appello
+      approve_appeal: Approva ricorso
       associated_report: Segnalazione associata
       created_at: Data
       description_html: Queste sono azioni intraprese contro il tuo profilo e avvisi inviati a te dallo staff di %{instance}.
       recipient: Indirizzata a
+      reject_appeal: Respingi ricorso
       status: 'Post #%{id}'
       status_removed: Post già rimosso dal sistema
       title: "%{action} da %{date}"
@@ -1356,6 +1358,11 @@ it:
   reports:
     errors:
       invalid_rules: non fa riferimento a regole valide
+  rss:
+    content_warning: 'Avviso sul contenuto:'
+    descriptions:
+      account: Post pubblici di @%{acct}
+      tag: 'Post pubblici taggati #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
     over_total_limit: Hai superato il limite di %{limit} post programmati
@@ -1514,6 +1521,9 @@ it:
     pinned: Post fissato in cima
     reblogged: condiviso
     sensitive_content: Materiale sensibile
+  strikes:
+    errors:
+      too_late: È troppo tardi per fare appello contro questa sanzione
   tags:
     does_not_match_previous_name: non corrisponde al nome precedente
   terms:
