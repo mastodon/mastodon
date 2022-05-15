@@ -12,8 +12,10 @@ spec:
       template:
         metadata:
           name: {{ include "mastodon.fullname" . }}-media-remove
+        {{- with .Values.jobAnnotations }}
           annotations:
-            "sidecar.istio.io/inject": "false"
+            {{- toYaml . | nindent 12 }}
+        {{- end }}
         spec:
           restartPolicy: OnFailure
           {{- if (not .Values.mastodon.s3.enabled) }}
