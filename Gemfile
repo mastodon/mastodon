@@ -7,7 +7,7 @@ gem 'pkg-config', '~> 1.4'
 gem 'rexml', '~> 3.2'
 
 gem 'puma', '~> 5.6'
-gem 'rails', '~> 6.1.5'
+gem 'rails', '~> 6.1.6'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.3'
@@ -18,7 +18,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.7'
 
-gem 'aws-sdk-s3', '~> 1.113', require: false
+gem 'aws-sdk-s3', '~> 1.114', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1'
@@ -112,7 +112,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.36'
+  gem 'capybara', '~> 3.37'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.20'
   gem 'microformats', '~> 4.2'

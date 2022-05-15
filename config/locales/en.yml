@@ -1036,10 +1036,12 @@ en:
       appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
       appeals:
         submit: Submit appeal
+      approve_appeal: Approve appeal
       associated_report: Associated report
       created_at: Dated
       description_html: These are actions taken against your account and warnings that have been sent to you by the staff of %{instance}.
       recipient: Addressed to
+      reject_appeal: Reject appeal
       status: 'Post #%{id}'
       status_removed: Post already removed from system
       title: "%{action} from %{date}"
@@ -1355,6 +1357,11 @@ en:
   reports:
     errors:
       invalid_rules: does not reference valid rules
+  rss:
+    content_warning: 'Content warning:'
+    descriptions:
+      account: Public posts from @%{acct}
+      tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
     over_total_limit: You have exceeded the limit of %{limit} scheduled posts
@@ -1513,6 +1520,9 @@ en:
     pinned: Pinned post
     reblogged: boosted
     sensitive_content: Sensitive content
+  strikes:
+    errors:
+      too_late: It is too late to appeal this strike
   tags:
     does_not_match_previous_name: does not match the previous name
   terms:
