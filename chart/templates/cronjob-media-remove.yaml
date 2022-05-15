@@ -12,6 +12,8 @@ spec:
       template:
         metadata:
           name: {{ include "mastodon.fullname" . }}-media-remove
+          annotations:
+            "sidecar.istio.io/inject": "false"
         spec:
           restartPolicy: OnFailure
           {{- if (not .Values.mastodon.s3.enabled) }}
