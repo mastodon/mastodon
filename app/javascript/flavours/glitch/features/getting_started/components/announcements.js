@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import IconButton from 'flavours/glitch/components/icon_button';
 import Icon from 'flavours/glitch/components/icon';
 import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
-import { autoPlayGif, reduceMotion } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, reduceMotion, disableSwiping } from 'flavours/glitch/util/initial_state';
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 import { mascot } from 'flavours/glitch/util/initial_state';
 import unicodeMapping from 'flavours/glitch/util/emoji/emoji_unicode_mapping_light';
@@ -430,6 +430,7 @@ class Announcements extends ImmutablePureComponent {
                 removeReaction={this.props.removeReaction}
                 intl={intl}
                 selected={index === idx}
+                disabled={disableSwiping}
               />
             ))}
           </ReactSwipeableViews>

@@ -13,8 +13,8 @@ const getMeta = (prop) => initialState && initialState.meta && initialState.meta
 
 export const reduceMotion = getMeta('reduce_motion');
 export const autoPlayGif = getMeta('auto_play_gif');
-export const displaySensitiveMedia = getMeta('display_sensitive_media');
 export const displayMedia = getMeta('display_media') || (getMeta('display_sensitive_media') ? 'show_all' : 'default');
+export const expandSpoilers = getMeta('expand_spoilers');
 export const unfollowModal = getMeta('unfollow_modal');
 export const boostModal = getMeta('boost_modal');
 export const favouriteModal = getMeta('favourite_modal');
@@ -37,5 +37,6 @@ export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const useSystemEmojiFont = getMeta('system_emoji_font');
 export const showTrends = getMeta('trends');
+export const disableSwiping = getMeta('disable_swiping');
 
 export default initialState;

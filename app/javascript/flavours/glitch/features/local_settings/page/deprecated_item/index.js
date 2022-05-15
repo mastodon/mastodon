@@ -1,7 +1,6 @@
 //  Package imports
 import React from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
@@ -9,59 +8,32 @@ export default class LocalSettingsPageItem extends React.PureComponent {
 
   static propTypes = {
     children: PropTypes.node.isRequired,
-    dependsOn: PropTypes.array,
-    dependsOnNot: PropTypes.array,
     id: PropTypes.string.isRequired,
-    item: PropTypes.array.isRequired,
-    onChange: PropTypes.func.isRequired,
     options: PropTypes.arrayOf(PropTypes.shape({
       value: PropTypes.string.isRequired,
       message: PropTypes.string.isRequired,
       hint: PropTypes.string,
     })),
-    settings: ImmutablePropTypes.map.isRequired,
+    value: PropTypes.any,
     placeholder: PropTypes.string,
-    disabled: PropTypes.bool,
   };
 
-  handleChange = e => {
-    const { target } = e;
-    const { item, onChange, options, placeholder } = this.props;
-    if (options && options.length > 0) onChange(item, target.value);
-    else if (placeholder) onChange(item, target.value);
-    else onChange(item, target.checked);
-  }
-
   render () {
-    const { handleChange } = this;
-    const { settings, item, id, options, children, dependsOn, dependsOnNot, placeholder, disabled } = this.props;
-    let enabled = !disabled;
-
-    if (dependsOn) {
-      for (let i = 0; i < dependsOn.length; i++) {
-        enabled = enabled && settings.getIn(dependsOn[i]);
-      }
-    }
-    if (dependsOnNot) {
-      for (let i = 0; i < dependsOnNot.length; i++) {
-        enabled = enabled && !settings.getIn(dependsOnNot[i]);
-      }
-    }
+    const { id, options, children, placeholder, value } = this.props;
 
     if (options && options.length > 0) {
-      const currentValue = settings.getIn(item);
+      const currentValue = value;
       const optionElems = options && options.length > 0 && options.map((opt) => {
         let optionId = `${id}--${opt.value}`;
         return (
           <label htmlFor={optionId}>
-            <input type='radio'
+            <input
+              type='radio'
               name={id}
               id={optionId}
               value={opt.value}
-              onBlur={handleChange}
-              onChange={handleChange}
-              checked={ currentValue === opt.value }
-              disabled={!enabled}
+              checked={currentValue === opt.value}
+              disabled
             />
             {opt.message}
             {opt.hint && <span className='hint'>{opt.hint}</span>}
@@ -85,10 +57,9 @@ export default class LocalSettingsPageItem extends React.PureComponent {
               <input
                 id={id}
                 type='text'
-                value={settings.getIn(item)}
+                value={value}
                 placeholder={placeholder}
-                onChange={handleChange}
-                disabled={!enabled}
+                disabled
               />
             </p>
           </label>
@@ -100,9 +71,8 @@ export default class LocalSettingsPageItem extends React.PureComponent {
           <input
             id={id}
             type='checkbox'
-            checked={settings.getIn(item)}
-            onChange={handleChange}
-            disabled={!enabled}
+            checked={value}
+            disabled
           />
           {children}
         </label>

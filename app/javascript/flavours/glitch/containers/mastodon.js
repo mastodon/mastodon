@@ -8,6 +8,7 @@ import UI from 'flavours/glitch/features/ui';
 import { fetchCustomEmojis } from 'flavours/glitch/actions/custom_emojis';
 import { hydrateStore } from 'flavours/glitch/actions/store';
 import { connectUserStream } from 'flavours/glitch/actions/streaming';
+import { checkDeprecatedLocalSettings } from 'flavours/glitch/actions/local_settings';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from 'locales';
 import initialState from 'flavours/glitch/util/initial_state';
@@ -19,6 +20,9 @@ addLocaleData(localeData);
 export const store = configureStore();
 const hydrateAction = hydrateStore(initialState);
 store.dispatch(hydrateAction);
+
+// check for deprecated local settings
+store.dispatch(checkDeprecatedLocalSettings());
 
 // load custom emojis
 store.dispatch(fetchCustomEmojis());

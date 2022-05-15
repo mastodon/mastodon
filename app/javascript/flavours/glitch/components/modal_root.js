@@ -55,6 +55,10 @@ export default class ModalRoot extends React.PureComponent {
     window.addEventListener('keyup', this.handleKeyUp, false);
     window.addEventListener('keydown', this.handleKeyDown, false);
     this.history = this.context.router ? this.context.router.history : createBrowserHistory();
+
+    if (this.props.children) {
+      this._handleModalOpen();
+    }
   }
 
   componentWillReceiveProps (nextProps) {

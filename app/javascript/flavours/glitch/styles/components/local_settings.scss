@@ -98,6 +98,18 @@
 
 .glitch.local-settings__page__item {
   margin-bottom: 2px;
+
+  .hint a {
+    color: $lighter-text-color;
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:active,
+    &:focus,
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .glitch.local-settings__page__item.string,
@@ -117,6 +129,32 @@
 
     span:last-of-type {
       display: none;
+    }
+  }
+}
+
+.deprecated-settings-label {
+  white-space: nowrap;
+}
+
+.deprecated-settings-info {
+  text-align: start;
+
+  ul {
+    padding: 10px;
+    margin-left: 12px;
+    list-style: disc inside;
+  }
+
+  a {
+    color: $lighter-text-color;
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:active,
+    &:focus,
+    &:hover {
+      text-decoration: none;
     }
   }
 }

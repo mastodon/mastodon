@@ -4,7 +4,6 @@ import { openModal } from 'flavours/glitch/actions/modal';
 
 const mapStateToProps = state => ({
   columns: state.getIn(['settings', 'columns']),
-  swipeToChangeColumns: state.getIn(['local_settings', 'swipe_to_change_columns']),
 });
 
 const mapDispatchToProps = dispatch => ({

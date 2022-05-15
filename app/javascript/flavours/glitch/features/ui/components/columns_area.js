@@ -8,6 +8,8 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import TabsBar, { links, getIndex, getLink } from './tabs_bar';
 import { Link } from 'react-router-dom';
 
+import { disableSwiping } from 'flavours/glitch/util/initial_state';
+
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import DrawerLoading from './drawer_loading';
@@ -63,7 +65,6 @@ class ColumnsArea extends ImmutablePureComponent {
   static propTypes = {
     intl: PropTypes.object.isRequired,
     columns: ImmutablePropTypes.list.isRequired,
-    swipeToChangeColumns: PropTypes.bool,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
     navbarUnder: PropTypes.bool,
@@ -210,7 +211,7 @@ class ColumnsArea extends ImmutablePureComponent {
   }
 
   render () {
-    const { columns, children, singleColumn, swipeToChangeColumns, intl, navbarUnder, openSettings } = this.props;
+    const { columns, children, singleColumn, intl, navbarUnder, openSettings } = this.props;
     const { shouldAnimate, renderComposePanel } = this.state;
 
     const columnIndex = getIndex(this.context.router.history.location.pathname);
@@ -219,7 +220,7 @@ class ColumnsArea extends ImmutablePureComponent {
       const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <Link key='floating-action-button' to='/publish' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><Icon id='pencil' /></Link>;
 
       const content = columnIndex !== -1 ? (
-        <ReactSwipeableViews key='content' hysteresis={0.2} threshold={15} index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }} disabled={!swipeToChangeColumns}>
+        <ReactSwipeableViews key='content' hysteresis={0.2} threshold={15} index={columnIndex} onChangeIndex={this.handleSwipe} onTransitionEnd={this.handleAnimationEnd} animateTransitions={shouldAnimate} springConfig={{ duration: '400ms', delay: '0s', easeFunction: 'ease' }} style={{ height: '100%' }} disabled={disableSwiping}>
           {links.map(this.renderView)}
         </ReactSwipeableViews>
       ) : (

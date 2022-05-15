@@ -1,7 +1,6 @@
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from 'flavours/glitch/util/emoji';
 import { unescapeHTML } from 'flavours/glitch/util/html';
-import { expandSpoilers } from 'flavours/glitch/util/initial_state';
 
 const domParser = new DOMParser();
 

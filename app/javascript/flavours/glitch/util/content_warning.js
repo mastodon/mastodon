@@ -1,5 +1,7 @@
+import { expandSpoilers } from 'flavours/glitch/util/initial_state';
+
 export function autoUnfoldCW (settings, status) {
-  if (!settings.getIn(['content_warnings', 'auto_unfold'])) {
+  if (!expandSpoilers) {
     return false;
   }
 
