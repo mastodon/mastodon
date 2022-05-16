@@ -223,6 +223,8 @@ io:
     new_appeal:
       actions:
         disable: frostigar olia konto
+    new_trends:
+      subject: Nova tendenci bezonas kontrolesar che %{instance}
   aliases:
     add_new: Kreez alternativa nomo
     created_msg: Sucesoze kreis nova alternativa nomo. Vu povas nun komencar transfero de la olda konto.
@@ -239,6 +241,7 @@ io:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Omnu povas kontributar.
     sensitive_content: Sentoza kontenajo
+    toot_layout: Postostrukturo
   application_mailer:
     notification_preferences: Chanjez retpostopreferaji
     salutation: "%{name},"
@@ -250,24 +253,47 @@ io:
     created: Apliko sucesoze kreesas
     destroyed: Apliko sucesoze efacesas
     invalid_url: La URL donita ne esas valida
+    regenerate_token: Rifacez acesficho
     token_regenerated: Acesficho sucesoze riganesas
+    warning: Sorgemez per ca informi. Ne partigez kun irgu!
+    your_token: Vua acesficho
   auth:
+    apply_for_account: Demandez invito
     change_password: Pasvorto
+    checkbox_agreement_without_rules_html: Me konsentar <a href="%{terms_path}" target="_blank">serveskondicioni</a>
     delete_account: Efacez konto
     description:
+      prefix_invited_by_user: "@%{name} invitas vu juntar ca servilo di Mastodon!"
       prefix_sign_up: Registrez che Mastodon hodie!
     didnt_get_confirmation: Ka tu ne recevis la instrucioni por konfirmar?
+    dont_have_your_security_key: Ka vu ne havas sekuresklefo?
     forgot_password: Pasvorto obliviita?
+    invalid_reset_password_token: Pasvorto richanjoficho esas nevalida o expirita. Demandez novo.
+    link_to_otp: Insertez 2-faktornumero de vua fono o rigannumero
+    link_to_webauth: Uzez vua sekuresklefaparato
     log_in_with: Enirez per
     login: Enirar
     logout: Ekirar
+    migrate_account: Transferez a diferenta konto
+    or_log_in_with: O eniras per
+    providers:
+      cas: CAS
+      saml: SAML
     register: Membreskar
+    registration_closed: "%{instance} ne aceptas nova membri"
     resend_confirmation: Risendar la instrucioni por konfirmar
     reset_password: Chanjar la pasvorto
     security: Chanjar pasvorto
     set_new_password: Selektar nova pasvorto
+    setup:
+      title: Komencoprocedo
     status:
       account_status: Kontostando
+      confirming: Vartas retpostokonfirmo finar.
+      functional: Vua konto esas tote funcionoza.
+      redirecting_to: Vua konto esas neaktiva pro ke ol nun ridirektesos a %{acct}.
+      view_strikes: Videz antea streki kontra vua konto
+    too_fast: Formulario sendesis tro rapide, probez itere.
     trouble_logging_in: Ka ne povas enirar?
     use_security_key: Uzes sekuresklefo
   authorize_follow:
@@ -284,8 +310,13 @@ io:
     title: Sequar %{acct}
   challenge:
     confirm: Durez
+    hint_html: "<strong>Guidilo:</strong> Ni ne demandos vua pasvorto itere til 1 horo."
     invalid_password: Nevalida pasvorto
     prompt: Konfirmez pasvorto por durar
+  crypto:
+    errors:
+      invalid_key: ne esas valida klefo Ed25519 o Curve25519
+      invalid_signature: ne esas valida parafo Ed25519
   date:
     formats:
       default: "%d %b, %Y"
@@ -305,8 +336,16 @@ io:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Informo quon vu insertis ne esas korekta
+    confirm_password: Insertez nuna pasvorto por verifikar vua identeso
+    confirm_username: Insertez vua uzantonomo por konfirmar procedo
     proceed: Efacez konto
     success_msg: Vua konto sucesoze efacesis
+    warning:
+      before: 'Ante durar, lektez ca noti sorgeme:'
+      caches: Kontenajo quo memoresis da altra servilo forsan restas
+      data_removal: Vua posti e altra informi netempale efacesis
+      email_change_html: Vu povas <a href="%{path}">chanjar vua retpostoadreso</a> sen efacar vua konto
   directories:
     explore_mastodon: Explorez %{title}
   disputes:
@@ -417,11 +456,17 @@ io:
       over_rows_processing_limit: kontenas plu de %{count} horizontala lineo
     modes:
       merge: Kombinez
+      merge_long: Retenez displonebla rekordi e insertez novi
+      overwrite: Remplasez
+      overwrite_long: Remplasez nuna rekordi per novi
     preface: Tu povas importacar kelka datumi, tal quala listi de omna homi quin tu sequas o blokusas, a tua konto di ca instaluro, per dosiero exportacita de altra instaluro.
     success: Tua datumi esis senprobleme importacita ed esos traktita quale projetita
     types:
       blocking: Listo de blokusiti
+      bookmarks: Libromarki
+      domain_blocking: Domenobstruktolisto
       following: Listo de sequati
+      muting: Silenciglisto
     upload: Kargar
   in_memoriam_html: Memorialo.
   invites:
@@ -446,11 +491,19 @@ io:
       expires_at: Expiros
       uses: Uzi
     title: Invitez personi
+  lists:
+    errors:
+      limit: Vu astingas maxima listi
   login_activities:
     authentication_methods:
+      otp: 2-faktoryurizessoftwaro
       password: pasvorto
       sign_in_token: retpostosekuresnumero
       webauthn: sekuresklefi
+    empty: Yurizeshistorio esas nedisponebla
+    failed_sign_in_html: Falita enirprob per %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Sucesoza eniro per %{method} de %{ip} (%{browser})
+    title: Yurizeshistorio
   media_attachments:
     validations:
       images_and_video: Ne povas atachar video a posto quo ja kontenar imaji
