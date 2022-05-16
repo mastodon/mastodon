@@ -29,6 +29,8 @@ class Form::AdminSettings
     hero
     mascot
     email
+    logo
+    logo_transparent
     trends
     trendable_by_default
     show_domain_blocks
@@ -57,6 +59,8 @@ class Form::AdminSettings
     hero
     mascot
     email
+    logo
+    logo_transparent
   ).freeze
 
   attr_accessor(*KEYS)

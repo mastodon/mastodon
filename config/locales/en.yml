@@ -620,11 +620,17 @@ en:
       hero:
         desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
+      logo:
+        desc_html: Displayed at the top of the homepage and other places. SVG format. At least 375x100px recommended. When not set, falls back to decodon logo
+        title: Full logo
+      logo_transparent:
+        desc_html: Displayed in the footer and sidebars. SVG format. At least 150x150px recommended. When not set, falls back to decodon flower
+        title: Small transparent logo
       mascot:
         desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
         title: Mascot image
       email:
-        desc_html: Displayed on the top of emails. At least 138x34px recommended. When not set, falls back to default Mastodon full logo
+        desc_html: Displayed on the top of emails. At least 138x34px recommended. When not set, falls back to default decodon full logo
         title: Email header image
       peers_api_enabled:
         desc_html: Domain names this server has encountered in the fediverse

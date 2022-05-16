@@ -39,6 +39,12 @@
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group
+      = f.input :logo, as: :file, wrapper: :with_block_label, label: t('admin.settings.logo.title'), hint: site_upload_delete_hint(t('admin.settings.logo.desc_html'), :logo)
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :logo_transparent, as: :file, wrapper: :with_block_label, label: t('admin.settings.logo_transparent.title'), hint: site_upload_delete_hint(t('admin.settings.logo_transparent.desc_html'), :logo_transparent)
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
       = f.input :mascot, as: :file, wrapper: :with_block_label, label: t('admin.settings.mascot.title'), hint: site_upload_delete_hint(t('admin.settings.mascot.desc_html'), :mascot)
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :email, as: :file, wrapper: :with_block_label, label: t('admin.settings.email.title'), hint: site_upload_delete_hint(t('admin.settings.email.desc_html'), :email)
