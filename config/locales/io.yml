@@ -216,6 +216,37 @@ io:
         title: Extended site description
       site_title: Site title
       title: Site Settings
+    statuses:
+      back_to_report: Retrovenez a raportpagino
+      batch:
+        remove_from_report: Efacez de raporto
+        report: Raportigez
+      deleted: Efacesis
+      media:
+        title: Medii
+      no_status_selected: Nula posti chanjesis pro ke nulo selektesis
+      title: Kontoposti
+      with_media: Kun medii
+    strikes:
+      actions:
+        delete_statuses: "%{name} efacis posti di %{target}"
+        disable: "%{name} frostigis konto di %{target}"
+        mark_statuses_as_sensitive: "%{name} markigis posti di %{target} quale sentoza"
+        none: "%{name} sendis averto a %{target}"
+        sensitive: "%{name} markigis konto di %{target} quale sentoza"
+        silence: "%{name} limitigis konto di %{target}"
+        suspend: "%{name} restriktis konto di %{target}"
+      appeal_approved: Apelis
+      appeal_pending: Vartata apelo
+    system_checks:
+      elasticsearch_running_check:
+        message_html: Ne povas konektas a Elasticsearch. Kontrolez ke ol functionas o desaktivigez textokompleta trovo
+      elasticsearch_version_check:
+        message_html: 'Nekonciliebla versiono di Elasticsearch: %{value}'
+        version_comparison: Elasticsearch %{running_version} funcionas ma %{required_version} bezonesas
+      rules_check:
+        action: Jerez servilreguli
+        message_html: Vu ne fixis irga servilreguli.
     trends:
       only_allowed: Nur permisato
       statuses:
