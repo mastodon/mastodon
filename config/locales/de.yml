@@ -1036,10 +1036,12 @@ de:
       appealed_msg: Dein Einspruch wurde abgesendet. Wenn er angenommen wird, wirst du benachrichtigt.
       appeals:
         submit: Einspruch erheben
+      approve_appeal: Einspruch annehmen
       associated_report: Zugehöriger Bericht
       created_at: Datum
       description_html: Dies sind Aktionen gegen dein Konto und Warnungen, die von den Mitarbeitern von %{instance} an dich gesendet wurden.
       recipient: Adressiert an
+      reject_appeal: Einspruch ablehnen
       status: 'Beitrag #%{id}'
       status_removed: Beitrag bereits vom System entfernt
       title: "%{action} vom %{date}"
@@ -1354,6 +1356,11 @@ de:
   reports:
     errors:
       invalid_rules: verweist nicht auf gültige Regeln
+  rss:
+    content_warning: 'Inhaltswarnung:'
+    descriptions:
+      account: Öffentliche Beiträge von @%{acct}
+      tag: 'Öffentliche Beiträge mit dem Tag #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, erreicht
@@ -1512,6 +1519,9 @@ de:
     pinned: Angehefteter Beitrag
     reblogged: teilte
     sensitive_content: NSFW
+  strikes:
+    errors:
+      too_late: Es ist zu spät, um gegen diese Verwarnung Einspruch zu erheben
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   terms:

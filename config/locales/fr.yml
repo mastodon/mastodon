@@ -802,7 +802,7 @@ fr:
           other: Partagé par %{count} personnes au cours de la dernière semaine
         title: Liens tendances
         usage_comparison: Partagé %{today} fois aujourd'hui, comparé à %{yesterday} hier
-      only_allowed: Seuls autorisés
+      only_allowed: Autorisées seulement
       pending_review: En attente de révision
       preview_card_providers:
         allowed: Les liens de cet éditeur peuvent être tendance
@@ -1036,10 +1036,12 @@ fr:
       appealed_msg: Votre demande d'appel a été soumise. Si elle est approuvée, vous en serez informé·e.
       appeals:
         submit: Faire appel
+      approve_appeal: Approuver l’appel
       associated_report: Rapport associé
       created_at: En date du
       description_html: Ce sont les mesures prises contre votre compte et les avertissements qui vous ont été envoyés par les responsables de %{instance}.
       recipient: Adressé à
+      reject_appeal: Rejeter l’appel
       status: 'Message #%{id}'
       status_removed: Message déjà supprimé du système
       title: "%{action} du %{date}"
@@ -1354,6 +1356,11 @@ fr:
   reports:
     errors:
       invalid_rules: ne fait pas référence à des règles valides
+  rss:
+    content_warning: 'Avertissement de contenu :'
+    descriptions:
+      account: Messages publics de @%{acct}
+      tag: 'Messages publics taggés #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Vous avez dépassé la limite de %{limit} messages planifiés par jour
     over_total_limit: Vous avez dépassé la limite de %{limit} messages planifiés
@@ -1447,7 +1454,7 @@ fr:
     open_in_web: Ouvrir sur le web
     over_character_limit: limite de %{max} caractères dépassée
     pin_errors:
-      direct: Les messages qui ne sont visibles que pour les utilisateurs mentionnés ne peuvent pas être épinglés
+      direct: Les messages qui ne sont visibles que pour les utilisateur·rice·s mentionné·e·s ne peuvent pas être épinglés
       limit: Vous avez déjà épinglé le nombre maximum de messages
       ownership: Vous ne pouvez pas épingler un message ne vous appartenant pas
       reblog: Un partage ne peut pas être épinglé
