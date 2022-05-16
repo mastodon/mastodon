@@ -1,4 +1,3 @@
----
 ru:
   devise:
     confirmations:
@@ -57,7 +56,7 @@ ru:
       two_factor_recovery_codes_changed:
         explanation: Предыдущие резервные коды были аннулированы и созданы новые.
         subject: 'Mastodon: Резервные коды двуфакторной авторизации обновлены'
-        title: Резервные коды 2ФА изменены
+        title: Коды восстановления 2FA изменены
       unlock_instructions:
         subject: 'Mastodon: Инструкция по разблокировке'
       webauthn_credential:
@@ -111,7 +110,7 @@ ru:
       not_found: не найден
       not_locked: не был заблокирован
       not_saved:
+        one: '1 ошибка помешала сохранению этого %{resource}:'
         few: "%{count} ошибки помешали сохранению этого %{resource}:"
         many: "%{count} ошибок помешали сохранению этого %{resource}:"
-        one: '1 ошибка помешала сохранению этого %{resource}:'
         other: "%{count} ошибок помешали сохранению этого %{resource}:"
