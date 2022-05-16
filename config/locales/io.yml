@@ -117,15 +117,44 @@ io:
       deleted: Efacita
       demote: Despromocez
       destroyed_msg: "Informi di %{username} nun aranjesis por efacesar aparante"
-      disable: Cesez
-      disable_sign_in_token_auth: Desaktivigez retpostofishpermiso
+      disable: Frostigez
+      disable_sign_in_token_auth: Desaktivigez retpostofichpermiso
       disable_two_factor_authentication: Desaktivigez 2FA
-      disabled: Cesita
+      disabled: Desinterdiktita
       display_name: Profilnomo
       domain: Domeno
       edit: Modifikez
       email: E-mail
       email_status: Retpostostando
+      enable: Defrostigez
+      enable_sign_in_token_auth: Aktivigez retpostofichpermiso
+      enabled: Aktivigita
+      enabled_msg: Sucese desinterdiktis konto di %{username}
+      followers: Uzanti
+      follows: Uzati
+      header: Titulimajo
+      inbox_url: URL di enbuxo
+      invite_request_text: Juntomotivo
+      invited_by: Invitesis da
+      ip: IP
+      joined: Juntita
+      location:
+        all: Omna
+        local: Lokala
+        remote: Nelokala
+        title: Loko
+      login_status: Enirstando
+      media_attachments: Mediiatachaji
+      memorialize: Memorializez
+      memorialized: Memorializita
+      memorialized_msg: Sucese chanjesis %{username} a memorialkonto
+      moderation:
+        active: Aktiva
+        all: Omna
+        pending: Vartanta
+        suspended: Restriktita
+        title: Jero
+      moderation_notes: Jernoti
       perform_full_suspension: Perform full suspension
       show:
         created_reports: Reports created by this account
@@ -156,6 +185,10 @@ io:
     trends:
       only_allowed: Nur permisato
       trending: Tendenco
+  admin_mailer:
+    new_appeal:
+      actions:
+        disable: frostigar olia konto
   application_mailer:
     notification_preferences: Chanjez retpostopreferaji
     settings: 'Chanjar la retpost-mesajala preferi: %{link}'
