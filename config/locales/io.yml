@@ -433,6 +433,24 @@ io:
     incoming_migrations: Transfero de diferenta konto
     moved_msg: Vua konto nun ridirektesas a %{acct} e vua sequanti transferesas.
     not_redirecting: Vua konto ne ridirektesas a irga altra konto nun.
+    past_migrations: Antea migri
+    proceed_with_move: Transferez sequanti
+    redirected_msg: Vua konto nun ridirektesas a %{acct}.
+    redirecting_to: Vua konto ridirektesas a %{acct}.
+    set_redirect: Fixez ridirekto
+    warning:
+      backreference_required: Nova konto mustas unesme havar opciono quo dopreferas co
+      before: 'Ante durar, lektez ca noti sorgeme:'
+      cooldown: Pos transferesar, existas varttempo kande vu ne povas transferesar itere
+      followers: Ca ago transferos omna sequanti de nuna konto a nova konto
+      only_redirect_html: Alternative, vu povas <a href="%{path}">nur pozar ridirekto che vua profilo</a>.
+      other_data: Altra informi ne transferesos automate
+  moderation:
+    title: Jero
+  move_handler:
+    carry_blocks_over_text: Ca uzanti transferesis de %{acct} quon vu restriktis.
+    carry_mutes_over_text: Ca uzanti transferesis de %{acct} quon vu silencigis.
+    copy_account_note_text: 'Ca uzanti transferesis de %{acct}, co esas vua antea noti pri ol:'
   notification_mailer:
     admin:
       sign_up:
@@ -738,8 +756,17 @@ io:
       subject: Vua konto acesesis de nova adreso IP
       title: Nova eniro
     warning:
+      appeal: Sendez apelo
+      appeal_description: Se vu kredas ke co esas eroro, vu povas sendar apelo a laboreri di %{instance}.
+      categories:
+        spam: Spamo
+        violation: Kontenajo nesequas ca komunitatguidili
       reason: 'Motivo:'
+      statuses: 'Citita posti:'
       subject:
+        delete_statuses: Vua posti che %{acct} efacis
+        disable: Vua konto %{acct} frostigesis
+        mark_statuses_as_sensitive: Vua posti che %{acct} markigesis quale sentoza
         none: Averto por %{acct}
         sensitive: Vua posti che %{acct} markigesos quale sentoza pos nun
         silence: Vua konto %{acct} limitigesis
@@ -765,6 +792,7 @@ io:
     follow_limit_reached: Vu ne povas sequar plu de %{limit} personi
     invalid_otp_token: La dufaktora autentikigila kodexo ne esas valida
     otp_lost_help_html: Se vu perdas aceso de 2 konto, vu povas kontaktar kun %{email}
+    seamless_external_login: Vu enirar tra externa serveso, do pasvorto e retpostoopcioni ne esas disponebla.
     signed_in_as: 'Eniris quale:'
   verification:
     verification: Verifikeso
