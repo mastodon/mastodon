@@ -21,30 +21,33 @@ module Admin
 
     def import
       authorize :domain_block, :create?
-      begin
-        @import = Admin::Import.new(import_params)
-        parse_import_data!(export_headers)
 
-        @data.take(ROWS_PROCESSING_LIMIT).each do |row|
-          domain = row['#domain'].strip
-          next if DomainBlock.rule_for(domain).present?
+      @import = Admin::Import.new(import_params)
+      parse_import_data!(export_headers)
 
-          domain_block = DomainBlock.new(domain: domain,
-                                         severity: row['#severity'].strip,
-                                         reject_media: row['#reject_media'].strip,
-                                         reject_reports: row['#reject_reports'].strip,
-                                         public_comment: row['#public_comment'].strip,
-                                         obfuscate: row['#obfuscate'].strip)
-          if domain_block.save
-            DomainBlockWorker.perform_async(domain_block.id)
-            log_action :create, domain_block
-          end
-        end
-        flash[:notice] = I18n.t('admin.domain_blocks.created_msg')
-      rescue ActionController::ParameterMissing
-        flash[:error] = I18n.t('admin.export_domain_blocks.no_file')
+      @global_private_comment = I18n.t('admin.export_domain_blocks.import.private_comment_template', source: @import.data_file_name, date: I18n.l(Time.now.utc))
+
+      @form = Form::DomainBlockBatch.new
+      @domain_blocks = @data.take(ROWS_PROCESSING_LIMIT).filter_map do |row|
+        domain = row['#domain'].strip
+        next if DomainBlock.rule_for(domain).present?
+
+        domain_block = DomainBlock.new(domain: domain,
+                                       severity: row['#severity'].strip,
+                                       reject_media: row['#reject_media'].strip,
+                                       reject_reports: row['#reject_reports'].strip,
+                                       private_comment: @global_private_comment,
+                                       public_comment: row['#public_comment']&.strip,
+                                       obfuscate: row['#obfuscate'].strip)
+
+        domain_block if domain_block.valid?
       end
-      redirect_to admin_instances_path(limited: '1')
+
+      @warning_domains = Instance.where(domain: @domain_blocks.map(&:domain)).where('EXISTS (SELECT 1 FROM follows JOIN accounts ON follows.account_id = accounts.id OR follows.target_account_id = accounts.id WHERE accounts.domain = instances.domain)').pluck(:domain)
+    rescue ActionController::ParameterMissing
+      flash.now[:alert] = I18n.t('admin.export_domain_blocks.no_file')
+      set_dummy_import!
+      render :new
     end
 
     private

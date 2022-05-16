@@ -1,0 +1,21 @@
+- content_for :page_title do
+  = t('admin.export_domain_blocks.import.title')
+
+%p= t('admin.export_domain_blocks.import.description_html')
+
+- if defined?(@global_private_comment) && @global_private_comment.present?
+  %p= t('admin.export_domain_blocks.import.private_comment_description_html', comment: @global_private_comment)
+
+= form_for(@form, url: batch_admin_domain_blocks_path) do |f|
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        = f.button safe_join([fa_icon('copy'), t('admin.domain_blocks.import')]), name: :save, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+    .batch-table__body
+      - if @domain_blocks.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = f.simple_fields_for :domain_blocks, @domain_blocks do |ff|
+          = render 'domain_block', f: ff, existing_relationships: @warning_domains.include?(ff.object.domain)
