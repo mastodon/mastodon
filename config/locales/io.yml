@@ -249,11 +249,39 @@ io:
     warning_presets:
       add_new: Insertez novo
       delete: Efacez
+      edit_preset: Modifikez avertfixito
+      empty: Vu ne fixis irga avertfixito til nun.
+      title: Jerez avertfixiti
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: efacos ola posti
         disable: frostigar olia konto
+        mark_statuses_as_sensitive: markigos ola posti quale sentoza
+        none: averto
+        sensitive: markigos ola konto quale sentoza
+        silence: limitigos ola konto
+        suspend: restriktos ola konto
+      next_steps: Vu povas aprobar apelo por deagar jerdecido o ignorar.
+      subject: "%{username} apela jerdecido che %{instance}"
+    new_pending_account:
+      body: Detali de nova konto esas la subo. Vu povas aprobar o refuzar ca apliko.
+      subject: Nova konto bezonas kontrolesar che %{instance} (%{username})
+    new_report:
+      body: "%{reporter} raportigis %{target}"
+      body_remote: Ulu de %{domain} raportigis %{target}
+      subject: 'Nova raporto por %{instance} (#%{id})'
     new_trends:
+      body: 'Ca kozi bezonas kontrol ante ol povas montresar publike:'
+      new_trending_links:
+        no_approved_links: Nun no existas aprobita tendencoza ligili.
+        title: Tendencoza ligili
+      new_trending_statuses:
+        no_approved_statuses: Nun ne existas aprobita tendencoza posti.
+        title: Tendencoza posti
+      new_trending_tags:
+        no_approved_tags: Nun ne existas aprobita tendencoza hashtagi.
+        title: Tendencoza hashtagi
       subject: Nova tendenci bezonas kontrolesar che %{instance}
   aliases:
     add_new: Kreez alternativa nomo
