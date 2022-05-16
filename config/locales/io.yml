@@ -155,7 +155,25 @@ io:
         suspended: Restriktita
         title: Jero
       moderation_notes: Jernoti
+      most_recent_activity: Maxim recenta aktiveso
+      most_recent_ip: Maxim recenta IP
+      no_account_selected: Nula konti chanjesis pro ke nulo selektesis
+      no_limits_imposed: Limiti ne fixesis
+      not_subscribed: Ne abonita
+      pending: Vartar kontrolo
       perform_full_suspension: Perform full suspension
+      previous_strikes: Antea streki
+      previous_strikes_description_html:
+        one: Ca konto havas <strong>1</strong> streko.
+        other: Ca konto havas <strong>%{count}</strong> streki.
+      promote: Promocez
+      protocol: Protokolo
+      public: Publika
+      push_subscription_expires: Abono PuSH expiras
+      redownload: Rifreshigez profilo
+      redownloaded_msg: Sucese rifreshis profilo di %{username} de origino
+      reject: Refuzez
+      rejected_msg: Sucese refuzis registroapliko di %{username}
       show:
         created_reports: Reports created by this account
         targeted_reports: Reports made about this account
@@ -227,9 +245,42 @@ io:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  existing_username_validator:
+    not_found_multiple: ne povas trovar %{usernames}
   exports:
+    archive_takeout:
+      date: Dato
+      download: Deschargez vua arkivo
+      in_progress: Kompilar vua arkivo...
+      request: Demandez vua arkivo
+      size: Grandeso
     blocks: Tu blokusas
+    bookmarks: Libromarki
+    csv: CSV
+    domain_blocks: Domenobstrukti
+    lists: Listi
+    mutes: Vu silencigesas
     storage: Konservado di kontenajo
+  featured_tags:
+    add_new: Insertez novo
+    errors:
+      limit: Vu ja estelis maxima hashtagi
+  filters:
+    contexts:
+      account: Profili
+      home: Hemo e listi
+      notifications: Avizi
+      public: Publika tempolinei
+      thread: Konversi
+    edit:
+      title: Modifikez filtrilo
+    errors:
+      invalid_context: Nula o nevalida kuntexto donesis
+      invalid_irreversible: Neinversigebla filtro nur funcionas kun hemo- e aviz- kuntexto
+    index:
+      delete: Efacez
+      empty: Vu ne havas filtrili.
+      title: Filtrili
   generic:
     changes_saved_msg: Chanji senprobleme konservita!
     save_changes: Konservar la chanji
