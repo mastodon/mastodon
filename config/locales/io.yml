@@ -319,6 +319,23 @@ io:
       blocking: Listo de blokusiti
       following: Listo de sequati
     upload: Kargar
+  invites:
+    delete: Deaktivigez
+    expired: Expiris
+    expires_in:
+      '1800': 30 minuti
+      '21600': 6 hori
+      '3600': 1 horo
+      '43200': 12 hori
+      '604800': 1 semano
+      '86400': 1 dio
+    expires_in_prompt: Nulatempe
+    generate: Facez invitligilo
+    invited_by: 'Vu invitesis da:'
+    max_uses:
+      one: 1 uzo
+      other: "%{count} uzi"
+    max_uses_prompt: Nula limito
   login_activities:
     authentication_methods:
       password: pasvorto
@@ -327,35 +344,84 @@ io:
   migrations:
     cancelled_msg: Sucesoze extingar ridirekto.
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} registris"
     digest:
+      action: Videz omna avizi
       body: Yen mikra rezumo di to, depos ke tu laste vizitis en %{since}
       mention: "%{name} mencionis tu en:"
       new_followers_summary:
         one: Tu obtenis nova sequanto! Yey!
         other: Tu obtenis %{count} nova sequanti! Astonive!
+      subject:
+        one: "1 nova avizo de pos vua antea vizito 🐘"
+        other: "%{count} nova avizi de pos vua antea vizito 🐘"
+      title: Dum vua neprezenteso...
     favourite:
       body: '%{name} favoris tua mesajo:'
       subject: "%{name} favoris tua mesajo"
+      title: Nova favorato
     follow:
       body: "%{name} sequeskas tu!"
       subject: "%{name} sequeskas tu"
+      title: Nova sequanto
     follow_request:
+      action: Jerez sequodemandi
       body: "%{name} demandis sequar tu"
       subject: '%{name} demandis sequar tu'
+      title: Nova sequodemando
     mention:
+      action: Respondez
       body: '%{name} mencionis tu en:'
       subject: '%{name} mencionis tu'
+      title: Nova menciono
+    poll:
+      subject: Votposto di %{name} finis
     reblog:
       body: '%{name} diskonocigis tua mesajo:'
       subject: "%{name} diskonocigis tua mesajo"
+      title: Nova busto
+    status:
+      subject: "%{name} nove postigis"
+    update:
+      subject: "%{name} modifikis posto"
+  notifications:
+    email_events: Eventi por retpostoavizi
+    email_events_hint: 'Selektez eventi quon vu volas ganar avizi:'
+    other_settings: Altra avizopcioni
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: G
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
   otp_authentication:
     enable: Aktivigez
     manual_instructions: 'Se vu ne povas skanar numero QR e bezonas insertar manuala, subo esas textosekreto:'
     setup: Facez
     wrong_code: Insertita numero esas nevalida! Ka serviltempo e aparattempo esas korekta?
   pagination:
+    newer: Nova
     next: Sequanta
+    older: Olda
     prev: Preiranta
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Vu ja votis che ca votposto
+      duplicate_options: havas duplikatkozi
+      duration_too_long: esas tro distanta en futuro
+      duration_too_short: es tro balde
+      expired: Votposto ja finis
+      invalid_choice: Selektita votselektajo ne existas
+      over_character_limit: ne povas esar plu longa de %{max} literi por singlo
+      too_few_options: mustas havar plu de 1 kozo
+      too_many_options: ne povas havar plu de %{max} kozi
   preferences:
     other: Altra
     posting_defaults: Originala postoopcioni
@@ -488,6 +554,7 @@ io:
     pin_errors:
       direct: Posti quo povas videsar nur mencionita uzanti ne povas pinglagesar
       limit: Vu ja pinglagis maxima posti
+      ownership: Posto di altra persono ne povas pinglagesar
       reblog: Busto ne povas pinglagesar
     poll:
       total_people:
