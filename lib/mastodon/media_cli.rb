@@ -227,7 +227,9 @@ module Mastodon
         scope = MediaAttachment.where(account_id: account.id)
       elsif options[:domain]
         scope = MediaAttachment.joins(:account).merge(Account.by_domain_and_subdomains(options[:domain]))
-      elsif options[:days].blank?
+      elsif options[:days].present?
+        scope = MediaAttachment.remote
+      else
         exit(1)
       end
 
