@@ -421,20 +421,73 @@ io:
       weibo: Weibo
     current_session: Nuna sesiono
     description: "%{browser} che %{platform}"
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: Chrome OS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      other: nesavata platformo
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Depermisez
     revoke_success: Sesiono sucesoze deaprobesas
+    title: Sesioni
+    view_authentication_history: Videz yurizeshistorio di vua konto
   settings:
+    account: Konto
+    account_settings: Kontoopcioni
+    aliases: Kontoaltnomi
+    appearance: Formo
     authorized_apps: Yurizita apliki
     back: Retro a Mastodon
+    delete: Kontoefaco
+    development: Developo
     edit_profile: Redaktar la profilo
     export: Exportacar datumi
+    featured_tags: Estelata hashtagi
     import: Importacar
+    import_and_export: Importaco e exportaco
+    migrate: Kontomigro
+    notifications: Avizi
     preferences: Preferi
+    profile: Profilo
+    relationships: Sequati e sequanti
+    statuses_cleanup: Automata postoefaco
+    strikes: Jerstreki
     two_factor_authentication: Dufaktora autentikigo
     webauthn_authentication: Sekuresklefi
   statuses:
+    attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audii"
+      description: 'Atachajo: %{attached}'
+      image:
+        one: "%{count} imajo"
+        other: "%{count} imaji"
+      video:
+        one: "%{count} video"
+        other: "%{count} videi"
+    boosted_from_html: Bustesis de %{acct_link}
+    content_warning: 'Kontenajaverto: %{warning}'
+    default_language: Sama quale intervizajlinguo
+    disallowed_hashtags:
+      one: 'kontenas nepermisita hashtago: %{tags}'
+      other: 'kontenas nepermisita hashtagi: %{tags}'
+    edited_at_html: Modifikesis ye %{date}
+    errors:
+      in_reply_not_found: Posto quon vu probas respondar semblas ne existas.
     open_in_web: Apertar retnavigile
     over_character_limit: limito de %{max} signi ecesita
     pin_errors:
+      direct: Posti quo povas videsar nur mencionita uzanti ne povas pinglagesar
+      limit: Vu ja pinglagis maxima posti
       reblog: Busto ne povas pinglagesar
     poll:
       total_people:
@@ -526,7 +579,11 @@ io:
       reason: 'Motivo:'
       subject:
         none: Averto por %{acct}
+        sensitive: Vua posti che %{acct} markigesos quale sentoza pos nun
+        silence: Vua konto %{acct} limitigesis
+        suspend: Vua konto %{acct} restriktesis
       title:
+        delete_statuses: Posti efacesis
         disable: Konto frostigesis
         mark_statuses_as_sensitive: Posti markigesis quale sentoza
         none: Averto
