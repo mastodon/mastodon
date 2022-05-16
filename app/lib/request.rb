@@ -30,15 +30,9 @@ class Request
     @verb        = verb
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
-    @headers     = {}
     @options     = options.merge(socket_class: use_proxy? ? ProxySocket : Socket)
-    if use_proxy?
-      if hidden_service?
-        @options.merge!(Rails.configuration.x.http_client_hidden_proxy)
-      else
-        @options.merge!(Rails.configuration.x.http_client_proxy)
-      end
-    end
+    @options     = @options.merge(proxy_url) if use_proxy?
+    @headers     = {}
 
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
 
@@ -147,10 +141,14 @@ class Request
   end
 
   def use_proxy?
-    if hidden_service?
-      Rails.configuration.x.http_client_hidden_proxy.present?
+    proxy_url.present?
+  end
+
+  def proxy_url
+    if hidden_service? && Rails.configuration.x.http_client_hidden_proxy.present?
+      Rails.configuration.x.http_client_hidden_proxy
     else
-      Rails.configuration.x.http_client_proxy.present?
+      Rails.configuration.x.http_client_proxy
     end
   end
 
