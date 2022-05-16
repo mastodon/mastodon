@@ -65,9 +65,18 @@ io:
     last_active: lasta aktiva tempo
     link_verified_on: Proprieteso di ca ligilo kontrolesis ye %{date}
     media: Medii
+    moved_html: "%{name} transferesis a %{new_profile_link}:"
+    network_hidden: Ca informi ne esas disponebla
     nothing_here: Esas nulo hike!
     people_followed_by: Sequati da %{name}
     people_who_follow: Sequanti di %{name}
+    pin_errors:
+      following: Vu mustas ja sequar persono quon vu volas estalar
+    posts:
+      one: Posto
+      other: Posti
+    posts_tab_heading: Posti
+    posts_with_replies: Posti e respondi
     unfollow: Dessequar
   admin:
     accounts:
@@ -104,6 +113,7 @@ io:
       only_allowed: Nur permisato
       trending: Tendenco
   application_mailer:
+    notification_preferences: Chanjez retpostopreferaji
     settings: 'Chanjar la retpost-mesajala preferi: %{link}'
     view: 'Vidar:'
   applications:
@@ -181,6 +191,10 @@ io:
   pagination:
     next: Sequanta
     prev: Preiranta
+  preferences:
+    other: Altra
+    posting_defaults: Originala postoopcioni
+    public_timelines: Publika tempolinei
   remote_follow:
     acct: Enpozez tua uzernomo@instaluro de ube tu volas sequar ta uzero
     missing_resource: La URL di plussendado ne povis esar trovita
@@ -217,5 +231,8 @@ io:
     disable: Extingar
     generate_recovery_codes: Generate Recovery Codes
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
+  user_mailer:
+    welcome:
+      review_preferences_action: Chanjez preferaji
   users:
     invalid_otp_token: La dufaktora autentikigila kodexo ne esas valida
