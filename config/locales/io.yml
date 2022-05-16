@@ -228,7 +228,7 @@ io:
     created_msg: Sucesoze kreis nova alternativa nomo. Vu povas nun komencar transfero de la olda konto.
     deleted_msg: Sucesoze efacis alternativa nomo. Transferar de ta konto a co ne esos posebla.
     empty: Vu ne havas alternativa nomi.
-    remove: Deligilez alternative nomo
+    remove: Deligez alternative nomo
   appearance:
     advanced_web_interface: Avanza retintervizajo
     animations_and_accessibility: Animo e aceseso
@@ -420,7 +420,19 @@ io:
       not_ready: Ne povas faili quo ankore procedigesas. Probez itere pose!
       too_many: Ne povas atachar plu de 4 faili
   migrations:
+    acct: Transferesis a
+    cancel: Extingar ridirekto
     cancelled_msg: Sucesoze extingar ridirekto.
+    errors:
+      already_moved: esas sama transferkonto
+      missing_also_known_as: ne esas alternativa nomo di ca konto
+      move_to_self: ne povas esar nuna konto
+      not_found: ne povas trovesar
+      on_cooldown: Vu havas varttempo
+    followers_count: Sequanti en transfertempo
+    incoming_migrations: Transfero de diferenta konto
+    moved_msg: Vua konto nun ridirektesas a %{acct} e vua sequanti transferesas.
+    not_redirecting: Vua konto ne ridirektesas a irga altra konto nun.
   notification_mailer:
     admin:
       sign_up:
@@ -720,6 +732,11 @@ io:
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
     webauthn: Sekuresklefi
   user_mailer:
+    suspicious_sign_in:
+      details: 'Co esas detali di eniro:'
+      explanation: Ni deskovris eniro a vua konto de nova adreso IP.
+      subject: Vua konto acesesis de nova adreso IP
+      title: Nova eniro
     warning:
       reason: 'Motivo:'
       subject:
