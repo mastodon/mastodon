@@ -498,6 +498,8 @@ io:
       too_late: Ol esas tro tarda ye apelar ca strekizo
   tags:
     does_not_match_previous_name: ne parigesas a antea nomo
+  terms:
+    title: "Serveskondiconi e Privatesguidilo di %{instance}"
   two_factor_authentication:
     add: Insertez
     disable: Extingar
@@ -511,12 +513,35 @@ io:
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
     webauthn: Sekuresklefi
   user_mailer:
+    warning:
+      title:
+        disable: Konto frostigesis
+        mark_statuses_as_sensitive: Posti markigesis quale sentoza
+        none: Averto
+        sensitive: Konto markigesis quale sentoza
+        silence: Konto limitigesis
+        suspend: Konto restriktigesis
     welcome:
+      edit_profile_action: Facez profilo
+      explanation: Subo esas guidilo por helpar vu komencar
+      final_action: Komencez postigar
+      full_handle: Vua kompleta profilnomo
       review_preferences_action: Chanjez preferaji
+      subject: Bonveno a Mastodon
+      tips: Guidili
+      title: Bonveno, %{name}!
   users:
+    follow_limit_reached: Vu ne povas sequar plu de %{limit} personi
     invalid_otp_token: La dufaktora autentikigila kodexo ne esas valida
+    otp_lost_help_html: Se vu perdas aceso de 2 konto, vu povas kontaktar kun %{email}
+    signed_in_as: 'Eniris quale:'
+  verification:
+    verification: Verifikeso
   webauthn_credentials:
+    add: Insertez nova sekuresklefo
     create:
+      error: Existas problemo kande insertar vua sekuresklefo. Probez itere.
       success: Vua sekuresklefo sucesoze insertesas.
+    delete: Efacez
     destroy:
       success: Vua sekuresklefo sucesoze efacesis.
