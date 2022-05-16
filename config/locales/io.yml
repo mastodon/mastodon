@@ -218,7 +218,37 @@ io:
       title: Site Settings
     trends:
       only_allowed: Nur permisato
+      statuses:
+        shared_by:
+          one: Partigesis o favorigesis 1 foye
+          other: Partigesis o favorigesis %{friendly_count} foye
+        title: Tendencoza posti
+      tags:
+        current_score: Nuna punto esas %{score}
+        dashboard:
+          tag_accounts_measure: specala uzeso
+          tag_languages_dimension: Maxim uzita lingui
+          tag_servers_dimension: Maxim uzita servili
+          tag_servers_measure: diferenta servili
+          tag_uses_measure: uzsumo
+        listable: Povas sugestesar
+        not_listable: Ne sugestesar
+        not_trendable: Ne aparas che tendenci
+        not_usable: Ne povas uzesar
+        peaked_on_and_decaying: Maxim uzita ye %{date}, nun diminutesas
+        title: Tendencoza hashtagi
+        trendable: Povas aparar che tendenci
+        trending_rank: 'Tendencorango #%{rank}'
+        usable: Povas uzesar
+        usage_comparison: Uzesis %{today} foyi hodie, la nombro esas %{yesterday} hiere
+        used_by_over_week:
+          one: Uzesis da 1 persono de pos 1 semano
+          other: Uzesis da %{count} personi de pos 1 semano
+      title: Tendenci
       trending: Tendenco
+    warning_presets:
+      add_new: Insertez novo
+      delete: Efacez
   admin_mailer:
     new_appeal:
       actions:
@@ -346,7 +376,15 @@ io:
       caches: Kontenajo quo memoresis da altra servilo forsan restas
       data_removal: Vua posti e altra informi netempale efacesis
       email_change_html: Vu povas <a href="%{path}">chanjar vua retpostoadreso</a> sen efacar vua konto
+      email_contact_html: Se ol ankore ne venas, vu povas retpostigar a <a href="mailto:%{email}">%{email}</a> por ganar helpo
+      email_reconfirmation_html: Se vu ne ganas konfirmretposto, vu povas <a href="%{path}">demandar itere</a>
+      irreversible: Vu ne povos riganar o riaktivigar vua konto
+      more_details_html: Por plu detali, videz <a href="%{terms_path}">privatesguidilo</a>.
+      username_available: Vua uzantonomo divenos disponebla itere
+      username_unavailable: Vua uzantonomo restos nedisponebla
   directories:
+    directory: Profilcheflisto
+    explanation: Deskovrez uzanti segun olia intereso
     explore_mastodon: Explorez %{title}
   disputes:
     strikes:
