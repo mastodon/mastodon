@@ -118,7 +118,7 @@ io:
       demote: Despromocez
       destroyed_msg: "Informi di %{username} nun aranjesis por efacesar aparante"
       disable: Frostigez
-      disable_sign_in_token_auth: Desaktivigez retpostofichpermiso
+      disable_sign_in_token_auth: Desaktivigez retpostofichyurizeso
       disable_two_factor_authentication: Desaktivigez 2FA
       disabled: Desinterdiktita
       display_name: Profilnomo
@@ -127,7 +127,7 @@ io:
       email: E-mail
       email_status: Retpostostando
       enable: Defrostigez
-      enable_sign_in_token_auth: Aktivigez retpostofichpermiso
+      enable_sign_in_token_auth: Aktivigez retpostofichyurizeso
       enabled: Aktivigita
       enabled_msg: Sucesoze desfrostigas konto di %{username}
       followers: Uzanti
@@ -183,6 +183,16 @@ io:
         targeted_reports: Reports made about this account
       unblocked_email_msg: Sucesoze deobstruktis retpostoadreso di %{username}
       unsilenced_msg: Sucesoza inversigis limito di konto di %{username}
+      unsuspended_msg: Sucesoze derestriktis konto di %{username}
+    announcements:
+      destroyed_msg: Anunco sucesoze efacesas!
+      published_msg: Anunco sucesoze publikigesas!
+      unpublished_msg: Anunco sucesoze depublikigesas!
+      updated_msg: Anunco sucesoza novigesas!
+    custom_emojis:
+      copied_msg: Sucesoze kreis lokala kopiuro di emocimajo
+      created_msg: Emocimajo sucesoze kreesas!
+      destroyed_msg: Kustumizita emocimajo sucesoza destruktesas!
     domain_blocks:
       add_new: Add new
       new:
@@ -213,12 +223,18 @@ io:
     new_appeal:
       actions:
         disable: frostigar olia konto
+  aliases:
+    created_msg: Sucesoze kreis nova alternativa nomo. Vu povas nun komencar transfero de la olda konto.
+    deleted_msg: Sucesoze efacis alternativa nomo. Transferar de ta konto a co ne esos posebla.
   application_mailer:
     notification_preferences: Chanjez retpostopreferaji
     settings: 'Chanjar la retpost-mesajala preferi: %{link}'
     view: 'Vidar:'
   applications:
+    created: Apliko sucesoze kreesas
+    destroyed: Apliko sucesoze efacesas
     invalid_url: La URL donita ne esas valida
+    token_regenerated: Acesficho sucesoze riganesas
   auth:
     didnt_get_confirmation: Ka tu ne recevis la instrucioni por konfirmar?
     forgot_password: Pasvorto obliviita?
@@ -237,8 +253,11 @@ io:
     distance_in_words:
       half_a_minute: Jus
       less_than_x_seconds: Jus
+  deletes:
+    success_msg: Vua konto sucesoze efacesis
   disputes:
     strikes:
+      appeal_approved: Ca streko sucesoza apelesis e nun ne esas valida
       approve_appeal: Aprobez rikonsidero
       reject_appeal: Refusez rikonsidero
   errors:
@@ -300,6 +319,13 @@ io:
       blocking: Listo de blokusiti
       following: Listo de sequati
     upload: Kargar
+  login_activities:
+    authentication_methods:
+      password: pasvorto
+      sign_in_token: retpostosekuresnumero
+      webauthn: sekuresklefi
+  migrations:
+    cancelled_msg: Sucesoze extingar ridirekto.
   notification_mailer:
     digest:
       body: Yen mikra rezumo di to, depos ke tu laste vizitis en %{since}
@@ -322,6 +348,11 @@ io:
     reblog:
       body: '%{name} diskonocigis tua mesajo:'
       subject: "%{name} diskonocigis tua mesajo"
+  otp_authentication:
+    enable: Aktivigez
+    manual_instructions: 'Se vu ne povas skanar numero QR e bezonas insertar manuala, subo esas textosekreto:'
+    setup: Facez
+    wrong_code: Insertita numero esas nevalida! Ka serviltempo e aparattempo esas korekta?
   pagination:
     next: Sequanta
     prev: Preiranta
@@ -339,6 +370,8 @@ io:
     descriptions:
       account: Publika posti de @%{acct}
       tag: 'Publika posti kun tago #%{hashtag}'
+  sessions:
+    revoke_success: Sesiono sucesoze deaprobesas
   settings:
     authorized_apps: Yurizita apliki
     back: Retro a Mastodon
@@ -347,6 +380,7 @@ io:
     import: Importacar
     preferences: Preferi
     two_factor_authentication: Dufaktora autentikigo
+    webauthn_authentication: Sekuresklefi
   statuses:
     open_in_web: Apertar retnavigile
     over_character_limit: limito de %{max} signi ecesita
@@ -362,11 +396,24 @@ io:
     errors:
       too_late: Ol esas tro tarda ye apelar ca strekizo
   two_factor_authentication:
+    add: Insertez
     disable: Extingar
+    disabled_success: 2-faktoryurizeso sucesoze desaktivigesas
+    edit: Modifikez
+    enabled_success: 2-faktoryurizeso sucesoze aktivigesas
     generate_recovery_codes: Generate Recovery Codes
+    methods: 2-faktormetodi
+    recovery_codes: Kopiez rigannumeri
+    recovery_codes_regenerated: Rigannumeri sucesoze rifacesas
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
+    webauthn: Sekuresklefi
   user_mailer:
     welcome:
       review_preferences_action: Chanjez preferaji
   users:
     invalid_otp_token: La dufaktora autentikigila kodexo ne esas valida
+  webauthn_credentials:
+    create:
+      success: Vua sekuresklefo sucesoze insertesas.
+    destroy:
+      success: Vua sekuresklefo sucesoze efacesis.
