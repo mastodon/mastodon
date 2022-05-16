@@ -500,6 +500,15 @@ io:
     does_not_match_previous_name: ne parigesas a antea nomo
   terms:
     title: "Serveskondiconi e Privatesguidilo di %{instance}"
+  themes:
+    contrast: Mastodon (Alta kontrasteso)
+    default: Mastodon (Obskura)
+    mastodon-light: Mastodon (Brila)
+  time:
+    formats:
+      default: "%d %b, %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Insertez
     disable: Extingar
@@ -514,6 +523,9 @@ io:
     webauthn: Sekuresklefi
   user_mailer:
     warning:
+      reason: 'Motivo:'
+      subject:
+        none: Averto por %{acct}
       title:
         disable: Konto frostigesis
         mark_statuses_as_sensitive: Posti markigesis quale sentoza
@@ -543,5 +555,13 @@ io:
       error: Existas problemo kande insertar vua sekuresklefo. Probez itere.
       success: Vua sekuresklefo sucesoze insertesas.
     delete: Efacez
+    delete_confirmation: Ka vu certe volas efacar ca sekuresklefo?
     destroy:
+      error: Existas problemo kande efacar vua sekuresklefo. Probez itere.
       success: Vua sekuresklefo sucesoze efacesis.
+    invalid_credential: Nevalida sekuresklefo
+    nickname_hint: Insertez nometo di vua nova sekuresklefo
+    not_enabled: Vu ne aktivigesas WebAuthn til nun
+    not_supported: Ca vidilo ne suportas sekuresklefi
+    otp_required: Por uzar sekuresklefi, aktivigez 2-faktoryurizeso unesme.
+    registered_on: Registris ye %{date}
