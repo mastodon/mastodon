@@ -360,17 +360,67 @@ io:
     other: Altra
     posting_defaults: Originala postoopcioni
     public_timelines: Publika tempolinei
+  relationships:
+    activity: Kontoaktiveso
+    dormant: Neaktiva
+    follow_selected_followers: Sequez kelka sequanti
+    followers: Sequanti
+    following: Sequati
+    invited: Invititi
+    last_active: Recente aktiva
+    most_recent: Maxim recenta
+    moved: Transferesis
+    mutual: Reciproka
+    primary: Primara
+    relationship: Relateso
+    remove_selected_domains: Efacez omna sequanti de selektita domeni
+    remove_selected_followers: Efacez selektita sequanti
+    remove_selected_follows: Desequez selektita uzanti
+    status: Kontostando
   remote_follow:
     acct: Enpozez tua uzernomo@instaluro de ube tu volas sequar ta uzero
     missing_resource: La URL di plussendado ne povis esar trovita
+    no_account_html: Ka vu ne havas konto? Vu povas <a href='%{sign_up_path}' target='_blank'>registrar hike</a>
     proceed: Durar por plussendar
     prompt: 'Tu sequeskos:'
+  remote_interaction:
+    favourite:
+      proceed: Durez favorigar
+      prompt: 'Vu povas favorigas ca posto:'
+    reblog:
+      proceed: Durez bustar
+      prompt: 'Vu volas bustar ca posto:'
+    reply:
+      proceed: Durez respondar
+      prompt: 'Vu volas respondar ca posto:'
   rss:
     content_warning: 'Kontenajaverto:'
     descriptions:
       account: Publika posti de @%{acct}
       tag: 'Publika posti kun tago #%{hashtag}'
   sessions:
+    activity: Antea aktiveso
+    browser: Vidilo
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Nesavita vidilo
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Vidilo Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: Vidilo QQ
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Nuna sesiono
+    description: "%{browser} che %{platform}"
     revoke_success: Sesiono sucesoze deaprobesas
   settings:
     authorized_apps: Yurizita apliki
@@ -384,6 +434,8 @@ io:
   statuses:
     open_in_web: Apertar retnavigile
     over_character_limit: limito de %{max} signi ecesita
+    pin_errors:
+      reblog: Busto ne povas pinglagesar
     show_more: Montrar plue
     visibilities:
       private: Montrar nur a sequanti
