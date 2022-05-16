@@ -436,17 +436,68 @@ io:
     over_character_limit: limito de %{max} signi ecesita
     pin_errors:
       reblog: Busto ne povas pinglagesar
+    poll:
+      total_people:
+        one: "%{count} persono"
+        other: "%{count} personi"
+      total_votes:
+        one: "%{count} voto"
+        other: "%{count} voti"
+      vote: Votez
     show_more: Montrar plue
+    show_newer: Montrez plu nova kozo
+    show_older: Montrez plu olda kozo
+    show_thread: Montrez postaro
+    sign_in_to_participate: Registrez por partoprenar en konverso
+    title: '%{name}: "%{quote}"'
     visibilities:
+      direct: Direta
       private: Montrar nur a sequanti
+      private_long: Nur montrez a sequanti
       public: Publika
+      public_long: Omnu povas vidar
       unlisted: Publika, ma ne aperos en publika tempolinei
+      unlisted_long: Omnu povas vidar ma ne listigesas che publika tempolinei
+  statuses_cleanup:
+    enabled: Automata efacez olda posti
+    enabled_hint: Automata efacez vua posti pos oli atingar fixita oldeslimito, se oli ne parigesas a 1 de suba ecepti
+    exceptions: Ecepti
+    ignore_favs: Ignorez favorati
+    ignore_reblogs: Ignorez busti
+    interaction_exceptions: Ecepti segun interagi
+    keep_direct: Retenez direta mesaji
+    keep_direct_hint: Ne efacas irga vua direta mesaji
+    keep_media: Retenez posti kun mediiatachaji
+    keep_media_hint: Ne efacas irga vua posti quo havas mediiatachaji
+    keep_pinned: Retenez pinglagita posti
+    keep_pinned_hint: Ne efacas irga vua pinglagita posti
+    keep_polls: Retenez votposti
+    keep_polls_hint: Ne efacas irga vua votposti
+    keep_self_bookmark: Retenez posti quon vu libromarkigis
+    keep_self_bookmark_hint: Ne efacas vua sua posti se vu libromarkigis li
+    keep_self_fav: Retenez posti quon vu favorigis
+    keep_self_fav_hint: Ne efacas vua sua posti se vu favorigis li
+    min_age:
+      '1209600': 2 semani
+      '15778476': 6 monati
+      '2629746': 1 monato
+      '31556952': 1 yaro
+      '5259492': 2 monati
+      '604800': 1 semano
+      '63113904': 2 yari
+      '7889238': 3 monati
+    min_age_label: Oldeslimito
+    min_favs: Retenez favorigita posti mine
+    min_reblogs: Retenez bustita posti mine
   stream_entries:
+    pinned: Pinglagita posto
     reblogged: diskonocigita
     sensitive_content: Titiliva kontenajo
   strikes:
     errors:
       too_late: Ol esas tro tarda ye apelar ca strekizo
+  tags:
+    does_not_match_previous_name: ne parigesas a antea nomo
   two_factor_authentication:
     add: Insertez
     disable: Extingar
