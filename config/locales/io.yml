@@ -245,15 +245,39 @@ io:
     reset_password: Chanjar la pasvorto
     security: Chanjar pasvorto
     set_new_password: Selektar nova pasvorto
+    trouble_logging_in: Ka ne povas enirar?
+    use_security_key: Uzes sekuresklefo
   authorize_follow:
+    already_following: Vu ja sequis ca konto
     error: Regretinde, eventis eraro probante konsultar la fora konto
     follow: Sequar
+    post_follow:
+      return: Montrez priflo de uzanti
     title: Sequar %{acct}
+  challenge:
+    confirm: Durez
+    invalid_password: Nevalida pasvorto
+    prompt: Konfirmez pasvorto por durar
+  date:
+    formats:
+      default: "%d %b, %Y"
+      with_month_name: "%d %B, %Y"
   datetime:
     distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
       half_a_minute: Jus
+      less_than_x_minutes: "%{count}m"
       less_than_x_seconds: Jus
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
   deletes:
+    proceed: Efacez konto
     success_msg: Vua konto sucesoze efacesis
   disputes:
     strikes:
@@ -267,9 +291,11 @@ io:
     '406': This page is not available in the requested format.
     '410': La pagino quan tu serchas ne plus existas.
     '422':
-    '429': Too many requests
+    '429': Tro multa agi
     '500':
-    '503': The page could not be served due to a temporary server failure.
+      content: Regreto, ma evas nefuncionas che nia latero.
+      title: Ca pagino ne esas korekta
+    '503': La pagino ne povas montresas pro tempala servilfalio.
   existing_username_validator:
     not_found_multiple: ne povas trovar %{usernames}
   exports:
@@ -306,9 +332,22 @@ io:
       delete: Efacez
       empty: Vu ne havas filtrili.
       title: Filtrili
+    new:
+      title: Insertez nova filtrilo
+  footer:
+    developers: Developeri
+    more: Plu…
+    resources: Resursi
+    trending_now: Nuna tendenco
   generic:
+    all: Omna
     changes_saved_msg: Chanji senprobleme konservita!
+    copy: Kopiez
+    delete: Efacez
+    none: Nulo
+    order_by: Asortez quale
     save_changes: Konservar la chanji
+    today: hodie
     validation_errors:
       one: Ulo ne eventis senprobleme! Voluntez konsultar la suba eror-raporto
       other: Ulo ne eventis senprobleme! Voluntez konsultar la suba %{count} eror-raporti
@@ -319,6 +358,7 @@ io:
       blocking: Listo de blokusiti
       following: Listo de sequati
     upload: Kargar
+  in_memoriam_html: Memorialo.
   invites:
     delete: Deaktivigez
     expired: Expiris
@@ -336,11 +376,21 @@ io:
       one: 1 uzo
       other: "%{count} uzi"
     max_uses_prompt: Nula limito
+    prompt: Facez e partigez ligili kun altra personi por donar aceso a ca servilo
+    table:
+      expires_at: Expiros
+      uses: Uzi
+    title: Invitez personi
   login_activities:
     authentication_methods:
       password: pasvorto
       sign_in_token: retpostosekuresnumero
       webauthn: sekuresklefi
+  media_attachments:
+    validations:
+      images_and_video: Ne povas atachar video a posto quo ja kontenar imaji
+      not_ready: Ne povas faili quo ankore procedigesas. Probez itere pose!
+      too_many: Ne povas atachar plu de 4 faili
   migrations:
     cancelled_msg: Sucesoze extingar ridirekto.
   notification_mailer:
