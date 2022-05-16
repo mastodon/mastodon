@@ -247,9 +247,38 @@ io:
       rules_check:
         action: Jerez servilreguli
         message_html: Vu ne fixis irga servilreguli.
+      sidekiq_process_check:
+        message_html: Sidekiq procedo ne funcionas ye %{value} fask(o). Kontrolez vua opciono di Sidekiq
+    tags:
+      review: Kontrolez stando
+      updated_msg: Hashtagopcioni novigesis sucesoze
+    title: Administro
     trends:
+      allow: Permisez
+      approved: Aprobesis
+      disallow: Despermisez
+      links:
+        allow: Permisez ligilo
+        allow_provider: Permisez publikiganto
+        disallow: Despermisez ligilo
+        disallow_provider: Despermisez publikiganto
+        shared_by_over_week:
+          one: Partigesis da 1 persono de pos antea semano
+          other: Partigesis da %{count} personi de pos antea semano
+        title: Tendencoza ligili
+        usage_comparison: Partigesis %{today} foyi hodie, la nombro esas %{yesterday} hiere
       only_allowed: Nur permisato
+      pending_review: Vartas kontrolo
+      preview_card_providers:
+        allowed: Ligili de ca publikiganto povas divenar tendenco
+        rejected: Ligili de ca publikiganto ne divenos tendenco
+        title: Publikiganti
+      rejected: Refuzesis
       statuses:
+        allow: Permisez posto
+        allow_account: Permisez skribanto
+        disallow: Despermisez posto
+        disallow_account: Despermisez skribanto
         shared_by:
           one: Partigesis o favorigesis 1 foye
           other: Partigesis o favorigesis %{friendly_count} foye
