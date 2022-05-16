@@ -803,6 +803,7 @@ th:
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
       subject: รายงานใหม่สำหรับ %{instance} (#%{id})
     new_trends:
+      body: 'รายการดังต่อไปนี้จำเป็นต้องมีการตรวจทานก่อนที่จะสามารถแสดงรายการเป็นสาธารณะ:'
       new_trending_links:
         no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติในปัจจุบัน
         title: ลิงก์ที่กำลังนิยม
@@ -956,10 +957,12 @@ th:
       appeal_submitted_at: ส่งการอุทธรณ์แล้ว
       appeals:
         submit: ส่งการอุทธรณ์
+      approve_appeal: อนุมัติการอุทธรณ์
       associated_report: รายงานที่เกี่ยวข้อง
       created_at: ลงวันที่
       description_html: นี่คือการกระทำที่ใช้กับบัญชีของคุณและคำเตือนที่ส่งถึงคุณโดยพนักงานของ %{instance}
       recipient: ส่งถึง
+      reject_appeal: ปฏิเสธการอุทธรณ์
       status: 'โพสต์ #%{id}'
       status_removed: เอาโพสต์ออกจากระบบไปแล้ว
       title: "%{action} จาก %{date}"

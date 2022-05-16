@@ -75,6 +75,14 @@
       {
         "defaultMessage": "Unmute notifications from @{name}",
         "id": "account.unmute_notifications"
+      },
+      {
+        "defaultMessage": "Mute @{name}",
+        "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Block @{name}",
+        "id": "account.block"
       }
     ],
     "path": "app/javascript/mastodon/components/account.json"
@@ -786,6 +794,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/account_timeline/components/header.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "This profile has been hidden by the moderators of your server.",
+        "id": "limited_account_hint.title"
+      },
+      {
+        "defaultMessage": "Show profile anyway",
+        "id": "limited_account_hint.action"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_timeline/components/limited_account_hint.json"
   },
   {
     "descriptors": [
@@ -1889,6 +1910,10 @@
         "id": "timeline_hint.resources.followers"
       },
       {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
+      },
+      {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
       },
@@ -1904,6 +1929,10 @@
       {
         "defaultMessage": "Follows",
         "id": "timeline_hint.resources.follows"
+      },
+      {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
       },
       {
         "defaultMessage": "Profile unavailable",
