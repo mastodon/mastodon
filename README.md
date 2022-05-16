@@ -1,93 +1,28 @@
-![Mastodon](https://i.imgur.com/NhZc40l.png)
-========
+![decodon_logo_full](https://user-images.githubusercontent.com/382669/168650458-7d1620ee-9411-4d96-8786-8d1a342dbd71.png)
 
-[![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
-[![Build Status](https://img.shields.io/circleci/project/github/mastodon/mastodon.svg)][circleci]
-[![Code Climate](https://img.shields.io/codeclimate/maintainability/mastodon/mastodon.svg)][code_climate]
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
-[![Docker Pulls](https://img.shields.io/docker/pulls/tootsuite/mastodon.svg)][docker]
+## Decodon
 
-[releases]: https://github.com/mastodon/mastodon/releases
-[circleci]: https://circleci.com/gh/mastodon/mastodon
-[code_climate]: https://codeclimate.com/github/mastodon/mastodon
-[crowdin]: https://crowdin.com/project/mastodon
-[docker]: https://hub.docker.com/r/tootsuite/mastodon/
+An opinionated fork of mastodon with the following modifications:
 
-Mastodon is a **free, open-source social network server** based on ActivityPub where users can follow friends and discover new ones. On Mastodon, users can publish anything they want: links, pictures, text, video. All Mastodon servers are interoperable as a federated network (users on one server can seamlessly communicate with users from another one, including non-Mastodon software that implements ActivityPub)!
+* All accounts are locked/private, meaning content is only distributed to followers [jesseplusplus/decodon#1](https://github.com/jesseplusplus/decodon/pull/1)
 
-Click below to **learn more** in a video:
+* Support for push notifications to Expo-based apps [jesseplusplus/decodon#2](https://github.com/jesseplusplus/decodon/pull/2)
 
-[![Screenshot](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/ezgif-2-60f1b00403.gif)][youtube_demo]
+* Pre-signed URLs for extra-secure storage of uploaded private media [jesseplusplus/decodon#9](https://github.com/jesseplusplus/decodon/pull/9)
 
-[youtube_demo]: https://www.youtube.com/watch?v=IPSbNdBmWKE
+* replies are treated more like comments and are filtered from the home feed [jesseplusplus/decodon#3](https://github.com/jesseplusplus/decodon/pull/3)
 
-## Navigation
+* circles (lists of followers you can address posts to instead of only followers) - cherry-picked from [fedibird](https://github.com/fedibird/fedibird) - [jesseplusplus/decodon#13](https://github.com/jesseplusplus/decodon/pull/13)
 
-- [Project homepage 🐘](https://joinmastodon.org)
-- [Support the development via Patreon][patreon]
-- [View sponsors](https://joinmastodon.org/sponsors)
-- [Blog](https://blog.joinmastodon.org)
-- [Documentation](https://docs.joinmastodon.org)
-- [Browse Mastodon servers](https://joinmastodon.org/#getting-started)
-- [Browse Mastodon apps](https://joinmastodon.org/apps)
+* default "inner circle" for all accounts to get them started - [jesseplusplus/decodon#14](https://github.com/jesseplusplus/decodon/pull/14)
 
-[patreon]: https://www.patreon.com/mastodon
+* more control over logo and branding in email templates [jesseplusplus/decodon#10](https://github.com/jesseplusplus/decodon/pull/10)
 
-## Features
+* updated heroku deployment configs
 
-<img src="https://docs.joinmastodon.org/elephant.svg" align="right" width="30%" />
+## Use
 
-### No vendor lock-in: Fully interoperable with any conforming platform
-
-It doesn't have to be Mastodon; whatever implements ActivityPub is part of the social network! [Learn more](https://blog.joinmastodon.org/2018/06/why-activitypub-is-the-future/)
-
-### Real-time, chronological timeline updates
-
-Updates of people you're following appear in real-time in the UI via WebSockets. There's a firehose view as well!
-
-### Media attachments like images and short videos
-
-Upload and view images and WebM/MP4 videos attached to the updates. Videos with no audio track are treated like GIFs; normal videos loop continuously!
-
-### Safety and moderation tools
-
-Mastodon includes private posts, locked accounts, phrase filtering, muting, blocking and all sorts of other features, along with a reporting and moderation system. [Learn more](https://blog.joinmastodon.org/2018/07/cage-the-mastodon/)
-
-### OAuth2 and a straightforward REST API
-
-Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Streaming APIs. This results in a rich app ecosystem with a lot of choices!
-
-## Deployment
-
-### Tech stack:
-
-- **Ruby on Rails** powers the REST API and other web pages
-- **React.js** and Redux are used for the dynamic parts of the interface
-- **Node.js** powers the streaming API
-
-### Requirements:
-
-- **PostgreSQL** 9.5+
-- **Redis** 4+
-- **Ruby** 2.5+
-- **Node.js** 12+
-
-The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
-
-A **Vagrant** configuration is included for development purposes. To use it, complete following steps:
-
-- Install Vagrant and Virtualbox
-- Run `vagrant up`
-- Run `vagrant ssh -c "cd /vagrant && foreman start"`
-- Open `http://mastodon.local` in your browser
-
-## Contributing
-
-Mastodon is **free, open-source software** licensed under **AGPLv3**.
-
-You can open issues for bugs you've found or features you think are missing. You can also submit pull requests to this repository or submit translations using Crowdin. To get started, take a look at [CONTRIBUTING.md](CONTRIBUTING.md). If your contributions are accepted into Mastodon, you can request to be paid through [our OpenCollective](https://opencollective.com/mastodon).
-
-**IRC channel**: #mastodon on irc.libera.chat
+Please feel free to run your own decodon server if all of the above features appeal to you, or to cherry-pick any changes you'd like to your own fork. Right now none of these features are optional or configurable.
 
 ## License
 
