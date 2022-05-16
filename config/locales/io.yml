@@ -307,24 +307,55 @@ io:
   deletes:
     proceed: Efacez konto
     success_msg: Vua konto sucesoze efacesis
+  directories:
+    explore_mastodon: Explorez %{title}
   disputes:
     strikes:
+      action_taken: Agesis
+      appeal: Apelo
       appeal_approved: Ca streko sucesoza apelesis e nun ne esas valida
+      appeal_rejected: Apelo refuzesis
+      appeal_submitted_at: Apelo sendesis
+      appealed_msg: Vua apelo sendesis. Se ola aprobesis, vu notifikesos.
+      appeals:
+        submit: Sendez apelo
       approve_appeal: Aprobez rikonsidero
+      associated_report: Relatata raporto
+      created_at: Dato
+      recipient: Sendesas a
       reject_appeal: Refusez rikonsidero
+      status: 'Posto #%{id}'
+      status_removed: Posto ja efacis de sistemo
+      title: "%{action} de %{date}"
+      title_actions:
+        delete_statuses: Postoefaco
+        disable: Frostigo di konto
+        mark_statuses_as_sensitive: Markigo di posti quale sentoza
+        none: Averto
+        sensitive: Markigo di konto quale sentoza
+        silence: Limitigo di konto
+        suspend: Restrikto de konto
+      your_appeal_approved: Vua konto aprobesis
+      your_appeal_pending: Vu sendis apelo
+      your_appeal_rejected: Vua apelo refuzesis
+  domain_validator:
+    invalid_domain: ne esas valida domennomo
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
+    '400': Demando quon vu sendis esas nevalida o malstrukturala.
+    '403': Vu ne havas permiso por vidar ca pagino.
     '404': La pagino quan tu serchas ne existas.
-    '406': This page is not available in the requested format.
+    '406': Ca pagino ne esas displonebla kun demandita formato.
     '410': La pagino quan tu serchas ne plus existas.
     '422':
+      content: Sekuresverifiko faliis. Ka vu obstruktas kukii?
+      title: Sekuresverifiko faliis
     '429': Tro multa agi
     '500':
       content: Regreto, ma evas nefuncionas che nia latero.
       title: Ca pagino ne esas korekta
     '503': La pagino ne povas montresas pro tempala servilfalio.
   existing_username_validator:
+    not_found: ne povas trovar lokala uzanti kun ta uzantonomo
     not_found_multiple: ne povas trovar %{usernames}
   exports:
     archive_takeout:
@@ -379,7 +410,13 @@ io:
     validation_errors:
       one: Ulo ne eventis senprobleme! Voluntez konsultar la suba eror-raporto
       other: Ulo ne eventis senprobleme! Voluntez konsultar la suba %{count} eror-raporti
+  html_validator:
+    invalid_markup: 'kontenas nevalida kompozuro di HTML: %{error}'
   imports:
+    errors:
+      over_rows_processing_limit: kontenas plu de %{count} horizontala lineo
+    modes:
+      merge: Kombinez
     preface: Tu povas importacar kelka datumi, tal quala listi de omna homi quin tu sequas o blokusas, a tua konto di ca instaluro, per dosiero exportacita de altra instaluro.
     success: Tua datumi esis senprobleme importacita ed esos traktita quale projetita
     types:
@@ -509,6 +546,7 @@ io:
           thousand: K
           trillion: T
   otp_authentication:
+    code_hint: Insertez numero quo facesis da vua yurizsoftwaro por konfirmar
     enable: Aktivigez
     manual_instructions: 'Se vu ne povas skanar numero QR e bezonas insertar manuala, subo esas textosekreto:'
     setup: Facez
@@ -534,6 +572,10 @@ io:
     other: Altra
     posting_defaults: Originala postoopcioni
     public_timelines: Publika tempolinei
+  reactions:
+    errors:
+      limit_reached: Limito di diferenta reakto atingesis
+      unrecognized_emoji: ne esas rikonocita emocimajo
   relationships:
     activity: Kontoaktiveso
     dormant: Neaktiva
@@ -567,11 +609,18 @@ io:
     reply:
       proceed: Durez respondar
       prompt: 'Vu volas respondar ca posto:'
+  reports:
+    errors:
+      invalid_rules: ne refera valida reguli
   rss:
     content_warning: 'Kontenajaverto:'
     descriptions:
       account: Publika posti de @%{acct}
       tag: 'Publika posti kun tago #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Vu ecesas limito quale esas %{limit} projetita posti por hodio
+    over_total_limit: Vu ecesas limito quale esas %{limit} projetita posti
+    too_soon: Projetita dato mustas esar en futuro
   sessions:
     activity: Antea aktiveso
     browser: Vidilo
@@ -595,6 +644,7 @@ io:
       weibo: Weibo
     current_session: Nuna sesiono
     description: "%{browser} che %{platform}"
+    explanation: Co esas retvidili quo nun konektesis a vua konto di Mastodon.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -742,15 +792,29 @@ io:
     disable: Extingar
     disabled_success: 2-faktoryurizeso sucesoze desaktivigesas
     edit: Modifikez
+    enabled: 2-faktoryurizeso aktivigesas
     enabled_success: 2-faktoryurizeso sucesoze aktivigesas
     generate_recovery_codes: Generate Recovery Codes
     methods: 2-faktormetodi
+    otp: Yurizsoftwaro
     recovery_codes: Kopiez rigannumeri
     recovery_codes_regenerated: Rigannumeri sucesoze rifacesas
     recovery_instructions_html: If you ever lose access to your phone, you can use one of the recovery codes below to regain access to your account. Keep the recovery codes safe, for example by printing them and storing them with other important documents.
     webauthn: Sekuresklefi
   user_mailer:
+    appeal_approved:
+      action: Irez a vua konto
+      subject: Vua apelo de %{date} aprobesis
+      title: Apelo aprobesis
+    appeal_rejected:
+      subject: Vua apelo de %{date} refuzesis
+      title: Apelo refuzesis
+    backup_ready:
+      explanation: Vu demandis kompleta kopiur di vua konto di Mastodon. Ol esas nun pronte deschargebla!
+      subject: Vua arkivo pronte deschargebla
+      title: Arkivekpreno
     suspicious_sign_in:
+      change_password: chanjez vua pasvorto
       details: 'Co esas detali di eniro:'
       explanation: Ni deskovris eniro a vua konto de nova adreso IP.
       subject: Vua konto acesesis de nova adreso IP
