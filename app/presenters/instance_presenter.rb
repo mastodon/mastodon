@@ -56,6 +56,14 @@ class InstancePresenter
     @hero ||= Rails.cache.fetch('site_uploads/hero') { SiteUpload.find_by(var: 'hero') }
   end
 
+  def logo
+    @logo ||= Rails.cache.fetch('site_uploads/logo') { SiteUpload.find_by(var: 'logo') }
+  end
+
+  def logo_transparent
+    @logo_transparent ||= Rails.cache.fetch('site_uploads/logo_transparent') { SiteUpload.find_by(var: 'logo_transparent') }
+  end
+
   def mascot
     @mascot ||= Rails.cache.fetch('site_uploads/mascot') { SiteUpload.find_by(var: 'mascot') }
   end

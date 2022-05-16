@@ -99,10 +99,12 @@ module AccountsHelper
   end
 
   def svg_logo
-    content_tag(:svg, tag(:use, 'xlink:href' => '#decodon-logo'), 'viewBox' => '0 0 216.4144 232.00976')
+    @logo_transparent = InstancePresenter.new.logo_transparent&.file&.url
+    content_tag(:svg, @logo_transparent || tag(:use, 'xlink:href' => '#decodon-logo'), 'viewBox' => '0 0 216.4144 232.00976')
   end
 
   def svg_logo_full
-    content_tag(:svg, tag(:use, 'xlink:href' => '#decodon-logo-full'), 'viewBox' => '0 0 713.35878 175.8678')
+    @logo_full = InstancePresenter.new.logo&.file&.url
+    content_tag(:svg, @logo_full || tag(:use, 'xlink:href' => '#decodon-logo-full'), 'viewBox' => '0 0 713.35878 175.8678')
   end
 end

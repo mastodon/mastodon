@@ -91,8 +91,8 @@ describe InstancePresenter do
   end
 
   describe '#source_url' do
-    it 'returns "https://github.com/mastodon/mastodon"' do
-      expect(instance_presenter.source_url).to eq('https://github.com/mastodon/mastodon')
+    it 'returns "https://github.com/jesseplusplus/decodon"' do
+      expect(instance_presenter.source_url).to eq('https://github.com/jesseplusplus/decodon')
     end
   end
 
@@ -110,10 +110,31 @@ describe InstancePresenter do
     end
   end
 
+  describe '#logo' do
+    it 'returns SiteUpload' do
+      logo = Fabricate(:site_upload, var: 'logo')
+      expect(instance_presenter.logo).to eq(logo)
+    end
+  end
+
+  describe '#logo_transparent' do
+    it 'returns SiteUpload' do
+      logo_transparent = Fabricate(:site_upload, var: 'logo_transparent')
+      expect(instance_presenter.logo_transparent).to eq(logo_transparent)
+    end
+  end
+
   describe '#mascot' do
     it 'returns SiteUpload' do
       mascot = Fabricate(:site_upload, var: 'mascot')
       expect(instance_presenter.mascot).to eq(mascot)
+    end
+  end
+
+  describe '#email' do
+    it 'returns SiteUpload' do
+      email = Fabricate(:site_upload, var: 'email')
+      expect(instance_presenter.email).to eq(email)
     end
   end
 end
