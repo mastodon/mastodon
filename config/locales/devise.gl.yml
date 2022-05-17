@@ -1,4 +1,3 @@
----
 gl:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ gl:
     failure:
       already_authenticated: Xa estás conectada.
       inactive: A túa conta aínda non está activada.
-      invalid: "%{authentication_keys} ou contrasinal non validos."
+      invalid: '%{authentication_keys} ou contrasinal non validos.'
       last_attempt: Tes un intento máis antes de que a túa conta fique bloqueada.
       locked: A túa conta está bloqueada.
-      not_found_in_database: "%{authentication_keys} ou contrasinal non válidos."
+      not_found_in_database: '%{authentication_keys} ou contrasinal non válidos.'
       pending: A túa conta aínda está baixo revisión.
       timeout: A túa sesión expirou. Por favor, entra de novo para continuares.
       unauthenticated: Precisas de entrar na túa conta ou rexistrarte antes de continuar.
@@ -92,7 +91,7 @@ gl:
       signed_up_but_inactive: A túa conta foi rexistada. Porén aínda non está activada.
       signed_up_but_locked: A túa conta foi rexistada. Porén está bloqueada.
       signed_up_but_pending: Unha mensaxe cunha ligazón de confirmación foi enviada ó teu enderezo de email. Após premer na ligazón, revisaremos a túa aplicación. Serás notificado se a túa conta é aprobada.
-      signed_up_but_unconfirmed: Unha mensaxe cunha ligazón de confirmación foi enviada ó teu email. Por favor, segue esa ligazón para activar a túa conta. Comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o correo.
+      signed_up_but_unconfirmed: Enviouse unha mensaxe cunha ligazón de confirmación ao teu email. Por favor, preme nesa ligazón para activar a túa conta. Comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o correo.
       update_needs_confirmation: Actualizaches a túa conta de xeito correcto, pero precisamos verificar o teu novo enderezo de email. Por favor, revisa o teu email e segue a ligazón para confirmar o teu novo enderezo de email. Comproba o teu cartafol de correo lixo (spam) se ves que non recibiches o correo.
       updated: A túa conta foi actualizada de xeito correcto.
     sessions:
