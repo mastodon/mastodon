@@ -200,7 +200,65 @@ io:
           desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
       undo: Undo
     instances:
+      availability:
+        failure_threshold_reached: Faliolimito atingesis en %{date}.
+        failures_recorded:
+          one: Falita probo en %{count} dio.
+          other: Falita probi en %{count} dii.
+        no_failures_recorded: Nula falio en rekordo.
+        title: Disponebleso
+        warning: Antea probo di konekto a ca servilo esas nesucesoza
+      back_to_all: Omna
+      back_to_limited: Limitigita
+      back_to_warning: Averto
+      by_domain: Domeno
+      confirm_purge: Ka vu certe volas netempale efacar informi de ca domeno?
+      content_policies:
+        comment: Interna noto
+        policies:
+          reject_media: Refusez medii
+          reject_reports: Refusez raporti
+          silence: Limito
+          suspend: Restriktez
+        policy: Guidilo
+        reason: Publika motivo
+        title: Kontenajguidili
+      dashboard:
+        instance_accounts_dimension: Maxim sequata konti
+        instance_accounts_measure: retenata konti
+        instance_followers_measure: nia sequanti ibe
+        instance_follows_measure: olia sequanti hike
+        instance_languages_dimension: Maxim uzata lingui
+        instance_media_attachments_measure: retenata mediiatachaji
+        instance_reports_measure: raporti pri oli
+        instance_statuses_measure: retenata posti
+      delivery:
+        all: Omna
+        clear: Efacez senderori
+        failing: Falias
+        restart: Rikomencez sendo
+        stop: Cesez sendo
+        unavailable: Nedisponebla
+      delivery_available: Sendo esas disponebla
+      delivery_error_days: Senderordii
+      delivery_error_hint: Se sendo ne esas posebla dum %{count} dii, ol automata markigesos quale ne sendebla.
+      destroyed_msg: Informi de %{domain} nun faskigesis por partikulara efaco.
+      empty: Nula domeni.
+      known_accounts:
+        one: "%{count} savata konto"
+        other: "%{count} savata konti"
+      moderation:
+        all: Omna
+        limited: Limitigita
+        title: Jero
+      private_comment: Privata komento
+      public_comment: Publika komento
+      purge: Efacez grande
       title: Known Instances
+      total_blocked_by_us: Obstruktesis da ni
+      total_followed_by_them: Sequesis da oli
+      total_followed_by_us: Sequesis da ni
+      total_reported: Raporti pri oli
       total_storage: Mediiatachaji
       totals_time_period_hint_html: Sumi quo montresas sube inkluzas informi de pos la komenco.
     invites:
