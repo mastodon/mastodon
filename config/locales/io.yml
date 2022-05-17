@@ -179,15 +179,65 @@ io:
       removed_avatar_msg: Sucesoze efacis profilimajo di %{username}
       removed_header_msg: Sucesoze efacis kapimajo di %{username}
       resend_confirmation:
+        already_confirmed: Ca uzanto ja konfirmesis
+        send: Risendez konfirmretposto
         success: Konfirmretposto sucesoze sendesas!
+      reset: Richanjez
+      reset_password: Richanjez pasvorto
+      resubscribe: Riabonez
+      role: Permisi
+      roles:
+        admin: Administrero
+        moderator: Jerero
+        staff: Laborero
+        user: Uzanto
+      search: Trovez
+      search_same_email_domain: Altra uzanti kun sama retpostodomeno
+      search_same_ip: Altra uzanti kun sama IP
+      security_measures:
+        only_password: Nur pasvorto
+        password_and_2fa: Pasvorto e 2FA
+      sensitive: Forcsentoza
+      sensitized: Markigesis quale sentoza
+      shared_inbox_url: Partigita enbux-URL
       show:
         created_reports: Reports created by this account
         targeted_reports: Reports made about this account
+      silence: Limito
+      silenced: Limitigita
+      statuses: Posti
+      strikes: Antea streki
+      subscribe: Abonez
+      suspend: Restriktez
+      suspended: Restriktita
+      title: Konti
+      unblock_email: Deobstruktez retpostoadreso
       unblocked_email_msg: Sucesoze deobstruktis retpostoadreso di %{username}
+      unconfirmed_email: Nekonfirmita retposto
+      undo_sensitized: Deagez forcsentoza
+      undo_silenced: Deagez limito
+      undo_suspension: Deagez restrikto
       unsilenced_msg: Sucesoza inversigis limito di konto di %{username}
+      unsubscribe: Deabonez
       unsuspended_msg: Sucesoze derestriktis konto di %{username}
+      username: Uzantonomo
+      view_domain: Videz rezumo di domeno
+      warn: Avertez
+      web: Interret
+      whitelisted: Permisesis por federato
     action_logs:
       action_types:
+        approve_appeal: Aprobez apelo
+        approve_user: Aprobez uzanto
+        assigned_to_self_report: Taskigez raporto
+        change_email_user: Chanjez retposto por uzanto
+        confirm_user: Konfirmez uzanto
+        create_account_warning: Kreez averto
+        create_announcement: Kreez anunco
+        create_custom_emoji: Kreez kustumizita emocimajo
+        create_domain_allow: Kreez domenpermiso
+        create_domain_block: Kreez domenobstrukto
+        create_email_domain_block: Kreez retpostodomenobstrukto
         create_ip_block: Kreez IP-regulo
         create_unavailable_domain: Kreez nedisponebla domeno
         demote_user: Despromocez uzanto
