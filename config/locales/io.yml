@@ -210,6 +210,7 @@ io:
       subscribe: Abonez
       suspend: Restriktez
       suspended: Restriktita
+      suspension_irreversible: Ca informi di ca konto neinversigeble efacesis. Vu povas derestriktar konto por uzebligar lu ma ol ne riganos irga dati quon ol antee havis.
       title: Konti
       unblock_email: Deobstruktez retpostoadreso
       unblocked_email_msg: Sucesoze deobstruktis retpostoadreso di %{username}
@@ -424,8 +425,10 @@ io:
       destroyed_msg: Domenobstrukto desagesis
       domain: Domeno
       edit: Modifikez domenobstrukto
+      existing_domain_block_html: Vu ja povis plu rigoroza limiti a %{name}, vu bezonas <a href="%{unblock_url}">deobstruktar</a> unesme.
       new:
         create: Kreez obstrukto
+        hint: Domenobstrukto ne preventos kreo di kontrekordaji en datumaturo, ma retroaktive e automate aplikos partikulara jermetodi a ta konti.
         severity:
           desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
           noop: Nulo
@@ -436,7 +439,9 @@ io:
       private_comment: Privata komento
       private_comment_hint: Komento pri ca domenlimito esas por interna uzo da jereri.
       public_comment: Publika komento
+      public_comment_hint: Komentez pri ca domenlimito por la publiko, se reklamar listo di domenlimito aktivigesis.
       reject_media: Refusez mediifaili
+      reject_media_hint: Efacas lokale retenita mediifaili e refuzas deschargar irgo en futuro. Nerelatata por restrikti
       reject_reports: Refuzez raporti
       reject_reports_hint: Ignorez omna raporti quo venas de ca domeno. Nerelatata por restrikti
       undo: Undo
@@ -482,6 +487,7 @@ io:
       confirm_purge: Ka vu certe volas netempale efacar informi de ca domeno?
       content_policies:
         comment: Interna noto
+        description_html: Vu povas fixar kontenajguidili quo aplikesos a omna konti de ca domeno e irga oli subdomeni.
         policies:
           reject_media: Refusez medii
           reject_reports: Refusez raporti
@@ -521,6 +527,7 @@ io:
       private_comment: Privata komento
       public_comment: Publika komento
       purge: Efacez grande
+      purge_description_html: Se vu kredas ke ca domeno esas nekonektata netempale, vu povas efacar omna kontorekordi e relatata informi de ca domeno de vua reteneyo. Co forsan esas nekurta.
       title: Known Instances
       total_blocked_by_us: Obstruktesis da ni
       total_followed_by_them: Sequesis da oli
@@ -559,6 +566,7 @@ io:
       disable: Desaktivigez
       disabled: Desaktivigita
       enable: Aktivigez
+      enable_hint: Pos aktivigesar, vua servilo abonos omna publika posti de ca relayo, e komencos sendar publika posti di ca servilo a ol.
       enabled: Aktivigita
       inbox_url: URL di relayo
       pending: Vartas aprobo di relayo
@@ -578,6 +586,8 @@ io:
           other: "%{count} noti"
       action_log: Kontrollogo
       action_taken_by: Agesis da
+      actions:
+        delete_description_html: Raportigita posti efacesos e streko rekordigesos por helpar vu intensigar en nexta avertpunti da sama konto.
       add_to_report: Insertez plu a raporto
       are_you_sure: Ka vu esas certa?
       assign_to_self: Taskigez me
