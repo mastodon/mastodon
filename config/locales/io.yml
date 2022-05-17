@@ -212,9 +212,44 @@ io:
         title: Kustumizita CSS
       default_noindex:
         desc_html: Efektigar omna uzanti quo ne chanjis ca opciono per su
+        title: Despartoprenigez uzanti de trovmotorindexo quale originala stando
+      domain_blocks:
+        all: A omnu
+        disabled: A nulu
+        title: Montrez domenobstrukti
+        users: A enirinta lokala uzanti
+      domain_blocks_rationale:
+        title: Montrez motivo
+      hero:
+        title: Heroimajo
+      mascot:
+        title: Reprezenterimajo
+      peers_api_enabled:
+        desc_html: Domennomo quon ca servilo renkontris en fediverso
+        title: Publikigez listo di deskovrita servili en API
+      preview_sensitive_media:
+        title: Montrez sentoza medii e OpenGraph previdi
+      profile_directory:
+        desc_html: Permisez uzanti deskovresar
+        title: Aktivigez profilcheflisto
       registrations:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
+          title: Mesajo di klozita registro
+        deletion:
+          desc_html: Permisez irgu efacar sua konto
+          title: Apertez kontoefaco
+        min_invite_role:
+          disabled: Nulu
+          title: Permisez inviti da
+        require_invite_text:
+          title: Bezonez nova uzanti insertar motivo por juntar
+      registrations_mode:
+        modes:
+          approved: Aprobo bezonesas por registro
+          none: Nulu povas registrar
+          open: Irgu povas registrar
+        title: Registromodo
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Site description
