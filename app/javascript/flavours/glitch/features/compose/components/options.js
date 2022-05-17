@@ -12,6 +12,7 @@ import IconButton from 'flavours/glitch/components/icon_button';
 import TextIconButton from './text_icon_button';
 import Dropdown from './dropdown';
 import PrivacyDropdown from './privacy_dropdown';
+import LanguageDropdown from '../containers/language_dropdown_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Utils.
@@ -306,6 +307,7 @@ class ComposerOptions extends ImmutablePureComponent {
             title={formatMessage(messages.spoiler)}
           />
         )}
+        <LanguageDropdown />
         <Dropdown
           active={advancedOptions && advancedOptions.some(value => !!value)}
           disabled={disabled || isEditing}
