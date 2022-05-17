@@ -193,12 +193,57 @@ io:
       copied_msg: Sucesoze kreis lokala kopiuro di emocimajo
       created_msg: Emocimajo sucesoze kreesas!
       destroyed_msg: Kustumizita emocimajo sucesoza destruktesas!
+    dashboard:
+      website: Retsito
+    disputes:
+      appeals:
+        empty: Nula apeli.
+        title: Apeli
+    domain_allows:
+      add_new: Permisez federato kun domeno
+      created_msg: Domeno sucesoza permisesas por federato
+      destroyed_msg: Domeno despermisesas de federato
+      undo: Despermisez federato kun domeno
     domain_blocks:
       add_new: Add new
+      created_msg: Domenobstrukto nun procedesas
+      destroyed_msg: Domenobstrukto desagesis
+      domain: Domeno
+      edit: Modifikez domenobstrukto
       new:
+        create: Kreez obstrukto
         severity:
           desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data."
+          noop: Nulo
+          silence: Silencigez
+          suspend: Restriktez
+        title: Nova domenobstrukto
+      obfuscate: Nedicernebligez domennomo
+      private_comment: Privata komento
+      private_comment_hint: Komento pri ca domenlimito esas por interna uzo da jereri.
+      public_comment: Publika komento
+      reject_media: Refusez mediifaili
+      reject_reports: Refuzez raporti
+      reject_reports_hint: Ignorez omna raporti quo venas de ca domeno. Nerelatata por restrikti
       undo: Undo
+      view: Videz domenobstrukto
+    email_domain_blocks:
+      add_new: Insertez novo
+      attempts_over_week:
+        one: "%{count} probo de pos 1 week"
+        other: "%{count} registroprobi de pos 1 week"
+      created_msg: Sucesoze obstruktis retpostodomeno
+      delete: Efacez
+      dns:
+        types:
+          mx: Rekordo MX
+      domain: Domeno
+      new:
+        create: Insertez domeno
+        resolve: Rezolvez domeno
+        title: Obstruktez nova retpostodomeno
+      no_email_domain_block_selected: Retpostodomenobstrukti ne chanjesis por ke nulo selektesis
+      resolved_through_html: Rezolvesis tra %{domain}
     instances:
       availability:
         failure_threshold_reached: Faliolimito atingesis en %{date}.
