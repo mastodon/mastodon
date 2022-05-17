@@ -188,7 +188,42 @@ io:
       unsuspended_msg: Sucesoze derestriktis konto di %{username}
     action_logs:
       action_types:
+        create_ip_block: Kreez IP-regulo
+        create_unavailable_domain: Kreez nedisponebla domeno
+        demote_user: Despromocez uzanto
+        destroy_announcement: Efacez anunco
+        destroy_custom_emoji: Efacez kustumizita emocimajo
+        destroy_domain_allow: Efacez domenpermiso
+        destroy_domain_block: Efacez domenobstrukto
+        destroy_email_domain_block: Efacez retpostodomenobstrukto
+        destroy_instance: Efacez domeno
+        destroy_ip_block: Efacez IP-regulo
+        destroy_status: Efacez posto
+        destroy_unavailable_domain: Efacez nedisponebla domeno
+        disable_2fa_user: Desaktivigez 2FA
+        disable_custom_emoji: Desaktivigez kustumizita emocimajo
+        disable_sign_in_token_auth_user: Desaktivigez retpostofichyurizo por uzanto
+        disable_user: Desaktivigez uzanto
+        enable_custom_emoji: Aktivigez kustumizita emocimajo
+        enable_sign_in_token_auth_user: Aktivigez retpostofichyurizo por uzanto
+        enable_user: Aktivigez uzanto
+        memorialize_account: Memorializez konto
+        promote_user: Promocez uzanto
+        reject_appeal: Refuzez apelo
+        reject_user: Refuzez uzanto
         remove_avatar_user: Efacez profilimajo
+        reopen_report: Riapertez raporto
+        reset_password_user: Richanjez pasvorto
+        resolve_report: Rezolvez raporto
+        sensitive_account: Forcsentoza konto
+        silence_account: Limitigez konto
+        suspend_account: Restriktez konto
+        unassigned_report: Destaskigez raporto
+        unblock_email_account: Deobstruktez retpostoadreso
+        unsensitive_account: Deagez forcsentoza konto
+        unsilence_account: Deagez limitkonto
+        unsuspend_account: Derestriktez konto
+        update_announcement: Novigez anunco
       actions:
         create_domain_block_html: "%{name} obstruktis domeno %{target}"
         create_email_domain_block_html: "%{name} obstruktis retpostodomeno %{target}"
