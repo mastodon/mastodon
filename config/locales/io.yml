@@ -174,7 +174,9 @@ io:
       redownloaded_msg: Sucesoze rifreshis profilo di %{username} de origino
       reject: Refuzez
       rejected_msg: Sucesoze refuzis registroapliko di %{username}
+      remove_avatar: Efacez profilimajo
       remove_header: Efacez kapimajo
+      removed_avatar_msg: Sucesoze efacis profilimajo di %{username}
       removed_header_msg: Sucesoze efacis kapimajo di %{username}
       resend_confirmation:
         success: Konfirmretposto sucesoze sendesas!
@@ -184,9 +186,64 @@ io:
       unblocked_email_msg: Sucesoze deobstruktis retpostoadreso di %{username}
       unsilenced_msg: Sucesoza inversigis limito di konto di %{username}
       unsuspended_msg: Sucesoze derestriktis konto di %{username}
+    action_logs:
+      action_types:
+        remove_avatar_user: Efacez profilimajo
+      actions:
+        create_domain_block_html: "%{name} obstruktis domeno %{target}"
+        create_email_domain_block_html: "%{name} obstruktis retpostodomeno %{target}"
+        create_ip_block_html: "%{name} kreis regulo por IP %{target}"
+        create_unavailable_domain_html: "%{name} cesis sendo a domeno %{target}"
+        demote_user_html: "%{name} despromocis uzanto %{target}"
+        destroy_announcement_html: "%{name} efacis anunco %{target}"
+        destroy_custom_emoji_html: "%{name} destruktis emocimajo %{target}"
+        destroy_domain_allow_html: "%{name} despermisis federato kun domeno %{target}"
+        destroy_domain_block_html: "%{name} deobstruktis domeno %{target}"
+        destroy_email_domain_block_html: "%{name} deobstruktis retpostodomeno %{target}"
+        destroy_instance_html: "%{name} efacis domeno %{target}"
+        destroy_ip_block_html: "%{name} efacis regulo por IP %{target}"
+        destroy_status_html: "%{name} efacis posto da %{target}"
+        destroy_unavailable_domain_html: "%{name} durigis sendo a domeno %{target}"
+        disable_2fa_user_html: "%{name} desaktivigis 2-faktorbezono por uzanto %{target}"
+        disable_custom_emoji_html: "%{name} desaktivigis emocimajo %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} desaktivigis retpostofichyurizo por %{target}"
+        disable_user_html: "%{name} desaktivigis eniro por uzanto %{target}"
+        enable_custom_emoji_html: "%{name} aktivigis emocimajo %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktivigis retpostofichyurizo por %{target}"
+        enable_user_html: "%{name} aktivigis eniro por uzanto %{target}"
+        memorialize_account_html: "%{name} kauzigis konto di %{target} divenar memorialpagino"
+        promote_user_html: "%{name} promocis uzanto %{target}"
+        reject_appeal_html: "%{name} refuzis jerdecidapelo de %{target}"
+        reject_user_html: "%{name} refuzis registro de %{target}"
+        remove_avatar_user_html: "%{name} efacis profilimajo de %{target}"
+        reopen_report_html: "%{name} riapertis raporto %{target}"
+        reset_password_user_html: "%{name} richanjis pasvorto de uzanto %{target}"
+        resolve_report_html: "%{name} rezolvis raporto %{target}"
+        sensitive_account_html: "%{name} markigis medii di %{target} quale sentoza"
+        silence_account_html: "%{name} limitigis konto di %{target}"
+        suspend_account_html: "%{name} restriktis konto di %{target}"
+        unassigned_report_html: "%{name} detaskigis raporto %{target}"
+        unblock_email_account_html: "%{name} deobstruktis retpostoadreso di %{target}"
+        unsensitive_account_html: "%{name} demarkigis medii di %{target} quale sentoza"
+        unsilence_account_html: "%{name} efacis limito di konto di %{target}"
+        unsuspend_account_html: "%{name} derestriktis konto di %{target}"
+        update_announcement_html: "%{name} novigis anunco %{target}"
+        update_custom_emoji_html: "%{name} novigis emocimajo %{target}"
+        update_domain_block_html: "%{name} novigis domenobstrukto por %{target}"
+        update_status_html: "%{name} novigis posto da %{target}"
+      deleted_status: "(efacita posto)"
+      empty: Nula logi.
+      filter_by_action: Filtrez segun ago
+      filter_by_user: Filtrez segun uzanto
+      title: Kontrollogo
     announcements:
       destroyed_msg: Anunco sucesoze efacesas!
+      edit:
+        title: Modifikez anunco
+      empty: Nula anunci.
+      live: Samtempe
       new:
+        create: Kreez anunco
         title: Nova anunco
       publish: Publikigez
       published_msg: Anunco sucesoze publikigesas!
