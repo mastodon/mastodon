@@ -1163,6 +1163,7 @@ io:
     incoming_migrations_html: Por transferar de irga konto a to, unesme vu bezonas <a href="%{path}">krear kontoalternativnomo</a>.
     moved_msg: Vua konto nun ridirektesas a %{acct} e vua sequanti transferesas.
     not_redirecting: Vua konto ne ridirektesas a irga altra konto nun.
+    on_cooldown: Vu recente migrigis vua konto. Ca funciono divenos disponebla itere pos %{count} dii.
     past_migrations: Antea migri
     proceed_with_move: Transferez sequanti
     redirected_msg: Vua konto nun ridirektesas a %{acct}.
@@ -1172,9 +1173,11 @@ io:
       backreference_required: Nova konto mustas unesme havar opciono quo dopreferas co
       before: 'Ante durar, lektez ca noti sorgeme:'
       cooldown: Pos transferesar, existas varttempo kande vu ne povas transferesar itere
+      disabled_account: Vua nuna konto ne divenos tote uzebla pose. Tamen, vu povas acesar informexportaco e anke riaktivigo.
       followers: Ca ago transferos omna sequanti de nuna konto a nova konto
       only_redirect_html: Alternative, vu povas <a href="%{path}">nur pozar ridirekto che vua profilo</a>.
       other_data: Altra informi ne transferesos automate
+      redirect: Vua nuna profilo di konto novigesos kun ridirektoavizo e neinkluzesos de trovi
   moderation:
     title: Jero
   move_handler:
