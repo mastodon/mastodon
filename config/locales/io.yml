@@ -1454,7 +1454,9 @@ io:
       '7889238': 3 monati
     min_age_label: Oldeslimito
     min_favs: Retenez favorigita posti mine
+    min_favs_hint: Ne efacas irga vua posti quo ganis mine ca favorquanto. Restez quale vakua por efacar posti sen suciar olia favorquanto
     min_reblogs: Retenez bustita posti mine
+    min_reblogs_hint: Ne efacas irga vua posti quo bustigesos mine ca foyoquanto. Restez quale vakua por efacar posti sen suciar olia foyoquanto
   stream_entries:
     pinned: Pinglagita posto
     reblogged: diskonocigita
@@ -1492,9 +1494,11 @@ io:
   user_mailer:
     appeal_approved:
       action: Irez a vua konto
+      explanation: Apelo di streko kontra vua konto en %{strike_date} quale vu sendis en %{appeal_date} aprobesis. Vua konto intere standas bone.
       subject: Vua apelo de %{date} aprobesis
       title: Apelo aprobesis
     appeal_rejected:
+      explanation: Apelo di streko kontra vua konto en %{strike_date} quale vu sendis en %{appeal_date} refuzesis.
       subject: Vua apelo de %{date} refuzesis
       title: Apelo refuzesis
     backup_ready:
@@ -1505,6 +1509,7 @@ io:
       change_password: chanjez vua pasvorto
       details: 'Co esas detali di eniro:'
       explanation: Ni deskovris eniro a vua konto de nova adreso IP.
+      further_actions_html: Se co ne agesis da vu, ni rekomendas ke vu %{action} quik e aktivigas 2-faktoryurizo por sekurigar vua konto.
       subject: Vua konto acesesis de nova adreso IP
       title: Nova eniro
     warning:
@@ -1513,6 +1518,8 @@ io:
       categories:
         spam: Spamo
         violation: Kontenajo nesequas ca komunitatguidili
+      explanation:
+        delete_statuses: Ol trovesis ke kelka vua posti nesequas komunitatguidilo e do efacesis da jereri di %{instance}.
       reason: 'Motivo:'
       statuses: 'Citita posti:'
       subject:
