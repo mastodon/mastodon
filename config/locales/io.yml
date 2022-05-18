@@ -1463,6 +1463,7 @@ io:
     enabled: Automata efacez olda posti
     enabled_hint: Automata efacez vua posti pos oli atingar fixita oldeslimito, se oli ne parigesas a 1 de suba ecepti
     exceptions: Ecepti
+    explanation: Pro ke efacar posti esas nechipa procedo, co agas lente progresive kande servilo ne esas okupata. Do, vua posti forsan efacesos kurte pos oli atingas oldeslimito.
     ignore_favs: Ignorez favorati
     ignore_reblogs: Ignorez busti
     interaction_exceptions: Ecepti segun interagi
@@ -1521,6 +1522,7 @@ io:
     enabled: 2-faktoryurizeso aktivigesas
     enabled_success: 2-faktoryurizeso sucesoze aktivigesas
     generate_recovery_codes: Generate Recovery Codes
+    lost_recovery_codes: Rigannumeri povigas vu riganas aceso a vua konto se vu perdas vua fono. Se vu perdas vua rigannumeri, vu povas rifacar hike. Vua olda rigannumeri nevalidigesos.
     methods: 2-faktormetodi
     otp: Yurizsoftwaro
     recovery_codes: Kopiez rigannumeri
@@ -1557,7 +1559,10 @@ io:
       explanation:
         delete_statuses: Ol trovesis ke kelka vua posti nesequas komunitatguidilo e do efacesis da jereri di %{instance}.
         disable: Vu ne povas uzar vua konto plu, ma vua profilo e altra informi restas bone. Vu povas demandar kopiur di vua informi, chanjar kontoopcioni e efacar vua konto.
+        mark_statuses_as_sensitive: Kelka vua posti markizesis quale sentoza da jereri di %{instance}. Do, personi bezonos kliktar medii en posti ante prevido montresas. Vu povas markizar medii quale sentoza per su kande postar en futuro.
         sensitive: Pos co, omna vua adchargita mediifaili markizesos quale sentoza e celesos dop kliktoaverto.
+        silence: Vu povas ankore uzar vua konto ma nur personi quo ja sequis vu vidos vua posti en ca servilo, e vu forsan neinkluzesas de diversa deskovrotraiti. Tamen, altra personi povas ankore manuala sequar vu.
+        suspend: Vu ne povas uzar vua konto plue, e vua profilo e altra informi ne esas acesebla plue. Vu povas ankore enirar por demandar kopiur di vua informi til informi komplete efacesas pos cirkum 30 dii, ma ni retenos kelka bazala informi por preventar vu evitar restrikto.
       reason: 'Motivo:'
       statuses: 'Citita posti:'
       subject:
