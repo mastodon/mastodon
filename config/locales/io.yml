@@ -714,14 +714,17 @@ io:
         desc_html: Displayed on extended information page<br>You can use HTML tags
         title: Extended site description
       site_short_description:
+        desc_html: Montresas en flankobaro e metatagi. Deskriptez Mastodon e por quo ca servilo esas specala per 1 paragrafo.
         title: Kurta servildeskripto
       site_terms:
+        desc_html: Vu povas skribar sua privatguidilo, serveskondicioni e altra legi. Vu povas uzar HTML-tagi
         title: Kustumizita serveskondicioni
       site_title: Site title
       thumbnail:
         desc_html: Uzesis por previdi tra OpenGraph e API. 1200x630px rekomendesas
         title: Servilimajeto
       timeline_preview:
+        desc_html: Montrez ligilo e publika tempolineo che atingopagino e permisez API acesar publika tempolineo sen yurizo
         title: Permisez neyurizita aceso a publika tempolineo
       title: Site Settings
       trendable_by_default:
@@ -757,6 +760,8 @@ io:
       appeal_approved: Apelis
       appeal_pending: Vartata apelo
     system_checks:
+      database_schema_check:
+        message_html: Existas vartanta datamaturmigri. Startez por certigar ke la softwaro kondutar quale expektita
       elasticsearch_running_check:
         message_html: Ne povas konektas a Elasticsearch. Kontrolez ke ol functionas o desaktivigez textokompleta trovo
       elasticsearch_version_check:
@@ -841,6 +846,7 @@ io:
         sensitive: markizos ola konto quale sentoza
         silence: limitizos ola konto
         suspend: restriktos ola konto
+      body: "%{target} apelas jerdecido da %{action_taken_by} de %{date}, quale esis %{type}. Oli skribis:"
       next_steps: Vu povas aprobar apelo por deagar jerdecido o ignorar.
       subject: "%{username} apela jerdecido che %{instance}"
     new_pending_account:
@@ -854,12 +860,15 @@ io:
       body: 'Ca kozi bezonas kontrol ante ol povas montresar publike:'
       new_trending_links:
         no_approved_links: Nun no existas aprobita tendencoza ligili.
+        requirements: 'Irga ca probanti povas ecesar la #%{rank} aprobita tendencoligilo, quale nun esas %{lowest_link_title} kun punto %{lowest_link_score}.'
         title: Tendencoza ligili
       new_trending_statuses:
         no_approved_statuses: Nun ne existas aprobita tendencoza posti.
+        requirements: 'Irga ca probanti povas ecesar la #%{rank} aprobita tendencoligilo, quale nun esas %{lowest_status_url} kun punto %{lowest_status_score}.'
         title: Tendencoza posti
       new_trending_tags:
         no_approved_tags: Nun ne existas aprobita tendencoza hashtagi.
+        requirements: 'Irga ca probanti povas ecesar la #%{rank} aprobita tendencoligilo, quale nun esas %{lowest_tag_name} kun punto %{lowest_tag_score}.'
         title: Tendencoza hashtagi
       subject: Nova tendenci bezonas kontrolesar che %{instance}
   aliases:
@@ -897,11 +906,14 @@ io:
   auth:
     apply_for_account: Demandez invito
     change_password: Pasvorto
+    checkbox_agreement_html: Se konsentas <a href="%{rules_path}" target="_blank">servilreguli</a> e <a href="%{terms_path}" target="_blank">serveskondiconi</a>
     checkbox_agreement_without_rules_html: Me konsentar <a href="%{terms_path}" target="_blank">serveskondicioni</a>
     delete_account: Efacez konto
+    delete_account_html: Se vu volas efacar vua konto, vu povas <a href="%{path}">irar hike</a>. Vu demandesos konfirmar.
     description:
       prefix_invited_by_user: "@%{name} invitas vu juntar ca servilo di Mastodon!"
       prefix_sign_up: Registrez che Mastodon hodie!
+      suffix: Per konto, vu povos sequar personi, postigar novigi e kambiarar mesaji kun uzanti de irga servilo di Mastodon e plue!
     didnt_get_confirmation: Ka tu ne recevis la instrucioni por konfirmar?
     dont_have_your_security_key: Ka vu ne havas sekuresklefo?
     forgot_password: Pasvorto obliviita?
@@ -912,6 +924,7 @@ io:
     login: Enirar
     logout: Ekirar
     migrate_account: Transferez a diferenta konto
+    migrate_account_html: Se vu volas ridirektar ca konto a diferento, vu povas <a href="%{path}">opcionagar hike</a>.
     or_log_in_with: O eniras per
     providers:
       cas: CAS
@@ -923,6 +936,7 @@ io:
     security: Chanjar pasvorto
     set_new_password: Selektar nova pasvorto
     setup:
+      email_below_hint_html: Se suba retpostoadreso esas nekorekta, vu povas chanjar hike e ganar nova konfirmretposto.
       email_settings_hint_html: Konfirmretposto sendesis a %{email}. Se ta retpostoadreso ne esas korekta, vu povas chanjar en kontoopcioni.
       title: Komencoprocedo
     status:
