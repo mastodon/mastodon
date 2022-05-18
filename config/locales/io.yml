@@ -1123,7 +1123,7 @@ io:
     invalid_markup: 'kontenas nevalida kompozuro di HTML: %{error}'
   imports:
     errors:
-      over_rows_processing_limit: kontenas plu de %{count} horizontala lineo
+      over_rows_processing_limit: kontenas plu kam %{count} horizontala lineo
     modes:
       merge: Kombinez
       merge_long: Retenez displonebla rekordi e insertez novi
@@ -1179,7 +1179,7 @@ io:
     validations:
       images_and_video: Ne povas atachar video a posto quo ja kontenar imaji
       not_ready: Ne povas faili quo ankore procedigesas. Probez itere pose!
-      too_many: Ne povas atachar plu de 4 faili
+      too_many: Ne povas atachar plu kam 4 faili
   migrations:
     acct: Transferesis a
     cancel: Extingar ridirekto
@@ -1296,9 +1296,9 @@ io:
       duration_too_short: es tro balde
       expired: Votposto ja finis
       invalid_choice: Selektita votselektajo ne existas
-      over_character_limit: ne povas esar plu longa de %{max} literi por singlo
-      too_few_options: mustas havar plu de 1 kozo
-      too_many_options: ne povas havar plu de %{max} kozi
+      over_character_limit: ne povas esar plu longa kam %{max} literi por sing
+      too_few_options: mustas havar kozi
+      too_many_options: ne povas havar plu kam %{max} kozi
   preferences:
     other: Altra
     posting_defaults: Originala postoopcioni
@@ -1608,7 +1608,7 @@ io:
       tips: Guidili
       title: Bonveno, %{name}!
   users:
-    follow_limit_reached: Vu ne povas sequar plu de %{limit} personi
+    follow_limit_reached: Vu ne povas sequar plu kam %{limit} personi
     invalid_otp_token: La dufaktora autentikigila kodexo ne esas valida
     otp_lost_help_html: Se vu perdas aceso de 2 konto, vu povas kontaktar kun %{email}
     seamless_external_login: Vu enirar tra externa serveso, do pasvorto e retpostoopcioni ne esas disponebla.
