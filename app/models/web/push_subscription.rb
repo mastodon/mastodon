@@ -41,9 +41,9 @@ class Web::PushSubscription < ApplicationRecord
   end
 
   def authorization_header
-    jwt = JWT.encode({ aud: audience, exp: 24.hours.from_now.to_i, sub: "mailto:#{contact_email}" }, vapid_key.curve, 'ES256', typ: 'JWT')
+    jwt = JWT.encode({ aud: audience, exp: 24.hours.from_now.to_i, sub: "mailto:#{contact_email}" }, vapid_key.curve, 'ES256', typ: 'JWT', alg: 'ES256')
 
-    "WebPush #{jwt}"
+    "vapid t=#{jwt},k=#{vapid_key.public_key_for_push_header}"
   end
 
   def pushable?(notification)

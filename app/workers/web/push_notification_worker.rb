@@ -19,15 +19,13 @@ class Web::PushNotificationWorker
     payload = @subscription.encrypt(push_notification_json)
 
     request_pool.with(@subscription.audience) do |http_client|
-      request = Request.new(:post, @subscription.endpoint, body: payload.fetch(:ciphertext), http_client: http_client)
+      request = Request.new(:post, @subscription.endpoint, body: payload, http_client: http_client)
 
       request.add_headers(
         'Content-Type'     => 'application/octet-stream',
         'Ttl'              => TTL,
         'Urgency'          => URGENCY,
-        'Content-Encoding' => 'aesgcm',
-        'Encryption'       => "salt=#{Webpush.encode64(payload.fetch(:salt)).delete('=')}",
-        'Crypto-Key'       => "dh=#{Webpush.encode64(payload.fetch(:server_public_key)).delete('=')};#{@subscription.crypto_key_header}",
+        'Content-Encoding' => 'aes128gcm',
         'Authorization'    => @subscription.authorization_header
       )
 
