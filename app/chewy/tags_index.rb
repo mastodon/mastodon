@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TagsIndex < Chewy::Index
-  settings index: { refresh_interval: '15m' }, analysis: {
+  settings index: { refresh_interval: '30s' }, analysis: {
     analyzer: {
       content: {
         tokenizer: 'keyword',
