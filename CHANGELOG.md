@@ -3,6 +3,53 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.4.7] - 2022-03-30
+### Security
+
+- Fix being able to post URLs longer than 4096 characters ([Gargron](https://github.com/mastodon/mastodon/pull/17908))
+- Fix being able to bypass e-mail restrictions ([Gargron](https://github.com/mastodon/mastodon/pull/17909))
+
+## [3.4.6] - 2022-02-03
+### Fixed
+- Fix `mastodon:webpush:generate_vapid_key` task requiring a functional environment ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17338))
+- Fix spurious errors when receiving an Add activity for a private post ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17425))
+
+### Security
+- Fix error-prone SQL queries ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/15828))
+- Fix not compacting incoming signed JSON-LD activities ([puckipedia](https://github.com/mastodon/mastodon/pull/17426), [ClearlyClaire](https://github.com/mastodon/mastodon/pull/17428)) (CVE-2022-24307)
+- Fix insufficient sanitization of report comments ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17430))
+- Fix stop condition of a Common Table Expression ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17427))
+- Disable legacy XSS filtering ([Wonderfall](https://github.com/mastodon/mastodon/pull/17289))
+
+## [3.4.5] - 2022-01-31
+### Added
+- Add more advanced migration tests ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17393))
+- Add github workflow to build Docker images ([unasuke](https://github.com/mastodon/mastodon/pull/16973), [Gargron](https://github.com/mastodon/mastodon/pull/16980), [Gargron](https://github.com/mastodon/mastodon/pull/17000))
+
+### Fixed
+- Fix some old migrations failing when skipping releases ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17394))
+- Fix migrations script failing in certain edge cases ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17398))
+- Fix Docker build ([tribela](https://github.com/mastodon/mastodon/pull/17188))
+- Fix Ruby 3.0 dependencies ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16723))
+- Fix followers synchronization mechanism ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16510))
+
+## [3.4.4] - 2021-11-26
+### Fixed
+
+- Fix error when suspending user with an already blocked canonical email ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17036))
+- Fix overflow of long profile fields in admin UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17010))
+- Fix confusing error when WebFinger request returns empty document ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16986))
+- Fix upload of remote media with OpenStack Swift sometimes failing ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16998))
+- Fix logout link not working in Safari ([noellabo](https://github.com/mastodon/mastodon/pull/16574))
+- Fix “open” link of media modal not closing modal in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16524))
+- Fix replying from modal in web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16516))
+- Fix `mastodon:setup` command crashing in some circumstances ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/16976))
+
+### Security
+
+- Fix filtering DMs from non-followed users ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17042))
+- Fix handling of recursive toots in WebUI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17041))
+
 ## [3.4.3] - 2021-11-06
 ### Fixed
 
