@@ -25,24 +25,43 @@ describe Web::PushNotificationWorker do
     before do
       allow_any_instance_of(subscription.class).to receive(:contact_email).and_return(contact_email)
       allow_any_instance_of(subscription.class).to receive(:vapid_key).and_return(vapid_key)
-      allow(Webpush::Encryption).to receive(:encrypt).and_return(payload)
-      allow(JWT).to receive(:encode).and_return('jwt.encoded.payload')
 
       stub_request(:post, endpoint).to_return(status: 201, body: '')
-
-      subject.perform(subscription.id, notification.id)
     end
 
     it 'calls the relevant service with the correct headers' do
+      subject.perform(subscription.id, notification.id)
+
       expect(a_request(:post, endpoint).with(headers: {
         'Content-Encoding' => 'aesgcm',
         'Content-Type' => 'application/octet-stream',
-        'Crypto-Key' => 'dh=BAgtUks5d90kFmxGevk9tH7GEmvz9DB0qcEMUsOBgKwMf-TMjsKIIG6LQvGcFAf6jcmAod15VVwmYwGIIxE4VWE;p256ecdsa=' + vapid_public_key.delete('='),
-        'Encryption' => 'salt=WJeVM-RY-F9351SVxTFx_g',
+        'Crypto-Key' => /dh=.+;p256ecdsa=#{vapid_public_key.delete('=')}/,
+        'Encryption' => /salt=.+/,
         'Ttl' => '172800',
         'Urgency' => 'normal',
-        'Authorization' => 'WebPush jwt.encoded.payload',
-      }, body: "+\xB8\xDBT}\u0013\xB6\xDD.\xF9\xB0\xA7\xC8Ҁ\xFD\x99#\xF7\xAC\x83\xA4\xDB,\u001F\xB5\xB9w\x85>\xF7\xADr")).to have_been_made
+        'Authorization' => /WebPush .+/,
+      })).to have_been_made
+    end
+
+    context 'with stubbed values' do
+      before do
+        allow(Webpush::Encryption).to receive(:encrypt).and_return(payload)
+        allow(JWT).to receive(:encode).and_return('jwt.encoded.payload')
+      end
+
+      it 'calls the relevant service with the correct headers and body' do
+        subject.perform(subscription.id, notification.id)
+
+        expect(a_request(:post, endpoint).with(headers: {
+          'Content-Encoding' => 'aesgcm',
+          'Content-Type' => 'application/octet-stream',
+          'Crypto-Key' => 'dh=BAgtUks5d90kFmxGevk9tH7GEmvz9DB0qcEMUsOBgKwMf-TMjsKIIG6LQvGcFAf6jcmAod15VVwmYwGIIxE4VWE;p256ecdsa=' + vapid_public_key.delete('='),
+          'Encryption' => 'salt=WJeVM-RY-F9351SVxTFx_g',
+          'Ttl' => '172800',
+          'Urgency' => 'normal',
+          'Authorization' => 'WebPush jwt.encoded.payload',
+        }, body: "+\xB8\xDBT}\u0013\xB6\xDD.\xF9\xB0\xA7\xC8Ҁ\xFD\x99#\xF7\xAC\x83\xA4\xDB,\u001F\xB5\xB9w\x85>\xF7\xADr")).to have_been_made
+      end
     end
   end
 end
