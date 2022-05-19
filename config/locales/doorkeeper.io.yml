@@ -1,4 +1,3 @@
----
 io:
   activerecord:
     attributes:
@@ -55,29 +54,29 @@ io:
         title: 'Apliko: %{name}'
     authorizations:
       buttons:
-        authorize: Permisez
+        authorize: Yurizar
         deny: Despermisez
       error:
         title: Eroro eventis
       new:
-        prompt_html: "%{client_name} volas permiso por acesar vua konti. Ol esas externa softwaro. <strong>Se vu ne fidas, lore vu debas ne permisar.</strong>"
+        prompt_html: "%{client_name} volas permiso por acesar vua konti. Ol esas externa softwaro. <strong>Se vu ne fidas, lore vu debas ne yurizar.</strong>"
         review_permissions: Kontrolez permisi
-        title: Permiso bezonesas
+        title: Yurizo bezonesas
       show:
-        title: Kopiez ca permisnumero e glutinez adsur la apliko.
+        title: Kopiez ca yurizkodexo e glutinez a la apliko.
     authorized_applications:
       buttons:
         revoke: Deaprobez
       confirmations:
         revoke: Ka vu esas certa?
       index:
-        authorized_at: Permisesis ye %{date}
+        authorized_at: Yurizesis ye %{date}
         description_html: Co esas softwari quo povas acesar vua konto per API. Se existas softwari quon vu ne rikonocas hike, o softwari misfuncionas, vu povas desaprobar ola aceso.
         last_used_at: Antee uzesis ye %{date}
         never_used: Nulaloke uzesas
         scopes: Permisi
         superapp: Interna
-        title: Vua permisita softwari
+        title: Vua yurizita softwari
     errors:
       messages:
         access_denied: Resursproprietanto o permisservilo refuzis la demando.
@@ -147,39 +146,39 @@ io:
       application:
         title: Permiso di OAuth bezonesas
     scopes:
-      admin:read: lektez omna informi di la servilo
-      admin:read:accounts: lektez privata informo di omna konti
-      admin:read:reports: lektez privata informo di omna raportigo e raportigita konti
-      admin:write: modifikez omna informi di la servilo
-      admin:write:accounts: jerez konti
-      admin:write:reports: jerez raportigi
+      "admin:read": lektez omna informi di la servilo
+      "admin:read:accounts": lektez privata informo di omna konti
+      "admin:read:reports": lektez privata informo di omna raportigo e raportigita konti
+      "admin:write": modifikez omna informi di la servilo
+      "admin:write:accounts": jerez konti
+      "admin:write:reports": jerez raportigi
       crypto: uzas intersequanta chifro
       follow: follow, block, unblock and unfollow accounts
       push: ganez vua pulsavizi
       read: read your account's data
-      read:accounts: videz kontinformo
-      read:blocks: videz restrikti
-      read:bookmarks: videz vua libromarki
-      read:favourites: videz vua favorati
-      read:filters: videz vua filtrili
-      read:follows: videz vua sequinti
-      read:lists: videz vua listi
-      read:mutes: videz vua silencigi
-      read:notifications: videz vua avizi
-      read:reports: videz vua rapotigi
-      read:search: trovez por vu
-      read:statuses: videz omna posti
+      "read:accounts": videz kontinformo
+      "read:blocks": videz restrikti
+      "read:bookmarks": videz vua libromarki
+      "read:favourites": videz vua favorati
+      "read:filters": videz vua filtrili
+      "read:follows": videz vua sequinti
+      "read:lists": videz vua listi
+      "read:mutes": videz vua silencigi
+      "read:notifications": videz vua avizi
+      "read:reports": videz vua rapotigi
+      "read:search": trovez por vu
+      "read:statuses": videz omna posti
       write: post on your behalf
-      write:accounts: modifikez vua porfilo
-      write:blocks: restriktez konti e domeni
-      write:bookmarks: libromarkez posti
-      write:conversations: silencigez e efacez konversi
-      write:favourites: favorata posti
-      write:filters: kreez filtrili
-      write:follows: sequez personi
-      write:lists: kreez listi
-      write:media: chargez medifaili
-      write:mutes: silencigez personi e konversi
-      write:notifications: efacez vua avizi
-      write:reports: raportigez altra omni
-      write:statuses: publikigez posti
+      "write:accounts": modifikez vua porfilo
+      "write:blocks": restriktez konti e domeni
+      "write:bookmarks": libromarkez posti
+      "write:conversations": silencigez e efacez konversi
+      "write:favourites": favorata posti
+      "write:filters": kreez filtrili
+      "write:follows": sequez personi
+      "write:lists": kreez listi
+      "write:media": chargez medifaili
+      "write:mutes": silencigez personi e konversi
+      "write:notifications": efacez vua avizi
+      "write:reports": raportigez altra omni
+      "write:statuses": publikigez posti
