@@ -79,14 +79,14 @@ io:
         title: Vua yurizita softwari
     errors:
       messages:
-        access_denied: Resursproprietanto o permisservilo refuzis la demando.
+        access_denied: Resursproprietanto o yurizservilo refuzis la demando.
         credential_flow_not_configured: Resursproprietantpasvortidentesesofluo faliis pro ke Doorkeeper.configure.resource_owner_from_credentials ne ajustesis.
         invalid_client: Klientpermiso falias pro nesavita kliento, neinkluzita klientpermiso o nesuportita permismetodo.
-        invalid_grant: Provizita permiso esis nevalida, expiris, deaprobesis, ne parigas uzita ridirektoligilo dum permisdemando o facesis a altra kliento.
+        invalid_grant: Provizita yurizo esis nevalida, expiris, deaprobesis, ne parigas uzita ridirektoligilo dum yurizdemando o facesis a altra kliento.
         invalid_redirect_uri: La inkluzita ridirektoligilo esas nevalida.
         invalid_request:
           missing_param: 'Bezonita parametro: %{value}.'
-          request_not_authorized: Demando bezonas permisesar. Bezonita parametro por permisar demando ne existas o esas nevalida.
+          request_not_authorized: Demando bezonas yurizesar. Bezonita parametro por yurizar demando ne existas o esas nevalida.
           unknown: La demando ne havas bezonita parametro, inkluzas nesuportita parametro o malformesas.
         invalid_resource_owner: Provizita resursproprietantidenteso esas nevalida o resursproprietanto ne existas
         invalid_scope: La demandita skopo esas nevalida, nesavata o malformata.
@@ -95,11 +95,11 @@ io:
           revoked: Acesficho deaprobesis
           unknown: Acesficho esas nevalida
         resource_owner_authenticator_not_configured: Resursproprietanto falias trovar pro ke Doorkeeper.configure.resource_owner_authenticator ne ajustesis.
-        server_error: Permisservilo trovas neanticipata situeso quo preventas ol finar la demando.
-        temporarily_unavailable: Permisservilo nu ne povas direktar la demando pro provizora eceso o servilmanteno.
-        unauthorized_client: La kliento ne permisesis agar ca demando per ca metodo.
-        unsupported_grant_type: Permisprovizontipo ne suportesas da permisservilo.
-        unsupported_response_type: La permisservilo ne suportas ca responsotipo.
+        server_error: Yurizservilo trovas neanticipata situeso quo preventas ol finar la demando.
+        temporarily_unavailable: Yurizservilo nu ne povas direktar la demando pro provizora eceso o servilmanteno.
+        unauthorized_client: La kliento ne yurizesis agar ca demando per ca metodo.
+        unsupported_grant_type: Yurizprovizontipo ne suportesas da yurizservilo.
+        unsupported_response_type: La yurizservilo ne suportas ca responstipo.
     flash:
       applications:
         create:
@@ -110,7 +110,7 @@ io:
           notice: Apliko novigesis.
       authorized_applications:
         destroy:
-          notice: Apliko aprobesis.
+          notice: Apliko deaprobesis.
     grouped_scopes:
       access:
         read: Lekto-nura aceso
@@ -144,7 +144,7 @@ io:
           applications: Apliki
           oauth2_provider: Provizanto di OAuth2
       application:
-        title: Permiso di OAuth bezonesas
+        title: Yurizo di OAuth bezonesas
     scopes:
       "admin:read": lektez omna informi di la servilo
       "admin:read:accounts": lektez privata informo di omna konti
