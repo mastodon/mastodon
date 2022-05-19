@@ -1,0 +1,105 @@
+---
+kind: pipeline
+name: arm64
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+  - name: email notification on start
+    image: mashirozx/drone-email:latest-arm64
+    settings:
+      host: 
+        from_secret: smtp_host
+      port:
+        from_secret: smtp_port
+      username:
+        from_secret: smtp_username
+      password:
+        from_secret: smtp_password
+      from.address:
+        from_secret: smtp_from_address
+      from.name:
+        from_secret: smtp_from_name
+      recipients:
+        from_secret: smtp_recipients
+      subject: >
+        {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} start
+      body: >
+        {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} start: {{build.link}}
+
+        git repo: {{repo.owner}}/{{repo.name}}
+        git branch: {{build.target}}
+        git hash: {{build.commit}}
+        git author: {{build.author_name}}
+        git commit message: {{build.message}}
+    when:
+      branch:
+        - main
+      event:
+        - push
+        - tag
+
+  - name: build arm64 image
+    image: plugins/docker
+    settings:
+      repo:
+        from_secret: docker_repo
+      tag: latest-arm64
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      dockerfile: Dockerfile
+      squash: true
+    when:
+      branch:
+        - main
+      event:
+        - push
+
+  - name: email notification on complete
+    image: mashirozx/drone-email:latest-arm64
+    settings:
+      host: 
+        from_secret: smtp_host
+      port:
+        from_secret: smtp_port
+      username:
+        from_secret: smtp_username
+      password:
+        from_secret: smtp_password
+      from.address:
+        from_secret: smtp_from_address
+      from.name:
+        from_secret: smtp_from_name
+      recipients:
+        from_secret: smtp_recipients
+      subject: >
+        {{#success build.status}}
+          {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} succeeded
+        {{else}}
+          {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} failed
+        {{/success}}
+      body: >
+        {{#success build.status}}
+          {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} succeeded: {{build.link}}
+        {{else}}
+          {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} failed: {{build.link}}
+        {{/success}}
+
+        git repo: {{repo.owner}}/{{repo.name}}
+        git branch: {{build.target}}
+        git hash: {{build.commit}}
+        git author: {{build.author_name}}
+        git commit message: {{build.message}}
+    when:
+      branch:
+        - main
+      event:
+        - push
+        - tag
+      status:
+        - success
+        - failure
