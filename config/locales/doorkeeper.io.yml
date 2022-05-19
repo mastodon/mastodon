@@ -79,8 +79,8 @@ io:
         title: Vua yurizita softwari
     errors:
       messages:
-        access_denied: Resursproprietanto o yurizservilo refuzis la demando.
-        credential_flow_not_configured: Resursproprietantpasvortidentesesofluo faliis pro ke Doorkeeper.configure.resource_owner_from_credentials ne ajustesis.
+        access_denied: Moyenproprietanto o yurizservilo refuzis la demando.
+        credential_flow_not_configured: Moyenproprietantpasvortidentesesofluo faliis pro ke Doorkeeper.configure.resource_owner_from_credentials ne ajustesis.
         invalid_client: Klientpermiso falias pro nesavita kliento, neinkluzita klientpermiso o nesuportita permismetodo.
         invalid_grant: Provizita yurizo esis nevalida, expiris, deaprobesis, ne parigas uzita ridirektoligilo dum yurizdemando o facesis a altra kliento.
         invalid_redirect_uri: La inkluzita ridirektoligilo esas nevalida.
@@ -88,13 +88,13 @@ io:
           missing_param: 'Bezonita parametro: %{value}.'
           request_not_authorized: Demando bezonas yurizesar. Bezonita parametro por yurizar demando ne existas o esas nevalida.
           unknown: La demando ne havas bezonita parametro, inkluzas nesuportita parametro o malformesas.
-        invalid_resource_owner: Provizita resursproprietantidenteso esas nevalida o resursproprietanto ne existas
+        invalid_resource_owner: Provizita Moyenproprietantidenteso esas nevalida o moyenproprietanto ne existas
         invalid_scope: La demandita skopo esas nevalida, nesavata o malformata.
         invalid_token:
           expired: La acesficho expiris
           revoked: Acesficho deaprobesis
           unknown: Acesficho esas nevalida
-        resource_owner_authenticator_not_configured: Resursproprietanto falias trovar pro ke Doorkeeper.configure.resource_owner_authenticator ne ajustesis.
+        resource_owner_authenticator_not_configured: Moyenproprietanto falias trovar pro ke Doorkeeper.configure.resource_owner_authenticator ne ajustesis.
         server_error: Yurizservilo trovas neanticipata situeso quo preventas ol finar la demando.
         temporarily_unavailable: Yurizservilo nu ne povas direktar la demando pro provizora eceso o servilmanteno.
         unauthorized_client: La kliento ne yurizesis agar ca demando per ca metodo.
