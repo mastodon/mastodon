@@ -791,6 +791,7 @@ eo:
     strikes:
       title_actions:
         delete_statuses: Forigo de afiŝo
+        none: Averto
   domain_validator:
     invalid_domain: ne estas valida domajna nomo
   errors:
@@ -861,6 +862,7 @@ eo:
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
     copy: Kopii
     delete: Forigi
+    none: Neniu
     order_by: Ordigi de
     save_changes: Konservi ŝanĝojn
     today: hodiaŭ
@@ -951,6 +953,9 @@ eo:
       new_followers_summary:
         one: Ankaŭ, vi ekhavis novan sekvanton en via foresto! Jej!
         other: Ankaŭ, vi ekhavis %{count} novajn sekvantojn en via foresto! Mirinde!
+      subject:
+        one: "1 nova sciigo ekde via lasta vizito 🐘"
+        other: "%{count} novaj sciigoj ekde via lasta vizito 🐘"
       title: En via foresto…
     favourite:
       body: "%{name} stelumis vian mesaĝon:"
@@ -1180,7 +1185,7 @@ eo:
       '2629746': 1 monato
       '31556952': 1 jaro
       '5259492': 2 monatoj
-      '604800': 1 week
+      '604800': 1 semajno
       '63113904': 2 jaroj
       '7889238': 3 monatoj
   stream_entries:
@@ -1219,6 +1224,8 @@ eo:
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
     warning:
+      categories:
+        spam: Spamo
       subject:
         disable: Via konto %{acct} estas frostigita
         none: Averto por %{acct}
