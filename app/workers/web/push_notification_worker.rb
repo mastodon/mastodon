@@ -26,7 +26,8 @@ class Web::PushNotificationWorker
         'Ttl'              => TTL,
         'Urgency'          => URGENCY,
         'Content-Encoding' => 'aes128gcm',
-        'Authorization'    => @subscription.authorization_header
+        'Authorization'    => @subscription.authorization_header,
+        'Content-Length'   => payload.length.to_s
       )
 
       request.perform do |response|
