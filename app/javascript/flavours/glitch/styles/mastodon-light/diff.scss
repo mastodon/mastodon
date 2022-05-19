@@ -165,6 +165,12 @@
   }
 }
 
+.language-dropdown__dropdown__results__item:hover,
+.language-dropdown__dropdown__results__item:focus,
+.language-dropdown__dropdown__results__item:active {
+  background-color: $ui-base-color;
+}
+
 .dropdown-menu__separator,
 .dropdown-menu__item.edited-timestamp__history__item,
 .dropdown-menu__container__header,
