@@ -397,7 +397,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     return false if local_usernames.empty?
 
-    Account.local.exists?(username: local_usernames)
+    scope = Account.local.where(Account.arel_table[:username].lower.in(local_usernames.map(&:downcase)))
+    scope = scope.where.not('EXISTS (SELECT 1 FROM blocks WHERE account_id = accounts.id AND target_account_id = ?)', @account.id)
+    scope.exists?
   end
 
   def tombstone_exists?
