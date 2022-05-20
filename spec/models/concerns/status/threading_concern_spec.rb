@@ -82,10 +82,13 @@ RSpec.describe Status::ThreadingConcern do
     let!(:alice)  { Fabricate(:account, username: 'alice') }
     let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
     let!(:jeff)   { Fabricate(:account, username: 'jeff') }
+    let!(:jack)   { Fabricate(:account, username: 'jack') }
     let!(:status) { Fabricate(:status, account: alice) }
     let!(:reply_to_status_from_alice) { Fabricate(:status, thread: status, account: alice) }
     let!(:reply_to_status_from_bob) { Fabricate(:status, thread: status, account: bob) }
     let!(:reply_to_alice_reply_from_jeff) { Fabricate(:status, thread: reply_to_status_from_alice, account: jeff) }
+    let!(:reply_to_alice_from_jack) { Fabricate(:status, thread: status, account: jack) }
+    let!(:reply_to_jack_from_bob) { Fabricate(:status, thread: reply_to_alice_from_jack, account: bob) }
     let!(:viewer) { Fabricate(:account, username: 'viewer') }
 
     it 'returns replies' do
@@ -102,6 +105,12 @@ RSpec.describe Status::ThreadingConcern do
     it 'does not return replies from users blocked by the viewer' do
       viewer.block!(jeff)
       expect(status.descendants(4, viewer)).to_not include(reply_to_alice_reply_from_jeff)
+    end
+
+    it 'does not return subthreads from users blocked by the author' do
+      alice.block!(jack)
+      expect(status.descendants(50, viewer)).to_not include(reply_to_alice_from_jack)
+      expect(status.descendants(50, viewer)).to_not include(reply_to_jack_from_bob)
     end
 
     it 'does not return replies from users muted by the viewer' do
