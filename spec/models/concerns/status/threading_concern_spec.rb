@@ -24,12 +24,12 @@ RSpec.describe Status::ThreadingConcern do
       expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_status, status)
     end
 
-    it 'does not return conversation history from blocked users' do
+    it 'does not return conversation history from users blocked by the viewer' do
       viewer.block!(jeff)
       expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_status)
     end
 
-    it 'does not return conversation history from muted users' do
+    it 'does not return conversation history from users muted by the viewer' do
       viewer.mute!(jeff)
       expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_status)
     end
@@ -39,7 +39,7 @@ RSpec.describe Status::ThreadingConcern do
       expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_status)
     end
 
-    it 'does not return conversation history from blocked domains' do
+    it 'does not return conversation history from domains blocked by the viewer' do
       viewer.block_domain!('example.com')
       expect(reply_to_second_reply.ancestors(4, viewer)).to_not include(reply_to_first_reply)
     end
@@ -99,12 +99,12 @@ RSpec.describe Status::ThreadingConcern do
       expect(status.descendants(4, viewer)).to_not include(reply_to_status_from_alice, reply_to_alice_reply_from_jeff)
     end
 
-    it 'does not return replies from blocked users' do
+    it 'does not return replies from users blocked by the viewer' do
       viewer.block!(jeff)
       expect(status.descendants(4, viewer)).to_not include(reply_to_alice_reply_from_jeff)
     end
 
-    it 'does not return replies from muted users' do
+    it 'does not return replies from users muted by the viewer' do
       viewer.mute!(jeff)
       expect(status.descendants(4, viewer)).to_not include(reply_to_alice_reply_from_jeff)
     end
@@ -114,7 +114,7 @@ RSpec.describe Status::ThreadingConcern do
       expect(status.descendants(4, viewer)).to_not include(reply_to_alice_reply_from_jeff)
     end
 
-    it 'does not return replies from blocked domains' do
+    it 'does not return replies from domains blocked by the viewer' do
       viewer.block_domain!('example.com')
       expect(status.descendants(4, viewer)).to_not include(reply_to_status_from_bob)
     end
