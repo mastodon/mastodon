@@ -82,10 +82,13 @@ describe StatusThreadingConcern do
     let!(:alice)  { Fabricate(:account, username: 'alice') }
     let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
     let!(:jeff)   { Fabricate(:account, username: 'jeff') }
+    let!(:jack)   { Fabricate(:account, username: 'jack') }
     let!(:status) { Fabricate(:status, account: alice) }
     let!(:reply1) { Fabricate(:status, thread: status, account: alice) }
     let!(:reply2) { Fabricate(:status, thread: status, account: bob) }
     let!(:reply3) { Fabricate(:status, thread: reply1, account: jeff) }
+    let!(:reply4) { Fabricate(:status, thread: status, account: jack) }
+    let!(:reply5) { Fabricate(:status, thread: reply4, account: bob) }
     let!(:viewer) { Fabricate(:account, username: 'viewer') }
 
     it 'returns replies' do
@@ -102,6 +105,12 @@ describe StatusThreadingConcern do
     it 'does not return replies from users blocked by the viewer' do
       viewer.block!(jeff)
       expect(status.descendants(4, viewer)).to_not include(reply3)
+    end
+
+    it 'does not return subthreads from users blocked by the author' do
+      alice.block!(jack)
+      expect(status.descendants(50, viewer)).to_not include(reply4)
+      expect(status.descendants(50, viewer)).to_not include(reply5)
     end
 
     it 'does not return replies from users muted by the viewer' do
