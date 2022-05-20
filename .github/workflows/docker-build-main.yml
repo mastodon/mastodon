@@ -1,4 +1,4 @@
-name: Build Prod Image
+name: Build Prod Image (amd64)
 
 on:
   push:
@@ -51,11 +51,12 @@ jobs:
           # build-args: |
           #   arg1=value1
           #   arg2=value2
-          platforms: linux/amd64,linux/arm64
-          cache-from: type=registry,ref=mashirozx/mastodon:alpha
+          platforms: linux/amd64
+          cache-from: type=registry,ref=mashirozx/mastodon:latest
           cache-to: type=inline
           # tags: mashirozx/mastodon:alpha
           tags: |
             mashirozx/mastodon:alpha
             mashirozx/mastodon:latest
+            mashirozx/mastodon:latest-amd64
             mashirozx/mastodon:sha-${{steps.vars.outputs.sha_short}}
