@@ -160,7 +160,7 @@ RSpec.describe Account, type: :model do
         expect(account.avatar_remote_url).to eq 'https://remote.test/invalid_avatar'
         expect(account.header_remote_url).to eq expectation.header_remote_url
         expect(account.avatar_file_name).to  eq nil
-        expect(account.header_file_name).to  eq nil
+        expect(account.header_file_name).to  eq expectation.header_file_name
       end
     end
   end
