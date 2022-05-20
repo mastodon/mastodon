@@ -24,12 +24,12 @@ describe StatusThreadingConcern do
       expect(reply3.ancestors(4, viewer)).to_not include(reply1, status)
     end
 
-    it 'does not return conversation history from blocked users' do
+    it 'does not return conversation history from users blocked by the viewer' do
       viewer.block!(jeff)
       expect(reply3.ancestors(4, viewer)).to_not include(reply1)
     end
 
-    it 'does not return conversation history from muted users' do
+    it 'does not return conversation history from users muted by the viewer' do
       viewer.mute!(jeff)
       expect(reply3.ancestors(4, viewer)).to_not include(reply1)
     end
@@ -39,7 +39,7 @@ describe StatusThreadingConcern do
       expect(reply3.ancestors(4, viewer)).to_not include(reply1)
     end
 
-    it 'does not return conversation history from blocked domains' do
+    it 'does not return conversation history from domains blocked by the viewer' do
       viewer.block_domain!('example.com')
       expect(reply3.ancestors(4, viewer)).to_not include(reply2)
     end
@@ -99,12 +99,12 @@ describe StatusThreadingConcern do
       expect(status.descendants(4, viewer)).to_not include(reply1, reply3)
     end
 
-    it 'does not return replies from blocked users' do
+    it 'does not return replies from users blocked by the viewer' do
       viewer.block!(jeff)
       expect(status.descendants(4, viewer)).to_not include(reply3)
     end
 
-    it 'does not return replies from muted users' do
+    it 'does not return replies from users muted by the viewer' do
       viewer.mute!(jeff)
       expect(status.descendants(4, viewer)).to_not include(reply3)
     end
@@ -114,7 +114,7 @@ describe StatusThreadingConcern do
       expect(status.descendants(4, viewer)).to_not include(reply3)
     end
 
-    it 'does not return replies from blocked domains' do
+    it 'does not return replies from domains blocked by the viewer' do
       viewer.block_domain!('example.com')
       expect(status.descendants(4, viewer)).to_not include(reply2)
     end
