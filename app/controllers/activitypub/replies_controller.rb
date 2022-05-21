@@ -31,7 +31,12 @@ class ActivityPub::RepliesController < ActivityPub::BaseController
   end
 
   def set_replies
-    @replies = only_other_accounts? ? Status.where.not(account_id: @account.id).joins(:account).merge(Account.without_suspended) : @account.statuses
+    if only_other_accounts?
+      @replies = Status.where.not(account_id: @account.id).joins(:account).merge(Account.without_suspended)
+      @replies = @replies.joins("LEFT JOIN blocks ON blocks.account_id = #{@account.id} AND blocks.target_account_id = statuses.account_id").where(blocks: { id: nil })
+    else
+      @replies = @account.statuses
+    end
     @replies = @replies.where(in_reply_to_id: @status.id, visibility: [:public, :unlisted])
     @replies = @replies.paginate_by_min_id(DESCENDANTS_LIMIT, params[:min_id])
   end
