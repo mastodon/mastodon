@@ -130,6 +130,17 @@ RSpec.describe ActivityPub::RepliesController do
       context 'with only_other_accounts' do
         let(:only_other_accounts) { 'true' }
 
+        context 'when blocking some of the repliers' do
+          before do
+            status.account.block!(reply1.account)
+            status.account.block!(reply6.account)
+          end
+
+          it "does not list the blocked user's replies" do
+            expect(page_json[:items].map { |item| item.is_a?(String) ? item : item[:id] }).to match_array([ActivityPub::TagManager.instance.uri_for(reply2)])
+          end
+        end
+
         it 'returns items with other public or unlisted replies' do
           expect(response.parsed_body)
             .to include(
