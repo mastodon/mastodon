@@ -91,21 +91,21 @@ module SignatureVerification
     raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
 
     signature             = Base64.decode64(signature_params['signature'])
-    compare_signed_string = build_signed_string(request_target_quirk: true)
+    compare_signed_string = build_signed_string(request_target_quirk: false)
 
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    compare_signed_string = build_signed_string(request_target_quirk: false)
+    compare_signed_string = build_signed_string(request_target_quirk: true)
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
     actor = stoplight_wrap_request { actor_refresh_key!(actor) }
 
     raise SignatureVerificationError, "Could not refresh public key #{signature_params['keyId']}" if actor.nil?
 
-    compare_signed_string = build_signed_string(request_target_quirk: true)
+    compare_signed_string = build_signed_string(request_target_quirk: false)
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    compare_signed_string = build_signed_string(request_target_quirk: false)
+    compare_signed_string = build_signed_string(request_target_quirk: true)
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
     fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)", signed_string: compare_signed_string, signature: signature_params['signature']
