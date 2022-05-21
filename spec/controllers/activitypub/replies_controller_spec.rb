@@ -8,6 +8,13 @@ RSpec.describe ActivityPub::RepliesController do
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
 
+  let!(:reply1) { Fabricate(:status, thread: status, visibility: :public) }
+  let!(:reply2) { Fabricate(:status, thread: status, visibility: :public) }
+  let!(:reply3) { Fabricate(:status, thread: status, visibility: :private) }
+  let!(:reply4) { Fabricate(:status, account: status.account, thread: status, visibility: :public) }
+  let!(:reply5) { Fabricate(:status, account: status.account, thread: status, visibility: :private) }
+  let!(:reply6) { Fabricate(:status, account: remote_account, thread: status, visibility: :public, uri: remote_reply_id) }
+
   shared_examples 'common behavior' do
     context 'when status is private' do
       let(:parent_visibility) { :private }
@@ -177,14 +184,6 @@ RSpec.describe ActivityPub::RepliesController do
   before do
     stub_const 'ActivityPub::RepliesController::DESCENDANTS_LIMIT', 5
     allow(controller).to receive(:signed_request_actor).and_return(remote_querier)
-
-    Fabricate(:status, thread: status, visibility: :public)
-    Fabricate(:status, thread: status, visibility: :public)
-    Fabricate(:status, thread: status, visibility: :private)
-    Fabricate(:status, account: status.account, thread: status, visibility: :public)
-    Fabricate(:status, account: status.account, thread: status, visibility: :private)
-
-    Fabricate(:status, account: remote_account, thread: status, visibility: :public, uri: remote_reply_id)
   end
 
   describe 'GET #index' do
