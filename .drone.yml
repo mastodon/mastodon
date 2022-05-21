@@ -28,12 +28,12 @@ steps:
         {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} start
       body: >
         {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} start: {{build.link}}
-
-        git repo: {{repo.owner}}/{{repo.name}}
-        git branch: {{build.target}}
-        git hash: {{build.commit}}
-        git author: {{build.author_name}}
-        git commit message: {{build.message}}
+        <br /><br />
+        git repo: {{repo.owner}}/{{repo.name}}<br />
+        git branch: {{build.target}}<br />
+        git hash: {{build.commit}}<br />
+        git author: {{build.author_name}}<br />
+        git commit message: {{build.message}}<br />
     when:
       branch:
         - main
@@ -88,12 +88,12 @@ steps:
         {{else}}
           {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} failed: {{build.link}}
         {{/success}}
-
-        git repo: {{repo.owner}}/{{repo.name}}
-        git branch: {{build.target}}
-        git hash: {{build.commit}}
-        git author: {{build.author_name}}
-        git commit message: {{build.message}}
+        <br /><br />
+        git repo: {{repo.owner}}/{{repo.name}}<br />
+        git branch: {{build.target}}<br />
+        git hash: {{build.commit}}<br />
+        git author: {{build.author_name}}<br />
+        git commit message: {{build.message}}<br />
     when:
       branch:
         - main
