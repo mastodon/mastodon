@@ -8,6 +8,7 @@ on:
 jobs:
   docker-build:
     runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.commits.*.message, '[skip ci]') && !contains(github.event.commits.*.message, '[ci skip]') }}
 
     steps:
       - name: 🔍 Checkout code
