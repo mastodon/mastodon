@@ -20,6 +20,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 ENV LD_PRELOAD=${LD_PRELOAD}:/usr/lib/linux-gnu/libjemalloc.so.2
 
+ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin"
+
 # Create the mastodon user
 ARG UID=991
 ARG GID=991
