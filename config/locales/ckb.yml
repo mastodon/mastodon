@@ -234,21 +234,28 @@ ckb:
         create_domain_block: دروستکردنی بلۆکی دۆمەین
         create_email_domain_block: دروستکردنی بلۆکی دۆمەینی ئیمەیڵ
         create_ip_block: دروستکردنی یاسای IP
+        create_unavailable_domain: دروستکردنی دۆمەینی بەردەست نییە
         demote_user: دابەزاندنی ئاستی بەکارهێنەر
         destroy_announcement: سڕینەوەی راگەیەندراو
         destroy_custom_emoji: سڕینەوەی ئێمۆمۆجی تایبەتمەند
         destroy_domain_allow: سڕینەوەی ڕێپێدان بە دۆمەین
         destroy_domain_block: سڕینەوەی بلۆکی دۆمەین
         destroy_email_domain_block: سڕینەوەی بلۆکی دۆمەینی ئیمەیڵ
+        destroy_instance: پاککردنەوەی دۆمەین
         destroy_ip_block: سڕینەوەی یاسای IP
         destroy_status: دۆخ بسڕەوە
+        destroy_unavailable_domain: دۆمەینی بەردەست نییە بسڕەوە
         disable_2fa_user: لەکارخستنی 2FA
         disable_custom_emoji: سڕینەوەی ئێمۆمۆجی تایبەتمەند
+        disable_sign_in_token_auth_user: ڕەسەنایەتی نیشانەی ئیمەیڵ بۆ بەکارهێنەر لەکاربخە
         disable_user: بەکارهێنەر لە کاربخە
         enable_custom_emoji: ئیمۆمۆجی تایبەتمەند چالاک بکە
+        enable_sign_in_token_auth_user: ڕەسەنایەتی نیشانەی ئیمەیڵ بۆ بەکارهێنەر چالاک بکە
         enable_user: چالاککردنی بەکارهێنەر
         memorialize_account: هەژماری بیرکەوتنەوە
         promote_user: بەرزکردنەوەی بەکارهێنەر
+        reject_appeal: تانەدان ڕەتبکەرەوە
+        reject_user: بەکارهێنەر ڕەت بکەرەوە
         remove_avatar_user: لابردنی وێنۆجکە
         reopen_report: دووبارە کردنەوەی گوزارشت
         reset_password_user: گەڕانەوەی تێپەڕوشە
@@ -257,12 +264,16 @@ ckb:
         silence_account: هەژماری بێدەنگی
         suspend_account: ڕاگرتنی هەژمارە
         unassigned_report: گوزارشتی دیارینەکراو
+        unblock_email_account: ناونیشانی ئیمەیڵەکە بلۆک بکەرەوە
         unsensitive_account: میدیاکە لە هەژمارەکەت وەک هەستیار نیشانە مەکە
         unsilence_account: هەژماری بێ دەنگ
         unsuspend_account: هەژماری هەڵنەوەستێنراو
         update_announcement: بەڕۆژکردنەوەی راگەیەندراو
         update_custom_emoji: بەڕۆژکردنی ئێمۆمۆجی دڵخواز
+        update_domain_block: نوێکردنەوەی بلۆکی دۆمەین
         update_status: بەڕۆژکردنی دۆخ
+      actions:
+        update_status_html: "%{name} پۆستی نوێکراوە لەلایەن %{target}"
       deleted_status: "(نووسراوە سڕاوە)"
       empty: هیچ لاگی کارنەدۆزرایەوە.
       filter_by_action: فلتەر کردن بە کردار
@@ -277,10 +288,12 @@ ckb:
       new:
         create: دروستکردنی راگەیەندراو
         title: ڕاگەیاندنی نوێ
+      publish: بڵاوی بکەوە
       published_msg: بانگەوازەکە بە سەرکەوتوویی بڵاو کرایەوە!
       scheduled_for: خشتەکراوە بۆ %{time}
       scheduled_msg: ڕاگەیاندنی خشتەی بۆ بڵاوکردنەوە!
       title: ڕاگه یه نراوەکان
+      unpublish: بڵاونەکردنەوە
       unpublished_msg: بانگەواز بە سەرکەوتوویی بڵاونەکرایەوە!
       updated_msg: بانگەوازەکە بە سەرکەوتوویی نوێکرایەوە!
     custom_emojis:
@@ -300,6 +313,7 @@ ckb:
       enable: چالاککردن
       enabled: چالاککراوە
       enabled_msg: ئەو ئیمۆجییە بە سەرکەوتووانە چالاک کرا
+      image_hint: PNG یا GIF بۆ %{size}
       list: پێرست
       listed: پێرستکراوە
       new:
@@ -316,11 +330,25 @@ ckb:
       updated_msg: ئیمۆجی بە سەرکەوتوویی نوێکرایەوە!
       upload: بارکردن
     dashboard:
+      active_users: بەکارهێنەرانی چالاک
+      interactions: پیکداچوونەوەکان
+      media_storage: هەمارگەی میدیا
+      new_users: ئەندامی نوێ
+      opened_reports: ڕاپۆرتەکان کرانەوە
+      resolved_reports: ڕاپۆرتەکان چارەسەر کران
       software: نەرمەکالا
+      sources: سەرچاوەی ناو تۆمارکردن
       space: بەکارهێنانی بۆشایی
       title: داشبۆرد
+      top_languages: زمانە چالاکەکانی سەرەوە
+      top_servers: سەرەکیترین سێرڤەرە چالاکەکان
+      website: ماڵپەڕ
+    disputes:
+      appeals:
+        empty: هیچ تانەیەک نەدۆزراوەتەوە.
+        title: تانەدان
     domain_allows:
-      add_new: ڕێپێدان بە دۆمەین
+      add_new: ڕێگە بە فیدراسیۆن بدە لەگەڵ دۆمەین
       created_msg: دۆمەین بە سەرکەوتوویی رێگەی پێدرا
       destroyed_msg: دۆمەین لە پێرستی رێگەی پێدرا لابرا
       undo: لابردن لە پێرستی ڕێپێدراو
@@ -340,6 +368,7 @@ ckb:
           silence: بێدەنگ
           suspend: ڕاگرتن
         title: بلۆکی دۆمەینی نوێ
+      obfuscate: ناوی دۆمەینەکە تەمومژاوی بکە
       private_comment: لێدوانی تایبەت
       private_comment_hint: لێدوان دەربارەی سنوورداری ئەم دۆمەینە بۆ بەکارهێنانی ناوخۆیی لەلایەن مۆدەرەکان.
       public_comment: سەرنجی گشتی
