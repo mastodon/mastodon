@@ -244,7 +244,7 @@ ru:
         approve_appeal: Одобрить обжалование
         approve_user: Утвердить
         assigned_to_self_report: Присвоение жалоб
-        change_email_user: Изменение e-mail пользователей
+        change_email_user: Изменение эл. почты пользователя
         confirm_user: Подтверждение пользователей
         create_account_warning: Выдача предупреждения
         create_announcement: Создание объявлений
@@ -292,6 +292,7 @@ ru:
         update_domain_block: Изменение блокировки домена
         update_status: Изменение постов
       actions:
+        approve_appeal_html: "%{name} одобрил апелляцию на умеренное решение от %{target}"
         approve_user_html: "%{name} утвердил(а) регистрацию %{target}"
         assigned_to_self_report_html: "%{name} назначил(а) себя для решения жалобы %{target}"
         change_email_user_html: "%{name} сменил(а) e-mail пользователя %{target}"
@@ -323,6 +324,7 @@ ru:
         enable_user_html: "%{name} разморозил(а) пользователя %{target}"
         memorialize_account_html: "%{name} перевел(а) учётную запись пользователя %{target} в статус памятника"
         promote_user_html: "%{name} повысил(а) пользователя %{target}"
+        reject_appeal_html: "%{name} отклонил апелляцию на модерацию от %{target}"
         reject_user_html: "%{name} отклонил(а) регистрацию %{target}"
         remove_avatar_user_html: "%{name} убрал(а) аватарку пользователя %{target}"
         reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
@@ -466,7 +468,9 @@ ru:
       domain: Домен
       new:
         create: Создать блокировку
+        resolve: Отрезолвенные домены
         title: Новая блокировка по домену
+      no_email_domain_block_selected: Блоки домена электронной почты не были изменены, так как не были выбраны
       resolved_through_html: Разрешено через %{domain}
       title: Блокировка e-mail доменов
     follow_recommendations:
@@ -821,6 +825,9 @@ ru:
       title: Управление шаблонами предупреждений
   admin_mailer:
     new_appeal:
+      actions:
+        silence: ограничить учётную запись
+        suspend: приостановить действие учётной записи
       subject: "%{username} обжалует решение модерации на %{instance}"
     new_pending_account:
       body: Ниже указана информация учётной записи. Вы можете одобрить или отклонить заявку.

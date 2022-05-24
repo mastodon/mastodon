@@ -496,6 +496,13 @@ ar:
       delivery_error_days: أيام أخطاء التوصيل
       delivery_error_hint: إذا كان التوصيل غير ممكناً لـ%{count} يوم، فستوضع عليها علامة {غير قابلة للتسليم} تلقائياً.
       empty: لم يتم العثور على نطاقات.
+      known_accounts:
+        few: "%{count} حسابات معروفة"
+        many: "%{count} حسابًا معروفًا"
+        one: حساب %{count} معروف
+        other: "%{count} حساب معروف"
+        two: حسابان %{count} معروفان
+        zero: "%{count} حسابًا معروفًا"
       moderation:
         all: كافتها
         limited: محدود
@@ -1389,6 +1396,7 @@ ar:
     open_in_web: افتح في الويب
     over_character_limit: تم تجاوز حد الـ %{max} حرف المسموح بها
     pin_errors:
+      direct: لا يمكن تثبيت المنشورات التي يراها فقط المتسخدمون المشار إليهم
       limit: لقد بلغت الحد الأقصى للمنشورات المثبتة
       ownership: لا يمكن تثبيت منشور نشره شخص آخر
       reblog: لا يمكن تثبيت ترقية

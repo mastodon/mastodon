@@ -81,7 +81,7 @@ gem 'scenic', '~> 1.6'
 gem 'sidekiq', '~> 6.4'
 gem 'sidekiq-scheduler', '~> 4.0'
 gem 'sidekiq-unique-jobs', '~> 7.1'
-gem 'sidekiq-bulk', '~>0.2.0'
+gem 'sidekiq-bulk', '~> 0.2.0'
 gem 'simple-navigation', '~> 4.3'
 gem 'simple_form', '~> 5.1'
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
@@ -116,7 +116,7 @@ end
 group :test do
   gem 'capybara', '~> 3.37'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.20'
+  gem 'faker', '~> 2.21'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
@@ -134,7 +134,7 @@ group :development do
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.28', require: false
+  gem 'rubocop', '~> 1.29', require: false
   gem 'rubocop-rails', '~> 2.14', require: false
   gem 'brakeman', '~> 5.2', require: false
   gem 'bundler-audit', '~> 0.9', require: false
