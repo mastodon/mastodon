@@ -7,6 +7,7 @@ ckb:
     active_count_after: چالاک
     active_footnote: بەکارهێنەرانی چالاکی مانگانە (MAU)
     administered_by: 'بەڕێوەبراو لەلایەن:'
+    api: API
     apps: ئەپەکانی مۆبایل
     apps_platforms: بەکارهێنانی ماستۆدۆن لە iOS، ئەندرۆید و سەکۆکانی تر
     browse_directory: گەڕان لە ڕێبەرێکی پرۆفایل و پاڵاوتن بەپێی بەرژەوەندیەکان
@@ -24,13 +25,17 @@ ckb:
       ئەم هەژمارەیە ئەکتەرێکی خەیاڵی بەکارهاتووە بۆ نوێنەرایەتی کردنی خودی ڕاژەکە و نەک هیچ بەکارهێنەرێکی تاک.
       بۆ مەبەستی فیدراسیۆن بەکاردێت و نابێت بلۆک بکرێت مەگەر دەتەوێت هەموو نمونەکە بلۆک بکەیت، کە لە حاڵەتەش دا پێویستە بلۆکی دۆمەین بەکاربهێنیت.
     learn_more: زیاتر فێربه
+    logged_in_as_html: لە ئێستادا تۆ وەک %{username} چوویتە ژوورەوە.
+    logout_before_registering: تۆ پێشتر چوویتە ژوورەوە.
     privacy_policy: ڕامیاری تایبەتێتی
+    rules: یاساکانی سێرڤەر
+    rules_html: 'لە خوارەوە کورتەیەک لەو یاسایانە دەخەینەڕوو کە پێویستە پەیڕەوی لێبکەیت ئەگەر بتەوێت ئەکاونتێکت هەبێت لەسەر ئەم سێرڤەرەی ماستۆدۆن:'
     see_whats_happening: بزانە چی ڕوودەدات
     server_stats: 'زانیاری ڕاژەکار:'
     source_code: کۆدی سەرچاوە
     status_count_after:
       one: دۆخ
-      other: دۆخەکان
+      other: پۆست
     status_count_before: لە لایەن یەکەوە
     tagline: دوای هاوڕێکان بکەوە و ئەوانەی نوێ بدۆزیەوە
     terms: مەرجەکانی خزمەتگوزاری
@@ -59,6 +64,7 @@ ckb:
       one: شوێنکەوتوو
       other: شوێن‌کەوتووان
     following: شوێن‌کەوتووی
+    instance_actor_flash: ئەم ئەکاونتە ئەکتەرێکی مەجازییە کە بەکاردێت بۆ نوێنەرایەتیکردنی خودی سێرڤەرەکە نەک هیچ بەکارهێنەرێکی تاکەکەسی. بۆ مەبەستی فیدراسیۆن بەکاردێت و نابێت ڕابگیرێت.
     joined: بەشداری %{date}
     last_active: دوا چالاکی
     link_verified_on: خاوەنداریەتی ئەم لینکە لە %{date} چێک کراوە
@@ -107,11 +113,13 @@ ckb:
       confirm: پشتڕاستی بکەوە
       confirmed: پشتڕاست کرا
       confirming: پشتڕاستکردنەوە
+      custom: ڕاسپێراو
       delete: سڕینەوەی داتا
       deleted: سڕینەوە
       demote: پلە نزمکرایەوە
       destroyed_msg: دراوەکانی %{username} لە ڕیزی سڕینەوەن
       disable: بەستن
+      disable_sign_in_token_auth: ڕەسەنایەتی نیشانەی ئیمەیڵ لەکاربخە
       disable_two_factor_authentication: لەکارخستنی 2FA
       disabled: بەستوو
       display_name: ناوی پیشاندان
@@ -120,12 +128,14 @@ ckb:
       email: پۆستی ئەلکترۆنی
       email_status: دۆخی ئیمەیڵ
       enable: چالاک کردن
+      enable_sign_in_token_auth: ڕەسەنایەتی نیشانەی ئیمەیڵ چالاک بکە
       enabled: چالاککراوە
       enabled_msg: هەژمارە %{username} بە سەرکەوتوویی سنووردار کرا
       followers: شوێنکەوتوان
       follows: شوێنکەوتوان
       header: سەرپەڕە
       inbox_url: نیشانی هاتنەژوور
+      invite_request_text: هۆکارەکانی بەشداریکردن
       invited_by: هاتۆتە ژورەوە لە لایەن
       ip: ئای‌پی
       joined: ئەندام بوو لە
@@ -153,6 +163,7 @@ ckb:
       not_subscribed: بەشدار نەبوو
       pending: پێداچوونەوەی چاوەڕوان
       perform_full_suspension: ڕاگرتن
+      previous_strikes: مانگرتنەکانی پێشوو
       promote: بەرزکردنەوە
       protocol: پرۆتۆکۆل
       public: گشتی
@@ -181,6 +192,9 @@ ckb:
       search: گەڕان
       search_same_email_domain: بەکارهێنەرانی دیکە بە ئیمەیلی یەکسان
       search_same_ip: بەکارهێنەرانی تر بەهەمان ئای پی
+      security_measures:
+        only_password: تەنها وشەی نهێنی
+        password_and_2fa: وشەی نهێنی و 2FA
       sensitive: هەستیار
       sensitized: وەک هەستیار نیشان کراوە
       shared_inbox_url: بەستەری سندوقی هاوبەشکراو
@@ -209,6 +223,8 @@ ckb:
       whitelisted: پێرستی ڕێپێدراو
     action_logs:
       action_types:
+        approve_appeal: پەسەندکردنی تانەدان
+        approve_user: پەسەندکردنی بەکارهێنەر
         assigned_to_self_report: تەرخانکردنی گوزارشت
         change_email_user: گۆڕینی ئیمەیڵ بۆ بەکارهێنەر
         confirm_user: دڵنیابوون لە بەکارهێنەر
@@ -219,21 +235,28 @@ ckb:
         create_domain_block: دروستکردنی بلۆکی دۆمەین
         create_email_domain_block: دروستکردنی بلۆکی دۆمەینی ئیمەیڵ
         create_ip_block: دروستکردنی یاسای IP
+        create_unavailable_domain: دروستکردنی دۆمەینی بەردەست نییە
         demote_user: دابەزاندنی ئاستی بەکارهێنەر
         destroy_announcement: سڕینەوەی راگەیەندراو
         destroy_custom_emoji: سڕینەوەی ئێمۆمۆجی تایبەتمەند
         destroy_domain_allow: سڕینەوەی ڕێپێدان بە دۆمەین
         destroy_domain_block: سڕینەوەی بلۆکی دۆمەین
         destroy_email_domain_block: سڕینەوەی بلۆکی دۆمەینی ئیمەیڵ
+        destroy_instance: پاککردنەوەی دۆمەین
         destroy_ip_block: سڕینەوەی یاسای IP
         destroy_status: دۆخ بسڕەوە
+        destroy_unavailable_domain: دۆمەینی بەردەست نییە بسڕەوە
         disable_2fa_user: لەکارخستنی 2FA
         disable_custom_emoji: سڕینەوەی ئێمۆمۆجی تایبەتمەند
+        disable_sign_in_token_auth_user: ڕەسەنایەتی نیشانەی ئیمەیڵ بۆ بەکارهێنەر لەکاربخە
         disable_user: بەکارهێنەر لە کاربخە
         enable_custom_emoji: ئیمۆمۆجی تایبەتمەند چالاک بکە
+        enable_sign_in_token_auth_user: ڕەسەنایەتی نیشانەی ئیمەیڵ بۆ بەکارهێنەر چالاک بکە
         enable_user: چالاککردنی بەکارهێنەر
         memorialize_account: هەژماری بیرکەوتنەوە
         promote_user: بەرزکردنەوەی بەکارهێنەر
+        reject_appeal: تانەدان ڕەتبکەرەوە
+        reject_user: بەکارهێنەر ڕەت بکەرەوە
         remove_avatar_user: لابردنی وێنۆجکە
         reopen_report: دووبارە کردنەوەی گوزارشت
         reset_password_user: گەڕانەوەی تێپەڕوشە
@@ -242,12 +265,16 @@ ckb:
         silence_account: هەژماری بێدەنگی
         suspend_account: ڕاگرتنی هەژمارە
         unassigned_report: گوزارشتی دیارینەکراو
+        unblock_email_account: ناونیشانی ئیمەیڵەکە بلۆک بکەرەوە
         unsensitive_account: میدیاکە لە هەژمارەکەت وەک هەستیار نیشانە مەکە
         unsilence_account: هەژماری بێ دەنگ
         unsuspend_account: هەژماری هەڵنەوەستێنراو
         update_announcement: بەڕۆژکردنەوەی راگەیەندراو
         update_custom_emoji: بەڕۆژکردنی ئێمۆمۆجی دڵخواز
+        update_domain_block: نوێکردنەوەی بلۆکی دۆمەین
         update_status: بەڕۆژکردنی دۆخ
+      actions:
+        update_status_html: "%{name} پۆستی نوێکراوە لەلایەن %{target}"
       deleted_status: "(نووسراوە سڕاوە)"
       empty: هیچ لاگی کارنەدۆزرایەوە.
       filter_by_action: فلتەر کردن بە کردار
@@ -262,10 +289,12 @@ ckb:
       new:
         create: دروستکردنی راگەیەندراو
         title: ڕاگەیاندنی نوێ
+      publish: بڵاوی بکەوە
       published_msg: بانگەوازەکە بە سەرکەوتوویی بڵاو کرایەوە!
       scheduled_for: خشتەکراوە بۆ %{time}
       scheduled_msg: ڕاگەیاندنی خشتەی بۆ بڵاوکردنەوە!
       title: ڕاگه یه نراوەکان
+      unpublish: بڵاونەکردنەوە
       unpublished_msg: بانگەواز بە سەرکەوتوویی بڵاونەکرایەوە!
       updated_msg: بانگەوازەکە بە سەرکەوتوویی نوێکرایەوە!
     custom_emojis:
@@ -285,6 +314,7 @@ ckb:
       enable: چالاککردن
       enabled: چالاککراوە
       enabled_msg: ئەو ئیمۆجییە بە سەرکەوتووانە چالاک کرا
+      image_hint: PNG یا GIF بۆ %{size}
       list: پێرست
       listed: پێرستکراوە
       new:
@@ -301,11 +331,25 @@ ckb:
       updated_msg: ئیمۆجی بە سەرکەوتوویی نوێکرایەوە!
       upload: بارکردن
     dashboard:
+      active_users: بەکارهێنەرانی چالاک
+      interactions: پیکداچوونەوەکان
+      media_storage: هەمارگەی میدیا
+      new_users: ئەندامی نوێ
+      opened_reports: ڕاپۆرتەکان کرانەوە
+      resolved_reports: ڕاپۆرتەکان چارەسەر کران
       software: نەرمەکالا
+      sources: سەرچاوەی ناو تۆمارکردن
       space: بەکارهێنانی بۆشایی
       title: داشبۆرد
+      top_languages: زمانە چالاکەکانی سەرەوە
+      top_servers: سەرەکیترین سێرڤەرە چالاکەکان
+      website: ماڵپەڕ
+    disputes:
+      appeals:
+        empty: هیچ تانەیەک نەدۆزراوەتەوە.
+        title: تانەدان
     domain_allows:
-      add_new: ڕێپێدان بە دۆمەین
+      add_new: ڕێگە بە فیدراسیۆن بدە لەگەڵ دۆمەین
       created_msg: دۆمەین بە سەرکەوتوویی رێگەی پێدرا
       destroyed_msg: دۆمەین لە پێرستی رێگەی پێدرا لابرا
       undo: لابردن لە پێرستی ڕێپێدراو
@@ -325,6 +369,8 @@ ckb:
           silence: بێدەنگ
           suspend: ڕاگرتن
         title: بلۆکی دۆمەینی نوێ
+      obfuscate: ناوی دۆمەینەکە تەمومژاوی بکە
+      obfuscate_hint: ناوی دۆمەینەکە لە لیستی ریکلامەکاندا بەشێکی تەمومژاوی بکە لیستی سنووردارکردنی دۆمەینەکە چالاک کراوە
       private_comment: لێدوانی تایبەت
       private_comment_hint: لێدوان دەربارەی سنوورداری ئەم دۆمەینە بۆ بەکارهێنانی ناوخۆیی لەلایەن مۆدەرەکان.
       public_comment: سەرنجی گشتی
@@ -339,26 +385,87 @@ ckb:
       add_new: زیادکردنی نوێ
       created_msg: بە سەرکەوتوویی دۆمەینی ئیمەیڵ بلۆک کرا
       delete: سڕینەوە
+      dns:
+        types:
+          mx: تۆماری MX
       domain: دۆمەین
       new:
         create: زیادکردنی دۆمەین
+        resolve: چارەسەرکردنی دۆمەین
         title: بلۆککردنی دۆمەینی ئیمەیڵی نوێ
+      no_email_domain_block_selected: هیچ بلۆکێکی دۆمەینی ئیمەیڵ نەگۆڕدرا چونکە هیچیان هەڵنەبژێردرابوون
+      resolved_dns_records_hint_html: ناوی دۆمەینەکە چارەسەر دەبێت بۆ ئەم دۆمەینانەی خوارەوەی MX، کە لە کۆتاییدا بەرپرسیارن لە وەرگرتنی ئیمەیڵ. ڕێگریکردن لە دۆمەینی MX ڕێگری دەکات لە ناو تۆمارکردن لە هەر ناونیشانێکی ئیمەیڵەوە کە هەمان دۆمەینی MX بەکاردەهێنێت، تەنانەت ئەگەر ناوی دۆمەینی بینراو جیاواز بێت. <strong>ئاگاداربە کە دابینکەرانی ئیمەیڵی سەرەکی بلۆک نەکەیت.</strong>
+      resolved_through_html: لە ڕێگەی %{domain} چارەسەر دەکرێت
       title: دۆمەینە بلۆککراوەکانی ئیمەیڵ
+    follow_recommendations:
+      description_html: "<strong>پەیڕەوکردنی پێشنیارەکان یارمەتی بەکارهێنەرانی نوێ دەدەن بە خێرایی ناوەڕۆکی سەرنجڕاکێش بدۆزنەوە</strong>. کاتێک بەکارهێنەرێک ئەوەندە کارلێکی لەگەڵ کەسانی دیکە نەکردووە کە پێشنیاری بەدواداچوونی کەسی پێکبهێنێت، لەبری ئەوە ئەم ئەکاونتانە پێشنیار دەکرێن. ئەوان ڕۆژانە لە تێکەڵەیەک لە ئەکاونتەکانەوە دووبارە حیساب دەکرێنەوە کە بەرزترین پەیوەندییەکانی ئەم دواییە و بەرزترین ژمارەی فۆڵۆوەری ناوخۆیی بۆ زمانێکی دیاریکراویان هەیە."
+      language: بۆ زمان
+      status: دۆخ
+      suppress: سەرکوتکردنی پێشنیاری شوێنکەوتن
+      suppressed: سەرکوت کراوە
+      title: پێشنیارەکان جێبەجێ بکە
+      unsuppress: گەڕاندنەوە بەدواداچوون بۆ پێشنیارەکان
     instances:
+      availability:
+        failure_threshold_reached: ئاستی شکست گەیشتە %{date}.
+        no_failures_recorded: هیچ شکستێک لە تۆماردا نییە.
+        title: بەردەست بوونی
+        warning: دوایین هەوڵ بۆ پەیوەندیکردن بەم سێرڤەرە سەرکەوتوو نەبوو
+      back_to_all: هەمووی
+      back_to_limited: سنووردار
+      back_to_warning: ئاگاداری
       by_domain: دۆمەین
+      confirm_purge: ئایا دڵنیای کە دەتەوێت بۆ هەمیشە زانیارییەکان لەم دۆمەینە بسڕیتەوە?
+      content_policies:
+        comment: تێبینی ناوخۆیی
+        description_html: دەتوانیت سیاسەتی ناوەڕۆک پێناسە بکەیت کە بۆ هەموو ئەکاونتەکان لەم دۆمەین و هەر یەکێک لە دۆمەینەکانی لاوەکییەوە جێبەجێ دەکرێن.
+        policies:
+          reject_media: میدیا ڕەت بکەرەوە
+          reject_reports: گوزارشتەکان ڕەت بکەوە
+          silence: سنوور
+          suspend: ڕاگرتن
+        policy: سیاسەت
+        reason: هۆکاری گشتی
+        title: سیاسەتەکانی ناوەڕۆک
+      dashboard:
+        instance_accounts_dimension: زۆرترین هەژمارەی بەدواداچوو
+        instance_accounts_measure: هەژمارەی هەڵگیراوەکان
+        instance_followers_measure: شوێنکەوتووانمان لەوێ
+        instance_follows_measure: شوێنکەوتووانمان لێرە
+        instance_languages_dimension: زمانە سەرەکییەکان
+        instance_media_attachments_measure: هاوپێچەکانی میدیای هەڵگیراو
+        instance_reports_measure: گوزارشت له باره یان
+        instance_statuses_measure: پۆستە هەڵگیراوەکان
+      delivery:
+        all: هەمووی
+        clear: هەڵەکانی گەیاندن پاک بکەرەوە
+        failing: شکستهێنان
+        restart: دووبارە دەستپێکردنەوەی گەیاندن
+        stop: گەیاندن بوەستێنە
+        unavailable: بەردەست نییە
       delivery_available: گەیاندن بەردەستە
+      delivery_error_days: ڕۆژانی هەڵەی گەیاندن
+      delivery_error_hint: ئەگەر گەیاندن بۆ %{count} ڕۆژەکان نەتوانرێت، بە شێوەیەکی ئۆتۆماتیکی وەک ناگەیاندن نیشان دەدرێت.
+      destroyed_msg: ئێستا داتا لە %{domain} لە ڕیزدا دانراوە بۆ سڕینەوەی نزیک.
+      empty: هیچ دۆمەینێک نەدۆزرایەوە.
+      known_accounts:
+        one: "%{count} ئەژمێری ناسراو"
+        other: "%{count} ئەژمێری ناسراو"
       moderation:
         all: هەموو
         limited: سنووردار
         title: بەڕێوەبردن
       private_comment: لێدوانی تایبەت
       public_comment: سەرنجی گشتی
+      purge: پاککردنەوە
+      purge_description_html: ئەگەر پێت وایە ئەم دۆمەینە بۆ هەمیشە ئۆفلاینە، دەتوانیت هەموو تۆمارەکانی ئەکاونت و زانیارییە پەیوەندیدارەکانی ئەم دۆمەینە لە هەڵگرتنەکەت بسڕیتەوە. لەوانەیە ئەمە ماوەیەکی پێ بچێت.
       title: پەیوەندی نێوان ڕاژە
       total_blocked_by_us: لەلایەن ئێمە بەربەست کراوە
       total_followed_by_them: شوێنمان دەکەون
       total_followed_by_us: شوێنیان کەوتین
       total_reported: گوزارشت له باره یان
       total_storage: هاوپێچی میدیا
+      totals_time_period_hint_html: ئەو کۆی گشتیانەی لە خوارەوە پیشان دراون داتای هەموو کاتەکان لەخۆدەگرن.
     invites:
       deactivate_all: هەموو لەکارخستنی
       filter:
@@ -403,38 +510,73 @@ ckb:
     report_notes:
       created_msg: تێبینی ڕاپۆرت کردن بە سەرکەوتوویی دروست کرا!
       destroyed_msg: تێبینی گوزارشت بە سەرکەوتوویی سڕاوەتەوە!
+      today_at: ئەمڕۆ لە %{time}
     reports:
       account:
         notes:
           one: "%{count} یاداشت"
-          other: "%{count} یاداشت"
+          other: "%{count} تێبینی"
+      action_log: لۆگی وردبینی
       action_taken_by: کردەوە لە لایەن
+      actions:
+        delete_description_html: ئەو پۆستانەی کە ڕاپۆرت کراون دەسڕدرێنەوە و مانگرتنێک تۆمار دەکرێت بۆ ئەوەی یارمەتیت بدات لەسەر پێشێلکارییەکانی داهاتوو لەلایەن هەمان ئەکاونتەوە زیاد بکەیت.
+        mark_as_sensitive_description_html: میدیاکان لە پۆستە ڕاپۆرتکراوەکاندا وەک هەستیار نیشانە دەکرێن و مانگرتنێک تۆمار دەکرێت بۆ ئەوەی یارمەتیت بدات لەسەر پێشێلکارییەکانی داهاتوو لەلایەن هەمان ئەکاونتەوە زیاد بکەیت.
+        other_description_html: بژاردەی زیاتر ببینە بۆ کۆنترۆڵکردنی هەڵسوکەوتی ئەکاونتەکە و خۆکارکردنی پەیوەندی بۆ ئەژمێری ڕاپۆرتکراو.
+        resolve_description_html: هیچ ئیجرائاتێک لە دژی ئەو حسابە ڕاپۆرت کراوە ناگیرێتەبەر، هیچ مانگرتنێک تۆمار ناکرێت، ڕاپۆرتەکەش دادەخرێت.
+        silence_description_html: پرۆفایلەکە تەنها بۆ ئەو کەسانە دیار دەبێت کە پێشتر فۆڵۆوی دەکەن یان بە دەست سەیری دەکەن، ئەمەش گەیشتنەکەی بە توندی سنووردار دەکات. هەمیشە دەتوانرێت بگەڕێندرێتەوە.
+        suspend_description_html: پرۆفایلەکە و هەموو ناوەڕۆکەکانی دەستڕاگەیشتنیان پێناگات تا لە کۆتاییدا دەسڕدرێتەوە. کارلێککردن لەگەڵ ئەکاونتەکەدا مەحاڵ دەبێت. لە ماوەی ٣٠ ڕۆژدا دەگەڕێتەوە.
+      actions_description_html: بڕیار بدە کام رێوشوێن بگیرێتەبەر بۆ چارەسەرکردنی ئەم راپۆرتە. ئەگەر تۆ ڕێوشوێنی سزادان لە دژی ئەژمێری ڕاپۆرتکراو بگریتەبەر، ئاگادارکردنەوەیەکی ئیمەیڵیان بۆ دەنێردرێت، تەنها کاتێک نەبێت کە پۆلی <strong>سپام</strong> هەڵبژێردرابێت.
+      add_to_report: زیاتر زیاد بکە بۆ ڕاپۆرت
       are_you_sure: دڵنیای?
       assign_to_self: دیاریکردن بۆ من
       assigned: بەڕێوەبەری بەرپرس
       by_target_domain: دۆمەینی هەژمارەی گوزارشتدراو
+      category: جۆر
+      category_description_html: هۆکاری ڕاپۆرتکردنی ئەم ئەکاونتە و/یان ناوەڕۆکە لە پەیوەندی لەگەڵ ئەکاونتی ڕاپۆرتکراودا ئاماژەی پێدەکرێت
       comment:
         none: هیچ
+      comment_description_html: 'بۆ پێدانی زانیاری زیاتر %{name} نووسیویەتی:'
       created_at: گوزارشتکرا
+      delete_and_resolve: پۆستەکان بسڕەوە
+      forwarded: پێشکەش دەکرێت
+      forwarded_to: پێشکەش دەکرێت بۆ %{domain}
       mark_as_resolved: نیشانەی بکە وەک چارەسەرکراو
+      mark_as_sensitive: نیشانەکردن وەک هەستیار
       mark_as_unresolved: نیشانەکردن وەک چارەسەرنەکراوە
+      no_one_assigned: هیچکەس
       notes:
         create: زیادکردنی تێبینی
         create_and_resolve: چارەسەر کردن لەگەڵ تێبینی
         create_and_unresolve: دووبارە کردنەوەی بە تێبینی
         delete: سڕینەوە
         placeholder: باسی ئەو کردارانە بکە کە ئەنجام دراون، یان هەر نوێکردنەوەیەکی پەیوەندیداری ت...
+        title: تێبینی
+      notes_description_html: بینین و تێبینی بۆ بەڕێوەبەرانی تر و خودی داهاتووتان بەجێبهێڵە
+      quick_actions_description_html: 'کارێکی خێرا ئەنجام بدە یان بچۆرە خوارەوە بۆ بینینی ناوەڕۆکی ڕاپۆرتکراو:'
+      remote_user_placeholder: بەکارهێنەری دوور لە %{instance}
       reopen: دووبارە کردنەوەی گوزارشت
       report: 'گوزارشت #%{id}'
       reported_account: گوزارشتی هەژمارە
       reported_by: گوزارشت لە لایەن
       resolved: چارەسەرکرا
       resolved_msg: گوزارشتکردن بە سەرکەوتوویی چارەسەر کرا!
+      skip_to_actions: باز بدە بۆ کردارەکان
       status: دۆخ
+      statuses: ناوەڕۆکی ڕاپۆرتکراو
+      statuses_description_html: ناوەڕۆکی توڕەکەر لە پەیوەندی لەگەڵ ئەکاونتی ڕاپۆرتکراودا ئاماژەی پێدەکرێت
+      target_origin: سەرچاوەی ئەکاونتی ڕاپۆرتکراو
       title: گوزارشتکرا
       unassign: دیارینەکراوە
       unresolved: چارەسەر نەکراوە
       updated_at: نوێکرایەوە
+      view_profile: نیشاندانی پڕۆفایل
+    rules:
+      add_new: یاسا زیاد بکە
+      delete: سڕینەوە
+      description_html: لە کاتێکدا زۆربەیان بانگەشەی ئەوە دەکەن کە مەرجەکانی خزمەتگوزارییان خوێندووەتەوە و ڕازین، بەزۆری خەڵک تا دوای سەرهەڵدانی کێشەیەک ناخوێننەوە. <strong>ئاسانتر بکە بۆ بینینی یاساکانی سێرڤەرەکەت بە چاوێک بە دابینکردنی لە لیستی خاڵە فیشەکییە تەختەکاندا.</strong> هەوڵبدە یاسا تاکەکەسییەکان کورت و سادە بن، بەڵام هەوڵبدە دابەشیان نەکەیت بۆ چەندین بابەتی جیاواز.
+      edit: یاسای دەستکاریکردن
+      empty: هێشتا هیچ یاسایەکی سێرڤەر پێناسە نەکراوە.
+      title: یاساکانی سێرڤەر
     settings:
       activity_api_enabled:
         desc_html: ژماردنی دۆخی بڵاوکراوە ی ناوخۆیی و بەکارهێنەرە چالاکەکان و تۆماری نوێ لە سەتڵی هەفتانە
@@ -483,6 +625,8 @@ ckb:
         min_invite_role:
           disabled: هیچکەس
           title: ڕێپێدانی بانگهێشتەکان لەلایەن
+        require_invite_text:
+          desc_html: کاتێک تۆمارکردنەکان پێویستیان بە ڕەزامەندی دەستی هەیە، "بۆچی دەتەوێت بەشداری بکەیت؟" نووسینی دەق ئیجبارییە نەک ئیختیاری
       registrations_mode:
         modes:
           approved: پەسەندکردنی داواکراو بۆ ناوتۆمارکردن
@@ -569,6 +713,7 @@ ckb:
     toot_layout: لۆی توت
   application_mailer:
     notification_preferences: گۆڕینی پەسەندکراوەکانی ئیمەیڵ
+    salutation: "%{name},"
     settings: 'گۆڕینی پەسەندکراوەکانی ئیمەیڵ: %{link}'
     view: 'نیشاندان:'
     view_profile: پرۆفایل نیشان بدە
@@ -598,11 +743,15 @@ ckb:
     invalid_reset_password_token: وشەی نهێنی دووبارە ڕێکبخەوە دروست نیە یان بەسەرچووە. تکایە داوایەکی نوێ بکە.
     link_to_otp: کۆدی دوو فاکتەر لە تەلەفۆنەکەت یان کۆدی چاککردنەوە تێبنووسە
     link_to_webauth: بەکارهێنانی ئامێری کلیلی پاراستن
+    log_in_with: بڕۆ ژوورەوە ڵەگەڵ
     login: چوونەژوورەوە
     logout: چوونەدەرەوە
     migrate_account: گواستنەوە بۆ ئەژمێرێکی تر
     migrate_account_html: ئەگەر دەتەوێت ئەم هەژمارە دووبارە ئاڕاستە بکەیت بۆ ئەژمێرێکی تر، دەتوانیت <href="%{path}"> کرتەیەک لێرە بکەی </a>.
     or_log_in_with: یان چوونە ژوورەوە بە
+    providers:
+      cas: CAS
+      saml: SAML
     register: خۆ تۆمارکردن
     registration_closed: "%{instance} ئەندامانی نوێ قبووڵ ناکات"
     resend_confirmation: دووبارە ناردنی ڕێنماییەکانی دووپاتکردنەوە
@@ -616,8 +765,11 @@ ckb:
     status:
       account_status: دۆخی هەژمارە
       confirming: چاوەڕوانی دڵنیاکردنەوەی ئیمەیڵ بۆ تەواوکردن.
+      functional: هەژمارەکەت بەتەواوی کاردەکات.
       pending: ئەپلیکەیشەنەکەت چاوەڕوانی پێداچوونەوەیە لەلایەن ستافەکەمانەوە. لەوانەیە ئەمە هەندێک کاتی بخایەنێت ئەگەر ئەۆپەکەت پەسەند کرا، ئیمەیڵت پێدەگات.
       redirecting_to: هەژمارەکەت ناچالاکە لەبەرئەوەی ئێستا دووبارە ئاڕاستەدەکرێتەوە بۆ %{acct}.
+      view_strikes: بینینی لێدانەکانی ڕابردوو لە دژی ئەکاونتەکەت
+    too_fast: فۆڕم زۆر خێرا پێشکەش کراوە، دووبارە هەوڵبدەرەوە.
     trouble_logging_in: کێشە ت هەیە بۆ چوونە ژوورەوە?
     use_security_key: کلیلی ئاسایش بەکاربهێنە
   authorize_follow:
@@ -641,15 +793,24 @@ ckb:
     errors:
       invalid_key: کلیلی باوڕپێکراو Ed25519 یان Curve25519 دروست نییە
       invalid_signature: واژووی Ed25519 بڕوادار نییە
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}کات"
-      about_x_years: "%{count}ساڵ"
-      almost_x_years: "%{count}ساڵ"
+      about_x_hours: "%{count}ک"
+      about_x_months: "%{count}ما"
+      about_x_years: "%{count}س"
+      almost_x_years: "%{count}س"
       half_a_minute: ئێستا
+      less_than_x_minutes: "%{count}م"
       less_than_x_seconds: ئێستا
-      over_x_years: "%{count}ساڵ"
-      x_days: "%{count}ڕۆژ"
+      over_x_years: "%{count}س"
+      x_days: "%{count}ڕ"
+      x_minutes: "%{count}خ"
+      x_months: "%{count}ما"
+      x_seconds: "%{count}چ"
   deletes:
     challenge_not_passed: ئەو زانیاریانەی تێنووست کردووە ڕاست نەبوو
     confirm_password: تێپەڕوشەی ئێستات تێبنووسە بۆ سەلماندنی ناسنامەکەت
@@ -671,6 +832,10 @@ ckb:
     directory: ڕێنیشاندەرێکی پرۆفایل
     explanation: دۆزینەوەی بەکارهێنەران لەسەر بنەمای بەرژەوەندییەکانیان
     explore_mastodon: گەڕان لە %{title}
+  disputes:
+    strikes:
+      title_actions:
+        none: ئاگاداری
   domain_validator:
     invalid_domain: ناوی دۆمەین بڕوادار نییە
   errors:
@@ -1154,6 +1319,7 @@ ckb:
       title:
         disable: هەژمارە بەستراوە
         none: ئاگاداری
+        sensitive: هەژمارە وەک هەستیار نیشان کراوە
         silence: هەژماری سنووردار
         suspend: هەژمار ڕاگیرا
     welcome:
