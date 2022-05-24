@@ -111,10 +111,38 @@ ckb:
       authorized_applications:
         destroy:
           notice: بەرنامە هەڵوەشێنڕا.
+    grouped_scopes:
+      access:
+        read: دەستڕاگەیشتن بە تەنها خوێندنەوە
+        read/write: دەستڕاگەیشتن بە خوێندنەوە و نووسین
+        write: دەستڕاگەیشتن بە تەنها نووسین
+      title:
+        accounts: هەژمارەکان
+        admin/accounts: بەڕێوەبردنی ژمێریارییەکان
+        admin/all: هەموو ئەرکە کارگێڕییەکان
+        admin/reports: بەڕێوەبردنی ڕاپۆرتەکان
+        all: هەمووی
+        blocks: بلۆک
+        bookmarks: نیشانەکان
+        conversations: گفتوگۆکان
+        crypto: کۆدکردنی کۆتایی بۆ کۆتایی
+        favourites: دڵخوازەکان
+        filters: پاڵێوراوەکان
+        follow: پەیوەندیەکان
+        follows: بەدواداچووان
+        lists: پێرستەکان
+        media: هاوپێچەکانی میدیا
+        mutes: بێ دەنگ
+        notifications: ئاگادارییەکان
+        push: پاڵ بە ئاگادارکردنەوەکانەوە بنێ
+        reports: ڕاپۆرتەکان
+        search: گەڕان
+        statuses: نووسراوەکان
     layouts:
       admin:
         nav:
           applications: بەرنامەکان
+          oauth2_provider: دابینکەری OAuth2
       application:
         title: داوای ڕێپێدانی OAuth
     scopes:
@@ -124,6 +152,7 @@ ckb:
       "admin:write": دەستکاری هەموو داتاکان بکە لەسەر ڕاژەکار
       "admin:write:accounts": ئەنجامدانی کاری میانڕەوی لەسەر هەژمارەکان
       "admin:write:reports": ئەنجامدانی کاری میانڕەوی لەسەر گوزارشتەکان
+      crypto: کۆدکردنی کۆتایی بۆ کۆتایی بەکاربهێنە
       follow: دەستکاریکردنی پەیوەندییەکانی هەژمارەی بەکارهێنەر
       push: وەرگرتنی ئاگانامەکانی پاڵنان
       read: هەموو دراوەکانی هەژمارەکەت بخوێنەوە
@@ -143,6 +172,7 @@ ckb:
       "write:accounts": دەستکاری پرۆفایلەکەت بکە
       "write:blocks": بلۆک کردنی هەژمارەکەی دۆمەینەکان
       "write:bookmarks": بارەکانی نیشانکەر
+      "write:conversations": بێدەنگکردن و سڕینەوەی گفتوگۆکان
       "write:favourites": دۆخی دڵخوازەکان
       "write:filters": پاڵێوەر دروست بکە
       "write:follows": دوای خەڵک بکەوە
