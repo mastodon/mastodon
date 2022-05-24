@@ -40,6 +40,10 @@ RSpec.describe AdvancedTextFormatter do
         it 'formats code using <pre> and <code>' do
           is_expected.to include '<pre><code>int main'
         end
+
+        it 'does not strip leading spaces' do
+          is_expected.to include '>  return 0'
+        end
       end
 
       context 'given some quote' do
