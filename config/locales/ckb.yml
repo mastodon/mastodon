@@ -767,6 +767,8 @@ ckb:
       functional: هەژمارەکەت بەتەواوی کاردەکات.
       pending: ئەپلیکەیشەنەکەت چاوەڕوانی پێداچوونەوەیە لەلایەن ستافەکەمانەوە. لەوانەیە ئەمە هەندێک کاتی بخایەنێت ئەگەر ئەۆپەکەت پەسەند کرا، ئیمەیڵت پێدەگات.
       redirecting_to: هەژمارەکەت ناچالاکە لەبەرئەوەی ئێستا دووبارە ئاڕاستەدەکرێتەوە بۆ %{acct}.
+      view_strikes: بینینی لێدانەکانی ڕابردوو لە دژی ئەکاونتەکەت
+    too_fast: فۆڕم زۆر خێرا پێشکەش کراوە، دووبارە هەوڵبدەرەوە.
     trouble_logging_in: کێشە ت هەیە بۆ چوونە ژوورەوە?
     use_security_key: کلیلی ئاسایش بەکاربهێنە
   authorize_follow:
@@ -790,15 +792,24 @@ ckb:
     errors:
       invalid_key: کلیلی باوڕپێکراو Ed25519 یان Curve25519 دروست نییە
       invalid_signature: واژووی Ed25519 بڕوادار نییە
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}کات"
-      about_x_years: "%{count}ساڵ"
-      almost_x_years: "%{count}ساڵ"
+      about_x_hours: "%{count}ک"
+      about_x_months: "%{count}ما"
+      about_x_years: "%{count}س"
+      almost_x_years: "%{count}س"
       half_a_minute: ئێستا
+      less_than_x_minutes: "%{count}م"
       less_than_x_seconds: ئێستا
-      over_x_years: "%{count}ساڵ"
-      x_days: "%{count}ڕۆژ"
+      over_x_years: "%{count}س"
+      x_days: "%{count}ڕ"
+      x_minutes: "%{count}خ"
+      x_months: "%{count}ما"
+      x_seconds: "%{count}چ"
   deletes:
     challenge_not_passed: ئەو زانیاریانەی تێنووست کردووە ڕاست نەبوو
     confirm_password: تێپەڕوشەی ئێستات تێبنووسە بۆ سەلماندنی ناسنامەکەت
@@ -820,6 +831,10 @@ ckb:
     directory: ڕێنیشاندەرێکی پرۆفایل
     explanation: دۆزینەوەی بەکارهێنەران لەسەر بنەمای بەرژەوەندییەکانیان
     explore_mastodon: گەڕان لە %{title}
+  disputes:
+    strikes:
+      title_actions:
+        none: ئاگاداری
   domain_validator:
     invalid_domain: ناوی دۆمەین بڕوادار نییە
   errors:
