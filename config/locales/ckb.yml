@@ -1,12 +1,12 @@
----
 ckb:
   about:
-    about_hashtag_html: ئەمانە توتی گشتین بە هەشتەگی گشتی <strong>#%{hashtag}}</strong>. گەر ئێوە لە هەر ڕاژەیەک هەژمارەتان بێت دەتوانیت لێرە بەم نووسراوانە هاوئاهەنگ بن.
+    about_hashtag_html: 'ئەمانە توتی گشتین بە هەشتەگی گشتی <strong>#%{hashtag}}</strong>. گەر ئێوە لە هەر ڕاژەیەک هەژمارەتان بێت دەتوانیت لێرە بەم نووسراوانە هاوئاهەنگ بن.'
     about_mastodon_html: 'تۆڕی کۆمەڵایەتی داهاتوو: هیچ ڕیکلامێک ، هیچ چاودێرییەکی کۆمپانیا ، دیزاینی ئەخلاقی و لامەرکەزی! خاوەنی داتاکانت نابێ لە ماستۆدۆن!'
     about_this: دەربارە
     active_count_after: چالاک
     active_footnote: بەکارهێنەرانی چالاکی مانگانە (MAU)
     administered_by: 'بەڕێوەبراو لەلایەن:'
+    api: API
     apps: ئەپەکانی مۆبایل
     apps_platforms: بەکارهێنانی ماستۆدۆن لە iOS، ئەندرۆید و سەکۆکانی تر
     browse_directory: گەڕان لە ڕێبەرێکی پرۆفایل و پاڵاوتن بەپێی بەرژەوەندیەکان
@@ -24,13 +24,17 @@ ckb:
       ئەم هەژمارەیە ئەکتەرێکی خەیاڵی بەکارهاتووە بۆ نوێنەرایەتی کردنی خودی ڕاژەکە و نەک هیچ بەکارهێنەرێکی تاک.
       بۆ مەبەستی فیدراسیۆن بەکاردێت و نابێت بلۆک بکرێت مەگەر دەتەوێت هەموو نمونەکە بلۆک بکەیت، کە لە حاڵەتەش دا پێویستە بلۆکی دۆمەین بەکاربهێنیت.
     learn_more: زیاتر فێربه
+    logged_in_as_html: لە ئێستادا تۆ وەک %{username} چوویتە ژوورەوە.
+    logout_before_registering: تۆ پێشتر چوویتە ژوورەوە.
     privacy_policy: ڕامیاری تایبەتێتی
+    rules: یاساکانی سێرڤەر
+    rules_html: 'لە خوارەوە کورتەیەک لەو یاسایانە دەخەینەڕوو کە پێویستە پەیڕەوی لێبکەیت ئەگەر بتەوێت ئەکاونتێکت هەبێت لەسەر ئەم سێرڤەرەی ماستۆدۆن:'
     see_whats_happening: بزانە چی ڕوودەدات
     server_stats: 'زانیاری ڕاژەکار:'
     source_code: کۆدی سەرچاوە
     status_count_after:
       one: دۆخ
-      other: دۆخەکان
+      other: پۆست
     status_count_before: لە لایەن یەکەوە
     tagline: دوای هاوڕێکان بکەوە و ئەوانەی نوێ بدۆزیەوە
     terms: مەرجەکانی خزمەتگوزاری
@@ -48,10 +52,10 @@ ckb:
     user_count_after:
       one: بەکارهێنەر
       other: بەکارهێنەران
-    user_count_before: "`خاوەن"
+    user_count_before: '`خاوەن'
     what_is_mastodon: ماستۆدۆن چییە?
   accounts:
-    choices_html: 'هەڵبژاردنەکانی %{name}:'
+    choices_html: "هەڵبژاردنەکانی %{name}:"
     endorsements_hint: دەتوانیت ئەو کەسانە پەسەند بکەیت کە پەیڕەویان دەکەیت لە ڕووکاری وێب، و ئەوان لێرە دەردەکەون.
     featured_tags_hint: دەتوانیت هاشتاگی تایبەت پێشکەش بکەیت کە لێرە پیشان دەدرێت.
     follow: شوێن کەوە
@@ -59,6 +63,7 @@ ckb:
       one: شوێنکەوتوو
       other: شوێن‌کەوتووان
     following: شوێن‌کەوتووی
+    instance_actor_flash: ئەم ئەکاونتە ئەکتەرێکی مەجازییە کە بەکاردێت بۆ نوێنەرایەتیکردنی خودی سێرڤەرەکە نەک هیچ بەکارهێنەرێکی تاکەکەسی. بۆ مەبەستی فیدراسیۆن بەکاردێت و نابێت ڕابگیرێت.
     joined: بەشداری %{date}
     last_active: دوا چالاکی
     link_verified_on: خاوەنداریەتی ئەم لینکە لە %{date} چێک کراوە
@@ -107,11 +112,13 @@ ckb:
       confirm: پشتڕاستی بکەوە
       confirmed: پشتڕاست کرا
       confirming: پشتڕاستکردنەوە
+      custom: ڕاسپێراو
       delete: سڕینەوەی داتا
       deleted: سڕینەوە
       demote: پلە نزمکرایەوە
-      destroyed_msg: دراوەکانی %{username} لە ڕیزی سڕینەوەن
+      destroyed_msg: "دراوەکانی %{username} لە ڕیزی سڕینەوەن"
       disable: بەستن
+      disable_sign_in_token_auth: ڕەسەنایەتی نیشانەی ئیمەیڵ لەکاربخە
       disable_two_factor_authentication: لەکارخستنی 2FA
       disabled: بەستوو
       display_name: ناوی پیشاندان
@@ -120,12 +127,14 @@ ckb:
       email: پۆستی ئەلکترۆنی
       email_status: دۆخی ئیمەیڵ
       enable: چالاک کردن
+      enable_sign_in_token_auth: ڕەسەنایەتی نیشانەی ئیمەیڵ چالاک بکە
       enabled: چالاککراوە
       enabled_msg: هەژمارە %{username} بە سەرکەوتوویی سنووردار کرا
       followers: شوێنکەوتوان
       follows: شوێنکەوتوان
       header: سەرپەڕە
       inbox_url: نیشانی هاتنەژوور
+      invite_request_text: هۆکارەکانی بەشداریکردن
       invited_by: هاتۆتە ژورەوە لە لایەن
       ip: ئای‌پی
       joined: ئەندام بوو لە
@@ -153,6 +162,7 @@ ckb:
       not_subscribed: بەشدار نەبوو
       pending: پێداچوونەوەی چاوەڕوان
       perform_full_suspension: ڕاگرتن
+      previous_strikes: مانگرتنەکانی پێشوو
       promote: بەرزکردنەوە
       protocol: پرۆتۆکۆل
       public: گشتی
@@ -181,6 +191,9 @@ ckb:
       search: گەڕان
       search_same_email_domain: بەکارهێنەرانی دیکە بە ئیمەیلی یەکسان
       search_same_ip: بەکارهێنەرانی تر بەهەمان ئای پی
+      security_measures:
+        only_password: تەنها وشەی نهێنی
+        password_and_2fa: وشەی نهێنی و 2FA
       sensitive: هەستیار
       sensitized: وەک هەستیار نیشان کراوە
       shared_inbox_url: بەستەری سندوقی هاوبەشکراو
@@ -196,7 +209,7 @@ ckb:
       suspension_reversible_hint_html: هەژمارە ڕاگیرا ، و داتاکە بەتەواوی لە %{date} لادەبرێت. تا ئەو کاتە هەژمارەکە دەتوانرێت بە بێ هیچ کاریگەریەکی خراپ بژمێردرێتەوە. ئەگەر دەتەوێت هەموو داتاکانی هەژمارەکە بسڕەوە، دەتوانیت لە خوارەوە ئەمە بکەیت.
       title: هەژمارەکان
       unconfirmed_email: ئیمەیڵی پشتڕاستنەکراو
-      undo_sensitized: " هەستیار نەکردن"
+      undo_sensitized: ' هەستیار نەکردن'
       undo_silenced: بێدەنگ ببە
       undo_suspension: دووبارە ڕاگرتن
       unsilenced_msg: هەژماری %{username} بە سەرکەوتوویی بێسنوور کرا
@@ -209,6 +222,8 @@ ckb:
       whitelisted: پێرستی ڕێپێدراو
     action_logs:
       action_types:
+        approve_appeal: پەسەندکردنی تانەدان
+        approve_user: پەسەندکردنی بەکارهێنەر
         assigned_to_self_report: تەرخانکردنی گوزارشت
         change_email_user: گۆڕینی ئیمەیڵ بۆ بەکارهێنەر
         confirm_user: دڵنیابوون لە بەکارهێنەر
@@ -383,7 +398,7 @@ ckb:
       no_ip_block_selected: هیچ ڕێسایەکی IP نەگۆڕدرا وەک ئەوەی هیچ کامیان دەستنیشان نەکران
       title: یاساکانی IP
     relationships:
-      title: پەیوەنیەکان %{acct}
+      title: "پەیوەنیەکان %{acct}"
     relays:
       add_new: زیادکردنی گواستنەوەی نوێ
       delete: سڕینەوە
@@ -546,9 +561,9 @@ ckb:
       body: وردەکاریهەژمارە نوێیەکە لە خوارەوەیە. دەتوانیت ئەم نەرمەکالا پەسەند بکەیت یان ڕەت بکەیتەوە.
       subject: هەژمارەیەک نوێ بۆ پێداچوونەوە لەسەر %{instance} (%{username})
     new_report:
-      body: بەکارهێنەری %{reporter} گوزارشی لە بەکارهینەری%{target} دا
+      body: "بەکارهێنەری %{reporter} گوزارشی لە بەکارهینەری%{target} دا"
       body_remote: کەسێک لە %{domain} گوزارشتی %{target} ناردووە
-      subject: گوزارشتێکی نوی لە %{instance} (#%{id})
+      subject: 'گوزارشتێکی نوی لە %{instance} (#%{id})'
   aliases:
     add_new: دروستکردنی ناوی ساختە
     created_msg: نازناوێکی نوێیان سەرکەوتووانە دروستکرد. ئێستا دەتوانیت دەست بە گواستنەوە کەیت لە هەژمێرە کۆنەکەت.
@@ -852,11 +867,11 @@ ckb:
       title: داواکاری شوینکەوتنی نوێ
     mention:
       action: وەڵام
-      body: "%{name} لێرە ناوی ئێووەی بردووە:"
-      subject: "%{name} لێرە ناوی ئێووەی بردووە"
+      body: '%{name} لێرە ناوی ئێووەی بردووە:'
+      subject: '%{name} لێرە ناوی ئێووەی بردووە'
       title: ناوبراوەی نوێ
     reblog:
-      body: "%{name} نووسیسراوەکەی ئێوەی توتاندەوە:"
+      body: '%{name} نووسیسراوەکەی ئێوەی توتاندەوە:'
       subject: "%{name} نووسراوەکەتی دووبارە توتاند"
       title: توتاندنەوەی نوێ
   notifications:
