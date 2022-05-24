@@ -67,7 +67,11 @@ module StatusThreadingConcern
       UNION ALL
 
         SELECT
-          statuses.id, path || statuses.id, authors || statuses.account_id
+          statuses.id, path || statuses.id, (CASE
+            WHEN array_length(authors, 1) >= 30 THEN authors
+            WHEN statuses.account_id = ANY(authors) THEN authors
+            ELSE authors || statuses.account_id
+          END)
         FROM
           search_tree
         JOIN
