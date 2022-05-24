@@ -33,9 +33,7 @@ class Api::V1::AccountsController < Api::BaseController
 
   def destroy
     authorize @account, :destroy?
-
-    @account.destroy!
-
+    DeleteAccountService.new.call(@account, reserve_email: false, reserve_username: false)
     render_empty
   end
 
