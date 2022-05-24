@@ -48,6 +48,9 @@ class SearchResults extends ImmutablePureComponent {
   render () {
     const { intl, results, suggestions, dismissSuggestion, searchTerm } = this.props;
 
+    let accounts, statuses, hashtags;
+    let count = 0;
+
     if (searchTerm === '' && !suggestions.isEmpty()) {
       return (
         <div className='drawer--results'>
@@ -80,9 +83,6 @@ class SearchResults extends ImmutablePureComponent {
         </section>
       );
     }
-
-    let accounts, statuses, hashtags;
-    let count = 0;
 
     if (results.get('accounts') && results.get('accounts').size > 0) {
       count   += results.get('accounts').size;
