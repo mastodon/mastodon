@@ -454,7 +454,7 @@ class Status < ApplicationRecord
   end
 
   def set_poll_id
-    update_column(:poll_id, poll.id) unless poll.nil?
+    update_column(:poll_id, poll.id) if association(:poll).loaded? && poll.present?
   end
 
   def set_visibility
