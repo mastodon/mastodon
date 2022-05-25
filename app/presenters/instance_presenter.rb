@@ -44,15 +44,6 @@ class InstancePresenter
     Mastodon::Version
   end
 
-  def commit_hash
-    current_release_file = Pathname.new('CURRENT_RELEASE').expand_path
-    if current_release_file.file?
-      IO.read(current_release_file).strip!
-    else
-      ''
-    end
-  end
-
   def source_url
     Mastodon::Version.source_url
   end

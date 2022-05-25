@@ -8,7 +8,7 @@ import {
   unfollowAccount,
   muteAccount,
   blockAccount,
-} from 'mastodon/actions/accounts';
+} from 'flavours/glitch/actions/accounts';
 
 const mapStateToProps = () => ({});
 

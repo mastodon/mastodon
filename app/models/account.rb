@@ -79,7 +79,7 @@ class Account < ApplicationRecord
 
   MAX_DISPLAY_NAME_LENGTH = (ENV['MAX_DISPLAY_NAME_CHARS'] || 30).to_i
   MAX_NOTE_LENGTH = (ENV['MAX_BIO_CHARS'] || 500).to_i
-  MAX_FIELDS = (ENV['MAX_PROFILE_FIELDS'] || 4).to_i
+  DEFAULT_FIELDS_SIZE = (ENV['MAX_PROFILE_FIELDS'] || 4).to_i
 
   enum protocol: [:ostatus, :activitypub]
   enum suspension_origin: [:local, :remote], _prefix: true
@@ -95,7 +95,7 @@ class Account < ApplicationRecord
   validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
   validates :display_name, length: { maximum: MAX_DISPLAY_NAME_LENGTH }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: MAX_NOTE_LENGTH }, if: -> { local? && will_save_change_to_note? }
-  validates :fields, length: { maximum: MAX_FIELDS }, if: -> { local? && will_save_change_to_fields? }
+  validates :fields, length: { maximum: DEFAULT_FIELDS_SIZE }, if: -> { local? && will_save_change_to_fields? }
 
   scope :remote, -> { where.not(domain: nil) }
   scope :local, -> { where(domain: nil) }
@@ -329,12 +329,12 @@ class Account < ApplicationRecord
   end
 
   def build_fields
-    return if fields.size >= MAX_FIELDS
+    return if fields.size >= DEFAULT_FIELDS_SIZE
 
     tmp = self[:fields] || []
     tmp = [] if tmp.is_a?(Hash)
 
-    (MAX_FIELDS - tmp.size).times do
+    (DEFAULT_FIELDS_SIZE - tmp.size).times do
       tmp << { name: '', value: '' }
     end
 

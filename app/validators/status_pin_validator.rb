@@ -2,7 +2,7 @@
 
 class StatusPinValidator < ActiveModel::Validator
   MAX_PINNED = (ENV['MAX_PINNED_TOOTS'] || 5).to_i
-  
+
   def validate(pin)
     pin.errors.add(:base, I18n.t('statuses.pin_errors.reblog')) if pin.status.reblog?
     pin.errors.add(:base, I18n.t('statuses.pin_errors.ownership')) if pin.account_id != pin.status.account_id

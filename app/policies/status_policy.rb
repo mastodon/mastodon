@@ -97,7 +97,7 @@ class StatusPolicy < ApplicationPolicy
   def author
     record.account
   end
-  
+
   def local_only?
     record.local_only?
   end

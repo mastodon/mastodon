@@ -7,7 +7,7 @@ import Motion from 'flavours/glitch/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
-import { CircularProgress } from 'mastodon/components/loading_indicator';
+import { CircularProgress } from 'flavours/glitch/components/loading_indicator';
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 let id = 0;
