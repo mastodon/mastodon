@@ -203,6 +203,14 @@ $content-width: 840px;
         }
       }
 
+      h2 small {
+        font-size: 12px;
+        display: block;
+        font-weight: 500;
+        color: $darker-text-color;
+        line-height: 18px;
+      }
+
       @media screen and (max-width: $no-columns-breakpoint) {
         border-bottom: 0;
         padding-bottom: 0;
