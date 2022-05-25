@@ -1141,20 +1141,6 @@
   }
 }
 
-.status__action-bar-button,
-.detailed-status__button .icon-button {
-  position: relative;
-
-  &.active::after {
-    position: absolute;
-    content: "\F00C";
-    font-size: 50%;
-    font-family: FontAwesome;
-    right: -5px;
-    top: -4px;
-  }
-}
-
 .status__action-bar-dropdown {
   height: 23.15px;
   width: 23.15px;
