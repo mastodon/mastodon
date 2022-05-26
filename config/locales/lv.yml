@@ -1,7 +1,6 @@
----
 lv:
   about:
-    about_hashtag_html: Šīs ir publiskas ziņas, kas atzīmētas ar <strong>#%{hashtag}</strong>. Tu vari mijiedarboties ar tām, ja tev ir konts jebkurā federācijas vietnē.
+    about_hashtag_html: 'Šīs ir publiskas ziņas, kas atzīmētas ar <strong>#%{hashtag}</strong>. Tu vari mijiedarboties ar tām, ja tev ir konts jebkurā federācijas vietnē.'
     about_mastodon_html: 'Nākotnes sociālais tīkls: bez reklāmām, bez korporatīvās uzraudzības, ētisks dizains un decentralizācija! Pārvaldi savus datus ar Mastodon!'
     about_this: Par
     active_count_after: aktīvs
@@ -35,9 +34,9 @@ lv:
     server_stats: 'Servera statistika:'
     source_code: Pirmkods
     status_count_after:
+      zero: nav
       one: ziņa
       other: ziņas
-      zero: nav
     status_count_before: Kurš publicējis
     tagline: Seko draugiem un atrodi jaunus
     terms: Pakalpojuma noteikumi
@@ -53,9 +52,9 @@ lv:
       suspended_title: Apturēti serveri
     unavailable_content_html: Mastodon parasti ļauj apskatīt saturu un mijiedarboties ar lietotājiem no jebkura cita federācijas servera. Šie ir izņēmumi, kas veikti šajā konkrētajā serverī.
     user_count_after:
+      zero: lietotājI
       one: lietotājs
       other: lietotāji
-      zero: lietotājI
     user_count_before: Mājās uz
     what_is_mastodon: Kas ir Mastodon?
   accounts:
@@ -64,9 +63,9 @@ lv:
     featured_tags_hint: Šeit vari norādīt īpašus tēmturus, kuri tiks parādīti šeit.
     follow: Seko
     followers:
+      zero: Sekotāju
       one: Sekotājs
       other: Sekotāji
-      zero: Sekotāju
     following: Seko
     instance_actor_flash: Šis konts ir virtuāls aktieris, ko izmanto, lai pārstāvētu pašu serveri, nevis atsevišķu lietotāju. To izmanto federācijas nolūkos, un to nevajadzētu apturēt.
     joined: Pievienojās %{date}
@@ -81,9 +80,9 @@ lv:
     pin_errors:
       following: Tev jau ir jāseko personai, kuru vēlies apstiprināt
     posts:
+      zero: Ziņu
       one: Ziņa
       other: Ziņas
-      zero: Ziņu
     posts_tab_heading: Ziņas
     posts_with_replies: Ziņas un atbildes
     roles:
@@ -122,7 +121,7 @@ lv:
       delete: Dzēst datus
       deleted: Dzēsts
       demote: Pazemināt
-      destroyed_msg: Lietotāja %{username} dati tagad ievietoti rindā, lai tos nekavējoties izdzēstu
+      destroyed_msg: "Lietotāja %{username} dati tagad ievietoti rindā, lai tos nekavējoties izdzēstu"
       disable: Iesaldēt
       disable_sign_in_token_auth: Atspējot autentifikāciju ar e-pasta marķieri
       disable_two_factor_authentication: Atspējot 2FA
@@ -153,7 +152,7 @@ lv:
       media_attachments: Mediju pielikumi
       memorialize: Pārvērst atmiņās
       memorialized: Piemiņa saglabāta
-      memorialized_msg: "%{username} veiksmīgi pārvērsts par piemiņas kontu"
+      memorialized_msg: '%{username} veiksmīgi pārvērsts par piemiņas kontu'
       moderation:
         active: Aktīvie
         all: Visi
@@ -170,9 +169,9 @@ lv:
       perform_full_suspension: Apturēt
       previous_strikes: Iepriekšējie brīdinājumi
       previous_strikes_description_html:
+        zero: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
         one: Šim kontam ir <strong>viens</strong> brīdinājums.
         other: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
-        zero: Šim kontam ir <strong>%{count}</strong> brīdinājumi.
       promote: Veicināt
       protocol: Protokols
       public: Publisks
@@ -399,21 +398,21 @@ lv:
       new_users: jauni lietotāji
       opened_reports: atvērtie ziņojumi
       pending_appeals_html:
+        zero: "<strong>%{count}</strong> izskatāmo apelāciju"
         one: "<strong>%{count}</strong> izskatāmā apelācija"
         other: "<strong>%{count}</strong> izskatāmās apelācijas"
-        zero: "<strong>%{count}</strong> izskatāmo apelāciju"
       pending_reports_html:
+        zero: "<strong>%{count}</strong>ziņojumi gaida"
         one: "<strong>%{count}</strong>ziņojums gaida"
         other: "<strong>%{count}</strong>ziņojumi gaida"
-        zero: "<strong>%{count}</strong>ziņojumi gaida"
       pending_tags_html:
+        zero: "<strong>%{count}</strong>tēmturi gaida"
         one: "<strong>%{count}</strong>tēmturis gaida"
         other: "<strong>%{count}</strong>tēmturi gaida"
-        zero: "<strong>%{count}</strong>tēmturi gaida"
       pending_users_html:
+        zero: "<strong>%{count}</strong>lietotāji gaida"
         one: "<strong>%{count}</strong>lietotājs gaida"
         other: "<strong>%{count}</strong>lietotāji gaida"
-        zero: "<strong>%{count}</strong>lietotāji gaida"
       resolved_reports: ziņojumi atrisināti
       software: Programmatūra
       sources: Reģistrēšanās avoti
@@ -462,9 +461,9 @@ lv:
     email_domain_blocks:
       add_new: Pievienot jaunu
       attempts_over_week:
+        zero: "%{count} mēģinājumu pagājušajā nedēļā"
         one: "%{count} mēģinājums pagājušajā nedēļā"
         other: "%{count} reģistrēšanās mēģinājumi pagājušajā nedēļā"
-        zero: "%{count} mēģinājumu pagājušajā nedēļā"
       created_msg: E-pasta domēns ir veiksmīgi bloķēts
       delete: Dzēst
       dns:
@@ -490,14 +489,14 @@ lv:
     instances:
       availability:
         description_html:
+          zero: Ja piegāde uz domēnu neizdodas <strong>%{count} dažādas dienās</strong>, un tas neizdodas, turpmāki piegādes mēģinājumi netiks veikti, ja vien netiks saņemta piegāde <em>no</em> domēna.
           one: Ja piegāde uz domēnu neizdodas <strong>%{count} dienu</strong> bez panākumiem, turpmāki piegādes mēģinājumi netiks veikti, ja vien netiks saņemta piegāde <em>no</em> domēna.
           other: Ja piegāde uz domēnu neizdodas <strong>%{count} dažādas dienās</strong>, un tas neizdodas, turpmāki piegādes mēģinājumi netiks veikti, ja vien netiks saņemta piegāde <em>no</em> domēna.
-          zero: Ja piegāde uz domēnu neizdodas <strong>%{count} dažādas dienās</strong>, un tas neizdodas, turpmāki piegādes mēģinājumi netiks veikti, ja vien netiks saņemta piegāde <em>no</em> domēna.
         failure_threshold_reached: Kļūmju slieksnis sasniegts %{date}.
         failures_recorded:
+          zero: Neizdevušies mēģinājumi %{count} dienās.
           one: Neizdevies mēģinājums %{count} dienā.
           other: Neizdevušies mēģinājumi %{count} dienās.
-          zero: Neizdevušies mēģinājumi %{count} dienās.
         no_failures_recorded: Nav reģistrētu kļūdu.
         title: Pieejamība
         warning: Pēdējais mēģinājums izveidot savienojumu ar šo serveri ir bijis neveiksmīgs
@@ -539,9 +538,9 @@ lv:
       destroyed_msg: Dati no %{domain} tagad ir gaidīšanas rindā, lai tos drīzumā dzēstu.
       empty: Domēni nav atrasti.
       known_accounts:
+        zero: "%{count} zināmu kontu"
         one: "%{count} zināms konts"
         other: "%{count} zināmi konti"
-        zero: "%{count} zināmu kontu"
       moderation:
         all: Visas
         limited: Ierobežotās
@@ -585,7 +584,7 @@ lv:
     relays:
       add_new: Pievienot jaunu releju
       delete: Dzēst
-      description_html: "<strong>Federācijas relejs</strong> ir starpniekserveris, kas apmainās ar lielu publisko ziņu apjomu starp serveriem, kas to abonē un publicē. <strong>Tas var palīdzēt maziem un vidējiem serveriem atklāt saturu no federācijas</strong>, pretējā gadījumā vietējiem lietotājiem manuāli jāseko citām personām attālos serveros."
+      description_html: <strong>Federācijas relejs</strong> ir starpniekserveris, kas apmainās ar lielu publisko ziņu apjomu starp serveriem, kas to abonē un publicē. <strong>Tas var palīdzēt maziem un vidējiem serveriem atklāt saturu no federācijas</strong>, pretējā gadījumā vietējiem lietotājiem manuāli jāseko citām personām attālos serveros.
       disable: Atspējot
       disabled: Atspējots
       enable: Iespējot
@@ -605,9 +604,9 @@ lv:
     reports:
       account:
         notes:
+          zero: "%{count} piezīmju"
           one: "%{count} piezīme"
           other: "%{count} piezīmes"
-          zero: "%{count} piezīmju"
       action_log: Auditācijas pieraksti
       action_taken_by: Veiktā darbība
       actions:
@@ -812,9 +811,9 @@ lv:
         disallow: Neatļaut saiti
         disallow_provider: Neatļaut publicētāju
         shared_by_over_week:
+          zero: Pēdējās nedēļas laikā kopīgoja %{count} personas
           one: Pēdējās nedēļas laikā kopīgoja viena persona
           other: Pēdējās nedēļas laikā kopīgoja %{count} personas
-          zero: Pēdējās nedēļas laikā kopīgoja %{count} personas
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
       only_allowed: Tikai atļautās
@@ -833,9 +832,9 @@ lv:
         disallow_account: Neatļaut autoru
         not_discoverable: Autors nav izvēlējies būt atklājams
         shared_by:
+          zero: '%{friendly_count} reižu kopīgots vai pievienots izlasei'
           one: Vienreiz kopīgots vai pievienots izlasei
           other: Kopīgots un pievienots izlasei %{friendly_count} reizes
-          zero: "%{friendly_count} reižu kopīgots vai pievienots izlasei"
         title: Populārākās ziņas
       tags:
         current_score: Pašreizējais rezultāts %{score}
@@ -857,9 +856,9 @@ lv:
         usable: Var tikt lietots
         usage_comparison: Šodien lietots %{today} reizes, salīdzinot ar %{yesterday} vakar
         used_by_over_week:
+          zero: Pēdējās nedēļas laikā izmantoja %{count} personas
           one: Pēdējās nedēļas laikā izmantoja viens cilvēks
           other: Pēdējās nedēļas laikā izmantoja %{count} personas
-          zero: Pēdējās nedēļas laikā izmantoja %{count} personas
       title: Tendences
       trending: Tendences
     warning_presets:
@@ -887,7 +886,7 @@ lv:
     new_report:
       body: "%{reporter} ziņoja par %{target}"
       body_remote: Kāds no %{domain} ziņoja par %{target}
-      subject: Jauns ziņojums par %{instance} (#%{id})
+      subject: 'Jauns ziņojums par %{instance} (#%{id})'
     new_trends:
       body: 'Tālāk norādītie vienumi ir jāpārskata, lai tos varētu parādīt publiski:'
       new_trending_links:
@@ -1146,9 +1145,9 @@ lv:
     save_changes: Saglabāt izmaiņas
     today: šodien
     validation_errors:
+      zero: '%{count} kļūdu'
       one: Kaut kas vēl nav īsti kārtībā! Lūdzu, pārskati zemāk norādīto kļūdu
       other: Kaut kas vēl nav īsti kārtībā! Lūdzu, pārskati %{count} kļūdas zemāk
-      zero: "%{count} kļūdu"
   html_validator:
     invalid_markup: 'satur nederīgu HTML marķējumu: %{error}'
   imports:
@@ -1183,9 +1182,9 @@ lv:
     generate: Ģenerēt uzaicinājuma saiti
     invited_by: 'Tevi uzaicināja:'
     max_uses:
+      zero: "%{count} lietojumu"
       one: 1 lietojums
       other: "%{count} lietojumi"
-      zero: "%{count} lietojumu"
     max_uses_prompt: Nav ierobežojuma
     prompt: Izveido un kopīgo saites ar citiem, lai piešķirtu piekļuvi šim serverim
     table:
@@ -1257,13 +1256,13 @@ lv:
       body: Šeit ir īss kopsavilkums par ziņojumiem, kurus tu esi palaidis garām kopš pēdējā apmeklējuma %{since}
       mention: "%{name} pieminēja tevi:"
       new_followers_summary:
+        zero: '%{count} jaunu sekotāju!'
         one: Tāpat, atrodoties prom, esi ieguvis vienu jaunu sekotāju! Jip!
         other: Turklāt, atrodoties prom, esi ieguvis %{count} jaunus sekotājus! Apbrīnojami!
-        zero: "%{count} jaunu sekotāju!"
       subject:
+        zero: "%{count} jaunu paziņojumu kopš tava pēdējā apmeklējuma"
         one: "1 jauns paziņojums kopš tava pēdējā apmeklējuma 🐘"
         other: "%{count} jauni paziņojumi kopš tava pēdējā apmeklējuma 🐘"
-        zero: "%{count} jaunu paziņojumu kopš tava pēdējā apmeklējuma"
       title: Tavas prombūtnes laikā...
     favourite:
       body: 'Tavu ziņu izlasei pievienoja %{name}:'
@@ -1284,7 +1283,7 @@ lv:
       subject: Tevi pieminēja %{name}
       title: Jauna pieminēšana
     poll:
-      subject: "%{name} aptauja ir beigusies"
+      subject: '%{name} aptauja ir beigusies'
     reblog:
       body: 'Tavu ziņu paaugstināja %{name}:'
       subject: "%{name} paaugstināja tavu ziņu"
@@ -1454,25 +1453,25 @@ lv:
   statuses:
     attached:
       audio:
+        zero: "%{count} audio"
         one: "%{count} audio"
         other: "%{count} audio"
-        zero: "%{count} audio"
       description: 'Pievienots: %{attached}'
       image:
+        zero: "%{count} attēlu"
         one: "%{count} attēls"
         other: "%{count} attēli"
-        zero: "%{count} attēlu"
       video:
+        zero: "%{count} video"
         one: "%{count} video"
         other: "%{count} video"
-        zero: "%{count} video"
     boosted_from_html: Paaugstināja %{acct_link}
     content_warning: 'Satura brīdinājums: %{warning}'
     default_language: Tāda, kā interfeisa valoda
     disallowed_hashtags:
+      zero: 'neatļauti tēmturi: %{tags}'
       one: 'saturēja neatļautu tēmturi: %{tags}'
       other: 'saturēja neatļautus tēmturus: %{tags}'
-      zero: 'neatļauti tēmturi: %{tags}'
     edited_at_html: Rediģēts %{date}
     errors:
       in_reply_not_found: Šķiet, ka ziņa, uz kuru tu mēģini atbildēt, nepastāv.
@@ -1485,20 +1484,20 @@ lv:
       reblog: Paaugstinātās ziņas nevar piespraust
     poll:
       total_people:
+        zero: "%{count} personu"
         one: "%{count} persona"
         other: "%{count} personas"
-        zero: "%{count} personu"
       total_votes:
+        zero: "%{count} balsu"
         one: "%{count} balss"
         other: "%{count} balsis"
-        zero: "%{count} balsu"
       vote: Balsu skaits
     show_more: Rādīt vairāk
     show_newer: Nekad nerādīt
     show_older: Rādīt senākus
     show_thread: Rādīt tematu
     sign_in_to_participate: Lai piedalītos sarunā, pieraksties
-    title: "%{name}: “%{quote}”"
+    title: '%{name}: “%{quote}”'
     visibilities:
       direct: Tiešs
       private: Tikai sekotājiem
@@ -1552,99 +1551,6 @@ lv:
   tags:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
   terms:
-    body_html: |
-      <h2>Privātuma politika</h2>
-      <h3 id="collect">Kādu informāciju mēs apkopojam?</h3>
-
-      <ul>
-        <li><em>Konta pamatinformācija</em>: Ja tu reģistrējies šajā serverī, iespējams, tev tiks lūgts ievadīt lietotājvārdu, e-pasta adresi un paroli. Vari arī ievadīt papildu profila informāciju, piemēram, parādāmo vārdu un biogrāfiju, kā arī augšupielādēt profila attēlu un galvenes attēlu. Lietotājvārds, parādāmais vārds, biogrāfija, profila attēls un galvenes attēls vienmēr ir publiski.</li>
-        <li><em>Ziņas, sekošana un cita publiska informācija</em>: To personu saraksts, kurām tu seko, ir publiski pieejams, tas pats attiecas uz taviem sekotājiem. Iesniedzot ziņojumu, tiek saglabāts datums un laiks, kā arī pieteikums, no kura iesniedzi ziņojumu. Ziņojumos var būt mediju pielikumi, piemēram, attēli un videoklipi. Publiskās un nerindotās ziņas ir pieejamas publiski. Ja savā profilā ievieto ziņu, tā ir arī publiski pieejama informācija. Ziņas tiek piegādātas taviem sekotājiem, dažos gadījumos tas nozīmē, ka tās tiek piegādātas uz dažādiem serveriem un tur tiek glabātas to kopijas. Dzēšot ziņas, tas tāpat tiek piegādāts taviem sekotājiem. Atkārtota emuāra pievienošana vai citas ziņas pievienošana izlasei vienmēr ir publiskas.</li>
-        <li><em>Tiešas un tikai sekotāju ziņas</em>: Visas ziņas tiek glabātas un apstrādātas serverī. Tikai sekotājiem paredzētās ziņas tiek piegādātas taviem sekotājiem un tajās minētajiem lietotājiem, un tiešās ziņas tiek piegādātas tikai tajās minētajiem lietotājiem. Dažos gadījumos tas nozīmē, ka tās tiek piegādātas uz dažādiem serveriem un tur tiek saglabātas kopijas. Mēs godprātīgi cenšamies ierobežot piekļuvi šīm ziņām tikai pilnvarotām personām, taču citiem serveriem tas var neizdoties. Tāpēc ir svarīgi pārskatīt serverus, kuriem pieder tavi sekotāji. Iestatījumos varat manuāli pārslēgt iespēju apstiprināt un noraidīt jaunus sekotājus. <em>Lūdzu, ņemiet vērā, ka servera operatori un jebkura saņēmēja servera operatori var skatīt šādus ziņojumus</em> un adresāti var uzņemt to ekrānšāviņus, kopēt vai citādi atkārtoti kopīgot. <em>Nekopīgo nekādu sensitīvu informāciju, izmantojot Mastodon.</em></li>
-        <li><em>IP un citi metadati</em>: Kad tu piesakies, mēs ierakstām IP adresi, no kuras piesakies, kā arī tavu pārlūkprogrammas un/vai lietojumprogrammas nosaukumu. Visas pieteikušās sesijas ir pieejamas iestatījumos pārskatīšanai un atsaukšanai. Pēdējā izmantotā IP adrese tiek glabāta līdz 12 mēnešiem. Mēs varam arī saglabāt servera žurnālus, kuros ir iekļauta katra mūsu serverim nosūtītā pieprasījuma IP adrese.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Kam mēs izmantojam tavu informāciju?</h3>
-
-      <p>Jebkuru informāciju, ko mēs apkopojam par tevi, var izmantot šādos veidos:</p>
-
-      <ul>
-        <li>Lai nodrošinātu Mastodon pamatfunkcionalitāti. Tu vari mijiedarboties ar citu personu saturu un izlikt savu saturu tikai tad, kad esi pieteicies. Piemēram, tu vari sekot citām personām, lai skatītu viņu apvienotās ziņas savā personalizētajā mājas laika skalā.</li>
-        <li>Lai palīdzētu regulēt kopienu, piemēram, salīdzinot tavu IP adresi ar citām zināmām, lai noteiktu izvairīšanos no aizlieguma vai citus pārkāpumus.</li>
-        <li>Tevis norādītā e-pasta adrese var tikt izmantota, lai nosūtītu tev informāciju, paziņojumus par citām personām, kas mijiedarbojas ar tavu saturu vai sūta tev ziņojumus, kā arī atbildētu uz jautājumiem un/vai citiem pieprasījumiem vai jautājumiem.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Kā mēs aizsargājam tavu informāciju?</h3>
-
-      <p>Mēs ieviešam dažādus drošības pasākumus, lai saglabātu tavas personiskās informācijas drošību, kad ievadi, iesniedz vai piekļūsti savai personas informācijai. Cita starpā pārlūkprogrammas sesija, kā arī datplūsma starp lietojumprogrammām un API ir aizsargāta ar SSL, un tava parole tiek sajaukta, izmantojot spēcīgu vienvirziena algoritmu. Vari iespējot divu faktoru autentifikāciju, lai vēl vairāk aizsargātu piekļuvi savam kontam.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Kam mēs izmantojam tavu informāciju?</h3>
-
-      <p>Jebkuru informāciju, ko mēs apkopojam no jums, var izmantot šādos veidos:</p>
-
-      <ul>
-        <li>Lai nodrošinātu Mastodon pamatfunkcionalitāti. Jūs varat mijiedarboties ar citu personu saturu un izlikt savu saturu tikai tad, kad esat pieteicies. Piemēram, varat sekot citām personām, lai skatītu viņu apvienotās ziņas savā personalizētajā mājas laika skalā.</li>
-        <li>Lai palīdzētu regulēt kopienu, piemēram, salīdzinot jūsu IP adresi ar citām zināmām, lai noteiktu izvairīšanos no aizlieguma vai citus pārkāpumus.</li>
-        <li>Jūsu norādītā e-pasta adrese var tikt izmantota, lai nosūtītu jums informāciju, paziņojumus par citām personām, kas mijiedarbojas ar jūsu saturu vai sūta jums ziņojumus, kā arī atbildētu uz jautājumiem un/vai citiem pieprasījumiem vai jautājumiem.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Kāda ir mūsu datu saglabāšanas politika?</h3>
-
-      <p>Mēs godprātīgi centīsimies:</p>
-
-      <ul>
-        <li>Saglabājiet servera žurnālus, kuros ir visu šim serverim nosūtīto pieprasījumu IP adrese, ciktāl šādi žurnāli tiek glabāti, ne ilgāk kā 90 dienas.</li>
-        <li>Saglabājiet ar reģistrētajiem lietotājiem saistītās IP adreses ne ilgāk kā 12 mēnešus.</li>
-      </ul>
-
-      <p>Varat pieprasīt un lejupielādēt sava satura arhīvu, tostarp ziņas, multivides pielikumus, profila attēlu un galvenes attēlu.</p>
-
-      <p>Jūs jebkurā laikā varat neatgriezeniski izdzēst savu kontu.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Vai mēs izmantojam sīkfailus?</h3>
-
-      <p>Jā. Sīkfaili ir mazi faili, ko vietne vai tās pakalpojumu sniedzējs pārsūta uz jūsu datora cieto disku, izmantojot jūsu tīmekļa pārlūkprogrammu (ja atļaujat). Šīs sīkdatnes ļauj vietnei atpazīt jūsu pārlūkprogrammu un, ja jums ir reģistrēts konts, saistīt to ar jūsu reģistrēto kontu.</p>
-
-      <p>Mēs izmantojam sīkfailus, lai saprastu un saglabātu jūsu preferences turpmākiem apmeklējumiem.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Vai mēs izpaužam kādu informāciju ārējām pusēm?</h3>
-
-      <p>Mēs nepārdodam, netirgojam vai citādi nenododam ārējām pusēm jūsu personu identificējošo informāciju. Tas neietver uzticamas trešās puses, kas palīdz mums darboties mūsu vietnē, veikt mūsu uzņēmējdarbību vai apkalpot jūs, ja vien šīs puses piekrīt saglabāt šīs informācijas konfidencialitāti. Mēs varam arī izpaust jūsu informāciju, ja uzskatām, ka tā ir piemērota, lai ievērotu likumus, īstenotu mūsu vietnes politikas vai aizsargātu mūsu vai citu tiesības, īpašumu vai drošību.</p>
-
-      <p>Jūsu publisko saturu var lejupielādēt citi tīkla serveri. Jūsu publiskās un tikai sekotājiem paredzētās ziņas tiek piegādātas serveros, kur atrodas jūsu sekotāji, un tiešie ziņojumi tiek piegādāti adresātu serveriem, ja šie sekotāji vai adresāti atrodas citā serverī, nevis šajā.</p>
-
-      <p>Kad jūs pilnvarojat lietojumprogrammu izmantot jūsu kontu, atkarībā no jūsu apstiprināto atļauju apjoma, tā var piekļūt jūsu publiskā profila informācijai, jūsu sekojošajam sarakstam, jūsu sekotājiem, sarakstiem, visām jūsu ziņām un jūsu izlasei. Lietojumprogrammas nekad nevar piekļūt jūsu e-pasta adresei vai parolei.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Vietnes lietojums bērniem</h3>
-
-      <p>Ja šis serveris atrodas ES vai EEZ: mūsu vietne, produkti un pakalpojumi ir paredzēti personām, kuras ir vismaz 16 gadus vecas. Ja esat jaunāks par 16 gadiem, neizmantojiet šo vietni atbilstoši GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Vispārīgās datu aizsardzības regulas</a>) prasībām..</p>
-
-      <p>Ja šis serveris atrodas ASV: mūsu vietne, produkti un pakalpojumi ir paredzēti personām, kuras ir vismaz 13 gadus vecas. Ja esat jaunāks par 13 gadiem, saskaņā ar COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) prasībām neizmantojiet šajā vietnē.</p>
-
-      <p>Tiesību prasības var atšķirties, ja šis serveris atrodas citā jurisdikcijā.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Izmaiņas mūsu konfidencialitātes politikā</h3>
-
-      <p>Ja mēs nolemsim mainīt savu konfidencialitātes politiku, mēs publicēsim šīs izmaiņas šajā lapā.</p>
-
-      <p>Šis dokuments ir CC-BY-SA. Pēdējo reizi tas tika atjaunināts 2018. gada 7. martā.</p>
-
-      <p>Sākotnēji pielāgots no <a href="https://github.com/discourse/discourse">Discourse konfidencialitātes politikas</a>.</p>
     title: "%{instance} Pakalpojuma Noteikumi un Privātuma Politika"
   themes:
     contrast: Mastodon (Augsts kontrasts)
@@ -1700,7 +1606,7 @@ lv:
       explanation:
         delete_statuses: Tika konstatēts, ka dažas no tavām ziņām pārkāpj vienu vai vairākas kopienas vadlīnijas, un rezultātā %{instance} moderatori tās noņēma.
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
-        mark_statuses_as_sensitive: "%{instance} moderatori dažas no tavām ziņām ir atzīmējušas kā sensitīvas. Tas nozīmē, ka cilvēkiem būs jāpieskaras ziņās esošajiem medijiem, pirms tiek parādīts priekšskatījums. Tu arī pats vari atzīmēt mediju kā sensitīvu, kad tādu publicēsi turpmāk."
+        mark_statuses_as_sensitive: '%{instance} moderatori dažas no tavām ziņām ir atzīmējušas kā sensitīvas. Tas nozīmē, ka cilvēkiem būs jāpieskaras ziņās esošajiem medijiem, pirms tiek parādīts priekšskatījums. Tu arī pats vari atzīmēt mediju kā sensitīvu, kad tādu publicēsi turpmāk.'
         sensitive: No šī brīža visi augšupielādētie mediju faili tiks atzīmēti kā sensitīvi un paslēpti aiz klikšķa brīdinājuma.
         silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
         suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
