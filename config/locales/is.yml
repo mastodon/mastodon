@@ -1524,6 +1524,87 @@ is:
   tags:
     does_not_match_previous_name: samsvarar ekki fyrra nafni
   terms:
+    body_html: |
+      <h2>Persónuverndarstefna</h2>
+      <h3 id="collect">Hvaða upplýsingum söfnum við?</h3>
+
+      <ul>
+        <li><em>Grunnupplýsingar um notandaaðgang</em>: Ef þú skráir þig á þennan netþjón gætir þú verið beðinn um að setja inn notandanafn, tölvupóstfang og lykilorð. Þú getur líka slegið inn viðbótarupplýsingar um notandasniðið eins og birtingarnafn og æviágrip og hlaðið inn auðkennismynd og mynd á hausborða. Notandanafn, birtingarnafn, æviágrip, auðkennismynd og hausmynd eru alltaf skráð opinberlega.</li>
+        <li><em>Færslur, fylgjendur og aðrar opinberar upplýsingar</em>: Listinn yfir fólk sem þú fylgist með er skráður opinberlega, það sama á við um fylgjendur þína. Þegar þú sendir skilaboð er dagsetning og tími vistuð sem og forritið sem þú sendir skilaboðin frá. Skilaboð geta innihaldið margmiðlunarviðhengi, svo sem myndir og myndskeið. Opinberar og óskráðar færslur eru aðgengilegar opinberlega. Þegar þú birtir færslu á notandaaðgangnum þínum eru það einnig opinberar upplýsingar. Færslurnar þínar eru afhentar fylgjendum þínum, í sumum tilfellum þýðir það að þær eru sendar á mismunandi netþjóna og afrit eru geymd þar. Þegar þú eyðir færslum er þetta líka sent til fylgjenda þinna. Aðgerðin að endurbirta eða setja aðra færslu sem eftirlæti er alltaf opinber.</li>
+        <li><em>Bein skilaboð og eingöngu til fylgjenda</em>: Allar færslur eru geymdar og unnar á þjóninum. Færslur sem eingöngu eru fyrir fylgjendur eru sendar fylgjendum þínum og notendum sem eru nefndir í þeim og bein skilaboð eru aðeins send til notenda sem nefndir eru í þeim. Í sumum tilfellum þýðir það að þeir eru afhentir á mismunandi netþjóna og afrit eru geymd þar. Við leggjum mikið upp úr því að takmarka aðgang að þessum færslum við viðurkennda aðila, en aðrir netþjónar gætu ekki gert það. Þess vegna er mikilvægt að skoða netþjónanana sem fylgjendur þínir tilheyra. Þú getur virkjað valkosti til að samþykkja og hafna nýjum fylgjendum handvirkt í stillingunum. <em>Vinsamlegast hafðu í huga að stjórnendur netþjónsins og móttökuþjóna geta skoðað slík skilaboð</em> og að viðtakendur geta tekið skjámyndir, afritað eða endurdeilt þeim á annan hátt. <em>Ekki deila neinum viðkvæmum upplýsingum í gegnum Mastodon.</em></li>
+        <li><em>IP-vistföng og önnur lýsigögn</em>: Þegar þú skráir þig inn tökum við upp IP-töluna sem þú skráir þig inn af, svo og heiti vafraforritsins þíns. Allar innskráðar setur eru tiltækar til skoðunar og afturköllunar í stillingunum. Nýjasta IP-talan sem notuð er er geymd í allt að 12 mánuði. Við gætum líka geymt netþjónaskrár sem innihalda IP-tölu hverrar beiðni til netþjónsins okkar.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Í hvað notum við upplýsingarnar þínar?</h3>
+
+      <p>Allar þær upplýsingar sem við söfnum frá þér gætu verið notaðar á eftirfarandi hátt:</p>
+
+      <ul>
+        <li>Til að veita kjarnavirkni Mastodon. Þú getur aðeins haft samskipti við efni annarra og birt þitt eigið efni þegar þú ert skráð/ur inn. Til dæmis geturðu fylgst með öðru fólki til að skoða sameinaðar færslur þeirra á þinni eigin persónulegu heimatímalínu.</li>
+        <li>Til að hjálpa við umsjón samfélagsins, til dæmis að bera saman IP-vistfang þitt við önnur þekkt til að ákvarða bönn eða önnur brot.</li>
+        <li>Tölvupóstfangið sem þú gefur upp gæti verið notað til að senda þér upplýsingar, tilkynningar um annað fólk sem hefur samskipti við efnið þitt eða sendir þér skilaboð og til að svara fyrirspurnum og/eða öðrum beiðnum eða spurningum.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Hvernig verndum við upplýsingarnar þínar?</h3>
+
+      <p>Við innleiðum margvíslegar öryggisráðstafanir til að viðhalda öryggi persónuupplýsinga þinna þegar þú slærð inn, sendir inn eða opnar persónuupplýsingar þínar. Meðal annars er vafralotan þín, sem og umferðin milli forritanna þinna og API-kerfisviðmótsins, tryggð með SSL og lykilorðið þitt er gert að tætigildi með sterku einstefnualgrími. Þú gætir virkjað tveggja-þátta auðkenningu til að tryggja enn frekar aðgang að reikningnum þínum.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Hver er stefna okkar varðandi varðveislu gagna?</h3>
+
+      <p>Við munum leggja okkur fram um að:</p>
+
+      <ul>
+        <li>Geyma netþjónaskrár sem innihalda IP-tölu allra beiðna til þessa netþjóns, að því marki sem slíkar skrár eru geymdar, ekki lengur en í 90 daga.</li>
+        <li>Geyma IP-tölur tengdar skráðum notendum ekki lengur en í 12 mánuði.</li>
+      </ul>
+
+      <p>Þú getur beðið um og sótt safnskrá með efninu þínu, þar á meðal færslurnar þínar, margmiðlunarviðhengjum, auðkennismynd og hausmynd.</p>
+
+      <p>Þú getur eytt reikningnum þínum óafturkræft hvenær sem er.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Notum við vafrakökur?</h3>
+
+      <p>Já. Vafrakökur eru litlar skrár sem síða eða þjónustuaðili hennar flytur á harða disk tölvunnar þinnar í gegnum netvafrann þinn (ef þú leyfir). Þessar vafrakökur gera síðunni kleift að þekkja vafrann þinn og, ef þú ert með skráðan reikning, tengja hann við skráða reikninginn þinn.</p>
+
+      <p>Við notum vafrakökur til að skilja og vista kjörstillingar þínar fyrir framtíðarheimsóknir.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Gefum við utanaðkomandi aðilum einhverjar upplýsingar?</h3>
+
+      <p>Við seljum ekki, skiptum eða sendum á annan hátt til utanaðkomandi aðila neinar persónugreinanlegar upplýsingar um þig. Þetta felur ekki í sér treysta utanaðkomandi aðila sem aðstoða okkur við að reka síðuna okkar, stunda viðskipti við okkur eða þjónusta þig, svo framarlega sem þessir aðilar eru sammála um að halda þessum upplýsingum sem trúnaðarmáli. Við gætum einnig gefið út upplýsingarnar þínar þegar við teljum að það sé viðeigandi til að fara að lögum, framfylgja stefnu okkar á vefsvæðinu eða verja réttindi okkar eða annarra, eignir eða öryggi okkar.</p>
+
+      <p>Opinberu efni frá þér gæti verið hlaðið niður af öðrum netþjónum á netinu. Opinberu færslurnar þínar og þær sem eingöngu eru fyrir fylgjendur eru sendar til netþjónanna þar sem fylgjendur þínir eru hýstir og bein skilaboð eru send til netþjóna viðtakenda, að svo miklu leyti sem þessir fylgjendur eða viðtakendur eru hýstir á öðrum netþjóni en þessum.</p>
+
+      <p>Þegar þú heimilar forriti að nota reikninginn þinn, fer það eftir umfangi þeirra heimilda sem þú samþykkir, hvort það fái aðgang að opinberum upplýsingunum notandaaðgangsins þínus, lista yfir þá sem þú fylgist með, fylgjendur þína, listunum þínum, öllum færslum þínum og eftirlætum. Forrit hafa aldrei aðgang að netfanginu þínu eða lykilorði.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Vefsíðunotkun barna</h3>
+
+      <p>Ef þessi netþjónn er í ESB eða EES: Vefsvæðinu okkar, vörum og þjónustu er öllum beint til fólks sem er að minnsta kosti 16 ára. Ef þú ert yngri en 16 ára, máttu samkvæmt kröfum (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR - Almennu gagnaverndarreglugerðinni </a>) ekki nota þessa síðu .</p>
+
+      <p>Ef þessi netþjónn er í Bandaríkjunum: Vefsvæðinu okkar, vörum og þjónustu er öllum beint til fólks sem er að minnsta kosti 13 ára. Ef þú ert yngri en 13 ára, máttu samkvæmt kröfum (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">COPPA - Children's Online Privacy Protection Act</a>) ekki nota þessari síðu.</p>
+
+      <p>Lagakröfur geta verið mismunandi ef þessi þjónn er í öðru lögsagnarumdæmi.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Breytingar á persónuverndarstefnu okkar</h3>
+
+      <p>Ef við ákveðum að breyta persónuverndarstefnu okkar munum við birta þær breytingar á þessari síðu.</p>
+
+      <p>Þetta skjal er CC-BY-SA nptkunarleyfi. Það var síðast uppfært 26. maí 2022.</p>
+
+      <p>Upphaflega aðlagað frá <a href="https://github.com/discourse/discourse">persónuverndarstefnu Discourse</a>.</p>
     title: "%{instance} - Þjónustuskilmálar og persónuverndarstefna"
   themes:
     contrast: Mastodon (mikil birtuskil)
