@@ -786,8 +786,14 @@ nl:
     explore_mastodon: '%{title} verkennen'
   disputes:
     strikes:
-      appeal: Beroep aantekenen
+      appeal: Beroep
+      appeal_approved: Het aangetekende beroep is goedgekeurd en deze overtreding is niet langer geldig
+      appeal_rejected: Het aangetekende beroep is afgewezen
       appeal_submitted_at: Beroep aangetekend
+      appealed_msg: Jouw aangetekende beroep is ingediend. Wanneer deze wordt goedgekeurd, krijg je hiervan bericht.
+      appeals:
+        submit: Beroep aantekenen
+      approve_appeal: Beroep goedkeuren
   domain_validator:
     invalid_domain: is een ongeldige domeinnaam
   errors:
@@ -856,8 +862,10 @@ nl:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
     delete: Verwijderen
+    none: Geen
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
+    today: vandaag
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
       other: Er is iets niet helemaal goed! Bekijk onderstaande %{count} fouten
