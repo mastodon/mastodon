@@ -1,7 +1,6 @@
----
 fr:
   about:
-    about_hashtag_html: Voici des messages publics tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec si vous avez un compte n’importe où dans le fédiverse.
+    about_hashtag_html: 'Voici des messages publics tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec si vous avez un compte n’importe où dans le fédiverse.'
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
     about_this: À propos
     active_count_after: actif·ve·s
@@ -118,7 +117,7 @@ fr:
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
-      destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
+      destroyed_msg: "Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment"
       disable: Geler
       disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -568,7 +567,7 @@ fr:
       no_ip_block_selected: Aucune règle IP n’a été modifiée car aucune n’a été sélectionnée
       title: Règles IP
     relationships:
-      title: Relations de %{acct}
+      title: "Relations de %{acct}"
     relays:
       add_new: Ajouter un nouveau relais
       delete: Supprimer
@@ -870,16 +869,16 @@ fr:
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
-      subject: Nouveau signalement sur %{instance} (#%{id})
+      subject: 'Nouveau signalement sur %{instance} (#%{id})'
     new_trends:
       body: 'Les éléments suivants doivent être approuvés avant de pouvoir être affichés publiquement :'
       new_trending_links:
         no_approved_links: Il n'y a pas de lien tendance approuvé actuellement.
-        requirements: N'importe quel élément de la sélection pourrait surpasser le lien tendance approuvé n°%{rank}, qui est actuellement « %{lowest_link_title} » avec un résultat de %{lowest_link_score}.
+        requirements: 'N''importe quel élément de la sélection pourrait surpasser le lien tendance approuvé n°%{rank}, qui est actuellement « %{lowest_link_title} » avec un résultat de %{lowest_link_score}.'
         title: Liens tendance
       new_trending_statuses:
         no_approved_statuses: Il n'y a pas de message tendance approuvé actuellement.
-        requirements: N'importe quel élément de la sélection pourrait surpasser le message tendance approuvé n°%{rank}, qui est actuellement « %{lowest_status_url} » avec un résultat de %{lowest_status_score}.
+        requirements: 'N''importe quel élément de la sélection pourrait surpasser le message tendance approuvé n°%{rank}, qui est actuellement « %{lowest_status_url} » avec un résultat de %{lowest_status_score}.'
         title: Messages tendance
       new_trending_tags:
         no_approved_tags: Il n'y a pas de hashtag tendance approuvé actuellement.
@@ -1245,7 +1244,7 @@ fr:
         other: "%{count} nouvelles notifications depuis votre dernière visite 🐘"
       title: Pendant votre absence…
     favourite:
-      body: "%{name} a ajouté votre message à ses favoris :"
+      body: '%{name} a ajouté votre message à ses favoris :'
       subject: "%{name} a ajouté votre message à ses favoris"
       title: Nouveau favori
     follow:
@@ -1259,8 +1258,8 @@ fr:
       title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
-      body: "%{name} vous a mentionné⋅e dans :"
-      subject: "%{name} vous a mentionné·e"
+      body: '%{name} vous a mentionné⋅e dans :'
+      subject: '%{name} vous a mentionné·e'
       title: Nouvelle mention
     poll:
       subject: Un sondage de %{name} est terminé
@@ -1471,7 +1470,7 @@ fr:
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
-    title: "%{name} : « %{quote} »"
+    title: '%{name} : « %{quote} »'
     visibilities:
       direct: Direct
       private: Abonné⋅e⋅s uniquement
@@ -1522,88 +1521,7 @@ fr:
   tags:
     does_not_match_previous_name: ne correspond pas au nom précédent
   terms:
-    body_html: |
-      <h2>Politique de confidentialité</h2>
-      <h3 id="collect">Quelles informations collectons-nous ?</h3>
-
-      <ul>
-      <li><em>Informations de base sur votre compte</em> : si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
-      <li><em>Posts, liste d’abonnements et autres informations publiques</em> : la liste de vos abonnements ainsi que la liste de vos abonné·e·s sont publiques. Quand vous postez un message, la date et l’heure d’envoi ainsi que le nom de l’application utilisée pour sa transmission sont enregistré·e·s. Des médias, tels que des images ou des vidéos, peuvent être joints aux messages. Les posts publics et non listés sont affichés publiquement. Quand vous mettez en avant un post sur votre profil, ce post est également affiché publiquement. Vos messages sont délivrés à vos abonné·e·s, ce qui, dans certains cas, signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Quand vous supprimez un post, il est probable que l'action soit aussi délivrée à vos abonné·e·s. Partager un message ou le marquer comme favori est toujours une action publique.</li>
-      <li><em>Posts directs et abonné·e·s uniquement</em> : tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne foi pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il vous plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em> et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partagez aucune information sensible à l’aide de Mastodon !</em></li>
-      <li><em>IP et autres métadonnées</em> : quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Que faisons-nous des informations que nous collectons ?</h3>
-
-      <p>Toutes les informations que nous collectons sur vous peuvent être utilisées des manières suivantes :</p>
-
-      <ul>
-      <li>pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté·e. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé.</li>
-      <li>pour aider à la modération de la communauté : par exemple, comparer votre adresse IP avec d’autres afin de déterminer si un bannissement a été contourné ou si une autre violation aux règles a été commise.</li>
-      <li>l’adresse électronique que vous nous avez fournie peut être utilisée pour vous envoyer des informations, des notifications lorsque d’autres personnes interagissent avec votre contenu ou vous envoient des messages, pour répondre à des demandes de votre part ainsi que pour toutes autres requêtes ou questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Comment protégeons-nous vos informations ?</h3>
-
-      <p>Nous mettons en œuvre une variété de mesures de sécurité afin de garantir la sécurité de vos informations personnelles quand vous les saisissez, les soumettez et les consultez. Entre autres choses, votre session de navigation ainsi que le trafic entre votre application et l’API sont sécurisés à l’aide de TLS ; tandis que votre mot de passe est haché en utilisant un puissant algorithme à sens unique. Vous pouvez également activer l’authentification à deux facteurs pour sécuriser encore plus l’accès à votre compte.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Quelle est notre politique de conservation des données ?</h3>
-
-      <p>Nous ferons un effort de bonne foi :</p>
-
-      <ul>
-      <li>pour ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur.</li>
-      <li>pour ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
-      </ul>
-
-      <p>Vous pouvez demander une archive de votre contenu, incluant vos posts, vos médias joints, votre image de profil et votre image d’en-tête.</p>
-
-      <p>Vous pouvez, à n’importe quel moment, supprimer votre compte de manière définitive.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Utilisons-nous des témoins de connexion ?</h3>
-
-      <p>Oui. Les témoins de connexion sont de petits fichiers qu’un site ou un service transfère sur le disque dur de votre ordinateur via votre navigateur web (si vous l’avez autorisé). Ces témoins permettent au site de reconnaître votre navigateur et, dans le cas où vous possédez un compte, de vous associer avec ce dernier.</p>
-
-      <p>Nous utilisons les témoins de connexion comme un moyen de comprendre et de nous souvenir de vos préférences pour vos prochaines visites.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Divulguons-nous des informations à des tiers ?</h3>
-
-      <p>Nous ne vendons, n’échangeons ou ne transférons d’une quelconque manière que ce soit des informations permettant de vous identifier personnellement. Cela n’inclut pas les tiers de confiance qui nous aident à faire fonctionner ce site, à conduire nos activités commerciales ou à vous servir, du moment qu’ils acceptent de garder ces informations confidentielles. Nous sommes également susceptibles de partager vos informations quand nous pensons que cela est nécessaire pour nous conformer à la loi, pour faire respecter les règles de notre site, ainsi que pour défendre nos droits, notre propriété, notre sécurité, ou ceux d’autres personnes.</p>
-
-      <p>Votre contenu public peut être téléchargé par d’autres serveurs du réseau. Dans le cas où vos abonné·e·s et vos destinataires résideraient sur des serveurs différents du vôtre, vos posts publics et abonné·e·s uniquement peuvent être délivrés vers les serveurs de vos abonné·e·s tandis que vos messages directs sont délivrés aux serveurs de vos destinataires.</p>
-
-      <p>Quand vous autorisez une application à utiliser votre compte, en fonction de l’étendue des permissions que vous approuvez, il est possible qu’elle puisse accéder aux informations publiques de votre profil, à votre liste d’abonnements, votre liste d’abonné·e·s, vos listes, tous vos posts et vos favoris. Les applications ne peuvent en aucun cas accéder à votre adresse électronique et à votre mot de passe.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Utilisation de ce site par les enfants</h3>
-
-      <p>Si ce serveur est situé dans l’UE ou l’EEE : notre site, nos produits et nos services sont tous destinés à des personnes âgées de 16 ans ou plus. Si vous avez moins de 16 ans, en application du RGPD (<a href="https://fr.wikipedia.org/wiki/R%C3%A8glement_g%C3%A9n%C3%A9ral_sur_la_protection_des_donn%C3%A9es">Règlement Général sur la Protection des Données</a>), merci de ne pas utiliser ce site.</p>
-
-      <p>Si ce serveur est situé aux États-Unis d’Amérique : notre site, nos produits et nos services sont tous destinés à des personnes âgées de 13 ans ou plus. Si vous avez moins de 13 ans, en application du COPPA (<a href="https://fr.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>), merci de ne pas utiliser ce site.</p>
-
-      <p>Les exigences légales peuvent être différentes si ce serveur se trouve dans une autre juridiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Modifications de notre politique de confidentialité</h3>
-
-      <p>Dans le cas où nous déciderions de changer notre politique de confidentialité, nous posterons les modifications sur cette page.</p>
-
-      <p>Ce document est publié sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 7 mars 2018.</p>
-
-      <p>Originellement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
-    title: Conditions d’utilisation et politique de confidentialité de %{instance}
+    title: "Conditions d’utilisation et politique de confidentialité de %{instance}"
   themes:
     contrast: Mastodon (Contraste élevé)
     default: Mastodon (Sombre)
