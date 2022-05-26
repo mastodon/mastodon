@@ -13,7 +13,13 @@ class UnfollowService < BaseService
     @target_account = target_account
     @options        = options
 
-    unfollow! || undo_follow_request!
+    RedisLock.acquire(redis: Redis.current, key: "relationship:#{[source_account.id, target_account.id].sort.join(':')}", autorelease: 90.seconds) do |lock|
+      if lock.acquired?
+        unfollow! || undo_follow_request!
+      else
+        raise Mastodon::RaceConditionError
+      end
+    end
   end
 
   private
