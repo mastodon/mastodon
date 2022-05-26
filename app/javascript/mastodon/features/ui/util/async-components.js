@@ -155,7 +155,7 @@ export function CircleAdder () {
 }
 
 export function Search () {
-  return import(/*webpackChunkName: "features/search" */'../../search');
+  return import(/*webpackChunkName: "features/explore" */'../../explore');
 }
 
 export function Tesseract () {
