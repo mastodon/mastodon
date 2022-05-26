@@ -26,4 +26,10 @@ class RSS::MediaContent < RSS::Element
       description['type'] = 'plain'
     end
   end
+
+  def thumbnail(str)
+    append_element('media:thumbnail') do |thumbnail|
+      thumbnail['url'] = str
+    end
+  end
 end
