@@ -1578,6 +1578,87 @@ cs:
   tags:
     does_not_match_previous_name: se neshoduje s předchozím názvem
   terms:
+    body_html: |
+      <h2>Zásady ochrany osobních údajů</h2>
+      <h3 id="collect">Jaké informace sbíráme?</h3>
+
+      <ul>
+      <li><em>Základní informace o účtu</em>: Pokud se na tomto serveru zaregistrujete, můžeme vás požádat o zadání uživatelského jména, e-mailové adresy a hesla. Můžete také zadat dodatečné profilové informace, jako například zobrazované jméno, krátký životopis, nebo si nahrát profilovou fotografii a obrázek záhlaví. Uživatelské i zobrazované jméno, životopis, profilová fotografie a obrázek záhlaví jsou vždy veřejně dostupné.</li>
+      <li><em>Příspěvky, sledující a další veřejné informace</em>: Seznam lidí, které sledujete, je uveden veřejně, totéž platí i pro uživatele sledující vás. Pro každou vámi napsanou zprávu, bude uloženo datum a čas a informace o aplikaci, ze které jste zprávu odeslali. Zprávy mohou obsahovat mediální přílohy, jako jsou obrázky a videa. Veřejné a neuvedené příspěvky jsou dostupné veřejně. Pokud na vašem profilu uvedete příspěvek, bude také dostupný veřejně. Vaše příspěvky jsou doručeny uživatelům, kteří vás sledují, což v některých případech znamená, že budou příspěvky doručeny na různé servery, na kterých budou ukládány jejich kopie. Pokud příspěvky smažete, bude tato akce taktéž doručeno vašim sledujícím. Akce opětovného sdílení nebo oblíbení jiného příspěvku je vždy veřejná.</li>
+      <li><em>Příspěvky přímé a pouze pro sledující</em>: Všechny příspěvky jsou na serveru uloženy a zpracovány. Příspěvky pouze pro sledující jsou doručeny uživatelům, kteří vás sledují, a uživatelům v příspěvcích zmíněným. Přímé příspěvky jsou doručeny pouze uživatelům v nich zmíněným. V některých případech to znamená, že budou příspěvky doručeny na různé servery, na kterých budou ukládány jejich kopie. Upřímně se snažíme omezit přístup k těmto příspěvkům pouze na autorizované uživatele, ovšem ostatní servery tak činit nemusí. Proto je důležité posoudit servery, ke kterým uživatelé, kteří vás sledují patří. V nastavení si můžete zapnout volbu pro manuální schvalování či odmítnutí nových sledujících. <em>Mějte prosím na paměti, že správci tohoto serveru a kteréhokoliv přijímacího serveru mohou tyto zprávy vidět</em> a příjemci mohou vytvořit jejich snímek, zkopírovat je, nebo je jinak sdílet. <em>Nesdílejte přes Mastodon žádné citlivé informace.</em></li>
+      <li><em>IP adresy a další metadata</em>: Při vašem přihlášení zaznamenáváme IP adresu, ze které se přihlašujete, a název vašeho webového prohlížeče. Všechny vaše webové relace jsou v nastavení přístupné k vašemu posouzení a odvolání. Poslední použitá IP adresa je uložena maximálně po dobu 12 měsíců. Můžeme také uchovávat serverové záznamy, které obsahují IP adresy každého požadavku odeslaného na náš server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Na co vaše údaje používáme?</h3>
+
+      <p>Všechna data, která sbíráme, mohou být použita následujícími způsoby:</p>
+
+      <ul>
+      <li>K poskytnutí základních funkcí Mastodonu. K interakci s obsahem od jiných lidí a přispívat svým vlastním obsahem můžete pouze, pokud jste přihlášeni. Můžete například sledovat jiné lidi a zobrazit si jejich kombinované příspěvky ve vaší vlastní personalizované časové ose.</li>
+      <li>Pro pomoc moderování komunity, například porovnáním vaší IP adresy s dalšími známými adresami pro detekci obcházení zákazů či jiných přestupků.</li>
+      <li>E-mailová adresa, kterou nám poskytnete, může být použita pro zasílání informací, oznámení o interakcích jiných uživatelů s vaším obsahem nebo přijatých zprávách, a k odpovědím na dotazy a/nebo další požadavky či otázky.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Jak vaše data chráníme?</h3>
+
+      <p>Když zadáváte, odesíláte, či přistupujete k vašim osobním datům, implementujeme různá bezpečnostní opatření pro udržování bezpečnosti vašich osobních dat. Mimo jiné je vaše relace v prohlížeči, jakož i provoz mezi vašimi aplikacemi a API, zabezpečena pomocí SSL, a vaše heslo je hashováno pomocí silného jednosměrného algoritmu. Pro větší zabezpečení vašeho účtu můžete povolit dvoufázové ověřování.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Jaké jsou naše zásady o uchovávání údajů?</h3>
+
+      <p>Budeme se upřímně snažit:</p>
+
+      <ul>
+      <li>Uchovávat serverové záznamy obsahující IP adresy všech požadavků na tento server, pokud se takové záznamy uchovávají, maximálně 90 dní.</li>
+      <li>Uchovávat IP adresy související s registrovanými uživateli maximálně 12 měsíců.</li>
+      </ul>
+
+      <p>Kdykoliv si můžete vyžádat a stáhnout archiv svého obsahu, včetně příspěvků, mediálních příloh, profilové fotografie a obrázku záhlaví.</p>
+
+      <p>Kdykoliv můžete nenávratně smazat svůj účet.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Používáme cookies?</h3>
+
+      <p>Ano. Cookies jsou malé soubory, které stránka nebo její poskytovatel uloží do vašeho počítače (pokud to dovolíte). Tyto cookies umožňují stránce rozpoznat váš prohlížeč, a pokud máte registrovaný účet, přidružit ho s vaším registrovaným účtem.</p>
+
+      <p>Používáme cookies pro pochopení a ukládání vašich předvoleb pro budoucí návštěvy.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Zveřejňujeme jakékoliv informace třetím stranám?</h3>
+
+      <p>Vaše osobně identifikovatelné informace neprodáváme, neobchodujeme s nimi, ani je nijak nepřenášíme vnějším stranám. Nepočítáme do toho důvěryhodné třetí strany, které nám pomáhají provozovat naši stránku, podnikat, nebo vás obsluhovat, pokud tyto strany souhlasí se zachováním důvěrnosti těchto informací. Vaše informace můžete uvolnit, pokud věříme, že je to nutné pro soulad se zákonem, prosazování našich zásad, nebo ochranu práv, majetku, či bezpečnost nás či ostatních.</p>
+
+      <p>Váš veřejný obsah může být stažen jinými servery na síti. Vaše příspěvky veřejné a pouze pro sledující budou doručeny na servery uživatelů, kteří vás sledují, a přímé zprávy budou doručeny na servery příjemců, pokud jsou tito sledující nebo příjemci zaregistrováni na jiném serveru, než je tento.</p>
+
+      <p>Při autorizaci aplikace k používání vašeho účtu může, v závislosti na rozsahu udělených oprávnění, přistupovat k vašim veřejným profilovým informacím, seznamu lidí, které sledujete, vašim sledujícím, vašim seznamům, všem vašim příspěvkům a příspěvkům, které jste si oblíbili. Aplikace nikdy nemohou získat vaši e-mailovou adresu ani heslo.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Používání stránky dětmi</h3>
+
+      <p>Pokud se tento server nachází v EU nebo EHP: Naše stránka, produkty a služby jsou určeny lidem, kterým je alespoň 16 let. Pokud je vám méně než 16 let, dle požadavků nařízení GDPR (<a href="https://cs.wikipedia.org/wiki/Obecn%C3%A9_na%C5%99%C3%ADzen%C3%AD_o_ochran%C4%9B_osobn%C3%ADch_%C3%BAdaj%C5%AF">Obecné nařízení o ochraně osobních údajů</a>) tuto stránku nepoužívejte.</p>
+
+      <p>Pokud se tento server nachází v USA: Naše stránka, produkty a služby jsou učeny lidem, kterým je alespoň 13 let. Pokud je vám méně než 13 let, dle požadavků zákona COPPA (<a href="https://cs.wikipedia.org/wiki/Children%27s_online_privacy_protection_act">Children's Online Privacy Protection Act</a>) tuto stránku nepoužívejte.</p>
+
+      <p>Právní požadavky mohou být jiné, pokud se tento server nachází v jiné jurisdikci.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Změny v našich zásadách ochrany osobních údajů</h3>
+
+      <p>Rozhodneme-li se naše zásady ochrany osobních údajů změnit, zveřejníme tyto změny na této stránce.</p>
+
+      <p>Tento dokument je dostupný pod licencí CC-BY-SA. Byl naposledy aktualizován 26. května 2022.</p>
+
+      <p>Původně adaptováno ze <a href="https://github.com/discourse/discourse">zásad ochrany osobních údajů projektu Discourse</a>.</p>
     title: "Podmínky používání a zásady ochrany osobních údajů na serveru %{instance}"
   themes:
     contrast: Mastodon (vysoký kontrast)
