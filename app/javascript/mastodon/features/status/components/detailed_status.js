@@ -205,7 +205,7 @@ class DetailedStatus extends ImmutablePureComponent {
               <AnimatedNumber value={status.get('reblogs_count')} />
             </span>
           </Link>
-        </Fragment>
+        </React.Fragment>
       );
     } else {
       reblogLink = (
