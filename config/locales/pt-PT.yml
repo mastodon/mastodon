@@ -1,8 +1,7 @@
----
 pt-PT:
   about:
-    about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.
-    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
+    about_hashtag_html: 'Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.'
+    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.'
     about_this: Sobre esta instância
     active_count_after: activo
     active_footnote: Utilizadores activos mensais (UAM)
@@ -57,7 +56,7 @@ pt-PT:
     user_count_before: Casa para
     what_is_mastodon: O que é o Mastodon?
   accounts:
-    choices_html: 'escolhas de %{name}:'
+    choices_html: "escolhas de %{name}:"
     endorsements_hint: Você pode, através da interface web, escolher endossar pessoas que segue, e elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
@@ -118,7 +117,7 @@ pt-PT:
       delete: Eliminar dados
       deleted: Eliminada
       demote: Despromoveu
-      destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
+      destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Congelar
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar 2FA
@@ -568,7 +567,7 @@ pt-PT:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Eliminar
@@ -870,7 +869,7 @@ pt-PT:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
-      subject: Nova denúncia para %{instance} (#%{id})
+      subject: 'Nova denúncia para %{instance} (#%{id})'
     new_trends:
       body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
       new_trending_links:
@@ -1260,7 +1259,7 @@ pt-PT:
     mention:
       action: Responder
       body: 'Foste mencionado por %{name}:'
-      subject: "%{name} mencionou-te"
+      subject: '%{name} mencionou-te'
       title: Nova menção
     poll:
       subject: Uma votação realizada por %{name} terminou
@@ -1525,87 +1524,6 @@ pt-PT:
   tags:
     does_not_match_previous_name: não coincide com o nome anterior
   terms:
-    body_html: |
-      <h2>Política de privacidade</h2>
-      <h3 id="collect">Que informação nós recolhemos?</h3>
-
-      <ul>
-      <li><em>Informação básica da conta</em>: Se te registares neste servidor, pode-te ser pedido que indiques um nome de utilizador, um endereço de email e uma palavra-passe. Também podes introduzir informação adicional de perfil, tal como um nome a mostrar e dados biográficos, que carregues uma fotografia para o teu perfil e para o cabeçalho. O nome de utilizador, o nome a mostrar, a biografia, a imagem de perfil e a imagem de cabeçalho são sempre listados publicamente.</li>
-      <li><em>Publicações, seguimento e outra informação pública</em>: A lista de pessoas que tu segues é pública, o mesmo é verdade para os teus seguidores. Quando tu publicas uma mensagem, a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem foi enviada. As mensagens podem conter anexos média, tais como fotografias ou vídeos. Publicações públicas e não listadas são acessíveis publicamente. Quando expões uma publicação no teu perfil, isso é também informação disponível publicamente. As tuas publicações são enviadas aos teus seguidores. Em alguns casos isso significa que elas são enviadas para servidores diferentes onde são guardadas cópias. Quando tu apagas publicações, isso também é enviado para os teus seguidores. A ação de republicar ou favoritar outra publicação é sempre pública.</li>
-      <li><em>Publicações diretas e exclusivas para seguidores</em>: Todas as publicações são guardadas e processadas no servidor. Publicações exclusivas para seguidores são enviadas para os teus seguidores e para utilizadores que são nelas mencionados. As publicações diretas são enviadas apenas para os utilizadores nelas mencionados. Em alguns casos isso significa que elas são enviadas para diferentes servidores onde são guardadas cópias das mesmas. Nós fazemos um grande esforço para limitar o acesso a estas publicações aos utilizadores autorizados, mas outros servidores podem falhar neste objetivo. Por isso, tu deves rever os servidores a que os teus seguidores pertencem. Tu podes ativar uma opção para aprovar e rejeitar manualmente novos seguidores nas configurações. <em>Por favor, tem em mente que os gestores do servidor e qualquer servidor que receba a publicação pode lê-la</em> e que os destinatários podem fazer uma captura de tela, copiar ou partilhar a publicação. <em>Não partilhes qualquer informação perigosa no Mastodon.</em></li>
-      <li><em>IPs e outros metadados</em>: Quando inicias sessão, nós guardamos o endereço de IP a partir do qual iniciaste a sessão, tal como o nome do teu navegador. Todas as sessões estão disponíveis para verificação e revogação nas configurações. O último endereço de IP usado é guardado até 12 meses. Nós também podemos guardar registos de servidor, os quais incluem o endereço de IP de cada pedido dirigido ao nosso servidor.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Para que usamos a tua informação?</h3>
-
-      <p>Qualquer informação que recolhemos sobre ti pode ser usada dos seguintes modos:</p>
-
-      <ul>
-      <li>Para providenciar a funcionalidade central do Mastodon. Tu só podes interagir com o conteúdo de outras pessoas e publicar o teu próprio conteúdo depois de teres iniciado sessão. Por exemplo, tu podes seguir outras pessoas para veres as suas publicações na tua cronologia inicial personalizada. </li>
-      <li>Para ajudar na moderação da comunidade para, por exemplo, comparar o teu endereço IP com outros conhecidos, para determinar a fuga ao banimento ou outras violações.</li>
-      <li>O endereço de e-mail que tu forneces pode ser usado para te enviar informações e/ou notificações sobre outras pessoas que estão a interagir com o teu conteúdo ou a enviar-te mensagens, para responderes a inquéritos e/ou outros pedidos ou questões.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Como é que nós protegemos a tua informação?</h3>
-
-      <p>Nós implementamos uma variedade de medidas de segurança para garantir a segurança da tua informação pessoal quando tu introduzes, submetes ou acedes à mesma. Entre outras coisas, a tua sessão de navegação, tal como o tráfego entre as tuas aplicações e a API, estão seguras por SSL e a tua palavra-passe é codificada usando um forte algoritmo de sentido único. Tu podes activar a autenticação em dois passos para aumentares ainda mais a segurança do acesso à tua conta.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Qual é a nossa política de retenção de dados?</h3>
-
-      <p>Nós envidaremos todos os esforços no sentido de:</p>
-
-      <ul>
-      <li>Guardar registos do servidor contendo o endereço de IP de todos os pedidos feitos a este servidor, considerando que estes registos não serão guardados por mais de 90 dias.</li>
-      <li>Guardar os endereços de IP associados aos utilizadores registados durante um período que não ultrapassará os 12 meses.</li>
-      </ul>
-
-      <p>Tu podes pedir e descarregar um ficheiro com o teu conteúdo, incluindo as tuas publicações, os ficheiros multimédia, a imagem de perfil e a imagem de cabeçalho.</p>
-
-      <p>Tu podes apagar a tua conta de modo definitivo e a qualquer momento.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Usamos cookies?</h3>
-
-      <p>Sim. Cookies são pequenos ficheiros que um site ou o seu fornecedor de serviço transfere para o disco rígido do teu computador através do teu navegador (se tu permitires). Estes cookies permitem ao site reconhecer o teu navegador e, se tu tiveres uma conta registada, associá-lo a ela.</p>
-
-      <p>Nós usamos os cookies para compreender e guardar as tuas preferências para as visitas futuras.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Nós divulgamos alguma informação para entidades externas?</h3>
-
-      <p>Nós não vendemos, trocamos ou transferimos de qualquer modo a tua informação pessoal que seja identificável para qualquer entidade externa. Isto não inclui terceiros de confiança que nos ajudam a manter o nosso site, conduzir o nosso negócio ou prestar-te este serviço, desde que esses terceiros concordem em manter essa informação confidencial. Poderemos também revelar a tua informação quando nós acreditamos que isso é apropriado para cumprir a lei, forçar a aplicação dos nossos termos de serviço ou proteger os direitos, propriedade e segurança, nossos e de outrem.</p>
-
-      <p>O teu conteúdo público pode ser descarregado por outros servidores na rede. As tuas publicações públicas e exclusivas para os teus seguidores são enviadas para os servidores onde os teus seguidores residem e as mensagens directas são entregues aos servidores dos seus destinatários, no caso desses seguidores ou destinatários residirem num servidor diferente deste.</p>
-
-      <p>Quando tu autorizas uma aplicação a usar a tua conta, dependendo da abrangência das permissões que tu aprovas, ela pode ter acesso à informação pública do teu perfil, à lista de quem segues, aos teus seguidores, às tuas listas, a todas as tuas publicações e aos teus favoritos. As aplicações nunca terão acesso ao teu endereço de e-mail ou à tua palavra-passe.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Utilização do site por crianças</h3>
-
-      <p>Se este servidor estiver na EU ou na EEA: O nosso site, produtos e serviços são todos dirigidos a pessoas que têm, pelo menos, 16 de idade. Se tu tens menos de 16 anos, devido aos requisitos da GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) não uses este site.</p>
-
-      <p>Se este servidor estiver nos EUA: O nosso site, produtos e serviços são todos dirigidos a pessoas que têm, pelo menos, 13 anos de idade. Se tu tens menos de 13 anos de idade, devido aos requisitos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não uses este site.</p>
-
-      <p>Os requisitos legais poderão ser diferentes se este servidor estiver noutra jurisdição.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Alterações à nossa Política de Privacidade</h3>
-
-      <p>Se nós decidirmos alterar a nossa política de privacidade, nós iremos publicar essas alterações nesta página.</p>
-
-      <p>Este documento é CC-BY-SA. Ele foi actualizado pela última vez em 7 de Março 2018.</p>
-
-      <p>Originalmente adaptado de <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
     contrast: Mastodon (Elevado contraste)
