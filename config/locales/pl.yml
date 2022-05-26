@@ -1563,6 +1563,86 @@ pl:
   tags:
     does_not_match_previous_name: nie pasuje do poprzedniej nazwy
   terms:
+    body_html: |
+      <h2>Polityka prywatności</h2>
+      <h3 id="collect">Jakie informacje zbieramy? </h3>.
+
+      <ul>
+        <li><em>Podstawowe informacje o koncie</em>: Podczas rejestracji na tym serwerze możesz zostać poproszony o podanie nazwy użytkownika, adresu e-mail i hasła. Możesz również wprowadzić dodatkowe informacje dotyczące profilu, takie jak nazwa użytkownika i biogram, a także przesłać zdjęcie profilowe i obrazek w nagłówku. Nazwa użytkownika, nazwa wyświetlana, biogram, zdjęcie profilowe i obrazek w nagłówku są zawsze wyświetlane publicznie.</li>  <li><em>Posty, obserwacje i inne informacje publiczne</em>: Lista osób, które obserwujesz, jest dostępna publicznie; to samo dotyczy osób Ciebie śledzących. Gdy wysyłasz wiadomość, zapisywana jest data i godzina, a także aplikacja, z której wysłałeś wiadomość. Wiadomości mogą zawierać załączniki multimedialne, takie jak zdjęcia i filmy. Publiczne i niepubliczne posty są dostępne publicznie. Gdy wyróżnisz post na swoim profilu, jest to również informacja dostępna publicznie. Twoje posty są dostarczane do Twoich obserwatorów, w niektórych przypadkach oznacza to, że są dostarczane na różne serwery i tam przechowywane są ich kopie. Kiedy usuwasz posty, również jest to przekazywane Twoim obserwatorom. Czynność reblogowania lub lajkowania innego postu jest zawsze publiczna.</li>
+        <li><em>Posty bezpośrednie i posty tylko dla obserwatorów</em>: Wszystkie posty są przechowywane i przetwarzane na serwerze. Posty tylko dla followersów są dostarczane do followersów i użytkowników, którzy są w nich wymienieni, a posty bezpośrednie są dostarczane tylko do użytkowników, którzy są w nich wymienieni. W niektórych przypadkach oznacza to, że są one dostarczane na różne serwery i tam przechowywane są ich kopie. Dokładamy starań, aby ograniczyć dostęp do tych postów tylko do osób upoważnionych, ale inne serwery mogą tego nie robić. Dlatego ważne jest, aby sprawdzać serwery, na których znajdują się osoby śledzące Twoje posty. Możesz włączyć w ustawieniach opcję ręcznego zatwierdzania i odrzucania nowych obserwatorów. <em>Miej na uwadze, że operatorzy serwera i każdego serwera odbierającego mogą zobaczyć takie wiadomości</em>, oraz że Odbiorcy mogą wykonywać zrzuty ekranu, kopiować je lub w inny sposób udostępniać. <em>Nie udostępniaj żadnych wrażliwych informacji za pośrednictwem Mastodona.</em></li>
+        <li><em>Adresy IP i inne metadane</em>: Gdy użytkownik się loguje, zapisujemy adres IP, z którego się loguje, a także nazwę przeglądarki, z której korzysta. Wszystkie zalogowane sesje są dostępne do wglądu i usunięcia w ustawieniach. Ostatnio używany adres IP jest przechowywany przez okres do 12 miesięcy. Możemy również przechowywać dzienniki serwera, które zawierają adres IP każdego żądania skierowanego do naszego serwera.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Do czego wykorzystujemy informacje o użytkowniku?</h3>
+
+      <p>Wszelkie zebrane przez nas informacje mogą być wykorzystane w następujący sposób:</p>
+
+      <ul>
+        <li>Aby zapewnić podstawową funkcjonalność serwisu Mastodon. Użytkownik może wchodzić w interakcje z treściami innych osób i publikować własne treści tylko wtedy, gdy jest zalogowany. Użytkownik może na przykład śledzić inne osoby, aby wyświetlać ich posty na własnej, spersonalizowanej osi czasu.</li>
+        <li>Aby wspomóc moderację społeczności, na przykład porównując Twój adres IP z innymi znanymi adresami w celu stwierdzenia przypadków omijania zakazów lub innych naruszeń.</li>
+        <li>Podany przez Ciebie adres e-mail może być wykorzystywany do wysyłania Ci informacji, powiadomień o interakcji innych osób z treściami lub wysyłania Ci wiadomości, a także do odpowiadania na zapytania i/lub inne prośby lub pytania.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Jak chronimy Twoje dane?</h3>
+
+      <p>Wdrażamy szereg zabezpieczeń, aby zapewnić bezpieczeństwo Twoich danych osobowych podczas ich wprowadzania, przesyłania lub uzyskiwania do nich dostępu. Na przykład sesja przeglądarki, a także ruch między aplikacjami użytkownika a interfejsem API są zabezpieczone protokołem SSL, a hasło użytkownika jest haszowane przy użyciu silnej funkcji skrótu. Możesz włączyć uwierzytelnianie dwuskładnikowe, aby jeszcze bardziej zabezpieczyć dostęp do swojego konta.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Jakie są nasze zasady przechowywania danych?</h3>
+
+      <p>W dobrej wierze podejmiemy starania, aby:</p>
+
+      <ul>
+        <li>Przechowywać dzienniki serwera zawierające adres IP wszystkich żądań kierowanych do tego serwera, na tyle, na ile takie dzienniki są przechowywane, nie dłużej niż 90 dni.</li>
+        <li>Przechowywać adresy IP związane z zarejestrowanymi użytkownikami nie dłużej niż 12 miesięcy.</li>
+      </ul>
+
+      <p>Możesz zażądać i pobrać archiwum swojej zawartości, w tym posty, załączniki multimedialne, zdjęcie profilowe i obrazek w nagłówku.</p>
+
+      <p>Możesz w każdej chwili nieodwracalnie usunąć swoje konto.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Czy używamy plików cookie?</h3>
+
+      <p>Tak. Pliki cookie to małe pliki, które witryna lub jej dostawca usług przesyłają na dysk twardy komputera użytkownika za pośrednictwem przeglądarki internetowej (jeśli użytkownik na to pozwala). Pliki te pozwalają witrynie rozpoznać Twoją przeglądarkę i, jeśli masz zarejestrowane konto, powiązać je z Twoim zarejestrowanym kontem.</p> <p>
+
+      <p>Używamy plików cookie, aby zrozumieć i zapisać preferencje użytkownika na potrzeby przyszłych wizyt.</p> <p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Czy ujawniamy jakieś informacje podmiotom zewnętrznym?</h3>
+
+      <p>Nie sprzedajemy, zamieniamy ani w inny sposób nie przekazujemy podmiotom zewnętrznym danych osobowych użytkowników. Nie dotyczy to zaufanych osób trzecich, które pomagają nam w prowadzeniu naszej witryny, działalności gospodarczej lub obsłudze użytkowników, o ile osoby te zobowiążą się do zachowania poufności tych informacji. Możemy również ujawnić informacje o użytkowniku, jeśli uznamy to za stosowne w celu zachowania zgodności z prawem, egzekwowania zasad obowiązujących na naszej stronie lub ochrony praw, własności lub bezpieczeństwa naszego lub innych podmiotów.</p>
+
+      <p>Twoje treści publiczne mogą być pobierane przez inne serwery w sieci. Twoje posty publiczne i posty przeznaczone tylko dla followersów są dostarczane do serwerów, na których rezydują Twoi followersi, a wiadomości bezpośrednie są dostarczane do serwerów odbiorców, o ile ci followersi lub odbiorcy rezydują na innym serwerze niż ten.</p>
+
+      <p>Gdy upoważnisz aplikację do korzystania z Twojego konta, w zależności od zakresu uprawnień, które zatwierdzisz, może ona uzyskać dostęp do informacji o Twoim profilu publicznym, listy Twoich followersów, Twoich list, wszystkich Twoich postów i polubień. Aplikacje nigdy nie mogą uzyskać dostępu do Twojego adresu e-mail ani hasła.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Korzystanie z witryny przez dzieci</h3>
+
+      <p>Jeśli ten serwer znajduje się w Unii Europejskiej lub Europejskim Obszarze Gospodarczym: Nasza strona, produkty i usługi są skierowane do osób, które ukończyły 16 lat. Jeśli nie masz ukończonych 16 lat, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Og%C3%B3lne_rozporz%C4%85dzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>) nie używaj tego portalu.</p>
+
+      <p>Jeśli ten serwer znajduje się w USA: Nasza strona, produkty i usługi są skierowane do osób, które ukończyły 13 lat. Jeśli masz mniej niż 13 lat, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%E2%80%99s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) nie używaj tego portalu.</p>
+
+      <p>Wymagania prawne mogą być inne, jeśli serwer znajduje się w innej jurysdykcji.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Zmiany w naszej Polityce prywatności</h3>
+
+      <p>Jeśli zdecydujemy się na zmianę naszej polityki prywatności, opublikujemy te zmiany tutaj.</p>
+
+      <p>Ten dokument jest <a href="https://creativecommons.org/licenses/by-sa/2.5/pl/">CC-BY-SA</a>. Data ostatniej aktualizacji: 26 maja 2022.</p>
+
+      <p>Oryginalnie zaadaptowany z <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "Zasady korzystania i polityka prywatności %{instance}"
   themes:
     contrast: Mastodon (Wysoki kontrast)
