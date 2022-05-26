@@ -1,8 +1,7 @@
----
 nl:
   about:
-    about_hashtag_html: Dit zijn openbare berichten die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.
-    about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
+    about_hashtag_html: 'Dit zijn openbare berichten die getagged zijn met <strong>#%{hashtag}</strong>. Je kunt er op reageren of iets anders mee doen als je op Mastodon (of ergens anders in de fediverse) een account hebt.'
+    about_mastodon_html: 'Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.'
     about_this: Over deze server
     active_count_after: actief
     active_footnote: Actieve gebruikers per maand (MAU)
@@ -21,7 +20,8 @@ nl:
     federation_hint_html: Met een account op %{instance} ben je in staat om mensen die zich op andere Mastodonservers (en op andere plekken) bevinden te volgen.
     get_apps: Mobiele apps
     hosted_on: Mastodon op %{domain}
-    instance_actor_flash: "Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo'n geval dien je echter een domeinblokkade te gebruiken. \n"
+    instance_actor_flash: |
+      Dit account is een virtuel actor dat wordt gebruikt om de server zelf te vertegenwoordigen en is geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden geblokkeerd, tenzij je de hele server wilt blokkeren. In zo'n geval dien je echter een domeinblokkade te gebruiken. 
     learn_more: Meer leren
     privacy_policy: Privacybeleid
     rules: Serverregels
@@ -41,9 +41,9 @@ nl:
       reason: 'Reden:'
       rejecting_media: 'Mediabestanden van deze server worden niet verwerkt en er worden geen thumbnails getoond. Je moet handmatig naar deze server doorklikken om de mediabestanden te kunnen bekijken:'
       rejecting_media_title: Mediabestanden geweigerd
-      silenced: Berichten van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.
+      silenced: 'Berichten van deze server worden nergens weergegeven, behalve op jouw eigen starttijdlijn wanneer je het account volgt.'
       silenced_title: Beperkte servers
-      suspended: Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.
+      suspended: 'Je bent niet in staat om iemand van deze server te volgen, en er worden geen gegevens van deze server verwerkt of opgeslagen, en met deze server uitgewisseld.'
       suspended_title: Opgeschorte servers
     unavailable_content_html: Met Mastodon kun je in het algemeen berichten bekijken van en communiceren met gebruikers van elke andere server in de fediverse. Dit zijn de uitzonderingen die door deze server zijn gemaakt en expliciet alleen hier gelden.
     user_count_after:
@@ -52,7 +52,7 @@ nl:
     user_count_before: Thuisbasis van
     what_is_mastodon: Wat is Mastodon?
   accounts:
-    choices_html: 'Aanbevelingen van %{name}:'
+    choices_html: "Aanbevelingen van %{name}:"
     endorsements_hint: Je kunt mensen die je volgt in de webomgeving aanbevelen, waarna ze dan hier zullen verschijnen.
     featured_tags_hint: Je kunt specifieke hashtags uitlichten, waarna ze dan hier zullen verschijnen.
     follow: Volgen
@@ -113,7 +113,7 @@ nl:
       delete: Gegevens verwijderen
       deleted: Verwijderd
       demote: Degraderen
-      destroyed_msg: De verwijdering van de gegevens van %{username} staat nu in de wachtrij
+      destroyed_msg: "De verwijdering van de gegevens van %{username} staat nu in de wachtrij"
       disable: Bevriezen
       disable_two_factor_authentication: 2FA uitschakelen
       disabled: Bevroren
@@ -258,44 +258,44 @@ nl:
       actions:
         assigned_to_self_report_html: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user_html: "%{name} veranderde het e-mailadres van gebruiker %{target}"
-        confirm_user_html: E-mailadres van gebruiker %{target} is door %{name} bevestigd
+        confirm_user_html: "E-mailadres van gebruiker %{target} is door %{name} bevestigd"
         create_account_warning_html: "%{name} verzond een waarschuwing naar %{target}"
         create_announcement_html: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
-        create_custom_emoji_html: Nieuwe emoji %{target} is door %{name} geüpload
+        create_custom_emoji_html: "Nieuwe emoji %{target} is door %{name} geüpload"
         create_domain_allow_html: "%{name} heeft de federatie met het domein %{target} goedgekeurd"
-        create_domain_block_html: Domein %{target} is door %{name} geblokkeerd
+        create_domain_block_html: "Domein %{target} is door %{name} geblokkeerd"
         create_email_domain_block_html: "%{name} heeft het e-maildomein %{target} geblokkeerd"
         create_ip_block_html: "%{name} maakte regel aan voor IP %{target}"
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
-        demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
+        demote_user_html: "Gebruiker %{target} is door %{name} gedegradeerd"
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
         destroy_custom_emoji_html: "%{name} verwijderde emoji %{target}"
         destroy_domain_allow_html: "%{name} heeft de federatie met het domein %{target} afgekeurd"
-        destroy_domain_block_html: Domein %{target} is door %{name} gedeblokkeerd
+        destroy_domain_block_html: "Domein %{target} is door %{name} gedeblokkeerd"
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
         destroy_ip_block_html: "%{name} verwijderde regel voor IP %{target}"
-        destroy_status_html: Bericht van %{target} is door %{name} verwijderd
+        destroy_status_html: "Bericht van %{target} is door %{name} verwijderd"
         destroy_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} hervat"
-        disable_2fa_user_html: De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld
-        disable_custom_emoji_html: Emoji %{target} is door %{name} uitgeschakeld
-        disable_user_html: Inloggen voor %{target} is door %{name} uitgeschakeld
-        enable_custom_emoji_html: Emoji %{target} is door %{name} ingeschakeld
-        enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
-        memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
-        promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
+        disable_2fa_user_html: "De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld"
+        disable_custom_emoji_html: "Emoji %{target} is door %{name} uitgeschakeld"
+        disable_user_html: "Inloggen voor %{target} is door %{name} uitgeschakeld"
+        enable_custom_emoji_html: "Emoji %{target} is door %{name} ingeschakeld"
+        enable_user_html: "Inloggen voor %{target} is door %{name} ingeschakeld"
+        memorialize_account_html: "Het account %{target} is door %{name} in een In memoriam veranderd"
+        promote_user_html: "Gebruiker %{target} is door %{name} gepromoveerd"
         remove_avatar_user_html: "%{name} verwijderde de avatar van %{target}"
         reopen_report_html: "%{name} heeft rapportage %{target} heropend"
-        reset_password_user_html: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
+        reset_password_user_html: "Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld"
         resolve_report_html: "%{name} heeft rapportage %{target} opgelost"
         sensitive_account_html: "%{name} markeerde de media van %{target} als gevoelig"
-        silence_account_html: Account %{target} is door %{name} beperkt
-        suspend_account_html: Account %{target} is door %{name} opgeschort
+        silence_account_html: "Account %{target} is door %{name} beperkt"
+        suspend_account_html: "Account %{target} is door %{name} opgeschort"
         unassigned_report_html: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
         unsensitive_account_html: "%{name} markeerde media van %{target} als niet gevoelig"
-        unsilence_account_html: Beperking van account %{target} is door %{name} opgeheven
-        unsuspend_account_html: Opschorten van account %{target} is door %{name} opgeheven
+        unsilence_account_html: "Beperking van account %{target} is door %{name} opgeheven"
+        unsuspend_account_html: "Opschorten van account %{target} is door %{name} opgeheven"
         update_announcement_html: "%{name} heeft de mededeling %{target} bijgewerkt"
-        update_custom_emoji_html: Emoji %{target} is door %{name} bijgewerkt
+        update_custom_emoji_html: "Emoji %{target} is door %{name} bijgewerkt"
         update_domain_block_html: "%{name} heeft de domeinblokkade bijgewerkt voor %{target}"
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
       deleted_status: "(verwijderd bericht}"
@@ -457,7 +457,7 @@ nl:
       no_ip_block_selected: Er zijn geen IP-regels veranderd, omdat er geen een was geselecteerd
       title: IP-regels
     relationships:
-      title: Relaties van %{acct}
+      title: "Relaties van %{acct}"
     relays:
       add_new: Nieuwe relayserver toevoegen
       delete: Verwijderen
@@ -643,7 +643,7 @@ nl:
     new_report:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
-      subject: Nieuwe rapportage op %{instance} (#%{id})
+      subject: 'Nieuwe rapportage op %{instance} (#%{id})'
   aliases:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
@@ -780,7 +780,7 @@ nl:
   directories:
     directory: Gebruikersgids
     explanation: Ontdek gebruikers aan de hand van hun interesses
-    explore_mastodon: "%{title} verkennen"
+    explore_mastodon: '%{title} verkennen'
   domain_validator:
     invalid_domain: is een ongeldige domeinnaam
   errors:
@@ -1177,88 +1177,7 @@ nl:
   tags:
     does_not_match_previous_name: komt niet overeen met de vorige naam
   terms:
-    body_html: |
-      <h2>Privacy Policy</h2>
-      <h3 id="collect">What information do we collect?</h3>
-
-      <ul>
-      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Site usage by children</h3>
-
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
-
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: Gebruiksvoorwaarden en privacybeleid van %{instance}
+    title: "Gebruiksvoorwaarden en privacybeleid van %{instance}"
   themes:
     contrast: Mastodon (hoog contrast)
     default: Mastodon (donker)
