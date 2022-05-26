@@ -330,11 +330,20 @@ html {
 .actions-modal ul li:not(:empty) a:focus button,
 .actions-modal ul li:not(:empty) a:hover,
 .actions-modal ul li:not(:empty) a:hover button,
+.language-dropdown__dropdown__results__item.active,
 .admin-wrapper .sidebar ul .simple-navigation-active-leaf a,
 .simple_form .block-button,
 .simple_form .button,
 .simple_form button {
   color: $white;
+}
+
+.language-dropdown__dropdown__results__item .language-dropdown__dropdown__results__item__common-name {
+  color: lighten($ui-base-color, 8%);
+}
+
+.language-dropdown__dropdown__results__item.active .language-dropdown__dropdown__results__item__common-name {
+  color: darken($ui-base-color, 12%);
 }
 
 .dropdown-menu__separator,
@@ -371,12 +380,13 @@ html {
   border: 1px solid lighten($ui-base-color, 8%);
 }
 
-.reactions-bar__item {
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: $ui-base-color;
-  }
+.reactions-bar__item:hover,
+.reactions-bar__item:focus,
+.reactions-bar__item:active,
+.language-dropdown__dropdown__results__item:hover,
+.language-dropdown__dropdown__results__item:focus,
+.language-dropdown__dropdown__results__item:active {
+  background-color: $ui-base-color;
 }
 
 .reactions-bar__item.active {

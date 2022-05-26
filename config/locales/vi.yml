@@ -579,7 +579,7 @@ vi:
         notes:
           other: "%{count} kiểm duyệt"
       action_log: Nhật ký kiểm duyệt
-      action_taken_by: Hành động được thực hiện bởi
+      action_taken_by: Quyết định bởi
       actions:
         delete_description_html: Những tút bị báo cáo sẽ được xóa và 1 lần cảnh cáo sẽ được ghi lại để giúp bạn lưu ý về tài khoản này trong tương lai.
         mark_as_sensitive_description_html: Media trong các tút bị báo cáo sẽ được đánh dấu là nhạy cảm và 1 lần cảnh cáo sẽ được ghi lại để giúp bạn nắm bắt nhanh những vi phạm của cùng một tài khoản.
@@ -1009,7 +1009,7 @@ vi:
     explore_mastodon: Thành viên %{title}
   disputes:
     strikes:
-      action_taken: Hành động thực hiện
+      action_taken: Hành động áp dụng
       appeal: Khiếu nại
       appeal_approved: Khiếu nại đã được chấp nhận và cảnh cáo không còn giá trị
       appeal_rejected: Khiếu nại bị từ chối
@@ -1017,10 +1017,12 @@ vi:
       appealed_msg: Khiếu nại của bạn đã được gửi đi. Nếu nó được chấp nhận, bạn sẽ nhận được thông báo.
       appeals:
         submit: Gửi khiếu nại
+      approve_appeal: Chấp nhận kháng cáo
       associated_report: Báo cáo đính kèm
       created_at: Ngày
       description_html: Đây là những cảnh cáo và áp đặt kiểm duyệt đối với bạn bởi đội ngũ %{instance}.
       recipient: Người nhận
+      reject_appeal: Từ chối kháng cáo
       status: 'Tút #%{id}'
       status_removed: Tút này đã được xóa khỏi hệ thống
       title: "%{action} từ %{date}"
@@ -1331,6 +1333,11 @@ vi:
   reports:
     errors:
       invalid_rules: không đúng với quy tắc
+  rss:
+    content_warning: 'Cảnh báo nội dung:'
+    descriptions:
+      account: Những tút công khai của @%{acct}
+      tag: 'Những tút #%{hashtag} công khai'
   scheduled_statuses:
     over_daily_limit: Bạn đã vượt qua giới hạn được lên lịch đăng tút %{limit} hôm nay
     over_total_limit: Bạn đã vượt quá giới hạn %{limit} của các tút được lên lịch
@@ -1483,6 +1490,9 @@ vi:
     pinned: Tút đã ghim
     reblogged: đăng lại
     sensitive_content: NSFW
+  strikes:
+    errors:
+      too_late: Đã quá trễ để kháng cáo
   tags:
     does_not_match_previous_name: không khớp với tên trước
   terms:
@@ -1592,7 +1602,7 @@ vi:
         mark_statuses_as_sensitive: Vài tút của bạn đã bị kiểm duyệt viên %{instance} đánh dấu nhạy cảm. Mọi người cần nhấn vào media để xem nó. Bạn có thể tự đánh dấu tài khoản của bạn là nhạy cảm.
         sensitive: Từ giờ trở đi, tất cả các media của bạn bạn tải lên sẽ được đánh dấu là nhạy cảm và ẩn đằng sau cảnh báo nhấp chuột.
         silence: Bạn vẫn có thể sử dụng tài khoản của mình, nhưng chỉ những người đang theo dõi bạn mới thấy bài đăng của bạn. Bạn cũng bị loại khỏi các tính năng khám phá khác. Tuy nhiên, những người khác vẫn có thể theo dõi bạn.
-        suspend: Bạn không còn có thể sử dụng tài khoản của bạn, hồ sơ và các dữ liệu khác không còn có thể truy cập được. Bạn vẫn có thể đăng nhập để yêu cầu sao lưu dữ liệu của mình cho đến khi dữ liệu bị xóa hoàn toàn trong khoảng 30 ngày, nhưng chúng tôi sẽ giữ lại một số dữ liệu cơ bản để ngăn bạn tránh bị đình chỉ.
+        suspend: Bạn không còn có thể sử dụng tài khoản của bạn, hồ sơ và các dữ liệu khác không còn có thể truy cập được. Trong vòng 30 ngày, bạn vẫn có thể đăng nhập để yêu cầu bản sao dữ liệu của mình cho đến khi dữ liệu bị xóa hoàn toàn, nhưng chúng tôi sẽ giữ lại một số dữ liệu cơ bản để ngăn bạn thoát khỏi việc vô hiệu hóa.
       reason: 'Lý do:'
       statuses: 'Tút lưu ý:'
       subject:

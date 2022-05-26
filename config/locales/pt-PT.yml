@@ -802,6 +802,7 @@ pt-PT:
           other: Partilhado por %{count} pessoas na última semana
         title: Links em destaque
         usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
+      only_allowed: Apenas permitidos
       pending_review: Pendente de revisão
       preview_card_providers:
         allowed: Links deste editor poderão ser incluídos nos destaques
@@ -843,6 +844,7 @@ pt-PT:
           one: Utilizada por uma pessoa na última semana
           other: Utilizada por %{count} pessoas na última semana
       title: Tendências
+      trending: Em destaque
     warning_presets:
       add_new: Adicionar novo
       delete: Eliminar
@@ -1034,10 +1036,12 @@ pt-PT:
       appealed_msg: O seu recurso foi submetido. Se ele for aprovado, será notificado.
       appeals:
         submit: Submeter recurso
+      approve_appeal: Aprovar recurso
       associated_report: Denúncia associada
       created_at: Data
       description_html: Estas são ações tomadas contra a sua conta e avisos que lhe foram enviados pela equipa de %{instance}.
       recipient: Endereçado a
+      reject_appeal: Rejeitar recurso
       status: 'Publicação #%{id}'
       status_removed: Publicação já eliminada do sistema
       title: "%{action} de %{date}"
@@ -1352,6 +1356,11 @@ pt-PT:
   reports:
     errors:
       invalid_rules: não faz referência a regras válidas
+  rss:
+    content_warning: 'Aviso de conteúdo:'
+    descriptions:
+      account: Publicações públicas de @%{acct}
+      tag: 'Publicações públicas marcadas com #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Excedeste o limite de %{limit} publicações agendadas para esse dia
     over_total_limit: Tu excedeste o limite de %{limit} publicações agendadas
@@ -1510,6 +1519,9 @@ pt-PT:
     pinned: Toot fixado
     reblogged: partilhado
     sensitive_content: Conteúdo sensível
+  strikes:
+    errors:
+      too_late: É tarde demais para apelar desta punição
   tags:
     does_not_match_previous_name: não coincide com o nome anterior
   terms:

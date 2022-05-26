@@ -517,6 +517,7 @@ da:
       delivery:
         all: Alle
         clear: Ryd leveringsfejl
+        failing: Fejler
         restart: Genstart levering
         stop: Stop levering
         unavailable: Utilgængelig
@@ -843,7 +844,7 @@ da:
           one: Brugt af én person den seneste uge
           other: Brugt af %{count} personer den seneste uge
       title: Trends
-      trending: Populært
+      trending: Populære
     warning_presets:
       add_new: Tilføj ny
       delete: Slet
@@ -1035,10 +1036,12 @@ da:
       appealed_msg: Din appel er indgivet. Godkendes den, underrettes du.
       appeals:
         submit: Indgiv appel
+      approve_appeal: Godkend appel
       associated_report: Tilknyttet anmeldelse
       created_at: Dateret
       description_html: Disse er implementerede handlinger for din konto, samt advarsler tilsendt dig af %{instance}-personalet.
       recipient: Adresseret til
+      reject_appeal: Afvis appel
       status: 'Indlæg #%{id}'
       status_removed: Indlæg allerede fjernet fra system
       title: "%{action} pr. %{date}"
@@ -1353,6 +1356,11 @@ da:
   reports:
     errors:
       invalid_rules: refererer ikke til gyldige regler
+  rss:
+    content_warning: 'Indholdsadvarsel:'
+    descriptions:
+      account: Offentlige indlæg fra @%{acct}
+      tag: 'Offentlige indlæg tagget #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Den daglige grænse på %{limit} planlagte indlæg er nået
     over_total_limit: Grænsen på %{limit} planlagte indlæg er nået
@@ -1511,6 +1519,9 @@ da:
     pinned: Fastgjort indlæg
     reblogged: boostet
     sensitive_content: Sensitivt indhold
+  strikes:
+    errors:
+      too_late: Det er for sent at appellere denne advarsel
   tags:
     does_not_match_previous_name: matcher ikke det foregående navn
   terms:

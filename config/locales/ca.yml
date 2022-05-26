@@ -17,15 +17,15 @@ ca:
     contact_missing: No configurat
     contact_unavailable: N/D
     continue_to_web: Continua a l'aplicació web
-    discover_users: Descobreix usuaris
+    discover_users: Descobrir usuaris
     documentation: Documentació
     federation_hint_html: Amb un compte de %{instance}, podràs seguir persones de qualsevol servidor Mastodon i de molts més.
-    get_apps: Prova una aplicació mòbil
+    get_apps: Provar una aplicació mòbil
     hosted_on: Mastodon allotjat a %{domain}
     instance_actor_flash: |
       Aquest compte és un actor virtual usat per representar el servidor i no qualsevol usuari individual.
       Es fa servir per a propòsits de federació i no s'ha de ser bloquejar si no voleu bloquejar tota la instància. En aquest cas, hauríeu d'utilitzar un bloqueig de domini.
-    learn_more: Més informació
+    learn_more: Aprèn més
     logged_in_as_html: Actualment has iniciat sessió com a %{username}.
     logout_before_registering: Ja has iniciat sessió.
     privacy_policy: Política de privadesa
@@ -73,7 +73,7 @@ ca:
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
     network_hidden: Aquesta informació no està disponible
     nothing_here: No hi ha res aquí!
-    people_followed_by: Usuaris seguits per %{name}
+    people_followed_by: Persones seguides per %{name}
     people_who_follow: Usuaris que segueixen %{name}
     pin_errors:
       following: Has d'estar seguint la persona que vulguis avalar
@@ -231,7 +231,7 @@ ca:
       whitelisted: Llista blanca
     action_logs:
       action_types:
-        approve_appeal: Aprova Apel·lació
+        approve_appeal: Aprova l'apel·lació
         approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna l'informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
@@ -263,7 +263,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
-        reject_appeal: Rebutja Apel·lació
+        reject_appeal: Rebutja l'apel·lació
         reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
         reopen_report: Reobre l'informe
@@ -415,7 +415,7 @@ ca:
       website: Lloc web
     disputes:
       appeals:
-        empty: Cap apel·lació trobada.
+        empty: No s'ha trobat cap apel·lació.
         title: Apel·lacions
     domain_allows:
       add_new: Dominis autoritzats
@@ -911,7 +911,7 @@ ca:
     settings: 'Canvia les preferències de correu: %{link}'
     view: 'Visualització:'
     view_profile: Mostra el perfil
-    view_status: Mostra l'estat
+    view_status: Mostra la publicació
   applications:
     created: L'aplicació s'ha creat correctament
     destroyed: L'aplicació s'ha suprimit correctament
@@ -1031,15 +1031,17 @@ ca:
       action_taken: Acció presa
       appeal: Apel·lació
       appeal_approved: L'acció ha estat apel·lada amb èxit i ja no és vàlida
-      appeal_rejected: L'apel·lació ha estat rebutjada
-      appeal_submitted_at: Apel·lació tramesa
-      appealed_msg: La teva apel·lació ha estat emesa. Si és aprovada, seràs notificat.
+      appeal_rejected: S'ha rebutjat l'apel·lació
+      appeal_submitted_at: Apel·lació enviada
+      appealed_msg: La teva apel·lació s'ha enviat. Et notificarem si s'aprova.
       appeals:
-        submit: Apel·lació emesa
+        submit: Envia l'apel·lació
+      approve_appeal: Aprova l'apel·lació
       associated_report: Informe associat
       created_at: Datada
       description_html: Aquestes son accions preses contra el teu compte i avisos que se t'han enviat per l'equip de %{instance}.
       recipient: Dirigida a
+      reject_appeal: Rebutja l'apel·lació
       status: 'Publicació #%{id}'
       status_removed: Publicació ja esborrada del sistema
       title: "%{action} del %{date}"
@@ -1052,7 +1054,7 @@ ca:
         silence: Limitació del compte
         suspend: Suspensió del compte
       your_appeal_approved: La teva apel·lació s'ha aprovat
-      your_appeal_pending: Has tramés una apel·lació
+      your_appeal_pending: Has enviat una apel·lació
       your_appeal_rejected: La teva apel·lació ha estat rebutjada
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
@@ -1124,7 +1126,7 @@ ca:
     delete: Esborra
     none: Cap
     order_by: Ordena per
-    save_changes: Desar els canvis
+    save_changes: Desa els canvis
     today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
@@ -1150,7 +1152,7 @@ ca:
     upload: Carrega
   in_memoriam_html: En Memòria.
   invites:
-    delete: Desactivar
+    delete: Desactiva
     expired: Caducat
     expires_in:
       '1800': 30 minuts
@@ -1354,6 +1356,11 @@ ca:
   reports:
     errors:
       invalid_rules: no fa referència a normes vàlides
+  rss:
+    content_warning: 'Avís de contingut:'
+    descriptions:
+      account: Publicacions des de @%{acct}
+      tag: 'Publicacions etiquetades #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} publicacions programades per a avui
     over_total_limit: Has superat el límit de %{limit} publicacions programades
@@ -1399,14 +1406,14 @@ ca:
     revoke: Revoca
     revoke_success: S'ha revocat la sessió amb èxit
     title: Sessions
-    view_authentication_history: Veure l'historial d'autenticació del teu compte
+    view_authentication_history: Mostra l'historial d'autenticació del compte
   settings:
     account: Compte
     account_settings: Configuració del compte
     aliases: Àlies de compte
     appearance: Aparença
     authorized_apps: Aplicacions autoritzades
-    back: Tornar a Mastodon
+    back: Torna a Mastodon
     delete: Eliminació del compte
     development: Desenvolupament
     edit_profile: Edita el perfil
@@ -1474,7 +1481,7 @@ ca:
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
   statuses_cleanup:
-    enabled: Esborrar automàticament publicacions antigues
+    enabled: Esborra automàticament publicacions antigues
     enabled_hint: Suprimeix automàticament les teves publicacions quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
     exceptions: Excepcions
     explanation: Com que suprimir publicacions és una operació cara, es fa lentament amb el pas del temps i quan el servidor no està ocupat. Per aquest motiu, és possible que les teves publicacions se suprimeixin un temps després d’assolir el llindar d’edat.
@@ -1503,7 +1510,7 @@ ca:
       '604800': 1 setmana
       '63113904': 2 anys
       '7889238': 3 mesos
-    min_age_label: Llindar d'edat
+    min_age_label: Antiguitat
     min_favs: Mantenir les publicacions afavorides més de
     min_favs_hint: No suprimeix cap de les teves publicacions que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per suprimir publicacions independentment del nombre de favorits que tinguin
     min_reblogs: Mantenir les publicacions impulsades més de
@@ -1512,6 +1519,9 @@ ca:
     pinned: Publicació fixada
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
+  strikes:
+    errors:
+      too_late: És massa tard per a apel·lar aquesta acció
   tags:
     does_not_match_previous_name: no coincideix amb el nom anterior
   terms:
@@ -1624,11 +1634,11 @@ ca:
   user_mailer:
     appeal_approved:
       action: Ves al teu compte
-      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat aprovada. El teu compte està un cop més al dia.
-      subject: La teva apel·lació de %{date} ha estat aprovada
+      explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
+      subject: La teva apel·lació del %{date} ha estat aprovada
       title: Apel·lació aprovada
     appeal_rejected:
-      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat rebutjada.
+      explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat rebutjada.
       subject: La teva apel·lació del %{date} ha estat rebutjada
       title: Apel·lació rebutjada
     backup_ready:
@@ -1643,8 +1653,8 @@ ca:
       subject: El teu compte ha estat accedit des d'una nova adreça IP
       title: Un nou inici de sessió
     warning:
-      appeal: Trametre una apel·lació
-      appeal_description: Si creus que això és un error pots emetre una apel·lació al equip de %{instance}.
+      appeal: Envia una apel·lació
+      appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.
       categories:
         spam: Contingut brossa
         violation: El contingut viola les següents guies de la comunitat
