@@ -16,7 +16,7 @@ class VoteService < BaseService
 
     already_voted = true
 
-    if @choices.length > 0
+    if !@choices.empty?
       with_lock("vote:#{@poll.id}:#{@account.id}") do
         already_voted = @poll.votes.where(account: @account).exists?
 
