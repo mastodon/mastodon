@@ -1,7 +1,6 @@
----
 is:
   about:
-    about_hashtag_html: Þetta eru opinberar færslur sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
+    about_hashtag_html: 'Þetta eru opinberar færslur sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.'
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -118,7 +117,7 @@ is:
       delete: Eyða gögnum
       deleted: Eytt
       demote: Lækka í tign
-      destroyed_msg: Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt
+      destroyed_msg: "Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt"
       disable: Gera óvirkt
       disable_sign_in_token_auth: Gera óvirka auðkenningu með teikni í tölvupósti
       disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
@@ -568,11 +567,11 @@ is:
       no_ip_block_selected: Engum IP-reglum var breytt því ekkert var valið
       title: IP-reglur
     relationships:
-      title: Vensl %{acct}
+      title: "Vensl %{acct}"
     relays:
       add_new: Bæta við nýjum endurvarpa
       delete: Eyða
-      description_html: "<strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra færslna við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum."
+      description_html: <strong>Endurvarpi í skýjasambandi</strong> er milliþjónn sem skiptist á miklu magni opinberra færslna við aðra þjóna sem eru áskrifendur að honum og birta sín tíst á honum. <strong>Þetta getur hjálpað litlum og meðalstórum vefþjónum að uppgötva efni úr skýjasambandinu</strong>, sem annars myndi krefjast þess að staðværir notendur fylgist handvirkt með öðru fólki á fjartengdum vefþjónum.
       disable: Gera óvirkt
       disabled: Óvirkt
       enable: Virkja
@@ -870,7 +869,7 @@ is:
     new_report:
       body: "%{reporter} hefur kært %{target}"
       body_remote: Einhver frá %{domain} hefur kært %{target}
-      subject: Ný kæra vegna %{instance} (#%{id})
+      subject: 'Ný kæra vegna %{instance} (#%{id})'
     new_trends:
       body: 'Eftirfarandi atriði þarfnast yfirferðar áður en hægt er að birta þau opinberlega:'
       new_trending_links:
@@ -1259,13 +1258,13 @@ is:
       title: Ný beiðni um að fylgjast með
     mention:
       action: Svara
-      body: "%{name} minntist á þig í:"
-      subject: "%{name} minntist á þig"
+      body: '%{name} minntist á þig í:'
+      subject: '%{name} minntist á þig'
       title: Ný tilvísun
     poll:
       subject: Könnun frá %{name} er lokið
     reblog:
-      body: "%{name} endurbirti færsluna þína:"
+      body: '%{name} endurbirti færsluna þína:'
       subject: "%{name} endurbirti færsluna þína"
       title: Ný endurbirting
     status:
@@ -1471,7 +1470,7 @@ is:
     show_older: Sýna eldri
     show_thread: Birta þráð
     sign_in_to_participate: Skráðu þig inn til að taka þátt í samtalinu
-    title: "%{name}: „%{quote}‟"
+    title: '%{name}: „%{quote}‟'
     visibilities:
       direct: Beint
       private: Einungis fylgjendur
@@ -1525,87 +1524,6 @@ is:
   tags:
     does_not_match_previous_name: samsvarar ekki fyrra nafni
   terms:
-    body_html: |
-      <h2>Persónuverndarstefna </h2>
-      <h3 id="collect">Hvaða upplýsingum söfnum við?</h3>
-
-      <ul>
-      <li><em>Grunnupplýsingar um notandaaðgang</em>: Ef þú skráir þig á þessum netþjóni gætirðu verið beðinn um að slá inn notandanafn, tölvupóstfang og lykilorð. Þú getur einnig sett inn viðbótarupplýsingar eins og birtingarnafn og æviágrip auk þess að hlaða inn auðkennismynd eða mynd til að birta á síðuhaus. Notandanafn, birtingarnafn, æviágrip, auðkennismynd og hausmynd eru alltaf skráð opinberlega. </li>
-      <li><em>Færslur, fylgnigögn og aðrar opinberar upplýsingar</em>: Listinn yfir þá sem þú fylgist með er skráður opinberlega, það sama er að segja um þá sem fylgjast með þér. Þegar þú sendir skilaboð er dagsetning og tími vistaður sem og hvaða forrit þú sendir skilaboðin frá. Skilaboð geta innihaldið viðhengi, svo sem myndir og myndskeið. Opinberar og óskráðar færslur er aðgengilegar opinberlega. Þegar þú birtir færslu á notandasniðinu þínu (forsíðu) eru það einnig opinberar upplýsingar. Færslurnar þínar eru sendar þeim sem fylgjast með þér, í sumum tilvikum þýðir það að þær eru afhentar á aðra netþjóna og afrit geymd þar. Þegar þú eyðir færslum er það sömuleiðis birt fylgjendum þínum. Aðgerðir eins og að endurbirta eða setja færslu í eftirlæti eru ávallt opinberar.</li>
-      <li><em>Beinar færslur og eingöngu til fylgjenda</em>: Öll innlegg eru geymd og unnin á netþjóninum. Færslur sem eingöngu eru til fylgjenda berast til fylgjenda þinna og þeirra notenda sem minnst er á í þeim, beinar færslur berast aðeins til notenda sem getið er um í viðkomandi færslu. Í sumum tilvikum þýðir það að færslurnar eru afhentar á aðra netþjóna og afrit geymd þar. Við leggjum mikla áherslu á að takmarka aðgang að þessum færslum einungis við aðila sem til þess hafa heimild, en aðrir utanaðkomandi netþjónar gætu mögulega ekki gert það. Þess vegna er mikilvægt að skoða vel þá netþjóna sem fylgjendur þínir tilheyra. Þú getur valið að þurfa að samþykkja og hafna nýjum fylgjendum handvirkt í stillingunum.<em>Hafðu í huga að rekstraraðilar netþjónsins og allir viðtakendamiðlarar geta skoðað slík skilaboð</em> og að viðtakendur geta tekið skjámyndir, afritað eða á annan hátt deilt þessum gögnum. <em>Ekki deila hættulegum upplýsingum í gegnum Mastodon.</em></li>
-      <li><em>IP-vistföng og önnur lýsigögn</em>: Þegar þú skráir þig inn skráum við IP-töluna sem þú skráir þig inn af, sem og heiti vafraforritsins þíns. Allar innskráðar setur verða tiltækar til skoðunar og afturköllunar í stillingunum. Síðast notaða IP-talan er geymd í allt að 12 mánuði. Við gætum líka haldið eftir atvikaskrám netþjónsins sem gæti innihaldið IP-tölur allra beiðna til netþjónsins.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Til hvers notum við upplýsingarnar þínar?</h3>
-
-      <p>Hvað sem er af þeim upplýsingum sem við söfnum frá þér má nota á eftirfarandi vegu:</p>
-
-      <ul>
-      <li>Til að veita grunnvirkni Mastodon. Þú getur aðeins haft samskipti við efni annarra eða sent inn þitt eigið efni þegar þú ert skráð/ur inn. Til dæmis gætirðu fylgst með öðru fólki og skoðað safn færslna þeirra á þinni eigin persónulega sérsniðnu tímalínu.</li>
-      <li>Til að hjálpa til við umsjón og viðhald samfélags/hóps, til dæmis að bera saman IP-tölu þína við aðrar þekktar til að greina frávik frá bönnum eða öðrum brotum.</li>
-      <li>Tölvupóstfangið sem þú gefur upp má nota til að senda þér upplýsingar, tilkynningar um annað fólk sem átt hefur við efnið þitt eða til að senda þér skilaboð eða svara fyrirspurnum og/eða öðrum beiðnum eða spurningum.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Hvernig verndum við upplýsingarnar þínar? </h3>
-
-      <p>Við setjum upp margvíslegar öryggisráðstafanir til að viðhalda öryggi persónuupplýsinganna þinna þegar þú setur inn, sendir eða opnar persónulegar upplýsingar. Meðal annars er vafrasetan þín, svo og umferðin milli forritanna þinna og API-kerfisviðmótsins tryggð með SSL, og lykilorðið þitt er varið með tætigildi (hashed) með sterku einhliða reikniriti. Þú gætir virkjað tveggja-þátta auðkenningu til að tryggja enn frekar aðganginn að notandaaðgangnum þínum. </p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Hver er stefna okkar varðandi varðveislu gagna?</h3>
-
-      <p>Við munum leggja okkur fram um að:</p>
-
-      <ul>
-      <li>Halda eftir atvikaskrám netþjóns sem innihalda IP-tölu allra beiðna til þessa netþjóns, að svo miklu leyti sem slíkar skrár eru geymdar, ekki lengur en í en 90 daga.</li>
-      <li> Halda eftir IP-tölum sem tengjast skráðum notendum ekki lengur en 12 mánuði.</li>
-      </ul>
-
-      <p>Þú getur beðið um og ná í safnskrá með öllu þínu efni, þar með taldar færslur, margmiðlunarviðhengi, auðkennismynd og mynd á síðuhaus. </p>
-
-      <p>Þú getur eytt reikningi þínum óafturkræft hvenær sem er.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Notum við vefkökur?</h3>
-
-      <p>Já. Vefkökur eða fótspor eru litlar skrár sem vefsvæði eða þjónustuveitandi setur á harða diskinn í tölvunni þinni í gegnum vafrann þinn (ef þú leyfir það). Þessar vefkökur gera vefsvæðinu kleift að þekkja vafrann þinn og ef þú ert með skráðan notandaaðgang skaltu tengja vafrann við skráða notandaaðganginn þinn. </p>
-
-      <p>Við notum vafrakökur til að skilja og vista kjörstillingar þínar fyrir næstu heimsóknir.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Veitum við upplýsingar til utanaðkomandi aðila?</h3>
-
-      <p>Við seljum ekki, verslum eða flytjum á annan hátt persónulegar upplýsingar þínar til utanaðkomandi aðila. Þetta nær ekki til traustra þriðja aðila sem aðstoða okkur við að reka síðuna okkar, aðstoða við starfsemi okkar eða við að þjónusta þig, svo framarlega sem þessir aðilar eru sammála um að halda þessum gögnum sem trúnaðarupplýsingum. Við gætum einnig átt það til að gefa upp upplýsingar frá þér þegar við teljum að birting þeirra sé viðeigandi til að fara eftir lögum, framfylgja stefnu okkar á vefnum eða vernda réttindi okkar, eignir eða öryggi okkar eða annarra.</p>
-
-      <p>Opinberu efni þínu getur verið hlaðið inn af öðrum netþjónum á netinu. Opinberu skilaboðin þín ásamt færslum eingöngu til fylgjenda berast þeim netþjónum þar sem fylgjendur þínir eru skráðir og bein skilaboð eru send til netþjóna viðtakendanna, að svo miklu leyti sem þeir fylgjendur eða viðtakendur eru skráðir á öðrum netþjónum en þessum.</p>
-
-      <p>Þegar þú leyfir forriti að nota aðganginn þinn, fer það eftir umfangi heimildanna sem þú gefur hvort það getur það fengið aðgang að opinberum notandasniðsupplýsingum þínum, lista yfir þá sem þú fylgist með, lista yfir þá sem fylgjast með þér, öðrum listum þínum, öllum þínum færslum og eftirlætum. Forrit geta aldrei fengið tölvupóstfangið þitt eða lykilorð.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Notkun vefsvæðis fyrir börn</h3>
-
-      <p> Ef þessi netþjónn er innan ESB eða EES: Vefnum okkar, vörum og þjónustu er allri beint að fólki sem er að minnsta kosti 16 ára gamalt. Ef þú ert yngri en 16 ára, þá máttu samkvæmt kröfum GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation"> Almenn reglugerð um gagnavernd</a>) ekki nota þessa síðu.</p>
-
-      <p>Ef þessi netþjónn er í Bandaríkjunum: Vefnum okkar, vörum og þjónustu er allri beint að fólki sem er að minnsta kosti 13 ára gamalt. Ef þú ert yngri en 13 ára, þá máttu samkvæmt kröfum COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Lög um persónuvernd barna á netinu</a>) ekki nota þessa síðu. </p>
-
-      <p>Lagakröfur geta verið aðrar ef þessi netþjónn er í annarri lögsögu.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Breytingar á persónuverndarstefnu okkar</h3>
-
-      <p> Ef við ákveðum að breyta persónuverndarstefnu okkar munum við birta þær breytingar á þessari síðu. </p>
-
-      <p> Þetta skjal er með CC-BY-SA notkunarleyfi. Það var síðast uppfært 7. mars 2018.</p>
-
-      <p> Upprunalega aðlagað úr <a href="https://github.com/discourse/discourse">persónuverndarstefnu Discourse</a>.</p>
     title: "%{instance} - Þjónustuskilmálar og persónuverndarstefna"
   themes:
     contrast: Mastodon (mikil birtuskil)
