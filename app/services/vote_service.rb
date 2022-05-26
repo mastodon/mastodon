@@ -7,6 +7,8 @@ class VoteService < BaseService
   include Lockable
 
   def call(account, poll, choices)
+    return if choices.empty?
+
     authorize_with account, poll, :vote?
 
     @account = account
