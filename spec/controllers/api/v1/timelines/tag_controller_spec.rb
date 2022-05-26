@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Api::V1::Timelines::TagController do
   render_views
 
-  let(:user) { Fabricate(:user, account: Fabricate(:account, username: 'alice', locked: false)) }
+  let(:user) { Fabricate(:account, username: 'alice', locked: false).user }
 
   before do
     allow(controller).to receive(:doorkeeper_token) { token }

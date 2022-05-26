@@ -7,7 +7,7 @@
   .fields-group
     = f.input :shortcode, wrapper: :with_label, label: t('admin.custom_emojis.shortcode'), hint: t('admin.custom_emojis.shortcode_hint')
   .fields-group
-    = f.input :image, wrapper: :with_label, input_html: { accept: 'image/png' }, hint: t('admin.custom_emojis.image_hint')
+    = f.input :image, wrapper: :with_label, input_html: { accept: CustomEmoji::IMAGE_MIME_TYPES.join(' ') }, hint: t('admin.custom_emojis.image_hint', size: number_to_human_size(CustomEmoji::LIMIT))
 
   .actions
     = f.button :button, t('admin.custom_emojis.upload'), type: :submit

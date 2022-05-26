@@ -55,7 +55,7 @@ class Rack::Attack
   end
 
   throttle('throttle_api_media', limit: 30, period: 30.minutes) do |req|
-    req.authenticated_user_id if req.post? && req.path.start_with?('/api/v1/media')
+    req.authenticated_user_id if req.post? && req.path.match?('^/api/v\d+/media')
   end
 
   throttle('throttle_media_proxy', limit: 30, period: 10.minutes) do |req|
@@ -82,7 +82,12 @@ class Rack::Attack
   end
 
   throttle('throttle_sign_up_attempts/ip', limit: 25, period: 5.minutes) do |req|
-    req.remote_ip if req.post? && req.path == '/auth'
+    if req.post? && req.path == '/auth'
+      addr = req.remote_ip
+      addr = IPAddr.new(addr) if addr.is_a?(String)
+      addr = addr.mask(64) if addr.ipv6?
+      addr.to_s
+    end
   end
 
   throttle('throttle_password_resets/ip', limit: 25, period: 5.minutes) do |req|
@@ -113,9 +118,9 @@ class Rack::Attack
     req.session[:attempt_user_id] || req.params.dig('user', 'email').presence if req.post? && req.path == '/auth/sign_in'
   end
 
-  self.throttled_response = lambda do |env|
+  self.throttled_responder = lambda do |request|
     now        = Time.now.utc
-    match_data = env['rack.attack.match_data']
+    match_data = request.env['rack.attack.match_data']
 
     headers = {
       'Content-Type'          => 'application/json',

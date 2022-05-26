@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = t('admin.accounts.change_email.title', username: @account.acct)
+  = t('admin.accounts.change_email.title', username: @account.username)
 
 = simple_form_for @user, url: admin_account_change_email_path(@account.id) do |f|
   .fields-group

@@ -6,7 +6,7 @@
     %p= @instance_presenter.site_short_description.html_safe.presence || t('about.about_mastodon_html')
 
 - if Setting.trends && !(user_signed_in? && !current_user.setting_trends)
-  - trends = Trends.tags.get(true, 3)
+  - trends = Trends.tags.query.allowed.limit(3)
 
   - unless trends.empty?
     .endorsements-widget.trends-widget

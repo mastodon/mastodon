@@ -23,6 +23,7 @@ RSpec.describe ActivityPub::Activity::Accept do
     subject { described_class.new(json, sender) }
 
     before do
+      allow(RemoteAccountRefreshWorker).to receive(:perform_async)
       Fabricate(:follow_request, account: recipient, target_account: sender)
       subject.perform
     end
@@ -33,6 +34,10 @@ RSpec.describe ActivityPub::Activity::Accept do
 
     it 'removes the follow request' do
       expect(recipient.requested?(sender)).to be false
+    end
+
+    it 'queues a refresh' do
+      expect(RemoteAccountRefreshWorker).to have_received(:perform_async).with(sender.id)
     end
   end
 

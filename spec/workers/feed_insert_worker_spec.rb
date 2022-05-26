@@ -45,7 +45,7 @@ describe FeedInsertWorker do
         result = subject.perform(status.id, follower.id)
 
         expect(result).to be_nil
-        expect(instance).to have_received(:push_to_home).with(follower, status)
+        expect(instance).to have_received(:push_to_home).with(follower, status, update: nil)
       end
     end
   end

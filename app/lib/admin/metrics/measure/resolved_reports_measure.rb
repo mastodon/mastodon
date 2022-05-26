@@ -5,22 +5,23 @@ class Admin::Metrics::Measure::ResolvedReportsMeasure < Admin::Metrics::Measure:
     'resolved_reports'
   end
 
-  def total
-    Report.resolved.where(updated_at: time_period).count
+  protected
+
+  def perform_total_query
+    Report.resolved.where(action_taken_at: time_period).count
   end
 
-  def previous_total
-    Report.resolved.where(updated_at: previous_time_period).count
+  def perform_previous_total_query
+    Report.resolved.where(action_taken_at: previous_time_period).count
   end
 
-  def data
+  def perform_data_query
     sql = <<-SQL.squish
       SELECT axis.*, (
         WITH resolved_reports AS (
           SELECT reports.id
           FROM reports
-          WHERE action_taken
-            AND date_trunc('day', reports.updated_at)::date = axis.period
+          WHERE date_trunc('day', reports.action_taken_at)::date = axis.period
         )
         SELECT count(*) FROM resolved_reports
       ) AS value

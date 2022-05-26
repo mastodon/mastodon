@@ -1,5 +1,6 @@
 Fabricator(:account_warning) do
-  account        nil
-  target_account nil
-  text           "MyText"
+  account
+  target_account(fabricator: :account)
+  text { Faker::Lorem.paragraph }
+  action 'suspend'
 end

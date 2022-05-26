@@ -6,7 +6,7 @@ require 'pundit/rspec'
 RSpec.describe TagPolicy do
   let(:subject) { described_class }
   let(:admin)   { Fabricate(:user, admin: true).account }
-  let(:john)    { Fabricate(:user).account }
+  let(:john)    { Fabricate(:account) }
 
   permissions :index?, :show?, :update? do
     context 'staff?' do

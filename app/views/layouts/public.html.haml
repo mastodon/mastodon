@@ -22,7 +22,7 @@
             - if user_signed_in?
               = link_to t('settings.back'), root_url, class: 'nav-link nav-button webapp-btn'
             - else
-              = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn nav-link nav-button'
+              = link_to_login t('auth.login'), class: 'webapp-btn nav-link nav-button'
               = link_to t('auth.register'), available_sign_up_path, class: 'webapp-btn nav-link nav-button'
 
     .container= yield
@@ -54,5 +54,9 @@
             %ul
               %li= link_to t('about.source_code'), Mastodon::Version.source_url
               %li= link_to t('about.apps'), 'https://joinmastodon.org/apps'
+        .legal-xs
+          = link_to "v#{Mastodon::Version.to_s}", Mastodon::Version.source_url
+          ·
+          = link_to t('about.privacy_policy'), terms_path
 
 = render template: 'layouts/application'

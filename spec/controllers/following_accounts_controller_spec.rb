@@ -3,7 +3,7 @@ require 'rails_helper'
 describe FollowingAccountsController do
   render_views
 
-  let(:alice) { Fabricate(:user).account }
+  let(:alice) { Fabricate(:account) }
   let(:followee0) { Fabricate(:account) }
   let(:followee1) { Fabricate(:account) }
 
@@ -103,7 +103,7 @@ describe FollowingAccountsController do
 
         context 'when account hides their network' do
           before do
-            alice.user.settings.hide_network = true
+            alice.update(hide_collections: true)
           end
 
           it 'returns followers count' do

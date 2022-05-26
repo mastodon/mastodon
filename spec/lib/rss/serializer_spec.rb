@@ -13,13 +13,6 @@ describe RSS::Serializer do
 
     subject { RSS::Serializer.new.send(:status_title, status) }
 
-    context 'if destroyed?' do
-      it 'returns "#{account.acct} deleted status"' do
-        status.destroy!
-        expect(subject).to eq "#{account.acct} deleted status"
-      end
-    end
-
     context 'on a toot with long text' do
       let(:text) { "This toot's text is longer than the allowed number of characters" }
 

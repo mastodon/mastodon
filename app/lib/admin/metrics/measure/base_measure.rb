@@ -1,30 +1,49 @@
 # frozen_string_literal: true
 
 class Admin::Metrics::Measure::BaseMeasure
+  CACHE_TTL = 5.minutes.freeze
+
   def self.with_params?
     false
   end
+
+  attr_reader :loaded
+
+  alias loaded? loaded
 
   def initialize(start_at, end_at, params)
     @start_at = start_at&.to_datetime
     @end_at   = end_at&.to_datetime
     @params   = params
+    @loaded   = false
+  end
+
+  def cache_key
+    ["metrics/measure/#{key}", @start_at, @end_at, canonicalized_params].join(';')
   end
 
   def key
     raise NotImplementedError
   end
 
+  def unit
+    nil
+  end
+
+  def total_in_time_range?
+    true
+  end
+
   def total
-    raise NotImplementedError
+    load[:total]
   end
 
   def previous_total
-    raise NotImplementedError
+    load[:previous_total]
   end
 
   def data
-    raise NotImplementedError
+    load[:data]
   end
 
   def self.model_name
@@ -36,6 +55,35 @@ class Admin::Metrics::Measure::BaseMeasure
   end
 
   protected
+
+  def load
+    unless loaded?
+      @values = Rails.cache.fetch(cache_key, expires_in: CACHE_TTL) { perform_queries }.with_indifferent_access
+      @loaded = true
+    end
+
+    @values
+  end
+
+  def perform_queries
+    {
+      total: perform_total_query,
+      previous_total: perform_previous_total_query,
+      data: perform_data_query,
+    }
+  end
+
+  def perform_total_query
+    raise NotImplementedError
+  end
+
+  def perform_previous_total_query
+    raise NotImplementedError
+  end
+
+  def perform_data_query
+    raise NotImplementedError
+  end
 
   def time_period
     (@start_at..@end_at)
@@ -50,6 +98,10 @@ class Admin::Metrics::Measure::BaseMeasure
   end
 
   def params
-    raise NotImplementedError
+    {}
+  end
+
+  def canonicalized_params
+    params.to_h.to_a.sort_by { |k, _v| k.to_s }.map { |k, v| "#{k}=#{v}" }.join(';')
   end
 end

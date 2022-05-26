@@ -2,16 +2,31 @@
 eo:
   simple_form:
     hints:
+      account_alias:
+        acct: Specifu la uzantnomon@domajnon de la konto el kiu vi volas translokiĝi
+      account_migration:
+        acct: Specifu la uzantnomon@domajnon de la konto al kiu vi volas translokiĝi
       account_warning_preset:
         text: Vi povas uzi skribmanierojn de mesaĝoj, kiel URL-ojn, kradvortojn kaj menciojn
+        title: Laŭvola. Ne videbla por la ricevanto
       admin_account_action:
+        include_statuses: La uzanto vidos, kiujn afiŝojn estas kaŭzintaj la moderigan agon aŭ averton
         send_email_notification: La uzanto ricevos klarigon pri tio, kio okazis al ties konto
         text_html: Malnepra. Vi povas uzi skribmanierojn de mesaĝoj. Vi povas <a href="%{path}">aldoni avertajn antaŭagordojn</a> por ŝpari tempon
         type_html: Elektu kion fari kun <strong>%{acct}</strong>
         types:
+          disable: Malhelpi la uzanton uzi sian konton, sed ne forigi aŭ kaŝi ties enhavojn.
           none: Uzu ĉi tion por sendi averton al la uzanto, sen ekigi alian agon.
+          sensitive: Devigi ĉiujn da plurmediaj aldonaĵoj esti markitaj kiel sentemaj.
+          silence: Malhelpi la uzanton povu afiŝi per publika videbleco, kaŝi ties afiŝojn kaj sciigojn de homoj kiuj ne sekvas rin.
           suspend: Malhelpu ajnan interagon de aŭ al ĉi tiu konto kaj forigu ĝian enhavon. Returnebla ene de 30 tagoj.
         warning_preset_id: Malnepra. Vi povas ankoraŭ aldoni propran tekston al la fino de la antaŭagordo
+      announcement:
+        all_day: Kiam markita, nur la datoj de la tempointervalo estos montrataj
+        ends_at: Laŭvola. La anonco estos aŭtomate maleldonita ĉi tiam
+        scheduled_at: Lasi malplena por eldoni la anoncon tuj
+        starts_at: Laŭvola. Se via anonco estas ligita al specifa tempo
+        text: Vi povas uzi afiŝo-sintakson. Bonvolu mensemi pri la spaco, kiun la anonco okupos sur la ekrano de la uzanto
       defaults:
         autofollow: Homoj, kiuj registriĝos per la invito aŭtomate sekvos vin
         avatar: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
@@ -20,7 +35,6 @@ eo:
         current_password: Pro sekuraj kialoj, bonvolu enigi la pasvorton de la nuna konto
         current_username: Por konfirmi, bonvolu enigi la uzantnomon de la nuna konto
         digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
-        discoverable: Montru ĉi tiun profilon en la profilujon por ke la konto estos pli-vaste vidata
         email: Vi ricevos konfirman retmesaĝon
         fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
@@ -40,8 +54,11 @@ eo:
         setting_noindex: Influas vian publikan profilon kaj mesaĝajn paĝojn
         setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj mesaĝoj
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
+        setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
         username: Via uzantnomo estos unika ĉe %{domain}
         whole_word: Kiam la vorto aŭ frazo estas nur litera aŭ cifera, ĝi estos uzata nur se ĝi kongruas kun la tuta vorto
+      domain_allow:
+        domain: Ĉi tiu domajno povos akiri datumon de ĉi tiu servilo kaj envenanta datumo estos prilaborita kaj konservita
       featured_tag:
         name: 'Vi povus uzi iun el la jenaj:'
       form_challenge:
@@ -51,10 +68,18 @@ eo:
       invite_request:
         text: Ĉi tio helpos nin revizii vian kandidatiĝon
       ip_block:
+        comment: Laŭvola. Memoru, kial vi aldonis ĉi tiun regulon.
         severities:
+          no_access: Bloki aliron al ĉiuj rimedoj
           sign_up_requires_approval: Novaj registriĝoj devigos vian aprobon
+        severity: Elektu, kio okazos pri petoj de ĉi tiu IP
+      rule:
+        text: Priskribu regulon aŭ neceson por uzantoj en ĉi tiu servilo. Provu fari ĝin mallonga kaj simpla
       sessions:
         otp: 'Enmetu la kodon de dufaktora aŭtentigo el via telefono aŭ uzu unu el viaj realiraj kodoj:'
+        webauthn: Se ĝi estas USB-ŝlosilo, certu enmeti ĝin kaj, se necese, frapi ĝin.
+      tag:
+        name: Vi povas ŝanĝi nur la majuskladon de la literoj, ekzemple, por igi ĝin pli legebla
       user:
         chosen_languages: Kiam estas elekto, nur mesaĝoj en elektitaj lingvoj aperos en publikaj templinioj
     labels:
@@ -70,6 +95,7 @@ eo:
         text: Antaŭagordita teksto
         title: Titolo
       admin_account_action:
+        include_statuses: Inkluzivi raportitajn afiŝojn en la retpoŝtmesaĝo
         send_email_notification: Sciigi la uzanton retpoŝte
         text: Propra averto
         type: Ago
@@ -105,7 +131,7 @@ eo:
         honeypot: "%{label} (ne plenigi)"
         inbox_url: URL de la ripetila enirkesto
         irreversible: Forĵeti anstataŭ kaŝi
-        locale: Interfaca lingvo
+        locale: Lingvo de la fasado
         locked: Ŝlosi konton
         max_uses: Maksimuma nombro de uzoj
         new_password: Nova pasvorto
@@ -122,6 +148,7 @@ eo:
         setting_default_privacy: Mesaĝa videbleco
         setting_default_sensitive: Ĉiam marki aŭdovidaĵojn tiklaj
         setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
+        setting_disable_swiping: Malebligi svingajn movojn
         setting_display_media: Aŭdovidaĵa montrado
         setting_display_media_default: Dekomenca
         setting_display_media_hide_all: Kaŝi ĉiujn
@@ -129,7 +156,7 @@ eo:
         setting_expand_spoilers: Ĉiam malfoldas mesaĝojn markitajn per averto pri enhavo
         setting_hide_network: Kaŝi viajn sekvantojn kaj sekvatojn
         setting_noindex: Ellistiĝi de retserĉila indeksado
-        setting_reduce_motion: Malrapidigi animaciojn
+        setting_reduce_motion: Redukti movecon en la animacioj
         setting_show_application: Publikigi la aplikaĵon uzatan por sendi mesaĝojn
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
         setting_theme: Reteja etoso
@@ -168,8 +195,6 @@ eo:
         mention: Sendi retmesaĝon kiam iu mencias vin
         pending_account: Sendi retmesaĝon kiam nova konto bezonas kontrolon
         reblog: Sendi retmesaĝon kiam iu diskonigas vian mesaĝon
-        report: Nova signalo estas sendita
-        trending_tag: Nekontrolita kradvorto furoras
       rule:
         text: Regulo
       tag:

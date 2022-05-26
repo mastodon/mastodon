@@ -2,7 +2,7 @@
 
 class FetchLinkCardService < BaseService
   URL_PATTERN = %r{
-    (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceeding chars
+    (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
     (                                                                                                                           #   $2 URL
       (https?:\/\/)                                                                                                             #   $3 Protocol (required)
       (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $4 Domain(s)
@@ -134,7 +134,7 @@ class FetchLinkCardService < BaseService
     when 'video'
       @card.width            = embed[:width].presence  || 0
       @card.height           = embed[:height].presence || 0
-      @card.html             = Formatter.instance.sanitize(embed[:html], Sanitize::Config::MASTODON_OEMBED)
+      @card.html             = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
       @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no

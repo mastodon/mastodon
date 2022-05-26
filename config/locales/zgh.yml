@@ -16,14 +16,11 @@ zgh:
       one: ⴰⵎⴹⴼⴰⵕ
       other: ⵉⵎⴹⴼⴰⵕⵏ
     media: ⵉⵙⵏⵖⵎⵉⵙⵏ
-    never_active: ⵓⵙⴰⵔ
     roles:
       bot: ⴰⴱⵓⵜ
       group: ⵜⴰⵔⴰⴱⴱⵓⵜ
     unfollow: ⴽⴽⵙ ⴰⴹⴼⴼⵓⵕ
   admin:
-    account_moderation_notes:
-      delete: ⴽⴽⵙ
     accounts:
       change_email:
         label: ⵙⵏⴼⵍ ⵉⵎⴰⵢⵍ
@@ -85,14 +82,9 @@ zgh:
       site_title: ⵉⵙⵎ ⵏ ⵓⵎⴰⴽⴽⴰⵢ
       title: ⵜⵉⵙⵖⴰⵍ ⵏ ⵡⴰⵙⵉⵜ
     statuses:
-      batch:
-        delete: ⴽⴽⵙ
       media:
         title: ⵉⵙⵏⵖⵎⵉⵙⵏ
       with_media: ⵙ ⵉⵙⵏⵖⵎⵉⵙⵏ
-    tags:
-      name: ⵀⴰⵛⵟⴰⴳ
-      title: ⵉⵀⴰⵛⵟⴰⴳⵏ
     warning_presets:
       delete: ⴽⴽⵙ
   application_mailer:
@@ -143,6 +135,9 @@ zgh:
       '86400': ⴰⵙⵙ
     expires_in_prompt: ⵓⵙⴰⵔ
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} ⴼⴼⵖⵏ"
     mention:
       action: ⵔⴰⵔ
   relationships:

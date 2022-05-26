@@ -6,7 +6,7 @@ RSpec.describe FavouriteService, type: :service do
   subject { FavouriteService.new }
 
   describe 'local' do
-    let(:bob)    { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:bob)    { Fabricate(:account) }
     let(:status) { Fabricate(:status, account: bob) }
 
     before do
@@ -19,7 +19,7 @@ RSpec.describe FavouriteService, type: :service do
   end
 
   describe 'remote ActivityPub' do
-    let(:bob)    { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, protocol: :activitypub, username: 'bob', domain: 'example.com', inbox_url: 'http://example.com/inbox')).account }
+    let(:bob)    { Fabricate(:account, protocol: :activitypub, username: 'bob', domain: 'example.com', inbox_url: 'http://example.com/inbox') }
     let(:status) { Fabricate(:status, account: bob) }
 
     before do

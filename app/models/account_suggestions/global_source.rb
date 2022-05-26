@@ -6,7 +6,7 @@ class AccountSuggestions::GlobalSource < AccountSuggestions::Source
   end
 
   def get(account, skip_account_ids: [], limit: 40)
-    account_ids = account_ids_for_locale(account.user_locale) - [account.id] - skip_account_ids
+    account_ids = account_ids_for_locale(I18n.locale.to_s.split(/[_-]/).first) - [account.id] - skip_account_ids
 
     as_ordered_suggestions(
       scope(account).where(id: account_ids),

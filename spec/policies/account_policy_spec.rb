@@ -6,8 +6,8 @@ require 'pundit/rspec'
 RSpec.describe AccountPolicy do
   let(:subject) { described_class }
   let(:admin)   { Fabricate(:user, admin: true).account }
-  let(:john)    { Fabricate(:user).account }
-  let(:alice)   { Fabricate(:user).account }
+  let(:john)    { Fabricate(:account) }
+  let(:alice)   { Fabricate(:account) }
 
   permissions :index? do
     context 'staff' do

@@ -5,14 +5,16 @@ module Admin::FilterHelper
     AccountFilter::KEYS,
     CustomEmojiFilter::KEYS,
     ReportFilter::KEYS,
-    TagFilter::KEYS,
-    PreviewCardProviderFilter::KEYS,
-    PreviewCardFilter::KEYS,
+    Trends::TagFilter::KEYS,
+    Trends::PreviewCardProviderFilter::KEYS,
+    Trends::PreviewCardFilter::KEYS,
+    Trends::StatusFilter::KEYS,
     InstanceFilter::KEYS,
     InviteFilter::KEYS,
     RelationshipFilter::KEYS,
     AnnouncementFilter::KEYS,
     Admin::ActionLogFilter::KEYS,
+    Admin::StatusFilter::KEYS,
   ].flatten.freeze
 
   def filter_link_to(text, link_to_params, link_class_params = link_to_params)

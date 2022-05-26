@@ -27,6 +27,8 @@ tr:
         scheduled_at: Duyuruyu hemen yayınlamak için boş bırakın
         starts_at: İsteğe bağlı. Duyurunuzun belirli bir zaman aralığına bağlı olması durumunda
         text: Toot söz dizimini kullanabilirsiniz. Lütfen duyurunun kullanıcının ekranında yer alacağı alanı göz önünde bulundurun
+      appeal:
+        text: Bir eyleme yalnızca bir kere itiraz edebilirsiniz
       defaults:
         autofollow: Davetiyeyle kaydolan kişiler sizi otomatik olarak takip eder
         avatar: En fazla %{size} olacak şekilde PNG, GIF veya JPG formatında yükleyiniz. %{dimensions}px büyüklüğüne indirgenecektir
@@ -35,8 +37,7 @@ tr:
         current_password: Güvenlik nedeniyle lütfen şu anki hesabın parolasını girin
         current_username: Onaylamak için lütfen şu anki hesabın kullanıcı adını girin
         digest: Sadece uzun bir süre hareketsiz kaldıktan sonra ve yalnızca yokluğunuzda herhangi bir kişisel mesaj aldıysanız gönderilir
-        discoverable: Profil dizini, hesabınızın daha geniş bir kitleye ulaşmasının başka bir yoludur
-        discoverable_no_directory: Hesabınızın, öneriler ve diğer özellikler aracılığıyla yabancılar tarafından keşfedilmesine izin verin
+        discoverable: Hesabınızın öneriler, trendler ve diğer özellikler aracılığıyla yabancılar tarafından keşfedilmesine izin verin
         email: Onay e-postası gönderilir
         fields: Profilinizde tablo olarak görüntülenen en fazla 4 ögeye sahip olabilirsiniz
         header: PNG, GIF ya da JPG. En fazla %{size}. %{dimensions}px boyutuna küçültülecek
@@ -62,7 +63,7 @@ tr:
       domain_allow:
         domain: Bu alan adı, bu sunucudan veri alabilecek ve ondan gelen veri işlenecek ve saklanacaktır
       email_domain_block:
-        domain: Bu, e-posta adresinde görünen etki alanı adı, etki alanının çözümlediği MX kaydı veya MX kaydının çözümlediği sunucunun IP'si olabilir. Bunlar kullanıcı kaydı ile kontrol edilecek ve kayıt reddedilecektir.
+        domain: Bu e-posta adresinde görünen veya kullanılan MX kaydındaki alan adı olabilir. Kayıt sırasında denetleneceklerdir.
         with_dns_records: Belirli bir alanın DNS kayıtlarını çözmeyi deneyecek ve sonuçlar kara listeye eklenecek
       featured_tag:
         name: 'Bunlardan birini kullanmak isteyebilirsiniz:'
@@ -119,6 +120,8 @@ tr:
         scheduled_at: Yayınlamayı zamanla
         starts_at: Etkinliğin başlangıcı
         text: Duyuru
+      appeal:
+        text: Bu kararın neden geri alınması gerektiğini açıklayın
       defaults:
         autofollow: Hesabınızı takip etmeye davet edin
         avatar: Profil resmi
@@ -197,6 +200,7 @@ tr:
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
+        appeal: Birisi, bir yönetim kararına itiraz ediyor
         digest: Özet e-postaları gönder
         favourite: Birisi gönderinizi beğendi
         follow: Biri seni takip etti
@@ -205,7 +209,7 @@ tr:
         pending_account: Yeni hesabın incelenmesi gerekiyor
         reblog: Birisi gönderini boostladı
         report: Yeni rapor gönderildi
-        trending_tag: İncelenmemiş bir etiket gündem oluyor
+        trending_tag: Yeni eğilimin gözden geçmesi gerekiyor
       rule:
         text: Kural
       tag:
