@@ -1,7 +1,6 @@
----
 pt-BR:
   about:
-    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
+    about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     about_this: Sobre
     active_count_after: ativo
@@ -57,7 +56,7 @@ pt-BR:
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: 'Sugestões de %{name}:'
+    choices_html: "Sugestões de %{name}:"
     endorsements_hint: Você pode sugerir pessoas que você segue, elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas, elas aparecerão aqui.
     follow: Seguir
@@ -118,7 +117,7 @@ pt-BR:
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
-      destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
+      destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
       disable: Congelar
       disable_sign_in_token_auth: Desativar autenticação via token por email
       disable_two_factor_authentication: Desativar autenticação de dois fatores
@@ -568,7 +567,7 @@ pt-BR:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -813,7 +812,7 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trends:
       new_trending_statuses:
         title: Publicações em alta
@@ -1179,7 +1178,7 @@ pt-BR:
         other: "%{count} novas notificações desde o seu último acesso 🐘"
       title: Enquanto você estava ausente...
     favourite:
-      body: "%{name} favoritou seu toot:"
+      body: '%{name} favoritou seu toot:'
       subject: "%{name} favoritou seu toot"
       title: Novo favorito
     follow:
@@ -1193,13 +1192,13 @@ pt-BR:
       title: Novo seguidor pendente
     mention:
       action: Responder
-      body: "%{name} te mencionou em:"
-      subject: "%{name} te mencionou"
+      body: '%{name} te mencionou em:'
+      subject: '%{name} te mencionou'
       title: Nova menção
     poll:
       subject: Uma enquete por %{name} terminou
     reblog:
-      body: "%{name} deu boost no seu toot:"
+      body: '%{name} deu boost no seu toot:'
       subject: "%{name} deu boost no seu toot"
       title: Novo boost
     status:
@@ -1451,88 +1450,7 @@ pt-BR:
   tags:
     does_not_match_previous_name: não corresponde ao nome anterior
   terms:
-    body_html: |
-      <h2>Política de Privacidade</h2>
-      <h3 id="collect">Quais dados nós coletamos?</h3>
-
-      <ul>
-      <li><em>Dados básicos de conta</em>: Se você criar conta nesta instância, um nome de usuário, um e-mail e uma senha serão exigidos. Você também pode adicionar dados extras como nome de exibição, biografia, imagem de perfil e capa. Com exceção do e-mail e da senha, os dados citados sempre são públicos.</li>
-      <li><em>Toots, seguindo e outros dados públicos</em>: A lista de pessoas que você segue e a sua lista de seguidores são públicas. Ao enviar um toot, a data, a hora e o aplicativo usado são armazenados. Toots podem conter mídias anexadas, como áudios, imagens e vídeos. Toots públicos e não-listados são visíveis publicamente. Os toots fixados no seu perfil são públicos. Seus toots são enviados aos seus seguidores, em alguns casos isso significa que os toots são enviados para instâncias diferentes e cópias são armazenadas lá. Quando você exclui toots, essa informação também é enviada aos seus seguidores. O ato de dar boost ou favoritar outro toot é sempre público.</li></li>
-      <li><em>Mensagens Diretas e toots privados</em>: Todos os toots são armazenados e processados na instância. Toots privados são enviados aos seus seguidores e aos usuários mencionados neles; Mensagens Diretas (ou toots diretos) são enviadas somente aos usuários mencionados nelas. Em alguns casos isso significa que os toots são enviados para instâncias diferentes e cópias são armazenadas lá. Nós trabalhamos constantemente para limitar o acesso a estes toots somente às pessoas autorizadas, porém outras instâncias podem não fazer o mesmo. Portanto, é importante analisar as instâncias dos seus seguidores. Você pode trancar a conta para aprovar ou vetar novos seguidores manualmente nas configurações. <em>Por favor, tenha em mente que os operadores da instância em que se está e das instâncias receptoras podem ver tais toots</em>, e que os destinatários podem fazer capturas de tela, copiar ou usar outra maneira para compartilhar os toots. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
-      <li><em>IPs e outros metadados</em>: Ao entrar na sua conta, nós armazenamos o seu endereço de IP e o nome do navegador usado. Todas as sessões abertas estão disponíveis para serem analisadas e revogadas nas configurações. O último endereço de IP usado é armazenado por até 12 meses. Nós também podemos reter históricos da instância que incluem o endereço de IP de todas as conexões à nossa instância.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Como usamos os seus dados?</h3>
-
-      <p>Todo dado que coletamos pode ser usado das seguintes maneiras:</p>
-
-      <ul>
-      <li>Para prover a funcionalidade básica do Mastodon. Você só pode interagir com o conteúdo de outras pessoas e postar seu próprio conteúdo usando uma conta. Por exemplo, você pode seguir outras pessoas para ver seus toots na sua própria linha do tempo personalizada.</li>
-      <li>Para auxiliar na moderação da comunidade, por exemplo ao comparar o seu endereço de IP com outros endereços de IP conhecidos para determinar evasão de banimento e outras violações.</li>
-      <li>O endereço de e-mail que você fornecer pode ser usado para te enviar informações, notificações sobre outras pessoas interagindo com o seu conteúdo ou contigo e para responder a questões ou outras solicitações.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Como protegemos seus dados?</h3>
-
-      <p>Nós implementamos diversas medidas de segurança para manter suas informações pessoais seguras quando você as acessa ou as envia. Entre outras coisas, sua sessão do navegador, bem como o tráfego entre os aplicativos e a API são asseguradas usando SSL e a sua senha é guardada usando um algoritmo forte de criptografia de mão única. Você pode ativar autenticação em dois fatores como forma de aumentar a segurança no acesso à sua conta.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Qual é a nossa política de retenção de dados?</h3>
-
-      <p>Nós trabalhamos constantemente para:</p>
-
-      <ul>
-      <li>Reter o histórico da instância contendo os endereços de IP de todas as conexões a essa instância. O histórico é mantido por não mais que 90 dias.</li>
-      <li>Reter os endereços de IP associados à usuários da instância por não mais que 12 meses.</li>
-      </ul>
-
-      <p>Você pode solicitar e baixar um arquivo de todo o conteúdo da sua conta, incluindo seus toots, suas mídias, imagem de perfil e capa.</p>
-
-      <p>YVocê pode excluir a sua conta irreversivelmente a qualquer momento.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Nós usamos cookies?</h3>
-
-      <p>Sim. Cookies são pequenos arquivos que um site ou serviço baixa através do seu navegador (se você permitir). Esses cookies permitem ao site conhecer seu navegador e, se você tiver uma conta, associá-lo a ela.</p>
-
-      <p>Nós usamos cookies para salvar suas preferências para futuras visitas.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Nós compartilhamos algum dado para terceiros?</h3>
-
-      <p>Nós não vendemos, trocamos ou compartilhamos de qualquer maneira dados que possam te identificar à terceiros. Isso não inclui terceiros confiáveis que nos auxiliam a operar o nosso site, realizar nosso serviço ou prestar assistência, contanto que esses terceiros se comprometam a manter essa informação confidencial. Nós podemos também divulgar informação quando acreditamos que é apropriado para obedecer a lei, para fazer cumprir nossas políticas ou proteger os nossos direitos, propriedade ou segurança, ou de outrém.</p>
-
-      <p>Seu conteúdo público pode ser acessado por outras instâncias na rede. Seus toots públicos e privados são enviados às instâncias dos seus seguidores e seus toots diretos são enviados às instâncias dos usuários mencionados neles, contanto que esses seguidores ou usuários estejam em uma instância diferente desta.</p>
-
-      <p>Quando você autoriza um aplicativo a usar sua conta, dependendo do nível de autorização das permissões que você aprovar, o aplicativo pode acessar seus dados públicos, a lista de usuários que você segue, seus seguidores, suas listas, suas Mensagens Diretas e seus toots favoritos. Aplicativos nunca podem acessar o seu endereço de e-mail ou senha.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Uso desse site por crianças</h3>
-
-      <p>Se a instância está na UE ou no EEE: Nosso site, produto e serviço são direcionados às pessoas que tem ao menos 16 anos de idade. Se você tem menos de 16 anos, de acordo com os requisitos da RGPD (<a href="https://pt.wikipedia.org/wiki/Regulamento_Geral_sobre_a_Prote%C3%A7%C3%A3o_de_Dados">Regulamento Geral sobre Proteção de Dados</a>) não use este site.</p>
-
-      <p>Se esta instância está nos EUA: Nosso site, produto e serviço são direcionados às pessoas que tem ao menos 13 anos de idade. Se você tem menos de 13 anos, de acordo com os requerimentos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não use este site</p>
-
-      <p>Os requisitos da lei podem ser diferentes em outra jurisdição.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Alterações na nossa Política de Privacidade</h3>
-
-      <p>Se decidirmos mudar nossa Política de Privacidade, iremos disponibilizar as alterações nesta página.</p>
-
-      <p>CC-BY-SA. Atualizado pela última vez em 7 de março de 2018.</p>
-
-      <p>Adaptado originalmente de <a href="https://github.com/discourse/discourse">Política de Privacidade Discourse</a>.</p>
-    title: Termos de Serviço e Política de Privacidade de %{instance}
+    title: "Termos de Serviço e Política de Privacidade de %{instance}"
   themes:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)
