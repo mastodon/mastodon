@@ -1,8 +1,7 @@
----
 pl:
   about:
-    about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
-    about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
+    about_hashtag_html: 'Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.'
+    about_mastodon_html: 'Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.'
     about_this: O tej instancji
     active_count_after: aktywni
     active_footnote: Aktywni użytkownicy miesięcznie (MAU)
@@ -35,9 +34,9 @@ pl:
     server_stats: 'Statystyki serwera:'
     source_code: Kod źródłowy
     status_count_after:
+      one: wpisu
       few: wpisów
       many: wpisów
-      one: wpisu
       other: wpisów
     status_count_before: Są autorami
     tagline: Śledź znajomych i poznawaj nowych
@@ -54,21 +53,21 @@ pl:
       suspended_title: Zawieszone serwery
     unavailable_content_html: Normalnie Mastodon pozwala ci przeglądać treści od innych użytkowników z jakiegokolwiek serwera w fediwersum. To są wyjątki, które zostały stworzone na tym konkretnym serwerze.
     user_count_after:
+      one: użytkownik
       few: użytkowników
       many: użytkowników
-      one: użytkownik
       other: użytkowników
     user_count_before: Z serwera korzysta
     what_is_mastodon: Czym jest Mastodon?
   accounts:
-    choices_html: 'Polecani przez %{name}:'
+    choices_html: "Polecani przez %{name}:"
     endorsements_hint: Możesz promować ludzi, których obserwujesz, z poziomu interfejsu webowego - wtedy oni pojawią się w tym miejscu.
     featured_tags_hint: Możesz przedstawić w tym miejscu kilka wybranych hasztagów.
     follow: Śledź
     followers:
+      one: śledzący
       few: śledzących
       many: śledzących
-      one: śledzący
       other: Śledzących
     following: śledzonych
     instance_actor_flash: To konto jest wirtualnym profilem używanym do reprezentowania samego serwera, a nie żadnego indywidualnego użytkownika. Jest ono stosowane do celów federacji i nie powinien być zawieszany.
@@ -84,9 +83,9 @@ pl:
     pin_errors:
       following: Musisz śledzić osobę, którą chcesz polecać
     posts:
+      one: wpis
       few: wpisy
       many: wpisów
-      one: wpis
       other: Wpisów
     posts_tab_heading: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
@@ -126,7 +125,7 @@ pl:
       delete: Usuń dane
       deleted: Usunięto
       demote: Degraduj
-      destroyed_msg: Dane %{username} są teraz w kolejce do natychmiastowego usunięcia
+      destroyed_msg: "Dane %{username} są teraz w kolejce do natychmiastowego usunięcia"
       disable: Dezaktywuj
       disable_sign_in_token_auth: Wyłącz uwierzytelnianie tokenu e-mail
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
@@ -174,9 +173,9 @@ pl:
       perform_full_suspension: Zawieś
       previous_strikes: Poprzednie ostrzeżenia
       previous_strikes_description_html:
+        one: To konto ma <strong>jedno</strong> ostrzeżenie.
         few: To konto ma <strong>%{count}</strong> ostrzeżenia.
         many: To konto ma <strong>%{count}</strong> ostrzeżeń.
-        one: To konto ma <strong>jedno</strong> ostrzeżenie.
         other: To konto ma <strong>%{count}</strong> ostrzeżeń.
       promote: Podnieś uprawnienia
       protocol: Protokół
@@ -404,24 +403,24 @@ pl:
       new_users: nowi użytkownicy
       opened_reports: otwarte zgłoszenia
       pending_appeals_html:
+        one: "<strong>%{count}</strong> oczekujących odwołań"
         few: "<strong>%{count}</strong> oczekujące odwołania"
         many: "<strong>%{count}</strong> oczekujących odwołań"
-        one: "<strong>%{count}</strong> oczekujących odwołań"
         other: "<strong>%{count}</strong> oczekujących odwołań"
       pending_reports_html:
+        one: "<strong>%{count}</strong> oczekujący raport"
         few: "<strong>%{count}</strong> oczekujące raporty"
         many: "<strong>%{count}</strong> oczekujących raportów"
-        one: "<strong>%{count}</strong> oczekujący raport"
         other: "<strong>%{count}</strong> oczekujących raportów"
       pending_tags_html:
+        one: "<strong>%{count}</strong> oczekujący hashtag"
         few: "<strong>%{count}</strong> oczekujące hashtagi"
         many: "<strong>%{count}</strong> oczekujących hashtagów"
-        one: "<strong>%{count}</strong> oczekujący hashtag"
         other: "<strong>%{count}</strong> oczekujących hashtagów"
       pending_users_html:
+        one: "<strong>%{count}</strong> oczekujący użytkownik"
         few: "<strong>%{count}</strong> oczekujących użytkowników"
         many: "<strong>%{count}</strong> oczekujących użytkowników"
-        one: "<strong>%{count}</strong> oczekujący użytkownik"
         other: "<strong>%{count}</strong> oczekujących użytkowników"
       resolved_reports: zamkniętych zgłoszeń
       software: Oprogramowanie
@@ -471,9 +470,9 @@ pl:
     email_domain_blocks:
       add_new: Dodaj nową
       attempts_over_week:
+        one: "%{count} próba w ciągu ostatniego tygodnia"
         few: "%{count} próby w ciągu ostatniego tygodnia"
         many: "%{count} prób w ciągu ostatniego tygodnia"
-        one: "%{count} próba w ciągu ostatniego tygodnia"
         other: "%{count} prób w ciągu ostatniego tygodnia"
       created_msg: Pomyślnie utworzono blokadę domeny e-mail
       delete: Usuń
@@ -501,9 +500,9 @@ pl:
       availability:
         failure_threshold_reached: Próg niepowodzenia osiągnięty dnia %{date}.
         failures_recorded:
+          one: Nieudane próby %{count} dnia.
           few: Nieudane próby w %{count} różnych dniach.
           many: Nieudane próby w %{count} różnych dniach.
-          one: Nieudane próby %{count} dnia.
           other: Nieudane próby w %{count} różnych dniach.
         no_failures_recorded: Brak błędów w rejestrze.
         title: Dostępność
@@ -546,9 +545,9 @@ pl:
       destroyed_msg: Dane z %{domain} są teraz w kolejce do bezpośredniego usunięcia.
       empty: Nie znaleziono domen.
       known_accounts:
+        one: "%{count} znane konto"
         few: "%{count} znane konta"
         many: "%{count} znanych kont"
-        one: "%{count} znane konto"
         other: "%{count} znane konta"
       moderation:
         all: Wszystkie
@@ -589,11 +588,11 @@ pl:
       no_ip_block_selected: Żadna reguła nie została zmieniona, ponieważ żadna nie została wybrana
       title: Reguły adresów IP
     relationships:
-      title: Relacje %{acct}
+      title: "Relacje %{acct}"
     relays:
       add_new: Dodaj nowy
       delete: Usuń
-      description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów."
+      description_html: <strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów.
       disable: Wyłącz
       disabled: Wyłączony
       enable: Włącz
@@ -613,9 +612,9 @@ pl:
     reports:
       account:
         notes:
+          one: "%{count} notatka"
           few: "%{count} notatki"
           many: "%{count} notatek"
-          one: "%{count} notatka"
           other: "%{count} notatki"
       action_log: Dziennik audytu
       action_taken_by: Działanie podjęte przez
@@ -858,9 +857,9 @@ pl:
         usable: Może być użyty
         usage_comparison: Używane %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
         used_by_over_week:
+          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
           few: Użyte przez %{count} osoby w ciągu ostatniego tygodnia
           many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
-          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
           other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
       title: Na czasie
       trending: Popularne
@@ -887,9 +886,9 @@ pl:
       body: Poniżej znajdują się szczegóły dotycząće nowego konta. Możesz przyjąć lub odrzucić to podanie.
       subject: Nowe konto czeka na przegląd na %{instance} (%{username})
     new_report:
-      body: Użytkownik %{reporter} zgłosił(a) %{target}
+      body: "Użytkownik %{reporter} zgłosił(a) %{target}"
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
-      subject: Nowe zgłoszenie na %{instance} (#%{id})
+      subject: 'Nowe zgłoszenie na %{instance} (#%{id})'
     new_trends:
       body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
       new_trending_links:
@@ -914,7 +913,7 @@ pl:
     remove: Odłącz alias
   appearance:
     advanced_web_interface: Zaawansowany interfejs użytkownika
-    advanced_web_interface_hint: Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.
+    advanced_web_interface_hint: 'Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.'
     animations_and_accessibility: Animacje i dostępność
     confirmation_dialogs: Dialogi potwierdzenia
     discovery: Odkrywanie
@@ -1148,9 +1147,9 @@ pl:
     save_changes: Zapisz zmiany
     today: dzisiaj
     validation_errors:
+      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
       many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
-      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
   html_validator:
     invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
@@ -1186,9 +1185,9 @@ pl:
     generate: Wygeneruj
     invited_by: 'Zostałeś(-aś) zaproszony(-a) przez:'
     max_uses:
+      one: jedno użycie
       few: "%{count} użycia"
       many: "%{count} użyć"
-      one: jedno użycie
       other: "%{count} użyć"
     max_uses_prompt: Bez ograniczenia
     prompt: Wygeneruj odnośniki i udostępnij je innym, aby pozwolić na rejestrację na tym serwerze
@@ -1261,14 +1260,14 @@ pl:
       body: Oto krótkie podsumowanie wiadomości, które ominęły Cię od Twojej ostatniej wizyty (%{since})
       mention: "%{name} wspomniał o Tobie w:"
       new_followers_summary:
-        few: "(%{count}) nowe osoby śledzą Cię!"
-        many: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
         one: Dodatkowo, w czasie nieobecności zaczęła śledzić Cię jedna osoba Gratulacje!
+        few: (%{count}) nowe osoby śledzą Cię!
+        many: (%{count}) nowych osób Cię śledzi! Wspaniale!
         other: Dodatkowo, zaczęło Cię śledzić %{count} nowych osób! Wspaniale!
       subject:
+        one: "1 nowe powiadomienie od Twojej ostatniej wizyty 🐘"
         few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty 🐘"
         many: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
-        one: "1 nowe powiadomienie od Twojej ostatniej wizyty 🐘"
         other: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
       title: W trakcie Twojej nieobecności…
     favourite:
@@ -1286,14 +1285,14 @@ pl:
       title: Nowa prośba o możliwość śledzenia
     mention:
       action: Odpowiedz
-      body: "%{name} wspomniał(a) o Tobie w:"
-      subject: "%{name} wspomniał(a) o Tobie"
+      body: '%{name} wspomniał(a) o Tobie w:'
+      subject: '%{name} wspomniał(a) o Tobie'
       title: Nowe wspomnienie o Tobie
     poll:
       subject: Ankieta %{name} zakończyła się
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
-      subject: Twój wpis został podbity przez %{name}
+      subject: "Twój wpis został podbity przez %{name}"
       title: Nowe podbicie
     status:
       subject: "%{name} właśnie opublikował(a) wpis"
@@ -1460,28 +1459,28 @@ pl:
   statuses:
     attached:
       audio:
+        one: "%{count} plik dźwiękowy"
         few: "%{count} pliki dźwiękowe"
         many: "%{count} plików dźwiękowych"
-        one: "%{count} plik dźwiękowy"
-        other: pliki dźwiękowe (%{count})
+        other: "pliki dźwiękowe (%{count})"
       description: 'Załączono: %{attached}'
       image:
+        one: "%{count} obraz"
         few: "%{count} obrazy"
         many: "%{count} obrazów"
-        one: "%{count} obraz"
         other: "%{count} obrazów"
       video:
+        one: "%{count} film"
         few: "%{count} filmy"
         many: "%{count} filmów"
-        one: "%{count} film"
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
     default_language: Taki sam jak język interfejsu użytkownika
     disallowed_hashtags:
+      one: 'zawiera niedozwolony hashtag: %{tags}'
       few: 'zawiera niedozwolone hashtagi: %{tags}'
       many: 'zawiera niedozwolone hashtagi: %{tags}'
-      one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
     edited_at_html: Edytowane %{date}
     errors:
@@ -1495,14 +1494,14 @@ pl:
       reblog: Nie możesz przypiąć podbicia wpisu
     poll:
       total_people:
+        one: "%{count} osoba"
         few: "%{count} osoby"
         many: "%{count} osób"
-        one: "%{count} osoba"
         other: "%{count} osoby"
       total_votes:
+        one: "%{count} głos"
         few: "%{count} głosy"
         many: "%{count} głosy"
-        one: "%{count} głos"
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
@@ -1564,88 +1563,7 @@ pl:
   tags:
     does_not_match_previous_name: nie pasuje do poprzedniej nazwy
   terms:
-    body_html: |
-      <h2>Polityka prywatności</h2>
-      <h3 id="collect">Jakie informacje zbieramy?</h3>
-
-      <ul>
-      <li><em>Podstawowe informacje o koncie</em>: Podczas rejestracji na tym serwerze, możesz zostać poproszony(-a) o wprowadzenie nazwy użytkownika, adresu e-mail i hasła. Możesz także wprowadzić dodatkowe informacje o profilu, takie jak nazwa wyświetlana i biografia oraz wysłać awatar i obraz nagłówka. Nazwa użytkownika, nazwa wyświetlana, biografia, awatar i obraz nagłówka są zawsze widoczne dla wszystkich.</li>
-      <li><em>Wpisy, śledzenie i inne publiczne informacje</em>: Lista osób które śledzisz jest widoczna publicznie, tak jak lista osób, które Cię śledzą. Jeżeli dodasz wpis, data i czas jego utworzenia i aplikacja, z której go wysłano są przechowywane. Wiadomości mogą zawierać załączniki multimedialne, takie jak zdjęcia i filmy. Publiczne i niewidoczne wpisy są dostępne publicznie. Udostępniony wpis również jest widoczny publicznie. Twoje wpisy są dostarczane obserwującym, co oznacza że jego kopie mogą zostać dostarczone i być przechowywane na innych serwerach. Kiedy usuniesz wpis, przestaje być widoczny również dla osób śledzących Cię. „Podbijanie” i dodanie do ulubionych jest zawsze publiczne.</li>
-      <li><em>Wpisy bezpośrednie i tylko dla śledzących</em>: Wszystkie wpisy są przechowywane i przetwarzane na serwerze. Wpisy przeznaczone tylko dla śledzących są widoczne tylko dla nich i osób wspomnianych we wpisie, a wpisy bezpośrednie tylko dla wspomnianych. W wielu przypadkach oznacza to, że ich kopie są dostarczane i przechowywane na innych serwerach. Staramy się ograniczać zasięg tych wpisów wyłącznie do właściwych odbiorców, ale inne serwery mogą tego nie robić. Ważne jest, aby sprawdzać jakich serwerów używają osoby, które Cię śledzą. Możesz aktywować opcję pozwalającą na ręczne akceptowanie i odrzucanie nowych śledzących. <em>Pamiętaj, że właściciele serwerów mogą zobaczyć te wiadomości</em>, a odbiorcy mogą wykonać zrzut ekranu, skopiować lub udostępniać ten wpis. <em>Nie udostępniaj wrażliwych danych z użyciem Mastodona.</em></li>
-      <li><em>Adresy IP i inne metadane</em>: Kiedy zalogujesz się, przechowujemy adres IP użyty w trakcie logowania wraz z nazwą używanej przeglądarki. Wszystkie aktywne sesje możesz zobaczyć (i wygasić) w ustawieniach. Ostatnio używany adres IP jest przechowywany przez nas do 12 miesięcy. Możemy również przechowywać adresy IP wykorzystywane przy każdym działaniu na serwerze.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">W jakim celu wykorzystujecie informacje?</h3>
-
-      <p>Zebrane informacje mogą zostać użyte w następujące sposoby:</p>
-
-      <ul>
-      <li>Aby dostarczyć podstawową funkcjonalność Mastodona. Możesz wchodzić w interakcje z zawartością tworzoną przez innych tylko gdy jesteś zalogowany. Na przykład, możesz śledzić innych, aby widzieć ich wpisy w dostosowanej osi czasu.</li>
-      <li>Aby wspomóc moderację społeczności, na przykład porównując Twój adres IP ze znanymi, aby rozpoznać próbę obejścia blokady i inne naruszenia.</li>
-      <li>Adres e-mail może zostać wykorzystany, aby wysyłać Ci informacje, powiadomienia o osobach wchodzących w interakcje z tworzoną przez Ciebie zawartością, wysyłających Ci wiadomości, odpowiadać na zgłoszenia i inne żądania lub zapytania.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">W jaki sposób chronimy Twoje dane?</h3>
-
-      <p>Wykorzystujemy różne zabezpieczenia, aby zapewnić bezpieczeństwo informacji, które wprowadzasz, wysyłasz lub do których uzyskujesz dostęp. Poza tym, sesja przeglądarki oraz ruch pomiędzy aplikacją a API jest zabezpieczany z użyciem SSL, a hasło jest hashowane z użyciem silnego algorytmu. Możesz też aktywować uwierzytelnianie dwustopniowe, aby lepiej zabezpieczyć dostęp do konta.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Jaka jest nasza polityka przechowywania danych?</h3>
-
-      <p>Staramy się:</p>
-
-      <ul>
-      <li>Przechowywać logi zawierające adresy IP używane przy każdym żądaniu do serwera przez nie dłużej niż 90 dni.</li>
-      <li>Przechowywać adresy IP przypisane do użytkowników przez nie dłużej niż 12 miesięcy.</li>
-      </ul>
-
-      <p>Możesz zażądać i pobrać archiwum tworzonej zawartości, wliczając Twoje wpisy, załączniki multimedialne, awatar i zdjęcie nagłówka.</p>
-
-      <p>Możesz nieodwracalnie usunąć konto w każdej chwili.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Czy używany plików cookies?</h3>
-
-      <p>Tak. Pliki cookies są małymi plikami, które strona lub dostawca jej usługi dostarcza na dysk twardy komputera z użyciem przeglądarki internetowej (jeżeli na to pozwoli). Pliki cookies pozwalają na rozpoznanie przeglądarki i – jeśli jesteś zarejestrowany(-a) – przypisanie jej do konta.</p>
-
-      <p>Wykorzystujemy pliki cookies, aby przechowywać preferencje użytkowników na przyszłe wizyty.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Czy przekazujemy informacje osobom trzecim?</h3>
-
-      <p>Nie sprzedajemy, nie wymieniamy i nie przekazujemy osobom trzecim informacji pozwalających na identyfikację Ciebie. Nie dotyczy to zaufanych dostawców pomagających w prowadzeniu strony lub obsługiwaniu użytkowników, jeżeli zgadzają się, aby nie przekazywać dalej tych informacji. Możemy również udostępnić informacje, jeżeli uważany to za wymagane przez prawo, konieczne do wypełnienia polityki strony, przestrzegania naszych lub cudzych praw, własności i bezpieczeństwa.</p>
-
-      <p>Twoja publiczna zawartość może zostać pobrana przez inne serwery w sieci. Wpisy publiczne i tylko dla śledzących są dostarczane na serwery, na których znajdują się śledzący Cię, a wiadomości bezpośrednie trafiają na serwery adresatów, jeżeli są oni użytkownikami innego serwera.</p>
-
-      <p>Kiedy pozwolisz aplikacji na dostęp do Twojego konta, w zależności od nadanych jej pozwoleń, może uzyskać dostęp do publicznych informacji, listy śledzonych, Twoich list, wszystkich wpisów i ulubionych. Aplikacje nie mogą uzyskać dostępu do Twojego adresu e-mail i hasła.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Korzystanie ze strony przez dzieci</h3>
-
-      <p>Jeżeli serwer znajduje się w UE lub w EOG: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 16 lat. Jeżeli nie ukończyłeś(-aś) 16 roku życia, zgodnie z wymogami RODO (<a href="https://pl.wikipedia.org/wiki/Ogólne_rozporządzenie_o_ochronie_danych">Ogólne rozporządzenie o ochronie danych</a>), nie używaj tej strony.</p>
-
-      <p>Jeżeli serwer znajduje się w USA: Ta strona, produkty i usługi są przeznaczone dla osób, które ukończyły 13 lat. Jeżeli nie ukończyłeś(-aś) 13 roku życia, zgodnie z wymogami COPPA (<a href="https://pl.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Prawo o Ochronie Prywatności Dzieci w Internecie</a>), nie używaj tej strony.</p>
-
-      <p>Wymogi mogą być inne, jeżeli serwer znajduje się w innym kraju.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Zmiany w naszej polityce prywatności</h3>
-
-      <p>Jeżeli zdecydujemy się na zmiany w polityce prywatności, pojawią się na tej stronie.</p>
-
-      <p>Dokument jest dostępny na licencji CC-BY-SA. Ostatnio zmodyfikowano go 7 marca 2018, przetłumaczono 9 kwietnia 2018. Tłumaczenie (mimo dołożenia wszelkich starań) może nie być w pełni poprawne.</p>
-
-      <p>Bazowano na <a href="https://github.com/discourse/discourse">polityce prywatności Discourse</a>.</p>
-    title: Zasady korzystania i polityka prywatności %{instance}
+    title: "Zasady korzystania i polityka prywatności %{instance}"
   themes:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)
