@@ -16,12 +16,14 @@ class VoteService < BaseService
 
     already_voted = true
 
-    with_lock("vote:#{@poll.id}:#{@account.id}") do
-      already_voted = @poll.votes.where(account: @account).exists?
+    if @choices.length > 0
+      with_lock("vote:#{@poll.id}:#{@account.id}") do
+        already_voted = @poll.votes.where(account: @account).exists?
 
-      ApplicationRecord.transaction do
-        @choices.each do |choice|
-          @votes << @poll.votes.create!(account: @account, choice: Integer(choice))
+        ApplicationRecord.transaction do
+          @choices.each do |choice|
+            @votes << @poll.votes.create!(account: @account, choice: Integer(choice))
+          end
         end
       end
     end
