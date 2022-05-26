@@ -1,7 +1,6 @@
----
 ku:
   about:
-    about_hashtag_html: Ev şandiyeke gelemperî ye bi <strong>#%{hashtag}</strong> re nîşankirî ye. Tu dikarî pê re çalak bibî heke ajimêreke te heye li ser fediverse.
+    about_hashtag_html: 'Ev şandiyeke gelemperî ye bi <strong>#%{hashtag}</strong> re nîşankirî ye. Tu dikarî pê re çalak bibî heke ajimêreke te heye li ser fediverse.'
     about_mastodon_html: 'Tora civakî ya pêşerojê: Ne reklam, ne çavdêriya pargîdanî, sêwirana exlaqî, û desentralîzasyon! Bi Mastodon re bibe xwediyê daneyên xwe!'
     about_this: Derbar
     active_count_after: çalak
@@ -22,9 +21,8 @@ ku:
     federation_hint_html: Bi ajimêrê xwe %{instance} re tu dikarî kesên rajekar û li derveyî mastodonê bişopînî.
     get_apps: Sepaneke mobîl bicerbîne
     hosted_on: Mastodon li ser %{domain} tê pêşkêşkirin
-    instance_actor_flash: 'Ev ajimêr aktorekî aşopî ye ji bo rajekar were temsîl kirin tê bikaranîn ne ajimêra kesî ye. Ji bo armanca federasyonê dixebite û divê ney asteng kirin heta ku te xwest hemû nimûneyan asteng bikî, di vir de ger tu blogek navper bikarbînî.
-
-      '
+    instance_actor_flash: |
+      Ev ajimêr aktorekî aşopî ye ji bo rajekar were temsîl kirin tê bikaranîn ne ajimêra kesî ye. Ji bo armanca federasyonê dixebite û divê ney asteng kirin heta ku te xwest hemû nimûneyan asteng bikî, di vir de ger tu blogek navper bikarbînî.
     learn_more: Bêtir fêr bibe
     logged_in_as_html: Tu niha wekî %{username} têketî ye.
     logout_before_registering: Jixwe te berê têketin kiriye.
@@ -57,7 +55,7 @@ ku:
     user_count_before: Serrûpel
     what_is_mastodon: Mastodon çi ye?
   accounts:
-    choices_html: 'Hilbijartina %{name}:'
+    choices_html: "Hilbijartina %{name}:"
     endorsements_hint: Tu dikarî kesên ku di navrûyê wep de dişopînî bipejirînî û ew li vir were nîşan kirin.
     featured_tags_hint: Tu dikarî hashtagên teybetî li vir tê nîşan kirin di pê de derxî.
     follow: Bişopîne
@@ -118,7 +116,7 @@ ku:
       delete: Daneyan jê bibe
       deleted: Hate jêbirin
       demote: Ast daxistin
-      destroyed_msg: Daneyên %{username} niha ket rêzê da yê demek nêz da were jêbirin
+      destroyed_msg: "Daneyên %{username} niha ket rêzê da yê demek nêz da were jêbirin"
       disable: Qerisî ye
       disable_sign_in_token_auth: E-name ya rastandina token neçalak bike
       disable_two_factor_authentication: 2FA ne çalak bike
@@ -149,7 +147,7 @@ ku:
       media_attachments: Pêvekên medya
       memorialize: Vegerîne bîranînê
       memorialized: Bû bîranîn
-      memorialized_msg: "%{username} bi serkeftî veguherî ajimêra bîranînê"
+      memorialized_msg: '%{username} bi serkeftî veguherî ajimêra bîranînê'
       moderation:
         active: Çalak
         all: Hemû
@@ -237,7 +235,7 @@ ku:
         change_email_user: E-nameya bikarhêner biguherîne
         confirm_user: Bikarhêner bipejirîne
         create_account_warning: Hişyariyekê çê bike
-        create_announcement: Daxûyaniyekê çê bike
+        create_announcement: Daxûyaniyekê çê bike 
         create_custom_emoji: Emojiyên kesanekirî çê bike
         create_domain_allow: Navpera ku destûr standiye peyda bike
         create_domain_block: Navpera ku asteng bûye ava bike
@@ -433,9 +431,7 @@ ku:
         create: Astengkirinekê çê bike
         hint: Navpera asteng kirî pêşî li çê kirina têketinên ajimêra ên di danegehê da negire, lê dê bi paş ve bizivirin û bi xweberî va ji ajimêran bi teybetî kontrola rêbazan bikin.
         severity:
-          desc_html: |-
-            <strong>Bêdeng kirî</strong> ajimêrên wusa çêkirine xêncî şopînerên vê kes nikare şandîyên vê bibîne.
-            <strong>rawestî</strong> ajimêrên wusa çêkirine hemî naveroka, medya û daneyên profîlê jê bibe. Heke tu bixwazî pelên medyayê red bikî<strong>yek ji wan</strong>bi kar bîne.
+          desc_html: "<strong>Bêdeng kirî</strong> ajimêrên wusa çêkirine xêncî şopînerên vê kes nikare şandîyên vê bibîne.\n<strong>rawestî</strong> ajimêrên wusa çêkirine hemî naveroka, medya û daneyên profîlê jê bibe. Heke tu bixwazî pelên medyayê red bikî<strong>yek ji wan</strong>bi kar bîne."
           noop: Ne yek
           silence: Bêdengî
           suspend: Dur bike
@@ -570,11 +566,11 @@ ku:
       no_ip_block_selected: Ji ber ku tu ajimêr nehat hilbijartin tu rêzika IPyê nehate guhertin
       title: Rêbazên IP
     relationships:
-      title: Têkiliyên %{acct}
+      title: "Têkiliyên %{acct}"
     relays:
       add_new: Guhêrkerê nû tevlê bike
       delete: Jê bibe
-      description_html: "<strong>Guhêrkerê giştî</strong> rajekareke navberkar e ku hejmareke mezin ji şandiyan di navbera rajekaran ku jê re dibin endam û weşanê dikin diguherîne. <strong> Ew dikare ji rajekarên piçûk û navîn re bibe alîkar ku naveroka ji fendiverse </strong>ê bibîne, ku bi rengeke din pêdivî dike ku bikarhênerên herêmî bi desta li dû kesên din ên li rajekarên ji dûr be bişopînin."
+      description_html: <strong>Guhêrkerê giştî</strong> rajekareke navberkar e ku hejmareke mezin ji şandiyan di navbera rajekaran ku jê re dibin endam û weşanê dikin diguherîne. <strong> Ew dikare ji rajekarên piçûk û navîn re bibe alîkar ku naveroka ji fendiverse </strong>ê bibîne, ku bi rengeke din pêdivî dike ku bikarhênerên herêmî bi desta li dû kesên din ên li rajekarên ji dûr be bişopînin.
       disable: Neçalak bike
       disabled: Neçalakkirî
       enable: Çalak bike
@@ -635,7 +631,7 @@ ku:
       quick_actions_description_html: 'Ji bo dîtina naveroka ragihandî çalakiyeke bilez bavêje an jî li jêr bigere:'
       remote_user_placeholder: bikarhênerê ji dûr ve ji %{instance}
       reopen: Ragihandina ji nû ve veke
-      report: "@%{id} Ragihîne"
+      report: '@%{id} Ragihîne'
       reported_account: Ajimêra ragihandî
       reported_by: Ragihandî ji aliyê
       resolved: Çareserkirî
@@ -821,7 +817,7 @@ ku:
         not_discoverable: Nivîskar nejilbijartiye ji bo ku were kifşkirin
         shared_by:
           one: Yek carî parvekirî an bijartî
-          other: "%{friendly_count} carên parvekirî û bijartî"
+          other: '%{friendly_count} carên parvekirî û bijartî'
         title: Şandiyên rojevê
       tags:
         current_score: Encama niha %{score}
@@ -841,7 +837,7 @@ ku:
         trendable: Dikare di bin rojevan de xuya bibe
         trending_rank: 'Rojev #%{rank}'
         usable: Dikare were bikaranîn
-        usage_comparison: "%{today} car îro hate bikaranîn, li gorî %{yesterday} duh"
+        usage_comparison: '%{today} car îro hate bikaranîn, li gorî %{yesterday} duh'
         used_by_over_week:
           one: Di nava hefteya dawî de ji aliyê kesekî ve hatiye bikaranîn
           other: Di nava hefteya dawî de ji %{count} kes ve hatiye bikaranîn
@@ -868,11 +864,11 @@ ku:
       subject: "%{username} li ser %{instance} îtiraz li biryareke çavdêriyê dike"
     new_pending_account:
       body: Zanyariyênn ajimêra nû li jêr in. Tu dikarî vê serîlêdanê bipejirîne an pûç bike.
-      subject: "(%{username}) ajimêrê nû ji bo vekolandina li ser %{instance}"
+      subject: (%{username}) ajimêrê nû ji bo vekolandina li ser %{instance}
     new_report:
       body: "%{reporter} ji %{target} ê ragihand"
       body_remote: Kesekî bi navê %{domain} ji %{target} ê ragihand
-      subject: Ragihandinek nû ji bo %{instance} (#%{id})
+      subject: 'Ragihandinek nû ji bo %{instance} (#%{id})'
     new_trends:
       body: 'Tiştên jêrîn berî ku ew bi gelemperî werin xuyakirin divê werin nirxandin:'
       new_trending_links:
@@ -979,7 +975,7 @@ ku:
       close: An jî, tu dikarî tenê ev çarçoveyê bigirî.
       return: Profîla vê bikarhênerê nîşan bike
       web: Biçe tevneyê
-    title: "%{acct} bişopîne"
+    title: '%{acct} bişopîne'
   challenge:
     confirm: Bidomîne
     hint_html: "<strong>Nîşe:</strong>Ji bo demjimêreke din em ê borînpeyva te careke din ji te nexwazin."
@@ -1077,7 +1073,7 @@ ku:
     noscript_html: Ji bo ku tu sepanaa Mastodon a tevnê bi kar bîne, jkx JavaScript-ê çalak bike. Wekî din, yek ji <a href="%{apps_path}">sepanên xwemalî</a> ji bo Mastodon ji bo platforma xwe biceribîne.
   existing_username_validator:
     not_found: nikaribû bikarhênerek herêmî bi wê navê bikarhêner bibîne
-    not_found_multiple: "%{usernames} nehat dîtin"
+    not_found_multiple: '%{usernames} nehat dîtin'
   exports:
     archive_takeout:
       date: Dîrok
@@ -1257,7 +1253,7 @@ ku:
     follow_request:
       action: Daxwazên şopandinê bi rê ve bibe
       body: "%{name} daxwaza şopandina te kir"
-      subject: Şopîner li bendê ye:%{name}
+      subject: 'Şopîner li bendê ye:%{name}'
       title: Daxwazeke şopandinê ya nû
     mention:
       action: Bersivê bide
@@ -1473,7 +1469,7 @@ ku:
     show_older: Kevntirîn nîşan bide
     show_thread: Mijarê nîşan bide
     sign_in_to_participate: Ji bo tevlî sohbetê bibî xwe tomar bike
-    title: "%{name}%{quote}"
+    title: '%{name}%{quote}'
     visibilities:
       direct: Rasterast
       private: Tenê şopîneran
@@ -1527,87 +1523,6 @@ ku:
   tags:
     does_not_match_previous_name: bi navê berê re li hev nayê
   terms:
-    body_html: |
-      <h2>Privacy Policy</h2>
-      <h3 id="collect">What information do we collect?</h3>
-
-      <ul>
-        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Site usage by children</h3>
-
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
-
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} mercên bikaranîn û politîkayên nehêniyê"
   themes:
     contrast: Mastodon (Dijberiya bilind)
