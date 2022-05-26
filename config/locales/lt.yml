@@ -1,8 +1,7 @@
----
 lt:
   about:
-    about_hashtag_html: Čia visiems prieinamas įrankis <strong>#%{hashtag}</strong>. Jūs galite juo naudotis bet kur, jeigu turite paskyra fedi-visatoje.
-    about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.
+    about_hashtag_html: 'Čia visiems prieinamas įrankis <strong>#%{hashtag}</strong>. Jūs galite juo naudotis bet kur, jeigu turite paskyra fedi-visatoje.'
+    about_mastodon_html: 'Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.'
     about_this: Apie
     administered_by: 'Administruoja:'
     apps: Mobilioji Aplikacija
@@ -175,9 +174,7 @@ lt:
         create: Sukurti bloką
         hint: Domeno blokavimas nesustabdys vartotojų paskyrų sukūrimo duomenų sistemoje, tačiau automatiškai pritaikys atitinkamus moderavimo metodus šioms paskyroms.
         severity:
-          desc_html: |-
-            <strong>1Tyla</strong>2 padarys paskyros įkelimus nematomus visiems, kurie jų neseka.
-            <strong>3Draudimas</strong>4 panaikins visus paskyros įkėlimus ir profilio informaciją.Naudok<strong>5Nieko</strong>6 jeigu tiesiog norite atmesti medijos failus.
+          desc_html: "<strong>1Tyla</strong>2 padarys paskyros įkelimus nematomus visiems, kurie jų neseka.\n<strong>3Draudimas</strong>4 panaikins visus paskyros įkėlimus ir profilio informaciją.Naudok<strong>5Nieko</strong>6 jeigu tiesiog norite atmesti medijos failus."
           noop: Nieko
           silence: Tyla
           suspend: Draudimas
@@ -220,7 +217,7 @@ lt:
     relays:
       add_new: Pridėti naują pamainą
       delete: Ištrinti
-      description_html: "<strong>Federacijos perjungėjas</strong> tai tarpinis serveris, kuris apsikeičia didelios apimties informacija tarp kitų serverių. <strong> Tai gali padėti mažesniems serveriams atrasti turinį iš fedi-visatos</strong>, kuris kitaip reikalautų vartotojų lokaliai sekti kitus žmones naudojantis kitus tolimus serverius."
+      description_html: <strong>Federacijos perjungėjas</strong> tai tarpinis serveris, kuris apsikeičia didelios apimties informacija tarp kitų serverių. <strong> Tai gali padėti mažesniems serveriams atrasti turinį iš fedi-visatos</strong>, kuris kitaip reikalautų vartotojų lokaliai sekti kitus žmones naudojantis kitus tolimus serverius.
       disable: Išjungti
       disabled: Išjungtas
       enable: Įjungti
@@ -343,7 +340,7 @@ lt:
     new_report:
       body: "%{reporter} parašė skundą apie %{target}"
       body_remote: Kažkas iš %{domain} parašė skundą apie %{target}
-      subject: Naujas skundas %{instance} (#%{id})
+      subject: 'Naujas skundas %{instance} (#%{id})'
   application_mailer:
     notification_preferences: Keisti el pašto parinktis
     settings: 'Keisti el pašto parinktis: %{link}'
@@ -439,7 +436,7 @@ lt:
   featured_tags:
     add_new: Pridėti naują
     errors:
-      limit: Jūs jau naudojate maksimalų galimą saitažodžių(#) kiekį
+      limit: 'Jūs jau naudojate maksimalų galimą saitažodžių(#) kiekį'
   filters:
     contexts:
       home: Namų laiko juosta
@@ -585,7 +582,7 @@ lt:
     development: Plėtojimas
     edit_profile: Keisti profilį
     export: Informacijos eksportas
-    featured_tags: Rodomi saitažodžiai(#)
+    featured_tags: 'Rodomi saitažodžiai(#)'
     import: Importuoti
     migrate: Paskyros migracija
     notifications: Pranešimai
@@ -616,85 +613,6 @@ lt:
     reblogged: pakeltas
     sensitive_content: Jautrus turinys
   terms:
-    body_html: |
-      <h2>Privatumo politika</h2>
-      <h3 id="collect">Kokia informacija yra renkama?</h3>
-      <ul>
-      <li><em>Paprasa paskyros informacija</em>: Jeigu Jūs užsiregistruojate šiame serveryje, Jūsų gali paklausti, kad įrašytumėte slapyvardį, el pašto adresą ir paskyros slaptąžodį. Jūs irgi galite įrašyti papildomą profilio informaciją, tokią kaip rodomas vardas ir biografiją bei įkelti profilio nuotrauką ir antraštės nuotrauką. Slapyvardis , rodomas vardas, biografija, profilio nuotrauka ir antraštės nuotrauka visada viešai prieinama informacija.</li>
-      <li><em>Įrašai, sekami ir kita vieša informacija</em>: Sąrašas žmonių, kuriuos Jūs sekate yra matomas viešai, taip pat kaip ir Jūsų sekėjams. Kai Jūs išsiunčiate žinutę, data ir laikas yra išsaugomi bei aplikacija iš kurios jūs išsiuntėte žinutę. Žinutėse gali būti prisegtų medijos failų kaip vaizdo įrašai bei nuotraukos. Viešos ir neįtrauktos į sąrašus žinutės yra viešai prieinamos. Kai nusprendžiate rodyti pranešimą ant savo profilio, tai irgi yra viešai prieinama informacija. Jūsų pranešimai yra pristatomi Jūsų sekėjams, kai kuriais atvėjais tai gali reikšti, kad šie pranešimai yra pristatomi į kitus serverius ir saugomi ten. Kai Jūs ištrinate įrašus, šie įrašai ištrinami ir Jūsų sekėjams. Veiksmas pamėgti kitus įrašus irgi yra viešas.
-      </li><li><em>Tiesioginiai ir tik sekėjams įrašai</em>: Visi įrašai yra saugomi ir apdorojami serveryje. Tik sekėjams įrašai yra pristatomi Jūsų sekėjams ir vartotojams, kurie yra paminėti įrašuose, ir tiesioginiai įrašai pristatomi tik vartotojams, kurie yra paminėti įraše. Kai kuriais atvėjais tai gali reikšti, kad šie įrašai yra pristatomi į kitą serverį ir įrašų kopijos saugomos ten. Mes stengiames riboti prieigą prie šių pranešimų tiktai autorizuotiems gavėjams, tačiau kiti serveriai to gali nedaryti. Todėl yra svarbu peržiurėti serverius, kuriems Jūsų sekėjai priklauso. Jūs galite įjungti būseną nustatymuose, kad galėtumetė priimti arba atmesti naujas sekimo užklausas.<em> Prašome nepamiršti, kad serverio operatoriai ir kiti serveriai, kurie gauna šias žinutes, gali jas peržiurėti </em> bei, kad gavėjai gali padaryti foto kopija, tektso kopija ar kitaip pasidalinti Jūsų žinutėmis.<em> Nesidalinkite jokia jautria ar pavojinga informacija naudojantis Mastodon.</em></li>
-      <li><em>IP adresai ir kiti metaduomenys</em>: Kai prisijungiate, mes įrašome IP adresą iš kurio jūs prisijungėte, ir naudojamos naršyklės pavadinimą. Visos prisijungimo sesijos yra prieinamos Jūsų apžvalgai ir atšaukimams nustatymuose. Paskutiniai IP adresai yra saugomi iki 12-kos mėnesių. Mes taipogi galime pasilikti serverio registrą, kuriuose yra saugoma IP adresai iš visų bandymu prisijungti prie serverio prašant informacijos.
-      </li></ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Kam mes naudojame Jūsų informaciją?</h3>
-      <p>Visa surinkta informacija apie jus, gali būti panaudota šiems tikslams: </p>
-      <ul>
-      <li>Suteikti pagrindį Mastodon funkcialumą. Jūs galite sąveikauti su kitų vartotojų turiniu ir kelti sąvajį, kuomet esate prisijungęs. Pavyzdžiui, galite sekti kitus žmones, peržiūrėti jų sujungtus įrašus savo pačio personalizuotoje laiko juostoje. </li>
-      <li>Padėti bendruomenės moderavimui, pavyzdžiui, lyginant Jūsų IP adresą, su kitu žinomu IP adresu, kad nustatyti bandymus vengti užblokavimo.</li>
-      <li>Jūsų el pašto adresas gali būti naudojamas išsiųsti informacija jums, priminimus apie kitų vartotojų interakciją su jūsų paskyra, pavyzdžiui, kai jie jums siunčia žinutes, ir atsakyti į užklausas ir/arba kitais klausimais. </li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Kaip mes saugome Jūsų informacija? </h3>
-
-      <p>Mes implementavome saugumo priemones, tam, kad apsaugotume Jūsų privačią informaciją. Tarp šių dalykų, Jūsų naršyklės sesija, taip pat ir eismas tarp Jūsų aplikacijos ir API yra apsaugoti SSL, ir Jūsų slaptažodis yra užsifruotas sudėtingu algoritmu. Jūs galite įjungti dviejų veiksnių autentikaciją savo paskyrai, taip apsaugodami ją dar daugiau.
-      </p>
-
-      <hr class="spacer" />
-      <h3 id="data-retention"> Kokia yra mūsų duomenų laikymo politika? </h3>
-
-      <p>Mes stengiamės:</p>
-
-      <ul>
-      <li> Išsaugoti serverio registrą, kuriame yra visi IP adresai, kurie kreipėsi į serverį, šie duomenys laikomi neilgiau nei 90 dienų.</li>
-      <li> Išsaugoti IP adresus asocijuotus su registruotais vartotojais, ne ilgiau nei 12 mėnesių.</li>
-      </ul>
-
-      <p> Jūs galite pateikti prašymą ir parsisiųsti savo turinio archyvą, kuriame bus Jūsų įrašai, medijos failai, profilio nuotrauka ir antraštės nuotrauka.</p>
-
-      <p> Jūs galite VISIŠKAI ištrinti savo paskyrą bet kuriuo metu.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Ar mes naudojame sausainiukus?</h3>
-
-      <p> Taip. Sausainiukai yra mažos apimties failai, kuriuos svetainė arba svetainės tiekėjas perkelia į Jūsų kompiuterio kietąjį diską naudojantis interneto naršykle (jeigu jūs leidžiate). Šie sausainiai leidžia svetainiai prisiminti Jūsų naršyklę ir jeigu turite registruotą vartotoją, ji asocijuoti su Jūsu vartotoju.</p>
-      <p>Mes naudojame sausainius, kad suprastumėme ir išsaugotumėme Jūsų poreikius kitam apsilankymui.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Ar mes atskleidžiame Jūsų informacija kitoms šalims?</h3>
-
-      <p>Mes neparduodame, nesikeičiame, ar kitaip mainomės Jūsų privačiais duomenimis su trečiosiomis šalimis. Į šį sąrašą neįeina patikimos trečiosios šalys, kurios padeda mums naudotis tinklalapiu, daryti verslą, ar padėti jums, tol, kol šios šalys sutinka laikyti šią informaciją konfidencialiai. Mes taippat galime paviešinti Jūsų informaciją, jeigu manome, kad Jūs pažeidėte įstatymus, naudojimosi politiką, ar apsaugoti, ginti Jūsų, mūsų ar kitų teises. </p>
-
-      <p>Jūsų vieši duomenys gali būti atsisiųsti kitų serverių esančių tinkle. Jūsų vieši bei tik sekėjams skirti įrašai pristatomi serveriams, kuriuose Jūsų sekėjai egzistuoja, o tiesioginės žinutės pristatomos tiesiai į gavėjo serverį, tol, kol šie sekėjai ar gavėjai yra naudotojai iš kitų serverių. </p>
-
-      <p>Kai jūs patvirtinate Jūsų paskyros naudojimą aplikacijai, atitinkamai priklausant nuo leidimų, kuriuos jūs suteikėte, aplikacija turi prieiga prie Jūsų viešojo profilio informacijos, Jūsų sekėjų sąrašo, sekamų sąrašo, visų Jūsų įrašų, ir pamėgtų įrašų.
-      Aplikacijos niekada negali turėti prieigos prie Jūsų el pašto adreso arba slaptažodžio.</p>
-
-      <hr class="spacer" />
-
-
-      <h3 id="children">Tinklalapio naudojimas nepilnamečiams</h3>
-
-      <p> Jeigu serveris yra EU arba EEA: Mūsų tinklalapis, produktai ir visi teikiami aptarnavimai yra teikiami tik žmonėms, kuriems yra bent 16 metų. Jeigu jums yra mažiau nei 16 metų, sekant GDPR reikalavimais (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) prašome nenaudoti šios svetainės. </p>
-
-      <p> Jeigu šis serveris yra USA: Mūsų tinklalapis, produktai ir visi teikiami aptarnavimai yra teikiami žmonėms, kuriems yra bent 13 metų. Jeigu jums mažiau nei 13 metų, sekant COPPA reikalavimais (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) prašome nenaudotis šios svetainės.</p>
-
-      <p>Legalūs reikalavimai gali būti kitokie, jeigu serveris yra kitoje jurisdikcijoje.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Pasikeitimai mūsų privatumo politikoje</h3>
-
-      <p>Jeigu mes nusprendžiame pakeisti savo privatumo politiką, mes įrašysime šiuos pakeitimus šiame tinklalapyje.</p>
-
-      <p>Šis dokumentas yra CC-BY-SA. Paskutinį kartą keistas Kovo 7, 2018.</p>
-
-      <p>Originaliai adaptuotas iš <a href="https://github.com/discourse/discourse">Discourse privatumo politika</a>.</p>
     title: "%{instance} Naudojimosi Sąlygos ir Privatumo Politika"
   themes:
     contrast: Mastodon (Didelio Kontrasto)
