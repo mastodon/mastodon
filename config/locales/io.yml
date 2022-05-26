@@ -25,7 +25,7 @@ io:
     instance_actor_flash: 'Ca konto esas virtuala aganto quo uzesas por reprezentar la servilo e ne irga individuala uzanto. Ol uzesas por federskopo e ne debas restriktesar se vu ne volas obstruktar tota instanco, se ol esas la kaso, do vu debas uzar domenobstrukto.
 
       '
-    learn_more: Lernez plu
+    learn_more: Lernez pluse
     logged_in_as_html: Vu nun eniras quale %{username}.
     logout_before_registering: Vu ja eniris.
     privacy_policy: Privatesguidilo
@@ -48,7 +48,7 @@ io:
       rejecting_media_title: Filtrita medii
       silenced: 'Posti de ca servili celesos en publika tempolinei e konversi, e notifiki ne facesos de oli uzantinteragi, se vu ne sequas oli:'
       silenced_title: Limitizita servili
-      suspended: 'Informi de ca servili procedagesos o retenesos o kambiesos, do irga interago o komuniko kun uzanti de ca servili esas imposebla:'
+      suspended: 'Informi de ca servili procedagesos o retenesos o interchanjesos, do irga interago o komuniko kun uzanti de ca servili esas neposibla:'
       suspended_title: Restriktita servili
     unavailable_content_html: Mastodon generale permisas on vidar kontenajo e interagar kun uzanti de irga altra servilo en fediverso. Existas eceptioni quo facesis che ca partikulara servilo.
     user_count_after:
@@ -135,7 +135,7 @@ io:
       followers: Uzanti
       follows: Uzati
       header: Kapimajo
-      inbox_url: URL di enbuxo
+      inbox_url: URL di mesajbuxo
       invite_request_text: Juntomotivo
       invited_by: Invitesis da
       ip: IP
@@ -201,7 +201,7 @@ io:
         password_and_2fa: Pasvorto e 2FA
       sensitive: Forcsentoza
       sensitized: Markizesis quale sentoza
-      shared_inbox_url: Partigita enbux-URL
+      shared_inbox_url: Partigita URL di mesajbuxo
       show:
         created_reports: Reports created by this account
         targeted_reports: Reports made about this account
@@ -378,7 +378,7 @@ io:
         title: Insertez nova kustumizita emocimajo
       not_permitted: Vu ne permisesis agar co
       overwrite: Remplasez
-      shortcode: Kurtnumero
+      shortcode: Kurtkodexo
       shortcode_hint: Minime 2 simboli, nur literi e nombri e sublinei
       title: Kustumizita emocimaji
       uncategorized: Nekategorigita
@@ -480,8 +480,8 @@ io:
     instances:
       availability:
         description_html:
-          one: Se sendar a domeno falias <strong>%{count} dio</strong> sen sucesar, plua sendoprobi ne agesos se sendo <em>de</em> la domeno ne ganesas.
-          other: Se sendar a domeno falias en <strong>%{count} diferanta dii</strong> sen sucesar, plua sendoprobi ne agesos se sendo <em>de</em> la domeno ne ganesas.
+          one: Se sendar a domeno falias <strong>%{count} dio</strong> sen sucesar, plusa sendoprobi ne agesos se sendo <em>de</em> la domeno ne ganesas.
+          other: Se sendar a domeno falias en <strong>%{count} diferanta dii</strong> sen sucesar, plusa sendoprobi ne agesos se sendo <em>de</em> la domeno ne ganesas.
         failure_threshold_reached: Faliolimito atingesis en %{date}.
         failures_recorded:
           one: Falita probo en %{count} dio.
@@ -523,7 +523,7 @@ io:
         unavailable: Nedisponebla
       delivery_available: Sendo esas disponebla
       delivery_error_days: Senderordii
-      delivery_error_hint: Se sendo ne esas posebla dum %{count} dii, ol automata markizesos quale ne sendebla.
+      delivery_error_hint: Se sendo ne esas posibla dum %{count} dii, ol automata markizesos quale ne sendebla.
       destroyed_msg: Informi de %{domain} nun faskigesis por partikulara efaco.
       empty: Nula domeni.
       known_accounts:
@@ -602,9 +602,9 @@ io:
         other_description_html: Videz plu multa opcioni por dominacar konduto di konto e kustumizar komuniko a raportizita konto.
         resolve_description_html: Nulo agesos kontre raportizita konto, streko ne rekordizesos e raporto klozesos.
         silence_description_html: Profilo esos videbla nur por personi quo ja sequis o manuale trovis, se severe limitizas ola porteo. Sempre povas inversigesar.
-        suspend_description_html: Ca profilo e omna ola kontenaji divenos neacesebla til ol eventuale efacesas. Interagar kun la konto divenos neposebla. Inversigebla til 30 dii.
+        suspend_description_html: Ca profilo e omna ola kontenaji divenos neacesebla til ol eventuale efacesas. Interagar kun la konto divenos neposibla. Inversigebla til 30 dii.
       actions_description_html: Decidez ago por rezolvar ca raporto. Se vu decidar puniso kontre raportizesis konto, retpostoavizo sendesos a ol, ecepte kande <strong>Spam</strong> kategorio selektesis.
-      add_to_report: Insertez plu a raporto
+      add_to_report: Insertez pluse a raporto
       are_you_sure: Ka vu esas certa?
       assign_to_self: Taskigez me
       assigned: Taskigita jerero
@@ -613,7 +613,7 @@ io:
       category_description_html: La motivo ke ca konto e kontenajo raportizesis citesos por komuniko kun raportizita konto
       comment:
         none: Nulo
-      comment_description_html: 'Por donar plu informo, %{name} skribis:'
+      comment_description_html: 'Por donar plu multa informo, %{name} skribis:'
       created_at: Raportizesis
       delete_and_resolve: Efacez posti
       forwarded: Sendesis
@@ -889,14 +889,14 @@ io:
   aliases:
     add_new: Kreez alternativa nomo
     created_msg: Sucesoze kreis nova alternativa nomo. Vu povas nun komencar transfero de la olda konto.
-    deleted_msg: Sucesoze efacis alternativa nomo. Transferar de ta konto a co ne esos posebla.
+    deleted_msg: Sucesoze efacis alternativa nomo. Transferar de ta konto a co ne esos posibla.
     empty: Vu ne havas alternativa nomi.
     hint_html: Se vu volas transferesar de altra konto a co, hike vu povas krear alternativnomo, quo bezonesas ante vu povas durigar transferar sequanti de la olda konto a co. Ca ago esas <strong>nedanjeroza e inversigebla</strong>. <strong>Kontomigro komencesas de la olda konto</strong>.
     remove: Deligez alternative nomo
   appearance:
-    advanced_web_interface: Avanca retintervizajo
-    advanced_web_interface_hint: 'Se vu volas uzar tota skrenlong, avanca retintervizajo povigas vu modifikar multa diferanta kolumni por vida multa informi en sama tempo quon vu volas: Hemo, avizi, federatata tempolineo, multa listi e hashtagi.'
-    animations_and_accessibility: Animo e aceseso
+    advanced_web_interface: Avancata retintervizajo
+    advanced_web_interface_hint: 'Se vu volas uzar tota skrenlongeso, avancata retintervizajo povigas vu modifikar multa diferanta kolumni por vida multa informi en sama tempo quon vu volas: Hemo, avizi, federatata tempolineo, multa listi e hashtagi.'
+    animations_and_accessibility: Animacii e aceseso
     confirmation_dialogs: Konfirmdialogi
     discovery: Deskovro
     localization:
@@ -930,18 +930,18 @@ io:
     description:
       prefix_invited_by_user: "@%{name} invitas vu juntar ca servilo di Mastodon!"
       prefix_sign_up: Registrez che Mastodon hodie!
-      suffix: Per konto, vu povos sequar personi, postigar novaji e interchanjar mesaji kun uzanti de irga servilo di Mastodon e plu!
+      suffix: Per konto, vu povos sequar personi, postigar novaji e interchanjar mesaji kun uzanti de irga servilo di Mastodon e pluse!
     didnt_get_confirmation: Ka tu ne recevis la instrucioni por konfirmar?
     dont_have_your_security_key: Ka vu ne havas sekuresklefo?
     forgot_password: Pasvorto obliviita?
     invalid_reset_password_token: Pasvorto richanjoficho esas nevalida o expirita. Demandez novo.
-    link_to_otp: Insertez 2-faktornumero de vua fono o rigannumero
+    link_to_otp: Insertez 2-faktorkodexo de vua fono o rigankodexo
     link_to_webauth: Uzez vua sekuresklefaparato
     log_in_with: Enirez per
     login: Enirar
     logout: Ekirar
     migrate_account: Transferez a diferanta konto
-    migrate_account_html: Se vu volas ridirektar ca konto a diferanto, vu povas <a href="%{path}">opcionagar hike</a>.
+    migrate_account_html: Se vu volas ridirektar ca konto a diferanto, vu povas <a href="%{path}">ajustar hike</a>.
     or_log_in_with: O eniras per
     providers:
       cas: CAS
@@ -1019,7 +1019,7 @@ io:
       email_contact_html: Se ol ankore ne venas, vu povas retpostigar a <a href="mailto:%{email}">%{email}</a> por ganar helpo
       email_reconfirmation_html: Se vu ne ganas konfirmretposto, vu povas <a href="%{path}">demandar itere</a>
       irreversible: Vu ne povos riganar o riaktivigar vua konto
-      more_details_html: Por plu detali, videz <a href="%{terms_path}">privatesguidilo</a>.
+      more_details_html: Por plu multa detali, videz <a href="%{terms_path}">privatesguidilo</a>.
       username_available: Vua uzantonomo divenos disponebla itere
       username_unavailable: Vua uzantonomo restos nedisponebla
   directories:
@@ -1116,8 +1116,8 @@ io:
       title: Insertez nova filtrilo
   footer:
     developers: Developeri
-    more: Plu…
-    resources: Resursi
+    more: Pluse…
+    resources: Moyeni
     trending_now: Nuna tendenco
   generic:
     all: Omna
@@ -1180,7 +1180,7 @@ io:
     authentication_methods:
       otp: 2-faktoryurizessoftwaro
       password: pasvorto
-      sign_in_token: retpostosekuresnumero
+      sign_in_token: retpostosekureskodexo
       webauthn: sekuresklefi
     description_html: Se vu vidas aktiveso quon vu ne rikonocas, konsiderez chanjar vua pasvorto e aktivigez 2-faktoryurizo.
     empty: Yurizeshistorio esas nedisponebla
@@ -1194,9 +1194,9 @@ io:
       too_many: Ne povas atachar plu kam 4 faili
   migrations:
     acct: Transferesis a
-    cancel: Extingar ridirekto
-    cancel_explanation: Extingar ridirekto riaktivigos vua nuna konto, ma ne riganos sequanti quo transferesis a ta konto.
-    cancelled_msg: Sucesoze extingar ridirekto.
+    cancel: Anulez ridirekto
+    cancel_explanation: Anular ridirekto riaktivigos vua nuna konto, ma ne riganos sequanti quo transferesis a ta konto.
+    cancelled_msg: Sucesoze anulis ridirekto.
     errors:
       already_moved: esas sama transferkonto
       missing_also_known_as: ne esas alternativa nomo di ca konto
@@ -1215,7 +1215,7 @@ io:
     redirecting_to: Vua konto ridirektesas a %{acct}.
     set_redirect: Fixez ridirekto
     warning:
-      backreference_required: Nova konto mustas unesme havar opciono quo dopreferas co
+      backreference_required: Nova konto mustas unesme ajustesar por dopreferar co
       before: 'Ante durar, lektez ca noti sorgeme:'
       cooldown: Pos transferesar, existas varttempo kande vu ne povas transferesar itere
       disabled_account: Vua nuna konto ne divenos tote uzebla pose. Tamen, vu povas acesar informexportaco e anke riaktivigo.
@@ -1287,13 +1287,13 @@ io:
           thousand: K
           trillion: T
   otp_authentication:
-    code_hint: Insertez numero quo facesis da vua yurizsoftwaro por konfirmar
-    description_html: Se vu aktivigas <strong>2-faktoryurizo</strong> per yurizsoftwaro, eniro bezonos vu havar vua fono, quale facas fichi por vu por enirar.
+    code_hint: Insertez kodexo quo facesis da vua yurizsoftwaro por konfirmar
+    description_html: Se vu aktivigas <strong>2-faktoryurizo</strong> per yurizsoftwaro, eniro bezonos vu havar vua smartfono, quale facas fichi por vu por enirar.
     enable: Aktivigez
-    instructions_html: "<strong>Skanez ca QR-numero a Google Authenticator o simila TOTP-softwaro en vua fono</strong>. Pos co, ta softwaro facos fichi quon vu bezonos insertar kande enirar."
-    manual_instructions: 'Se vu ne povas skanar numero QR e bezonas insertar manuala, subo esas textosekreto:'
+    instructions_html: "<strong>Skanez ca QR-kodexo a Google Authenticator o simila TOTP-softwaro en vua smartfono</strong>. Pos co, ta softwaro facos fichi quon vu bezonos insertar kande enirar."
+    manual_instructions: 'Se vu ne povas skanar QR-kodexo e bezonas insertar manuala, subo esas textosekreto:'
     setup: Facez
-    wrong_code: Insertita numero esas nevalida! Ka serviltempo e aparattempo esas korekta?
+    wrong_code: Insertita kodexo esas nevalida! Ka serviltempo e aparattempo esas korekta?
   pagination:
     newer: Nova
     next: Sequanta
@@ -1411,7 +1411,7 @@ io:
     account: Konto
     account_settings: Kontoopcioni
     aliases: Kontoaltnomi
-    appearance: Formo
+    appearance: Aspekto
     authorized_apps: Yurizita apliki
     back: Retro a Mastodon
     delete: Kontoefaco
@@ -1625,7 +1625,7 @@ io:
     enabled: 2-faktoryurizeso aktivigesas
     enabled_success: 2-faktoryurizeso sucesoze aktivigesas
     generate_recovery_codes: Generate Recovery Codes
-    lost_recovery_codes: Rigannumeri povigas vu riganas aceso a vua konto se vu perdas vua fono. Se vu perdas vua rigannumeri, vu povas rifacar hike. Vua olda rigannumeri nevalidigesos.
+    lost_recovery_codes: Rigankodexi povigas vu riganas aceso a vua konto se vu perdas vua smartfono. Se vu perdas vua rigankodexi, vu povas rifacar hike. Vua olda rigankodexi nevalidigesos.
     methods: 2-faktormetodi
     otp: Yurizsoftwaro
     recovery_codes: Kopiez rigannumeri
@@ -1661,7 +1661,7 @@ io:
         violation: Kontenajo nesequas ca komunitatguidili
       explanation:
         delete_statuses: Ol trovesis ke kelka vua posti nesequas komunitatguidilo e do efacesis da jereri di %{instance}.
-        disable: Vu ne povas uzar vua konto plu, ma vua profilo e altra informi restas bone. Vu povas demandar kopiur di vua informi, chanjar kontoopcioni e efacar vua konto.
+        disable: Vu ne povas uzar vua konto pluse, ma vua profilo e altra informi restas bone. Vu povas demandar kopiur di vua informi, chanjar kontoopcioni e efacar vua konto.
         mark_statuses_as_sensitive: Kelka vua posti markizesis quale sentoza da jereri di %{instance}. Do, personi bezonos kliktar medii en posti ante prevido montresas. Vu povas markizar medii quale sentoza per su kande postar en futuro.
         sensitive: Pos co, omna vua adchargita mediifaili markizesos quale sentoza e celesos dop kliktoaverto.
         silence: Vu povas ankore uzar vua konto ma nur personi quo ja sequis vu vidos vua posti en ca servilo, e vu forsan neinkluzesas de diversa deskovrotraiti. Tamen, altra personi povas ankore manuala sequar vu.
@@ -1686,7 +1686,7 @@ io:
         suspend: Konto restriktigesis
     welcome:
       edit_profile_action: Facez profilo
-      edit_profile_step: Vu povas kustumizar vua profilo per adchargar profilimajo, kapimajo, chanjar vua montronomo e plu. Se vu volas kontrolar nova sequanti ante oli permisesar sequantar vu, vu povas klefklozar vua konto.
+      edit_profile_step: Vu povas kustumizar vua profilo per adchargar profilimajo, kapimajo, chanjar vua montronomo e pluse. Se vu volas kontrolar nova sequanti ante oli permisesar sequantar vu, vu povas klefklozar vua konto.
       explanation: Subo esas guidilo por helpar vu komencar
       final_action: Komencez postigar
       final_step: 'Jus postigez! Mem sen sequanti, vua publika posti povas videsar da altra personi, exemplo es en lokala tempolineo e en hashtagi. Vu povas anke introduktar su en #introductions hashtagi.'
@@ -1696,9 +1696,9 @@ io:
       review_preferences_step: Certigez ke vu fixas vua preferaji, tale quala retposto quon vu volas ganar, o privatesnivelo quo vu volas vua posti normale uzar. Se vu ne havas movmalado, vu povas selektar aktivigar GIF-autopleo.
       subject: Bonveno a Mastodon
       tip_federated_timeline: Federatata tempolineo esas generala vido di reto di Mastodon. Ma, ol nur inkluzas personi quon vua vicini abonis, do ol ne esas kompleta.
-      tip_following: Vu sequas vua administrer(o) di servilo quale originala stando. Por sequar plua interesanta personi, videz lokala e federatata tempolinei.
+      tip_following: Vu sequas vua administrer(o) di servilo quale originala stando. Por sequar plu multa interesanta personi, videz lokala e federatata tempolinei.
       tip_local_timeline: Lokala tempolineo esas generala vido di personi che %{instance}. Co esas vua apuda vicini!
-      tip_mobile_webapp: Se vua fonvidilo povigas vu pozar Mastodon a vua hemskreno, vu povas ganar pulsavizi. Ol funcionas tale traiti di fonsoftwaro!
+      tip_mobile_webapp: Se vua smartfonvidilo povigas vu pozar Mastodon a vua hemskreno, vu povas ganar pulsavizi. Ol funcionas tale traiti di smartfonsoftwaro!
       tips: Guidili
       title: Bonveno, %{name}!
   users:

@@ -5,13 +5,28 @@ ckb:
       poll:
         expires_at: وادەی کۆتایی
         options: هەڵبژاردنەکان
+      user:
+        agreement: ڕێکەوتنی خزمەتگوزاری
+        email: ناونیشانی ئیمەیڵ
+        locale: ناوچەیی
+        password: تێپەڕوشە
+      user/account:
+        username: ناوی بەکارهێنەر
+      user/invite_request:
+        text: هۆکار
     errors:
       models:
         account:
           attributes:
             username:
               invalid: تەنها پیت، ژمارە و ژێرەوە
+              reserved: تەرخان کراوە
         status:
           attributes:
             reblog:
               taken: لە بار بوونی هەیە
+        user:
+          attributes:
+            email:
+              blocked: دابینکەرێکی ئیمەیڵی ڕێگەپێنەدراو بەکاردەهێنێت
+              unreachable: پێناچێت بوونی هەبێت
