@@ -254,4 +254,8 @@ module LanguagesHelper
   def valid_locale?(locale)
     locale.present? && SUPPORTED_LOCALES.key?(locale.to_sym)
   end
+
+  def available_locale_or_nil(locale_name)
+    locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
+  end
 end
