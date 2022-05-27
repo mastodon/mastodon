@@ -1,0 +1,62 @@
+/*---------
+MISC TWEAKS
+* rhabarberbarbara.bar DIY cafe from Robotime
+---------*/
+
+/* replace elephant friend with a pair */
+.drawer__inner__mastodon {
+    background: url("../images/cafe/gans.png")
+		no-repeat bottom center / contain !important;
+    @media screen and (min-height: 630px) {
+	background-size: 60% !important;
+	display: block;
+    }
+}
+
+.drawer__inner__mastodon > img {display: none;}
+
+body, .landing-page, .public-layout, .columns-area__panels{
+    background: url("../images/cafe/cafe_inside.jpeg");
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.app-body.layout-multiple-columns {
+    .columns-area {
+    background: url("../images/cafe/cafe_inside.jpeg");
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    }
+}
+
+/* vignette on headers and dropdowns */
+.column-header {box-shadow: inset 0 0 8px 8px rgba(0,0,0,0.1);}
+.column-header__button {background: transparent !important;}
+.column-header__collapsible-inner {box-shadow: inset 0 0 10em 10em rgba(0,0,0,0.1);}
+
+.notification .account {
+    margin: 8px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px #000;
+}
+
+/* mobile */
+@media (max-width: 630px) {
+    .columns-area__panels {
+	background: url("../images/cafe/cafe_inside_mobile.jpg");
+	background-size:  100% auto;
+	background-attachment: fixed;
+	background-position: center;
+    }
+}
+
+.status__action-bar-button.icon-button:nth-child(3):active,
+.status__action-bar-button.icon-button:nth-child(3).active,
+.detailed-status__action-bar .detailed-status__button:nth-child(3) .icon-button:active,
+.detailed-status__action-bar .detailed-status__button:nth-child(3) .icon-button.active,
+.notification__favourite-icon-wrapper .star-icon
+{color: #f9bb00;}

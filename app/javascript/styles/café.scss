@@ -1,0 +1,25 @@
+$action-button-color: #bd6910;
+$highlight-text-color: #20a88f;
+$ui-highlight-color: $highlight-text-color;
+$primary-text-color: #d0c6b3;
+$ui-base-color: rgba(40,18,14,0.85);
+$darker-text-color: #bdaf94;
+$secondary-text-color: #ffebc0;
+
+@import 'application';
+
+@import 'mfc/mastodonFlat';
+@import 'café/palette';
+@import 'café/overrides';
+
+/*@import 'mods/display_breakname';*/
+/*@import 'mods/display_fullname';*/
+/*@import 'mods/display_browserfont';*/
+/*@import 'mods/display_circleavatar';*/
+/*@import 'mods/display_collapsedinteractions';*/
+@import 'mods/display_fadedinteractions';
+/*@import 'mods/display_transparentmedia';*/
+/*@import 'mods/layout_1600px';*/
+@import 'mods/layout_elefriend';
+/*@import 'mods/layout_widercolumns';*/
+/*@import 'mods/layout_mobile_bottombar';*/

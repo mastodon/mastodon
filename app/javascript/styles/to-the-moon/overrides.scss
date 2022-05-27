@@ -1,0 +1,57 @@
+/*---------
+MISC TWEAKS
+* To the moon https://freebirdgames.com/de/to_the_moon/
+---------*/
+
+/* replace elephant friend with a pair */
+.drawer__inner__mastodon {
+    background: url("../images/to-the-moon/pair.png")
+		no-repeat bottom center / contain !important;
+    @media screen and (min-height: 630px) {
+	display: block;
+    }
+}
+
+.drawer__inner__mastodon > img {display: none;}
+
+/* to the moon */
+body, .landing-page, .public-layout, .columns-area__panels{
+    background: url("../images/to-the-moon/ToTheMoon.jpg");
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.app-body.layout-multiple-columns {
+    .columns-area {
+    background: url("../images/to-the-moon/ToTheMoon.jpg");
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    }
+}
+
+/* vignette on headers and dropdowns */
+.column-header {box-shadow: inset 0 0 8px 8px rgba(0,0,0,0.1);}
+.column-header__button {background: transparent !important;}
+.column-header__collapsible-inner {box-shadow: inset 0 0 10em 10em rgba(0,0,0,0.1);}
+
+.notification .account {
+    background: #1b304a;
+    margin: 8px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px #000;
+}
+
+/* mobile */
+@media (max-width: 630px) {
+    .columns-area__panels {
+	background: url("../images/to-the-moon/ToTheMoonMobile.jpg");
+	background-size:  100% auto;
+	background-attachment: fixed;
+	background-position: center;
+    }
+}
+

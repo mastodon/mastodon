@@ -1,0 +1,118 @@
+/*---------
+MISC TWEAKS
+ * infinity bridge
+ * images from artstation.com/natureintheory
+ * !!! Please don't use those images on your website,
+ * !!! I'm still asking for the author's permission
+---------*/
+
+/* replace elephant friend with a flying bird */
+.drawer__inner__mastodon {
+    background: url(https://stardewvalley.net/wp-content/themes/stardewvalley/images/stardew_bird.gif)
+		   no-repeat !important;
+    animation: slide 18s linear reverse infinite !important;
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;                 /* Chrome                         */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+    @media screen and (min-height: 630px) {
+	display: block;
+    }
+}
+.drawer__inner__mastodon > img {display: none;}
+
+@keyframes slide {
+    0%   {background-position: -54px 0%;}
+    100% {background-position: 1014px 0%;}
+}
+
+// @-webkit-keyframes slide {
+//     0%   {background-position: 0px 0%;}
+//     100% {background-position: 1014px 0%;}
+// }
+
+// @keyframes slide {
+//     0% {
+// 	left:calc(0% - 54px) ;
+//     }
+//     100% {
+// 	left: calc(100% - 100px);
+//     }
+// }
+
+body, .landing-page, .public-layout {
+    background: url('../images/stardew-valley/parallax3b.png'),
+    url('../images/stardew-valley/parallax3a.png'),
+    url('https://stardewvalley.net/wp-content/themes/stardewvalley/images/parallax/parallax1.png') !important;
+    background-size: auto 1000px !important;
+    background-repeat: repeat-x !important;
+    background-attachment: fixed !important;
+    width: 100% !important;
+    position: absolute !important;
+    animation: slide 80s linear infinite !important;
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;                 /* Chrome                         */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+}
+
+body.app-body.layout-multiple-columns {
+    .columns-area {
+	background: url('../images/stardew-valley/parallax4.png');
+	background-attachment: fixed;
+	background-size:     cover;
+	background-repeat:   no-repeat;
+	background-position: center center;
+	image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+	image-rendering: -moz-crisp-edges;          /* Firefox                        */
+	image-rendering: -o-crisp-edges;            /* Opera                          */
+	image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+	image-rendering: pixelated;                 /* Chrome                         */
+	image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+	-ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+    }
+}
+
+.columns-area__panels {
+    background: url('../images/stardew-valley/parallax4.png');
+    background-attachment: fixed;
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;                 /* Chrome                         */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+}
+
+/* vignette on headers and dropdowns */
+.column-header {box-shadow: inset 0 0 8px 8px rgba(0,0,0,0.1);}
+.column-header__button {background: transparent !important;}
+.column-header__collapsible-inner {box-shadow: inset 0 0 10em 10em rgba(0,0,0,0.1);}
+
+/* mobile */
+// @media (max-width: 630px) {
+//     .columns-area {
+// 	background: url('https://stardewvalley.net/wp-content/themes/stardewvalley/images/parallax/parallax7.png'),
+//     url('https://stardewvalley.net/wp-content/themes/stardewvalley/images/parallax/parallax6.png'),
+//     url('https://stardewvalley.net/wp-content/themes/stardewvalley/images/parallax/parallax5.png'),
+//     url('https://stardewvalley.net/wp-content/themes/stardewvalley/images/parallax/parallax4.png'),
+//     url('https://stardewvalley.net/wp-content/themes/stardewvalley/images/parallax/parallax2.png');
+//     background-size:     cover;
+//     background-repeat:   no-repeat;
+//     background-position: center center;
+//     }
+// }
+
+.notification__filter-bar, .column-subheading {
+    background: #fcd084;
+}

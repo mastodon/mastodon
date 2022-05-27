@@ -1,0 +1,61 @@
+/*------------------------------------------------------------------------------
+* DEFINE COLOR PALETTE
+*
+* Choose the CSS Variables that will be applied to recolor elements.
+* The current format is to use hex codes, e.g. #00FF00.
+*
+* A future refactor to use rgb() instead may allow transparency mods
+* via using these variables with rgba(). Hex codes currently do not
+* work with rgba(), so no transparency mods are included except for
+* those defined in absolute terms (i.e., non-variable colors).
+*
+* Foreground Colors:
+*            --bg: | Background for foreground elements.
+*          --text: | A color that stands out against bg.
+*      --textBold: | A color that stands out strongly against bg.
+*     --textMuted: | A color that stands out slightly against bg.
+*
+* Background Colors:
+*        --bgPage: | Background for non-foreground elements.
+*      --textPage: | A color that stands out against bgPage.
+*  --textPageBold: | A color that stands out strongly against bgPage.
+* --textPageMuted: | A color that stands out slightly against bgPage.
+*
+* Highlights Colors:
+*        --bgHead: | Background for column headers.
+*      --textHead: | A color that stands out (strongly) against bgHead.
+*        --accent: | An accent color for links and buttons.
+*    --accentText: | A color that stands out (strongly) against accent.
+*
+* Palette advisories for choosing colors:
+*   - Consider using an off-white or off-black for text tones,
+*     but not necessary as long as there is sufficient contrast.
+*   - Bold colors are highly recommended to be strong colors,
+*     like pure white or pure black.
+*   - Muted colors can be off-grey or any mid-tone with slight contrast.
+*   - It might be best to base the background palette on a slightly
+*     darker or lighter version of the foreground palette, but
+*     this is no longer strictly necessary; you may use mixed palettes.
+*     It is now possible to use a dark bgPage and light bg, or vice-versa.
+------------------------------------------------------------------------------*/
+
+/* black cat
+ * palette author https://github.com/rararwg/
+ */
+
+:root {
+--bg: rgba(70,94,140,0.1);
+--text: rgba(242,238,225,0.95);
+--textBold: rgb(242, 233, 216);
+--textMuted: rgb(96,105,132);
+
+--bgPage: rgba(86, 93, 114,0.95);
+--textPage: var(--text);
+--textPageBold: var(--textBold);
+--textPageMuted: var(--textMuted);
+
+--bgHead: #313543;
+--textHead: var(--textBold);
+--accent: #F2D16D;
+--accentText: var(--textBold);
+}
