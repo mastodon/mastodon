@@ -1036,10 +1036,12 @@ en:
       appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
       appeals:
         submit: Submit appeal
+      approve_appeal: Approve appeal
       associated_report: Associated report
       created_at: Dated
       description_html: These are actions taken against your account and warnings that have been sent to you by the staff of %{instance}.
       recipient: Addressed to
+      reject_appeal: Reject appeal
       status: 'Post #%{id}'
       status_removed: Post already removed from system
       title: "%{action} from %{date}"
@@ -1355,6 +1357,11 @@ en:
   reports:
     errors:
       invalid_rules: does not reference valid rules
+  rss:
+    content_warning: 'Content warning:'
+    descriptions:
+      account: Public posts from @%{acct}
+      tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
     over_total_limit: You have exceeded the limit of %{limit} scheduled posts
@@ -1513,6 +1520,9 @@ en:
     pinned: Pinned post
     reblogged: boosted
     sensitive_content: Sensitive content
+  strikes:
+    errors:
+      too_late: It is too late to appeal this strike
   tags:
     does_not_match_previous_name: does not match the previous name
   terms:
@@ -1523,7 +1533,7 @@ en:
       <ul>
         <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
         <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any sensitive information over Mastodon.</em></li>
         <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
@@ -1594,7 +1604,7 @@ en:
 
       <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
 
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+      <p>This document is CC-BY-SA. It was last updated May 26, 2022.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"

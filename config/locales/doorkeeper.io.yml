@@ -4,7 +4,7 @@ io:
     attributes:
       doorkeeper/application:
         name: Nomo
-        redirect_uri: URI di plussendo
+        redirect_uri: Ridirektoligilo
         scopes: Skopi
         website: Apliksito
     errors:
@@ -40,67 +40,67 @@ io:
         delete: Efacez
         empty: Vu ne havas apliki.
         name: Nomo
-        new: New Application
+        new: Nova apliko
         scopes: Skopi
         show: Montrez
         title: Vua apliki
       new:
-        title: New Application
+        title: Nova apliko
       show:
         actions: Agi
-        application_id: Application Id
+        application_id: Klientoklefo
         callback_urls: Callback urls
         scopes: Skopi
-        secret: Secret
+        secret: Klientosekreto
         title: 'Apliko: %{name}'
     authorizations:
       buttons:
-        authorize: Permisez
+        authorize: Yurizar
         deny: Despermisez
       error:
         title: Eroro eventis
       new:
-        prompt_html: "%{client_name} volas permiso por acesar vua konti. Ol esas externa apliko. <strong>Se vu ne fidas, lore vu debas ne permisar.</strong>"
+        prompt_html: "%{client_name} volas permiso por acesar vua konti. Ol esas externa softwaro. <strong>Se vu ne fidas, lore vu debas ne yurizar.</strong>"
         review_permissions: Kontrolez permisi
-        title: Permiso bezonesas
+        title: Yurizo bezonesas
       show:
-        title: Kopiez ca permisnumero e glutinez adsur la apliko.
+        title: Kopiez ca yurizkodexo e glutinez a la apliko.
     authorized_applications:
       buttons:
         revoke: Deaprobez
       confirmations:
         revoke: Ka vu esas certa?
       index:
-        authorized_at: Permisesis ye %{date}
-        description_html: Co esas apliki quo povas acesar vua konto per API. Se existas apliki quon vu ne rikonocas hike, o apliko misfuncionas, vu povas desaprobar ola aceso.
+        authorized_at: Yurizesis ye %{date}
+        description_html: Co esas softwari quo povas acesar vua konto per API. Se existas softwari quon vu ne rikonocas hike, o softwari misfuncionas, vu povas desaprobar ola aceso.
         last_used_at: Antee uzesis ye %{date}
         never_used: Nulaloke uzesas
         scopes: Permisi
         superapp: Interna
-        title: Vua permisita apliki
+        title: Vua yurizita softwari
     errors:
       messages:
-        access_denied: Resursproprietanto o permisservilo refuzis la demando.
-        credential_flow_not_configured: Resursproprietantpasvortidentesesofluo faliis pro ke Doorkeeper.configure.resource_owner_from_credentials ne ajustesis.
+        access_denied: Moyenproprietanto o yurizservilo refuzis la demando.
+        credential_flow_not_configured: Moyenproprietantpasvortidentesesofluo faliis pro ke Doorkeeper.configure.resource_owner_from_credentials ne ajustesis.
         invalid_client: Klientpermiso falias pro nesavita kliento, neinkluzita klientpermiso o nesuportita permismetodo.
-        invalid_grant: Provizita permiso esis nevalida, expiris, deaprobesis, ne parigas uzita ridirektoligilo dum permisdemando o facesis a altra kliento.
+        invalid_grant: Provizita yurizo esis nevalida, expiris, deaprobesis, ne parigas uzita ridirektoligilo dum yurizdemando o facesis a altra kliento.
         invalid_redirect_uri: La inkluzita ridirektoligilo esas nevalida.
         invalid_request:
           missing_param: 'Bezonita parametro: %{value}.'
-          request_not_authorized: Demando bezonas permisesar. Bezonita parametro por permisar demando ne existas o esas nevalida.
+          request_not_authorized: Demando bezonas yurizesar. Bezonita parametro por yurizar demando ne existas o esas nevalida.
           unknown: La demando ne havas bezonita parametro, inkluzas nesuportita parametro o malformesas.
-        invalid_resource_owner: Provizita resursproprietantidenteso esas nevalida o resursproprietanto ne existas
+        invalid_resource_owner: Provizita Moyenproprietantidenteso esas nevalida o moyenproprietanto ne existas
         invalid_scope: La demandita skopo esas nevalida, nesavata o malformata.
         invalid_token:
           expired: La acesficho expiris
           revoked: Acesficho deaprobesis
           unknown: Acesficho esas nevalida
-        resource_owner_authenticator_not_configured: Resursproprietanto falias trovar pro ke Doorkeeper.configure.resource_owner_authenticator ne ajustesis.
-        server_error: Permisservilo trovas neanticipata situeso quo preventas ol finar la demando.
-        temporarily_unavailable: Permisservilo nu ne povas direktar la demando pro provizora eceso o servilmanteno.
-        unauthorized_client: La kliento ne permisesis agar ca demando per ca metodo.
-        unsupported_grant_type: Permisprovizontipo ne suportesas da permisservilo.
-        unsupported_response_type: La permisservilo ne suportas ca responsotipo.
+        resource_owner_authenticator_not_configured: Moyenproprietanto falias trovar pro ke Doorkeeper.configure.resource_owner_authenticator ne ajustesis.
+        server_error: Yurizservilo trovas neanticipata situeso quo preventas ol finar la demando.
+        temporarily_unavailable: Yurizservilo nu ne povas direktar la demando pro provizora eceso o servilmanteno.
+        unauthorized_client: La kliento ne yurizesis agar ca demando per ca metodo.
+        unsupported_grant_type: Yurizprovizontipo ne suportesas da yurizservilo.
+        unsupported_response_type: La yurizservilo ne suportas ca responstipo.
     flash:
       applications:
         create:
@@ -111,7 +111,7 @@ io:
           notice: Apliko novigesis.
       authorized_applications:
         destroy:
-          notice: Apliko aprobesis.
+          notice: Apliko deaprobesis.
     grouped_scopes:
       access:
         read: Lekto-nura aceso
@@ -136,7 +136,7 @@ io:
         mutes: Silencigati
         notifications: Avizi
         push: Pulsavizi
-        reports: Raportigi
+        reports: Raporti
         search: Trovez
         statuses: Posti
     layouts:
@@ -145,14 +145,14 @@ io:
           applications: Apliki
           oauth2_provider: Provizanto di OAuth2
       application:
-        title: Permiso di OAuth bezonesas
+        title: Yurizo di OAuth bezonesas
     scopes:
       admin:read: lektez omna informi di la servilo
       admin:read:accounts: lektez privata informo di omna konti
-      admin:read:reports: lektez privata informo di omna raportigo e raportigita konti
+      admin:read:reports: lektez privata informo di omna raporti e raportizita konti
       admin:write: modifikez omna informi di la servilo
       admin:write:accounts: jerez konti
-      admin:write:reports: jerez raportigi
+      admin:write:reports: jerez raporti
       crypto: uzas intersequanta chifro
       follow: follow, block, unblock and unfollow accounts
       push: ganez vua pulsavizi
@@ -178,8 +178,8 @@ io:
       write:filters: kreez filtrili
       write:follows: sequez personi
       write:lists: kreez listi
-      write:media: chargez medifaili
+      write:media: adchargez mediifaili
       write:mutes: silencigez personi e konversi
       write:notifications: efacez vua avizi
-      write:reports: raportigez altra omni
+      write:reports: raportizez altra omni
       write:statuses: publikigez posti

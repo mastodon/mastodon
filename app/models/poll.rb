@@ -39,13 +39,12 @@ class Poll < ApplicationRecord
 
   before_validation :prepare_options, if: :local?
   before_validation :prepare_votes_count
-
-  after_initialize :prepare_cached_tallies
+  before_validation :prepare_cached_tallies
 
   after_commit :reset_parent_cache, on: :update
 
   def loaded_options
-    options.map.with_index { |title, key| Option.new(self, key.to_s, title, show_totals_now? ? cached_tallies[key] : nil) }
+    options.map.with_index { |title, key| Option.new(self, key.to_s, title, show_totals_now? ? (cached_tallies[key] || 0) : nil) }
   end
 
   def possibly_stale?
