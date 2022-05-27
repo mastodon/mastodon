@@ -117,6 +117,50 @@ class LocalSettingsPage extends React.PureComponent {
             <span className='hint'><FormattedMessage id='settings.notifications.favicon_badge.hint' defaultMessage="Add a badge for unread notifications to the favicon" /></span>
           </LocalSettingsPageItem>
         </section>
+
+        <section>
+          <h2><FormattedMessage id='settings.status_icons' defaultMessage='Toot icons' /></h2>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'language']}
+            id='mastodon-settings--status-icons-language'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_language' defaultMessage='Language indicator' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'reply']}
+            id='mastodon-settings--status-icons-reply'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_reply' defaultMessage='Reply indicator' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'local_only']}
+            id='mastodon-settings--status-icons-local_only'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_local_only' defaultMessage='Local-only indicator' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'media']}
+            id='mastodon-settings--status-icons-media'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_media' defaultMessage='Media and poll indicators' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['status_icons', 'visibility']}
+            id='mastodon-settings--status-icons-visibility'
+            onChange={onChange}
+          >
+            <FormattedMessage id='settings.status_icons_visibility' defaultMessage='Toot privacy indicator' />
+          </LocalSettingsPageItem>
+        </section>
         <section>
           <h2><FormattedMessage id='settings.layout_opts' defaultMessage='Layout options' /></h2>
           <LocalSettingsPageItem

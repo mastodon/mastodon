@@ -8,6 +8,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import IconButton from './icon_button';
 import VisibilityIcon from './status_visibility_icon';
 import Icon from 'flavours/glitch/components/icon';
+import { languages } from 'flavours/glitch/util/initial_state';
 
 //  Messages for use with internationalization stuff.
 const messages = defineMessages({
@@ -22,6 +23,23 @@ const messages = defineMessages({
   localOnly: { id: 'status.local_only', defaultMessage: 'Only visible from your instance' },
 });
 
+const LanguageIcon = ({ language }) => {
+  if (!languages) return null;
+
+  const lang = languages.find((lang) => lang[0] === language);
+  if (!lang) return null;
+
+  return (
+    <span className='text-icon' title={`${lang[2]} (${lang[1]})`} aria-hidden='true'>
+      {lang[0].toUpperCase()}
+    </span>
+  );
+};
+
+LanguageIcon.propTypes = {
+  language: PropTypes.string.isRequired,
+};
+
 export default @injectIntl
 class StatusIcons extends React.PureComponent {
 
@@ -33,6 +51,7 @@ class StatusIcons extends React.PureComponent {
     directMessage: PropTypes.bool,
     setCollapsed: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    settings: ImmutablePropTypes.map.isRequired,
   };
 
   //  Handles clicks on collapsed button
@@ -82,12 +101,14 @@ class StatusIcons extends React.PureComponent {
       collapsible,
       collapsed,
       directMessage,
+      settings,
       intl,
     } = this.props;
 
     return (
       <div className='status__info__icons'>
-        {status.get('in_reply_to_id', null) !== null ? (
+        {settings.get('language') && status.get('language') && <LanguageIcon language={status.get('language')} />}
+        {settings.get('reply') && status.get('in_reply_to_id', null) !== null ? (
           <Icon
             className='status__reply-icon'
             fixedWidth
@@ -96,16 +117,16 @@ class StatusIcons extends React.PureComponent {
             title={intl.formatMessage(messages.inReplyTo)}
           />
         ) : null}
-        {status.get('local_only') &&
+        {settings.get('local_only') && status.get('local_only') &&
           <Icon
             fixedWidth
             id='home'
             aria-hidden='true'
             title={intl.formatMessage(messages.localOnly)}
           />}
-        { !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon)) }
-        {!directMessage && <VisibilityIcon visibility={status.get('visibility')} />}
-        {collapsible ? (
+        {settings.get('media') && !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon))}
+        {settings.get('visibility') && !directMessage && <VisibilityIcon visibility={status.get('visibility')} />}
+        {collapsible && (
           <IconButton
             className='status__collapse-button'
             animate
@@ -118,7 +139,7 @@ class StatusIcons extends React.PureComponent {
             icon='angle-double-up'
             onClick={this.handleCollapsedClick}
           />
-        ) : null}
+        )}
       </div>
     );
   }

@@ -100,6 +100,7 @@ class Status extends ImmutablePureComponent {
     scrollKey: PropTypes.string,
     deployPictureInPicture: PropTypes.func,
     usingPiP: PropTypes.bool,
+    settings: ImmutablePropTypes.map.isRequired,
   };
 
   state = {
@@ -755,6 +756,7 @@ class Status extends ImmutablePureComponent {
               collapsed={isCollapsed}
               setCollapsed={setCollapsed}
               directMessage={!!otherAccounts}
+              settings={settings.get('status_icons')}
             />
           </header>
           <StatusContent

@@ -54,6 +54,13 @@ const initialState = ImmutableMap({
     favicon_badge : false,
     tab_badge     : true,
   }),
+  status_icons : ImmutableMap({
+    language:   true,
+    reply:      true,
+    local_only: true,
+    media:      true,
+    visibility: true,
+  }),
 });
 
 const hydrate = (state, localSettings) => state.mergeDeep(localSettings);
