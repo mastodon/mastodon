@@ -1505,14 +1505,14 @@ zh-TW:
         <li><em>基本帳號資訊</em>：若您於此伺服器註冊，您可能被要求輸入使用者帳號、e-mail 地址、以及一組密碼。您也可能輸入額外個人資料資訊例如顯示名稱及自我描述，並且上傳大頭貼照片和橫幅圖片。使用者帳號、顯示名稱、自我描述、大頭貼照片和橫幅圖片將永遠為公開顯示。</li>
         <li><em>嘟文、跟隨中以及其他公開資訊</em>：您跟隨中的使用者列表以及跟隨您的使用者列表是公開的。當您發送一則訊息，資料、時間戳、以及您用以發送訊息的應用程式將會被儲存。訊息中可能夾帶多媒體附件，例如圖片或影音。公開和非公共時間軸顯示之嘟文將可被公開存取。當您於個人資料頁面展示特色嘟文時，其將也成為公開可取得之資訊。您的嘟文將被發送至您的跟隨者、某些情況下這代表它們將被撒送至其他不同的伺服器，並儲存於該處。當您刪除嘟文時，刪除訊息也將被發送至您的跟隨者。將其他嘟文轉嘟或加入最愛之動作為公開資訊。</li>
         <li><em>私訊以及僅限跟隨者之嘟文</em>：所有的嘟文儲存及處理於伺服器上。僅限跟隨者之嘟文將被發送至您的跟隨者以及被提及之帳號，私訊嘟文將僅被發送至被提及之帳號。某些情況下這代表它們將被撒送至其他不同的伺服器，並儲存於該處。 我們致力於限制這些嘟文僅被獲得授權之使用者存取，然而其他某些伺服器可能無法做到。因此，檢查您跟隨者所在之伺服器。您可以於設定中切換手動核准或拒絕跟隨者的開關。<em>請注意，伺服器之營運者以及任何接收嘟文之伺服器皆有可能檢視訊息</em>，此外，接收方也可能截圖、複製嘟文、或以其他方式重新分享。<em>請不要於 Mastodon 分享任何敏感資訊。</em></li>
-        <li><em>IP 地址以及其他描述資料</em>：當您登入時，我們紀錄您登入來源之 IP 地址，以及您所用以登入之應用程式名稱。所有以登入之工作階段皆可供您於設定中檢視及撤銷。最近的 IP 地址將被保存至多 12 個月。我們也可能保留伺服器日誌，其中包含對於我們伺服器之所有請求的來源 IP 地址。</li>
+        <li><em>IP 地址以及其他描述資料</em>：當您登入時，我們紀錄您登入來源之 IP 地址，以及您所用以登入之應用程式名稱。所有以登入之工作階段皆可供您於設定中檢視及撤銷。最近的 IP 地址將被保存至多 12 個月。我們也可能保留伺服器紀錄檔，其中包含對於我們伺服器之所有請求的來源 IP 地址。</li>
       </ul>
 
       <hr class="spacer" />
 
       <h3 id="use">我們將您的資訊用以何種目的？</h3>
 
-      <p>任何我們從您蒐集之資料將可能用以以下方式：</p>
+      <p>我們從您那裡蒐集而來的資訊都可能作為以下用途：</p>
 
       <ul>
         <li>提供 Mastodon 核心功能。您僅能於登入時與其他人的內容互動及發送自己的嘟文。舉例來說，您可以透過跟隨其他人以檢視您自己個人化的首頁時間軸上他們的嘟文。</li>
@@ -1524,60 +1524,63 @@ zh-TW:
 
       <h3 id="protect">我們如何保護您的資訊？</h3>
 
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+      <p>當您輸入、遞交或存取您的個人資訊時，我們會實施各種安全措施來維護您個人資訊的安全。除此之外，您的瀏覽器工作階段與您應用程式及 API 間的流量都以 SSL 進行保護，您的密碼也使用了相當強的單向演算法來雜湊。您可以啟用兩步驟驗證來進一步強化您帳號的安全程度。</p>
 
       <hr class="spacer" />
 
-      <h3 id="data-retention">What is our data retention policy?</h3>
+      <h3 id="data-retention">我們的資料保留政策是什麼？</h3>
 
-      <p>We will make a good faith effort to:</p>
+      <p>我們將致力於：</p>
 
       <ul>
-        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+        <li>保留包含所有對此伺服器請求的 IP 位置的伺服器紀錄檔，只要此類紀錄檔不保留超過 90 天。</li>
+        <li>保留與註冊使用者相關的 IP 位置不超過 12 個月。</li>
       </ul>
 
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+      <p>您可以請求並下載您內容的封存檔案，包含了您的貼文、多媒體附件、大頭貼與封面圖片。</p>
 
-      <p>You may irreversibly delete your account at any time.</p>
+      <p>您隨時都能不可逆地刪除您的帳號。</p>
 
       <hr class="spacer"/>
 
-      <h3 id="cookies">Do we use cookies?</h3>
+      <h3 id="cookies">我們會使用 cookies 嗎？</h3>
 
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+      <p>是的。Cookies 是網站或其服務提供者透過您的網路瀏覽器（若您允許）傳送到您電腦硬碟的小檔案。這些 cookies 讓網站可以識別您的瀏覽器，以及如果您有註冊帳號的話，同時關聯到您已註冊的帳號。</p>
 
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+      <p>我們使用 cookies 來了解並儲存您的偏好設定以供未來存取。</p>
 
       <hr class="spacer" />
 
-      <h3 id="children">Site usage by children</h3>
+      <h3 id="disclose">我們會向外界揭露任何資訊嗎？</h3>
 
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+      <p>我們不會出售、交易或是以其他方式向外界傳輸您的個人身份資料。這不包含協助我們營運網站、開展業務或是服務您的可信第三方，只要這些第三方同意對這些資訊保密。當我們認為發佈您的資訊是為了遵守法律、執行我們網站的政策、或是保護我們或其他人的權利、財產或安全時，我們也可能會發佈您的資訊。</p>
 
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+      <p>您的公開內容可能會網路中其他伺服器下載。您的公開與僅追蹤者貼文將會遞送到您的追蹤者所在的伺服器，直接訊息則會遞送到接收者所在的伺服器，前提是這些追蹤者或接收者在不同的伺服器上。</p>
 
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+      <p>當您授權應用程式使用您的帳號時，根據您所批准的授權範圍，其可能會存取您的公開個人檔案資訊、您的追蹤清單、您的追蹤者、您的清單、您所有的貼文以及您的收藏。應用程式永遠無法存取您的電子郵件地址或密碼。</p>
+
 
       <hr class="spacer" />
 
-      <h3 id="changes">Changes to our Privacy Policy</h3>
+      <h3 id="children">兒童使用網站</h3>
 
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+      <p>如果伺服器位於歐盟或歐洲經濟區中：我們的網站、產品與服務均供至少 16 歲的人使用。如果您小於 16 歲，根據 GDPR（<a href="https://zh.wikipedia.org/wiki/歐盟一般資料保護規範">一般資料保護規範</a>）的要求，請勿使用此網站。</p>
 
-      <p>This document is CC-BY-SA. It was last updated May 26, 2022.</p>
+      <p>若此伺服器位於美國：我們的網站、產品與服務均供至少 13 歲的人使用。如果您小於 13 歲，根據 COPPA（<a href="https://zh.wikipedia.org/zh-tw/%E5%84%BF%E7%AB%A5%E5%9C%A8%E7%BA%BF%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4%E6%B3%95">兒童線上隱私保護法</a>）的要求，請勿使用此忘站。</p>
 
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+
+      <p>如果此伺服器位於其他司法管轄區，則法律要求可能會有所不同。</p>
+
+
+      <hr class="spacer" />
+
+      <h3 id="changes">我們隱私權政策的變更</h3>
+
+      <p>若我們決定變更我們的隱私權政策，我們將會在此頁面張貼那些變更。</p>
+
+      <p>此文件以 CC-BY-SA 授權。最後更新時間為 2022 年 5 月 26 日。</p>
+
+      <p>最初改編自 <a href="https://github.com/discourse/discourse">Discourse 隱私權政策</a>.</p>
     title: "%{instance} 使用條款和隱私權政策"
   themes:
     contrast: Mastodon（高對比）
