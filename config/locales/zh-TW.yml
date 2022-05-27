@@ -1504,25 +1504,25 @@ zh-TW:
       <ul>
         <li><em>基本帳號資訊</em>：若您於此伺服器註冊，您可能被要求輸入使用者帳號、e-mail 地址、以及一組密碼。您也可能輸入額外個人資料資訊例如顯示名稱及自我描述，並且上傳大頭貼照片和橫幅圖片。使用者帳號、顯示名稱、自我描述、大頭貼照片和橫幅圖片將永遠為公開顯示。</li>
         <li><em>嘟文、跟隨中以及其他公開資訊</em>：您跟隨中的使用者列表以及跟隨您的使用者列表是公開的。當您發送一則訊息，資料、時間戳、以及您用以發送訊息的應用程式將會被儲存。訊息中可能夾帶多媒體附件，例如圖片或影音。公開和非公共時間軸顯示之嘟文將可被公開存取。當您於個人資料頁面展示特色嘟文時，其將也成為公開可取得之資訊。您的嘟文將被發送至您的跟隨者、某些情況下這代表它們將被撒送至其他不同的伺服器，並儲存於該處。當您刪除嘟文時，刪除訊息也將被發送至您的跟隨者。將其他嘟文轉嘟或加入最愛之動作為公開資訊。</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any sensitive information over Mastodon.</em></li>
-        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+        <li><em>私訊以及僅限跟隨者之嘟文</em>：所有的嘟文儲存及處理於伺服器上。僅限跟隨者之嘟文將被發送至您的跟隨者以及被提及之帳號，私訊嘟文將僅被發送至被提及之帳號。某些情況下這代表它們將被撒送至其他不同的伺服器，並儲存於該處。 我們致力於限制這些嘟文僅被獲得授權之使用者存取，然而其他某些伺服器可能無法做到。因此，檢查您跟隨者所在之伺服器。您可以於設定中切換手動核准或拒絕跟隨者的開關。<em>請注意，伺服器之營運者以及任何接收嘟文之伺服器皆有可能檢視訊息</em>，此外，接收方也可能截圖、複製嘟文、或以其他方式重新分享。<em>請不要於 Mastodon 分享任何敏感資訊。</em></li>
+        <li><em>IP 地址以及其他描述資料</em>：當您登入時，我們紀錄您登入來源之 IP 地址，以及您所用以登入之應用程式名稱。所有以登入之工作階段皆可供您於設定中檢視及撤銷。最近的 IP 地址將被保存至多 12 個月。我們也可能保留伺服器日誌，其中包含對於我們伺服器之所有請求的來源 IP 地址。</li>
       </ul>
 
       <hr class="spacer" />
 
-      <h3 id="use">What do we use your information for?</h3>
+      <h3 id="use">我們將您的資訊用以何種目的？</h3>
 
-      <p>Any of the information we collect from you may be used in the following ways:</p>
+      <p>任何我們從您蒐集之資料將可能用以以下方式：</p>
 
       <ul>
-        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+        <li>提供 Mastodon 核心功能。您僅能於登入時與其他人的內容互動及發送自己的嘟文。舉例來說，您可以透過跟隨其他人以檢視您自己個人化的首頁時間軸上他們的嘟文。</li>
+        <li>協助管理社群，例如將您之 IP 地址與其他已知地址進行比較用以決定是否違反伺服器規則。</li>
+        <li>您提供之 email 地址將用以寄送您資訊、其他人與您內容互動相關之通知、或您自己的訊息，並且回覆詢問，且/或其他請求或問題。</li>
       </ul>
 
       <hr class="spacer" />
 
-      <h3 id="protect">How do we protect your information?</h3>
+      <h3 id="protect">我們如何保護您的資訊？</h3>
 
       <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
 
