@@ -1524,6 +1524,87 @@ hu:
   tags:
     does_not_match_previous_name: nem illeszkedik az előző névvel
   terms:
+    body_html: |
+      <h2>Adatvédelmi nyilatkozat</h2>
+      <h3 id="collect">Milyen adatokat gyűjtünk?</h3>
+
+      <ul>
+      <li><em>Alapvető fiókadatok</em>: Ha regisztrálsz ezen a szerveren, kérhetünk tőled felhasználói nevet, e-mail címet és jelszót is. Megadhatsz magadról egyéb profil információt, megjelenítendő nevet, bemutatkozást, feltölthetsz profilképet, háttérképet. A felhasználói neved, megjelenítendő neved, bemutatkozásod, profil képed és háttér képed mindig nyilvánosak mindenki számára.</li>
+      <li><em>Bejegyzések, követések, más nyilvános adatok</em>: Az általad követett emberek listája nyilvános. Ugyanez igaz a te követőidre is. Ha küldesz egy üzenetet, ennek az idejét eltároljuk azzal az alkalmazással együtt, melyből az üzenetet küldted. Az üzenetek tartalmazhatnak média csatolmányt, képeket, videókat. A nyilvános bejegyzések bárki számára elérhetőek. Ha egy bejegyzést kiemelsz a profilodon, az is nyilvánossá válik. Amikor a bejegyzéseidet a követőidnek továbbítjuk, a bejegyzés más szerverekre is átkerülhet, melyeken így másolatok képződhetnek. Ha törölsz bejegyzéseket, ez is továbbítódik a követőid felé. A megtolás (reblog) és kedvencnek jelölés művelete is mindig nyilvános.</li>
+      <li><em>Közvetlen üzenetek és csak követőknek szánt bejegyzések</em>: Minden bejegyzés a szerveren tárolódik. A csak követőknek szánt bejegyzéseket a követőidnek és az ezekben megemlítetteknek továbbítjuk, míg a közvetlen üzeneteket kizárólag az ebben megemlítettek kapják. Néhány esetben ez azt jelenti, hogy ezek más szerverekre is továbbítódnak, így ott másolatok keletkezhetnek. Jóhiszeműen feltételezzük, hogy más szerverek is hasonlóan járnak el, mikor ezeket az üzeneteket csak az arra jogosultaknak mutatják meg. Ugyanakkor ez nem feltétlenül teljesül. Érdemes ezért megvizsgálni azokat a szervereket, melyeken követőid vannak. Be tudod állítani, hogy minden követési kérelmet jóvá kelljen hagynod. <em>Tartsd észben, hogy a szerver üzemeltetői láthatják az üzeneteket</em>, illetve a fogadók képernyőképet, másolatot készíthetnek belőlük, vagy újraoszthatják őket. <em>Ne ossz meg érzékeny információt a Mastodon hálózaton!</em></li>
+      <li><em>IP címek és egyéb metaadatok</em>: Bejelentkezéskor letároljuk a használt böngésződet és IP címedet. Minden rögzített  munkamenet elérhető és visszavonható a beállítások között. Az utoljára rögzített IP címet maximum 12 hónapig tároljuk. Egyéb szerver logokat is megtarthatunk, melyek HTTP kérésenként is tárolhatják az IP címedet.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Mire használjuk az adataidat?</h3>
+
+      <p>Bármely tőled begyűjtött adatot a következő célokra használhatjuk fel:</p>
+
+      <ul>
+      <li>Mastodon alapfunkcióinak biztosítása: Csak akkor léphetsz kapcsolatba másokkal, ha be vagy jelentkezve. Pl. követhetsz másokat a saját, személyre szabott idővonaladon.</li>
+      <li>Közösségi moderáció elősegítése: Pl. IP címek összehasonlítása másokéval, hogy kiszűrjük a kitiltások megkerülését.</li>
+      <li>Kapcsolattartás veled: Az általad megadott e-mail címen infókat, értesítéseket küldünk mások interakcióiról, kérésekről, kérdésekről.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Hogyan védjük az adataidat?</h3>
+
+      <p>Üzemben tartunk néhány biztonsági rendszert, hogy megvédjük a személyes adataidat, amikor eléred vagy karbantartod ezeket. Többek között a böngésződ munkamenete, a szerver oldal, valamint a böngésző közötti teljes kommunikáció SSL-lel van titkosítva, a jelszavadat pedig erős, egyirányú algoritmussal hash-eljük. Kétlépcsős azonosítást is bekapcsolhatsz, hogy még biztonságosabbá tedd a fiókodhoz való hozzáférést.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Mik az adatmegőrzési szabályaink?</h3>
+
+      <p>Mindent megteszünk, hogy:</p>
+
+      <ul>
+      <li>A szerver logokat, melyek kérésenként tartalmazzák a felhasználó IP címét maximum 90 napig tartsuk meg.</li>
+      <li>A regisztrált felhasználókat IP címeikkel összekötő adatokat maximum 12 hónapig tartsuk meg.</li>
+      </ul>
+
+      <p>Kérhetsz mentést minden tárolt adatodról, bejegyzésedről, média fájlodról, profil- és háttér képedről.</p>
+
+      <p>Bármikor visszaállíthatatlanul le is törölheted a fiókodat.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Használunk sütiket?</h3>
+
+      <p>Igen. A sütik pici állományok, melyeket az oldalunk a böngésződön keresztül a háttértáradra rak, ha engedélyezed ezt. Ezek a sütik teszik lehetővé, hogy az oldalunk felismerje a böngésződet, és ha regisztráltál, hozzá tudjon kötni a fiókodhoz.</p>
+
+      <p>Arra is használjuk a sütiket, hogy elmenthessük a beállításaidat egy következő látogatás céljából.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Átadunk bármilyen adatot harmadik személynek?</h3>
+
+      <p>Az azonosításodra alkalmazható adatokat nem adjuk el, nem kereskedünk vele, nem adjuk át külső szereplőnek. Ez nem foglalja magában azon harmadik személyeket, aki az üzemeltetésben, felhasználók kiszolgálásban és a tevékenységünkben segítenek, de csak addig, amíg ők is elfogadják, hogy ezeket az adatokat bizalmasan kezelik. Akkor is átadhatjuk ezeket az adatokat, ha erre hitünk szerint törvény kötelez minket, ha betartatjuk az oldalunk szabályzatát vagy megvédjük a saját vagy mások személyiségi jogait, tulajdonát, biztonságát.</p>
+
+      <p>A nyilvános tartalmaidat más hálózatban lévő szerverek letölthetik. A nyilvános és csak követőknek szánt bejegyzéseid olyan szerverekre is elküldődnek, melyeken követőid vannak. A közvetlen üzenetek is átkerülnek a címzettek szervereire, ha ők más szerveren regisztráltak.</p>
+
+      <p>Ha felhatalmazol egy alkalmazást, hogy használja a fiókodat, a jóváhagyott hatásköröktől függően ez elérheti a nyilvános profiladataidat, a követettjeid listáját, a követőidet, listáidat, bejegyzéseidet és kedvenceidet is. Ezek az alkalmazások ugyanakkor sosem érhetik el a jelszavadat és e-mail címedet.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Az oldal gyerekek általi használata</h3>
+
+      <p>Ha ez a szerver az EU-ban vagy EEA-ban található: Az oldalunk, szolgáltatásaink és termékeink mind 16 éven felülieket céloznak. Ha 16 évnél fiatalabb vagy, a GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) értelmében kérlek ne használd ezt az oldalt!</p>
+
+      <p>Ha ez a szerver az USA-ban található: Az oldalunk, szolgáltatásaink és termékeink mind 13 éven felülieket céloznak. Ha 13 évnél fiatalabb vagy, a COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) értelmében kérlek ne használd ezt az oldalt!</p>
+
+      <p>A jogi előírások különbözhetnek ettől a világ egyéb tájain.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Adatvédelmi nyilatkozat változásai</h3>
+
+      <p>Ha úgy döntünk, hogy megváltoztatjuk az adatvédelmi nyilatkozatot, ezt ezen az oldalon közzé fogjuk tenni.</p>
+
+      <p>Ez a dokumentum CC-BY-SA. Utoljára 2022.05.26-án frissült.</p>
+
+      <p>Eredetileg innen adaptálva <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Felhasználási feltételek és Adatkezelési nyilatkozat"
   themes:
     contrast: Mastodon (Nagy kontrasztú)
