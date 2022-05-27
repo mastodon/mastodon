@@ -26,7 +26,6 @@
 #  otp_required_for_login    :boolean          default(FALSE), not null
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
-#  filtered_languages        :string           default([]), not null, is an Array
 #  account_id                :bigint(8)        not null
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
@@ -48,6 +47,7 @@ class User < ApplicationRecord
     current_sign_in_ip
     last_sign_in_ip
     skip_sign_in_token
+    filtered_languages
   )
 
   include Settings::Extend
