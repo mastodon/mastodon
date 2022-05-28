@@ -9,7 +9,7 @@
   .column-0
     .public-account-header.public-account-header--no-bar
       .public-account-header__image
-        = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.jpg'), alt: @instance_presenter.site_title, class: 'parallax'
+        = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.png'), alt: @instance_presenter.site_title, class: 'parallax'
 
   .column-1
     .landing-page__call-to-action{ dir: 'ltr' }

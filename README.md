@@ -1,5 +1,8 @@
-![Mastodon](https://i.imgur.com/NhZc40l.png)
-========
+<h1><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark.dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark.light.png?raw=true">
+  <img alt="Mastodon" src="./lib/asssets/wordmark.light.png?raw=true" height="34">
+</picture></h1>
 
 [![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
 [![Build Status](https://img.shields.io/circleci/project/github/mastodon/mastodon.svg)][circleci]
@@ -35,7 +38,7 @@ Click below to **learn more** in a video:
 
 ## Features
 
-<img src="https://docs.joinmastodon.org/elephant.svg" align="right" width="30%" />
+<img src="/app/javascript/images/elephant_ui_working.svg?raw=true" align="right" width="30%" />
 
 ### No vendor lock-in: Fully interoperable with any conforming platform
 
