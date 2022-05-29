@@ -64,7 +64,8 @@ class TextFormatter
 
     html = Kramdown::Document.new(html, build_kramdown_options).to_html
 
-    html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
+    # Should by pass the <p> wrapper
+    # html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
