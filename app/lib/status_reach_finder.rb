@@ -20,7 +20,12 @@ class StatusReachFinder
     # directly, we assume all interactions are with the original one
 
     if @status.reblog?
-      []
+      reblogged_status_account = @status.reblog.account
+      if !reblogged_status_account.local? && reblogged_status_account.activitypub? && !reblogged_status_account.following?(@status.account)
+        [reblogged_status_account.inbox_url]
+      else
+        []
+      end
     else
       Account.where(id: reached_account_ids).inboxes
     end
