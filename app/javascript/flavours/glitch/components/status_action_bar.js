@@ -67,7 +67,6 @@ class StatusActionBar extends ImmutablePureComponent {
     onFilter: PropTypes.func,
     withDismiss: PropTypes.bool,
     showReplyCount: PropTypes.bool,
-    directMessage: PropTypes.bool,
     scrollKey: PropTypes.string,
     intl: PropTypes.object.isRequired,
   };
@@ -197,7 +196,7 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   render () {
-    const { status, intl, withDismiss, showReplyCount, directMessage, scrollKey } = this.props;
+    const { status, intl, withDismiss, showReplyCount, scrollKey } = this.props;
 
     const anonymousAccess    = !me;
     const mutingConversation = status.get('muted');
@@ -311,25 +310,24 @@ class StatusActionBar extends ImmutablePureComponent {
     return (
       <div className='status__action-bar'>
         {replyButton}
-        {!directMessage && [
-          <IconButton key='reblog-button' className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon={reblogIcon} onClick={this.handleReblogClick} />,
-          <IconButton key='favourite-button' className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />,
-          shareButton,
-          <IconButton key='bookmark-button' className='status__action-bar-button bookmark-icon' disabled={anonymousAccess} active={status.get('bookmarked')} pressed={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />,
-          filterButton,
-          <div key='dropdown-button' className='status__action-bar-dropdown'>
-            <DropdownMenuContainer
-              scrollKey={scrollKey}
-              disabled={anonymousAccess}
-              status={status}
-              items={menu}
-              icon='ellipsis-h'
-              size={18}
-              direction='right'
-              ariaLabel={intl.formatMessage(messages.more)}
-            />
-          </div>,
-        ]}
+        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon={reblogIcon} onClick={this.handleReblogClick} />
+        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
+        {shareButton}
+        <IconButton className='status__action-bar-button bookmark-icon' disabled={anonymousAccess} active={status.get('bookmarked')} pressed={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
+        {filterButton}
+
+        <div className='status__action-bar-dropdown'>
+          <DropdownMenuContainer
+            scrollKey={scrollKey}
+            disabled={anonymousAccess}
+            status={status}
+            items={menu}
+            icon='ellipsis-h'
+            size={18}
+            direction='right'
+            ariaLabel={intl.formatMessage(messages.more)}
+          />
+        </div>
 
         <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
           <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { hour12: false, year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
