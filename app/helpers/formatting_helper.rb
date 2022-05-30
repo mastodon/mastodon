@@ -23,7 +23,7 @@ module FormattingHelper
 
     before_html = begin
       if status.spoiler_text?
-        "<p><strong>#{I18n.t('rss.content_warning', locale: valid_locale_or_nil(status.language))}</strong> #{h(status.spoiler_text)}</p><hr />"
+        "<p><strong>#{I18n.t('rss.content_warning', locale: available_locale_or_nil(status.language) || I18n.default_locale)}</strong> #{h(status.spoiler_text)}</p><hr />"
       else
         ''
       end

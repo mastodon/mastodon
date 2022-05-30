@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_29_101850) do
+ActiveRecord::Schema.define(version: 2022_05_27_114923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -983,7 +983,6 @@ ActiveRecord::Schema.define(version: 2022_04_29_101850) do
     t.boolean "otp_required_for_login", default: false, null: false
     t.datetime "last_emailed_at"
     t.string "otp_backup_codes", array: true
-    t.string "filtered_languages", default: [], null: false, array: true
     t.bigint "account_id", null: false
     t.boolean "disabled", default: false, null: false
     t.boolean "moderator", default: false, null: false
