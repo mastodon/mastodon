@@ -906,7 +906,7 @@ gl:
     sensitive_content: Contido sensible
     toot_layout: Disposición da publicación
   application_mailer:
-    notification_preferences: Cambiar os axustes de correo-e
+    notification_preferences: Cambiar os axustes de email
     salutation: "%{name},"
     settings: 'Mudar as preferencias de e-mail: %{link}'
     view: 'Vista:'
@@ -933,7 +933,7 @@ gl:
       suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de Mastodon e moito máis!
     didnt_get_confirmation: Non recibiches as instruccións de confirmación?
     dont_have_your_security_key: "¿Non tes a túa chave de seguridade?"
-    forgot_password: Esqueceu o contrasinal?
+    forgot_password: Non lembras o contrasinal?
     invalid_reset_password_token: O testemuño para restablecer o contrasinal non é válido ou caducou. Por favor solicite un novo.
     link_to_otp: Escribe o código do segundo factor do móbil ou un código de recuperación
     link_to_webauth: Usa o teu dispositivo de chave de seguridade
@@ -946,7 +946,7 @@ gl:
     providers:
       cas: CAS
       saml: SAML
-    register: Rexistro
+    register: Crear conta
     registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Reenviar as intruccións de confirmación
     reset_password: Restablecer contrasinal
@@ -1206,7 +1206,7 @@ gl:
     followers_count: Seguidoras no momento da migración
     incoming_migrations: Movendo desde unha conta diferente
     incoming_migrations_html: Para migrar doutra conta cara esta, primeiro debes <a href="%{path}">crear un alcume da conta</a>.
-    moved_msg: A túa conta está redirixindo agora a %{acct} e os teus seguidores movéronse alí.
+    moved_msg: A túa conta foi redirixida a %{acct} e os teus seguimentos movéronse alí.
     not_redirecting: Neste momento a túa conta non está redirixindo cara a ningunha outra.
     on_cooldown: Migraches recentemente a conta. Esta función estará dispoñible de novo en %{count} días.
     past_migrations: Migracións pasadas
@@ -1388,7 +1388,7 @@ gl:
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
-    explanation: Estos son os navegadores web nos que actualmente ten sesión iniciada.
+    explanation: Estos son os navegadores web nos que actualmente tes sesión iniciada.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1484,7 +1484,7 @@ gl:
     enabled: Borrar automáticamente publicacións antigas
     enabled_hint: Borra automáticamente as túas publicacións unha vez acadan certa lonxevidade, a menos que cumpran algunha destas excepcións
     exceptions: Excepcións
-    explanation: Como o borrado de publicacións consume moitos recursos, este faise lentamente cando o servidor non ten moita carga de traballo. Así, a eliminación das túas publicacións podería ser lixeiramente posterior a cando lle correspondería por idade.
+    explanation: Como o borrado de publicacións consume moitos recursos, esta faise aos poucos cando o servidor non ten moita carga de traballo. Así, a eliminación das túas publicacións podería ser lixeiramente posterior a cando lle correspondería por idade.
     ignore_favs: Ignorar favoritas
     ignore_reblogs: Ignorar promocións
     interaction_exceptions: Excepcións baseadas en interaccións
@@ -1525,87 +1525,6 @@ gl:
   tags:
     does_not_match_previous_name: non concorda co nome anterior
   terms:
-    body_html: |
-      <h2>Privacidade</h2>
-      <h3 id="collect">Qué información recollemos?</h3>
-
-      <ul>
-      <li><em>Información básica da conta</em>: Se se rexistra en este servidor, pediráselle un nome de usuaria, un enderezo de correo electrónico e un contrasinal. De xeito adicional tamén poderá introducir información como un nome público e biografía, tamén subir unha fotografía de perfil e unha imaxe para a cabeceira. O nome de usuaria, o nome público, a biografía e as imaxes de perfil e cabeceira sempre se mostran publicamente.</li>
-      <li><em>Publicacións, seguimento e outra información pública</em>: O listado das persoas que segue é un listado público, o mesmo acontece coas súas seguidoras. Cando evía unha mensaxe, a data e hora gárdanse así como o aplicativo que utilizou para enviar a mensaxe. As publicacións poderían conter ficheiros de medios anexos, como fotografías e vídeos. As publicacións públicas e as non listadas están dispoñibles de xeito público. Cando destaca unha publicación no seu perfil tamén é pública. As publicacións son enviadas as súas seguidoras, en algúns casos pode acontecer que estén en diferentes servidores e gárdanse copias neles. Cando elemina unha publicación tamén se envía as súas seguidoras. A acción de volver a publicar ou marcar como favorita outra publicación sempre é pública.</li>
-      <li><em>Mensaxes directas e só para seguidoras</em>: Todas as mensaxes gárdanse e procésanse no servidor. As mensaxes só para seguidoras son entregadas as súas seguidoras e as usuarias que son mencionadas en elas, e as mensaxes directas entréganse só as usuarias mencionadas en elas. En algúns casos esto implica que son entregadas a diferentes servidores e gárdanse copias alí. Facemos un esforzo sincero para limitar o acceso a esas publicacións só as persoas autorizadas, pero outros servidores poderían non ser tan escrupulosos. Polo tanto, é importante revisar os servidores onde se hospedan as súas seguidoras. Nos axustes pode activar a opción de aprovar ou rexeitar novas seguidoras de xeito manual. <em>Teña en conta que a administración do servidor e todos os outros servidores implicados poden ver as mensaxes.</em>, e as destinatarias poderían facer capturas de pantalla, copiar e volver a compartir as mensaxes. <em>Non comparta información comprometida en Mastodon.</em></li>
-      <li><em>IPs e outros metadatos</em>: Cando se conecta, gravamos o IP desde onde se conecta, así como o nome do aplicativo desde onde o fai. Todas as sesións conectadas están dispoñibles para revisar e revogar nos axustes. O último enderezo IP utilizado gárdase ate por 12 meses. Tamén poderiamos gardar informes do servidor que inclúan o enderezo IP de cada petición ao servidor.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">De qué xeito utilizamos os seus datos?</h3>
-
-      <p>Toda a información que recollemos podería ser utilizada dos seguintes xeitos:</p>
-
-      <ul>
-      <li>Para proporcionar a funcionabiliade básica de Mastodon. Só pode interactuar co contido de outra xente e publicar o seu propio contido se está conectada. Por exemplo, podería seguir outra xente e ver as súas publicacións combinadas nunha liña temporal inicial personalizada.</li>
-      <li>Para axudar a moderar a comunidade, por exemplo comparando o seu enderezo IP con outros coñecidos para evitar esquivar os rexeitamentos ou outras infraccións.</li>
-      <li>O endero de correo electrónico que nos proporciona podería ser utilizado para enviarlle información, notificacións sobre outra xente que interactúa cos seus contidos ou lle envía mensaxes, e para respostar a consultas, e/ou outras cuestións ou peticións.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Cómo proxetemos os seus datos?</h3>
-
-      <p>Implementamos varias medidas de seguridade para protexer os seus datos persoais cando introduce, envía ou accede a súa información persoal. Entre outras medidas, a súa sesión de navegación, así como o tráfico entre os seus aplicativos e o API están aseguradas mediante SSL, e o seu contrasinal está camuflado utilizando un algoritmo potente de unha sóa vía. Pode habilitar a autenticación de doble factor para protexer o acceso a súa conta aínda máis.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Cal é a nosa política de retención de datos?</h3>
-
-      <p>Faremos un sincero esforzo en:</p>
-
-      <ul>
-      <li>Protexer informes do servidor que conteñan direccións IP das peticións ao servidor, ate a data estos informes gárdanse por non máis de 90 días.</li>
-      <li>Reter os enderezos IP asociados con usuarias rexistradas non máis de 12 meses.</li>
-      </ul>
-
-      <p>Pode solicitar e descargar un ficheiro cos seus contidos, incluíndo publicacións, anexos de medios, imaxes de perfil e imaxe da cabeceira.</p>
-
-      <p>En calquer momento pode eliminar de xeito irreversible a súa conta.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Utilizamos testemuños?</h3>
-
-      <p>Si. Os testemuños son pequenos ficheiros que un sitio web ou o provedor de servizo transfiren ao disco duro da súa computadora a través do navegador web (se vostede o permite). Estos testemuños posibilitan ao sitio web recoñecer o seu navegador e, se ten unha conta rexistrada, asocialo con dita conta.</p>
-
-      <p>Utilizamos testemuños para comprender e gardar as súas preferencias para futuras visitas.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Entregamos algunha información a terceiras alleas?</h3>
-
-      <p>Non vendemos, negociamos ou transferimos de algún xeito a terceiras partes alleas a súa información identificativa persoal. Esto non inclúe terceiras partes de confianza que nos axudan a operar o sitio web, a xestionar a empresa, ou darlle servizo se esas partes aceptan manter esa información baixo confidencialidade. Poderiamos liberar esa información se cremos que eso da cumplimento axeitado a lei, reforza as políticas do noso sitio ou protexe os nosos, e de outros, dereitos, propiedade ou seguridade.</p>
-
-      <p>O seu contido público podería ser descargado por outros servidores na rede. As súas publicacións públicas e para só seguidoras son entregadas aos servidores onde residen as súas seguidoras na rede, e as mensaxes directas son entregadas aos servidores das destinatarias sempre que esas seguidoras ou destinatarios residan en servidores distintos de este.</p>
-
-      <p>Cado autoriza a este aplicativo a utilizar a súa conta, dependendo da amplitude dos permisos que autorice, podería acceder a información pública de perfil, ao listado de seguimento, as súas seguidoras, os seus listados, todas as súas publicacións, as publicacións favoritas. Os aplicativos non poden nunca acceder ao seu enderezo de correo nin ao seu contrasinal.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Utilización do sitio web por menores</h3>
-
-      <p>Se este servidor está na UE ou no EEE: a nosa web, productos e servizos están dirixidos a persoas de 16 ou máis anos. Se ten menos de 16 anos, a requerimento da GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) non utilice esta web.</p>
-
-      <p>Se este servidor está nos EEUU: a nosa web, productos e servizos están dirixidos a persoas de 13 ou máis anos. Se non ten 13 anos de idade, a requerimento de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) non utilice esta web.</p>
-
-      <p>Os requerimentos legais poden ser diferentes si este servidor está baixo outra xurisdición.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Cambios na nosa política de intimidade</h3>
-
-      <p>Se decidimos cambiar a nosa política de intimidade publicaremos os cambios en esta páxina.</p>
-
-      <p>Este documento ten licenza CC-BY-SA. Actualizouse o 7 de Marzo de 2018.</p>
-
-      <p>Adaptado do orixinal <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Termos do Servizo e Política de Intimidade"
   themes:
     contrast: Mastodon (Alto contraste)
@@ -1687,24 +1606,24 @@ gl:
       edit_profile_action: Configurar perfil
       edit_profile_step: Podes personalizar o teu perfil subindo un avatar, cabeceira, cambiar o nome público e aínda máis. Se restrinxes a túa conta podes revisar a conta das persoas que solicitan seguirte antes de permitirlles o acceso aos teus toots.
       explanation: Aquí tes algunhas endereitas para ir aprendendo
-      final_action: Comece a publicar
+      final_action: Comeza a publicar
       final_step: 'Publica! Incluso sen seguidoras as túas mensaxes públicas serán vistas por outras persoas, por exemplo na cronoloxía local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'
-      full_handle: O seu alcume completo
-      full_handle_hint: Esto é o que lle dirá aos seus amigos para que poidan seguila ou enviarlle mensaxes desde outro servidor.
+      full_handle: O teu alcume completo
+      full_handle_hint: Compárteo coas túas amizades para que poidan seguirte ou enviarche mensaxes desde outros servidores.
       review_preferences_action: Cambiar preferencias
-      review_preferences_step: Lembre establecer as preferencias, tales como qué correos-e lle querería recibir, ou o nivel de intimidade por omisión para as súas mensaxes. Se non lle molestan as imaxes con movemento, pode escoller que os GIF se reproduzan automáticamente.
+      review_preferences_step: Lembra establecer as preferencias, tales como o tipo de emails que queres recibir, ou o nivel de privacidade por defecto para as túas publicacións. Se non che molestan as imaxes con movemento, podes elexir que os GIF se reproduzan automáticamente.
       subject: Benvida a Mastodon
-      tip_federated_timeline: A cronoloxía federada é unha visión reducida da rede Mastodon. Inclúe xente a que segue xente que ti segues, así que non é completa.
+      tip_federated_timeline: A cronoloxía federada é unha visión reducida da rede Mastodon. Só inclúe a persoas relacionadas coas persoas ás que estás subscrita, polo que non é a totalidade do fediverso.
       tip_following: Por defecto segues a Admin(s) no teu servidor. Para atopar máis xente interesante, mira nas cronoloxías local e federada.
       tip_local_timeline: A cronoloxía local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!
-      tip_mobile_webapp: Si o navegador móbil lle ofrece engadir Mastodon a pantalla de inicio, pode recibir notificacións push. En moitos aspectos comportarase como un aplicativo nativo!
+      tip_mobile_webapp: Se o navegador móbil che ofrece engadir Mastodon a pantalla de inicio, podes recibir notificacións push. En moitos aspectos comportarase como unha aplicación nativa!
       tips: Consellos
       title: Benvida, %{name}!
   users:
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas
     invalid_otp_token: O código do segundo factor non é válido
     otp_lost_help_html: Se perdes o acceso a ambos, podes contactar con %{email}
-    seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e correo-e non están dispoñibles.
+    seamless_external_login: Accedeches a través dun servizo externo, polo que os axustes de contrasinal e email non están dispoñibles.
     signed_in_as: 'Rexistrada como:'
   verification:
     explanation_html: 'Podes <strong>validarte a ti mesma como a dona das ligazóns nos metadatos do teu perfil</strong>. Para esto, o sitio web ligado debe conter unha ligazón de retorno ao perfil de Mastodon. Esta ligazón de retorno <strong>ten que</strong> ter un atributo <code>rel="me"</code>. O texto da ligazón non importa. Aquí tes un exemplo:'

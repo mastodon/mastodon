@@ -29,9 +29,6 @@ nn:
     see_whats_happening: Sjå kva som skjer
     server_stats: 'Tenarstatistikk:'
     source_code: Kjeldekode
-    status_count_after:
-      one: innlegg
-      other: statuser
     status_count_before: Som skreiv
     tagline: Fylg vener og oppdag nye
     terms: Brukarvilkår
@@ -1090,9 +1087,6 @@ nn:
       image:
         one: "%{count} bilete"
         other: "%{count} bilete"
-      video:
-        one: "%{count} video"
-        other: "%{count} videoer"
     boosted_from_html: Framheva av %{acct_link}
     content_warning: 'Innhaldsåtvaring: %{warning}'
     disallowed_hashtags:
@@ -1108,9 +1102,6 @@ nn:
       ownership: Du kan ikkje festa andre sine tut
       reblog: Ei framheving kan ikkje festast
     poll:
-      total_people:
-        one: "%{count} person"
-        other: "%{count} personer"
       total_votes:
         one: "%{count} røyst"
         other: "%{count} røyster"
@@ -1136,87 +1127,6 @@ nn:
   tags:
     does_not_match_previous_name: stemmar ikkje med det førre namnet
   terms:
-    body_html: |
-      <h2>Privatlivsretningslinjer</h2>
-      <h3 id="collect">Hva slags informasjon samler vi inn?</h3>
-
-      <ul>
-      <li><em>Grunnleggende kontoinformasjon</em>: Dersom du registrerer deg på denne tjeneren, vil du kanskje bli spurt om å skrive inn et brukernavn, en E-postadresse, og et passord. Du kan også skrive inn ytterligere profilinformasjon som f.eks. et visningsnavn og selvbiografi, og laste opp et profilbilde og toppfeltbilde. Brukernavnet, visningsnavnet, selvbiografien, profilbildet, og toppfeltbildet blir alltid vist offentlig.</li>
-      <li><em>Innlegg, følging, og annen offentlig informasjon</em>: Listen over folk du følger blir vist offentlig, det samme gjelder for følgerne dine. Når du sender inn en melding, blir datoen og tidspunktet lagret såvel som programmet du sendte inn meldingen ifra. Meldinger kan inneholde mediavedlegg, som f.eks. bilder og videoer. Offentlige og uoppførte innlegg er offentlig tilgjengelige. Når du viser frem et innlegg på profilen din, er det også offentlig tilgjengelig informasjon. Dinne innlegg blir levert til dine følgere, og i noen tilfeller betyr det at blir levert til forskjellige tjenere og at kopier blir lagret der. Når du sletter innlegg, blir også det levert til dine følgere. Det å fremheve eller like et annet innlegg er alltid offentlig.</li>
-      <li><em>Direkteinnlegg og innlegg som kun er for følgere</em>: Alle innlegg er lagret og behandlet på tjeneren. Innlegg som kun er for følgere, blir levert til dine følgere, og direkteinnlegg leveres kun til brukere som er nevnt i dem. I noen tilfeller betyr det at de blir levert til forskjellige tjenere og at kopier blir lagret der. Vi gjør et forsøk i god sportsånd for å begrense tilgangen til disse innleggene til kun autoriserte personer, men andre tjenere kan mislykkes med sådan. Derfor er det viktig å gå i gjennom tjenerne som følgerne dine hører til i. I innstillingene kan du veksle på en innstilling for å godkjenne og avslå nye følgere manuelt. <em>Vennligst ha i tankene at operatørene til tjeneren og enhver mottakende tjener kan se slike meldinger</em>, og at mottakere kan ta skjermklipp av, kopiere, eller på annet vis dele dem videre. <em>Ikke del noe farlig informasjon over Mastodon.</em></li>
-      <li><em>IP-er og andre metadata</em>: Når du logger på, lagrer vi IP-adressen som du logget deg på fra, såvel som navnet til nettleserprogrammet ditt. Du kan gå gjennom og tilbakekalle alle påloggede økter i innstillingene. Den seneste IP-adressen du brukte, blir lagret i opptil 12 måneder. Vi vil kanskje også holde på tjenerloggføringer som inkluderer IP-adressen til alle forespørsler til tjeneren vår.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Hva bruker vi informasjonen din til?</h3>
-
-      <p>Hva som helst av informasjonen som vi samler inn fra deg, kan bli brukt på de følgende måtene:</p>
-
-      <ul>
-      <li>Til å levere grunnfunksjonaliteten til Mastodon. Du kan bare samhandle med andre folks innhold og legge ut ditt eget innhold når du er logget på. For eksempel kan du følge andre folk for å se deres kombinerte innlegg i din egen personliggjorte hjemmetidslinje.</li>
-      <li>Til å bistå i moderasjonen av samfunnet, for eksempel å sammenligne IP-adressen din med andre andre kjente adresser for å avgjøre saker om bannlysningsunngåelse eller andre regelbrudd.</li>
-      <li>E-postadressen du oppgir kan bli brukt til å sende deg informasjon, varsler om at andre folk samhandler med innholdet ditt eller sender deg meldinger, og å svare på brukerstøttespørsmål, og/eller andre forespørsler eller spørsmål.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Hvordan beskytter vi informasjonen din?</h3>
-
-      <p>Vi implementer en rekke sikkerhetstiltak for å holde på sikkerheten til din personlige informasjon når du skriver inn, sender inn, eller besøker din personlige informasjon. Blant annet er din nettleserøkt, såvel som trafikken mellom dine apper og API-er, sikret med SSL, og passordet ditt er saltet med en kraftig énveisalgoritme. Du kan skru på 2-trinnsinnlogging for å sikre tilgangen til kontoen din ytterligere.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Hva er våre databeholdingsretningslinjer?</h3>
-
-      <p>Vi vil gjøre en innsats i god sportsånd for å</p>
-
-      <ul>
-      <li>Beholde tjenerloggføringer som inneholder IP-adressen til alle forespørsler til denne tjeneren, dersom det blir loggført i det hele tatt, i ikke mer enn 90 dager.</li>
-      <li>Beholde IP-adressene som er forbundet med registrerte brukere i ikke mer enn 12 måneder.</li>
-      </ul>
-
-      <p>Du kan be om og laste ned et arkiv av innholdet ditt, inkludert dine innlegg, media, mediavedlegg, profilbilde, og toppfeltbilde.</p>
-
-      <p>Du kan ugjenkallelig slette kontoen til enhver tid.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Bruker vi infokapsler?</h3>
-
-      <p>Ja. Infokapsler er små filer som et nettsted eller dens tjenesteleverandør overfører til harddisken på datamaskinen din gjennom nettleseren din (dersom du tillater dette). Disse infokapslene lar nettstedet kjenne igjen nettleseren din og, dersom du har en registrert konto, assosiere den med din registrerte konto.</p>
-
-      <p>Vi benytter infokapsler for å forstå og lagre dinne innstillinger til fremtidige besøk.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Forteller vi om noe informasjon til utenforstående parter?</h3>
-
-      <p>Vi hverken selger, bytter, eller på andre måter overfører din personlig identifiserbare informasjon til utenforstående parter. Dette inkluderer ikke tredjeparter som vi stoler på og som hjelper oss med å drifte nettstedet vårt, drifte våre forretninger, eller å yte tjenester til deg, så lenge disse partene sier seg enige i å holde denne informasjonen hemmelig. Vi kan også frigi informasjonen vår dersom vi mener et frigiving er passende for å møte loven, handle i tråd med vår nettstedsretningslinjer, eller å beskytte vår eller andres rettigheter, eiendom, eller trygghet.</p>
-
-      <p>Ditt offentlige innhold kan bli lastet ned av andre tjenere i nettverket. Dine offentlige innlegg og innlegg som kun er for følgere blir levert til tjenerne der følgerne dine holder til, og direktemeldinger blir levert il mottakernes tjenere, i den grad de følgerne eller mottakerne holder på en annen tjener enn denne.</p>
-
-      <p>Når du gir et program autorisasjon til å bruke kontoen din, avhengig av omfanget av tillatelser som du tillater, kan den få tilgang til din offentlige profilinformasjon, din følgingsliste, dine følgere, dine lister, alle dine innlegg, og dine likinger. Programmer kan aldri få tilgang til E-postadressen eller passordet ditt.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Nettstedsbruk av barn</h3>
-
-      <p>Dersom denne tjeneren er i EU eller EØS: Vårt nettsted, produkter og tjenester er alle siktet inn mot folk som er minst 16 år gamle. Dersom du er under 16, sier GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) at du ikke kan bruke dette nettstedet.</p>
-
-      <p>Dersom denne tjeneren er i USA: Vårt nettsted, produkter og tjenester er alle siktet inn mot folk som er minst 16 år gamle. Dersom du er under 16, sier COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) at du ikke kan bruke dette nettstedet.</p>
-
-      <p>Lovmessige krav kan være forskjellige dersom denne tjeneren befinner seg i en annen jurisdiksjon.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Endringer i våre privatlivsretningslinjer</h3>
-
-      <p>Dersom vi bestemmer oss for å endre våre privatlivsretningslinjer, vil vi legge ut endringene på denne siden.</p>
-
-      <p>Dette dokumentet er lisensiert under CC BY-SA. Den engelske originalversjonen ble sist oppdatert den 7. mars 2018. Den norske oversettelsen ble sist oppdatert den 13. desember 2019.</p>
-
-      <p>Opprinnelig modifisert utifra <a href="https://github.com/discourse/discourse">Discourse sine privatlivsretningslinjer</a>.</p>
     title: Tenestevilkår og personvernsvilkår for %{instance}
   themes:
     contrast: Mastodon (Høg kontrast)
