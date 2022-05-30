@@ -64,6 +64,8 @@ class TextFormatter
 
     html = Kramdown::Document.new(html, build_kramdown_options).to_html
 
+    html = kramdown_link_to_url(html)
+
     # Should by pass the <p> wrapper
     # html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
 
@@ -137,6 +139,42 @@ class TextFormatter
     HTML
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     h(entity[:url])
+  end
+
+  # We don't use entity here, because regex can be much more easy
+  def kramdown_link_to_url(html)
+    escape_suffix = 'TmpEscape'
+    url_regexp = URI::Parser.new.make_regexp(%w[http https])
+    escaped_regexp = URI::Parser.new.make_regexp(%W[http#{escape_suffix} https#{escape_suffix}])
+    document = Nokogiri.HTML5(html,nil,'UTF-8')
+    document.search('a', 'img', 'code', 'pre').each do |link|
+      outer_html = link.to_html
+      outer_html = outer_html.gsub(url_regexp) {
+        |match| match.gsub(/^(http[s?])/,"\\1#{escape_suffix}")
+      }
+      link.replace(outer_html)
+    end
+
+    # TODO：remove html, body wrapper
+    html = document.to_html
+
+    html = html.gsub(url_regexp) {|match|
+      Rails.logger.warn("[debug] #{match.to_s}")
+      url = match.to_s
+
+      prefix      = url.match(URL_PREFIX_REGEX).to_s
+      display_url = url[prefix.length, 30]
+      suffix      = url[prefix.length + 30..-1]
+      cutoff      = url[prefix.length..-1].length > 30
+
+      <<~HTML.squish
+        <a href="#{h(url)}" target="_blank" rel="#{DEFAULT_REL.join(' ')}"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
+      HTML
+    }
+
+    html.gsub(escaped_regexp) {
+      |match| match.gsub(Regexp.new("^(http[s?])#{escape_suffix}"),"\\1")
+    }
   end
 
   def link_to_hashtag(entity)
