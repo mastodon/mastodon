@@ -3,7 +3,7 @@
 class NodeInfo::Serializer < ActiveModel::Serializer
   include RoutingHelper
 
-  attributes :version, :software, :protocols, :usage, :open_registrations
+  attributes :version, :software, :protocols, :services, :usage, :open_registrations
 
   def version
     '2.0'
