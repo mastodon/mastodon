@@ -9,6 +9,7 @@ platform:
 steps:
   - name: email notification on start
     image: mashirozx/drone-email:latest-arm64
+    failure: ignore
     settings:
       host: 
         from_secret: smtp_host
@@ -61,6 +62,7 @@ steps:
 
   - name: email notification on complete
     image: mashirozx/drone-email:latest-arm64
+    failure: ignore
     settings:
       host: 
         from_secret: smtp_host
