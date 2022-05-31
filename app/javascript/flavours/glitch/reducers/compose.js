@@ -419,6 +419,10 @@ export default function compose(state = initialState, action) {
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
 
+      if (action.status.get('language')) {
+        map.set('language', action.status.get('language'));
+      }
+
       if (action.status.get('spoiler_text').length > 0) {
         let spoiler_text = action.status.get('spoiler_text');
         if (action.prependCWRe && !spoiler_text.match(/^re[: ]/i)) {
