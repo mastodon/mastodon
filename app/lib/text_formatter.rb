@@ -159,7 +159,6 @@ class TextFormatter
     html = document.to_html
 
     html = html.gsub(url_regexp) {|match|
-      Rails.logger.warn("[debug] #{match.to_s}")
       url = match.to_s
 
       prefix      = url.match(URL_PREFIX_REGEX).to_s
