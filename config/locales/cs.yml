@@ -330,12 +330,12 @@ cs:
         reset_password_user_html: "Uživatel %{name} obnovil heslo uživatele %{target}"
         resolve_report_html: "Uživatel %{name} vyřešil hlášení %{target}"
         sensitive_account_html: "%{name} označil média účtu %{target} jako citlivá"
-        silence_account_html: "Uživatel %{name} ztišil uživatele %{target}"
+        silence_account_html: "Uživatel %{name} omezil účet %{target}"
         suspend_account_html: "Uživatel %{name} pozastavil účet uživatele %{target}"
         unassigned_report_html: "Uživatel %{name} odebral hlášení %{target}"
         unblock_email_account_html: "Uživatel %{name} odblokoval e-mailovou adresu %{target}"
         unsensitive_account_html: "%{name} zrušil označení médií účtu %{target} jako citlivých"
-        unsilence_account_html: "Uživatel %{name} zrušil ztišení uživatele %{target}"
+        unsilence_account_html: "Uživatel %{name} zrušil omezení účtu %{target}"
         unsuspend_account_html: "Uživatel %{name} zrušil pozastavení účtu uživatele %{target}"
         update_announcement_html: "Uživatel %{name} aktualizoval oznámení %{target}"
         update_custom_emoji_html: "Uživatel %{name} aktualizoval emoji %{target}"
@@ -445,6 +445,7 @@ cs:
       destroyed_msg: Blokace domény byla vrácena
       domain: Doména
       edit: Upravit blokaci domény
+      existing_domain_block: Pro %{name} už jste nastavili přísnější omezení.
       existing_domain_block_html: Pro účet %{name} jste už nastavili přísnější omezení, nejprve jej <a href="%{unblock_url}">odblokujte</a>.
       new:
         create: Vytvořit blokaci
