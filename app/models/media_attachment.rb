@@ -147,6 +147,12 @@ class MediaAttachment < ApplicationRecord
     original: VIDEO_FORMAT.merge(passthrough_options: VIDEO_PASSTHROUGH_OPTIONS).freeze,
   }.freeze
 
+  ANIMATED_WEBP_STYLES = VIDEO_STYLES.deep_merge({
+    small: {
+      format: 'webp',
+    }.freeze,
+  })
+
   AUDIO_STYLES = {
     original: {
       format: 'mp3',
@@ -293,6 +299,8 @@ class MediaAttachment < ApplicationRecord
     def file_styles(attachment)
       if attachment.instance.file_content_type == 'image/gif' || VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_CONVERTED_STYLES
+      elsif attachment.instance.file_content_type == 'image/webp'
+        ANIMATED_WEBP_STYLES
       elsif IMAGE_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         IMAGE_CONVERTED_STYLES
       elsif IMAGE_MIME_TYPES.include?(attachment.instance.file_content_type)
@@ -307,6 +315,8 @@ class MediaAttachment < ApplicationRecord
     def file_processors(instance)
       if instance.file_content_type == 'image/gif'
         [:gif_transcoder, :blurhash_transcoder]
+      elsif instance.file_content_type == 'image/webp'
+        [:webp_transcoder, :blurhash_transcoder]
       elsif VIDEO_MIME_TYPES.include?(instance.file_content_type)
         [:transcoder, :blurhash_transcoder, :type_corrector]
       elsif AUDIO_MIME_TYPES.include?(instance.file_content_type)
