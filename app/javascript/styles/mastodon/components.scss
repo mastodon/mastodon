@@ -341,7 +341,6 @@
   &__sensitive-button {
     padding: 10px;
     padding-top: 0;
-
     font-size: 14px;
     font-weight: 500;
 
@@ -349,7 +348,7 @@
       color: $highlight-text-color;
     }
 
-    input[type=checkbox] {
+    input[type="checkbox"] {
       display: none;
     }
 
@@ -709,7 +708,7 @@
   font-size: inherit;
   vertical-align: middle;
   object-fit: contain;
-  margin: -.2ex .15em .2ex;
+  margin: -0.2ex 0.15em 0.2ex;
   width: 16px;
   height: 16px;
 
@@ -1313,9 +1312,9 @@
 
 .account__avatar {
   @include avatar-radius;
+
   display: block;
   position: relative;
-
   width: 36px;
   height: 36px;
   background-size: 36px 36px;
@@ -1328,6 +1327,7 @@
 
   &-composite {
     @include avatar-radius;
+
     border-radius: 50%;
     overflow: hidden;
     position: relative;
@@ -1365,6 +1365,7 @@ a .account__avatar {
 
     img {
       @include avatar-radius;
+
       width: 100%;
       height: 100%;
     }
@@ -1381,6 +1382,7 @@ a .account__avatar {
 
     img {
       @include avatar-radius;
+
       width: 100%;
       height: 100%;
     }
@@ -2328,7 +2330,7 @@ a.account__display-name {
   .scrollable {
     overflow: visible;
 
-    @supports(display: grid) {
+    @supports (display: grid) {
       contain: content;
     }
   }
@@ -2751,7 +2753,7 @@ a.account__display-name {
     overflow-y: auto;
   }
 
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) { // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -2772,7 +2774,7 @@ a.account__display-name {
 }
 
 .scrollable.fullscreen {
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) { // hack to fix Chrome <57
     contain: none;
   }
 }
@@ -3980,6 +3982,7 @@ a.status-card.compact:hover {
 
     &__menu {
       @include search-popout;
+
       padding: 0;
       background: $ui-secondary-color;
     }
@@ -4061,7 +4064,7 @@ a.status-card.compact:hover {
   align-items: center;
   justify-content: center;
 
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) { // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -4878,7 +4881,7 @@ a.status-card.compact:hover {
   padding: 0;
   border: 0;
   font-size: 0;
-  transition: opacity .2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 
   &.active {
     opacity: 1;
@@ -4933,7 +4936,6 @@ a.status-card.compact:hover {
     height: 100%;
     box-sizing: border-box;
     padding: 25px;
-    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -5274,7 +5276,6 @@ a.status-card.compact:hover {
     display: block;
     box-sizing: border-box;
     width: 100%;
-    margin: 0;
     color: $inverted-text-color;
     background: $simple-background-color;
     padding: 10px;
@@ -5406,7 +5407,6 @@ a.status-card.compact:hover {
     font-family: inherit;
     font-size: 14px;
     resize: none;
-    border: 0;
     outline: 0;
     border-radius: 4px;
     border: 1px solid $ui-secondary-color;
@@ -5857,6 +5857,7 @@ a.status-card.compact:hover {
   overflow: hidden;
   position: absolute;
 }
+
 /* End Media Gallery */
 
 .detailed,
@@ -5869,7 +5870,6 @@ a.status-card.compact:hover {
   .video-player__volume__handle {
     bottom: 23px;
   }
-
 }
 
 .audio-player {
@@ -5991,7 +5991,7 @@ a.status-card.compact:hover {
     background: linear-gradient(0deg, rgba($base-shadow-color, 0.85) 0, rgba($base-shadow-color, 0.45) 60%, transparent);
     padding: 0 15px;
     opacity: 0;
-    transition: opacity .1s ease;
+    transition: opacity 0.1s ease;
 
     &.active {
       opacity: 1;
@@ -6066,7 +6066,6 @@ a.status-card.compact:hover {
     .player-button {
       display: inline-block;
       outline: 0;
-
       flex: 0 0 auto;
       background: transparent;
       padding: 5px;
@@ -6237,7 +6236,7 @@ a.status-card.compact:hover {
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
 
       .no-reduce-motion & {
-        transition: opacity .1s ease;
+        transition: opacity 0.1s ease;
       }
 
       &.active {
@@ -6405,14 +6404,13 @@ a.status-card.compact:hover {
   display: inline-block;
   padding: 6px 0;
   line-height: 18px;
-  cursor: default;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
 
-  input[type=radio],
-  input[type=checkbox] {
+  input[type="radio"],
+  input[type="checkbox"] {
     display: none;
   }
 
@@ -6505,14 +6503,16 @@ noscript {
     .navigation-bar__actions {
       & > .icon-button.close {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay,
-                    transform $duration $delay;
+        transition:
+          opacity $duration * 0.5 $delay,
+          transform $duration $delay;
       }
 
       & > .compose__action-bar .icon-button {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
-                    transform $duration $delay;
+        transition:
+          opacity $duration * 0.5 $delay + $duration * 0.5,
+          transform $duration $delay;
       }
     }
   }
@@ -7286,7 +7286,7 @@ noscript {
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
-    margin: -.1ex .15em .1ex;
+    margin: -0.1ex 0.15em 0.1ex;
   }
 
   &__content {
@@ -7549,7 +7549,6 @@ noscript {
       position: absolute;
       top: 0;
       left: 0;
-      pointer-events: 0;
       width: 100%;
       height: 100%;
       border-left: 2px solid $highlight-text-color;
