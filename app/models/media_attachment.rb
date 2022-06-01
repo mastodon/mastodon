@@ -147,12 +147,6 @@ class MediaAttachment < ApplicationRecord
     original: VIDEO_FORMAT.merge(passthrough_options: VIDEO_PASSTHROUGH_OPTIONS).freeze,
   }.freeze
 
-  ANIMATED_WEBP_STYLES = VIDEO_STYLES.deep_merge({
-    small: {
-      format: 'webp',
-    }.freeze,
-  })
-
   AUDIO_STYLES = {
     original: {
       format: 'mp3',
@@ -174,6 +168,12 @@ class MediaAttachment < ApplicationRecord
   THUMBNAIL_STYLES = {
     original: IMAGE_STYLES[:small].freeze,
   }.freeze
+
+  ANIMATED_WEBP_STYLES = VIDEO_CONVERTED_STYLES.deep_merge({
+    small: {
+      format: 'webp',
+    }.freeze,
+  })
 
   GLOBAL_CONVERT_OPTIONS = {
     all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date',
