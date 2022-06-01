@@ -424,26 +424,12 @@ class FeedManager
   # @param [Symbol] context
   # @return [Boolean]
   def phrase_filtered?(status, receiver_id, context)
-    active_filters = Rails.cache.fetch("filters:v2:#{receiver_id}") do
-      CustomFilterKeyword.includes(:custom_filter).where(custom_filter: { account_id: receiver_id, action: :hide }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()')).to_a
-    end.to_a
+    active_filters = CustomFilter.cached_filters_for(receiver_id)
+    active_keywords = active_filters.filter_map { |custom_filter, rules| rules[:keywords] if custom_filter.context.include?(context.to_s) && custom_filter.irreversible? }
 
-    active_filters.select! { |filter| filter.custom_filter.context.include?(context.to_s) && !filter.custom_filter.expired? }
+    return false if active_keywords.empty?
 
-    return false if active_filters.empty?
-
-    active_filters.map! do |filter|
-      if filter.whole_word
-        sb = /\A[[:word:]]/.match?(filter.keyword) ? '\b' : ''
-        eb = /[[:word:]]\z/.match?(filter.keyword) ? '\b' : ''
-
-        /(?mix:#{sb}#{Regexp.escape(filter.keyword)}#{eb})/
-      else
-        /#{Regexp.escape(filter.keyword)}/i
-      end
-    end
-
-    combined_regex = Regexp.union(active_filters)
+    combined_regex = Regexp.union(active_keywords)
 
     combined_regex.match?(status.proper.searchable_text)
   end

@@ -57,6 +57,27 @@ class CustomFilter < ApplicationRecord
     hide_action?
   end
 
+  def self.cached_filters_for(account_id)
+    active_filters = Rails.cache.fetch("filters:v3:#{account_id}") do
+      scope = CustomFilterKeyword.includes(:custom_filter).where(custom_filter: { account_id: account_id }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
+      scope.to_a.group_by(&:custom_filter).map do |filter, keywords|
+        keywords.map! do |keyword|
+          if keyword.whole_word
+            sb = /\A[[:word:]]/.match?(keyword.keyword) ? '\b' : ''
+            eb = /[[:word:]]\z/.match?(keyword.keyword) ? '\b' : ''
+
+            /(?mix:#{sb}#{Regexp.escape(keyword.keyword)}#{eb})/
+          else
+            /#{Regexp.escape(keyword.keyword)}/i
+          end
+        end
+        [filter, { keywords: Regexp.union(keywords) }]
+      end
+    end.to_a
+
+    active_filters.select { |custom_filter, _| !custom_filter.expired? }
+  end
+
   private
 
   def clean_up_contexts
@@ -64,7 +85,7 @@ class CustomFilter < ApplicationRecord
   end
 
   def remove_cache
-    Rails.cache.delete("filters:v2:#{account_id}")
+    Rails.cache.delete("filters:v3:#{account_id}")
     redis.publish("timeline:#{account_id}", Oj.dump(event: :filters_changed))
   end
 
