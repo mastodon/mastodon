@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe StatusRelationshipsPresenter do
   describe '.initialize' do
     before do
-      allow(Status).to receive(:reblogs_map).with(status_ids, current_account_id).and_return(default_map)
+      allow(Status).to receive(:reblogs_map).with(match_array(status_ids), current_account_id).and_return(default_map)
       allow(Status).to receive(:favourites_map).with(status_ids, current_account_id).and_return(default_map)
       allow(Status).to receive(:bookmarks_map).with(status_ids, current_account_id).and_return(default_map)
       allow(Status).to receive(:mutes_map).with(anything, current_account_id).and_return(default_map)
@@ -15,7 +15,7 @@ RSpec.describe StatusRelationshipsPresenter do
     let(:presenter)          { StatusRelationshipsPresenter.new(statuses, current_account_id, **options) }
     let(:current_account_id) { Fabricate(:account).id }
     let(:statuses)           { [Fabricate(:status)] }
-    let(:status_ids)         { statuses.map(&:id) }
+    let(:status_ids)         { statuses.map(&:id) + statuses.map(&:reblog_of_id).compact }
     let(:default_map)        { { 1 => true } }
 
     context 'options are not set' do
@@ -67,6 +67,31 @@ RSpec.describe StatusRelationshipsPresenter do
 
       it 'sets @pins_map merged with default_map and options[:pins_map]' do
         expect(presenter.pins_map).to eq default_map.merge(options[:pins_map])
+      end
+    end
+
+    context 'when post includes filtered terms' do
+      let(:statuses) { [Fabricate(:status, text: 'this toot is about that banned word'), Fabricate(:status, reblog: Fabricate(:status, text: 'this toot is about an irrelevant word'))] }
+      let(:options) { {} }
+
+      before do
+        Account.find(current_account_id).custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
+      end
+
+      it 'sets @filters_map to filter top-level status' do
+        matched_filters = presenter.filters_map[statuses[0].id]
+        expect(matched_filters.size).to eq 1
+
+        expect(matched_filters[0].filter.title).to eq 'filter1'
+        expect(matched_filters[0].keyword_matches).to eq ['banned']
+      end
+
+      it 'sets @filters_map to filter reblogged status' do
+        matched_filters = presenter.filters_map[statuses[1].reblog_of_id]
+        expect(matched_filters.size).to eq 1
+
+        expect(matched_filters[0].filter.title).to eq 'filter1'
+        expect(matched_filters[0].keyword_matches).to eq ['irrelevant']
       end
     end
   end

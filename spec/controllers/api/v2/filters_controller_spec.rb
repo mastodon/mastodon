@@ -60,9 +60,9 @@ RSpec.describe Api::V2::FiltersController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:scopes)  { 'write:filters' }
-    let(:filter)  { Fabricate(:custom_filter, account: user.account) }
-    let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
+    let(:scopes)   { 'write:filters' }
+    let!(:filter)  { Fabricate(:custom_filter, account: user.account) }
+    let!(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
 
     context 'updating filter parameters' do
       before do
@@ -84,6 +84,7 @@ RSpec.describe Api::V2::FiltersController, type: :controller do
 
     context 'updating keywords in bulk' do
       before do
+        allow(redis).to receive_messages(publish: nil)
         put :update, params: { id: filter.id, keywords_attributes: [{ id: keyword.id, keyword: 'updated' }] }
       end
 
@@ -93,6 +94,10 @@ RSpec.describe Api::V2::FiltersController, type: :controller do
 
       it 'updates the keyword' do
         expect(keyword.reload.keyword).to eq 'updated'
+      end
+
+      it 'sends exactly one filters_changed event' do
+        expect(redis).to have_received(:publish).with("timeline:#{user.account.id}", Oj.dump(event: :filters_changed)).once
       end
     end
   end
