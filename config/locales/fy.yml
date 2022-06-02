@@ -36,7 +36,12 @@ fy:
     contexts:
       thread: Petearen
   notification_mailer:
+    digest:
+      mention: "%{name} hat jo fermeld yn:"
     mention:
+      action: Beäntwurdzje
+      body: 'Jo binne fermeld troch %{name} yn:'
+      subject: Jo binne fermeld troch %{name}
       title: Nije fermelding
   relationships:
     last_active: Letst warber
@@ -44,3 +49,5 @@ fy:
     content_warning: 'Ynhâldswarskôging:'
   statuses:
     content_warning: 'Ynhâldswarskôging: %{warning}'
+    pin_errors:
+      direct: Berjochten dy allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
