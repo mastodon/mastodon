@@ -8,10 +8,20 @@ fy:
     accounts:
       moderation:
         active: Aktyf
+      security_measures:
+        only_password: Allinnich wachtwurd
+        password_and_2fa: Wachtwurd en 2FA
     dashboard:
       active_users: warbere brûkers
       top_languages: Meast aktive talen
       top_servers: Meast aktive tsjinners
+    instances:
+      confirm_purge: Wolle jo werklik alle gegevens fan dit domein foar ivich fuortsmite?
+      dashboard:
+        instance_accounts_measure: bewarre accounts
+    system_checks:
+      database_schema_check:
+        message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
