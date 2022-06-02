@@ -105,12 +105,12 @@ fa:
       avatar: تصویر نمایه
       by_domain: دامین
       change_email:
-        changed_msg: نشانی ایمیل این حساب با موفقیت تغییر کرد!
-        current_email: ایمیل کنونی
-        label: تغییر نشانی ایمیل
-        new_email: ایمیل تازه
-        submit: تغییر ایمیل
-        title: تغییر ایمیل برای %{username}
+        changed_msg: نشانی رایانامهٔ این حساب با موفقیت تغییر کرد!
+        current_email: رایانامهٔ کنونی
+        label: تغییر رایانامه
+        new_email: رایانامهٔ جدید
+        submit: تغییر رایانامه
+        title: تغییر رایانامه برای %{username}
       confirm: تأیید
       confirmed: تأیید شد
       confirming: تأیید
@@ -126,8 +126,8 @@ fa:
       display_name: نام نمایشی
       domain: دامنه
       edit: ویرایش
-      email: ایمیل
-      email_status: وضعیت ایمیل
+      email: رایانامه
+      email_status: وضعیت رایانامه
       enable: به کار انداختن
       enable_sign_in_token_auth: به کار انداختن تأیید هویت ژتون رایانامه‌ای
       enabled: به کار افتاده
@@ -179,8 +179,8 @@ fa:
       removed_header_msg: تصویر سرایند %{username} با موفّقیت برداشته شد
       resend_confirmation:
         already_confirmed: این کاربر قبلا تایید شده است
-        send: ایمیل تایید را دوباره بفرستید
-        success: ایمیل تایید با موفقیت ارسال شد!
+        send: ارسال دوبارهٔ رایانامهٔ تأیید
+        success: رایانامه تأیید با موفقیت ارسال شد!
       reset: بازنشانی
       reset_password: بازنشانی رمز
       resubscribe: اشتراک دوباره
@@ -212,9 +212,9 @@ fa:
       suspension_irreversible: داده‌های این حساب به صورت بی‌بازگشت حذف شد. می‌توانید برای قابل استفاده کردنش، آن را نامعلّق کنید، ولی این کار هیچ داده‌ای را که از پیش داده، برنخواهد گرداند.
       suspension_reversible_hint_html: حساب معلّق شد و داده‌ها به صورت کامل در %{date} برداشته خواهند شد. تا آن زمان، حساب می‌تواند بی هیچ عوارضی بازگردانده شود. اگر می‌خواهید فوراً همهٔ داده‌های حساب را بردارید، می‌توانید در پایین این کار را بکنید.
       title: حساب‌ها
-      unblock_email: رفع مسدودیت نشانی ایمیل
-      unblocked_email_msg: مسدودیت نشانی ایمیل %{username} با موفقیت رفع شد
-      unconfirmed_email: ایمیل تأییدنشده
+      unblock_email: رفع مسدودیت نشانی رایانامه
+      unblocked_email_msg: مسدودیت نشانی رایانامهٔ %{username} با موفقیت رفع شد
+      unconfirmed_email: رایانامهٔ تأیید نشده
       undo_sensitized: بازگردانی حساس
       undo_silenced: واگردانی بی‌صداکردن
       undo_suspension: واگردانی تعلیق
@@ -270,7 +270,7 @@ fa:
         silence_account: خموشی حساب
         suspend_account: تعلیق حساب
         unassigned_report: رفع واگذاری گزارش
-        unblock_email_account: رفع مسدودیت ایمیل
+        unblock_email_account: رفع مسدودیت رایانامه
         unsensitive_account: برداشتن علامت رسانه در حسابتان به عنوان حساس
         unsilence_account: رفع خموشی حساب
         unsuspend_account: رفع تعلیق حساب
@@ -321,7 +321,7 @@ fa:
         silence_account_html: "%{name} حساب %{target} را محدود کرد"
         suspend_account_html: "%{name} حساب %{target} را تعلیق کرد"
         unassigned_report_html: "%{name} گزارش %{target} را از حالت محول شده خارج کرد"
-        unblock_email_account_html: "%{name} نشانی ایمیل %{target} را رفع مسدودیت کرد"
+        unblock_email_account_html: "%{name} نشانی رایانامهٔ %{target} را رفع مسدودیت کرد"
         unsensitive_account_html: "%{name} علامت حساس رسانهٔ %{target} را برداشت"
         unsilence_account_html: "%{name} محدودیت حساب %{target} را برداشت"
         unsuspend_account_html: "%{name} حساب %{target} را از تعلیق خارج کرد"
@@ -449,7 +449,7 @@ fa:
       view: دیدن مسدودسازی دامنه
     email_domain_blocks:
       add_new: افزودن تازه
-      created_msg: مسدودسازی دامین ایمیل با موفقیت ساخته شد
+      created_msg: دامنهٔ رایانامه با موفقیت مسدود شد
       delete: پاک‌کردن
       dns:
         types:
@@ -457,8 +457,8 @@ fa:
       domain: دامین
       new:
         create: ساختن مسدودسازی
-        title: مسدودسازی دامین ایمیل تازه
-      title: مسدودسازی دامین‌های ایمیل
+        title: مسدودسازی دامنهٔ رایانامهٔ جدید
+      title: دامنه‌های رایانامهٔ مسدود شده
     follow_recommendations:
       description_html: "<strong>پیشنهادات پیگیری به کاربران جدید کک می‌کند تا سریع‌تر محتوای جالب را پیدا کنند</strong>. زمانی که کاربری هنوز به اندازه کافی با دیگران تعامل نداشته است تا پیشنهادات پیگیری شخصی‌سازی‌شده دریافت کند، این حساب‌ها را به جای آن فهرست مشاهده خواهد کرد. این حساب‌ها به صورت روزانه و در ترکیب با بیشتری تعاملات و بالاترین دنبال‌کنندگان محلی برای یک زبان مشخص بازمحاسبه می‌شوند."
       language: برای زبان
@@ -618,7 +618,7 @@ fa:
         desc_html: نام‌های کاربری را با ویرگول از هم جدا کنید. این حساب‌ها تضمین می‌شوند که در پیشنهادهای پی‌گیری نشان داده شوند
         title: پیگیری‌های پیش‌فرض برای کاربران تازه
       contact_information:
-        email: ایمیل کاری
+        email: رایانامهٔ تجاری
         username: نام کاربری
       custom_css:
         desc_html: ظاهر ماستودون را با CSS-ای که در همهٔ صفحه‌ها جاسازی می‌شود تغییر دهید
@@ -674,13 +674,13 @@ fa:
         desc_html: نمایش علامت همکار روی صفحهٔ کاربر
         title: نمایش علامت همکار
       site_description:
-        desc_html: معرفی کوتاهی دربارهٔ رابط برنامه‌نویسی کاربردی. دربارهٔ این که چه چیزی دربارهٔ این سرور ماستدون ویژه است یا هر چیز مهم دیگری بنویسید. می‌توانید HTML بنویسید، به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
+        desc_html: معرفی کوتاهی دربارهٔ رابط برنامه‌نویسی کاربردی. دربارهٔ این که چه چیزی دربارهٔ این کارساز ماستودون ویژه است یا هر چیز مهم دیگری بنویسید. می‌توانید HTML بنویسید، به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: دربارهٔ این سرور
       site_description_extended:
         desc_html: جای خوبی برای نوشتن سیاست‌های کاربری، قانون‌ها، راهنماها، و هر چیزی که ویژهٔ این سرور است. تگ‌های HTML هم مجاز است
         title: اطلاعات تکمیلی سفارشی
       site_short_description:
-        desc_html: روی نوار کناری و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. در یک بند توضیح دهید که ماستدون چیست و چرا این سرور با بقیه فرق دارد.
+        desc_html: روی نوار کناری و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. در یک بند توضیح دهید که ماستودون چیست و چرا این کارساز با بقیه فرق دارد.
         title: توضیح کوتاه دربارهٔ سرور
       site_terms:
         desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
@@ -950,7 +950,7 @@ fa:
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
     '503': این صفحه به خاطر یک مشکل موقت در کارساز در دسترس نیست.
-    noscript_html: برای استفاده از نسخهٔ تحت وب ماستودون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="%{apps_path}">یک اپ ماستدون</a> را به‌کار ببرید.
+    noscript_html: برای استفاده از نسخهٔ تحت وب ماستودون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="%{apps_path}">یک کارهٔ ماستودون</a> را به کار ببرید.
   existing_username_validator:
     not_found: کاربری با این نام کاربری در این کارساز پیدا نشد
     not_found_multiple: "%{usernames} پیدا نشد"
@@ -1384,87 +1384,6 @@ fa:
   tags:
     does_not_match_previous_name: با نام پیشین مطابق نیست
   terms:
-    body_html: |
-      <h2>سیاست رازداری</h2>
-      <h3 id="collect">What information do we collect?</h3>
-
-      <ul>
-      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Site usage by children</h3>
-
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
-
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: شرایط استفاده و سیاست رازداری %{instance}
   themes:
     contrast: ماستودون (سایه‌روشن بالا)

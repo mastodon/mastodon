@@ -583,6 +583,8 @@ Rails.application.routes.draw do
           end
         end
 
+        resources :domain_blocks, only: [:index, :show, :update, :create, :destroy]
+
         namespace :trends do
           resources :tags, only: [:index]
           resources :links, only: [:index]
