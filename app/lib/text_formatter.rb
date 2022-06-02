@@ -62,9 +62,9 @@ class TextFormatter
       end
     end
 
-    html = Kramdown::Document.new(html, build_kramdown_options).to_html
+    html = Kramdown::Document.new(html, build_kramdown_options).to_mastodon
 
-    html = kramdown_link_to_url(html)
+    html = markdown_link_to_url(html)
 
     # Should by pass the <p> wrapper
     # html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
@@ -142,38 +142,31 @@ class TextFormatter
   end
 
   # We don't use entity here, because regex can be much more easy
-  def kramdown_link_to_url(html)
-    escape_suffix = 'TmpEscape'
+  def markdown_link_to_url(html)
     url_regexp = URI::Parser.new.make_regexp(%w[http https])
-    escaped_regexp = URI::Parser.new.make_regexp(%W[http#{escape_suffix} https#{escape_suffix}])
-    document = Nokogiri.HTML5(html,nil,'UTF-8')
-    document.search('a', 'img', 'code', 'pre').each do |link|
-      outer_html = link.to_html
-      outer_html = outer_html.gsub(url_regexp) {
-        |match| match.gsub(/^(http[s?])/,"\\1#{escape_suffix}")
-      }
-      link.replace(outer_html)
-    end
+    document = Nokogiri::HTML5.fragment(html, 'UTF-8')
+    document.children.each do |node|
+      next unless node.name == 'p'
+      node.children.each do |sub|
+        if sub.name == 'text'
+          content = sub.to_html
+          content = content.gsub(url_regexp) { |match|
+            url = match.to_s
 
-    # TODO：remove html, body wrapper
-    html = document.to_html
+            prefix = url.match(URL_PREFIX_REGEX).to_s
+            display_url = url[prefix.length, 30]
+            suffix = url[prefix.length + 30..-1]
+            cutoff = url[prefix.length..-1].length > 30
 
-    html = html.gsub(url_regexp) {|match|
-      url = match.to_s
-
-      prefix      = url.match(URL_PREFIX_REGEX).to_s
-      display_url = url[prefix.length, 30]
-      suffix      = url[prefix.length + 30..-1]
-      cutoff      = url[prefix.length..-1].length > 30
-
-      <<~HTML.squish
-        <a href="#{h(url)}" target="_blank" rel="#{DEFAULT_REL.join(' ')}"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
-      HTML
-    }
-
-    html.gsub(escaped_regexp) {
-      |match| match.gsub(Regexp.new("^(http[s?])#{escape_suffix}"),"\\1")
-    }
+            <<~HTML.squish
+              <a href="#{h(url)}" target="_blank" rel="#{DEFAULT_REL.join(' ')}"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
+            HTML
+          } # content.gsub(url_regexp) { |match|
+          sub.replace(content)
+        end # if sub.type == 'text'
+      end # node.children.each do |sub|
+    end # document.children.each do |node|
+    document.to_html
   end
 
   def link_to_hashtag(entity)
