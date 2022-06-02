@@ -51,23 +51,9 @@ class TextFormatter
   def to_markdown_s
     return ''.html_safe if text.blank?
 
-    html = rewrite_markdown do |entity|
-      if entity[:url]
-        # link_to_url(entity)
-        entity[:url]
-      elsif entity[:hashtag]
-        link_to_hashtag(entity)
-      elsif entity[:screen_name]
-        link_to_mention(entity)
-      end
-    end
+    html = Kramdown::Document.new(text, build_kramdown_options).to_mastodon
 
-    html = Kramdown::Document.new(html, build_kramdown_options).to_mastodon
-
-    html = markdown_link_to_url(html)
-
-    # Should by pass the <p> wrapper
-    # html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
+    html = markdown_plain_text_handler(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -85,6 +71,41 @@ class TextFormatter
         # inline_theme: 'base16.light' # do not use this!
       }
     }
+  end
+
+  def markdown_plain_text_handler(html)
+    url_regexp = URI::Parser.new.make_regexp(%w[http https])
+    document = Nokogiri::HTML5.fragment(html, 'UTF-8')
+    document.children.each do |node|
+      next unless node.name == 'p'
+      node.children.each do |sub|
+        if sub.name == 'text'
+          # Remove the first line wrap character. Suspect this is a bug in Nokogiri.
+          content = sub.to_html
+          content = content[1..-1] if content[0] == "\n"
+
+          # link converter
+          content = content.gsub(url_regexp) { |match|
+            link_to_url({url: match})
+          }
+
+          # hashtag converter
+          content = content.gsub(Tag::HASHTAG_RE) { |_|
+            match = Regexp.last_match
+            link_to_hashtag({hashtag: match[1]})
+          }
+
+          # mention converter
+          content = content.gsub(Account::MENTION_RE) { |_|
+            match = Regexp.last_match
+            link_to_mention({screen_name: match[1]})
+          }
+
+          sub.replace(content)
+        end # if sub.type == 'text'
+      end # node.children.each do |sub|
+    end # document.children.each do |node|
+    document.to_html
   end
 
   def rewrite
@@ -106,25 +127,6 @@ class TextFormatter
     result
   end
 
-  def rewrite_markdown
-    entities.sort_by! do |entity|
-      entity[:indices].first
-    end
-
-    result = ''.dup
-
-    last_index = entities.reduce(0) do |index, entity|
-      indices = entity[:indices]
-      result << text[index...indices.first]
-      result << yield(entity)
-      indices.last
-    end
-
-    result << text[last_index..-1]
-
-    result
-  end
-
   def link_to_url(entity)
     url = Addressable::URI.parse(entity[:url]).to_s
     rel = with_rel_me? ? (DEFAULT_REL + %w(me)) : DEFAULT_REL
@@ -139,34 +141,6 @@ class TextFormatter
     HTML
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     h(entity[:url])
-  end
-
-  # We don't use entity here, because regex can be much more easy
-  def markdown_link_to_url(html)
-    url_regexp = URI::Parser.new.make_regexp(%w[http https])
-    document = Nokogiri::HTML5.fragment(html, 'UTF-8')
-    document.children.each do |node|
-      next unless node.name == 'p'
-      node.children.each do |sub|
-        if sub.name == 'text'
-          content = sub.to_html
-          content = content.gsub(url_regexp) { |match|
-            url = match.to_s
-
-            prefix = url.match(URL_PREFIX_REGEX).to_s
-            display_url = url[prefix.length, 30]
-            suffix = url[prefix.length + 30..-1]
-            cutoff = url[prefix.length..-1].length > 30
-
-            <<~HTML.squish
-              <a href="#{h(url)}" target="_blank" rel="#{DEFAULT_REL.join(' ')}"><span class="invisible">#{h(prefix)}</span><span class="#{cutoff ? 'ellipsis' : ''}">#{h(display_url)}</span><span class="invisible">#{h(suffix)}</span></a>
-            HTML
-          } # content.gsub(url_regexp) { |match|
-          sub.replace(content)
-        end # if sub.type == 'text'
-      end # node.children.each do |sub|
-    end # document.children.each do |node|
-    document.to_html
   end
 
   def link_to_hashtag(entity)
@@ -205,8 +179,9 @@ class TextFormatter
     url = ActivityPub::TagManager.instance.url_for(account)
     display_username = same_username_hits&.positive? || with_domains? ? account.pretty_acct : account.username
 
+    # <span class="h-card"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
     <<~HTML.squish
-      <span class="h-card"><a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a></span>
+      <a href="#{h(url)}" class="u-url mention">@<span>#{h(display_username)}</span></a>
     HTML
   end
 
