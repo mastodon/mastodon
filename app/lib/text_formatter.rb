@@ -45,6 +45,8 @@ class TextFormatter
 
     html = simple_format(html, {}, sanitize: false).delete("\n") if multiline?
 
+    html = append_quote_footer(html)
+
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
 
@@ -54,6 +56,8 @@ class TextFormatter
     html = Kramdown::Document.new(text, build_kramdown_options).to_mastodon
 
     html = markdown_plain_text_handler(html)
+
+    html = append_quote_footer(html)
 
     html.html_safe # rubocop:disable Rails/OutputSafety
   end
@@ -106,6 +110,16 @@ class TextFormatter
       end # node.children.each do |sub|
     end # document.children.each do |node|
     document.to_html
+  end
+
+  def append_quote_footer(html)
+    quote = options[:quote]
+    return html if quote.nil?
+
+    url = ActivityPub::TagManager.instance.url_for(quote)
+    link = link_to_url({url: url})
+    footer = "<span class=\"quote-inline\"><br/>QT: [#{link}]</span>"
+    "#{html}#{footer}"
   end
 
   def rewrite
