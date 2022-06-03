@@ -263,8 +263,12 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+# Kubernetes manages pods for jobs and pods for deployments differently, so you might
+# need to apply different annotations to the two different sets of pods. The annotations
+# set with podAnnotations will be added to all deployment-managed pods.
 podAnnotations: {}
 
+# The annotations set with jobAnnotations will be added to all job pods.
 jobAnnotations: {}
 
 resources: {}
