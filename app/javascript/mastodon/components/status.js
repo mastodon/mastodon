@@ -3,7 +3,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import AvatarOverlay from './avatar_overlay';
-import AvatarComposite from './avatar_composite';
 import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import StatusContent from './status_content';
@@ -70,7 +69,6 @@ class Status extends ImmutablePureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.map,
-    otherAccounts: ImmutablePropTypes.list,
     onClick: PropTypes.func,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
@@ -297,7 +295,7 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
 
-    const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey, pictureInPicture } = this.props;
+    const { intl, hidden, featured, unread, showThread, scrollKey, pictureInPicture } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -456,9 +454,7 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if (otherAccounts && otherAccounts.size > 0) {
-      statusAvatar = <AvatarComposite accounts={otherAccounts} size={48} />;
-    } else if (account === undefined || account === null) {
+    if (account === undefined || account === null) {
       statusAvatar = <Avatar account={status.get('account')} size={48} />;
     } else {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
@@ -492,7 +488,7 @@ class Status extends ImmutablePureComponent {
                   {statusAvatar}
                 </div>
 
-                <DisplayName account={status.get('account')} others={otherAccounts} />
+                <DisplayName account={status.get('account')} />
               </a>
             </div>
 

@@ -28,10 +28,10 @@ $inverted-text-color: $black !default;
 $lighter-text-color: $classic-base-color !default;
 $light-text-color: #444b5d;
 
-//Newly added colors
+// Newly added colors
 $account-background-color: $white !default;
 
-//Invert darkened and lightened colors
+// Invert darkened and lightened colors
 @function darken($color, $amount) {
   @return hsl(hue($color), saturation($color), lightness($color) + $amount);
 }

@@ -1580,14 +1580,14 @@ sl:
     does_not_match_previous_name: se ne ujema s prejšnjim imenom
   terms:
     body_html: |
-      <h2>Pravilnik o zasebnosti</h2>
-      <h3 id="collect">Katere informacije zbiramo?</h3>
+      <h2>Politika zasebnosti</h2>
+      <h3 id="collect">Katere vrste podatkov zbiramo?</h3>
 
       <ul>
-      <li><em>Osnovni podatki o računu</em>: Če se registrirate na tem strežniku, boste morda morali vnesti uporabniško ime, e-poštni naslov in geslo. Vnesete lahko tudi dodatne informacije o profilu, na primer prikazno ime in biografijo, ter naložite sliko profila in sliko glave. Uporabniško ime, prikazno ime, biografija, slika profila in slika glave so vedno javno dostopni.</li>
-      <li><em>Objave, sledenja in druge javne informacije</em>: Seznam oseb, ki jim sledite, je javno dostopen, enako velja za vaše sledilce. Ko pošljete sporočilo, sta datum in čas shranjena, kot tudi aplikacija, iz katere ste poslali sporočilo. Sporočila lahko vsebujejo medijske priloge, kot so slike in video posnetki. Javne in neprikazane objave so javno dostopne. Ko v profilu vključite objavo, je to tudi javno dostopna informacija. Vaše objave, ki so dostavljene vašim sledilcem, so včasih dostavljeni na različne strežnike, kjer se kopije objav tudi shranijo. Ko izbrišete objave, se to prav tako dostavi vašim sledilcem. Spodbujanje in vzljubitev drugih objav sta veno javni.</li>
-      <li><em>Neposredne objave in objave samo za sledilce</em>: Vse objave so shranjene in obdelane na strežniku. Objave samo za sledilce se dostavijo vašim sledilcem in uporabnikom, ki so v njih omenjeni. Neposredne objave se posredujejo samo uporabnikom, ki so v njih omenjeni. V nekaterih primerih so dostavljeni na različne strežnike, kopije pa se shranijo tam. V dobri veri si prizadevamo omejiti dostop do teh objav samo pooblaščenim osebam, vendar drugi strežniki to morda ne bodo storili. Zato je pomembno, da pregledate strežnike, na katerih so sledilci. V nastavitvah lahko preklapljate med možnostmi za odobritev in zavrnitev novih sledilcev. <em> Ne pozabite, da lahko operaterji strežnika in kateri koli prejemni strežnik takšna sporočila pregledajo </em> in da jih lahko prejemniki posnamejo, kopirajo ali drugače ponovno delijo. <em> Ne pošiljajte nevarnih informacij skozi Mastodon. </em> </li>
-      <li><em>IP-ji in drugi metapodatki</em>: Ko se prijavite, zabeležimo naslov IP, s katerega se prijavljate, in ime aplikacije brskalnika. V nastavitvah so za pregled in preklic na voljo vse prijavljene seje. Zadnji uporabljeni IP naslov je shranjen do 12 mesecev. Prav tako lahko obdržimo dnevnike strežnikov, ki vsebujejo IP naslov vsake zahteve na naš strežnik. </li>
+        <li><em>Osnovni podatki o računu</em>: Če se registrirate na tem strežniku, boste morda morali vnesti uporabniško ime, e-poštni naslov in geslo. Vnesete lahko tudi dodatne informacije o profilu, npr. pojavno ime in biografijo, ter naložite sliko profila in sliko glave. Uporabniško ime, pojavno ime, biografija, slika profila in slika glave so vedno javno dostopni.</li>
+        <li><em>Objave, sledenja in druge javne informacije</em>: Seznam oseb, ki jim sledite, je javno dostopen, enako velja za vaše sledilce. Ko pošljete sporočilo, sta datum in čas shranjena, kot tudi aplikacija, iz katere ste poslali sporočilo. Sporočila lahko vsebujejo medijske priloge, kot so slike in videoposnetki. Javne in neprikazane objave so javno dostopne. Ko v profilu vključite objavo, je to tudi javno dostopna informacija. Vaše objave, ki so dostavljene vašim sledilcem, so včasih dostavljeni na različne strežnike, kjer se kopije objav tudi shranijo. Ko izbrišete objave, se to prav tako dostavi vašim sledilcem. Spodbujanje in vzljubitev drugih objav sta vedno javni.</li>
+        <li><em>Neposredne objave in objave samo za sledilce</em>: Vse objave so shranjene in obdelane na strežniku. Objave samo za sledilce se dostavijo vašim sledilcem in uporabnikom, ki so v njih omenjeni. Neposredne objave se posredujejo samo uporabnikom, ki so v njih omenjeni. V nekaterih primerih so dostavljeni na različne strežnike, kopije pa se shranijo tam. V dobri veri si prizadevamo omejiti dostop do teh objav samo pooblaščenim osebam, vendar drugi strežniki to morda ne bodo storili. Zato je pomembno, da pregledate strežnike, na katerih so sledilci. V nastavitvah lahko preklapljate med možnostmi za odobritev in zavrnitev novih sledilcev. <em>Ne pozabite, da lahko operaterji strežnika in poljubni prejemni strežnik takšna sporočila pregledajo</em> in da jih lahko prejemniki poslikajo, kopirajo ali drugače ponovno delijo. <em>Ne pošiljajte občutljivih informacij skozi Mastodon.</em></li>
+        <li><em>IP-ji in drugi metapodatki</em>: Ko se prijavite, zabeležimo naslov IP, s katerega se prijavljate, in ime aplikacije brskalnika. V nastavitvah so za pregled in preklic na voljo vse prijavljene seje. Zadnji uporabljeni IP naslov je shranjen največ 12 mesecev. Prav tako lahko obdržimo dnevnike strežnikov, ki vsebujejo IP-naslov vsake zahteve na naš strežnik.</li>
       </ul>
 
       <hr class="spacer" />
@@ -1597,9 +1597,9 @@ sl:
       <p>Vse informacije, ki jih zbiramo od vas, so lahko uporabljene na naslednje načine:</p>
 
       <ul>
-      <li>Za zagotavljanje osrednje funkcionalnosti Mastodona. Komunicirate lahko z vsebino drugih oseb in objavljate lastno vsebino, ko ste prijavljeni. Na primer, lahko spremljate druge osebe in si ogledate njihove kombinirane objave v svoji prilagojeni domači časovnici.</li>
-      <li>Za pomoč pri moderiranju skupnosti, na primer primerjavo vašega naslova IP naslova z drugimi znanimi, za izobčitev izmikanja ali drugih kršitev.</li>
-      <li>E-poštni naslov, ki ga navedete, se lahko uporabi za pošiljanje informacij, obvestil o drugih osebah, ki komunicirajo z vašo vsebino ali pošiljanju sporočil, ter za odzivanje na poizvedbe in/ali druge zahteve ali vprašanja.</li>
+        <li>Za zagotavljanje osrednje funkcionalnosti Mastodona. Komunicirate lahko z vsebino drugih oseb in objavljate lastno vsebino, ko ste prijavljeni. Primer: spremljate lahko druge osebe in si ogledate njihove kombinirane objave v svoji prilagojeni domači časovnici.</li>
+        <li>Za pomoč pri moderiranju skupnosti, npr. primerjavo vašega naslova IP z drugimi znanimi za ugotavljanje izmikanja prepovedim ali drugih kršitev.</li>
+        <li>E-poštni naslov, ki ga navedete, se lahko uporabi za pošiljanje informacij, obvestil o drugih osebah, ki komunicirajo z vašo vsebino ali vam pošiljajo sporočila, ter za odzivanje na poizvedbe in/ali druge zahteve ali vprašanja.</li>
       </ul>
 
       <hr class="spacer" />
@@ -1615,8 +1615,8 @@ sl:
       <p>Prizadevali si bomo za:</p>
 
       <ul>
-      <li>Shranjevanje dnevnike strežnikov, ki vsebujejo naslov IP vseh zahtev za ta strežnik, če so hranjeni, največ 90 dni.</li>
-      <li>Obdržiitev naslovov IP, povezane z registriranimi uporabniki, ne več kot 12 mesecev.</li>
+        <li>Shranjevanje dnevnikov strežnikov, ki vsebujejo naslov IP vseh zahtev za ta strežnik, če so hranjeni, največ 90 dni.</li>
+        <li>Obdržiitev naslovov IP, povezanih z registriranimi uporabniki, ne več kot 12 mesecev.</li>
       </ul>
 
       <p>Lahko zahtevate in prenesete arhiv vaše vsebine, vključno z objavami, predstavnostnimi prilogami, sliko profila in sliko glave.</p>
@@ -1635,7 +1635,7 @@ sl:
 
       <h3 id="disclose">Ali razkrivamo informacije zunanjim strankam?</h3>
 
-      <p>Vaših osebnih podatkov ne prodajamo, preprodajamo ali kako drugače posredujemo zunanjim osebam. To ne vključuje zaupanja vrednih tretjih oseb, ki nam pomagajo pri upravljanju naše spletne strani, vodenju našega poslovanja ali storitev, če se te strani strinjajo, da bodo te informacije zaupne. Vaše podatke lahko tudi objavimo, če menimo, da je objava ustrezna in v skladu z zakonom, uveljavlja pravilnike o spletnih mestih ali ščiti naše ali druge pravice, lastnino ali varnost.</p>
+      <p>Vaših osebnih podatkov ne prodajamo, preprodajamo ali kako drugače posredujemo tretjim osebam. To ne vključuje zaupanja vrednih tretjih oseb, ki nam pomagajo pri upravljanju naše spletne strani, vodenju našega poslovanja ali storitev, če se te strani strinjajo, da bodo te informacije zaupne. Vaše podatke lahko tudi objavimo, če menimo, da je objava ustrezna in v skladu z zakonom, uveljavlja pravilnike o spletnih mestih ali ščiti naše ali druge pravice, lastnino ali varnost.</p>
 
       <p>Vaše javne vsebine lahko prenesejo drugi strežniki v omrežju. Vaše objave in objave samo za sledilce so dostavljene na strežnike, na katerih prebivajo vaši sledilci, in neposredna sporočila so dostavljena na strežnike prejemnikov, če so ti sledilci ali prejemniki na drugem strežniku.</p>
 
@@ -1643,23 +1643,23 @@ sl:
 
       <hr class="spacer" />
 
-      <h3 id="children">Uporaba strani s strani otrok</h3>
+      <h3 id="children">Uporaba spletišča s strani otrok</h3>
 
-      <p>Če je ta strežnik v EU ali EEA: Naše spletno mesto, izdelki in storitve so namenjeni ljudem, ki so stari vsaj 16 let. Če ste mlajši od 16 let, po zahtevah GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) ne uporabljajte tega spletnega mesta.</p>
+      <p>Če je ta strežnik v EU ali EEA: Naše spletno mesto, izdelki in storitve so namenjeni ljudem, ki so stari vsaj 16 let. Če ste mlajši od 16 let, po zahtevah GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) ne uporabljajte tega spletnega mesta. (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>).</p>
 
-      <p>Če je ta strežnik v ZDA Naše spletno mesto, izdelki in storitve so namenjeni ljudem, ki so stari vsaj 13 let. Če ste mlajši od 13 let, po zahtevah COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) ne uporabljajte tega spletnega mesta.</p>
+      <p>Če je ta strežnik v ZDA: Naše spletno mesto, izdelki in storitve so namenjeni ljudem, ki so stari vsaj 13 let. Če ste mlajši od 13 let, po zahtevah COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>), ne uporabljajte tega spletnega mesta.</p>
 
       <p>Če je ta strežnik v drugi jurisdikciji, so lahko zakonske zahteve drugačne.</p>
 
       <hr class="spacer" />
 
-      <h3 id="changes">Spremembe našega pravilnika o zasebnosti</h3>
+      <h3 id="changes">Spremembe naše politike zasebnosti</h3>
 
       <p>Če se odločimo za spremembo našega pravilnika o zasebnosti, bomo te spremembe objavili na tej strani.</p>
 
       <p>Ta dokument je CC-BY-SA. Zadnja posodobitev je bila 7. marca 2018.</p>
 
-      <p>Prvotno je bila prilagojena v skladu s <a href="https://github.com/discourse/discourse">pravilnikom o zasebnosti diskurza</a>.</p>
+      <p>Prvotno je bila prilagojena v skladu s <a href="https://github.com/discourse/discourse">politiko zasebnost Discourse</a>.</p>
     title: "%{instance} Pogoji storitve in pravilnik o zasebnosti"
   themes:
     contrast: Mastodon (Visok kontrast)

@@ -67,7 +67,6 @@ class Status extends ImmutablePureComponent {
     containerId: PropTypes.string,
     id: PropTypes.string,
     status: ImmutablePropTypes.map,
-    otherAccounts: ImmutablePropTypes.list,
     account: ImmutablePropTypes.map,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
@@ -492,7 +491,6 @@ class Status extends ImmutablePureComponent {
       intl,
       status,
       account,
-      otherAccounts,
       settings,
       collapsed,
       muted,
@@ -745,7 +743,6 @@ class Status extends ImmutablePureComponent {
                   friend={account}
                   collapsed={isCollapsed}
                   parseClick={parseClick}
-                  otherAccounts={otherAccounts}
                 />
               ) : null}
             </span>
@@ -755,7 +752,6 @@ class Status extends ImmutablePureComponent {
               collapsible={settings.getIn(['collapsed', 'enabled'])}
               collapsed={isCollapsed}
               setCollapsed={setCollapsed}
-              directMessage={!!otherAccounts}
               settings={settings.get('status_icons')}
             />
           </header>
@@ -776,7 +772,6 @@ class Status extends ImmutablePureComponent {
               status={status}
               account={status.get('account')}
               showReplyCount={settings.get('show_reply_count')}
-              directMessage={!!otherAccounts}
               onFilter={this.handleFilterClick}
             />
           ) : null}

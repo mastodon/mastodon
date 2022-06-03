@@ -48,7 +48,6 @@ class StatusIcons extends React.PureComponent {
     mediaIcons: PropTypes.arrayOf(PropTypes.string),
     collapsible: PropTypes.bool,
     collapsed: PropTypes.bool,
-    directMessage: PropTypes.bool,
     setCollapsed: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     settings: ImmutablePropTypes.map.isRequired,
@@ -100,7 +99,6 @@ class StatusIcons extends React.PureComponent {
       mediaIcons,
       collapsible,
       collapsed,
-      directMessage,
       settings,
       intl,
     } = this.props;
@@ -125,7 +123,7 @@ class StatusIcons extends React.PureComponent {
             title={intl.formatMessage(messages.localOnly)}
           />}
         {settings.get('media') && !!mediaIcons && mediaIcons.map(icon => this.renderIcon(icon))}
-        {settings.get('visibility') && !directMessage && <VisibilityIcon visibility={status.get('visibility')} />}
+        {settings.get('visibility') && <VisibilityIcon visibility={status.get('visibility')} />}
         {collapsible && (
           <IconButton
             className='status__collapse-button'
