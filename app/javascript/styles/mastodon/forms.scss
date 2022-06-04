@@ -352,7 +352,7 @@ code {
         flex: 1 1 auto;
       }
 
-      input[type=checkbox] {
+      input[type="checkbox"] {
         position: absolute;
         left: 0;
         top: 5px;
@@ -368,11 +368,11 @@ code {
     border-radius: 4px;
   }
 
-  input[type=text],
-  input[type=number],
-  input[type=email],
-  input[type=password],
-  input[type=url],
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"],
   textarea {
     box-sizing: border-box;
     font-size: 16px;
@@ -410,10 +410,10 @@ code {
     }
   }
 
-  input[type=text],
-  input[type=number],
-  input[type=email],
-  input[type=password] {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"] {
     &:focus:invalid:not(:placeholder-shown),
     &:required:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
@@ -425,10 +425,10 @@ code {
       color: lighten($error-red, 12%);
     }
 
-    input[type=text],
-    input[type=number],
-    input[type=email],
-    input[type=password],
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
     textarea,
     select {
       border-color: lighten($error-red, 12%);
@@ -1000,7 +1000,7 @@ code {
     flex: 1 1 auto;
   }
 
-  input[type=text] {
+  input[type="text"] {
     background: transparent;
     border: 0;
     padding: 10px;

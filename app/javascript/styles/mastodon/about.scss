@@ -41,7 +41,7 @@ $small-breakpoint: 960px;
 
   p {
     margin-top: 0;
-    margin-bottom: .85em;
+    margin-bottom: 0.85em;
 
     &:last-child {
       margin-bottom: 0;
@@ -73,7 +73,7 @@ $small-breakpoint: 960px;
   h6 {
     font-family: $font-display, sans-serif;
     margin-top: 1.275em;
-    margin-bottom: .85em;
+    margin-bottom: 0.85em;
     font-weight: 500;
     color: $secondary-text-color;
   }
@@ -436,7 +436,7 @@ $small-breakpoint: 960px;
     width: 100%;
     height: 0;
     border: 0;
-    border-bottom: 1px solid rgba($ui-base-lighter-color, .6);
+    border-bottom: 1px solid rgba($ui-base-lighter-color, 0.6);
     margin: 20px 0;
 
     &.spacer {
