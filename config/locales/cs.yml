@@ -76,7 +76,7 @@ cs:
     last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
     media: Média
-    moved_html: "%{name} se přesunul a na %{new_profile_link}:"
+    moved_html: 'Uživatel %{name} se přesunul na %{new_profile_link}:'
     network_hidden: Tato informace není k dispozici
     nothing_here: Nic tu není!
     people_followed_by: Lidé, které sleduje %{name}
@@ -209,8 +209,8 @@ cs:
       security_measures:
         only_password: Pouze heslo
         password_and_2fa: Heslo a 2FA
-      sensitive: Citlivý
-      sensitized: označen jako citlivý
+      sensitive: Vynutit citlivost
+      sensitized: Označen jako citlivý
       shared_inbox_url: URL sdílené příchozí schránky
       show:
         created_reports: Vytvořená hlášení
@@ -228,10 +228,10 @@ cs:
       unblock_email: Odblokovat e-mailovou adresu
       unblocked_email_msg: E-mailová adresa %{username} byla úspěšně odblokována
       unconfirmed_email: Nepotvrzený e-mail
-      undo_sensitized: Vrátit zpět citlivost
+      undo_sensitized: Zrušit vynucení citlivosti
       undo_silenced: Zrušit omezení
       undo_suspension: Zrušit pozastavení
-      unsilenced_msg: Omezení účtu %{username} úspěšně odstraněno
+      unsilenced_msg: Omezení účtu %{username} úspěšně zrušeno
       unsubscribe: Přestat odebírat
       unsuspended_msg: Úspěšně obnoven účet %{username}
       username: Uživatelské jméno
@@ -279,12 +279,12 @@ cs:
         reopen_report: Znovu otevřít hlášení
         reset_password_user: Obnovit heslo
         resolve_report: Označit hlášení jako vyřešené
-        sensitive_account: Označit média ve vašem účtu jako citlivá
+        sensitive_account: Vynucení citlivosti účtu
         silence_account: Omezit účet
         suspend_account: Pozastavit účet
         unassigned_report: Zrušit přiřazení hlášení
         unblock_email_account: Odblokovat e-mailovou adresu
-        unsensitive_account: Zrušit označení médií ve vašem účtu jako citlivých
+        unsensitive_account: Zrušit vynucení citlivosti účtu
         unsilence_account: Zrušit omezení účtu
         unsuspend_account: Zrušit pozastavení účtu
         update_announcement: Aktualizovat oznámení
@@ -331,12 +331,12 @@ cs:
         reset_password_user_html: Uživatel %{name} obnovil heslo uživatele %{target}
         resolve_report_html: Uživatel %{name} vyřešil hlášení %{target}
         sensitive_account_html: "%{name} označil média účtu %{target} jako citlivá"
-        silence_account_html: Uživatel %{name} ztišil uživatele %{target}
+        silence_account_html: Uživatel %{name} omezil účet %{target}
         suspend_account_html: Uživatel %{name} pozastavil účet uživatele %{target}
         unassigned_report_html: Uživatel %{name} odebral hlášení %{target}
         unblock_email_account_html: Uživatel %{name} odblokoval e-mailovou adresu %{target}
         unsensitive_account_html: "%{name} zrušil označení médií účtu %{target} jako citlivých"
-        unsilence_account_html: Uživatel %{name} zrušil ztišení uživatele %{target}
+        unsilence_account_html: Uživatel %{name} zrušil omezení účtu %{target}
         unsuspend_account_html: Uživatel %{name} zrušil pozastavení účtu uživatele %{target}
         update_announcement_html: Uživatel %{name} aktualizoval oznámení %{target}
         update_custom_emoji_html: Uživatel %{name} aktualizoval emoji %{target}
@@ -443,10 +443,11 @@ cs:
     domain_blocks:
       add_new: Přidat novou blokaci domény
       created_msg: Blokace domény se právě vyřizuje
-      destroyed_msg: Blokace domény byla vrácena
+      destroyed_msg: Blokace domény byla odvolána
       domain: Doména
       edit: Upravit blokaci domény
-      existing_domain_block_html: Pro účet %{name} jste už nastavili přísnější omezení, nejprve jej <a href="%{unblock_url}">odblokujte</a>.
+      existing_domain_block: Pro %{name} už jste nastavili přísnější omezení.
+      existing_domain_block_html: Pro %{name} už jste nastavili přísnější omezení, nejprve ji <a href="%{unblock_url}">odblokujte</a>.
       new:
         create: Vytvořit blokaci
         hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
@@ -466,7 +467,7 @@ cs:
       reject_media_hint: Odstraní lokálně uložené mediální soubory a odmítne jejich stahování v budoucnosti. Nepodstatné pro pozastavení
       reject_reports: Odmítat hlášení
       reject_reports_hint: Ignorovat všechna hlášení pocházející z této domény. Nepodstatné pro pozastavení
-      undo: Vrátit blokaci domény
+      undo: Odvolat blokaci domény
       view: Zobrazit blokaci domény
     email_domain_blocks:
       add_new: Přidat
@@ -1332,7 +1333,7 @@ cs:
     code_hint: Pro potvrzení zadejte kód vygenerovaný Vaší ověřovací aplikací
     description_html: Zapnete-li <strong>dvoufázové ověřování</strong> pomocí ověřovací aplikace, k přihlášení budete u sebe muset mít svůj mobil, který pro Vás bude generovat kódy k opsání.
     enable: Zapnout
-    instructions_html: "<strong>Naskenujte tento QR kód do Google Authenticator nebo podobné TOTP aplikace na Vašem telefonu</strong>. Následně bude tato aplikace generovat kódy, které budete zadávat při přihlašování."
+    instructions_html: "<strong>Naskenujte tento QR kód do Google Authenticator nebo podobné TOTP aplikace na svém telefonu</strong>. Následně bude tato aplikace generovat kódy, které budete zadávat při přihlašování."
     manual_instructions: 'Nemůžete-li načíst QR kód a potřebujete ho zadat ručně, zde je tajemství v textové podobě:'
     setup: Nastavit
     wrong_code: Zadaný kód je neplatný! Je čas na serveru i zařízení generujícím kód správný?
@@ -1404,7 +1405,7 @@ cs:
       account: Veřejné příspěvky od @%{acct}
       tag: 'Veřejné příspěvky s hashtagem #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Překročili jste limit %{limit} příspěvků naplánovaných na tento den
+    over_daily_limit: Pro dnešek jste překročili limit %{limit} naplánovaných příspěvků
     over_total_limit: Překročili jste limit %{limit} naplánovaných příspěvků
     too_soon: Plánované datum musí být v budoucnosti
   sessions:
