@@ -1,4 +1,3 @@
----
 af:
   about:
     contact_unavailable: NVT
@@ -9,6 +8,8 @@ af:
     get_apps: Probeer 'n mobiele toepassing
     hosted_on: Mastodon gehuisves op %{domain}
   admin:
+    domain_blocks:
+      existing_domain_block: Jy het alreeds strenger perke ingelê op %{name}.
     trends:
       only_allowed: Slegs toegelate
       trending: Gewild
@@ -22,9 +23,9 @@ af:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
   rss:
     content_warning: 'Inhoud waarskuwing:'
