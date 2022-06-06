@@ -930,6 +930,8 @@ RSpec.describe Account, type: :model do
       let!(:unconfirmed_unapproved) { Fabricate(:user, confirmed_at: nil, approved: false).account }
       let!(:local_account)          { Fabricate(:account, username: 'local_account') }
       let!(:remote_account)         { Fabricate(:account, domain: 'example.org', username: 'remote_account') }
+      let!(:moved_local_account)    { Fabricate(:account, username: 'moved_local', moved_to_account_id: local_account.id) }
+      let!(:moved_remote_account)   { Fabricate(:account, username: 'moved_remote', domain: 'example.org', moved_to_account_id: local_account.id) }
 
       before do
         # Accounts get automatically-approved depending on settings, so ensure they aren't approved

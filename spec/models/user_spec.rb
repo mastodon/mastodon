@@ -102,6 +102,23 @@ RSpec.describe User, type: :model do
         expect(User.matches_ip('2160:2160::/32')).to match_array([user1])
       end
     end
+
+    describe 'emailable' do
+      let!(:unconfirmed_user) { Fabricate(:user, confirmed_at: nil) }
+      let!(:confirmed_user)   { Fabricate(:user, confirmed_at: 10.days.ago) }
+      let!(:disabled_user)    { Fabricate(:user, confirmed_at: 10.days.ago, disabled: true) }
+      let!(:suspended_user)   { Fabricate(:user, confirmed_at: 10.days.ago) }
+      let!(:moved_user)       { Fabricate(:user, confirmed_at: 10.days.ago) }
+
+      before do
+        suspended_user.account.suspend!
+        moved_user.account.update!(moved_to_account_id: confirmed_user.account.id)
+      end
+
+      it 'returns only confirmed_user' do
+        expect(User.emailable).to match_array([confirmed_user])
+      end
+    end
   end
 
   let(:account) { Fabricate(:account, username: 'alice') }
