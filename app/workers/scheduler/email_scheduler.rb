@@ -19,7 +19,7 @@ class Scheduler::EmailScheduler
 
   def eligible_users
     User.emailable
-        .where('current_sign_in_at < ?', (FREQUENCY + SIGN_IN_OFFSET).ago)
-        .where('last_emailed_at IS NULL OR last_emailed_at < ?', FREQUENCY.ago)
+        .where('users.current_sign_in_at < ?', (FREQUENCY + SIGN_IN_OFFSET).ago)
+        .where('users.last_emailed_at IS NULL OR users.last_emailed_at < ?', FREQUENCY.ago)
   end
 end
