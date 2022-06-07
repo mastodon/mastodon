@@ -57,6 +57,9 @@
         - else
           = stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200;300;400;500;600;700;900&display=swap', skip_pipeline: true, media: 'all'
 
+      - if current_user.setting_icon_pack == 'forest'
+        = stylesheet_link_tag 'https://at.alicdn.com/t/font_3453204_g1r9b59fnds.css', skip_pipeline: true, media: 'all'
+
     = yield :header_tags
 
   %body{ class: body_classes }

@@ -1,0 +1,273 @@
+@mixin icon-position-wrapper(
+  $fa-class, /* eg. fa-globe */
+  $advanced-ui-header, /* boolean */
+  $advanced-ui-right,  /* boolean */
+  $colum-title,  /* boolean */
+  $mobile-header,  /* boolean */
+  $default-ui-right, /* boolean */
+  $default-ui-right-nth, /* number */
+  $normal, /* content unicode */
+  $hover, /* content unicode */
+  $active, /* content unicode */
+  $family, /* font family */
+  $weight, /* font weight */
+) {
+  $wrapper_list: ();
+  $hover_list: ();
+  $active_list: ();
+
+  @if $advanced-ui-header {
+    $wrapper_list: append($wrapper_list, unquote(".drawer__header .drawer__tab"), comma);
+    $hover_list: append($hover_list, unquote(".drawer__header .drawer__tab:hover"), comma);
+  }
+  @if $advanced-ui-right {
+    $wrapper_list: append($wrapper_list, unquote(".getting-started__wrapper .column-link"), comma);
+    $hover_list: append($hover_list, unquote(".getting-started__wrapper .column-link:hover"), comma);
+  }
+  @if $colum-title {
+    $active_list: append($active_list, unquote(".column-header__wrapper .column-header button"), comma);
+  }
+  @if $mobile-header {
+    $wrapper_list: append($wrapper_list, unquote(".tabs-bar .tabs-bar__link"), comma);
+    $hover_list: append($hover_list, unquote(".tabs-bar .tabs-bar__link:hover"), comma);
+  }
+  @if $default-ui-right {
+    $wrapper_list: append($wrapper_list, unquote(".columns-area__panels__pane__inner .navigation-panel .column-link:nth-child(#{$default-ui-right-nth})"), comma);
+    $hover_list: append($hover_list, unquote(".columns-area__panels__pane__inner .navigation-panel .column-link:nth-child(#{$default-ui-right-nth}):hover"), comma);
+  }
+
+  @if $hover == '' {
+    $hover: $normal;
+  }
+
+  @if $active == '' {
+    $active: $normal;
+  }
+
+  @if length($wrapper_list) > 0 {
+    #{$wrapper_list} {
+      .#{$fa-class} {
+        font-family: $family;
+
+        @if $weight {
+          font-weight: $weight;
+        }
+
+        &::before {
+          content: $normal;
+        }
+      }
+    }
+  }
+
+  @if length($hover_list) > 0 {
+    #{$hover_list} {
+      .#{$fa-class} {
+        font-family: $family;
+
+        @if $weight {
+          font-weight: $weight;
+        }
+
+        &::before {
+          content: $hover;
+        }
+      }
+    }
+  }
+
+  @if length($active_list) > 0 {
+    #{$active_list} {
+      .#{$fa-class} {
+        font-family: $family;
+
+        @if $weight {
+          font-weight: $weight;
+        }
+
+        &::before {
+          content: $active;
+        }
+      }
+    }
+  }
+}
+
+@mixin getting-started-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @include icon-position-wrapper(
+      'fa-bars',
+      true, /* $advanced-ui-header */
+      true, /* $advanced-ui-right */
+      true, /* $colum-title */
+      true, /* $mobile-header */
+      false, /* $default-ui-right */
+      0, /* $default-ui-right-nth */
+      $normal, $hover, $active, $family, $weight,
+  );
+}
+
+@mixin home-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @include icon-position-wrapper(
+      'fa-home',
+      true, /* $advanced-ui-header */
+      true, /* $advanced-ui-right */
+      true, /* $colum-title */
+      true, /* $mobile-header */
+      true, /* $default-ui-right */
+      1, /* $default-ui-right-nth */
+      $normal, $hover, $active, $family, $weight,
+  );
+}
+
+@mixin notification-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @include icon-position-wrapper(
+      'fa-bell',
+      true, /* $advanced-ui-header */
+      true, /* $advanced-ui-right */
+      true, /* $colum-title */
+      true, /* $mobile-header */
+      true, /* $default-ui-right */
+      2, /* $default-ui-right-nth */
+      $normal, $hover, $active, $family, $weight,
+  );
+}
+
+@mixin local-timeline-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @include icon-position-wrapper(
+      'fa-users',
+      true, /* $advanced-ui-header */
+      true, /* $advanced-ui-right */
+      true, /* $colum-title */
+      true, /* $mobile-header */
+      true, /* $default-ui-right */
+      4, /* $default-ui-right-nth */
+      $normal, $hover, $active, $family, $weight,
+  );
+}
+
+@mixin fed-timeline-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @include icon-position-wrapper(
+      'fa-globe',
+      true, /* $advanced-ui-header */
+      true, /* $advanced-ui-right */
+      true, /* $colum-title */
+      true, /* $mobile-header */
+      true, /* $default-ui-right */
+      5, /* $default-ui-right-nth */
+      $normal, $hover, $active, $family, $weight,
+  );
+}
+
+@mixin configuration-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @include icon-position-wrapper(
+      'fa-cof',
+      true, /* $advanced-ui-header */
+      true, /* $advanced-ui-right */
+      true, /* $colum-title */
+      true, /* $mobile-header */
+      true, /* $default-ui-right */
+      11, /* $default-ui-right-nth */
+      $normal, $hover, $active, $family, $weight,
+  );
+}
+
+@mixin explore-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @include icon-position-wrapper(
+      'fa-hashtag',
+      false, /* $advanced-ui-header */
+      true, /* $advanced-ui-right */
+      true, /* $colum-title */
+      false, /* $mobile-header */
+      true, /* $default-ui-right */
+      3, /* $default-ui-right-nth */
+      $normal, $hover, $active, $family, $weight,
+  );
+}
+
+@mixin direct-message-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @include icon-position-wrapper(
+      'fa-at',
+      false, /* $advanced-ui-header */
+      true, /* $advanced-ui-right */
+      true, /* $colum-title */
+      false, /* $mobile-header */
+      true, /* $default-ui-right */
+      6, /* $default-ui-right-nth */
+      $normal, $hover, $active, $family, $weight,
+  );
+}
+
+@mixin relation-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @include icon-position-wrapper(
+      'fa-users',
+      false, /* $advanced-ui-header */
+      false, /* $advanced-ui-right */
+      false, /* $colum-title */
+      false, /* $mobile-header */
+      true, /* $default-ui-right */
+      12, /* $default-ui-right-nth */
+      $normal, $hover, $active, $family, $weight,
+  );
+}
+
+@mixin announcement-icon( $normal, $hover: '', $active:'', $family: "Font Awesome 5 Pro", $weight: false ) {
+  @if $hover == '' {
+    $hover: $normal;
+  }
+
+  @if $active == '' {
+    $active: $normal;
+  }
+
+  .column-header__wrapper .column-header button {
+    .fa-bullhorn {
+      font-family: $family;
+
+      @if $weight {
+        font-weight: $weight;
+      }
+
+      &::before {
+        content: $normal;
+      }
+    }
+
+    &:hover {
+      .fa-bullhorn {
+
+        &::before {
+          content: $hover;
+        }
+      }
+    }
+
+    &.active {
+      .fa-bullhorn {
+
+        &::before {
+          content: $active;
+        }
+      }
+    }
+  }
+}
+
+.icon-pack- {
+  &classic {
+    @include local-timeline-icon("\f1bb");
+    @include fed-timeline-icon("\f7a3");
+  }
+
+  &forest {
+    @include announcement-icon("\e6c2", "\e6c2", "\e6c2", "forest", normal);
+    @include getting-started-icon("\e68d", "\e68d", "\e68d", "forest", normal);
+    @include home-icon("\e6ca", "\e6bf", "\e6cf", "forest", normal);
+    @include notification-icon("\e6db", "\e6d5", "\e6d8", "forest", normal);
+    @include local-timeline-icon("\e6d0", "\e6cc", "\e6d1", "forest", normal);
+    @include fed-timeline-icon("\e6d4", "\e6dd", "\e6dc", "forest", normal);
+    @include configuration-icon("\e6d6", "\e6da", "\e6d7", "forest", normal);
+    @include explore-icon("\e6c6", "\e6ce", "\e6ce", "forest", normal);
+    @include direct-message-icon("\e6c0", "\e6d3", "\e6d3", "forest", normal);
+    @include relation-icon("\e6bd", "\e6cd", "\e6be", "forest", normal);
+  }
+}

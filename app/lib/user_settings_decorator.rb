@@ -33,6 +33,7 @@ class UserSettingsDecorator
     user.settings['enable_snowfall']     = enable_snowfall if change?('setting_enable_snowfall')
     user.settings['enable_noto_serif']   = enable_noto_serif if change?('setting_enable_noto_serif')
     user.settings['custom_css']          = custom_css if change?('setting_custom_css')
+    user.settings['icon_pack']           = icon_pack if change?('setting_icon_pack')
     user.settings['system_font_ui']      = system_font_ui_preference if change?('setting_system_font_ui')
     user.settings['noindex']             = noindex_preference if change?('setting_noindex')
     user.settings['theme']               = theme_preference if change?('setting_theme')
@@ -116,6 +117,10 @@ class UserSettingsDecorator
 
   def custom_css
     settings['setting_custom_css']
+  end
+
+  def icon_pack
+    settings['setting_icon_pack']
   end
 
   def noindex_preference

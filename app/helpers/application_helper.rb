@@ -186,6 +186,8 @@ module ApplicationHelper
           output << 'noto-serif-sc'
         end
       end
+      icon_pack = current_user.setting_icon_pack
+      output << "icon-pack-#{icon_pack.empty? ? 'default': icon_pack}"
     end
     output.reject(&:blank?).join(' ')
   end

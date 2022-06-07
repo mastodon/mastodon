@@ -18,14 +18,15 @@ media_host ||= assets_host
 
 analytics_host = "#{host_to_url(ENV['PLAUSIBLE_ANALYTICS_HOST'])} #{host_to_url(ENV['MATOMO_ANALYTICS_HOST'])}"
 google_fonts_host = "#{host_to_url('fonts.googleapis.com')} #{host_to_url('fonts.gstatic.com')}"
+iconfont_host = "#{host_to_url('at.alicdn.com')}"
 
 Rails.application.config.content_security_policy do |p|
   p.base_uri        :none
   p.default_src     :none
   p.frame_ancestors :none
-  p.font_src        :self, assets_host, google_fonts_host
+  p.font_src        :self, assets_host, google_fonts_host, iconfont_host
   p.img_src         :self, :https, :data, :blob, assets_host, analytics_host
-  p.style_src       :self, assets_host, google_fonts_host
+  p.style_src       :self, assets_host, google_fonts_host, iconfont_host
   p.media_src       :self, :https, :data, assets_host
   p.frame_src       :self, :https
   p.manifest_src    :self, assets_host

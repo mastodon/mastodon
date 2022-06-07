@@ -49,6 +49,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_enable_snowfall,
       :setting_enable_noto_serif,
       :setting_custom_css,
+      :setting_icon_pack,
       :setting_system_font_ui,
       :setting_noindex,
       :setting_theme,

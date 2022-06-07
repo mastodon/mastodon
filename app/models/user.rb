@@ -131,7 +131,7 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
-           :default_federation, :default_content_type, :enable_snowfall, :custom_css,
+           :default_federation, :default_content_type, :enable_snowfall, :custom_css, :icon_pack,
            :enable_noto_serif,
            :disable_swiping, :always_send_emails,
            to: :settings, prefix: :setting, allow_nil: false
