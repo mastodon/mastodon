@@ -49,6 +49,27 @@
                             %td.column-cell
                               %p= t 'user_mailer.welcome.full_handle_hint', instance: @instance
 
+              - unless @password.nil? || @password.empty?
+                %tr
+                  %td.content-cell
+                    .email-row
+                      .col-3
+                        %table.column{ cellspacing: 0, cellpadding: 0 }
+                          %tbody
+                            %tr
+                              %td.column-cell.input-cell.text-center.padded-bottom
+                                %h5= t 'user_mailer.welcome.random_password'
+                                %table.input{ align: 'center', cellspacing: 0, cellpadding: 0 }
+                                  %tbody
+                                    %tr
+                                      %td= @password
+                      .col-3
+                        %table.column{ cellspacing: 0, cellpadding: 0 }
+                          %tbody
+                            %tr
+                              %td.column-cell
+                                %p= t 'user_mailer.welcome.random_password_hint', instance: @instance
+
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
     %tr

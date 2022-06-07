@@ -71,16 +71,22 @@ module Omniauthable
       # user     = User.new(email: options[:email], password: password, agreement: true, approved: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
 
     def user_params_from_auth(email, auth)
+      username = ensure_unique_username(auth)
+      password = SecureRandom.hex(10)
+
+      Redisable.redis.del("oauth_user_random_password:#{username}")
+      Redisable.redis.setex("oauth_user_random_password:#{username}", 20.minutes.seconds, password)
+
       {
         email: email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-        password: SecureRandom.hex,
+        password: password,
         agreement: true,
         approved: true,
         external: true,
         confirmed_at: Time.now.utc,
         bypass_invite_request_check: true,
         account_attributes: {
-          username: ensure_unique_username(auth),
+          username: username,
           display_name: trusted_auth_provider_display_name(auth) ||
                         auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' '),
         },

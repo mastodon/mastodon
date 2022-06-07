@@ -141,6 +141,7 @@ class UserMailer < Devise::Mailer
   def welcome(user)
     @resource = user
     @instance = Rails.configuration.x.local_domain
+    @password = Redisable.redis.get("oauth_user_random_password:#{@resource.account.username}")
 
     return unless @resource.active_for_authentication?
 
