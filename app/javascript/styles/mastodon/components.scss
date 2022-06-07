@@ -1100,10 +1100,28 @@
       display: inline;
     }
   }
+
+  .status__content p {
+    &:nth-child(2),
+    &:nth-last-child(2) {
+      margin-top: 0;
+    }
+  }
+  .status-card {
+    margin: 5px -5px -5px -5px;
+    border-radius: 0 0 4px 4px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
 }
 
 .muted .quote-status .display-name {
   color: $ui-base-lighter-color;
+}
+
+.detailed-status .quote-status .status__content {
+  font-size: 15px;
 }
 
 .status__prepend-icon-wrapper {
