@@ -134,7 +134,7 @@ module ApplicationHelper
     elsif status.limited_visibility?
       fa_icon('user-circle', title: I18n.t('statuses.visibilities.limited'))
     elsif status.direct_visibility?
-      fa_icon('envelope', title: I18n.t('statuses.visibilities.direct'))
+      fa_icon('at', title: I18n.t('statuses.visibilities.direct'))
     end
   end
 
@@ -245,7 +245,7 @@ module ApplicationHelper
     end.values
   end
 
-  def prerender_custom_emojis(html, custom_emojis)
-    EmojiFormatter.new(html, custom_emojis, animate: prefers_autoplay?).to_s
+  def prerender_custom_emojis(html, custom_emojis, other_options = {})
+    EmojiFormatter.new(html, custom_emojis, other_options.merge(animate: prefers_autoplay?)).to_s
   end
 end
