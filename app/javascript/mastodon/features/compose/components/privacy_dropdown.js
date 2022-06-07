@@ -11,12 +11,12 @@ import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
-  public_long: { id: 'privacy.public.long', defaultMessage: 'Visible for all, shown in public timelines' },
+  public_long: { id: 'privacy.public.long', defaultMessage: 'Visible for all' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
-  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but not in public timelines' },
-  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but opted-out of discovery features' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
-  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
   limited_short: { id: 'privacy.limited.short', defaultMessage: 'Circle' },
   limited_long: { id: 'privacy.limited.long', defaultMessage: 'Visible for circle users only' },
@@ -243,7 +243,7 @@ class PrivacyDropdown extends React.PureComponent {
     if (!this.props.noDirect) {
       this.options.push(
         { icon: 'user-circle', value: 'limited', text: formatMessage(messages.limited_short), meta: formatMessage(messages.limited_long) },
-        { icon: 'envelope', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
+        { icon: 'at', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
       );
     }
   }

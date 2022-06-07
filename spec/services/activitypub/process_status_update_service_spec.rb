@@ -1,5 +1,9 @@
 require 'rails_helper'
 
+def poll_option_json(name, votes)
+  { type: 'Note', name: name, replies: { type: 'Collection', totalItems: votes } }
+end
+
 RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
   let!(:status) { Fabricate(:status, text: 'Hello world', account: Fabricate(:account, domain: 'example.com')) }
 
@@ -44,6 +48,180 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
     it 'updates content warning' do
       subject.call(status, json)
       expect(status.reload.spoiler_text).to eq 'Show more'
+    end
+
+    context 'when the changes are only in sanitized-out HTML' do
+      let!(:status) { Fabricate(:status, text: '<p>Hello world <a href="https://joinmastodon.org" rel="nofollow">joinmastodon.org</a></p>', account: Fabricate(:account, domain: 'example.com')) }
+
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Note',
+          updated: '2021-09-08T22:39:25Z',
+          content: '<p>Hello world <a href="https://joinmastodon.org" rel="noreferrer">joinmastodon.org</a></p>',
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.edited?).to be false
+      end
+    end
+
+    context 'when the status has not been explicitly edited' do
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Note',
+          content: 'Updated text',
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.reload.edited?).to be false
+      end
+
+      it 'does not update the text' do
+        expect(status.reload.text).to eq 'Hello world'
+      end
+    end
+
+    context 'when the status has not been explicitly edited and features a poll' do
+      let(:account)    { Fabricate(:account, domain: 'example.com') }
+      let!(:expiration) { 10.days.from_now.utc }
+      let!(:status) do
+        Fabricate(:status,
+          text: 'Hello world',
+          account: account,
+          poll_attributes: {
+            options: %w(Foo Bar),
+            account: account,
+            multiple: false,
+            hide_totals: false,
+            expires_at: expiration
+          }
+        )
+      end
+
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://example.com/foo',
+          type: 'Question',
+          content: 'Hello world',
+          endTime: expiration.iso8601,
+          oneOf: [
+            poll_option_json('Foo', 4),
+            poll_option_json('Bar', 3),
+          ],
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.reload.edited?).to be false
+      end
+
+      it 'does not update the text' do
+        expect(status.reload.text).to eq 'Hello world'
+      end
+
+      it 'updates tallies' do
+        expect(status.poll.reload.cached_tallies).to eq [4, 3]
+      end
+    end
+
+    context 'when the status changes a poll despite being not explicitly marked as updated' do
+      let(:account)    { Fabricate(:account, domain: 'example.com') }
+      let!(:expiration) { 10.days.from_now.utc }
+      let!(:status) do
+        Fabricate(:status,
+          text: 'Hello world',
+          account: account,
+          poll_attributes: {
+            options: %w(Foo Bar),
+            account: account,
+            multiple: false,
+            hide_totals: false,
+            expires_at: expiration
+          }
+        )
+      end
+
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://example.com/foo',
+          type: 'Question',
+          content: 'Hello world',
+          endTime: expiration.iso8601,
+          oneOf: [
+            poll_option_json('Foo', 4),
+            poll_option_json('Bar', 3),
+            poll_option_json('Baz', 3),
+          ],
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.reload.edited?).to be false
+      end
+
+      it 'does not update the text' do
+        expect(status.reload.text).to eq 'Hello world'
+      end
+
+      it 'does not update tallies' do
+        expect(status.poll.reload.cached_tallies).to eq [0, 0]
+      end
+    end
+
+    context 'when receiving an edit older than the latest processed' do
+      before do
+        status.snapshot!(at_time: status.created_at, rate_limit: false)
+        status.update!(text: 'Hello newer world', edited_at: Time.now.utc)
+        status.snapshot!(rate_limit: false)
+      end
+
+      it 'does not create any edits' do
+        expect { subject.call(status, json) }.not_to change { status.reload.edits.pluck(&:id) }
+      end
+
+      it 'does not update the text, spoiler_text or edited_at' do
+        expect { subject.call(status, json) }.not_to change { s = status.reload; [s.text, s.spoiler_text, s.edited_at] }
+      end
     end
 
     context 'with no changes at all' do

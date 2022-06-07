@@ -21,6 +21,9 @@ import {
   TRENDS_STATUSES_FETCH_REQUEST,
   TRENDS_STATUSES_FETCH_SUCCESS,
   TRENDS_STATUSES_FETCH_FAIL,
+  TRENDS_STATUSES_EXPAND_REQUEST,
+  TRENDS_STATUSES_EXPAND_SUCCESS,
+  TRENDS_STATUSES_EXPAND_FAIL,
 } from '../actions/trends';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import {
@@ -111,11 +114,15 @@ export default function statusLists(state = initialState, action) {
   case BOOKMARKED_STATUSES_EXPAND_SUCCESS:
     return appendToList(state, 'bookmarks', action.statuses, action.next);
   case TRENDS_STATUSES_FETCH_REQUEST:
+  case TRENDS_STATUSES_EXPAND_REQUEST:
     return state.setIn(['trending', 'isLoading'], true);
   case TRENDS_STATUSES_FETCH_FAIL:
+  case TRENDS_STATUSES_EXPAND_FAIL:
     return state.setIn(['trending', 'isLoading'], false);
   case TRENDS_STATUSES_FETCH_SUCCESS:
     return normalizeList(state, 'trending', action.statuses, action.next);
+  case TRENDS_STATUSES_EXPAND_SUCCESS:
+    return appendToList(state, 'trending', action.statuses, action.next);
   case FAVOURITE_SUCCESS:
     return prependOneToList(state, 'favourites', action.status);
   case UNFAVOURITE_SUCCESS:

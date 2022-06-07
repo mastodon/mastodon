@@ -4,6 +4,7 @@ class ResolveAccountService < BaseService
   include JsonLdHelper
   include DomainControlHelper
   include WebfingerHelper
+  include Redisable
 
   # Find or create an account record for a remote user. When creating,
   # look up the user's webfinger and fetch ActivityPub data
@@ -65,7 +66,7 @@ class ResolveAccountService < BaseService
       @username = @account.username
       @domain   = @account.domain
     else
-      @username, @domain = uri.split('@')
+      @username, @domain = uri.strip.gsub(/\A@/, '').split('@')
     end
 
     @domain = begin
@@ -147,6 +148,6 @@ class ResolveAccountService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "resolve:#{@username}@#{@domain}", autorelease: 15.minutes.seconds }
+    { redis: redis, key: "resolve:#{@username}@#{@domain}", autorelease: 15.minutes.seconds }
   end
 end

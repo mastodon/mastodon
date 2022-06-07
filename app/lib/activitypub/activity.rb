@@ -164,7 +164,7 @@ class ActivityPub::Activity
   end
 
   def lock_or_fail(key, expire_after = 15.minutes.seconds)
-    RedisLock.acquire({ redis: Redis.current, key: key, autorelease: expire_after }) do |lock|
+    RedisLock.acquire({ redis: redis, key: key, autorelease: expire_after }) do |lock|
       if lock.acquired?
         yield
       else

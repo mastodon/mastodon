@@ -15,7 +15,7 @@ RSpec.describe PrecomputeFeedService, type: :service do
 
       subject.call(account)
 
-      expect(Redis.current.zscore(FeedManager.instance.key(:home, account.id), status.id)).to be_within(0.1).of(status.id.to_f)
+      expect(redis.zscore(FeedManager.instance.key(:home, account.id), status.id)).to be_within(0.1).of(status.id.to_f)
     end
 
     it 'does not raise an error even if it could not find any status' do
@@ -32,7 +32,7 @@ RSpec.describe PrecomputeFeedService, type: :service do
 
       subject.call(account)
 
-      expect(Redis.current.zscore(FeedManager.instance.key(:home, account.id), reblog.id)).to eq nil
+      expect(redis.zscore(FeedManager.instance.key(:home, account.id), reblog.id)).to eq nil
     end
   end
 end

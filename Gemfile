@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.5.0', '< 3.1.0'
+ruby '>= 2.6.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
 gem 'rexml', '~> 3.2'
@@ -26,7 +26,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.10.3', require: false
+gem 'bootsnap', '~> 1.11.1', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.2'
@@ -40,7 +40,7 @@ end
 gem 'net-ldap', '~> 0.17'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
-gem 'gitlab-omniauth-openid-connect', '~>0.5.0', require: 'omniauth_openid_connect'
+gem 'gitlab-omniauth-openid-connect', '~>0.9.1', require: 'omniauth_openid_connect'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
@@ -79,7 +79,7 @@ gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 6.0'
 gem 'scenic', '~> 1.6'
 gem 'sidekiq', '~> 6.4'
-gem 'sidekiq-scheduler', '~> 3.1'
+gem 'sidekiq-scheduler', '~> 3.2'
 gem 'sidekiq-unique-jobs', '~> 7.1'
 gem 'sidekiq-bulk', '~>0.2.0'
 gem 'simple-navigation', '~> 4.3'
@@ -99,9 +99,9 @@ gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.27'
+  gem 'fabrication', '~> 2.28'
   gem 'fuubar', '~> 2.5'
-  gem 'i18n-tasks', '~> 0.9', require: false
+  gem 'i18n-tasks', '~> 1.0', require: false
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 5.1'
@@ -132,7 +132,7 @@ group :development do
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.26', require: false
+  gem 'rubocop', '~> 1.27', require: false
   gem 'rubocop-rails', '~> 2.14', require: false
   gem 'brakeman', '~> 5.2', require: false
   gem 'bundler-audit', '~> 0.9', require: false
@@ -146,8 +146,8 @@ group :development do
 end
 
 group :production do
-  gem 'lograge', '~> 0.11'
   gem 'foreman'
+  gem 'lograge', '~> 0.12'
 end
 
 gem 'concurrent-ruby', require: false

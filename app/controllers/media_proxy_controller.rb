@@ -3,6 +3,7 @@
 class MediaProxyController < ApplicationController
   include RoutingHelper
   include Authorization
+  include Redisable
 
   skip_before_action :store_current_location
   skip_before_action :require_functional!
@@ -45,7 +46,7 @@ class MediaProxyController < ApplicationController
   end
 
   def lock_options
-    { redis: Redis.current, key: "media_download:#{params[:id]}", autorelease: 15.minutes.seconds }
+    { redis: redis, key: "media_download:#{params[:id]}", autorelease: 15.minutes.seconds }
   end
 
   def reject_media?

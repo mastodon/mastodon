@@ -10,6 +10,7 @@ module Mastodon
   class StreamValidationError < ValidationError; end
   class RaceConditionError < Error; end
   class RateLimitExceededError < Error; end
+  class SyntaxError < Error; end
 
   class UnexpectedResponseError < Error
     attr_reader :response

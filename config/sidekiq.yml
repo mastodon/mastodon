@@ -17,10 +17,6 @@
     every: '5m'
     class: Scheduler::Trends::RefreshScheduler
     queue: scheduler
-  email_domain_block_refresh_scheduler:
-    every: '1h'
-    class: Scheduler::EmailDomainBlockRefreshScheduler
-    queue: scheduler
   trends_review_notifications_scheduler:
     every: '6h'
     class: Scheduler::Trends::ReviewNotificationsScheduler
