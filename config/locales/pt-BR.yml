@@ -1,7 +1,6 @@
----
 pt-BR:
   about:
-    about_hashtag_html: Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.
+    about_hashtag_html: 'Estes são toots públicos com a hashtag <strong>#%{hashtag}</strong>. Você pode interagir com eles se tiver uma conta em qualquer lugar no fediverso.'
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     about_this: Sobre
     active_count_after: ativo
@@ -57,7 +56,7 @@ pt-BR:
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: 'Sugestões de %{name}:'
+    choices_html: "Sugestões de %{name}:"
     endorsements_hint: Você pode sugerir pessoas que você segue, elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas, elas aparecerão aqui.
     follow: Seguir
@@ -118,7 +117,7 @@ pt-BR:
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
-      destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
+      destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
       disable: Congelar
       disable_sign_in_token_auth: Desativar autenticação via token por email
       disable_two_factor_authentication: Desativar autenticação de dois fatores
@@ -428,6 +427,7 @@ pt-BR:
       destroyed_msg: Domínio desbloqueado
       domain: Domínio
       edit: Editar bloqueio de domínio
+      existing_domain_block: Você já impôs limites mais rigorosos em %{name}.
       existing_domain_block_html: Você já impôs limites mais estritos em %{name}, você precisa <a href="%{unblock_url}">desbloqueá-lo</a> primeiro.
       new:
         create: Criar bloqueio
@@ -568,7 +568,7 @@ pt-BR:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -615,6 +615,7 @@ pt-BR:
       forwarded: Encaminhados
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
+      mark_as_sensitive: Marcar como sensível
       mark_as_unresolved: Marcar como não resolvido
       no_one_assigned: Ninguém
       notes:
@@ -800,6 +801,7 @@ pt-BR:
         usable: Pode ser usado
         usage_comparison: Usado %{today} vezes hoje, em comparação com %{yesterday} de ontem
       title: Em alta
+      trending: Em alta
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
@@ -807,13 +809,19 @@ pt-BR:
       empty: Você ainda não definiu nenhuma predefinição de alerta.
       title: Gerenciar os avisos pré-definidos
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: para excluir suas publicações
+        none: um aviso
+        sensitive: para marcar sua conta como sensível
+        silence: para limitar sua conta
     new_pending_account:
       body: Os detalhes da nova conta estão abaixo. Você pode aprovar ou vetar.
       subject: Nova conta para revisão em %{instance} (%{username})
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trends:
       new_trending_statuses:
         title: Publicações em alta
@@ -1179,7 +1187,7 @@ pt-BR:
         other: "%{count} novas notificações desde o seu último acesso 🐘"
       title: Enquanto você estava ausente...
     favourite:
-      body: "%{name} favoritou seu toot:"
+      body: '%{name} favoritou seu toot:'
       subject: "%{name} favoritou seu toot"
       title: Novo favorito
     follow:
@@ -1193,13 +1201,13 @@ pt-BR:
       title: Novo seguidor pendente
     mention:
       action: Responder
-      body: "%{name} te mencionou em:"
-      subject: "%{name} te mencionou"
+      body: '%{name} te mencionou em:'
+      subject: '%{name} te mencionou'
       title: Nova menção
     poll:
       subject: Uma enquete por %{name} terminou
     reblog:
-      body: "%{name} deu boost no seu toot:"
+      body: '%{name} deu boost no seu toot:'
       subject: "%{name} deu boost no seu toot"
       title: Novo boost
     status:
@@ -1451,7 +1459,7 @@ pt-BR:
   tags:
     does_not_match_previous_name: não corresponde ao nome anterior
   terms:
-    title: Termos de Serviço e Política de Privacidade de %{instance}
+    title: "Termos de Serviço e Política de Privacidade de %{instance}"
   themes:
     contrast: Mastodon  (Alto contraste)
     default: Mastodon (Noturno)
