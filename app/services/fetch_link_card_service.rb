@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FetchLinkCardService < BaseService
+  include Redisable
+
   URL_PATTERN = %r{
     (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
     (                                                                                                                           #   $2 URL
@@ -155,6 +157,6 @@ class FetchLinkCardService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "fetch:#{@original_url}", autorelease: 15.minutes.seconds }
+    { redis: redis, key: "fetch:#{@original_url}", autorelease: 15.minutes.seconds }
   end
 end

@@ -49,6 +49,7 @@ ko:
         phrase: 게시물 내용이나 열람주의 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
         setting_aggregate_reblogs: 최근에 부스트 됐던 게시물은 새로 부스트 되어도 보여주지 않기 (새로 받은 부스트에만 적용됩니다)
+        setting_always_send_emails: 기본적으로 마스토돈을 활동적으로 사용하고 있을 때에는 이메일 알림이 보내지지 않습니다
         setting_default_sensitive: 민감한 미디어는 기본적으로 가려져 있으며 클릭해서 볼 수 있습니다
         setting_display_media_default: 민감함으로 설정 된 미디어 가리기
         setting_display_media_hide_all: 항상 모든 미디어를 가리기
@@ -151,6 +152,7 @@ ko:
         phrase: 키워드 또는 문장
         setting_advanced_layout: 고급 웹 UI 활성화
         setting_aggregate_reblogs: 타임라인의 부스트를 그룹화
+        setting_always_send_emails: 항상 이메일 알림 보내기
         setting_auto_play_gif: 애니메이션 GIF를 자동 재생
         setting_boost_modal: 부스트 전 확인 창을 표시
         setting_crop_images: 확장되지 않은 게시물의 이미지를 16x9로 자르기
@@ -202,7 +204,7 @@ ko:
       notification_emails:
         appeal: 누군가가 중재자의 결정에 이의를 제기했을 때
         digest: 요약 이메일 보내기
-        favourite: 누군가 내 상태를 즐겨찾기로 등록했을 때
+        favourite: 누군가 내 상태를 마음에 들어했을 때
         follow: 누군가 나를 팔로우 했을 때
         follow_request: 누군가 나를 팔로우 하길 원할 때
         mention: 누군가 나를 언급했을 때

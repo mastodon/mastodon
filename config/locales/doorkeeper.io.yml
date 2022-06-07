@@ -5,6 +5,8 @@ io:
       doorkeeper/application:
         name: Nomo
         redirect_uri: URI di plussendo
+        scopes: Skopi
+        website: Apliksito
     errors:
       models:
         doorkeeper/application:
@@ -31,15 +33,153 @@ io:
       help:
         native_redirect_uri: Uzez %{native_redirect_uri} por lokala probi
         redirect_uri: Uzez un lineo por singla URI
+        scopes: Separez skopi per spaci. Lasez quale vakua por uzar originala skopi.
       index:
+        application: Apliko
+        callback_url: Retrovokligilo
+        delete: Efacez
+        empty: Vu ne havas apliki.
+        name: Nomo
         new: New Application
+        scopes: Skopi
+        show: Montrez
+        title: Vua apliki
       new:
         title: New Application
       show:
+        actions: Agi
         application_id: Application Id
         callback_urls: Callback urls
+        scopes: Skopi
         secret: Secret
+        title: 'Apliko: %{name}'
+    authorizations:
+      buttons:
+        authorize: Permisez
+        deny: Despermisez
+      error:
+        title: Eroro eventis
+      new:
+        prompt_html: "%{client_name} volas permiso por acesar vua konti. Ol esas externa apliko. <strong>Se vu ne fidas, lore vu debas ne permisar.</strong>"
+        review_permissions: Kontrolez permisi
+        title: Permiso bezonesas
+      show:
+        title: Kopiez ca permisnumero e glutinez adsur la apliko.
+    authorized_applications:
+      buttons:
+        revoke: Deaprobez
+      confirmations:
+        revoke: Ka vu esas certa?
+      index:
+        authorized_at: Permisesis ye %{date}
+        description_html: Co esas apliki quo povas acesar vua konto per API. Se existas apliki quon vu ne rikonocas hike, o apliko misfuncionas, vu povas desaprobar ola aceso.
+        last_used_at: Antee uzesis ye %{date}
+        never_used: Nulaloke uzesas
+        scopes: Permisi
+        superapp: Interna
+        title: Vua permisita apliki
+    errors:
+      messages:
+        access_denied: Resursproprietanto o permisservilo refuzis la demando.
+        credential_flow_not_configured: Resursproprietantpasvortidentesesofluo faliis pro ke Doorkeeper.configure.resource_owner_from_credentials ne ajustesis.
+        invalid_client: Klientpermiso falias pro nesavita kliento, neinkluzita klientpermiso o nesuportita permismetodo.
+        invalid_grant: Provizita permiso esis nevalida, expiris, deaprobesis, ne parigas uzita ridirektoligilo dum permisdemando o facesis a altra kliento.
+        invalid_redirect_uri: La inkluzita ridirektoligilo esas nevalida.
+        invalid_request:
+          missing_param: 'Bezonita parametro: %{value}.'
+          request_not_authorized: Demando bezonas permisesar. Bezonita parametro por permisar demando ne existas o esas nevalida.
+          unknown: La demando ne havas bezonita parametro, inkluzas nesuportita parametro o malformesas.
+        invalid_resource_owner: Provizita resursproprietantidenteso esas nevalida o resursproprietanto ne existas
+        invalid_scope: La demandita skopo esas nevalida, nesavata o malformata.
+        invalid_token:
+          expired: La acesficho expiris
+          revoked: Acesficho deaprobesis
+          unknown: Acesficho esas nevalida
+        resource_owner_authenticator_not_configured: Resursproprietanto falias trovar pro ke Doorkeeper.configure.resource_owner_authenticator ne ajustesis.
+        server_error: Permisservilo trovas neanticipata situeso quo preventas ol finar la demando.
+        temporarily_unavailable: Permisservilo nu ne povas direktar la demando pro provizora eceso o servilmanteno.
+        unauthorized_client: La kliento ne permisesis agar ca demando per ca metodo.
+        unsupported_grant_type: Permisprovizontipo ne suportesas da permisservilo.
+        unsupported_response_type: La permisservilo ne suportas ca responsotipo.
+    flash:
+      applications:
+        create:
+          notice: Apliko kreesis.
+        destroy:
+          notice: Apliko efacesis.
+        update:
+          notice: Apliko novigesis.
+      authorized_applications:
+        destroy:
+          notice: Apliko aprobesis.
+    grouped_scopes:
+      access:
+        read: Lekto-nura aceso
+        read/write: Lekto e skrib-nura aceso
+        write: Skrib-nura aceso
+      title:
+        accounts: Konti
+        admin/accounts: Administrar di konti
+        admin/all: Omna administrofuncioni
+        admin/reports: Administro di raporti
+        all: Omno
+        blocks: Restriktita
+        bookmarks: Libromarki
+        conversations: Konversi
+        crypto: Intersequanta chifro
+        favourites: Favorati
+        filters: Filtrili
+        follow: Relataji
+        follows: Sequati
+        lists: Listi
+        media: Mediatachaji
+        mutes: Silencigati
+        notifications: Avizi
+        push: Pulsavizi
+        reports: Raportigi
+        search: Trovez
+        statuses: Posti
+    layouts:
+      admin:
+        nav:
+          applications: Apliki
+          oauth2_provider: Provizanto di OAuth2
+      application:
+        title: Permiso di OAuth bezonesas
     scopes:
+      admin:read: lektez omna informi di la servilo
+      admin:read:accounts: lektez privata informo di omna konti
+      admin:read:reports: lektez privata informo di omna raportigo e raportigita konti
+      admin:write: modifikez omna informi di la servilo
+      admin:write:accounts: jerez konti
+      admin:write:reports: jerez raportigi
+      crypto: uzas intersequanta chifro
       follow: follow, block, unblock and unfollow accounts
+      push: ganez vua pulsavizi
       read: read your account's data
+      read:accounts: videz kontinformo
+      read:blocks: videz restrikti
+      read:bookmarks: videz vua libromarki
+      read:favourites: videz vua favorati
+      read:filters: videz vua filtrili
+      read:follows: videz vua sequinti
+      read:lists: videz vua listi
+      read:mutes: videz vua silencigi
+      read:notifications: videz vua avizi
+      read:reports: videz vua rapotigi
+      read:search: trovez por vu
+      read:statuses: videz omna posti
       write: post on your behalf
+      write:accounts: modifikez vua porfilo
+      write:blocks: restriktez konti e domeni
+      write:bookmarks: libromarkez posti
+      write:conversations: silencigez e efacez konversi
+      write:favourites: favorata posti
+      write:filters: kreez filtrili
+      write:follows: sequez personi
+      write:lists: kreez listi
+      write:media: chargez medifaili
+      write:mutes: silencigez personi e konversi
+      write:notifications: efacez vua avizi
+      write:reports: raportigez altra omni
+      write:statuses: publikigez posti

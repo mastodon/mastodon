@@ -17,10 +17,10 @@ class RemoveStatusService < BaseService
     @account  = status.account
     @options  = options
 
-    @status.discard
-
     RedisLock.acquire(lock_options) do |lock|
       if lock.acquired?
+        @status.discard
+
         remove_from_self if @account.local?
         remove_from_followers
         remove_from_lists
@@ -146,6 +146,6 @@ class RemoveStatusService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "distribute:#{@status.id}", autorelease: 5.minutes.seconds }
+    { redis: redis, key: "distribute:#{@status.id}", autorelease: 5.minutes.seconds }
   end
 end

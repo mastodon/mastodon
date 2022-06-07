@@ -3,6 +3,7 @@
 class ActivityPub::ProcessAccountService < BaseService
   include JsonLdHelper
   include DomainControlHelper
+  include Redisable
 
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
@@ -289,7 +290,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def lock_options
-    { redis: Redis.current, key: "process_account:#{@uri}", autorelease: 15.minutes.seconds }
+    { redis: redis, key: "process_account:#{@uri}", autorelease: 15.minutes.seconds }
   end
 
   def process_tags
