@@ -68,15 +68,20 @@ module Omniauthable
     end
 
     private
+      # user     = User.new(email: options[:email], password: password, agreement: true, approved: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
 
     def user_params_from_auth(email, auth)
       {
         email: email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+        password: SecureRandom.hex,
         agreement: true,
+        approved: true,
         external: true,
+        confirmed_at: Time.now.utc,
+        bypass_invite_request_check: true,
         account_attributes: {
           username: ensure_unique_username(auth),
-          display_name: trusted_auth_provider_display_name(auth) || 
+          display_name: trusted_auth_provider_display_name(auth) ||
                         auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' '),
         },
       }
@@ -84,22 +89,22 @@ module Omniauthable
 
     def ensure_unique_username(auth)
       username = auth.uid
-      auth_provideded_username = nil
+      auth_provided_username = nil
       i        = 0
 
       if auth.provider == 'github'
-        auth_provideded_username = auth.info.nickname
+        auth_provided_username = auth.info.nickname
       elsif auth.provider == 'gitlab'
-        auth_provideded_username = auth.info.username
+        auth_provided_username = auth.info.username
       end
 
-      username = auth_provideded_username unless auth_provideded_username.empty?
+      username = auth_provided_username unless auth_provided_username.nil? || auth_provided_username.empty?
 
       username = ensure_valid_username(username)
 
       while Account.exists?(username: username, domain: nil)
         i       += 1
-        username = "#{auth_provideded_username || auth.uid}_#{i}"
+        username = "#{auth_provided_username || auth.uid}_#{i}"
       end
 
       username
