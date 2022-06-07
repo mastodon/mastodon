@@ -492,6 +492,8 @@ ja:
       dashboard:
         instance_accounts_dimension: 最もフォローされているアカウント
         instance_accounts_measure: 保存されたアカウント
+        instance_followers_measure: そこでの我々のフォロワー
+        instance_follows_measure: そのインスタンスのこのインスタンスでのフォロワー
         instance_languages_dimension: 人気の言語
         instance_media_attachments_measure: 保存されたメディア
         instance_reports_measure: 通報
@@ -609,6 +611,7 @@ ja:
         placeholder: どのような措置が取られたか、または関連する更新を記述してください…
         title: メモ
       notes_description_html: 他のモデレーターと将来の自分にメモを残してください
+      quick_actions_description_html: 'クイックアクションを実行するかスクロールして報告された通報を確認してください:'
       remote_user_placeholder: "%{instance}からのリモートユーザー"
       reopen: 未解決に戻す
       report: '通報 #%{id}'
@@ -1003,10 +1006,12 @@ ja:
       appealed_msg: 申し立てが送信されました。承認されると通知されます。
       appeals:
         submit: 抗議を送信
+      approve_appeal: 抗議を承認
       associated_report: 関連する通報
       created_at: 日時
       description_html: これらは、%{instance}のスタッフがあなたのアカウントに対して行った措置や、あなたに送られた警告です。
       recipient: 送信元
+      reject_appeal: 抗議を却下
       status: '投稿 #%{id}'
       status_removed: 既に削除されています
       title: "%{date}に%{action}"
@@ -1317,6 +1322,11 @@ ja:
   reports:
     errors:
       invalid_rules: 有効なルールを参照していません
+  rss:
+    content_warning: '閲覧注意:'
+    descriptions:
+      account: "@%{acct}からの公開投稿"
+      tag: "#%{hashtag}が付けられた公開投稿"
   scheduled_statuses:
     over_daily_limit: その日予約できる投稿数 %{limit}を超えています
     over_total_limit: 予約できる投稿数 %{limit}を超えています

@@ -16,6 +16,7 @@ import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollFormContainer from '../containers/poll_form_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
+import LanguageDropdown from '../containers/language_dropdown_container';
 import { isMobile } from '../../../is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
@@ -206,6 +207,7 @@ class ComposeForm extends ImmutablePureComponent {
   render () {
     const { intl, onPaste, showSearch } = this.props;
     const disabled = this.props.isSubmitting;
+
     let publishText = '';
 
     if (this.props.isEditing) {
@@ -256,6 +258,7 @@ class ComposeForm extends ImmutablePureComponent {
           autoFocus={!showSearch && !isMobile(window.innerWidth)}
         >
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
+
           <div className='compose-form__modifiers'>
             <UploadFormContainer />
             <PollFormContainer />
@@ -268,14 +271,20 @@ class ComposeForm extends ImmutablePureComponent {
             <PollButtonContainer />
             <PrivacyDropdownContainer disabled={this.props.isEditing} />
             <SpoilerButtonContainer />
+            <LanguageDropdown />
           </div>
-          <div className='character-counter__wrapper'><CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} /></div>
+
+          <div className='character-counter__wrapper'>
+            <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
+          </div>
         </div>
 
         <CircleDropdownContainer />
 
         <div className='compose-form__publish'>
-          <div className='compose-form__publish-button-wrapper'><Button text={publishText} onClick={this.handleSubmit} disabled={!this.canSubmit()} block /></div>
+          <div className='compose-form__publish-button-wrapper'>
+            <Button text={publishText} onClick={this.handleSubmit} disabled={!this.canSubmit()} block />
+          </div>
         </div>
       </div>
     );

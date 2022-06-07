@@ -1036,10 +1036,12 @@ is:
       appealed_msg: Áfrýjun þín hefur verið sen dinn. Þú verður látin/n vita ef hún verður samþykkt.
       appeals:
         submit: Senda inn áfrýjun
+      approve_appeal: Samþykkja áfrýjun
       associated_report: Tengd kæra
       created_at: Dagsett
       description_html: Þetta eru aðgerðir sem notaðar hafa verið gagnvart aðgangnum þínum og aðvaranir sem þér hafa verið sendar af umsjónarfólki á %{instance}.
       recipient: Stílað til
+      reject_appeal: Hafna áfrýjun
       status: 'Færsla #%{id}'
       status_removed: Færsla þegar fjarlægð úr kerfinu
       title: "%{action} frá %{date}"
@@ -1354,6 +1356,11 @@ is:
   reports:
     errors:
       invalid_rules: vísar ekki til gildra reglna
+  rss:
+    content_warning: 'Aðvörun vegna efnis:'
+    descriptions:
+      account: Opinberar færslur frá @%{acct}
+      tag: 'Opinberar færslur merktar #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur fyrir þennan dag
     over_total_limit: Þú hefur farið fram úr hámarkinu með %{limit} áætlaðar færslur
@@ -1512,6 +1519,9 @@ is:
     pinned: Fest færsla
     reblogged: endurbirt
     sensitive_content: Viðkvæmt efni
+  strikes:
+    errors:
+      too_late: Það er orðið of sint að áfrýja þessari refsingu
   tags:
     does_not_match_previous_name: samsvarar ekki fyrra nafni
   terms:

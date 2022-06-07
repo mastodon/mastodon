@@ -13,6 +13,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   attribute :suspended, if: :suspended?
+  attribute :silenced, key: :limited, if: :silenced?
 
   class FieldSerializer < ActiveModel::Serializer
     include FormattingHelper
@@ -98,7 +99,11 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.suspended?
   end
 
-  delegate :suspended?, to: :object
+  def silenced
+    object.silenced?
+  end
+
+  delegate :suspended?, :silenced?, to: :object
 
   def moved_and_not_nested?
     object.moved? && object.moved_to_account.moved_to_account_id.nil?

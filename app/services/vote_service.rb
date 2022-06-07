@@ -4,8 +4,11 @@ class VoteService < BaseService
   include Authorization
   include Payloadable
   include Redisable
+  include Lockable
 
   def call(account, poll, choices)
+    return if choices.empty?
+
     authorize_with account, poll, :vote?
 
     @account = account
@@ -15,17 +18,13 @@ class VoteService < BaseService
 
     already_voted = true
 
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        already_voted = @poll.votes.where(account: @account).exists?
+    with_lock("vote:#{@poll.id}:#{@account.id}") do
+      already_voted = @poll.votes.where(account: @account).exists?
 
-        ApplicationRecord.transaction do
-          @choices.each do |choice|
-            @votes << @poll.votes.create!(account: @account, choice: Integer(choice))
-          end
+      ApplicationRecord.transaction do
+        @choices.each do |choice|
+          @votes << @poll.votes.create!(account: @account, choice: Integer(choice))
         end
-      else
-        raise Mastodon::RaceConditionError
       end
     end
 
@@ -75,9 +74,5 @@ class VoteService < BaseService
   rescue ActiveRecord::StaleObjectError
     @poll.reload
     retry
-  end
-
-  def lock_options
-    { redis: redis, key: "vote:#{@poll.id}:#{@account.id}" }
   end
 end

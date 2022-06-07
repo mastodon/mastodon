@@ -83,6 +83,9 @@ data:
   SMTP_TLS: {{ .Values.mastodon.smtp.tls | quote }}
   {{- end }}
   STREAMING_CLUSTER_NUM: {{ .Values.mastodon.streaming.workers | quote }}
+  {{- if .Values.mastodon.streaming.base_url }}
+  STREAMING_API_BASE_URL: {{ .Values.mastodon.streaming.base_url | quote }}
+  {{- end }}
   {{- if .Values.externalAuth.oidc.enabled }}
   OIDC_ENABLED: {{ .Values.externalAuth.oidc.enabled | quote }}
   OIDC_DISPLAY_NAME: {{ .Values.externalAuth.oidc.display_name }}
