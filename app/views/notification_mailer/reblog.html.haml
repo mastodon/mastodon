@@ -20,7 +20,7 @@
                                       = image_tag full_pack_url('media/images/mailer/icon_cached.png'), alt: ''
 
                               %h1= t 'notification_mailer.reblog.title'
-                              %p.lead= t('notification_mailer.reblog.body', name: @account.acct)
+                              %p.lead= t('notification_mailer.reblog.body', name: @account.pretty_acct)
 
 = render 'status', status: @status
 

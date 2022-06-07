@@ -28,7 +28,7 @@ module Admin
       @deletion_request        = @account.deletion_request
       @account_moderation_note = current_account.account_moderation_notes.new(target_account: @account)
       @moderation_notes        = @account.targeted_moderation_notes.latest
-      @warnings                = @account.targeted_account_warnings.latest.custom
+      @warnings                = @account.strikes.includes(:target_account, :account, :appeal).latest
       @domain_block            = DomainBlock.rule_for(@account.domain)
     end
 
@@ -146,7 +146,21 @@ module Admin
     end
 
     def filter_params
-      params.slice(*AccountFilter::KEYS).permit(*AccountFilter::KEYS)
+      params.slice(:page, *AccountFilter::KEYS).permit(:page, *AccountFilter::KEYS)
+    end
+
+    def form_account_batch_params
+      params.require(:form_account_batch).permit(:action, account_ids: [])
+    end
+
+    def action_from_button
+      if params[:suspend]
+        'suspend'
+      elsif params[:approve]
+        'approve'
+      elsif params[:reject]
+        'reject'
+      end
     end
 
     def form_account_batch_params

@@ -5,13 +5,28 @@ sl:
       poll:
         expires_at: Rok
         options: Izbire
+      user:
+        agreement: Sporazum o storitvah
+        email: E-poštni naslov
+        locale: Krajevne nastavitve
+        password: Geslo
+      user/account:
+        username: Uporabniško ime
+      user/invite_request:
+        text: Razlog
     errors:
       models:
         account:
           attributes:
             username:
               invalid: samo črke, številke in podčrtaji
+              reserved: je rezerviran
         status:
           attributes:
             reblog:
               taken: od statusa že obstajajo
+        user:
+          attributes:
+            email:
+              blocked: uporablja nedovoljenega ponudnika e-poštnih storitev
+              unreachable: kot kaže ne obstaja

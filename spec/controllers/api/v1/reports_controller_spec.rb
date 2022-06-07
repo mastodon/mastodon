@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::ReportsController, type: :controller do
   render_views
 
-  let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user)  { Fabricate(:user) }
   let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
 
   before do
@@ -13,22 +13,64 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let(:scopes)  { 'write:reports' }
-    let!(:status) { Fabricate(:status) }
-    let!(:admin)  { Fabricate(:user, admin: true) }
+    let!(:admin) { Fabricate(:user, admin: true) }
+
+    let(:scopes) { 'write:reports' }
+    let(:status) { Fabricate(:status) }
+    let(:target_account) { status.account }
+    let(:category) { nil }
+    let(:forward) { nil }
+    let(:rule_ids){ nil }
 
     before do
       allow(AdminMailer).to receive(:new_report).and_return(double('email', deliver_later: nil))
-      post :create, params: { status_ids: [status.id], account_id: status.account.id, comment: 'reasons' }
+      post :create, params: { status_ids: [status.id], account_id: target_account.id, comment: 'reasons', category: category, rule_ids: rule_ids, forward: forward }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(200)
     end
 
     it 'creates a report' do
-      expect(status.reload.account.targeted_reports).not_to be_empty
-      expect(response).to have_http_status(200)
+      expect(target_account.targeted_reports).to_not be_empty
+    end
+
+    it 'saves comment' do
+      expect(target_account.targeted_reports.first.comment).to eq 'reasons'
     end
 
     it 'sends e-mails to admins' do
       expect(AdminMailer).to have_received(:new_report).with(admin.account, Report)
+    end
+
+    context 'when a status does not belong to the reported account' do
+      let(:target_account) { Fabricate(:account) }
+
+      it 'returns http not found' do
+        expect(response).to have_http_status(404)
+      end
+    end
+
+    context 'when a category is chosen' do
+      let(:category) { 'spam' }
+
+      it 'saves category' do
+        expect(target_account.targeted_reports.first.spam?).to be true
+      end
+    end
+
+    context 'when violated rules are chosen' do
+      let(:rule) { Fabricate(:rule) }
+      let(:category) { 'violation' }
+      let(:rule_ids) { [rule.id] }
+
+      it 'saves category' do
+        expect(target_account.targeted_reports.first.violation?).to be true
+      end
+
+      it 'saves rule_ids' do
+        expect(target_account.targeted_reports.first.rule_ids).to match_array([rule.id])
+      end
     end
   end
 end

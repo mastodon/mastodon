@@ -88,7 +88,7 @@ export default class Retention extends React.PureComponent {
               </td>
 
               {data[0].data.slice(1).map((retention, i) => {
-                const average = data.reduce((sum, cohort, k) => cohort.data[i + 1] ? sum + (cohort.data[i + 1].percent - sum)/(k + 1) : sum, 0);
+                const average = data.reduce((sum, cohort, k) => cohort.data[i + 1] ? sum + (cohort.data[i + 1].rate - sum)/(k + 1) : sum, 0);
 
                 return (
                   <td key={retention.date}>
@@ -118,8 +118,8 @@ export default class Retention extends React.PureComponent {
 
                 {cohort.data.slice(1).map(retention => (
                   <td key={retention.date}>
-                    <div className={classNames('retention__table__box', `retention__table__box--${roundTo10(retention.percent * 100)}`)}>
-                      <FormattedNumber value={retention.percent} style='percent' />
+                    <div className={classNames('retention__table__box', `retention__table__box--${roundTo10(retention.rate * 100)}`)}>
+                      <FormattedNumber value={retention.rate} style='percent' />
                     </div>
                   </td>
                 ))}

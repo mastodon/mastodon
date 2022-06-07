@@ -9,7 +9,9 @@ class Admin::Metrics::Dimension::TagServersDimension < Admin::Metrics::Dimension
     'tag_servers'
   end
 
-  def data
+  protected
+
+  def perform_query
     sql = <<-SQL.squish
       SELECT accounts.domain, count(*) AS value
       FROM statuses
@@ -26,8 +28,6 @@ class Admin::Metrics::Dimension::TagServersDimension < Admin::Metrics::Dimension
 
     rows.map { |row| { key: row['domain'] || Rails.configuration.x.local_domain, human_key: row['domain'] || Rails.configuration.x.local_domain, value: row['value'].to_s } }
   end
-
-  private
 
   def params
     @params.permit(:id)

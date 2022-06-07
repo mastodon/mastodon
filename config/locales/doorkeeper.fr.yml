@@ -60,8 +60,8 @@ fr:
       error:
         title: Une erreur est survenue
       new:
-        able_to: Cette application pourra
-        prompt: Autoriser %{client_name} à utiliser votre compte ?
+        prompt_html: "%{client_name} souhaite accéder à votre compte. Il s'agit d'une application tierce. <strong>Vous ne devriez pas l'y autoriser si vous ne lui faites pas confiance.</strong>"
+        review_permissions: Examiner les autorisations
         title: Autorisation requise
       show:
         title: Copiez ce code d’autorisation et collez-le dans l’application.
@@ -71,10 +71,12 @@ fr:
       confirmations:
         revoke: Voulez-vous vraiment faire ça ?
       index:
-        application: Application
-        created_at: Créé le
-        date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Permissions
+        authorized_at: Autorisée le %{date}
+        description_html: Ces applications peuvent accéder à votre compte via l'API. Si vous voyez ici des applications que vous ne reconnaissez pas ou qui ne fonctionnent pas normalement, vous pouvez en révoquer les accès.
+        last_used_at: Dernière utilisation le %{date}
+        never_used: Jamais utilisée
+        scopes: Autorisations
+        superapp: Interne
         title: Vos applications autorisées
     errors:
       messages:
@@ -85,7 +87,7 @@ fr:
         invalid_redirect_uri: L’URL de redirection n’est pas valide.
         invalid_request:
           missing_param: 'Parramètre requis manquant: %{value}.'
-          request_not_authorized: La requête doit être autorisée. Le paramètre requis pour la requête d'autorisation est manquant ou non valide.
+          request_not_authorized: La requête doit être autorisée. Le paramètre requis pour l'autorisation de la requête est manquant ou non valide.
           unknown: La requête omet un paramètre requis, inclut une valeur de paramètre non prise en charge ou est autrement mal formée.
         invalid_resource_owner: Les identifiants fournis par le propriétaire de la ressource ne sont pas valides ou le propriétaire de la ressource ne peut être trouvé
         invalid_scope: La permission demandée est invalide, inconnue ou mal formée.
@@ -110,6 +112,33 @@ fr:
       authorized_applications:
         destroy:
           notice: Application révoquée.
+    grouped_scopes:
+      access:
+        read: Accès en lecture seule
+        read/write: Accès en lecture et écriture
+        write: Accès en écriture seule
+      title:
+        accounts: Comptes
+        admin/accounts: Gestion des comptes
+        admin/all: Toutes les fonctionnalités d'administration
+        admin/reports: Gestion des rapports
+        all: Tout
+        blocks: Bloqués
+        bookmarks: Marque-pages
+        conversations: Conversations
+        crypto: Chiffrement de bout-en-bout
+        favourites: Favoris
+        filters: Filtres
+        follow: Relations
+        follows: Abonnements
+        lists: Listes
+        media: Fichiers médias
+        mutes: Masqués
+        notifications: Notifications
+        push: Notifications push
+        reports: Signalements
+        search: Recherche
+        statuses: Messages
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ fr:
       admin:write: modifier toutes les données sur le serveur
       admin:write:accounts: effectuer des actions de modération sur les comptes
       admin:write:reports: effectuer des actions de modération sur les signalements
+      crypto: utiliser le chiffrement de bout-en-bout
       follow: modifier les relations du compte
       push: recevoir vos notifications poussées
       read: lire toutes les données de votre compte
@@ -138,12 +168,13 @@ fr:
       read:notifications: voir vos notifications
       read:reports: voir vos signalements
       read:search: rechercher en votre nom
-      read:statuses: voir tous les statuts
+      read:statuses: voir tous les messages
       write: modifier toutes les données de votre compte
       write:accounts: modifier votre profil
       write:blocks: bloquer des comptes et des domaines
-      write:bookmarks: statuts des marque-pages
-      write:favourites: mettre des statuts en favori
+      write:bookmarks: mettre des messages en marque-pages
+      write:conversations: masquer et effacer les conversations
+      write:favourites: mettre des messages en favori
       write:filters: créer des filtres
       write:follows: suivre des personnes
       write:lists: créer des listes
@@ -151,4 +182,4 @@ fr:
       write:mutes: masquer des comptes et des conversations
       write:notifications: effacer vos notifications
       write:reports: signaler d’autres personnes
-      write:statuses: publier des statuts
+      write:statuses: publier des messages

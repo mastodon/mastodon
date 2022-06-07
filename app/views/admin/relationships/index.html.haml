@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = t('admin.relationships.title', acct: @account.acct)
+  = t('admin.relationships.title', acct: @account.pretty_acct)
 
 .filters
   .filter-subset
@@ -24,16 +24,17 @@
 
 %hr.spacer/
 
-.table-wrapper
-  %table.table
-    %thead
-      %tr
-        %th= t('admin.accounts.username')
-        %th= t('admin.accounts.role')
-        %th= t('admin.accounts.most_recent_ip')
-        %th= t('admin.accounts.most_recent_activity')
-        %th
-    %tbody
-      = render partial: 'admin/accounts/account', collection: @accounts
+= form_for(@form, url: batch_admin_accounts_path) do |f|
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        = f.button safe_join([fa_icon('lock'), t('admin.accounts.perform_full_suspension')]), name: :suspend, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+    .batch-table__body
+      - if @accounts.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'admin/accounts/account', collection: @accounts, locals: { f: f }
 
 = paginate @accounts

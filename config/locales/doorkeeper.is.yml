@@ -60,8 +60,8 @@ is:
       error:
         title: Villa kom upp
       new:
-        able_to: Það mun geta
-        prompt: Forritið %{client_name} biður um aðgang að notandaaðgangnum þínum
+        prompt_html: "%{client_name} biður um heimild til að fara inn á notandaaðganginn þinn. Þetta er utanaðkomandi hugbúnaður. <strong>Ef þú treystir ekki viðkomandi, þá ættir þú ekki að heimila þetta.</strong>"
+        review_permissions: Yfirfara heimildir
         title: Auðkenning er nauðsynleg
       show:
         title: Afritaðu þennan auðkenningarkóða og límdu hann inn hjá forritinu.
@@ -71,10 +71,12 @@ is:
       confirmations:
         revoke: Ertu viss?
       index:
-        application: Forrit
-        created_at: Heimilað
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Gildissvið
+        authorized_at: Heimilað þann %{date}
+        description_html: Þetta eru forrit sem hafa aðgang að notandaaðgangnum þínum í gegnum API-forritsviðmótið. Ef hér eru forrit sem þú kannast ekki við, eða ef eitthvað forrit er til vandræða, skaltu afturkalla himildir þess.
+        last_used_at: Síðast notað þann %{date}
+        never_used: Aldrei notað
+        scopes: Heimildir
+        superapp: Innri
         title: Heimiluðu forritin þín
     errors:
       messages:
@@ -110,6 +112,33 @@ is:
       authorized_applications:
         destroy:
           notice: Forrit afturkallað.
+    grouped_scopes:
+      access:
+        read: Einungis lesaðgangur
+        read/write: Heimilt að lesa og skrifa
+        write: Einungis skrifaðgangur
+      title:
+        accounts: Notandaaðgangar
+        admin/accounts: Stjórnun aðganga
+        admin/all: Allar stjórnunaraðgerðir
+        admin/reports: Stjórnun kæra
+        all: Allt
+        blocks: Útilokanir
+        bookmarks: Bókamerki
+        conversations: Samtöl
+        crypto: Enda-í-enda dulritun
+        favourites: Eftirlæti
+        filters: Síur
+        follow: Vensl
+        follows: Fylgist með
+        lists: Listar
+        media: Myndefnisviðhengi
+        mutes: Þagganir
+        notifications: Tilkynningar
+        push: Ýti-tilkynningar
+        reports: Kærur
+        search: Leita
+        statuses: Færslur
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ is:
       admin:write: breyta öllum gögnum á netþjóninum
       admin:write:accounts: framkvæma umsjónaraðgerðir á notendaaðganga
       admin:write:reports: framkvæma umsjónaraðgerðir á kærur
+      crypto: nota enda-í-enda dulritun
       follow: breyta venslum aðgangs
       push: taka á móti ýti-tilkynningum til þín
       read: lesa öll gögn á notandaaðgangnum þínum
@@ -138,12 +168,13 @@ is:
       read:notifications: sjá tilkynningarnar þínar
       read:reports: skoða skýrslurnar þína
       read:search: leita fyrir þína hönd
-      read:statuses: sjá allar stöðufærslur
+      read:statuses: sjá allar færslur
       write: breyta öllum gögnum á notandaaðgangnum þínum
       write:accounts: breyta notandasniðinu þínu
       write:blocks: útiloka notandaaðganga og lén
-      write:bookmarks: bókamerkja stöðufærslur
-      write:favourites: setja stöðufærslur í eftirlæti
+      write:bookmarks: bókamerkja færslur
+      write:conversations: þagga og eyða samtölum
+      write:favourites: setja færslur í eftirlæti
       write:filters: útbúa síur
       write:follows: fylgjast með fólki
       write:lists: búa til lista
@@ -151,4 +182,4 @@ is:
       write:mutes: þagga niður í fólki og samtölum
       write:notifications: hreinsa tilkynningarnar þínar
       write:reports: kæra annað fólk
-      write:statuses: gefa út stöður
+      write:statuses: gefa út færslur

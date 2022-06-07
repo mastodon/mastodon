@@ -800,9 +800,41 @@ code {
       }
     }
   }
+}
 
-  @media screen and (max-width: 740px) and (min-width: 441px) {
-    margin-top: 40px;
+.oauth-prompt {
+  h3 {
+    color: $ui-secondary-color;
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 30px;
+  }
+
+  .permissions-list {
+    border: 1px solid $ui-base-color;
+    border-radius: 4px;
+    background: darken($ui-base-color, 4%);
+    margin-bottom: 30px;
+  }
+
+  .actions {
+    margin: 0 -10px;
+    display: flex;
+
+    form {
+      box-sizing: border-box;
+      padding: 0 10px;
+      flex: 1 1 auto;
+      min-height: 1px;
+      width: 50%;
+    }
   }
 }
 
@@ -1003,5 +1035,41 @@ code {
 .input.user_website {
   &:not(.field_with_errors) {
     display: none;
+  }
+}
+
+.permissions-list {
+  &__item {
+    padding: 15px;
+    color: $ui-secondary-color;
+    border-bottom: 1px solid lighten($ui-base-color, 4%);
+    display: flex;
+    align-items: center;
+
+    &__text {
+      flex: 1 1 auto;
+
+      &__title {
+        font-weight: 500;
+      }
+
+      &__type {
+        color: $darker-text-color;
+      }
+    }
+
+    &__icon {
+      flex: 0 0 auto;
+      font-size: 18px;
+      width: 30px;
+      color: $valid-value-color;
+      display: flex;
+      align-items: center;
+    }
+
+    &:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
   }
 }

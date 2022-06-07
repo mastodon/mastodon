@@ -2,6 +2,7 @@
 
 class PostStatusService < BaseService
   include Redisable
+  include LanguagesHelper
 
   MIN_SCHEDULE_OFFSET = 5.minutes.freeze
 
@@ -106,7 +107,10 @@ class PostStatusService < BaseService
   end
 
   def validate_media!
-    return if @options[:media_ids].blank? || !@options[:media_ids].is_a?(Enumerable)
+    if @options[:media_ids].blank? || !@options[:media_ids].is_a?(Enumerable)
+      @media = []
+      return
+    end
 
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.too_many') if @options[:media_ids].size > 4 || @options[:poll].present?
 
@@ -116,8 +120,12 @@ class PostStatusService < BaseService
     raise Mastodon::ValidationError, I18n.t('media_attachments.validations.not_ready') if @media.any?(&:not_processed?)
   end
 
-  def language_from_option(str)
-    ISO_639.find(str)&.alpha2
+  def process_mentions_service
+    ProcessMentionsService.new
+  end
+
+  def process_hashtags_service
+    ProcessHashtagsService.new
   end
 
   def scheduled?
@@ -159,13 +167,14 @@ class PostStatusService < BaseService
     {
       text: @text,
       media_attachments: @media || [],
+      ordered_media_attachment_ids: (@options[:media_ids] || []).map(&:to_i) & @media.map(&:id),
       thread: @in_reply_to,
       poll_attributes: poll_attributes,
       sensitive: @sensitive,
       spoiler_text: @options[:spoiler_text] || '',
       visibility: @visibility,
       circle: @circle,
-      language: language_from_option(@options[:language]) || @account.user&.setting_default_language&.presence || LanguageDetector.instance.detect(@text, @account),
+      language: valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
     }.compact

@@ -61,7 +61,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
 
   describe 'GET #show' do
     let(:current_user) { Fabricate(:user, admin: true) }
-    let(:account) { Fabricate(:account, username: 'bob') }
+    let(:account) { Fabricate(:account) }
 
     it 'returns http success' do
       get :show, params: { id: account.id }
@@ -73,7 +73,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
     subject { post :memorialize, params: { id: account.id } }
 
     let(:current_user) { Fabricate(:user, admin: current_user_admin) }
-    let(:account) { Fabricate(:account, user: user) }
+    let(:account) { user.account }
     let(:user) { Fabricate(:user, admin: target_user_admin) }
 
     context 'when user is admin' do
@@ -125,7 +125,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
     subject { post :enable, params: { id: account.id } }
 
     let(:current_user) { Fabricate(:user, admin: admin) }
-    let(:account) { Fabricate(:account, user: user) }
+    let(:account) { user.account }
     let(:user) { Fabricate(:user, disabled: true) }
 
     context 'when user is admin' do
@@ -194,9 +194,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
   end
 
   describe 'POST #unblock_email' do
-    subject do
-      -> { post :unblock_email, params: { id: account.id } }
-    end
+    subject { post :unblock_email, params: { id: account.id } }
 
     let(:current_user) { Fabricate(:user, admin: admin) }
     let(:account) { Fabricate(:account, suspended: true) }
@@ -206,11 +204,11 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:admin) { true }
 
       it 'succeeds in removing email blocks' do
-        is_expected.to change { CanonicalEmailBlock.where(reference_account: account).count }.from(1).to(0)
+        expect { subject }.to change { CanonicalEmailBlock.where(reference_account: account).count }.from(1).to(0)
       end
 
       it 'redirects to admin account path' do
-        subject.call
+        subject
         expect(response).to redirect_to admin_account_path(account.id)
       end
     end
@@ -219,7 +217,7 @@ RSpec.describe Admin::AccountsController, type: :controller do
       let(:admin) { false }
 
       it 'fails to remove avatar' do
-        subject.call
+        subject
         expect(response).to have_http_status :forbidden
       end
     end

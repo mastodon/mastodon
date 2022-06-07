@@ -18,17 +18,18 @@
   .status__content.emojify{ :data => ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
     - if status.spoiler_text?
       %p<
-        %span.p-summary> #{Formatter.instance.format_spoiler(status, autoplay: prefers_autoplay?)}&nbsp;
+        %span.p-summary> #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
     .e-content
-      = Formatter.instance.format(status, custom_emojify: true, autoplay: prefers_autoplay?)
+      = prerender_custom_emojis(status_content_format(status), status.emojis)
+
       - if status.preloadable_poll
         = render_poll_component(status)
 
-  - if !status.media_attachments.empty?
-    - if status.media_attachments.first.video?
+  - if !status.ordered_media_attachments.empty?
+    - if status.ordered_media_attachments.first.video?
       = render_video_component(status, width: 670, height: 380, detailed: true)
-    - elsif status.media_attachments.first.audio?
+    - elsif status.ordered_media_attachments.first.audio?
       = render_audio_component(status, width: 670, height: 380)
     - else
       = render_media_gallery_component(status, height: 380, standalone: true)
@@ -37,14 +38,19 @@
 
   .detailed-status__meta
     %data.dt-published{ value: status.created_at.to_time.iso8601 }
+    - if status.edited?
+      %data.dt-updated{ value: status.edited_at.to_time.iso8601 }
 
     = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime u-url u-uid', target: stream_link_target, rel: 'noopener noreferrer' do
       %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
     ·
+    - if status.edited?
+      = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted'))
+      ·
     %span.detailed-status__visibility-icon
       = visibility_icon status
     ·
-    - if status.application && @account.user&.setting_show_application
+    - if status.application && status.account.user&.setting_show_application
       - if status.application.website.blank?
         %strong.detailed-status__application= status.application.name
       - else

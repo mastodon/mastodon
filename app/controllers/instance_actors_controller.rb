@@ -3,6 +3,7 @@
 class InstanceActorsController < ApplicationController
   include AccountControllerConcern
 
+  skip_before_action :check_account_confirmation
   skip_around_action :set_locale
 
   def show

@@ -8,6 +8,8 @@ class Admin::ActionLogFilter
   ).freeze
 
   ACTION_TYPE_MAP = {
+    approve_appeal: { target_type: 'Appeal', action: 'approve' }.freeze,
+    reject_appeal: { target_type: 'Appeal', action: 'reject' }.freeze,
     assigned_to_self_report: { target_type: 'Report', action: 'assigned_to_self' }.freeze,
     change_email_user: { target_type: 'User', action: 'change_email' }.freeze,
     confirm_user: { target_type: 'User', action: 'confirm' }.freeze,

@@ -60,8 +60,8 @@ es-AR:
       error:
         title: Ocurrió un error
       new:
-        able_to: Será capaz de
-        prompt: La aplicación %{client_name} solicita acceso a tu cuenta
+        prompt_html: "%{client_name} solicitaa permiso para acceder a tu cuenta. Es una aplicación de terceros. <strong>Si no confiás en ella, no deberías autorizarla.</strong>"
+        review_permissions: Revisar permisos
         title: Autorización requerida
       show:
         title: Copiá este código de autorización y pegalo en la aplicación.
@@ -71,10 +71,12 @@ es-AR:
       confirmations:
         revoke: "¿Estás seguro?"
       index:
-        application: Aplicación
-        created_at: Autorizada
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Ámbitos
+        authorized_at: Autorizado el %{date}
+        description_html: Estas son aplicaciones que pueden acceder a tu cuenta usando la API. Si hay aplicaciones que no reconocés acá, o que funcionan de forma sospechosa, podés revocar su acceso.
+        last_used_at: Último uso el %{date}
+        never_used: Nunca usada
+        scopes: Permisos
+        superapp: Interno
         title: Tus aplicaciones autorizadas
     errors:
       messages:
@@ -110,6 +112,33 @@ es-AR:
       authorized_applications:
         destroy:
           notice: Aplicación revocada.
+    grouped_scopes:
+      access:
+        read: Acceso de sólo lectura
+        read/write: Acceso de lectura y escritura
+        write: Acceso de sólo escritura
+      title:
+        accounts: Cuentas
+        admin/accounts: Administración de cuentas
+        admin/all: Todas las funciones administrativas
+        admin/reports: Administración de denuncias
+        all: Todo
+        blocks: Bloqueos
+        bookmarks: Marcadores
+        conversations: Conversaciones
+        crypto: Cifrado de extremo a extremo
+        favourites: Favoritos
+        filters: Filtros
+        follow: Relaciones
+        follows: Seguimientos
+        lists: Listas
+        media: Adjuntos de medios
+        mutes: Silenciados
+        notifications: Notificaciones
+        push: Notificaciones push
+        reports: Denuncias
+        search: Buscar
+        statuses: Mensajes
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ es-AR:
       admin:write: modificar todos los datos en el servidor
       admin:write:accounts: ejecutar acciones de moderación en cuentas
       admin:write:reports: ejecutar acciones de moderación en denuncias
+      crypto: usar cifrado de extremo a extremo
       follow: modificar relaciones de cuenta
       push: recibir tus notificaciones push
       read: leer todos los datos de tu cuenta
@@ -143,6 +173,7 @@ es-AR:
       write:accounts: modificar tu perfil
       write:blocks: bloquear cuentas y dominios
       write:bookmarks: marcar mensajes
+      write:conversations: silenciar y eliminar conversaciones
       write:favourites: marcar mensajes como favoritos
       write:filters: crear filtros
       write:follows: seguir cuentas
