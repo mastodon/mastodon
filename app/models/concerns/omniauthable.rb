@@ -84,6 +84,7 @@ module Omniauthable
         approved: true,
         external: true,
         confirmed_at: Time.now.utc,
+        locale: I18n.locale.to_s,
         bypass_invite_request_check: true,
         account_attributes: {
           username: username,
