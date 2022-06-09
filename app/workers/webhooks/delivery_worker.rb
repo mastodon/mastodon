@@ -12,6 +12,8 @@ class Webhooks::DeliveryWorker
     @response  = nil
 
     perform_request
+  rescue ActiveRecord::RecordNotFound
+    true
   end
 
   private
