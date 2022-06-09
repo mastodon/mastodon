@@ -23,7 +23,10 @@
     .content-wrapper
       .content
         .content-heading
-          %h2= yield :page_title
+          - if content_for?(:heading)
+            = yield :heading
+          - else
+            %h2= yield :page_title
 
           - if :heading_actions
             .content-heading-actions

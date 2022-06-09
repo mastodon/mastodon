@@ -21,6 +21,14 @@ en:
             username:
               invalid: must contain only letters, numbers and underscores
               reserved: is reserved
+        admin/webhook:
+          attributes:
+            url:
+              invalid: is not a valid URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: is not a valid URL
         status:
           attributes:
             reblog:

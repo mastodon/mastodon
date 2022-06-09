@@ -55,6 +55,8 @@ class Report < ApplicationRecord
 
   before_validation :set_uri, only: :create
 
+  after_create_commit :trigger_webhooks
+
   def object_type
     :flag
   end
@@ -142,5 +144,9 @@ class Report < ApplicationRecord
     return unless violation?
 
     errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids&.size
+  end
+
+  def trigger_webhooks
+    TriggerWebhookWorker.perform_async('report.created', 'Report', id)
   end
 end
