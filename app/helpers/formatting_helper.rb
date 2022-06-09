@@ -21,7 +21,7 @@ module FormattingHelper
   module_function :extract_status_plain_text
 
   def status_content_format(status)
-    payload = {content_type: status.content_type, quote: status.quote}
+    payload = { content_type: status.content_type, quote: (status.quote if defined? status.quote) }
     html_aware_format(status.text, payload, status.local?, preloaded_accounts: [status.account] + (status.respond_to?(:active_mentions) ? status.active_mentions.map(&:account) : []))
   end
 
