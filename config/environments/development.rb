@@ -85,6 +85,37 @@ Rails.application.configure do
     Bullet.add_safelist type: :n_plus_one_query, class_name: 'User', association: :account
   end
 
+  # E-mails
+  if ENV['TEST_EMAIL']
+    outgoing_email_address = ENV.fetch('SMTP_FROM_ADDRESS', 'notifications@localhost')
+    outgoing_email_domain  = Mail::Address.new(outgoing_email_address).domain
+
+    config.action_mailer.default_options = {
+      from: outgoing_email_address,
+      message_id: -> { "<#{Mail.random_tag}@#{outgoing_email_domain}>" },
+    }
+
+    config.action_mailer.default_options[:reply_to]    = ENV['SMTP_REPLY_TO'] if ENV['SMTP_REPLY_TO'].present?
+    config.action_mailer.default_options[:return_path] = ENV['SMTP_RETURN_PATH'] if ENV['SMTP_RETURN_PATH'].present?
+
+    config.action_mailer.smtp_settings = {
+      :port                 => ENV['SMTP_PORT'],
+      :address              => ENV['SMTP_SERVER'],
+      :user_name            => ENV['SMTP_LOGIN'].presence,
+      :password             => ENV['SMTP_PASSWORD'].presence,
+      :domain               => ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
+      :authentication       => ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
+      :ca_file              => ENV['SMTP_CA_FILE'].presence || '/etc/ssl/certs/ca-certificates.crt',
+      :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
+      :enable_starttls_auto => ENV['SMTP_ENABLE_STARTTLS_AUTO'] != 'false',
+      :tls                  => ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
+      :ssl                  => ENV['SMTP_SSL'].presence && ENV['SMTP_SSL'] == 'true',
+    }
+
+    config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
+  end
+  # Email end
+
   config.x.otp_secret = ENV.fetch('OTP_SECRET', '1fc2b87989afa6351912abeebe31ffc5c476ead9bf8b3d74cbc4a302c7b69a45b40b1bbef3506ddad73e942e15ed5ca4b402bf9a66423626051104f4b5f05109')
 end
 
