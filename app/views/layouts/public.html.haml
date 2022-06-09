@@ -9,7 +9,7 @@
         %nav.header
           .nav-left
             = link_to root_url, class: 'brand' do
-              = svg_logo_full
+              = logo_as_symbol(:wordmark)
 
             - unless whitelist_mode?
               = link_to t('directories.directory'), explore_path, class: 'nav-link optional' if Setting.profile_directory
@@ -42,7 +42,7 @@
               %li= link_to t('about.api'), 'https://docs.joinmastodon.org/client/intro/'
           .column-2
             %h4= link_to t('about.what_is_mastodon'), 'https://joinmastodon.org/'
-            = link_to svg_logo, root_url, class: 'brand'
+            = link_to logo_as_symbol, root_url, class: 'brand'
           .column-3
             %h4= site_hostname
             %ul
