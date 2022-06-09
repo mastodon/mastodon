@@ -39,7 +39,7 @@ ru:
       many: постов
       other: поста
     status_count_before: И опубликовано
-    tagline: Подписывайтесь на друзей и заводите новые знакомства
+    tagline: Распределённая социальная сеть
     terms: Условия использования
     unavailable_content: Недоступный контент
     unavailable_content_description:
@@ -841,6 +841,28 @@ ru:
       edit_preset: Удалить шаблон предупреждения
       empty: Вы еще не определили пресеты предупреждений.
       title: Управление шаблонами предупреждений
+    webhooks:
+      add_new: Добавить вебхук
+      delete: Удалить
+      description_html: <strong>Вебхуки</strong> позволяют Mastodon отправлять вашим приложениям <strong>уведомления в реальном времени</strong> о выбранных происходящих событиях, а они могут <strong>обрабатывать их в автоматическом режиме</strong>.
+      disable: Деактивировать
+      disabled: Деактивирован
+      edit: Редактировать вебхук
+      empty: У вас пока нет настроенных вебхуков.
+      enable: Активировать
+      enabled: Активен
+      enabled_events:
+        one: '%{count} событие включено'
+        few: "%{count} события включено"
+        many: "%{count} событий включено"
+        other: "%{count} события включено"
+      events: События
+      new: Новый вебхук
+      rotate_secret: Сгенерировать новый
+      secret: Ключ подписи
+      status: Состояние
+      title: Вебхуки
+      webhook: Вебхук
   admin_mailer:
     new_appeal:
       actions:
