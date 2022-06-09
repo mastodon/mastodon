@@ -20,6 +20,14 @@ sl:
             username:
               invalid: samo črke, številke in podčrtaji
               reserved: je rezerviran
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ni veljaven URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ni veljaven URL
         status:
           attributes:
             reblog:
