@@ -31,7 +31,7 @@
   - if approved_registrations? && !@invite.present?
     .fields-group
       = f.simple_fields_for :invite_request, resource.invite_request || resource.build_invite_request do |invite_request_fields|
-        = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text
+        = invite_request_fields.input :text, as: :text, wrapper: :with_block_label, required: Setting.require_invite_text, hint: simple_format(Setting.invite_request_hint.to_s.empty? ? t('simple_form.hints.invite_request.text') : Setting.invite_request_hint.to_s)
 
   = f.input :invite_code, as: :hidden
 
