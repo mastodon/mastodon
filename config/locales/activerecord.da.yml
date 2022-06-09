@@ -20,6 +20,14 @@ da:
             username:
               invalid: må kun indeholde cifre, bogstaver og understreger
               reserved: er reserveret
+        admin/webhook:
+          attributes:
+            url:
+              invalid: '''er ikke en gyldig URL'
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: '''er ikke en gyldig URL'
         status:
           attributes:
             reblog:
