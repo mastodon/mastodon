@@ -869,6 +869,28 @@ pl:
       edit_preset: Edytuj szablon ostrzeżenia
       empty: Nie zdefiniowano jeszcze żadnych szablonów ostrzegawczych.
       title: Zarządzaj szablonami ostrzeżeń
+    webhooks:
+      add_new: Dodaj punkt końcowy
+      delete: Usuń
+      description_html: <strong>webhook</strong> umożliwia Mastodon dostarczanie <strong>powiadomień w czasie rzeczywistym</strong> o wybranych wydarzeniach do twojej aplikacji, aby mogła <strong>automatycznie wyzwalać reakcje</strong>.
+      disable: Wyłącz
+      disabled: Wyłączone
+      edit: Edytuj punkt końcowy
+      empty: Nie masz jeszcze skonfigurowanych żadnych webhooków do punktów końcowych.
+      enable: Włącz
+      enabled: Aktywne
+      enabled_events:
+        one: 1 włączone zdarzenie
+        few: "%{count} włączone zdarzenia"
+        many: "%{count} włączonych zdarzeń"
+        other: "%{count} włączonych zdarzeń"
+      events: Zdarzenia
+      new: Nowy webhook
+      rotate_secret: Odśwież klucz szyfrowania
+      secret: Podpisywanie klucza szyfrowania
+      status: Stan
+      title: Webhooki
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
