@@ -854,11 +854,23 @@ ca:
     webhooks:
       add_new: Afegir extrem
       delete: Elimina
+      description_html: Un <strong>webhook</strong> habilita Mastodon per a empènyer <strong>notificacions en temps real</strong> sobre els esdeveniments escollits de la teva pròpia aplicació, per tant la teva aplicació pot <strong>activar reaccions automaticament</strong>.
       disable: Desactiva
       disabled: Desactivat
+      edit: Editar extrem
+      empty: Encara no tens cap extrem de webhook configurat.
       enable: Activa
       enabled: Actiu
+      enabled_events:
+        one: 1 esdeveniment activat
+        other: "%{count} esdeveniments activats"
+      events: Esdeveniments
+      new: Nou webhook
+      rotate_secret: Rota el secret
+      secret: Signant el secret
       status: Estat
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
