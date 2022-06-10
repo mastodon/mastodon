@@ -2,7 +2,7 @@
 
 class URLValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    record.errors.add(attribute, I18n.t('applications.invalid_url')) unless compliant?(value)
+    record.errors.add(attribute, :invalid) unless compliant?(value)
   end
 
   private

@@ -1,0 +1,24 @@
+---
+fy:
+  activerecord:
+    attributes:
+      poll:
+        options: Karren
+      user:
+        email: E-mailadres
+        locale: Taal
+        password: Wachtwurd
+      user/account:
+        username: Brûkersnamme
+      user/invite_request:
+        text: Reden
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: mei allinnich letters, nûmers en ûnderstreekjes befetsje
+        user:
+          attributes:
+            email:
+              unreachable: liket net te bestean
