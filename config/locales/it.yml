@@ -852,7 +852,25 @@ it:
       empty: Non hai ancora definito alcun avviso preimpostato.
       title: Gestisci avvisi predefiniti
     webhooks:
+      add_new: Aggiungi endpoint
       delete: Elimina
+      description_html: Un <strong>webhook</strong> consente a Mastodon di inviare <strong>notifiche in tempo reale</strong> su determinati eventi alla tua applicazione, così la tua applicazione può <strong>attivare automaticamente delle reazioni</strong>.
+      disable: Disabilita
+      disabled: Disabilitato
+      edit: Modifica endpoint
+      empty: Non hai ancora configurato alcun endpoint per webhook.
+      enable: Abilita
+      enabled: Attivo
+      enabled_events:
+        one: 1 evento abilitato
+        other: "%{count} eventi abilitati"
+      events: Eventi
+      new: Nuovo webhook
+      rotate_secret: Ruota segreto
+      secret: Segreto per firma
+      status: Stato
+      title: Webhook
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
