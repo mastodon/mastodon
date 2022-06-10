@@ -20,6 +20,14 @@ es-AR:
             username:
               invalid: sólo letras, números y subguiones ("_")
               reserved: está reservado
+        admin/webhook:
+          attributes:
+            url:
+              invalid: no es una dirección web válida
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: no es una dirección web válida
         status:
           attributes:
             reblog:
