@@ -20,5 +20,5 @@
   %body.embed
     = yield
 
-    .logo-resources
+    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => true }
       = render_symbol :icon
