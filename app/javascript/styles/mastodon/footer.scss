@@ -132,19 +132,19 @@
     }
 
     .brand {
-      svg {
+      .logo {
         display: block;
         height: 36px;
         width: auto;
         margin: 0 auto;
-        fill: lighten($ui-base-color, 34%);
+        color: lighten($ui-base-color, 34%);
       }
 
       &:hover,
       &:focus,
       &:active {
-        svg {
-          fill: lighten($ui-base-color, 38%);
+        .logo {
+          color: lighten($ui-base-color, 38%);
         }
       }
     }
