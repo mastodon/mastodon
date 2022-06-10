@@ -1,6 +1,6 @@
 default: &default
   adapter: postgresql
-  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>
+  pool: <%= ENV["DB_POOL"] || 25 %>
   timeout: 5000
   encoding: unicode
   sslmode: <%= ENV['DB_SSLMODE'] || "prefer" %>
