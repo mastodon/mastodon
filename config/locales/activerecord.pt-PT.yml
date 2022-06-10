@@ -20,6 +20,14 @@ pt-PT:
             username:
               invalid: apenas letras, números e underscores
               reserved: está reservado
+        admin/webhook:
+          attributes:
+            url:
+              invalid: não é um URL válido
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: não é um URL válido
         status:
           attributes:
             reblog:
