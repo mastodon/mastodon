@@ -20,6 +20,14 @@ af:
             username:
               invalid: moet slegs letters, nommers en onderstrepe bevat
               reserved: is gereserveer
+        admin/webhook:
+          attributes:
+            url:
+              invalid: is nie 'n geldige URL nie
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: is nie 'n geldige URL nie
         status:
           attributes:
             reblog:
