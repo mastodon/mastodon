@@ -181,7 +181,17 @@ button {
 }
 
 .logo-resources {
-  display: none;
+  // Not using display: none because of https://bugs.chromium.org/p/chromium/issues/detail?id=258029
+  visibility: hidden;
+  user-select: none;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1000;
 }
 
 // NoScript adds a __ns__pop2top class to the full ancestry of blocked elements,
