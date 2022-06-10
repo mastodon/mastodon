@@ -426,6 +426,7 @@ ru:
       destroyed_msg: Блокировка домена снята
       domain: Домен
       edit: Редактировать блокировку
+      existing_domain_block: Вы уже установили более строгие ограничения для %{name}.
       existing_domain_block_html: Вы уже ввели более строгие ограничения на %{name}, вам нужно <a href="%{unblock_url}">разблокировать его</a> сначала.
       new:
         create: Создать блокировку
@@ -495,8 +496,12 @@ ru:
         comment: Внутренняя заметка
         policies:
           reject_media: Отклонить медиа
+          silence: Лимит
+          suspend: Приостановить
         policy: Политика
+        reason: Публичная причина
       dashboard:
+        instance_accounts_dimension: Популярные аккаунты
         instance_accounts_measure: сохраненные учетные записи
         instance_languages_dimension: Популярные языки
         instance_media_attachments_measure: сохраненные медиафайлы
@@ -796,6 +801,8 @@ ru:
         title: Издатели
       rejected: Отклонённые
       statuses:
+        allow: Разрешить пост
+        allow_account: Разрешить автора
         title: Популярные посты
       tags:
         current_score: Текущий счет %{score}
@@ -847,6 +854,7 @@ ru:
       new_trending_statuses:
         title: Популярные посты
       new_trending_tags:
+        no_approved_tags: На данный момент популярные подтвержденные хэштеги отсутствуют.
         title: Популярные хэштеги
   aliases:
     add_new: Создать псевдоним
@@ -1008,9 +1016,12 @@ ru:
       title: "%{action} от %{date}"
       title_actions:
         delete_statuses: Удаление поста
+        disable: Заморозка аккаунта
         mark_statuses_as_sensitive: Помечать посты как деликатные
+        none: Требующие внимания
         sensitive: Отметить учетную запись как деликатную
         silence: Ограничение учетной записи
+        suspend: Приостановка Аккаунта
       your_appeal_approved: Ваша апелляция одобрена
       your_appeal_pending: Вы подали апелляцию
       your_appeal_rejected: Ваша апелляция отклонена
