@@ -2,10 +2,10 @@
 
 class DomainAllowPolicy < ApplicationPolicy
   def create?
-    admin?
+    role.can?(:manage_federation)
   end
 
   def destroy?
-    admin?
+    role.can?(:manage_federation)
   end
 end

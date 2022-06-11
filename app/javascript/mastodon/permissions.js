@@ -1,0 +1,2 @@
+export const PERMISSION_INVITE_USERS = 0x10000;
+export const PERMISSION_MANAGE_USERS = 0x400;

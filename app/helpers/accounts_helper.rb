@@ -61,21 +61,13 @@ module AccountsHelper
     end
   end
 
-  def account_badge(account, all: false)
+  def account_badge(account)
     if account.bot?
       content_tag(:div, content_tag(:div, t('accounts.roles.bot'), class: 'account-role bot'), class: 'roles')
     elsif account.group?
       content_tag(:div, content_tag(:div, t('accounts.roles.group'), class: 'account-role group'), class: 'roles')
-    elsif (Setting.show_staff_badge && account.user_staff?) || all
-      content_tag(:div, class: 'roles') do
-        if all && !account.user_staff?
-          content_tag(:div, t('admin.accounts.roles.user'), class: 'account-role')
-        elsif account.user_admin?
-          content_tag(:div, t('accounts.roles.admin'), class: 'account-role admin')
-        elsif account.user_moderator?
-          content_tag(:div, t('accounts.roles.moderator'), class: 'account-role moderator')
-        end
-      end
+    elsif account.user_role&.highlighted?
+      content_tag(:div, content_tag(:div, account.user_role.name, class: "account-role user-role-#{account.user_role.id}"), class: 'roles')
     end
   end
 

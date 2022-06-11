@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::Trends::StatusesController < Api::BaseController
+  include Authorization
+
   before_action -> { authorize_if_got_token! :'admin:read' }
-  before_action :require_staff!
   before_action :set_statuses
 
+  after_action :verify_authorized
+
   def index
+    authorize :dashboard, :index?
     render json: @statuses, each_serializer: REST::StatusSerializer
   end
 

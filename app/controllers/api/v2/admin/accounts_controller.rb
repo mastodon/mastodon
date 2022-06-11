@@ -11,6 +11,7 @@ class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
     email
     ip
     invited_by
+    role_id
   ).freeze
 
   PAGINATION_PARAMS = (%i(limit) + FILTER_PARAMS).freeze

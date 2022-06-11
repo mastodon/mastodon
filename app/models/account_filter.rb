@@ -4,7 +4,7 @@ class AccountFilter
   KEYS = %i(
     origin
     status
-    permissions
+    role_id
     username
     by_domain
     display_name
@@ -38,8 +38,8 @@ class AccountFilter
     case key.to_s
     when 'origin'
       origin_scope(value)
-    when 'permissions'
-      permissions_scope(value)
+    when 'role_id'
+      role_scope(value)
     when 'status'
       status_scope(value)
     when 'by_domain'
@@ -56,6 +56,8 @@ class AccountFilter
       invited_by_scope(value)
     when 'order'
       order_scope(value)
+    when 'permissions'
+      Account.none # No longer possible
     else
       raise "Unknown filter: #{key}"
     end
@@ -104,13 +106,8 @@ class AccountFilter
     Account.left_joins(user: :invite).merge(Invite.where(user_id: value.to_s))
   end
 
-  def permissions_scope(value)
-    case value.to_s
-    when 'staff'
-      accounts_with_users.merge(User.staff)
-    else
-      raise "Unknown permissions: #{value}"
-    end
+  def role_scope(value)
+    accounts_with_users.merge(User.where(role_id: value.to_s))
   end
 
   def accounts_with_users

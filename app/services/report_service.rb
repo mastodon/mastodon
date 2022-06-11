@@ -38,7 +38,7 @@ class ReportService < BaseService
   def notify_staff!
     return if @report.unresolved_siblings?
 
-    User.staff.includes(:account).each do |u|
+    User.those_who_can(:manage_reports).includes(:account).each do |u|
       next unless u.allows_report_emails?
       AdminMailer.new_report(u.account, @report).deliver_later
     end
