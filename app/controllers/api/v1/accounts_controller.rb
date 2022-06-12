@@ -6,6 +6,7 @@ class Api::V1::AccountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:mutes' }, only: [:mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:blocks' }, only: [:block, :unblock]
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:create]
+  before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: [:destroy]
 
   before_action :require_user!, except: [:show, :create]
   before_action :set_account, except: [:create]
