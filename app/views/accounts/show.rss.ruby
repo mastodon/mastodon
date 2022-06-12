@@ -9,7 +9,6 @@ RSS::Builder.build do |doc|
 
   @statuses.each do |status|
     doc.item do |item|
-      item.title(l(status.created_at))
       item.link(ActivityPub::TagManager.instance.url_for(status))
       item.pub_date(status.created_at)
       item.description(rss_status_content_format(status))
