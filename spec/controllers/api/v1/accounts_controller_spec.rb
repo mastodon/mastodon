@@ -67,6 +67,21 @@ RSpec.describe Api::V1::AccountsController, type: :controller do
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
   end
 
+  describe 'DELETE #destroy', skip: true do
+    let(:app) { Fabricate(:application) }
+    let(:user) { Fabricate(:user) }
+    let(:account) { Fabricate(:account, user: user) }
+    let(:token) { Doorkeeper::AccessToken.find_or_create_for(application: app, resource_owner: nil, scopes: 'read write', use_refresh_token: false) }
+
+    before do
+      delete :destroy, params: { id: user.account.id }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(200)
+    end
+  end
+
   describe 'POST #follow' do
     let(:scopes) { 'write:follows' }
     let(:other_account) { Fabricate(:account, username: 'bob', locked: locked) }
