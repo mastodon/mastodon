@@ -48,6 +48,7 @@ class CustomEmoji < ApplicationRecord
   scope :alphabetic, -> { order(domain: :asc, shortcode: :asc) }
   scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
   scope :listed, -> { local.where(disabled: false).where(visible_in_picker: true) }
+  scope :visible, -> { local.where(visible_in_picker: true) }
 
   remotable_attachment :image, LIMIT
 
