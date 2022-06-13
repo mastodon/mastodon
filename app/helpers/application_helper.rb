@@ -99,11 +99,6 @@ module ApplicationHelper
     end
   end
 
-  def favicon_path
-    env_suffix = Rails.env.production? ? '' : '-dev'
-    "/favicon#{env_suffix}.ico"
-  end
-
   def title
     Rails.env.production? ? site_title : "#{site_title} (Dev)"
   end
@@ -147,8 +142,8 @@ module ApplicationHelper
     end
   end
 
-  def custom_emoji_tag(custom_emoji, animate = true)
-    if animate
+  def custom_emoji_tag(custom_emoji)
+    if prefers_autoplay?
       image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
     else
       image_tag(custom_emoji.image.url(:static), class: 'emojione custom-emoji', alt: ":#{custom_emoji.shortcode}", 'data-original' => full_asset_url(custom_emoji.image.url), 'data-static' => full_asset_url(custom_emoji.image.url(:static)))
@@ -199,7 +194,7 @@ module ApplicationHelper
 
   def quote_wrap(text, line_width: 80, break_sequence: "\n")
     text = word_wrap(text, line_width: line_width - 2, break_sequence: break_sequence)
-    text.split("\n").map { |line| '> ' + line }.join("\n")
+    text.split("\n").map { |line| "> #{line}" }.join("\n")
   end
 
   def render_initial_state
