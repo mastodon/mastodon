@@ -50,6 +50,8 @@ de:
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden E-Mail-Benachrichtigungen nicht gesendet, wenn du Mastodon aktiv verwendest
+        setting_default_federation: <ul><li>If checked, your new posts federate to other instances unless manually changed while composing in the web interface.</li><li>If unchecked, your new posts stay local unless manually changed while composing in the web interface.</li><li>Third party apps will make new posts that respect this setting. <a href="https://github.com/hometown-fork/hometown/wiki/Local-only-posting#note-on-3rd-party-apps">See here for more info on third-party apps</a></li></ul>
+        setting_default_federation: <ul><li>Wenn ausgewählt, werden neue Beiträge mit anderen Instanzen geteilt, es sei denn, es wird beim Verfassen in der Weboberfläche manuell überschrieben.</li><li>Wenn diese Option nicht aktiviert ist, bleiben Ihre neuen Beiträge lokal, es sei denn, sie werden beim Verfassen in der Weboberfläche manuell geändert.</li><li>Anwendungen von Drittanbietern werden neue Beiträge erstellen, die diese Einstellung berücksichtigen. <a href="https://github.com/hometown-fork/hometown/wiki/Local-only-posting#note-on-3rd-party-apps">Weitere for more info on third-party apps</a></li></ul>
         setting_default_sensitive: NSFW-Medien werden erst nach einem Klick sichtbar
         setting_display_media_default: Verstecke Medien, die als NSFW markiert sind
         setting_display_media_hide_all: Alle Medien immer verstecken
@@ -156,6 +158,7 @@ de:
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
         setting_crop_images: Bilder in nicht ausgeklappten Beiträgen auf 16:9 zuschneiden
+        setting_default_federation: Erlaube meinen Beiträgen, andere Instanzen standardmäßig zu erreichen
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
         setting_default_sensitive: Medien immer als NSFW markieren
