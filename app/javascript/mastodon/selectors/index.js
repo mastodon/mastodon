@@ -40,15 +40,15 @@ const toServerSideType = columnType => {
 const escapeRegExp = string =>
   string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 
-const regexFromFilters = filters => {
-  if (filters.size === 0) {
+const regexFromKeywords = keywords => {
+  if (keywords.size === 0) {
     return null;
   }
 
-  return new RegExp(filters.map(filter => {
-    let expr = escapeRegExp(filter.get('phrase'));
+  return new RegExp(keywords.map(keyword_filter => {
+    let expr = escapeRegExp(keyword_filter.get('keyword'));
 
-    if (filter.get('whole_word')) {
+    if (keyword_filter.get('whole_word')) {
       if (/^[\w]/.test(expr)) {
         expr = `\\b${expr}`;
       }
@@ -62,6 +62,10 @@ const regexFromFilters = filters => {
   }).join('|'), 'i');
 };
 
+const regexFromFilters = filters => {
+  return filters.map(filter => [regexFromKeywords(filter.get('keywords')), filter.get('title')]);
+};
+
 // Memoize the filter regexps for each valid server contextType
 const makeGetFiltersRegex = () => {
   let memo = {};
@@ -70,12 +74,12 @@ const makeGetFiltersRegex = () => {
     if (!contextType) return ImmutableList();
 
     const serverSideType = toServerSideType(contextType);
-    const filters = state.get('filters', ImmutableList()).filter(filter => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date())));
+    const filters = state.get('filters', ImmutableMap()).toList().filter(filter => filter.get('context').includes(serverSideType) && filter.get('keywords') && filter.get('keywords').size > 0 && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date())));
 
     if (!memo[serverSideType] || !is(memo[serverSideType].filters, filters)) {
-      const dropRegex = regexFromFilters(filters.filter(filter => filter.get('irreversible')));
-      const regex = regexFromFilters(filters);
-      memo[serverSideType] = { filters: filters, results: [dropRegex, regex] };
+      const dropRegex = regexFromKeywords(filters.filter(filter => filter.get('filter_action') === 'hide').flatMap(filter => filter.get('keywords')));
+      const regexes = regexFromFilters(filters);
+      memo[serverSideType] = { filters: filters, results: [dropRegex, regexes] };
     }
     return memo[serverSideType].results;
   };
@@ -91,9 +95,10 @@ export const makeGetStatus = () => {
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
       getFiltersRegex,
+      (state, { contextType }) => contextType && state.get('filters').filter((filter) => filter.get('context').includes(toServerSideType(contextType)) && !filter.get('keywords') && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date()))),
     ],
 
-    (statusBase, statusReblog, accountBase, accountReblog, filtersRegex) => {
+    (statusBase, statusReblog, accountBase, accountReblog, filtersRegex, partialFilters) => {
       if (!statusBase) {
         return null;
       }
@@ -104,13 +109,32 @@ export const makeGetStatus = () => {
         statusReblog = null;
       }
 
-      const dropRegex = (accountReblog || accountBase).get('id') !== me && filtersRegex[0];
-      if (dropRegex && dropRegex.test(statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index'))) {
-        return null;
-      }
+      let filtered = false;
+      if ((accountReblog || accountBase).get('id') !== me) {
+        const search_index = statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index');
+        const dropRegex = filtersRegex[0];
+        if (dropRegex && dropRegex.test(search_index)) {
+          return null;
+        }
 
-      const regex     = (accountReblog || accountBase).get('id') !== me && filtersRegex[1];
-      const filtered  = regex && regex.test(statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index'));
+        if (filtersRegex[1]) {
+          const filterResults = filtersRegex[1].filter(f => f[0] && f[0].test(search_index)).map(f => f[1]);
+          if (!filterResults.isEmpty()) {
+            filtered = filterResults;
+          }
+        }
+
+        // Handle partial filters
+        if (partialFilters) {
+          let filterResults = statusReblog?.get('filter_results') || statusBase.get('filter_results') || ImmutableList();
+          if (filterResults.some((result) => partialFilters.getIn([result.get('filter'), 'filter_action']) === 'hide')) {
+            return null;
+          }
+          if (!filterResults.isEmpty()) {
+            filtered = filterResults.map(result => partialFilters.getIn([result.get('filter'), 'title']));
+          }
+        }
+      }
 
       return statusBase.withMutations(map => {
         map.set('reblog', statusReblog);

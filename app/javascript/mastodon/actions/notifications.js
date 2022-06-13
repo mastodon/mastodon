@@ -12,7 +12,6 @@ import { saveSettings } from './settings';
 import { defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
 import { unescapeHTML } from '../utils/html';
-import { getFiltersRegex } from '../selectors';
 import { usePendingItems as preferPendingItems } from 'mastodon/initial_state';
 import compareId from 'mastodon/compare_id';
 import { searchTextFromRawStatus } from 'mastodon/actions/importer/normalizer';
@@ -62,20 +61,17 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     const showInColumn = activeFilter === 'all' ? getState().getIn(['settings', 'notifications', 'shows', notification.type], true) : activeFilter === notification.type;
     const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
     const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
-    const filters      = getFiltersRegex(getState(), { contextType: 'notifications' });
 
     let filtered = false;
 
-    if (['mention', 'status'].includes(notification.type)) {
-      const dropRegex   = filters[0];
-      const regex       = filters[1];
-      const searchIndex = searchTextFromRawStatus(notification.status);
+    if (['mention', 'status'].includes(notification.type) && notification.status.filter_results) {
+      const filters = notification.status.filter_results.filter(result => result.filter.context.includes('notifications'));
 
-      if (dropRegex && dropRegex.test(searchIndex)) {
+      if (filters.some(result => result.filter.filter_action === 'hide')) {
         return;
       }
 
-      filtered = regex && regex.test(searchIndex);
+      filtered = filters.length > 0;
     }
 
     if (['follow_request'].includes(notification.type)) {

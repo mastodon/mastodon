@@ -11,7 +11,7 @@ export const fetchFilters = () => (dispatch, getState) => {
   });
 
   api(getState)
-    .get('/api/v1/filters')
+    .get('/api/v2/filters')
     .then(({ data }) => dispatch({
       type: FILTERS_FETCH_SUCCESS,
       filters: data,
