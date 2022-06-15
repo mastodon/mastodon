@@ -20,7 +20,7 @@ module RoutingHelper
   end
 
   def asset_host
-    Rails.configuration.action_controler.asset_host || root_url
+    Rails.configuration.action_controller.asset_host || root_url
   end
 
   def full_pack_url(source, **options)
