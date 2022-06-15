@@ -38,7 +38,7 @@ en:
       one: post
       other: posts
     status_count_before: Who published
-    tagline: Follow friends and discover new ones
+    tagline: Decentralized social network
     terms: Terms of service
     unavailable_content: Moderated servers
     unavailable_content_description:
@@ -852,6 +852,26 @@ en:
       edit_preset: Edit warning preset
       empty: You haven't defined any warning presets yet.
       title: Manage warning presets
+    webhooks:
+      add_new: Add endpoint
+      delete: Delete
+      description_html: A <strong>webhook</strong> enables Mastodon to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
+      disable: Disable
+      disabled: Disabled
+      edit: Edit endpoint
+      empty: You don't have any webhook endpoints configured yet.
+      enable: Enable
+      enabled: Active
+      enabled_events:
+        one: 1 enabled event
+        other: "%{count} enabled events"
+      events: Events
+      new: New webhook
+      rotate_secret: Rotate secret
+      secret: Signing secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -916,7 +936,6 @@ en:
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
-    invalid_url: The provided URL is invalid
     regenerate_token: Regenerate access token
     token_regenerated: Access token successfully regenerated
     warning: Be very careful with this data. Never share it with anyone!
