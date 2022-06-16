@@ -21,6 +21,14 @@ vi:
             username:
               invalid: chỉ chấp nhận ký tự, số và dấu gạch dưới
               reserved: bị cấm sử dụng
+        admin/webhook:
+          attributes:
+            url:
+              invalid: không phải là một URL hợp lệ
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: không phải là một URL hợp lệ
         status:
           attributes:
             reblog:

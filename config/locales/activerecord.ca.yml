@@ -21,6 +21,14 @@ ca:
             username:
               invalid: només pot contenir lletres, números i guions baixos
               reserved: està reservat
+        admin/webhook:
+          attributes:
+            url:
+              invalid: no és una URL vàlida
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: no és una URL vàlida
         status:
           attributes:
             reblog:
