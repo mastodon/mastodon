@@ -86,13 +86,13 @@ export default class IconButton extends React.PureComponent {
   render () {
     let style = {
       fontSize: `${this.props.size}px`,
-      height: `${this.props.size * 1.28571429}px`,
+      height: '1.28571429em',
       lineHeight: `${this.props.size}px`,
       ...this.props.style,
       ...(this.props.active ? this.props.activeStyle : {}),
     };
     if (!this.props.label) {
-      style.width = `${this.props.size * 1.28571429}px`;
+      style.width = '1.28571429em';
     } else {
       style.textAlign = 'left';
     }
