@@ -4,7 +4,7 @@
 [![DockerHub](https://img.shields.io/docker/pulls/mashirozx/mastodon.svg?logo=docker&color=2496ED)](https://hub.docker.com/r/mashirozx/mastodon)
 [![Build Prod Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml)
 [![Build AMD64 Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-amd64.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-dev.yml)
-[![Build ARM64 Image](https://drone.2heng.xin/api/badges/mashirozx/mastodon/status.svg)](https://drone.2heng.xin/mashirozx/mastodon)
+[![Build ARM64 Image](https://img.shields.io/drone/build/mashirozx/mastodon/main?label=Build%20arm64%20Image&logo=drone&logoColor=%2300abe4&server=https%3A%2F%2Fdrone.2heng.xin)](https://drone.2heng.xin/mashirozx/mastodon)
 
 [//]: # ([![DeepSource]&#40;https://deepsource.io/gh/mashirozx/mastodon.svg/?label=active+issues&#41;]&#40;https://deepsource.io/gh/mashirozx/mastodon/?ref=repository-badge&#41;)
 
