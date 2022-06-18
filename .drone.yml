@@ -26,15 +26,16 @@ steps:
       recipients:
         from_secret: smtp_recipients
       subject: >
-        {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} start
+        {{repo.owner}}/{{repo.name}}:${DRONE_COMMIT_BRANCH} arm64 build #${DRONE_BUILD_NUMBER} start
       body: >
-        {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} start: {{build.link}}
+        ${DRONE_COMMIT_MESSAGE}<br /><br />
+        Git repo: {{repo.owner}}/{{repo.name}}<br />
+        Git branch: ${DRONE_COMMIT_BRANCH}<br />
+        Git hash: <a href="${DRONE_COMMIT_LINK}" target="_blank">${DRONE_COMMIT_SHA}</a><br />
+        Git author: ${DRONE_COMMIT_AUTHOR_NAME} (${DRONE_COMMIT_AUTHOR})<br />
+        <br />View CI detail: {{build.link}}
         <br /><br />
-        git repo: {{repo.owner}}/{{repo.name}}<br />
-        git branch: {{build.target}}<br />
-        git hash: {{build.commit}}<br />
-        git author: {{build.author_name}}<br />
-        git commit message: {{build.message}}<br />
+        Drone CI ${DRONE_SYSTEM_VERSION}
     when:
       branch:
         - main
@@ -47,12 +48,14 @@ steps:
     settings:
       repo:
         from_secret: docker_repo
-      tag: latest-arm64
+      tags: 
+        - latest-arm64
+        - sha-${DRONE_COMMIT_SHA:0:8}-arm64
       username:
         from_secret: docker_username
       password:
         from_secret: docker_password
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.slim
       squash: true
     when:
       branch:
@@ -80,22 +83,19 @@ steps:
         from_secret: smtp_recipients
       subject: >
         {{#success build.status}}
-          {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} succeeded
+          {{repo.owner}}/{{repo.name}}:${DRONE_COMMIT_BRANCH} arm64 build #${DRONE_BUILD_NUMBER} succeeded
         {{else}}
-          {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} failed
+          {{repo.owner}}/{{repo.name}}:${DRONE_COMMIT_BRANCH} arm64 build #${DRONE_BUILD_NUMBER} failed
         {{/success}}
       body: >
-        {{#success build.status}}
-          {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} succeeded: {{build.link}}
-        {{else}}
-          {{repo.owner}}/{{repo.name}} ({{build.branch}}) arm64 build #{{build.number}} failed: {{build.link}}
-        {{/success}}
+        ${DRONE_COMMIT_MESSAGE}<br /><br />
+        Git repo: {{repo.owner}}/{{repo.name}}<br />
+        Git branch: ${DRONE_COMMIT_BRANCH}<br />
+        Git hash: <a href="${DRONE_COMMIT_LINK}" target="_blank">${DRONE_COMMIT_SHA}</a><br />
+        Git author: ${DRONE_COMMIT_AUTHOR_NAME} (${DRONE_COMMIT_AUTHOR})<br />
+        <br />View CI detail: {{build.link}}
         <br /><br />
-        git repo: {{repo.owner}}/{{repo.name}}<br />
-        git branch: {{build.target}}<br />
-        git hash: {{build.commit}}<br />
-        git author: {{build.author_name}}<br />
-        git commit message: {{build.message}}<br />
+        Drone CI ${DRONE_SYSTEM_VERSION}
     when:
       branch:
         - main
