@@ -1,4 +1,4 @@
-name: Build Prod Image (main)
+name: Build Prod Image
 
 on:
   push:
@@ -55,3 +55,10 @@ jobs:
           tags: |
             mashirozx/mastodon:latest
             mashirozx/mastodon:sha-${{steps.vars.outputs.sha_short}}
+
+      - name: 🔖 Update repo description
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: mashirozx/mastodon

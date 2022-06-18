@@ -47,6 +47,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: ./Dockerfile.slim
           pull: true
           push: true
           platforms: linux/amd64
