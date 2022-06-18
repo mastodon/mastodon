@@ -2,9 +2,9 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/1644d6adc0f9d1bbae6a/maintainability)](https://codeclimate.com/github/mashirozx/mastodon/maintainability)
 [![DockerHub](https://img.shields.io/docker/pulls/mashirozx/mastodon.svg?logo=docker&color=2496ED)](https://hub.docker.com/r/mashirozx/mastodon)
-[![Build Prod Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml)
-[![Build Dev Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-dev.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-dev.yml)
-[![Build Status](https://drone.2heng.xin/api/badges/mashirozx/mastodon/status.svg?ref=refs/heads/main)](https://drone.2heng.xin/mashirozx/mastodon)
+[![Build Prod Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml)
+[![Build AMD64 Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-amd64.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-dev.yml)
+[![Build ARM64 Image](https://drone.2heng.xin/api/badges/mashirozx/mastodon/status.svg)](https://drone.2heng.xin/mashirozx/mastodon)
 
 [//]: # ([![DeepSource]&#40;https://deepsource.io/gh/mashirozx/mastodon.svg/?label=active+issues&#41;]&#40;https://deepsource.io/gh/mashirozx/mastodon/?ref=repository-badge&#41;)
 
