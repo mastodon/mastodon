@@ -2,7 +2,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/1644d6adc0f9d1bbae6a/maintainability)](https://codeclimate.com/github/mashirozx/mastodon/maintainability)
 [![DockerHub](https://img.shields.io/docker/pulls/mashirozx/mastodon.svg?logo=docker&color=2496ED)](https://hub.docker.com/r/mashirozx/mastodon)
-[![Build Prod Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml)
+[![Build Universal Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml)
 [![Build AMD64 Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-amd64.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-dev.yml)
 [![Build ARM64 Image](https://img.shields.io/drone/build/mashirozx/mastodon/main?label=Build%20arm64%20Image&logo=drone&logoColor=%2300abe4&server=https%3A%2F%2Fdrone.2heng.xin)](https://drone.2heng.xin/mashirozx/mastodon)
 
