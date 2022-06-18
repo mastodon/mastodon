@@ -1,4 +1,4 @@
-name: Build Prod Image (main)
+name: Build Prod Image (amd64)
 
 on:
   push:
@@ -49,9 +49,9 @@ jobs:
           context: .
           pull: true
           push: true
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           cache-from: type=registry,ref=mashirozx/mastodon:latest
           cache-to: type=inline
           tags: |
-            mashirozx/mastodon:latest
-            mashirozx/mastodon:sha-${{steps.vars.outputs.sha_short}}
+            mashirozx/mastodon:latest-amd64
+            mashirozx/mastodon:sha-${{steps.vars.outputs.sha_short}}-amd64
