@@ -199,7 +199,7 @@
   height: 3.9375rem;
   bottom: 1.3125rem;
   right: 1.3125rem;
-  background: darken($ui-highlight-color, 3%);
+  background: darken($ui-highlight-color, 2%);
   color: $white;
   border-radius: 50%;
   font-size: 21px;
@@ -210,7 +210,7 @@
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-highlight-color, 7%);
+    background: $ui-highlight-color;
   }
 }
 
