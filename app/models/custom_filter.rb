@@ -91,6 +91,7 @@ class CustomFilter < ApplicationRecord
 
     Rails.cache.delete("filters:v3:#{account_id}")
     redis.publish("timeline:#{account_id}", Oj.dump(event: :filters_changed))
+    redis.publish("timeline:system:#{account_id}", Oj.dump(event: :filters_changed))
   end
 
   private
