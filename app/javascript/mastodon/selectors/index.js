@@ -152,14 +152,15 @@ export const getAlerts = createSelector([getAlertsBase], (base) => {
   return arr;
 });
 
-export const makeGetNotification = () => {
-  return createSelector([
-    (_, base)             => base,
-    (state, _, accountId) => state.getIn(['accounts', accountId]),
-  ], (base, account) => {
-    return base.set('account', account);
-  });
-};
+export const makeGetNotification = () => createSelector([
+  (_, base)             => base,
+  (state, _, accountId) => state.getIn(['accounts', accountId]),
+], (base, account) => base.set('account', account));
+
+export const makeGetReport = () => createSelector([
+  (_, base) => base,
+  (state, _, targetAccountId) => state.getIn(['accounts', targetAccountId]),
+], (base, targetAccount) => base.set('target_account', targetAccount));
 
 export const getAccountGallery = createSelector([
   (state, id) => state.getIn(['timelines', `account:${id}:media`, 'items'], ImmutableList()),
