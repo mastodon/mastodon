@@ -12,21 +12,23 @@
 #
 
 class CustomFilterKeyword < ApplicationRecord
-  include Redisable
-
   belongs_to :custom_filter
 
   validates :keyword, presence: true
 
   alias_attribute :phrase, :keyword
 
-  after_commit :remove_cache
+  before_save :prepare_cache_invalidation!
+  before_destroy :prepare_cache_invalidation!
+  after_commit :invalidate_cache!
 
   private
 
-  def remove_cache
-    account_id = custom_filter.account_id
-    Rails.cache.delete("filters:v2:#{account_id}")
-    redis.publish("timeline:#{account_id}", Oj.dump(event: :filters_changed))
+  def prepare_cache_invalidation!
+    custom_filter.prepare_cache_invalidation!
+  end
+
+  def invalidate_cache!
+    custom_filter.invalidate_cache!
   end
 end

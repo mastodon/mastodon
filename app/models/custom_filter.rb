@@ -40,7 +40,10 @@ class CustomFilter < ApplicationRecord
   validate :context_must_be_valid
 
   before_validation :clean_up_contexts
-  after_commit :remove_cache
+
+  before_save :prepare_cache_invalidation!
+  before_destroy :prepare_cache_invalidation!
+  after_commit :invalidate_cache!
 
   def expires_in
     return @expires_in if defined?(@expires_in)
@@ -78,15 +81,22 @@ class CustomFilter < ApplicationRecord
     active_filters.select { |custom_filter, _| !custom_filter.expired? }
   end
 
+  def prepare_cache_invalidation!
+    @should_invalidate_cache = true
+  end
+
+  def invalidate_cache!
+    return unless @should_invalidate_cache
+    @should_invalidate_cache = false
+
+    Rails.cache.delete("filters:v3:#{account_id}")
+    redis.publish("timeline:#{account_id}", Oj.dump(event: :filters_changed))
+  end
+
   private
 
   def clean_up_contexts
     self.context = Array(context).map(&:strip).filter_map(&:presence)
-  end
-
-  def remove_cache
-    Rails.cache.delete("filters:v3:#{account_id}")
-    redis.publish("timeline:#{account_id}", Oj.dump(event: :filters_changed))
   end
 
   def context_must_be_valid
