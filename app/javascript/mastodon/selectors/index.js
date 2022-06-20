@@ -71,14 +71,15 @@ const makeGetFiltersRegex = () => {
   let memo = {};
 
   return (state, { contextType }) => {
-    if (!contextType) return ImmutableList();
+    if (!contextType) return [null, null];
 
     const serverSideType = toServerSideType(contextType);
-    const filters = state.get('filters', ImmutableMap()).toList().filter(filter => filter.get('context').includes(serverSideType) && filter.get('keywords') && filter.get('keywords').size > 0 && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date())));
+    const now = new Date();
+    const filters = state.get('filters', ImmutableMap()).toList().filter(filter => filter.get('context').includes(serverSideType) && filter.get('keywords') && filter.get('keywords').size > 0 && (filter.get('expires_at') === null || filter.get('expires_at') > now));
 
     if (!memo[serverSideType] || !is(memo[serverSideType].filters, filters)) {
       const dropRegex = regexFromKeywords(filters.filter(filter => filter.get('filter_action') === 'hide').flatMap(filter => filter.get('keywords')));
-      const regexes = regexFromFilters(filters);
+      const regexes = regexFromFilters(filters.filter(filter => filter.get('filter_action') !== 'hide'));
       memo[serverSideType] = { filters: filters, results: [dropRegex, regexes] };
     }
     return memo[serverSideType].results;
@@ -86,6 +87,15 @@ const makeGetFiltersRegex = () => {
 };
 
 export const getFiltersRegex = makeGetFiltersRegex();
+
+const getPartialFilters = (state, { contextType }) => {
+  if (!contextType) return null;
+
+  const serverSideType = toServerSideType(contextType);
+  const now = new Date();
+
+  return state.get('filters').filter((filter) => filter.get('context').includes(serverSideType) && !filter.get('keywords') && (filter.get('expires_at') === null || filter.get('expires_at') > now));
+};
 
 export const makeGetStatus = () => {
   return createSelector(
@@ -95,7 +105,7 @@ export const makeGetStatus = () => {
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
       getFiltersRegex,
-      (state, { contextType }) => contextType && state.get('filters').filter((filter) => filter.get('context').includes(toServerSideType(contextType)) && !filter.get('keywords') && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date()))),
+      getPartialFilters,
     ],
 
     (statusBase, statusReblog, accountBase, accountReblog, filtersRegex, partialFilters) => {
