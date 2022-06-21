@@ -76,7 +76,7 @@
 .button.logo-button {
   flex: 0 auto;
   font-size: 14px;
-  background: $ui-highlight-color;
+  background: darken($ui-highlight-color, 2%);
   color: $primary-text-color;
   text-transform: none;
   line-height: 1.2;
@@ -100,7 +100,7 @@
   &:active,
   &:focus,
   &:hover {
-    background: lighten($ui-highlight-color, 10%);
+    background: $ui-highlight-color;
   }
 
   &:disabled,
@@ -267,7 +267,7 @@ a.button.logo-button {
   display: block;
   font-size: 15px;
   line-height: 20px;
-  color: lighten($ui-highlight-color, 8%);
+  color: $highlight-text-color;
   border: 0;
   background: transparent;
   padding: 0;

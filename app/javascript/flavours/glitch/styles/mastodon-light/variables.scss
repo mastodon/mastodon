@@ -5,7 +5,7 @@ $white: #ffffff;
 $classic-base-color: #282c37;
 $classic-primary-color: #9baec8;
 $classic-secondary-color: #d9e1e8;
-$classic-highlight-color: #2b90d9;
+$classic-highlight-color: #6364ff;
 
 $ui-base-color: $classic-secondary-color !default;
 $ui-base-lighter-color: darken($ui-base-color, 57%);
@@ -15,6 +15,7 @@ $ui-secondary-color: $classic-base-color !default;
 
 $primary-text-color: $black !default;
 $darker-text-color: $classic-base-color !default;
+$highlight-text-color: darken($ui-highlight-color, 8%) !default;
 $dark-text-color: #444b5d;
 $action-button-color: #606984;
 

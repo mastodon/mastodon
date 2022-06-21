@@ -21,6 +21,14 @@ de:
             username:
               invalid: nur Buchstaben, Ziffern und Unterstriche
               reserved: ist reserviert
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ist keine gültige URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ist keine gültige URL
         status:
           attributes:
             reblog:

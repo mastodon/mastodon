@@ -21,6 +21,14 @@ zh-TW:
             username:
               invalid: 只能有字母、數字及底線
               reserved: 是保留關鍵字
+        admin/webhook:
+          attributes:
+            url:
+              invalid: 不是有效的 URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: 不是有效的 URL
         status:
           attributes:
             reblog:

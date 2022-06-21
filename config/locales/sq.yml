@@ -38,7 +38,7 @@ sq:
       one: mesazh
       other: mesazhe
     status_count_before: Që kanë krijuar
-    tagline: Ndiqni shokë dhe zbuloni të rinj
+    tagline: Rrjet shoqëror i decentralizuar
     terms: Kushte shërbimi
     unavailable_content: Shërbyes të moderuar
     unavailable_content_description:
@@ -200,7 +200,7 @@ sq:
         only_password: Vetëm fjalëkalim
         password_and_2fa: Fjalëkalim dhe 2FA
       sensitive: Rezervat
-      sensitized: iu vu shenjë si rezervat
+      sensitized: Iu vu shenjë si rezervat
       shared_inbox_url: URL kutie të përbashkët mesazhesh
       show:
         created_reports: Ka bërë raportime
@@ -428,6 +428,7 @@ sq:
       destroyed_msg: Bllokimi i përkatësisë u hoq
       domain: Përkatësi
       edit: Përpunoni bllokim përkatësie
+      existing_domain_block: Keni vendosur tashmë kufizime më të rrepta mbi %{name}.
       existing_domain_block_html: Keni vendosur tashmë kufizime më të rrepta mbi %{name}, lypset ta <a href="%{unblock_url}">zhbllokoni</a> së pari.
       new:
         create: Krijoni bllokim
@@ -516,6 +517,7 @@ sq:
       delivery:
         all: Krejt
         clear: Spastro gabime dërgimi
+        failing: Dështim
         restart: Rinis dërgimin
         stop: Ndale dërgimin
         unavailable: Jo i passhëm
@@ -839,12 +841,32 @@ sq:
           one: Përdorur nga një person gjatë javës së kaluar
           other: Përdorur nga %{count} vetë gjatë javës së kaluar
       title: Në modë
+      trending: Në modë
     warning_presets:
       add_new: Shtoni të ri
       delete: Fshije
       edit_preset: Përpunoni sinjalizim të paracaktuar
       empty: S’keni përcaktuar ende sinjalizime të gatshme.
       title: Administroni sinjalizime të paracaktuara
+    webhooks:
+      add_new: Shtoni pikëmbarim
+      delete: Fshije
+      description_html: Një <strong>webhook</strong> i bën të mundur Mastodon-it t’i dërgojë aplikacioni tuaj <strong>njoftime aty për aty</strong> rreth aktesh që keni zgjedhur, që kështu aplikacioni juaj të mund <strong>të prodhojë automatikisht reagime</strong>.
+      disable: Çaktivizoje
+      disabled: Të çaktivizuar
+      edit: Përpunoni pikëmbarim
+      empty: S’keni ende ndonjë pikëmbarim webhook të formësuar.
+      enable: Aktivizoje
+      enabled: Aktiv
+      enabled_events:
+        one: 1 akt i aktivizuar
+        other: "%{count}s akte të aktivizuar"
+      events: Akte
+      new: "<em>Webhook</em> i ri"
+      rotate_secret: Ciklo të fshehtën
+      secret: E fshehtë nënshkrimesh
+      status: Gjendje
+      title: Webhook-ë
   admin_mailer:
     new_appeal:
       actions:
@@ -906,7 +928,6 @@ sq:
   applications:
     created: Aplikimi u krijua me sukses
     destroyed: Aplikimi u fshi me sukses
-    invalid_url: URL-ja e dhënë është e pavlefshme
     regenerate_token: Riprodho token hyrjesh
     token_regenerated: Token-i i hyrjeve u riprodhua me sukses
     warning: Bëni shumë kujdes me ato të dhëna. Mos ia jepni kurrë njeriu!
@@ -1510,9 +1531,93 @@ sq:
     pinned: Mesazh i fiksuar
     reblogged: të përforcuara
     sensitive_content: Lëndë rezervat
+  strikes:
+    errors:
+      too_late: Është shumë vonë për apelim të këtij paralajmërimi
   tags:
     does_not_match_previous_name: s’përputhet me emrin e mëparshëm
   terms:
+    body_html: |
+      <h2>Rregulla Privatësie</h2>
+      <h3 id="collect">Ç’informacion mbledhim?</h3>
+
+      <ul>
+        <li><em>Hollësi elementare llogarish</em>: Nëse regjistroheni në këtë shërbyes, mund t’ju kërkohet të jepni një emër përdoruesi, një adresë email dhe një fjalëkalim. Mund të jepni edhe hollësi shtesë profili, bie fjala, një emër për në ekran dhe jetëshkrim, si dhe të ngarkoni një foto profili dhe një figurë kryesh. Emri i përdoruesit, emri në ekran, jetëshkrimi, fotoja e profilit dhe figura e kryes janë përherë të dukshme publikisht.</li>
+        <li><em>Postime, ndjekje dhe të tjera hollësi publike</em>: Lista e personave që ndiqni tregohet publikisht, po kjo vlen edhe për ndjekësit tuaj. Kur parashtroni një mesazh, depozitohen gjithashtu data dhe koha, si dhe aplikacioni prej nga parashtruar mesazhin. Mesazhet mund të përmbajnë bashkëngjitje media, bie fjala, foto dhe video. Postimet publike dhe jo të tilla janë të passhme publikisht. Kur te profili juaj përfshini një postim, edhe ky është informacion i passhëm publikisht. Postimet tuaja u dërgohen ndjekësve tuaj, në disa raste kjo do të thotë se dërgohen te shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Kur fshini postime, kjo ka gjasa t’u dërgohet ndjekësve tuaj. Veprimi i riblogimit, ose vënia shenjë si i parapëlqyer një postimi tjetër është përherë gjë publike.</li>
+        <li><em>Postime të drejtpërdrejta dhe vetëm për ndjekës</em>: Krejt postimet depozitohen dhe përpunohen te shërbyesi. Postimet vetëm për ndjekës u dërgohen ndjekësve tuaj dhe përdoruesve që përmenden në ta, kurse postimet e drejtpërdrejta u dërgohen vetëm përdoruesve të përmendur në to. Në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe kopje të tyre depozitohen atje. Përpiqemi në mirëbesim të kufizojmë hyrjen në këto postime të vetëm personave të autorizuar, por shërbyes të tjerë mund të mos bëjnë kështu. Ndaj është e rëndësishme të shqyrtohen shërbyesit të cilëve u përkasin ndjekësit tuaj. Që nga rregullimet mund të aktivizoni/çaktivizoni një mundësi për miratim dhe hedhje poshtë dorazi të ndjekësve të rinj. <em>Ju lutemi, kini parasysh se operatorët e shërbyesve dhe cilido shërbyes marrës mund t’i shohë këto mesazhe</em>, si dhe se marrësit mund të bëjnë foto ekrani, kopjojnë, ose rindajnë me të tjerët ato mesazhe. <em>Mos ndani me të tjerë gjëra me spec përmes Mastodon-it.</em></li>
+        <li><em>IP-ra dhe të tjera tejtëdhëna</em>: Kur bëni hyrjen në llogari, regjistrojmë adresën IP prej nga hyni, si dhe emrin e aplikacionit që përdorni për shfletim. Krejt sesionet me hyrje mund t’i shqyrtoni dhe shfuqizoni që nga rregullimet. Adresa e fundit IP e përdorur depozitohet për deri 12 muaj. Mund të mbajmë gjithashtu regjistra shërbyesi që përfshijnë adresën IP të çdo kërkese ndaj shërbyesit tonë.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Për se e përdorim informacionin tuaj?</h3>
+
+      <p>Çfarëdo hollësi që mbledhim prej jush mund të përdoret në rrugët vijuese:</p>
+
+      <ul>
+        <li>Për të dhënë funksionet bazë të Mastodon-it. Me lëndën e personave të tjerë mund të ndërveproni, si dhe të postoni lëndën tuaj, vetëm kur jeni i futur në llogarinë tuaj. Për shembull, mund të ndiqni persona të tjerë për të parë postimet e tyre në rrjedhën tuaj kohore të personalizuar.</li>
+        <li>Për të ndihmuar në moderimin e bashkësisë, për shembull, krahasimi i adresës tuaj IP me të tjera të ditura, për të pikasur shmangie dëbimesh, apo cenime të tjera.</li>
+        <li>Adresa email që jepni mund të përdoret për t’ju dërguar informacion, njoftime mbi persona të tjerë që ndërveprojnë me lëndën tuaj, ose që ju dërgojnë mesazhe, si dhe për t’iu përgjigjur kërkesave dhe/ose çështjeve apo pyetjeve të tjera.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Si e mbrojmë informacionin tuaj?</h3>
+
+      <p>Sendërtojmë një larmi masash sigurie për të ruajtur parrezikshmërinë e informacionit tuaj personal, kur jepni, parashtroni ose përdorni informacionin tuaj personal. Mes të tjerash, sesioni i shfletuesit tuaj, si dhe trafiku mes aplikacioneve tuaja dhe API-t sigurohen me SSL dhe fjalëkalimi juaj fshehtëzohet me një algoritëm të fuqishëm njëkahësh. Për të siguruar më tej hyrjen në llogarinë tuaj, mund të aktivizoni mirëfilltësim dufaktorësh.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Cili është rregulli ynë për mbajtje të dhënash?</h3>
+
+      <p>Do të përpiqemi në mirëbesim:</p>
+
+      <ul>
+        <li>Të mbajmë regjistra shërbyesi që përmbajnë adresën IP të krejt kërkesave të bëra këtij shërbyesi, ashtu siç mbahen këta regjistra, për jo më shumë se 90 ditë.</li>
+        <li>Të mbajmë për jo më shumë se 12 muaj adresat IP përshoqëruar përdoruesve të regjistruar.</li>
+      </ul>
+
+      <p>Mund të kërkoni dhe shkarkoni një arkiv të lëndës tuaj, përfshi postimet tuaja, bashkëngjitje media, foto profili dhe figure kryesh.</p>
+
+      <p>Mund të fshini kurdo në mënyrë të pakthyeshme llogarinë tuaj.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">A përdorim <em>cookies</em>?</h3>
+
+      <p>Po. Cookie-t janë kartela të vockla që një sajt ose furnizuesi i shërbimit përkatës shpërngul në diskun e kompjuterit tuaj përmes shfletuesit tuaj (nëse e lejoni). Këto <em>cookies</em> i bëjnë të mundur sajtit të njohë shfletuesin tuaj dhe, nëse keni regjistruar një llogari, t’ia përshoqërojë atë llogarisë që keni regjistruar.</p>
+
+      <p>Cookie-t i përdorim për të kuptuar dhe ruajtur parapëlqimet tuaja për vizita të ardhshme.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">A u japim palëve të jashtme ndonjë informacion?</h3>
+
+      <p>Nuk u shesim, shkëmbejmë, apo shpërngulim informacion tuajin personalisht të identifikueshëm palëve të jashtme. Këtu nuk përfshin palë të treta të besuara që na ndihmojnë në funksionimin e sajtit tonë, në mbajtjen në këmbë të biznesit tonë, ose për t’ju shërbyer juve, për sa kohë që këto palë pajtohen me mbajtjen rezervat të këtij informacioni. Mundet edhe të japim informacion tuajin, kur besojmë se dhënia është e duhur për të qenë në pajtim me ligjet, për të zbatuar rregullat tonë mbi sajtin, ose për të mbrojtur të drejtat, pronën apo sigurinë tonë apo të të tjerëve.</p>
+
+      <p>Lënda juaj publike mund të shkarkohet nga shërbyes të tjerë në rrjet. Postim tuaja publike, si dhe ato vetëm për ndjekësit, u dërgohen shërbyesve ku gjenden ndjekësit tuaj, ndërsa mesazhet e drejtpërdrejtë u dërgohen shërbyesve të marrësve, në rastin kur këta ndjekës apo marrës gjenden në një tjetër shërbyes nga ky.</p>
+
+      <p>Kur autorizoni një aplikacion të përdorë llogarinë tuaj, në varësi të fushëveprimit të lejeve që miratoni, ky mund të hyjë në hollësitë e profilit tuaj publik, listën e atyre që ndiqni, ndjekësit tuaj, listat tuaja, krejt postimet tuaja dhe të parapëlqyerit tuaj. Aplikaconet s’mund të njohin kurrë adresën tuaj email dhe fjalëkalimin tuaj.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Përdorim sajti nga fëmijë</h3>
+
+      <p>Nëse ky shërbyes gjendet në BE ose ZEE: Sajti, produktet dhe shërbimet tona u adresohen të tëra personave që janë të paktën 16 vjeç. Nëse jeni nën moshën 16 vjeç, sipas domosdoshmërive të GDPR-së (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Rregullorja e Përgjithshme e Mbrojtjes së të Dhënave</a>) mos e përdorni këtë sajt.</p>
+
+      <p>Nëse ky shërbyes gjendet në ShBA: Sajti, produktet dhe shërbimet tona u adresohen të tëra personave që janë të paktën 13 vjeç. Nëse jeni nën moshën 13 vjeç, sipas domosdoshmërive të COPPA-s (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Ligji i Mbrojtjes së Privatësisë Internetore të Fëmijëve</a>) mos e përdorni këtë sajt.</p>
+
+      <p>kërkesat ligjore mund të jenë të tjera, nëse ky shërbyes gjendet nën një juridiksion tjetër.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Ndryshime te Rregullat tona të Privatësisë</h3>
+
+      <p>Nëse vendosim të ndryshojmë rregullat tona të privatësisë, ato ndryshime do t’i postojmë te kjo faqe.</p>
+
+      <p>Ky dokument licencohet sipas CC-BY-SA. Qe përditësuar së fundi më 26 maj 2022.</p>
+
+      <p>Përshtatur fillimisht prej <a href="https://github.com/discourse/discourse">rregulave të privatësisë së Discourse-it</a>.</p>
     title: Kushte Shërbimi dhe Rregulla Privatësie te %{instance}
   themes:
     contrast: Mastodon (Me shumë kontrast)
