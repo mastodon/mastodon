@@ -279,7 +279,6 @@ class Status extends ImmutablePureComponent {
   }
 
   handleUnfilterClick = e => {
-    const { onUnfilter } = this.props;
     this.setState({ forceFilter: false });
     e.preventDefault();
   }

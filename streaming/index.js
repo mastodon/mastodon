@@ -709,7 +709,7 @@ const startWorker = async (workerId) => {
                     expires_at: row.expires_at,
                     filter_action: row.filter_action,
                   },
-                }
+                };
               }
 
               return cache;
