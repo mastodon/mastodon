@@ -70,12 +70,6 @@ class Web::PushNotificationWorker
       request.perform do |response|
         if !(200...300).cover?(response.code)
           raise Mastodon::UnexpectedResponseError, response
-        else
-          response = response.data && response.data.first
-          status = response && response["status"]
-          if (status && status == "error")
-            raise Mastodon::UnexpectedResponseError, response["details"]["error"] + response["message"]
-          end
         end
       end
     end
