@@ -21,6 +21,14 @@ lv:
             username:
               invalid: drīkst saturēt tikai burtus, ciparus un pasvītras
               reserved: ir rezervēts
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nav derīgs URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nav derīgs URL
         status:
           attributes:
             reblog:

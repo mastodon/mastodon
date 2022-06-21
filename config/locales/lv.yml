@@ -39,13 +39,13 @@ lv:
       other: ziņas
       zero: nav
     status_count_before: Kurš publicējis
-    tagline: Seko draugiem un atrodi jaunus
+    tagline: Decentralizēts sociālais tīkls
     terms: Pakalpojuma noteikumi
     unavailable_content: Moderētie serveri
     unavailable_content_description:
       domain: Serveris
       reason: Iemesls
-      rejecting_media: 'Multivides faili no šiem serveriem netiks apstrādāti vai saglabāti, un netiks parādīti sīktēli, kuriem nepieciešama manuāla noklikšķināšana uz sākotnējā faila:'
+      rejecting_media: 's faili no šiem serveriem netiks apstrādāti vai saglabāti, un netiks parādīti sīktēli, kuriem nepieciešama manuāla noklikšķināšana uz sākotnējā faila:'
       rejecting_media_title: Filtrēts saturs
       silenced: 'Ziņas no šiem serveriem tiks paslēptas publiskās ziņu lentās un sarunās, un no lietotāju mijiedarbības netiks ģenerēti paziņojumi, ja vien tu tiem nesekosi:'
       silenced_title: Ierobežoti serveri
@@ -72,7 +72,7 @@ lv:
     joined: Pievienojās %{date}
     last_active: pēdējā aktivitāte
     link_verified_on: Šīs saites piederība tika pārbaudīta %{date}
-    media: Mediji
+    media: Multivide
     moved_html: "%{name} ir pārcēlies uz %{new_profile_link}:"
     network_hidden: Šāda informācija nav pieejama
     nothing_here: Te nekā nav!
@@ -770,7 +770,7 @@ lv:
         report: Ziņojums
       deleted: Dzēstie
       media:
-        title: Mediji
+        title: Multivide
       no_status_selected: Neviena ziņa netika mainīta, jo neviena netika atlasīta
       title: Konta ziņas
       with_media: Ar medijiem
@@ -869,6 +869,27 @@ lv:
       edit_preset: Labot iepriekš iestatītus brīdinājumus
       empty: Tu vēl neesi definējis iepriekš iestatītos brīdinājumus.
       title: Pārvaldīt brīdinājuma iestatījumus
+    webhooks:
+      add_new: Pievienot galapunktu
+      delete: Dzēst
+      description_html: Izmantojot <strong>tīmekļa aizķeri</strong>, Mastodon var nosūtīt jūsu lietojumprogrammai <strong>reāllaika paziņojumus</strong> par izvēlētajiem notikumiem, lai tava lietojumprogramma varētu <strong>automātiski izraisīt reakcijas</strong>.
+      disable: Atspējot
+      disabled: Atspējots
+      edit: Rediģēt galapunktu
+      empty: Tev vēl nav konfigurēts neviens tīmekļa aizķeres galapunkts.
+      enable: Iespējot
+      enabled: Aktīvie
+      enabled_events:
+        one: 1 iespējots notikums
+        other: "%{count} iespējoti notikumi"
+        zero: "%{count} iespējotu notikumu"
+      events: Notikumi
+      new: Jauna tīmekļa aizķere
+      rotate_secret: Pagriezt noslēpumu
+      secret: Paraksta noslēpums
+      status: Statuss
+      title: Tīmekļa āķi
+      webhook: Tīmekļa āķis
   admin_mailer:
     new_appeal:
       actions:
@@ -933,7 +954,6 @@ lv:
   applications:
     created: Lietojumprogramma ir veiksmīgi izveidota
     destroyed: Lietojumprogramma ir veiksmīgi dzēsta
-    invalid_url: Norādītais URL nav derīgs
     regenerate_token: Atjaunot piekļuves marķieri
     token_regenerated: Piekļuves marķieris veiksmīgi atjaunots
     warning: Esi ļoti uzmanīgs ar šiem datiem. Nekad nedalies ne ar vienu ar tiem!

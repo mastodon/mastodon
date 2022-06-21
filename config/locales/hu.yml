@@ -38,7 +38,7 @@ hu:
       one: bejegyzést írt
       other: bejegyzést írt
     status_count_before: Eddig
-    tagline: Kövess barátokat és találj újakat
+    tagline: Decentralizált szociális hálózat
     terms: Felhasználási feltételek
     unavailable_content: Kimoderált szerverek
     unavailable_content_description:
@@ -854,6 +854,26 @@ hu:
       edit_preset: Figyelmeztetés szerkesztése
       empty: Nem definiáltál még egyetlen figyelmeztetést sem.
       title: Figyelmeztetések
+    webhooks:
+      add_new: Végpont hozzáadása
+      delete: Törlés
+      description_html: Egy <strong>webhook</strong> lehetővé teszi a Mastodon számára, hogy <strong>valósidejű értesítéseket</strong> küldjön le a kiválasztott eseményekről a te alkalmazásodnak, így az alkalmazásod <strong>automatikusan reagálhat</strong> ezekre.
+      disable: Letiltás
+      disabled: Letiltva
+      edit: Végpont szerkesztése
+      empty: Még nincs beállított webhook végpontod.
+      enable: Engedélyezés
+      enabled: Aktív
+      enabled_events:
+        one: 1 engedélyezett esemény
+        other: "%{count} engedélyezett esemény"
+      events: Események
+      new: Új webhook
+      rotate_secret: Titok forgatása
+      secret: Titok aláírása
+      status: Állapot
+      title: Webhookok
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -918,7 +938,6 @@ hu:
   applications:
     created: Alkalmazás sikeresen létrehozva
     destroyed: Alkalmazás sikeresen eltávolítva
-    invalid_url: A megadott URL nem megfelelő
     regenerate_token: Hozzáférési kulcs újragenerálása
     token_regenerated: Hozzáférési kulcs sikeresen újragenerálva
     warning: Ez érzékeny adat. Soha ne oszd meg másokkal!

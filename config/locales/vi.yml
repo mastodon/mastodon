@@ -35,7 +35,7 @@ vi:
     status_count_after:
       other: tút
     status_count_before: Nơi lưu giữ
-    tagline: Theo dõi bạn bè và khám phá thế giới
+    tagline: Mạng xã hội liên hợp
     terms: Điều khoản dịch vụ
     unavailable_content: Giới hạn chung
     unavailable_content_description:
@@ -417,6 +417,7 @@ vi:
       destroyed_msg: Đã thôi chặn máy chủ
       domain: Máy chủ
       edit: Chỉnh sửa máy chủ bị chặn
+      existing_domain_block: Bạn đã hạn chế %{name} trước đó.
       existing_domain_block_html: Bạn đã áp đặt các giới hạn chặt chẽ hơn cho %{name}, trước tiên bạn cần <a href="%{unblock_url}">bỏ chặn nó</a>.
       new:
         create: Tạo chặn
@@ -832,6 +833,25 @@ vi:
       edit_preset: Sửa mẫu có sẵn
       empty: Bạn chưa thêm mẫu nhắc nhở nào cả.
       title: Quản lý mẫu nhắc nhở
+    webhooks:
+      add_new: Thêm endpoint
+      delete: Xóa bỏ
+      description_html: "<strong>Webhook</strong> cho phép Mastodon gửi nhận <strong>thông báo đẩy thời gian thật</strong> về những sự kiện cho ứng dụng thứ ba của bạn, cho ứng dụng của bạn có thể <strong>tự động kích hoạt reaction</strong>."
+      disable: Tắt
+      disabled: Đã tắt
+      edit: Sửa endpoint
+      empty: Bạn chưa thiết lập webhook endpoint nào.
+      enable: Bật
+      enabled: Hoạt động
+      enabled_events:
+        other: "%{count} sự kiện đã bật"
+      events: Sự kiện
+      new: Webhook mới
+      rotate_secret: Xoay bí mật
+      secret: Token đăng nhập
+      status: Trạng thái
+      title: Webhook
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -896,7 +916,6 @@ vi:
   applications:
     created: Đơn đăng ký được tạo thành công
     destroyed: Đã xóa đơn đăng ký
-    invalid_url: Cung cấp URL không hợp lệ
     regenerate_token: Tạo lại mã truy cập
     token_regenerated: Mã truy cập được tạo lại thành công
     warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!

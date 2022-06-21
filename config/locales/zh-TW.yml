@@ -35,7 +35,7 @@ zh-TW:
     status_count_after:
       other: 條嘟文
     status_count_before: 他們共嘟出了
-    tagline: 關注朋友並探索新朋友
+    tagline: 去中心化社群網路
     terms: 使用條款
     unavailable_content: 無法取得的內容
     unavailable_content_description:
@@ -835,6 +835,25 @@ zh-TW:
       edit_preset: 編輯預設警告
       empty: 您未曾定義任何預設警告
       title: 管理預設警告
+    webhooks:
+      add_new: 新增端點
+      delete: 刪除
+      description_html: "<strong>Webhook</strong> 讓 Mastodon 可以將關於選定的事件的<strong>即時通知</strong>推送到您自己的應用程式，如此您的應用程式就可以<strong>自動觸發反應</strong>。"
+      disable: 停用
+      disabled: 已停用
+      edit: 編輯端點
+      empty: 您沒有任何設定好的 webhook 端點。
+      enable: 啟用
+      enabled: 生效
+      enabled_events:
+        other: "%{count} 個已啟用的端點"
+      events: 事件
+      new: 新增 Webhook
+      rotate_secret: 更換密鑰
+      secret: 簽署密鑰
+      status: 狀態
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -899,7 +918,6 @@ zh-TW:
   applications:
     created: 已建立應用
     destroyed: 已刪除應用
-    invalid_url: 網址不正確
     regenerate_token: 重設 token
     token_regenerated: 已重設 token
     warning: 警告，不要把它分享給任何人!

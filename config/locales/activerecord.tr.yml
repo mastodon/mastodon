@@ -21,6 +21,14 @@ tr:
             username:
               invalid: sadece harfler, sayılar ve alt çizgiler
               reserved: kullanılamaz
+        admin/webhook:
+          attributes:
+            url:
+              invalid: geçerli bir URL değil
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: geçerli bir URL değil
         status:
           attributes:
             reblog:

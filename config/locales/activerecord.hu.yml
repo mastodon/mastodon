@@ -21,6 +21,14 @@ hu:
             username:
               invalid: csak betűket, számokat vagy alávonást tartalmazhat
               reserved: fenntartott
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nem érvényes URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nem érvényes URL
         status:
           attributes:
             reblog:

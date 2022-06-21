@@ -21,6 +21,14 @@ gl:
             username:
               invalid: só letras, números e trazo baixo
               reserved: está reservado
+        admin/webhook:
+          attributes:
+            url:
+              invalid: non é un URL válido
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: non é un URL válido
         status:
           attributes:
             reblog:

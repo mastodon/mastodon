@@ -21,6 +21,14 @@ uk:
             username:
               invalid: тільки літери, цифри та підкреслення
               reserved: зарезервовано
+        admin/webhook:
+          attributes:
+            url:
+              invalid: не є дійсною URL-адресою
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: не є дійсною URL-адресою
         status:
           attributes:
             reblog:

@@ -21,6 +21,14 @@ io:
             username:
               invalid: mustas konsistar nur literi, nombri e sublinei
               reserved: rezervitas
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ne esas valida URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ne esas valida URL
         status:
           attributes:
             reblog:

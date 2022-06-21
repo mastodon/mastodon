@@ -37,8 +37,8 @@ fr:
     status_count_after:
       one: message
       other: messages
-    status_count_before: Qui a publié
-    tagline: Suivez vos ami·e·s et découvrez-en de nouveaux·elles
+    status_count_before: Ayant publié
+    tagline: Réseau social décentralisé
     terms: Conditions d’utilisation
     unavailable_content: Serveurs modérés
     unavailable_content_description:
@@ -428,6 +428,7 @@ fr:
       destroyed_msg: Le blocage de domaine a été désactivé
       domain: Domaine
       edit: Modifier le blocage de domaine
+      existing_domain_block: Vous avez déjà imposé des limites plus strictes à %{name}.
       existing_domain_block_html: Vous avez déjà imposé des limites plus strictes à %{name}, vous devez d’abord le/la <a href="%{unblock_url}">débloquer</a>.
       new:
         create: Créer le blocage
@@ -851,6 +852,25 @@ fr:
       edit_preset: Éditer les avertissements prédéfinis
       empty: Vous n'avez pas encore créé de paramètres prédéfinis pour les avertissements.
       title: Gérer les avertissements prédéfinis
+    webhooks:
+      add_new: Ajouter un point de terminaison
+      delete: Supprimer
+      description_html: Un <strong>point d'ancrage web</strong> permet à Mastodon d'envoyer des <strong>notifications en temps réel</strong> concernant des événements sélectionnés vers votre propre application, afin que celle-ci puisse <strong>déclencher automatiquement des réactions</strong>.
+      disable: Désactiver
+      disabled: Désactivé
+      edit: Modifier le point de terminaison
+      empty: Pour l'instant, vous n'avez configuré aucun lien d'ancrage web pour point de terminaison.
+      enable: Activer
+      enabled: Actif
+      enabled_events:
+        one: 1 événement activé
+        other: "%{count} événements activés"
+      events: Événements
+      new: Nouveau point d’ancrage web
+      rotate_secret: Effectuer une rotation du secret
+      status: État
+      title: Points d’ancrage web
+      webhook: Point d’ancrage web
   admin_mailer:
     new_appeal:
       actions:
@@ -915,7 +935,6 @@ fr:
   applications:
     created: Application créée avec succès
     destroyed: Application supprimée avec succès
-    invalid_url: L’URL fournie est invalide
     regenerate_token: Régénérer le jeton d’accès
     token_regenerated: Jeton d’accès régénéré avec succès
     warning: Soyez prudent·e avec ces données. Ne les partagez pas !
@@ -1519,6 +1538,9 @@ fr:
     pinned: Message épinglé
     reblogged: a partagé
     sensitive_content: Contenu sensible
+  strikes:
+    errors:
+      too_late: Il est trop tard pour faire appel à cette sanction
   tags:
     does_not_match_previous_name: ne correspond pas au nom précédent
   terms:

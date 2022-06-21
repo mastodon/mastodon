@@ -21,6 +21,14 @@ cs:
             username:
               invalid: musí obsahovat pouze písmena, číslice a podtržítka
               reserved: je vyhrazeno
+        admin/webhook:
+          attributes:
+            url:
+              invalid: není platná URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: není platná URL
         status:
           attributes:
             reblog:

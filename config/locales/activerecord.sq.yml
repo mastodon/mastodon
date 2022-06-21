@@ -21,6 +21,14 @@ sq:
             username:
               invalid: duhet të përmbajë vetëm shkronja, numra dhe nënvija
               reserved: është i rezervuar
+        admin/webhook:
+          attributes:
+            url:
+              invalid: s’është URL e vlefshme
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: s’është URL
         status:
           attributes:
             reblog:

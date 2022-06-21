@@ -26,7 +26,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.11.1', require: false
+gem 'bootsnap', '~> 1.12.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.2'
@@ -135,7 +135,7 @@ group :development do
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
   gem 'rubocop', '~> 1.30', require: false
-  gem 'rubocop-rails', '~> 2.14', require: false
+  gem 'rubocop-rails', '~> 2.15', require: false
   gem 'brakeman', '~> 5.2', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
