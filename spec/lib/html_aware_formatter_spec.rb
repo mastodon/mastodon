@@ -34,20 +34,27 @@ RSpec.describe HtmlAwareFormatter do
       end
 
       context 'given mentions' do
-        let(:text) { '<a href="https://remote.com/@foo" class="mention">@<span>Foo</span></a> <a href="https://remote.com/@bar" class="mention">Barsname</a>' }
+        let(:text) do
+          '<a href="https://remote.com/@foo" class="mention">@<span>Foo</span></a> <a href="https://remote.com/@bar" class="mention">Barsname</a> <a href="https://remote.com/users/baz" class="mention">?</a>'
+        end
         let(:options) do
           {
             preloaded_accounts:
               [
                 Fabricate(:account, domain: 'remote.com', username: 'foo', url: 'https://remote.com/@foo', uri: 'https://remote.com/users/foo'),
                 Fabricate(:account, domain: 'remote.com', username: 'bar', url: 'https://remote.com/@bar', uri: 'https://remote.com/users/bar', display_name: 'Barsname'),
+                Fabricate(:account, domain: 'remote.com', username: 'baz', url: 'https://remote.com/@baz', uri: 'https://remote.com/users/baz'),
               ],
           }
         end
 
         it 'rewrites mentions' do
           is_expected.to include '>@<span>foo</span></a>'
+          is_expected.to include 'https://remote.com/@foo'
           is_expected.to include '>@<span>bar</span></a>'
+          is_expected.to include 'https://remote.com/@bar'
+          is_expected.to include '>@<span>baz</span></a>'
+          is_expected.to include 'https://remote.com/@baz'
         end
       end
 
