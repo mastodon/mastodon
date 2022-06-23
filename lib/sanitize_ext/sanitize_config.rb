@@ -76,7 +76,6 @@ class Sanitize
       node = env[:node]
       return unless node['class']&.split(/[\t\n\f\r ]/)&.include?('mention')
 
-      href = node['href']
       url, text = env[:config][:mentions_map][node['href']]
       return if url.nil?
 
