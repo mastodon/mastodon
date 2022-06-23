@@ -34,27 +34,47 @@ RSpec.describe HtmlAwareFormatter do
       end
 
       context 'given mentions' do
-        let(:text) do
-          '<a href="https://remote.com/@foo" class="mention">@<span>Foo</span></a> <a href="https://remote.com/@bar" class="mention">Barsname</a> <a href="https://remote.com/users/baz" class="mention">?</a>'
-        end
-        let(:options) do
-          {
-            preloaded_accounts:
-              [
-                Fabricate(:account, domain: 'remote.com', username: 'foo', url: 'https://remote.com/@foo', uri: 'https://remote.com/users/foo'),
-                Fabricate(:account, domain: 'remote.com', username: 'bar', url: 'https://remote.com/@bar', uri: 'https://remote.com/users/bar', display_name: 'Barsname'),
-                Fabricate(:account, domain: 'remote.com', username: 'baz', url: 'https://remote.com/@baz', uri: 'https://remote.com/users/baz'),
-              ],
-          }
+        let(:account) { Fabricate(:account, domain: 'remote.com', username: 'foo', url: 'https://remote.com/@foo', uri: 'https://remote.com/users/foo', display_name: 'f. oo') }
+        let(:options) { { preloaded_accounts: [account] } }
+
+        context 'with Mastodon-style mentions' do
+          let(:text) { '<a href="https://remote.com/@foo" class="mention">@<span>foo</span></a>' }
+
+          it 'rewrites mentions' do
+            is_expected.to include '>@<span>foo</span></a>'
+            is_expected.to include 'href="https://remote.com/@foo"'
+          end
         end
 
-        it 'rewrites mentions' do
-          is_expected.to include '>@<span>foo</span></a>'
-          is_expected.to include 'https://remote.com/@foo'
-          is_expected.to include '>@<span>bar</span></a>'
-          is_expected.to include 'https://remote.com/@bar'
-          is_expected.to include '>@<span>baz</span></a>'
-          is_expected.to include 'https://remote.com/@baz'
+        context 'with Smithereen-style mentions' do
+          let(:text) { '<a href="https://remote.com/@foo" class="u-url mention">f. oo</a>' }
+
+          it 'rewrites mentions' do
+            is_expected.to include '>@<span>foo</span></a>'
+            is_expected.to include 'href="https://remote.com/@foo"'
+          end
+        end
+
+        context 'with Friendica-style mentions' do
+          let(:text) { '<a href="https://remote.com/users/foo" class="mention">@<span>foo</span></a>' }
+
+          it 'rewrites mentions' do
+            is_expected.to include '>@<span>foo</span></a>'
+            is_expected.to include 'href="https://remote.com/@foo"'
+          end
+        end
+
+        context 'with Hubzilla-style mentions' do
+          let(:text) { '@<a class="zrl" href="https://remote.com/users/foo" target="_blank"  rel="nofollow noopener">f. oo</a>' }
+
+          it 'rewrites mentions' do
+            is_expected.to include '>@<span>foo</span></a>'
+            is_expected.to include 'href="https://remote.com/@foo"'
+          end
+
+          it 'does not have a @ outside the link' do
+            is_expected.not_to include '@<a'
+          end
         end
       end
 
