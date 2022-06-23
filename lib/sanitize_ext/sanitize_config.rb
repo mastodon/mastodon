@@ -74,7 +74,7 @@ class Sanitize
       return unless env[:node_name] == 'a' && env[:config][:mentions_map].present?
 
       node = env[:node]
-      return unless node['class'] && node['class'].split(/[\t\n\f\r ]/).include?('mention')
+      return unless node['class']&.split(/[\t\n\f\r ]/)&.include?('mention')
 
       href = node['href']
       account = env[:config][:mentions_map][href]
