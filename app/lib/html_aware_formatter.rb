@@ -29,7 +29,13 @@ class HtmlAwareFormatter
   private
 
   def reformat
-    Sanitize.fragment(text, Sanitize::Config::MASTODON_STRICT)
+    config = Sanitize::Config::MASTODON_STRICT
+
+    if @options[:preloaded_accounts]
+      config = config.merge(mentions_map: @options[:preloaded_accounts].index_by { |account| ActivityPub::TagManager.instance.url_for(account) })
+    end
+
+    Sanitize.fragment(text, config)
   end
 
   def linkify
