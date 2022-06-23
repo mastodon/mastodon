@@ -75,6 +75,13 @@ $content-width: 840px;
       height: 100px;
     }
 
+    .logo--wordmark {
+      display: inherit;
+      margin: inherit;
+      width: inherit;
+      height: 20px;
+    }
+
     @media screen and (max-width: $no-columns-breakpoint) {
       & > a:first-child {
         display: none;
