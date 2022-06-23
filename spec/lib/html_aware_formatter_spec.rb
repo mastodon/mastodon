@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe HtmlAwareFormatter do
   describe '#to_s' do
-    subject { described_class.new(text, local).to_s }
+    let(:options) { {} }
+    subject { described_class.new(text, local, options).to_s }
 
     context 'when local' do
       let(:local) { true }
@@ -21,6 +22,32 @@ RSpec.describe HtmlAwareFormatter do
 
         it 'keeps the plain text' do
           is_expected.to include 'Beep boop'
+        end
+      end
+
+      context 'given javascript links' do
+        let(:text) { '<a href="javascript:alert(42)">javascript:alert(42)</a>' }
+
+        it 'strips the javascript links' do
+          is_expected.to_not include '<a'
+        end
+      end
+
+      context 'given mentions' do
+        let(:text) { '<a href="https://remote.com/@foo" class="mention">@<span>Foo</span></a> <a href="https://remote.com/@bar" class="mention">Barsname</a>' }
+        let(:options) do
+          {
+            preloaded_accounts:
+              [
+                Fabricate(:account, domain: 'remote.com', username: 'foo', url: 'https://remote.com/@foo', uri: 'https://remote.com/users/foo'),
+                Fabricate(:account, domain: 'remote.com', username: 'bar', url: 'https://remote.com/@bar', uri: 'https://remote.com/users/bar', display_name: 'Barsname'),
+              ],
+          }
+        end
+
+        it 'rewrites mentions' do
+          is_expected.to include '>@<span>foo</span></a>'
+          is_expected.to include '>@<span>bar</span></a>'
         end
       end
 
