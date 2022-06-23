@@ -32,7 +32,16 @@ class HtmlAwareFormatter
     config = Sanitize::Config::MASTODON_STRICT
 
     if @options[:preloaded_accounts]
-      config = config.merge(mentions_map: @options[:preloaded_accounts].index_by { |account| ActivityPub::TagManager.instance.url_for(account) })
+      mentions_map = @options[:preloaded_accounts].index_by { |account| ActivityPub::TagManager.instance.url_for(account) }
+      mentions_map.merge!(@options[:preloaded_accounts].index_by(&:uri))
+      mentions_map.transform_values! do |account|
+        [
+          ActivityPub::TagManager.instance.url_for(account),
+          "@<span>#{ERB::Util.h(account.username)}</span>",
+        ]
+      end
+
+      config = config.merge(mentions_map: mentions_map)
     end
 
     Sanitize.fragment(text, config)

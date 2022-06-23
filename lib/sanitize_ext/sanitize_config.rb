@@ -77,14 +77,13 @@ class Sanitize
       return unless node['class']&.split(/[\t\n\f\r ]/)&.include?('mention')
 
       href = node['href']
-      account = env[:config][:mentions_map][href]
-      return if account.nil?
+      url, text = env[:config][:mentions_map][node['href']]
+      return if url.nil?
 
       # Replace contents altogether
       node.children.remove
-      node.add_child(<<~HTML.squish)
-        @<span>#{ERB::Util.h(account.username)}</span>
-      HTML
+      node['href'] = url
+      node.add_child(text)
     end
 
     MASTODON_STRICT ||= freeze_config(
