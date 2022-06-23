@@ -30,6 +30,7 @@ class HtmlAwareFormatter
 
   def reformat
     config = Sanitize::Config::MASTODON_STRICT
+    html = text
 
     if @options[:preloaded_accounts]
       mentions_map = @options[:preloaded_accounts].index_by { |account| ActivityPub::TagManager.instance.url_for(account) }
@@ -42,9 +43,13 @@ class HtmlAwareFormatter
       end
 
       config = config.merge(mentions_map: mentions_map)
+
+      # Hubzilla-specific rewriting
+      url_re = Regexp.union(mentions_map.keys.compact)
+      html = html.gsub(/@<a class="zrl" href="(#{url_re})"/, '<a class="mention" href="\1"')
     end
 
-    Sanitize.fragment(text, config)
+    Sanitize.fragment(html, config)
   end
 
   def linkify
