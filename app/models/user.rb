@@ -104,6 +104,7 @@ class User < ApplicationRecord
   validates_with RegistrationFormTimeValidator, on: :create
   validates :website, absence: true, on: :create
   validates :confirm_password, absence: true, on: :create
+  validate :validate_role_elevation
 
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
@@ -140,10 +141,10 @@ class User < ApplicationRecord
   delegate :can?, to: :role
 
   attr_reader :invite_code
-  attr_writer :external, :bypass_invite_request_check
+  attr_writer :external, :bypass_invite_request_check, :current_account
 
-  def self.those_who_can(*privileges)
-    matching_role_ids = UserRole.where('(permissions & ?) != 0', privileges.reduce(0) { |mask, privilege| mask | UserRole::FLAGS[privilege] }).pluck(:id)
+  def self.those_who_can(*any_of_privileges)
+    matching_role_ids = UserRole.that_can(*any_of_privileges).map(&:id)
 
     if matching_role_ids.empty?
       none
@@ -496,6 +497,10 @@ class User < ApplicationRecord
 
   def validate_email_dns?
     email_changed? && !external? && !(Rails.env.test? || Rails.env.development?)
+  end
+
+  def validate_role_elevation
+    errors.add(:role_id, :elevated) if defined?(@current_account) && role&.overrides?(@current_account&.user_role)
   end
 
   def invite_text_required?

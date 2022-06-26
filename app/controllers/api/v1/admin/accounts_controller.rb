@@ -119,7 +119,9 @@ class Api::V1::Admin::AccountsController < Api::BaseController
       translated_params[:status] = status.to_s if params[status].present?
     end
 
-    translated_params[:permissions] = 'staff' if params[:staff].present? # FIXME
+    if params[:staff].present?
+      translated_params[:role_ids] = UserRole.that_can(:manage_reports).map(&:id)
+    end
 
     translated_params
   end

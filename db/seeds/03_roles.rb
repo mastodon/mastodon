@@ -1,4 +1,9 @@
-everyone  = UserRole.everyone
-moderator = UserRole.create_with(highlighted: true, permissions: UserRole::FLAGS[:view_dashboard] | UserRole::FLAGS[:view_audit_log] | UserRole::FLAGS[:manage_users] | UserRole::FLAGS[:manage_reports] | UserRole::FLAGS[:manage_taxonomies], position: 10).find_or_create_by(name: 'Moderator')
-admin     = UserRole.create_with(highlighted: true, permissions: moderator.permissions | UserRole::FLAGS[:manage_federation] | UserRole::FLAGS[:manage_settings] | UserRole::FLAGS[:manage_blocks] | UserRole::FLAGS[:manage_appeals] | UserRole::FLAGS[:manage_rules] | UserRole::FLAGS[:manage_invites] | UserRole::FLAGS[:manage_announcements] | UserRole::FLAGS[:manage_custom_emojis] | UserRole::FLAGS[:manage_webhooks] | UserRole::FLAGS[:manage_roles], position: 100).find_or_create_by(name: 'Admin')
-owner     = UserRole.create_with(highlighted: true, permissions: UserRole::FLAGS[:administrator], position: 1000).find_or_create_by(name: 'Owner')
+# Pre-create base role
+UserRole.everyone
+
+# Create default roles defined in config file
+default_roles = YAML.load_file(Rails.root.join('config', 'roles.yml'))
+
+default_roles.each do |_, config|
+  UserRole.create_with(position: config['position'], permissions_as_keys: config['permissions'], highlighted: true).find_or_create_by(name: config['name'])
+end

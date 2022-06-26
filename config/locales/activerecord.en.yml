@@ -38,8 +38,12 @@ en:
             email:
               blocked: uses a disallowed e-mail provider
               unreachable: does not seem to exist
+            role_id:
+              elevated: cannot be higher than your current role
         user_role:
           attributes:
             permissions_as_keys:
               dangerous: include permissions that are not safe for the base role
               elevated: cannot include permissions your current role does not possess
+            position:
+              elevated: cannot be higher than your current role

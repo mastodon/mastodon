@@ -405,4 +405,8 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '.those_who_can' do
+    pending
+  end
 end

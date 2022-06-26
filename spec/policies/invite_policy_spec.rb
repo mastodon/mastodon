@@ -29,7 +29,7 @@ RSpec.describe InvitePolicy do
 
     context 'does not have privilege' do
       before do
-        UserRole.everyone.update(permissions: 0 & ~UserRole::FLAGS[:invite_users])
+        UserRole.everyone.update(permissions: UserRole::Flags::NONE)
       end
 
       it 'denies' do

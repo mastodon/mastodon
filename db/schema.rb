@@ -1011,7 +1011,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_202502) do
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id", where: "(created_by_application_id IS NOT NULL)"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, opclass: :text_pattern_ops, where: "(reset_password_token IS NOT NULL)"
-    t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["role_id"], name: "index_users_on_role_id", where: "(role_id IS NOT NULL)"
   end
 
   create_table "web_push_subscriptions", force: :cascade do |t|

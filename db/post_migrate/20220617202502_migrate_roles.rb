@@ -20,7 +20,7 @@ class MigrateRoles < ActiveRecord::Migration[5.2]
     owner_role     = UserRole.find_by(name: 'Owner')
     moderator_role = UserRole.find_by(name: 'Moderator')
 
-    User.where(role_id: owner_role.id).in_batches.update_all(admin: true)
-    User.where(role_id: moderator_role.id).in_batches.update_all(moderator: true)
+    User.where(role_id: owner_role.id).in_batches.update_all(admin: true) if owner_role
+    User.where(role_id: moderator_role.id).in_batches.update_all(moderator: true) if moderator_role
   end
 end

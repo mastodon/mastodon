@@ -49,7 +49,7 @@ RSpec.describe Api::V2::Admin::AccountsController, type: :controller do
     it_behaves_like 'forbidden for wrong role', ''
 
     [
-      [{ status: 'active', origin: 'local', permissions: 'staff' }, []],
+      [{ status: 'active', origin: 'local', permissions: 'staff' }, [:admin_account]],
       [{ by_domain: 'example.org', origin: 'remote' }, [:remote_account]],
       [{ status: 'suspended' }, [:suspended_remote, :suspended_account]],
       [{ status: 'disabled' }, [:disabled_account]],

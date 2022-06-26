@@ -34,9 +34,53 @@ class UserRole < ApplicationRecord
     manage_webhooks: (1 << 15),
     invite_users: (1 << 16),
     manage_roles: (1 << 17),
+    manage_user_access: (1 << 18),
+    delete_user_data: (1 << 19),
   }.freeze
 
-  SAFE_FLAGS = FLAGS[:invite_users]
+  module Flags
+    NONE = 0
+    ALL  = FLAGS.values.reduce(&:|)
+
+    DEFAULT = FLAGS[:invite_users]
+
+    CATEGORIES = {
+      invites: %i(
+        invite_users
+      ).freeze,
+
+      moderation: %w(
+        view_dashboard
+        view_audit_log
+        manage_users
+        manage_user_access
+        delete_user_data
+        manage_reports
+        manage_appeals
+        manage_federation
+        manage_blocks
+        manage_taxonomies
+        manage_invites
+      ).freeze,
+
+      administration: %w(
+        manage_settings
+        manage_rules
+        manage_roles
+        manage_webhooks
+        manage_custom_emojis
+        manage_announcements
+      ).freeze,
+
+      devops: %w(
+        view_devops
+      ).freeze,
+
+      special: %i(
+        administrator
+      ).freeze,
+    }.freeze
+  end
 
   attr_writer :current_account
 
@@ -44,6 +88,7 @@ class UserRole < ApplicationRecord
   validates :color, format: { with: /\A#?(?:[A-F0-9]{3}){1,2}\z/i }, unless: -> { color.blank? }
 
   validate :validate_permissions_elevation
+  validate :validate_position_elevation
   validate :validate_dangerous_permissions
 
   before_validation :set_position
@@ -53,17 +98,25 @@ class UserRole < ApplicationRecord
   has_many :users, inverse_of: :role, foreign_key: 'role_id', dependent: :nullify
 
   def self.nobody
-    @nobody ||= UserRole.new(permissions: 0, position: -1)
+    @nobody ||= UserRole.new(permissions: Flags::NONE, position: -1)
   end
 
   def self.everyone
     UserRole.find(-99)
   rescue ActiveRecord::RecordNotFound
-    UserRole.create!(id: -99, permissions: FLAGS[:invite_users])
+    UserRole.create!(id: -99, permissions: Flags::DEFAULT)
+  end
+
+  def self.that_can(*any_of_privileges)
+    all.select { |role| role.can?(*any_of_privileges) }
   end
 
   def everyone?
     id == -99
+  end
+
+  def nobody?
+    id.nil?
   end
 
   def permissions_as_keys
@@ -71,11 +124,11 @@ class UserRole < ApplicationRecord
   end
 
   def permissions_as_keys=(value)
-    self.permissions = value.map(&:presence).compact.reduce(0) { |bitmask, privilege| FLAGS.key?(privilege.to_sym) ? (bitmask | FLAGS[privilege.to_sym]) : bitmask }
+    self.permissions = value.map(&:presence).compact.reduce(Flags::NONE) { |bitmask, privilege| FLAGS.key?(privilege.to_sym) ? (bitmask | FLAGS[privilege.to_sym]) : bitmask }
   end
 
-  def can?(*privileges)
-    in_permissions?(:administrator) || privileges.any? { |privilege| in_permissions?(privilege) }
+  def can?(*any_of_privileges)
+    any_of_privileges.any? { |privilege| in_permissions?(privilege) }
   end
 
   def overrides?(other_role)
@@ -83,7 +136,22 @@ class UserRole < ApplicationRecord
   end
 
   def computed_permissions
-    @computed_permissions ||= self.class.everyone.permissions | permissions
+    # If called on the everyone role, no further computation needed
+    return permissions if everyone?
+
+    # If called on the nobody role, no permissions are there to be given
+    return Flags::NONE if nobody?
+
+    # Otherwise, compute permissions based on special conditions
+    @computed_permissions ||= begin
+      permissions = self.class.everyone.permissions | self.permissions
+
+      if permissions & FLAGS[:administrator] == FLAGS[:administrator]
+        Flags::ALL
+      else
+        permissions
+      end
+    end
   end
 
   private
@@ -98,10 +166,14 @@ class UserRole < ApplicationRecord
   end
 
   def validate_permissions_elevation
-    errors.add(:permissions_as_keys, :elevated) if defined?(@current_account) && @current_account.user_role.permissions & permissions != permissions
+    errors.add(:permissions_as_keys, :elevated) if defined?(@current_account) && @current_account.user_role.computed_permissions & permissions != permissions
+  end
+
+  def validate_position_elevation
+    errors.add(:position, :elevated) if defined?(@current_account) && @current_account.user_role.position < position
   end
 
   def validate_dangerous_permissions
-    errors.add(:permissions_as_keys, :dangerous) if everyone? && SAFE_FLAGS & permissions != permissions
+    errors.add(:permissions_as_keys, :dangerous) if everyone? && Flags::DEFAULT & permissions != permissions
   end
 end

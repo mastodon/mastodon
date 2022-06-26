@@ -18,7 +18,7 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.suspended_temporarily? && role.can?(:manage_users)
+    record.suspended_temporarily? && role.can?(:delete_user_data)
   end
 
   def unsuspend?
@@ -54,7 +54,7 @@ class AccountPolicy < ApplicationPolicy
   end
 
   def memorialize?
-    role.can?(:manage_users) && role.overrides?(record.user_role) && !record.instance_actor?
+    role.can?(:delete_user_data) && role.overrides?(record.user_role) && !record.instance_actor?
   end
 
   def unblock_email?

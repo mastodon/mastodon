@@ -654,6 +654,12 @@ en:
       assigned_users:
         one: "%{count} user"
         other: "%{count} users"
+      categories:
+        administration: Administration
+        devops: Devops
+        invites: Invites
+        moderation: Moderation
+        special: Special
       delete: Delete
       description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
       edit: Edit '%{name}' role
@@ -665,6 +671,8 @@ en:
       privileges:
         administrator: Administrator
         administrator_description: Users with this permission will bypass every permission
+        delete_user_data: Delete User Data
+        delete_user_data_description: Allows users to delete other users' data without delay
         invite_users: Invite Users
         invite_users_description: Allows users to invite new people to the server
         manage_announcements: Manage Announcements
@@ -689,8 +697,10 @@ en:
         manage_settings_description: Allows users to change site settings
         manage_taxonomies: Manage Taxonomies
         manage_taxonomies_description: Allows users to review trending content and update hashtag settings
+        manage_user_access: Manage User Access
+        manage_user_access_description: Allows users to disable other users' two-factor authentication, change their e-mail address, and reset their password
         manage_users: Manage Users
-        manage_users_description: Allows users to view other users' details, change their access settings, and perform moderation actions against them
+        manage_users_description: Allows users to view other users' details and perform moderation actions against them
         manage_webhooks: Manage Webhooks
         manage_webhooks_description: Allows users to set up webhooks for administrative events
         view_audit_log: View Audit Log

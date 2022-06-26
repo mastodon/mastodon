@@ -11,6 +11,8 @@ module Admin
     def update
       authorize @user, :change_role?
 
+      @user.current_account = current_account
+
       if @user.update(resource_params)
         redirect_to admin_account_path(@user.account_id), notice: I18n.t('admin.accounts.change_role.changed_msg')
       else
