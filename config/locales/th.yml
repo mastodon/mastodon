@@ -34,6 +34,7 @@ th:
     status_count_after:
       other: โพสต์
     status_count_before: ผู้เผยแพร่
+    tagline: เครือข่ายสังคมแบบกระจายศูนย์
     terms: เงื่อนไขการให้บริการ
     unavailable_content: เซิร์ฟเวอร์ที่มีการควบคุม
     unavailable_content_description:
@@ -782,6 +783,16 @@ th:
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       empty: คุณยังไม่ได้กำหนดคำเตือนที่ตั้งไว้ล่วงหน้าใด ๆ
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
+    webhooks:
+      add_new: เพิ่มปลายทาง
+      delete: ลบ
+      disable: ปิดใช้งาน
+      disabled: ปิดใช้งานอยู่
+      edit: แก้ไขปลายทาง
+      enable: เปิดใช้งาน
+      enabled: ใช้งานอยู่
+      events: เหตุการณ์
+      status: สถานะ
   admin_mailer:
     new_appeal:
       actions:
@@ -1248,6 +1259,10 @@ th:
   reports:
     errors:
       invalid_rules: ไม่ได้อ้างอิงกฎที่ถูกต้อง
+  rss:
+    content_warning: 'คำเตือนเนื้อหา:'
+    descriptions:
+      account: โพสต์สาธารณะจาก @%{acct}
   scheduled_statuses:
     too_soon: วันที่ตามกำหนดการต้องอยู่ในอนาคต
   sessions:

@@ -22,9 +22,9 @@ eo:
     federation_hint_html: Per konto ĉe %{instance}, vi povos sekvi homojn ĉe iu ajn Mastodon nodo kaj preter.
     get_apps: Provu telefonan aplikaĵon
     hosted_on: "%{domain} estas nodo de Mastodon"
-    instance_actor_flash: |
-      Ĉi tiu konto estas virtuala ulo uzata por reprezenti la servilon mem kaj ne iun apartan uzanton.
-      Ĝi estas uzata por frataraj celoj kaj ĝi ne devus esti blokita krom se vi volas bloki la tutan servilon, tiuokaze vi devus uzi domajnan blokadon.
+    instance_actor_flash: 'Ĉi tiu konto estas virtuala aganto uzata por reprezenti la servilon mem kaj neniun individuan uzanton. Ĝi estas uzata por celoj de la federaĵo kaj devas ne esti brokita se vi ne volas bloki la tutan servilon, tiuokaze vi devas uzi blokadon de domajno.
+
+      '
     learn_more: Lerni pli
     logout_before_registering: Vi jam salutis.
     privacy_policy: Privateca politiko
@@ -179,8 +179,8 @@ eo:
       sensitized: markita tikla
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
-        created_reports: Kreitaj signaloj
-        targeted_reports: Signalitaj de aliaj
+        created_reports: Kreitaj raportoj
+        targeted_reports: Raporitaj de alia
       silence: Kaŝi
       silenced: Silentigita
       statuses: Mesaĝoj
@@ -1164,10 +1164,10 @@ eo:
         one: "%{count} voĉdono"
         other: "%{count} voĉdonoj"
       vote: Voĉdoni
-    show_more: Malfoldi
+    show_more: Montri pli
     show_newer: Montri pli novajn
     show_older: Montri pli malnovajn
-    show_thread: Montri la fadenon
+    show_thread: Montri la mesaĝaron
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
     title: "%{name}: “%{quote}”"
     visibilities:
@@ -1255,7 +1255,7 @@ eo:
       review_preferences_action: Ŝanĝi preferojn
       review_preferences_step: Estu certa ke vi agordis viajn preferojn, kiel kiujn retmesaĝojn vi ŝatus ricevi, aŭ kiun dekomencan privatecan nivelon vi ŝatus ke viaj mesaĝoj havu. Se tio ne ĝenas vin, vi povas ebligi aŭtomatan ekigon de GIF-oj.
       subject: Bonvenon en Mastodon
-      tip_federated_timeline: La fratara templinio estas antaŭvido de la reto de Mastodon. Sed ĝi enhavas nur homojn, kiuj estas sekvataj de aliaj homoj de via nodo, do ĝi ne estas kompleta.
+      tip_federated_timeline: La federata templinio estas rekta vido de la reto de Mastodon. Sed ĝi inkluzivas nur personojn kiujn via najbaroj abonas, do ĝi ne estas kompleta.
       tip_following: Vi dekomence sekvas la administrantojn de via servilo. Por trovi pli da interesaj homoj, rigardu la lokan kaj frataran templiniojn.
       tip_local_timeline: La loka templinio estas antaŭvido de la homoj en %{instance}. Ĉi tiuj estas viaj apudaj najbaroj!
       tip_mobile_webapp: Se via telefona retumilo proponas al vi aldoni Mastodon al via hejma ekrano, vi povas ricevi puŝsciigojn. Tio multmaniere funkcias kiel operaciuma aplikaĵo!
