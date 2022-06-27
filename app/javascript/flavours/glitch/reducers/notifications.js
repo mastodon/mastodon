@@ -31,7 +31,7 @@ import {
 } from 'flavours/glitch/actions/markers';
 import { DOMAIN_BLOCK_SUCCESS } from 'flavours/glitch/actions/domain_blocks';
 import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from 'flavours/glitch/actions/timelines';
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import { fromJS, Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import compareId from 'flavours/glitch/util/compare_id';
 
 const initialState = ImmutableMap({
@@ -58,6 +58,7 @@ const notificationToMap = (state, notification) => ImmutableMap({
   account: notification.account.id,
   markedForDelete: state.get('markNewForDelete'),
   status: notification.status ? notification.status.id : null,
+  report: notification.report ? fromJS(notification.report) : null,
 });
 
 const normalizeNotification = (state, notification, usePendingItems) => {

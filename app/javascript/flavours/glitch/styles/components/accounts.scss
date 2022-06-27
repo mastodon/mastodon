@@ -105,6 +105,8 @@
   position: relative;
   @include avatar-size(48px);
 
+  position: relative;
+
   &-base {
     @include avatar-radius();
     @include avatar-size(36px);
@@ -241,6 +243,33 @@
 .account-authorize__avatar {
   float: left;
   margin-right: 10px;
+}
+
+.notification__report {
+  padding: 8px 10px;
+  padding-left: 68px;
+  position: relative;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  min-height: 54px;
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $darker-text-color;
+    font-size: 15px;
+    line-height: 22px;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
 }
 
 .notification__message {

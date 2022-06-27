@@ -9,6 +9,7 @@ import StatusContainer from 'flavours/glitch/containers/status_container';
 import NotificationFollow from './follow';
 import NotificationFollowRequestContainer from '../containers/follow_request_container';
 import NotificationAdminSignup from './admin_signup';
+import NotificationAdminReportContainer from '../containers/admin_report_container';
 
 export default class Notification extends ImmutablePureComponent {
 
@@ -67,6 +68,19 @@ export default class Notification extends ImmutablePureComponent {
     case 'admin.sign_up':
       return (
         <NotificationAdminSignup
+          hidden={hidden}
+          id={notification.get('id')}
+          account={notification.get('account')}
+          notification={notification}
+          onMoveDown={onMoveDown}
+          onMoveUp={onMoveUp}
+          onMention={onMention}
+          unread={this.props.unread}
+        />
+      );
+    case 'admin.report':
+      return (
+        <NotificationAdminReportContainer
           hidden={hidden}
           id={notification.get('id')}
           account={notification.get('account')}

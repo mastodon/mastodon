@@ -179,6 +179,19 @@ export default class ColumnSettings extends React.PureComponent {
             </div>
           </div>
         )}
+
+        {isStaff && (
+          <div role='group' aria-labelledby='notifications-admin-report'>
+            <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.admin.report' defaultMessage='New reports:' /></span>
+
+            <div className='column-settings__pillbar'>
+              <PillBarButton disabled={browserPermission === 'denied'} prefix='notifications_desktop' settings={settings} settingPath={['alerts', 'admin.report']} onChange={onChange} label={alertStr} />
+              {showPushSettings && <PillBarButton prefix='notifications_push' settings={pushSettings} settingPath={['alerts', 'admin.report']} onChange={this.onPushChange} label={pushStr} />}
+              <PillBarButton prefix='notifications' settings={settings} settingPath={['shows', 'admin.report']} onChange={onChange} label={showStr} />
+              <PillBarButton prefix='notifications' settings={settings} settingPath={['sounds', 'admin.report']} onChange={onChange} label={soundStr} />
+            </div>
+          </div>
+        )}
       </div>
     );
   }

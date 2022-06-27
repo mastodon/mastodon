@@ -103,6 +103,10 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
         dispatch(importFetchedStatus(notification.status));
       }
 
+      if (notification.report) {
+        dispatch(importFetchedAccount(notification.report.target_account));
+      }
+
       dispatch({
         type: NOTIFICATIONS_UPDATE,
         notification,
@@ -146,6 +150,7 @@ const excludeTypesFromFilter = filter => {
     'status',
     'update',
     'admin.sign_up',
+    'admin.report',
   ]);
 
   return allTypes.filterNot(item => item === filter).toJS();
@@ -191,6 +196,7 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
 
       dispatch(importFetchedAccounts(response.data.map(item => item.account)));
       dispatch(importFetchedStatuses(response.data.map(item => item.status).filter(status => !!status)));
+      dispatch(importFetchedAccounts(response.data.filter(item => item.report).map(item => item.report.target_account)));
 
       dispatch(expandNotificationsSuccess(response.data, next ? next.uri : null, isLoadingMore, isLoadingRecent, isLoadingRecent && preferPendingItems));
       fetchRelatedRelationships(dispatch, response.data);
