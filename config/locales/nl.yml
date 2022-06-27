@@ -365,6 +365,11 @@ nl:
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
     dashboard:
+      active_users: actieve gebruikers
+      interactions: interacties
+      media_storage: Opgeslagen mediabestanden
+      new_users: nieuwe gebruikers
+      opened_reports: aangemaakte rapportages
       pending_appeals_html:
         one: "<strong>%{count}</strong> bezwaar te beoordelen"
         other: "<strong>%{count}</strong> bezwaren te beoordelen"
@@ -434,11 +439,16 @@ nl:
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
+      availability:
+        title: Beschikbaarheid
+        warning: De laatste poging om met deze server te verbinden was onsuccesvol
       back_to_all: Alles
       back_to_limited: Beperkt
       back_to_warning: Waarschuwing
       by_domain: Domein
       content_policies:
+        comment: Interne reden
+        description_html: Je kunt het beleid bepalen dat op de accounts van dit domein en alle subdomeinen van toepassing is.
         policies:
           reject_media: Mediabestanden weigeren
           reject_reports: Rapportages weigeren
@@ -446,7 +456,7 @@ nl:
           suspend: Opgeschort
         policy: Zwaarte
         reason: Publieke reden
-        title: Serverbeleid
+        title: Beleid
       dashboard:
         instance_accounts_dimension: Meest door ons gevolgde accounts
         instance_accounts_measure: opgeslagen accounts
@@ -539,6 +549,7 @@ nl:
       comment:
         none: Geen
       created_at: Gerapporteerd op
+      delete_and_resolve: Bericht verwijderen
       forwarded: Doorgestuurd
       forwarded_to: Doorgestuurd naar %{domain}
       mark_as_resolved: Markeer als opgelost
@@ -549,6 +560,7 @@ nl:
         create_and_unresolve: Heropenen met opmerking
         delete: Verwijderen
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
+        title: Opmerkingen
       reopen: Rapportage heropenen
       report: 'Rapportage #%{id}'
       reported_account: Gerapporteerde account
@@ -561,6 +573,7 @@ nl:
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
       updated_at: Bijgewerkt
+      view_profile: Profiel bekijken
     rules:
       add_new: Regel toevoegen
       delete: Verwijderen
@@ -662,6 +675,8 @@ nl:
       destroyed_msg: Verwijderen website-upload geslaagd!
     statuses:
       back_to_account: Terug naar accountpagina
+      batch:
+        report: Rapportage
       deleted: Verwijderd
       media:
         title: Media
@@ -683,6 +698,20 @@ nl:
       review: Status beoordelen
       updated_msg: Instellingen hashtag succesvol bijgewerkt
     title: Beheer
+    trends:
+      allow: Toestaan
+      disallow: Weigeren
+      links:
+        allow: Link toestaan
+        allow_provider: Uitgever toestaan
+        title: Trending links
+      only_allowed: Alleen toegestaan
+      pending_review: In afwachting van beoordeling
+      preview_card_providers:
+        title: Uitgevers
+      rejected: Geweigerd
+      statuses:
+        allow: Bericht toestaan
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
@@ -1250,6 +1279,16 @@ nl:
       public_long: Aan iedereen tonen, ook op openbare tijdlijnen
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 weken
+      '15778476': 6 maanden
+      '2629746': 1 maand
+      '31556952': 1 jaar
+      '5259492': 2 maanden
+      '604800': 1 week
+      '63113904': 2 jaar
+      '7889238': 3 maanden
   stream_entries:
     pinned: Vastgemaakt bericht
     reblogged: boostte
