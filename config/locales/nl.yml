@@ -135,7 +135,7 @@ nl:
       invite_request_text: Redenen om te registreren
       invited_by: Uitgenodigd door
       ip: IP
-      joined: Geregistreerd in
+      joined: Geregistreerd
       location:
         all: Alles
         local: Lokaal
@@ -160,7 +160,7 @@ nl:
       not_subscribed: Niet geabonneerd
       pending: Moet nog beoordeeld worden
       perform_full_suspension: Opschorten
-      previous_strikes: Vorige overtredingen
+      previous_strikes: Eerdere overtredingen
       previous_strikes_description_html:
         one: Dit account heeft <strong>één</strong> overtreding.
         other: Dit account heeft <strong>%{count}</strong> overtredingen.
@@ -220,6 +220,7 @@ nl:
       whitelisted: Goedgekeurd voor federatie
     action_logs:
       action_types:
+        approve_appeal: Bezwaar goedkeuren
         assigned_to_self_report: Rapportage toewijzen
         change_email_user: E-mailadres van gebruiker wijzigen
         confirm_user: Gebruiker bevestigen
@@ -247,6 +248,7 @@ nl:
         enable_user: Gebruiker inschakelen
         memorialize_account: Het account in een In memoriam veranderen
         promote_user: Gebruiker promoveren
+        reject_appeal: Bezwaar afwijzen
         remove_avatar_user: Avatar verwijderen
         reopen_report: Rapportage heropenen
         reset_password_user: Wachtwoord opnieuw instellen
@@ -263,6 +265,7 @@ nl:
         update_domain_block: Domeinblokkade bijwerken
         update_status: Bericht bijwerken
       actions:
+        approve_appeal_html: "%{name} heeft het bezwaar tegen de moderatie-actie van %{target} goedgekeurd"
         assigned_to_self_report_html: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user_html: "%{name} veranderde het e-mailadres van gebruiker %{target}"
         confirm_user_html: "E-mailadres van gebruiker %{target} is door %{name} bevestigd"
@@ -290,6 +293,7 @@ nl:
         enable_user_html: "Inloggen voor %{target} is door %{name} ingeschakeld"
         memorialize_account_html: "Het account %{target} is door %{name} in een In memoriam veranderd"
         promote_user_html: "Gebruiker %{target} is door %{name} gepromoveerd"
+        reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatie-actie van %{target} afgekeurd"
         remove_avatar_user_html: "%{name} verwijderde de avatar van %{target}"
         reopen_report_html: "%{name} heeft rapportage %{target} heropend"
         reset_password_user_html: "Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld"
@@ -360,9 +364,16 @@ nl:
       updated_msg: Bijwerken van emoji is geslaagd!
       upload: Uploaden
     dashboard:
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> bezwaar te beoordelen"
+        other: "<strong>%{count}</strong> bezwaren te beoordelen"
       software: Software
       space: Ruimtegebruik
       title: Dashboard
+    disputes:
+      appeals:
+        empty: Geen bezwaren gevonden.
+        title: Bezwaren
     domain_allows:
       add_new: Federatie met domein goedkeuren
       created_msg: Federatie met domein is succesvol goedgekeurd
@@ -513,7 +524,8 @@ nl:
       reported_by: Gerapporteerd door
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
-      status: Bericht
+      status: Rapportages
+      target_origin: Herkomst van de gerapporteerde accounts
       title: Rapportages
       unassign: Niet langer toewijzen
       unresolved: Onopgelost
@@ -625,6 +637,9 @@ nl:
       no_status_selected: Er werden geen berichten gewijzigd, omdat er geen enkele werd geselecteerd
       title: Berichten van account
       with_media: Met media
+    strikes:
+      appeal_approved: Bezwaar ingediend
+      appeal_pending: Bezwaar in behandeling
     system_checks:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
@@ -644,6 +659,10 @@ nl:
       empty: Je hebt nog geen presets voor waarschuwingen toegevoegd.
       title: Presets voor waarschuwingen beheren
   admin_mailer:
+    new_appeal:
+      body: "%{target} maakt bezwaar tegen een moderatie-actie door %{action_taken_by} op %{date}. De actie betrof: %{type}. De gebruiker schrijft:"
+      next_steps: Je kunt het bezwaar goedkeuren om daarmee de moderatie-actie ongedaan te maken, of je kunt het verwerpen.
+      subject: "%{username} maakt bezwaar tegen een moderatie-actie op %{instance}"
     new_pending_account:
       body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afkeuren.
       subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})
@@ -797,6 +816,10 @@ nl:
       appeals:
         submit: Beroep aantekenen
       approve_appeal: Beroep goedkeuren
+      reject_appeal: Bezwaar verworpen
+      your_appeal_approved: Jouw bezwaar is goedgekeurd
+      your_appeal_pending: Je hebt een bezwaar ingediend
+      your_appeal_rejected: Jouw bezwaar is verworpen
   domain_validator:
     invalid_domain: is een ongeldige domeinnaam
   errors:
