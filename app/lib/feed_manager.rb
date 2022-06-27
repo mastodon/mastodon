@@ -352,7 +352,6 @@ class FeedManager
   def filter_from_home?(status, receiver_id, crutches)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
-    return true  if phrase_filtered?(status, receiver_id, :home)
 
     check_for_blocks = crutches[:active_mentions][status.id] || []
     check_for_blocks.concat([status.account_id])
@@ -388,7 +387,6 @@ class FeedManager
   # @return [Boolean]
   def filter_from_mentions?(status, receiver_id)
     return true if receiver_id == status.account_id
-    return true if phrase_filtered?(status, receiver_id, :notifications)
 
     # This filter is called from NotifyService, but already after the sender of
     # the notification has been checked for mute/block. Therefore, it's not
@@ -416,22 +414,6 @@ class FeedManager
     end
 
     false
-  end
-
-  # Check if the status hits a phrase filter
-  # @param [Status] status
-  # @param [Integer] receiver_id
-  # @param [Symbol] context
-  # @return [Boolean]
-  def phrase_filtered?(status, receiver_id, context)
-    active_filters = CustomFilter.cached_filters_for(receiver_id)
-    active_keywords = active_filters.filter_map { |custom_filter, rules| rules[:keywords] if custom_filter.context.include?(context.to_s) && custom_filter.irreversible? }
-
-    return false if active_keywords.empty?
-
-    combined_regex = Regexp.union(active_keywords)
-
-    combined_regex.match?(status.proper.searchable_text)
   end
 
   # Adds a status to an account's feed, returning true if a status was
