@@ -1290,6 +1290,8 @@ cs:
     copy_account_note_text: 'Tento účet se přesunul z %{acct}, zde byly Vaše předchozí poznámky o něm:'
   notification_mailer:
     admin:
+      report:
+        subject: "Uživatel %{name} podal hlášení"
       sign_up:
         subject: "Uživatel %{name} se zaregistroval"
     digest:
