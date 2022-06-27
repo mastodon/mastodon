@@ -1250,6 +1250,8 @@ da:
     copy_account_note_text: 'Denne bruger er flyttet fra %{acct}, hvor dine tidligere noter om dem var:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} indsendte en anmeldelse"
       sign_up:
         subject: "%{name} tilmeldte sig"
     digest:
