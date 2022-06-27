@@ -1264,6 +1264,8 @@ uk:
     copy_account_note_text: 'Цей користувач був переміщений з %{acct}, ось ваші попередні нотатки:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} подає скаргу"
       sign_up:
         subject: "%{name} приєднується"
     digest:
