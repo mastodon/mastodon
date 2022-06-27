@@ -21,6 +21,14 @@ ru:
             username:
               invalid: только буквы, цифры и символ подчёркивания
               reserved: зарезервировано
+        admin/webhook:
+          attributes:
+            url:
+              invalid: не является допустимым URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: не является допустимым URL
         status:
           attributes:
             reblog:

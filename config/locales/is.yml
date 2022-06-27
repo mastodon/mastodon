@@ -38,7 +38,7 @@ is:
       one: færsla
       other: færslur
     status_count_before: Sem stóðu fyrir
-    tagline: Fylgstu með vinum og uppgötvaðu nýja
+    tagline: Dreift samfélagsnet
     terms: Þjónustuskilmálar
     unavailable_content: Ekki tiltækt efni
     unavailable_content_description:
@@ -852,6 +852,26 @@ is:
       edit_preset: Breyta forstilltri aðvörun
       empty: Þú hefur ekki enn skilgreint neinar aðvaranaforstillingar.
       title: Sýsla með forstilltar aðvaranir
+    webhooks:
+      add_new: Bæta við endapunkti
+      delete: Eyða
+      description_html: "<strong>webhook-vefkrækja</strong> gerir Mastodon kleift að ýta <strong>rauntíma-tilkynningum</strong> um valda atburði til þinna eigin forrita, þannig að þau forrit getir <strong>sett sjálfvirk viðbrögð í gang</strong>."
+      disable: Gera óvirkt
+      disabled: Óvirkt
+      edit: Breyta endapunkti
+      empty: Þú ert ekki enn búin/n að stilla neina endapunkta á webhook-vefkrækjum.
+      enable: Virkja
+      enabled: Virkt
+      enabled_events:
+        one: 1 virkjaður atburður
+        other: "%{count} virkjaðir atburðir"
+      events: Atburðir
+      new: Ný webhook-vefkrækja
+      rotate_secret: Skipta um leyniteikn
+      secret: Leyniteikn undirritunar
+      status: Staða
+      title: Webhook-vefkrækjur
+      webhook: Webhook-vefkrækja
   admin_mailer:
     new_appeal:
       actions:
@@ -916,7 +936,6 @@ is:
   applications:
     created: Það tókst að búa til forrit
     destroyed: Það tókst að eyða forriti
-    invalid_url: Slóðin sem þú gafst upp er ógild
     regenerate_token: Endurgera aðgangsteikn
     token_regenerated: Það tókst að endurgera aðgangsteiknið
     warning: Farðu mjög varlega með þessi gögn. Þú skalt aldrei deila þeim með neinum!

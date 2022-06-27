@@ -467,14 +467,14 @@ code {
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: $ui-highlight-color;
+    background: darken($ui-highlight-color, 2%);
     color: $primary-text-color;
     font-size: 18px;
     line-height: inherit;
     height: auto;
     padding: 10px;
-    text-transform: uppercase;
     text-decoration: none;
+    text-transform: uppercase;
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
@@ -487,13 +487,10 @@ code {
       margin-right: 0;
     }
 
-    &:hover {
-      background-color: lighten($ui-highlight-color, 5%);
-    }
-
     &:active,
-    &:focus {
-      background-color: darken($ui-highlight-color, 5%);
+    &:focus,
+    &:hover {
+      background-color: $ui-highlight-color;
     }
 
     &:disabled:hover {

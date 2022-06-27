@@ -21,6 +21,14 @@ ko:
             username:
               invalid: 영문자, 숫자, _만 사용 가능
               reserved: 이미 예약되어 있습니다
+        admin/webhook:
+          attributes:
+            url:
+              invalid: 올바른 URL이 아닙니다
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: 올바른 URL이 아닙니다
         status:
           attributes:
             reblog:

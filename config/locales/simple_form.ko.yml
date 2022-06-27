@@ -91,6 +91,9 @@ ko:
         name: 읽기 쉽게하기 위한 글자의 대소문자만 변경할 수 있습니다.
       user:
         chosen_languages: 체크하면, 선택 된 언어로 작성된 게시물들만 공개 타임라인에 보여집니다
+      webhook:
+        events: 전송할 이벤트를 선택하세요
+        url: 이벤트가 어디로 전송될 지
     labels:
       account:
         fields:
@@ -219,6 +222,9 @@ ko:
         name: 해시태그
         trendable: 이 해시태그가 유행에 보여지도록 허용
         usable: 이 해시태그를 게시물에 사용 가능하도록 허용
+      webhook:
+        events: 활성화된 이벤트
+        url: 엔드포인트 URL
     'no': 아니오
     recommended: 추천함
     required:

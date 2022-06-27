@@ -34,7 +34,7 @@ th:
     status_count_after:
       other: โพสต์
     status_count_before: ผู้เผยแพร่
-    tagline: ติดตามเพื่อน ๆ และค้นพบเพื่อนใหม่ ๆ
+    tagline: เครือข่ายสังคมแบบกระจายศูนย์
     terms: เงื่อนไขการให้บริการ
     unavailable_content: เซิร์ฟเวอร์ที่มีการควบคุม
     unavailable_content_description:
@@ -783,6 +783,16 @@ th:
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       empty: คุณยังไม่ได้กำหนดคำเตือนที่ตั้งไว้ล่วงหน้าใด ๆ
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
+    webhooks:
+      add_new: เพิ่มปลายทาง
+      delete: ลบ
+      disable: ปิดใช้งาน
+      disabled: ปิดใช้งานอยู่
+      edit: แก้ไขปลายทาง
+      enable: เปิดใช้งาน
+      enabled: ใช้งานอยู่
+      events: เหตุการณ์
+      status: สถานะ
   admin_mailer:
     new_appeal:
       actions:
@@ -842,7 +852,6 @@ th:
   applications:
     created: สร้างแอปพลิเคชันสำเร็จ
     destroyed: ลบแอปพลิเคชันสำเร็จ
-    invalid_url: URL ที่ระบุไม่ถูกต้อง
     regenerate_token: สร้างโทเคนการเข้าถึงใหม่
     token_regenerated: สร้างโทเคนการเข้าถึงใหม่สำเร็จ
     warning: ระวังเป็นอย่างสูงกับข้อมูลนี้ อย่าแบ่งปันข้อมูลกับใครก็ตาม!
@@ -1250,6 +1259,10 @@ th:
   reports:
     errors:
       invalid_rules: ไม่ได้อ้างอิงกฎที่ถูกต้อง
+  rss:
+    content_warning: 'คำเตือนเนื้อหา:'
+    descriptions:
+      account: โพสต์สาธารณะจาก @%{acct}
   scheduled_statuses:
     too_soon: วันที่ตามกำหนดการต้องอยู่ในอนาคต
   sessions:

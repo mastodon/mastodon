@@ -11,8 +11,8 @@ gl:
     apps: Aplicacións móbiles
     apps_platforms: Emprega Mastodon dende iOS, Android e outras plataformas
     browse_directory: Mira o directorio e filtra por intereses
-    browse_local_posts: Navega polas publicacións públicas deste servidor en tempo real
-    browse_public_posts: Navega polas publicacións públicas de Mastodon en tempo real
+    browse_local_posts: Unha ollada aos últimos comentarios públicos neste servidor
+    browse_public_posts: Cronoloxía en directo cos comentarios públicos en Mastodon
     contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: Non dispoñíbel
@@ -31,14 +31,14 @@ gl:
     privacy_policy: Política de privacidade
     rules: Regras do servidor
     rules_html: 'Aquí tes un resumo das regras que debes seguir se queres ter unha conta neste servidor de Mastodon:'
-    see_whats_happening: Ver o que está a acontecer
+    see_whats_happening: Mira o que acontece
     server_stats: 'Estatísticas do servidor:'
     source_code: Código fonte
     status_count_after:
       one: publicación
       other: publicacións
     status_count_before: Que publicaron
-    tagline: Segue ás túas amizades e coñece novas
+    tagline: Rede social descentralizada
     terms: Termos do servizo
     unavailable_content: Contido non dispoñíbel
     unavailable_content_description:
@@ -852,6 +852,26 @@ gl:
       edit_preset: Editar aviso preestablecido
       empty: Non definiches os avisos prestablecidos.
       title: Xestionar avisos preestablecidos
+    webhooks:
+      add_new: Engadir punto de extremo
+      delete: Eliminar
+      description_html: Un <strong>webhook</strong> permítelle a Mastodon enviar <strong>notificacións en tempo real</strong> á túa aplicación acerca dos eventos elexidos e así, a aplicación <strong>activará automáticamente</strong> a súa programación.
+      disable: Desactivar
+      disabled: Desactivado
+      edit: Editar extremo
+      empty: Non tes configurado ningún punto extremo para o webhook.
+      enable: Activar
+      enabled: Activo
+      enabled_events:
+        one: 1 evento activado
+        other: "%{count} eventos activados"
+      events: Eventos
+      new: Novo webhook
+      rotate_secret: Rotar segredo
+      secret: Segredo de acceso
+      status: Estado
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -916,13 +936,12 @@ gl:
   applications:
     created: Creouse con éxito este aplicativo
     destroyed: Eliminouse con éxito o aplicativo
-    invalid_url: A URL proporcionada non é válida
     regenerate_token: Votar a xenerar o testemuño de acceso
     token_regenerated: Rexenerouse con éxito o testemuño de acceso
     warning: Ten moito tino con estos datos. Non os compartas nunca con ninguén!
     your_token: O seu testemuño de acceso
   auth:
-    apply_for_account: Solicite un convite
+    apply_for_account: Solicita un convite
     change_password: Contrasinal
     checkbox_agreement_html: Acepto as <a href="%{rules_path}" target="_blank">regras do servidor</a> e os <a href="%{terms_path}" target="_blank">termos do servizo</a>
     checkbox_agreement_without_rules_html: Acepto os <a href="%{terms_path}" target="_blank">termos do servizo</a>
@@ -935,7 +954,7 @@ gl:
     didnt_get_confirmation: Non recibiches as instruccións de confirmación?
     dont_have_your_security_key: "¿Non tes a túa chave de seguridade?"
     forgot_password: Non lembras o contrasinal?
-    invalid_reset_password_token: O testemuño para restablecer o contrasinal non é válido ou caducou. Por favor solicite un novo.
+    invalid_reset_password_token: O token para restablecer o contrasinal non é válido ou caducou. Por favor solicita un novo.
     link_to_otp: Escribe o código do segundo factor do móbil ou un código de recuperación
     link_to_webauth: Usa o teu dispositivo de chave de seguridade
     log_in_with: Accede con

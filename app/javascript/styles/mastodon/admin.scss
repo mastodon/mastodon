@@ -75,6 +75,13 @@ $content-width: 840px;
       height: 100px;
     }
 
+    .logo--wordmark {
+      display: inherit;
+      margin: inherit;
+      width: inherit;
+      height: 20px;
+    }
+
     @media screen and (max-width: $no-columns-breakpoint) {
       & > a:first-child {
         display: none;
@@ -133,12 +140,12 @@ $content-width: 840px;
 
       .simple-navigation-active-leaf a {
         color: $primary-text-color;
-        background-color: $ui-highlight-color;
+        background-color: darken($ui-highlight-color, 2%);
         border-bottom: 0;
         border-radius: 0;
 
         &:hover {
-          background-color: lighten($ui-highlight-color, 5%);
+          background-color: $ui-highlight-color;
         }
       }
     }
@@ -885,7 +892,7 @@ a.name-tag,
     border: 0;
 
     a {
-      color: lighten($ui-highlight-color, 8%);
+      color: $highlight-text-color;
     }
 
     dl:first-child .verified {

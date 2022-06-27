@@ -21,6 +21,14 @@ pl:
             username:
               invalid: może składać się tylko z liter, cyfr i podkreślników
               reserved: jest zarezerwowana
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nie jest poprawnym adresem URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nie jest poprawnym adresem URL
         status:
           attributes:
             reblog:

@@ -21,6 +21,14 @@ is:
             username:
               invalid: má aðeins innihalda bókstafi, tölur og undirstrik
               reserved: er frátekið
+        admin/webhook:
+          attributes:
+            url:
+              invalid: er ekki gild vefslóð
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: er ekki gild vefslóð
         status:
           attributes:
             reblog:

@@ -40,7 +40,7 @@ cs:
       one: příspěvek
       other: příspěvků
     status_count_before: Kteří napsali
-    tagline: Sledujte své přátele a objevujte nové
+    tagline: Decentralizovaná sociální síť
     terms: Podmínky používání
     unavailable_content: Moderované servery
     unavailable_content_description:
@@ -886,6 +886,28 @@ cs:
       edit_preset: Upravit předlohu pro varování
       empty: Zatím jste nedefinovali žádné předlohy varování.
       title: Spravovat předlohy pro varování
+    webhooks:
+      add_new: Přidat koncový bod
+      delete: Smazat
+      description_html: "<strong>Webhook</strong> umožňuje Mastodonu o vybraných událostech <strong>notifikovat v reálném čase</strong> vaši vlastní aplikaci, aby mohla <strong>automaticky spouštět reakce</strong>."
+      disable: Vypnout
+      disabled: Vypnuto
+      edit: Upravit koncový bod
+      empty: Nemáte ještě nastavené žádné koncové body webhooků.
+      enable: Zapnout
+      enabled: Aktivní
+      enabled_events:
+        few: "%{count} zapnuté události"
+        many: "%{count} zapnutých událostí"
+        one: 1 zapnutá událost
+        other: "%{count} zapnutých událostí"
+      events: Události
+      new: Nový webhook
+      rotate_secret: Obnovit klíč
+      secret: Podpisový klíč
+      status: Stav
+      title: Webhooky
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -950,7 +972,6 @@ cs:
   applications:
     created: Aplikace úspěšně vytvořena
     destroyed: Aplikace úspěšně smazána
-    invalid_url: Zadaná URL adresa je neplatná
     regenerate_token: Znovu vygenerovat přístupový token
     token_regenerated: Přístupový token byl úspěšně vygenerován
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
@@ -1334,7 +1355,7 @@ cs:
     description_html: Zapnete-li <strong>dvoufázové ověřování</strong> pomocí ověřovací aplikace, k přihlášení budete u sebe muset mít svůj mobil, který pro Vás bude generovat kódy k opsání.
     enable: Zapnout
     instructions_html: "<strong>Naskenujte tento QR kód do Google Authenticator nebo podobné TOTP aplikace na svém telefonu</strong>. Následně bude tato aplikace generovat kódy, které budete zadávat při přihlašování."
-    manual_instructions: 'Nemůžete-li načíst QR kód a potřebujete ho zadat ručně, zde je tajemství v textové podobě:'
+    manual_instructions: 'Nemůžete-li načíst QR kód a potřebujete ho zadat ručně, zde je klíč v textové podobě:'
     setup: Nastavit
     wrong_code: Zadaný kód je neplatný! Je čas na serveru i zařízení generujícím kód správný?
   pagination:

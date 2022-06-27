@@ -38,7 +38,7 @@ it:
       one: stato
       other: stati
     status_count_before: Che hanno pubblicato
-    tagline: Segui amici e trovane di nuovi
+    tagline: Social network decentralizzato
     terms: Termini di Servizio
     unavailable_content: Server moderati
     unavailable_content_description:
@@ -852,6 +852,26 @@ it:
       edit_preset: Modifica avviso predefinito
       empty: Non hai ancora definito alcun avviso preimpostato.
       title: Gestisci avvisi predefiniti
+    webhooks:
+      add_new: Aggiungi endpoint
+      delete: Elimina
+      description_html: Un <strong>webhook</strong> consente a Mastodon di inviare <strong>notifiche in tempo reale</strong> su determinati eventi alla tua applicazione, così la tua applicazione può <strong>attivare automaticamente delle reazioni</strong>.
+      disable: Disabilita
+      disabled: Disabilitato
+      edit: Modifica endpoint
+      empty: Non hai ancora configurato alcun endpoint per webhook.
+      enable: Abilita
+      enabled: Attivo
+      enabled_events:
+        one: 1 evento abilitato
+        other: "%{count} eventi abilitati"
+      events: Eventi
+      new: Nuovo webhook
+      rotate_secret: Ruota segreto
+      secret: Segreto per firma
+      status: Stato
+      title: Webhook
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -918,7 +938,6 @@ it:
   applications:
     created: Applicazione creata con successo
     destroyed: Applicazione eliminata con successo
-    invalid_url: L'URL fornito non è valido
     regenerate_token: Rigenera il token di accesso
     token_regenerated: Token di accesso rigenerato
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!

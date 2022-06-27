@@ -38,7 +38,7 @@ io:
       one: posto
       other: posti
     status_count_before: Qua publikigis
-    tagline: Sequez amiki e deskovrez nova personi
+    tagline: Necentralizita sociala reto
     terms: Serveskondicioni
     unavailable_content: Jerata servili
     unavailable_content_description:
@@ -852,6 +852,26 @@ io:
       edit_preset: Modifikez avertfixito
       empty: Vu ne fixis irga avertfixito til nun.
       title: Jerez avertfixiti
+    webhooks:
+      add_new: Insertez finpunto
+      delete: Efacez
+      description_html: "<strong>Rethoko</strong> povigas Mastodon sendar <strong>samtempoavizi</strong> pri selektita eventi a vua sua apliko, por ke vua apliko povas <strong>automate kauzigar reakti</strong>."
+      disable: Desaktivigez
+      disabled: Desaktivigita
+      edit: Modifikez finpunto
+      empty: Vu ne havas irga ajustita finpunti ankore.
+      enable: Aktivigez
+      enabled: Aktiva
+      enabled_events:
+        one: 1 aktivigita evento
+        other: "%{count} aktivigita eventi"
+      events: Eventi
+      new: Nova rethoko
+      rotate_secret: Rotacigez sekreto
+      secret: Signosekreto
+      status: Stando
+      title: Rethoki
+      webhook: Rethok
   admin_mailer:
     new_appeal:
       actions:
@@ -916,7 +936,6 @@ io:
   applications:
     created: Apliko sucesoze kreesas
     destroyed: Apliko sucesoze efacesas
-    invalid_url: La URL donita ne esas valida
     regenerate_token: Rifacez acesficho
     token_regenerated: Acesficho sucesoze riganesas
     warning: Sorgemez per ca informi. Ne partigez kun irgu!

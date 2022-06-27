@@ -38,7 +38,7 @@ es-AR:
       one: mensaje
       other: mensajes
     status_count_before: Que enviaron
-    tagline: Seguí a tus amigos y descubrí nueva gente
+    tagline: Red social descentralizada
     terms: Términos del servicio
     unavailable_content: Servidores moderados
     unavailable_content_description:
@@ -852,6 +852,26 @@ es-AR:
       edit_preset: Editar preajuste de advertencia
       empty: Aún no ha definido ningún preajuste de advertencia.
       title: Administrar preajustes de advertencia
+    webhooks:
+      add_new: Agregar punto final
+      delete: Eliminar
+      description_html: Un <strong>webhook</strong> habilita a Mastodon a enviar <strong>notificaciones en tiempo real</strong> sobre los eventos elegidos a tu propia aplicación, así la misma puede <strong>activar automáticamente las reacciones</strong>.
+      disable: Deshabilitar
+      disabled: Deshabilitada
+      edit: Editar punto final
+      empty: Todavía no tenés configurado ningún punto final de webhook.
+      enable: Habilitar
+      enabled: Activar
+      enabled_events:
+        one: 1 evento habilitado
+        other: "%{count} eventos habilitados"
+      events: Eventos
+      new: Nuevo webhook
+      rotate_secret: Rotar secreto
+      secret: Firma secreta
+      status: Estado
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -916,7 +936,6 @@ es-AR:
   applications:
     created: Aplicación creada exitosamente
     destroyed: Aplicación eliminada exitosamente
-    invalid_url: La dirección web ofrecida no es válida
     regenerate_token: Regenerar clave de acceso
     token_regenerated: Clave de acceso regenerada exitosamente
     warning: Ojo con estos datos. ¡Nunca los compartas con nadie!

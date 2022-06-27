@@ -565,6 +565,7 @@ Rails.application.routes.draw do
           end
         end
 
+        resources :domain_allows, only: [:index, :show, :create, :destroy]
         resources :domain_blocks, only: [:index, :show, :update, :create, :destroy]
 
         namespace :trends do

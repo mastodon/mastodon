@@ -57,7 +57,7 @@ gl:
         setting_hide_network: Non se mostrará no teu perfil quen te segue e a quen estás a seguir
         setting_noindex: Afecta ao teu perfil público e páxinas de publicación
         setting_show_application: A aplicación que estás a utilizar para enviar publicacións mostrarase na vista detallada da publicación
-        setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esborranchando todos os detalles
+        setting_use_blurhash: Os gradientes toman as cores da imaxe oculta pero esvaecendo tódolos detalles
         setting_use_pending_items: Agochar actualizacións da cronoloxía tras un click no lugar de desprazar automáticamente os comentarios
         username: O teu nome de usuaria será único en %{domain}
         whole_word: Se a chave ou frase de paso é só alfanumérica, só se aplicará se concorda a palabra completa
@@ -91,6 +91,9 @@ gl:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
+      webhook:
+        events: Elexir eventos a enviar
+        url: Cando serán enviados os eventos
     labels:
       account:
         fields:
@@ -174,7 +177,7 @@ gl:
         setting_theme: Decorado da instancia
         setting_trends: Mostrar as tendencias de hoxe
         setting_unfollow_modal: Solicitar confirmación antes de deixar de seguir alguén
-        setting_use_blurhash: Mostrar gradientes coloridos para medios ocultos
+        setting_use_blurhash: Mostrar gradientes coloridos para multimedia oculto
         setting_use_pending_items: Modo lento
         severity: Severidade
         sign_in_token_attempt: Código de seguridade
@@ -219,6 +222,9 @@ gl:
         name: Cancelo
         trendable: Permitir que este cancelo apareza en tendencias
         usable: Permitir que as publicacións utilicen este cancelo
+      webhook:
+        events: Eventos activados
+        url: URL do extremo
     'no': Non
     recommended: Recomendado
     required:

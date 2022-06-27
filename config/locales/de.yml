@@ -38,7 +38,7 @@ de:
       one: Beitrag
       other: Beiträge
     status_count_before: mit
-    tagline: Finde deine Freunde und entdecke neue
+    tagline: Dezentrales soziales Netzwerk
     terms: Nutzungsbedingungen
     unavailable_content: Nicht verfügbarer Inhalt
     unavailable_content_description:
@@ -428,6 +428,7 @@ de:
       destroyed_msg: Die Domain-Blockade wurde rückgängig gemacht
       domain: Domain
       edit: Domainblockade bearbeiten
+      existing_domain_block: Du hast %{name} bereits stärker eingeschränkt.
       existing_domain_block_html: Es gibt schon eine Blockade für %{name}, diese muss erst <a href="%{unblock_url}">aufgehoben</a> werden.
       new:
         create: Blockade einrichten
@@ -851,6 +852,26 @@ de:
       edit_preset: Warnungsvorlage bearbeiten
       empty: Du hast noch keine Warnungsvorlagen hinzugefügt.
       title: Warnungsvorlagen verwalten
+    webhooks:
+      add_new: Endpunkt hinzufügen
+      delete: Löschen
+      description_html: Ein <strong>Webhook</strong> ermöglicht Mastodon <strong>Echtzeitbenachrichtigungen</strong> über ausgewählte Ereignisse an deine eigene Anwendung zu senden damit deine Anwendung <strong>automatisch Reaktionen auslösen kann</strong>.
+      disable: Deaktivieren
+      disabled: Deaktiviert
+      edit: Endpunkt bearbeiten
+      empty: Du hast noch keine Webhook Endpunkte konfiguriert.
+      enable: Aktivieren
+      enabled: Aktiv
+      enabled_events:
+        one: 1 aktiviertes Ereignis
+        other: "%{count} aktivierte Ereignisse"
+      events: Ereignisse
+      new: Neuer Webhook
+      rotate_secret: Geheimen Schlüssel rotieren
+      secret: Signaturgeheimnis
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -915,7 +936,6 @@ de:
   applications:
     created: Anwendung erfolgreich erstellt
     destroyed: Anwendung erfolgreich gelöscht
-    invalid_url: Die angegebene URL ist ungültig
     regenerate_token: Zugangs-Token neu erstellen
     token_regenerated: Zugangs-Token neu erstellt
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!

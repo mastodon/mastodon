@@ -40,7 +40,7 @@ ru:
       one: пост
       other: поста
     status_count_before: И опубликовано
-    tagline: Подписывайтесь на друзей и заводите новые знакомства
+    tagline: Децентрализованная социальная сеть
     terms: Условия использования
     unavailable_content: Недоступный контент
     unavailable_content_description:
@@ -403,6 +403,16 @@ ru:
       media_storage: Медиа файлы
       new_users: новые пользователи
       opened_reports: жалоб открыто
+      pending_reports_html:
+        few: "<strong>%{count}</strong> ожидающих отчета"
+        many: "<strong>%{count}</strong> ожидающих отчетов"
+        one: "<strong>%{count}</strong> ожидающий отчет"
+        other: "<strong>%{count}</strong> ожидающих отчетов"
+      pending_users_html:
+        few: "<strong>%{count}</strong> ожидающих пользователя"
+        many: "<strong>%{count}</strong> ожидающих пользователей"
+        one: "<strong>%{count}</strong> ожидающий пользователь"
+        other: "<strong>%{count}</strong> ожидающих пользователей"
       resolved_reports: жалоб решено
       software: Программное обеспечение
       sources: Источники регистрации
@@ -500,6 +510,7 @@ ru:
           suspend: Приостановить
         policy: Политика
         reason: Публичная причина
+        title: Политика контента
       dashboard:
         instance_accounts_dimension: Популярные аккаунты
         instance_accounts_measure: сохраненные учетные записи
@@ -803,6 +814,8 @@ ru:
       statuses:
         allow: Разрешить пост
         allow_account: Разрешить автора
+        disallow: Запретить пост
+        disallow_account: Запретить автора
         title: Популярные посты
       tags:
         current_score: Текущий счет %{score}
@@ -818,6 +831,7 @@ ru:
         peaked_on_and_decaying: Последний пик — %{date}, сейчас идёт на спад
         title: Актуальные хэштеги
         trendable: Может появляться в списке «актуального»
+        trending_rank: 'Популярное #%{rank}'
         usable: Может использоваться
         usage_comparison: Использовано %{today} сегодня, для сравнения вчера %{yesterday}
         used_by_over_week:
@@ -833,12 +847,35 @@ ru:
       edit_preset: Удалить шаблон предупреждения
       empty: Вы еще не определили пресеты предупреждений.
       title: Управление шаблонами предупреждений
+    webhooks:
+      add_new: Добавить конечную точку
+      delete: Удалить
+      description_html: "<strong>Вебхуки</strong> позволяют Mastodon отправлять вашим приложениям <strong>уведомления в реальном времени</strong> о выбранных происходящих событиях, а они могут <strong>обрабатывать их в автоматическом режиме</strong>."
+      disable: Отключить
+      disabled: Отключено
+      edit: Редактировать вебхук
+      empty: У вас пока нет настроенных конечных точек вебхуков.
+      enable: Включить
+      enabled: Активен
+      enabled_events:
+        few: "%{count} события включено"
+        many: "%{count} событий включено"
+        one: "%{count} событие включено"
+        other: "%{count} событий включено"
+      events: События
+      new: Новый вебхук
+      rotate_secret: Сгенерировать новый
+      secret: Ключ подписи
+      status: Состояние
+      title: Вебхуки
+      webhook: Вебхук
   admin_mailer:
     new_appeal:
       actions:
         none: предупреждение
         silence: ограничить учётную запись
         suspend: приостановить действие учётной записи
+      body: "%{target} обжалуют решение модератора %{action_taken_by} от %{date}, которое %{type}. Они написали:"
       subject: "%{username} обжалует решение модерации на %{instance}"
     new_pending_account:
       body: Ниже указана информация учётной записи. Вы можете одобрить или отклонить заявку.
@@ -885,7 +922,6 @@ ru:
   applications:
     created: Приложение успешно создано
     destroyed: Приложение успешно удалено
-    invalid_url: Введенный URL неверен
     regenerate_token: Повторно сгенерировать токен доступа
     token_regenerated: Токен доступа успешно сгенерирован
     warning: Будьте очень внимательны с этими данными. Не делитесь ими ни с кем!
