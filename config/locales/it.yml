@@ -1250,6 +1250,8 @@ it:
     copy_account_note_text: 'Questo utente si è spostato da %{acct}, ecco le tue note precedenti su di loro:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} ha inviato una segnalazione"
       sign_up:
         subject: "%{name} si è iscritto"
     digest:
