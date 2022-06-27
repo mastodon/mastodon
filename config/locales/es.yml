@@ -1250,6 +1250,8 @@ es:
     copy_account_note_text: 'Este usuario se mudó desde %{acct}, aquí estaban tus notas anteriores sobre él:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} envió un informe"
       sign_up:
         subject: "%{name} se registró"
     digest:
