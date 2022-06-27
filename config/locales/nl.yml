@@ -202,6 +202,7 @@ nl:
       silenced: Beperkt
       statuses: Berichten
       subscribe: Abonneren
+      suspend: Opschorten
       suspended: Opgeschort
       suspension_irreversible: De gegevens van dit account zijn onomkeerbaar verwijderd. Je kunt het opschorten van dit account ongedaan maken zodat het weer valt te gebruiken, maar de verwijderde gegevens worden hiermee niet hersteld.
       suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
@@ -248,7 +249,7 @@ nl:
         enable_user: Gebruiker inschakelen
         memorialize_account: Het account in een In memoriam veranderen
         promote_user: Gebruiker promoveren
-        reject_appeal: Bezwaar afwijzen
+        reject_appeal: Bezwaar verwerpen
         remove_avatar_user: Avatar verwijderen
         reopen_report: Rapportage heropenen
         reset_password_user: Wachtwoord opnieuw instellen
@@ -293,7 +294,7 @@ nl:
         enable_user_html: "Inloggen voor %{target} is door %{name} ingeschakeld"
         memorialize_account_html: "Het account %{target} is door %{name} in een In memoriam veranderd"
         promote_user_html: "Gebruiker %{target} is door %{name} gepromoveerd"
-        reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatie-actie van %{target} afgekeurd"
+        reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatie-actie van %{target} verworpen"
         remove_avatar_user_html: "%{name} verwijderde de avatar van %{target}"
         reopen_report_html: "%{name} heeft rapportage %{target} heropend"
         reset_password_user_html: "Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld"
@@ -367,9 +368,14 @@ nl:
       pending_appeals_html:
         one: "<strong>%{count}</strong> bezwaar te beoordelen"
         other: "<strong>%{count}</strong> bezwaren te beoordelen"
+      resolved_reports: opgeloste rapportages
       software: Software
+      sources: Locatie van registratie
       space: Ruimtegebruik
       title: Dashboard
+      top_languages: Meest actieve talen
+      top_servers: Meest actieve servers
+      website: Website
     disputes:
       appeals:
         empty: Geen bezwaren gevonden.
@@ -411,6 +417,9 @@ nl:
       add_new: Nieuwe toevoegen
       created_msg: Blokkeren e-maildomein geslaagd
       delete: Verwijderen
+      dns:
+        types:
+          mx: MX-record
       domain: Domein
       new:
         create: Blokkeren
@@ -429,9 +438,28 @@ nl:
       back_to_limited: Beperkt
       back_to_warning: Waarschuwing
       by_domain: Domein
+      content_policies:
+        policies:
+          reject_media: Mediabestanden weigeren
+          reject_reports: Rapportages weigeren
+          silence: Beperkt
+          suspend: Opgeschort
+        policy: Zwaarte
+        reason: Publieke reden
+        title: Serverbeleid
+      dashboard:
+        instance_accounts_dimension: Meest door ons gevolgde accounts
+        instance_accounts_measure: opgeslagen accounts
+        instance_followers_measure: daar ons daar gevolgd
+        instance_follows_measure: door hun hier gevolgd
+        instance_languages_dimension: Meest actieve talen
+        instance_media_attachments_measure: opgeslagen mediabestanden
+        instance_reports_measure: rapportages over hun
+        instance_statuses_measure: opgeslagen berichten
       delivery:
         all: Alles
         clear: Bezorgfouten weghalen
+        failing: Problemen
         restart: Bezorging herstarten
         stop: Bezorging beëindigen
         unavailable: Niet beschikbaar
@@ -445,6 +473,7 @@ nl:
         title: Moderatie
       private_comment: Privé-opmerking
       public_comment: Openbare opmerking
+      purge: Volledig verwijderen
       title: Federatie
       total_blocked_by_us: Door ons geblokkeerd
       total_followed_by_them: Door hun gevolgd
@@ -500,11 +529,13 @@ nl:
         notes:
           one: "%{count} opmerking"
           other: "%{count} opmerkingen"
+      action_log: Auditlog
       action_taken_by: Actie uitgevoerd door
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
       assigned: Toegewezen moderator
       by_target_domain: Domein van gerapporteerde account
+      category: Category
       comment:
         none: Geen
       created_at: Gerapporteerd op
@@ -660,7 +691,15 @@ nl:
       title: Presets voor waarschuwingen beheren
   admin_mailer:
     new_appeal:
-      body: "%{target} maakt bezwaar tegen een moderatie-actie door %{action_taken_by} op %{date}. De actie betrof: %{type}. De gebruiker schrijft:"
+      actions:
+        delete_statuses: het verwijderen van diens berichten
+        disable: het bevriezen van diens account
+        mark_statuses_as_sensitive: het markeren van diens berichten als gevoelig
+        none: een waarschuwing
+        sensitive: het gevoelig forceren van diens account
+        silence: het beperken van diens account
+        suspend: het opschorten van diens account
+      body: "%{target} maakt bezwaar tegen een moderatie-actie door %{action_taken_by} op %{date}, betreffende %{type}. De gebruiker schrijft:"
       next_steps: Je kunt het bezwaar goedkeuren om daarmee de moderatie-actie ongedaan te maken, of je kunt het verwerpen.
       subject: "%{username} maakt bezwaar tegen een moderatie-actie op %{instance}"
     new_pending_account:
@@ -808,14 +847,14 @@ nl:
     explore_mastodon: '%{title} verkennen'
   disputes:
     strikes:
-      appeal: Beroep
-      appeal_approved: Het aangetekende beroep is goedgekeurd en deze overtreding is niet langer geldig
-      appeal_rejected: Het aangetekende beroep is afgewezen
-      appeal_submitted_at: Beroep aangetekend
-      appealed_msg: Jouw aangetekende beroep is ingediend. Wanneer deze wordt goedgekeurd, krijg je hiervan bericht.
+      appeal: Bezwaar
+      appeal_approved: Het ingediende bezwaar is goedgekeurd en de eerder vastgestelde overtreding is niet langer geldig
+      appeal_rejected: Het ingediende bezwaar is verworpen
+      appeal_submitted_at: Bezwaar ingediend
+      appealed_msg: Jouw bezwaar is ingediend. Wanneer deze wordt goedgekeurd, krijg je hiervan bericht.
       appeals:
-        submit: Beroep aantekenen
-      approve_appeal: Beroep goedkeuren
+        submit: Bezwaar indienen
+      approve_appeal: Bezwaar goedkeuren
       reject_appeal: Bezwaar verworpen
       your_appeal_approved: Jouw bezwaar is goedgekeurd
       your_appeal_pending: Je hebt een bezwaar ingediend
@@ -1215,6 +1254,9 @@ nl:
     pinned: Vastgemaakt bericht
     reblogged: boostte
     sensitive_content: Gevoelige inhoud
+  strikes:
+    errors:
+      too_late: De periode dat je bezwaar kon maken is verstreken
   tags:
     does_not_match_previous_name: komt niet overeen met de vorige naam
   terms:
@@ -1324,11 +1366,22 @@ nl:
     recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
     webauthn: Beveiligingssleutels
   user_mailer:
+    appeal_approved:
+      action: Ga naar je account
+      explanation: Het bezwaar tegen een door een moderator vastgestelde overtreding van jou op %{strike_date}, ingediend op %{appeal_date}, is goedgekeurd. De eerder vastgestelde overtreding is hierbij niet langer geldig.
+      subject: Jouw bezwaar van %{date} is goedgekeurd
+      title: Bezwaar goedgekeurd
+    appeal_rejected:
+      explanation: Het bezwaar tegen een door een moderator vastgestelde overtreding van jou op %{strike_date}, ingediend op %{appeal_date}, is verworpen. De vastgestelde overtreding blijft daarom ongewijzigd.
+      subject: Jouw bezwaar van %{date} is verworpen
+      title: Bezwaar verworpen
     backup_ready:
       explanation: Je hebt een volledige back-up van jouw Mastodon-account opgevraagd. Het staat nu klaar om te worden gedownload!
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     warning:
+      appeal: Bezwaar indienen
+      appeal_description: Wanneer je denkt dat dit een fout is, kun je een bezwaar indienen bij de medewerkers van %{instance}.
       explanation:
         mark_statuses_as_sensitive: Sommige van jouw berichten zijn als gevoelig gemarkeerd door de moderatoren van %{instance}. Dit betekent dat mensen op de media in de berichten moeten klikken/tikken om deze weer te geven. Je kunt media in de toekomst ook zelf als gevoelig markeren.
         sensitive: Vanaf nu worden al jouw geüploade media als gevoelig gemarkeerd en verborgen achter een waarschuwing.
