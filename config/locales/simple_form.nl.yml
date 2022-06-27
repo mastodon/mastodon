@@ -26,6 +26,8 @@ nl:
         scheduled_at: Laat leeg om de mededeling meteen te publiceren
         starts_at: Optioneel. In het geval dat jouw mededeling aan een bepaald tijdvak is gebonden
         text: Je kunt specifieke tekst voor berichten gebruiken. Let op de ruimte die de mededeling op het scherm van de gebruiker inneemt
+      appeal:
+        text: Je kunt maar eenmalig bezwaar indienen tegen een vastgestelde overtreding
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -115,6 +117,8 @@ nl:
         scheduled_at: Mededeling inplannen
         starts_at: Begint
         text: Mededeling
+      appeal:
+        text: Leg uit waarom deze beslissing volgens jou teruggedraaid moet worden
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Avatar
@@ -193,6 +197,7 @@ nl:
           sign_up_requires_approval: Registraties beperken
         severity: Regel
       notification_emails:
+        appeal: Iemand heeft bezwaar ingediend tegen een beslissing van een moderator
         digest: Periodiek e-mails met een samenvatting versturen
         favourite: Wanneer iemand jouw bericht aan diens favorieten heeft toegevoegd
         follow: Wanneer iemand jou is gaan volgen
