@@ -1290,6 +1290,8 @@ sl:
     copy_account_note_text: 'Ta uporabnik se je preselil iz %{acct}, tukaj so vaše poprejšnje opombe o njem:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} je oddal/a prijavo"
       sign_up:
         subject: "%{name} se je vpisal/a"
     digest:
