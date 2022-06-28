@@ -183,7 +183,7 @@ module Mastodon
       deduplicate_tags!
       deduplicate_webauthn_credentials!
 
-      Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false) if ActiveRecord::Migrator.current_version >= 2020_12_06_004238
+      Scenic.database.refresh_materialized_view('instances', concurrently: true, cascade: false) if ActiveRecord::Migrator.current_version >= 2020_12_06_004238 # rubocop:disable Style/NumericLiterals
       Rails.cache.clear
 
       @prompt.say 'Finished!'
@@ -207,7 +207,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring index_accounts_on_username_and_domain_lower…'
-      if ActiveRecord::Migrator.current_version < 20200620164023 # rubocop:disable Style/NumericLiterals
+      if ActiveRecord::Migrator.current_version < 2020_06_20_16_40_23 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :accounts, 'lower (username), lower(domain)', name: 'index_accounts_on_username_and_domain_lower', unique: true
       else
         ActiveRecord::Base.connection.add_index :accounts, "lower (username), COALESCE(lower(domain), '')", name: 'index_accounts_on_username_and_domain_lower', unique: true
@@ -250,7 +250,7 @@ module Mastodon
         end
       end
 
-      if ActiveRecord::Migrator.current_version < 20220118183010 # rubocop:disable Style/NumericLiterals
+      if ActiveRecord::Migrator.current_version < 2022_01_18_18_30_10 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM users WHERE remember_token IS NOT NULL GROUP BY remember_token HAVING count(*) > 1").each do |row|
           users = User.where(id: row['ids'].split(',')).sort_by(&:updated_at).reverse.drop(1)
           @prompt.warn "Unsetting remember token for those accounts: #{users.map(&:account).map(&:acct).join(', ')}"
@@ -273,9 +273,9 @@ module Mastodon
       @prompt.say 'Restoring users indexes…'
       ActiveRecord::Base.connection.add_index :users, ['confirmation_token'], name: 'index_users_on_confirmation_token', unique: true
       ActiveRecord::Base.connection.add_index :users, ['email'], name: 'index_users_on_email', unique: true
-      ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if ActiveRecord::Migrator.current_version < 20220118183010
+      ActiveRecord::Base.connection.add_index :users, ['remember_token'], name: 'index_users_on_remember_token', unique: true if ActiveRecord::Migrator.current_version < 2022_01_18_18_30_10 # rubocop:disable Style/NumericLiterals
 
-      if ActiveRecord::Migrator.current_version < 20220310060641 # rubocop:disable Style/NumericLiterals
+      if ActiveRecord::Migrator.current_version < 2022_03_10_06_06_41 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
       else
         ActiveRecord::Base.connection.add_index :users, ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, where: 'reset_password_token IS NOT NULL', opclass: :text_pattern_ops
@@ -291,7 +291,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring account domain blocks indexes…'
-      ActiveRecord::Base.connection.add_index :account_domain_blocks, ['account_id', 'domain'], name: 'index_account_domain_blocks_on_account_id_and_domain', unique: true
+      ActiveRecord::Base.connection.add_index :account_domain_blocks, %w(account_id domain), name: 'index_account_domain_blocks_on_account_id_and_domain', unique: true
     end
 
     def deduplicate_account_identity_proofs!
@@ -305,7 +305,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring account identity proofs indexes…'
-      ActiveRecord::Base.connection.add_index :account_identity_proofs, ['account_id', 'provider', 'provider_username'], name: 'index_account_proofs_on_account_and_provider_and_username', unique: true
+      ActiveRecord::Base.connection.add_index :account_identity_proofs, %w(account_id provider provider_username), name: 'index_account_proofs_on_account_and_provider_and_username', unique: true
     end
 
     def deduplicate_announcement_reactions!
@@ -319,7 +319,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring announcement_reactions indexes…'
-      ActiveRecord::Base.connection.add_index :announcement_reactions, ['account_id', 'announcement_id', 'name'], name: 'index_announcement_reactions_on_account_id_and_announcement_id', unique: true
+      ActiveRecord::Base.connection.add_index :announcement_reactions, %w(account_id announcement_id name), name: 'index_announcement_reactions_on_account_id_and_announcement_id', unique: true
     end
 
     def deduplicate_conversations!
@@ -338,7 +338,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring conversations indexes…'
-      if ActiveRecord::Migrator.current_version < 20220307083603 # rubocop:disable Style/NumericLiterals
+      if ActiveRecord::Migrator.current_version < 2022_03_07_08_36_03 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true
       else
         ActiveRecord::Base.connection.add_index :conversations, ['uri'], name: 'index_conversations_on_uri', unique: true, where: 'uri IS NOT NULL', opclass: :text_pattern_ops
@@ -361,7 +361,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring custom_emojis indexes…'
-      ActiveRecord::Base.connection.add_index :custom_emojis, ['shortcode', 'domain'], name: 'index_custom_emojis_on_shortcode_and_domain', unique: true
+      ActiveRecord::Base.connection.add_index :custom_emojis, %w(shortcode domain), name: 'index_custom_emojis_on_shortcode_and_domain', unique: true
     end
 
     def deduplicate_custom_emoji_categories!
@@ -488,7 +488,7 @@ module Mastodon
       end
 
       @prompt.say 'Restoring statuses indexes…'
-      if ActiveRecord::Migrator.current_version < 20220310060706 # rubocop:disable Style/NumericLiterals
+      if ActiveRecord::Migrator.current_version < 2022_03_10_06_07_06 # rubocop:disable Style/NumericLiterals
         ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true
       else
         ActiveRecord::Base.connection.add_index :statuses, ['uri'], name: 'index_statuses_on_uri', unique: true, where: 'uri IS NOT NULL', opclass: :text_pattern_ops

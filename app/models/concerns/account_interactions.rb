@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AccountInteractions
+module AccountInteractions # rubocop:disable Metrics/ModuleLength
   extend ActiveSupport::Concern
 
   class_methods do

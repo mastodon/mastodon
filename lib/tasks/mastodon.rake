@@ -399,11 +399,13 @@ namespace :mastodon do
             prompt.say 'Running `RAILS_ENV=production rails assets:precompile` ...'
             prompt.say "\n\n"
 
+            # rubocop:disable Metrics/BlockNesting
             if !system(env.transform_values(&:to_s).merge({ 'RAILS_ENV' => 'production' }), 'rails assets:precompile')
               prompt.error 'That failed! Maybe you need swap space?'
             else
               prompt.say 'Done!'
             end
+            # rubocop:enable Metrics/BlockNesting
           end
         end
 

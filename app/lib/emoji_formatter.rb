@@ -62,7 +62,7 @@ class EmojiFormatter
       end
     end
 
-    result << html[last_index..-1]
+    result << html[last_index..]
 
     result.html_safe # rubocop:disable Rails/OutputSafety
   end

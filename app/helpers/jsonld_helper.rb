@@ -112,7 +112,7 @@ module JsonLdHelper
       if value.is_a?(Hash) && compacted_value.is_a?(Hash)
         patch_for_forwarding!(value, compacted_value)
       elsif value.is_a?(Array)
-        compacted_value = [compacted_value] unless compacted_value.is_a?(Array)
+        compacted_value = [compacted_value] unless compacted_value.is_a?(Array) # rubocop:disable Style/ArrayCoercion
         return if value.size != compacted_value.size
 
         compacted[key] = value.zip(compacted_value).map do |v, vc|
@@ -143,7 +143,7 @@ module JsonLdHelper
   def safe_for_forwarding?(original, compacted)
     original.without('@context', 'signature').all? do |key, value|
       compacted_value = compacted[key]
-      return false unless value.class == compacted_value.class
+      return false unless value.class == compacted_value.class # rubocop:disable Style/ClassEqualityComparison
 
       if value.is_a?(Hash)
         safe_for_forwarding?(value, compacted_value)

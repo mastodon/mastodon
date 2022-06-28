@@ -29,7 +29,7 @@ module Extractor
 
     text.scan(Account::MENTION_RE) do |screen_name, _|
       match_data = $LAST_MATCH_INFO
-      after      = $'
+      after      = Regexp.last_match.post_match
 
       unless Twitter::TwitterText::Regex[:end_mention_match].match?(after)
         _, domain = screen_name.split('@')
@@ -64,7 +64,7 @@ module Extractor
       match_data     = $LAST_MATCH_INFO
       start_position = match_data.char_begin(1) - 1
       end_position   = match_data.char_end(1)
-      after          = $'
+      after          = Regexp.last_match.post_match
 
       if %r{\A://}.match?(after)
         hash_text.match(/(.+)(https?\Z)/) do |matched|

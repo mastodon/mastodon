@@ -7,8 +7,8 @@ class RedisConfiguration
       @pool = ConnectionPool.new(size: new_pool_size) { new.connection }
     end
 
-    def with
-      pool.with { |redis| yield redis }
+    def with(&block)
+      pool.with(&block)
     end
 
     def pool

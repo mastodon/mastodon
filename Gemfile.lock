@@ -305,7 +305,7 @@ GEM
     httplog (1.5.0)
       rack (>= 1.0)
       rainbow (>= 2.0.0)
-    i18n (1.10.0)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     i18n-tasks (1.0.11)
       activesupport (>= 4.0.2)
@@ -396,7 +396,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
-    minitest (5.16.0)
+    minitest (5.16.2)
     msgpack (1.5.2)
     multi_json (1.15.0)
     multipart-post (2.1.1)
@@ -569,7 +569,8 @@ GEM
     rspec-support (3.11.0)
     rspec_junit_formatter (0.5.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.30.1)
+    rubocop (1.31.2)
+      json (~> 2.3)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -578,9 +579,9 @@ GEM
       rubocop-ast (>= 1.18.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.18.0)
+    rubocop-ast (1.19.1)
       parser (>= 3.1.1.0)
-    rubocop-rails (2.15.0)
+    rubocop-rails (2.15.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -678,7 +679,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2)
-    unicode-display_width (2.1.0)
+    unicode-display_width (2.2.0)
     uniform_notifier (1.16.0)
     validate_email (0.1.6)
       activemodel (>= 3.0)
@@ -822,7 +823,7 @@ DEPENDENCIES
   rspec-rails (~> 5.1)
   rspec-sidekiq (~> 3.1)
   rspec_junit_formatter (~> 0.5)
-  rubocop (~> 1.30)
+  rubocop (~> 1.31)
   rubocop-rails (~> 2.15)
   ruby-progressbar (~> 1.11)
   sanitize (~> 6.0)
@@ -848,3 +849,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush (~> 0.3)
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.0.4p208
+
+BUNDLED WITH
+   2.2.33

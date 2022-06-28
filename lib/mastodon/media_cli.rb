@@ -260,7 +260,7 @@ module Mastodon
     def lookup(url)
       path = Addressable::URI.parse(url).path
 
-      path_segments = path.split('/')[2..-1]
+      path_segments = path.split('/')[2..]
       path_segments.delete('cache')
 
       unless [7, 10].include?(path_segments.size)

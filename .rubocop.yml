@@ -2,8 +2,9 @@ require:
   - rubocop-rails
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.6
   NewCops: disable
+  SuggestExtensions: false
   Exclude:
     - 'spec/**/*'
     - 'db/**/*'
@@ -41,6 +42,10 @@ Layout/FirstHashElementIndentation:
 Layout/HashAlignment:
   Enabled: false
 
+Layout/LineLength:
+  AllowURI: true
+  Enabled: false
+
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
@@ -55,6 +60,9 @@ Lint/DuplicateElsifCondition:
 
 Lint/MixedRegexpCaptureTypes:
   Enabled: true
+
+Lint/NonLocalExitFromIterator:
+  Enabled: false
 
 Lint/RaiseException:
   Enabled: true
@@ -93,10 +101,6 @@ Metrics/CyclomaticComplexity:
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
-Layout/LineLength:
-  AllowURI: true
-  Enabled: false
-
 Metrics/MethodLength:
   CountComments: false
   Max: 65
@@ -108,11 +112,14 @@ Metrics/ModuleLength:
   Max: 200
 
 Metrics/ParameterLists:
-  Max: 5
+  Max: 6
   CountKeywordArgs: true
+  MaxOptionalParameters: 4
 
 Metrics/PerceivedComplexity:
   Max: 25
+  Exclude:
+    - 'lib/mastodon/*_cli.rb'
 
 Naming/MemoizedInstanceVariableName:
   Enabled: false
@@ -166,6 +173,10 @@ Rails/InverseOf:
 Rails/LexicallyScopedActionFilter:
   Enabled: false
 
+Rails/Output:
+  Exclude:
+    - 'lib/mastodon/*_cli.rb'
+
 Rails/OutputSafety:
   Enabled: true
 
@@ -203,6 +214,9 @@ Style/CollectionMethods:
   Enabled: true
   PreferredMethods:
     find_all: 'select'
+
+Style/CombinableLoops:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
@@ -253,6 +267,9 @@ Style/Lambda:
   Enabled: false
 
 Style/MutableConstant:
+  Enabled: false
+
+Style/OptionalBooleanParameter:
   Enabled: false
 
 Style/PercentLiteralDelimiters:
@@ -307,3 +324,7 @@ Style/TrailingCommaInHashLiteral:
 
 Style/UnpackFirst:
   Enabled: false
+
+Style/WordArray:
+  Exclude:
+    - 'app/helpers/languages_helper.rb'

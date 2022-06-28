@@ -284,13 +284,6 @@ module Mastodon
     # table - The name of the table.
     # column - The name of the column to update.
     # value - The value for the column.
-    #
-    # Rubocop's Metrics/AbcSize metric is disabled for this method as Rubocop
-    # determines this method to be too complex while there's no way to make it
-    # less "complex" without introducing extra methods (which actually will
-    # make things _more_ complex).
-    #
-    # rubocop: disable Metrics/AbcSize
     def update_column_in_batches(table_name, column, value)
       if transaction_open?
         raise 'update_column_in_batches can not be run inside a transaction, ' \

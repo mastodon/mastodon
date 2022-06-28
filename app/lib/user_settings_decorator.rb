@@ -14,7 +14,7 @@ class UserSettingsDecorator
 
   private
 
-  def process_update
+  def process_update # rubocop:disable Metrics/AbcSize
     user.settings['notification_emails'] = merged_notification_emails if change?('notification_emails')
     user.settings['interactions']        = merged_interactions if change?('interactions')
     user.settings['default_privacy']     = default_privacy_preference if change?('setting_default_privacy')

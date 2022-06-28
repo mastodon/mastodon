@@ -16,6 +16,7 @@
 #
 
 class AccountWarning < ApplicationRecord
+  # rubocop:disable Lint/RedundantCopDisableDirective, Layout/FirstHashElementIndentation
   enum action: {
     none:                       0,
     disable:                    1_000,
@@ -25,6 +26,7 @@ class AccountWarning < ApplicationRecord
     silence:                    3_000,
     suspend:                    4_000,
   }, _suffix: :action
+  # rubocop:enable Lint/RedundantCopDisableDirective, Layout/FirstHashElementIndentation
 
   belongs_to :account, inverse_of: :account_warnings
   belongs_to :target_account, class_name: 'Account', inverse_of: :strikes
