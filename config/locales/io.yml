@@ -1249,6 +1249,8 @@ io:
     copy_account_note_text: 'Ca uzanti transferesis de %{acct}, co esas vua antea noti pri ol:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} sendis raporto"
       sign_up:
         subject: "%{name} registris"
     digest:
