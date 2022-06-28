@@ -67,6 +67,11 @@ da:
         with_dns_records: Et forsøg på at opløse det givne domænes DNS-poster foretages, og resultaterne blokeres ligeledes
       featured_tag:
         name: 'Et af flg. ønskes måske anvendt:'
+      filters:
+        action: Vælg handlingen til eksekvering, når et indlæg matcher filteret
+        actions:
+          hide: Skjul filtreret indhold helt (adfærd som om, det ikke fandtes)
+          warn: Skjul filtreret indhold bag en advarsel, der nævner filterets titel
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
       imports:
@@ -180,6 +185,7 @@ da:
         setting_use_pending_items: Langsom tilstand
         severity: Alvorlighed
         sign_in_token_attempt: Sikkerhedskode
+        title: Titel
         type: Importtype
         username: Brugernavn
         username_or_email: Brugernavn eller e-mail
@@ -188,6 +194,10 @@ da:
         with_dns_records: Inkludér domænets MX-poster og IP'er
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Skjul helt
+          warn: Skjul bag en advarsel
       interactions:
         must_be_follower: Blokér notifikationer fra ikke-følgere
         must_be_following: Blokér notifikationer fra folk, som ikke følges
