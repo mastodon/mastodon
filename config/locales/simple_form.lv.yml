@@ -67,6 +67,11 @@ lv:
         with_dns_records: Tiks mēģināts atrisināt dotā domēna DNS ierakstus, un rezultāti arī tiks bloķēti
       featured_tag:
         name: 'Iespējams, vēlēsies izmantot kādu no šīm:'
+      filters:
+        action: Izvēlies, kuru darbību veikt, ja ziņa atbilst filtram
+        actions:
+          hide: Paslēp filtrēto saturu pilnībā, izturoties tā, it kā tas neeksistētu
+          warn: Paslēp filtrēto saturu aiz brīdinājuma, kurā minēts filtra nosaukums
       form_challenge:
         current_password: Tu ieej drošā zonā
       imports:
@@ -180,6 +185,7 @@ lv:
         setting_use_pending_items: Lēnais režīms
         severity: Smagums
         sign_in_token_attempt: Drošības kods
+        title: Virsraksts
         type: Importa veids
         username: Lietotājvārds
         username_or_email: Lietotājvārds vai e-pasts
@@ -188,6 +194,10 @@ lv:
         with_dns_records: Ietvert domēna MX ierakstus un IP adreses
       featured_tag:
         name: Tēmturis
+      filters:
+        actions:
+          hide: Paslēpt pilnībā
+          warn: Paslēpt ar brīdinājumu
       interactions:
         must_be_follower: Bloķēt paziņojumus no ne-sekotājiem
         must_be_following: Bloķēt paziņojumus no cilvēkiem, kuriem tu neseko
