@@ -1123,14 +1123,24 @@ da:
       public: Offentlig tidslinje
       thread: Konversationer
     edit:
+      add_keyword: Tilføj nøgleord
+      keywords: Nøgleord
       title: Redigere filter
     errors:
+      deprecated_api_multiple_keywords: Disse parametre kan ikke ændres fra denne applikation, da de gælder for flere end ét filternøgleord. Brug en nyere applikation eller webgrænsefladen.
       invalid_context: Ingen eller ugyldig kontekst angivet
     index:
+      contexts: Filtre i %{contexts}
       delete: Slet
       empty: Du har ingen filtre.
+      expires_in: Udløber om %{distance}
+      expires_on: Udløber om %{date}
+      keywords:
+        one: "%{count} nøgleord"
+        other: "%{count} nøgleord"
       title: Filtre
     new:
+      save: Gem nye filter
       title: Tilføj nyt filter
   footer:
     developers: Udviklere
