@@ -67,6 +67,11 @@ hu:
         with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
       featured_tag:
         name: 'Ezeket esetleg használhatod:'
+      filters:
+        action: A végrehajtandó műveletet, ha a bejegyzés megfelel a szűrőnek
+        actions:
+          hide: A szűrt tartalom teljes elrejtése, mintha nem is létezne
+          warn: A szűrt tartalom a szűrő címét említő figyelmeztetés mögé rejtése
       form_challenge:
         current_password: Beléptél egy biztonsági térben
       imports:
@@ -180,6 +185,7 @@ hu:
         setting_use_pending_items: Lassú mód
         severity: Súlyosság
         sign_in_token_attempt: Biztonsági kód
+        title: Cím
         type: Importálás típusa
         username: Felhasználónév
         username_or_email: Felhasználónév vagy e-mail cím
@@ -188,6 +194,10 @@ hu:
         with_dns_records: Domain MX rekordjainak és IP-címeinek hozzávétele
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Teljes elrejtés
+          warn: Elrejtés figyelmeztetéssel
       interactions:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása
