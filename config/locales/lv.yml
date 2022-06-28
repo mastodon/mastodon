@@ -1148,10 +1148,18 @@ lv:
       deprecated_api_multiple_keywords: Šos parametrus šajā lietojumprogrammā nevar mainīt, jo tie attiecas uz vairāk nekā vienu filtra atslēgvārdu. Izmanto jaunāku lietojumprogrammu vai tīmekļa saskarni.
       invalid_context: Nav, vai piegādāts nederīgs konteksts
     index:
+      contexts: Filtri %{contexts}
       delete: Dzēst
       empty: Tev nav filtru.
+      expires_in: Beidzas %{distance}
+      expires_on: Beidzas %{date}
+      keywords:
+        zero: "%{count} atslēgvārdu"
+        one: "%{count} atsēgvārds"
+        other: "%{count} atslēgvārdi"
       title: Filtri
     new:
+      save: Saglabāt jauno filtru
       title: Pievienot jaunu filtru
   footer:
     developers: Izstrādātāji
