@@ -1249,6 +1249,8 @@ gl:
     copy_account_note_text: 'Esta usuaria chegou desde %{acct}, aquí están as túas notas previas acerca dela:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} enviou unha denuncia"
       sign_up:
         subject: "%{name} rexistrouse"
     digest:
