@@ -451,9 +451,15 @@ Rails.application.routes.draw do
       resources :bookmarks,    only: [:index]
       resources :reports,      only: [:create]
       resources :trends,       only: [:index], controller: 'trends/tags'
-      resources :filters,      only: [:index, :create, :show, :update, :destroy]
+      resources :filters,      only: [:index, :create, :show, :update, :destroy] do
+        resources :keywords, only: [:index, :create], controller: 'filters/keywords'
+      end
       resources :endorsements, only: [:index]
       resources :markers,      only: [:index, :create]
+
+      namespace :filters do
+        resources :keywords, only: [:show, :update, :destroy]
+      end
 
       namespace :apps do
         get :verify_credentials, to: 'credentials#show'
@@ -589,6 +595,7 @@ Rails.application.routes.draw do
       resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
       resources :suggestions, only: [:index]
+      resources :filters,     only: [:index, :create, :show, :update, :destroy]
 
       namespace :admin do
         resources :accounts, only: [:index]

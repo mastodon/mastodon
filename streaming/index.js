@@ -12,6 +12,7 @@ const url = require('url');
 const uuid = require('uuid');
 const fs = require('fs');
 const WebSocket = require('ws');
+const { JSDOM } = require('jsdom');
 
 const env = process.env.NODE_ENV || 'development';
 const alwaysRequireAuth = process.env.LIMITED_FEDERATION_MODE === 'true' || process.env.WHITELIST_MODE === 'true' || process.env.AUTHORIZED_FETCH === 'true';
@@ -503,6 +504,9 @@ const startWorker = async (workerId) => {
       if (event === 'kill') {
         log.verbose(req.requestId, `Closing connection for ${req.accountId} due to expired access token`);
         eventHandlers.onKill();
+      } else if (event === 'filters_changed') {
+        log.verbose(req.requestId, `Invalidating filters cache for ${req.accountId}`);
+        req.cachedFilters = null;
       }
     };
   };
@@ -512,7 +516,8 @@ const startWorker = async (workerId) => {
    * @param {any} res
    */
   const subscribeHttpToSystemChannel = (req, res) => {
-    const systemChannelId = `timeline:access_token:${req.accessTokenId}`;
+    const accessTokenChannelId = `timeline:access_token:${req.accessTokenId}`;
+    const systemChannelId = `timeline:system:${req.accountId}`;
 
     const listener = createSystemMessageListener(req, {
 
@@ -523,9 +528,11 @@ const startWorker = async (workerId) => {
     });
 
     res.on('close', () => {
+      unsubscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
       unsubscribe(`${redisPrefix}${systemChannelId}`, listener);
     });
 
+    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
     subscribe(`${redisPrefix}${systemChannelId}`, listener);
   };
 
@@ -674,17 +681,84 @@ const startWorker = async (workerId) => {
           queries.push(client.query('SELECT 1 FROM account_domain_blocks WHERE account_id = $1 AND domain = $2', [req.accountId, accountDomain]));
         }
 
+        if (!unpackedPayload.filter_results && !req.cachedFilters) {
+          queries.push(client.query('SELECT filter.id AS id, filter.phrase AS title, filter.context AS context, filter.expires_at AS expires_at, filter.action AS filter_action, keyword.keyword AS keyword, keyword.whole_word AS whole_word FROM custom_filter_keywords keyword JOIN custom_filters filter ON keyword.custom_filter_id = filter.id WHERE filter.account_id = $1 AND filter.expires_at IS NULL OR filter.expires_at > NOW()', [req.accountId]));
+        }
+
         Promise.all(queries).then(values => {
           done();
 
-          if (values[0].rows.length > 0 || (values.length > 1 && values[1].rows.length > 0)) {
+          if (values[0].rows.length > 0 || (accountDomain && values[1].rows.length > 0)) {
             return;
+          }
+
+          if (!unpackedPayload.filter_results && !req.cachedFilters) {
+            const filterRows = values[accountDomain ? 2 : 1].rows;
+
+            req.cachedFilters = filterRows.reduce((cache, row) => {
+              if (cache[row.id]) {
+                cache[row.id].keywords.push([row.keyword, row.whole_word]);
+              } else {
+                cache[row.id] = {
+                  keywords: [[row.keyword, row.whole_word]],
+                  expires_at: row.expires_at,
+                  repr: {
+                    id: row.id,
+                    title: row.title,
+                    context: row.context,
+                    expires_at: row.expires_at,
+                    filter_action: row.filter_action,
+                  },
+                };
+              }
+
+              return cache;
+            }, {});
+
+            Object.keys(req.cachedFilters).forEach((key) => {
+              req.cachedFilters[key].regexp = new RegExp(req.cachedFilters[key].keywords.map(([keyword, whole_word]) => {
+                let expr = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');;
+
+                if (whole_word) {
+                  if (/^[\w]/.test(expr)) {
+                    expr = `\\b${expr}`;
+                  }
+
+                  if (/[\w]$/.test(expr)) {
+                    expr = `${expr}\\b`;
+                  }
+                }
+
+                return expr;
+              }).join('|'), 'i');
+            });
+          }
+
+          // Check filters
+          if (req.cachedFilters && !unpackedPayload.filter_results) {
+            const status = unpackedPayload;
+            const searchContent = ([status.spoiler_text || '', status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
+            const searchIndex = JSDOM.fragment(searchContent).textContent;
+
+            const now = new Date();
+            payload.filter_results = [];
+            Object.values(req.cachedFilters).forEach((cachedFilter) => {
+              if ((cachedFilter.expires_at === null || cachedFilter.expires_at > now)) {
+                const keyword_matches = searchIndex.match(cachedFilter.regexp);
+                if (keyword_matches) {
+                  payload.filter_results.push({
+                    filter: cachedFilter.repr,
+                    keyword_matches,
+                  });
+                }
+              }
+            });
           }
 
           transmit();
         }).catch(err => {
-          done();
           log.error(err);
+          done();
         });
       });
     };
@@ -1009,7 +1083,8 @@ const startWorker = async (workerId) => {
    * @param {WebSocketSession} session
    */
   const subscribeWebsocketToSystemChannel = ({ socket, request, subscriptions }) => {
-    const systemChannelId = `timeline:access_token:${request.accessTokenId}`;
+    const accessTokenChannelId = `timeline:access_token:${request.accessTokenId}`;
+    const systemChannelId = `timeline:system:${request.accountId}`;
 
     const listener = createSystemMessageListener(request, {
 
@@ -1019,7 +1094,14 @@ const startWorker = async (workerId) => {
 
     });
 
+    subscribe(`${redisPrefix}${accessTokenChannelId}`, listener);
     subscribe(`${redisPrefix}${systemChannelId}`, listener);
+
+    subscriptions[accessTokenChannelId] = {
+      listener,
+      stopHeartbeat: () => {
+      },
+    };
 
     subscriptions[systemChannelId] = {
       listener,

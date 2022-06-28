@@ -38,6 +38,7 @@ const messages = defineMessages({
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
   copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
+  hide: { id: 'status.hide', defaultMessage: 'Hide toot' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Block domain {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
@@ -76,6 +77,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
     onBookmark: PropTypes.func,
+    onFilter: PropTypes.func,
     withDismiss: PropTypes.bool,
     withCounters: PropTypes.bool,
     scrollKey: PropTypes.string,
@@ -207,6 +209,10 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onMuteConversation(this.props.status);
   }
 
+  handleFilter = () => {
+    this.props.onFilter();
+  }
+
   handleCopy = () => {
     const url      = this.props.status.get('url');
     const textarea = document.createElement('textarea');
@@ -224,6 +230,11 @@ class StatusActionBar extends ImmutablePureComponent {
     } finally {
       document.body.removeChild(textarea);
     }
+  }
+
+
+  handleFilterClick = () => {
+    this.props.onFilter();
   }
 
   render () {
@@ -329,6 +340,10 @@ class StatusActionBar extends ImmutablePureComponent {
       <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
     );
 
+    const filterButton = this.props.onFilter && (
+      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleFilterClick} />
+    );
+
     return (
       <div className='status__action-bar'>
         <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
@@ -336,6 +351,8 @@ class StatusActionBar extends ImmutablePureComponent {
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
 
         {shareButton}
+
+        {filterButton}
 
         <div className='status__action-bar-dropdown'>
           <DropdownMenuContainer

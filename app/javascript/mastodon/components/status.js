@@ -116,6 +116,7 @@ class Status extends ImmutablePureComponent {
   state = {
     showMedia: defaultMediaVisibility(this.props.status),
     statusId: undefined,
+    forceFilter: undefined,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -277,6 +278,15 @@ class Status extends ImmutablePureComponent {
     this.handleToggleMediaVisibility();
   }
 
+  handleUnfilterClick = e => {
+    this.setState({ forceFilter: false });
+    e.preventDefault();
+  }
+
+  handleFilterClick = () => {
+    this.setState({ forceFilter: true });
+  }
+
   _properStatus () {
     const { status } = this.props;
 
@@ -328,7 +338,8 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if (status.get('filtered') || status.getIn(['reblog', 'filtered'])) {
+    const matchedFilters = status.get('filtered') || status.getIn(['reblog', 'filtered']);
+    if (this.state.forceFilter === undefined ? matchedFilters : this.state.forceFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
@@ -337,7 +348,11 @@ class Status extends ImmutablePureComponent {
       return (
         <HotKeys handlers={minHandlers}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
-            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
+            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
+            {' '}
+            <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
+              <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
+            </button>
           </div>
         </HotKeys>
       );
@@ -496,7 +511,7 @@ class Status extends ImmutablePureComponent {
 
             {media}
 
-            <StatusActionBar scrollKey={scrollKey} status={status} account={account} {...other} />
+            <StatusActionBar scrollKey={scrollKey} status={status} account={account} onFilter={matchedFilters && this.handleFilterClick} {...other} />
           </div>
         </div>
       </HotKeys>
