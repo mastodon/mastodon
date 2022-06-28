@@ -517,7 +517,7 @@ const startWorker = async (workerId) => {
    */
   const subscribeHttpToSystemChannel = (req, res) => {
     const accessTokenChannelId = `timeline:access_token:${req.accessTokenId}`;
-    const systemChannelId = `timeline:token:${req.accountId}`;
+    const systemChannelId = `timeline:system:${req.accountId}`;
 
     const listener = createSystemMessageListener(req, {
 
