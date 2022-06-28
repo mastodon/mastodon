@@ -1105,14 +1105,23 @@ ko:
       public: 퍼블릭 타임라인
       thread: 대화
     edit:
+      add_keyword: 키워드 추가
+      keywords: 키워드
       title: 필터 편집
     errors:
+      deprecated_api_multiple_keywords: 이 파라미터들은 하나를 초과하는 필터 키워드에 적용되기 때문에 이 응용프로그램에서 수정될 수 없습니다. 더 최신의 응용프로그램이나 웹 인터페이스를 사용하세요.
       invalid_context: 컨텍스트가 없거나 올바르지 않습니다
     index:
+      contexts: '%{contexts}에 대한 필터'
       delete: 삭제
       empty: 필터가 없습니다.
+      expires_in: '%{distance} 안에 만료됨'
+      expires_on: '%{date}에 만료됨'
+      keywords:
+        other: "%{count}개의 키워드"
       title: 필터
     new:
+      save: 새 필터 저장
       title: 필터 추가
   footer:
     developers: 개발자
