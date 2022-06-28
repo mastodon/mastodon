@@ -8,7 +8,7 @@ class Api::V1::FiltersController < Api::BaseController
   before_action :set_filter, only: [:show, :update, :destroy]
 
   def index
-    render json: @filters, each_serializer: REST::LegacyFilterSerializer
+    render json: @filters, each_serializer: REST::V1::FilterSerializer
   end
 
   def create
@@ -17,11 +17,11 @@ class Api::V1::FiltersController < Api::BaseController
       @filter = filter_category.keywords.create!(keyword_params)
     end
 
-    render json: @filter, serializer: REST::LegacyFilterSerializer
+    render json: @filter, serializer: REST::V1::FilterSerializer
   end
 
   def show
-    render json: @filter, serializer: REST::LegacyFilterSerializer
+    render json: @filter, serializer: REST::V1::FilterSerializer
   end
 
   def update
@@ -33,7 +33,7 @@ class Api::V1::FiltersController < Api::BaseController
       @filter.custom_filter.save!
     end
 
-    render json: @filter, serializer: REST::LegacyFilterSerializer
+    render json: @filter, serializer: REST::V1::FilterSerializer
   end
 
   def destroy
