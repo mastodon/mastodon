@@ -1129,6 +1129,7 @@ fr:
       deprecated_api_multiple_keywords: Ces paramètres ne peuvent pas être modifiés depuis cette application, car ils s'appliquent à plus d'un filtre de mot-clé. Utilisez une application plus récente ou l'interface web.
       invalid_context: Contexte invalide ou insuffisant
     index:
+      contexts: Filtres dans %{contexts}
       delete: Supprimer
       empty: Vous n'avez aucun filtre.
       expires_in: Expire dans %{distance}
@@ -1257,6 +1258,8 @@ fr:
     copy_account_note_text: 'Cet·te utilisateur·rice est parti·e de %{acct}, voici vos notes précédentes à son sujet :'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} a soumis un signalement"
       sign_up:
         subject: "%{name} s'est inscrit·e"
     digest:
