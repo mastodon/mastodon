@@ -1,4 +1,3 @@
----
 es-MX:
   simple_form:
     hints:
@@ -91,6 +90,9 @@ es-MX:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando se marca, solo se mostrarán los toots en los idiomas seleccionados en los timelines públicos
+      webhook:
+        events: Seleccionar eventos para enviar
+        url: Donde los eventos serán enviados
     labels:
       account:
         fields:
@@ -193,7 +195,7 @@ es-MX:
       invite:
         comment: Comentar
       invite_request:
-        text: "¿Por qué quiere unirse usted?"
+        text: '¿Por qué quiere unirse usted?'
       ip_block:
         comment: Comentario
         ip: IP
@@ -219,6 +221,9 @@ es-MX:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a los toots usar esta etiqueta
+      webhook:
+        events: Eventos habilitados
+        url: URL de Endpoint
     'no': 'No'
     recommended: Recomendado
     required:
@@ -227,4 +232,4 @@ es-MX:
     title:
       sessions:
         webauthn: Utilice una de sus claves de seguridad para iniciar sesión
-    'yes': Sí
+    'yes': 'Sí'
