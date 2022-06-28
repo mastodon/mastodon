@@ -1105,14 +1105,23 @@ zh-TW:
       public: 公開時間軸
       thread: 會話
     edit:
+      add_keyword: 新增關鍵字
+      keywords: 關鍵字
       title: 編輯篩選條件
     errors:
+      deprecated_api_multiple_keywords: 這些參數無法從此應用程式中更改，因為它們適用於一或多個過濾器關鍵字。請使用較新的應用程式或是網頁介面。
       invalid_context: 沒有提供內文或內文無效
     index:
+      contexts: '%{contexts} 中的過濾器'
       delete: 刪除
       empty: 您沒有過濾器。
+      expires_in: 於 %{distance} 過期
+      expires_on: 於 %{date} 過期
+      keywords:
+        other: "%{count} 個關鍵字"
       title: 過濾器
     new:
+      save: 儲存新過濾器
       title: 新增篩選器
   footer:
     developers: 開發者
