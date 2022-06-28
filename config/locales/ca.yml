@@ -1123,14 +1123,24 @@ ca:
       public: Línies de temps públiques
       thread: Converses
     edit:
+      add_keyword: Afegeix paraula clau
+      keywords: Paraules clau
       title: Editar filtre
     errors:
+      deprecated_api_multiple_keywords: Aquests parametres no poden ser canviats des d'aquesta aplicació perque apliquen a més d'un filtre per paraula clau. Utilitza una aplicació més recent o l'interfície web.
       invalid_context: Cap o el context proporcionat no és vàlid
     index:
+      contexts: Filtres en %{contexts}
       delete: Esborra
       empty: No hi tens cap filtre.
+      expires_in: Expira en %{distance}
+      expires_on: Expira el %{date}
+      keywords:
+        one: "%{count} paraula clau"
+        other: "%{count} paraules clau"
       title: Filtres
     new:
+      save: Desa el nou filtre
       title: Afegir un nou filtre
   footer:
     developers: Desenvolupadors
