@@ -1133,14 +1133,26 @@ uk:
       public: Глобальні стрічки
       thread: Повідомлення
     edit:
+      add_keyword: Додати ключове слово
+      keywords: Ключові слова
       title: Редагувати фільтр
     errors:
+      deprecated_api_multiple_keywords: Ці параметри не можна змінити з цього застосунку, тому що вони застосовуються до більш ніж одного ключового слова. Використовуйте новішу версію застосунку або вебінтерфейс.
       invalid_context: Контекст неправильний або не був наданий
     index:
+      contexts: Фільтри в %{contexts}
       delete: Видалити
       empty: У вас немає фільтрів.
+      expires_in: Закінчується %{distance}
+      expires_on: Закінчується %{date}
+      keywords:
+        one: "%{count} ключове слово"
+        few: "%{count} ключові слова"
+        many: "%{count} ключових слів"
+        other: "%{count} ключових слів"
       title: Фільтри
     new:
+      save: Зберегти новий фільтр
       title: Додати фільтр
   footer:
     developers: Розробникам
