@@ -67,6 +67,11 @@ tr:
         with_dns_records: Belirli bir alanın DNS kayıtlarını çözmeyi deneyecek ve sonuçlar kara listeye eklenecek
       featured_tag:
         name: 'Bunlardan birini kullanmak isteyebilirsiniz:'
+      filters:
+        action: Bir gönderi filtreyle eşleştiğinde hangi eylemin yapılacağını seçin
+        actions:
+          hide: Filtrelenmiş içeriği tamamen gizle, sanki varolmamış gibi
+          warn: Filtrelenmiş içeriği, filtrenin başlığından söz eden bir uyarının arkasında gizle
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -180,6 +185,7 @@ tr:
         setting_use_pending_items: Yavaş mod
         severity: Önem derecesi
         sign_in_token_attempt: Güvenlik kodu
+        title: Başlık
         type: İçeri aktarma türü
         username: Kullanıcı adı
         username_or_email: Kullanıcı adı ya da e-posta
@@ -188,6 +194,10 @@ tr:
         with_dns_records: Alan adının MX kayıtlarını ve IP'lerini ekleyin
       featured_tag:
         name: Etiket
+      filters:
+        actions:
+          hide: Tamamen gizle
+          warn: Uyarıyla gizle
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
