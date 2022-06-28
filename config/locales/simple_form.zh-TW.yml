@@ -67,6 +67,11 @@ zh-TW:
         with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，解析結果一致者將一併封鎖
       featured_tag:
         name: '您可能想使用其中一個：'
+      filters:
+        action: 請選擇當嘟文符合該過濾器時將被執行之動作
+        actions:
+          hide: 完全隱藏過濾內容，當作它似乎不曾存在過
+          warn: 隱藏過濾內容於過濾器標題之警告後
       form_challenge:
         current_password: 您正要進入安全區域
       imports:
@@ -180,6 +185,7 @@ zh-TW:
         setting_use_pending_items: 限速模式
         severity: 優先級
         sign_in_token_attempt: 安全代碼
+        title: 標題
         type: 匯入類型
         username: 使用者名稱
         username_or_email: 使用者名稱或電子信箱地址
@@ -188,6 +194,10 @@ zh-TW:
         with_dns_records: 包括網域的 MX 記錄和 IP 位址
       featured_tag:
         name: '「#」標籤'
+      filters:
+        actions:
+          hide: 完全隱藏
+          warn: 隱藏於警告之後
       interactions:
         must_be_follower: 封鎖非跟隨者的通知
         must_be_following: 封鎖您未跟隨之使用者的通知
