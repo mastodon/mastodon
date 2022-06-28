@@ -1103,14 +1103,26 @@ ru:
       public: Публичные ленты
       thread: Диалоги
     edit:
+      add_keyword: Добавить ключевое слово
+      keywords: Ключевые слова
       title: Изменить фильтр
     errors:
+      deprecated_api_multiple_keywords: Эти параметры нельзя изменить из этого приложения, так как применяются к более чем одному ключевому слову фильтра. Используйте более последнее приложение или веб-интерфейс.
       invalid_context: Некорректный контекст или ничего
     index:
+      contexts: Фильтры по %{contexts}
       delete: Удалить
       empty: У вас пока нет фильтров.
+      expires_in: Истекает через %{distance}
+      expires_on: Истекает %{date}
+      keywords:
+        one: "%{count} ключевое слово"
+        few: "%{count} ключевых слова"
+        many: "%{count} ключевых слов"
+        other: "%{count} ключевых слов"
       title: Фильтры
     new:
+      save: Сохранить новый фильтр
       title: Добавить фильтр
   footer:
     developers: Разработчикам
