@@ -1123,14 +1123,24 @@ es-AR:
       public: Líneas temporales públicas
       thread: Conversaciones
     edit:
+      add_keyword: Agregar palabra clave
+      keywords: Palabras clave
       title: Editar filtro
     errors:
+      deprecated_api_multiple_keywords: Estos parámetros no se pueden cambiar de esta aplicación porque se aplican a más de una palabra clave de filtro. Usá una aplicación más reciente o la interface web.
       invalid_context: Se suministró un contexto no válido o vacío
     index:
+      contexts: Filtros en %{contexts}
       delete: Eliminar
       empty: No tenés filtros.
+      expires_in: Caduca en %{distance}
+      expires_on: Caduca en %{date}
+      keywords:
+        one: "%{count} palabra clave"
+        other: "%{count} palabras clave"
       title: Filtros
     new:
+      save: Guardar nuevo filtro
       title: Agregar nuevo filtro
   footer:
     developers: Desarrolladores
