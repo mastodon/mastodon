@@ -12,10 +12,8 @@ import { saveSettings } from './settings';
 import { defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
 import { unescapeHTML } from 'flavours/glitch/util/html';
-import { getFiltersRegex } from 'flavours/glitch/selectors';
 import { usePendingItems as preferPendingItems } from 'flavours/glitch/util/initial_state';
 import compareId from 'flavours/glitch/util/compare_id';
-import { searchTextFromRawStatus } from 'flavours/glitch/actions/importer/normalizer';
 import { requestNotificationPermission } from 'flavours/glitch/util/notifications';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
@@ -74,20 +72,17 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
     const showInColumn = activeFilter === 'all' ? getState().getIn(['settings', 'notifications', 'shows', notification.type], true) : activeFilter === notification.type;
     const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
     const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
-    const filters      = getFiltersRegex(getState(), { contextType: 'notifications' });
 
     let filtered = false;
 
-    if (['mention', 'status'].includes(notification.type)) {
-      const dropRegex   = filters[0];
-      const regex       = filters[1];
-      const searchIndex = searchTextFromRawStatus(notification.status);
+    if (['mention', 'status'].includes(notification.type) && notification.status.filtered) {
+      const filters = notification.status.filtered.filter(result => result.filter.context.includes('notifications'));
 
-      if (dropRegex && dropRegex.test(searchIndex)) {
+      if (filters.some(result => result.filter.filter_action === 'hide')) {
         return;
       }
 
-      filtered = regex && regex.test(searchIndex);
+      filtered = filters.length > 0;
     }
 
     if (['follow_request'].includes(notification.type)) {
