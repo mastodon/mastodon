@@ -67,6 +67,11 @@ es-AR:
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también bloqueados
       featured_tag:
         name: 'Puede que quieras usar una de estas:'
+      filters:
+        action: Elegir qué acción realizar cuando un mensaje coincide con el filtro
+        actions:
+          hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
+          warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_challenge:
         current_password: Estás ingresando en un área segura
       imports:
@@ -180,6 +185,7 @@ es-AR:
         setting_use_pending_items: Modo lento
         severity: Severidad
         sign_in_token_attempt: Código de seguridad
+        title: Título
         type: Tipo de importación
         username: Nombre de usuario
         username_or_email: Nombre de usuario o correo electrónico
@@ -188,6 +194,10 @@ es-AR:
         with_dns_records: Incluir los registros MX y las direcciones IP del dominio
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Ocultar completamente
+          warn: Ocultar con una advertencia
       interactions:
         must_be_follower: Bloquear notificaciones de cuentas que no te siguen
         must_be_following: Bloquear notificaciones de cuentas que no seguís
