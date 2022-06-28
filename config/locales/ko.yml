@@ -1230,6 +1230,8 @@ ko:
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} 님이 신고를 제출했습니다"
       sign_up:
         subject: "%{name} 님이 가입했습니다"
     digest:
