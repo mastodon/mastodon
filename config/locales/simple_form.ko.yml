@@ -67,6 +67,11 @@ ko:
         with_dns_records: 입력한 도메인의 DNS를 조회를 시도하여 나온 값도 차단됩니다
       featured_tag:
         name: '이것들을 사용하면 좋을 것 같습니다:'
+      filters:
+        action: 게시물이 필터에 걸러질 때 어떤 동작을 수행할 지 고르세요
+        actions:
+          hide: 필터에 걸러진 글을 처음부터 없었던 것처럼 완전히 가리기
+          warn: 필터에 걸러진 글을 필터 제목과 함께 경고 뒤에 가리기
       form_challenge:
         current_password: 당신은 보안 구역에 진입하고 있습니다
       imports:
@@ -180,6 +185,7 @@ ko:
         setting_use_pending_items: 느린 모드
         severity: 심각도
         sign_in_token_attempt: 보안 코드
+        title: 제목
         type: 불러오기 종류
         username: 사용자명
         username_or_email: 사용자명 또는 이메일
@@ -188,6 +194,10 @@ ko:
         with_dns_records: 도메인의 IP와 MX 레코드 값을 포함
       featured_tag:
         name: 해시태그
+      filters:
+        actions:
+          hide: 완전히 숨기기
+          warn: 경고와 함께 숨기기
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
