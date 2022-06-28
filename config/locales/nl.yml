@@ -936,14 +936,24 @@ nl:
       public: Openbare tijdlijnen
       thread: Gesprekken
     edit:
+      add_keyword: Trefwoord toevoegen
+      keywords: Trefwoorden
       title: Filter bewerken
     errors:
+      deprecated_api_multiple_keywords: Deze instellingen kunnen niet via deze applicatie worden veranderd, omdat er meer dan één trefwoord wordt gebruikt. Gebruik een meer recente applicatie of de webomgeving.
       invalid_context: Geen of ongeldige context verstrekt
     index:
+      contexts: Filters in %{contexts}
       delete: Verwijderen
       empty: Je hebt geen filters aangemaakt.
+      expires_in: Vervalt na %{distance}
+      expires_on: Vervalt op %{date}
+      keywords:
+        one: "%{count} trefwoord"
+        other: "%{count} trefwoorden"
       title: Filters
     new:
+      save: Nieuwe filter opslaan
       title: Nieuw filter toevoegen
   footer:
     developers: Ontwikkelaars
@@ -1050,6 +1060,9 @@ nl:
     carry_mutes_over_text: Deze gebruiker is verhuisd vanaf %{acct}. Je hebt dat account genegeerd.
     copy_account_note_text: 'Deze gebruiker is verhuisd vanaf %{acct}. Je hebt de volgende opmerkingen over dat account gemaakt:'
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} heeft een rapportage ingediend"
     digest:
       action: Alle meldingen bekijken
       body: Hier is een korte samenvatting van de berichten die je sinds jouw laatste bezoek op %{since} hebt gemist
