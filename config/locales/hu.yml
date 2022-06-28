@@ -1123,14 +1123,24 @@ hu:
       public: Nyilvános idővonalak
       thread: Beszélgetések
     edit:
+      add_keyword: Kulcsszó hozzáadása
+      keywords: Kulcsszavak
       title: Szűrő szerkesztése
     errors:
+      deprecated_api_multiple_keywords: Ezek a paraméterek nem módosíthatóak az alkalmazásból, mert több mint egy szűrőkulcsszóra is hatással vannak. Használd az alkalmazás vagy a webes felület újabb verzióját.
       invalid_context: A megadott kontextus hamis vagy hiányzik
     index:
+      contexts: 'Szűrés helye: %{contexts}'
       delete: Törlés
       empty: Nincs szűrés.
+      expires_in: 'Ennyi idő múlva jár le: %{distance}'
+      expires_on: 'Lejárat ideje: %{date}'
+      keywords:
+        one: "%{count} kulcsszó"
+        other: "%{count} kulcsszó"
       title: Szűrők
     new:
+      save: Új szűrő mentése
       title: Új szűrő hozzáadása
   footer:
     developers: Fejlesztőknek
