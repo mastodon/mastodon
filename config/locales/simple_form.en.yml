@@ -68,6 +68,11 @@ en:
         with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
       featured_tag:
         name: 'You might want to use one of these:'
+      filters:
+        action: Chose which action to perform when a post matches the filter
+        actions:
+          hide: Completely hide the filtered content, behaving as if it did not exist
+          warn: Hide the filtered content behind a warning mentioning the filter's title
       form_challenge:
         current_password: You are entering a secure area
       imports:
@@ -181,6 +186,7 @@ en:
         setting_use_pending_items: Slow mode
         severity: Severity
         sign_in_token_attempt: Security code
+        title: Title
         type: Import type
         username: Username
         username_or_email: Username or Email
@@ -189,6 +195,10 @@ en:
         with_dns_records: Include MX records and IPs of the domain
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Hide completely
+          warn: Hide with a warning
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow

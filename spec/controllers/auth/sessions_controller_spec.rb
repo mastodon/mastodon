@@ -119,6 +119,32 @@ RSpec.describe Auth::SessionsController, type: :controller do
         end
       end
 
+      context 'using a valid password on a previously-used account with a new IP address' do
+        let(:previous_ip) { '1.2.3.4' }
+        let(:current_ip)  { '4.3.2.1' }
+
+        let!(:previous_login) { Fabricate(:login_activity, user: user, ip: previous_ip) }
+
+        before do
+          allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return(current_ip)
+          allow(UserMailer).to receive(:suspicious_sign_in).and_return(double('email', 'deliver_later!': nil))
+          user.update(current_sign_in_at: 1.month.ago)
+          post :create, params: { user: { email: user.email, password: user.password } }
+        end
+
+        it 'redirects to home' do
+          expect(response).to redirect_to(root_path)
+        end
+
+        it 'logs the user in' do
+          expect(controller.current_user).to eq user
+        end
+
+        it 'sends a suspicious sign-in mail' do
+          expect(UserMailer).to have_received(:suspicious_sign_in).with(user, current_ip, anything, anything)
+        end
+      end
+
       context 'using email with uppercase letters' do
         before do
           post :create, params: { user: { email: user.email.upcase, password: user.password } }

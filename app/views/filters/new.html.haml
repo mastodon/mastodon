@@ -2,7 +2,7 @@
   = t('filters.new.title')
 
 = simple_form_for @filter, url: filters_path do |f|
-  = render 'fields', f: f
+  = render 'filter_fields', f: f
 
   .actions
-    = f.button :button, t('filters.new.title'), type: :submit
+    = f.button :button, t('filters.new.save'), type: :submit

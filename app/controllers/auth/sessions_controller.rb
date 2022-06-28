@@ -8,11 +8,17 @@ class Auth::SessionsController < Devise::SessionsController
   skip_before_action :update_user_sign_in
 
   prepend_before_action :set_pack
+  prepend_before_action :check_suspicious!, only: [:create]
 
   include TwoFactorAuthenticationConcern
 
   before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
+
+  def check_suspicious!
+    user = find_user
+    @login_is_suspicious = suspicious_sign_in?(user) unless user.nil?
+  end
 
   def create
     super do |resource|
@@ -148,7 +154,7 @@ class Auth::SessionsController < Devise::SessionsController
       user_agent: request.user_agent
     )
 
-    UserMailer.suspicious_sign_in(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later! if suspicious_sign_in?(user)
+    UserMailer.suspicious_sign_in(user, request.remote_ip, request.user_agent, Time.now.utc).deliver_later! if @login_is_suspicious
   end
 
   def suspicious_sign_in?(user)

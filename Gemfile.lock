@@ -163,6 +163,7 @@ GEM
       elasticsearch-dsl
     chunky_png (1.4.0)
     climate_control (0.2.0)
+    cocoon (1.2.15)
     coderay (1.1.3)
     color_diff (0.1)
     concurrent-ruby (1.1.10)
@@ -293,12 +294,12 @@ GEM
     hkdf (0.3.0)
     html_tokenizer (0.0.7)
     htmlentities (4.3.4)
-    http (5.0.4)
+    http (5.1.0)
       addressable (~> 2.8)
       http-cookie (~> 1.0)
       http-form_data (~> 2.2)
       llhttp-ffi (~> 0.4.0)
-    http-cookie (1.0.4)
+    http-cookie (1.0.5)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     http_accept_language (2.1.1)
@@ -448,7 +449,7 @@ GEM
     parslet (2.0.0)
     pastel (0.8.0)
       tty-color (~> 0.5)
-    pg (1.3.5)
+    pg (1.4.0)
     pghero (2.8.3)
       activerecord (>= 5)
     pkg-config (1.4.7)
@@ -679,7 +680,7 @@ GEM
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.8)
+    unf_ext (0.0.8.2)
     unicode-display_width (2.1.0)
     uniform_notifier (1.16.0)
     validate_email (0.1.6)
@@ -749,6 +750,7 @@ DEPENDENCIES
   charlock_holmes (~> 0.7.7)
   chewy (~> 7.2)
   climate_control (~> 0.2)
+  cocoon (~> 1.2)
   color_diff (~> 0.1)
   concurrent-ruby
   connection_pool
@@ -771,7 +773,7 @@ DEPENDENCIES
   hcaptcha (~> 7.1)
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
-  http (~> 5.0)
+  http (~> 5.1)
   http_accept_language (~> 2.1)
   httplog (~> 1.5.0)
   i18n-tasks (~> 1.0)
@@ -799,7 +801,7 @@ DEPENDENCIES
   omniauth-saml (~> 1.10)
   ox (~> 2.14)
   parslet
-  pg (~> 1.3)
+  pg (~> 1.4)
   pghero (~> 2.8)
   pkg-config (~> 1.4)
   posix-spawn
