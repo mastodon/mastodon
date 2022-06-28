@@ -64,6 +64,11 @@ nl:
         with_dns_records: Er wordt een poging gewaagd om de desbetreffende DNS-records op te zoeken, waarna de resultaten ook worden geblokkeerd
       featured_tag:
         name: 'Je wilt misschien een van deze gebruiken:'
+      filters:
+        action: Kies welke acties uitgevoerd moeten wanneer een bericht overeenkomt met het filter
+        actions:
+          hide: Verberg de gefilterde inhoud volledig, alsof het niet bestaat
+          warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -173,6 +178,7 @@ nl:
         setting_use_pending_items: Langzame modus
         severity: Zwaarte
         sign_in_token_attempt: Beveiligingscode
+        title: Titel
         type: Importtype
         username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
