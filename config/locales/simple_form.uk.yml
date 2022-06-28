@@ -71,6 +71,7 @@ uk:
         action: Виберіть дію для виконання коли допис збігається з фільтром
         actions:
           hide: Повністю сховати фільтрований вміст, ніби його не існує
+          warn: Сховати відфільтрований вміст за попередженням, у якому вказано заголовок фільтра
       form_challenge:
         current_password: Ви входите до безпечної зони
       imports:
@@ -184,6 +185,7 @@ uk:
         setting_use_pending_items: Повільний режим
         severity: Серйозність
         sign_in_token_attempt: Код безпеки
+        title: Заголовок
         type: Тип імпорту
         username: Ім'я користувача
         username_or_email: Ім'я користувача або електронна пошта
@@ -192,6 +194,10 @@ uk:
         with_dns_records: Включити MX записи та IP-адреси домену
       featured_tag:
         name: Хештеґ
+      filters:
+        actions:
+          hide: Сховати повністю
+          warn: Сховати за попередженням
       interactions:
         must_be_follower: Блокувати сповіщення від непідписаних людей
         must_be_following: Блокувати сповіщення від людей, на яких ви не підписані
