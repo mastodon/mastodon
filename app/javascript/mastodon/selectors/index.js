@@ -62,39 +62,13 @@ const regexFromKeywords = keywords => {
   }).join('|'), 'i');
 };
 
-const regexFromFilters = filters => {
-  return filters.map(filter => [regexFromKeywords(filter.get('keywords')), filter.get('title')]);
-};
-
-// Memoize the filter regexps for each valid server contextType
-const makeGetFiltersRegex = () => {
-  let memo = {};
-
-  return (state, { contextType }) => {
-    if (!contextType) return [null, null];
-
-    const serverSideType = toServerSideType(contextType);
-    const now = new Date();
-    const filters = state.get('filters', ImmutableMap()).toList().filter(filter => filter.get('context').includes(serverSideType) && filter.get('keywords') && filter.get('keywords').size > 0 && (filter.get('expires_at') === null || filter.get('expires_at') > now));
-
-    if (!memo[serverSideType] || !is(memo[serverSideType].filters, filters)) {
-      const dropRegex = regexFromKeywords(filters.filter(filter => filter.get('filter_action') === 'hide').flatMap(filter => filter.get('keywords')));
-      const regexes = regexFromFilters(filters.filter(filter => filter.get('filter_action') !== 'hide'));
-      memo[serverSideType] = { filters: filters, results: [dropRegex, regexes] };
-    }
-    return memo[serverSideType].results;
-  };
-};
-
-export const getFiltersRegex = makeGetFiltersRegex();
-
-const getPartialFilters = (state, { contextType }) => {
+const getFilters = (state, { contextType }) => {
   if (!contextType) return null;
 
   const serverSideType = toServerSideType(contextType);
   const now = new Date();
 
-  return state.get('filters').filter((filter) => filter.get('context').includes(serverSideType) && !filter.get('keywords') && (filter.get('expires_at') === null || filter.get('expires_at') > now));
+  return state.get('filters').filter((filter) => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || filter.get('expires_at') > now));
 };
 
 export const makeGetStatus = () => {
@@ -104,11 +78,10 @@ export const makeGetStatus = () => {
       (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
-      getFiltersRegex,
-      getPartialFilters,
+      getFilters,
     ],
 
-    (statusBase, statusReblog, accountBase, accountReblog, filtersRegex, partialFilters) => {
+    (statusBase, statusReblog, accountBase, accountReblog, filters) => {
       if (!statusBase) {
         return null;
       }
@@ -120,29 +93,13 @@ export const makeGetStatus = () => {
       }
 
       let filtered = false;
-      if ((accountReblog || accountBase).get('id') !== me) {
-        const search_index = statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index');
-        const dropRegex = filtersRegex[0];
-        if (dropRegex && dropRegex.test(search_index)) {
+      if ((accountReblog || accountBase).get('id') !== me && filters) {
+        let filterResults = statusReblog?.get('filtered') || statusBase.get('filtered') || ImmutableList();
+        if (filterResults.some((result) => filters.getIn([result.get('filter'), 'filter_action']) === 'hide')) {
           return null;
         }
-
-        if (filtersRegex[1]) {
-          const filterResults = filtersRegex[1].filter(f => f[0] && f[0].test(search_index)).map(f => f[1]);
-          if (!filterResults.isEmpty()) {
-            filtered = filterResults;
-          }
-        }
-
-        // Handle partial filters
-        if (partialFilters) {
-          let filterResults = statusReblog?.get('filtered') || statusBase.get('filtered') || ImmutableList();
-          if (filterResults.some((result) => partialFilters.getIn([result.get('filter'), 'filter_action']) === 'hide')) {
-            return null;
-          }
-          if (!filterResults.isEmpty()) {
-            filtered = filterResults.map(result => partialFilters.getIn([result.get('filter'), 'title']));
-          }
+        if (!filterResults.isEmpty()) {
+          filtered = filterResults.map(result => filters.getIn([result.get('filter'), 'title']));
         }
       }
 
