@@ -1122,14 +1122,24 @@ gl:
       public: Cronoloxías públicas
       thread: Conversas
     edit:
+      add_keyword: Engadir palabra chave
+      keywords: Palabras chave
       title: Editar filtro
     errors:
+      deprecated_api_multiple_keywords: Estes parámetros non se poden cambiar desde esta aplicación porque son de aplicación a máis dun filtro de palabras chave. Usa unha aplicación máis recente ou a interface web.
       invalid_context: Non se proporcionou un contexto válido
     index:
+      contexts: Filtros para %{contexts}
       delete: Eliminar
       empty: Non tes filtros.
+      expires_in: Caduca en %{distance}
+      expires_on: Caduca o %{date}
+      keywords:
+        one: "%{count} palabra chave"
+        other: "%{count} palabras chave"
       title: Filtros
     new:
+      save: Gardar o novo filtro
       title: Engadir novo filtro
   footer:
     developers: Desenvolvedoras
