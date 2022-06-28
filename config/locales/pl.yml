@@ -1143,14 +1143,21 @@ pl:
       public: Publiczne osie czasu
       thread: Konwersacje
     edit:
+      add_keyword: Dodaj słowo kluczowe
+      keywords: Słowa kluczowe
       title: Edytuj filtr
     errors:
+      deprecated_api_multiple_keywords: Te parametry nie mogą zostać zmienione z tej aplikacji, ponieważ dotyczą więcej niż jednego słowa kluczowego. Użyj nowszej wersji aplikacji lub interfejsu internetowego.
       invalid_context: Nie podano lub podano nieprawidłową treść
     index:
+      contexts: Filtry w %{contexts}
       delete: Usuń
       empty: Nie masz żadnych filtrów.
+      expires_in: Wygasa za %{distance}
+      expires_on: Wygasa %{date}
       title: Filtry
     new:
+      save: Zapisz jako nowy filtr
       title: Dodaj nowy filtr
   footer:
     developers: Dla programistów
