@@ -67,6 +67,11 @@ ca:
         with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
         name: 'És possible que vulguis utilitzar una d''aquestes:'
+      filters:
+        action: Tria quina acció cal executar quan una publicació coincideixi amb el filtre
+        actions:
+          hide: Ocultar completament el contingut filtrat, comportant-se com si no existís
+          warn: Oculta el contingut filtrat rera un avís mencionant el títol del filtre
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -180,6 +185,7 @@ ca:
         setting_use_pending_items: Mode lent
         severity: Severitat
         sign_in_token_attempt: Codi de seguretat
+        title: Títol
         type: Importa el tipus
         username: Nom d'usuari
         username_or_email: Nom d'usuari o adreça electrònica
@@ -188,6 +194,10 @@ ca:
         with_dns_records: Incloure registres MX i IP del domini
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Oculta completament
+          warn: Oculta amb un avís
       interactions:
         must_be_follower: Bloqueja les notificacions de persones que no em segueixen
         must_be_following: Bloqueja les notificacions de persones no seguides
