@@ -71,6 +71,7 @@ fr:
         action: Choisir l'action à effectuer quand un message correspond au filtre
         actions:
           hide: Cacher complètement le contenu filtré, faire comme s'il n'existait pas
+          warn: Cacher le contenu filtré derrière un avertissement mentionnant le nom du filtre
       form_challenge:
         current_password: Vous entrez une zone sécurisée
       imports:
@@ -184,6 +185,7 @@ fr:
         setting_use_pending_items: Mode lent
         severity: Sévérité
         sign_in_token_attempt: Code de sécurité
+        title: Nom
         type: Type d’import
         username: Identifiant
         username_or_email: Nom d’utilisateur·rice ou courriel
@@ -192,6 +194,10 @@ fr:
         with_dns_records: Inclure les enregistrements MX et IP du domaine
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Cacher complètement
+          warn: Cacher derrière un avertissement
       interactions:
         must_be_follower: Bloquer les notifications des personnes qui ne vous suivent pas
         must_be_following: Bloquer les notifications des personnes que vous ne suivez pas
