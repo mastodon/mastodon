@@ -1108,7 +1108,6 @@ vi:
       title: Chỉnh sửa bộ lọc
     errors:
       invalid_context: Bối cảnh không hợp lệ hoặc không có
-      invalid_irreversible: Bộ lọc chỉ hoạt động với bảng tin hoặc nội dung thông báo
     index:
       delete: Xóa bỏ
       empty: Chưa có bộ lọc nào.
@@ -1230,6 +1229,8 @@ vi:
     copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là lịch sử kiểm duyệt của họ:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} đã gửi báo cáo"
       sign_up:
         subject: "%{name} đã được đăng ký"
     digest:
