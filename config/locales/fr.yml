@@ -1122,14 +1122,23 @@ fr:
       public: Fils publics
       thread: Discussions
     edit:
+      add_keyword: Ajouter un mot-clé
+      keywords: Mots-clés
       title: Éditer le filtre
     errors:
+      deprecated_api_multiple_keywords: Ces paramètres ne peuvent pas être modifiés depuis cette application, car ils s'appliquent à plus d'un filtre de mot-clé. Utilisez une application plus récente ou l'interface web.
       invalid_context: Contexte invalide ou insuffisant
     index:
       delete: Supprimer
       empty: Vous n'avez aucun filtre.
+      expires_in: Expire dans %{distance}
+      expires_on: Expire le %{date}
+      keywords:
+        one: "%{count} mot-clé"
+        other: "%{count} mots-clés"
       title: Filtres
     new:
+      save: Enregistrer le nouveau filtre
       title: Ajouter un nouveau filtre
   footer:
     developers: Développeurs
