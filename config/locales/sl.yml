@@ -1165,10 +1165,16 @@ sl:
     errors:
       invalid_context: Ne vsebuje nobenega ali vsebuje neveljaven kontekst
     index:
+      contexts: Filtri v %{contexts}
       delete: Izbriši
       empty: Nimate filtrov.
       expires_in: Poteče čez %{distance}
       expires_on: Poteče %{date}
+      keywords:
+        one: "%{count} ključna beseda"
+        two: "%{count} ključni besedi"
+        few: "%{count} ključne besede"
+        other: "%{count} ključnih besed"
       title: Filtri
     new:
       save: Shrani nov filter
