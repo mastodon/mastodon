@@ -1123,14 +1123,21 @@ tr:
       public: Genel zaman çizelgesi
       thread: Sohbetler
     edit:
+      add_keyword: Anahtar sözcük ekle
+      keywords: Anahtar Sözcükler
       title: Filtreyi düzenle
     errors:
+      deprecated_api_multiple_keywords: Bu parametreler, birden fazla filtre anahtar sözcüğü için geçerli olduğundan dolayı bu uygulama içerisinden değiştirilemezler. Daha yeni bir uygulama veya web arayüzünü kullanın.
       invalid_context: Sıfır ya da geçersiz içerik sağlandı
     index:
+      contexts: '%{contexts} içindeki filtreler'
       delete: Sil
       empty: Hiç filtreniz yok.
+      expires_in: '%{distance} sürede sona eriyor'
+      expires_on: '%{date} tarihinde sona eriyor'
       title: Filtreler
     new:
+      save: Yeni filtre kaydet
       title: Yeni filtre ekle
   footer:
     developers: Geliştiriciler
