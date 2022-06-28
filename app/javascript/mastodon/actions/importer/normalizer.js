@@ -62,8 +62,8 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.poll = status.poll.id;
   }
 
-  if (status.filter_results) {
-    normalStatus.filter_results = status.filter_results.map(normalizeFilterResult);
+  if (status.filtered) {
+    normalStatus.filtered = status.filtered.map(normalizeFilterResult);
   }
 
   // Only calculate these values when status first encountered and

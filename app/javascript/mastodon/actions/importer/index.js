@@ -72,8 +72,8 @@ export function importFetchedStatuses(statuses) {
       pushUnique(normalStatuses, normalizeStatus(status, getState().getIn(['statuses', status.id])));
       pushUnique(accounts, status.account);
 
-      if (status.filter_results) {
-        status.filter_results.forEach(result => pushUnique(filters, result.filter));
+      if (status.filtered) {
+        status.filtered.forEach(result => pushUnique(filters, result.filter));
       }
 
       if (status.reblog && status.reblog.id) {

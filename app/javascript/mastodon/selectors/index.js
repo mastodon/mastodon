@@ -136,7 +136,7 @@ export const makeGetStatus = () => {
 
         // Handle partial filters
         if (partialFilters) {
-          let filterResults = statusReblog?.get('filter_results') || statusBase.get('filter_results') || ImmutableList();
+          let filterResults = statusReblog?.get('filtered') || statusBase.get('filtered') || ImmutableList();
           if (filterResults.some((result) => partialFilters.getIn([result.get('filter'), 'filter_action']) === 'hide')) {
             return null;
           }

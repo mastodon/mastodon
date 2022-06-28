@@ -36,7 +36,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         it 'returns filter information' do
           get :show, params: { id: status.id }
           json = body_as_json
-          expect(json[:filter_results][0]).to include({
+          expect(json[:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',
@@ -62,7 +62,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         it 'returns filter information' do
           get :show, params: { id: status.id }
           json = body_as_json
-          expect(json[:reblog][:filter_results][0]).to include({
+          expect(json[:reblog][:filtered][0]).to include({
             filter: a_hash_including({
               id: user.account.custom_filters.first.id.to_s,
               title: 'filter1',

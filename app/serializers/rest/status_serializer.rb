@@ -13,7 +13,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :muted, if: :current_user?
   attribute :bookmarked, if: :current_user?
   attribute :pinned, if: :pinnable?
-  has_many :filter_results, serializer: REST::FilterResultSerializer, if: :current_user?
+  has_many :filtered, serializer: REST::FilterResultSerializer, if: :current_user?
 
   attribute :content, unless: :source_requested?
   attribute :text, if: :source_requested?
@@ -121,7 +121,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
     end
   end
 
-  def filter_results
+  def filtered
     if instance_options && instance_options[:relationships]
       instance_options[:relationships].filters_map[object.id] || []
     else
