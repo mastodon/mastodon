@@ -1123,14 +1123,24 @@ pt-PT:
       public: Cronologias públicas
       thread: Conversações
     edit:
+      add_keyword: Adicionar palavra-chave
+      keywords: Palavras-chave
       title: Editar filtros
     errors:
+      deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir deste aplicativo porque se aplicam a mais de um filtro de palavra-chave. Use um aplicativo mais recente ou a interface web.
       invalid_context: Inválido ou nenhum contexto fornecido
     index:
+      contexts: Filtros em %{contexts}
       delete: Eliminar
       empty: Não tem filtros.
+      expires_in: Expira em %{distance}
+      expires_on: Expira em %{date}
+      keywords:
+        one: "%{count} palavra-chave"
+        other: "%{count} palavras-chaves"
       title: Filtros
     new:
+      save: Salvar novo filtro
       title: Adicionar novo filtro
   footer:
     developers: Responsáveis pelo desenvolvimento
@@ -1249,6 +1259,8 @@ pt-PT:
     copy_account_note_text: 'Este utilizador migrou de %{acct}, aqui estão as suas notas anteriores sobre ele:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} submeteu uma denúncia"
       sign_up:
         subject: "%{name} inscreveu-se"
     digest:
