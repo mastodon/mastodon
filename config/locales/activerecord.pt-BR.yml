@@ -1,4 +1,3 @@
----
 pt-BR:
   activerecord:
     attributes:
@@ -21,6 +20,14 @@ pt-BR:
             username:
               invalid: apenas letras, números e underlines ( "_" )
               reserved: já existe
+        admin/webhook:
+          attributes:
+            url:
+              invalid: não é uma URL válida
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: não é uma URL válida
         status:
           attributes:
             reblog:
