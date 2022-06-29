@@ -67,6 +67,11 @@ pt-PT:
         with_dns_records: Será feita uma tentativa de resolver os registos DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
         name: 'Poderás querer usar um destes:'
+      filters:
+        action: Escolha qual a ação a executar quando uma publicação corresponde ao filtro
+        actions:
+          hide: Ocultar completamente o conteúdo filtrado, comportando-se como se não existisse
+          warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
       form_challenge:
         current_password: Está a entrar numa área restrita
       imports:
@@ -180,6 +185,7 @@ pt-PT:
         setting_use_pending_items: Modo lento
         severity: Gravidade
         sign_in_token_attempt: Código de segurança
+        title: Título
         type: Tipo de importação
         username: Nome de utilizador
         username_or_email: Nome de utilizador ou e-mail
@@ -188,6 +194,10 @@ pt-PT:
         with_dns_records: Incluir registos MX e IPs do domínio
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Ocultar por completo
+          warn: Ocultar com um aviso
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
