@@ -99,7 +99,7 @@ gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.28'
+  gem 'fabrication', '~> 2.29'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 1.0', require: false
   gem 'pry-byebug', '~> 3.9'
@@ -132,7 +132,7 @@ group :development do
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.30', require: false
+  gem 'rubocop', '~> 1.31', require: false
   gem 'rubocop-rails', '~> 2.15', require: false
   gem 'brakeman', '~> 5.2', require: false
   gem 'bundler-audit', '~> 0.9', require: false
