@@ -1123,14 +1123,24 @@ it:
       public: Timeline pubbliche
       thread: Conversazioni
     edit:
+      add_keyword: Aggiungi parola chiave
+      keywords: Parole chiave
       title: Modifica filtro
     errors:
+      deprecated_api_multiple_keywords: Questi parametri non possono essere modificati da questa applicazione perché si applicano a più di una parola chiave che fa da filtro. Utilizzare un'applicazione più recente o l'interfaccia web.
       invalid_context: Contesto mancante o non valido
     index:
+      contexts: Filtri in %{contexts}
       delete: Cancella
       empty: Non hai alcun filtro.
+      expires_in: Scade tra %{distance}
+      expires_on: Scade il %{date}
+      keywords:
+        one: "%{count} parola chiave"
+        other: "%{count} parole chiave"
       title: Filtri
     new:
+      save: Salva nuovo filtro
       title: Aggiungi filtro
   footer:
     developers: Sviluppatori
