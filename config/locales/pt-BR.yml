@@ -37,6 +37,7 @@ pt-BR:
       one: toot
       other: toots
     status_count_before: Autores de
+    tagline: Rede social descentralizada
     terms: Termos de serviço
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
@@ -745,6 +746,7 @@ pt-BR:
       back_to_account: Voltar para página da conta
       back_to_report: Voltar às denúncias
       batch:
+        remove_from_report: Remover do relatório
         report: Denunciar
       deleted: Excluídos
       media:
@@ -752,9 +754,16 @@ pt-BR:
       no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       title: Toots da conta
       with_media: Com mídia
+    strikes:
+      appeal_approved: Apelado
+      appeal_pending: Recurso pendente
     system_checks:
       database_schema_check:
         message_html: Existem migrações de banco de dados pendentes. Por favor, execute-as para garantir que o aplicativo se comporte como esperado
+      elasticsearch_running_check:
+        message_html: Não foi possível conectar ao Elasticsearch. Por favor, verifique se está em execução, ou desabilite a pesquisa de texto completo
+      elasticsearch_version_check:
+        message_html: 'Versão de Elasticsearch incompatível: %{value}'
       rules_check:
         action: Gerenciar regras do servidor
         message_html: Você não definiu nenhuma regra de servidor.
@@ -807,6 +816,14 @@ pt-BR:
       edit_preset: Editar o aviso pré-definido
       empty: Você ainda não definiu nenhuma predefinição de alerta.
       title: Gerenciar os avisos pré-definidos
+    webhooks:
+      delete: Excluir
+      disable: Desabilitar
+      disabled: Desativado
+      enable: Habilitar
+      enabled: Ativo
+      events: Eventos
+      status: Status
   admin_mailer:
     new_appeal:
       actions:
@@ -978,10 +995,12 @@ pt-BR:
       appealed_msg: Seu recurso foi enviado. Se ele for aprovado, você será notificado.
       appeals:
         submit: Enviar recurso
+      approve_appeal: Aprovar recurso
       associated_report: Relatório associado
       created_at: Datado
       description_html: Estas são ações tomadas contra sua conta e avisos que foram enviados a você pela equipe de %{instance}.
       recipient: Endereçado para
+      reject_appeal: Rejeitar recurso
       status: 'Postagem #%{id}'
       status_removed: Postagem já removida do sistema
       title: "%{action} de %{date}"
@@ -1044,6 +1063,8 @@ pt-BR:
       public: Linhas públicas
       thread: Conversas
     edit:
+      add_keyword: Adicionar palavra-chave
+      keywords: Palavras-chave
       title: Editar filtro
     errors:
       invalid_context: Contexto inválido ou nenhum contexto informado
@@ -1052,6 +1073,7 @@ pt-BR:
       empty: Sem filtros.
       title: Filtros
     new:
+      save: Salvar novo filtro
       title: Adicionar filtro
   footer:
     developers: Desenvolvedores
@@ -1170,6 +1192,8 @@ pt-BR:
     copy_account_note_text: 'Este usuário saiu de %{acct}, aqui estão suas notas anteriores sobre ele:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} enviou uma denúncia"
       sign_up:
         subject: "%{name} se inscreveu"
     digest:
@@ -1295,6 +1319,8 @@ pt-BR:
   reports:
     errors:
       invalid_rules: não faz referência a regras válidas
+  rss:
+    content_warning: 'Aviso de conteúdo:'
   scheduled_statuses:
     over_daily_limit: Você excedeu o limite de %{limit} toots agendados para esse dia
     over_total_limit: Você excedeu o limite de %{limit} toots agendados
