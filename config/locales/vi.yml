@@ -1109,12 +1109,19 @@ vi:
       keywords: Từ khóa
       title: Chỉnh sửa bộ lọc
     errors:
+      deprecated_api_multiple_keywords: Không thể thay đổi các tham số này từ ứng dụng này vì chúng áp dụng cho nhiều hơn một từ khóa bộ lọc. Sử dụng ứng dụng mới hơn hoặc giao diện web.
       invalid_context: Bối cảnh không hợp lệ hoặc không có
     index:
+      contexts: Bộ lọc %{contexts}
       delete: Xóa bỏ
       empty: Chưa có bộ lọc nào.
+      expires_in: Hết hạn trong %{distance}
+      expires_on: Hết hạn vào %{date}
+      keywords:
+        other: "%{count} từ khóa"
       title: Bộ lọc
     new:
+      save: Lưu thành bộ lọc mới
       title: Thêm bộ lọc mới
   footer:
     developers: Phát triển
