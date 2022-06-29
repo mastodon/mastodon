@@ -11,6 +11,7 @@
 #
 
 class DomainAllow < ApplicationRecord
+  include Paginable
   include DomainNormalizable
   include DomainMaterializable
 
