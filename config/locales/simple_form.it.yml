@@ -67,6 +67,11 @@ it:
         with_dns_records: Sarà effettuato un tentativo di risolvere i record DNS del dominio in questione e i risultati saranno inseriti anche nella blacklist
       featured_tag:
         name: 'Eccone alcuni che potresti usare:'
+      filters:
+        action: Scegli quale azione eseguire quando un post corrisponde al filtro
+        actions:
+          hide: Nascondi completamente il contenuto filtrato, come se non esistesse
+          warn: Nascondi il contenuto filtrato e mostra invece un avviso, citando il titolo del filtro
       form_challenge:
         current_password: Stai entrando in un'area sicura
       imports:
@@ -180,6 +185,7 @@ it:
         setting_use_pending_items: Modalità lenta
         severity: Severità
         sign_in_token_attempt: Codice di sicurezza
+        title: Titolo
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
@@ -188,6 +194,10 @@ it:
         with_dns_records: Includi record MX e indirizzi IP del dominio
       featured_tag:
         name: Etichetta
+      filters:
+        actions:
+          hide: Nascondi completamente
+          warn: Nascondi con avviso
       interactions:
         must_be_follower: Blocca notifiche da chi non ti segue
         must_be_following: Blocca notifiche dalle persone che non segui
