@@ -67,6 +67,11 @@ vi:
         with_dns_records: Nếu DNS có vấn đề, nó sẽ bị đưa vào danh sách cấm
       featured_tag:
         name: 'Những hashtag gợi ý cho bạn:'
+      filters:
+        action: Chọn hành động sẽ thực hiện khi một tút khớp với bộ lọc
+        actions:
+          hide: Ẩn hoàn toàn nội dung đã lọc, hoạt động như thể nó không tồn tại
+          warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
       form_challenge:
         current_password: Biểu mẫu này an toàn
       imports:
@@ -180,6 +185,7 @@ vi:
         setting_use_pending_items: Không tự động cập nhật bảng tin
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
+        title: Tựa đề
         type: Kiểu nhập
         username: Tên người dùng
         username_or_email: Tên người dùng hoặc email
@@ -188,6 +194,10 @@ vi:
         with_dns_records: Bao gồm bản ghi MX và địa chỉ IP của máy chủ
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Ẩn toàn bộ
+          warn: Ẩn kèm theo cảnh báo
       interactions:
         must_be_follower: Chặn thông báo từ những người không theo dõi bạn
         must_be_following: Chặn thông báo từ những người bạn không theo dõi
