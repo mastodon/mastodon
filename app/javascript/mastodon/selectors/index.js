@@ -106,7 +106,7 @@ export const makeGetStatus = () => {
       return statusBase.withMutations(map => {
         map.set('reblog', statusReblog);
         map.set('account', accountBase);
-        map.set('filtered', filtered);
+        map.set('matched_filters', filtered);
       });
     },
   );
