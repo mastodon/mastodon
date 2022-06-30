@@ -1,6 +1,6 @@
 import escapeTextContentForBrowser from 'escape-html';
 import { createSelector } from 'reselect';
-import { List as ImmutableList, is } from 'immutable';
+import { List as ImmutableList } from 'immutable';
 import { me } from 'flavours/glitch/util/initial_state';
 
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
@@ -36,31 +36,6 @@ export const toServerSideType = columnType => {
       return 'public'; // community, account, hashtag
     }
   }
-};
-
-const escapeRegExp = string =>
-  string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-
-const regexFromKeywords = keywords => {
-  if (keywords.size === 0) {
-    return null;
-  }
-
-  return new RegExp(keywords.map(keyword_filter => {
-    let expr = escapeRegExp(keyword_filter.get('keyword'));
-
-    if (keyword_filter.get('whole_word')) {
-      if (/^[\w]/.test(expr)) {
-        expr = `\\b${expr}`;
-      }
-
-      if (/[\w]$/.test(expr)) {
-        expr = `${expr}\\b`;
-      }
-    }
-
-    return expr;
-  }).join('|'), 'i');
 };
 
 const getFilters = (state, { contextType }) => {
