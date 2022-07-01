@@ -1245,6 +1245,8 @@ ru:
     copy_account_note_text: 'Этот пользователь переехал с %{acct}, вот ваша предыдущая заметка о нём:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} отправил жалобу"
       sign_up:
         subject: "%{name} зарегистрирован"
     digest:
