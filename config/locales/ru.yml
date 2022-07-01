@@ -407,6 +407,11 @@ ru:
         few: "<strong>%{count}</strong> ожидающих отчета"
         many: "<strong>%{count}</strong> ожидающих отчетов"
         other: "<strong>%{count}</strong> ожидающих отчетов"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> ожидающий хэштег"
+        few: "<strong>%{count}</strong> ожидающих хэштега"
+        many: "<strong>%{count}</strong> ожидающих хэштегов"
+        other: "<strong>%{count}</strong> ожидающих хэштегов"
       pending_users_html:
         one: "<strong>%{count}</strong> ожидающий пользователь"
         few: "<strong>%{count}</strong> ожидающих пользователя"
@@ -488,6 +493,11 @@ ru:
       unsuppress: Восстановить рекомендацию
     instances:
       availability:
+        failures_recorded:
+          one: Попытки неудачны %{count} день.
+          few: Попытки неудачны уже %{count} дня.
+          many: Попытки неудачны уже %{count} дней.
+          other: Попытки неудачны уже %{count} дней.
         no_failures_recorded: Сбоев в записи нет.
         title: Доступность
         warning: Последняя попытка подключения к этому серверу не удалась
@@ -810,6 +820,11 @@ ru:
         allow_account: Разрешить автора
         disallow: Запретить пост
         disallow_account: Запретить автора
+        shared_by:
+          one: Поделились или добавили в избранное один раз
+          few: Поделились или добавили в избранное %{friendly_count} раза
+          many: Поделились или добавили в избранное %{friendly_count} раз
+          other: Поделились или добавили в избранное %{friendly_count} раз
         title: Популярные посты
       tags:
         current_score: Текущий счет %{score}
@@ -887,6 +902,7 @@ ru:
       new_trending_tags:
         no_approved_tags: На данный момент популярные подтвержденные хэштеги отсутствуют.
         title: Популярные хэштеги
+      subject: Новые тренды для проверки на %{instance}
   aliases:
     add_new: Создать псевдоним
     created_msg: Новый псевдоним установлен. Теперь мы можете начать миграцию со старой учётной записи.
