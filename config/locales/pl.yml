@@ -39,6 +39,7 @@ pl:
       many: wpisów
       other: wpisów
     status_count_before: Są autorami
+    tagline: Zdecentralizowana sieć społecznościowa
     terms: Zasady użytkowania
     unavailable_content: Niedostępne treści
     unavailable_content_description:
@@ -498,6 +499,11 @@ pl:
       unsuppress: Przywróć polecenie śledzenia konta
     instances:
       availability:
+        description_html:
+          one: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dzień</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
+          few: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
+          many: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
+          other: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
         failure_threshold_reached: Próg niepowodzenia osiągnięty dnia %{date}.
         failures_recorded:
           one: Nieudane próby %{count} dnia.
@@ -819,6 +825,11 @@ pl:
         description_html: Są to linki, które są obecnie często udostępniane przez konta, z których Twój serwer widzi posty. Może to pomóc Twoim użytkownikom dowiedzieć się, co dzieje się na świecie. Żadne linki nie są wyświetlane publicznie dopóki nie zaakceptujesz wydawcy. Możesz również zezwolić lub odrzucić indywidualne linki.
         disallow: Nie zezwalaj na link
         disallow_provider: Nie zezwalaj na wydawcę
+        shared_by_over_week:
+          one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
+          few: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
+          many: Udostępnione przez %{count} osób w ciągu ostatniego tygodnia
+          other: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
       only_allowed: Tylko dozwolone
@@ -836,6 +847,11 @@ pl:
         disallow: Nie zezwalaj na post
         disallow_account: Nie zezwalaj na autora
         not_discoverable: Autor nie włączył opcji, by być wyświetlany w katalogu
+        shared_by:
+          one: Udostępnione lub dodane do ulubionych jednorazowo
+          few: Udostępnione i dodane do ulubionych %{friendly_count} razy
+          many: Udostępnione i dodane do ulubionych %{friendly_count} razy
+          other: Udostępnione i dodane do ulubionych %{friendly_count} razy
         title: Popularne teraz
       tags:
         current_score: Bieżący wynik %{score}
@@ -1155,6 +1171,11 @@ pl:
       empty: Nie masz żadnych filtrów.
       expires_in: Wygasa za %{distance}
       expires_on: Wygasa %{date}
+      keywords:
+        one: "%{count} słowo kluczowe"
+        few: "%{count} słowa kluczowe"
+        many: "%{count} słów kluczowych"
+        other: "%{count} słów kluczowych"
       title: Filtry
     new:
       save: Zapisz jako nowy filtr
