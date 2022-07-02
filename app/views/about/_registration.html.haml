@@ -9,7 +9,7 @@
       = f.simple_fields_for :account do |account_fields|
         = account_fields.input :username, wrapper: :with_label, label: false, required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.username'), :autocomplete => 'off', placeholder: t('simple_form.labels.defaults.username'), pattern: '[a-zA-Z0-9_]+', maxlength: 30 }, append: "@#{site_hostname}", hint: false, disabled: disabled
 
-      = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'off' }, hint: false, disabled: disabled
+      = f.input :email, placeholder: t('simple_form.labels.defaults.email'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), :autocomplete => 'off', pattern: '^[a-z0-9]+@[a-z]+\.[a-z]+$' }, hint: false, disabled: disabled
       = f.input :password, placeholder: t('simple_form.labels.defaults.password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'new-password', :minlength => User.password_length.first, :maxlength => User.password_length.last }, hint: false, disabled: disabled
       = f.input :password_confirmation, placeholder: t('simple_form.labels.defaults.confirm_password'), required: true, input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_password'), :autocomplete => 'new-password' }, hint: false, disabled: disabled
 

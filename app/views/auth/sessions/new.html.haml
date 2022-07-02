@@ -8,9 +8,9 @@
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .fields-group
       - if use_seamless_external_login?
-        = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.username_or_email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.username_or_email') }, hint: false
+        = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.username_or_email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.username_or_email'), pattern: '^[a-z0-9]+@[a-z]+\.[a-z]+$' }, hint: false
       - else
-        = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }, hint: false
+        = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email'), pattern: '^[a-z0-9]+@[a-z]+\.[a-z]+$' }, hint: false
     .fields-group
       = f.input :password, wrapper: :with_label, label: t('simple_form.labels.defaults.password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.password'), :autocomplete => 'off' }, hint: false
 
