@@ -67,6 +67,11 @@ sl:
         with_dns_records: Poskus razrešitve zapisov DNS danih domen bo izveden in rezultati bodo prav tako blokirani
       featured_tag:
         name: 'Morda boste želeli uporabiti eno od teh:'
+      filters:
+        action: Izberite, kako naj se program vede, ko se objava sklada s filtrom
+        actions:
+          hide: Povsem skrij filtrirano vsebino, kot da ne bi obstajala
+          warn: Skrij filtrirano vsebino za opozorilom, ki pomenja naslov filtra
       form_challenge:
         current_password: Vstopate v varovano območje
       imports:
@@ -180,6 +185,7 @@ sl:
         setting_use_pending_items: Počasen način
         severity: Strogost
         sign_in_token_attempt: Varnostna koda
+        title: Naslov
         type: Vrsta uvoza
         username: Uporabniško ime
         username_or_email: Uporabniško ime ali E-pošta
