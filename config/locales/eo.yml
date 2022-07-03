@@ -842,14 +842,23 @@ eo:
       public: Publika templinio
       thread: Konversacioj
     edit:
+      add_keyword: Aldoni ĉefvorton
+      keywords: Ĉefvortoj
       title: Ŝanĝi filtrilojn
     errors:
       invalid_context: Neniu aŭ nevalida kunteksto donita
     index:
+      contexts: Filtri en %{contexts}
       delete: Forigi
       empty: Vi havas neniun filtrilon.
+      expires_in: Eksvalidiĝi en %{distance}
+      expires_on: Eksvalidiĝi je %{date}
+      keywords:
+        one: "%{count} ĉefvorto"
+        other: "%{count} ĉefvortoj"
       title: Filtriloj
     new:
+      save: Konservi novan filtrilon
       title: Aldoni novan filtrilon
   footer:
     developers: Programistoj
