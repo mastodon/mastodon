@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { List as ImmutableList, Map as ImmutableMap, is } from 'immutable';
+import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
 import { me } from '../initial_state';
 
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
@@ -35,31 +35,6 @@ const toServerSideType = columnType => {
       return 'public'; // community, account, hashtag
     }
   }
-};
-
-const escapeRegExp = string =>
-  string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-
-const regexFromKeywords = keywords => {
-  if (keywords.size === 0) {
-    return null;
-  }
-
-  return new RegExp(keywords.map(keyword_filter => {
-    let expr = escapeRegExp(keyword_filter.get('keyword'));
-
-    if (keyword_filter.get('whole_word')) {
-      if (/^[\w]/.test(expr)) {
-        expr = `\\b${expr}`;
-      }
-
-      if (/[\w]$/.test(expr)) {
-        expr = `${expr}\\b`;
-      }
-    }
-
-    return expr;
-  }).join('|'), 'i');
 };
 
 const getFilters = (state, { contextType }) => {
@@ -106,7 +81,7 @@ export const makeGetStatus = () => {
       return statusBase.withMutations(map => {
         map.set('reblog', statusReblog);
         map.set('account', accountBase);
-        map.set('filtered', filtered);
+        map.set('matched_filters', filtered);
       });
     },
   );

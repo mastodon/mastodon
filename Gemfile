@@ -101,7 +101,7 @@ gem 'rdf-normalize', '~> 0.5'
 gem 'redcarpet', '~> 3.5'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.28'
+  gem 'fabrication', '~> 2.29'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 1.0', require: false
   gem 'pry-byebug', '~> 3.9'
