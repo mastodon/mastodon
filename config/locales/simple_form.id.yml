@@ -177,6 +177,7 @@ id:
         setting_use_pending_items: Mode pelan
         severity: Keparahan
         sign_in_token_attempt: Kode keamanan
+        title: Judul
         type: Tipe impor
         username: Nama pengguna
         username_or_email: Nama pengguna atau Email
@@ -185,6 +186,10 @@ id:
         with_dns_records: Termasuk data MX dan IP domain
       featured_tag:
         name: Tagar
+      filters:
+        actions:
+          hide: Sembunyikan seluruhnya
+          warn: Sembunyikan dengan peringatan
       interactions:
         must_be_follower: Blokir notifikasi dari non-pengikut
         must_be_following: Blokir notifikasi dari orang yang tidak anda ikuti
@@ -218,6 +223,8 @@ id:
         name: Tagar
         trendable: Izinkan tagar ini muncul di bawah tren
         usable: Izinkan toot memakai tagar ini
+      webhook:
+        events: Acara yang diaktifkan
     'no': 'Tidak'
     recommended: Direkomendasikan
     required:
