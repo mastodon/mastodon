@@ -67,6 +67,11 @@ is:
         with_dns_records: Tilraun verður gerð til að leysa DNS-færslur uppgefins léns og munu niðurstöðurnar einnig verða útilokaðar
       featured_tag:
         name: 'Þú gætir viljað nota eitt af þessum:'
+      filters:
+        action: Veldu hvaða aðgerð á að framkvæma þegar færsla samsvarar síunni
+        actions:
+          hide: Fela síað efni algerlega, rétt eins og það sé ekki til staðar
+          warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -189,6 +194,10 @@ is:
         with_dns_records: Hafa með MX-færslur og IP-vistföng lénsins
       featured_tag:
         name: Myllumerki
+      filters:
+        actions:
+          hide: Fela alveg
+          warn: Fela með aðvörun
       interactions:
         must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
         must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með
