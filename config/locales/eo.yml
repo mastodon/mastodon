@@ -277,6 +277,8 @@ eo:
         reject_user_html: "%{name} malakceptis registriĝon de %{target}"
         remove_avatar_user_html: "%{name} forigis profilbildon de %{target}"
         reopen_report_html: "%{name} remalfermis signalon %{target}"
+        suspend_account_html: "%{name} suspendis la konton de %{target}"
+        unsuspend_account_html: "%{name} reaktivigis la konton de %{target}"
         update_announcement_html: "%{name} ĝisdatigis anoncon %{target}"
       deleted_status: "(forigita mesaĝo)"
       empty: Neniu protokolo trovita.
@@ -619,6 +621,7 @@ eo:
       actions:
         delete_statuses: "%{name} forigis afiŝojn de %{target}"
         disable: "%{name} malebligis la konton de %{target}"
+        suspend: "%{name} suspendis la konton de %{target}"
       appeal_approved: Apelaciita
     system_checks:
       database_schema_check:
@@ -1251,12 +1254,12 @@ eo:
         disable: Via konto %{acct} estas frostigita
         none: Averto por %{acct}
         silence: Via konto %{acct} estas limigita
-        suspend: Via konto %{acct} estas haltigita
+        suspend: Via konto %{acct} estas suspendita
       title:
         disable: Konto frostigita
         none: Averto
         silence: Konto limigita
-        suspend: Konto haltigita
+        suspend: Konto suspendita
     welcome:
       edit_profile_action: Agordi profilon
       edit_profile_step: Vi povas proprigi vian profilon per alŝuto de profilbildo, fonbildo, ŝanĝo de via afiŝita nomo kaj pli. Se vi ŝatus kontroli novajn sekvantojn antaŭ ol ili rajtas sekvi vin, vi povas ŝlosi vian konton.
