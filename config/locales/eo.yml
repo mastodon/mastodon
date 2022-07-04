@@ -22,7 +22,7 @@ eo:
     get_apps: Provu telefonan aplikaĵon
     hosted_on: '%{domain} estas nodo de Mastodon'
     instance_actor_flash: |
-      Ĉi tiu konto estas virtuala aganto uzata por reprezenti la servilon mem kaj neniun individuan uzanton. Ĝi estas uzata por celoj de la federaĵo kaj devas ne esti brokita se vi ne volas bloki la tutan servilon, tiuokaze vi devas uzi blokadon de domajno.
+      Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniu individua uzanto. Ĝi estas uzata por celoj de la federaĵo kaj devas ne esti brokita se vi ne volas bloki la tutan servilon, en kiu okazo vi devas uzi blokadon de domajno.
     learn_more: Lerni pli
     logout_before_registering: Vi jam salutis.
     privacy_policy: Privateca politiko
@@ -41,7 +41,7 @@ eo:
       reason: 'Kialo:'
       rejecting_media_title: Filtritaj aŭdovidaĵoj
       silenced_title: Silentigitaj serviloj
-      suspended_title: Haltigitaj serviloj
+      suspended_title: Suspenditaj serviloj
     user_count_after:
       one: uzanto
       other: uzantoj
@@ -54,6 +54,7 @@ eo:
       one: Sekvanto
       other: Sekvantoj
     following: Sekvatoj
+    instance_actor_flash: Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniu individua uzanto. Ĝi estas uzata por celoj de la federaĵo kaj devas ne esti suspendita.
     joined: Aliĝis je %{date}
     last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
@@ -136,7 +137,7 @@ eo:
         active: Aktiva
         all: Ĉio
         pending: Pritraktata
-        suspended: Haltigita
+        suspended: Suspendita
         title: Moderigado
       moderation_notes: Notoj de moderigado
       most_recent_activity: Lasta ago
@@ -184,7 +185,7 @@ eo:
       statuses: Mesaĝoj
       subscribe: Aboni
       suspend: Haltigu
-      suspended: Haltigita
+      suspended: Suspendita
       title: Kontoj
       unblock_email: Malbloki retpoŝtadresojn
       unblocked_email_msg: Sukcese malblokis la retpoŝtadreson de %{username}
@@ -193,6 +194,7 @@ eo:
       undo_silenced: Malfari kaŝon
       undo_suspension: Malfari haltigon
       unsubscribe: Malaboni
+      unsuspended_msg: La konto de %{username} estas sukcese reaktivigita
       username: Uzantnomo
       view_domain: Vidi la resumon de la domajno
       warn: Averti
