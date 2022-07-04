@@ -339,15 +339,23 @@ ActiveRecord::Schema.define(version: 2022_06_17_202502) do
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
+  create_table "custom_filter_keywords", force: :cascade do |t|
+    t.bigint "custom_filter_id", null: false
+    t.text "keyword", default: "", null: false
+    t.boolean "whole_word", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["custom_filter_id"], name: "index_custom_filter_keywords_on_custom_filter_id"
+  end
+
   create_table "custom_filters", force: :cascade do |t|
     t.bigint "account_id"
     t.datetime "expires_at"
     t.text "phrase", default: "", null: false
     t.string "context", default: [], null: false, array: true
-    t.boolean "irreversible", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "whole_word", default: true, null: false
+    t.integer "action", default: 0, null: false
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
   end
 
@@ -1094,6 +1102,7 @@ ActiveRecord::Schema.define(version: 2022_06_17_202502) do
   add_foreign_key "canonical_email_blocks", "accounts", column: "reference_account_id", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
+  add_foreign_key "custom_filter_keywords", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
   add_foreign_key "devices", "accounts", on_delete: :cascade
   add_foreign_key "devices", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade

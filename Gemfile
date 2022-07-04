@@ -99,7 +99,7 @@ gem 'json-ld-preloaded', '~> 3.2'
 gem 'rdf-normalize', '~> 0.5'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.28'
+  gem 'fabrication', '~> 2.29'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 1.0', require: false
   gem 'pry-byebug', '~> 3.9'
@@ -153,3 +153,5 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 
 gem 'xorcist', '~> 1.1'
+
+gem 'cocoon', '~> 1.2'

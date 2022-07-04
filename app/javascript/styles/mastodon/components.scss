@@ -959,6 +959,21 @@
   width: 100%;
   clear: both;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  &__button {
+    display: inline;
+    color: lighten($ui-highlight-color, 8%);
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
 }
 
 .status__prepend-icon-wrapper {

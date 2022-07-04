@@ -1074,3 +1074,34 @@ code {
     }
   }
 }
+
+.keywords-table {
+  thead {
+    th {
+      white-space: nowrap;
+    }
+
+    th:first-child {
+      width: 100%;
+    }
+  }
+
+  tfoot {
+    td {
+      border: 0;
+    }
+  }
+
+  .input.string {
+    margin-bottom: 0;
+  }
+
+  .label_input__wrapper {
+    margin-top: 10px;
+  }
+
+  .table-action-link {
+    margin-top: 10px;
+    white-space: nowrap;
+  }
+}
