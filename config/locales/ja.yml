@@ -77,10 +77,8 @@ ja:
     posts_tab_heading: 投稿
     posts_with_replies: 投稿と返信
     roles:
-      admin: Admin
       bot: Bot
       group: Group
-      moderator: Mod
     unavailable: プロフィールは利用できません
     unfollow: フォロー解除
   admin:
@@ -99,7 +97,6 @@ ja:
       avatar: アイコン
       by_domain: ドメイン
       change_email:
-        changed_msg: メールアドレスの変更に成功しました！
         current_email: 現在のメールアドレス
         label: メールアドレスを変更
         new_email: 新しいメールアドレス
@@ -180,12 +177,6 @@ ja:
       reset: リセット
       reset_password: パスワード再設定
       resubscribe: 再講読
-      role: 役割
-      roles:
-        admin: 管理者
-        moderator: モデレーター
-        staff: スタッフ
-        user: ユーザー
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じIPのユーザーを検索
@@ -681,9 +672,6 @@ ja:
         deletion:
           desc_html: 誰でも自分のアカウントを削除できるようにします
           title: アカウント削除を受け付ける
-        min_invite_role:
-          disabled: 誰にも許可しない
-          title: 招待の作成を許可
         require_invite_text:
           desc_html: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストを必須入力にする
           title: 新規ユーザー登録時の理由を必須入力にする
@@ -696,9 +684,6 @@ ja:
       show_known_fediverse_at_about_page:
         desc_html: チェックを外すと、ランディングページからリンクされた公開タイムラインにローカルの公開投稿のみ表示します。
         title: 公開タイムラインに連合先のコンテンツも表示する
-      show_staff_badge:
-        desc_html: ユーザーページにスタッフのバッジを表示します
-        title: スタッフバッジを表示する
       site_description:
         desc_html: フロントページへの表示に使用される紹介文です。このMastodonサーバーを特徴付けることやその他重要なことを記述してください。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: サーバーの説明
