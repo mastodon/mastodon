@@ -81,10 +81,8 @@ nl:
     posts_tab_heading: Berichten
     posts_with_replies: Berichten en reacties
     roles:
-      admin: Beheerder
       bot: Bot
       group: Groep
-      moderator: Moderator
     unavailable: Profiel niet beschikbaar
     unfollow: Ontvolgen
   admin:
@@ -103,7 +101,6 @@ nl:
       avatar: Avatar
       by_domain: Domein
       change_email:
-        changed_msg: E-mailadres van account succesvol veranderd!
         current_email: Huidig e-mailadres
         label: E-mailadres wijzigen
         new_email: Nieuw e-mailadres
@@ -183,12 +180,6 @@ nl:
       reset: Opnieuw
       reset_password: Wachtwoord opnieuw instellen
       resubscribe: Opnieuw abonneren
-      role: Bevoegdheden
-      roles:
-        admin: Beheerder
-        moderator: Moderator
-        staff: Medewerkers
-        user: Gebruiker
       search: Zoeken
       search_same_email_domain: Andere gebruikers met hetzelfde e-maildomein
       search_same_ip: Andere gebruikers met hetzelfde IP-adres
@@ -626,9 +617,6 @@ nl:
         deletion:
           desc_html: Toestaan dat iedereen diens eigen account kan verwijderen
           title: Verwijderen account toestaan
-        min_invite_role:
-          disabled: Niemand
-          title: Uitnodigingen toestaan door
         require_invite_text:
           desc_html: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
           title: Nieuwe gebruikers moeten een reden invullen waarom ze zich willen registreren
@@ -641,9 +629,6 @@ nl:
       show_known_fediverse_at_about_page:
         desc_html: Wanneer ingeschakeld wordt de globale tijdlijn op de voorpagina getoond en wanneer uitgeschakeld de lokale tijdlijn
         title: De globale tijdlijn op de openbare tijdlijnpagina tonen
-      show_staff_badge:
-        desc_html: Medewerkersbadge op profielpagina tonen
-        title: Medewerkersbadge tonen
       site_description:
         desc_html: Introductie-alinea voor de API. Beschrijf wat er speciaal is aan deze server en andere zaken die van belang zijn. Je kan HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
         title: Omschrijving Mastodonserver (API)
