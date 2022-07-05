@@ -82,10 +82,8 @@ si:
     posts_tab_heading: තනතුරු
     posts_with_replies: පළ කිරීම් සහ පිළිතුරු
     roles:
-      admin: පරිපාලක
       bot: ස්වයං ක්‍රමලේඛය
       group: සමූහය
-      moderator: mod
     unavailable: පැතිකඩ නොමැත
     unfollow: අනුගමනය නොකරන්න
   admin:
@@ -104,7 +102,6 @@ si:
       avatar: අවතාරය
       by_domain: වසම
       change_email:
-        changed_msg: ගිණුමේ වි-තැපෑල සාර්ථකව වෙනස් වේ!
         current_email: වත්මන් වි-තැපෑල
         label: වි-තැපෑල වෙනස් කරන්න
         new_email: නව විද්‍යුත් තැපෑල
@@ -186,11 +183,6 @@ si:
       reset: නැවත සකසන්න
       reset_password: මුරපදය නැවතසකසන්න
       resubscribe: නැවත දායක වන්න
-      role: අවසරයන්
-      roles:
-        admin: පරිපාලක
-        staff: කාර්ය මණ්ඩලය
-        user: පරිශීලක
       search: සොයන්න
       search_same_email_domain: එකම විද්‍යුත් තැපැල් වසම සහිත වෙනත් පරිශීලකයන්
       search_same_ip: එකම IP සහිත වෙනත් පරිශීලකයන්
@@ -699,9 +691,6 @@ si:
         deletion:
           desc_html: ඕනෑම කෙනෙකුට තම ගිණුම මකා දැමීමට ඉඩ දෙන්න
           title: ගිණුම් මකාදැමීම විවෘත කරන්න
-        min_invite_role:
-          disabled: කිසි කෙනෙක නැහැ
-          title: විසින් ආරාධනාවලට ඉඩ දෙන්න
         require_invite_text:
           desc_html: ලියාපදිංචිය සඳහා අතින් අනුමැතිය අවශ්‍ය වූ විට, "ඔබට සම්බන්ධ වීමට අවශ්‍ය වන්නේ ඇයි?" විකල්ප වෙනුවට පෙළ ආදානය අනිවාර්ය වේ
           title: සම්බන්ධ වීමට හේතුවක් ඇතුළත් කිරීමට නව පරිශීලකයින්ට අවශ්‍ය වේ
@@ -714,9 +703,6 @@ si:
       show_known_fediverse_at_about_page:
         desc_html: අබල කළ විට, ගොඩබෑමේ පිටුවෙන් සම්බන්ධ කර ඇති පොදු කාලරාමුව දේශීය අන්තර්ගතය පමණක් පෙන්වීමට සීමා කරයි
         title: සත්‍යාපනය නොකළ පොදු කාලරේඛා පිටුවේ ෆෙඩරේටඩ් අන්තර්ගතය ඇතුළත් කරන්න
-      show_staff_badge:
-        desc_html: පරිශීලක පිටුවක කාර්ය මණ්ඩල ලාංඡනයක් පෙන්වන්න
-        title: කාර්ය මණ්ඩල ලාංඡනය පෙන්වන්න
       site_description:
         desc_html: API හි හඳුන්වාදීමේ ඡේදය. මෙම Mastodon සේවාදායකය විශේෂ වන්නේ කුමක්ද සහ වෙනත් වැදගත් දෙයක් විස්තර කරන්න. ඔබට HTML ටැග් භාවිතා කළ හැකිය, විශේෂයෙන් <code>&lt;a&gt;</code> සහ <code>&lt;em&gt;</code>.
         title: සේවාදායකයේ සවිස්තරය
