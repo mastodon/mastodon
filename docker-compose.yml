@@ -55,9 +55,7 @@ services:
   #     - '127.0.0.1:9200:9200'
 
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
@@ -78,6 +76,7 @@ services:
       - ./public/system:/mastodon/public/system
 
   streaming:
+    build: .
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
@@ -95,6 +94,7 @@ services:
       - redis
 
   sidekiq:
+    build: .
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
