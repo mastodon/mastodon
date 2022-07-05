@@ -650,6 +650,9 @@ tr:
       view_profile: Profili görüntüle
     roles:
       add_new: Rol ekle
+      assigned_users:
+        one: "%{count} kullanıcı"
+        other: "%{count} kullanıcı"
       categories:
         administration: Yönetim
         devops: Devops
@@ -660,11 +663,52 @@ tr:
       description_html: <strong>Kullanıcı rolleri</strong> ile, kullanıcılarınızın Mastodon'un hangi işlevlerine ve alanlarına erişebileceğini düzenleyebilirsiniz.
       edit: '''%{name}'' rolünü düzenle'
       everyone: Varsayılan izinler
+      everyone_full_description_html: Bu, herhangi bir rol atanmamış olanlar da olmak üzere <strong>tüm kullanıcıları</strong> etkileyen <strong>temel rol</strong>dür. Diğer tüm roller izinleri bu rolden alıyorlar.
+      permissions_count:
+        one: "%{count} izin"
+        other: "%{count} izin"
       privileges:
         administrator: Yönetici
-        delete_user_data: Kullanıcı Verilerini Sil
-        invite_users: Kullanıcıları Davet Et
-        manage_announcements: Duyuruları Yönet
+        administrator_description: Bu izne sahip kullanıcılar tüm diğer izinleri atlıyorlar
+        delete_user_data: Kullanıcı Verilerini Silme
+        delete_user_data_description: Kullanıcıların, diğer kullanıcıların verisini gecikme olmaksızın silmesine izin verir
+        invite_users: Kullanıcıları Davet Etme
+        invite_users_description: Kullanıcıların yeni kişileri sunucuya davet etmesine izin verir
+        manage_announcements: Duyuruları Yönetme
+        manage_announcements_description: Kullanıcıların sunucudaki duyuruları yönetmesine izin verir
+        manage_appeals: İtirazları Yönetme
+        manage_appeals_description: Kullanıcıların denetleme eylemlerine itirazları gözden geçirmesine izin verir
+        manage_blocks: Engelleri Yönetme
+        manage_blocks_description: Kullanıcıların e-posta sağlayıcıları ve IP adreslerini engellemesine izin verir
+        manage_custom_emojis: Özel İfadeleri Yönetme
+        manage_custom_emojis_description: Kullanıcıların sunucudaki özel ifadeleri yönetmesine izin verir
+        manage_federation: Birleştirme Yönetme
+        manage_federation_description: Kullanıcıların diğer alan adlarıyla birleştirmeye izin vermesi veya engellemesine ve teslim edilebilirliği denetlemesine izin verir
+        manage_invites: Davetleri Yönetme
+        manage_invites_description: Kullanıcıların davet bağlantılarını görüntüleme ve etkisizleştirmesine izin verir
+        manage_reports: Raporları Yönetme
+        manage_reports_description: Kullanıcıların bildirimleri incelemesine ve onlara yönelik denetim eylemleri gerçekleştirmesine izin verir
+        manage_roles: Rolleri Yönetme
+        manage_roles_description: Kullanıcıların kendi rollerinden düşük rolleri atamasına izin verir
+        manage_rules: Kuralları Yönetme
+        manage_rules_description: Kullanıcıların sunucu kurallarını değiştirmesine izin ver
+        manage_settings: Ayarları Yönetme
+        manage_settings_description: Kullanıcıların site ayarlarını değiştirmesine izin verir
+        manage_taxonomies: Kategorileri Yönetme
+        manage_taxonomies_description: Kullanıcıların öne çıkan içeriği incelemesine ve etiket ayarlarını güncellemesine izin verir
+        manage_user_access: Kullanıcı Erişimini Yönetme
+        manage_user_access_description: Kullanıcıların, diğer kullanıcıların işi aşamalı yetkilendirme, e-posta adreslerini değiştirme ve parolalarını sıfırlama eylemlerini etkisizleştirmesine izin verir
+        manage_users: Kullanıcıları Yönetme
+        manage_users_description: Kullanıcıların, diğer kullanıcıların ayrıntılarını görüntülemesine ve onlara karşı denetim eylemleri gerçekleştirmesine izin verir
+        manage_webhooks: Webhookları Yönetme
+        manage_webhooks_description: Kullanıcıların yönetsel olaylar için webhook kurmasına izin verir
+        view_audit_log: Denetim Kaydını Görüntüleme
+        view_audit_log_description: Kullanıcıların sunucudaki yönetsel eylemlerin bir tarihçesini görüntülemesine izin verir
+        view_dashboard: Ana Paneli Görüntüleme
+        view_dashboard_description: Kullanıcıların ana panele ve çeşitli ölçütlere erişmesine izin verir
+        view_devops: Devops
+        view_devops_description: Kullanıcıların Sidekiq ve pgHero panellerine erişmesine izin verir
+      title: Roller
     rules:
       add_new: Kural ekle
       delete: Sil
@@ -1146,6 +1190,9 @@ tr:
       empty: Hiç filtreniz yok.
       expires_in: '%{distance} sürede sona eriyor'
       expires_on: '%{date} tarihinde sona eriyor'
+      keywords:
+        one: "%{count} anahtar sözcük"
+        other: "%{count} anahtar sözcük"
       title: Filtreler
     new:
       save: Yeni filtre kaydet
