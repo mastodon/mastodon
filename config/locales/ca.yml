@@ -82,10 +82,8 @@ ca:
     posts_tab_heading: Publicacions
     posts_with_replies: Publicacions i respostes
     roles:
-      admin: Administrador
       bot: Bot
       group: Grup
-      moderator: Moderador
     unavailable: Perfil inaccessible
     unfollow: Deixa de seguir
   admin:
@@ -104,7 +102,6 @@ ca:
       avatar: Avatar
       by_domain: Domini
       change_email:
-        changed_msg: L'adreça electrònica del compte s'ha canviat correctament!
         current_email: Adreça electrònica actual
         label: Canvia l'adreça electrònica
         new_email: Adreça electrònica nova
@@ -186,12 +183,6 @@ ca:
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
       resubscribe: Torna a subscriure
-      role: Permisos
-      roles:
-        admin: Administrador
-        moderator: Moderador
-        staff: Personal
-        user: Usuari
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
@@ -700,9 +691,6 @@ ca:
         deletion:
           desc_html: Permet a qualsevol usuari d'esborrar el seu compte
           title: Obre la supressió del compte
-        min_invite_role:
-          disabled: Ningú
-          title: Permet les invitacions de
         require_invite_text:
           desc_html: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcions l escriure el text de la solicitud d'invitació "Perquè vols unirte?"
           title: Requerir als nous usuaris omplir el text de la solicitud d'invitació
@@ -715,9 +703,6 @@ ca:
       show_known_fediverse_at_about_page:
         desc_html: Quan està desactivat, restringeix la línia de temps pública enllaçada des de la pàgina inicial a mostrar només contingut local
         title: Inclou el contingut federat a la pàgina no autenticada de la línia de temps pública
-      show_staff_badge:
-        desc_html: Mostra una insígnia de personal en la pàgina d'usuari
-        title: Mostra insígnia de personal
       site_description:
         desc_html: Paràgraf introductori a la pàgina principal i en etiquetes meta. Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Descripció del servidor
