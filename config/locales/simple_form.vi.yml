@@ -95,6 +95,13 @@ vi:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
         chosen_languages: Chỉ hiển thị những tút viết bằng các ngôn ngữ được chọn sau
+        role: Vai trò kiểm soát những quyền mà người dùng có
+      user_role:
+        color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
+        highlighted: Vai trò sẽ hiển thị công khai
+        name: Tên công khai của vai trò, nếu vai trò được đặt để hiển thị dưới dạng huy hiệu
+        permissions_as_keys: Người dùng có vai trò này sẽ có quyền truy cập vào...
+        position: Vai trò cao hơn quyết định việc giải quyết xung đột trong một số tình huống nhất định
       webhook:
         events: Chọn sự kiện để gửi
         url: Nơi những sự kiện được gửi đến
@@ -231,6 +238,14 @@ vi:
         name: Hashtag
         trendable: Cho phép xuất hiện trong xu hướng
         usable: Cho phép dùng trong tút
+      user:
+        role: Vai trò
+      user_role:
+        color: Màu huy hiệu
+        highlighted: Hiển thị huy hiệu vai trò trên hồ sơ người dùng
+        name: Tên
+        permissions_as_keys: Quyền
+        position: Mức độ ưu tiên
       webhook:
         events: Những sự kiện đã bật
         url: URL endpoint
