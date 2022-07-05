@@ -1,6 +1,6 @@
 zh-TW:
   about:
-    about_hashtag_html: '這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要您有任何 Mastodon 站點、或者其他站點的使用者，便可以與他們互動。'
+    about_hashtag_html: '這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要您有任何 Mastodon 站點、或者其他聯邦宇宙的使用者，便可以與他們互動。'
     about_mastodon_html: 'Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，在上面建立帳號，然後您就可以和任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。'
     about_this: 關於本站
     active_count_after: 活躍
@@ -22,8 +22,7 @@ zh-TW:
     get_apps: 嘗試行動應用程式
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
     instance_actor_flash: |
-      這個帳戶是個用來代表伺服器自已的虛擬角色，而不是實際的使用者。它是用來聯盟用的，除非您想要封鎖整個站台，不然不該封鎖它。但要封鎖整個站台，您可以使用網域封鎖功能。 
-
+      這個帳戶是個用來代表伺服器本身的虛擬角色，而非實際的使用者。它是用來聯盟用的，除非您想要封鎖整個站台，不然不該封鎖它。但要封鎖整個站台，您可以使用網域封鎖功能。
     learn_more: 了解詳細
     logged_in_as_html: 您目前登入使用的帳號是 %{username}
     logout_before_registering: 您已經登入了！
@@ -61,7 +60,7 @@ zh-TW:
     followers:
       other: 跟隨者
     following: 正在跟隨
-    instance_actor_flash: 這個帳號是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為站點聯盟且不應被停權。
+    instance_actor_flash: 這個帳號是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為聯邦宇宙且不應被停權。
     joined: 加入於 %{date}
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
@@ -152,9 +151,9 @@ zh-TW:
         active: 活躍
         all: 全部
         pending: 等待中
-        silenced: 受限
+        silenced: 受限的
         suspended: 已停權
-        title: 版務
+        title: 站務
       moderation_notes: 管理備忘
       most_recent_activity: 最近活動
       most_recent_ip: 最近 IP 位址
@@ -284,7 +283,7 @@ zh-TW:
         create_account_warning_html: "%{name} 已對 %{target} 送出警告"
         create_announcement_html: "%{name} 新增了公告 %{target}"
         create_custom_emoji_html: "%{name} 上傳了新自訂表情符號 %{target}"
-        create_domain_allow_html: "%{name} 允許 %{target} 網域加入站點聯盟"
+        create_domain_allow_html: "%{name} 允許 %{target} 網域加入聯邦宇宙"
         create_domain_block_html: "%{name} 封鎖了網域 %{target}"
         create_email_domain_block_html: "%{name} 封鎖了電子信箱網域 %{target}"
         create_ip_block_html: "%{name} 已經設定了IP %{target} 的規則"
@@ -292,7 +291,7 @@ zh-TW:
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 刪除了公告 %{target}"
         destroy_custom_emoji_html: "%{name} 停用了自訂表情符號 %{target}"
-        destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入站點聯盟"
+        destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 取消了對網域 %{target} 的封鎖"
         destroy_email_domain_block_html: "%{name} 取消了對電子信箱網域 %{target} 的封鎖"
         destroy_instance_html: "%{name} 清除了網域 %{target}"
@@ -408,10 +407,10 @@ zh-TW:
         empty: 找不到申訴。
         title: 申訴
     domain_allows:
-      add_new: 將網域加入白名單
-      created_msg: 網域已成功加入白名單
-      destroyed_msg: 網域已成功從白名單移除
-      undo: 從白名單移除
+      add_new: 將網域加入聯邦宇宙白名單
+      created_msg: 網域已成功加入聯邦宇宙白名單
+      destroyed_msg: 網域已成功從聯邦宇宙白名單移除
+      undo: 從聯邦宇宙白名單移除
     domain_blocks:
       add_new: 新增欲封鎖域名
       created_msg: 正在進行站點封鎖
@@ -519,12 +518,12 @@ zh-TW:
       moderation:
         all: 全部
         limited: 限制
-        title: 版主
+        title: 管管
       private_comment: 私人留言
       public_comment: 公開留言
       purge: 清除
       purge_description_html: 若您相信此網域將永久離線，您可以自儲存空間中刪除該網域所有帳號紀錄及相關資料。這可能花費一些時間。
-      title: 聯邦
+      title: 聯邦宇宙
       total_blocked_by_us: 被我們封鎖
       total_followed_by_them: 被他們跟隨
       total_followed_by_us: 被我們跟隨
@@ -569,7 +568,7 @@ zh-TW:
       pending: 等待中繼站審核
       save_and_enable: 儲存並啟用
       setup: 設定中繼連結
-      signatures_not_enabled: 若啟用安全模式或受限的站點聯盟模式，中繼將不會正常運作
+      signatures_not_enabled: 若啟用安全模式或受限的聯邦宇宙模式，中繼將不會正常運作
       status: 狀態
       title: 中繼
     report_notes:
@@ -639,10 +638,10 @@ zh-TW:
       assigned_users:
         other: "%{count} 個使用者"
       categories:
-        administration: 管理
+        administration: 管理員
         devops: Devops
         invites: 邀請
-        moderation: 版務
+        moderation: 站務
         special: 特殊
       delete: 刪除
       description_html: 透過<strong>使用者角色</strong>，您可以自訂您的使用者可以存取 Mastodon 的哪些功能與區域。
@@ -659,19 +658,19 @@ zh-TW:
         invite_users: 邀請使用者
         invite_users_description: 允許使用者邀請新人加入伺服器
         manage_announcements: 管理公告
-        manage_announcements_description: 管理使用者管理伺服器上的公告
+        manage_announcements_description: 允許使用者管理伺服器上的公告
         manage_appeals: 管理解封申訴系統
-        manage_appeals_description: 允許使用者審閱針對版務動作的申訴
+        manage_appeals_description: 允許使用者審閱針對站務動作的申訴
         manage_blocks: 管理封鎖
         manage_blocks_description: 允許使用者封鎖電子郵件提供者與 IP 位置
         manage_custom_emojis: 管理自訂表情符號
-        manage_custom_emojis_description: 管理使用者管理伺服器上的自訂表情符號
-        manage_federation: 管理聯盟
-        manage_federation_description: 允許使用者封鎖或允許與其他網域的聯盟，並控制傳遞能力
+        manage_custom_emojis_description: 允許使用者管理伺服器上的自訂表情符號
+        manage_federation: 管理聯邦宇宙
+        manage_federation_description: 允許使用者封鎖或允許與其他網域的聯邦宇宙，並控制傳遞能力
         manage_invites: 管理邀請
         manage_invites_description: 允許使用者瀏覽與停用邀請連結
         manage_reports: 管理回報
-        manage_reports_description: 允許使用者審閱回報並對回報執行版務動作
+        manage_reports_description: 允許使用者審閱回報並對回報執行站務動作
         manage_roles: 管理角色
         manage_roles_description: 允許使用者管理並指派低於他們的使用者
         manage_rules: 管理規則
@@ -683,7 +682,7 @@ zh-TW:
         manage_user_access: 管理使用者存取權
         manage_user_access_description: 允許使用者停用其他人的兩步驟驗證、變更他們的電子郵件地址以及重設他們的密碼
         manage_users: 管理使用者
-        manage_users_description: 允許使用者檢視其他使用者的詳細資訊並對回報執行版務動作
+        manage_users_description: 允許使用者檢視其他使用者的詳細資訊並對回報執行站務動作
         manage_webhooks: 管理 Webhooks
         manage_webhooks_description: 允許使用者為管理事件設定 webhooks
         view_audit_log: 檢視審核日誌
@@ -1284,7 +1283,7 @@ zh-TW:
       other_data: 其他資料並不會自動轉移
       redirect: 您目前的帳號將會在個人資料頁面新增重新導向公告，並會被排除在搜尋結果之外
   moderation:
-    title: 營運
+    title: 站務
   move_handler:
     carry_blocks_over_text: 此使用者轉移自被您封鎖的 %{acct}。
     carry_mutes_over_text: 此使用者轉移自被您靜音的 %{acct}。
