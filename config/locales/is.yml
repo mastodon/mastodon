@@ -660,8 +660,25 @@ is:
         moderation: Umsjón
         special: Sérstakt
       delete: Eyða
+      description_html: Með <strong>hlutverkum notenda</strong> geturðu sérsniðið að hvaða aðgerðum og hvaða svæðum í Mastodon notendurnir þínir hafa aðgang.
+      edit: Breyta hlutverki fyrir '%{name}'
+      everyone: Sjálfgefnar heimildir
+      permissions_count:
+        one: "%{count} heimild"
+        other: "%{count} heimildir"
       privileges:
         administrator: Stjórnandi
+        administrator_description: Notendur með þessa heimild fara framhjá öllum öðrum heimildum
+        delete_user_data: Eyða gögnum notanda
+        delete_user_data_description: Leyfir notendum að eyða gögnum annarra notenda án tafar
+        invite_users: Bjóða notendum
+        invite_users_description: Leyfir notendum að bjóða nýju fólki inn á netþjóninn
+        manage_announcements: Sýsla með tilkynningar
+        view_dashboard: Skoða stjórnborð
+        view_dashboard_description: Leyfir notendum að skoða stjórnborðið og sjá ýmsar mælingar
+        view_devops: Kerfisstjórar
+        view_devops_description: Leyfir notendum að skoða Sidekiq og pgHero stjórnborð
+      title: Hlutverk
     rules:
       add_new: Skrá reglu
       delete: Eyða
