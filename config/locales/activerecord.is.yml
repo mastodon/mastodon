@@ -37,3 +37,12 @@ is:
             email:
               blocked: notar óleyfilega tölvupóstþjónustu
               unreachable: virðist ekki vera til
+            role_id:
+              elevated: getur ekki verið veigameiri en núverandi hlutverk þitt
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: hefur heimildir sem ekki eru öruggar fyrir grunnhlutverk
+              elevated: getur ekki haft heimildir sem núverandi hlutverk þitt er ekki með
+            position:
+              elevated: getur ekki verið veigameiri en núverandi hlutverk þitt
