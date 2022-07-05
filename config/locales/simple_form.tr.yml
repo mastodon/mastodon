@@ -95,6 +95,13 @@ tr:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
         chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki tootlar genel zaman çizelgelerinde görüntülenir
+        role: Rol, kullanıcıların sahip olduğu izinleri denetler
+      user_role:
+        color: Arayüz boyunca rol için kullanılacak olan renk, hex biçiminde RGB
+        highlighted: Bu rolü herkese açık hale getirir
+        name: Rolün, eğer rozet olarak görüntülenmesi ayarlandıysa kullanılacak herkese açık ismi
+        permissions_as_keys: Bu role sahip kullanıcıların şunlara erişimi var...
+        position: Belirli durumlarda uyuşmazlığın çözümünde daha yüksek rol belirleyicidir
       webhook:
         events: Gönderilecek etkinlikleri seçin
         url: Olayların gönderileceği yer
@@ -231,6 +238,14 @@ tr:
         name: Etiket
         trendable: Bu etiketin gündem altında görünmesine izin ver
         usable: Tootların bu etiketi kullanmasına izin ver
+      user:
+        role: Rol
+      user_role:
+        color: Rozet rengi
+        highlighted: Rolü kullanıcıların profilinde rozet olarak görüntüle
+        name: Ad
+        permissions_as_keys: İzinler
+        position: Öncelik
       webhook:
         events: Etkin olaylar
         url: Uç nokta URL’si
