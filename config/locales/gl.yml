@@ -155,7 +155,7 @@ gl:
         active: Activa
         all: Todo
         pending: Pendente
-        silenced: Acalada
+        silenced: Limitada
         suspended: Suspendidos
         title: Moderación
       moderation_notes: Notas de moderación
@@ -163,6 +163,7 @@ gl:
       most_recent_ip: IP máis recente
       no_account_selected: Ningunha conta mudou porque ningunha foi seleccionada
       no_limits_imposed: Sen límites impostos
+      no_role_assigned: Sen rol asignado
       not_subscribed: Non subscrita
       pending: Revisión pendente
       perform_full_suspension: Suspender
@@ -189,6 +190,7 @@ gl:
       reset: Restabelecer
       reset_password: Restabelecer contrasinal
       resubscribe: Resubscribir
+      role: Rol
       search: Procurar
       search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
@@ -645,6 +647,67 @@ gl:
       unresolved: Non resolto
       updated_at: Actualizado
       view_profile: Ver perfil
+    roles:
+      add_new: Engadir rol
+      assigned_users:
+        one: "%{count} usuaria"
+        other: "%{count} usuarias"
+      categories:
+        administration: Administración
+        devops: DevOps
+        invites: Convites
+        moderation: Moderación
+        special: Especial
+      delete: Eliminar
+      description_html: Cos <strong>roles das usuarias</strong> podes personalizar as funcións e áreas de Mastodon ás que as usuarias poden acceder.
+      edit: Editar rol '%{name}'
+      everyone: Permisos por defecto
+      everyone_full_description_html: Este é o <strong>rol básico</strong> que afecta a <strong>tódalas usuarias</strong>, incluso aquelas sen un rol asignado. Tódolos outros roles herdar os seus permisos.
+      permissions_count:
+        one: "%{count} permiso"
+        other: "%{count} permisos"
+      privileges:
+        administrator: Administradora
+        administrator_description: As usuarias con este permiso poderán superar calquera restrición
+        delete_user_data: Eliminar datos de usuarias
+        delete_user_data_description: Permite eliminar datos doutras usuarias sen demoras
+        invite_users: Convidar usuarias
+        invite_users_description: Permite que outras usuarias conviden a xente ao servidor
+        manage_announcements: Xestionar anuncios
+        manage_announcements_description: Permite que xestionen os anuncios publicados no servidor
+        manage_appeals: Xestionar recursos
+        manage_appeals_description: Permite revisar as apelacións contra as accións de moderación
+        manage_blocks: Xestionar bloqueos
+        manage_blocks_description: Permite bloquear provedores de email e enderezos IP
+        manage_custom_emojis: Xestionar Emojis personalizados
+        manage_custom_emojis_description: Permite xestionar os emojis personalizados do servidor
+        manage_federation: Xestionar a federación
+        manage_federation_description: Permite bloquear ou permitir a federación con outros dominios, e controlar as entregas
+        manage_invites: Xestionar Convites
+        manage_invites_description: Permite ver e desactivar ligazóns de convite
+        manage_reports: Xestionar Denuncias
+        manage_reports_description: Permite revisar as denuncias e realizar accións de moderación sobre elas
+        manage_roles: Xestionar Roles
+        manage_roles_description: Permite xestionar e asignar roles a niveis inferiores
+        manage_rules: Xestionar Regras
+        manage_rules_description: Permite cambiar as regras do servidor
+        manage_settings: Xestionar Axustes
+        manage_settings_description: Permite cambiar os axustes do sitio web
+        manage_taxonomies: Xestionar Taxonomías
+        manage_taxonomies_description: Permite revisar o contido en voga e actualizar os axustes dos cancelos
+        manage_user_access: Xestionar Acceso das usuarias
+        manage_user_access_description: Permite desactivar o segundo factor de autenticación doutras usuarias, cambiar o enderezo de email e restablecer o contrasinal
+        manage_users: Xestionar Usuarias
+        manage_users_description: Permite ver os detalles doutras usuarias e realizar accións de moderación en sobre elas
+        manage_webhooks: Xestionar Webhooks
+        manage_webhooks_description: Permite establecer webhooks para eventos administrativos
+        view_audit_log: Ver Rexistro de auditoría
+        view_audit_log_description: Permite ver o historial de accións administrativas no servidor
+        view_dashboard: Ver Taboleiro
+        view_dashboard_description: Permite acceder ao taboleiro e varias métricas do servidor
+        view_devops: Devops
+        view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
+      title: Roles
     rules:
       add_new: Engadir regra
       delete: Eliminar
