@@ -82,10 +82,8 @@ da:
     posts_tab_heading: Indlæg
     posts_with_replies: Indlæg og svar
     roles:
-      admin: Admin
       bot: Bot
       group: Gruppe
-      moderator: Moderator
     unavailable: Profil utilgængelig
     unfollow: Følg ikke længere
   admin:
@@ -104,7 +102,6 @@ da:
       avatar: Profilbillede
       by_domain: Domæne
       change_email:
-        changed_msg: Kontoens e-mail er skiftet!
         current_email: Nuværende e-mail
         label: Skift e-mail
         new_email: Ny e-mail
@@ -186,12 +183,6 @@ da:
       reset: Nulstil
       reset_password: Nulstil adgangskode
       resubscribe: Genabonnér
-      role: Tilladelser
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        staff: Personale
-        user: Bruger
       search: Søg
       search_same_email_domain: Øvrige brugere med samme e-maildomæne
       search_same_ip: Øvrige brugere med identisk IP
@@ -700,9 +691,6 @@ da:
         deletion:
           desc_html: Tillad enhver at slette sin konto
           title: Åbn kontosletning
-        min_invite_role:
-          disabled: Ingen
-          title: Tillad invitationer fra
         require_invite_text:
           desc_html: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
           title: Nye brugere afkræves tilmeldingsbegrundelse
@@ -715,9 +703,6 @@ da:
       show_known_fediverse_at_about_page:
         desc_html: Når deaktiveret, begrænses den fra indgangssiden linkede offentlige tidslinje til kun at vise lokalt indhold
         title: Medtag federeret indhold på ikke-godkendt, offentlig tidslinjeside
-      show_staff_badge:
-        desc_html: Vis et personale-badge på en brugerside
-        title: Vis personale-badge
       site_description:
         desc_html: Introduktionsafsnit på API'en. Beskriv, hvad der gør denne Mastodonserver speciel samt alt andet vigtigt. HTML-tags kan bruges, især <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Serverbeskrivelse
