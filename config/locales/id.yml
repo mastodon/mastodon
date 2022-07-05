@@ -78,10 +78,8 @@ id:
     posts_tab_heading: Toot
     posts_with_replies: Toot dan balasan
     roles:
-      admin: Admin
       bot: Bot
       group: Grup
-      moderator: Moderator
     unavailable: Profil tidak tersedia
     unfollow: Berhenti mengikuti
   admin:
@@ -100,7 +98,6 @@ id:
       avatar: Avatar
       by_domain: Domian
       change_email:
-        changed_msg: Email akun ini berhasil diubah!
         current_email: Email saat ini
         label: Ganti email
         new_email: Email baru
@@ -181,12 +178,6 @@ id:
       reset: Atur ulang
       reset_password: Reset kata sandi
       resubscribe: Langganan ulang
-      role: Hak akses
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        staff: Staf
-        user: Pengguna
       search: Cari
       search_same_email_domain: Pengguna lain dengan domain email yang sama
       search_same_ip: Pengguna lain dengan IP yang sama
@@ -686,9 +677,6 @@ id:
         deletion:
           desc_html: Izinkan siapapun untuk menghapus akun miliknya
           title: Buka penghapusan akun
-        min_invite_role:
-          disabled: Tidak ada satu pun
-          title: Izinkan undangan oleh
         require_invite_text:
           desc_html: Saat pendaftaran harus disetujui manual, buat input teks "Mengapa Anda ingin bergabung?" sebagai hal wajib bukan opsional
           title: Pengguna baru harus memasukkan alasan bergabung
@@ -701,9 +689,6 @@ id:
       show_known_fediverse_at_about_page:
         desc_html: Ketika dimatikan, batasi linimasa publik yang ditautkan dari halaman landas untuk menampilkan konten lokal saja
         title: Masukkan konten gabungan di halaman linimasa publik tanpa autentifikasi
-      show_staff_badge:
-        desc_html: Tampilkan lencana staf pada halaman pengguna
-        title: Tampilkan lencana staf
       site_description:
         desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
         title: Deskripsi situs
