@@ -95,6 +95,13 @@ es-AR:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando estén marcados, sólo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
+        role: El rol controla qué permisos tiene el usuario
+      user_role:
+        color: Color que se utilizará para el rol a lo largo de la interface de usuario, como RGB en formato hexadecimal
+        highlighted: Esto hace que el rol sea públicamente visible
+        name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
+        permissions_as_keys: Los usuarios con este rol tendrán acceso a…
+        position: Un rol más alto decide la resolución de conflictos en ciertas situaciones
       webhook:
         events: Seleccionar eventos para enviar
         url: Adónde serán enviados los eventos
@@ -231,6 +238,14 @@ es-AR:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a los mensajes usar esta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de Insignia
+        highlighted: Mostrar rol como insignia en perfiles de usuario
+        name: Nombre
+        permissions_as_keys: Permisos
+        position: Prioridad
       webhook:
         events: Eventos habilitados
         url: Dirección web del punto final
