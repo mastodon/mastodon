@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_13_110903) do
+ActiveRecord::Schema.define(version: 2022_07_04_024901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -968,6 +968,16 @@ ActiveRecord::Schema.define(version: 2022_06_13_110903) do
     t.index ["user_id"], name: "index_user_invite_requests_on_user_id"
   end
 
+  create_table "user_roles", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "color", default: "", null: false
+    t.integer "position", default: 0, null: false
+    t.bigint "permissions", default: 0, null: false
+    t.boolean "highlighted", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.datetime "created_at", null: false
@@ -1003,11 +1013,13 @@ ActiveRecord::Schema.define(version: 2022_06_13_110903) do
     t.string "webauthn_id"
     t.inet "sign_up_ip"
     t.boolean "skip_sign_in_token"
+    t.bigint "role_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id", where: "(created_by_application_id IS NOT NULL)"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, opclass: :text_pattern_ops, where: "(reset_password_token IS NOT NULL)"
+    t.index ["role_id"], name: "index_users_on_role_id", where: "(role_id IS NOT NULL)"
   end
 
   create_table "web_push_subscriptions", force: :cascade do |t|
@@ -1159,6 +1171,7 @@ ActiveRecord::Schema.define(version: 2022_06_13_110903) do
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
   add_foreign_key "users", "invites", on_delete: :nullify
   add_foreign_key "users", "oauth_applications", column: "created_by_application_id", on_delete: :nullify
+  add_foreign_key "users", "user_roles", column: "role_id", on_delete: :nullify
   add_foreign_key "web_push_subscriptions", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade

@@ -2,13 +2,15 @@
 
 class Admin::Trends::StatusesController < Admin::BaseController
   def index
-    authorize :status, :index?
+    authorize :status, :review?
 
     @statuses = filtered_statuses.page(params[:page])
     @form     = Trends::StatusBatch.new
   end
 
   def batch
+    authorize :status, :review?
+
     @form = Trends::StatusBatch.new(trends_status_batch_params.merge(current_account: current_account, action: action_from_button))
     @form.save
   rescue ActionController::ParameterMissing

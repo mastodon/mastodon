@@ -2,34 +2,34 @@
 
 class WebhookPolicy < ApplicationPolicy
   def index?
-    admin?
+    role.can?(:manage_webhooks)
   end
 
   def create?
-    admin?
+    role.can?(:manage_webhooks)
   end
 
   def show?
-    admin?
+    role.can?(:manage_webhooks)
   end
 
   def update?
-    admin?
+    role.can?(:manage_webhooks)
   end
 
   def enable?
-    admin?
+    role.can?(:manage_webhooks)
   end
 
   def disable?
-    admin?
+    role.can?(:manage_webhooks)
   end
 
   def rotate_secret?
-    admin?
+    role.can?(:manage_webhooks)
   end
 
   def destroy?
-    admin?
+    role.can?(:manage_webhooks)
   end
 end

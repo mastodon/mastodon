@@ -56,14 +56,6 @@ class ApplicationController < ActionController::Base
     store_location_for(:user, request.url) unless [:json, :rss].include?(request.format&.to_sym)
   end
 
-  def require_admin!
-    forbidden unless current_user&.admin?
-  end
-
-  def require_staff!
-    forbidden unless current_user&.staff?
-  end
-
   def require_functional!
     redirect_to edit_user_registration_path unless current_user.functional?
   end
