@@ -115,6 +115,9 @@ cs:
         new_email: Nový e-mail
         submit: Změnit e-mail
         title: Změnit e-mail uživateli %{username}
+      change_role:
+        changed_msg: Role úspěšně změněna!
+        label: Změnit roli
       confirm: Potvrdit
       confirmed: Potvrzeno
       confirming: Potvrzuji
@@ -667,6 +670,18 @@ cs:
       unresolved: Nevyřešeno
       updated_at: Aktualizováno
       view_profile: Zobrazit profil
+    roles:
+      add_new: Přidat roli
+      assigned_users:
+        one: "%{count} uživatel"
+        few: "%{count} uživatelé"
+        many: "%{count} uživatelů"
+        other: "%{count} uživatelů"
+      permissions_count:
+        one: "%{count} oprávnění"
+        few: "%{count} oprávnění"
+        many: "%{count} oprávnění"
+        other: "%{count} oprávnění"
     rules:
       add_new: Přidat pravidlo
       delete: Smazat
@@ -1100,7 +1115,7 @@ cs:
     invalid_domain: není platné doménové jméno
   errors:
     '400': Žádost, kterou jste odeslali, byla neplatná nebo poškozená.
-    '403': Nemáte povolení zobrazit tuto stránku.
+    '403': Nejste oprávněni tuto stránku zobrazit.
     '404': Stránka, kterou hledáte, tu není.
     '406': Tato stránka není v požadovaném formátu dostupná.
     '410': Stránka, kterou hledáte, tu již není.
