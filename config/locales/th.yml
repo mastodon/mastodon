@@ -73,10 +73,8 @@ th:
     posts_tab_heading: โพสต์
     posts_with_replies: โพสต์และการตอบกลับ
     roles:
-      admin: ผู้ดูแล
       bot: บอต
       group: กลุ่ม
-      moderator: ผู้ควบคุม
     unavailable: โปรไฟล์ไม่พร้อมใช้งาน
     unfollow: เลิกติดตาม
   admin:
@@ -95,7 +93,6 @@ th:
       avatar: ภาพประจำตัว
       by_domain: โดเมน
       change_email:
-        changed_msg: เปลี่ยนอีเมลบัญชีสำเร็จ!
         current_email: อีเมลปัจจุบัน
         label: เปลี่ยนอีเมล
         new_email: อีเมลใหม่
@@ -176,12 +173,6 @@ th:
       reset: รีเซ็ต
       reset_password: ตั้งรหัสผ่านใหม่
       resubscribe: บอกรับใหม่
-      role: สิทธิอนุญาต
-      roles:
-        admin: ผู้ดูแล
-        moderator: ผู้ควบคุม
-        staff: พนักงาน
-        user: ผู้ใช้
       search: ค้นหา
       search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
@@ -646,9 +637,6 @@ th:
         deletion:
           desc_html: อนุญาตให้ใครก็ตามลบบัญชีของเขา
           title: เปิดการลบบัญชี
-        min_invite_role:
-          disabled: ไม่มีใคร
-          title: อนุญาตคำเชิญโดย
         require_invite_text:
           title: ต้องให้ผู้ใช้ใหม่ป้อนเหตุผลที่จะเข้าร่วม
       registrations_mode:
@@ -660,9 +648,6 @@ th:
       show_known_fediverse_at_about_page:
         desc_html: เมื่อปิดใช้งาน จำกัดเส้นเวลาสาธารณะที่เชื่อมโยงจากหน้าเริ่มต้นให้แสดงเฉพาะเนื้อหาในเซิร์ฟเวอร์เท่านั้น
         title: รวมเนื้อหาที่ติดต่อกับภายนอกไว้ในหน้าเส้นเวลาสาธารณะที่ไม่ได้รับรองความถูกต้อง
-      show_staff_badge:
-        desc_html: แสดงป้ายพนักงานในหน้าผู้ใช้
-        title: แสดงป้ายพนักงาน
       site_description:
         desc_html: ย่อหน้าเกริ่นนำใน API อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>
         title: คำอธิบายเซิร์ฟเวอร์
