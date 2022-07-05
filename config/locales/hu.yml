@@ -82,10 +82,8 @@ hu:
     posts_tab_heading: Bejegyzés
     posts_with_replies: Bejegyzés válaszokkal
     roles:
-      admin: Adminisztrátor
       bot: Bot
       group: Csoport
-      moderator: Moderátor
     unavailable: Nincs ilyen profil
     unfollow: Követés vége
   admin:
@@ -104,7 +102,6 @@ hu:
       avatar: Profilkép
       by_domain: Domain
       change_email:
-        changed_msg: A fiókhoz tartozó e-mailt megváltoztattuk!
         current_email: Jelenlegi e-mail
         label: E-mail megváltoztatása
         new_email: Új e-mail
@@ -186,12 +183,6 @@ hu:
       reset: Visszaállítás
       reset_password: Jelszó visszaállítása
       resubscribe: Feliratkozás ismét
-      role: Engedélyek
-      roles:
-        admin: Adminisztrátor
-        moderator: Moderátor
-        staff: Stáb
-        user: Felhasználó
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
@@ -700,9 +691,6 @@ hu:
         deletion:
           desc_html: Engedélyezed a felhasználóknak, hogy töröljék fiókjukat
           title: Fiók törlésének engedélyezése
-        min_invite_role:
-          disabled: Senki
-          title: Meghívások engedélyezése
         require_invite_text:
           desc_html: Ha a regisztrációhoz kézi jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
           title: Az új felhasználóktól legyen megkövetelve a meghívási kérés szövegének kitöltése
@@ -715,9 +703,6 @@ hu:
       show_known_fediverse_at_about_page:
         desc_html: Ha le van tiltva, a nyilvános, főoldalról elérhető idővonalon csak helyi tartalmak jelennek meg
         title: Mutassuk az általunk ismert föderációt az idővonal előnézetben
-      show_staff_badge:
-        desc_html: Stáb-jelvény megjelenítése a felhasználó oldalán
-        title: Stáb-jelvény megjelenítése
       site_description:
         desc_html: Rövid bemutatkozás a főoldalon és a meta fejlécekben. Írd le, mi teszi ezt a szervert különlegessé! Használhatod a <code>&lt;a&gt;</code> és <code>&lt;em&gt;</code> HTML tageket.
         title: Kiszolgáló leírása
