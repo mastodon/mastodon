@@ -102,11 +102,17 @@ tr:
       avatar: Profil resmi
       by_domain: Alan adı
       change_email:
+        changed_msg: E-posta başarıyla değiştirildi!
         current_email: Mevcut e-posta
         label: E-postayı değiştir
         new_email: Yeni e-posta
         submit: E-postayı değiştir
         title: '%{username} için e-postayı değiştir'
+      change_role:
+        changed_msg: Rol başarıyla değiştirildi!
+        label: Rolü değiştir
+        no_role: Rol yok
+        title: '%{username} için rolü değiştir'
       confirm: Onayla
       confirmed: Onaylandı
       confirming: Onaylanıyor
@@ -150,6 +156,7 @@ tr:
         active: Etkin
         all: Hepsi
         pending: Bekliyor
+        silenced: Sınırlı
         suspended: Uzaklaştırılanlar
         title: Denetim
       moderation_notes: Denetleme notları
@@ -157,6 +164,7 @@ tr:
       most_recent_ip: Son IP
       no_account_selected: Hiçbiri seçilmediğinden hiçbir hesap değiştirilmedi
       no_limits_imposed: Sınır koymaz
+      no_role_assigned: Rol atanmamış
       not_subscribed: Abone edilmedi
       pending: Bekleyen yorum
       perform_full_suspension: Askıya al
@@ -183,6 +191,7 @@ tr:
       reset: Sıfırla
       reset_password: Parolayı sıfırla
       resubscribe: Yeniden abone ol
+      role: Rol
       search: Ara
       search_same_email_domain: Aynı e-posta alan adına sahip diğer kullanıcılar
       search_same_ip: Aynı IP adresine sahip diğer kullanıcılar
@@ -639,6 +648,23 @@ tr:
       unresolved: Giderilmedi
       updated_at: Güncellendi
       view_profile: Profili görüntüle
+    roles:
+      add_new: Rol ekle
+      categories:
+        administration: Yönetim
+        devops: Devops
+        invites: Davetler
+        moderation: Denetim
+        special: Özel
+      delete: Sil
+      description_html: <strong>Kullanıcı rolleri</strong> ile, kullanıcılarınızın Mastodon'un hangi işlevlerine ve alanlarına erişebileceğini düzenleyebilirsiniz.
+      edit: '''%{name}'' rolünü düzenle'
+      everyone: Varsayılan izinler
+      privileges:
+        administrator: Yönetici
+        delete_user_data: Kullanıcı Verilerini Sil
+        invite_users: Kullanıcıları Davet Et
+        manage_announcements: Duyuruları Yönet
     rules:
       add_new: Kural ekle
       delete: Sil
