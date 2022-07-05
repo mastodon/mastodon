@@ -9,7 +9,7 @@
       = f.input :name, wrapper: :with_label
 
     .fields-group
-      = f.input :position, wrapper: :with_label
+      = f.input :position, wrapper: :with_label, input_html: { max: current_user.role.position - 1 }
 
     .fields-group
       = f.input :color, wrapper: :with_label, input_html: { placeholder: '#000000' }
