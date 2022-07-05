@@ -90,10 +90,8 @@ pl:
     posts_tab_heading: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
     roles:
-      admin: Administrator
       bot: Bot
       group: Grupa
-      moderator: Moderator
     unavailable: Profil niedostępny
     unfollow: Przestań śledzić
   admin:
@@ -112,7 +110,6 @@ pl:
       avatar: Awatar
       by_domain: Domena
       change_email:
-        changed_msg: Pomyślnie zmieniono adres e-mail konta!
         current_email: Obecny adres e-mail
         label: Zmień adres e-mail
         new_email: Nowy adres e-mail
@@ -196,12 +193,6 @@ pl:
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
-      role: Uprawnienia
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        staff: Ekipa
-        user: Użytkownik
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
@@ -728,9 +719,6 @@ pl:
         deletion:
           desc_html: Pozwól każdemu na usunięcie konta
           title: Możliwość usunięcia
-        min_invite_role:
-          disabled: Nikt
-          title: Kto może zapraszać użytkowników
         require_invite_text:
           desc_html: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
           title: Wymagaj od nowych użytkowników wypełnienia tekstu prośby o zaproszenie
@@ -743,9 +731,6 @@ pl:
       show_known_fediverse_at_about_page:
         desc_html: Jeśli włączone, podgląd instancji będzie wyświetlał wpisy z całego Fediwersum. W innym przypadku, będą wyświetlane tylko lokalne wpisy.
         title: Pokazuj wszystkie znane wpisy na podglądzie instancji
-      show_staff_badge:
-        desc_html: Pokazuj odznakę uprawnień na stronie profilu użytkownika
-        title: Pokazuj odznakę administracji
       site_description:
         desc_html: Akapit wprowadzający, widoczny na stronie głównej. Opisz, co czyni tę instancję wyjątkową. Możesz korzystać ze znaczników HTML, w szczególności <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Opis serwera
