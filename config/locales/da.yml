@@ -102,11 +102,17 @@ da:
       avatar: Profilbillede
       by_domain: Domæne
       change_email:
+        changed_msg: E-mail skiftet!
         current_email: Nuværende e-mail
         label: Skift e-mail
         new_email: Ny e-mail
         submit: Skift e-mail
         title: Skift e-mail for %{username}
+      change_role:
+        changed_msg: Rolle ændret!
+        label: Ændr rolle
+        no_role: Ingen rolle
+        title: Ændr rolle for %{username}
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
@@ -150,6 +156,7 @@ da:
         active: Aktiv
         all: Alle
         pending: Afventer
+        silenced: Begrænset
         suspended: Suspenderet
         title: Moderation
       moderation_notes: Moderationsnotater
@@ -157,6 +164,7 @@ da:
       most_recent_ip: Seneste IP
       no_account_selected: Ingen kontiændringer, da ingen var valgt
       no_limits_imposed: Ingen begrænsninger pålagt
+      no_role_assigned: Ingen rolle tildelt
       not_subscribed: Abonnerer ikke
       pending: Afventende vurdering
       perform_full_suspension: Suspendér
@@ -183,6 +191,7 @@ da:
       reset: Nulstil
       reset_password: Nulstil adgangskode
       resubscribe: Genabonnér
+      role: Rolle
       search: Søg
       search_same_email_domain: Øvrige brugere med samme e-maildomæne
       search_same_ip: Øvrige brugere med identisk IP
@@ -639,6 +648,29 @@ da:
       unresolved: Uløst
       updated_at: Opdateret
       view_profile: Vis profil
+    roles:
+      add_new: Tilføj rolle
+      assigned_users:
+        one: "%{count} bruger"
+        other: "%{count} brugere"
+      categories:
+        administration: Håndtering
+        devops: Devops
+        invites: Invitationer
+        moderation: Moderering
+        special: Speciel
+      delete: Slet
+      description_html: Med <strong>brugerroller</strong>kan man tilpasse sine brugeres adgang til Mastodon-funktioner og -områder.
+      edit: Redigér rolle for '%{name}
+      everyone: Standardtilladelser
+      everyone_full_description_html: Dette er <strong>basisrollen</strong> med indvirkning på <strong>alle brugere</strong>, selv dem uden rolletildeling. Alle øvrige rolletilladelser nedarves herfra.
+      permissions_count:
+        one: "%{count} tilladelse"
+        other: "%{count} tilladelser"
+      privileges:
+        administrator: Administrator
+        administrator_description: Brugere med denne rolle kan omgå alle tilladelser
+        delete_user_data: Slet brugerdata
     rules:
       add_new: Tilføj regel
       delete: Slet
