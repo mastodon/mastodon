@@ -78,10 +78,8 @@ vi:
     posts_tab_heading: Tút
     posts_with_replies: Trả lời
     roles:
-      admin: Quản trị viên
       bot: Tài khoản Bot
       group: Nhóm
-      moderator: Kiểm duyệt viên
     unavailable: Tài khoản bị đình chỉ
     unfollow: Ngưng theo dõi
   admin:
@@ -100,7 +98,6 @@ vi:
       avatar: Ảnh đại diện
       by_domain: Máy chủ
       change_email:
-        changed_msg: Email tài khoản đã thay đổi thành công!
         current_email: Email hiện tại
         label: Thay đổi email
         new_email: Email mới
@@ -181,12 +178,6 @@ vi:
       reset: Đặt lại
       reset_password: Đặt lại mật khẩu
       resubscribe: Đăng ký lại
-      role: Vai trò
-      roles:
-        admin: Quản trị viên
-        moderator: Kiểm duyệt viên
-        staff: Đội ngũ
-        user: Người dùng
       search: Tìm kiếm
       search_same_email_domain: Tra cứu email
       search_same_ip: Tra cứu IP
@@ -686,9 +677,6 @@ vi:
         deletion:
           desc_html: Cho phép mọi người xóa tài khoản của họ
           title: Xóa tài khoản
-        min_invite_role:
-          disabled: Không một ai
-          title: Cho phép lời mời bằng cách
         require_invite_text:
           desc_html: Khi chọn phê duyệt người dùng thủ công, hiện “Tại sao bạn muốn đăng ký?” thay cho tùy chọn nhập
           title: Người đăng ký mới phải nhập mã mời tham gia
@@ -701,9 +689,6 @@ vi:
       show_known_fediverse_at_about_page:
         desc_html: Nếu tắt, bảng tin sẽ chỉ hiển thị nội dung do người dùng của máy chủ này tạo ra
         title: Bao gồm nội dung từ mạng liên hợp trên bảng tin không được cho phép
-      show_staff_badge:
-        desc_html: Hiện huy hiệu đội ngũ trên trang người dùng
-        title: Hiện huy hiệu đội ngũ
       site_description:
         desc_html: Nội dung giới thiệu về máy chủ. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể dùng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code>.
         title: Mô tả máy chủ
