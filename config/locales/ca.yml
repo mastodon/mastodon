@@ -666,6 +666,46 @@ ca:
         other: "%{count} permisos"
       privileges:
         administrator: Administrador
+        administrator_description: Els usuaris amb aquest permís passaran per alt tots els permisos
+        delete_user_data: Esborra dades d'usuari
+        delete_user_data_description: Permet als usuaris suprimir les dades d'altres usuaris sense demora
+        invite_users: Convida usuaris
+        invite_users_description: Permet als usuaris convidar persones noves al servidor
+        manage_announcements: Gestiona els anuncis
+        manage_announcements_description: Permet als usuaris gestionar els anuncis al servidor
+        manage_appeals: Gestiona apel·lacions
+        manage_appeals_description: Permet als usuaris revisar les apel·lacions contra les accions de moderació
+        manage_blocks: Gestiona blocs
+        manage_blocks_description: Permet als usuaris bloquejar proveïdors de correu electrònic i adreces IP
+        manage_custom_emojis: Gestiona emojis personalitzats
+        manage_custom_emojis_description: Permet als usuaris gestionar emojis personalitzats al servidor
+        manage_federation: Gestiona federació
+        manage_federation_description: Permet als usuaris bloquejar o permetre la federació amb altres dominis i controlar la capacitat de lliurament
+        manage_invites: Gestiona invitacions
+        manage_invites_description: Permet als usuaris veure i desactivar els enllaços d'invitació
+        manage_reports: Gestiona informes
+        manage_reports_description: Permet als usuaris revisar informes i realitzar accions de moderació contra ells
+        manage_roles: Gestionar rols
+        manage_roles_description: Permet als usuaris gestionar i assignar rols per sota dels seus
+        manage_rules: Gestiona normes
+        manage_rules_description: Permet als usuaris canviar les normes del servidor
+        manage_settings: Gestiona configuració
+        manage_settings_description: Permet als usuaris canviar la configuració del lloc
+        manage_taxonomies: Gestionar taxonomies
+        manage_taxonomies_description: Permet als usuaris revisar el contingut actual i actualitzar la configuració de l'etiqueta
+        manage_user_access: Gestionar l'accés dels usuaris
+        manage_user_access_description: Permet als usuaris desactivar l'autenticació de dos factors d'altres usuaris, canviar la seva adreça de correu electrònic i restablir la seva contrasenya
+        manage_users: Gestionar usuaris
+        manage_users_description: Permet als usuaris veure els detalls d'altres usuaris i realitzar accions de moderació contra ells
+        manage_webhooks: Gestionar Webhooks
+        manage_webhooks_description: Permet als usuaris configurar webhooks per a esdeveniments administratius
+        view_audit_log: Veure el registre d'auditoria
+        view_audit_log_description: Permet als usuaris veure un historial d'accions administratives al servidor
+        view_dashboard: Veure panell
+        view_dashboard_description: Permet als usuaris accedir al tauler i a diverses mètriques
+        view_devops: Operadors de desenvolupament
+        view_devops_description: Permet als usuaris accedir als taulers de control de Sidekiq i pgHero
+      title: Rols
     rules:
       add_new: Afegir norma
       delete: Suprimeix
