@@ -82,10 +82,8 @@ tr:
     posts_tab_heading: Tootlar
     posts_with_replies: Tootlar ve yanıtlar
     roles:
-      admin: Yönetici
       bot: Bot
       group: Grup
-      moderator: Denetleyici
     unavailable: Profil kullanılamıyor
     unfollow: Takibi bırak
   admin:
@@ -104,7 +102,6 @@ tr:
       avatar: Profil resmi
       by_domain: Alan adı
       change_email:
-        changed_msg: Hesap e-postası başarıyla değiştirildi!
         current_email: Mevcut e-posta
         label: E-postayı değiştir
         new_email: Yeni e-posta
@@ -186,12 +183,6 @@ tr:
       reset: Sıfırla
       reset_password: Parolayı sıfırla
       resubscribe: Yeniden abone ol
-      role: İzinler
-      roles:
-        admin: Yönetici
-        moderator: Denetleyici
-        staff: Personel
-        user: Kullanıcı
       search: Ara
       search_same_email_domain: Aynı e-posta alan adına sahip diğer kullanıcılar
       search_same_ip: Aynı IP adresine sahip diğer kullanıcılar
@@ -700,9 +691,6 @@ tr:
         deletion:
           desc_html: Herkese hesabını silme izni ver
           title: Hesap silmeyi aç
-        min_invite_role:
-          disabled: Hiç kimse
-          title: tarafından yapılan davetlere izin ver
         require_invite_text:
           desc_html: Kayıtlar elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
           title: Yeni kullanıcıların katılmak için bir gerekçe sunmasını gerektir
@@ -715,9 +703,6 @@ tr:
       show_known_fediverse_at_about_page:
         desc_html: Değiştirildiğinde, bilinen bütün fediverse'lerden gönderileri ön izlemede gösterir. Diğer türlü sadece yerel gönderileri gösterecektir.
         title: Zaman çizelgesi ön izlemesinde bilinen fediverse'i göster
-      show_staff_badge:
-        desc_html: Kullanıcının sayfasında bir personel rozeti göster
-        title: Personel rozeti göster
       site_description:
         desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
         title: Site açıklaması
