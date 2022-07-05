@@ -82,10 +82,8 @@ es-MX:
     posts_tab_heading: Toots
     posts_with_replies: Toots con respuestas
     roles:
-      admin: Administrador
       bot: Bot
       group: Grupo
-      moderator: Moderador
     unavailable: Perfil no disponible
     unfollow: Dejar de seguir
   admin:
@@ -104,7 +102,6 @@ es-MX:
       avatar: Foto de perfil
       by_domain: Dominio
       change_email:
-        changed_msg: '¡El correo electrónico se ha actualizado correctamente!'
         current_email: Correo electrónico actual
         label: Cambiar el correo electrónico
         new_email: Nuevo correo electrónico
@@ -186,12 +183,6 @@ es-MX:
       reset: Reiniciar
       reset_password: Reiniciar contraseña
       resubscribe: Re-suscribir
-      role: Permisos
-      roles:
-        admin: Administrador
-        moderator: Moderador
-        staff: Personal
-        user: Usuario
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
@@ -700,9 +691,6 @@ es-MX:
         deletion:
           desc_html: Permite a cualquiera a eliminar su cuenta
           title: Eliminación de cuenta abierta
-        min_invite_role:
-          disabled: Nadie
-          title: Permitir invitaciones de
         require_invite_text:
           desc_html: Cuando los registros requieren aprobación manual, haga obligatorio en la invitaciones el campo "¿Por qué quieres unirte?" en lugar de opcional
           title: Requiere a los nuevos usuarios rellenar un texto de solicitud de invitación
@@ -715,9 +703,6 @@ es-MX:
       show_known_fediverse_at_about_page:
         desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
         title: Mostrar fediverso conocido en la vista previa de la historia
-      show_staff_badge:
-        desc_html: Mostrar un parche de staff en la página de un usuario
-        title: Mostrar parche de staff
       site_description:
         desc_html: Párrafo introductorio en la portada y en meta tags. Puedes usar tags HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
         title: Descripción de instancia
@@ -1123,14 +1108,24 @@ es-MX:
       public: Timeline público
       thread: Conversaciones
     edit:
+      add_keyword: Añadir palabra clave
+      keywords: Palabras clave
       title: Editar filtro
     errors:
+      deprecated_api_multiple_keywords: Estos parámetros no se pueden cambiar desde esta aplicación porque se aplican a más de una palabra clave de filtro. Utilice una aplicación más reciente o la interfaz web.
       invalid_context: Se suminstró un contexto inválido o vacío
     index:
+      contexts: Filtros en %{contexts}
       delete: Borrar
       empty: No tienes filtros.
+      expires_in: Caduca en %{distance}
+      expires_on: Expira el %{date}
+      keywords:
+        one: "%{count} palabra clave"
+        other: "%{count} palabras clave"
       title: Filtros
     new:
+      save: Guardar nuevo filtro
       title: Añadir un nuevo filtro
   footer:
     developers: Desarrolladores
