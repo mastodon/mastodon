@@ -81,10 +81,8 @@ gl:
     posts_tab_heading: Publicacións
     posts_with_replies: Publicacións e respostas
     roles:
-      admin: Administradora
       bot: Bot
       group: Grupo
-      moderator: Moderadora
     unavailable: Perfil non dispoñíbel
     unfollow: Deixar de seguir
   admin:
@@ -103,7 +101,6 @@ gl:
       avatar: Imaxe de perfil
       by_domain: Dominio
       change_email:
-        changed_msg: Email da conta mudado de xeito correcto!
         current_email: Email actual
         label: Mudar email
         new_email: Novo email
@@ -185,12 +182,6 @@ gl:
       reset: Restabelecer
       reset_password: Restabelecer contrasinal
       resubscribe: Resubscribir
-      role: Permisos
-      roles:
-        admin: Administrador
-        moderator: Moderador
-        staff: Persoal (staff)
-        user: Usuaria
       search: Procurar
       search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
@@ -699,9 +690,6 @@ gl:
         deletion:
           desc_html: Permitirlle a calquera que elimine a súa conta
           title: Abrir o borrado da conta
-        min_invite_role:
-          disabled: Ninguén
-          title: Permitir convites por
         require_invite_text:
           desc_html: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
           title: Require que as novas usuarias completen solicitude de texto do convite
@@ -714,9 +702,6 @@ gl:
       show_known_fediverse_at_about_page:
         desc_html: Si activado, mostraralle os toots de todo o fediverso coñecido nunha vista previa. Si non só mostrará os toots locais.
         title: Incluír contido federado na páxina da cronoloxía pública sen autenticación
-      show_staff_badge:
-        desc_html: Mostrar unha insignia de membresía nunha páxina de usuaria
-        title: Mostrar insigna de membresía
       site_description:
         desc_html: Parágrafo de presentación na páxina principal. Describe o que fai especial a este servidor Mastodon e calquera outra ouca importante. Pode utilizar cancelos HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrición do servidor
