@@ -78,10 +78,8 @@
     posts_tab_heading: Tuter
     posts_with_replies: Tuter med svar
     roles:
-      admin: Administrator
       bot: Bot
       group: Gruppe
-      moderator: Moderere
     unavailable: Profilen er utilgjengelig
     unfollow: Slutt å følge
   admin:
@@ -100,7 +98,6 @@
       avatar: Profilbilde
       by_domain: Domene
       change_email:
-        changed_msg: Konto-E-postadressen ble vellykket endret!
         current_email: Nåværende E-post
         label: Endre e-post
         new_email: Ny E-post
@@ -177,12 +174,6 @@
       reset: Tilbakestill
       reset_password: Nullstill passord
       resubscribe: Abonner på nytt
-      role: Rettigheter
-      roles:
-        admin: Administrator
-        moderator: Ordstyrer
-        staff: Personale
-        user: Bruker
       search: Søk
       search_same_email_domain: Andre brukere med samme E-postdomene
       search_same_ip: Andre brukere med den samme IP-en
@@ -530,9 +521,6 @@
         deletion:
           desc_html: Tillat alle å slette sin konto
           title: Åpne kontosletting
-        min_invite_role:
-          disabled: Ingen
-          title: Tillat invitasjoner fra
         require_invite_text:
           desc_html: Når registreringer krever manuell godkjenning, må du føye «Hvorfor vil du bli med?» tekstinput obligatoriske i stedet for valgfritt
           title: Krev nye brukere for å oppgi en grunn for å delta
@@ -544,9 +532,6 @@
         title: Registreringsmodus
       show_known_fediverse_at_about_page:
         desc_html: Begrenser den offentlige tidslinjen som er knyttet til landingssiden når den er deaktivert, og viser bare lokalt innhold
-      show_staff_badge:
-        desc_html: Vis personalemerke på brukersiden
-        title: Vis personalemerke
       site_description:
         desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Nettstedsbeskrivelse
