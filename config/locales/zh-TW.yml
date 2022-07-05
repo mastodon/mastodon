@@ -78,10 +78,8 @@ zh-TW:
     posts_tab_heading: 嘟文
     posts_with_replies: 嘟文與回覆
     roles:
-      admin: 管理員
       bot: 機器人
       group: 群組
-      moderator: 版主
     unavailable: 無法取得個人檔案
     unfollow: 取消跟隨
   admin:
@@ -100,7 +98,6 @@ zh-TW:
       avatar: 頭像
       by_domain: 站點
       change_email:
-        changed_msg: 已成功變更帳號電子信箱地址！
         current_email: 目前的電子信箱地址
         label: 變更電子信箱地址
         new_email: 新的電子信箱地址
@@ -181,12 +178,6 @@ zh-TW:
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
-      role: 身份
-      roles:
-        admin: 管理員
-        moderator: 版主
-        staff: 管理人員
-        user: 普通使用者
       search: 搜尋
       search_same_email_domain: 其他有同個電子郵件網域的使用者
       search_same_ip: 其他有同個 IP 的使用者
@@ -686,9 +677,6 @@ zh-TW:
         deletion:
           desc_html: 允許所有人刪除自己的帳號
           title: 開放刪除帳號的權限
-        min_invite_role:
-          disabled: 沒有人
-          title: 允許發送邀請的身份
         require_invite_text:
           desc_html: 如果已設定為手動審核註冊，請將「加入原因」設定為必填項目。
           title: 要求新使用者填申請書以索取邀請
@@ -701,9 +689,6 @@ zh-TW:
       show_known_fediverse_at_about_page:
         desc_html: 如果開啟，就會在時間軸預覽顯示其他站點嘟文，否則就只會顯示本站點嘟文。
         title: 在時間軸預覽顯示其他站點嘟文
-      show_staff_badge:
-        desc_html: 在個人資料頁面上顯示管理人員標誌
-        title: 顯示管理人員標誌
       site_description:
         desc_html: 首頁上的介紹文字，描述此 Mastodon 伺服器的特別之處和其他重要資訊。可使用 HTML 標籤，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
         title: 伺服器描述
