@@ -95,6 +95,13 @@ es:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
+        role: El rol controla qué permisos tiene el usuario
+      user_role:
+        color: Color que se utilizará para el rol a lo largo de la interfaz de usuario, como RGB en formato hexadecimal
+        highlighted: Esto hace que el rol sea públicamente visible
+        name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
+        permissions_as_keys: Los usuarios con este rol tendrán acceso a...
+        position: Un rol más alto decide la resolución de conflictos en ciertas situaciones
       webhook:
         events: Seleccionar eventos para enviar
         url: Donde los eventos serán enviados
@@ -231,6 +238,14 @@ es:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a las publicaciones usar esta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de insignia
+        highlighted: Mostrar rol como insignia en perfiles de usuario
+        name: Nombre
+        permissions_as_keys: Permisos
+        position: Prioridad
       webhook:
         events: Eventos habilitados
         url: URL de Endpoint
