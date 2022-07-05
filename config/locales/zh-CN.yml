@@ -77,10 +77,8 @@ zh-CN:
     posts_tab_heading: 嘟文
     posts_with_replies: 嘟文和回复
     roles:
-      admin: 管理员
       bot: 机器人
       group: 群组
-      moderator: 监察员
     unavailable: 个人资料不可用
     unfollow: 取消关注
   admin:
@@ -99,7 +97,6 @@ zh-CN:
       avatar: 头像
       by_domain: 域名
       change_email:
-        changed_msg: 已成功更改账号的电子邮箱！
         current_email: 当前的电子邮箱
         label: 更改电子邮箱
         new_email: 新的电子邮箱
@@ -180,12 +177,6 @@ zh-CN:
       reset: 重置
       reset_password: 重置密码
       resubscribe: 重新订阅
-      role: 用户组
-      roles:
-        admin: 管理员
-        moderator: 监察员
-        staff: 站务人员
-        user: 普通用户
       search: 搜索
       search_same_email_domain: 其他具有相同电子邮箱域名的用户
       search_same_ip: 具有相同IP的其他用户
@@ -685,9 +676,6 @@ zh-CN:
         deletion:
           desc_html: 允许所有人删除自己的帐户
           title: 开放删除帐户权限
-        min_invite_role:
-          disabled: 没有人
-          title: 允许发送邀请的用户组
         require_invite_text:
           desc_html: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
           title: 要求新用户填写申请注册的原因
@@ -700,9 +688,6 @@ zh-CN:
       show_known_fediverse_at_about_page:
         desc_html: 如果开启，就会在时间轴预览显示其他站点嘟文，否则就只会只显示本站嘟文。
         title: 在时间轴预览中显示其他站点嘟文
-      show_staff_badge:
-        desc_html: 在个人资料页上显示管理人员标志
-        title: 显示管理人员标志
       site_description:
         desc_html: 首页上的介绍文字。 描述一下本 Mastodon 实例的特殊之处以及其他重要信息。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 。
         title: 本站简介
