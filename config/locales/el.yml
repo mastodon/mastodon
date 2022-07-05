@@ -104,6 +104,10 @@ el:
         new_email: Νέο email
         submit: Αλλαγή email
         title: Αλλαγή email για %{username}
+      change_role:
+        label: Αλλαγή ρόλου
+        no_role: Κανένας ρόλος
+        title: Αλλαγή ρόλου για %{username}
       confirm: Επιβεβαίωση
       confirmed: Επιβεβαιώθηκε
       confirming: Προς επιβεβαίωση
@@ -144,6 +148,7 @@ el:
         active: Ενεργός/ή
         all: Όλα
         pending: Εκκρεμούν
+        silenced: Περιορισμένοι
         suspended: Σε αναστολή
         title: Μεσολάβηση
       moderation_notes: Σημειώσεις μεσολάβησης
@@ -151,6 +156,7 @@ el:
       most_recent_ip: Πιο πρόσφατη IP
       no_account_selected: Κανείς λογαριασμός δεν ενημερώθηκε αφού κανείς δεν ήταν επιλεγμένος
       no_limits_imposed: Χωρίς όρια
+      no_role_assigned: Δεν έχει ανατεθεί ρόλος
       not_subscribed: Άνευ συνδρομής
       pending: Εκκρεμεί έγκριση
       perform_full_suspension: Αναστολή
@@ -173,6 +179,7 @@ el:
       reset: Επαναφορά
       reset_password: Επαναφορά συνθηματικού
       resubscribe: Επανεγγραφή
+      role: Ρόλος
       search: Αναζήτηση
       search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
@@ -482,6 +489,16 @@ el:
       unresolved: Άλυτη
       updated_at: Ενημερωμένη
       view_profile: Προβολή προφίλ
+    roles:
+      add_new: Προσθήκη ρόλου
+      assigned_users:
+        one: "%{count} χρήστης"
+        other: "%{count} χρήστες"
+      categories:
+        administration: Διαχείριση
+        devops: Devops
+        invites: Προσκλήσεις
+      delete: Διαγραφή
     rules:
       add_new: Προσθήκη κανόνα
       delete: Διαγραφή
