@@ -95,6 +95,13 @@ sl:
         name: Spremenite lahko le npr. velikost črk (velike/male), da je bolj berljivo
       user:
         chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazane samo objave v izbranih jezikih
+        role: Vloga nadzira, katere pravice ima uporabnik
+      user_role:
+        color: Barva, uporabljena za vlogo po celem up. vmesniku, podana v šestnajstiškem zapisu RGB
+        highlighted: S tem je vloga javno vidna
+        name: Javno ime vloge, če naj bo vloga prikazana kot priponka
+        permissions_as_keys: Uporabniki s to vlogo bodo imeli dostop do ...
+        position: Višja vloga odloča o razrešitvi sporov v določenih situacijah
       webhook:
         events: Izberite dogodke za pošiljanje
         url: Kam bodo poslani dogodki
@@ -231,6 +238,14 @@ sl:
         name: Ključnik
         trendable: Dovoli, da se ta ključnik pojavi med trendi
         usable: Dovoli, da objave uporabljajo ta ključnik
+      user:
+        role: Vloga
+      user_role:
+        color: Barva značke
+        highlighted: Prikaži vlogo kot značko na uporabniškem profilu
+        name: Ime
+        permissions_as_keys: Pravice
+        position: Prioriteta
       webhook:
         events: Omogočeni dogodki
         url: URL končne točke
