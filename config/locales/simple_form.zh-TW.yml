@@ -95,6 +95,13 @@ zh-TW:
         name: 您只能變更大小寫，例如，以使其更易讀。
       user:
         chosen_languages: 當核取時，只有選取語言的嘟文會在公開時間軸中顯示
+        role: 角色控制使用者有哪些權限
+      user_role:
+        color: 在整個使用者介面中用於角色的顏色，十六進位格式的 RGB
+        highlighted: 這會讓角色公開可見
+        name: 角色的公開名稱，如果角色設定為顯示為徽章
+        permissions_as_keys: 有此角色的使用者將有權存取……
+        position: 更高的角色決定在某些情況下解決衝突
       webhook:
         events: 請選擇要傳送的事件
         url: 事件會被傳送至何處
@@ -231,6 +238,14 @@ zh-TW:
         name: 主題標籤
         trendable: 允許此主題標籤在趨勢下顯示
         usable: 允許嘟文使用此主題標籤
+      user:
+        role: 角色
+      user_role:
+        color: 識別顏色
+        highlighted: 在使用者個人資料上將角色顯示為徽章
+        name: 名稱
+        permissions_as_keys: 權限
+        position: 優先權
       webhook:
         events: 已啟用的事件
         url: 端點 URL
