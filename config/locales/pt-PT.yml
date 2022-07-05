@@ -82,10 +82,8 @@ pt-PT:
     posts_tab_heading: Publicações
     posts_with_replies: Posts e Respostas
     roles:
-      admin: Administrador(a)
       bot: Robô
       group: Grupo
-      moderator: Moderador
     unavailable: Perfil indisponível
     unfollow: Deixar de seguir
   admin:
@@ -104,7 +102,6 @@ pt-PT:
       avatar: Imagem de Perfil
       by_domain: Domínio
       change_email:
-        changed_msg: E-mail da conta alterado com sucesso!
         current_email: E-mail atual
         label: Alterar e-mail
         new_email: Novo e-mail
@@ -186,12 +183,6 @@ pt-PT:
       reset: Restaurar
       reset_password: Reset palavra-passe
       resubscribe: Reinscrever
-      role: Permissões
-      roles:
-        admin: Administrador(a)
-        moderator: Moderador
-        staff: Equipa
-        user: Utilizador
       search: Pesquisar
       search_same_email_domain: Outros utilizadores com o mesmo domínio de e-mail
       search_same_ip: Outros utilizadores com o mesmo IP
@@ -700,9 +691,6 @@ pt-PT:
         deletion:
           desc_html: Permitir a qualquer utilizador eliminar a sua conta
           title: Permitir eliminar contas
-        min_invite_role:
-          disabled: Ninguém
-          title: Permitir convites de
         require_invite_text:
           desc_html: Quando os registos exigirem aprovação manual, faça o texto "Porque se quer juntar a nós?" da solicitação de convite obrigatório, em vez de opcional
           title: Exigir que novos utilizadores preencham um texto de solicitação de convite
@@ -715,9 +703,6 @@ pt-PT:
       show_known_fediverse_at_about_page:
         desc_html: Quando comutado, irá mostrar a previsualização de publicações de todo o fediverse conhecido. De outro modo só mostrará publicações locais.
         title: Mostrar o fediverse conhecido na previsualização da cronologia
-      show_staff_badge:
-        desc_html: Mostrar um crachá da equipa na página de utilizador
-        title: Mostrar crachá da equipa
       site_description:
         desc_html: Mostrar como parágrafo na página inicial e usado como meta tag.Podes usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição do site
