@@ -102,11 +102,17 @@ hu:
       avatar: Profilkép
       by_domain: Domain
       change_email:
+        changed_msg: Az emailt sikeresen megváltoztattuk!
         current_email: Jelenlegi e-mail
         label: E-mail megváltoztatása
         new_email: Új e-mail
         submit: E-mail megváltoztatása
         title: '%{username} felhasználó e-mail változás'
+      change_role:
+        changed_msg: A szerepet sikeresen megváltoztattuk!
+        label: Szerep megváltoztatása
+        no_role: Nincs szerep
+        title: '%{username} szerepének megváltoztatása'
       confirm: Megerősítés
       confirmed: Megerősítve
       confirming: Megerősítés alatt
@@ -150,6 +156,7 @@ hu:
         active: Aktív
         all: Összes
         pending: Függőben
+        silenced: Korlátozott
         suspended: Felfüggesztve
         title: Moderáció
       moderation_notes: Moderációs bejegyzés
@@ -157,6 +164,7 @@ hu:
       most_recent_ip: Legutóbbi IP-cím
       no_account_selected: Nem változott meg egy fiók sem, mert semmi sem volt kiválasztva
       no_limits_imposed: Nincs korlátozás
+      no_role_assigned: Nincs szerep hozzárendelve
       not_subscribed: Nincs feliratkozás
       pending: Engedélyezés alatt
       perform_full_suspension: Felfüggesztés
@@ -183,6 +191,7 @@ hu:
       reset: Visszaállítás
       reset_password: Jelszó visszaállítása
       resubscribe: Feliratkozás ismét
+      role: Szerep
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
@@ -639,6 +648,21 @@ hu:
       unresolved: Megoldatlan
       updated_at: Frissítve
       view_profile: Profil megtekintése
+    roles:
+      add_new: Szerep hozzáadása
+      assigned_users:
+        one: "%{count} felhasználó"
+        other: "%{count} felhasználó"
+      categories:
+        administration: Adminisztráció
+        devops: Devops
+        invites: Meghívások
+        moderation: Moderáció
+        special: Speciális
+      delete: Törlés
+      description_html: A <strong>felhasználói szerepekkel</strong> testreszabhatod, hogy a felhasználóid milyen Mastodon funkciókat és területeket érjenek el.
+      edit: '''%{name}'' szerep szerkesztése'
+      everyone: Alapértelmezett engedélyek
     rules:
       add_new: Szabály hozzáadása
       delete: Törlés
