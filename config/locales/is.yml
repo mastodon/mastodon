@@ -82,10 +82,8 @@ is:
     posts_tab_heading: Færslur
     posts_with_replies: Færslur og svör
     roles:
-      admin: Stjóri
       bot: Róbót
       group: Hópur
-      moderator: Umsjón
     unavailable: Notandasnið ekki tiltækt
     unfollow: Hætta að fylgja
   admin:
@@ -104,7 +102,6 @@ is:
       avatar: Auðkennismynd
       by_domain: Lén
       change_email:
-        changed_msg: Tölvupóstfangi notandaaðgangsins hefur verið breytt!
         current_email: Núverandi tölvupóstfang
         label: Breyta tölvupóstfangi
         new_email: Nýr tölvupóstur
@@ -186,12 +183,6 @@ is:
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
       resubscribe: Gerast áskrifandi aftur
-      role: Heimildir
-      roles:
-        admin: Stjórnandi
-        moderator: Umsjónarmaður
-        staff: Starfsmaður
-        user: Notandi
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
@@ -700,9 +691,6 @@ is:
         deletion:
           desc_html: Leyfa öllum að eyða aðgangnum sínum
           title: Opna eyðingu á notandaaðgangi
-        min_invite_role:
-          disabled: Enginn
-          title: Leyfa boð frá
         require_invite_text:
           desc_html: Þegar nýskráningar krefjast handvirks samþykkis, skal gera "Hvers vegna viltu taka þátt?" boðstexta að skyldu fremur en valkvæðan
           title: Krefja nýja notendur um að fylla út boðstexta
@@ -715,9 +703,6 @@ is:
       show_known_fediverse_at_about_page:
         desc_html: Þegar þetta er óvirkt, takmarkast opinbera tímalínan sem tengt er í af upphafssíðunni við að birta einungis staðvært efni (af sama vefþjóni)
         title: Hafa með efni úr skýjasambandi á síðu fyrir óauðkennda opinbera tímalínu
-      show_staff_badge:
-        desc_html: Sýna starfsmannamerki á síðu notandans
-        title: Sýna starfsmannamerki
       site_description:
         desc_html: Kynningarmálsgrein í API. Lýstu því hvað það er sem geri þennan Mastodon-þjón sérstakan, auk annarra mikilvægra upplýsinga. Þú getur notað HTML-einindi, sér í lagi <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Lýsing á vefþjóni
