@@ -37,3 +37,12 @@ sl:
             email:
               blocked: uporablja nedovoljenega ponudnika e-poštnih storitev
               unreachable: kot kaže ne obstaja
+            role_id:
+              elevated: ne more biti višje od vaše trenutne vloge
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: vključi pravice, ki niso varne za osnovno vlogo
+              elevated: ni mogoče vključiti pravic, ki jih vaša trenutna vloga ne vsebuje
+            position:
+              elevated: ne more biti višje od vaše trenutne vloge
