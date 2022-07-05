@@ -110,11 +110,17 @@ sl:
       avatar: Podoba
       by_domain: Domena
       change_email:
+        changed_msg: E-pošni naslov uspešno spremenjen!
         current_email: Trenutna e-pošta
         label: Spremeni e-pošto
         new_email: Nova e-pošta
         submit: Spremeni e-pošto
         title: Spremeni e-pošto za %{username}
+      change_role:
+        changed_msg: Vloga uspešno spremenjena!
+        label: Spremeni vlogo
+        no_role: Ni vloge
+        title: Spremeni vlogo za %{username}
       confirm: Potrdi
       confirmed: Potrjeno
       confirming: Potrjujem
@@ -158,6 +164,7 @@ sl:
         active: Dejaven
         all: Vse
         pending: Na čakanju
+        silenced: Omejeno
         suspended: Suspendiran
         title: Moderiranje
       moderation_notes: Opombe moderiranja
@@ -165,6 +172,7 @@ sl:
       most_recent_ip: Zadnji IP
       no_account_selected: Noben račun ni bil spremenjen, ker ni bil izbran noben
       no_limits_imposed: Brez omejitev
+      no_role_assigned: Dodeljena ni nobena vloga
       not_subscribed: Ni naročen
       pending: Čakanje na pregled
       perform_full_suspension: Suspendiraj
@@ -193,6 +201,7 @@ sl:
       reset: Ponastavi
       reset_password: Ponastavi geslo
       resubscribe: Ponovno se naroči
+      role: Vloga
       search: Iskanje
       search_same_email_domain: Drugi uporabniki z isto domeno e-pošte
       search_same_ip: Drugi uporabniki z istim IP
@@ -667,6 +676,61 @@ sl:
       unresolved: Nerešeni
       updated_at: Posodobljeni
       view_profile: Pokaži profil
+    roles:
+      add_new: Dodaj vlogo
+      assigned_users:
+        one: "%{count} uporabnik"
+        two: "%{count} uporabnika"
+        few: "%{count} uporabniki"
+        other: "%{count} uporabnikov"
+      categories:
+        administration: Upravljanje
+        invites: Povabila
+        moderation: Moderiranje
+        special: Posebno
+      delete: Izbriši
+      description_html: Z <strong>uporabniškimi vlogami</strong> lahko prilagodite, do katerih funkcij in področij Mastodona lahko dostopajo vaši uporabniki.
+      edit: Uredi vlogo %{name}
+      everyone: Privzete pravice
+      everyone_full_description_html: To je <strong>osnovna vloga</strong>, ki vpliva na <strong>vse uporabnike</strong>, celo na tiste brez dodeljene vloge. Vse druge vloge dedujejo njene pravice.
+      permissions_count:
+        one: "%{count} pravica"
+        two: "%{count} pravici"
+        few: "%{count} pravice"
+        other: "%{count} pravic"
+      privileges:
+        administrator: Skrbnik
+        administrator_description: Uporabniki s temi pravicami bodo zaobšli vse pravice
+        delete_user_data: Izbriši uporabniške podatke
+        delete_user_data_description: Omogoča uporabnikom, da izbrišejo podatke drugih uporabnikov brez časvnega zamika
+        invite_users: Povabi uporabnike
+        invite_users_description: Omogoča uporabnikom, da povabi nove osebe na strežnik
+        manage_announcements: Upravljaj obvestila
+        manage_announcements_description: Omogoča uporabnikom, da upravljajo obvestila na strežniku
+        manage_appeals: Upravljaj pritožbe
+        manage_appeals_description: Omogoča uporabnikom, da pregledajo pritožbe glede dejanj moderiranja
+        manage_blocks: Upravljaj blokirano
+        manage_blocks_description: Omogoča uporabnikom, da blokirajo ponudnike e-pošte in naslove IP
+        manage_invites: Upravljaj vabila
+        manage_invites_description: Omogoča uporabnikom, da brskajo in deaktivirajo povezave povabil
+        manage_reports: Upravljaj poročila
+        manage_reports_description: Omogoča uporabnikom, da pregledajo poročila in glede le-teh opravijo dejanja moderiranja
+        manage_roles: Upravljaj vloge
+        manage_rules: Upravljaj pravila
+        manage_rules_description: Omogoča uporabnikom, da spremenijo pravila strežnika
+        manage_settings: Upravljaj nastavitve
+        manage_settings_description: Omogoča uporabnikom, da spremenijo nastavitve spletišča
+        manage_taxonomies: Upravljaj taksonomije
+        manage_user_access: Upravljaj dostop uporabnikov
+        manage_users: Upravljaj uporabnike
+        manage_users_description: Omogoča uporabnikom, da vidijo podrobnosti drugih uporabnikov in nad njimi izvedejo dejanja moderiranja
+        manage_webhooks: Upravljaj spletne zanke
+        manage_webhooks_description: Omogoča uporabnikom, da vzpostavijo nove spletne zanke za skrbniške dogodke
+        view_audit_log_description: Omogoča, da uporabnik vidi zgodovino skrbniških opravil na strežniku
+        view_dashboard: Pokaži nadzorno ploščo
+        view_dashboard_description: Omogoča uporabnikom, da dostopajo do nadzorne plošče in različnih meritev
+        view_devops_description: Omogoča uporabnikom, da dostopajo do nadzornih plošč Sidekiq in phHero
+      title: Vloge
     rules:
       add_new: Dodaj pravilo
       delete: Izbriši
