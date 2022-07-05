@@ -37,3 +37,12 @@ es:
             email:
               blocked: utiliza un proveedor de correo no autorizado
               unreachable: no parece existir
+            role_id:
+              elevated: no puede ser mayor que tu rol actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: incluir permisos que no son seguros para el rol base
+              elevated: no se pueden incluir permisos que tu rol actual no posea
+            position:
+              elevated: no puede ser mayor que tu rol actual
