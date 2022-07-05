@@ -98,11 +98,17 @@ zh-TW:
       avatar: 頭像
       by_domain: 站點
       change_email:
+        changed_msg: 電子郵件已成功變更！
         current_email: 目前的電子信箱地址
         label: 變更電子信箱地址
         new_email: 新的電子信箱地址
         submit: 變更電子信箱地址
         title: 為 %{username} 變更電子信箱地址
+      change_role:
+        changed_msg: 成功修改角色！
+        label: 變更角色
+        no_role: 沒有角色
+        title: 為 %{username} 變更角色
       confirm: 確定
       confirmed: 已確定
       confirming: 確定
@@ -146,6 +152,7 @@ zh-TW:
         active: 活躍
         all: 全部
         pending: 等待中
+        silenced: 受限
         suspended: 已停權
         title: 版務
       moderation_notes: 管理備忘
@@ -153,6 +160,7 @@ zh-TW:
       most_recent_ip: 最近 IP 位址
       no_account_selected: 未選取任何帳號，因此未變更
       no_limits_imposed: 未受限制
+      no_role_assigned: 未指派角色
       not_subscribed: 未訂閱
       pending: 等待審核中
       perform_full_suspension: 停權
@@ -178,6 +186,7 @@ zh-TW:
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
+      role: 角色
       search: 搜尋
       search_same_email_domain: 其他有同個電子郵件網域的使用者
       search_same_ip: 其他有同個 IP 的使用者
@@ -625,6 +634,10 @@ zh-TW:
       unresolved: 未解決
       updated_at: 更新
       view_profile: 檢視個人資料頁
+    roles:
+      add_new: 新增角色
+      assigned_users:
+        other: "%{count} 個使用者"
     rules:
       add_new: 新增規則
       delete: 刪除
