@@ -12,6 +12,8 @@ module Admin
     end
 
     def update
+      authorize :follow_recommendation, :show?
+
       @form = Form::AccountBatch.new(form_account_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing

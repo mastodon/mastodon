@@ -9,6 +9,10 @@ class Admin::SystemCheck::SidekiqProcessCheck < Admin::SystemCheck::BaseCheck
     scheduler
   ).freeze
 
+  def skip?
+    !current_user.can?(:view_devops)
+  end
+
   def pass?
     missing_queues.empty?
   end

@@ -62,9 +62,6 @@
       = f.input :show_known_fediverse_at_about_page, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_known_fediverse_at_about_page.title'), hint: t('admin.settings.show_known_fediverse_at_about_page.desc_html')
 
   .fields-group
-    = f.input :show_staff_badge, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_staff_badge.title'), hint: t('admin.settings.show_staff_badge.desc_html')
-
-  .fields-group
     = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')
 
   - unless whitelist_mode?
@@ -102,9 +99,6 @@
     = f.input :show_replies_in_public_timelines, as: :boolean, wrapper: :with_label, label: t('admin.settings.show_replies_in_public_timelines.title'), hint: t('admin.settings.show_replies_in_public_timelines.desc_html')
 
   %hr.spacer/
-
-  .fields-group
-    = f.input :min_invite_role, wrapper: :with_label, collection: %i(disabled user moderator admin), label: t('admin.settings.registrations.min_invite_role.title'), label_method: lambda { |role| role == :disabled ? t('admin.settings.registrations.min_invite_role.disabled') : t("admin.accounts.roles.#{role}") }, include_blank: false, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
 
   .fields-row
     .fields-row__column.fields-row__column-6.fields-group

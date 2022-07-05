@@ -32,7 +32,7 @@ module Trends
     tags_requiring_review     = tags.request_review
     statuses_requiring_review = statuses.request_review
 
-    User.staff.includes(:account).find_each do |user|
+    User.those_who_can(:manage_taxonomies).includes(:account).find_each do |user|
       links    = user.allows_trending_links_review_emails? ? links_requiring_review : []
       tags     = user.allows_trending_tags_review_emails? ? tags_requiring_review : []
       statuses = user.allows_trending_statuses_review_emails? ? statuses_requiring_review : []
