@@ -5,6 +5,7 @@ module Admin
     before_action :set_domain_block, only: [:show, :destroy, :edit, :update]
 
     def batch
+      authorize :domain_block, :create?
       @form = Form::DomainBlockBatch.new(form_domain_block_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing
