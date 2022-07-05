@@ -678,12 +678,21 @@ cs:
         many: "%{count} uživatelů"
         other: "%{count} uživatelů"
       categories:
+        invites: Pozvánky
+        moderation: Moderování
         special: Speciální
       permissions_count:
         one: "%{count} oprávnění"
         few: "%{count} oprávnění"
         many: "%{count} oprávnění"
         other: "%{count} oprávnění"
+      privileges:
+        delete_user_data: Mazat uživatelská data
+        delete_user_data_description: Umožňuje uživatelům bezodkladně mazat data jiných uživatelů
+        invite_users: Zvát uživatele
+        invite_users_description: Umožňuje uživatelům zvát na server nové lidi
+        manage_appeals: Spravovat odvolání
+        manage_appeals_description: Umožňuje uživatelům posuzovat odvolání proti moderátorským zásahům
     rules:
       add_new: Přidat pravidlo
       delete: Smazat
