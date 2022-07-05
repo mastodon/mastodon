@@ -90,10 +90,8 @@ sl:
     posts_tab_heading: Objave
     posts_with_replies: Objave in odgovori
     roles:
-      admin: Skrbnik
       bot: Robot
       group: Skupina
-      moderator: Mod
     unavailable: Profil ni na voljo
     unfollow: Prenehaj slediti
   admin:
@@ -112,7 +110,6 @@ sl:
       avatar: Podoba
       by_domain: Domena
       change_email:
-        changed_msg: E-pošta računa je uspešno spremenjena!
         current_email: Trenutna e-pošta
         label: Spremeni e-pošto
         new_email: Nova e-pošta
@@ -196,12 +193,6 @@ sl:
       reset: Ponastavi
       reset_password: Ponastavi geslo
       resubscribe: Ponovno se naroči
-      role: Dovoljenja
-      roles:
-        admin: Skrbnik
-        moderator: Moderator
-        staff: Osebje
-        user: Uporabnik
       search: Iskanje
       search_same_email_domain: Drugi uporabniki z isto domeno e-pošte
       search_same_ip: Drugi uporabniki z istim IP
@@ -728,9 +719,6 @@ sl:
         deletion:
           desc_html: Dovoli vsakomur, da izbriše svoj račun
           title: Odpri brisanje računa
-        min_invite_role:
-          disabled: Nihče
-          title: Dovoli vabila od
         require_invite_text:
           desc_html: Če registracije zahtevajo ročno potrditev, nastavite vnos besedila pod »Zakaj se želite pridružiti?« za obveznega
           title: Zahteva, da novi uprorabniki navedejo razlog, zakaj se želijo registrirati
@@ -743,9 +731,6 @@ sl:
       show_known_fediverse_at_about_page:
         desc_html: Ko preklopite, bo prikazal objave vseh znanih fediverzumov v predogledu. V nasprotnem primeru bodo prikazane samo krajevne objave.
         title: Pokaži znane fediverse-e v predogledu časovnice
-      show_staff_badge:
-        desc_html: Prikaži značko osebja na uporabniški strani
-        title: Prikaži značko osebja
       site_description:
         desc_html: Uvodni odstavek na API-ju. Opišite, zakaj je ta Mastodon strežnik poseben in karkoli pomembnega. Lahko uporabite HTML oznake, zlasti <code>&lt;a&gt;</code> in <code>&lt;em&gt;</code>.
         title: Opis strežnika
