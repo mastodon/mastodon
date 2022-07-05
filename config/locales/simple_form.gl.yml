@@ -95,6 +95,13 @@ gl:
         name: Só podes cambiar maiús/minúsculas, por exemplo, mellorar a lexibilidade
       user:
         chosen_languages: Se ten marca, só as publicacións nos idiomas seleccionados serán mostrados en cronoloxías públicas
+        role: O control dos roles adxudicados ás usuarias
+      user_role:
+        color: Cor que se usará para o rol a través da IU, como RGB en formato hex
+        highlighted: Esto fai o rol públicamente visible
+        name: Nome público do rol, se o rol se mostra como unha insignia
+        permissions_as_keys: As usuarias con este rol terá acceso a...
+        position: O rol de maior rango decide en situación de resolución de conflitos
       webhook:
         events: Elixir eventos a enviar
         url: A onde se enviarán os eventos
@@ -231,6 +238,14 @@ gl:
         name: Cancelo
         trendable: Permitir que este cancelo apareza en tendencias
         usable: Permitir que as publicacións utilicen este cancelo
+      user:
+        role: Rol
+      user_role:
+        color: Cor da insignia
+        highlighted: Mostrar rol como insignia en perfís de usuarias
+        name: Nome
+        permissions_as_keys: Permisos
+        position: Prioridade
       webhook:
         events: Eventos activados
         url: URL do extremo
