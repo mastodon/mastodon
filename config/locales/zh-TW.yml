@@ -638,6 +638,61 @@ zh-TW:
       add_new: 新增角色
       assigned_users:
         other: "%{count} 個使用者"
+      categories:
+        administration: 管理
+        devops: Devops
+        invites: 邀請
+        moderation: 版務
+        special: 特殊
+      delete: 刪除
+      description_html: 透過<strong>使用者角色</strong>，您可以自訂您的使用者可以存取 Mastodon 的哪些功能與區域。
+      edit: 編輯「%{name}」角色
+      everyone: 預設權限
+      everyone_full_description_html: 這是會影響<strong>所有使用者</strong>的<strong>基本角色</strong>，即使是那些沒有被分配角色的使用者也一樣。其他所有的角色都從它繼承權限。
+      permissions_count:
+        other: "%{count} 個權限"
+      privileges:
+        administrator: 管理員
+        administrator_description: 擁有此權限的使用者將會略過所有權限
+        delete_user_data: 刪除使用者資料
+        delete_user_data_description: 允許使用者立刻刪除其他使用者的資料
+        invite_users: 邀請使用者
+        invite_users_description: 允許使用者邀請新人加入伺服器
+        manage_announcements: 管理公告
+        manage_announcements_description: 管理使用者管理伺服器上的公告
+        manage_appeals: 管理解封申訴系統
+        manage_appeals_description: 允許使用者審閱針對版務動作的申訴
+        manage_blocks: 管理封鎖
+        manage_blocks_description: 允許使用者封鎖電子郵件提供者與 IP 位置
+        manage_custom_emojis: 管理自訂表情符號
+        manage_custom_emojis_description: 管理使用者管理伺服器上的自訂表情符號
+        manage_federation: 管理聯盟
+        manage_federation_description: 允許使用者封鎖或允許與其他網域的聯盟，並控制傳遞能力
+        manage_invites: 管理邀請
+        manage_invites_description: 允許使用者瀏覽與停用邀請連結
+        manage_reports: 管理回報
+        manage_reports_description: 允許使用者審閱回報並對回報執行版務動作
+        manage_roles: 管理角色
+        manage_roles_description: 允許使用者管理並指派低於他們的使用者
+        manage_rules: 管理規則
+        manage_rules_description: 允許使用者變更伺服器規則
+        manage_settings: 管理設定
+        manage_settings_description: 允許使用者變更站點設定
+        manage_taxonomies: 管理分類方式
+        manage_taxonomies_description: 允許使用者審閱熱門內容與更新主題標籤設定
+        manage_user_access: 管理使用者存取權
+        manage_user_access_description: 允許使用者停用其他人的兩步驟驗證、變更他們的電子郵件地址以及重設他們的密碼
+        manage_users: 管理使用者
+        manage_users_description: 允許使用者檢視其他使用者的詳細資訊並對回報執行版務動作
+        manage_webhooks: 管理 Webhooks
+        manage_webhooks_description: 允許使用者為管理事件設定 webhooks
+        view_audit_log: 檢視審核日誌
+        view_audit_log_description: 允許使用者檢視伺服器上的管理動作歷史
+        view_dashboard: 檢視儀表板
+        view_dashboard_description: 允許使用者存取儀表板與各種指標
+        view_devops: Devops
+        view_devops_description: 允許使用者存取 Sidekiq 與 pgHero 儀表板
+      title: 角色
     rules:
       add_new: 新增規則
       delete: 刪除
