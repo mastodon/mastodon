@@ -102,11 +102,17 @@ is:
       avatar: Auðkennismynd
       by_domain: Lén
       change_email:
+        changed_msg: Tókst að breyta tölvupóstfangi!
         current_email: Núverandi tölvupóstfang
         label: Breyta tölvupóstfangi
         new_email: Nýr tölvupóstur
         submit: Breyta tölvupóstfangi
         title: Breyta tölvupóstfangi fyrir %{username}
+      change_role:
+        changed_msg: Tókst að breyta hlutverki!
+        label: Breyta hlutverki
+        no_role: Ekkert hlutverk
+        title: Breyta hlutverki fyrir %{username}
       confirm: Staðfesta
       confirmed: Staðfest
       confirming: Staðfesti
@@ -150,6 +156,7 @@ is:
         active: Virkur
         all: Allt
         pending: Í bið
+        silenced: Takmarkað
         suspended: Í bið
         title: Umsjón
       moderation_notes: Minnispunktar umsjónarmanna
@@ -157,6 +164,7 @@ is:
       most_recent_ip: Nýjasta IP-vistfang
       no_account_selected: Engum aðgöngum var breytt þar sem engir voru valdir
       no_limits_imposed: Engra takmarka krafist
+      no_role_assigned: Engu hlutverki úthlutað
       not_subscribed: Ekki í áskrift
       pending: Bíður eftir yfirlestri
       perform_full_suspension: Setja í bið
@@ -183,6 +191,7 @@ is:
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
       resubscribe: Gerast áskrifandi aftur
+      role: Hlutverk
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
@@ -639,6 +648,20 @@ is:
       unresolved: Óleyst
       updated_at: Uppfært
       view_profile: Skoða notandasnið
+    roles:
+      add_new: Bæta við hlutverki
+      assigned_users:
+        one: "%{count} notandi"
+        other: "%{count} notendur"
+      categories:
+        administration: Stjórnun
+        devops: Kerfisstjórar
+        invites: Boðsgestir
+        moderation: Umsjón
+        special: Sérstakt
+      delete: Eyða
+      privileges:
+        administrator: Stjórnandi
     rules:
       add_new: Skrá reglu
       delete: Eyða
