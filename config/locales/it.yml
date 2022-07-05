@@ -82,10 +82,8 @@ it:
     posts_tab_heading: Toot
     posts_with_replies: Toot e risposte
     roles:
-      admin: Amministratore
       bot: Bot
       group: Gruppo
-      moderator: Moderatore
     unavailable: Profilo non disponibile
     unfollow: Non seguire più
   admin:
@@ -104,7 +102,6 @@ it:
       avatar: Immagine di profilo
       by_domain: Dominio
       change_email:
-        changed_msg: Account email cambiato con successo!
         current_email: Email attuale
         label: Cambia email
         new_email: Nuova email
@@ -186,12 +183,6 @@ it:
       reset: Reimposta
       reset_password: Reimposta password
       resubscribe: Riscriversi
-      role: Permessi
-      roles:
-        admin: Amministratore
-        moderator: Moderatore
-        staff: Personale
-        user: Utente
       search: Cerca
       search_same_email_domain: Altri utenti con lo stesso dominio e-mail
       search_same_ip: Altri utenti con lo stesso IP
@@ -700,9 +691,6 @@ it:
         deletion:
           desc_html: Consenti a chiunque di cancellare il proprio account
           title: Apri la cancellazione dell'account
-        min_invite_role:
-          disabled: Nessuno
-          title: Permetti inviti da
         require_invite_text:
           desc_html: Quando le iscrizioni richiedono l'approvazione manuale, rendere la richiesta “Perché si desidera iscriversi?” obbligatoria invece che opzionale
           title: Richiedi ai nuovi utenti di rispondere alla richiesta di motivazione per l'iscrizione
@@ -715,9 +703,6 @@ it:
       show_known_fediverse_at_about_page:
         desc_html: Quando attivato, mostra nell'anteprima i toot da tutte le istanze conosciute. Altrimenti mostra solo i toot locali.
         title: Mostra la fediverse conosciuta nell'anteprima della timeline
-      show_staff_badge:
-        desc_html: Mostra un distintivo dello staff sulla pagina dell'utente
-        title: Mostra badge staff
       site_description:
         desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Mastodon e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrizione del server
