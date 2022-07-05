@@ -82,10 +82,8 @@ es-AR:
     posts_tab_heading: Mensajes
     posts_with_replies: Mensajes y respuestas
     roles:
-      admin: Administrador
       bot: Bot
       group: Grupo
-      moderator: Moderador
     unavailable: Perfil no disponible
     unfollow: Dejar de seguir
   admin:
@@ -104,7 +102,6 @@ es-AR:
       avatar: Avatar
       by_domain: Dominio
       change_email:
-        changed_msg: '¡Correo electrónico de cuenta cambiado exitosamente!'
         current_email: Correo electrónico actual
         label: Cambiar correo electrónico
         new_email: Nuevo correo electrónico
@@ -186,12 +183,6 @@ es-AR:
       reset: Restablecer
       reset_password: Cambiar contraseña
       resubscribe: Resuscribir
-      role: Permisos
-      roles:
-        admin: Administrador
-        moderator: Moderador
-        staff: Administración
-        user: Usuario
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo electrónico
       search_same_ip: Otros usuarios con la misma dirección IP
@@ -700,9 +691,6 @@ es-AR:
         deletion:
           desc_html: Permitir que cualquiera elimine su cuenta
           title: Abrir eliminación de cuenta
-        min_invite_role:
-          disabled: Nadie
-          title: Permitir invitaciones de
         require_invite_text:
           desc_html: Cuando los registros requieran aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
           title: Requerir que los nuevos usuarios llenen un texto de solicitud de invitación
@@ -715,9 +703,6 @@ es-AR:
       show_known_fediverse_at_about_page:
         desc_html: Cuando está deshabilitado, restringe la línea temporal pública enlazada desde la página de inicio para mostrar sólo contenido local
         title: Incluir contenido federado en la página de línea temporal pública no autenticada
-      show_staff_badge:
-        desc_html: Mostrar una insignia de administración en la página de un usuario
-        title: Mostrar insignia de administración
       site_description:
         desc_html: Párrafo introductorio en la API. Describe qué hace especial a este servidor de Mastodon y todo lo demás que sea importante. Podés usar etiquetas HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
         title: Descripción del servidor
