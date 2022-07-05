@@ -82,10 +82,8 @@ pt-BR:
     posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     roles:
-      admin: Admin
       bot: Robô
       group: Grupo
-      moderator: Moderador
     unavailable: Perfil indisponível
     unfollow: Deixar de seguir
   admin:
@@ -104,7 +102,6 @@ pt-BR:
       avatar: Imagem de perfil
       by_domain: Domínio
       change_email:
-        changed_msg: E-mail da conta alterado com sucesso!
         current_email: E-mail atual
         label: Alterar e-mail
         new_email: Novo e-mail
@@ -186,12 +183,6 @@ pt-BR:
       reset: Redefinir
       reset_password: Redefinir senha
       resubscribe: Reinscrever-se
-      role: Permissões
-      roles:
-        admin: Administrador
-        moderator: Moderador
-        staff: Equipe
-        user: Usuário
       search: Pesquisar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
@@ -695,9 +686,6 @@ pt-BR:
         deletion:
           desc_html: Permitir que qualquer um exclua a própria conta
           title: Exclusão aberta de contas
-        min_invite_role:
-          disabled: Ninguém
-          title: Permitir convites de
         require_invite_text:
           desc_html: Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite em "Por que você deseja criar uma conta aqui?"
           title: Exigir que novos usuários preencham um texto de solicitação de convite
@@ -710,9 +698,6 @@ pt-BR:
       show_known_fediverse_at_about_page:
         desc_html: Quando ativado, mostra toots globais na prévia da linha, se não, mostra somente toots locais
         title: Mostrar toots globais na prévia da linha
-      show_staff_badge:
-        desc_html: Mostrar uma insígnia de Equipe na página de usuário
-        title: Mostrar insígnia de equipe
       site_description:
         desc_html: Parágrafo introdutório na página inicial. Descreva o que faz esse servidor especial, e qualquer outra coisa de importante. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição da instância
