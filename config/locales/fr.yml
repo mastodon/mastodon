@@ -82,10 +82,8 @@ fr:
     posts_tab_heading: Messages
     posts_with_replies: Messages et réponses
     roles:
-      admin: Admin
       bot: Robot
       group: Groupe
-      moderator: Modérateur·trice
     unavailable: Profil non disponible
     unfollow: Ne plus suivre
   admin:
@@ -104,7 +102,6 @@ fr:
       avatar: Avatar
       by_domain: Domaine
       change_email:
-        changed_msg: Courriel du compte modifié avec succès !
         current_email: Courriel actuel
         label: Modifier le courriel
         new_email: Nouveau courriel
@@ -186,12 +183,6 @@ fr:
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
-      role: Permissions
-      roles:
-        admin: Administrateur
-        moderator: Modérateur
-        staff: Équipe
-        user: Utilisateur
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
@@ -700,9 +691,6 @@ fr:
         deletion:
           desc_html: Permettre à tou·te·s les utilisateur·rice·s de supprimer leur compte
           title: Autoriser les suppressions de compte
-        min_invite_role:
-          disabled: Personne
-          title: Autoriser les invitations par
         require_invite_text:
           desc_html: Lorsque les enregistrements nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
           title: Exiger que les nouveaux utilisateurs remplissent un texte de demande d’invitation
@@ -715,9 +703,6 @@ fr:
       show_known_fediverse_at_about_page:
         desc_html: Lorsque désactivée, restreint le fil public accessible via la page d’accueil de l’instance pour ne montrer que le contenu local
         title: Inclure le contenu fédéré sur la page de fil public sans authentification
-      show_staff_badge:
-        desc_html: Montrer un badge de responsable sur une page utilisateur·rice
-        title: Montrer un badge de responsable
       site_description:
         desc_html: Paragraphe introductif sur l'API. Décrivez les particularités de ce serveur Mastodon et précisez toute autre chose qui vous semble importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du serveur
