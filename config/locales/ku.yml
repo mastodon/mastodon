@@ -101,11 +101,17 @@ ku:
       avatar: Wêne
       by_domain: Navper
       change_email:
+        changed_msg: E-name bi awayekî serkeftî hate guhertin!
         current_email: E-nameya heyî
         label: E-nameyê biguherîne
         new_email: E-nameya nû
         submit: E-nameyê biguherîne
         title: E-nameyê biguherîne bo %{username}
+      change_role:
+        changed_msg: Rol bi awayekî serkeftî hate guhertin!
+        label: Rolê biguherîne
+        no_role: Rol tune
+        title: Rolê biguherîne ji bo %{username}
       confirm: Bipejirîne
       confirmed: Hate pejirandin
       confirming: Tê pejirandin
@@ -149,6 +155,7 @@ ku:
         active: Çalak
         all: Hemû
         pending: Tê nirxandin
+        silenced: Sînorkirî
         suspended: Sekinandî
         title: Çavdêrî
       moderation_notes: Nîşeyên Rêvebirinê
@@ -156,6 +163,7 @@ ku:
       most_recent_ip: IP' a dawî
       no_account_selected: Tu ajimêr nehat hilbijartin ji ber vê tu ajimêr nehat guhertin
       no_limits_imposed: Sînor nay danîn
+      no_role_assigned: Ti rol nehatin diyarkirin
       not_subscribed: Beşdar nebû
       pending: Li benda nirxandinê ye
       perform_full_suspension: Sekinî
@@ -182,6 +190,7 @@ ku:
       reset: Ji nû ve saz bike
       reset_password: Borînpeyvê ji nû ve saz bike
       resubscribe: Dîsa beşdar bibe
+      role: Rol
       search: Bigere
       search_same_email_domain: Bikarhênerên din ên bi heman navpera e-nameyê
       search_same_ip: Bikarhênerên din ên xwedî heman IP
@@ -638,6 +647,20 @@ ku:
       unresolved: Neçareserkirî
       updated_at: Rojanekirî
       view_profile: Profîlê nîşan bide
+    roles:
+      add_new: Rolê tevlî bike
+      assigned_users:
+        one: "%{count} bikarhêner"
+        other: "%{count} bikarhêner"
+      categories:
+        administration: Rêvebirî
+        devops: Devops
+        invites: Vexwendin
+        moderation: Çavdêrî
+        special: Taybet
+      delete: Jê bibe
+      privileges:
+        manage_settings: Sazkariyan bi rê ve bibe
     rules:
       add_new: Rêbazekê tevlî bike
       delete: Jê bibe
