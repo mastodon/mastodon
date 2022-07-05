@@ -78,10 +78,8 @@ ko:
     posts_tab_heading: 게시물
     posts_with_replies: 게시물과 답장
     roles:
-      admin: 관리자
       bot: 봇
       group: 그룹
-      moderator: 중재자
     unavailable: 프로필 사용 불가
     unfollow: 팔로우 해제
   admin:
@@ -100,7 +98,6 @@ ko:
       avatar: 아바타
       by_domain: 도메인
       change_email:
-        changed_msg: 이메일이 성공적으로 바뀌었습니다!
         current_email: 현재 이메일 주소
         label: 이메일 주소 변경
         new_email: 새 이메일 주소
@@ -181,12 +178,6 @@ ko:
       reset: 초기화
       reset_password: 암호 초기화
       resubscribe: 다시 구독
-      role: 권한
-      roles:
-        admin: 관리자
-        moderator: 중재자
-        staff: 스태프
-        user: 사용자
       search: 검색
       search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
@@ -686,9 +677,6 @@ ko:
         deletion:
           desc_html: 사용자가 자신의 계정을 삭제할 수 있도록 허용합니다
           title: 계정 삭제를 허가함
-        min_invite_role:
-          disabled: 아무도 못 하게
-          title: 초대링크를 만들 수 있는 권한
         require_invite_text:
           desc_html: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
           title: 새 사용자가 초대 요청 글을 작성해야 하도록
@@ -701,9 +689,6 @@ ko:
       show_known_fediverse_at_about_page:
         desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 게시물을 표시합니다. 비활성화시 로컬에 있는 게시물만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
-      show_staff_badge:
-        desc_html: 사용자 페이지에 스태프 배지를 표시합니다
-        title: 스태프 배지 표시
       site_description:
         desc_html: API의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
         title: 서버 설명
