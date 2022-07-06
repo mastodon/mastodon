@@ -68,6 +68,11 @@ sl:
         with_dns_records: Poskus razrešitve zapisov DNS danih domen bo izveden in rezultati bodo prav tako blokirani
       featured_tag:
         name: 'Morda boste želeli uporabiti eno od teh:'
+      filters:
+        action: Izberite, kako naj se program vede, ko se objava sklada s filtrom
+        actions:
+          hide: Povsem skrij filtrirano vsebino, kot da ne bi obstajala
+          warn: Skrij filtrirano vsebino za opozorilom, ki pomenja naslov filtra
       form_challenge:
         current_password: Vstopate v varovano območje
       imports:
@@ -91,6 +96,13 @@ sl:
         name: Spremenite lahko le npr. velikost črk (velike/male), da je bolj berljivo
       user:
         chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazane samo objave v izbranih jezikih
+        role: Vloga nadzira, katere pravice ima uporabnik
+      user_role:
+        color: Barva, uporabljena za vlogo po celem up. vmesniku, podana v šestnajstiškem zapisu RGB
+        highlighted: S tem je vloga javno vidna
+        name: Javno ime vloge, če naj bo vloga prikazana kot priponka
+        permissions_as_keys: Uporabniki s to vlogo bodo imeli dostop do ...
+        position: Višja vloga odloča o razrešitvi sporov v določenih situacijah
       webhook:
         events: Izberite dogodke za pošiljanje
         url: Kam bodo poslani dogodki
@@ -181,6 +193,7 @@ sl:
         setting_use_pending_items: Počasen način
         severity: Strogost
         sign_in_token_attempt: Varnostna koda
+        title: Naslov
         type: Vrsta uvoza
         username: Uporabniško ime
         username_or_email: Uporabniško ime ali E-pošta
@@ -189,6 +202,10 @@ sl:
         with_dns_records: Vključi zapise MX in IP-številke domene
       featured_tag:
         name: Ključnik
+      filters:
+        actions:
+          hide: Povsem skrij
+          warn: Skrij z opozorilom
       interactions:
         must_be_follower: Blokiraj obvestila nesledilcev
         must_be_following: Blokiraj obvestila oseb, ki jim ne sledite
@@ -222,6 +239,14 @@ sl:
         name: Ključnik
         trendable: Dovoli, da se ta ključnik pojavi med trendi
         usable: Dovoli, da objave uporabljajo ta ključnik
+      user:
+        role: Vloga
+      user_role:
+        color: Barva značke
+        highlighted: Prikaži vlogo kot značko na uporabniškem profilu
+        name: Ime
+        permissions_as_keys: Pravice
+        position: Prioriteta
       webhook:
         events: Omogočeni dogodki
         url: URL končne točke

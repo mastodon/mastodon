@@ -10,7 +10,7 @@ eo:
         text: Vi povas uzi skribmanierojn de mesaĝoj, kiel URL-ojn, kradvortojn kaj menciojn
         title: Laŭvola. Ne videbla por la ricevanto
       admin_account_action:
-        include_statuses: La uzanto vidos, kiujn afiŝojn estas kaŭzintaj la moderigan agon aŭ averton
+        include_statuses: La uzanto vidos, kiujn afiŝojn kaŭzis la agon de moderigo aŭ de averto
         send_email_notification: La uzanto ricevos klarigon pri tio, kio okazis al ties konto
         text_html: Malnepra. Vi povas uzi skribmanierojn de mesaĝoj. Vi povas <a href="%{path}">aldoni avertajn antaŭagordojn</a> por ŝpari tempon
         type_html: Elektu kion fari kun <strong>%{acct}</strong>
@@ -45,7 +45,7 @@ eo:
         password: Uzu almenaŭ 8 signojn
         phrase: Estos provita senzorge pri la uskleco de teksto aŭ averto pri enhavo de mesaĝo
         scopes: Kiujn API-ojn la aplikaĵo permesiĝos atingi. Se vi elektas supran amplekson, vi ne bezonas elekti la individuajn.
-        setting_aggregate_reblogs: Ne montri novajn diskonigojn de mesaĝoj laste diskonigitaj (nur efikas al novaj diskonigoj)
+        setting_aggregate_reblogs: Ne montri novajn plusendojn de mesaĝoj lastatempe plusenditaj (nur efikas al nove ricevitaj plusendoj)
         setting_default_sensitive: Tiklaj aŭdovidaĵoj estas defaŭlte kaŝita kaj povas esti malkiŝita per klako
         setting_display_media_default: Kaŝi aŭdovidaĵojn markitajn kiel tiklaj
         setting_display_media_hide_all: Ĉiam kaŝi ĉiujn aŭdovidaĵojn
@@ -61,6 +61,9 @@ eo:
         domain: Ĉi tiu domajno povos akiri datumon de ĉi tiu servilo kaj envenanta datumo estos prilaborita kaj konservita
       featured_tag:
         name: 'Vi povus uzi iun el la jenaj:'
+      filters:
+        actions:
+          warn: Kaŝi la enhavon filtritan malantaŭ averto mencianta la nomon de la filtro
       form_challenge:
         current_password: Vi eniras sekuran areon
       imports:
@@ -138,9 +141,10 @@ eo:
         note: Sinprezento
         otp_attempt: Kodo de dufaktora aŭtentigo
         password: Pasvorto
-        phrase: Vorto aŭ frazo
+        phrase: Ĉefvorto aŭ frazo
         setting_advanced_layout: Ebligi altnivelan retpaĝan interfacon
         setting_aggregate_reblogs: Grupigi diskonigojn en templinioj
+        setting_always_send_emails: Ĉiam sendi la sciigojn per retpoŝto
         setting_auto_play_gif: Aŭtomate ekigi GIF-ojn
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_crop_images: Stuci bildojn en negrandigitaj mesaĝoj al 16x9
@@ -159,19 +163,24 @@ eo:
         setting_reduce_motion: Redukti la movecojn de la animacioj
         setting_show_application: Publikigi la aplikaĵon uzatan por sendi mesaĝojn
         setting_system_font_ui: Uzi la dekomencan tiparon de la sistemo
-        setting_theme: Reteja etoso
+        setting_theme: Etoso de la retejo
         setting_trends: Montri hodiaŭajn furoraĵojn
         setting_unfollow_modal: Montri konfirman fenestron antaŭ ol ĉesi sekvi iun
         setting_use_blurhash: Montri buntajn transirojn por kaŝitaj aŭdovidaĵoj
         setting_use_pending_items: Malrapida modo
         severity: Graveco
         sign_in_token_attempt: Sekureca kodo
+        title: Titolo
         type: Importa tipo
         username: Uzantnomo
         username_or_email: Uzantnomo aŭ Retadreso
         whole_word: Tuta vorto
       featured_tag:
         name: Kradvorto
+      filters:
+        actions:
+          hide: Kaŝi komplete
+          warn: Kaŝi malantaŭ averto
       interactions:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas

@@ -83,10 +83,8 @@ de:
     posts_tab_heading: Beiträge
     posts_with_replies: Beiträge mit Antworten
     roles:
-      admin: Administrator
       bot: Bot
       group: Gruppe
-      moderator: Moderator
     unavailable: Profil nicht verfügbar
     unfollow: Entfolgen
   admin:
@@ -105,7 +103,6 @@ de:
       avatar: Profilbild
       by_domain: Domain
       change_email:
-        changed_msg: E-Mail-Adresse des Kontos erfolgreich geändert!
         current_email: Aktuelle E-Mail-Adresse
         label: E-Mail-Adresse ändern
         new_email: Neue E-Mail-Adresse
@@ -187,12 +184,6 @@ de:
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Wieder abonnieren
-      role: Berechtigungen
-      roles:
-        admin: Administrator
-        moderator: Moderator_in
-        staff: Mitarbeiter
-        user: Nutzer
       search: Suche
       search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer mit derselben IP
@@ -701,9 +692,6 @@ de:
         deletion:
           desc_html: Allen erlauben, ihr Konto eigenmächtig zu löschen
           title: Kontolöschung erlauben
-        min_invite_role:
-          disabled: Niemand
-          title: Einladungen erlauben von
         require_invite_text:
           desc_html: Wenn eine Registrierung manuell genehmigt werden muss, mache den "Warum möchtest du beitreten?" Text eher obligatorisch als optional
           title: Neue Benutzer müssen einen Einladungstext ausfüllen
@@ -716,9 +704,6 @@ de:
       show_known_fediverse_at_about_page:
         desc_html: Wenn aktiviert, wird es alle Beiträge aus dem bereits bekannten Teil des Fediversums auf der Startseite anzeigen. Andernfalls werden lokale Beitrage des Servers angezeigt.
         title: Zeige eine öffentliche Zeitleiste auf der Einstiegsseite
-      show_staff_badge:
-        desc_html: Zeige Mitarbeiter-Badge auf Benutzerseite
-        title: Zeige Mitarbeiter-Badge
       site_description:
         desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diesen Mastodon-Server ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
         title: Beschreibung des Servers
@@ -1127,7 +1112,6 @@ de:
       title: Filter bearbeiten
     errors:
       invalid_context: Ungültiger oder fehlender Kontext übergeben
-      invalid_irreversible: Unwiderrufliche Filterung funktioniert nur mit Heim- oder Benachrichtigungskontext
     index:
       delete: Löschen
       empty: Du hast keine Filter.

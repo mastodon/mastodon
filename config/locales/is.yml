@@ -83,10 +83,8 @@ is:
     posts_tab_heading: Færslur
     posts_with_replies: Færslur og svör
     roles:
-      admin: Stjóri
       bot: Róbót
       group: Hópur
-      moderator: Umsjón
     unavailable: Notandasnið ekki tiltækt
     unfollow: Hætta að fylgja
   admin:
@@ -105,12 +103,17 @@ is:
       avatar: Auðkennismynd
       by_domain: Lén
       change_email:
-        changed_msg: Tölvupóstfangi notandaaðgangsins hefur verið breytt!
+        changed_msg: Tókst að breyta tölvupóstfangi!
         current_email: Núverandi tölvupóstfang
         label: Breyta tölvupóstfangi
         new_email: Nýr tölvupóstur
         submit: Breyta tölvupóstfangi
         title: Breyta tölvupóstfangi fyrir %{username}
+      change_role:
+        changed_msg: Tókst að breyta hlutverki!
+        label: Breyta hlutverki
+        no_role: Ekkert hlutverk
+        title: Breyta hlutverki fyrir %{username}
       confirm: Staðfesta
       confirmed: Staðfest
       confirming: Staðfesti
@@ -154,6 +157,7 @@ is:
         active: Virkur
         all: Allt
         pending: Í bið
+        silenced: Takmarkað
         suspended: Í bið
         title: Umsjón
       moderation_notes: Minnispunktar umsjónarmanna
@@ -161,6 +165,7 @@ is:
       most_recent_ip: Nýjasta IP-vistfang
       no_account_selected: Engum aðgöngum var breytt þar sem engir voru valdir
       no_limits_imposed: Engra takmarka krafist
+      no_role_assigned: Engu hlutverki úthlutað
       not_subscribed: Ekki í áskrift
       pending: Bíður eftir yfirlestri
       perform_full_suspension: Setja í bið
@@ -187,12 +192,7 @@ is:
       reset: Endurstilla
       reset_password: Endurstilla lykilorð
       resubscribe: Gerast áskrifandi aftur
-      role: Heimildir
-      roles:
-        admin: Stjórnandi
-        moderator: Umsjónarmaður
-        staff: Starfsmaður
-        user: Notandi
+      role: Hlutverk
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
@@ -649,6 +649,44 @@ is:
       unresolved: Óleyst
       updated_at: Uppfært
       view_profile: Skoða notandasnið
+    roles:
+      add_new: Bæta við hlutverki
+      assigned_users:
+        one: "%{count} notandi"
+        other: "%{count} notendur"
+      categories:
+        administration: Stjórnun
+        devops: Kerfisstjórar
+        invites: Boðsgestir
+        moderation: Umsjón
+        special: Sérstakt
+      delete: Eyða
+      description_html: Með <strong>hlutverkum notenda</strong> geturðu sérsniðið að hvaða aðgerðum og hvaða svæðum í Mastodon notendurnir þínir hafa aðgang.
+      edit: Breyta hlutverki fyrir '%{name}'
+      everyone: Sjálfgefnar heimildir
+      permissions_count:
+        one: "%{count} heimild"
+        other: "%{count} heimildir"
+      privileges:
+        administrator: Stjórnandi
+        administrator_description: Notendur með þessa heimild fara framhjá öllum öðrum heimildum
+        delete_user_data: Eyða gögnum notanda
+        delete_user_data_description: Leyfir notendum að eyða gögnum annarra notenda án tafar
+        invite_users: Bjóða notendum
+        invite_users_description: Leyfir notendum að bjóða nýju fólki inn á netþjóninn
+        manage_announcements: Sýsla með tilkynningar
+        manage_announcements_description: Leyfir notendum að sýsla með tilkynningar á netþjóninum
+        manage_appeals: Sýsla með áfrýanir
+        manage_appeals_description: Leyfir notendum að yfirfara áfrýjanir vegna aðgerða umsjónarfólks
+        manage_blocks: Sýsla með útilokanir
+        manage_blocks_description: Leyfir notendum að loka á tölvupóstþjónustur og IP-vistföng
+        manage_settings: Sýsla með stillingar
+        manage_settings_description: Leyfir notendum að breyta stillingum vefsvæðisins
+        view_dashboard: Skoða stjórnborð
+        view_dashboard_description: Leyfir notendum að skoða stjórnborðið og sjá ýmsar mælingar
+        view_devops: Kerfisstjórar
+        view_devops_description: Leyfir notendum að skoða Sidekiq og pgHero stjórnborð
+      title: Hlutverk
     rules:
       add_new: Skrá reglu
       delete: Eyða
@@ -701,9 +739,6 @@ is:
         deletion:
           desc_html: Leyfa öllum að eyða aðgangnum sínum
           title: Opna eyðingu á notandaaðgangi
-        min_invite_role:
-          disabled: Enginn
-          title: Leyfa boð frá
         require_invite_text:
           desc_html: Þegar nýskráningar krefjast handvirks samþykkis, skal gera "Hvers vegna viltu taka þátt?" boðstexta að skyldu fremur en valkvæðan
           title: Krefja nýja notendur um að fylla út boðstexta
@@ -716,9 +751,6 @@ is:
       show_known_fediverse_at_about_page:
         desc_html: Þegar þetta er óvirkt, takmarkast opinbera tímalínan sem tengt er í af upphafssíðunni við að birta einungis staðvært efni (af sama vefþjóni)
         title: Hafa með efni úr skýjasambandi á síðu fyrir óauðkennda opinbera tímalínu
-      show_staff_badge:
-        desc_html: Sýna starfsmannamerki á síðu notandans
-        title: Sýna starfsmannamerki
       site_description:
         desc_html: Kynningarmálsgrein í API. Lýstu því hvað það er sem geri þennan Mastodon-þjón sérstakan, auk annarra mikilvægra upplýsinga. Þú getur notað HTML-einindi, sér í lagi <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Lýsing á vefþjóni
@@ -1124,15 +1156,24 @@ is:
       public: Opinberar tímalínur
       thread: Samtöl
     edit:
+      add_keyword: Bæta við stikkorði
+      keywords: Stikkorð
       title: Breyta síu
     errors:
+      deprecated_api_multiple_keywords: Þessum viðföngum er ekki hægt að breyta úr þessu forriti, þar sem þau eiga við fleiri en eitt stikkorð síu. Notaðu nýrra forrit eða farðu í vefviðmótið.
       invalid_context: Ekkert eða ógilt samhengi var gefið
-      invalid_irreversible: Óendurkræf síun virkar bara í sambandi við heimasvæði eða tilkynningar
     index:
+      contexts: Síur í %{contexts}
       delete: Eyða
       empty: Þú ert ekki með neinar síur.
+      expires_in: Rennur út %{distance}
+      expires_on: Rennur út þann %{date}
+      keywords:
+        one: "%{count} stikkorð"
+        other: "%{count} stikkorð"
       title: Síur
     new:
+      save: Vista nýja síu
       title: Bæta við nýrri síu
   footer:
     developers: Forritarar
@@ -1251,6 +1292,8 @@ is:
     copy_account_note_text: 'Þessi notandi fluttist frá %{acct}, hér eru fyrri minnispunktar þínir um hann:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} sendi inn kæru"
       sign_up:
         subject: "%{name} nýskráði sig"
     digest:

@@ -80,10 +80,8 @@ el:
     posts_tab_heading: Τουτ
     posts_with_replies: Τουτ και απαντήσεις
     roles:
-      admin: Διαχειριστής
       bot: Μποτ (αυτόματος λογαριασμός)
       group: Ομάδα
-      moderator: Μεσολαβητής
     unavailable: Το προφίλ δεν είναι διαθέσιμο
     unfollow: Διακοπή παρακολούθησης
   admin:
@@ -102,12 +100,15 @@ el:
       avatar: Αβατάρ
       by_domain: Τομέας
       change_email:
-        changed_msg: Επιτυχής αλλαγή email λογαριασμού!
         current_email: Τρέχον email
         label: Αλλαγή email
         new_email: Νέο email
         submit: Αλλαγή email
         title: Αλλαγή email για %{username}
+      change_role:
+        label: Αλλαγή ρόλου
+        no_role: Κανένας ρόλος
+        title: Αλλαγή ρόλου για %{username}
       confirm: Επιβεβαίωση
       confirmed: Επιβεβαιώθηκε
       confirming: Προς επιβεβαίωση
@@ -148,6 +149,7 @@ el:
         active: Ενεργός/ή
         all: Όλα
         pending: Εκκρεμούν
+        silenced: Περιορισμένοι
         suspended: Σε αναστολή
         title: Μεσολάβηση
       moderation_notes: Σημειώσεις μεσολάβησης
@@ -155,6 +157,7 @@ el:
       most_recent_ip: Πιο πρόσφατη IP
       no_account_selected: Κανείς λογαριασμός δεν ενημερώθηκε αφού κανείς δεν ήταν επιλεγμένος
       no_limits_imposed: Χωρίς όρια
+      no_role_assigned: Δεν έχει ανατεθεί ρόλος
       not_subscribed: Άνευ συνδρομής
       pending: Εκκρεμεί έγκριση
       perform_full_suspension: Αναστολή
@@ -177,12 +180,7 @@ el:
       reset: Επαναφορά
       reset_password: Επαναφορά συνθηματικού
       resubscribe: Επανεγγραφή
-      role: Δικαιώματα
-      roles:
-        admin: Διαχειριστής
-        moderator: Συντονιστής
-        staff: Προσωπικό
-        user: Χρήστης
+      role: Ρόλος
       search: Αναζήτηση
       search_same_email_domain: Άλλοι χρήστες με τον ίδιο τομέα e-mail
       search_same_ip: Υπόλοιποι χρήστες με την ίδια διεύθυνση IP
@@ -492,6 +490,16 @@ el:
       unresolved: Άλυτη
       updated_at: Ενημερωμένη
       view_profile: Προβολή προφίλ
+    roles:
+      add_new: Προσθήκη ρόλου
+      assigned_users:
+        one: "%{count} χρήστης"
+        other: "%{count} χρήστες"
+      categories:
+        administration: Διαχείριση
+        devops: Devops
+        invites: Προσκλήσεις
+      delete: Διαγραφή
     rules:
       add_new: Προσθήκη κανόνα
       delete: Διαγραφή
@@ -544,9 +552,6 @@ el:
         deletion:
           desc_html: Επέτρεψε σε οποιονδήποτε να διαγράψει το λογαριασμό του/της
           title: Άνοιξε τη διαγραφή λογαριασμού
-        min_invite_role:
-          disabled: Κανείς
-          title: Επέτρεψε προσκλήσεις από
       registrations_mode:
         modes:
           approved: Απαιτείται έγκριση για εγγραφή
@@ -556,9 +561,6 @@ el:
       show_known_fediverse_at_about_page:
         desc_html: Όταν αντιστραφεί, θα δείχνει τα τουτ από όλο το γνωστό fediverse στην προεπισκόπηση. Διαφορετικά θα δείχνει μόνο τοπικά τουτ.
         title: Εμφάνιση του γνωστού fediverse στην προεπισκόπηση ροής
-      show_staff_badge:
-        desc_html: Δείξε ένα σήμα προσωπικού στη σελίδα ενός χρήστη
-        title: Δείξε διακριτικό προσωπικού
       site_description:
         desc_html: Εισαγωγική παράγραφος στην αρχική σελίδα. Περιέγραψε τι κάνει αυτό τον διακομιστή Mastodon διαφορετικό και ό,τι άλλο ενδιαφέρον. Μπορείς να χρησιμοποιήσεις HTML tags, συγκεκριμένα <code>&lt; a&gt;</code> και <code> &lt; em&gt;</code>.
         title: Περιγραφή κόμβου
@@ -820,15 +822,20 @@ el:
       public: Δημόσιες ροές
       thread: Συζητήσεις
     edit:
+      add_keyword: Προσθήκη λέξης-κλειδιού
+      keywords: Λέξεις-κλειδιά
       title: Ενημέρωση φίλτρου
     errors:
       invalid_context: Έδωσες λάθος ή ανύπαρκτο πλαίσιο
-      invalid_irreversible: Τα μη αντιστρέψιμα φίλτρα δουλεύουν μόνο στα πλαίσια της αρχικής ροής και των ειδοποιήσεων
     index:
+      contexts: Φίλτρα σε %{contexts}
       delete: Διαγραφή
       empty: Δεν έχεις φίλτρα.
+      expires_in: Λήγει σε %{distance}
+      expires_on: Λήγει στις %{date}
       title: Φίλτρα
     new:
+      save: Αποθήκευση νέου φίλτρου
       title: Πρόσθεσε νέο φίλτρο
   footer:
     developers: Ανάπτυξη
@@ -935,6 +942,8 @@ el:
     copy_account_note_text: 'Ο/Η χρήστης μετακόμισε από το %{acct}, ορίστε οι προηγούμενες σημειώσεις σου:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} υπέβαλε μια αναφορά"
       sign_up:
         subject: "%{name} έχει εγγραφεί"
     digest:
