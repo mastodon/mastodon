@@ -1,7 +1,6 @@
----
 da:
   about:
-    about_hashtag_html: Disse er offentlige indlæg tagget med <strong>#%{hashtag}</strong>, som man kan interagere med, hvis man har en konto hvor som helst i fediverset.
+    about_hashtag_html: 'Disse er offentlige indlæg tagget med <strong>#%{hashtag}</strong>, som man kan interagere med, hvis man har en konto hvor som helst i fediverset.'
     about_mastodon_html: 'Fremtidens sociale netværk: Ingen annoncer, ingen virksomhedsovervågning, etisk design og decentralisering! Vær ejer af egne data med Mastodon!'
     about_this: Om
     active_count_after: aktive
@@ -134,7 +133,7 @@ da:
       enable: Optø
       enable_sign_in_token_auth: Aktivér e-mailtoken godkendelse
       enabled: Aktiveret
-      enabled_msg: "%{username}s konto er optøet"
+      enabled_msg: '%{username}s konto er optøet'
       followers: Følgere
       follows: Følger
       header: Overskrift
@@ -152,7 +151,7 @@ da:
       media_attachments: Medievedhæftninger
       memorialize: Omdan til mindekonto
       memorialized: Memorialiseret
-      memorialized_msg: "%{username} gjort til mindekonto"
+      memorialized_msg: '%{username} gjort til mindekonto'
       moderation:
         active: Aktiv
         all: Alle
@@ -178,13 +177,13 @@ da:
       public: Offentlig
       push_subscription_expires: PuSH-abonnement udløber
       redownload: Opfrisk profil
-      redownloaded_msg: "%{username}s profil opfrisket fra oprindelsesserver"
+      redownloaded_msg: '%{username}s profil opfrisket fra oprindelsesserver'
       reject: Afvis
-      rejected_msg: "%{username}s tilmeldingsansøgning afvist"
+      rejected_msg: '%{username}s tilmeldingsansøgning afvist'
       remove_avatar: Fjern profilbillede
       remove_header: Fjern overskrift
-      removed_avatar_msg: "%{username}s profilbillede fjernet"
-      removed_header_msg: "%{username}s overskriftsbillede fjernet"
+      removed_avatar_msg: '%{username}s profilbillede fjernet'
+      removed_header_msg: '%{username}s overskriftsbillede fjernet'
       resend_confirmation:
         already_confirmed: Denne bruger er allerede bekræftet
         send: Gensend bekræftelses e-mail
@@ -216,14 +215,14 @@ da:
       suspension_reversible_hint_html: Kontoen er blevet suspenderet, og dens data fjernes helt d. %{date}. Indtil da kan kontoen genoprettes uden datatab mv. Ønsker alle kontodata fjernet straks, kan dette gøres nedenfor.
       title: Konti
       unblock_email: Afblokér e-mailadresse
-      unblocked_email_msg: "%{username}s e-mail-adresse afblokeret"
+      unblocked_email_msg: '%{username}s e-mail-adresse afblokeret'
       unconfirmed_email: Ubekræftet e-mail
       undo_sensitized: Fortryd gennemtving sensitiv
       undo_silenced: Fortryd begrænsning
       undo_suspension: Fortryd suspendering
-      unsilenced_msg: "%{username}s kontobegrænsning er fjernet"
+      unsilenced_msg: '%{username}s kontobegrænsning er fjernet'
       unsubscribe: Opsig abonnement
-      unsuspended_msg: "%{username}s konto er afsuspenderet"
+      unsuspended_msg: '%{username}s konto er afsuspenderet'
       username: Brugernavn
       view_domain: Vis domæneoversigt
       warn: Advar
@@ -428,7 +427,7 @@ da:
       destroyed_msg: Domæneblokering er blevet fjernet
       domain: Domæne
       edit: Redigér domæneblokering
-      existing_domain_block: "%{name} er allerede pålagt strengere restriktioner."
+      existing_domain_block: '%{name} er allerede pålagt strengere restriktioner.'
       existing_domain_block_html: Der har allerede pålagt %{name} strengere begrænsninger, så dette kræver først en <a href="%{unblock_url}">afblokering</a>.
       new:
         create: Opret blokering
@@ -697,6 +696,18 @@ da:
         manage_taxonomies: Håndtere taksonomier
         manage_taxonomies_description: Tillader brugere at gennemse tenderende indhold og opdatere hashtag-indstillinger
         manage_user_access: Håndtere brugeradgang
+        manage_user_access_description: Tillader brugere at deaktivere andre brugeres tofaktorgodkendelse, skifte deres e-mailadresse og nulstille deres adgangskode
+        manage_users: Håndtere brugere
+        manage_users_description: Tillader brugere at se andre brugeres oplysninger og underkaste dem moderationshandlinger
+        manage_webhooks: Håndtere Webhooks
+        manage_webhooks_description: Tillader brugere at opsætte webhooks til administrative begivenheder
+        view_audit_log: Vis revisionslog
+        view_audit_log_description: Tillader brugere at se en historik over administrative handlinger på serveren
+        view_dashboard: Vis Dashboard
+        view_dashboard_description: Tillader brugere at tilgå Dashboard'et og forskellige målinger
+        view_devops: Devops
+        view_devops_description: Tillader brugere at tilgå Sidekiq- og pgHero-dashboards
+      title: Roller
     rules:
       add_new: Tilføj regel
       delete: Slet
@@ -933,7 +944,7 @@ da:
     new_report:
       body: "%{reporter} har anmeldt %{target}"
       body_remote: Nogen fra %{domain} har anmeldt %{target}
-      subject: Ny anmeldelse for %{instance} (#%{id})
+      subject: 'Ny anmeldelse for %{instance} (#%{id})'
     new_trends:
       body: 'Flg. emner kræver revision, inden de kan vises offentligt:'
       new_trending_links:
@@ -1318,7 +1329,7 @@ da:
         other: "%{count} nye notifikationer siden senest besøg 🐘"
       title: I dit fravær...
     favourite:
-      body: "%{name} favoritmarkerede dit indlæg:"
+      body: '%{name} favoritmarkerede dit indlæg:'
       subject: "%{name} favoritmarkerede dit indlæg"
       title: Ny favorit
     follow:
@@ -1678,7 +1689,7 @@ da:
       <p>Dette dokument er CC-BY-SA. Det er senest opdateret 26. maj 2022.</p>
 
       <p>Oprindeligt tilpasset fra <a href="https://github.com/discourse/discourse">Discourse-fortrolighedspolitik</a>.</p>
-    title: Tjenestevilkår og Fortrolighedspolitik for %{instance}
+    title: "Tjenestevilkår og Fortrolighedspolitik for %{instance}"
   themes:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
