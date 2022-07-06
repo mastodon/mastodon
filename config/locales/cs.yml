@@ -118,6 +118,7 @@ cs:
       change_role:
         changed_msg: Role úspěšně změněna!
         label: Změnit roli
+        title: Změnit roli pro %{username}
       confirm: Potvrdit
       confirmed: Potvrzeno
       confirming: Potvrzuji
@@ -681,6 +682,7 @@ cs:
         invites: Pozvánky
         moderation: Moderování
         special: Speciální
+      delete: Smazat
       permissions_count:
         one: "%{count} oprávnění"
         few: "%{count} oprávnění"
@@ -696,9 +698,12 @@ cs:
         manage_blocks: Spravovat blokace
         manage_invites: Spravovat pozvánky
         manage_reports: Spravovat hlášení
+        manage_roles: Spravovat role
         manage_rules: Spravovat pravidla
         manage_settings: Spravovat nastavení
         manage_users: Spravovat uživatele
+        manage_webhooks: Spravovat webhooky
+        view_audit_log: Zobrazovat protokol auditu
     rules:
       add_new: Přidat pravidlo
       delete: Smazat
