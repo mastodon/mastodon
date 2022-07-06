@@ -1,8 +1,7 @@
----
 io:
   about:
-    about_hashtag_html: Co esas publika posti quo etiketigesis kun <strong>#%{hashtag}</strong>. Vu povas interagar kun oli se vu havas konto irgaloke en fediverso.
-    about_mastodon_html: Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.
+    about_hashtag_html: 'Co esas publika posti quo etiketigesis kun <strong>#%{hashtag}</strong>. Vu povas interagar kun oli se vu havas konto irgaloke en fediverso.'
+    about_mastodon_html: 'Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.'
     about_this: Pri ta instaluro
     active_count_after: aktiva
     active_footnote: Monade Aktiva Uzanti (MAU)
@@ -22,9 +21,8 @@ io:
     federation_hint_html: Per konto che %{instance}, vu povas sequar persono che irga servilo di Mastodon e altra siti.
     get_apps: Probez smartfonsoftwaro
     hosted_on: Mastodon hostigesas che %{domain}
-    instance_actor_flash: 'Ca konto esas virtuala aganto quo uzesas por reprezentar la servilo e ne irga individuala uzanto. Ol uzesas por federskopo e ne debas restriktesar se vu ne volas obstruktar tota instanco, se ol esas la kaso, do vu debas uzar domenobstrukto.
-
-      '
+    instance_actor_flash: |
+      Ca konto esas virtuala aganto quo uzesas por reprezentar la servilo e ne irga individuala uzanto. Ol uzesas por federskopo e ne debas restriktesar se vu ne volas obstruktar tota instanco, se ol esas la kaso, do vu debas uzar domenobstrukto.
     learn_more: Lernez pluse
     logged_in_as_html: Vu nun eniras quale %{username}.
     logout_before_registering: Vu ja eniris.
@@ -57,7 +55,7 @@ io:
     user_count_before: Hemo di
     what_is_mastodon: Quo esas Mastodon?
   accounts:
-    choices_html: 'Selektaji di %{name}:'
+    choices_html: "Selektaji di %{name}:"
     endorsements_hint: Vu povas rekomendar personi quon vu sequas de retintervizajo, e oli montresos hike.
     featured_tags_hint: Vu povas estalar partikulara hashtagi quo montresos hike.
     follow: Sequar
@@ -103,11 +101,17 @@ io:
       avatar: Profilimajo
       by_domain: Domeno
       change_email:
+        changed_msg: Kontoretposto sucesoze chanjesis!
         current_email: Nuna retposto
         label: Chanjez retposto
         new_email: Nova retposto
         submit: Chanjez retposto
         title: Chanjez retposto por %{username}
+      change_role:
+        changed_msg: Rolo sucesoze chanjesis!
+        label: Chanjez rolo
+        no_role: Nula rolo
+        title: Chanjez rolo por %{username}
       confirm: Konfirmez
       confirmed: Konfirmita
       confirming: Ankore konfirmesas
@@ -115,7 +119,7 @@ io:
       delete: Efacez informi
       deleted: Efacita
       demote: Despromocez
-      destroyed_msg: Informi di %{username} nun aranjesis por efacesar aparante
+      destroyed_msg: "Informi di %{username} nun aranjesis por efacesar aparante"
       disable: Frostigez
       disable_sign_in_token_auth: Desaktivigez retpostofichyurizeso
       disable_two_factor_authentication: Desaktivigez 2FA
@@ -151,6 +155,7 @@ io:
         active: Aktiva
         all: Omna
         pending: Vartanta
+        silenced: Limitizita
         suspended: Restriktita
         title: Jero
       moderation_notes: Jernoti
@@ -158,6 +163,7 @@ io:
       most_recent_ip: Maxim recenta IP
       no_account_selected: Nula konti chanjesis pro ke nulo selektesis
       no_limits_imposed: Limiti ne fixesis
+      no_role_assigned: Nula rolo
       not_subscribed: Ne abonita
       pending: Vartar kontrolo
       perform_full_suspension: Perform full suspension
@@ -184,6 +190,7 @@ io:
       reset: Richanjez
       reset_password: Richanjez pasvorto
       resubscribe: Riabonez
+      role: Rolo
       search: Trovez
       search_same_email_domain: Altra uzanti kun sama retpostodomeno
       search_same_ip: Altra uzanti kun sama IP
@@ -564,7 +571,7 @@ io:
     relays:
       add_new: Insertez nova relayo
       delete: Efacez
-      description_html: "<strong>Federatrelayo</strong> esas mediatajservilo quo interchanjas multa publika posti inter servili quo abonas e publikigas ibe. <strong>Ol povas helpar mikra e mezgranda servili deskovrar kontenajo de fediverso</strong>, quale ne bezonas lokala uzanti manuale sequar altra personi en nelokala servili."
+      description_html: <strong>Federatrelayo</strong> esas mediatajservilo quo interchanjas multa publika posti inter servili quo abonas e publikigas ibe. <strong>Ol povas helpar mikra e mezgranda servili deskovrar kontenajo de fediverso</strong>, quale ne bezonas lokala uzanti manuale sequar altra personi en nelokala servili.
       disable: Desaktivigez
       disabled: Desaktivigita
       enable: Aktivigez
@@ -640,6 +647,42 @@ io:
       unresolved: Nerezolvita
       updated_at: Novigesis
       view_profile: Videz profilo
+    roles:
+      add_new: Insertez rolo
+      assigned_users:
+        one: "%{count} uzanto"
+        other: "%{count} uzanti"
+      categories:
+        administration: Administro
+        devops: Developeri
+        invites: Inviti
+        moderation: Jero
+        special: Specala
+      delete: Efacez
+      edit: Modifikez rolo di '%{name}'
+      everyone: Originala permisi
+      permissions_count:
+        one: "%{count} permiso"
+        other: "%{count} permisi"
+      privileges:
+        administrator: Administrero
+        administrator_description: Uzanti kun ca permiso ignoros singla permiso
+        delete_user_data: Efacez uzantinformi
+        delete_user_data_description: Permisez uzanti efacar informi di altra uzanti sen varto
+        invite_users: Invitez uzanti
+        invite_users_description: Permisez uzanti invitar nova personi a la servilo
+        manage_announcements: Jerez anunci
+        manage_announcements_description: Permisez uzanti jerar anunci en la servilo
+        manage_appeals: Jerez apeli
+        manage_appeals_description: Permisez uzanti kontrolar apeli kontra jero
+        manage_blocks: Jerez obstrukti
+        manage_blocks_description: Permisez uzanti obstruktar retpostoservilo e adresi di IP
+        manage_custom_emojis: Jerez kustumizita emocimaji
+        manage_custom_emojis_description: Permisez uzanti jerar kustumizita emocimaji en la servilo
+        manage_federation: Jerez federo
+        manage_federation_description: Permisez uzanti obstruktar o permisez federo kun altra domeni, e dominacar sendebleso
+        manage_invites: Jerez inviti
+        manage_invites_description: Permisez uzanti vidar e desaktivigar invitligili
     rules:
       add_new: Insertez regulo
       delete: Efacez
@@ -840,7 +883,7 @@ io:
     webhooks:
       add_new: Insertez finpunto
       delete: Efacez
-      description_html: "<strong>Rethoko</strong> povigas Mastodon sendar <strong>samtempoavizi</strong> pri selektita eventi a vua sua apliko, por ke vua apliko povas <strong>automate kauzigar reakti</strong>."
+      description_html: <strong>Rethoko</strong> povigas Mastodon sendar <strong>samtempoavizi</strong> pri selektita eventi a vua sua apliko, por ke vua apliko povas <strong>automate kauzigar reakti</strong>.
       disable: Desaktivigez
       disabled: Desaktivigita
       edit: Modifikez finpunto
@@ -876,7 +919,7 @@ io:
     new_report:
       body: "%{reporter} raportizis %{target}"
       body_remote: Ulu de %{domain} raportizis %{target}
-      subject: Nova raporto por %{instance} (#%{id})
+      subject: 'Nova raporto por %{instance} (#%{id})'
     new_trends:
       body: 'Ca kozi bezonas kontrol ante ol povas montresar publike:'
       new_trending_links:
@@ -1258,7 +1301,7 @@ io:
         other: "%{count} nova avizi de pos vua antea vizito 🐘"
       title: Dum vua neprezenteso...
     favourite:
-      body: "%{name} favoris tua mesajo:"
+      body: '%{name} favoris tua mesajo:'
       subject: "%{name} favoris tua mesajo"
       title: Nova favorato
     follow:
@@ -1268,17 +1311,17 @@ io:
     follow_request:
       action: Jerez sequodemandi
       body: "%{name} demandis sequar tu"
-      subject: "%{name} demandis sequar tu"
+      subject: '%{name} demandis sequar tu'
       title: Nova sequodemando
     mention:
       action: Respondez
-      body: "%{name} mencionis tu en:"
-      subject: "%{name} mencionis tu"
+      body: '%{name} mencionis tu en:'
+      subject: '%{name} mencionis tu'
       title: Nova menciono
     poll:
       subject: Votposto di %{name} finis
     reblog:
-      body: "%{name} diskonocigis tua mesajo:"
+      body: '%{name} diskonocigis tua mesajo:'
       subject: "%{name} diskonocigis tua mesajo"
       title: Nova busto
     status:
@@ -1620,7 +1663,7 @@ io:
       <p>Ca dokumento esas CC-BY-SA.</p>
 
       <p>Tradukesis e modifikesis de Angla de <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: Serveskondiconi e Privatesguidilo di %{instance}
+    title: "Serveskondiconi e Privatesguidilo di %{instance}"
   themes:
     contrast: Mastodon (Alta kontrasteso)
     default: Mastodon (Obskura)
