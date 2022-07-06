@@ -247,6 +247,19 @@ module AccountInteractions
     account_pins.where(target_account: account).exists?
   end
 
+  def status_matches_filters(status)
+    active_filters = CustomFilter.cached_filters_for(id)
+
+    filter_matches = active_filters.filter_map do |filter, rules|
+      next if rules[:keywords].blank?
+
+      match = rules[:keywords].match(status.proper.searchable_text)
+      FilterResultPresenter.new(filter: filter, keyword_matches: [match.to_s]) unless match.nil?
+    end
+
+    filter_matches
+  end
+
   def followers_for_local_distribution
     followers.local
              .joins(:user)

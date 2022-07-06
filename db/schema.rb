@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_06_044941) do
+ActiveRecord::Schema.define(version: 2022_07_04_024901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -339,15 +339,23 @@ ActiveRecord::Schema.define(version: 2022_06_06_044941) do
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
+  create_table "custom_filter_keywords", force: :cascade do |t|
+    t.bigint "custom_filter_id", null: false
+    t.text "keyword", default: "", null: false
+    t.boolean "whole_word", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["custom_filter_id"], name: "index_custom_filter_keywords_on_custom_filter_id"
+  end
+
   create_table "custom_filters", force: :cascade do |t|
     t.bigint "account_id"
     t.datetime "expires_at"
     t.text "phrase", default: "", null: false
     t.string "context", default: [], null: false, array: true
-    t.boolean "irreversible", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "whole_word", default: true, null: false
+    t.integer "action", default: 0, null: false
     t.index ["account_id"], name: "index_custom_filters_on_account_id"
   end
 
@@ -960,6 +968,16 @@ ActiveRecord::Schema.define(version: 2022_06_06_044941) do
     t.index ["user_id"], name: "index_user_invite_requests_on_user_id"
   end
 
+  create_table "user_roles", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.string "color", default: "", null: false
+    t.integer "position", default: 0, null: false
+    t.bigint "permissions", default: 0, null: false
+    t.boolean "highlighted", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.datetime "created_at", null: false
@@ -995,11 +1013,13 @@ ActiveRecord::Schema.define(version: 2022_06_06_044941) do
     t.string "webauthn_id"
     t.inet "sign_up_ip"
     t.boolean "skip_sign_in_token"
+    t.bigint "role_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id", where: "(created_by_application_id IS NOT NULL)"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, opclass: :text_pattern_ops, where: "(reset_password_token IS NOT NULL)"
+    t.index ["role_id"], name: "index_users_on_role_id", where: "(role_id IS NOT NULL)"
   end
 
   create_table "web_push_subscriptions", force: :cascade do |t|
@@ -1082,6 +1102,7 @@ ActiveRecord::Schema.define(version: 2022_06_06_044941) do
   add_foreign_key "canonical_email_blocks", "accounts", column: "reference_account_id", on_delete: :cascade
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
+  add_foreign_key "custom_filter_keywords", "custom_filters", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
   add_foreign_key "devices", "accounts", on_delete: :cascade
   add_foreign_key "devices", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
@@ -1150,6 +1171,7 @@ ActiveRecord::Schema.define(version: 2022_06_06_044941) do
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
   add_foreign_key "users", "invites", on_delete: :nullify
   add_foreign_key "users", "oauth_applications", column: "created_by_application_id", on_delete: :nullify
+  add_foreign_key "users", "user_roles", column: "role_id", on_delete: :nullify
   add_foreign_key "web_push_subscriptions", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade

@@ -68,6 +68,11 @@ en:
         with_dns_records: An attempt to resolve the given domain's DNS records will be made and the results will also be blocked
       featured_tag:
         name: 'You might want to use one of these:'
+      filters:
+        action: Chose which action to perform when a post matches the filter
+        actions:
+          hide: Completely hide the filtered content, behaving as if it did not exist
+          warn: Hide the filtered content behind a warning mentioning the filter's title
       form_challenge:
         current_password: You are entering a secure area
       imports:
@@ -91,6 +96,13 @@ en:
         name: You can only change the casing of the letters, for example, to make it more readable
       user:
         chosen_languages: When checked, only posts in selected languages will be displayed in public timelines
+        role: The role controls which permissions the user has
+      user_role:
+        color: Color to be used for the role throughout the UI, as RGB in hex format
+        highlighted: This makes the role publicly visible
+        name: Public name of the role, if role is set to be displayed as a badge
+        permissions_as_keys: Users with this role will have access to...
+        position: Higher role decides conflict resolution in certain situations
       webhook:
         events: Select events to send
         url: Where events will be sent to
@@ -181,6 +193,7 @@ en:
         setting_use_pending_items: Slow mode
         severity: Severity
         sign_in_token_attempt: Security code
+        title: Title
         type: Import type
         username: Username
         username_or_email: Username or Email
@@ -189,6 +202,10 @@ en:
         with_dns_records: Include MX records and IPs of the domain
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Hide completely
+          warn: Hide with a warning
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow
@@ -222,6 +239,14 @@ en:
         name: Hashtag
         trendable: Allow this hashtag to appear under trends
         usable: Allow posts to use this hashtag
+      user:
+        role: Role
+      user_role:
+        color: Badge color
+        highlighted: Display role as badge on user profiles
+        name: Name
+        permissions_as_keys: Permissions
+        position: Priority
       webhook:
         events: Enabled events
         url: Endpoint URL

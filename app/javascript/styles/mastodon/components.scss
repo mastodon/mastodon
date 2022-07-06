@@ -959,6 +959,21 @@
   width: 100%;
   clear: both;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  &__button {
+    display: inline;
+    color: lighten($ui-highlight-color, 8%);
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
 }
 
 .status__prepend-icon-wrapper {
@@ -1355,6 +1370,8 @@ a .account__avatar {
 .account__avatar-overlay {
   @include avatar-size(48px);
 
+  position: relative;
+
   &-base {
     @include avatar-radius;
     @include avatar-size(36px);
@@ -1617,6 +1634,33 @@ a.account__display-name {
       background: lighten($ui-base-lighter-color, 7%);
       text-decoration: none;
     }
+  }
+}
+
+.notification__report {
+  padding: 8px 10px;
+  padding-left: 68px;
+  position: relative;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  min-height: 54px;
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $darker-text-color;
+    font-size: 15px;
+    line-height: 22px;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    left: 10px;
+    top: 10px;
   }
 }
 
@@ -2358,6 +2402,16 @@ a.account__display-name {
 
     .compose-form .compose-form__publish .compose-form__publish-button-wrapper {
       padding-top: 15px;
+    }
+
+    .notification__report {
+      padding: 15px 15px 15px (48px + 15px * 2);
+      min-height: 48px + 2px;
+
+      &__avatar {
+        left: 15px;
+        top: 17px;
+      }
     }
 
     .status {

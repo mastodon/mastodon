@@ -93,7 +93,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def invites_enabled
-    Setting.min_invite_role == 'user'
+    UserRole.everyone.can?(:invite_users)
   end
 
   private
