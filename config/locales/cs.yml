@@ -118,6 +118,7 @@ cs:
       change_role:
         changed_msg: Role úspěšně změněna!
         label: Změnit roli
+        no_role: Žádná role
         title: Změnit roli pro %{username}
       confirm: Potvrdit
       confirmed: Potvrzeno
@@ -197,6 +198,7 @@ cs:
       reset: Obnovit
       reset_password: Obnovit heslo
       resubscribe: Znovu odebírat
+      role: Role
       search: Hledat
       search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
@@ -679,16 +681,20 @@ cs:
         many: "%{count} uživatelů"
         other: "%{count} uživatelů"
       categories:
+        administration: Administrace
         invites: Pozvánky
         moderation: Moderování
         special: Speciální
       delete: Smazat
+      edit: Upravit roli „%{name}“
+      everyone: Výchozí oprávnění
       permissions_count:
         one: "%{count} oprávnění"
         few: "%{count} oprávnění"
         many: "%{count} oprávnění"
         other: "%{count} oprávnění"
       privileges:
+        administrator: Správce
         delete_user_data: Mazat uživatelská data
         delete_user_data_description: Umožňuje uživatelům bezodkladně mazat data jiných uživatelů
         invite_users: Zvát uživatele
@@ -697,6 +703,8 @@ cs:
         manage_appeals: Spravovat odvolání
         manage_appeals_description: Umožňuje uživatelům posuzovat odvolání proti moderátorským zásahům
         manage_blocks: Spravovat blokace
+        manage_custom_emojis: Spravovat vlastní emoji
+        manage_custom_emojis_description: Umožňuje uživatelům spravovat vlastní emoji na serveru
         manage_invites: Spravovat pozvánky
         manage_reports: Spravovat hlášení
         manage_roles: Spravovat role
@@ -705,6 +713,7 @@ cs:
         manage_users: Spravovat uživatele
         manage_webhooks: Spravovat webhooky
         view_audit_log: Zobrazovat protokol auditu
+      title: Role
     rules:
       add_new: Přidat pravidlo
       delete: Smazat
