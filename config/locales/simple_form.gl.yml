@@ -1,4 +1,3 @@
----
 gl:
   simple_form:
     hints:
@@ -102,7 +101,6 @@ gl:
         highlighted: Esto fai o rol públicamente visible
         name: Nome público do rol, se o rol se mostra como unha insignia
         permissions_as_keys: As usuarias con este rol terá acceso a...
-        position: O rol de maior rango decide en situación de resolución de conflitos
       webhook:
         events: Elixir eventos a enviar
         url: A onde se enviarán os eventos
@@ -250,7 +248,7 @@ gl:
       webhook:
         events: Eventos activados
         url: URL do extremo
-    'no': Non
+    'no': 'Non'
     recommended: Recomendado
     required:
       mark: "*"
@@ -258,4 +256,4 @@ gl:
     title:
       sessions:
         webauthn: Usa unha das túas chaves de seguridade para conectar
-    'yes': Si
+    'yes': 'Si'
