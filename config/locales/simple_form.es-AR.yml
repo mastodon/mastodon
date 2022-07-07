@@ -1,4 +1,3 @@
----
 es-AR:
   simple_form:
     hints:
@@ -102,7 +101,7 @@ es-AR:
         highlighted: Esto hace que el rol sea públicamente visible
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a…
-        position: Un rol más alto decide la resolución de conflictos en ciertas situaciones
+        position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
       webhook:
         events: Seleccionar eventos para enviar
         url: Adónde serán enviados los eventos
@@ -213,7 +212,7 @@ es-AR:
       invite:
         comment: Comentar
       invite_request:
-        text: "¿Por qué querés unirte?"
+        text: '¿Por qué querés unirte?'
       ip_block:
         comment: Comentario
         ip: Dirección IP
@@ -258,4 +257,4 @@ es-AR:
     title:
       sessions:
         webauthn: Usá una de tus llaves de seguridad para iniciar sesión
-    'yes': Sí
+    'yes': 'Sí'
