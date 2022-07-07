@@ -1,4 +1,3 @@
----
 hu:
   activerecord:
     attributes:
@@ -38,3 +37,12 @@ hu:
             email:
               blocked: egy letiltott e-mail szolgáltatót használ
               unreachable: úgy tűnik, hogy nem létezik
+            role_id:
+              elevated: nem lehet magasabb, mint a jelenlegi szereped
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: tartalmaz olyan engedélyeket is, melyek az alap szerephez nem biztonságosak
+              elevated: nem tartalmazhat olyan engedélyeket, melyek nincsenek benne a jelenlegi szerepedben
+            position:
+              elevated: nem lehet magasabb, mint a jelenlegi szereped
