@@ -659,8 +659,10 @@ io:
         moderation: Jero
         special: Specala
       delete: Efacez
+      description_html: Per <strong>uzantoroli</strong>, vu povas kustumizar funciono e siti di Mastodon quon vua uzanti povas uzar.
       edit: Modifikez rolo di '%{name}'
       everyone: Originala permisi
+      everyone_full_description_html: Co esas <strong>bazrolo</strong> quo efektigas <strong>omna uzanti</strong>, mem personi sen rolo. Omna altra roli ganas sama permisi de ol.
       permissions_count:
         one: "%{count} permiso"
         other: "%{count} permisi"
@@ -684,6 +686,28 @@ io:
         manage_invites: Jerez inviti
         manage_invites_description: Permisez uzanti vidar e desaktivigar invitligili
         manage_reports: Jerez raporti
+        manage_reports_description: Permisez uzanti kontrolar raporti e jerez kontra oli
+        manage_roles: Jerez roli
+        manage_roles_description: Permisez uzanti jerar e ajustar plu basa roli di olia
+        manage_rules: Jerez reguli
+        manage_rules_description: Permisez uzanti chanjar servilreguli
+        manage_settings: Jerez opcioni
+        manage_settings_description: Permisez uzanti chanjar sitopcioni
+        manage_taxonomies: Jerez nomkategorii
+        manage_taxonomies_description: Permisez uzanti kontrolar tendencoza kontenajo e novigar hashtagopcioni
+        manage_user_access: Jerez uzantoeniro
+        manage_user_access_description: Permisez uzanti desaktivigar 2-faktoryurizeso di altra uzanti, chanjar olia retpostoadreso e richanjar olia pasvorto
+        manage_users: Jerez uzanti
+        manage_users_description: Permisez uzanti vidar detali di altra uzanti e jerar kontra oli
+        manage_webhooks: Jerez interrethoki
+        manage_webhooks_description: Permisez uzanti igas interrethoki por administrala eventi
+        view_audit_log: Videz kontrollogo
+        view_audit_log_description: Permisez uzanti vidar historio di administrala agi en la servilo
+        view_dashboard: Videz chefpanelo
+        view_dashboard_description: Permisez uzanti uzar chefpanelo e diversa opcioni
+        view_devops: Developeri
+        view_devops_description: Permisez uzanti uzar chefpaneli Sidekiq e pgHero
+      title: Roli
     rules:
       add_new: Insertez regulo
       delete: Efacez
@@ -1157,8 +1181,10 @@ io:
       keywords: Klefvorti
       title: Modifikez filtrilo
     errors:
+      deprecated_api_multiple_keywords: Ca parametri ne povas chanjesar per ca softwaro pro quo oli efektigas plu kam 1 filtrilklefvorto. Uzez plu recenta softwaro o interretintervizajo.
       invalid_context: Nula o nevalida kuntexto donesis
     index:
+      contexts: Filtrili kun %{contexts}
       delete: Efacez
       empty: Vu ne havas filtrili.
       expires_in: Expiras ye %{distance}
@@ -1168,6 +1194,7 @@ io:
         other: "%{count} klefvorti"
       title: Filtrili
     new:
+      save: Salvez nova filtrilo
       title: Insertez nova filtrilo
   footer:
     developers: Developeri
