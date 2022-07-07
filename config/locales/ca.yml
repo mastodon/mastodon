@@ -1,7 +1,6 @@
----
 ca:
   about:
-    about_hashtag_html: Aquestes són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Hi pots interactuar si tens un compte a qualsevol lloc del fedivers.
+    about_hashtag_html: 'Aquestes són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Hi pots interactuar si tens un compte a qualsevol lloc del fedivers.'
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
     about_this: Quant a
     active_count_after: actiu
@@ -57,7 +56,7 @@ ca:
     user_count_before: Tenim
     what_is_mastodon: Què és Mastodon?
   accounts:
-    choices_html: 'Eleccions de %{name}:'
+    choices_html: "Eleccions de %{name}:"
     endorsements_hint: Pots recomanar persones que segueixes des de la interfície de web i apareixeran aquí.
     featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
@@ -121,7 +120,7 @@ ca:
       delete: Esborra les dades
       deleted: Eliminat
       demote: Degrada
-      destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
+      destroyed_msg: "Les dades de %{username} son a la cua per a ser esborrades en breu"
       disable: Inhabilita
       disable_sign_in_token_auth: Desactivar l'autenticació de token per correu
       disable_two_factor_authentication: Desactiva 2FA
@@ -569,7 +568,7 @@ ca:
       no_ip_block_selected: No s’ha canviat cap regla IP perquè no s’han seleccionat
       title: Regles IP
     relationships:
-      title: relacions del %{acct}
+      title: "relacions del %{acct}"
     relays:
       add_new: Afegiu un nou relay
       delete: Esborra
@@ -651,6 +650,9 @@ ca:
       view_profile: Veure perfil
     roles:
       add_new: Afegir rol
+      assigned_users:
+        one: "%{count} usuari"
+        other: "%{count} usuaris"
       categories:
         administration: Administració
         devops: Operadors de desenvolupament
@@ -943,7 +945,7 @@ ca:
     new_report:
       body: "%{reporter} ha informat de %{target}"
       body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
-      subject: Informe nou per a %{instance} (#%{id})
+      subject: 'Informe nou per a %{instance} (#%{id})'
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
@@ -1070,7 +1072,7 @@ ca:
       about_x_years: "%{count} anys"
       almost_x_years: "%{count}anys"
       half_a_minute: Ara mateix
-      less_than_x_minutes: fa %{count} minuts
+      less_than_x_minutes: "fa %{count} minuts"
       less_than_x_seconds: Ara mateix
       over_x_years: "%{count} anys"
       x_days: "%{count} dies"
@@ -1328,7 +1330,7 @@ ca:
         other: "%{count} notificacions noves des de la teva darrera visita 🐘"
       title: Durant la teva absència…
     favourite:
-      body: "%{name} ha marcat com a favorit el teu estat:"
+      body: '%{name} ha marcat com a favorit el teu estat:'
       subject: "%{name} ha marcat com a favorit el teu estat"
       title: Favorit nou
     follow:
@@ -1342,13 +1344,13 @@ ca:
       title: Nova sol·licitud de seguiment
     mention:
       action: Respon
-      body: "%{name} t'ha mencionat en:"
-      subject: "%{name} t'ha mencionat"
+      body: '%{name} t''ha mencionat en:'
+      subject: '%{name} t''ha mencionat'
       title: Menció nova
     poll:
       subject: Ha finalitzat l'enquesta de %{name}
     reblog:
-      body: "%{name} ha impulsat el teu estat:"
+      body: '%{name} ha impulsat el teu estat:'
       subject: "%{name} ha impulsat el teu estat"
       title: Nou impuls
     status:
@@ -1608,6 +1610,78 @@ ca:
   tags:
     does_not_match_previous_name: no coincideix amb el nom anterior
   terms:
+    body_html: |
+      <p> Aquesta pàgina conté els nostres Termes del servei (adaptats de la Bsd.network ToS) i la nostra Política de privadesa.
+
+      <h1>Termes del servei</h1>
+
+      <p> La nostra intenció és que utilitzis aquest servei per al gaudi personal i la interacció respectuosa i amistosa. A aquest efecte, esperem fomentar un entorn favorable i integrador.
+
+      <p> Aquest servidor és de propietat privada i obert als usuaris voluntàriament, no un espai públic. S'espera que els usuaris que vulguin unir-se a aquesta comunitat actuïn sense malícia i de bona fe. Fer-ho d'una altra manera pot conduir a l'eliminació de l'usuari del servei, independentment de si viola qualsevol regla que s'esbossi a continuació.
+
+      <h2>Polítiques i normes</h2>
+
+      <p> La nostra instància està subjecta a un conjunt de normes que regeixen el comportament dels usuaris. Les regles sempre són visibles a la nostra pàgina Quant a.
+
+      <p> Aquestes normes estan dissenyades per a mantenir un ambient amistós i obert, i per a evitar l'assetjament i la discriminació. Per tant, són un conjunt de directrius, però per necessitat incompletes. Els usuaris que violen l'esperit d'aquestes normes no es tractaran de manera diferent que els usuaris que violen una regla específica.
+
+      <p> Si us plau, tingues en compte que les nostres normes contenen una secció sobre les millors pràctiques, i els usuaris que repetidament i que malaurat els advertiments ignoren aquestes millors pràctiques poden veure's violant les nostres normes.
+
+      <p> Els moderadors poden eliminar els comptes que publiquin spam, o si se sospita que un compte és creat només per reservar un nom d'usuari. La violació de les polítiques i les normes també pot portar a l'eliminació de comptes a discreció dels moderadors.
+
+      <h2>Accés a dades</h2>
+
+      <p> El contingut d'aquest servidor no s'ha d'utilitzar per a l'aprenentatge automàtic o altres propòsits de "recerca" sense el consentiment explícit dels usuaris implicats.
+
+      <p> El contingut d'aquest servidor més enllà d'aquesta pàgina no s'ha d'arxivar o indexar a l'engròs per mitjans automatitzats per qualsevol usuari o servei. Els usuaris actius poden exportar les seves llistes i publicacions a través de l'exportació proporcionada a la seva pàgina de configuració, o l'API.
+
+      <h1>Política de privadesa</h1>
+
+      <h2>Recollida d'informació</h2>
+
+      <p> Informació obligatòria del compte: nom d'usuari (sempre públic), adreça de correu electrònic i contrasenya.
+
+      <p> Informació del compte opcional: nom de visualització, biografia, camps d'informació del perfil, imatge de perfil i imatge de capçalera. El nom de visualització, la biografia, la imatge de perfil i la imatge de capçalera sempre seran públics.
+
+      <p> Estat i interaccions: Retenim totes les vostres publicacions, inclosos els adjunts, i altres interaccions (com ara els preferits, els segueix i els impulsos). A més del contingut i les persones implicades, també emmagatzemen els codis de temps per a totes les entrades de dades enumerades. Si aquestes interaccions impacten en un altre servidor (per exemple, seguint, impulsant o missatger a un usuari en un servidor diferent), aquest altre servidor rebrà tota la informació requerida. Les publicacions públiques, no llistades i fitxades són públiques. Els teus seguidors només tenen missatges de seguiment, i els missatges directes estan disponibles per a tu i totes les persones esmentades en el missatge. Tingues en compte que, com que no podem controlar altres servidors, això significa que no podem garantir l'estat de privacitat dels teus missatges tan aviat abandonin aquest servidor.
+
+      <p> Galetes: Utilitzem galetes per mantenir-te registrat i guardar les teves preferències per a futures visites.
+
+      <p> Altres metadades: No registrem ni emmagatzem la teva adreça IP com a norma general. Es faran excepcions quan busquem activament errors. Una vegada que s'hagi finalitzat la cerca d'errors, les adreces IP recollides s'eliminaran. Retenim el nom de l'aplicació del teu navegador per permetre't revisar les sessions actualment iniciades per motius de seguretat.
+
+      <h2>Ús de la informació</h2>
+
+      <p> Tota la informació que recopilem de tu pot ser utilitzada de les maneres següents:
+
+      <p> Per proporcionar la funcionalitat principal d'aquest servidor. Només pots interaccionar amb el contingut d'altres persones i publicar el teu propi contingut quan hagis iniciat la sessió. Per exemple, pots seguir a altres persones per veure les seves publicacions en la teva pròpia línia de temps personalitzada.
+
+      <p> Per a ajudar a la moderació de la comunitat, quan s'informi d'una publicació o un compte, examinarem la qüestió com a part de les nostres tasques de moderació.
+
+      <p> L'adreça de correu electrònic que proporcionis es pot utilitzar per enviar-te informació, notificacions sobre altres persones que interaccionen amb el teu contingut o que t'envien missatges, i per respondre a les investigacions, i/o altres peticions o preguntes.
+
+      <h2>Protecció de la informació</h2>
+
+      <p> Apliquem una varietat de mesures de seguretat per a mantenir la seguretat de la teva informació personal quan entres, presentes o accedeixes a la teva informació personal. Entre altres coses, la teva sessió de navegador, així com el trànsit entre les teves aplicacions i l'API, estan assegurades amb HTTPS, i la teva contrasenya es resumeix mitjançant un algorisme d'un únic sentit. Pots habilitar l'autenticació de doble factor per a un accés més segur al teu compte.
+
+      <h2>Supressió i retenció de la informació</h2>
+
+      <p> Pots sol·licitar i descarregar un arxiu del teu contingut, incloent-hi les entrades, el contingut gràfic, la imatge del perfil i la imatge de capçalera.
+
+      <p> En qualsevol moment pots suprimir el teu compte de manera irreversible.
+
+      <p> Si jutgem que estàs incomplint les nostres normes, pot ser que eliminem de manera irreversible el teu compte en qualsevol moment.
+
+      <h2> Divulgació de la informació</h2>
+
+      <p> La informació no es revela tret que ho permetis explícitament. L'única excepció és el proveïdor d'aquest servidor, que és un tercer de confiança i inevitable.
+
+      <p> Contactar o permetre el contacte d'un usuari d'una instància diferent implica el consentiment que les dades necessàries es comparteixen amb el servidor en qüestió.
+
+      <p> L'autorització d'una aplicació de tercers concedeix accés a la informació en funció de l'abast dels permisos que aprovis. L'aplicació pot accedir a la teva informació de perfil públic, la teva llista següent, els teus seguidors, les teves llistes, tots els teus missatges i els teus preferits. Les aplicacions no poden accedir mai a la teva adreça de correu electrònic o contrasenya.
+
+      <h1>Atribució</h1>
+
+      <p> This text is free to be adapted and remixed under the terms of the CC-BY (Attribution 4.0 International) license.
     title: "%{instance} Condicions del servei i política de privadesa"
   themes:
     contrast: Mastodon (alt contrast)
