@@ -1,4 +1,3 @@
----
 ca:
   activerecord:
     attributes:
@@ -38,3 +37,12 @@ ca:
             email:
               blocked: utilitza un proveïdor de correu electrònic no autoritzat
               unreachable: sembla que no existeix
+            role_id:
+              elevated: no pot ser superior que el teu rol actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inclou permisos que no són segurs per al rol base
+              elevated: no pot incloure permisos que el teu rol actual no té
+            position:
+              elevated: no pot ser superior al teu rol actual
