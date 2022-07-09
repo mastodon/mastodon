@@ -102,13 +102,17 @@ fr:
       avatar: Avatar
       by_domain: Domaine
       change_email:
+        changed_msg: Courriel modifié avec succès !
         current_email: Courriel actuel
         label: Modifier le courriel
         new_email: Nouveau courriel
         submit: Modifier le courriel
         title: Modifier le courriel pour %{username}
       change_role:
+        changed_msg: Rôle modifié avec succès !
+        label: Modifier le rôle
         no_role: Aucun rôle
+        title: Modifier le rôle de %{username}
       confirm: Confirmer
       confirmed: Confirmé
       confirming: Confirmation
@@ -152,6 +156,7 @@ fr:
         active: Actifs
         all: Tous
         pending: En cours de traitement
+        silenced: Limité
         suspended: Suspendus
         title: Modération
       moderation_notes: Notes de modération
@@ -159,6 +164,7 @@ fr:
       most_recent_ip: Adresse IP la plus récente
       no_account_selected: Aucun compte n’a été modifié, car aucun n’a été sélectionné
       no_limits_imposed: Aucune limite imposée
+      no_role_assigned: Aucun rôle assigné
       not_subscribed: Non abonné
       pending: En attente d’approbation
       perform_full_suspension: Suspendre
@@ -644,12 +650,37 @@ fr:
       view_profile: Voir le profil
     roles:
       add_new: Ajouter un rôle
+      assigned_users:
+        one: "%{count} utilisateur·rice"
+        other: "%{count} utilisateur·rice·s"
       categories:
+        administration: Administration
+        devops: Devops
         invites: Invitations
         moderation: Modération
+        special: Spécial
+      delete: Supprimer
+      edit: Modifier le rôle '%{name}'
+      everyone: Permissions par défaut
       privileges:
-        manage_announcements: Gestion des annonces
-        manage_federation: Gestion de la féderation
+        administrator: Administrateur·rice
+        manage_announcements: Gérer les annonces
+        manage_appeals: Gérer les contestations
+        manage_blocks: Gérer les blocages
+        manage_custom_emojis: Gérer les émojis personnalisés
+        manage_federation: Gérer de la féderation
+        manage_invites: Gérer les invitations
+        manage_reports: Gérer les rapports
+        manage_roles: Gérer les rôles
+        manage_rules: Gérer les règles
+        manage_rules_description: Permet aux utilisateur·rice·s de modifier les règles du serveur
+        manage_settings: Gérer les paramètres
+        manage_settings_description: Permet aux utilisateur·rice·s de modifier les paramètres du site
+        manage_users: Gérer les utilisateur·rice·s
+        manage_webhooks: Gérer les points d’ancrage web
+        view_dashboard: Voir le tableau de bord
+        view_devops: Devops
+      title: Rôles
     rules:
       add_new: Ajouter une règle
       delete: Supprimer
