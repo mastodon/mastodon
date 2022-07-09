@@ -93,6 +93,7 @@ th:
       avatar: ภาพประจำตัว
       by_domain: โดเมน
       change_email:
+        changed_msg: เปลี่ยนอีเมลสำเร็จ!
         current_email: อีเมลปัจจุบัน
         label: เปลี่ยนอีเมล
         new_email: อีเมลใหม่
@@ -586,6 +587,10 @@ th:
       unresolved: ยังไม่ได้แก้ปัญหา
       updated_at: อัปเดตเมื่อ
       view_profile: ดูโปรไฟล์
+    roles:
+      assigned_users:
+        other: "%{count} ผู้ใช้"
+      delete: ลบ
     rules:
       add_new: เพิ่มกฎ
       delete: ลบ
@@ -1016,12 +1021,17 @@ th:
       public: เส้นเวลาสาธารณะ
       thread: การสนทนา
     edit:
+      add_keyword: เพิ่มคำสำคัญ
+      keywords: คำสำคัญ
       title: แก้ไขตัวกรอง
     index:
       delete: ลบ
       empty: คุณไม่มีตัวกรอง
+      keywords:
+        other: "%{count} คำสำคัญ"
       title: ตัวกรอง
     new:
+      save: บันทึกตัวกรองใหม่
       title: เพิ่มตัวกรองใหม่
   footer:
     developers: นักพัฒนา
