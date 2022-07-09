@@ -331,7 +331,7 @@ eo:
     dashboard:
       active_users: aktivaj uzantoj
       interactions: interago
-      media_storage: Aŭdvidaĵa memorilo
+      media_storage: Memorilo de aŭdovidaĵoj
       new_users: novaj uzantoj
       opened_reports: raportoj malfermitaj
       resolved_reports: raportoj solvitaj
@@ -364,7 +364,7 @@ eo:
       obfuscate: Malklara domajna nomo
       private_comment: Privata komento
       public_comment: Publika komento
-      reject_media: Malakcepti aŭdovidajn dosierojn
+      reject_media: Malakcepti la aŭdovidajn dosierojn
       reject_media_hint: Forigas aŭdovidaĵojn loke konservitajn kaj rifuzas alŝuti ajnan estonte. Ne koncernas haltigojn
       reject_reports: Malakcepti signalojn
       reject_reports_hint: Ignori ĉiujn signalojn el tiu domajno. Ne koncernas haltigojn
@@ -395,6 +395,7 @@ eo:
       by_domain: Domajno
       content_policies:
         policies:
+          reject_media: Malakcepti la aŭdovidaĵojn
           reject_reports: Malakcepti raportojn
           silence: Kaŝu
         policy: Politiko
@@ -403,6 +404,7 @@ eo:
         instance_accounts_measure: konservitaj kontoj
         instance_followers_measure: niaj sekvantoj tie
         instance_follows_measure: iliaj sekvantoj ĉi tie
+        instance_media_attachments_measure: stokitaj aŭdovidaj aldonaĵoj
         instance_reports_measure: raportoj pri ili
         instance_statuses_measure: konservitaj afiŝoj
       delivery:
@@ -1189,6 +1191,8 @@ eo:
     ignore_reblogs: Ignori akcelojn
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
+    keep_media: Konservi la mesaĝojn kun aŭdovidaj aldonaĵoj
+    keep_media_hint: Ne forviŝi la mesaĝojn kiuj enhavas aŭdovidajn aldonaĵojn
     keep_self_fav_hint: Ne forviŝi viajn proprajn afiŝojn, se vi aldonis ilin al viaj preferaĵoj
     min_age:
       '1209600': 2 semajnoj
