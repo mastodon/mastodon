@@ -68,6 +68,11 @@ it:
         with_dns_records: Sarà effettuato un tentativo di risolvere i record DNS del dominio in questione e i risultati saranno inseriti anche nella blacklist
       featured_tag:
         name: 'Eccone alcuni che potresti usare:'
+      filters:
+        action: Scegli quale azione eseguire quando un post corrisponde al filtro
+        actions:
+          hide: Nascondi completamente il contenuto filtrato, come se non esistesse
+          warn: Nascondi il contenuto filtrato e mostra invece un avviso, citando il titolo del filtro
       form_challenge:
         current_password: Stai entrando in un'area sicura
       imports:
@@ -91,6 +96,13 @@ it:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
         chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
+        role: Il ruolo controlla quali permessi ha l'utente
+      user_role:
+        color: Colore da usare per il ruolo in tutta l'UI, come RGB in formato esadecimale
+        highlighted: Rende il ruolo visibile
+        name: Nome pubblico del ruolo, se il ruolo è impostato per essere visualizzato come distintivo
+        permissions_as_keys: Gli utenti con questo ruolo avranno accesso a...
+        position: Il ruolo più elevato decide la risoluzione dei conflitti in determinate situazioni
       webhook:
         events: Seleziona eventi da inviare
         url: Dove gli eventi saranno inviati
@@ -181,6 +193,7 @@ it:
         setting_use_pending_items: Modalità lenta
         severity: Severità
         sign_in_token_attempt: Codice di sicurezza
+        title: Titolo
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
@@ -189,6 +202,10 @@ it:
         with_dns_records: Includi record MX e indirizzi IP del dominio
       featured_tag:
         name: Etichetta
+      filters:
+        actions:
+          hide: Nascondi completamente
+          warn: Nascondi con avviso
       interactions:
         must_be_follower: Blocca notifiche da chi non ti segue
         must_be_following: Blocca notifiche dalle persone che non segui
@@ -222,6 +239,14 @@ it:
         name: Hashtag
         trendable: Permetti a questo hashtag di apparire nelle tendenze
         usable: Permetti ai post di usare questo hashtag
+      user:
+        role: Ruolo
+      user_role:
+        color: Colore distintivo
+        highlighted: Mostra il ruolo come distintivo sui profili utente
+        name: Nome
+        permissions_as_keys: Permessi
+        position: Priorità
       webhook:
         events: Eventi abilitati
         url: URL endpoint

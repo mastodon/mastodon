@@ -74,10 +74,8 @@ nn:
     posts_tab_heading: Tut
     posts_with_replies: Tut og svar
     roles:
-      admin: Administrator
       bot: Robot
       group: Gruppe
-      moderator: Moderator
     unavailable: Profil ikkje tilgjengeleg
     unfollow: Slutt å fylgja
   admin:
@@ -96,7 +94,6 @@ nn:
       avatar: Bilete
       by_domain: Domene
       change_email:
-        changed_msg: Konto-e-posten er endra!
         current_email: Noverande e-post
         label: Byt e-post
         new_email: Ny e-post
@@ -173,12 +170,6 @@ nn:
       reset: Attstill
       reset_password: Attstill passord
       resubscribe: Ting på nytt
-      role: Løyve
-      roles:
-        admin: Administrator
-        moderator: Ordstyrer
-        staff: Personell
-        user: Brukar
       search: Søk
       search_same_email_domain: Andre brukarar med same e-postdomene
       search_same_ip: Andre brukarar med same IP
@@ -529,9 +520,6 @@ nn:
         deletion:
           desc_html: Tillat alle å sletta kontoen sin
           title: Åpne kontosletting
-        min_invite_role:
-          disabled: Ingen
-          title: Tillat innbydingar frå
         require_invite_text:
           desc_html: Når registreringer krever manuell godkjenning, må du føye «Hvorfor vil du bli med?» tekstinput obligatoriske i stedet for valgfritt
           title: Krev nye brukere for å oppgi en grunn for å delta
@@ -543,9 +531,6 @@ nn:
         title: Registreringsmodus
       show_known_fediverse_at_about_page:
         desc_html: Begrenser den offentlige tidslinjen som er knyttet til landingssiden når den er deaktivert, og viser bare lokalt innhold
-      show_staff_badge:
-        desc_html: Vis personalmerke på ei brukarside
-        title: Vis personalmerke
       site_description:
         desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Tenarskilding

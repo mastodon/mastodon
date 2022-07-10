@@ -91,10 +91,8 @@ cs:
     posts_tab_heading: Příspěvky
     posts_with_replies: Příspěvky a odpovědi
     roles:
-      admin: Administrátor
       bot: Robot
       group: Skupina
-      moderator: Moderátor
     unavailable: Profil není dostupný
     unfollow: Přestat sledovat
   admin:
@@ -113,12 +111,16 @@ cs:
       avatar: Avatar
       by_domain: Doména
       change_email:
-        changed_msg: E-mail k tomuto účtu byl úspěšně změněn!
         current_email: Současný e-mail
         label: Změnit e-mail
         new_email: Nový e-mail
         submit: Změnit e-mail
         title: Změnit e-mail uživateli %{username}
+      change_role:
+        changed_msg: Role úspěšně změněna!
+        label: Změnit roli
+        no_role: Žádná role
+        title: Změnit roli pro %{username}
       confirm: Potvrdit
       confirmed: Potvrzeno
       confirming: Potvrzuji
@@ -197,12 +199,7 @@ cs:
       reset: Obnovit
       reset_password: Obnovit heslo
       resubscribe: Znovu odebírat
-      role: Oprávnění
-      roles:
-        admin: Administrátor
-        moderator: Moderátor
-        staff: Personál
-        user: Uživatel
+      role: Role
       search: Hledat
       search_same_email_domain: Ostatní uživatelé se stejnou e-mailovou doménou
       search_same_ip: Další uživatelé se stejnou IP adresou
@@ -677,6 +674,50 @@ cs:
       unresolved: Nevyřešeno
       updated_at: Aktualizováno
       view_profile: Zobrazit profil
+    roles:
+      add_new: Přidat roli
+      assigned_users:
+        few: "%{count} uživatelé"
+        many: "%{count} uživatelů"
+        one: "%{count} uživatel"
+        other: "%{count} uživatelů"
+      categories:
+        administration: Administrace
+        devops: Devops
+        invites: Pozvánky
+        moderation: Moderování
+        special: Speciální
+      delete: Smazat
+      edit: Upravit roli „%{name}“
+      everyone: Výchozí oprávnění
+      permissions_count:
+        few: "%{count} oprávnění"
+        many: "%{count} oprávnění"
+        one: "%{count} oprávnění"
+        other: "%{count} oprávnění"
+      privileges:
+        administrator: Správce
+        delete_user_data: Mazat uživatelská data
+        delete_user_data_description: Umožňuje uživatelům bezodkladně mazat data jiných uživatelů
+        invite_users: Zvát uživatele
+        invite_users_description: Umožňuje uživatelům zvát na server nové lidi
+        manage_announcements: Spravovat oznámení
+        manage_appeals: Spravovat odvolání
+        manage_appeals_description: Umožňuje uživatelům posuzovat odvolání proti moderátorským zásahům
+        manage_blocks: Spravovat blokace
+        manage_custom_emojis: Spravovat vlastní emoji
+        manage_custom_emojis_description: Umožňuje uživatelům spravovat vlastní emoji na serveru
+        manage_invites: Spravovat pozvánky
+        manage_reports: Spravovat hlášení
+        manage_roles: Spravovat role
+        manage_rules: Spravovat pravidla
+        manage_settings: Spravovat nastavení
+        manage_user_access: Spravovat uživatelské přístupy
+        manage_users: Spravovat uživatele
+        manage_webhooks: Spravovat webhooky
+        view_audit_log: Zobrazovat protokol auditu
+        view_devops: Devops
+      title: Role
     rules:
       add_new: Přidat pravidlo
       delete: Smazat
@@ -729,9 +770,6 @@ cs:
         deletion:
           desc_html: Povolit komukoliv smazat svůj účet
           title: Zpřístupnit smazání účtu
-        min_invite_role:
-          disabled: Nikdo
-          title: Povolit pozvánky od
         require_invite_text:
           desc_html: Když jsou registrace schvalovány ručně, udělat odpověď na otázku "Proč se chcete připojit?" povinnou
           title: Požadovat od nových uživatelů zdůvodnění založení
@@ -744,9 +782,6 @@ cs:
       show_known_fediverse_at_about_page:
         desc_html: Je-li vypnuto, bude veřejná časová osa, na kterou odkazuje hlavní stránka serveru, omezena pouze na místní obsah
         title: Zahrnout federovaný obsah na neautentizované stránce veřejné časové osy
-      show_staff_badge:
-        desc_html: Zobrazit na stránce uživatele odznak personálu
-        title: Zobrazit odznak personálu
       site_description:
         desc_html: Úvodní odstavec v API. Popište, čím se tento server Mastodon odlišuje od ostatních, a cokoliv jiného, co je důležité. Můžete zde používat HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
         title: Popis serveru
@@ -1116,7 +1151,7 @@ cs:
     invalid_domain: není platné doménové jméno
   errors:
     '400': Žádost, kterou jste odeslali, byla neplatná nebo poškozená.
-    '403': Nemáte povolení zobrazit tuto stránku.
+    '403': Nejste oprávněni tuto stránku zobrazit.
     '404': Stránka, kterou hledáte, tu není.
     '406': Tato stránka není v požadovaném formátu dostupná.
     '410': Stránka, kterou hledáte, tu již není.
@@ -1163,7 +1198,6 @@ cs:
       title: Upravit filtr
     errors:
       invalid_context: Nebyl poskytnut žádný nebo jen neplatný kontext
-      invalid_irreversible: Nezvratné filtrování funguje pouze v souvislosti s domovskou osou či oznámeními
     index:
       delete: Smazat
       empty: Nemáte žádný filtr.
@@ -1291,6 +1325,8 @@ cs:
     copy_account_note_text: 'Tento účet se přesunul z %{acct}, zde byly Vaše předchozí poznámky o něm:'
   notification_mailer:
     admin:
+      report:
+        subject: Uživatel %{name} podal hlášení
       sign_up:
         subject: Uživatel %{name} se zaregistroval
     digest:

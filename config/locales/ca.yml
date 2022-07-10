@@ -83,10 +83,8 @@ ca:
     posts_tab_heading: Publicacions
     posts_with_replies: Publicacions i respostes
     roles:
-      admin: Administrador
       bot: Bot
       group: Grup
-      moderator: Moderador
     unavailable: Perfil inaccessible
     unfollow: Deixa de seguir
   admin:
@@ -111,6 +109,11 @@ ca:
         new_email: Adreça electrònica nova
         submit: Canvia l'adreça electrònica
         title: Canvia l'adreça electrònica de %{username}
+      change_role:
+        changed_msg: Els privilegis del compte s'han canviat correctament!
+        label: Canvia rol
+        no_role: Sense rol
+        title: Canvia el rol per a %{username}
       confirm: Confirma
       confirmed: Confirmat
       confirming: Confirmant
@@ -154,6 +157,7 @@ ca:
         active: Actiu
         all: Tot
         pending: Pendent
+        silenced: Limitat
         suspended: Suspès
         title: Moderació
       moderation_notes: Notes de moderació
@@ -161,6 +165,7 @@ ca:
       most_recent_ip: IP més recent
       no_account_selected: No s'han canviat els comptes perquè no s'han seleccionat
       no_limits_imposed: Sense límits imposats
+      no_role_assigned: Cap rol assignat
       not_subscribed: No subscrit
       pending: Revisió pendent
       perform_full_suspension: Suspèn
@@ -187,12 +192,7 @@ ca:
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
       resubscribe: Torna a subscriure
-      role: Permisos
-      roles:
-        admin: Administrador
-        moderator: Moderador
-        staff: Personal
-        user: Usuari
+      role: Rol
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
@@ -649,6 +649,64 @@ ca:
       unresolved: No resolt
       updated_at: Actualitzat
       view_profile: Veure perfil
+    roles:
+      add_new: Afegir rol
+      categories:
+        administration: Administració
+        devops: Operadors de desenvolupament
+        invites: Invitacions
+        moderation: Moderació
+        special: Especial
+      delete: Esborra
+      description_html: Amb <strong>rols d'usuari</strong>, pots personalitzar quines funcions i àrees de Mastodon els teus usuaris poden accedir.
+      edit: Editar el rol %{name}
+      everyone: Permisos per defecte
+      everyone_full_description_html: Aquest és el <strong>rol base</strong> que afecta <strong>tots els usuaris</strong>, fins i tot els que no en tenen cap d'assignat. Tots els altres rols n'hereten els permisos.
+      permissions_count:
+        one: "%{count} permís"
+        other: "%{count} permisos"
+      privileges:
+        administrator: Administrador
+        administrator_description: Els usuaris amb aquest permís passaran per alt tots els permisos
+        delete_user_data: Esborra dades d'usuari
+        delete_user_data_description: Permet als usuaris suprimir les dades d'altres usuaris sense demora
+        invite_users: Convida usuaris
+        invite_users_description: Permet als usuaris convidar persones noves al servidor
+        manage_announcements: Gestiona els anuncis
+        manage_announcements_description: Permet als usuaris gestionar els anuncis al servidor
+        manage_appeals: Gestiona apel·lacions
+        manage_appeals_description: Permet als usuaris revisar les apel·lacions contra les accions de moderació
+        manage_blocks: Gestiona blocs
+        manage_blocks_description: Permet als usuaris bloquejar proveïdors de correu electrònic i adreces IP
+        manage_custom_emojis: Gestiona emojis personalitzats
+        manage_custom_emojis_description: Permet als usuaris gestionar emojis personalitzats al servidor
+        manage_federation: Gestiona federació
+        manage_federation_description: Permet als usuaris bloquejar o permetre la federació amb altres dominis i controlar la capacitat de lliurament
+        manage_invites: Gestiona invitacions
+        manage_invites_description: Permet als usuaris veure i desactivar els enllaços d'invitació
+        manage_reports: Gestiona informes
+        manage_reports_description: Permet als usuaris revisar informes i realitzar accions de moderació contra ells
+        manage_roles: Gestionar rols
+        manage_roles_description: Permet als usuaris gestionar i assignar rols per sota dels seus
+        manage_rules: Gestiona normes
+        manage_rules_description: Permet als usuaris canviar les normes del servidor
+        manage_settings: Gestiona configuració
+        manage_settings_description: Permet als usuaris canviar la configuració del lloc
+        manage_taxonomies: Gestionar taxonomies
+        manage_taxonomies_description: Permet als usuaris revisar el contingut actual i actualitzar la configuració de l'etiqueta
+        manage_user_access: Gestionar l'accés dels usuaris
+        manage_user_access_description: Permet als usuaris desactivar l'autenticació de dos factors d'altres usuaris, canviar la seva adreça de correu electrònic i restablir la seva contrasenya
+        manage_users: Gestionar usuaris
+        manage_users_description: Permet als usuaris veure els detalls d'altres usuaris i realitzar accions de moderació contra ells
+        manage_webhooks: Gestionar Webhooks
+        manage_webhooks_description: Permet als usuaris configurar webhooks per a esdeveniments administratius
+        view_audit_log: Veure el registre d'auditoria
+        view_audit_log_description: Permet als usuaris veure un historial d'accions administratives al servidor
+        view_dashboard: Veure panell
+        view_dashboard_description: Permet als usuaris accedir al tauler i a diverses mètriques
+        view_devops: Operadors de desenvolupament
+        view_devops_description: Permet als usuaris accedir als taulers de control de Sidekiq i pgHero
+      title: Rols
     rules:
       add_new: Afegir norma
       delete: Suprimeix
@@ -701,9 +759,6 @@ ca:
         deletion:
           desc_html: Permet a qualsevol usuari d'esborrar el seu compte
           title: Obre la supressió del compte
-        min_invite_role:
-          disabled: Ningú
-          title: Permet les invitacions de
         require_invite_text:
           desc_html: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcions l escriure el text de la solicitud d'invitació "Perquè vols unirte?"
           title: Requerir als nous usuaris omplir el text de la solicitud d'invitació
@@ -716,9 +771,6 @@ ca:
       show_known_fediverse_at_about_page:
         desc_html: Quan està desactivat, restringeix la línia de temps pública enllaçada des de la pàgina inicial a mostrar només contingut local
         title: Inclou el contingut federat a la pàgina no autenticada de la línia de temps pública
-      show_staff_badge:
-        desc_html: Mostra una insígnia de personal en la pàgina d'usuari
-        title: Mostra insígnia de personal
       site_description:
         desc_html: Paràgraf introductori a la pàgina principal i en etiquetes meta. Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Descripció del servidor
@@ -1124,15 +1176,24 @@ ca:
       public: Línies de temps públiques
       thread: Converses
     edit:
+      add_keyword: Afegeix paraula clau
+      keywords: Paraules clau
       title: Editar filtre
     errors:
+      deprecated_api_multiple_keywords: Aquests paràmetres no poden ser canviats des d'aquesta aplicació perquè apliquen a més d'un filtre per paraula clau. Utilitza una aplicació més recent o la interfície web.
       invalid_context: Cap o el context proporcionat no és vàlid
-      invalid_irreversible: El filtratge irreversible només funciona amb el contextos inici o notificacions
     index:
+      contexts: Filtres en %{contexts}
       delete: Esborra
       empty: No hi tens cap filtre.
+      expires_in: Expira en %{distance}
+      expires_on: Expira el %{date}
+      keywords:
+        one: "%{count} paraula clau"
+        other: "%{count} paraules clau"
       title: Filtres
     new:
+      save: Desa el nou filtre
       title: Afegir un nou filtre
   footer:
     developers: Desenvolupadors
@@ -1251,6 +1312,8 @@ ca:
     copy_account_note_text: 'Aquest usuari s’ha mogut des de %{acct}, aquí estaven les teves notes prèvies sobre ell:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} ha presentat un informe"
       sign_up:
         subject: "%{name} s'ha registrat"
     digest:

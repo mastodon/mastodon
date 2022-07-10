@@ -68,6 +68,11 @@ es:
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
         name: 'Puede que quieras usar uno de estos:'
+      filters:
+        action: Elegir qué acción realizar cuando una publicación coincide con el filtro
+        actions:
+          hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
+          warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
@@ -91,6 +96,13 @@ es:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando se marca, solo se mostrarán las publicaciones en los idiomas seleccionados en las líneas de tiempo públicas
+        role: El rol controla qué permisos tiene el usuario
+      user_role:
+        color: Color que se utilizará para el rol a lo largo de la interfaz de usuario, como RGB en formato hexadecimal
+        highlighted: Esto hace que el rol sea públicamente visible
+        name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
+        permissions_as_keys: Los usuarios con este rol tendrán acceso a...
+        position: Un rol más alto decide la resolución de conflictos en ciertas situaciones
       webhook:
         events: Seleccionar eventos para enviar
         url: Donde los eventos serán enviados
@@ -181,6 +193,7 @@ es:
         setting_use_pending_items: Modo lento
         severity: Severidad
         sign_in_token_attempt: Código de seguridad
+        title: Título
         type: Importar tipo
         username: Nombre de usuario
         username_or_email: Usuario o Email
@@ -189,6 +202,10 @@ es:
         with_dns_records: Incluye los registros MX y las IP del dominio
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Ocultar completamente
+          warn: Ocultar con una advertencia
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
@@ -222,6 +239,14 @@ es:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a las publicaciones usar esta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de insignia
+        highlighted: Mostrar rol como insignia en perfiles de usuario
+        name: Nombre
+        permissions_as_keys: Permisos
+        position: Prioridad
       webhook:
         events: Eventos habilitados
         url: URL de Endpoint

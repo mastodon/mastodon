@@ -83,10 +83,8 @@ io:
     posts_tab_heading: Posti
     posts_with_replies: Posti e respondi
     roles:
-      admin: Administrero
       bot: Boto
       group: Grupo
-      moderator: Jerero
     unavailable: Profilo esas nedisponebla
     unfollow: Dessequar
   admin:
@@ -105,7 +103,6 @@ io:
       avatar: Profilimajo
       by_domain: Domeno
       change_email:
-        changed_msg: Kontoretposto sucesoze chanjesis!
         current_email: Nuna retposto
         label: Chanjez retposto
         new_email: Nova retposto
@@ -187,12 +184,6 @@ io:
       reset: Richanjez
       reset_password: Richanjez pasvorto
       resubscribe: Riabonez
-      role: Permisi
-      roles:
-        admin: Administrero
-        moderator: Jerero
-        staff: Laborero
-        user: Uzanto
       search: Trovez
       search_same_email_domain: Altra uzanti kun sama retpostodomeno
       search_same_ip: Altra uzanti kun sama IP
@@ -701,9 +692,6 @@ io:
         deletion:
           desc_html: Permisez irgu efacar sua konto
           title: Apertez kontoefaco
-        min_invite_role:
-          disabled: Nulu
-          title: Permisez inviti da
         require_invite_text:
           desc_html: Se registri bezonas manuala aprobo, kauzigar "Por quo vu volas juntar?" textoenpoz divenar obligata
           title: Bezonez nova uzanti insertar motivo por juntar
@@ -716,9 +704,6 @@ io:
       show_known_fediverse_at_about_page:
         desc_html: Se desaktivigesis, co permisas publika tempolineo quo ligesas de atingopagino montrar nur lokala kontenajo
         title: Inkluzez federatita kontenajo che neyurizita publika tempolineopagino
-      show_staff_badge:
-        desc_html: Montrez laborerinsigno che uzantopagino
-        title: Montrez laborerinsigno
       site_description:
         desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Site description
@@ -1124,13 +1109,19 @@ io:
       public: Publika tempolinei
       thread: Konversi
     edit:
+      add_keyword: Insertez klefvorto
+      keywords: Klefvorti
       title: Modifikez filtrilo
     errors:
       invalid_context: Nula o nevalida kuntexto donesis
-      invalid_irreversible: Neinversigebla filtro nur funcionas kun hemo- e aviz- kuntexto
     index:
       delete: Efacez
       empty: Vu ne havas filtrili.
+      expires_in: Expiras ye %{distance}
+      expires_on: Expiras ye %{date}
+      keywords:
+        one: "%{count} klefvorto"
+        other: "%{count} klefvorti"
       title: Filtrili
     new:
       title: Insertez nova filtrilo
@@ -1251,6 +1242,8 @@ io:
     copy_account_note_text: 'Ca uzanti transferesis de %{acct}, co esas vua antea noti pri ol:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} sendis raporto"
       sign_up:
         subject: "%{name} registris"
     digest:

@@ -87,9 +87,7 @@ sk:
     posts_tab_heading: Príspevky
     posts_with_replies: Príspevky s odpoveďami
     roles:
-      admin: Správca
       group: Skupina
-      moderator: Moderátor
     unavailable: Profil nieje dostupný
     unfollow: Prestaň sledovať
   admin:
@@ -107,7 +105,6 @@ sk:
       avatar: Maskot
       by_domain: Doména
       change_email:
-        changed_msg: Email pre tento účet bol úspešne zmenený!
         current_email: Súčasný email
         label: Zmeň email
         new_email: Nový email
@@ -174,12 +171,6 @@ sk:
       reset: Resetuj
       reset_password: Obnov heslo
       resubscribe: Znovu odoberaj
-      role: Oprávnenia
-      roles:
-        admin: Správca
-        moderator: Moderátor
-        staff: Člen
-        user: Užívateľ
       search: Hľadaj
       search_same_email_domain: Iní užívatelia s tou istou emailovou doménou
       search_same_ip: Ostatní užívatelia s rovnakou IP adresou
@@ -374,8 +365,11 @@ sk:
       back_to_warning: Upozornenie
       by_domain: Doména
       content_policies:
+        comment: Interná poznámka
         policies:
+          reject_media: Zamietni médiá
           suspend: Vylúč
+        reason: Verejné odôvodnenie
       delivery:
         all: Všetko
         unavailable: Nedostupné
@@ -473,6 +467,9 @@ sk:
       unassign: Odober
       unresolved: Nevyriešené
       updated_at: Aktualizované
+    rules:
+      empty: Žiadne pravidlá servera ešte neboli určené.
+      title: Serverové pravidlá
     settings:
       activity_api_enabled:
         desc_html: Sčítanie miestne uverejnených príspevkov, aktívnych užívateľov, a nových registrácii, v týždenných intervaloch
@@ -518,9 +515,6 @@ sk:
         deletion:
           desc_html: Dovoľ každému, aby si mohli vymazať svok účet
           title: Sprístupni možnosť vymazať si účet
-        min_invite_role:
-          disabled: Nikto
-          title: Povoľ pozvánky od
       registrations_mode:
         modes:
           approved: Pre registráciu je nutné povolenie
@@ -530,9 +524,6 @@ sk:
       show_known_fediverse_at_about_page:
         desc_html: Ak je zapnuté, bude v ukážke osi možné nahliadnúť príspevky z celého známeho fediversa. Inak budú ukázané iba príspevky z miestnej osi.
         title: Ukáž celé známe fediverse na náhľade osi
-      show_staff_badge:
-        desc_html: Ukáž moderátorsky odznak na užívateľovom profile
-        title: Ukáž značku moderátora
       site_description:
         desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Opíš, čo robí tento Mastodon server špecifickým, a ďalej hocičo iné, čo považuješ za dôležité. Môžeš použiť HTML kód, hlavne <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
         title: Popis servera
@@ -774,7 +765,6 @@ sk:
       title: Uprav triedenie
     errors:
       invalid_context: Nebola poskytnutá žiadna, alebo ide o neplatnú súvislosť
-      invalid_irreversible: Nezvratné filtrovanie funguje iba so súvislostiami domovskej osi a oboznámení
     index:
       delete: Vymaž
       empty: Nemáš žiadné filtrovanie.

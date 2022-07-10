@@ -80,10 +80,8 @@ sv:
     posts_tab_heading: Tutor
     posts_with_replies: Toots med svar
     roles:
-      admin: Administratör
       bot: Robot
       group: Grupp
-      moderator: Moderator
     unavailable: Profilen är inte tillgänglig
     unfollow: Sluta följa
   admin:
@@ -101,7 +99,6 @@ sv:
       avatar: Profilbild
       by_domain: Domän
       change_email:
-        changed_msg: E-postadressen har ändrats!
         current_email: Nuvarande E-postadress
         label: Byt E-postadress
         new_email: Ny E-postadress
@@ -177,12 +174,6 @@ sv:
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
-      role: Behörigheter
-      roles:
-        admin: Administratör
-        moderator: Moderator
-        staff: Personal
-        user: Användare
       search: Sök
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
@@ -565,9 +556,6 @@ sv:
         deletion:
           desc_html: Tillåt vem som helst att radera sitt konto
           title: Öppen kontoradering
-        min_invite_role:
-          disabled: Ingen
-          title: Tillåt inbjudningar av
         require_invite_text:
           desc_html: När nyregistrering kräver manuellt godkännande, gör det obligatoriskt att fylla i text i fältet "Varför vill du gå med?"
           title: Kräv att nya användare fyller i en inbjudningsförfrågan
@@ -580,9 +568,6 @@ sv:
       show_known_fediverse_at_about_page:
         desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
         title: Visa det kända fediverse på tidslinjens förhandsgranskning
-      show_staff_badge:
-        desc_html: Visa en personalbricka på en användarsida
-        title: Visa personalbricka
       site_description:
         desc_html: Inledande stycke på framsidan och i metataggar. Du kan använda HTML-taggar, i synnerhet <code>&lt;a&gt;</code> och <code>&lt;em&gt;</code>.
         title: Instansbeskrivning
