@@ -10,7 +10,7 @@ class ActivityPub::HashtagSerializer < ActivityPub::Serializer
   end
 
   def name
-    "##{object.name}"
+    "##{object.display_name}"
   end
 
   def href
