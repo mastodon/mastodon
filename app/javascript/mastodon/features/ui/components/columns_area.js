@@ -34,6 +34,9 @@ import NavigationPanel from './navigation_panel';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { scrollRight } from '../../../scroll';
 
+import elephantUIPlane from '../../../../images/elephant_ui_plane.svg';
+import { mascot } from '../../../initial_state.js';
+
 const componentMap = {
   'COMPOSE': Compose,
   'HOME': HomeTimeline,
@@ -246,6 +249,7 @@ class ColumnsArea extends ImmutablePureComponent {
           </div>
 
           {floatingActionButton}
+          <img class='mascot-single' alt='' draggable='false' src={mascot || elephantUIPlane} />
         </div>
       );
     }
