@@ -108,6 +108,11 @@ pt-PT:
         new_email: Novo e-mail
         submit: Alterar e-mail
         title: Alterar e-mail para %{username}
+      change_role:
+        changed_msg: Função alterada com sucesso!
+        label: Alterar função
+        no_role: Nenhuma função
+        title: Alterar a função de %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: A confirmar
@@ -151,6 +156,7 @@ pt-PT:
         active: Activo
         all: Todos
         pending: Pendente
+        silenced: Limitadas
         suspended: Supensos
         title: Moderação
       moderation_notes: Notas de moderação
@@ -158,6 +164,7 @@ pt-PT:
       most_recent_ip: IP mais recente
       no_account_selected: Nenhuma conta foi alterada porque nenhuma foi selecionada
       no_limits_imposed: Sem limites impostos
+      no_role_assigned: Nenhuma função atribuída
       not_subscribed: Não inscrito
       pending: Pendente de revisão
       perform_full_suspension: Fazer suspensão completa
@@ -184,6 +191,7 @@ pt-PT:
       reset: Restaurar
       reset_password: Reset palavra-passe
       resubscribe: Reinscrever
+      role: Função
       search: Pesquisar
       search_same_email_domain: Outros utilizadores com o mesmo domínio de e-mail
       search_same_ip: Outros utilizadores com o mesmo IP
@@ -640,6 +648,67 @@ pt-PT:
       unresolved: Por resolver
       updated_at: Atualizado
       view_profile: Ver perfil
+    roles:
+      add_new: Adicionar função
+      assigned_users:
+        one: "%{count} utilizador"
+        other: "%{count} utilizadores"
+      categories:
+        administration: Administração
+        devops: DevOps
+        invites: Convites
+        moderation: Moderação
+        special: Especiais
+      delete: Eliminar
+      description_html: Com as <strong>funções de utilizador</strong>, pode personalizar quais funções e áreas do Mastodon os seus utilizadores podem aceder.
+      edit: Editar função '%{name}'
+      everyone: Permissões padrão
+      everyone_full_description_html: Esta é a <strong>função base</strong> que afeta <strong>todos os utilizadores</strong>, mesmo aqueles sem uma função atribuída. Todas as outras funções herdam as permissões desta.
+      permissions_count:
+        one: "%{count} permissão"
+        other: "%{count} permissões"
+      privileges:
+        administrator: Administrador
+        administrator_description: Utilizadores com esta permissão irão contornar todas as permissões
+        delete_user_data: Eliminar Dados de Utilizador
+        delete_user_data_description: Permite que os utilizadores eliminem os dados de outros utilizadores sem atraso
+        invite_users: Convidar Utilizadores
+        invite_users_description: Permite aos utilizadores convidar pessoas novas para o servidor
+        manage_announcements: Gerir Anúncios
+        manage_announcements_description: Permite aos utilizadores gerir anúncios no servidor
+        manage_appeals: Gerir Recursos
+        manage_appeals_description: Permite aos utilizadores rever recursos de moderação
+        manage_blocks: Gerir Bloqueios
+        manage_blocks_description: Permite aos utilizadores bloquear provedores de e-mail e endereços IP
+        manage_custom_emojis: Gerir Emojis Personalizados
+        manage_custom_emojis_description: Permite aos utilizadores gerir os emojis personalizados do servidor
+        manage_federation: Gerir Federação
+        manage_federation_description: Permite aos utilizadores bloquear ou permitir federação com outros domínios e controlar a entregabilidade
+        manage_invites: Gerir Convites
+        manage_invites_description: Permite aos utilizadores pesquisar e desativar links de convite
+        manage_reports: Gerir Relatórios
+        manage_reports_description: Permite aos utilizadores rever relatórios e executar ações de moderação contra eles
+        manage_roles: Gerir Funções
+        manage_roles_description: Permite aos usuários gerir e atribuir funções abaixo das deles
+        manage_rules: Gerir Regras
+        manage_rules_description: Permite aos utilizadores alterar as regras do servidor
+        manage_settings: Gerir Configurações
+        manage_settings_description: Permite aos utilizadores alterar as configurações do site
+        manage_taxonomies: Gerir Taxonomias
+        manage_taxonomies_description: Permite aos utilizadores rever o conteúdo em tendência e atualizar as configurações de hashtag
+        manage_user_access: Gerir Acesso de Utilizador
+        manage_user_access_description: Permite aos utilizadores desativar a autenticação em duas etapas de outros utilizadores, alterar o seu endereço de e-mail e redefinir a sua palavra-passe
+        manage_users: Gerir Utilizadores
+        manage_users_description: Permite aos utilizadores ver os detalhes de outros utilizadores e executar ações de moderação contra eles
+        manage_webhooks: Gerir Webhooks
+        manage_webhooks_description: Permite aos utilizadores configurar webhooks para eventos administrativos
+        view_audit_log: Ver Registo de Auditoria
+        view_audit_log_description: Permite aos utilizadores ver um histórico de ações administrativas no servidor
+        view_dashboard: Ver Painel de Controlo
+        view_dashboard_description: Permite aos utilizadores aceder ao painel de controlo e várias métricas
+        view_devops: DevOps
+        view_devops_description: Permite aos utilizadores aceder aos painéis de controlo do Sidekiq e pgHero
+      title: Funções
     rules:
       add_new: Adicionar regra
       delete: Eliminar
