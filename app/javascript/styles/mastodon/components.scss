@@ -2185,6 +2185,12 @@ a.account__display-name {
         padding: 0 10px;
       }
     }
+
+   img.mascot-single {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }    
   }
 }
 
@@ -2548,6 +2554,10 @@ a.account__display-name {
   .with-fab .scrollable .item-list:last-child {
     padding-bottom: 5.25rem;
   }
+  
+  img.mascot-single {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 600px + (285px * 1) + (10px * 1)) {
@@ -2565,11 +2575,20 @@ a.account__display-name {
   .columns-area__panels__pane--navigational {
     display: none;
   }
+
+  img.mascot-single {
+//    width: calc((100% - (600px + (285px * 1))) / 2 + 285px);
+      width: 1px
+  }
 }
 
 @media screen and (min-width: 600px + (285px * 2) + (10px * 2)) {
   .tabs-bar {
     display: none;
+  }
+
+  img.mascot-single {
+    width: calc((100% - (600px + (285px * 2))) / 3 + 50px);
   }
 }
 
