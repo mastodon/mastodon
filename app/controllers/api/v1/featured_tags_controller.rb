@@ -13,9 +13,7 @@ class Api::V1::FeaturedTagsController < Api::BaseController
   end
 
   def create
-    @featured_tag = current_account.featured_tags.new(featured_tag_params)
-    @featured_tag.reset_data
-    @featured_tag.save!
+    @featured_tag = current_account.featured_tags.create!(featured_tag_params)
     render json: @featured_tag, serializer: REST::FeaturedTagSerializer
   end
 

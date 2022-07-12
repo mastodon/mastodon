@@ -14,7 +14,7 @@ class ActivityPub::HashtagSerializer < ActivityPub::Serializer
   end
 
   def href
-    if object.class.name == 'FeaturedTag'
+    if object.instance_of?(FeaturedTag)
       short_account_tag_url(object.account, object.tag)
     else
       tag_url(object)
