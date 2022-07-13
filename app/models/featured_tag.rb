@@ -22,6 +22,8 @@ class FeaturedTag < ApplicationRecord
   before_create :set_tag
   before_create :reset_data
 
+  delegate :display_name, to: :tag
+
   attr_writer :name
 
   def name
