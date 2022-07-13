@@ -893,6 +893,34 @@ const startWorker = async (workerId) => {
   };
 
   /**
+   * See app/lib/ascii_folder.rb for the canon definitions
+   * of these constants
+   */
+  const NON_ASCII_CHARS        = 'ÀÁÂÃÄÅàáâãäåĀāĂăĄąÇçĆćĈĉĊċČčÐðĎďĐđÈÉÊËèéêëĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħÌÍÎÏìíîïĨĩĪīĬĭĮįİıĴĵĶķĸĹĺĻļĽľĿŀŁłÑñŃńŅņŇňŉŊŋÒÓÔÕÖØòóôõöøŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšſŢţŤťŦŧÙÚÛÜùúûüŨũŪūŬŭŮůŰűŲųŴŵÝýÿŶŷŸŹźŻżŽž';
+  const EQUIVALENT_ASCII_CHARS = 'AAAAAAaaaaaaAaAaAaCcCcCcCcCcDdDdDdEEEEeeeeEeEeEeEeEeGgGgGgGgHhHhIIIIiiiiIiIiIiIiIiJjKkkLlLlLlLlLlNnNnNnNnnNnOOOOOOooooooOoOoOoRrRrRrSsSsSsSssTtTtTtUUUUuuuuUuUuUuUuUuUuWwYyyYyYZzZzZz';
+
+  /**
+   * @param {string} str
+   * @return {string}
+   */
+  const foldToASCII = str => {
+    const regex = new RegExp(NON_ASCII_CHARS.split('').join('|'), 'g');
+
+    return str.replace(regex, match => {
+      const index = NON_ASCII_CHARS.indexOf(match);
+      return EQUIVALENT_ASCII_CHARS[index];
+    });
+  };
+
+  /**
+   * @param {string} str
+   * @return {string}
+   */
+  const normalizeHashtag = str => {
+    return foldToASCII(str.normalize('NFKC').toLowerCase()).replace(/[^\p{L}\p{N}_\u00b7\u200c]/gu, '');
+  };
+
+  /**
    * @param {any} req
    * @param {string} name
    * @param {StreamParams} params
@@ -968,7 +996,7 @@ const startWorker = async (workerId) => {
         reject('No tag for stream provided');
       } else {
         resolve({
-          channelIds: [`timeline:hashtag:${params.tag.toLowerCase()}`],
+          channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}`],
           options: { needsFiltering: true },
         });
       }
@@ -979,7 +1007,7 @@ const startWorker = async (workerId) => {
         reject('No tag for stream provided');
       } else {
         resolve({
-          channelIds: [`timeline:hashtag:${params.tag.toLowerCase()}:local`],
+          channelIds: [`timeline:hashtag:${normalizeHashtag(params.tag)}:local`],
           options: { needsFiltering: true },
         });
       }
