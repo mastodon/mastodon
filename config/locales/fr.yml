@@ -233,7 +233,7 @@ fr:
         approve_appeal: Approuver l'appel
         approve_user: Approuver l’utilisateur
         assigned_to_self_report: Affecter le signalement
-        change_email_user: Modifier le courriel pour
+        change_email_user: Modifier le courriel pour ce compte
         confirm_user: Confirmer l’utilisateur
         create_account_warning: Créer une alerte
         create_announcement: Créer une annonce
@@ -480,8 +480,8 @@ fr:
     instances:
       availability:
         description_html:
-          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
-          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
+          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
+          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
         failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
         failures_recorded:
           one: Tentative échouée pendant %{count} jour.
@@ -660,16 +660,32 @@ fr:
         moderation: Modération
         special: Spécial
       delete: Supprimer
+      description_html: Les <strong>rôles utilisateur</strong> vous permettent de personnaliser les fonctions et les zones de Mastodon auxquelles vos utilisateur⋅rice⋅s peuvent accéder.
       edit: Modifier le rôle '%{name}'
-      everyone: Permissions par défaut
+      everyone: Autorisations par défaut
+      everyone_full_description_html: Ceci est le <strong>rôle de base</strong> qui impacte <strong>tou⋅te⋅s les utilisateur⋅rice⋅s</strong>, même celleux sans rôle assigné. Tous les autres rôles héritent des autorisations de celui-ci.
+      permissions_count:
+        one: "%{count} autorisation"
+        other: "%{count} autorisations"
       privileges:
         administrator: Administrateur·rice
+        administrator_description: Les utilisateur⋅rice⋅s ayant cette autorisation pourront contourner toutes les autorisations
+        delete_user_data: Supprimer les données de l'utilisateur⋅rice
+        delete_user_data_description: Permet aux utilisateur⋅rice⋅s de supprimer sans délai les données des autres utilisateur⋅rice⋅s
+        invite_users: Inviter des utilisateur⋅rice⋅s
+        invite_users_description: Permet aux utilisateur⋅rice⋅s d'inviter de nouvelles personnes sur le serveur
         manage_announcements: Gérer les annonces
+        manage_announcements_description: Permet aux utilisateur⋅rice⋅s de gérer les annonces sur le serveur
         manage_appeals: Gérer les contestations
+        manage_appeals_description: Permet aux utilisateur⋅rice⋅s d'examiner les appels contre les actions de modération
         manage_blocks: Gérer les blocages
+        manage_blocks_description: Permet aux utilisateur⋅rice⋅s de bloquer des fournisseurs de courriel et des adresses IP
         manage_custom_emojis: Gérer les émojis personnalisés
+        manage_custom_emojis_description: Permet aux utilisateur⋅rice⋅s de gérer les émoticônes personnalisées sur le serveur
         manage_federation: Gérer de la féderation
+        manage_federation_description: Permet aux utilisateur⋅rice⋅s de bloquer ou d'autoriser la fédération avec d'autres domaines, et de contrôler la capacité de livraison
         manage_invites: Gérer les invitations
+        manage_invites_description: Permet aux utilisateur⋅rice⋅s de parcourir et de désactiver les liens d'invitation
         manage_reports: Gérer les rapports
         manage_roles: Gérer les rôles
         manage_rules: Gérer les règles
