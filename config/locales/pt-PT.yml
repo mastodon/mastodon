@@ -1610,6 +1610,87 @@ pt-PT:
   tags:
     does_not_match_previous_name: não coincide com o nome anterior
   terms:
+    body_html: |
+      <h2>Política de privacidade</h2>
+      <h3 id="collect">Que informação nós recolhemos?</h3>
+
+      <ul>
+      <li><em>Informação básica da conta</em>: Ao registar-se neste servidor, pode ser-lhe pedido que indique um nome de utilizador, um endereço de e-mail e uma palavra-chave. Pode ainda incluir informações adicionais no seu perfil, tais como um nome a exibir e biografia, e carregar uma imagem de perfil e imagem de cabeçalho. O nome de utilizador, nome a exibir, a biografia, a imagem de perfil e a imagem de cabeçalho são sempre listados publicamente.</li>
+      <li><em>Publicações, seguimento e outra informação pública</em>: A lista de pessoas que segue é pública, o mesmo é verdade para os seus seguidores. Quando publica uma mensagem, a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem foi enviada. As mensagens podem conter anexos de media, tais como fotografias ou vídeos. Publicações públicas e não listadas são acessíveis publicamente. Quando destaca uma publicação no seu perfil, isso é também informação disponível publicamente. As suas publicações são enviadas aos seus seguidores, em alguns casos isso significa que elas são enviadas para servidores diferentes onde são guardadas cópias. Quando elimina publicações, isso também é enviado para os teus seguidores. A ação de partilhar ou adicionar uma publicação aos favoritos é sempre pública.</li>
+      <li><em>Publicações diretas e exclusivas para seguidores</em>: Todas as publicações são guardadas e processadas no servidor. Publicações exclusivas para seguidores são enviadas para os teus seguidores e para os utilizadores nelas mencionados. As publicações diretas são enviadas apenas para os utilizadores nelas mencionados. Em alguns casos isso significa que são enviadas para diferentes servidores onde são guardadas cópias. Nós fazemos um grande esforço para limitar o acesso a estas publicações aos utilizadores autorizados, mas outros servidores podem falhar neste objetivo. Por isso, deve rever os servidores a que os seus seguidores pertencem. Pode ativar uma opção para aprovar e rejeitar manualmente novos seguidores nas configurações. <em>Por favor, tenha em mente que os gestores do seu servidor e qualquer servidor que receba a publicação pode lê-la</em> e que os destinatários podem fazer uma captura de tela, copiar ou partilhar a publicação.<em> Não partilhe qualquer informação sensível no Mastodon.</em></li>
+      <li><em>IPs e outros metadados</em>: Quando inicia sessão, nós guardamos o endereço de IP a partir do qual inicou sessão, tal como o nome do seu navegador. Todas as sessões estão disponíveis para verificação e revogação nas configurações. O último endereço de IP usado é guardado até 12 meses. Nós também podemos guardar registos de servidor, os quais incluem o endereço de IP de cada pedido dirigido ao nosso servidor.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Para que utilizamos a sua informação?</h3>
+
+      <p>Qualquer informação que recolhemos sobre sí pode ser utilizada dos seguintes modos:</p>
+
+      <ul>
+      <li>Para prover a funcionalidade central do Mastodon. Só pode interagir com o conteúdo de outras pessoas e publicar o seu próprio conteúdo depois de ter iniciado sessão. Por exemplo, pode seguir outras pessoas para veres as suas publicações na sua cronologia inicial personalizada.</li>
+      <li>Para ajudar na moderação da comunidade, por exemplo, para comparar o seu endereço IP com outros conhecidos, para determinar a fuga ao banimento ou outras violações.</li>
+      <li>O endereço de e-mail que fornece pode ser utilizado para lhe enviar informações e/ou notificações sobre outras pessoas que estão a interagir com o seu conteúdo ou a enviar-lhe mensagens, para responder a inquéritos e/ou outros pedidos ou questões.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Como protegemos a sua informação?</h3>
+
+      <p>Implementamos uma variedade de medidas para garantir a segurança da sua informação pessoal quando introduz, submete ou acede à mesma. Entre outras coisas, a sua sessão de navegação, tal como o tráfego entre as tuas aplicações e a API, estão seguras por SSL e a sua palavra-passe é codificada utilizando um forte algoritmo de sentido único. Pode activar a autenticação em duas etapas para aumentar ainda mais a segurança do acesso à sua conta.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">>Qual é a nossa política de retenção de dados?</h3>
+
+      <p>Faremos o nosso melhor esforço para:</p>
+
+      <ul>
+      <li>Reter registos do servidor contendo o endereço de IP de todos os pedidos feitos a este servidor, considerando que estes registos não sejam guardados por mais de 90 dias.</li>
+      <li>Reter os endereços de IP associados aos utilizadores registados durante um período que não ultrapasse os 12 meses.</li>
+      </ul>
+
+      <p>Pode requer e descarregar um ficheiro com o seu conteúdo, incluindo as suas publicações, os ficheiros multimédia, a imagem de perfil e a imagem de cabeçalho.</p>
+
+      <p>Pode eliminar a sua conta de modo irreversível a qualquer momento.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Utilizamos cookies?</h3>
+
+      <p>Sim. Cookies são pequenos ficheiros que um site ou o seu fornecedor de serviço transfere para o disco rígido do seu computador através do seu navegador (se você o permitir). Esses cookies possibilitam ao site reconhecer o seu navegador e, se você tiver uma conta registada, associá-lo a ela.</p>
+
+      <p>Nós usamos os cookies para compreender e guardar as suas preferências para visitas futuras.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Divulgamos alguma informação para entidades externas?</h3>
+
+      <p>Nós não vendemos, trocamos ou transferimos de qualquer modo a sua informação pessoal que seja identificável para qualquer entidade externa. Isto não inclui entindades terceiras de confiança que nos ajudam a manter o nosso site, conduzir o nosso negócio ou prestar-lhe este serviço, desde que essas entendidades concordem em manter essa informação confidencial. Poderemos também revelar a sua informação quando acreditarmos que isso é o apropriado para cumprir a lei, forçar a aplicação dos nossos termos de serviço ou proteger os direitos, propriedade e segurança, nossos e de outrem.</p>
+
+       <p>O seu conteúdo público pode ser descarregado por outros servidores na rede. As suas publicações públicas e exclusivas para os seus seguidores são enviadas para os servidores onde os seus seguidores residem e as mensagens diretas são entregues aos servidores dos seus destinatários, no caso desses seguidores ou destinatários residirem num servidor diferente deste.</p>
+
+      <p>Quando autoriza uma aplicação a utilizar a sua conta, dependendo da abrangência das permissões que aprova, ela pode ter acesso à informação pública do seu perfil, à lista de quem segue, aos seus seguidores, às suas listas, a todas as suas publicações e aos seus favoritos. As aplicações nunca terão acesso ao seu endereço de e-mail ou à sua palavra-passe.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Utilização do site por crianças</h3>
+
+      <p>Se este servidor estiver na UE ou no EEE: O nosso site, produtos e serviços são todos dirigidos a pessoas que tenham, pelo menos, 16 anos de idade. Se você tem menos de 16 anos de idade, em concordância com os requisitos da GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) não utilize este site.</p>
+
+      <p>Se este servidor estiver nos EUA: O nosso site, produtos e serviços são todos dirigidos a pessoas que tenham, pelo menos, 13 anos de idade. Se você tem menos de 13 anos de idade, em concordância com os requisitos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não utilize este site.</p>
+
+      <p>Os requisitos legais poderão ser diferentes se este servidor estiver noutra jurisdição.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Alterações à nossa Política de Privacidade</h3>
+
+      <p>Se decidirmos alterar a nossa política de privacidade, iremos publicar essas alterações nesta página.</p>
+
+      <p>Este documento é CC-BY-SA. Ele foi actualizado pela última vez em 26 de Maio 2022.</p>
+
+      <p>Originalmente adaptado de <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
     contrast: Mastodon (Elevado contraste)
