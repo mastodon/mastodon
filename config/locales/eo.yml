@@ -1033,7 +1033,7 @@ eo:
       too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
     other: Aliaj aferoj
-    posting_defaults: Afiŝadoj defaŭltoj
+    posting_defaults: Implicitaj agordoj de afiŝado
     public_timelines: Publikaj templinioj
   reactions:
     errors:
@@ -1155,6 +1155,7 @@ eo:
         other: "%{count} videoj"
     boosted_from_html: Diskonigita de %{acct_link}
     content_warning: 'Averto de la enhavo: %{warning}'
+    default_language: Same kiel lingvo de la fasado
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
       other: 'enhavis malpermesitan kradvorton: %{tags}'
@@ -1219,7 +1220,7 @@ eo:
     mastodon-light: Mastodon (Luma)
   time:
     formats:
-      default: "%Y-%m-%d %H:%M"
+      default: "%Y.%b.%d, %H:%M"
       month: "%b %Y"
       time: "%H:%M"
   two_factor_authentication:
