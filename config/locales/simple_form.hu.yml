@@ -96,6 +96,13 @@ hu:
         name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
         chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
+        role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik
+      user_role:
+        color: A szerephez használandó szín mindenhol a felhasználói felületen, hexa RGB formátumban
+        highlighted: Ez nyilvánosan láthatóvá teszi a szerepet
+        name: A szerep nyilvános neve, ha a szerepet úgy állították be, hogy jelvényként látható legyen
+        permissions_as_keys: A felhasználók ezzel a szereppel elérhetik a...
+        position: A magasabb szerepkör oldja fel az ütközéseket bizonyos helyzetekben. Bizonyos műveleteket csak alacsonyabb prioritású szerepkörrel lehet elvégezni.
       webhook:
         events: Válaszd ki a küldendő eseményeket
         url: Ahová az eseményket küldjük
@@ -232,6 +239,14 @@ hu:
         name: Hashtag
         trendable: A hashtag megjelenhet a felkapottak között
         usable: Bejegyzések használhatják ezt a hashtaget
+      user:
+        role: Szerep
+      user_role:
+        color: Jelvény színe
+        highlighted: Szerep megjelenítése jelvényként a felhasználói profilokon
+        name: Név
+        permissions_as_keys: Engedélyek
+        position: Prioritás
       webhook:
         events: Engedélyezett események
         url: Végponti URL

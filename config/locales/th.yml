@@ -94,11 +94,17 @@ th:
       avatar: ภาพประจำตัว
       by_domain: โดเมน
       change_email:
+        changed_msg: เปลี่ยนอีเมลสำเร็จ!
         current_email: อีเมลปัจจุบัน
         label: เปลี่ยนอีเมล
         new_email: อีเมลใหม่
         submit: เปลี่ยนอีเมล
         title: เปลี่ยนอีเมลสำหรับ %{username}
+      change_role:
+        changed_msg: เปลี่ยนบทบาทสำเร็จ!
+        label: เปลี่ยนบทบาท
+        no_role: ไม่มีบทบาท
+        title: เปลี่ยนบทบาทสำหรับ %{username}
       confirm: ยืนยัน
       confirmed: ยืนยันแล้ว
       confirming: กำลังยืนยัน
@@ -142,6 +148,7 @@ th:
         active: ใช้งานอยู่
         all: ทั้งหมด
         pending: รอดำเนินการ
+        silenced: จำกัดอยู่
         suspended: ระงับอยู่
         title: การควบคุม
       moderation_notes: หมายเหตุการควบคุม
@@ -174,6 +181,7 @@ th:
       reset: รีเซ็ต
       reset_password: ตั้งรหัสผ่านใหม่
       resubscribe: บอกรับใหม่
+      role: บทบาท
       search: ค้นหา
       search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
@@ -587,6 +595,23 @@ th:
       unresolved: ยังไม่ได้แก้ปัญหา
       updated_at: อัปเดตเมื่อ
       view_profile: ดูโปรไฟล์
+    roles:
+      add_new: เพิ่มบทบาท
+      assigned_users:
+        other: "%{count} ผู้ใช้"
+      categories:
+        administration: การดูแล
+        invites: คำเชิญ
+        moderation: การควบคุม
+        special: พิเศษ
+      delete: ลบ
+      edit: แก้ไขบทบาท '%{name}'
+      everyone: สิทธิอนุญาตเริ่มต้น
+      permissions_count:
+        other: "%{count} สิทธิอนุญาต"
+      privileges:
+        manage_roles: จัดการบทบาท
+      title: บทบาท
     rules:
       add_new: เพิ่มกฎ
       delete: ลบ
@@ -1017,12 +1042,20 @@ th:
       public: เส้นเวลาสาธารณะ
       thread: การสนทนา
     edit:
+      add_keyword: เพิ่มคำสำคัญ
+      keywords: คำสำคัญ
       title: แก้ไขตัวกรอง
     index:
+      contexts: กรองใน %{contexts}
       delete: ลบ
       empty: คุณไม่มีตัวกรอง
+      expires_in: หมดอายุใน %{distance}
+      expires_on: หมดอายุเมื่อ %{date}
+      keywords:
+        other: "%{count} คำสำคัญ"
       title: ตัวกรอง
     new:
+      save: บันทึกตัวกรองใหม่
       title: เพิ่มตัวกรองใหม่
   footer:
     developers: นักพัฒนา
@@ -1127,6 +1160,8 @@ th:
     copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้านี้ของคุณเกี่ยวกับผู้ใช้:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} ได้ส่งรายงาน"
       sign_up:
         subject: "%{name} ได้ลงทะเบียน"
     digest:

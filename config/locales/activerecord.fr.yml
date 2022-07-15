@@ -38,3 +38,12 @@ fr:
             email:
               blocked: utilise un fournisseur de courriel interdit
               unreachable: ne semble pas exister
+            role_id:
+              elevated: ne peut pas être supérieur à votre rôle actuel
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inclure des autorisations non sécurisées pour le rôle de base
+              elevated: ne peut pas inclure des autorisations que votre rôle actuel ne possède pas
+            position:
+              elevated: ne peut pas être supérieur à votre rôle actuel

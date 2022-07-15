@@ -96,6 +96,13 @@ pt-PT:
         name: Só pode alterar a capitalização das letras, por exemplo, para torná-las mais legíveis
       user:
         chosen_languages: Quando seleccionado, só publicações nas línguas escolhidas serão mostradas nas cronologias públicas
+        role: A função controla que permissões o utilizador tem
+      user_role:
+        color: Cor a ser utilizada para a função em toda a interface de utilizador, como RGB no formato hexadecimal
+        highlighted: Isto torna a função visível publicamente
+        name: Nome público da função, se a função for definida para ser exibida como um distintivo
+        permissions_as_keys: Utilizadores com esta função terão acesso a...
+        position: Função mais alta decidem a resolução de conflitos em certas situações. Certas ações só podem ser executadas em funções com uma menor prioridade
       webhook:
         events: Selecione os eventos a enviar
         url: Para onde os eventos serão enviados
@@ -232,6 +239,14 @@ pt-PT:
         name: Hashtag
         trendable: Permitir que esta hashtag apareça em destaque
         usable: Permitir que toots utilizem esta hashtag
+      user:
+        role: Função
+      user_role:
+        color: Cor do distintivo
+        highlighted: Exibir a função como distintivo nos perfis de utilizador
+        name: Nome
+        permissions_as_keys: Permissões
+        position: Prioridade
       webhook:
         events: Eventos ativados
         url: URL do Endpoint

@@ -666,6 +666,52 @@ hu:
       description_html: A <strong>felhasználói szerepekkel</strong> testreszabhatod, hogy a felhasználóid milyen Mastodon funkciókat és területeket érjenek el.
       edit: "'%{name}' szerep szerkesztése"
       everyone: Alapértelmezett engedélyek
+      everyone_full_description_html: Ez az <strong>alap szerep</strong>, mely <strong>minden felhasználóra</strong> kihat, azokra is, akiknek nincs hozzárendelt szerepük. Minden más szerep ebből örökli az engedélyeit.
+      permissions_count:
+        one: "%{count} engedély"
+        other: "%{count} engedély"
+      privileges:
+        administrator: Adminisztrátor
+        administrator_description: A felhasználók ezzel a szereppel minden jogosultsággal rendelkeznek
+        delete_user_data: Felhasználói adatok törlése
+        delete_user_data_description: Lehetővé teszi a felhasználónak, hogy azonnal törölhesse más felhasználó adatait
+        invite_users: Felhasználók meghívása
+        invite_users_description: Lehetővé teszi a felhasználónak, hogy új embereket hívjon meg a kiszolgálóra
+        manage_announcements: Hirdetmények kezelése
+        manage_announcements_description: Lehetővé teszi a felhasználónak, hogy a kiszolgáló hirdetményeit kezelje
+        manage_appeals: Fellebbezések kezelése
+        manage_appeals_description: Lehetővé teszi, hogy a felhasználó átnézze a moderációval kapcsolatos fellebbezéseket
+        manage_blocks: Letiltások kezelése
+        manage_blocks_description: Lehetővé teszi, hogy a felhasználó letiltson email szolgáltatókat és IP címeket
+        manage_custom_emojis: Egyedi emodzsik kezelése
+        manage_custom_emojis_description: Lehetővé teszi a felhasználó számára, hogy a kiszolgáló egyedi emodzsiait kezelje
+        manage_federation: Föderáció kezelése
+        manage_federation_description: Lehetővé teszi a felhasználó számára, hogy más domainnekkel való föderációt engedélyezzen vagy letiltson, illetve szabályozza a kézbesítést
+        manage_invites: Meghívások kezelése
+        manage_invites_description: Lehetővé teszi a felhasználó számára, hogy böngéssze és deaktiválja a meghívási hivatkozásokat
+        manage_reports: Bejelentések kezelése
+        manage_reports_description: Lehetővé teszi a felhasználó számára, hogy átnézze a bejelentéseket és moderáljon ezek alapján
+        manage_roles: Szerepek kezelése
+        manage_roles_description: Lehetővé teszi a felhasználó számára, hogy a sajátjánál alacsonyabb rangú szerepeket kezeljen és hozzárendeljen másokhoz
+        manage_rules: Szabályok kezelése
+        manage_rules_description: Lehetővé teszi a felhasználó számára, hogy megváltoztassa a kiszolgáló szabályait
+        manage_settings: Beállítások kezelése
+        manage_settings_description: Lehetővé teszi, hogy a felhasználó megváltoztassa az oldal beállításait
+        manage_taxonomies: Taxonómiák kezelése
+        manage_taxonomies_description: Lehetővé teszi, hogy a felhasználó átnézze a népszerű tartalmakat és frissítse a hashtag-ek beállításait
+        manage_user_access: Felhasználói hozzáférések kezelése
+        manage_user_access_description: Lehetővé teszi, hogy a felhasználó letiltsa mások kétlépcsős azonosítását, megváltoztassa az email címüket, és alaphelyzetbe állítsa a jelszavukat
+        manage_users: Felhasználók kezelése
+        manage_users_description: Lehetővé teszi, hogy a felhasználó megtekintse mások részletes adatait és moderálja őket
+        manage_webhooks: Webhookok kezelése
+        manage_webhooks_description: Lehetővé teszi, hogy a felhasználó webhookokat állítson be adminisztratív eseményekhez
+        view_audit_log: Audit napló megtekintése
+        view_audit_log_description: Lehetővé teszi, hogy a felhasználó megtekintse a kiszolgáló adminisztratív eseményeinek történetét
+        view_dashboard: Irányítópult megtekintése
+        view_dashboard_description: Lehetővé teszi, hogy a felhasználó elérje az irányítópultot és vele számos metrikát
+        view_devops: Devops
+        view_devops_description: Lehetővé teszi, hogy a felhasználó elérje a Sidekiq és pgHero irányítópultjait
+      title: Szerepek
     rules:
       add_new: Szabály hozzáadása
       delete: Törlés

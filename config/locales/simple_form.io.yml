@@ -68,6 +68,11 @@ io:
         with_dns_records: Probo di rezolvar registri DNS di la domeno agesos e rezulti anke preventesos
       featured_tag:
         name: 'Vu forsan volas uzar 1 de co:'
+      filters:
+        action: Selektez ago kande posto parigas filtrilo
+        actions:
+          hide: Komplete celez filtrita kontenajo quale ol ne existas
+          warn: Celez filtrita kontenajo dop avert quo montras titulo di filtrilo
       form_challenge:
         current_password: Vu eniras sekura areo
       imports:
@@ -91,6 +96,13 @@ io:
         name: Vu povas nur chanjar literkaso, por exemplo, por kauzigar lu divenar plu lektebla
       user:
         chosen_languages: Kande marketigesis, nur posti en selektesis lingui montresos en publika tempolinei
+        role: Rolo dominacas permisi quon uzanto havas
+      user_role:
+        color: Koloro quo uzesas por rolo en tota UI, quale RGB kun hexformato
+        highlighted: Co kauzigas rolo divenar publike videbla
+        name: Publika nomo di ca rolo, se rolo ajustesas quale montresas quale insigno
+        permissions_as_keys: Uzanti kun ca rolo povas...
+        position: Plu alta rolo decidas problemsolvo en kelka situeso. Kelka agi povas nur eventar a roli kun plu basa prioreso
       webhook:
         events: Selektigez eventi por sendar
         url: Ibe eventi sendesos
@@ -227,6 +239,14 @@ io:
         name: Hashtago
         trendable: Permisez ca hashtago aparar che tendenci
         usable: Permisez posti uzar ca hashtago
+      user:
+        role: Rolo
+      user_role:
+        color: Insignokoloro
+        highlighted: Montrez rolo quale insigno en uzantoprofili
+        name: Nomo
+        permissions_as_keys: Permisi
+        position: Prioreso
       webhook:
         events: Aktivigita eventi
         url: URL di finpunto

@@ -103,11 +103,17 @@ io:
       avatar: Profilimajo
       by_domain: Domeno
       change_email:
+        changed_msg: Kontoretposto sucesoze chanjesis!
         current_email: Nuna retposto
         label: Chanjez retposto
         new_email: Nova retposto
         submit: Chanjez retposto
         title: Chanjez retposto por %{username}
+      change_role:
+        changed_msg: Rolo sucesoze chanjesis!
+        label: Chanjez rolo
+        no_role: Nula rolo
+        title: Chanjez rolo por %{username}
       confirm: Konfirmez
       confirmed: Konfirmita
       confirming: Ankore konfirmesas
@@ -151,6 +157,7 @@ io:
         active: Aktiva
         all: Omna
         pending: Vartanta
+        silenced: Limitizita
         suspended: Restriktita
         title: Jero
       moderation_notes: Jernoti
@@ -158,6 +165,7 @@ io:
       most_recent_ip: Maxim recenta IP
       no_account_selected: Nula konti chanjesis pro ke nulo selektesis
       no_limits_imposed: Limiti ne fixesis
+      no_role_assigned: Nula rolo
       not_subscribed: Ne abonita
       pending: Vartar kontrolo
       perform_full_suspension: Perform full suspension
@@ -184,6 +192,7 @@ io:
       reset: Richanjez
       reset_password: Richanjez pasvorto
       resubscribe: Riabonez
+      role: Rolo
       search: Trovez
       search_same_email_domain: Altra uzanti kun sama retpostodomeno
       search_same_ip: Altra uzanti kun sama IP
@@ -640,6 +649,67 @@ io:
       unresolved: Nerezolvita
       updated_at: Novigesis
       view_profile: Videz profilo
+    roles:
+      add_new: Insertez rolo
+      assigned_users:
+        one: "%{count} uzanto"
+        other: "%{count} uzanti"
+      categories:
+        administration: Administro
+        devops: Developeri
+        invites: Inviti
+        moderation: Jero
+        special: Specala
+      delete: Efacez
+      description_html: Per <strong>uzantoroli</strong>, vu povas kustumizar funciono e siti di Mastodon quon vua uzanti povas uzar.
+      edit: Modifikez rolo di '%{name}'
+      everyone: Originala permisi
+      everyone_full_description_html: Co esas <strong>bazrolo</strong> quo efektigas <strong>omna uzanti</strong>, mem personi sen rolo. Omna altra roli ganas sama permisi de ol.
+      permissions_count:
+        one: "%{count} permiso"
+        other: "%{count} permisi"
+      privileges:
+        administrator: Administrero
+        administrator_description: Uzanti kun ca permiso ignoros singla permiso
+        delete_user_data: Efacez uzantinformi
+        delete_user_data_description: Permisez uzanti efacar informi di altra uzanti sen varto
+        invite_users: Invitez uzanti
+        invite_users_description: Permisez uzanti invitar nova personi a la servilo
+        manage_announcements: Jerez anunci
+        manage_announcements_description: Permisez uzanti jerar anunci en la servilo
+        manage_appeals: Jerez apeli
+        manage_appeals_description: Permisez uzanti kontrolar apeli kontra jero
+        manage_blocks: Jerez obstrukti
+        manage_blocks_description: Permisez uzanti obstruktar retpostoservilo e adresi di IP
+        manage_custom_emojis: Jerez kustumizita emocimaji
+        manage_custom_emojis_description: Permisez uzanti jerar kustumizita emocimaji en la servilo
+        manage_federation: Jerez federo
+        manage_federation_description: Permisez uzanti obstruktar o permisez federo kun altra domeni, e dominacar sendebleso
+        manage_invites: Jerez inviti
+        manage_invites_description: Permisez uzanti vidar e desaktivigar invitligili
+        manage_reports: Jerez raporti
+        manage_reports_description: Permisez uzanti kontrolar raporti e jerez kontra oli
+        manage_roles: Jerez roli
+        manage_roles_description: Permisez uzanti jerar e ajustar plu basa roli di olia
+        manage_rules: Jerez reguli
+        manage_rules_description: Permisez uzanti chanjar servilreguli
+        manage_settings: Jerez opcioni
+        manage_settings_description: Permisez uzanti chanjar sitopcioni
+        manage_taxonomies: Jerez nomkategorii
+        manage_taxonomies_description: Permisez uzanti kontrolar tendencoza kontenajo e novigar hashtagopcioni
+        manage_user_access: Jerez uzantoeniro
+        manage_user_access_description: Permisez uzanti desaktivigar 2-faktoryurizeso di altra uzanti, chanjar olia retpostoadreso e richanjar olia pasvorto
+        manage_users: Jerez uzanti
+        manage_users_description: Permisez uzanti vidar detali di altra uzanti e jerar kontra oli
+        manage_webhooks: Jerez interrethoki
+        manage_webhooks_description: Permisez uzanti igas interrethoki por administrala eventi
+        view_audit_log: Videz kontrollogo
+        view_audit_log_description: Permisez uzanti vidar historio di administrala agi en la servilo
+        view_dashboard: Videz chefpanelo
+        view_dashboard_description: Permisez uzanti uzar chefpanelo e diversa opcioni
+        view_devops: Developeri
+        view_devops_description: Permisez uzanti uzar chefpaneli Sidekiq e pgHero
+      title: Roli
     rules:
       add_new: Insertez regulo
       delete: Efacez
@@ -1113,8 +1183,10 @@ io:
       keywords: Klefvorti
       title: Modifikez filtrilo
     errors:
+      deprecated_api_multiple_keywords: Ca parametri ne povas chanjesar per ca softwaro pro quo oli efektigas plu kam 1 filtrilklefvorto. Uzez plu recenta softwaro o interretintervizajo.
       invalid_context: Nula o nevalida kuntexto donesis
     index:
+      contexts: Filtrili kun %{contexts}
       delete: Efacez
       empty: Vu ne havas filtrili.
       expires_in: Expiras ye %{distance}
@@ -1124,6 +1196,7 @@ io:
         other: "%{count} klefvorti"
       title: Filtrili
     new:
+      save: Salvez nova filtrilo
       title: Insertez nova filtrilo
   footer:
     developers: Developeri

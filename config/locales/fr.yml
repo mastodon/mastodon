@@ -103,11 +103,17 @@ fr:
       avatar: Avatar
       by_domain: Domaine
       change_email:
+        changed_msg: Courriel modifié avec succès !
         current_email: Courriel actuel
         label: Modifier le courriel
         new_email: Nouveau courriel
         submit: Modifier le courriel
         title: Modifier le courriel pour %{username}
+      change_role:
+        changed_msg: Rôle modifié avec succès !
+        label: Modifier le rôle
+        no_role: Aucun rôle
+        title: Modifier le rôle de %{username}
       confirm: Confirmer
       confirmed: Confirmé
       confirming: Confirmation
@@ -151,6 +157,7 @@ fr:
         active: Actifs
         all: Tous
         pending: En cours de traitement
+        silenced: Limité
         suspended: Suspendus
         title: Modération
       moderation_notes: Notes de modération
@@ -158,6 +165,7 @@ fr:
       most_recent_ip: Adresse IP la plus récente
       no_account_selected: Aucun compte n’a été modifié, car aucun n’a été sélectionné
       no_limits_imposed: Aucune limite imposée
+      no_role_assigned: Aucun rôle assigné
       not_subscribed: Non abonné
       pending: En attente d’approbation
       perform_full_suspension: Suspendre
@@ -184,6 +192,7 @@ fr:
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
+      role: Rôle
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
@@ -225,7 +234,7 @@ fr:
         approve_appeal: Approuver l'appel
         approve_user: Approuver l’utilisateur
         assigned_to_self_report: Affecter le signalement
-        change_email_user: Modifier le courriel pour
+        change_email_user: Modifier le courriel pour ce compte
         confirm_user: Confirmer l’utilisateur
         create_account_warning: Créer une alerte
         create_announcement: Créer une annonce
@@ -472,8 +481,8 @@ fr:
     instances:
       availability:
         description_html:
-          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
-          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
+          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
+          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
         failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
         failures_recorded:
           one: Tentative échouée pendant %{count} jour.
@@ -640,6 +649,67 @@ fr:
       unresolved: Non résolus
       updated_at: Mis à jour
       view_profile: Voir le profil
+    roles:
+      add_new: Ajouter un rôle
+      assigned_users:
+        one: "%{count} utilisateur·rice"
+        other: "%{count} utilisateur·rice·s"
+      categories:
+        administration: Administration
+        devops: Devops
+        invites: Invitations
+        moderation: Modération
+        special: Spécial
+      delete: Supprimer
+      description_html: Les <strong>rôles utilisateur</strong> vous permettent de personnaliser les fonctions et les zones de Mastodon auxquelles vos utilisateur⋅rice⋅s peuvent accéder.
+      edit: Modifier le rôle '%{name}'
+      everyone: Autorisations par défaut
+      everyone_full_description_html: Ceci est le <strong>rôle de base</strong> qui impacte <strong>tou⋅te⋅s les utilisateur⋅rice⋅s</strong>, même celleux sans rôle assigné. Tous les autres rôles héritent des autorisations de celui-ci.
+      permissions_count:
+        one: "%{count} autorisation"
+        other: "%{count} autorisations"
+      privileges:
+        administrator: Administrateur·rice
+        administrator_description: Les utilisateur⋅rice⋅s ayant cette autorisation pourront contourner toutes les autorisations
+        delete_user_data: Supprimer les données de l'utilisateur⋅rice
+        delete_user_data_description: Permet aux utilisateur⋅rice⋅s de supprimer sans délai les données des autres utilisateur⋅rice⋅s
+        invite_users: Inviter des utilisateur⋅rice⋅s
+        invite_users_description: Permet aux utilisateur⋅rice⋅s d'inviter de nouvelles personnes sur le serveur
+        manage_announcements: Gérer les annonces
+        manage_announcements_description: Permet aux utilisateur⋅rice⋅s de gérer les annonces sur le serveur
+        manage_appeals: Gérer les contestations
+        manage_appeals_description: Permet aux utilisateur⋅rice⋅s d'examiner les appels contre les actions de modération
+        manage_blocks: Gérer les blocages
+        manage_blocks_description: Permet aux utilisateur⋅rice⋅s de bloquer des fournisseurs de courriel et des adresses IP
+        manage_custom_emojis: Gérer les émojis personnalisés
+        manage_custom_emojis_description: Permet aux utilisateur⋅rice⋅s de gérer les émoticônes personnalisées sur le serveur
+        manage_federation: Gérer de la féderation
+        manage_federation_description: Permet aux utilisateur⋅rice⋅s de bloquer ou d'autoriser la fédération avec d'autres domaines, et de contrôler la capacité de livraison
+        manage_invites: Gérer les invitations
+        manage_invites_description: Permet aux utilisateur⋅rice⋅s de parcourir et de désactiver les liens d'invitation
+        manage_reports: Gérer les rapports
+        manage_reports_description: Permet aux utilisateur⋅rice⋅s d'examiner les signalements et d'effectuer des actions de modération en conséquence
+        manage_roles: Gérer les rôles
+        manage_roles_description: Permet aux utilisateur⋅rice⋅s de gérer et d'assigner des rôles inférieurs au leur
+        manage_rules: Gérer les règles
+        manage_rules_description: Permet aux utilisateur·rice·s de modifier les règles du serveur
+        manage_settings: Gérer les paramètres
+        manage_settings_description: Permet aux utilisateur·rice·s de modifier les paramètres du site
+        manage_taxonomies: Gérer les taxonomies
+        manage_taxonomies_description: Permet aux utilisateur⋅rice⋅s d'examiner les contenus tendance et de mettre à jour les paramètres des hashtags
+        manage_user_access: Gérer l'accès utilisateur
+        manage_user_access_description: Permet aux utilisateur⋅rice⋅s de désactiver l'authentification à deux facteurs, de modifier l'adresse courriel et de réinitialiser le mot de passe des autres utilisateur⋅rice⋅s
+        manage_users: Gérer les utilisateur·rice·s
+        manage_users_description: Permet aux utilisateur⋅rice⋅s de voir les détails des autres utilisateur⋅rice⋅s et d'effectuer des actions de modération en conséquence
+        manage_webhooks: Gérer les points d’ancrage web
+        manage_webhooks_description: Permet aux utilisateur⋅rice⋅s de configurer des webhooks pour des événements d'administration
+        view_audit_log: Afficher le journal d'audit
+        view_audit_log_description: Permet aux utilisateur⋅rice⋅s de voir l'historique des opérations d'administration sur le serveur
+        view_dashboard: Voir le tableau de bord
+        view_dashboard_description: Permet aux utilisateur⋅rice⋅s d'accéder au tableau de bord et à diverses statistiques
+        view_devops: Devops
+        view_devops_description: Permet aux utilisateur⋅rice⋅s d'accéder aux tableaux de bord Sidekiq et pgHero
+      title: Rôles
     rules:
       add_new: Ajouter une règle
       delete: Supprimer
@@ -853,6 +923,7 @@ fr:
       events: Événements
       new: Nouveau point d’ancrage web
       rotate_secret: Effectuer une rotation du secret
+      secret: Jeton de connexion
       status: État
       title: Points d’ancrage web
       webhook: Point d’ancrage web

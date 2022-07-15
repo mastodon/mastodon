@@ -96,6 +96,13 @@ fr:
         name: Vous ne pouvez modifier que la casse des lettres, par exemple, pour le rendre plus lisible
       user:
         chosen_languages: Lorsque coché, seuls les messages dans les langues sélectionnées seront affichés sur les fils publics
+        role: Le rôle définit quelles autorisations a l'utilisateur⋅rice
+      user_role:
+        color: Couleur à attribuer au rôle dans l'interface, au format hexadécimal RVB
+        highlighted: Cela rend le rôle visible publiquement
+        name: Nom public du rôle, si le rôle est configuré pour être affiché avec un badge
+        permissions_as_keys: Les utilisateur·rice·s ayant ce rôle auront accès à …
+        position: Dans certaines situations, un rôle supérieur peut trancher la résolution d'un conflit. Mais certaines opérations ne peuvent être effectuées que sur des rôles ayant une priorité inférieure
       webhook:
         events: Sélectionnez les événements à envoyer
         url: Là où les événements seront envoyés
@@ -232,6 +239,14 @@ fr:
         name: Hashtag
         trendable: Autoriser ce hashtag à apparaitre dans les tendances
         usable: Autoriser les messages à utiliser ce hashtag
+      user:
+        role: Rôle
+      user_role:
+        color: Couleur du badge
+        highlighted: Afficher le rôle avec un badge sur les profils des utilisateur·rice·s
+        name: Nom
+        permissions_as_keys: Autorisations
+        position: Priorité
       webhook:
         events: Événements activés
         url: URL du point de terminaison
