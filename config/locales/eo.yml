@@ -1,15 +1,15 @@
 eo:
   about:
     about_hashtag_html: 'Ĉi tiuj estas la publikaj mesaĝoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.'
-    about_mastodon_html: 'Mastodon estas socia reto bazita sur malfermitaj retaj protokoloj kaj sur libera malfermitkoda programo. Ĝi estas sencentra kiel retmesaĝoj.'
+    about_mastodon_html: 'Mastodon estas socia retejo de la estonteco: sen reklamo, sen kompania gvato, etika dezajno kaj malcentraligo! Vi regu viajn datumojn kun Mastodon!'
     about_this: Pri
-    active_count_after: aktiva
+    active_count_after: aktivaj
     active_footnote: Monate Aktivaj Uzantoj (MAU)
     administered_by: 'Administrata de:'
     api: API
     apps: Poŝtelefonaj aplikaĵoj
     apps_platforms: Uzu Mastodon ĉe iOS, Android kaj aliajn platformojn
-    browse_directory: Esplori profilujo kaj filtri per interesoj
+    browse_directory: Esplori la profilujon kaj filtri en interesoj
     browse_local_posts: Vidi vivantan fluon de publikaj mesaĝoj al Mastodon
     browse_public_posts: Vidi vivantan fluon de publikaj mesaĝoj al Mastodon
     contact: Kontakto
@@ -38,11 +38,12 @@ eo:
     unavailable_content: Moderigitaj serviloj
     unavailable_content_description:
       domain: Servilo
-      reason: 'Kialo:'
+      reason: Motivo
       rejecting_media: 'La aŭdovidaj dosieroj de ĉi tiuj serviloj ne estos prilaboritaj aŭ stokitaj, kaj neniu bildeto estos montrita, do necesas klaki permane por vidi la originalan afiŝon:'
       rejecting_media_title: Filtritaj aŭdovidaĵoj
       silenced: 'La mesaĝoj de tiuj serviloj estos kaŝitaj de publikaj templinio kaj konversacioj, kaj la interagoj de la uzantoj donas neniun sciigon, ĝis vi sekvos ilin:'
-      silenced_title: Silentigitaj serviloj
+      silenced_title: Limigitaj serviloj
+      suspended: 'Neniu datumo de ĉi tiuj serviloj estos prilaboritaj, stokitaj, aŭ interŝanĝitaj, neeble fari interagon aŭ komunikon kun la uzantoj de ĉi tiuj serviloj:'
       suspended_title: Suspenditaj serviloj
     user_count_after:
       one: uzanto
@@ -154,6 +155,7 @@ eo:
       reject: Malakcepti
       remove_avatar: Forigi la rolfiguron
       remove_header: Forigi kapan bildon
+      removed_avatar_msg: La bildo de la rolfiguro de %{username} estas sukcese forigita
       resend_confirmation:
         already_confirmed: Ĉi tiu uzanto jam estas konfirmita
         send: Resendi konfirman retmesaĝon
@@ -516,6 +518,8 @@ eo:
       view_profile: Vidi profilon
     roles:
       everyone: Implicitaj permesoj
+      privileges:
+        delete_user_data: Forviŝi la datumojn de la uzanto
     rules:
       add_new: Aldoni regulon
       delete: Forigi
