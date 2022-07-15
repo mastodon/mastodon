@@ -665,6 +665,25 @@ zh-CN:
         manage_blocks_description: 允许用户屏蔽电子邮件提供商和IP地址
         manage_custom_emojis: 管理自定义表情
         manage_custom_emojis_description: 允许用户管理服务器上的自定义表情
+        manage_federation: 管理联邦
+        manage_invites: 管理邀请
+        manage_invites_description: 允许用户浏览和停用邀请链接
+        manage_reports: 管理报告
+        manage_reports_description: 允许用户查看报告并对其执行审核操作
+        manage_roles: 管理角色
+        manage_roles_description: 允许用户管理和分配比他们权限低的角色
+        manage_rules: 管理规则
+        manage_rules_description: 允许用户更改服务器规则
+        manage_settings: 管理设置
+        manage_settings_description: 允许用户更改站点设置
+        manage_users: 管理用户
+        manage_users_description: 允许用户查看其他用户信息并对他们执行审核操作
+        manage_webhooks: 管理网钩
+        manage_webhooks_description: 允许用户为管理事件设置网钩
+        view_audit_log: 查看审核日志
+        view_audit_log_description: 允许用户在服务器上查看管理操作历史
+        view_dashboard: 查看仪表板
+        view_dashboard_description: 允许用户访问仪表盘和各种指标
     rules:
       add_new: 添加规则
       delete: 删除
@@ -862,7 +881,11 @@ zh-CN:
     webhooks:
       delete: 删除
       disable: 禁用
+      disabled: 已禁用
       enable: 启用
+      status: 状态
+      title: 网钩
+      webhook: 网钩
   admin_mailer:
     new_appeal:
       actions:
@@ -1123,8 +1146,11 @@ zh-CN:
     index:
       delete: 删除
       empty: 你没有过滤器。
+      keywords:
+        other: "%{count} 关键词"
       title: 过滤器
     new:
+      save: 保存新过滤器
       title: 添加新的过滤器
   footer:
     developers: 开发者
@@ -1241,6 +1267,8 @@ zh-CN:
     copy_account_note_text: '这个用户迁移自 %{acct}，你曾为其添加备注：'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} 提交了报告"
       sign_up:
         subject: "%{name} 注册了"
     digest:
