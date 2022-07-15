@@ -2,7 +2,7 @@
   = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
 
 - content_for :page_title do
-  = "##{@tag.name}"
+  = "##{@tag.display_name}"
 
 - if current_user.can?(:view_dashboard)
   - content_for :heading_actions do
@@ -53,7 +53,7 @@
   = render 'shared/error_messages', object: @tag
 
   .fields-group
-    = f.input :name, wrapper: :with_block_label
+    = f.input :display_name, wrapper: :with_block_label
 
   .fields-group
     = f.input :usable, as: :boolean, wrapper: :with_label

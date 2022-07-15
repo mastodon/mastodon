@@ -23,7 +23,7 @@
 class CustomEmoji < ApplicationRecord
   include Attachmentable
 
-  LIMIT = 50.kilobytes
+  LIMIT = 256.kilobytes
 
   SHORTCODE_RE_FRAGMENT = '[a-zA-Z0-9_]{2,}'
 
