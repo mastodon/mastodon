@@ -1,7 +1,6 @@
----
 th:
   about:
-    about_hashtag_html: นี่คือโพสต์สาธารณะที่ได้รับการแท็กด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์ได้หากคุณมีบัญชีที่ใดก็ตามในจักรวาลสหพันธ์
+    about_hashtag_html: 'นี่คือโพสต์สาธารณะที่ได้รับการแท็กด้วย <strong>#%{hashtag}</strong> คุณสามารถโต้ตอบกับโพสต์ได้หากคุณมีบัญชีที่ใดก็ตามในจักรวาลสหพันธ์'
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา ไม่มีการสอดแนมโดยองค์กร การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
     active_count_after: ใช้งานอยู่
@@ -22,6 +21,8 @@ th:
     federation_hint_html: ด้วยบัญชีที่ %{instance} คุณจะสามารถติดตามผู้คนในเซิร์ฟเวอร์ Mastodon และอื่น ๆ
     get_apps: ลองแอปมือถือ
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
+    instance_actor_flash: |
+      บัญชีนี้เป็นนักแสดงเสมือนที่ใช้เพื่อเป็นตัวแทนของเซิร์ฟเวอร์เอง ไม่ใช่ผู้ใช้รายบุคคล แต่มันก็ถูกใช้เพื่อวัตถุประสงค์ในการรวมกลุ่มและไม่ควรถูกบล็อก เว้นแต่คุณต้องการบล็อกทั้งอินสแตนซ์นั้น ซึ่งในกรณีนี้คุณควรใช้บล็อกโดเมนนะ
     learn_more: เรียนรู้เพิ่มเติม
     logged_in_as_html: คุณกำลังเข้าสู่ระบบเป็น %{username} ในปัจจุบัน
     logout_before_registering: คุณได้เข้าสู่ระบบอยู่แล้ว
@@ -51,7 +52,7 @@ th:
     user_count_before: บ้านของ
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
-    choices_html: 'ตัวเลือกของ %{name}:'
+    choices_html: "ตัวเลือกของ %{name}:"
     endorsements_hint: คุณสามารถแนะนำผู้คนที่คุณติดตามจากส่วนติดต่อเว็บ และเขาจะปรากฏที่นี่
     featured_tags_hint: คุณสามารถแนะนำแฮชแท็กที่เฉพาะเจาะจงที่จะแสดงที่นี่
     follow: ติดตาม
@@ -112,7 +113,7 @@ th:
       delete: ลบข้อมูล
       deleted: ลบแล้ว
       demote: ลดขั้น
-      destroyed_msg: ตอนนี้จัดคิวเพื่อลบข้อมูลของ %{username} ในเร็ว ๆ นี้แล้ว
+      destroyed_msg: "ตอนนี้จัดคิวเพื่อลบข้อมูลของ %{username} ในเร็ว ๆ นี้แล้ว"
       disable: อายัด
       disable_sign_in_token_auth: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       disable_two_factor_authentication: ปิดใช้งาน 2FA
@@ -527,7 +528,7 @@ th:
       no_ip_block_selected: ไม่มีการเปลี่ยนแปลงกฎ IP เนื่องจากไม่มีการเลือก
       title: กฎ IP
     relationships:
-      title: ความสัมพันธ์ของ %{acct}
+      title: "ความสัมพันธ์ของ %{acct}"
     relays:
       add_new: เพิ่มรีเลย์ใหม่
       delete: ลบ
@@ -822,7 +823,7 @@ th:
     new_report:
       body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
-      subject: รายงานใหม่สำหรับ %{instance} (#%{id})
+      subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
     new_trends:
       body: 'รายการดังต่อไปนี้จำเป็นต้องมีการตรวจทานก่อนที่จะสามารถแสดงรายการเป็นสาธารณะ:'
       new_trending_links:
@@ -1177,8 +1178,8 @@ th:
       subject: "%{name} ได้ชื่นชอบโพสต์ของคุณ"
       title: รายการโปรดใหม่
     follow:
-      body: ตอนนี้ %{name} กำลังติดตามคุณ!
-      subject: ตอนนี้ %{name} กำลังติดตามคุณ
+      body: "ตอนนี้ %{name} กำลังติดตามคุณ!"
+      subject: "ตอนนี้ %{name} กำลังติดตามคุณ"
       title: ผู้ติดตามใหม่
     follow_request:
       action: จัดการคำขอติดตาม
@@ -1429,7 +1430,7 @@ th:
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้านี้
   terms:
-    title: เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}
+    title: "เงื่อนไขการให้บริการและนโยบายความเป็นส่วนตัวของ %{instance}"
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
