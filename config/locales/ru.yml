@@ -40,7 +40,7 @@ ru:
       one: пост
       other: поста
     status_count_before: И опубликовано
-    tagline: Подписывайтесь на друзей и заводите новые знакомства
+    tagline: Децентрализованная социальная сеть
     terms: Условия использования
     unavailable_content: Недоступный контент
     unavailable_content_description:
@@ -91,10 +91,8 @@ ru:
     posts_tab_heading: Посты
     posts_with_replies: Посты с ответами
     roles:
-      admin: Администратор
       bot: Бот
       group: Группа
-      moderator: Модератор
     unavailable: Профиль недоступен
     unfollow: Отписаться
   admin:
@@ -113,12 +111,17 @@ ru:
       avatar: Аватар
       by_domain: Домен
       change_email:
-        changed_msg: E-mail учётной записи успешно изменён!
+        changed_msg: Адрес эл. почты успешно изменен!
         current_email: Текущий e-mail
         label: Сменить e-mail
         new_email: Новый e-mail
         submit: Сменить e-mail
         title: Сменить e-mail для %{username}
+      change_role:
+        changed_msg: Роль успешно изменена!
+        label: Изменить роль
+        no_role: Нет роли
+        title: Изменить роль %{username}
       confirm: Подтвердить
       confirmed: Подтверждено
       confirming: Подтверждение
@@ -162,6 +165,7 @@ ru:
         active: Действующие
         all: Все
         pending: В ожидании
+        silenced: Ограниченные
         suspended: Заблокированные
         title: Модерация
       moderation_notes: Заметки модератора
@@ -169,6 +173,7 @@ ru:
       most_recent_ip: Последний IP
       no_account_selected: Ничего не изменилось, так как ни одна учётная запись не была выделена
       no_limits_imposed: Без ограничений
+      no_role_assigned: Роль не присвоена
       not_subscribed: Не подписаны
       pending: Ожидает рассмотрения
       perform_full_suspension: Блокировка
@@ -197,12 +202,7 @@ ru:
       reset: Сбросить
       reset_password: Сбросить пароль
       resubscribe: Переподписаться
-      role: Разрешения
-      roles:
-        admin: Администратор
-        moderator: Модератор
-        staff: Персонал
-        user: Пользователь
+      role: Роль
       search: Поиск
       search_same_email_domain: Другие пользователи с тем же доменом электронной почты
       search_same_ip: Другие пользователи с таким же IP
@@ -403,6 +403,21 @@ ru:
       media_storage: Медиа файлы
       new_users: новые пользователи
       opened_reports: жалоб открыто
+      pending_reports_html:
+        few: "<strong>%{count}</strong> ожидающих отчета"
+        many: "<strong>%{count}</strong> ожидающих отчетов"
+        one: "<strong>%{count}</strong> ожидающий отчет"
+        other: "<strong>%{count}</strong> ожидающих отчетов"
+      pending_tags_html:
+        few: "<strong>%{count}</strong> ожидающих хэштега"
+        many: "<strong>%{count}</strong> ожидающих хэштегов"
+        one: "<strong>%{count}</strong> ожидающий хэштег"
+        other: "<strong>%{count}</strong> ожидающих хэштегов"
+      pending_users_html:
+        few: "<strong>%{count}</strong> ожидающих пользователя"
+        many: "<strong>%{count}</strong> ожидающих пользователей"
+        one: "<strong>%{count}</strong> ожидающий пользователь"
+        other: "<strong>%{count}</strong> ожидающих пользователей"
       resolved_reports: жалоб решено
       software: Программное обеспечение
       sources: Источники регистрации
@@ -426,6 +441,7 @@ ru:
       destroyed_msg: Блокировка домена снята
       domain: Домен
       edit: Редактировать блокировку
+      existing_domain_block: Вы уже установили более строгие ограничения для %{name}.
       existing_domain_block_html: Вы уже ввели более строгие ограничения на %{name}, вам нужно <a href="%{unblock_url}">разблокировать его</a> сначала.
       new:
         create: Создать блокировку
@@ -483,6 +499,11 @@ ru:
       unsuppress: Восстановить рекомендацию
     instances:
       availability:
+        failures_recorded:
+          few: Попытки неудачны уже %{count} дня.
+          many: Попытки неудачны уже %{count} дней.
+          one: Попытки неудачны %{count} день.
+          other: Попытки неудачны уже %{count} дней.
         no_failures_recorded: Сбоев в записи нет.
         title: Доступность
         warning: Последняя попытка подключения к этому серверу не удалась
@@ -495,8 +516,14 @@ ru:
         comment: Внутренняя заметка
         policies:
           reject_media: Отклонить медиа
+          reject_reports: Отклонять жалобы
+          silence: Лимит
+          suspend: Приостановить
         policy: Политика
+        reason: Публичная причина
+        title: Политика контента
       dashboard:
+        instance_accounts_dimension: Популярные аккаунты
         instance_accounts_measure: сохраненные учетные записи
         instance_languages_dimension: Популярные языки
         instance_media_attachments_measure: сохраненные медиафайлы
@@ -634,6 +661,38 @@ ru:
       unresolved: Нерешённые
       updated_at: Обновлена
       view_profile: Открыть профиль
+    roles:
+      add_new: Добавить роль
+      assigned_users:
+        few: "%{count} пользователя"
+        many: "%{count} пользователей"
+        one: "%{count} пользователь"
+        other: "%{count} пользователей"
+      categories:
+        administration: Администрация
+        devops: DevOps
+        invites: Приглашения
+        moderation: Модерация
+        special: Особые
+      delete: Удалить
+      description_html: С помощью <strong>ролей пользователей</strong> вы можете настроить, к каким функциям и областям Mastodon у ваших пользователей будет доступ.
+      edit: Изменить роль '%{name}' '
+      everyone: Разрешения по умолчанию
+      everyone_full_description_html: Это <strong>базовая роль</strong>, касающаяся <strong>всех пользователей</strong>, даже тех, кто не имеет назначенной роли. Все другие роли наследуют разрешения от нее.
+      permissions_count:
+        few: "%{count} разрешения"
+        many: "%{count} разрешений"
+        one: "%{count} разрешение"
+        other: "%{count} разрешений"
+      privileges:
+        administrator: Администратор
+        delete_user_data: Удалить пользовательские данные
+        delete_user_data_description: Позволяет пользователям удалять данные других пользователей без задержки
+        invite_users: Пригласить пользователей
+        invite_users_description: Позволяет пользователям приглашать новых людей на сервер
+        manage_announcements: Управление объявлениями
+        manage_announcements_description: Позволяет пользователям управлять объявлениями на сервере
+      title: Роли
     rules:
       add_new: Добавить правило
       delete: Удалить
@@ -686,9 +745,6 @@ ru:
         deletion:
           desc_html: Позволяет всем удалять собственные учётные записи
           title: Разрешить удаление учётных записей
-        min_invite_role:
-          disabled: Никого
-          title: Разрешать приглашения от
         require_invite_text:
           desc_html: Когда регистрация требует ручного подтверждения, сделать ответ на вопрос "Почему вы хотите присоединиться?" обязательным, а не опциональным
           title: Обязать новых пользователей заполнять текст запроса на приглашение
@@ -701,9 +757,6 @@ ru:
       show_known_fediverse_at_about_page:
         desc_html: Если включено, показывает посты со всех известных узлов в предпросмотре ленты. В противном случае отображаются только локальные посты.
         title: Показывать контент со всей федерации в публичной ленте неавторизованным пользователям
-      show_staff_badge:
-        desc_html: Показывать метку персонала на странице пользователя
-        title: Показывать метку персонала
       site_description:
         desc_html: Отображается в качестве параграфа на титульной странице и используется в качестве мета-тега.<br>Можно использовать HTML-теги, в особенности <code>&lt;a&gt;</code> и <code>&lt;em&gt;</code>.
         title: Описание сайта
@@ -796,6 +849,15 @@ ru:
         title: Издатели
       rejected: Отклонённые
       statuses:
+        allow: Разрешить пост
+        allow_account: Разрешить автора
+        disallow: Запретить пост
+        disallow_account: Запретить автора
+        shared_by:
+          few: Поделились или добавили в избранное %{friendly_count} раза
+          many: Поделились или добавили в избранное %{friendly_count} раз
+          one: Поделились или добавили в избранное один раз
+          other: Поделились или добавили в избранное %{friendly_count} раз
         title: Популярные посты
       tags:
         current_score: Текущий счет %{score}
@@ -811,6 +873,7 @@ ru:
         peaked_on_and_decaying: Последний пик — %{date}, сейчас идёт на спад
         title: Актуальные хэштеги
         trendable: Может появляться в списке «актуального»
+        trending_rank: 'Популярное #%{rank}'
         usable: Может использоваться
         usage_comparison: Использовано %{today} сегодня, для сравнения вчера %{yesterday}
         used_by_over_week:
@@ -826,12 +889,35 @@ ru:
       edit_preset: Удалить шаблон предупреждения
       empty: Вы еще не определили пресеты предупреждений.
       title: Управление шаблонами предупреждений
+    webhooks:
+      add_new: Добавить конечную точку
+      delete: Удалить
+      description_html: "<strong>Вебхуки</strong> позволяют Mastodon отправлять вашим приложениям <strong>уведомления в реальном времени</strong> о выбранных происходящих событиях, а они могут <strong>обрабатывать их в автоматическом режиме</strong>."
+      disable: Отключить
+      disabled: Отключено
+      edit: Редактировать вебхук
+      empty: У вас пока нет настроенных конечных точек вебхуков.
+      enable: Включить
+      enabled: Активен
+      enabled_events:
+        few: "%{count} события включено"
+        many: "%{count} событий включено"
+        one: "%{count} событие включено"
+        other: "%{count} событий включено"
+      events: События
+      new: Новый вебхук
+      rotate_secret: Сгенерировать новый
+      secret: Ключ подписи
+      status: Состояние
+      title: Вебхуки
+      webhook: Вебхук
   admin_mailer:
     new_appeal:
       actions:
         none: предупреждение
         silence: ограничить учётную запись
         suspend: приостановить действие учётной записи
+      body: "%{target} обжалуют решение модератора %{action_taken_by} от %{date}, которое %{type}. Они написали:"
       subject: "%{username} обжалует решение модерации на %{instance}"
     new_pending_account:
       body: Ниже указана информация учётной записи. Вы можете одобрить или отклонить заявку.
@@ -847,7 +933,9 @@ ru:
       new_trending_statuses:
         title: Популярные посты
       new_trending_tags:
+        no_approved_tags: На данный момент популярные подтвержденные хэштеги отсутствуют.
         title: Популярные хэштеги
+      subject: Новые тренды для проверки на %{instance}
   aliases:
     add_new: Создать псевдоним
     created_msg: Новый псевдоним установлен. Теперь мы можете начать миграцию со старой учётной записи.
@@ -877,7 +965,6 @@ ru:
   applications:
     created: Приложение успешно создано
     destroyed: Приложение успешно удалено
-    invalid_url: Введенный URL неверен
     regenerate_token: Повторно сгенерировать токен доступа
     token_regenerated: Токен доступа успешно сгенерирован
     warning: Будьте очень внимательны с этими данными. Не делитесь ими ни с кем!
@@ -1008,9 +1095,12 @@ ru:
       title: "%{action} от %{date}"
       title_actions:
         delete_statuses: Удаление поста
+        disable: Заморозка аккаунта
         mark_statuses_as_sensitive: Помечать посты как деликатные
+        none: Требующие внимания
         sensitive: Отметить учетную запись как деликатную
         silence: Ограничение учетной записи
+        suspend: Приостановка Аккаунта
       your_appeal_approved: Ваша апелляция одобрена
       your_appeal_pending: Вы подали апелляцию
       your_appeal_rejected: Ваша апелляция отклонена
@@ -1062,15 +1152,26 @@ ru:
       public: Публичные ленты
       thread: Диалоги
     edit:
+      add_keyword: Добавить ключевое слово
+      keywords: Ключевые слова
       title: Изменить фильтр
     errors:
+      deprecated_api_multiple_keywords: Эти параметры нельзя изменить из этого приложения, так как применяются к более чем одному ключевому слову фильтра. Используйте более последнее приложение или веб-интерфейс.
       invalid_context: Некорректный контекст или ничего
-      invalid_irreversible: Необратимая фильтрация работает только с лентой уведомлений и домашней лентой
     index:
+      contexts: Фильтры по %{contexts}
       delete: Удалить
       empty: У вас пока нет фильтров.
+      expires_in: Истекает через %{distance}
+      expires_on: Истекает %{date}
+      keywords:
+        few: "%{count} ключевых слова"
+        many: "%{count} ключевых слов"
+        one: "%{count} ключевое слово"
+        other: "%{count} ключевых слов"
       title: Фильтры
     new:
+      save: Сохранить новый фильтр
       title: Добавить фильтр
   footer:
     developers: Разработчикам
@@ -1193,6 +1294,8 @@ ru:
     copy_account_note_text: 'Этот пользователь переехал с %{acct}, вот ваша предыдущая заметка о нём:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} отправил жалобу"
       sign_up:
         subject: "%{name} зарегистрирован"
     digest:
@@ -1503,83 +1606,6 @@ ru:
   tags:
     does_not_match_previous_name: не совпадает с предыдущим именем
   terms:
-    body_html: |
-      <h2>Privacy Policy</h2>
-      <h3 id="collect">What information do we collect?</h3>
-
-      <ul>
-      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="coppa">Children's Online Privacy Protection Act Compliance</h3>
-
-      <p>Our site, products and services are all directed to people who are at least 13 years old. If this server is in the USA, and you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: Условия обслуживания и политика конфиденциальности %{instance}
   themes:
     contrast: Mastodon (высококонтрастная)

@@ -21,6 +21,14 @@ zh-TW:
             username:
               invalid: 只能有字母、數字及底線
               reserved: 是保留關鍵字
+        admin/webhook:
+          attributes:
+            url:
+              invalid: 不是有效的 URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: 不是有效的 URL
         status:
           attributes:
             reblog:
@@ -30,3 +38,12 @@ zh-TW:
             email:
               blocked: 使用不被允許的電子信箱供應商
               unreachable: 似乎不存在
+            role_id:
+              elevated: 不能高於您目前的角色
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: 包含對基本角色不安全的權限
+              elevated: 不能包含您目前角色不具備的權限
+            position:
+              elevated: 不能高於您目前的角色

@@ -1,0 +1,9 @@
+- content_for :page_title do
+  = t('admin.accounts.change_role.title', username: @user.account.username)
+
+= simple_form_for @user, url: admin_user_role_path(@user) do |f|
+  .fields-group
+    = f.association :role, wrapper: :with_block_label, collection: UserRole.assignable, label_method: :name, include_blank: I18n.t('admin.accounts.change_role.no_role')
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

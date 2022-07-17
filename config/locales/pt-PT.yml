@@ -38,7 +38,7 @@ pt-PT:
       one: publicação
       other: publicações
     status_count_before: Que fizeram
-    tagline: Siga os seus amigos e descubra novas amizades
+    tagline: Rede social descentralizada
     terms: Termos de serviço
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
@@ -83,10 +83,8 @@ pt-PT:
     posts_tab_heading: Publicações
     posts_with_replies: Posts e Respostas
     roles:
-      admin: Administrador(a)
       bot: Robô
       group: Grupo
-      moderator: Moderador
     unavailable: Perfil indisponível
     unfollow: Deixar de seguir
   admin:
@@ -105,12 +103,17 @@ pt-PT:
       avatar: Imagem de Perfil
       by_domain: Domínio
       change_email:
-        changed_msg: E-mail da conta alterado com sucesso!
+        changed_msg: E-mail alterado com sucesso!
         current_email: E-mail atual
         label: Alterar e-mail
         new_email: Novo e-mail
         submit: Alterar e-mail
         title: Alterar e-mail para %{username}
+      change_role:
+        changed_msg: Função alterada com sucesso!
+        label: Alterar função
+        no_role: Nenhuma função
+        title: Alterar a função de %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: A confirmar
@@ -154,6 +157,7 @@ pt-PT:
         active: Activo
         all: Todos
         pending: Pendente
+        silenced: Limitadas
         suspended: Supensos
         title: Moderação
       moderation_notes: Notas de moderação
@@ -161,6 +165,7 @@ pt-PT:
       most_recent_ip: IP mais recente
       no_account_selected: Nenhuma conta foi alterada porque nenhuma foi selecionada
       no_limits_imposed: Sem limites impostos
+      no_role_assigned: Nenhuma função atribuída
       not_subscribed: Não inscrito
       pending: Pendente de revisão
       perform_full_suspension: Fazer suspensão completa
@@ -187,12 +192,7 @@ pt-PT:
       reset: Restaurar
       reset_password: Reset palavra-passe
       resubscribe: Reinscrever
-      role: Permissões
-      roles:
-        admin: Administrador(a)
-        moderator: Moderador
-        staff: Equipa
-        user: Utilizador
+      role: Função
       search: Pesquisar
       search_same_email_domain: Outros utilizadores com o mesmo domínio de e-mail
       search_same_ip: Outros utilizadores com o mesmo IP
@@ -428,6 +428,7 @@ pt-PT:
       destroyed_msg: Bloqueio de domínio está a ser removido
       domain: Domínio
       edit: Editar bloqueio de domínio
+      existing_domain_block: Já impôs limites mais rigorosos a %{name}.
       existing_domain_block_html: Você já impôs limites mais restritivos a %{name}, é necessário primeiro <a href="%{unblock_url}">desbloqueá-lo</a>.
       new:
         create: Criar bloqueio
@@ -648,6 +649,67 @@ pt-PT:
       unresolved: Por resolver
       updated_at: Atualizado
       view_profile: Ver perfil
+    roles:
+      add_new: Adicionar função
+      assigned_users:
+        one: "%{count} utilizador"
+        other: "%{count} utilizadores"
+      categories:
+        administration: Administração
+        devops: DevOps
+        invites: Convites
+        moderation: Moderação
+        special: Especiais
+      delete: Eliminar
+      description_html: Com as <strong>funções de utilizador</strong>, pode personalizar quais funções e áreas do Mastodon os seus utilizadores podem aceder.
+      edit: Editar função '%{name}'
+      everyone: Permissões padrão
+      everyone_full_description_html: Esta é a <strong>função base</strong> que afeta <strong>todos os utilizadores</strong>, mesmo aqueles sem uma função atribuída. Todas as outras funções herdam as permissões desta.
+      permissions_count:
+        one: "%{count} permissão"
+        other: "%{count} permissões"
+      privileges:
+        administrator: Administrador
+        administrator_description: Utilizadores com esta permissão irão contornar todas as permissões
+        delete_user_data: Eliminar Dados de Utilizador
+        delete_user_data_description: Permite que os utilizadores eliminem os dados de outros utilizadores sem atraso
+        invite_users: Convidar Utilizadores
+        invite_users_description: Permite aos utilizadores convidar pessoas novas para o servidor
+        manage_announcements: Gerir Anúncios
+        manage_announcements_description: Permite aos utilizadores gerir anúncios no servidor
+        manage_appeals: Gerir Recursos
+        manage_appeals_description: Permite aos utilizadores rever recursos de moderação
+        manage_blocks: Gerir Bloqueios
+        manage_blocks_description: Permite aos utilizadores bloquear provedores de e-mail e endereços IP
+        manage_custom_emojis: Gerir Emojis Personalizados
+        manage_custom_emojis_description: Permite aos utilizadores gerir os emojis personalizados do servidor
+        manage_federation: Gerir Federação
+        manage_federation_description: Permite aos utilizadores bloquear ou permitir federação com outros domínios e controlar a entregabilidade
+        manage_invites: Gerir Convites
+        manage_invites_description: Permite aos utilizadores pesquisar e desativar links de convite
+        manage_reports: Gerir Relatórios
+        manage_reports_description: Permite aos utilizadores rever relatórios e executar ações de moderação contra eles
+        manage_roles: Gerir Funções
+        manage_roles_description: Permite aos usuários gerir e atribuir funções abaixo das deles
+        manage_rules: Gerir Regras
+        manage_rules_description: Permite aos utilizadores alterar as regras do servidor
+        manage_settings: Gerir Configurações
+        manage_settings_description: Permite aos utilizadores alterar as configurações do site
+        manage_taxonomies: Gerir Taxonomias
+        manage_taxonomies_description: Permite aos utilizadores rever o conteúdo em tendência e atualizar as configurações de hashtag
+        manage_user_access: Gerir Acesso de Utilizador
+        manage_user_access_description: Permite aos utilizadores desativar a autenticação em duas etapas de outros utilizadores, alterar o seu endereço de e-mail e redefinir a sua palavra-passe
+        manage_users: Gerir Utilizadores
+        manage_users_description: Permite aos utilizadores ver os detalhes de outros utilizadores e executar ações de moderação contra eles
+        manage_webhooks: Gerir Webhooks
+        manage_webhooks_description: Permite aos utilizadores configurar webhooks para eventos administrativos
+        view_audit_log: Ver Registo de Auditoria
+        view_audit_log_description: Permite aos utilizadores ver um histórico de ações administrativas no servidor
+        view_dashboard: Ver Painel de Controlo
+        view_dashboard_description: Permite aos utilizadores aceder ao painel de controlo e várias métricas
+        view_devops: DevOps
+        view_devops_description: Permite aos utilizadores aceder aos painéis de controlo do Sidekiq e pgHero
+      title: Funções
     rules:
       add_new: Adicionar regra
       delete: Eliminar
@@ -700,9 +762,6 @@ pt-PT:
         deletion:
           desc_html: Permitir a qualquer utilizador eliminar a sua conta
           title: Permitir eliminar contas
-        min_invite_role:
-          disabled: Ninguém
-          title: Permitir convites de
         require_invite_text:
           desc_html: Quando os registos exigirem aprovação manual, faça o texto "Porque se quer juntar a nós?" da solicitação de convite obrigatório, em vez de opcional
           title: Exigir que novos utilizadores preencham um texto de solicitação de convite
@@ -715,9 +774,6 @@ pt-PT:
       show_known_fediverse_at_about_page:
         desc_html: Quando comutado, irá mostrar a previsualização de publicações de todo o fediverse conhecido. De outro modo só mostrará publicações locais.
         title: Mostrar o fediverse conhecido na previsualização da cronologia
-      show_staff_badge:
-        desc_html: Mostrar um crachá da equipa na página de utilizador
-        title: Mostrar crachá da equipa
       site_description:
         desc_html: Mostrar como parágrafo na página inicial e usado como meta tag.Podes usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição do site
@@ -851,6 +907,26 @@ pt-PT:
       edit_preset: Editar o aviso predefinido
       empty: Ainda não definiu nenhum aviso predefinido.
       title: Gerir os avisos predefinidos
+    webhooks:
+      add_new: Adicionar endpoint
+      delete: Eliminar
+      description_html: Um <strong>webhook</strong> possibilita que o Mastodon envie <strong>notificações em tempo real</strong> de eventos seleccionados, para um seu aplicativo, para que este possa <strong>acionar ações automaticamente</strong>.
+      disable: Desativar
+      disabled: Desativado
+      edit: Editar endpoint
+      empty: Não tem ainda qualquer endpoint de webhook configurado.
+      enable: Ativar
+      enabled: Activo
+      enabled_events:
+        one: 1 evento ativado
+        other: "%{count} eventos ativados"
+      events: Eventos
+      new: Novo webhook
+      rotate_secret: Alternar segredo
+      secret: Segredo de assinatura
+      status: Estado
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -915,7 +991,6 @@ pt-PT:
   applications:
     created: Aplicação criada com sucesso
     destroyed: Aplicação eliminada com sucesso
-    invalid_url: O URL é inválido
     regenerate_token: Regenerar token de acesso
     token_regenerated: Token de acesso regenerado com sucesso
     warning: Cuidado com estes dados. Não partilhar com ninguém!
@@ -1104,15 +1179,24 @@ pt-PT:
       public: Cronologias públicas
       thread: Conversações
     edit:
+      add_keyword: Adicionar palavra-chave
+      keywords: Palavras-chave
       title: Editar filtros
     errors:
+      deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir deste aplicativo porque se aplicam a mais de um filtro de palavra-chave. Use um aplicativo mais recente ou a interface web.
       invalid_context: Inválido ou nenhum contexto fornecido
-      invalid_irreversible: Filtragem irreversível só funciona no contexto das notificações ou do início
     index:
+      contexts: Filtros em %{contexts}
       delete: Eliminar
       empty: Não tem filtros.
+      expires_in: Expira em %{distance}
+      expires_on: Expira em %{date}
+      keywords:
+        one: "%{count} palavra-chave"
+        other: "%{count} palavras-chaves"
       title: Filtros
     new:
+      save: Salvar novo filtro
       title: Adicionar novo filtro
   footer:
     developers: Responsáveis pelo desenvolvimento
@@ -1231,6 +1315,8 @@ pt-PT:
     copy_account_note_text: 'Este utilizador migrou de %{acct}, aqui estão as suas notas anteriores sobre ele:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} submeteu uma denúncia"
       sign_up:
         subject: "%{name} inscreveu-se"
     digest:
@@ -1530,70 +1616,70 @@ pt-PT:
       <h3 id="collect">Que informação nós recolhemos?</h3>
 
       <ul>
-      <li><em>Informação básica da conta</em>: Se te registares neste servidor, pode-te ser pedido que indiques um nome de utilizador, um endereço de email e uma palavra-passe. Também podes introduzir informação adicional de perfil, tal como um nome a mostrar e dados biográficos, que carregues uma fotografia para o teu perfil e para o cabeçalho. O nome de utilizador, o nome a mostrar, a biografia, a imagem de perfil e a imagem de cabeçalho são sempre listados publicamente.</li>
-      <li><em>Publicações, seguimento e outra informação pública</em>: A lista de pessoas que tu segues é pública, o mesmo é verdade para os teus seguidores. Quando tu publicas uma mensagem, a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem foi enviada. As mensagens podem conter anexos média, tais como fotografias ou vídeos. Publicações públicas e não listadas são acessíveis publicamente. Quando expões uma publicação no teu perfil, isso é também informação disponível publicamente. As tuas publicações são enviadas aos teus seguidores. Em alguns casos isso significa que elas são enviadas para servidores diferentes onde são guardadas cópias. Quando tu apagas publicações, isso também é enviado para os teus seguidores. A ação de republicar ou favoritar outra publicação é sempre pública.</li>
-      <li><em>Publicações diretas e exclusivas para seguidores</em>: Todas as publicações são guardadas e processadas no servidor. Publicações exclusivas para seguidores são enviadas para os teus seguidores e para utilizadores que são nelas mencionados. As publicações diretas são enviadas apenas para os utilizadores nelas mencionados. Em alguns casos isso significa que elas são enviadas para diferentes servidores onde são guardadas cópias das mesmas. Nós fazemos um grande esforço para limitar o acesso a estas publicações aos utilizadores autorizados, mas outros servidores podem falhar neste objetivo. Por isso, tu deves rever os servidores a que os teus seguidores pertencem. Tu podes ativar uma opção para aprovar e rejeitar manualmente novos seguidores nas configurações. <em>Por favor, tem em mente que os gestores do servidor e qualquer servidor que receba a publicação pode lê-la</em> e que os destinatários podem fazer uma captura de tela, copiar ou partilhar a publicação. <em>Não partilhes qualquer informação perigosa no Mastodon.</em></li>
-      <li><em>IPs e outros metadados</em>: Quando inicias sessão, nós guardamos o endereço de IP a partir do qual iniciaste a sessão, tal como o nome do teu navegador. Todas as sessões estão disponíveis para verificação e revogação nas configurações. O último endereço de IP usado é guardado até 12 meses. Nós também podemos guardar registos de servidor, os quais incluem o endereço de IP de cada pedido dirigido ao nosso servidor.</li>
+      <li><em>Informação básica da conta</em>: Ao registar-se neste servidor, pode ser-lhe pedido que indique um nome de utilizador, um endereço de e-mail e uma palavra-chave. Pode ainda incluir informações adicionais no seu perfil, tais como um nome a exibir e biografia, e carregar uma imagem de perfil e imagem de cabeçalho. O nome de utilizador, nome a exibir, a biografia, a imagem de perfil e a imagem de cabeçalho são sempre listados publicamente.</li>
+      <li><em>Publicações, seguimento e outra informação pública</em>: A lista de pessoas que segue é pública, o mesmo é verdade para os seus seguidores. Quando publica uma mensagem, a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem foi enviada. As mensagens podem conter anexos de media, tais como fotografias ou vídeos. Publicações públicas e não listadas são acessíveis publicamente. Quando destaca uma publicação no seu perfil, isso é também informação disponível publicamente. As suas publicações são enviadas aos seus seguidores, em alguns casos isso significa que elas são enviadas para servidores diferentes onde são guardadas cópias. Quando elimina publicações, isso também é enviado para os teus seguidores. A ação de partilhar ou adicionar uma publicação aos favoritos é sempre pública.</li>
+      <li><em>Publicações diretas e exclusivas para seguidores</em>: Todas as publicações são guardadas e processadas no servidor. Publicações exclusivas para seguidores são enviadas para os teus seguidores e para os utilizadores nelas mencionados. As publicações diretas são enviadas apenas para os utilizadores nelas mencionados. Em alguns casos isso significa que são enviadas para diferentes servidores onde são guardadas cópias. Nós fazemos um grande esforço para limitar o acesso a estas publicações aos utilizadores autorizados, mas outros servidores podem falhar neste objetivo. Por isso, deve rever os servidores a que os seus seguidores pertencem. Pode ativar uma opção para aprovar e rejeitar manualmente novos seguidores nas configurações. <em>Por favor, tenha em mente que os gestores do seu servidor e qualquer servidor que receba a publicação pode lê-la</em> e que os destinatários podem fazer uma captura de tela, copiar ou partilhar a publicação.<em> Não partilhe qualquer informação sensível no Mastodon.</em></li>
+      <li><em>IPs e outros metadados</em>: Quando inicia sessão, nós guardamos o endereço de IP a partir do qual inicou sessão, tal como o nome do seu navegador. Todas as sessões estão disponíveis para verificação e revogação nas configurações. O último endereço de IP usado é guardado até 12 meses. Nós também podemos guardar registos de servidor, os quais incluem o endereço de IP de cada pedido dirigido ao nosso servidor.</li>
       </ul>
 
       <hr class="spacer" />
 
-      <h3 id="use">Para que usamos a tua informação?</h3>
+      <h3 id="use">Para que utilizamos a sua informação?</h3>
 
-      <p>Qualquer informação que recolhemos sobre ti pode ser usada dos seguintes modos:</p>
+      <p>Qualquer informação que recolhemos sobre sí pode ser utilizada dos seguintes modos:</p>
 
       <ul>
-      <li>Para providenciar a funcionalidade central do Mastodon. Tu só podes interagir com o conteúdo de outras pessoas e publicar o teu próprio conteúdo depois de teres iniciado sessão. Por exemplo, tu podes seguir outras pessoas para veres as suas publicações na tua cronologia inicial personalizada. </li>
-      <li>Para ajudar na moderação da comunidade para, por exemplo, comparar o teu endereço IP com outros conhecidos, para determinar a fuga ao banimento ou outras violações.</li>
-      <li>O endereço de e-mail que tu forneces pode ser usado para te enviar informações e/ou notificações sobre outras pessoas que estão a interagir com o teu conteúdo ou a enviar-te mensagens, para responderes a inquéritos e/ou outros pedidos ou questões.</li>
+      <li>Para prover a funcionalidade central do Mastodon. Só pode interagir com o conteúdo de outras pessoas e publicar o seu próprio conteúdo depois de ter iniciado sessão. Por exemplo, pode seguir outras pessoas para veres as suas publicações na sua cronologia inicial personalizada.</li>
+      <li>Para ajudar na moderação da comunidade, por exemplo, para comparar o seu endereço IP com outros conhecidos, para determinar a fuga ao banimento ou outras violações.</li>
+      <li>O endereço de e-mail que fornece pode ser utilizado para lhe enviar informações e/ou notificações sobre outras pessoas que estão a interagir com o seu conteúdo ou a enviar-lhe mensagens, para responder a inquéritos e/ou outros pedidos ou questões.</li>
       </ul>
 
       <hr class="spacer" />
 
-      <h3 id="protect">Como é que nós protegemos a tua informação?</h3>
+      <h3 id="protect">Como protegemos a sua informação?</h3>
 
-      <p>Nós implementamos uma variedade de medidas de segurança para garantir a segurança da tua informação pessoal quando tu introduzes, submetes ou acedes à mesma. Entre outras coisas, a tua sessão de navegação, tal como o tráfego entre as tuas aplicações e a API, estão seguras por SSL e a tua palavra-passe é codificada usando um forte algoritmo de sentido único. Tu podes activar a autenticação em dois passos para aumentares ainda mais a segurança do acesso à tua conta.</p>
+      <p>Implementamos uma variedade de medidas para garantir a segurança da sua informação pessoal quando introduz, submete ou acede à mesma. Entre outras coisas, a sua sessão de navegação, tal como o tráfego entre as tuas aplicações e a API, estão seguras por SSL e a sua palavra-passe é codificada utilizando um forte algoritmo de sentido único. Pode activar a autenticação em duas etapas para aumentar ainda mais a segurança do acesso à sua conta.</p>
 
       <hr class="spacer" />
 
-      <h3 id="data-retention">Qual é a nossa política de retenção de dados?</h3>
+      <h3 id="data-retention">>Qual é a nossa política de retenção de dados?</h3>
 
-      <p>Nós envidaremos todos os esforços no sentido de:</p>
+      <p>Faremos o nosso melhor esforço para:</p>
 
       <ul>
-      <li>Guardar registos do servidor contendo o endereço de IP de todos os pedidos feitos a este servidor, considerando que estes registos não serão guardados por mais de 90 dias.</li>
-      <li>Guardar os endereços de IP associados aos utilizadores registados durante um período que não ultrapassará os 12 meses.</li>
+      <li>Reter registos do servidor contendo o endereço de IP de todos os pedidos feitos a este servidor, considerando que estes registos não sejam guardados por mais de 90 dias.</li>
+      <li>Reter os endereços de IP associados aos utilizadores registados durante um período que não ultrapasse os 12 meses.</li>
       </ul>
 
-      <p>Tu podes pedir e descarregar um ficheiro com o teu conteúdo, incluindo as tuas publicações, os ficheiros multimédia, a imagem de perfil e a imagem de cabeçalho.</p>
+      <p>Pode requer e descarregar um ficheiro com o seu conteúdo, incluindo as suas publicações, os ficheiros multimédia, a imagem de perfil e a imagem de cabeçalho.</p>
 
-      <p>Tu podes apagar a tua conta de modo definitivo e a qualquer momento.</p>
+      <p>Pode eliminar a sua conta de modo irreversível a qualquer momento.</p>
 
       <hr class="spacer"/>
 
-      <h3 id="cookies">Usamos cookies?</h3>
+      <h3 id="cookies">Utilizamos cookies?</h3>
 
-      <p>Sim. Cookies são pequenos ficheiros que um site ou o seu fornecedor de serviço transfere para o disco rígido do teu computador através do teu navegador (se tu permitires). Estes cookies permitem ao site reconhecer o teu navegador e, se tu tiveres uma conta registada, associá-lo a ela.</p>
+      <p>Sim. Cookies são pequenos ficheiros que um site ou o seu fornecedor de serviço transfere para o disco rígido do seu computador através do seu navegador (se você o permitir). Esses cookies possibilitam ao site reconhecer o seu navegador e, se você tiver uma conta registada, associá-lo a ela.</p>
 
-      <p>Nós usamos os cookies para compreender e guardar as tuas preferências para as visitas futuras.</p>
+      <p>Nós usamos os cookies para compreender e guardar as suas preferências para visitas futuras.</p>
 
       <hr class="spacer" />
 
-      <h3 id="disclose">Nós divulgamos alguma informação para entidades externas?</h3>
+      <h3 id="disclose">Divulgamos alguma informação para entidades externas?</h3>
 
-      <p>Nós não vendemos, trocamos ou transferimos de qualquer modo a tua informação pessoal que seja identificável para qualquer entidade externa. Isto não inclui terceiros de confiança que nos ajudam a manter o nosso site, conduzir o nosso negócio ou prestar-te este serviço, desde que esses terceiros concordem em manter essa informação confidencial. Poderemos também revelar a tua informação quando nós acreditamos que isso é apropriado para cumprir a lei, forçar a aplicação dos nossos termos de serviço ou proteger os direitos, propriedade e segurança, nossos e de outrem.</p>
+      <p>Nós não vendemos, trocamos ou transferimos de qualquer modo a sua informação pessoal que seja identificável para qualquer entidade externa. Isto não inclui entindades terceiras de confiança que nos ajudam a manter o nosso site, conduzir o nosso negócio ou prestar-lhe este serviço, desde que essas entendidades concordem em manter essa informação confidencial. Poderemos também revelar a sua informação quando acreditarmos que isso é o apropriado para cumprir a lei, forçar a aplicação dos nossos termos de serviço ou proteger os direitos, propriedade e segurança, nossos e de outrem.</p>
 
-      <p>O teu conteúdo público pode ser descarregado por outros servidores na rede. As tuas publicações públicas e exclusivas para os teus seguidores são enviadas para os servidores onde os teus seguidores residem e as mensagens directas são entregues aos servidores dos seus destinatários, no caso desses seguidores ou destinatários residirem num servidor diferente deste.</p>
+       <p>O seu conteúdo público pode ser descarregado por outros servidores na rede. As suas publicações públicas e exclusivas para os seus seguidores são enviadas para os servidores onde os seus seguidores residem e as mensagens diretas são entregues aos servidores dos seus destinatários, no caso desses seguidores ou destinatários residirem num servidor diferente deste.</p>
 
-      <p>Quando tu autorizas uma aplicação a usar a tua conta, dependendo da abrangência das permissões que tu aprovas, ela pode ter acesso à informação pública do teu perfil, à lista de quem segues, aos teus seguidores, às tuas listas, a todas as tuas publicações e aos teus favoritos. As aplicações nunca terão acesso ao teu endereço de e-mail ou à tua palavra-passe.</p>
+      <p>Quando autoriza uma aplicação a utilizar a sua conta, dependendo da abrangência das permissões que aprova, ela pode ter acesso à informação pública do seu perfil, à lista de quem segue, aos seus seguidores, às suas listas, a todas as suas publicações e aos seus favoritos. As aplicações nunca terão acesso ao seu endereço de e-mail ou à sua palavra-passe.</p>
 
       <hr class="spacer" />
 
       <h3 id="children">Utilização do site por crianças</h3>
 
-      <p>Se este servidor estiver na EU ou na EEA: O nosso site, produtos e serviços são todos dirigidos a pessoas que têm, pelo menos, 16 de idade. Se tu tens menos de 16 anos, devido aos requisitos da GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) não uses este site.</p>
+      <p>Se este servidor estiver na UE ou no EEE: O nosso site, produtos e serviços são todos dirigidos a pessoas que tenham, pelo menos, 16 anos de idade. Se você tem menos de 16 anos de idade, em concordância com os requisitos da GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) não utilize este site.</p>
 
-      <p>Se este servidor estiver nos EUA: O nosso site, produtos e serviços são todos dirigidos a pessoas que têm, pelo menos, 13 anos de idade. Se tu tens menos de 13 anos de idade, devido aos requisitos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não uses este site.</p>
+      <p>Se este servidor estiver nos EUA: O nosso site, produtos e serviços são todos dirigidos a pessoas que tenham, pelo menos, 13 anos de idade. Se você tem menos de 13 anos de idade, em concordância com os requisitos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não utilize este site.</p>
 
       <p>Os requisitos legais poderão ser diferentes se este servidor estiver noutra jurisdição.</p>
 
@@ -1601,9 +1687,9 @@ pt-PT:
 
       <h3 id="changes">Alterações à nossa Política de Privacidade</h3>
 
-      <p>Se nós decidirmos alterar a nossa política de privacidade, nós iremos publicar essas alterações nesta página.</p>
+      <p>Se decidirmos alterar a nossa política de privacidade, iremos publicar essas alterações nesta página.</p>
 
-      <p>Este documento é CC-BY-SA. Ele foi actualizado pela última vez em 7 de Março 2018.</p>
+      <p>Este documento é CC-BY-SA. Ele foi actualizado pela última vez em 26 de Maio 2022.</p>
 
       <p>Originalmente adaptado de <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Termos de Serviço e Política de Privacidade"

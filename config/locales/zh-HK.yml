@@ -34,7 +34,6 @@ zh-HK:
     status_count_after:
       other: 篇文章
     status_count_before: 共發佈了
-    tagline: 關注朋友並探索新朋友
     terms: 使用條款
     unavailable_content: 受限制的伺服器
     unavailable_content_description:
@@ -76,10 +75,8 @@ zh-HK:
     posts_tab_heading: 文章
     posts_with_replies: 包含回覆的文章
     roles:
-      admin: 管理員
       bot: 機械人
       group: 群組
-      moderator: 板主
     unavailable: 無法取得個人檔案
     unfollow: 取消關注
   admin:
@@ -98,7 +95,6 @@ zh-HK:
       avatar: 頭像
       by_domain: 域名
       change_email:
-        changed_msg: 帳號電郵更新成功！
         current_email: 現時電郵
         label: 更改電郵
         new_email: 新的電郵
@@ -175,12 +171,6 @@ zh-HK:
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
-      role: 權限
-      roles:
-        admin: 管理員
-        moderator: 管理員
-        staff: 工作人員
-        user: 普通使用者
       search: 搜尋
       search_same_email_domain: 其他有相同電郵網域的使用者
       search_same_ip: 其他有相同 IP 位址的使用者
@@ -569,9 +559,6 @@ zh-HK:
         deletion:
           desc_html: 允許所有人刪除自己的帳號
           title: 容許刪除帳號
-        min_invite_role:
-          disabled: 沒有人
-          title: 允許發送邀請的身份
         require_invite_text:
           desc_html: 如果已設定為手動審核注冊，請把「加入的原因」設定為必填項目。
           title: 要求新用戶填寫注冊申請
@@ -584,9 +571,6 @@ zh-HK:
       show_known_fediverse_at_about_page:
         desc_html: 如果停用，將會只在本站的歡迎頁顯示本站的文章。
         title: 在訪客預覽本站的時間軸上，顯示跨站文章
-      show_staff_badge:
-        desc_html: 在個人資料頁上顯示工作人員標誌
-        title: 顯示工作人員標誌
       site_description:
         desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/> 你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
         title: 本站介紹
@@ -679,7 +663,6 @@ zh-HK:
   applications:
     created: 已建立應用程式
     destroyed: 已刪除應用程式
-    invalid_url: 所提供的網址不正確
     regenerate_token: 重設 token
     token_regenerated: 已重設 token
     warning: 警告，不要把它分享給任何人！
@@ -838,7 +821,6 @@ zh-HK:
       title: 編輯篩選器
     errors:
       invalid_context: 沒有提供內文或內文無效
-      invalid_irreversible: 不可逆的篩選器只適用放主頁或通知頁面
     index:
       delete: 刪除
       empty: 你沒有過濾器。
@@ -1222,87 +1204,6 @@ zh-HK:
   tags:
     does_not_match_previous_name: 和舊有名稱並不符合
   terms:
-    body_html: |
-      <h2>隱私權政策</h2>
-      <h3 id="collect">我們蒐集甚麼資訊？</h3>
-
-      <ul>
-      <li><em>基本帳戶資訊</em>：如果您在此服務器上註冊，我們可能會要求您輸入用戶名、電子郵件地址和密碼。 您還可以輸入其他個人資料信息（例如顯示名稱和自我簡介），並上傳個人資料圖片和標題圖片。 用戶名、顯示名稱、自我簡介、個人資料圖片和標題圖片會持續公開。</li>
-      <li><em>帖文，關注和其他公共信息</em>：您的關注和追隨者名單為公開資訊。 在發佈帖文時，我們將會存儲日期和時間，以及您用以發佈帖文的應用程序。 帖文可能包含多媒體附件，例如圖片和視頻。 公開和非公開(unlisted)的帖文為公開資訊。 您在個人資料上推薦的帖文時也是公開的資訊。 您的追隨者會收到你的帖文，在某些情況下，它們有可能會在不同的服務器互相傳遞並將儲存副本。 您刪除帖文時亦同樣會傳遞給您的追隨者。 轉發或收藏其他帖文的操作始終是公開的。</li>
-      <li><em>私訊和追隨者限定的帖文</em>：所有的帖子都在服務器上被儲存和處理。 追隨者限定的帖文將傳遞給您的追隨者和其中提及的用家，而私訊僅會傳遞給其中提及的用戶。 在某些情況下，它們有可能會在不同的服務器互相傳遞並將儲存副本。 我們將努力地將訪問權限制為僅授權人員，但其他服務器可能無法這樣做。 因此，請檢查您的追隨者所屬的服務器。 您可以在設置中選擇手動批准和拒絕新追隨者。<em>請記住，服務器和任何接收服務器的操作員都可以查看此類消息</em>，並且收件人可以截屏，複製或以其他方式重新分享。 <em>請勿在Mastodon上分享任何危險信息。</em> </li>
-      <li> <em> IP和其他元數據</em>：登錄時，我們會記錄您登錄時使用的IP位址以及瀏覽器應用程序的名稱。 您可以在設置中查看和撤消所有已登錄的作業階段。 最新上傳的IP位址最多可以儲存12個月。 我們還可能保留服務器日誌，其中包括對我們服務器的每個請求的IP地位。</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">您的資訊將會被用在甚麼用途？</h3>
-
-      <p>我們從您那裡收集的任何資訊都可能通過以下方式使用：</p>
-
-      <ul>
-      <li>提供Mastodon的核心功能：您只可以在登錄後與其他人的內容交流並發佈自己的內容。例如，您可以追隨其他人以在自己的個人化主頁中查看他們的帖文。</li>
-      <li>社區管理：例如將您的IP位址與其他已知的IP位址進行比較來鑑定逃避封鎖或其他侵權行為。</li>
-      <li>您的電郵地址：可能會被用於向您發送信息，有關其他人與您互動或向您發送消息的通知，並用於答複查詢和/或其他請求或問題。</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">我們如何保護您的資訊？</h3>
-
-      <p>當您輸入，提交或訪問您的個人信息時，我們會採取各種安全措施來維護您的個人信息的安全。 除其他事項外，您的瀏覽器作業階段以及應用程序和API之間的流量均使用SSL進行保護。您的密碼也會以強大的單向算法進行散列處理。 您亦可以啟用多重驗證，以進一步安全地訪問您的帳戶。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">我們的數據保留政策</h3>
-
-      <p>我們會致力：</p>
-
-      <ul>
-      <li>保留包含對該服務器所有請求的IP位址的服務器日誌，而保留時間將不會超過90天。</li>
-      <li>保留與註冊用戶關聯的IP位址不超過12個月。</li>
-      </ul>
-
-      <p>您可以請求並下載您的內容備份，包括您的帖文，媒體附件，個人資料圖片和標題圖片。</p>
-
-      <p>您亦可以隨時不可逆地刪除您的帳戶。</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">我們使用cookies嗎？</h3>
-
-      <p>是。 Cookies是站點或其服務提供商通過Web瀏覽器（如果允許）傳輸到計算機硬盤的小文件。 這些cookies使站點能夠識別您的瀏覽器，並且如果您已經擁有註冊帳戶，會連結至您的註冊帳戶。</p>
-
-      <p>我們使用Cookie來了解並保存您的偏好，以供將來訪問。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">我們會否透露任何信息給第三方機構？</h3>
-
-      <p>我們不會將您的個人身份信息出售，交易或以其他方式轉讓給第三方。 這不包括同意對這些信息保密的運營方，和我們開展業務或為您提供服務的受信任的第三方。我們或會在基於對法律的尊重，或在執行我們的網站政策或保護我們或其他人的權利、財產或安全時釋出你的個人資料。</p>
-
-      <p>您的公開內容可能會被網絡中的其他服務器下載。 只要這些追隨者或收件人位於與之不同的服務器上，您的公開帖文和追隨者限定帖文將傳遞到您的追隨者所在的服務器，而私信將傳遞給收件人的服務器。</p>
-
-      <p>當您授權應用程序使用您的帳戶時，根據您批准的權限範圍，它可能會訪問您的公開資訊，您的關注列表，您的關注者，您的列表，所有帖文以及您的收藏夾。 應用程序永遠無法取得您的電子郵件地址或密碼。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">兒童在網站的應用</h3>
-
-      <p>如果此服務器位於歐盟或EEA中：我們的網站，產品和服務只為16歲或以上的人提供服務。 如果您未滿16歲，請按照GDPR的要求 (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">歐盟一般資料保護規範</a>)不使用此網站。</p>
-
-      <p>如果此服務器位於美國：我們的網站，產品和服務只為13歲或以上的人提供服務。 如果您未滿13歲，請按照COPPA的要求 (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">兒童在線隱私權保護法</a>)不使用此網站。</p>
-
-      <p>在其他管轄區內，法律要求可能會有所不同。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">隱私權政策更改</h3>
-
-      <p>請根據英文版本所準，此中文版本只為英文版隱私政策的翻譯版本</p>
-
-      <p>此文件以 CC-BY-SA 授權。英文版本的發佈日期為2018年3月7日。此中文翻譯的翻譯日期為2020年11月28日。</p>
-
-      <p>最初改編自 <a href="https://github.com/discourse/discourse">Discourse的隱私權政策</a>.</p>
     title: "%{instance} 使用條款和隱私權政策"
   themes:
     contrast: 高對比

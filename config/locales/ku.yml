@@ -38,7 +38,7 @@ ku:
       one: şandî
       other: şandî
     status_count_before: Hatin weşan
-    tagline: Hevalên xwe bişopîne û yên nû bibîne
+    tagline: Tora civakî ya nenavendî
     terms: Peyama mercan
     unavailable_content: Rajekarên li hev kirî
     unavailable_content_description:
@@ -83,10 +83,8 @@ ku:
     posts_tab_heading: Şandî
     posts_with_replies: Şandî û bersiv
     roles:
-      admin: Rêvebir
       bot: Bot
       group: Kom
-      moderator: Moderator
     unavailable: Profîl nay bikaranîn
     unfollow: Neşopîne
   admin:
@@ -105,12 +103,17 @@ ku:
       avatar: Wêne
       by_domain: Navper
       change_email:
-        changed_msg: E-nameya ajimêr bi awayekî serkeftî hate guhertin!
+        changed_msg: E-name bi awayekî serkeftî hate guhertin!
         current_email: E-nameya heyî
         label: E-nameyê biguherîne
         new_email: E-nameya nû
         submit: E-nameyê biguherîne
         title: E-nameyê biguherîne bo %{username}
+      change_role:
+        changed_msg: Rol bi awayekî serkeftî hate guhertin!
+        label: Rolê biguherîne
+        no_role: Rol tune
+        title: Rolê biguherîne ji bo %{username}
       confirm: Bipejirîne
       confirmed: Hate pejirandin
       confirming: Tê pejirandin
@@ -154,6 +157,7 @@ ku:
         active: Çalak
         all: Hemû
         pending: Tê nirxandin
+        silenced: Sînorkirî
         suspended: Sekinandî
         title: Çavdêrî
       moderation_notes: Nîşeyên Rêvebirinê
@@ -161,6 +165,7 @@ ku:
       most_recent_ip: IP' a dawî
       no_account_selected: Tu ajimêr nehat hilbijartin ji ber vê tu ajimêr nehat guhertin
       no_limits_imposed: Sînor nay danîn
+      no_role_assigned: Ti rol nehatin diyarkirin
       not_subscribed: Beşdar nebû
       pending: Li benda nirxandinê ye
       perform_full_suspension: Sekinî
@@ -187,12 +192,7 @@ ku:
       reset: Ji nû ve saz bike
       reset_password: Borînpeyvê ji nû ve saz bike
       resubscribe: Dîsa beşdar bibe
-      role: Maf
-      roles:
-        admin: Rêvebir
-        moderator: Çavdêr
-        staff: Xebatkar
-        user: Bikarhêner
+      role: Rol
       search: Bigere
       search_same_email_domain: Bikarhênerên din ên bi heman navpera e-nameyê
       search_same_ip: Bikarhênerên din ên xwedî heman IP
@@ -428,6 +428,7 @@ ku:
       destroyed_msg: Navpera asteng kirinê hat rakirin
       domain: Navper
       edit: Astengkirina navperê serrast bike
+      existing_domain_block: Jixwe te sînorên tundtir li ser %{name} daye kirine.
       existing_domain_block_html: Te bi bandorê mezin sînor danî ser %{name}, Divê tu <a href="%{unblock_url}"> asteng kirinê rabikî, pêşî ya </a>.
       new:
         create: Astengkirinekê çê bike
@@ -650,6 +651,35 @@ ku:
       unresolved: Neçareserkirî
       updated_at: Rojanekirî
       view_profile: Profîlê nîşan bide
+    roles:
+      add_new: Rolê tevlî bike
+      assigned_users:
+        one: "%{count} bikarhêner"
+        other: "%{count} bikarhêner"
+      categories:
+        administration: Rêvebirî
+        devops: Devops
+        invites: Vexwendin
+        moderation: Çavdêrî
+        special: Taybet
+      delete: Jê bibe
+      description_html: Bi <strong>rolên bikarhêner</strong>, tu dikarî fonksiyon û deverên Mastodon ku bikarhênerên wê dikarin xwe bigihînin kesane bikî.
+      edit: Rolê '%{name}' serrast bike
+      everyone: Mafdayînên berdest
+      everyone_full_description_html: Ev <strong>rola bingehîn</strong> bandorê li <strong>hemû bikarhêneran</strong> dike, tevî yên bêyî rolek diyarkirî jî. Hemû rolên din mafdayînan jê digirin.
+      permissions_count:
+        one: "%{count} mafdayîn"
+        other: "%{count} mafdayîn"
+      privileges:
+        administrator: Rêvebir
+        invite_users: Bikarhêneran vexwîne
+        manage_custom_emojis: Emojiyên kesane bi rêve bibe
+        manage_invites: Vexwendinan bi rêve bibe
+        manage_roles: Rolan bi rêve bibe
+        manage_rules: Rolan bi rêve bibe
+        manage_settings: Sazkariyan bi rê ve bibe
+        manage_users: Bikarhêneran bi rêve bibe
+      title: Rol
     rules:
       add_new: Rêbazekê tevlî bike
       delete: Jê bibe
@@ -702,9 +732,6 @@ ku:
         deletion:
           desc_html: Maf bide ku herkes bikaribe ajimêrê te jê bibe
           title: Jê birina ajimêrê vekek
-        min_invite_role:
-          disabled: Ne yek
-          title: Maf bide vexwendinên ji alîyê
         require_invite_text:
           desc_html: Gava ku tomarkirin pêdiviya pejirandina destan dike, Têketina nivîsê "Tu çima dixwazî beşdar bibî?" Bibe sereke ji devla vebijêrkî be
           title: Ji bo bikarhênerên nû divê ku sedemek tevlêbûnê binivîsinin
@@ -717,9 +744,6 @@ ku:
       show_known_fediverse_at_about_page:
         desc_html: Dema ku neçalak be, demnameya gerdûnî ya ku ji rûpela zeviyê ve hatî girêdan tenê bi nîşandana naveroka herêmî tên sînorkirin
         title: Li ser rûpela demnameya ne naskirî naveroka giştî nîşan bide
-      show_staff_badge:
-        desc_html: Di rûpela bikarhêner da rozeta xebatkaran nîşan bike
-        title: Rozeta xebatkara nîşan bike
       site_description:
         desc_html: Paragrafa destpêkê li ser API. Dide nasîn ka çi ev rajekarê Mastodon taybet dike û tiştên din ên girîn. Tu dikarî hashtagên HTML-ê, bi kar bîne di <code>&lt;a&gt;</code> û <code>&lt;em&gt;</code> de.
         title: Danasîna rajekar
@@ -853,6 +877,26 @@ ku:
       edit_preset: Hişyariyên pêşsazkirî serrast bike
       empty: Te hin tu hişyariyên pêşsazkirî destnîşan nekirine.
       title: Hişyariyên pêşsazkirî bi rêve bibe
+    webhooks:
+      add_new: Xala dawîbûnê tevlî bike
+      delete: Jê bibe
+      description_html: "<strong>çengeleke tevnê</strong> dihêle ku Mastodon <strong>agahdariyên dema-rastîn</strong> ên derbarê çalakiyên hilbijartî de bisepîne ser sepana te, bi vî awayî sepana te dikare <strong>reaksiyonan bi awayekî bixweber nîşan bide</strong>."
+      disable: Neçalak bike
+      disabled: Neçalakkirî
+      edit: Xala dawîbûnê serrast bike
+      empty: Hîn çengela tevnê ya xala dawîbûnê ya te ku hatiye pevesazkirin tune ne.
+      enable: Çalak bike
+      enabled: Çalak
+      enabled_events:
+        one: 1 bûyer çalakkirî
+        other: "%{count} bûyer çalakkirî"
+      events: Bûyer
+      new: Çengela tevnê ya nû
+      rotate_secret: Veşartî bizivirîne
+      secret: Îmzekirina veşartî
+      status: Rewş
+      title: Çengelên tevnê
+      webhook: Çengela tevnê
   admin_mailer:
     new_appeal:
       actions:
@@ -917,7 +961,6 @@ ku:
   applications:
     created: Sepan bi awayekî serkeftî hat çêkirin
     destroyed: Sepan bi awayekî serkeftî hat jêbirin
-    invalid_url: URL ya hatiye dayîn ne derbasdar e
     regenerate_token: Nîşandera gihandinê bi nûve çêbike
     token_regenerated: Nîşandera gihandinê bi serkeftî nû ve hat çêkirin
     warning: Bi van daneyan re pir baldar be. Tu caran bi kesî re parve neke!
@@ -1106,10 +1149,10 @@ ku:
       public: Demnameya gelemperî
       thread: Axaftin
     edit:
+      keywords: Peyvkilît
       title: Parzûnê serrast bike
     errors:
       invalid_context: Naverok tune ye yan jî nederbasdar tê peydakirin
-      invalid_irreversible: Tenê qadên agahdarkirinê û serrûpel bi parzûna bêveger re dixebitin
     index:
       delete: Jê bibe
       empty: Parzûnên te tune ne.
@@ -1233,6 +1276,8 @@ ku:
     copy_account_note_text: 'Ev bikarhêner ji %{acct} livî ye, li vir nîşeyên te yên berê ku te di derbarê wî/ê de nivîsandiye:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} ragihandinek şand"
       sign_up:
         subject: "%{name} tomar bû"
     digest:
@@ -1528,13 +1573,13 @@ ku:
     does_not_match_previous_name: bi navê berê re li hev nayê
   terms:
     body_html: |
-      <h2>Privacy Policy</h2>
-      <h3 id="collect">What information do we collect?</h3>
+      <h2>Politîka taybetiyê</h2>
+      <h3 id="collect">Em çi zanyarî kom dikin?</h3>
 
       <ul>
-        <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+        <li><em>Zanyariyên asayî</em>: Ku tu xwe li ser vê rajekarê tomar bikî, Wê ji te xwestin ku e-name û borînpeyvekê têxî. Her wiha dibe ku tu zanyariyên vebijêrkî têxî wekî zanyariyên profîlê profile mînak: Navê xuyangê û jiyanname, wêneya profîlê û wêneya jormalperê bar bikî. Navê bikarhêneriyê, navê xuyangê, jiyanname, wêneya profîlê û wêneya jormalperêher dem bi giştî tên nîşandan.</li>
+        <li><em>Şandî, şopandin û zanyariyên giştî yên din</em>: Kesên ku tu wan dişopînî bi giştî tê nîşandan, heman tişt bo şopîneran e. Dema tu peyamekê dişînî, dane û dem tên tomarkirin wekî sepanê. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any sensitive information over Mastodon.</em></li>
         <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
@@ -1605,7 +1650,7 @@ ku:
 
       <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
 
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+      <p>This document is CC-BY-SA. It was last updated May 26, 2022.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} mercên bikaranîn û politîkayên nehêniyê"

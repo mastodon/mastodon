@@ -39,7 +39,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def thumbnail
-    instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url) : full_pack_url('media/images/preview.jpg')
+    instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url) : full_pack_url('media/images/preview.png')
   end
 
   def stats
@@ -93,7 +93,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   end
 
   def invites_enabled
-    Setting.min_invite_role == 'user'
+    UserRole.everyone.can?(:invite_users)
   end
 
   private

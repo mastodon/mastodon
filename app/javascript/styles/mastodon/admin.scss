@@ -75,6 +75,13 @@ $content-width: 840px;
       height: 100px;
     }
 
+    .logo--wordmark {
+      display: inherit;
+      margin: inherit;
+      width: inherit;
+      height: 20px;
+    }
+
     @media screen and (max-width: $no-columns-breakpoint) {
       & > a:first-child {
         display: none;
@@ -133,12 +140,12 @@ $content-width: 840px;
 
       .simple-navigation-active-leaf a {
         color: $primary-text-color;
-        background-color: $ui-highlight-color;
+        background-color: darken($ui-highlight-color, 2%);
         border-bottom: 0;
         border-radius: 0;
 
         &:hover {
-          background-color: lighten($ui-highlight-color, 5%);
+          background-color: $ui-highlight-color;
         }
       }
     }
@@ -183,12 +190,9 @@ $content-width: 840px;
 
     &-heading {
       display: flex;
-
       padding-bottom: 36px;
       border-bottom: 1px solid lighten($ui-base-color, 8%);
-
       margin: -15px -15px 40px 0;
-
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
@@ -204,6 +208,14 @@ $content-width: 840px;
         & > :not(:first-child) {
           margin-left: 5px;
         }
+      }
+
+      h2 small {
+        font-size: 12px;
+        display: block;
+        font-weight: 500;
+        color: $darker-text-color;
+        line-height: 18px;
       }
 
       @media screen and (max-width: $no-columns-breakpoint) {
@@ -294,7 +306,7 @@ $content-width: 840px;
       width: 100%;
       height: 0;
       border: 0;
-      border-bottom: 1px solid rgba($ui-base-lighter-color, .6);
+      border-bottom: 1px solid rgba($ui-base-lighter-color, 0.6);
       margin: 20px 0;
 
       &.spacer {
@@ -880,7 +892,7 @@ a.name-tag,
     border: 0;
 
     a {
-      color: lighten($ui-highlight-color, 8%);
+      color: $highlight-text-color;
     }
 
     dl:first-child .verified {
@@ -903,7 +915,8 @@ a.name-tag,
   text-align: center;
 }
 
-.applications-list__item {
+.applications-list__item,
+.filters-list__item {
   padding: 15px 0;
   background: $ui-base-color;
   border: 1px solid lighten($ui-base-color, 4%);
@@ -911,7 +924,12 @@ a.name-tag,
   margin-top: 15px;
 }
 
-.announcements-list {
+.user-role {
+  color: var(--user-role-accent);
+}
+
+.announcements-list,
+.filters-list {
   border: 1px solid lighten($ui-base-color, 4%);
   border-radius: 4px;
 
@@ -946,6 +964,17 @@ a.name-tag,
     &__meta {
       padding: 0 15px;
       color: $dark-text-color;
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: none;
+        }
+      }
     }
 
     &__action-bar {
@@ -960,6 +989,33 @@ a.name-tag,
 
     &:last-child {
       border-bottom: 0;
+    }
+  }
+}
+
+.filters-list__item {
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+
+  &__permissions {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  .expiration {
+    font-size: 13px;
+  }
+
+  &.expired {
+    .expiration {
+      color: lighten($error-red, 12%);
+    }
+
+    .permissions-list__item__icon {
+      color: $dark-text-color;
     }
   }
 }

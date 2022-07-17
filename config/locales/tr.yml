@@ -38,7 +38,7 @@ tr:
       one: durum yazıldı
       other: durum yazıldı
     status_count_before: Şu ana kadar
-    tagline: Arkadaşlarını takip et ve yenilerini keşfet
+    tagline: Merkezi olmayan sosyal ağ
     terms: Kullanım şartları
     unavailable_content: Denetlenen sunucular
     unavailable_content_description:
@@ -83,10 +83,8 @@ tr:
     posts_tab_heading: Tootlar
     posts_with_replies: Tootlar ve yanıtlar
     roles:
-      admin: Yönetici
       bot: Bot
       group: Grup
-      moderator: Denetleyici
     unavailable: Profil kullanılamıyor
     unfollow: Takibi bırak
   admin:
@@ -105,12 +103,17 @@ tr:
       avatar: Profil resmi
       by_domain: Alan adı
       change_email:
-        changed_msg: Hesap e-postası başarıyla değiştirildi!
+        changed_msg: E-posta başarıyla değiştirildi!
         current_email: Mevcut e-posta
         label: E-postayı değiştir
         new_email: Yeni e-posta
         submit: E-postayı değiştir
         title: "%{username} için e-postayı değiştir"
+      change_role:
+        changed_msg: Rol başarıyla değiştirildi!
+        label: Rolü değiştir
+        no_role: Rol yok
+        title: "%{username} için rolü değiştir"
       confirm: Onayla
       confirmed: Onaylandı
       confirming: Onaylanıyor
@@ -154,6 +157,7 @@ tr:
         active: Etkin
         all: Hepsi
         pending: Bekliyor
+        silenced: Sınırlı
         suspended: Uzaklaştırılanlar
         title: Denetim
       moderation_notes: Denetleme notları
@@ -161,6 +165,7 @@ tr:
       most_recent_ip: Son IP
       no_account_selected: Hiçbiri seçilmediğinden hiçbir hesap değiştirilmedi
       no_limits_imposed: Sınır koymaz
+      no_role_assigned: Rol atanmamış
       not_subscribed: Abone edilmedi
       pending: Bekleyen yorum
       perform_full_suspension: Askıya al
@@ -187,12 +192,7 @@ tr:
       reset: Sıfırla
       reset_password: Parolayı sıfırla
       resubscribe: Yeniden abone ol
-      role: İzinler
-      roles:
-        admin: Yönetici
-        moderator: Denetleyici
-        staff: Personel
-        user: Kullanıcı
+      role: Rol
       search: Ara
       search_same_email_domain: Aynı e-posta alan adına sahip diğer kullanıcılar
       search_same_ip: Aynı IP adresine sahip diğer kullanıcılar
@@ -428,6 +428,7 @@ tr:
       destroyed_msg: Domain bloğu silindi
       domain: Alan adı
       edit: Etki alanı bloğunu düzenle
+      existing_domain_block: Zaten %{name} için daha katı sınırlamalar dayatmıştınız.
       existing_domain_block_html: '%{name}''e zaten daha katı sınırlar uyguladınız, önce <a href="%{unblock_url}">engellemesini kaldırmanız</a> gerekiyor.'
       new:
         create: Yeni blok oluştur
@@ -648,6 +649,67 @@ tr:
       unresolved: Giderilmedi
       updated_at: Güncellendi
       view_profile: Profili görüntüle
+    roles:
+      add_new: Rol ekle
+      assigned_users:
+        one: "%{count} kullanıcı"
+        other: "%{count} kullanıcı"
+      categories:
+        administration: Yönetim
+        devops: Devops
+        invites: Davetler
+        moderation: Denetim
+        special: Özel
+      delete: Sil
+      description_html: "<strong>Kullanıcı rolleri</strong> ile, kullanıcılarınızın Mastodon'un hangi işlevlerine ve alanlarına erişebileceğini düzenleyebilirsiniz."
+      edit: "'%{name}' rolünü düzenle"
+      everyone: Varsayılan izinler
+      everyone_full_description_html: Bu, herhangi bir rol atanmamış olanlar da olmak üzere <strong>tüm kullanıcıları</strong> etkileyen <strong>temel rol</strong>dür. Diğer tüm roller izinleri bu rolden alıyorlar.
+      permissions_count:
+        one: "%{count} izin"
+        other: "%{count} izin"
+      privileges:
+        administrator: Yönetici
+        administrator_description: Bu izne sahip kullanıcılar tüm diğer izinleri atlıyorlar
+        delete_user_data: Kullanıcı Verilerini Silme
+        delete_user_data_description: Kullanıcıların, diğer kullanıcıların verisini gecikme olmaksızın silmesine izin verir
+        invite_users: Kullanıcıları Davet Etme
+        invite_users_description: Kullanıcıların yeni kişileri sunucuya davet etmesine izin verir
+        manage_announcements: Duyuruları Yönetme
+        manage_announcements_description: Kullanıcıların sunucudaki duyuruları yönetmesine izin verir
+        manage_appeals: İtirazları Yönetme
+        manage_appeals_description: Kullanıcıların denetleme eylemlerine itirazları gözden geçirmesine izin verir
+        manage_blocks: Engelleri Yönetme
+        manage_blocks_description: Kullanıcıların e-posta sağlayıcıları ve IP adreslerini engellemesine izin verir
+        manage_custom_emojis: Özel İfadeleri Yönetme
+        manage_custom_emojis_description: Kullanıcıların sunucudaki özel ifadeleri yönetmesine izin verir
+        manage_federation: Birleştirme Yönetme
+        manage_federation_description: Kullanıcıların diğer alan adlarıyla birleştirmeye izin vermesi veya engellemesine ve teslim edilebilirliği denetlemesine izin verir
+        manage_invites: Davetleri Yönetme
+        manage_invites_description: Kullanıcıların davet bağlantılarını görüntüleme ve etkisizleştirmesine izin verir
+        manage_reports: Raporları Yönetme
+        manage_reports_description: Kullanıcıların bildirimleri incelemesine ve onlara yönelik denetim eylemleri gerçekleştirmesine izin verir
+        manage_roles: Rolleri Yönetme
+        manage_roles_description: Kullanıcıların kendi rollerinden düşük rolleri atamasına izin verir
+        manage_rules: Kuralları Yönetme
+        manage_rules_description: Kullanıcıların sunucu kurallarını değiştirmesine izin ver
+        manage_settings: Ayarları Yönetme
+        manage_settings_description: Kullanıcıların site ayarlarını değiştirmesine izin verir
+        manage_taxonomies: Kategorileri Yönetme
+        manage_taxonomies_description: Kullanıcıların öne çıkan içeriği incelemesine ve etiket ayarlarını güncellemesine izin verir
+        manage_user_access: Kullanıcı Erişimini Yönetme
+        manage_user_access_description: Kullanıcıların, diğer kullanıcıların işi aşamalı yetkilendirme, e-posta adreslerini değiştirme ve parolalarını sıfırlama eylemlerini etkisizleştirmesine izin verir
+        manage_users: Kullanıcıları Yönetme
+        manage_users_description: Kullanıcıların, diğer kullanıcıların ayrıntılarını görüntülemesine ve onlara karşı denetim eylemleri gerçekleştirmesine izin verir
+        manage_webhooks: Webhookları Yönetme
+        manage_webhooks_description: Kullanıcıların yönetsel olaylar için webhook kurmasına izin verir
+        view_audit_log: Denetim Kaydını Görüntüleme
+        view_audit_log_description: Kullanıcıların sunucudaki yönetsel eylemlerin bir tarihçesini görüntülemesine izin verir
+        view_dashboard: Ana Paneli Görüntüleme
+        view_dashboard_description: Kullanıcıların ana panele ve çeşitli ölçütlere erişmesine izin verir
+        view_devops: Devops
+        view_devops_description: Kullanıcıların Sidekiq ve pgHero panellerine erişmesine izin verir
+      title: Roller
     rules:
       add_new: Kural ekle
       delete: Sil
@@ -700,9 +762,6 @@ tr:
         deletion:
           desc_html: Herkese hesabını silme izni ver
           title: Hesap silmeyi aç
-        min_invite_role:
-          disabled: Hiç kimse
-          title: tarafından yapılan davetlere izin ver
         require_invite_text:
           desc_html: Kayıtlar elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
           title: Yeni kullanıcıların katılmak için bir gerekçe sunmasını gerektir
@@ -715,9 +774,6 @@ tr:
       show_known_fediverse_at_about_page:
         desc_html: Değiştirildiğinde, bilinen bütün fediverse'lerden gönderileri ön izlemede gösterir. Diğer türlü sadece yerel gönderileri gösterecektir.
         title: Zaman çizelgesi ön izlemesinde bilinen fediverse'i göster
-      show_staff_badge:
-        desc_html: Kullanıcının sayfasında bir personel rozeti göster
-        title: Personel rozeti göster
       site_description:
         desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
         title: Site açıklaması
@@ -851,6 +907,26 @@ tr:
       edit_preset: Uyarı ön-ayarını düzenle
       empty: Henüz önceden ayarlanmış bir uyarı tanımlanmadı.
       title: Uyarı ön-ayarlarını yönet
+    webhooks:
+      add_new: Uç nokta ekle
+      delete: Sil
+      description_html: Bir <strong>web kancası</strong> Mastodon'un, uygulamanızda seçili olaylar hakkında <strong>gerçek zamanlı bildirimler</strong> göndermesini sağlar, böylece uygulamanız <strong>otomatik olarak tepkileri tetikleyebilir</strong>.
+      disable: Devre dışı bırak
+      disabled: Devre dışı
+      edit: Uç nokta düzenle
+      empty: Henüz yapılandırılmış bir web kancanız yok.
+      enable: Etkinleştir
+      enabled: Etkin
+      enabled_events:
+        one: 1 aktif etkinlik
+        other: "%{count} aktif etkinlik"
+      events: Olaylar
+      new: Yeni web kancası
+      rotate_secret: Gizi döndür
+      secret: Gizi imzalama
+      status: Durum
+      title: Web kancaları
+      webhook: Web kancası
   admin_mailer:
     new_appeal:
       actions:
@@ -915,7 +991,6 @@ tr:
   applications:
     created: Uygulama başarıyla oluşturuldu
     destroyed: Uygulama başarıyla silindi
-    invalid_url: Verilen URL geçerli değil
     regenerate_token: Erişim belirtecini yeniden oluştur
     token_regenerated: Erişim belirteci başarıyla oluşturuldu
     warning: Bu verilere çok dikkat edin. Asla kimseyle paylaşmayın!
@@ -1104,15 +1179,24 @@ tr:
       public: Genel zaman çizelgesi
       thread: Sohbetler
     edit:
+      add_keyword: Anahtar sözcük ekle
+      keywords: Anahtar Sözcükler
       title: Filtreyi düzenle
     errors:
+      deprecated_api_multiple_keywords: Bu parametreler, birden fazla filtre anahtar sözcüğü için geçerli olduğundan dolayı bu uygulama içerisinden değiştirilemezler. Daha yeni bir uygulama veya web arayüzünü kullanın.
       invalid_context: Sıfır ya da geçersiz içerik sağlandı
-      invalid_irreversible: Geri dönüşümsüz filtreleme sadece anasayfa ya da bildirim bağlamında çalışır
     index:
+      contexts: "%{contexts} içindeki filtreler"
       delete: Sil
       empty: Hiç filtreniz yok.
+      expires_in: "%{distance} sürede sona eriyor"
+      expires_on: "%{date} tarihinde sona eriyor"
+      keywords:
+        one: "%{count} anahtar sözcük"
+        other: "%{count} anahtar sözcük"
       title: Filtreler
     new:
+      save: Yeni filtre kaydet
       title: Yeni filtre ekle
   footer:
     developers: Geliştiriciler
@@ -1231,6 +1315,8 @@ tr:
     copy_account_note_text: 'Bu kullanıcı %{acct} adresinden taşındı, işte onlarla ilgili önceki notlarınız:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} bir bildirim gönderdi"
       sign_up:
         subject: "%{name} kaydoldu"
     digest:
@@ -1532,7 +1618,7 @@ tr:
       <ul>
       <li><em>Temel hesap bilgileri</em>: Bu sunucuya kaydolursanız, bir kullanıcı adı, bir e-posta adresi ve bir parola girmeniz istenebilir. Ayrıca, ekran adı ve biyografi gibi ek profil bilgileri girebilir ve bir profil fotoğrafı ve başlık resmi yükleyebilirsiniz. Kullanıcı adı, ekran ad, biyografi, profil fotoğrafı ve başlık resmi her zaman herkese açık olarak listelenir.</li>
       <li><em>Gönderiler, takip etmeler ve diğer herkese açık bilgiler</em>: Takip ettiğiniz kişilerin listesi herkese açık olarak listelenir, sizi takip edenler için de aynısı geçerlidir. Bir mesaj gönderdiğinizde, mesajı gönderdiğiniz uygulamanın yanı sıra tarih ve saati de saklanır. Mesajlar, resim ve video gibi medya ekleri içerebilir. Herkese açık ve listelenmemiş gönderiler halka açıktır. Profilinizde bir gönderiyi yayınladığınızda, bu da herkese açık olarak mevcut bir bilgidir. Gönderileriniz takipçilerinize iletilir, bazı durumlarda farklı sunuculara gönderilir ve kopyalar orada saklanır. Gönderilerinizi sildiğinizde, bu da takipçilerinize iletilir. Başka bir gönderiyi yeniden bloglama veya favorileme eylemi her zaman halka açıktır.</li>
-      <li><em>Doğrudan ve takipçilere özel gönderiler</em>: Tüm gönderiler sunucuda saklanır ve işlenir. Takipçilere özel gönderiler, takipçilerinize ve içinde bahsedilen kullanıcılara, doğrudan gönderiler ise yalnızca içinde bahsedilen kullanıcılara iletilir. Bu, bazı durumlarda farklı sunuculara iletildiği ve kopyaların orada saklandığı anlamına gelir. Bu gönderilere erişimi yalnızca yetkili kişilerle sınırlamak için iyi niyetle çalışıyoruz, ancak diğer sunucular bunu yapamayabilir. Bu nedenle, takipçilerinizin ait olduğu sunucuları incelemek önemlidir. Ayarlarda yeni izleyicileri manuel olarak onaylama ve reddetme seçeneğini değiştirebilirsiniz. <em>Sunucuyu ve alıcı sunucuyu işleten kişilerin bu mesajları görüntüleyebileceğini unutmayın</em>, ve alıcılar ekran görüntüsü alabilir, kopyalayabilir veya başka bir şekilde yeniden paylaşabilir. <em>Mastodon üzerinden herhangi bir tehlikeli bilgi paylaşmayın.</em></li>
+      <li><em>Doğrudan ve takipçilere özel gönderiler</em>: Tüm gönderiler sunucuda saklanır ve işlenir. Takipçilere özel gönderiler, takipçilerinize ve içinde bahsedilen kullanıcılara, doğrudan gönderiler ise yalnızca içinde bahsedilen kullanıcılara iletilir. Bu, bazı durumlarda farklı sunuculara iletildiği ve kopyaların orada saklandığı anlamına gelir. Bu gönderilere erişimi yalnızca yetkili kişilerle sınırlamak için iyi niyetle çalışıyoruz, ancak diğer sunucular bunu yapamayabilir. Bu nedenle, takipçilerinizin ait olduğu sunucuları incelemek önemlidir. Ayarlarda yeni izleyicileri manuel olarak onaylama ve reddetme seçeneğini değiştirebilirsiniz. <em>Sunucuyu ve alıcı sunucuyu işleten kişilerin bu mesajları görüntüleyebileceğini unutmayın</em>, ve alıcılar ekran görüntüsü alabilir, kopyalayabilir veya başka bir şekilde yeniden paylaşabilir. <em>Mastodon üzerinden herhangi bir hassas bilgi paylaşmayın.</em></li>
       <li><em>IP'ler ve diğer meta veriler</em>: Oturum açarken, giriş yaptığınız IP adresini ve tarayıcı uygulamanızın adını kaydederiz. Giriş yapılan tüm oturumlar, incelemek ve iptal etmek için ayarlarda mevcuttur. En son kullanılan IP adresi 12 aya kadar saklanır. Sunucumuza gelen her isteğin IP adresini içeren sunucu loglarını da saklayabiliriz.</li>
       </ul>
 
@@ -1564,7 +1650,6 @@ tr:
       <li>Bu sunucuya yapılan tüm isteklerin IP adresini içeren sunucu loglarını, bu tür logların şimdiye kadar saklandığı gibi, 90 günden fazla saklamayacağız.</li>
       <li>Kayıtlı kullanıcılarla ilişkili IP adreslerini en fazla 12 ay boyunca saklayacağız.</li>
       </ul>
-
       <p>Gönderileriniz, medya ekleriniz, profil fotoğrafınız ve başlık resminiz dahil, içeriğimizin arşivini talep edebilir ve indirebilirsiniz.</p>
 
       <p>Hesabınızı istediğiniz zaman geri alınamaz şekilde silebilirsiniz.</p>
@@ -1603,7 +1688,7 @@ tr:
 
       <p>Gizlilik politikamızı değiştirmeye karar verirsek, bu değişiklikleri bu sayfada yayınlayacağız.</p>
 
-      <p>Bu belge CC-BY-SA altında lisanslanmıştır. En son 7 Mart 2018 tarihinde güncellenmiştir.</p>
+      <p>Bu belge CC-BY-SA altında lisanslanmıştır. En son 26 Mayıs 2022 tarihinde güncellenmiştir.</p>
 
       <p><a href="https://github.com/discourse/discourse">Discourse gizlilik politikasından uyarlanmıştır</a>.</p>
     title: "%{instance} Hizmet Şartları ve Gizlilik Politikası"

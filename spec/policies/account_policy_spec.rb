@@ -5,7 +5,7 @@ require 'pundit/rspec'
 
 RSpec.describe AccountPolicy do
   let(:subject) { described_class }
-  let(:admin)   { Fabricate(:user, admin: true).account }
+  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:account) }
   let(:alice)   { Fabricate(:account) }
 
@@ -55,7 +55,7 @@ RSpec.describe AccountPolicy do
     end
   end
 
-  permissions :redownload?, :subscribe?, :unsubscribe? do
+  permissions :redownload? do
     context 'admin' do
       it 'permits' do
         expect(subject).to permit(admin)
@@ -70,7 +70,7 @@ RSpec.describe AccountPolicy do
   end
 
   permissions :suspend?, :silence? do
-    let(:staff) { Fabricate(:user, admin: true).account }
+    let(:staff) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
 
     context 'staff' do
       context 'record is staff' do
@@ -94,7 +94,7 @@ RSpec.describe AccountPolicy do
   end
 
   permissions :memorialize? do
-    let(:other_admin) { Fabricate(:user, admin: true).account }
+    let(:other_admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
 
     context 'admin' do
       context 'record is admin' do

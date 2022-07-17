@@ -71,7 +71,6 @@ class Status extends ImmutablePureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map,
     account: ImmutablePropTypes.map,
-    otherAccounts: ImmutablePropTypes.list,
     onClick: PropTypes.func,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
@@ -119,6 +118,7 @@ class Status extends ImmutablePureComponent {
   state = {
     showMedia: defaultMediaVisibility(this.props.status),
     statusId: undefined,
+    forceFilter: undefined,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -280,6 +280,15 @@ class Status extends ImmutablePureComponent {
     this.handleToggleMediaVisibility();
   }
 
+  handleUnfilterClick = e => {
+    this.setState({ forceFilter: false });
+    e.preventDefault();
+  }
+
+  handleFilterClick = () => {
+    this.setState({ forceFilter: true });
+  }
+
   _properStatus () {
     const { status } = this.props;
 
@@ -298,7 +307,7 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend, rebloggedByText;
 
-    const { intl, hidden, featured, otherAccounts, unread, showThread, scrollKey, pictureInPicture } = this.props;
+    const { intl, hidden, featured, unread, showThread, scrollKey, pictureInPicture } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -331,7 +340,8 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if (status.get('filtered') || status.getIn(['reblog', 'filtered'])) {
+    const matchedFilters = status.get('matched_filters');
+    if (this.state.forceFilter === undefined ? matchedFilters : this.state.forceFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
@@ -340,7 +350,11 @@ class Status extends ImmutablePureComponent {
       return (
         <HotKeys handlers={minHandlers}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
-            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
+            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
+            {' '}
+            <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
+              <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
+            </button>
           </div>
         </HotKeys>
       );
@@ -457,11 +471,10 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    if (otherAccounts && otherAccounts.size > 0) {
-      statusAvatar = <AvatarComposite accounts={otherAccounts} size={48} />;
+    if (account ==  null && status.get('visibility') === 'public') {
+      <AvatarOverlayIcon account={status.get('account')} visibility={status.get('visibility')} />
     } else if (account === undefined || account === null) {
-      statusAvatar = status.get('visibility') === 'public' ? <Avatar account={status.get('account')} size={48} />
-                                                           : <AvatarOverlayIcon account={status.get('account')} visibility={status.get('visibility')} />
+      statusAvatar = <Avatar account={status.get('account')} size={48} />;
     } else {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
@@ -494,7 +507,7 @@ class Status extends ImmutablePureComponent {
                   {statusAvatar}
                 </div>
 
-                <DisplayName account={status.get('account')} others={otherAccounts} />
+                <DisplayName account={status.get('account')} />
               </a>
             </div>
 
@@ -502,7 +515,7 @@ class Status extends ImmutablePureComponent {
 
             {media}
 
-            <StatusActionBar scrollKey={scrollKey} status={status} account={account} {...other} />
+            <StatusActionBar scrollKey={scrollKey} status={status} account={account} onFilter={matchedFilters && this.handleFilterClick} {...other} />
           </div>
         </div>
       </HotKeys>

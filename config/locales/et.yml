@@ -35,7 +35,6 @@ et:
       one: postitust
       other: staatuseid
     status_count_before: Kes on avaldanud
-    tagline: Jälgi sõpru ja leia uusi
     terms: Kasutustingimused
     unavailable_content: Sisu pole saadaval
     unavailable_content_description:
@@ -76,10 +75,8 @@ et:
     posts_tab_heading: Postitused
     posts_with_replies: Postitused ja vastused
     roles:
-      admin: Administraator
       bot: Robot
       group: Grupp
-      moderator: Moderaator
     unavailable: Profiil pole saadaval
     unfollow: Lõpeta jälgimine
   admin:
@@ -97,7 +94,6 @@ et:
       avatar: Profiilipilt
       by_domain: Domeen
       change_email:
-        changed_msg: Konto e-postiaadress edukalt muudetud!
         current_email: Praegune e-postiaadress
         label: Muuda e-posti aadressi
         new_email: Uus е-posti aadress
@@ -161,12 +157,6 @@ et:
       reset: Lähtesta
       reset_password: Lähtesta salasõna
       resubscribe: Telli taas
-      role: Õigused
-      roles:
-        admin: Administraator
-        moderator: Moderaator
-        staff: Personal
-        user: Kasutaja
       search: Otsi
       search_same_email_domain: Muud kasutajad sama e-posti domeeniga
       search_same_ip: Teised kasutajad, kellel on sama IP
@@ -444,9 +434,6 @@ et:
         deletion:
           desc_html: Luba kasutajatel oma konto kustutada
           title: Ava kontode kustutamine
-        min_invite_role:
-          disabled: Mitte keegi
-          title: Luba kutseid
       registrations_mode:
         modes:
           approved: Kinnitus vajalik konto loomisel
@@ -456,9 +443,6 @@ et:
       show_known_fediverse_at_about_page:
         desc_html: Kui lubatud, näitab kõiki teatud fediversumi tuututusi. Vastasel juhul näidatakse ainult kohalike tuututusi.
         title: Näita teatud fediversumit ajajoone eelvaates
-      show_staff_badge:
-        desc_html: Näita personalimärki kasutaja profiilil
-        title: Näita personalimärki
       site_description:
         desc_html: Sissejuhatuslik lõik API kohta. Kirjelda, mis teeb selle Mastodoni serveri eriliseks ja ka muud tähtsat. Te saate kasutada HTMLi silte, peamiselt <code>&lt;a&gt;</code> ja <code>&lt;em&gt;</code>.
         title: Serveri kirjeldus
@@ -540,7 +524,6 @@ et:
   applications:
     created: Rakenduse loomine õnnestus
     destroyed: Rakenduse kustutamine õnnestus
-    invalid_url: Antud URL on vale
     regenerate_token: Loo uus access token
     token_regenerated: Access tokeni loomine õnnestus
     warning: Olge nende andmetega ettevaatlikud. Ärge jagage neid kellegagi!
@@ -685,7 +668,6 @@ et:
       title: Muuda filtrit
     errors:
       invalid_context: Puudulik või vale kontekst
-      invalid_irreversible: Taastamatu filter töötab ainult kodu või teavituste kontekstis
     index:
       delete: Kustuta
       empty: Teil pole filtreid.

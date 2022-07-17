@@ -13,7 +13,7 @@
           .sidebar__toggle
             .sidebar__toggle__logo
               = link_to root_path do
-                = svg_logo_full
+                = logo_as_symbol(:wordmark)
 
             = link_to '#', class: 'sidebar__toggle__icon' do
               = fa_icon 'bars'
@@ -23,7 +23,10 @@
     .content-wrapper
       .content
         .content-heading
-          %h2= yield :page_title
+          - if content_for?(:heading)
+            = yield :heading
+          - else
+            %h2= yield :page_title
 
           - if :heading_actions
             .content-heading-actions

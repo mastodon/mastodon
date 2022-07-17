@@ -49,6 +49,7 @@ es-MX:
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de un toot
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevos retoots para los toots que han sido recientemente retooteados (sólo afecta a los retoots recibidos recientemente)
+        setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un click
         setting_display_media_default: Ocultar contenido multimedia marcado como sensible
         setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
@@ -67,6 +68,11 @@ es-MX:
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
         name: 'Puede que quieras usar uno de estos:'
+      filters:
+        action: Elegir qué acción realizar cuando una publicación coincide con el filtro
+        actions:
+          hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
+          warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
@@ -90,6 +96,15 @@ es-MX:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando se marca, solo se mostrarán los toots en los idiomas seleccionados en los timelines públicos
+        role: El rol controla qué permisos tiene el usuario
+      user_role:
+        color: Color que se utilizará para el rol a lo largo de la interfaz de usuario, como RGB en formato hexadecimal
+        highlighted: Esto hace que el rol sea públicamente visible
+        name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
+        permissions_as_keys: Los usuarios con este rol tendrán acceso a...
+      webhook:
+        events: Seleccionar eventos para enviar
+        url: Donde los eventos serán enviados
     labels:
       account:
         fields:
@@ -151,6 +166,7 @@ es-MX:
         phrase: Palabra clave o frase
         setting_advanced_layout: Habilitar interfaz web avanzada
         setting_aggregate_reblogs: Agrupar retoots en las líneas de tiempo
+        setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar ventana de confirmación antes de un Retoot
         setting_crop_images: Recortar a 16x9 las imágenes de los toots no expandidos
@@ -176,6 +192,7 @@ es-MX:
         setting_use_pending_items: Modo lento
         severity: Severidad
         sign_in_token_attempt: Código de seguridad
+        title: Título
         type: Importar tipo
         username: Nombre de usuario
         username_or_email: Usuario o Email
@@ -184,6 +201,10 @@ es-MX:
         with_dns_records: Incluye los registros MX y las IP del dominio
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Ocultar completamente
+          warn: Ocultar con una advertencia
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
@@ -217,6 +238,17 @@ es-MX:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a los toots usar esta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de insignia
+        highlighted: Mostrar rol como insignia en perfiles de usuario
+        name: Nombre
+        permissions_as_keys: Permisos
+        position: Prioridad
+      webhook:
+        events: Eventos habilitados
+        url: URL de Endpoint
     'no': 'No'
     recommended: Recomendado
     required:

@@ -68,6 +68,11 @@ ca:
         with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
         name: 'És possible que vulguis utilitzar una d''aquestes:'
+      filters:
+        action: Tria quina acció cal executar quan una publicació coincideixi amb el filtre
+        actions:
+          hide: Ocultar completament el contingut filtrat, comportant-se com si no existís
+          warn: Oculta el contingut filtrat rera un avís mencionant el títol del filtre
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -91,6 +96,16 @@ ca:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
         chosen_languages: Quan estigui marcat, només es mostraran les publicacions en les llengües seleccionades en les línies de temps públiques
+        role: El rol controla quines permissions té l'usuari
+      user_role:
+        color: Color que s'utilitzarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
+        highlighted: Això torno el rol visibile publicament
+        name: Nom públic del rol, si el rol està configurat per a ser mostrat com a insígnia
+        permissions_as_keys: Els usuaris amb aquest rol tingran accés a...
+        position: El rol superior decideix la resolució de conflictes en certes situacions. Certes accions només es poden realitzar amb rols amb menor prioritat
+      webhook:
+        events: Selecciona esdeveniments a enviar
+        url: On els esdeveniments seran enviats
     labels:
       account:
         fields:
@@ -178,6 +193,7 @@ ca:
         setting_use_pending_items: Mode lent
         severity: Severitat
         sign_in_token_attempt: Codi de seguretat
+        title: Títol
         type: Importa el tipus
         username: Nom d'usuari
         username_or_email: Nom d'usuari o adreça electrònica
@@ -186,6 +202,10 @@ ca:
         with_dns_records: Incloure registres MX i IP del domini
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Oculta completament
+          warn: Oculta amb un avís
       interactions:
         must_be_follower: Bloqueja les notificacions de persones que no em segueixen
         must_be_following: Bloqueja les notificacions de persones no seguides
@@ -219,6 +239,17 @@ ca:
         name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
         usable: Permetre a les publicacions emprar aquesta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de la insígnia
+        highlighted: Motra el rol com a insígnia en el perfil dels usuaris
+        name: Nom
+        permissions_as_keys: Permisos
+        position: Prioritat
+      webhook:
+        events: Esdeveniments activats
+        url: URL del extrem
     'no': 'No'
     recommended: Recomanat
     required:
