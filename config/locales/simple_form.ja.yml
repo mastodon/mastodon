@@ -37,6 +37,7 @@ ja:
         current_password: 現在のアカウントのパスワードを入力してください
         current_username: 確認のため、現在のアカウントのユーザー名を入力してください
         digest: 長期間使用していない場合と不在時に返信を受けた場合のみ送信されます
+        discoverable: レコメンド、トレンド、その他の機能により、あなたのアカウントを他の人から見つけられるようにします
         email: 確認のメールが送信されます
         fields: プロフィールに表として4つまでの項目を表示することができます
         header: "%{size}までのPNG、GIF、JPGが利用可能です。 %{dimensions}pxまで縮小されます"
@@ -48,6 +49,7 @@ ja:
         phrase: 投稿内容の大文字小文字や閲覧注意に関係なく一致
         scopes: アプリの API に許可するアクセス権を選択してください。最上位のスコープを選択する場合、個々のスコープを選択する必要はありません。
         setting_aggregate_reblogs: 最近ブーストされた投稿が新たにブーストされても表示しません (設定後受信したものにのみ影響)
+        setting_always_send_emails: 通常、Mastodon からメール通知は行われません。
         setting_default_sensitive: 閲覧注意状態のメディアはデフォルトでは内容が伏せられ、クリックして初めて閲覧できるようになります
         setting_display_media_default: 閲覧注意としてマークされたメディアは隠す
         setting_display_media_hide_all: メディアを常に隠す
@@ -57,18 +59,19 @@ ja:
         setting_show_application: 投稿するのに使用したアプリが投稿の詳細ビューに表示されるようになります
         setting_use_blurhash: ぼかしはメディアの色を元に生成されますが、細部は見えにくくなっています
         setting_use_pending_items: 新着があってもタイムラインを自動的にスクロールしないようにします
-        username: あなたのユーザー名は %{domain} の中で重複していない必要があります
+        username: あなたのユーザー名は%{domain}の中で重複していない必要があります
         whole_word: キーワードまたはフレーズが英数字のみの場合、単語全体と一致する場合のみ適用されるようになります
       domain_allow:
         domain: 登録するとこのサーバーからデータを受信したり、このドメインから受信するデータを処理して保存できるようになります
       email_domain_block:
+        domain: 電子メールアドレスのドメイン名、または使用されるMXレコードを指定できます。新規登録時にチェックされます。
         with_dns_records: 指定したドメインのDNSレコードを取得し、その結果もメールドメインブロックに登録されます
       featured_tag:
         name: 'これらを使うといいかもしれません:'
       form_challenge:
         current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
-        data: 他の Mastodon サーバーからエクスポートしたCSVファイルを選択して下さい
+        data: 他のMastodonサーバーからエクスポートしたCSVファイルを選択して下さい
       invite_request:
         text: このサーバーは現在承認制です。申請を承認する際に役立つメッセージを添えてください
       ip_block:
@@ -82,7 +85,7 @@ ja:
       rule:
         text: ユーザーのためのルールや要件を記述してください。短くシンプルにしてください。
       sessions:
-        otp: '携帯電話のアプリで生成された二段階認証コードを入力するか、リカバリーコードを使用してください:'
+        otp: '携帯電話のアプリで生成された二要素認証コードを入力するか、リカバリーコードを使用してください:'
         webauthn: USBキーの場合は、必ず挿入し、必要に応じてタップしてください。
       tag:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
@@ -96,7 +99,7 @@ ja:
       account_alias:
         acct: 引っ越し元のユーザー ID
       account_migration:
-        acct: 引っ越し先のユーザー ID
+        acct: 引っ越し先のユーザーID
       account_warning_preset:
         text: プリセット警告文
         title: タイトル
@@ -123,7 +126,7 @@ ja:
       defaults:
         autofollow: 招待から参加後、あなたをフォロー
         avatar: アイコン
-        bot: これは BOT アカウントです
+        bot: これはBOTアカウントです
         chosen_languages: 表示する言語
         confirm_new_password: 新しいパスワード（確認用）
         confirm_password: パスワード（確認用）
@@ -144,11 +147,12 @@ ja:
         max_uses: 使用できる回数
         new_password: 新しいパスワード
         note: プロフィール
-        otp_attempt: 二段階認証コード
+        otp_attempt: 二要素認証コード
         password: パスワード
         phrase: キーワードまたはフレーズ
-        setting_advanced_layout: 上級者向け UI を有効にする
+        setting_advanced_layout: 上級者向けUIを有効にする
         setting_aggregate_reblogs: ブーストをまとめる
+        setting_always_send_emails: 常にメール通知を送信する
         setting_auto_play_gif: アニメーションGIFを自動再生する
         setting_boost_modal: ブーストする前に確認ダイアログを表示する
         setting_crop_images: 投稿の詳細以外では画像を16:9に切り抜く
@@ -198,7 +202,7 @@ ja:
           sign_up_requires_approval: 登録を制限
         severity: ルール
       notification_emails:
-        appeal: モデレーターの判断に異議申し立てが行われました
+        appeal: モデレーターの判断に異議申し立てが行われた時
         digest: タイムラインからピックアップしてメールで通知する
         favourite: お気に入り登録された時
         follow: フォローされた時
@@ -206,8 +210,8 @@ ja:
         mention: 返信が来た時
         pending_account: 新しいアカウントの承認が必要な時
         reblog: 投稿がブーストされた時
-        report: 新しいレポートが送信されました
-        trending_tag: 新しいトレンドタグにはレビューが必要です
+        report: 新しい通報が送信された時
+        trending_tag: 新しいトレンドのレビューをする必要がある時
       rule:
         text: ルール
       tag:

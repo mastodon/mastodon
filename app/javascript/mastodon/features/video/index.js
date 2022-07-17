@@ -91,7 +91,7 @@ export const fileNameFromURL = str => {
   const pathname = url.pathname;
   const index    = pathname.lastIndexOf('/');
 
-  return pathname.substring(index + 1);
+  return pathname.slice(index + 1);
 };
 
 export default @injectIntl

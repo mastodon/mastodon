@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class FanOutOnWriteService < BaseService
+  include Redisable
+
   # Push a status into home and mentions feeds
   # @param [Status] status
   # @param [Hash] options
@@ -102,27 +104,27 @@ class FanOutOnWriteService < BaseService
     return if @status.visibility.to_sym == :unlisted && @status.reply? && @status.in_reply_to_account_id != @account.id
 
     @status.tags.pluck(:name).each do |hashtag|
-      Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:authorized", @payload)
-      Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:authorized:local", @payload) if @status.local?
+      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:authorized", anonymous_payload)
+      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:authorized:local", anonymous_payload) if @status.local?
     end
   end
 
   def broadcast_to_hashtag_streams!
     @status.tags.pluck(:name).each do |hashtag|
-      Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", @payload)
-      Redis.current.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", @payload) if @status.local?
+      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", anonymous_payload)
+      redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", anonymous_payload) if @status.local?
     end
   end
 
   def broadcast_to_public_streams!
     return if @status.reply? && @status.in_reply_to_account_id != @account.id
 
-    Redis.current.publish('timeline:public', anonymous_payload)
-    Redis.current.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', anonymous_payload)
+    redis.publish('timeline:public', anonymous_payload)
+    redis.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', anonymous_payload)
 
     if @status.with_media?
-      Redis.current.publish('timeline:public:media', anonymous_payload)
-      Redis.current.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', anonymous_payload)
+      redis.publish('timeline:public:media', anonymous_payload)
+      redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', anonymous_payload)
     end
   end
 

@@ -2,6 +2,7 @@
 
 class Scheduler::AccountsStatusesCleanupScheduler
   include Sidekiq::Worker
+  include Redisable
 
   # This limit is mostly to be nice to the fediverse at large and not
   # generate too much traffic.
@@ -83,14 +84,14 @@ class Scheduler::AccountsStatusesCleanupScheduler
   end
 
   def last_processed_id
-    Redis.current.get('account_statuses_cleanup_scheduler:last_account_id')
+    redis.get('account_statuses_cleanup_scheduler:last_account_id')
   end
 
   def save_last_processed_id(id)
     if id.nil?
-      Redis.current.del('account_statuses_cleanup_scheduler:last_account_id')
+      redis.del('account_statuses_cleanup_scheduler:last_account_id')
     else
-      Redis.current.set('account_statuses_cleanup_scheduler:last_account_id', id, ex: 1.hour.seconds)
+      redis.set('account_statuses_cleanup_scheduler:last_account_id', id, ex: 1.hour.seconds)
     end
   end
 end

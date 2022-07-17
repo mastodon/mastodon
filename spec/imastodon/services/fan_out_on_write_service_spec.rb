@@ -6,7 +6,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
   let(:alice)    { Fabricate(:user, account: Fabricate(:account, username: 'tachibana')).account }
   let(:follower) { Fabricate(:account, username: 'syuko') }
 
-  subject { FanOutOnWriteService.new }
+  subject { described_class.new }
 
   before do
     alice
@@ -15,7 +15,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
     ProcessMentionsService.new.call(status)
     ProcessHashtagsService.new.call(status)
 
-    allow(Redis.current).to receive(:publish)
+    allow(redis).to receive(:publish)
 
     subject.call(status)
   end
@@ -26,23 +26,23 @@ RSpec.describe FanOutOnWriteService, type: :service do
 
     shared_examples 'LTLに配信される' do
       it '' do
-        expect(Redis.current).to have_received(:publish).with('timeline:public', anything)
-        expect(Redis.current).to have_received(:publish).with('timeline:public:local', anything)
+        expect(redis).to have_received(:publish).with('timeline:public', anything)
+        expect(redis).to have_received(:publish).with('timeline:public:local', anything)
       end
     end
 
     shared_examples 'LTLに配信されない' do
       it '' do
-        expect(Redis.current).not_to have_received(:publish).with('timeline:public', anything)
-        expect(Redis.current).not_to have_received(:publish).with('timeline:public:local', anything)
+        expect(redis).not_to have_received(:publish).with('timeline:public', anything)
+        expect(redis).not_to have_received(:publish).with('timeline:public:local', anything)
       end
     end
 
     shared_examples 'tagTLのunauthorizedチャンネルに配信される' do
       it '' do
         status.tags.pluck(:name).each do |tag_name|
-          expect(Redis.current).to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}", anything)
-          expect(Redis.current).to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:local", anything)
+          expect(redis).to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}", anything)
+          expect(redis).to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:local", anything)
         end
       end
     end
@@ -50,8 +50,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
     shared_examples 'tagTLのunauthorizedチャンネルに配信されない' do
       it '' do
         status.tags.pluck(:name).each do |tag_name|
-          expect(Redis.current).not_to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}", anything)
-          expect(Redis.current).not_to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:local", anything)
+          expect(redis).not_to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}", anything)
+          expect(redis).not_to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:local", anything)
         end
       end
     end
@@ -59,8 +59,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
     shared_examples 'tagTLのauthorizedチャンネルに配信される' do
       it '' do
         status.tags.pluck(:name).each do |tag_name|
-          expect(Redis.current).to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:authorized", anything)
-          expect(Redis.current).to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:authorized:local", anything)
+          expect(redis).to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:authorized", anything)
+          expect(redis).to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:authorized:local", anything)
         end
       end
     end
@@ -68,8 +68,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
     shared_examples 'tagTLのauthorizedチャンネルに配信されない' do
       it '' do
         status.tags.pluck(:name).each do |tag_name|
-          expect(Redis.current).not_to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:authorized", anything)
-          expect(Redis.current).not_to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:authorized:local", anything)
+          expect(redis).not_to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:authorized", anything)
+          expect(redis).not_to have_received(:publish).with("timeline:hashtag:#{tag_name.mb_chars.downcase}:authorized:local", anything)
         end
       end
     end

@@ -37,12 +37,12 @@ class Trends::Base
     Trends::Query.new(key_prefix, klass)
   end
 
-  def score(id)
-    redis.zscore("#{key_prefix}:all", id) || 0
+  def score(id, locale: nil)
+    redis.zscore([key_prefix, 'all', locale].compact.join(':'), id) || 0
   end
 
-  def rank(id)
-    redis.zrevrank("#{key_prefix}:allowed", id)
+  def rank(id, locale: nil)
+    redis.zrevrank([key_prefix, 'allowed', locale].compact.join(':'), id)
   end
 
   def currently_trending_ids(allowed, limit)
@@ -64,33 +64,38 @@ class Trends::Base
     redis.expire(used_key(at_time), 1.day.seconds)
   end
 
-  def trim_older_items
-    redis.zremrangebyscore("#{key_prefix}:all", '-inf', '(1')
-    redis.zremrangebyscore("#{key_prefix}:allowed", '-inf', '(1')
-  end
-
   def score_at_rank(rank)
     redis.zrevrange("#{key_prefix}:allowed", 0, rank, with_scores: true).last&.last || 0
   end
 
-  # @param [Integer] id
-  # @param [Float] score
-  # @param [Hash<String, Boolean>] subsets
-  def add_to_and_remove_from_subsets(id, score, subsets = {})
-    subsets.each_key do |subset|
-      key = [key_prefix, subset].compact.join(':')
+  def replace_items(suffix, items)
+    tmp_prefix    = "#{key_prefix}:tmp:#{SecureRandom.alphanumeric(6)}#{suffix}"
+    allowed_items = filter_for_allowed_items(items)
 
-      if score.positive? && subsets[subset]
-        redis.zadd(key, score, id)
-      else
-        redis.zrem(key, id)
-      end
+    redis.pipelined do |pipeline|
+      items.each { |item| pipeline.zadd("#{tmp_prefix}:all", item[:score], item[:item].id) }
+      allowed_items.each { |item| pipeline.zadd("#{tmp_prefix}:allowed", item[:score], item[:item].id) }
+
+      rename_set(pipeline, "#{tmp_prefix}:all", "#{key_prefix}:all#{suffix}", items)
+      rename_set(pipeline, "#{tmp_prefix}:allowed", "#{key_prefix}:allowed#{suffix}", allowed_items)
     end
+  end
+
+  def filter_for_allowed_items(items)
+    raise NotImplementedError
   end
 
   private
 
   def used_key(at_time)
     "#{key_prefix}:used:#{at_time.beginning_of_day.to_i}"
+  end
+
+  def rename_set(pipeline, from_key, to_key, set_items)
+    if set_items.empty?
+      pipeline.del(to_key)
+    else
+      pipeline.rename(from_key, to_key)
+    end
   end
 end

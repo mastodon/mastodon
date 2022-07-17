@@ -47,7 +47,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def create_status
     return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists? || !related_to_local_activity?
 
-    lock_or_fail("create:#{object_uri}") do
+    with_lock("create:#{object_uri}") do
       return if delete_arrived_first?(object_uri) || poll_vote?
 
       @status = find_existing_status
@@ -117,7 +117,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         language: @status_parser.language,
         spoiler_text: converted_object_type? ? '' : (@status_parser.spoiler_text || ''),
         created_at: @status_parser.created_at,
-        edited_at: @status_parser.edited_at,
+        edited_at: @status_parser.edited_at && @status_parser.edited_at != @status_parser.created_at ? @status_parser.edited_at : nil,
         override_timestamps: @options[:override_timestamps],
         reply: @status_parser.reply,
         sensitive: @account.sensitized? || @status_parser.sensitive || false,
@@ -315,7 +315,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     poll = replied_to_status.preloadable_poll
     already_voted = true
 
-    lock_or_fail("vote:#{replied_to_status.poll_id}:#{@account.id}") do
+    with_lock("vote:#{replied_to_status.poll_id}:#{@account.id}") do
       already_voted = poll.votes.where(account: @account).exists?
       poll.votes.create!(account: @account, choice: poll.options.index(@object['name']), uri: object_uri)
     end

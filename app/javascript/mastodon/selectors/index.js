@@ -175,3 +175,11 @@ export const getAccountGallery = createSelector([
 
   return medias;
 });
+
+export const getAccountHidden = createSelector([
+  (state, id) => state.getIn(['accounts', id, 'hidden']),
+  (state, id) => state.getIn(['relationships', id, 'following']) || state.getIn(['relationships', id, 'requested']),
+  (state, id) => id === me,
+], (hidden, followingOrRequested, isSelf) => {
+  return hidden && !(isSelf || followingOrRequested);
+});

@@ -17,13 +17,13 @@ ko:
     contact_missing: 미설정
     contact_unavailable: 없음
     continue_to_web: 웹앱에서 계속하기
-    discover_users: 유저 발견하기
+    discover_users: 사용자 발견하기
     documentation: 문서
     federation_hint_html: "%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다."
     get_apps: 모바일 앱 사용해 보기
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     instance_actor_flash: |
-      이 계정은 가상의 actor로서 개인 유저가 아닌 서버 자체를 나타냅니다.
+      이 계정은 가상의 actor로서 개인 사용자가 아닌 서버 자체를 나타냅니다.
       이것은 페더레이션을 목적으로 사용 되며 인스턴스 전체를 차단하려 하지 않는 이상 차단하지 않아야 합니다, 그 경우에는 도메인 차단을 사용하세요.
     learn_more: 자세히
     logged_in_as_html: 현재 %{username}으로 로그인 했습니다.
@@ -49,7 +49,7 @@ ko:
       silenced_title: 침묵 된 서버들
       suspended: 이 서버의 아무도 팔로우 할 수 없으며, 어떤 데이터도 처리되거나 저장 되지 않고 데이터가 교환 되지도 않습니다.
       suspended_title: 금지된 서버들
-    unavailable_content_html: 마스토돈은 일반적으로 별무리에 있는 어떤 서버의 유저와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
+    unavailable_content_html: 마스토돈은 일반적으로 연합우주에 있는 어떤 서버의 사용자와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
     user_count_after:
       other: 명
     user_count_before: 사용자 수
@@ -194,7 +194,6 @@ ko:
       security_measures:
         only_password: 암호만
         password_and_2fa: 암호와 2단계 인증
-        password_and_sign_in_token: 암호와 이메일 토큰
       sensitive: 민감함
       sensitized: 민감함으로 설정됨
       shared_inbox_url: 공유된 inbox URL
@@ -290,7 +289,7 @@ ko:
         create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
         create_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}를 차단했습니다"
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
-        create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지"
+        create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
         destroy_custom_emoji_html: "%{name} 님이 %{target} 에모지를 삭제했습니다"
@@ -331,7 +330,7 @@ ko:
       deleted_status: "(삭제된 게시물)"
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 행동으로 거르기
-      filter_by_user: 유저로 거르기
+      filter_by_user: 사용자로 거르기
       title: 감사 기록
     announcements:
       destroyed_msg: 공지가 성공적으로 삭제되었습니다!
@@ -499,8 +498,8 @@ ko:
       dashboard:
         instance_accounts_dimension: 제일 많이 팔로우된 계정
         instance_accounts_measure: 보관된 계정
-        instance_followers_measure: 저쪽을 팔로우 하는 우리의 팔로워 수
-        instance_follows_measure: 우리를 팔로우 하는 저쪽의 팔로워 수
+        instance_followers_measure: 우리를 팔로우 하는 저쪽의 팔로워 수
+        instance_follows_measure: 저쪽을 팔로우 하는 우리의 팔로워 수
         instance_languages_dimension: 상위 언어
         instance_media_attachments_measure: 보관된 미디어 첨부파일
         instance_reports_measure: 이들에 대한 신고
@@ -508,6 +507,7 @@ ko:
       delivery:
         all: 전체
         clear: 전달 에러 초기화
+        failing: 실패중
         restart: 전달 재시작
         stop: 전달 중지
         unavailable: 사용불가
@@ -561,7 +561,7 @@ ko:
     relays:
       add_new: 릴레이 추가
       delete: 삭제
-      description_html: "<strong>연합 릴레이</strong>는 서버들 사이에서 많은 양의 공개 게시물을 구독하고 중개하는 서버입니다. <strong>이것은 중소 규모의 서버에서 별무리를 발견하는 데에 도움을 줄 수 있습니다</strong>, 이제 로컬 유저들이 다른 서버의 유저들을 수동으로 팔로우 하지 않아도 됩니다."
+      description_html: "<strong>연합 릴레이</strong>는 서버들 사이에서 많은 양의 공개 게시물을 구독하고 중개하는 서버입니다. <strong>이것은 중소 규모의 서버에서 연합우주를 발견하는 데에 도움을 줄 수 있습니다</strong>, 이제 로컬 사용자들이 다른 서버의 사용자들을 수동으로 팔로우 하지 않아도 됩니다."
       disable: 비활성화
       disabled: 비활성화 됨
       enable: 활성화
@@ -646,24 +646,24 @@ ko:
     settings:
       activity_api_enabled:
         desc_html: 주별 로컬에 게시 된 글, 활성 사용자 및 새로운 가입자 수
-        title: 유저 활동에 대한 통계 발행
+        title: 사용자 활동에 대한 통계 발행
       bootstrap_timeline_accounts:
-        desc_html: 콤마로 여러 유저명을 구분. 이 계정들은 팔로우 추천에 반드시 나타나게 됩니다
+        desc_html: 콤마로 여러 사용자명을 구분. 이 계정들은 팔로우 추천에 반드시 나타나게 됩니다
         title: 새로운 사용자들에게 추천할 계정들
       contact_information:
         email: 공개할 메일 주소를 입력
-        username: 연락 받을 관리자 유저네임
+        username: 연락 받을 관리자 사용자명
       custom_css:
         desc_html: 모든 페이지에 적용할 CSS
         title: 커스텀 CSS
       default_noindex:
-        desc_html: 이 설정을 바꾸지 않은 모든 유저들에게 적용 됩니다
-        title: 유저들이 기본적으로 검색엔진에 인덱싱 되지 않도록 합니다
+        desc_html: 이 설정을 바꾸지 않은 모든 사용자들에게 적용 됩니다
+        title: 사용자들이 기본적으로 검색엔진에 인덱싱 되지 않도록 합니다
       domain_blocks:
         all: 모두에게
         disabled: 아무에게도 안 함
         title: 도메인 차단 보여주기
-        users: 로그인 한 유저에게
+        users: 로그인 한 사용자에게
       domain_blocks_rationale:
         title: 사유 보여주기
       hero:
@@ -679,14 +679,14 @@ ko:
         desc_html: 민감한 미디어로 설정되었더라도 다른 웹사이트에서 링크 미리보기에 썸네일을 보여줍니다
         title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
       profile_directory:
-        desc_html: 유저들이 발견 될 수 있도록 허용
+        desc_html: 사용자들이 발견 될 수 있도록 허용
         title: 프로필 책자 활성화
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
           title: 신규 등록 정지 시 메시지
         deletion:
-          desc_html: 유저가 자신의 계정을 삭제할 수 있도록 허용합니다
+          desc_html: 사용자가 자신의 계정을 삭제할 수 있도록 허용합니다
           title: 계정 삭제를 허가함
         min_invite_role:
           disabled: 아무도 못 하게
@@ -704,7 +704,7 @@ ko:
         desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 게시물을 표시합니다. 비활성화시 로컬에 있는 게시물만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
       show_staff_badge:
-        desc_html: 유저 페이지에 스태프 배지를 표시합니다
+        desc_html: 사용자 페이지에 스태프 배지를 표시합니다
         title: 스태프 배지 표시
       site_description:
         desc_html: API의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
@@ -789,6 +789,7 @@ ko:
           other: 지난 주 동안 %{count} 명의 사람들이 공유했습니다
         title: 유행하는 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
+      only_allowed: 허용된 것만
       pending_review: 심사 대기
       preview_card_providers:
         allowed: 이 출처의 링크는 유행 목록에 실릴 수 있습니다
@@ -799,12 +800,12 @@ ko:
       statuses:
         allow: 게시물 허용
         allow_account: 작성자 허용
-        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 즐겨찾기가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
+        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
         disallow: 게시물 불허
         disallow_account: 작성자 불허
         not_discoverable: 작성자가 발견되기를 원치 않습니다
         shared_by:
-          other: "%{friendly_count} 번 공유되고 즐겨찾기 되었습니다"
+          other: "%{friendly_count} 번 공유되고 마음에 들어했습니다"
         title: 유행하는 게시물
       tags:
         current_score: 현재 %{score}점
@@ -828,6 +829,7 @@ ko:
         used_by_over_week:
           other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
       title: 유행
+      trending: 유행중
     warning_presets:
       add_new: 새로 추가
       delete: 삭제
@@ -913,7 +915,7 @@ ko:
     description:
       prefix_invited_by_user: "@%{name} 님이 당신을 이 마스토돈 서버로 초대했습니다!"
       prefix_sign_up: 마스토돈에 가입하세요!
-      suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 유저와도 메시지를 주고 받을 수 있습니다!
+      suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 사용자와도 메시지를 주고 받을 수 있습니다!
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
     dont_have_your_security_key: 보안 키가 없습니까?
     forgot_password: 비밀번호를 잊어버리셨습니까?
@@ -958,7 +960,7 @@ ko:
     following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
     post_follow:
       close: 혹은, 당신은 이 윈도우를 닫을 수 있습니다.
-      return: 유저 프로필 보기
+      return: 사용자 프로필 보기
       web: 웹으로 가기
     title: "%{acct} 를 팔로우"
   challenge:
@@ -1007,7 +1009,7 @@ ko:
       username_unavailable: 당신의 계정명은 앞으로 사용할 수 없습니다
   directories:
     directory: 프로필 책자
-    explanation: 관심사에 대한 유저들을 발견합니다
+    explanation: 관심사에 대한 사용자들을 발견합니다
     explore_mastodon: "%{title} 탐사하기"
   disputes:
     strikes:
@@ -1019,10 +1021,12 @@ ko:
       appealed_msg: 당신의 이의제기가 접수되었습니다. 만약 승인된다면, 알림을 받게 될 것입니다.
       appeals:
         submit: 이의 제출
+      approve_appeal: 이의제기 승인
       associated_report: 관련된 신고
       created_at: 날짜
       description_html: 이 결정사항들은 당신에 계정에 대해 행해졌고 %{instance}의 스태프에 의해 경고가 발송되었습니다.
       recipient: 수신자
+      reject_appeal: 이의제기 거절
       status: '게시물 #%{id}'
       status_removed: 게시물이 이미 시스템에서 지워졌습니다
       title: "%{action} (%{date}에)"
@@ -1055,7 +1059,7 @@ ko:
     '503': 이 페이지는 임시적인 서버 문제로 인해 제공 될 수 없습니다.
     noscript_html: 마스토돈을 사용하기 위해서는 자바스크립트를 켜 주십시오. 아니면 <a href="%{apps_path}">네이티브 앱</a> 중 하나를 사용할 수 있습니다.
   existing_username_validator:
-    not_found: 해당 유저네임에 대한 로컬 유저를 찾을 수 없습니다
+    not_found: 해당 사용자명에 대한 로컬 유저를 찾을 수 없습니다
     not_found_multiple: "%{usernames}를 찾을 수 없습니다"
   exports:
     archive_takeout:
@@ -1219,12 +1223,12 @@ ko:
       new_followers_summary:
         other: 게다가, 접속하지 않은 동안 %{count} 명의 팔로워가 생겼습니다!
       subject:
-        other: "%{count}건의 새로운 알림 \U0001F418"
+        other: 마지막 방문 이후로 %{count} 건의 새로운 알림
       title: 당신이 없는 동안에...
     favourite:
-      body: '당신의 게시물을 %{name} 님이 즐겨찾기에 등록했습니다:'
-      subject: "%{name} 님이 내 게시물을 즐겨찾기에 등록했습니다"
-      title: 새 즐겨찾기
+      body: '당신의 게시물을 %{name} 님이 마음에 들어했습니다:'
+      subject: "%{name} 님이 내 게시물을 마음에 들어했습니다"
+      title: 새 좋아요
     follow:
       body: "%{name} 님이 나를 팔로우 했습니다!"
       subject: "%{name} 님이 나를 팔로우 했습니다"
@@ -1311,7 +1315,7 @@ ko:
     relationship: 관계
     remove_selected_domains: 선택한 도메인의 모든 팔로워 삭제
     remove_selected_followers: 선택한 팔로워 삭제
-    remove_selected_follows: 선택한 유저들을 팔로우 해제
+    remove_selected_follows: 선택한 사용자들을 팔로우 해제
     status: 계정 상태
   remote_follow:
     acct: 당신이 사용하는 아이디@도메인을 입력해 주십시오
@@ -1322,8 +1326,8 @@ ko:
     reason_html: "<strong>왜 이 과정이 필요하죠?</strong><code>%{instance}</code>는 당신이 가입한 서버가 아닐 것입니다, 당신의 홈 서버로 먼저 가야 합니다."
   remote_interaction:
     favourite:
-      proceed: 즐겨찾기 진행
-      prompt: '이 게시물을 즐겨찾기 하려고 합니다:'
+      proceed: 좋아요 진행
+      prompt: '이 게시물을 좋아요 하려고 합니다:'
     reblog:
       proceed: 부스트 진행
       prompt: '이 게시물을 부스트 하려 합니다:'
@@ -1333,6 +1337,11 @@ ko:
   reports:
     errors:
       invalid_rules: 올바른 규칙을 포함하지 않습니다
+  rss:
+    content_warning: '열람 주의:'
+    descriptions:
+      account: "@%{acct}의 공개 게시물"
+      tag: "#%{hashtag} 해시태그가 붙은 공개 게시물"
   scheduled_statuses:
     over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 게시물 제한을 초과합니다
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
@@ -1411,7 +1420,7 @@ ko:
         other: "%{count} 이미지"
       video:
         other: "%{count}개의 영상"
-    boosted_from_html: "%{acct_link} 님으로부터 부스트"
+    boosted_from_html: "%{acct_link}의 글을 부스트"
     content_warning: '열람 주의: %{warning}'
     default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
@@ -1451,10 +1460,10 @@ ko:
     enabled_hint: 아래의 예외 목록에 해당하지 않는다면, 명시된 기한 이후 당신의 게시물을 자동으로 삭제합니다
     exceptions: 예외
     explanation: 게시물 삭제는 많은 성능이 필요하기 때문에, 서버에서 바쁘지 않을 때 시간을 들여서 천천히 진행합니다. 이런 이유로, 당신의 게시물은 아마도 정해진 기간보다 좀 더 시간이 지난 이후에 삭제될 것입니다.
-    ignore_favs: 즐겨찾기 무시
+    ignore_favs: 좋아요 무시
     ignore_reblogs: 부스트 무시
     interaction_exceptions: 상호작용에 기반한 예외들
-    interaction_exceptions_explanation: 즐겨찾기나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되는 것을 보장하지 못합니다.
+    interaction_exceptions_explanation: 좋아요나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되는 것을 보장하지 못합니다.
     keep_direct: 다이렉트 메시지 유지
     keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
     keep_media: 미디어가 있는 게시물 유지
@@ -1465,8 +1474,8 @@ ko:
     keep_polls_hint: 투표를 삭제하지 않습니다
     keep_self_bookmark: 북마크된 게시물 유지
     keep_self_bookmark_hint: 내 스스로 북마크한 본인의 게시물을 삭제하지 않습니다
-    keep_self_fav: 즐겨찾기한 게시물 유지
-    keep_self_fav_hint: 내 스스로 즐겨찾기한 본인의 게시물을 삭제하지 않습니다
+    keep_self_fav: 마음에 들어한 게시물 유지
+    keep_self_fav_hint: 내 스스로 마음에  들어한 본인의 게시물을 삭제하지 않습니다
     min_age:
       '1209600': 2 주
       '15778476': 6 개월
@@ -1477,14 +1486,17 @@ ko:
       '63113904': 2 년
       '7889238': 3 개월
     min_age_label: 기한
-    min_favs: 해당 횟수 이상 즐겨찾기된 게시물 유지
-    min_favs_hint: 이 횟수 이상의 즐겨찾기가 된 게시물은 삭제하지 않습니다. 즐겨찾기 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
+    min_favs: 해당 횟수 이상 좋아요된 게시물 유지
+    min_favs_hint: 이 횟수 이상의 좋아요가 된 게시물은 삭제하지 않습니다. 좋아요 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
     min_reblogs: 해당 횟수 이상 부스트된 게시물 유지
     min_reblogs_hint: 이 횟수 이상의 부스트가 된 게시물은 삭제하지 않습니다. 부스트 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
   stream_entries:
     pinned: 고정된 게시물
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠
+  strikes:
+    errors:
+      too_late: 이의를 제기하기에 너무 늦었습니다
   tags:
     does_not_match_previous_name: 이전 이름과 맞지 않습니다
   terms:
@@ -1494,7 +1506,7 @@ ko:
 
       <ul>
       <li><em>기본 계정 정보</em>: 이 서버에 가입하실 때 사용자명, 이메일 주소, 패스워드 등을 입력 받게 됩니다. 추가적으로 표시되는 이름이나 자기소개, 프로필 이미지, 헤더 이미지 등의 프로필 정보를 입력하게 됩니다. 사용자명, 표시되는 이름, 자기소개, 프로필 이미지와 헤더 이미지는 언제나 공개적으로 게시됩니다.</li>
-      <li><em>게시물, 팔로잉, 기타 공개된 정보</em>: 당신이 팔로우 하는 사람들의 리스트는 공개됩니다. 당신을 팔로우 하는 사람들도 마찬가지입니다. 당신이 게시물을 작성하는 경우, 응용프로그램이 메시지를 받았을 때의 날짜와 시간이 기록 됩니다. 게시물은 그림이나 영상 등의 미디어를 포함할 수 있습니다. 퍼블릭과 미표시(unlisted) 게시물은 공개적으로 접근이 가능합니다. 프로필에 게시물을 고정하는 경우 마찬가지로 공개적으로 접근 가능한 정보가 됩니다. 당신의 게시물들은 당신의 팔로워들에게 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송되고 그곳에 사본이 저장 됩니다. 당신이 게시물을 삭제하는 경우 이 또한 당신의 팔로워들에게 전송 됩니다. 다른 게시물을 리블로깅 하거나 즐겨찾기 하는 경우 이는 언제나 공개적으로 제공 됩니다.</li>
+      <li><em>게시물, 팔로잉, 기타 공개된 정보</em>: 당신이 팔로우 하는 사람들의 리스트는 공개됩니다. 당신을 팔로우 하는 사람들도 마찬가지입니다. 당신이 게시물을 작성하는 경우, 응용프로그램이 메시지를 받았을 때의 날짜와 시간이 기록 됩니다. 게시물은 그림이나 영상 등의 미디어를 포함할 수 있습니다. 퍼블릭과 미표시(unlisted) 게시물은 공개적으로 접근이 가능합니다. 프로필에 게시물을 고정하는 경우 마찬가지로 공개적으로 접근 가능한 정보가 됩니다. 당신의 게시물들은 당신의 팔로워들에게 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송되고 그곳에 사본이 저장 됩니다. 당신이 게시물을 삭제하는 경우 이 또한 당신의 팔로워들에게 전송 됩니다. 다른 게시물을 리블로깅 하거나 좋아요 하는 경우 이는 언제나 공개적으로 제공 됩니다.</li>
       <li><em>DM, 팔로워 공개 게시물</em>: 모든 게시물들은 서버에서 처리되고 저장됩니다. 팔로워 공개 게시물은 당신의 팔로워와 멘션 된 사람들에게 전달이 됩니다. 다이렉트 메시지는 멘션 된 사람들에게만 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송 되고 그곳에 사본이 저장됨을 의미합니다. 우리는 이 게시물들이 권한을 가진 사람들만 열람이 가능하도록 노력을 할 것이지만 다른 서버에서는 이것이 실패할 수도 있습니다. 그러므로 당신의 팔로워들이 속한 서버를 재확인하는 것이 중요합니다. 당신은 새 팔로워를 수동으로 승인하거나 거절하도록 설정을 변경할 수 있습니다. <em>해당 서버의 운영자는 서버가 받는 메시지를 열람할 수 있다는 것을 항상 염두해 두세요</em>, 그리고 수신자들은 스크린샷을 찍거나 복사하는 등의 방법으로 다시 공유할 수 있습니다. <em>위험한 정보를 마스토돈을 통해 공유하지 마세요.</em></li>
       <li><em>IP와 기타 메타데이터</em>: 당신이 로그인 하는 경우 IP 주소와 브라우저의 이름을 저장합니다. 모든 세션은 당신이 검토하고 취소할 수 있도록 설정에서 제공 됩니다. 마지막으로 사용 된 IP 주소는 최대 12개월 간 저장됩니다. 또한, 모든 요청에 대해 IP주소를 포함한 정보를 로그에 저장할 수 있습니다.</li>
       </ul>
@@ -1548,7 +1560,7 @@ ko:
 
       <p>당신의 공개 게시물은 네트워크에 속한 다른 서버가 다운로드 할 수 있습니다. 당신의 팔로워나 수신자가 이 서버가 아닌 다른 곳에 존재하는 경우 당신의 공개, 팔로워 공개 게시물은 당신의 팔로워가 존재하는 서버로 전송되며, 다이렉트메시지는 수신자가 존재하는 서버로 전송 됩니다.</p>
 
-      <p>당신이 계정을 사용하기 위해 응용프로그램을 승인하는 경우 당신이 허용한 권한에 따라 응용프로그램은 당신의 공개 계정정보, 팔로잉 리스트, 팔로워 리스트, 게시물, 즐겨찾기 등에 접근이 가능해집니다. 응용프로그램은 절대로 당신의 이메일 주소나 패스워드에 접근할 수 없습니다.</p>
+      <p>당신이 계정을 사용하기 위해 응용프로그램을 승인하는 경우 당신이 허용한 권한에 따라 응용프로그램은 당신의 공개 계정정보, 팔로잉 리스트, 팔로워 리스트, 게시물, 좋아요 등에 접근이 가능해집니다. 응용프로그램은 절대로 당신의 이메일 주소나 패스워드에 접근할 수 없습니다.</p>
 
       <hr class="spacer" />
 
@@ -1564,7 +1576,7 @@ ko:
 
       <h3 id="changes">개인정보 정책의 변경</h3>
 
-      <p>만약 우리의 개인정보 정책이 바뀐다면, 이 페이지에 바뀐 정책이 포스트 됩니다.</p>
+      <p>만약 우리의 개인정보 정책이 바뀐다면, 이 페이지에 바뀐 정책이 게시됩니다.</p>
 
       <p>이 문서는 CC-BY-SA 라이센스입니다. 마지막 업데이트는 2018년 3월 7일입니다.</p>
 
@@ -1608,12 +1620,13 @@ ko:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
       title: 아카이브 테이크 아웃
-    sign_in_token:
-      details: '시도에 대한 상세 내용입니다:'
-      explanation: '알 수 없는 IP로부터 당신의 계정에 대한 로그인 시도를 감지했습니다. 이것이 당신이라면, 아래의 보안 코드를 로그인 시도 페이지에 입력하세요:'
-      further_actions: '이것이 당신이 아니라면 암호를 바꾸고 계정의 2-factor 인증을 활성화 하세요. 여기에서 할 수 있습니다:'
-      subject: 로그인 시도를 확인해 주십시오
-      title: 로그인 시도
+    suspicious_sign_in:
+      change_password: 암호 변경
+      details: '로그인에 대한 상세 정보입니다:'
+      explanation: 새로운 IP 주소에서 내 계정에 로그인한 것을 감지했습니다.
+      further_actions_html: 직접 로그인한 것이 아니라면, 지금 바로 %{action}과 2단계 인증을 활성화하여 계정을 안전하게 보호하시길 권해드립니다.
+      subject: 계정이 새로운 IP에서 접근됨
+      title: 새로운 로그인
     warning:
       appeal: 이의 제출하기
       appeal_description: 이것이 오류라고 생각한다면, %{instance}의 중재자에게 이의신청을 할 수 있습니다.
@@ -1664,13 +1677,10 @@ ko:
       title: 환영합니다 %{name} 님!
   users:
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
-    generic_access_help_html: 계정 로그인에 문제가 있나요? %{email} 로 도움을 요청할 수 있습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
-    invalid_sign_in_token: 잘못된 보안 코드
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
     seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
-    suspicious_sign_in_confirmation: 이 기기에서 로그인 한 적이 없거나, 로그인 한 지 오래된 것으로보입니다. 본인임을 확인하기 위해 이메일 주소로 보안 코드를 보냈습니다.
   verification:
     explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
     verification: 검증
