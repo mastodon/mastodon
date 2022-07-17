@@ -4,7 +4,7 @@ zh-CN:
     about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个 Mastodon 站点或与其兼容的网站上拥有一个帐户。
     about_mastodon_html: Mastodon 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本站
-    active_count_after: 活跃
+    active_count_after: 活跃用户
     active_footnote: 每月活跃用户
     administered_by: 本站管理员：
     api: API
@@ -28,7 +28,7 @@ zh-CN:
     rules_html: 如果你想要在此Mastodon服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：
     see_whats_happening: 看一看现在在发生什么
     server_stats: 服务器统计数据：
-    source_code: 源代码
+    source_code: 源码
     status_count_after:
       other: 条嘟文
     status_count_before: 他们共嘟出了
@@ -77,7 +77,7 @@ zh-CN:
     roles:
       admin: 管理员
       bot: 机器人
-      group: 群组
+      group: 组
       moderator: 监察员
     unavailable: 个人资料不可用
     unfollow: 取消关注
@@ -93,18 +93,18 @@ zh-CN:
     accounts:
       add_email_domain_block: 封禁电子邮箱域名
       approve: 批准
-      approve_all: 批准全部
+      approve_all: 全部批准
       approved_msg: 成功批准 %{username} 的注册申请
       are_you_sure: 你确定吗？
       avatar: 头像
       by_domain: 域名
       change_email:
-        changed_msg: 帐户电子邮件地址更改成功！
-        current_email: 当前的电子邮件地址
-        label: 更改电子邮件地址
-        new_email: 新的电子邮件地址
+        changed_msg: 已成功更改账号的电子邮箱！
+        current_email: 当前的电子邮箱
+        label: 更改电子邮箱
+        new_email: 新的电子邮箱
         submit: 更改电子邮件地址
-        title: 为 %{username} 更改电子邮件地址
+        title: 为 %{username} 更改电子邮箱
       confirm: 确认
       confirmed: 已确认
       confirming: 确认中
@@ -113,6 +113,7 @@ zh-CN:
       demote: 降任
       destroyed_msg: "%{username} 的数据已进入等待队列，即将被删除"
       disable: 冻结
+      disable_sign_in_token_auth: 禁用电子邮件令牌认证
       disable_two_factor_authentication: 停用双重认证
       disabled: 已冻结
       display_name: 昵称
@@ -121,6 +122,7 @@ zh-CN:
       email: 电子邮件地址
       email_status: 电子邮件地址状态
       enable: 解冻
+      enable_sign_in_token_auth: 启用电子邮件令牌认证
       enabled: 已启用
       enabled_msg: 成功解冻 %{username} 的帐号
       followers: 关注者
@@ -185,6 +187,10 @@ zh-CN:
       search: 搜索
       search_same_email_domain: 其他具有相同电子邮箱域名的用户
       search_same_ip: 具有相同IP的其他用户
+      security_measures:
+        only_password: 仅密码
+        password_and_2fa: 密码和双重认证
+        password_and_sign_in_token: 密码和电子邮件令牌
       sensitive: 敏感内容
       sensitized: 已标记为敏感内容
       shared_inbox_url: 公用收件箱（Shared Inbox）URL
@@ -204,7 +210,7 @@ zh-CN:
       undo_sensitized: 去除敏感内容标记
       undo_silenced: 解除隐藏
       undo_suspension: 解除封禁
-      unsilenced_msg: 成功解除对 %{username} 的隐藏
+      unsilenced_msg: 成功解除 %{username} 的帐号限制
       unsubscribe: 取消订阅
       unsuspended_msg: 已成功取消封禁 %{username} 的帐号
       username: 用户名
@@ -234,10 +240,12 @@ zh-CN:
         destroy_ip_block: 删除 IP 规则
         destroy_status: 删除嘟文
         destroy_unavailable_domain: 删除不可用域名
-        disable_2fa_user: 禁用双重认证
+        disable_2fa_user: 停用双重认证
         disable_custom_emoji: 禁用自定义表情符号
+        disable_sign_in_token_auth_user: 为用户禁用电子邮件令牌认证
         disable_user: 禁用用户
         enable_custom_emoji: 启用自定义表情符号
+        enable_sign_in_token_auth_user: 为用户启用电子邮件令牌认证
         enable_user: 启用用户
         memorialize_account: 将账户设为追悼模式
         promote_user: 给用户升任
@@ -279,8 +287,10 @@ zh-CN:
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
         disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双重认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} 已为 %{target} 禁用电子邮件令牌认证"
         disable_user_html: "%{name} 将用户 %{target} 设置为禁止登录"
         enable_custom_emoji_html: "%{name} 启用了自定义表情 %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} 已为 %{target} 启用电子邮件令牌认证"
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
         memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
@@ -355,32 +365,9 @@ zh-CN:
       updated_msg: 表情更新成功！
       upload: 上传新表情
     dashboard:
-      authorized_fetch_mode: 安全模式
-      backlog: 未处理任务数
-      config: 服务器配置
-      feature_deletions: 帐户删除
-      feature_invites: 邀请链接
-      feature_profile_directory: 用户目录
-      feature_registrations: 公开注册
-      feature_relay: 联邦中继站
-      feature_timeline_preview: 时间轴预览
-      features: 功能
-      hidden_service: 匿名服务连通性
-      open_reports: 待处理举报数
-      pending_tags: 等待审核的标签
-      pending_users: 等待审核的用户
-      recent_users: 新用户
-      search: 全文搜索
-      single_user_mode: 单用户模式
       software: 软件
       space: 存储使用情况
       title: 信息面板
-      total_users: 总用户数
-      trends: 趋势
-      week_interactions: 本周互动数
-      week_users_active: 本周活跃用户数
-      week_users_new: 本周新用户数
-      whitelist_mode: 限联模式
     domain_allows:
       add_new: 允许和域名跨站交互
       created_msg: 域名已被允许跨站交互
@@ -558,6 +545,7 @@ zh-CN:
       resolved: 已处理
       resolved_msg: 举报处理成功！
       status: 状态
+      target_origin: 被举报账号的来源
       title: 举报
       unassign: 取消接管
       unresolved: 未处理
@@ -724,7 +712,7 @@ zh-CN:
     hint_html: 如果你想把另一个帐号迁移到这里，你可以先在这里创建一个别名。如果你想把关注者迁移过来，这一步是必须的。设置别名的操作时<strong>无害而且可以恢复的</strong>。<strong>帐号迁移的操作会从旧帐号开始</strong>。
     remove: 取消关联别名
   appearance:
-    advanced_web_interface: 高级web界面
+    advanced_web_interface: 高级 Web 界面
     advanced_web_interface_hint: 如果你想使用整个屏幕宽度，高级 web 界面允许您配置多个不同的栏目，可以同时看到更多的信息：主页、通知、跨站时间轴、任意数量的列表和话题标签。
     animations_and_accessibility: 动画和访问选项
     confirmation_dialogs: 确认对话框
@@ -991,6 +979,17 @@ zh-CN:
   lists:
     errors:
       limit: 你所建立的列表数量已经达到上限
+  login_activities:
+    authentication_methods:
+      otp: 双因素认证应用
+      password: 密码
+      sign_in_token: 电子邮件安全代码
+      webauthn: 安全密钥
+    description_html: 如有您无法识别的活动，请考虑更改密码并启用双因素认证。
+    empty: 没有可用的认证记录
+    failed_sign_in_html: 失败的 %{method} 登录尝试，来自 %{ip} (%{browser})
+    successful_sign_in_html: 通过 %{method} 成功登录，来自 %{ip} (%{browser})
+    title: 认证历史
   media_attachments:
     validations:
       images_and_video: 无法在嘟文中同时插入视频和图片
@@ -1195,6 +1194,7 @@ zh-CN:
     revoke: 注销
     revoke_success: 会话注销成功
     title: 会话
+    view_authentication_history: 查看账户的认证历史
   settings:
     account: 帐号
     account_settings: 帐户设置
@@ -1215,6 +1215,7 @@ zh-CN:
     preferences: 首选项
     profile: 个人资料
     relationships: 关注管理
+    statuses_cleanup: 自动删除嘟文
     two_factor_authentication: 双重认证
     webauthn_authentication: 安全密钥
   statuses:
@@ -1260,6 +1261,40 @@ zh-CN:
       public_long: 所有人可见，并会出现在公共时间轴上
       unlisted: 不公开
       unlisted_long: 所有人可见，但不会出现在公共时间轴上
+  statuses_cleanup:
+    enabled: 自动删除旧嘟文
+    enabled_hint: 当您的嘟文达到指定的过期时间后自动删除，除非它们与下面的例外之一相匹配
+    exceptions: 例外
+    explanation: 因为删除帖子是一个昂贵的操作，所以这个操作会随着时间的推移而缓慢地完成，当服务器没有其他忙碌的时候。 为此原因，您的帖子可能会在达到年龄界限后被删除。
+    ignore_favs: 取消喜欢
+    ignore_reblogs: 忽略转嘟
+    interaction_exceptions: 基于互动的例外
+    interaction_exceptions_explanation: 请注意，如果嘟文超出转嘟和喜欢的阈值之后，又降到阈值以下，不能保证会被删除。
+    keep_direct: 保留私信
+    keep_direct_hint: 没有删除你的任何私信
+    keep_media: 保留带媒体附件的嘟文
+    keep_media_hint: 没有删除任何包含媒体附件的嘟文
+    keep_pinned: 保留置顶嘟文
+    keep_pinned_hint: 没有删除你的任何置顶嘟文
+    keep_polls: 保留投票
+    keep_polls_hint: 没有删除你的任何投票
+    keep_self_bookmark: 保存被你加入书签的嘟文
+    keep_self_bookmark_hint: 如果你已将自己的嘟文添加书签，就不会删除这些嘟文
+    keep_self_fav: 保留你喜欢的嘟文
+    keep_self_fav_hint: 如果你喜欢了自己的嘟文，则不会删除这些嘟文
+    min_age:
+      '1209600': 2周
+      '15778476': 6个月
+      '2629746': 1个月
+      '31556952': 1年
+      '5259492': 2个月
+      '63113904': 两年
+      '7889238': 3个月
+    min_age_label: 过期阈值
+    min_favs: 保留如下嘟文：喜欢数超过
+    min_favs_hint: 喜欢数超过该阈值的的嘟文不被删除。如果留空，则无视喜欢数，直接删除。
+    min_reblogs: 保留如下嘟文：转嘟属超过
+    min_reblogs_hint: 转嘟数超过该阈值的的嘟文不被删除。如果留空，则无视被转嘟的数量，直接删除。
   stream_entries:
     pinned: 置顶嘟文
     reblogged: 转嘟
@@ -1359,7 +1394,7 @@ zh-CN:
       month: "%Y年%m月"
   two_factor_authentication:
     add: 添加
-    disable: 停用
+    disable: 停用双重认证
     disabled_success: 双重身份验证成功禁用
     edit: 编辑
     enabled: 双重认证已启用

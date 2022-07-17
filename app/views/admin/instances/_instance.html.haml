@@ -30,4 +30,4 @@
           = ' / '
           %span.negative-hint
             = t('admin.instances.delivery.unavailable_message')
-    .trends__item__current{ title: t('admin.instances.known_accounts', count: instance.accounts_count) }= number_to_human instance.accounts_count, strip_insignificant_zeros: true
+    .trends__item__current{ title: t('admin.instances.known_accounts', count: instance.accounts_count) }= friendly_number_to_human instance.accounts_count

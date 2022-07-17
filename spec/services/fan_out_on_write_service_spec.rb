@@ -1,37 +1,112 @@
 require 'rails_helper'
 
 RSpec.describe FanOutOnWriteService, type: :service do
-  let(:author)   { Fabricate(:account, username: 'tom') }
-  let(:status)   { Fabricate(:status, text: 'Hello @alice #test', account: author) }
-  let(:alice)    { Fabricate(:user, account: Fabricate(:account, username: 'alice')).account }
-  let(:follower) { Fabricate(:account, username: 'bob') }
+  let(:last_active_at) { Time.now.utc }
 
-  subject { FanOutOnWriteService.new }
+  let!(:alice) { Fabricate(:user, current_sign_in_at: last_active_at).account }
+  let!(:bob)   { Fabricate(:user, current_sign_in_at: last_active_at, account_attributes: { username: 'bob' }).account }
+  let!(:tom)   { Fabricate(:user, current_sign_in_at: last_active_at).account }
+
+  subject { described_class.new }
+
+  let(:status) { Fabricate(:status, account: alice, visibility: visibility, text: 'Hello @bob #hoge') }
 
   before do
-    alice
-    follower.follow!(author)
+    bob.follow!(alice)
+    tom.follow!(alice)
 
     ProcessMentionsService.new.call(status)
     ProcessHashtagsService.new.call(status)
 
+    allow(Redis.current).to receive(:publish)
+
     subject.call(status)
   end
 
-  it 'delivers status to home timeline' do
-    expect(HomeFeed.new(author).get(10).map(&:id)).to include status.id
+  def home_feed_of(account)
+    HomeFeed.new(account).get(10).map(&:id)
   end
 
-  it 'delivers status to local followers' do
-    pending 'some sort of problem in test environment causes this to sometimes fail'
-    expect(HomeFeed.new(follower).get(10).map(&:id)).to include status.id
+  context 'when status is public' do
+    let(:visibility) { 'public' }
+
+    it 'is added to the home feed of its author' do
+      expect(home_feed_of(alice)).to include status.id
+    end
+
+    it 'is added to the home feed of a follower' do
+      expect(home_feed_of(bob)).to include status.id
+      expect(home_feed_of(tom)).to include status.id
+    end
+
+    it 'is broadcast to the hashtag stream' do
+      expect(Redis.current).to have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(Redis.current).to have_received(:publish).with('timeline:hashtag:hoge:local', anything)
+    end
+
+    it 'is broadcast to the public stream' do
+      expect(Redis.current).to have_received(:publish).with('timeline:public', anything)
+      expect(Redis.current).to have_received(:publish).with('timeline:public:local', anything)
+    end
   end
 
-  it 'delivers status to hashtag' do
-    expect(TagFeed.new(Tag.find_by(name: 'test'), alice).get(20).map(&:id)).to include status.id
+  context 'when status is limited' do
+    let(:visibility) { 'limited' }
+
+    it 'is added to the home feed of its author' do
+      expect(home_feed_of(alice)).to include status.id
+    end
+
+    it 'is added to the home feed of the mentioned follower' do
+      expect(home_feed_of(bob)).to include status.id
+    end
+
+    it 'is not added to the home feed of the other follower' do
+      expect(home_feed_of(tom)).to_not include status.id
+    end
+
+    it 'is not broadcast publicly' do
+      expect(Redis.current).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(Redis.current).to_not have_received(:publish).with('timeline:public', anything)
+    end
   end
 
-  it 'delivers status to public timeline' do
-    expect(PublicFeed.new(alice).get(20).map(&:id)).to include status.id
+  context 'when status is private' do
+    let(:visibility) { 'private' }
+
+    it 'is added to the home feed of its author' do
+      expect(home_feed_of(alice)).to include status.id
+    end
+
+    it 'is added to the home feed of a follower' do
+      expect(home_feed_of(bob)).to include status.id
+      expect(home_feed_of(tom)).to include status.id
+    end
+
+    it 'is not broadcast publicly' do
+      expect(Redis.current).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(Redis.current).to_not have_received(:publish).with('timeline:public', anything)
+    end
+  end
+
+  context 'when status is direct' do
+    let(:visibility) { 'direct' }
+
+    it 'is added to the home feed of its author' do
+      expect(home_feed_of(alice)).to include status.id
+    end
+
+    it 'is added to the home feed of the mentioned follower' do
+      expect(home_feed_of(bob)).to include status.id
+    end
+
+    it 'is not added to the home feed of the other follower' do
+      expect(home_feed_of(tom)).to_not include status.id
+    end
+
+    it 'is not broadcast publicly' do
+      expect(Redis.current).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(Redis.current).to_not have_received(:publish).with('timeline:public', anything)
+    end
   end
 end

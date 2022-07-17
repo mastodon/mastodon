@@ -119,14 +119,16 @@ co:
       demote: Ritrugradà
       destroyed_msg: I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu
       disable: Disattivà
+      disable_sign_in_token_auth: Disattivà l'autentificazione à codice e-mail
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
-      disabled: Disattivatu
+      disabled: Ghjacciatu
       display_name: Nome pubblicu
       domain: Duminiu
       edit: Mudificà
       email: E-mail
       email_status: Statutu di l’e-mail
       enable: Riattivà
+      enable_sign_in_token_auth: Attivà l'autentificazione à codice e-mail
       enabled: Attivatu
       enabled_msg: U contu di %{username} hè statu riattivatu
       followers: Abbunati
@@ -191,6 +193,10 @@ co:
       search: Cercà
       search_same_email_domain: Altri utilizatori cù listessu duminiu d'e-mail
       search_same_ip: Altri utilizatori cù listessa IP
+      security_measures:
+        only_password: Solu a chjave d'accessu
+        password_and_2fa: Chjave d’accessu è A2F
+        password_and_sign_in_token: Chjave d’accessu è codice da l'e-mail
       sensitive: Sensibile
       sensitized: indicatu cum’è sensibile
       shared_inbox_url: URL di l’inbox spartuta
@@ -242,8 +248,10 @@ co:
         destroy_unavailable_domain: Toglie duminiu micca dispunibule
         disable_2fa_user: Disattivà l’identificazione à 2 fattori
         disable_custom_emoji: Disattivà Emoji Persunalizata
+        disable_sign_in_token_auth_user: Disattivà l'Autentificazione à Codice E-Mail
         disable_user: Disattivà Utilizatore
         enable_custom_emoji: Attivà Emoji Persunalizata
+        enable_sign_in_token_auth_user: Attivà l'Autentificazione à Codice E-Mail
         enable_user: Attivà utilizatore
         memorialize_account: Trasfurmà contu in mimuriale
         promote_user: Prumove Utilizatore
@@ -361,32 +369,9 @@ co:
       updated_msg: L’emoji hè stata messa à ghjornu!
       upload: Caricà
     dashboard:
-      authorized_fetch_mode: Modu ricuperazione auturizata
-      backlog: travagli in attesa
-      config: Cunfigurazione
-      feature_deletions: Sguassamenti di conti
-      feature_invites: Ligami d'invitazione
-      feature_profile_directory: Annuariu di i prufili
-      feature_registrations: Arregistramenti
-      feature_relay: Ripetitore di federazione
-      feature_timeline_preview: Vista di a linea pubblica
-      features: Funziunalità
-      hidden_service: Federazione cù servizii piattati
-      open_reports: signalamenti aperti
-      pending_tags: hashtag in attesa di verificazione
-      pending_users: utilizatori in attesa di rivista
-      recent_users: Utilizatori ricenti
-      search: Ricerca di testu sanu
-      single_user_mode: Modu utilizatore unicu
       software: Lugiziale
       space: Usu di u spaziu
       title: Quatru di strumenti
-      total_users: utilizatori in tutale
-      trends: Tindenze
-      week_interactions: interazzione sta settimana
-      week_users_active: attivi sta settimana
-      week_users_new: utilizatori sta settimana
-      whitelist_mode: Modu lista bianca
     domain_allows:
       add_new: Aghjunghje à a lista bianca
       created_msg: U duminiu hè statu aghjuntu à a lista bianca
@@ -996,6 +981,12 @@ co:
   lists:
     errors:
       limit: Ùn pudete più creà altre liste
+  login_activities:
+    authentication_methods:
+      otp: app d'identificazione à dui fattori
+      password: chjave d’accessu
+      sign_in_token: codice di sicurità d'un e-mail
+      webauthn: chjave di sicurità
   media_attachments:
     validations:
       images_and_video: Ùn si pò micca aghjunghje un filmettu à un statutu chì hà digià ritratti
@@ -1273,6 +1264,33 @@ co:
       public_long: Tuttu u mondu pò vede
       unlisted: Micca listatu
       unlisted_long: Tuttu u mondu pò vede, mà micca indè e linee pubbliche
+  statuses_cleanup:
+    exceptions: Eccezzione
+    keep_direct: Cunservà i missaghji diretti
+    keep_direct_hint: Ùn sguassa micca i vostri missaghji diretti
+    keep_media: Cunservà i statuti cù fugliali aghjunti
+    keep_media_hint: Ùn sguassa micca i vostri missaghji chì anu fugliali aghjunti
+    keep_pinned: Cunservà i statuti puntarulati
+    keep_pinned_hint: Ùn sguassa micca i vostri missaghji chì sò puntarulati
+    keep_polls: Cunservà i scandagli
+    keep_polls_hint: Ùn sguassa micca i vostri missaghji ch'anu scandagli
+    keep_self_bookmark: Cunservà i statuti ch'avete segnalibrati
+    keep_self_bookmark_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri segnalibri
+    keep_self_fav: Cunservà i statuti ch'avete favurizati
+    keep_self_fav_hint: Ùn sguassa micca i vostri propii missaghji s'e voi l'avete aghjunti à i vostri favuriti
+    min_age:
+      '1209600': 2 settimane
+      '15778476': 6 mesi
+      '2629746': 1 mese
+      '31556952': 1 annu
+      '5259492': 2 mesi
+      '63113904': 2 anni
+      '7889238': 3 mesi
+    min_age_label: Età minima
+    min_favs: Cunservà i statuti favurizzati più di
+    min_favs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di favuriti. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di favuriti
+    min_reblogs: Cunservà i statuti spartuti più di
+    min_reblogs_hint: Ùn sguassa micca i vostri statuti chì anu ricevuti più chì stu numeru di spartere. Lasciate viotu per sguassà i statuti senza piglià in contu u numaru di spartere
   stream_entries:
     pinned: Statutu puntarulatu
     reblogged: hà spartutu

@@ -67,8 +67,49 @@ class NotifyService < BaseService
     message? && @notification.target_status.direct_visibility?
   end
 
+  # Returns true if the sender has been mentionned by the recipient up the thread
   def response_to_recipient?
-    @notification.target_status.in_reply_to_account_id == @recipient.id && @notification.target_status.thread&.direct_visibility?
+    return false if @notification.target_status.in_reply_to_id.nil?
+
+    # Using an SQL CTE to avoid unneeded back-and-forth with SQL server in case of long threads
+    !Status.count_by_sql([<<-SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @notification.from_account.id]).zero?
+      WITH RECURSIVE ancestors(id, in_reply_to_id, replying_to_sender) AS (
+          SELECT
+            s.id, s.in_reply_to_id, (CASE
+              WHEN s.account_id = :recipient_id THEN
+                EXISTS (
+                  SELECT *
+                  FROM mentions m
+                  WHERE m.silent = FALSE AND m.account_id = :sender_id AND m.status_id = s.id
+                )
+              ELSE
+                FALSE
+             END)
+          FROM statuses s
+          WHERE s.id = :id
+        UNION ALL
+          SELECT
+            s.id,
+            s.in_reply_to_id,
+            (CASE
+              WHEN s.account_id = :recipient_id THEN
+                EXISTS (
+                  SELECT *
+                  FROM mentions m
+                  WHERE m.silent = FALSE AND m.account_id = :sender_id AND m.status_id = s.id
+                )
+              ELSE
+                FALSE
+             END)
+          FROM ancestors st
+          JOIN statuses s ON s.id = st.in_reply_to_id
+          WHERE st.replying_to_sender IS FALSE
+      )
+      SELECT COUNT(*)
+      FROM ancestors st
+      JOIN statuses s ON s.id = st.id
+      WHERE st.replying_to_sender IS TRUE AND s.visibility = 3
+    SQL
   end
 
   def from_staff?
@@ -127,7 +168,7 @@ class NotifyService < BaseService
   def push_notification!
     return if @notification.activity.nil?
 
-    Redis.current.publish("timeline:#{@recipient.id}", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
+    Redis.current.publish("timeline:#{@recipient.id}:notifications", Oj.dump(event: :notification, payload: InlineRenderer.render(@notification, @recipient, :notification)))
     send_push_notifications!
   end
 

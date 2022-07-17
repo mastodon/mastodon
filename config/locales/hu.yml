@@ -121,6 +121,7 @@ hu:
       demote: Lefokozás
       destroyed_msg: A %{username} fiók adatai bekerültek a végleges törlése váró sorba
       disable: Kikapcsolás
+      disable_sign_in_token_auth: Tokenes e-mail hitelesítés letiltása
       disable_two_factor_authentication: Kétlépcsős hitelesítés kikapcsolása
       disabled: Kikapcsolva
       display_name: Megjelenített név
@@ -129,6 +130,7 @@ hu:
       email: E-mail
       email_status: E-mail állapot
       enable: Bekapcsolás
+      enable_sign_in_token_auth: Tokenes e-mail hitelesítés engedélyezése
       enabled: Bekapcsolva
       enabled_msg: A %{username} fiók fagyasztását sikeresen visszavontuk
       followers: Követő
@@ -193,6 +195,10 @@ hu:
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
+      security_measures:
+        only_password: Csak jelszó
+        password_and_2fa: Jelszó és kétlépcsős hitelesítés
+        password_and_sign_in_token: Jelszó és e-mail token
       sensitive: Kényes
       sensitized: kényesnek jelölve
       shared_inbox_url: Megosztott bejövő üzenetek URL
@@ -244,8 +250,10 @@ hu:
         destroy_unavailable_domain: Elérhetetlen domain törlése
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
+        disable_sign_in_token_auth_user: A felhasználó tokenes e-mail hitelesítésének letiltása
         disable_user: Felhasználói letiltása
         enable_custom_emoji: Egyéni emodzsi engedélyezése
+        enable_sign_in_token_auth_user: A felhasználó tokenes e-mail hitelesítésének engedélyezése
         enable_user: Felhasználó engedélyezése
         memorialize_account: Fiók emlékké nyilvánítása
         promote_user: Felhasználó előléptetése
@@ -287,8 +295,10 @@ hu:
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta a %{target} emodzsit"
+        disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail hitelesítést %{target} felhasználóra"
         disable_user_html: "%{name} letiltotta %{target} felhasználó bejelentkezését"
         enable_custom_emoji_html: "%{name} engedélyezte a %{target} emodzsit"
+        enable_sign_in_token_auth_user_html: "%{name} engedélyezte a tokenes e-mail hitelesítést %{target} felhasználóra"
         enable_user_html: "%{name} engedélyezte %{target} felhasználó bejelentkezését"
         memorialize_account_html: "%{name} emléket állított %{target} felhasználónak"
         promote_user_html: "%{name} előléptette %{target} felhasználót"
@@ -363,32 +373,28 @@ hu:
       updated_msg: Emodzsi sikeresen frissítve!
       upload: Feltöltés
     dashboard:
-      authorized_fetch_mode: Áttöltő üzemmód engedélyezve
-      backlog: hátralévő feladatok
-      config: Beállítások
-      feature_deletions: Fióktörlések
-      feature_invites: Meghívó linkek
-      feature_profile_directory: Profil adatbázis
-      feature_registrations: Regisztráció
-      feature_relay: Föderációs relé
-      feature_timeline_preview: Idővonal betekintő
-      features: Funkciók
-      hidden_service: Föderáció rejtett szolgáltatásokkal
-      open_reports: nyitott bejelentések
-      pending_tags: hashtag engedélyezésre vár
-      pending_users: felhasználó engedélyezésre vár
-      recent_users: Legutóbbi felhasználók
-      search: Keresés teljes szövegben
-      single_user_mode: Egyfelhasználós mód
+      active_users: aktív felhasználó
+      interactions: interakció
+      media_storage: Médiatároló
+      new_users: új felhasználó
+      opened_reports: megnyitott bejelentés
+      pending_reports_html:
+        one: "<strong>1</strong> függőben lévő bejelentés"
+        other: "<strong>%{count}</strong> függőben lévő bejelentés"
+      pending_tags_html:
+        one: "<strong>1</strong> függőben lévő hashtag"
+        other: "<strong>%{count}</strong> függőben lévő hashtag"
+      pending_users_html:
+        one: "<strong>1</strong> függőben lévő felhasználó"
+        other: "<strong>%{count}</strong> függőben lévő felhasználó"
+      resolved_reports: megoldott bejelentés
       software: Szoftver
+      sources: Regisztrációs források
       space: Tárhely használat
       title: Műszerfal
-      total_users: felhasználó összesen
-      trends: Trendek
-      week_interactions: interakció ezen a héten
-      week_users_active: aktív ezen a héten
-      week_users_new: felhasználó ezen a héten
-      whitelist_mode: Engedélyező-lista mód
+      top_languages: Legaktívabb nyelvek
+      top_servers: Legaktívabb szerverek
+      website: Weboldal
     domain_allows:
       add_new: Domain engedélyezése
       created_msg: A domain rákerült az engedélyező-listára
@@ -571,6 +577,7 @@ hu:
       resolved: Megoldott
       resolved_msg: A bejelentést sikeresen megoldottuk!
       status: Állapot
+      target_origin: A jelentett fiók eredete
       title: Bejelentések
       unassign: Hozzárendelés törlése
       unresolved: Megoldatlan
@@ -578,7 +585,7 @@ hu:
     rules:
       add_new: Szabály hozzáadása
       delete: Törlés
-      description_html: Bár a többség azt állítja, hogy elolvasták és egyetértenek a felhasználói feltételekkel, általában ez nem teljesül, amíg egy probléma elő nem jön. <strong>Tedd könnyebbé a szervered szabályinak áttekintését azzal, hogy pontokba foglalod azt egy listába.</strong> Próbáld meg a különálló szabályokat megtartani rövidnek, egyszerűnek, de próbáld meg azt is, hogy nem darabolod fel őket sok különálló kis pontra.
+      description_html: Bár a többség azt állítja, hogy elolvasták és egyetértenek a felhasználói feltételekkel, általában ez nem teljesül, amíg egy probléma elő nem jön. <strong>Tedd könnyebbé a szervered szabályainak áttekintését azzal, hogy pontokba foglalod azt egy listába.</strong> Próbáld meg a különálló szabályokat megtartani rövidnek, egyszerűnek. Próbáld meg azt is, hogy nem darabolod fel őket sok különálló kis pontra.
       edit: Szabály szerkesztése
       empty: Nincsenek még szerver szabályok definiálva.
       title: Szerverszabályzat
@@ -1006,6 +1013,17 @@ hu:
   lists:
     errors:
       limit: Elérted a hozzáadható listák maximális számát
+  login_activities:
+    authentication_methods:
+      otp: kétlépcsős azonosító alkalmazás
+      password: jelszó
+      sign_in_token: e-mail biztonsági kód
+      webauthn: biztonsági kulcsok
+    description_html: Ha olyan aktivitást látsz, melyet nem ismersz fel, fontold meg, hogy megváltoztatod a jelszavad és engedélyezed a kétlépcsős hitelesítést.
+    empty: Nem érhető el hitelesítési történet
+    failed_sign_in_html: Bejelentkezés meghiúsult ezzel %{method} innen %{ip} (%{browser})
+    successful_sign_in_html: Sikeres bejelentkezés ezzel %{method} innen %{ip} (%{browser})
+    title: Hitelesítési történet
   media_attachments:
     validations:
       images_and_video: Nem csatolhatsz videót olyan bejegyzéshez, amelyhez már csatoltál képet
@@ -1212,6 +1230,7 @@ hu:
     revoke: Visszavonás
     revoke_success: Munkamenet sikeresen visszavonva
     title: Munkamenetek
+    view_authentication_history: Fiókod hitelesítési történetének megtekintése
   settings:
     account: Fiók
     account_settings: Fiók beállítások
@@ -1232,6 +1251,7 @@ hu:
     preferences: Beállítások
     profile: Profil
     relationships: Követések és követők
+    statuses_cleanup: Bejegyzések automatikus törlése
     two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
   statuses:
@@ -1283,6 +1303,40 @@ hu:
       public_long: Bárki láthatja
       unlisted: Listázatlan
       unlisted_long: Mindenki látja, de a nyilvános idővonalakon nem jelenik meg
+  statuses_cleanup:
+    enabled: Régi bejegyzések automatikus törlése
+    enabled_hint: Automatikusan törli a bejegyzéseidet, ahogy azok elérik a megadott korhatárt, kivéve azokat, melyek illeszkednek valamely alábbi kivételre
+    exceptions: Kivételek
+    explanation: Mivel a bejegyzések törlése drága művelet, ezt időben elnyújtva tesszük meg, amikor a szerver éppen nem elfoglalt. Ezért lehetséges, hogy a bejegyzéseidet valamivel később töröljük, mint ahogy azok elérik a korhatárukat.
+    ignore_favs: Kedvencek kihagyása
+    ignore_reblogs: Megtolások kihagyása
+    interaction_exceptions: Interakció alapú kivételek
+    interaction_exceptions_explanation: Nincs arra garancia, hogy olyan bejegyzések törlésre kerüljenek, melyek épp a megadott kedvencnek jelölési vagy megtolási határ alatt vannak, de régebben e fölött is jártak már.
+    keep_direct: Közvetlen üzenetek megtartása
+    keep_direct_hint: Nem törli egyetlen közvetlen üzenetedet sem
+    keep_media: Médiacsatolmánnyal ellátott bejegyzések megtartása
+    keep_media_hint: Egyetlen bejegyzésedet sem törli, melyeknek van médiacsatolmánya
+    keep_pinned: Kitűzött bejegyzések megtartása
+    keep_pinned_hint: Egyetlen kitűzött bejegyzésedet sem törli
+    keep_polls: Szavazások megtartása
+    keep_polls_hint: Egyetlen szavazásodat sem törli
+    keep_self_bookmark: Általad könyvjelzőzött bejegyzések megtartása
+    keep_self_bookmark_hint: Egyetlen olyan bejegyzésedet sem törli, melyet könyvjelzővel láttál el
+    keep_self_fav: Kedvenc bejegyzések megtartása
+    keep_self_fav_hint: Nem törli azon bejegyzéseidet, melyeket kedvencnek jelöltél
+    min_age:
+      '1209600': 2 hét
+      '15778476': 6 hónap
+      '2629746': 1 hónap
+      '31556952': 1 év
+      '5259492': 2 hónap
+      '63113904': 2 év
+      '7889238': 3 hónap
+    min_age_label: Korhatár
+    min_favs: Bejegyzések megtartása, melyeket többször jelöltek kedvencnek, mint
+    min_favs_hint: Nem törli egyetlen olyan bejegyzésedet sem, melyeket ennél többször jelöltek kedvencnek. Hagyd üresen, hogy a kedvencnek jelölések számától függetlenül töröljük őket
+    min_reblogs: Bejegyzések megtartása, melyeket többször toltak meg, mint
+    min_reblogs_hint: Egyetlen olyan bejegyzésedet sem törli, melyet ennél többször toltak meg. Hagyd üresen, hogy a megtolások számától függetlenül töröljük a bejegyzéseket
   stream_entries:
     pinned: Kitűzött bejegyzés
     reblogged: megtolta

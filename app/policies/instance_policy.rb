@@ -8,4 +8,8 @@ class InstancePolicy < ApplicationPolicy
   def show?
     admin?
   end
+
+  def destroy?
+    admin?
+  end
 end

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe RemoveStatusService, type: :service do
   subject { RemoveStatusService.new }
 
-  let!(:alice)  { Fabricate(:account, user: Fabricate(:user)) }
+  let!(:alice)  { Fabricate(:account) }
   let!(:bob)    { Fabricate(:account, username: 'bob', domain: 'example.com') }
   let!(:jeff)   { Fabricate(:account) }
   let!(:hank)   { Fabricate(:account, username: 'hank', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }

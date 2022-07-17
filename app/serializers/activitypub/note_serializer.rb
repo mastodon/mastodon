@@ -11,6 +11,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   attribute :content
   attribute :content_map, if: :language?
+  attribute :updated, if: :edited?
 
   has_many :media_attachments, key: :attachment
   has_many :virtual_tags, key: :tag
@@ -65,6 +66,8 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     object.language.present?
   end
 
+  delegate :edited?, to: :object
+
   def in_reply_to
     return unless object.reply? && !object.thread.nil?
 
@@ -77,6 +80,10 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   def published
     object.created_at.iso8601
+  end
+
+  def updated
+    object.edited_at.iso8601
   end
 
   def url

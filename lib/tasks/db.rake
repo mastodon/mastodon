@@ -21,8 +21,8 @@ namespace :db do
     at_exit do
       unless %w(C POSIX).include?(ActiveRecord::Base.connection.select_one('SELECT datcollate FROM pg_database WHERE datname = current_database();')['datcollate'])
         warn <<~WARNING
-          Your database collation is susceptible to index corruption.
-            (This warning does not indicate that index corruption has occurred and can be ignored)
+          Your database collation may be susceptible to index corruption.
+            (This warning does not indicate that index corruption has occurred, and it can be ignored if you've previously checked for index corruption)
             (To learn more, visit: https://docs.joinmastodon.org/admin/troubleshooting/index-corruption/)
         WARNING
       end

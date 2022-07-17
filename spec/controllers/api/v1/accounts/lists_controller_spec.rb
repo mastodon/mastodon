@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Api::V1::Accounts::ListsController do
   render_views
 
-  let(:user)    { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
+  let(:user)    { Fabricate(:user) }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: 'read:lists') }
   let(:account) { Fabricate(:account) }
   let(:list)    { Fabricate(:list, account: user.account) }

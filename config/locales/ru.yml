@@ -127,6 +127,7 @@ ru:
       demote: Разжаловать
       destroyed_msg: Данные %{username} поставлены в очередь на удаление
       disable: Заморозка
+      disable_sign_in_token_auth: Отключить аутентификацию по e-mail кодам
       disable_two_factor_authentication: Отключить 2FA
       disabled: Отключено
       display_name: Отображаемое имя
@@ -135,6 +136,7 @@ ru:
       email: E-mail
       email_status: Статус e-mail
       enable: Включить
+      enable_sign_in_token_auth: Включить аутентификацию по e-mail кодам
       enabled: Включен
       enabled_msg: Учётная запись %{username} успешно разморожена
       followers: Подписчики
@@ -199,6 +201,10 @@ ru:
       search: Поиск
       search_same_email_domain: Другие пользователи с тем же доменом электронной почты
       search_same_ip: Другие пользователи с таким же IP
+      security_measures:
+        only_password: Только пароль
+        password_and_2fa: Пароль и 2FA
+        password_and_sign_in_token: Пароль и e-mail код
       sensitive: Отметить как «деликатного содержания»
       sensitized: отмечено как «деликатного характера»
       shared_inbox_url: URL общих входящих
@@ -250,8 +256,10 @@ ru:
         destroy_unavailable_domain: Исключение доменов из списка недоступных
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
+        disable_sign_in_token_auth_user: Отключение аутентификации по e-mail кодам у пользователей
         disable_user: Заморозка пользователей
         enable_custom_emoji: Включение эмодзи
+        enable_sign_in_token_auth_user: Включение аутентификации по e-mail кодам у пользователей
         enable_user: Разморозка пользователей
         memorialize_account: Присвоение пользователям статуса «мемориала»
         promote_user: Повышение пользователей
@@ -293,8 +301,10 @@ ru:
         destroy_unavailable_domain_html: "%{name} возобновил доставку на узел %{target}"
         disable_2fa_user_html: "%{name} отключил(а) требование двухэтапной авторизации для пользователя %{target}"
         disable_custom_emoji_html: "%{name} отключил(а) эмодзи %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} отключил(а) аутентификацию по e-mail кодам для %{target}"
         disable_user_html: "%{name} заморозил(а) пользователя %{target}"
         enable_custom_emoji_html: "%{name} включил(а) эмодзи %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} включил(а) аутентификацию по e-mail кодам для %{target}"
         enable_user_html: "%{name} разморозил(а) пользователя %{target}"
         memorialize_account_html: "%{name} перевел(а) учётную запись пользователя %{target} в статус памятника"
         promote_user_html: "%{name} повысил(а) пользователя %{target}"
@@ -369,32 +379,34 @@ ru:
       updated_msg: Эмодзи обновлён!
       upload: Загрузить
     dashboard:
-      authorized_fetch_mode: Защищённый режим
-      backlog: задачи
-      config: Конфигурация
-      feature_deletions: Удаление учётных записей
-      feature_invites: Пригласительные ссылки
-      feature_profile_directory: Каталог профилей
-      feature_registrations: Регистрация
-      feature_relay: Ретрансляторы
-      feature_timeline_preview: Предпросмотр ленты
-      features: Возможности
-      hidden_service: Федерация со скрытыми сервисами
-      open_reports: открытых жалоб
-      pending_tags: хэштеги, ожидающие проверки
-      pending_users: пользователи, ожидающие проверки
-      recent_users: Недавние пользователи
-      search: Полнотекстовый поиск
-      single_user_mode: Однопользовательский режим
+      active_users: активные пользователи
+      interactions: взаимодействия
+      media_storage: Медиа файлы
+      new_users: новые пользователи
+      opened_reports: жалоб открыто
+      pending_reports_html:
+        few: "<strong>%{count}</strong> жалобы к рассмотрению"
+        many: "<strong>%{count}</strong> жалоб к рассмотрению"
+        one: "<strong>%{count}</strong> жалоба к рассмотрению"
+        other: "<strong>%{count}</strong> жалобы к рассмотрению"
+      pending_tags_html:
+        few: "<strong>%{count}</strong> хэштега к рассмотрению"
+        many: "<strong>%{count}</strong> хэштегов к рассмотрению"
+        one: "<strong>%{count}</strong> хэштег к рассмотрению"
+        other: "<strong>%{count}</strong> хэштега к рассмотрению"
+      pending_users_html:
+        few: "<strong>%{count}</strong> регистрации к рассмотрению"
+        many: "<strong>%{count}</strong> регистраций к рассмотрению"
+        one: "<strong>%{count}</strong> регистрация к рассмотрению"
+        other: "<strong>%{count}</strong> регистрации к рассмотрению"
+      resolved_reports: жалоб решено
       software: Программное обеспечение
+      sources: Источники регистрации
       space: Использовано места
       title: Панель управления
-      total_users: всего пользователей
-      trends: Актуальное
-      week_interactions: взаимодействий на этой неделе
-      week_users_active: активно на этой неделе
-      week_users_new: пользователей на этой неделе
-      whitelist_mode: Белый список
+      top_languages: Самые активные языки
+      top_servers: Самые активные серверы
+      website: Веб-сайт
     domain_allows:
       add_new: Внести в белый список
       created_msg: Домен добавлен в белый список
@@ -592,6 +604,7 @@ ru:
       resolved: Решённые
       resolved_msg: Жалоба обработана, спасибо!
       status: Статус
+      target_origin: Происхождение объекта жалобы
       title: Жалобы
       unassign: Снять назначение
       unresolved: Нерешённые
@@ -794,7 +807,7 @@ ru:
     description:
       prefix_invited_by_user: "@%{name} приглашает вас присоединиться к этому узлу Mastodon."
       prefix_sign_up: Зарегистрируйтесь в Mastodon уже сегодня!
-      suffix: Имея учётную запись, вы можете подписываться на людей, постить обновления, обмениваться сообщениями с пользователями любых узлов Mastodon и не только!
+      suffix: С учётной записью вы сможете подписываться на людей, публиковать обновления, обмениваться сообщениями с пользователями любых сообществ Mastodon и не только!
     didnt_get_confirmation: Не получили инструкцию для подтверждения?
     dont_have_your_security_key: У вас нет ключа безопасности?
     forgot_password: Забыли пароль?
@@ -1031,6 +1044,17 @@ ru:
   lists:
     errors:
       limit: Вы достигли максимального числа списков
+  login_activities:
+    authentication_methods:
+      otp: приложение двухфакторной аутентификации
+      password: пароль
+      sign_in_token: код безопасности из e-mail
+      webauthn: ключи безопасности
+    description_html: Если вы видите неопознанное действие, смените пароль и/или включите двухфакторную авторизацию.
+    empty: Нет доступной истории входов
+    failed_sign_in_html: Неудачная попытка входа используя %{method} через %{browser} (%{ip})
+    successful_sign_in_html: Успешный вход используя %{method} через %{browser} (%{ip})
+    title: История входов
   media_attachments:
     validations:
       images_and_video: Нельзя добавить видео к посту с изображениями
@@ -1241,6 +1265,7 @@ ru:
     revoke: Завершить
     revoke_success: Сессия завершена
     title: Сессии
+    view_authentication_history: Посмотреть историю входов с учётной записью
   settings:
     account: Учётная запись
     account_settings: Управление учётной записью
@@ -1261,6 +1286,7 @@ ru:
     preferences: Настройки
     profile: Профиль
     relationships: Подписки и подписчики
+    statuses_cleanup: Авто-удаление постов
     two_factor_authentication: Подтверждение входа
     webauthn_authentication: Ключи безопасности
   statuses:
@@ -1324,6 +1350,40 @@ ru:
       public_long: Показывать всем
       unlisted: Скрывать из лент
       unlisted_long: Показывать всем, но не отображать в публичных лентах
+  statuses_cleanup:
+    enabled: Автоматически удалять устаревшие посты
+    enabled_hint: Автоматически удаляет ваши посты после того, как они достигли определённого возраста, за некоторыми исключениями ниже.
+    exceptions: Исключения
+    explanation: Из-за того, что удаление постов — это ресурсоёмкий процесс, оно производится медленно со временем, когда сервер менее всего занят. По этой причине, посты могут удаляться не сразу, а спустя определённое время, по достижению возрастного порога.
+    ignore_favs: Игнорировать отметки «избранного»
+    ignore_reblogs: Игнорировать продвижения
+    interaction_exceptions: Исключения на основе взаимодействий
+    interaction_exceptions_explanation: 'Обратите внимание: нет никаких гарантий, что посты будут удалены, после того, как они единожды перешли порог по отметкам «избранного» или продвижений.'
+    keep_direct: Не удалять адресованные посты
+    keep_direct_hint: Не удалять ваши посты с «адресованной» видимостью.
+    keep_media: Не удалять посты с вложениями
+    keep_media_hint: Не удалять ваши посты, содержащие любые медийные вложения
+    keep_pinned: Не удалять закреплённые посты
+    keep_pinned_hint: Не удалять ваши посты, которые закреплены в профиле.
+    keep_polls: Не удалять опросы
+    keep_polls_hint: Не удалять ваши посты с опросами.
+    keep_self_bookmark: Не удалять закладки
+    keep_self_bookmark_hint: Не удалять ваши посты с закладками
+    keep_self_fav: Оставить посты, отмеченные «избранными»
+    keep_self_fav_hint: Не удалять ваши посты, если вы отметили их как «избранные».
+    min_age:
+      '1209600': 2 недели
+      '15778476': 6 месяцев
+      '2629746': 1 месяц
+      '31556952': 1 год
+      '5259492': 2 месяца
+      '63113904': 2 года
+      '7889238': 3 месяца
+    min_age_label: Возрастной порог
+    min_favs: Порог отметок «избранного»
+    min_favs_hint: Не удаляет ваши посты, которые получили отметок «избранного» больше, чем указано выше. Оставьте поле пустым, чтобы удалять посты независимо от количества отметок.
+    min_reblogs: Порог продвижений
+    min_reblogs_hint: Не удаляет ваши посты, количество продвижений которых больше, чем указано выше. Оставьте поле пустым, чтобы удалять посты независимо от количества продвижений.
   stream_entries:
     pinned: Закреплённый пост
     reblogged: продвинул(а)

@@ -37,16 +37,26 @@
                           %tr
                             %td.column-cell.text-center
                               - unless @warning.none_action?
-                                %p= t "user_mailer.warning.explanation.#{@warning.action}"
+                                %p= t "user_mailer.warning.explanation.#{@warning.action}", instance: @instance
 
                               - unless @warning.text.blank?
                                 = Formatter.instance.linkify(@warning.text)
 
-                              - if !@statuses.nil? && !@statuses.empty?
+                              - if @warning.report && !@warning.report.other?
+                                %p
+                                  %strong= t('user_mailer.warning.reason')
+                                  = t("user_mailer.warning.categories.#{@warning.report.category}")
+
+                                - if @warning.report.violation? && @warning.report.rule_ids.present?
+                                  %ul.rules-list
+                                    - @warning.report.rules.each do |rule|
+                                      %li= rule.text
+
+                              - unless @statuses.empty?
                                 %p
                                   %strong= t('user_mailer.warning.statuses')
 
-- if !@statuses.nil? && !@statuses.empty?
+- unless @statuses.empty?
   - @statuses.each_with_index do |status, i|
     = render 'notification_mailer/status', status: status, i: i + 1, highlighted: true
 

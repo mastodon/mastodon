@@ -31,7 +31,7 @@ class BatchedRemoveStatusService < BaseService
 
     # Since we skipped all callbacks, we also need to manually
     # deindex the statuses
-    Chewy.strategy.current.update(StatusesIndex::Status, statuses_and_reblogs) if Chewy.enabled?
+    Chewy.strategy.current.update(StatusesIndex, statuses_and_reblogs) if Chewy.enabled?
 
     return if options[:skip_side_effects]
 

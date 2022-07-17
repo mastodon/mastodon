@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Auth::SessionsController < Devise::SessionsController
-  include Devise::Controllers::Rememberable
-
   layout 'auth'
 
   skip_before_action :require_no_authentication, only: [:create]
@@ -15,19 +13,13 @@ class Auth::SessionsController < Devise::SessionsController
   before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
 
-  def new
-    Devise.omniauth_configs.each do |provider, config|
-      return redirect_to(omniauth_authorize_path(resource_name, provider)) if config.strategy.redirect_at_sign_in
-    end
-
-    super
-  end
-
   def create
     super do |resource|
-      resource.update_sign_in!(request, new_sign_in: true)
-      remember_me(resource)
-      flash.delete(:notice)
+      # We only need to call this if this hasn't already been
+      # called from one of the two-factor or sign-in token
+      # authentication methods
+
+      on_authentication_success(resource, :password) unless @on_authentication_success_called
     end
   end
 
@@ -40,11 +32,12 @@ class Auth::SessionsController < Devise::SessionsController
   end
 
   def webauthn_options
-    user = find_user
+    user = User.find_by(id: session[:attempt_user_id])
 
-    if user.webauthn_enabled?
+    if user&.webauthn_enabled?
       options_for_get = WebAuthn::Credential.options_for_get(
-        allow: user.webauthn_credentials.pluck(:external_id)
+        allow: user.webauthn_credentials.pluck(:external_id),
+        user_verification: 'discouraged'
       )
 
       session[:webauthn_challenge] = options_for_get.challenge
@@ -58,14 +51,18 @@ class Auth::SessionsController < Devise::SessionsController
   protected
 
   def find_user
-    if session[:attempt_user_id]
+    if user_params[:email].present?
+      find_user_from_params
+    elsif session[:attempt_user_id]
       User.find_by(id: session[:attempt_user_id])
-    else
-      user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
-      user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
-      user ||= User.find_for_authentication(email: user_params[:email])
-      user
     end
+  end
+
+  def find_user_from_params
+    user   = User.authenticate_with_ldap(user_params) if Devise.ldap_authentication
+    user ||= User.authenticate_with_pam(user_params) if Devise.pam_authentication
+    user ||= User.find_for_authentication(email: user_params[:email])
+    user
   end
 
   def user_params
@@ -80,14 +77,6 @@ class Auth::SessionsController < Devise::SessionsController
     else
       last_url || root_path
     end
-  end
-
-  def after_sign_out_path_for(_resource_or_scope)
-    Devise.omniauth_configs.each_value do |config|
-      return root_path if config.strategy.redirect_at_sign_in
-    end
-
-    super
   end
 
   def require_no_authentication
@@ -135,5 +124,34 @@ class Auth::SessionsController < Devise::SessionsController
   def clear_attempt_from_session
     session.delete(:attempt_user_id)
     session.delete(:attempt_user_updated_at)
+  end
+
+  def on_authentication_success(user, security_measure)
+    @on_authentication_success_called = true
+
+    clear_attempt_from_session
+
+    user.update_sign_in!(new_sign_in: true)
+    sign_in(user)
+    flash.delete(:notice)
+
+    LoginActivity.create(
+      user: user,
+      success: true,
+      authentication_method: security_measure,
+      ip: request.remote_ip,
+      user_agent: request.user_agent
+    )
+  end
+
+  def on_authentication_failure(user, security_measure, failure_reason)
+    LoginActivity.create(
+      user: user,
+      success: false,
+      authentication_method: security_measure,
+      failure_reason: failure_reason,
+      ip: request.remote_ip,
+      user_agent: request.user_agent
+    )
   end
 end

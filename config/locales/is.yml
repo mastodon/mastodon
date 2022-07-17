@@ -119,6 +119,7 @@ is:
       demote: Lækka í tign
       destroyed_msg: Gögn notandans %{username} eru núna í bið eftir að vera endanlega eytt
       disable: Gera óvirkt
+      disable_sign_in_token_auth: Gera óvirka auðkenningu með teikni í tölvupósti
       disable_two_factor_authentication: Gera tveggja-þátta auðkenningu óvirka
       disabled: Óvirkt
       display_name: Birtingarnafn
@@ -127,6 +128,7 @@ is:
       email: Tölvupóstfang
       email_status: Staða tölvupósts
       enable: Virkja
+      enable_sign_in_token_auth: Virkja auðkenningu með teikni í tölvupósti
       enabled: Virkt
       enabled_msg: Tókst að affrysta aðgang notandans %{username}
       followers: Fylgjendur
@@ -191,6 +193,10 @@ is:
       search: Leita
       search_same_email_domain: Aðra notendur með sama tölvupóstlén
       search_same_ip: Aðrir notendur með sama IP-vistfang
+      security_measures:
+        only_password: Aðeins lykilorð
+        password_and_2fa: Lykilorð og 2-þátta auðkenning
+        password_and_sign_in_token: Lykilorð og teikn í tölvupósti
       sensitive: Viðkvæmt
       sensitized: merkt sem viðkvæmt
       shared_inbox_url: Slóð á sameiginlegt innhólf
@@ -242,8 +248,10 @@ is:
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
+        disable_sign_in_token_auth_user: Gera óvirka auðkenningu með teikni í tölvupósti fyrir notandann
         disable_user: Gera notanda óvirkan
         enable_custom_emoji: Virkja sérsniðið tjáningartákn
+        enable_sign_in_token_auth_user: Gera virka auðkenningu með teikni í tölvupósti fyrir notandann
         enable_user: Virkja notanda
         memorialize_account: Gera aðgang að minningargrein
         promote_user: Hækka notanda í tign
@@ -285,8 +293,10 @@ is:
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
+        disable_sign_in_token_auth_user_html: "%{name} gerði óvirka auðkenningu með teikni í tölvupósti fyrir %{target}"
         disable_user_html: "%{name} gerði innskráningu óvirka fyrir notandann %{target}"
         enable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} virkt"
+        enable_sign_in_token_auth_user_html: "%{name} gerði virka auðkenningu með teikni í tölvupósti fyrir %{target}"
         enable_user_html: "%{name} gerði innskráningu virka fyrir notandann %{target}"
         memorialize_account_html: "%{name} breytti notandaaðgangnum %{target} í minningargreinarsíðu"
         promote_user_html: "%{name} hækkaði notandann %{target} í tign"
@@ -361,32 +371,9 @@ is:
       updated_msg: Tókst að uppfæra tjáningartákn!
       upload: Senda inn
     dashboard:
-      authorized_fetch_mode: Öruggur hamur
-      backlog: bakskráð verk
-      config: Stillingar
-      feature_deletions: Eyðingar notandaaðganga
-      feature_invites: Boðstenglar
-      feature_profile_directory: Notandasniðamappa
-      feature_registrations: Nýskráningar
-      feature_relay: Sambandsendurvarpi
-      feature_timeline_preview: Forskoðun tímalínu
-      features: Eiginleikar
-      hidden_service: Skýjasamband með faldar þjónustur
-      open_reports: opnar kærur
-      pending_tags: myllumerki bíða eftir yfirferð
-      pending_users: notendur bíða eftir yfirferð
-      recent_users: Nýlegir notendur
-      search: Leit í öllum texta
-      single_user_mode: Eins-notandahamur
       software: Hugbúnaður
       space: Notkun geymslurýmis
       title: Stjórnborð
-      total_users: notendur alls
-      trends: Tilhneiging
-      week_interactions: aðgerðir í þessari viku
-      week_users_active: virkir í þessari viku
-      week_users_new: notendur þessari viku
-      whitelist_mode: Hamur til að leyfa (whitelist)
     domain_allows:
       add_new: Setja lén á lista yfir leyft
       created_msg: Það tókst að setja lénið á lista yfir leyft
@@ -569,6 +556,7 @@ is:
       resolved: Leyst
       resolved_msg: Það tókst að leysa kæruna!
       status: Staða
+      target_origin: Uppruni kærða notandaaðgangsins
       title: Kærur
       unassign: Aftengja úthlutun
       unresolved: Óleyst
@@ -1004,6 +992,17 @@ is:
   lists:
     errors:
       limit: Þú hefur náð hámarksfjölda lista
+  login_activities:
+    authentication_methods:
+      otp: tveggja-þátta auðkenningarforrit
+      password: lykilorð
+      sign_in_token: öryggiskóði í tölvupósti
+      webauthn: öryggislyklar
+    description_html: Ef þú sérð einhverja virkni sem þú kannast ekki við, skaltu íhuga að skipta um lykilorð og að virkja tveggja-þátta auðkenningu.
+    empty: Enginn aðkenningarferill tiltækur
+    failed_sign_in_html: Misheppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
+    successful_sign_in_html: Vel heppnuð tilraun til innskráningar með %{method} frá %{ip} (%{browser})
+    title: Auðkenningarferill
   media_attachments:
     validations:
       images_and_video: Ekki er hægt að hengja myndskeið við stöðufærslu sem þegar inniheldur myndir
@@ -1210,6 +1209,7 @@ is:
     revoke: Afturkalla
     revoke_success: Tókst að afturkalla setu
     title: Setur
+    view_authentication_history: Skoða aðkenningarferil aðgangsins þíns
   settings:
     account: Notandaaðgangur
     account_settings: Stillingar notandaaðgangs
@@ -1230,6 +1230,7 @@ is:
     preferences: Kjörstillingar
     profile: Notandasnið
     relationships: Fylgist með og fylgjendur
+    statuses_cleanup: Sjálfvirk eyðing færslna
     two_factor_authentication: Tveggja-þátta auðkenning
     webauthn_authentication: Öryggislyklar
   statuses:
@@ -1281,6 +1282,40 @@ is:
       public_long: Allir geta séð
       unlisted: Óskráð
       unlisted_long: Allir geta skoðað, en er ekki talið upp á opinberum tímalínum
+  statuses_cleanup:
+    enabled: Sjálfkrafa eyða eldri færslum
+    enabled_hint: Eyðir sjálfkrafa færslum þínum um leið og þær ná tilteknum aldursmörkum, nema ef þær samsvara einni af undantekningunum hér fyrir neðan
+    exceptions: Undantekningar
+    explanation: Þar sem eyðing færslna gerir talsverðar kröfur til kerfisins, er þetta gert smátt og smátt þegar netþjónninn er ekki upptekinn við annað. Að þessum sökum má vera að færslunum þínum sé eytt einhverjum tíma eftir að þær ná skilgreindum aldursmörkum.
+    ignore_favs: Hunsa eftirlæti
+    ignore_reblogs: Hunsa endurbirtingar
+    interaction_exceptions: Undantekningar byggðar á gagnvirkni
+    interaction_exceptions_explanation: Athugaðu að ekki er öruggt að færslum sé eytt við að fara niður fyrir skilgreind mörk eftirlæta eða endurbirtinga ef þær hafa einu sinni farið upp fyrir þessi mörk.
+    keep_direct: Halda beinum skilaboðum
+    keep_direct_hint: Eyðir ekki neinum af beinu skilaboðunum þínum
+    keep_media: Halda færslum með myndaviðhengjum
+    keep_media_hint: Eyðir ekki neinum af færslunum þínum sem eru með myndaviðhengi
+    keep_pinned: Halda festum færslum
+    keep_pinned_hint: Eyðir ekki neinum af festu færslunum þínum
+    keep_polls: Halda könnunum
+    keep_polls_hint: Eyðir ekki neinum af könnununum þínum
+    keep_self_bookmark: Halda bókamerktum færslum
+    keep_self_bookmark_hint: Eyðir ekki þínum eigin færslum ef þú hefur bókamerkt þær
+    keep_self_fav: Halda eftirlætisfærslum
+    keep_self_fav_hint: Eyðir ekki þínum eigin færslum ef þú hefur sett þær í eftirlæti
+    min_age:
+      '1209600': 2 vikur
+      '15778476': 6 mánuðir
+      '2629746': 1 mánuður
+      '31556952': 1 ár
+      '5259492': 2 mánuðir
+      '63113904': 2 ár
+      '7889238': 3 mánuðir
+    min_age_label: Aldursmörk
+    min_favs: Halda færslum sem eru í eftirlætum oftar en
+    min_favs_hint: Eyðir ekki þínum eigin færslum sem settar hafa verið í eftirlæti þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda eftirlæta
+    min_reblogs: Halda færslum sem eru endurbirtar oftar en
+    min_reblogs_hint: Eyðir ekki þínum eigin færslum sem endurbirtar hafa verið þetta oft. Skildu þetta eftir autt til að eyða færslum burtséð frá fjölda endurbirtinga
   stream_entries:
     pinned: Fest tíst
     reblogged: endurbirt

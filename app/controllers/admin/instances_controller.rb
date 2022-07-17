@@ -14,6 +14,15 @@ module Admin
       authorize :instance, :show?
     end
 
+    def destroy
+      authorize :instance, :destroy?
+
+      Admin::DomainPurgeWorker.perform_async(@instance.domain)
+
+      log_action :destroy, @instance
+      redirect_to admin_instances_path, notice: I18n.t('admin.instances.destroyed_msg', domain: @instance.domain)
+    end
+
     def clear_delivery_errors
       authorize :delivery, :clear_delivery_errors?
 

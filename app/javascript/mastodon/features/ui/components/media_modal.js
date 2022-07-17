@@ -20,8 +20,6 @@ const messages = defineMessages({
   next: { id: 'lightbox.next', defaultMessage: 'Next' },
 });
 
-export const previewState = 'previewMediaModal';
-
 export default @injectIntl
 class MediaModal extends ImmutablePureComponent {
 
@@ -35,10 +33,6 @@ class MediaModal extends ImmutablePureComponent {
     currentTime: PropTypes.number,
     autoPlay: PropTypes.bool,
     volume: PropTypes.number,
-  };
-
-  static contextTypes = {
-    router: PropTypes.object,
   };
 
   state = {
@@ -98,16 +92,6 @@ class MediaModal extends ImmutablePureComponent {
   componentDidMount () {
     window.addEventListener('keydown', this.handleKeyDown, false);
 
-    if (this.context.router) {
-      const history = this.context.router.history;
-
-      history.push(history.location.pathname, previewState);
-
-      this.unlistenHistory = history.listen(() => {
-        this.props.onClose();
-      });
-    }
-
     this._sendBackgroundColor();
   }
 
@@ -131,14 +115,6 @@ class MediaModal extends ImmutablePureComponent {
   componentWillUnmount () {
     window.removeEventListener('keydown', this.handleKeyDown);
 
-    if (this.context.router) {
-      this.unlistenHistory();
-
-      if (this.context.router.history.location.state === previewState) {
-        this.context.router.history.goBack();
-      }
-    }
-
     this.props.onChangeBackgroundColor(null);
   }
 
@@ -151,13 +127,6 @@ class MediaModal extends ImmutablePureComponent {
       navigationHidden: !prevState.navigationHidden,
     }));
   };
-
-  handleStatusClick = e => {
-    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
-      e.preventDefault();
-      this.context.router.history.push(`/statuses/${this.props.statusId}`);
-    }
-  }
 
   render () {
     const { media, statusId, intl, onClose } = this.props;

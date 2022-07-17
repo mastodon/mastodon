@@ -46,7 +46,9 @@ class Webfinger
   def body_from_webfinger(url = standard_url, use_fallback = true)
     webfinger_request(url).perform do |res|
       if res.code == 200
-        res.body_with_limit
+        body = res.body_with_limit
+        raise Webfinger::Error, "Request for #{@uri} returned empty response" if body.empty?
+        body
       elsif res.code == 404 && use_fallback
         body_from_host_meta
       elsif res.code == 410

@@ -76,7 +76,7 @@ class ImportService < BaseService
         if presence_hash[target_account.acct]
           items.delete(target_account.acct)
           extra = presence_hash[target_account.acct][1]
-          Import::RelationshipWorker.perform_async(@account.id, target_account.acct, action, extra)
+          Import::RelationshipWorker.perform_async(@account.id, target_account.acct, action, extra.stringify_keys)
         else
           Import::RelationshipWorker.perform_async(@account.id, target_account.acct, undo_action)
         end
@@ -87,7 +87,7 @@ class ImportService < BaseService
     tail_items = items - head_items
 
     Import::RelationshipWorker.push_bulk(head_items + tail_items) do |acct, extra|
-      [@account.id, acct, action, extra]
+      [@account.id, acct, action, extra.stringify_keys]
     end
   end
 

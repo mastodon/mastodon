@@ -6,7 +6,7 @@ RSpec.describe BlockService, type: :service do
   subject { BlockService.new }
 
   describe 'local' do
-    let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob')).account }
+    let(:bob) { Fabricate(:account, username: 'bob') }
 
     before do
       subject.call(sender, bob)
@@ -18,7 +18,7 @@ RSpec.describe BlockService, type: :service do
   end
 
   describe 'remote ActivityPub' do
-    let(:bob) { Fabricate(:user, email: 'bob@example.com', account: Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox')).account }
+    let(:bob) { Fabricate(:account, username: 'bob', protocol: :activitypub, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
 
     before do
       stub_request(:post, 'http://example.com/inbox').to_return(status: 200)

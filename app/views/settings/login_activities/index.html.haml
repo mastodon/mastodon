@@ -1,0 +1,15 @@
+- content_for :page_title do
+  = t 'login_activities.title'
+
+%p= t('login_activities.description_html')
+
+%hr.spacer/
+
+- if @login_activities.empty?
+  %div.muted-hint.center-text
+    = t 'login_activities.empty'
+- else
+  .announcements-list
+    = render partial: 'login_activity', collection: @login_activities
+
+= paginate @login_activities

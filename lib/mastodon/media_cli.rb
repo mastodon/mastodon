@@ -230,6 +230,7 @@ module Mastodon
 
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
+        next if DomainBlock.reject_media?(media_attachment.account.domain)
 
         unless options[:dry_run]
           media_attachment.reset_file!

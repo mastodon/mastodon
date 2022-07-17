@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ReportService, type: :service do
   subject { described_class.new }
 
-  let(:source_account) { Fabricate(:user).account }
+  let(:source_account) { Fabricate(:account) }
 
   context 'for a remote account' do
     let(:remote_account) { Fabricate(:account, domain: 'example.com', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }

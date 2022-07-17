@@ -9,18 +9,6 @@ RSpec.describe Admin::TagsController, type: :controller do
     sign_in Fabricate(:user, admin: true)
   end
 
-  describe 'GET #index' do
-    let!(:tag) { Fabricate(:tag) }
-
-    before do
-      get :index
-    end
-
-    it 'returns status 200' do
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe 'GET #show' do
     let!(:tag) { Fabricate(:tag) }
 

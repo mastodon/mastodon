@@ -119,6 +119,7 @@ da:
       demote: Degradér
       destroyed_msg: "%{username}s data er nu i kø til straks at blive slettet"
       disable: Frys
+      disable_sign_in_token_auth: Deaktivér e-mailtokengodkendelse
       disable_two_factor_authentication: Deaktivér 2FA
       disabled: Frosset
       display_name: Visningsnavn
@@ -127,6 +128,7 @@ da:
       email: E-mail
       email_status: E-mailstatus
       enable: Optø
+      enable_sign_in_token_auth: Aktivér e-mailtokengodkendelse
       enabled: Aktiveret
       enabled_msg: "%{username}s konto er optøet"
       followers: Følgere
@@ -191,6 +193,10 @@ da:
       search: Søg
       search_same_email_domain: Andre brugere med det samme e-maildomæne
       search_same_ip: Andre brugere med den samme IP
+      security_measures:
+        only_password: Kun adgangskode
+        password_and_2fa: Adgangskode og 2FA
+        password_and_sign_in_token: Adgangskode og e-mailtoken
       sensitive: Sensitivt
       sensitized: markeret som sensitivt
       shared_inbox_url: Delt indbakke-URL
@@ -242,8 +248,10 @@ da:
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
         disable_2fa_user: Deaktivér 2FA
         disable_custom_emoji: Deaktivér tilpasset emoji
+        disable_sign_in_token_auth_user: Deaktivér e-mailtokengodkendelse for bruger
         disable_user: Deaktivér bruger
         enable_custom_emoji: Aktivér tilpasset emoji
+        enable_sign_in_token_auth_user: Aktivér e-mailtokengodkendelse for bruger
         enable_user: Aktivér brugeren
         memorialize_account: Gør til mindekonto
         promote_user: Promovér bruger
@@ -285,8 +293,10 @@ da:
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
         disable_2fa_user_html: "%{name} deaktiverede tofaktorkravet for brugeren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverede humørikonet %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} deaktiverede e-mailtokengodkendelse for %{target}"
         disable_user_html: "%{name} deaktiverede indlogning for brugeren %{target}"
         enable_custom_emoji_html: "%{name} aktiverede humørikonet %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktiverede e-mailtokengodkendelse for %{target}"
         enable_user_html: "%{name} aktiverede indlogning for brugeren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}s konto til en mindeside"
         promote_user_html: "%{name} forfremmede brugeren %{target}"
@@ -361,32 +371,27 @@ da:
       updated_msg: Emoji blev opdateret!
       upload: Upload
     dashboard:
-      authorized_fetch_mode: Sikker tilstand
-      backlog: ophobede jobs
-      config: Opsætning
-      feature_deletions: Kontosletninger
-      feature_invites: Invitationslinks
-      feature_profile_directory: Profilliste
-      feature_registrations: Registreringer
-      feature_relay: Federationsredistributør
-      feature_timeline_preview: Tidslinjeforhåndsvisning
-      features: Funktioner
-      hidden_service: Federering med skjulte tjenester
-      open_reports: åbne anmeldelser
-      pending_tags: hastags afventende revidering
-      pending_users: brugere afventende revidering
-      recent_users: Seneste brugere
-      search: Fuldtekstsøgning
-      single_user_mode: Enkeltbrugertilstand
+      active_users: aktive brugere
+      interactions: interaktioner
+      media_storage: Medielagerplads
+      new_users: nye brugere
+      pending_reports_html:
+        one: "<strong>1</strong> afventende rapport"
+        other: "<strong>%{count}</strong> afventende rapporter"
+      pending_tags_html:
+        one: "<strong>1</strong> afventende hashtag"
+        other: "<strong>%{count}</strong> afventende hashtags"
+      pending_users_html:
+        one: "<strong>1</strong> afventende bruger"
+        other: "<strong>%{count}</strong> afventende brugere"
+      resolved_reports: anmeldelser løst
       software: Software
+      sources: Tilmeldingskilder
       space: Lagerpladsforbrug
       title: Betjeningspanel
-      total_users: brugere i alt
-      trends: Tendenser
-      week_interactions: interaktioner denne uge
-      week_users_active: aktive denne uge
-      week_users_new: brugere denne uge
-      whitelist_mode: Begrænset federeringstilstand
+      top_languages: Mest aktive sprog
+      top_servers: Mest aktive servere
+      website: Websted
     domain_allows:
       add_new: Tillade federering med domæne
       created_msg: Domæne er blevet tilladt federering
@@ -569,6 +574,7 @@ da:
       resolved: Løst
       resolved_msg: Anmeldelse er nu løst!
       status: Status
+      target_origin: Anmeldte kontos oprindelse
       title: Anmeldelser
       unassign: Utildel
       unresolved: Ikke-løst
@@ -1004,6 +1010,17 @@ da:
   lists:
     errors:
       limit: Maks. listeantal nået
+  login_activities:
+    authentication_methods:
+      otp: tofaktorgodkendelses-app
+      password: adgangskode
+      sign_in_token: e-mailsikkerhedskode
+      webauthn: sikkerhedsnøgler
+    description_html: Bliver der observeret ukendt aktivitet, så overvej at skifte adgangskode samt aktivere tofaktorgodkendelse.
+    empty: Ingen tilgængelig godkendelseshistorik
+    failed_sign_in_html: Mislykket indlogning med %{method} fra %{ip} (%{browser})
+    successful_sign_in_html: Gennemført indlogning med %{method} fra %{ip} (%{browser})
+    title: Godkendelseshistorik
   media_attachments:
     validations:
       images_and_video: En video kan ikke vedhæftes et indlæg med billedindhold
@@ -1210,6 +1227,7 @@ da:
     revoke: Tilbagekald
     revoke_success: Session tilbagekaldt
     title: Sessioner
+    view_authentication_history: Vis godkendelseshistorik for din konto
   settings:
     account: Konto
     account_settings: Kontoindstillinger
@@ -1230,6 +1248,7 @@ da:
     preferences: Præferencer
     profile: Profil
     relationships: Følger og følgere
+    statuses_cleanup: Automatiseret indlægssletning
     two_factor_authentication: Tofaktorgodkendelse
     webauthn_authentication: Sikkerhedsnøgler
   statuses:
@@ -1281,6 +1300,40 @@ da:
       public_long: Alle kan se
       unlisted: Ulistet
       unlisted_long: Alle kan se, men er ikke listet på offentlige tidslinjer
+  statuses_cleanup:
+    enabled: Slet automatisk gamle indlæg
+    enabled_hint: Sletter automatisk dine indlæg, når disse når en bestemt alder, medmindre de matcher en af undtagelserne nedenfor
+    exceptions: Undtagelser
+    explanation: Sletning af indlæg er en ressourcekrævende operation, hvorfor dette sker gradvist over tid, når serveren ellers ikke er optaget. Dine indlæg kan derfor blive slettet nogen tid efter, at de har passeret aldersgrænsen.
+    ignore_favs: Ignorér favoritter
+    ignore_reblogs: Ignorér boosts
+    interaction_exceptions: Undtagelser baseret på interaktioner
+    interaction_exceptions_explanation: Bemærk, at der ikke er nogen garanti for at indlæg slettes, hvis de går under favorit- eller boost-tærsklerne efter at have været gået over dem.
+    keep_direct: Behold direkte besked
+    keep_direct_hint: Slet ingen af dine direkte beskeder
+    keep_media: Behold indlæg med medievedhæftninger
+    keep_media_hint: Sletter ingen af dine indlæg med medievedhæftninger
+    keep_pinned: Behold fastgjorte indlæg
+    keep_pinned_hint: Sletter ingen af dine fastgjorte indlæg
+    keep_polls: Behold afstemninger
+    keep_polls_hint: Sletter ingen af dine afstemninger
+    keep_self_bookmark: Behold dine bogmærker
+    keep_self_bookmark_hint: Sletter ikke egne indlæg, såfremt de er bogmærket
+    keep_self_fav: Behold indlæg du har foretrukket
+    keep_self_fav_hint: Sletter ikke egne indlæg, såfremt de er foretrukket
+    min_age:
+      '1209600': 2 uger
+      '15778476': 6 måneder
+      '2629746': 1 måned
+      '31556952': 1 år
+      '5259492': 2 måneder
+      '63113904': 2 år
+      '7889238': 3 måneder
+    min_age_label: Alderstærskel
+    min_favs: Behold indlæg foretrukket mere end
+    min_favs_hint: Sletter ingen af dine indlæg, som har modtaget flere end dette antal favoriseringer. Lad stå tomt for at slette indlæg uanset favoriseringsantal
+    min_reblogs: Behold indlæg boostet flere end
+    min_reblogs_hint: Sletter ingen af dine indlæg, som er blevet boostet flere end dette antal gange. Lad stå tomt for at slette indlæg uanset deres boosts-antal
   stream_entries:
     pinned: Fastgjort indlæg
     reblogged: boostet
