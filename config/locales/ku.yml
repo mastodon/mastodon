@@ -199,7 +199,6 @@ ku:
       security_measures:
         only_password: Têne borînpeyv
         password_and_2fa: Borînpeyv û 2FA
-        password_and_sign_in_token: Borînpeyv û navnîşana e-nameyê
       sensitive: Hêz-hestiyar
       sensitized: Wek hestiyar hatiye nîşankirin
       shared_inbox_url: URLya wergirtiyên parvekirî
@@ -520,6 +519,7 @@ ku:
       delivery:
         all: Hemû
         clear: Çewtiyên gihandinê paqij bike
+        failing: Têkçûn
         restart: Gihandinê nû va bike
         stop: Gehandinê rawestîne
         unavailable: Nederbasdar
@@ -804,6 +804,7 @@ ku:
           other: Di nava hefteya dawî de ji aliyê %{count} ve hate parvekirin
         title: Girêdanên di rojevê de
         usage_comparison: Îro %{today} car hate parvekirin, li gorî %{yesterday} duh
+      only_allowed: Tenê yên mafdayî
       pending_review: Li benda nirxandinê ye
       preview_card_providers:
         allowed: Girêdanên ji vê weşangerê dikarin bibin rojev
@@ -845,6 +846,7 @@ ku:
           one: Di nava hefteya dawî de ji aliyê kesekî ve hatiye bikaranîn
           other: Di nava hefteya dawî de ji %{count} kes ve hatiye bikaranîn
       title: Rojev
+      trending: Rojev
     warning_presets:
       add_new: Yeka nû tevlî bike
       delete: Jê bibe
@@ -1036,10 +1038,12 @@ ku:
       appealed_msg: Îtîraza te hatiye şandin. Ku were pejirandin, tu yê werî agahdarkirin.
       appeals:
         submit: Îtîrazê bişîne
+      approve_appeal: Îtîrazê bipejirîne
       associated_report: Ragihandina têkildar
       created_at: Dîrok
       description_html: Ev kiryarên ku li dijî ajimêrê te hatine kirin û hişyariyên ku ji hêla xebatkarên %{instance} ve ji te re hatine şandinin.
       recipient: Ji kê re
+      reject_appeal: Îtîrazê nepejirîne
       status: 'Şandî #%{id}'
       status_removed: Şandî jixwe ji pergalê hatî rakirin
       title: "%{action} ji %{date}"
@@ -1239,8 +1243,8 @@ ku:
         one: Herwiha, dema tu dûr bûyî te şopînerek nû bi dest xist! Bijî!
         other: Herwiha, dema tu dûr bûyî te %{count} şopînerek nû bi dest xist! Bijî!
       subject:
-        one: "1 agahdarî ji serdana te ya herî dawî ji \U0001F418"
-        other: "%{count} agahdarî ji serdana te ya herî dawî ji \U0001F418"
+        one: "1 agahdarî ji serdana te ya herî dawî 🐘"
+        other: "%{count} agahdarî ji serdana te ya herî dawî 🐘"
       title: Di tunebûna te de...
     favourite:
       body: 'Şandiya te hate bijartin ji alî %{name} ve:'
@@ -1354,6 +1358,11 @@ ku:
   reports:
     errors:
       invalid_rules: rêbazên derbasdar nîşan nadê
+  rss:
+    content_warning: 'Hişyariya naverokê:'
+    descriptions:
+      account: Şandiyên gelemperî ji @%{acct}
+      tag: 'Şandiyên gelemperî yên nîşankirî #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Te sînorê %{limit} şandiyên demsazkirî yên ji bo îro derbas kir
     over_total_limit: Te sînorê %{limit} şandiyên demsazkirî derbas kir
@@ -1512,6 +1521,9 @@ ku:
     pinned: Şandiya derzîkirî
     reblogged: bilindkirî
     sensitive_content: Naveroka hestiyarî
+  strikes:
+    errors:
+      too_late: Pir dereng e ji bo îtîrazê li ser vê binpêkirinê
   tags:
     does_not_match_previous_name: bi navê berê re li hev nayê
   terms:
@@ -1635,12 +1647,13 @@ ku:
       explanation: Te yedekîya tijê ya ajimêrê xwe Mastodonê xwest. Niha ji daxistinê re amade ye!
       subject: Arşîva te amede ye bo daxistinê
       title: Pakêtkirina arşîvan
-    sign_in_token:
-      details: 'Li vir hûrgiliyên hewldanê hene:'
-      explanation: 'Me hewildanek têketina ajimêra te ji navnîşana IP ya nenas destnîşan kir. Ger ev tu bî, ji kerema xwe koda ewlehiyê ya jêr binivîsîne di rûpela jêpirsînê de:'
-      further_actions: 'Ku ev ne tu bî, ji kerema xwe re borînpeyva xwe biguherîne û li ser ajimêra xwe rastkirina du-gavî çalak bike. Tu dikarî wê ji vê derê çê bikî:'
-      subject: Ji kerema xwe re hewldanên têketinê piştrast bike
-      title: Hewldanên têketinê
+    suspicious_sign_in:
+      change_password: borînpeyva xwe biguherîne
+      details: 'Li vir hûrgiliyên hewldanên têketinê hene:'
+      explanation: Me têketineke nû ji ajimêra te ji navnîşaneke IP ya nû dît.
+      further_actions_html: Ku ev ne tu bû, em ji te re pêşniyar dikin ku tu di tavilê de %{action} bikî û piştrastkirina du-gavî çalak bikî da ku ajimêra te di ewlehiyê de bimîne.
+      subject: Ajimêra te ji navnîşaneke IP ya nû ve hatiye gihîştin
+      title: Têketineke nû
     warning:
       appeal: Îtîrazekê bişîne
       appeal_description: Heke tu bawer dikî ku ev şaşetiyeke, tu dikarî îtîrazekê ji karmendên %{instance} re bişînî.
@@ -1691,13 +1704,10 @@ ku:
       title: Bi xêr hatî, %{name}!
   users:
     follow_limit_reached: Tu nikarî zêdetirî %{limit} kesan bişopînî
-    generic_access_help_html: Di gihîştina ajimêrê te de pirsgirêk heye? Tu dikarî ji bo alîkariyê bi %{email} re têkilî deyne
     invalid_otp_token: Koda du-gavî ya nelê
-    invalid_sign_in_token: Kilîda ewlehiyê a nelê
     otp_lost_help_html: Heke te gihîştina herduyan ji dest da, dibe ku tu bi %{email} re têkilî deyne
     seamless_external_login: Te bi rajekarke biyanî re têketina xwe kir, ji ber vê yekê borînpeyv û e-name nayê bikaranîn.
     signed_in_as: 'Têketin wekî:'
-    suspicious_sign_in_confirmation: Xuya dike ku te berê têketin ji vê amûrê nekiriye, ji ber vê yekê em kodeke ewlehiyê ji navnîşana e-nameya te re dişînin da ku piştrast bikî ku tu ye an na.
   verification:
     explanation_html: 'Tu dikarî <strong>xwe wekî xwediyê girêdanên li daneyê meta profîla xwe piştrast bikî</strong>. Ji bo vê, hewceye girêda malperê di nav profîla te ya mastodonê de girêdanekî paş hebe. Girêdana paş<strong>hewceye</strong> taybetîyek <code>rel="me"</code>hebe. Naveroka nivîsa girêdanê ne girîng e. Ev jî mînakek e:'
     verification: Piştrastkirin

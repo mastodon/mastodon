@@ -196,7 +196,6 @@ fa:
       security_measures:
         only_password: فقط گذرواژه
         password_and_2fa: گذرواژه و ۲عاملی
-        password_and_sign_in_token: گذرواژه و ژتون رایانامه‌ای
       sensitive: حساس
       sensitized: علامت‌زده به عنوان حساس
       shared_inbox_url: نشانی صندوق ورودی مشترک
@@ -369,6 +368,7 @@ fa:
       enable: به کار انداختن
       enabled: فعال
       enabled_msg: این شکلک با موفقیت فعال شد
+      image_hint: پی‌ان‌چی یا جیف تا %{size}
       list: فهرست
       listed: فهرست شده
       new:
@@ -451,6 +451,9 @@ fa:
       add_new: افزودن تازه
       created_msg: مسدودسازی دامین ایمیل با موفقیت ساخته شد
       delete: پاک‌کردن
+      dns:
+        types:
+          mx: رکورد MX
       domain: دامین
       new:
         create: ساختن مسدودسازی
@@ -465,11 +468,28 @@ fa:
       title: پیشنهادهای پی‌گیری
       unsuppress: بازگردانی پیشنهادهای پی‌گیری
     instances:
+      availability:
+        no_failures_recorded: هیچ شکستی در سابقه نیست.
+        title: موجود بودن
       back_to_all: همه
       back_to_limited: محدود
       back_to_warning: هشدار
       by_domain: دامین
       confirm_purge: آیا مطمئن هستید می‌خواهید داده را از این دامنه برای همیشه پاک کنید؟
+      content_policies:
+        comment: یادداشت داخلی
+        policies:
+          silence: کران
+          suspend: تعلیق
+        policy: سیاست
+        reason: دلیل عمومی
+        title: سیاست‌های محتوا
+      dashboard:
+        instance_accounts_dimension: حساب‌های پیش‌تر پی‌گیری شده
+        instance_followers_measure: پی‌گیرندگانمان در آن‌جا
+        instance_follows_measure: پی‌گیرندگانشان در این‌جا
+        instance_languages_dimension: زبان‌های برتر
+        instance_reports_measure: گزارش‌ها درباره‌شان
       delivery:
         all: همه
         clear: پاک کردن خطاهای تحول محتوا
@@ -723,6 +743,8 @@ fa:
       preview_card_providers:
         title: ناشران
       rejected: رد شده
+      statuses:
+        title: فرسته‌های داغ
       tags:
         current_score: امتیاز کنونی %{score}
         dashboard:
@@ -759,6 +781,9 @@ fa:
     new_trends:
       new_trending_links:
         no_approved_links: در حال حاضر هیچ پیوند پرطرفداری پذیرفته نشده است.
+        title: پیوندهای داغ
+      new_trending_statuses:
+        title: فرسته‌های داغ
   aliases:
     add_new: ساختن نام مستعار
     created_msg: نام مستعار تازه با موفقیت ساخته شد. الان می‌توانید انتقال از حساب قدیمی را آغاز کنید.
@@ -1083,6 +1108,9 @@ fa:
     carry_mutes_over_text: این کاربر از %{acct} که خموشش کرده‌اید، جابه‌جا شد.
     copy_account_note_text: 'این کاربر از %{acct} جابه‌جا شده است. یادداشت‌های پیشینتان درباره‌اش این‌هاست:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} ثبت نام کرد"
     digest:
       action: دیدن تمامی آگاهی‌ها
       body: خلاصه‌ای از پیغام‌هایی که از زمان آخرین بازدید شما در %{since} فرستاده شد
@@ -1090,9 +1118,6 @@ fa:
       new_followers_summary:
         one: در ضمن، وقتی که نبودید یک پیگیر تازه پیدا کردید! ای ول!
         other: در ضمن، وقتی که نبودید %{count} پیگیر تازه پیدا کردید! چه عالی!
-      subject:
-        one: "یک اعلان تازه از زمان آخرین بازدید شما \U0001F418"
-        other: "%{count} آگاهی جدید از آخرین بازدیدتان \U0001F418"
       title: در مدتی که نبودید...
     favourite:
       body: "%{name} این نوشتهٔ شما را پسندید:"
@@ -1291,6 +1316,7 @@ fa:
     open_in_web: گشودن در وب
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
     pin_errors:
+      direct: فرسته‌هایی که فقط برای کاربران اشاره شده نمایانند نمی‌توانند سنجاق شوند
       limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
       reblog: تقویت را نمی‌توان سنجاق کرد
@@ -1478,12 +1504,6 @@ fa:
       explanation: شما یک نسخهٔ پشتیبان کامل از حساب خود را درخواست کردید. این پشتیبان الان آمادهٔ بارگیری است!
       subject: بایگانی شما آمادهٔ دریافت است
       title: گرفتن بایگانی
-    sign_in_token:
-      details: 'جزییات تلاش‌ها:'
-      explanation: 'تلاشی برای ورود به حسابتان از یک نشانی آی‌پی ناشناخته کشف کردیم. اگر خودتان بودید، لطفاً رمز امنیتی زیر را در صفحهٔ چالش وارد کنید:'
-      further_actions: 'اگر خودتان نیودید، لطفاً گذرواژه‌تان را عوض کرده و از این‌جا تأیید هویت دو مرحله‌ای را روی حسابتان به کار بیندازید:'
-      subject: لطفاً تلاش برای ورود را تأیید کنید
-      title: تلاش برای ورود
     warning:
       appeal: فرستادن یک درخواست تجدیدنظر
       appeal_description: اگر فکر می‌کنید این یک خطا است، می‌توانید یک درخواست تجدیدنظر به کارکنان %{instance} ارسال کنید.
@@ -1520,13 +1540,10 @@ fa:
       title: خوش آمدید، کاربر %{name}!
   users:
     follow_limit_reached: شما نمی‌توانید بیش از %{limit} نفر را پی بگیرید
-    generic_access_help_html: مشکل در دسترسی به حسابتان؟ می‌توانید برای کمک با %{email} تکاس بگیرید
     invalid_otp_token: کد ورود دومرحله‌ای نامعتبر است
-    invalid_sign_in_token: کد امنیتی نادرست
     otp_lost_help_html: اگر شما دسترسی به هیچ‌کدامشان ندارید، باید با ایمیل %{email} تماس بگیرید
     seamless_external_login: شما با یک سرویس خارج از مجموعه وارد شده‌اید، به همین دلیل تنظیمات ایمیل و رمز برای شما در دسترس نیست.
     signed_in_as: 'واردشده به نام:'
-    suspicious_sign_in_confirmation: به نظر می‌رسد پیش‌تر از این افزاره وارد نشده بودید و مدتی می‌شود که وارد نشده‌اید. داریم برای تأیید، یک رمز امنیتی به نشانی رایانامه‌تان می‌فرستیم.
   verification:
     explanation_html: 'شما می‌توانید <strong>خود را به عنوان مالک صفحه‌ای که در نمایه‌تان به آن پیوند داده‌اید تأیید کنید.</strong> برای این کار، صفحه‌ای که به آن پیوند داده‌اید، خودش باید پیوندی به نمایهٔ ماستودون شما داشته باشد. پیوند در آن صفحه <strong>باید</strong> عبارت <code>rel="me"‎</code> را به عنوان مشخّصهٔ (attribute) در خود داشته باشد. محتوای متن پیوند اهمتی ندارد. یک نمونه از چنین پیوندی:'
     verification: تأیید

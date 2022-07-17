@@ -11,4 +11,4 @@
 <%= raw t('admin_mailer.new_trends.new_trending_tags.no_approved_tags') %>
 <% end %>
 
-<%= raw t('application_mailer.view')%> <%= admin_trends_tags_url(pending_review: '1') %>
+<%= raw t('application_mailer.view')%> <%= admin_trends_tags_url(status: 'pending_review') %>

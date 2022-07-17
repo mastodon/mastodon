@@ -146,14 +146,25 @@ class Status < ApplicationRecord
       ids += favourites.where(account: Account.local).pluck(:account_id)
       ids += reblogs.where(account: Account.local).pluck(:account_id)
       ids += bookmarks.where(account: Account.local).pluck(:account_id)
+      ids += poll.votes.where(account: Account.local).pluck(:account_id) if poll.present?
     else
       ids += preloaded.mentions[id] || []
       ids += preloaded.favourites[id] || []
       ids += preloaded.reblogs[id] || []
       ids += preloaded.bookmarks[id] || []
+      ids += preloaded.votes[id] || []
     end
 
     ids.uniq
+  end
+
+  def searchable_text
+    [
+      spoiler_text,
+      FormattingHelper.extract_status_plain_text(self),
+      preloadable_poll ? preloadable_poll.options.join("\n\n") : nil,
+      ordered_media_attachments.map(&:description).join("\n\n"),
+    ].compact.join("\n\n")
   end
 
   def reply?
@@ -244,7 +255,7 @@ class Status < ApplicationRecord
       media_attachments
     else
       map = media_attachments.index_by(&:id)
-      ordered_media_attachment_ids.map { |media_attachment_id| map[media_attachment_id] }
+      ordered_media_attachment_ids.filter_map { |media_attachment_id| map[media_attachment_id] }
     end
   end
 
@@ -444,7 +455,7 @@ class Status < ApplicationRecord
   end
 
   def set_poll_id
-    update_column(:poll_id, poll.id) unless poll.nil?
+    update_column(:poll_id, poll.id) if association(:poll).loaded? && poll.present?
   end
 
   def set_visibility

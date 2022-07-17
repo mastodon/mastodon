@@ -55,7 +55,6 @@ module Mastodon
     option :email, required: true
     option :confirmed, type: :boolean
     option :role, default: 'user', enum: %w(user moderator admin)
-    option :skip_sign_in_token, type: :boolean
     option :reattach, type: :boolean
     option :force, type: :boolean
     desc 'create USERNAME', 'Create a new user'
@@ -69,9 +68,6 @@ module Mastodon
       With the --role option one of  "user", "admin" or "moderator"
       can be supplied. Defaults to "user"
 
-      With the --skip-sign-in-token option, you can ensure that
-      the user is never asked for an e-mailed security code.
-
       With the --reattach option, the new user will be reattached
       to a given existing username of an old account. If the old
       account is still in use by someone else, you can supply
@@ -81,7 +77,7 @@ module Mastodon
     def create(username)
       account  = Account.new(username: username)
       password = SecureRandom.hex
-      user     = User.new(email: options[:email], password: password, agreement: true, approved: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true, skip_sign_in_token: options[:skip_sign_in_token])
+      user     = User.new(email: options[:email], password: password, agreement: true, approved: true, admin: options[:role] == 'admin', moderator: options[:role] == 'moderator', confirmed_at: options[:confirmed] ? Time.now.utc : nil, bypass_invite_request_check: true)
 
       if options[:reattach]
         account = Account.find_local(username) || Account.new(username: username)
@@ -125,7 +121,6 @@ module Mastodon
     option :disable_2fa, type: :boolean
     option :approve, type: :boolean
     option :reset_password, type: :boolean
-    option :skip_sign_in_token, type: :boolean
     desc 'modify USERNAME', 'Modify a user'
     long_desc <<-LONG_DESC
       Modify a user account.
@@ -147,9 +142,6 @@ module Mastodon
 
       With the --reset-password option, the user's password is replaced by
       a randomly-generated one, printed in the output.
-
-      With the --skip-sign-in-token option, you can ensure that
-      the user is never asked for an e-mailed security code.
     LONG_DESC
     def modify(username)
       user = Account.find_local(username)&.user
@@ -171,7 +163,6 @@ module Mastodon
       user.disabled = true if options[:disable]
       user.approved = true if options[:approve]
       user.otp_required_for_login = false if options[:disable_2fa]
-      user.skip_sign_in_token = options[:skip_sign_in_token] unless options[:skip_sign_in_token].nil?
       user.confirm if options[:confirm]
 
       if user.save
