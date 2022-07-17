@@ -82,10 +82,8 @@ fa:
     posts_tab_heading: فرسته‌ها
     posts_with_replies: فرسته‌ها و پاسخ‌ها
     roles:
-      admin: مدیر
       bot: ربات
       group: گروه
-      moderator: ناظر
     unavailable: نمایهٔ ناموجود
     unfollow: پایان پیگیری
   admin:
@@ -104,7 +102,6 @@ fa:
       avatar: تصویر نمایه
       by_domain: دامین
       change_email:
-        changed_msg: نشانی رایانامهٔ این حساب با موفقیت تغییر کرد!
         current_email: رایانامهٔ کنونی
         label: تغییر رایانامه
         new_email: رایانامهٔ جدید
@@ -183,12 +180,6 @@ fa:
       reset: بازنشانی
       reset_password: بازنشانی رمز
       resubscribe: اشتراک دوباره
-      role: اجازه‌ها
-      roles:
-        admin: مدیر
-        moderator: ناظر
-        staff: کارمند
-        user: کاربر
       search: جستجو
       search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
@@ -654,9 +645,6 @@ fa:
         deletion:
           desc_html: هر کسی بتواند حساب خود را پاک کند
           title: فعال‌سازی پاک‌کردن حساب
-        min_invite_role:
-          disabled: هیچ کس
-          title: اجازهٔ دعوت به
         require_invite_text:
           desc_html: زمانی که نام‌نویسی نیازمند تایید دستی است، متن «چرا می‌خواهید عضو شود؟» بخش درخواست دعوت را به جای اختیاری، اجباری کنید
           title: نیازمند پر کردن متن درخواست دعوت توسط کاربران جدید
@@ -669,9 +657,6 @@ fa:
       show_known_fediverse_at_about_page:
         desc_html: اگر از کار انداخته شود، خط‌زمانی همگانی را محدود می‌کند؛ تا فقط محتوای محلّی را نمایش دهد.
         title: نمایش سرورهای دیگر در پیش‌نمایش این سرور
-      show_staff_badge:
-        desc_html: نمایش علامت همکار روی صفحهٔ کاربر
-        title: نمایش علامت همکار
       site_description:
         desc_html: معرفی کوتاهی دربارهٔ رابط برنامه‌نویسی کاربردی. دربارهٔ این که چه چیزی دربارهٔ این کارساز ماستودون ویژه است یا هر چیز مهم دیگری بنویسید. می‌توانید HTML بنویسید، به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: دربارهٔ این سرور
@@ -983,7 +968,6 @@ fa:
       title: ویرایش پالایه
     errors:
       invalid_context: زمینه‌ای موجود نیست یا نامعتبر است
-      invalid_irreversible: پالایش برگشت‌ناپذیر تنها در زمینهٔ خانه یا آگاهی‌ها کار می‌کنند
     index:
       delete: پاک‌کردن
       empty: هیچ پالایه‌ای ندارید.

@@ -8,7 +8,7 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def index?
-    staff?
+    role.can?(:manage_reports, :manage_users)
   end
 
   def show?
@@ -33,17 +33,17 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def destroy?
-    staff? || owned?
+    role.can?(:manage_reports) || owned?
   end
 
   alias unreblog? destroy?
 
   def update?
-    staff? || owned?
+    role.can?(:manage_reports) || owned?
   end
 
   def review?
-    staff?
+    role.can?(:manage_taxonomies)
   end
 
   private

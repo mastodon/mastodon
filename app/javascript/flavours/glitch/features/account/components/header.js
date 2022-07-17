@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me, isStaff } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, me } from 'flavours/glitch/util/initial_state';
 import { preferencesLink, profileLink, accountAdminLink } from 'flavours/glitch/util/backend_links';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
@@ -13,6 +13,7 @@ import Button from 'flavours/glitch/components/button';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
+import { PERMISSION_MANAGE_USERS } from 'flavours/glitch/permissions';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -63,6 +64,10 @@ const dateFormatOptions = {
 
 export default @injectIntl
 class Header extends ImmutablePureComponent {
+
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
     account: ImmutablePropTypes.map,
@@ -244,7 +249,7 @@ class Header extends ImmutablePureComponent {
       }
     }
 
-    if (account.get('id') !== me && isStaff && accountAdminLink) {
+    if (account.get('id') !== me && (this.context.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && accountAdminLink) {
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: accountAdminLink(account.get('id')) });
     }

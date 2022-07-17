@@ -91,10 +91,8 @@ sl:
     posts_tab_heading: Objave
     posts_with_replies: Objave in odgovori
     roles:
-      admin: Skrbnik
       bot: Robot
       group: Skupina
-      moderator: Mod
     unavailable: Profil ni na voljo
     unfollow: Prenehaj slediti
   admin:
@@ -113,12 +111,17 @@ sl:
       avatar: Podoba
       by_domain: Domena
       change_email:
-        changed_msg: E-pošta računa je uspešno spremenjena!
+        changed_msg: E-pošni naslov uspešno spremenjen!
         current_email: Trenutna e-pošta
         label: Spremeni e-pošto
         new_email: Nova e-pošta
         submit: Spremeni e-pošto
         title: Spremeni e-pošto za %{username}
+      change_role:
+        changed_msg: Vloga uspešno spremenjena!
+        label: Spremeni vlogo
+        no_role: Ni vloge
+        title: Spremeni vlogo za %{username}
       confirm: Potrdi
       confirmed: Potrjeno
       confirming: Potrjujem
@@ -162,6 +165,7 @@ sl:
         active: Dejaven
         all: Vse
         pending: Na čakanju
+        silenced: Omejeno
         suspended: Suspendiran
         title: Moderiranje
       moderation_notes: Opombe moderiranja
@@ -169,6 +173,7 @@ sl:
       most_recent_ip: Zadnji IP
       no_account_selected: Noben račun ni bil spremenjen, ker ni bil izbran noben
       no_limits_imposed: Brez omejitev
+      no_role_assigned: Dodeljena ni nobena vloga
       not_subscribed: Ni naročen
       pending: Čakanje na pregled
       perform_full_suspension: Suspendiraj
@@ -197,12 +202,7 @@ sl:
       reset: Ponastavi
       reset_password: Ponastavi geslo
       resubscribe: Ponovno se naroči
-      role: Dovoljenja
-      roles:
-        admin: Skrbnik
-        moderator: Moderator
-        staff: Osebje
-        user: Uporabnik
+      role: Vloga
       search: Iskanje
       search_same_email_domain: Drugi uporabniki z isto domeno e-pošte
       search_same_ip: Drugi uporabniki z istim IP
@@ -677,6 +677,71 @@ sl:
       unresolved: Nerešeni
       updated_at: Posodobljeni
       view_profile: Pokaži profil
+    roles:
+      add_new: Dodaj vlogo
+      assigned_users:
+        few: "%{count} uporabniki"
+        one: "%{count} uporabnik"
+        other: "%{count} uporabnikov"
+        two: "%{count} uporabnika"
+      categories:
+        administration: Upravljanje
+        devops: Razvojniki
+        invites: Povabila
+        moderation: Moderiranje
+        special: Posebno
+      delete: Izbriši
+      description_html: Z <strong>uporabniškimi vlogami</strong> lahko prilagodite, do katerih funkcij in področij Mastodona lahko dostopajo vaši uporabniki.
+      edit: Uredi vlogo %{name}
+      everyone: Privzete pravice
+      everyone_full_description_html: To je <strong>osnovna vloga</strong>, ki vpliva na <strong>vse uporabnike</strong>, celo na tiste brez dodeljene vloge. Vse druge vloge dedujejo njene pravice.
+      permissions_count:
+        few: "%{count} pravice"
+        one: "%{count} pravica"
+        other: "%{count} pravic"
+        two: "%{count} pravici"
+      privileges:
+        administrator: Skrbnik
+        administrator_description: Uporabniki s temi pravicami bodo zaobšli vse pravice
+        delete_user_data: Izbriši uporabniške podatke
+        delete_user_data_description: Omogoča uporabnikom, da izbrišejo podatke drugih uporabnikov brez časvnega zamika
+        invite_users: Povabi uporabnike
+        invite_users_description: Omogoča uporabnikom, da povabi nove osebe na strežnik
+        manage_announcements: Upravljaj obvestila
+        manage_announcements_description: Omogoča uporabnikom, da upravljajo obvestila na strežniku
+        manage_appeals: Upravljaj pritožbe
+        manage_appeals_description: Omogoča uporabnikom, da pregledajo pritožbe glede dejanj moderiranja
+        manage_blocks: Upravljaj blokirano
+        manage_blocks_description: Omogoča uporabnikom, da blokirajo ponudnike e-pošte in naslove IP
+        manage_custom_emojis: Upravljaj emodžije po meri
+        manage_custom_emojis_description: Omogoča uporabnikom, da upravljajo emodžije po meri na strežniku
+        manage_federation: Upravljaj beli seznam
+        manage_federation_description: Omogoča uporabnikom blokirati ali dovoljevati vstop na beli seznam z druimi domenami ter nadzirati dostavljivost
+        manage_invites: Upravljaj vabila
+        manage_invites_description: Omogoča uporabnikom, da brskajo in deaktivirajo povezave povabil
+        manage_reports: Upravljaj poročila
+        manage_reports_description: Omogoča uporabnikom, da pregledajo poročila in glede le-teh opravijo dejanja moderiranja
+        manage_roles: Upravljaj vloge
+        manage_roles_description: Omogoča uporabnikom upravljati in dodeljevati vloge pod svojo
+        manage_rules: Upravljaj pravila
+        manage_rules_description: Omogoča uporabnikom, da spremenijo pravila strežnika
+        manage_settings: Upravljaj nastavitve
+        manage_settings_description: Omogoča uporabnikom, da spremenijo nastavitve spletišča
+        manage_taxonomies: Upravljaj taksonomije
+        manage_taxonomies_description: Omogoča uporabnikom, da preverijo vsebino v trendu in posodobijo nastavitve ključnikov
+        manage_user_access: Upravljaj dostop uporabnikov
+        manage_user_access_description: Omogoča uporabnikom, da onemogočijo drugim uporabnikom dvofazno overjanje, spremenijo njihov e-naslov ter ponastavijo njihovo geslo
+        manage_users: Upravljaj uporabnike
+        manage_users_description: Omogoča uporabnikom, da vidijo podrobnosti drugih uporabnikov in nad njimi izvedejo dejanja moderiranja
+        manage_webhooks: Upravljaj spletne zanke
+        manage_webhooks_description: Omogoča uporabnikom, da vzpostavijo nove spletne zanke za skrbniške dogodke
+        view_audit_log: Pokaži revizijski zapisnik
+        view_audit_log_description: Omogoča, da uporabnik vidi zgodovino skrbniških opravil na strežniku
+        view_dashboard: Pokaži nadzorno ploščo
+        view_dashboard_description: Omogoča uporabnikom, da dostopajo do nadzorne plošče in različnih meritev
+        view_devops: Razvojniki
+        view_devops_description: Omogoča uporabnikom, da dostopajo do nadzornih plošč Sidekiq in phHero
+      title: Vloge
     rules:
       add_new: Dodaj pravilo
       delete: Izbriši
@@ -729,9 +794,6 @@ sl:
         deletion:
           desc_html: Dovoli vsakomur, da izbriše svoj račun
           title: Odpri brisanje računa
-        min_invite_role:
-          disabled: Nihče
-          title: Dovoli vabila od
         require_invite_text:
           desc_html: Če registracije zahtevajo ročno potrditev, nastavite vnos besedila pod »Zakaj se želite pridružiti?« za obveznega
           title: Zahteva, da novi uprorabniki navedejo razlog, zakaj se želijo registrirati
@@ -744,9 +806,6 @@ sl:
       show_known_fediverse_at_about_page:
         desc_html: Ko preklopite, bo prikazal objave vseh znanih fediverzumov v predogledu. V nasprotnem primeru bodo prikazane samo krajevne objave.
         title: Pokaži znane fediverse-e v predogledu časovnice
-      show_staff_badge:
-        desc_html: Prikaži značko osebja na uporabniški strani
-        title: Prikaži značko osebja
       site_description:
         desc_html: Uvodni odstavek na API-ju. Opišite, zakaj je ta Mastodon strežnik poseben in karkoli pomembnega. Lahko uporabite HTML oznake, zlasti <code>&lt;a&gt;</code> in <code>&lt;em&gt;</code>.
         title: Opis strežnika
@@ -896,6 +955,11 @@ sl:
       empty: Zaenkrat še nimate prilagojenih končnih točk spletnih zank.
       enable: Omogoči
       enabled: Dejaven
+      enabled_events:
+        few: "%{count} omogočeni dogodki"
+        one: "%{count} omogočen dogodek"
+        other: "%{count} omogočenih dogodkov"
+        two: "%{count} omogočena dogodka"
       events: Dogodki
       new: Nova spletna zanka
       rotate_secret: Zasukaj skrivnost
@@ -1155,15 +1219,26 @@ sl:
       public: Javne časovnice
       thread: Pogovori
     edit:
+      add_keyword: Dodaj ključno besedo
+      keywords: Ključne besede
       title: Uredite filter
     errors:
+      deprecated_api_multiple_keywords: Teh parametrov ni mogoče spremeniti iz tega programa, ker veljajo za več kot eno ključno besedo filtra. Uporabite novejšo izdaj programa ali spletni vmesnik.
       invalid_context: Ne vsebuje nobenega ali vsebuje neveljaven kontekst
-      invalid_irreversible: Nepovratno filtriranje deluje le v kontekstu doma ali obvestil
     index:
+      contexts: Filtri v %{contexts}
       delete: Izbriši
       empty: Nimate filtrov.
+      expires_in: Poteče čez %{distance}
+      expires_on: Poteče %{date}
+      keywords:
+        few: "%{count} ključne besede"
+        one: "%{count} ključna beseda"
+        other: "%{count} ključnih besed"
+        two: "%{count} ključni besedi"
       title: Filtri
     new:
+      save: Shrani nov filter
       title: Dodaj nov filter
   footer:
     developers: Razvijalci
@@ -1286,6 +1361,8 @@ sl:
     copy_account_note_text: 'Ta uporabnik se je preselil iz %{acct}, tukaj so vaše poprejšnje opombe o njem:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} je oddal/a prijavo"
       sign_up:
         subject: "%{name} se je vpisal/a"
     digest:

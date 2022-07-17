@@ -3,7 +3,7 @@ lv:
   activerecord:
     attributes:
       poll:
-        expires_at: Deadline
+        expires_at: Gala termiņš
         options: Izvēles
       user:
         agreement: Pakalpojuma līgums
@@ -38,3 +38,12 @@ lv:
             email:
               blocked: lieto neatļautu epasta pakalpojuma sniedzēju
               unreachable: šķiet, ka neeksistē
+            role_id:
+              elevated: nevar būt augstāka par tavu pašreizējo lomu
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: ietver atļaujas, kas nav drošas pamata lomai
+              elevated: nevar ietvert atļaujas, kas nepieder tavai pašreizējai lomai
+            position:
+              elevated: nevar būt augstāka par tavu pašreizējo lomu

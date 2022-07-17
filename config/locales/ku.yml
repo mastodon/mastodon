@@ -83,10 +83,8 @@ ku:
     posts_tab_heading: Şandî
     posts_with_replies: Şandî û bersiv
     roles:
-      admin: Rêvebir
       bot: Bot
       group: Kom
-      moderator: Moderator
     unavailable: Profîl nay bikaranîn
     unfollow: Neşopîne
   admin:
@@ -105,12 +103,17 @@ ku:
       avatar: Wêne
       by_domain: Navper
       change_email:
-        changed_msg: E-nameya ajimêr bi awayekî serkeftî hate guhertin!
+        changed_msg: E-name bi awayekî serkeftî hate guhertin!
         current_email: E-nameya heyî
         label: E-nameyê biguherîne
         new_email: E-nameya nû
         submit: E-nameyê biguherîne
         title: E-nameyê biguherîne bo %{username}
+      change_role:
+        changed_msg: Rol bi awayekî serkeftî hate guhertin!
+        label: Rolê biguherîne
+        no_role: Rol tune
+        title: Rolê biguherîne ji bo %{username}
       confirm: Bipejirîne
       confirmed: Hate pejirandin
       confirming: Tê pejirandin
@@ -154,6 +157,7 @@ ku:
         active: Çalak
         all: Hemû
         pending: Tê nirxandin
+        silenced: Sînorkirî
         suspended: Sekinandî
         title: Çavdêrî
       moderation_notes: Nîşeyên Rêvebirinê
@@ -161,6 +165,7 @@ ku:
       most_recent_ip: IP' a dawî
       no_account_selected: Tu ajimêr nehat hilbijartin ji ber vê tu ajimêr nehat guhertin
       no_limits_imposed: Sînor nay danîn
+      no_role_assigned: Ti rol nehatin diyarkirin
       not_subscribed: Beşdar nebû
       pending: Li benda nirxandinê ye
       perform_full_suspension: Sekinî
@@ -187,12 +192,7 @@ ku:
       reset: Ji nû ve saz bike
       reset_password: Borînpeyvê ji nû ve saz bike
       resubscribe: Dîsa beşdar bibe
-      role: Maf
-      roles:
-        admin: Rêvebir
-        moderator: Çavdêr
-        staff: Xebatkar
-        user: Bikarhêner
+      role: Rol
       search: Bigere
       search_same_email_domain: Bikarhênerên din ên bi heman navpera e-nameyê
       search_same_ip: Bikarhênerên din ên xwedî heman IP
@@ -651,6 +651,35 @@ ku:
       unresolved: Neçareserkirî
       updated_at: Rojanekirî
       view_profile: Profîlê nîşan bide
+    roles:
+      add_new: Rolê tevlî bike
+      assigned_users:
+        one: "%{count} bikarhêner"
+        other: "%{count} bikarhêner"
+      categories:
+        administration: Rêvebirî
+        devops: Devops
+        invites: Vexwendin
+        moderation: Çavdêrî
+        special: Taybet
+      delete: Jê bibe
+      description_html: Bi <strong>rolên bikarhêner</strong>, tu dikarî fonksiyon û deverên Mastodon ku bikarhênerên wê dikarin xwe bigihînin kesane bikî.
+      edit: Rolê '%{name}' serrast bike
+      everyone: Mafdayînên berdest
+      everyone_full_description_html: Ev <strong>rola bingehîn</strong> bandorê li <strong>hemû bikarhêneran</strong> dike, tevî yên bêyî rolek diyarkirî jî. Hemû rolên din mafdayînan jê digirin.
+      permissions_count:
+        one: "%{count} mafdayîn"
+        other: "%{count} mafdayîn"
+      privileges:
+        administrator: Rêvebir
+        invite_users: Bikarhêneran vexwîne
+        manage_custom_emojis: Emojiyên kesane bi rêve bibe
+        manage_invites: Vexwendinan bi rêve bibe
+        manage_roles: Rolan bi rêve bibe
+        manage_rules: Rolan bi rêve bibe
+        manage_settings: Sazkariyan bi rê ve bibe
+        manage_users: Bikarhêneran bi rêve bibe
+      title: Rol
     rules:
       add_new: Rêbazekê tevlî bike
       delete: Jê bibe
@@ -703,9 +732,6 @@ ku:
         deletion:
           desc_html: Maf bide ku herkes bikaribe ajimêrê te jê bibe
           title: Jê birina ajimêrê vekek
-        min_invite_role:
-          disabled: Ne yek
-          title: Maf bide vexwendinên ji alîyê
         require_invite_text:
           desc_html: Gava ku tomarkirin pêdiviya pejirandina destan dike, Têketina nivîsê "Tu çima dixwazî beşdar bibî?" Bibe sereke ji devla vebijêrkî be
           title: Ji bo bikarhênerên nû divê ku sedemek tevlêbûnê binivîsinin
@@ -718,9 +744,6 @@ ku:
       show_known_fediverse_at_about_page:
         desc_html: Dema ku neçalak be, demnameya gerdûnî ya ku ji rûpela zeviyê ve hatî girêdan tenê bi nîşandana naveroka herêmî tên sînorkirin
         title: Li ser rûpela demnameya ne naskirî naveroka giştî nîşan bide
-      show_staff_badge:
-        desc_html: Di rûpela bikarhêner da rozeta xebatkaran nîşan bike
-        title: Rozeta xebatkara nîşan bike
       site_description:
         desc_html: Paragrafa destpêkê li ser API. Dide nasîn ka çi ev rajekarê Mastodon taybet dike û tiştên din ên girîn. Tu dikarî hashtagên HTML-ê, bi kar bîne di <code>&lt;a&gt;</code> û <code>&lt;em&gt;</code> de.
         title: Danasîna rajekar
@@ -1126,10 +1149,10 @@ ku:
       public: Demnameya gelemperî
       thread: Axaftin
     edit:
+      keywords: Peyvkilît
       title: Parzûnê serrast bike
     errors:
       invalid_context: Naverok tune ye yan jî nederbasdar tê peydakirin
-      invalid_irreversible: Tenê qadên agahdarkirinê û serrûpel bi parzûna bêveger re dixebitin
     index:
       delete: Jê bibe
       empty: Parzûnên te tune ne.
@@ -1253,6 +1276,8 @@ ku:
     copy_account_note_text: 'Ev bikarhêner ji %{acct} livî ye, li vir nîşeyên te yên berê ku te di derbarê wî/ê de nivîsandiye:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} ragihandinek şand"
       sign_up:
         subject: "%{name} tomar bû"
     digest:

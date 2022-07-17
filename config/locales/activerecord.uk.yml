@@ -38,3 +38,12 @@ uk:
             email:
               blocked: використовує не дозволенного постачальника електронної пошти
               unreachable: не існує
+            role_id:
+              elevated: не може бути вищою за поточну роль
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: включити небезпечні для базової ролі дозволи
+              elevated: не можна включити права, якими не володіє ваша поточна роль
+            position:
+              elevated: не може бути вищою за поточну роль

@@ -943,6 +943,10 @@ a.name-tag,
   margin-top: 15px;
 }
 
+.user-role {
+  color: var(--user-role-accent);
+}
+
 .announcements-list,
 .filters-list {
   border: 1px solid lighten($ui-base-color, 4%);
@@ -979,6 +983,17 @@ a.name-tag,
     &__meta {
       padding: 0 15px;
       color: $dark-text-color;
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+
+        &:hover,
+        &:focus,
+        &:active {
+          text-decoration: none;
+        }
+      }
     }
 
     &__action-bar {

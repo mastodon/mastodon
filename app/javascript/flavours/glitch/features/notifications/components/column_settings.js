@@ -6,9 +6,13 @@ import ClearColumnButton from './clear_column_button';
 import GrantPermissionButton from './grant_permission_button';
 import SettingToggle from './setting_toggle';
 import PillBarButton from './pill_bar_button';
-import { isStaff } from 'flavours/glitch/util/initial_state';
+import { PERMISSION_MANAGE_USERS, PERMISSION_MANAGE_REPORTS } from 'flavours/glitch/permissions';
 
 export default class ColumnSettings extends React.PureComponent {
+
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
     settings: ImmutablePropTypes.map.isRequired,
@@ -167,7 +171,7 @@ export default class ColumnSettings extends React.PureComponent {
           </div>
         </div>
 
-        {isStaff && (
+        {(this.context.identity.permissions & PERMISSION_MANAGE_USERS === PERMISSION_MANAGE_USERS) && (
           <div role='group' aria-labelledby='notifications-admin-sign-up'>
             <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.admin.sign_up' defaultMessage='New sign-ups:' /></span>
 
@@ -180,7 +184,7 @@ export default class ColumnSettings extends React.PureComponent {
           </div>
         )}
 
-        {isStaff && (
+        {(this.context.identity.permissions & PERMISSION_MANAGE_REPORTS === PERMISSION_MANAGE_REPORTS) && (
           <div role='group' aria-labelledby='notifications-admin-report'>
             <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.admin.report' defaultMessage='New reports:' /></span>
 

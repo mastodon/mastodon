@@ -5,10 +5,11 @@ import IconButton from './icon_button';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, isStaff } from 'flavours/glitch/util/initial_state';
+import { me } from 'flavours/glitch/util/initial_state';
 import RelativeTimestamp from './relative_timestamp';
 import { accountAdminLink, statusAdminLink } from 'flavours/glitch/util/backend_links';
 import classNames from 'classnames';
+import { PERMISSION_MANAGE_USERS } from 'flavours/glitch/permissions';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
@@ -47,6 +48,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -240,7 +242,7 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.block, { name: status.getIn(['account', 'username']) }), action: this.handleBlockClick });
       menu.push({ text: intl.formatMessage(messages.report, { name: status.getIn(['account', 'username']) }), action: this.handleReport });
 
-      if (isStaff && (accountAdminLink || statusAdminLink)) {
+      if ((this.context.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS && (accountAdminLink || statusAdminLink)) {
         menu.push(null);
         if (accountAdminLink !== undefined) {
           menu.push({

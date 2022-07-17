@@ -7,6 +7,7 @@ class InitialStateSerializer < ActiveModel::Serializer
              :languages
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
+  has_one :role, serializer: REST::RoleSerializer
 
   def max_toot_chars
     StatusLengthValidator::MAX_CHARS
@@ -33,7 +34,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       repository: Mastodon::Version.repository,
       source_url: Mastodon::Version.source_url,
       version: Mastodon::Version.to_s,
-      invites_enabled: Setting.min_invite_role == 'user',
       limited_federation_mode: Rails.configuration.x.whitelist_mode,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
@@ -54,7 +54,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
       store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
       store[:use_pending_items] = object.current_account.user.setting_use_pending_items
-      store[:is_staff]          = object.current_account.user.staff?
       store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:default_content_type] = object.current_account.user.setting_default_content_type
       store[:system_emoji_font] = object.current_account.user.setting_system_emoji_font

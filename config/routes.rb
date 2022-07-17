@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get 'health', to: 'health#show'
 
-  authenticate :user, lambda { |u| u.admin? } do
+  authenticate :user, lambda { |u| u.role&.can?(:view_devops) } do
     mount Sidekiq::Web, at: 'sidekiq', as: :sidekiq
     mount PgHero::Engine, at: 'pghero', as: :pghero
   end
@@ -316,17 +316,11 @@ Rails.application.routes.draw do
           post :resend
         end
       end
-
-      resource :role, only: [] do
-        member do
-          post :promote
-          post :demote
-        end
-      end
     end
 
     resources :users, only: [] do
-      resource :two_factor_authentication, only: [:destroy]
+      resource :two_factor_authentication, only: [:destroy], controller: 'users/two_factor_authentications'
+      resource :role, only: [:show, :update], controller: 'users/roles'
     end
 
     resources :custom_emojis, only: [:index, :new, :create] do
@@ -341,6 +335,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :roles, except: [:show]
     resources :account_moderation_notes, only: [:create, :destroy]
     resource :follow_recommendations, only: [:show, :update]
     resources :tags, only: [:show, :update]
@@ -558,6 +553,15 @@ Rails.application.routes.draw do
         post :unpin, to: 'accounts/pins#destroy'
         resource :note, only: :create, controller: 'accounts/notes'
       end
+
+      resources :tags, only: [:show], constraints: { id: /#{Tag::HASHTAG_NAME_RE}/ } do
+        member do
+          post :follow
+          post :unfollow
+        end
+      end
+
+      resources :followed_tags, only: [:index]
 
       resources :lists, only: [:index, :create, :show, :update, :destroy] do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'

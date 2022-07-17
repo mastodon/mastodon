@@ -44,6 +44,7 @@ require_relative '../lib/webpacker/helper_extensions'
 require_relative '../lib/rails/engine_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
+require_relative '../lib/simple_navigation/item_extensions'
 
 Dotenv::Railtie.load
 

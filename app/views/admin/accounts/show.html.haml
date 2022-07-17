@@ -92,10 +92,13 @@
 
           %tr
             %th= t('admin.accounts.role')
-            %td= t("admin.accounts.roles.#{@account.user&.role}")
             %td
-              = table_link_to 'angle-double-up', t('admin.accounts.promote'), promote_admin_account_role_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:promote, @account.user)
-              = table_link_to 'angle-double-down', t('admin.accounts.demote'), demote_admin_account_role_path(@account.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:demote, @account.user)
+              - if @account.user_role&.everyone?
+                = t('admin.accounts.no_role_assigned')
+              - else
+                = @account.user_role&.name
+            %td
+              = table_link_to 'vcard', t('admin.accounts.change_role.label'), admin_user_role_path(@account.user) if can?(:change_role, @account.user)
 
           %tr
             %th{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= t('admin.accounts.email')
