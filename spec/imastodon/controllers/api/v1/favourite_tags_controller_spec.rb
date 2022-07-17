@@ -4,7 +4,7 @@ RSpec.describe Api::V1::FavouriteTagsController, type: :controller do
   render_views
 
   let(:user)  { Fabricate(:user, account: Fabricate(:account, username: 'alice')) }
-  let(:token) { double acceptable?: true, resource_owner_id: user.id }
+  let(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
   let(:tag) { Fabricate(:tag, name: tag_name) }
   
   before do
@@ -12,6 +12,7 @@ RSpec.describe Api::V1::FavouriteTagsController, type: :controller do
   end
 
   describe 'GET #index' do
+    let(:scopes) { 'read:statuses' }
     it 'returns http success' do
       get :index
       expect(response).to have_http_status(:success)
@@ -19,6 +20,7 @@ RSpec.describe Api::V1::FavouriteTagsController, type: :controller do
   end
   
   describe 'POST #create' do
+    let(:scopes) { 'write:statuses' }
     let(:tag_name) { 'dummy_tag' }
     let(:params){
       {
@@ -64,6 +66,7 @@ RSpec.describe Api::V1::FavouriteTagsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    let(:scopes) { 'write:statuses' }
     let(:params) { { tag: tag_name } }
     
     subject { delete :destroy, params: params }

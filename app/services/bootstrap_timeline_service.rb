@@ -5,6 +5,7 @@ class BootstrapTimelineService < BaseService
     @source_account = source_account
 
     autofollow_inviter!
+    notify_staff!
   end
 
   private
@@ -13,5 +14,11 @@ class BootstrapTimelineService < BaseService
     return unless @source_account&.user&.invite&.autofollow?
 
     FollowService.new.call(@source_account, @source_account.user.invite.user.account)
+  end
+
+  def notify_staff!
+    User.staff.includes(:account).find_each do |user|
+      LocalNotificationWorker.perform_async(user.account_id, @source_account.id, 'Account', 'admin.sign_up')
+    end
   end
 end

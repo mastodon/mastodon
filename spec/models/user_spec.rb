@@ -89,6 +89,19 @@ RSpec.describe User, type: :model do
         expect(User.matches_email('specified')).to match_array([specified])
       end
     end
+
+    describe 'matches_ip' do
+      it 'returns a relation of users whose ip address is matching with the given CIDR' do
+        user1 = Fabricate(:user)
+        user2 = Fabricate(:user)
+        Fabricate(:session_activation, user: user1, ip: '2160:2160::22', session_id: '1')
+        Fabricate(:session_activation, user: user1, ip: '2160:2160::23', session_id: '2')
+        Fabricate(:session_activation, user: user2, ip: '2160:8888::24', session_id: '3')
+        Fabricate(:session_activation, user: user2, ip: '2160:8888::25', session_id: '4')
+
+        expect(User.matches_ip('2160:2160::/32')).to match_array([user1])
+      end
+    end
   end
 
   let(:account) { Fabricate(:account, username: 'alice') }

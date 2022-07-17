@@ -104,11 +104,25 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   end
 
   def filtered_accounts
-    AccountFilter.new(filter_params).results
+    AccountFilter.new(translated_filter_params).results
   end
 
   def filter_params
     params.permit(*FILTER_PARAMS)
+  end
+
+  def translated_filter_params
+    translated_params = { origin: 'local', status: 'active' }.merge(filter_params.slice(*AccountFilter::KEYS))
+
+    translated_params[:origin] = 'remote' if params[:remote].present?
+
+    %i(active pending disabled silenced suspended).each do |status|
+      translated_params[:status] = status.to_s if params[status].present?
+    end
+
+    translated_params[:permissions] = 'staff' if params[:staff].present?
+
+    translated_params
   end
 
   def insert_pagination_headers

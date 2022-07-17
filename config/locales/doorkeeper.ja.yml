@@ -60,8 +60,6 @@ ja:
       error:
         title: エラーが発生しました
       new:
-        able_to: このアプリは以下のことができます
-        prompt: アプリ %{client_name} があなたのアカウントへのアクセスを要求しています
         title: 認証が必要です
       show:
         title: 認証コードをコピーしてアプリに貼り付けて下さい。
@@ -71,10 +69,10 @@ ja:
       confirmations:
         revoke: 本当に取り消しますか？
       index:
-        application: アプリ名
-        created_at: 許可した日時
-        date_format: "%Y年%m月%d日 %H時%M分%S秒"
-        scopes: アクセス権
+        authorized_at: "%{date} に承認されました"
+        last_used_at: 最終使用日 %{date}
+        never_used: 使用されていない
+        scopes: 権限
         title: 認証済みアプリ
     errors:
       messages:
@@ -110,6 +108,28 @@ ja:
       authorized_applications:
         destroy:
           notice: アプリが取り消されました。
+    grouped_scopes:
+      access:
+        read: 読み取り専用アクセス
+        read/write: 読み取りおよび書き込みアクセス
+        write: 書き込み専用アクセス
+      title:
+        accounts: アカウント
+        all: すべて
+        blocks: ブロック
+        bookmarks: ブックマーク
+        crypto: エンドツーエンド暗号化
+        favourites: お気に入り
+        filters: フィルター
+        follow: フォロー・フォロワー
+        lists: リスト
+        media: メディアの添付
+        mutes: ミュート
+        notifications: 通知
+        push: プッシュ通知
+        reports: 通報
+        search: 検索
+        statuses: 投稿
     layouts:
       admin:
         nav:
@@ -124,6 +144,7 @@ ja:
       admin:write: サーバーのすべてのデータの変更
       admin:write:accounts: アカウントに対するアクションの実行
       admin:write:reports: 通報に対するアクションの実行
+      crypto: エンドツーエンド暗号化の使用
       follow: アカウントのつながりを変更
       push: プッシュ通知の受信
       read: アカウントのすべてのデータの読み取り

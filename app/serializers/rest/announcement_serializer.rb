@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class REST::AnnouncementSerializer < ActiveModel::Serializer
+  include FormattingHelper
+
   attributes :id, :content, :starts_at, :ends_at, :all_day,
              :published_at, :updated_at
 
@@ -25,7 +27,7 @@ class REST::AnnouncementSerializer < ActiveModel::Serializer
   end
 
   def content
-    Formatter.instance.linkify(object.text)
+    linkify(object.text)
   end
 
   def reactions

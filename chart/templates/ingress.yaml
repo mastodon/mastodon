@@ -2,7 +2,9 @@
 {{- $fullName := include "mastodon.fullname" . -}}
 {{- $webPort := .Values.mastodon.web.port -}}
 {{- $streamingPort := .Values.mastodon.streaming.port -}}
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- if or (.Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress") (not (.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/Ingress")) }}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
 apiVersion: extensions/v1beta1
@@ -35,12 +37,32 @@ spec:
           {{- range .paths }}
           - path: {{ .path }}
             backend:
+              {{- if or ($.Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress") (not ($.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/Ingress")) }}
+              service:
+                name: {{ $fullName }}-web
+                port:
+                  number: {{ $webPort }}
+              {{- else }}
               serviceName: {{ $fullName }}-web
               servicePort: {{ $webPort }}
+              {{- end }}
+            {{- if or ($.Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress") (not ($.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/Ingress")) }}
+            pathType: ImplementationSpecific
+            {{- end }}
           - path: {{ .path }}api/v1/streaming
             backend:
+              {{- if or ($.Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress") (not ($.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/Ingress")) }}
+              service:
+                name: {{ $fullName }}-streaming
+                port:
+                  number: {{ $streamingPort }}
+              {{- else }}
               serviceName: {{ $fullName }}-streaming
               servicePort: {{ $streamingPort }}
+              {{- end }}
+            {{- if or ($.Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress") (not ($.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/Ingress")) }}
+            pathType: ImplementationSpecific
+            {{- end }}
           {{- end }}
     {{- end }}
 {{- end }}

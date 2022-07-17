@@ -82,6 +82,11 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.warning(User.first, AccountWarning.last)
   end
 
+  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/appeal_approved
+  def appeal_approved
+    UserMailer.appeal_approved(User.first, Appeal.last)
+  end
+
   # Preview this email at http://localhost:3000/rails/mailers/user_mailer/sign_in_token
   def sign_in_token
     UserMailer.sign_in_token(User.first.tap { |user| user.generate_sign_in_token }, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0', Time.now.utc)

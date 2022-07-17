@@ -35,7 +35,6 @@ pt-BR:
         current_password: Para fins de segurança, por favor, digite a senha da conta atual
         current_username: Para confirmar, por favor, digite o nome de usuário da conta atual
         digest: Enviado apenas após um longo período de inatividade com um resumo das menções recebidas durante ausência
-        discoverable: O diretório de perfis é outra maneira de sua conta alcançar um público maior
         email: Você receberá um e-mail de confirmação
         fields: Você pode ter até 4 itens mostrados em forma de tabela no seu perfil
         header: PNG, GIF or JPG. Arquivos de até %{size}. Serão redimensionados para %{dimensions}px
@@ -61,7 +60,7 @@ pt-BR:
       domain_allow:
         domain: Este domínio poderá obter dados deste servidor e os dados recebidos dele serão processados e armazenados
       email_domain_block:
-        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail, o registro MX para o qual o domínio resolve, ou o IP do servidor para o qual o registro MX resolve. Esses vão ser verificados no momento de registro do usuário e o registro será rejeitado.
+        domain: Este pode ser o nome de domínio que aparece no endereço de e-mail ou no registro MX que ele utiliza. Eles serão verificados após a inscrição.
         with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
         name: 'Você pode querer usar um destes:'
@@ -118,6 +117,8 @@ pt-BR:
         scheduled_at: Agendar publicação
         starts_at: Início do evento
         text: Comunicados
+      appeal:
+        text: Explique porque essa decisão deve ser revertida
       defaults:
         autofollow: Convite para seguir a sua conta
         avatar: Imagem de perfil
@@ -203,8 +204,8 @@ pt-BR:
         mention: Enviar e-mail quando alguém te mencionar
         pending_account: Enviar e-mail quando uma nova conta precisa ser revisada
         reblog: Enviar e-mail quando alguém der boost nos teus toots
-        report: Enviar e-mail quando uma nova denúncia for enviada
-        trending_tag: Enviar e-mail quando uma hashtag não-revisada está em alta
+        report: Novo relatório foi enviado
+        trending_tag: Uma nova tendência requer revisão
       rule:
         text: Regra
       tag:

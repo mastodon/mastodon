@@ -24,9 +24,7 @@ The variables that _must_ be configured are:
 Currently this chart does _not_ support:
 
 - Hidden services
-- Single Sign-On
 - Swift
-- configurations using `WEB_DOMAIN`
 
 # Upgrading
 

@@ -187,30 +187,30 @@ describe ApplicationController, type: :controller do
     controller do
       before_action :require_admin!
 
-      def sucesss
+      def success
         head 200
       end
     end
 
     before do
-      routes.draw { get 'sucesss' => 'anonymous#sucesss' }
+      routes.draw { get 'success' => 'anonymous#success' }
     end
 
     it 'returns a 403 if current user is not admin' do
       sign_in(Fabricate(:user, admin: false))
-      get 'sucesss'
+      get 'success'
       expect(response).to have_http_status(403)
     end
 
     it 'returns a 403 if current user is only a moderator' do
       sign_in(Fabricate(:user, moderator: true))
-      get 'sucesss'
+      get 'success'
       expect(response).to have_http_status(403)
     end
 
     it 'does nothing if current user is admin' do
       sign_in(Fabricate(:user, admin: true))
-      get 'sucesss'
+      get 'success'
       expect(response).to have_http_status(200)
     end
   end
@@ -219,30 +219,30 @@ describe ApplicationController, type: :controller do
     controller do
       before_action :require_staff!
 
-      def sucesss
+      def success
         head 200
       end
     end
 
     before do
-      routes.draw { get 'sucesss' => 'anonymous#sucesss' }
+      routes.draw { get 'success' => 'anonymous#success' }
     end
 
     it 'returns a 403 if current user is not admin or moderator' do
       sign_in(Fabricate(:user, admin: false, moderator: false))
-      get 'sucesss'
+      get 'success'
       expect(response).to have_http_status(403)
     end
 
     it 'does nothing if current user is moderator' do
       sign_in(Fabricate(:user, moderator: true))
-      get 'sucesss'
+      get 'success'
       expect(response).to have_http_status(200)
     end
 
     it 'does nothing if current user is admin' do
       sign_in(Fabricate(:user, admin: true))
-      get 'sucesss'
+      get 'success'
       expect(response).to have_http_status(200)
     end
   end

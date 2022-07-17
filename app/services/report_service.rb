@@ -6,15 +6,17 @@ class ReportService < BaseService
   def call(source_account, target_account, options = {})
     @source_account = source_account
     @target_account = target_account
-    @status_ids     = options.delete(:status_ids) || []
-    @comment        = options.delete(:comment) || ''
+    @status_ids     = options.delete(:status_ids).presence || []
+    @comment        = options.delete(:comment).presence || ''
+    @category       = options.delete(:category).presence || 'other'
+    @rule_ids       = options.delete(:rule_ids).presence
     @options        = options
 
     raise ActiveRecord::RecordNotFound if @target_account.suspended?
 
     create_report!
     notify_staff!
-    forward_to_origin! if !@target_account.local? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
+    forward_to_origin! if forward?
 
     @report
   end
@@ -24,10 +26,12 @@ class ReportService < BaseService
   def create_report!
     @report = @source_account.reports.create!(
       target_account: @target_account,
-      status_ids: @status_ids,
+      status_ids: reported_status_ids,
       comment: @comment,
       uri: @options[:uri],
-      forwarded: ActiveModel::Type::Boolean.new.cast(@options[:forward])
+      forwarded: forward?,
+      category: @category,
+      rule_ids: @rule_ids
     )
   end
 
@@ -46,6 +50,14 @@ class ReportService < BaseService
       some_local_account.id,
       @target_account.inbox_url
     )
+  end
+
+  def forward?
+    !@target_account.local? && ActiveModel::Type::Boolean.new.cast(@options[:forward])
+  end
+
+  def reported_status_ids
+    @target_account.statuses.with_discarded.find(Array(@status_ids)).pluck(:id)
   end
 
   def payload

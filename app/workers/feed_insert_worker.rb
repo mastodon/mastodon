@@ -66,7 +66,7 @@ class FeedInsertWorker
   end
 
   def perform_notify
-    NotifyService.new.call(@follower, :status, @status)
+    LocalNotificationWorker.perform_async(@follower.id, @status.id, 'Status', 'status')
   end
 
   def update?

@@ -22,6 +22,6 @@ class ActivityPub::UndoAnnounceSerializer < ActivityPub::Serializer
   end
 
   def virtual_object
-    ActivityPub::ActivityPresenter.from_status(object)
+    ActivityPub::ActivityPresenter.from_status(object, allow_inlining: false)
   end
 end

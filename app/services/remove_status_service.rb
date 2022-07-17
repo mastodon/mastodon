@@ -40,7 +40,7 @@ class RemoveStatusService < BaseService
           remove_reblogs
           remove_from_hashtags
           remove_from_public
-          remove_from_media if @status.media_attachments.any?
+          remove_from_media if @status.with_media?
           remove_media
         end
 
@@ -95,7 +95,7 @@ class RemoveStatusService < BaseService
   end
 
   def signed_activity_json
-    @signed_activity_json ||= Oj.dump(serialize_payload(@status, @status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteSerializer, signer: @account))
+    @signed_activity_json ||= Oj.dump(serialize_payload(@status, @status.reblog? ? ActivityPub::UndoAnnounceSerializer : ActivityPub::DeleteSerializer, signer: @account, always_sign: true))
   end
 
   def remove_reblogs

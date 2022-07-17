@@ -20,7 +20,7 @@
                                       = image_tag full_pack_url('media/images/mailer/icon_grade.png'), alt:''
 
                               %h1= t 'notification_mailer.favourite.title'
-                              %p.lead= t('notification_mailer.favourite.body', name: @account.acct)
+                              %p.lead= t('notification_mailer.favourite.body', name: @account.pretty_acct)
 
 = render 'status', status: @status
 

@@ -6,7 +6,20 @@ module Admin
 
     def index
       authorize :email_domain_block, :index?
+
       @email_domain_blocks = EmailDomainBlock.where(parent_id: nil).includes(:children).order(id: :desc).page(params[:page])
+      @form                = Form::EmailDomainBlockBatch.new
+    end
+
+    def batch
+      @form = Form::EmailDomainBlockBatch.new(form_email_domain_block_batch_params.merge(current_account: current_account, action: action_from_button))
+      @form.save
+    rescue ActionController::ParameterMissing
+      flash[:alert] = I18n.t('admin.email_domain_blocks.no_email_domain_block_selected')
+    rescue Mastodon::NotPermittedError
+      flash[:alert] = I18n.t('admin.custom_emojis.not_permitted')
+    ensure
+      redirect_to admin_email_domain_blocks_path
     end
 
     def new
@@ -19,41 +32,27 @@ module Admin
 
       @email_domain_block = EmailDomainBlock.new(resource_params)
 
-      if @email_domain_block.save
-        log_action :create, @email_domain_block
+      if action_from_button == 'save'
+        EmailDomainBlock.transaction do
+          @email_domain_block.save!
+          log_action :create, @email_domain_block
 
-        if @email_domain_block.with_dns_records?
-          hostnames = []
-          ips       = []
+          (@email_domain_block.other_domains || []).uniq.each do |domain|
+            next if EmailDomainBlock.where(domain: domain).exists?
 
-          Resolv::DNS.open do |dns|
-            dns.timeouts = 5
-
-            hostnames = dns.getresources(@email_domain_block.domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
-
-            ([@email_domain_block.domain] + hostnames).uniq.each do |hostname|
-              ips.concat(dns.getresources(hostname, Resolv::DNS::Resource::IN::A).to_a.map { |e| e.address.to_s })
-              ips.concat(dns.getresources(hostname, Resolv::DNS::Resource::IN::AAAA).to_a.map { |e| e.address.to_s })
-            end
-          end
-
-          (hostnames + ips).each do |hostname|
-            another_email_domain_block = EmailDomainBlock.new(domain: hostname, parent: @email_domain_block)
-            log_action :create, another_email_domain_block if another_email_domain_block.save
+            other_email_domain_block = EmailDomainBlock.create!(domain: domain, parent: @email_domain_block)
+            log_action :create, other_email_domain_block
           end
         end
 
         redirect_to admin_email_domain_blocks_path, notice: I18n.t('admin.email_domain_blocks.created_msg')
       else
+        set_resolved_records
         render :new
       end
-    end
-
-    def destroy
-      authorize @email_domain_block, :destroy?
-      @email_domain_block.destroy!
-      log_action :destroy, @email_domain_block
-      redirect_to admin_email_domain_blocks_path, notice: I18n.t('admin.email_domain_blocks.destroyed_msg')
+    rescue ActiveRecord::RecordInvalid
+      set_resolved_records
+      render :new
     end
 
     private
@@ -62,8 +61,27 @@ module Admin
       @email_domain_block = EmailDomainBlock.find(params[:id])
     end
 
+    def set_resolved_records
+      Resolv::DNS.open do |dns|
+        dns.timeouts = 5
+        @resolved_records = dns.getresources(@email_domain_block.domain, Resolv::DNS::Resource::IN::MX).to_a
+      end
+    end
+
     def resource_params
-      params.require(:email_domain_block).permit(:domain, :with_dns_records)
+      params.require(:email_domain_block).permit(:domain, other_domains: [])
+    end
+
+    def form_email_domain_block_batch_params
+      params.require(:form_email_domain_block_batch).permit(email_domain_block_ids: [])
+    end
+
+    def action_from_button
+      if params[:delete]
+        'delete'
+      elsif params[:save]
+        'save'
+      end
     end
   end
 end

@@ -54,5 +54,9 @@
             %ul
               %li= link_to t('about.source_code'), Mastodon::Version.source_url
               %li= link_to t('about.apps'), 'https://joinmastodon.org/apps'
+        .legal-xs
+          = link_to "v#{Mastodon::Version.to_s}", Mastodon::Version.source_url
+          ·
+          = link_to t('about.privacy_policy'), terms_path
 
 = render template: 'layouts/application'

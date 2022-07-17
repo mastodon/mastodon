@@ -75,30 +75,4 @@ module Twitter::TwitterText
       )
     }iox
   end
-
-  module Extractor
-    # Extracts a list of all XMPP and magnet URIs included in the Toot <tt>text</tt> along
-    # with the indices. If the <tt>text</tt> is <tt>nil</tt> or contains no
-    # XMPP or magnet URIs an empty array will be returned.
-    #
-    # If a block is given then it will be called for each XMPP URI.
-    def extract_extra_uris_with_indices(text, _options = {}) # :yields: uri, start, end
-      return [] unless text && text.index(":")
-      urls = []
-
-      text.to_s.scan(Twitter::TwitterText::Regex[:valid_extended_uri]) do
-        valid_uri_match_data = $~
-
-        start_position = valid_uri_match_data.char_begin(3)
-        end_position = valid_uri_match_data.char_end(3)
-
-        urls << {
-          :url => valid_uri_match_data[3],
-          :indices => [start_position, end_position]
-        }
-      end
-      urls.each{|url| yield url[:url], url[:indices].first, url[:indices].last} if block_given?
-      urls
-    end
-  end
 end

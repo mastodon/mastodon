@@ -5,10 +5,26 @@ class ActivityPub::ProcessCollectionService < BaseService
 
   def call(body, account, **options)
     @account = account
-    @json    = Oj.load(body, mode: :strict)
+    @json    = original_json = Oj.load(body, mode: :strict)
     @options = options
 
+    begin
+      @json = compact(@json) if @json['signature'].is_a?(Hash)
+    rescue JSON::LD::JsonLdError => e
+      Rails.logger.debug "Error when compacting JSON-LD document for #{value_or_id(@json['actor'])}: #{e.message}"
+      @json = original_json.without('signature')
+    end
+
     return if !supported_context? || (different_actor? && verify_account!.nil?) || suspended_actor? || @account.local?
+
+    if @json['signature'].present?
+      # We have verified the signature, but in the compaction step above, might
+      # have introduced incompatibilities with other servers that do not
+      # normalize the JSON-LD documents (for instance, previous Mastodon
+      # versions), so skip redistribution if we can't get a safe document.
+      patch_for_forwarding!(original_json, @json)
+      @json.delete('signature') unless safe_for_forwarding?(original_json, @json)
+    end
 
     case @json['type']
     when 'Collection', 'CollectionPage'

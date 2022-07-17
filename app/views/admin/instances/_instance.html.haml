@@ -1,33 +1,15 @@
 .directory__tag
   = link_to admin_instance_path(instance) do
     %h4
+      = fa_icon 'warning fw', title: t('admin.instances.availability.warning') if instance.failing?
       = instance.domain
+
       %small
         - if instance.domain_block
-          - first_item = true
-          - if !instance.domain_block.noop?
-            = t("admin.domain_blocks.severity.#{instance.domain_block.severity}")
-            - first_item = false
-          - unless instance.domain_block.suspend?
-            - if instance.domain_block.reject_media?
-              - unless first_item
-                &bull;
-              = t('admin.domain_blocks.rejecting_media')
-              - first_item = false
-            - if instance.domain_block.reject_reports?
-              - unless first_item
-                &bull;
-              = t('admin.domain_blocks.rejecting_reports')
-        - elsif whitelist_mode?
+          = instance.domain_block.policies.map { |policy| t(policy, scope: 'admin.instances.content_policies.policies') }.join(' • ')
+        - elsif instance.domain_allow
           = t('admin.accounts.whitelisted')
         - else
           = t('admin.accounts.no_limits_imposed')
-        - if instance.failure_days
-          = ' / '
-          %span.negative-hint
-            = t('admin.instances.delivery.warning_message', count: instance.failure_days)
-        - if instance.unavailable_domain
-          = ' / '
-          %span.negative-hint
-            = t('admin.instances.delivery.unavailable_message')
+
     .trends__item__current{ title: t('admin.instances.known_accounts', count: instance.accounts_count) }= friendly_number_to_human instance.accounts_count

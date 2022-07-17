@@ -68,4 +68,8 @@ class AccountPolicy < ApplicationPolicy
   def unblock_email?
     staff?
   end
+
+  def review?
+    staff?
+  end
 end

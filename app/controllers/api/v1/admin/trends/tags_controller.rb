@@ -14,6 +14,6 @@ class Api::V1::Admin::Trends::TagsController < Api::BaseController
   private
 
   def set_tags
-    @tags = Trends.tags.get(false, limit_param(10))
+    @tags = Trends.tags.query.limit(limit_param(10))
   end
 end

@@ -8,6 +8,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
       original_status = status_from_object
 
       return reject_payload! if original_status.nil? || !announceable?(original_status)
+      return if requested_through_relay?
 
       @status = Status.find_by(account: @account, reblog: original_status)
 
@@ -22,8 +23,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
         visibility: visibility_from_audience
       )
 
-      Trends.tags.register(@status)
-      Trends.links.register(@status)
+      Trends.register!(@status)
 
       distribute
     end
@@ -35,7 +35,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
 
   def distribute
     # Notify the author of the original status if that status is local
-    NotifyService.new.call(@status.reblog.account, :reblog, @status) if reblog_of_local_account?(@status) && !reblog_by_following_group_account?(@status)
+    LocalNotificationWorker.perform_async(@status.reblog.account_id, @status.id, 'Status', 'reblog') if reblog_of_local_account?(@status) && !reblog_by_following_group_account?(@status)
 
     # Distribute into home and list feeds
     ::DistributionWorker.perform_async(@status.id) if @options[:override_timestamps] || @status.within_realtime_window?
