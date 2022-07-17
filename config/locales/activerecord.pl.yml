@@ -37,3 +37,10 @@ pl:
             email:
               blocked: używa niedozwolonego dostawcy poczty elektronicznej
               unreachable: wydaje się nie istnieć
+            role_id:
+              elevated: nie może być wyższa niż twoja bieżąca rola
+        user_role:
+          attributes:
+            position:
+              elevated: nie może być wyższa niż twoja bieżąca rola
+              own_role: nie może być zmieniona z twoją aktualną rolą
