@@ -114,13 +114,13 @@ RSpec.describe UserPolicy do
 
   permissions :promote? do
     context 'admin?' do
-      context 'promoteable?' do
+      context 'promotable?' do
         it 'permits' do
           expect(subject).to permit(admin, john.user)
         end
       end
 
-      context '!promoteable?' do
+      context '!promotable?' do
         it 'denies' do
           expect(subject).to_not permit(admin, admin.user)
         end

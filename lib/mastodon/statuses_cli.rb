@@ -54,7 +54,7 @@ module Mastodon
 
       ActiveRecord::Base.connection.add_index(:media_attachments, :remote_url, name: :index_media_attachments_remote_url, where: 'remote_url is not null', algorithm: :concurrently, if_not_exists: true)
 
-      max_id   = Mastodon::Snowflake.id_at(options[:days].days.ago)
+      max_id   = Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false)
       start_at = Time.now.to_f
 
       unless options[:continue] && ActiveRecord::Base.connection.table_exists?('statuses_to_be_deleted')
@@ -156,7 +156,7 @@ module Mastodon
 
         ActiveRecord::Base.connection.add_index(:statuses, :conversation_id, name: :index_statuses_conversation_id, algorithm: :concurrently, if_not_exists: true)
 
-        say('Extract the deletion target from coversations... This might take a while...')
+        say('Extract the deletion target from conversations... This might take a while...')
 
         ActiveRecord::Base.connection.create_table('conversations_to_be_deleted', force: true)
 

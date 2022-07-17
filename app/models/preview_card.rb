@@ -80,6 +80,10 @@ class PreviewCard < ApplicationRecord
     end
   end
 
+  def requires_review?
+    attributes['trendable'].nil? && (provider.nil? || provider.requires_review?)
+  end
+
   def requires_review_notification?
     attributes['trendable'].nil? && (provider.nil? || provider.requires_review_notification?)
   end

@@ -1,5 +1,5 @@
 <%= raw t('application_mailer.salutation', name: display_name(@me)) %>
 
-<%= raw(@report.account.local? ? t('admin_mailer.new_report.body', target: @report.target_account.acct, reporter: @report.account.acct) : t('admin_mailer.new_report.body_remote', target: @report.target_account.acct, domain: @report.account.domain)) %>
+<%= raw(@report.account.local? ? t('admin_mailer.new_report.body', target: @report.target_account.pretty_acct, reporter: @report.account.pretty_acct) : t('admin_mailer.new_report.body_remote', target: @report.target_account.acct, domain: @report.account.domain)) %>
 
 <%= raw t('application_mailer.view')%> <%= admin_report_url(@report) %>

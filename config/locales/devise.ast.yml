@@ -2,8 +2,8 @@
 ast:
   devise:
     confirmations:
-      confirmed: La direición de corréu confirmóse con ésitu.
-      send_instructions: Nunos minutos, vas recibir un corréu coles instrucciones pa cómo confirmar la direición de corréu. Comprueba la carpeta Puxarra si nun lu recibiesti, por favor.
+      confirmed: La direición de corréu confirmóse correutamente.
+      send_instructions: Nunos minutos, vas recibir un corréu coles instrucciones pa cómo confirmar la direición de corréu. Comprueba la carpeta Puxarra si nun lu recibiesti.
       send_paranoid_instructions: Si la direición de corréu esiste na nuesa base de datos, nunos minutos vas recibir un corréu coles instrucciones pa cómo confirmala. Comprueba la carpeta Puxarra si nun lu recibiesti.
     failure:
       already_authenticated: Yá aniciesti sesión.
@@ -11,8 +11,9 @@ ast:
       last_attempt: Tienes un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
       pending: La cuenta ta entá en revisión.
-      timeout: La sesión caducó. Volvi aniciar sesión pa siguir, por favor.
+      timeout: La sesión caducó. Volvi aniciar sesión pa siguir.
       unauthenticated: Precises aniciar sesión o rexistrate enantes de siguir.
+      unconfirmed: Tienes de confirmar la direición de corréu electrónicu enantes de siguir.
     mailer:
       confirmation_instructions:
         explanation: Creesti una cuenta en %{host} con esta direición de corréu. Tas a un calcu d'activala. Si nun fuisti tu, inora esti corréu.
@@ -22,7 +23,8 @@ ast:
         title: Direición nueva de corréu
       password_change:
         explanation: Camudó la contraseña de la cuenta.
-        subject: 'Mastodon: Camudó la contraseña'
+        extra: Si nun camudesti la contraseña, ye probable que daquién accediere a la cuenta. Camuda la contraseña agora mesmo o ponte en contautu cola alministración del sirvidor si nun yes a acceder a la cuenta.
+        subject: 'Mastodon: La contraseña camudó'
       reset_password_instructions:
         explanation: Solicitesti una contraseña nueva pa la cuenta.
         extra: Si nun solicitesti esto, inora esti corréu. La contraseña nun va camudar hasta que nun accedas al enllaz d'enriba y crees una nueva.
@@ -38,20 +40,23 @@ ast:
     passwords:
       send_instructions: Si la direición de corréu esiste na base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña a esi corréu. Comprueba la carpeta Puxarra si nun lu recibiesti.
       send_paranoid_instructions: Si la direición de corréu esiste na base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña a esi corréu. Comprueba la carpeta Puxarra si nun lu recibiesti.
-      updated: La contraseña camudó con ésitu. Agora aniciesti sesión.
-      updated_not_active: La contraseña camudó con ésitu.
+      updated_not_active: La contraseña camudó con correutamente.
     registrations:
-      signed_up: "¡Afáyate! Rexistréstite con ésitu."
-      signed_up_but_unconfirmed: Unvióse un mensaxe de confirmación a la direición de corréu. Sigui l'enllaz p'activar la cuenta. Comprueba la carpeta Puxarra si nun recibiesti esti corréu, por favor.
-      updated: La cuenta anovóse con ésitu.
+      signed_up: "¡Afáyate! Rexistréstite correutamente."
+      signed_up_but_inactive: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la to cuenta entá nun s'activó.
+      signed_up_but_locked: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la to cuenta ta bloquiada.
+      signed_up_but_unconfirmed: Unvióse un mensaxe de confirmación a la direición de corréu. Sigui l'enllaz p'activar la cuenta. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
+      updated: La cuenta anovóse correutamente.
+    sessions:
+      signed_in: Aniciesti sesión correutamente.
     unlocks:
       send_instructions: Nunos minutos vas recibir un corréu coles instrucciones pa cómo desbloquiar la cuenta. Comprueba la carpeta Puxarra si nun lu recibiesti.
       send_paranoid_instructions: Si esiste la cuenta, nun momentu vas recibir un corréu coles instrucciones pa cómo desbloquiala. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
-      unlocked: La cuenta desbloquióse con ésitu. Anicia sesión pa siguir, por favor.
+      unlocked: La cuenta desbloquióse correutamente. Anicia sesión pa siguir.
   errors:
     messages:
       already_confirmed: yá se confirmó, volvi aniciar sesión
       not_found: nun s'alcontró
       not_saved:
         one: '1 fallu torgó que %{resource} se guardare:'
-        other: "%{count} fallos torgó que %{resource} se guardaren:"
+        other: "%{count} fallos torgaron que %{resource} se guardaren:"

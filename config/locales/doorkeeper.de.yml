@@ -60,8 +60,8 @@ de:
       error:
         title: Ein Fehler ist aufgetreten
       new:
-        able_to: 'Es wird folgende Befugnisse haben:'
-        prompt: Die Anwendung %{client_name} verlangt Zugriff auf dein Konto
+        prompt_html: "%{client_name} möchte auf dein Konto zugreifen. Es ist eine Anwendung von Drittanbietern. <strong>Wenn du ihr nicht vertraust, dann solltest du sie nicht autorisieren.</strong>"
+        review_permissions: Rechte überprüfen
         title: Autorisierung erforderlich
       show:
         title: Kopiere diesen Autorisierungs-Code und füge ihn in die Anwendung ein.
@@ -71,10 +71,12 @@ de:
       confirmations:
         revoke: Bist du sicher?
       index:
-        application: Anwendung
-        created_at: Autorisiert am
-        date_format: "%d.%m.%Y %H:%M:%S"
-        scopes: Befugnisse
+        authorized_at: Autorisiert am %{date}
+        description_html: Dies sind Anwendungen, die über die Programmierschnittstelle auf dein Konto zugreifen können. Wenn es Anwendungen gibt, die du hier nicht erkennst oder eine Anwendung sich falsch verhält, kannst du den Zugriff widerrufen.
+        last_used_at: Zuletzt verwendet am %{date}
+        never_used: Nie verwendet
+        scopes: Berechtigungen
+        superapp: Intern
         title: Deine autorisierten Anwendungen
     errors:
       messages:
@@ -110,6 +112,33 @@ de:
       authorized_applications:
         destroy:
           notice: Anwendung widerrufen.
+    grouped_scopes:
+      access:
+        read: Nur-Lese-Zugriff
+        read/write: Lese- und Schreibzugriff
+        write: Schreibzugriff
+      title:
+        accounts: Konten
+        admin/accounts: Verwaltung der Konten
+        admin/all: Alle administrativen Funktionen
+        admin/reports: Verwaltung der Berichte
+        all: Alles
+        blocks: Blocks
+        bookmarks: Lesezeichen
+        conversations: Konversationen
+        crypto: Ende-zu-Ende-Verschlüsselung
+        favourites: Favoriten
+        filters: Filter
+        follow: Beziehungen
+        follows: Folgt
+        lists: Listen
+        media: Medienanhänge
+        mutes: Stummschaltungen
+        notifications: Benachrichtigungen
+        push: Push-Benachrichtigungen
+        reports: Meldungen
+        search: Suche
+        statuses: Beiträge
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ de:
       admin:write: alle Daten auf dem Server ändern
       admin:write:accounts: Moderationsaktionen auf Konten ausführen
       admin:write:reports: Moderationsaktionen auf Meldungen ausführen
+      crypto: Ende-zu-Ende-Verschlüsselung verwenden
       follow: Kontenbeziehungen verändern
       push: deine Push-Benachrichtigungen erhalten
       read: all deine Daten lesen
@@ -143,6 +173,7 @@ de:
       write:accounts: dein Profil bearbeiten
       write:blocks: Domains und Konten blockieren
       write:bookmarks: Lesezeichen hinzufügen
+      write:conversations: Unterhaltungen stummschalten und löschen
       write:favourites: Beiträge favorisieren
       write:filters: Filter erstellen
       write:follows: Leuten folgen

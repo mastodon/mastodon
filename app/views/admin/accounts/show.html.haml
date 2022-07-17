@@ -1,5 +1,5 @@
 - content_for :page_title do
-  = @account.acct
+  = @account.pretty_acct
 
 - if @account.instance_actor?
   .flash-message.notice
@@ -16,16 +16,16 @@
         .account__header__fields
           - fields.each do |field|
             %dl
-              %dt.emojify{ title: field.name }= Formatter.instance.format_field(account, field.name, custom_emojify: true)
+              %dt.emojify{ title: field.name }= prerender_custom_emojis(h(field.name), account.emojis)
               %dd{ title: field.value, class: custom_field_classes(field) }
                 - if field.verified?
                   %span.verified__mark{ title: t('accounts.link_verified_on', date: l(field.verified_at)) }
                     = fa_icon 'check'
-                = Formatter.instance.format_field(account, field.value, custom_emojify: true)
+                = prerender_custom_emojis(account_field_value_format(field, with_rel_me: false), account.emojis)
 
     - if account.note.present?
       %div
-        .account__header__content.emojify= Formatter.instance.simplified_format(account, custom_emojify: true)
+        .account__header__content.emojify= prerender_custom_emojis(account_bio_format(account), account.emojis)
 
 .dashboard__counters.admin-account-counters
   %div
@@ -147,7 +147,7 @@
 
           %tr
             %th= t('simple_form.labels.defaults.locale')
-            %td= @account.user_locale
+            %td= standard_locale_name(@account.user_locale)
             %td
 
           %tr
@@ -246,17 +246,28 @@
   %hr.spacer/
 
   - unless @warnings.empty?
-    = render @warnings
+
+    %h3= t 'admin.accounts.previous_strikes'
+
+    %p= t('admin.accounts.previous_strikes_description_html', count: @account.previous_strikes_count)
+
+    .account-strikes
+      = render @warnings
 
     %hr.spacer/
 
-  = render @moderation_notes
+  %h3= t 'admin.reports.notes.title'
+
+  %p= t 'admin.reports.notes_description_html'
+
+  .report-notes
+    = render partial: 'admin/report_notes/report_note', collection: @moderation_notes
 
   = simple_form_for @account_moderation_note, url: admin_account_moderation_notes_path do |f|
-    = render 'shared/error_messages', object: @account_moderation_note
-
-    = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
     = f.hidden_field :target_account_id
+
+    .field-group
+      = f.input :content, placeholder: t('admin.reports.notes.placeholder'), rows: 6
 
     .actions
       = f.button :button, t('admin.account_moderation_notes.create'), type: :submit

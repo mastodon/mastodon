@@ -16,15 +16,6 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    it 'returns http success' do
-      domain_block = Fabricate(:domain_block)
-      get :show, params: { id: domain_block.id }
-
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe 'POST #create' do
     it 'blocks the domain when succeeded to save' do
       allow(DomainBlockWorker).to receive(:perform_async).and_return(true)

@@ -33,6 +33,8 @@ module Admin::ActionLogsHelper
       "#{record.ip}/#{record.ip.prefix} (#{I18n.t("simple_form.labels.ip_block.severities.#{record.severity}")})"
     when 'Instance'
       record.domain
+    when 'Appeal'
+      link_to record.account.acct, disputes_strike_path(record.strike)
     end
   end
 

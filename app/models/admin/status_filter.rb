@@ -31,7 +31,7 @@ class Admin::StatusFilter
   def scope_for(key, value)
     case key.to_s
     when 'media'
-      Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id)
+      Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id).reorder('statuses.id desc')
     when 'id'
       Status.where(id: value)
     else

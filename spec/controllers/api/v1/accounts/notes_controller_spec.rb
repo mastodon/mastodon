@@ -31,7 +31,7 @@ describe Api::V1::Accounts::NotesController do
       end
     end
 
-    context 'when account note exceends allowed length' do
+    context 'when account note exceeds allowed length' do
       let(:comment) { 'a' * 2_001 }
 
       it 'returns 422' do

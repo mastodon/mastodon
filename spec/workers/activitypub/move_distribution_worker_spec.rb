@@ -9,14 +9,16 @@ describe ActivityPub::MoveDistributionWorker do
 
   describe '#perform' do
     before do
-      allow(ActivityPub::DeliveryWorker).to receive(:push_bulk)
       follower.follow!(migration.account)
       blocker.block!(migration.account)
     end
 
     it 'delivers to followers and known blockers' do
+      expect_push_bulk_to_match(ActivityPub::DeliveryWorker, [
+        [kind_of(String), migration.account.id, 'http://example.com'],
+        [kind_of(String), migration.account.id, 'http://example2.com']
+      ])
       subject.perform(migration.id)
-        expect(ActivityPub::DeliveryWorker).to have_received(:push_bulk).with(['http://example.com', 'http://example2.com'])
     end
   end
 end

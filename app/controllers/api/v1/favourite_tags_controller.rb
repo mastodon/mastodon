@@ -3,8 +3,8 @@
 class Api::V1::FavouriteTagsController < Api::BaseController
 
   before_action :set_account
-  before_action -> { doorkeeper_authorize! :read }, only: [:index]
-  before_action -> { doorkeeper_authorize! :write }, except: [:index]
+  before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: [:index]
+  before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, except: [:index]
   before_action :require_user!
 
   respond_to :json

@@ -60,8 +60,6 @@ ar:
       error:
         title: حدث هناك خطأ
       new:
-        able_to: يُخوَّل لهذا التطبيق القيام بـ
-        prompt: طلبَ تطبيق %{client_name} تصريحا لاستعمال حسابك
         title: إذن بالتصريح
       show:
         title: قم بنسخ رمز المصادقة و إلصاقه على التطبيق.
@@ -71,10 +69,10 @@ ar:
       confirmations:
         revoke: متأكد ؟
       index:
-        application: التطبيق
-        created_at: صُرّح له في
-        date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: المجالات
+        last_used_at: آخر استخدام في %{date}
+        never_used: لم يُستخدَم قط
+        scopes: الصلاحيات
+        superapp: داخلي
         title: تطبيقاتك المرخص لها
     errors:
       messages:
@@ -110,6 +108,17 @@ ar:
       authorized_applications:
         destroy:
           notice: تم إبطال التصريح المخول للتطبيق.
+    grouped_scopes:
+      access:
+        read: وصول للقراءة فقط
+        read/write: وصول للقراءة والكتابة
+        write: وصول للكتابة فقط
+      title:
+        accounts: الحسابات
+        admin/accounts: إدارة الحسابات
+        admin/all: جميع المهام الإدارية
+        admin/reports: إدارة التقارير
+        all: كل شيء
     layouts:
       admin:
         nav:

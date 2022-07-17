@@ -17,8 +17,8 @@ data:
 
 search:
   paths:
-   - app/
-   - config/navigation.rb
+    - app/
+    - config/navigation.rb
 
   relative_roots:
     - app/controllers
@@ -61,6 +61,7 @@ ignore_unused:
   - 'admin.action_logs.actions.*'
   - 'statuses.attached.*'
   - 'move_handler.carry_{mutes,blocks}_over_text'
+  - 'notification_mailer.*'
 
 ignore_inconsistent_interpolations:
   - '*.one'

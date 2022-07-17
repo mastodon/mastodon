@@ -32,9 +32,9 @@ module Mastodon
       multiple domains to the command.
 
       When the --with-dns-records option is given, an attempt to resolve the
-      given domains' DNS records will be made and the results (A, AAAA and MX) will
-      also be blocked. This can be helpful if you are blocking an e-mail server that
-      has many different domains pointing to it as it allows you to essentially block
+      given domains' MX records will be made and the results will also be blocked.
+      This can be helpful if you are blocking an e-mail server that has many
+      different domains pointing to it as it allows you to essentially block
       it at the root.
     LONG_DESC
     def add(*domains)
@@ -53,26 +53,19 @@ module Mastodon
           next
         end
 
-        email_domain_block = EmailDomainBlock.new(domain: domain, with_dns_records: options[:with_dns_records] || false)
-        email_domain_block.save!
-        processed += 1
-
-        next unless email_domain_block.with_dns_records?
-
-        hostnames = []
-        ips       = []
-
-        Resolv::DNS.open do |dns|
-          dns.timeouts = 5
-          hostnames = dns.getresources(email_domain_block.domain, Resolv::DNS::Resource::IN::MX).to_a.map { |e| e.exchange.to_s }
-
-          ([email_domain_block.domain] + hostnames).uniq.each do |hostname|
-            ips.concat(dns.getresources(hostname, Resolv::DNS::Resource::IN::A).to_a.map { |e| e.address.to_s })
-            ips.concat(dns.getresources(hostname, Resolv::DNS::Resource::IN::AAAA).to_a.map { |e| e.address.to_s })
+        other_domains = []
+        if options[:with_dns_records]
+          Resolv::DNS.open do |dns|
+            dns.timeouts = 5
+            other_domains = dns.getresources(@email_domain_block.domain, Resolv::DNS::Resource::IN::MX).to_a
           end
         end
 
-        (hostnames + ips).uniq.each do |hostname|
+        email_domain_block = EmailDomainBlock.new(domain: domain, other_domains: other_domains)
+        email_domain_block.save!
+        processed += 1
+
+        (email_domain_block.other_domains || []).uniq.each do |hostname|
           another_email_domain_block = EmailDomainBlock.new(domain: hostname, parent: email_domain_block)
 
           if EmailDomainBlock.where(domain: hostname).exists?

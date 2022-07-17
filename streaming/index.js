@@ -92,13 +92,18 @@ const numWorkers = +process.env.STREAMING_CLUSTER_NUM || (env === 'development' 
 
 /**
  * @param {string} json
+ * @param {any} req
  * @return {Object.<string, any>|null}
  */
-const parseJSON = (json) => {
+const parseJSON = (json, req) => {
   try {
     return JSON.parse(json);
   } catch (err) {
-    log.error(err);
+    if (req.accountId) {
+      log.warn(req.requestId, `Error parsing message from user ${req.accountId}: ${err}`);
+    } else {
+      log.silly(req.requestId, `Error parsing message from ${req.remoteAddress}: ${err}`);
+    }
     return null;
   }
 };
@@ -162,6 +167,11 @@ const startWorker = async (workerId) => {
 
   const redisPrefix = redisNamespace ? `${redisNamespace}:` : '';
 
+  /**
+   * @type {Object.<string, Array.<function(string): void>>}
+   */
+  const subs = {};
+
   const redisSubscribeClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
   const redisClient = await redisUrlToClient(redisParams, process.env.REDIS_URL);
 
@@ -186,23 +196,55 @@ const startWorker = async (workerId) => {
   };
 
   /**
+   * @param {string} message
    * @param {string} channel
-   * @param {function(string): void} callback
    */
-  const subscribe = (channel, callback) => {
-    log.silly(`Adding listener for ${channel}`);
+  const onRedisMessage = (message, channel) => {
+    const callbacks = subs[channel];
 
-    redisSubscribeClient.subscribe(channel, callback);
+    log.silly(`New message on channel ${channel}`);
+
+    if (!callbacks) {
+      return;
+    }
+
+    callbacks.forEach(callback => callback(message));
   };
 
   /**
    * @param {string} channel
    * @param {function(string): void} callback
    */
+  const subscribe = (channel, callback) => {
+    log.silly(`Adding listener for ${channel}`);
+
+    subs[channel] = subs[channel] || [];
+
+    if (subs[channel].length === 0) {
+      log.verbose(`Subscribe ${channel}`);
+      redisSubscribeClient.subscribe(channel, onRedisMessage);
+    }
+
+    subs[channel].push(callback);
+  };
+
+  /**
+   * @param {string} channel
+   */
   const unsubscribe = (channel, callback) => {
     log.silly(`Removing listener for ${channel}`);
 
-    redisSubscribeClient.unsubscribe(channel, callback);
+    if (!subs[channel]) {
+      return;
+    }
+
+    subs[channel] = subs[channel].filter(item => item !== callback);
+
+    if (subs[channel].length === 0) {
+      log.verbose(`Unsubscribe ${channel}`);
+      redisSubscribeClient.unsubscribe(channel);
+      delete subs[channel];
+    }
   };
 
   const FALSE_VALUES = [
@@ -450,7 +492,7 @@ const startWorker = async (workerId) => {
    */
   const createSystemMessageListener = (req, eventHandlers) => {
     return message => {
-      const json = parseJSON(message);
+      const json = parseJSON(message, req);
 
       if (!json) return;
 
@@ -573,7 +615,7 @@ const startWorker = async (workerId) => {
     log.verbose(req.requestId, `Starting stream from ${ids.join(', ')} for ${accountId}`);
 
     const listener = message => {
-      const json = parseJSON(message);
+      const json = parseJSON(message, req);
 
       if (!json) return;
 
@@ -1037,7 +1079,7 @@ const startWorker = async (workerId) => {
     ws.on('error', onEnd);
 
     ws.on('message', data => {
-      const json = parseJSON(data);
+      const json = parseJSON(data, session.request);
 
       if (!json) return;
 

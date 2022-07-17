@@ -3,146 +3,183 @@ ku:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: ناوی بەرنامە
-        redirect_uri: URI گۆڕانی شوێن
-        scopes: بوارەکان
-        website: نەرمەکالای ماڵپەڕ
+        name: Navê sepanê
+        redirect_uri: Girêdana beralîkirî
+        scopes: Berfirehî
+        website: Malpera sepanê
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: ناتوانێت پارچەیەک لەخۆوە بگری.
-              invalid_uri: پێویستە URI دروست بێت.
-              relative_uri: پێویستە URI ی ڕەها بێت.
-              secured_uri: پێویستە HTTPS/SSL URI بێت.
+              fragment_present: perçe tê de tinne.
+              invalid_uri: ger ev URL derbasdar be.
+              relative_uri: teqez URl'yek hebe.
+              secured_uri: ger HTTPS/SSL URl hebe.
   doorkeeper:
     applications:
       buttons:
-        authorize: ڕێگەپێدان
-        cancel: هەڵوەشاندنەوه
-        destroy: لەناوبردن
-        edit: دەستکاری
-        submit: ناردن
+        authorize: Destûr bide
+        cancel: Dev jê berde
+        destroy: Tinne bike
+        edit: Serrast bike
+        submit: Bişîne
       confirmations:
-        destroy: دڵنیای?
+        destroy: Ma tu bawerî?
       edit:
-        title: دەستکاری کردنی بەرنامە
+        title: Sepanê serrast bike
       form:
-        error: تەحح! بزانە شتێکت لە نێو فۆرمەکە بە هەڵە نەنووسیوە
+        error: Wey li min! kontrol bikeku form çewtî tê de tune
       help:
-        native_redirect_uri: بۆ تاقیکردنەوەی ناوخۆیی %{native_redirect_uri} بەکاربەرە،
-        redirect_uri: بەکارهێنانی یەک هێڵ بۆ هەر URI
-        scopes: دۆمەینەکان جیاببکەن بە بۆشاییەکان. بۆ بەکارهێنانی دۆمەینی گریمانەیی چۆڵی بەجێبهێڵە.
+        native_redirect_uri: Bo testên herêmî %{native_redirect_uri} bi kar bîne
+        redirect_uri: Serê URl de rêzek bikarbînin
+        scopes: Berfirehî bi valahîyan re veqetîne. Bo bikaranîna berfirehî ya standard vala bihêle.
       index:
-        application: نەرمەکال
-        callback_url: Callback نیشانی
-        delete: سڕینەوە
-        empty: هیچ بەرنامەیەکت نیە.
-        name: ناو
-        new: بەرنامەی نوێ
-        scopes: دۆمەینەکان
-        show: نیشاندان
-        title: بەرنامەی تۆ
+        application: Sepan
+        callback_url: URl ya vegeriyayî
+        delete: Jê bibe
+        empty: Qet sepanê te tinne.
+        name: Nav
+        new: Sepanê nû
+        scopes: Berfirehî
+        show: Nîşan bike
+        title: Sepanê te
       new:
-        title: بەرنامەی نوێ
+        title: Sepanê nû
       show:
-        actions: کارەکان
-        application_id: کلیلی ڕاژەخواز
-        callback_urls: Callback نیشانەکانی
-        scopes: دۆمەینەکان
-        secret: نهێنی ڕاژەخواز
-        title: 'بەرنامە: %{name}'
+        actions: Çalakî
+        application_id: Kilîdê rajegir
+        callback_urls: URlyên vegeriyayî
+        scopes: Berfirehî
+        secret: Rajegirî veşartî
+        title: 'Sepan: %{name}'
     authorizations:
       buttons:
-        authorize: ڕێپێدراو
-        deny: نکۆڵی لێبکە
+        authorize: Destûr bide
+        deny: Guh nedê
       error:
-        title: هەڵەیەک ڕوویدا
+        title: Xeletîyek çêbû
       new:
-        able_to: دەتوانێت
-        prompt: بەکارهێنانی %{client_name} داوای چوونە ژوورەوە بۆ هەژمارەکەت دەکات
-        title: ڕێپێدان پێویستە
+        prompt_html: "%{client_name} mafê dixwaze ku bigihîje ajimêrê te. Ew sepanek aliyê sêyemîn e. <strong>Ku tu pê bawer nakî, wê demê divê tu mafê gihiştinê nedî. </strong>"
+        review_permissions: Gihiştinan binirxînin
+        title: Destûr kirin pêwîst e
       show:
-        title: کۆپیکردنی کۆدی ئەم رێپێدانە و لکاندنی بە بەرنامەکە.
+        title: Destûr hildana vê kodê jê bigire û ji sepanê re pêve bike.
     authorized_applications:
       buttons:
-        revoke: بەتاڵی بکە
+        revoke: Betal bike
       confirmations:
-        revoke: ئایا دڵنیایت?
+        revoke: Ma tu bawerî?
       index:
-        application: نەرمەکال
-        created_at: ده‌سه‌ڵاتپێدراو
-        scopes: بوارەکان
-        title: بەرنامە ڕێگەپێدراوەکانت
+        authorized_at: Maf hate dayîn di %{date} de
+        description_html: Ev sepan in ku dikarin bi riya karanîna API ve bigihîjin ajimêrê te. Ku sepanên tu li vir nas nakî hene, an sepanek çewt tevdigere, tu dikarî gihîştina wê têk bibî.
+        last_used_at: Herî dawî di %{date} de hate bikaranîn
+        never_used: Tu car nehatiye bikaranîn
+        scopes: Maf
+        superapp: Hundirin
+        title: Sepanên destûrmendê te
     errors:
       messages:
-        access_denied: خاوەنی سەرچاوە یان سێرڤەری ڕێپێدان داواکاریەکەی ڕەت کردەوە.
-        credential_flow_not_configured: لێشاوی بڕواپێدانی تێپەڕەوشەی خاوەن سەرچاوە شکستی هێنا بەهۆی Doorkeeper.configure.resource_owner_from_credentials شێوەبەندی نەکراو.
-        invalid_client: سەلماندنی کڕیار سەرکەوتوو نەبوو بەهۆی کڕیاری نەناسراوەوە، هیچ ڕەسەنایەتی سەلماندنێکی کلایەنت لەخۆوە نەدەگرێت، یان شێوازی سەلماندنی پەسەند نەکراو.
-        invalid_grant: بەخشین مۆڵەتی دابینکراو نایاساییە، بەسەرچووە، هەڵوەشاندنەوەیە، ناگونجێلەگەڵ ئاراستەی URI بەکارهاتوو لە داواکاری ڕێپێدان، یان دەرچووە بۆ کڕیارێکی تر.
-        invalid_redirect_uri: Uri دووبارە ئاڕاستەکردنەوەکە لەخۆدەگرێت دروست نیە.
-        invalid_resource_owner: بڕواپێدانەکانی خاوەنی سەرچاوەی دابینکراو دروست نیە، یان ناتوانرێت خاوەنی سەرچاوە بدۆزرێتەوە
-        invalid_scope: بواری داواکراو نادروستە، نەناسراو، یان تێکچووە.
+        access_denied: Xwedîyê çavkanîyê an jî destûrmendê rajeker daxwazî red kirin.
+        credential_flow_not_configured: Herikîna borînpeyvê bawername ya xwediyê çavkaniyê, ji ber Doorkeeper.configure.resource_owner_from_credentials nehat pevsazkirin.
+        invalid_client: Erêkirina nasnameyê rajegir ji ber rajegirê nediyar têk çû, erêkirina nasnameyê rajegir di nav da tinne an jî rêbaza erêkirinê ne piştgirêdayî ye.
+        invalid_grant: Mafê ku hatiye peyda kirin ne derbasdar e, qediya ye, pûç e, girêdana ya ku di daxwaza mafê de tê bikaranîn li hev nagire an jî rajegirekî din hildaye.
+        invalid_redirect_uri: Girêdan beralîkirî ya di nav da ne derbasdar e.
+        invalid_request:
+          missing_param: 'Pîvana hewce dike kêm e: %{value}.'
+          request_not_authorized: Hewceye daxwazî rêdayî be. Ji bo daxwazî rêdayî be pîvana hewce dike kêm an jî betal e.
+          unknown: Di nav daxwazîyê de pîvanekî hewceyî kêm e. Nirxekî pîvanê bê piştgirêdayî tê de heye an jî wek din xelet e.
+        invalid_resource_owner: Bawernameyên xwediyê çavkanîyê yên hatine pêşkeş kirin ne derbasdar e an jî xwedîyê çavkanîyê nayê dîtin
+        invalid_scope: Berfirehiya tê xwestin nederbasdare, nenas e, an jî xelet e.
         invalid_token:
-          expired: نیشانەی چوونەژورەوە بەسەرچووە
-          revoked: کۆدی دەستپێگەیشتن بەتاڵ بووەتەوە
-          unknown: دەستپێگەیشتن بە کۆدی چوونەژوور باوڕپێنەکراوە
-        resource_owner_authenticator_not_configured: خاوەنی سەرچاوە بەهۆی Doorkeeper.configure.resource_owner_authenticator کۆنفیگنەکردن سەرکەوتوو نەبوو.
-        server_error: ڕاژەکاری ڕێپێدان تووشی مەرجێکی چاوەڕوان نەکراو بوو کە رێگری دەکا لە جێبەجێ کردنی داواکاریەکە.
-        temporarily_unavailable: ڕاژەکاری ڕێپێدان لە ئێستادا ناتوانێت داواکاریەکە چارەسەر بکات لەبەر بارکردنی کاتی یان چاککردنەوەی سێرڤەرەکە.
-        unauthorized_client: ڕاژەخوازەکە دەسەڵاتی ئەوەی نییە ئەم داواکاریە بە بەکارهێنانی ئەم شێوازە بدات.
-        unsupported_grant_type: جۆری بەخشینە مۆڵەتپێدانەکە لەلایەن ڕاژەکاری مۆڵەتەوە پەسەند ناکرێت.
-        unsupported_response_type: ڕاژەکاری ڕێگەپێدان پشتگیری ئەم جۆرە وەڵامە ناکات.
+          expired: Dema nîşana gihîştinê qediya
+          revoked: Nîşana gihîştin hatibû pûçkirin
+          unknown: Nîşana gihîştinê derbasdar e
+        resource_owner_authenticator_not_configured: Xwedîyê çavkanîyê, ji ber ku nehatîye sazkirin bi ser neket di Doorkeeper.configure.resource_owner_authenticator de.
+        server_error: Rajekarê rastandinê bi şertek nediyar re rûbirû ma ku nehişt ku ew daxwazê ​​bicîh bîne.
+        temporarily_unavailable: Mafê rajekarê hetta demekî ji ber zêde barkirinê an jî lê nihêrîna rajekarê daxwaz bi cîh nay.
+        unauthorized_client: Rajegir nahêlê ku vê daxwazê bi vê awayê bicîh bîne.
+        unsupported_grant_type: Cureyê maf dayînê ji alîyê rajekara mafê va ne piştgirêdayî ye.
+        unsupported_response_type: Mafê rajekarê cûreya vê bersîvê piştgirêdayî nîne.
     flash:
       applications:
         create:
-          notice: بەرنامە دروستکرا.
+          notice: Sepan hate çêkirin.
         destroy:
-          notice: بەرنامە سڕایەوە.
+          notice: Sepan hate jêbirin.
         update:
-          notice: بەرنامە بەڕۆژکرا.
+          notice: Sepan hate rojanekirin.
       authorized_applications:
         destroy:
-          notice: بەرنامە هەڵوەشێنڕا.
+          notice: Sepan hate dûrxisitn.
+    grouped_scopes:
+      access:
+        read: Gihîştina tenê xwendin
+        read/write: Gihîştina xwendin û nivîsandin
+        write: Gihîştina tenê nivîsandin
+      title:
+        accounts: Ajimêr
+        admin/accounts: Rêveberiya ajimêran
+        admin/all: Hemû fonksiyonên reveberî
+        admin/reports: Rêveberiya ragihandinan
+        all: Her tişt
+        blocks: Astengkirin
+        bookmarks: Şûnpel
+        conversations: Axaftin
+        crypto: Dawî bi dawî şifrekirî
+        favourites: Bijarte
+        filters: Parzûn
+        follow: Pêwendî
+        follows: Dişopîne
+        lists: Rêzok
+        media: Pêvekên medya
+        mutes: Bêdengkirin
+        notifications: Agahdarî
+        push: Agahdariyên Push
+        reports: Ragihandin
+        search: Lêgerîn
+        statuses: Şandî
     layouts:
       admin:
         nav:
-          applications: بەرنامەکان
+          applications: Sepan
+          oauth2_provider: Peydakarê OAuth2
       application:
-        title: داوای ڕێپێدانی OAuth
+        title: Mafê dayînê OAuth pêwist e
     scopes:
-      admin:read: خوێندنەوەی هەموو داتاکان لەسەر ڕاژەکارەکە
-      admin:read:accounts: زانیاری هەستیاری هەموو هەژمارەکان بخوێنەوە
-      admin:read:reports: زانیاری هەستیاری هەموو گوزارشت و هەژمارە گوزارشتکراوەکان بخوێنەوە
-      admin:write: دەستکاری هەموو داتاکان بکە لەسەر ڕاژەکار
-      admin:write:accounts: ئەنجامدانی کاری میانڕەوی لەسەر هەژمارەکان
-      admin:write:reports: ئەنجامدانی کاری میانڕەوی لەسەر گوزارشتەکان
-      follow: دەستکاریکردنی پەیوەندییەکانی هەژمارەی بەکارهێنەر
-      push: وەرگرتنی ئاگانامەکانی پاڵنان
-      read: هەموو دراوەکانی هەژمارەکەت بخوێنەوە
-      read:accounts: بینینی زانیاری هەژمارەکان
-      read:blocks: بینینی بلۆکەکانت
-      read:bookmarks: نیشانەکان ببینە
-      read:favourites: بینینی دڵخوازەکانت
-      read:filters: بینینی پاڵافتنەکانت
-      read:follows: سەیری شوێنکەوتەکانت بکە
-      read:lists: بینینی لیستەکانت
-      read:mutes: بێدەنگەکانت ببینە
-      read:notifications: ئاگانامەکانت ببینە
-      read:reports: سەیری گوزارشەکانت بکە
-      read:search: گەڕان لە جیاتی تۆ
-      read:statuses: بینینی هەموو بارودۆخەکان
-      write: دەستکاری هەموو داتاکانی هەژمارەکەت بکە
-      write:accounts: دەستکاری پرۆفایلەکەت بکە
-      write:blocks: بلۆک کردنی هەژمارەکەی دۆمەینەکان
-      write:bookmarks: بارەکانی نیشانکەر
-      write:favourites: دۆخی دڵخوازەکان
-      write:filters: پاڵێوەر دروست بکە
-      write:follows: دوای خەڵک بکەوە
-      write:lists: دروستکردنی لیستەکان
-      write:media: پەڕگەی میدیا باربکە
-      write:mutes: بێدەنگکردنی خەڵک و گفتوگۆکان
-      write:notifications: ئاگانامەکانت بسڕیەوە
-      write:reports: گوزارشتکردنی کەسانی تر
-      write:statuses: بڵاوکردنەوەی بارودۆخەکان
+      admin:read: hemû daneyên li ser rajekar bixwîne
+      admin:read:accounts: zanyariyên hestiyar yên hemû ajimêran li ser rajekar bixwîne
+      admin:read:reports: zanyariyên hestiyar yên hemû gilîyan û ajimêrên gilêkirî li ser rajekar bixwîne
+      admin:write: hemû daneyên li ser rajekar biguherîne
+      admin:write:accounts: di ajimêrê de çalakiyên li hev kirî pêk bîne
+      admin:write:reports: di ragihandinê de çalakiyên li hev kirî pêk bîne
+      crypto: dawî bi dawî şifrekirî bi kar bîne
+      follow: têkiliyên ajimêrê biguherîne
+      push: agahdariyên xwe bistîne
+      read: hemû daneyên ajimêra xwe bixwîne
+      read:accounts: zanyariyên ajimêran bibîne
+      read:blocks: ajimêran ku te astenkiriye bibîne
+      read:bookmarks: şûnpelên xwe bibîne
+      read:favourites: bijarteyên xwe bibîne
+      read:filters: parzûnûn xwe bibîne
+      read:follows: ên tu dişopînî bibîne
+      read:lists: rêzoka xwe bibîne
+      read:mutes: ajimêrên bêdeng kirî bibîne
+      read:notifications: agahdariyên xwe bibîne
+      read:reports: ragihandinên xwe bibîne
+      read:search: li ser navê xwe lêgerîn bike
+      read:statuses: hemû şandiyan bibîne
+      write: hemû daneyên ajimêra xwe biguherîne
+      write:accounts: profîla xwe biguherîne
+      write:blocks: hemû ajimêr û navperan asteng bike
+      write:bookmarks: şandiyan di şûnpelê de tomar bike
+      write:conversations: bêdengkirin û jêbirina axaftinan
+      write:favourites: şandiyên bijarte
+      write:filters: parzûnan çê bike
+      write:follows: kesan bişopîne
+      write:lists: rêzokan çê bike
+      write:media: pelên medya bar bike
+      write:mutes: mirovan û axaftinan bêdeng bike
+      write:notifications: agahdariyên xwe pak bike
+      write:reports: mirovên din gilî bike
+      write:statuses: şandiyekê biweşîne

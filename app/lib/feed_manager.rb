@@ -5,6 +5,7 @@ require 'singleton'
 class FeedManager
   include Singleton
   include Redisable
+  include FormattingHelper
 
   # Maximum number of items stored in a single feed
   MAX_ITEMS = 400
@@ -441,14 +442,14 @@ class FeedManager
 
     return false if active_filters.empty?
 
-    combined_regex = active_filters.reduce { |memo, obj| Regexp.union(memo, obj) }
+    combined_regex = Regexp.union(active_filters)
     status         = status.reblog if status.reblog?
 
     combined_text = [
-      Formatter.instance.plaintext(status),
+      extract_status_plain_text(status),
       status.spoiler_text,
       status.preloadable_poll ? status.preloadable_poll.options.join("\n\n") : nil,
-      status.media_attachments.map(&:description).join("\n\n"),
+      status.ordered_media_attachments.map(&:description).join("\n\n"),
     ].compact.join("\n\n")
 
     combined_regex.match?(combined_text)
@@ -491,7 +492,7 @@ class FeedManager
       end
     else
       # A reblog may reach earlier than the original status because of the
-      # delay of the worker deliverying the original status, the late addition
+      # delay of the worker delivering the original status, the late addition
       # by merging timelines, and other reasons.
       # If such a reblog already exists, just do not re-insert it into the feed.
       return false unless redis.zscore(reblog_key, status.id).nil?
