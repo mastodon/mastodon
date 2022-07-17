@@ -83,10 +83,8 @@ da:
     posts_tab_heading: Indlæg
     posts_with_replies: Indlæg og svar
     roles:
-      admin: Admin
       bot: Bot
       group: Gruppe
-      moderator: Moderator
     unavailable: Profil utilgængelig
     unfollow: Følg ikke længere
   admin:
@@ -105,12 +103,17 @@ da:
       avatar: Profilbillede
       by_domain: Domæne
       change_email:
-        changed_msg: Kontoens e-mail er skiftet!
+        changed_msg: E-mail skiftet!
         current_email: Nuværende e-mail
         label: Skift e-mail
         new_email: Ny e-mail
         submit: Skift e-mail
         title: Skift e-mail for %{username}
+      change_role:
+        changed_msg: Rolle ændret!
+        label: Ændr rolle
+        no_role: Ingen rolle
+        title: Ændr rolle for %{username}
       confirm: Bekræft
       confirmed: Bekræftet
       confirming: Bekræfter
@@ -154,6 +157,7 @@ da:
         active: Aktiv
         all: Alle
         pending: Afventer
+        silenced: Begrænset
         suspended: Suspenderet
         title: Moderation
       moderation_notes: Moderationsnotater
@@ -161,6 +165,7 @@ da:
       most_recent_ip: Seneste IP
       no_account_selected: Ingen kontiændringer, da ingen var valgt
       no_limits_imposed: Ingen begrænsninger pålagt
+      no_role_assigned: Ingen rolle tildelt
       not_subscribed: Abonnerer ikke
       pending: Afventende vurdering
       perform_full_suspension: Suspendér
@@ -187,12 +192,7 @@ da:
       reset: Nulstil
       reset_password: Nulstil adgangskode
       resubscribe: Genabonnér
-      role: Tilladelser
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        staff: Personale
-        user: Bruger
+      role: Rolle
       search: Søg
       search_same_email_domain: Øvrige brugere med samme e-maildomæne
       search_same_ip: Øvrige brugere med identisk IP
@@ -649,6 +649,66 @@ da:
       unresolved: Uløst
       updated_at: Opdateret
       view_profile: Vis profil
+    roles:
+      add_new: Tilføj rolle
+      assigned_users:
+        one: "%{count} bruger"
+        other: "%{count} brugere"
+      categories:
+        administration: Håndtering
+        devops: Devops
+        invites: Invitationer
+        moderation: Moderering
+        special: Speciel
+      delete: Slet
+      description_html: Med <strong>brugerroller</strong>kan man tilpasse sine brugeres adgang til Mastodon-funktioner og -områder.
+      edit: Redigér rolle for '%{name}
+      everyone: Standardtilladelser
+      everyone_full_description_html: Dette er <strong>basisrollen</strong> med indvirkning på <strong>alle brugere</strong>, selv dem uden rolletildeling. Alle øvrige rolletilladelser nedarves herfra.
+      permissions_count:
+        one: "%{count} tilladelse"
+        other: "%{count} tilladelser"
+      privileges:
+        administrator: Administrator
+        administrator_description: Brugere med denne rolle kan omgå alle tilladelser
+        delete_user_data: Slet brugerdata
+        invite_users: Invitere brugere
+        invite_users_description: Tillader brugere at invitere nye personer til serveren
+        manage_announcements: Håndtere bekendtgørelser
+        manage_announcements_description: Tillader brugere at håndtere bekendtgørelser på serveren
+        manage_appeals: Håndtere appeller
+        manage_appeals_description: Tillader brugere at vurdere appeller af modereringshandlinger
+        manage_blocks: Håndtere blokeringer
+        manage_blocks_description: Tillader brugere at blokere e-mailudbydere og IP-adresser
+        manage_custom_emojis: Håndtere tilpassede emojier
+        manage_custom_emojis_description: Tillader brugere at håndtere tilpassede emojier på serveren
+        manage_federation: Håndtere federation
+        manage_federation_description: Tillader brugere at blokere eller tillade federation med andre domæner og styre leverbarhed
+        manage_invites: Håndtere invitationer
+        manage_invites_description: Tillader brugere at gennemse og deaktivere invitationslinks
+        manage_reports: Håndtere rapporter
+        manage_reports_description: Tillader brugere at vurdere rapporter og, i overensstemmelse hermed, at udføre moderationshandlinger
+        manage_roles: Håndtere roller
+        manage_roles_description: Tillader brugere at håndtere og tildele roller under deres privilegiestatus
+        manage_rules: Håndtere regler
+        manage_rules_description: Tillad brugere at ændre serverregler
+        manage_settings: Håndtere indstillinger
+        manage_settings_description: Tillader brugere at ændre webstedsindstillinger
+        manage_taxonomies: Håndtere taksonomier
+        manage_taxonomies_description: Tillader brugere at gennemse tenderende indhold og opdatere hashtag-indstillinger
+        manage_user_access: Håndtere brugeradgang
+        manage_user_access_description: Tillader brugere at deaktivere andre brugeres tofaktorgodkendelse, skifte deres e-mailadresse og nulstille deres adgangskode
+        manage_users: Håndtere brugere
+        manage_users_description: Tillader brugere at se andre brugeres oplysninger og underkaste dem moderationshandlinger
+        manage_webhooks: Håndtere Webhooks
+        manage_webhooks_description: Tillader brugere at opsætte webhooks til administrative begivenheder
+        view_audit_log: Vis revisionslog
+        view_audit_log_description: Tillader brugere at se en historik over administrative handlinger på serveren
+        view_dashboard: Vis Dashboard
+        view_dashboard_description: Tillader brugere at tilgå Dashboard'et og forskellige målinger
+        view_devops: Devops
+        view_devops_description: Tillader brugere at tilgå Sidekiq- og pgHero-dashboards
+      title: Roller
     rules:
       add_new: Tilføj regel
       delete: Slet
@@ -701,9 +761,6 @@ da:
         deletion:
           desc_html: Tillad enhver at slette sin konto
           title: Åbn kontosletning
-        min_invite_role:
-          disabled: Ingen
-          title: Tillad invitationer fra
         require_invite_text:
           desc_html: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
           title: Nye brugere afkræves tilmeldingsbegrundelse
@@ -716,9 +773,6 @@ da:
       show_known_fediverse_at_about_page:
         desc_html: Når deaktiveret, begrænses den fra indgangssiden linkede offentlige tidslinje til kun at vise lokalt indhold
         title: Medtag federeret indhold på ikke-godkendt, offentlig tidslinjeside
-      show_staff_badge:
-        desc_html: Vis et personale-badge på en brugerside
-        title: Vis personale-badge
       site_description:
         desc_html: Introduktionsafsnit på API'en. Beskriv, hvad der gør denne Mastodonserver speciel samt alt andet vigtigt. HTML-tags kan bruges, især <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Serverbeskrivelse
@@ -1124,15 +1178,24 @@ da:
       public: Offentlig tidslinje
       thread: Konversationer
     edit:
+      add_keyword: Tilføj nøgleord
+      keywords: Nøgleord
       title: Redigere filter
     errors:
+      deprecated_api_multiple_keywords: Disse parametre kan ikke ændres fra denne applikation, da de gælder for flere end ét filternøgleord. Brug en nyere applikation eller webgrænsefladen.
       invalid_context: Ingen eller ugyldig kontekst angivet
-      invalid_irreversible: Uigenkaldelig filtrering virker kun med hjemme- eller notifikationskontekster
     index:
+      contexts: Filtre i %{contexts}
       delete: Slet
       empty: Du har ingen filtre.
+      expires_in: Udløber om %{distance}
+      expires_on: Udløber om %{date}
+      keywords:
+        one: "%{count} nøgleord"
+        other: "%{count} nøgleord"
       title: Filtre
     new:
+      save: Gem nye filter
       title: Tilføj nyt filter
   footer:
     developers: Udviklere
@@ -1251,6 +1314,8 @@ da:
     copy_account_note_text: 'Denne bruger er flyttet fra %{acct}, hvor dine tidligere noter om dem var:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} indsendte en anmeldelse"
       sign_up:
         subject: "%{name} tilmeldte sig"
     digest:

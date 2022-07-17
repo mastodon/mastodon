@@ -83,10 +83,8 @@ it:
     posts_tab_heading: Toot
     posts_with_replies: Toot e risposte
     roles:
-      admin: Amministratore
       bot: Bot
       group: Gruppo
-      moderator: Moderatore
     unavailable: Profilo non disponibile
     unfollow: Non seguire più
   admin:
@@ -105,12 +103,17 @@ it:
       avatar: Immagine di profilo
       by_domain: Dominio
       change_email:
-        changed_msg: Account email cambiato con successo!
+        changed_msg: Email modificata!
         current_email: Email attuale
         label: Cambia email
         new_email: Nuova email
         submit: Cambia email
         title: Cambia email per %{username}
+      change_role:
+        changed_msg: Ruolo modificato correttamente!
+        label: Cambia ruolo
+        no_role: Nessun ruolo
+        title: Cambia ruolo per %{username}
       confirm: Conferma
       confirmed: Confermato
       confirming: Confermando
@@ -154,6 +157,7 @@ it:
         active: Attivo
         all: Tutto
         pending: In attesa
+        silenced: Limitato
         suspended: Sospesi
         title: Moderazione
       moderation_notes: Note di moderazione
@@ -161,6 +165,7 @@ it:
       most_recent_ip: IP più recente
       no_account_selected: Nessun account è stato modificato visto che non ne è stato selezionato nessuno
       no_limits_imposed: Nessun limite imposto
+      no_role_assigned: Nessun ruolo assegnato
       not_subscribed: Non sottoscritto
       pending: Revisioni in attesa
       perform_full_suspension: Sospendi
@@ -187,12 +192,7 @@ it:
       reset: Reimposta
       reset_password: Reimposta password
       resubscribe: Riscriversi
-      role: Permessi
-      roles:
-        admin: Amministratore
-        moderator: Moderatore
-        staff: Personale
-        user: Utente
+      role: Ruolo
       search: Cerca
       search_same_email_domain: Altri utenti con lo stesso dominio e-mail
       search_same_ip: Altri utenti con lo stesso IP
@@ -649,6 +649,67 @@ it:
       unresolved: Non risolto
       updated_at: Aggiornato
       view_profile: Visualizza profilo
+    roles:
+      add_new: Aggiungi ruolo
+      assigned_users:
+        one: "%{count} utente"
+        other: "%{count} utenti"
+      categories:
+        administration: Amministrazione
+        devops: Devops
+        invites: Inviti
+        moderation: Moderazione
+        special: Speciale
+      delete: Cancella
+      description_html: Con i <strong>ruoli utente</strong>, puoi personalizzare a quali funzioni e aree di Mastodon i tuoi utenti possono accedere.
+      edit: Modifica il ruolo '%{name}'
+      everyone: Permessi predefiniti
+      everyone_full_description_html: Questo è il ruolo <strong>base</strong> che influenza <strong>tutti gli utenti</strong>, anche quelli senza un ruolo assegnato. Tutti gli altri ruoli ereditano i permessi da esso.
+      permissions_count:
+        one: "%{count} permesso"
+        other: "%{count} permessi"
+      privileges:
+        administrator: Amministratore
+        administrator_description: Gli utenti con questo permesso saranno esentati da ogni permesso
+        delete_user_data: Cancella dati utente
+        delete_user_data_description: Consente agli utenti di eliminare subito i dati degli altri utenti
+        invite_users: Invita Utenti
+        invite_users_description: Consente agli utenti di invitare nuove persone su questo server
+        manage_announcements: Gestisci Annunci
+        manage_announcements_description: Consente agli utenti di gestire gli annunci sul server
+        manage_appeals: Gestisci appelli
+        manage_appeals_description: Consente agli utenti di esaminare i ricorsi contro le azioni di moderazione
+        manage_blocks: Gestisci Blocchi
+        manage_blocks_description: Consente agli utenti di bloccare provider e-mail e indirizzi IP
+        manage_custom_emojis: Gestisci emoji personalizzate
+        manage_custom_emojis_description: Consente agli utenti di gestire emoji personalizzate sul server
+        manage_federation: Gestisci Federazione
+        manage_federation_description: Consente agli utenti di bloccare o consentire la federazione con altri domini e controllare la consegnabilità
+        manage_invites: Gestisci Inviti
+        manage_invites_description: Consente agli utenti di esaminare e disattivare i link di invito
+        manage_reports: Gestisci report
+        manage_reports_description: Consente agli utenti di esaminare i report ed eseguire azioni di moderazione su di essi
+        manage_roles: Gestisci Ruoli
+        manage_roles_description: Consente agli utenti di gestire e assegnare i ruoli inferiori al loro
+        manage_rules: Gestisci Regole
+        manage_rules_description: Consente agli utenti di modificare le regole del server
+        manage_settings: Gestisci impostazioni
+        manage_settings_description: Consente agli utenti di modificare le impostazioni del sito
+        manage_taxonomies: Gestisci Tassonomie
+        manage_taxonomies_description: Consente agli utenti di esaminare i contenuti di tendenza e aggiornare le impostazioni degli hashtag
+        manage_user_access: Gestisci accesso utenti
+        manage_user_access_description: Consente agli utenti di disabilitare l'autenticazione a due fattori degli altri utenti, modificare il loro indirizzo e-mail e reimpostare la password
+        manage_users: Gestisci utenti
+        manage_users_description: Consente agli utenti di visualizzare le informazioni sugli altri utenti ed eseguire azioni di moderazione contro di loro
+        manage_webhooks: Gestisci Webhook
+        manage_webhooks_description: Consente agli utenti di impostare webhook per eventi amministrativi
+        view_audit_log: Visualizza Registro Attività
+        view_audit_log_description: Consente agli utenti di vedere una cronologia delle azioni amministrative sul server
+        view_dashboard: Mostra dashboard
+        view_dashboard_description: Consente agli utenti di accedere alla dashboard e alle varie metriche
+        view_devops: Devops
+        view_devops_description: Consente agli utenti di accedere alle dashboard Sidekiq e pgHero
+      title: Ruoli
     rules:
       add_new: Aggiungi regola
       delete: Cancella
@@ -701,9 +762,6 @@ it:
         deletion:
           desc_html: Consenti a chiunque di cancellare il proprio account
           title: Apri la cancellazione dell'account
-        min_invite_role:
-          disabled: Nessuno
-          title: Permetti inviti da
         require_invite_text:
           desc_html: Quando le iscrizioni richiedono l'approvazione manuale, rendere la richiesta “Perché si desidera iscriversi?” obbligatoria invece che opzionale
           title: Richiedi ai nuovi utenti di rispondere alla richiesta di motivazione per l'iscrizione
@@ -716,9 +774,6 @@ it:
       show_known_fediverse_at_about_page:
         desc_html: Quando attivato, mostra nell'anteprima i toot da tutte le istanze conosciute. Altrimenti mostra solo i toot locali.
         title: Mostra la fediverse conosciuta nell'anteprima della timeline
-      show_staff_badge:
-        desc_html: Mostra un distintivo dello staff sulla pagina dell'utente
-        title: Mostra badge staff
       site_description:
         desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Mastodon e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrizione del server
@@ -1126,15 +1181,24 @@ it:
       public: Timeline pubbliche
       thread: Conversazioni
     edit:
+      add_keyword: Aggiungi parola chiave
+      keywords: Parole chiave
       title: Modifica filtro
     errors:
+      deprecated_api_multiple_keywords: Questi parametri non possono essere modificati da questa applicazione perché si applicano a più di una parola chiave che fa da filtro. Utilizzare un'applicazione più recente o l'interfaccia web.
       invalid_context: Contesto mancante o non valido
-      invalid_irreversible: Il filtraggio irreversibile funziona solo nei contesti di home o notifiche
     index:
+      contexts: Filtri in %{contexts}
       delete: Cancella
       empty: Non hai alcun filtro.
+      expires_in: Scade tra %{distance}
+      expires_on: Scade il %{date}
+      keywords:
+        one: "%{count} parola chiave"
+        other: "%{count} parole chiave"
       title: Filtri
     new:
+      save: Salva nuovo filtro
       title: Aggiungi filtro
   footer:
     developers: Sviluppatori
@@ -1253,6 +1317,8 @@ it:
     copy_account_note_text: 'Questo utente si è spostato da %{acct}, ecco le tue note precedenti su di loro:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} ha inviato una segnalazione"
       sign_up:
         subject: "%{name} si è iscritto"
     digest:

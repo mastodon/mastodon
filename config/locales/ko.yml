@@ -79,10 +79,8 @@ ko:
     posts_tab_heading: 게시물
     posts_with_replies: 게시물과 답장
     roles:
-      admin: 관리자
       bot: 봇
       group: 그룹
-      moderator: 중재자
     unavailable: 프로필 사용 불가
     unfollow: 팔로우 해제
   admin:
@@ -101,12 +99,17 @@ ko:
       avatar: 아바타
       by_domain: 도메인
       change_email:
-        changed_msg: 이메일이 성공적으로 바뀌었습니다!
+        changed_msg: 이메일이 성공적으로 변경되었습니다!
         current_email: 현재 이메일 주소
         label: 이메일 주소 변경
         new_email: 새 이메일 주소
         submit: 이메일 주소 변경
         title: "%{username}의 이메일 주소 변경"
+      change_role:
+        changed_msg: 역할이 성공적으로 변경되었습니다!
+        label: 역할 변경
+        no_role: 역할 없음
+        title: "%{username}의 역할 변경"
       confirm: 확인
       confirmed: 확인됨
       confirming: 확인 중
@@ -150,6 +153,7 @@ ko:
         active: 활동
         all: 전체
         pending: 대기중
+        silenced: 제한됨
         suspended: 정지 중
         title: 중재
       moderation_notes: 중재 기록
@@ -157,6 +161,7 @@ ko:
       most_recent_ip: 최근 IP
       no_account_selected: 아무 계정도 선택 되지 않아 아무 것도 변경 되지 않았습니다
       no_limits_imposed: 제한 없음
+      no_role_assigned: 할당된 역할 없음
       not_subscribed: 구독하지 않음
       pending: 심사 대기
       perform_full_suspension: 정지시키기
@@ -182,12 +187,7 @@ ko:
       reset: 초기화
       reset_password: 암호 초기화
       resubscribe: 다시 구독
-      role: 권한
-      roles:
-        admin: 관리자
-        moderator: 중재자
-        staff: 스태프
-        user: 사용자
+      role: 역할
       search: 검색
       search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
@@ -637,6 +637,63 @@ ko:
       unresolved: 미해결
       updated_at: 업데이트 시각
       view_profile: 프로필 보기
+    roles:
+      add_new: 역할 추가
+      assigned_users:
+        other: "%{count} 명의 사용자"
+      categories:
+        administration: 관리
+        devops: 데브옵스
+        invites: 초대
+        moderation: 중재
+        special: 특수
+      delete: 삭제
+      edit: "%{name} 역할 수정"
+      everyone: 기본 권한
+      permissions_count:
+        other: "%{count} 개의 권한"
+      privileges:
+        administrator: 관리자
+        administrator_description: 이 권한을 가진 사용자는 모든 권한을 우회합니다
+        delete_user_data: 사용자 데이터 삭제
+        delete_user_data_description: 사용자가 다른 사용자의 데이터를 지체 없이 삭제할 수 있도록 허용
+        invite_users: 사용자 초대
+        invite_users_description: 사용자가 다른 사람들을 서버에 초대할 수 있도록 허용
+        manage_announcements: 공지 관리
+        manage_announcements_description: 사용자가 서버의 공지사항을 관리할 수 있도록 허용
+        manage_appeals: 이의제기 관리
+        manage_appeals_description: 사용자가 중재에 대한 이의제기를 리뷰할 수 있도록 허용
+        manage_blocks: 차단 관리
+        manage_blocks_description: 사용자가 이메일 제공자와 IP 주소를 차단할 수 있도록 허용
+        manage_custom_emojis: 커스텀 에모지 관리
+        manage_custom_emojis_description: 사용자가 서버의 커스텀 에모지를 관리할 수 있도록 허용
+        manage_federation: 연합 관리
+        manage_federation_description: 사용자가 다른 도메인과의 연합을 차단하거나 허용할 수 있도록 하고, 전달 가능 여부를 조정할 수 있도록 허용
+        manage_invites: 초대 관리
+        manage_invites_description: 사용자가 초대 링크를 보고 비활성화 할 수 있도록 허용
+        manage_reports: 신고 관리
+        manage_reports_description: 사용자가 신고를 리뷰하고 해당 사용자에 대한 중재활동을 수행할 수 있도록 허용
+        manage_roles: 역할 관리
+        manage_roles_description: 사용자가 그들 이하의 권한에 대해 관리하고 할당할 수 있도록 허용
+        manage_rules: 규칙 관리
+        manage_rules_description: 사용자가 서버 규칙을 수정할 수 있도록 허용합니다
+        manage_settings: 설정 관리
+        manage_settings_description: 사용자가 서버 설정을 수정할 수 있도록 허용합니다
+        manage_taxonomies: 분류 관리
+        manage_taxonomies_description: 사용자가 트렌드를 리뷰하고 해시태그 설정을 수정할 수 있도록 허용합니다
+        manage_user_access: 사용자 접근 관리
+        manage_user_access_description: 사용자가 다른 사용자의 2차 인증을 비활성화 하거나, 이메일 주소를 바꾸거나, 암호를 초기화 할 수 있도록 허용
+        manage_users: 사용자 관리
+        manage_users_description: 사용자가 다른 사용자의 상세정보를 보고 해당 사용자에 대한 중재활동을 할 수 있도록 허용
+        manage_webhooks: 웹훅 관리
+        manage_webhooks_description: 사용자가 관리용 웹훅을 설정할 수 있도록 허용
+        view_audit_log: 감사 기록 보기
+        view_audit_log_description: 사용자가 서버의 감사 기록을 볼 수 있도록 허용
+        view_dashboard: 대시보드 보기
+        view_dashboard_description: 사용자가 여러 통계정보를 볼 수 있는 대시보드에 접근할 수 있도록 허용
+        view_devops: 데브옵스
+        view_devops_description: Sidekiq과 pgHero 대시보드에 접근할 수 있도록 허용
+      title: 역할
     rules:
       add_new: 규칙 추가
       delete: 삭제
@@ -689,9 +746,6 @@ ko:
         deletion:
           desc_html: 사용자가 자신의 계정을 삭제할 수 있도록 허용합니다
           title: 계정 삭제를 허가함
-        min_invite_role:
-          disabled: 아무도 못 하게
-          title: 초대링크를 만들 수 있는 권한
         require_invite_text:
           desc_html: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
           title: 새 사용자가 초대 요청 글을 작성해야 하도록
@@ -704,9 +758,6 @@ ko:
       show_known_fediverse_at_about_page:
         desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 게시물을 표시합니다. 비활성화시 로컬에 있는 게시물만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
-      show_staff_badge:
-        desc_html: 사용자 페이지에 스태프 배지를 표시합니다
-        title: 스태프 배지 표시
       site_description:
         desc_html: API의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
         title: 서버 설명
@@ -1108,15 +1159,23 @@ ko:
       public: 퍼블릭 타임라인
       thread: 대화
     edit:
+      add_keyword: 키워드 추가
+      keywords: 키워드
       title: 필터 편집
     errors:
+      deprecated_api_multiple_keywords: 이 파라미터들은 하나를 초과하는 필터 키워드에 적용되기 때문에 이 응용프로그램에서 수정될 수 없습니다. 더 최신의 응용프로그램이나 웹 인터페이스를 사용하세요.
       invalid_context: 컨텍스트가 없거나 올바르지 않습니다
-      invalid_irreversible: 되돌릴 수 없는 필터링은 홈 타임라인과 알림에서만 동작합니다
     index:
+      contexts: "%{contexts}에 대한 필터"
       delete: 삭제
       empty: 필터가 없습니다.
+      expires_in: "%{distance} 안에 만료됨"
+      expires_on: "%{date}에 만료됨"
+      keywords:
+        other: "%{count}개의 키워드"
       title: 필터
     new:
+      save: 새 필터 저장
       title: 필터 추가
   footer:
     developers: 개발자
@@ -1233,6 +1292,8 @@ ko:
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} 님이 신고를 제출했습니다"
       sign_up:
         subject: "%{name} 님이 가입했습니다"
     digest:

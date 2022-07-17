@@ -608,7 +608,20 @@ function insertIntoTagHistory(recognizedTags, text) {
     const state = getState();
     const oldHistory = state.getIn(['compose', 'tagHistory']);
     const me = state.getIn(['meta', 'me']);
-    const names = recognizedTags.map(tag => text.match(new RegExp(`#${tag.name}`, 'i'))[0].slice(1));
+
+    // FIXME: Matching input hashtags with recognized hashtags has become more
+    // complicated because of new normalization rules, it's no longer just
+    // a case sensitivity issue
+    const names = recognizedTags.map(tag => {
+      const matches = text.match(new RegExp(`#${tag.name}`, 'i'));
+
+      if (matches && matches.length > 0) {
+        return matches[0].slice(1);
+      } else {
+        return tag.name;
+      }
+    });
+
     const intersectedOldHistory = oldHistory.filter(name => names.findIndex(newName => newName.toLowerCase() === name.toLowerCase()) === -1);
 
     names.push(...intersectedOldHistory.toJS());

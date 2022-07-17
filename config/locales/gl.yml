@@ -83,10 +83,8 @@ gl:
     posts_tab_heading: Publicacións
     posts_with_replies: Publicacións e respostas
     roles:
-      admin: Administradora
       bot: Bot
       group: Grupo
-      moderator: Moderadora
     unavailable: Perfil non dispoñíbel
     unfollow: Deixar de seguir
   admin:
@@ -105,12 +103,17 @@ gl:
       avatar: Imaxe de perfil
       by_domain: Dominio
       change_email:
-        changed_msg: Email da conta mudado de xeito correcto!
+        changed_msg: Email mudado de xeito correcto!
         current_email: Email actual
         label: Mudar email
         new_email: Novo email
         submit: Mudar email
         title: Mudar email de %{username}
+      change_role:
+        changed_msg: Rol mudado correctamente!
+        label: Cambiar rol
+        no_role: Sen rol
+        title: Cambiar o rol de %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Estase a confirmar
@@ -154,6 +157,7 @@ gl:
         active: Activa
         all: Todo
         pending: Pendente
+        silenced: Limitada
         suspended: Suspendidos
         title: Moderación
       moderation_notes: Notas de moderación
@@ -161,6 +165,7 @@ gl:
       most_recent_ip: IP máis recente
       no_account_selected: Ningunha conta mudou porque ningunha foi seleccionada
       no_limits_imposed: Sen límites impostos
+      no_role_assigned: Sen rol asignado
       not_subscribed: Non subscrita
       pending: Revisión pendente
       perform_full_suspension: Suspender
@@ -187,12 +192,7 @@ gl:
       reset: Restabelecer
       reset_password: Restabelecer contrasinal
       resubscribe: Resubscribir
-      role: Permisos
-      roles:
-        admin: Administrador
-        moderator: Moderador
-        staff: Persoal (staff)
-        user: Usuaria
+      role: Rol
       search: Procurar
       search_same_email_domain: Outras usuarias co mesmo dominio de email
       search_same_ip: Outras usuarias co mesmo IP
@@ -601,7 +601,7 @@ gl:
         delete_description_html: As publicacións denunciadas van ser eliminadas e gárdase un aviso para axudarche a xestionar futuras infraccións desta conta.
         mark_as_sensitive_description_html: Os multimedia das publicacións denunciadas serán marcados como sensibles e engadirase un aviso para axudarche a xestionar futuras infraccións da mesma conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
-        resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardan avisos, e a denuncia arquivada.
+        resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardarán avisos, e pecharase a denuncia.
         silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
         suspend_description_html: O perfil e tódolos seus contidos será inaccesbles e finalmente eliminados. A interacción coa conta non será posible. Reversible durante 30 días.
       actions_description_html: Decide que acción tomar respecto desta denuncia. Se tomas accións punitivas contra a conta denunciada, enviaráselles un email coa notificación, excepto se está seleccionada a categoría <strong>Spam</strong>.
@@ -631,7 +631,7 @@ gl:
         placeholder: Describir que accións foron tomadas ou calquera outra novidade sobre esta denuncia...
         title: Notas
       notes_description_html: Ver e deixar unha nota para ti no futuro e outras moderadoras
-      quick_actions_description_html: 'Tomar unha acción rápida ou desprázate abaixo para ver o contido denunciado:'
+      quick_actions_description_html: 'Toma unha acción rápida ou desprázate abaixo para ver o contido denunciado:'
       remote_user_placeholder: a usuaria remota desde %{instance}
       reopen: Reabrir denuncia
       report: 'Denuncia #%{id}'
@@ -649,6 +649,67 @@ gl:
       unresolved: Non resolto
       updated_at: Actualizado
       view_profile: Ver perfil
+    roles:
+      add_new: Engadir rol
+      assigned_users:
+        one: "%{count} usuaria"
+        other: "%{count} usuarias"
+      categories:
+        administration: Administración
+        devops: DevOps
+        invites: Convites
+        moderation: Moderación
+        special: Especial
+      delete: Eliminar
+      description_html: Cos <strong>roles das usuarias</strong> podes personalizar as funcións e áreas de Mastodon ás que as usuarias poden acceder.
+      edit: Editar rol '%{name}'
+      everyone: Permisos por defecto
+      everyone_full_description_html: Este é o <strong>rol básico</strong> que afecta a <strong>tódalas usuarias</strong>, incluso aquelas sen un rol asignado. Tódolos outros roles herdan os seus permisos.
+      permissions_count:
+        one: "%{count} permiso"
+        other: "%{count} permisos"
+      privileges:
+        administrator: Administradora
+        administrator_description: As usuarias con este permiso poderán superar calquera restrición
+        delete_user_data: Eliminar datos de usuarias
+        delete_user_data_description: Permite eliminar datos doutras usuarias sen demoras
+        invite_users: Convidar usuarias
+        invite_users_description: Permite que outras usuarias conviden a xente ao servidor
+        manage_announcements: Xestionar anuncios
+        manage_announcements_description: Permite que xestionen os anuncios publicados no servidor
+        manage_appeals: Xestionar recursos
+        manage_appeals_description: Permite revisar as apelacións contra as accións de moderación
+        manage_blocks: Xestionar bloqueos
+        manage_blocks_description: Permite bloquear provedores de email e enderezos IP
+        manage_custom_emojis: Xestionar Emojis personalizados
+        manage_custom_emojis_description: Permite xestionar os emojis personalizados do servidor
+        manage_federation: Xestionar a federación
+        manage_federation_description: Permite bloquear ou permitir a federación con outros dominios, e controlar as entregas
+        manage_invites: Xestionar Convites
+        manage_invites_description: Permite ver e desactivar ligazóns de convite
+        manage_reports: Xestionar Denuncias
+        manage_reports_description: Permite revisar as denuncias e realizar accións de moderación sobre elas
+        manage_roles: Xestionar Roles
+        manage_roles_description: Permite xestionar e asignar roles a niveis inferiores
+        manage_rules: Xestionar Regras
+        manage_rules_description: Permite cambiar as regras do servidor
+        manage_settings: Xestionar Axustes
+        manage_settings_description: Permite cambiar os axustes do sitio web
+        manage_taxonomies: Xestionar Taxonomías
+        manage_taxonomies_description: Permite revisar o contido en voga e actualizar os axustes dos cancelos
+        manage_user_access: Xestionar Acceso das usuarias
+        manage_user_access_description: Permite desactivar o segundo factor de autenticación doutras usuarias, cambiar o enderezo de email e restablecer o contrasinal
+        manage_users: Xestionar Usuarias
+        manage_users_description: Permite ver os detalles doutras usuarias e realizar accións de moderación sobre elas
+        manage_webhooks: Xestionar Webhooks
+        manage_webhooks_description: Permite establecer webhooks para eventos administrativos
+        view_audit_log: Ver Rexistro de auditoría
+        view_audit_log_description: Permite ver o historial de accións administrativas no servidor
+        view_dashboard: Ver Taboleiro
+        view_dashboard_description: Permite acceder ao taboleiro e varias métricas do servidor
+        view_devops: Devops
+        view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
+      title: Roles
     rules:
       add_new: Engadir regra
       delete: Eliminar
@@ -701,9 +762,6 @@ gl:
         deletion:
           desc_html: Permitirlle a calquera que elimine a súa conta
           title: Abrir o borrado da conta
-        min_invite_role:
-          disabled: Ninguén
-          title: Permitir convites por
         require_invite_text:
           desc_html: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
           title: Require que as novas usuarias completen solicitude de texto do convite
@@ -716,9 +774,6 @@ gl:
       show_known_fediverse_at_about_page:
         desc_html: Si activado, mostraralle os toots de todo o fediverso coñecido nunha vista previa. Si non só mostrará os toots locais.
         title: Incluír contido federado na páxina da cronoloxía pública sen autenticación
-      show_staff_badge:
-        desc_html: Mostrar unha insignia de membresía nunha páxina de usuaria
-        title: Mostrar insigna de membresía
       site_description:
         desc_html: Parágrafo de presentación na páxina principal. Describe o que fai especial a este servidor Mastodon e calquera outra ouca importante. Pode utilizar cancelos HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrición do servidor
@@ -1124,15 +1179,24 @@ gl:
       public: Cronoloxías públicas
       thread: Conversas
     edit:
+      add_keyword: Engadir palabra chave
+      keywords: Palabras chave
       title: Editar filtro
     errors:
+      deprecated_api_multiple_keywords: Estes parámetros non se poden cambiar desde esta aplicación porque son de aplicación a máis dun filtro de palabras chave. Usa unha aplicación máis recente ou a interface web.
       invalid_context: Non se proporcionou un contexto válido
-      invalid_irreversible: O filtrado non reversible só funciona con contexto de avisos ou Inicio
     index:
+      contexts: Filtros para %{contexts}
       delete: Eliminar
       empty: Non tes filtros.
+      expires_in: Caduca en %{distance}
+      expires_on: Caduca o %{date}
+      keywords:
+        one: "%{count} palabra chave"
+        other: "%{count} palabras chave"
       title: Filtros
     new:
+      save: Gardar o novo filtro
       title: Engadir novo filtro
   footer:
     developers: Desenvolvedoras
@@ -1251,6 +1315,8 @@ gl:
     copy_account_note_text: 'Esta usuaria chegou desde %{acct}, aquí están as túas notas previas acerca dela:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} enviou unha denuncia"
       sign_up:
         subject: "%{name} rexistrouse"
     digest:
@@ -1279,7 +1345,7 @@ gl:
       title: Nova petición de seguimento
     mention:
       action: Responder
-      body: 'Foi mencionada por %{name} en:'
+      body: "%{name} mencionoute en:"
       subject: Foches mencionada por %{name}
       title: Nova mención
     poll:

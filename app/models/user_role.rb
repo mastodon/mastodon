@@ -90,6 +90,7 @@ class UserRole < ApplicationRecord
   validate :validate_permissions_elevation
   validate :validate_position_elevation
   validate :validate_dangerous_permissions
+  validate :validate_own_role_edition
 
   before_validation :set_position
 
@@ -163,6 +164,12 @@ class UserRole < ApplicationRecord
 
   def set_position
     self.position = -1 if everyone?
+  end
+
+  def validate_own_role_edition
+    return unless defined?(@current_account) && @current_account.user_role.id == id
+    errors.add(:permissions_as_keys, :own_role) if permissions_changed?
+    errors.add(:position, :own_role) if position_changed?
   end
 
   def validate_permissions_elevation

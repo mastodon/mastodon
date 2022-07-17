@@ -90,10 +90,8 @@ he:
     posts_tab_heading: חצרוצים
     posts_with_replies: חצרוצים ותגובות
     roles:
-      admin: מנהל
       bot: בוט
       group: קבוצה
-      moderator: מנחה
     unavailable: פרופיל לא זמין
     unfollow: הפסקת מעקב
   admin:
@@ -112,7 +110,6 @@ he:
       avatar: יַצְגָן
       by_domain: שם מתחם
       change_email:
-        changed_msg: כתובת הדוא"ל המשוייכת לחשבון שונתה בהצלחה !
         current_email: כתובת דוא"ל נוכחית
         label: שינוי כתובת דוא"ל משוייכת לחשבון
         new_email: כתובת דוא"ל חדשה
@@ -196,12 +193,6 @@ he:
       reset: איפוס
       reset_password: אתחול סיסמא
       resubscribe: להרשם מחדש
-      role: הרשאות
-      roles:
-        admin: מנהל מערכת
-        moderator: מנחה דיונים
-        staff: צוות
-        user: משתמש(ת)
       search: חיפוש
       search_same_email_domain: משתמשים אחרים מאותו דומיין דוא"ל
       search_same_ip: משתמשים אחרים מאותה כתובת IP
@@ -727,9 +718,6 @@ he:
         deletion:
           desc_html: הרשאה לכולם למחוק את חשבונם
           title: פתיחת מחיקת חשבון
-        min_invite_role:
-          disabled: אף אחד
-          title: אפשר הזמנות לפי
         require_invite_text:
           desc_html: כאשר הרשמות דורשות אישור ידני, הפיכת טקסט ה"מדוע את/ה רוצה להצטרף" להכרחי במקום אופציונלי
           title: אלץ משתמשים חדשים למלא סיבת הצטרפות
@@ -742,9 +730,6 @@ he:
       show_known_fediverse_at_about_page:
         desc_html: כאשר לא מופעל, מגביל את הפיד הפומבי המקושר מדף הנחיתה להצגת תוכן מקומי בלבד
         title: הכללת תוכן פדרטיבי בדף הפיד הפומבי הבלתי מאומת
-      show_staff_badge:
-        desc_html: הצג תג צוות בדף המשתמש
-        title: הצג תג צוות
       site_description:
         desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא. ניתן להשתמש בתגיות HTML, ובמיוחד ב־<code> &lt; a&gt; </code> ו־<code> &lt; em&gt; </code> .
         title: תיאור האתר
@@ -1145,7 +1130,6 @@ he:
       title: ערוך מסנן
     errors:
       invalid_context: לא סופק הקשר או הקשר לא תקין
-      invalid_irreversible: סינון בלתי הפיך עובד רק בהקשר פיד הבית או התראות
     index:
       delete: למחוק
       empty: אין לך מסננים.

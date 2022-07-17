@@ -38,3 +38,12 @@ pt-PT:
             email:
               blocked: utiliza um provedor de e-mail não permitido
               unreachable: não parece existir
+            role_id:
+              elevated: não pode ser maior que o da sua função atual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: incluir permissões que não são seguras para a função base
+              elevated: não pode incluir permissões que a sua função atual não possui
+            position:
+              elevated: não pode ser maior que o da sua função atual

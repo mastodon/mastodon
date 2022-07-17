@@ -98,10 +98,8 @@ ar:
     posts_tab_heading: المنشورات
     posts_with_replies: المنشورات والردود
     roles:
-      admin: المدير
       bot: روبوت
       group: فريق
-      moderator: مُشرِف
     unavailable: الصفحة التعريفية غير متوفرة
     unfollow: إلغاء المتابعة
   admin:
@@ -120,7 +118,6 @@ ar:
       avatar: الصورة الرمزية
       by_domain: النطاق
       change_email:
-        changed_msg: تم تعديل عنوان البريد الإلكتروني الخاص بالحساب بنجاح!
         current_email: عنوان البريد الإلكتروني الحالي
         label: تعديل عنوان البريد الإلكتروني
         new_email: عنوان البريد الإلكتروني الجديد
@@ -199,12 +196,6 @@ ar:
       reset: إعادة التعيين
       reset_password: إعادة ضبط كلمة السر
       resubscribe: إعادة الاشتراك
-      role: الصلاحيات
-      roles:
-        admin: مدير
-        moderator: مشرف
-        staff: الفريق
-        user: مستخدِم
       search: البحث
       search_same_email_domain: مستخدمون آخرون لديهم نفس نطاق البريد الإلكتروني
       search_same_ip: مستخدِمون آخرون بنفس الـ IP
@@ -665,9 +656,6 @@ ar:
         deletion:
           desc_html: السماح لأي مستخدم إغلاق حسابه
           title: السماح بحذف الحسابات
-        min_invite_role:
-          disabled: لا أحد
-          title: المستخدِمون المصرح لهم لإرسال الدعوات
         require_invite_text:
           desc_html: عندما تتطلب التسجيلات الموافقة اليدوية، جعل إدخال نص لسؤال "لماذا تريد أن تنضم؟" إلزاميا بدلاً من اختياري
           title: الطلب من المستخدمين الجدد إدخال سبب للتسجيل
@@ -680,9 +668,6 @@ ar:
       show_known_fediverse_at_about_page:
         desc_html: عند التعطيل، يُقيّد الخط الزمني العام المرتبط من صفحة الهبوط لعرض المحتوى المحلي فقط
         title: إظهار الفديفرس الموحَّد في خيط المُعايَنة
-      show_staff_badge:
-        desc_html: عرض شارة الموظفين على صفحة المستخدم
-        title: إظهار شارة الموظفين
       site_description:
         desc_html: فقرة تمهيدية على الصفحة الأولى. صف ميزات خادوم ماستدون هذا و ما يميّزه عن الآخرين. يمكنك استخدام علامات HTML ، ولا سيما <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
         title: وصف مثيل الخادوم
@@ -1026,7 +1011,6 @@ ar:
       title: تعديل عامل التصفية
     errors:
       invalid_context: لم تقم بتحديد أي مجال أو أنّ المجال غير صالح
-      invalid_irreversible: إلّا مجالات الإشعارات و الخيط الرئيسي معنية بالتصفية اللارجعية
     index:
       delete: إزالة
       empty: ليست لديك أية عوامل تصفية.

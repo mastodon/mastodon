@@ -40,6 +40,7 @@ pl:
       one: wpisu
       other: wpisów
     status_count_before: Są autorami
+    tagline: Zdecentralizowana sieć społecznościowa
     terms: Zasady użytkowania
     unavailable_content: Niedostępne treści
     unavailable_content_description:
@@ -90,10 +91,8 @@ pl:
     posts_tab_heading: Wpisy
     posts_with_replies: Wpisy z odpowiedziami
     roles:
-      admin: Administrator
       bot: Bot
       group: Grupa
-      moderator: Moderator
     unavailable: Profil niedostępny
     unfollow: Przestań śledzić
   admin:
@@ -112,12 +111,17 @@ pl:
       avatar: Awatar
       by_domain: Domena
       change_email:
-        changed_msg: Pomyślnie zmieniono adres e-mail konta!
+        changed_msg: Pomyślnie zmieniono adres e-mail!
         current_email: Obecny adres e-mail
         label: Zmień adres e-mail
         new_email: Nowy adres e-mail
         submit: Zmień adres e-mail
         title: Zmień adres e-mail dla %{username}
+      change_role:
+        changed_msg: Pomyślnie zmieniono rolę!
+        label: Zmień rolę
+        no_role: Brak roli
+        title: Zmień rolę dla %{username}
       confirm: Potwierdź
       confirmed: Potwierdzono
       confirming: Potwierdzanie
@@ -161,6 +165,7 @@ pl:
         active: Aktywne
         all: Wszystkie
         pending: Oczekujące
+        silenced: Ograniczone
         suspended: Zawieszone
         title: Moderacja
       moderation_notes: Notatki moderacyjne
@@ -168,6 +173,7 @@ pl:
       most_recent_ip: Ostatnie IP
       no_account_selected: Żadne konto nie zostało zmienione, bo żadne nie zostało wybrane
       no_limits_imposed: Nie nałożono ograniczeń
+      no_role_assigned: Nie przypisano żadnej roli
       not_subscribed: Nie zasubskrybowano
       pending: Oczekuje na przegląd
       perform_full_suspension: Zawieś
@@ -196,12 +202,7 @@ pl:
       reset: Resetuj
       reset_password: Resetuj hasło
       resubscribe: Ponów subskrypcję
-      role: Uprawnienia
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        staff: Ekipa
-        user: Użytkownik
+      role: Rola
       search: Szukaj
       search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
@@ -499,6 +500,11 @@ pl:
       unsuppress: Przywróć polecenie śledzenia konta
     instances:
       availability:
+        description_html:
+          few: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
+          many: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
+          one: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dzień</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
+          other: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
         failure_threshold_reached: Próg niepowodzenia osiągnięty dnia %{date}.
         failures_recorded:
           few: Nieudane próby w %{count} różnych dniach.
@@ -671,6 +677,54 @@ pl:
       unresolved: Nierozwiązane
       updated_at: Zaktualizowano
       view_profile: Wyświetl profil
+    roles:
+      add_new: Dodaj rolę
+      assigned_users:
+        few: "%{count} użytkowników"
+        many: "%{count} użytkowników"
+        one: "%{count} użytkownik"
+        other: "%{count} użytkowników"
+      categories:
+        administration: Administracja
+        devops: DevOps
+        invites: Zaproszenia
+        moderation: Moderacja
+        special: Specjalne
+      delete: Usuń
+      description_html: Za pomocą <strong>ról użytkowników</strong>możesz dostosowywać funkcje i obszary Mastodon, do których użytkownicy mogą uzyskać dostęp.
+      edit: Edytuj rolę '%{name}'
+      everyone: Domyślnie uprawnienia
+      everyone_full_description_html: To jest <strong>rola podstawowa</strong> wpływająca na <strong>wszystkich użytkowników</strong>, nawet tych, którzy nie mają przypisanej roli. Wszystkie inne role dziedziczą z niej uprawnienia.
+      privileges:
+        administrator: Administrator
+        administrator_description: Użytkownicy z tym uprawnieniem omijają każde uprawnienie
+        delete_user_data: Usuń dane użytkownika
+        delete_user_data_description: Pozwala użytkownikom na bezzwłoczne usuwanie danych innych użytkowników
+        invite_users: Zaproś użytkowników
+        invite_users_description: Pozwala użytkownikom zapraszać nowych ludzi na serwer
+        manage_announcements: Zarządzaj ogłoszeniami
+        manage_announcements_description: Pozwala użytkownikom zarządzać ogłoszeniami na serwerze
+        manage_appeals: Zarządzaj odwołaniami
+        manage_appeals_description: Pozwala użytkownikom przeglądać odwołania od działań moderacyjnych
+        manage_blocks: Zarządzaj blokami
+        manage_blocks_description: Pozwala użytkownikom na blokowanie dostawców poczty elektronicznej i adresów IP
+        manage_custom_emojis: Zarządzaj niestandardowymi emoji
+        manage_custom_emojis_description: Pozwala użytkownikom zarządzać niestandardowymi emoji na serwerze
+        manage_federation: Zarządzaj federacją
+        manage_federation_description: Pozwala użytkownikom na blokowanie lub zezwalanie federacji z innymi domenami i kontrolowanie doręczania
+        manage_invites: Zarządzaj zaproszeniami
+        manage_invites_description: Pozwala użytkownikom przeglądać i dezaktywować linki z zaproszeniami
+        manage_reports: Zarządzaj raportami
+        manage_reports_description: Pozwala użytkownikom przeglądać raporty i wykonywać przeciwko nim działania moderacyjne
+        manage_roles: Zarządzaj rolami
+        manage_roles_description: Pozwala użytkownikom zarządzać rolami i przypisywać role poniżej ich własnych
+        manage_rules: Zarządzaj regułami
+        manage_rules_description: Pozwala użytkownikom na zmianę reguł serwera
+        manage_settings: Zarządzaj ustawieniami
+        manage_settings_description: Pozwala użytkownikom na zmianę ustawień witryny
+        manage_taxonomies: Zarządzaj taksonomiami
+        manage_taxonomies_description: Pozwala użytkownikom przeglądać najpopularniejsze treści i aktualizować ustawienia hasztagów
+        manage_user_access: Zarządzaj dostępem użytkownika
     rules:
       add_new: Dodaj zasadę
       delete: Usuń
@@ -723,9 +777,6 @@ pl:
         deletion:
           desc_html: Pozwól każdemu na usunięcie konta
           title: Możliwość usunięcia
-        min_invite_role:
-          disabled: Nikt
-          title: Kto może zapraszać użytkowników
         require_invite_text:
           desc_html: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
           title: Wymagaj od nowych użytkowników wypełnienia tekstu prośby o zaproszenie
@@ -738,9 +789,6 @@ pl:
       show_known_fediverse_at_about_page:
         desc_html: Jeśli włączone, podgląd instancji będzie wyświetlał wpisy z całego Fediwersum. W innym przypadku, będą wyświetlane tylko lokalne wpisy.
         title: Pokazuj wszystkie znane wpisy na podglądzie instancji
-      show_staff_badge:
-        desc_html: Pokazuj odznakę uprawnień na stronie profilu użytkownika
-        title: Pokazuj odznakę administracji
       site_description:
         desc_html: Akapit wprowadzający, widoczny na stronie głównej. Opisz, co czyni tę instancję wyjątkową. Możesz korzystać ze znaczników HTML, w szczególności <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Opis serwera
@@ -820,6 +868,11 @@ pl:
         description_html: Są to linki, które są obecnie często udostępniane przez konta, z których Twój serwer widzi posty. Może to pomóc Twoim użytkownikom dowiedzieć się, co dzieje się na świecie. Żadne linki nie są wyświetlane publicznie dopóki nie zaakceptujesz wydawcy. Możesz również zezwolić lub odrzucić indywidualne linki.
         disallow: Nie zezwalaj na link
         disallow_provider: Nie zezwalaj na wydawcę
+        shared_by_over_week:
+          few: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
+          many: Udostępnione przez %{count} osób w ciągu ostatniego tygodnia
+          one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
+          other: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
       only_allowed: Tylko dozwolone
@@ -837,6 +890,11 @@ pl:
         disallow: Nie zezwalaj na post
         disallow_account: Nie zezwalaj na autora
         not_discoverable: Autor nie włączył opcji, by być wyświetlany w katalogu
+        shared_by:
+          few: Udostępnione i dodane do ulubionych %{friendly_count} razy
+          many: Udostępnione i dodane do ulubionych %{friendly_count} razy
+          one: Udostępnione lub dodane do ulubionych jednorazowo
+          other: Udostępnione i dodane do ulubionych %{friendly_count} razy
         title: Popularne teraz
       tags:
         current_score: Bieżący wynik %{score}
@@ -1144,15 +1202,26 @@ pl:
       public: Publiczne osie czasu
       thread: Konwersacje
     edit:
+      add_keyword: Dodaj słowo kluczowe
+      keywords: Słowa kluczowe
       title: Edytuj filtr
     errors:
+      deprecated_api_multiple_keywords: Te parametry nie mogą zostać zmienione z tej aplikacji, ponieważ dotyczą więcej niż jednego słowa kluczowego. Użyj nowszej wersji aplikacji lub interfejsu internetowego.
       invalid_context: Nie podano lub podano nieprawidłową treść
-      invalid_irreversible: Nieodwracalne filtrowanie działa tylko na stronie głównej i w powiadomieniach
     index:
+      contexts: Filtry w %{contexts}
       delete: Usuń
       empty: Nie masz żadnych filtrów.
+      expires_in: Wygasa za %{distance}
+      expires_on: Wygasa %{date}
+      keywords:
+        few: "%{count} słowa kluczowe"
+        many: "%{count} słów kluczowych"
+        one: "%{count} słowo kluczowe"
+        other: "%{count} słów kluczowych"
       title: Filtry
     new:
+      save: Zapisz jako nowy filtr
       title: Dodaj nowy filtr
   footer:
     developers: Dla programistów
@@ -1275,6 +1344,8 @@ pl:
     copy_account_note_text: 'Ten użytkownik przeniósł się z konta %{acct}, oto Twoje poprzednie notatki o nim:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} wysłał raport"
       sign_up:
         subject: "%{name} zarejestrował(-a) się"
     digest:

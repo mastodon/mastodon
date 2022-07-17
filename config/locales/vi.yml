@@ -77,10 +77,8 @@ vi:
     posts_tab_heading: Tút
     posts_with_replies: Trả lời
     roles:
-      admin: Quản trị viên
       bot: Tài khoản Bot
       group: Nhóm
-      moderator: Kiểm duyệt viên
     unavailable: Tài khoản bị đình chỉ
     unfollow: Ngưng theo dõi
   admin:
@@ -99,12 +97,17 @@ vi:
       avatar: Ảnh đại diện
       by_domain: Máy chủ
       change_email:
-        changed_msg: Email tài khoản đã thay đổi thành công!
+        changed_msg: Email đã thay đổi thành công!
         current_email: Email hiện tại
         label: Thay đổi email
         new_email: Email mới
         submit: Thay đổi email
         title: Thay đổi email cho %{username}
+      change_role:
+        changed_msg: Vai trò đã thay đổi thành công!
+        label: Đổi vai trò
+        no_role: Chưa có vai trò
+        title: Thay đổi vai trò %{username}
       confirm: Phê duyệt
       confirmed: Đã xác minh
       confirming: Chờ xác nhận
@@ -116,7 +119,7 @@ vi:
       disable: Khóa
       disable_sign_in_token_auth: Vô hiệu hóa xác minh bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác minh 2 bước
-      disabled: Đã vô hiệu hóa
+      disabled: Tạm khóa
       display_name: Tên hiển thị
       domain: Máy chủ
       edit: Chỉnh sửa
@@ -148,6 +151,7 @@ vi:
         active: Hoạt động
         all: Toàn bộ
         pending: Chờ xử lý
+        silenced: Hạn chế
         suspended: Vô hiệu hóa
         title: Trạng thái
       moderation_notes: Nhật ký kiểm duyệt
@@ -155,6 +159,7 @@ vi:
       most_recent_ip: IP gần nhất
       no_account_selected: Không có tài khoản nào thay đổi vì không có tài khoản nào được chọn
       no_limits_imposed: Bình thường
+      no_role_assigned: Chưa có vai trò
       not_subscribed: Chưa đăng ký
       pending: Chờ duyệt
       perform_full_suspension: Vô hiệu hóa
@@ -181,11 +186,6 @@ vi:
       reset_password: Đặt lại mật khẩu
       resubscribe: Đăng ký lại
       role: Vai trò
-      roles:
-        admin: Quản trị viên
-        moderator: Kiểm duyệt viên
-        staff: Đội ngũ
-        user: Người dùng
       search: Tìm kiếm
       search_same_email_domain: Tra cứu email
       search_same_ip: Tra cứu IP
@@ -198,7 +198,7 @@ vi:
       show:
         created_reports: Gửi báo cáo
         targeted_reports: Bị báo cáo
-      silence: Ẩn
+      silence: Hạn chế
       silenced: Hạn chế
       statuses: Tút
       strikes: Lịch sử kiểm duyệt
@@ -633,6 +633,65 @@ vi:
       unresolved: Chờ xử lý
       updated_at: Cập nhật lúc
       view_profile: Xem trang hồ sơ
+    roles:
+      add_new: Thêm vai trò
+      assigned_users:
+        other: "%{count} người"
+      categories:
+        administration: Quản trị viên
+        devops: Nhà phát triển
+        invites: Lời mời
+        moderation: Kiểm duyệt
+        special: Đặc biệt
+      delete: Xóa
+      description_html: Thông qua <strong>vai trò người dùng</strong>, bạn có thể tùy chỉnh những tính năng và vị trí của Mastodon mà người dùng có thể truy cập.
+      edit: Sửa vai trò '%{name}'
+      everyone: Quyền hạn mặc định
+      everyone_full_description_html: Đây <strong>vai trò cơ bản</strong> ảnh hưởng tới <strong>mọi người dùng khác</strong>, kể cả những người không có vai trò được chỉ định. Tất cả các vai trò khác đều kế thừa quyền từ vai trò đó.
+      permissions_count:
+        other: "%{count} quyền hạn"
+      privileges:
+        administrator: Quản trị viên
+        administrator_description: Người dùng này có thể truy cập mọi quyền hạn
+        delete_user_data: Xóa dữ liệu người dùng
+        delete_user_data_description: Cho phép xóa dữ liệu của người dùng khác lập tức
+        invite_users: Mời người dùng
+        invite_users_description: Cho phép mời những người mới vào máy chủ
+        manage_announcements: Quản lý thông báo
+        manage_announcements_description: Cho phép quản lý thông báo trên máy chủ
+        manage_appeals: Quản lý kháng cáo
+        manage_appeals_description: Cho phép xem xét kháng cáo đối với các hành động kiểm duyệt
+        manage_blocks: Quản lý chặn
+        manage_blocks_description: Cho phép chặn các nhà cung cấp e-mail và địa chỉ IP
+        manage_custom_emojis: Quản lý emoji
+        manage_custom_emojis_description: Cho phép quản lý các emoji tùy chỉnh trên máy chủ
+        manage_federation: Quản lý liên hợp
+        manage_federation_description: Cho phép chặn hoặc liên hợp với các máy chủ khác và kiểm soát khả năng phân phối
+        manage_invites: Quản lý lời mời
+        manage_invites_description: Cho phép mở và đóng các lời mời đăng ký
+        manage_reports: Quản lý báo cáo
+        manage_reports_description: Cho phép xem xét các báo cáo và thực hiện hành động kiểm duyệt đối với chúng
+        manage_roles: Quản lý vai trò
+        manage_roles_description: Cho phép quản lý và chỉ định các vai trò nhỏ hơn họ
+        manage_rules: Quản lý quy tắc máy chủ
+        manage_rules_description: Cho phép thay đổi quy tắc máy chủ
+        manage_settings: Quản lý thiết lập
+        manage_settings_description: Cho phép thay đổi thiết lập máy chủ
+        manage_taxonomies: Quản lý phân loại
+        manage_taxonomies_description: Cho phép đánh giá nội dung xu hướng và cập nhật cài đặt hashtag
+        manage_user_access: Quản lý người dùng truy cập
+        manage_user_access_description: Cho phép vô hiệu hóa xác thực hai bước của người dùng khác, thay đổi địa chỉ email và đặt lại mật khẩu của họ
+        manage_users: Quản lý người dùng
+        manage_users_description: Cho phép xem thông tin chi tiết của người dùng khác và thực hiện các hành động kiểm duyệt đối với họ
+        manage_webhooks: Quản lý Webhook
+        manage_webhooks_description: Cho phép thiết lập webhook cho các sự kiện quản trị
+        view_audit_log: Xem nhật ký
+        view_audit_log_description: Cho phép xem lịch sử của các hành động quản trị trên máy chủ
+        view_dashboard: Xem quản trị
+        view_dashboard_description: Cho phép truy cập trang tổng quan và các chỉ số khác
+        view_devops: Nhà phát triển
+        view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
+      title: Danh sách vai trò
     rules:
       add_new: Thêm quy tắc
       delete: Xóa bỏ
@@ -685,9 +744,6 @@ vi:
         deletion:
           desc_html: Cho phép mọi người xóa tài khoản của họ
           title: Xóa tài khoản
-        min_invite_role:
-          disabled: Không một ai
-          title: Cho phép lời mời bằng cách
         require_invite_text:
           desc_html: Khi chọn phê duyệt người dùng thủ công, hiện “Tại sao bạn muốn đăng ký?” thay cho tùy chọn nhập
           title: Người đăng ký mới phải nhập mã mời tham gia
@@ -700,9 +756,6 @@ vi:
       show_known_fediverse_at_about_page:
         desc_html: Nếu tắt, bảng tin sẽ chỉ hiển thị nội dung do người dùng của máy chủ này tạo ra
         title: Bao gồm nội dung từ mạng liên hợp trên bảng tin không được cho phép
-      show_staff_badge:
-        desc_html: Hiện huy hiệu đội ngũ trên trang người dùng
-        title: Hiện huy hiệu đội ngũ
       site_description:
         desc_html: Nội dung giới thiệu về máy chủ. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể dùng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code>.
         title: Mô tả máy chủ
@@ -1104,15 +1157,23 @@ vi:
       public: Tin công khai
       thread: Thảo luận
     edit:
+      add_keyword: Thêm từ khoá
+      keywords: Từ khóa
       title: Chỉnh sửa bộ lọc
     errors:
+      deprecated_api_multiple_keywords: Không thể thay đổi các tham số này từ ứng dụng này vì chúng áp dụng cho nhiều hơn một từ khóa bộ lọc. Sử dụng ứng dụng mới hơn hoặc giao diện web.
       invalid_context: Bối cảnh không hợp lệ hoặc không có
-      invalid_irreversible: Bộ lọc chỉ hoạt động với bảng tin hoặc nội dung thông báo
     index:
+      contexts: Bộ lọc %{contexts}
       delete: Xóa bỏ
       empty: Chưa có bộ lọc nào.
+      expires_in: Hết hạn trong %{distance}
+      expires_on: Hết hạn vào %{date}
+      keywords:
+        other: "%{count} từ khóa"
       title: Bộ lọc
     new:
+      save: Lưu thành bộ lọc mới
       title: Thêm bộ lọc mới
   footer:
     developers: Phát triển
@@ -1229,6 +1290,8 @@ vi:
     copy_account_note_text: 'Tài khoản này chuyển từ %{acct}, đây là lịch sử kiểm duyệt của họ:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} đã gửi báo cáo"
       sign_up:
         subject: "%{name} đã được đăng ký"
     digest:

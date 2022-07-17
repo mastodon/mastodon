@@ -68,6 +68,11 @@ vi:
         with_dns_records: Nếu DNS có vấn đề, nó sẽ bị đưa vào danh sách cấm
       featured_tag:
         name: 'Những hashtag gợi ý cho bạn:'
+      filters:
+        action: Chọn hành động sẽ thực hiện khi một tút khớp với bộ lọc
+        actions:
+          hide: Ẩn hoàn toàn nội dung đã lọc, hoạt động như thể nó không tồn tại
+          warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
       form_challenge:
         current_password: Biểu mẫu này an toàn
       imports:
@@ -91,6 +96,13 @@ vi:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
         chosen_languages: Chỉ hiển thị những tút viết bằng các ngôn ngữ được chọn sau
+        role: Vai trò kiểm soát những quyền mà người dùng có
+      user_role:
+        color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
+        highlighted: Vai trò sẽ hiển thị công khai
+        name: Tên công khai của vai trò, nếu vai trò được đặt để hiển thị dưới dạng huy hiệu
+        permissions_as_keys: Người dùng có vai trò này sẽ có quyền truy cập vào...
+        position: Vai trò cao hơn sẽ có quyền quyết định xung đột trong các tình huống. Các vai trò có mức độ ưu tiên thấp hơn chỉ có thể thực hiện một số hành động nhất định
       webhook:
         events: Chọn sự kiện để gửi
         url: Nơi những sự kiện được gửi đến
@@ -181,6 +193,7 @@ vi:
         setting_use_pending_items: Không tự động cập nhật bảng tin
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
+        title: Tựa đề
         type: Kiểu nhập
         username: Tên người dùng
         username_or_email: Tên người dùng hoặc email
@@ -189,6 +202,10 @@ vi:
         with_dns_records: Bao gồm bản ghi MX và địa chỉ IP của máy chủ
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Ẩn toàn bộ
+          warn: Ẩn kèm theo cảnh báo
       interactions:
         must_be_follower: Chặn thông báo từ những người không theo dõi bạn
         must_be_following: Chặn thông báo từ những người bạn không theo dõi
@@ -222,6 +239,14 @@ vi:
         name: Hashtag
         trendable: Cho phép xuất hiện trong xu hướng
         usable: Cho phép dùng trong tút
+      user:
+        role: Vai trò
+      user_role:
+        color: Màu huy hiệu
+        highlighted: Hiển thị huy hiệu vai trò trên hồ sơ người dùng
+        name: Tên
+        permissions_as_keys: Quyền
+        position: Mức độ ưu tiên
       webhook:
         events: Những sự kiện đã bật
         url: URL endpoint
