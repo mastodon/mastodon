@@ -22,13 +22,16 @@ class Tag < ApplicationRecord
   has_and_belongs_to_many :statuses
   has_and_belongs_to_many :accounts
 
+  has_many :passive_relationships, class_name: 'TagFollow', inverse_of: :tag, dependent: :destroy
   has_many :featured_tags, dependent: :destroy, inverse_of: :tag
+  has_many :followers, through: :passive_relationships, source: :account
 
   HASHTAG_SEPARATORS = "_\u00B7\u200c"
   HASHTAG_NAME_RE    = "([[:alnum:]_][[:alnum:]#{HASHTAG_SEPARATORS}]*[[:alpha:]#{HASHTAG_SEPARATORS}][[:alnum:]#{HASHTAG_SEPARATORS}]*[[:alnum:]_])|([[:alnum:]_]*[[:alpha:]][[:alnum:]_]*)"
   HASHTAG_RE         = /(?:^|[^\/\)\w])#(#{HASHTAG_NAME_RE})/i
 
   validates :name, presence: true, format: { with: /\A(#{HASHTAG_NAME_RE})\z/i }
+  validates :display_name, format: { with: /\A(#{HASHTAG_NAME_RE})\z/i }
   validate :validate_name_change, if: -> { !new_record? && name_changed? }
   validate :validate_display_name_change, if: -> { !new_record? && display_name_changed? }
 
@@ -99,7 +102,7 @@ class Tag < ApplicationRecord
       names = Array(name_or_names).map { |str| [normalize(str), str] }.uniq(&:first)
 
       names.map do |(normalized_name, display_name)|
-        tag = matching_name(normalized_name).first || create(name: normalized_name, display_name: display_name)
+        tag = matching_name(normalized_name).first || create(name: normalized_name, display_name: display_name.gsub(/[^[:alnum:]#{HASHTAG_SEPARATORS}]/, ''))
 
         yield tag if block_given?
 
