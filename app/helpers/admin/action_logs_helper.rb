@@ -52,7 +52,7 @@ module Admin::ActionLogsHelper
       if tmp_status.account
         link_to tmp_status.account&.acct || "##{tmp_status.account_id}", admin_account_path(tmp_status.account_id)
       else
-        I18n.t('admin.action_logs.deleted_status')
+        I18n.t('admin.action_logs.deleted_account')
       end
     when 'Announcement'
       truncate(attributes['text'].is_a?(Array) ? attributes['text'].last : attributes['text'])
