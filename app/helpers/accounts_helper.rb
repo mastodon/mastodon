@@ -67,7 +67,7 @@ module AccountsHelper
     elsif account.group?
       content_tag(:div, content_tag(:div, t('accounts.roles.group'), class: 'account-role group'), class: 'roles')
     elsif account.user_role&.highlighted?
-      content_tag(:div, content_tag(:div, account.user_role.name, class: "account-role user-role-#{account.user_role.id}"), class: 'roles')
+      content_tag(:div, content_tag(:div, account.user_role.name, class: "account-role user-role user-role-#{account.user_role.id}"), class: 'roles')
     end
   end
 
