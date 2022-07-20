@@ -736,6 +736,11 @@ he:
         manage_webhooks_description: מאפשר למשתמשים להגדיר Webhooks לאירועים מנהלתיים
         view_audit_log: צפייה בלוג ביקורת
         view_audit_log_description: מאפשר למשתשמשים לצפות בהיסטוריה של פעולות מנהלתיות על השרת
+        view_dashboard: הצג לוח מחוונים
+        view_dashboard_description: אפשר למשתמשים לגשת ללוח המחוונים 
+        view_devops: פיתוח
+        view_devops_description: מאפשר למשתמשים לגשת ללוחות המחוונים של Sidekiq ושל pgHero 
+      title: תפקידים
     rules:
       add_new: הוספת כלל
       delete: מחיקה
@@ -940,13 +945,26 @@ he:
       empty: לא הגדרת עדיין שום טקסט מוכן מראש לאזהרה.
       title: ניהול טקסטים מוכנים מראש לאזהרות
     webhooks:
+      add_new: הוספת נקודת קצה
       delete: מחיקה
       disable: כיבוי
       disabled: כבוי
+      edit: עריכת נקודת קצה
+      empty: לא הוגדו נקודות קצה להתליות רשת עדיין.
       enable: אפשר
       enabled: פעילים
+      enabled_events:
+        one: אירוע %{count} מאופשר
+        two: "%{count} אירועים אופשרו"
+        many: "%{count} אירועים אופשרו"
+        other: "%{count} אירועים אופשרו"
       events: אירועים
+      new: Webhook חדש
+      rotate_secret: החלף מפתח
+      secret: מפתח הרשמה
       status: סטטוס
+      title: התליות רשת
+      webhook: התליית רשת
   admin_mailer:
     new_appeal:
       actions:
@@ -1131,10 +1149,12 @@ he:
       appealed_msg: הערעור שלך הוגש. במידה ויאושר, תיודע.
       appeals:
         submit: הגש ערעור
+      approve_appeal: קבלת ערעור
       associated_report: הדו"ח המשויך
       created_at: מתאריך
       description_html: אלו הן הפעולות שננקטו כנגד חשבונך והאזהרות שנשלחו אליך על ידי צוות %{instance}.
       recipient: הנמען
+      reject_appeal: דחיית ערעור
       status: 'חצרוץ #%{id}'
       status_removed: החצרוץ כבר הוסר מהמערכת
       title: "%{action} מתאריך %{date}"
@@ -1197,14 +1217,26 @@ he:
       public: פידים פומביים
       thread: שיחות
     edit:
+      add_keyword: הוספת מילת מפתח
+      keywords: מילות מפתח
       title: ערוך מסנן
     errors:
+      deprecated_api_multiple_keywords: לא ניתן לשנות פרמטרים אלו מהיישומון הזה בגלל שהם חלים על יותר ממילת מפתח אחת. ניתן להשתמש ביישומון מעודכן יותר או בממשק הוובי.
       invalid_context: לא סופק הקשר או הקשר לא תקין
     index:
+      contexts: פילטרים ב %{contexts}
       delete: למחוק
       empty: אין לך מסננים.
+      expires_in: פג תוקף ב %{distance}
+      expires_on: פג תוקף ב %{date}
+      keywords:
+        one: "מילת מפתח %{count}"
+        two: "%{count} מילות מפתח"
+        many: "%{count} מילות מפתח"
+        other: "%{count} מילות מפתח"
       title: מסננים
     new:
+      save: שמירת מסנן חדש
       title: הוספת מסנן חדש
   footer:
     developers: מפתחות
@@ -1327,6 +1359,8 @@ he:
     copy_account_note_text: 'חשבון זה הועבר מ-%{acct}, הנה הערותיך הקודמות לגביהם:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} שלח/ה דו\"ח"
       sign_up:
         subject: "%{name} נרשמו"
     digest:
