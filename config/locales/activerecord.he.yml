@@ -20,6 +20,14 @@ he:
             username:
               invalid: ספרות, אותיות לטיניות וקו תחתי בלבד
               reserved: שמור
+        admin/webhook:
+          attributes:
+            url:
+              invalid: כתובת לא חוקית
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: הינה כתובת לא חוקית
         status:
           attributes:
             reblog:
