@@ -530,7 +530,7 @@ Rails.application.routes.draw do
         resource :note, only: :create, controller: 'accounts/notes'
       end
 
-      resources :tags, only: [:show], constraints: { id: /#{Tag::HASHTAG_NAME_RE}/ } do
+      resources :tags, only: [:show] do
         member do
           post :follow
           post :unfollow
