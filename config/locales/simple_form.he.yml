@@ -1,4 +1,3 @@
----
 he:
   simple_form:
     hints:
@@ -68,6 +67,11 @@ he:
         with_dns_records: ייעשה נסיון למצוא את רשומות ה-DNS של דומיין נתון והתוצאות ייחסמו גם הן
       featured_tag:
         name: 'אולי תרצה/י להשתמש באחד מאלה:'
+      filters:
+        action: בחרו איזו פעולה לבצע כאשר פוסט מתאים למסנן
+        actions:
+          hide: הסתר את התוכן המסונן, כאילו לא היה קיים
+          warn: הסתר את התוכן המסונן מאחורי אזהרה עם כותרת המסנן
       form_challenge:
         current_password: את.ה נכנס. ת לאזור מאובטח
       imports:
@@ -91,8 +95,16 @@ he:
         name: ניתן רק להחליף בין אותיות קטנות וגדולות, למשל כדי לשפר את הקריאות
       user:
         chosen_languages: אם פעיל, רק חצרוצים בשפות הנבחרות יוצגו לפידים הפומביים
+        role: התפקיד שולט על אילו הרשאות יש למשתמש
+      user_role:
+        color: צבע לתפקיד בממשק המשתמש, כ RGB בפורמט הקסדצימלי
+        highlighted: מאפשר נראות ציבורית של התפקיד
+        name: שם ציבורי של התפקיד, במידה והתפקיד מוגדר ככזה שמופיע כתג
+        permissions_as_keys: למשתמשים בתפקיד זה תהיה גישה ל...
+        position: תפקיד גבוה יותר מכריע בחילוקי דעות במצבים מסוימים. פעולות מסוימות יכולות להתבצע רק על תפקידים בדרגה נמוכה יותר
       webhook:
         events: בחר אירועים לשליחה
+        url: היעד שאליו יישלחו אירועים
     labels:
       account:
         fields:
@@ -180,6 +192,7 @@ he:
         setting_use_pending_items: מצב איטי
         severity: חומרה
         sign_in_token_attempt: קוד אבטחה
+        title: כותרת
         type: סוג יבוא
         username: שם משתמש
         username_or_email: שם משתמש או דוא"ל
@@ -188,6 +201,10 @@ he:
         with_dns_records: לכלול רשומות MX וכתובות IP של הדומיין
       featured_tag:
         name: האשתג
+      filters:
+        actions:
+          hide: הסתרה כוללת
+          warn: הסתרה עם אזהרה
       interactions:
         must_be_follower: חסימת התראות משאינם עוקבים
         must_be_following: חסימת התראות משאינם נעקבים
@@ -221,7 +238,18 @@ he:
         name: האשתג
         trendable: הרשה/י להאשתג זה להופיע תחת נושאים חמים
         usable: הרשה/י לחצרוצים להכיל האשתג זה
-    'no': לא
+      user:
+        role: תפקיד
+      user_role:
+        color: צבע תג
+        highlighted: הצג תפקיד כתג בפרופיל משתמש
+        name: שם
+        permissions_as_keys: הרשאות
+        position: עדיפות
+      webhook:
+        events: אירועים מאופשרים
+        url: כתובת URL של נקודת הקצה
+    'no': 'לא'
     recommended: מומלץ
     required:
       mark: "*"
@@ -229,4 +257,4 @@ he:
     title:
       sessions:
         webauthn: נא להשתמש באחד ממפתחות האבטחה שלך כדי להכנס
-    'yes': כן
+    'yes': 'כן'
