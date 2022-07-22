@@ -1,13 +1,17 @@
 // @ts-check
 import React from 'react';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Permalink from './permalink';
 import ShortNumber from 'flavours/glitch/components/short_number';
 import Skeleton from 'flavours/glitch/components/skeleton';
 import classNames from 'classnames';
+
+const messages = defineMessages({
+  totalVolume: { id: 'hashtag.total_volume', defaultMessage: 'Total volume in the last {days, plural, one {day} other {{days} days}}' },
+});
 
 class SilentErrorBoundary extends React.Component {
 
@@ -41,10 +45,11 @@ class SilentErrorBoundary extends React.Component {
 const accountsCountRenderer = (displayNumber, pluralReady) => (
   <FormattedMessage
     id='trends.counter_by_accounts'
-    defaultMessage='{count, plural, one {{counter} person} other {{counter} people}} talking'
+    defaultMessage='{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {{days} days}}'
     values={{
       count: pluralReady,
       counter: <strong>{displayNumber}</strong>,
+      days: 2,
     }}
   />
 );
@@ -64,7 +69,7 @@ ImmutableHashtag.propTypes = {
   hashtag: ImmutablePropTypes.map.isRequired,
 };
 
-const Hashtag = ({ name, href, to, people, uses, history, className }) => (
+const Hashtag = injectIntl(({ name, href, to, people, uses, history, className, intl }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
       <Permalink href={href} to={to}>
@@ -74,9 +79,10 @@ const Hashtag = ({ name, href, to, people, uses, history, className }) => (
       {typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />}
     </div>
 
-    <div className='trends__item__current'>
+    <abbr className='trends__item__current' title={intl.formatMessage(messages.totalVolume, { days: 2 })}>
       {typeof uses !== 'undefined' ? <ShortNumber value={uses} /> : <Skeleton width={42} height={36} />}
-    </div>
+      <span className='trends__item__current__asterisk'>*</span>
+    </abbr>
 
     <div className='trends__item__sparkline'>
       <SilentErrorBoundary>
@@ -86,7 +92,7 @@ const Hashtag = ({ name, href, to, people, uses, history, className }) => (
       </SilentErrorBoundary>
     </div>
   </div>
-);
+));
 
 Hashtag.propTypes = {
   name: PropTypes.string,
