@@ -7243,6 +7243,13 @@ noscript {
       padding-right: 15px;
       margin-left: 5px;
       color: $secondary-text-color;
+      text-decoration: none;
+
+      &__asterisk {
+        color: $darker-text-color;
+        font-size: 18px;
+        vertical-align: super;
+      }
     }
 
     &__sparkline {
