@@ -442,8 +442,12 @@
     object-fit: contain;
   }
 
-  .loading-bar {
+  .loading-bar__container {
     position: relative;
+  }
+
+  .loading-bar {
+    position: absolute;
   }
 
   &.image-loader--amorphous .image-loader__preview-canvas {

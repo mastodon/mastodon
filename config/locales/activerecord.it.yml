@@ -45,5 +45,7 @@ it:
             permissions_as_keys:
               dangerous: include i permessi non sicuri per il ruolo di base
               elevated: non è possibile includere i permessi che il tuo ruolo attuale non possiede
+              own_role: non può essere modificato con il tuo ruolo attuale
             position:
               elevated: non può essere superiore al tuo ruolo attuale
+              own_role: non può essere modificato con il tuo ruolo attuale

@@ -1783,8 +1783,12 @@ a.account__display-name {
     object-fit: contain;
   }
 
-  .loading-bar {
+  .loading-bar__container {
     position: relative;
+  }
+
+  .loading-bar {
+    position: absolute;
   }
 
   &.image-loader--amorphous .image-loader__preview-canvas {
@@ -7239,6 +7243,13 @@ noscript {
       padding-right: 15px;
       margin-left: 5px;
       color: $secondary-text-color;
+      text-decoration: none;
+
+      &__asterisk {
+        color: $darker-text-color;
+        font-size: 18px;
+        vertical-align: super;
+      }
     }
 
     &__sparkline {
