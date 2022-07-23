@@ -34,10 +34,10 @@ he:
     server_stats: 'סטטיסטיקות שרת:'
     source_code: קוד מקור
     status_count_after:
-      one: חצרוץ
-      two: חצרוצים
-      many: חצרוצים
-      other: חצרוצים
+      one: פוסט
+      two: פוסטים
+      many: פוסטים
+      other: פוסטים
     status_count_before: שכתבו
     tagline: רשת חברתית מבוזרת
     terms: תנאי שימוש
@@ -83,10 +83,10 @@ he:
     pin_errors:
       following: עליך לעקוב אחרי חשבון לפני שניתן יהיה להמליץ עליו
     posts:
-      one: חצרוץ
-      two: חצרוצים
-      many: חצרוצים
-      other: חצרוצים
+      one: פוסט
+      two: פוסטים
+      many: פוסטים
+      other: פוסטים
     posts_tab_heading: חצרוצים
     posts_with_replies: חצרוצים ותגובות
     roles:
@@ -261,7 +261,7 @@ he:
         destroy_email_domain_block: מחיקת חסימת דומיין דוא"ל
         destroy_instance: טיהור דומיין
         destroy_ip_block: מחיקת כלל IP
-        destroy_status: מחיקת חצרוץ
+        destroy_status: מחיקת פוסט
         destroy_unavailable_domain: מחיקת דומיין בלתי זמין
         disable_2fa_user: השעיית זיהוי דו-גורמי
         disable_custom_emoji: השעיית אמוג'י מיוחד
@@ -312,7 +312,7 @@ he:
         destroy_email_domain_block_html: "%{name} הסיר/ה חסימה מדומיין הדוא\"ל %{target}"
         destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
         destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
-        destroy_status_html: "%{name} הסיר/ה חצרוץ מאת %{target}"
+        destroy_status_html: "%{name} הסיר/ה פוסט מאת %{target}"
         destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
@@ -340,8 +340,8 @@ he:
         update_announcement_html: "%{name} עדכן/ה הכרזה %{target}"
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
-        update_status_html: "%{name} עדכן/ה חצרוץ של %{target}"
-      deleted_status: "(חצרוץ נמחק)"
+        update_status_html: "%{name} עדכן/ה פוסט של %{target}"
+      deleted_status: "(פוסט נמחק)"
       empty: לא נמצאו יומנים.
       filter_by_action: סינון לפי פעולה
       filter_by_user: סינון לפי משתמש
@@ -900,10 +900,10 @@ he:
         title: מפרסמים
       rejected: דחוי
       statuses:
-        allow: הרשאת חצרוץ
+        allow: הרשאת פוסט
         allow_account: הרשאת מחבר/ת
         description_html: אלו הם חצרוצים שהשרת שלך מכיר וזוכים להדהודים וחיבובים רבים כרגע. זה עשוי למשתמשיך החדשים והחוזרים למצוא עוד נעקבים. החצרוצים לא מוצגים עד שיאושר המחבר/ת, והמחבר/ת יאשרו שחשבונים יומלץ לאחרים. ניתן לאשר או לדחות חצרוצים ספציפיים.
-        disallow: לא לאשר חצרוץ
+        disallow: לדחות פוסט
         disallow_account: לא לאשר מחבר/ת
         not_discoverable: המחבר/ת לא בחר/ה לאפשר את גילויים
         shared_by:
@@ -993,7 +993,7 @@ he:
         title: נושאים חמים
       new_trending_statuses:
         no_approved_statuses: אין כרגע שום חצרוצים חמים מאושרים.
-        requirements: 'כל אחד מהמועמדים האלה עשוי לעבור החצרוץ החם המאושר מדרגה %{rank}, שההא כרגע %{lowest_status_url} עם ציון של %{lowest_status_score}.'
+        requirements: 'כל אחד מהמועמדים האלה עשוי לעבור את הפוסט החם המאושר מדרגה %{rank}, שהוא כרגע %{lowest_status_url} עם ציון של %{lowest_status_score}.'
         title: חצרוצים לוהטים
       new_trending_tags:
         no_approved_tags: אין כרגע שום האשתגיות חמות מאושרות.
@@ -1018,14 +1018,14 @@ he:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: כולם יכולים לתרום.
     sensitive_content: תוכן רגיש
-    toot_layout: פריסת חצרוץ
+    toot_layout: פריסת פוסט
   application_mailer:
     notification_preferences: שינוי העדפות דוא"ל
     salutation: "%{name},"
     settings: 'שינוי הגדרות דוא"ל: %{link}'
     view: 'תצוגה:'
     view_profile: צפיה בפרופיל
-    view_status: הצגת חצרוץ
+    view_status: הצגת פוסט
   applications:
     created: ישום נוצר בהצלחה
     destroyed: ישום נמחק בהצלחה
@@ -1155,11 +1155,11 @@ he:
       description_html: אלו הן הפעולות שננקטו כנגד חשבונך והאזהרות שנשלחו אליך על ידי צוות %{instance}.
       recipient: הנמען
       reject_appeal: דחיית ערעור
-      status: 'חצרוץ #%{id}'
-      status_removed: החצרוץ כבר הוסר מהמערכת
+      status: 'פוסט #%{id}'
+      status_removed: הפוסט כבר הוסר מהמערכת
       title: "%{action} מתאריך %{date}"
       title_actions:
-        delete_statuses: הסרת חצרוץ
+        delete_statuses: הסרת פוסט
         disable: הקפאת חשבון
         mark_statuses_as_sensitive: סימון חצרוצים כרגישים
         none: אזהרה
@@ -1317,7 +1317,7 @@ he:
     title: הסטוריית אימותים
   media_attachments:
     validations:
-      images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
+      images_and_video: לא ניתן להוסיף וידאו לפוסט שכבר מכיל תמונות
       not_ready: לא ניתן להצמיד קבצים שהעלאתם לא הסתיימה. נסה/י שוב בעוד רגע!
       too_many: לא ניתן להוסיף יותר מארבעה קבצים
   migrations:
@@ -1447,7 +1447,7 @@ he:
       too_many_options: לא יכול להכיל יותר מ-%{max} פריטים
   preferences:
     other: שונות
-    posting_defaults: ברירות מחדל לחצרוץ
+    posting_defaults: ברירות מחדל לפוסטים
     public_timelines: פידים פומביים
   reactions:
     errors:
@@ -1480,13 +1480,13 @@ he:
   remote_interaction:
     favourite:
       proceed: המשך לחיבוב
-      prompt: 'ברצונך לחבב חצרוץ זה:'
+      prompt: 'ברצונך לחבב פוסט זה:'
     reblog:
       proceed: המשיכו להדהוד 
-      prompt: 'ברצונך להדהד חצרוץ זה:'
+      prompt: 'ברצונך להדהד פוסט זה:'
     reply:
       proceed: המשיבו לתגובה
-      prompt: 'ברצונך להשיב לחצרוץ זה:'
+      prompt: 'ברצונך להשיב לפוסט זה:'
   reports:
     errors:
       invalid_rules: לא מתייחס לכללים קבילים
@@ -1592,7 +1592,7 @@ he:
       other: 'מכיל את ההאשתגיות האסורות: %{tags}'
     edited_at_html: נערך ב-%{date}
     errors:
-      in_reply_not_found: נראה שהחצרוץ שאת/ה מנסה להגיב לו לא קיים.
+      in_reply_not_found: נראה שהפוסט שאת/ה מנסה להגיב לו לא קיים.
     open_in_web: פתח ברשת
     over_character_limit: חריגה מגבול התווים של %{max}
     pin_errors:
@@ -1662,7 +1662,7 @@ he:
     min_reblogs: שמור חצרוצים מהודהדים לפחות
     min_reblogs_hint: לא מוחק מי מחצרוציך שקיבלו לפחות את המספר הזה של הדהודים. להשאיר ריק כדי למחוק חצרוצים ללא קשר למספר ההדהודים שקיבלו
   stream_entries:
-    pinned: חצרוץ מוצמד
+    pinned: פוסט נעוץ
     reblogged: הודהד
     sensitive_content: תוכן רגיש
   strikes:
