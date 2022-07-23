@@ -38,7 +38,7 @@ en:
       one: post
       other: posts
     status_count_before: Who published
-    tagline: Follow friends and discover new ones
+    tagline: Decentralized social network
     terms: Terms of service
     unavailable_content: Moderated servers
     unavailable_content_description:
@@ -83,10 +83,8 @@ en:
     posts_tab_heading: Posts
     posts_with_replies: Posts and replies
     roles:
-      admin: Admin
       bot: Bot
       group: Group
-      moderator: Mod
     unavailable: Profile unavailable
     unfollow: Unfollow
   admin:
@@ -105,12 +103,17 @@ en:
       avatar: Avatar
       by_domain: Domain
       change_email:
-        changed_msg: Account email successfully changed!
+        changed_msg: Email successfully changed!
         current_email: Current email
         label: Change email
         new_email: New email
         submit: Change email
         title: Change email for %{username}
+      change_role:
+        changed_msg: Role successfully changed!
+        label: Change role
+        no_role: No role
+        title: Change role for %{username}
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
@@ -154,6 +157,7 @@ en:
         active: Active
         all: All
         pending: Pending
+        silenced: Limited
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
@@ -161,6 +165,7 @@ en:
       most_recent_ip: Most recent IP
       no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: No limits imposed
+      no_role_assigned: No role assigned
       not_subscribed: Not subscribed
       pending: Pending review
       perform_full_suspension: Suspend
@@ -187,12 +192,7 @@ en:
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
-      role: Permissions
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        staff: Staff
-        user: User
+      role: Role
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
@@ -428,6 +428,7 @@ en:
       destroyed_msg: Domain block has been undone
       domain: Domain
       edit: Edit domain block
+      existing_domain_block: You have already imposed stricter limits on %{name}.
       existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Create block
@@ -648,6 +649,67 @@ en:
       unresolved: Unresolved
       updated_at: Updated
       view_profile: View profile
+    roles:
+      add_new: Add role
+      assigned_users:
+        one: "%{count} user"
+        other: "%{count} users"
+      categories:
+        administration: Administration
+        devops: Devops
+        invites: Invites
+        moderation: Moderation
+        special: Special
+      delete: Delete
+      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
+      edit: Edit '%{name}' role
+      everyone: Default permissions
+      everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissions"
+      privileges:
+        administrator: Administrator
+        administrator_description: Users with this permission will bypass every permission
+        delete_user_data: Delete User Data
+        delete_user_data_description: Allows users to delete other users' data without delay
+        invite_users: Invite Users
+        invite_users_description: Allows users to invite new people to the server
+        manage_announcements: Manage Announcements
+        manage_announcements_description: Allows users to manage announcements on the server
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Allows users to review appeals against moderation actions
+        manage_blocks: Manage Blocks
+        manage_blocks_description: Allows users to block e-mail providers and IP addresses
+        manage_custom_emojis: Manage Custom Emojis
+        manage_custom_emojis_description: Allows users to manage custom emojis on the server
+        manage_federation: Manage Federation
+        manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
+        manage_invites: Manage Invites
+        manage_invites_description: Allows users to browse and deactivate invite links
+        manage_reports: Manage Reports
+        manage_reports_description: Allows users to review reports and perform moderation actions against them
+        manage_roles: Manage Roles
+        manage_roles_description: Allows users to manage and assign roles below theirs
+        manage_rules: Manage Rules
+        manage_rules_description: Allows users to change server rules
+        manage_settings: Manage Settings
+        manage_settings_description: Allows users to change site settings
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Allows users to review trending content and update hashtag settings
+        manage_user_access: Manage User Access
+        manage_user_access_description: Allows users to disable other users' two-factor authentication, change their e-mail address, and reset their password
+        manage_users: Manage Users
+        manage_users_description: Allows users to view other users' details and perform moderation actions against them
+        manage_webhooks: Manage Webhooks
+        manage_webhooks_description: Allows users to set up webhooks for administrative events
+        view_audit_log: View Audit Log
+        view_audit_log_description: Allows users to see a history of administrative actions on the server
+        view_dashboard: View Dashboard
+        view_dashboard_description: Allows users to access the dashboard and various metrics
+        view_devops: Devops
+        view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+      title: Roles
     rules:
       add_new: Add rule
       delete: Delete
@@ -700,9 +762,6 @@ en:
         deletion:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
-        min_invite_role:
-          disabled: No one
-          title: Allow invitations by
         require_invite_text:
           desc_html: When registrations require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
           title: Require new users to enter a reason to join
@@ -715,9 +774,6 @@ en:
       show_known_fediverse_at_about_page:
         desc_html: When disabled, restricts the public timeline linked from the landing page to showing only local content
         title: Include federated content on unauthenticated public timeline page
-      show_staff_badge:
-        desc_html: Show a staff badge on a user page
-        title: Show staff badge
       site_description:
         desc_html: Introductory paragraph on the API. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Server description
@@ -851,6 +907,26 @@ en:
       edit_preset: Edit warning preset
       empty: You haven't defined any warning presets yet.
       title: Manage warning presets
+    webhooks:
+      add_new: Add endpoint
+      delete: Delete
+      description_html: A <strong>webhook</strong> enables Mastodon to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
+      disable: Disable
+      disabled: Disabled
+      edit: Edit endpoint
+      empty: You don't have any webhook endpoints configured yet.
+      enable: Enable
+      enabled: Active
+      enabled_events:
+        one: 1 enabled event
+        other: "%{count} enabled events"
+      events: Events
+      new: New webhook
+      rotate_secret: Rotate secret
+      secret: Signing secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -915,7 +991,6 @@ en:
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
-    invalid_url: The provided URL is invalid
     regenerate_token: Regenerate access token
     token_regenerated: Access token successfully regenerated
     warning: Be very careful with this data. Never share it with anyone!
@@ -1104,15 +1179,24 @@ en:
       public: Public timelines
       thread: Conversations
     edit:
+      add_keyword: Add keyword
+      keywords: Keywords
       title: Edit filter
     errors:
+      deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
       invalid_context: None or invalid context supplied
-      invalid_irreversible: Irreversible filtering only works with home or notifications context
     index:
+      contexts: Filters in %{contexts}
       delete: Delete
       empty: You have no filters.
+      expires_in: Expires in %{distance}
+      expires_on: Expires on %{date}
+      keywords:
+        one: "%{count} keyword"
+        other: "%{count} keywords"
       title: Filters
     new:
+      save: Save new filter
       title: Add new filter
   footer:
     developers: Developers
@@ -1231,6 +1315,8 @@ en:
     copy_account_note_text: 'This user moved from %{acct}, here were your previous notes about them:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} submitted a report"
       sign_up:
         subject: "%{name} signed up"
     digest:

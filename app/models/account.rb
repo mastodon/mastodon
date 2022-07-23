@@ -88,7 +88,7 @@ class Account < ApplicationRecord
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
-  validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
+  validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
@@ -116,7 +116,7 @@ class Account < ApplicationRecord
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')) }
   scope :by_recent_sign_in, -> { order(Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
-  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
+  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches("%.#{domain}"))) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { where(arel_table[:domain].eq(nil).or(arel_table[:domain].not_in(account.excluded_from_timeline_domains))) }
 
@@ -132,9 +132,6 @@ class Account < ApplicationRecord
            :unconfirmed?,
            :unconfirmed_or_pending?,
            :role,
-           :admin?,
-           :moderator?,
-           :staff?,
            :locale,
            :shows_application?,
            to: :user,
@@ -454,7 +451,7 @@ class Account < ApplicationRecord
       DeliveryFailureTracker.without_unavailable(urls)
     end
 
-    def search_for(terms, limit = 10, offset = 0)
+    def search_for(terms, limit: 10, offset: 0)
       tsquery = generate_query_for_search(terms)
 
       sql = <<-SQL.squish
@@ -476,7 +473,7 @@ class Account < ApplicationRecord
       records
     end
 
-    def advanced_search_for(terms, account, limit = 10, following = false, offset = 0)
+    def advanced_search_for(terms, account, limit: 10, following: false, offset: 0)
       tsquery = generate_query_for_search(terms)
       sql = advanced_search_for_sql_template(following)
       records = find_by_sql([sql, id: account.id, limit: limit, offset: offset, tsquery: tsquery])

@@ -35,7 +35,6 @@ sc:
       one: istadu
       other: istados
     status_count_before: Atributzione de
-    tagline: Sighi is amistades tuas e iscoberi·nde àteras
     terms: Cunditziones de su servìtziu
     unavailable_content: Serbidores moderados
     unavailable_content_description:
@@ -80,10 +79,8 @@ sc:
     posts_tab_heading: Tuts
     posts_with_replies: Tuts e rispostas
     roles:
-      admin: Admin
       bot: Bot
       group: Grupu
-      moderator: Moderatzione
     unavailable: Su profilu no est a disponimentu
     unfollow: Non sigas prus
   admin:
@@ -102,7 +99,6 @@ sc:
       avatar: Immàgine de profilu
       by_domain: Domìniu
       change_email:
-        changed_msg: As cambiadu s'indiritzu eletrònicu.
         current_email: Indiritzu eletrònicu atuale
         label: Muda s'indiritzu eletrònicu
         new_email: Indiritzu eletrònicu nou
@@ -177,12 +173,6 @@ sc:
       reset: Reseta
       reset_password: Reseta sa crae
       resubscribe: Torra a sutascrìere
-      role: Permissos
-      roles:
-        admin: Amministratzione
-        moderator: Moderatzione
-        staff: Personale
-        user: Utente
       search: Chirca
       search_same_email_domain: Àteras persones cun su pròpiu domìniu de posta
       search_same_ip: Àteras persones cun sa pròpiu IP
@@ -549,9 +539,6 @@ sc:
         deletion:
           desc_html: Permite a chie si siat de cantzellare su contu suo
           title: Aberi s'eliminatzione de su contu
-        min_invite_role:
-          disabled: Nemos
-          title: Permite invitos de
         require_invite_text:
           desc_html: Cando is registratziones rechedent s'aprovatzione manuale, faghe chi a incarcare su butone "Pro ite ti boles iscrìere?" siat obligatòriu e no a praghere
           title: Rechede a is persones noas chi iscriant una resone prima de aderire
@@ -564,9 +551,6 @@ sc:
       show_known_fediverse_at_about_page:
         desc_html: Cando ativu, ammustrat in sa previsualizatzione is tuts de totu is istàntzias connòschidas. Si nono, ammustrat isceti is cuntenutos locales
         title: Include su cuntenutu federadu in sa pàgina no autenticada de sa lìnia de tempus pùblica
-      show_staff_badge:
-        desc_html: Ammustra un'insigna de personale in sa pàgina de utente
-        title: Ammustra insigna de personale
       site_description:
         desc_html: Paràgrafu de introdutzione a s'API. Descrie pro ite custu serbidore de Mastodon siat ispetziale e cale si siat àtera cosa de importu. Podes impreare etichetas HTML, mescamente <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descritzione de su serbidore
@@ -659,7 +643,6 @@ sc:
   applications:
     created: Aplicatzione creada
     destroyed: Aplicatzione cantzellada
-    invalid_url: S'URL frunidu no est curretu
     regenerate_token: Torra a generare s'identificadore de atzessu
     token_regenerated: Identificadore de atzessu generadu
     warning: Dae cara a custos datos. Non ddos cumpartzas mai cun nemos!
@@ -818,7 +801,6 @@ sc:
       title: Modìfica filtru
     errors:
       invalid_context: Cuntestu mancante o non vàlidu
-      invalid_irreversible: Su filtràgiu non reversìbile funtzionat isceti in is cuntestos printzipale o de notìficas
     index:
       delete: Cantzella
       empty: Non tenes perunu filtru.
@@ -1173,87 +1155,6 @@ sc:
   tags:
     does_not_match_previous_name: non cointzidet cun su nòmine anteriore
   terms:
-    body_html: |
-      <h2>Polìtica de riservadesa</h2>
-      <h3 id="collect">Ite informatziones collimus?</h3>
-
-      <ul>
-      <li><em>Informatziones de base de su contu</em>: Si t'as a registrare in custu serbidore, ti diant pòdere pedire de insertare unu nòmine utente, un'indiritzu de posta eletrònica e una crae de intrada. Dias pòdere insertare fintzas àteras informatziones de profilu, che a unu nòmine de ammustrare e una biografia, e carrigare un'immàgine de profilu e una de cobertedda. Su nòmine utente, cussu ammustradu, sa biografia, s'immàgine de profilu e de cobertedda sunt semper allistados in pùblicu.</li>
-      <li><em>Publicatziones, sighidores e àteras informatziones pùblicas</em>: Sa lista de is persones chi sighis est allistada in pùblicu, e sa matessi cosa balet pro is chi ti sighint. Cando imbias unu messàgiu sa data e s'ora benint sarvadas, aici comente s'aplicatzione dae sa cale as imbiadu su messàgiu. Is messàgios diant pòdere cuntènnere cuntenutos multimediales allongiados, che a immàgines e vìdeos. Is publicatziones pùblicas e no allistadas sunt a disponimentu in abertu. Cando ammustras una publicatzione in su profilu tuo, fintzas cussa est un'informatzione a disponimentu pùblicu. Is publicatziones tuas benint imbiadas a is sighidores tuos, cosa chi a bortas bolet nàrrere chi benint intregadas a serbidores diferentes chi nde sarvant còpias in cue. Cando cantzellas publicatziones, custu acuntessimentu benit imbiadu fintzas issu a is persones chi ti sighint. S'atzione de torrare a cumpartzire o de pònnere in is preferidos un'àtera publicatzione est semper pùblica.</li>
-      <li><em>Publicatziones diretas e pro chie ti sighit ebbia</em>: Totu is publicatziones benint archiviadas e protzessadas in su serbidore. Is publicatziones pro is sighidores ebbia benint intregadas a chie ti sighit e a is utentes mentovados in intro, e is publicatziones diretas benint intregadas isceti a chie sighit a chi ddoe sunt mentovados in intro. In unos cantos casos bolet nàrrere chi benint intregados a serbidores diferentes e chi còpias issoro benint sarvadas in cue. Nois chircamus de limitare s'atzessu a custas publicatziones a is persones autorizadas ebbia, ma àteros serbidores bi diant pòdere non resessere. Pro custa resone est de importu mannu su de revisionare is serbidores a is cales faghent parte is sighiduras tuas. Podes impreare un'optzione pro aprovare o refudare in manera automàtica sighiduras noas in is cunfiguratziones. <em>Regorda·ti chi is operadores de su serbidore e cale si siat serbidore chi ddos retzit podent castiare custos messàgios</em>, e chi is retzidores ddos diant pòdere sarvare faghende caturas, copiende·los o torrende·los a cumpartzire in àteras maneras. <em>Non cumpartzas peruna informatzione perigulosa impreende Mastodon.</em></li>
-      <li><em>IP e àteros metadatos</em>: Cando intras in su contu tuo sarvamus s'indiritzu IP dae ue ses intrende, e fintzas su nòmine de s'aplicatzione chi impreas comente navigadore. Totu is sessiones de atzessu abertas sunt a disponimentu pro sa revisione e sa rèvoca in is cunfiguratziones tuas. S'ùrtimu indiritzu IP impreadu benit sarvadu finas a 12 meses. Diamus pòdere archiviare fintzas raportos chi includent is indiritzos IP de totu is rechestas a su serbidore nostru.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Pro ite cosas impreamus is informatziones tuas?</h3>
-
-      <p>Totu is informatziones chi collimus dae tene diant pòdere èssere impreadas in is maneras chi sighint:</p>
-
-      <ul>
-      <li>Pro frunire sa funtzionalidade de base de Mastodon. Podes interagire cun is cuntenutos de is àteras persones, e cumpartzire is tuos, isceti cando as fatu s'atzessu in su contu tuo. Pro esèmpiu, podes sighire àteras persones pro castiare is publicatziones cumbinadas issoro in sa lìnia de tempus personalizada printzipale tua.</li>
-      <li>Pro agiudare sa moderatzione de sa comunidade, pro esèmpiu cunfrontende s'indiritzu IP tuo cun àteros giai connotos pro verificare evasiones de blocos o àteras violatziones.</li>
-      <li>S'indiritzu de posta eletrònica chi as a frunire diat pòdere èssere impreadu pro t'imbiare informatziones, notìficas a pitzu de àteras persones chi ant a interagire cun is cuntenutos tuos o chi t'ant a imbiare messàgios, e pro rispòndere a interrogativos e/o àteras rechestas o preguntas.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Comente amparamus is informatziones tuas?</h3>
-
-      <p>Impreamus medidas de seguresa vàrias pro amparare sa seguresa de is informatziones personales tuas cando insertas o imbias is informatziones personales tuas, o cando bi atzedes. In paris a àteras cosas, sa sessione de su navigadore tuo, e fintzas su tràficu intre s'aplicatzione tua e s'API, benint amparados cun SSL, e sa crae tua benit tzifrada impreende un'algoritmu forte a una diretzione. Pro afortiare sa seguresa de s'atzessu a su contu tuo ancora de prus podes abilitare s'autenticatzione in duos fatores.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Cale est sa polìtica nostra de archiviatzione de is datos?</h3>
-
-      <p>Amus a fàghere un'isfortzu in fide bona pro chircare de:</p>
-
-      <ul>
-      <li>Mantènnere in archìviu is raportos chi cuntenent is indiritzos IP de totu is rechestas a custu serbidore, cando cussas rechestas benint registradas, pro non prus de 90 dies.</li>
-      <li>Mantènnere in archìviu is indiritzos IP assotziados a is utentes registrados pro non prus de 12 meses.</li>
-      </ul>
-
-      <p>Podes pedire e iscarrigare un'archìviu de is cuntenutos tuos chi includet is publicatziones tuas, is elementos multimediales allongiados, s'immàgine de profilu e cussa de cobertedda.</p>
-
-      <p>Podes cantzellare su contu tuo in manera irreversìbile in cale si siat momentu.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Impreamus is testimòngios?</h3>
-
-      <p>Eja. Is testimòngios ("cookies") sunt documentos minores chi unu situ o su frunidore de servìtzios suos tramudant a su discu tèteru de s'elaboradore tuo pro mèdiu de su navigadore web tuo (si si ddu permitis). Custos testimòngios permitint a su situ de reconnòschere su navigadore tuo e, si tenes unu contu registradu, de ddu assotziare cun su contu tuo.</p>
-
-      <p>Impreamus is testimòngios pro cumprèndere e sarvare is preferèntzias tuas pro is visitas imbenientes.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Rivelamus calicuna informatzione a tertzas partes?</h3>
-
-      <p>Non bendimus, cuncambiamus, o tramudamus in àteras maneras is informatziones tuas chi ti diant pòdere individuare in manera personale. Custu no incluit sugetos de tertzas partes fidados chi nos agiudant a amministrare su situ, fàghere is fainas nostras, o a t'agiudare, finas a cando cussos sugetos atzetant de mantènnere cunfidentziales cussas informatziones. Diamus fintzas pòdere frunire is informatziones tuas si amus a èssere cumbintos chi siat apropriadu pro sighire is leges, aplicare is polìticas de su situ nostru, e amparare is deretos, propiedades o seguresas nostros o de àteros.</p>
-
-      <p>Is cuntenutos pùblicos tuos diant pòdere èssere iscarrigados dae àteros serbidores in sa rete. Is publicatziones pùblicas e pro is sighiduras ebbia benint intregadas a is serbidores in ue istant is retzidores, si istant in unu serbidore chi no est custu.</p>
-
-      <p>Cando autorizas un'aplicatzione a impreare su contu tuo, a segunda de sa mannària de is permissos chi frunis, cussa diat pòdere atzèdere a is informatziones pùblicas de profilu tuas, a sa lista de is persones chi sighis e chi ti sighint, a is listas tuas, a totu is publicatziones tuas e a is referidos tuos. Is aplicatziones non podent mai tènnere atzessu a s'indiritzu de posta eletrònica tuo e a sa crae de intrada tua.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Impreu de custu situ dae parte de minores</h3>
-
-      <p>Si custu serbidore est in s'UE o in s'ÀEE: Su situ nostru, is produtos nostros e is servìtzios nostros sunt totu cantos pensados pro persones chi tenent a su mancu 16 annos de edade. Si tenes de mancu de 16 annos, in aplicatzione de is rechisitos de su GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) no imprees custu situ.</p>
-
-      <p>Si custu serbidore est in is IUA: Su situ nostru, is produtos e is servìtzios suos sunt totu cantos pensados pro persones chi tenent a su mancu 13 annos de edade. Si tenes de mancu de 13 annos, in aplicatzione de su COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no imprees custu situ.</p>
-
-      <p>Is rechisitos de sa lege diant pòdere èssere diferentes si custu serbidore est in suta de un'àtera giurisditzione.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Modìficas a sa polìtica de riservadesa nostra</h3>
-
-      <p>Si amus a seberare de cambiare sa polìtica de riservadesa nostra amus a publicare is modìficas in custa pàgina.</p>
-
-      <p>Custu documentu tenet una litzèntzia CC-BY-SA. Est istadu agiornadu s'ùrtima borta su 7 de martzu de su 2018.</p>
-
-      <p>Adatadu, in orìgine, dae sa <a href="https://github.com/discourse/discourse">Polìtica de riservadesa de Discourse</a>.</p>
     title: "%{instance} Cunditziones de su servìtziu e polìtica de riservadesa"
   themes:
     contrast: Mastodon (cuntrastu artu)

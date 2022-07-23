@@ -22,6 +22,9 @@ th:
     federation_hint_html: ด้วยบัญชีที่ %{instance} คุณจะสามารถติดตามผู้คนในเซิร์ฟเวอร์ Mastodon และอื่น ๆ
     get_apps: ลองแอปมือถือ
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
+    instance_actor_flash: 'บัญชีนี้เป็นนักแสดงเสมือนที่ใช้เพื่อเป็นตัวแทนของเซิร์ฟเวอร์เอง ไม่ใช่ผู้ใช้รายบุคคล แต่มันก็ถูกใช้เพื่อวัตถุประสงค์ในการรวมกลุ่มและไม่ควรถูกบล็อก เว้นแต่คุณต้องการบล็อกทั้งอินสแตนซ์นั้น ซึ่งในกรณีนี้คุณควรใช้บล็อกโดเมนนะ
+
+      '
     learn_more: เรียนรู้เพิ่มเติม
     logged_in_as_html: คุณกำลังเข้าสู่ระบบเป็น %{username} ในปัจจุบัน
     logout_before_registering: คุณได้เข้าสู่ระบบอยู่แล้ว
@@ -34,7 +37,7 @@ th:
     status_count_after:
       other: โพสต์
     status_count_before: ผู้เผยแพร่
-    tagline: ติดตามเพื่อน ๆ และค้นพบเพื่อนใหม่ ๆ
+    tagline: เครือข่ายสังคมแบบกระจายศูนย์
     terms: เงื่อนไขการให้บริการ
     unavailable_content: เซิร์ฟเวอร์ที่มีการควบคุม
     unavailable_content_description:
@@ -46,6 +49,7 @@ th:
       silenced_title: เซิร์ฟเวอร์ที่จำกัดอยู่
       suspended: 'จะไม่ประมวลผล จัดเก็บ หรือแลกเปลี่ยนข้อมูลจากเซิร์ฟเวอร์เหล่านี้ ทำให้การโต้ตอบหรือการสื่อสารใด ๆ กับผู้ใช้จากเซิร์ฟเวอร์เหล่านี้เป็นไปไม่ได้:'
       suspended_title: เซิร์ฟเวอร์ที่ระงับอยู่
+    unavailable_content_html: โดยทั่วไปแล้ว Mastodon อนุญาตให้คุณดูเนื้อหาและโต้ตอบกับผู้ใช้งานจากเซิร์ฟเวอร์อื่นใน fediverse เหล่านี้เป็นข้อยกเว้นที่เกิดขึ้นบนเซิร์ฟเวอร์นี้โดยเฉพาะ
     user_count_after:
       other: ผู้ใช้
     user_count_before: บ้านของ
@@ -58,6 +62,7 @@ th:
     followers:
       other: ผู้ติดตาม
     following: กำลังติดตาม
+    instance_actor_flash: บัญชีนี้เป็นนักแสดงเสมือนที่ใช้เพื่อเป็นตัวแทนของเซิร์ฟเวอร์เอง แต่ก็ไม่ใช่ผู้ใช้รายบุคคล แต่มันถูกใช้เพื่อวัตถุประสงค์ของการรวมกลุ่มและไม่ควรถูกระงับ
     joined: เข้าร่วมเมื่อ %{date}
     last_active: ใช้งานล่าสุด
     link_verified_on: ตรวจสอบความเป็นเจ้าของของลิงก์นี้เมื่อ %{date}
@@ -74,10 +79,8 @@ th:
     posts_tab_heading: โพสต์
     posts_with_replies: โพสต์และการตอบกลับ
     roles:
-      admin: ผู้ดูแล
       bot: บอต
       group: กลุ่ม
-      moderator: ผู้ควบคุม
     unavailable: โปรไฟล์ไม่พร้อมใช้งาน
     unfollow: เลิกติดตาม
   admin:
@@ -96,12 +99,17 @@ th:
       avatar: ภาพประจำตัว
       by_domain: โดเมน
       change_email:
-        changed_msg: เปลี่ยนอีเมลบัญชีสำเร็จ!
+        changed_msg: เปลี่ยนอีเมลสำเร็จ!
         current_email: อีเมลปัจจุบัน
         label: เปลี่ยนอีเมล
         new_email: อีเมลใหม่
         submit: เปลี่ยนอีเมล
         title: เปลี่ยนอีเมลสำหรับ %{username}
+      change_role:
+        changed_msg: เปลี่ยนบทบาทสำเร็จ!
+        label: เปลี่ยนบทบาท
+        no_role: ไม่มีบทบาท
+        title: เปลี่ยนบทบาทสำหรับ %{username}
       confirm: ยืนยัน
       confirmed: ยืนยันแล้ว
       confirming: กำลังยืนยัน
@@ -145,6 +153,7 @@ th:
         active: ใช้งานอยู่
         all: ทั้งหมด
         pending: รอดำเนินการ
+        silenced: จำกัดอยู่
         suspended: ระงับอยู่
         title: การควบคุม
       moderation_notes: หมายเหตุการควบคุม
@@ -152,6 +161,7 @@ th:
       most_recent_ip: IP ล่าสุด
       no_account_selected: ไม่มีการเปลี่ยนแปลงบัญชีเนื่องจากไม่มีการเลือก
       no_limits_imposed: ไม่มีการกำหนดขีดจำกัด
+      no_role_assigned: ไม่มีการกำหนดบทบาท
       not_subscribed: ไม่ได้บอกรับ
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
@@ -174,14 +184,10 @@ th:
         already_confirmed: ผู้ใช้นี้ได้รับการยืนยันอยู่แล้ว
         send: ส่งอีเมลยืนยันใหม่
         success: ส่งอีเมลยืนยันสำเร็จ!
+      reset: รีเซ็ต
       reset_password: ตั้งรหัสผ่านใหม่
       resubscribe: บอกรับใหม่
-      role: สิทธิอนุญาต
-      roles:
-        admin: ผู้ดูแล
-        moderator: ผู้ควบคุม
-        staff: พนักงาน
-        user: ผู้ใช้
+      role: บทบาท
       search: ค้นหา
       search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
@@ -201,6 +207,8 @@ th:
       subscribe: บอกรับ
       suspend: ระงับ
       suspended: ระงับอยู่
+      suspension_irreversible: ข้อมูลของบัญชีนี้ถูกลบไม่สามารถย้อนกลับได้ คุณสามารถระงับบัญชีเพื่อให้ใช้งานได้ แต่จะไม่กู้คืนข้อมูลใดๆทั้งสิ้น ที่เคยมีอยู่ก่อนหน้านี้
+      suspension_reversible_hint_html: บัญชีถูกระงับ และข้อมูลจะถูกลบออกอย่างสมบูรณ์ในวันที่ %{date} ก่อนหน้านั้น บัญชีสามารถกู้คืนได้โดยไม่มีผลร้ายใดๆทั้งสิ้น ถ้าหากคุณต้องการลบข้อมูลของบัญชีทั้งหมดในทันที คุณสามารถทำได้ด้านล่างนี้
       title: บัญชี
       unblock_email: เลิกปิดกั้นที่อยู่อีเมล
       unblocked_email_msg: เลิกปิดกั้นที่อยู่อีเมลของ %{username} สำเร็จ
@@ -291,6 +299,7 @@ th:
         destroy_instance_html: "%{name} ได้ล้างข้อมูลโดเมน %{target}"
         destroy_ip_block_html: "%{name} ได้ลบกฎสำหรับ IP %{target}"
         destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
+        destroy_unavailable_domain_html: "%{name} ได้พักการจัดส่งไปยังโดเมน %{target}"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji_html: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ได้ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
@@ -410,6 +419,8 @@ th:
       destroyed_msg: เลิกทำการปิดกั้นโดเมนแล้ว
       domain: โดเมน
       edit: แก้ไขการปิดกั้นโดเมน
+      existing_domain_block: คุณได้กำหนดขีดจำกัดที่เข้มงวดขึ้นแล้วบน %{name}
+      existing_domain_block_html: คุณได้กำหนดขีดจำกัดที่เข้มงวดขึ้นใน %{name} แล้วคุณต้อง <a href="%{unblock_url}">unblock</a> ก่อน
       new:
         create: สร้างการปิดกั้น
         hint: การปิดกั้นโดเมนจะไม่ป้องกันการสร้างรายการบัญชีในฐานข้อมูล แต่จะใช้วิธีการควบคุมที่เฉพาะเจาะจงกับบัญชีเหล่านั้นย้อนหลังและโดยอัตโนมัติ
@@ -420,8 +431,11 @@ th:
           suspend: ระงับ
         title: การปิดกั้นโดเมนใหม่
       obfuscate: ทำให้ชื่อโดเมนคลุมเครือ
+      obfuscate_hint: อาจมีผลทำให้ชื่อโดเมนสับสนบางส่วนในรายการหากเปิดใช้งานการโฆษณารายการข้อจำกัดของโดเมน
       private_comment: ความคิดเห็นส่วนตัว
+      private_comment_hint: แสดงความคิดเห็นเกี่ยวกับข้อจำกัดของโดเมนนี้สำหรับการใช้งานภายในโดยผู้ดูแล
       public_comment: ความคิดเห็นสาธารณะ
+      public_comment_hint: แสดงความคิดเห็นเกี่ยวกับข้อจำกัดโดเมนนี้สำหรับบุคคลทั่วไป หากต้องการโฆษณารายการข้อจำกัดโดเมนเปิดใช้งานอยู่
       reject_media: ปฏิเสธไฟล์สื่อ
       reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเซิร์ฟเวอร์ออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
       reject_reports: ปฏิเสธรายงาน
@@ -595,6 +609,23 @@ th:
       unresolved: ยังไม่ได้แก้ปัญหา
       updated_at: อัปเดตเมื่อ
       view_profile: ดูโปรไฟล์
+    roles:
+      add_new: เพิ่มบทบาท
+      assigned_users:
+        other: "%{count} ผู้ใช้"
+      categories:
+        administration: การดูแล
+        invites: คำเชิญ
+        moderation: การควบคุม
+        special: พิเศษ
+      delete: ลบ
+      edit: แก้ไขบทบาท '%{name}'
+      everyone: สิทธิอนุญาตเริ่มต้น
+      permissions_count:
+        other: "%{count} สิทธิอนุญาต"
+      privileges:
+        manage_roles: จัดการบทบาท
+      title: บทบาท
     rules:
       add_new: เพิ่มกฎ
       delete: ลบ
@@ -646,9 +677,6 @@ th:
         deletion:
           desc_html: อนุญาตให้ใครก็ตามลบบัญชีของเขา
           title: เปิดการลบบัญชี
-        min_invite_role:
-          disabled: ไม่มีใคร
-          title: อนุญาตคำเชิญโดย
         require_invite_text:
           title: ต้องให้ผู้ใช้ใหม่ป้อนเหตุผลที่จะเข้าร่วม
       registrations_mode:
@@ -660,9 +688,6 @@ th:
       show_known_fediverse_at_about_page:
         desc_html: เมื่อปิดใช้งาน จำกัดเส้นเวลาสาธารณะที่เชื่อมโยงจากหน้าเริ่มต้นให้แสดงเฉพาะเนื้อหาในเซิร์ฟเวอร์เท่านั้น
         title: รวมเนื้อหาที่ติดต่อกับภายนอกไว้ในหน้าเส้นเวลาสาธารณะที่ไม่ได้รับรองความถูกต้อง
-      show_staff_badge:
-        desc_html: แสดงป้ายพนักงานในหน้าผู้ใช้
-        title: แสดงป้ายพนักงาน
       site_description:
         desc_html: ย่อหน้าเกริ่นนำใน API อธิบายถึงสิ่งที่ทำให้เซิร์ฟเวอร์ Mastodon นี้พิเศษและสิ่งอื่นใดที่สำคัญ คุณสามารถใช้แท็ก HTML โดยเฉพาะอย่างยิ่ง <code>&lt;a&gt;</code> และ <code>&lt;em&gt;</code>
         title: คำอธิบายเซิร์ฟเวอร์
@@ -782,6 +807,16 @@ th:
       edit_preset: แก้ไขคำเตือนที่ตั้งไว้ล่วงหน้า
       empty: คุณยังไม่ได้กำหนดคำเตือนที่ตั้งไว้ล่วงหน้าใด ๆ
       title: จัดการคำเตือนที่ตั้งไว้ล่วงหน้า
+    webhooks:
+      add_new: เพิ่มปลายทาง
+      delete: ลบ
+      disable: ปิดใช้งาน
+      disabled: ปิดใช้งานอยู่
+      edit: แก้ไขปลายทาง
+      enable: เปิดใช้งาน
+      enabled: ใช้งานอยู่
+      events: เหตุการณ์
+      status: สถานะ
   admin_mailer:
     new_appeal:
       actions:
@@ -841,7 +876,6 @@ th:
   applications:
     created: สร้างแอปพลิเคชันสำเร็จ
     destroyed: ลบแอปพลิเคชันสำเร็จ
-    invalid_url: URL ที่ระบุไม่ถูกต้อง
     regenerate_token: สร้างโทเคนการเข้าถึงใหม่
     token_regenerated: สร้างโทเคนการเข้าถึงใหม่สำเร็จ
     warning: ระวังเป็นอย่างสูงกับข้อมูลนี้ อย่าแบ่งปันข้อมูลกับใครก็ตาม!
@@ -1022,12 +1056,20 @@ th:
       public: เส้นเวลาสาธารณะ
       thread: การสนทนา
     edit:
+      add_keyword: เพิ่มคำสำคัญ
+      keywords: คำสำคัญ
       title: แก้ไขตัวกรอง
     index:
+      contexts: กรองใน %{contexts}
       delete: ลบ
       empty: คุณไม่มีตัวกรอง
+      expires_in: หมดอายุใน %{distance}
+      expires_on: หมดอายุเมื่อ %{date}
+      keywords:
+        other: "%{count} คำสำคัญ"
       title: ตัวกรอง
     new:
+      save: บันทึกตัวกรองใหม่
       title: เพิ่มตัวกรองใหม่
   footer:
     developers: นักพัฒนา
@@ -1132,6 +1174,8 @@ th:
     copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้านี้ของคุณเกี่ยวกับผู้ใช้:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} ได้ส่งรายงาน"
       sign_up:
         subject: "%{name} ได้ลงทะเบียน"
     digest:
@@ -1249,6 +1293,10 @@ th:
   reports:
     errors:
       invalid_rules: ไม่ได้อ้างอิงกฎที่ถูกต้อง
+  rss:
+    content_warning: 'คำเตือนเนื้อหา:'
+    descriptions:
+      account: โพสต์สาธารณะจาก @%{acct}
   scheduled_statuses:
     too_soon: วันที่ตามกำหนดการต้องอยู่ในอนาคต
   sessions:

@@ -21,6 +21,14 @@ io:
             username:
               invalid: mustas konsistar nur literi, nombri e sublinei
               reserved: rezervitas
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ne esas valida URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ne esas valida URL
         status:
           attributes:
             reblog:
@@ -30,3 +38,14 @@ io:
             email:
               blocked: uzas nepermisata retpostodomeno
               unreachable: semblas ne existar
+            role_id:
+              elevated: ne povas divenar plu alta kam vua nuna rolo
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inkluzas permisi quo ne esas segura por bazrolo
+              elevated: ne povas inkluzar permisi quon vua nuna rolo ne havas
+              own_role: ne povas divenesar kun vua nuna rolo
+            position:
+              elevated: ne povas divenar plu alta kam vua nuna rolo
+              own_role: ne povas divenesar kun vua nuna rolo

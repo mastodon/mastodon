@@ -68,6 +68,11 @@ zh-CN:
         with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
         name: 你可能想要使用以下之一：
+      filters:
+        action: 选择在帖子匹配过滤器时要执行的操作
+        actions:
+          hide: 彻底屏蔽过滤内容，犹如它不曾存在过一般
+          warn: 在警告中提及过滤器标题后，隐藏过滤内容
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
@@ -91,6 +96,16 @@ zh-CN:
         name: 你只能改变字母的大小写，让它更易读
       user:
         chosen_languages: 仅选中语言的嘟文会出现在公共时间轴上（全不选则显示所有语言的嘟文）
+        role: 角色决定该用户拥有的权限
+      user_role:
+        color: 整个用户界面中，该角色使用的颜色，以RGB 十六进制格式
+        highlighted: 这使角色公开可见
+        name: 角色的公开名称，如果角色设置为展示的徽章
+        permissions_as_keys: 具有此角色的用户将有权访问...
+        position: 较高的角色决定在某些情况下解决冲突。某些行动只能对优先级较低的角色执行
+      webhook:
+        events: 选择要发送的事件
+        url: 事件将发送到哪个地点
     labels:
       account:
         fields:
@@ -178,6 +193,7 @@ zh-CN:
         setting_use_pending_items: 慢速模式
         severity: 级别
         sign_in_token_attempt: 安全码
+        title: 标题
         type: 导入数据类型
         username: 用户名
         username_or_email: 用户名或电子邮件地址
@@ -186,6 +202,10 @@ zh-CN:
         with_dns_records: 包括该域名的 MX 记录和 IP 地址
       featured_tag:
         name: 话题标签
+      filters:
+        actions:
+          hide: 完全隐藏
+          warn: 隐藏时显示警告信息
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
@@ -219,6 +239,17 @@ zh-CN:
         name: 话题标签
         trendable: 允许在热门下显示此话题
         usable: 允许嘟文使用此话题标签
+      user:
+        role: 角色
+      user_role:
+        color: 徽章颜色
+        highlighted: 用户配置中以徽章显示角色
+        name: 名称
+        permissions_as_keys: 权限设置
+        position: 优先权
+      webhook:
+        events: 已启用事件
+        url: 端点网址
     'no': 否
     recommended: 推荐
     required:

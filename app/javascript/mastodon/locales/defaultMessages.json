@@ -290,7 +290,11 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} talking",
+        "defaultMessage": "Total volume in the last {days, plural, one {day} other {{days} days}}",
+        "id": "hashtag.total_volume"
+      },
+      {
+        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {{days} days}}",
         "id": "trends.counter_by_accounts"
       }
     ],
@@ -613,6 +617,10 @@
         "id": "status.copy"
       },
       {
+        "defaultMessage": "Hide toot",
+        "id": "status.hide"
+      },
+      {
         "defaultMessage": "Block domain {domain}",
         "id": "account.block_domain"
       },
@@ -677,6 +685,10 @@
       {
         "defaultMessage": "Filtered",
         "id": "status.filtered"
+      },
+      {
+        "defaultMessage": "Show anyway",
+        "id": "status.show_filter_reason"
       },
       {
         "defaultMessage": "Pinned post",
@@ -1182,7 +1194,7 @@
         "id": "compose_form.spoiler_placeholder"
       },
       {
-        "defaultMessage": "Toot",
+        "defaultMessage": "Publish",
         "id": "compose_form.publish"
       },
       {
@@ -1546,7 +1558,7 @@
         "id": "compose_form.hashtag_warning"
       },
       {
-        "defaultMessage": "Posts on Mastodon are not end-to-end encrypted. Do not share any sensitive information over Mastodon.",
+        "defaultMessage": "Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.",
         "id": "compose_form.encryption_warning"
       },
       {
@@ -2532,6 +2544,10 @@
       {
         "defaultMessage": "New sign-ups:",
         "id": "notifications.column_settings.admin.sign_up"
+      },
+      {
+        "defaultMessage": "New reports:",
+        "id": "notifications.column_settings.admin.report"
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/column_settings.json"
@@ -2626,6 +2642,10 @@
         "id": "notification.admin.sign_up"
       },
       {
+        "defaultMessage": "{name} reported {target}",
+        "id": "notification.admin.report"
+      },
+      {
         "defaultMessage": "{name} has requested to follow you",
         "id": "notification.follow_request"
       }
@@ -2652,6 +2672,31 @@
       }
     ],
     "path": "app/javascript/mastodon/features/notifications/components/notifications_permission_banner.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Open report",
+        "id": "report_notification.open"
+      },
+      {
+        "defaultMessage": "Other",
+        "id": "report_notification.categories.other"
+      },
+      {
+        "defaultMessage": "Spam",
+        "id": "report_notification.categories.spam"
+      },
+      {
+        "defaultMessage": "Rule violation",
+        "id": "report_notification.categories.violation"
+      },
+      {
+        "defaultMessage": "{count, plural, one {{count} post} other {{count} posts}} attached",
+        "id": "report_notification.attached_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/notifications/components/report.json"
   },
   {
     "descriptors": [
@@ -3294,7 +3339,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Toot",
+        "defaultMessage": "Publish",
         "id": "compose_form.publish"
       }
     ],

@@ -23,20 +23,20 @@ module AccountsHelper
     if user_signed_in?
       if account.id == current_user.account_id
         link_to settings_profile_url, class: 'button logo-button' do
-          safe_join([svg_logo, t('settings.edit_profile')])
+          safe_join([logo_as_symbol, t('settings.edit_profile')])
         end
       elsif current_account.following?(account) || current_account.requested?(account)
         link_to account_unfollow_path(account), class: 'button logo-button button--destructive', data: { method: :post } do
-          safe_join([svg_logo, t('accounts.unfollow')])
+          safe_join([logo_as_symbol, t('accounts.unfollow')])
         end
       elsif !(account.memorial? || account.moved?)
         link_to account_follow_path(account), class: "button logo-button#{account.blocking?(current_account) ? ' disabled' : ''}", data: { method: :post } do
-          safe_join([svg_logo, t('accounts.follow')])
+          safe_join([logo_as_symbol, t('accounts.follow')])
         end
       end
     elsif !(account.memorial? || account.moved?)
       link_to account_remote_follow_path(account), class: 'button logo-button modal-button', target: '_new' do
-        safe_join([svg_logo, t('accounts.follow')])
+        safe_join([logo_as_symbol, t('accounts.follow')])
       end
     end
   end
@@ -61,21 +61,13 @@ module AccountsHelper
     end
   end
 
-  def account_badge(account, all: false)
+  def account_badge(account)
     if account.bot?
       content_tag(:div, content_tag(:div, t('accounts.roles.bot'), class: 'account-role bot'), class: 'roles')
     elsif account.group?
       content_tag(:div, content_tag(:div, t('accounts.roles.group'), class: 'account-role group'), class: 'roles')
-    elsif (Setting.show_staff_badge && account.user_staff?) || all
-      content_tag(:div, class: 'roles') do
-        if all && !account.user_staff?
-          content_tag(:div, t('admin.accounts.roles.user'), class: 'account-role')
-        elsif account.user_admin?
-          content_tag(:div, t('accounts.roles.admin'), class: 'account-role admin')
-        elsif account.user_moderator?
-          content_tag(:div, t('accounts.roles.moderator'), class: 'account-role moderator')
-        end
-      end
+    elsif account.user_role&.highlighted?
+      content_tag(:div, content_tag(:div, account.user_role.name, class: "account-role user-role-#{account.user_role.id}"), class: 'roles')
     end
   end
 
@@ -98,13 +90,5 @@ module AccountsHelper
     ].join(', ')
 
     [prepend_str, account.note].join(' · ')
-  end
-
-  def svg_logo
-    content_tag(:svg, tag(:use, 'xlink:href' => '#mastodon-svg-logo'), 'viewBox' => '0 0 216.4144 232.00976')
-  end
-
-  def svg_logo_full
-    content_tag(:svg, tag(:use, 'xlink:href' => '#mastodon-svg-logo-full'), 'viewBox' => '0 0 713.35878 175.8678')
   end
 end

@@ -68,6 +68,11 @@ is:
         with_dns_records: Tilraun verður gerð til að leysa DNS-færslur uppgefins léns og munu niðurstöðurnar einnig verða útilokaðar
       featured_tag:
         name: 'Þú gætir viljað nota eitt af þessum:'
+      filters:
+        action: Veldu hvaða aðgerð á að framkvæma þegar færsla samsvarar síunni
+        actions:
+          hide: Fela síað efni algerlega, rétt eins og það sé ekki til staðar
+          warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -91,6 +96,16 @@ is:
         name: Þú getur aðeins breytt stafstöði mill há-/lágstafa, til gæmis til að gera þetta læsilegra
       user:
         chosen_languages: Þegar merkt er við þetta, birtast einungis færslur á völdum tungumálum á opinberum tímalínum
+        role: Hlutverk stýrir hvaða heimildir notandinn hefur
+      user_role:
+        color: Litur sem notaður er fyrir hlutverkið allsstaðar í viðmótinu, sem RGB-gildi á hex-sniði
+        highlighted: Þetta gerir hlutverk sýnilegt opinberlega
+        name: Opinbert heiti hlutverks, ef birta á hlutverk sem merki
+        permissions_as_keys: Notendur með þetta hlutverk munu hafa aðgang að...
+        position: Rétthærra hlutverk ákvarðar lausn árekstra í ákveðnum tilfellum. Sumar aðgerðir er aðeins hægt að framkvæma á hlutverk með lægri forgangi
+      webhook:
+        events: Veldu atburði sem á að senda
+        url: Hvert atburðir verða sendir
     labels:
       account:
         fields:
@@ -178,6 +193,7 @@ is:
         setting_use_pending_items: Rólegur hamur
         severity: Mikilvægi
         sign_in_token_attempt: Öryggiskóði
+        title: Titill
         type: Tegund innflutnings
         username: Notandanafn
         username_or_email: Notandanafn eða tölvupóstfang
@@ -186,6 +202,10 @@ is:
         with_dns_records: Hafa með MX-færslur og IP-vistföng lénsins
       featured_tag:
         name: Myllumerki
+      filters:
+        actions:
+          hide: Fela alveg
+          warn: Fela með aðvörun
       interactions:
         must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
         must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með
@@ -219,6 +239,17 @@ is:
         name: Myllumerki
         trendable: Leyfa þessu myllumerki að birtast undir tilhneigingum
         usable: Leyfa færslum að nota þetta myllumerki
+      user:
+        role: Hlutverk
+      user_role:
+        color: Litur merkis
+        highlighted: Birta hlutverk sem merki á notandaauðkenni
+        name: Nafn
+        permissions_as_keys: Heimildir
+        position: Forgangur
+      webhook:
+        events: Virkjaðir atburðir
+        url: Slóð á endapunkt
     'no': Nei
     recommended: Mælt með
     required:

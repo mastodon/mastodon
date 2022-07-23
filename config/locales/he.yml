@@ -1,7 +1,7 @@
 ---
 he:
   about:
-    about_hashtag_html: אלו סטטוסים פומביים המתוייגים בתור<strong>#%{hashtag}</strong>. ניתן להגיב, להדהד או לחבב אותם אם יש לך חשבון בכל מקום בפדרציה.
+    about_hashtag_html: אלו הודעות פומביות המתוייגות בתור<strong>#%{hashtag}</strong>. ניתן להגיב, להדהד או לחבב אותם אם יש לך חשבון בכל מקום שהוא בפדרציה.
     about_mastodon_html: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
     about_this: אודות שרת זה
     active_count_after: פעיל
@@ -40,7 +40,6 @@ he:
       other: חצרוצים
       two: חצרוצים
     status_count_before: שכתבו
-    tagline: מעקב אחרי חברים וגילוי חדשים
     terms: תנאי שימוש
     unavailable_content: שרתים מוגבלים
     unavailable_content_description:
@@ -91,10 +90,8 @@ he:
     posts_tab_heading: חצרוצים
     posts_with_replies: חצרוצים ותגובות
     roles:
-      admin: מנהל
       bot: בוט
       group: קבוצה
-      moderator: מנחה
     unavailable: פרופיל לא זמין
     unfollow: הפסקת מעקב
   admin:
@@ -113,7 +110,6 @@ he:
       avatar: יַצְגָן
       by_domain: שם מתחם
       change_email:
-        changed_msg: כתובת הדוא"ל המשוייכת לחשבון שונתה בהצלחה !
         current_email: כתובת דוא"ל נוכחית
         label: שינוי כתובת דוא"ל משוייכת לחשבון
         new_email: כתובת דוא"ל חדשה
@@ -197,12 +193,6 @@ he:
       reset: איפוס
       reset_password: אתחול סיסמא
       resubscribe: להרשם מחדש
-      role: הרשאות
-      roles:
-        admin: מנהל מערכת
-        moderator: מנחה דיונים
-        staff: צוות
-        user: משתמש(ת)
       search: חיפוש
       search_same_email_domain: משתמשים אחרים מאותו דומיין דוא"ל
       search_same_ip: משתמשים אחרים מאותה כתובת IP
@@ -728,9 +718,6 @@ he:
         deletion:
           desc_html: הרשאה לכולם למחוק את חשבונם
           title: פתיחת מחיקת חשבון
-        min_invite_role:
-          disabled: אף אחד
-          title: אפשר הזמנות לפי
         require_invite_text:
           desc_html: כאשר הרשמות דורשות אישור ידני, הפיכת טקסט ה"מדוע את/ה רוצה להצטרף" להכרחי במקום אופציונלי
           title: אלץ משתמשים חדשים למלא סיבת הצטרפות
@@ -743,9 +730,6 @@ he:
       show_known_fediverse_at_about_page:
         desc_html: כאשר לא מופעל, מגביל את הפיד הפומבי המקושר מדף הנחיתה להצגת תוכן מקומי בלבד
         title: הכללת תוכן פדרטיבי בדף הפיד הפומבי הבלתי מאומת
-      show_staff_badge:
-        desc_html: הצג תג צוות בדף המשתמש
-        title: הצג תג צוות
       site_description:
         desc_html: מוצג כפסקה על הדף הראשי ומשמש כתגית מטא. ניתן להשתמש בתגיות HTML, ובמיוחד ב־<code> &lt; a&gt; </code> ו־<code> &lt; em&gt; </code> .
         title: תיאור האתר
@@ -885,6 +869,14 @@ he:
       edit_preset: ערוך/י טקסט מוכן מראש לאזהרה
       empty: לא הגדרת עדיין שום טקסט מוכן מראש לאזהרה.
       title: ניהול טקסטים מוכנים מראש לאזהרות
+    webhooks:
+      delete: מחיקה
+      disable: כיבוי
+      disabled: כבוי
+      enable: אפשר
+      enabled: פעילים
+      events: אירועים
+      status: סטטוס
   admin_mailer:
     new_appeal:
       actions:
@@ -949,7 +941,6 @@ he:
   applications:
     created: ישום נוצר בהצלחה
     destroyed: ישום נמחק בהצלחה
-    invalid_url: כתובת הקישורית אינה חוקית
     regenerate_token: יצירת אסימון גישה מחדש
     token_regenerated: אסימון גישה יוצר מחדש בהצלחה
     warning: זהירות רבה נדרשת עם מידע זה. אין לחלוק אותו אף פעם עם אף אחד!
@@ -1139,7 +1130,6 @@ he:
       title: ערוך מסנן
     errors:
       invalid_context: לא סופק הקשר או הקשר לא תקין
-      invalid_irreversible: סינון בלתי הפיך עובד רק בהקשר פיד הבית או התראות
     index:
       delete: למחוק
       empty: אין לך מסננים.

@@ -37,7 +37,7 @@ ko:
     status_count_after:
       other: 개
     status_count_before: 게시물 수
-    tagline: 친구들을 팔로우 하고 새로운 사람들도 만나기
+    tagline: 분산화된 소셜 네트워크
     terms: 이용약관
     unavailable_content: 이용 불가능한 컨텐츠
     unavailable_content_description:
@@ -79,10 +79,8 @@ ko:
     posts_tab_heading: 게시물
     posts_with_replies: 게시물과 답장
     roles:
-      admin: 관리자
       bot: 봇
       group: 그룹
-      moderator: 중재자
     unavailable: 프로필 사용 불가
     unfollow: 팔로우 해제
   admin:
@@ -101,12 +99,17 @@ ko:
       avatar: 아바타
       by_domain: 도메인
       change_email:
-        changed_msg: 이메일이 성공적으로 바뀌었습니다!
+        changed_msg: 이메일이 성공적으로 변경되었습니다!
         current_email: 현재 이메일 주소
         label: 이메일 주소 변경
         new_email: 새 이메일 주소
         submit: 이메일 주소 변경
         title: "%{username}의 이메일 주소 변경"
+      change_role:
+        changed_msg: 역할이 성공적으로 변경되었습니다!
+        label: 역할 변경
+        no_role: 역할 없음
+        title: "%{username}의 역할 변경"
       confirm: 확인
       confirmed: 확인됨
       confirming: 확인 중
@@ -150,6 +153,7 @@ ko:
         active: 활동
         all: 전체
         pending: 대기중
+        silenced: 제한됨
         suspended: 정지 중
         title: 중재
       moderation_notes: 중재 기록
@@ -157,6 +161,7 @@ ko:
       most_recent_ip: 최근 IP
       no_account_selected: 아무 계정도 선택 되지 않아 아무 것도 변경 되지 않았습니다
       no_limits_imposed: 제한 없음
+      no_role_assigned: 할당된 역할 없음
       not_subscribed: 구독하지 않음
       pending: 심사 대기
       perform_full_suspension: 정지시키기
@@ -182,12 +187,7 @@ ko:
       reset: 초기화
       reset_password: 암호 초기화
       resubscribe: 다시 구독
-      role: 권한
-      roles:
-        admin: 관리자
-        moderator: 중재자
-        staff: 스태프
-        user: 사용자
+      role: 역할
       search: 검색
       search_same_email_domain: 같은 이메일 도메인을 가진 다른 사용자들
       search_same_ip: 같은 IP의 다른 사용자들
@@ -419,6 +419,7 @@ ko:
       destroyed_msg: 도메인 차단이 해제되었습니다
       domain: 도메인
       edit: 도메인 차단 수정
+      existing_domain_block: 이미 %{name}에 대한 더 강력한 제한이 있습니다.
       existing_domain_block_html: 이미 %{name}에 대한 더 강력한 제한이 걸려 있습니다, <a href="%{unblock_url}">차단 해제</a>를 먼저 해야 합니다.
       new:
         create: 차단 추가
@@ -525,7 +526,7 @@ ko:
       private_comment: 비공개 주석
       public_comment: 공개 주석
       purge: 제거
-      purge_description_html: 이 도메인이 영구적으로 오프라인 상태라고 생각되면 스토리지에서 이 도메인의 모든 계정 레코드와 관련 데이터를 삭제할 수 있습니다. 이 작업은 시간이 좀 걸릴 수 있습니다.
+      purge_description_html: 이 도메인이 영구적으로 오프라인 상태라고 생각되면, 스토리지에서 이 도메인의 모든 계정 레코드와 관련 데이터를 삭제할 수 있습니다. 이 작업은 시간이 좀 걸릴 수 있습니다.
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
       total_followed_by_them: 우리를 팔로우
@@ -591,7 +592,7 @@ ko:
         resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
         silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
         suspend_description_html: 프로필과 모든 컨텐츠가 최종적으로 삭제될 때까지 접근 불가상태가 됩니다. 이 계정과의 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다.
-      actions_description_html: 이 보고서를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면 <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 이메일 알림이 해당 계정으로 전송됩니다.
+      actions_description_html: 이 신고를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면, <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 해당 계정으로 이메일 알림이 전송됩니다.
       add_to_report: 신고에 더 추가하기
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
@@ -618,7 +619,7 @@ ko:
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
         title: 노트
       notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
-      quick_actions_description_html: '보고된 콘텐츠를 보려면 빠른 조치를 취하거나 아래로 스크롤하세요:'
+      quick_actions_description_html: '빠른 조치를 취하거나 아래로 스크롤해서 신고된 콘텐츠를 확인하세요:'
       remote_user_placeholder: "%{instance}의 리모트 사용자"
       reopen: 리포트 다시 열기
       report: '신고 #%{id}'
@@ -636,6 +637,65 @@ ko:
       unresolved: 미해결
       updated_at: 업데이트 시각
       view_profile: 프로필 보기
+    roles:
+      add_new: 역할 추가
+      assigned_users:
+        other: "%{count} 명의 사용자"
+      categories:
+        administration: 관리
+        devops: 데브옵스
+        invites: 초대
+        moderation: 중재
+        special: 특수
+      delete: 삭제
+      description_html: "<strong>사용자 역할</strong>을 통해, 사용자들이 마스토돈의 어떤 기능과 영역에 접근할 수 있을지 설정할 수 있습니다."
+      edit: "%{name} 역할 수정"
+      everyone: 기본 권한
+      everyone_full_description_html: 이것은 <strong>모든 사용자</strong>에게 적용될 <strong>기본 역할</strong>이며, 역할을 지정하지 않아도 적용됩니다. 다른 모든 역할들은 여기에서 권한을 상속합니다.
+      permissions_count:
+        other: "%{count} 개의 권한"
+      privileges:
+        administrator: 관리자
+        administrator_description: 이 권한을 가진 사용자는 모든 권한을 우회합니다
+        delete_user_data: 사용자 데이터 삭제
+        delete_user_data_description: 사용자가 다른 사용자의 데이터를 지체 없이 삭제할 수 있도록 허용
+        invite_users: 사용자 초대
+        invite_users_description: 사용자가 다른 사람들을 서버에 초대할 수 있도록 허용
+        manage_announcements: 공지 관리
+        manage_announcements_description: 사용자가 서버의 공지사항을 관리할 수 있도록 허용
+        manage_appeals: 이의제기 관리
+        manage_appeals_description: 사용자가 중재에 대한 이의제기를 리뷰할 수 있도록 허용
+        manage_blocks: 차단 관리
+        manage_blocks_description: 사용자가 이메일 제공자와 IP 주소를 차단할 수 있도록 허용
+        manage_custom_emojis: 커스텀 에모지 관리
+        manage_custom_emojis_description: 사용자가 서버의 커스텀 에모지를 관리할 수 있도록 허용
+        manage_federation: 연합 관리
+        manage_federation_description: 사용자가 다른 도메인과의 연합을 차단하거나 허용할 수 있도록 하고, 전달 가능 여부를 조정할 수 있도록 허용
+        manage_invites: 초대 관리
+        manage_invites_description: 사용자가 초대 링크를 보고 비활성화 할 수 있도록 허용
+        manage_reports: 신고 관리
+        manage_reports_description: 사용자가 신고를 리뷰하고 해당 사용자에 대한 중재활동을 수행할 수 있도록 허용
+        manage_roles: 역할 관리
+        manage_roles_description: 사용자가 그들 이하의 권한에 대해 관리하고 할당할 수 있도록 허용
+        manage_rules: 규칙 관리
+        manage_rules_description: 사용자가 서버 규칙을 수정할 수 있도록 허용합니다
+        manage_settings: 설정 관리
+        manage_settings_description: 사용자가 서버 설정을 수정할 수 있도록 허용합니다
+        manage_taxonomies: 분류 관리
+        manage_taxonomies_description: 사용자가 트렌드를 리뷰하고 해시태그 설정을 수정할 수 있도록 허용합니다
+        manage_user_access: 사용자 접근 관리
+        manage_user_access_description: 사용자가 다른 사용자의 2차 인증을 비활성화 하거나, 이메일 주소를 바꾸거나, 암호를 초기화 할 수 있도록 허용
+        manage_users: 사용자 관리
+        manage_users_description: 사용자가 다른 사용자의 상세정보를 보고 해당 사용자에 대한 중재활동을 할 수 있도록 허용
+        manage_webhooks: 웹훅 관리
+        manage_webhooks_description: 사용자가 관리용 웹훅을 설정할 수 있도록 허용
+        view_audit_log: 감사 기록 보기
+        view_audit_log_description: 사용자가 서버의 감사 기록을 볼 수 있도록 허용
+        view_dashboard: 대시보드 보기
+        view_dashboard_description: 사용자가 여러 통계정보를 볼 수 있는 대시보드에 접근할 수 있도록 허용
+        view_devops: 데브옵스
+        view_devops_description: Sidekiq과 pgHero 대시보드에 접근할 수 있도록 허용
+      title: 역할
     rules:
       add_new: 규칙 추가
       delete: 삭제
@@ -688,9 +748,6 @@ ko:
         deletion:
           desc_html: 사용자가 자신의 계정을 삭제할 수 있도록 허용합니다
           title: 계정 삭제를 허가함
-        min_invite_role:
-          disabled: 아무도 못 하게
-          title: 초대링크를 만들 수 있는 권한
         require_invite_text:
           desc_html: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
           title: 새 사용자가 초대 요청 글을 작성해야 하도록
@@ -703,9 +760,6 @@ ko:
       show_known_fediverse_at_about_page:
         desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 게시물을 표시합니다. 비활성화시 로컬에 있는 게시물만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
-      show_staff_badge:
-        desc_html: 사용자 페이지에 스태프 배지를 표시합니다
-        title: 스태프 배지 표시
       site_description:
         desc_html: API의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
         title: 서버 설명
@@ -836,6 +890,25 @@ ko:
       edit_preset: 경고 틀 수정
       empty: 아직 어떤 경고 틀도 정의되지 않았습니다.
       title: 경고 틀 관리
+    webhooks:
+      add_new: 엔드포인트 추가
+      delete: 삭제
+      description_html: "<strong>웹훅</strong>은 선택한 이벤트에 대해 마스토돈이 <strong>실시간 알림</strong>을 각자의 응용프로그램에게 보냄으로서, 당신의 응용프로그램이 <strong>자동으로 반응</strong>을 할 수 있도록 만듧니다."
+      disable: 비활성화
+      disabled: 비활성화됨
+      edit: 엔드포인트 수정
+      empty: 아직 설정한 웹훅 엔드포인트가 없습니다.
+      enable: 활성화
+      enabled: 활성화됨
+      enabled_events:
+        other: "%{count}개의 이벤트가 활성화되어 있습니다"
+      events: 이벤트
+      new: 새 웹훅
+      rotate_secret: 비밀키 회전
+      secret: 비밀키 서명
+      status: 상태
+      title: 웹훅
+      webhook: 웹훅
   admin_mailer:
     new_appeal:
       actions:
@@ -900,7 +973,6 @@ ko:
   applications:
     created: 애플리케이션이 성공적으로 생성되었습니다
     destroyed: 애플리케이션이 성공적으로 삭제되었습니다
-    invalid_url: 올바르지 않은 URL입니다
     regenerate_token: 토큰 재생성
     token_regenerated: 액세스 토큰이 성공적으로 재생성되었습니다
     warning: 이 데이터를 조심히 다뤄 주세요. 다른 사람들과 절대로 공유하지 마세요!
@@ -1089,15 +1161,23 @@ ko:
       public: 퍼블릭 타임라인
       thread: 대화
     edit:
+      add_keyword: 키워드 추가
+      keywords: 키워드
       title: 필터 편집
     errors:
+      deprecated_api_multiple_keywords: 이 파라미터들은 하나를 초과하는 필터 키워드에 적용되기 때문에 이 응용프로그램에서 수정될 수 없습니다. 더 최신의 응용프로그램이나 웹 인터페이스를 사용하세요.
       invalid_context: 컨텍스트가 없거나 올바르지 않습니다
-      invalid_irreversible: 되돌릴 수 없는 필터링은 홈 타임라인과 알림에서만 동작합니다
     index:
+      contexts: "%{contexts}에 대한 필터"
       delete: 삭제
       empty: 필터가 없습니다.
+      expires_in: "%{distance} 안에 만료됨"
+      expires_on: "%{date}에 만료됨"
+      keywords:
+        other: "%{count}개의 키워드"
       title: 필터
     new:
+      save: 새 필터 저장
       title: 필터 추가
   footer:
     developers: 개발자
@@ -1214,6 +1294,8 @@ ko:
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} 님이 신고를 제출했습니다"
       sign_up:
         subject: "%{name} 님이 가입했습니다"
     digest:
@@ -1507,7 +1589,7 @@ ko:
       <ul>
       <li><em>기본 계정 정보</em>: 이 서버에 가입하실 때 사용자명, 이메일 주소, 패스워드 등을 입력 받게 됩니다. 추가적으로 표시되는 이름이나 자기소개, 프로필 이미지, 헤더 이미지 등의 프로필 정보를 입력하게 됩니다. 사용자명, 표시되는 이름, 자기소개, 프로필 이미지와 헤더 이미지는 언제나 공개적으로 게시됩니다.</li>
       <li><em>게시물, 팔로잉, 기타 공개된 정보</em>: 당신이 팔로우 하는 사람들의 리스트는 공개됩니다. 당신을 팔로우 하는 사람들도 마찬가지입니다. 당신이 게시물을 작성하는 경우, 응용프로그램이 메시지를 받았을 때의 날짜와 시간이 기록 됩니다. 게시물은 그림이나 영상 등의 미디어를 포함할 수 있습니다. 퍼블릭과 미표시(unlisted) 게시물은 공개적으로 접근이 가능합니다. 프로필에 게시물을 고정하는 경우 마찬가지로 공개적으로 접근 가능한 정보가 됩니다. 당신의 게시물들은 당신의 팔로워들에게 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송되고 그곳에 사본이 저장 됩니다. 당신이 게시물을 삭제하는 경우 이 또한 당신의 팔로워들에게 전송 됩니다. 다른 게시물을 리블로깅 하거나 좋아요 하는 경우 이는 언제나 공개적으로 제공 됩니다.</li>
-      <li><em>DM, 팔로워 공개 게시물</em>: 모든 게시물들은 서버에서 처리되고 저장됩니다. 팔로워 공개 게시물은 당신의 팔로워와 멘션 된 사람들에게 전달이 됩니다. 다이렉트 메시지는 멘션 된 사람들에게만 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송 되고 그곳에 사본이 저장됨을 의미합니다. 우리는 이 게시물들이 권한을 가진 사람들만 열람이 가능하도록 노력을 할 것이지만 다른 서버에서는 이것이 실패할 수도 있습니다. 그러므로 당신의 팔로워들이 속한 서버를 재확인하는 것이 중요합니다. 당신은 새 팔로워를 수동으로 승인하거나 거절하도록 설정을 변경할 수 있습니다. <em>해당 서버의 운영자는 서버가 받는 메시지를 열람할 수 있다는 것을 항상 염두해 두세요</em>, 그리고 수신자들은 스크린샷을 찍거나 복사하는 등의 방법으로 다시 공유할 수 있습니다. <em>위험한 정보를 마스토돈을 통해 공유하지 마세요.</em></li>
+      <li><em>DM, 팔로워 공개 게시물</em>: 모든 게시물들은 서버에서 처리되고 저장됩니다. 팔로워 공개 게시물은 당신의 팔로워와 멘션 된 사람들에게 전달이 됩니다. 다이렉트 메시지는 멘션 된 사람들에게만 전송 됩니다. 몇몇 경우 이것은 다른 서버에 전송 되고 그곳에 사본이 저장됨을 의미합니다. 우리는 이 게시물들이 권한을 가진 사람들만 열람이 가능하도록 노력을 할 것이지만 다른 서버에서는 이것이 실패할 수도 있습니다. 그러므로 당신의 팔로워들이 속한 서버를 재확인하는 것이 중요합니다. 당신은 새 팔로워를 수동으로 승인하거나 거절하도록 설정을 변경할 수 있습니다. <em>해당 서버의 운영자는 서버가 받는 메시지를 열람할 수 있다는 것을 항상 염두해 두세요</em>, 그리고 수신자들은 스크린샷을 찍거나 복사하는 등의 방법으로 다시 공유할 수 있습니다. <em>민감한 정보를 마스토돈을 통해 공유하지 마세요.</em></li>
       <li><em>IP와 기타 메타데이터</em>: 당신이 로그인 하는 경우 IP 주소와 브라우저의 이름을 저장합니다. 모든 세션은 당신이 검토하고 취소할 수 있도록 설정에서 제공 됩니다. 마지막으로 사용 된 IP 주소는 최대 12개월 간 저장됩니다. 또한, 모든 요청에 대해 IP주소를 포함한 정보를 로그에 저장할 수 있습니다.</li>
       </ul>
 
@@ -1578,7 +1660,7 @@ ko:
 
       <p>만약 우리의 개인정보 정책이 바뀐다면, 이 페이지에 바뀐 정책이 게시됩니다.</p>
 
-      <p>이 문서는 CC-BY-SA 라이센스입니다. 마지막 업데이트는 2018년 3월 7일입니다.</p>
+      <p>이 문서는 CC-BY-SA 라이센스입니다. 마지막 업데이트는 2012년 5월 26일입니다.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} 이용약관과 개인정보 취급 방침"
@@ -1634,7 +1716,7 @@ ko:
         spam: 스팸
         violation: 컨텐츠가 다음의 커뮤니티 규정을 위반합니다
       explanation:
-        delete_statuses: 귀하의 게시물 중 일부가 하나 이상의 커뮤니티 가이드라인을 위반한 것으로 확인되어 %{instance} 모더레이터에 의해 삭제되었습니다.
+        delete_statuses: 귀하의 게시물 중 일부가 하나 이상의 커뮤니티 가이드라인을 위반한 것으로 확인되어 %{instance}의 중재자에 의해 삭제되었습니다.
         disable: 당신은 더이상 당신의 계정을 사용할 수 없습니다, 하지만 프로필과 다른 데이터들은 여전히 그대로 남아있습니다. 당신의 데이터에 대한 백업을 요청하거나, 계정 설정을 변경 또는 계정을 삭제할 수 있습니다.
         mark_statuses_as_sensitive: 당신의 몇몇 게시물들은 %{instance}의 중재자에 의해 민감함으로 설정되었습니다. 이것은 사람들이 미리보기를 보기 전에 미디어를 한번 눌러야 함을 의미합니다. 당신은 스스로도 자신의 게시물을 작성할 때 미디어를 민감함으로 설정할 수 있습니다.
         sensitive: 지금부터는, 당신이 업로드한 미디어 파일들은 민감함 표시가 뜨게 되고 클릭해야만 볼 수 있다는 경고문 뒤에 가려지게 됩니다.

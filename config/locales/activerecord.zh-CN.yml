@@ -21,6 +21,14 @@ zh-CN:
             username:
               invalid: 只能使用字母、数字和下划线
               reserved: 是保留关键字
+        admin/webhook:
+          attributes:
+            url:
+              invalid: 不是有效的 URL。
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: 网址无效
         status:
           attributes:
             reblog:
@@ -30,3 +38,13 @@ zh-CN:
             email:
               blocked: 使用了被封禁的电子邮件提供商
               unreachable: 似乎不存在
+            role_id:
+              elevated: 不能高于您当前的角色
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: 包含对基本角色不安全的权限
+              elevated: 不能包含您当前角色不拥有的权限
+              own_role: 无法以您当前的身份更改
+            position:
+              elevated: 不能高于您当前的角色

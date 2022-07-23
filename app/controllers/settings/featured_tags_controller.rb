@@ -11,7 +11,6 @@ class Settings::FeaturedTagsController < Settings::BaseController
 
   def create
     @featured_tag = current_account.featured_tags.new(featured_tag_params)
-    @featured_tag.reset_data
 
     if @featured_tag.save
       redirect_to settings_featured_tags_path
