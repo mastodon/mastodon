@@ -1,4 +1,3 @@
----
 pl:
   simple_form:
     hints:
@@ -96,7 +95,12 @@ pl:
         name: Możesz zmieniać tylko wielkość liter, np. aby były bardziej widoczne
       user:
         chosen_languages: Jeżeli zaznaczone, tylko wpisy w wybranych językach będą wyświetlane na publicznych osiach czasu
+        role: Rola kontroluje uprawnienia użytkownika
       user_role:
+        color: Kolor używany dla roli w całym interfejsie użytkownika, wyrażony jako RGB w formacie szesnastkowym
+        highlighted: To sprawia, że rola jest widoczna publicznie
+        name: Publiczna nazwa roli, jeśli włączone jest wyświetlanie odznaki
+        permissions_as_keys: Użytkownicy z tą rolą będą mieli dostęp do...
         position: Wyższa rola decyduje o rozwiązywaniu konfliktów w pewnych sytuacjach. Niektóre działania mogą być wykonywane tylko na rolach z niższym priorytetem
       webhook:
         events: Wybierz zdarzenia do wysłania
@@ -245,7 +249,7 @@ pl:
       webhook:
         events: Włączone zdarzenia
         url: Endpoint URL
-    'no': Nie
+    'no': 'Nie'
     recommended: Polecane
     required:
       mark: "*"
@@ -253,4 +257,4 @@ pl:
     title:
       sessions:
         webauthn: Użyj jednego ze swoich kluczy bezpieczeństwa, aby się zalogować
-    'yes': Tak
+    'yes': 'Tak'
