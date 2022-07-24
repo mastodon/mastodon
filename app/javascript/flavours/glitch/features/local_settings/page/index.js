@@ -312,38 +312,41 @@ class LocalSettingsPage extends React.PureComponent {
           <FormattedMessage id='settings.content_warnings_media_outside' defaultMessage='Display media attachments outside content warnings' />
           <span className='hint'><FormattedMessage id='settings.content_warnings_media_outside_hint' defaultMessage='Reproduce upstream Mastodon behavior by having the Content Warning toggle not affect media attachments' /></span>
         </LocalSettingsPageItem>
-        <DeprecatedLocalSettingsPageItem
-          id='mastodon-settings--content_warnings-auto_unfold'
-          value={expandSpoilers}
-        >
-          <FormattedMessage id='settings.enable_content_warnings_auto_unfold' defaultMessage='Automatically unfold content-warnings' />
-          <span className='hint'>
-            <FormattedMessage
-              id='settings.deprecated_setting'
-              defaultMessage="This setting is now controlled from Mastodon's {settings_page_link}"
-              values={{
-                settings_page_link: (
-                  <a href={preferenceLink('user_setting_expand_spoilers')}>
-                    <FormattedMessage
-                      id='settings.shared_settings_link'
-                      defaultMessage='user preferences'
-                    />
-                  </a>
-                )
-              }}
-            />
-          </span>
-        </DeprecatedLocalSettingsPageItem>
-        <LocalSettingsPageItem
-          settings={settings}
-          item={['content_warnings', 'filter']}
-          id='mastodon-settings--content_warnings-auto_unfold'
-          onChange={onChange}
-          placeholder={intl.formatMessage(messages.regexp)}
-          disabled={!expandSpoilers}
-        >
-          <FormattedMessage id='settings.content_warnings_filter' defaultMessage='Content warnings to not automatically unfold:' />
-        </LocalSettingsPageItem>
+        <section>
+          <h2><FormattedMessage id='settings.content_warnings_unfold_opts' defaultMessage='Auto-unfolding options' /></h2>
+          <DeprecatedLocalSettingsPageItem
+            id='mastodon-settings--content_warnings-auto_unfold'
+            value={expandSpoilers}
+          >
+            <FormattedMessage id='settings.enable_content_warnings_auto_unfold' defaultMessage='Automatically unfold content-warnings' />
+            <span className='hint'>
+              <FormattedMessage
+                id='settings.deprecated_setting'
+                defaultMessage="This setting is now controlled from Mastodon's {settings_page_link}"
+                values={{
+                  settings_page_link: (
+                    <a href={preferenceLink('user_setting_expand_spoilers')}>
+                      <FormattedMessage
+                        id='settings.shared_settings_link'
+                        defaultMessage='user preferences'
+                      />
+                    </a>
+                  )
+                }}
+              />
+            </span>
+          </DeprecatedLocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['content_warnings', 'filter']}
+            id='mastodon-settings--content_warnings-auto_unfold'
+            onChange={onChange}
+            placeholder={intl.formatMessage(messages.regexp)}
+            disabled={!expandSpoilers}
+          >
+            <FormattedMessage id='settings.content_warnings_filter' defaultMessage='Content warnings to not automatically unfold:' />
+          </LocalSettingsPageItem>
+        </section>
       </div>
     ),
     ({ intl, onChange, settings }) => (
