@@ -70,6 +70,7 @@ export default class StatusContent extends React.PureComponent {
     collapsed: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
     media: PropTypes.node,
+    extraMedia: PropTypes.node,
     mediaIcons: PropTypes.arrayOf(PropTypes.string),
     parseClick: PropTypes.func,
     disabled: PropTypes.bool,
@@ -256,6 +257,7 @@ export default class StatusContent extends React.PureComponent {
     const {
       status,
       media,
+      extraMedia,
       mediaIcons,
       parseClick,
       disabled,
@@ -351,6 +353,8 @@ export default class StatusContent extends React.PureComponent {
             {media}
           </div>
 
+          {extraMedia}
+
         </div>
       );
     } else if (parseClick) {
@@ -372,6 +376,7 @@ export default class StatusContent extends React.PureComponent {
             lang={lang}
           />
           {media}
+          {extraMedia}
         </div>
       );
     } else {
@@ -391,6 +396,7 @@ export default class StatusContent extends React.PureComponent {
             lang={lang}
           />
           {media}
+          {extraMedia}
         </div>
       );
     }

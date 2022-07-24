@@ -122,13 +122,26 @@ class DetailedStatus extends ImmutablePureComponent {
       return null;
     }
 
-    let media           = [];
-    let mediaIcons      = [];
     let applicationLink = '';
     let reblogLink = '';
     let reblogIcon = 'retweet';
     let favouriteLink = '';
     let edited = '';
+
+    //  Depending on user settings, some media are considered as parts of the
+    //  contents (affected by CW) while other will be displayed outside of the
+    //  CW.
+    let contentMedia = [];
+    let contentMediaIcons = [];
+    let extraMedia = [];
+    let extraMediaIcons = [];
+    let media = contentMedia;
+    let mediaIcons = contentMediaIcons;
+
+    if (settings.getIn(['content_warnings', 'media_outside'])) {
+      media = extraMedia;
+      mediaIcons = extraMediaIcons;
+    }
 
     if (this.props.measureHeight) {
       outerStyle.height = `${this.state.height}px`;
@@ -199,8 +212,8 @@ class DetailedStatus extends ImmutablePureComponent {
     }
 
     if (status.get('poll')) {
-      media.push(<PollContainer pollId={status.get('poll')} />);
-      mediaIcons.push('tasks');
+      contentMedia.push(<PollContainer pollId={status.get('poll')} />);
+      contentMediaIcons.push('tasks');
     }
 
     if (status.get('application')) {
@@ -282,8 +295,9 @@ class DetailedStatus extends ImmutablePureComponent {
 
           <StatusContent
             status={status}
-            media={media}
-            mediaIcons={mediaIcons}
+            media={contentMedia}
+            extraMedia={extraMedia}
+            mediaIcons={contentMediaIcons}
             expanded={expanded}
             collapsed={false}
             onExpandedToggle={onToggleHidden}
