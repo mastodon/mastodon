@@ -508,8 +508,21 @@ class Status extends ImmutablePureComponent {
     const { isExpanded, isCollapsed, forceFilter } = this.state;
     let background = null;
     let attachments = null;
-    let media = [];
-    let mediaIcons = [];
+
+    //  Depending on user settings, some media are considered as parts of the
+    //  contents (affected by CW) while other will be displayed outside of the
+    //  CW.
+    let contentMedia = [];
+    let contentMediaIcons = [];
+    let extraMedia = [];
+    let extraMediaIcons = [];
+    let media = contentMedia;
+    let mediaIcons = contentMediaIcons;
+
+    if (settings.getIn(['content_warnings', 'media_outside'])) {
+      media = extraMedia;
+      mediaIcons = extraMediaIcons;
+    }
 
     if (status === null) {
       return null;
@@ -681,8 +694,8 @@ class Status extends ImmutablePureComponent {
     }
 
     if (status.get('poll')) {
-      media.push(<PollContainer pollId={status.get('poll')} />);
-      mediaIcons.push('tasks');
+      contentMedia.push(<PollContainer pollId={status.get('poll')} />);
+      contentMediaIcons.push('tasks');
     }
 
     //  Here we prepare extra data-* attributes for CSS selectors.
@@ -748,7 +761,7 @@ class Status extends ImmutablePureComponent {
             </span>
             <StatusIcons
               status={status}
-              mediaIcons={mediaIcons}
+              mediaIcons={contentMediaIcons.concat(extraMediaIcons)}
               collapsible={settings.getIn(['collapsed', 'enabled'])}
               collapsed={isCollapsed}
               setCollapsed={setCollapsed}
@@ -757,8 +770,8 @@ class Status extends ImmutablePureComponent {
           </header>
           <StatusContent
             status={status}
-            media={media}
-            mediaIcons={mediaIcons}
+            media={contentMedia}
+            mediaIcons={contentMediaIcons}
             expanded={isExpanded}
             onExpandedToggle={this.handleExpandedToggle}
             parseClick={parseClick}
@@ -766,6 +779,9 @@ class Status extends ImmutablePureComponent {
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
           />
+
+          {extraMedia}
+
           {!isCollapsed || !(muted || !settings.getIn(['collapsed', 'show_action_bar'])) ? (
             <StatusActionBar
               {...other}

@@ -303,6 +303,15 @@ class LocalSettingsPage extends React.PureComponent {
     ({ intl, onChange, settings }) => (
       <div className='glitch local-settings__page content_warnings'>
         <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content warnings' /></h1>
+        <LocalSettingsPageItem
+          settings={settings}
+          item={['content_warnings', 'media_outside']}
+          id='mastodon-settings--content_warnings-media_outside'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.content_warnings_media_outside' defaultMessage='Display media attachments outside content warnings' />
+          <span className='hint'><FormattedMessage id='settings.content_warnings_media_outside_hint' defaultMessage='Reproduce upstream Mastodon behavior by having the Content Warning toggle not affect media attachments' /></span>
+        </LocalSettingsPageItem>
         <DeprecatedLocalSettingsPageItem
           id='mastodon-settings--content_warnings-auto_unfold'
           value={expandSpoilers}
