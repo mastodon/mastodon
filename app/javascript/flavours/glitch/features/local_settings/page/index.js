@@ -305,6 +305,15 @@ class LocalSettingsPage extends React.PureComponent {
         <h1><FormattedMessage id='settings.content_warnings' defaultMessage='Content warnings' /></h1>
         <LocalSettingsPageItem
           settings={settings}
+          item={['content_warnings', 'shared_state']}
+          id='mastodon-settings--content_warnings-shared_state'
+          onChange={onChange}
+        >
+          <FormattedMessage id='settings.content_warnings_shared_state' defaultMessage='Show/hide content of all copies at once' />
+          <span className='hint'><FormattedMessage id='settings.content_warnings_shared_state_hint' defaultMessage='Reproduce upstream Mastodon behavior by having the Content Warning button affect all copies of a post at once. This will prevent automatic collapsing of any copy of a toot with unfolded CW' /></span>
+        </LocalSettingsPageItem>
+        <LocalSettingsPageItem
+          settings={settings}
           item={['content_warnings', 'media_outside']}
           id='mastodon-settings--content_warnings-media_outside'
           onChange={onChange}

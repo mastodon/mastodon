@@ -23,6 +23,7 @@ const mapStateToProps = () => {
       accounts: conversation.get('accounts').map(accountId => state.getIn(['accounts', accountId], null)),
       unread: conversation.get('unread'),
       lastStatus: lastStatusId && getStatus(state, { id: lastStatusId }),
+      settings: state.get('local_settings'),
     };
   };
 };

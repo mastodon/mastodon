@@ -10,6 +10,9 @@ import {
 import {
   STATUS_MUTE_SUCCESS,
   STATUS_UNMUTE_SUCCESS,
+  STATUS_REVEAL,
+  STATUS_HIDE,
+  STATUS_COLLAPSE,
 } from 'flavours/glitch/actions/statuses';
 import {
   TIMELINE_DELETE,
@@ -56,6 +59,24 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.id, 'muted'], true);
   case STATUS_UNMUTE_SUCCESS:
     return state.setIn([action.id, 'muted'], false);
+  case STATUS_REVEAL:
+    return state.withMutations(map => {
+      action.ids.forEach(id => {
+        if (!(state.get(id) === undefined)) {
+          map.setIn([id, 'hidden'], false);
+        }
+      });
+    });
+  case STATUS_HIDE:
+    return state.withMutations(map => {
+      action.ids.forEach(id => {
+        if (!(state.get(id) === undefined)) {
+          map.setIn([id, 'hidden'], true);
+        }
+      });
+    });
+  case STATUS_COLLAPSE:
+    return state.setIn([action.id, 'collapsed'], action.isCollapsed);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
   default:
