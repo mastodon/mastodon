@@ -375,6 +375,7 @@ class LocalSettingsPage extends React.PureComponent {
           onChange={onChange}
         >
           <FormattedMessage id='settings.enable_collapsed' defaultMessage='Enable collapsed toots' />
+          <span className='hint'><FormattedMessage id='settings.enable_collapsed_hint' defaultMessage='Collapsed posts have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature' /></span>
         </LocalSettingsPageItem>
         <LocalSettingsPageItem
           settings={settings}
@@ -466,6 +467,7 @@ class LocalSettingsPage extends React.PureComponent {
             dependsOn={[['collapsed', 'enabled']]}
           >
             <FormattedMessage id='settings.image_backgrounds_media' defaultMessage='Preview collapsed toot media' />
+            <span className='hint'><FormattedMessage id='settings.image_backgrounds_media_hint' defaultMessage='If the post has any media attachment, use the first one as a background' /></span>
           </LocalSettingsPageItem>
         </section>
       </div>
