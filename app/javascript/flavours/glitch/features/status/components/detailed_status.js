@@ -296,6 +296,7 @@ class DetailedStatus extends ImmutablePureComponent {
           <StatusContent
             status={status}
             media={contentMedia}
+            extraMedia={extraMedia}
             mediaIcons={contentMediaIcons}
             expanded={expanded}
             collapsed={false}
@@ -306,8 +307,6 @@ class DetailedStatus extends ImmutablePureComponent {
             rewriteMentions={settings.get('rewrite_mentions')}
             disabled
           />
-
-          {extraMedia}
 
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>

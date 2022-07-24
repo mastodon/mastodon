@@ -771,6 +771,7 @@ class Status extends ImmutablePureComponent {
           <StatusContent
             status={status}
             media={contentMedia}
+            extraMedia={extraMedia}
             mediaIcons={contentMediaIcons}
             expanded={isExpanded}
             onExpandedToggle={this.handleExpandedToggle}
@@ -779,8 +780,6 @@ class Status extends ImmutablePureComponent {
             tagLinks={settings.get('tag_misleading_links')}
             rewriteMentions={settings.get('rewrite_mentions')}
           />
-
-          {extraMedia}
 
           {!isCollapsed || !(muted || !settings.getIn(['collapsed', 'show_action_bar'])) ? (
             <StatusActionBar
