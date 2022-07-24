@@ -48,47 +48,23 @@ class NotifyService < BaseService
     return false if @notification.target_status.in_reply_to_id.nil?
 
     # Using an SQL CTE to avoid unneeded back-and-forth with SQL server in case of long threads
-    !Status.count_by_sql([<<-SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @notification.from_account.id]).zero?
-      WITH RECURSIVE ancestors(id, in_reply_to_id, replying_to_sender, path) AS (
-          SELECT
-            s.id,
-            s.in_reply_to_id,
-            (CASE
-              WHEN s.account_id = :recipient_id THEN
-                EXISTS (
-                  SELECT *
-                  FROM mentions m
-                  WHERE m.silent = FALSE AND m.account_id = :sender_id AND m.status_id = s.id
-                )
-              ELSE
-                FALSE
-             END),
-            ARRAY[s.id]
+    !Status.count_by_sql([<<-SQL.squish, id: @notification.target_status.in_reply_to_id, recipient_id: @recipient.id, sender_id: @notification.from_account.id, depth_limit: 100]).zero?
+      WITH RECURSIVE ancestors(id, in_reply_to_id, mention_id, path, depth) AS (
+          SELECT s.id, s.in_reply_to_id, m.id, ARRAY[s.id], 0
           FROM statuses s
+          LEFT JOIN mentions m ON m.silent = FALSE AND m.account_id = :sender_id AND m.status_id = s.id
           WHERE s.id = :id
         UNION ALL
-          SELECT
-            s.id,
-            s.in_reply_to_id,
-            (CASE
-              WHEN s.account_id = :recipient_id THEN
-                EXISTS (
-                  SELECT *
-                  FROM mentions m
-                  WHERE m.silent = FALSE AND m.account_id = :sender_id AND m.status_id = s.id
-                )
-              ELSE
-                FALSE
-             END),
-            st.path || s.id
+          SELECT s.id, s.in_reply_to_id, m.id, st.path || s.id, st.depth + 1
           FROM ancestors st
           JOIN statuses s ON s.id = st.in_reply_to_id
-          WHERE st.replying_to_sender IS FALSE AND NOT s.id = ANY(path)
+          LEFT JOIN mentions m ON m.silent = FALSE AND m.account_id = :sender_id AND m.status_id = s.id
+          WHERE st.mention_id IS NULL AND NOT s.id = ANY(path) AND st.depth < :depth_limit
       )
       SELECT COUNT(*)
       FROM ancestors st
       JOIN statuses s ON s.id = st.id
-      WHERE st.replying_to_sender IS TRUE AND s.visibility = 3
+      WHERE st.mention_id IS NOT NULL AND s.visibility = 3
     SQL
   end
 

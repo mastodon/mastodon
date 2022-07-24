@@ -1,4 +1,4 @@
-.batch-table__row{ class: [preview_card.provider&.requires_review? && 'batch-table__row--attention', !preview_card.provider&.requires_review? && !preview_card.trendable? && 'batch-table__row--muted'] }
+.batch-table__row{ class: [preview_card.requires_review? && 'batch-table__row--attention', !preview_card.requires_review? && !preview_card.trendable? && 'batch-table__row--muted'] }
   %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
     = f.check_box :preview_card_ids, { multiple: true, include_hidden: false }, preview_card.id
 
@@ -25,6 +25,6 @@
         - if preview_card.decaying?
           •
           = t('admin.trends.tags.peaked_on_and_decaying', date: l(preview_card.max_score_at.to_date, format: :short))
-      - elsif preview_card.provider&.requires_review?
+      - elsif preview_card.requires_review?
         •
         = t('admin.trends.pending_review')

@@ -16,6 +16,7 @@ eu:
     contact: Kontaktua
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
+    continue_to_web: Jarraitu web aplikaziora
     discover_users: Aurkitu erabiltzaileak
     documentation: Dokumentazioa
     federation_hint_html: "%{instance} instantzian kontu bat izanda edozein Mastodon zerbitzariko jendea jarraitu ahal izango duzu, eta harago ere."
@@ -23,6 +24,8 @@ eu:
     hosted_on: Mastodon %{domain} domeinuan ostatatua
     instance_actor_flash: "Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke. \n"
     learn_more: Ikasi gehiago
+    logged_in_as_html: "%{username} bezala saioa hasita zaude."
+    logout_before_registering: Saioa hasi duzu jada.
     privacy_policy: Pribatutasun politika
     rules: Zerbitzariaren arauak
     rules_html: 'Behean Mastodon zerbitzari honetan kontua eduki nahi baduzu jarraitu beharreko arauen laburpena daukazu:'
@@ -67,7 +70,6 @@ eu:
     media: Multimedia
     moved_html: "%{name} hona migratu da %{new_profile_link}:"
     network_hidden: Informazio hau ez dago eskuragarri
-    never_active: Inoiz ez
     nothing_here: Ez dago ezer hemen!
     people_followed_by: "%{name}(e)k jarraitzen dituenak"
     people_who_follow: "%{name} jarraitzen dutenak"
@@ -160,6 +162,7 @@ eu:
       not_subscribed: Harpidetu gabe
       pending: Berrikusketa egiteke
       perform_full_suspension: Kanporatu
+      previous_strikes: Aurreko abisuak
       promote: Sustatu
       protocol: Protokoloa
       public: Publikoa
@@ -201,6 +204,7 @@ eu:
       silence: Isilarazi
       silenced: Isilarazita
       statuses: Bidalketa
+      strikes: Aurreko abisuak
       subscribe: Harpidetu
       suspend: Kanporatu
       suspended: Kanporatuta
@@ -363,7 +367,7 @@ eu:
       enable: Gaitu
       enabled: Gaituta
       enabled_msg: Emoji hori ongi gaitu da
-      image_hint: PNG gehienez 50KB
+      image_hint: "%{size} arteko PNG edo GIF"
       list: Zerrendatu
       listed: Zerrendatua
       new:
@@ -428,31 +432,20 @@ eu:
       reject_media_hint: Lokalki gordetako multimedia fitxategiak ezabatzen ditu eta etorkizunean fitxategi berriak deskargatzeari uko egingo dio. Ez du garrantzirik kanporaketetan
       reject_reports: Errefusatu salaketak
       reject_reports_hint: Ezikusi domeinu honetatik jasotako salaketak. Kanporatzeentzako garrantzirik gabekoa
-      rejecting_media: errefusatu multimedia fitxategiak
-      rejecting_reports: txostenak errefusatzen
-      severity:
-        silence: isilarazia
-        suspend: kanporatua
-      show:
-        affected_accounts:
-          one: Datu-baseko kontu bati eragiten dio
-          other: Datu-baseko %{count} konturi eragiten die
-          zero: Ez die eragiten datu-baseko kontuei
-        retroactive:
-          silence: Kendu isilarazteko agindua domeinu honetako kontu guztiei
-          suspend: Kendu kanporatzeko agindua domeinu honetako kontu guztiei
-        title: Desegin %{domain} domeinuko blokeoa
-        undo: Desegin
       undo: Desegin domeinuaren blokeoa
       view: Ikusi domeinuaren blokeoa
     email_domain_blocks:
       add_new: Gehitu berria
       created_msg: Ongi gehitu da e-mail helbidea domeinuen zerrenda beltzera
       delete: Ezabatu
+      dns:
+        types:
+          mx: MX erregistroa
       domain: Domeinua
       new:
         create: Gehitu domeinua
         title: Sarrera berria e-mail zerrenda beltzean
+      no_email_domain_block_selected: Ez da eposta domeinu blokeorik aldatu ez delako bat bera ere hautatu
       title: E-mail zerrenda beltza
     follow_recommendations:
       description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
@@ -463,32 +456,43 @@ eu:
       title: Jarraitzeko gomendioak
       unsuppress: Berrezarri jarraitzeko gomendioa
     instances:
+      availability:
+        failure_threshold_reached: Hutsegite atalasera iritsi da %{date} datan.
+        no_failures_recorded: Ez dago hutsegiterik erregistroan.
+        title: Egoera
       back_to_all: Guztiak
       back_to_limited: Mugatua
       back_to_warning: Abisua
       by_domain: Domeinua
       confirm_purge: Ziur zaude domeinu honen datuak behin betiko ezabatu nahi dituzula?
+      content_policies:
+        comment: Barne-oharra
+        description_html: Domeinu honetako eta bere azpi-domeinuetako kontu guztiei aplikatuko zaizkien eduki-politikak definitu ditzakezu.
+        policies:
+          reject_media: Errefusatu multimediak
+          reject_reports: Errefusatu salaketak
+          silence: Isilarazi
+          suspend: Kanporatu
+        policy: Politika
+        reason: Arrazoi publikoa
+        title: Eduki politikak
+      dashboard:
+        instance_accounts_dimension: Kontu jarraituenak
+        instance_accounts_measure: gordetako kontuak
+        instance_followers_measure: gure jarraitzaileak hemen
+        instance_follows_measure: beren jarraitzaileak hemen
+        instance_languages_dimension: Hizkuntza nagusiak
       delivery:
         all: Guztiak
         clear: Garbitu banaketa erroreak
         restart: Berrabiarazi banaketa
         stop: Gelditu banaketa
-        title: Banaketa
         unavailable: Eskuraezina
-        unavailable_message: Banaketa ez dago eskuragarri
-        warning: Abisua
-        warning_message:
-          one: Banaketa hutsegitea egun %{count}
-          other: Banaketa hutsegitea %{count} egun
       delivery_available: Bidalketa eskuragarri dago
       delivery_error_days: Banaketa errore egunak
       delivery_error_hint: Banaketa ezin bada %{count} egunean egin, banaezin bezala markatuko da automatikoki.
       destroyed_msg: "%{domain} domeinuko datuak berehala ezabatzeko ilaran daude orain."
       empty: Ez da domeinurik aurkitu.
-      known_accounts:
-        one: Kontu ezagun %{count}
-        other: "%{count} kontu ezagun"
-        zero: Kontu ezagunik ez
       moderation:
         all: Denak
         limited: Mugatua
@@ -1350,6 +1354,7 @@ eu:
       '2629746': Hilabete 1
       '31556952': Urte 1
       '5259492': 2 hilabete
+      '604800': 1 week
       '63113904': 2 urte
       '7889238': 3 hilabete
     min_age_label: Denbora muga

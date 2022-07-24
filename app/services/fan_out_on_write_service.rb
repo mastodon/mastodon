@@ -110,7 +110,7 @@ class FanOutOnWriteService < BaseService
     Redis.current.publish('timeline:public', anonymous_payload)
     Redis.current.publish(@status.local? ? 'timeline:public:local' : 'timeline:public:remote', anonymous_payload)
 
-    if @status.media_attachments.any?
+    if @status.with_media?
       Redis.current.publish('timeline:public:media', anonymous_payload)
       Redis.current.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', anonymous_payload)
     end

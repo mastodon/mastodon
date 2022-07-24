@@ -13,9 +13,9 @@ ca:
           attributes:
             redirect_uri:
               fragment_present: no pot contenir un fragment.
-              invalid_uri: ha de ser un URI válid.
-              relative_uri: ha de ser un URI absoluta.
-              secured_uri: ha de ser un URI HTTPS/SSL.
+              invalid_uri: ha de ser una URI vàlida.
+              relative_uri: ha de ser una URI absoluta.
+              secured_uri: ha de ser una URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -60,8 +60,8 @@ ca:
       error:
         title: S'a produit un error
       new:
-        able_to: Serà capaç de
-        prompt: L'aplicació %{client_name} sol⋅licita tenir accés al teu compte
+        prompt_html: "%{client_name} voldria permís per a accedir el teu compte. És una aplicació de tercers. <strong>Si no hi confies no hauries d'autoritzar-la.</strong>"
+        review_permissions: Revisa els permisos
         title: Cal autorizació
       show:
         title: Copia aquest codi d'autorització i enganxa'l en l'aplicació.
@@ -71,18 +71,20 @@ ca:
       confirmations:
         revoke: N'estàs segur?
       index:
-        application: Aplicació
-        created_at: Creat el
-        date_format: "%A-%m-%d %H:%M:%S"
-        scopes: Àmbits
+        authorized_at: Autoritzada el %{date}
+        description_html: Aquestes son les aplicacions que poden accedir al teu compte usant l'API. Si aquí hi ha aplicacions que no reconeixes o una aplicació es comporta malament, pots revocar el seu accés.
+        last_used_at: Darrera utilització el %{date}
+        never_used: Mai usat
+        scopes: Permisos
+        superapp: Interna
         title: Les teves aplicacions autoritzades
     errors:
       messages:
         access_denied: El propietari del recurs o servidor d'autorizació ha denegat la petició.
         credential_flow_not_configured: Les credencials de contrasenya del propietari del recurs han fallat degut a que Doorkeeper.configure.resource_owner_from_credentials està sense configurar.
-        invalid_client: La autentificació del client ha fallat perquè és un client desconegut o no està inclòs l'autentificació del client o el mètode d'autenticació no està confirmat.
-        invalid_grant: La concessió d'autorizació oferida és invàlida, ha vençut, s'ha revocat, no coincideix amb l'URI de redirecció utilizada en la petició d'autorizació, o fou emesa per a un altre client.
-        invalid_redirect_uri: L'URI de redirecció inclòs no és vàlid.
+        invalid_client: La autentificació del client ha fallat perquè és un client desconegut o no està inclòsa l'autentificació del client o el mètode d'autenticació no està confirmat.
+        invalid_grant: La concessió d'autorizació oferta és invàlida, ha vençut, s'ha revocat, no coincideix amb l'URI de redirecció utilizada en la petició d'autorizació, o fou emesa per a un altre client.
+        invalid_redirect_uri: L'uri de redirecció inclòsa no és vàlida.
         invalid_request:
           missing_param: 'Falta paràmetre requerit: %{value}.'
           request_not_authorized: La petició ha de ser autoritzada. Falta o és invàlid un paràmetre requerit per l'autorització de la petició.
@@ -110,6 +112,33 @@ ca:
       authorized_applications:
         destroy:
           notice: Aplicació revocada.
+    grouped_scopes:
+      access:
+        read: Accés només de lectura
+        read/write: Accés de lectura i escriptura
+        write: Accés de només escriptura
+      title:
+        accounts: Comptes
+        admin/accounts: Administració dels comptes
+        admin/all: Totes les funcions administratives
+        admin/reports: Administració dels informes
+        all: Tot
+        blocks: Bloquejos
+        bookmarks: Marcadors
+        conversations: Converses
+        crypto: Xifrat d'extrem a extrem
+        favourites: Favorits
+        filters: Filtres
+        follow: Relacions
+        follows: Seguits
+        lists: Llistes
+        media: Adjunts multimèdia
+        mutes: Silenciats
+        notifications: Notificacions
+        push: Notificacions push
+        reports: Informes
+        search: Cerca
+        statuses: Publicacions
     layouts:
       admin:
         nav:
@@ -124,7 +153,8 @@ ca:
       admin:write: modificar totes les dades en el servidor
       admin:write:accounts: fer l'acció de moderació en els comptes
       admin:write:reports: fer l'acció de moderació en els informes
-      follow: seguir, blocar, desblocar i deixar de seguir comptes
+      crypto: usa xifrat d'extrem a extrem
+      follow: modificar relacions dels comptes
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte
       read:accounts: veure informació dels comptes
@@ -138,12 +168,13 @@ ca:
       read:notifications: veure les teves notificacions
       read:reports: veure els teus informes
       read:search: cerca en nom teu
-      read:statuses: veure tots els tuts
-      write: publicar en el teu nom
+      read:statuses: veure tots les publicacions
+      write: modificar totes les dades del teu compte
       write:accounts: modifica el teu perfil
       write:blocks: bloqueja comptes i dominis
       write:bookmarks: publicacions a marcadors
-      write:favourites: afavoreix tuts
+      write:conversations: silencia i esborra converses
+      write:favourites: afavoreix publicacions
       write:filters: crear filtres
       write:follows: seguir usuaris
       write:lists: crear llistes
@@ -151,4 +182,4 @@ ca:
       write:mutes: silencia usuaris i converses
       write:notifications: esborra les teves notificacions
       write:reports: informe d’altres persones
-      write:statuses: publicar tuts
+      write:statuses: publicar publicacions

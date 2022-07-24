@@ -3,6 +3,23 @@ require 'rails_helper'
 RSpec.describe UpdateStatusService, type: :service do
   subject { described_class.new }
 
+  context 'when nothing changes' do
+    let!(:status) { Fabricate(:status, text: 'Foo', language: 'en') }
+
+    before do
+      allow(ActivityPub::DistributionWorker).to receive(:perform_async)
+      subject.call(status, status.account_id, text: 'Foo')
+    end
+
+    it 'does not create an edit' do
+      expect(status.reload.edits).to be_empty
+    end
+
+    it 'does not notify anyone' do
+      expect(ActivityPub::DistributionWorker).to_not have_received(:perform_async)
+    end
+  end
+
   context 'when text changes' do
     let!(:status) { Fabricate(:status, text: 'Foo') }
     let(:preview_card) { Fabricate(:preview_card) }
@@ -21,7 +38,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:text, :media_attachments_changed)).to eq [['Foo', false], ['Bar', false]]
+      expect(status.edits.pluck(:text)).to eq %w(Foo Bar)
     end
   end
 
@@ -39,7 +56,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:text, :spoiler_text, :media_attachments_changed)).to eq [['Foo', '', false], ['Foo', 'Bar', false]]
+      expect(status.edits.pluck(:text, :spoiler_text)).to eq [['Foo', ''], ['Foo', 'Bar']]
     end
   end
 
@@ -54,11 +71,11 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'updates media attachments' do
-      expect(status.media_attachments.to_a).to eq [attached_media_attachment]
+      expect(status.ordered_media_attachments).to eq [attached_media_attachment]
     end
 
-    it 'detaches detached media attachments' do
-      expect(detached_media_attachment.reload.status_id).to be_nil
+    it 'does not detach detached media attachments' do
+      expect(detached_media_attachment.reload.status_id).to eq status.id
     end
 
     it 'attaches attached media attachments' do
@@ -66,7 +83,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:text, :media_attachments_changed)).to eq [['Foo', false], ['Foo', true]]
+      expect(status.edits.pluck(:ordered_media_attachment_ids)).to eq [[detached_media_attachment.id], [attached_media_attachment.id]]
     end
   end
 
@@ -95,7 +112,7 @@ RSpec.describe UpdateStatusService, type: :service do
     end
 
     it 'saves edit history' do
-      expect(status.edits.pluck(:text, :media_attachments_changed)).to eq [['Foo', false], ['Foo', true]]
+      expect(status.edits.pluck(:poll_options)).to eq [%w(Foo Bar), %w(Bar Baz Foo)]
     end
   end
 

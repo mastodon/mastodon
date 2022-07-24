@@ -30,7 +30,10 @@
     = f.input :bot, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.bot')
 
   .fields-group
-    = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t(Setting.profile_directory ? 'simple_form.hints.defaults.discoverable' : 'simple_form.hints.defaults.discoverable_no_directory'), recommended: true
+    = f.input :discoverable, as: :boolean, wrapper: :with_label, hint: t('simple_form.hints.defaults.discoverable'), recommended: true
+
+  .fields-group
+    = f.input :hide_collections, as: :boolean, wrapper: :with_label, label: t('simple_form.labels.defaults.setting_hide_network'), hint: t('simple_form.hints.defaults.setting_hide_network')
 
   %hr.spacer/
 

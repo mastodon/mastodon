@@ -16,6 +16,7 @@ gl:
     contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: Non dispoñíbel
+    continue_to_web: Continuar na app web
     discover_users: Descubrir usuarias
     documentation: Documentación
     federation_hint_html: Cunha conta en %{instance} poderás seguir ás persoas en calquera servidor do Mastodon e alén.
@@ -25,6 +26,8 @@ gl:
 
       '
     learn_more: Saber máis
+    logged_in_as_html: Entraches como %{username}.
+    logout_before_registering: Xa iniciaches sesión.
     privacy_policy: Política de privacidade
     rules: Regras do servidor
     rules_html: 'Aquí tes un resumo das regras que debes seguir se queres ter unha conta neste servidor de Mastodon:'
@@ -69,7 +72,6 @@ gl:
     media: Multimedia
     moved_html: "%{name} mudouse a %{new_profile_link}:"
     network_hidden: Esta información non está dispoñíbel
-    never_active: Nunca
     nothing_here: Non hai nada aquí!
     people_followed_by: Persoas que segue %{name}
     people_who_follow: Persoas que seguen a %{name}
@@ -163,10 +165,6 @@ gl:
       pending: Revisión pendente
       perform_full_suspension: Suspender
       previous_strikes: Accións previas
-      previous_strikes_description_html:
-        one: Esta conta ten <strong>un</strong> evento.
-        other: Esta conta ten <strong>%{count}</strong> eventos.
-        zero: Esta conta ten <strong>boa reputación</strong>.
       promote: Promocionar
       protocol: Protocolo
       public: Público
@@ -371,7 +369,7 @@ gl:
       enable: Activar
       enabled: Activado
       enabled_msg: Activouse a emoticona de xeito correcto
-      image_hint: PNG de até 50KB
+      image_hint: PNG ou GIF ata %{size}
       list: Listar
       listed: Listado
       new:
@@ -448,21 +446,6 @@ gl:
       reject_media_hint: Eliminar ficheiros multimedia almacenados de xeito local e rexeita descargalos no futuro. Irrelevante para as suspensións
       reject_reports: Rexeitar denuncias
       reject_reports_hint: Ignorar todas as denuncias procedentes deste dominio. Irrelevante para as suspensións
-      rejecting_media: rexeitando ficheiros multimedia
-      rejecting_reports: rexeitando denuncias
-      severity:
-        silence: limitado
-        suspend: suspendido
-      show:
-        affected_accounts:
-          one: Ten efecto sobre unha conta na base de datos
-          other: Ten efecto sobre %{count} contas na base de datos
-          zero: Non afecta a ningunha conta na base de datos
-        retroactive:
-          silence: Deixar de silenciar todas as contas existentes deste dominio
-          suspend: Desbotar suspenso de todas as contas existentes deste dominio
-        title: Desfacer o bloqueo de dominio para %{domain}
-        undo: Desfacer
       undo: Desfacer bloqueo de dominio
       view: Ollar dominios bloqueados
     email_domain_blocks:
@@ -493,32 +476,53 @@ gl:
       title: Recomendacións de seguimento
       unsuppress: Restablecer recomendación de seguimento
     instances:
+      availability:
+        description_html:
+          one: Se fallan as entregas ao dominio por <strong>%{count} día</strong>, non se farán máis intentos a menos que se reciba unha solicitude <em>desde</em> ese dominio.
+          other: Se fallan as entregas ao dominio por <strong>%{count} días diferentes</strong>, non se farán máis intentos a menos que se reciba unha solicitude <em>desde</em> ese dominio.
+        failure_threshold_reached: Acadouse o límite de fallos o %{date}.
+        failures_recorded:
+          one: Intento fallido por %{count} día.
+          other: Intentos fallidos durante %{count} días distintos.
+        no_failures_recorded: Non hai fallos rexistrados.
+        title: Dispoñibilidade
+        warning: Fallou o último intento de conectar con este servidor
       back_to_all: Todo
       back_to_limited: Limitado
       back_to_warning: Aviso
       by_domain: Dominio
       confirm_purge: Tes a certeza de querer eliminar permanentemente os datos deste dominio?
+      content_policies:
+        comment: Nota interna
+        description_html: Podes definir políticas acerca do contido que serán aplicadas a tódalas contas deste dominio e tódolos seus subdominios.
+        policies:
+          reject_media: Rexeitar multimedia
+          reject_reports: Rexeitar denuncias
+          silence: Límitar
+          suspend: Suspender
+        policy: Criterios
+        reason: Razón pública
+        title: Políticas sobre o contido
+      dashboard:
+        instance_accounts_dimension: Contas máis seguidas
+        instance_accounts_measure: contas gardadas
+        instance_followers_measure: as nosas seguidoras alí
+        instance_follows_measure: as súas seguidoras aquí
+        instance_languages_dimension: Top de idiomas
+        instance_media_attachments_measure: anexos multimedia gardados
+        instance_reports_measure: denuncias acerca deles
+        instance_statuses_measure: publicacións gardadas
       delivery:
         all: Todo
         clear: Eliminar erros na entrega
         restart: Restablecer a entrega
         stop: Deter a entrega
-        title: Entrega
         unavailable: Non dispoñible
-        unavailable_message: Entrega non dispoñible
-        warning: Aviso
-        warning_message:
-          one: Fallou a entrega %{count} día
-          other: Fallou a entrega %{count} días
       delivery_available: Entrega dispoñíbel
       delivery_error_days: Días de fallo na entrega
       delivery_error_hint: Se non é posible a entrega durante %{count} días, será automáticamente marcado como non entregable.
       destroyed_msg: Os datos desde %{domain} están na cola para o borrado inminente.
       empty: Non se atopan dominios.
-      known_accounts:
-        one: "%{count} conta coñecida"
-        other: "%{count} contas coñecidas"
-        zero: Sen contas coñecidas
       moderation:
         all: Todo
         limited: Limitado
@@ -526,12 +530,14 @@ gl:
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
+      purge_description_html: Se cres que este dominio está desconectado por unha boa razón, podes borrar tódolos rexistros e datos asociados a este dominio na túa almacenaxe. Vainos levar un anaco.
       title: Federación
       total_blocked_by_us: Bloqueado por nós
       total_followed_by_them: Seguidos por eles
       total_followed_by_us: Seguidos por nós
       total_reported: Denuncias sobre eles
       total_storage: Adxuntos multimedia
+      totals_time_period_hint_html: Os totais aquí mostrados inclúen todo o historial de datos.
     invites:
       deactivate_all: Desactivar todo
       filter:
@@ -586,6 +592,7 @@ gl:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: As publicacións denunciadas van ser eliminadas e gárdase un aviso para axudarche a xestionar futuras infraccións desta conta.
+        mark_as_sensitive_description_html: O multimedia das publicacións denunciadas vai ser marcado como sensible e apúntase un aviso para axudarche a facer seguimento das infraccións da mesma conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardan avisos, e a denuncia arquivada.
         silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
@@ -606,6 +613,7 @@ gl:
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resolto
+      mark_as_sensitive: Marcar como sensible
       mark_as_unresolved: Marcar como non resolto
       no_one_assigned: Ninguén
       notes:
@@ -749,6 +757,7 @@ gl:
       actions:
         delete_statuses: "%{name} eliminou as publicacións de %{target}"
         disable: "%{name} pausou a conta de %{target}"
+        mark_statuses_as_sensitive: "%{name} marcou as publicacións de %{target} como sensibles"
         none: "%{name} envioulle un aviso a %{target}"
         sensitive: "%{name} marcou a conta de %{target} como sensible"
         silence: "%{name} limitou a conta de %{target}"
@@ -758,6 +767,11 @@ gl:
     system_checks:
       database_schema_check:
         message_html: Existen migracións pendentes na base de datos. Bota man desta tarefa para facer que a aplicación funcione como se agarda dela
+      elasticsearch_running_check:
+        message_html: Non se puido conectar con Elasticsearch. Comproba que está funcionando, ou desactiva a busca por texto completo
+      elasticsearch_version_check:
+        message_html: 'Versión incompatible de Elasticsearch: %{value}'
+        version_comparison: Está executándose Elasticsearch %{running_version} pero requírese a %{required_version}
       rules_check:
         action: Xestionar regras do servidor
         message_html: Non tes definidas regras para o servidor.
@@ -774,25 +788,25 @@ gl:
       links:
         allow: Permitir ligazón
         allow_provider: Permitir orixe
+        description_html: Estas son ligazóns que actualmente están sendo compartidas por moitas contas das que o teu servidor recibe publicación. Pode ser de utilidade para as túas usuarias para saber o que acontece polo mundo. Non se mostran ligazóns de xeito público a non ser que autorices a quen as publica. Tamén podes permitir ou rexeitar ligazóns de xeito individual.
         disallow: Denegar ligazón
         disallow_provider: Denegar orixe
-        shared_by_over_week:
-          one: Compartido por unha persoa na última semana
-          other: Compartido por %{count} persoas na última semana
-          zero: Non foi compartido na última semana
         title: Ligazóns en voga
         usage_comparison: Compartido %{today} veces hoxe, comparado con %{yesterday} onte
       pending_review: Revisión pendente
       preview_card_providers:
         allowed: As ligazóns desta orixe poden estar en voga
+        description_html: Estes son dominios de onde proceden as ligazóns compartidas con frecuencia no teu servidor. As ligazóns non se mostran públicamente a non ser que o dominio da ligazón sexa aprobado. A aprobación (ou rexeitamento) exténdese aos subdominios.
         rejected: As ligazóns desta orixe non poden estar en voga
         title: Orixes
       rejected: Rexeitado
       statuses:
         allow: Permitir publicación
         allow_account: Permitir autora
+        description_html: Estas son publicacións que o teu servidor coñece que están sendo compartidas e favorecidas en gran número neste intre. Pode ser útil para as persoas recén chegadas e as que retornan para que atopen persoas a quen seguir. Non se mostran publicamente a menos que aprobes a autora, e a autora permita que a súa conta sexa suxerida a outras. Tamén podes rexeitar ou aprobar publicacións individuais.
         disallow: Rexeitar publicación
         disallow_account: Rexeitar autora
+        not_discoverable: A autora non elexiu poder ser atopada
         shared_by:
           one: Compartida ou favorecida unha vez
           other: Compartida ou favorecida %{friendly_count} veces
@@ -805,6 +819,7 @@ gl:
           tag_servers_dimension: Clasificación Servidores
           tag_servers_measure: diferentes servidores
           tag_uses_measure: total de usos
+        description_html: Estes son cancelos que actualmente están presentes en moitas publicacións que o teu servidor recibe. Pode ser útil para que as túas usuarias atopen a outras persoas a través do máis comentado neste intre. Non se mostran cancelos públicamente que non fosen aprobados por ti.
         listable: Pode ser suxerida
         not_listable: Non vai ser suxerida
         not_trendable: Non aparecerá en tendencias
@@ -815,10 +830,6 @@ gl:
         trending_rank: 'En voga #%{rank}'
         usable: Pode ser usado
         usage_comparison: Utilizado %{today} veces hoxe, comparado coas %{yesterday} de onte
-        used_by_over_week:
-          one: Utilizado por unha persoa na última semana
-          other: Utilizado por %{count} persoas na última semana
-          zero: Non foi utilizado na última semana
       title: Tendencias
     warning_presets:
       add_new: Engadir novo
@@ -831,6 +842,7 @@ gl:
       actions:
         delete_statuses: borrar as súas publicacións
         disable: pausar a súa conta
+        mark_statuses_as_sensitive: marcar as súas publicacións como sensibles
         none: un aviso
         sensitive: marcar a conta como sensible
         silence: limitar a súa conta
@@ -933,8 +945,10 @@ gl:
     status:
       account_status: Estado da conta
       confirming: Agardando a confirmación do correo enviado.
+      functional: A túa conta está completamente operativa.
       pending: A túa solicitude está pendente de revisión. Poderíanos levar algún tempo. Recibirás un correo se a solicitude está aprobada.
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
+      view_strikes: Ver avisos anteriores respecto da túa conta
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
     trouble_logging_in: Problemas para acceder?
     use_security_key: Usa chave de seguridade
@@ -1010,6 +1024,7 @@ gl:
         submit: Enviar apelación
       associated_report: Denuncia asociada
       created_at: Data
+      description_html: Estas son as accións tomadas contra a túa conta e os avisos que che enviou a administración de %{instance}.
       recipient: Entregada a
       status: 'Publicación #%{id}'
       status_removed: A publicación xa foi eliminada do sistema
@@ -1017,6 +1032,7 @@ gl:
       title_actions:
         delete_statuses: Eliminación da publicación
         disable: Pausar conta
+        mark_statuses_as_sensitive: Marcar as publicacións como sensibles
         none: Aviso
         sensitive: Marcar a conta como sensible
         silence: Limitar a conta
@@ -1226,7 +1242,7 @@ gl:
       subject: 'Seguidora pendente: %{name}'
       title: Nova petición de seguimento
     mention:
-      action: Respostar
+      action: Responder
       body: 'Foi mencionada por %{name} en:'
       subject: Foches mencionada por %{name}
       title: Nova mención
@@ -1319,7 +1335,7 @@ gl:
       proceed: Darlle a promocionar
       prompt: 'Vas promover esta publicación:'
     reply:
-      proceed: Respostar
+      proceed: Responde
       prompt: 'Vas responder a esta publicación:'
   reports:
     errors:
@@ -1390,6 +1406,7 @@ gl:
     profile: Perfil
     relationships: Seguindo e seguidoras
     statuses_cleanup: Borrado automático da publicación
+    strikes: Avisos da moderación
     two_factor_authentication: Validar Dobre Factor
     webauthn_authentication: Chaves de seguridade
   statuses:
@@ -1410,9 +1427,9 @@ gl:
     disallowed_hashtags:
       one: 'contiña un cancelo non permitido: %{tags}'
       other: 'contiña uns cancelos non permitidos: %{tags}'
-    edited_at: Editado %{date}
+    edited_at_html: Editado %{date}
     errors:
-      in_reply_not_found: A publicación á que tentas respostar semella que non existe.
+      in_reply_not_found: A publicación á que tentas responder semella que non existe.
     open_in_web: Abrir na web
     over_character_limit: Excedeu o límite de caracteres %{max}
     pin_errors:
@@ -1469,6 +1486,7 @@ gl:
       '2629746': 1 mes
       '31556952': 1 ano
       '5259492': 2 meses
+      '604800': 1 semana
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Límite temporal
@@ -1616,26 +1634,28 @@ gl:
         spam: Spam
         violation: O contido viola as seguintes normas da comunidade
       explanation:
-        delete_statuses: Algunha das túas publicacións semella que viola algunha das normas da comunidade e foi eliminada pola moderación de %{instance}. Futuras violacións poderían implicar accións máis contundentes contra a túa conta.
+        delete_statuses: Algunha das túas publicacións son consideradas contrarias ás normas da comunidade e foron por tanto eliminadas pola moderación de %{instance}.
         disable: Xa non podes usar a túa conta, pero o teu perfil e outros datos permanecen intactos. Podes solicitar unha copia dos teus datos, cambiar os axustes da conta ou eliminar a túa conta.
+        mark_statuses_as_sensitive: Algunha das túas publicacións foron marcadas como sensible pola moderación de %{instance}. Esto significa que as persoas só poderan ver a vista previa se tocan nelas. Ti tamén podes marcar os medios como sensibles en futuras publicacións.
         sensitive: A partir deste momento, tódolos ficheiros que subiches estarán marcados como sensibles e agochados tras un aviso de contido.
         silence: Aínda podes usar a túa conta pero só as persoas que te siguen poden ver as túas publicacións neste servidor, e podes que foses excluída de varios xeitos de descubrimento. Porén, aínda te poden seguir de xeito manual.
         suspend: Xa non podes usar a túa conta, o teu perfil e outros datos xa non son accesibles. Aínda podes acceder para solicitar unha copia dos teus datos no prazo de 30 días previos á eliminación da conta. Imos reter algúns datos básicos para evitar que poidas evitar a suspensión.
-      get_in_touch: Se consideras que isto é un erro, podes responder a este email para contactar coa administración de %{instance}.
       reason: 'Razón:'
-      statuses: 'Publicacións que contradín as normas:'
+      statuses: 'Publicacións citadas:'
       subject:
         delete_statuses: As túas publicacións en %{acct} foron eliminadas
         disable: A súa conta %{acct} foi conxelada
+        mark_statuses_as_sensitive: As túas publicacións en %{acct} foron marcadas como sensibles
         none: Aviso para %{acct}
-        sensitive: A partir de agora os ficheiros multimedia en %{acct} van ser marcados como sensibles
+        sensitive: A partir de agora as túas publicacións en %{acct} van ser marcadas como sensibles
         silence: A súa conta %{acct} foi limitada
         suspend: A súa conta %{acct} foi suspendida
       title:
         delete_statuses: Publicacións eliminadas
         disable: Conta conxelada
+        mark_statuses_as_sensitive: Publicacións marcadas como sensibles
         none: Aviso
-        sensitive: Contido multimedia agochado
+        sensitive: Conta marcada como sensible
         silence: Conta limitada
         suspend: Conta suspendida
     welcome:

@@ -27,45 +27,46 @@ da:
         scheduled_at: Lad stå tomt for straks at publicere bekendtgørelsen
         starts_at: Valgfri. Såfremt din bekendtgørelse er knyttet til et bestemt tidsinterval
         text: Du kan bruge markup-formattering i indlæg. Vær opmærksom på den plads, som en bekendtgørelse vil fylde på brugerens skærm
+      appeal:
+        text: En advarsel kan kun appelleres én gang
       defaults:
-        autofollow: Personer, som har tilmeldt sig via invitationen, vil automatisk følge dig
+        autofollow: Personer tilmeldt via invitationen vil automatisk blive følgere
         avatar: PNG, GIF eller JPG. Maks. %{size}. Auto-nedskaleres til %{dimensions}px
         bot: Signalér til andre, at denne konto primært udfører automatiserede handlinger og muligvis ikke monitoreres
-        context: En eller flere kontekster, hvor filteret skal være gældende
+        context: En eller flere kontekster, hvor filteret skal anvendes
         current_password: Angiv af sikkerhedsårsager adgangskoden til den aktuelle konto
         current_username: For at bekræfte, angiv brugernavnet for den aktuelle konto
-        digest: Sendes kun efter en lang inaktivitetsperiode, og kun hvis du har modtaget personlige beskeder i dit fravær
-        discoverable: Tillad din konto at blive fundet af fremmede via anbefalinger og øvrige funktioner
-        discoverable_no_directory: Tillad din konto at blive fundet af fremmede via anbefalinger og øvrige funktioner
-        email: Du tilsendes en bekræftelsese-mail
-        fields: Du kan have op til 4 elementer vist som en tabel på din profil
+        digest: Sendes kun efter en lang inaktivitetsperiode, og kun hvis du har modtaget personlige beskeder under fraværet
+        discoverable: Tillad kontoen at blive fundet af fremmede via anbefalinger og øvrige funktioner
+        email: En bekræftelsese-mail fremsendes
+        fields: Profilen kan have op til 4 elementer vist som en tabel
         header: PNG, GIF eller JPG. Maks. %{size}. Auto-nedskaleres til %{dimensions}px
-        inbox_url: Kopiér URL'en fra forsiden af den videreformidler, du ønsker at bruge
-        irreversible: Filtrerede indlæg forsvinder helt, selv hvis filteret senere fjernes
-        locale: Brugerfladesprog, e-mails og push-notifikationer
+        inbox_url: Kopiér URL'en fra forsiden af den videreformidler, der skal anvendes
+        irreversible: Filtrerede indlæg forsvinder permanent, selv hvis filteret senere fjernes
+        locale: Sprog til brug for brugerflade, e-mails og push-notifikationer
         locked: Godkend manuelt følgeanmodninger for at styre, hvem der følger dig
         password: Brug mindst 8 tegn
-        phrase: Matches uanset majuskel-/minuskel-brug i teksten eller indholdsadvarsel på et indlæg
-        scopes: Hvilke API'er applikationen vil få adgang til. Vælges en højniveaudstrækning, vil granuleringsvalg være unødvendige.
-        setting_aggregate_reblogs: Vis ikke nye boosts for indlæg boostet for nylig (påvirker kun nyligt modtagne boosts)
-        setting_default_sensitive: Sensitive medier er som standard skjult og kan afsløres med et klik
-        setting_display_media_default: Skjul medier markeret som sensitive
+        phrase: Matches uanset uanset brug af store/små bogstaver i teksten eller indholdsadvarsel for et indlæg
+        scopes: De API'er, som applikationen vil kunne tilgå. Vælges en topniveaudstrækning, vil detailvalg være unødvendige.
+        setting_aggregate_reblogs: Vis ikke nye boosts for nyligt boostede indlæg (påvirker kun nyligt modtagne boosts)
+        setting_default_sensitive: Sensitive medier er som standard skjult og kan vises med et klik
+        setting_display_media_default: Skjul medier med sensitiv-markering
         setting_display_media_hide_all: Skjul altid medier
         setting_display_media_show_all: Vis altid medier
         setting_hide_network: Hvem du følger, og hvem som følger dig, skjules på din profil
-        setting_noindex: Påvirker din offentlige profil og statussider
-        setting_show_application: Applikation, hvormed du skrive indlæg, vil fremgå i den detaljerede visning af dine indlæg
+        setting_noindex: Påvirker din offentlige profil samt indlægssider
+        setting_show_application: Applikationen, hvormed der postes, vil fremgå af detailvisningen af dine indlæg
         setting_use_blurhash: Gradienter er baseret på de skjulte grafikelementers farver, men slører alle detaljer
-        setting_use_pending_items: Klik for at vise tidslinjeopdateringer i stedet auto-feedrulning
+        setting_use_pending_items: Skjul tidslinjeopdateringer bag et klik i stedet for brug af auto-feedrulning
         username: Dit brugernavn vil være unikt på %{domain}
-        whole_word: Når nøgleordet/-udtrykket er rent alfanumerisk, bruges det kun, såfremt det matcher hele ordet
+        whole_word: Ved rent alfanumeriske nøgleord/-sætning, forudsætter brugen matchning af hele ordet
       domain_allow:
-        domain: Dette domæne vil kunne hente data, og dermed behandle og gemme indgående data, fra denne server
+        domain: Dette domæne vil kunne hente data, som efterfølgende behandles og gemmes, fra denne server
       email_domain_block:
-        domain: Dette kan være domænenavnet i e-mailadressen eller MX-posten, den bruger. Begge tjekkes ved tilmelding.
-        with_dns_records: Et forsøg på at løse det givne domænes DNS-poster foretages og resultaterne blokeres ligeledes
+        domain: Dette kan være domænenavnet vist i den benyttede i e-mailadresse eller MX-post. Begge tjekkes under tilmelding.
+        with_dns_records: Et forsøg på at opløse det givne domænes DNS-poster foretages, og resultaterne blokeres ligeledes
       featured_tag:
-        name: 'Du vil formentlig ønske at bruge en af flg.:'
+        name: 'Et af flg. ønskes måske anvendt:'
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
       imports:
@@ -73,20 +74,20 @@ da:
       invite_request:
         text: Dette vil hjælpe os med at gennemgå din ansøgning
       ip_block:
-        comment: Valgfri. Husk, hvorfor du tilføjede denne regel.
-        expires_in: IP-adresser er en begrænset ressource, de deles undertiden og skifter ofte hænder. Af denne grund anbefales ubegrænsede IP-blokke ikke.
-        ip: Angiv en IPv4- eller IPv6-adresse. Du kan blokere hele intervaller vha. CIDR-syntaksen. Vær forsigtig med ikke at låse dig ude!
+        comment: Valgfri. Begrundelse for denne regel.
+        expires_in: IP-adresser er en begrænset ressource, de deles undertiden og skifter ofte hænder, hvorfor ubegrænsede IP-blokke ikke anbefales.
+        ip: Angiv en IPv4- eller IPv6-adresse. Hele intervaller kan blokeres vha. CIDR-syntaksen. Pas på med ikke selv at blive låst ude!
         severities:
           no_access: Blokér adgang til alle ressourcer
           sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
-        severity: Vælg, hvad der vil ske med anmodninger fra denne IP
+        severity: Afgør, hvordan forespørgsler fra denne IP behandles
       rule:
         text: Beskriv på en kort og enkel form en regel/krav for brugere på denne server
       sessions:
-        otp: 'Angiv tofaktorkoden generet af appen på din mobil eller brug en af dine genoprettelses koder:'
+        otp: 'Angiv tofaktorkoden generet af din mobil-app eller brug en af genoprettelseskoderne:'
         webauthn: Er det en USB-nøgle, så sørg for at isætte den og, om nødvendigt, åbne den manuelt.
       tag:
-        name: Du kan kun ændre bogstavtyperne for eksempelvis at gøre det mere læsbart
+        name: Kun bogstavtyper (store/små) kan ændres, eksempelvis for at gøre det mere læsbart
       user:
         chosen_languages: Når markeret, vil kun indlæg på de valgte sprog fremgå på offentlige tidslinjer
     labels:
@@ -95,29 +96,29 @@ da:
           name: Etiket
           value: Indhold
       account_alias:
-        acct: Kaldenavn på den gamle konto
+        acct: Brugernavn på den gamle konto
       account_migration:
-        acct: Kaldenavn på den nye konto
+        acct: Brugernavn på den nye konto
       account_warning_preset:
-        text: Tilpasset tekst
+        text: Tekstskabelon
         title: Titel
       admin_account_action:
-        include_statuses: Inkludér anmeldte indlæg i e-mailen
-        send_email_notification: Advisér brugeren pr. e-mail
+        include_statuses: Medtag anmeldte indlæg i e-mailen
+        send_email_notification: Underret brugeren pr. e-mail
         text: Tilpasset advarsel
         type: Handling
         types:
           disable: Frys
           none: Send en advarsel
-          sensitive: Sensitive
-          silence: Begrænsning
+          sensitive: Sensitiv
+          silence: Begræns
           suspend: Suspendér
-        warning_preset_id: Brug en forvalgsadvarsel
+        warning_preset_id: Brug en advarselsskabelon
       announcement:
         all_day: Heldagsbegivenhed
         ends_at: Slut på begivenhed
         scheduled_at: Planlæg offentliggørelse
-        starts_at: Start af begivenhed
+        starts_at: Start på begivenhed
         text: Bekendtgørelse
       appeal:
         text: Forklar, hvorfor denne beslutning bør omgøres
@@ -125,10 +126,10 @@ da:
         autofollow: Invitér til at følge din konto
         avatar: Profilbillede
         bot: Dette er en bot-konto
-        chosen_languages: Filtrér sprog
+        chosen_languages: Sprogfiltrering
         confirm_new_password: Bekræft ny adgangskode
         confirm_password: Bekræft adgangskode
-        context: Filtrér kontekster
+        context: Kontekstfiltrering
         current_password: Aktuel adgangskode
         data: Data
         discoverable: Foreslå konto til andre
@@ -153,12 +154,12 @@ da:
         setting_auto_play_gif: Autoafspil animerede GIF'er
         setting_boost_modal: Vis bekræftelsesdialog inden boosting
         setting_crop_images: Beskær billeder i ikke-ekspanderede indlæg til 16x9
-        setting_default_language: Sprog for opslag
-        setting_default_privacy: Fortrolighed for opslag
+        setting_default_language: Sprog for indlæg
+        setting_default_privacy: Fortrolighed for indlæg
         setting_default_sensitive: Markér altid medier som sensitive
         setting_delete_modal: Vis bekræftelsesdialog før et indlæg slettes
         setting_disable_swiping: Deaktivér strygebevægelser
-        setting_display_media: Medivisning
+        setting_display_media: Medievisning
         setting_display_media_default: Standard
         setting_display_media_hide_all: Skjul alle
         setting_display_media_show_all: Vis alle
@@ -166,7 +167,7 @@ da:
         setting_hide_network: Skjul din sociale graf
         setting_noindex: Fravælg søgemaskineindeksering
         setting_reduce_motion: Reducér animationsbevægelse
-        setting_show_application: Viser applikation, der bruges til at sende indlæg
+        setting_show_application: Vis applikationen brugt til at poste indlæg
         setting_system_font_ui: Brug systemets standardskrifttype
         setting_theme: Webstedstema
         setting_trends: Vis dagens tendenser
@@ -185,8 +186,8 @@ da:
         name: Hashtag
       interactions:
         must_be_follower: Blokér notifikationer fra ikke-følgere
-        must_be_following: Blokér notifikationer fra folk du ikke følger
-        must_be_following_dm: Bloker direkte beskeder fra folk du ikke følger
+        must_be_following: Blokér notifikationer fra folk, som ikke følges
+        must_be_following_dm: Bloker direkte beskeder fra folk, som ikke følges
       invite:
         comment: Kommentar
       invite_request:
@@ -201,18 +202,18 @@ da:
       notification_emails:
         appeal: En moderatorafgørelse er appelleret
         digest: Send resumé e-mails
-        favourite: Nogen gav dig favoritstatus
+        favourite: Nogen favoritmarkerede dit indlæg
         follow: Nogen begyndte at følge dig
         follow_request: Nogen anmodede om at følge dig
         mention: Nogen nævnte dig
         pending_account: Ny konto kræver gennemgang
-        reblog: Nogen boostede din status
-        report: Ny anmeldelse er indsendt
+        reblog: Nogen boostede dit indlæg
+        report: Ny anmeldelse indsendt
         trending_tag: Ny tendens kræver revidering
       rule:
         text: Regel
       tag:
-        listable: Tillad visning af dette hashtag i søgninger og på profilmappen
+        listable: Tillad visning af dette hashtag i søgninger og forslag
         name: Hashtag
         trendable: Tillad visning af dette hashtag under trends
         usable: Tillad indlæg at benytte dette hashtag
@@ -220,7 +221,7 @@ da:
     recommended: Anbefalet
     required:
       mark: "*"
-      text: krævet
+      text: obligatorisk
     title:
       sessions:
         webauthn: Brug en af dine sikkerhedskoder til indlogning

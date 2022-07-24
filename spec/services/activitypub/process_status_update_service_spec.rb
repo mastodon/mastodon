@@ -46,6 +46,53 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       expect(status.reload.spoiler_text).to eq 'Show more'
     end
 
+    context 'with no changes at all' do
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Note',
+          content: 'Hello world',
+        }
+      end
+
+      before do
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.edited?).to be false
+      end
+    end
+
+    context 'with no changes and originally with no ordered_media_attachment_ids' do
+      let(:payload) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'foo',
+          type: 'Note',
+          content: 'Hello world',
+        }
+      end
+
+      before do
+        status.update(ordered_media_attachment_ids: nil)
+        subject.call(status, json)
+      end
+
+      it 'does not create any edits' do
+        expect(status.reload.edits).to be_empty
+      end
+
+      it 'does not mark status as edited' do
+        expect(status.edited?).to be false
+      end
+    end
+
     context 'originally without tags' do
       before do
         subject.call(status, json)
@@ -124,7 +171,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'updates media attachments' do
-        media_attachment = status.media_attachments.reload.first
+        media_attachment = status.reload.ordered_media_attachments.first
 
         expect(media_attachment).to_not be_nil
         expect(media_attachment.remote_url).to eq 'https://example.com/foo.png'
@@ -135,7 +182,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'records media change in edit' do
-        expect(status.edits.reload.last.media_attachments_changed).to be true
+        expect(status.edits.reload.last.ordered_media_attachment_ids).to_not be_empty
       end
     end
 
@@ -173,11 +220,11 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'updates media attachments' do
-        expect(status.media_attachments.reload.map(&:remote_url)).to eq %w(https://example.com/foo.png)
+        expect(status.ordered_media_attachments.map(&:remote_url)).to eq %w(https://example.com/foo.png)
       end
 
       it 'records media change in edit' do
-        expect(status.edits.reload.last.media_attachments_changed).to be true
+        expect(status.edits.reload.last.ordered_media_attachment_ids).to_not be_empty
       end
     end
 
@@ -193,7 +240,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'records media change in edit' do
-        expect(status.edits.reload.last.media_attachments_changed).to be true
+        expect(status.edits.reload.last.poll_options).to be_nil
       end
     end
 
@@ -226,7 +273,7 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
       end
 
       it 'records media change in edit' do
-        expect(status.edits.reload.last.media_attachments_changed).to be true
+        expect(status.edits.reload.last.poll_options).to eq %w(Foo Bar Baz)
       end
     end
 
@@ -238,11 +285,6 @@ RSpec.describe ActivityPub::ProcessStatusUpdateService, type: :service do
     it 'sets edited timestamp' do
       subject.call(status, json)
       expect(status.reload.edited_at.to_s).to eq '2021-09-08 22:39:25 UTC'
-    end
-
-    it 'records that no media has been changed in edit' do
-      subject.call(status, json)
-      expect(status.edits.reload.last.media_attachments_changed).to be false
     end
   end
 end

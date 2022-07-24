@@ -37,8 +37,7 @@ ko:
         current_password: 보안을 위해 현재 계정의 암호를 입력해주세요
         current_username: 확인을 위해, 현재 계정의 사용자명을 입력해주세요
         digest: 오랫동안 활동하지 않았을 때 받은 멘션들에 대한 요약 받기
-        discoverable: 당신의 계정을 추천과 기타 기능들에 의해 다른 사람들이 발견할 수 있게 허용합니다
-        discoverable_no_directory: 당신의 계정을 추천과 기타 기능들에 의해 다른 사람들이 발견할 수 있도록 허용합니다
+        discoverable: 추천, 트렌드 및 기타 기능을 통해 낯선 사람이 귀하의 계정을 찾을 수 있도록 허용합니다
         email: 당신은 확인 메일을 받게 됩니다
         fields: 당신의 프로파일에 최대 4개까지 표 형식으로 나타낼 수 있습니다
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
@@ -64,6 +63,7 @@ ko:
       domain_allow:
         domain: 이 도메인은 이 서버에서 데이터를 가져갈 수 있고 이 도메인에서 보내진 데이터는 처리되고 저장 됩니다
       email_domain_block:
+        domain: 이메일에 표시되는 도메인 네임이거나 그것이 사용하는 MX 레코드일 수 있습니다. 가입시에 검증됩니다.
         with_dns_records: 입력한 도메인의 DNS를 조회를 시도하여 나온 값도 차단됩니다
       featured_tag:
         name: '이것들을 사용하면 좋을 것 같습니다:'

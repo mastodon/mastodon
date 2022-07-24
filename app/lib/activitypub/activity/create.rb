@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
+  include FormattingHelper
+
   def perform
     dereference_object!
 
@@ -367,7 +369,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def converted_text
-    Formatter.instance.linkify([@status_parser.title.presence, @status_parser.spoiler_text.presence, @status_parser.url || @status_parser.uri].compact.join("\n\n"))
+    linkify([@status_parser.title.presence, @status_parser.spoiler_text.presence, @status_parser.url || @status_parser.uri].compact.join("\n\n"))
   end
 
   def unsupported_media_type?(mime_type)

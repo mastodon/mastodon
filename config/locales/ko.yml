@@ -16,6 +16,7 @@ ko:
     contact: 연락처
     contact_missing: 미설정
     contact_unavailable: 없음
+    continue_to_web: 웹앱에서 계속하기
     discover_users: 유저 발견하기
     documentation: 문서
     federation_hint_html: "%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다."
@@ -25,6 +26,8 @@ ko:
       이 계정은 가상의 actor로서 개인 유저가 아닌 서버 자체를 나타냅니다.
       이것은 페더레이션을 목적으로 사용 되며 인스턴스 전체를 차단하려 하지 않는 이상 차단하지 않아야 합니다, 그 경우에는 도메인 차단을 사용하세요.
     learn_more: 자세히
+    logged_in_as_html: 현재 %{username}으로 로그인 했습니다.
+    logout_before_registering: 이미 로그인 했습니다.
     privacy_policy: 개인정보 정책
     rules: 서버 규칙
     rules_html: '아래의 글은 이 마스토돈 서버에 계정이 있다면 따라야 할 규칙의 요약입니다:'
@@ -66,7 +69,6 @@ ko:
     media: 미디어
     moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
     network_hidden: 이 정보는 사용할 수 없습니다
-    never_active: 없음
     nothing_here: 아무 것도 없습니다!
     people_followed_by: "%{name} 님이 팔로우 중인 계정"
     people_who_follow: "%{name} 님을 팔로우 중인 계정"
@@ -160,9 +162,7 @@ ko:
       perform_full_suspension: 정지시키기
       previous_strikes: 이전의 처벌들
       previous_strikes_description_html:
-        one: 이 계정은 <strong>한<strong> 번의 처벌이 있었습니다.
         other: 이 계정은 <strong>%{count}</strong> 번의 처벌이 있었습니다.
-        zero: 이 계정은 처벌 기록이 <strong>없습니다</strong>.
       promote: 승급
       protocol: 프로토콜
       public: 공개
@@ -367,7 +367,7 @@ ko:
       enable: 활성화
       enabled: 활성됨
       enabled_msg: 성공적으로 활성화하였습니다
-      image_hint: 50KB 이하의 PNG
+      image_hint: "%{size} 이하의 PNG 또는 GIF"
       list: 목록에 추가
       listed: 목록에 실림
       new:
@@ -442,66 +442,82 @@ ko:
       reject_media_hint: 로컬에 저장된 미디어 파일을 삭제하고, 이후로도 다운로드를 거부합니다. 정지와는 관계 없습니다
       reject_reports: 신고 거부
       reject_reports_hint: 이 도메인으로부터의 모든 신고를 무시합니다. 정지와는 무관합니다
-      rejecting_media: 미디어 거부
-      rejecting_reports: 신고 거부
-      severity:
-        silence: 침묵
-        suspend: 정지
-      show:
-        affected_accounts:
-          one: 데이터베이스 내부의 1개의 계정에 영향을 끼칩니다
-          other: 데이터베이스 내부의 %{count} 개의 계정에 영향을 끼칩니다
-          zero: 데이터베이스 내부의 영향을 끼치는 계정이 없습니다
-        retroactive:
-          silence: 이 도메인에 존재하는 모든 계정의 침묵를 해제
-          suspend: 이 도메인에 존재하는 모든 계정의 계정 정지를 해제
-        title: "%{domain}의 도메인 차단을 해제"
-        undo: 실행 취소
       undo: 도메인 차단 취소
       view: 도메인 차단 보기
     email_domain_blocks:
       add_new: 새로 추가
+      attempts_over_week:
+        other: 지난 주 동안 %{count} 건의 가입 시도가 있었습니다
       created_msg: 이메일 도메인 차단 규칙을 생성했습니다
       delete: 삭제
+      dns:
+        types:
+          mx: MX 레코드
       domain: 도메인
       new:
         create: 차단 규칙 생성
+        resolve: 도메인 해결
         title: 새 이메일 도메인 차단
+      no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
+      resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
+      resolved_through_html: "%{domain}을 통해 해결됨"
       title: Email 도메인 차단
     follow_recommendations:
       description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
-      language: 할당할 언어
+      language: 언어 필터
       status: 상태
       suppress: 팔로우 추천 숨기기
       suppressed: 숨겨짐
       title: 팔로우 추천
       unsuppress: 팔로우 추천 복원
     instances:
+      availability:
+        description_html:
+          other: 도메인에 대한 전달이 성공 없이 <strong>%{count}</strong>일 실패한다면, 이후의 전달 시도는 해당 도메인<em>에서</em> 전달이 오기 전까지는 만들어지지 않습니다.
+        failure_threshold_reached: "%{date}에 실패 임계점에 도달했습니다."
+        failures_recorded:
+          other: 실패한 전달 시도 총 %{count}일.
+        no_failures_recorded: 실패 기록이 없습니다.
+        title: 가용성
+        warning: 이 서버에 대한 마지막 연결 시도가 성공적이지 않았습니다
       back_to_all: 전체
       back_to_limited: 제한됨
       back_to_warning: 경고
       by_domain: 도메인
       confirm_purge: 정말로 이 도메인의 데이터를 영구적으로 삭제하길 원하십니까?
+      content_policies:
+        comment: 내부 참고사항
+        description_html: 이 도메인과 하위 도메인의 모든 계정에 적용될 콘텐츠 정책을 정의할 수 있습니다.
+        policies:
+          reject_media: 미디어 거부
+          reject_reports: 신고 거부
+          silence: 제한
+          suspend: 정지
+        policy: 정책
+        reason: 공개적인 사유
+        title: 콘텐츠 정책
+      dashboard:
+        instance_accounts_dimension: 제일 많이 팔로우된 계정
+        instance_accounts_measure: 보관된 계정
+        instance_followers_measure: 저쪽을 팔로우 하는 우리의 팔로워 수
+        instance_follows_measure: 우리를 팔로우 하는 저쪽의 팔로워 수
+        instance_languages_dimension: 상위 언어
+        instance_media_attachments_measure: 보관된 미디어 첨부파일
+        instance_reports_measure: 이들에 대한 신고
+        instance_statuses_measure: 보관된 게시물
       delivery:
         all: 전체
         clear: 전달 에러 초기화
         restart: 전달 재시작
         stop: 전달 중지
-        title: 전달
         unavailable: 사용불가
-        unavailable_message: 전달 불가
-        warning: 경고
-        warning_message:
-          other: 전달 실패 %{count}일
       delivery_available: 전송 가능
       delivery_error_days: 전달 에러가 난 날짜들
       delivery_error_hint: 만약 %{count}일동안 전달이 불가능하다면, 자동으로 전달불가로 표시됩니다.
       destroyed_msg: "%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다."
       empty: 도메인이 하나도 없습니다.
       known_accounts:
-        one: "%{count} 개의 알려진 계정"
         other: "%{count} 개의 알려진 계정"
-        zero: 알려진 계정이 없습니다
       moderation:
         all: 모두
         limited: 제한됨
@@ -509,12 +525,14 @@ ko:
       private_comment: 비공개 주석
       public_comment: 공개 주석
       purge: 제거
+      purge_description_html: 이 도메인이 영구적으로 오프라인 상태라고 생각되면 스토리지에서 이 도메인의 모든 계정 레코드와 관련 데이터를 삭제할 수 있습니다. 이 작업은 시간이 좀 걸릴 수 있습니다.
       title: 연합
       total_blocked_by_us: 우리에게 차단 됨
       total_followed_by_them: 우리를 팔로우
       total_followed_by_us: 우리가 한 팔로우
       total_reported: 이들에 대한 신고
       total_storage: 미디어 첨부
+      totals_time_period_hint_html: 아래에 표시된 총계에는 모든 시간에 대한 데이터가 포함됩니다.
     invites:
       deactivate_all: 전부 비활성화
       filter:
@@ -568,10 +586,12 @@ ko:
       action_taken_by: 신고 처리자
       actions:
         delete_description_html: 신고된 게시물은 삭제될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
+        mark_as_sensitive_description_html: 신고된 게시물의 미디어는 민감함으로 표시될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
         other_description_html: 계정 동작을 제어하고 신고된 계정과의 의사소통을 사용자 지정하기 위한 추가 옵션을 봅니다.
         resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
         silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
         suspend_description_html: 프로필과 모든 컨텐츠가 최종적으로 삭제될 때까지 접근 불가상태가 됩니다. 이 계정과의 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다.
+      actions_description_html: 이 보고서를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면 <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 이메일 알림이 해당 계정으로 전송됩니다.
       add_to_report: 신고에 더 추가하기
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
@@ -587,6 +607,7 @@ ko:
       forwarded: 전달됨
       forwarded_to: "%{domain}에게 전달됨"
       mark_as_resolved: 해결 완료 처리
+      mark_as_sensitive: 민감함으로 설정
       mark_as_unresolved: 미해결로 표시
       no_one_assigned: 아무도 없음
       notes:
@@ -597,12 +618,15 @@ ko:
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
         title: 노트
       notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
+      quick_actions_description_html: '보고된 콘텐츠를 보려면 빠른 조치를 취하거나 아래로 스크롤하세요:'
+      remote_user_placeholder: "%{instance}의 리모트 사용자"
       reopen: 리포트 다시 열기
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
       reported_by: 신고자
       resolved: 해결됨
       resolved_msg: 리포트가 성공적으로 해결되었습니다!
+      skip_to_actions: 작업으로 건너뛰기
       status: 상태
       statuses: 신고된 컨텐츠
       statuses_description_html: 문제가 되는 컨텐츠는 신고된 계정에게 인용되어 전달됩니다
@@ -727,6 +751,7 @@ ko:
       actions:
         delete_statuses: "%{name} 님이 %{target}의 게시물을 지웠습니다"
         disable: "%{name} 님이 %{target}의 계정을 동결시켰습니다"
+        mark_statuses_as_sensitive: "%{name} 님이 %{target}의 게시물을 민감함으로 표시했습니다"
         none: "%{name} 님이 %{target}에게 경고를 보냈습니다"
         sensitive: "%{name} 님이 %{target}의 계정을 민감함으로 표시했습니다"
         silence: "%{name} 님이 %{target}의 계정을 제한시켰습니다"
@@ -736,6 +761,11 @@ ko:
     system_checks:
       database_schema_check:
         message_html: 데이터베이스 마이그레이션이 대기중입니다. 응용프로그램이 예상한대로 동작할 수 있도록 마이그레이션을 실행해 주세요
+      elasticsearch_running_check:
+        message_html: Elasticsearch에 연결할 수 없습니다. 실행중인지 확인하거나, 전문검색을 비활성화하세요
+      elasticsearch_version_check:
+        message_html: '호환되지 않는 Elasticsearch 버전: %{value}'
+        version_comparison: Elasticsearch %{required_version}버전이 필요하지만 %{running_version}버전이 실행 중입니다.
       rules_check:
         action: 서버 규칙 관리
         message_html: 아직 서버규칙을 정하지 않았습니다.
@@ -752,20 +782,30 @@ ko:
       links:
         allow: 링크 허용하기
         allow_provider: 출처 허용하기
+        description_html: 현재 서버에서 게시물을 볼 수 있는 계정에서 많이 공유되고 있는 링크들입니다. 사용자가 세상 돌아가는 상황을 파악하는 데 도움이 됩니다. 출처를 승인할 때까지 링크는 공개적으로 게시되지 않습니다. 각각의 링크를 개별적으로 허용하거나 거부할 수도 있습니다.
         disallow: 링크 거부하기
         disallow_provider: 출처 거부하기
         shared_by_over_week:
-          one: 지난 주 동안 한 명의 사람이 공유했습니다
           other: 지난 주 동안 %{count} 명의 사람들이 공유했습니다
-          zero: 지난 주 동안 공유한 사람이 없습니다
-        title: 지금 유행 중인 링크
+        title: 유행하는 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
       pending_review: 심사 대기
       preview_card_providers:
         allowed: 이 출처의 링크는 유행 목록에 실릴 수 있습니다
+        description_html: 당신의 서버에서 많은 링크가 공유되고 있는 도메인들입니다. 링크의 도메인이 승인되기 전까지는 링크들은 공개적으로 트렌드에 게시되지 않습니다. 당신의 승인(또는 거절)은 서브도메인까지 확장됩니다.
         rejected: 이 출처의 링크는 유행 목록에 실릴 수 없습니다
         title: 출처
       rejected: 거부됨
+      statuses:
+        allow: 게시물 허용
+        allow_account: 작성자 허용
+        description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 즐겨찾기가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
+        disallow: 게시물 불허
+        disallow_account: 작성자 불허
+        not_discoverable: 작성자가 발견되기를 원치 않습니다
+        shared_by:
+          other: "%{friendly_count} 번 공유되고 즐겨찾기 되었습니다"
+        title: 유행하는 게시물
       tags:
         current_score: 현재 %{score}점
         dashboard:
@@ -774,6 +814,7 @@ ko:
           tag_servers_dimension: 상위 서버
           tag_servers_measure: 다른 서버들
           tag_uses_measure: 총 사용
+        description_html: 현재 서버에서 볼 수 있는 게시물에서 많이 공유되고 있는 해시태그들입니다. 현재 사람들이 무슨 이야기를 하고 있는지 사용자들이 파악할 수 있도록 도움이 됩니다. 승인하지 않는 한 해시태그는 공개적으로 게시되지 않습니다.
         listable: 추천될 수 있습니다
         not_listable: 추천될 수 없습니다
         not_trendable: 유행 목록에 나타나지 않습니다
@@ -785,9 +826,7 @@ ko:
         usable: 사용 가능
         usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
         used_by_over_week:
-          one: 지난 주 동안 한 명의 사람이 사용했습니다
           other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
-          zero: 지난 주 동안 사용한 사람이 없습니다
       title: 유행
     warning_presets:
       add_new: 새로 추가
@@ -798,7 +837,16 @@ ko:
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: 게시물을 삭제하는 것
+        disable: 계정을 동결시키는 것
+        mark_statuses_as_sensitive: 게시물을 민감함으로 표시하는 것
         none: 경고
+        sensitive: 계정을 민감함으로 표시하는 것
+        silence: 계정을 제한하는 것
+        suspend: 계정을 정지하는 것
+      body: "%{target} 님이 %{action_taken_by} 님에 의해 %{date}에 결정된 중재 결정에 대한 이의를 제기했습니다, 결정된 사항은 %{type}이었습니다. 작성내용은 다음과 같습니다:"
+      next_steps: 중재 결정사항을 되돌리기 위해서 상소를 승인하거나, 무시할 수 있습니다.
+      subject: "%{username} 님이 %{instance}에서 발생한 중재 결정에 대해 소명을 제출했습니다"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
       subject: "%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다"
@@ -806,6 +854,21 @@ ko:
       body: "%{reporter} 가 %{target} 를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
       subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
+    new_trends:
+      body: '아래에 있는 항목들은 공개적으로 보여지기 전에 검토를 거쳐야 합니다:'
+      new_trending_links:
+        no_approved_links: 현재 승인된 유행 중인 링크가 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 링크를 앞지를 수 있으며, 이것은 현재 "%{lowest_link_title}"이고 %{lowest_link_score}점을 기록하고 있습니다.'
+        title: 유행하는 링크
+      new_trending_statuses:
+        no_approved_statuses: 현재 승인된 유행 중인 게시물이 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 게시물을 앞지를 수 있으며, 이것은 현재 %{lowest_status_url}이고 %{lowest_status_score}점을 기록하고 있습니다.'
+        title: 유행하는 게시물
+      new_trending_tags:
+        no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
+        requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 해시태그를 앞지를 수 있으며, 이것은 현재 #%{lowest_tag_name}이고 %{lowest_tag_score}점을 기록하고 있습니다.'
+        title: 유행하는 해시태그
+      subject: 새 트렌드가 %{instance}에서 심사 대기 중입니다
   aliases:
     add_new: 별칭 만들기
     created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
@@ -879,8 +942,10 @@ ko:
     status:
       account_status: 계정 상태
       confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
+      functional: 계정이 완벽히 작동합니다.
       pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
+      view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
     trouble_logging_in: 로그인 하는데 문제가 있나요?
     use_security_key: 보안 키 사용
@@ -948,22 +1013,30 @@ ko:
     strikes:
       action_taken: 내려진 징계
       appeal: 이의제기
+      appeal_approved: 이 중재기록은 소명이 받아들여졌으며 더이상 유효하지 않습니다
+      appeal_rejected: 소명이 기각되었습니다
       appeal_submitted_at: 이의제기 접수됨
       appealed_msg: 당신의 이의제기가 접수되었습니다. 만약 승인된다면, 알림을 받게 될 것입니다.
       appeals:
         submit: 이의 제출
       associated_report: 관련된 신고
       created_at: 날짜
+      description_html: 이 결정사항들은 당신에 계정에 대해 행해졌고 %{instance}의 스태프에 의해 경고가 발송되었습니다.
       recipient: 수신자
       status: '게시물 #%{id}'
       status_removed: 게시물이 이미 시스템에서 지워졌습니다
+      title: "%{action} (%{date}에)"
       title_actions:
         delete_statuses: 게시물 삭제
         disable: 계정 동결
+        mark_statuses_as_sensitive: 게시물을 민감함으로 표시
         none: 경고
         sensitive: 계정을 민감함으로 표시
         silence: 계정의 제한
         suspend: 계정 정지
+      your_appeal_approved: 당신의 소명이 받아들여졌습니다
+      your_appeal_pending: 소명을 제출했습니다
+      your_appeal_rejected: 당신의 소명이 기각되었습니다
   domain_validator:
     invalid_domain: 올바른 도메인 네임이 아닙니다
   errors:
@@ -1257,6 +1330,9 @@ ko:
     reply:
       proceed: 답장 진행
       prompt: '이 게시물에 답장을 하려 합니다:'
+  reports:
+    errors:
+      invalid_rules: 올바른 규칙을 포함하지 않습니다
   scheduled_statuses:
     over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 게시물 제한을 초과합니다
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
@@ -1323,6 +1399,7 @@ ko:
     profile: 프로필
     relationships: 팔로잉과 팔로워
     statuses_cleanup: 게시물 자동 삭제
+    strikes: 중재 기록
     two_factor_authentication: 2단계 인증
     webauthn_authentication: 보안 키
   statuses:
@@ -1339,7 +1416,7 @@ ko:
     default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
-    edited_at: "%{date}에 편집됨"
+    edited_at_html: "%{date}에 편집됨"
     errors:
       in_reply_not_found: 답장하려는 게시물이 존재하지 않습니다.
     open_in_web: Web으로 열기
@@ -1396,6 +1473,7 @@ ko:
       '2629746': 1 개월
       '31556952': 1 년
       '5259492': 2 개월
+      '604800': 1주일
       '63113904': 2 년
       '7889238': 3 개월
     min_age_label: 기한
@@ -1519,7 +1597,12 @@ ko:
   user_mailer:
     appeal_approved:
       action: 내 계정으로 가기
+      explanation: "%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했으며 승낙되었습니다. 당신의 계정은 정상적인 상태로 돌아왔습니다."
+      subject: "%{date}에 작성한 소명이 승인되었습니다"
+      title: 소명이 받아들여짐
     appeal_rejected:
+      explanation: "%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했지만 거절되었습니다."
+      subject: "%{date}에 작성한 소명이 거절되었습니다"
       title: 이의제기가 거절되었습니다
     backup_ready:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
@@ -1538,26 +1621,28 @@ ko:
         spam: 스팸
         violation: 컨텐츠가 다음의 커뮤니티 규정을 위반합니다
       explanation:
-        delete_statuses: 당신의 게시물 중 몇 개가 커뮤니티 규정을 위반하는 것으로 확인되었고 %{instance}의 중재자에 의해 삭제되었습니다. 이후의 규정 위반은 당신의 계정에 대해 더 강력한 제재가 이루어 질 수 있습니다.
+        delete_statuses: 귀하의 게시물 중 일부가 하나 이상의 커뮤니티 가이드라인을 위반한 것으로 확인되어 %{instance} 모더레이터에 의해 삭제되었습니다.
         disable: 당신은 더이상 당신의 계정을 사용할 수 없습니다, 하지만 프로필과 다른 데이터들은 여전히 그대로 남아있습니다. 당신의 데이터에 대한 백업을 요청하거나, 계정 설정을 변경 또는 계정을 삭제할 수 있습니다.
+        mark_statuses_as_sensitive: 당신의 몇몇 게시물들은 %{instance}의 중재자에 의해 민감함으로 설정되었습니다. 이것은 사람들이 미리보기를 보기 전에 미디어를 한번 눌러야 함을 의미합니다. 당신은 스스로도 자신의 게시물을 작성할 때 미디어를 민감함으로 설정할 수 있습니다.
         sensitive: 지금부터는, 당신이 업로드한 미디어 파일들은 민감함 표시가 뜨게 되고 클릭해야만 볼 수 있다는 경고문 뒤에 가려지게 됩니다.
         silence: 당신은 여전히 당신의 계정을 사용할 수 있지만 당신을 팔로우 하고 있는 사람들만 당신의 게시물을 볼 수 있으며, 여러가지 탐색 기능에서 제외됩니다. 하지만, 여전히 다른 사람들은 수동으로 당신을 팔로우 할 수 있습니다.
         suspend: 당신은 더이상 당신의 계정을 사용할 수 없으며, 프로필과 데이터는 접근 불가능하게 됩니다. 데이터가 완전히 삭제되기 전인 30일동안은 여전히 백업을 요청하기 위해 로그인 할 수 있습니다, 하지만 계정 정지를 회피하는 것을 방지하기 위하여 몇 가지 정보는 유지됩니다.
-      get_in_touch: 이것이 잘못된 조치라고 생각된다면, 이 메일에 답장하여 %{instance}의 스태프들에게 연락할 수 있습니다.
       reason: '사유:'
-      statuses: '위반사항이 발견된 게시물:'
+      statuses: '인용된 게시물:'
       subject:
         delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다
         disable: 당신의 계정 %{acct}가 동결 되었습니다
+        mark_statuses_as_sensitive: "%{acct}로 작성한 당신의 게시물은 민감한 것으로 표시되었습니다"
         none: "%{acct}에게의 경고"
-        sensitive: 지금부터 당신의 계정 %{acct}의 미디어 파일들은 민감함으로 표시됩니다
+        sensitive: "%{acct}로 작성되는 당신의 게시물은 이제부터 민감한 것으로 표시됩니다"
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
         delete_statuses: 게시물 삭제됨
         disable: 계정 동결 됨
+        mark_statuses_as_sensitive: 게시물이 민감함으로 표시됨
         none: 경고
-        sensitive: 미디어 숨겨짐
+        sensitive: 계정이 민감함으로 표시됨
         silence: 계정 제한 됨
         suspend: 계정 정지 됨
     welcome:

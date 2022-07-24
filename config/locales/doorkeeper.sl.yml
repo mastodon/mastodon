@@ -60,8 +60,8 @@ sl:
       error:
         title: Prišlo je do napake
       new:
-        able_to: To bo lahko
-        prompt: Program %{client_name} zahteva dostop do vašega računa
+        prompt_html: "%{client_name} želi dovoljenje za dostop do vašega računa. Gre za zunanji program. <strong>Če mu ne zaupate, mu ne dodelite teh pravic.</strong>"
+        review_permissions: Preglej pravice
         title: Potrebna je pooblastitev
       show:
         title: Kopirajte to pooblastilno kodo in jo prilepite v program.
@@ -71,10 +71,12 @@ sl:
       confirmations:
         revoke: Ali ste prepričani?
       index:
-        application: Program
-        created_at: Odobreno
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Obsegi
+        authorized_at: Overjen(a) %{date}
+        description_html: To so programi, ki lahko dostopajo do vašega računa prek vmesnika API. Če so na seznamu programi, ki jih ne prepoznate ali pa se čudno vedejo, lahko prekličete njihovo pravico do dostopa.
+        last_used_at: Zadnjič uporabljeno %{date}
+        never_used: Nikoli uporabljeno
+        scopes: Dovoljenja
+        superapp: Interno
         title: Vaši odobreni programi
     errors:
       messages:
@@ -110,6 +112,33 @@ sl:
       authorized_applications:
         destroy:
           notice: Program je preklican.
+    grouped_scopes:
+      access:
+        read: Dostop samo za branje
+        read/write: Dostop za branje in pisanje
+        write: Dostop samo za pisanje
+      title:
+        accounts: Računi
+        admin/accounts: Upravljanje računov
+        admin/all: Vse skrbniške funkcije
+        admin/reports: Upravljanje poročil
+        all: Vse
+        blocks: Blokira
+        bookmarks: Zaznamki
+        conversations: Pogovori
+        crypto: Šifriranje od konca do konca
+        favourites: Priljubljeni
+        filters: Filtri
+        follow: Razmerja
+        follows: Sledi
+        lists: Seznami
+        media: Predstavnostne priloge
+        mutes: Utišani
+        notifications: Obvestila
+        push: Potisna obvestila
+        reports: Poročila
+        search: Iskanje
+        statuses: Objave
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ sl:
       admin:write: spremeni vse podatke na strežniku
       admin:write:accounts: izvedi moderirana dejanja na računih
       admin:write:reports: izvedi moderirana dejanja na prijavah
+      crypto: Uporabi šifriranje od konca do konca
       follow: spremeni razmerja med računi
       push: prejmi potisna obvestila
       read: preberi vse podatke svojega računa
@@ -143,6 +173,7 @@ sl:
       write:accounts: spremenite svoj profil
       write:blocks: blokirajte račune in domene
       write:bookmarks: objave zaznamkov
+      write:conversations: utišaj in izbriši pogovore
       write:favourites: priljubljena stanja
       write:filters: ustvari filtre
       write:follows: sledi osebam

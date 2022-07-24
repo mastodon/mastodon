@@ -26,7 +26,7 @@
         %p= t "user_mailer.warning.explanation.#{@strike.action}", instance: Rails.configuration.x.local_domain
 
       - unless @strike.text.blank?
-        = Formatter.instance.linkify(@strike.text)
+        = linkify(@strike.text)
 
       - if @strike.report && !@strike.report.other?
         %p
@@ -53,7 +53,7 @@
                   = link_to short_account_status_url(@strike.target_account, status_id), class: 'emojify' do
                     = one_line_preview(status)
 
-                    - status.media_attachments.each do |media_attachment|
+                    - status.ordered_media_attachments.each do |media_attachment|
                       %abbr{ title: media_attachment.description }
                         = fa_icon 'link'
                         = media_attachment.file_file_name

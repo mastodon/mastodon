@@ -22,6 +22,16 @@ class Admin::AccountAction
 
   attr_reader :warning, :send_email_notification, :include_statuses
 
+  alias send_email_notification? send_email_notification
+  alias include_statuses? include_statuses
+
+  def initialize(attributes = {})
+    @send_email_notification = true
+    @include_statuses        = true
+
+    super
+  end
+
   def send_email_notification=(value)
     @send_email_notification = ActiveModel::Type::Boolean.new.cast(value)
   end
@@ -141,11 +151,11 @@ class Admin::AccountAction
   end
 
   def warnable?
-    send_email_notification && target_account.local?
+    send_email_notification? && target_account.local?
   end
 
   def status_ids
-    report.status_ids if with_report? && include_statuses
+    report.status_ids if with_report? && include_statuses?
   end
 
   def reports

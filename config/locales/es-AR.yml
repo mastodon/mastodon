@@ -16,6 +16,7 @@ es-AR:
     contact: Contacto
     contact_missing: No establecido
     contact_unavailable: No disponible
+    continue_to_web: Continuar con la aplicación web
     discover_users: Descubrí usuarios
     documentation: Documentación
     federation_hint_html: Con una cuenta en %{instance} vas a poder seguir a cuentas de cualquier servidor de Mastodon y más allá.
@@ -25,6 +26,8 @@ es-AR:
       Esta cuenta es un actor virtual usado para representar al propio servidor y no a ningún usuario individual.
       Se usa para fines federativos y no debe ser bloqueado a menos que quieras bloquear toda la instancia, en cuyo caso deberías usar un bloqueo de dominio.
     learn_more: Aprendé más
+    logged_in_as_html: Actualmente iniciaste sesión como %{username}.
+    logout_before_registering: Ya iniciaste sesión.
     privacy_policy: Política de privacidad
     rules: Reglas del servidor
     rules_html: 'Abajo hay un resumen de las reglas que tenés que seguir si querés tener una cuenta en este servidor de Mastodon:'
@@ -69,7 +72,6 @@ es-AR:
     media: Medios
     moved_html: "%{name} se mudó a %{new_profile_link}:"
     network_hidden: Esta información no está disponible
-    never_active: Nunca
     nothing_here: "¡No hay nada acá!"
     people_followed_by: "%{name} sigue a estas personas"
     people_who_follow: Estas personas siguen a %{name}
@@ -166,7 +168,6 @@ es-AR:
       previous_strikes_description_html:
         one: Esta cuenta tiene <strong>un</strong> incumplimiento.
         other: Esta cuenta tiene <strong>%{count}</strong> incumplimientos.
-        zero: Esta cuenta está <strong>en buen estado</strong>.
       promote: Promover
       protocol: Protocolo
       public: Pública
@@ -371,7 +372,7 @@ es-AR:
       enable: Habilitar
       enabled: Habilitado
       enabled_msg: Se habilitó ese emoji exitosamente
-      image_hint: PNG de hasta 50KB
+      image_hint: PNG o GIF, hasta %{size}
       list: Listar
       listed: Listados
       new:
@@ -448,21 +449,6 @@ es-AR:
       reject_media_hint: Quita los archivos de medios almacenados e impide la descarga en el futuro. Irrelevante para suspensiones
       reject_reports: Rechazar denuncias
       reject_reports_hint: Ignora todas las denuncias que vengan de este dominio. Irrelevante para suspensiones
-      rejecting_media: rechazo de archivos de medios
-      rejecting_reports: rechazo de denuncias
-      severity:
-        silence: limitados
-        suspend: suspendidos
-      show:
-        affected_accounts:
-          one: Una cuenta en la base de datos afectada
-          other: "%{count} cuentas en la base de datos afectada"
-          zero: Ninguna cuenta en la base de datos está afectada
-        retroactive:
-          silence: Quitar límite de las cuentas existentes afectadas de este dominio
-          suspend: Quitar suspensión de las cuentas existentes afectadas de este dominio
-        title: Deshacer el bloqueo de dominio para %{domain}
-        undo: Deshacer
       undo: Deshacer bloqueo de dominio
       view: Ver bloqueo de dominio
     email_domain_blocks:
@@ -493,23 +479,48 @@ es-AR:
       title: Recomendaciones de cuentas para seguir
       unsuppress: Restablecer recomendaciones de cuentas para seguir
     instances:
+      availability:
+        description_html:
+          one: Si el envío al dominio falla durante <strong>%{count} día</strong> sin éxito, no se harán más intentos de entrega a menos que se reciba un envío <em>desde</em> el dominio.
+          other: Si el envío al dominio falla durante <strong>%{count} días</strong> sin éxito, no se harán más intentos de entrega a menos que se reciba un envío <em>desde</em> el dominio.
+        failure_threshold_reached: Umbral de límite de fallo alcanzado el %{date}.
+        failures_recorded:
+          one: Intento fallido en %{count} día.
+          other: Intentos fallidos en %{count} días.
+        no_failures_recorded: No hay fallos en el registro.
+        title: Disponibilidad
+        warning: El último intento de conexión a este servidor no fue exitoso
       back_to_all: Todos
       back_to_limited: Limitados
       back_to_warning: Advertencia
       by_domain: Dominio
       confirm_purge: "¿Estás seguro que querés eliminar permanentemente los datos de este dominio?"
+      content_policies:
+        comment: Nota interna
+        description_html: Podés definir políticas de contenido que se aplicarán a todas las cuentas de este dominio y a cualquiera de sus subdominios.
+        policies:
+          reject_media: Rechazar medios
+          reject_reports: Rechazar denuncias
+          silence: Limitar
+          suspend: Suspender
+        policy: Política
+        reason: Razón pública
+        title: Políticas de contenido
+      dashboard:
+        instance_accounts_dimension: Cuentas más seguidas
+        instance_accounts_measure: cuentas almacenadas
+        instance_followers_measure: nuestros seguidores allí
+        instance_follows_measure: sus seguidores aquí
+        instance_languages_dimension: Idiomas principales
+        instance_media_attachments_measure: archivos adjuntos almacenados
+        instance_reports_measure: denuncias sobre ellos
+        instance_statuses_measure: mensajes almacenados
       delivery:
         all: Todos
         clear: Limpiar errores de entrega
         restart: Reiniciar entrega
         stop: Detener entrega
-        title: Entrega
         unavailable: No disponible
-        unavailable_message: Entrega no disponible
-        warning: Advertencia
-        warning_message:
-          one: Falla de entrega %{count} día
-          other: Falla de entrega %{count} días
       delivery_available: La entrega está disponible
       delivery_error_days: Días de error de entrega
       delivery_error_hint: Si la entrega no es posible durante %{count} días, se marcará automáticamente como no entregable.
@@ -518,7 +529,6 @@ es-AR:
       known_accounts:
         one: "%{count} cuenta conocida"
         other: "%{count} cuentas conocidas"
-        zero: Ninguna cuenta conocida
       moderation:
         all: Todas
         limited: Limitadas
@@ -526,12 +536,14 @@ es-AR:
       private_comment: Comentario privado
       public_comment: Comentario público
       purge: Purgar
+      purge_description_html: Si creés que este dominio está fuera de línea para siempre, podés eliminar de tu almacenamiento todos los registros de cuentas y los datos asociados a este dominio. Esto puede llevar un tiempo.
       title: Federación
       total_blocked_by_us: Bloqueada por nosotros
       total_followed_by_them: Seguidas por ellos
       total_followed_by_us: Seguidas por nosotros
       total_reported: Denuncias sobre ellas
       total_storage: Adjuntos
+      totals_time_period_hint_html: Los datos totales mostrados a continuación incluyen datos para todo el tiempo.
     invites:
       deactivate_all: Desactivar todas
       filter:
@@ -586,6 +598,7 @@ es-AR:
       action_taken_by: Acción tomada por
       actions:
         delete_description_html: Los mensajes denunciados serán eliminados y se registrará un incumplimiento para ayudarte a escalar en futuras infracciones por la misma cuenta.
+        mark_as_sensitive_description_html: Los archivos de medios en los mensajes denunciados se marcarán como sensibles y se registrará un incumplimiento para ayudarte a escalar las futuras acciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta denunciada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará el incumplimiento, y se cerrará la denuncia.
         silence_description_html: El perfil será visible sólo para aquellos que ya sigan esta cuenta o que la busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
@@ -606,6 +619,7 @@ es-AR:
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelta
+      mark_as_sensitive: Marcado como sensible
       mark_as_unresolved: Marcar como no resuelta
       no_one_assigned: Nadie
       notes:
@@ -708,7 +722,7 @@ es-AR:
         desc_html: Párrafo introductorio en la API. Describe qué hace especial a este servidor de Mastodon y todo lo demás que sea importante. Podés usar etiquetas HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
         title: Descripción del servidor
       site_description_extended:
-        desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras cosas que definen tu servidor. Podés usar etiquets HTML
+        desc_html: Un buen lugar para tu código de conducta, reglas, directrices y otras cosas que definen tu servidor. Podés usar etiquets HTML
         title: Información extendida personalizada
       site_short_description:
         desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe qué es Mastodon y qué hace especial a este servidor en un solo párrafo.
@@ -749,6 +763,7 @@ es-AR:
       actions:
         delete_statuses: "%{name} eliminó los mensajes de %{target}"
         disable: "%{name} congeló la cuenta de %{target}"
+        mark_statuses_as_sensitive: "%{name} marcó los mensajes de %{target} como sensibles"
         none: "%{name} envió una advertencia a %{target}"
         sensitive: "%{name} marcó los medios de %{target} como sensibles"
         silence: "%{name} limitó la cuenta de %{target}"
@@ -758,6 +773,11 @@ es-AR:
     system_checks:
       database_schema_check:
         message_html: Hay migraciones pendientes de la base de datos. Por favor, ejecutalas para asegurarte de que la aplicación funciona según lo esperado
+      elasticsearch_running_check:
+        message_html: No se pudo conectar a Elasticsearch. Por favor, revisá que se esté ejecutando, o deshabilitá la búsqueda de texto completo
+      elasticsearch_version_check:
+        message_html: 'Versión incompatible de Elasticsearch: %{value}'
+        version_comparison: Se está ejecutando la versión %{running_version} de Elasticsearch, mientras que la versión requerida es la %{required_version}
       rules_check:
         action: Administrar reglas del servidor
         message_html: No definiste ninguna regla del servidor.
@@ -774,25 +794,28 @@ es-AR:
       links:
         allow: Permitir enlace
         allow_provider: Permitir medio
+        description_html: Estos son enlaces que actualmente están siendo muy compartidos por cuentas desde las que tu servidor ve los mensajes. Esto puede ayudar a tus usuarios a averiguar qué está pasando en el mundo. No hay enlaces que se muestren públicamente hasta que autoricés al publicador. También podés permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
         shared_by_over_week:
-          one: Compartido por una persona en la última semana
-          other: Compartido por %{count} personas en la última semana
-          zero: Compartido por nadie en la última semana
+          one: Compartido por una persona durante la última semana
+          other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
       pending_review: Revisión pendiente
       preview_card_providers:
         allowed: Los enlaces de este medio pueden ser tendencia
+        description_html: Estos son dominios desde los que los enlaces a menudo se comparten en tu servidor. Los enlaces no serán tendencia públicamente a menos que se apruebe el dominio del enlace. Tu aprobación (o rechazo) se extiende a los subdominios.
         rejected: Los enlaces de este medio no serán tendencia
         title: Medios
       rejected: Rechazadas
       statuses:
         allow: Permitir mensaje
         allow_account: Permitir autor
+        description_html: Estos son mensajes que tu servidor detecta que están siendo compartidos y marcados como favoritos muchas veces en este momento. Esto puede ayudar a tus usuarios nuevos y retornantes a encontrar más cuentas para seguir. No hay mensajes que se muestren públicamente hasta que aprobés al autor, y el autor permita que su cuenta sea sugerida a otros. También podés permitir o rechazar mensajes individuales.
         disallow: Rechazar mensaje
         disallow_account: Rechazar autor
+        not_discoverable: El autor optó ser detectable
         shared_by:
           one: Compartido o marcado como favorito una vez
           other: Compartido y marcado como favorito %{friendly_count} veces
@@ -805,6 +828,7 @@ es-AR:
           tag_servers_dimension: Servidores principales
           tag_servers_measure: diferentes servidores
           tag_uses_measure: usos totales
+        description_html: Estas son etiquetas que están apareciendo en muchos mensajes que tu servidor ve. Esto puede ayudar a tus usuarios a averiguar de qué habla la gente en estos momentos. No hay etiquetas que se muestren públicamente hasta que las aprobés.
         listable: Pueden ser recomendadas
         not_listable: No serán recomendadas
         not_trendable: No aparecerán en tendencias
@@ -816,9 +840,8 @@ es-AR:
         usable: Pueden usarse
         usage_comparison: Usadas %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
         used_by_over_week:
-          one: Usada por una persona en la última semana
-          other: Usada por %{count} personas en la última semana
-          zero: Usada por nadie en la última semana
+          one: Usada por una persona durante la última semana
+          other: Usada por %{count} personas durante la última semana
       title: Tendencias
     warning_presets:
       add_new: Agregar nuevo
@@ -831,6 +854,7 @@ es-AR:
       actions:
         delete_statuses: para eliminar sus mensajes
         disable: para congelar su cuenta
+        mark_statuses_as_sensitive: para marcar sus mensajes como sensibles
         none: una advertencia
         sensitive: para marcar su cuenta como sensible
         silence: para limitar su cuenta
@@ -933,8 +957,10 @@ es-AR:
     status:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
+      functional: Tu cuenta está totalmente operativa.
       pending: Tu solicitud está pendiente de revisión por nuestra administración. Eso puede tardar algún tiempo. Si se aprueba tu solicitud, vas a recibir un correo electrónico.
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
+      view_strikes: Ver incumplimientos pasados contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, probá de nuevo.
     trouble_logging_in: "¿Tenés problemas para iniciar sesión?"
     use_security_key: Usar la llave de seguridad
@@ -1010,6 +1036,7 @@ es-AR:
         submit: Enviar apelación
       associated_report: Denuncia asociada
       created_at: Con fecha
+      description_html: Estas son acciones tomadas contra tu cuenta y las advertencias que te han sido enviadas por el equipo de %{instance}.
       recipient: Dirigida a
       status: 'Mensaje #%{id}'
       status_removed: Mensaje ya eliminado del sistema
@@ -1017,6 +1044,7 @@ es-AR:
       title_actions:
         delete_statuses: Eliminación de mensaje
         disable: Congelación de cuenta
+        mark_statuses_as_sensitive: Marcado de mensajes como sensibles
         none: Advertencia
         sensitive: Marcado de cuenta como sensible
         silence: Limitación de cuenta
@@ -1390,6 +1418,7 @@ es-AR:
     profile: Perfil
     relationships: Seguimientos
     statuses_cleanup: Eliminación automática de mensajes
+    strikes: Moderación de incumplimientos
     two_factor_authentication: Autenticación de dos factores
     webauthn_authentication: Llaves de seguridad
   statuses:
@@ -1410,7 +1439,7 @@ es-AR:
     disallowed_hashtags:
       one: 'contenía una etiqueta no permitida: %{tags}'
       other: 'contenía las etiquetas no permitidas: %{tags}'
-    edited_at: Editado %{date}
+    edited_at_html: Editado el %{date}
     errors:
       in_reply_not_found: El mensaje al que intentás responder no existe.
     open_in_web: Abrir en la web
@@ -1469,6 +1498,7 @@ es-AR:
       '2629746': 1 mes
       '31556952': 1 año
       '5259492': 2 meses
+      '604800': 1 semana
       '63113904': 2 años
       '7889238': 3 meses
     min_age_label: Umbral de edad
@@ -1616,26 +1646,28 @@ es-AR:
         spam: Spam
         violation: El contenido viola las siguientes directrices de la comunidad
       explanation:
-        delete_statuses: Algunos de tus mensajes violan una o más directrices de la comunidad y por consiguiente fueron eliminados por los moderadores de %{instance}. Futuras violaciones pueden resultar en acciones punitivas más severas contra tu cuenta.
+        delete_statuses: Algunos de tus mensajes se encontraron violando una o más directrices de la comunidad y fueron eliminados posteriormente por los moderadores de %{instance}.
         disable: Ya no podés usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Podés solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta, o eliminarla.
+        mark_statuses_as_sensitive: Algunos de tus mensajes fueron marcados como sensibles por los moderadores de %{instance}. Esto significa que la gente tendrá que hacer clic o darle un toque a los medios en los mensajes antes de que se muestre una vista previa. Podés marcar los medios como sensibles vos mismo cuando publiqués en el futuro.
         sensitive: A partir de ahora, todos tus archivos subidos serán marcados como sensibles y ocultos tras una advertencia en la que habrá que hacer clic.
         silence: Todavía podés usar tu cuenta, pero sólo las personas que te están siguiendo verán tus publicaciones en este servidor, y podrías ser excluido de varias funciones de descubrimiento. Sin embargo, otras cuentas podrán seguirte manualmente.
         suspend: Ya no podés usar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía podés iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquivés la suspensión.
-      get_in_touch: Si crees que esto es un error, podés responder a este correo electrónico para ponerte en contacto con el equipo de %{instance}.
       reason: 'Motivo:'
-      statuses: 'Mensajes que se encontraron en violación:'
+      statuses: 'Mensajes citados:'
       subject:
         delete_statuses: Se eliminaron tus mensajes en %{acct}
         disable: Tu cuenta %{acct} fue congelada
+        mark_statuses_as_sensitive: Tus mensajes en %{acct} fueron marcados como sensibles
         none: Advertencia para %{acct}
-        sensitive: Tus archivos en %{acct} se marcarán como sensibles a partir de ahora
+        sensitive: Tus mensajes en %{acct} se marcarán como sensibles a partir de ahora
         silence: Tu cuenta %{acct} fue limitada
         suspend: Tu cuenta %{acct} fue suspendida
       title:
         delete_statuses: Mensajes eliminados
         disable: Cuenta congelada
+        mark_statuses_as_sensitive: Mensajes marcados como sensibles
         none: Advertencia
-        sensitive: Medios ocultos
+        sensitive: Cuenta marcada como sensible
         silence: Cuenta limitada
         suspend: Cuenta suspendida
     welcome:

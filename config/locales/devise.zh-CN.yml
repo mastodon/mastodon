@@ -9,10 +9,10 @@ zh-CN:
       already_authenticated: 你已登录。
       inactive: 你还没有激活帐户。
       invalid: "%{authentication_keys} 无效或密码错误。"
-      last_attempt: 你只有最后一次尝试机会，若未通过，帐号将被锁定。
+      last_attempt: 你只有最后一次尝试机会，若未通过，账号将被锁定。
       locked: 你的帐户已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
-      pending: 你的帐号仍在审核中。
+      pending: 你的账号仍在审核中。
       timeout: 你的会话已过期。请重新登录再继续操作。
       unauthenticated: 继续操作前请注册或者登录。
       unconfirmed: 你必须先确认你的电子邮件地址才能继续。
@@ -20,7 +20,7 @@ zh-CN:
       confirmation_instructions:
         action: 验证电子邮件地址
         action_with_app: 确认并返回%{app}
-        explanation: 你在 %{host} 上使用此电子邮箱地址创建了一个帐号。点击下面的链接即可激活帐号。如果你没有创建帐号，请忽略此邮件。
+        explanation: 你在 %{host} 上使用此电子邮箱地址创建了一个账号。点击下面的链接即可激活账号。如果你没有创建账号，请忽略此邮件。
         explanation_when_pending: 你用这个电子邮件申请了在 %{host} 注册。在确认电子邮件地址之后，我们会审核你的申请。在此之前，你不能登录。如果你的申请被驳回，你的数据会被移除，因此你无需再采取任何行动。如果申请人不是你，请忽略这封邮件。
         extra_html: 请记得阅读<a href="%{terms_path}">本服务器的相关规定</a>和<a href="%{policy_path}">我们的使用条款</a>。
         subject: Mastodon：来自 %{instance} 的确认指引
@@ -47,7 +47,7 @@ zh-CN:
         subject: Mastodon：重置密码信息
         title: 重置密码
       two_factor_disabled:
-        explanation: 帐号的双重认证已禁用。现在仅使用邮箱和密码登录即可登录。
+        explanation: 账号的双重认证已禁用。现在仅使用邮箱和密码即可登录。
         subject: Mastodon：双重认证已禁用。
         title: 双重认证已禁用
       two_factor_enabled:
@@ -93,7 +93,7 @@ zh-CN:
       signed_up_but_locked: 你已成功注册，但我们无法让你登录，因为你的账户已被锁定。
       signed_up_but_pending: 一条带有确认链接的邮件已经发送到你的电子邮件地址。在你点击该链接后，我们将会审查你的申请。如果申请被批准，你将收到通知。
       signed_up_but_unconfirmed: 一封带有确认链接的邮件已经发送至你的邮箱，请点击邮件中的链接以激活你的帐户。如果没有，请检查你的垃圾邮件。
-      update_needs_confirmation: 帐号信息更新成功，但我们需要验证你的新电子邮件地址，请点击邮件中的链接以确认。如果没有，请检查你的垃圾邮箱。
+      update_needs_confirmation: 账号信息更新成功，但我们需要验证你的新电子邮件地址，请点击邮件中的链接以确认。如果没有收到邮件，请检查你的垃圾邮箱。
       updated: 帐户资料更新成功。
     sessions:
       already_signed_out: 已成功登出。
@@ -101,7 +101,7 @@ zh-CN:
       signed_out: 已成功登出。
     unlocks:
       send_instructions: 几分钟后，你将收到一封解锁帐户的邮件。如果没有，请检查你的垃圾邮箱。
-      send_paranoid_instructions: 如果你的账户存在，你将会在几分钟内收到一封指引你如何解锁账户的邮件。如果你没有收到这封邮件，请检查你邮箱的垃圾箱。
+      send_paranoid_instructions: 如果你的账号存在，你将会在几分钟内收到一封指引你如何解锁账号的邮件。如果你没有收到这封邮件，请检查你邮箱的垃圾箱。
       unlocked: 你的帐户已成功解锁。登录以继续。
   errors:
     messages:

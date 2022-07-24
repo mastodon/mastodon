@@ -1,0 +1,209 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.4.1
+  node: circleci/node@5.0.1
+
+executors:
+  default:
+    parameters:
+      ruby-version:
+        type: string
+    docker:
+      - image: cimg/ruby:<< parameters.ruby-version >>
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          CONTINUOUS_INTEGRATION: true
+          DB_HOST: localhost
+          DB_USER: root
+          DISABLE_SIMPLECOV: true
+          RAILS_ENV: test
+      - image: cimg/postgres:14.0
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_HOST_AUTH_METHOD: trust
+      - image: cimg/redis:6.2
+
+commands:
+  install-system-dependencies:
+    steps:
+      - run:
+          name: Install system dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y libicu-dev libidn11-dev
+  install-ruby-dependencies:
+    parameters:
+      ruby-version:
+        type: string
+    steps:
+      - run:
+          command: |
+            bundle config clean 'true'
+            bundle config frozen 'true'
+            bundle config without 'development production'
+          name: Set bundler settings
+      - ruby/install-deps:
+          bundler-version: '2.3.8'
+          key: ruby<< parameters.ruby-version >>-gems-v1
+  wait-db:
+    steps:
+      - run:
+          command: dockerize -wait tcp://localhost:5432 -wait tcp://localhost:6379 -timeout 1m
+          name: Wait for PostgreSQL and Redis
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:3.0-node
+        environment:
+          RAILS_ENV: test
+    steps:
+      - checkout
+      - install-system-dependencies
+      - install-ruby-dependencies:
+          ruby-version: '3.0'
+      - node/install-packages:
+          cache-version: v1
+          pkg-manager: yarn
+      - run:
+          command: ./bin/rails assets:precompile
+          name: Precompile assets
+      - persist_to_workspace:
+          paths:
+            - public/assets
+            - public/packs-test
+          root: .
+
+  test:
+    parameters:
+      ruby-version:
+        type: string
+    executor:
+      name: default
+      ruby-version: << parameters.ruby-version >>
+    environment:
+      ALLOW_NOPAM: true
+      PAM_ENABLED: true
+      PAM_DEFAULT_SERVICE: pam_test
+      PAM_CONTROLLED_SERVICE: pam_test_controlled
+    parallelism: 4
+    steps:
+      - checkout
+      - install-system-dependencies
+      - run:
+          command: sudo apt-get install -y ffmpeg imagemagick libpam-dev
+          name: Install additional system dependencies
+      - run:
+          command: bundle config with 'pam_authentication'
+          name: Enable PAM authentication
+      - install-ruby-dependencies:
+          ruby-version: << parameters.ruby-version >>
+      - attach_workspace:
+          at: .
+      - wait-db
+      - run:
+          command: ./bin/rails db:create db:schema:load db:seed
+          name: Load database schema
+      - ruby/rspec-test
+
+  test-migrations:
+    executor:
+      name: default
+      ruby-version: '3.0'
+    steps:
+      - checkout
+      - install-system-dependencies
+      - install-ruby-dependencies:
+          ruby-version: '3.0'
+      - wait-db
+      - run:
+          command: ./bin/rails db:create
+          name: Create database
+      - run:
+          command: ./bin/rails db:migrate VERSION=20171010025614
+          name: Run migrations up to v2.0.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2
+          name: Populate database with test data
+      - run:
+          command: ./bin/rails db:migrate VERSION=20180514140000
+          name: Run migrations up to v2.4.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2_4
+          name: Populate database with test data
+      - run:
+          command: ./bin/rails db:migrate
+          name: Run all remaining migrations
+      - run:
+          command: ./bin/rails tests:migrations:check_database
+          name: Check migration result
+
+  test-two-step-migrations:
+    executor:
+      name: default
+      ruby-version: '3.0'
+    steps:
+      - checkout
+      - install-system-dependencies
+      - install-ruby-dependencies:
+          ruby-version: '3.0'
+      - wait-db
+      - run:
+          command: ./bin/rails db:create
+          name: Create database
+      - run:
+          command: ./bin/rails db:migrate VERSION=20171010025614
+          name: Run migrations up to v2.0.0
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2
+          name: Populate database with test data
+      - run:
+          command: ./bin/rails db:migrate VERSION=20180514140000
+          name: Run pre-deployment migrations up to v2.4.0
+          environment:
+            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2_4
+          name: Populate database with test data
+      - run:
+          command: ./bin/rails db:migrate
+          name: Run all pre-deployment migrations
+          environment:
+            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+      - run:
+          command: ./bin/rails db:migrate
+          name: Run all post-deployment remaining migrations
+      - run:
+          command: ./bin/rails tests:migrations:check_database
+          name: Check migration result
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - build
+      - test:
+          matrix:
+            parameters:
+              ruby-version:
+                - '2.7'
+                - '3.0'
+          name: test-ruby<< matrix.ruby-version >>
+          requires:
+            - build
+      - test-migrations:
+          requires:
+            - build
+      - test-two-step-migrations:
+          requires:
+            - build
+      - node/run:
+          cache-version: v1
+          name: test-webui
+          pkg-manager: yarn
+          requires:
+            - build
+          version: lts
+          yarn-run: test:jest

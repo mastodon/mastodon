@@ -15,6 +15,14 @@ module JsonLdHelper
     value.is_a?(Array) ? value.first : value
   end
 
+  def uri_from_bearcap(str)
+    if str&.start_with?('bear:')
+      Addressable::URI.parse(str).query_values['u']
+    else
+      str
+    end
+  end
+
   # The url attribute can be a string, an array of strings, or an array of objects.
   # The objects could include a mimeType. Not-included mimeType means it's text/html.
   def url_to_href(value, preferred_type = nil)
@@ -54,7 +62,7 @@ module JsonLdHelper
   end
 
   def unsupported_uri_scheme?(uri)
-    !uri.start_with?('http://', 'https://')
+    uri.nil? || !uri.start_with?('http://', 'https://')
   end
 
   def invalid_origin?(url)

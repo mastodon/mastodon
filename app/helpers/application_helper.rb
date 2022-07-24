@@ -9,9 +9,9 @@ module ApplicationHelper
 
   RTL_LOCALES = %i(
     ar
+    ckb
     fa
     he
-    ku
   ).freeze
 
   def friendly_number_to_human(number, **options)
@@ -172,6 +172,8 @@ module ApplicationHelper
     output << "theme-#{current_theme.parameterize}"
     output << 'system-font' if current_account&.user&.setting_system_font_ui
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
+    output << 'bigger-publish' if current_account&.user&.setting_bigger_publish
+    output << 'wider-column' if current_account&.user&.setting_wider_column
     output << 'rtl' if locale_direction == 'rtl'
     output.reject(&:blank?).join(' ')
   end
@@ -238,5 +240,9 @@ module ApplicationHelper
         h[scope.key] = scope
       end
     end.values
+  end
+
+  def prerender_custom_emojis(html, custom_emojis)
+    EmojiFormatter.new(html, custom_emojis, animate: prefers_autoplay?).to_s
   end
 end

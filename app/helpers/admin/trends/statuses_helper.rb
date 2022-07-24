@@ -12,9 +12,6 @@ module Admin::Trends::StatusesHelper
 
     return '' if text.blank?
 
-    html = Formatter.instance.send(:encode, text)
-    html = Formatter.instance.send(:encode_custom_emojis, html, status.emojis, prefers_autoplay?)
-
-    html.html_safe # rubocop:disable Rails/OutputSafety
+    prerender_custom_emojis(h(text), status.emojis)
   end
 end

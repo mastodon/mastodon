@@ -68,6 +68,8 @@ class Admin::StatusBatchAction
   end
 
   def handle_mark_as_sensitive!
+    representative_account = Account.representative
+
     # Can't use a transaction here because UpdateStatusService queues
     # Sidekiq jobs
     statuses.includes(:media_attachments, :preview_cards).find_each do |status|
@@ -76,7 +78,7 @@ class Admin::StatusBatchAction
       authorize(status, :update?)
 
       if target_account.local?
-        UpdateStatusService.new.call(status, current_account.id, sensitive: true)
+        UpdateStatusService.new.call(status, representative_account.id, sensitive: true)
       else
         status.update(sensitive: true)
       end

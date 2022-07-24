@@ -118,9 +118,9 @@ class Rack::Attack
     req.session[:attempt_user_id] || req.params.dig('user', 'email').presence if req.post? && req.path == '/auth/sign_in'
   end
 
-  self.throttled_response = lambda do |env|
+  self.throttled_responder = lambda do |request|
     now        = Time.now.utc
-    match_data = env['rack.attack.match_data']
+    match_data = request.env['rack.attack.match_data']
 
     headers = {
       'Content-Type'          => 'application/json',

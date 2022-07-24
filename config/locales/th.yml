@@ -16,12 +16,15 @@ th:
     contact: ติดต่อ
     contact_missing: ไม่ได้ตั้ง
     contact_unavailable: ไม่มี
+    continue_to_web: ดำเนินการต่อไปยังแอปเว็บ
     discover_users: ค้นพบผู้ใช้
     documentation: เอกสารประกอบ
     federation_hint_html: ด้วยบัญชีที่ %{instance} คุณจะสามารถติดตามผู้คนในเซิร์ฟเวอร์ Mastodon และอื่น ๆ
     get_apps: ลองแอปมือถือ
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     learn_more: เรียนรู้เพิ่มเติม
+    logged_in_as_html: คุณกำลังเข้าสู่ระบบเป็น %{username} ในปัจจุบัน
+    logout_before_registering: คุณได้เข้าสู่ระบบอยู่แล้ว
     privacy_policy: นโยบายความเป็นส่วนตัว
     rules: กฎของเซิร์ฟเวอร์
     rules_html: 'ด้านล่างคือข้อมูลสรุปของกฎที่คุณจำเป็นต้องปฏิบัติตามหากคุณต้องการมีบัญชีในเซิร์ฟเวอร์ Mastodon นี้:'
@@ -49,6 +52,7 @@ th:
     what_is_mastodon: Mastodon คืออะไร?
   accounts:
     choices_html: 'ตัวเลือกของ %{name}:'
+    endorsements_hint: คุณสามารถแนะนำผู้คนที่คุณติดตามจากส่วนติดต่อเว็บ และเขาจะปรากฏที่นี่
     featured_tags_hint: คุณสามารถแนะนำแฮชแท็กที่เฉพาะเจาะจงที่จะแสดงที่นี่
     follow: ติดตาม
     followers:
@@ -60,10 +64,11 @@ th:
     media: สื่อ
     moved_html: "%{name} ได้ย้ายไปยัง %{new_profile_link}:"
     network_hidden: ไม่มีข้อมูลนี้
-    never_active: ไม่เลย
     nothing_here: ไม่มีสิ่งใดที่นี่!
     people_followed_by: ผู้คนที่ %{name} ติดตาม
     people_who_follow: ผู้คนที่ติดตาม %{name}
+    pin_errors:
+      following: คุณต้องกำลังติดตามคนที่คุณต้องการแนะนำอยู่แล้ว
     posts:
       other: โพสต์
     posts_tab_heading: โพสต์
@@ -150,10 +155,7 @@ th:
       not_subscribed: ไม่ได้บอกรับ
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
-      previous_strikes: การลงโทษก่อนหน้านี้
-      previous_strikes_description_html:
-        one: บัญชีนี้มี <strong>หนึ่ง</strong> การลงโทษ
-        other: บัญชีนี้มี <strong>%{count}</strong> การลงโทษ
+      previous_strikes: การดำเนินการก่อนหน้านี้
       promote: เลื่อนขั้น
       protocol: โปรโตคอล
       public: สาธารณะ
@@ -194,7 +196,7 @@ th:
       silence: จำกัด
       silenced: จำกัดอยู่
       statuses: โพสต์
-      strikes: การลงโทษก่อนหน้านี้
+      strikes: การดำเนินการก่อนหน้านี้
       subscribe: บอกรับ
       suspend: ระงับ
       suspended: ระงับอยู่
@@ -266,6 +268,7 @@ th:
         update_domain_block: อัปเดตการปิดกั้นโดเมน
         update_status: อัปเดตโพสต์
       actions:
+        approve_appeal_html: "%{name} ได้อนุมัติการอุทธรณ์การตัดสินใจในการควบคุมจาก %{target}"
         approve_user_html: "%{name} ได้อนุมัติการลงทะเบียนจาก %{target}"
         assigned_to_self_report_html: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
         change_email_user_html: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
@@ -296,6 +299,7 @@ th:
         enable_user_html: "%{name} ได้เปิดใช้งานการเข้าสู่ระบบสำหรับผู้ใช้ %{target}"
         memorialize_account_html: "%{name} ได้เปลี่ยนบัญชีของ %{target} เป็นหน้าอนุสรณ์"
         promote_user_html: "%{name} ได้เลื่อนขั้นผู้ใช้ %{target}"
+        reject_appeal_html: "%{name} ได้ปฏิเสธการอุทธรณ์การตัดสินใจในการควบคุมจาก %{target}"
         reject_user_html: "%{name} ได้ปฏิเสธการลงทะเบียนจาก %{target}"
         remove_avatar_user_html: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report_html: "%{name} ได้เปิดรายงาน %{target} ใหม่"
@@ -352,7 +356,7 @@ th:
       enable: เปิดใช้งาน
       enabled: เปิดใช้งานอยู่
       enabled_msg: เปิดใช้งานอีโมจินั้นสำเร็จ
-      image_hint: PNG สูงสุด 50KB
+      image_hint: PNG หรือ GIF สูงสุด %{size}
       list: แสดงรายการ
       listed: อยู่ในรายการ
       new:
@@ -421,21 +425,6 @@ th:
       reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเซิร์ฟเวอร์ออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
       reject_reports: ปฏิเสธรายงาน
       reject_reports_hint: เพิกเฉยรายงานทั้งหมดที่มาจากโดเมนนี้ ไม่เกี่ยวข้องกับการระงับ
-      rejecting_media: กำลังปฏิเสธไฟล์สื่อ
-      rejecting_reports: กำลังปฏิเสธรายงาน
-      severity:
-        silence: จำกัดอยู่
-        suspend: ระงับอยู่
-      show:
-        affected_accounts:
-          one: หนึ่งบัญชีในฐานข้อมูลที่ได้รับผลกระทบ
-          other: "%{count} บัญชีในฐานข้อมูลที่ได้รับผลกระทบ"
-          zero: ไม่มีบัญชีในฐานข้อมูลที่ได้รับผลกระทบ
-        retroactive:
-          silence: เลิกทำการจำกัดบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
-          suspend: เลิกระงับบัญชีที่มีผลที่มีอยู่จากโดเมนนี้
-        title: เลิกทำการปิดกั้นโดเมนสำหรับ %{domain}
-        undo: เลิกทำ
       undo: เลิกทำการปิดกั้นโดเมน
       view: ดูการปิดกั้นโดเมน
     email_domain_blocks:
@@ -461,27 +450,42 @@ th:
       title: คำแนะนำการติดตาม
       unsuppress: คืนค่าคำแนะนำการติดตาม
     instances:
+      availability:
+        title: ความพร้อมใช้งาน
       back_to_all: ทั้งหมด
       back_to_limited: จำกัดอยู่
       back_to_warning: คำเตือน
       by_domain: โดเมน
       confirm_purge: คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลจากโดเมนนี้อย่างถาวร?
+      content_policies:
+        comment: หมายเหตุภายใน
+        description_html: คุณสามารถกำหนดนโยบายเนื้อหาที่จะนำไปใช้กับบัญชีทั้งหมดจากโดเมนนี้และโดเมนย่อยใดก็ตามของโดเมน
+        policies:
+          reject_media: ปฏิเสธสื่อ
+          reject_reports: ปฏิเสธรายงาน
+          silence: จำกัด
+          suspend: ระงับ
+        policy: นโยบาย
+        reason: เหตุผลสาธารณะ
+        title: นโยบายเนื้อหา
+      dashboard:
+        instance_accounts_dimension: บัญชีที่ติดตามมากที่สุด
+        instance_accounts_measure: บัญชีที่จัดเก็บไว้
+        instance_followers_measure: ผู้ติดตามของเราที่นั่น
+        instance_follows_measure: ผู้ติดตามของเขาที่นี่
+        instance_languages_dimension: ภาษายอดนิยม
+        instance_media_attachments_measure: ไฟล์แนบสื่อที่จัดเก็บไว้
+        instance_reports_measure: รายงานเกี่ยวกับเขา
+        instance_statuses_measure: โพสต์ที่จัดเก็บไว้
       delivery:
         all: ทั้งหมด
         clear: ล้างข้อผิดพลาดการจัดส่ง
         restart: เริ่มการจัดส่งใหม่
         stop: หยุดการจัดส่ง
-        title: การจัดส่ง
         unavailable: ไม่พร้อมใช้งาน
-        unavailable_message: การจัดส่งไม่พร้อมใช้งาน
-        warning: คำเตือน
       delivery_available: มีการจัดส่ง
       delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
       empty: ไม่พบโดเมน
-      known_accounts:
-        one: "%{count} บัญชีที่รู้จัก"
-        other: "%{count} บัญชีที่รู้จัก"
-        zero: ไม่มีบัญชีที่รู้จัก
       moderation:
         all: ทั้งหมด
         limited: จำกัดอยู่
@@ -544,6 +548,9 @@ th:
           other: "%{count} หมายเหตุ"
       action_log: รายการบันทึกการตรวจสอบ
       action_taken_by: ใช้การกระทำโดย
+      actions:
+        resolve_description_html: จะไม่ใช้การกระทำกับบัญชีที่รายงาน ไม่มีการบันทึกการดำเนินการ และจะปิดรายงาน
+      actions_description_html: ตัดสินใจว่าการกระทำใดที่จะใช้เพื่อแก้ปัญหารายงานนี้ หากคุณใช้การกระทำที่เป็นการลงโทษกับบัญชีที่รายงาน จะส่งการแจ้งเตือนอีเมลถึงเขา ยกเว้นเมื่อมีการเลือกหมวดหมู่ <strong>สแปม</strong>
       are_you_sure: คุณแน่ใจหรือไม่?
       assign_to_self: มอบหมายให้ฉัน
       assigned: ผู้ควบคุมที่ได้รับมอบหมาย
@@ -557,6 +564,7 @@ th:
       forwarded: ส่งต่อแล้ว
       forwarded_to: ส่งต่อไปยัง %{domain} แล้ว
       mark_as_resolved: ทำเครื่องหมายว่าแก้ปัญหาแล้ว
+      mark_as_sensitive: ทำเครื่องหมายว่าละเอียดอ่อน
       mark_as_unresolved: ทำเครื่องหมายว่ายังไม่ได้แก้ปัญหา
       no_one_assigned: ไม่มีใคร
       notes:
@@ -673,7 +681,7 @@ th:
         desc_html: มีผลต่อแฮชแท็กที่ไม่ได้ไม่อนุญาตก่อนหน้านี้
         title: อนุญาตให้แฮชแท็กขึ้นแนวโน้มโดยไม่มีการตรวจทานล่วงหน้า
       trends:
-        desc_html: แสดงเนื้อหาที่ตรวจทานแล้วก่อนหน้านี้ที่กำลังนิยมเป็นสาธารณะ
+        desc_html: แสดงเนื้อหาที่ตรวจทานแล้วก่อนหน้านี้ที่กำลังนิยมในปัจจุบันเป็นสาธารณะ
         title: แนวโน้ม
     site_uploads:
       delete: ลบไฟล์ที่อัปโหลด
@@ -694,12 +702,15 @@ th:
       actions:
         delete_statuses: "%{name} ได้ลบโพสต์ของ %{target}"
         disable: "%{name} ได้อายัดบัญชีของ %{target}"
+        mark_statuses_as_sensitive: "%{name} ได้ทำเครื่องหมายโพสต์ของ %{target} ว่าละเอียดอ่อน"
         none: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         sensitive: "%{name} ได้ทำเครื่องหมายบัญชีของ %{target} ว่าละเอียดอ่อน"
         silence: "%{name} ได้จำกัดบัญชีของ %{target}"
         suspend: "%{name} ได้ระงับบัญชีของ %{target}"
       appeal_approved: อุทธรณ์แล้ว
     system_checks:
+      elasticsearch_version_check:
+        message_html: 'รุ่น Elasticsearch ที่เข้ากันไม่ได้: %{value}'
       rules_check:
         action: จัดการกฎของเซิร์ฟเวอร์
         message_html: คุณไม่ได้กำหนดกฎของเซิร์ฟเวอร์ใด ๆ
@@ -718,10 +729,6 @@ th:
         allow_provider: อนุญาตผู้เผยแพร่
         disallow: ไม่อนุญาตลิงก์
         disallow_provider: ไม่อนุญาตผู้เผยแพร่
-        shared_by_over_week:
-          one: แบ่งปันโดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
-          other: แบ่งปันโดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
-          zero: ไม่มีใครแบ่งปันในช่วงสัปดาห์ที่ผ่านมา
         title: ลิงก์ที่กำลังนิยม
         usage_comparison: แบ่งปัน %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
       pending_review: การตรวจทานที่รอดำเนินการ
@@ -735,6 +742,8 @@ th:
         allow_account: อนุญาตผู้สร้าง
         disallow: ไม่อนุญาตโพสต์
         disallow_account: ไม่อนุญาตผู้สร้าง
+        shared_by:
+          other: แบ่งปันและชื่นชอบ %{friendly_count} ครั้ง
         title: โพสต์ที่กำลังนิยม
       tags:
         current_score: คะแนนปัจจุบัน %{score}
@@ -742,7 +751,7 @@ th:
           tag_accounts_measure: การใช้งานที่ไม่ซ้ำกัน
           tag_languages_dimension: ภาษายอดนิยม
           tag_servers_dimension: เซิร์ฟเวอร์ยอดนิยม
-          tag_servers_measure: เซิร์ฟเวอร์อื่น
+          tag_servers_measure: เซิร์ฟเวอร์ต่าง ๆ
           tag_uses_measure: การใช้งานทั้งหมด
         listable: สามารถแนะนำ
         not_listable: จะไม่แนะนำ
@@ -754,10 +763,6 @@ th:
         trending_rank: 'กำลังนิยม #%{rank}'
         usable: สามารถใช้
         usage_comparison: ใช้ %{today} ครั้งวันนี้ เทียบกับ %{yesterday} เมื่อวานนี้
-        used_by_over_week:
-          one: ใช้โดยหนึ่งคนในช่วงสัปดาห์ที่ผ่านมา
-          other: ใช้โดย %{count} คนในช่วงสัปดาห์ที่ผ่านมา
-          zero: ไม่มีใครใช้ในช่วงสัปดาห์ที่ผ่านมา
       title: แนวโน้ม
     warning_presets:
       add_new: เพิ่มใหม่
@@ -770,9 +775,14 @@ th:
       actions:
         delete_statuses: เพื่อลบโพสต์ของเขา
         disable: เพื่ออายัดบัญชีของเขา
+        mark_statuses_as_sensitive: เพื่อทำเครื่องหมายโพสต์ของเขาว่าละเอียดอ่อน
+        none: คำเตือน
         sensitive: เพื่อทำเครื่องหมายบัญชีของเขาว่าละเอียดอ่อน
         silence: เพื่อจำกัดบัญชีของเขา
         suspend: เพื่อระงับบัญชีของเขา
+      body: "%{target} กำลังอุทธรณ์การตัดสินใจในการควบคุมโดย %{action_taken_by} จาก %{date} ซึ่งเป็น %{type} เขาเขียนว่า:"
+      next_steps: คุณสามารถอนุมัติการอุทธรณ์เพื่อเลิกทำการตัดสินใจในการควบคุม หรือเพิกเฉยการอุทธรณ์
+      subject: "%{username} กำลังอุทธรณ์การตัดสินใจในการควบคุมใน %{instance}"
     new_pending_account:
       body: รายละเอียดของบัญชีใหม่อยู่ด้านล่าง คุณสามารถอนุมัติหรือปฏิเสธใบสมัครนี้
     new_report:
@@ -781,13 +791,13 @@ th:
       subject: รายงานใหม่สำหรับ %{instance} (#%{id})
     new_trends:
       new_trending_links:
-        no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติ
+        no_approved_links: ไม่มีลิงก์ที่กำลังนิยมที่ได้รับอนุมัติในปัจจุบัน
         title: ลิงก์ที่กำลังนิยม
       new_trending_statuses:
-        no_approved_statuses: ไม่มีโพสต์ที่กำลังนิยมที่ได้รับอนุมัติ
+        no_approved_statuses: ไม่มีโพสต์ที่กำลังนิยมที่ได้รับอนุมัติในปัจจุบัน
         title: โพสต์ที่กำลังนิยม
       new_trending_tags:
-        no_approved_tags: ไม่มีแฮชแท็กที่กำลังนิยมที่ได้รับอนุมัติ
+        no_approved_tags: ไม่มีแฮชแท็กที่กำลังนิยมที่ได้รับอนุมัติในปัจจุบัน
         title: แฮชแท็กที่กำลังนิยม
       subject: แนวโน้มใหม่สำหรับตรวจทานใน %{instance}
   aliases:
@@ -860,7 +870,9 @@ th:
     status:
       account_status: สถานะบัญชี
       confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
+      functional: บัญชีของคุณทำงานได้อย่างเต็มที่
       pending: ใบสมัครของคุณกำลังรอดำเนินการตรวจทานโดยพนักงานของเรา นี่อาจใช้เวลาสักครู่ คุณจะได้รับอีเมลหากใบสมัครของคุณได้รับการอนุมัติ
+      view_strikes: ดูการดำเนินการที่ผ่านมากับบัญชีของคุณ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
     trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
     use_security_key: ใช้กุญแจความปลอดภัย
@@ -925,20 +937,28 @@ th:
   disputes:
     strikes:
       action_taken: การกระทำที่ใช้
+      appeal: อุทธรณ์
+      appeal_rejected: ปฏิเสธการอุทธรณ์แล้ว
       appeal_submitted_at: ส่งการอุทธรณ์แล้ว
       appeals:
         submit: ส่งการอุทธรณ์
       associated_report: รายงานที่เกี่ยวข้อง
       created_at: ลงวันที่
+      description_html: นี่คือการกระทำที่ใช้กับบัญชีของคุณและคำเตือนที่ส่งถึงคุณโดยพนักงานของ %{instance}
       recipient: ส่งถึง
       status: 'โพสต์ #%{id}'
+      title: "%{action} จาก %{date}"
       title_actions:
         delete_statuses: การเอาโพสต์ออก
         disable: การอายัดบัญชี
+        mark_statuses_as_sensitive: การทำเครื่องหมายโพสต์ว่าละเอียดอ่อน
         none: คำเตือน
         sensitive: การทำเครื่องหมายบัญชีว่าละเอียดอ่อน
         silence: การจำกัดบัญชี
         suspend: การระงับบัญชี
+      your_appeal_approved: อนุมัติการอุทธรณ์ของคุณแล้ว
+      your_appeal_pending: คุณได้ส่งการอุทธรณ์
+      your_appeal_rejected: ปฏิเสธการอุทธรณ์ของคุณแล้ว
   domain_validator:
     invalid_domain: ไม่ใช่ชื่อโดเมนที่ถูกต้อง
   errors:
@@ -1083,6 +1103,7 @@ th:
     warning:
       before: 'ก่อนดำเนินการต่อ โปรดอ่านหมายเหตุเหล่านี้อย่างระมัดระวัง:'
       followers: การกระทำนี้จะย้ายผู้ติดตามทั้งหมดจากบัญชีปัจจุบันไปยังบัญชีใหม่
+      other_data: จะไม่ย้ายข้อมูลอื่น ๆ โดยอัตโนมัติ
   moderation:
     title: การควบคุม
   move_handler:
@@ -1205,6 +1226,9 @@ th:
     reply:
       proceed: ดำเนินการต่อเพื่อตอบกลับ
       prompt: 'คุณต้องการตอบกลับโพสต์นี้:'
+  reports:
+    errors:
+      invalid_rules: ไม่ได้อ้างอิงกฎที่ถูกต้อง
   scheduled_statuses:
     too_soon: วันที่ตามกำหนดการต้องอยู่ในอนาคต
   sessions:
@@ -1228,6 +1252,7 @@ th:
       weibo: Weibo
     current_session: เซสชันปัจจุบัน
     description: "%{browser} ใน %{platform}"
+    explanation: นี่คือเว็บเบราว์เซอร์ที่เข้าสู่ระบบบัญชี Mastodon ของคุณในปัจจุบัน
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1265,6 +1290,7 @@ th:
     profile: โปรไฟล์
     relationships: การติดตามและผู้ติดตาม
     statuses_cleanup: การลบโพสต์แบบอัตโนมัติ
+    strikes: การดำเนินการการควบคุม
     two_factor_authentication: การรับรองความถูกต้องด้วยสองปัจจัย
     webauthn_authentication: กุญแจความปลอดภัย
   statuses:
@@ -1281,7 +1307,9 @@ th:
     default_language: เหมือนกับภาษาส่วนติดต่อ
     disallowed_hashtags:
       other: 'มีแฮชแท็กที่ไม่อนุญาต: %{tags}'
-    edited_at: แก้ไขเมื่อ %{date}
+    edited_at_html: แก้ไขเมื่อ %{date}
+    errors:
+      in_reply_not_found: ดูเหมือนว่าจะไม่มีโพสต์ที่คุณกำลังพยายามตอบกลับอยู่
     open_in_web: เปิดในเว็บ
     pin_errors:
       direct: ไม่สามารถปักหมุดโพสต์ที่ปรากฏแก่ผู้ใช้ที่กล่าวถึงเท่านั้น
@@ -1332,6 +1360,7 @@ th:
       '2629746': 1 เดือน
       '31556952': 1 ปี
       '5259492': 2 เดือน
+      '604800': 1 สัปดาห์
       '63113904': 2 ปี
       '7889238': 3 เดือน
     min_age_label: ค่าเกณฑ์อายุ
@@ -1372,8 +1401,12 @@ th:
   user_mailer:
     appeal_approved:
       action: ไปยังบัญชีของคุณ
+      explanation: อนุมัติการอุทธรณ์การดำเนินการกับบัญชีของคุณเมื่อ %{strike_date} ที่คุณได้ส่งเมื่อ %{appeal_date} แล้ว บัญชีของคุณอยู่ในสถานะที่ดีอีกครั้งหนึ่ง
+      subject: อนุมัติการอุทธรณ์ของคุณจาก %{date} แล้ว
       title: อนุมัติการอุทธรณ์แล้ว
     appeal_rejected:
+      explanation: ปฏิเสธการอุทธรณ์การดำเนินการกับบัญชีของคุณเมื่อ %{strike_date} ที่คุณได้ส่งเมื่อ %{appeal_date} แล้ว
+      subject: ปฏิเสธการอุทธรณ์ของคุณจาก %{date} แล้ว
       title: ปฏิเสธการอุทธรณ์แล้ว
     backup_ready:
       explanation: คุณได้ขอข้อมูลสำรองแบบเต็มของบัญชี Mastodon ของคุณ ตอนนี้ข้อมูลสำรองพร้อมสำหรับการดาวน์โหลดแล้ว!
@@ -1391,19 +1424,29 @@ th:
       categories:
         spam: สแปม
         violation: เนื้อหาละเมิดหลักเกณฑ์ชุมชนดังต่อไปนี้
-      get_in_touch: หากคุณเชื่อว่านี่เป็นข้อผิดพลาด คุณสามารถตอบกลับอีเมลนี้เพื่อติดต่อกับพนักงานของ %{instance}
+      explanation:
+        delete_statuses: มีการพบว่าโพสต์บางส่วนของคุณละเมิดหนึ่งหลักเกณฑ์ชุมชนหรือมากกว่าและได้รับการเอาออกโดยผู้ควบคุมของ %{instance} ในเวลาต่อมา
+        disable: คุณไม่สามารถใช้บัญชีของคุณได้อีกต่อไป แต่โปรไฟล์และข้อมูลอื่น ๆ ของคุณยังคงอยู่ในสภาพเดิม คุณสามารถขอข้อมูลสำรองของข้อมูลของคุณ เปลี่ยนการตั้งค่าบัญชี หรือลบบัญชีของคุณ
+        mark_statuses_as_sensitive: ทำเครื่องหมายโพสต์บางส่วนของคุณว่าละเอียดอ่อนโดยผู้ควบคุมของ %{instance} แล้ว นี่หมายความว่าผู้คนจะต้องแตะสื่อในโพสต์ก่อนที่จะแสดงตัวอย่าง คุณสามารถทำเครื่องหมายสื่อว่าละเอียดอ่อนด้วยตัวคุณเองเมื่อโพสต์ในอนาคต
+        sensitive: จากนี้ไป จะทำเครื่องหมายไฟล์สื่อที่อัปโหลดทั้งหมดของคุณว่าละเอียดอ่อนและซ่อนอยู่หลังการคลิกไปยังคำเตือน
+        silence: คุณยังคงสามารถใช้บัญชีของคุณแต่เฉพาะผู้คนที่กำลังติดตามคุณอยู่แล้วเท่านั้นที่จะเห็นโพสต์ของคุณในเซิร์ฟเวอร์นี้ และอาจแยกคุณออกจากคุณลักษณะการค้นพบต่าง ๆ อย่างไรก็ตาม ผู้อื่นอาจยังติดตามคุณด้วยตนเอง
+        suspend: คุณไม่สามารถใช้บัญชีของคุณได้อีกต่อไป และจะไม่สามารถเข้าถึงโปรไฟล์และข้อมูลอื่น ๆ ของคุณได้อีกต่อไป คุณยังคงสามารถเข้าสู่ระบบเพื่อขอข้อมูลสำรองของข้อมูลของคุณจนกว่าจะเอาข้อมูลออกอย่างสมบูรณ์ในเวลาประมาณ 30 วัน แต่เราจะเก็บรักษาข้อมูลพื้นฐานบางอย่างไว้เพื่อป้องกันไม่ให้คุณหลบเลี่ยงการระงับ
       reason: 'เหตุผล:'
-      statuses: 'โพสต์ที่พบว่ามีการละเมิด:'
+      statuses: 'โพสต์ที่อ้างถึง:'
       subject:
-        disable: บัญชีของคุณ %{acct} ถูกอายัด
+        delete_statuses: เอาโพสต์ของคุณใน %{acct} ออกแล้ว
+        disable: อายัดบัญชีของคุณ %{acct} แล้ว
+        mark_statuses_as_sensitive: ทำเครื่องหมายโพสต์ของคุณใน %{acct} ว่าละเอียดอ่อนแล้ว
         none: คำเตือนสำหรับ %{acct}
-        silence: บัญชีของคุณ %{acct} ถูกจำกัด
-        suspend: บัญชีของคุณ %{acct} ถูกระงับ
+        sensitive: จะทำเครื่องหมายโพสต์ของคุณใน %{acct} ว่าละเอียดอ่อนนับจากนี้ไป
+        silence: จำกัดบัญชีของคุณ %{acct} แล้ว
+        suspend: ระงับบัญชีของคุณ %{acct} แล้ว
       title:
         delete_statuses: เอาโพสต์ออกแล้ว
         disable: อายัดบัญชีอยู่
+        mark_statuses_as_sensitive: ทำเครื่องหมายโพสต์ว่าละเอียดอ่อนแล้ว
         none: คำเตือน
-        sensitive: ซ่อนสื่ออยู่
+        sensitive: ทำเครื่องหมายบัญชีว่าละเอียดอ่อนแล้ว
         silence: จำกัดบัญชีอยู่
         suspend: ระงับบัญชีอยู่
     welcome:

@@ -16,6 +16,7 @@ de:
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: Nicht verfügbar
+    continue_to_web: Weiter zur Web App
     discover_users: Benutzer entdecken
     documentation: Dokumentation
     federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein Nutzern auf irgendeinem Mastodon-Server und darüber hinaus zu folgen.
@@ -25,6 +26,8 @@ de:
       Dieses Konto ist ein virtueller Akteur, der den Server selbst und nicht einen einzelnen Benutzer repräsentiert.
       Dieser wird für Föderationszwecke verwendet und sollte nicht blockiert werden, es sei denn du möchtest die gesamte Instanz blockieren.
     learn_more: Mehr erfahren
+    logged_in_as_html: Du bist derzeit als %{username} eingeloggt.
+    logout_before_registering: Du bist bereits angemeldet.
     privacy_policy: Datenschutzerklärung
     rules: Server-Regeln
     rules_html: 'Unten ist eine Zusammenfassung der Regeln, denen du folgen musst, wenn du ein Konto auf diesem Mastodon-Server haben möchtest:'
@@ -69,7 +72,6 @@ de:
     media: Medien
     moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
     network_hidden: Diese Informationen sind nicht verfügbar
-    never_active: Nie
     nothing_here: Hier gibt es nichts!
     people_followed_by: Profile, denen %{name} folgt
     people_who_follow: Profile, die %{name} folgen
@@ -163,10 +165,6 @@ de:
       pending: In Warteschlange
       perform_full_suspension: Verbannen
       previous_strikes: Vorherige Strikes
-      previous_strikes_description_html:
-        one: Dieses Konto hat <strong>einen</strong> Strike.
-        other: Dieses Konto hat <strong>%{count}</strong> Strikes.
-        zero: Dieses Konto ist <strong>in gutem Stand</strong>.
       promote: Befördern
       protocol: Protokoll
       public: Öffentlich
@@ -371,7 +369,7 @@ de:
       enable: Aktivieren
       enabled: Aktiviert
       enabled_msg: Das Emoji wurde aktiviert
-      image_hint: PNG bis zu 50 kB
+      image_hint: PNG oder GIF bis %{size}
       list: Liste
       listed: Gelistet
       new:
@@ -448,21 +446,6 @@ de:
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
       reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
-      rejecting_media: Mediendateien werden nicht gespeichert
-      rejecting_reports: Meldungen werden ignoriert
-      severity:
-        silence: stummgeschaltet
-        suspend: gesperrt
-      show:
-        affected_accounts:
-          one: Ein Konto in der Datenbank betroffen
-          other: "%{count} Konten in der Datenbank betroffen"
-          zero: Kein Konto in der Datenbank ist betroffen
-        retroactive:
-          silence: Alle existierenden Konten dieser Domain nicht mehr stummschalten
-          suspend: Alle existierenden Konten dieser Domain entsperren
-        title: Domain-Blockade für %{domain} zurücknehmen
-        undo: Zurücknehmen
       undo: Domainblockade zurücknehmen
       view: Zeige Domain-Blockade
     email_domain_blocks:
@@ -493,32 +476,53 @@ de:
       title: Folgeempfehlungen
       unsuppress: Nicht mehr unterdrücken
     instances:
+      availability:
+        description_html:
+          one: Wenn die Auslieferung an die Domain seit <strong>%{count} Tag</strong> ohne Erfolg ist, werden keine weiteren Versandversuche unternommen, es sei denn, es ist eine Lieferung <em>von</em> der Domain.
+          other: Wenn die Auslieferung an die Domain seit <strong>%{count} Tagen</strong> ohne Erfolg ist, werden keine weiteren Versandversuche unternommen, es sei denn, es ist eine Lieferung <em>von</em> der Domain.
+        failure_threshold_reached: Fehlschlag-Schwelle am %{date} erreicht.
+        failures_recorded:
+          one: Fehlgeschlagener Versuch am %{count}. Tag.
+          other: Fehlgeschlagener Versuch am %{count}. Tag.
+        no_failures_recorded: Keine Fehler bei der Aufzeichnung.
+        title: Verfügbarkeit
+        warning: Der letzte Versuch, sich mit diesem Server zu verbinden, war nicht erfolgreich
       back_to_all: Alle
       back_to_limited: Beschränkt
       back_to_warning: Warnung
       by_domain: Domain
       confirm_purge: Bist du dir sicher, dass du die Daten für diese Domain für immer löschen möchtest?
+      content_policies:
+        comment: Interne Notiz
+        description_html: Du kannst Inhaltsrichtlinien definieren, die auf alle Konten dieser Domain und einer ihrer Subdomains angewendet werden.
+        policies:
+          reject_media: Medien ablehnen
+          reject_reports: Meldungen ablehnen
+          silence: Stummschalten
+          suspend: Verbannen
+        policy: Richtlinie
+        reason: Öffentlicher Grund
+        title: Inhaltsrichtlinien
+      dashboard:
+        instance_accounts_dimension: Meiste gefolgte Konten
+        instance_accounts_measure: gespeicherte Konten
+        instance_followers_measure: unsere Follower dort
+        instance_follows_measure: ihre Follower hier
+        instance_languages_dimension: Top Sprachen
+        instance_media_attachments_measure: gespeicherte Medienanhänge
+        instance_reports_measure: über sie berichtet
+        instance_statuses_measure: gespeicherte Beiträge
       delivery:
         all: Alle
         clear: Zustellfehler löschen
         restart: Lieferung neu starten
         stop: Lieferung stoppen
-        title: Zustellung
         unavailable: Nicht verfügbar
-        unavailable_message: Zustellung funktioniert nicht
-        warning: Warnung
-        warning_message:
-          one: Zustellfehler seit %{count} Tag
-          other: Zustellfehler seit %{count} Tagen
       delivery_available: Zustellung funktioniert
       delivery_error_days: Tage seitdem die Zustellung nicht funktioniert
       delivery_error_hint: Wenn eine Lieferung für %{count} Tage nicht möglich ist, wird sie automatisch als nicht lieferbar markiert.
       destroyed_msg: Daten von %{domain} sind nun in der Warteschlange für die bevorstehende Löschung.
       empty: Keine Domains gefunden.
-      known_accounts:
-        one: "%{count} bekanntes Konto"
-        other: "%{count} bekannte Konten"
-        zero: Kein bekanntes Konto
       moderation:
         all: Alle
         limited: Beschränkt
@@ -526,12 +530,14 @@ de:
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
       purge: Löschen
+      purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, kannst du alle Account-Datensätze und zugehörigen Daten aus dieser Domain löschen. Das kann eine Weile dauern.
       title: Föderation
       total_blocked_by_us: Von uns blockiert
       total_followed_by_them: Gefolgt von denen
       total_followed_by_us: Gefolgt von uns
       total_reported: Beschwerden über sie
       total_storage: Medienanhänge
+      totals_time_period_hint_html: Die unten angezeigten Summen enthalten Daten für alle Zeiten.
     invites:
       deactivate_all: Alle deaktivieren
       filter:
@@ -586,6 +592,7 @@ de:
       action_taken_by: Maßnahme ergriffen durch
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
+        mark_as_sensitive_description_html: Der gemeldete Beitrag wird als NSFW markiert und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
         other_description_html: Weitere Optionen zur Kontrolle des Kontoverhaltens und zur Anpassung der Kommunikation an das gemeldete Konto.
         resolve_description_html: Es wird keine Maßnahme gegen den gemeldeten Account ergriffen, es wird kein Strike verzeichnet und die Meldung wird geschlossen.
         silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die es bereits verfolgen oder manuell nachschlagen und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
@@ -606,6 +613,7 @@ de:
       forwarded: Weitergeleitet
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als gelöst markieren
+      mark_as_sensitive: Als NSFW markieren
       mark_as_unresolved: Als ungelöst markieren
       no_one_assigned: Niemand
       notes:
@@ -749,6 +757,7 @@ de:
       actions:
         delete_statuses: "%{name} hat die Beiträge von %{target} entfernt"
         disable: "%{name} hat das Konto von %{target} eingefroren"
+        mark_statuses_as_sensitive: "%{name} markierte %{target}'s Beiträge als NSFW"
         none: "%{name} hat eine Warnung an %{target} gesendet"
         sensitive: "%{name} markierte %{target}'s Konto als NSFW"
         silence: "%{name} hat das Konto von %{target} eingeschränkt"
@@ -774,25 +783,25 @@ de:
       links:
         allow: Erlaube Link
         allow_provider: Erlaube Herausgeber
+        description_html: Dies sind Links, die derzeit von Konten geteilt werden, von denen dein Server Beiträge sieht. Es kann deinen Benutzern helfen, herauszufinden, was in der Welt vor sich geht. Es werden keine Links öffentlich angezeigt, bis du den Publisher genehmigst. Du kannst auch einzelne Links zulassen oder ablehnen.
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
-        shared_by_over_week:
-          one: In der letzten Woche geteilt von einer Person
-          other: In der letzten Woche geteilt von %{count} Personen
-          zero: Geteilt von niemandem in der letzten Woche
         title: Angesagte Links
         usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
       pending_review: Überprüfung ausstehend
       preview_card_providers:
         allowed: Links von diesem Herausgeber können angesagt sein
+        description_html: Dies sind Domains, von denen Links oft auf deinem Server geteilt werden. Links werden sich nicht öffentlich trenden, es sei denn, die Domain des Links wird genehmigt. Deine Zustimmung (oder Ablehnung) erstreckt sich auf Subdomains.
         rejected: Links von diesem Herausgeber können nicht angesagt sein
         title: Herausgeber
       rejected: Abgelehnt
       statuses:
         allow: Beitrag erlauben
         allow_account: Autor erlauben
+        description_html: Dies sind Beiträge, von denen dein Server weiß, dass sie derzeit viel geteilt und favorisiert werden. Es kann deinen neuen und wiederkehrenden Benutzern helfen, weitere Personen zu finden. Es werden keine Beiträge öffentlich angezeigt, bis du den Autor genehmigst und der Autor es zulässt deren Konto anderen Benutzern zu zeigen. Du kannst auch einzelne Beiträge zulassen oder ablehnen.
         disallow: Beitrag verbieten
         disallow_account: Autor verbieten
+        not_discoverable: Der Autor hat sich nicht dafür entschieden, entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
           other: "%{friendly_count} mal geteilt oder favorisiert"
@@ -805,6 +814,7 @@ de:
           tag_servers_dimension: Top Server
           tag_servers_measure: verschiedene Server
           tag_uses_measure: Gesamtnutzungen
+        description_html: Dies sind Hashtags, die derzeit in vielen Beiträgen erscheinen, die dein Server sieht. Es kann deinen Benutzern helfen, herauszufinden, worüber die Menschen im Moment am meisten reden. Es werden keine Hashtags öffentlich angezeigt, bis du sie genehmigst.
         listable: Kann vorgeschlagen werden
         not_listable: Wird nicht vorgeschlagen
         not_trendable: Wird nicht unter Trends angezeigt
@@ -815,10 +825,6 @@ de:
         trending_rank: 'Trend #%{rank}'
         usable: Kann verwendet werden
         usage_comparison: Heute %{today} mal genutzt, gestern %{yesterday} mal
-        used_by_over_week:
-          one: In der letzten Woche genutzt von einer Person
-          other: In der letzten Woche genutzt von %{count} Personen
-          zero: Genutzt von niemandem in der letzten Woche
       title: Trends
     warning_presets:
       add_new: Neu hinzufügen
@@ -831,6 +837,7 @@ de:
       actions:
         delete_statuses: deren Beiträge zu löschen
         disable: deren Konto einzufrieren
+        mark_statuses_as_sensitive: um ihre Beiträge als NSFW zu markieren
         none: eine Warnung
         sensitive: deren Konto als NSFW zu markieren
         silence: deren Konto zu beschränken
@@ -933,8 +940,10 @@ de:
     status:
       account_status: Kontostatus
       confirming: Warte auf die Bestätigung der E-Mail.
+      functional: Dein Konto ist voll funktionsfähig.
       pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
       redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
+      view_strikes: Zeige frühere Streiks gegen dein Konto
     too_fast: Formular zu schnell gesendet, versuchen Sie es erneut.
     trouble_logging_in: Schwierigkeiten beim Anmelden?
     use_security_key: Sicherheitsschlüssel verwenden
@@ -1010,6 +1019,7 @@ de:
         submit: Einspruch erheben
       associated_report: Zugehöriger Bericht
       created_at: Datum
+      description_html: Dies sind Aktionen gegen dein Konto und Warnungen, die von den Mitarbeitern von %{instance} an dich gesendet wurden.
       recipient: Adressiert an
       status: 'Beitrag #%{id}'
       status_removed: Beitrag bereits vom System entfernt
@@ -1017,8 +1027,9 @@ de:
       title_actions:
         delete_statuses: Post-Entfernung
         disable: Einfrieren des Kontos
+        mark_statuses_as_sensitive: Das Markieren der Beiträge als NSFW
         none: Warnung
-        sensitive: Als NSFW markieren
+        sensitive: Das Markieren des Kontos als NSFW
         silence: Kontobeschränkung
         suspend: Kontosperre
       your_appeal_approved: Dein Einspruch wurde angenommen
@@ -1390,6 +1401,7 @@ de:
     profile: Profil
     relationships: Folgende und Gefolgte
     statuses_cleanup: Automatische Löschung
+    strikes: Strikes
     two_factor_authentication: Zwei-Faktor-Auth
     webauthn_authentication: Sicherheitsschlüssel
   statuses:
@@ -1410,7 +1422,7 @@ de:
     disallowed_hashtags:
       one: 'enthält einen verbotenen Hashtag: %{tags}'
       other: 'enthält verbotene Hashtags: %{tags}'
-    edited_at: Bearbeitet am %{date}
+    edited_at_html: Bearbeitet %{date}
     errors:
       in_reply_not_found: Der Beitrag, auf den du antworten möchtest, scheint nicht zu existieren.
     open_in_web: Im Web öffnen
@@ -1469,6 +1481,7 @@ de:
       '2629746': 1 Monat
       '31556952': 1 Jahr
       '5259492': 2 Monate
+      '604800': 1 Woche
       '63113904': 2 Jahre
       '7889238': 3 Monate
     min_age_label: Altersgrenze
@@ -1618,26 +1631,28 @@ de:
         spam: Spam
         violation: Inhalt verletzt die folgenden Community-Richtlinien
       explanation:
-        delete_statuses: Einige deiner Beiträge wurden aufgrund eines Verstoßes gegen eine oder mehrere Community-Richtlinien entfernt und von den Moderatoren auf %{instance} entfernt. Künftige Verstöße können zu härteren Strafmaßnahmen gegen dein Konto führen.
+        delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Communityrichtlinien erkannt und von den Moderatoren von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst ein Backup deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
+        mark_statuses_as_sensitive: Einige deiner Beiträge wurden von den Moderatoren von %{instance} als NSFW markiert. Das bedeutet, dass die Nutzer die Medien in den Beiträgen antippen müssen, bevor eine Vorschau angezeigt wird. Du kannst Medien in Zukunft als NSFW markieren, wenn du Beiträge verfasst.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien als sensibel markiert und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
-      get_in_touch: Wenn du glaubst, dass dies ein Fehler ist, kannst auf diese E-Mail antworten, um mit den Mitarbeitern von %{instance} in Kontakt zu treten.
       reason: 'Grund:'
-      statuses: 'Beiträge, die in Verletzung gefunden wurden:'
+      statuses: 'Zitierte Beiträge:'
       subject:
         delete_statuses: Deine Beiträge auf %{acct} wurden entfernt
         disable: Dein Konto %{acct} wurde eingefroren
+        mark_statuses_as_sensitive: Deine Beiträge auf %{acct} wurden als NSFW markiert
         none: Warnung für %{acct}
-        sensitive: Deine Mediendateien auf %{acct} werden von nun an als sensibel markiert
+        sensitive: Deine Beiträge auf %{acct} werden von nun an als NSFW markiert
         silence: Dein Konto %{acct} wurde limitiert
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
         delete_statuses: Beiträge entfernt
         disable: Konto eingefroren
+        mark_statuses_as_sensitive: Als NSFW markierte Beiträge
         none: Warnung
-        sensitive: Medien versteckt
+        sensitive: Als NSFW markiertes Konto
         silence: Konto limitiert
         suspend: Konto gesperrt
     welcome:

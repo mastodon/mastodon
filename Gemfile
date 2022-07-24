@@ -7,7 +7,7 @@ gem 'pkg-config', '~> 1.4'
 gem 'rexml', '~> 3.2'
 
 gem 'puma', '~> 5.6'
-gem 'rails', '~> 6.1.4'
+gem 'rails', '~> 6.1.5'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
 gem 'rack', '~> 2.2.3'
@@ -40,6 +40,7 @@ end
 gem 'net-ldap', '~> 0.17'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
+gem 'gitlab-omniauth-openid-connect', '~>0.5.0', require: 'omniauth_openid_connect'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
@@ -67,7 +68,7 @@ gem 'parslet'
 gem 'posix-spawn'
 gem 'pundit', '~> 2.2'
 gem 'premailer-rails'
-gem 'rack-attack', '~> 6.5'
+gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
@@ -88,7 +89,7 @@ gem 'stoplight', '~> 2.2.1'
 gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
-gem 'tzinfo-data', '~> 1.2021'
+gem 'tzinfo-data', '~> 1.2022'
 gem 'webpacker', '~> 5.4'
 gem 'webpush', '~> 0.3'
 gem 'webauthn', '~> 3.0.0.alpha1'
@@ -113,7 +114,7 @@ end
 group :test do
   gem 'capybara', '~> 3.36'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.19'
+  gem 'faker', '~> 2.20'
   gem 'microformats', '~> 4.2'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
@@ -128,15 +129,15 @@ group :development do
   gem 'better_errors', '~> 2.9'
   gem 'binding_of_caller', '~> 1.0'
   gem 'bullet', '~> 7.0'
-  gem 'letter_opener', '~> 1.7'
+  gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.25', require: false
-  gem 'rubocop-rails', '~> 2.13', require: false
+  gem 'rubocop', '~> 1.26', require: false
+  gem 'rubocop-rails', '~> 2.14', require: false
   gem 'brakeman', '~> 5.2', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
-  gem 'capistrano', '~> 3.16'
+  gem 'capistrano', '~> 3.17'
   gem 'capistrano-rails', '~> 1.6'
   gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-yarn', '~> 2.0'

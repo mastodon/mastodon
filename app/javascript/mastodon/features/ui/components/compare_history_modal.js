@@ -9,6 +9,7 @@ import escapeTextContentForBrowser from 'escape-html';
 import InlineAccount from 'mastodon/components/inline_account';
 import IconButton from 'mastodon/components/icon_button';
 import RelativeTimestamp from 'mastodon/components/relative_timestamp';
+import MediaAttachments from 'mastodon/components/media_attachments';
 
 const mapStateToProps = (state, { statusId }) => ({
   versions: state.getIn(['history', statusId, 'items']),
@@ -70,6 +71,25 @@ class CompareHistoryModal extends React.PureComponent {
             )}
 
             <div className='status__content__text status__content__text--visible translate' dangerouslySetInnerHTML={content} />
+
+            {!!currentVersion.get('poll') && (
+              <div className='poll'>
+                <ul>
+                  {currentVersion.getIn(['poll', 'options']).map(option => (
+                    <li key={option.get('title')}>
+                      <span className='poll__input disabled' />
+
+                      <span
+                        className='poll__option__text translate'
+                        dangerouslySetInnerHTML={{ __html: emojify(escapeTextContentForBrowser(option.get('title')), emojiMap) }}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <MediaAttachments status={currentVersion} />
           </div>
         </div>
       </div>

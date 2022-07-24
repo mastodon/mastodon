@@ -4,7 +4,7 @@
       = image_tag appeal.account.avatar.url(:original), alt: '', width: 40, height: 40, class: 'avatar'
     .log-entry__content
       .log-entry__title
-        = t(appeal.strike.action, scope: 'admin.strikes.actions', name: content_tag(:span, appeal.strike.account.username, class: 'username'), target: content_tag(:span, appeal.account.acct, class: 'target')).html_safe
+        = t(appeal.strike.action, scope: 'admin.strikes.actions', name: content_tag(:span, appeal.strike.account.username, class: 'username'), target: content_tag(:span, appeal.account.username, class: 'target')).html_safe
       .log-entry__timestamp
         %time.formatted{ datetime: appeal.strike.created_at.iso8601 }
           = l(appeal.strike.created_at)

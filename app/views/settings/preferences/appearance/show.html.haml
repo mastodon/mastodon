@@ -15,12 +15,20 @@
     .flash-message.translation-prompt
       #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: "_blank", rel: "noopener")}
 
+  %h4= t 'appearance.optional_feature'
+
+  .fields-group
+    = f.input :setting_bigger_publish, as: :boolean, wrapper: :with_label, hint: true
+
   %h4= t 'appearance.advanced_web_interface'
 
   %p.hint= t 'appearance.advanced_web_interface_hint'
 
   .fields-group
-    = f.input :setting_advanced_layout, as: :boolean, wrapper: :with_label, hint: false
+    = f.input :setting_advanced_layout, as: :boolean, wrapper: :with_label, hint: false, recommended: true
+
+  .fields-group
+    = f.input :setting_wider_column, as: :boolean, wrapper: :with_label, hint: true
 
   %h4= t 'appearance.animations_and_accessibility'
 

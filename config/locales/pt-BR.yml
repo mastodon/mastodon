@@ -25,6 +25,7 @@ pt-BR:
       Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.
       É usado para propósitos de federação e não deve ser bloqueado a menos que queira bloquear toda a instância, o que no caso devia usar um bloqueio de domínio.
     learn_more: Saiba mais
+    logout_before_registering: Já está logado.
     privacy_policy: Política de Privacidade
     rules: Regras do servidor
     rules_html: 'Abaixo está um resumo das regras que você precisa seguir se você quer ter uma conta neste servidor do Mastodon:'
@@ -69,7 +70,6 @@ pt-BR:
     media: Mídia
     moved_html: "%{name} se mudou para %{new_profile_link}:"
     network_hidden: Informação indisponível
-    never_active: Nunca
     nothing_here: Nada aqui!
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
@@ -360,7 +360,6 @@ pt-BR:
       enable: Ativar
       enabled: Ativado
       enabled_msg: Emoji ativado com sucesso
-      image_hint: PNG de até 50KB
       list: Listar
       listed: Listado
       new:
@@ -424,19 +423,6 @@ pt-BR:
       reject_media_hint: Remove arquivos de mídia armazenados localmente e recusa fazer download de qualquer um no futuro. Irrelevante para suspensões
       reject_reports: Rejeitar denúncias
       reject_reports_hint: Ignora todas as denúncias vindo deste domínio. Irrelevante para suspensões
-      rejecting_media: rejeitando arquivos de mídia
-      rejecting_reports: rejeitando denúncias
-      severity:
-        silence: silenciado
-        suspend: banido
-      show:
-        affected_accounts:
-          one: Uma conta no banco de dados foi afetada
-        retroactive:
-          silence: Dessilenciar contas existentes afetadas deste domínio
-          suspend: Remover a suspensão das contas afetadas deste domínio
-        title: Desfazer bloqueio de domínio para %{domain}
-        undo: Desfazer
       undo: Desfazer bloqueio de domínio
       view: Ver domínios bloqueados
     email_domain_blocks:
@@ -458,19 +444,20 @@ pt-BR:
       title: Recomendações de contas
       unsuppress: Restaurar recomendação de contas
     instances:
+      availability:
+        title: Disponibilidade
       back_to_all: Todas
       back_to_warning: Aviso
       by_domain: Domínio
       confirm_purge: Você tem certeza de que deseja excluir permanentemente os dados deste domínio?
+      content_policies:
+        policy: Políticas
       delivery:
         all: Todos
         clear: Limpar erros de entrega
         restart: Reiniciar a entrega
         stop: Parar entrega
-        title: Entrega
         unavailable: Indisponível
-        unavailable_message: Envio indisponível
-        warning: Aviso
       delivery_available: Envio disponível
       empty: Nenhum domínio encontrado.
       moderation:
@@ -721,6 +708,8 @@ pt-BR:
         title: Editor
       rejected: Rejeitado
       statuses:
+        allow: Permitir postagem
+        allow_account: Permitir autor
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -888,6 +877,13 @@ pt-BR:
     directory: Diretório de perfis
     explanation: Descobrir usuários baseado em seus interesses
     explore_mastodon: Explore o %{title}
+  disputes:
+    strikes:
+      title_actions:
+        none: Aviso
+        sensitive: Marcar a conta como sensível
+        silence: Limitação da conta
+        suspend: Suspensão de conta
   domain_validator:
     invalid_domain: não é um nome de domínio válido
   errors:
@@ -1322,6 +1318,7 @@ pt-BR:
       '2629746': 1 mês
       '31556952': 1 ano
       '5259492': 2 meses
+      '604800': 1 semana
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Validade
@@ -1442,6 +1439,11 @@ pt-BR:
     recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para acessar a sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los junto com outros documentos importantes.
     webauthn: Chaves de segurança
   user_mailer:
+    appeal_approved:
+      action: Acessar perfil
+      title: Contestação aprovada
+    appeal_rejected:
+      title: Contestação rejeitada
     backup_ready:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
@@ -1453,12 +1455,13 @@ pt-BR:
       subject: Por favor, confirme a tentativa de acesso
       title: Tentativa de acesso
     warning:
+      appeal: Enviar uma contestação
       categories:
         spam: Spam
         violation: O conteúdo viola as seguintes diretrizes da comunidade
       explanation:
+        disable: Você não poderá mais usar a sua conta, mas o seu perfil e outros dados permanecem intactos. Você pode solicitar um backup dos seus dados, mudar as configurações ou excluir sua conta.
         sensitive: A partir de agora, todos os seus arquivos de mídia enviados serão marcados como confidenciais e escondidos por trás de um aviso de clique.
-      get_in_touch: Se você acredita que isso é um erro, você pode responder a este e-mail para entrar em contato com a equipe de %{instance}.
       reason: 'Motivo:'
       subject:
         disable: Sua conta %{acct} foi bloqueada
@@ -1468,8 +1471,8 @@ pt-BR:
       title:
         delete_statuses: Publicações removidas
         disable: Conta bloqueada
+        mark_statuses_as_sensitive: Postagens marcadas como sensíveis
         none: Aviso
-        sensitive: Mídia oculta
         silence: Conta silenciada
         suspend: Conta banida
     welcome:

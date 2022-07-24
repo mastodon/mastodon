@@ -65,6 +65,24 @@
     }
   }
 
+  &.horizontal-table {
+    border-collapse: collapse;
+    border-style: hidden;
+
+    & > tbody > tr > th,
+    & > tbody > tr > td {
+      padding: 11px 10px;
+      background: transparent;
+      border: 1px solid lighten($ui-base-color, 8%);
+      color: $secondary-text-color;
+    }
+
+    & > tbody > tr > th {
+      color: $darker-text-color;
+      font-weight: 600;
+    }
+  }
+
   &.batch-table {
     & > thead > tr > th {
       background: $ui-base-color;

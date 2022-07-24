@@ -15,8 +15,6 @@ class Api::BaseController < ApplicationController
 
   protect_from_forgery with: :null_session
 
-  skip_around_action :set_locale
-
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
   end

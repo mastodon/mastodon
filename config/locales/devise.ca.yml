@@ -25,7 +25,7 @@ ca:
         explanation: Has creat un compte a %{host} amb aquesta adreça de correu electrònic. Estàs a un sol clic de l'activació. Si no fos així, ignora aquest correu electrònic.
         explanation_when_pending: Has sol·licitat una invitació a %{host} amb aquesta adreça de correu electrònic. Un cop confirmis la teva adreça de correu electrònic revisarem la teva sol·licitud. No es pot iniciar la sessió fins llavors. Si la teva sol·licitud és rebutjada les teves dades s’eliminaran, de manera que no s’exigirà cap altra acció. Si no has estat tu qui ha fet aquest sol·licitud si us plau ignora aquest correu electrònic.
         extra_html: Si us plau consulta també <a href="%{terms_path}"> les regles del servidor</a> i <a href="%{policy_path}"> les nostres condicions de servei</a>.
-        subject: 'Mastodon: Instruccions de confirmació %{instance}'
+        subject: 'Mastodon: Instruccions de confirmació per a %{instance}'
         title: Verifica l'adreça de correu
       email_changed:
         explanation: 'L''adreça de correu del teu compte s''està canviant a:'
@@ -34,7 +34,7 @@ ca:
         title: Adreça de correu electrònic nova
       password_change:
         explanation: S'ha canviat la contrasenya del teu compte.
-        extra: Si no has canviat el teu correu electrònic, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador del servidor si no pots accedir al teu compte.
+        extra: Si no has canviat la teva contrasenya, és probable que algú hagi accedit al teu compte. Si us plau, canvia la contrasenya immediatament o posa't en contacte amb l'administrador del servidor si no pots accedir al teu compte.
         subject: 'Mastodon: Contrasenya canviada'
         title: Contrasenya canviada
       reconfirmation_instructions:
@@ -61,7 +61,7 @@ ca:
         subject: 'Mastodon: codis de recuperació de Dos factors regenerats'
         title: 2FA codis de recuperació canviats
       unlock_instructions:
-        subject: 'Mastodon: Instruccions per a desbloquejar'
+        subject: 'Mastodon: Instruccions de desbloqueig'
       webauthn_credential:
         added:
           explanation: La següent clau de seguretat s'ha afegit al teu compte
@@ -84,34 +84,34 @@ ca:
       success: Autenticat amb èxit des del compte %{kind}.
     passwords:
       no_token: No pots accedir a aquesta pàgina sense provenir des del correu de restabliment de la contrasenya. Si vens des del correu de restabliment de contrasenya, assegura't que estàs emprant l'adreça completa proporcionada.
-      send_instructions: Si el teu correu electrònic existeix en la nostra base de dades, rebràs en pocs minuts un enllaç de restabliment de contrasenya en l'adreça de correu. Si us plau verifica la teva carpeta de correu brossa if no rebut aquest correu.
-      send_paranoid_instructions: Si el seu correu electrònic existeix en la nostra base de dades, rebràs un enllaç de restabliment de contrasenya en l'adreça de correu en pocs minuts.
+      send_instructions: Si el teu correu electrònic existeix en la nostra base de dades, rebràs en pocs minuts un enllaç de restabliment de contrasenya en l'adreça de correu. Si us plau verifica la teva carpeta de correu brossa si no has rebut aquest correu.
+      send_paranoid_instructions: Si el teu correu electrònic existeix en la nostra base de dades, rebràs un enllaç de restabliment de contrasenya en l'adreça de correu en pocs minuts. Si us plau verifica la carpeta de correu brossa si no reps aquest correu.
       updated: La contrasenya s'ha canviat correctament. Ara ja estàs registrat.
       updated_not_active: La contrasenya s'ha canviat correctament.
     registrations:
-      destroyed: Adéu! el compte s'ha cancel·lat amb èxit. Desitgem veure't de nou aviat.
+      destroyed: Adéu! el compte s'ha cancel·lat amb èxit. Desitgem veure't de nou ben aviat.
       signed_up: Benvingut! T'has registrat amb èxit.
-      signed_up_but_inactive: T´has registrat amb èxit. No obstant, no podem identificar-te perquè el compte encara no s'ha activat.
-      signed_up_but_locked: T´has registrat amb èxit. No obstant, no podem identificar-te perquè el compte està blocat.
+      signed_up_but_inactive: T´has registrat amb èxit. No obstant, no podem iniciar la teva sessió perquè el teu compte encara no s'ha activat.
+      signed_up_but_locked: T´has registrat amb èxit. No obstant, no podem iniciar la teva sessió perquè el teu compte està bloquejat.
       signed_up_but_pending: S'ha enviat un missatge amb un enllaç de confirmació a la teva adreça de correu electrònic. Després que hagis fet clic a l'enllaç, revisarem la sol·licitud. Se't notificarà si s'aprova.
-      signed_up_but_unconfirmed: S'ha enviat per correu electrònic un missatge amb un enllaç de confirmació. Fes clic a l'enllaç per a activar el compte.
-      update_needs_confirmation: Ha actualitzat el seu compte amb èxit, però necessitem verificar la nova adreça de correu. Si us plau comprovi el correu i segueixi l'enllaç per confirmar la nova adreça de correu.
-      updated: El seu compte ha estat actualitzat amb èxit.
+      signed_up_but_unconfirmed: S'ha enviat per correu electrònic un missatge amb un enllaç de confirmació. Fes clic a l'enllaç per a activar el compte. Si us plau verifica la teva carpeta de correu brossa si no reps aquest correu.
+      update_needs_confirmation: Has actualitzat el teu compte amb èxit, però necessitem verificar la teva nova adreça de correu. Si us plau comprova el correu i segueixi l'enllaç per confirmar la nova adreça de correu. Si us plau verifica la teva carpeta de correu brossa si no reps aquest correu.
+      updated: El teu compte ha estat actualitzat amb èxit.
     sessions:
       already_signed_out: Has tancat la sessió amb èxit.
       signed_in: T'has registrat amb èxit.
       signed_out: Has tancat la sessió amb èxit.
     unlocks:
       send_instructions: En pocs minuts rebràs un correu electrònic amb instruccions sobre com desbloquejar el teu compte. Si us plau verifica la teva carpeta de correu brossa si no has rebut aquest correu.
-      send_paranoid_instructions: Si el compte existeix, rebràs en pocs minuts un correu electrònic amb instruccions sobre com desbloquejar-lo. Verifica la carpeta de correu brossa si no has rebut aquest correu.
-      unlocked: El compte s'ha desblocat correctament. Inicia sessió per a continuar.
+      send_paranoid_instructions: Si el teu compte existeix, rebràs en pocs minuts un correu electrònic amb instruccions sobre com desbloquejar-lo. Verifica la carpeta de correu brossa si no has rebut aquest correu.
+      unlocked: El compte s'ha desbloquejat correctament. Inicia sessió per a continuar.
   errors:
     messages:
       already_confirmed: ja està confirmat. Intenta d'iniciar sessió
-      confirmation_period_expired: calia fer la confirmació dins de %{period}, torna a sol·licitar-la
-      expired: ha expirat, demana'n una altra
+      confirmation_period_expired: cal fer la confirmació dins de %{period}, si us plau sol·licita-ho de nou
+      expired: ha expirat, si us plau demana'n una altra
       not_found: no s'ha trobat
       not_locked: no està bloquejada
       not_saved:
         one: '1 error ha impedit desar aquest %{resource}:'
-        other: "%{count} errors hab impedit desar aquest %{resource}:"
+        other: "%{count} errors han impedit desar aquest %{resource}:"

@@ -119,16 +119,6 @@ he:
         title: חסימת שרת חדשה
       reject_media: חסימת קבצי מדיה
       reject_media_hint: מסירה קבצי מדיה השמורים מקומית ומונעת מהורדת קבצים נוספים בעתיד. לא רלוונטי להשעיות
-      show:
-        affected_accounts:
-          one: חשבון אחד במסד נתונים מושפע
-          other: "%{count} חשבונות במסד נתונים מושפעים"
-          zero: אף חשבון במסד נתונים מושפע
-        retroactive:
-          silence: הסרת השתקה מכל החשבונות על שרת זה
-          suspend: הסרת השעייה מכל החשבונות על שרת זה
-        title: ביטול חסימת שרת עבור %{domain}
-        undo: ביטול
       undo: ביטול
     instances:
       title: שרתים מוכרים
@@ -179,17 +169,6 @@ he:
         remove_from_report: הסרה מהדיווח
         report: דווח
     title: ניהול
-    trends:
-      links:
-        shared_by_over_week:
-          one: שותף ע"י משתמש\ת אחד\ת בשבוע האחרון
-          other: שותף ע"י %{count} משתמשים בשבוע האחרון
-          zero: לא שותף בכלל בשבוע האחרון
-      tags:
-        used_by_over_week:
-          one: היה בשימוש משתמש\ת אחד\ת בשבוע האחרון
-          other: היה בשימוש ע"י %{count} משתמשים בשבוע האחרון
-          zero: לא היה בשימוש בכלל בשבוע האחרון
   application_mailer:
     settings: 'שינוי הגדרות דוא"ל: %{link}'
     view: 'תצוגה:'
@@ -207,6 +186,7 @@ he:
     security: החלפת סיסמא
     set_new_password: שינוי סיסמא
     status:
+      functional: החשבון שלכם פעיל לגמרי.
       redirecting_to: חשבונכם לא פעיל כעת מכיוון שמפנה ל%{acct}.
   authorize_follow:
     error: למרבה הצער, היתה שגיאה בחיפוש החשבון המרוחק
@@ -304,7 +284,6 @@ he:
     two_factor_authentication: אימות דו-שלבי
   statuses:
     default_language: זהה לשפת ממשק
-    edited_at: נערך ב%{date}
     open_in_web: פתח ברשת
     over_character_limit: חריגה מגבול התווים של %{max}
     show_more: עוד
@@ -336,9 +315,7 @@ he:
       reason: 'סיבה:'
       subject:
         delete_statuses: הפוסטים שלכם ב%{acct} הוסרו
-        sensitive: קבצי המדיה שלכם ב%{acct} יסומנו בתור תוכן רגיש מעכשיו והלאה
       title:
         delete_statuses: פוסטים שהוסרו
-        sensitive: מדיה שהוסתרה
   users:
     invalid_otp_token: קוד דו-שלבי שגוי

@@ -1,4 +1,4 @@
-.batch-table__row{ class: [status.account.requires_review? && 'batch-table__row--attention', !status.account.requires_review? && !status.trendable? && 'batch-table__row--muted'] }
+.batch-table__row{ class: [status.requires_review? && 'batch-table__row--attention', !status.requires_review? && !status.trendable? && 'batch-table__row--muted'] }
   %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
     = f.check_box :status_ids, { multiple: true, include_hidden: false }, status.id
 
@@ -9,7 +9,7 @@
       = link_to ActivityPub::TagManager.instance.url_for(status), target: '_blank', class: 'emojify', rel: 'noopener noreferrer' do
         = one_line_preview(status)
 
-        - status.media_attachments.each do |media_attachment|
+        - status.ordered_media_attachments.each do |media_attachment|
           %abbr{ title: media_attachment.description }
             = fa_icon 'link'
             = media_attachment.file_file_name
@@ -28,6 +28,6 @@
     - if status.trendable? && (rank = Trends.statuses.rank(status.id))
       •
       %abbr{ title: t('admin.trends.tags.current_score', score: Trends.statuses.score(status.id)) }= t('admin.trends.tags.trending_rank', rank: rank + 1)
-    - elsif status.account.requires_review?
+    - elsif status.requires_review?
       •
       = t('admin.trends.pending_review')

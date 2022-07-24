@@ -7,7 +7,7 @@
     = t('auth.status.pending')
 - elsif @user.account.moved_to_account_id.present?
   .flash-message.warning
-    = t('auth.status.redirecting_to', acct: @user.account.moved_to_account.acct)
+    = t('auth.status.redirecting_to', acct: @user.account.moved_to_account.pretty_acct)
     = link_to t('migrations.cancel'), settings_migration_path
 
 %h3= t('auth.status.account_status')

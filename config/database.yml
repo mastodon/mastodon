@@ -32,4 +32,3 @@ production:
   host: <%= ENV['DB_HOST'] || 'localhost' %>
   port: <%= ENV['DB_PORT'] || 5432 %>
   prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
-

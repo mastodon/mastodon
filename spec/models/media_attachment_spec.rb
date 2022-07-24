@@ -186,14 +186,6 @@ RSpec.describe MediaAttachment, type: :model do
     expect(media.valid?).to be false
   end
 
-  describe 'descriptions for remote attachments' do
-    it 'are cut off at 1500 characters' do
-      media = Fabricate(:media_attachment, description: 'foo' * 1000, remote_url: 'http://example.com/blah.jpg')
-
-      expect(media.description.size).to be <= 1_500
-    end
-  end
-
   describe 'size limit validation' do
     it 'rejects video files that are too large' do
       stub_const 'MediaAttachment::IMAGE_LIMIT', 100.megabytes

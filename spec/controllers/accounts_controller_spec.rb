@@ -5,7 +5,7 @@ RSpec.describe AccountsController, type: :controller do
 
   let(:account) { Fabricate(:account) }
 
-  shared_examples 'cachable response' do
+  shared_examples 'cacheable response' do
     it 'does not set cookies' do
       expect(response.cookies).to be_empty
       expect(response.headers['Set-Cookies']).to be nil
@@ -374,7 +374,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it_behaves_like 'cachable response'
+        it_behaves_like 'cacheable response'
 
         it 'renders account' do
           json = body_as_json
@@ -432,7 +432,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.media_type).to eq 'application/activity+json'
         end
 
-        it_behaves_like 'cachable response'
+        it_behaves_like 'cacheable response'
 
         it 'renders account' do
           json = body_as_json
@@ -499,7 +499,7 @@ RSpec.describe AccountsController, type: :controller do
           expect(response).to have_http_status(200)
         end
 
-        it_behaves_like 'cachable response'
+        it_behaves_like 'cacheable response'
       end
 
       context do

@@ -17,7 +17,6 @@ defaults: &defaults
   timeline_preview: true
   show_staff_badge: true
   default_sensitive: false
-  hide_network: false
   unfollow_modal: false
   boost_modal: false
   delete_modal: true
@@ -70,6 +69,8 @@ defaults: &defaults
   show_domain_blocks: 'disabled'
   show_domain_blocks_rationale: 'disabled'
   require_invite_text: false
+  bigger_publish: false
+  wider_column: false
 
 development:
   <<: *defaults
