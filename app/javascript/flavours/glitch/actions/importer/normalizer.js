@@ -1,6 +1,7 @@
 import escapeTextContentForBrowser from 'escape-html';
 import emojify from 'flavours/glitch/util/emoji';
 import { unescapeHTML } from 'flavours/glitch/util/html';
+import { autoHideCW } from 'flavours/glitch/util/content_warning';
 
 const domParser = new DOMParser();
 
@@ -41,7 +42,7 @@ export function normalizeAccount(account) {
   return account;
 }
 
-export function normalizeStatus(status, normalOldStatus) {
+export function normalizeStatus(status, normalOldStatus, settings) {
   const normalStatus   = { ...status };
   normalStatus.account = status.account.id;
 
@@ -60,6 +61,7 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.search_index = normalOldStatus.get('search_index');
     normalStatus.contentHtml = normalOldStatus.get('contentHtml');
     normalStatus.spoilerHtml = normalOldStatus.get('spoilerHtml');
+    normalStatus.hidden = normalOldStatus.get('hidden');
   } else {
     const spoilerText   = normalStatus.spoiler_text || '';
     const searchContent = ([spoilerText, status.content].concat((status.poll && status.poll.options) ? status.poll.options.map(option => option.title) : [])).concat(status.media_attachments.map(att => att.description)).join('\n\n').replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n');
@@ -68,6 +70,7 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
     normalStatus.contentHtml  = emojify(normalStatus.content, emojiMap);
     normalStatus.spoilerHtml  = emojify(escapeTextContentForBrowser(spoilerText), emojiMap);
+    normalStatus.hidden       = (spoilerText.length > 0 || normalStatus.sensitive) && autoHideCW(settings, spoilerText);
   }
 
   return normalStatus;

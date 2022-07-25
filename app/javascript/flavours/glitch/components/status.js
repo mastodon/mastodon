@@ -81,8 +81,8 @@ class Status extends ImmutablePureComponent {
     onBlock: PropTypes.func,
     onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
+    onToggleHidden: PropTypes.func,
     muted: PropTypes.bool,
-    collapse: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
     prepend: PropTypes.string,
@@ -121,7 +121,6 @@ class Status extends ImmutablePureComponent {
     'settings',
     'prepend',
     'muted',
-    'collapse',
     'notification',
     'hidden',
     'expanded',
@@ -149,12 +148,12 @@ class Status extends ImmutablePureComponent {
     let updated = false;
 
     // Make sure the state mirrors props we track…
-    if (nextProps.collapse !== prevState.collapseProp) {
-      update.collapseProp = nextProps.collapse;
-      updated = true;
-    }
     if (nextProps.expanded !== prevState.expandedProp) {
       update.expandedProp = nextProps.expanded;
+      updated = true;
+    }
+    if (nextProps.status?.get('hidden') !== prevState.statusPropHidden) {
+      update.statusPropHidden = nextProps.status?.get('hidden');
       updated = true;
     }
 
@@ -164,14 +163,19 @@ class Status extends ImmutablePureComponent {
         update.isCollapsed = false;
         updated = true;
       }
-    } else if (
-      nextProps.collapse !== prevState.collapseProp &&
-      nextProps.collapse !== undefined
+    }
+
+    // Handle uncollapsing toots when the shared CW state is expanded
+    if (nextProps.settings.getIn(['content_warnings', 'shared_state']) &&
+      nextProps.status?.get('spoiler_text')?.length && nextProps.status?.get('hidden') === false &&
+      prevState.statusPropHidden !== false && prevState.isCollapsed
     ) {
-      update.isCollapsed = nextProps.collapse;
-      if (nextProps.collapse) update.isExpanded = false;
+      update.isCollapsed = false;
       updated = true;
     }
+
+    // The “expanded” prop is used to one-off change the local state.
+    // It's used in the thread view when unfolding/re-folding all CWs at once.
     if (nextProps.expanded !== prevState.expandedProp &&
       nextProps.expanded !== undefined
     ) {
@@ -180,15 +184,9 @@ class Status extends ImmutablePureComponent {
       updated = true;
     }
 
-    if (nextProps.expanded === undefined &&
-      prevState.isExpanded === undefined &&
-      update.isExpanded === undefined
-    ) {
-      const isExpanded = autoUnfoldCW(nextProps.settings, nextProps.status);
-      if (isExpanded !== undefined) {
-        update.isExpanded = isExpanded;
-        updated = true;
-      }
+    if (prevState.isExpanded === undefined && update.isExpanded === undefined) {
+      update.isExpanded = autoUnfoldCW(nextProps.settings, nextProps.status);
+      updated = true;
     }
 
     if (nextProps.status && nextProps.status.get('id') !== prevState.statusId) {
@@ -243,22 +241,18 @@ class Status extends ImmutablePureComponent {
 
     const autoCollapseSettings = settings.getIn(['collapsed', 'auto']);
 
-    if (function () {
-      switch (true) {
-      case !!collapse:
-      case !!autoCollapseSettings.get('all'):
-      case autoCollapseSettings.get('notifications') && !!muted:
-      case autoCollapseSettings.get('lengthy') && node.clientHeight > (
-        status.get('media_attachments').size && !muted ? 650 : 400
-      ):
-      case autoCollapseSettings.get('reblogs') && prepend === 'reblogged_by':
-      case autoCollapseSettings.get('replies') && status.get('in_reply_to_id', null) !== null:
-      case autoCollapseSettings.get('media') && !(status.get('spoiler_text').length) && !!status.get('media_attachments').size:
-        return true;
-      default:
-        return false;
-      }
-    }()) {
+    // Don't autocollapse if CW state is shared and status is explicitly revealed,
+    // as it could cause surprising changes when receiving notifications
+    if (settings.getIn(['content_warnings', 'shared_state']) && status.get('spoiler_text').length && !status.get('hidden')) return;
+
+    if (collapse ||
+      autoCollapseSettings.get('all') ||
+      (autoCollapseSettings.get('notifications') && muted) ||
+      (autoCollapseSettings.get('lengthy') && node.clientHeight > ((status.get('media_attachments').size && !muted) ? 650 : 400)) ||
+      (autoCollapseSettings.get('reblogs') && prepend === 'reblogged_by') ||
+      (autoCollapseSettings.get('replies') && status.get('in_reply_to_id', null) !== null) ||
+      (autoCollapseSettings.get('media') && !(status.get('spoiler_text').length) && status.get('media_attachments').size > 0)
+    ) {
       this.setCollapsed(true);
       // Hack to fix timeline jumps on second rendering when auto-collapsing
       this.setState({ autoCollapsed: true });
@@ -309,16 +303,20 @@ class Status extends ImmutablePureComponent {
   //  is enabled, so we don't have to.
   setCollapsed = (value) => {
     if (this.props.settings.getIn(['collapsed', 'enabled'])) {
-      this.setState({ isCollapsed: value });
       if (value) {
         this.setExpansion(false);
       }
+      this.setState({ isCollapsed: value });
     } else {
       this.setState({ isCollapsed: false });
     }
   }
 
   setExpansion = (value) => {
+    if (this.props.settings.getIn(['content_warnings', 'shared_state']) && this.props.status.get('hidden') === value) {
+      this.props.onToggleHidden(this.props.status);
+    }
+
     this.setState({ isExpanded: value });
     if (value) {
       this.setCollapsed(false);
@@ -365,7 +363,9 @@ class Status extends ImmutablePureComponent {
   }
 
   handleExpandedToggle = () => {
-    if (this.props.status.get('spoiler_text')) {
+    if (this.props.settings.getIn(['content_warnings', 'shared_state'])) {
+      this.props.onToggleHidden(this.props.status);
+    } else if (this.props.status.get('spoiler_text')) {
       this.setExpansion(!this.state.isExpanded);
     }
   };
@@ -505,7 +505,7 @@ class Status extends ImmutablePureComponent {
       usingPiP,
       ...other
     } = this.props;
-    const { isExpanded, isCollapsed, forceFilter } = this.state;
+    const { isCollapsed, forceFilter } = this.state;
     let background = null;
     let attachments = null;
 
@@ -527,6 +527,8 @@ class Status extends ImmutablePureComponent {
     if (status === null) {
       return null;
     }
+
+    const isExpanded = settings.getIn(['content_warnings', 'shared_state']) ? !status.get('hidden') : this.state.isExpanded;
 
     const handlers = {
       reply: this.handleHotkeyReply,

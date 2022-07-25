@@ -1,26 +1,31 @@
 import { expandSpoilers } from 'flavours/glitch/util/initial_state';
 
-export function autoUnfoldCW (settings, status) {
-  if (!expandSpoilers) {
+function _autoUnfoldCW(spoiler_text, skip_unfold_regex) {
+  if (!expandSpoilers)
     return false;
-  }
 
-  const rawRegex = settings.getIn(['content_warnings', 'filter']);
+  if (!skip_unfold_regex)
+    return true;
 
-  if (!rawRegex) {
+  let regex = null;
+
+  try {
+    regex = new RegExp(skip_unfold_regex.trim(), 'i');
+  } catch (e) {
+    // Bad regex, skip filters
     return true;
   }
 
-  let regex      = null;
+  return !regex.test(spoiler_text);
+}
 
-  try {
-    regex = rawRegex && new RegExp(rawRegex.trim(), 'i');
-  } catch (e) {
-    // Bad regex, don't affect filters
-  }
+export function autoHideCW(settings, spoiler_text) {
+  return !_autoUnfoldCW(spoiler_text, settings.getIn(['content_warnings', 'filter']));
+}
 
-  if (!(status && regex)) {
-    return undefined;
-  }
-  return !regex.test(status.get('spoiler_text'));
+export function autoUnfoldCW(settings, status) {
+  if (!status)
+    return false;
+
+  return _autoUnfoldCW(status.get('spoiler_text'), settings.getIn(['content_warnings', 'filter']));
 }

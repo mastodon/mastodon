@@ -27,6 +27,7 @@ const initialState = ImmutableMap({
   content_warnings : ImmutableMap({
     filter       : null,
     media_outside: false,
+    shared_state : false,
   }),
   collapsed : ImmutableMap({
     enabled     : true,

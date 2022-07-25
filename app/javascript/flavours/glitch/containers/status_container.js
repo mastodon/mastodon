@@ -17,7 +17,14 @@ import {
   pin,
   unpin,
 } from 'flavours/glitch/actions/interactions';
-import { muteStatus, unmuteStatus, deleteStatus, editStatus } from 'flavours/glitch/actions/statuses';
+import {
+  muteStatus,
+  unmuteStatus,
+  deleteStatus,
+  hideStatus,
+  revealStatus,
+  editStatus
+} from 'flavours/glitch/actions/statuses';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
@@ -249,6 +256,14 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
       dispatch(unmuteStatus(status.get('id')));
     } else {
       dispatch(muteStatus(status.get('id')));
+    }
+  },
+
+  onToggleHidden (status) {
+    if (status.get('hidden')) {
+      dispatch(revealStatus(status.get('id')));
+    } else {
+      dispatch(hideStatus(status.get('id')));
     }
   },
 
