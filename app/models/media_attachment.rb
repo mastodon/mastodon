@@ -261,8 +261,8 @@ class MediaAttachment < ApplicationRecord
   before_create :set_unknown_type
   before_create :set_processing
 
+  after_post_process { set_file_extension(file) }
   after_post_process :set_meta
-  after_post_process :set_file_extensions
 
   class << self
     def supported_mime_types
