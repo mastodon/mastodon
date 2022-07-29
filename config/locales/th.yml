@@ -626,7 +626,22 @@ th:
       permissions_count:
         other: "%{count} สิทธิอนุญาต"
       privileges:
+        administrator: ผู้ดูแล
+        delete_user_data: ลบข้อมูลผู้ใช้
+        invite_users: เชิญผู้ใช้
+        manage_announcements: จัดการประกาศ
+        manage_appeals: จัดการการอุทธรณ์
+        manage_blocks: จัดการการปิดกั้น
+        manage_custom_emojis: จัดการอีโมจิที่กำหนดเอง
+        manage_federation: จัดการการติดต่อกับภายนอก
+        manage_invites: จัดการคำเชิญ
+        manage_reports: จัดการรายงาน
         manage_roles: จัดการบทบาท
+        manage_rules: จัดการกฎ
+        manage_settings: จัดการการตั้งค่า
+        manage_user_access: จัดการการเข้าถึงของผู้ใช้
+        manage_users: จัดการผู้ใช้
+        view_devops_description: อนุญาตให้ผู้ใช้เข้าถึงแดชบอร์ด Sidekiq และ pgHero
       title: บทบาท
     rules:
       add_new: เพิ่มกฎ
@@ -817,6 +832,8 @@ th:
       edit: แก้ไขปลายทาง
       enable: เปิดใช้งาน
       enabled: ใช้งานอยู่
+      enabled_events:
+        other: "%{count} เหตุการณ์ที่เปิดใช้งาน"
       events: เหตุการณ์
       status: สถานะ
   admin_mailer:
