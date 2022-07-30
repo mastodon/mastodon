@@ -91,6 +91,10 @@ ja:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
         chosen_languages: 選択すると、選択した言語の投稿のみが公開タイムラインに表示されるようになります
+      user_role:
+        highlighted: これにより、役割が公開されます。
+        name: 役割をバッジ表示する際の表示名
+        permissions_as_keys: この役割を持つユーザーは次の機能にアクセスできます
     labels:
       account:
         fields:
@@ -178,6 +182,7 @@ ja:
         setting_use_pending_items: 手動更新モード
         severity: 重大性
         sign_in_token_attempt: セキュリティコード
+        title: タイトル
         type: インポートする項目
         username: ユーザー名
         username_or_email: ユーザー名またはメールアドレス
@@ -219,6 +224,14 @@ ja:
         name: ハッシュタグ
         trendable: トレンドへの表示を許可する
         usable: 投稿への使用を許可する
+      user:
+        role: 役割
+      user_role:
+        color: バッジの色
+        highlighted: プロフィールに役割のバッジを表示する
+        name: 名前
+        permissions_as_keys: 権限
+        position: 優先度
       webhook:
         events: 有効なイベント
         url: エンドポイントURL

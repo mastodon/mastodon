@@ -43,6 +43,8 @@ pl:
         user_role:
           attributes:
             permissions_as_keys:
+              dangerous: dołącz uprawnienia, które nie są bezpieczne dla roli podstawowej
+              elevated: nie może zawierać uprawnień, jakie twoja obecna rola nie posiada
               own_role: nie można zmienić z aktualną rolą
             position:
               elevated: nie może być wyższa niż twoja bieżąca rola
