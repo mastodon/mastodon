@@ -47,10 +47,13 @@ class User < ApplicationRecord
     remember_token
     current_sign_in_ip
     last_sign_in_ip
+    skip_sign_in_token
   )
 
   include Settings::Extend
   include UserRoles
+  include Redisable
+  include LanguagesHelper
 
   # The home and list feeds will be stored in Redis for this amount
   # of time, and status fan-out to followers will include only people
@@ -129,11 +132,11 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
-           :disable_swiping,
+           :disable_swiping, :always_send_emails,
            :bigger_publish, :wider_column,
            to: :settings, prefix: :setting, allow_nil: false
 
-  attr_reader :invite_code, :sign_in_token_attempt
+  attr_reader :invite_code
   attr_writer :external, :bypass_invite_request_check
 
   def confirmed?
@@ -201,10 +204,6 @@ class User < ApplicationRecord
     !account.memorial?
   end
 
-  def suspicious_sign_in?(ip)
-    !otp_required_for_login? && !skip_sign_in_token? && current_sign_in_at.present? && !ips.where(ip: ip).exists?
-  end
-
   def functional?
     confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial? && account.moved_to_account_id.nil?
   end
@@ -251,7 +250,7 @@ class User < ApplicationRecord
   end
 
   def preferred_posting_language
-    settings.default_language || locale
+    valid_locale_cascade(settings.default_language, locale)
   end
 
   def setting_default_privacy
@@ -369,15 +368,6 @@ class User < ApplicationRecord
     setting_display_media == 'hide_all'
   end
 
-  def sign_in_token_expired?
-    sign_in_token_sent_at.nil? || sign_in_token_sent_at < 5.minutes.ago
-  end
-
-  def generate_sign_in_token
-    self.sign_in_token         = Devise.friendly_token(6)
-    self.sign_in_token_sent_at = Time.now.utc
-  end
-
   protected
 
   def send_devise_notification(notification, *args, **kwargs)
@@ -469,7 +459,7 @@ class User < ApplicationRecord
   end
 
   def regenerate_feed!
-    RegenerationWorker.perform_async(account_id) if Redis.current.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
+    RegenerationWorker.perform_async(account_id) if redis.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
   end
 
   def needs_feed_update?

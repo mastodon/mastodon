@@ -2,39 +2,61 @@
 sl:
   simple_form:
     hints:
+      account_alias:
+        acct: Določite uporabniškoime@domena računa, od katerega se želite preseliti
+      account_migration:
+        acct: Določite uporabniškoime@domena računa, na katerega se želite preseliti
       account_warning_preset:
-        text: Lahko uporabite skladnjo tuta, kot so URL-ji, ključniki in omembe
+        text: Lahko uporabite skladnjo objave, kot so URL-ji, ključniki in omembe
         title: Neobvezno. Ni vidno prejemniku
       admin_account_action:
+        include_statuses: Uporabnik vidi, katere objave so povzročile dejanje moderiranja ali opozorilo
         send_email_notification: Uporabnik bo prejel razlago, kaj se je zgodilo z njihovim računom
-        text_html: Neobvezno. Lahko uporabite skladnjo tuta. <a href="%{path}">Prednastavite opozorila</a>, da prihranite čas
+        text_html: Neobvezno. Lahko uporabite skladnjo objave. <a href="%{path}">Prednastavite opozorila</a>, da prihranite čas
         type_html: Izberite, kaj boste storili z <strong>%{acct}</strong>
+        types:
+          disable: Preprečite uporabniku, da uporablja svoj račun, vendar ne izbrišite ali skrijte njegove vsebine.
+          none: Uporabite to, da pošljete opozorilo uporabnik, ne da bi sprožili kakšno drugo dejanje.
+          sensitive: Vsilite, da so vse medijske priponke tega uporabnika označene kot občutljive.
+          silence: Prepreči uporabniku, da lahko objavlja javno, skrije njihove objave in obvestila pred osebami, ki mu ne sledijo.
+          suspend: Prepreči vsakršno interakcijo od ali do tega računa in izbriše njegovo vsebino. Povratno v roku 30 dni.
         warning_preset_id: Neobvezno. Še vedno lahko dodate besedilo po meri na konec prednastavitve
+      announcement:
+        all_day: Če je potrjeno, bodo prikazani le datumi časovnega obsega
+        ends_at: Neobvezno. Obvestilo bo samodejno neobjavljeno v navedenem času
+        scheduled_at: Pustite prazno, da objavite obvestilo takoj
+        starts_at: Neobvezno. V primeru, da je vaše obvestilo vezano na določen časovni obseg
+        text: Uporabite lahko skladnjo objav. Pazite na prostor, ki ga zavzame obvestilo na zaslonu uporabnika
+      appeal:
+        text: Na ukrep se lahko pritožite le enkrat
       defaults:
         autofollow: Osebe, ki se prijavijo prek povabila, vas bodo samodejno sledile
         avatar: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         bot: Ta račun v glavnem opravlja samodejna dejanja in morda ni pod nadzorom
         context: En ali več kontekstov, kjer naj se uporabi filter
+        current_password: Iz varnostnih razlogov vnesite geslo trenutnega računa
         current_username: Za potrditev vnesite uporabniško ime trenutnega računa
         digest: Pošlje se le po dolgem obdobju nedejavnosti in samo, če ste prejeli osebna sporočila v vaši odsotnosti
+        discoverable: Dovolite, da vaš račun odkrijejo neznanci prek priporočil, trendov in drugih funkcij
         email: Poslali vam bomo potrditveno e-pošto
         fields: Na svojem profilu lahko imate do 4 predmete prikazane kot tabelo.
         header: PNG, GIF ali JPG. Največ %{size}. Zmanjšana bo na %{dimensions}px
         inbox_url: Kopirajte URL naslov s prve strani releja, ki ga želite uporabiti
-        irreversible: Filtrirani trobi bodo nepovratno izginili, tudi če je filter kasneje odstranjen
+        irreversible: Filtrirane objave bodo nepovratno izginile, tudi če je filter kasneje odstranjen
         locale: Jezik uporabniškega vmesnika, e-poštnih sporočil in potisnih obvestil
         locked: Zahteva, da ročno odobrite sledilce
         password: Uporabite najmanj 8 znakov
-        phrase: Se bo ujemal, ne glede na začetnice v tekstu ali opozorilo o vsebini troba
+        phrase: Se bo ujemal, ne glede na začetnice v besedilu ali opozorilo o vsebini objave
         scopes: Do katerih API-jev bo imel program dostop. Če izberete obseg najvišje ravni, vam ni treba izbrati posameznih.
-        setting_aggregate_reblogs: Ne prikažite novih spodbud za tute, ki so bili nedavno spodbujeni (vpliva samo na novo prejete spodbude)
+        setting_aggregate_reblogs: Ne prikažite novih izpostavitev za objave, ki so bile nedavno izpostavljene (vpliva samo na novo prejete izpostavitve)
+        setting_always_send_emails: Običajno e-obvestila ne bodo poslana, če ste na Mastodonu dejavni
         setting_default_sensitive: Občutljivi mediji so privzeto skriti in jih je mogoče razkriti s klikom
         setting_display_media_default: Skrij medij, ki je označen kot občutljiv
         setting_display_media_hide_all: Vedno skrij vse medije
         setting_display_media_show_all: Vedno pokaži medij, ki je označen kot občutljiv
         setting_hide_network: Kogar spremljate in kdo vas spremlja ne bo prikazano na vašem profilu
-        setting_noindex: Vpliva na vaš javni profil in na strani s stanjem
-        setting_show_application: Aplikacija, ki jo uporabljate za tutanje, bo prikazana v podrobnem pogledu vaših tutov
+        setting_noindex: Vpliva na vaš javni profil in na strani z objavami
+        setting_show_application: Aplikacija, ki jo uporabljate za objavljanje, bo prikazana v podrobnem pogledu vaših objav
         setting_use_blurhash: Gradienti temeljijo na barvah skrite vizualne slike, vendar zakrivajo vse podrobnosti
         setting_use_pending_items: Skrij posodobitev časovnice za klikom namesto samodejnega posodabljanja
         username: Vaše uporabniško ime bo edinstveno na %{domain}
@@ -43,6 +65,7 @@ sl:
         domain: Ta domena bo lahko prejela podatke s tega strežnika, dohodni podatki z nje pa bodo obdelani in shranjeni
       email_domain_block:
         domain: To je lahko ime domene, ki se pokaže v e-poštnem naslovu, ali zapis MX, ki ga uporablja. Ob prijavi bo preverjeno.
+        with_dns_records: Poskus razrešitve zapisov DNS danih domen bo izveden in rezultati bodo prav tako blokirani
       featured_tag:
         name: 'Morda boste želeli uporabiti eno od teh:'
       form_challenge:
@@ -53,14 +76,21 @@ sl:
         text: To nam bo pomagalo pregledati vašo prijavo
       ip_block:
         comment: Neobvezno. Spomnite se, zakaj ste dodali to pravilo.
+        expires_in: Naslovi IP so končno imejen vir, včasij si jih delimo in pogosto menjajo rabo. Zato nedoločeni bloki IP niso priporočeni.
+        ip: Vnesite naslov IPv4 oz. IPv6. S skladnjo CIDR lahko blokirate celotne obsege. Pazite, da se ne zaklenete ven!
         severities:
           no_access: Blokiraj dostop do vseh virov
           sign_up_requires_approval: Za nove registracije bo potrebna vaša odobritev
         severity: Izberite, kaj se bo zgodilo z zahtevami iz tega IP-naslova
+      rule:
+        text: Opišite pravilo ali zahtevo za uporabnike na tem strežniku. Poskusite biti kratki in jasni
       sessions:
         otp: 'Vnesite dvomestno kodo, ki je ustvarjena z aplikacijo na telefonu, ali uporabite eno od vaših obnovitvenih kod:'
+        webauthn: Če gre za ključek USB, ga ne pozabite vstaviti in, če je potrebno, tapniti.
+      tag:
+        name: Spremenite lahko le npr. velikost črk (velike/male), da je bolj berljivo
       user:
-        chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazani samo trobi v izbranih jezikih
+        chosen_languages: Ko je označeno, bodo v javnih časovnicah prikazane samo objave v izbranih jezikih
     labels:
       account:
         fields:
@@ -121,23 +151,25 @@ sl:
         password: Geslo
         phrase: Ključna beseda ali fraza
         setting_advanced_layout: Omogoči napredni spletni vmesnik
-        setting_aggregate_reblogs: Skupinske spodbude na časovnicah
+        setting_aggregate_reblogs: Skupinske izpostavitve na časovnicah
+        setting_always_send_emails: Vedno pošlji e-obvestila
         setting_auto_play_gif: Samodejno predvajanje animiranih GIF-ov
-        setting_boost_modal: Pred sunkom pokaži potrditveno okno
+        setting_boost_modal: Pred izpostavljanjem pokaži potrditveno okno
         setting_crop_images: Obreži slike v nerazširjenih objavah v razmerju 16:9
         setting_default_language: Jezik objavljanja
         setting_default_privacy: Zasebnost objave
         setting_default_sensitive: Vedno označi medije kot občutljive
-        setting_delete_modal: Pred brisanjem troba prikaži okno za pritrditev
+        setting_delete_modal: Pred brisanjem objave prikaži okno za pritrditev
+        setting_disable_swiping: Onemogoči poteze drsanja
         setting_display_media: Prikaz medijev
         setting_display_media_default: Privzeto
         setting_display_media_hide_all: Skrij vse
         setting_display_media_show_all: Prikaži vse
-        setting_expand_spoilers: Vedno razširi trobe, označene z opozorili o vsebini
+        setting_expand_spoilers: Vedno razširi objave, označene z opozorili o vsebini
         setting_hide_network: Skrij svoje omrežje
         setting_noindex: Odsotnost indeksiranja iskalnikov
         setting_reduce_motion: Zmanjšanje premikanja v animacijah
-        setting_show_application: Razkrij aplikacijo za pošiljanje tutov
+        setting_show_application: Razkrij aplikacijo za pošiljanje objav
         setting_system_font_ui: Uporabi privzeto pisavo sistema
         setting_theme: Tema strani
         setting_trends: Pokaži današnje trende
@@ -170,13 +202,14 @@ sl:
           sign_up_requires_approval: Omeji število prijav
         severity: Pravilo
       notification_emails:
+        appeal: Nekdo se je pritožil na odločitev moderatorja
         digest: Pošlji izvlečke e-pošt
-        favourite: Pošlji e-pošto, ko nekdo doda vaše stanje med priljubljene
+        favourite: Pošlji e-pošto, ko nekdo doda vašo objavo med priljubljene
         follow: Pošlji e-pošto, ko vas nekdo sledi
         follow_request: Pošlji e-pošto, ko vam nekdo želi slediti
         mention: Pošlji e-pošto, ko vas nekdo omeni
         pending_account: Pošlji e-pošto, ko je potreben pregled novega računa
-        reblog: Pošlji e-pošto, ko nekdo sune vaše stanje
+        reblog: Pošlji e-sporočilo, ko nekdo izpostavi vašo objavo
         report: Novo poročilo je oddano
         trending_tag: Nov trend zahteva pregled
       rule:

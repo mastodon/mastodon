@@ -27,7 +27,7 @@ it:
       È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
     learn_more: Scopri altro
     logged_in_as_html: Sei correntemente connesso come %{username}.
-    logout_before_registering: Hai giù acceduto.
+    logout_before_registering: Hai già effettuato l'accesso.
     privacy_policy: Politica della privacy
     rules: Regole del server
     rules_html: 'Di seguito è riportato un riassunto delle regole che devi seguire se vuoi avere un account su questo server di Mastodon:'
@@ -164,9 +164,9 @@ it:
       not_subscribed: Non sottoscritto
       pending: Revisioni in attesa
       perform_full_suspension: Sospendi
-      previous_strikes: Provvedimenti precedenti
+      previous_strikes: Sanzioni precedenti
       previous_strikes_description_html:
-        one: Questo account ha <strong>una</strong> violazione.
+        one: Questo account ha <strong>una</strong> sanzione.
         other: Questo account ha <strong>%{count}</strong> violazioni.
       promote: Promuovi
       protocol: Protocollo
@@ -199,7 +199,6 @@ it:
       security_measures:
         only_password: Solo password
         password_and_2fa: Password e autenticazione a due fattori
-        password_and_sign_in_token: Password e codice via email
       sensitive: Sensibile
       sensitized: contrassegnato come sensibile
       shared_inbox_url: URL Inbox Condiviso
@@ -209,7 +208,7 @@ it:
       silence: Silenzia
       silenced: Silenziato
       statuses: Stati
-      strikes: Provvedimenti precedenti
+      strikes: Sanzioni precedenti
       subscribe: Sottoscrivi
       suspend: Sospendi
       suspended: Sospeso
@@ -518,6 +517,7 @@ it:
       delivery:
         all: Tutto
         clear: Cancella errori di consegna
+        failing: Con errori
         restart: Riavvia la consegna
         stop: Interrompi consegna
         unavailable: Non disponibile
@@ -597,10 +597,10 @@ it:
       action_log: Registro di controllo
       action_taken_by: Azione intrapresa da
       actions:
-        delete_description_html: I post segnalati saranno eliminati e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
-        mark_as_sensitive_description_html: I media nei post segnalati saranno segnati come sensibili e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        delete_description_html: I post segnalati saranno eliminati e la sanzione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una sanzione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
-        resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna violazione registrata, e la segnalazione sarà chiusa.
+        resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna sanzione registrata, e la segnalazione sarà chiusa.
         silence_description_html: Il profilo sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato.
         suspend_description_html: Il profilo e tutti i suoi contenuti diventeranno inaccessibili fino a quando non sarà cancellato. L'interazione con l'account sarà impossibile. Annullabile entro 30 giorni.
       actions_description_html: Decidete quali azioni intraprendere per risolvere la segnalazione. Se si intraprende un'azione punitiva contro l'account segnalato, gli sarà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
@@ -802,6 +802,7 @@ it:
           other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
+      only_allowed: Solo consentiti
       pending_review: Revisione in sospeso
       preview_card_providers:
         allowed: I link da questa fonte possono essere in tendenza
@@ -843,6 +844,7 @@ it:
           one: Usato da una persona nell'ultima settimana
           other: Usato da %{count} persone nell'ultima settimana
       title: Tendenze
+      trending: Di tendenza
     warning_presets:
       add_new: Aggiungi nuovo
       delete: Cancella
@@ -896,7 +898,7 @@ it:
     advanced_web_interface_hint: |-
       Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
       Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
-    animations_and_accessibility: Animazioni e accessibiiltà
+    animations_and_accessibility: Animazioni e accessibilità
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
     localization:
@@ -962,7 +964,7 @@ it:
       functional: Il tuo profilo è completamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
-      view_strikes: Visualizza gli avvisi passati contro il tuo profilo
+      view_strikes: Visualizza le sanzioni precedenti prese nei confronti del tuo account
     too_fast: Modulo inviato troppo velocemente, riprova.
     trouble_logging_in: Problemi di accesso?
     use_security_key: Usa la chiave di sicurezza
@@ -1036,10 +1038,12 @@ it:
       appealed_msg: Il tuo appello è stato presentato. Se sarà approvato, sarai informato.
       appeals:
         submit: Presenta un appello
+      approve_appeal: Approva ricorso
       associated_report: Segnalazione associata
       created_at: Data
       description_html: Queste sono azioni intraprese contro il tuo profilo e avvisi inviati a te dallo staff di %{instance}.
       recipient: Indirizzata a
+      reject_appeal: Respingi ricorso
       status: 'Post #%{id}'
       status_removed: Post già rimosso dal sistema
       title: "%{action} da %{date}"
@@ -1239,8 +1243,8 @@ it:
         one: E inoltre hai ricevuto un nuovo seguace mentre eri assente! Urrà!
         other: Inoltre, hai acquisito %{count} nuovi seguaci mentre eri assente! Incredibile!
       subject:
-        one: "1 nuova notifica dalla tua ultima visita \U0001F418"
-        other: "%{count} nuove notifiche dalla tua ultima visita \U0001F418"
+        one: "1 nuova notifica dalla tua ultima visita 🐘"
+        other: "%{count} nuove notifiche dalla tua ultima visita 🐘"
       title: In tua assenza…
     favourite:
       body: 'Il tuo status è stato apprezzato da %{name}:'
@@ -1354,6 +1358,11 @@ it:
   reports:
     errors:
       invalid_rules: non fa riferimento a regole valide
+  rss:
+    content_warning: 'Avviso sul contenuto:'
+    descriptions:
+      account: Post pubblici di @%{acct}
+      tag: 'Post pubblici taggati #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
     over_total_limit: Hai superato il limite di %{limit} post programmati
@@ -1420,7 +1429,7 @@ it:
     profile: Profilo
     relationships: Follows e followers
     statuses_cleanup: Cancellazione automatica dei post
-    strikes: Avvisi di moderazione
+    strikes: Sanzioni di moderazione
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
   statuses:
@@ -1512,6 +1521,9 @@ it:
     pinned: Post fissato in cima
     reblogged: condiviso
     sensitive_content: Materiale sensibile
+  strikes:
+    errors:
+      too_late: È troppo tardi per fare appello contro questa sanzione
   tags:
     does_not_match_previous_name: non corrisponde al nome precedente
   terms:
@@ -1638,12 +1650,13 @@ it:
       explanation: Hai richiesto un backup completo del tuo account Mastodon. È pronto per essere scaricato!
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
-    sign_in_token:
-      details: 'Questi sono i dettagli del tentativo:'
-      explanation: 'Abbiamo rilevato un tentativo di accedere al tuo account da un indirizzo IP non riconosciuto. Se sei tu, inserisci il codice di sicurezza qui sotto nella pagina di controllo dell''accesso:'
-      further_actions: 'Se non sei stato tu, cambia la password e abilita l''autenticazione a due fattori sul tuo account. Puoi farlo qui:'
-      subject: Conferma il tentativo di accesso
-      title: Tentativo di accesso
+    suspicious_sign_in:
+      change_password: cambia la tua password
+      details: 'Questi sono i dettagli del tentativo di accesso:'
+      explanation: Abbiamo rilevato un accesso al tuo account da un nuovo indirizzo IP.
+      further_actions_html: Se non eri tu, ti consigliamo di %{action} subito e di abilitare l'autenticazione a due fattori per mantenere il tuo account al sicuro.
+      subject: C'è stato un accesso al tuo account da un nuovo indirizzo IP
+      title: Un nuovo accesso
     warning:
       appeal: Presenta un appello
       appeal_description: Se credi che si tratti di un errore, puoi presentare un appello allo staff di %{instance}.
@@ -1694,13 +1707,10 @@ it:
       title: Benvenuto a bordo, %{name}!
   users:
     follow_limit_reached: Non puoi seguire più di %{limit} persone
-    generic_access_help_html: Problemi nell'accesso al tuo account? Puoi contattare %{email} per assistenza
     invalid_otp_token: Codice d'accesso non valido
-    invalid_sign_in_token: Codice di sicurezza non valido
     otp_lost_help_html: Se perdessi l'accesso ad entrambi, puoi entrare in contatto con %{email}
     seamless_external_login: Hai effettuato l'accesso tramite un servizio esterno, quindi le impostazioni di password e e-mail non sono disponibili.
     signed_in_as: 'Hai effettuato l''accesso come:'
-    suspicious_sign_in_confirmation: Sembra che tu non abbia effettuato l'accesso da questo dispositivo prima d'ora, e non hai effettuato l'accesso per un po', quindi inviamo un codice di sicurezza al tuo indirizzo e-mail per confermare che sei proprio tu.
   verification:
     explanation_html: 'Puoi <strong>certificare te stesso come proprietario dei link nei metadati del tuo profilo</strong>. Per farlo, il sito a cui punta il link deve contenere un link che punta al tuo profilo Mastodon. Il link di ritorno <strong>deve</strong> avere l''attributo <code>rel="me"</code>. Il testo del link non ha importanza. Ecco un esempio:'
     verification: Verifica
