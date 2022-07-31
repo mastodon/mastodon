@@ -141,6 +141,8 @@ class UserSettingsDecorator
 
   def wider_column_preference
     boolean_cast_setting 'setting_wider_column'
+  end
+  
   def always_send_emails_preference
     boolean_cast_setting 'setting_always_send_emails'
   end
