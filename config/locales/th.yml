@@ -470,12 +470,12 @@ th:
       availability:
         description_html:
           other: หากต้องการส่งไปยังโดเมนล้มเหลว <strong>%{count} วัน</strong> โดยไม่สำเร็จ จะไม่มีการดำเนินการจัดส่งเพิ่มเติม <em>จาก</em> เว้นแต่ว่าจะได้รับโดเมนนั้น
-        failure_threshold_reached: ถึงเกณฑ์ความล้มเหลวเมื่อ %{date}
+        failure_threshold_reached: ถึงค่าเกณฑ์ความล้มเหลวเมื่อ %{date}
         failures_recorded:
-          other: ความพยายามล้มเหลวใน %{count} วัน
-        no_failures_recorded: ไม่มีการบันทึกความล้มเหลว
+          other: ความพยายามที่ล้มเหลวใน %{count} วันที่แตกต่างกัน
+        no_failures_recorded: ไม่มีความล้มเหลวในระเบียน
         title: ความพร้อมใช้งาน
-        warning: ความพยายามครั้งล่าสุดในการเชื่อมต่อกับเซิร์ฟเวอร์นี้นั้นไม่สำเร็จ
+        warning: ความพยายามล่าสุดในการเชื่อมต่อกับเซิร์ฟเวอร์นี้ไม่สำเร็จ
       back_to_all: ทั้งหมด
       back_to_limited: จำกัดอยู่
       back_to_warning: คำเตือน
@@ -511,7 +511,7 @@ th:
       delivery_available: มีการจัดส่ง
       delivery_error_days: วันที่มีข้อผิดพลาดการจัดส่ง
       delivery_error_hint: ถ้าหากไม่สามารถจัดส่งได้เป็นเวลา %{count} วัน ระบบมันจะทำเครื่องหมายว่าไม่สามารถจัดส่งได้โดยอัตโนมัติ
-      destroyed_msg: ข้อมูลจาก %{domain} อยู่ในคิวสำหรับการลบที่ใกล้จะถึง
+      destroyed_msg: ตอนนี้จัดคิวข้อมูลจาก %{domain} สำหรับการลบในเร็ว ๆ นี้แล้ว
       empty: ไม่พบโดเมน
       known_accounts:
         other: "%{count} บัญชีที่รู้จัก"
