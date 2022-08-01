@@ -1,4 +1,3 @@
----
 es-MX:
   activerecord:
     attributes:
@@ -45,5 +44,7 @@ es-MX:
             permissions_as_keys:
               dangerous: incluir permisos que no son seguros para el rol base
               elevated: no se pueden incluir permisos que tu rol actual no posea
+              own_role: no se puede cambiar con tu rol actual
             position:
               elevated: no puede ser mayor que tu rol actual
+              own_role: no se puede cambiar con tu rol actual
