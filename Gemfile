@@ -16,7 +16,7 @@ gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.4'
 gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
-gem 'dotenv-rails', '~> 2.7'
+gem 'dotenv-rails', '~> 2.8'
 
 gem 'aws-sdk-s3', '~> 1.114', require: false
 gem 'fog-core', '<= 2.1.0'
@@ -26,7 +26,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.12.0', require: false
+gem 'bootsnap', '~> 1.13.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.2'
@@ -101,7 +101,7 @@ gem 'rdf-normalize', '~> 0.5'
 gem 'redcarpet', '~> 3.5'
 
 group :development, :test do
-  gem 'fabrication', '~> 2.29'
+  gem 'fabrication', '~> 2.30'
   gem 'fuubar', '~> 2.5'
   gem 'i18n-tasks', '~> 1.0', require: false
   gem 'pry-byebug', '~> 3.9'
@@ -116,7 +116,7 @@ end
 group :test do
   gem 'capybara', '~> 3.37'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.21'
+  gem 'faker', '~> 2.22'
   gem 'microformats', '~> 4.4'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'

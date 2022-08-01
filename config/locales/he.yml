@@ -35,11 +35,12 @@ he:
     server_stats: 'סטטיסטיקות שרת:'
     source_code: קוד מקור
     status_count_after:
-      many: חצרוצים
-      one: חצרוץ
-      other: חצרוצים
-      two: חצרוצים
+      many: פוסטים
+      one: פוסט
+      other: פוסטים
+      two: פוסטים
     status_count_before: שכתבו
+    tagline: רשת חברתית מבוזרת
     terms: תנאי שימוש
     unavailable_content: שרתים מוגבלים
     unavailable_content_description:
@@ -83,10 +84,10 @@ he:
     pin_errors:
       following: עליך לעקוב אחרי חשבון לפני שניתן יהיה להמליץ עליו
     posts:
-      many: חצרוצים
-      one: חצרוץ
-      other: חצרוצים
-      two: חצרוצים
+      many: פוסטים
+      one: פוסט
+      other: פוסטים
+      two: פוסטים
     posts_tab_heading: חצרוצים
     posts_with_replies: חצרוצים ותגובות
     roles:
@@ -110,11 +111,17 @@ he:
       avatar: יַצְגָן
       by_domain: שם מתחם
       change_email:
+        changed_msg: דוא"ל שונה בהצלחה
         current_email: כתובת דוא"ל נוכחית
         label: שינוי כתובת דוא"ל משוייכת לחשבון
         new_email: כתובת דוא"ל חדשה
         submit: שלחי בקשה לשינוי דוא"ל
         title: שינוי כתובת דוא"ל עבור המשתמש.ת %{username}
+      change_role:
+        changed_msg: תפקיד שונה בהצלחה !
+        label: שנה תפקיד
+        no_role: ללא תפקיד
+        title: שינוי תפקיד  עבור המשתמש.ת %{username}
       confirm: אישור
       confirmed: אושר
       confirming: המאשר
@@ -158,6 +165,7 @@ he:
         active: פעילים
         all: הכל
         pending: בהמתנה
+        silenced: מוגבלים
         suspended: מושהים
         title: ניהול קהילה
       moderation_notes: הודעות מנחה
@@ -165,6 +173,7 @@ he:
       most_recent_ip: כתובות אחרונות
       no_account_selected: לא בוצעו שינויים בחשבונות ל שכן לא נבחרו חשבונות
       no_limits_imposed: לא הוטלו הגבלות
+      no_role_assigned: ללא תפקיד
       not_subscribed: לא רשום
       pending: ממתינים לסקירה
       perform_full_suspension: ביצוע השעייה מלאה
@@ -193,6 +202,7 @@ he:
       reset: איפוס
       reset_password: אתחול סיסמא
       resubscribe: להרשם מחדש
+      role: תפקיד
       search: חיפוש
       search_same_email_domain: משתמשים אחרים מאותו דומיין דוא"ל
       search_same_ip: משתמשים אחרים מאותה כתובת IP
@@ -252,7 +262,7 @@ he:
         destroy_email_domain_block: מחיקת חסימת דומיין דוא"ל
         destroy_instance: טיהור דומיין
         destroy_ip_block: מחיקת כלל IP
-        destroy_status: מחיקת חצרוץ
+        destroy_status: מחיקת פוסט
         destroy_unavailable_domain: מחיקת דומיין בלתי זמין
         disable_2fa_user: השעיית זיהוי דו-גורמי
         disable_custom_emoji: השעיית אמוג'י מיוחד
@@ -303,7 +313,7 @@ he:
         destroy_email_domain_block_html: '%{name} הסיר/ה חסימה מדומיין הדוא"ל %{target}'
         destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
         destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
-        destroy_status_html: "%{name} הסיר/ה חצרוץ מאת %{target}"
+        destroy_status_html: "%{name} הסיר/ה פוסט מאת %{target}"
         destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
@@ -331,8 +341,8 @@ he:
         update_announcement_html: "%{name} עדכן/ה הכרזה %{target}"
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
-        update_status_html: "%{name} עדכן/ה חצרוץ של %{target}"
-      deleted_status: "(חצרוץ נמחק)"
+        update_status_html: "%{name} עדכן/ה פוסט של %{target}"
+      deleted_status: "(פוסט נמחק)"
       empty: לא נמצאו יומנים.
       filter_by_action: סינון לפי פעולה
       filter_by_user: סינון לפי משתמש
@@ -436,6 +446,7 @@ he:
       destroyed_msg: חסימת שרת בוטלה
       domain: שרת
       edit: עריכת חסימת שם מתחם
+      existing_domain_block: כבר החלת הגבלות מחמירות יותר על %{name}
       existing_domain_block_html: כבר הפעלת הגבלות חמורות יותר על %{name}, עליך ראשית <a href="%{unblock_url}">להסיר מעליו/ה את החסימה</a>.
       new:
         create: יצירת חסימה
@@ -666,6 +677,71 @@ he:
       unresolved: לא פתור
       updated_at: עודכן
       view_profile: צפה בפרופיל
+    roles:
+      add_new: הוספת תפקיד
+      assigned_users:
+        many: "%{count} משתמשים"
+        one: 'משתמש %{count} '
+        other: "%{count} משתמשים"
+        two: "%{count} שני משתמשים"
+      categories:
+        administration: ניהול מערכת
+        devops: פיתוח
+        invites: הזמנות
+        moderation: פיקוח
+        special: מיוחדים
+      delete: מחיקה
+      description_html: באמצעות <strong>תפקידי משתמש</strong>, תוכלו להתאים אישית לאילו פונקציות ואזורים של מסטודון המשתמשים יוכלו לגשת
+      edit: עריכת התפקיד של %{name}
+      everyone: הרשאות ברירת מחדל
+      everyone_full_description_html: זהו <strong>התפקיד הבסיסי </strong> שמשפיע על <strong>כלל המשתשמשים</strong>, אפילו אלו ללא תפקיד. כל התפקידים האחרים יורשים את ההרשאות שלהם ממנו.
+      permissions_count:
+        many: "%{count} הרשאות"
+        one: הרשאה %{count}
+        other: "%{count} הרשאות"
+        two: "%{count} הרשאות"
+      privileges:
+        administrator: מנהל מערכת
+        administrator_description: משתמשים עם הרשאה זו יוכלו לעקוף כל הרשאה
+        delete_user_data: מחיקת כל נתוני המשתמש
+        delete_user_data_description: מאפשר למשתמשים למחוק נתוני משתמשים אחרים ללא דיחוי
+        invite_users: הזמנת משתמשים
+        invite_users_description: מאפשר למשתמשים להזמין אנשים חדשים לשרת
+        manage_announcements: ניהול הכרזות
+        manage_announcements_description: מאפשר למשתמשים לנהל הכרזות של השרת
+        manage_appeals: ניהול ערעורים
+        manage_appeals_description: מאפשר למשתמשים לסקור ערעורים כנגד פעולות מודרציה
+        manage_blocks: ניהול חסימות
+        manage_blocks_description: מאפשר למשתמשים לחסום ספקי דוא"ל וכתובות IP
+        manage_custom_emojis: ניהול סמלונים בהתאמה אישית
+        manage_custom_emojis_description: מאפשר למשתמשים לנהל סמלונים בהתאמה אישית של השרת
+        manage_federation: ניהול פדרציה
+        manage_federation_description: מאפשר למשתמשים לחסום או לאפשר התממשקות עם שמות מתחם אחרים
+        manage_invites: ניהול הזמנות
+        manage_invites_description: מאפשר למשתמשים לעלעל ב ולבטל קישורי הזמנה
+        manage_reports: ניהול דו"חות
+        manage_reports_description: מאפשר למשתמשים לסקור דו"חות ולבצע פעולות מודרציה בהתבסס עליהם
+        manage_roles: ניהול תפקידים
+        manage_roles_description: מאפשר למשתמשים לנהל ולמנות אחרים לתפקידים נמוכים יותר משלהם.
+        manage_rules: ניהול כללים
+        manage_rules_description: מאפשר למשתמשים לנהל את כללי השרת
+        manage_settings: נהל הגדרות
+        manage_settings_description: מאפשר למשתמשים לנהל את הגדרות השרת
+        manage_taxonomies: ניהול טקסונומיות
+        manage_taxonomies_description: מאפשר למשתמשים לסקור תוכן אופנתי (טרנדי) ולעדכן אפשרויות של תגיות.
+        manage_user_access: ניהול גישת משתמשים
+        manage_user_access_description: מאפשר למשתמשים לבטל אימות דו-שלבי של משתמשים אחרים, לשנות את כתובות הדוא"ל שלהם, ולאפס את סיסמתם
+        manage_users: ניהול משתמשים
+        manage_users_description: מאפשר למשתמשים לצפות בפרטים של משתמשים אחרים ולבצע פעולות מודרציה לפיהם
+        manage_webhooks: ניהול Webhooks
+        manage_webhooks_description: מאפשר למשתמשים להגדיר Webhooks לאירועים מנהלתיים
+        view_audit_log: צפייה בלוג ביקורת
+        view_audit_log_description: מאפשר למשתשמשים לצפות בהיסטוריה של פעולות מנהלתיות על השרת
+        view_dashboard: הצג לוח מחוונים
+        view_dashboard_description: אפשר למשתמשים לגשת ללוח המחוונים
+        view_devops: פיתוח
+        view_devops_description: מאפשר למשתמשים לגשת ללוחות המחוונים של Sidekiq ושל pgHero
+      title: תפקידים
     rules:
       add_new: הוספת כלל
       delete: מחיקה
@@ -825,10 +901,10 @@ he:
         title: מפרסמים
       rejected: דחוי
       statuses:
-        allow: הרשאת חצרוץ
+        allow: הרשאת פוסט
         allow_account: הרשאת מחבר/ת
         description_html: אלו הם חצרוצים שהשרת שלך מכיר וזוכים להדהודים וחיבובים רבים כרגע. זה עשוי למשתמשיך החדשים והחוזרים למצוא עוד נעקבים. החצרוצים לא מוצגים עד שיאושר המחבר/ת, והמחבר/ת יאשרו שחשבונים יומלץ לאחרים. ניתן לאשר או לדחות חצרוצים ספציפיים.
-        disallow: לא לאשר חצרוץ
+        disallow: לדחות פוסט
         disallow_account: לא לאשר מחבר/ת
         not_discoverable: המחבר/ת לא בחר/ה לאפשר את גילויים
         shared_by:
@@ -870,13 +946,26 @@ he:
       empty: לא הגדרת עדיין שום טקסט מוכן מראש לאזהרה.
       title: ניהול טקסטים מוכנים מראש לאזהרות
     webhooks:
+      add_new: הוספת נקודת קצה
       delete: מחיקה
       disable: כיבוי
       disabled: כבוי
+      edit: עריכת נקודת קצה
+      empty: לא הוגדו נקודות קצה להתליות רשת עדיין.
       enable: אפשר
       enabled: פעילים
+      enabled_events:
+        many: "%{count} אירועים אופשרו"
+        one: אירוע %{count} מאופשר
+        other: "%{count} אירועים אופשרו"
+        two: "%{count} אירועים אופשרו"
       events: אירועים
+      new: Webhook חדש
+      rotate_secret: החלף מפתח
+      secret: מפתח הרשמה
       status: סטטוס
+      title: התליות רשת
+      webhook: התליית רשת
   admin_mailer:
     new_appeal:
       actions:
@@ -905,7 +994,7 @@ he:
         title: נושאים חמים
       new_trending_statuses:
         no_approved_statuses: אין כרגע שום חצרוצים חמים מאושרים.
-        requirements: כל אחד מהמועמדים האלה עשוי לעבור החצרוץ החם המאושר מדרגה %{rank}, שההא כרגע %{lowest_status_url} עם ציון של %{lowest_status_score}.
+        requirements: כל אחד מהמועמדים האלה עשוי לעבור את הפוסט החם המאושר מדרגה %{rank}, שהוא כרגע %{lowest_status_url} עם ציון של %{lowest_status_score}.
         title: חצרוצים לוהטים
       new_trending_tags:
         no_approved_tags: אין כרגע שום האשתגיות חמות מאושרות.
@@ -930,14 +1019,14 @@ he:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: כולם יכולים לתרום.
     sensitive_content: תוכן רגיש
-    toot_layout: פריסת חצרוץ
+    toot_layout: פריסת פוסט
   application_mailer:
     notification_preferences: שינוי העדפות דוא"ל
     salutation: "%{name},"
     settings: 'שינוי הגדרות דוא"ל: %{link}'
     view: 'תצוגה:'
     view_profile: צפיה בפרופיל
-    view_status: הצגת חצרוץ
+    view_status: הצגת פוסט
   applications:
     created: ישום נוצר בהצלחה
     destroyed: ישום נמחק בהצלחה
@@ -1061,15 +1150,17 @@ he:
       appealed_msg: הערעור שלך הוגש. במידה ויאושר, תיודע.
       appeals:
         submit: הגש ערעור
+      approve_appeal: קבלת ערעור
       associated_report: הדו"ח המשויך
       created_at: מתאריך
       description_html: אלו הן הפעולות שננקטו כנגד חשבונך והאזהרות שנשלחו אליך על ידי צוות %{instance}.
       recipient: הנמען
-      status: 'חצרוץ #%{id}'
-      status_removed: החצרוץ כבר הוסר מהמערכת
+      reject_appeal: דחיית ערעור
+      status: 'פוסט #%{id}'
+      status_removed: הפוסט כבר הוסר מהמערכת
       title: "%{action} מתאריך %{date}"
       title_actions:
-        delete_statuses: הסרת חצרוץ
+        delete_statuses: הסרת פוסט
         disable: הקפאת חשבון
         mark_statuses_as_sensitive: סימון חצרוצים כרגישים
         none: אזהרה
@@ -1127,14 +1218,26 @@ he:
       public: פידים פומביים
       thread: שיחות
     edit:
+      add_keyword: הוספת מילת מפתח
+      keywords: מילות מפתח
       title: ערוך מסנן
     errors:
+      deprecated_api_multiple_keywords: לא ניתן לשנות פרמטרים אלו מהיישומון הזה בגלל שהם חלים על יותר ממילת מפתח אחת. ניתן להשתמש ביישומון מעודכן יותר או בממשק הוובי.
       invalid_context: לא סופק הקשר או הקשר לא תקין
     index:
+      contexts: פילטרים ב %{contexts}
       delete: למחוק
       empty: אין לך מסננים.
+      expires_in: פג תוקף ב %{distance}
+      expires_on: פג תוקף ב %{date}
+      keywords:
+        many: "%{count} מילות מפתח"
+        one: מילת מפתח %{count}
+        other: "%{count} מילות מפתח"
+        two: "%{count} מילות מפתח"
       title: מסננים
     new:
+      save: שמירת מסנן חדש
       title: הוספת מסנן חדש
   footer:
     developers: מפתחות
@@ -1215,7 +1318,7 @@ he:
     title: הסטוריית אימותים
   media_attachments:
     validations:
-      images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
+      images_and_video: לא ניתן להוסיף וידאו לפוסט שכבר מכיל תמונות
       not_ready: לא ניתן להצמיד קבצים שהעלאתם לא הסתיימה. נסה/י שוב בעוד רגע!
       too_many: לא ניתן להוסיף יותר מארבעה קבצים
   migrations:
@@ -1257,6 +1360,8 @@ he:
     copy_account_note_text: 'חשבון זה הועבר מ-%{acct}, הנה הערותיך הקודמות לגביהם:'
   notification_mailer:
     admin:
+      report:
+        subject: '%{name} שלח/ה דו"ח'
       sign_up:
         subject: "%{name} נרשמו"
     digest:
@@ -1343,7 +1448,7 @@ he:
       too_many_options: לא יכול להכיל יותר מ-%{max} פריטים
   preferences:
     other: שונות
-    posting_defaults: ברירות מחדל לחצרוץ
+    posting_defaults: ברירות מחדל לפוסטים
     public_timelines: פידים פומביים
   reactions:
     errors:
@@ -1376,13 +1481,13 @@ he:
   remote_interaction:
     favourite:
       proceed: המשך לחיבוב
-      prompt: 'ברצונך לחבב חצרוץ זה:'
+      prompt: 'ברצונך לחבב פוסט זה:'
     reblog:
       proceed: המשיכו להדהוד
-      prompt: 'ברצונך להדהד חצרוץ זה:'
+      prompt: 'ברצונך להדהד פוסט זה:'
     reply:
       proceed: המשיבו לתגובה
-      prompt: 'ברצונך להשיב לחצרוץ זה:'
+      prompt: 'ברצונך להשיב לפוסט זה:'
   reports:
     errors:
       invalid_rules: לא מתייחס לכללים קבילים
@@ -1488,7 +1593,7 @@ he:
       two: 'מכיל את ההאשתגיות האסורות: %{tags}'
     edited_at_html: נערך ב-%{date}
     errors:
-      in_reply_not_found: נראה שהחצרוץ שאת/ה מנסה להגיב לו לא קיים.
+      in_reply_not_found: נראה שהפוסט שאת/ה מנסה להגיב לו לא קיים.
     open_in_web: פתח ברשת
     over_character_limit: חריגה מגבול התווים של %{max}
     pin_errors:
@@ -1558,7 +1663,7 @@ he:
     min_reblogs: שמור חצרוצים מהודהדים לפחות
     min_reblogs_hint: לא מוחק מי מחצרוציך שקיבלו לפחות את המספר הזה של הדהודים. להשאיר ריק כדי למחוק חצרוצים ללא קשר למספר ההדהודים שקיבלו
   stream_entries:
-    pinned: חצרוץ מוצמד
+    pinned: פוסט נעוץ
     reblogged: הודהד
     sensitive_content: תוכן רגיש
   strikes:
