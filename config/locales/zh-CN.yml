@@ -99,11 +99,17 @@ zh-CN:
       avatar: 头像
       by_domain: 域名
       change_email:
+        changed_msg: 已成功更改电子邮件地址！
         current_email: 当前的电子邮箱
         label: 更改电子邮箱
         new_email: 新的电子邮箱
         submit: 更改电子邮件地址
         title: 为 %{username} 更改电子邮箱
+      change_role:
+        changed_msg: 已成功更改角色！
+        label: 更改角色
+        no_role: 未设置角色
+        title: 为 %{username} 更改角色
       confirm: 确认
       confirmed: 已确认
       confirming: 等待确认
@@ -147,6 +153,7 @@ zh-CN:
         active: 活跃
         all: 全部
         pending: 待审核
+        silenced: 受限
         suspended: 已封禁
         title: 管理
       moderation_notes: 管理员备注
@@ -154,6 +161,7 @@ zh-CN:
       most_recent_ip: 最后一次活跃的 IP 地址
       no_account_selected: 因为没有选中任何账号，所以没有更改
       no_limits_imposed: 无限制
+      no_role_assigned: 未定角色
       not_subscribed: 未订阅
       pending: 待审核
       perform_full_suspension: 封禁
@@ -179,6 +187,7 @@ zh-CN:
       reset: 重置
       reset_password: 重置密码
       resubscribe: 重新订阅
+      role: 角色
       search: 搜索
       search_same_email_domain: 其他具有相同电子邮箱域名的用户
       search_same_ip: 具有相同IP的其他用户
@@ -626,6 +635,64 @@ zh-CN:
       unresolved: 未处理
       updated_at: 更新时间
       view_profile: 查看资料
+    roles:
+      add_new: 添加角色
+      assigned_users:
+        other: "%{count} 用户"
+      categories:
+        administration: 管理
+        devops: 开发运维
+        invites: 邀请
+        moderation: 监察
+        special: 特殊
+      delete: 刪除
+      description_html: 使用 <strong>用户角色</strong>，您可以自定义您的用户可以访问的功能和区域。
+      edit: 编辑 '%{name}' 角色
+      everyone: 默认权限
+      everyone_full_description_html: 这是影响到 <strong>所有用户</strong>的<strong>基础角色</strong>，包括未指定角色的用户。 其他所有的角色都继承着它的权限。
+      permissions_count:
+        other: "%{count} 权限"
+      privileges:
+        administrator: 管理员
+        administrator_description: 拥有此权限的用户将绕过每个权限
+        delete_user_data: 删除用户数据
+        delete_user_data_description: 允许用户立即删除其他用户的数据
+        invite_users: 邀请用户
+        invite_users_description: 允许用户邀请新人加入服务器
+        manage_announcements: 管理公告
+        manage_announcements_description: 允许用户管理服务器上的通知
+        manage_appeals: 管理申诉
+        manage_appeals_description: 允许用户审查对适度动作的上诉
+        manage_blocks: 管理版块
+        manage_blocks_description: 允许用户屏蔽电子邮件提供商和IP地址
+        manage_custom_emojis: 管理自定义表情
+        manage_custom_emojis_description: 允许用户管理服务器上的自定义表情
+        manage_federation: 管理联邦
+        manage_federation_description: 允许用户阻止或允许使用其他域切换并控制可交付性
+        manage_invites: 管理邀请
+        manage_invites_description: 允许用户浏览和停用邀请链接
+        manage_reports: 管理报告
+        manage_reports_description: 允许用户查看报告并对其执行审核操作
+        manage_roles: 管理角色
+        manage_roles_description: 允许用户管理和分配比他们权限低的角色
+        manage_rules: 管理规则
+        manage_rules_description: 允许用户更改服务器规则
+        manage_settings: 管理设置
+        manage_settings_description: 允许用户更改站点设置
+        manage_taxonomies: 管理分类法
+        manage_taxonomies_description: 允许用户查看热门内容并更新标签设置
+        manage_user_access: 管理访问
+        manage_user_access_description: 允许用户禁用其他用户的双重身份验证, 更改他们的电子邮件地址, 并重置他们的密码
+        manage_users: 管理用户
+        manage_users_description: 允许用户查看其他用户信息并对他们执行审核操作
+        manage_webhooks: 管理网钩
+        manage_webhooks_description: 允许用户为管理事件设置网钩
+        view_audit_log: 查看审核日志
+        view_audit_log_description: 允许用户在服务器上查看管理操作历史
+        view_dashboard: 查看仪表板
+        view_dashboard_description: 允许用户访问仪表盘和各种指标
+        view_devops: 开发运维
+      title: 角色
     rules:
       add_new: 添加规则
       delete: 删除
@@ -821,9 +888,23 @@ zh-CN:
       empty: 你尚未定义任何警告预设。
       title: 管理预设警告
     webhooks:
+      add_new: 端点
       delete: 删除
+      description_html: "<strong>webhook</strong> 使Mastodon能够推送 <strong>关于所选事件的实时通知</strong> 到您自己的应用程序。 所以您的应用程序可以自动触发反应 <strong></strong>。"
       disable: 禁用
+      disabled: 已禁用
+      empty: 您尚未配置任何Web 钩子端点。
       enable: 启用
+      enabled: 活跃
+      enabled_events:
+        other: "%{count} 启用的事件"
+      events: 事件
+      new: 新建网钩
+      rotate_secret: 旋转密钥
+      secret: 签名密钥
+      status: 状态
+      title: 网钩
+      webhook: 网钩
   admin_mailer:
     new_appeal:
       actions:
@@ -1080,12 +1161,19 @@ zh-CN:
       keywords: 关键词
       title: 编辑过滤器
     errors:
+      deprecated_api_multiple_keywords: 这些参数不能从此应用程序更改，因为它们应用于一个以上的过滤关键字。 使用较新的应用程序或网页界面。
       invalid_context: 过滤器场景没有或无效
     index:
+      contexts: 在 %{contexts} 中的过滤器
       delete: 删除
       empty: 你没有过滤器。
+      expires_in: 在 %{distance} 后过期
+      expires_on: "%{date} 后到期"
+      keywords:
+        other: "%{count} 关键词"
       title: 过滤器
     new:
+      save: 保存新过滤器
       title: 添加新的过滤器
   footer:
     developers: 开发者
@@ -1202,6 +1290,8 @@ zh-CN:
     copy_account_note_text: 这个用户迁移自 %{acct}，你曾为其添加备注：
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} 提交了报告"
       sign_up:
         subject: "%{name} 注册了"
     digest:

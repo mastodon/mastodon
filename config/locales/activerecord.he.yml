@@ -21,6 +21,14 @@ he:
             username:
               invalid: ספרות, אותיות לטיניות וקו תחתי בלבד
               reserved: שמור
+        admin/webhook:
+          attributes:
+            url:
+              invalid: כתובת לא חוקית
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: הינה כתובת לא חוקית
         status:
           attributes:
             reblog:
@@ -30,3 +38,14 @@ he:
             email:
               blocked: עושה שימוש בספק דוא"ל אסור
               unreachable: נראה שלא קיים
+            role_id:
+              elevated: לא יכול להיות גבוה יותר מתפקידך הנוכחי
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: כלול הרשאות לא בטוחות לתפקיד הבסיסי
+              elevated: לא ניתן לכלול הרשאות שתפקידך הנוכחי לא כולל
+              own_role: לא ניתן למזג על תפקידך הנוכחי
+            position:
+              elevated: לא יכול להיות גבוה יותר מתפקידך הנוכחי
+              own_role: לא ניתן לשנות באמצעות תפקידך הנוכחי

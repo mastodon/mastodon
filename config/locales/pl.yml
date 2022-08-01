@@ -695,6 +695,11 @@ pl:
       edit: Edytuj rolę '%{name}'
       everyone: Domyślnie uprawnienia
       everyone_full_description_html: To jest <strong>rola podstawowa</strong> wpływająca na <strong>wszystkich użytkowników</strong>, nawet tych, którzy nie mają przypisanej roli. Wszystkie inne role dziedziczą z niej uprawnienia.
+      permissions_count:
+        few: "%{count} uprawnień"
+        many: "%{count} uprawnień"
+        one: "%{count} uprawnienie"
+        other: "%{count} uprawnień"
       privileges:
         administrator: Administrator
         administrator_description: Użytkownicy z tym uprawnieniem omijają każde uprawnienie
@@ -725,6 +730,18 @@ pl:
         manage_taxonomies: Zarządzaj taksonomiami
         manage_taxonomies_description: Pozwala użytkownikom przeglądać najpopularniejsze treści i aktualizować ustawienia hasztagów
         manage_user_access: Zarządzaj dostępem użytkownika
+        manage_user_access_description: Pozwala użytkownikom na wyłączenie uwierzytelniania dwuskładnikowego innych użytkowników, zmianę adresu e-mail i zresetowanie hasła
+        manage_users: Zarządzanie użytkownikami
+        manage_users_description: Pozwala użytkownikom na oglądanie szczegółów innych użytkowników i wykonywanie na ich kontach działań moderacyjnych
+        manage_webhooks: Zarządzanie webhookami
+        manage_webhooks_description: Pozwala użytkownikom na konfigurację webhooków dla wydarzeń administracyjnych
+        view_audit_log: Wyświetl dziennik zdarzeń
+        view_audit_log_description: Pozwala użytkownikom zobaczyć historię działań administracyjnych na serwerze
+        view_dashboard: Wyświetl panel
+        view_dashboard_description: Pozwala użytkownikom na dostęp do panelu i różnych metryk
+        view_devops: Devops
+        view_devops_description: Pozwala użytkownikom na dostęp do paneli Sidekiq i pgHero
+      title: Role
     rules:
       add_new: Dodaj zasadę
       delete: Usuń

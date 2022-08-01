@@ -620,6 +620,25 @@ ja:
       unresolved: 未解決
       updated_at: 更新日時
       view_profile: プロフィールを表示
+    roles:
+      privileges:
+        manage_rules: ルールの管理
+        manage_rules_description: ユーザーがサーバールールを変更できるようにします
+        manage_settings: 設定の管理
+        manage_settings_description: ユーザーがサイト設定を変更できるようにします
+        manage_taxonomies_description: トレンドコンテンツの確認とハッシュタグの設定の更新
+        manage_user_access: アクセス権を管理
+        manage_user_access_description: 他のユーザーの2段階認証を無効にしたり、メールアドレスを変更したり、パスワードをリセットしたりすることができます。
+        manage_users: ユーザーの管理
+        manage_webhooks: Webhook の管理
+        manage_webhooks_description: 管理者イベントのWebhookを設定できます。
+        view_audit_log: 監査ログの表示
+        view_audit_log_description: ユーザーがサーバー上で管理アクションの履歴を表示できるようにします
+        view_dashboard: ダッシュボードの表示
+        view_dashboard_description: ユーザーがダッシュボードやさまざまなメトリクスにアクセスできるようにします
+        view_devops: 開発者
+        view_devops_description: Sidekiq と pgHero ダッシュボードにアクセスできるようにします
+      title: 権限
     rules:
       add_new: ルールを追加
       delete: 削除
@@ -820,6 +839,7 @@ ja:
       enabled: アクティブ
       events: イベント
       new: 新しいwebhook
+      status: ステータス
       title: Webhooks
       webhook: Webhook
   admin_mailer:
@@ -1076,12 +1096,16 @@ ja:
     errors:
       invalid_context: 対象がないか無効です
     index:
+      contexts: "%{contexts} のフィルター"
       delete: 削除
       empty: フィルターはありません。
+      expires_in: "%{distance} で期限切れ"
+      expires_on: 有効期限 %{date}
       keywords:
         other: "%{count}件のキーワード"
       title: フィルター
     new:
+      save: 新規フィルターを保存
       title: 新規フィルターを追加
   footer:
     developers: 開発者向け
@@ -1198,6 +1222,8 @@ ja:
     copy_account_note_text: このユーザーは%{acct}から引っ越しました。これは以前のメモです。
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} がレポートを送信しました"
       sign_up:
         subject: "%{name}さんがサインアップしました"
     digest:

@@ -290,7 +290,11 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} talking",
+        "defaultMessage": "Total volume in the last {days, plural, one {day} other {{days} days}}",
+        "id": "hashtag.total_volume"
+      },
+      {
+        "defaultMessage": "{count, plural, one {{counter} person} other {{counter} people}} in the past {days, plural, one {day} other {{days} days}}",
         "id": "trends.counter_by_accounts"
       }
     ],
@@ -2120,6 +2124,14 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Follow hashtag",
+        "id": "hashtag.follow"
+      },
+      {
+        "defaultMessage": "Unfollow hashtag",
+        "id": "hashtag.unfollow"
+      },
       {
         "defaultMessage": "or {additional}",
         "id": "hashtag.column_header.tag_mode.any"
