@@ -164,6 +164,7 @@ de:
       most_recent_ip: Letzte IP-Adresse
       no_account_selected: Keine Konten wurden geändert, da keine ausgewählt wurden
       no_limits_imposed: Keine Beschränkungen
+      no_role_assigned: Keine Rolle zugewiesen
       not_subscribed: Nicht abonniert
       pending: In Warteschlange
       perform_full_suspension: Verbannen
@@ -190,6 +191,7 @@ de:
       reset: Zurücksetzen
       reset_password: Passwort zurücksetzen
       resubscribe: Wieder abonnieren
+      role: Rolle
       search: Suche
       search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer mit derselben IP
@@ -646,6 +648,33 @@ de:
       unresolved: Ungelöst
       updated_at: Aktualisiert
       view_profile: Zeige Profil
+    roles:
+      add_new: Rolle hinzufügen
+      assigned_users:
+        one: "%{count} Benutzer"
+        other: "%{count} Benutzer"
+      categories:
+        administration: Administration
+        devops: DevOps
+        invites: Einladungen
+        moderation: Moderation
+        special: Spezial
+      delete: Löschen
+      description_html: Mit <strong>Benutzerrollen</strong>können Sie die Funktionen und Bereiche von Mastodon anpassen, auf die Ihre Benutzer zugreifen können.
+      edit: '''%{name}'' Rolle bearbeiten'
+      everyone: Standardberechtigungen
+      permissions_count:
+        one: "%{count} Berechtigung"
+        other: "%{count} Berechtigungen"
+      privileges:
+        administrator: Administrator
+        administrator_description: Benutzer mit dieser Berechtigung werden jede Berechtigung umgehen
+        delete_user_data: Benutzerdaten löschen
+        delete_user_data_description: Erlaubt Benutzern, die Daten anderer Benutzer ohne Verzögerung zu löschen
+        invite_users: Benutzer einladen
+        invite_users_description: Erlaubt Benutzern neue Leute zum Server einzuladen
+        manage_announcements: Ankündigungen verwalten
+        manage_announcements_description: Erlaubt Benutzern Ankündigungen auf dem Server zu verwalten
     rules:
       add_new: Regel hinzufügen
       delete: Löschen
