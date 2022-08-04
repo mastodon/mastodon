@@ -199,15 +199,15 @@ he:
         send: שלח מחדש דוא"ל אימות
         success: הודעת האימייל נשלחה בהצלחה!
       reset: איפוס
-      reset_password: אתחול סיסמא
+      reset_password: איפוס סיסמה
       resubscribe: להרשם מחדש
       role: תפקיד
       search: חיפוש
       search_same_email_domain: משתמשים אחרים מאותו דומיין דוא"ל
       search_same_ip: משתמשים אחרים מאותה כתובת IP
       security_measures:
-        only_password: סיסמא בלבד
-        password_and_2fa: סיסמא ואימות דו-גורמי
+        only_password: סיסמה בלבד
+        password_and_2fa: סיסמה ואימות דו-שלבי
       sensitive: מאולצים לרגישות
       sensitized: מסומנים כרגישים
       shared_inbox_url: תיבה משותפת לדואר נכנס
@@ -276,7 +276,7 @@ he:
         reject_user: דחיית משתמש
         remove_avatar_user: הסרת תמונת פרופיל
         reopen_report: פתיחת דו"ח מחדש
-        reset_password_user: איפוס סיסמא
+        reset_password_user: איפוס סיסמה
         resolve_report: פתירת דו"ח
         sensitive_account: חשבון רגיש לכח
         silence_account: הגבלת חשבון
@@ -327,7 +327,7 @@ he:
         reject_user_html: "%{name} דחו הרשמה מ-%{target}"
         remove_avatar_user_html: "%{name} הסירו את תמונת הפרופיל של %{target}"
         reopen_report_html: "%{name} פתח מחדש דו\"ח %{target}"
-        reset_password_user_html: "%{name} איפס/ה סיסמא עבור המשתמש %{target}"
+        reset_password_user_html: "הסיסמה עבור המשתמש %{target} התאפסה על־ידי %{name}"
         resolve_report_html: "%{name} פתר/ה דו\"ח %{target}"
         sensitive_account_html: "%{name} סימן/ה את המדיה של %{target} כרגיש"
         silence_account_html: "%{name} הגביל/ה את חשבונו של %{target}"
@@ -1035,7 +1035,7 @@ he:
     your_token: אסימון הגישה שלך
   auth:
     apply_for_account: בקשת הזמנה
-    change_password: סיסמא
+    change_password: סיסמה
     checkbox_agreement_html: אני מסכים/ה ל<a href="%{rules_path}" target="_blank">כללי השרת</a> ול<a href="%{terms_path}" target="_blank">תנאי השימוש</a>
     checkbox_agreement_without_rules_html: אני מסכים/ה ל<a href="%{terms_path}" target="_blank">תנאי השימוש</a>
     delete_account: מחיקת חשבון
@@ -1047,7 +1047,7 @@ he:
     didnt_get_confirmation: לא התקבלו הוראות אימות?
     dont_have_your_security_key: אין לך מפתח אבטחה?
     forgot_password: הנשתכחה סיסמתך?
-    invalid_reset_password_token: אסימון איפוס הסיסמא לא תקין או פג תוקף. נא לבקש אחד חדש.
+    invalid_reset_password_token: טוקן איפוס הסיסמה אינו תקין או שפג תוקף. נא לבקש אחד חדש.
     link_to_otp: נא להכניס את קוד האימות הדו-גורמי מהטלפון או את קוד האחזור
     link_to_webauth: נא להשתמש במכשיר מפתח האבטחה
     log_in_with: התחבר באמצעות
@@ -1062,9 +1062,9 @@ he:
     register: הרשמה
     registration_closed: "%{instance} לא מקבל חברים חדשים"
     resend_confirmation: שלח הוראות אימות בשנית
-    reset_password: איפוס סיסמא
-    security: החלפת סיסמא
-    set_new_password: שינוי סיסמא
+    reset_password: איפוס סיסמה
+    security: אבטחה
+    set_new_password: סיסמה חדשה
     setup:
       email_below_hint_html: אם כתובת הדוא"ל להלן לא נכונה, ניתן לשנותה כאן ולקבל דוא"ל אישור חדש.
       email_settings_hint_html: דוא"ל האישור נשלח ל-%{email}. אם כתובת הדוא"ל הזו לא נכונה, ניתן לשנותה בהגדרות החשבון.
@@ -1094,8 +1094,8 @@ he:
   challenge:
     confirm: המשך
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
-    invalid_password: סיסמא שגויה
-    prompt: אשר/י סיסמא להמשך
+    invalid_password: סיסמה שגויה
+    prompt: יש לאשר את הסיסמה כדי להמשיך
   crypto:
     errors:
       invalid_key: זהו לא מפתח Ed25519 או Curve25519 קביל
@@ -1120,7 +1120,7 @@ he:
       x_seconds: "%{count} שניות"
   deletes:
     challenge_not_passed: המידע שהכנסת לא היה נכון
-    confirm_password: נא להכניס את הסיסמא הנוכחית כדי לוודא את זהותך
+    confirm_password: נא להכניס את הסיסמה הנוכחית כדי לאמת את זהותך
     confirm_username: נא להכניס את שם המשתמש כדאי לאשר את הפעולה
     proceed: מחיקת חשבון
     success_msg: חשבונך נמחק בהצלחה
@@ -1307,7 +1307,7 @@ he:
   login_activities:
     authentication_methods:
       otp: יישומון אימות דו-שלבי
-      password: סיסמא
+      password: סיסמה
       sign_in_token: קוד אימות בדוא"ל
       webauthn: מפתחות אבטחה
     description_html: אם את/ה רואה פעילות שאינך מזהה, אנא שנה/י את סיסמתך והפעל/י אימות דו-גורמי.
