@@ -42,6 +42,11 @@ class StatusesIndex < Chewy::Index
     data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
   end
 
+  crutch :replies do |collection|
+    data = ::Status.where(in_reply_to_id: collection.map(&:id)).where(account: Account.local).pluck(:in_reply_to_id, :account_id)
+    data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }
+  end
+
   crutch :favourites do |collection|
     data = ::Favourite.where(status_id: collection.map(&:id)).where(account: Account.local).pluck(:status_id, :account_id)
     data.each.with_object({}) { |(id, name), result| (result[id] ||= []).push(name) }

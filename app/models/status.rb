@@ -46,7 +46,7 @@ class Status < ApplicationRecord
   # will be based on current time instead of `created_at`
   attr_accessor :override_timestamps
 
-  update_index('statuses', :proper)
+  update_index('statuses') { [proper, thread].compact }
 
   enum visibility: [:public, :unlisted, :private, :direct, :limited], _suffix: :visibility
 
@@ -143,12 +143,14 @@ class Status < ApplicationRecord
 
     if preloaded.nil?
       ids += mentions.joins(:account).merge(Account.local).active.pluck(:account_id)
+      ids += replies.joins(account: Account.local).pluck(:account_id)
       ids += favourites.joins(:account).merge(Account.local).pluck(:account_id)
       ids += reblogs.joins(:account).merge(Account.local).pluck(:account_id)
       ids += bookmarks.joins(:account).merge(Account.local).pluck(:account_id)
       ids += poll.votes.joins(:account).merge(Account.local).pluck(:account_id) if poll.present?
     else
       ids += preloaded.mentions[id] || []
+      ids += preloaded.replies[id] || []
       ids += preloaded.favourites[id] || []
       ids += preloaded.reblogs[id] || []
       ids += preloaded.bookmarks[id] || []

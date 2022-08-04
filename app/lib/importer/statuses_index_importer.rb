@@ -60,6 +60,7 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
   def scopes
     [
       local_statuses_scope,
+      local_replied_scope,
       local_mentions_scope,
       local_favourites_scope,
       local_votes_scope,
@@ -85,5 +86,9 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
 
   def local_statuses_scope
     Status.local.select('"statuses"."id", COALESCE("statuses"."reblog_of_id", "statuses"."id") AS status_id')
+  end
+
+  def local_replied_scope
+    Status.local.where('in_reply_to_id is not null').select('id, in_reply_to_id as status_id')
   end
 end
