@@ -39,6 +39,7 @@ gd:
       few: postaichean
       other: post
     status_count_before: A dh’fhoillsich
+    tagline: Lìonra sòisealta sgaoilte
     terms: Teirmichean na seirbheise
     unavailable_content: Frithealaichean fo mhaorsainneachd
     unavailable_content_description:
@@ -109,11 +110,17 @@ gd:
       avatar: Avatar
       by_domain: Àrainn
       change_email:
+        changed_msg: Chaidh am post-d atharrachadh!
         current_email: Am post-d làithreach
         label: Atharraich am post-d
         new_email: Post-d ùr
         submit: Atharraich am post-d
         title: Atharraich am post-d airson %{username}
+      change_role:
+        changed_msg: Chaidh an dreuchd atharrachadh!
+        label: Atharraich an dreuchd
+        no_role: Gun dreuchd
+        title: Atharraich an dreuchd aig %{username}
       confirm: Dearbh
       confirmed: Chaidh a dhearbhachadh
       confirming: '’Ga dhearbhadh'
@@ -157,6 +164,7 @@ gd:
         active: Gnìomhach
         all: Na h-uile
         pending: Ri dhèiligeadh
+        silenced: Cuingichte
         suspended: À rèim
         title: Maorsainneachd
       moderation_notes: Nòtaichean na maorsainneachd
@@ -164,6 +172,7 @@ gd:
       most_recent_ip: An IP as ùire
       no_account_selected: Cha deach cunntas sam bith atharrachadh o nach deach gin dhiubh a thaghadh
       no_limits_imposed: Cha deach crìoch sam bith a sparradh
+      no_role_assigned: Cha deach dreuchd iomruineadh
       not_subscribed: Gun fho-sgrìobhadh
       pending: A’ feitheamh air lèirmheas
       perform_full_suspension: Cuir à rèim
@@ -192,6 +201,7 @@ gd:
       reset: Ath-shuidhich
       reset_password: Ath-shuidhich am facal-faire
       resubscribe: Fo-sgrìobh a-rithist
+      role: Dreuchd
       search: Lorg
       search_same_email_domain: Cleachdaichean eile aig a bheil an aon àrainn puist-d
       search_same_ip: Cleachdaichean eile aig a bheil an t-aon IP
@@ -666,6 +676,71 @@ gd:
       unresolved: Gun fhuasgladh
       updated_at: Air ùrachadh
       view_profile: Seall a’ phròifil
+    roles:
+      add_new: Cuir dreuchd ris
+      assigned_users:
+        one: "%{count} chleachdaiche"
+        two: "%{count} chleachdaiche"
+        few: "%{count} cleachdaichean"
+        other: "%{count} cleachdaiche"
+      categories:
+        administration: Rianachd
+        devops: DevOps
+        invites: Cuiridhean
+        moderation: Maorsainneachd
+        special: Sònraichte
+      delete: Sguab às
+      description_html: Le <strong>dreuchdan chleachdaichean</strong>, ’s urrainn dhut gnàthachadh dè na gleusan is raointean de Mhastodon as urrainn dha na cleachdaichean agad inntrigeadh.
+      edit: Deasaich an dreuchd aig “%{name}“
+      everyone: Na ceadan bunaiteach
+      everyone_full_description_html: Seo an <strong>dreuchd bhunaiteach</strong> a bheir buaidh air <strong>gach cleachdaiche</strong>, fiù an fheadhainn nach deach dreuchd iomruineadh dhaibh. Gheibh a h-uile dreuch ceadan uaipe mar dhìleab.
+      permissions_count:
+        one: "%{count} chead"
+        two: "%{count} chead"
+        few: "%{count} ceadan"
+        other: "%{count} cead"
+      privileges:
+        administrator: Rianaire
+        administrator_description: Chan eil cuingeachadh sam bith air na cleachdaichean aig bheil an cead seo
+        delete_user_data: Sguab às dàta a’ chleachdaiche
+        delete_user_data_description: Leigidh seo le cleachdaichean dàta chleachdaichean eile a sguabadh às gun dàil
+        invite_users: Thoir cuireadh do chleachdaichean
+        invite_users_description: Leigidh seo le cleachdaichean cuireadh dhan fhrithealaiche a chur gu daoine eile
+        manage_announcements: Stiùireadh nam brathan-fios
+        manage_announcements_description: Leigidh seo le cleachdaichean brathan-fios a stiùireadh air an fhrithealaiche
+        manage_appeals: Stiùireadh ath-thagraidhean
+        manage_appeals_description: Leigidh seo le cleachdaichean lèirmheas a dhèanamh air ath-thagraidhean an aghaidh gnìomhan mhaor
+        manage_blocks: Stiùireadh nam bacaidhean
+        manage_blocks_description: Leigidh seo le cleachdaichean solaraichean puist-d is seòlaidhean IP a bhacadh
+        manage_custom_emojis: Stiùireadh nan Emojis gnàthaichte
+        manage_custom_emojis_description: Leigidh seo le cleachdaichean Emojis gnàthaichte a stiùireadh air an fhrithealaiche
+        manage_federation: Stiùireadh a’ cho-nasgaidh
+        manage_federation_description: Leigidh seo le cleachdaichean an co-nasgadh le àrainnean eile a bhacadh no a cheadachadh agus stiùireadh dè ghabhas lìbhrigeadh
+        manage_invites: Stiùireadh nan cuiridhean
+        manage_invites_description: Leigidh seo le cleachdaichean ceanglaichean cuiridh a rùrachadh ’s a chur à gnìomh
+        manage_reports: Stiùireadh ghearanan
+        manage_reports_description: Leigidh seo le cleachdaichean lèirmheas a dhèanamh air gearanan agus gnìomhan maoir a ghabhail ’nan aghaidh
+        manage_roles: Stiùireadh dhreuchdan
+        manage_roles_description: Leigidh seo le cleachdaichean dreuchdan a stiùireadh is iomruineadh do dh’ìochdaran
+        manage_rules: Stiùireadh nan riaghailtean
+        manage_rules_description: Leigidh seo le cleachdaichean riaghailtean an fhrithealaiche atharrachadh
+        manage_settings: Stiùireadh nan roghainnean
+        manage_settings_description: Leigidh seo le cleachdaichean roghainnean na làraich atharrachadh
+        manage_taxonomies: Stiùireadh thacsonamaidhean
+        manage_taxonomies_description: Leigidh seo le cleachdaichean lèirmheas a dhèanamh air an t-susbaint a tha a’ treandadh agus roghainnean nan tagaichean hais ùrachadh
+        manage_user_access: Stiùireadh inntrigeadh chleachdaichean
+        manage_user_access_description: Leigidh seo le cleachdaichean gun cuir iad à comas dearbhadh dà-cheumnach càich, gun atharraich iad an seòladh puist-d aca is gun ath-shuidhich iad am facal-faire aca
+        manage_users: Stiùireadh chleachdaichean
+        manage_users_description: Leigidh seo le cleachdaichean mion-fhiosrachadh càich a shealltainn agus gnìomhan maoir a ghabhail ’nan aghaidh
+        manage_webhooks: Stiùireadh nan webhooks
+        manage_webhooks_description: Leigidh seo le cleachdaichean webhooks a shuidheachadh do thachartasan na rianachd
+        view_audit_log: Coimhead air an loga sgrùdaidh
+        view_audit_log_description: Leigidh seo le cleachdaichean coimhead air eachdraidh gnìomhan na rianachd air an fhrithealaiche
+        view_dashboard: Coimhead air an deas-bhòrd
+        view_dashboard_description: Leigidh seo le cleachdaichean an deas-bhòrd agus meatrachdan inntrigeadh
+        view_devops: DevOps
+        view_devops_description: Leigidh seo le cleachdaichean na deas-bhùird aig Sidekiq is pgHero inntrigeadh
+      title: Dreuchdan
     rules:
       add_new: Cuir riaghailt ris
       delete: Sguab às
@@ -869,13 +944,35 @@ gd:
       edit_preset: Deasaich rabhadh ro-shuidhichte
       empty: Cha do mhìnich thu ro-sheataichean rabhaidhean fhathast.
       title: Stiùirich na rabhaidhean ro-shuidhichte
+    webhooks:
+      add_new: Cuir puing-dheiridh ris
+      delete: Sguab às
+      description_html: Bheir <strong>webhook</strong> comas do Mhastodon gus <strong>brathan fìor-ama</strong> a phutadh dhan aplacaid agad fhèin mu na tachartasan a thagh thu ach an adhbharaich an aplacaid agad <strong>freagairtean gu fèin-obrachail</strong>.
+      disable: Cuir à comas
+      disabled: À comas
+      edit: Deasaich a’ phuing-dheiridh
+      empty: Cha deach puing-deiridh webhook sam bith a rèiteachadh fhathast.
+      enable: Cuir an comas
+      enabled: Gnìomhach
+      enabled_events:
+        one: Tha %{count} tachartas an comas
+        two: "Tha %{count} thachartas an comas"
+        few: "Tha %{count} tachartasan an comas"
+        other: "Tha %{count} tachartas an comas"
+      events: Tachartasan
+      new: Webhook ùr
+      rotate_secret: Cuairtich an rùn
+      secret: Rùn soidhnich
+      status: Staid
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
         delete_statuses: sguabadh às nam postaichean aca
         disable: reòthadh a’ chunntais aca
         mark_statuses_as_sensitive: comharra gu bheil na postaichean aca frionasach
-        none: rabhadh 
+        none: rabhadh
         sensitive: comharra gu bheil an cunntas aca frionasach
         silence: cuingeachadh a’ chunntais aca
         suspend: cur à rèim a’ chunntais aca
@@ -1121,14 +1218,26 @@ gd:
       public: Loidhnichean-ama poblach
       thread: Còmhraidhean
     edit:
+      add_keyword: Cuir facal-luirg ris
+      keywords: Faclan-luirg
       title: Deasaich a’ chriathrag
     errors:
+      deprecated_api_multiple_keywords: Cha ghabh na paramadairean seo atharrachadh on aplacaid seo on a bhios iad an sàs air iomadh facal-luirg na criathraige. Cleachd aplacaid nas ùire no an eadar-aghaidh-lìn.
       invalid_context: Cha deach co-theacs a sholar no tha e mì-dhligheach
     index:
+      contexts: Criathradh am broinn %{contexts}
       delete: Sguab às
       empty: Chan eil criathrag agad.
+      expires_in: Falbhaidh an ùine air an ceann %{distance}
+      expires_on: Falbhaidh an ùine air %{date}
+      keywords:
+        one: "%{count} fhacal-luirg"
+        two: "%{count} fhacal-luirg"
+        few: "%{count} faclan-luirg"
+        other: "%{count} facal-luirg"
       title: Criathragan
     new:
+      save: Sàbhail a’ chriathrag ùr
       title: Cuir criathrag ùr ris
   footer:
     developers: Luchd-leasachaidh
@@ -1251,6 +1360,8 @@ gd:
     copy_account_note_text: 'Da cleachdaiche air gluasad o %{acct}, seo na nòtaichean a bh’ agad mu dhèidhinn roimhe:'
   notification_mailer:
     admin:
+      report:
+        subject: "Rinn %{name} gearan"
       sign_up:
         subject: "Chlàraich %{name}"
     digest:
@@ -1327,7 +1438,7 @@ gd:
   polls:
     errors:
       already_voted: Chuir thu bhòt sa chunntas-bheachd seo mu thràth
-      duplicate_options: ' – tha nithean dùblaichte ann'
+      duplicate_options: '– tha nithean dùblaichte ann'
       duration_too_long: '– tha seo ro fhad air falbh san àm ri teachd'
       duration_too_short: '– tha seo ro aithghearr'
       expired: Tha an cunntas-bheachd air a thighinn gu crìoch
