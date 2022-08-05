@@ -22,7 +22,7 @@ eo:
     get_apps: Provu telefonan aplikaĵon
     hosted_on: '%{domain} estas nodo de Mastodon'
     instance_actor_flash: |
-      Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon kaj neniu individua uzanto. Ĝi estas uzata por celoj de la federaĵo, kaj devas ne esti brokita, krom se vi ne volas bloki la tutan servilon, tiuokaze vi devas uzi blokadon de domajno.
+      Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniu individua uzanto. Ĝi estas uzata por celoj de la federaĵo, kaj devas ne esti brokita, krom se vi ne volas bloki la tutan servilon, tiuokaze vi devas uzi blokadon de domajno.
     learn_more: Lerni pli
     logout_before_registering: Vi jam salutis.
     privacy_policy: Privateca politiko
@@ -642,6 +642,9 @@ eo:
         allow_account: Permesi aŭtoron
         disallow: Malpermesi afiŝon
         disallow_account: Malpermesi aŭtoron
+        shared_by:
+          one: Kundividita kaj aldonita al preferaĵoj unufoje
+          other: Kundividita kaj aldonita al preferaĵoj %{friendly_count}-foje
         title: Tendencantaj afiŝoj
       tags:
         dashboard:
@@ -918,7 +921,7 @@ eo:
       one: 1 uzo
       other: "%{count} uzoj"
     max_uses_prompt: Neniu limo
-    prompt: Krei kaj diskonigi ligilojn al aliaj por doni aliron al ĉi tiu servilo
+    prompt: Generi kaj kundividi ligilojn kun aliaj personoj por doni aliron al ĉi tiu servilo
     table:
       expires_at: Eksvalidiĝas je
       uses: Uzoj
@@ -990,9 +993,9 @@ eo:
       subject: '%{name} menciis vin'
       title: Nova mencio
     reblog:
-      body: '%{name} diskonigis vian mesaĝon:'
-      subject: "%{name} diskonigis vian mesaĝon"
-      title: Nova diskonigo
+      body: 'Via mesaĝo estas suprenigita de %{name}:'
+      subject: "%{name} suprenigis vian mesaĝon"
+      title: Nova suprenigo
     status:
       subject: "%{name} ĵus afiŝita"
     update:
@@ -1072,8 +1075,8 @@ eo:
       proceed: Konfirmi la stelumon
       prompt: 'Vi volas aldoni ĉi tiun mesaĝon al viaj preferaĵoj:'
     reblog:
-      proceed: Konfirmi la diskonigon
-      prompt: 'Vi deziras plusendi ĉi tiun mesaĝon:'
+      proceed: Procedi pri la suprenigo
+      prompt: 'Vi deziras suprenigi ĉi tiun mesaĝon:'
     reply:
       proceed: Konfirmi la respondon
       prompt: 'Vi volas respondi al ĉi tiu mesaĝo:'
@@ -1157,7 +1160,7 @@ eo:
       video:
         one: "%{count} video"
         other: "%{count} videoj"
-    boosted_from_html: Plusendita de %{acct_link}
+    boosted_from_html: Suprenigita de %{acct_link}
     content_warning: 'Averto de la enhavo: %{warning}'
     default_language: Same kiel lingvo de la fasado
     disallowed_hashtags:
@@ -1168,7 +1171,7 @@ eo:
     pin_errors:
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
-      reblog: Diskonigo ne povas esti alpinglita
+      reblog: Suprenigo ne povas esti alpinglita
     poll:
       total_people:
         one: "%{count} persono"
@@ -1195,7 +1198,7 @@ eo:
     enabled: Aŭtomate forigi malnovajn postojn
     exceptions: Esceptoj
     ignore_favs: Ignori la preferaĵojn
-    ignore_reblogs: Ignori akcelojn
+    ignore_reblogs: Ignori la suprenigojn
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
     keep_media: Konservi la mesaĝojn kun aŭdovidaj aldonaĵoj
@@ -1212,7 +1215,7 @@ eo:
       '7889238': 3 monatoj
   stream_entries:
     pinned: Alpinglita
-    reblogged: plusendita
+    reblogged: suprenigita
     sensitive_content: Tikla enhavo
   tags:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
