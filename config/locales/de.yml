@@ -675,6 +675,37 @@ de:
         invite_users_description: Erlaubt Benutzern neue Leute zum Server einzuladen
         manage_announcements: Ankündigungen verwalten
         manage_announcements_description: Erlaubt Benutzern Ankündigungen auf dem Server zu verwalten
+        manage_blocks: Geblocktes verwalten
+        manage_blocks_description: Erlaubt Benutzern E-Mail-Anbieter und IP-Adressen zu blockieren
+        manage_custom_emojis: Benutzerdefinierte Emojis verwalten
+        manage_custom_emojis_description: Erlaubt Benutzern benutzerdefinierte Emojis auf dem Server zu verwalten
+        manage_federation: Föderation verwalten
+        manage_federation_description: Erlaubt Benutzern, Föderation mit anderen Domänen zu blockieren oder zuzulassen und die Zustellbarkeit zu kontrollieren
+        manage_invites: Einladungen verwalten
+        manage_invites_description: Erlaubt Benutzern Einladungslinks zu durchsuchen und zu deaktivieren
+        manage_reports: Meldungen verwalten
+        manage_reports_description: Erlaubt Benutzern Meldungen zu überprüfen und Moderationsaktionen gegen sie durchzuführen
+        manage_roles: Rollen verwalten
+        manage_roles_description: Erlaubt Benutzern Rollen unter ihren Rollen zu verwalten und zuzuweisen
+        manage_rules: Regeln verwalten
+        manage_rules_description: Erlaubt Benutzern Serverregeln zu ändern
+        manage_settings: Einstellungen verwalten
+        manage_settings_description: Erlaubt Benutzern Site-Einstellungen zu ändern
+        manage_taxonomies: Taxonomien verwalten
+        manage_taxonomies_description: Ermöglicht Benutzern die Überprüfung angesagter Inhalte und das Aktualisieren der Hashtag-Einstellungen
+        manage_user_access: Benutzerzugriff verwalten
+        manage_user_access_description: Erlaubt Benutzern die Zwei-Faktor-Authentifizierung anderer Benutzer zu deaktivieren, ihre E-Mail-Adresse zu ändern und ihr Passwort zurückzusetzen
+        manage_users: Benutzer verwalten
+        manage_users_description: Erlaubt Benutzern die Details anderer Benutzer anzuzeigen und Moderationsaktionen gegen sie auszuführen
+        manage_webhooks: Webhooks verwalten
+        manage_webhooks_description: Erlaubt Benutzern Webhooks für administrative Ereignisse einzurichten
+        view_audit_log: Audit-Log anzeigen
+        view_audit_log_description: Erlaubt Benutzern den Verlauf von administrativen Aktionen auf dem Server zu sehen
+        view_dashboard: Dashboard anzeigen
+        view_dashboard_description: Erlaubt Benutzern den Zugriff auf das Dashboard und verschiedene Metriken
+        view_devops: DevOps
+        view_devops_description: Erlaubt Benutzern auf Sidekiq und pgHero Dashboards zuzugreifen
+      title: Rollen
     rules:
       add_new: Regel hinzufügen
       delete: Löschen
@@ -1144,14 +1175,23 @@ de:
       public: Öffentliche Zeitleisten
       thread: Gespräche
     edit:
+      add_keyword: Stichwort hinzufügen
+      keywords: Stichwörter
       title: Filter bearbeiten
     errors:
       invalid_context: Ungültiger oder fehlender Kontext übergeben
     index:
+      contexts: Filter in %{contexts}
       delete: Löschen
       empty: Du hast keine Filter.
+      expires_in: Läuft ab in %{distance}
+      expires_on: Läuft am %{date} ab
+      keywords:
+        one: "%{count} Stichwort"
+        other: "%{count} Stichwörter"
       title: Filter
     new:
+      save: Neuen Filter speichern
       title: Neuen Filter hinzufügen
   footer:
     developers: Entwickler
