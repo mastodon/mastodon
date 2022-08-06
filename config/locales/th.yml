@@ -645,9 +645,11 @@ th:
         delete_user_data: ลบข้อมูลผู้ใช้
         invite_users: เชิญผู้ใช้
         manage_announcements: จัดการประกาศ
+        manage_announcements_description: อนุญาตให้ผู้ใช้จัดการประกาศในเซิร์ฟเวอร์
         manage_appeals: จัดการการอุทธรณ์
         manage_blocks: จัดการการปิดกั้น
         manage_custom_emojis: จัดการอีโมจิที่กำหนดเอง
+        manage_custom_emojis_description: อนุญาตให้ผู้ใช้จัดการอีโมจิที่กำหนดเองในเซิร์ฟเวอร์
         manage_federation: จัดการการติดต่อกับภายนอก
         manage_invites: จัดการคำเชิญ
         manage_reports: จัดการรายงาน
@@ -656,8 +658,10 @@ th:
         manage_rules_description: อนุญาตให้ผู้ใช้เปลี่ยนกฎของเซิร์ฟเวอร์
         manage_settings: จัดการการตั้งค่า
         manage_settings_description: อนุญาตให้ผู้ใช้เปลี่ยนการตั้งค่าไซต์
+        manage_taxonomies_description: อนุญาตให้ผู้ใช้ตรวจทานเนื้อหาที่กำลังนิยมและอัปเดตการตั้งค่าแฮชแท็ก
         manage_user_access: จัดการการเข้าถึงของผู้ใช้
         manage_users: จัดการผู้ใช้
+        view_audit_log: ดูรายการบันทึกการตรวจสอบ
         view_dashboard: ดูแดชบอร์ด
         view_devops_description: อนุญาตให้ผู้ใช้เข้าถึงแดชบอร์ด Sidekiq และ pgHero
       title: บทบาท
@@ -1334,6 +1338,7 @@ th:
     content_warning: 'คำเตือนเนื้อหา:'
     descriptions:
       account: โพสต์สาธารณะจาก @%{acct}
+      tag: 'โพสต์สาธารณะที่ได้รับการแท็ก #%{hashtag}'
   scheduled_statuses:
     too_soon: วันที่ตามกำหนดการต้องอยู่ในอนาคต
   sessions:
