@@ -106,7 +106,9 @@ Get the postgresql secret.
 Get the redis secret.
 */}}
 {{- define "mastodon.redis.secretName" -}}
-{{- if .Values.redis.existingSecret }}
+{{- if .Values.redis.auth.existingSecret }}
+    {{- printf "%s" (tpl .Values.redis.auth.existingSecret $) -}}
+{{- else if .Values.redis.existingSecret }}
     {{- printf "%s" (tpl .Values.redis.existingSecret $) -}}
 {{- else -}}
     {{- printf "%s-redis" (tpl .Release.Name $) -}}
