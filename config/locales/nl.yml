@@ -1117,6 +1117,8 @@ nl:
       title: Nieuwe boost
     status:
       subject: "%{name} heeft zojuist een bericht geplaatst"
+    update:
+      subject: "%{name} bewerkte een bericht"
   notifications:
     email_events: E-mailmeldingen voor gebeurtenissen
     email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
@@ -1281,6 +1283,7 @@ nl:
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
+    edited_at_html: Bewerkt op %{date}
     errors:
       in_reply_not_found: Het bericht waarop je probeert te reageren lijkt niet te bestaan.
     open_in_web: In de webapp openen
