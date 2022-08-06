@@ -24,13 +24,13 @@ appVersion: 3.3.0
 
 dependencies:
   - name: elasticsearch
-    version: 15.10.3
+    version: 19.0.1
     repository: https://charts.bitnami.com/bitnami
     condition: elasticsearch.enabled
   - name: postgresql
-    version: 8.10.14
+    version: 10.16.2
     repository: https://charts.bitnami.com/bitnami
     condition: postgresql.enabled
   - name: redis
-    version: 10.9.0
+    version: 16.13.2
     repository: https://charts.bitnami.com/bitnami
