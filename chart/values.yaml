@@ -79,11 +79,14 @@ mastodon:
     from_address: notifications@example.com
     login:
     openssl_verify_mode: peer
-    password:
     port: 587
     reply_to:
     server: smtp.mailgun.org
     tls: false
+    password:
+    # you can also specify the name of an existing Secret
+    # with the key password
+    existingSecret:
   streaming:
     port: 4000
     # this should be set manually since os.cpus() returns the number of CPUs on
