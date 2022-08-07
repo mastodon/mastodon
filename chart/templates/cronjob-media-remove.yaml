@@ -55,7 +55,7 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       name: {{ template "mastodon.postgresql.secretName" . }}
-                      key: postgresql-password
+                      key: password
                 - name: "REDIS_PASSWORD"
                   valueFrom:
                     secretKeyRef:

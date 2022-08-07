@@ -93,8 +93,8 @@ Get the mastodon secret.
 Get the postgresql secret.
 */}}
 {{- define "mastodon.postgresql.secretName" -}}
-{{- if (and (or .Values.postgresql.enabled .Values.postgresql.postgresqlHostname) .Values.postgresql.existingSecret) }}
-    {{- printf "%s" (tpl .Values.postgresql.existingSecret $) -}}
+{{- if (and (or .Values.postgresql.enabled .Values.postgresql.postgresqlHostname) .Values.postgresql.auth.existingSecret) }}
+    {{- printf "%s" (tpl .Values.postgresql.auth.existingSecret $) -}}
 {{- else if .Values.postgresql.enabled -}}
     {{- printf "%s-postgresql" (tpl .Release.Name $) -}}
 {{- else -}}
@@ -122,7 +122,7 @@ Return true if a mastodon secret object should be created
 {{- if (or
     (and .Values.mastodon.s3.enabled (not .Values.mastodon.s3.existingSecret))
     (not .Values.mastodon.secrets.existingSecret )
-    (and (not .Values.postgresql.enabled) (not .Values.postgresql.existingSecret))
+    (and (not .Values.postgresql.enabled) (not .Values.postgresql.auth.existingSecret))
     ) -}}
     {{- true -}}
 {{- end -}}

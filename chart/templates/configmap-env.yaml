@@ -10,10 +10,10 @@ data:
   {{- else }}
   DB_HOST: {{ .Values.postgresql.postgresqlHostname }}
   {{- end }}
-  DB_NAME: {{ .Values.postgresql.postgresqlDatabase }}
+  DB_NAME: {{ .Values.postgresql.auth.database }}
   DB_POOL: {{ .Values.mastodon.sidekiq.concurrency | quote }}
   DB_PORT: "5432"
-  DB_USER: {{ .Values.postgresql.postgresqlUsername }}
+  DB_USER: {{ .Values.postgresql.auth.username }}
   DEFAULT_LOCALE: {{ .Values.mastodon.locale }}
   {{- if .Values.elasticsearch.enabled }}
   ES_ENABLED: "true"
