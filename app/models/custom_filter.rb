@@ -63,8 +63,10 @@ class CustomFilter < ApplicationRecord
 
   def self.cached_filters_for(account_id)
     active_filters = Rails.cache.fetch("filters:v3:#{account_id}") do
+      filters_hash = {}
+
       scope = CustomFilterKeyword.includes(:custom_filter).where(custom_filter: { account_id: account_id }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
-      scope.to_a.group_by(&:custom_filter).map do |filter, keywords|
+      scope.to_a.group_by(&:custom_filter).each do |filter, keywords|
         keywords.map! do |keyword|
           if keyword.whole_word
             sb = /\A[[:word:]]/.match?(keyword.keyword) ? '\b' : ''
@@ -75,8 +77,17 @@ class CustomFilter < ApplicationRecord
             /#{Regexp.escape(keyword.keyword)}/i
           end
         end
-        [filter, { keywords: Regexp.union(keywords) }]
+
+        filters_hash[filter.id] = { keywords: Regexp.union(keywords), filter: filter }
+      end.to_h
+
+      scope = CustomFilterStatus.includes(:custom_filter).where(custom_filter: { account_id: account_id }).where(Arel.sql('expires_at IS NULL OR expires_at > NOW()'))
+      scope.to_a.group_by(&:custom_filter).each do |filter, statuses|
+        filters_hash[filter.id] ||= { filter: filter }
+        filters_hash[filter.id].merge!(status_ids: statuses.map(&:status_id))
       end
+
+      filters_hash.values.map { |cache| [cache.delete(:filter), cache] }
     end.to_a
 
     active_filters.select { |custom_filter, _| !custom_filter.expired? }

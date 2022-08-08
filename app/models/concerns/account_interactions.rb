@@ -251,10 +251,13 @@ module AccountInteractions
     active_filters = CustomFilter.cached_filters_for(id)
 
     filter_matches = active_filters.filter_map do |filter, rules|
-      next if rules[:keywords].blank?
+      match = rules[:keywords].match(status.proper.searchable_text) if rules[:keywords].present?
+      keyword_matches = [match.to_s] unless match.nil?
 
-      match = rules[:keywords].match(status.proper.searchable_text)
-      FilterResultPresenter.new(filter: filter, keyword_matches: [match.to_s]) unless match.nil?
+      status_matches = [status.id, status.reblog_of_id].compact & rules[:status_ids] if rules[:status_ids].present?
+
+      next if keyword_matches.blank? && status_matches.blank?
+      FilterResultPresenter.new(filter: filter, keyword_matches: keyword_matches, status_matches: status_matches)
     end
 
     filter_matches
