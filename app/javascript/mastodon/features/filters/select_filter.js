@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { toServerSideType } from 'mastodon/utils/filters';
-import Icon from 'mastodon/components/icon';
 import { loupeIcon, deleteIcon } from 'mastodon/utils/icons';
+import Icon from 'mastodon/components/icon';
 import fuzzysort from 'fuzzysort';
 
 const messages = defineMessages({
@@ -16,7 +16,7 @@ const mapStateToProps = (state, { contextType }) => ({
   filters: Array.from(state.get('filters').values()).map((filter) => [
     filter.get('id'),
     filter.get('title'),
-    filter.get('keywords')?.map((keyword) => keyword.get('keyword')).join(', '),
+    filter.get('keywords')?.map((keyword) => keyword.get('keyword')).join('\n'),
     filter.get('expires_at') && filter.get('expires_at') < new Date(),
     contextType && !filter.get('context').includes(toServerSideType(contextType)),
   ]),
@@ -53,18 +53,22 @@ class SelectFilter extends React.PureComponent {
   }
 
   renderItem = filter => {
-    let keywords =  filter[2] && (<span className='language-dropdown__dropdown__results__item__common-name'>({filter[2]})</span>);
-
     let warning = null;
     if (filter[3] || filter[4]) {
       warning = (
-        <Icon id='warning' fixedWidth />
+        <span className='language-dropdown__dropdown__results__item__common-name'>
+          (
+          {filter[3] && <FormattedMessage id='filter_modal.select_filter.expired' defaultMessage='expired' />}
+          {filter[3] && filter[4] && ', '}
+          {filter[4] && <FormattedMessage id='filter_modal.select_filter.context_mismatch' defaultMessage='does not apply to this context' />}
+          )
+        </span>
       );
     }
 
     return (
       <div key={filter[0]} role='button' tabIndex='0' data-index={filter[0]} className='language-dropdown__dropdown__results__item' onClick={this.handleItemClick} onKeyDown={this.handleKeyDown}>
-        <span className='language-dropdown__dropdown__results__item__native-name'>{filter[1]}</span> {warning} {keywords}
+        <span className='language-dropdown__dropdown__results__item__native-name'>{filter[1]}</span> {warning}
       </div>
     );
   }
