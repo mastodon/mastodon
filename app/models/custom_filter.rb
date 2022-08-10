@@ -93,6 +93,18 @@ class CustomFilter < ApplicationRecord
     active_filters.select { |custom_filter, _| !custom_filter.expired? }
   end
 
+  def self.apply_cached_filters(cached_filters, status)
+    cached_filters.filter_map do |filter, rules|
+      match = rules[:keywords].match(status.proper.searchable_text) if rules[:keywords].present?
+      keyword_matches = [match.to_s] unless match.nil?
+
+      status_matches = [status.id, status.reblog_of_id].compact & rules[:status_ids] if rules[:status_ids].present?
+
+      next if keyword_matches.blank? && status_matches.blank?
+      FilterResultPresenter.new(filter: filter, keyword_matches: keyword_matches, status_matches: status_matches)
+    end
+  end
+
   def prepare_cache_invalidation!
     @should_invalidate_cache = true
   end
