@@ -1,5 +1,5 @@
 {{ if .Values.mastodon.cron.removeMedia.enabled }}
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: {{ include "mastodon.fullname" . }}-media-remove
@@ -49,21 +49,17 @@ spec:
                 - configMapRef:
                     name: {{ include "mastodon.fullname" . }}-env
                 - secretRef:
-                    name: {{ template "mastodon.fullname" . }}
+                    name: {{ template "mastodon.secretName" . }}
               env:
                 - name: "DB_PASS"
                   valueFrom:
                     secretKeyRef:
-                      {{- if .Values.postgresql.enabled }}
-                      name: {{ .Release.Name }}-postgresql
-                      {{- else }}
-                      name: {{ template "mastodon.fullname" . }}
-                      {{- end }}
-                      key: postgresql-password
+                      name: {{ template "mastodon.postgresql.secretName" . }}
+                      key: password
                 - name: "REDIS_PASSWORD"
                   valueFrom:
                     secretKeyRef:
-                      name: {{ .Release.Name }}-redis
+                      name: {{ template "mastodon.redis.secretName" . }}
                       key: redis-password
                 - name: "PORT"
                   value: {{ .Values.mastodon.web.port | quote }}
