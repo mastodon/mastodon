@@ -5233,6 +5233,16 @@ a.status-card.compact:hover {
     line-height: 22px;
     color: lighten($inverted-text-color, 16%);
     margin-bottom: 30px;
+
+    a {
+      text-decoration: none;
+      color: $inverted-text-color;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   &__actions {
@@ -5378,6 +5388,14 @@ a.status-card.compact:hover {
     border: 0;
     background: transparent;
     margin: 15px 0;
+  }
+
+  .emoji-mart-search {
+    padding-right: 10px;
+  }
+
+  .emoji-mart-search-icon {
+    right: 10px + 5px;
   }
 }
 
