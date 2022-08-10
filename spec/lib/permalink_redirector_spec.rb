@@ -21,7 +21,7 @@ describe PermalinkRedirector do
 
     it 'returns path for legacy tag links' do
       redirector = described_class.new('web/timelines/tag/hoge')
-      expect(redirector.redirect_path).to eq '/tags/hoge'
+      expect(redirector.redirect_path).to be_nil
     end
 
     it 'returns path for pretty account links' do
@@ -36,7 +36,7 @@ describe PermalinkRedirector do
 
     it 'returns path for pretty tag links' do
       redirector = described_class.new('web/tags/hoge')
-      expect(redirector.redirect_path).to eq '/tags/hoge'
+      expect(redirector.redirect_path).to be_nil
     end
   end
 end

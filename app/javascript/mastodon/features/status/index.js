@@ -56,10 +56,11 @@ import { openModal } from '../../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
-import { boostModal, deleteModal } from '../../initial_state';
+import { boostModal, deleteModal, title } from '../../initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import Icon from 'mastodon/components/icon';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -154,6 +155,23 @@ const makeMapStateToProps = () => {
   };
 
   return mapStateToProps;
+};
+
+const truncate = (str, num) => {
+  if (str.length > num) {
+    return str.slice(0, num) + '…';
+  } else {
+    return str;
+  }
+};
+
+const titleFromStatus = status => {
+  const displayName = status.getIn(['account', 'display_name']);
+  const username = status.getIn(['account', 'username']);
+  const prefix = displayName.trim().length === 0 ? username : displayName;
+  const text = status.get('search_index');
+
+  return `${prefix}: "${truncate(text, 30)}"`;
 };
 
 export default @injectIntl
@@ -605,6 +623,10 @@ class Status extends ImmutablePureComponent {
             {descendants}
           </div>
         </ScrollContainer>
+
+        <Helmet>
+          <title>{titleFromStatus(status)} - {title}</title>
+        </Helmet>
       </Column>
     );
   }

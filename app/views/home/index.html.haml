@@ -1,10 +1,14 @@
 - content_for :header_tags do
-  = preload_pack_asset 'features/getting_started.js', crossorigin: 'anonymous'
-  = preload_pack_asset 'features/compose.js', crossorigin: 'anonymous'
-  = preload_pack_asset 'features/home_timeline.js', crossorigin: 'anonymous'
-  = preload_pack_asset 'features/notifications.js', crossorigin: 'anonymous'
+  - if user_signed_in?
+    = preload_pack_asset 'features/getting_started.js', crossorigin: 'anonymous'
+    = preload_pack_asset 'features/compose.js', crossorigin: 'anonymous'
+    = preload_pack_asset 'features/home_timeline.js', crossorigin: 'anonymous'
+    = preload_pack_asset 'features/notifications.js', crossorigin: 'anonymous'
+
+  = render partial: 'shared/og'
 
   %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
+
   = render_initial_state
   = javascript_pack_tag 'application', crossorigin: 'anonymous'
 

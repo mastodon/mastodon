@@ -5,6 +5,7 @@ import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import { connect } from 'react-redux';
 import { fetchTrendingHashtags } from 'mastodon/actions/trends';
+import { FormattedMessage } from 'react-intl';
 
 const mapStateToProps = state => ({
   hashtags: state.getIn(['trends', 'tags', 'items']),
@@ -27,6 +28,16 @@ class Tags extends React.PureComponent {
 
   render () {
     const { isLoading, hashtags } = this.props;
+
+    if (!isLoading && hashtags.isEmpty()) {
+      return (
+        <div className='explore__links scrollable scrollable--flex'>
+          <div className='empty-column-indicator'>
+            <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className='explore__links'>

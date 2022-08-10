@@ -3,6 +3,7 @@ const initialState = element && JSON.parse(element.textContent);
 
 const getMeta = (prop) => initialState && initialState.meta && initialState.meta[prop];
 
+export const domain = getMeta('domain');
 export const reduceMotion = getMeta('reduce_motion');
 export const autoPlayGif = getMeta('auto_play_gif');
 export const displayMedia = getMeta('display_media');
@@ -26,5 +27,6 @@ export const title = getMeta('title');
 export const cropImages = getMeta('crop_images');
 export const disableSwiping = getMeta('disable_swiping');
 export const languages = initialState && initialState.languages;
+export const server = initialState && initialState.server;
 
 export default initialState;
