@@ -8,6 +8,7 @@ import spring from 'react-motion/lib/spring';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
+import { loupeIcon, deleteIcon } from 'mastodon/utils/icons';
 import fuzzysort from 'fuzzysort';
 
 const messages = defineMessages({
