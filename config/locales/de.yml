@@ -1182,6 +1182,7 @@ de:
       keywords: Stichwörter
       title: Filter bearbeiten
     errors:
+      deprecated_api_multiple_keywords: Diese Parameter können von dieser Anwendung nicht geändert werden, da sie auf mehr als ein Filterschlüsselwort angewendet werden. Verwenden Sie eine neuere Anwendung oder die Web-Schnittstelle.
       invalid_context: Ungültiger oder fehlender Kontext übergeben
     index:
       contexts: Filter in %{contexts}
@@ -1313,6 +1314,8 @@ de:
     copy_account_note_text: 'Dieser Benutzer ist von %{acct} umgezogen, hier waren deine letzten Notizen zu diesem Benutzer:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} hat eine Meldung eingereicht"
       sign_up:
         subject: "%{name} registrierte sich"
     digest:
