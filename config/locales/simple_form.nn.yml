@@ -84,6 +84,10 @@ nn:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
+        role: Rolla kontrollerer kva tilgangar brukaren har
+      user_role:
+        highlighted: Dette gjer rolla synleg offentleg
+        permissions_as_keys: Brukarar med denne rolla vil ha tilgang til...
     labels:
       account:
         fields:
@@ -143,6 +147,7 @@ nn:
         phrase: Nykelord eller frase
         setting_advanced_layout: Skruv på det avanserte nettgrensesnittet
         setting_aggregate_reblogs: Gruppeframhevingar på tidsliner
+        setting_always_send_emails: Alltid send epostvarsel
         setting_auto_play_gif: Spel av animerte GIF-ar automatisk
         setting_boost_modal: Vis stadfesting før framheving
         setting_crop_images: Skjer bilete i ikkje-utvida tut til 16x9
@@ -168,6 +173,7 @@ nn:
         setting_use_pending_items: Saktemodus
         severity: Alvorsgrad
         sign_in_token_attempt: Trygdenykel
+        title: Tittel
         type: Importtype
         username: Brukarnamn
         username_or_email: Brukarnamn eller E-post
@@ -176,6 +182,10 @@ nn:
         with_dns_records: Ha med MX-recordar og IP-ar til domenet
       featured_tag:
         name: Emneknagg
+      filters:
+        actions:
+          hide: Gøym totalt
+          warn: Gøym med ei advarsel
       interactions:
         must_be_follower: Gøym varslingar frå folk som ikkje fylgjer deg
         must_be_following: Gøym varslingar frå folk du ikkje fylgjer
@@ -199,6 +209,7 @@ nn:
         mention: Send e-post når nokon nemner deg
         pending_account: Send e-post når ein ny konto treng gjennomgang
         reblog: Send e-post når nokon framhevar statusen din
+        report: Ny rapport er sendt
       rule:
         text: Regler
       tag:
@@ -206,6 +217,13 @@ nn:
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å synast under trendar
         usable: Gje tut lov til å nytta denne emneknaggen
+      user:
+        role: Rolle
+      user_role:
+        name: Namn
+        position: Prioritet
+      webhook:
+        url: Endepunkts-URL
     'no': 'Nei'
     recommended: Tilrådt
     required:
