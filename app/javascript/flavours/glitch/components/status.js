@@ -625,6 +625,10 @@ class Status extends ImmutablePureComponent {
                 height={110}
                 cacheWidth={this.props.cacheMediaWidth}
                 deployPictureInPicture={this.handleDeployPictureInPicture}
+                sensitive={status.get('sensitive')}
+                blurhash={attachment.get('blurhash')}
+                visible={this.state.showMedia}
+                onToggleVisibility={this.handleToggleMediaVisibility}
               />
             )}
           </Bundle>,

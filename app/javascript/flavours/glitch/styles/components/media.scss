@@ -389,6 +389,13 @@
     height: 100%;
   }
 
+  &.inactive {
+    audio,
+    .video-player__controls {
+      visibility: hidden;
+    }
+  }
+
   .video-player__volume::before,
   .video-player__seek::before {
     background: currentColor;
