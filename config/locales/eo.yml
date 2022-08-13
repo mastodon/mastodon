@@ -2,28 +2,29 @@
 eo:
   about:
     about_hashtag_html: Ĉi tiuj estas la publikaj mesaĝoj markitaj per <strong>#%{hashtag}</strong>. Vi povas interagi kun ili se vi havas konton ie ajn en la fediverse.
-    about_mastodon_html: Mastodon estas socia reto bazita sur malfermitaj retaj protokoloj kaj sur libera malfermitkoda programo. Ĝi estas sencentra kiel retmesaĝoj.
+    about_mastodon_html: 'Mastodon estas socia retejo de la estonteco: sen reklamo, sen kompania gvato, etika dezajno kaj malcentraligo! Vi regu viajn datumojn kun Mastodon!'
     about_this: Pri
-    active_count_after: aktiva
+    active_count_after: aktivaj
     active_footnote: Monate Aktivaj Uzantoj (MAU)
     administered_by: 'Administrata de:'
     api: API
     apps: Poŝtelefonaj aplikaĵoj
-    apps_platforms: Uzu Mastodon ĉe iOS, Android kaj aliajn platformojn
-    browse_directory: Esplori profilujo kaj filtri per interesoj
+    apps_platforms: Uzu Mastodon de iOS, Android, kaj aliaj substratoj
+    browse_directory: Esplori la profilujon kaj filtri en interesoj
     browse_local_posts: Vidi vivantan fluon de publikaj mesaĝoj al Mastodon
     browse_public_posts: Vidi vivantan fluon de publikaj mesaĝoj al Mastodon
-    contact: Kontakti
-    contact_missing: Ne elektita
+    contact: Kontakto
+    contact_missing: Ne ŝargita
     contact_unavailable: Ne disponebla
+    continue_to_web: Daŭrigi al la retaplikaĵo
     discover_users: Malkovri uzantojn
     documentation: Dokumentado
     federation_hint_html: Per konto ĉe %{instance}, vi povos sekvi homojn ĉe iu ajn Mastodon nodo kaj preter.
     get_apps: Provu telefonan aplikaĵon
     hosted_on: "%{domain} estas nodo de Mastodon"
-    instance_actor_flash: |
-      Ĉi tiu konto estas virtuala ulo uzata por reprezenti la servilon mem kaj ne iun apartan uzanton.
-      Ĝi estas uzata por frataraj celoj kaj ĝi ne devus esti blokita krom se vi volas bloki la tutan servilon, tiuokaze vi devus uzi domajnan blokadon.
+    instance_actor_flash: 'Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniu individua uzanto. Ĝi estas uzata por celoj de la federaĵo, kaj devas ne esti brokita, krom se vi ne volas bloki la tutan servilon, tiuokaze vi devas uzi blokadon de domajno.
+
+      '
     learn_more: Lerni pli
     logout_before_registering: Vi jam salutis.
     privacy_policy: Privateca politiko
@@ -35,15 +36,17 @@ eo:
       one: mesaĝo
       other: mesaĝoj
     status_count_before: Kie skribiĝis
-    tagline: Sekvi amikojn kaj trovi iujn novajn
-    terms: Uzkondiĉoj
-    unavailable_content: Kontrolitaj serviloj
+    terms: Kondiĉoj de la servo
+    unavailable_content: Moderigitaj serviloj
     unavailable_content_description:
       domain: Servilo
-      reason: 'Kialo:'
+      reason: Motivo
+      rejecting_media: 'La aŭdovidaj dosieroj de ĉi tiuj serviloj ne estos prilaboritaj aŭ stokitaj, kaj neniu bildeto estos montrita, do necesas klaki permane por vidi la originalan afiŝon:'
       rejecting_media_title: Filtritaj aŭdovidaĵoj
-      silenced_title: Silentigitaj serviloj
-      suspended_title: Haltigitaj serviloj
+      silenced: 'La mesaĝoj de tiuj serviloj estos kaŝitaj de publikaj templinio kaj konversacioj, kaj la interagoj de la uzantoj donas neniun sciigon, ĝis vi sekvos ilin:'
+      silenced_title: Limigitaj serviloj
+      suspended: 'Neniu datumo de ĉi tiuj serviloj estos prilaboritaj, stokitaj, aŭ interŝanĝitaj, neeble fari interagon aŭ komunikon kun la uzantoj de ĉi tiuj serviloj:'
+      suspended_title: Suspenditaj serviloj
     user_count_after:
       one: uzanto
       other: uzantoj
@@ -56,6 +59,7 @@ eo:
       one: Sekvanto
       other: Sekvantoj
     following: Sekvatoj
+    instance_actor_flash: Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniu individua uzanto. Ĝi estas uzata por celoj de la federaĵo kaj devas ne esti suspendita.
     joined: Aliĝis je %{date}
     last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
@@ -73,10 +77,8 @@ eo:
     posts_tab_heading: Mesaĝoj
     posts_with_replies: Mesaĝoj kaj respondoj
     roles:
-      admin: Administranto
       bot: Roboto
       group: Grupo
-      moderator: Kontrolanto
     unavailable: Profilo ne disponebla
     unfollow: Ne plu sekvi
   admin:
@@ -85,16 +87,15 @@ eo:
       title: Plenumi kontrolan agon al %{acct}
     account_moderation_notes:
       create: Lasi noton
-      created_msg: Kontrola noto sukcese kreita!
-      destroyed_msg: Kontrola noto sukcese detruita!
+      created_msg: Noto de mederigado sukcese kreita!
+      destroyed_msg: Noto de moderigado sukcese detruita!
     accounts:
       add_email_domain_block: Bloki retadresan domajnon
       approve: Aprobi
       are_you_sure: Ĉu vi certas?
-      avatar: Profilbildo
+      avatar: Rolfiguro
       by_domain: Domajno
       change_email:
-        changed_msg: Konta retadreso sukcese ŝanĝita!
         current_email: Nuna retadreso
         label: Ŝanĝi retadreson
         new_email: Nova retadreso
@@ -103,6 +104,7 @@ eo:
       confirm: Konfirmi
       confirmed: Konfirmita
       confirming: Konfirmante
+      custom: Kutimo
       delete: Forigi datumojn
       deleted: Forigita
       demote: Degradi
@@ -130,16 +132,16 @@ eo:
         remote: Foraj
         title: Loko
       login_status: Ensaluta stato
-      media_attachments: Ligitaj aŭdovidaĵoj
+      media_attachments: Aŭdovidaj aldonaĵoj
       memorialize: Ŝanĝi al memoro
       memorialized: Memorita
       moderation:
         active: Aktiva
         all: Ĉio
         pending: Pritraktata
-        suspended: Haltigita
-        title: Kontrolado
-      moderation_notes: Kontrolaj notoj
+        suspended: Suspendita
+        title: Moderigado
+      moderation_notes: Notoj de moderigado
       most_recent_activity: Lasta ago
       most_recent_ip: Lasta IP
       no_account_selected: Neniu konto estis ŝanĝita ĉar neniu estis selektita
@@ -153,8 +155,9 @@ eo:
       push_subscription_expires: Eksvalidiĝo de la abono al PuSH
       redownload: Aktualigi profilon
       reject: Malakcepti
-      remove_avatar: Forigi profilbildon
+      remove_avatar: Forigi la rolfiguron
       remove_header: Forigi kapan bildon
+      removed_avatar_msg: La bildo de la rolfiguro de %{username} estas sukcese forigita
       resend_confirmation:
         already_confirmed: Ĉi tiu uzanto jam estas konfirmita
         send: Resendi konfirman retmesaĝon
@@ -162,36 +165,34 @@ eo:
       reset: Restarigi
       reset_password: Restarigi pasvorton
       resubscribe: Reaboni
-      role: Permesoj
-      roles:
-        admin: Administranto
-        moderator: Kontrolanto
-        staff: Teamo
-        user: Uzanto
       search: Serĉi
       search_same_email_domain: Aliaj uzantoj kun la sama retpoŝta domajno
       search_same_ip: Aliaj uzantoj kun la sama IP
       security_measures:
         only_password: Nur pasvorto
         password_and_2fa: Pasvorto kaj 2FA
-        password_and_sign_in_token: Pasvorto kaj retpoŝta ĵetono
       sensitive: Tikla
       sensitized: markita tikla
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
-        created_reports: Kreitaj signaloj
-        targeted_reports: Signalitaj de aliaj
-      silence: Kaŝi
+        created_reports: Faritaj raportoj
+        targeted_reports: Raporitaj de alia
+      silence: Mutigita
       silenced: Silentigita
       statuses: Mesaĝoj
       subscribe: Aboni
-      suspended: Haltigita
+      suspend: Haltigu
+      suspended: Suspendita
+      suspension_reversible_hint_html: La konto estas suspendita, kaj la datumoj estos komplete forgitaj en la %{date}. Ĝis tiam, la konto povas esti restaŭrita sen malutila efiko. Se vi deziras tuj forigi ĉiujn datumojn de la konto, vi povas fari ĉi-sube.
       title: Kontoj
+      unblock_email: Malbloki retpoŝtadresojn
+      unblocked_email_msg: Sukcese malblokis la retpoŝtadreson de %{username}
       unconfirmed_email: Nekonfirmita retadreso
       undo_sensitized: Malfari sentema
       undo_silenced: Malfari kaŝon
       undo_suspension: Malfari haltigon
       unsubscribe: Malaboni
+      unsuspended_msg: La konto de %{username} estas sukcese reaktivigita
       username: Uzantnomo
       view_domain: Vidi la resumon de la domajno
       warn: Averti
@@ -199,11 +200,11 @@ eo:
       whitelisted: En la blanka listo
     action_logs:
       action_types:
-        approve_user: Aprobu Uzanton
+        approve_user: Aprobi Uzanton
         assigned_to_self_report: Atribui Raporton
         change_email_user: Ŝanĝi retadreson de uzanto
         confirm_user: Konfermi uzanto
-        create_account_warning: Krei Averton
+        create_account_warning: Krei averton
         create_announcement: Krei Anoncon
         create_custom_emoji: Krei Propran emoĝion
         create_domain_allow: Krei Domajnan Permeson
@@ -223,10 +224,12 @@ eo:
         disable_custom_emoji: Malebligi Propran Emoĝion
         disable_user: Malebligi uzanton
         enable_custom_emoji: Ebligi Propran Emoĝion
+        enable_sign_in_token_auth_user: Aktivigi la aŭtentigon de peco per retpoŝto por la uzanto
         enable_user: Ebligi uzanton
         memorialize_account: Memorigu Konton
         promote_user: Promocii Uzanton
-        remove_avatar_user: Forigi profilbildon
+        reject_user: Malakcepti Uzanton
+        remove_avatar_user: Forigi la rolfiguron
         reopen_report: Remalfermi signalon
         reset_password_user: Restarigi pasvorton
         resolve_report: Solvitaj reporto
@@ -234,6 +237,7 @@ eo:
         silence_account: Silentigi konton
         suspend_account: Haltigi konton
         unassigned_report: Malatribui Raporton
+        unblock_email_account: Malbloki retpoŝtadreson
         unsensitive_account: Malmarku la amaskomunikilojn en via konto kiel sentemaj
         unsilence_account: Malsilentigi konton
         unsuspend_account: Malhaltigi konton
@@ -242,6 +246,7 @@ eo:
         update_domain_block: Ĝigdatigi domajnan blokadon
         update_status: Ĝisdatigi staton
       actions:
+        approve_user_html: "%{name} aprobis registriĝon de %{target}"
         assigned_to_self_report_html: "%{name} asignis signalon %{target} al si mem"
         change_email_user_html: "%{name} ŝanĝis retadreson de uzanto %{target}"
         confirm_user_html: "%{name} konfirmis retadreson de uzanto %{target}"
@@ -267,8 +272,12 @@ eo:
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user_html: "%{name} plirangigis uzanton %{target}"
-        remove_avatar_user_html: "%{name} forigis profilbildon de %{target}"
+        reject_user_html: "%{name} malakceptis registriĝon de %{target}"
+        remove_avatar_user_html: "%{name} forigis la rolfiguron de %{target}"
         reopen_report_html: "%{name} remalfermis signalon %{target}"
+        suspend_account_html: "%{name} suspendis la konton de %{target}"
+        unsuspend_account_html: "%{name} reaktivigis la konton de %{target}"
+        update_announcement_html: "%{name} ĝisdatigis anoncon %{target}"
       deleted_status: "(forigita mesaĝo)"
       empty: Neniu protokolo trovita.
       filter_by_action: Filtri per ago
@@ -326,8 +335,10 @@ eo:
     dashboard:
       active_users: aktivaj uzantoj
       interactions: interago
-      media_storage: Aŭdvidaĵa memorilo
+      media_storage: Memorilo de aŭdovidaĵoj
       new_users: novaj uzantoj
+      opened_reports: raportoj malfermitaj
+      resolved_reports: raportoj solvitaj
       software: Programo
       space: Memorspaca uzado
       title: Kontrolpanelo
@@ -351,13 +362,13 @@ eo:
         severity:
           desc_html: "<strong>Kaŝi</strong> igos la mesaĝojn de la konto nevideblaj al tiuj, kiuj ne sekvas tiun. <strong>Haltigi</strong> forigos ĉiujn enhavojn, aŭdovidaĵojn kaj datumojn de la konto. Uzu <strong>Nenio</strong> se vi simple volas malakcepti aŭdovidaĵojn."
           noop: Nenio
-          silence: Kaŝi
+          silence: Mutigi
           suspend: Haltigi
         title: Nova domajna blokado
       obfuscate: Malklara domajna nomo
       private_comment: Privata komento
       public_comment: Publika komento
-      reject_media: Malakcepti aŭdovidajn dosierojn
+      reject_media: Malakcepti la aŭdovidajn dosierojn
       reject_media_hint: Forigas aŭdovidaĵojn loke konservitajn kaj rifuzas alŝuti ajnan estonte. Ne koncernas haltigojn
       reject_reports: Malakcepti signalojn
       reject_reports_hint: Ignori ĉiujn signalojn el tiu domajno. Ne koncernas haltigojn
@@ -379,20 +390,39 @@ eo:
       suppressed: Subpremita
       title: Rekomendoj de sekvado
     instances:
+      availability:
+        title: Disponebleco
+        warning: La lasta provo por konektiĝi al ĉi tiu servilo estis malsukcesa
       back_to_all: Ĉiuj
       back_to_limited: Limigita
       back_to_warning: Averta
       by_domain: Domajno
+      content_policies:
+        policies:
+          reject_media: Malakcepti la aŭdovidaĵojn
+          reject_reports: Malakcepti raportojn
+          silence: Kaŝu
+        policy: Politiko
+      dashboard:
+        instance_accounts_dimension: Plej sekvataj kontoj
+        instance_accounts_measure: konservitaj kontoj
+        instance_followers_measure: niaj sekvantoj tie
+        instance_follows_measure: iliaj sekvantoj ĉi tie
+        instance_media_attachments_measure: stokitaj aŭdovidaj aldonaĵoj
+        instance_reports_measure: raportoj pri ili
+        instance_statuses_measure: konservitaj afiŝoj
       delivery:
         all: Ĉiuj
+        unavailable: Nedisponebla
       delivery_available: Liverado disponeblas
       empty: Neniuj domajnoj trovitaj.
       moderation:
         all: Ĉiuj
         limited: Limigita
-        title: Kontrolo
+        title: Moderigado
       private_comment: Privata komento
       public_comment: Publika komento
+      purge: Purigu
       title: Federacio
       total_blocked_by_us: Blokitaj de ni
       total_followed_by_them: Sekvataj de ili
@@ -442,40 +472,56 @@ eo:
     report_notes:
       created_msg: Signala noto sukcese kreita!
       destroyed_msg: Signala noto sukcese forigita!
+      today_at: Hodiaŭ je %{time}
     reports:
       account:
         notes:
           one: "%{count} noto"
           other: "%{count} notoj"
       action_taken_by: Ago farita de
+      actions:
+        other_description_html: Vidu pli da elektebloj por kontroli la agadon de la konto kaj personecigi la komunikadon kun la konto pri kiu raporto.
+      add_to_report: Aldoni pli al raporto
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
       assigned: Asignita kontrolanto
       by_target_domain: Domajno de la signalita konto
+      category: Kategorio
       comment:
         none: Nenio
       created_at: Signalita
+      delete_and_resolve: Forigi afiŝojn
       forwarded: Plusendita
       forwarded_to: Plusendita al %{domain}
       mark_as_resolved: Marki solvita
       mark_as_unresolved: Marki nesolvita
+      no_one_assigned: Neniu
       notes:
         create: Aldoni noton
         create_and_resolve: Solvi per noto
         create_and_unresolve: Remalfermi per noto
         delete: Forigi
         placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
+        title: Notoj
       reopen: Remalfermi signalon
       report: 'Signalo #%{id}'
       reported_account: Signalita konto
       reported_by: Signalita de
       resolved: Solvitaj
       resolved_msg: Signalo sukcese solvita!
+      skip_to_actions: Salti al agoj
       status: Mesaĝoj
+      statuses: Raportita enhavo
+      target_origin: Origino de raportita konto
       title: Signaloj
       unassign: Malasigni
       unresolved: Nesolvitaj
       updated_at: Ĝisdatigita
+      view_profile: Vidi profilon
+    roles:
+      everyone: Implicitaj permesoj
+      privileges:
+        delete_user_data: Forviŝi la datumojn de la uzanto
     rules:
       add_new: Aldoni regulon
       delete: Forigi
@@ -511,7 +557,7 @@ eo:
         desc_html: Nomoj de domajnoj, kiujn ĉi tiu servilo renkontis en la federauniverso
         title: Publikigi liston de malkovritaj serviloj
       preview_sensitive_media:
-        desc_html: Antaŭvido de ligiloj en aliaj retejoj montros bildeton eĉ se la aŭdovidaĵo estas markita kiel tikla
+        desc_html: La antaŭmontroj de ligilo al la aliaj retejoj montros bildeton eĉ se la aŭdovidaĵo estas markita kiel tikla
         title: Montri tiklajn aŭdovidaĵojn en la antaŭvidoj de OpenGraph
       profile_directory:
         desc_html: Permesi al uzantoj esti troveblaj
@@ -523,21 +569,15 @@ eo:
         deletion:
           desc_html: Permesi al iu ajn forigi propran konton
           title: Permesi forigi konton
-        min_invite_role:
-          disabled: Neniu
-          title: Permesi invitojn de
       registrations_mode:
         modes:
           approved: Bezonas aprobi por aliĝi
           none: Neniu povas aliĝi
           open: Iu povas aliĝi
-        title: Registrado modo
+        title: Reĝimo de registriĝo
       show_known_fediverse_at_about_page:
         desc_html: Kiam ŝaltita, ĝi montros mesaĝojn de la tuta konata fediverse antaŭvide. Aliokaze, ĝi montros nur lokajn mesaĝojn.
-        title: Montri konatan fediverse en tempolinia antaŭvido
-      show_staff_badge:
-        desc_html: Montri teaman insignon en paĝo de uzanto
-        title: Montri teaman insignon
+        title: Inkluzivi frataran enhavon en la neaŭtentigita publika antaŭmontro de templinio
       site_description:
         desc_html: Enkonduka alineo en la ĉefpaĝo. Priskribu la unikaĵojn de ĉi tiu nodo de Mastodon, kaj ĉiujn aliajn gravaĵojn. Vi povas uzi HTML-etikedojn, kiel <code>&lt;a&gt;</code> kaj <code>&lt;em&gt;</code>.
         title: Priskribo de la servilo
@@ -549,28 +589,38 @@ eo:
         title: Mallonga priskribo de la servilo
       site_terms:
         desc_html: Vi povas skribi vian propran privatecan politikon, viajn uzkondiĉojn aŭ aliajn leĝaĵojn. Vi povas uzi HTML-etikedojn
-        title: Propraj uzkondiĉoj
+        title: Propraj kondiĉoj de la servo
       site_title: Nomo de la servilo
       thumbnail:
         desc_html: Uzata por antaŭvidoj per OpenGraph kaj per API. 1200x630px rekomendita
         title: Bildeto de la servilo
       timeline_preview:
         desc_html: Montri publikan templinion en komenca paĝo
-        title: Tempolinia antaŭvido
+        title: Permesi la neaŭtentigitan aliron al la publika templinio
       title: Retejaj agordoj
       trends:
         desc_html: Publike montri antaŭe kontrolitajn kradvortojn, kiuj nune furoras
         title: Furoraj kradvortoj
     site_uploads:
       delete: Forigi elŝutitan dosieron
+      destroyed_msg: Reteja alŝuto sukcese forigita!
     statuses:
       back_to_account: Reveni al konta paĝo
+      batch:
+        remove_from_report: Forigi de raporto
+        report: Raporti
       deleted: Forigita
       media:
         title: Aŭdovidaĵoj
       no_status_selected: Neniu mesaĝo estis ŝanĝita ĉar neniu estis elektita
       title: Mesaĝoj de la konto
       with_media: Kun aŭdovidaĵoj
+    strikes:
+      actions:
+        delete_statuses: "%{name} forigis afiŝojn de %{target}"
+        disable: "%{name} malebligis la konton de %{target}"
+        suspend: "%{name} suspendis la konton de %{target}"
+      appeal_approved: Apelaciita
     system_checks:
       database_schema_check:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
@@ -581,12 +631,36 @@ eo:
       review: La statuso de la recenzo
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
     title: Administrado
+    trends:
+      allow: Permesi
+      disallow: Malpermesi
+      links:
+        allow: Permesi ligilon
+        disallow: Malpermesi ligilon
+        title: Tendencantaj ligiloj
+      pending_review: Atendante revizion
+      statuses:
+        allow: Permesi afiŝon
+        allow_account: Permesi aŭtoron
+        disallow: Malpermesi afiŝon
+        disallow_account: Malpermesi aŭtoron
+        title: Tendencantaj afiŝoj
+      tags:
+        dashboard:
+          tag_accounts_measure: unikaj uzoj
+          tag_servers_measure: malsamaj serviloj
+        not_usable: Ne povas esti uzata
+        title: Tendencantaj kradvortoj
+      title: Tendencoj
     warning_presets:
       add_new: Aldoni novan
-      delete: Forigi
-      edit_preset: Redakti avertan antaŭagordon
+      delete: Forviŝi
+      edit_preset: Redakti la antaŭagordojn de averto
       title: Administri avertajn antaŭagordojn
   admin_mailer:
+    new_appeal:
+      actions:
+        disable: por malebligi ties konton
     new_pending_account:
       body: La detaloj de la nova konto estas sube. Vi povas aprobi aŭ Malakcepti ĉi kandidatiĝo.
       subject: Nova konto atendas por recenzo en %{instance} (%{username})
@@ -594,6 +668,11 @@ eo:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
       subject: Nova signalo por %{instance} (#%{id})
+    new_trends:
+      new_trending_links:
+        title: Tendencantaj ligiloj
+      new_trending_tags:
+        title: Tendencantaj kradvortoj
   aliases:
     add_new: Krei alinomon
     created_msg: Kreis novan alinomon sukcese. Vi povas inici la transloki el la malnovan konton nun.
@@ -622,7 +701,6 @@ eo:
   applications:
     created: Aplikaĵo sukcese kreita
     destroyed: Aplikaĵo sukcese forigita
-    invalid_url: La URL donita ne estas valida
     regenerate_token: Rekrei aliran ĵetonon
     token_regenerated: Alira ĵetono sukcese rekreita
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
@@ -637,6 +715,7 @@ eo:
     description:
       prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de Mastodon!"
       prefix_sign_up: Registriĝi ĉe Mastodon hodiaŭ!
+      suffix: Kun konto, vi povos sekvi aliajn homojn, skribi afiŝojn kaj interŝanĝi mesaĝojn kun la uzantoj de iu ajn Mastodon'a servilo kaj multe pli!
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     dont_have_your_security_key: Ne havas vi vian sekurecan ŝlosilon?
     forgot_password: Pasvorto forgesita?
@@ -654,7 +733,7 @@ eo:
     register: Registriĝi
     registration_closed: "%{instance} ne estas akcepti nova uzantojn"
     resend_confirmation: Resendi la instrukciojn por konfirmi
-    reset_password: Ŝanĝi pasvorton
+    reset_password: Restarigi pasvorton
     security: Sekureco
     set_new_password: Elekti novan pasvorton
     setup:
@@ -686,7 +765,7 @@ eo:
       invalid_signature: 올바른 Ed25519 시그니처가 아닙니다
   date:
     formats:
-      default: "%Y-%m-%d "
+      default: "%d de %b %Y"
       with_month_name: "%e-a de %B %Y"
   datetime:
     distance_in_words:
@@ -717,6 +796,12 @@ eo:
     directory: Profilujo
     explanation: Malkovru uzantojn per iliaj interesoj
     explore_mastodon: Esplori %{title}
+  disputes:
+    strikes:
+      created_at: Datita
+      title_actions:
+        delete_statuses: Forigo de afiŝo
+        none: Averto
   domain_validator:
     invalid_domain: ne estas valida domajna nomo
   errors:
@@ -767,15 +852,23 @@ eo:
       public: Publika templinio
       thread: Konversacioj
     edit:
+      add_keyword: Aldoni ĉefvorton
+      keywords: Ĉefvortoj
       title: Ŝanĝi filtrilojn
     errors:
       invalid_context: Neniu aŭ nevalida kunteksto donita
-      invalid_irreversible: Nemalfarebla filtrado funkcias nur por hejma aŭ sciiga kuntekstoj
     index:
+      contexts: Filtri en %{contexts}
       delete: Forigi
       empty: Vi havas neniun filtrilon.
+      expires_in: Eksvalidiĝi en %{distance}
+      expires_on: Eksvalidiĝi je %{date}
+      keywords:
+        one: "%{count} ĉefvorto"
+        other: "%{count} ĉefvortoj"
       title: Filtriloj
     new:
+      save: Konservi novan filtrilon
       title: Aldoni novan filtrilon
   footer:
     developers: Programistoj
@@ -787,8 +880,10 @@ eo:
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
     copy: Kopii
     delete: Forigi
+    none: Neniu
     order_by: Ordigi de
     save_changes: Konservi ŝanĝojn
+    today: hodiaŭ
     validation_errors:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
       other: Io mise okazis! Bonvolu konsulti la subajn %{count} erar-raportojn
@@ -865,8 +960,9 @@ eo:
     set_redirect: Agordi alidirekton
     warning:
       only_redirect_html: Alie, vi povas <a href="%{path}">nur aldoni alidirekton en via profilo</a>.
+      other_data: Neniu alia datumo estos movita aŭtomate
   moderation:
-    title: Kontrolado
+    title: Moderigado
   notification_mailer:
     digest:
       action: Vidi ĉiujn sciigojn
@@ -876,8 +972,8 @@ eo:
         one: Ankaŭ, vi ekhavis novan sekvanton en via foresto! Jej!
         other: Ankaŭ, vi ekhavis %{count} novajn sekvantojn en via foresto! Mirinde!
       subject:
-        one: "1 nova sciigo ekde via lasta vizito \U0001F418"
-        other: "%{count} novaj sciigoj ekde via lasta vizito \U0001F418"
+        one: "1 nova sciigo ekde via lasta vizito 🐘"
+        other: "%{count} novaj sciigoj ekde via lasta vizito 🐘"
       title: En via foresto…
     favourite:
       body: "%{name} stelumis vian mesaĝon:"
@@ -903,6 +999,8 @@ eo:
       title: Nova diskonigo
     status:
       subject: "%{name} ĵus afiŝita"
+    update:
+      subject: "%{name} redaktis afiŝon"
   notifications:
     email_events: Eventoj por retpoŝtaj sciigoj
     email_events_hint: 'Elekti la eventojn pri kioj vi volas ricevi sciigojn:'
@@ -926,9 +1024,9 @@ eo:
     wrong_code: La enmetita kodo estis nevalida! Ĉu la servila tempo kaj la aparata tempo ĝustas?
   pagination:
     newer: Pli nova
-    next: Sekva
+    next: Antaŭen
     older: Malpli nova
-    prev: Antaŭa
+    prev: Malantaŭen
     truncate: "&hellip;"
   polls:
     errors:
@@ -943,7 +1041,7 @@ eo:
       too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
     other: Aliaj aferoj
-    posting_defaults: Afiŝadoj defaŭltoj
+    posting_defaults: Implicitaj agordoj de afiŝado
     public_timelines: Publikaj templinioj
   reactions:
     errors:
@@ -976,13 +1074,15 @@ eo:
   remote_interaction:
     favourite:
       proceed: Konfirmi la stelumon
-      prompt: 'Vi volas stelumi ĉi tiun mesaĝon:'
+      prompt: 'Vi volas aldoni ĉi tiun mesaĝon al viaj preferaĵoj:'
     reblog:
       proceed: Konfirmi la diskonigon
       prompt: 'Vi volas diskonigi ĉi tiun mesaĝon:'
     reply:
       proceed: Konfirmi la respondon
       prompt: 'Vi volas respondi al ĉi tiu mesaĝo:'
+  rss:
+    content_warning: 'Averto pri enhavo:'
   scheduled_statuses:
     over_daily_limit: Vi transpasis la limigon al %{limit} samtage planitaj mesaĝoj
     over_total_limit: Vi transpasis la limigon al %{limit} planitaj mesaĝoj
@@ -1021,7 +1121,7 @@ eo:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: nekonata platformo
+      other: nekonata substrato
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1041,7 +1141,7 @@ eo:
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
     import: Importi
-    import_and_export: Alporto kaj elporto
+    import_and_export: Enporti kaj elporti
     migrate: Konta migrado
     notifications: Sciigoj
     preferences: Preferoj
@@ -1062,7 +1162,8 @@ eo:
         one: "%{count} video"
         other: "%{count} videoj"
     boosted_from_html: Diskonigita de %{acct_link}
-    content_warning: 'Enhava averto: %{warning}'
+    content_warning: 'Averto de la enhavo: %{warning}'
+    default_language: Same kiel lingvo de la fasado
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
       other: 'enhavis malpermesitan kradvorton: %{tags}'
@@ -1080,10 +1181,10 @@ eo:
         one: "%{count} voĉdono"
         other: "%{count} voĉdonoj"
       vote: Voĉdoni
-    show_more: Malfoldi
+    show_more: Montri pli
     show_newer: Montri pli novajn
     show_older: Montri pli malnovajn
-    show_thread: Montri la fadenon
+    show_thread: Montri la mesaĝaron
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
     title: "%{name}: “%{quote}”"
     visibilities:
@@ -1092,20 +1193,25 @@ eo:
       private_long: Montri nur al sekvantoj
       public: Publika
       public_long: Ĉiuj povas vidi
-      unlisted: Nelistigita
+      unlisted: Ne enlistigita
       unlisted_long: Ĉiuj povas vidi, sed nelistigita en publikaj templinioj
   statuses_cleanup:
     enabled: Aŭtomate forigi malnovajn postojn
     exceptions: Esceptoj
-    ignore_favs: Ignori ŝatatajn
+    ignore_favs: Ignori la preferaĵojn
     ignore_reblogs: Ignori akcelojn
+    keep_direct: Konservi rektajn mesaĝojn
+    keep_direct_hint: Ne forigos viajn rektajn mesagôjn
+    keep_media: Konservi la mesaĝojn kun aŭdovidaj aldonaĵoj
+    keep_media_hint: Ne forviŝi la mesaĝojn kiuj enhavas aŭdovidajn aldonaĵojn
+    keep_self_fav_hint: Ne forviŝi viajn proprajn afiŝojn, se vi aldonis ilin al viaj preferaĵoj
     min_age:
       '1209600': 2 semajnoj
       '15778476': 6 monatoj
       '2629746': 1 monato
       '31556952': 1 jaro
       '5259492': 2 monatoj
-      '604800': 1 week
+      '604800': 1 semajno
       '63113904': 2 jaroj
       '7889238': 3 monatoj
   stream_entries:
@@ -1122,8 +1228,9 @@ eo:
     mastodon-light: Mastodon (Luma)
   time:
     formats:
-      default: "%Y-%m-%d %H:%M"
+      default: "%Y.%b.%d, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Aldoni
     disable: Malebligi
@@ -1144,19 +1251,22 @@ eo:
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
     warning:
+      categories:
+        spam: Spamo
+      reason: 'Kialo:'
       subject:
         disable: Via konto %{acct} estas frostigita
         none: Averto por %{acct}
         silence: Via konto %{acct} estas limigita
-        suspend: Via konto %{acct} estas haltigita
+        suspend: Via konto %{acct} estas suspendita
       title:
         disable: Konto frostigita
         none: Averto
         silence: Konto limigita
-        suspend: Konto haltigita
+        suspend: Konto suspendita
     welcome:
       edit_profile_action: Agordi profilon
-      edit_profile_step: Vi povas proprigi vian profilon per alŝuto de profilbildo, fonbildo, ŝanĝo de via afiŝita nomo kaj pli. Se vi ŝatus kontroli novajn sekvantojn antaŭ ol ili rajtas sekvi vin, vi povas ŝlosi vian konton.
+      edit_profile_step: Vi povas personecigi vian profilon en alŝuto de rolfiguro, paĝokapa bildo, en ŝanĝo de via vidiga nomo kaj pli. Se vi volas ekzameni novajn sekvantojn antaŭ ol permesi al ili aboni vin, vi povas agordi vian konton kiel privata.
       explanation: Jen kelkaj konsiloj por helpi vin komenci
       final_action: Ekmesaĝi
       final_step: 'Ekmesaĝu! Eĉ sen sekvantoj, viaj publikaj mesaĝoj povas esti vidataj de aliaj, ekzemple en la loka templinio kaj en la kradvortoj. Eble vi ŝatus prezenti vin per la kradvorto #introductions.'
@@ -1165,16 +1275,15 @@ eo:
       review_preferences_action: Ŝanĝi preferojn
       review_preferences_step: Estu certa ke vi agordis viajn preferojn, kiel kiujn retmesaĝojn vi ŝatus ricevi, aŭ kiun dekomencan privatecan nivelon vi ŝatus ke viaj mesaĝoj havu. Se tio ne ĝenas vin, vi povas ebligi aŭtomatan ekigon de GIF-oj.
       subject: Bonvenon en Mastodon
-      tip_federated_timeline: La fratara templinio estas antaŭvido de la reto de Mastodon. Sed ĝi enhavas nur homojn, kiuj estas sekvataj de aliaj homoj de via nodo, do ĝi ne estas kompleta.
+      tip_federated_timeline: La fratara templinio estas rekta montro de la reto de Mastodon. Sed ĝi inkluzivas nur personojn kiujn viaj najbaroj abonas, do ĝi ne estas kompleta.
       tip_following: Vi dekomence sekvas la administrantojn de via servilo. Por trovi pli da interesaj homoj, rigardu la lokan kaj frataran templiniojn.
-      tip_local_timeline: La loka templinio estas antaŭvido de la homoj en %{instance}. Ĉi tiuj estas viaj apudaj najbaroj!
+      tip_local_timeline: La loka templinio estas rekta montro de personoj ĉe %{instance}. Ĉi tiuj estas viaj senperaj najbaroj!
       tip_mobile_webapp: Se via telefona retumilo proponas al vi aldoni Mastodon al via hejma ekrano, vi povas ricevi puŝsciigojn. Tio multmaniere funkcias kiel operaciuma aplikaĵo!
       tips: Konsiloj
       title: Bonvenon, %{name}!
   users:
     follow_limit_reached: Vi ne povas sekvi pli ol %{limit} homo(j)
     invalid_otp_token: Nevalida kodo de dufaktora aŭtentigo
-    invalid_sign_in_token: Nevalida sekureca kodo
     otp_lost_help_html: Se vi perdas aliron al ambaŭ, vi povas kontakti %{email}
     seamless_external_login: Vi estas ensalutinta per ekstera servo, do pasvortaj kaj retadresaj agordoj ne estas disponeblaj.
     signed_in_as: 'Salutinta kiel:'

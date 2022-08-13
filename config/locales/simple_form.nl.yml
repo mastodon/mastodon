@@ -27,6 +27,8 @@ nl:
         scheduled_at: Laat leeg om de mededeling meteen te publiceren
         starts_at: Optioneel. In het geval dat jouw mededeling aan een bepaald tijdvak is gebonden
         text: Je kunt specifieke tekst voor berichten gebruiken. Let op de ruimte die de mededeling op het scherm van de gebruiker inneemt
+      appeal:
+        text: Je kunt maar eenmalig bezwaar indienen tegen een vastgestelde overtreding
       defaults:
         autofollow: Mensen die zich via de uitnodiging hebben geregistreerd, volgen jou automatisch
         avatar: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -63,6 +65,11 @@ nl:
         with_dns_records: Er wordt een poging gewaagd om de desbetreffende DNS-records op te zoeken, waarna de resultaten ook worden geblokkeerd
       featured_tag:
         name: 'Je wilt misschien een van deze gebruiken:'
+      filters:
+        action: Kies welke acties uitgevoerd moeten wanneer een bericht overeenkomt met het filter
+        actions:
+          hide: Verberg de gefilterde inhoud volledig, alsof het niet bestaat
+          warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -116,6 +123,8 @@ nl:
         scheduled_at: Mededeling inplannen
         starts_at: Begint
         text: Mededeling
+      appeal:
+        text: Leg uit waarom deze beslissing volgens jou teruggedraaid moet worden
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
         avatar: Avatar
@@ -145,6 +154,7 @@ nl:
         phrase: Trefwoord of zinsdeel
         setting_advanced_layout: Geavanceerde webomgeving inschakelen
         setting_aggregate_reblogs: Boosts in tijdlijnen groeperen
+        setting_always_send_emails: Altijd e-mailmeldingen verzenden
         setting_auto_play_gif: Speel geanimeerde GIF's automatisch af
         setting_boost_modal: Vraag voor het boosten van een bericht een bevestiging
         setting_crop_images: Afbeeldingen bijsnijden tot 16x9 in berichten op tijdlijnen
@@ -170,6 +180,7 @@ nl:
         setting_use_pending_items: Langzame modus
         severity: Zwaarte
         sign_in_token_attempt: Beveiligingscode
+        title: Titel
         type: Importtype
         username: Gebruikersnaam
         username_or_email: Gebruikersnaam of e-mailadres
@@ -178,6 +189,10 @@ nl:
         with_dns_records: MX-records en IP-adressen van het domein toevoegen
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Volledig verbergen
+          warn: Met een waarschuwing verbergen
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -194,6 +209,7 @@ nl:
           sign_up_requires_approval: Registraties beperken
         severity: Regel
       notification_emails:
+        appeal: Iemand heeft bezwaar ingediend tegen een beslissing van een moderator
         digest: Periodiek e-mails met een samenvatting versturen
         favourite: Wanneer iemand jouw bericht aan diens favorieten heeft toegevoegd
         follow: Wanneer iemand jou is gaan volgen
@@ -201,6 +217,8 @@ nl:
         mention: Wanneer iemand jou heeft vermeld
         pending_account: Wanneer een nieuw account moet worden beoordeeld
         reblog: Wanneer iemand jouw bericht heeft geboost
+        report: Nieuwe rapportage is ingediend
+        trending_tag: Nieuwe trend vereist beoordeling
       rule:
         text: Regel
       tag:
@@ -208,6 +226,15 @@ nl:
         name: Hashtag
         trendable: Toestaan dat deze hashtag onder trends te zien valt
         usable: Toestaan dat deze hashtag in berichten gebruikt mag worden
+      user:
+        role: Rol
+      user_role:
+        color: Kleur van badge
+        name: Naam
+        permissions_as_keys: Rechten
+        position: Prioriteit
+      webhook:
+        url: Eindpunt URL
     'no': Nee
     recommended: Aanbevolen
     required:

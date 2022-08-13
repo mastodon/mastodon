@@ -1,56 +1,56 @@
 ---
 ca:
   about:
-    about_hashtag_html: Aquests són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Pots interactuar amb elles si tens un compte a qualsevol lloc del fedivers.
-    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Posseeix les teves dades amb Mastodon!'
+    about_hashtag_html: Aquestes són publicacions públiques etiquetades amb <strong>#%{hashtag}</strong>. Hi pots interactuar si tens un compte a qualsevol lloc del fedivers.
+    about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
     about_this: Quant a
     active_count_after: actiu
     active_footnote: Usuaris actius mensuals (UAM)
     administered_by: 'Administrat per:'
     api: API
-    apps: Apps mòbils
-    apps_platforms: Utilitza Mastodon des de iOS, Android i altres plataformes
-    browse_directory: Navega per el directori de perfils i filtra segons interessos
-    browse_local_posts: Navega un flux en directe de publicacions públiques d’aquest servidor
-    browse_public_posts: Navega per una transmissió en directe de publicacions públiques a Mastodon
+    apps: Aplicacions mòbils
+    apps_platforms: Utilitza Mastodon des d'iOS, Android i altres plataformes
+    browse_directory: Navega pel directori de perfils i filtra segons interessos
+    browse_local_posts: Navega per una transmissió en directe de les publicacions públiques d’aquest servidor
+    browse_public_posts: Navega per una transmissió en directe de les publicacions públiques a Mastodon
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
     continue_to_web: Continua a l'aplicació web
     discover_users: Descobrir usuaris
     documentation: Documentació
-    federation_hint_html: Amb un compte de %{instance} podràs seguir persones de qualsevol servidor Mastodon i altres.
+    federation_hint_html: Amb un compte de %{instance}, podràs seguir persones de qualsevol servidor Mastodon i de molts més.
     get_apps: Provar una aplicació mòbil
     hosted_on: Mastodon allotjat a %{domain}
     instance_actor_flash: |
-      Aquest compte és un actor virtual utilitzat per a representar al propi servidor i no cap usuari individual.
-      S'utilitza per a propòsits de federació i no ha de ser bloquejat si no voleu bloquejar tota la instància, en aquest cas hauríeu d'utilitzar un bloqueig de domini.
+      Aquest compte és un actor virtual usat per representar el servidor i no qualsevol usuari individual.
+      Es fa servir per a propòsits de federació i no s'ha de ser bloquejar si no voleu bloquejar tota la instància. En aquest cas, hauríeu d'utilitzar un bloqueig de domini.
     learn_more: Aprèn més
     logged_in_as_html: Actualment has iniciat sessió com a %{username}.
     logout_before_registering: Ja has iniciat sessió.
     privacy_policy: Política de privadesa
     rules: Normes del servidor
-    rules_html: 'El de sota és un resum de les normes que has de seguir si vols tenir un compte en aquest servidor de Mastodon:'
+    rules_html: 'A continuació, es mostra un resum de les normes que has de seguir si vols tenir un compte en aquest servidor de Mastodon:'
     see_whats_happening: Mira què està passant
     server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
     status_count_after:
       one: publicació
       other: publicacions
-    status_count_before: Que han publicat
-    tagline: Segueix els teus amics i descobreix-ne de nous
-    terms: Termes del servei
+    status_count_before: Qui ha publicat
+    tagline: Xarxa social descentralitzada
+    terms: Condicions de servei
     unavailable_content: Servidors moderats
     unavailable_content_description:
       domain: Servidor
-      reason: Raó
-      rejecting_media: 'Els arxius multimèdia d''aquests servidors no seran processats o emmagatzemats i cap miniatura serà mostrada, requerint clic manual a través de l''arxiu original:'
-      rejecting_media_title: Mèdia filtrat
-      silenced: 'Les publicacions d''aquests servidors seran amagades en les línies de temps públiques i en les converses, i cap notificació serà generada de les interaccions dels seus usuaris, llevat que estiguis seguint-los:'
-      silenced_title: Servidors silenciats
-      suspended: 'Cap dada d''aquests servidors serà processada, emmagatzemada o intercanviada, fent impossible qualsevol interacció o comunicació amb els usuaris d''aquests servidors:'
+      reason: Motiu
+      rejecting_media: 'Els arxius multimèdia d''aquests servidors no seran processats ni emmagatzemats. No es mostrarà cap miniatura i caldrà fer clic en l''arxiu original:'
+      rejecting_media_title: Arxius multimèdia filtrats
+      silenced: 'Les publicacions d''aquests servidors s''ocultaran en les línies de temps públiques i en les converses. No es generarà cap notificació de les interaccions dels seus usuaris, tret que els segueixis:'
+      silenced_title: Servidors limitats
+      suspended: 'No es processaran, emmagatzemaran ni s''intercanviaran dades d''aquests servidors i serà impossible interactuar o comunicar-se amb els usuaris d''aquests servidors:'
       suspended_title: Servidors suspesos
-    unavailable_content_html: Mastodon generalment et permet veure el contingut i interaccionar amb els usuaris de qualsevol altre servidor en el fedivers. Aquestes són les excepcions que s'han fet en aquest servidor particular.
+    unavailable_content_html: En general, Mastodon et permet veure el contingut i interaccionar amb els usuaris de qualsevol altre servidor del fedivers. Aquestes són les excepcions que s'han fet en aquest servidor particular.
     user_count_after:
       one: usuari
       other: usuaris
@@ -58,7 +58,7 @@ ca:
     what_is_mastodon: Què és Mastodon?
   accounts:
     choices_html: 'Eleccions de %{name}:'
-    endorsements_hint: Pots recomanar persones que segueixes a l'interfície de web, que apareixeran aquí.
+    endorsements_hint: Pots recomanar persones que segueixes des de la interfície de web i apareixeran aquí.
     featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
     followers:
@@ -67,13 +67,13 @@ ca:
     following: Seguint
     instance_actor_flash: Aquest compte és un actor virtual usat per a representar el mateix servidor i no cap usuari individual. Es fa servir per a federar i no s'hauria d'esborrar.
     joined: Unit des de %{date}
-    last_active: darrer actiu
+    last_active: última activitat
     link_verified_on: La propietat d'aquest enllaç s'ha verificat el %{date}
     media: Mèdia
     moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
     network_hidden: Aquesta informació no està disponible
     nothing_here: No hi ha res aquí!
-    people_followed_by: Usuaris seguits per %{name}
+    people_followed_by: Persones seguides per %{name}
     people_who_follow: Usuaris que segueixen %{name}
     pin_errors:
       following: Has d'estar seguint la persona que vulguis avalar
@@ -83,10 +83,8 @@ ca:
     posts_tab_heading: Publicacions
     posts_with_replies: Publicacions i respostes
     roles:
-      admin: Administrador
       bot: Bot
       group: Grup
-      moderator: Moderador
     unavailable: Perfil inaccessible
     unfollow: Deixa de seguir
   admin:
@@ -111,12 +109,17 @@ ca:
         new_email: Adreça electrònica nova
         submit: Canvia l'adreça electrònica
         title: Canvia l'adreça electrònica de %{username}
+      change_role:
+        changed_msg: Els privilegis del compte s'han canviat correctament!
+        label: Canvia rol
+        no_role: Sense rol
+        title: Canvia el rol per a %{username}
       confirm: Confirma
       confirmed: Confirmat
       confirming: Confirmant
       custom: Personalitzat
       delete: Esborra les dades
-      deleted: Esborrats
+      deleted: Eliminat
       demote: Degrada
       destroyed_msg: Les dades de %{username} son a la cua per a ser esborrades en breu
       disable: Inhabilita
@@ -154,6 +157,7 @@ ca:
         active: Actiu
         all: Tot
         pending: Pendent
+        silenced: Limitat
         suspended: Suspès
         title: Moderació
       moderation_notes: Notes de moderació
@@ -161,6 +165,7 @@ ca:
       most_recent_ip: IP més recent
       no_account_selected: No s'han canviat els comptes perquè no s'han seleccionat
       no_limits_imposed: Sense límits imposats
+      no_role_assigned: Cap rol assignat
       not_subscribed: No subscrit
       pending: Revisió pendent
       perform_full_suspension: Suspèn
@@ -187,19 +192,13 @@ ca:
       reset: Reinicialitza
       reset_password: Restableix la contrasenya
       resubscribe: Torna a subscriure
-      role: Permisos
-      roles:
-        admin: Administrador
-        moderator: Moderador
-        staff: Personal
-        user: Usuari
+      role: Rol
       search: Cerca
       search_same_email_domain: Altres usuaris amb el mateix domini de correu
       search_same_ip: Altres usuaris amb la mateixa IP
       security_measures:
         only_password: Només contrasenya
         password_and_2fa: Contrasenya i 2FA
-        password_and_sign_in_token: Contrasenya i token per correu
       sensitive: Sensible
       sensitized: marcar com a sensible
       shared_inbox_url: URL de la safata d'entrada compartida
@@ -208,7 +207,7 @@ ca:
         targeted_reports: Informes realitzats per altres
       silence: Silenci
       silenced: Silenciat
-      statuses: Tuts
+      statuses: Publicacions
       strikes: Accions anteriors
       subscribe: Subscriu
       suspend: Suspèn
@@ -232,7 +231,7 @@ ca:
       whitelisted: Llista blanca
     action_logs:
       action_types:
-        approve_appeal: Aprova Apel·lació
+        approve_appeal: Aprova l'apel·lació
         approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna l'informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
@@ -253,7 +252,7 @@ ca:
         destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
-        destroy_status: Esborra el tut
+        destroy_status: Esborrar la publicació
         destroy_unavailable_domain: Esborra domini no disponible
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
@@ -264,7 +263,7 @@ ca:
         enable_user: Activa l'usuari
         memorialize_account: Memoritza el compte
         promote_user: Promou l'usuari
-        reject_appeal: Rebutja Apel·lació
+        reject_appeal: Rebutja l'apel·lació
         reject_user: Rebutja l'usuari
         remove_avatar_user: Eliminar avatar
         reopen_report: Reobre l'informe
@@ -304,7 +303,7 @@ ca:
         destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
         destroy_instance_html: "%{name} ha purgat el domini %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
-        destroy_status_html: "%{name} ha eliminat el tut de %{target}"
+        destroy_status_html: "%{name} ha eliminat la publicació de %{target}"
         destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
@@ -333,7 +332,7 @@ ca:
         update_custom_emoji_html: "%{name} ha actualitzat l'emoji %{target}"
         update_domain_block_html: "%{name} ha actualitzat el bloqueig de domini per a %{target}"
         update_status_html: "%{name} ha actualitzat l'estat de %{target}"
-      deleted_status: "(tut esborrat)"
+      deleted_status: "(publicació esborrada)"
       empty: No s’han trobat registres.
       filter_by_action: Filtra per acció
       filter_by_user: Filtra per usuari
@@ -372,7 +371,7 @@ ca:
       enable: Habilita
       enabled: Activat
       enabled_msg: S'ha habilitat amb èxit emoji
-      image_hint: PNG or GIF fins a %{size}
+      image_hint: PNG o GIF fins a %{size}
       list: Llista
       listed: Enumerat
       new:
@@ -416,7 +415,7 @@ ca:
       website: Lloc web
     disputes:
       appeals:
-        empty: Cap apel·lació trobada.
+        empty: No s'ha trobat cap apel·lació.
         title: Apel·lacions
     domain_allows:
       add_new: Dominis autoritzats
@@ -429,6 +428,7 @@ ca:
       destroyed_msg: El bloqueig de domini s'ha desfet
       domain: Domini
       edit: Editar el bloqueig del domini
+      existing_domain_block: Ja s'han imposat mesures més estrictes a %{name}.
       existing_domain_block_html: Ja has imposat uns límits més estrictes a %{name}, l'hauries de <a href="%{unblock_url}">desbloquejar-lo</a> primer.
       new:
         create: Crea un bloqueig
@@ -489,7 +489,7 @@ ca:
           other: Intents fallits en %{count} diferents dies.
         no_failures_recorded: Sense errors registrats.
         title: Disponibilitat
-        warning: El darrer intent de connectar a aquest servidor no ha tingut èxit
+        warning: El darrer intent de connexió a aquest servidor no ha tingut èxit
       back_to_all: Totes
       back_to_limited: Limitades
       back_to_warning: Avís
@@ -504,7 +504,7 @@ ca:
           silence: Límit
           suspend: Suspèn
         policy: Política
-        reason: Raó pública
+        reason: Motiu públic
         title: Polítiques de contingut
       dashboard:
         instance_accounts_dimension: Comptes més seguits
@@ -518,6 +518,7 @@ ca:
       delivery:
         all: Totes
         clear: Neteja els errors de lliurament
+        failing: Fallant
         restart: Reinicia el lliurament
         stop: Atura el lliurament
         unavailable: No disponible
@@ -551,7 +552,7 @@ ca:
         available: Disponible
         expired: Caducat
         title: Filtre
-      title: Convida
+      title: Invitacions
     ip_blocks:
       add_new: Crear regla
       created_msg: S’ha afegit amb èxit la nova regla IP
@@ -572,11 +573,11 @@ ca:
     relays:
       add_new: Afegiu un nou relay
       delete: Esborra
-      description_html: Un <strong>relay de federació</strong> és un servidor intermediari que intercanvia grans volums de tuts públics entre servidors que es subscriuen i publiquen en ell. <strong>Pot ajudar a servidors petits i mitjans a descobrir contingut del fedivers</strong>, no fent necessari que els usuaris locals manualment segueixin altres persones de servidors remots.
+      description_html: Un <strong>relay de federació</strong> és un servidor intermediari que intercanvia grans volums de publicacions públiques entre servidors que se subscriuen i publiquen en ell. <strong>Pot ajudar a servidors petits i mitjans a descobrir contingut del fedivers</strong>, no fent necessari que els usuaris locals manualment segueixin altres persones de servidors remots.
       disable: Inhabilita
       disabled: Desactivat
       enable: Activat
-      enable_hint: Una vegada habilitat, el teu servidor es subscriurà a tots els tuts públics d'aquest relay i començarà a enviar-hi tots els tuts públics d'aquest servidor.
+      enable_hint: Una vegada habilitat, el teu servidor se subscriurà a totes les publicacions públiques d'aquest relay i començarà a enviar-hi totes les publicacions públiques d'aquest servidor.
       enabled: Activat
       inbox_url: URL del Relay
       pending: S'està esperant l'aprovació del relay
@@ -610,7 +611,7 @@ ca:
       assigned: Moderador assignat
       by_target_domain: Domini del compte reportat
       category: Categoria
-      category_description_html: La raó que aquest compte o contingut ha estat reportat serà citat en la comunicació amb el compte reportat
+      category_description_html: El motiu pel qual aquest compte o contingut ha estat reportat serà citat en la comunicació amb el compte reportat
       comment:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
@@ -648,6 +649,67 @@ ca:
       unresolved: No resolt
       updated_at: Actualitzat
       view_profile: Veure perfil
+    roles:
+      add_new: Afegir rol
+      assigned_users:
+        one: "%{count} usuari"
+        other: "%{count} usuaris"
+      categories:
+        administration: Administració
+        devops: Operadors de desenvolupament
+        invites: Invitacions
+        moderation: Moderació
+        special: Especial
+      delete: Esborra
+      description_html: Amb <strong>rols d'usuari</strong>, pots personalitzar quines funcions i àrees de Mastodon els teus usuaris poden accedir.
+      edit: Editar el rol %{name}
+      everyone: Permisos per defecte
+      everyone_full_description_html: Aquest és el <strong>rol base</strong> que afecta <strong>tots els usuaris</strong>, fins i tot els que no en tenen cap d'assignat. Tots els altres rols n'hereten els permisos.
+      permissions_count:
+        one: "%{count} permís"
+        other: "%{count} permisos"
+      privileges:
+        administrator: Administrador
+        administrator_description: Els usuaris amb aquest permís passaran per alt tots els permisos
+        delete_user_data: Esborra dades d'usuari
+        delete_user_data_description: Permet als usuaris suprimir les dades d'altres usuaris sense demora
+        invite_users: Convida usuaris
+        invite_users_description: Permet als usuaris convidar persones noves al servidor
+        manage_announcements: Gestiona els anuncis
+        manage_announcements_description: Permet als usuaris gestionar els anuncis al servidor
+        manage_appeals: Gestiona apel·lacions
+        manage_appeals_description: Permet als usuaris revisar les apel·lacions contra les accions de moderació
+        manage_blocks: Gestiona blocs
+        manage_blocks_description: Permet als usuaris bloquejar proveïdors de correu electrònic i adreces IP
+        manage_custom_emojis: Gestiona emojis personalitzats
+        manage_custom_emojis_description: Permet als usuaris gestionar emojis personalitzats al servidor
+        manage_federation: Gestiona federació
+        manage_federation_description: Permet als usuaris bloquejar o permetre la federació amb altres dominis i controlar la capacitat de lliurament
+        manage_invites: Gestiona invitacions
+        manage_invites_description: Permet als usuaris veure i desactivar els enllaços d'invitació
+        manage_reports: Gestiona informes
+        manage_reports_description: Permet als usuaris revisar informes i realitzar accions de moderació contra ells
+        manage_roles: Gestionar rols
+        manage_roles_description: Permet als usuaris gestionar i assignar rols per sota dels seus
+        manage_rules: Gestiona normes
+        manage_rules_description: Permet als usuaris canviar les normes del servidor
+        manage_settings: Gestiona configuració
+        manage_settings_description: Permet als usuaris canviar la configuració del lloc
+        manage_taxonomies: Gestionar taxonomies
+        manage_taxonomies_description: Permet als usuaris revisar el contingut actual i actualitzar la configuració de l'etiqueta
+        manage_user_access: Gestionar l'accés dels usuaris
+        manage_user_access_description: Permet als usuaris desactivar l'autenticació de dos factors d'altres usuaris, canviar la seva adreça de correu electrònic i restablir la seva contrasenya
+        manage_users: Gestionar usuaris
+        manage_users_description: Permet als usuaris veure els detalls d'altres usuaris i realitzar accions de moderació contra ells
+        manage_webhooks: Gestionar Webhooks
+        manage_webhooks_description: Permet als usuaris configurar webhooks per a esdeveniments administratius
+        view_audit_log: Veure el registre d'auditoria
+        view_audit_log_description: Permet als usuaris veure un historial d'accions administratives al servidor
+        view_dashboard: Veure panell
+        view_dashboard_description: Permet als usuaris accedir al tauler i a diverses mètriques
+        view_devops: Operadors de desenvolupament
+        view_devops_description: Permet als usuaris accedir als taulers de control de Sidekiq i pgHero
+      title: Rols
     rules:
       add_new: Afegir norma
       delete: Suprimeix
@@ -657,7 +719,7 @@ ca:
       title: Normes del servidor
     settings:
       activity_api_enabled:
-        desc_html: Nombre de tuts publicats localment, usuaris actius i registres nous en períodes setmanals
+        desc_html: Nombre de publicacions publicades localment, usuaris actius i registres nous en períodes setmanals
         title: Publica estadístiques agregades sobre l'activitat de l'usuari
       bootstrap_timeline_accounts:
         desc_html: Separa diversos noms d'usuari amb comes. Només funcionaran els comptes locals i desblocats. El valor predeterminat quan està buit és tots els administradors locals.
@@ -700,9 +762,6 @@ ca:
         deletion:
           desc_html: Permet a qualsevol usuari d'esborrar el seu compte
           title: Obre la supressió del compte
-        min_invite_role:
-          disabled: Ningú
-          title: Permet les invitacions de
         require_invite_text:
           desc_html: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcions l escriure el text de la solicitud d'invitació "Perquè vols unirte?"
           title: Requerir als nous usuaris omplir el text de la solicitud d'invitació
@@ -715,9 +774,6 @@ ca:
       show_known_fediverse_at_about_page:
         desc_html: Quan està desactivat, restringeix la línia de temps pública enllaçada des de la pàgina inicial a mostrar només contingut local
         title: Inclou el contingut federat a la pàgina no autenticada de la línia de temps pública
-      show_staff_badge:
-        desc_html: Mostra una insígnia de personal en la pàgina d'usuari
-        title: Mostra insígnia de personal
       site_description:
         desc_html: Paràgraf introductori a la pàgina principal i en etiquetes meta. Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Descripció del servidor
@@ -753,7 +809,7 @@ ca:
       batch:
         remove_from_report: Treu del informe
         report: Informe
-      deleted: Esborrats
+      deleted: Eliminada
       media:
         title: Contingut multimèdia
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
@@ -802,6 +858,7 @@ ca:
           other: Compartit per %{count} persones en la darrera setmana
         title: Enllaços en tendència
         usage_comparison: Compartit %{today} vegades avui, comparat amb %{yesterday} d'ahir
+      only_allowed: Només permesos
       pending_review: Revisió pendent
       preview_card_providers:
         allowed: Els enllaços d'aquest mitjà poden estar en tendència
@@ -843,12 +900,33 @@ ca:
           one: Emprat per una persona en la darrera setmana
           other: Emprat per %{count} persones en la darrera setmana
       title: Tendència
+      trending: Tendència
     warning_presets:
       add_new: Afegir-ne un de nou
       delete: Esborra
       edit_preset: Edita l'avís predeterminat
       empty: Encara no has definit cap preavís.
       title: Gestiona les configuracions predefinides dels avisos
+    webhooks:
+      add_new: Afegir extrem
+      delete: Elimina
+      description_html: Un <strong>webhook</strong> habilita Mastodon per a empènyer <strong>notificacions en temps real</strong> sobre els esdeveniments escollits de la teva pròpia aplicació, per tant la teva aplicació pot <strong>activar reaccions automaticament</strong>.
+      disable: Desactiva
+      disabled: Desactivat
+      edit: Editar extrem
+      empty: Encara no tens cap extrem de webhook configurat.
+      enable: Activa
+      enabled: Actiu
+      enabled_events:
+        one: 1 esdeveniment activat
+        other: "%{count} esdeveniments activats"
+      events: Esdeveniments
+      new: Nou webhook
+      rotate_secret: Rota el secret
+      secret: Signant el secret
+      status: Estat
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -902,18 +980,17 @@ ca:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
-    toot_layout: Disseny del tut
+    toot_layout: Disseny de la publicació
   application_mailer:
     notification_preferences: Canvia les preferències de correu
     salutation: "%{name},"
     settings: 'Canvia les preferències de correu: %{link}'
     view: 'Visualització:'
     view_profile: Mostra el perfil
-    view_status: Mostra l'estat
+    view_status: Mostra la publicació
   applications:
     created: L'aplicació s'ha creat correctament
     destroyed: L'aplicació s'ha suprimit correctament
-    invalid_url: L'URL proporcionat no és correcte
     regenerate_token: Torna a generar l'identificador d'accés
     token_regenerated: L'identificador d'accés s'ha generat correctament
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
@@ -1029,15 +1106,17 @@ ca:
       action_taken: Acció presa
       appeal: Apel·lació
       appeal_approved: L'acció ha estat apel·lada amb èxit i ja no és vàlida
-      appeal_rejected: L'apel·lació ha estat rebutjada
-      appeal_submitted_at: Apel·lació tramesa
-      appealed_msg: La teva apel·lació ha estat emesa. Si és aprovada, seràs notificat.
+      appeal_rejected: S'ha rebutjat l'apel·lació
+      appeal_submitted_at: Apel·lació enviada
+      appealed_msg: La teva apel·lació s'ha enviat. Et notificarem si s'aprova.
       appeals:
-        submit: Apel·lació emesa
+        submit: Envia l'apel·lació
+      approve_appeal: Aprova l'apel·lació
       associated_report: Informe associat
       created_at: Datada
       description_html: Aquestes son accions preses contra el teu compte i avisos que se t'han enviat per l'equip de %{instance}.
       recipient: Dirigida a
+      reject_appeal: Rebutja l'apel·lació
       status: 'Publicació #%{id}'
       status_removed: Publicació ja esborrada del sistema
       title: "%{action} del %{date}"
@@ -1050,7 +1129,7 @@ ca:
         silence: Limitació del compte
         suspend: Suspensió del compte
       your_appeal_approved: La teva apel·lació s'ha aprovat
-      your_appeal_pending: Has tramés una apel·lació
+      your_appeal_pending: Has enviat una apel·lació
       your_appeal_rejected: La teva apel·lació ha estat rebutjada
   domain_validator:
     invalid_domain: no es un nom de domini vàlid
@@ -1076,7 +1155,7 @@ ca:
     archive_takeout:
       date: Data
       download: Baixa l’arxiu
-      hint_html: Pots sol·licitar un arxiu dels teus <strong>tuts i dels fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
+      hint_html: Pots sol·licitar un arxiu de les teves <strong>publicacions i dels fitxers multimèdia pujats</strong>. Les dades exportades tindran el format ActivityPub, llegible per qualsevol programari compatible. Pots sol·licitar un arxiu cada 7 dies.
       in_progress: S'està compilant el teu arxiu...
       request: Sol·licitar el teu arxiu
       size: Mida
@@ -1100,15 +1179,24 @@ ca:
       public: Línies de temps públiques
       thread: Converses
     edit:
+      add_keyword: Afegeix paraula clau
+      keywords: Paraules clau
       title: Editar filtre
     errors:
+      deprecated_api_multiple_keywords: Aquests paràmetres no poden ser canviats des d'aquesta aplicació perquè apliquen a més d'un filtre per paraula clau. Utilitza una aplicació més recent o la interfície web.
       invalid_context: Cap o el context proporcionat no és vàlid
-      invalid_irreversible: El filtratge irreversible només funciona amb el contextos inici o notificacions
     index:
+      contexts: Filtres en %{contexts}
       delete: Esborra
       empty: No hi tens cap filtre.
+      expires_in: Expira en %{distance}
+      expires_on: Expira el %{date}
+      keywords:
+        one: "%{count} paraula clau"
+        other: "%{count} paraules clau"
       title: Filtres
     new:
+      save: Desa el nou filtre
       title: Afegir un nou filtre
   footer:
     developers: Desenvolupadors
@@ -1122,7 +1210,7 @@ ca:
     delete: Esborra
     none: Cap
     order_by: Ordena per
-    save_changes: Desar els canvis
+    save_changes: Desa els canvis
     today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
@@ -1148,7 +1236,7 @@ ca:
     upload: Carrega
   in_memoriam_html: En Memòria.
   invites:
-    delete: Desactivar
+    delete: Desactiva
     expired: Caducat
     expires_in:
       '1800': 30 minuts
@@ -1168,7 +1256,7 @@ ca:
     table:
       expires_at: Caduca
       uses: Usos
-    title: Convida persones
+    title: Convidar persones
   lists:
     errors:
       limit: Has assolit la quantitat màxima de llistes
@@ -1227,6 +1315,8 @@ ca:
     copy_account_note_text: 'Aquest usuari s’ha mogut des de %{acct}, aquí estaven les teves notes prèvies sobre ell:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} ha presentat un informe"
       sign_up:
         subject: "%{name} s'ha registrat"
     digest:
@@ -1237,8 +1327,8 @@ ca:
         one: A més, has adquirit un nou seguidor durant la teva absència! Visca!
         other: A més, has adquirit %{count} nous seguidors mentre estaves fora! Increïble!
       subject:
-        one: "1 notificació nova des de la darrera visita \U0001F418"
-        other: "%{count} notificacions noves des de la darrera visita \U0001F418"
+        one: "1 notificació nova des de la teva darrera visita 🐘"
+        other: "%{count} notificacions noves des de la teva darrera visita 🐘"
       title: Durant la teva absència…
     favourite:
       body: "%{name} ha marcat com a favorit el teu estat:"
@@ -1322,7 +1412,7 @@ ca:
     followers: Seguidors
     following: Seguint
     invited: Convidat
-    last_active: Darrer actiu
+    last_active: Última activitat
     most_recent: Més recent
     moved: Mogut
     mutual: Mútua
@@ -1342,19 +1432,24 @@ ca:
   remote_interaction:
     favourite:
       proceed: Procedir a afavorir
-      prompt: 'Vols marcar com a favorit aquest tut:'
+      prompt: 'Vols marcar com a favorit aquesta publicació:'
     reblog:
       proceed: Procedir a impulsar
-      prompt: 'Vols impulsar aquest tut:'
+      prompt: 'Vols impulsar aquesta publicació:'
     reply:
       proceed: Procedir a respondre
-      prompt: 'Vols respondre a aquest tut:'
+      prompt: 'Vols respondre a aquesta publicació:'
   reports:
     errors:
       invalid_rules: no fa referència a normes vàlides
+  rss:
+    content_warning: 'Avís de contingut:'
+    descriptions:
+      account: Publicacions des de @%{acct}
+      tag: 'Publicacions etiquetades #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Has superat el límit de %{limit} tuts programats per a aquell dia
-    over_total_limit: Has superat el limit de %{limit} tuts programats
+    over_daily_limit: Has superat el límit de %{limit} publicacions programades per a avui
+    over_total_limit: Has superat el límit de %{limit} publicacions programades
     too_soon: La data programada ha de ser futura
   sessions:
     activity: Última activitat
@@ -1397,7 +1492,7 @@ ca:
     revoke: Revoca
     revoke_success: S'ha revocat la sessió amb èxit
     title: Sessions
-    view_authentication_history: Veure l'historial d'autenticació del teu compte
+    view_authentication_history: Mostra l'historial d'autenticació del compte
   settings:
     account: Compte
     account_settings: Configuració del compte
@@ -1441,13 +1536,13 @@ ca:
       other: 'conté les etiquetes no permeses: %{tags}'
     edited_at_html: Editat %{date}
     errors:
-      in_reply_not_found: El tut al qual intentes respondre sembla que no existeix.
+      in_reply_not_found: La publicació a la qual intentes respondre sembla que no existeix.
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
       direct: Les publicacions que només son visibles per els usuaris mencionats no poden ser fixades
-      limit: Ja has fixat el màxim nombre de tuts
-      ownership: No es pot fixar el tut d'algú altre
+      limit: Ja has fixat el màxim nombre de publicacions
+      ownership: No es pot fixar la publicació d'algú altre
       reblog: No es pot fixar un impuls
     poll:
       total_people:
@@ -1472,7 +1567,7 @@ ca:
       unlisted: No llistat
       unlisted_long: Tothom ho pot veure, però no es mostra en les línies de temps públiques
   statuses_cleanup:
-    enabled: Esborrar automàticament publicacions antigues
+    enabled: Esborra automàticament publicacions antigues
     enabled_hint: Suprimeix automàticament les teves publicacions quan arribin a un llindar d’edat especificat, tret que coincideixin amb una de les excepcions següents
     exceptions: Excepcions
     explanation: Com que suprimir publicacions és una operació cara, es fa lentament amb el pas del temps i quan el servidor no està ocupat. Per aquest motiu, és possible que les teves publicacions se suprimeixin un temps després d’assolir el llindar d’edat.
@@ -1501,99 +1596,93 @@ ca:
       '604800': 1 setmana
       '63113904': 2 anys
       '7889238': 3 mesos
-    min_age_label: Llindar d'edat
+    min_age_label: Antiguitat
     min_favs: Mantenir les publicacions afavorides més de
     min_favs_hint: No suprimeix cap de les teves publicacions que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per suprimir publicacions independentment del nombre de favorits que tinguin
     min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest número de vegades. Deixa-ho en blanc per suprimir les publicacions independentment del nombre d'impulsos que tinguin
   stream_entries:
-    pinned: Tut fixat
+    pinned: Publicació fixada
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
+  strikes:
+    errors:
+      too_late: És massa tard per a apel·lar aquesta acció
   tags:
     does_not_match_previous_name: no coincideix amb el nom anterior
   terms:
     body_html: |
-      <h2>Política de Privacitat</h2>
-      <h3 id="collect">Quina informació recollim?</h3>
+      <p> Aquesta pàgina conté els nostres Termes del servei (adaptats de la Bsd.network ToS) i la nostra Política de privadesa.
 
-      <ul>
-      <li><em>Informació bàsica del compte</em>: Si et registres en aquest servidor, se´t pot demanar que introdueixis un nom d'usuari, una adreça de correu electrònic i una contrasenya. També pots introduir informació de perfil addicional, com ara un nom de visualització i una biografia, i carregar una imatge de perfil i de capçalera. El nom d'usuari, el nom de visualització, la biografia, la imatge de perfil i la imatge de capçalera sempre apareixen públicament.</li>
-      <li><em>Publicacions, seguiment i altra informació pública</em>: La llista de persones que segueixes s'enumeren públicament i el mateix passa amb els teus seguidors. Quan envies un missatge, la data i l'hora s'emmagatzemen, així com l'aplicació que va enviar el missatge. Els missatges poden contenir multimèdia, com ara imatges i vídeos. Els toots públics i no llistats estan disponibles públicament. En quan tinguis un toot en el teu perfil, aquest també és informació pública. Les teves entrades es lliuren als teus seguidors que en alguns casos significa que es lliuren a diferents servidors en els quals s'hi emmagatzemen còpies. Quan suprimeixes publicacions, també es lliuraran als teus seguidors. L'acció d'impulsar o marcar com a favorit una publicació sempre és pública.</li>
-      <li><em>Toots directes i per a només seguidors</em>: Totes les publicacions s'emmagatzemen i processen al servidor. Els toots per a només seguidors només es lliuren als teus seguidors i als usuaris que s'esmenten en ells i els toots directes només es lliuren als usuaris esmentats. En alguns casos, significa que es lliuren a diferents servidors i s'hi emmagatzemen còpies. Fem un esforç de bona fe per limitar l'accés a aquestes publicacions només a les persones autoritzades, però és possible que altres servidors no ho facin. Per tant, és important revisar els servidors als quals pertanyen els teus seguidors. Pots canviar la opció de aprovar o rebutjar els nous seguidors manualment a la configuració. <em>Tingues en compte que els operadors del servidor i qualsevol servidor receptor poden visualitzar aquests missatges</em> i els destinataris poden fer una captura de pantalla, copiar-los o tornar-los a compartir. <em>No comparteixis cap informació perillosa a Mastodon.</em></li>
-      <li><em>IPs i altres metadades</em>: Quan inicies sessió registrem l'adreça IP en que l'has iniciat, així com el nom de l'aplicació o navegador. Totes les sessions registrades estan disponibles per a la teva revisió i revocació a la configuració. L'última adreça IP utilitzada s'emmagatzema durant un màxim de 12 mesos. També podrem conservar els registres que inclouen l'adreça IP de cada sol·licitud al nostre servidor.</li>
-      </ul>
+      <h1>Termes del servei</h1>
 
-      <hr class="spacer" />
+      <p> La nostra intenció és que utilitzis aquest servei per al gaudi personal i la interacció respectuosa i amistosa. A aquest efecte, esperem fomentar un entorn favorable i integrador.
 
-      <h3 id="use">Per a què utilitzem la teva informació?</h3>
+      <p> Aquest servidor és de propietat privada i obert als usuaris voluntàriament, no un espai públic. S'espera que els usuaris que vulguin unir-se a aquesta comunitat actuïn sense malícia i de bona fe. Fer-ho d'una altra manera pot conduir a l'eliminació de l'usuari del servei, independentment de si viola qualsevol regla que s'esbossi a continuació.
 
-      <p>Qualsevol de la informació que recopilem de tu es pot utilitzar de la manera següent:</p>
+      <h2>Polítiques i normes</h2>
 
-      <ul>
-      <li>Per proporcionar la funcionalitat bàsica de Mastodon. Només pots interactuar amb el contingut d'altres persones i publicar el teu propi contingut quan hàgis iniciat la sessió. Per exemple, pots seguir altres persones per veure les publicacions combinades a la teva pròpia línia de temps personalitzada.</li>
-      <li>Per ajudar a la moderació de la comunitat, per exemple comparar la teva adreça IP amb altres conegudes per determinar l'evasió de prohibicions o altres infraccions.</li>
-      <li>L'adreça electrònica que ens proporciones pot utilitzar-se per enviar-te informació, notificacions sobre altres persones que interactuen amb el teu contingut o t'envien missatges, i per respondre a les consultes i / o altres sol·licituds o preguntes.</li>
-      </ul>
+      <p> La nostra instància està subjecta a un conjunt de normes que regeixen el comportament dels usuaris. Les regles sempre són visibles a la nostra pàgina Quant a.
 
-      <hr class="spacer" />
+      <p> Aquestes normes estan dissenyades per a mantenir un ambient amistós i obert, i per a evitar l'assetjament i la discriminació. Per tant, són un conjunt de directrius, però per necessitat incompletes. Els usuaris que violen l'esperit d'aquestes normes no es tractaran de manera diferent que els usuaris que violen una regla específica.
 
-      <h3 id="protect">Com protegim la teva informació</h3>
+      <p> Si us plau, tingues en compte que les nostres normes contenen una secció sobre les millors pràctiques, i els usuaris que repetidament i que malaurat els advertiments ignoren aquestes millors pràctiques poden veure's violant les nostres normes.
 
-      <p>Implementem diverses mesures per mantenir la seguretat quan introdueixes, envies o accedeixes a la teva informació personal. Entre altres mesures, la sessió del teu navegador així com el trànsit entre les teves aplicacions i l'API estan protegides amb SSL i la teva contrasenya es codifica utilitzant un algoritme de direcció única. Pots habilitar l'autenticació de dos factors per a garantir l'accés segur al teu compte.</p>
+      <p> Els moderadors poden eliminar els comptes que publiquin spam, o si se sospita que un compte és creat només per reservar un nom d'usuari. La violació de les polítiques i les normes també pot portar a l'eliminació de comptes a discreció dels moderadors.
 
-      <hr class="spacer" />
+      <h2>Accés a dades</h2>
 
-      <h3 id="data-retention">Quina és la nostra política de retenció de dades?</h3>
+      <p> El contingut d'aquest servidor no s'ha d'utilitzar per a l'aprenentatge automàtic o altres propòsits de "recerca" sense el consentiment explícit dels usuaris implicats.
 
-      <p>Farem un esforç de bona fe per:</p>
+      <p> El contingut d'aquest servidor més enllà d'aquesta pàgina no s'ha d'arxivar o indexar a l'engròs per mitjans automatitzats per qualsevol usuari o servei. Els usuaris actius poden exportar les seves llistes i publicacions a través de l'exportació proporcionada a la seva pàgina de configuració, o l'API.
 
-      <ul>
-      <li>Conservar els registres del servidor que continguin l'adreça IP de totes les sol·licituds que rebi, tenint em compte que aquests registres es mantenen no més de 90 dies.</li>
-      <li>Conservar les adreces IP associades als usuaris registrats no més de 12 mesos.</li>
-      </ul>
+      <h1>Política de privadesa</h1>
 
-      <p>Pots sol·licitar i descarregar un arxiu del teu contingut incloses les publicacions, els fitxers adjunts multimèdia, la imatge de perfil i la imatge de capçalera.</p>
+      <h2>Recollida d'informació</h2>
 
-      <p>Pots eliminar el teu compte de forma irreversible en qualsevol moment.</p>
+      <p> Informació obligatòria del compte: nom d'usuari (sempre públic), adreça de correu electrònic i contrasenya.
 
-      <hr class="spacer"/>
+      <p> Informació del compte opcional: nom de visualització, biografia, camps d'informació del perfil, imatge de perfil i imatge de capçalera. El nom de visualització, la biografia, la imatge de perfil i la imatge de capçalera sempre seran públics.
 
-      <h3 id="cookies">Utilitzem cookies?</h3>
+      <p> Estat i interaccions: Retenim totes les vostres publicacions, inclosos els adjunts, i altres interaccions (com ara els preferits, els segueix i els impulsos). A més del contingut i les persones implicades, també emmagatzemen els codis de temps per a totes les entrades de dades enumerades. Si aquestes interaccions impacten en un altre servidor (per exemple, seguint, impulsant o missatger a un usuari en un servidor diferent), aquest altre servidor rebrà tota la informació requerida. Les publicacions públiques, no llistades i fitxades són públiques. Els teus seguidors només tenen missatges de seguiment, i els missatges directes estan disponibles per a tu i totes les persones esmentades en el missatge. Tingues en compte que, com que no podem controlar altres servidors, això significa que no podem garantir l'estat de privacitat dels teus missatges tan aviat abandonin aquest servidor.
 
-      <p>Sí. Les cookies són petits fitxers que un lloc o el proveïdor de serveis transfereix al disc dur del teu ordinador a través del navegador web (si ho permet). Aquestes galetes permeten al lloc reconèixer el teu navegador i, si tens un compte registrat, associar-lo al teu compte registrat.</p>
+      <p> Galetes: Utilitzem galetes per mantenir-te registrat i guardar les teves preferències per a futures visites.
 
-      <p>Utilitzem cookies per entendre i guardar les teves preferències per a futures visites.</p>
+      <p> Altres metadades: No registrem ni emmagatzem la teva adreça IP com a norma general. Es faran excepcions quan busquem activament errors. Una vegada que s'hagi finalitzat la cerca d'errors, les adreces IP recollides s'eliminaran. Retenim el nom de l'aplicació del teu navegador per permetre't revisar les sessions actualment iniciades per motius de seguretat.
 
-      <hr class="spacer" />
+      <h2>Ús de la informació</h2>
 
-      <h3 id="disclose">Revelem informació a terceres parts?</h3>
+      <p> Tota la informació que recopilem de tu pot ser utilitzada de les maneres següents:
 
-      <p>No venem, comercialitzem ni transmetem a tercers la teva informació d'identificació personal. Això no inclou tercers de confiança que ens ajuden a operar el nostre lloc, a dur a terme el nostre servei o a servir-te, sempre que aquestes parts acceptin mantenir confidencial aquesta informació. També podem publicar la teva informació quan creiem que l'alliberament és apropiat per complir amb la llei, fer complir les polítiques del nostre lloc o protegir els nostres drets o altres drets, propietat o seguretat.</p>
+      <p> Per proporcionar la funcionalitat principal d'aquest servidor. Només pots interaccionar amb el contingut d'altres persones i publicar el teu propi contingut quan hagis iniciat la sessió. Per exemple, pots seguir a altres persones per veure les seves publicacions en la teva pròpia línia de temps personalitzada.
 
-      <p>Els altres servidors de la teva xarxa poden descarregar contingut públic. Els teus toots públics i per a només seguidors es lliuren als servidors on resideixen els teus seguidors i els missatges directes s'envien als servidors dels destinataris, sempre que aquests seguidors o destinataris resideixin en un servidor diferent d'aquest.</p>
+      <p> Per a ajudar a la moderació de la comunitat, quan s'informi d'una publicació o un compte, examinarem la qüestió com a part de les nostres tasques de moderació.
 
-      <p>Quan autoritzes una aplicació a utilitzar el teu compte, segons l'abast dels permisos que aprovis, pot accedir a la teva informació de perfil pública, a la teva llista de seguits, als teus seguidors, a les teves llistes, a totes les teves publicacions i als teus favorits. Les aplicacions mai no poden accedir a la teva adreça de correu electrònic o contrasenya.</p>
+      <p> L'adreça de correu electrònic que proporcionis es pot utilitzar per enviar-te informació, notificacions sobre altres persones que interaccionen amb el teu contingut o que t'envien missatges, i per respondre a les investigacions, i/o altres peticions o preguntes.
 
-      <hr class="spacer" />
+      <h2>Protecció de la informació</h2>
 
-      <h3 id="children">Ús del lloc dels nens</h3>
+      <p> Apliquem una varietat de mesures de seguretat per a mantenir la seguretat de la teva informació personal quan entres, presentes o accedeixes a la teva informació personal. Entre altres coses, la teva sessió de navegador, així com el trànsit entre les teves aplicacions i l'API, estan assegurades amb HTTPS, i la teva contrasenya es resumeix mitjançant un algorisme d'un únic sentit. Pots habilitar l'autenticació de doble factor per a un accés més segur al teu compte.
 
-      <p>Si el servidor és a EU o EEA: el nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 16 anys. Si tens menys de 16 anys, seguint els requisits del GDPR (<a href="https://ca.wikipedia.org/wiki/Reglament_General_de_Protecció_de_Dades">Reglament General de Protecció de Dades</a>) no utilitzis aquest lloc.</p>
+      <h2>Supressió i retenció de la informació</h2>
 
-      <p>Si aquest servidor es troba als EUA: el nostre lloc, productes i serveis estan dirigits a persones que tenen almenys 13 anys. Si tens menys de 13 anys, segons els requisits de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) no utilitzis aquest lloc.</p>
+      <p> Pots sol·licitar i descarregar un arxiu del teu contingut, incloent-hi les entrades, el contingut gràfic, la imatge del perfil i la imatge de capçalera.
 
-      <p>Els requisits legals poden ser diferents si aquest servidor està en una altra jurisdicció.</p>
+      <p> En qualsevol moment pots suprimir el teu compte de manera irreversible.
 
-      <hr class="spacer" />
+      <p> Si jutgem que estàs incomplint les nostres normes, pot ser que eliminem de manera irreversible el teu compte en qualsevol moment.
 
-      <h3 id="changes">Canvis a la nostra política de privacitat</h3>
+      <h2> Divulgació de la informació</h2>
 
-      <p>Si decidim canviar la nostra política de privadesa, publicarem aquests canvis en aquesta pàgina.</p>
+      <p> La informació no es revela tret que ho permetis explícitament. L'única excepció és el proveïdor d'aquest servidor, que és un tercer de confiança i inevitable.
 
-      <p>Aquest document és CC-BY-SA. Actualitzat per darrera vegada el 7 de Març del 2018.</p>
+      <p> Contactar o permetre el contacte d'un usuari d'una instància diferent implica el consentiment que les dades necessàries es comparteixen amb el servidor en qüestió.
 
-      <p>Originalment adaptat des del <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+      <p> L'autorització d'una aplicació de tercers concedeix accés a la informació en funció de l'abast dels permisos que aprovis. L'aplicació pot accedir a la teva informació de perfil públic, la teva llista següent, els teus seguidors, les teves llistes, tots els teus missatges i els teus preferits. Les aplicacions no poden accedir mai a la teva adreça de correu electrònic o contrasenya.
+
+      <h1>Atribució</h1>
+
+      <p> This text is free to be adapted and remixed under the terms of the CC-BY (Attribution 4.0 International) license.
     title: "%{instance} Condicions del servei i política de privadesa"
   themes:
     contrast: Mastodon (alt contrast)
@@ -1622,26 +1711,27 @@ ca:
   user_mailer:
     appeal_approved:
       action: Ves al teu compte
-      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat aprovada. El teu compte està un cop més al dia.
-      subject: La teva apel·lació de %{date} ha estat aprovada
+      explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat aprovada. El teu compte torna a estar en bon estat.
+      subject: La teva apel·lació del %{date} ha estat aprovada
       title: Apel·lació aprovada
     appeal_rejected:
-      explanation: La apel·lació a la acció contra el teu compte del %{strike_date} que has tramés el %{appeal_date} ha estat rebutjada.
+      explanation: L'apel·lació a l'acció contra el teu compte del %{strike_date} que has enviat el %{appeal_date} ha estat rebutjada.
       subject: La teva apel·lació del %{date} ha estat rebutjada
       title: Apel·lació rebutjada
     backup_ready:
       explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
       subject: El teu arxiu està preparat per a descàrrega
       title: Recollida del arxiu
-    sign_in_token:
-      details: 'Aquí es mostren els detalls del intent:'
-      explanation: 'Hem detectat un intent d’inici de sessió al teu compte des d’una IP desconeguda. Si ets tu, si us plau introdueix el codi de seguretat a sota, en la pàgina de desafiament d’inici de sessió:'
-      further_actions: 'Si no has estat tu, si us plau canvia la contrasenya i activa l’autenticació de dos factors del teu compte. Pots fer-ho aquí:'
-      subject: Si us plau confirma l’intent d’inici de sessió
-      title: Intent d’inici de sessió
+    suspicious_sign_in:
+      change_password: canvia la teva contrasenya
+      details: 'Aquí estan els detalls del inici de sessió:'
+      explanation: Hem detectat un inici de sessió del teu compte des d'una nova adreça IP.
+      further_actions_html: Si no has estat tu, recomanem que tu %{action} immediatament i activis l'autenticació de dos-factors per a mantenir el teu compte segur.
+      subject: El teu compte ha estat accedit des d'una nova adreça IP
+      title: Un nou inici de sessió
     warning:
-      appeal: Trametre una apel·lació
-      appeal_description: Si creus que això és un error pots emetre una apel·lació al equip de %{instance}.
+      appeal: Envia una apel·lació
+      appeal_description: Si creus que això és un error, pots enviar una apel·lació a l'equip de %{instance}.
       categories:
         spam: Contingut brossa
         violation: El contingut viola les següents guies de la comunitat
@@ -1652,7 +1742,7 @@ ca:
         sensitive: A partir d'ara, tots els mèdia pujats seran marcats com a sensibles i ocultats darrera un avís.
         silence: Encara pots fer servir el teu compte però només la gent que ja t'està seguint veuran les teves publicacions en aquest servidor i tu podries ser exclòs de les diverses opcions de descobriment. De totes maneres altres podrien encara seguir-te manualment.
         suspend: Ja no pots utilitzar el teu compte i el teu perfil i altres dades ja no son accessibles. Encara pots iniciar sessió per a demanar una copia de les teves dades fins que siguin totalment eliminades als 30 dies però es mantindran les dades bàsiques per evitar que esquivis la suspensió.
-      reason: 'Raó:'
+      reason: 'Motiu:'
       statuses: 'Publicacions citades:'
       subject:
         delete_statuses: Les teves publicacions de %{acct} han estat esborrades
@@ -1689,13 +1779,10 @@ ca:
       title: Benvingut a bord, %{name}!
   users:
     follow_limit_reached: No pots seguir més de %{limit} persones
-    generic_access_help_html: Problemes accedint al teu compte? Pots contactar amb %{email} per a demanar assistència
     invalid_otp_token: El codi de dos factors no és correcte
-    invalid_sign_in_token: Codi de seguretat invàlid
     otp_lost_help_html: Si has perdut l'accés a tots dos pots contactar per %{email}
     seamless_external_login: Has iniciat sessió via un servei extern per tant els ajustos de contrasenya i correu electrònic no estan disponibles.
     signed_in_as: 'Sessió iniciada com a:'
-    suspicious_sign_in_confirmation: Aparentment no has iniciat sessió des d’aquest dispositiu abans i no ho has fet des de fa cert temps per tant t’enviarem un codi de seguretat al teu correu electrònic per a confirmar que ets tu.
   verification:
     explanation_html: 'Pots <strong>verificar-te com a propietari dels enllaços a les metadades del teu perfil</strong>. Per això, el lloc web enllaçat ha de contenir un enllaç al teu perfil de Mastodon. El vincle <strong>ha de</strong> tenir l''atribut <code>rel="me"</code>. El contingut del text de l''enllaç no importa. Aquí tens un exemple:'
     verification: Verificació

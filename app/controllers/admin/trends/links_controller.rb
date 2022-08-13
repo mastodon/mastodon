@@ -2,13 +2,15 @@
 
 class Admin::Trends::LinksController < Admin::BaseController
   def index
-    authorize :preview_card, :index?
+    authorize :preview_card, :review?
 
     @preview_cards = filtered_preview_cards.page(params[:page])
     @form          = Trends::PreviewCardBatch.new
   end
 
   def batch
+    authorize :preview_card, :review?
+
     @form = Trends::PreviewCardBatch.new(trends_preview_card_batch_params.merge(current_account: current_account, action: action_from_button))
     @form.save
   rescue ActionController::ParameterMissing

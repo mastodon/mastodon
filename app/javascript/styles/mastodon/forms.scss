@@ -256,6 +256,10 @@ code {
     }
   }
 
+  .input.with_block_label.user_role_permissions_as_keys ul {
+    columns: unset;
+  }
+
   .input.datetime .label_input select {
     display: inline-block;
     width: auto;
@@ -352,7 +356,7 @@ code {
         flex: 1 1 auto;
       }
 
-      input[type=checkbox] {
+      input[type="checkbox"] {
         position: absolute;
         left: 0;
         top: 5px;
@@ -368,11 +372,11 @@ code {
     border-radius: 4px;
   }
 
-  input[type=text],
-  input[type=number],
-  input[type=email],
-  input[type=password],
-  input[type=url],
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  input[type="url"],
   textarea {
     box-sizing: border-box;
     font-size: 16px;
@@ -410,10 +414,10 @@ code {
     }
   }
 
-  input[type=text],
-  input[type=number],
-  input[type=email],
-  input[type=password] {
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"] {
     &:focus:invalid:not(:placeholder-shown),
     &:required:invalid:not(:placeholder-shown) {
       border-color: lighten($error-red, 12%);
@@ -425,10 +429,10 @@ code {
       color: lighten($error-red, 12%);
     }
 
-    input[type=text],
-    input[type=number],
-    input[type=email],
-    input[type=password],
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
     textarea,
     select {
       border-color: lighten($error-red, 12%);
@@ -463,14 +467,14 @@ code {
     width: 100%;
     border: 0;
     border-radius: 4px;
-    background: $ui-highlight-color;
+    background: darken($ui-highlight-color, 2%);
     color: $primary-text-color;
     font-size: 18px;
     line-height: inherit;
     height: auto;
     padding: 10px;
-    text-transform: uppercase;
     text-decoration: none;
+    text-transform: uppercase;
     text-align: center;
     box-sizing: border-box;
     cursor: pointer;
@@ -483,13 +487,10 @@ code {
       margin-right: 0;
     }
 
-    &:hover {
-      background-color: lighten($ui-highlight-color, 5%);
-    }
-
     &:active,
-    &:focus {
-      background-color: darken($ui-highlight-color, 5%);
+    &:focus,
+    &:hover {
+      background-color: $ui-highlight-color;
     }
 
     &:disabled:hover {
@@ -1000,7 +1001,7 @@ code {
     flex: 1 1 auto;
   }
 
-  input[type=text] {
+  input[type="text"] {
     background: transparent;
     border: 0;
     padding: 10px;
@@ -1071,5 +1072,36 @@ code {
       border-bottom: 0;
       padding-bottom: 0;
     }
+  }
+}
+
+.keywords-table {
+  thead {
+    th {
+      white-space: nowrap;
+    }
+
+    th:first-child {
+      width: 100%;
+    }
+  }
+
+  tfoot {
+    td {
+      border: 0;
+    }
+  }
+
+  .input.string {
+    margin-bottom: 0;
+  }
+
+  .label_input__wrapper {
+    margin-top: 10px;
+  }
+
+  .table-action-link {
+    margin-top: 10px;
+    white-space: nowrap;
   }
 }

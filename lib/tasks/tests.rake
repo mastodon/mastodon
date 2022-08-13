@@ -33,10 +33,31 @@ namespace :tests do
         puts 'AccountConversation records not created as expected'
         exit(1)
       end
+
+      if Account.find(-99).private_key.blank?
+        puts 'Instance actor does not have a private key'
+        exit(1)
+      end
+
+      unless Account.find_by(username: 'user', domain: nil).custom_filters.map { |filter| filter.keywords.pluck(:keyword) } == [['test'], ['take']]
+        puts 'CustomFilterKeyword records not created as expected'
+        exit(1)
+      end
+    end
+
+    desc 'Populate the database with test data for 2.4.3'
+    task populate_v2_4_3: :environment do # rubocop:disable Naming/VariableNumber
+      ActiveRecord::Base.connection.execute(<<~SQL)
+        INSERT INTO "custom_filters"
+          (id, account_id, phrase, context, whole_word, irreversible, created_at, updated_at)
+        VALUES
+          (1, 2, 'test', '{ "home", "public" }', true, true, now(), now()),
+          (2, 2, 'take', '{ "home" }', false, false, now(), now());
+      SQL
     end
 
     desc 'Populate the database with test data for 2.4.0'
-    task populate_v2_4: :environment do
+    task populate_v2_4: :environment do # rubocop:disable Naming/VariableNumber
       ActiveRecord::Base.connection.execute(<<~SQL)
         INSERT INTO "settings"
           (id, thing_type, thing_id, var, value, created_at, updated_at)

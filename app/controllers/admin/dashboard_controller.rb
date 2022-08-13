@@ -2,8 +2,12 @@
 
 module Admin
   class DashboardController < BaseController
+    include Redisable
+
     def index
-      @system_checks         = Admin::SystemCheck.perform
+      authorize :dashboard, :index?
+
+      @system_checks         = Admin::SystemCheck.perform(current_user)
       @time_period           = (29.days.ago.to_date...Time.now.utc.to_date)
       @pending_users_count   = User.pending.count
       @pending_reports_count = Report.unresolved.count
@@ -15,10 +19,10 @@ module Admin
 
     def redis_info
       @redis_info ||= begin
-        if Redis.current.is_a?(Redis::Namespace)
-          Redis.current.redis.info
+        if redis.is_a?(Redis::Namespace)
+          redis.redis.info
         else
-          Redis.current.info
+          redis.info
         end
       end
     end

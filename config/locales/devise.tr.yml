@@ -11,7 +11,7 @@ tr:
       invalid: Geçersiz %{authentication_keys} ya da şifre.
       last_attempt: Hesabınız kilitlenmeden önce bir kez daha denemeniz gerekir.
       locked: Hesabınız kilitlendi.
-      not_found_in_database: Geçersiz %{authentication_keys} ya da şifre.
+      not_found_in_database: Geçersiz %{authentication_keys} ya da parola.
       pending: Hesabınız hala inceleniyor.
       timeout: Oturum süreniz sona erdi. Lütfen devam etmek için tekrar giriş yapınız.
       unauthenticated: Devam etmeden önce oturum açmanız veya kayıt olmanız gerek.
@@ -33,19 +33,19 @@ tr:
       password_change:
         explanation: Hesabınızın şifresi değiştirildi.
         extra: Parolanızı değiştirmediyseniz, büyük olasılıkla birileri hesabınıza erişmiş olabilir. Lütfen derhal parolanızı değiştirin veya hesabınız kilitlendiyse sunucu yöneticisine başvurun.
-        subject: 'Mastodon: Şifre değiştirildi'
-        title: Şifre değiştirildi
+        subject: 'Mastodon: Parola değiştirildi'
+        title: Parola değiştirildi
       reconfirmation_instructions:
         explanation: E-postanızı değiştirmek için yeni adresi onaylayın.
         extra: Bu değişiklik sizin tarafınızdan başlatılmadıysa, lütfen bu e-postayı dikkate almayın. Mastodon hesabının e-posta adresi, yukarıdaki bağlantıya erişene kadar değişmez.
         subject: 'Mastodon: %{instance} için e-postayı onayla'
         title: E-posta adresinizi doğrulayın
       reset_password_instructions:
-        action: Şifreyi değiştir
-        explanation: Hesabınız için yeni bir şifre istediniz.
+        action: Parolayı değiştir
+        explanation: Hesabınız için yeni bir parola istediniz.
         extra: Bunu siz yapmadıysanız, lütfen bu e-postayı dikkate almayın. Parolanız yukarıdaki bağlantıya erişene ve yeni bir tane oluşturuncaya kadar değişmez.
-        subject: 'Mastodon: Şifre sıfırlama talimatları'
-        title: Şifre sıfırlama
+        subject: 'Mastodon: Parola sıfırlama talimatları'
+        title: Parola sıfırlama
       two_factor_disabled:
         explanation: Hesabınız için iki-adımlı kimlik doğrulama devre dışı bırakıldı. Şimdi sadece e-posta adresi ve parola kullanarak giriş yapabilirsiniz.
         subject: 'Mastodon: İki-adımlı kimlik doğrulama devre dışı bırakıldı'

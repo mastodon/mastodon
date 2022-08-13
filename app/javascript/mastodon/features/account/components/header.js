@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me, isStaff } from 'mastodon/initial_state';
+import { autoPlayGif, me } from 'mastodon/initial_state';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import IconButton from 'mastodon/components/icon_button';
@@ -14,6 +14,7 @@ import ShortNumber from 'mastodon/components/short_number';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
+import { PERMISSION_MANAGE_USERS } from 'mastodon/permissions';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -38,7 +39,7 @@ const messages = defineMessages({
   showReblogs: { id: 'account.show_reblogs', defaultMessage: 'Show boosts from @{name}' },
   enableNotifications: { id: 'account.enable_notifications', defaultMessage: 'Notify me when @{name} posts' },
   disableNotifications: { id: 'account.disable_notifications', defaultMessage: 'Stop notifying me when @{name} posts' },
-  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned toots' },
+  pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
@@ -64,6 +65,10 @@ const dateFormatOptions = {
 export default @injectIntl
 class Header extends ImmutablePureComponent {
 
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
+
   static propTypes = {
     account: ImmutablePropTypes.map,
     identity_props: ImmutablePropTypes.list,
@@ -82,6 +87,7 @@ class Header extends ImmutablePureComponent {
     onEditAccountNote: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
+    hidden: PropTypes.bool,
   };
 
   openEditProfile = () => {
@@ -123,7 +129,7 @@ class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl, domain } = this.props;
+    const { account, hidden, intl, domain } = this.props;
 
     if (!account) {
       return null;
@@ -240,7 +246,7 @@ class Header extends ImmutablePureComponent {
       }
     }
 
-    if (account.get('id') !== me && isStaff) {
+    if (account.get('id') !== me && (this.context.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${account.get('id')}` });
     }
@@ -267,21 +273,25 @@ class Header extends ImmutablePureComponent {
             {!suspended && info}
           </div>
 
-          <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />
+          {!(suspended || hidden) && <img src={autoPlayGif ? account.get('header') : account.get('header_static')} alt='' className='parallax' />}
         </div>
 
         <div className='account__header__bar'>
           <div className='account__header__tabs'>
             <a className='avatar' href={account.get('url')} rel='noopener noreferrer' target='_blank'>
-              <Avatar account={account} size={90} />
+              <Avatar account={suspended || hidden ? undefined : account} size={90} />
             </a>
 
             <div className='spacer' />
 
             {!suspended && (
               <div className='account__header__tabs__buttons'>
-                {actionBtn}
-                {bellBtn}
+                {!hidden && (
+                  <React.Fragment>
+                    {actionBtn}
+                    {bellBtn}
+                  </React.Fragment>
+                )}
 
                 <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
               </div>
@@ -295,30 +305,30 @@ class Header extends ImmutablePureComponent {
             </h1>
           </div>
 
-          <div className='account__header__extra'>
-            <div className='account__header__bio'>
-              {fields.size > 0 && (
-                <div className='account__header__fields'>
-                  {fields.map((pair, i) => (
-                    <dl key={i}>
-                      <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
+          {!(suspended || hidden) && (
+            <div className='account__header__extra'>
+              <div className='account__header__bio'>
+                {fields.size > 0 && (
+                  <div className='account__header__fields'>
+                    {fields.map((pair, i) => (
+                      <dl key={i}>
+                        <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
 
-                      <dd className={`${pair.get('verified_at') ? 'verified' : ''} translate`} title={pair.get('value_plain')}>
-                        {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
-                      </dd>
-                    </dl>
-                  ))}
-                </div>
-              )}
+                        <dd className={`${pair.get('verified_at') ? 'verified' : ''} translate`} title={pair.get('value_plain')}>
+                          {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                        </dd>
+                      </dl>
+                    ))}
+                  </div>
+                )}
 
-              {account.get('id') !== me && !suspended && <AccountNoteContainer account={account} />}
+                {account.get('id') !== me && <AccountNoteContainer account={account} />}
 
-              {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
+                {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
 
-              <div className='account__header__joined'><FormattedMessage id='account.joined' defaultMessage='Joined {date}' values={{ date: intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' }) }} /></div>
-            </div>
+                <div className='account__header__joined'><FormattedMessage id='account.joined' defaultMessage='Joined {date}' values={{ date: intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' }) }} /></div>
+              </div>
 
-            {!suspended && (
               <div className='account__header__extra__links'>
                 <NavLink isActive={this.isStatusesPageActive} activeClassName='active' to={`/@${account.get('acct')}`} title={intl.formatNumber(account.get('statuses_count'))}>
                   <ShortNumber
@@ -341,8 +351,8 @@ class Header extends ImmutablePureComponent {
                   />
                 </NavLink>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     );

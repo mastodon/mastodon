@@ -8,6 +8,14 @@ namespace :mastodon do
     prompt = TTY::Prompt.new
     env    = {}
 
+    # When the application code gets loaded, it runs `lib/mastodon/redis_configuration.rb`.
+    # This happens before application environment configuration and sets REDIS_URL etc.
+    # These variables are then used even when REDIS_HOST etc. are changed, so clear them
+    # out so they don't interfer with our new configuration.
+    ENV.delete('REDIS_URL')
+    ENV.delete('CACHE_REDIS_URL')
+    ENV.delete('SIDEKIQ_REDIS_URL')
+
     begin
       prompt.say('Your instance is identified by its domain name. Changing it afterward will break things.')
       env['LOCAL_DOMAIN'] = prompt.ask('Domain name:') do |q|

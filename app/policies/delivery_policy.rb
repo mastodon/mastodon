@@ -2,14 +2,14 @@
 
 class DeliveryPolicy < ApplicationPolicy
   def clear_delivery_errors?
-    admin?
+    role.can?(:manage_federation)
   end
 
   def restart_delivery?
-    admin?
+    role.can?(:manage_federation)
   end
 
   def stop_delivery?
-    admin?
+    role.can?(:manage_federation)
   end
 end

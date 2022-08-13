@@ -3,61 +3,62 @@ ca:
   simple_form:
     hints:
       account_alias:
-        acct: Especifica l'usuari@domini del compte des d'on et vols moure
+        acct: Especifica l'usuari@domini del compte des d'on et vols traslladar
       account_migration:
-        acct: Especifica l'usuari@domini del compte al que et vols moure
+        acct: Especifica l'usuari@domini del compte al qual et vols traslladar
       account_warning_preset:
-        text: Pots utilitzar totes les sintaxi com ara URL, etiquetes i mencions
+        text: Pots usar totes les sintaxis, com ara URL, etiquetes i mencions
         title: Opcional. No és visible per al destinatari
       admin_account_action:
-        include_statuses: L'usuari veurà quins tuts han causat l'acció de moderació o avís
+        include_statuses: L'usuari veurà quines publicacions han provocat que s'hagi moderat o avisat
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
-        text_html: Opcional. Pots utilitzar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
+        text_html: Opcional. A les publicacions, pots usar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
         types:
-          disable: Evita que l'usuari faci ús del seu compte però no li esborra o amaga els seus continguts.
-          none: Fes servir això per a enviar un avís al usuari sense desencadenar cap altre acció.
-          sensitive: Obliga a marcar tots els fitxers multi mèdia adjunts com a sensibles.
-          silence: Evita que l'usuari sigui capaç de publicar amb visibilitat publica, amaga els tuts i notificacions de usuaris que no el segueixen.
-          suspend: Evita qualsevol interacció de o a aquest compte i esborra els seus continguts. Reversible en un termini de 30 dies.
+          disable: Evita que l'usuari faci servir el seu compte, però no esborris ni amaguis el seu contingut.
+          none: Fes servir això per a enviar un avís a l'usuari sense desencadenar cap altra acció.
+          sensitive: Obliga a marcar tots els fitxers multimèdia adjunts com a sensibles.
+          silence: Evita que l'usuari pugui publicar amb visibilitat pública, amagar les seves publicacions i les notificacions d'usuaris que no el segueixin.
+          suspend: Evita qualsevol interacció des de o cap a aquest compte i esborra els seus continguts. Reversible en un termini de 30 dies.
         warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       announcement:
         all_day: Si es marca, només es mostraran les dates de l'interval de temps
-        ends_at: Opcional. En aquest moment, l’anunci deixarà automàticament d'estar publicat
-        scheduled_at: Deixa-ho en blanc per a publicar l’anunci immediatament
-        starts_at: Opcional. En el cas que el teu anunci estigui vinculat a un interval de temps específic
-        text: Pots utilitzar sintaxi d'un tut. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
+        ends_at: Opcional. En aquest moment, l'anunci no es publicarà automàticament
+        scheduled_at: Deixa-ho en blanc per publicar l’anunci immediatament
+        starts_at: Opcional. En cas que el teu anunci estigui vinculat a un interval de temps específic
+        text: Pots utilitzar la sintaxi de publicacions. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
       appeal:
         text: Només pots emetre una apel·lació per cada acció
       defaults:
         autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
-        avatar: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
-        bot: Aquest compte realitza principalment accions automatitzades i pot no estar controlat per cap persona
-        context: Un o diversos contextos on s'ha d'aplicar el filtre
-        current_password: Per motius de seguretat si us plau entra la contrasenya del compte actual
-        current_username: Per a confirmar, si us plau entra el nom d'usuari del compte actual
+        avatar: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
+        bot: Notifica que aquest compte realitza principalment accions automatitzades i que pot no estar controlat per cap persona
+        context: Un o diversos contextos en què s'ha d'aplicar el filtre
+        current_password: Per motius de seguretat, introdueix la contrasenya del compte actual
+        current_username: Per confirmar-ho, introdueix el nom d'usuari del compte actual
         digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
-        discoverable: Permet que el teu compte sigui descobert per estranys grácies a les sugerències, etiquetes i altres característiques
+        discoverable: Permet que el teu compte sigui descobert per desconeguts a través de recomanacions, etiquetes i altres característiques
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
-        header: PNG, GIF o JPG. Màxim %{size}. S'escalarà a %{dimensions}px
-        inbox_url: Copia l'URL des de la pàgina principal del relay que vols utilitzar
-        irreversible: Els tuts filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
+        header: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
+        inbox_url: Copia l'URL de la pàgina principal del relay que vols utilitzar
+        irreversible: Les publicacions filtrades desapareixeran de manera irreversible, fins i tot si el filtre s'elimina més tard
         locale: L'idioma de la interfície d’usuari, els correus i les notificacions push
-        locked: Requereix que aprovis manualment els seguidors
+        locked: Controla manualment qui et pot seguir, aprovant sol·licituds
         password: Utilitza com a mínim 8 caràcters
-        phrase: Es combinarà independentment del format en el text o l'avís de contingut del tut
-        scopes: A quines API es permetrà a l'aplicació accedir. Si selecciones un àmbit d'alt nivell, no cal que seleccionis un d'individual.
-        setting_aggregate_reblogs: No mostrar els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els impulsos nous rebuts)
-        setting_default_sensitive: El contingut gràfic sensible està ocult per defecte i es pot revelar amb un clic
+        phrase: Es combinarà independentment del format en el text o l'avís de contingut de la publicació
+        scopes: API permeses per accedir a l'aplicació. Si selecciones un àmbit de nivell superior, no cal que en seleccions un d'individual.
+        setting_aggregate_reblogs: No mostris els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els nous impulsos rebuts)
+        setting_always_send_emails: Normalment, no s'enviarà cap notificació per correu electrònic mentre facis servir Mastodon
+        setting_default_sensitive: El contingut gràfic i sensible està ocult per defecte i es pot mostrar fent-hi clic
         setting_display_media_default: Ocultar el contigut gràfic marcat com a sensible
         setting_display_media_hide_all: Oculta sempre tot el contingut multimèdia
-        setting_display_media_show_all: Mostrar sempre el contingut gràfic marcat com a sensible
-        setting_hide_network: Qui tu segueixes i els que et segueixen a tu no es mostraran en el teu perfil
+        setting_display_media_show_all: Mostrar sempre el contingut gràfic
+        setting_hide_network: Qui segueixes i els que et segueixen no es mostraran en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
-        setting_show_application: L'aplicació que fas servir per a publicar es mostrarà a la vista detallada de les publicacions
-        setting_use_blurhash: Els degradats es basen en els colors de les imatges ocultes, però enfosqueixen els detalls
-        setting_use_pending_items: Amagar les actualitzacions de la línia de temps després d'un clic en comptes de desplaçar-se automàticament
+        setting_show_application: L'aplicació que fas servir per publicar es mostrarà a la vista detallada de les publicacions
+        setting_use_blurhash: Els degradats es basen en els colors de les imatges ocultes, però n'enfosqueixen els detalls
+        setting_use_pending_items: Amaga les actualitzacions de la línia de temps després de fer un clic en lloc de desplaçar automàticament les publicacions
         username: El teu nom d'usuari serà únic a %{domain}
         whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
       domain_allow:
@@ -67,6 +68,11 @@ ca:
         with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
         name: 'És possible que vulguis utilitzar una d''aquestes:'
+      filters:
+        action: Tria quina acció cal executar quan una publicació coincideixi amb el filtre
+        actions:
+          hide: Ocultar completament el contingut filtrat, comportant-se com si no existís
+          warn: Oculta el contingut filtrat rera un avís mencionant el títol del filtre
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -89,7 +95,17 @@ ca:
       tag:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
-        chosen_languages: Quan estigui marcat, només es mostraran els tuts de les llengües seleccionades en les línies de temps públiques
+        chosen_languages: Quan estigui marcat, només es mostraran les publicacions en les llengües seleccionades en les línies de temps públiques
+        role: El rol controla quines permissions té l'usuari
+      user_role:
+        color: Color que s'utilitzarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
+        highlighted: Això torno el rol visibile publicament
+        name: Nom públic del rol, si el rol està configurat per a ser mostrat com a insígnia
+        permissions_as_keys: Els usuaris amb aquest rol tingran accés a...
+        position: El rol superior decideix la resolució de conflictes en certes situacions. Certes accions només es poden realitzar amb rols amb menor prioritat
+      webhook:
+        events: Selecciona esdeveniments a enviar
+        url: On els esdeveniments seran enviats
     labels:
       account:
         fields:
@@ -103,7 +119,7 @@ ca:
         text: Text predefinit
         title: Títol
       admin_account_action:
-        include_statuses: Inclou tuts reportats en el correu electrònic
+        include_statuses: Inclou les publicacions reportades en el correu electrònic
         send_email_notification: Notifica l'usuari per correu electrònic
         text: Avís personalitzat
         type: Acció
@@ -123,7 +139,7 @@ ca:
       appeal:
         text: Explica perquè aquesta decisió hauria de ser revertida
       defaults:
-        autofollow: Convida a seguir el teu compte
+        autofollow: Convidar a seguir el teu compte
         avatar: Avatar
         bot: Aquest compte és un bot
         chosen_languages: Filtrar llengües
@@ -142,30 +158,31 @@ ca:
         inbox_url: URL de la safata d'entrada del relay
         irreversible: Cau en lloc d'ocultar
         locale: Idioma de la interfície
-        locked: Torna aquest compte privat
+        locked: Requereix sol·licituds de seguiment
         max_uses: Nombre màxim d'usos
         new_password: Contrasenya nova
         note: Biografia
         otp_attempt: Codi de dos factors
         password: Contrasenya
         phrase: Paraula clau o frase
-        setting_advanced_layout: Activar l’interfície web avançada
+        setting_advanced_layout: Activa la interfície web avançada
         setting_aggregate_reblogs: Agrupar impulsos en les línies de temps
+        setting_always_send_emails: Envia'm sempre notificacions per correu electrònic
         setting_auto_play_gif: Reproduir automàticament els GIFs animats
         setting_boost_modal: Mostrar la finestra de confirmació abans d'impulsar
-        setting_crop_images: Retalla les imatges en tuts no ampliats a 16x9
+        setting_crop_images: Retalla les imatges en publicacions no ampliades a 16x9
         setting_default_language: Idioma de les publicacions
         setting_default_privacy: Privacitat de les publicacions
         setting_default_sensitive: Marcar sempre el contingut gràfic com a sensible
-        setting_delete_modal: Mostrar la finestra de confirmació abans d'esborrar un tut
-        setting_disable_swiping: Desactivar les animacions
+        setting_delete_modal: Mostrar la finestra de confirmació abans d'esborrar una publicació
+        setting_disable_swiping: Desactiva les animacions
         setting_display_media: Visualització multimèdia
         setting_display_media_default: Per defecte
         setting_display_media_hide_all: Amaga-ho tot
         setting_display_media_show_all: Mostra-ho tot
-        setting_expand_spoilers: Sempre ampliar els tuts marcats amb advertències de contingut
+        setting_expand_spoilers: Sempre ampliar les publicacions marcades amb advertències de contingut
         setting_hide_network: Amagar la teva xarxa
-        setting_noindex: Desactivar la indexació dels motors de cerca
+        setting_noindex: Desactiva la indexació dels motors de cerca
         setting_reduce_motion: Reduir el moviment de les animacions
         setting_show_application: Revelar l'aplicació utilitzada per fer les publicacions
         setting_system_font_ui: Utilitzar el tipus de lletra predeterminat del sistema
@@ -176,6 +193,7 @@ ca:
         setting_use_pending_items: Mode lent
         severity: Severitat
         sign_in_token_attempt: Codi de seguretat
+        title: Títol
         type: Importa el tipus
         username: Nom d'usuari
         username_or_email: Nom d'usuari o adreça electrònica
@@ -184,9 +202,13 @@ ca:
         with_dns_records: Incloure registres MX i IP del domini
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Oculta completament
+          warn: Oculta amb un avís
       interactions:
-        must_be_follower: Blocar les notificacions de persones que no et segueixen
-        must_be_following: Blocar les notificacions de persones que no segueixes
+        must_be_follower: Bloqueja les notificacions de persones que no em segueixen
+        must_be_following: Bloqueja les notificacions de persones no seguides
         must_be_following_dm: Blocar els missatges directes de persones que no segueixes
       invite:
         comment: Comenta
@@ -201,11 +223,11 @@ ca:
         severity: Regla
       notification_emails:
         appeal: Algú ha apel·lat una decisió de moderació
-        digest: Enviar un resum per correu electrònic
+        digest: Envia'm un resum per correu electrònic
         favourite: Algú marca com a preferit el teu estat
-        follow: Algú t'ha seguit
-        follow_request: Envia un correu electrònic si algú sol·licita seguir-te
-        mention: Algú t'ha esmentat
+        follow: Algú et segueix
+        follow_request: Algú sol·licita seguir-te
+        mention: Algú et menciona
         pending_account: Un nou compte necessita revisió
         reblog: Algú comparteix el teu estat
         report: Nou informe és emés
@@ -216,7 +238,18 @@ ca:
         listable: Permet que aquesta etiqueta aparegui en les cerques i en el directori de perfils
         name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
-        usable: Permet als tuts emprar aquesta etiqueta
+        usable: Permetre a les publicacions emprar aquesta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de la insígnia
+        highlighted: Motra el rol com a insígnia en el perfil dels usuaris
+        name: Nom
+        permissions_as_keys: Permisos
+        position: Prioritat
+      webhook:
+        events: Esdeveniments activats
+        url: URL del extrem
     'no': 'No'
     recommended: Recomanat
     required:

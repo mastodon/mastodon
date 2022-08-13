@@ -13,10 +13,14 @@ class Api::V1::Trends::LinksController < Api::BaseController
 
   private
 
+  def enabled?
+    Setting.trends
+  end
+
   def set_links
     @links = begin
-      if Setting.trends
-        links_from_trends
+      if enabled?
+        links_from_trends.offset(offset_param).limit(limit_param(DEFAULT_LINKS_LIMIT))
       else
         []
       end
@@ -24,7 +28,7 @@ class Api::V1::Trends::LinksController < Api::BaseController
   end
 
   def links_from_trends
-    Trends.links.query.allowed.in_locale(content_locale).offset(offset_param).limit(limit_param(DEFAULT_LINKS_LIMIT))
+    Trends.links.query.allowed.in_locale(content_locale)
   end
 
   def insert_pagination_headers
@@ -36,11 +40,15 @@ class Api::V1::Trends::LinksController < Api::BaseController
   end
 
   def next_path
-    api_v1_trends_links_url pagination_params(offset: offset_param + limit_param(DEFAULT_LINKS_LIMIT))
+    api_v1_trends_links_url pagination_params(offset: offset_param + limit_param(DEFAULT_LINKS_LIMIT)) if records_continue?
   end
 
   def prev_path
     api_v1_trends_links_url pagination_params(offset: offset_param - limit_param(DEFAULT_LINKS_LIMIT)) if offset_param > limit_param(DEFAULT_LINKS_LIMIT)
+  end
+
+  def records_continue?
+    @links.size == limit_param(DEFAULT_LINKS_LIMIT)
   end
 
   def offset_param

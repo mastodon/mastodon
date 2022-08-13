@@ -10,14 +10,14 @@ data:
   {{- else }}
   DB_HOST: {{ .Values.postgresql.postgresqlHostname }}
   {{- end }}
-  DB_NAME: {{ .Values.postgresql.postgresqlDatabase }}
+  DB_NAME: {{ .Values.postgresql.auth.database }}
   DB_POOL: {{ .Values.mastodon.sidekiq.concurrency | quote }}
   DB_PORT: "5432"
-  DB_USER: {{ .Values.postgresql.postgresqlUsername }}
+  DB_USER: {{ .Values.postgresql.auth.username }}
   DEFAULT_LOCALE: {{ .Values.mastodon.locale }}
   {{- if .Values.elasticsearch.enabled }}
   ES_ENABLED: "true"
-  ES_HOST: {{ template "mastodon.elasticsearch.fullname" . }}-master
+  ES_HOST: {{ template "mastodon.elasticsearch.fullname" . }}-master-hl
   ES_PORT: "9200"
   {{- end }}
   LOCAL_DOMAIN: {{ .Values.mastodon.local_domain }}
@@ -83,6 +83,9 @@ data:
   SMTP_TLS: {{ .Values.mastodon.smtp.tls | quote }}
   {{- end }}
   STREAMING_CLUSTER_NUM: {{ .Values.mastodon.streaming.workers | quote }}
+  {{- if .Values.mastodon.streaming.base_url }}
+  STREAMING_API_BASE_URL: {{ .Values.mastodon.streaming.base_url | quote }}
+  {{- end }}
   {{- if .Values.externalAuth.oidc.enabled }}
   OIDC_ENABLED: {{ .Values.externalAuth.oidc.enabled | quote }}
   OIDC_DISPLAY_NAME: {{ .Values.externalAuth.oidc.display_name }}

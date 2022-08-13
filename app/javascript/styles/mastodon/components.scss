@@ -42,7 +42,7 @@
 }
 
 .button {
-  background-color: $ui-highlight-color;
+  background-color: darken($ui-highlight-color, 2%);
   border: 10px none;
   border-radius: 4px;
   box-sizing: border-box;
@@ -60,20 +60,16 @@
   text-align: center;
   text-decoration: none;
   text-overflow: ellipsis;
-  transition: all 100ms ease-in;
   white-space: nowrap;
   width: auto;
 
   &:active,
   &:focus,
   &:hover {
-    background-color: lighten($ui-highlight-color, 10%);
-    transition: all 200ms ease-out;
+    background-color: $ui-highlight-color;
   }
 
   &--destructive {
-    transition: none;
-
     &:active,
     &:focus,
     &:hover {
@@ -341,7 +337,6 @@
   &__sensitive-button {
     padding: 10px;
     padding-top: 0;
-
     font-size: 14px;
     font-weight: 500;
 
@@ -349,7 +344,7 @@
       color: $highlight-text-color;
     }
 
-    input[type=checkbox] {
+    input[type="checkbox"] {
       display: none;
     }
 
@@ -709,7 +704,7 @@
   font-size: inherit;
   vertical-align: middle;
   object-fit: contain;
-  margin: -.2ex .15em .2ex;
+  margin: -0.2ex 0.15em 0.2ex;
   width: 16px;
   height: 16px;
 
@@ -830,7 +825,7 @@
   }
 
   a.unhandled-link {
-    color: lighten($ui-highlight-color, 8%);
+    color: $highlight-text-color;
   }
 
   .status__content__spoiler-link {
@@ -900,7 +895,7 @@
     }
 
     &.unhandled-link {
-      color: lighten($ui-highlight-color, 8%);
+      color: $highlight-text-color;
     }
   }
 }
@@ -913,7 +908,7 @@
   display: block;
   font-size: 15px;
   line-height: 20px;
-  color: lighten($ui-highlight-color, 8%);
+  color: $highlight-text-color;
   border: 0;
   background: transparent;
   padding: 0;
@@ -964,6 +959,21 @@
   width: 100%;
   clear: both;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+  &__button {
+    display: inline;
+    color: lighten($ui-highlight-color, 8%);
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    line-height: inherit;
+
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
 }
 
 .status__prepend-icon-wrapper {
@@ -1313,9 +1323,9 @@
 
 .account__avatar {
   @include avatar-radius;
+
   display: block;
   position: relative;
-
   width: 36px;
   height: 36px;
   background-size: 36px 36px;
@@ -1328,6 +1338,7 @@
 
   &-composite {
     @include avatar-radius;
+
     border-radius: 50%;
     overflow: hidden;
     position: relative;
@@ -1359,12 +1370,15 @@ a .account__avatar {
 .account__avatar-overlay {
   @include avatar-size(48px);
 
+  position: relative;
+
   &-base {
     @include avatar-radius;
     @include avatar-size(36px);
 
     img {
       @include avatar-radius;
+
       width: 100%;
       height: 100%;
     }
@@ -1381,6 +1395,7 @@ a .account__avatar {
 
     img {
       @include avatar-radius;
+
       width: 100%;
       height: 100%;
     }
@@ -1622,6 +1637,33 @@ a.account__display-name {
   }
 }
 
+.notification__report {
+  padding: 8px 10px;
+  padding-left: 68px;
+  position: relative;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  min-height: 54px;
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $darker-text-color;
+    font-size: 15px;
+    line-height: 22px;
+
+    strong {
+      font-weight: 500;
+    }
+  }
+
+  &__avatar {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+}
+
 .notification__message {
   margin: 0 10px 0 68px;
   padding: 8px 0 0;
@@ -1741,8 +1783,12 @@ a.account__display-name {
     object-fit: contain;
   }
 
-  .loading-bar {
+  .loading-bar__container {
     position: relative;
+  }
+
+  .loading-bar {
+    position: absolute;
   }
 
   &.image-loader--amorphous .image-loader__preview-canvas {
@@ -2328,7 +2374,7 @@ a.account__display-name {
   .scrollable {
     overflow: visible;
 
-    @supports(display: grid) {
+    @supports (display: grid) {
       contain: content;
     }
   }
@@ -2360,6 +2406,16 @@ a.account__display-name {
 
     .compose-form .compose-form__publish .compose-form__publish-button-wrapper {
       padding-top: 15px;
+    }
+
+    .notification__report {
+      padding: 15px 15px 15px (48px + 15px * 2);
+      min-height: 48px + 2px;
+
+      &__avatar {
+        left: 15px;
+        top: 17px;
+      }
     }
 
     .status {
@@ -2435,7 +2491,7 @@ a.account__display-name {
   height: 3.9375rem;
   bottom: 1.3125rem;
   right: 1.3125rem;
-  background: darken($ui-highlight-color, 3%);
+  background: darken($ui-highlight-color, 2%);
   color: $white;
   border-radius: 50%;
   font-size: 21px;
@@ -2446,7 +2502,7 @@ a.account__display-name {
   &:hover,
   &:focus,
   &:active {
-    background: lighten($ui-highlight-color, 7%);
+    background: $ui-highlight-color;
   }
 }
 
@@ -2468,6 +2524,10 @@ a.account__display-name {
 @media screen and (max-width: 600px + (285px * 1) + (10px * 1)) {
   .columns-area__panels__pane--compositional {
     display: none;
+  }
+
+  .with-fab .scrollable .item-list:last-child {
+    padding-bottom: 5.25rem;
   }
 }
 
@@ -2532,7 +2592,6 @@ a.account__display-name {
   padding: 40px;
 
   .logo {
-    fill: $primary-text-color;
     width: 50px;
     margin: 0 auto;
     margin-bottom: 40px;
@@ -2747,7 +2806,7 @@ a.account__display-name {
     overflow-y: auto;
   }
 
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) { // hack to fix Chrome <57
     contain: strict;
   }
 
@@ -2768,7 +2827,7 @@ a.account__display-name {
 }
 
 .scrollable.fullscreen {
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) { // hack to fix Chrome <57
     contain: none;
   }
 }
@@ -2876,11 +2935,11 @@ a.account__display-name {
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: $ui-highlight-color;
+  background-color: darken($ui-highlight-color, 2%);
 }
 
 .react-toggle--checked:is(:hover, :focus-within):not(.react-toggle--disabled) .react-toggle-track {
-  background-color: lighten($ui-highlight-color, 10%);
+  background-color: $ui-highlight-color;
 }
 
 .react-toggle-track-check {
@@ -2969,7 +3028,7 @@ a.account__display-name {
     }
 
     &.active {
-      color: $ui-highlight-color;
+      color: $highlight-text-color;
     }
   }
 }
@@ -3402,14 +3461,14 @@ a.status-card.compact:hover {
   }
 
   a {
-    color: lighten($ui-highlight-color, 8%);
+    color: $highlight-text-color;
     text-decoration: none;
 
     &:hover,
     &:focus,
     &:active {
       text-decoration: underline;
-      color: lighten($ui-highlight-color, 12%);
+      color: lighten($highlight-text-color, 4%);
     }
   }
 }
@@ -3976,6 +4035,7 @@ a.status-card.compact:hover {
 
     &__menu {
       @include search-popout;
+
       padding: 0;
       background: $ui-secondary-color;
     }
@@ -4033,6 +4093,15 @@ a.status-card.compact:hover {
   vertical-align: middle;
 }
 
+.limited-account-hint {
+  p {
+    color: $secondary-text-color;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+}
+
 .empty-column-indicator,
 .error-column,
 .follow_requests-unlocked_explanation {
@@ -4048,12 +4117,12 @@ a.status-card.compact:hover {
   align-items: center;
   justify-content: center;
 
-  @supports(display: grid) { // hack to fix Chrome <57
+  @supports (display: grid) { // hack to fix Chrome <57
     contain: strict;
   }
 
   & > span {
-    max-width: 400px;
+    max-width: 500px;
   }
 
   a {
@@ -4336,7 +4405,6 @@ a.status-card.compact:hover {
   background: $simple-background-color;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
   border-radius: 4px;
-  margin-left: 40px;
   overflow: hidden;
   z-index: 2;
 
@@ -4434,6 +4502,71 @@ a.status-card.compact:hover {
   .privacy-dropdown__dropdown {
     display: block;
     box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
+  }
+}
+
+.language-dropdown {
+  &__dropdown {
+    position: absolute;
+    background: $simple-background-color;
+    box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 2;
+
+    &.top {
+      transform-origin: 50% 100%;
+    }
+
+    &.bottom {
+      transform-origin: 50% 0;
+    }
+
+    .emoji-mart-search {
+      padding-right: 10px;
+    }
+
+    .emoji-mart-search-icon {
+      right: 10px + 5px;
+    }
+
+    .emoji-mart-scroll {
+      padding: 0 10px 10px;
+    }
+
+    &__results {
+      &__item {
+        cursor: pointer;
+        color: $inverted-text-color;
+        font-weight: 500;
+        padding: 10px;
+        border-radius: 4px;
+
+        &:focus,
+        &:active,
+        &:hover {
+          background: $ui-secondary-color;
+        }
+
+        &__common-name {
+          color: $darker-text-color;
+        }
+
+        &.active {
+          background: $ui-highlight-color;
+          color: $primary-text-color;
+          outline: 0;
+
+          .language-dropdown__dropdown__results__item__common-name {
+            color: $secondary-text-color;
+          }
+
+          &:hover {
+            background: lighten($ui-highlight-color, 4%);
+          }
+        }
+      }
+    }
   }
 }
 
@@ -4801,7 +4934,7 @@ a.status-card.compact:hover {
   padding: 0;
   border: 0;
   font-size: 0;
-  transition: opacity .2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
 
   &.active {
     opacity: 1;
@@ -4856,7 +4989,6 @@ a.status-card.compact:hover {
     height: 100%;
     box-sizing: border-box;
     padding: 25px;
-    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -5197,7 +5329,6 @@ a.status-card.compact:hover {
     display: block;
     box-sizing: border-box;
     width: 100%;
-    margin: 0;
     color: $inverted-text-color;
     background: $simple-background-color;
     padding: 10px;
@@ -5329,7 +5460,6 @@ a.status-card.compact:hover {
     font-family: inherit;
     font-size: 14px;
     resize: none;
-    border: 0;
     outline: 0;
     border-radius: 4px;
     border: 1px solid $ui-secondary-color;
@@ -5598,7 +5728,7 @@ a.status-card.compact:hover {
 .loading-bar {
   background-color: $highlight-text-color;
   height: 3px;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 9999;
@@ -5780,6 +5910,7 @@ a.status-card.compact:hover {
   overflow: hidden;
   position: absolute;
 }
+
 /* End Media Gallery */
 
 .detailed,
@@ -5792,7 +5923,6 @@ a.status-card.compact:hover {
   .video-player__volume__handle {
     bottom: 23px;
   }
-
 }
 
 .audio-player {
@@ -5914,7 +6044,7 @@ a.status-card.compact:hover {
     background: linear-gradient(0deg, rgba($base-shadow-color, 0.85) 0, rgba($base-shadow-color, 0.45) 60%, transparent);
     padding: 0 15px;
     opacity: 0;
-    transition: opacity .1s ease;
+    transition: opacity 0.1s ease;
 
     &.active {
       opacity: 1;
@@ -5989,7 +6119,6 @@ a.status-card.compact:hover {
     .player-button {
       display: inline-block;
       outline: 0;
-
       flex: 0 0 auto;
       background: transparent;
       padding: 5px;
@@ -6160,7 +6289,7 @@ a.status-card.compact:hover {
       box-shadow: 1px 2px 6px rgba($base-shadow-color, 0.2);
 
       .no-reduce-motion & {
-        transition: opacity .1s ease;
+        transition: opacity 0.1s ease;
       }
 
       &.active {
@@ -6328,14 +6457,13 @@ a.status-card.compact:hover {
   display: inline-block;
   padding: 6px 0;
   line-height: 18px;
-  cursor: default;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
 
-  input[type=radio],
-  input[type=checkbox] {
+  input[type="radio"],
+  input[type="checkbox"] {
     display: none;
   }
 
@@ -6353,8 +6481,8 @@ a.status-card.compact:hover {
     vertical-align: middle;
 
     &.checked {
-      border-color: lighten($ui-highlight-color, 8%);
-      background: lighten($ui-highlight-color, 8%);
+      border-color: lighten($ui-highlight-color, 4%);
+      background: lighten($ui-highlight-color, 4%);
     }
   }
 }
@@ -6428,14 +6556,16 @@ noscript {
     .navigation-bar__actions {
       & > .icon-button.close {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay,
-                    transform $duration $delay;
+        transition:
+          opacity $duration * 0.5 $delay,
+          transform $duration $delay;
       }
 
       & > .compose__action-bar .icon-button {
         will-change: opacity transform;
-        transition: opacity $duration * 0.5 $delay + $duration * 0.5,
-                    transform $duration $delay;
+        transition:
+          opacity $duration * 0.5 $delay + $duration * 0.5,
+          transform $duration $delay;
       }
     }
   }
@@ -7113,6 +7243,13 @@ noscript {
       padding-right: 15px;
       margin-left: 5px;
       color: $secondary-text-color;
+      text-decoration: none;
+
+      &__asterisk {
+        color: $darker-text-color;
+        font-size: 18px;
+        vertical-align: super;
+      }
     }
 
     &__sparkline {
@@ -7209,7 +7346,7 @@ noscript {
     border-radius: 50%;
     width: 0.625rem;
     height: 0.625rem;
-    margin: -.1ex .15em .1ex;
+    margin: -0.1ex 0.15em 0.1ex;
   }
 
   &__content {
@@ -7472,7 +7609,6 @@ noscript {
       position: absolute;
       top: 0;
       left: 0;
-      pointer-events: 0;
       width: 100%;
       height: 100%;
       border-left: 2px solid $highlight-text-color;

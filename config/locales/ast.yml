@@ -24,7 +24,6 @@ ast:
       one: artículu
       other: artículos
     status_count_before: Que crearon
-    tagline: Sigui a persones y conoz a más xente
     terms: Términos del serviciu
     unavailable_content_description:
       domain: Sirvidor
@@ -71,11 +70,6 @@ ast:
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
         send: Reunviar les instrucciones
-      role: Permisos
-      roles:
-        admin: Alministrador
-        moderator: Llendador
-        user: Usuariu
       statuses: Estaos
       title: Cuentes
       username: Nome d'usuariu
@@ -93,6 +87,7 @@ ast:
       not_permitted: Nun tienes permisu pa facer esta aición
       update_failed_msg: Nun pudo anovase esi fustaxe
     dashboard:
+      interactions: interaiciones
       media_storage: Almacenamientu multimedia
       software: Software
       top_languages: Les llingües más actives
@@ -134,15 +129,19 @@ ast:
       are_you_sure: "¿De xuru?"
       status: Estáu
       title: Informes
+    roles:
+      everyone: Permisos predeterminaos
+      permissions_count:
+        one: "%{count} permisu"
+        other: "%{count} permisos"
     settings:
-      registrations:
-        min_invite_role:
-          disabled: Naide
       site_description:
         title: Descripción del sirvidor
       site_title: Nome del sirvidor
       title: Axustes del sitiu
     title: Alministración
+    webhooks:
+      events: Eventos
   admin_mailer:
     new_pending_account:
       body: Los detalles de la cuenta nueva tán embaxo. Pues aprobar o refugar esta aplicación.
@@ -163,7 +162,6 @@ ast:
     sensitive_content: Conteníu sensible
     toot_layout: Distribución de los barritos
   applications:
-    invalid_url: La URL apurrida nun ye válida
     warning: Ten munchu curiáu con estos datos, ¡enxamás nun los compartas con naide!
   auth:
     change_password: Contraseña
@@ -219,6 +217,8 @@ ast:
   disputes:
     strikes:
       appeal_rejected: Refugóse l'apellación
+      approve_appeal: Aprobar l'apellación
+      reject_appeal: Refugar l'apellación
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nun tienes permisu pa ver esta páxina.
@@ -278,6 +278,7 @@ ast:
       following: Llista de siguidores
       muting: Llista de xente silenciao
     upload: Xubir
+  in_memoriam_html: N'alcordanza.
   invites:
     delete: Desactivar
     expired: Caducó
@@ -349,7 +350,7 @@ ast:
     followers: Siguidores
     most_recent: Lo más recién
     relationship: Rellación
-    remove_selected_follows: Dexar de siguir a los usuarios esbillaos
+    remove_selected_follows: Dexar de siguir a los usuarios seleicionaos
     status: Estáu
   remote_follow:
     acct: Introduz el nome_usuariu@dominiu dende'l que lo quies facer

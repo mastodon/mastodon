@@ -26,7 +26,6 @@
 #  otp_required_for_login    :boolean          default(FALSE), not null
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
-#  filtered_languages        :string           default([]), not null, is an Array
 #  account_id                :bigint(8)        not null
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
@@ -38,7 +37,7 @@
 #  sign_in_token_sent_at     :datetime
 #  webauthn_id               :string
 #  sign_up_ip                :inet
-#  skip_sign_in_token        :boolean
+#  role_id                   :bigint(8)
 #
 
 class User < ApplicationRecord
@@ -47,10 +46,13 @@ class User < ApplicationRecord
     remember_token
     current_sign_in_ip
     last_sign_in_ip
+    skip_sign_in_token
+    filtered_languages
   )
 
   include Settings::Extend
-  include UserRoles
+  include Redisable
+  include LanguagesHelper
 
   # The home and list feeds will be stored in Redis for this amount
   # of time, and status fan-out to followers will include only people
@@ -77,6 +79,7 @@ class User < ApplicationRecord
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
   belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
+  belongs_to :role, class_name: 'UserRole', optional: true
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
@@ -101,6 +104,7 @@ class User < ApplicationRecord
   validates_with RegistrationFormTimeValidator, on: :create
   validates :website, absence: true, on: :create
   validates :confirm_password, absence: true, on: :create
+  validate :validate_role_elevation
 
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
@@ -115,8 +119,10 @@ class User < ApplicationRecord
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
+  before_validation :sanitize_role
   before_create :set_approved
   after_commit :send_pending_devise_notifications
+  after_create_commit :trigger_webhooks
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -129,11 +135,31 @@ class User < ApplicationRecord
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
-           :disable_swiping,
+           :disable_swiping, :always_send_emails,
            to: :settings, prefix: :setting, allow_nil: false
 
-  attr_reader :invite_code, :sign_in_token_attempt
-  attr_writer :external, :bypass_invite_request_check
+  delegate :can?, to: :role
+
+  attr_reader :invite_code
+  attr_writer :external, :bypass_invite_request_check, :current_account
+
+  def self.those_who_can(*any_of_privileges)
+    matching_role_ids = UserRole.that_can(*any_of_privileges).map(&:id)
+
+    if matching_role_ids.empty?
+      none
+    else
+      where(role_id: matching_role_ids)
+    end
+  end
+
+  def role
+    if role_id.nil?
+      UserRole.everyone
+    else
+      super
+    end
+  end
 
   def confirmed?
     confirmed_at.present?
@@ -179,7 +205,9 @@ class User < ApplicationRecord
   end
 
   def update_sign_in!(new_sign_in: false)
-    old_current, new_current = current_sign_in_at, Time.now.utc
+    old_current = current_sign_in_at
+    new_current = Time.now.utc
+
     self.last_sign_in_at     = old_current || new_current
     self.current_sign_in_at  = new_current
 
@@ -198,10 +226,6 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     !account.memorial?
-  end
-
-  def suspicious_sign_in?(ip)
-    !otp_required_for_login? && !skip_sign_in_token? && current_sign_in_at.present? && !ips.where(ip: ip).exists?
   end
 
   def functional?
@@ -250,7 +274,7 @@ class User < ApplicationRecord
   end
 
   def preferred_posting_language
-    settings.default_language || locale
+    valid_locale_cascade(settings.default_language, locale)
   end
 
   def setting_default_privacy
@@ -368,15 +392,6 @@ class User < ApplicationRecord
     setting_display_media == 'hide_all'
   end
 
-  def sign_in_token_expired?
-    sign_in_token_sent_at.nil? || sign_in_token_sent_at < 5.minutes.ago
-  end
-
-  def generate_sign_in_token
-    self.sign_in_token         = Devise.friendly_token(6)
-    self.sign_in_token_sent_at = Time.now.utc
-  end
-
   protected
 
   def send_devise_notification(notification, *args, **kwargs)
@@ -449,6 +464,11 @@ class User < ApplicationRecord
     self.chosen_languages = nil if chosen_languages.empty?
   end
 
+  def sanitize_role
+    return if role.nil?
+    self.role = nil if role.everyone?
+  end
+
   def prepare_new_user!
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
@@ -461,14 +481,14 @@ class User < ApplicationRecord
   end
 
   def notify_staff_about_pending_account!
-    User.staff.includes(:account).find_each do |u|
+    User.those_who_can(:manage_users).includes(:account).find_each do |u|
       next unless u.allows_pending_account_emails?
       AdminMailer.new_pending_account(u.account, self).deliver_later
     end
   end
 
   def regenerate_feed!
-    RegenerationWorker.perform_async(account_id) if Redis.current.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
+    RegenerationWorker.perform_async(account_id) if redis.set("account:#{account_id}:regeneration", true, nx: true, ex: 1.day.seconds)
   end
 
   def needs_feed_update?
@@ -479,7 +499,15 @@ class User < ApplicationRecord
     email_changed? && !external? && !(Rails.env.test? || Rails.env.development?)
   end
 
+  def validate_role_elevation
+    errors.add(:role_id, :elevated) if defined?(@current_account) && role&.overrides?(@current_account&.user_role)
+  end
+
   def invite_text_required?
     Setting.require_invite_text && !invited? && !external? && !bypass_invite_request_check?
+  end
+
+  def trigger_webhooks
+    TriggerWebhookWorker.perform_async('account.created', 'Account', account_id)
   end
 end

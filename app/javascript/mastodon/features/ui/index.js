@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
-import { fetchFilters } from '../../actions/filters';
+import { fetchRules } from '../../actions/rules';
 import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
@@ -367,7 +367,8 @@ class UI extends React.PureComponent {
     this.props.dispatch(fetchMarkers());
     this.props.dispatch(expandHomeTimeline());
     this.props.dispatch(expandNotifications());
-    setTimeout(() => this.props.dispatch(fetchFilters()), 500);
+
+    setTimeout(() => this.props.dispatch(fetchRules()), 3000);
 
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
       return ['TEXTAREA', 'SELECT', 'INPUT'].includes(element.tagName);

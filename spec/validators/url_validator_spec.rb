@@ -19,7 +19,7 @@ RSpec.describe URLValidator, type: :validator do
       let(:compliant) { false }
 
       it 'calls errors.add' do
-        expect(errors).to have_received(:add).with(attribute, I18n.t('applications.invalid_url'))
+        expect(errors).to have_received(:add).with(attribute, :invalid)
       end
     end
 

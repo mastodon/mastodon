@@ -3,9 +3,9 @@ tr:
   simple_form:
     hints:
       account_alias:
-        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
+        acct: Taşıyacağınız hesabı kullanıcıadı@alanadı şeklinde belirtin
       account_migration:
-        acct: Taşımak istediğiniz hesabın kullanıcıadı@alanadını belirtin
+        acct: Yeni hesabınızı kullanıcıadı@alanadını şeklinde belirtin
       account_warning_preset:
         text: URL'ler, etiketler ve bahsedenler gibi toot sözdizimini kullanabilirsiniz
         title: İsteğe bağlı. Alıcıya görünmez
@@ -49,6 +49,7 @@ tr:
         phrase: Metnin büyük/küçük harf durumundan veya tootun içerik uyarısından bağımsız olarak eşleştirilecek
         scopes: Uygulamanın erişmesine izin verilen API'ler. Üst seviye bir kapsam seçtiyseniz, bireysel kapsam seçmenize gerek yoktur.
         setting_aggregate_reblogs: Yakın zamanda boostlanmış tootlar için yeni boostları göstermeyin (yalnızca yeni alınan boostları etkiler)
+        setting_always_send_emails: Normalde, Mastodon'u aktif olarak kullanırken e-posta bildirimleri gönderilmeyecektir
         setting_default_sensitive: Hassas medya varsayılan olarak gizlidir ve bir tıklama ile gösterilebilir
         setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
         setting_display_media_hide_all: Medyayı her zaman gizle
@@ -67,6 +68,11 @@ tr:
         with_dns_records: Belirli bir alanın DNS kayıtlarını çözmeyi deneyecek ve sonuçlar kara listeye eklenecek
       featured_tag:
         name: 'Bunlardan birini kullanmak isteyebilirsiniz:'
+      filters:
+        action: Bir gönderi filtreyle eşleştiğinde hangi eylemin yapılacağını seçin
+        actions:
+          hide: Filtrelenmiş içeriği tamamen gizle, sanki varolmamış gibi
+          warn: Filtrelenmiş içeriği, filtrenin başlığından söz eden bir uyarının arkasında gizle
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -90,6 +96,16 @@ tr:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
         chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki tootlar genel zaman çizelgelerinde görüntülenir
+        role: Rol, kullanıcıların sahip olduğu izinleri denetler
+      user_role:
+        color: Arayüz boyunca rol için kullanılacak olan renk, hex biçiminde RGB
+        highlighted: Bu rolü herkese açık hale getirir
+        name: Rolün, eğer rozet olarak görüntülenmesi ayarlandıysa kullanılacak herkese açık ismi
+        permissions_as_keys: Bu role sahip kullanıcıların şunlara erişimi var...
+        position: Belirli durumlarda çatışmayı çözmek için daha yüksek rol belirleyicidir. Bazı eylemler ancak daha düşük öncelikteki rollere uygulanabilir
+      webhook:
+        events: Gönderilecek etkinlikleri seçin
+        url: Olayların gönderileceği yer
     labels:
       account:
         fields:
@@ -127,10 +143,10 @@ tr:
         avatar: Profil resmi
         bot: Bu bir bot hesabı
         chosen_languages: Dilleri filtrele
-        confirm_new_password: Yeni şifreyi onayla
-        confirm_password: Şifreyi onayla
+        confirm_new_password: Yeni parolayı onayla
+        confirm_password: Parolayı doğrula
         context: İçeriği filtrele
-        current_password: Geçerli şifre
+        current_password: Güncel parola
         data: Veri
         discoverable: Bu hesabı dizinde listele
         display_name: Görünen isim
@@ -140,17 +156,18 @@ tr:
         header: Kapak resmi
         honeypot: "%{label} (doldurmayın)"
         inbox_url: Aktarıcı gelen kutusunun URL'si
-        irreversible: Gizlemek yerine bırak
+        irreversible: Gizlemek yerine benim için sil
         locale: Arayüz dili
         locked: Hesabı kilitle
         max_uses: Maksimum kullanım sayısı
-        new_password: Yeni şifre
+        new_password: Yeni parola
         note: Kişisel bilgiler
         otp_attempt: İki adımlı doğrulama kodu
-        password: Şifre
+        password: Parola
         phrase: Anahtar kelime veya kelime öbeği
         setting_advanced_layout: Gelişmiş web arayüzünü etkinleştir
         setting_aggregate_reblogs: Zaman çizelgesindeki boostları grupla
+        setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
         setting_boost_modal: Boostlamadan önce onay iletişim kutusu göster
         setting_crop_images: Genişletilmemiş tootlardaki resimleri 16x9 olarak kırp
@@ -176,6 +193,7 @@ tr:
         setting_use_pending_items: Yavaş mod
         severity: Önem derecesi
         sign_in_token_attempt: Güvenlik kodu
+        title: Başlık
         type: İçeri aktarma türü
         username: Kullanıcı adı
         username_or_email: Kullanıcı adı ya da e-posta
@@ -184,6 +202,10 @@ tr:
         with_dns_records: Alan adının MX kayıtlarını ve IP'lerini ekleyin
       featured_tag:
         name: Etiket
+      filters:
+        actions:
+          hide: Tamamen gizle
+          warn: Uyarıyla gizle
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
@@ -217,6 +239,17 @@ tr:
         name: Etiket
         trendable: Bu etiketin gündem altında görünmesine izin ver
         usable: Tootların bu etiketi kullanmasına izin ver
+      user:
+        role: Rol
+      user_role:
+        color: Rozet rengi
+        highlighted: Rolü kullanıcıların profilinde rozet olarak görüntüle
+        name: Ad
+        permissions_as_keys: İzinler
+        position: Öncelik
+      webhook:
+        events: Etkin olaylar
+        url: Uç nokta URL’si
     'no': Hayır
     recommended: Önerilen
     required:

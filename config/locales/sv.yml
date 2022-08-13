@@ -36,7 +36,6 @@ sv:
       one: status
       other: statusar
     status_count_before: Som skapat
-    tagline: Följ vänner och upptäck nya
     terms: Användarvillkor
     unavailable_content: Otillgängligt innehåll
     unavailable_content_description:
@@ -81,10 +80,8 @@ sv:
     posts_tab_heading: Tutor
     posts_with_replies: Toots med svar
     roles:
-      admin: Administratör
       bot: Robot
       group: Grupp
-      moderator: Moderator
     unavailable: Profilen är inte tillgänglig
     unfollow: Sluta följa
   admin:
@@ -102,7 +99,6 @@ sv:
       avatar: Profilbild
       by_domain: Domän
       change_email:
-        changed_msg: E-postadressen har ändrats!
         current_email: Nuvarande E-postadress
         label: Byt E-postadress
         new_email: Ny E-postadress
@@ -160,6 +156,9 @@ sv:
       pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
       previous_strikes: Tidigare varningar
+      previous_strikes_description_html:
+        one: Detta konto har <strong>en</strong> varning.
+        other: Detta konto har <strong>%{count}</strong> varningar.
       promote: Befordra
       protocol: Protokoll
       public: Offentlig
@@ -175,19 +174,12 @@ sv:
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
-      role: Behörigheter
-      roles:
-        admin: Administratör
-        moderator: Moderator
-        staff: Personal
-        user: Användare
       search: Sök
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
       security_measures:
         only_password: Endast lösenord
         password_and_2fa: Lösenord och 2FA
-        password_and_sign_in_token: Lösenord och e-post token
       sensitive: Känsligt
       sensitized: markerad som känsligt
       shared_inbox_url: Delad inkorg URL
@@ -264,6 +256,8 @@ sv:
         create_announcement_html: "%{name} skapade tillkännagivande %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
         create_domain_block_html: "%{name} blockerade domänen %{target}"
+        create_email_domain_block_html: "%{name} svartlistade e-postdomän %{target}"
+        create_ip_block_html: "%{name} skapade regel för IP %{target}"
         destroy_custom_emoji_html: "%{name} förstörde emoji %{target}"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
         destroy_email_domain_block_html: "%{name} avblockerade e-postdomän %{target}"
@@ -326,6 +320,7 @@ sv:
       enable: Aktivera
       enabled: Aktiverad
       enabled_msg: Aktiverade den emoji utan problem
+      image_hint: PNG eller GIF upp till %{size}
       list: Lista
       listed: Noterade
       new:
@@ -406,6 +401,12 @@ sv:
       back_to_limited: Begränsat
       back_to_warning: Varning
       by_domain: Domän
+      content_policies:
+        policies:
+          silence: Gräns
+        policy: Policy
+        reason: Offentlig orsak
+        title: Riktlinjer för innehåll
       delivery:
         all: Alla
         clear: Rensa leverans-fel
@@ -420,6 +421,7 @@ sv:
         title: Moderering
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
+      purge: Rensa
       title: Kända instanser
       total_blocked_by_us: Blockerad av oss
       total_followed_by_them: Följs av dem
@@ -466,6 +468,7 @@ sv:
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
+      today_at: Idag kl. %{time}
     reports:
       account:
         notes:
@@ -553,9 +556,6 @@ sv:
         deletion:
           desc_html: Tillåt vem som helst att radera sitt konto
           title: Öppen kontoradering
-        min_invite_role:
-          disabled: Ingen
-          title: Tillåt inbjudningar av
         require_invite_text:
           desc_html: När nyregistrering kräver manuellt godkännande, gör det obligatoriskt att fylla i text i fältet "Varför vill du gå med?"
           title: Kräv att nya användare fyller i en inbjudningsförfrågan
@@ -568,9 +568,6 @@ sv:
       show_known_fediverse_at_about_page:
         desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
         title: Visa det kända fediverse på tidslinjens förhandsgranskning
-      show_staff_badge:
-        desc_html: Visa en personalbricka på en användarsida
-        title: Visa personalbricka
       site_description:
         desc_html: Inledande stycke på framsidan och i metataggar. Du kan använda HTML-taggar, i synnerhet <code>&lt;a&gt;</code> och <code>&lt;em&gt;</code>.
         title: Instansbeskrivning
@@ -596,6 +593,8 @@ sv:
       delete: Radera uppladdad fil
     statuses:
       back_to_account: Tillbaka till kontosidan
+      batch:
+        report: Rapportera
       deleted: Raderad
       media:
         title: Media
@@ -606,19 +605,26 @@ sv:
         delete_statuses: "%{name} raderade %{target}s inlägg"
         disable: "%{name} frös %{target}s konto"
         silence: "%{name} begränsade %{target}s konto"
+      appeal_approved: Överklagad
     system_checks:
       rules_check:
         action: Hantera serverregler
         message_html: Du har inte definierat några serverregler.
     title: Administration
     trends:
+      allow: Tillåt
+      approved: Godkänd
       statuses:
         allow: Godkänn inlägg
         allow_account: Godkänn författare
+      title: Trender
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
   admin_mailer:
+    new_appeal:
+      actions:
+        none: en varning
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
@@ -646,7 +652,6 @@ sv:
   applications:
     created: Ansökan är framgångsrikt skapad
     destroyed: Ansökan är framgångsrikt borttagen
-    invalid_url: Den angivna webbadressen är ogiltig
     regenerate_token: Regenerera access token
     token_regenerated: Access token lyckades regenereras
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
@@ -746,8 +751,12 @@ sv:
     explore_mastodon: Utforska %{title}
   disputes:
     strikes:
+      approve_appeal: Godkänn förfrågan
       created_at: Daterad
+      reject_appeal: Avvisa förfrågan
       status: 'Inlägg #%{id}'
+      title_actions:
+        none: Varning
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
@@ -811,6 +820,7 @@ sv:
     delete: Radera
     order_by: Sortera efter
     save_changes: Spara ändringar
+    today: idag
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
@@ -899,6 +909,9 @@ sv:
     carry_mutes_over_text: Den här användaren flyttade från %{acct} som du hade tystat.
     copy_account_note_text: 'Den här användaren flyttade från %{acct}, här var dina föregående anteckningar om dem:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} registrerade sig"
     digest:
       action: Visa alla aviseringar
       body: Här är en kort sammanfattning av de meddelanden du missade sedan ditt senaste besök på %{since}
@@ -906,9 +919,6 @@ sv:
       new_followers_summary:
         one: Du har också förvärvat en ny följare! Jippie!
         other: Du har också fått %{count} nya följare medans du var iväg! Otroligt!
-      subject:
-        one: "1 nytt meddelande sedan ditt senaste besök \U0001F418"
-        other: "%{count} nya meddelanden sedan ditt senaste besök \U0001F418"
       title: I din frånvaro...
     favourite:
       body: 'Din status favoriserades av %{name}:'
@@ -936,6 +946,8 @@ sv:
       title: Ny knuff
     status:
       subject: "%{name} publicerade nyss"
+    update:
+      subject: "%{name} redigerade ett inlägg"
   notifications:
     email_events: Händelser för e-postaviseringar
     email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
@@ -1148,90 +1160,12 @@ sv:
     pinned: Fäst toot
     reblogged: boostad
     sensitive_content: Känsligt innehåll
+  strikes:
+    errors:
+      too_late: Det är för sent att överklaga denna strejk
   tags:
     does_not_match_previous_name: matchar inte det föregående namnet
   terms:
-    body_html: |
-      <h2>Integritetspolicy</h2>
-      <h3 id="collect">Vilken information samlar vi in?</h3>
-
-      <ul>
-      <li><em>Grundläggande kontoinformation</em>: Det användarnamn du väljer, visningsnamn, biografi, avatar/profilbild och bakgrundsbild kommer alltid vara tillgängliga för alla som kan nå webbsidan. </li>
-      <li><em>Inlägg, vem du följer och annan tillgänglig information</em>: Dina följare och de konton du följer är alltid tillgängliga. När du skapar ett nytt inlägg sparas datum och tid för meddelandet, samt vilket program du använde för att skapa inlägget. Detta gäller även bilder och media som inlägg kan innehålla.Både "Publika" och "Olistade" inlägg kan vara tillgängliga för alla som har åtkomst till webbsidan. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Site usage by children</h3>
-
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
-
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Användarvillkor och Sekretesspolicy"
   themes:
     contrast: Hög kontrast
@@ -1263,18 +1197,19 @@ sv:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
-    sign_in_token:
-      details: 'Här är detaljerna för försöket:'
-      further_actions: 'Om det inte var du, vänligen ändra ditt lösenord och aktivera tvåfaktor-autentisering i ditt konto. Du kan göra det här:'
-      title: Inloggningsförsök
+    suspicious_sign_in:
+      change_password: Ändra ditt lösenord
+      title: En ny inloggning
     warning:
       reason: 'Anledning:'
+      statuses: 'Inlägg citerades:'
       subject:
         disable: Ditt konto %{acct} har blivit fruset
         none: Varning för %{acct}
         silence: Ditt konto %{acct} har blivit begränsat
         suspend: Ditt konto %{acct} har stängts av
       title:
+        delete_statuses: Inlägg borttagna
         disable: Kontot fruset
         none: Varning
         silence: Kontot begränsat
@@ -1298,9 +1233,7 @@ sv:
       title: Välkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan inte följa fler än %{limit} personer
-    generic_access_help_html: Har du problem med att komma åt ditt konto? Du kan komma i kontakt med %{email} för assistans
     invalid_otp_token: Ogiltig tvåfaktorskod
-    invalid_sign_in_token: Ogiltig säkerhetskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
     seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
     signed_in_as: 'Inloggad som:'
@@ -1312,4 +1245,6 @@ sv:
     delete_confirmation: Är du säker på att du vill ta bort denna säkerhetsnyckel?
     destroy:
       success: Din säkerhetsnyckel har raderats.
+    invalid_credential: Ogiltig säkerhetsnyckel
     not_enabled: Du har inte aktiverat WebAuthn än
+    registered_on: Registrerad den %{date}

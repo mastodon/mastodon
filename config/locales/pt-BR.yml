@@ -16,6 +16,7 @@ pt-BR:
     contact: Contato
     contact_missing: Não definido
     contact_unavailable: Não disponível
+    continue_to_web: Continuar no aplicativo web
     discover_users: Descubra usuários
     documentation: Documentação
     federation_hint_html: Com uma conta em %{instance} você vai poder seguir e interagir com pessoas de qualquer canto do fediverso.
@@ -25,6 +26,7 @@ pt-BR:
       Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.
       É usado para propósitos de federação e não deve ser bloqueado a menos que queira bloquear toda a instância, o que no caso devia usar um bloqueio de domínio.
     learn_more: Saiba mais
+    logged_in_as_html: Você está atualmente logado como %{username}.
     logout_before_registering: Já está logado.
     privacy_policy: Política de Privacidade
     rules: Regras do servidor
@@ -36,7 +38,7 @@ pt-BR:
       one: toot
       other: toots
     status_count_before: Autores de
-    tagline: Siga seus amigos e faça novas amizades
+    tagline: Rede social descentralizada
     terms: Termos de serviço
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
@@ -81,10 +83,8 @@ pt-BR:
     posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     roles:
-      admin: Admin
       bot: Robô
       group: Grupo
-      moderator: Moderador
     unavailable: Perfil indisponível
     unfollow: Deixar de seguir
   admin:
@@ -103,7 +103,6 @@ pt-BR:
       avatar: Imagem de perfil
       by_domain: Domínio
       change_email:
-        changed_msg: E-mail da conta alterado com sucesso!
         current_email: E-mail atual
         label: Alterar e-mail
         new_email: Novo e-mail
@@ -162,6 +161,10 @@ pt-BR:
       not_subscribed: Não inscrito
       pending: Revisão pendente
       perform_full_suspension: Banir
+      previous_strikes: Ataques anteriores
+      previous_strikes_description_html:
+        one: Esta conta tem <strong>um</strong> ataque.
+        other: Esta conta tem <strong>%{count}</strong> ataques.
       promote: Promover
       protocol: Protocolo
       public: Público
@@ -181,19 +184,12 @@ pt-BR:
       reset: Redefinir
       reset_password: Redefinir senha
       resubscribe: Reinscrever-se
-      role: Permissões
-      roles:
-        admin: Administrador
-        moderator: Moderador
-        staff: Equipe
-        user: Usuário
       search: Pesquisar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
       security_measures:
         only_password: Somente senha
         password_and_2fa: Senha e 2FA
-        password_and_sign_in_token: Token de senha e e-mail
       sensitive: Sensíveis
       sensitized: marcadas como sensíveis
       shared_inbox_url: Link da caixa de entrada compartilhada
@@ -203,6 +199,7 @@ pt-BR:
       silence: Silenciar
       silenced: Silenciado
       statuses: Toots
+      strikes: Ataques anteriores
       subscribe: Inscrever-se
       suspend: Suspender
       suspended: Banido
@@ -225,6 +222,7 @@ pt-BR:
       whitelisted: Permitido
     action_logs:
       action_types:
+        approve_appeal: Aprovar recurso
         approve_user: Aprovar Usuário
         assigned_to_self_report: Adicionar relatório
         change_email_user: Editar e-mail do usuário
@@ -243,6 +241,7 @@ pt-BR:
         destroy_domain_allow: Excluir domínio permitido
         destroy_domain_block: Excluir Bloqueio de Domínio
         destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
+        destroy_instance: Limpar Domínio
         destroy_ip_block: Excluir regra de IP
         destroy_status: Excluir Status
         destroy_unavailable_domain: Deletar domínio indisponível
@@ -275,6 +274,7 @@ pt-BR:
         update_status: Editar Status
       actions:
         approve_appeal_html: "%{name} aprovou o recurso de decisão de moderação de %{target}"
+        approve_user_html: "%{name} aprovado inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} para si"
         change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do usuário %{target}"
@@ -292,6 +292,7 @@ pt-BR:
         destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
         destroy_domain_block_html: "%{name} deixou de bloquear domínio %{target}"
         destroy_email_domain_block_html: "%{name} adicionou domínio de e-mail %{target} à lista branca"
+        destroy_instance_html: "%{name} purgou o domínio %{target}"
         destroy_ip_block_html: "%{name} excluiu regra para o IP %{target}"
         destroy_status_html: "%{name} excluiu post de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
@@ -304,6 +305,7 @@ pt-BR:
         enable_user_html: "%{name} ativou o login para %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o usuário %{target}"
+        reject_appeal_html: "%{name} rejeitou recurso de decisão de moderação de %{target}"
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report_html: "%{name} reabriu a denúncia %{target}"
@@ -360,6 +362,7 @@ pt-BR:
       enable: Ativar
       enabled: Ativado
       enabled_msg: Emoji ativado com sucesso
+      image_hint: PNG ou GIF até %{size}
       list: Listar
       listed: Listado
       new:
@@ -381,6 +384,18 @@ pt-BR:
       media_storage: Armazenamento de mídia
       new_users: novos usuários
       opened_reports: denúncias abertas
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> recurso pendente"
+        other: "<strong>%{count}</strong> recursos pendentes"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> relatório pendente"
+        other: "<strong>%{count}</strong> relatórios pendentes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> hashtag pendente"
+        other: "<strong>%{count}</strong> hashtags pendentes"
+      pending_users_html:
+        one: "<strong>%{count}</strong> usuário pendente"
+        other: "<strong>%{count}</strong> usuários pendentes"
       resolved_reports: denúncias solucionadas
       software: Software
       sources: Origem das inscrições
@@ -391,6 +406,7 @@ pt-BR:
       website: Site
     disputes:
       appeals:
+        empty: Nenhum recurso encontrado.
         title: Apelações
     domain_allows:
       add_new: Permitir domínio
@@ -403,6 +419,7 @@ pt-BR:
       destroyed_msg: Domínio desbloqueado
       domain: Domínio
       edit: Editar bloqueio de domínio
+      existing_domain_block: Você já impôs limites mais rigorosos em %{name}.
       existing_domain_block_html: Você já impôs limites mais estritos em %{name}, você precisa <a href="%{unblock_url}">desbloqueá-lo</a> primeiro.
       new:
         create: Criar bloqueio
@@ -427,13 +444,22 @@ pt-BR:
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
+      attempts_over_week:
+        one: "%{count} tentativa na última semana"
+        other: "%{count} tentativas de inscrição na última semana"
       created_msg: Domínio de e-mail adicionado à lista negra com sucesso
       delete: Excluir
+      dns:
+        types:
+          mx: Registro MX
       domain: Domínio
       new:
         create: Adicionar domínio
         resolve: Resolver domínio
         title: Nova entrada de lista negra de e-mail
+      no_email_domain_block_selected: Nenhum bloco de domínio de e-mail foi alterado, pois nenhum foi selecionado
+      resolved_dns_records_hint_html: O nome de domínio resolve os seguintes domínios MX, que são responsáveis finais por aceitar o e-mail. Bloquear um domínio MX bloqueará inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
+      resolved_through_html: Resolvido através de %{domain}
       title: Lista de negra de e-mail
     follow_recommendations:
       description_html: "<strong>A recomendação de contas ajuda os novos usuários a encontrar rapidamente conteúdo interessante</strong>. Quando um usuário ainda não tiver interagido o suficiente para gerar recomendações de contas, essas contas serão recomendadas. Essas recomendações são recalculadas diariamente a partir de uma lista de contas com alto engajamento e maior número de seguidores locais em uma dada língua."
@@ -445,21 +471,56 @@ pt-BR:
       unsuppress: Restaurar recomendação de contas
     instances:
       availability:
+        description_html:
+          one: Se a entrega ao domínio falhar <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>de</em> do domínio seja recebida.
+          other: Se a entrega ao domínio falhar em <strong>%{count} dias diferentes</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>de</em> do domínio seja recebida.
+        failure_threshold_reached: Limite de falhas atingido em %{date}.
+        failures_recorded:
+          one: Falha na tentativa em %{count} dia.
+          other: Tentativas falhas em %{count} dias diferentes.
+        no_failures_recorded: Sem falhas no registro.
         title: Disponibilidade
+        warning: A última tentativa de se conectar a este servidor não foi bem sucedida
       back_to_all: Todas
+      back_to_limited: Limitado
       back_to_warning: Aviso
       by_domain: Domínio
       confirm_purge: Você tem certeza de que deseja excluir permanentemente os dados deste domínio?
       content_policies:
+        comment: Nota interna
+        description_html: Você pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
+        policies:
+          reject_media: Rejeitar mídia
+          reject_reports: Rejeitar relatórios
+          silence: Limite
+          suspend: Suspender
         policy: Políticas
+        reason: Razão pública
+        title: Políticas de conteúdo
+      dashboard:
+        instance_accounts_dimension: Contas mais seguidas
+        instance_accounts_measure: contas armazenadas
+        instance_followers_measure: nossos seguidores lá
+        instance_follows_measure: seus seguidores aqui
+        instance_languages_dimension: Idiomas principais
+        instance_media_attachments_measure: anexos de mídia armazenados
+        instance_reports_measure: relatórios sobre eles
+        instance_statuses_measure: publicações armazenadas
       delivery:
         all: Todos
         clear: Limpar erros de entrega
+        failing: Falhando
         restart: Reiniciar a entrega
         stop: Parar entrega
         unavailable: Indisponível
       delivery_available: Envio disponível
+      delivery_error_days: Dias de erro de entrega
+      delivery_error_hint: Se a entrega não for possível durante %{count} dias, será automaticamente marcada como não realizável.
+      destroyed_msg: Dados de %{domain} agora estão na fila para exclusão iminente.
       empty: Nenhum domínio encontrado.
+      known_accounts:
+        one: "%{count} conta conhecida"
+        other: "%{count} contas conhecidas"
       moderation:
         all: Todos
         limited: Limitados
@@ -467,12 +528,14 @@ pt-BR:
       private_comment: Comentário privado
       public_comment: Comentário público
       purge: Limpar
+      purge_description_html: Se você acredita que este domínio está offline definitivamente, você pode excluir todos os registros de conta e dados associados deste domínio do seu armazenamento. Isso pode demorar um pouco.
       title: Federação
       total_blocked_by_us: Bloqueado por nós
       total_followed_by_them: Seguidos por eles
       total_followed_by_us: Seguidos por nós
       total_reported: Denúncias sobre eles
       total_storage: Mídias anexadas
+      totals_time_period_hint_html: Os totais exibidos abaixo incluem dados para todo o tempo.
     invites:
       deactivate_all: Desativar todos
       filter:
@@ -517,6 +580,7 @@ pt-BR:
     report_notes:
       created_msg: Nota de denúncia criada com sucesso!
       destroyed_msg: Nota de denúncia excluída com sucesso!
+      today_at: Hoje às %{time}
     reports:
       account:
         notes:
@@ -543,6 +607,7 @@ pt-BR:
       forwarded: Encaminhados
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
+      mark_as_sensitive: Marcar como sensível
       mark_as_unresolved: Marcar como não resolvido
       no_one_assigned: Ninguém
       notes:
@@ -622,9 +687,6 @@ pt-BR:
         deletion:
           desc_html: Permitir que qualquer um exclua a própria conta
           title: Exclusão aberta de contas
-        min_invite_role:
-          disabled: Ninguém
-          title: Permitir convites de
         require_invite_text:
           desc_html: Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite em "Por que você deseja criar uma conta aqui?"
           title: Exigir que novos usuários preencham um texto de solicitação de convite
@@ -637,9 +699,6 @@ pt-BR:
       show_known_fediverse_at_about_page:
         desc_html: Quando ativado, mostra toots globais na prévia da linha, se não, mostra somente toots locais
         title: Mostrar toots globais na prévia da linha
-      show_staff_badge:
-        desc_html: Mostrar uma insígnia de Equipe na página de usuário
-        title: Mostrar insígnia de equipe
       site_description:
         desc_html: Parágrafo introdutório na página inicial. Descreva o que faz esse servidor especial, e qualquer outra coisa de importante. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrição da instância
@@ -673,6 +732,7 @@ pt-BR:
       back_to_account: Voltar para página da conta
       back_to_report: Voltar às denúncias
       batch:
+        remove_from_report: Remover do relatório
         report: Denunciar
       deleted: Excluídos
       media:
@@ -680,9 +740,16 @@ pt-BR:
       no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       title: Toots da conta
       with_media: Com mídia
+    strikes:
+      appeal_approved: Apelado
+      appeal_pending: Recurso pendente
     system_checks:
       database_schema_check:
         message_html: Existem migrações de banco de dados pendentes. Por favor, execute-as para garantir que o aplicativo se comporte como esperado
+      elasticsearch_running_check:
+        message_html: Não foi possível conectar ao Elasticsearch. Por favor, verifique se está em execução, ou desabilite a pesquisa de texto completo
+      elasticsearch_version_check:
+        message_html: 'Versão de Elasticsearch incompatível: %{value}'
       rules_check:
         action: Gerenciar regras do servidor
         message_html: Você não definiu nenhuma regra de servidor.
@@ -728,13 +795,28 @@ pt-BR:
         usable: Pode ser usado
         usage_comparison: Usado %{today} vezes hoje, em comparação com %{yesterday} de ontem
       title: Em alta
+      trending: Em alta
     warning_presets:
       add_new: Adicionar novo
       delete: Excluir
       edit_preset: Editar o aviso pré-definido
       empty: Você ainda não definiu nenhuma predefinição de alerta.
       title: Gerenciar os avisos pré-definidos
+    webhooks:
+      delete: Excluir
+      disable: Desabilitar
+      disabled: Desativado
+      enable: Habilitar
+      enabled: Ativo
+      events: Eventos
+      status: Status
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: para excluir suas publicações
+        none: um aviso
+        sensitive: para marcar sua conta como sensível
+        silence: para limitar sua conta
     new_pending_account:
       body: Os detalhes da nova conta estão abaixo. Você pode aprovar ou vetar.
       subject: Nova conta para revisão em %{instance} (%{username})
@@ -742,6 +824,14 @@ pt-BR:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
+    new_trends:
+      new_trending_statuses:
+        title: Publicações em alta
+      new_trending_tags:
+        no_approved_tags: No momento, não há hashtags de tendências aprovadas.
+        requirements: 'Qualquer um desses candidatos poderia ultrapassar a hashtag de tendência aprovada #%{rank} , que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
+        title: Hashtags em alta
+      subject: Novas tendências para revisão em %{instance}
   aliases:
     add_new: Criar alias
     created_msg: Um novo alias foi criado com sucesso. Agora você pode iniciar a mudança da conta antiga.
@@ -771,7 +861,6 @@ pt-BR:
   applications:
     created: Aplicativo criado com sucesso
     destroyed: Aplicativo excluído com sucesso
-    invalid_url: O link fornecido é inválido
     regenerate_token: Gerar código de acesso
     token_regenerated: Código de acesso gerado com sucesso
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
@@ -793,6 +882,7 @@ pt-BR:
     invalid_reset_password_token: Código de alteração de senha é inválido ou expirou. Por favor, solicite um novo.
     link_to_otp: Digite um código de duas etapas do seu telefone ou um código de recuperação
     link_to_webauth: Use seu dispositivo de chave de segurança
+    log_in_with: Iniciar sessão com
     login: Entrar
     logout: Sair
     migrate_account: Mudar-se para outra conta
@@ -814,8 +904,10 @@ pt-BR:
     status:
       account_status: Status da conta
       confirming: Confirmação por e-mail pendente.
+      functional: Sua conta está totalmente operacional.
       pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
+      view_strikes: Veja os ataques anteriores contra a sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     trouble_logging_in: Problemas para entrar?
     use_security_key: Usar chave de segurança
@@ -851,8 +943,10 @@ pt-BR:
       about_x_years: "%{count}a"
       almost_x_years: "%{count}a"
       half_a_minute: Agora
+      less_than_x_minutes: "%{count}min"
       less_than_x_seconds: Agora
       over_x_years: "%{count}a"
+      x_days: "%{count}dias"
       x_minutes: "%{count}min"
       x_months: "%{count}m"
       x_seconds: "%{count}seg"
@@ -879,11 +973,34 @@ pt-BR:
     explore_mastodon: Explore o %{title}
   disputes:
     strikes:
+      action_taken: Ações tomadas
+      appeal: Recurso
+      appeal_approved: Este recurso foi contestado e não é mais válido
+      appeal_rejected: O recurso foi rejeitado
+      appeal_submitted_at: Recurso enviado
+      appealed_msg: Seu recurso foi enviado. Se ele for aprovado, você será notificado.
+      appeals:
+        submit: Enviar recurso
+      approve_appeal: Aprovar recurso
+      associated_report: Relatório associado
+      created_at: Datado
+      description_html: Estas são ações tomadas contra sua conta e avisos que foram enviados a você pela equipe de %{instance}.
+      recipient: Endereçado para
+      reject_appeal: Rejeitar recurso
+      status: 'Postagem #%{id}'
+      status_removed: Postagem já removida do sistema
+      title: "%{action} de %{date}"
       title_actions:
+        delete_statuses: Remoção de publicações
+        disable: Congelamento de conta
+        mark_statuses_as_sensitive: Marcar as postagens como sensíveis
         none: Aviso
         sensitive: Marcar a conta como sensível
         silence: Limitação da conta
         suspend: Suspensão de conta
+      your_appeal_approved: Seu recurso foi aprovado
+      your_appeal_pending: Você submeteu um recurso
+      your_appeal_rejected: Seu recurso foi rejeitado
   domain_validator:
     invalid_domain: não é um nome de domínio válido
   errors:
@@ -932,15 +1049,17 @@ pt-BR:
       public: Linhas públicas
       thread: Conversas
     edit:
+      add_keyword: Adicionar palavra-chave
+      keywords: Palavras-chave
       title: Editar filtro
     errors:
       invalid_context: Contexto inválido ou nenhum contexto informado
-      invalid_irreversible: O filtro irreversível só funciona com os contextos página inicial e notificações
     index:
       delete: Remover
       empty: Sem filtros.
       title: Filtros
     new:
+      save: Salvar novo filtro
       title: Adicionar filtro
   footer:
     developers: Desenvolvedores
@@ -1008,6 +1127,7 @@ pt-BR:
     authentication_methods:
       otp: autenticação de dois fatores
       password: senha
+      sign_in_token: código de segurança do e-mail
       webauthn: chaves de segurança
     description_html: Se você vir atividades suspeitas ou não reconhecidas, considere alterar sua senha e ativar a autenticação de dois fatores.
     empty: Sem histórico de autenticação disponível
@@ -1057,6 +1177,11 @@ pt-BR:
     carry_mutes_over_text: Este usuário mudou de %{acct}, que você havia silenciado.
     copy_account_note_text: 'Este usuário saiu de %{acct}, aqui estão suas notas anteriores sobre ele:'
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} enviou uma denúncia"
+      sign_up:
+        subject: "%{name} se inscreveu"
     digest:
       action: Ver todas as notificações
       body: Aqui está um breve resumo das mensagens que você perdeu desde o seu último acesso em %{since}
@@ -1065,8 +1190,8 @@ pt-BR:
         one: Você tem um novo seguidor! Uia!
         other: Você tem %{count} novos seguidores! AÊÊÊ!
       subject:
-        one: "Uma nova notificação desde o seu último acesso \U0001F418"
-        other: "%{count} novas notificações desde o seu último acesso \U0001F418"
+        one: "Uma nova notificação desde o seu último acesso 🐘"
+        other: "%{count} novas notificações desde o seu último acesso 🐘"
       title: Enquanto você estava ausente...
     favourite:
       body: "%{name} favoritou seu toot:"
@@ -1094,6 +1219,8 @@ pt-BR:
       title: Novo boost
     status:
       subject: "%{name} acabou de postar"
+    update:
+      subject: "%{name} editou uma publicação"
   notifications:
     email_events: Eventos para notificações por e-mail
     email_events_hint: 'Selecione os eventos que deseja receber notificações:'
@@ -1175,6 +1302,11 @@ pt-BR:
     reply:
       proceed: Continue para responder
       prompt: 'Você responderá este toot:'
+  reports:
+    errors:
+      invalid_rules: não faz referência a regras válidas
+  rss:
+    content_warning: 'Aviso de conteúdo:'
   scheduled_statuses:
     over_daily_limit: Você excedeu o limite de %{limit} toots agendados para esse dia
     over_total_limit: Você excedeu o limite de %{limit} toots agendados
@@ -1241,6 +1373,7 @@ pt-BR:
     profile: Perfil
     relationships: Seguindo e seguidores
     statuses_cleanup: Exclusão automatizada de publicações
+    strikes: Moderação de ataques
     two_factor_authentication: Autenticação de dois fatores
     webauthn_authentication: Chaves de segurança
   statuses:
@@ -1257,9 +1390,11 @@ pt-BR:
         other: "%{count} vídeos"
     boosted_from_html: Boost de %{acct_link}
     content_warning: 'Aviso de Conteúdo: %{warning}'
+    default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha hashtag não permitida: %{tags}'
       other: 'continha hashtags não permitidas: %{tags}'
+    edited_at_html: Editado em %{date}
     errors:
       in_reply_not_found: O toot que você quer responder parece não existir.
     open_in_web: Abrir no navegador
@@ -1333,87 +1468,6 @@ pt-BR:
   tags:
     does_not_match_previous_name: não corresponde ao nome anterior
   terms:
-    body_html: |
-      <h2>Política de Privacidade</h2>
-      <h3 id="collect">Quais dados nós coletamos?</h3>
-
-      <ul>
-      <li><em>Dados básicos de conta</em>: Se você criar conta nesta instância, um nome de usuário, um e-mail e uma senha serão exigidos. Você também pode adicionar dados extras como nome de exibição, biografia, imagem de perfil e capa. Com exceção do e-mail e da senha, os dados citados sempre são públicos.</li>
-      <li><em>Toots, seguindo e outros dados públicos</em>: A lista de pessoas que você segue e a sua lista de seguidores são públicas. Ao enviar um toot, a data, a hora e o aplicativo usado são armazenados. Toots podem conter mídias anexadas, como áudios, imagens e vídeos. Toots públicos e não-listados são visíveis publicamente. Os toots fixados no seu perfil são públicos. Seus toots são enviados aos seus seguidores, em alguns casos isso significa que os toots são enviados para instâncias diferentes e cópias são armazenadas lá. Quando você exclui toots, essa informação também é enviada aos seus seguidores. O ato de dar boost ou favoritar outro toot é sempre público.</li></li>
-      <li><em>Mensagens Diretas e toots privados</em>: Todos os toots são armazenados e processados na instância. Toots privados são enviados aos seus seguidores e aos usuários mencionados neles; Mensagens Diretas (ou toots diretos) são enviadas somente aos usuários mencionados nelas. Em alguns casos isso significa que os toots são enviados para instâncias diferentes e cópias são armazenadas lá. Nós trabalhamos constantemente para limitar o acesso a estes toots somente às pessoas autorizadas, porém outras instâncias podem não fazer o mesmo. Portanto, é importante analisar as instâncias dos seus seguidores. Você pode trancar a conta para aprovar ou vetar novos seguidores manualmente nas configurações. <em>Por favor, tenha em mente que os operadores da instância em que se está e das instâncias receptoras podem ver tais toots</em>, e que os destinatários podem fazer capturas de tela, copiar ou usar outra maneira para compartilhar os toots. <em>Não compartilhe informação confidencial pelo Mastodon.</em></li>
-      <li><em>IPs e outros metadados</em>: Ao entrar na sua conta, nós armazenamos o seu endereço de IP e o nome do navegador usado. Todas as sessões abertas estão disponíveis para serem analisadas e revogadas nas configurações. O último endereço de IP usado é armazenado por até 12 meses. Nós também podemos reter históricos da instância que incluem o endereço de IP de todas as conexões à nossa instância.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Como usamos os seus dados?</h3>
-
-      <p>Todo dado que coletamos pode ser usado das seguintes maneiras:</p>
-
-      <ul>
-      <li>Para prover a funcionalidade básica do Mastodon. Você só pode interagir com o conteúdo de outras pessoas e postar seu próprio conteúdo usando uma conta. Por exemplo, você pode seguir outras pessoas para ver seus toots na sua própria linha do tempo personalizada.</li>
-      <li>Para auxiliar na moderação da comunidade, por exemplo ao comparar o seu endereço de IP com outros endereços de IP conhecidos para determinar evasão de banimento e outras violações.</li>
-      <li>O endereço de e-mail que você fornecer pode ser usado para te enviar informações, notificações sobre outras pessoas interagindo com o seu conteúdo ou contigo e para responder a questões ou outras solicitações.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Como protegemos seus dados?</h3>
-
-      <p>Nós implementamos diversas medidas de segurança para manter suas informações pessoais seguras quando você as acessa ou as envia. Entre outras coisas, sua sessão do navegador, bem como o tráfego entre os aplicativos e a API são asseguradas usando SSL e a sua senha é guardada usando um algoritmo forte de criptografia de mão única. Você pode ativar autenticação em dois fatores como forma de aumentar a segurança no acesso à sua conta.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Qual é a nossa política de retenção de dados?</h3>
-
-      <p>Nós trabalhamos constantemente para:</p>
-
-      <ul>
-      <li>Reter o histórico da instância contendo os endereços de IP de todas as conexões a essa instância. O histórico é mantido por não mais que 90 dias.</li>
-      <li>Reter os endereços de IP associados à usuários da instância por não mais que 12 meses.</li>
-      </ul>
-
-      <p>Você pode solicitar e baixar um arquivo de todo o conteúdo da sua conta, incluindo seus toots, suas mídias, imagem de perfil e capa.</p>
-
-      <p>YVocê pode excluir a sua conta irreversivelmente a qualquer momento.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Nós usamos cookies?</h3>
-
-      <p>Sim. Cookies são pequenos arquivos que um site ou serviço baixa através do seu navegador (se você permitir). Esses cookies permitem ao site conhecer seu navegador e, se você tiver uma conta, associá-lo a ela.</p>
-
-      <p>Nós usamos cookies para salvar suas preferências para futuras visitas.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Nós compartilhamos algum dado para terceiros?</h3>
-
-      <p>Nós não vendemos, trocamos ou compartilhamos de qualquer maneira dados que possam te identificar à terceiros. Isso não inclui terceiros confiáveis que nos auxiliam a operar o nosso site, realizar nosso serviço ou prestar assistência, contanto que esses terceiros se comprometam a manter essa informação confidencial. Nós podemos também divulgar informação quando acreditamos que é apropriado para obedecer a lei, para fazer cumprir nossas políticas ou proteger os nossos direitos, propriedade ou segurança, ou de outrém.</p>
-
-      <p>Seu conteúdo público pode ser acessado por outras instâncias na rede. Seus toots públicos e privados são enviados às instâncias dos seus seguidores e seus toots diretos são enviados às instâncias dos usuários mencionados neles, contanto que esses seguidores ou usuários estejam em uma instância diferente desta.</p>
-
-      <p>Quando você autoriza um aplicativo a usar sua conta, dependendo do nível de autorização das permissões que você aprovar, o aplicativo pode acessar seus dados públicos, a lista de usuários que você segue, seus seguidores, suas listas, suas Mensagens Diretas e seus toots favoritos. Aplicativos nunca podem acessar o seu endereço de e-mail ou senha.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Uso desse site por crianças</h3>
-
-      <p>Se a instância está na UE ou no EEE: Nosso site, produto e serviço são direcionados às pessoas que tem ao menos 16 anos de idade. Se você tem menos de 16 anos, de acordo com os requisitos da RGPD (<a href="https://pt.wikipedia.org/wiki/Regulamento_Geral_sobre_a_Prote%C3%A7%C3%A3o_de_Dados">Regulamento Geral sobre Proteção de Dados</a>) não use este site.</p>
-
-      <p>Se esta instância está nos EUA: Nosso site, produto e serviço são direcionados às pessoas que tem ao menos 13 anos de idade. Se você tem menos de 13 anos, de acordo com os requerimentos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não use este site</p>
-
-      <p>Os requisitos da lei podem ser diferentes em outra jurisdição.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Alterações na nossa Política de Privacidade</h3>
-
-      <p>Se decidirmos mudar nossa Política de Privacidade, iremos disponibilizar as alterações nesta página.</p>
-
-      <p>CC-BY-SA. Atualizado pela última vez em 7 de março de 2018.</p>
-
-      <p>Adaptado originalmente de <a href="https://github.com/discourse/discourse">Política de Privacidade Discourse</a>.</p>
     title: Termos de Serviço e Política de Privacidade de %{instance}
   themes:
     contrast: Mastodon  (Alto contraste)
@@ -1423,6 +1477,7 @@ pt-BR:
     formats:
       default: "%H:%M em %d de %b de %Y"
       month: "%b de %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Adicionar
     disable: Desativar
@@ -1441,21 +1496,27 @@ pt-BR:
   user_mailer:
     appeal_approved:
       action: Acessar perfil
+      explanation: O recurso do ataque contra sua conta em %{strike_date} que você submeteu em %{appeal_date} foi aprovado. Sua conta está novamente em situação regular.
+      subject: Seu recurso de %{date} foi aprovado
       title: Contestação aprovada
     appeal_rejected:
+      explanation: O recurso do ataque contra sua conta em %{strike_date} que você submeteu em %{appeal_date} foi rejeitado.
+      subject: Seu recurso de %{date} foi rejeitado
       title: Contestação rejeitada
     backup_ready:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
       title: Baixar arquivo
-    sign_in_token:
-      details: 'Aqui estão os detalhes da tentativa:'
-      explanation: 'Detectamos uma tentativa de acessar sua conta a partir de um endereço IP não reconhecido. Se for você, insira o código de segurança abaixo na página de desafio:'
-      further_actions: 'Se não foi você, por favor mude sua senha e ative a autenticação de dois fatores em sua conta. Você pode fazê-lo aqui:'
-      subject: Por favor, confirme a tentativa de acesso
-      title: Tentativa de acesso
+    suspicious_sign_in:
+      change_password: Altere sua senha
+      details: 'Aqui estão os detalhes do acesso:'
+      explanation: Detectamos um login em sua conta a partir de um novo endereço IP.
+      further_actions_html: Se não foi você, recomendamos que você %{action} imediatamente e ative a autenticação de dois fatores para manter sua conta segura.
+      subject: Sua conta foi acessada a partir de um novo endereço IP
+      title: Um novo login
     warning:
       appeal: Enviar uma contestação
+      appeal_description: Se você acredita que isso é um erro, você pode enviar um apelo para a equipe de %{instance}.
       categories:
         spam: Spam
         violation: O conteúdo viola as seguintes diretrizes da comunidade
@@ -1494,13 +1555,10 @@ pt-BR:
       title: Boas vindas, %{name}!
   users:
     follow_limit_reached: Você não pode seguir mais de %{limit} pessoas
-    generic_access_help_html: Problemas para acessar sua conta? Você pode entrar em contato com %{email} para obter ajuda
     invalid_otp_token: Código de dois fatores inválido
-    invalid_sign_in_token: Cógido de segurança inválido
     otp_lost_help_html: Se você perder o acesso à ambos, você pode entrar em contato com %{email}
     seamless_external_login: Você entrou usando um serviço externo, então configurações de e-mail e senha não estão disponíveis.
     signed_in_as: 'Entrou como:'
-    suspicious_sign_in_confirmation: Parece que você não fez login deste dispositivo antes, e você não fez login por um tempo. Portanto, estamos enviando um código de segurança para o seu endereço de e-mail para confirmar que é você.
   verification:
     explanation_html: 'Você pode <strong>verificar os links nos metadados do seu perfil</strong>. Para isso, o site citado deve conter um link de volta para o seu perfil do Mastodon. O link de volta <strong>deve</strong> conter um atributo <code>rel="me"</code>. O conteúdo ou texto do link não importa. Aqui está um exemplo:'
     verification: Verificação

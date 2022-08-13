@@ -6,7 +6,7 @@ ca:
         expires_at: Data límit
         options: Opcions
       user:
-        agreement: Acord de servei
+        agreement: Acord sobre serveis
         email: Adreça de correu electrònic
         locale: Idioma
         password: Contrasenya
@@ -19,8 +19,16 @@ ca:
         account:
           attributes:
             username:
-              invalid: ha de contenir només lletres, números i subratllats
+              invalid: només pot contenir lletres, números i guions baixos
               reserved: està reservat
+        admin/webhook:
+          attributes:
+            url:
+              invalid: no és una URL vàlida
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: no és una URL vàlida
         status:
           attributes:
             reblog:
@@ -30,3 +38,14 @@ ca:
             email:
               blocked: utilitza un proveïdor de correu electrònic no autoritzat
               unreachable: sembla que no existeix
+            role_id:
+              elevated: no pot ser superior que el teu rol actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inclou permisos que no són segurs per al rol base
+              elevated: no pot incloure permisos que el teu rol actual no té
+              own_role: no es pot canviar amb el teu rol actual
+            position:
+              elevated: no pot ser superior al teu rol actual
+              own_role: no pot ser canviat amb el teu rol actual

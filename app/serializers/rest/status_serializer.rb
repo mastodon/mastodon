@@ -13,6 +13,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :muted, if: :current_user?
   attribute :bookmarked, if: :current_user?
   attribute :pinned, if: :pinnable?
+  has_many :filtered, serializer: REST::FilterResultSerializer, if: :current_user?
 
   attribute :content, unless: :source_requested?
   attribute :text, if: :source_requested?
@@ -120,6 +121,14 @@ class REST::StatusSerializer < ActiveModel::Serializer
     end
   end
 
+  def filtered
+    if instance_options && instance_options[:relationships]
+      instance_options[:relationships].filters_map[object.id] || []
+    else
+      current_user.account.status_matches_filters(object)
+    end
+  end
+
   def pinnable?
     current_user? &&
       current_user.account_id == object.account_id &&
@@ -137,6 +146,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   class ApplicationSerializer < ActiveModel::Serializer
     attributes :name, :website
+
+    def website
+      object.website.presence
+    end
   end
 
   class MentionSerializer < ActiveModel::Serializer

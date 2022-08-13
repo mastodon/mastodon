@@ -88,7 +88,7 @@ class Account < ApplicationRecord
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
-  validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? }
+  validates_with UnreservedUsernameValidator, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
   validates :display_name, length: { maximum: 30 }, if: -> { local? && will_save_change_to_display_name? }
   validates :note, note_length: { maximum: 500 }, if: -> { local? && will_save_change_to_note? }
   validates :fields, length: { maximum: 4 }, if: -> { local? && will_save_change_to_fields? }
@@ -109,13 +109,14 @@ class Account < ApplicationRecord
   scope :matches_username, ->(value) { where(arel_table[:username].matches("#{value}%")) }
   scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
-  scope :searchable, -> { without_suspended.where(moved_to_account_id: nil) }
+  scope :without_unapproved, -> { left_outer_joins(:user).remote.or(left_outer_joins(:user).merge(User.approved.confirmed)) }
+  scope :searchable, -> { without_unapproved.without_suspended.where(moved_to_account_id: nil) }
   scope :discoverable, -> { searchable.without_silenced.where(discoverable: true).left_outer_joins(:account_stat) }
   scope :followable_by, ->(account) { joins(arel_table.join(Follow.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(Follow.arel_table[:target_account_id]).and(Follow.arel_table[:account_id].eq(account.id))).join_sources).where(Follow.arel_table[:id].eq(nil)).joins(arel_table.join(FollowRequest.arel_table, Arel::Nodes::OuterJoin).on(arel_table[:id].eq(FollowRequest.arel_table[:target_account_id]).and(FollowRequest.arel_table[:account_id].eq(account.id))).join_sources).where(FollowRequest.arel_table[:id].eq(nil)) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc, accounts.id desc')) }
   scope :by_recent_sign_in, -> { order(Arel.sql('(case when users.current_sign_in_at is null then 1 else 0 end) asc, users.current_sign_in_at desc, accounts.id desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
-  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
+  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches("%.#{domain}"))) }
   scope :not_excluded_by_account, ->(account) { where.not(id: account.excluded_from_timeline_account_ids) }
   scope :not_domain_blocked_by_account, ->(account) { where(arel_table[:domain].eq(nil).or(arel_table[:domain].not_in(account.excluded_from_timeline_domains))) }
 
@@ -131,9 +132,6 @@ class Account < ApplicationRecord
            :unconfirmed?,
            :unconfirmed_or_pending?,
            :role,
-           :admin?,
-           :moderator?,
-           :staff?,
            :locale,
            :shows_application?,
            to: :user,
@@ -193,7 +191,7 @@ class Account < ApplicationRecord
   end
 
   def searchable?
-    !(suspended? || moved?)
+    !(suspended? || moved?) && (!local? || (approved? && confirmed?))
   end
 
   def possibly_stale?
@@ -453,7 +451,7 @@ class Account < ApplicationRecord
       DeliveryFailureTracker.without_unavailable(urls)
     end
 
-    def search_for(terms, limit = 10, offset = 0)
+    def search_for(terms, limit: 10, offset: 0)
       tsquery = generate_query_for_search(terms)
 
       sql = <<-SQL.squish
@@ -461,9 +459,11 @@ class Account < ApplicationRecord
           accounts.*,
           ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
         FROM accounts
+        LEFT JOIN users ON accounts.id = users.account_id
         WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
           AND accounts.suspended_at IS NULL
           AND accounts.moved_to_account_id IS NULL
+          AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
         ORDER BY rank DESC
         LIMIT :limit OFFSET :offset
       SQL
@@ -473,7 +473,7 @@ class Account < ApplicationRecord
       records
     end
 
-    def advanced_search_for(terms, account, limit = 10, following = false, offset = 0)
+    def advanced_search_for(terms, account, limit: 10, following: false, offset: 0)
       tsquery = generate_query_for_search(terms)
       sql = advanced_search_for_sql_template(following)
       records = find_by_sql([sql, id: account.id, limit: limit, offset: offset, tsquery: tsquery])
@@ -539,9 +539,11 @@ class Account < ApplicationRecord
             (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
+          LEFT JOIN users ON accounts.id = users.account_id
           WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
             AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
+            AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
           GROUP BY accounts.id
           ORDER BY rank DESC
           LIMIT :limit OFFSET :offset
@@ -558,6 +560,12 @@ class Account < ApplicationRecord
   before_validation :prepare_contents, if: :local?
   before_validation :prepare_username, on: :create
   before_destroy :clean_feed_manager
+
+  def ensure_keys!
+    return unless local? && private_key.blank? && public_key.blank?
+    generate_keys
+    save!
+  end
 
   private
 

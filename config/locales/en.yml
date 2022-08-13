@@ -38,7 +38,7 @@ en:
       one: post
       other: posts
     status_count_before: Who published
-    tagline: Follow friends and discover new ones
+    tagline: Decentralized social network
     terms: Terms of service
     unavailable_content: Moderated servers
     unavailable_content_description:
@@ -83,10 +83,8 @@ en:
     posts_tab_heading: Posts
     posts_with_replies: Posts and replies
     roles:
-      admin: Admin
       bot: Bot
       group: Group
-      moderator: Mod
     unavailable: Profile unavailable
     unfollow: Unfollow
   admin:
@@ -105,12 +103,17 @@ en:
       avatar: Avatar
       by_domain: Domain
       change_email:
-        changed_msg: Account email successfully changed!
+        changed_msg: Email successfully changed!
         current_email: Current email
         label: Change email
         new_email: New email
         submit: Change email
         title: Change email for %{username}
+      change_role:
+        changed_msg: Role successfully changed!
+        label: Change role
+        no_role: No role
+        title: Change role for %{username}
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
@@ -154,6 +157,7 @@ en:
         active: Active
         all: All
         pending: Pending
+        silenced: Limited
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
@@ -161,6 +165,7 @@ en:
       most_recent_ip: Most recent IP
       no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: No limits imposed
+      no_role_assigned: No role assigned
       not_subscribed: Not subscribed
       pending: Pending review
       perform_full_suspension: Suspend
@@ -187,19 +192,13 @@ en:
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
-      role: Permissions
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        staff: Staff
-        user: User
+      role: Role
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
       security_measures:
         only_password: Only password
         password_and_2fa: Password and 2FA
-        password_and_sign_in_token: Password and e-mail token
       sensitive: Force-sensitive
       sensitized: Marked as sensitive
       shared_inbox_url: Shared inbox URL
@@ -429,6 +428,7 @@ en:
       destroyed_msg: Domain block has been undone
       domain: Domain
       edit: Edit domain block
+      existing_domain_block: You have already imposed stricter limits on %{name}.
       existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Create block
@@ -518,6 +518,7 @@ en:
       delivery:
         all: All
         clear: Clear delivery errors
+        failing: Failing
         restart: Restart delivery
         stop: Stop delivery
         unavailable: Unavailable
@@ -598,7 +599,7 @@ en:
       action_taken_by: Action taken by
       actions:
         delete_description_html: The reported posts will be deleted and a strike will be recorded to help you escalate on future infractions by the same account.
-        mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future refractions by the same account.
+        mark_as_sensitive_description_html: The media in the reported posts will be marked as sensitive and a strike will be recorded to help you escalate on future infractions by the same account.
         other_description_html: See more options for controlling the account's behaviour and customize communication to the reported account.
         resolve_description_html: No action will be taken against the reported account, no strike recorded, and the report will be closed.
         silence_description_html: The profile will be visible only to those who already follow it or manually look it up, severely limiting its reach. Can always be reverted.
@@ -648,6 +649,67 @@ en:
       unresolved: Unresolved
       updated_at: Updated
       view_profile: View profile
+    roles:
+      add_new: Add role
+      assigned_users:
+        one: "%{count} user"
+        other: "%{count} users"
+      categories:
+        administration: Administration
+        devops: Devops
+        invites: Invites
+        moderation: Moderation
+        special: Special
+      delete: Delete
+      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
+      edit: Edit '%{name}' role
+      everyone: Default permissions
+      everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissions"
+      privileges:
+        administrator: Administrator
+        administrator_description: Users with this permission will bypass every permission
+        delete_user_data: Delete User Data
+        delete_user_data_description: Allows users to delete other users' data without delay
+        invite_users: Invite Users
+        invite_users_description: Allows users to invite new people to the server
+        manage_announcements: Manage Announcements
+        manage_announcements_description: Allows users to manage announcements on the server
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Allows users to review appeals against moderation actions
+        manage_blocks: Manage Blocks
+        manage_blocks_description: Allows users to block e-mail providers and IP addresses
+        manage_custom_emojis: Manage Custom Emojis
+        manage_custom_emojis_description: Allows users to manage custom emojis on the server
+        manage_federation: Manage Federation
+        manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
+        manage_invites: Manage Invites
+        manage_invites_description: Allows users to browse and deactivate invite links
+        manage_reports: Manage Reports
+        manage_reports_description: Allows users to review reports and perform moderation actions against them
+        manage_roles: Manage Roles
+        manage_roles_description: Allows users to manage and assign roles below theirs
+        manage_rules: Manage Rules
+        manage_rules_description: Allows users to change server rules
+        manage_settings: Manage Settings
+        manage_settings_description: Allows users to change site settings
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Allows users to review trending content and update hashtag settings
+        manage_user_access: Manage User Access
+        manage_user_access_description: Allows users to disable other users' two-factor authentication, change their e-mail address, and reset their password
+        manage_users: Manage Users
+        manage_users_description: Allows users to view other users' details and perform moderation actions against them
+        manage_webhooks: Manage Webhooks
+        manage_webhooks_description: Allows users to set up webhooks for administrative events
+        view_audit_log: View Audit Log
+        view_audit_log_description: Allows users to see a history of administrative actions on the server
+        view_dashboard: View Dashboard
+        view_dashboard_description: Allows users to access the dashboard and various metrics
+        view_devops: Devops
+        view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+      title: Roles
     rules:
       add_new: Add rule
       delete: Delete
@@ -700,9 +762,6 @@ en:
         deletion:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
-        min_invite_role:
-          disabled: No one
-          title: Allow invitations by
         require_invite_text:
           desc_html: When registrations require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
           title: Require new users to enter a reason to join
@@ -715,9 +774,6 @@ en:
       show_known_fediverse_at_about_page:
         desc_html: When disabled, restricts the public timeline linked from the landing page to showing only local content
         title: Include federated content on unauthenticated public timeline page
-      show_staff_badge:
-        desc_html: Show a staff badge on a user page
-        title: Show staff badge
       site_description:
         desc_html: Introductory paragraph on the API. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Server description
@@ -802,6 +858,7 @@ en:
           other: Shared by %{count} people over the last week
         title: Trending links
         usage_comparison: Shared %{today} times today, compared to %{yesterday} yesterday
+      only_allowed: Only allowed
       pending_review: Pending review
       preview_card_providers:
         allowed: Links from this publisher can trend
@@ -843,12 +900,33 @@ en:
           one: Used by one person over the last week
           other: Used by %{count} people over the last week
       title: Trends
+      trending: Trending
     warning_presets:
       add_new: Add new
       delete: Delete
       edit_preset: Edit warning preset
       empty: You haven't defined any warning presets yet.
       title: Manage warning presets
+    webhooks:
+      add_new: Add endpoint
+      delete: Delete
+      description_html: A <strong>webhook</strong> enables Mastodon to push <strong>real-time notifications</strong> about chosen events to your own application, so your application can <strong>automatically trigger reactions</strong>.
+      disable: Disable
+      disabled: Disabled
+      edit: Edit endpoint
+      empty: You don't have any webhook endpoints configured yet.
+      enable: Enable
+      enabled: Active
+      enabled_events:
+        one: 1 enabled event
+        other: "%{count} enabled events"
+      events: Events
+      new: New webhook
+      rotate_secret: Rotate secret
+      secret: Signing secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -913,7 +991,6 @@ en:
   applications:
     created: Application successfully created
     destroyed: Application successfully deleted
-    invalid_url: The provided URL is invalid
     regenerate_token: Regenerate access token
     token_regenerated: Access token successfully regenerated
     warning: Be very careful with this data. Never share it with anyone!
@@ -1034,10 +1111,12 @@ en:
       appealed_msg: Your appeal has been submitted. If it is approved, you will be notified.
       appeals:
         submit: Submit appeal
+      approve_appeal: Approve appeal
       associated_report: Associated report
       created_at: Dated
       description_html: These are actions taken against your account and warnings that have been sent to you by the staff of %{instance}.
       recipient: Addressed to
+      reject_appeal: Reject appeal
       status: 'Post #%{id}'
       status_removed: Post already removed from system
       title: "%{action} from %{date}"
@@ -1100,15 +1179,24 @@ en:
       public: Public timelines
       thread: Conversations
     edit:
+      add_keyword: Add keyword
+      keywords: Keywords
       title: Edit filter
     errors:
+      deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
       invalid_context: None or invalid context supplied
-      invalid_irreversible: Irreversible filtering only works with home or notifications context
     index:
+      contexts: Filters in %{contexts}
       delete: Delete
       empty: You have no filters.
+      expires_in: Expires in %{distance}
+      expires_on: Expires on %{date}
+      keywords:
+        one: "%{count} keyword"
+        other: "%{count} keywords"
       title: Filters
     new:
+      save: Save new filter
       title: Add new filter
   footer:
     developers: Developers
@@ -1227,6 +1315,8 @@ en:
     copy_account_note_text: 'This user moved from %{acct}, here were your previous notes about them:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} submitted a report"
       sign_up:
         subject: "%{name} signed up"
     digest:
@@ -1237,8 +1327,8 @@ en:
         one: Also, you have acquired one new follower while being away! Yay!
         other: Also, you have acquired %{count} new followers while being away! Amazing!
       subject:
-        one: "1 new notification since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
+        one: "1 new notification since your last visit 🐘"
+        other: "%{count} new notifications since your last visit 🐘"
       title: In your absence...
     favourite:
       body: 'Your post was favourited by %{name}:'
@@ -1353,6 +1443,11 @@ en:
   reports:
     errors:
       invalid_rules: does not reference valid rules
+  rss:
+    content_warning: 'Content warning:'
+    descriptions:
+      account: Public posts from @%{acct}
+      tag: 'Public posts tagged #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: You have exceeded the limit of %{limit} scheduled posts for today
     over_total_limit: You have exceeded the limit of %{limit} scheduled posts
@@ -1511,6 +1606,9 @@ en:
     pinned: Pinned post
     reblogged: boosted
     sensitive_content: Sensitive content
+  strikes:
+    errors:
+      too_late: It is too late to appeal this strike
   tags:
     does_not_match_previous_name: does not match the previous name
   terms:
@@ -1521,7 +1619,7 @@ en:
       <ul>
         <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
         <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
+        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any sensitive information over Mastodon.</em></li>
         <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
       </ul>
 
@@ -1592,7 +1690,7 @@ en:
 
       <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
 
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
+      <p>This document is CC-BY-SA. It was last updated May 26, 2022.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
@@ -1634,12 +1732,13 @@ en:
       explanation: You requested a full backup of your Mastodon account. It's now ready for download!
       subject: Your archive is ready for download
       title: Archive takeout
-    sign_in_token:
-      details: 'Here are details of the attempt:'
-      explanation: 'We detected an attempt to sign in to your account from an unrecognized IP address. If this is you, please enter the security code below on the sign in challenge page:'
-      further_actions: 'If this wasn''t you, please change your password and enable two-factor authentication on your account. You can do so here:'
-      subject: Please confirm attempted sign in
-      title: Sign in attempt
+    suspicious_sign_in:
+      change_password: change your password
+      details: 'Here are details of the sign-in:'
+      explanation: We've detected a sign-in to your account from a new IP address.
+      further_actions_html: If this wasn't you, we recommend that you %{action} immediately and enable two-factor authentication to keep your account secure.
+      subject: Your account has been accessed from a new IP address
+      title: A new sign-in
     warning:
       appeal: Submit an appeal
       appeal_description: If you believe this is an error, you can submit an appeal to the staff of %{instance}.
@@ -1690,13 +1789,10 @@ en:
       title: Welcome aboard, %{name}!
   users:
     follow_limit_reached: You cannot follow more than %{limit} people
-    generic_access_help_html: Trouble accessing your account? You may get in touch with %{email} for assistance
     invalid_otp_token: Invalid two-factor code
-    invalid_sign_in_token: Invalid security code
     otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
-    suspicious_sign_in_confirmation: You appear to not have logged in from this device before, so we're sending a security code to your e-mail address to confirm that it's you.
   verification:
     explanation_html: 'You can <strong>verify yourself as the owner of the links in your profile metadata</strong>. For that, the linked website must contain a link back to your Mastodon profile. The link back <strong>must</strong> have a <code>rel="me"</code> attribute. The text content of the link does not matter. Here is an example:'
     verification: Verification

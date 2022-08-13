@@ -46,9 +46,10 @@ hu:
         locale: A felhasználói felület, e-mailek, push üzenetek nyelve
         locked: Egyenként engedélyezned kell a követőidet
         password: Legalább 8 karakter
-        phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalom-figyelmeztetések mögött is
+        phrase: Illeszkedni fog kis/nagybetű függetlenül, és tartalmi figyelmeztetések mögött is
         scopes: Mely API-kat érheti el az alkalmazás. Ha felső szintű hatáskört választasz, nem kell egyesével kiválasztanod az alatta lévőeket.
         setting_aggregate_reblogs: Ne mutassunk megtolásokat olyan bejegyzésekhez, melyeket nemrég toltak meg (csak új megtolásokra lép életbe)
+        setting_always_send_emails: Alapesetben nem küldünk e-mail értesítéseket, ha aktívan használod a Mastodont
         setting_default_sensitive: A kényes médiatartalmat alapesetben elrejtjük, de egyetlen kattintással előhozható
         setting_display_media_default: Kényes tartalomnak jelölt média elrejtése
         setting_display_media_hide_all: Mindig minden média elrejtése
@@ -67,6 +68,11 @@ hu:
         with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
       featured_tag:
         name: 'Ezeket esetleg használhatod:'
+      filters:
+        action: A végrehajtandó műveletet, ha a bejegyzés megfelel a szűrőnek
+        actions:
+          hide: A szűrt tartalom teljes elrejtése, mintha nem is létezne
+          warn: A szűrt tartalom a szűrő címét említő figyelmeztetés mögé rejtése
       form_challenge:
         current_password: Beléptél egy biztonsági térben
       imports:
@@ -90,6 +96,16 @@ hu:
         name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
         chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
+        role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik
+      user_role:
+        color: A szerephez használandó szín mindenhol a felhasználói felületen, hexa RGB formátumban
+        highlighted: Ez nyilvánosan láthatóvá teszi a szerepet
+        name: A szerep nyilvános neve, ha a szerepet úgy állították be, hogy jelvényként látható legyen
+        permissions_as_keys: A felhasználók ezzel a szereppel elérhetik a...
+        position: A magasabb szerepkör oldja fel az ütközéseket bizonyos helyzetekben. Bizonyos műveleteket csak alacsonyabb prioritású szerepkörrel lehet elvégezni.
+      webhook:
+        events: Válaszd ki a küldendő eseményeket
+        url: Ahová az eseményket küldjük
     labels:
       account:
         fields:
@@ -151,6 +167,7 @@ hu:
         phrase: Kulcsszó vagy kifejezés
         setting_advanced_layout: Haladó webes felület engedélyezése
         setting_aggregate_reblogs: Megtolások csoportosítása az idővonalakon
+        setting_always_send_emails: E-mail értesítések küldése mindig
         setting_auto_play_gif: GIF-ek automatikus lejátszása
         setting_boost_modal: Megerősítés kérése megtolás előtt
         setting_crop_images: Képek 16x9-re vágása nem kinyitott bejegyzéseknél
@@ -163,7 +180,7 @@ hu:
         setting_display_media_default: Alapértelmezés
         setting_display_media_hide_all: Mindent elrejt
         setting_display_media_show_all: Mindent mutat
-        setting_expand_spoilers: Tartalom figyelmeztetéssel ellátott bejegyzések automatikus kinyitása
+        setting_expand_spoilers: Tartalmi figyelmeztetéssel ellátott bejegyzések automatikus kinyitása
         setting_hide_network: Hálózatod elrejtése
         setting_noindex: Megtiltom a keresőmotoroknak, hogy indexeljék a tartalmaimat
         setting_reduce_motion: Animációk mozgásának csökkentése
@@ -172,10 +189,11 @@ hu:
         setting_theme: Megjelenítési sablon
         setting_trends: Mai trend mutatása
         setting_unfollow_modal: Megerősítés kérése mielőtt abbahagyod valaki követését
-        setting_use_blurhash: Rejtett média helyett homály mutatása
+        setting_use_blurhash: Színátmenetek megjelenítése a rejtett médiáknál
         setting_use_pending_items: Lassú mód
         severity: Súlyosság
         sign_in_token_attempt: Biztonsági kód
+        title: Cím
         type: Importálás típusa
         username: Felhasználónév
         username_or_email: Felhasználónév vagy e-mail cím
@@ -184,6 +202,10 @@ hu:
         with_dns_records: Domain MX rekordjainak és IP-címeinek hozzávétele
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Teljes elrejtés
+          warn: Elrejtés figyelmeztetéssel
       interactions:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása
@@ -217,6 +239,17 @@ hu:
         name: Hashtag
         trendable: A hashtag megjelenhet a felkapottak között
         usable: Bejegyzések használhatják ezt a hashtaget
+      user:
+        role: Szerep
+      user_role:
+        color: Jelvény színe
+        highlighted: Szerep megjelenítése jelvényként a felhasználói profilokon
+        name: Név
+        permissions_as_keys: Engedélyek
+        position: Prioritás
+      webhook:
+        events: Engedélyezett események
+        url: Végponti URL
     'no': Nem
     recommended: Ajánlott
     required:

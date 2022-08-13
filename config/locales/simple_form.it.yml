@@ -49,6 +49,7 @@ it:
         phrase: Il confronto sarà eseguito ignorando minuscole/maiuscole e i content warning
         scopes: A quali API l'applicazione potrà avere accesso. Se selezionate un ambito di alto livello, non c'è bisogno di selezionare quelle singole.
         setting_aggregate_reblogs: Non mostrare nuove condivisioni per toot che sono stati condivisi di recente (ha effetto solo sulle nuove condivisioni)
+        setting_always_send_emails: Normalmente le notifiche e-mail non vengono inviate quando si utilizza attivamente Mastodon
         setting_default_sensitive: Media con contenuti sensibili sono nascosti in modo predefinito e possono essere rivelati con un click
         setting_display_media_default: Nascondi media segnati come sensibili
         setting_display_media_hide_all: Nascondi sempre tutti i media
@@ -67,6 +68,11 @@ it:
         with_dns_records: Sarà effettuato un tentativo di risolvere i record DNS del dominio in questione e i risultati saranno inseriti anche nella blacklist
       featured_tag:
         name: 'Eccone alcuni che potresti usare:'
+      filters:
+        action: Scegli quale azione eseguire quando un post corrisponde al filtro
+        actions:
+          hide: Nascondi completamente il contenuto filtrato, come se non esistesse
+          warn: Nascondi il contenuto filtrato e mostra invece un avviso, citando il titolo del filtro
       form_challenge:
         current_password: Stai entrando in un'area sicura
       imports:
@@ -90,6 +96,16 @@ it:
         name: Puoi cambiare solo il minuscolo/maiuscolo delle lettere, ad esempio, per renderlo più leggibile
       user:
         chosen_languages: Quando una o più lingue sono contrassegnate, nelle timeline pubbliche vengono mostrati solo i toot nelle lingue selezionate
+        role: Il ruolo controlla quali permessi ha l'utente
+      user_role:
+        color: Colore da usare per il ruolo in tutta l'UI, come RGB in formato esadecimale
+        highlighted: Rende il ruolo visibile
+        name: Nome pubblico del ruolo, se il ruolo è impostato per essere visualizzato come distintivo
+        permissions_as_keys: Gli utenti con questo ruolo avranno accesso a...
+        position: Un ruolo più alto decide la risoluzione dei conflitti in determinate situazioni. Alcune azioni possono essere eseguite solo su ruoli con priorità più bassa
+      webhook:
+        events: Seleziona eventi da inviare
+        url: Dove gli eventi saranno inviati
     labels:
       account:
         fields:
@@ -151,7 +167,8 @@ it:
         phrase: Parola chiave o frase
         setting_advanced_layout: Abilita interfaccia web avanzata
         setting_aggregate_reblogs: Raggruppa condivisioni in timeline
-        setting_auto_play_gif: Play automatico GIF animate
+        setting_always_send_emails: Manda sempre notifiche via email
+        setting_auto_play_gif: Riproduci automaticamente le GIF animate
         setting_boost_modal: Mostra dialogo di conferma prima del boost
         setting_crop_images: Ritaglia immagini in post non espansi a 16x9
         setting_default_language: Lingua dei post
@@ -169,13 +186,14 @@ it:
         setting_reduce_motion: Riduci movimento nelle animazioni
         setting_show_application: Rendi pubblica l'applicazione usata per inviare i post
         setting_system_font_ui: Usa il carattere predefinito del sistema
-        setting_theme: Tema sito
+        setting_theme: Tema del sito
         setting_trends: Mostra tendenze di oggi
         setting_unfollow_modal: Chiedi conferma prima di smettere di seguire qualcuno
         setting_use_blurhash: Mostra i gradienti colorati per i media nascosti
         setting_use_pending_items: Modalità lenta
         severity: Severità
         sign_in_token_attempt: Codice di sicurezza
+        title: Titolo
         type: Tipo importazione
         username: Nome utente
         username_or_email: Nome utente o email
@@ -184,6 +202,10 @@ it:
         with_dns_records: Includi record MX e indirizzi IP del dominio
       featured_tag:
         name: Etichetta
+      filters:
+        actions:
+          hide: Nascondi completamente
+          warn: Nascondi con avviso
       interactions:
         must_be_follower: Blocca notifiche da chi non ti segue
         must_be_following: Blocca notifiche dalle persone che non segui
@@ -217,6 +239,17 @@ it:
         name: Hashtag
         trendable: Permetti a questo hashtag di apparire nelle tendenze
         usable: Permetti ai post di usare questo hashtag
+      user:
+        role: Ruolo
+      user_role:
+        color: Colore distintivo
+        highlighted: Mostra il ruolo come distintivo sui profili utente
+        name: Nome
+        permissions_as_keys: Permessi
+        position: Priorità
+      webhook:
+        events: Eventi abilitati
+        url: URL endpoint
     'no': 'No'
     recommended: Consigliato
     required:

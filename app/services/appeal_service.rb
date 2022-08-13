@@ -14,14 +14,15 @@ class AppealService < BaseService
   private
 
   def create_appeal!
-    @appeal = @strike.create_appeal!(
+    @appeal = Appeal.create!(
+      strike: @strike,
       text: @text,
       account: @strike.target_account
     )
   end
 
   def notify_staff!
-    User.staff.includes(:account).each do |u|
+    User.those_who_can(:manage_appeals).includes(:account).each do |u|
       AdminMailer.new_appeal(u.account, @appeal).deliver_later if u.allows_appeal_emails?
     end
   end
