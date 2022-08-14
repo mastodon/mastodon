@@ -26,16 +26,18 @@ eo:
 
       '
     learn_more: Lerni pli
+    logged_in_as_html: Vi nun salutis kiel %{username}.
     logout_before_registering: Vi jam salutis.
-    privacy_policy: Privateca politiko
+    privacy_policy: Politiko de privateco
     rules: Reguloj de la servilo
     see_whats_happening: Vidi kio okazas
-    server_stats: Servo statuso
+    server_stats: 'Statistiko de la servilo:'
     source_code: Fontkodo
     status_count_after:
       one: mesaĝo
       other: mesaĝoj
     status_count_before: Kie skribiĝis
+    tagline: Malcentrigita socia retejo
     terms: Kondiĉoj de la servo
     unavailable_content: Moderigitaj serviloj
     unavailable_content_description:
@@ -108,9 +110,9 @@ eo:
       delete: Forigi datumojn
       deleted: Forigita
       demote: Degradi
-      disable: Malebligi
-      disable_two_factor_authentication: Malebligi 2FA
-      disabled: Malebligita
+      disable: Frostigi
+      disable_two_factor_authentication: Malaktivigi 2FA-n
+      disabled: Frostigita
       display_name: Montrata nomo
       domain: Domajno
       edit: Redakti
@@ -220,9 +222,9 @@ eo:
         destroy_ip_block: Forigi IP-regulon
         destroy_status: Forigi mesaĝon
         destroy_unavailable_domain: Forigi Nehaveblan Domajnon
-        disable_2fa_user: Malebligi 2FA
-        disable_custom_emoji: Malebligi Propran Emoĝion
-        disable_user: Malebligi uzanton
+        disable_2fa_user: Malaktivigi 2FA-n
+        disable_custom_emoji: Malaktivigi la proprajn emoĝiojn
+        disable_user: Malaktivigi la uzanton
         enable_custom_emoji: Ebligi Propran Emoĝion
         enable_sign_in_token_auth_user: Aktivigi la aŭtentigon de peco per retpoŝto por la uzanto
         enable_user: Ebligi uzanton
@@ -265,9 +267,9 @@ eo:
         destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
         destroy_ip_block_html: "%{name} forigis regulon por IP %{target}"
         destroy_status_html: "%{name} forigis mesaĝojn de %{target}"
-        disable_2fa_user_html: "%{name} malebligis dufaktoran aŭtentigon por uzanto %{target}"
-        disable_custom_emoji_html: "%{name} malebligis emoĝion %{target}"
-        disable_user_html: "%{name} malebligis ensaluton por uzanto %{target}"
+        disable_2fa_user_html: "%{name} malaktivigis la postulon de la dufaktora aŭtentigo por la uzanto %{target}"
+        disable_custom_emoji_html: "%{name} neebligis la emoĝion %{target}"
+        disable_user_html: "%{name} neebligis la saluton de la uzanto %{target}"
         enable_custom_emoji_html: "%{name} ebligis emoĝion %{target}"
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
@@ -310,9 +312,9 @@ eo:
       created_msg: Emoĝio sukcese kreita!
       delete: Forigi
       destroyed_msg: Emoĝio sukcese forigita!
-      disable: Malebligi
-      disabled: Malebligita
-      disabled_msg: Emoĝio sukcese malebligita
+      disable: Neebligi
+      disabled: Neebligita
+      disabled_msg: La emoĝio sukcese neebligita
       emoji: Emoĝio
       enable: Ebligi
       enabled: Ebligita
@@ -458,11 +460,11 @@ eo:
       add_new: Aldoni novan ripetilon
       delete: Forigi
       description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
-      disable: Malebligi
-      disabled: Malebligita
+      disable: Neebligi
+      disabled: Neebligita
       enable: Ebligi
       enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn mesaĝojn de la servilo al ĝi.
-      enabled: Malebligita
+      enabled: Ebligita
       inbox_url: URL de la ripetilo
       pending: Atendante aprobon de la ripetilo
       save_and_enable: Konservi kaj ebligi
@@ -618,7 +620,7 @@ eo:
     strikes:
       actions:
         delete_statuses: "%{name} forigis afiŝojn de %{target}"
-        disable: "%{name} malebligis la konton de %{target}"
+        disable: "%{name} frostigis la konton de %{target}"
         suspend: "%{name} suspendis la konton de %{target}"
       appeal_approved: Apelaciita
     system_checks:
@@ -644,6 +646,9 @@ eo:
         allow_account: Permesi aŭtoron
         disallow: Malpermesi afiŝon
         disallow_account: Malpermesi aŭtoron
+        shared_by:
+          one: Kundividita kaj aldonita al preferaĵoj unufoje
+          other: Kundividita kaj aldonita al preferaĵoj %{friendly_count}-foje
         title: Tendencantaj afiŝoj
       tags:
         dashboard:
@@ -660,7 +665,7 @@ eo:
   admin_mailer:
     new_appeal:
       actions:
-        disable: por malebligi ties konton
+        disable: por frostigi ties konton
     new_pending_account:
       body: La detaloj de la nova konto estas sube. Vi povas aprobi aŭ Malakcepti ĉi kandidatiĝo.
       subject: Nova konto atendas por recenzo en %{instance} (%{username})
@@ -765,7 +770,7 @@ eo:
       invalid_signature: 올바른 Ed25519 시그니처가 아닙니다
   date:
     formats:
-      default: "%d de %b %Y"
+      default: "%Y-%b-%d"
       with_month_name: "%e-a de %B %Y"
   datetime:
     distance_in_words:
@@ -858,7 +863,7 @@ eo:
     errors:
       invalid_context: Neniu aŭ nevalida kunteksto donita
     index:
-      contexts: Filtri en %{contexts}
+      contexts: Filtriloj en %{contexts}
       delete: Forigi
       empty: Vi havas neniun filtrilon.
       expires_in: Eksvalidiĝi en %{distance}
@@ -922,7 +927,7 @@ eo:
       one: 1 uzo
       other: "%{count} uzoj"
     max_uses_prompt: Neniu limo
-    prompt: Krei kaj diskonigi ligilojn al aliaj por doni aliron al ĉi tiu servilo
+    prompt: Generi kaj kundividi ligilojn kun aliaj personoj por doni aliron al ĉi tiu servilo
     table:
       expires_at: Eksvalidiĝas je
       uses: Uzoj
@@ -994,9 +999,9 @@ eo:
       subject: "%{name} menciis vin"
       title: Nova mencio
     reblog:
-      body: "%{name} diskonigis vian mesaĝon:"
-      subject: "%{name} diskonigis vian mesaĝon"
-      title: Nova diskonigo
+      body: 'Via mesaĝo estas suprenigita de %{name}:'
+      subject: "%{name} suprenigis vian mesaĝon"
+      title: Nova suprenigo
     status:
       subject: "%{name} ĵus afiŝita"
     update:
@@ -1076,8 +1081,8 @@ eo:
       proceed: Konfirmi la stelumon
       prompt: 'Vi volas aldoni ĉi tiun mesaĝon al viaj preferaĵoj:'
     reblog:
-      proceed: Konfirmi la diskonigon
-      prompt: 'Vi volas diskonigi ĉi tiun mesaĝon:'
+      proceed: Procedi pri la suprenigo
+      prompt: 'Vi deziras suprenigi ĉi tiun mesaĝon:'
     reply:
       proceed: Konfirmi la respondon
       prompt: 'Vi volas respondi al ĉi tiu mesaĝo:'
@@ -1161,7 +1166,7 @@ eo:
       video:
         one: "%{count} video"
         other: "%{count} videoj"
-    boosted_from_html: Diskonigita de %{acct_link}
+    boosted_from_html: Suprenigita de %{acct_link}
     content_warning: 'Averto de la enhavo: %{warning}'
     default_language: Same kiel lingvo de la fasado
     disallowed_hashtags:
@@ -1172,7 +1177,7 @@ eo:
     pin_errors:
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
-      reblog: Diskonigo ne povas esti alpinglita
+      reblog: Suprenigo ne povas esti alpinglita
     poll:
       total_people:
         one: "%{count} persono"
@@ -1199,7 +1204,7 @@ eo:
     enabled: Aŭtomate forigi malnovajn postojn
     exceptions: Esceptoj
     ignore_favs: Ignori la preferaĵojn
-    ignore_reblogs: Ignori akcelojn
+    ignore_reblogs: Ignori la suprenigojn
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
     keep_media: Konservi la mesaĝojn kun aŭdovidaj aldonaĵoj
@@ -1216,7 +1221,7 @@ eo:
       '7889238': 3 monatoj
   stream_entries:
     pinned: Alpinglita
-    reblogged: diskonigita
+    reblogged: suprenigita
     sensitive_content: Tikla enhavo
   tags:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
@@ -1233,8 +1238,8 @@ eo:
       time: "%H:%M"
   two_factor_authentication:
     add: Aldoni
-    disable: Malebligi
-    disabled_success: Dufaktora aŭtentigo sukcese malebligita
+    disable: Malaktivigi 2FA-n
+    disabled_success: Du-faktora aŭtentigo sukcese malaktivigita
     edit: Redakti
     enabled: Dufaktora aŭtentigo ebligita
     enabled_success: Dufaktora aŭtentigo sukcese ebligita

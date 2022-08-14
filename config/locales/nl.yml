@@ -1092,8 +1092,8 @@ nl:
         other: Je hebt trouwens sinds je weg was er ook %{count} nieuwe volgers bijgekregen! Fantastisch!
       title: Tijdens jouw afwezigheid...
     favourite:
-      body: 'Jouw bericht werd door %{name} aan diens favorieten toegevoegd:'
-      subject: "%{name} voegde jouw bericht als favoriet toe"
+      body: 'Jouw bericht werd door %{name} als favoriet gemarkeerd:'
+      subject: "%{name} markeerde jouw bericht als favoriet"
       title: Nieuwe favoriet
     follow:
       body: "%{name} volgt jou nu!"
@@ -1117,6 +1117,8 @@ nl:
       title: Nieuwe boost
     status:
       subject: "%{name} heeft zojuist een bericht geplaatst"
+    update:
+      subject: "%{name} bewerkte een bericht"
   notifications:
     email_events: E-mailmeldingen voor gebeurtenissen
     email_events_hint: 'Selecteer gebeurtenissen waarvoor je meldingen wilt ontvangen:'
@@ -1190,8 +1192,8 @@ nl:
     reason_html: "<strong> Waarom is deze extra stap nodig? </strong> <code>%{instance}</code> is wellicht niet de server waarop jij je geregistreerd hebt. We verwijzen je eerst door naar jouw eigen server."
   remote_interaction:
     favourite:
-      proceed: Doorgaan met toevoegen aan jouw favorieten
-      prompt: 'Je wilt het volgende bericht aan jouw favorieten toevoegen:'
+      proceed: Doorgaan met het markeren als favoriet
+      prompt: 'Je wilt het volgende bericht als favoriet markeren:'
     reblog:
       proceed: Doorgaan met boosten
       prompt: 'Je wilt het volgende bericht boosten:'
@@ -1281,6 +1283,7 @@ nl:
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
+    edited_at_html: Bewerkt op %{date}
     errors:
       in_reply_not_found: Het bericht waarop je probeert te reageren lijkt niet te bestaan.
     open_in_web: In de webapp openen
