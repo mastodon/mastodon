@@ -119,7 +119,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
-  gem 'webmock', '~> 3.14'
+  gem 'webmock', '~> 3.17'
   gem 'rspec_junit_formatter', '~> 0.5'
 end
 
