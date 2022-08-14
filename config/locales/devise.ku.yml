@@ -1,3 +1,4 @@
+---
 ku:
   devise:
     confirmations:
@@ -7,10 +8,10 @@ ku:
     failure:
       already_authenticated: Jixwe te berê têketin kiriye.
       inactive: Ajimêra te hîn nehatiye çalakkirin.
-      invalid: '%{authentication_keys} an jî borînpeyv nederbasdar e.'
+      invalid: "%{authentication_keys} an jî borînpeyv nederbasdar e."
       last_attempt: Peşiya kilît kirina ajimêra te carek din jî biceribîne.
       locked: Ajimêra ye hat kilît kirin.
-      not_found_in_database: '%{authentication_keys} an jî borînpeyv nederbasdar e.'
+      not_found_in_database: "%{authentication_keys} an jî borînpeyv nederbasdar e."
       pending: Ajimêra te hîn tê vekolandin.
       timeout: Danişîna te qedîya. Ji kerema xwe ji bo berdewamiyê dîsa têkeve.
       unauthenticated: Peşiya berdewamiya te têketina xwe bike an jî xwe tomar bike.
@@ -20,7 +21,9 @@ ku:
         action: Navnîşana e-nameyê piştrast bike
         action_with_app: Piştrast bike û vegere bo %{app}
         explanation: Te li ser %{host} ajimêrek çê kiriye bi navnîşana vê e-nameyê re. Tu ji çalakkirina wê bi tikandinekê dûr î. Heke ev ne tu bûya, ji kerema xwe guh nede vê e-nameyê.
-        explanation_when_pending: "Te bi vê navnîşana e -nameyê serlêdana vexwendina %{host} kir. Gava ku tu navnîşana e-nameya xwe piştrast bikî, em ê serlêdana te binirxînin. Tu dikarî têkevî da ku hûrguliyên xwe biguherînî an ajimêra xwe jê bibî, lê heya ku ajimêra te neyê pejirandin tu nekarî piraniya fonksiyonan bi kar bînî\n Heke serlêdana te werê red kirin, dê daneyên te werin jêbirin, ji ber vê yekê çalakîyek din ji te nayê xwestin. Heke ev ne tu bû, ji kerema xwe guh nede vê e-nameyê."
+        explanation_when_pending: |-
+          Te bi vê navnîşana e -nameyê serlêdana vexwendina %{host} kir. Gava ku tu navnîşana e-nameya xwe piştrast bikî, em ê serlêdana te binirxînin. Tu dikarî têkevî da ku hûrguliyên xwe biguherînî an ajimêra xwe jê bibî, lê heya ku ajimêra te neyê pejirandin tu nekarî piraniya fonksiyonan bi kar bînî
+           Heke serlêdana te werê red kirin, dê daneyên te werin jêbirin, ji ber vê yekê çalakîyek din ji te nayê xwestin. Heke ev ne tu bû, ji kerema xwe guh nede vê e-nameyê.
         extra_html: Jkx vê jî kontrol bike <a href="%{terms_path}"> rêbazên rajekar</a> û <a href="%{policy_path}">mercên me yên karûbaran</a>.
         subject: 'Mastodon: ji bo %{instance} pejirandinê rêwerzan'
         title: Navnîşana e-nameyê piştrast bike
@@ -36,7 +39,9 @@ ku:
         title: Borînpeyv hate guhertin
       reconfirmation_instructions:
         explanation: Navnîşana nû piştrast bike da ku tu e-nameya xwe biguherînî.
-        extra: "Heke ev daxwaz ji aliyê te de nehate pêkanîn, jkx guh nede vê e-nameyê\n Navnîşana e-nameyê bo ajimêra Mastodon wê tu guhertin pêk neyîne heya ku tu li girêdana Jêrin bitikînî."
+        extra: |-
+          Heke ev daxwaz ji aliyê te de nehate pêkanîn, jkx guh nede vê e-nameyê
+           Navnîşana e-nameyê bo ajimêra Mastodon wê tu guhertin pêk neyîne heya ku tu li girêdana Jêrin bitikînî.
         subject: 'Mastodon: E-nameyê piştrast bike bo %{instance}'
         title: Navnîşana e-nameyê piştrast bike
       reset_password_instructions:
@@ -62,7 +67,7 @@ ku:
       webauthn_credential:
         added:
           explanation: Kilîta ewlehiyê jêrîn li ajimêra te hate tevlîkirin
-          subject: 'Kilîta ewlehiyê ya nû'
+          subject: Kilîta ewlehiyê ya nû
           title: Kilîta ewlehiyê ya nû hate tevlîkirin
         deleted:
           explanation: Kilîta ewlehiyê jêrîn li ajimêra te hate jêbirin
