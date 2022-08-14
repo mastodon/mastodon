@@ -145,6 +145,7 @@ ja:
         active: アクティブ
         all: すべて
         pending: 承認待ち
+        silenced: 制限
         suspended: 停止済み
         title: モデレーション
       moderation_notes: モデレーションメモ
@@ -152,6 +153,7 @@ ja:
       most_recent_ip: 直近のIP
       no_account_selected: 何も選択されていないため、変更されていません
       no_limits_imposed: 制限なし
+      no_role_assigned: ロールが割り当てられていません
       not_subscribed: 購読していない
       pending: 承認待ち
       perform_full_suspension: 活動を完全に停止させる
@@ -177,6 +179,7 @@ ja:
       reset: リセット
       reset_password: パスワード再設定
       resubscribe: 再講読
+      role: 役割
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じIPのユーザーを検索
@@ -621,7 +624,36 @@ ja:
       updated_at: 更新日時
       view_profile: プロフィールを表示
     roles:
+      add_new: 役割を追加
+      assigned_users:
+        other: "%{count} 人"
+      categories:
+        administration: 管理
+        devops: 開発者
+        invites: 招待
+        moderation: モデレーション
+      delete: 削除
+      description_html: <strong>ユーザー ロール</strong>を使用すると、ユーザーがアクセスできる Mastodon の機能や領域をカスタマイズできます。
+      edit: '''%{name}'' の役割を編集'
+      everyone: デフォルトの権限
+      everyone_full_description_html: これは、割り当てられたロールを持っていないものであっても、 <strong>すべてのユーザー</strong> に影響を与える <strong>基本ロール</strong>です。 他のすべてのロールは、そこから権限を継承します。
+      permissions_count:
+        other: "%{count} つの権限"
       privileges:
+        administrator: 管理者
+        administrator_description: この権限を持つユーザーはすべての権限をバイパスします
+        delete_user_data: ユーザーデータの削除
+        delete_user_data_description: ユーザーは、遅滞なく他のユーザーのデータを削除することができます
+        invite_users: ユーザーを招待
+        invite_users_description: ユーザーがサーバーに新しい人を招待できるようにします
+        manage_announcements: お知らせの管理
+        manage_announcements_description: ユーザーがサーバー上のアナウンスを管理できるようにします
+        manage_appeals: 抗議の管理
+        manage_appeals_description: ユーザーはモデレーションアクションに対する抗議を確認できます
+        manage_blocks: ブロックの管理
+        manage_blocks_description: ユーザーが電子メールプロバイダとIPアドレスをブロックできるようにします
+        manage_custom_emojis: カスタム絵文字を管理
+        manage_custom_emojis_description: ユーザーがサーバー上のカスタム絵文字を管理できるようにします
         manage_federation: 連合の管理
         manage_federation_description: ユーザーが他のドメインとの連合をブロックまたは許可したり、配信を制御したりできます。
         manage_invites: 招待を管理
