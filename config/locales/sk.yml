@@ -109,6 +109,11 @@ sk:
         new_email: Nový email
         submit: Zmeň email
         title: Zmeň email pre %{username}
+      change_role:
+        changed_msg: Postavenie úspešne zmenené!
+        label: Zmeň pozíciu
+        no_role: Žiadna pozícia
+        title: Zmeň pozíciu pre %{username}
       confirm: Potvrď
       confirmed: Potvrdený
       confirming: Potvrdzujúci
@@ -145,6 +150,7 @@ sk:
         active: Aktívny/a
         all: Všetko
         pending: Čakajúci
+        silenced: Obmedzený
         suspended: Vylúčený/á
         title: Moderácia
       moderation_notes: Moderátorské poznámky
@@ -152,6 +158,7 @@ sk:
       most_recent_ip: Posledná IP adresa
       no_account_selected: Nedošlo k žiadnému pozmeneniu účtov, keďže žiadne neboli vybrané
       no_limits_imposed: Nie sú stanovené žiadné obmedzenia
+      no_role_assigned: Žiadne postavenie nepriradené
       not_subscribed: Neodoberá
       pending: Vyžaduje posúdenie
       perform_full_suspension: Vylúč
@@ -170,6 +177,7 @@ sk:
       reset: Resetuj
       reset_password: Obnov heslo
       resubscribe: Znovu odoberaj
+      role: Postavenie
       search: Hľadaj
       search_same_email_domain: Iní užívatelia s tou istou emailovou doménou
       search_same_ip: Ostatní užívatelia s rovnakou IP adresou
@@ -346,7 +354,9 @@ sk:
       domain: Doména
       new:
         create: Pridaj doménu
+        resolve: Preveď doménu
         title: Nový email na zablokovanie
+      resolved_through_html: Prevedená cez %{domain}
       title: Blokované emailové adresy
     follow_recommendations:
       description_html: "<strong>Odporúčania na sledovanie pomáhaju novým užívateľom rýchlo nájsť zaujímavý obsah</strong>. Ak užívateľ zatiaľ nedostatočne interagoval s ostatnými aby si vyformoval personalizované odporúčania na sledovanie, tak mu budú odporúčané tieto účty. Sú prepočítavané na dennej báze z mixu účtov s nedávnym najvyšším záujmom a najvyšším počtom lokálnych sledujúcich pre daný jazyk."
@@ -368,7 +378,11 @@ sk:
         policies:
           reject_media: Zamietni médiá
           suspend: Vylúč
+        policy: Zásady
         reason: Verejné odôvodnenie
+        title: Zásady o obsahu
+      dashboard:
+        instance_accounts_dimension: Najsledovanejšie účty
       delivery:
         all: Všetko
         unavailable: Nedostupné
@@ -466,6 +480,23 @@ sk:
       unassign: Odober
       unresolved: Nevyriešené
       updated_at: Aktualizované
+      view_profile: Zobraz profil
+    roles:
+      add_new: Pridaj postavenie
+      assigned_users:
+        one: "%{count} užívateľ"
+        few: "%{count} užívateľov"
+        many: "%{count} užívateľov"
+        other: "%{count} užívatelia"
+      categories:
+        administration: Spravovanie
+        invites: Pozvánky
+      edit: Uprav postavenie %{name}
+      privileges:
+        administrator: Správca
+        invite_users: Pozvi užívateľov
+        manage_roles: Spravuj postavenia
+      title: Postavenia
     rules:
       empty: Žiadne pravidlá servera ešte neboli určené.
       title: Serverové pravidlá
