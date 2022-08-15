@@ -68,6 +68,11 @@ de:
         with_dns_records: Ein Versuch die DNS-Einträge der Domain aufzulösen wurde unternommen und diese Ergebnisse werden unter anderem auch geblockt
       featured_tag:
         name: 'Du möchtest vielleicht einen von diesen benutzen:'
+      filters:
+        action: Wählen Sie, welche Aktion ausgeführt werden soll, wenn ein Beitrag dem Filter entspricht
+        actions:
+          hide: Den gefilterten Inhalt vollständig ausblenden, als hätte er nie existiert
+          warn: Den gefilterten Inhalt hinter einer Warnung ausblenden, die den Filtertitel beinhaltet
       form_challenge:
         current_password: Du betrittst einen sicheren Bereich
       imports:
@@ -91,6 +96,13 @@ de:
         name: Du kannst zum Beispiel nur die Groß- und Kleinschreibung der Buchstaben ändern, um es lesbarer zu machen
       user:
         chosen_languages: Wenn aktiviert, werden nur Beiträge in den ausgewählten Sprachen auf den öffentlichen Zeitleisten angezeigt
+        role: Die Rolle kontrolliert welche Berechtigungen ein Benutzer hat
+      user_role:
+        color: Die Farbe, die für die Rolle im gesamten UI verwendet wird, als RGB im Hexformat
+        highlighted: Dies macht die Rolle öffentlich sichtbar
+        name: Öffentlicher Name der Rolle, wenn die Rolle als Abzeichen angezeigt werden soll
+        permissions_as_keys: Benutzer mit dieser Rolle haben Zugriff auf...
+        position: Die höhere Rolle entscheidet über die Konfliktlösung in bestimmten Situationen. Bestimmte Aktionen können nur in Rollen mit geringerer Priorität ausgeführt werden
       webhook:
         events: Zu sendende Ereignisse auswählen
         url: Wo Ereignisse hingesendet werden
@@ -181,6 +193,7 @@ de:
         setting_use_pending_items: Langsamer Modus
         severity: Schweregrad
         sign_in_token_attempt: Sicherheitscode
+        title: Titel
         type: Art des Imports
         username: Profilname
         username_or_email: Profilname oder E-Mail
@@ -189,6 +202,10 @@ de:
         with_dns_records: MX-Einträge und IPs der Domain einbeziehen
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Komplett ausblenden
+          warn: Mit einer Warnung ausblenden
       interactions:
         must_be_follower: Benachrichtigungen von Profilen blockieren, die mir nicht folgen
         must_be_following: Benachrichtigungen von Profilen blockieren, denen ich nicht folge
@@ -222,6 +239,14 @@ de:
         name: Hashtag
         trendable: Erlaube es diesen Hashtag in den Trends erscheinen zu lassen
         usable: Beiträge erlauben, diesen Hashtag zu verwenden
+      user:
+        role: Rolle
+      user_role:
+        color: Abzeichenfarbe
+        highlighted: Rolle als Abzeichen in Benutzerprofilen anzeigen
+        name: Name
+        permissions_as_keys: Berechtigungen
+        position: Priorität
       webhook:
         events: Aktivierte Ereignisse
         url: Endpunkt-URL
