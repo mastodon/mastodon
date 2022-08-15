@@ -103,11 +103,17 @@ es-MX:
       avatar: Foto de perfil
       by_domain: Dominio
       change_email:
+        changed_msg: "¡Email cambiado con éxito!"
         current_email: Correo electrónico actual
         label: Cambiar el correo electrónico
         new_email: Nuevo correo electrónico
         submit: Cambiar el correo electrónico
         title: Cambiar el correo electrónico de %{username}
+      change_role:
+        changed_msg: "¡Rol cambiado con éxito!"
+        label: Cambiar rol
+        no_role: Sin rol
+        title: Cambiar rol para %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -151,6 +157,7 @@ es-MX:
         active: Activo
         all: Todos
         pending: Pendiente
+        silenced: Limitado
         suspended: Suspendidos
         title: Moderación
       moderation_notes: Notas de moderación
@@ -158,6 +165,7 @@ es-MX:
       most_recent_ip: IP más reciente
       no_account_selected: Ninguna cuenta se cambió como ninguna fue seleccionada
       no_limits_imposed: Sin límites impuestos
+      no_role_assigned: Ningún rol asignado
       not_subscribed: No se está suscrito
       pending: Revisión pendiente
       perform_full_suspension: Suspender
@@ -184,6 +192,7 @@ es-MX:
       reset: Reiniciar
       reset_password: Reiniciar contraseña
       resubscribe: Re-suscribir
+      role: Rol
       search: Buscar
       search_same_email_domain: Otros usuarios con el mismo dominio de correo
       search_same_ip: Otros usuarios con la misma IP
@@ -640,6 +649,67 @@ es-MX:
       unresolved: No resuelto
       updated_at: Actualizado
       view_profile: Ver perfil
+    roles:
+      add_new: Añadir rol
+      assigned_users:
+        one: "%{count} usuario"
+        other: "%{count} usuarios"
+      categories:
+        administration: Administración
+        devops: DevOps
+        invites: Invitaciones
+        moderation: Moderación
+        special: Especial
+      delete: Eliminar
+      description_html: Con <strong>roles de usuario</strong>, puede personalizar las funciones y áreas de Mastodon a las que pueden acceder sus usuarios.
+      edit: Editar rol '%{name}'
+      everyone: Permisos por defecto
+      everyone_full_description_html: Este es el <strong>rol base</strong> que afecta a <strong>todos los usuarios</strong>, incluso aquellos sin un rol asignado. Todos los otros roles heredan permisos de él.
+      permissions_count:
+        one: "%{count} permiso"
+        other: "%{count} permisos"
+      privileges:
+        administrator: Administrador
+        administrator_description: Los usuarios con este permiso saltarán todos los permisos
+        delete_user_data: Borrar Datos de Usuario
+        delete_user_data_description: Permite a los usuarios eliminar los datos de otros usuarios sin demora
+        invite_users: Invitar usuarios
+        invite_users_description: Permite a los usuarios invitar a nuevas personas al servidor
+        manage_announcements: Administrar Anuncios
+        manage_announcements_description: Permite a los usuarios gestionar anuncios en el servidor
+        manage_appeals: Administrar Apelaciones
+        manage_appeals_description: Permite a los usuarios revisar apelaciones contra acciones de moderación
+        manage_blocks: Administrar Bloqueos
+        manage_blocks_description: Permite a los usuarios bloquear los proveedores de e-mail y las direcciones IP
+        manage_custom_emojis: Administrar Emojis Personalizados
+        manage_custom_emojis_description: Permite a los usuarios gestionar emojis personalizados en el servidor
+        manage_federation: Administrar Federación
+        manage_federation_description: Permite a los usuarios bloquear o permitir la federación con otros dominios, y controlar la entregabilidad
+        manage_invites: Administrar Invitaciones
+        manage_invites_description: Permite a los usuarios navegar y desactivar los enlaces de invitación
+        manage_reports: Administrar Informes
+        manage_reports_description: Permite a los usuarios revisar informes y realizar acciones de moderación basadas en ellos
+        manage_roles: Administrar Roles
+        manage_roles_description: Permite a los usuarios administrar y asignar roles por debajo de los suyos
+        manage_rules: Gestionar Reglas
+        manage_rules_description: Permite a los usuarios cambiar las reglas del servidor
+        manage_settings: Administrar Ajustes
+        manage_settings_description: Permite a los usuarios cambiar la configuración del sitio
+        manage_taxonomies: Administrar Taxonomías
+        manage_taxonomies_description: Permite a los usuarios revisar el contenido en tendencia y actualizar la configuración de las etiquetas
+        manage_user_access: Administrar Acceso de Usuarios
+        manage_user_access_description: Permite a los usuarios desactivar la autenticación de dos factores de otros usuarios, cambiar su dirección de correo electrónico y restablecer su contraseña
+        manage_users: Administrar Usuarios
+        manage_users_description: Permite a los usuarios ver los detalles de otros usuarios y realizar acciones de moderación contra ellos
+        manage_webhooks: Administrar Webhooks
+        manage_webhooks_description: Permite a los usuarios configurar webhooks para eventos administrativos
+        view_audit_log: Ver Registro de Auditoría
+        view_audit_log_description: Permite a los usuarios ver un historial de acciones administrativas en el servidor
+        view_dashboard: Ver Panel de Control
+        view_dashboard_description: Permite a los usuarios acceder al panel de control y varias métricas
+        view_devops: DevOps
+        view_devops_description: Permite a los usuarios acceder a los paneles de control Sidekiq y pgHero
+      title: Roles
     rules:
       add_new: Añadir norma
       delete: Eliminar
