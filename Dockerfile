@@ -79,7 +79,7 @@ RUN apt-get update && \
 	echo "Etc/UTC" > /etc/localtime && \
 	apt-get install -y --no-install-recommends whois wget && \
 	addgroup --gid $GID mastodon && \
-	useradd -m -u $UID -g $GID -d /opt/mastodon mastodon && \
+	useradd --no-log-init -m -u $UID -g $GID -d /opt/mastodon mastodon && \
 	echo "mastodon:$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256)" | chpasswd && \
 	rm -rf /var/lib/apt/lists/*
 
