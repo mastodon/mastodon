@@ -11,7 +11,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   def max_status_characters
     StatusLengthValidator::MAX_CHARS
   end
-  
+
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
