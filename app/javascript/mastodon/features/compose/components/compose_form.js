@@ -21,6 +21,9 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
 import Icon from 'mastodon/components/icon';
+import initialState from '../../../initial_state';
+
+const maxStatusChars = initialState.maxStatusChars;
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 
@@ -90,7 +93,7 @@ class ComposeForm extends ImmutablePureComponent {
     const fulltext = this.getFulltextForCharacterCounting();
     const isOnlyWhitespace = fulltext.length !== 0 && fulltext.trim().length === 0;
 
-    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > 500 || (isOnlyWhitespace && !anyMedia));
+    return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxStatusChars || (isOnlyWhitespace && !anyMedia));
   }
 
   handleSubmit = () => {
@@ -273,7 +276,7 @@ class ComposeForm extends ImmutablePureComponent {
           </div>
 
           <div className='character-counter__wrapper'>
-            <CharacterCounter max={500} text={this.getFulltextForCharacterCounting()} />
+            <CharacterCounter max={maxStatusChars} text={this.getFulltextForCharacterCounting()} />
           </div>
         </div>
 
