@@ -91,8 +91,8 @@ gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
 gem 'tzinfo-data', '~> 1.2022'
 gem 'webpacker', '~> 5.4'
-gem 'webpush', '~> 0.3'
-gem 'webauthn', '~> 3.0.0.alpha1'
+gem 'webpush', git: 'https://github.com/ClearlyClaire/webpush.git', ref: 'f14a4d52e201128b1b00245d11b6de80d6cfdcd9'
+gem 'webauthn', '~> 2.5'
 
 gem 'json-ld'
 gem 'json-ld-preloaded', '~> 3.2'
