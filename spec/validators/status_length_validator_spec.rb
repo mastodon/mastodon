@@ -16,26 +16,31 @@ describe StatusLengthValidator do
       expect(status).not_to receive(:errors)
     end
 
-    it 'adds an error when content warning is over 500 characters' do
-      status = double(spoiler_text: 'a' * 520, text: '', errors: double(add: nil), local?: true, reblog?: false)
+    it 'adds an error when content warning is over MAX_CHARS characters' do
+      chars = StatusLengthValidator::MAX_CHARS + 1
+      status = double(spoiler_text: 'a' * chars, text: '', errors: double(add: nil), local?: true, reblog?: false)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
-    it 'adds an error when text is over 500 characters' do
-      status = double(spoiler_text: '', text: 'a' * 520, errors: double(add: nil), local?: true, reblog?: false)
+    it 'adds an error when text is over MAX_CHARS characters' do
+      chars = StatusLengthValidator::MAX_CHARS + 1
+      status = double(spoiler_text: '', text: 'a' * chars, errors: double(add: nil), local?: true, reblog?: false)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
-    it 'adds an error when text and content warning are over 500 characters total' do
-      status = double(spoiler_text: 'a' * 250, text: 'b' * 251, errors: double(add: nil), local?: true, reblog?: false)
+    it 'adds an error when text and content warning are over MAX_CHARS characters total' do
+      chars1 = 20
+      chars2 = StatusLengthValidator::MAX_CHARS + 1 - chars1
+      status = double(spoiler_text: 'a' * chars1, text: 'b' * chars2, errors: double(add: nil), local?: true, reblog?: false)
       subject.validate(status)
       expect(status.errors).to have_received(:add)
     end
 
     it 'counts URLs as 23 characters flat' do
-      text   = ('a' * 476) + " http://#{'b' * 30}.com/example"
+      chars = StatusLengthValidator::MAX_CHARS - 1 - 23
+      text   = ('a' * chars) + " http://#{'b' * 30}.com/example"
       status = double(spoiler_text: '', text: text, errors: double(add: nil), local?: true, reblog?: false)
 
       subject.validate(status)
@@ -58,7 +63,9 @@ describe StatusLengthValidator do
     end
 
     it 'counts only the front part of remote usernames' do
-      text   = ('a' * 475) + " @alice@#{'b' * 30}.com"
+      username = '@alice'
+      chars = StatusLengthValidator::MAX_CHARS - 1 - username.length
+      text   = ('a' * chars) + " #{username}@#{'b' * 30}.com"
       status = double(spoiler_text: '', text: text, errors: double(add: nil), local?: true, reblog?: false)
 
       subject.validate(status)
@@ -66,7 +73,9 @@ describe StatusLengthValidator do
     end
 
     it 'does count both parts of remote usernames for overly long domains' do
-      text   = "@alice@#{'b' * 500}.com"
+      username = '@alice'
+      chars = StatusLengthValidator::MAX_CHARS - 1 - username.length
+      text   = "#{username}@#{'b' * chars}.com"
       status = double(spoiler_text: '', text: text, errors: double(add: nil), local?: true, reblog?: false)
 
       subject.validate(status)
