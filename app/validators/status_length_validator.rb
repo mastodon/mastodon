@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class StatusLengthValidator < ActiveModel::Validator
-  MAX_CHARS = (ENV["MAX_STATUS_CHARACTERS"] || 500).to_i
+  MAX_CHARS = (ENV['MAX_STATUS_CHARACTERS'] || 500).to_i
   URL_PLACEHOLDER_CHARS = 23
   URL_PLACEHOLDER = 'x' * 23
 
