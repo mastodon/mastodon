@@ -97,7 +97,7 @@ module Mastodon
       failed          = Concurrent::AtomicFixnum.new(0)
       start_at        = Time.now.to_f
       seed            = start ? [start] : Instance.pluck(:domain)
-      blocked_domains = Regexp.new('\\.?' + DomainBlock.where(severity: 1).pluck(:domain).join('|') + '$')
+      blocked_domains = /\.?(#{DomainBlock.where(severity: 1).pluck(:domain).map { |domain| Regexp.escape(domain) }.join('|')})$/
       progress        = create_progress_bar
 
       pool = Concurrent::ThreadPoolExecutor.new(min_threads: 0, max_threads: options[:concurrency], idletime: 10, auto_terminate: true, max_queue: 0)
