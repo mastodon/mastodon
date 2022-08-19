@@ -1,4 +1,3 @@
----
 fi:
   simple_form:
     hints:
@@ -37,6 +36,7 @@ fi:
         current_password: Turvallisuussyistä kirjoita nykyisen tilin salasana
         current_username: Vahvista kirjoittamalla nykyisen tilin käyttäjätunnus
         digest: Lähetetään vain pitkän poissaolon jälkeen ja vain, jos olet saanut suoria viestejä poissaolosi aikana
+        discoverable: Salli tuntemattomien löytää tilisi suositusten, trendien ja muiden ominaisuuksien kautta
         email: Sinulle lähetetään vahvistussähköposti
         fields: Sinulla voi olla korkeintaan 4 asiaa profiilissasi taulukossa
         header: PNG, GIF tai JPG. Enintään %{size}. Skaalataan kokoon %{dimensions} px
@@ -48,6 +48,7 @@ fi:
         phrase: Täytetään riippumatta julkaisun kirjainkoon tai sisällön varoituksesta
         scopes: Mihin sovellusliittymiin sovellus pääsee käsiksi. Jos valitset ylätason laajuuden, sinun ei tarvitse valita yksittäisiä.
         setting_aggregate_reblogs: Älä näytä uusia tehosteita viesteille, joita on äskettäin tehostettu (koskee vain äskettäin saatuja tehosteita)
+        setting_always_send_emails: Yleensä sähköposti-ilmoituksia ei lähetetä, kun käytät aktiivisesti Mastodonia
         setting_default_sensitive: Arkaluontoinen media on oletuksena piilotettu ja se voidaan näyttää yhdellä napsautuksella
         setting_display_media_default: Piilota arkaluonteiseksi merkitty media
         setting_display_media_hide_all: Piilota aina kaikki media
@@ -66,6 +67,11 @@ fi:
         with_dns_records: Annetun verkkotunnuksen DNS-tietueet yritetään ratkaista ja tulokset myös estetään
       featured_tag:
         name: 'Voit halutessasi käyttää jotakin näistä:'
+      filters:
+        action: Valitse, mikä toiminto suoritetaan, kun viesti vastaa suodatinta
+        actions:
+          hide: Piilota suodatettu sisältö kokonaan ja käyttäydy ikään kuin sitä ei olisi olemassa
+          warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen otsikko
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
@@ -83,12 +89,16 @@ fi:
       rule:
         text: Kuvaile sääntöä tai vaatimusta tämän palvelimen käyttäjille. Yritä pitää se lyhyenä ja yksinkertaisena
       sessions:
-        otp: Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.
+        otp: 'Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.'
         webauthn: Jos kyseessä on USB-avain, muista laittaa se paikalleen ja tarvittaessa napauttaa sitä.
       tag:
         name: Voit muuttaa esimerkiksi kirjaimia paremmin luettavaksi
       user:
         chosen_languages: Kun valittu, vain valituilla kielillä julkaistut viestit näkyvät julkisilla aikajanoilla
+        role: Rooli määrää, mitkä käyttöoikeudet käyttäjällä on
+      user_role:
+        color: Väri, jota käytetään roolin koko käyttöliittymässä, RGB heksamuodossa
+        highlighted: Tämä tekee roolista julkisesti näkyvän
       webhook:
         events: Valitse lähetettävät tapahtumat
         url: Mihin tapahtumat lähetetään
@@ -236,7 +246,7 @@ fi:
       webhook:
         events: Tapahtumat käytössä
         url: Päätepisteen URL
-    'no': Ei
+    'no': 'Ei'
     recommended: Suositeltu
     required:
       mark: "*"
@@ -244,4 +254,4 @@ fi:
     title:
       sessions:
         webauthn: Käytä jotakin suojausavainta kirjautuaksesi sisään
-    'yes': Kyllä
+    'yes': 'Kyllä'
