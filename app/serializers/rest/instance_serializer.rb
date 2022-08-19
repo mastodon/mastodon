@@ -4,7 +4,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 
   attributes :uri, :title, :short_description, :description, :email,
-             :version, :urls, :stats, :thumbnail,
+             :version, :urls, :stats, :thumbnail, :max_status_characters,
              :languages, :registrations, :approval_required, :invites_enabled,
              :configuration
 
@@ -40,6 +40,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def thumbnail
     instance_presenter.thumbnail ? full_asset_url(instance_presenter.thumbnail.file.url) : full_pack_url('media/images/preview.png')
+  end
+
+  def max_status_characters
+    StatusLengthValidator::MAX_CHARS
   end
 
   def stats
