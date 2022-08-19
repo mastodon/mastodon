@@ -861,6 +861,11 @@ fi:
         other: "%{count} aktivoitua tapahtumaa"
       events: Tapahtumat
       new: Uusi webhook
+      rotate_secret: Vaihda salaus
+      secret: Salainen tunnus
+      status: Tila
+      title: Webhookit
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -1045,10 +1050,12 @@ fi:
       appealed_msg: Valituksesi on lähetetty. Jos se hyväksytään, sinulle ilmoitetaan.
       appeals:
         submit: Lähetä valitus
+      approve_appeal: Hyväksy valitus
       associated_report: Liittyvä raportti
       created_at: Päivätty
       description_html: Nämä ovat tiliäsi koskevia toimia ja varoituksia, jotka %{instance} henkilökunta on lähettänyt sinulle.
       recipient: Osoitettu
+      reject_appeal: Hylkää valitus
       status: 'Viesti #%{id}'
       status_removed: Viesti on jo poistettu järjestelmästä
       title: "%{action} alkaen %{date}"
@@ -1111,14 +1118,23 @@ fi:
       public: Julkiset aikajanat
       thread: Keskustelut
     edit:
+      add_keyword: Lisää avainsana
+      keywords: Avainsanat
       title: Muokkaa suodatinta
     errors:
       invalid_context: Ei sisältöä tai se on virheellinen
     index:
+      contexts: Suodattimet %{contexts}
       delete: Poista
       empty: Sinulla ei ole suodattimia.
+      expires_in: Vanhenee %{distance}
+      expires_on: Vanhenee %{date}
+      keywords:
+        one: "%{count} avainsana"
+        other: "%{count} avainsanaa"
       title: Suodattimet
     new:
+      save: Tallenna uusi suodatin
       title: Lisää uusi suodatin
   footer:
     developers: Kehittäjille
@@ -1237,6 +1253,8 @@ fi:
     copy_account_note_text: 'Tämä käyttäjä siirtyi paikasta %{acct}, tässä olivat aiemmat muistiinpanosi niistä:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} lähetti raportin"
       sign_up:
         subject: "%{name} kirjautunut"
     digest:
@@ -1246,6 +1264,9 @@ fi:
       new_followers_summary:
         one: Olet myös saanut yhden uuden seuraajan! Juhuu!
         other: Olet myös saanut %{count} uutta seuraajaa! Aivan mahtavaa!
+      subject:
+        one: "1 uusi ilmoitus viime käyntisi jälkeen 🐘"
+        other: "%{count} uutta ilmoitusta viime käyntisi jälkeen 🐘"
       title: Poissaollessasi…
     favourite:
       body: '%{name} tykkäsi tilastasi:'
@@ -1359,6 +1380,11 @@ fi:
   reports:
     errors:
       invalid_rules: ei viittaa voimassa oleviin sääntöihin
+  rss:
+    content_warning: 'Sisällön varoitus:'
+    descriptions:
+      account: Julkiset viestit lähettäjältä @%{acct}
+      tag: 'Julkiset viestit merkitty #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Olet ylittänyt %{limit} ajoitetun viestin rajan tälle päivälle
     over_total_limit: Olet ylittänyt %{limit} ajoitetun viestin rajan
@@ -1446,6 +1472,7 @@ fi:
     disallowed_hashtags:
       one: 'sisälsi aihetunnisteen jota ei sallita: %{tags}'
       other: 'sisälsi aihetunnisteet joita ei sallita: %{tags}'
+    edited_at_html: Muokattu %{date}
     errors:
       in_reply_not_found: Viesti, johon yrität vastata, ei näytä olevan olemassa.
     open_in_web: Avaa selaimessa
@@ -1516,6 +1543,9 @@ fi:
     pinned: Kiinnitetty tuuttaus
     reblogged: buustasi
     sensitive_content: Arkaluontoista sisältöä
+  strikes:
+    errors:
+      too_late: On liian myöhäistä vedota tähän varoitukseen
   tags:
     does_not_match_previous_name: ei vastaa edellistä nimeä
   terms:
@@ -1558,6 +1588,13 @@ fi:
       explanation: Pyysit täydellistä varmuuskopiota Mastodon-tilistäsi. Voit nyt ladata sen!
       subject: Arkisto on valmiina ladattavaksi
       title: Arkiston tallennus
+    suspicious_sign_in:
+      change_password: vaihda salasanasi
+      details: 'Tässä on tiedot kirjautumisesta:'
+      explanation: Olemme havainneet kirjautumisen tilillesi uudesta IP-osoitteesta.
+      further_actions_html: Jos et ollut sinä, suosittelemme, että %{action} teet välittömästi ja otat kaksivaiheisen todennuksen käyttöön tilisi turvallisuuden varmistamiseksi.
+      subject: Tiliäsi on käytetty uudesta IP-osoitteesta
+      title: Uusi kirjautuminen
     warning:
       appeal: Lähetä valitus
       appeal_description: Jos uskot, että tämä on virhe, voit hakea muutosta henkilökunnalta %{instance}.
