@@ -99,6 +99,9 @@ fi:
       user_role:
         color: Väri, jota käytetään roolin koko käyttöliittymässä, RGB heksamuodossa
         highlighted: Tämä tekee roolista julkisesti näkyvän
+        name: Roolin julkinen nimi, jos rooli on asetettu näytettäväksi mekkinä
+        permissions_as_keys: Käyttäjillä, joilla on tämä rooli, on käyttöoikeus...
+        position: Korkeampi rooli ratkaisee konfliktit tietyissä tilanteissa. Tiettyjä toimintoja voidaan suorittaa vain rooleille, joiden prioriteetti on pienempi
       webhook:
         events: Valitse lähetettävät tapahtumat
         url: Mihin tapahtumat lähetetään
