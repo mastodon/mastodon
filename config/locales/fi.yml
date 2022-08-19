@@ -1,7 +1,6 @@
----
 fi:
   about:
-    about_hashtag_html: Nämä julkiset julkaisut on merkitty hastagilla <strong>#%{hashtag}</strong>. Voit vastata niihin, jos sinulla on tili jossain päin fediversumia.
+    about_hashtag_html: 'Nämä julkiset julkaisut on merkitty hastagilla <strong>#%{hashtag}</strong>. Voit vastata niihin, jos sinulla on tili jossain päin fediversumia.'
     about_mastodon_html: 'Tulevaisuuden sosiaalinen verkosto: Ei mainoksia, ei valvontaa, toteutettu avoimilla protokollilla ja hajautettu! Pidä tietosi ominasi Mastodonilla!'
     about_this: Tietoa tästä palvelimesta
     active_count_after: aktiivista
@@ -38,6 +37,7 @@ fi:
       one: julkaisun
       other: julkaisua
     status_count_before: Julkaistu
+    tagline: Hajautettu sosiaalinen verkosto
     terms: Käyttöehdot
     unavailable_content: Moderoidut palvelimet
     unavailable_content_description:
@@ -102,11 +102,17 @@ fi:
       avatar: Profiilikuva
       by_domain: Verkkotunnus
       change_email:
+        changed_msg: Sähköpostin vaihto onnistui!
         current_email: Nykyinen sähköposti
         label: Vaihda sähköposti
         new_email: Uusi sähköposti
         submit: Vaihda sähköposti
         title: Vaihda sähköposti käyttäjälle %{username}
+      change_role:
+        changed_msg: Rooli vaihdettu onnistuneesti!
+        label: Vaihda roolia
+        no_role: Ei roolia
+        title: Vaihda roolia käyttäjälle %{username}
       confirm: Vahvista
       confirmed: Vahvistettu
       confirming: Vahvistetaan
@@ -114,7 +120,7 @@ fi:
       delete: Poista tiedot
       deleted: Poistettu
       demote: Alenna
-      destroyed_msg: Käyttäjän %{username} tiedot ovat nyt jonossa poistettavaksi välittömästi
+      destroyed_msg: "Käyttäjän %{username} tiedot ovat nyt jonossa poistettavaksi välittömästi"
       disable: Poista käytöstä
       disable_sign_in_token_auth: Poista sähköpostitunnuksen todennus käytöstä
       disable_two_factor_authentication: Poista 2FA käytöstä
@@ -150,6 +156,7 @@ fi:
         active: Aktiivinen
         all: Kaikki
         pending: Odottavat
+        silenced: Rajoitettu
         suspended: Jäähyllä
         title: Moderointi
       moderation_notes: Moderointimerkinnät
@@ -157,10 +164,14 @@ fi:
       most_recent_ip: Viimeisin IP
       no_account_selected: Yhtään tiliä ei muutettu, koska mitään ei valittu
       no_limits_imposed: Rajoituksia ei ole asetettu
+      no_role_assigned: Roolia ei ole määritetty
       not_subscribed: Ei tilaaja
       pending: Odottaa tarkistusta
       perform_full_suspension: Siirrä kokonaan jäähylle
       previous_strikes: Aiemmat varoitukset
+      previous_strikes_description_html:
+        one: Tällä tilillä on <strong>yksi</strong> varoitus.
+        other: Tällä tilillä on <strong>%{count}</strong> varoitusta.
       promote: Ylennä
       protocol: Protokolla
       public: Julkinen
@@ -180,6 +191,7 @@ fi:
       reset: Palauta
       reset_password: Palauta salasana
       resubscribe: Tilaa uudelleen
+      role: Rooli
       search: Hae
       search_same_email_domain: Muut käyttäjät, joilla on sama sähköpostiverkkotunnus
       search_same_ip: Muut käyttäjät samalla IP-osoitteella
@@ -208,9 +220,9 @@ fi:
       undo_sensitized: Kumoa pakotus arkaluontoiseksi tiliksi
       undo_silenced: Peru hiljennys
       undo_suspension: Peru jäähy
-      unsilenced_msg: "%{username} -tilin rajoituksen kumoaminen onnistui"
+      unsilenced_msg: '%{username} -tilin rajoituksen kumoaminen onnistui'
       unsubscribe: Lopeta tilaus
-      unsuspended_msg: "%{username} -tilin keskeytyksen kumoaminen onnistui"
+      unsuspended_msg: '%{username} -tilin keskeytyksen kumoaminen onnistui'
       username: Käyttäjätunnus
       view_domain: Näytä verkkotunnuksen yhteenveto
       warn: Varoita
@@ -358,6 +370,7 @@ fi:
       enable: Ota käyttöön
       enabled: Käytössä
       enabled_msg: Emojin käyttöönotto onnistui
+      image_hint: PNG tai GIF enintään %{size}
       list: Listaa
       listed: Listassa
       new:
@@ -414,6 +427,7 @@ fi:
       destroyed_msg: Verkkotunnuksen esto on peruttu
       domain: Verkkotunnus
       edit: Muokkaa verkkotunnuksen estoa
+      existing_domain_block: Olet jo asettanut tiukemmat rajoitukset %{name}.
       existing_domain_block_html: Olet jo asettanut %{name} tiukemmat rajat ja sinun täytyy <a href="%{unblock_url}">poistaa se</a> ensin.
       new:
         create: Luo esto
@@ -464,14 +478,43 @@ fi:
       title: Noudata suosituksia
       unsuppress: Palauta seuraa suositus
     instances:
+      availability:
+        failure_threshold_reached: Epäonnistumisen kynnys saavutettu %{date}.
+        failures_recorded:
+          one: Epäonnistuneita yrityksiä %{count} päivässä.
+          other: Epäonnistuneita yrityksiä %{count} päivää.
+        no_failures_recorded: Ei epäonnistumisia kirjattu.
+        title: Saatavuus
+        warning: Viimeisin yritys yhdistää yhteys tähän palvelimeen on epäonnistunut
       back_to_all: Kaikki
       back_to_limited: Rajoitettu
       back_to_warning: Varoitus
       by_domain: Verkkotunnus
       confirm_purge: Oletko varma, että haluat pysyvästi poistaa tiedot tältä verkkotunnukselta?
+      content_policies:
+        comment: Sisäinen huomautus
+        description_html: Voit määrittää sisältökäytännöt, joita sovelletaan kaikkiin tämän verkkotunnuksen ja sen aliverkkotunnuksien tileihin.
+        policies:
+          reject_media: Hylkää media
+          reject_reports: Hylkää raportit
+          silence: Rajoitus
+          suspend: Jäädytä
+        policy: Käytännöt
+        reason: Julkinen syy
+        title: Sisällön toimintatavat
+      dashboard:
+        instance_accounts_dimension: Seuratuimmat tilit
+        instance_accounts_measure: tallennetut tilit
+        instance_followers_measure: seuraajamme siellä
+        instance_follows_measure: heidän seuraajansa täällä
+        instance_languages_dimension: Suosituimmat kielet
+        instance_media_attachments_measure: tallennetut median liitteet
+        instance_reports_measure: niitä koskevat raportit
+        instance_statuses_measure: tallennetut viestit
       delivery:
         all: Kaikki
         clear: Tyhjennä toimitusvirheet
+        failing: Epäonnistuminen
         restart: Käynnistä toimitus uudelleen
         stop: Lopeta toimitus
         unavailable: Ei saatavilla
@@ -480,6 +523,9 @@ fi:
       delivery_error_hint: Jos toimitus ei ole mahdollista %{count} päivän aikana, se merkitään automaattisesti toimittamattomaksi.
       destroyed_msg: Tiedot %{domain} on nyt jonossa välitöntä poistoa varten.
       empty: Verkkotunnuksia ei löytynyt.
+      known_accounts:
+        one: "%{count} tunnettu tili"
+        other: "%{count} tunnettua tiliä"
       moderation:
         all: Kaikki
         limited: Rajoitettu
@@ -487,12 +533,14 @@ fi:
       private_comment: Yksityinen kommentti
       public_comment: Julkinen kommentti
       purge: Tyhjennä
+      purge_description_html: Jos uskot tämän verkkotunnuksen olevan offline-tilassa, voit poistaa kaikki tilitietueet ja niihin liittyvät tiedot sinun tallennustilasta. Tämä voi kestää jonkin aikaa.
       title: Tiedossa olevat instanssit
       total_blocked_by_us: Estetty meidän toimesta
       total_followed_by_them: Heidän seuraama
       total_followed_by_us: Meidän seuraama
       total_reported: Niitä koskevat raportit
       total_storage: Medialiitteet
+      totals_time_period_hint_html: Alla näkyvät yhteenlasketut tiedot sisältävät koko ajan.
     invites:
       deactivate_all: Poista kaikki käytöstä
       filter:
@@ -521,7 +569,7 @@ fi:
     relays:
       add_new: Lisää uusi rele
       delete: Poista
-      description_html: "<strong>federation relay</strong> on välittäjä palvelin, joka vaihtaa suuria määriä julkisia viestejä palvelimien välillä, jotka tilaavat ja julkaisevat sitä. <strong>Tämä auttaa pieniä ja keskisuuria palvelimia löytämään monipuolista sisältöä</strong>, joka muuten vaatisi käyttäjiä seuraamaan manuaalisesti muita ihmisiä eri palvelimilla."
+      description_html: <strong>federation relay</strong> on välittäjä palvelin, joka vaihtaa suuria määriä julkisia viestejä palvelimien välillä, jotka tilaavat ja julkaisevat sitä. <strong>Tämä auttaa pieniä ja keskisuuria palvelimia löytämään monipuolista sisältöä</strong>, joka muuten vaatisi käyttäjiä seuraamaan manuaalisesti muita ihmisiä eri palvelimilla.
       disable: Poista käytöstä
       disabled: Poistettu käytöstä
       enable: Ota käyttöön
@@ -547,6 +595,7 @@ fi:
       action_taken_by: Toimenpiteen tekijä
       actions:
         delete_description_html: Ilmoitetut viestit poistetaan ja kirjataan varoitus, joka auttaa sinua saman tilin tulevista rikkomuksista.
+        mark_as_sensitive_description_html: Ilmoitettujen viestien media merkitään arkaluonteisiksi ja varoitus tallennetaan, jotta voit kärjistää saman tilin tulevia rikkomuksia.
         other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja ilmoitetun tilin viestinnän mukauttamiseksi.
         resolve_description_html: Ilmoitettua tiliä vastaan ei ryhdytä toimenpiteisiin, varoitusta ei kirjata ja raportti suljetaan.
         silence_description_html: Profiili näkyy vain niille, jotka jo seuraavat sitä tai etsivät sen manuaalisesti, mikä rajoittaa merkittävästi kattavuutta. Se voidaan aina palauttaa.
@@ -581,7 +630,7 @@ fi:
       quick_actions_description_html: 'Suorita nopea toiminto tai vieritä alas nähdäksesi raportoitu sisältö:'
       remote_user_placeholder: etäkäyttäjä paikasta %{instance}
       reopen: Avaa raportti uudestaan
-      report: Raportti nro %{id}
+      report: 'Raportti nro %{id}'
       reported_account: Raportoitu tili
       reported_by: Raportoija
       resolved: Ratkaistut
@@ -596,6 +645,20 @@ fi:
       unresolved: Ratkaisemattomat
       updated_at: Päivitetty
       view_profile: Näytä profiili
+    roles:
+      add_new: Lisää rooli
+      assigned_users:
+        one: "%{count} käyttäjä"
+        other: "%{count} käyttäjää"
+      categories:
+        administration: Ylläpito
+        devops: Operaattorit
+        invites: Kutsut
+        moderation: Moderointi
+        special: Erikois
+      delete: Poista
+      description_html: Käyttäjän <strong>roolit</strong>, voit muokata toimintoja ja alueita mitä sinun Mastodon käyttäjät voivat käyttää.
+      edit: Muokkaa "%{name}" roolia
     rules:
       add_new: Lisää sääntö
       delete: Poista
@@ -773,13 +836,31 @@ fi:
         trending_rank: 'Nousussa #%{rank}'
         usable: Voidaan käyttää
         usage_comparison: Käytetty %{today} kertaa tänään, verrattuna %{yesterday} eiliseen
+        used_by_over_week:
+          one: Yhden henkilön käyttämä viime viikon aikana
+          other: Käyttänyt %{count} henkilöä viimeisen viikon aikana
       title: Trendit
+      trending: Nousussa
     warning_presets:
       add_new: Lisää uusi
       delete: Poista
       edit_preset: Muokkaa varoituksen esiasetusta
       empty: Et ole vielä määrittänyt yhtään varoitusesiasetusta.
       title: Hallinnoi varoitusesiasetuksia
+    webhooks:
+      add_new: Lisää päätepiste
+      delete: Poista
+      disable: Poista käytöstä
+      disabled: Ei käytössä
+      edit: Muokkaa päätepistettä
+      empty: Sinulla ei ole vielä määritetty webhook-päätepisteitä.
+      enable: Ota käyttöön
+      enabled: Aktiivinen
+      enabled_events:
+        one: 1 aktivoitu tapahtuma
+        other: "%{count} aktivoitua tapahtumaa"
+      events: Tapahtumat
+      new: Uusi webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -1001,7 +1082,7 @@ fi:
     noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="%{apps_path}">sovellusta</a>.
   existing_username_validator:
     not_found: paikallista käyttäjää ei löydy kyseisellä käyttäjänimellä
-    not_found_multiple: "%{usernames} ei löytynyt"
+    not_found_multiple: '%{usernames} ei löytynyt'
   exports:
     archive_takeout:
       date: Päiväys
@@ -1167,7 +1248,7 @@ fi:
         other: Olet myös saanut %{count} uutta seuraajaa! Aivan mahtavaa!
       title: Poissaollessasi…
     favourite:
-      body: "%{name} tykkäsi tilastasi:"
+      body: '%{name} tykkäsi tilastasi:'
       subject: "%{name} tykkäsi tilastasi"
       title: Uusi tykkäys
     follow:
@@ -1181,13 +1262,13 @@ fi:
       title: Uusi seuraamispyyntö
     mention:
       action: Vastaa
-      body: "%{name} mainitsi sinut:"
-      subject: "%{name} mainitsi sinut"
+      body: '%{name} mainitsi sinut:'
+      subject: '%{name} mainitsi sinut'
       title: Uusi maininta
     poll:
       subject: Äänestys käyttäjältä %{name} on päättynyt
     reblog:
-      body: "%{name} buustasi tilaasi:"
+      body: '%{name} buustasi tilaasi:'
       subject: "%{name} boostasi tilaasi"
       title: Uusi buustaus
     status:
@@ -1387,7 +1468,7 @@ fi:
     show_older: Näytä vanhempi
     show_thread: Näytä ketju
     sign_in_to_participate: Kirjaudu sisään osallistuaksesi keskusteluun
-    title: "%{name}: ”%{quote}”"
+    title: '%{name}: ”%{quote}”'
     visibilities:
       direct: Suoraan
       private: Vain seuraajille
