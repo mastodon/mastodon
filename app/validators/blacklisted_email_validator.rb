@@ -25,7 +25,7 @@ class BlacklistedEmailValidator < ActiveModel::Validator
   def not_allowed_through_configuration?(email)
     return false if Rails.configuration.x.email_domains_whitelist.blank?
 
-    domains = Rails.configuration.x.email_domains_whitelist.gsub('.', '\.')
+    domains = Rails.configuration.x.email_domains_whitelist.gsub('.', '\\.')
     regexp  = Regexp.new("@(.+\\.)?(#{domains})$", true)
 
     email !~ regexp
@@ -34,7 +34,7 @@ class BlacklistedEmailValidator < ActiveModel::Validator
   def disallowed_through_configuration?(email)
     return false if Rails.configuration.x.email_domains_blacklist.blank?
 
-    domains = Rails.configuration.x.email_domains_blacklist.gsub('.', '\.')
+    domains = Rails.configuration.x.email_domains_blacklist.gsub('.', '\\.')
     regexp  = Regexp.new("@(.+\\.)?(#{domains})", true)
 
     regexp.match?(email)
