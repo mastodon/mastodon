@@ -18,7 +18,7 @@
     .filter-subset.filter-subset--with-select
       %strong= t 'generic.order_by'
       .input.select
-        = select_tag :order, options_for_select([[t('relationships.most_recent'), nil], [t('relationships.last_active'), 'active']], params[:order])
+        = select_tag :order, options_for_select([[t('relationships.most_recent'), 'recent'], [t('relationships.last_active'), 'active']], params[:order])
 
   .fields-group
     - %i(username by_domain display_name email ip).each do |key|
