@@ -84,6 +84,6 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
   end
 
   def local_statuses_scope
-    Status.local.select('id, coalesce(reblog_of_id, id) as status_id')
+    Status.local.select('"statuses"."id", COALESCE("statuses"."reblog_of_id", "statuses"."id") AS status_id')
   end
 end
