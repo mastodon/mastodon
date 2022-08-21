@@ -52,7 +52,7 @@ class Webfinger
 
   private
 
-  def body_from_webfinger(url = standard_url, use_fallback = true)
+  def body_from_webfinger(url: standard_url, use_fallback: true)
     webfinger_request(url).perform do |res|
       if res.code == 200
         body = res.body_with_limit
