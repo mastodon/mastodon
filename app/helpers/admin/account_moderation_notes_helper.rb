@@ -22,7 +22,7 @@ module Admin::AccountModerationNotesHelper
 
   private
 
-  def name_tag_classes(account, inline = false)
+  def name_tag_classes(account, inline: false)
     classes = [inline ? 'inline-name-tag' : 'name-tag']
     classes << 'suspended' if account.suspended? || (account.local? && account.user.nil?)
     classes.join(' ')
