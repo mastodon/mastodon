@@ -296,7 +296,7 @@ module AccountInteractions
 
   private
 
-  def remove_potential_friendship(other_account, mutual = false)
+  def remove_potential_friendship(other_account, mutual: false)
     PotentialFriendshipTracker.remove(id, other_account.id)
     PotentialFriendshipTracker.remove(other_account.id, id) if mutual
   end
