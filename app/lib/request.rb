@@ -8,7 +8,7 @@ require 'resolv'
 # around the Socket#open method, since we use our own timeout blocks inside
 # that method
 class HTTP::Timeout::PerOperation
-  def connect(socket_class, host, port, nodelay = false)
+  def connect(socket_class, host, port, nodelay: false)
     @socket = socket_class.open(host, port)
     @socket.setsockopt(Socket::IPPROTO_TCP, Socket::TCP_NODELAY, 1) if nodelay
   end
