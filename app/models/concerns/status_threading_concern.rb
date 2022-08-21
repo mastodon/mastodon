@@ -3,11 +3,11 @@
 module StatusThreadingConcern
   extend ActiveSupport::Concern
 
-  def ancestors(limit, account = nil)
+  def ancestors(limit, account: nil)
     find_statuses_from_tree_path(ancestor_ids(limit), account)
   end
 
-  def descendants(limit, account = nil, max_child_id = nil, since_child_id = nil, depth = nil)
+  def descendants(limit, account: nil, max_child_id: nil, since_child_id: nil, depth: nil)
     find_statuses_from_tree_path(descendant_ids(limit, max_child_id, since_child_id, depth), account, promote: true)
   end
 
