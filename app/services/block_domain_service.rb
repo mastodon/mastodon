@@ -3,7 +3,7 @@
 class BlockDomainService < BaseService
   attr_reader :domain_block
 
-  def call(domain_block, update = false)
+  def call(domain_block, update: false)
     @domain_block = domain_block
     process_domain_block!
     process_retroactive_updates! if update
