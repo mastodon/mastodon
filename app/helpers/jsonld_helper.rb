@@ -170,7 +170,7 @@ module JsonLdHelper
     json.present? && json['id'] == uri ? json : nil
   end
 
-  def fetch_resource_without_id_validation(uri, on_behalf_of = nil, raise_on_temporary_error = false)
+  def fetch_resource_without_id_validation(uri, on_behalf_of: nil, raise_on_temporary_error: false)
     on_behalf_of ||= Account.representative
 
     build_request(uri, on_behalf_of).perform do |response|
