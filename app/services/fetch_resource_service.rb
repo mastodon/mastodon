@@ -18,7 +18,7 @@ class FetchResourceService < BaseService
 
   private
 
-  def process(url, terminal = false)
+  def process(url, terminal: false)
     @url = url
 
     perform_request { |response| process_response(response, terminal) }
