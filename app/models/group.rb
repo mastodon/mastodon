@@ -42,6 +42,9 @@ class Group < ApplicationRecord
   include DomainNormalizable
   include DomainMaterializable
 
+  has_many :memberships,  class_name: 'GroupMembership', foreign_key: 'group_id', dependent: :destroy
+  has_many :members, -> { order('group_memberships.id desc') }, through: :memberships,  source: :account
+
   before_create :generate_keys
 
   def local?
