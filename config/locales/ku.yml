@@ -684,10 +684,29 @@ ku:
         manage_federation: Demnameya giştî bi rê ve bibe
         manage_federation_description: Mafê dide bikarhêneran ku demnameya giştî bi navparên din re asteng bikin û radestkirinê kontrol bikin
         manage_invites: Vexwendinan bi rêve bibe
+        manage_invites_description: Mafê dide bikarhêneran ku li girêdanên vexwendinê bigerin û neçalak bikin
+        manage_reports: Ragihandinan bi rê ve bibe
+        manage_reports_description: Mafê dide bikarhêneran ku ragihandinan binirxînin û li dijî wan kiryarên çavdêriyê çalakiyan pêk bînin
         manage_roles: Rolan bi rêve bibe
+        manage_roles_description: Mafê dide bikarhêneran ku rolên li jêr ên xwe birêve bibin û nîşan bikin
         manage_rules: Rolan bi rêve bibe
+        manage_rules_description: Mafê dide bikarhêneran ku rêzikên rajekarê biguherînin
         manage_settings: Sazkariyan bi rê ve bibe
+        manage_settings_description: Mafê dide bikarhêneran ku sazkariyên malperê biguherînin
+        manage_taxonomies: Beşan bi rê ve bibe
+        manage_taxonomies_description: Mafê dide bikarhêneran ku naveroka rojevê binirxînin û sazkariyên hashtagê rojane bikin
+        manage_user_access: Gihiştinê bikarhêner bi rê ve bibe
+        manage_user_access_description: Mafê dide bikarhêneran ku piştrastkirina du-gavî ya bikarhênerên din neçalak bikin, navnîşana e-nameya xwe biguherînin û borînpeyva xwe ji nû ve bikin
         manage_users: Bikarhêneran bi rêve bibe
+        manage_users_description: Mafê dide bikarhêneran ku hûrguliyên bikarhênerên din bibînin û li dijî wan kiryarên çavdêriyê çalakiyan pêk bînin
+        manage_webhooks: Webhook bi rê ve bibe
+        manage_webhooks_description: Mafê dide bikarhêneran ku ji bo bûyerên rêveberî yên webhook saz bikin
+        view_audit_log: Têketinên kontrolê nîşan bide
+        view_audit_log_description: Mafê dide bikarhêneran ku dîroka çalakiyên rêveberî yên li ser rajekarê bibînin
+        view_dashboard: Destgehê nîşan bide
+        view_dashboard_description: Mafê dide bikarhêneran ku bigihîjin destgehê û pîvanên cuda
+        view_devops: Pêşdebir
+        view_devops_description: Mafê dide bikarhêneran ku bigihîjin destgehên Sidekiq û pgHero
       title: Rol
     rules:
       add_new: Rêbazekê tevlî bike
@@ -1158,15 +1177,24 @@ ku:
       public: Demnameya gelemperî
       thread: Axaftin
     edit:
+      add_keyword: Kilîtpeyv tevî bike
       keywords: Peyvkilît
       title: Parzûnê serrast bike
     errors:
+      deprecated_api_multiple_keywords: Van parameteran ji vê sepanê nayên guhertin ji ber ku ew li ser bêtirî yek kilîtpeyvên parzûnkirî têne sepandin. Sepaneke nûtir an navrûya bikarhêneriyê ya malperê bi kar bîne.
       invalid_context: Naverok tune ye yan jî nederbasdar tê peydakirin
     index:
+      contexts: Parzûnên di %{contexts} de
       delete: Jê bibe
       empty: Parzûnên te tune ne.
+      expires_in: Di %{distance} de diqede
+      expires_on: Di %{date} de diqede
+      keywords:
+        one: "%{count} kilîtpeyv"
+        other: "%{count} kilîtpeyv"
       title: Parzûn
     new:
+      save: Parzûna nû tomar bike
       title: Parzûnek nû li zêde bike
   footer:
     developers: Pêşdebir
