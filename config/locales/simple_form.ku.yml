@@ -1,4 +1,3 @@
----
 ku:
   simple_form:
     hints:
@@ -47,9 +46,7 @@ ku:
         locked: Bi destan daxwazên şopê hilbijêrîne da ku kî bikaribe te bişopîne
         password: Herî kêm 8 tîpan bi kar bîne
         phrase: Ji rewşa nivîsê tîpên girdek/hûrdek an jî ji hişyariya naveroka ya şandiyê wek serbixwe wê were hevbeş kirin
-        scopes: |-
-          Sepana ku dê kîjan maf bide bigihije APIyan.
-          Ger te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî.
+        scopes: "Sepana ku dê kîjan maf bide bigihije APIyan.\nGer te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî."
         setting_aggregate_reblogs: Bilindkirinên ku nû hatine weşan ji şandiyên di dema dawî de nîşan nede (tenê li ser bilindkirinên nû wergirtî bandor dike)
         setting_always_send_emails: Dema ku tu Mastodon bi rengek çalak bi kar tînî, bi gelemperî agahdariya e-nameyê nayê şandin
         setting_default_sensitive: Medyaya hestiyar berdestî ve tê veşartin û bi tikandin dikare were eşkere kirin
@@ -70,6 +67,11 @@ ku:
         with_dns_records: Hewl tê dayîn ku tomarên DNSê yên li qada jê re hatine dayîn were çareserkirin û encamên wê jî were astengkirin
       featured_tag:
         name: 'Belkî tu yekê bi kar bînî çi van:'
+      filters:
+        action: Hilbijêre ku dema şandiyek bi parzûnê re lihevhatî be bila kîjan çalakî were pêkanîn
+        actions:
+          hide: Naveroka parzûnkirî bi tevahî veşêre, mîna ku ew tune be tevbigere
+          warn: Naveroka parzûnkirî li pişt hişyariyek ku sernavê parzûnê qal dike veşêre
       form_challenge:
         current_password: Tu dikevî qadeke ewledar
       imports:
@@ -93,7 +95,12 @@ ku:
         name: Tîpan, mînak ji bo ku bêhtir paknivîs bibe, tenê rewşa tîpên girdek/hûrdek dikarî biguherînî
       user:
         chosen_languages: Dema were nîşankirin, tenê parvekirinên bi zimanên hilbijartî dê di rêzikên giştî de werin nîşandan
+        role: Rola kîjan mafdayînên bikarhêner heye kontrol dike
       user_role:
+        color: Renga ku were bikaranîn ji bo rola li seranserê navrûya bikarhêneriyê, wekî RGB di forma hex
+        highlighted: Ev rola xwe ji raya giştî re xuya dike
+        name: Navê giştî yê rolê, ku rol wekî nîşanekê were diyarkirin
+        permissions_as_keys: Bikarhênerên bi vê rolê wê bigihîjin...
         position: Rola bilind di hinek rewşan de biryara çareserkirina nakokiyan dide. Hinej çalakî tenê dikarin li ser rolên bi pêşanînek kêmtir bêne kirin
       webhook:
         events: Bûyeran hilbijêre bo şandinê
@@ -185,6 +192,7 @@ ku:
         setting_use_pending_items: Awayê hêdî
         severity: Asta girîngiyê
         sign_in_token_attempt: Koda ewlehiyê
+        title: Sernav
         type: Cureya têxistinê
         username: Navê bikarhêneriyê
         username_or_email: Navê bikarhêner an jî e-name
@@ -193,6 +201,10 @@ ku:
         with_dns_records: Tomarên MX û IP yên hundirê navper lê zêde bike
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Bi tevahî veşêre
+          warn: Bi hişyariyekê veşêre
       interactions:
         must_be_follower: Danezanên ji kesên ku ne şopînerên min tên asteng bike
         must_be_following: Agahdariyan asteng bike ji kesên ku tu wan naşopînî
@@ -229,13 +241,14 @@ ku:
       user:
         role: Rol
       user_role:
+        color: Rengê nîşanê
         name: Nav
         permissions_as_keys: Maf
         position: Pêşikî
       webhook:
         events: Bûyerên çalakkirî
         url: Girêdana xala dawîbûnê
-    'no': Na
+    'no': 'Na'
     recommended: Pêşniyarkirî
     required:
       mark: "*"
@@ -243,4 +256,4 @@ ku:
     title:
       sessions:
         webauthn: Yek ji kilîtên ewlehiyê yên xwe bi kar bîne bo têketinê
-    'yes': Erê
+    'yes': 'Erê'
