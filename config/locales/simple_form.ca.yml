@@ -84,6 +84,7 @@ ca:
         ip: Introdueix una adreça IPv4 o IPv6. Pots bloquejar rangs complets amb la sintaxi CIDR. Ves a compte no et bloquegis a tu mateix!
         severities:
           no_access: Bloqueja l’accés a tots els recursos
+          sign_up_block: Nous registres no seran possibles
           sign_up_requires_approval: Els nous registres requeriran la teva aprovació
         severity: Tria què passarà amb les sol·licituds des d’aquesta IP
       rule:
@@ -218,6 +219,7 @@ ca:
         ip: IP
         severities:
           no_access: Bloquejar l’accés
+          sign_up_block: Bloqueja registres
           sign_up_requires_approval: Limitar els registres
         severity: Regla
       notification_emails:
