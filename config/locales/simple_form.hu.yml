@@ -84,6 +84,7 @@ hu:
         ip: Írj be egy IPv4 vagy IPv6 címet. A CIDR formátum használatával teljes tartományokat tilthatsz ki. Légy óvatos, hogy magadat véletlenül se zárd ki!
         severities:
           no_access: Elérés tiltása minden erőforráshoz
+          sign_up_block: Új feliratkozások nem lesznek lehetségesek
           sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
         severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
       rule:
@@ -218,6 +219,7 @@ hu:
         ip: IP
         severities:
           no_access: Elérés letiltása
+          sign_up_block: Feliratkozások letiltása
           sign_up_requires_approval: Regisztrációk korlátozása
         severity: Szabály
       notification_emails:
