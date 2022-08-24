@@ -5,7 +5,7 @@ class Scheduler::TorExitNodeScheduler
 
   sidekiq_options retry: 0
 
-  CHECK_URL = 'https://check.torproject.org/exit-addresses'
+  CHECK_URL = 'https://check.torproject.org/torbulkexitlist'
 
   def perform
     grab_exit_addresses!
@@ -14,8 +14,7 @@ class Scheduler::TorExitNodeScheduler
 
   def grab_exit_addresses!
     Request.new(:get, CHECK_URL).perform do |res|
-      grep = res.body.scan(/ExitAddress .*/)
-      @ips = grep.split("\n").map { |line| line.split(' ')[1] }
+      @ips = res.body
     end
   end
 
@@ -25,7 +24,7 @@ class Scheduler::TorExitNodeScheduler
 
       if ip_block.present?
         ip_block.update(expires_in: 24.hours.to_i)
-        next 
+        next
       end
 
       IpBlock.create(
