@@ -69,7 +69,7 @@
     interval: 1 minute
     class: Scheduler::AccountsStatusesCleanupScheduler
     queue: scheduler
-  torblock:
-    every '24h'
+  Tor_Exit_Node_Scheduler:
+    every: '24h'
     class: Scheduler::TorExitNodeScheduler
     queue: scheduler
