@@ -84,6 +84,7 @@ th:
         ip: ป้อนที่อยู่ IPv4 หรือ IPv6 คุณสามารถปิดกั้นทั้งช่วงได้โดยใช้ไวยากรณ์ CIDR ระวังอย่าล็อคตัวคุณเองออก!
         severities:
           no_access: ปิดกั้นการเข้าถึงทรัพยากรทั้งหมด
+          sign_up_block: จะไม่สามารถทำการลงทะเบียนใหม่
           sign_up_requires_approval: การลงทะเบียนใหม่จะต้องมีการอนุมัติของคุณ
         severity: เลือกสิ่งที่จะเกิดขึ้นกับคำขอจาก IP นี้
       rule:
@@ -218,6 +219,7 @@ th:
         ip: IP
         severities:
           no_access: ปิดกั้นการเข้าถึง
+          sign_up_block: ปิดกั้นการลงทะเบียน
           sign_up_requires_approval: จำกัดการลงทะเบียน
         severity: กฎ
       notification_emails:
