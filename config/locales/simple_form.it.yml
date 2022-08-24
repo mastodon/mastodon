@@ -84,6 +84,7 @@ it:
         ip: Inserisci un indirizzo IPv4 o IPv6. Puoi bloccare interi intervalli usando la sintassi CIDR. Fai attenzione a non bloccare te stesso!
         severities:
           no_access: Blocca l'accesso a tutte le risorse
+          sign_up_block: Le nuove iscrizioni non saranno possibili
           sign_up_requires_approval: Le nuove iscrizioni richiederanno la tua approvazione
         severity: Scegli cosa accadrà con le richieste da questo IP
       rule:
@@ -218,6 +219,7 @@ it:
         ip: IP
         severities:
           no_access: Blocca accesso
+          sign_up_block: Blocca iscrizioni
           sign_up_requires_approval: Limita iscrizioni
         severity: Regola
       notification_emails:
