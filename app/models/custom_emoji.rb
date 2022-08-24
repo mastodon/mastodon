@@ -67,6 +67,10 @@ class CustomEmoji < ApplicationRecord
     copy.tap(&:save!)
   end
 
+  def to_log_human_identifier
+    shortcode
+  end
+
   class << self
     def from_text(text, domain = nil)
       return [] if text.blank?

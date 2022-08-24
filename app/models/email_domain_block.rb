@@ -26,6 +26,10 @@ class EmailDomainBlock < ApplicationRecord
   # Used for adding multiple blocks at once
   attr_accessor :other_domains
 
+  def to_log_human_identifier
+    domain
+  end
+
   def history
     @history ||= Trends::History.new('email_domain_blocks', id)
   end

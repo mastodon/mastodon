@@ -34,6 +34,10 @@ class Announcement < ApplicationRecord
   before_validation :set_all_day
   before_validation :set_published, on: :create
 
+  def to_log_human_identifier
+    text
+  end
+
   def publish!
     update!(published: true, published_at: Time.now.utc, scheduled_at: nil)
   end

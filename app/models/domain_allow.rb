@@ -19,6 +19,10 @@ class DomainAllow < ApplicationRecord
 
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
+  def to_log_human_identifier
+    domain
+  end
+
   class << self
     def allowed?(domain)
       !rule_for(domain).nil?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_14_171049) do
+ActiveRecord::Schema.define(version: 2022_08_24_164532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,9 +205,11 @@ ActiveRecord::Schema.define(version: 2022_07_14_171049) do
     t.string "action", default: "", null: false
     t.string "target_type"
     t.bigint "target_id"
-    t.text "recorded_changes", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "human_identifier"
+    t.string "route_param"
+    t.string "permalink"
     t.index ["account_id"], name: "index_admin_action_logs_on_account_id"
     t.index ["target_type", "target_id"], name: "index_admin_action_logs_on_target_type_and_target_id"
   end

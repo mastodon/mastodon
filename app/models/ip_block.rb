@@ -26,6 +26,10 @@ class IpBlock < ApplicationRecord
 
   after_commit :reset_cache
 
+  def to_log_human_identifier
+    "#{record.ip}/#{record.ip.prefix}"
+  end
+
   class << self
     def blocked?(remote_ip)
       blocked_ips_map = Rails.cache.fetch(CACHE_KEY) { FastIpMap.new(IpBlock.where(severity: :no_access).pluck(:ip)) }
