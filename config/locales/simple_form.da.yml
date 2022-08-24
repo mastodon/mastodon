@@ -84,6 +84,7 @@ da:
         ip: Angiv en IPv4- eller IPv6-adresse. Hele intervaller kan blokeres vha. CIDR-syntaksen. Pas på med ikke selv at blive låst ude!
         severities:
           no_access: Blokér adgang til alle ressourcer
+          sign_up_block: Nye tilmeldinger vil ikke være mulige
           sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
         severity: Afgør, hvordan forespørgsler fra denne IP behandles
       rule:
@@ -218,6 +219,7 @@ da:
         ip: IP
         severities:
           no_access: Blokér adgang
+          sign_up_block: Blokér tilmeldinger
           sign_up_requires_approval: Begræns tilmeldinger
         severity: Regel
       notification_emails:
