@@ -12,6 +12,7 @@ class Admin::ActionLogFilter
     reject_appeal: { target_type: 'Appeal', action: 'reject' }.freeze,
     assigned_to_self_report: { target_type: 'Report', action: 'assigned_to_self' }.freeze,
     change_email_user: { target_type: 'User', action: 'change_email' }.freeze,
+    change_role_user: { target_type: 'User', action: 'change_role' }.freeze,
     confirm_user: { target_type: 'User', action: 'confirm' }.freeze,
     approve_user: { target_type: 'User', action: 'approve' }.freeze,
     reject_user: { target_type: 'User', action: 'reject' }.freeze,
@@ -22,6 +23,7 @@ class Admin::ActionLogFilter
     create_domain_block: { target_type: 'DomainBlock', action: 'create' }.freeze,
     create_email_domain_block: { target_type: 'EmailDomainBlock', action: 'create' }.freeze,
     create_unavailable_domain: { target_type: 'UnavailableDomain', action: 'create' }.freeze,
+    create_user_role: { target_type: 'UserRole', action: 'create' }.freeze,
     demote_user: { target_type: 'User', action: 'demote' }.freeze,
     destroy_announcement: { target_type: 'Announcement', action: 'destroy' }.freeze,
     destroy_custom_emoji: { target_type: 'CustomEmoji', action: 'destroy' }.freeze,
@@ -31,6 +33,7 @@ class Admin::ActionLogFilter
     destroy_instance: { target_type: 'Instance', action: 'destroy' }.freeze,
     destroy_unavailable_domain: { target_type: 'UnavailableDomain', action: 'destroy' }.freeze,
     destroy_status: { target_type: 'Status', action: 'destroy' }.freeze,
+    destroy_user_role: { target_type: 'UserRole', action: 'destroy' }.freeze,
     disable_2fa_user: { target_type: 'User', action: 'disable' }.freeze,
     disable_custom_emoji: { target_type: 'CustomEmoji', action: 'disable' }.freeze,
     disable_user: { target_type: 'User', action: 'disable' }.freeze,
@@ -52,6 +55,7 @@ class Admin::ActionLogFilter
     update_announcement: { target_type: 'Announcement', action: 'update' }.freeze,
     update_custom_emoji: { target_type: 'CustomEmoji', action: 'update' }.freeze,
     update_status: { target_type: 'Status', action: 'update' }.freeze,
+    update_user_role: { target_type: 'UserRole', action: 'update' }.freeze,
     unblock_email_account: { target_type: 'Account', action: 'unblock_email' }.freeze,
   }.freeze
 

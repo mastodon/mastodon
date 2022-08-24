@@ -7,6 +7,8 @@ module Admin::ActionLogsHelper
       link_to log.human_identifier, admin_account_path(log.target_id)
     when 'User'
       link_to log.human_identifier, admin_account_path(log.route_param)
+    when 'UserRole'
+      link_to log.human_identifier, admin_roles_path(log.target_id)
     when 'CustomEmoji'
       log.human_identifier
     when 'Report'
