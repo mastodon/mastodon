@@ -84,6 +84,7 @@ de:
         ip: Gebe eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht aussperrst!
         severities:
           no_access: Zugriff auf alle Ressourcen blockieren
+          sign_up_block: Neue Anmeldungen werden nicht möglich sein
           sign_up_requires_approval: Neue Anmeldungen erfordern deine Zustimmung
         severity: Wähle aus, was mit Anfragen aus dieser IP passiert
       rule:
@@ -218,6 +219,7 @@ de:
         ip: IP-Adresse
         severities:
           no_access: Zugriff sperren
+          sign_up_block: Anmeldungen blockieren
           sign_up_requires_approval: Anmeldungen begrenzen
         severity: Regel
       notification_emails:
