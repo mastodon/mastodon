@@ -84,6 +84,7 @@ is:
         ip: Settu inn IPv4 eða IPv6 vistfang. Þú getur lokað á svið vistfanga með því að nota CIDR-framsetningu. Gættu þess að loka ekki sjálfa/n þig úti!
         severities:
           no_access: Loka á aðgang að öllum tilföngum
+          sign_up_block: Nýskráningar verða ekki mögulegar
           sign_up_requires_approval: Nýskráningar munu þurfa samþykki þitt
         severity: Veldu hvað munir gerast við beiðnir frá þessu IP-vistfangi
       rule:
@@ -218,6 +219,7 @@ is:
         ip: IP-vistfang
         severities:
           no_access: Loka á aðgang
+          sign_up_block: Loka á nýskráningar
           sign_up_requires_approval: Takmarka nýskráningar
         severity: Regla
       notification_emails:
