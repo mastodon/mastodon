@@ -84,6 +84,7 @@ lv:
         ip: Ievadi IPv4 vai IPv6 adresi. Izmantojot CIDR sintaksi, tu vari bloķēt visus diapazonus. Esi piesardzīgs un neizslēdz pats sevi!
         severities:
           no_access: Bloķēt piekļuvi visiem resursiem
+          sign_up_block: Jaunas pieteikšanās nebūs iespējamas
           sign_up_requires_approval: Jaunām reģistrācijām būs nepieciešams tavs apstiprinājums
         severity: Izvēlies, kas notiks ar pieprasījumiem no šīs IP adreses
       rule:
@@ -218,6 +219,7 @@ lv:
         ip: IP
         severities:
           no_access: Bloķēt piekļuvi
+          sign_up_block: Bloķēt pieteikšanās
           sign_up_requires_approval: Ierobežot reģistrēšanos
         severity: Noteikumi
       notification_emails:
