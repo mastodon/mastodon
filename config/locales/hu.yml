@@ -695,7 +695,7 @@ hu:
         manage_settings: Beállítások kezelése
         manage_settings_description: Lehetővé teszi, hogy a felhasználó megváltoztassa az oldal beállításait
         manage_taxonomies: Taxonómiák kezelése
-        manage_taxonomies_description: Lehetővé teszi, hogy a felhasználó átnézze a népszerű tartalmakat és frissítse a hashtag-ek beállításait
+        manage_taxonomies_description: Lehetővé teszi, hogy a felhasználó átnézze a népszerű tartalmakat és frissítse a hashtagek beállításait
         manage_user_access: Felhasználói hozzáférések kezelése
         manage_user_access_description: Lehetővé teszi, hogy a felhasználó letiltsa mások kétlépcsős azonosítását, megváltoztassa az email címüket, és alaphelyzetbe állítsa a jelszavukat
         manage_users: Felhasználók kezelése
@@ -791,7 +791,7 @@ hu:
         title: A szerver bélyegképe
       timeline_preview:
         desc_html: Nyilvános idővonal megjelenítése a főoldalon
-        title: Idővonal előnézete
+        title: A nyilvános idővonal hitelesítés nélküli elérésének engedélyezése
       title: Webhely beállításai
       trendable_by_default:
         desc_html: Azokra a hashtagekere hat, melyet előzőleg nem tiltottak le
@@ -1181,6 +1181,7 @@ hu:
       add_keyword: Kulcsszó hozzáadása
       keywords: Kulcsszavak
       statuses: Egyedi bejegyzések
+      statuses_hint_html: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik, függetlenül attól, hogy megfelelnek-e a lenti kulcsszavaknak. <a href="%{path}">Engedélyezze vagy távolítsa el a bejegyzéseket a szűrőből</a>.
       title: Szűrő szerkesztése
     errors:
       deprecated_api_multiple_keywords: Ezek a paraméterek nem módosíthatóak az alkalmazásból, mert több mint egy szűrőkulcsszóra is hatással vannak. Használd az alkalmazás vagy a webes felület újabb verzióját.
@@ -1209,6 +1210,7 @@ hu:
       batch:
         remove: Eltávolítás a szűrőből
       index:
+        hint: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik a megadott kritériumoktól függetlenül. Újabb bejegyzéseket adhatsz hozzá ehhez a szűrőhöz a webes felületen keresztül.
         title: Megszűrt bejegyzések
   footer:
     developers: Fejlesztőknek
