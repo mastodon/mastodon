@@ -1329,17 +1329,6 @@ tr:
         subject: "%{name} bir bildirim gönderdi"
       sign_up:
         subject: "%{name} kaydoldu"
-    digest:
-      action: Tüm bildirimleri görüntüle
-      body: Son ziyaretiniz olan %{since}'den beri'da kaçırdığınız şeylerin özeti
-      mention: "%{name} senden bahsetti:"
-      new_followers_summary:
-        one: Ayrıca, uzaktayken yeni bir takipçi kazandınız! Yaşasın!
-        other: Ayrıca, uzaktayken %{count} yeni takipçi kazandınız! İnanılmaz!
-      subject:
-        one: "Son ziyaretinizden bu yana 1 yeni bildirim 🐘"
-        other: "Son ziyaretinizden bu yana %{count} yeni bildirim 🐘"
-      title: Senin yokluğunda...
     favourite:
       body: '%{name} durumunu beğendi:'
       subject: "%{name} durumunu beğendi"
