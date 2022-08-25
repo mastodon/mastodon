@@ -234,6 +234,7 @@ pt-PT:
         approve_user: Aprovar Utilizador
         assigned_to_self_report: Atribuir Denúncia
         change_email_user: Alterar E-mail do Utilizador
+        change_role_user: Alterar Função do Utilizador
         confirm_user: Confirmar Utilizador
         create_account_warning: Criar Aviso
         create_announcement: Criar Anúncio
@@ -243,6 +244,7 @@ pt-PT:
         create_email_domain_block: Criar Bloqueio de Domínio de E-mail
         create_ip_block: Criar regra de IP
         create_unavailable_domain: Criar Domínio Indisponível
+        create_user_role: Criar Função
         demote_user: Despromover Utilizador
         destroy_announcement: Eliminar Anúncio
         destroy_custom_emoji: Eliminar Emoji Personalizado
@@ -253,6 +255,7 @@ pt-PT:
         destroy_ip_block: Eliminar regra de IP
         destroy_status: Eliminar Publicação
         destroy_unavailable_domain: Eliminar Domínio Indisponível
+        destroy_user_role: Eliminar Função
         disable_2fa_user: Desativar 2FA
         disable_custom_emoji: Desativar Emoji Personalizado
         disable_sign_in_token_auth_user: Desativar token de autenticação por e-mail para Utilizador
@@ -280,11 +283,13 @@ pt-PT:
         update_custom_emoji: Atualizar Emoji Personalizado
         update_domain_block: Atualizar Bloqueio de Domínio
         update_status: Atualizar Estado
+        update_user_role: Atualizar Função
       actions:
         approve_appeal_html: "%{name} aprovou recurso da decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovou a inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} a si próprio"
         change_email_user_html: "%{name} alterou o endereço de e-mail do utilizador %{target}"
+        change_role_user_html: "%{name} alterou a função de %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
@@ -294,9 +299,10 @@ pt-PT:
         create_email_domain_block_html: "%{name} bloqueou o domínio de e-mail %{target}"
         create_ip_block_html: "%{name} criou regra para o IP %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
+        create_user_role_html: "%{name} criou a função %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
         destroy_announcement_html: "%{name} eliminou o anúncio %{target}"
-        destroy_custom_emoji_html: "%{name} destruiu o emoji %{target}"
+        destroy_custom_emoji_html: "%{name} eliminou o emoji %{target}"
         destroy_domain_allow_html: "%{name} desabilitou a federação com o domínio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
@@ -304,6 +310,7 @@ pt-PT:
         destroy_ip_block_html: "%{name} eliminou regra para o IP %{target}"
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
+        destroy_user_role_html: "%{name} eliminou a função %{target}"
         disable_2fa_user_html: "%{name} desativou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji_html: "%{name} desabilitou o emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desativou token de autenticação por e-mail para %{target}"
@@ -331,7 +338,7 @@ pt-PT:
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio para %{target}"
         update_status_html: "%{name} atualizou o estado de %{target}"
-      deleted_status: "(publicação eliminada)"
+        update_user_role_html: "%{name} alterou a função %{target}"
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
       filter_by_user: Filtrar por utilizador
@@ -1180,6 +1187,8 @@ pt-PT:
     edit:
       add_keyword: Adicionar palavra-chave
       keywords: Palavras-chave
+      statuses: Publicações individuais
+      statuses_hint_html: Este filtro aplica-se a publicações individuais selecionadas independentemente de estas corresponderem às palavras-chave abaixo. <a href="%{path}">Reveja ou remova publicações do filtro</a>.
       title: Editar filtros
     errors:
       deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir deste aplicativo porque se aplicam a mais de um filtro de palavra-chave. Use um aplicativo mais recente ou a interface web.
@@ -1193,10 +1202,23 @@ pt-PT:
       keywords:
         one: "%{count} palavra-chave"
         other: "%{count} palavras-chaves"
+      statuses:
+        one: "%{count} publicação"
+        other: "%{count} publicações"
+      statuses_long:
+        one: "%{count} publicação individual ocultada"
+        other: "%{count} publicações individuais ocultadas"
       title: Filtros
     new:
       save: Salvar novo filtro
       title: Adicionar novo filtro
+    statuses:
+      back_to_filter: Voltar ao filtro
+      batch:
+        remove: Remover do filtro
+      index:
+        hint: Este filtro aplica-se a publicações individuais selecionadas independentemente de outros critérios. Pode adicionar mais publicações a este filtro através da interface web.
+        title: Publicações filtradas
   footer:
     developers: Responsáveis pelo desenvolvimento
     more: Mais…
