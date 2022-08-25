@@ -790,7 +790,7 @@ class Status extends ImmutablePureComponent {
               status={status}
               account={status.get('account')}
               showReplyCount={settings.get('show_reply_count')}
-              onFilter={matchedFilters && this.handleFilterClick}
+              onFilter={matchedFilters ? this.handleFilterClick : null}
               {...other}
             />
           ) : null}
