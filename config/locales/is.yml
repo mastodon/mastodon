@@ -1340,17 +1340,6 @@ is:
         subject: "%{name} sendi inn kæru"
       sign_up:
         subject: "%{name} nýskráði sig"
-    digest:
-      action: Skoða allar tilkynningar
-      body: Hér er stutt yfirlit yfir þau skilaboð sem þú gætir hafa misst af síðan þú leist inn síðast %{since}
-      mention: "%{name} minntist á þig í:"
-      new_followers_summary:
-        one: Að auki, þú hefur fengið einn nýjan fylgjanda á meðan þú varst fjarverandi! Húh!
-        other: Að auki, þú hefur fengið %{count} nýja fylgjendur á meðan þú varst fjarverandi! Frábært!
-      subject:
-        one: "1 ný tilkynning síðan þú leist inn síðast 🐘"
-        other: "%{count} nýjar tilkynningar síðan þú leist inn síðast 🐘"
-      title: Á meðan þú varst fjarverandi...
     favourite:
       body: 'Færslan þín var sett í eftirlæti af %{name}:'
       subject: "%{name} setti færsluna þína í eftirlæti"
