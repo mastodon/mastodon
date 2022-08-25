@@ -1159,6 +1159,7 @@ vi:
     edit:
       add_keyword: Thêm từ khoá
       keywords: Từ khóa
+      statuses: Những tút riêng lẻ
       title: Chỉnh sửa bộ lọc
     errors:
       deprecated_api_multiple_keywords: Không thể thay đổi các tham số này từ ứng dụng này vì chúng áp dụng cho nhiều hơn một từ khóa bộ lọc. Sử dụng ứng dụng mới hơn hoặc giao diện web.
@@ -1171,10 +1172,18 @@ vi:
       expires_on: Hết hạn vào %{date}
       keywords:
         other: "%{count} từ khóa"
+      statuses:
+        other: "%{count} tút"
       title: Bộ lọc
     new:
       save: Lưu thành bộ lọc mới
       title: Thêm bộ lọc mới
+    statuses:
+      back_to_filter: Quay về bộ lọc
+      batch:
+        remove: Xóa khỏi bộ lọc
+      index:
+        title: Những tút đã lọc
   footer:
     developers: Phát triển
     more: Nhiều hơn

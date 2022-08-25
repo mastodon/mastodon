@@ -79,7 +79,7 @@ tr:
       following: Onaylamak istediğiniz kişiyi zaten takip ediyor olmalısınız
     posts:
       one: Gönderi
-      other: Toot
+      other: Gönderiler
     posts_tab_heading: Tootlar
     posts_with_replies: Tootlar ve yanıtlar
     roles:
@@ -1181,6 +1181,8 @@ tr:
     edit:
       add_keyword: Anahtar sözcük ekle
       keywords: Anahtar Sözcükler
+      statuses: Tekil gönderiler
+      statuses_hint_html: Bu filtre aşağıdaki anahtar kelimelere eşlenip eşlenmediklerinden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. Bu gönderileri gözden geçirip, <a href="%{path}">buraya tıklayarak</a> filtreden kaldırabilirsiniz.
       title: Filtreyi düzenle
     errors:
       deprecated_api_multiple_keywords: Bu parametreler, birden fazla filtre anahtar sözcüğü için geçerli olduğundan dolayı bu uygulama içerisinden değiştirilemezler. Daha yeni bir uygulama veya web arayüzünü kullanın.
@@ -1194,10 +1196,23 @@ tr:
       keywords:
         one: "%{count} anahtar sözcük"
         other: "%{count} anahtar sözcük"
+      statuses:
+        one: "%{count} gönderi"
+        other: "%{count} gönderi"
+      statuses_long:
+        one: "%{count} tekil gönderi gizli"
+        other: "%{count} tekil gönderi gizli"
       title: Filtreler
     new:
       save: Yeni filtre kaydet
       title: Yeni filtre ekle
+    statuses:
+      back_to_filter: Filtreye dön
+      batch:
+        remove: Filtreden kaldır
+      index:
+        hint: Bu filtre diğer ölçütlerden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. Web arayüzünü kullanarak bu filtreye daha fazla gönderi ekleyebilirsiniz.
+        title: Filtrelenmiş gönderiler
   footer:
     developers: Geliştiriciler
     more: Daha Fazla…

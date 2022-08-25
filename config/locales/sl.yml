@@ -1221,6 +1221,8 @@ sl:
     edit:
       add_keyword: Dodaj ključno besedo
       keywords: Ključne besede
+      statuses: Posamezne objave
+      statuses_hint_html: Ta filter se nanaša na posamezne objave ne glede na to, ali se ujemajo s spodnjimi ključnimi besedami. Te objave lahko pregledate in jih odstranite iz filtra, če <a href="%{path}">kliknete tukaj</a>.
       title: Uredite filter
     errors:
       deprecated_api_multiple_keywords: Teh parametrov ni mogoče spremeniti iz tega programa, ker veljajo za več kot eno ključno besedo filtra. Uporabite novejšo izdaj programa ali spletni vmesnik.
@@ -1236,10 +1238,27 @@ sl:
         one: "%{count} ključna beseda"
         other: "%{count} ključnih besed"
         two: "%{count} ključni besedi"
+      statuses:
+        few: "%{count} objave"
+        one: "%{count} objava"
+        other: "%{count} objav"
+        two: "%{count} objavi"
+      statuses_long:
+        few: "%{count} posamezne objave skrite"
+        one: "%{count} posamezna objava skrita"
+        other: "%{count} posameznih objav skritih"
+        two: "%{count} posamezni objavi skriti"
       title: Filtri
     new:
       save: Shrani nov filter
       title: Dodaj nov filter
+    statuses:
+      back_to_filter: Nazaj na filter
+      batch:
+        remove: Odstrani iz filtra
+      index:
+        hint: Ta filter se nanaša na posamezne objave ne glede na druge pogoje. Filtru lahko dodate več objav prek spletnega vmesnika.
+        title: Filtrirane objave
   footer:
     developers: Razvijalci
     more: Več…
