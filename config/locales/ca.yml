@@ -234,6 +234,7 @@ ca:
         approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna l'informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
+        change_role_user: Canvia el Rol del Usuari
         confirm_user: Confirma l'usuari
         create_account_warning: Crea un avís
         create_announcement: Crea un anunci
@@ -243,6 +244,7 @@ ca:
         create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crea un domini no disponible
+        create_user_role: Crea Rol
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
         destroy_custom_emoji: Esborra l'emoji personalitzat
@@ -253,6 +255,7 @@ ca:
         destroy_ip_block: Eliminar regla IP
         destroy_status: Esborrar la publicació
         destroy_unavailable_domain: Esborra domini no disponible
+        destroy_user_role: Destrueix Rol
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
         disable_sign_in_token_auth_user: Desactivar l'autenticació de token per correu per l'usuari
@@ -280,11 +283,13 @@ ca:
         update_custom_emoji: Actualitza l'emoji personalitzat
         update_domain_block: Actualitza el Bloqueig de Domini
         update_status: Actualitza l'estat
+        update_user_role: Actualitza Rol
       actions:
         approve_appeal_html: "%{name} ha aprovat l'apel·lació a la decisió de moderació de %{target}"
         approve_user_html: "%{name} ha aprovat el registre de %{target}"
         assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
         change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
+        change_role_user_html: "%{name} ha canviat el rol de %{target}"
         confirm_user_html: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
         create_account_warning_html: "%{name} ha enviat un avís a %{target}"
         create_announcement_html: "%{name} ha creat un nou anunci %{target}"
@@ -294,9 +299,10 @@ ca:
         create_email_domain_block_html: "%{name} ha bloquejat el domini de correu electrònic %{target}"
         create_ip_block_html: "%{name} ha creat una regla per a l'IP %{target}"
         create_unavailable_domain_html: "%{name} ha aturat el lliurament al domini %{target}"
+        create_user_role_html: "%{name} ha creat el rol %{target}"
         demote_user_html: "%{name} ha degradat l'usuari %{target}"
         destroy_announcement_html: "%{name} ha eliminat l'anunci %{target}"
-        destroy_custom_emoji_html: "%{name} ha destruït l'emoji %{target}"
+        destroy_custom_emoji_html: "%{name} ha esborrat l'emoji %{target}"
         destroy_domain_allow_html: "%{name} no permet la federació amb el domini %{target}"
         destroy_domain_block_html: "%{name} ha desbloquejat el domini %{target}"
         destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
@@ -304,6 +310,7 @@ ca:
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
         destroy_status_html: "%{name} ha eliminat la publicació de %{target}"
         destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
+        destroy_user_role_html: "%{name} ha esborrat el rol %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha desactivat l'autenticació de token per correu per a %{target}"
@@ -331,7 +338,7 @@ ca:
         update_custom_emoji_html: "%{name} ha actualitzat l'emoji %{target}"
         update_domain_block_html: "%{name} ha actualitzat el bloqueig de domini per a %{target}"
         update_status_html: "%{name} ha actualitzat l'estat de %{target}"
-      deleted_status: "(publicació esborrada)"
+        update_user_role_html: "%{name} ha canviat el rol %{target}"
       empty: No s’han trobat registres.
       filter_by_action: Filtra per acció
       filter_by_user: Filtra per usuari
