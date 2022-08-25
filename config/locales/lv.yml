@@ -239,6 +239,7 @@ lv:
         approve_user: Apstiprināt lietotāju
         assigned_to_self_report: Piešķirt Pārskatu
         change_email_user: Mainīt e-pastu lietotājam
+        change_role_user: Mainīt lietotāja lomu
         confirm_user: Apstiprināt lietotāju
         create_account_warning: Izveidot Brīdinājumu
         create_announcement: Izveidot Paziņojumu
@@ -248,6 +249,7 @@ lv:
         create_email_domain_block: Izveidot E-pasta Domēna Bloku
         create_ip_block: Izveidot IP noteikumu
         create_unavailable_domain: Izveidot Nepieejamu Domēnu
+        create_user_role: Izveidot lomu
         demote_user: Pazemināt Lietotāju
         destroy_announcement: Dzēst Paziņojumu
         destroy_custom_emoji: Dzēst pielāgoto emocijzīmi
@@ -258,6 +260,7 @@ lv:
         destroy_ip_block: Dzēst IP noteikumu
         destroy_status: Izdzēst Rakstu
         destroy_unavailable_domain: Dzēst Nepieejamu Domēnu
+        destroy_user_role: Iznīcināt lomu
         disable_2fa_user: Atspējot 2FA
         disable_custom_emoji: Atspējot pielāgotu emocijzīmi
         disable_sign_in_token_auth_user: Atspējoja e-pasta marķiera autentifikāciju lietotājam
@@ -285,11 +288,13 @@ lv:
         update_custom_emoji: Atjaunināt pielāgoto emocijzīmi
         update_domain_block: Atjaunināt Domēna Bloku
         update_status: Atjaunināt ziņu
+        update_user_role: Atjaunināt lomu
       actions:
         approve_appeal_html: "%{name} apstiprināja moderācijas lēmuma apelāciju no %{target}"
         approve_user_html: "%{name} apstiprināja reģistrēšanos no %{target}"
         assigned_to_self_report_html: "%{name} piešķīra pārskatu %{target} sev"
         change_email_user_html: "%{name} nomainīja e-pasta adresi lietotājam %{target}"
+        change_role_user_html: "%{name} nomainīja lomu uz %{target}"
         confirm_user_html: "%{name} apstiprināja e-pasta adresi lietotājam %{target}"
         create_account_warning_html: "%{name} nosūtīja brīdinājumu %{target}"
         create_announcement_html: "%{name} izveidoja jaunu paziņojumu %{target}"
@@ -299,9 +304,10 @@ lv:
         create_email_domain_block_html: "%{name} bloķēja e-pasta domēnu %{target}"
         create_ip_block_html: "%{name} izveidoja nosacījumu priekš IP %{target}"
         create_unavailable_domain_html: "%{name} apturēja piegādi uz domēnu %{target}"
+        create_user_role_html: "%{name} nomainīja %{target} lomu"
         demote_user_html: "%{name} pazemināja lietotāju %{target}"
         destroy_announcement_html: "%{name} izdzēsa paziņojumu %{target}"
-        destroy_custom_emoji_html: "%{name} iznīcināja emocijzīmi %{target}"
+        destroy_custom_emoji_html: "%{name} izdzēsa emocijzīmi %{target}"
         destroy_domain_allow_html: "%{name} neatļāva federāciju ar domēnu %{target}"
         destroy_domain_block_html: "%{name} atbloķēja domēnu %{target}"
         destroy_email_domain_block_html: "%{name} atbloķēja e-pasta domēnu %{target}"
@@ -309,6 +315,7 @@ lv:
         destroy_ip_block_html: "%{name} izdzēsa nosacījumu priekš IP %{target}"
         destroy_status_html: "%{name} noņēma ziņu %{target}"
         destroy_unavailable_domain_html: "%{name} atjaunoja piegādi uz domēnu %{target}"
+        destroy_user_role_html: "%{name} izdzēsa %{target} lomu"
         disable_2fa_user_html: "%{name} atspējoja divfaktoru prasības lietotājam %{target}"
         disable_custom_emoji_html: "%{name} atspējoja emocijzīmi %{target}"
         disable_sign_in_token_auth_user_html: "%{name} atspējoja e-pasta marķiera autentifikāciju %{target}"
@@ -336,7 +343,7 @@ lv:
         update_custom_emoji_html: "%{name} atjaunināja emocijzīmi %{target}"
         update_domain_block_html: "%{name} atjaunināja domēna bloku %{target}"
         update_status_html: "%{name} atjaunināja ziņu %{target}"
-      deleted_status: "(dzēsta ziņa)"
+        update_user_role_html: "%{name} nomainīja %{target} lomu"
       empty: Žurnāli nav atrasti.
       filter_by_action: Filtrēt pēc darbības
       filter_by_user: Filtrēt pēc lietotāja
@@ -1201,6 +1208,7 @@ lv:
       add_keyword: Pievienot atslēgvārdu
       keywords: Atslēgvārdi
       statuses: Individuālās ziņas
+      statuses_hint_html: Šis filtrs attiecas uz atsevišķām ziņām neatkarīgi no tā, vai tās atbilst tālāk norādītajiem atslēgvārdiem. <a href="%{path}">Pārskatīt vai noņemt ziņas no filtra</a>.
       title: Rediģēt filtru
     errors:
       deprecated_api_multiple_keywords: Šos parametrus šajā lietojumprogrammā nevar mainīt, jo tie attiecas uz vairāk nekā vienu filtra atslēgvārdu. Izmanto jaunāku lietojumprogrammu vai tīmekļa saskarni.
@@ -1224,6 +1232,7 @@ lv:
       batch:
         remove: Noņemt no filtra
       index:
+        hint: Šis filtrs attiecas uz atsevišķu ziņu atlasi neatkarīgi no citiem kritērijiem. Šim filtram tu vari pievienot vairāk ziņu, izmantojot tīmekļa saskarni.
         title: Filtrētās ziņas
   footer:
     developers: Izstrādātāji
