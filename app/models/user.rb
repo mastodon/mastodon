@@ -289,10 +289,6 @@ class User < ApplicationRecord
     settings.default_privacy || (account.locked? ? 'private' : 'public')
   end
 
-  def allows_digest_emails?
-    settings.notification_emails['digest']
-  end
-
   def allows_report_emails?
     settings.notification_emails['report']
   end
