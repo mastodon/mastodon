@@ -234,6 +234,7 @@ it:
         approve_user: Approva Utente
         assigned_to_self_report: Assegna report
         change_email_user: Cambia l'e-mail per l'utente
+        change_role_user: Cambia il Ruolo dell'Utente
         confirm_user: Conferma utente
         create_account_warning: Crea avviso
         create_announcement: Crea un annuncio
@@ -243,6 +244,7 @@ it:
         create_email_domain_block: Crea blocco dominio e-mail
         create_ip_block: Crea regola IP
         create_unavailable_domain: Crea dominio non disponibile
+        create_user_role: Crea Ruolo
         demote_user: Degrada l'utente
         destroy_announcement: Cancella annuncio
         destroy_custom_emoji: Cancella emoji personalizzata
@@ -253,6 +255,7 @@ it:
         destroy_ip_block: Elimina regola IP
         destroy_status: Cancella stato
         destroy_unavailable_domain: Elimina dominio non disponibile
+        destroy_user_role: Distruggi Ruolo
         disable_2fa_user: Disabilita l'autenticazione a due fattori
         disable_custom_emoji: Disabilita emoji personalizzata
         disable_sign_in_token_auth_user: Disabilita autenticazione con codice via email per l'utente
@@ -280,6 +283,7 @@ it:
         update_custom_emoji: Aggiorna emoji personalizzata
         update_domain_block: Aggiorna blocco di dominio
         update_status: Aggiorna stato
+        update_user_role: Aggiorna Ruolo
       actions:
         approve_appeal_html: "%{name} ha approvato il ricorso contro la decisione di moderazione da %{target}"
         approve_user_html: "%{name} ha approvato la registrazione da %{target}"
@@ -296,7 +300,6 @@ it:
         create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
-        destroy_custom_emoji_html: "%{name} ha eliminato emoji %{target}"
         destroy_domain_allow_html: "%{name} ha negato la federazione al dominio %{target}"
         destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
         destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
@@ -331,7 +334,6 @@ it:
         update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
         update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
         update_status_html: "%{name} ha aggiornato lo status di %{target}"
-      deleted_status: "(stato cancellato)"
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
       filter_by_user: Filtra per utente
