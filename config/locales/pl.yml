@@ -1371,21 +1371,6 @@ pl:
         subject: "%{name} wysłał raport"
       sign_up:
         subject: "%{name} zarejestrował(-a) się"
-    digest:
-      action: Wyświetl wszystkie powiadomienia
-      body: Oto krótkie podsumowanie wiadomości, które ominęły Cię od Twojej ostatniej wizyty (%{since})
-      mention: "%{name} wspomniał o Tobie w:"
-      new_followers_summary:
-        one: Dodatkowo, w czasie nieobecności zaczęła śledzić Cię jedna osoba Gratulacje!
-        few: (%{count}) nowe osoby śledzą Cię!
-        many: (%{count}) nowych osób Cię śledzi! Wspaniale!
-        other: Dodatkowo, zaczęło Cię śledzić %{count} nowych osób! Wspaniale!
-      subject:
-        one: "1 nowe powiadomienie od Twojej ostatniej wizyty 🐘"
-        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty 🐘"
-        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
-        other: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
-      title: W trakcie Twojej nieobecności…
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'
       subject: "%{name} lubi Twój wpis"
