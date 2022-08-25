@@ -362,6 +362,10 @@ class Account < ApplicationRecord
     username
   end
 
+  def to_log_human_identifier
+    acct
+  end
+
   def excluded_from_timeline_account_ids
     Rails.cache.fetch("exclude_account_ids_for:#{id}") { block_relationships.pluck(:target_account_id) + blocked_by_relationships.pluck(:account_id) + mute_relationships.pluck(:target_account_id) }
   end

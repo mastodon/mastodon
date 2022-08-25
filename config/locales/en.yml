@@ -235,6 +235,7 @@ en:
         approve_user: Approve User
         assigned_to_self_report: Assign Report
         change_email_user: Change E-mail for User
+        change_role_user: Change Role of User
         confirm_user: Confirm User
         create_account_warning: Create Warning
         create_announcement: Create Announcement
@@ -244,6 +245,7 @@ en:
         create_email_domain_block: Create E-mail Domain Block
         create_ip_block: Create IP rule
         create_unavailable_domain: Create Unavailable Domain
+        create_user_role: Create Role
         demote_user: Demote User
         destroy_announcement: Delete Announcement
         destroy_custom_emoji: Delete Custom Emoji
@@ -254,6 +256,7 @@ en:
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
+        destroy_user_role: Destroy Role
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
         disable_sign_in_token_auth_user: Disable E-mail Token Authentication for User
@@ -281,11 +284,13 @@ en:
         update_custom_emoji: Update Custom Emoji
         update_domain_block: Update Domain Block
         update_status: Update Post
+        update_user_role: Update Role
       actions:
         approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
         approve_user_html: "%{name} approved sign-up from %{target}"
         assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
         change_email_user_html: "%{name} changed the e-mail address of user %{target}"
+        change_role_user_html: "%{name} changed role of %{target}"
         confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
         create_account_warning_html: "%{name} sent a warning to %{target}"
         create_announcement_html: "%{name} created new announcement %{target}"
@@ -295,9 +300,10 @@ en:
         create_email_domain_block_html: "%{name} blocked e-mail domain %{target}"
         create_ip_block_html: "%{name} created rule for IP %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
+        create_user_role_html: "%{name} created %{target} role"
         demote_user_html: "%{name} demoted user %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
-        destroy_custom_emoji_html: "%{name} destroyed emoji %{target}"
+        destroy_custom_emoji_html: "%{name} deleted emoji %{target}"
         destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block_html: "%{name} unblocked domain %{target}"
         destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
@@ -305,6 +311,7 @@ en:
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
+        destroy_user_role_html: "%{name} deleted %{target} role"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} disabled e-mail token authentication for %{target}"
@@ -332,7 +339,7 @@ en:
         update_custom_emoji_html: "%{name} updated emoji %{target}"
         update_domain_block_html: "%{name} updated domain block for %{target}"
         update_status_html: "%{name} updated post by %{target}"
-      deleted_status: "(deleted post)"
+        update_user_role_html: "%{name} changed %{target} role"
       empty: No logs found.
       filter_by_action: Filter by action
       filter_by_user: Filter by user
