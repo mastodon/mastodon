@@ -43,7 +43,7 @@ const initialState = ImmutableMap({
   unread: 0,
   lastReadId: '0',
   readMarkerId: '0',
-  isLoading: false,
+  isLoading: 0,
   cleaningMode: false,
   isTabVisible: true,
   browserSupport: false,
@@ -121,7 +121,7 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
       }
     }
 
-    mutable.set('isLoading', false);
+    mutable.update('isLoading', (nbLoading) => nbLoading - 1);
   });
 };
 
@@ -249,10 +249,10 @@ export default function notifications(state = initialState, action) {
     return state.update('items', list => state.get('pendingItems').concat(list.take(40))).set('pendingItems', ImmutableList()).set('unread', 0);
   case NOTIFICATIONS_EXPAND_REQUEST:
   case NOTIFICATIONS_DELETE_MARKED_REQUEST:
-    return state.set('isLoading', true);
+    return state.set('isLoading', (nbLoading) => nbLoading + 1);
   case NOTIFICATIONS_DELETE_MARKED_FAIL:
   case NOTIFICATIONS_EXPAND_FAIL:
-    return state.set('isLoading', false);
+    return state.set('isLoading', (nbLoading) => nbLoading - 1);
   case NOTIFICATIONS_FILTER_SET:
     return state.set('items', ImmutableList()).set('hasMore', true);
   case NOTIFICATIONS_SCROLL_TOP:
@@ -287,7 +287,7 @@ export default function notifications(state = initialState, action) {
     return markForDelete(state, action.id, action.yes);
 
   case NOTIFICATIONS_DELETE_MARKED_SUCCESS:
-    return deleteMarkedNotifs(state).set('isLoading', false);
+    return deleteMarkedNotifs(state).set('isLoading', (nbLoading) => nbLoading - 1);
 
   case NOTIFICATIONS_ENTER_CLEARING_MODE:
     st = state.set('cleaningMode', action.yes);

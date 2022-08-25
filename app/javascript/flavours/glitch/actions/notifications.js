@@ -158,13 +158,13 @@ const excludeTypesFromFilter = filter => {
 
 const noOp = () => {};
 
-export function expandNotifications({ maxId } = {}, done = noOp) {
+export function expandNotifications({ maxId, forceLoad } = {}, done = noOp) {
   return (dispatch, getState) => {
     const activeFilter = getState().getIn(['settings', 'notifications', 'quickFilter', 'active']);
     const notifications = getState().get('notifications');
     const isLoadingMore = !!maxId;
 
-    if (notifications.get('isLoading')) {
+    if (notifications.get('isLoading') && !forceLoad) {
       done();
       return;
     }
@@ -343,7 +343,7 @@ export function setFilter (filterType) {
       path: ['notifications', 'quickFilter', 'active'],
       value: filterType,
     });
-    dispatch(expandNotifications());
+    dispatch(expandNotifications({ forceLoad: true }));
     dispatch(saveSettings());
   };
 };
