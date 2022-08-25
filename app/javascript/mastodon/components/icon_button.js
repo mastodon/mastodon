@@ -131,17 +131,9 @@ export default class IconButton extends React.PureComponent {
       </React.Fragment>
     );
 
-    if (href) {
-      return (
-        <a
-          href={href}
-          aria-label={title}
-          title={title}
-          target='_blank'
-          rel='noopener noreferrer'
-          className={classes}
-          style={style}
-        >
+    if (href && !this.prop) {
+      contents = (
+        <a href={href} target='_blank' rel='noopener noreferrer'>
           {contents}
         </a>
       );

@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { List as ImmutableList, Map as ImmutableMap } from 'immutable';
+import { toServerSideType } from 'mastodon/utils/filters';
 import { me } from '../initial_state';
 
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
@@ -18,23 +19,6 @@ export const makeGetAccount = () => {
       map.set('moved', moved);
     });
   });
-};
-
-const toServerSideType = columnType => {
-  switch (columnType) {
-  case 'home':
-  case 'notifications':
-  case 'public':
-  case 'thread':
-  case 'account':
-    return columnType;
-  default:
-    if (columnType.indexOf('list:') > -1) {
-      return 'home';
-    } else {
-      return 'public'; // community, account, hashtag
-    }
-  }
 };
 
 const getFilters = (state, { contextType }) => {
@@ -73,6 +57,7 @@ export const makeGetStatus = () => {
         if (filterResults.some((result) => filters.getIn([result.get('filter'), 'filter_action']) === 'hide')) {
           return null;
         }
+        filterResults = filterResults.filter(result => filters.has(result.get('filter')));
         if (!filterResults.isEmpty()) {
           filtered = filterResults.map(result => filters.getIn([result.get('filter'), 'title']));
         }

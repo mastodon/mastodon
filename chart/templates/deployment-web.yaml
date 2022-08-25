@@ -70,6 +70,18 @@ spec:
                   key: redis-password
             - name: "PORT"
               value: {{ .Values.mastodon.web.port | quote }}
+            {{- if (and .Values.mastodon.s3.enabled .Values.mastodon.s3.existingSecret) }}
+            - name: "AWS_SECRET_ACCESS_KEY"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mastodon.s3.existingSecret }}
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: "AWS_ACCESS_KEY_ID"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mastodon.s3.existingSecret }}
+                  key: AWS_ACCESS_KEY_ID
+            {{- end -}}
           {{- if (not .Values.mastodon.s3.enabled) }}
           volumeMounts:
             - name: assets
