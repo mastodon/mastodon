@@ -1,4 +1,3 @@
----
 fi:
   simple_form:
     hints:
@@ -85,12 +84,13 @@ fi:
         ip: Kirjoita IPv4- tai IPv6-osoite. Voit estää kokonaisia alueita käyttämällä CIDR-syntaksia. Varo, että et lukitse itseäsi!
         severities:
           no_access: Estä pääsy kaikkiin resursseihin
+          sign_up_block: Uudet kirjautumiset eivät ole mahdollisia
           sign_up_requires_approval: Uudet rekisteröitymiset edellyttävät hyväksyntääsi
         severity: Valitse, mitä tapahtuu tämän IP-osoitteen pyynnöille
       rule:
         text: Kuvaile sääntöä tai vaatimusta tämän palvelimen käyttäjille. Yritä pitää se lyhyenä ja yksinkertaisena
       sessions:
-        otp: Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.
+        otp: 'Syötä puhelimeen saamasi kaksivaiheisen tunnistautumisen koodi tai käytä palautuskoodia.'
         webauthn: Jos kyseessä on USB-avain, muista laittaa se paikalleen ja tarvittaessa napauttaa sitä.
       tag:
         name: Voit muuttaa esimerkiksi kirjaimia paremmin luettavaksi
@@ -219,6 +219,7 @@ fi:
         ip: IP
         severities:
           no_access: Estä pääsy
+          sign_up_block: Estä kirjautumiset
           sign_up_requires_approval: Rajoita rekisteröitymisiä
         severity: Sääntö
       notification_emails:
@@ -250,7 +251,7 @@ fi:
       webhook:
         events: Tapahtumat käytössä
         url: Päätepisteen URL
-    'no': Ei
+    'no': 'Ei'
     recommended: Suositeltu
     required:
       mark: "*"
@@ -258,4 +259,4 @@ fi:
     title:
       sessions:
         webauthn: Käytä jotakin suojausavainta kirjautuaksesi sisään
-    'yes': Kyllä
+    'yes': 'Kyllä'
