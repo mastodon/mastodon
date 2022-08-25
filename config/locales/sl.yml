@@ -244,6 +244,7 @@ sl:
         approve_user: Odobri uporabnika
         assigned_to_self_report: Dodeli prijavo
         change_email_user: Spremeni e-poštni naslov uporabnika
+        change_role_user: Spremeni vlogo uporabnika
         confirm_user: Potrdi uporabnika
         create_account_warning: Ustvari opozorilo
         create_announcement: Ustvari obvestilo
@@ -253,6 +254,7 @@ sl:
         create_email_domain_block: Ustvari blokado domene e-pošte
         create_ip_block: Ustvari pravilo IP
         create_unavailable_domain: Ustvari domeno, ki ni na voljo
+        create_user_role: Ustvari vlogo
         demote_user: Ponižaj uporabnika
         destroy_announcement: Izbriši obvestilo
         destroy_custom_emoji: Izbriši emodži po meri
@@ -263,6 +265,7 @@ sl:
         destroy_ip_block: Izbriši pravilo IP
         destroy_status: Izbriši objavo
         destroy_unavailable_domain: Izbriši domeno, ki ni na voljo
+        destroy_user_role: Uniči vlogo
         disable_2fa_user: Onemogoči
         disable_custom_emoji: Onemogoči emodži po meri
         disable_sign_in_token_auth_user: Onemogoči overjanje z žetonom po e-pošti za uporabnika
@@ -290,11 +293,13 @@ sl:
         update_custom_emoji: Posodobi emodži po meri
         update_domain_block: Posodobi blokado domene
         update_status: Posodobi objavo
+        update_user_role: Posodobi vlogo
       actions:
         approve_appeal_html: "%{name} je ugodil pritožbi uporabnika %{target} na moderatorsko odločitev"
         approve_user_html: "%{name} je odobril/a registracijo iz %{target}"
         assigned_to_self_report_html: "%{name} je dodelil/a prijavo %{target} sebi"
         change_email_user_html: "%{name} je spremenil/a naslov e-pošte uporabnika %{target}"
+        change_role_user_html: "%{name} je spremenil/a vlogo %{target}"
         confirm_user_html: "%{name} je potrdil/a naslov e-pošte uporabnika %{target}"
         create_account_warning_html: "%{name} je poslal/a opozorilo %{target}"
         create_announcement_html: "%{name} je ustvarila/a novo obvestilo %{target}"
@@ -304,8 +309,10 @@ sl:
         create_email_domain_block_html: "%{name} je dal/a na črni seznam e-pošto domene %{target}"
         create_ip_block_html: "%{name} je ustvaril/a pravilo za IP %{target}"
         create_unavailable_domain_html: "%{name} je prekinil/a dostavo v domeno %{target}"
+        create_user_role_html: "%{name} je ustvaril/a vlogo %{target}"
         demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
         destroy_announcement_html: "%{name} je izbrisal/a obvestilo %{target}"
+        destroy_custom_emoji_html: "%{name} je izbrisal/a emotikon %{target}"
         destroy_domain_allow_html: "%{name} ni dovolil/a federacije z domeno %{target}"
         destroy_domain_block_html: "%{name} je odblokiral/a domeno %{target}"
         destroy_email_domain_block_html: "%{name} je odblokiral/a e-pošto domene %{target}"
@@ -313,6 +320,7 @@ sl:
         destroy_ip_block_html: "%{name} je izbrisal/a pravilo za IP %{target}"
         destroy_status_html: "%{name} je odstranil/a objavo uporabnika %{target}"
         destroy_unavailable_domain_html: "%{name} je nadaljeval/a dostav v domeno %{target}"
+        destroy_user_role_html: "%{name} je izbrisal/a vlogo %{target}"
         disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
         disable_sign_in_token_auth_user_html: "%{name} je onemogočil/a overjanje z žetonom po e-pošti za uporabnika %{target}"
@@ -340,6 +348,7 @@ sl:
         update_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         update_domain_block_html: "%{name} je posodobil/a domenski blok za %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
+        update_user_role_html: "%{name} je spremenil/a vlogo %{target}"
       empty: Ni najdenih zapisnikov.
       filter_by_action: Filtriraj po dejanjih
       filter_by_user: Filtriraj po uporabnikih
@@ -1219,6 +1228,7 @@ sl:
       add_keyword: Dodaj ključno besedo
       keywords: Ključne besede
       statuses: Posamezne objave
+      statuses_hint_html: Ta filter velja za izbrane posamezne objave, ne glede na to, ali se ujemajo s spodnjimi ključnimi besedami. <a href="%{path}">Preglejte ali odstarnite objave iz filtra</a>.
       title: Uredite filter
     errors:
       deprecated_api_multiple_keywords: Teh parametrov ni mogoče spremeniti iz tega programa, ker veljajo za več kot eno ključno besedo filtra. Uporabite novejšo izdaj programa ali spletni vmesnik.
@@ -1253,6 +1263,7 @@ sl:
       batch:
         remove: Odstrani iz filtra
       index:
+        hint: Ta filter se nanaša na posamezne objave ne glede na druge pogoje. Filtru lahko dodate več objav prek spletnega vmesnika.
         title: Filtrirane objave
   footer:
     developers: Razvijalci
