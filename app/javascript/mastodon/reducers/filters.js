@@ -35,7 +35,7 @@ export default function filters(state = ImmutableMap(), action) {
   case FILTERS_CREATE_SUCCESS:
     return normalizeFilter(state, action.filter);
   case FILTERS_FETCH_SUCCESS:
-    //TODO: handle deleting obsolete filters
+    return normalizeFilters(ImmutableMap(), action.filters);
   case FILTERS_IMPORT:
     return normalizeFilters(state, action.filters);
   default:
