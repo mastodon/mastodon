@@ -11,7 +11,7 @@ RSpec.describe AppSignUpService, type: :service do
     it 'returns nil when registrations are closed' do
       tmp = Setting.registrations_mode
       Setting.registrations_mode = 'none'
-      expect(subject.call(app, remote_ip, good_params)).to be_nil
+      expect { subject.call(app, remote_ip, good_params) }.to raise_error Mastodon::NotPermittedError
       Setting.registrations_mode = tmp
     end
 

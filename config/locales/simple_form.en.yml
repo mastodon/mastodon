@@ -85,6 +85,7 @@ en:
         ip: Enter an IPv4 or IPv6 address. You can block entire ranges using the CIDR syntax. Be careful not to lock yourself out!
         severities:
           no_access: Block access to all resources
+          sign_up_block: New sign-ups will not be possible
           sign_up_requires_approval: New sign-ups will require your approval
         severity: Choose what will happen with requests from this IP
       rule:
@@ -219,6 +220,7 @@ en:
         ip: IP
         severities:
           no_access: Block access
+          sign_up_block: Block sign-ups
           sign_up_requires_approval: Limit sign-ups
         severity: Rule
       notification_emails:

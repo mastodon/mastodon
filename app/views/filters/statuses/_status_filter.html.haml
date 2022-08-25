@@ -1,0 +1,37 @@
+- status = status_filter.status.proper
+
+.batch-table__row
+  %label.batch-table__row__select.batch-checkbox
+    = f.check_box :status_filter_ids, { multiple: true, include_hidden: false }, status_filter.id
+  .batch-table__row__content
+    .status__content><
+      - if status.spoiler_text.blank?
+        = prerender_custom_emojis(status_content_format(status), status.emojis)
+      - else
+        %details<
+          %summary><
+            %strong> Content warning: #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}
+          = prerender_custom_emojis(status_content_format(status), status.emojis)
+
+    - status.ordered_media_attachments.each do |media_attachment|
+      %abbr{ title: media_attachment.description }
+        = fa_icon 'link'
+        = media_attachment.file_file_name
+
+    .detailed-status__meta
+      = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'name-tag', target: '_blank', rel: 'noopener noreferrer' do
+        = image_tag(status.account.avatar.url, width: 15, height: 15, alt: display_name(status.account), class: 'avatar')
+        .username= status.account.acct
+      ·
+      = link_to ActivityPub::TagManager.instance.url_for(status), class: 'detailed-status__datetime', target: stream_link_target, rel: 'noopener noreferrer' do
+        %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
+      - if status.edited?
+        ·
+        = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted'))
+      ·
+      = fa_visibility_icon(status)
+      = t("statuses.visibilities.#{status.visibility}")
+      - if status.sensitive?
+        ·
+        = fa_icon('eye-slash fw')
+        = t('stream_entries.sensitive_content')

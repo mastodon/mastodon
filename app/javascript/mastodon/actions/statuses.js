@@ -42,9 +42,9 @@ export function fetchStatusRequest(id, skipLoading) {
   };
 };
 
-export function fetchStatus(id) {
+export function fetchStatus(id, forceFetch = false) {
   return (dispatch, getState) => {
-    const skipLoading = getState().getIn(['statuses', id], null) !== null;
+    const skipLoading = !forceFetch && getState().getIn(['statuses', id], null) !== null;
 
     dispatch(fetchContext(id));
 
