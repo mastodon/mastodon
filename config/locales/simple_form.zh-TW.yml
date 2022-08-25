@@ -84,6 +84,7 @@ zh-TW:
         ip: 請輸入 IPv4 或 IPv6 位址，亦可以用 CIDR 語法以封鎖整個 IP 區段。小心不要把自己給一併封鎖掉囉！
         severities:
           no_access: 封鎖對所有資源存取
+          sign_up_block: 無法註冊新帳號
           sign_up_requires_approval: 新註冊申請需要先經過您的審核
         severity: 請選擇將如何處理來自這個 IP 位址的請求
       rule:
@@ -218,6 +219,7 @@ zh-TW:
         ip: IP 位址
         severities:
           no_access: 封鎖
+          sign_up_block: 禁止註冊新帳號
           sign_up_requires_approval: 限制註冊
         severity: 規則
       notification_emails:
