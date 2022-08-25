@@ -635,6 +635,10 @@
       {
         "defaultMessage": "Unblock @{name}",
         "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Filter this post",
+        "id": "status.filter"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -1879,6 +1883,84 @@
       }
     ],
     "path": "app/javascript/mastodon/features/favourites/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Expired filter!",
+        "id": "filter_modal.added.expired_title"
+      },
+      {
+        "defaultMessage": "This filter category has expired, you will need to change the expiration date for it to apply.",
+        "id": "filter_modal.added.expired_explanation"
+      },
+      {
+        "defaultMessage": "Context mismatch!",
+        "id": "filter_modal.added.context_mismatch_title"
+      },
+      {
+        "defaultMessage": "This filter category does not apply to the context in which you have accessed this post. If you want the post to be filtered in this context too, you will have to edit the filter.",
+        "id": "filter_modal.added.context_mismatch_explanation"
+      },
+      {
+        "defaultMessage": "settings page",
+        "id": "filter_modal.added.settings_link"
+      },
+      {
+        "defaultMessage": "Filter added!",
+        "id": "filter_modal.added.title"
+      },
+      {
+        "defaultMessage": "This post has been added to the following filter category: {title}.",
+        "id": "filter_modal.added.short_explanation"
+      },
+      {
+        "defaultMessage": "Filter settings",
+        "id": "filter_modal.added.review_and_configure_title"
+      },
+      {
+        "defaultMessage": "To review and further configure this filter category, go to the {settings_link}.",
+        "id": "filter_modal.added.review_and_configure"
+      },
+      {
+        "defaultMessage": "Done",
+        "id": "report.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/filters/added_to_filter.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Search or create",
+        "id": "filter_modal.select_filter.search"
+      },
+      {
+        "defaultMessage": "Clear",
+        "id": "emoji_button.clear"
+      },
+      {
+        "defaultMessage": "expired",
+        "id": "filter_modal.select_filter.expired"
+      },
+      {
+        "defaultMessage": "does not apply to this context",
+        "id": "filter_modal.select_filter.context_mismatch"
+      },
+      {
+        "defaultMessage": "New category: {name}",
+        "id": "filter_modal.select_filter.prompt_new"
+      },
+      {
+        "defaultMessage": "Filter this post",
+        "id": "filter_modal.select_filter.title"
+      },
+      {
+        "defaultMessage": "Use an existing category or create a new one",
+        "id": "filter_modal.select_filter.subtitle"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/filters/select_filter.json"
   },
   {
     "descriptors": [
@@ -3407,6 +3489,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/embed_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Filter a post",
+        "id": "filter_modal.title.status"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/filter_modal.json"
   },
   {
     "descriptors": [

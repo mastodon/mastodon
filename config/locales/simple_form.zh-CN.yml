@@ -85,6 +85,7 @@ zh-CN:
         ip: 输入 IPv4 或 IPv6 地址。你可以使用 CIDR 语法屏蔽 IP 段。小心不要屏蔽自己！
         severities:
           no_access: 阻止访问所有资源
+          sign_up_block: 无法进行新的账号注册
           sign_up_requires_approval: 新注册需要你的批准
         severity: 选择如何处理来自此 IP 的请求。
       rule:
@@ -219,6 +220,7 @@ zh-CN:
         ip: IP 地址
         severities:
           no_access: 阻止访问
+          sign_up_block: 阻止账号注册
           sign_up_requires_approval: 限制注册
         severity: 规则
       notification_emails:

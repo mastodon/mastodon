@@ -85,6 +85,7 @@ sl:
         ip: Vnesite naslov IPv4 oz. IPv6. S skladnjo CIDR lahko blokirate celotne obsege. Pazite, da se ne zaklenete ven!
         severities:
           no_access: Blokiraj dostop do vseh virov
+          sign_up_block: Nove registracije ne bodo možne
           sign_up_requires_approval: Za nove registracije bo potrebna vaša odobritev
         severity: Izberite, kaj se bo zgodilo z zahtevami iz tega IP-naslova
       rule:
@@ -219,6 +220,7 @@ sl:
         ip: IP
         severities:
           no_access: Blokiraj dostop
+          sign_up_block: Blokiraj registracije
           sign_up_requires_approval: Omeji število prijav
         severity: Pravilo
       notification_emails:

@@ -1181,6 +1181,8 @@ es:
     edit:
       add_keyword: Añadir palabra clave
       keywords: Palabras clave
+      statuses: Publicaciones individuales
+      statuses_hint_html: Este filtro se aplica a las publicaciones individuales seleccionadas, independientemente de si coinciden con las palabras clave de abajo. Puedes revisar estos mensajes y eliminarlos del filtro <a href="%{path}">pulsando aquí</a>.
       title: Editar filtro
     errors:
       deprecated_api_multiple_keywords: Estos parámetros no se pueden cambiar desde esta aplicación porque se aplican a más de una palabra clave de filtro. Utilice una aplicación más reciente o la interfaz web.
@@ -1194,10 +1196,23 @@ es:
       keywords:
         one: "%{count} palabra clave"
         other: "%{count} palabras clave"
+      statuses:
+        one: "%{count} publicación"
+        other: "%{count} publicaciones"
+      statuses_long:
+        one: "%{count} publicación individual oculta"
+        other: "%{count} publicaciones individuales ocultas"
       title: Filtros
     new:
       save: Guardar nuevo filtro
       title: Añadir nuevo filtro
+    statuses:
+      back_to_filter: Volver a filtrar
+      batch:
+        remove: Eliminar del filtro
+      index:
+        hint: Este filtro se aplica a la selección de publicaciones individuales independientemente de otros criterios. Puede añadir más mensajes a este filtro desde la interfaz Web.
+        title: Publicaciones filtradas
   footer:
     developers: Desarrolladores
     more: Mas…

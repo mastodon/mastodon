@@ -1163,6 +1163,8 @@ zh-TW:
     edit:
       add_keyword: 新增關鍵字
       keywords: 關鍵字
+      statuses: 各別嘟文
+      statuses_hint_html: 此過濾器會套用至所選之各別嘟文，不管它們有無匹配到以下的關鍵字。您可以檢視這些嘟文而<a href="%{path}">按此</a>將它們從過濾器中移除。
       title: 編輯篩選條件
     errors:
       deprecated_api_multiple_keywords: 這些參數無法從此應用程式中更改，因為它們適用於一或多個過濾器關鍵字。請使用較新的應用程式或是網頁介面。
@@ -1175,10 +1177,21 @@ zh-TW:
       expires_on: 於 %{date} 過期
       keywords:
         other: "%{count} 個關鍵字"
+      statuses:
+        other: "%{count} 則嘟文"
+      statuses_long:
+        other: "%{count} 則各別嘟文被隱藏"
       title: 過濾器
     new:
       save: 儲存新過濾器
       title: 新增篩選器
+    statuses:
+      back_to_filter: 回到過濾器
+      batch:
+        remove: 從過濾器中移除
+      index:
+        hint: 此過濾器會套用至所選之各別嘟文，不管它們有無符合其他條件。您可以從網頁介面中將更多嘟文加入至此過濾器。
+        title: 已過濾之嘟文
   footer:
     developers: 開發者
     more: 更多......
