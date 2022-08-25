@@ -1227,12 +1227,22 @@ en:
     trending_now: Trending now
   generic:
     all: All
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selected."
+      other: All <strong>%{count}</strong> items on this page are selected.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matching your search is selected."
+      other: All <strong>%{count}</strong> items matching your search are selected.
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     delete: Delete
+    deselect: Deselect all
     none: None
     order_by: Order by
     save_changes: Save changes
+    select_all_matching_items:
+      one: Select %{count} item matching your search.
+      other: Select all %{count} items matching your search.
     today: today
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
