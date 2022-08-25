@@ -53,7 +53,7 @@
           = f.button safe_join([fa_icon('times'), t('admin.accounts.reject')]), name: :reject, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
 
         = f.button safe_join([fa_icon('lock'), t('admin.accounts.perform_full_suspension')]), name: :suspend, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
-    - if true || @accounts.total_count > @accounts.size
+    - if @accounts.total_count > @accounts.size
       .batch-table__select-all
         .not-selected.active
           %span= t('generic.all_items_on_page_selected_html', count: @accounts.size)
