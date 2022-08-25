@@ -22,7 +22,8 @@ zh-CN:
     get_apps: 尝试移动应用
     hosted_on: 运行在 %{domain} 上的 Mastodon 站点
     instance_actor_flash: |
-      这个账号是个虚拟账号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
+      该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。
+      该账号用于达成互联之目的，除非你想要封禁整个实例，否则该账号不应该被封禁。在此种情况下，你应该使用域名封禁。
     learn_more: 了解详情
     logged_in_as_html: 您当前以 %{username} 登录。
     logout_before_registering: 您已登录。
@@ -60,7 +61,7 @@ zh-CN:
     followers:
       other: 关注者
     following: 正在关注
-    instance_actor_flash: 这个账户是一个虚拟账户，用来代表服务器自身，不代表任何实际用户。它用于互通功能，不应该被封禁。
+    instance_actor_flash: 该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。该账号用于达成互联之目的，不应该被停用。
     joined: 加入于 %{date}
     last_active: 最近活动
     link_verified_on: 此链接的所有权已在 %{date} 检查
@@ -832,7 +833,7 @@ zh-CN:
       links:
         allow: 允许链接
         allow_provider: 允许发布者
-        description_html: 这些是当前此服务器可见账号的嘟文中被大量分享的链接。它可以帮助用户了解正在发生的事情。发布者获得批准前不会公开显示任何链接。你也可以批准或拒绝单个链接。
+        description_html: 这些是当前此服务器可见账号的嘟文中被大量分享的链接。它可以帮助用户了解正在发生的事情。发布者获得批准前不会公开显示任何链接。你也可以批准或拒绝个别链接。
         disallow: 不允许链接
         disallow_provider: 不允许发布者
         shared_by_over_week:
@@ -850,7 +851,7 @@ zh-CN:
       statuses:
         allow: 允许嘟文
         allow_account: 允许发布者
-        description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。这些嘟文可以帮助新老用户找到更多可关注的账号。批准发布者且发布者允许将其账号推荐给其他用户前，不会公开显示任何嘟文。你也可以批准或拒绝单条嘟文。
+        description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。这些嘟文可以帮助新老用户找到更多可关注的账号。批准发布者且发布者允许将其账号推荐给其他用户前，不会公开显示任何嘟文。你也可以批准或拒绝个别嘟文。
         disallow: 禁止嘟文
         disallow_account: 禁止发布者
         not_discoverable: 发布者选择不被发现
@@ -1176,7 +1177,7 @@ zh-CN:
       statuses:
         other: "%{count} 条嘟文"
       statuses_long:
-        other: "%{count} 条个别嘟文已隐藏"
+        other: "%{count} 个嘟文已隐藏"
       title: 过滤器
     new:
       save: 保存新过滤器
@@ -1186,7 +1187,7 @@ zh-CN:
       batch:
         remove: 从过滤器中移除
       index:
-        hint: 无论其他条件如何，此过滤器适用于选用个别嘟文。你可以从网页界面中向此过滤器加入更多嘟文。
+        hint: 无论其他条件如何，此过滤器适用于选用单条嘟文。你可以从网页界面中向此过滤器加入更多嘟文。
         title: 过滤的嘟文
   footer:
     developers: 开发者
