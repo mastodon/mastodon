@@ -1390,21 +1390,6 @@ sl:
         subject: "%{name} je oddal/a prijavo"
       sign_up:
         subject: "%{name} se je vpisal/a"
-    digest:
-      action: Prikaži vsa obvestila
-      body: Tukaj je kratek povzetek sporočil, ki ste jih zamudili od vašega zadnjega obiska v %{since}
-      mention: "%{name} vas je omenil/a v:"
-      new_followers_summary:
-        one: Prav tako ste pridobili enega novega sledilca, ko ste bili odsotni! Juhu!
-        two: Prav tako ste pridobili %{count} nova sledilca, ko ste bili odsotni! Juhu!
-        few: Prav tako ste pridobili %{count} nove sledilce, ko ste bili odsotni! Juhu!
-        other: Prav tako ste pridobili %{count} novih sledilcev, ko ste bili odsotni! Juhu!
-      subject:
-        one: "%{count} novo obvestilo od vašega zadnjega obiska 🐘"
-        two: "%{count} novi obvestili od vašega zadnjega obiska 🐘"
-        few: "%{count} nova obvestila od vašega zadnjega obiska 🐘"
-        other: "%{count} novih obvestil od vašega zadnjega obiska 🐘"
-      title: V vaši odsotnosti...
     favourite:
       body: '%{name} je vzljubil/a vašo objavo:'
       subject: "%{name} je vzljubil/a vašo objavo"
