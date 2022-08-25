@@ -31,7 +31,7 @@ class Request
     @url         = Addressable::URI.parse(url).normalize
     @http_client = options.delete(:http_client)
     @options     = options.merge(socket_class: use_proxy? ? ProxySocket : Socket)
-    @options     = @options.merge(Rails.configuration.x.http_client_proxy) if use_proxy?
+    @options     = @options.merge(proxy_url) if use_proxy?
     @headers     = {}
 
     raise Mastodon::HostValidationError, 'Instance does not support hidden service connections' if block_hidden_service?
@@ -141,11 +141,23 @@ class Request
   end
 
   def use_proxy?
-    Rails.configuration.x.http_client_proxy.present?
+    proxy_url.present?
+  end
+
+  def proxy_url
+    if hidden_service? && Rails.configuration.x.http_client_hidden_proxy.present?
+      Rails.configuration.x.http_client_hidden_proxy
+    else
+      Rails.configuration.x.http_client_proxy
+    end
   end
 
   def block_hidden_service?
-    !Rails.configuration.x.access_to_hidden_service && /\.(onion|i2p)$/.match?(@url.host)
+    !Rails.configuration.x.access_to_hidden_service && hidden_service?
+  end
+
+  def hidden_service?
+    /\.(onion|i2p)$/.match?(@url.host)
   end
 
   module ClientLimit
