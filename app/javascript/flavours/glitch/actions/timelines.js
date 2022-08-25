@@ -4,8 +4,7 @@ import api, { getLinks } from 'flavours/glitch/util/api';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import compareId from 'flavours/glitch/util/compare_id';
 import { me, usePendingItems as preferPendingItems } from 'flavours/glitch/util/initial_state';
-import { getFiltersRegex } from 'flavours/glitch/selectors';
-import { searchTextFromRawStatus } from 'flavours/glitch/actions/importer/normalizer';
+import { toServerSideType } from 'flavours/glitch/util/filters';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
@@ -40,14 +39,13 @@ export function updateTimeline(timeline, status, accept) {
       return;
     }
 
-    const filters   = getFiltersRegex(getState(), { contextType: timeline });
-    const dropRegex = filters[0];
-    const regex     = filters[1];
-    const text      = searchTextFromRawStatus(status);
-    let filtered    = false;
+    let filtered = false;
 
-    if (status.account.id !== me) {
-      filtered = (dropRegex && dropRegex.test(text)) || (regex && regex.test(text));
+    if (status.filtered) {
+      const contextType = toServerSideType(timeline);
+      const filters = status.filtered.filter(result => result.filter.context.includes(contextType));
+
+      filtered = filters.length > 0;
     }
 
     dispatch(importFetchedStatus(status));

@@ -79,6 +79,7 @@ class Status extends ImmutablePureComponent {
     onOpenMedia: PropTypes.func,
     onOpenVideo: PropTypes.func,
     onBlock: PropTypes.func,
+    onAddFilter: PropTypes.func,
     onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
     onToggleHidden: PropTypes.func,
@@ -455,8 +456,8 @@ class Status extends ImmutablePureComponent {
   }
 
   handleUnfilterClick = e => {
-    const { onUnfilter, status } = this.props;
-    onUnfilter(status.get('reblog') ? status.get('reblog') : status, () => this.setState({ forceFilter: false }));
+    this.setState({ forceFilter: false });
+    e.preventDefault();
   }
 
   handleFilterClick = () => {
@@ -557,8 +558,8 @@ class Status extends ImmutablePureComponent {
       );
     }
 
-    const filtered = (status.get('filtered') || status.getIn(['reblog', 'filtered'])) && settings.get('filtering_behavior') !== 'content_warning';
-    if (forceFilter === undefined ? filtered : forceFilter) {
+    const matchedFilters = status.get('matched_filters');
+    if (this.state.forceFilter === undefined ? matchedFilters : this.state.forceFilter) {
       const minHandlers = this.props.muted ? {} : {
         moveUp: this.handleHotkeyMoveUp,
         moveDown: this.handleHotkeyMoveDown,
@@ -567,13 +568,11 @@ class Status extends ImmutablePureComponent {
       return (
         <HotKeys handlers={minHandlers}>
           <div className='status__wrapper status__wrapper--filtered focusable' tabIndex='0' ref={this.handleRef}>
-            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />
-            {settings.get('filtering_behavior') !== 'upstream' && ' '}
-            {settings.get('filtering_behavior') !== 'upstream' && (
-              <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
-                <FormattedMessage id='status.show_filter_reason' defaultMessage='(show why)' />
-              </button>
-            )}
+            <FormattedMessage id='status.filtered' defaultMessage='Filtered' />: {matchedFilters.join(', ')}.
+            {' '}
+            <button className='status__wrapper--filtered__button' onClick={this.handleUnfilterClick}>
+              <FormattedMessage id='status.show_filter_reason' defaultMessage='Show anyway' />
+            </button>
           </div>
         </HotKeys>
       );
@@ -789,11 +788,11 @@ class Status extends ImmutablePureComponent {
 
           {!isCollapsed || !(muted || !settings.getIn(['collapsed', 'show_action_bar'])) ? (
             <StatusActionBar
-              {...other}
               status={status}
               account={status.get('account')}
               showReplyCount={settings.get('show_reply_count')}
-              onFilter={this.handleFilterClick}
+              onFilter={matchedFilters ? this.handleFilterClick : null}
+              {...other}
             />
           ) : null}
           {notification ? (

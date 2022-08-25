@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Status from 'flavours/glitch/components/status';
 import { List as ImmutableList } from 'immutable';
-import { makeGetStatus, regexFromFilters, toServerSideType } from 'flavours/glitch/selectors';
+import { makeGetStatus } from 'flavours/glitch/selectors';
 import {
   replyCompose,
   mentionCompose,
@@ -25,6 +25,9 @@ import {
   revealStatus,
   editStatus
 } from 'flavours/glitch/actions/statuses';
+import {
+  initAddFilter,
+} from 'flavours/glitch/actions/filters';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
@@ -201,50 +204,12 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch(initBlockModal(account));
   },
 
-  onUnfilter (status, onConfirm) {
-    dispatch((_, getState) => {
-      let state = getState();
-      const serverSideType = toServerSideType(contextType);
-      const enabledFilters = state.get('filters', ImmutableList()).filter(filter => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date()))).toArray();
-      const searchIndex = status.get('search_index');
-      const matchingFilters = enabledFilters.filter(filter => regexFromFilters([filter]).test(searchIndex));
-      dispatch(openModal('CONFIRM', {
-        message: [
-          <FormattedMessage id='confirmations.unfilter' defaultMessage='Information about this filtered toot' />,
-          <div className='filtered-status-info'>
-            <Spoilers spoilerText={intl.formatMessage(messages.author)}>
-              <AccountContainer id={status.getIn(['account', 'id'])} />
-            </Spoilers>
-            <Spoilers spoilerText={intl.formatMessage(messages.matchingFilters, {count: matchingFilters.size})}>
-              <ul>
-                {matchingFilters.map(filter => (
-                  <li>
-                    {filter.get('phrase')}
-                    {!!filterEditLink && ' '}
-                    {!!filterEditLink && (
-                      <a
-                        target='_blank'
-                        className='filtered-status-edit-link'
-                        title={intl.formatMessage(messages.editFilter)}
-                        href={filterEditLink(filter.get('id'))}
-                      >
-                        <Icon id='pencil' />
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </Spoilers>
-          </div>
-        ],
-        confirm: intl.formatMessage(messages.unfilterConfirm),
-        onConfirm: onConfirm,
-      }));
-    });
-  },
-
   onReport (status) {
     dispatch(initReport(status.get('account'), status));
+  },
+
+  onAddFilter (status) {
+    dispatch(initAddFilter(status, { contextType }));
   },
 
   onMute (account) {

@@ -1,6 +1,7 @@
 import escapeTextContentForBrowser from 'escape-html';
 import { createSelector } from 'reselect';
-import { List as ImmutableList, is } from 'immutable';
+import { List as ImmutableList } from 'immutable';
+import { toServerSideType } from 'flavours/glitch/util/filters';
 import { me } from 'flavours/glitch/util/initial_state';
 
 const getAccountBase         = (state, id) => state.getIn(['accounts', id], null);
@@ -21,68 +22,14 @@ export const makeGetAccount = () => {
   });
 };
 
-export const toServerSideType = columnType => {
-  switch (columnType) {
-  case 'home':
-  case 'notifications':
-  case 'public':
-  case 'thread':
-  case 'account':
-    return columnType;
-  default:
-    if (columnType.indexOf('list:') > -1) {
-      return 'home';
-    } else {
-      return 'public'; // community, account, hashtag
-    }
-  }
+const getFilters = (state, { contextType }) => {
+  if (!contextType) return null;
+
+  const serverSideType = toServerSideType(contextType);
+  const now = new Date();
+
+  return state.get('filters').filter((filter) => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || filter.get('expires_at') > now));
 };
-
-const escapeRegExp = string =>
-  string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
-
-export const regexFromFilters = filters => {
-  if (filters.size === 0) {
-    return null;
-  }
-
-  return new RegExp(filters.map(filter => {
-    let expr = escapeRegExp(filter.get('phrase'));
-
-    if (filter.get('whole_word')) {
-      if (/^[\w]/.test(expr)) {
-        expr = `\\b${expr}`;
-      }
-
-      if (/[\w]$/.test(expr)) {
-        expr = `${expr}\\b`;
-      }
-    }
-
-    return expr;
-  }).join('|'), 'i');
-};
-
-// Memoize the filter regexps for each valid server contextType
-const makeGetFiltersRegex = () => {
-  let memo = {};
-
-  return (state, { contextType }) => {
-    if (!contextType) return ImmutableList();
-
-    const serverSideType = toServerSideType(contextType);
-    const filters = state.get('filters', ImmutableList()).filter(filter => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date())));
-
-    if (!memo[serverSideType] || !is(memo[serverSideType].filters, filters)) {
-      const dropRegex = regexFromFilters(filters.filter(filter => filter.get('irreversible')));
-      const regex = regexFromFilters(filters);
-      memo[serverSideType] = { filters: filters, results: [dropRegex, regex] };
-    }
-    return memo[serverSideType].results;
-  };
-};
-
-export const getFiltersRegex = makeGetFiltersRegex();
 
 export const makeGetStatus = () => {
   return createSelector(
@@ -91,60 +38,37 @@ export const makeGetStatus = () => {
       (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
-      (state, _) => state.getIn(['local_settings', 'filtering_behavior']),
-      (state, _) => state.get('filters', ImmutableList()),
-      (_, { contextType }) => contextType,
-      getFiltersRegex,
+      getFilters,
     ],
 
-    (statusBase, statusReblog, accountBase, accountReblog, filteringBehavior, filters, contextType, filtersRegex) => {
+    (statusBase, statusReblog, accountBase, accountReblog, filters) => {
       if (!statusBase) {
         return null;
       }
 
-      const dropRegex = (accountReblog || accountBase).get('id') !== me && filtersRegex[0];
-
-      if (dropRegex && dropRegex.test(statusBase.get('reblog') ? statusReblog.get('search_index') : statusBase.get('search_index'))) {
-        return null;
-      }
-
-      const regex  = (accountReblog || accountBase).get('id') !== me && filtersRegex[1];
       let filtered = false;
+      if ((accountReblog || accountBase).get('id') !== me && filters) {
+        let filterResults = statusReblog?.get('filtered') || statusBase.get('filtered') || ImmutableList();
+        if (filterResults.some((result) => filters.getIn([result.get('filter'), 'filter_action']) === 'hide')) {
+          return null;
+        }
+        filterResults = filterResults.filter(result => filters.has(result.get('filter')));
+        if (!filterResults.isEmpty()) {
+          filtered = filterResults.map(result => filters.getIn([result.get('filter'), 'title']));
+        }
+      }
 
       if (statusReblog) {
-        filtered     = regex && regex.test(statusReblog.get('search_index'));
         statusReblog = statusReblog.set('account', accountReblog);
-        statusReblog = statusReblog.set('filtered', filtered);
+        statusReblog = statusReblog.set('matched_filters', filtered);
       } else {
         statusReblog = null;
-      }
-
-      filtered = filtered || regex && regex.test(statusBase.get('search_index'));
-
-      if (filtered && filteringBehavior === 'drop') {
-        return null;
-      } else if (filtered && filteringBehavior === 'content_warning') {
-        let spoilerText = (statusReblog || statusBase).get('spoiler_text', '');
-        const searchIndex = (statusReblog || statusBase).get('search_index');
-        const serverSideType = toServerSideType(contextType);
-        const enabledFilters = filters.filter(filter => filter.get('context').includes(serverSideType) && (filter.get('expires_at') === null || Date.parse(filter.get('expires_at')) > (new Date()))).toArray();
-        const matchingFilters = enabledFilters.filter(filter => {
-          const regexp = regexFromFilters([filter]);
-          return regexp.test(searchIndex) && !regexp.test(spoilerText);
-        });
-        if (statusReblog) {
-          statusReblog = statusReblog.set('spoiler_text', matchingFilters.map(filter => filter.get('phrase')).concat([spoilerText]).filter(cw => !!cw).join(', '));
-          statusReblog = statusReblog.update('spoilerHtml', '', spoilerText => matchingFilters.map(filter => escapeTextContentForBrowser(filter.get('phrase'))).concat([spoilerText]).filter(cw => !!cw).join(', '));
-        } else {
-          statusBase = statusBase.set('spoiler_text', matchingFilters.map(filter => filter.get('phrase')).concat([spoilerText]).filter(cw => !!cw).join(', '));
-          statusBase = statusBase.update('spoilerHtml', '', spoilerText => matchingFilters.map(filter => escapeTextContentForBrowser(filter.get('phrase'))).concat([spoilerText]).filter(cw => !!cw).join(', '));
-        }
       }
 
       return statusBase.withMutations(map => {
         map.set('reblog', statusReblog);
         map.set('account', accountBase);
-        map.set('filtered', filtered);
+        map.set('matched_filters', filtered);
       });
     },
   );

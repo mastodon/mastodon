@@ -177,3 +177,7 @@ export function FollowRecommendations () {
 export function CompareHistoryModal () {
   return import(/*webpackChunkName: "flavours/glitch/async/compare_history_modal" */'flavours/glitch/features/ui/components/compare_history_modal');
 }
+
+export function FilterModal () {
+  return import(/*webpackChunkName: "flavours/glitch/async/filter_modal" */'flavours/glitch/features/ui/components/filter_modal');
+}
