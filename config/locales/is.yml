@@ -234,6 +234,7 @@ is:
         approve_user: Samþykkja notanda
         assigned_to_self_report: Úthluta kæru
         change_email_user: Skipta um tölvupóstfang notanda
+        change_role_user: Breyta hlutverki notanda
         confirm_user: Staðfesta notanda
         create_account_warning: Útbúa aðvörun
         create_announcement: Búa til tilkynningu
@@ -243,6 +244,7 @@ is:
         create_email_domain_block: Búa til útilokun tölvupóstléns
         create_ip_block: Búa til IP-reglu
         create_unavailable_domain: Útbúa lén sem ekki er tiltækt
+        create_user_role: Útbúa hlutverk
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
         destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
@@ -253,6 +255,7 @@ is:
         destroy_ip_block: Eyða IP-reglu
         destroy_status: Eyða færslu
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
+        destroy_user_role: Eyða hlutverki
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
         disable_sign_in_token_auth_user: Gera óvirka auðkenningu með teikni í tölvupósti fyrir notandann
@@ -280,11 +283,13 @@ is:
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
         update_domain_block: Uppfæra útilokun léns
         update_status: Uppfæra færslu
+        update_user_role: Uppfæra hlutverk
       actions:
         approve_appeal_html: "%{name} samþykkti áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         approve_user_html: "%{name} samþykkti nýskráningu frá %{target}"
         assigned_to_self_report_html: "%{name} úthlutaði kæru %{target} til sín"
         change_email_user_html: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
+        change_role_user_html: "%{name} breytti hlutverki %{target}"
         confirm_user_html: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
         create_account_warning_html: "%{name} sendi aðvörun til %{target}"
         create_announcement_html: "%{name} útbjó nýja tilkynningu %{target}"
@@ -294,9 +299,10 @@ is:
         create_email_domain_block_html: "%{name} útilokaði póstlénið %{target}"
         create_ip_block_html: "%{name} útbjó reglu fyrir IP-vistfangið %{target}"
         create_unavailable_domain_html: "%{name} stöðvaði afhendingu til lénsins %{target}"
+        create_user_role_html: "%{name} útbjó %{target} hlutverk"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
-        destroy_custom_emoji_html: "%{name} henti út tjáningartákninu %{target}"
+        destroy_custom_emoji_html: "%{name} eyddi emoji-tákni %{target}"
         destroy_domain_allow_html: "%{name} bannaði skýjasamband með léninu %{target}"
         destroy_domain_block_html: "%{name} aflétti útilokun af léninu %{target}"
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
@@ -304,6 +310,7 @@ is:
         destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
         destroy_status_html: "%{name} fjarlægði færslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
+        destroy_user_role_html: "%{name} eyddi hlutverki %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
         disable_sign_in_token_auth_user_html: "%{name} gerði óvirka auðkenningu með teikni í tölvupósti fyrir %{target}"
@@ -331,7 +338,7 @@ is:
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
         update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
-      deleted_status: "(eydd færsla)"
+        update_user_role_html: "%{name} breytti hlutverki %{target}"
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
