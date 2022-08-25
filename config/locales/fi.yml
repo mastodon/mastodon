@@ -1340,17 +1340,6 @@ fi:
         subject: "%{name} lähetti raportin"
       sign_up:
         subject: "%{name} kirjautunut"
-    digest:
-      action: Näytä kaikki ilmoitukset
-      body: Tässä lyhyt yhteenveto viime käyntisi (%{since}) jälkeen tulleista viesteistä
-      mention: "%{name} mainitsi sinut:"
-      new_followers_summary:
-        one: Olet myös saanut yhden uuden seuraajan! Juhuu!
-        other: Olet myös saanut %{count} uutta seuraajaa! Aivan mahtavaa!
-      subject:
-        one: "1 uusi ilmoitus viime käyntisi jälkeen 🐘"
-        other: "%{count} uutta ilmoitusta viime käyntisi jälkeen 🐘"
-      title: Poissaollessasi…
     favourite:
       body: '%{name} tykkäsi tilastasi:'
       subject: "%{name} tykkäsi tilastasi"
