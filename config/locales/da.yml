@@ -234,6 +234,7 @@ da:
         approve_user: Godkend bruger
         assigned_to_self_report: Tildel rapport
         change_email_user: Skift e-mail for bruger
+        change_role_user: Skift brugerrolle
         confirm_user: Bekræft bruger
         create_account_warning: Opret advarsel
         create_announcement: Opret bekendtgørelse
@@ -243,6 +244,7 @@ da:
         create_email_domain_block: Opret e-maildomæneblokering
         create_ip_block: Opret IP-regel
         create_unavailable_domain: Opret Utilgængeligt Domæne
+        create_user_role: Opret rolle
         demote_user: Degradér bruger
         destroy_announcement: Slet bekendtgørelse
         destroy_custom_emoji: Slet tilpasset emoji
@@ -253,6 +255,7 @@ da:
         destroy_ip_block: Slet IP-regel
         destroy_status: Slet indlæg
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
+        destroy_user_role: Ødelæg rolle
         disable_2fa_user: Deaktivér 2FA
         disable_custom_emoji: Deaktivér tilpasset emoji
         disable_sign_in_token_auth_user: Deaktivér e-mailtoken godkendelse for bruger
@@ -280,11 +283,13 @@ da:
         update_custom_emoji: Opdatér tilpasset emoji
         update_domain_block: Opdatér domæneblokering
         update_status: Opdatér indlæg
+        update_user_role: Opdatér rolle
       actions:
         approve_appeal_html: "%{name} godkendte moderationsafgørelsesappellen fra %{target}"
         approve_user_html: "%{name} godkendte tilmeldingen fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte sig selv anmeldelsen %{target}"
         change_email_user_html: "%{name} ændrede e-mailadressen for bruger %{target}"
+        change_role_user_html: "%{name} ændrede rollen for %{target}"
         confirm_user_html: "%{name} bekræftede e-mailadressen for bruger %{target}"
         create_account_warning_html: "%{name} sendte en advarsel til %{target}"
         create_announcement_html: "%{name} oprettede den nye bekendtgørelse %{target}"
@@ -294,8 +299,10 @@ da:
         create_email_domain_block_html: "%{name} blokerede e-maildomænet %{target}"
         create_ip_block_html: "%{name} oprettede en regel for IP %{target}"
         create_unavailable_domain_html: "%{name} stoppede levering til domænet %{target}"
+        create_user_role_html: "%{name} oprettede %{target}-rolle"
         demote_user_html: "%{name} degraderede brugeren %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
+        destroy_custom_emoji_html: "%{name} slettede emojien %{target}"
         destroy_domain_allow_html: "%{name} fjernede federeringstilladelsen med domænet %{target}"
         destroy_domain_block_html: "%{name} afblokerede domænet %{target}"
         destroy_email_domain_block_html: "%{name} afblokerede e-maildomænet %{target}"
@@ -303,6 +310,7 @@ da:
         destroy_ip_block_html: "%{name} slettede en regel for IP %{target}"
         destroy_status_html: "%{name} fjernede indlægget fra %{target}"
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
+        destroy_user_role_html: "%{name} slettede %{target}-rolle"
         disable_2fa_user_html: "%{name} deaktiverede tofaktorkravet for brugeren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverede emojien %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deaktiverede e-mailtoken godkendelsen for %{target}"
@@ -330,6 +338,7 @@ da:
         update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
         update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
         update_status_html: "%{name} opdaterede indlægget fra %{target}"
+        update_user_role_html: "%{name} ændrede %{target}-rolle"
       empty: Ingen logger fundet.
       filter_by_action: Filtrér efter handling
       filter_by_user: Filtrér efter bruger
@@ -1178,6 +1187,7 @@ da:
       add_keyword: Tilføj nøgleord
       keywords: Nøgleord
       statuses: Individuelle indlæg
+      statuses_hint_html: Dette filter gælder for udvalgte, individuelle indlæg, uanset om de matcher nøgleordene nedenfor. <a href="%{path}">Gennemgå eller fjern indlæg fra filteret</a>.
       title: Redigere filter
     errors:
       deprecated_api_multiple_keywords: Disse parametre kan ikke ændres fra denne applikation, da de gælder for flere end ét filternøgleord. Brug en nyere applikation eller webgrænsefladen.
@@ -1206,6 +1216,7 @@ da:
       batch:
         remove: Fjern fra filter
       index:
+        hint: Dette filter gælder for udvalgte, individuelle indlæg uanset andre kriterier. Flere indlæg kan føjes til filteret via webfladen.
         title: Filtrerede indlæg
   footer:
     developers: Udviklere
