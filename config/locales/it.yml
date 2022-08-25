@@ -289,6 +289,7 @@ it:
         approve_user_html: "%{name} ha approvato la registrazione da %{target}"
         assigned_to_self_report_html: "%{name} ha assegnato il rapporto %{target} a se stesso"
         change_email_user_html: "%{name} ha cambiato l'indirizzo e-mail dell'utente %{target}"
+        change_role_user_html: "%{name} ha cambiato il ruolo di %{target}"
         confirm_user_html: "%{name} ha confermato l'indirizzo e-mail dell'utente %{target}"
         create_account_warning_html: "%{name} ha inviato un avviso a %{target}"
         create_announcement_html: "%{name} ha creato un nuovo annuncio %{target}"
@@ -298,8 +299,10 @@ it:
         create_email_domain_block_html: "%{name} ha bloccato dominio e-mail %{target}"
         create_ip_block_html: "%{name} ha creato una regola per l'IP %{target}"
         create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
+        create_user_role_html: "%{name} ha creato il ruolo %{target}"
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
+        destroy_custom_emoji_html: "%{name} ha eliminato l'emoji %{target}"
         destroy_domain_allow_html: "%{name} ha negato la federazione al dominio %{target}"
         destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
         destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
@@ -307,6 +310,7 @@ it:
         destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
         destroy_status_html: "%{name} ha eliminato lo status di %{target}"
         destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
+        destroy_user_role_html: "%{name} ha eliminato il ruolo %{target}"
         disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
         disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha disabilitato l'autenticazione con codice via email per %{target}"
@@ -334,6 +338,7 @@ it:
         update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
         update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
         update_status_html: "%{name} ha aggiornato lo status di %{target}"
+        update_user_role_html: "%{name} ha modificato il ruolo %{target}"
       empty: Nessun log trovato.
       filter_by_action: Filtra per azione
       filter_by_user: Filtra per utente
@@ -1183,6 +1188,7 @@ it:
       add_keyword: Aggiungi parola chiave
       keywords: Parole chiave
       statuses: Post singoli
+      statuses_hint_html: Questo filtro si applica a singoli post indipendentemente dal fatto che corrispondano alle parole chiave qui sotto. <a href="%{path}">Rivedi o rimuovi i post dal filtro</a>.
       title: Modifica filtro
     errors:
       deprecated_api_multiple_keywords: Questi parametri non possono essere modificati da questa applicazione perché si applicano a più di una parola chiave che fa da filtro. Utilizzare un'applicazione più recente o l'interfaccia web.
@@ -1211,6 +1217,7 @@ it:
       batch:
         remove: Togli dal filtro
       index:
+        hint: Questo filtro si applica a singoli post indipendentemente da altri criteri. Puoi aggiungere più post a questo filtro dall'interfaccia Web.
         title: Post filtrati
   footer:
     developers: Sviluppatori
