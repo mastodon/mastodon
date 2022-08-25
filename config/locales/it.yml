@@ -1340,17 +1340,6 @@ it:
         subject: "%{name} ha inviato una segnalazione"
       sign_up:
         subject: "%{name} si è iscritto"
-    digest:
-      action: Vedi tutte le notifiche
-      body: Ecco un breve riassunto di quello che ti sei perso dalla tua ultima visita del %{since}
-      mention: "%{name} ti ha menzionato:"
-      new_followers_summary:
-        one: E inoltre hai ricevuto un nuovo seguace mentre eri assente! Urrà!
-        other: Inoltre, hai acquisito %{count} nuovi seguaci mentre eri assente! Incredibile!
-      subject:
-        one: "1 nuova notifica dalla tua ultima visita 🐘"
-        other: "%{count} nuove notifiche dalla tua ultima visita 🐘"
-      title: In tua assenza…
     favourite:
       body: 'Il tuo status è stato apprezzato da %{name}:'
       subject: "%{name} ha apprezzato il tuo status"
