@@ -1,0 +1,38 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('filters.statuses.index.title')
+  \-
+  = @filter.title
+
+.filters
+  .back-link
+    = link_to edit_filter_path(@filter) do
+      = fa_icon 'chevron-left fw'
+      = t('filters.statuses.back_to_filter')
+
+%p.hint= t('filters.statuses.index.hint')
+
+%hr.spacer/
+
+= form_for(@status_filter_batch_action, url: batch_filter_statuses_path(@filter.id)) do |f|
+  = hidden_field_tag :page, params[:page] || 1
+
+  - Admin::StatusFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
+
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        - unless @status_filters.empty?
+          = f.button safe_join([fa_icon('times'), t('filters.statuses.batch.remove')]), name: :remove, class: 'table-action-link', type: :submit
+    .batch-table__body
+      - if @status_filters.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'status_filter', collection: @status_filters, locals: { f: f }
+
+= paginate @status_filters

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_14_171049) do
+ActiveRecord::Schema.define(version: 2022_08_08_101323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -346,6 +346,15 @@ ActiveRecord::Schema.define(version: 2022_07_14_171049) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["custom_filter_id"], name: "index_custom_filter_keywords_on_custom_filter_id"
+  end
+
+  create_table "custom_filter_statuses", force: :cascade do |t|
+    t.bigint "custom_filter_id", null: false
+    t.bigint "status_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["custom_filter_id"], name: "index_custom_filter_statuses_on_custom_filter_id"
+    t.index ["status_id"], name: "index_custom_filter_statuses_on_status_id"
   end
 
   create_table "custom_filters", force: :cascade do |t|
@@ -1113,6 +1122,8 @@ ActiveRecord::Schema.define(version: 2022_07_14_171049) do
   add_foreign_key "conversation_mutes", "accounts", name: "fk_225b4212bb", on_delete: :cascade
   add_foreign_key "conversation_mutes", "conversations", on_delete: :cascade
   add_foreign_key "custom_filter_keywords", "custom_filters", on_delete: :cascade
+  add_foreign_key "custom_filter_statuses", "custom_filters", on_delete: :cascade
+  add_foreign_key "custom_filter_statuses", "statuses", on_delete: :cascade
   add_foreign_key "custom_filters", "accounts", on_delete: :cascade
   add_foreign_key "devices", "accounts", on_delete: :cascade
   add_foreign_key "devices", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade

@@ -20,6 +20,7 @@ import {
   ListEditor,
   ListAdder,
   CompareHistoryModal,
+  FilterModal,
 } from 'mastodon/features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -37,6 +38,7 @@ const MODAL_COMPONENTS = {
   'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
   'LIST_ADDER': ListAdder,
   'COMPARE_HISTORY': CompareHistoryModal,
+  'FILTER': FilterModal,
 };
 
 export default class ModalRoot extends React.PureComponent {
