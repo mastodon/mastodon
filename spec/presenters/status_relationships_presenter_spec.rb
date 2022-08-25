@@ -94,5 +94,32 @@ RSpec.describe StatusRelationshipsPresenter do
         expect(matched_filters[0].keyword_matches).to eq ['irrelevant']
       end
     end
+
+    context 'when post includes filtered individual statuses' do
+      let(:statuses) { [Fabricate(:status, text: 'hello world'), Fabricate(:status, reblog: Fabricate(:status, text: 'this toot is about an irrelevant word'))] }
+      let(:options) { {} }
+
+      before do
+        filter = Account.find(current_account_id).custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide)
+        filter.statuses.create!(status_id: statuses[0].id)
+        filter.statuses.create!(status_id: statuses[1].reblog_of_id)
+      end
+
+      it 'sets @filters_map to filter top-level status' do
+        matched_filters = presenter.filters_map[statuses[0].id]
+        expect(matched_filters.size).to eq 1
+
+        expect(matched_filters[0].filter.title).to eq 'filter1'
+        expect(matched_filters[0].status_matches).to eq [statuses[0].id]
+      end
+
+      it 'sets @filters_map to filter reblogged status' do
+        matched_filters = presenter.filters_map[statuses[1].reblog_of_id]
+        expect(matched_filters.size).to eq 1
+
+        expect(matched_filters[0].filter.title).to eq 'filter1'
+        expect(matched_filters[0].status_matches).to eq [statuses[1].reblog_of_id]
+      end
+    end
   end
 end

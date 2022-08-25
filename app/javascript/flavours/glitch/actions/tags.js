@@ -75,18 +75,18 @@ export const unfollowHashtag = name => (dispatch, getState) => {
 };
 
 export const unfollowHashtagRequest = name => ({
-  type: HASHTAG_FETCH_REQUEST,
+  type: HASHTAG_UNFOLLOW_REQUEST,
   name,
 });
 
 export const unfollowHashtagSuccess = (name, tag) => ({
-  type: HASHTAG_FETCH_SUCCESS,
+  type: HASHTAG_UNFOLLOW_SUCCESS,
   name,
   tag,
 });
 
 export const unfollowHashtagFail = (name, error) => ({
-  type: HASHTAG_FETCH_FAIL,
+  type: HASHTAG_UNFOLLOW_FAIL,
   name,
   error,
 });
