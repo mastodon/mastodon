@@ -14,8 +14,8 @@ class Scheduler::IPBlocklistURLScheduler
   end
 
   def grab_exit_addresses!
-    CHECK_URL.split(",").each do |URL|
-      Request.new(:get, URL).perform do |res|
+    CHECK_URL.split(",").each do |url|
+      Request.new(:get, url).perform do |res|
         @ips.insert = res.body
       end
     end    
