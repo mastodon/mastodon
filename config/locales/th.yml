@@ -653,6 +653,7 @@ th:
         manage_announcements: จัดการประกาศ
         manage_announcements_description: อนุญาตให้ผู้ใช้จัดการประกาศในเซิร์ฟเวอร์
         manage_appeals: จัดการการอุทธรณ์
+        manage_appeals_description: อนุญาตให้ผู้ใช้ตรวจทานการอุทธรณ์ต่อการกระทำการควบคุม
         manage_blocks: จัดการการปิดกั้น
         manage_blocks_description: อนุญาตให้ผู้ใช้ปิดกั้นผู้ให้บริการอีเมลและที่อยู่ IP
         manage_custom_emojis: จัดการอีโมจิที่กำหนดเอง
@@ -827,6 +828,7 @@ th:
         allow_account: อนุญาตผู้สร้าง
         disallow: ไม่อนุญาตโพสต์
         disallow_account: ไม่อนุญาตผู้สร้าง
+        not_discoverable: ผู้สร้างไม่ได้เลือกรับให้สามารถค้นพบได้
         shared_by:
           other: แบ่งปันและชื่นชอบ %{friendly_count} ครั้ง
         title: โพสต์ที่กำลังนิยม
@@ -992,6 +994,7 @@ th:
     title: ติดตาม %{acct}
   challenge:
     confirm: ดำเนินการต่อ
+    hint_html: "<strong>เคล็ดลับ:</strong> เราจะไม่ถามรหัสผ่านของคุณกับคุณสำหรับชั่วโมงถัดไป"
     invalid_password: รหัสผ่านไม่ถูกต้อง
     prompt: ยืนยันรหัสผ่านเพื่อดำเนินการต่อ
   crypto:

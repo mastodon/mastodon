@@ -1181,6 +1181,8 @@ is:
     edit:
       add_keyword: Bæta við stikkorði
       keywords: Stikkorð
+      statuses: Einstakar færslur
+      statuses_hint_html: Þessi sía virkar til að velja stakar færslur burtséð frá því hvort þær samsvari stikkorðunum hér fyrir neðan. Þú getur yfirfarið þessar færslur og fjarlægt þær úr síunni með því að <a href="%{path}">smella hér</a>.
       title: Breyta síu
     errors:
       deprecated_api_multiple_keywords: Þessum viðföngum er ekki hægt að breyta úr þessu forriti, þar sem þau eiga við fleiri en eitt stikkorð síu. Notaðu nýrra forrit eða farðu í vefviðmótið.
@@ -1194,10 +1196,23 @@ is:
       keywords:
         one: "%{count} stikkorð"
         other: "%{count} stikkorð"
+      statuses:
+        one: "%{count} færsla"
+        other: "%{count} færslur"
+      statuses_long:
+        one: "%{count} stök færsla falin"
+        other: "%{count} stakar færslur faldar"
       title: Síur
     new:
       save: Vista nýja síu
       title: Bæta við nýrri síu
+    statuses:
+      back_to_filter: Til baka í síu
+      batch:
+        remove: Fjarlægja úr síu
+      index:
+        hint: Þessi sía virkar til að velja stakar færslur án tillits til annarra skilyrða. Þú getur bætt fleiri færslum í þessa síu í vefviðmótinu.
+        title: Síaðar færslur
   footer:
     developers: Forritarar
     more: Meira…

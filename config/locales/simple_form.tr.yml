@@ -85,6 +85,7 @@ tr:
         ip: Bir IPv4 veya IPv6 adresi girin. CIDR sözdizimini kullanarak tüm aralıkları engelleyebilirsiniz. Kendinizi dışarıda bırakmamaya dikkat edin!
         severities:
           no_access: Tüm kaynaklara erişimi engelle
+          sign_up_block: Yeni kayıtlar mümkün olmayacaktır
           sign_up_requires_approval: Yeni kayıt onayınızı gerektirir
         severity: Bu IP'den gelen isteklere ne olacağını seçin
       rule:
@@ -219,6 +220,7 @@ tr:
         ip: IP
         severities:
           no_access: Erişimi engelle
+          sign_up_block: Kayıt olmayı engelle
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:

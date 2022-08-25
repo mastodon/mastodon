@@ -1181,6 +1181,8 @@ gl:
     edit:
       add_keyword: Engadir palabra chave
       keywords: Palabras chave
+      statuses: Publicacións individuais
+      statuses_hint_html: Este filtro aplícase para seleccionar publicacións individuais independentemente de se concordan coas palabras chave aquí indicadas. Podes revisar estas publicacións e eliminalas do filtro <a href="%{path}">premendo aquí</a>.
       title: Editar filtro
     errors:
       deprecated_api_multiple_keywords: Estes parámetros non se poden cambiar desde esta aplicación porque son de aplicación a máis dun filtro de palabras chave. Usa unha aplicación máis recente ou a interface web.
@@ -1194,10 +1196,23 @@ gl:
       keywords:
         one: "%{count} palabra chave"
         other: "%{count} palabras chave"
+      statuses:
+        one: "%{count} publicación"
+        other: "%{count} publicacións"
+      statuses_long:
+        one: "%{count} publicación individual agochada"
+        other: "%{count} publicacións individuais agochadas"
       title: Filtros
     new:
       save: Gardar o novo filtro
       title: Engadir novo filtro
+    statuses:
+      back_to_filter: Volver ao filtro
+      batch:
+        remove: Eliminar do filtro
+      index:
+        hint: Este filtro aplícase para seleccionar publicacións individuais independentemente de outros criterios. Podes engadir máis publicacións a este filtro desde a interface Web.
+        title: Publicacións filtradas
   footer:
     developers: Desenvolvedoras
     more: Máis…

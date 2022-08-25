@@ -1161,6 +1161,8 @@ zh-CN:
     edit:
       add_keyword: 添加关键词
       keywords: 关键词
+      statuses: 个别嘟文
+      statuses_hint_html: 无论是否匹配下列关键词，此过滤器适用于选用个别嘟文。你可以<a href="%{path}">点击此处</a>来审核这些嘟文，并从过滤器中移除。
       title: 编辑过滤器
     errors:
       deprecated_api_multiple_keywords: 这些参数不能从此应用程序更改，因为它们应用于一个以上的过滤关键字。 使用较新的应用程序或网页界面。
@@ -1173,10 +1175,21 @@ zh-CN:
       expires_on: "%{date} 后到期"
       keywords:
         other: "%{count} 关键词"
+      statuses:
+        other: "%{count} 条嘟文"
+      statuses_long:
+        other: "%{count} 条个别嘟文已隐藏"
       title: 过滤器
     new:
       save: 保存新过滤器
       title: 添加新的过滤器
+    statuses:
+      back_to_filter: 返回至过滤器
+      batch:
+        remove: 从过滤器中移除
+      index:
+        hint: 无论其他条件如何，此过滤器适用于选用个别嘟文。你可以从网页界面中向此过滤器加入更多嘟文。
+        title: 过滤的嘟文
   footer:
     developers: 开发者
     more: 更多…

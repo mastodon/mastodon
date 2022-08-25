@@ -1181,6 +1181,8 @@ es-AR:
     edit:
       add_keyword: Agregar palabra clave
       keywords: Palabras clave
+      statuses: Mensajes individuales
+      statuses_hint_html: Este filtro se aplica a los mensajes individuales seleccionados, independientemente de si coinciden con las palabras clave de abajo. Podés revisar estos mensajes y eliminarlos del filtro <a href="%{path}">haciendo clic acá</a>.
       title: Editar filtro
     errors:
       deprecated_api_multiple_keywords: Estos parámetros no se pueden cambiar de esta aplicación porque se aplican a más de una palabra clave de filtro. Usá una aplicación más reciente o la interface web.
@@ -1194,10 +1196,23 @@ es-AR:
       keywords:
         one: "%{count} palabra clave"
         other: "%{count} palabras clave"
+      statuses:
+        one: "%{count} mensaje"
+        other: "%{count} mensajes"
+      statuses_long:
+        one: "%{count} mensaje individual oculto"
+        other: "%{count} mensajes individuales ocultos"
       title: Filtros
     new:
       save: Guardar nuevo filtro
       title: Agregar nuevo filtro
+    statuses:
+      back_to_filter: Volver al filtro
+      batch:
+        remove: Quitar del filtro
+      index:
+        hint: Este filtro se aplica a la selección de mensajes individuales independientemente de otros criterios. Podés agregar más mensajes a este filtro desde la interface web.
+        title: Mensajes filtrados
   footer:
     developers: Desarrolladores
     more: Más…
