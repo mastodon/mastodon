@@ -25,6 +25,9 @@ import {
   revealStatus,
   editStatus
 } from 'flavours/glitch/actions/statuses';
+import {
+  initAddFilter,
+} from 'flavours/glitch/actions/filters';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
 import { initReport } from 'flavours/glitch/actions/reports';
@@ -203,6 +206,10 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onReport (status) {
     dispatch(initReport(status.get('account'), status));
+  },
+
+  onAddFilter (status) {
+    dispatch(initAddFilter(status, { contextType }));
   },
 
   onMute (account) {
