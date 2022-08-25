@@ -244,6 +244,7 @@ uk:
         approve_user: Затвердити користувачів
         assigned_to_self_report: Призначити звіт
         change_email_user: Змінити електронну пошту для користувача
+        change_role_user: Змінити роль користувача
         confirm_user: Підтвердити користувача
         create_account_warning: Створити попередження
         create_announcement: Створити оголошення
@@ -253,6 +254,7 @@ uk:
         create_email_domain_block: Створити блокування поштового домену
         create_ip_block: Створити правило IP
         create_unavailable_domain: Створити недоступний домен
+        create_user_role: Створити роль
         demote_user: Понизити користувача
         destroy_announcement: Видалити оголошення
         destroy_custom_emoji: Видалити користувацьке емодзі
@@ -263,6 +265,7 @@ uk:
         destroy_ip_block: Видалити правило IP
         destroy_status: Видалити пост
         destroy_unavailable_domain: Видалити недоступний домен
+        destroy_user_role: Знищити роль
         disable_2fa_user: Вимкнути 2FA
         disable_custom_emoji: Вимкнути користувацькі емодзі
         disable_sign_in_token_auth_user: Вимкнути автентифікацію за допомогою е-пошти для користувача
@@ -290,11 +293,13 @@ uk:
         update_custom_emoji: Оновити користувацькі емодзі
         update_domain_block: Оновити блокування домену
         update_status: Оновити статус
+        update_user_role: Оновити роль
       actions:
         approve_appeal_html: "%{name} затвердили звернення на оскарження рішення від %{target}"
         approve_user_html: "%{name} схвалює реєстрацію від %{target}"
         assigned_to_self_report_html: "%{name} створює скаргу %{target} на себе"
         change_email_user_html: "%{name} змінює поштову адресу користувача %{target}"
+        change_role_user_html: "%{name} змінює роль %{target}"
         confirm_user_html: "%{name} підтверджує стан поштової адреси користувача %{target}"
         create_account_warning_html: "%{name} надсилає попередження до %{target}"
         create_announcement_html: "%{name} створює нове оголошення %{target}"
@@ -304,8 +309,10 @@ uk:
         create_email_domain_block_html: "%{name} блокує домен електронної пошти %{target}"
         create_ip_block_html: "%{name} створює правило для IP %{target}"
         create_unavailable_domain_html: "%{name} зупиняє доставляння на домен %{target}"
+        create_user_role_html: "%{name} створює роль %{target}"
         demote_user_html: "%{name} понижує користувача %{target}"
         destroy_announcement_html: "%{name} видаляє оголошення %{target}"
+        destroy_custom_emoji_html: "%{name} видаляє емоджі %{target}"
         destroy_domain_allow_html: "%{name} скасовує федерацію з доменом %{target}"
         destroy_domain_block_html: "%{name} розблокує домен %{target}"
         destroy_email_domain_block_html: "%{name} розблоковує домен електронної пошти %{target}"
@@ -313,6 +320,7 @@ uk:
         destroy_ip_block_html: "%{name} видаляє правило для IP %{target}"
         destroy_status_html: "%{name} видаляє статус %{target}"
         destroy_unavailable_domain_html: "%{name} відновлює доставляння на домен %{target}"
+        destroy_user_role_html: "%{name} видаляє роль %{target}"
         disable_2fa_user_html: "%{name} вимикає двоетапну перевірку для користувача %{target}"
         disable_custom_emoji_html: "%{name} вимикає емодзі %{target}"
         disable_sign_in_token_auth_user_html: "%{name} вимикає автентифікацію через е-пошту для %{target}"
@@ -340,6 +348,7 @@ uk:
         update_custom_emoji_html: "%{name} оновлює емодзі %{target}"
         update_domain_block_html: "%{name} оновлює блокування домену для %{target}"
         update_status_html: "%{name} змінює статус користувача %{target}"
+        update_user_role_html: "%{name} змінює роль %{target}"
       empty: Не знайдено жодного журналу.
       filter_by_action: Фільтрувати за дією
       filter_by_user: Фільтрувати за користувачем
@@ -623,6 +632,7 @@ uk:
         resolve_description_html: Не буде застосовано жодних дій проти облікового запису, на який скаржилися, не буде записано попередження, а скаргу буде закрито.
         silence_description_html: Профіль буде видимий лише тим, хто вже стежить за ним або знайде його самостійно, сильно обмежуючи його знаходження. Можна потім скасувати.
         suspend_description_html: Профіль і весь його вміст буде недоступним, поки його не буде видалено. Взаємодія з обліковим записом буде неможливою.
+      actions_description_html: Визначте, які дії слід вжити для розв'язання цієї скарги. Якщо ви оберете каральні дії проти зареєстрованого облікового запису, про них буде надіслано сповіщення електронним листом, крім випадків, коли вибрано категорію <strong>Спам</strong>.
       add_to_report: Додати ще подробиць до скарги
       are_you_sure: Ви впевнені?
       assign_to_self: Призначити мені
@@ -1203,6 +1213,7 @@ uk:
       add_keyword: Додати ключове слово
       keywords: Ключові слова
       statuses: Окремі дописи
+      statuses_hint_html: Цей фільтр застосовується для вибору окремих дописів, незалежно від того, чи збігаються вони з ключовими словами нижче. <a href="%{path}">Перегляд чи вилучення дописів з фільтра</a>.
       title: Редагувати фільтр
     errors:
       deprecated_api_multiple_keywords: Ці параметри не можна змінити з цього застосунку, тому що вони застосовуються до більш ніж одного ключового слова. Використовуйте новішу версію застосунку або вебінтерфейс.
@@ -1237,6 +1248,7 @@ uk:
       batch:
         remove: Вилучити з фільтра
       index:
+        hint: Цей фільтр застосовується для вибору окремих дописів, незалежно від інших критеріїв. Ви можете додавати більше дописів до цього фільтра з вебінтерфейсу.
         title: Відфільтровані дописи
   footer:
     developers: Розробникам
@@ -1245,12 +1257,28 @@ uk:
     trending_now: Актуальні
   generic:
     all: Усі
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> елемент на цій сторінці вибрано."
+      few: Усі <strong>%{count}</strong> елементи на цій сторінці вибрано.
+      many: Усі <strong>%{count}</strong> елементів на цій сторінці вибрано.
+      other: <strong>%{count}</strong> елементи на цій сторінці вибрано.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> елемент, що збігається з вашим пошуком вибрано."
+      few: Усі <strong>%{count}</strong> елементи, що збігаються з вашим пошуком вибрано.
+      many: Усі <strong>%{count}</strong> елементів, що збігаються з вашим пошуком вибрано.
+      other: Усі <strong>%{count}</strong> елементи, що збігаються з вашим пошуком вибрано.
     changes_saved_msg: Зміни успішно збережені!
     copy: Копіювати
     delete: Видалити
+    deselect: Скасувати вибір
     none: Немає
     order_by: Сортувати за
     save_changes: Зберегти зміни
+    select_all_matching_items:
+      one: Вибрати %{count} елемент, що збігається з вашим пошуком.
+      few: Вибрати всі %{count} елементи, що збігаються з вашим пошуком.
+      many: Вибрати всі %{count} елементів, що збігаються з вашим пошуком.
+      other: Вибрати всі %{count} елементи, що збігаються з вашим пошуком.
     today: сьогодні
     validation_errors:
       one: Щось досі не гаразд! Перегляньте повідомлення про помилку
