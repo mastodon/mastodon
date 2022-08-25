@@ -1163,6 +1163,8 @@ ko:
     edit:
       add_keyword: 키워드 추가
       keywords: 키워드
+      statuses: 개별 게시물
+      statuses_hint_html: 이 필터는 아래 키워드들의 매치 여부와는 관계 없이 선택된 개별적인 게시물들에 적용됩니다. 다음 게시물들을 검토하고 <a href="%{path}">여기를 클릭해</a> 필터에서 제거할 수 있습니다.
       title: 필터 편집
     errors:
       deprecated_api_multiple_keywords: 이 파라미터들은 하나를 초과하는 필터 키워드에 적용되기 때문에 이 응용프로그램에서 수정될 수 없습니다. 더 최신의 응용프로그램이나 웹 인터페이스를 사용하세요.
@@ -1175,10 +1177,21 @@ ko:
       expires_on: "%{date}에 만료됨"
       keywords:
         other: "%{count}개의 키워드"
+      statuses:
+        other: "%{count}개의 게시물"
+      statuses_long:
+        other: "%{count}개의 개별적인 게시물 숨겨짐"
       title: 필터
     new:
       save: 새 필터 저장
       title: 필터 추가
+    statuses:
+      back_to_filter: 필터로 돌아가기
+      batch:
+        remove: 필터에서 제거
+      index:
+        hint: 이 필터는 다른 기준에 관계 없이 선택된 개별적인 게시물들에 적용됩니다. 웹 인터페이스에서 더 많은 게시물들을 이 필터에 추가할 수 있습니다.
+        title: 필터링된 게시물
   footer:
     developers: 개발자
     more: 더 보기…

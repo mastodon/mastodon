@@ -19,6 +19,7 @@ class IpBlock < ApplicationRecord
 
   enum severity: {
     sign_up_requires_approval: 5000,
+    sign_up_block: 5500,
     no_access: 9999,
   }
 

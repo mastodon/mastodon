@@ -1188,6 +1188,8 @@ en:
     edit:
       add_keyword: Add keyword
       keywords: Keywords
+      statuses: Individual posts
+      statuses_hint_html: This filter applies to select individual posts regardless of whether they match the keywords below. <a href="%{path}">Review or remove posts from the filter</a>.
       title: Edit filter
     errors:
       deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
@@ -1201,10 +1203,23 @@ en:
       keywords:
         one: "%{count} keyword"
         other: "%{count} keywords"
+      statuses:
+        one: "%{count} post"
+        other: "%{count} posts"
+      statuses_long:
+        one: "%{count} individual post hidden"
+        other: "%{count} individual posts hidden"
       title: Filters
     new:
       save: Save new filter
       title: Add new filter
+    statuses:
+      back_to_filter: Back to filter
+      batch:
+        remove: Remove from filter
+      index:
+        hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
+        title: Filtered posts
   footer:
     developers: Developers
     more: More…

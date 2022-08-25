@@ -13,6 +13,10 @@ spec:
   template:
     metadata:
       name: {{ include "mastodon.fullname" . }}-chewy-upgrade
+    {{- with .Values.jobAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
     spec:
       restartPolicy: Never
       {{- if (not .Values.mastodon.s3.enabled) }}

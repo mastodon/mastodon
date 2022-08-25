@@ -1180,6 +1180,8 @@ da:
     edit:
       add_keyword: Tilføj nøgleord
       keywords: Nøgleord
+      statuses: Individuelle indlæg
+      statuses_hint_html: Dette filter gælder for udvalgte, individuelle indlæg, uanset om de matcher nøgleordene nedenfor. Disse indlæg kan gennemgås og fjernes fra filteret ved at <a href="%{path}">klikke hér</a>.
       title: Redigere filter
     errors:
       deprecated_api_multiple_keywords: Disse parametre kan ikke ændres fra denne applikation, da de gælder for flere end ét filternøgleord. Brug en nyere applikation eller webgrænsefladen.
@@ -1193,10 +1195,23 @@ da:
       keywords:
         one: "%{count} nøgleord"
         other: "%{count} nøgleord"
+      statuses:
+        one: "%{count} indlæg"
+        other: "%{count} indlæg"
+      statuses_long:
+        one: "%{count} individuelt indlæg skjult"
+        other: "%{count} individuelle indlæg skjult"
       title: Filtre
     new:
       save: Gem nye filter
       title: Tilføj nyt filter
+    statuses:
+      back_to_filter: Returnér til filter
+      batch:
+        remove: Fjern fra filter
+      index:
+        hint: Dette filter gælder for udvalgte, individuelle indlæg uanset andre kriterier. Flere indlæg kan føjes til filteret via webgrænsefladen.
+        title: Filtrerede indlæg
   footer:
     developers: Udviklere
     more: Mere…

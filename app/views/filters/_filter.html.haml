@@ -22,6 +22,15 @@
               - keywords = filter.keywords.map(&:keyword)
               - keywords = keywords.take(5) + ['…'] if keywords.size > 5 # TODO
               = keywords.join(', ')
+      - unless filter.statuses.empty?
+        %li.permissions-list__item
+          .permissions-list__item__icon
+            = fa_icon('comment')
+          .permissions-list__item__text
+            .permissions-list__item__text__title
+              = t('filters.index.statuses', count: filter.statuses.size)
+            .permissions-list__item__text__type
+              = t('filters.index.statuses_long', count: filter.statuses.size)
 
   .announcements-list__item__action-bar
     .announcements-list__item__meta

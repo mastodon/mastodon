@@ -12,6 +12,10 @@ spec:
       template:
         metadata:
           name: {{ include "mastodon.fullname" . }}-media-remove
+        {{- with .Values.jobAnnotations }}
+          annotations:
+            {{- toYaml . | nindent 12 }}
+        {{- end }}
         spec:
           restartPolicy: OnFailure
           {{- if (not .Values.mastodon.s3.enabled) }}

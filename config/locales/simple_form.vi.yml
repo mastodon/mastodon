@@ -85,6 +85,7 @@ vi:
         ip: Nhập một địa chỉ IPv4 hoặc IPv6. Bạn cũng có thể chặn toàn bộ dãy IP bằng cú pháp CIDR. Hãy cẩn thận đừng chặn nhầm toàn bộ!
         severities:
           no_access: Chặn truy cập từ tất cả IP này
+          sign_up_block: Không chấp nhận đăng ký mới
           sign_up_requires_approval: Bạn sẽ phê duyệt những đăng ký mới từ IP này
         severity: Chọn hành động nếu nhận được yêu cầu từ IP này
       rule:
@@ -219,6 +220,7 @@ vi:
         ip: IP
         severities:
           no_access: Chặn truy cập
+          sign_up_block: Chặn đăng ký
           sign_up_requires_approval: Giới hạn đăng ký
         severity: Mức độ
       notification_emails:

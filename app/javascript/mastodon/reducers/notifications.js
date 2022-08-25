@@ -41,7 +41,7 @@ const initialState = ImmutableMap({
   lastReadId: '0',
   readMarkerId: '0',
   isTabVisible: true,
-  isLoading: false,
+  isLoading: 0,
   browserSupport: false,
   browserPermission: 'default',
 });
@@ -115,7 +115,7 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
       }
     }
 
-    mutable.set('isLoading', false);
+    mutable.update('isLoading', (nbLoading) => nbLoading - 1);
   });
 };
 
@@ -214,9 +214,9 @@ export default function notifications(state = initialState, action) {
   case NOTIFICATIONS_LOAD_PENDING:
     return state.update('items', list => state.get('pendingItems').concat(list.take(40))).set('pendingItems', ImmutableList()).set('unread', 0);
   case NOTIFICATIONS_EXPAND_REQUEST:
-    return state.set('isLoading', true);
+    return state.update('isLoading', (nbLoading) => nbLoading + 1);
   case NOTIFICATIONS_EXPAND_FAIL:
-    return state.set('isLoading', false);
+    return state.update('isLoading', (nbLoading) => nbLoading - 1);
   case NOTIFICATIONS_FILTER_SET:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', true);
   case NOTIFICATIONS_SCROLL_TOP:
