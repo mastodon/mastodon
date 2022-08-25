@@ -6,7 +6,7 @@ class Scheduler::IPBlocklistURLScheduler
   sidekiq_options retry: 0
 
   CHECK_URL = ENV['SCHEDULED_IPBLOCK_URLS']
-  @ips = Array.new
+  @ips = []
 
   def perform
     grab_exit_addresses!
@@ -14,11 +14,11 @@ class Scheduler::IPBlocklistURLScheduler
   end
 
   def grab_exit_addresses!
-    CHECK_URL.split(",").each do |url|
+    CHECK_URL.split(',').each do |url|
       Request.new(:get, url).perform do |res|
         @ips.insert = res.body
       end
-    end    
+    end
   end
 
   def add_exit_addresses!
