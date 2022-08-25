@@ -234,6 +234,7 @@ de:
         approve_user: Benutzer genehmigen
         assigned_to_self_report: Bericht zuweisen
         change_email_user: E-Mail des Benutzers ändern
+        change_role_user: Rolle des Benutzers ändern
         confirm_user: Benutzer bestätigen
         create_account_warning: Warnung erstellen
         create_announcement: Ankündigung erstellen
@@ -243,6 +244,7 @@ de:
         create_email_domain_block: E-Mail-Domain-Block erstellen
         create_ip_block: IP-Regel erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
+        create_user_role: Rolle erstellen
         demote_user: Benutzer degradieren
         destroy_announcement: Ankündigung löschen
         destroy_custom_emoji: Eigene Emoji löschen
@@ -253,6 +255,7 @@ de:
         destroy_ip_block: IP-Regel löschen
         destroy_status: Beitrag löschen
         destroy_unavailable_domain: Nicht verfügbare Domain löschen
+        destroy_user_role: Rolle löschen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
         disable_sign_in_token_auth_user: Zwei-Faktor-Authentifizierung per E-Mail für den Nutzer deaktiviert
@@ -280,11 +283,13 @@ de:
         update_custom_emoji: Benutzerdefiniertes Emoji aktualisieren
         update_domain_block: Domain Block aktualisieren
         update_status: Beitrag aktualisieren
+        update_user_role: Rolle aktualisieren
       actions:
         approve_appeal_html: "%{name} genehmigte die Moderationsbeschlüsse von %{target}"
         approve_user_html: "%{name} genehmigte die Anmeldung von %{target}"
         assigned_to_self_report_html: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
         change_email_user_html: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
+        change_role_user_html: "%{name} hat die rolle von %{target} geändert"
         confirm_user_html: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
         create_account_warning_html: "%{name} hat eine Warnung an %{target} gesendet"
         create_announcement_html: "%{name} hat die neue Ankündigung %{target} erstellt"
@@ -294,8 +299,10 @@ de:
         create_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
         create_ip_block_html: "%{name} hat eine Regel für IP %{target} erstellt"
         create_unavailable_domain_html: "%{name} hat die Lieferung an die Domain %{target} eingestellt"
+        create_user_role_html: "%{name} hat die Rolle %{target} erstellt"
         demote_user_html: "%{name} stufte Benutzer_in %{target} herunter"
         destroy_announcement_html: "%{name} hat die neue Ankündigung %{target} gelöscht"
+        destroy_custom_emoji_html: "%{name} hat das %{target} Emoji gelöscht"
         destroy_domain_allow_html: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block_html: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
@@ -303,6 +310,7 @@ de:
         destroy_ip_block_html: "%{name} hat eine Regel für IP %{target} gelöscht"
         destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
         destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
+        destroy_user_role_html: "%{name} hat die Rolle %{target} gelöscht"
         disable_2fa_user_html: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} hat das %{target} Emoji deaktiviert"
         disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token Authentifizierung für %{target} deaktiviert"
@@ -330,6 +338,7 @@ de:
         update_custom_emoji_html: "%{name} hat das %{target} Emoji geändert"
         update_domain_block_html: "%{name} hat den Domain-Block für %{target} aktualisiert"
         update_status_html: "%{name} hat einen Beitrag von %{target} aktualisiert"
+        update_user_role_html: "%{name} hat die Rolle %{target} geändert"
       empty: Keine Protokolle gefunden.
       filter_by_action: Nach Aktion filtern
       filter_by_user: Nach Benutzer filtern
@@ -1178,6 +1187,8 @@ de:
     edit:
       add_keyword: Stichwort hinzufügen
       keywords: Stichwörter
+      statuses: Individuelle Beiträge
+      statuses_hint_html: Dieser Filter gilt für die Auswahl einzelner Beiträge, unabhängig davon, ob sie mit den unten stehenden Schlüsselwörtern übereinstimmen. <a href="%{path}">Beiträge im Filter ansehen oder entfernen.</a>.
       title: Filter bearbeiten
     errors:
       deprecated_api_multiple_keywords: Diese Parameter können von dieser Anwendung nicht geändert werden, da sie auf mehr als ein Filterschlüsselwort angewendet werden. Verwenden Sie eine neuere Anwendung oder die Web-Schnittstelle.
@@ -1191,10 +1202,23 @@ de:
       keywords:
         one: "%{count} Stichwort"
         other: "%{count} Stichwörter"
+      statuses:
+        one: "%{count} Beitrag"
+        other: "%{count} Beiträge"
+      statuses_long:
+        one: "%{count} individueller Beitrag ausgeblendet"
+        other: "%{count} individuelle Beiträge ausgeblendet"
       title: Filter
     new:
       save: Neuen Filter speichern
       title: Neuen Filter hinzufügen
+    statuses:
+      back_to_filter: Zurück zum Filter
+      batch:
+        remove: Vom Filter entfernen
+      index:
+        hint: Dieser Filter wird verwendet, um einzelne Beiträge unabhängig von anderen Kriterien auszuwählen. Sie können mehr Beiträge zu diesem Filter über die Webschnittstelle hinzufügen.
+        title: Gefilterte Beiträge
   footer:
     developers: Entwickler
     more: Mehr…
