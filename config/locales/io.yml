@@ -233,6 +233,7 @@ io:
         approve_user: Aprobez uzanto
         assigned_to_self_report: Taskigez raporto
         change_email_user: Chanjez retposto por uzanto
+        change_role_user: Chanjez rolo di uzanto
         confirm_user: Konfirmez uzanto
         create_account_warning: Kreez averto
         create_announcement: Kreez anunco
@@ -242,6 +243,7 @@ io:
         create_email_domain_block: Kreez retpostodomenobstrukto
         create_ip_block: Kreez IP-regulo
         create_unavailable_domain: Kreez nedisponebla domeno
+        create_user_role: Kreez rolo
         demote_user: Despromocez uzanto
         destroy_announcement: Efacez anunco
         destroy_custom_emoji: Efacez kustumizita emocimajo
@@ -252,6 +254,7 @@ io:
         destroy_ip_block: Efacez IP-regulo
         destroy_status: Efacez posto
         destroy_unavailable_domain: Efacez nedisponebla domeno
+        destroy_user_role: Destruktez rolo
         disable_2fa_user: Desaktivigez 2FA
         disable_custom_emoji: Desaktivigez kustumizita emocimajo
         disable_sign_in_token_auth_user: Desaktivigez retpostofichyurizo por uzanto
@@ -279,11 +282,13 @@ io:
         update_custom_emoji: Novigez kustumizita emocimajo
         update_domain_block: Novigez domenobstrukto
         update_status: Novigez posto
+        update_user_role: Novigez rolo
       actions:
         approve_appeal_html: "%{name} aprobis jerdecidapelo de %{target}"
         approve_user_html: "%{name} aprobis registro de %{target}"
         assigned_to_self_report_html: "%{name} taskigis raporto %{target} a su"
         change_email_user_html: "%{name} chanjis retpostoadreso di uzanto %{target}"
+        change_role_user_html: "%{name} chanjis rolo di %{target}"
         confirm_user_html: "%{name} konfirmis retpostoadreso di uzanto %{target}"
         create_account_warning_html: "%{name} sendis averto a %{target}"
         create_announcement_html: "%{name} kreis nova anunco %{target}"
@@ -293,8 +298,10 @@ io:
         create_email_domain_block_html: "%{name} obstruktis retpostodomeno %{target}"
         create_ip_block_html: "%{name} kreis regulo por IP %{target}"
         create_unavailable_domain_html: "%{name} cesis sendo a domeno %{target}"
+        create_user_role_html: "%{name} kreis rolo di %{target}"
         demote_user_html: "%{name} despromocis uzanto %{target}"
         destroy_announcement_html: "%{name} efacis anunco %{target}"
+        destroy_custom_emoji_html: "%{name} efacis emocimajo %{target}"
         destroy_domain_allow_html: "%{name} despermisis federato kun domeno %{target}"
         destroy_domain_block_html: "%{name} deobstruktis domeno %{target}"
         destroy_email_domain_block_html: "%{name} deobstruktis retpostodomeno %{target}"
@@ -302,6 +309,7 @@ io:
         destroy_ip_block_html: "%{name} efacis regulo por IP %{target}"
         destroy_status_html: "%{name} efacis posto da %{target}"
         destroy_unavailable_domain_html: "%{name} durigis sendo a domeno %{target}"
+        destroy_user_role_html: "%{name} efacis rolo di %{target}"
         disable_2fa_user_html: "%{name} desaktivigis 2-faktorbezono por uzanto %{target}"
         disable_custom_emoji_html: "%{name} desaktivigis emocimajo %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desaktivigis retpostofichyurizo por %{target}"
@@ -329,6 +337,7 @@ io:
         update_custom_emoji_html: "%{name} novigis emocimajo %{target}"
         update_domain_block_html: "%{name} novigis domenobstrukto por %{target}"
         update_status_html: "%{name} novigis posto da %{target}"
+        update_user_role_html: "%{name} chanjis rolo di %{target}"
       empty: Nula logi.
       filter_by_action: Filtrez segun ago
       filter_by_user: Filtrez segun uzanto
@@ -1177,6 +1186,8 @@ io:
     edit:
       add_keyword: Insertez klefvorto
       keywords: Klefvorti
+      statuses: Individuala posti
+      statuses_hint_html: Ca filtrilo aplikesas a selektita posti ne segun kad oli parigesas kun basa klefvorti. <a href="%{path}">Kontrolez o efacez posti de la filtrilo</a>.
       title: Modifikez filtrilo
     errors:
       deprecated_api_multiple_keywords: Ca parametri ne povas chanjesar per ca softwaro pro quo oli efektigas plu kam 1 filtrilklefvorto. Uzez plu recenta softwaro o interretintervizajo.
@@ -1190,10 +1201,23 @@ io:
       keywords:
         one: "%{count} klefvorto"
         other: "%{count} klefvorti"
+      statuses:
+        one: "%{count} posto"
+        other: "%{count} posti"
+      statuses_long:
+        one: "%{count} posto celesas"
+        other: "%{count} posti celesas"
       title: Filtrili
     new:
       save: Salvez nova filtrilo
       title: Insertez nova filtrilo
+    statuses:
+      back_to_filter: Retrovenez a filtrilo
+      batch:
+        remove: Efacez de filtrilo
+      index:
+        hint: Ca filtrilo aplikesas a selektita posti ne segun altra kriterio. Vu povas pozar plu multa posti a ca filtrilo de retintervizajo.
+        title: Filtrita posti
   footer:
     developers: Developeri
     more: Pluse…
@@ -1201,12 +1225,22 @@ io:
     trending_now: Nuna tendenco
   generic:
     all: Omna
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> kozo sur ca sito selektesas."
+      other: Omna <strong>%{count}</strong> kozi sur ca sito selektesas.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> kozo quo parigesas kun vua trovato selektesas."
+      other: Omna <strong>%{count}</strong> kozi quo parigesas kun vua trovato selektesas.
     changes_saved_msg: Chanji senprobleme konservita!
     copy: Kopiez
     delete: Efacez
+    deselect: Deselektez omno
     none: Nulo
     order_by: Asortez quale
     save_changes: Konservar la chanji
+    select_all_matching_items:
+      one: Selektez %{count} kozo quo parigesas kun vua trovato.
+      other: Selektez omna %{count} kozi quo parigesas kun vua trovato.
     today: hodie
     validation_errors:
       one: Ulo ne eventis senprobleme! Voluntez konsultar la suba eror-raporto
