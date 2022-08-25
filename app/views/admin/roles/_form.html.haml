@@ -13,7 +13,7 @@
         = f.input :position, wrapper: :with_label, input_html: { max: current_user.role.position - 1 }
 
     .fields-group
-      = f.input :color, wrapper: :with_label, input_html: { placeholder: '#000000' }
+      = f.input :color, wrapper: :with_label, input_html: { placeholder: '#000000', type: 'color' }
 
     %hr.spacer/
 
