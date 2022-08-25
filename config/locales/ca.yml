@@ -1226,12 +1226,22 @@ ca:
     trending_now: En tendència
   generic:
     all: Tot
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> article d'aquesta s'ha seleccionat."
+      other: Tots <strong>%{count}</strong> articles d'aquesta pàgina estan seleccionats.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> article coincident amb la teva cerca està seleccionat."
+      other: Tots <strong>%{count}</strong> articles coincidents amb la teva cerca estan seleccionats.
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copiar
     delete: Esborra
+    deselect: Desfer selecció
     none: Cap
     order_by: Ordena per
     save_changes: Desa els canvis
+    select_all_matching_items:
+      one: Selecciona %{count} article coincident amb la teva cerca.
+      other: Selecciona tots %{count} articles coincidents amb la teva cerca.
     today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
@@ -1340,17 +1350,6 @@ ca:
         subject: "%{name} ha presentat un informe"
       sign_up:
         subject: "%{name} s'ha registrat"
-    digest:
-      action: Mostra totes les notificacions
-      body: Un resum del que et vas perdre des de la darrera visita el %{since}
-      mention: "%{name} t'ha mencionat en:"
-      new_followers_summary:
-        one: A més, has adquirit un nou seguidor durant la teva absència! Visca!
-        other: A més, has adquirit %{count} nous seguidors mentre estaves fora! Increïble!
-      subject:
-        one: "1 notificació nova des de la teva darrera visita 🐘"
-        other: "%{count} notificacions noves des de la teva darrera visita 🐘"
-      title: Durant la teva absència…
     favourite:
       body: '%{name} ha marcat com a favorit el teu estat:'
       subject: "%{name} ha marcat com a favorit el teu estat"
