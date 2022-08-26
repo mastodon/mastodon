@@ -10,6 +10,12 @@ class GroupPolicy < ApplicationPolicy
   end
 
   def post?
+    member?
+  end
+
+  private
+
+  def member?
     record.members.where(id: current_account&.id).exists?
   end
 end

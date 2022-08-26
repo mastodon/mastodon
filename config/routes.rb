@@ -600,6 +600,8 @@ Rails.application.routes.draw do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
 
+      resources :groups, only: [:index, :show]
+
       namespace :featured_tags do
         get :suggestions, to: 'suggestions#index'
       end
