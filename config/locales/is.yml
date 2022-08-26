@@ -1226,12 +1226,22 @@ is:
     trending_now: Í umræðunni núna
   generic:
     all: Allt
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> atriði á þessari síðu er valið."
+      other: Öll <strong>%{count}</strong> atriðin á þessari síðu eru valin.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> atriði sem samsvarar leitinni þinni er valið."
+      other: Öll <strong>%{count}</strong> atriðin sem samsvara leitinni þinni eru valin.
     changes_saved_msg: Það tókst að vista breytingarnar!
     copy: Afrita
     delete: Eyða
+    deselect: Afvelja allt
     none: Ekkert
     order_by: Raða eftir
     save_changes: Vista breytingar
+    select_all_matching_items:
+      one: Veldu %{count} atriði sem samsvarar leitinni þinni.
+      other: Veldu öll %{count} atriðin sem samsvara leitinni þinni.
     today: í dag
     validation_errors:
       one: Ennþá er ekk alvegi allt í lagi! Skoðaðu vel villuna hér fyrir neðan
