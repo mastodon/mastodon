@@ -234,6 +234,7 @@ es-AR:
         approve_user: Aprobar usuario
         assigned_to_self_report: Asignar denuncia
         change_email_user: Cambiar correo electrónico del usuario
+        change_role_user: Cambiar rol del usuario
         confirm_user: Confirmar usuario
         create_account_warning: Crear advertencia
         create_announcement: Crear anuncio
@@ -243,6 +244,7 @@ es-AR:
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regla de dirección IP
         create_unavailable_domain: Crear dominio no disponible
+        create_user_role: Crear rol
         demote_user: Descender usuario
         destroy_announcement: Eliminar anuncio
         destroy_custom_emoji: Eliminar emoji personalizado
@@ -253,6 +255,7 @@ es-AR:
         destroy_ip_block: Eliminar regla de dirección IP
         destroy_status: Eliminar mensaje
         destroy_unavailable_domain: Eliminar dominio no disponible
+        destroy_user_role: Destruir rol
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
         disable_sign_in_token_auth_user: Deshabilitar autenticación de token por correo electrónico para el usuario
@@ -280,6 +283,7 @@ es-AR:
         update_custom_emoji: Actualizar emoji personalizado
         update_domain_block: Actualizar bloque de dominio
         update_status: Actualizar mensaje
+        update_user_role: Actualizar rol
       actions:
         approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
         approve_user_html: "%{name} aprobó el registro de %{target}"
@@ -1179,6 +1183,7 @@ es-AR:
       add_keyword: Agregar palabra clave
       keywords: Palabras clave
       statuses: Mensajes individuales
+      statuses_hint_html: Este filtro se aplica a la selección de mensajes individuales, independientemente de si coinciden con las palabras clave a continuación. <a href="%{path}">Revisar o quitar mensajes del filtro</a>.
       title: Editar filtro
     errors:
       deprecated_api_multiple_keywords: Estos parámetros no se pueden cambiar de esta aplicación porque se aplican a más de una palabra clave de filtro. Usá una aplicación más reciente o la interface web.
@@ -1207,6 +1212,7 @@ es-AR:
       batch:
         remove: Quitar del filtro
       index:
+        hint: Este filtro se aplica a la selección de mensajes individuales, independientemente de otros criterios. Podés agregar más mensajes a este filtro desde la interface web.
         title: Mensajes filtrados
   footer:
     developers: Desarrolladores
@@ -1218,6 +1224,7 @@ es-AR:
     changes_saved_msg: '¡Cambios guardados exitosamente!'
     copy: Copiar
     delete: Eliminar
+    deselect: Deseleccionar todo
     none: '[Ninguna]'
     order_by: Ordenar por
     save_changes: Guardar cambios
