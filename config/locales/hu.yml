@@ -234,6 +234,7 @@ hu:
         approve_user: Felhasználó Jóváhagyása
         assigned_to_self_report: Jelentés hozzárendelése
         change_email_user: Felhasználó e-mail címének módosítása
+        change_role_user: Felhasználó szerepkörének módosítása
         confirm_user: Felhasználó megerősítése
         create_account_warning: Figyelmeztetés létrehozása
         create_announcement: Közlemény létrehozása
@@ -243,6 +244,7 @@ hu:
         create_email_domain_block: E-mail domain tiltás létrehozása
         create_ip_block: IP szabály létrehozása
         create_unavailable_domain: Elérhetetlen domain létrehozása
+        create_user_role: Szerepkör létrehozása
         demote_user: Felhasználó lefokozása
         destroy_announcement: Közlemény törlése
         destroy_custom_emoji: Egyéni emodzsi törlése
@@ -253,6 +255,7 @@ hu:
         destroy_ip_block: IP szabály törlése
         destroy_status: Bejegyzés törlése
         destroy_unavailable_domain: Elérhetetlen domain törlése
+        destroy_user_role: Szerepkör eltávolítása
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
         disable_sign_in_token_auth_user: A felhasználó tokenes e-mail hitelesítésének letiltása
@@ -280,11 +283,13 @@ hu:
         update_custom_emoji: Egyéni emodzsi frissítése
         update_domain_block: Domain tiltás frissítése
         update_status: Bejegyzés frissítése
+        update_user_role: Szerepkör frissítése
       actions:
         approve_appeal_html: "%{name} jóváhagyott egy fellebbezést %{target} moderátori döntéséről"
         approve_user_html: "%{name} jóváhagyta %{target} regisztrációját"
         assigned_to_self_report_html: "%{name} a %{target} bejelentést magához rendelte"
         change_email_user_html: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
+        change_role_user_html: "%{name} módosította %{target} szerepkörét"
         confirm_user_html: "%{name} megerősítette %{target} e-mail-címét"
         create_account_warning_html: "%{name} figyelmeztetést küldött %{target} számára"
         create_announcement_html: "%{name} új közleményt hozott létre: %{target}"
@@ -294,8 +299,10 @@ hu:
         create_email_domain_block_html: "%{name} letiltotta a %{target} e-mail domaint"
         create_ip_block_html: "%{name} létrehozott egy szabályt a %{target} IP-vel kapcsolatban"
         create_unavailable_domain_html: "%{name} leállította a kézbesítést a %{target} domainbe"
+        create_user_role_html: "%{name} létrehozta a(z) %{target} szerepkört"
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
         destroy_announcement_html: "%{name} törölte a %{target} közleményt"
+        destroy_custom_emoji_html: "%{name} törölte a(z) %{target} emodzsit"
         destroy_domain_allow_html: "%{name} letiltotta a föderációt a %{target} domainnel"
         destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
         destroy_email_domain_block_html: "%{name} engedélyezte a %{target} e-mail domaint"
@@ -303,6 +310,7 @@ hu:
         destroy_ip_block_html: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
+        destroy_user_role_html: "%{name} törölte a(z) %{target} szerepkört"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta az emodzsit: %{target}"
         disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail hitelesítést %{target} felhasználóra"
@@ -330,6 +338,7 @@ hu:
         update_custom_emoji_html: "%{name} frissítette az emodzsit: %{target}"
         update_domain_block_html: "%{name} frissítette a %{target} domain tiltását"
         update_status_html: "%{name} frissítette %{target} felhasználó bejegyzését"
+        update_user_role_html: "%{name} módosította a(z) %{target} szerepkört"
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
       filter_by_user: Szűrés felhasználó alapján
@@ -1217,12 +1226,22 @@ hu:
     trending_now: Most felkapott
   generic:
     all: Mind
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> elem kiválasztva ezen az oldalon."
+      other: Mind a(z) <strong>%{count}</strong> elem kiválasztva ezen az oldalon.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva."
+      other: Mind a(z) <strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva.
     changes_saved_msg: A változásokat elmentettük!
     copy: Másolás
     delete: Törlés
+    deselect: Összes kiválasztás megszüntetése
     none: Nincs
     order_by: Rendezés
     save_changes: Változások mentése
+    select_all_matching_items:
+      one: '%{count}, a keresésnek megfelelő elem kiválasztása.'
+      other: Mind a(z) %{count}, a keresésnek megfelelő elem kiválasztása.
     today: ma
     validation_errors:
       one: Valami nincs rendjén! Tekintsd meg a hibát lent
