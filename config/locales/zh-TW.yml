@@ -228,6 +228,7 @@ zh-TW:
         approve_user: 批准使用者
         assigned_to_self_report: 指派回報
         change_email_user: 變更使用者的電子信箱地址
+        change_role_user: 變更使用者角色
         confirm_user: 確認使用者
         create_account_warning: 建立警告
         create_announcement: 建立公告
@@ -237,6 +238,7 @@ zh-TW:
         create_email_domain_block: 封鎖電子郵件站台
         create_ip_block: 新增IP規則
         create_unavailable_domain: 新增無法存取的網域
+        create_user_role: 建立角色
         demote_user: 把用戶降級
         destroy_announcement: 刪除公告
         destroy_custom_emoji: 刪除自訂顏文字
@@ -247,6 +249,7 @@ zh-TW:
         destroy_ip_block: 刪除 IP 規則
         destroy_status: 刪除狀態
         destroy_unavailable_domain: 刪除無法存取的網域
+        destroy_user_role: 移除角色
         disable_2fa_user: 停用兩階段認證
         disable_custom_emoji: 停用自訂顏文字
         disable_sign_in_token_auth_user: 停用使用者電子信箱 token 驗證
@@ -274,11 +277,13 @@ zh-TW:
         update_custom_emoji: 更新自訂顏文字
         update_domain_block: 更新封鎖網域
         update_status: 更新狀態
+        update_user_role: 更新角色
       actions:
         approve_appeal_html: "%{name} 批准了來自 %{target} 的審核決定申訴"
         approve_user_html: "%{name} 批准了從 %{target} 而來的註冊"
         assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
         change_email_user_html: "%{name} 變更了使用者 %{target} 的電子信箱地址"
+        change_role_user_html: "%{name} 變更了 %{target} 的角色"
         confirm_user_html: "%{name} 確認了使用者 %{target} 的電子信箱位址"
         create_account_warning_html: "%{name} 已對 %{target} 送出警告"
         create_announcement_html: "%{name} 新增了公告 %{target}"
@@ -288,8 +293,10 @@ zh-TW:
         create_email_domain_block_html: "%{name} 封鎖了電子信箱網域 %{target}"
         create_ip_block_html: "%{name} 已經設定了IP %{target} 的規則"
         create_unavailable_domain_html: "%{name} 停止發送至網域 %{target}"
+        create_user_role_html: "%{name} 建立了 %{target} 角色"
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 刪除了公告 %{target}"
+        destroy_custom_emoji_html: "%{name} 刪除了表情符號 %{target}"
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 取消了對網域 %{target} 的封鎖"
         destroy_email_domain_block_html: "%{name} 取消了對電子信箱網域 %{target} 的封鎖"
@@ -297,6 +304,7 @@ zh-TW:
         destroy_ip_block_html: "%{name} 刪除了 IP %{target} 的規則"
         destroy_status_html: "%{name} 刪除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢復了對網域 %{target} 的發送"
+        destroy_user_role_html: "%{name} 刪除了 %{target} 角色"
         disable_2fa_user_html: "%{name} 停用了使用者 %{target} 的兩階段認證"
         disable_custom_emoji_html: "%{name} 停用了自訂表情符號 %{target}"
         disable_sign_in_token_auth_user_html: "%{name} 停用了 %{target} 之使用者電子信箱 token 驗證"
@@ -324,6 +332,7 @@ zh-TW:
         update_custom_emoji_html: "%{name} 更新了自訂表情符號 %{target}"
         update_domain_block_html: "%{name} 更新了 %{target} 之網域封鎖"
         update_status_html: "%{name} 更新了 %{target} 的嘟文"
+        update_user_role_html: "%{name} 變更了 %{target} 角色"
       empty: 找不到 log
       filter_by_action: 按動作篩選
       filter_by_user: 按使用者篩選
@@ -1158,6 +1167,7 @@ zh-TW:
       add_keyword: 新增關鍵字
       keywords: 關鍵字
       statuses: 各別嘟文
+      statuses_hint_html: 此過濾器會套用至所選之各別嘟文，無論其是否符合下列關鍵字。<a href="%{path}">審閱或從過濾條件移除貼文</a>。
       title: 編輯篩選條件
     errors:
       deprecated_api_multiple_keywords: 這些參數無法從此應用程式中更改，因為它們適用於一或多個過濾器關鍵字。請使用較新的應用程式或是網頁介面。
@@ -1183,6 +1193,7 @@ zh-TW:
       batch:
         remove: 從過濾器中移除
       index:
+        hint: 此過濾器會套用至所選之各別嘟文，不管它們有無符合其他條件。您可以從網頁介面中將更多嘟文加入至此過濾器。
         title: 已過濾之嘟文
   footer:
     developers: 開發者
@@ -1191,12 +1202,19 @@ zh-TW:
     trending_now: 現正熱門
   generic:
     all: 全部
+    all_items_on_page_selected_html:
+      other: 已選取此頁面上 <strong>%{count}</strong> 個項目。
+    all_matching_items_selected_html:
+      other: 已選取符合您搜尋的 <strong>%{count}</strong> 個項目。
     changes_saved_msg: 已成功儲存修改!
     copy: 複製
     delete: 刪除
+    deselect: 取消選擇全部
     none: 無
     order_by: 排序
     save_changes: 儲存修改
+    select_all_matching_items:
+      other: 選取 %{count} 個符合您搜尋的項目。
     today: 今天
     validation_errors:
       other: 唔…這是什麼鳥？請檢查以下 %{count} 項錯誤
