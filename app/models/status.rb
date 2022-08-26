@@ -26,6 +26,7 @@
 #  edited_at                    :datetime
 #  trendable                    :boolean
 #  ordered_media_attachment_ids :bigint(8)        is an Array
+#  group_id                     :bigint(8)
 #
 
 class Status < ApplicationRecord
@@ -67,6 +68,8 @@ class Status < ApplicationRecord
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
 
+  belongs_to :group, inverse_of: :statuses, optional: true
+
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :bookmarks, inverse_of: :status, dependent: :destroy
   has_many :reblogs, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblog, dependent: :destroy
@@ -88,9 +91,9 @@ class Status < ApplicationRecord
   validates :text, presence: true, unless: -> { with_media? || reblog? }
   validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
+  validates_with StatusGroupValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
   validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
-  # TODO: group_id and visibility: group
 
   accepts_nested_attributes_for :poll
 
@@ -514,6 +517,7 @@ class Status < ApplicationRecord
   def increment_counter_caches
     return if direct_visibility?
 
+    group&.increment_count!(:statuses_count)
     account&.increment_count!(:statuses_count)
     reblog&.increment_count!(:reblogs_count) if reblog?
     thread&.increment_count!(:replies_count) if in_reply_to_id.present? && distributable?
@@ -522,6 +526,7 @@ class Status < ApplicationRecord
   def decrement_counter_caches
     return if direct_visibility? || new_record?
 
+    group&.decrement_count!(:statuses_count)
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && distributable?

@@ -15,7 +15,7 @@ class StatusPolicy < ApplicationPolicy
     return false if author.suspended?
 
     if group?
-      owned? # TODO: group members, not mention-based
+      owned? || true || group_member? # TODO: currently, only public groups are supported
     elsif requires_mention?
       owned? || mention_exists?
     elsif private?
@@ -98,6 +98,13 @@ class StatusPolicy < ApplicationPolicy
     return false if current_account.nil?
 
     @preloaded_relations[:following] ? @preloaded_relations[:following][author.id] : current_account.following?(author)
+  end
+
+  def group_member?
+    return false if current_account.nil? || record.group_id.nil?
+
+    # TODO: maybe use preloaded_relations for that
+    GroupMembership.where(account_id: current_account.id, group_id: record.group_id).exists?
   end
 
   def author
