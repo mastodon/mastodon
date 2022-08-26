@@ -1226,12 +1226,22 @@ it:
     trending_now: Di tendenza ora
   generic:
     all: Tutto
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> elemento su questa pagina è selezionato."
+      other: Tutti i <strong>%{count}</strong> elementi su questa pagina sono selezionati.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> elemento corrispondente alla tua ricerca è selezionato."
+      other: Tutti i <strong>%{count}</strong> elementi corrispondenti alla tua ricerca sono selezionati.
     changes_saved_msg: Modifiche effettuate con successo!
     copy: Copia
     delete: Cancella
+    deselect: Deseleziona tutto
     none: Nessuno
     order_by: Ordina per
     save_changes: Salva modifiche
+    select_all_matching_items:
+      one: Seleziona %{count} elemento corrispondente alla tua ricerca.
+      other: Seleziona tutti gli elementi %{count} corrispondenti alla tua ricerca.
     today: oggi
     validation_errors:
       one: Qualcosa ancora non va bene! Per favore, controlla l'errore qui sotto
