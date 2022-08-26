@@ -229,6 +229,7 @@ zh-CN:
         approve_user: 批准用户
         assigned_to_self_report: 指派举报
         change_email_user: 为用户修改邮箱地址
+        change_role_user: 更改用户角色
         confirm_user: 确认用户
         create_account_warning: 创建警告
         create_announcement: 创建公告
@@ -238,6 +239,7 @@ zh-CN:
         create_email_domain_block: 封禁电子邮箱域名
         create_ip_block: 新建 IP 规则
         create_unavailable_domain: 创建不可用域名
+        create_user_role: 创建角色
         demote_user: 给用户降职
         destroy_announcement: 删除公告
         destroy_custom_emoji: 删除自定义表情符号
@@ -248,6 +250,7 @@ zh-CN:
         destroy_ip_block: 删除 IP 规则
         destroy_status: 删除嘟文
         destroy_unavailable_domain: 删除不可用域名
+        destroy_user_role: 销毁角色
         disable_2fa_user: 停用双重认证
         disable_custom_emoji: 禁用自定义表情符号
         disable_sign_in_token_auth_user: 为用户禁用电子邮件令牌认证
@@ -275,11 +278,13 @@ zh-CN:
         update_custom_emoji: 更新自定义表情符号
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
+        update_user_role: 更新角色
       actions:
         approve_appeal_html: "%{name} 批准了 %{target} 对审核结果的申诉"
         approve_user_html: "%{name} 批准了用户 %{target} 的注册"
         assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
+        change_role_user_html: "%{name} 更改了 %{target} 的角色"
         confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_account_warning_html: "%{name} 向 %{target} 发送了警告"
         create_announcement_html: "%{name} 创建了新公告 %{target}"
@@ -289,8 +294,10 @@ zh-CN:
         create_email_domain_block_html: "%{name} 屏蔽了电子邮件域名 %{target}"
         create_ip_block_html: "%{name} 为 IP %{target} 创建了规则"
         create_unavailable_domain_html: "%{name} 停止了向域名 %{target} 的投递"
+        create_user_role_html: "%{name} 创建了 %{target} 角色"
         demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
+        destroy_custom_emoji_html: "%{name} 删除了自定义表情 %{target}"
         destroy_domain_allow_html: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block_html: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block_html: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
@@ -298,6 +305,7 @@ zh-CN:
         destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
+        destroy_user_role_html: "%{name} 删除了 %{target} 角色"
         disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双重认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
         disable_sign_in_token_auth_user_html: "%{name} 已为 %{target} 禁用电子邮件令牌认证"
@@ -325,6 +333,7 @@ zh-CN:
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
+        update_user_role_html: "%{name} 更改了 %{target} 角色"
       empty: 没有找到日志
       filter_by_action: 根据行为过滤
       filter_by_user: 根据用户过滤
@@ -1194,12 +1203,19 @@ zh-CN:
     trending_now: 现在流行
   generic:
     all: 全部
+    all_items_on_page_selected_html:
+      other: 此页面上的所有 <strong>%{count}</strong> 项目已被选中。
+    all_matching_items_selected_html:
+      other: 所有 <strong>%{count}</strong> 匹配您搜索的项目都已被选中。
     changes_saved_msg: 更改保存成功！
     copy: 复制
     delete: 删除
+    deselect: 取消全选
     none: 无
     order_by: 排序方式
     save_changes: 保存更改
+    select_all_matching_items:
+      other: 选择匹配您搜索的所有 %{count} 个项目。
     today: 今天
     validation_errors:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
