@@ -1272,12 +1272,28 @@ sl:
     trending_now: Zdaj v trendu
   generic:
     all: Vse
+    all_items_on_page_selected_html:
+      one: "Na tej strani je izbran <strong>%{count}</strong> element."
+      two: Na tej strani sta izbrana <strong>%{count}</strong> elementa.
+      few: Na tej strani so izbrani <strong>%{count}</strong> elementi.
+      other: Na tej strani je izbranih <strong>%{count}</strong> elementov.
+    all_matching_items_selected_html:
+      one: "Izbran je <strong>%{count}</strong> element, ki ustreza vašemu iskanju."
+      two: Izbrana sta <strong>%{count}</strong> elementa, ki ustrezata vašemu iskanju.
+      few: Izbrani so <strong>%{count}</strong> elementi, ki ustrezajo vašemu iskanju.
+      other: Izbranih je <strong>%{count}</strong> elementov, ki ustrezajo vašemu iskanju.
     changes_saved_msg: Spremembe so uspešno shranjene!
     copy: Kopiraj
     delete: Izbriši
+    deselect: Prekliči ves izbor
     none: Brez
     order_by: Razvrsti po
     save_changes: Shrani spremembe
+    select_all_matching_items:
+      one: Izberite %{count} element, ki ustreza vašemu iskanju.
+      two: Izberite %{count} elementa, ki ustrezata vašemu iskanju.
+      few: Izberite %{count} elemente, ki ustrezajo vašemu iskanju.
+      other: Izberite %{count} elementov, ki ustrezajo vašemu iskanju.
     today: danes
     validation_errors:
       one: Nekaj še ni čisto v redu! Spodaj si oglejte napako
