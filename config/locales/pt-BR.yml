@@ -289,6 +289,7 @@ pt-BR:
         approve_user_html: "%{name} aprovado inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} para si"
         change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
+        change_role_user_html: "%{name} alterou a função de %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
@@ -298,6 +299,7 @@ pt-BR:
         create_email_domain_block_html: "%{name} bloqueou do domínio de e-mail %{target}"
         create_ip_block_html: "%{name} criou regra para o IP %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
+        create_user_role_html: "%{name} criou a função %{target}"
         demote_user_html: "%{name} rebaixou o usuário %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
         destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
@@ -307,6 +309,7 @@ pt-BR:
         destroy_ip_block_html: "%{name} excluiu regra para o IP %{target}"
         destroy_status_html: "%{name} excluiu post de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
+        destroy_user_role_html: "%{name} excluiu a função %{target}"
         disable_2fa_user_html: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desativou a autenticação via token por email para %{target}"
@@ -334,6 +337,7 @@ pt-BR:
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
+        update_user_role_html: "%{name} alterou a função %{target}"
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
       filter_by_user: Filtrar por usuário
@@ -647,27 +651,52 @@ pt-BR:
       view_profile: Ver perfil
     roles:
       add_new: Adicionar função
+      assigned_users:
+        one: "%{count} usuário"
+        other: "%{count} usuários"
       categories:
         administration: Administração
         invites: Convites
         moderation: Moderação
         special: Especial
       delete: Excluir
+      description_html: Com as <strong>funções de usuário</strong>, você pode personalizar quais funções e áreas do Mastodon seus usuários podem acessar.
+      edit: Editar função de '%{name}'
       everyone: Permissões padrão
+      everyone_full_description_html: Esta é a <strong>função base</strong> que afeta <strong>todos os usuários</strong>, mesmo aqueles sem uma função atribuída. Todas as outras funções dela herdam as suas permissões.
       privileges:
         administrator: Administrador
+        administrator_description: Usuários com essa permissão irão ignorar todas as permissões
         invite_users: Convidar Usuários
         invite_users_description: Permite que os usuários convidem novas pessoas para o servidor
         manage_announcements: Gerenciar Avisos
         manage_announcements_description: Permite aos usuários gerenciar anúncios no servidor
+        manage_blocks_description: Permite aos usuários bloquear provedores de e-mail e endereços IP
+        manage_custom_emojis_description: Permite aos usuários gerenciar emojis personalizados no servidor
+        manage_federation: Gerenciar Federação
+        manage_federation_description: Permite aos usuários bloquear ou permitir federação com outros domínios e controlar a entregabilidade
         manage_invites: Gerenciar convites
         manage_invites_description: Permite que os usuários naveguem e desativem os links de convites
         manage_reports: Gerenciar relatórios
         manage_roles: Gerenciar Funções
+        manage_roles_description: Permitir que os usuários gerenciem e atribuam papéis abaixo deles
+        manage_rules: Gerenciar Regras
         manage_rules_description: Permite que os usuários alterarem as regras do servidor
         manage_settings: Gerenciar Configurações
         manage_settings_description: Permite que os usuários alterem as configurações do site
         manage_taxonomies: Gerenciar taxonomias
+        manage_taxonomies_description: Permite aos usuários rever o conteúdo em alta e atualizar as configurações de hashtag
+        manage_user_access: Gerenciar Acesso de Usuário
+        manage_user_access_description: Permite aos usuários desativar a autenticação de dois fatores de outros usuários, alterar seu endereço de e-mail e redefinir sua senha
+        manage_users: Gerenciar usuários
+        manage_users_description: Permite aos usuários ver os detalhes de outros usuários e executar ações de moderação contra eles
+        manage_webhooks: Gerenciar Webhooks
+        manage_webhooks_description: Permite aos usuários configurar webhooks para eventos administrativos
+        view_audit_log: Ver o registro de auditoria
+        view_audit_log_description: Permite aos usuários ver um histórico de ações administrativas no servidor
+        view_dashboard: Ver painel
+        view_dashboard_description: Permite que os usuários acessem o painel e várias métricas
+      title: Funções
     rules:
       add_new: Adicionar regra
       delete: Deletar
