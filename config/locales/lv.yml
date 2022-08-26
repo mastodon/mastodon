@@ -1223,6 +1223,14 @@ lv:
         zero: "%{count} atslēgvārdu"
         one: "%{count} atsēgvārds"
         other: "%{count} atslēgvārdi"
+      statuses:
+        zero: "%{count} ziņu"
+        one: "%{count} ziņa"
+        other: "%{count} ziņas"
+      statuses_long:
+        zero: "%{count} paslēptu ziņu"
+        one: "paslēpta %{count} individuālā ziņa"
+        other: "slēptas %{count} individuālās ziņas"
       title: Filtri
     new:
       save: Saglabāt jauno filtru
@@ -1252,9 +1260,14 @@ lv:
     changes_saved_msg: Izmaiņas veiksmīgi saglabātas!
     copy: Kopēt
     delete: Dzēst
+    deselect: Atcelt visu atlasi
     none: Neviens
     order_by: Kārtot pēc
     save_changes: Saglabāt izmaiņas
+    select_all_matching_items:
+      zero: Atlasi %{count} vienumu, kas atbilst tavam meklēšanas vaicājumam.
+      one: Atlasi %{count} vienumu, kas atbilst tavam meklēšanas vaicājumam.
+      other: Atlasi visus %{count} vienumus, kas atbilst tavam meklēšanas vaicājumam.
     today: šodien
     validation_errors:
       zero: '%{count} kļūdu'
