@@ -24,6 +24,8 @@ class ActivityPub::TagManager
     case target.object_type
     when :person
       target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)
+    when :group
+      group_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       short_account_status_url(target.account, target)
@@ -36,6 +38,8 @@ class ActivityPub::TagManager
     case target.object_type
     when :person
       target.instance_actor? ? instance_actor_url : account_url(target)
+    when :group
+      group_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       account_status_url(target.account, target)
@@ -70,6 +74,14 @@ class ActivityPub::TagManager
 
   def followers_uri_for(target)
     target.local? ? account_followers_url(target) : target.followers_url.presence
+  end
+
+  def wall_uri_for(target)
+    target.local? ? group_wall_url(target) : target.wall_url.presence
+  end
+
+  def members_uri_for(target)
+    target.local? ? group_members_url(target) : target.members_url.presence
   end
 
   # Primary audience of a status

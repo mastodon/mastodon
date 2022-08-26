@@ -82,11 +82,27 @@ class Group < ApplicationRecord
     end
   end
 
+  def emojis
+    @emojis ||= CustomEmoji.from_text(emojifiable_text, domain)
+  end
+
+  def object_type
+    :group
+  end
+
+  def to_param
+    id.to_s
+  end
+
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end
 
   private
+
+  def emojifiable_text
+    [note, display_name].join(' ')
+  end
 
   def generate_keys
     return unless local? && private_key.blank? && public_key.blank?

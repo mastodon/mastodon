@@ -105,6 +105,12 @@ Rails.application.routes.draw do
     resource :followers_synchronization, only: [:show], module: :activitypub
   end
 
+  resources :groups, only: [:show] do
+    # TODO: inbox
+    # TODO: wall
+    # TODO: members
+  end
+
   resource :inbox, only: [:create], module: :activitypub
 
   constraints(username: /[^@\/.]+/) do
