@@ -77,6 +77,7 @@ class ActivityPub::TagManager
   # Unlisted and private statuses go out primarily to the followers collection
   # Others go out only to the people they mention
   def to(status)
+    # TODO: handle federation of posts with group visibility
     case status.visibility
     when 'public'
       [COLLECTIONS[:public]]
@@ -109,6 +110,7 @@ class ActivityPub::TagManager
   # Both of those and private statuses also go to the people mentioned in them
   # Direct ones don't have a secondary audience
   def cc(status)
+    # TODO: handle federation of posts with group visibility
     cc = []
 
     cc << uri_for(status.reblog.account) if status.reblog?

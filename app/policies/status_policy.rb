@@ -14,7 +14,9 @@ class StatusPolicy < ApplicationPolicy
   def show?
     return false if author.suspended?
 
-    if requires_mention?
+    if group?
+      owned? # TODO: group members, not mention-based
+    elsif requires_mention?
       owned? || mention_exists?
     elsif private?
       owned? || following_author? || mention_exists?
@@ -24,6 +26,7 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def reblog?
+    return false if record.group_visibility? # TODO: for now, disable reblogs within groups
     !requires_mention? && (!private? || owned?) && show? && !blocking_author?
   end
 
@@ -53,6 +56,10 @@ class StatusPolicy < ApplicationPolicy
 
   def owned?
     author.id == current_account&.id
+  end
+
+  def group?
+    record.group_visibility?
   end
 
   def private?

@@ -73,6 +73,7 @@ class ActivityPub::Parser::StatusParser
   end
 
   def visibility
+    # TODO: handle federation of posts with group visibility
     if audience_to.any? { |to| ActivityPub::TagManager.instance.public_collection?(to) }
       :public
     elsif audience_cc.any? { |cc| ActivityPub::TagManager.instance.public_collection?(cc) }

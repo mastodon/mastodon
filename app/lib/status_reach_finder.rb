@@ -71,7 +71,7 @@ class StatusReachFinder
   def followers_inboxes
     if @status.in_reply_to_local_account? && distributable?
       @status.account.followers.or(@status.thread.account.followers).inboxes
-    elsif @status.direct_visibility? || @status.limited_visibility?
+    elsif @status.direct_visibility? || @status.limited_visibility? || @status.group_visibility? #TODO
       []
     else
       @status.account.followers.inboxes

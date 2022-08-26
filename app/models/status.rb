@@ -48,7 +48,14 @@ class Status < ApplicationRecord
 
   update_index('statuses', :proper)
 
-  enum visibility: [:public, :unlisted, :private, :direct, :limited], _suffix: :visibility
+  enum visibility: {
+    public: 0,
+    unlisted: 1,
+    private: 2,
+    direct: 3,
+    limited: 4,
+    group: 5
+  }, _suffix: :visibility
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -83,6 +90,7 @@ class Status < ApplicationRecord
   validates_with DisallowedHashtagsValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
   validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
+  # TODO: group_id and visibility: group
 
   accepts_nested_attributes_for :poll
 
@@ -227,6 +235,7 @@ class Status < ApplicationRecord
   end
 
   def distributable?
+    # TODO: how do we consider group posts? they may need LDSigning for efficiency
     public_visibility? || unlisted_visibility?
   end
 
@@ -320,7 +329,7 @@ class Status < ApplicationRecord
 
   class << self
     def selectable_visibilities
-      visibilities.keys - %w(direct limited)
+      %w(public unlisted private)
     end
 
     def favourites_map(status_ids, account_id)
