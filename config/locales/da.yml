@@ -1225,12 +1225,22 @@ da:
     trending_now: Trender lige nu
   generic:
     all: Alle
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> emne på denne side er valgt."
+      other: Alle <strong>%{count}</strong> emner på denne side er valgt.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> emne, der matchede søgningen, er valgt."
+      other: Alle <strong>%{count}</strong> emner, som matchede søgningen, er valgt.
     changes_saved_msg: Ændringerne er gemt!
     copy: Kopier
     delete: Slet
+    deselect: Afmarkér alle
     none: Intet
     order_by: Sortér efter
     save_changes: Gem ændringer
+    select_all_matching_items:
+      one: Vælg %{count} emne, der matchede søgningen.
+      other: Vælg alle %{count} emner, som matchede søgningen.
     today: i dag
     validation_errors:
       one: Noget er ikke er helt i vinkel! Tjek fejlen nedenfor
