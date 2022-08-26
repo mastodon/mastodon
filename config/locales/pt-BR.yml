@@ -108,6 +108,11 @@ pt-BR:
         new_email: Novo e-mail
         submit: Alterar e-mail
         title: Alterar e-mail para %{username}
+      change_role:
+        changed_msg: Função alterada com sucesso!
+        label: Alterar função
+        no_role: Nenhuma função
+        title: Alterar função para %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -151,6 +156,7 @@ pt-BR:
         active: Ativo
         all: Todos
         pending: Pendente
+        silenced: Limitado
         suspended: Banidos
         title: Moderação
       moderation_notes: Notas de moderação
@@ -158,6 +164,7 @@ pt-BR:
       most_recent_ip: IP mais recente
       no_account_selected: Nenhuma conta foi alterada, pois nenhuma conta foi selecionada
       no_limits_imposed: Nenhum limite imposto
+      no_role_assigned: Nenhuma função atribuída
       not_subscribed: Não inscrito
       pending: Revisão pendente
       perform_full_suspension: Banir
@@ -184,6 +191,7 @@ pt-BR:
       reset: Redefinir
       reset_password: Redefinir senha
       resubscribe: Reinscrever-se
+      role: Função
       search: Pesquisar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
@@ -226,6 +234,7 @@ pt-BR:
         approve_user: Aprovar Usuário
         assigned_to_self_report: Adicionar relatório
         change_email_user: Editar e-mail do usuário
+        change_role_user: Alteração de Função do Usuário
         confirm_user: Confirmar Usuário
         create_account_warning: Criar Aviso
         create_announcement: Criar Anúncio
@@ -235,6 +244,7 @@ pt-BR:
         create_email_domain_block: Criar Bloqueio de Domínio de E-mail
         create_ip_block: Criar regra de IP
         create_unavailable_domain: Criar domínio indisponível
+        create_user_role: Criar Função
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
         destroy_custom_emoji: Excluir emoji personalizado
@@ -245,6 +255,7 @@ pt-BR:
         destroy_ip_block: Excluir regra de IP
         destroy_status: Excluir Status
         destroy_unavailable_domain: Deletar domínio indisponível
+        destroy_user_role: Destruir Função
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar Emoji Personalizado
         disable_sign_in_token_auth_user: Desativar autenticação via token por email para Usuário
@@ -272,6 +283,7 @@ pt-BR:
         update_custom_emoji: Editar Emoji Personalizado
         update_domain_block: Atualizar bloqueio de domínio
         update_status: Editar Status
+        update_user_role: Atualizar função
       actions:
         approve_appeal_html: "%{name} aprovou o recurso de decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovado inscrição de %{target}"
@@ -636,12 +648,26 @@ pt-BR:
     roles:
       add_new: Adicionar função
       categories:
+        administration: Administração
         invites: Convites
         moderation: Moderação
         special: Especial
       delete: Excluir
+      everyone: Permissões padrão
       privileges:
+        administrator: Administrador
+        invite_users: Convidar Usuários
+        invite_users_description: Permite que os usuários convidem novas pessoas para o servidor
         manage_announcements: Gerenciar Avisos
+        manage_announcements_description: Permite aos usuários gerenciar anúncios no servidor
+        manage_invites: Gerenciar convites
+        manage_invites_description: Permite que os usuários naveguem e desativem os links de convites
+        manage_reports: Gerenciar relatórios
+        manage_roles: Gerenciar Funções
+        manage_rules_description: Permite que os usuários alterarem as regras do servidor
+        manage_settings: Gerenciar Configurações
+        manage_settings_description: Permite que os usuários alterem as configurações do site
+        manage_taxonomies: Gerenciar taxonomias
     rules:
       add_new: Adicionar regra
       delete: Deletar
@@ -775,15 +801,18 @@ pt-BR:
         disallow_provider: Anular editor
         title: Em alta no momento
         usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
+      only_allowed: Somente permitido
       pending_review: Revisão pendente
       preview_card_providers:
         allowed: Links deste editor podem tender
+        description_html: Estes são domínios a partir dos quais links são comumente compartilhados em seu servidor. Links não tenderão publicamente a menos que o domínio do link seja aprovado. Sua aprovação (ou rejeição) estende-se aos subdomínios.
         rejected: Links deste editor não vão tender
         title: Editor
       rejected: Rejeitado
       statuses:
         allow: Permitir postagem
         allow_account: Permitir autor
+        description_html: Estes são posts que seu servidor sabe que estão sendo muito compartilhados e favorecidos no momento. Isso pode ajudar seus usuários, novos e retornantes, a encontrar mais pessoas para seguir. Nenhum post é exibido publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar postagens individuais.
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -1058,6 +1087,7 @@ pt-BR:
     edit:
       add_keyword: Adicionar palavra-chave
       keywords: Palavras-chave
+      statuses: Postagens individuais
       title: Editar filtro
     errors:
       invalid_context: Contexto inválido ou nenhum contexto informado
