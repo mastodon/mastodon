@@ -12,8 +12,6 @@ class Scheduler::IPBlocklistURLScheduler
     if ENV['SCHEDULED_IPBLOCK_URLS'].present?
       grab_exit_addresses!
       add_exit_addresses!
-    else
-      return
     end
   end
 
