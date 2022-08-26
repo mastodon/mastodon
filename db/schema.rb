@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_21_055441) do
+ActiveRecord::Schema.define(version: 2022_10_22_143208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -476,6 +476,40 @@ ActiveRecord::Schema.define(version: 2022_10_21_055441) do
     t.string "languages", array: true
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_follows_on_target_account_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "domain"
+    t.string "url"
+    t.text "note", default: "", null: false
+    t.string "display_name", default: "", null: false
+    t.boolean "locked", default: false, null: false
+    t.boolean "hide_members", default: false, null: false
+    t.datetime "suspended_at"
+    t.integer "suspension_origin"
+    t.boolean "discoverable"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.bigint "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string "avatar_remote_url", default: "", null: false
+    t.string "header_file_name"
+    t.string "header_content_type"
+    t.bigint "header_file_size"
+    t.datetime "header_updated_at"
+    t.string "header_remote_url", default: "", null: false
+    t.integer "image_storage_schema_version"
+    t.string "uri"
+    t.string "outbox_url", default: "", null: false
+    t.string "inbox_url", default: "", null: false
+    t.string "shared_inbox_url", default: "", null: false
+    t.string "members_url", default: "", null: false
+    t.string "wall_url", default: "", null: false
+    t.text "private_key"
+    t.text "public_key", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uri"], name: "index_groups_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
   end
 
   create_table "identities", force: :cascade do |t|
