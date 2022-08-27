@@ -9,8 +9,6 @@ module Admin::ActionLogsHelper
       link_to log.human_identifier, admin_account_path(log.route_param)
     when 'UserRole'
       link_to log.human_identifier, admin_roles_path(log.target_id)
-    when 'CustomEmoji'
-      log.human_identifier
     when 'Report'
       link_to "##{log.human_identifier}", admin_report_path(log.target_id)
     when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
@@ -21,10 +19,10 @@ module Admin::ActionLogsHelper
       link_to log.human_identifier, admin_account_path(log.target_id)
     when 'Announcement'
       link_to truncate(log.human_identifier), edit_admin_announcement_path(log.target_id)
-    when 'IpBlock'
+    when 'IpBlock', 'Instance', 'CustomEmoji'
       log.human_identifier
-    when 'Instance'
-      log.human_identifier
+    when 'CanonicalEmailBlock'
+      content_tag(:samp, log.human_identifier[0...7], title: log.human_identifier)
     when 'Appeal'
       link_to log.human_identifier, disputes_strike_path(log.route_param)
     end
