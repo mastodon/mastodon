@@ -5,11 +5,10 @@ class Scheduler::IPBlocklistURLScheduler
 
   sidekiq_options retry: 0
 
-  CHECK_URL = ENV['SCHEDULED_IPBLOCK_URLS']
-  @ips = []
-
   def perform
     if ENV['SCHEDULED_IPBLOCK_URLS'].present?
+        CHECK_URL = ENV['SCHEDULED_IPBLOCK_URLS']
+        @ips = []
       grab_exit_addresses!
       add_exit_addresses!
     end
