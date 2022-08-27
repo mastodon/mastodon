@@ -283,13 +283,14 @@ class Notifications extends React.PureComponent {
     if (canMarkAsRead) {
       extraButtons.push(
         <button
+          key='mark-as-read'
           aria-label={intl.formatMessage(messages.markAsRead)}
           title={intl.formatMessage(messages.markAsRead)}
           onClick={this.handleMarkAsRead}
           className='column-header__button'
         >
           <Icon id='check' />
-        </button>
+        </button>,
       );
     }
 
@@ -306,13 +307,14 @@ class Notifications extends React.PureComponent {
 
     extraButtons.push(
       <button
+        key='notif-cleaning'
         aria-label={msgEnterNotifCleaning}
         title={msgEnterNotifCleaning}
         onClick={this.onEnterCleaningMode}
         className={notifCleaningButtonClassName}
       >
         <Icon id='eraser' />
-      </button>
+      </button>,
     );
 
     const notifCleaningDrawer = (
@@ -321,6 +323,12 @@ class Notifications extends React.PureComponent {
           {(notifCleaningActive || animatingNCD) ? (<NotificationPurgeButtonsContainer />) : null }
         </div>
       </div>
+    );
+
+    const extraButton = (
+      <>
+        {extraButtons}
+      </>
     );
 
     return (
@@ -341,7 +349,7 @@ class Notifications extends React.PureComponent {
           pinned={pinned}
           multiColumn={multiColumn}
           localSettings={this.props.localSettings}
-          extraButton={extraButtons}
+          extraButton={extraButton}
           appendContent={notifCleaningDrawer}
         >
           <ColumnSettingsContainer />
