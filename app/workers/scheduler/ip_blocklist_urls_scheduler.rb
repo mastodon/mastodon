@@ -7,8 +7,8 @@ class Scheduler::IPBlocklistURLScheduler
 
   def perform
     if ENV['SCHEDULED_IPBLOCK_URLS'].present?
-        CHECK_URL = ENV['SCHEDULED_IPBLOCK_URLS']
-        @ips = []
+      CHECK_URL = ENV['SCHEDULED_IPBLOCK_URLS']
+      @ips = []
       grab_exit_addresses!
       add_exit_addresses!
     end
