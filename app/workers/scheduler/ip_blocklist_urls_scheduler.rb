@@ -7,7 +7,7 @@ class Scheduler::IPBlocklistURLScheduler
 
   def perform
     if ENV['SCHEDULED_IPBLOCK_URLS'].present?
-      CHECK_URL = ENV['SCHEDULED_IPBLOCK_URLS']
+      @check_url = ENV['SCHEDULED_IPBLOCK_URLS']
       @ips = []
       grab_exit_addresses!
       add_exit_addresses!
@@ -15,7 +15,7 @@ class Scheduler::IPBlocklistURLScheduler
   end
 
   def grab_exit_addresses!
-    CHECK_URL.split(',').each do |url|
+    @check_url.split(',').each do |url|
       Request.new(:get, url).perform do |res|
         @ips.insert = res.body
       end
