@@ -16,6 +16,7 @@ class IpBlock < ApplicationRecord
   CACHE_KEY = 'blocked_ips'
 
   include Expireable
+  include Paginable
 
   enum severity: {
     sign_up_requires_approval: 5000,
@@ -28,7 +29,7 @@ class IpBlock < ApplicationRecord
   after_commit :reset_cache
 
   def to_log_human_identifier
-    "#{record.ip}/#{record.ip.prefix}"
+    "#{ip}/#{ip.prefix}"
   end
 
   class << self

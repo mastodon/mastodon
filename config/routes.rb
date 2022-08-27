@@ -591,6 +591,7 @@ Rails.application.routes.draw do
 
         resources :domain_allows, only: [:index, :show, :create, :destroy]
         resources :domain_blocks, only: [:index, :show, :update, :create, :destroy]
+        resources :ip_blocks, only: [:index, :show, :update, :create, :destroy]
 
         namespace :trends do
           resources :tags, only: [:index]
