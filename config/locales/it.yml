@@ -238,6 +238,7 @@ it:
         confirm_user: Conferma utente
         create_account_warning: Crea avviso
         create_announcement: Crea un annuncio
+        create_canonical_email_block: Crea Blocco E-mail
         create_custom_emoji: Crea emoji personalizzata
         create_domain_allow: Crea permesso di dominio
         create_domain_block: Crea blocco di dominio
@@ -247,6 +248,7 @@ it:
         create_user_role: Crea Ruolo
         demote_user: Degrada l'utente
         destroy_announcement: Cancella annuncio
+        destroy_canonical_email_block: Elimina Blocco E-mail
         destroy_custom_emoji: Cancella emoji personalizzata
         destroy_domain_allow: Cancella permesso di dominio
         destroy_domain_block: Cancella blocco di dominio
@@ -282,6 +284,7 @@ it:
         update_announcement: Aggiorna annuncio
         update_custom_emoji: Aggiorna emoji personalizzata
         update_domain_block: Aggiorna blocco di dominio
+        update_ip_block: Aggiorna regola IP
         update_status: Aggiorna stato
         update_user_role: Aggiorna Ruolo
       actions:
@@ -293,6 +296,7 @@ it:
         confirm_user_html: "%{name} ha confermato l'indirizzo e-mail dell'utente %{target}"
         create_account_warning_html: "%{name} ha inviato un avviso a %{target}"
         create_announcement_html: "%{name} ha creato un nuovo annuncio %{target}"
+        create_canonical_email_block_html: "%{name} ha bloccato l'e-mail con l'hash %{target}"
         create_custom_emoji_html: "%{name} ha caricato una nuova emoji %{target}"
         create_domain_allow_html: "%{name} ha consentito alla federazione col dominio %{target}"
         create_domain_block_html: "%{name} ha bloccato dominio %{target}"
@@ -302,6 +306,7 @@ it:
         create_user_role_html: "%{name} ha creato il ruolo %{target}"
         demote_user_html: "%{name} ha retrocesso l'utente %{target}"
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
+        destroy_canonical_email_block_html: "%{name} ha sbloccato l'email con l'hash %{target}"
         destroy_custom_emoji_html: "%{name} ha eliminato l'emoji %{target}"
         destroy_domain_allow_html: "%{name} ha negato la federazione al dominio %{target}"
         destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
@@ -337,6 +342,7 @@ it:
         update_announcement_html: "%{name} ha aggiornato l'annuncio %{target}"
         update_custom_emoji_html: "%{name} ha aggiornato emoji %{target}"
         update_domain_block_html: "%{name} ha aggiornato il blocco dominio per %{target}"
+        update_ip_block_html: "%{name} ha cambiato la regola per l'IP %{target}"
         update_status_html: "%{name} ha aggiornato lo status di %{target}"
         update_user_role_html: "%{name} ha modificato il ruolo %{target}"
       empty: Nessun log trovato.
@@ -800,6 +806,9 @@ it:
         desc_html: Mostra la timeline pubblica sulla pagina iniziale
         title: Anteprima timeline
       title: Impostazioni sito
+      trendable_by_default:
+        desc_html: I contenuti di tendenza specifici possono ancora essere esplicitamente vietati
+        title: Consenti tendenze senza controllo preliminare
       trends:
         desc_html: Visualizza pubblicamente gli hashtag precedentemente esaminati che sono attualmente in tendenza
         title: Hashtag di tendenza
