@@ -115,6 +115,10 @@ class Report < ApplicationRecord
     Report.where.not(id: id).where(target_account_id: target_account_id).unresolved.exists?
   end
 
+  def to_log_human_identifier
+    id
+  end
+
   def history
     subquery = [
       Admin::ActionLog.where(
@@ -135,6 +139,8 @@ class Report < ApplicationRecord
 
     Admin::ActionLog.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
   end
+
+  private
 
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil? && account.local?

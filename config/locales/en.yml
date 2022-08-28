@@ -235,17 +235,21 @@ en:
         approve_user: Approve User
         assigned_to_self_report: Assign Report
         change_email_user: Change E-mail for User
+        change_role_user: Change Role of User
         confirm_user: Confirm User
         create_account_warning: Create Warning
         create_announcement: Create Announcement
+        create_canonical_email_block: Create E-mail Block
         create_custom_emoji: Create Custom Emoji
         create_domain_allow: Create Domain Allow
         create_domain_block: Create Domain Block
         create_email_domain_block: Create E-mail Domain Block
         create_ip_block: Create IP rule
         create_unavailable_domain: Create Unavailable Domain
+        create_user_role: Create Role
         demote_user: Demote User
         destroy_announcement: Delete Announcement
+        destroy_canonical_email_block: Delete E-mail Block
         destroy_custom_emoji: Delete Custom Emoji
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
@@ -254,6 +258,7 @@ en:
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
+        destroy_user_role: Destroy Role
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
         disable_sign_in_token_auth_user: Disable E-mail Token Authentication for User
@@ -280,24 +285,30 @@ en:
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
         update_domain_block: Update Domain Block
+        update_ip_block: Update IP rule
         update_status: Update Post
+        update_user_role: Update Role
       actions:
         approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
         approve_user_html: "%{name} approved sign-up from %{target}"
         assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
         change_email_user_html: "%{name} changed the e-mail address of user %{target}"
+        change_role_user_html: "%{name} changed role of %{target}"
         confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
         create_account_warning_html: "%{name} sent a warning to %{target}"
         create_announcement_html: "%{name} created new announcement %{target}"
+        create_canonical_email_block_html: "%{name} blocked e-mail with the hash %{target}"
         create_custom_emoji_html: "%{name} uploaded new emoji %{target}"
         create_domain_allow_html: "%{name} allowed federation with domain %{target}"
         create_domain_block_html: "%{name} blocked domain %{target}"
         create_email_domain_block_html: "%{name} blocked e-mail domain %{target}"
         create_ip_block_html: "%{name} created rule for IP %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
+        create_user_role_html: "%{name} created %{target} role"
         demote_user_html: "%{name} demoted user %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
-        destroy_custom_emoji_html: "%{name} destroyed emoji %{target}"
+        destroy_canonical_email_block_html: "%{name} unblocked e-mail with the hash %{target}"
+        destroy_custom_emoji_html: "%{name} deleted emoji %{target}"
         destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block_html: "%{name} unblocked domain %{target}"
         destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
@@ -305,6 +316,7 @@ en:
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
+        destroy_user_role_html: "%{name} deleted %{target} role"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} disabled e-mail token authentication for %{target}"
@@ -331,8 +343,9 @@ en:
         update_announcement_html: "%{name} updated announcement %{target}"
         update_custom_emoji_html: "%{name} updated emoji %{target}"
         update_domain_block_html: "%{name} updated domain block for %{target}"
+        update_ip_block_html: "%{name} changed rule for IP %{target}"
         update_status_html: "%{name} updated post by %{target}"
-      deleted_status: "(deleted post)"
+        update_user_role_html: "%{name} changed %{target} role"
       empty: No logs found.
       filter_by_action: Filter by action
       filter_by_user: Filter by user
@@ -1220,12 +1233,22 @@ en:
     trending_now: Trending now
   generic:
     all: All
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selected."
+      other: All <strong>%{count}</strong> items on this page are selected.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matching your search is selected."
+      other: All <strong>%{count}</strong> items matching your search are selected.
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     delete: Delete
+    deselect: Deselect all
     none: None
     order_by: Order by
     save_changes: Save changes
+    select_all_matching_items:
+      one: Select %{count} item matching your search.
+      other: Select all %{count} items matching your search.
     today: today
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
@@ -1334,17 +1357,6 @@ en:
         subject: "%{name} submitted a report"
       sign_up:
         subject: "%{name} signed up"
-    digest:
-      action: View all notifications
-      body: Here is a brief summary of the messages you missed since your last visit on %{since}
-      mention: "%{name} mentioned you in:"
-      new_followers_summary:
-        one: Also, you have acquired one new follower while being away! Yay!
-        other: Also, you have acquired %{count} new followers while being away! Amazing!
-      subject:
-        one: "1 new notification since your last visit 🐘"
-        other: "%{count} new notifications since your last visit 🐘"
-      title: In your absence...
     favourite:
       body: 'Your post was favourited by %{name}:'
       subject: "%{name} favourited your post"
