@@ -1198,8 +1198,16 @@ cs:
     index:
       delete: Smazat
       empty: Nemáte žádný filtr.
+      expires_in: Vyprší za %{distance}
+      expires_on: Vyprší %{date}
+      keywords:
+        one: "%{count} klíčové slovo"
+        few: "%{count} klíčová slova"
+        many: "%{count} klíčových slov"
+        other: "%{count} klíčových slov"
       title: Filtry
     new:
+      save: Uložit nový filtr
       title: Přidat nový filtr
   footer:
     developers: Vývojáři
