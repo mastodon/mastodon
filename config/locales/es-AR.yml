@@ -234,7 +234,7 @@ es-AR:
         approve_user: Aprobar usuario
         assigned_to_self_report: Asignar denuncia
         change_email_user: Cambiar correo electrónico del usuario
-        change_role_user: Cambiar rol del usuario
+        change_role_user: Cambiar Rol de Usuario
         confirm_user: Confirmar usuario
         create_account_warning: Crear advertencia
         create_announcement: Crear anuncio
@@ -244,7 +244,7 @@ es-AR:
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regla de dirección IP
         create_unavailable_domain: Crear dominio no disponible
-        create_user_role: Crear rol
+        create_user_role: Crear Rol
         demote_user: Descender usuario
         destroy_announcement: Eliminar anuncio
         destroy_custom_emoji: Eliminar emoji personalizado
@@ -255,7 +255,7 @@ es-AR:
         destroy_ip_block: Eliminar regla de dirección IP
         destroy_status: Eliminar mensaje
         destroy_unavailable_domain: Eliminar dominio no disponible
-        destroy_user_role: Destruir rol
+        destroy_user_role: Destruir Rol
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
         disable_sign_in_token_auth_user: Deshabilitar autenticación de token por correo electrónico para el usuario
@@ -283,12 +283,13 @@ es-AR:
         update_custom_emoji: Actualizar emoji personalizado
         update_domain_block: Actualizar bloque de dominio
         update_status: Actualizar mensaje
-        update_user_role: Actualizar rol
+        update_user_role: Actualizar Rol
       actions:
         approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
         approve_user_html: "%{name} aprobó el registro de %{target}"
         assigned_to_self_report_html: "%{name} se asignó la denuncia %{target} a sí"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
+        change_role_user_html: "%{name} cambió el rol de %{target}"
         confirm_user_html: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_account_warning_html: "%{name} envió una advertencia a %{target}"
         create_announcement_html: "%{name} creó el nuevo anuncio %{target}"
@@ -298,8 +299,10 @@ es-AR:
         create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
         create_ip_block_html: "%{name} creó la regla para la dirección IP %{target}"
         create_unavailable_domain_html: "%{name} detuvo la entrega al dominio %{target}"
+        create_user_role_html: "%{name} creó el rol %{target}"
         demote_user_html: "%{name} bajó de nivel al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
+        destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} no permitió la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
@@ -307,6 +310,7 @@ es-AR:
         destroy_ip_block_html: "%{name} eliminó la regla para la dirección IP %{target}"
         destroy_status_html: "%{name} eliminó el mensaje de %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó la entrega al dominio %{target}"
+        destroy_user_role_html: "%{name} eliminó el rol %{target}"
         disable_2fa_user_html: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} deshabilitó el emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deshabilitó la autenticación de token por correo electrónico para %{target}"
@@ -334,6 +338,7 @@ es-AR:
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_status_html: "%{name} actualizó el mensaje de %{target}"
+        update_user_role_html: "%{name} cambió el rol %{target}"
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
@@ -1221,6 +1226,12 @@ es-AR:
     trending_now: Tendencia ahora
   generic:
     all: Todas
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> elemento en esta página está seleccionado."
+      other: Todos los <strong>%{count}</strong> elementos en esta página están seleccionados.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> elemento que coincide con su búsqueda está seleccionado."
+      other: Todos los <strong>%{count}</strong> elementos que coinciden con su búsqueda están seleccionados.
     changes_saved_msg: '¡Cambios guardados exitosamente!'
     copy: Copiar
     delete: Eliminar
@@ -1228,6 +1239,9 @@ es-AR:
     none: '[Ninguna]'
     order_by: Ordenar por
     save_changes: Guardar cambios
+    select_all_matching_items:
+      one: Seleccionar %{count} elemento que coincide con tu búsqueda.
+      other: Seleccionar todos los %{count} elementos que coinciden con tu búsqueda.
     today: hoy
     validation_errors:
       one: '¡Falta algo! Por favor, revisá el error abajo'
