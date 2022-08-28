@@ -1194,8 +1194,10 @@ cs:
       keywords: Klíčová slova
       title: Upravit filtr
     errors:
+      deprecated_api_multiple_keywords: Tyto parametry nelze změnit z této aplikace, protože se vztahují na více než jedno klíčové slovo filtru. Použijte novější aplikaci nebo webové rozhraní.
       invalid_context: Nebyl poskytnut žádný nebo jen neplatný kontext
     index:
+      contexts: Filtruje %{contexts}
       delete: Smazat
       empty: Nemáte žádný filtr.
       expires_in: Vyprší za %{distance}
