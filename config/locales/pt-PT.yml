@@ -238,6 +238,7 @@ pt-PT:
         confirm_user: Confirmar Utilizador
         create_account_warning: Criar Aviso
         create_announcement: Criar Anúncio
+        create_canonical_email_block: Criar Bloqueio de E-mail
         create_custom_emoji: Criar Emoji Personalizado
         create_domain_allow: Criar Permissão de Domínio
         create_domain_block: Criar Bloqueio de Domínio
@@ -247,6 +248,7 @@ pt-PT:
         create_user_role: Criar Função
         demote_user: Despromover Utilizador
         destroy_announcement: Eliminar Anúncio
+        destroy_canonical_email_block: Eliminar Bloqueio de E-mail
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permissão de Domínio
         destroy_domain_block: Eliminar Bloqueio de Domínio
@@ -282,6 +284,7 @@ pt-PT:
         update_announcement: Atualizar Anúncio
         update_custom_emoji: Atualizar Emoji Personalizado
         update_domain_block: Atualizar Bloqueio de Domínio
+        update_ip_block: Atualizar regra de IP
         update_status: Atualizar Estado
         update_user_role: Atualizar Função
       actions:
@@ -293,6 +296,7 @@ pt-PT:
         confirm_user_html: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
+        create_canonical_email_block_html: "%{name} bloqueou o e-mail com a hash %{target}"
         create_custom_emoji_html: "%{name} carregou o novo emoji %{target}"
         create_domain_allow_html: "%{name} habilitou a federação com o domínio %{target}"
         create_domain_block_html: "%{name} bloqueou o domínio %{target}"
@@ -302,6 +306,7 @@ pt-PT:
         create_user_role_html: "%{name} criou a função %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
         destroy_announcement_html: "%{name} eliminou o anúncio %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com a hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminou o emoji %{target}"
         destroy_domain_allow_html: "%{name} desabilitou a federação com o domínio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
@@ -337,6 +342,7 @@ pt-PT:
         update_announcement_html: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio para %{target}"
+        update_ip_block_html: "%{name} alterou regra para IP %{target}"
         update_status_html: "%{name} atualizou o estado de %{target}"
         update_user_role_html: "%{name} alterou a função %{target}"
       empty: Não foram encontrados registos.
@@ -800,6 +806,9 @@ pt-PT:
         desc_html: Exibir a linha temporal pública na página inicial
         title: Visualização da linha temporal
       title: Configurações do site
+      trendable_by_default:
+        desc_html: Conteúdo específico em tendência pode mesmo assim ser explicitamente rejeitado
+        title: Permitir tendências sem revisão prévia
       trends:
         desc_html: Exibir publicamente hashtags atualmente em destaque que já tenham sido revistas anteriormente
         title: Hashtags em destaque
