@@ -248,6 +248,7 @@ uk:
         confirm_user: Підтвердити користувача
         create_account_warning: Створити попередження
         create_announcement: Створити оголошення
+        create_canonical_email_block: Створити блок електронної пошти
         create_custom_emoji: Створити користувацьке емодзі
         create_domain_allow: Створити дозвіл на домен
         create_domain_block: Створити блокування домену
@@ -257,6 +258,7 @@ uk:
         create_user_role: Створити роль
         demote_user: Понизити користувача
         destroy_announcement: Видалити оголошення
+        destroy_canonical_email_block: Видалити блок електронної пошти
         destroy_custom_emoji: Видалити користувацьке емодзі
         destroy_domain_allow: Видалити дозвіл на домен
         destroy_domain_block: Видалити блокування домену
@@ -292,6 +294,7 @@ uk:
         update_announcement: Оновити оголошення
         update_custom_emoji: Оновити користувацькі емодзі
         update_domain_block: Оновити блокування домену
+        update_ip_block: Оновити правило IP
         update_status: Оновити статус
         update_user_role: Оновити роль
       actions:
@@ -303,6 +306,7 @@ uk:
         confirm_user_html: "%{name} підтверджує стан поштової адреси користувача %{target}"
         create_account_warning_html: "%{name} надсилає попередження до %{target}"
         create_announcement_html: "%{name} створює нове оголошення %{target}"
+        create_canonical_email_block_html: "%{name} блокує електронну пошту з хешем %{target}"
         create_custom_emoji_html: "%{name} завантажує нові емодзі %{target}"
         create_domain_allow_html: "%{name} дозволяє федерацію з доменом %{target}"
         create_domain_block_html: "%{name} блокує домен %{target}"
@@ -312,6 +316,7 @@ uk:
         create_user_role_html: "%{name} створює роль %{target}"
         demote_user_html: "%{name} понижує користувача %{target}"
         destroy_announcement_html: "%{name} видаляє оголошення %{target}"
+        destroy_canonical_email_block_html: "%{name} розблоковує електронну пошту з хешем %{target}"
         destroy_custom_emoji_html: "%{name} видаляє емоджі %{target}"
         destroy_domain_allow_html: "%{name} скасовує федерацію з доменом %{target}"
         destroy_domain_block_html: "%{name} розблокує домен %{target}"
@@ -347,6 +352,7 @@ uk:
         update_announcement_html: "%{name} оновлює оголошення %{target}"
         update_custom_emoji_html: "%{name} оновлює емодзі %{target}"
         update_domain_block_html: "%{name} оновлює блокування домену для %{target}"
+        update_ip_block_html: "%{name} змінює правило для IP %{target}"
         update_status_html: "%{name} змінює статус користувача %{target}"
         update_user_role_html: "%{name} змінює роль %{target}"
       empty: Не знайдено жодного журналу.
@@ -826,6 +832,9 @@ uk:
         desc_html: Показувати публічну стрічку на головній сторінці
         title: Передпоказ фіду
       title: Налаштування сайту
+      trendable_by_default:
+        desc_html: Конкретні популярні матеріали все одно можуть бути явно відхилені
+        title: Дозволити популярне без попереднього огляду
       trends:
         desc_html: Відображати розглянуті хештеґи, які популярні зараз
         title: Популярні хештеги
