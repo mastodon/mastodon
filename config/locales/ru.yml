@@ -244,17 +244,21 @@ ru:
         approve_user: Утвердить
         assigned_to_self_report: Присвоение жалоб
         change_email_user: Изменение эл. почты пользователя
+        change_role_user: Изменить роль пользователя
         confirm_user: Подтверждение пользователей
         create_account_warning: Выдача предупреждения
         create_announcement: Создание объявлений
+        create_canonical_email_block: Создать блокировку эл. почты
         create_custom_emoji: Добавление эмодзи
         create_domain_allow: Разрешение доменов
         create_domain_block: Блокировка доменов
         create_email_domain_block: Блокировка e-mail доменов
         create_ip_block: Создание правил для IP-адресов
         create_unavailable_domain: Добавление домена в список недоступных
+        create_user_role: Создать роль
         demote_user: Разжалование пользователей
         destroy_announcement: Удаление объявлений
+        destroy_canonical_email_block: Удалить блокировку эл. почты
         destroy_custom_emoji: Удаление эмодзи
         destroy_domain_allow: Отзыв разрешений для доменов
         destroy_domain_block: Разблокировка доменов
@@ -263,6 +267,7 @@ ru:
         destroy_ip_block: Удаление правил для IP-адресов
         destroy_status: Удаление постов
         destroy_unavailable_domain: Исключение доменов из списка недоступных
+        destroy_user_role: Удалить роль
         disable_2fa_user: Отключение 2FA
         disable_custom_emoji: Отключение эмодзи
         disable_sign_in_token_auth_user: Отключение аутентификации по e-mail кодам у пользователей
@@ -289,21 +294,26 @@ ru:
         update_announcement: Обновление объявлений
         update_custom_emoji: Обновление эмодзи
         update_domain_block: Изменение блокировки домена
+        update_ip_block: Обновить правило для IP-адреса
         update_status: Изменение постов
+        update_user_role: Обновить роль
       actions:
         approve_appeal_html: "%{name} одобрил апелляцию на умеренное решение от %{target}"
         approve_user_html: "%{name} утвердил(а) регистрацию %{target}"
         assigned_to_self_report_html: "%{name} назначил(а) себя для решения жалобы %{target}"
         change_email_user_html: "%{name} сменил(а) e-mail пользователя %{target}"
+        change_role_user_html: "%{name} изменил(а) роль %{target}"
         confirm_user_html: "%{name} подтвердил(а) e-mail адрес пользователя %{target}"
         create_account_warning_html: "%{name} выдал(а) предупреждение %{target}"
         create_announcement_html: "%{name} создал(а) новое объявление %{target}"
+        create_canonical_email_block_html: "%{name} заблокировал(а) эл. почту с хешем %{target}"
         create_custom_emoji_html: "%{name} загрузил(а) новый эмодзи %{target}"
         create_domain_allow_html: "%{name} разрешил(а) федерацию с доменом %{target}"
         create_domain_block_html: "%{name} заблокировал(а) домен %{target}"
         create_email_domain_block_html: "%{name} заблокировал(а) e-mail домен %{target}"
         create_ip_block_html: "%{name} создал(а) правило для IP %{target}"
         create_unavailable_domain_html: "%{name} приостановил доставку на узел %{target}"
+        create_user_role_html: "%{name} создал(а) роль %{target}"
         demote_user_html: "%{name} разжаловал(а) пользователя %{target}"
         destroy_announcement_html: "%{name} удалил(а) объявление %{target}"
         destroy_domain_allow_html: "%{name} запретил(а) федерацию с доменом %{target}"
@@ -1128,7 +1138,7 @@ ru:
     csv: CSV
     domain_blocks: Доменные блокировки
     lists: Списки
-    mutes: Ваши игнорируемые
+    mutes: Ваши игнорируете
     storage: Ваши файлы
   featured_tags:
     add_new: Добавить
@@ -1286,7 +1296,7 @@ ru:
     title: Модерация
   move_handler:
     carry_blocks_over_text: Этот пользователь переехал с учётной записи %{acct}, которую вы заблокировали.
-    carry_mutes_over_text: Этот пользователь переехал с учётной записи %{acct}, которую вы добавили в список игнорирования.
+    carry_mutes_over_text: Этот пользователь перешёл с учётной записи %{acct}, которую вы игнорируете.
     copy_account_note_text: 'Этот пользователь переехал с %{acct}, вот ваша предыдущая заметка о нём:'
   notification_mailer:
     admin:
