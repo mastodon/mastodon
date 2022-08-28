@@ -248,6 +248,7 @@ sl:
         confirm_user: Potrdi uporabnika
         create_account_warning: Ustvari opozorilo
         create_announcement: Ustvari obvestilo
+        create_canonical_email_block: Ustvari blokado e-pošte
         create_custom_emoji: Ustvari emodži po meri
         create_domain_allow: Ustvari odobritev domene
         create_domain_block: Ustvari blokado domene
@@ -257,6 +258,7 @@ sl:
         create_user_role: Ustvari vlogo
         demote_user: Ponižaj uporabnika
         destroy_announcement: Izbriši obvestilo
+        destroy_canonical_email_block: Izbriši blokado e-pošte
         destroy_custom_emoji: Izbriši emodži po meri
         destroy_domain_allow: Izbriši odobritev domene
         destroy_domain_block: Izbriši blokado domene
@@ -292,6 +294,7 @@ sl:
         update_announcement: Posodobi objavo
         update_custom_emoji: Posodobi emodži po meri
         update_domain_block: Posodobi blokado domene
+        update_ip_block: Posodobi pravilo IP
         update_status: Posodobi objavo
         update_user_role: Posodobi vlogo
       actions:
@@ -303,6 +306,7 @@ sl:
         confirm_user_html: "%{name} je potrdil/a naslov e-pošte uporabnika %{target}"
         create_account_warning_html: "%{name} je poslal/a opozorilo %{target}"
         create_announcement_html: "%{name} je ustvarila/a novo obvestilo %{target}"
+        create_canonical_email_block_html: "%{name} je dal/a na črni seznam e-pošto s ključnikom %{target}"
         create_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         create_domain_allow_html: "%{name} je dovolil/a federacijo z domeno %{target}"
         create_domain_block_html: "%{name} je blokiral/a domeno %{target}"
@@ -312,6 +316,7 @@ sl:
         create_user_role_html: "%{name} je ustvaril/a vlogo %{target}"
         demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
         destroy_announcement_html: "%{name} je izbrisal/a obvestilo %{target}"
+        destroy_canonical_email_block_html: "%{name} je odstranil/a s črnega seznama e-pošto s ključnikom %{target}"
         destroy_custom_emoji_html: "%{name} je izbrisal/a emotikon %{target}"
         destroy_domain_allow_html: "%{name} ni dovolil/a federacije z domeno %{target}"
         destroy_domain_block_html: "%{name} je odblokiral/a domeno %{target}"
@@ -347,6 +352,7 @@ sl:
         update_announcement_html: "%{name} je posodobil/a objavo %{target}"
         update_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         update_domain_block_html: "%{name} je posodobil/a domenski blok za %{target}"
+        update_ip_block_html: "%{name} je spremenil/a pravilo za IP %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
         update_user_role_html: "%{name} je spremenil/a vlogo %{target}"
       empty: Ni najdenih zapisnikov.
@@ -832,6 +838,9 @@ sl:
         desc_html: Prikaži javno časovnico na ciljni strani
         title: Predogled časovnice
       title: Nastavitve strani
+      trendable_by_default:
+        desc_html: Določeno vsebino v trendu je še vedno možno izrecno prepovedati
+        title: Dovoli trende brez predhodnega pregleda
       trends:
         desc_html: Javno prikaži poprej pregledano vsebino, ki je trenutno v trendu
         title: Trendi
