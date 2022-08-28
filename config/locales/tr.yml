@@ -238,6 +238,7 @@ tr:
         confirm_user: Kullanıcıyı Onayla
         create_account_warning: Uyarı Oluştur
         create_announcement: Duyuru Oluştur
+        create_canonical_email_block: E-posta Engeli Oluştur
         create_custom_emoji: Özel İfade Oluştur
         create_domain_allow: İzin Verilen Alan Adı Oluştur
         create_domain_block: Engellenen Alan Adı Oluştur
@@ -247,6 +248,7 @@ tr:
         create_user_role: Rol Oluştur
         demote_user: Kullanıcıyı Düşür
         destroy_announcement: Duyuru Sil
+        destroy_canonical_email_block: E-Posta Engelini Sil
         destroy_custom_emoji: Özel İfadeyi Sil
         destroy_domain_allow: İzin Verilen Alan Adını Sil
         destroy_domain_block: Engellenen Alan Adını Sil
@@ -282,6 +284,7 @@ tr:
         update_announcement: Duyuruyu Güncelle
         update_custom_emoji: Özel İfadeyi Güncelle
         update_domain_block: Engellenen Alan Adını Güncelle
+        update_ip_block: IP kuralını güncelle
         update_status: Durumu Güncelle
         update_user_role: Rolü Güncelle
       actions:
@@ -293,6 +296,7 @@ tr:
         confirm_user_html: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
         create_account_warning_html: "%{name} %{target} 'a bir uyarı gönderdi"
         create_announcement_html: "%{name}, yeni %{target} duyurusunu oluşturdu"
+        create_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelledi"
         create_custom_emoji_html: "%{name} yeni %{target} ifadesini yükledi"
         create_domain_allow_html: "%{name}, %{target} alan adıyla birliğe izin verdi"
         create_domain_block_html: "%{name}, %{target} alan adını engelledi"
@@ -302,6 +306,7 @@ tr:
         create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
+        destroy_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelini kaldırdı"
         destroy_custom_emoji_html: "%{name}, %{target} ifadesini sildi"
         destroy_domain_allow_html: "%{name}, %{target} alan adıyla birlik iznini kaldırdı"
         destroy_domain_block_html: "%{name}, %{target} alan adı engelini kaldırdı"
@@ -337,6 +342,7 @@ tr:
         update_announcement_html: "%{name}, %{target} duyurusunu güncelledi"
         update_custom_emoji_html: "%{name}, %{target} emojisini güncelledi"
         update_domain_block_html: "%{name}, %{target} alan adının engelini güncelledi"
+        update_ip_block_html: "%{name}, %{target} IP adresi için kuralı güncelledi"
         update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
       empty: Kayıt bulunamadı.
@@ -800,6 +806,9 @@ tr:
         desc_html: Açılış sayfasında genel zaman çizelgesini görüntüle
         title: Zaman çizelgesi önizlemesi
       title: Site Ayarları
+      trendable_by_default:
+        desc_html: Belirli öne çıkan içeriğe yine de açıkça izin verilmeyebilir
+        title: Ön inceleme yapmadan öne çıkmalara izin ver
       trends:
         desc_html: Şu anda trend olan ve daha önce incelenen etiketleri herkese açık olarak göster
         title: Gündem etiketleri
