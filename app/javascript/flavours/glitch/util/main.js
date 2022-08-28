@@ -1,9 +1,9 @@
-import * as registerPushNotifications from 'flavours/glitch/actions/push_notifications';
-import { setupBrowserNotifications } from 'flavours/glitch/actions/notifications';
-import { default as Mastodon, store } from 'flavours/glitch/containers/mastodon';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ready from './ready';
+import * as registerPushNotifications from 'flavours/glitch/actions/push_notifications';
+import { setupBrowserNotifications } from 'flavours/glitch/actions/notifications';
+import Mastodon, { store } from 'flavours/glitch/containers/mastodon';
+import ready from 'flavours/glitch/util/ready';
 
 const perf = require('./performance');
 
@@ -24,10 +24,20 @@ function main() {
 
     ReactDOM.render(<Mastodon {...props} />, mountNode);
     store.dispatch(setupBrowserNotifications());
-    if (process.env.NODE_ENV === 'production') {
-      // avoid offline in dev mode because it's harder to debug
-      require('offline-plugin/runtime').install();
-      store.dispatch(registerPushNotifications.register());
+
+    if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+      import('workbox-window')
+        .then(({ Workbox }) => {
+          const wb = new Workbox('/sw.js');
+
+          return wb.register();
+        })
+        .then(() => {
+          store.dispatch(registerPushNotifications.register());
+        })
+        .catch(err => {
+          console.error(err);
+        });
     }
     perf.stop('main()');
   });

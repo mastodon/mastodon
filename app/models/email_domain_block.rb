@@ -17,6 +17,7 @@ class EmailDomainBlock < ApplicationRecord
   )
 
   include DomainNormalizable
+  include Paginable
 
   belongs_to :parent, class_name: 'EmailDomainBlock', optional: true
   has_many :children, class_name: 'EmailDomainBlock', foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
@@ -25,6 +26,10 @@ class EmailDomainBlock < ApplicationRecord
 
   # Used for adding multiple blocks at once
   attr_accessor :other_domains
+
+  def to_log_human_identifier
+    domain
+  end
 
   def history
     @history ||= Trends::History.new('email_domain_blocks', id)

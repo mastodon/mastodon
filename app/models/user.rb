@@ -181,6 +181,14 @@ class User < ApplicationRecord
     update!(disabled: false)
   end
 
+  def to_log_human_identifier
+    account.acct
+  end
+
+  def to_log_route_param
+    account_id
+  end
+
   def confirm
     new_user      = !confirmed?
     self.approved = true if open_registrations? && !sign_up_from_ip_requires_approval?
@@ -279,10 +287,6 @@ class User < ApplicationRecord
 
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
-  end
-
-  def allows_digest_emails?
-    settings.notification_emails['digest']
   end
 
   def allows_report_emails?
