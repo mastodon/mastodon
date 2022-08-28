@@ -237,6 +237,7 @@ ku:
         confirm_user: Bikarhêner bipejirîne
         create_account_warning: Hişyariyekê çê bike
         create_announcement: Daxûyaniyekê çê bike 
+        create_canonical_email_block: Astengkirina e-nameyê biafirîne
         create_custom_emoji: Emojiyên kesanekirî çê bike
         create_domain_allow: Navpera ku destûr standiye peyda bike
         create_domain_block: Navpera ku asteng bûye ava bike
@@ -246,6 +247,7 @@ ku:
         create_user_role: Rolê biafirîne
         demote_user: Bikarhênerê kaşê jêr bike
         destroy_announcement: Daxûyanîyê jê bibe
+        destroy_canonical_email_block: Astengkirina e-nameyê jê bibe
         destroy_custom_emoji: Emojîya kesanekirî jê bibe
         destroy_domain_allow: Navperên mafdayî jê bibe
         destroy_domain_block: Navperên astengkirî jê bibe
@@ -281,6 +283,7 @@ ku:
         update_announcement: Daxûyaniyê rojane bike
         update_custom_emoji: Emojîya kesanekirî rojane bike
         update_domain_block: Navperên astengkirî rojane bike
+        update_ip_block: Rolê IP rojane bike
         update_status: Şandiyê rojane bike
         update_user_role: Rolê rojane bike
       actions:
@@ -336,6 +339,7 @@ ku:
         update_announcement_html: "%{name} daxûyaniya %{target} rojane kir"
         update_custom_emoji_html: "%{name} emojiya %{target} rojane kir"
         update_domain_block_html: "%{name} ji bo navpera %{target} astengkirin rojane kir"
+        update_ip_block_html: "%{name} rolê %{target} guhert ji bo IP"
         update_status_html: "%{name} şandiya bikarhêner %{target} rojane kir"
         update_user_role_html: "%{name} rola %{target} guherand"
       empty: Tomarkirin nehate dîtin.
@@ -799,6 +803,9 @@ ku:
         desc_html: Girêdana demnameya gelemperî li ser rûpela daxistinê nîşan bide û mafê bide ku API bêyî rastandinê bigihîje damnameya gelemperî
         title: Mafê bide gihîştina ne naskirî bo demnameya gelemperî
       title: Sazkariyên malperê
+      trendable_by_default:
+        desc_html: Naveroka rojevê nîşankirî dikare were qedexekirin
+        title: Mafê bide rojevê bêyî ku were nirxandin
       trends:
         desc_html: Hashtagên ku berê hatibûn nirxandin ên ku niha rojev in bi gelemperî bide xuyakirin
         title: Hashtagên rojevê
