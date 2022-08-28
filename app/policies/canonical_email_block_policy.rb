@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
-class IpBlockPolicy < ApplicationPolicy
+class CanonicalEmailBlockPolicy < ApplicationPolicy
   def index?
     role.can?(:manage_blocks)
   end
 
-  def create?
+  def show?
     role.can?(:manage_blocks)
   end
 
-  def update?
+  def test?
+    role.can?(:manage_blocks)
+  end
+
+  def create?
     role.can?(:manage_blocks)
   end
 
