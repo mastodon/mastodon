@@ -232,6 +232,7 @@ zh-TW:
         confirm_user: 確認使用者
         create_account_warning: 建立警告
         create_announcement: 建立公告
+        create_canonical_email_block: 新增 E-mail 封鎖
         create_custom_emoji: 建立自訂顏文字
         create_domain_allow: 建立允許網域
         create_domain_block: 建立阻擋網域
@@ -241,6 +242,7 @@ zh-TW:
         create_user_role: 建立角色
         demote_user: 把用戶降級
         destroy_announcement: 刪除公告
+        destroy_canonical_email_block: 刪除 E-mail 封鎖
         destroy_custom_emoji: 刪除自訂顏文字
         destroy_domain_allow: 刪除允許網域
         destroy_domain_block: 刪除阻擋網域
@@ -276,6 +278,7 @@ zh-TW:
         update_announcement: 更新公告
         update_custom_emoji: 更新自訂顏文字
         update_domain_block: 更新封鎖網域
+        update_ip_block: 更新 IP 規則
         update_status: 更新狀態
         update_user_role: 更新角色
       actions:
@@ -287,6 +290,7 @@ zh-TW:
         confirm_user_html: "%{name} 確認了使用者 %{target} 的電子信箱位址"
         create_account_warning_html: "%{name} 已對 %{target} 送出警告"
         create_announcement_html: "%{name} 新增了公告 %{target}"
+        create_canonical_email_block_html: "%{name} 已封鎖了 hash 為 %{target} 之 e-mail"
         create_custom_emoji_html: "%{name} 上傳了新自訂表情符號 %{target}"
         create_domain_allow_html: "%{name} 允許 %{target} 網域加入聯邦宇宙"
         create_domain_block_html: "%{name} 封鎖了網域 %{target}"
@@ -296,6 +300,7 @@ zh-TW:
         create_user_role_html: "%{name} 建立了 %{target} 角色"
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 刪除了公告 %{target}"
+        destroy_canonical_email_block_html: "%{name} 取消了 hash 為 %{target} 之 e-mail 的封鎖"
         destroy_custom_emoji_html: "%{name} 刪除了表情符號 %{target}"
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 取消了對網域 %{target} 的封鎖"
@@ -331,6 +336,7 @@ zh-TW:
         update_announcement_html: "%{name} 更新了公告 %{target}"
         update_custom_emoji_html: "%{name} 更新了自訂表情符號 %{target}"
         update_domain_block_html: "%{name} 更新了 %{target} 之網域封鎖"
+        update_ip_block_html: "%{name} 已經更新了 IP %{target} 之規則"
         update_status_html: "%{name} 更新了 %{target} 的嘟文"
         update_user_role_html: "%{name} 變更了 %{target} 角色"
       empty: 找不到 log
@@ -783,6 +789,9 @@ zh-TW:
         desc_html: 在主頁顯示本站時間軸
         title: 時間軸預覽
       title: 網站設定
+      trendable_by_default:
+        desc_html: 特定的熱門內容仍可以被明確地禁止
+        title: 允許熱門話題直接顯示，不需經過審核
       trends:
         desc_html: 公開目前炎上的已審核標籤
         title: 趨勢主題標籤
