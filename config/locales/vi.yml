@@ -233,6 +233,7 @@ vi:
         confirm_user: Xác minh người dùng
         create_account_warning: Nhắc nhở người dùng
         create_announcement: Tạo thông báo mới
+        create_canonical_email_block: Tạo chặn tên miền email mới
         create_custom_emoji: Tạo emoji
         create_domain_allow: Cho phép máy chủ
         create_domain_block: Chặn máy chủ
@@ -242,6 +243,7 @@ vi:
         create_user_role: Tạo vai trò
         demote_user: Xóa vai trò
         destroy_announcement: Xóa thông báo
+        destroy_canonical_email_block: Bỏ chặn tên miền email
         destroy_custom_emoji: Xóa emoji
         destroy_domain_allow: Bỏ cho phép máy chủ
         destroy_domain_block: Bỏ chặn máy chủ
@@ -277,6 +279,7 @@ vi:
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật emoji
         update_domain_block: Cập nhật máy chủ chặn
+        update_ip_block: Cập nhật chặn IP
         update_status: Cập nhật tút
         update_user_role: Cập nhật vai trò
       actions:
@@ -288,6 +291,7 @@ vi:
         confirm_user_html: "%{name} đã xác minh địa chỉ email của %{target}"
         create_account_warning_html: "%{name} đã nhắc nhở %{target}"
         create_announcement_html: "%{name} tạo thông báo mới %{target}"
+        create_canonical_email_block_html: "%{name} chặn email với hàm băm %{target}"
         create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
         create_domain_allow_html: "%{name} kích hoạt liên hợp với %{target}"
         create_domain_block_html: "%{name} chặn máy chủ %{target}"
@@ -297,6 +301,7 @@ vi:
         create_user_role_html: "%{name} đã tạo vai trò %{target}"
         demote_user_html: "%{name} đã xóa vai trò của %{target}"
         destroy_announcement_html: "%{name} xóa thông báo %{target}"
+        destroy_canonical_email_block_html: "%{name} bỏ chặn email với hàm băm %{target}"
         destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
         destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
         destroy_domain_block_html: "%{name} bỏ chặn máy chủ %{target}"
@@ -332,6 +337,7 @@ vi:
         update_announcement_html: "%{name} cập nhật thông báo %{target}"
         update_custom_emoji_html: "%{name} đã cập nhật emoji %{target}"
         update_domain_block_html: "%{name} cập nhật chặn máy chủ %{target}"
+        update_ip_block_html: "%{name} cập nhật chặn IP %{target}"
         update_status_html: "%{name} cập nhật tút của %{target}"
         update_user_role_html: "%{name} đã thay đổi vai trò %{target}"
       empty: Không tìm thấy bản ghi.
@@ -784,6 +790,9 @@ vi:
         desc_html: Hiển thị dòng thời gian công khai trên trang đích và cho phép API truy cập vào dòng thời gian công khai mà không cần cho phép
         title: Cho phép truy cập vào dòng thời gian công cộng không cần cho phép
       title: Cài đặt trang web
+      trendable_by_default:
+        desc_html: Nội dung xu hướng cụ thể vẫn có thể bị cấm một cách rõ ràng
+        title: Cho phép xu hướng mà không cần xem xét trước
       trends:
         desc_html: Hiển thị công khai các hashtag được xem xét trước đây hiện đang là xu hướng
         title: Hashtag xu hướng
@@ -1200,6 +1209,10 @@ vi:
     trending_now: Xu hướng
   generic:
     all: Tất cả
+    all_items_on_page_selected_html:
+      other: Toàn bộ <strong>%{count}</strong> mục trong trang này đã được chọn.
+    all_matching_items_selected_html:
+      other: Toàn bộ <strong>%{count}</strong> mục trùng khớp với tìm kiếm đã được chọn.
     changes_saved_msg: Đã lưu thay đổi!
     copy: Sao chép
     delete: Xóa
@@ -1207,6 +1220,8 @@ vi:
     none: Trống
     order_by: Sắp xếp
     save_changes: Lưu thay đổi
+    select_all_matching_items:
+      other: Chọn tất cả%{count} mục trùng hợp với tìm kiếm của bạn.
     today: hôm nay
     validation_errors:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
