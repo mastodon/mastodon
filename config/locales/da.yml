@@ -238,6 +238,7 @@ da:
         confirm_user: Bekræft bruger
         create_account_warning: Opret advarsel
         create_announcement: Opret bekendtgørelse
+        create_canonical_email_block: Opret e-mailblokering
         create_custom_emoji: Opret tilpasset emoji
         create_domain_allow: Opret domænetilladelse
         create_domain_block: Opret domæneblokering
@@ -247,6 +248,7 @@ da:
         create_user_role: Opret rolle
         demote_user: Degradér bruger
         destroy_announcement: Slet bekendtgørelse
+        destroy_canonical_email_block: Slet e-mailblokering
         destroy_custom_emoji: Slet tilpasset emoji
         destroy_domain_allow: Slet domænetilladelse
         destroy_domain_block: Slet domæneblokering
@@ -282,6 +284,7 @@ da:
         update_announcement: Opdatér bekendtgørelse
         update_custom_emoji: Opdatér tilpasset emoji
         update_domain_block: Opdatér domæneblokering
+        update_ip_block: Opdatér IP-regel
         update_status: Opdatér indlæg
         update_user_role: Opdatér rolle
       actions:
@@ -293,6 +296,7 @@ da:
         confirm_user_html: "%{name} bekræftede e-mailadressen for bruger %{target}"
         create_account_warning_html: "%{name} sendte en advarsel til %{target}"
         create_announcement_html: "%{name} oprettede den nye bekendtgørelse %{target}"
+        create_canonical_email_block_html: "%{name} blokerede e-mailen med hash'et %{target}"
         create_custom_emoji_html: "%{name} uploadede den nye emoji %{target}"
         create_domain_allow_html: "%{name} tillod federering med domænet %{target}"
         create_domain_block_html: "%{name} blokerede domænet %{target}"
@@ -302,6 +306,7 @@ da:
         create_user_role_html: "%{name} oprettede %{target}-rolle"
         demote_user_html: "%{name} degraderede brugeren %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
+        destroy_canonical_email_block_html: "%{name} afblokerede e-mailen med hash'et %{target}"
         destroy_custom_emoji_html: "%{name} slettede emojien %{target}"
         destroy_domain_allow_html: "%{name} fjernede federeringstilladelsen med domænet %{target}"
         destroy_domain_block_html: "%{name} afblokerede domænet %{target}"
@@ -337,6 +342,7 @@ da:
         update_announcement_html: "%{name} opdaterede bekendtgørelsen %{target}"
         update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
         update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
+        update_ip_block_html: "%{name} ændrede reglen for IP'en %{target}"
         update_status_html: "%{name} opdaterede indlægget fra %{target}"
         update_user_role_html: "%{name} ændrede %{target}-rolle"
       empty: Ingen logger fundet.
@@ -799,6 +805,9 @@ da:
         desc_html: Vis link til offentlig tidslinje på indgangssiden og lad API'en tilgå den offentlige tidslinje uden godkendelse
         title: Tillad ikke-godkendt tilgang til offentlig tidslinje
       title: Webstedsindstillinger
+      trendable_by_default:
+        desc_html: Bestemt tendensindhold kan stadig udtrykkeligt forbydes
+        title: Tillad tendenser uden forudgående gennemsyn
       trends:
         desc_html: Vis offentligt tidligere reviderede hashtags, som pt. trender
         title: Populært
