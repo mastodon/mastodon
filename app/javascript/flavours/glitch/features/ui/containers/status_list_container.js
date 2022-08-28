@@ -6,8 +6,20 @@ import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
 import { me } from 'flavours/glitch/util/initial_state';
 
+const normalizeTimelineId = timelineId => {
+  if (timelineId.startsWith('public:')) {
+    return 'public';
+  }
+
+  if (timelineId.startsWith('community:')) {
+    return 'community';
+  }
+
+  return timelineId;
+};
+
 const getRegex = createSelector([
-  (state, { type }) => state.getIn(['settings', type, 'regex', 'body']),
+  (state, { type }) => state.getIn(['settings', normalizeTimelineId(type), 'regex', 'body']),
 ], (rawRegex) => {
   let regex = null;
 
@@ -20,13 +32,11 @@ const getRegex = createSelector([
 });
 
 const makeGetStatusIds = (pending = false) => createSelector([
-  (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
+  (state, { type }) => state.getIn(['settings', normalizeTimelineId(type)], ImmutableMap()),
   (state, { type }) => state.getIn(['timelines', type, pending ? 'pendingItems' : 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
   getRegex,
 ], (columnSettings, statusIds, statuses, regex) => {
-  const rawRegex = columnSettings.getIn(['regex', 'body'], '').trim();
-
   return statusIds.filter(id => {
     if (id === null) return true;
 
