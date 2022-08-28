@@ -243,6 +243,7 @@ lv:
         confirm_user: Apstiprināt lietotāju
         create_account_warning: Izveidot Brīdinājumu
         create_announcement: Izveidot Paziņojumu
+        create_canonical_email_block: Izveidot E-pasta Bloku
         create_custom_emoji: Izveidot pielāgotu emocijzīmi
         create_domain_allow: Izveidot Domēna Atļauju
         create_domain_block: Izveidot Domēna Bloku
@@ -252,6 +253,7 @@ lv:
         create_user_role: Izveidot lomu
         demote_user: Pazemināt Lietotāju
         destroy_announcement: Dzēst Paziņojumu
+        destroy_canonical_email_block: Dzēst E-pasta Bloku
         destroy_custom_emoji: Dzēst pielāgoto emocijzīmi
         destroy_domain_allow: Dzēst Domēna Atļauju
         destroy_domain_block: Dzēst Domēna Bloku
@@ -287,6 +289,7 @@ lv:
         update_announcement: Atjaunināt Paziņojumu
         update_custom_emoji: Atjaunināt pielāgoto emocijzīmi
         update_domain_block: Atjaunināt Domēna Bloku
+        update_ip_block: Atjaunināt IP noteikumu
         update_status: Atjaunināt ziņu
         update_user_role: Atjaunināt lomu
       actions:
@@ -298,6 +301,7 @@ lv:
         confirm_user_html: "%{name} apstiprināja e-pasta adresi lietotājam %{target}"
         create_account_warning_html: "%{name} nosūtīja brīdinājumu %{target}"
         create_announcement_html: "%{name} izveidoja jaunu paziņojumu %{target}"
+        create_canonical_email_block_html: "%{name} bloķēja e-pastu ar hešu %{target}"
         create_custom_emoji_html: "%{name} augšupielādēja jaunu emocijzīmi %{target}"
         create_domain_allow_html: "%{name} atļāva federāciju ar domēnu %{target}"
         create_domain_block_html: "%{name} bloķēja domēnu %{target}"
@@ -307,6 +311,7 @@ lv:
         create_user_role_html: "%{name} nomainīja %{target} lomu"
         demote_user_html: "%{name} pazemināja lietotāju %{target}"
         destroy_announcement_html: "%{name} izdzēsa paziņojumu %{target}"
+        destroy_canonical_email_block_html: "%{name} atbloķēja e-pastu ar hešu %{target}"
         destroy_custom_emoji_html: "%{name} izdzēsa emocijzīmi %{target}"
         destroy_domain_allow_html: "%{name} neatļāva federāciju ar domēnu %{target}"
         destroy_domain_block_html: "%{name} atbloķēja domēnu %{target}"
@@ -342,6 +347,7 @@ lv:
         update_announcement_html: "%{name} atjaunināja paziņojumu %{target}"
         update_custom_emoji_html: "%{name} atjaunināja emocijzīmi %{target}"
         update_domain_block_html: "%{name} atjaunināja domēna bloku %{target}"
+        update_ip_block_html: "%{name} mainīja nosacījumu priekš IP %{target}"
         update_status_html: "%{name} atjaunināja ziņu %{target}"
         update_user_role_html: "%{name} nomainīja %{target} lomu"
       empty: Žurnāli nav atrasti.
@@ -816,6 +822,9 @@ lv:
         desc_html: Galvenajā lapā parādi saiti uz publisku laika skalu un ļauj API piekļūt publiskai ziņu lentai bez autentifikācijas
         title: Atļaut neautentificētu piekļuvi publiskai ziņu lentai
       title: Vietnes iestatījumi
+      trendable_by_default:
+        desc_html: Konkrētais populārais saturs joprojām var būt nepārprotami aizliegts
+        title: Atļaut tendences bez iepriekšējas pārskatīšanas
       trends:
         desc_html: Publiski parādīt iepriekš pārskatītus tēmturus, kas pašlaik ir populāri
         title: Populārākie tēmturi
