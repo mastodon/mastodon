@@ -238,6 +238,7 @@ ca:
         confirm_user: Confirma l'usuari
         create_account_warning: Crea un avís
         create_announcement: Crea un anunci
+        create_canonical_email_block: Crea un bloqueig de correu electrònic
         create_custom_emoji: Crea un emoji personalitzat
         create_domain_allow: Crea un domini permès
         create_domain_block: Crea un bloqueig de domini
@@ -247,6 +248,7 @@ ca:
         create_user_role: Crea Rol
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
+        destroy_canonical_email_block: Esborra el bloqueig de correu electrònic
         destroy_custom_emoji: Esborra l'emoji personalitzat
         destroy_domain_allow: Esborra el domini permès
         destroy_domain_block: Esborra el bloqueig de domini
@@ -282,6 +284,7 @@ ca:
         update_announcement: Actualitza l'anunci
         update_custom_emoji: Actualitza l'emoji personalitzat
         update_domain_block: Actualitza el Bloqueig de Domini
+        update_ip_block: Actualitza regla IP
         update_status: Actualitza l'estat
         update_user_role: Actualitza Rol
       actions:
@@ -293,6 +296,7 @@ ca:
         confirm_user_html: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
         create_account_warning_html: "%{name} ha enviat un avís a %{target}"
         create_announcement_html: "%{name} ha creat un nou anunci %{target}"
+        create_canonical_email_block_html: "%{name} ha bloquejat l'adreça de correu electrònic amb el hash %{target}"
         create_custom_emoji_html: "%{name} ha pujat un emoji nou %{target}"
         create_domain_allow_html: "%{name} ha permès la federació amb el domini %{target}"
         create_domain_block_html: "%{name} ha bloquejat el domini %{target}"
@@ -302,6 +306,7 @@ ca:
         create_user_role_html: "%{name} ha creat el rol %{target}"
         demote_user_html: "%{name} ha degradat l'usuari %{target}"
         destroy_announcement_html: "%{name} ha eliminat l'anunci %{target}"
+        destroy_canonical_email_block_html: "%{name} ha desbloquejat el correu electrònic amb el hash %{target}"
         destroy_custom_emoji_html: "%{name} ha esborrat l'emoji %{target}"
         destroy_domain_allow_html: "%{name} no permet la federació amb el domini %{target}"
         destroy_domain_block_html: "%{name} ha desbloquejat el domini %{target}"
@@ -337,6 +342,7 @@ ca:
         update_announcement_html: "%{name} ha actualitzat l'anunci %{target}"
         update_custom_emoji_html: "%{name} ha actualitzat l'emoji %{target}"
         update_domain_block_html: "%{name} ha actualitzat el bloqueig de domini per a %{target}"
+        update_ip_block_html: "%{name} ha canviat la regla per la IP %{target}"
         update_status_html: "%{name} ha actualitzat l'estat de %{target}"
         update_user_role_html: "%{name} ha canviat el rol %{target}"
       empty: No s’han trobat registres.
@@ -800,6 +806,9 @@ ca:
         desc_html: Mostra l'enllaç a la línia de temps pública a la pàgina inicial i permet l'accés a l'API a la línia de temps pública sense autenticació
         title: Permet l'accés no autenticat a la línia de temps pública
       title: Configuració del lloc
+      trendable_by_default:
+        desc_html: El contingut específic de la tendencia encara pot explícitament no permitir-se
+        title: Permet tendències sense revisió prèvia
       trends:
         desc_html: Mostra públicament les etiquetes revisades anteriorment que actualment estan en tendència
         title: Etiquetes tendència
