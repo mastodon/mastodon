@@ -234,19 +234,21 @@ es-AR:
         approve_user: Aprobar usuario
         assigned_to_self_report: Asignar denuncia
         change_email_user: Cambiar correo electrónico del usuario
-        change_role_user: Cambiar Rol de Usuario
+        change_role_user: Cambiar rol del usuario
         confirm_user: Confirmar usuario
         create_account_warning: Crear advertencia
         create_announcement: Crear anuncio
+        create_canonical_email_block: Crear bloqueo de correo electrónico
         create_custom_emoji: Crear emoji personalizado
         create_domain_allow: Crear permiso de dominio
         create_domain_block: Crear bloqueo de dominio
         create_email_domain_block: Crear bloqueo de dominio de correo electrónico
         create_ip_block: Crear regla de dirección IP
         create_unavailable_domain: Crear dominio no disponible
-        create_user_role: Crear Rol
+        create_user_role: Crear rol
         demote_user: Descender usuario
         destroy_announcement: Eliminar anuncio
+        destroy_canonical_email_block: Eliminar bloqueo de correo electrónico
         destroy_custom_emoji: Eliminar emoji personalizado
         destroy_domain_allow: Eliminar permiso de dominio
         destroy_domain_block: Eliminar bloqueo de dominio
@@ -255,7 +257,7 @@ es-AR:
         destroy_ip_block: Eliminar regla de dirección IP
         destroy_status: Eliminar mensaje
         destroy_unavailable_domain: Eliminar dominio no disponible
-        destroy_user_role: Destruir Rol
+        destroy_user_role: Destruir rol
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar emoji personalizado
         disable_sign_in_token_auth_user: Deshabilitar autenticación de token por correo electrónico para el usuario
@@ -282,8 +284,9 @@ es-AR:
         update_announcement: Actualizar anuncio
         update_custom_emoji: Actualizar emoji personalizado
         update_domain_block: Actualizar bloque de dominio
+        update_ip_block: Actualizar regla de dirección IP
         update_status: Actualizar mensaje
-        update_user_role: Actualizar Rol
+        update_user_role: Actualizar rol
       actions:
         approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
         approve_user_html: "%{name} aprobó el registro de %{target}"
@@ -293,6 +296,7 @@ es-AR:
         confirm_user_html: "%{name} confirmó la dirección de correo del usuario %{target}"
         create_account_warning_html: "%{name} envió una advertencia a %{target}"
         create_announcement_html: "%{name} creó el nuevo anuncio %{target}"
+        create_canonical_email_block_html: "%{name} bloqueó el correo electrónico con el hash %{target}"
         create_custom_emoji_html: "%{name} subió nuevo emoji %{target}"
         create_domain_allow_html: "%{name} permitió la federación con el dominio %{target}"
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
@@ -302,6 +306,7 @@ es-AR:
         create_user_role_html: "%{name} creó el rol %{target}"
         demote_user_html: "%{name} bajó de nivel al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} no permitió la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
@@ -337,6 +342,7 @@ es-AR:
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
+        update_ip_block_html: "%{name} cambió la regla para la dirección IP %{target}"
         update_status_html: "%{name} actualizó el mensaje de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
       empty: No se encontraron registros.
@@ -800,6 +806,9 @@ es-AR:
         desc_html: Mostrar enlace a la línea temporal pública en la página de inicio y permitir el acceso a la API a la línea temporal pública sin autenticación
         title: Permitir acceso no autorizado a la línea temporal pública
       title: Configuración del sitio
+      trendable_by_default:
+        desc_html: El contenido de tendencias específicas todavía puede ser explícitamente desactivado
+        title: Permitir tendencias sin revisión previa
       trends:
         desc_html: Mostrar públicamente etiquetas previamente revisadas que son tendencia actualmente
         title: Tendencias
@@ -1227,8 +1236,8 @@ es-AR:
       one: "<strong>%{count}</strong> elemento en esta página está seleccionado."
       other: Todos los <strong>%{count}</strong> elementos en esta página están seleccionados.
     all_matching_items_selected_html:
-      one: "<strong>%{count}</strong> elemento que coincide con su búsqueda está seleccionado."
-      other: Todos los <strong>%{count}</strong> elementos que coinciden con su búsqueda están seleccionados.
+      one: "<strong>%{count}</strong> elemento que coincide con tu búsqueda está seleccionado."
+      other: Todos los <strong>%{count}</strong> elementos que coinciden con tu búsqueda están seleccionados.
     changes_saved_msg: '¡Cambios guardados exitosamente!'
     copy: Copiar
     delete: Eliminar
