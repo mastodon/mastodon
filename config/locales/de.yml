@@ -342,6 +342,7 @@ de:
         update_announcement_html: "%{name} aktualisierte Ankündigung %{target}"
         update_custom_emoji_html: "%{name} hat das %{target} Emoji geändert"
         update_domain_block_html: "%{name} hat den Domain-Block für %{target} aktualisiert"
+        update_ip_block_html: "%{name} hat die Regel für IP %{target} geändert"
         update_status_html: "%{name} hat einen Beitrag von %{target} aktualisiert"
         update_user_role_html: "%{name} hat die Rolle %{target} geändert"
       empty: Keine Protokolle gefunden.
@@ -805,6 +806,9 @@ de:
         desc_html: Auf der Einstiegsseite die öffentliche Zeitleiste anzeigen
         title: Zeitleisten-Vorschau
       title: Server-Einstellungen
+      trendable_by_default:
+        desc_html: Bestimmte angesagte Inhalte können immer noch explizit deaktiviert werden
+        title: Trends ohne vorherige Überprüfung erlauben
       trends:
         desc_html: Zuvor überprüfte Hashtags öffentlich anzeigen, die derzeit angesagt sind
         title: Trendende Hashtags
