@@ -172,6 +172,7 @@ export function submitCompose(routerHistory) {
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        group_id: getState().getIn(['compose', 'privacy']) === 'group' ? getState().getIn(['compose', 'group_id']) : null,
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -194,7 +195,7 @@ export function submitCompose(routerHistory) {
         }
       };
 
-      if (statusId === null && response.data.visibility !== 'direct') {
+      if (statusId === null && response.data.visibility !== 'direct' && response.data.visibility !== 'group') {
         insertIfOnline('home');
       }
 

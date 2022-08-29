@@ -39,10 +39,12 @@ const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
+  replies_disabled_group: { id: 'status.disabled_replies.group_membership', defaultMessage: 'Only group members can reply' },
 });
 
 const mapStateToProps = (state, { status }) => ({
   relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
+  groupRelationship: state.getIn(['group_relationships', status.getIn(['group', 'id'])]),
 });
 
 export default @connect(mapStateToProps)
@@ -57,6 +59,7 @@ class ActionBar extends React.PureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     relationship: ImmutablePropTypes.map,
+    groupRelationship: ImmutablePropTypes.map,
     onReply: PropTypes.func.isRequired,
     onReblog: PropTypes.func.isRequired,
     onFavourite: PropTypes.func.isRequired,
@@ -263,10 +266,19 @@ class ActionBar extends React.PureComponent {
     );
 
     let replyIcon;
+    let replyTitle;
+    let replyDisabled = false;
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
     } else {
       replyIcon = 'reply-all';
+    }
+
+    if (status.getIn(['group', 'membership_required']) && !this.props.groupRelationship?.get('member')) {
+      replyDisabled = true;
+      replyTitle = intl.formatMessage(messages.replies_disabled_group);
+    } else {
+      replyTitle = intl.formatMessage(messages.reply);
     }
 
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
@@ -284,7 +296,7 @@ class ActionBar extends React.PureComponent {
 
     return (
       <div className='detailed-status__action-bar'>
-        <div className='detailed-status__button'><IconButton title={intl.formatMessage(messages.reply)} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} /></div>
+        <div className='detailed-status__button'><IconButton title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} disabled={replyDisabled} /></div>
         <div className='detailed-status__button' ><IconButton className={classNames({ reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} /></div>
         <div className='detailed-status__button'><IconButton className='star-icon' animate active={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} /></div>
         {shareButton}

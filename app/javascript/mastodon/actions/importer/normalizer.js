@@ -58,6 +58,7 @@ export function normalizeFilterResult(result) {
 export function normalizeStatus(status, normalOldStatus) {
   const normalStatus   = { ...status };
   normalStatus.account = status.account.id;
+  normalStatus.group = status.group ? status.group.id : null;
 
   if (status.reblog && status.reblog.id) {
     normalStatus.reblog = status.reblog.id;

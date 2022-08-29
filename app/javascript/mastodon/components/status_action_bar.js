@@ -45,10 +45,12 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
+  replies_disabled_group: { id: 'status.disabled_replies.group_membership', defaultMessage: 'Only group members can reply' },
 });
 
 const mapStateToProps = (state, { status }) => ({
   relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
+  groupRelationship: state.getIn(['group_relationships', status.getIn(['group', 'id'])]),
 });
 
 export default @connect(mapStateToProps)
@@ -63,6 +65,7 @@ class StatusActionBar extends ImmutablePureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     relationship: ImmutablePropTypes.map,
+    groupRelationship: ImmutablePropTypes.map,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
@@ -94,6 +97,7 @@ class StatusActionBar extends ImmutablePureComponent {
   updateOnProps = [
     'status',
     'relationship',
+    'groupRelationship',
     'withDismiss',
   ]
 
@@ -328,12 +332,18 @@ class StatusActionBar extends ImmutablePureComponent {
 
     let replyIcon;
     let replyTitle;
+    let replyDisabled = false;
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyIcon = 'reply-all';
       replyTitle = intl.formatMessage(messages.replyAll);
+    }
+
+    if (status.getIn(['group', 'membership_required']) && !this.props.groupRelationship?.get('member')) {
+      replyDisabled = true;
+      replyTitle = intl.formatMessage(messages.replies_disabled_group);
     }
 
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
@@ -359,7 +369,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
     return (
       <div className='status__action-bar'>
-        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
+        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount disabled={replyDisabled} />
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
 

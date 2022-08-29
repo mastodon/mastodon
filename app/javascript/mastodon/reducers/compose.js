@@ -61,6 +61,7 @@ const initialState = ImmutableMap({
   spoiler_text: '',
   privacy: null,
   id: null,
+  group_id: null,
   text: '',
   focusDate: null,
   caretPosition: null,
@@ -112,6 +113,7 @@ function statusToTextMentions(state, status) {
 function clearAll(state) {
   return state.withMutations(map => {
     map.set('id', null);
+    map.set('group_id', null);
     map.set('text', '');
     map.set('spoiler', false);
     map.set('spoiler_text', '');
@@ -214,6 +216,10 @@ const insertEmoji = (state, position, emojiData, needsSpace) => {
 
 const privacyPreference = (a, b) => {
   const order = ['public', 'unlisted', 'private', 'direct'];
+
+  if (a === 'group')
+    return 'group';
+
   return order[Math.max(order.indexOf(a), order.indexOf(b), 0)];
 };
 
@@ -320,6 +326,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_REPLY:
     return state.withMutations(map => {
       map.set('id', null);
+      map.set('group_id', action.status.getIn(['group', 'id']) || action.status.get('group'));
       map.set('in_reply_to', action.status.get('id'));
       map.set('text', statusToTextMentions(state, action.status));
       map.set('privacy', privacyPreference(action.status.get('visibility'), state.get('default_privacy')));
@@ -448,6 +455,7 @@ export default function compose(state = initialState, action) {
       map.set('idempotencyKey', uuid());
       map.set('sensitive', action.status.get('sensitive'));
       map.set('language', action.status.get('language'));
+      map.set('group_id', action.status.get('group'));
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);

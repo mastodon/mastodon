@@ -18,6 +18,8 @@ const messages = defineMessages({
   private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
+  group_short: { id: 'privacy.group.short', defaultMessage: 'Group: {name}' },
+  group_long: { id: 'privacy.group.long', defaultMessage: 'Visible in the “{name}” group' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
 });
 
@@ -160,6 +162,8 @@ class PrivacyDropdown extends React.PureComponent {
     noDirect: PropTypes.bool,
     container: PropTypes.func,
     disabled: PropTypes.bool,
+    group: PropTypes.map,
+    isInReply: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -231,35 +235,44 @@ class PrivacyDropdown extends React.PureComponent {
     this.props.onChange(value);
   }
 
-  componentWillMount () {
-    const { intl: { formatMessage } } = this.props;
+  render () {
+    const { value, container, disabled, group, isInReply, intl: { formatMessage } } = this.props;
+    const { open, placement } = this.state;
 
-    this.options = [
+    let options = [
       { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
       { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
       { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
     ];
 
-    if (!this.props.noDirect) {
-      this.options.push(
-        { icon: 'at', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
-      );
+    if (group) {
+      if (isInReply) {
+        options = [];
+      }
+
+      options.unshift({
+        icon: 'users',
+        value: 'group',
+        text: formatMessage(messages.group_short, { name: group.get('title') }),
+        meta: formatMessage(messages.group_long, { name: group.get('title') }),
+      });
+    } else {
+      if (!this.props.noDirect) {
+        options.push(
+          { icon: 'at', value: 'direct', text: formatMessage(messages.direct_short), meta: formatMessage(messages.direct_long) },
+        );
+      }
     }
-  }
 
-  render () {
-    const { value, container, disabled, intl } = this.props;
-    const { open, placement } = this.state;
-
-    const valueOption = this.options.find(item => item.value === value);
+    const valueOption = options.find(item => item.value === value);
 
     return (
       <div className={classNames('privacy-dropdown', placement, { active: open })} onKeyDown={this.handleKeyDown}>
-        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === (placement === 'bottom' ? 0 : (this.options.length - 1)) })}>
+        <div className={classNames('privacy-dropdown__value', { active: options.indexOf(valueOption) === (placement === 'bottom' ? 0 : (options.length - 1)) })}>
           <IconButton
             className='privacy-dropdown__value-icon'
             icon={valueOption.icon}
-            title={intl.formatMessage(messages.change_privacy)}
+            title={formatMessage(messages.change_privacy)}
             size={18}
             expanded={open}
             active={open}
@@ -274,7 +287,7 @@ class PrivacyDropdown extends React.PureComponent {
 
         <Overlay show={open} placement={placement} target={this} container={container}>
           <PrivacyDropdownMenu
-            items={this.options}
+            items={options}
             value={value}
             onClose={this.handleClose}
             onChange={this.handleChange}
