@@ -229,17 +229,21 @@ ko:
         approve_user: 사용자 승인
         assigned_to_self_report: 신고 맡기
         change_email_user: 사용자의 이메일 변경
+        change_role_user: 사용자 역할 변경
         confirm_user: 사용자 확인
         create_account_warning: 경고 생성
         create_announcement: 공지사항 생성
+        create_canonical_email_block: 이메일 차단 생성
         create_custom_emoji: 커스텀 에모지 생성
         create_domain_allow: 도메인 허용 생성
         create_domain_block: 도메인 차단 추가
         create_email_domain_block: 이메일 도메인 차단 생성
         create_ip_block: IP 규칙 만들기
         create_unavailable_domain: 사용 불가능한 도메인 생성
+        create_user_role: 역할 생성
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
+        destroy_canonical_email_block: 이메일 차단 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
@@ -248,6 +252,7 @@ ko:
         destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
+        destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
         disable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 비활성화
@@ -274,7 +279,9 @@ ko:
         update_announcement: 공지사항 업데이트
         update_custom_emoji: 커스텀 에모지 업데이트
         update_domain_block: 도메인 차단 갱신
+        update_ip_block: IP 규칙 수정
         update_status: 게시물 게시
+        update_user_role: 역할 수정
       actions:
         approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target}의 가입을 승인했습니다"
@@ -283,6 +290,7 @@ ko:
         confirm_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 승인했습니다"
         create_account_warning_html: "%{name} 님이 %{target}에게 경고를 보냈습니다"
         create_announcement_html: "%{name} 님이 새 공지 %{target}을 만들었습니다"
+        create_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단했습니다"
         create_custom_emoji_html: "%{name} 님이 새로운 에모지 %{target}를 업로드 했습니다"
         create_domain_allow_html: "%{name} 님이 %{target} 도메인을 허용리스트에 넣었습니다"
         create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
@@ -291,6 +299,7 @@ ko:
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
+        destroy_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단 해제했습니다"
         destroy_domain_allow_html: "%{name} 님이 %{target} 도메인과의 연합을 금지했습니다"
         destroy_domain_block_html: "%{name} 님이 도메인 %{target}의 차단을 해제했습니다"
         destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
@@ -324,6 +333,7 @@ ko:
         update_announcement_html: "%{name} 님이 공지사항 %{target}을 갱신했습니다"
         update_custom_emoji_html: "%{name} 님이 에모지 %{target}를 업데이트 했습니다"
         update_domain_block_html: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
+        update_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 수정했습니다"
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트 했습니다"
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 행동으로 거르기
@@ -775,6 +785,8 @@ ko:
         desc_html: 랜딩 페이지에 공개 타임라인을 표시합니다
         title: 타임라인 프리뷰
       title: 사이트 설정
+      trendable_by_default:
+        title: 사전 리뷰 없이 트렌드에 오르는 것을 허용
       trends:
         desc_html: 리뷰를 거친 해시태그를 유행하는 해시태그에 공개적으로 보여줍니다
         title: 유행하는 해시태그
@@ -1192,6 +1204,7 @@ ko:
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
     delete: 삭제
+    deselect: 전체 선택 해제
     none: 없음
     order_by: 순서
     save_changes: 변경 사항을 저장
