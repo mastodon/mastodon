@@ -54,6 +54,10 @@ class ProcessMentionsService < BaseService
       # protocol, then give up
       next match if mention_undeliverable?(mentioned_account) || mentioned_account&.suspended?
 
+      # Since mentions are currently tied to audience and notifications, skip mentions
+      # of non-members
+      next match if @status.group_visibility? && !@status.group&.members&.where(id: mentioned_account.id)&.exists?
+
       mention   = @previous_mentions.find { |x| x.account_id == mentioned_account.id }
       mention ||= mentioned_account.mentions.new(status: @status)
 
