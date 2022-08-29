@@ -9,7 +9,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
 
   subject { described_class.new }
 
-  let(:status) { Fabricate(:status, account: alice, visibility: visibility, text: 'Hello @bob #hoge') }
+  let(:group) { nil }
+  let(:status) { Fabricate(:status, account: alice, visibility: visibility, group: group, text: 'Hello @bob #hoge') }
 
   before do
     bob.follow!(alice)
@@ -107,6 +108,32 @@ RSpec.describe FanOutOnWriteService, type: :service do
     it 'is not broadcast publicly' do
       expect(redis).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
       expect(redis).to_not have_received(:publish).with('timeline:public', anything)
+    end
+  end
+
+  context 'when status is a group post' do
+    let(:visibility) { 'group' }
+    let(:group)      { Fabricate(:group_membership, account: alice).group }
+
+    it 'is not added to the home feed of its author' do
+      expect(home_feed_of(alice)).to_not include status.id
+    end
+
+    it 'is not added to the home feed of the mentioned follower' do
+      expect(home_feed_of(bob)).to_not include status.id
+    end
+
+    it 'is not added to the home feed of the other follower' do
+      expect(home_feed_of(tom)).to_not include status.id
+    end
+
+    it 'is not broadcast publicly' do
+      expect(redis).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(redis).to_not have_received(:publish).with('timeline:public', anything)
+    end
+
+    it 'is broadcast to the group' do
+      expect(redis).to have_received(:publish).with("timeline:group:#{group.id}", anything)
     end
   end
 end
