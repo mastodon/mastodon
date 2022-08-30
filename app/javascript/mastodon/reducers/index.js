@@ -41,6 +41,7 @@ import accounts_map from './accounts_map';
 import history from './history';
 import tags from './tags';
 import groups from './groups';
+import group_relationships from './group_relationships';
 
 const reducers = {
   announcements,
@@ -85,6 +86,7 @@ const reducers = {
   history,
   tags,
   groups,
+  group_relationships,
 };
 
 export default combineReducers(reducers);

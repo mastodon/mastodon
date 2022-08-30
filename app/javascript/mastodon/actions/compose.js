@@ -22,6 +22,7 @@ export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
 export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
 export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
 export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
+export const COMPOSE_GROUP_POST      = 'COMPOSE_GROUP_POST';
 export const COMPOSE_DIRECT          = 'COMPOSE_DIRECT';
 export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
 export const COMPOSE_RESET           = 'COMPOSE_RESET';
@@ -108,6 +109,17 @@ export function replyCompose(status, routerHistory) {
     dispatch({
       type: COMPOSE_REPLY,
       status: status,
+    });
+
+    ensureComposeIsVisible(getState, routerHistory);
+  };
+};
+
+export function groupCompose(group_id, routerHistory) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_GROUP_POST,
+      group_id,
     });
 
     ensureComposeIsVisible(getState, routerHistory);

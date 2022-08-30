@@ -95,6 +95,8 @@ const initialState = ImmutableMap({
       body: '',
     }),
   }),
+
+  groups: ImmutableMap({}),
 });
 
 const defaultColumns = fromJS([

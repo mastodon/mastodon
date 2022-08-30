@@ -62,6 +62,18 @@ export function importFetchedAccounts(accounts) {
   return importAccounts(normalAccounts);
 }
 
+export function importFetchedGroups(groups) {
+  const normalGroups = [];
+
+  function processGroup(group) {
+    pushUnique(normalGroups, normalizeGroup(group));
+  }
+
+  groups.forEach(processGroup);
+
+  return importGroups(normalGroups);
+}
+
 export function importFetchedStatus(status) {
   return importFetchedStatuses([status]);
 }

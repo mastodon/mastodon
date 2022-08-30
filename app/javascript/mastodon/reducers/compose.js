@@ -4,6 +4,7 @@ import {
   COMPOSE_CHANGE,
   COMPOSE_REPLY,
   COMPOSE_REPLY_CANCEL,
+  COMPOSE_GROUP_POST,
   COMPOSE_DIRECT,
   COMPOSE_MENTION,
   COMPOSE_SUBMIT_REQUEST,
@@ -412,6 +413,15 @@ export default function compose(state = initialState, action) {
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
+    });
+  case COMPOSE_GROUP_POST:
+    return state.withMutations(map => {
+      map.set('privacy', 'group');
+      map.set('group_id', action.group_id);
+      map.set('focusDate', new Date());
+      map.set('caretPosition', null);
+      map.set('id', null);
+      map.set('in_reply_to', null);
     });
   case COMPOSE_SUGGESTIONS_CLEAR:
     return state.update('suggestions', ImmutableList(), list => list.clear()).set('suggestion_token', null);

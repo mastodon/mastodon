@@ -53,6 +53,7 @@ import {
   FollowRecommendations,
   About,
   PrivacyPolicy,
+  GroupTimeline,
 } from './util/async-components';
 import initialState, { me, owner, singleUserMode } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
@@ -183,6 +184,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
           <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
+          <WrappedRoute path='/groups/:id' component={GroupTimeline} content={children} />
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 

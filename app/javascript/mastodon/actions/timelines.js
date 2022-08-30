@@ -156,11 +156,13 @@ export const expandHashtagTimeline         = (hashtag, { maxId, tags, local } = 
     local:  local,
   }, done);
 };
+export const expandGroupTimeline            = (id, { maxId } = {}, done = noOp) => expandTimeline(`group:${id}`, `/api/v1/timelines/group/${id}`, { max_id: maxId }, done);
 
 export const fillHomeTimelineGaps      = (done = noOp) => fillTimelineGaps('home', '/api/v1/timelines/home', {}, done);
 export const fillPublicTimelineGaps    = ({ onlyMedia, onlyRemote } = {}, done = noOp) => fillTimelineGaps(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { remote: !!onlyRemote, only_media: !!onlyMedia }, done);
 export const fillCommunityTimelineGaps = ({ onlyMedia } = {}, done = noOp) => fillTimelineGaps(`community${onlyMedia ? ':media' : ''}`, '/api/v1/timelines/public', { local: true, only_media: !!onlyMedia }, done);
 export const fillListTimelineGaps      = (id, done = noOp) => fillTimelineGaps(`list:${id}`, `/api/v1/timelines/list/${id}`, {}, done);
+export const fillGroupTimelineGaps     = (id, done = noOp) => fillTimelineGaps(`group:${id}`, `/api/v1/timelines/group/${id}`, {}, done);
 
 export function expandTimelineRequest(timeline, isLoadingMore) {
   return {

@@ -18,6 +18,15 @@ export function searchTextFromRawStatus (status) {
 
 export function normalizeGroup(group) {
   const normalGroup = { ...group };
+
+  const emojiMap = makeEmojiMap(group);
+  const displayName = group.display_name.trim().length === 0 ? group.id : group.display_name;
+
+  normalGroup.title = displayName;
+  normalGroup.display_name_html = emojify(escapeTextContentForBrowser(displayName), emojiMap);
+  normalGroup.note_emojified = emojify(group.note, emojiMap);
+  normalGroup.note_plain = unescapeHTML(group.note);
+
   return normalGroup;
 }
 

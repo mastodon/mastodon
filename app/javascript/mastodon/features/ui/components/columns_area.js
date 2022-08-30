@@ -20,6 +20,7 @@ import {
   BookmarkedStatuses,
   ListTimeline,
   Directory,
+  GroupTimeline,
 } from '../../ui/util/async-components';
 import Icon from 'mastodon/components/icon';
 import ComposePanel from './compose_panel';
@@ -41,6 +42,7 @@ const componentMap = {
   'BOOKMARKS': BookmarkedStatuses,
   'LIST': ListTimeline,
   'DIRECTORY': Directory,
+  'GROUP': GroupTimeline,
 };
 
 const messages = defineMessages({
