@@ -237,6 +237,7 @@ gl:
         confirm_user: Confirmar usuaria
         create_account_warning: Crear aviso
         create_announcement: Crear anuncio
+        create_canonical_email_block: Crear Bloqueo de email
         create_custom_emoji: Crear emoticonas personalizadas
         create_domain_allow: Crear Dominio Permitido
         create_domain_block: Crear bloquedo do Dominio
@@ -246,6 +247,7 @@ gl:
         create_user_role: Crear Rol
         demote_user: Degradar usuaria
         destroy_announcement: Eliminar anuncio
+        destroy_canonical_email_block: Eliminar Bloqueo de email
         destroy_custom_emoji: Eliminar emoticona personalizada
         destroy_domain_allow: Eliminar Dominio permitido
         destroy_domain_block: Eliminar bloqueo do Dominio
@@ -281,6 +283,7 @@ gl:
         update_announcement: Actualizar anuncio
         update_custom_emoji: Actualizar emoticona personalizada
         update_domain_block: Actualizar bloqueo do dominio
+        update_ip_block: Actualizar regra IP
         update_status: Actualizar publicación
         update_user_role: Actualizar Rol
       actions:
@@ -292,6 +295,7 @@ gl:
         confirm_user_html: "%{name} confirmou o enderezo de email da usuaria %{target}"
         create_account_warning_html: "%{name} envioulle unha advertencia a %{target}"
         create_announcement_html: "%{name} creou un novo anuncio %{target}"
+        create_canonical_email_block_html: "%{name} bloqueou o email con hash %{target}"
         create_custom_emoji_html: "%{name} subiu un novo emoji %{target}"
         create_domain_allow_html: "%{name} permitiu a federación co dominio %{target}"
         create_domain_block_html: "%{name} bloqueou o dominio %{target}"
@@ -301,6 +305,7 @@ gl:
         create_user_role_html: "%{name} creou o rol %{target}"
         demote_user_html: "%{name} degradou a usuaria %{target}"
         destroy_announcement_html: "%{name} eliminou o anuncio %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueou o email con hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminou o emoji %{target}"
         destroy_domain_allow_html: "%{name} retirou a federación co dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o dominio %{target}"
@@ -336,6 +341,7 @@ gl:
         update_announcement_html: "%{name} actualizou o anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizou o emoji %{target}"
         update_domain_block_html: "%{name} actualizou o bloqueo do dominio para %{target}"
+        update_ip_block_html: "%{name} cambiou a regra para IP %{target}"
         update_status_html: "%{name} actualizou a publicación de %{target}"
         update_user_role_html: "%{name} cambiou o rol %{target}"
       empty: Non se atoparon rexistros.
@@ -799,6 +805,9 @@ gl:
         desc_html: Mostrar ligazón á cronoloxía pública na páxina de benvida e permitir o acceso API á cronoloxía pública sen ter autenticación
         title: Permitir acceso á cronoloxía pública sen autenticación
       title: Axustes do sitio
+      trendable_by_default:
+        desc_html: Poderase prohibir igualmente contido en voga específico
+        title: Permitir tendencias sen aprobación previa
       trends:
         desc_html: Amosar de xeito público cancelos revisados previamente que actualmente son tendencia
         title: Cancelos en tendencia
