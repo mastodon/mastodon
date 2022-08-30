@@ -231,14 +231,17 @@ th:
         confirm_user: ยืนยันผู้ใช้
         create_account_warning: สร้างคำเตือน
         create_announcement: สร้างประกาศ
+        create_canonical_email_block: สร้างการปิดกั้นอีเมล
         create_custom_emoji: สร้างอีโมจิที่กำหนดเอง
         create_domain_allow: สร้างการอนุญาตโดเมน
         create_domain_block: สร้างการปิดกั้นโดเมน
         create_email_domain_block: สร้างการปิดกั้นโดเมนอีเมล
         create_ip_block: สร้างกฎ IP
         create_unavailable_domain: สร้างโดเมนที่ไม่พร้อมใช้งาน
+        create_user_role: สร้างบทบาท
         demote_user: ลดขั้นผู้ใช้
         destroy_announcement: ลบประกาศ
+        destroy_canonical_email_block: ลบการปิดกั้นอีเมล
         destroy_custom_emoji: ลบอีโมจิที่กำหนดเอง
         destroy_domain_allow: ลบการอนุญาตโดเมน
         destroy_domain_block: ลบการปิดกั้นโดเมน
@@ -273,7 +276,9 @@ th:
         update_announcement: อัปเดตประกาศ
         update_custom_emoji: อัปเดตอีโมจิที่กำหนดเอง
         update_domain_block: อัปเดตการปิดกั้นโดเมน
+        update_ip_block: อัปเดตกฎ IP
         update_status: อัปเดตโพสต์
+        update_user_role: อัปเดตบทบาท
       actions:
         approve_appeal_html: "%{name} ได้อนุมัติการอุทธรณ์การตัดสินใจในการควบคุมจาก %{target}"
         approve_user_html: "%{name} ได้อนุมัติการลงทะเบียนจาก %{target}"
@@ -1118,10 +1123,18 @@ th:
       expires_on: หมดอายุเมื่อ %{date}
       keywords:
         other: "%{count} คำสำคัญ"
+      statuses:
+        other: "%{count} โพสต์"
       title: ตัวกรอง
     new:
       save: บันทึกตัวกรองใหม่
       title: เพิ่มตัวกรองใหม่
+    statuses:
+      back_to_filter: กลับไปที่ตัวกรอง
+      batch:
+        remove: เอาออกจากตัวกรอง
+      index:
+        title: โพสต์ที่กรองอยู่
   footer:
     developers: นักพัฒนา
     more: เพิ่มเติม…
@@ -1132,6 +1145,7 @@ th:
     changes_saved_msg: บันทึกการเปลี่ยนแปลงสำเร็จ!
     copy: คัดลอก
     delete: ลบ
+    deselect: ไม่เลือกทั้งหมด
     none: ไม่มี
     order_by: เรียงลำดับตาม
     save_changes: บันทึกการเปลี่ยนแปลง
