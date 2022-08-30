@@ -37,10 +37,11 @@ export const makeGetStatus = () => {
       (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
+      (state, { id }) => state.getIn(['groups', state.getIn(['statuses', id, 'group'])]),
       getFilters,
     ],
 
-    (statusBase, statusReblog, accountBase, accountReblog, filters) => {
+    (statusBase, statusReblog, accountBase, accountReblog, group, filters) => {
       if (!statusBase || statusBase.get('isLoading')) {
         return null;
       }
@@ -66,6 +67,7 @@ export const makeGetStatus = () => {
       return statusBase.withMutations(map => {
         map.set('reblog', statusReblog);
         map.set('account', accountBase);
+        map.set('group', group);
         map.set('matched_filters', filtered);
       });
     },

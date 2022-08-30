@@ -40,6 +40,7 @@ import picture_in_picture from './picture_in_picture';
 import accounts_map from './accounts_map';
 import history from './history';
 import tags from './tags';
+import groups from './groups';
 
 const reducers = {
   announcements,
@@ -83,6 +84,7 @@ const reducers = {
   picture_in_picture,
   history,
   tags,
+  groups,
 };
 
 export default combineReducers(reducers);

@@ -16,6 +16,11 @@ export function searchTextFromRawStatus (status) {
   return domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
 }
 
+export function normalizeGroup(group) {
+  const normalGroup = { ...group };
+  return normalGroup;
+}
+
 export function normalizeAccount(account) {
   account = { ...account };
 

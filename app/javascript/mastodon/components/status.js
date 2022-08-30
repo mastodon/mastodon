@@ -56,6 +56,7 @@ const messages = defineMessages({
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+  group_short: { id: 'privacy.group.short', defaultMessage: 'Group: {name}' },
   edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
 });
 
@@ -486,11 +487,14 @@ class Status extends ImmutablePureComponent {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
 
+    const group_name = status.getIn(['group', 'title'], '');
+
     const visibilityIconInfo = {
       'public': { icon: 'globe', text: intl.formatMessage(messages.public_short) },
       'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
       'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
       'direct': { icon: 'at', text: intl.formatMessage(messages.direct_short) },
+      'group': { icon: 'users', text: intl.formatMessage(messages.group_short, { name: group_name }) },
     };
 
     const visibilityIcon = visibilityIconInfo[status.get('visibility')];

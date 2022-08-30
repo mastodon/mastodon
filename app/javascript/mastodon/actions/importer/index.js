@@ -1,4 +1,4 @@
-import { normalizeAccount, normalizeStatus, normalizePoll } from './normalizer';
+import { normalizeAccount, normalizeStatus, normalizePoll, normalizeGroup } from './normalizer';
 
 export const ACCOUNT_IMPORT  = 'ACCOUNT_IMPORT';
 export const ACCOUNTS_IMPORT = 'ACCOUNTS_IMPORT';
@@ -6,6 +6,7 @@ export const STATUS_IMPORT   = 'STATUS_IMPORT';
 export const STATUSES_IMPORT = 'STATUSES_IMPORT';
 export const POLLS_IMPORT    = 'POLLS_IMPORT';
 export const FILTERS_IMPORT  = 'FILTERS_IMPORT';
+export const GROUPS_IMPORT   = 'GROUPS_IMPORT';
 
 function pushUnique(array, object) {
   if (array.every(element => element.id !== object.id)) {
@@ -35,6 +36,10 @@ export function importFilters(filters) {
 
 export function importPolls(polls) {
   return { type: POLLS_IMPORT, polls };
+}
+
+export function importGroups(groups) {
+  return { type: GROUPS_IMPORT, groups };
 }
 
 export function importFetchedAccount(account) {
@@ -67,6 +72,7 @@ export function importFetchedStatuses(statuses) {
     const normalStatuses = [];
     const polls = [];
     const filters = [];
+    const groups = [];
 
     function processStatus(status) {
       pushUnique(normalStatuses, normalizeStatus(status, getState().getIn(['statuses', status.id])));
@@ -83,10 +89,15 @@ export function importFetchedStatuses(statuses) {
       if (status.poll && status.poll.id) {
         pushUnique(polls, normalizePoll(status.poll));
       }
+
+      if (status.group && status.group.id) {
+        pushUnique(groups, normalizeGroup(status.group));
+      }
     }
 
     statuses.forEach(processStatus);
 
+    dispatch(importGroups(groups));
     dispatch(importPolls(polls));
     dispatch(importFetchedAccounts(accounts));
     dispatch(importStatuses(normalStatuses));
