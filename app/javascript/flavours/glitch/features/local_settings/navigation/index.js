@@ -61,34 +61,27 @@ class LocalSettingsNavigation extends React.PureComponent {
           active={index === 3}
           index={3}
           onNavigate={onNavigate}
-          icon='filter'
-          title={intl.formatMessage(messages.filters)}
+          icon='angle-double-up'
+          title={intl.formatMessage(messages.collapsed)}
         />
         <LocalSettingsNavigationItem
           active={index === 4}
           index={4}
           onNavigate={onNavigate}
-          icon='angle-double-up'
-          title={intl.formatMessage(messages.collapsed)}
-        />
-        <LocalSettingsNavigationItem
-          active={index === 5}
-          index={5}
-          onNavigate={onNavigate}
           icon='image'
           title={intl.formatMessage(messages.media)}
         />
         <LocalSettingsNavigationItem
-          active={index === 6}
+          active={index === 5}
           href={ preferencesLink }
-          index={6}
+          index={5}
           icon='cog'
           title={intl.formatMessage(messages.preferences)}
         />
         <LocalSettingsNavigationItem
-          active={index === 7}
+          active={index === 6}
           className='close'
-          index={7}
+          index={6}
           onNavigate={onClose}
           icon='times'
           title={intl.formatMessage(messages.close)}
