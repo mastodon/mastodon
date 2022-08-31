@@ -6242,11 +6242,6 @@ idb-keyval@^3.2.0:
   resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-3.2.0.tgz#cbbf354deb5684b6cdc84376294fc05932845bd6"
   integrity sha512-slx8Q6oywCCSfKgPgL0sEsXtPVnSbTLWpyiDcu6msHOyKOLari1TD1qocXVCft80umnkk3/Qqh3lwoFt8T/BPQ==
 
-idb@^6.1.4:
-  version "6.1.5"
-  resolved "https://registry.yarnpkg.com/idb/-/idb-6.1.5.tgz#dbc53e7adf1ac7c59f9b2bf56e00b4ea4fce8c7b"
-  integrity sha512-IJtugpKkiVXQn5Y+LteyBCNk1N8xpGV3wWZk9EVtZWH8DYkjBn0bX1XnGP9RkyZF0sAcywa6unHqSWKe7q4LGw==
-
 idb@^7.0.1:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/idb/-/idb-7.0.2.tgz#7a067e20dd16539938e456814b7d714ba8db3892"
@@ -12342,21 +12337,13 @@ workbox-core@6.5.4:
   resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-6.5.4.tgz#df48bf44cd58bb1d1726c49b883fb1dffa24c9ba"
   integrity sha512-OXYb+m9wZm8GrORlV2vBbE5EC1FKu71GGp0H4rjmxmF4/HLbMCoTFws87M3dFwgpmg0v00K++PImpNQ6J5NQ6Q==
 
-workbox-expiration@6.5.4:
+workbox-expiration@6.5.4, workbox-expiration@^6.5.4:
   version "6.5.4"
   resolved "https://registry.yarnpkg.com/workbox-expiration/-/workbox-expiration-6.5.4.tgz#501056f81e87e1d296c76570bb483ce5e29b4539"
   integrity sha512-jUP5qPOpH1nXtjGGh1fRBa1wJL2QlIb5mGpct3NzepjGG2uFFBn4iiEBiI9GUmfAFR2ApuRhDydjcRmYXddiEQ==
   dependencies:
     idb "^7.0.1"
     workbox-core "6.5.4"
-
-workbox-expiration@^6.5.3:
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/workbox-expiration/-/workbox-expiration-6.5.3.tgz#efc0811f371a2ede1052b9de1c4f072b71d50503"
-  integrity sha512-jzYopYR1zD04ZMdlbn/R2Ik6ixiXbi15c9iX5H8CTi6RPDz7uhvMLZPKEndZTpfgmUk8mdmT9Vx/AhbuCl5Sqw==
-  dependencies:
-    idb "^6.1.4"
-    workbox-core "6.5.3"
 
 workbox-google-analytics@6.5.4:
   version "6.5.4"
