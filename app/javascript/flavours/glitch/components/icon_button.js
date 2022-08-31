@@ -84,15 +84,21 @@ export default class IconButton extends React.PureComponent {
   }
 
   render () {
+    // Hack required for some icons which have an overriden size
+    let containerSize = '1.28571429em';
+    if (this.props.style?.fontSize) {
+      containerSize = `${this.props.size * 1.28571429}px`;
+    }
+
     let style = {
       fontSize: `${this.props.size}px`,
-      height: '1.28571429em',
+      height: containerSize,
       lineHeight: `${this.props.size}px`,
       ...this.props.style,
       ...(this.props.active ? this.props.activeStyle : {}),
     };
     if (!this.props.label) {
-      style.width = '1.28571429em';
+      style.width = containerSize;
     } else {
       style.textAlign = 'left';
     }
