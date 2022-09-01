@@ -238,6 +238,7 @@ is:
         confirm_user: Staðfesta notanda
         create_account_warning: Útbúa aðvörun
         create_announcement: Búa til tilkynningu
+        create_canonical_email_block: Búa til útilokunarblokk tölvupósts
         create_custom_emoji: Búa til sérsniðið tjáningartákn
         create_domain_allow: Búa til lén leyft
         create_domain_block: Búa til útilokun léns
@@ -247,6 +248,7 @@ is:
         create_user_role: Útbúa hlutverk
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
+        destroy_canonical_email_block: Eyða útilokunarblokk tölvupósts
         destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
         destroy_domain_allow: Eyða léni leyft
         destroy_domain_block: Eyða útilokun léns
@@ -282,6 +284,7 @@ is:
         update_announcement: Uppfæra tilkynningu
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
         update_domain_block: Uppfæra útilokun léns
+        update_ip_block: Uppfæra reglu IP-vistfangs
         update_status: Uppfæra færslu
         update_user_role: Uppfæra hlutverk
       actions:
@@ -293,6 +296,7 @@ is:
         confirm_user_html: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
         create_account_warning_html: "%{name} sendi aðvörun til %{target}"
         create_announcement_html: "%{name} útbjó nýja tilkynningu %{target}"
+        create_canonical_email_block_html: "%{name} útilokaði tölvupóst með tætigildið %{target}"
         create_custom_emoji_html: "%{name} sendi inn nýtt tjáningartákn %{target}"
         create_domain_allow_html: "%{name} leyfði skýjasamband með léninu %{target}"
         create_domain_block_html: "%{name} útilokaði lénið %{target}"
@@ -302,6 +306,7 @@ is:
         create_user_role_html: "%{name} útbjó %{target} hlutverk"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
+        destroy_canonical_email_block_html: "%{name} tók af útilokun á tölvupósti með tætigildið %{target}"
         destroy_custom_emoji_html: "%{name} eyddi emoji-tákni %{target}"
         destroy_domain_allow_html: "%{name} bannaði skýjasamband með léninu %{target}"
         destroy_domain_block_html: "%{name} aflétti útilokun af léninu %{target}"
@@ -337,6 +342,7 @@ is:
         update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
         update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
+        update_ip_block_html: "%{name} breytti reglu fyrir IP-vistfangið %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
         update_user_role_html: "%{name} breytti hlutverki %{target}"
       empty: Engar atvikaskrár fundust.
@@ -800,9 +806,12 @@ is:
         desc_html: Birta tengil í opinbera tímalínu á upphafssíðu og leyfa aðgang API-kerfisviðmóts að opinberri tímalínu án auðkenningar
         title: Leyfa óauðkenndan aðgang að opinberri tímalínu
       title: Stillingar vefsvæðis
+      trendable_by_default:
+        desc_html: Sérstakt vinsælt efni er eftir sem áður hægt að banna sérstaklega
+        title: Leyfa vinsælt efni án undanfarandi yfirferðar
       trends:
         desc_html: Birta opinberlega þau áður yfirförnu myllumerki sem eru núna í umræðunni
-        title: Myllumerki í umræðunni
+        title: Vinsælt
     site_uploads:
       delete: Eyða innsendri skrá
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
