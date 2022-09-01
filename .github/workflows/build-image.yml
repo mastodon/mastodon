@@ -25,7 +25,7 @@ jobs:
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: tootsuite/mastodon
+          images: emmaae/mastodon-ab
           flavor: |
             latest=auto
           tags: |
@@ -38,5 +38,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          cache-from: type=registry,ref=tootsuite/mastodon:latest
+          cache-from: type=registry,ref=emmaae/mastodon-ab:latest
           cache-to: type=inline
