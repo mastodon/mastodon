@@ -11,6 +11,8 @@
 #  updated_at :datetime         not null
 #
 class GroupMembership < ApplicationRecord
+  include GroupRelationshipCacheable
+
   belongs_to :group
   belongs_to :account
 

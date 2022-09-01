@@ -50,6 +50,9 @@ class Group < ApplicationRecord
   has_many :statuses, inverse_of: :group, dependent: :destroy
   has_one :deletion_request, class_name: 'GroupDeletionRequest', inverse_of: :group, dependent: :destroy
 
+  scope :suspended, -> { where.not(suspended_at: nil) }
+  scope :without_suspended, -> { where(suspended_at: nil) }
+
   before_create :generate_keys
 
   def local?
@@ -83,6 +86,18 @@ class Group < ApplicationRecord
     transaction do
       deletion_request&.destroy!
       update!(suspended_at: nil, suspension_origin: nil)
+    end
+  end
+
+  def self.member_map(target_group_ids, account_id)
+    GroupMembership.where(group_id: target_group_ids, account_id: account_id).each_with_object({}) do |membership, mapping|
+      mapping[membership.group_id] = { role: membership.role }
+    end
+  end
+
+  def self.requested_map(target_group_ids, account_id)
+    GroupMembershipRequest.where(group_id: target_group_ids, account_id: account_id).each_with_object({}) do |request, mapping|
+      mapping[request.group_id] = { }
     end
   end
 

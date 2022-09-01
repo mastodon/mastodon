@@ -600,6 +600,10 @@ Rails.application.routes.draw do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
 
+      namespace :groups do
+        resources :relationships, only: [:index]
+      end
+
       resources :groups, only: [:index, :show]
 
       namespace :featured_tags do
