@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #
 class GroupMembership < ApplicationRecord
+  include Paginable
   include GroupRelationshipCacheable
 
   belongs_to :group

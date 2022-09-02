@@ -604,7 +604,9 @@ Rails.application.routes.draw do
         resources :relationships, only: [:index]
       end
 
-      resources :groups, only: [:index, :show]
+      resources :groups, only: [:index, :show] do
+        resources :memberships, only: [:index], controller: 'groups/memberships'
+      end
 
       namespace :featured_tags do
         get :suggestions, to: 'suggestions#index'
