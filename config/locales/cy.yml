@@ -7,6 +7,7 @@ cy:
     active_count_after: yn weithredol
     active_footnote: Defnyddwyr Gweithredol Misol (DGM)
     administered_by: 'Gweinyddir gan:'
+    api: API
     apps: Apiau symudol
     apps_platforms: Defnyddio Mastodon o iOS, Android a phlatfformau eraill
     browse_directory: Pori cyfeiriadur proffil a hidlo wrth diddordebau
@@ -24,7 +25,7 @@ cy:
     instance_actor_flash: |
       Mae'r cyfrif hwn yn actor rhithwir a ddefnyddir i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol.
       Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei rwystro oni bai eich bod am rwystro'r achos cyfan, ac os felly dylech ddefnyddio bloc parth.
-    learn_more: Dysu mwy
+    learn_more: Dysgu mwy
     logged_in_as_html: Rydych chi wedi mewngofnodi fel %{username}.
     logout_before_registering: Rydych chi eisoes wedi mewngofnodi.
     privacy_policy: Polisi preifatrwydd
@@ -40,7 +41,7 @@ cy:
       other: statwsau
       two: statwsau
       zero: statwsau
-    status_count_before: Ysgriffennwyd gan
+    status_count_before: Ysgrifennwyd gan
     tagline: Dilyn ffrindiau a darganfod rhai newydd
     terms: Telerau gwasanaeth
     unavailable_content: Cynnwys nad yw ar gael
@@ -76,6 +77,7 @@ cy:
       two: Dilynwyr
       zero: Dilynwyr
     following: Yn dilyn
+    instance_actor_flash: Mae'r cyfrif hwn yn actor rhithwir a ddefnyddir i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol. Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei atal.
     joined: Ymunodd %{date}
     last_active: diweddaraf
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
@@ -94,8 +96,8 @@ cy:
       other: Tŵtiau
       two: Tŵtiau
       zero: Tŵtiau
-    posts_tab_heading: Tŵtiau
-    posts_with_replies: Tŵtiau ac atebion
+    posts_tab_heading: Postiadau
+    posts_with_replies: Postiadau ac atebion
     roles:
       admin: Gweinyddwr
       bot: Bot
@@ -114,6 +116,7 @@ cy:
     accounts:
       add_email_domain_block: Cosbrestru parth e-bost
       approve: Cymeradwyo
+      approved_msg: Wedi llwyddo cymeradwyo cais cofrestru %{username}
       are_you_sure: Ydych chi'n siŵr?
       avatar: Afatar
       by_domain: Parth
@@ -127,10 +130,13 @@ cy:
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
       confirming: Cadarnhau
+      custom: Arbennig
       delete: Dileu data
       deleted: Wedi dileu
       demote: Diraddio
+      destroyed_msg: Mae data %{username} bellach mewn ciw i gael ei ddileu yn fuan
       disable: Diffodd
+      disable_sign_in_token_auth: Analluogi dilysu tocynnau e-bost
       disable_two_factor_authentication: Diffodd 2FA
       disabled: Wedi ei ddiffodd
       display_name: Enw arddangos
@@ -139,11 +145,14 @@ cy:
       email: E-bost
       email_status: Statws E-bost
       enable: Galluogi
+      enable_sign_in_token_auth: Galluogi dilysu tocynnau e-bost
       enabled: Wedi ei alluogi
+      enabled_msg: Wedi dadrewi cyfrif %{username} yn llwyddianus
       followers: Dilynwyr
       follows: Yn dilyn
       header: Pennawd
       inbox_url: URL Mewnflwch
+      invite_request_text: Rhesymau dros ymuno
       invited_by: Gwahoddwyd gan
       ip: IP
       joined: Ymunodd
@@ -154,7 +163,9 @@ cy:
         title: Lleoliad
       login_status: Statws mewngofnodi
       media_attachments: Atodiadau
-      memorialize: Troi yn gofeb
+      memorialize: Creu cyfrif coffa
+      memorialized: Wedi troi'n gyfrif coffa
+      memorialized_msg: Llwyddodd i droi %{username} yn gyfrif coffa
       moderation:
         active: Yn weithredol
         all: Popeth
@@ -169,12 +180,15 @@ cy:
       not_subscribed: Heb danysgrifio
       pending: Yn aros am adolygiad
       perform_full_suspension: Atal
+      previous_strikes: Rhybuddion blaenorol
       promote: Hyrwyddo
       protocol: Protocol
       public: Cyhoeddus
       push_subscription_expires: Tanysgrifiad gwthiadwy yn dod i ben
       redownload: Adnewyddu proffil
+      redownloaded_msg: Adnewyddwyd proffil %{username} o'r gweinydd gwreiddiol
       reject: Gwrthod
+      rejected_msg: Wedi gwrthod cais cofrestru %{username}
       remove_avatar: Dileu afatar
       remove_header: Dileu pennawd
       resend_confirmation:
@@ -249,6 +263,8 @@ cy:
         update_announcement: Diweddaru Cyhoeddiad
         update_custom_emoji: Diweddaru Emoji Addasiedig
         update_status: Diweddaru Statws
+      actions:
+        memorialize_account_html: Newidodd %{name} gyfrif %{target} i dudalen goffa
       deleted_status: "(statws wedi ei ddileu)"
       empty: Dim logiau ar gael.
       filter_by_action: Hidlo wrth weithred
@@ -347,6 +363,8 @@ cy:
         title: Cofnod newydd yng nghosbrestr e-byst
       title: Cosbrestr e-bost
     instances:
+      back_to_all: Popeth
+      back_to_warning: Rhybudd
       by_domain: Parth
       delivery_available: Mae'r cyflenwad ar gael
       moderation:
@@ -663,8 +681,12 @@ cy:
       username_unavailable: Ni fydd eich enw defnyddiwr ar gael
   directories:
     directory: Cyfeiriadur proffil
-    explanation: Darganfod defnyddwyr yn seiliedig ar eu diddordebau
+    explanation: Darganfod defnyddwyr yn ôl eu diddordebau
     explore_mastodon: Archwilio %{title}
+  disputes:
+    strikes:
+      approve_appeal: Cymeradwyo'r apêl
+      reject_appeal: Gwrthod yr apêl
   domain_validator:
     invalid_domain: ddim yn enw parth dilys
   errors:
@@ -756,7 +778,7 @@ cy:
       following: Rhestr dilyn
       muting: Rhestr tawelu
     upload: Uwchlwytho
-  in_memoriam_html: Mewn Cofiad.
+  in_memoriam_html: Er cof.
   invites:
     delete: Dadactifadu
     expired: Wedi darfod
@@ -863,6 +885,8 @@ cy:
       body: 'Cafodd eich statws ei fŵstio gan %{name}:'
       subject: Bŵstiodd %{name} eich statws
       title: Hwb newydd
+    status:
+      subject: "%{name} newydd ei bostio"
   notifications:
     email_events: Digwyddiadau ar gyfer hysbysiadau e-bost
     email_events_hint: 'Dewis digwyddiadau hoffech derbyn hysbysiadau ar eu cyfer:'
@@ -1036,6 +1060,7 @@ cy:
         zero: "%{count} pleidlais"
       vote: Pleidleisio
     show_more: Dangos mwy
+    show_older: Dangos pethau hŷn
     show_thread: Dangos edefyn
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
     visibilities:
@@ -1049,6 +1074,9 @@ cy:
     pinned: Tŵt wedi'i binio
     reblogged: hybwyd
     sensitive_content: Cynnwys sensitif
+  strikes:
+    errors:
+      too_late: Mae'n rhy hwyr i apelio yn erbyn y rhybudd hwn
   tags:
     does_not_match_previous_name: ddim yn cyfateb i'r enw blaenorol
   terms:
@@ -1187,5 +1215,5 @@ cy:
     seamless_external_login: Yr ydych wedi'ch mewngofnodi drwy wasanaeth allanol, felly nid yw gosodiadau cyfrinair ac e-bost ar gael.
     signed_in_as: 'Wedi mewngofnodi fel:'
   verification:
-    explanation_html: 'Mae modd i chi <strong>ddilysu eich hun fel perchenog y dolenni yn metadata eich proffil</strong>. Rhaid i''r wefan a dolen iddi gynnwys dolen yn ôl i''ch proffil Mastodon. <strong>Rhaid</strong> i''r ddolen yn ôl gael nodwedd <code>rel="fi"</code>. Nid oes ots beth yw cynnwys testun y ddolen. Dyma enghraifft:'
+    explanation_html: 'Mae modd i chi <strong>ddilysu eich hun fel perchenog y dolenni yn metadata eich proffil</strong>. Rhaid i''r wefan â dolen iddi gynnwys dolen yn ôl i''ch proffil Mastodon. <strong>Rhaid</strong> i''r ddolen yn ôl cynnwys y nodwedd <code>rel="me"</code>. Does dim ots beth yw cynnwys testun y ddolen. Dyma enghraifft:'
     verification: Dilysu

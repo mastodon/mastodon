@@ -3,14 +3,11 @@
 class DistributionWorker
   include Sidekiq::Worker
   include Redisable
+  include Lockable
 
   def perform(status_id, options = {})
-    RedisLock.acquire(redis: redis, key: "distribute:#{status_id}", autorelease: 5.minutes.seconds) do |lock|
-      if lock.acquired?
-        FanOutOnWriteService.new.call(Status.find(status_id), **options.symbolize_keys)
-      else
-        raise Mastodon::RaceConditionError
-      end
+    with_lock("distribute:#{status_id}") do
+      FanOutOnWriteService.new.call(Status.find(status_id), **options.symbolize_keys)
     end
   rescue ActiveRecord::RecordNotFound
     true

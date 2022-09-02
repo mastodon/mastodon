@@ -26,7 +26,6 @@ class TagsController < ApplicationController
 
       format.rss do
         expires_in 0, public: true
-        render xml: RSS::TagSerializer.render(@tag, @statuses)
       end
 
       format.json do

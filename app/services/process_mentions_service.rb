@@ -37,6 +37,9 @@ class ProcessMentionsService < BaseService
 
       mentioned_account = Account.find_remote(username, domain)
 
+      # Unapproved and unconfirmed accounts should not be mentionable
+      next if mentioned_account&.local? && !(mentioned_account.user_confirmed? && mentioned_account.user_approved?)
+
       # If the account cannot be found or isn't the right protocol,
       # first try to resolve it
       if mention_undeliverable?(mentioned_account)

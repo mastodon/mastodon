@@ -2469,6 +2469,10 @@ a.account__display-name {
   .columns-area__panels__pane--compositional {
     display: none;
   }
+
+  .with-fab .scrollable .item-list:last-child {
+    padding-bottom: 5.25rem;
+  }
 }
 
 @media screen and (min-width: 600px + (285px * 1) + (10px * 1)) {
@@ -4033,6 +4037,15 @@ a.status-card.compact:hover {
   vertical-align: middle;
 }
 
+.limited-account-hint {
+  p {
+    color: $secondary-text-color;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+}
+
 .empty-column-indicator,
 .error-column,
 .follow_requests-unlocked_explanation {
@@ -4336,7 +4349,6 @@ a.status-card.compact:hover {
   background: $simple-background-color;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
   border-radius: 4px;
-  margin-left: 40px;
   overflow: hidden;
   z-index: 2;
 
@@ -4434,6 +4446,71 @@ a.status-card.compact:hover {
   .privacy-dropdown__dropdown {
     display: block;
     box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
+  }
+}
+
+.language-dropdown {
+  &__dropdown {
+    position: absolute;
+    background: $simple-background-color;
+    box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 2;
+
+    &.top {
+      transform-origin: 50% 100%;
+    }
+
+    &.bottom {
+      transform-origin: 50% 0;
+    }
+
+    .emoji-mart-search {
+      padding-right: 10px;
+    }
+
+    .emoji-mart-search-icon {
+      right: 10px + 5px;
+    }
+
+    .emoji-mart-scroll {
+      padding: 0 10px 10px;
+    }
+
+    &__results {
+      &__item {
+        cursor: pointer;
+        color: $inverted-text-color;
+        font-weight: 500;
+        padding: 10px;
+        border-radius: 4px;
+
+        &:focus,
+        &:active,
+        &:hover {
+          background: $ui-secondary-color;
+        }
+
+        &__common-name {
+          color: $darker-text-color;
+        }
+
+        &.active {
+          background: $ui-highlight-color;
+          color: $primary-text-color;
+          outline: 0;
+
+          .language-dropdown__dropdown__results__item__common-name {
+            color: $secondary-text-color;
+          }
+
+          &:hover {
+            background: lighten($ui-highlight-color, 4%);
+          }
+        }
+      }
+    }
   }
 }
 

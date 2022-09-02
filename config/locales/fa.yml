@@ -368,6 +368,7 @@ fa:
       enable: به کار انداختن
       enabled: فعال
       enabled_msg: این شکلک با موفقیت فعال شد
+      image_hint: پی‌ان‌چی یا جیف تا %{size}
       list: فهرست
       listed: فهرست شده
       new:
@@ -450,6 +451,9 @@ fa:
       add_new: افزودن تازه
       created_msg: مسدودسازی دامین ایمیل با موفقیت ساخته شد
       delete: پاک‌کردن
+      dns:
+        types:
+          mx: رکورد MX
       domain: دامین
       new:
         create: ساختن مسدودسازی
@@ -464,11 +468,28 @@ fa:
       title: پیشنهادهای پی‌گیری
       unsuppress: بازگردانی پیشنهادهای پی‌گیری
     instances:
+      availability:
+        no_failures_recorded: هیچ شکستی در سابقه نیست.
+        title: موجود بودن
       back_to_all: همه
       back_to_limited: محدود
       back_to_warning: هشدار
       by_domain: دامین
       confirm_purge: آیا مطمئن هستید می‌خواهید داده را از این دامنه برای همیشه پاک کنید؟
+      content_policies:
+        comment: یادداشت داخلی
+        policies:
+          silence: کران
+          suspend: تعلیق
+        policy: سیاست
+        reason: دلیل عمومی
+        title: سیاست‌های محتوا
+      dashboard:
+        instance_accounts_dimension: حساب‌های پیش‌تر پی‌گیری شده
+        instance_followers_measure: پی‌گیرندگانمان در آن‌جا
+        instance_follows_measure: پی‌گیرندگانشان در این‌جا
+        instance_languages_dimension: زبان‌های برتر
+        instance_reports_measure: گزارش‌ها درباره‌شان
       delivery:
         all: همه
         clear: پاک کردن خطاهای تحول محتوا
@@ -722,6 +743,8 @@ fa:
       preview_card_providers:
         title: ناشران
       rejected: رد شده
+      statuses:
+        title: فرسته‌های داغ
       tags:
         current_score: امتیاز کنونی %{score}
         dashboard:
@@ -758,6 +781,9 @@ fa:
     new_trends:
       new_trending_links:
         no_approved_links: در حال حاضر هیچ پیوند پرطرفداری پذیرفته نشده است.
+        title: پیوندهای داغ
+      new_trending_statuses:
+        title: فرسته‌های داغ
   aliases:
     add_new: ساختن نام مستعار
     created_msg: نام مستعار تازه با موفقیت ساخته شد. الان می‌توانید انتقال از حساب قدیمی را آغاز کنید.
@@ -1082,6 +1108,9 @@ fa:
     carry_mutes_over_text: این کاربر از %{acct} که خموشش کرده‌اید، جابه‌جا شد.
     copy_account_note_text: 'این کاربر از %{acct} جابه‌جا شده است. یادداشت‌های پیشینتان درباره‌اش این‌هاست:'
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} ثبت نام کرد"
     digest:
       action: دیدن تمامی آگاهی‌ها
       body: خلاصه‌ای از پیغام‌هایی که از زمان آخرین بازدید شما در %{since} فرستاده شد
@@ -1287,6 +1316,7 @@ fa:
     open_in_web: گشودن در وب
     over_character_limit: از حد مجاز %{max} حرف فراتر رفتید
     pin_errors:
+      direct: فرسته‌هایی که فقط برای کاربران اشاره شده نمایانند نمی‌توانند سنجاق شوند
       limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
       reblog: تقویت را نمی‌توان سنجاق کرد

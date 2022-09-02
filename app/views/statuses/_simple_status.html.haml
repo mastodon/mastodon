@@ -65,6 +65,6 @@
       - elsif status.private_visibility? || status.limited_visibility?
         = fa_icon 'lock fw'
       - else
-        = fa_icon 'envelope fw'
+        = fa_icon 'at fw'
     = link_to remote_interaction_path(status, type: :favourite), class: 'status__action-bar-button icon-button modal-button' do
       = fa_icon 'star fw'

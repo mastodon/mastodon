@@ -17,13 +17,13 @@ ko:
     contact_missing: 미설정
     contact_unavailable: 없음
     continue_to_web: 웹앱에서 계속하기
-    discover_users: 유저 발견하기
+    discover_users: 사용자 발견하기
     documentation: 문서
     federation_hint_html: "%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다."
     get_apps: 모바일 앱 사용해 보기
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
     instance_actor_flash: |
-      이 계정은 가상의 actor로서 개인 유저가 아닌 서버 자체를 나타냅니다.
+      이 계정은 가상의 actor로서 개인 사용자가 아닌 서버 자체를 나타냅니다.
       이것은 페더레이션을 목적으로 사용 되며 인스턴스 전체를 차단하려 하지 않는 이상 차단하지 않아야 합니다, 그 경우에는 도메인 차단을 사용하세요.
     learn_more: 자세히
     logged_in_as_html: 현재 %{username}으로 로그인 했습니다.
@@ -49,7 +49,7 @@ ko:
       silenced_title: 침묵 된 서버들
       suspended: 이 서버의 아무도 팔로우 할 수 없으며, 어떤 데이터도 처리되거나 저장 되지 않고 데이터가 교환 되지도 않습니다.
       suspended_title: 금지된 서버들
-    unavailable_content_html: 마스토돈은 일반적으로 연합우주에 있는 어떤 서버의 유저와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
+    unavailable_content_html: 마스토돈은 일반적으로 연합우주에 있는 어떤 서버의 사용자와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
     user_count_after:
       other: 명
     user_count_before: 사용자 수
@@ -330,7 +330,7 @@ ko:
       deleted_status: "(삭제된 게시물)"
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 행동으로 거르기
-      filter_by_user: 유저로 거르기
+      filter_by_user: 사용자로 거르기
       title: 감사 기록
     announcements:
       destroyed_msg: 공지가 성공적으로 삭제되었습니다!
@@ -498,8 +498,8 @@ ko:
       dashboard:
         instance_accounts_dimension: 제일 많이 팔로우된 계정
         instance_accounts_measure: 보관된 계정
-        instance_followers_measure: 저쪽을 팔로우 하는 우리의 팔로워 수
-        instance_follows_measure: 우리를 팔로우 하는 저쪽의 팔로워 수
+        instance_followers_measure: 우리를 팔로우 하는 저쪽의 팔로워 수
+        instance_follows_measure: 저쪽을 팔로우 하는 우리의 팔로워 수
         instance_languages_dimension: 상위 언어
         instance_media_attachments_measure: 보관된 미디어 첨부파일
         instance_reports_measure: 이들에 대한 신고
@@ -561,7 +561,7 @@ ko:
     relays:
       add_new: 릴레이 추가
       delete: 삭제
-      description_html: "<strong>연합 릴레이</strong>는 서버들 사이에서 많은 양의 공개 게시물을 구독하고 중개하는 서버입니다. <strong>이것은 중소 규모의 서버에서 연합우주를 발견하는 데에 도움을 줄 수 있습니다</strong>, 이제 로컬 유저들이 다른 서버의 유저들을 수동으로 팔로우 하지 않아도 됩니다."
+      description_html: "<strong>연합 릴레이</strong>는 서버들 사이에서 많은 양의 공개 게시물을 구독하고 중개하는 서버입니다. <strong>이것은 중소 규모의 서버에서 연합우주를 발견하는 데에 도움을 줄 수 있습니다</strong>, 이제 로컬 사용자들이 다른 서버의 사용자들을 수동으로 팔로우 하지 않아도 됩니다."
       disable: 비활성화
       disabled: 비활성화 됨
       enable: 활성화
@@ -646,24 +646,24 @@ ko:
     settings:
       activity_api_enabled:
         desc_html: 주별 로컬에 게시 된 글, 활성 사용자 및 새로운 가입자 수
-        title: 유저 활동에 대한 통계 발행
+        title: 사용자 활동에 대한 통계 발행
       bootstrap_timeline_accounts:
-        desc_html: 콤마로 여러 유저명을 구분. 이 계정들은 팔로우 추천에 반드시 나타나게 됩니다
+        desc_html: 콤마로 여러 사용자명을 구분. 이 계정들은 팔로우 추천에 반드시 나타나게 됩니다
         title: 새로운 사용자들에게 추천할 계정들
       contact_information:
         email: 공개할 메일 주소를 입력
-        username: 연락 받을 관리자 유저네임
+        username: 연락 받을 관리자 사용자명
       custom_css:
         desc_html: 모든 페이지에 적용할 CSS
         title: 커스텀 CSS
       default_noindex:
-        desc_html: 이 설정을 바꾸지 않은 모든 유저들에게 적용 됩니다
-        title: 유저들이 기본적으로 검색엔진에 인덱싱 되지 않도록 합니다
+        desc_html: 이 설정을 바꾸지 않은 모든 사용자들에게 적용 됩니다
+        title: 사용자들이 기본적으로 검색엔진에 인덱싱 되지 않도록 합니다
       domain_blocks:
         all: 모두에게
         disabled: 아무에게도 안 함
         title: 도메인 차단 보여주기
-        users: 로그인 한 유저에게
+        users: 로그인 한 사용자에게
       domain_blocks_rationale:
         title: 사유 보여주기
       hero:
@@ -679,14 +679,14 @@ ko:
         desc_html: 민감한 미디어로 설정되었더라도 다른 웹사이트에서 링크 미리보기에 썸네일을 보여줍니다
         title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
       profile_directory:
-        desc_html: 유저들이 발견 될 수 있도록 허용
+        desc_html: 사용자들이 발견 될 수 있도록 허용
         title: 프로필 책자 활성화
       registrations:
         closed_message:
           desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
           title: 신규 등록 정지 시 메시지
         deletion:
-          desc_html: 유저가 자신의 계정을 삭제할 수 있도록 허용합니다
+          desc_html: 사용자가 자신의 계정을 삭제할 수 있도록 허용합니다
           title: 계정 삭제를 허가함
         min_invite_role:
           disabled: 아무도 못 하게
@@ -704,7 +704,7 @@ ko:
         desc_html: 활성화 되면 프리뷰 페이지에서 페디버스의 모든 게시물을 표시합니다. 비활성화시 로컬에 있는 게시물만 표시 됩니다.
         title: 타임라인 프리뷰에 알려진 페디버스 표시하기
       show_staff_badge:
-        desc_html: 유저 페이지에 스태프 배지를 표시합니다
+        desc_html: 사용자 페이지에 스태프 배지를 표시합니다
         title: 스태프 배지 표시
       site_description:
         desc_html: API의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
@@ -915,7 +915,7 @@ ko:
     description:
       prefix_invited_by_user: "@%{name} 님이 당신을 이 마스토돈 서버로 초대했습니다!"
       prefix_sign_up: 마스토돈에 가입하세요!
-      suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 유저와도 메시지를 주고 받을 수 있습니다!
+      suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 사용자와도 메시지를 주고 받을 수 있습니다!
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
     dont_have_your_security_key: 보안 키가 없습니까?
     forgot_password: 비밀번호를 잊어버리셨습니까?
@@ -960,7 +960,7 @@ ko:
     following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
     post_follow:
       close: 혹은, 당신은 이 윈도우를 닫을 수 있습니다.
-      return: 유저 프로필 보기
+      return: 사용자 프로필 보기
       web: 웹으로 가기
     title: "%{acct} 를 팔로우"
   challenge:
@@ -1009,7 +1009,7 @@ ko:
       username_unavailable: 당신의 계정명은 앞으로 사용할 수 없습니다
   directories:
     directory: 프로필 책자
-    explanation: 관심사에 대한 유저들을 발견합니다
+    explanation: 관심사에 대한 사용자들을 발견합니다
     explore_mastodon: "%{title} 탐사하기"
   disputes:
     strikes:
@@ -1021,10 +1021,12 @@ ko:
       appealed_msg: 당신의 이의제기가 접수되었습니다. 만약 승인된다면, 알림을 받게 될 것입니다.
       appeals:
         submit: 이의 제출
+      approve_appeal: 이의제기 승인
       associated_report: 관련된 신고
       created_at: 날짜
       description_html: 이 결정사항들은 당신에 계정에 대해 행해졌고 %{instance}의 스태프에 의해 경고가 발송되었습니다.
       recipient: 수신자
+      reject_appeal: 이의제기 거절
       status: '게시물 #%{id}'
       status_removed: 게시물이 이미 시스템에서 지워졌습니다
       title: "%{action} (%{date}에)"
@@ -1057,7 +1059,7 @@ ko:
     '503': 이 페이지는 임시적인 서버 문제로 인해 제공 될 수 없습니다.
     noscript_html: 마스토돈을 사용하기 위해서는 자바스크립트를 켜 주십시오. 아니면 <a href="%{apps_path}">네이티브 앱</a> 중 하나를 사용할 수 있습니다.
   existing_username_validator:
-    not_found: 해당 유저네임에 대한 로컬 유저를 찾을 수 없습니다
+    not_found: 해당 사용자명에 대한 로컬 유저를 찾을 수 없습니다
     not_found_multiple: "%{usernames}를 찾을 수 없습니다"
   exports:
     archive_takeout:
@@ -1313,7 +1315,7 @@ ko:
     relationship: 관계
     remove_selected_domains: 선택한 도메인의 모든 팔로워 삭제
     remove_selected_followers: 선택한 팔로워 삭제
-    remove_selected_follows: 선택한 유저들을 팔로우 해제
+    remove_selected_follows: 선택한 사용자들을 팔로우 해제
     status: 계정 상태
   remote_follow:
     acct: 당신이 사용하는 아이디@도메인을 입력해 주십시오
@@ -1335,6 +1337,11 @@ ko:
   reports:
     errors:
       invalid_rules: 올바른 규칙을 포함하지 않습니다
+  rss:
+    content_warning: '열람 주의:'
+    descriptions:
+      account: "@%{acct}의 공개 게시물"
+      tag: "#%{hashtag} 해시태그가 붙은 공개 게시물"
   scheduled_statuses:
     over_daily_limit: 그 날짜에 대한 %{limit}개의 예약 게시물 제한을 초과합니다
     over_total_limit: 예약 게시물 제한 %{limit}을 초과합니다
@@ -1487,6 +1494,9 @@ ko:
     pinned: 고정된 게시물
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 컨텐츠
+  strikes:
+    errors:
+      too_late: 이의를 제기하기에 너무 늦었습니다
   tags:
     does_not_match_previous_name: 이전 이름과 맞지 않습니다
   terms:

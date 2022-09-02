@@ -3,10 +3,10 @@ uk:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Назва додатку
+        name: Назва застосунку
         redirect_uri: URI перенаправлення
         scopes: Рамки
-        website: Веб-сайт додатку
+        website: Вебсайт застосунку
     errors:
       models:
         doorkeeper/application:
@@ -60,6 +60,7 @@ uk:
       error:
         title: Сталася помилка
       new:
+        prompt_html: "%{client_name} хоче отримати доступ до вашого облікового запису. Це сторонній застосунок. <strong>Якщо ви йому не довіряєте, не варто авторизувати його.</strong>"
         review_permissions: Переглянути дозволи
         title: Необхідна авторизація
       show:
@@ -71,6 +72,7 @@ uk:
         revoke: Ви впевнені?
       index:
         authorized_at: Авторизовано %{date}
+        description_html: Це застосунки, які мають доступ до вашого облікового запису через API. Якщо тут є застосунки, які Ви не розпізнаєте, або програма працює неправильно, ви можете відкликати їхній доступ.
         last_used_at: Востаннє використано %{date}
         never_used: Ніколи не використовувалися
         scopes: Дозволи

@@ -14,7 +14,7 @@ A "vulnerability in Mastodon" is a vulnerability in the code distributed through
 | ------- | ------------------ |
 | 3.5.x   | Yes                |
 | 3.4.x   | Yes                |
-| 3.3.x   | Yes                |
+| 3.3.x   | No                 |
 | < 3.3   | No                 |
 
 [bug-bounty]: https://app.intigriti.com/programs/mastodon/mastodonio/detail

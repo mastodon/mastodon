@@ -2,6 +2,7 @@
 
 class FetchLinkCardService < BaseService
   include Redisable
+  include Lockable
 
   URL_PATTERN = %r{
     (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
@@ -22,13 +23,9 @@ class FetchLinkCardService < BaseService
 
     @url = @original_url.to_s
 
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        @card = PreviewCard.find_by(url: @url)
-        process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
-      else
-        raise Mastodon::RaceConditionError
-      end
+    with_lock("fetch:#{@original_url}") do
+      @card = PreviewCard.find_by(url: @url)
+      process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
     end
 
     attach_card if @card&.persisted?
@@ -154,9 +151,5 @@ class FetchLinkCardService < BaseService
     @card = PreviewCard.find_or_initialize_by(url: link_details_extractor.canonical_url) if link_details_extractor.canonical_url != @card.url
     @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
     @card.save_with_optional_image! unless @card.title.blank? && @card.html.blank?
-  end
-
-  def lock_options
-    { redis: redis, key: "fetch:#{@original_url}", autorelease: 15.minutes.seconds }
   end
 end

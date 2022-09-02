@@ -57,7 +57,7 @@ class ReportService < BaseService
   end
 
   def reported_status_ids
-    @target_account.statuses.with_discarded.find(Array(@status_ids)).pluck(:id)
+    AccountStatusesFilter.new(@target_account, @source_account).results.with_discarded.find(Array(@status_ids)).pluck(:id)
   end
 
   def payload

@@ -77,6 +77,8 @@ export const FOLLOW_REQUEST_REJECT_REQUEST = 'FOLLOW_REQUEST_REJECT_REQUEST';
 export const FOLLOW_REQUEST_REJECT_SUCCESS = 'FOLLOW_REQUEST_REJECT_SUCCESS';
 export const FOLLOW_REQUEST_REJECT_FAIL    = 'FOLLOW_REQUEST_REJECT_FAIL';
 
+export const ACCOUNT_REVEAL = 'ACCOUNT_REVEAL';
+
 export function fetchAccount(id) {
   return (dispatch, getState) => {
     dispatch(fetchRelationships([id]));
@@ -780,3 +782,8 @@ export function unpinAccountFail(error) {
     error,
   };
 };
+
+export const revealAccount = id => ({
+  type: ACCOUNT_REVEAL,
+  id,
+});

@@ -832,6 +832,7 @@ gd:
           two: Chaidh a cho-roinneadh le %{count} rè na seachdain seo chaidh
         title: Ceanglaichean a’ treandadh
         usage_comparison: Chaidh a cho-roinneadh %{today} tura(i)s an-diugh an coimeas ri %{yesterday} an-dè
+      only_allowed: An fheadhainn cheadaichte a-mhàin
       pending_review: A’ feitheamh air lèirmheas
       preview_card_providers:
         allowed: Faodaidh ceanglaichean on fhoillsichear seo treandadh
@@ -877,6 +878,7 @@ gd:
           other: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
           two: Chaidh a chleachdadh le %{count} rè na seachdain seo chaidh
       title: Treandaichean
+      trending: A’ treandadh
     warning_presets:
       add_new: Cuir fear ùr ris
       delete: Sguab às
@@ -1068,10 +1070,12 @@ gd:
       appealed_msg: Chaidh an t-ath-thagradh agad a chur a-null. Ma thèid aontachadh ris, gheibh thu brath mu dhèidhinn.
       appeals:
         submit: Cuir a-null an t-ath-thagradh
+      approve_appeal: Zatwierdź odwołanie
       associated_report: An gearan co-cheangailte
       created_at: Ceann-là
       description_html: Seo na gnìomhan a chaidh a ghabhail an aghaidh a’ chunntais agad agus na rabhaidhean a chaidh a chur thugad le luchd-obrach %{instance}.
       recipient: Faightear
+      reject_appeal: Diùlt an t-ath-thagradh
       status: 'Post #%{id}'
       status_removed: Chaidh am post a thoirt air falbh on t-siostam mu thràth
       title: "%{action} o %{date}"
@@ -1394,6 +1398,11 @@ gd:
   reports:
     errors:
       invalid_rules: gun iomradh air riaghailtean dligheach
+  rss:
+    content_warning: 'Rabhadh susbainte:'
+    descriptions:
+      account: Postaichean poblach o @%{acct}
+      tag: 'Postaichean poblach le taga #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte an-diugh
     over_total_limit: Chaidh thu thar na crìoch de %{limit} post(aichean) sgeidealaichte
@@ -1564,6 +1573,9 @@ gd:
     pinned: Post prìnichte
     reblogged: "’ga bhrosnachadh"
     sensitive_content: Susbaint fhrionasach
+  strikes:
+    errors:
+      too_late: Tha e ro anmoch airson an rabhadh seo ath-thagradh
   tags:
     does_not_match_previous_name: "– chan eil seo a-rèir an ainm roimhe"
   terms:

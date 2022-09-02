@@ -2,27 +2,146 @@
 he:
   simple_form:
     hints:
+      account_alias:
+        acct: נא לציין משתמש@דומיין של החשבון ממנו תרצה/י לעבור
+      account_migration:
+        acct: נא לציין משתמש@דומיין של החשבון אליו תרצה/י לעבור
+      account_warning_preset:
+        text: ניתן להשתמש בתחביר חצרוצי, כגון קישוריות, האשתגיות ואזכורים
+        title: אופציונלי. בלתי נראה למקבל ההודעה
+      admin_account_action:
+        include_statuses: המשתמש יראה אילו חצרוצים גרמו לפעולה או לאזהרה
+        send_email_notification: המשתמש יקבל הסבר מה קרה לחשבונם
+        text_html: אופציונלי. ניתן להשתמש בתחביר חצרוצי. ניתן <a href="%{path}">להוסיף הגדרות אזהרה</a> כדי לחסוך זמן
+        type_html: נא לבחור מה לעשות עם <strong>%{acct}</strong>
+        types:
+          disable: מנעי מהמשתמש להשתמש בחשבונם, מבלי למחוק או להסתיר את תוכנו.
+          none: השתמשי בזה כדי לשלוח למשתמש אזהרה, מבלי לגרור פעולות נוספות.
+          sensitive: אלצי את כל קבצי המדיה המצורפים על ידי המשתמש להיות מסומנים כרגישים.
+          silence: מנעי מהמשתמש להיות מסוגל לחצרץ בנראות פומבית, החביאי את חצרוציהם והתראותיהם מאנשים שלא עוקבים אחריהם.
+          suspend: מנעי כל התקשרות עם חשבון זה ומחקי את תוכנו. ניתן לשחזור תוך 30 יום.
+        warning_preset_id: אופציונלי. ניתן עדיין להוסיף טקסט ייחודי לסוף ההגדרה
+      announcement:
+        all_day: אם נבחר, רק התאריכים בטווח הזמן יוצגו
+        ends_at: אופציונלי. הכרזות יוסרו באופן אוטומטי בזמן זה
+        scheduled_at: נא להשאיר ריק כדי לפרסם את ההכרזה באופן מיידי
+        starts_at: אופציונלי. במקרה שהכרזתך כבולה לטווח זמן ספציפי
+        text: ניתן להשתמש בתחביר חצרוצי. נא לשים לב לשטח שתתפוס ההכרזה על מסך המשתמש
+      appeal:
+        text: ניתן לערער על עברה רק פעם אחת
       defaults:
+        autofollow: אנשים שיצטרפו בעזרת ההזמנה יעקבו אחריך באופן אוטומטי
         avatar: PNG, GIF או JPG. מקסימום %{size}. גודל התמונה יוקטן ל-%{dimensions}px
+        bot: איתות לאחרים שהחשבון מבצע בעיקר פעולות אוטומטיות ועשוי לא להיות מנוטר
+        context: הקשר אחד או יותר בהם יופעל המסנן
+        current_password: מסיבות אבטחה נא להזין את הסיסמא של החשבון הנוכחי
+        current_username: על מנת לאשר, נא להכניס את שם המשתמש של החשבון הנוכחי
         digest: נשלח לאחר תקופה ארוכה של אי-פעילות עם סיכום איזכורים שקיבלת בהעדרך
+        discoverable: אשר/י לחשבונך להתגלות לזרים על ידי המלצות, נושאים חמים ושאר דרכים
+        email: דוא"ל אישור יישלח אליך
+        fields: ניתן להציג עד ארבעה פריטים כטבלה בפרופילך
         header: PNG, GIF או JPG. מקסימום %{size}. גודל התמונה יוקטן %{dimensions}px
+        inbox_url: נא להעתיק את הקישורית מדף הבית של הממסר בו תרצה/י להשתמש
+        irreversible: חצרוצים מסוננים יעלמו באופן בלתי הפיך, אפילו אם מאוחר יותר יוסר המסנן
+        locale: שפת ממשק המשתמש, הדוא"ל וההתראות בדחיפה
         locked: מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת
+        password: נא להשתמש בלפחות 8 תוים
+        phrase: התאמה תמצא ללא תלות באזהרת תוכן בחצרוץ
+        scopes: לאיזה ממשק יורשה היישום לגשת. בבחירת תחום כללי, אין צורך לבחור ממשקים ספציפיים.
+        setting_aggregate_reblogs: לא להראות הדהודים של חצרוצים שהודהדו לאחרונה (משפיע רק על הדהודים שהתקבלו לא מזמן)
+        setting_always_send_emails: בדרך כלל התראות דוא"ל לא יישלחו בזמן שימוש פעיל במסטודון
+        setting_default_sensitive: מדיה רגישה מוסתרת כברירת מחדל וניתן להציגה בקליק
+        setting_display_media_default: הסתרת מדיה המסומנת כרגישה
+        setting_display_media_hide_all: הסתר מדיה תמיד
+        setting_display_media_show_all: גלה מדיה תמיד
+        setting_hide_network: עוקבייך ונעקבייך יוסתרו בפרופילך
         setting_noindex: משפיע על הפרופיל הציבורי שלך ועמודי ההודעות
+        setting_show_application: היישום בו נעשה שימוש כדי לחצרץ יופיע בתצוגה המפורטת של החצרוץ
+        setting_use_blurhash: הגראדיינטים מבוססים על תוכן התמונה המוסתרת, אבל מסתירים את כל הפרטים
+        setting_use_pending_items: הסתר עדכוני פיד מאחורי קליק במקום לגלול את הפיד אוטומטית
+        username: שם המשתמש שלך יהיה ייחודי ב-%{domain}
+        whole_word: אם מילת מפתח או ביטוי הם אלפאנומריים בלבד, הם יופעלו רק אם נמצאה התאמה למילה שלמה
+      domain_allow:
+        domain: דומיין זה יוכל לייבא מידע משרת זה והמידע המגיע ממנו יעובד ויאופסן
+      email_domain_block:
+        domain: זה יכול להיות שם הדומיין המופיע בכתובת הדוא"ל או רשומת ה-MX בה הוא משתמש. הם ייבדקו בהרשמה.
+        with_dns_records: ייעשה נסיון למצוא את רשומות ה-DNS של דומיין נתון והתוצאות ייחסמו גם הן
+      featured_tag:
+        name: 'אולי תרצה/י להשתמש באחד מאלה:'
+      form_challenge:
+        current_password: את.ה נכנס. ת לאזור מאובטח
       imports:
         data: קובץ CSV שיוצא משרת מסטודון אחר
+      invite_request:
+        text: זה יעזור לנו בסקירת הבקשה שלך
+      ip_block:
+        comment: רשות. זכור/י מדוע הוספת את הכלל הזה.
+        expires_in: כתובות IP הם משאב מוגבל, לפעמים הם משותפים ולעתים קרובות מחליפים ידיים. לכן, חסימות IP לצמיתות לא מומלצות.
+        ip: נא להכניס כתובת IPv4 או IPv6. ניתן לחסום תחומים שלמים על ידי שימוש בתחביר CIDR. זהירות לא לנעול את עצמכם בחוץ!
+        severities:
+          no_access: חסימת גישה לכל המשאבים
+          sign_up_requires_approval: הרשמות חדשות ידרשו את אישורך
+        severity: נא לבחור מה יקרה לבקשות מכתובת IP זו
+      rule:
+        text: נא לתאר את הכלל או הדרישה למשתמשים משרת זה. על התיאור להיות קצר ובהיר
       sessions:
-        otp: נא להקליד קוד אימות דו-שלבי ממכשירך או קוד אחזור גישה.
+        otp: 'נא להקליד קוד אימות דו-שלבי ממכשירך או להשתמש באחד מקודי אחזור הגישה שלך:'
+        webauthn: אם זהו מכשיר USB יש לוודא שהוא מוכנס, ואם יש צורך, להקיש עליו.
+      tag:
+        name: ניתן רק להחליף בין אותיות קטנות וגדולות, למשל כדי לשפר את הקריאות
+      user:
+        chosen_languages: אם פעיל, רק חצרוצים בשפות הנבחרות יוצגו לפידים הפומביים
     labels:
+      account:
+        fields:
+          name: תווית
+          value: תוכן
+      account_alias:
+        acct: שם משתמש של החשבון הישן
+      account_migration:
+        acct: שם משתמש של החשבון החדש
+      account_warning_preset:
+        text: טקסט קבוע מראש
+        title: כותרת
+      admin_account_action:
+        include_statuses: כלול חצרוצים מדווחים בהודעת הדוא"ל
+        send_email_notification: יידע את המשתמש באמצעות דוא"ל
+        text: התראה בהתאמה אישית
+        type: פעולה
+        types:
+          disable: הקפא
+          none: שלח התרעה
+          sensitive: רגיש
+          silence: הגבלה
+          suspend: השעייה
+        warning_preset_id: השתמש/י בטקסט מוכן מראש לאזהרה
+      announcement:
+        all_day: אירוע למשך כל היום
+        ends_at: סוף האירוע
+        scheduled_at: תיזמון פרסום
+        starts_at: תחילת האירוע
+        text: הכרזה
+      appeal:
+        text: הסבר מדוע יש להפוך את ההחלטה
       defaults:
+        autofollow: להזמין מעקב אחרי חשבונך
         avatar: תמונת פרופיל
+        bot: זהו חשבון מסוג בוט
+        chosen_languages: סינון שפות
         confirm_new_password: אישור סיסמא חדשה
         confirm_password: אישור סיסמא
+        context: סינון לפי הקשר
         current_password: סיסמא נוכחית
         data: מידע
+        discoverable: הצע חשבון לאחרים
         display_name: שם להצגה
         email: כתובת דוא"ל
         expires_in: תפוגה לאחר
+        fields: מטא-נתונים על הפרופיל
         header: ראשה
+        honeypot: "%{label} (לא למלא)"
+        inbox_url: קישורית לתיבת ממסר
+        irreversible: הסרה במקום הסתרה
         locale: שפה
         locked: הפוך חשבון לפרטי
         max_uses: מספר מרבי של שימושים
@@ -30,31 +149,82 @@ he:
         note: אודות
         otp_attempt: קוד אימות דו-שלבי
         password: סיסמא
+        phrase: מילת מפתח או ביטוי
+        setting_advanced_layout: אפשר ממשק ווב מתקדם
+        setting_aggregate_reblogs: קבץ הדהודים זהים
+        setting_always_send_emails: תמיד שלח התראות לדוא"ל
         setting_auto_play_gif: ניגון אוטומטי של גיפים
         setting_boost_modal: הצגת דיאלוג אישור לפני הדהוד
+        setting_crop_images: קטום תמונות בחצרוצים לא מורחבים ל 16 על 9
+        setting_default_language: שפת חצרוץ
         setting_default_privacy: פרטיות ההודעות
         setting_default_sensitive: תמיד לתת סימון "רגיש" למדיה
         setting_delete_modal: להראות תיבת אישור לפני מחיקת חיצרוץ
+        setting_disable_swiping: ביטול החלקת-צד
+        setting_display_media: תצוגת מדיה
+        setting_display_media_default: ברירת מחדל
+        setting_display_media_hide_all: להסתיר הכל
+        setting_display_media_show_all: להציג הכול
+        setting_expand_spoilers: להרחיב תמיד חצרוצים מסומנים באזהרת תוכן
+        setting_hide_network: להחביא את הגרף החברתי שלך
         setting_noindex: לבקש הסתרה ממנועי חיפוש
         setting_reduce_motion: הפחתת תנועה בהנפשות
+        setting_show_application: הצגת הישום ששימש לחצרוץ
         setting_system_font_ui: להשתמש בגופן ברירת המחדל של המערכת
         setting_theme: ערכת העיצוב של האתר
+        setting_trends: הצגת הנושאים החמים
         setting_unfollow_modal: להראות תיבת אישור לפני הפסקת מעקב אחרי אחרים
+        setting_use_blurhash: הצגת גראדיינטים צבעוניים למדיה מוסתרת
+        setting_use_pending_items: מצב איטי
         severity: חומרה
+        sign_in_token_attempt: קוד אבטחה
         type: סוג יבוא
         username: שם משתמש
+        username_or_email: שם משתמש או דוא"ל
+        whole_word: מילה שלמה
+      email_domain_block:
+        with_dns_records: לכלול רשומות MX וכתובות IP של הדומיין
+      featured_tag:
+        name: האשתג
       interactions:
         must_be_follower: חסימת התראות משאינם עוקבים
         must_be_following: חסימת התראות משאינם נעקבים
         must_be_following_dm: חסימת הודעות ישירות מכותבים שאינם במעקב
+      invite:
+        comment: הערה
+      invite_request:
+        text: למה תרצה/י להצטרף?
+      ip_block:
+        comment: הערה
+        ip: IP
+        severities:
+          no_access: חסימת גישה
+          sign_up_requires_approval: הגבלת הרשמות
+        severity: כלל
       notification_emails:
+        appeal: מישהם מערערים על החלטת מנהל קהילה
         digest: שליחת הודעות דוא"ל מסכמות
         favourite: שליחת דוא"ל כשמחבבים חצרוץ
         follow: שליחת דוא"ל כשנוספות עוקבות
         follow_request: שליחת דוא"ל כשמבקשים לעקוב
         mention: שליחת דוא"ל כשפונים אלייך
+        pending_account: נדרשת סקירה של חשבון חדש
         reblog: שליחת דוא"ל כשמהדהדים חצרוץ שלך
+        report: דו"ח חדש הוגש
+        trending_tag: נושאים חמים חדשים דורשים סקירה
+      rule:
+        text: כלל
+      tag:
+        listable: הרשה/י להאשתג זה להופיע בחיפושים והצעות
+        name: האשתג
+        trendable: הרשה/י להאשתג זה להופיע תחת נושאים חמים
+        usable: הרשה/י לחצרוצים להכיל האשתג זה
     'no': לא
+    recommended: מומלץ
     required:
+      mark: "*"
       text: שדה חובה
+    title:
+      sessions:
+        webauthn: נא להשתמש באחד ממפתחות האבטחה שלך כדי להכנס
     'yes': כן

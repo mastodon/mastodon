@@ -14,7 +14,8 @@ class AppealService < BaseService
   private
 
   def create_appeal!
-    @appeal = @strike.create_appeal!(
+    @appeal = Appeal.create!(
+      strike: @strike,
       text: @text,
       account: @strike.target_account
     )

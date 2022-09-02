@@ -802,6 +802,7 @@ es-MX:
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado a %{yesterday} ayer
+      only_allowed: Sólo las permitidas
       pending_review: Revisión pendiente
       preview_card_providers:
         allowed: Los enlaces de este editor pueden ser tendencia
@@ -843,6 +844,7 @@ es-MX:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
       title: Tendencias
+      trending: En tendencia
     warning_presets:
       add_new: Añadir nuevo
       delete: Borrar
@@ -1034,10 +1036,12 @@ es-MX:
       appealed_msg: Tu apelación fue enviada. Si se aprueba, se te notificará.
       appeals:
         submit: Enviar apelación
+      approve_appeal: Aprobar apelación
       associated_report: Informe asociado
       created_at: Con fecha
       description_html: Estas son las acciones emprendidas contra tu cuenta y las advertencias que te han sido enviadas por el personal de %{instance}.
       recipient: Dirigida a
+      reject_appeal: Rechazar apelación
       status: 'Publicación #%{id}'
       status_removed: Publicación ya eliminada del sistema
       title: "%{action} del %{date}"
@@ -1352,6 +1356,11 @@ es-MX:
   reports:
     errors:
       invalid_rules: no hace referencia a reglas válidas
+  rss:
+    content_warning: 'Advertencia de contenido:'
+    descriptions:
+      account: Publicaciones públicas de @%{acct}
+      tag: 'Publicaciones públicas etiquetadas con #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Ha superado el límite de %{limit} toots programados para ese día
     over_total_limit: Ha superado el límite de %{limit} toots programados

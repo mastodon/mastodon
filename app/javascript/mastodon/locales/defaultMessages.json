@@ -75,6 +75,14 @@
       {
         "defaultMessage": "Unmute notifications from @{name}",
         "id": "account.unmute_notifications"
+      },
+      {
+        "defaultMessage": "Mute @{name}",
+        "id": "account.mute"
+      },
+      {
+        "defaultMessage": "Block @{name}",
+        "id": "account.block"
       }
     ],
     "path": "app/javascript/mastodon/components/account.json"
@@ -790,6 +798,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "This profile has been hidden by the moderators of your server.",
+        "id": "limited_account_hint.title"
+      },
+      {
+        "defaultMessage": "Show profile anyway",
+        "id": "limited_account_hint.action"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account_timeline/components/limited_account_hint.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "{name} has moved to:",
         "id": "account.moved_to"
       }
@@ -1239,6 +1260,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Change language",
+        "id": "compose.language.change"
+      },
+      {
+        "defaultMessage": "Search languages...",
+        "id": "compose.language.search"
+      },
+      {
+        "defaultMessage": "Clear",
+        "id": "emoji_button.clear"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/compose/components/language_dropdown.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Edit profile",
         "id": "navigation_bar.edit_profile"
       }
@@ -1508,7 +1546,7 @@
         "id": "compose_form.hashtag_warning"
       },
       {
-        "defaultMessage": "Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.",
+        "defaultMessage": "Posts on Mastodon are not end-to-end encrypted. Do not share any sensitive information over Mastodon.",
         "id": "compose_form.encryption_warning"
       },
       {
@@ -1616,12 +1654,20 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Conversations",
-        "id": "column.conversations"
+        "defaultMessage": "Direct messages",
+        "id": "column.direct"
       },
       {
-        "defaultMessage": "Once you send or receive a post that's only visible to people mentioned in it, it will show up here.",
-        "id": "empty_column.conversations"
+        "defaultMessage": "Posts on Mastodon are not end-to-end encrypted. Do not share any dangerous information over Mastodon.",
+        "id": "compose_form.encryption_warning"
+      },
+      {
+        "defaultMessage": "Learn more",
+        "id": "compose_form.direct_message_warning_learn_more"
+      },
+      {
+        "defaultMessage": "You don't have any direct messages yet. When you send or receive one, it will show up here.",
+        "id": "empty_column.direct"
       }
     ],
     "path": "app/javascript/mastodon/features/direct_timeline/index.json"
@@ -1881,6 +1927,10 @@
         "id": "timeline_hint.resources.followers"
       },
       {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
+      },
+      {
         "defaultMessage": "Profile unavailable",
         "id": "empty_column.account_unavailable"
       },
@@ -1896,6 +1946,10 @@
       {
         "defaultMessage": "Follows",
         "id": "timeline_hint.resources.follows"
+      },
+      {
+        "defaultMessage": "Account suspended",
+        "id": "empty_column.account_suspended"
       },
       {
         "defaultMessage": "Profile unavailable",
@@ -1965,8 +2019,8 @@
         "id": "navigation_bar.explore"
       },
       {
-        "defaultMessage": "Conversations",
-        "id": "column.conversations"
+        "defaultMessage": "Direct messages",
+        "id": "navigation_bar.direct"
       },
       {
         "defaultMessage": "Bookmarks",
@@ -2222,8 +2276,8 @@
         "id": "keyboard_shortcuts.federated"
       },
       {
-        "defaultMessage": "to open conversations column",
-        "id": "keyboard_shortcuts.conversations"
+        "defaultMessage": "to open direct messages column",
+        "id": "keyboard_shortcuts.direct"
       },
       {
         "defaultMessage": "to open \"get started\" column",
@@ -3513,8 +3567,8 @@
         "id": "tabs_bar.federated_timeline"
       },
       {
-        "defaultMessage": "Conversations",
-        "id": "column.conversations"
+        "defaultMessage": "Direct messages",
+        "id": "navigation_bar.direct"
       },
       {
         "defaultMessage": "Favourites",

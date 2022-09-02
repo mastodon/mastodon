@@ -40,7 +40,7 @@ hu:
     status_count_before: Eddig
     tagline: Kövess barátokat és találj újakat
     terms: Felhasználási feltételek
-    unavailable_content: A tartalom nem elérhető
+    unavailable_content: Kimoderált szerverek
     unavailable_content_description:
       domain: Szerver
       reason: 'Indok:'
@@ -722,7 +722,7 @@ hu:
         title: Stáb-jelvény megjelenítése
       site_description:
         desc_html: Rövid bemutatkozás a főoldalon és a meta fejlécekben. Írd le, mi teszi ezt a szervert különlegessé! Használhatod a <code>&lt;a&gt;</code> és <code>&lt;em&gt;</code> HTML tageket.
-        title: A szerver bemutatása
+        title: Kiszolgáló leírása
       site_description_extended:
         desc_html: Ide teheted például a közösségi és egyéb szabályzatot, útmutatókat és mindent, ami egyedivé teszi szerveredet. HTML-tageket is használhatsz
         title: További egyéni információk
@@ -1038,10 +1038,12 @@ hu:
       appealed_msg: A fellebbezésedet beküldtük. Ha jóváhagyták, értesítünk.
       appeals:
         submit: Fellebbezés beküldése
+      approve_appeal: Fellebbezés jóváhagyása
       associated_report: Társított bejelentés
       created_at: Dátum
       description_html: Ezek a fiókoddal szemben elvégzett műveletek és figyelmeztetések, melyeket a %{instance} szerver csapata küldött.
       recipient: Címzett
+      reject_appeal: Fellebbezés elutasítása
       status: 'Bejegyzés #%{id}'
       status_removed: A bejegyzést már eltávolítottuk a rendszerből
       title: "%{action} ekkor: %{date}"
@@ -1356,6 +1358,11 @@ hu:
   reports:
     errors:
       invalid_rules: nem hivatkozik érvényes szabályra
+  rss:
+    content_warning: 'Tartalmi figyelmeztetés:'
+    descriptions:
+      account: Nyilvános bejegyzések a(z) @%{acct} fióktól
+      tag: 'Ezzel jelölt nyilvános bejegyzések: #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os napi limitet
     over_total_limit: Túllépted az időzített bejegyzésekre vonatkozó %{limit} db-os limitet
@@ -1438,7 +1445,7 @@ hu:
         one: "%{count} videó"
         other: "%{count} videó"
     boosted_from_html: Megtolva innen %{acct_link}
-    content_warning: 'Tartalom figyelmeztetés: %{warning}'
+    content_warning: 'Tartalmi figyelmeztetés: %{warning}'
     default_language: Felhasználói felület nyelvével azonos
     disallowed_hashtags:
       one: 'tiltott hashtaget tartalmaz: %{tags}'
@@ -1514,6 +1521,9 @@ hu:
     pinned: Kitűzött bejegyzés
     reblogged: megtolta
     sensitive_content: Kényes tartalom
+  strikes:
+    errors:
+      too_late: Túl késő, hogy fellebbezd ezt a szankciót
   tags:
     does_not_match_previous_name: nem illeszkedik az előző névvel
   terms:

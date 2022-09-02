@@ -234,7 +234,7 @@ class ColumnsArea extends ImmutablePureComponent {
             </div>
           </div>
 
-          <div className='columns-area__panels__main'>
+          <div className={`columns-area__panels__main ${floatingActionButton && 'with-fab'}`}>
             <TabsBar key='tabs' />
             {content}
           </div>

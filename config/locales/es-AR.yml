@@ -802,6 +802,7 @@ es-AR:
           other: Compartido por %{count} personas durante la última semana
         title: Enlaces en tendencia
         usage_comparison: Compartido %{today} veces hoy, comparado con la/s %{yesterday} vez/veces de ayer
+      only_allowed: Sólo permitidas
       pending_review: Revisión pendiente
       preview_card_providers:
         allowed: Los enlaces de este medio pueden ser tendencia
@@ -843,6 +844,7 @@ es-AR:
           one: Usada por una persona durante la última semana
           other: Usada por %{count} personas durante la última semana
       title: Tendencias
+      trending: En tendencia
     warning_presets:
       add_new: Agregar nuevo
       delete: Eliminar
@@ -1034,10 +1036,12 @@ es-AR:
       appealed_msg: Tu apelación fue enviada. Si se aprueba, se te notificará.
       appeals:
         submit: Enviar apelación
+      approve_appeal: Aprobar apelación
       associated_report: Denuncia asociada
       created_at: Con fecha
       description_html: Estas son acciones tomadas contra tu cuenta y las advertencias que te han sido enviadas por el equipo de %{instance}.
       recipient: Dirigida a
+      reject_appeal: Rechazar apelación
       status: 'Mensaje #%{id}'
       status_removed: Mensaje ya eliminado del sistema
       title: "%{action} de %{date}"
@@ -1352,6 +1356,11 @@ es-AR:
   reports:
     errors:
       invalid_rules: no hace referencia a reglas válidas
+  rss:
+    content_warning: 'Advertencia de contenido:'
+    descriptions:
+      account: Mensajes públicos de @%{acct}
+      tag: 'Mensajes públicos etiquetados #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Superaste el límite de %{limit} mensajes programados para ese día
     over_total_limit: Superaste el límite de %{limit} mensajes programados
@@ -1510,6 +1519,9 @@ es-AR:
     pinned: Mensaje fijado
     reblogged: adhirió a este mensaje
     sensitive_content: Contenido sensible
+  strikes:
+    errors:
+      too_late: Es demasiado tarde para apelar este incumplimiento
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
   terms:

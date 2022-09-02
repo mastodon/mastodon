@@ -17,7 +17,7 @@ class REST::PreferencesSerializer < ActiveModel::Serializer
   end
 
   def posting_default_language
-    object.user.setting_default_language.presence
+    object.user.preferred_posting_language
   end
 
   def reading_default_sensitive_media

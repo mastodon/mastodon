@@ -3,8 +3,8 @@
 
 - content_for :heading_actions do
   - if @appeal.persisted?
-    = link_to t('admin.accounts.approve'), approve_admin_disputes_appeal_path(@appeal), method: :post, class: 'button' if can?(:approve, @appeal)
-    = link_to t('admin.accounts.reject'), reject_admin_disputes_appeal_path(@appeal), method: :post, class: 'button button--destructive' if can?(:reject, @appeal)
+    = link_to t('disputes.strikes.approve_appeal'), approve_admin_disputes_appeal_path(@appeal), method: :post, class: 'button' if can?(:approve, @appeal)
+    = link_to t('disputes.strikes.reject_appeal'), reject_admin_disputes_appeal_path(@appeal), method: :post, class: 'button button--destructive' if can?(:reject, @appeal)
 
 - if @strike.overruled?
   %p.hint

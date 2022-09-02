@@ -83,6 +83,9 @@ mastodon:
     # the node running the pod, which is unrelated to the resources allocated to
     # the pod by k8s
     workers: 1
+    # The base url for streaming can be set if the streaming API is deployed to
+    # a different domain/subdomain.
+    # base_url: wws://streaming.example.com
   web:
     port: 3000
 

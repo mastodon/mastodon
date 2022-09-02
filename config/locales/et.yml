@@ -7,7 +7,8 @@ et:
     active_count_after: aktiivne
     active_footnote: Igakuiselt aktiivseid kasutajaid (MAU)
     administered_by: 'Administraator:'
-    apps: Mobiilrakendused
+    api: API
+    apps: Mobiilirakendused
     apps_platforms: Kasuta Mastodoni iOS-is, Androidis ja teistel platvormidel
     browse_directory: Sirvi profiilide kataloogi ja filtreeri huvide alusel
     browse_local_posts: Sirvi reaalajas voogu avalikest postitustest sellest serverist
@@ -25,19 +26,22 @@ et:
       Seda kasutatakse föderatiivsetel põhjustel ning seda ei tohiks blokeerida, välja arvatud juhul, kui soovite blokeerida tervet serverit, kuid sellel juhul soovitame hoopis kasutada domeeni blokeerimist.
     learn_more: Lisateave
     privacy_policy: Privaatsuspoliitika
+    rules: Serveri reeglid
+    rules_html: 'Järgneb kokkuvõte reeglitest, mida pead järgima, kui lood endale siin Mastodoni serveris konto:'
     see_whats_happening: Vaata, mis toimub
     server_stats: 'Serveri statistika:'
     source_code: Lähtekood
     status_count_after:
-      one: staatust
+      one: postitust
       other: staatuseid
-    status_count_before: Kes omavad
+    status_count_before: Kes on avaldanud
     tagline: Jälgi sõpru ja leia uusi
     terms: Kasutustingimused
     unavailable_content: Sisu pole saadaval
     unavailable_content_description:
       reason: Põhjus
       rejecting_media: 'Meedia failid sellelt serverilt ei töödelda ega salvestata ning mitte ühtegi eelvaadet ei kuvata, mis nõuab manuaalselt vajutust originaalfailile:'
+      rejecting_media_title: Filtreeritud meediaga
       silenced: 'Postitused nendelt serveritelt peidetakse avalikes ajajoontes ja vestlustes ning mitte ühtegi teavitust ei tehta nende kasutajate tegevustest, välja arvatud juhul, kui Te neid jälgite:'
       suspended: 'Mitte mingeid andmeid nendelt serveritelt ei töödelda, salvestata ega vahetata, tehes igasuguse interaktsiooni või kirjavahetuse kasutajatega nendelt serveritelt võimatuks:'
     unavailable_content_html: Mastodon tavaliselt lubab Teil vaadata sisu ning suhelda kasutajatega üks kõik millisest teisest serverist fediversumis. Need on erandid, mis on paika pandud sellel kindlal serveril.
@@ -67,10 +71,10 @@ et:
     pin_errors:
       following: Te peate juba olema selle kasutaja jälgija, keda te heaks kiidate
     posts:
-      one: Tuututus
-      other: Tuututused
-    posts_tab_heading: Tuututused
-    posts_with_replies: Tuututused ja vastused
+      one: Postitus
+      other: Postitused
+    posts_tab_heading: Postitused
+    posts_with_replies: Postitused ja vastused
     roles:
       admin: Administraator
       bot: Robot

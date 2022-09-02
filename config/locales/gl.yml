@@ -931,7 +931,7 @@ gl:
       prefix_invited_by_user: "@%{name} convídate a que te unas a este servidor Mastodon!"
       prefix_sign_up: Rexístrate agora en Mastodon!
       suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de Mastodon e moito máis!
-    didnt_get_confirmation: Non recibeu as instruccións de confirmación?
+    didnt_get_confirmation: Non recibiches as instruccións de confirmación?
     dont_have_your_security_key: "¿Non tes a túa chave de seguridade?"
     forgot_password: Esqueceu o contrasinal?
     invalid_reset_password_token: O testemuño para restablecer o contrasinal non é válido ou caducou. Por favor solicite un novo.
@@ -953,8 +953,8 @@ gl:
     security: Seguranza
     set_new_password: Estabelecer novo contrasinal
     setup:
-      email_below_hint_html: Se o enderezo inferior non é correcto, pode cambialo aquí e recibir un correo de confirmación.
-      email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto pode cambialo nos axustes da conta.
+      email_below_hint_html: Se o enderezo inferior non é correcto, podes cambialo aquí e recibir un correo de confirmación.
+      email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto podes cambialo nos axustes da conta.
       title: Axustes
     status:
       account_status: Estado da conta
@@ -1036,10 +1036,12 @@ gl:
       appealed_msg: A túa apelación foi enviada. Se é aprobada recibirás unha notificación.
       appeals:
         submit: Enviar apelación
+      approve_appeal: Aprobar apelación
       associated_report: Denuncia asociada
       created_at: Data
       description_html: Estas son as accións tomadas contra a túa conta e os avisos que che enviou a administración de %{instance}.
       recipient: Entregada a
+      reject_appeal: Rexeitar apelación
       status: 'Publicación #%{id}'
       status_removed: A publicación xa foi eliminada do sistema
       title: "%{action} o %{date}"
@@ -1354,6 +1356,11 @@ gl:
   reports:
     errors:
       invalid_rules: non fai referencia a regras válidas
+  rss:
+    content_warning: 'Aviso sobre o contido:'
+    descriptions:
+      account: Publicacións públicas de @%{acct}
+      tag: 'Publicacións públicas con #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Excedeches o límite de %{limit} publicacións programadas para ese día
     over_total_limit: Excedeches o límite de %{limit} publicacións programadas
@@ -1512,6 +1519,9 @@ gl:
     pinned: Publicación fixada
     reblogged: promoveu
     sensitive_content: Contido sensible
+  strikes:
+    errors:
+      too_late: É demasiado tarde para recurrir este aviso
   tags:
     does_not_match_previous_name: non concorda co nome anterior
   terms:

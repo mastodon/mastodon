@@ -817,6 +817,7 @@ lv:
           zero: Pēdējās nedēļas laikā kopīgoja %{count} personas
         title: Populārākās saites
         usage_comparison: Šodien kopīgots %{today} reizes, salīdzinot ar %{yesterday} vakar
+      only_allowed: Tikai atļautās
       pending_review: Gaida pārskatīšanu
       preview_card_providers:
         allowed: Šī publicētāja saites var mainīties
@@ -860,6 +861,7 @@ lv:
           other: Pēdējās nedēļas laikā izmantoja %{count} personas
           zero: Pēdējās nedēļas laikā izmantoja %{count} personas
       title: Tendences
+      trending: Tendences
     warning_presets:
       add_new: Pievienot jaunu
       delete: Dzēst
@@ -1051,10 +1053,12 @@ lv:
       appealed_msg: Jūsu apelācija ir iesniegta. Ja tā tiks apstiprināta, jums tiks paziņots.
       appeals:
         submit: Iesniegt apelāciju
+      approve_appeal: Apstiprināt apelāciju
       associated_report: Saistītais ziņojums
       created_at: Datēts
       description_html: Šīs ir darbības, kas veiktas pret tavu kontu, un brīdinājumi, ko tev ir nosūtījuši %{instance} darbinieki.
       recipient: Adresēts
+      reject_appeal: Noraidīt apelāciju
       status: 'Publikācija #%{id}'
       status_removed: Publikācija jau ir noņemta no sistēmas
       title: "%{action} kopš %{date}"
@@ -1373,6 +1377,11 @@ lv:
   reports:
     errors:
       invalid_rules: neatsaucas uz derīgiem noteikumiem
+  rss:
+    content_warning: 'Satura brīdinājums:'
+    descriptions:
+      account: Publiskas ziņas no @%{acct}
+      tag: 'Publiskas ziņas ar atzīmi #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Tu esi pārsniedzis šodien ieplānoto %{limit} ziņu ierobežojumu
     over_total_limit: Tu esi pārsniedzis ieplānoto %{limit} ziņu ierobežojumu
@@ -1537,6 +1546,9 @@ lv:
     pinned: Piespraustā ziņa
     reblogged: paaugstinātās
     sensitive_content: Sensitīvs saturs
+  strikes:
+    errors:
+      too_late: Brīdinājuma apstrīdēšanas laiks ir nokavēts
   tags:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
   terms:
