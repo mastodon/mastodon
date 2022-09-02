@@ -17,6 +17,28 @@ RSpec.describe RemoveStatusService, type: :service do
     hank.follow!(alice)
   end
 
+  context 'when removed status is a group post' do
+    let(:group) { Fabricate(:group) }
+
+    before do
+      group.memberships.create!(account: alice)
+      group.memberships.create!(account: jeff)
+      @status = PostStatusService.new.call(alice, text: 'Hello @bob@example.com ThisIsASecret', group: group, visibility: 'group')
+      FavouriteService.new.call(jeff, @status)
+    end
+
+    it 'removes status from group feed' do
+      subject.call(@status)
+      expect(GroupFeed.new(group, alice).get(10)).to_not include(@status.id)
+    end
+
+    it 'sends a delete notice to the group' do
+      allow(redis).to receive(:publish)
+      subject.call(@status)
+      expect(redis).to have_received(:publish).with("timeline:group:#{group.id}", anything)
+    end
+  end
+
   context 'when removed status is not a reblog' do
     before do
       @status = PostStatusService.new.call(alice, text: 'Hello @bob@example.com ThisIsASecret')

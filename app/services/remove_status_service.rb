@@ -40,6 +40,7 @@ class RemoveStatusService < BaseService
       unless @status.reblog?
         remove_from_mentions
         remove_reblogs
+        remove_from_group
         remove_from_hashtags
         remove_from_public
         remove_from_media if @status.with_media?
@@ -132,6 +133,12 @@ class RemoveStatusService < BaseService
 
     redis.publish('timeline:public:media', @payload)
     redis.publish(@status.local? ? 'timeline:public:local:media' : 'timeline:public:remote:media', @payload)
+  end
+
+  def remove_from_group
+    return unless @status.group_visibility?
+
+    redis.publish("timeline:group:#{@status.group_id}", @payload)
   end
 
   def remove_media
