@@ -6,20 +6,8 @@ import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
 import { me } from 'flavours/glitch/util/initial_state';
 
-const normalizeTimelineId = timelineId => {
-  if (timelineId.startsWith('public:')) {
-    return 'public';
-  }
-
-  if (timelineId.startsWith('community:')) {
-    return 'community';
-  }
-
-  return timelineId;
-};
-
 const getRegex = createSelector([
-  (state, { type }) => state.getIn(['settings', normalizeTimelineId(type), 'regex', 'body']),
+  (state, { regex }) => regex,
 ], (rawRegex) => {
   let regex = null;
 
@@ -32,7 +20,7 @@ const getRegex = createSelector([
 });
 
 const makeGetStatusIds = (pending = false) => createSelector([
-  (state, { type }) => state.getIn(['settings', normalizeTimelineId(type)], ImmutableMap()),
+  (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
   (state, { type }) => state.getIn(['timelines', type, pending ? 'pendingItems' : 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
   getRegex,
@@ -70,8 +58,8 @@ const makeMapStateToProps = () => {
   const getStatusIds = makeGetStatusIds();
   const getPendingStatusIds = makeGetStatusIds(true);
 
-  const mapStateToProps = (state, { timelineId }) => ({
-    statusIds: getStatusIds(state, { type: timelineId }),
+  const mapStateToProps = (state, { timelineId, regex }) => ({
+    statusIds: getStatusIds(state, { type: timelineId, regex }),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
     hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),

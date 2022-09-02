@@ -21,6 +21,7 @@ const mapStateToProps = (state, { columnId }) => {
   const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']);
   const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyRemote']) : state.getIn(['settings', 'public', 'other', 'onlyRemote']);
   const allowLocalOnly = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'allowLocalOnly']) : state.getIn(['settings', 'public', 'other', 'allowLocalOnly']);
+  const regex = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'regex', 'body']) : state.getIn(['settings', 'public', 'regex', 'body']);
   const timelineState = state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`]);
 
   return {
@@ -28,6 +29,7 @@ const mapStateToProps = (state, { columnId }) => {
     onlyMedia,
     onlyRemote,
     allowLocalOnly,
+    regex,
   };
 };
 
@@ -52,6 +54,7 @@ class PublicTimeline extends React.PureComponent {
     onlyMedia: PropTypes.bool,
     onlyRemote: PropTypes.bool,
     allowLocalOnly: PropTypes.bool,
+    regex: PropTypes.string,
   };
 
   handlePin = () => {
@@ -133,6 +136,7 @@ class PublicTimeline extends React.PureComponent {
           scrollKey={`public_timeline-${columnId}`}
           emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
           bindToDocument={!multiColumn}
+          regex={this.props.regex}
         />
       </Column>
     );

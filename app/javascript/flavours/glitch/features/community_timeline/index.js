@@ -19,11 +19,13 @@ const mapStateToProps = (state, { columnId }) => {
   const columns = state.getIn(['settings', 'columns']);
   const index = columns.findIndex(c => c.get('uuid') === uuid);
   const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'community', 'other', 'onlyMedia']);
+  const regex = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'regex', 'body']) : state.getIn(['settings', 'community', 'regex', 'body']);
   const timelineState = state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,
     onlyMedia,
+    regex,
   };
 };
 
@@ -46,6 +48,7 @@ class CommunityTimeline extends React.PureComponent {
     hasUnread: PropTypes.bool,
     multiColumn: PropTypes.bool,
     onlyMedia: PropTypes.bool,
+    regex: PropTypes.string,
   };
 
   handlePin = () => {
@@ -127,6 +130,7 @@ class CommunityTimeline extends React.PureComponent {
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
           bindToDocument={!multiColumn}
+          regex={this.props.regex}
         />
       </Column>
     );

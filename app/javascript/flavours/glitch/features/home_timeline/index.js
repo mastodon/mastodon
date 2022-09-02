@@ -26,6 +26,7 @@ const mapStateToProps = state => ({
   hasAnnouncements: !state.getIn(['announcements', 'items']).isEmpty(),
   unreadAnnouncements: state.getIn(['announcements', 'items']).count(item => !item.get('read')),
   showAnnouncements: state.getIn(['announcements', 'show']),
+  regex: state.getIn(['settings', 'home', 'regex', 'body']),
 });
 
 export default @connect(mapStateToProps)
@@ -42,6 +43,7 @@ class HomeTimeline extends React.PureComponent {
     hasAnnouncements: PropTypes.bool,
     unreadAnnouncements: PropTypes.number,
     showAnnouncements: PropTypes.bool,
+    regex: PropTypes.string,
   };
 
   handlePin = () => {
@@ -154,6 +156,7 @@ class HomeTimeline extends React.PureComponent {
           timelineId='home'
           emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
           bindToDocument={!multiColumn}
+          regex={this.props.regex}
         />
       </Column>
     );
