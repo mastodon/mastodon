@@ -23,7 +23,8 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  ActiveSupport::Logger.new(STDOUT).tap do |logger|
+  # ActiveSupport::Logger.new(STDOUT).tap do |logger|
+  ActiveSupport::Logger.new('log/production.log', 14, 10 * 1024 * 1024).tap do |logger|
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
