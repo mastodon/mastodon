@@ -2,14 +2,14 @@
 
 class SettingsPolicy < ApplicationPolicy
   def update?
-    admin?
+    role.can?(:manage_settings)
   end
 
   def show?
-    admin?
+    role.can?(:manage_settings)
   end
 
   def destroy?
-    admin?
+    role.can?(:manage_settings)
   end
 end

@@ -83,10 +83,8 @@ fr:
     posts_tab_heading: Messages
     posts_with_replies: Messages et réponses
     roles:
-      admin: Admin
       bot: Robot
       group: Groupe
-      moderator: Modérateur·trice
     unavailable: Profil non disponible
     unfollow: Ne plus suivre
   admin:
@@ -105,12 +103,17 @@ fr:
       avatar: Avatar
       by_domain: Domaine
       change_email:
-        changed_msg: Courriel du compte modifié avec succès !
+        changed_msg: Courriel modifié avec succès !
         current_email: Courriel actuel
         label: Modifier le courriel
         new_email: Nouveau courriel
         submit: Modifier le courriel
         title: Modifier le courriel pour %{username}
+      change_role:
+        changed_msg: Rôle modifié avec succès !
+        label: Modifier le rôle
+        no_role: Aucun rôle
+        title: Modifier le rôle de %{username}
       confirm: Confirmer
       confirmed: Confirmé
       confirming: Confirmation
@@ -154,6 +157,7 @@ fr:
         active: Actifs
         all: Tous
         pending: En cours de traitement
+        silenced: Limité
         suspended: Suspendus
         title: Modération
       moderation_notes: Notes de modération
@@ -161,6 +165,7 @@ fr:
       most_recent_ip: Adresse IP la plus récente
       no_account_selected: Aucun compte n’a été modifié, car aucun n’a été sélectionné
       no_limits_imposed: Aucune limite imposée
+      no_role_assigned: Aucun rôle assigné
       not_subscribed: Non abonné
       pending: En attente d’approbation
       perform_full_suspension: Suspendre
@@ -187,12 +192,7 @@ fr:
       reset: Réinitialiser
       reset_password: Réinitialiser le mot de passe
       resubscribe: Se réabonner
-      role: Permissions
-      roles:
-        admin: Administrateur
-        moderator: Modérateur
-        staff: Équipe
-        user: Utilisateur
+      role: Rôle
       search: Rechercher
       search_same_email_domain: Autres utilisateurs·trices avec le même domaine de courriel
       search_same_ip: Autres utilisateur·rice·s avec la même IP
@@ -234,7 +234,7 @@ fr:
         approve_appeal: Approuver l'appel
         approve_user: Approuver l’utilisateur
         assigned_to_self_report: Affecter le signalement
-        change_email_user: Modifier le courriel pour
+        change_email_user: Modifier le courriel pour ce compte
         confirm_user: Confirmer l’utilisateur
         create_account_warning: Créer une alerte
         create_announcement: Créer une annonce
@@ -481,8 +481,8 @@ fr:
     instances:
       availability:
         description_html:
-          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
-          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong> sans succès, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine soit reçue.
+          one: Si la livraison au domaine échoue pendant <strong>%{count} jour</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
+          other: Si la livraison au domaine échoue pendant <strong>%{count} jours différents</strong>, aucune autre tentative de livraison ne sera faite à moins qu'une livraison <em>depuis</em> le domaine ne soit reçue.
         failure_threshold_reached: Le seuil de défaillance a été atteint le %{date}.
         failures_recorded:
           one: Tentative échouée pendant %{count} jour.
@@ -649,6 +649,67 @@ fr:
       unresolved: Non résolus
       updated_at: Mis à jour
       view_profile: Voir le profil
+    roles:
+      add_new: Ajouter un rôle
+      assigned_users:
+        one: "%{count} utilisateur·rice"
+        other: "%{count} utilisateur·rice·s"
+      categories:
+        administration: Administration
+        devops: Devops
+        invites: Invitations
+        moderation: Modération
+        special: Spécial
+      delete: Supprimer
+      description_html: Les <strong>rôles utilisateur</strong> vous permettent de personnaliser les fonctions et les zones de Mastodon auxquelles vos utilisateur⋅rice⋅s peuvent accéder.
+      edit: Modifier le rôle '%{name}'
+      everyone: Autorisations par défaut
+      everyone_full_description_html: Ceci est le <strong>rôle de base</strong> qui impacte <strong>tou⋅te⋅s les utilisateur⋅rice⋅s</strong>, même celleux sans rôle assigné. Tous les autres rôles héritent des autorisations de celui-ci.
+      permissions_count:
+        one: "%{count} autorisation"
+        other: "%{count} autorisations"
+      privileges:
+        administrator: Administrateur·rice
+        administrator_description: Les utilisateur⋅rice⋅s ayant cette autorisation pourront contourner toutes les autorisations
+        delete_user_data: Supprimer les données de l'utilisateur⋅rice
+        delete_user_data_description: Permet aux utilisateur⋅rice⋅s de supprimer sans délai les données des autres utilisateur⋅rice⋅s
+        invite_users: Inviter des utilisateur⋅rice⋅s
+        invite_users_description: Permet aux utilisateur⋅rice⋅s d'inviter de nouvelles personnes sur le serveur
+        manage_announcements: Gérer les annonces
+        manage_announcements_description: Permet aux utilisateur⋅rice⋅s de gérer les annonces sur le serveur
+        manage_appeals: Gérer les contestations
+        manage_appeals_description: Permet aux utilisateur⋅rice⋅s d'examiner les appels contre les actions de modération
+        manage_blocks: Gérer les blocages
+        manage_blocks_description: Permet aux utilisateur⋅rice⋅s de bloquer des fournisseurs de courriel et des adresses IP
+        manage_custom_emojis: Gérer les émojis personnalisés
+        manage_custom_emojis_description: Permet aux utilisateur⋅rice⋅s de gérer les émoticônes personnalisées sur le serveur
+        manage_federation: Gérer de la féderation
+        manage_federation_description: Permet aux utilisateur⋅rice⋅s de bloquer ou d'autoriser la fédération avec d'autres domaines, et de contrôler la capacité de livraison
+        manage_invites: Gérer les invitations
+        manage_invites_description: Permet aux utilisateur⋅rice⋅s de parcourir et de désactiver les liens d'invitation
+        manage_reports: Gérer les rapports
+        manage_reports_description: Permet aux utilisateur⋅rice⋅s d'examiner les signalements et d'effectuer des actions de modération en conséquence
+        manage_roles: Gérer les rôles
+        manage_roles_description: Permet aux utilisateur⋅rice⋅s de gérer et d'assigner des rôles inférieurs au leur
+        manage_rules: Gérer les règles
+        manage_rules_description: Permet aux utilisateur·rice·s de modifier les règles du serveur
+        manage_settings: Gérer les paramètres
+        manage_settings_description: Permet aux utilisateur·rice·s de modifier les paramètres du site
+        manage_taxonomies: Gérer les taxonomies
+        manage_taxonomies_description: Permet aux utilisateur⋅rice⋅s d'examiner les contenus tendance et de mettre à jour les paramètres des hashtags
+        manage_user_access: Gérer l'accès utilisateur
+        manage_user_access_description: Permet aux utilisateur⋅rice⋅s de désactiver l'authentification à deux facteurs, de modifier l'adresse courriel et de réinitialiser le mot de passe des autres utilisateur⋅rice⋅s
+        manage_users: Gérer les utilisateur·rice·s
+        manage_users_description: Permet aux utilisateur⋅rice⋅s de voir les détails des autres utilisateur⋅rice⋅s et d'effectuer des actions de modération en conséquence
+        manage_webhooks: Gérer les points d’ancrage web
+        manage_webhooks_description: Permet aux utilisateur⋅rice⋅s de configurer des webhooks pour des événements d'administration
+        view_audit_log: Afficher le journal d'audit
+        view_audit_log_description: Permet aux utilisateur⋅rice⋅s de voir l'historique des opérations d'administration sur le serveur
+        view_dashboard: Voir le tableau de bord
+        view_dashboard_description: Permet aux utilisateur⋅rice⋅s d'accéder au tableau de bord et à diverses statistiques
+        view_devops: Devops
+        view_devops_description: Permet aux utilisateur⋅rice⋅s d'accéder aux tableaux de bord Sidekiq et pgHero
+      title: Rôles
     rules:
       add_new: Ajouter une règle
       delete: Supprimer
@@ -701,9 +762,6 @@ fr:
         deletion:
           desc_html: Permettre à tou·te·s les utilisateur·rice·s de supprimer leur compte
           title: Autoriser les suppressions de compte
-        min_invite_role:
-          disabled: Personne
-          title: Autoriser les invitations par
         require_invite_text:
           desc_html: Lorsque les enregistrements nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
           title: Exiger que les nouveaux utilisateurs remplissent un texte de demande d’invitation
@@ -716,9 +774,6 @@ fr:
       show_known_fediverse_at_about_page:
         desc_html: Lorsque désactivée, restreint le fil public accessible via la page d’accueil de l’instance pour ne montrer que le contenu local
         title: Inclure le contenu fédéré sur la page de fil public sans authentification
-      show_staff_badge:
-        desc_html: Montrer un badge de responsable sur une page utilisateur·rice
-        title: Montrer un badge de responsable
       site_description:
         desc_html: Paragraphe introductif sur l'API. Décrivez les particularités de ce serveur Mastodon et précisez toute autre chose qui vous semble importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du serveur
@@ -868,6 +923,7 @@ fr:
       events: Événements
       new: Nouveau point d’ancrage web
       rotate_secret: Effectuer une rotation du secret
+      secret: Jeton de connexion
       status: État
       title: Points d’ancrage web
       webhook: Point d’ancrage web
@@ -1123,15 +1179,24 @@ fr:
       public: Fils publics
       thread: Discussions
     edit:
+      add_keyword: Ajouter un mot-clé
+      keywords: Mots-clés
       title: Éditer le filtre
     errors:
+      deprecated_api_multiple_keywords: Ces paramètres ne peuvent pas être modifiés depuis cette application, car ils s'appliquent à plus d'un filtre de mot-clé. Utilisez une application plus récente ou l'interface web.
       invalid_context: Contexte invalide ou insuffisant
-      invalid_irreversible: Le filtrage irréversible ne fonctionne que pour l’accueil et les notifications
     index:
+      contexts: Filtres dans %{contexts}
       delete: Supprimer
       empty: Vous n'avez aucun filtre.
+      expires_in: Expire dans %{distance}
+      expires_on: Expire le %{date}
+      keywords:
+        one: "%{count} mot-clé"
+        other: "%{count} mots-clés"
       title: Filtres
     new:
+      save: Enregistrer le nouveau filtre
       title: Ajouter un nouveau filtre
   footer:
     developers: Développeurs
@@ -1250,6 +1315,8 @@ fr:
     copy_account_note_text: 'Cet·te utilisateur·rice est parti·e de %{acct}, voici vos notes précédentes à son sujet :'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} a soumis un signalement"
       sign_up:
         subject: "%{name} s'est inscrit·e"
     digest:
@@ -1544,6 +1611,87 @@ fr:
   tags:
     does_not_match_previous_name: ne correspond pas au nom précédent
   terms:
+    body_html: |
+      <h2>Politique de confidentialité</h2>
+      <h3 id="collect">Quelles informations collectons-nous ?</h3>
+
+      <ul>
+        <li><em>Informations de base sur votre compte </em>: si vous vous inscrivez sur ce serveur, il vous sera demandé de rentrer un identifiant, une adresse électronique et un mot de passe. Vous pourrez également ajouter des informations additionnelles sur votre profil, telles qu’un nom public et une biographie, ainsi que téléverser une image de profil et une image d’en-tête. Vos identifiant, nom public, biographie, image de profil et image d’en-tête seront toujours affichés publiquement.</li>
+        <li><em>Posts, liste d’abonnements et autres informations publiques </em>: la liste de vos abonnements ainsi que la liste de vos abonné·e·s sont publiques. Quand vous postez un message, la date et l’heure d’envoi ainsi que le nom de l’application utilisée pour sa transmission sont enregistré·e·s. Des médias, tels que des images ou des vidéos, peuvent être joints aux messages. Les posts publics et non listés sont affichés publiquement. Quand vous mettez en avant un post sur votre profil, ce post est également affiché publiquement. Vos messages sont délivrés à vos abonné·e·s, ce qui, dans certains cas, signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Quand vous supprimez un post, il est probable que l'action soit aussi délivrée à vos abonné·e·s. Partager un message ou le marquer comme favori est toujours une action publique.</li>
+        <li><em>Posts directs et abonné·e·s uniquement </em>: tous les posts sont stockés et traités par le serveur. Les messages abonné·e·s uniquement ne sont transmis qu’à vos abonné·e·s et aux personnes mentionnées dans le corps du message, tandis que les messages directs ne sont transmis qu’aux personnes mentionnées. Dans certains cas, cela signifie qu’ils sont délivrés à des serveurs tiers et que ces derniers en stockent une copie. Nous faisons un effort de bonne foi pour en limiter l’accès uniquement aux personnes autorisées, mais ce n’est pas nécessairement le cas des autres serveurs. Il est donc très important que vous vérifiiez les serveurs auxquels appartiennent vos abonné·e·s. Il vous est possible d’activer une option dans les paramètres afin d’approuver et de rejeter manuellement les nouveaux·lles abonné·e·s. <em>Gardez s’il vous plaît en mémoire que les opérateur·rice·s du serveur ainsi que celles et ceux de n’importe quel serveur récepteur peuvent voir ces messages</em>, et qu’il est possible pour les destinataires de faire des captures d’écran, de copier et plus généralement de repartager ces messages. <em>Ne partagez aucune information sensible à l’aide de Mastodon !</em></li>
+        <li><em>IP et autres métadonnées </em>: quand vous vous connectez, nous enregistrons votre adresse IP ainsi que le nom de votre navigateur web. Toutes les sessions enregistrées peuvent être consultées dans les paramètres, afin que vous puissiez les surveiller et éventuellement les révoquer. La dernière adresse IP utilisée est conservée pour une durée de 12 mois. Nous sommes également susceptibles de conserver les journaux du serveur, ce qui inclut l’adresse IP de chaque requête reçue.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">Que faisons-nous des informations vous concernant ?</h3>
+
+      <p>Toutes les informations que nous collectons sur vous peuvent être utilisées des manières suivantes :</p>
+
+      <ul>
+        <li>pour vous fournir les fonctionnalités de base de Mastodon. Vous ne pouvez interagir avec le contenu des autres et poster votre propre contenu que lorsque vous êtes connecté·e. Par exemple, vous pouvez vous abonner à plusieurs autres comptes pour voir l’ensemble de leurs posts dans votre fil d’accueil personnalisé ;</li>
+        <li>pour aider à la modération de la communauté : par exemple, comparer votre adresse IP avec d’autres afin de déterminer si un bannissement a été contourné ou si une autre infraction aux règles a été commise ;</li>
+        <li>l’adresse électronique que vous nous avez fournie peut être utilisée pour vous envoyer des informations, des notifications lorsque d’autres personnes interagissent avec votre contenu ou vous envoient des messages, pour répondre à des demandes de votre part ainsi que pour toutes autres requêtes ou questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">Comment protégeons-nous vos informations ?</h3>
+
+      <p>Nous mettons en œuvre une variété de mesures de sécurité afin de garantir la sécurité de vos informations personnelles quand vous les saisissez, les soumettez et les consultez. Entre autres choses, votre session de navigation ainsi que le trafic entre votre application et l’API sont protégées par un certificat SSL ; tandis que votre mot de passe est haché à l'aide d'un puissant algorithme à sens unique. Vous pouvez également activer l’authentification à deux facteurs pour sécuriser encore plus l’accès à votre compte.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">Quelle est notre politique de conservation des données ?</h3>
+
+      <p>Nous ferons un effort de bonne foi pour :</p>
+
+      <ul>
+        <li>ne pas conserver plus de 90 jours les journaux systèmes contenant les adresses IP de toutes les requêtes reçues par ce serveur ;</li>
+        <li>ne pas conserver plus de 12 mois les adresses IP associées aux utilisateur·ice·s enregistré·e·s.</li>
+      </ul>
+
+      <p>Vous pouvez demander à télécharger une archive de votre contenu, incluant vos posts, vos médias joints, votre image de profil et votre image d’en-tête.</p>
+
+      <p>Vous pouvez supprimer votre compte de manière définitive à tout moment.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Utilisons-nous des témoins de connexion ?</h3>
+
+      <p>Oui. Les témoins de connexion sont de petits fichiers qu’un site ou un service transfère sur le disque dur de votre ordinateur via votre navigateur web (si vous l’y avez autorisé). Ces témoins permettent au site de reconnaître votre navigateur et, dans le cas où vous possédez un compte, de vous associer avec ce dernier.</p>
+
+      <p>Nous utilisons les témoins de connexion afin de comprendre et de sauvegarder vos préférences pour vos prochaines visites.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Divulguons-nous des informations à des tiers ?</h3>
+
+      <p>Nous ne vendons, n’échangeons ou ne transférons d’une quelconque manière que ce soit des informations permettant de vous identifier personnellement. Cela n’inclut pas les tiers de confiance qui nous aident à faire fonctionner ce site, à conduire nos activités commerciales ou à vous servir, du moment qu’ils acceptent de garder ces informations confidentielles. Nous sommes également susceptibles de partager vos informations quand nous pensons que cela est nécessaire pour nous conformer à la loi, pour faire respecter les règles de notre site, ainsi que pour défendre nos droits, notre propriété, notre sécurité, ou ceux d’autres personnes.</p>
+
+      <p>Votre contenu public peut être téléchargé par d’autres serveurs du réseau. Dans le cas où vos abonné·e·s et vos destinataires résident sur des serveurs différents du vôtre, vos posts publics et abonné·e·s uniquement sont délivrés vers les serveurs de vos abonné·e·s tandis que vos messages directs sont délivrés aux serveurs de vos destinataires.</p>
+
+      <p>Quand vous autorisez une application à utiliser votre compte, en fonction de l’étendue des permissions que vous approuvez, il est possible qu’elle puisse accéder aux informations publiques de votre profil, à votre liste d’abonnements, votre liste d’abonné·e·s, vos listes, tous vos posts et vos favoris. Les applications ne peuvent en aucun cas accéder à votre adresse électronique et à votre mot de passe.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Utilisation de ce site par les enfants</h3>
+
+      <p>Si ce serveur est situé dans l’UE ou l’EEE : notre site, nos produits et nos services sont tous destinés à des personnes âgées de 16 ans ou plus. Si vous avez moins de 16 ans, en application du RGPD (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Réglement Général sur la Protection des Données</a>), merci de ne pas utiliser ce site.</p>
+
+      <p>Si ce serveur est situé aux États-Unis d’Amérique : notre site, nos produits et nos services sont tous destinés à des personnes âgées de 13 ans ou plus. Si vous avez moins de 13 ans, en application du COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>), merci de ne pas utiliser ce site.</p>
+
+      <p>Les exigences légales peuvent être différentes si ce serveur dépend d'une autre juridiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Modifications de notre politique de confidentialité</h3>
+
+      <p>Dans le cas où nous déciderions de changer notre politique de confidentialité, nous posterons les modifications sur cette page.</p>
+
+      <p>Ce document est publié sous licence CC-BY-SA. Il a été mis à jour pour la dernière fois le 26 mai 2022.</p>
+
+      <p>Initialement adapté de la <a href="https://github.com/discourse/discourse">politique de confidentialité de Discourse</a>.</p>
     title: Conditions d’utilisation et politique de confidentialité de %{instance}
   themes:
     contrast: Mastodon (Contraste élevé)

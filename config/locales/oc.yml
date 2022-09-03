@@ -71,10 +71,8 @@ oc:
     posts_tab_heading: Tuts
     posts_with_replies: Tuts e responsas
     roles:
-      admin: Admin
       bot: Robòt
       group: Grop
-      moderator: Moderador
     unavailable: Perfil indisponible
     unfollow: Quitar de sègre
   admin:
@@ -92,7 +90,6 @@ oc:
       avatar: Avatar
       by_domain: Domeni
       change_email:
-        changed_msg: Adreça corrèctament cambiada !
         current_email: Adreça actuala
         label: Cambiar d’adreça
         new_email: Novèla adreça
@@ -160,12 +157,6 @@ oc:
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
-      role: Autorizacions
-      roles:
-        admin: Administrator
-        moderator: Moderador
-        staff: Personnal
-        user: Uitlizaire
       search: Cercar
       search_same_ip: Autres utilizaires amb la meteissa IP
       security_measures:
@@ -475,9 +466,6 @@ oc:
         deletion:
           desc_html: Autorizar lo monde a suprimir lor compte
           title: Possibilitat de suprimir lo compte
-        min_invite_role:
-          disabled: Degun
-          title: Autorizat amb invitacions
       registrations_mode:
         modes:
           approved: Validacion necessària per s’inscriure
@@ -487,9 +475,6 @@ oc:
       show_known_fediverse_at_about_page:
         desc_html: Un còp activat mostrarà los tuts de totes los fediverse dins l’apercebut. Autrament mostrarà pas que los tuts locals.
         title: Mostrar los fediverse coneguts dins l’apercebut del flux
-      show_staff_badge:
-        desc_html: Mostrar lo badge Personal sus la pagina de perfil
-        title: Mostrar lo badge personal
       site_description:
         desc_html: Paragraf d’introduccion sus la pagina d’acuèlh. Explicatz çò que fa diferent aqueste servidor Mastodon e tot çò qu’es important de dire. Podètz utilizare de balises HTML, en particular <code>&lt;a&gt;</code> e<code>&lt;em&gt;</code>.
         title: Descripcion del servidor
@@ -711,7 +696,6 @@ oc:
       title: Modificar lo filtre
     errors:
       invalid_context: Cap de contèxte o contèxte invalid fornit
-      invalid_irreversible: Lo filtratge irreversible fonciona pas qu’amb lo flux d’actualitat o en contèxte de notificacion
     index:
       delete: Suprimir
       empty: Avètz pas cap de filtre.

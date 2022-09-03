@@ -247,6 +247,11 @@ module AccountInteractions
     account_pins.where(target_account: account).exists?
   end
 
+  def status_matches_filters(status)
+    active_filters = CustomFilter.cached_filters_for(id)
+    CustomFilter.apply_cached_filters(active_filters, status)
+  end
+
   def followers_for_local_distribution
     followers.local
              .joins(:user)

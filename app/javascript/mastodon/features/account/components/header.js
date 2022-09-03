@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me, isStaff } from 'mastodon/initial_state';
+import { autoPlayGif, me } from 'mastodon/initial_state';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import IconButton from 'mastodon/components/icon_button';
@@ -14,6 +14,7 @@ import ShortNumber from 'mastodon/components/short_number';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
+import { PERMISSION_MANAGE_USERS } from 'mastodon/permissions';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -63,6 +64,10 @@ const dateFormatOptions = {
 
 export default @injectIntl
 class Header extends ImmutablePureComponent {
+
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
     account: ImmutablePropTypes.map,
@@ -241,7 +246,7 @@ class Header extends ImmutablePureComponent {
       }
     }
 
-    if (account.get('id') !== me && isStaff) {
+    if (account.get('id') !== me && (this.context.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${account.get('id')}` });
     }

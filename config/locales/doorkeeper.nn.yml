@@ -60,6 +60,7 @@ nn:
       error:
         title: Ein feil har oppstått
       new:
+        prompt_html: "%{client_name} ønsker tilgang til kontoen din. Det er ein tredjepartsapplikasjon. <strong>Dersom du ikkje stolar på den, bør du ikkje autorisere det.</strong>"
         title: Autorisasjon nødvendig
       show:
         title: Kopier denne autorisasjonskoden og lim den inn i applikasjonen.
@@ -69,6 +70,9 @@ nn:
       confirmations:
         revoke: Er du sikker?
       index:
+        authorized_at: Autorisert den %{date}
+        last_used_at: Sist brukt den %{date}
+        never_used: Aldri brukt
         title: Dine autoriserte applikasjonar
     errors:
       messages:
@@ -104,6 +108,25 @@ nn:
       authorized_applications:
         destroy:
           notice: App avvist.
+    grouped_scopes:
+      title:
+        accounts: Kontoar
+        admin/accounts: Kontoadministrasjon
+        admin/all: Alle administrative funksjonar
+        admin/reports: Rapportadministrasjon
+        all: Alt
+        bookmarks: Bokmerke
+        conversations: Samtalar
+        crypto: Ende-til-ende-kryptering
+        favourites: Favorittar
+        filters: Filter
+        lists: Lister
+        media: Mediavedlegg
+        mutes: Målbindingar
+        notifications: Varsel
+        reports: Rapportar
+        search: Søk
+        statuses: Innlegg
     layouts:
       admin:
         nav:
@@ -118,6 +141,7 @@ nn:
       admin:write: modifisere alle data på tjeneren
       admin:write:accounts: utføre moderatorhandlinger på kontoer
       admin:write:reports: utføre moderatorhandlinger på rapporter
+      crypto: bruk ende-til-ende-kryptering
       follow: følg, blokkér, avblokkér, avfølg brukere
       push: motta dine varsler
       read: lese dine data
@@ -132,12 +156,13 @@ nn:
       read:notifications: sjå varsla dine
       read:reports: sjå rapportane dine
       read:search: søke på dine vegne
-      read:statuses: sjå alle statusar
+      read:statuses: sjå alle innlegg
       write: poste på dine vegne
-      write:accounts: rediger profilen din
+      write:accounts: redigera profilen din
       write:blocks: blokker kontoar og domene
       write:bookmarks: bokmerk statusar
-      write:favourites: merk statusar som favoritt
+      write:conversations: målbind og slett samtalar
+      write:favourites: merk innlegg som favoritt
       write:filters: lag filter
       write:follows: fylg folk
       write:lists: lag lister
@@ -145,4 +170,4 @@ nn:
       write:mutes: målbind folk og samtalar
       write:notifications: tøm varsla dine
       write:reports: rapporter andre folk
-      write:statuses: legg ut statusar
+      write:statuses: publiser innlegg

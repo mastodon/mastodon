@@ -102,7 +102,8 @@ code {
         }
       }
 
-      .recommended {
+      .recommended,
+      .not_recommended {
         position: absolute;
         margin: 0 4px;
         margin-top: -2px;
@@ -254,6 +255,10 @@ code {
     ul {
       columns: 2;
     }
+  }
+
+  .input.with_block_label.user_role_permissions_as_keys ul {
+    columns: unset;
   }
 
   .input.datetime .label_input select {
@@ -1068,5 +1073,36 @@ code {
       border-bottom: 0;
       padding-bottom: 0;
     }
+  }
+}
+
+.keywords-table {
+  thead {
+    th {
+      white-space: nowrap;
+    }
+
+    th:first-child {
+      width: 100%;
+    }
+  }
+
+  tfoot {
+    td {
+      border: 0;
+    }
+  }
+
+  .input.string {
+    margin-bottom: 0;
+  }
+
+  .label_input__wrapper {
+    margin-top: 10px;
+  }
+
+  .table-action-link {
+    margin-top: 10px;
+    white-space: nowrap;
   }
 }

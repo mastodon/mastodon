@@ -28,6 +28,31 @@ RSpec.describe ReportService, type: :service do
     end
   end
 
+  context 'when the reported status is a DM' do
+    let(:target_account) { Fabricate(:account) }
+    let(:status) { Fabricate(:status, account: target_account, visibility: :direct) }
+
+    subject do
+      -> { described_class.new.call(source_account, target_account, status_ids: [status.id]) }
+    end
+
+    context 'when it is addressed to the reporter' do
+      before do
+        status.mentions.create(account: source_account)
+      end
+
+      it 'creates a report' do
+        is_expected.to change { target_account.targeted_reports.count }.from(0).to(1)
+      end
+    end
+
+    context 'when it is not addressed to the reporter' do
+      it 'errors out' do
+        is_expected.to raise_error
+      end
+    end
+  end
+
   context 'when other reports already exist for the same target' do
     let!(:target_account) { Fabricate(:account) }
     let!(:other_report)   { Fabricate(:report, target_account: target_account) }

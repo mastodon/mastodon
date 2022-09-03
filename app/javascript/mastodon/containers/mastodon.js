@@ -26,6 +26,7 @@ const createIdentityContext = state => ({
   signedIn: !!state.meta.me,
   accountId: state.meta.me,
   accessToken: state.meta.access_token,
+  permissions: state.role.permissions,
 });
 
 export default class Mastodon extends React.PureComponent {

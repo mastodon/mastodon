@@ -2,7 +2,7 @@
 
 class REST::Admin::ReportSerializer < ActiveModel::Serializer
   attributes :id, :action_taken, :action_taken_at, :category, :comment,
-             :created_at, :updated_at
+             :forwarded, :created_at, :updated_at
 
   has_one :account, serializer: REST::Admin::AccountSerializer
   has_one :target_account, serializer: REST::Admin::AccountSerializer

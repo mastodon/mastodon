@@ -82,7 +82,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def check_enabled_registrations
-    redirect_to root_path if single_user_mode? || omniauth_only? || !allowed_registrations?
+    redirect_to root_path if single_user_mode? || omniauth_only? || !allowed_registrations? || ip_blocked?
   end
 
   def allowed_registrations?
@@ -91,6 +91,10 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def omniauth_only?
     ENV['OMNIAUTH_ONLY'] == 'true'
+  end
+
+  def ip_blocked?
+    IpBlock.where(severity: :sign_up_block).where('ip >>= ?', request.remote_ip.to_s).exists?
   end
 
   def invite_code

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
   render_views
 
-  let(:role)   { 'admin' }
+  let(:role)   { UserRole.find_by(name: 'Admin') }
   let(:user)   { Fabricate(:user, role: role) }
   let(:scopes) { 'admin:read admin:write' }
   let(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
@@ -21,7 +21,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
   end
 
   shared_examples 'forbidden for wrong role' do |wrong_role|
-    let(:role) { wrong_role }
+    let(:role) { UserRole.find_by(name: wrong_role) }
 
     it 'returns http forbidden' do
       expect(response).to have_http_status(403)
@@ -36,8 +36,8 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
-    it_behaves_like 'forbidden for wrong role', 'user'
-    it_behaves_like 'forbidden for wrong role', 'moderator'
+    it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
       expect(response).to have_http_status(200)
@@ -58,8 +58,8 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
-    it_behaves_like 'forbidden for wrong role', 'user'
-    it_behaves_like 'forbidden for wrong role', 'moderator'
+    it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
       expect(response).to have_http_status(200)
@@ -79,8 +79,8 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
-    it_behaves_like 'forbidden for wrong role', 'user'
-    it_behaves_like 'forbidden for wrong role', 'moderator'
+    it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
       expect(response).to have_http_status(200)
@@ -99,8 +99,8 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
     end
 
     it_behaves_like 'forbidden for wrong scope', 'write:statuses'
-    it_behaves_like 'forbidden for wrong role', 'user'
-    it_behaves_like 'forbidden for wrong role', 'moderator'
+    it_behaves_like 'forbidden for wrong role', ''
+    it_behaves_like 'forbidden for wrong role', 'Moderator'
 
     it 'returns http success' do
       expect(response).to have_http_status(200)

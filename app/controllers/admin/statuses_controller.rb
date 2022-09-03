@@ -14,6 +14,8 @@ module Admin
     end
 
     def batch
+      authorize :status, :index?
+
       @status_batch_action = Admin::StatusBatchAction.new(admin_status_batch_action_params.merge(current_account: current_account, report_id: params[:report_id], type: action_from_button))
       @status_batch_action.save!
     rescue ActionController::ParameterMissing

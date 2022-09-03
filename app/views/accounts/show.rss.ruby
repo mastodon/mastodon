@@ -28,7 +28,7 @@ RSS::Builder.build do |doc|
       end
 
       status.tags.each do |tag|
-        item.category(tag.name)
+        item.category(tag.display_name)
       end
     end
   end

@@ -83,10 +83,8 @@ sq:
     posts_tab_heading: Mesazhe
     posts_with_replies: Mesazhe dhe përgjigje
     roles:
-      admin: Përgjegjës
       bot: Robot
       group: Grup
-      moderator: Moderator
     unavailable: Profil jashtë funksionimi
     unfollow: Resht së ndjekuri
   admin:
@@ -105,12 +103,17 @@ sq:
       avatar: Avatar
       by_domain: Përkatësi
       change_email:
-        changed_msg: Email-i i llogarisë u ndryshua me sukses!
+        changed_msg: Email-i u ndryshua me sukses!
         current_email: Email-i i tanishëm
         label: Ndrysho email-in
         new_email: Email i ri
         submit: Ndrysho email-in
         title: Ndrysho email-in për %{username}
+      change_role:
+        changed_msg: Roli u ndryshua me sukses!
+        label: Ndryshoni rol
+        no_role: Pa rol
+        title: Ndryshoni rolin për %{username}
       confirm: Ripohojeni
       confirmed: U ripohua
       confirming: Po ripohohet
@@ -154,6 +157,7 @@ sq:
         active: Aktiv
         all: Krejt
         pending: Pezull
+        silenced: I kufizuar
         suspended: Të pezulluara
         title: Moderim
       moderation_notes: Shënime moderimesh
@@ -161,6 +165,7 @@ sq:
       most_recent_ip: IP-ja më e freskët
       no_account_selected: S’u ndryshua ndonjë llogari, ngaqë s’u përzgjodh ndonjë
       no_limits_imposed: Pa imponim kufijsh
+      no_role_assigned: Pa rol të caktuar
       not_subscribed: Jo i pajtuar
       pending: Në pritje të shqyrtimit
       perform_full_suspension: Pezulloje
@@ -187,12 +192,7 @@ sq:
       reset: Riktheje te parazgjedhjet
       reset_password: Ricaktoni fjalëkalimin
       resubscribe: Ripajtohuni
-      role: Leje
-      roles:
-        admin: Përgjegjës
-        moderator: Moderator
-        staff: Staf
-        user: Përdorues
+      role: Rol
       search: Kërkoni
       search_same_email_domain: Të tjerë përdorues me të njëjtën përkatësi email-i
       search_same_ip: Të tjerë përdorues me të njëjtën IP
@@ -648,6 +648,65 @@ sq:
       unresolved: Të pazgjidhur
       updated_at: U përditësua më
       view_profile: Shihni profilin
+    roles:
+      add_new: Shtoni rol
+      assigned_users:
+        one: "%{count} përdorues"
+        other: "%{count} përdorues"
+      categories:
+        administration: Administrim
+        invites: Ftesa
+        moderation: Moderim
+        special: Special
+      delete: Fshije
+      description_html: Me <strong>role përdoruesi</strong>, mund të përshtatni cilat funksione dhe fusha të Mastodon-it mund të përdorin përdoruesit tuaj.
+      edit: Përpunoni rolin e '%{name}'
+      everyone: Leje parazgjedhje
+      everyone_full_description_html: Ky është <strong>roli bazë</strong> që prek <strong>krejt përdoruesit</strong>, madje edhe ata pa një rol të caktuar. Krejt rolet e tjerë trashëgojnë lejet prej tij.
+      permissions_count:
+        one: "%{count} leje"
+        other: "%{count} leje"
+      privileges:
+        administrator: Përgjegjës
+        administrator_description: Përdoruesit me këtë leje do të anashkalojnë çdo leje
+        delete_user_data: Të Fshijë të Dhëna Përdoruesi
+        delete_user_data_description: U lejon përdoruesve të fshijnë pa humbur kohë të dhëna përdoruesish të tjerë
+        invite_users: Të Ftojë Përdorues
+        invite_users_description: U lejon përdruesve të ftojë te shërbyesi persona të rinj
+        manage_announcements: Të Administrojë Njoftime
+        manage_announcements_description: U lejon përdoruesve të administrojë njoftime te shërbyesi
+        manage_appeals: Të Administrojë Apelime
+        manage_appeals_description: U lejon përdoruesve të shqyrtojnë apelime kundër veprimesh moderimi
+        manage_blocks: Të Administrojë Bllokim
+        manage_blocks_description: U lejon përdoruesve të bllokojnë shërbime email dhe adresa IP
+        manage_custom_emojis: Të Administrojë Emoxhi Vetjake
+        manage_custom_emojis_description: U lejon përdoruesve të administrojnë te shërbyesi emoxhi vetjake
+        manage_federation: Të Administrjë Federim
+        manage_federation_description: U lejon përdoruesve të bllokojnë ose lejojnë federim me përkatësi të tjera dhe të kontrollojnë shpërndarjen
+        manage_invites: Të Administrojë Ftesa
+        manage_invites_description: U lejon përdoruesve të shfletojnë dhe çaktivizojnë lidhje ftesash
+        manage_reports: Të Administrojë Raportime
+        manage_reports_description: U lejon përdruesve të shqyrtojnë raportime dhe kryejnë veprime moderimi ndaj tyre
+        manage_roles: Të Administrojë Role
+        manage_roles_description: U lejon përdoruesve të administrojnë dhe caktojnë role nën të tyret
+        manage_rules: Të Administrojë Rregulla
+        manage_rules_description: U lejon përdoruesve të ndryshojnë rregulla shërbyesi
+        manage_settings: Të Administrojë Rregullime
+        manage_settings_description: U lejon përdoruesve të ndryshojnë rregullime sajti
+        manage_taxonomies: Të Administrojë Klasifikime
+        manage_taxonomies_description: U lejon përdoruesve të shqyrtojnë lëndë në modë dhe të përditësojnë rregullime hashtag-ësh
+        manage_user_access: Të Administrojë Hyrje Përdoruesi
+        manage_user_access_description: U lejon përdoruesve të çaktivizojnë mirëfilltësim dyfaktorësh për përdorues të tjerë, të ndryshojnë adresa të tyret email dhe të ricaktojnë fjalëkalimet e tyre
+        manage_users: Të Administrojë Përdorues
+        manage_users_description: U lejon përdoruesve të shohin hollësi përdoruesish të tjerë dhe të kryejnë veprime moderimi mbi ta
+        manage_webhooks: Të Administrojë Webhook-e
+        manage_webhooks_description: U lejon përdoruesve të ujdisin webhook-e për veprime administrative
+        view_audit_log: Shihni Regjistër Auditimesh
+        view_audit_log_description: U lejon përdoruesve të shohin një historik veprimesh administrative te shërbyesi
+        view_dashboard: Shihni Pultin
+        view_dashboard_description: U lejon përdoruesve të hyjnë te pulti dhe shohin shifra të ndryshme matjesh
+        view_devops_description: U lejon përdoruesve të hyjnë në pultet Sidekiq dhe pgHero
+      title: Role
     rules:
       add_new: Shtoni rregull
       delete: Fshije
@@ -700,9 +759,6 @@ sq:
         deletion:
           desc_html: Lejo këdo të fshijë llogarinë e vet
           title: Hapni fshirje llogarie
-        min_invite_role:
-          disabled: Asnjë
-          title: Lejo ftesa nga
         require_invite_text:
           desc_html: Kur regjistrimet lypin miratim dorazi, tekstin e kërkesës për ftesë “Pse doni të merrni pjesë?” bëje të detyrueshëm, në vend se opsional
           title: Kërkoju përdoruesve të rinj të plotësojnë doemos një tekst kërkese për ftesë
@@ -715,9 +771,6 @@ sq:
       show_known_fediverse_at_about_page:
         desc_html: Kur përdoret, do të shfaqë mesazhe prej krejt fediversit të njohur, si paraparje. Përndryshe do të shfaqë vetëm mesazhe vendore
         title: Përfshi lëndë të federuar në faqe rrjedhe publike kohore të pamirëfilltësuar
-      show_staff_badge:
-        desc_html: Shfaq një stemë stafi në faqen e një përdoruesi
-        title: Shfaq stemë stafi
       site_description:
         desc_html: Paragraf hyrës te faqja ballore. Përshkruani ç’e bën special këtë shërbyes Mastodon dhe çfarëdo gjëje tjetër të rëndësishme. Mund të përdorni etiketa HTML, veçanërisht <code>&lt;a&gt;</code> dhe <code>&lt;em&gt;</code>.
         title: Përshkrim shërbyesi
@@ -867,6 +920,7 @@ sq:
       secret: E fshehtë nënshkrimesh
       status: Gjendje
       title: Webhook-ë
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -1116,15 +1170,24 @@ sq:
       public: Rrjedha kohore publike
       thread: Biseda
     edit:
+      add_keyword: Shtoni fjalëkyç
+      keywords: Fjalëkyçe
       title: Përpunoni filtër
     errors:
+      deprecated_api_multiple_keywords: Këta parametra s’mund të ndryshohen nga ky aplikacion, ngaqë aplikohen mbi më shumë se një fjalëkyç filtri. Përdorni një aplikacion më të ri, ose ndërfaqen web.
       invalid_context: Ose s’u dha fare, ose u dha kontekst i pavlefshëm
-      invalid_irreversible: Filtrim i pakthyeshëm funksionon vetëm me kontekste <em>home</em> ose njoftimesh
     index:
+      contexts: Filtra në %{contexts}
       delete: Fshije
       empty: S’keni filtra.
+      expires_in: Skadon për %{distance}
+      expires_on: Skadon më %{date}
+      keywords:
+        one: "%{count} fjalëkyç"
+        other: "%{count} fjalëkyçe"
       title: Filtra
     new:
+      save: Ruani filtër të ri
       title: Shtoni filtër të ri
   footer:
     developers: Zhvillues
@@ -1243,6 +1306,8 @@ sq:
     copy_account_note_text: 'Ky përdorues ka ikur prej %{acct}, ja ku janë shënimet tuaja të mëparshme mbi të:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} parashtroi një raportim"
       sign_up:
         subject: "%{name} u regjistrua"
     digest:

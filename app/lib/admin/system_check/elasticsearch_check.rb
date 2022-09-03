@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
+  def skip?
+    !current_user.can?(:view_devops)
+  end
+
   def pass?
     return true unless Chewy.enabled?
 
@@ -31,9 +35,5 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
 
   def compatible_version?
     Gem::Version.new(running_version) >= Gem::Version.new(required_version)
-  end
-
-  def missing_queues
-    @missing_queues ||= Sidekiq::ProcessSet.new.reduce(SIDEKIQ_QUEUES) { |queues, process| queues - process['queues'] }
   end
 end

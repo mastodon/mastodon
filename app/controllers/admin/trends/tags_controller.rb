@@ -2,13 +2,15 @@
 
 class Admin::Trends::TagsController < Admin::BaseController
   def index
-    authorize :tag, :index?
+    authorize :tag, :review?
 
     @tags = filtered_tags.page(params[:page])
     @form = Trends::TagBatch.new
   end
 
   def batch
+    authorize :tag, :review?
+
     @form = Trends::TagBatch.new(trends_tag_batch_params.merge(current_account: current_account, action: action_from_button))
     @form.save
   rescue ActionController::ParameterMissing

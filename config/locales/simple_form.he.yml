@@ -46,7 +46,7 @@ he:
         locale: שפת ממשק המשתמש, הדוא"ל וההתראות בדחיפה
         locked: מחייב אישור עוקבים באופן ידני. פרטיות ההודעות תהיה עוקבים-בלבד אלא אם יצוין אחרת
         password: נא להשתמש בלפחות 8 תוים
-        phrase: התאמה תמצא ללא תלות באזהרת תוכן בחצרוץ
+        phrase: התאמה תמצא ללא תלות באזהרת תוכן בפוסט
         scopes: לאיזה ממשק יורשה היישום לגשת. בבחירת תחום כללי, אין צורך לבחור ממשקים ספציפיים.
         setting_aggregate_reblogs: לא להראות הדהודים של חצרוצים שהודהדו לאחרונה (משפיע רק על הדהודים שהתקבלו לא מזמן)
         setting_always_send_emails: בדרך כלל התראות דוא"ל לא יישלחו בזמן שימוש פעיל במסטודון
@@ -56,7 +56,7 @@ he:
         setting_display_media_show_all: גלה מדיה תמיד
         setting_hide_network: עוקבייך ונעקבייך יוסתרו בפרופילך
         setting_noindex: משפיע על הפרופיל הציבורי שלך ועמודי ההודעות
-        setting_show_application: היישום בו נעשה שימוש כדי לחצרץ יופיע בתצוגה המפורטת של החצרוץ
+        setting_show_application: היישום בו נעשה שימוש כדי לפרסם פוסט יופיע בתצוגה המפורטת של הפוסט
         setting_use_blurhash: הגראדיינטים מבוססים על תוכן התמונה המוסתרת, אבל מסתירים את כל הפרטים
         setting_use_pending_items: הסתר עדכוני פיד מאחורי קליק במקום לגלול את הפיד אוטומטית
         username: שם המשתמש שלך יהיה ייחודי ב-%{domain}
@@ -68,6 +68,11 @@ he:
         with_dns_records: ייעשה נסיון למצוא את רשומות ה-DNS של דומיין נתון והתוצאות ייחסמו גם הן
       featured_tag:
         name: 'אולי תרצה/י להשתמש באחד מאלה:'
+      filters:
+        action: בחרו איזו פעולה לבצע כאשר פוסט מתאים למסנן
+        actions:
+          hide: הסתר את התוכן המסונן, כאילו לא היה קיים
+          warn: הסתר את התוכן המסונן מאחורי אזהרה עם כותרת המסנן
       form_challenge:
         current_password: את.ה נכנס. ת לאזור מאובטח
       imports:
@@ -91,8 +96,16 @@ he:
         name: ניתן רק להחליף בין אותיות קטנות וגדולות, למשל כדי לשפר את הקריאות
       user:
         chosen_languages: אם פעיל, רק חצרוצים בשפות הנבחרות יוצגו לפידים הפומביים
+        role: התפקיד שולט על אילו הרשאות יש למשתמש
+      user_role:
+        color: צבע לתפקיד בממשק המשתמש, כ RGB בפורמט הקסדצימלי
+        highlighted: מאפשר נראות ציבורית של התפקיד
+        name: שם ציבורי של התפקיד, במידה והתפקיד מוגדר ככזה שמופיע כתג
+        permissions_as_keys: למשתמשים בתפקיד זה תהיה גישה ל...
+        position: תפקיד גבוה יותר מכריע בחילוקי דעות במצבים מסוימים. פעולות מסוימות יכולות להתבצע רק על תפקידים בדרגה נמוכה יותר
       webhook:
         events: בחר אירועים לשליחה
+        url: היעד שאליו יישלחו אירועים
     labels:
       account:
         fields:
@@ -158,7 +171,7 @@ he:
         setting_auto_play_gif: ניגון אוטומטי של גיפים
         setting_boost_modal: הצגת דיאלוג אישור לפני הדהוד
         setting_crop_images: קטום תמונות בחצרוצים לא מורחבים ל 16 על 9
-        setting_default_language: שפת חצרוץ
+        setting_default_language: שפת ברירת מחדל לפוסט
         setting_default_privacy: פרטיות ההודעות
         setting_default_sensitive: תמיד לתת סימון "רגיש" למדיה
         setting_delete_modal: להראות תיבת אישור לפני מחיקת חיצרוץ
@@ -171,7 +184,7 @@ he:
         setting_hide_network: להחביא את הגרף החברתי שלך
         setting_noindex: לבקש הסתרה ממנועי חיפוש
         setting_reduce_motion: הפחתת תנועה בהנפשות
-        setting_show_application: הצגת הישום ששימש לחצרוץ
+        setting_show_application: הצגת הישום ששימש לפרסום הפוסט
         setting_system_font_ui: להשתמש בגופן ברירת המחדל של המערכת
         setting_theme: ערכת העיצוב של האתר
         setting_trends: הצגת הנושאים החמים
@@ -180,6 +193,7 @@ he:
         setting_use_pending_items: מצב איטי
         severity: חומרה
         sign_in_token_attempt: קוד אבטחה
+        title: כותרת
         type: סוג יבוא
         username: שם משתמש
         username_or_email: שם משתמש או דוא"ל
@@ -188,6 +202,10 @@ he:
         with_dns_records: לכלול רשומות MX וכתובות IP של הדומיין
       featured_tag:
         name: האשתג
+      filters:
+        actions:
+          hide: הסתרה כוללת
+          warn: הסתרה עם אזהרה
       interactions:
         must_be_follower: חסימת התראות משאינם עוקבים
         must_be_following: חסימת התראות משאינם נעקבים
@@ -206,12 +224,12 @@ he:
       notification_emails:
         appeal: מישהם מערערים על החלטת מנהל קהילה
         digest: שליחת הודעות דוא"ל מסכמות
-        favourite: שליחת דוא"ל כשמחבבים חצרוץ
+        favourite: שליחת דוא"ל כשמחבבים פוסט
         follow: שליחת דוא"ל כשנוספות עוקבות
         follow_request: שליחת דוא"ל כשמבקשים לעקוב
         mention: שליחת דוא"ל כשפונים אלייך
         pending_account: נדרשת סקירה של חשבון חדש
-        reblog: שליחת דוא"ל כשמהדהדים חצרוץ שלך
+        reblog: שליחת דוא"ל כשמהדהדים פוסט שלך
         report: דו"ח חדש הוגש
         trending_tag: נושאים חמים חדשים דורשים סקירה
       rule:
@@ -221,6 +239,17 @@ he:
         name: האשתג
         trendable: הרשה/י להאשתג זה להופיע תחת נושאים חמים
         usable: הרשה/י לחצרוצים להכיל האשתג זה
+      user:
+        role: תפקיד
+      user_role:
+        color: צבע תג
+        highlighted: הצג תפקיד כתג בפרופיל משתמש
+        name: שם
+        permissions_as_keys: הרשאות
+        position: עדיפות
+      webhook:
+        events: אירועים מאופשרים
+        url: כתובת URL של נקודת הקצה
     'no': לא
     recommended: מומלץ
     required:

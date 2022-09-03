@@ -8,10 +8,10 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:domain_allows' }, only: [:index, :show]
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:domain_allows' }, except: [:index, :show]
-  before_action :require_staff!
   before_action :set_domain_allows, only: :index
   before_action :set_domain_allow, only: [:show, :destroy]
 
+  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   PAGINATION_PARAMS = %i(limit).freeze

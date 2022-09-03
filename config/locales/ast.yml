@@ -70,11 +70,6 @@ ast:
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
         send: Reunviar les instrucciones
-      role: Permisos
-      roles:
-        admin: Alministrador
-        moderator: Llendador
-        user: Usuariu
       statuses: Estaos
       title: Cuentes
       username: Nome d'usuariu
@@ -134,10 +129,12 @@ ast:
       are_you_sure: "¿De xuru?"
       status: Estáu
       title: Informes
+    roles:
+      everyone: Permisos predeterminaos
+      permissions_count:
+        one: "%{count} permisu"
+        other: "%{count} permisos"
     settings:
-      registrations:
-        min_invite_role:
-          disabled: Naide
       site_description:
         title: Descripción del sirvidor
       site_title: Nome del sirvidor
@@ -353,7 +350,7 @@ ast:
     followers: Siguidores
     most_recent: Lo más recién
     relationship: Rellación
-    remove_selected_follows: Dexar de siguir a los usuarios esbillaos
+    remove_selected_follows: Dexar de siguir a los usuarios seleicionaos
     status: Estáu
   remote_follow:
     acct: Introduz el nome_usuariu@dominiu dende'l que lo quies facer

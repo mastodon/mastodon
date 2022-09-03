@@ -61,11 +61,11 @@ class AccountSearchService < BaseService
   end
 
   def advanced_search_results
-    Account.advanced_search_for(terms_for_query, account, limit_for_non_exact_results, options[:following], offset)
+    Account.advanced_search_for(terms_for_query, account, limit: limit_for_non_exact_results, following: options[:following], offset: offset)
   end
 
   def simple_search_results
-    Account.search_for(terms_for_query, limit_for_non_exact_results, offset)
+    Account.search_for(terms_for_query, limit: limit_for_non_exact_results, offset: offset)
   end
 
   def from_elasticsearch

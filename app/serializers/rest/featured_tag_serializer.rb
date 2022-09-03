@@ -12,4 +12,8 @@ class REST::FeaturedTagSerializer < ActiveModel::Serializer
   def url
     short_account_tag_url(object.account, object.tag)
   end
+
+  def name
+    object.display_name
+  end
 end

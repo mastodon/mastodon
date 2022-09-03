@@ -75,10 +75,8 @@ zh-HK:
     posts_tab_heading: 文章
     posts_with_replies: 包含回覆的文章
     roles:
-      admin: 管理員
       bot: 機械人
       group: 群組
-      moderator: 板主
     unavailable: 無法取得個人檔案
     unfollow: 取消關注
   admin:
@@ -97,7 +95,6 @@ zh-HK:
       avatar: 頭像
       by_domain: 域名
       change_email:
-        changed_msg: 帳號電郵更新成功！
         current_email: 現時電郵
         label: 更改電郵
         new_email: 新的電郵
@@ -174,12 +171,6 @@ zh-HK:
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
-      role: 權限
-      roles:
-        admin: 管理員
-        moderator: 管理員
-        staff: 工作人員
-        user: 普通使用者
       search: 搜尋
       search_same_email_domain: 其他有相同電郵網域的使用者
       search_same_ip: 其他有相同 IP 位址的使用者
@@ -568,9 +559,6 @@ zh-HK:
         deletion:
           desc_html: 允許所有人刪除自己的帳號
           title: 容許刪除帳號
-        min_invite_role:
-          disabled: 沒有人
-          title: 允許發送邀請的身份
         require_invite_text:
           desc_html: 如果已設定為手動審核注冊，請把「加入的原因」設定為必填項目。
           title: 要求新用戶填寫注冊申請
@@ -583,9 +571,6 @@ zh-HK:
       show_known_fediverse_at_about_page:
         desc_html: 如果停用，將會只在本站的歡迎頁顯示本站的文章。
         title: 在訪客預覽本站的時間軸上，顯示跨站文章
-      show_staff_badge:
-        desc_html: 在個人資料頁上顯示工作人員標誌
-        title: 顯示工作人員標誌
       site_description:
         desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/> 你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
         title: 本站介紹
@@ -836,7 +821,6 @@ zh-HK:
       title: 編輯篩選器
     errors:
       invalid_context: 沒有提供內文或內文無效
-      invalid_irreversible: 不可逆的篩選器只適用放主頁或通知頁面
     index:
       delete: 刪除
       empty: 你沒有過濾器。

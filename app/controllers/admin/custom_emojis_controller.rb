@@ -29,6 +29,8 @@ module Admin
     end
 
     def batch
+      authorize :custom_emoji, :index?
+
       @form = Form::CustomEmojiBatch.new(form_custom_emoji_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing

@@ -83,10 +83,8 @@ en:
     posts_tab_heading: Posts
     posts_with_replies: Posts and replies
     roles:
-      admin: Admin
       bot: Bot
       group: Group
-      moderator: Mod
     unavailable: Profile unavailable
     unfollow: Unfollow
   admin:
@@ -105,12 +103,17 @@ en:
       avatar: Avatar
       by_domain: Domain
       change_email:
-        changed_msg: Account email successfully changed!
+        changed_msg: Email successfully changed!
         current_email: Current email
         label: Change email
         new_email: New email
         submit: Change email
         title: Change email for %{username}
+      change_role:
+        changed_msg: Role successfully changed!
+        label: Change role
+        no_role: No role
+        title: Change role for %{username}
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming
@@ -154,6 +157,7 @@ en:
         active: Active
         all: All
         pending: Pending
+        silenced: Limited
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
@@ -161,6 +165,7 @@ en:
       most_recent_ip: Most recent IP
       no_account_selected: No accounts were changed as none were selected
       no_limits_imposed: No limits imposed
+      no_role_assigned: No role assigned
       not_subscribed: Not subscribed
       pending: Pending review
       perform_full_suspension: Suspend
@@ -187,12 +192,7 @@ en:
       reset: Reset
       reset_password: Reset password
       resubscribe: Resubscribe
-      role: Permissions
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        staff: Staff
-        user: User
+      role: Role
       search: Search
       search_same_email_domain: Other users with the same e-mail domain
       search_same_ip: Other users with the same IP
@@ -235,17 +235,21 @@ en:
         approve_user: Approve User
         assigned_to_self_report: Assign Report
         change_email_user: Change E-mail for User
+        change_role_user: Change Role of User
         confirm_user: Confirm User
         create_account_warning: Create Warning
         create_announcement: Create Announcement
+        create_canonical_email_block: Create E-mail Block
         create_custom_emoji: Create Custom Emoji
         create_domain_allow: Create Domain Allow
         create_domain_block: Create Domain Block
         create_email_domain_block: Create E-mail Domain Block
         create_ip_block: Create IP rule
         create_unavailable_domain: Create Unavailable Domain
+        create_user_role: Create Role
         demote_user: Demote User
         destroy_announcement: Delete Announcement
+        destroy_canonical_email_block: Delete E-mail Block
         destroy_custom_emoji: Delete Custom Emoji
         destroy_domain_allow: Delete Domain Allow
         destroy_domain_block: Delete Domain Block
@@ -254,6 +258,7 @@ en:
         destroy_ip_block: Delete IP rule
         destroy_status: Delete Post
         destroy_unavailable_domain: Delete Unavailable Domain
+        destroy_user_role: Destroy Role
         disable_2fa_user: Disable 2FA
         disable_custom_emoji: Disable Custom Emoji
         disable_sign_in_token_auth_user: Disable E-mail Token Authentication for User
@@ -280,24 +285,30 @@ en:
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
         update_domain_block: Update Domain Block
+        update_ip_block: Update IP rule
         update_status: Update Post
+        update_user_role: Update Role
       actions:
         approve_appeal_html: "%{name} approved moderation decision appeal from %{target}"
         approve_user_html: "%{name} approved sign-up from %{target}"
         assigned_to_self_report_html: "%{name} assigned report %{target} to themselves"
         change_email_user_html: "%{name} changed the e-mail address of user %{target}"
+        change_role_user_html: "%{name} changed role of %{target}"
         confirm_user_html: "%{name} confirmed e-mail address of user %{target}"
         create_account_warning_html: "%{name} sent a warning to %{target}"
         create_announcement_html: "%{name} created new announcement %{target}"
+        create_canonical_email_block_html: "%{name} blocked e-mail with the hash %{target}"
         create_custom_emoji_html: "%{name} uploaded new emoji %{target}"
         create_domain_allow_html: "%{name} allowed federation with domain %{target}"
         create_domain_block_html: "%{name} blocked domain %{target}"
         create_email_domain_block_html: "%{name} blocked e-mail domain %{target}"
         create_ip_block_html: "%{name} created rule for IP %{target}"
         create_unavailable_domain_html: "%{name} stopped delivery to domain %{target}"
+        create_user_role_html: "%{name} created %{target} role"
         demote_user_html: "%{name} demoted user %{target}"
         destroy_announcement_html: "%{name} deleted announcement %{target}"
-        destroy_custom_emoji_html: "%{name} destroyed emoji %{target}"
+        destroy_canonical_email_block_html: "%{name} unblocked e-mail with the hash %{target}"
+        destroy_custom_emoji_html: "%{name} deleted emoji %{target}"
         destroy_domain_allow_html: "%{name} disallowed federation with domain %{target}"
         destroy_domain_block_html: "%{name} unblocked domain %{target}"
         destroy_email_domain_block_html: "%{name} unblocked e-mail domain %{target}"
@@ -305,6 +316,7 @@ en:
         destroy_ip_block_html: "%{name} deleted rule for IP %{target}"
         destroy_status_html: "%{name} removed post by %{target}"
         destroy_unavailable_domain_html: "%{name} resumed delivery to domain %{target}"
+        destroy_user_role_html: "%{name} deleted %{target} role"
         disable_2fa_user_html: "%{name} disabled two factor requirement for user %{target}"
         disable_custom_emoji_html: "%{name} disabled emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} disabled e-mail token authentication for %{target}"
@@ -331,8 +343,9 @@ en:
         update_announcement_html: "%{name} updated announcement %{target}"
         update_custom_emoji_html: "%{name} updated emoji %{target}"
         update_domain_block_html: "%{name} updated domain block for %{target}"
+        update_ip_block_html: "%{name} changed rule for IP %{target}"
         update_status_html: "%{name} updated post by %{target}"
-      deleted_status: "(deleted post)"
+        update_user_role_html: "%{name} changed %{target} role"
       empty: No logs found.
       filter_by_action: Filter by action
       filter_by_user: Filter by user
@@ -649,6 +662,67 @@ en:
       unresolved: Unresolved
       updated_at: Updated
       view_profile: View profile
+    roles:
+      add_new: Add role
+      assigned_users:
+        one: "%{count} user"
+        other: "%{count} users"
+      categories:
+        administration: Administration
+        devops: Devops
+        invites: Invites
+        moderation: Moderation
+        special: Special
+      delete: Delete
+      description_html: With <strong>user roles</strong>, you can customize which functions and areas of Mastodon your users can access.
+      edit: Edit '%{name}' role
+      everyone: Default permissions
+      everyone_full_description_html: This is the <strong>base role</strong> affecting <strong>all users</strong>, even those without an assigned role. All other roles inherit permissions from it.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissions"
+      privileges:
+        administrator: Administrator
+        administrator_description: Users with this permission will bypass every permission
+        delete_user_data: Delete User Data
+        delete_user_data_description: Allows users to delete other users' data without delay
+        invite_users: Invite Users
+        invite_users_description: Allows users to invite new people to the server
+        manage_announcements: Manage Announcements
+        manage_announcements_description: Allows users to manage announcements on the server
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Allows users to review appeals against moderation actions
+        manage_blocks: Manage Blocks
+        manage_blocks_description: Allows users to block e-mail providers and IP addresses
+        manage_custom_emojis: Manage Custom Emojis
+        manage_custom_emojis_description: Allows users to manage custom emojis on the server
+        manage_federation: Manage Federation
+        manage_federation_description: Allows users to block or allow federation with other domains, and control deliverability
+        manage_invites: Manage Invites
+        manage_invites_description: Allows users to browse and deactivate invite links
+        manage_reports: Manage Reports
+        manage_reports_description: Allows users to review reports and perform moderation actions against them
+        manage_roles: Manage Roles
+        manage_roles_description: Allows users to manage and assign roles below theirs
+        manage_rules: Manage Rules
+        manage_rules_description: Allows users to change server rules
+        manage_settings: Manage Settings
+        manage_settings_description: Allows users to change site settings
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Allows users to review trending content and update hashtag settings
+        manage_user_access: Manage User Access
+        manage_user_access_description: Allows users to disable other users' two-factor authentication, change their e-mail address, and reset their password
+        manage_users: Manage Users
+        manage_users_description: Allows users to view other users' details and perform moderation actions against them
+        manage_webhooks: Manage Webhooks
+        manage_webhooks_description: Allows users to set up webhooks for administrative events
+        view_audit_log: View Audit Log
+        view_audit_log_description: Allows users to see a history of administrative actions on the server
+        view_dashboard: View Dashboard
+        view_dashboard_description: Allows users to access the dashboard and various metrics
+        view_devops: Devops
+        view_devops_description: Allows users to access Sidekiq and pgHero dashboards
+      title: Roles
     rules:
       add_new: Add rule
       delete: Delete
@@ -701,9 +775,6 @@ en:
         deletion:
           desc_html: Allow anyone to delete their account
           title: Open account deletion
-        min_invite_role:
-          disabled: No one
-          title: Allow invitations by
         require_invite_text:
           desc_html: When registrations require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
           title: Require new users to enter a reason to join
@@ -716,9 +787,6 @@ en:
       show_known_fediverse_at_about_page:
         desc_html: When disabled, restricts the public timeline linked from the landing page to showing only local content
         title: Include federated content on unauthenticated public timeline page
-      show_staff_badge:
-        desc_html: Show a staff badge on a user page
-        title: Show staff badge
       site_description:
         desc_html: Introductory paragraph on the API. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Server description
@@ -740,8 +808,8 @@ en:
         title: Allow unauthenticated access to public timeline
       title: Site settings
       trendable_by_default:
-        desc_html: Affects hashtags that have not been previously disallowed
-        title: Allow hashtags to trend without prior review
+        desc_html: Specific trending content can still be explicitly disallowed
+        title: Allow trends without prior review
       trends:
         desc_html: Publicly display previously reviewed content that is currently trending
         title: Trends
@@ -1124,16 +1192,40 @@ en:
       public: Public timelines
       thread: Conversations
     edit:
+      add_keyword: Add keyword
+      keywords: Keywords
+      statuses: Individual posts
+      statuses_hint_html: This filter applies to select individual posts regardless of whether they match the keywords below. <a href="%{path}">Review or remove posts from the filter</a>.
       title: Edit filter
     errors:
+      deprecated_api_multiple_keywords: These parameters cannot be changed from this application because they apply to more than one filter keyword. Use a more recent application or the web interface.
       invalid_context: None or invalid context supplied
-      invalid_irreversible: Irreversible filtering only works with home or notifications context
     index:
+      contexts: Filters in %{contexts}
       delete: Delete
       empty: You have no filters.
+      expires_in: Expires in %{distance}
+      expires_on: Expires on %{date}
+      keywords:
+        one: "%{count} keyword"
+        other: "%{count} keywords"
+      statuses:
+        one: "%{count} post"
+        other: "%{count} posts"
+      statuses_long:
+        one: "%{count} individual post hidden"
+        other: "%{count} individual posts hidden"
       title: Filters
     new:
+      save: Save new filter
       title: Add new filter
+    statuses:
+      back_to_filter: Back to filter
+      batch:
+        remove: Remove from filter
+      index:
+        hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
+        title: Filtered posts
   footer:
     developers: Developers
     more: More…
@@ -1141,12 +1233,22 @@ en:
     trending_now: Trending now
   generic:
     all: All
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selected."
+      other: All <strong>%{count}</strong> items on this page are selected.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matching your search is selected."
+      other: All <strong>%{count}</strong> items matching your search are selected.
     changes_saved_msg: Changes successfully saved!
     copy: Copy
     delete: Delete
+    deselect: Deselect all
     none: None
     order_by: Order by
     save_changes: Save changes
+    select_all_matching_items:
+      one: Select %{count} item matching your search.
+      other: Select all %{count} items matching your search.
     today: today
     validation_errors:
       one: Something isn't quite right yet! Please review the error below
@@ -1251,19 +1353,10 @@ en:
     copy_account_note_text: 'This user moved from %{acct}, here were your previous notes about them:'
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} submitted a report"
       sign_up:
         subject: "%{name} signed up"
-    digest:
-      action: View all notifications
-      body: Here is a brief summary of the messages you missed since your last visit on %{since}
-      mention: "%{name} mentioned you in:"
-      new_followers_summary:
-        one: Also, you have acquired one new follower while being away! Yay!
-        other: Also, you have acquired %{count} new followers while being away! Amazing!
-      subject:
-        one: "1 new notification since your last visit 🐘"
-        other: "%{count} new notifications since your last visit 🐘"
-      title: In your absence...
     favourite:
       body: 'Your post was favourited by %{name}:'
       subject: "%{name} favourited your post"

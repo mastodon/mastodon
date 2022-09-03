@@ -5,7 +5,7 @@ require 'pundit/rspec'
 
 RSpec.describe TagPolicy do
   let(:subject) { described_class }
-  let(:admin)   { Fabricate(:user, admin: true).account }
+  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
   let(:john)    { Fabricate(:account) }
 
   permissions :index?, :show?, :update? do

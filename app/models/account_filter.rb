@@ -4,7 +4,7 @@ class AccountFilter
   KEYS = %i(
     origin
     status
-    permissions
+    role_ids
     username
     by_domain
     display_name
@@ -26,7 +26,7 @@ class AccountFilter
     params.each do |key, value|
       next if key.to_s == 'page'
 
-      scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
+      scope.merge!(scope_for(key, value)) if value.present?
     end
 
     scope
@@ -38,18 +38,18 @@ class AccountFilter
     case key.to_s
     when 'origin'
       origin_scope(value)
-    when 'permissions'
-      permissions_scope(value)
+    when 'role_ids'
+      role_scope(value)
     when 'status'
       status_scope(value)
     when 'by_domain'
-      Account.where(domain: value)
+      Account.where(domain: value.to_s)
     when 'username'
-      Account.matches_username(value)
+      Account.matches_username(value.to_s)
     when 'display_name'
-      Account.matches_display_name(value)
+      Account.matches_display_name(value.to_s)
     when 'email'
-      accounts_with_users.merge(User.matches_email(value))
+      accounts_with_users.merge(User.matches_email(value.to_s))
     when 'ip'
       valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value).group('users.id, accounts.id')) : Account.none
     when 'invited_by'
@@ -104,13 +104,8 @@ class AccountFilter
     Account.left_joins(user: :invite).merge(Invite.where(user_id: value.to_s))
   end
 
-  def permissions_scope(value)
-    case value.to_s
-    when 'staff'
-      accounts_with_users.merge(User.staff)
-    else
-      raise "Unknown permissions: #{value}"
-    end
+  def role_scope(value)
+    accounts_with_users.merge(User.where(role_id: Array(value).map(&:to_s)))
   end
 
   def accounts_with_users
@@ -118,7 +113,7 @@ class AccountFilter
   end
 
   def valid_ip?(value)
-    IPAddr.new(value) && true
+    IPAddr.new(value.to_s) && true
   rescue IPAddr::InvalidAddressError
     false
   end

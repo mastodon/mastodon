@@ -49,10 +49,6 @@
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::IpCleanupScheduler
     queue: scheduler
-  email_scheduler:
-    cron: '0 10 * * 2'
-    class: Scheduler::EmailScheduler
-    queue: scheduler
   backup_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::BackupCleanupScheduler

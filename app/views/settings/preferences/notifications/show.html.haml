@@ -18,19 +18,13 @@
       = ff.input :reblog, as: :boolean, wrapper: :with_label
       = ff.input :favourite, as: :boolean, wrapper: :with_label
       = ff.input :mention, as: :boolean, wrapper: :with_label
-
-      - if current_user.staff?
-        = ff.input :report, as: :boolean, wrapper: :with_label
-        = ff.input :appeal, as: :boolean, wrapper: :with_label
-        = ff.input :pending_account, as: :boolean, wrapper: :with_label
-        = ff.input :trending_tag, as: :boolean, wrapper: :with_label
+      = ff.input :report, as: :boolean, wrapper: :with_label if current_user.can?(:manage_reports)
+      = ff.input :appeal, as: :boolean, wrapper: :with_label if current_user.can?(:manage_appeals)
+      = ff.input :pending_account, as: :boolean, wrapper: :with_label if current_user.can?(:manage_users)
+      = ff.input :trending_tag, as: :boolean, wrapper: :with_label if current_user.can?(:manage_taxonomies)
 
   .fields-group
     = f.input :setting_always_send_emails, as: :boolean, wrapper: :with_label
-
-  .fields-group
-    = f.simple_fields_for :notification_emails, hash_to_object(current_user.settings.notification_emails) do |ff|
-      = ff.input :digest, as: :boolean, wrapper: :with_label
 
   %h4= t 'notifications.other_settings'
 
