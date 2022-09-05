@@ -13,9 +13,17 @@ class GroupPolicy < ApplicationPolicy
     member?
   end
 
+  def manage_requests?
+    group_staff?
+  end
+
   private
 
   def member?
     record.members.where(id: current_account&.id).exists?
+  end
+
+  def group_staff?
+    record.memberships.where(account_id: current_account&.id, role: [:moderator, :admin]).exists?
   end
 end

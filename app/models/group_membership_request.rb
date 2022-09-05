@@ -10,8 +10,16 @@
 #  updated_at :datetime         not null
 #
 class GroupMembershipRequest < ApplicationRecord
+  include Paginable
   include GroupRelationshipCacheable
 
   belongs_to :group
   belongs_to :account
+
+  def authorize!
+    group.memberships.create!(account: account, uri: uri)
+    destroy!
+  end
+
+  alias reject! destroy!
 end

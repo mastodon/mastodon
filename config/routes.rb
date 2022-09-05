@@ -607,6 +607,13 @@ Rails.application.routes.draw do
       resources :groups, only: [:index, :show] do
         resources :memberships, only: [:index], controller: 'groups/memberships'
 
+        resources :membership_requests, only: [:index], controller: 'groups/membership_requests' do
+          member do
+            post :authorize, to: 'groups/membership_requests#accept'
+            post :reject
+          end
+        end
+
         member do
           post :join
           post :leave
