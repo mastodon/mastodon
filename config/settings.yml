@@ -50,6 +50,7 @@ defaults: &defaults
     appeal: true
   always_send_emails: false
   interactions:
+    must_be_dm_to_send_email: false
     must_be_follower: false
     must_be_following: false
     must_be_following_dm: false

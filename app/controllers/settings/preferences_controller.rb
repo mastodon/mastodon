@@ -56,7 +56,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_crop_images,
       :setting_always_send_emails,
       notification_emails: %i(follow follow_request reblog favourite mention report pending_account trending_tag appeal),
-      interactions: %i(must_be_follower must_be_following must_be_following_dm)
+      interactions: %i(must_be_follower must_be_following must_be_following_dm must_be_dm_to_send_email)
     )
   end
 end

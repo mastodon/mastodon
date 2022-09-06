@@ -172,5 +172,54 @@ RSpec.describe NotifyService, type: :service do
         expect { subject }.to_not change(ActionMailer::Base.deliveries, :count).from(0)
       end
     end
+
+    context 'with mentions' do
+      let(:type) { :mention }
+
+      before do
+        user.settings.notification_emails = user.settings.notification_emails.merge('mention' => true)
+        user.settings.interactions        = user.settings.interactions.merge('must_be_dm_to_send_email' => enabled)
+      end
+
+      context 'if must_be_dm_to_send_email is true' do
+        let(:enabled) { true }
+
+        describe 'with direct messsages' do
+          let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct)) }
+
+          it 'sends email' do
+            expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
+          end
+        end
+
+        describe 'with public messsages' do
+          let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :public)) }
+
+          it "doesn't send email" do
+            expect { subject }.to_not change(ActionMailer::Base.deliveries, :count).from(0)
+          end
+        end
+      end
+
+      context 'if must_be_dm_to_send_email is false' do
+        let(:enabled) { false }
+
+        describe 'with direct messsages' do
+          let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :direct)) }
+
+          it 'sends email' do
+            expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
+          end
+        end
+
+        describe 'with public messsages' do
+          let(:activity) { Fabricate(:mention, account: recipient, status: Fabricate(:status, account: sender, visibility: :public)) }
+
+          it 'sends email' do
+            expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
+          end
+        end
+      end
+    end
   end
 end
