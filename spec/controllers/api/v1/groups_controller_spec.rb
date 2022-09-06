@@ -5,6 +5,8 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
 
   let!(:user)  { Fabricate(:user) }
   let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+  let(:locked) { false }
+  let(:group)  { Fabricate(:group, locked: locked) }
 
   before { allow(controller).to receive(:doorkeeper_token) { token } }
 
@@ -17,7 +19,6 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
   end
 
   describe 'GET #index' do
-    let!(:group) { Fabricate(:group) }
     let!(:other_group) { Fabricate(:group) }
     let(:scopes) { 'read:groups' }
 
@@ -37,7 +38,6 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
   end
 
   describe 'GET #show' do
-    let!(:group) { Fabricate(:group) }
     let!(:other_group) { Fabricate(:group) }
     let(:scopes) { 'read:groups' }
 
@@ -53,7 +53,6 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
 
   describe 'POST #join' do
     let(:scopes) { 'write:groups' }
-    let(:group)  { Fabricate(:group, locked: locked) }
 
     context do
       before do
@@ -110,7 +109,6 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
 
   describe 'POST #leave' do
     let(:scopes) { 'write:groups' }
-    let(:group)  { Fabricate(:group) }
 
     before do
       group.memberships.create!(account: user.account, group: group)
@@ -126,5 +124,48 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
     end
 
     it_behaves_like 'forbidden for wrong scope', 'read:groups'
+  end
+
+  describe 'POST #kick' do
+    let(:scopes) { 'write:groups' }
+    let(:membership) { Fabricate(:group_membership, group: group) }
+
+    context 'when the user is not a group member' do
+      it 'returns http forbidden' do
+        post :kick, params: { id: group.id, account_ids: [membership.account.id] }
+
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when the user has no special role within the group' do
+      before do
+        group.memberships.create!(account: user.account)
+      end
+
+      it 'returns http forbidden' do
+        post :kick, params: { id: group.id, account_ids: [membership.account.id] }
+
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when the user is a group admin' do
+      before do
+        group.memberships.create!(account: user.account, role: :admin)
+      end
+
+      it 'returns http success' do
+        post :kick, params: { id: group.id, account_ids: [membership.account.id] }
+
+        expect(response).to have_http_status(200)
+      end
+
+      it 'deletes the membership' do
+        post :kick, params: { id: group.id, account_ids: [membership.account.id] }
+
+        expect(group.memberships.find_by(account: membership.account)).to be_nil
+      end
+    end
   end
 end

@@ -619,6 +619,7 @@ Rails.application.routes.draw do
         member do
           post :join
           post :leave
+          post :kick
         end
       end
 

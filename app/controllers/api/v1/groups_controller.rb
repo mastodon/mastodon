@@ -30,6 +30,18 @@ class Api::V1::GroupsController < Api::BaseController
     render json: @group, serializer: REST::GroupRelationshipSerializer, relationships: relationships
   end
 
+  def kick
+    memberships = @group.memberships.where(account_id: account_ids).to_a
+    memberships.each { |membership| authorize membership, :revoke? }
+
+    #TODO: refactor
+    #TODO: logging
+
+    memberships.each(&:destroy) #TODO: federate
+
+    render_empty
+  end
+
   private
 
   def set_group
@@ -38,5 +50,13 @@ class Api::V1::GroupsController < Api::BaseController
 
   def relationships(**options)
     GroupRelationshipsPresenter.new([@group.id], current_user.account_id, **options)
+  end
+
+  def resource_params
+    params.permit(account_ids: [])
+  end
+
+  def account_ids
+    Array(resource_params[:account_ids])
   end
 end
