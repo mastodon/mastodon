@@ -17,6 +17,10 @@ class GroupPolicy < ApplicationPolicy
     group_staff?
   end
 
+  def delete_posts?
+    group_staff?
+  end
+
   private
 
   def member?
