@@ -528,7 +528,8 @@
   display: flex;
   flex: 0 0 auto;
 
-  & > * {
+  & .icon-button,
+  & .text-icon-button {
     display: inline-block;
     box-sizing: content-box;
     padding: 0 3px;
