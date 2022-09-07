@@ -21,6 +21,10 @@ class GroupPolicy < ApplicationPolicy
     group_staff?
   end
 
+  def manage_blocks?
+    group_staff?
+  end
+
   private
 
   def member?

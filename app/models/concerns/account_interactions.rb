@@ -103,6 +103,7 @@ module AccountInteractions
 
     # Group relationships
     has_many :group_membership_requests, dependent: :destroy
+    has_many :group_account_blocks, dependent: :destroy
   end
 
   def follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)

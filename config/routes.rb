@@ -616,6 +616,8 @@ Rails.application.routes.draw do
 
         resources :statuses, only: [:destroy], controller: 'groups/statuses'
 
+        resource :blocks, only: [:show, :create, :destroy], controller: 'groups/blocks'
+
         member do
           post :join
           post :leave

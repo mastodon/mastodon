@@ -9,6 +9,8 @@
 #  updated_at :datetime         not null
 #
 class GroupAccountBlock < ApplicationRecord
+  include Paginable
+
   belongs_to :group
   belongs_to :account
 end
