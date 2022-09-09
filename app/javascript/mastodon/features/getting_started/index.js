@@ -33,6 +33,7 @@ const messages = defineMessages({
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
   pins: { id: 'navigation_bar.pins', defaultMessage: 'Pinned posts' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  groups: { id: 'navigation_bar.groups', defaultMessage: 'Groups' },
   discover: { id: 'navigation_bar.discover', defaultMessage: 'Discover' },
   personal: { id: 'navigation_bar.personal', defaultMessage: 'Personal' },
   security: { id: 'navigation_bar.security', defaultMessage: 'Security' },
@@ -108,6 +109,7 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key='bookmark' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />,
         <ColumnLink key='favourites' icon='star' text={intl.formatMessage(messages.favourites)} to='/favourites' />,
         <ColumnLink key='lists' icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />,
+        <ColumnLink key='groups' icon='users' text={intl.formatMessage(messages.groups)} to='/groups' />,
       );
 
       if (myAccount.get('locked') || unreadFollowRequests > 0) {

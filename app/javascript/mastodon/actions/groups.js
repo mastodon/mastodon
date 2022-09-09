@@ -5,6 +5,10 @@ export const GROUP_FETCH_REQUEST = 'GROUP_FETCH_REQUEST';
 export const GROUP_FETCH_SUCCESS = 'GROUP_FETCH_SUCCESS';
 export const GROUP_FETCH_FAIL    = 'GROUP_FETCH_FAIL';
 
+export const GROUPS_FETCH_REQUEST = 'GROUPS_FETCH_REQUEST';
+export const GROUPS_FETCH_SUCCESS = 'GROUPS_FETCH_SUCCESS';
+export const GROUPS_FETCH_FAIL    = 'GROUPS_FETCH_FAIL';
+
 export const GROUP_RELATIONSHIPS_FETCH_REQUEST = 'GROUP_RELATIONSHIPS_FETCH_REQUEST';
 export const GROUP_RELATIONSHIPS_FETCH_SUCCESS = 'GROUP_RELATIONSHIPS_FETCH_SUCCESS';
 export const GROUP_RELATIONSHIPS_FETCH_FAIL    = 'GROUP_RELATIONSHIPS_FETCH_FAIL';
@@ -42,6 +46,31 @@ export const fetchGroupSuccess = group => ({
 export const fetchGroupFail = (id, error) => ({
   type: GROUP_FETCH_FAIL,
   id,
+  error,
+});
+
+export const fetchGroups = () => (dispatch, getState) => {
+  dispatch(fetchGroupsRequest());
+
+  api(getState).get('/api/v1/groups')
+    .then(({ data }) => {
+      dispatch(importFetchedGroups(data));
+      dispatch(fetchGroupsSuccess(data));
+      dispatch(fetchGroupRelationships(data.map(item => item.id)));
+    }).catch(err => dispatch(fetchGroupsFail(err)));
+};
+
+export const fetchGroupsRequest = () => ({
+  type: GROUPS_FETCH_REQUEST,
+});
+
+export const fetchGroupsSuccess = groups => ({
+  type: GROUPS_FETCH_SUCCESS,
+  groups,
+});
+
+export const fetchGroupsFail = (error) => ({
+  type: GROUPS_FETCH_FAIL,
   error,
 });
 

@@ -42,6 +42,10 @@ export function Lists () {
   return import(/* webpackChunkName: "features/lists" */'../../lists');
 }
 
+export function Groups () {
+  return import(/* webpackChunkName: "features/groups" */'../../groups');
+}
+
 export function Status () {
   return import(/* webpackChunkName: "features/status" */'../../status');
 }

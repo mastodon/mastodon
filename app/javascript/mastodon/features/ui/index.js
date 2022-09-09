@@ -54,6 +54,7 @@ import {
   About,
   PrivacyPolicy,
   GroupTimeline,
+  Groups,
 } from './util/async-components';
 import initialState, { me, owner, singleUserMode } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
@@ -218,6 +219,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
           <WrappedRoute path='/mutes' component={Mutes} content={children} />
           <WrappedRoute path='/lists' component={Lists} content={children} />
+          <WrappedRoute path='/groups' component={Groups} content={children} />
 
           <WrappedRoute component={GenericNotFound} content={children} />
         </WrappedSwitch>
