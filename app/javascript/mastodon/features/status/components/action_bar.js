@@ -40,6 +40,9 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   replies_disabled_group: { id: 'status.disabled_replies.group_membership', defaultMessage: 'Only group members can reply' },
+  group_mod_delete: { id: 'status.group_mod_delete', defaultMessage: 'Delete post from group' },
+  group_mod_kick: { id: 'status.group_mod_kick', defaultMessage: 'Kick @{name} from group' },
+  group_mod_block: { id: 'status.group_mod_block', defaultMessage: 'Block @{name} from group' },
 });
 
 const mapStateToProps = (state, { status }) => ({
@@ -78,6 +81,9 @@ class ActionBar extends React.PureComponent {
     onReport: PropTypes.func,
     onPin: PropTypes.func,
     onEmbed: PropTypes.func,
+    onDeleteFromGroup: PropTypes.func.isRequired,
+    onKickFromGroup: PropTypes.func.isRequired,
+    onBlockFromGroup: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -195,6 +201,18 @@ class ActionBar extends React.PureComponent {
     }
   }
 
+  handleDeleteFromGroup = () => {
+    this.props.onDeleteFromGroup(this.props.status);
+  }
+
+  handleKickFromGroup = () => {
+    this.props.onKickFromGroup(this.props.status);
+  }
+
+  handleBlockFromGroup = () => {
+    this.props.onBlockFromGroup(this.props.status);
+  }
+
   render () {
     const { status, relationship, intl } = this.props;
     const { signedIn, permissions } = this.context.identity;
@@ -252,6 +270,14 @@ class ActionBar extends React.PureComponent {
         } else {
           menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.handleBlockDomain });
         }
+      }
+
+      if (status.get('group') && ['admin', 'moderator'].includes(this.props.groupRelationship?.get('role'))) {
+        menu.push(null);
+        menu.push({ text: intl.formatMessage(messages.group_mod_delete), action: this.handleDeleteFromGroup });
+        // TODO: figure out when an account is not in the group anymore
+        menu.push({ text: intl.formatMessage(messages.group_mod_kick, { name: account.get('username') }), action: this.handleKickFromGroup });
+        menu.push({ text: intl.formatMessage(messages.group_mod_block, { name: account.get('username') }), action: this.handleBlockFromGroup });
       }
 
       if ((permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {

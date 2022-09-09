@@ -39,6 +39,11 @@ import {
 import {
   initAddFilter,
 } from '../actions/filters';
+import {
+  groupDeleteStatus,
+  groupKick,
+  groupBlock,
+} from '../actions/groups';
 import { initMuteModal } from '../actions/mutes';
 import { initBlockModal } from '../actions/blocks';
 import { initBoostModal } from '../actions/boosts';
@@ -57,6 +62,11 @@ const messages = defineMessages({
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
+  deleteFromGroupMessage: { id: 'confirmations.delete_from_group.message', defaultMessage: 'Are you sure you want to delete @{name}\'s post?' },
+  kickFromGroupMessage: { id: 'confirmations.kick_from_group.message', defaultMessage: 'Are you sure you want to kick @{name} from this group?' },
+  kickConfirm: { id: 'confirmations.kick_from_group.confirm', defaultMessage: 'Kick' },
+  blockFromGroupMessage: { id: 'confirmations.block_from_group.message', defaultMessage: 'Are you sure you want to block @{name} from interacting with this group?' },
+  blockConfirm: { id: 'confirmations.block_from_group.confirm', defaultMessage: 'Block' },
 });
 
 const makeMapStateToProps = () => {
@@ -146,6 +156,30 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
         onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
       }));
     }
+  },
+
+  onDeleteFromGroup (status) {
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.deleteFromGroupMessage, { name: status.getIn(['account', 'username']) }),
+      confirm: intl.formatMessage(messages.deleteConfirm),
+      onConfirm: () => dispatch(groupDeleteStatus(status.getIn(['group', 'id']), status.get('id'))),
+    }));
+  },
+
+  onKickFromGroup (status) {
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.kickFromGroupMessage, { name: status.getIn(['account', 'username']) }),
+      confirm: intl.formatMessage(messages.kickConfirm),
+      onConfirm: () => dispatch(groupKick(status.getIn(['group', 'id']), status.getIn(['account', 'id']))),
+    }));
+  },
+
+  onBlockFromGroup (status) {
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.blockFromGroupMessage, { name: status.getIn(['account', 'username']) }),
+      confirm: intl.formatMessage(messages.blockConfirm),
+      onConfirm: () => dispatch(groupBlock(status.getIn(['group', 'id']), status.getIn(['account', 'id']))),
+    }));
   },
 
   onEdit (status, history) {

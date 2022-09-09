@@ -44,6 +44,11 @@ import {
   blockDomain,
   unblockDomain,
 } from '../../actions/domain_blocks';
+import {
+  groupDeleteStatus,
+  groupKick,
+  groupBlock,
+} from 'mastodon/actions/groups';
 import { initMuteModal } from '../../actions/mutes';
 import { initBlockModal } from '../../actions/blocks';
 import { initBoostModal } from '../../actions/boosts';
@@ -74,6 +79,11 @@ const messages = defineMessages({
   replyConfirm: { id: 'confirmations.reply.confirm', defaultMessage: 'Reply' },
   replyMessage: { id: 'confirmations.reply.message', defaultMessage: 'Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
+  deleteFromGroupMessage: { id: 'confirmations.delete_from_group.message', defaultMessage: 'Are you sure you want to delete @{name}\'s post?' },
+  kickFromGroupMessage: { id: 'confirmations.kick_from_group.message', defaultMessage: 'Are you sure you want to kick @{name} from this group?' },
+  kickConfirm: { id: 'confirmations.kick_from_group.confirm', defaultMessage: 'Kick' },
+  blockFromGroupMessage: { id: 'confirmations.block_from_group.message', defaultMessage: 'Are you sure you want to block @{name} from interacting with this group?' },
+  blockConfirm: { id: 'confirmations.block_from_group.confirm', defaultMessage: 'Block' },
 });
 
 const makeMapStateToProps = () => {
@@ -439,6 +449,32 @@ class Status extends ImmutablePureComponent {
     this.props.dispatch(unblockDomain(domain));
   }
 
+  handleDeleteFromGroup = (status) => {
+    const { dispatch, intl } = this.props;
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.deleteFromGroupMessage, { name: status.getIn(['account', 'username']) }),
+      confirm: intl.formatMessage(messages.deleteConfirm),
+      onConfirm: () => this.props.dispatch(groupDeleteStatus(status.getIn(['group', 'id']), status.get('id'))),
+    }));
+  }
+
+  handleKickFromGroup = (status) => {
+    const { dispatch, intl } = this.props;
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.kickFromGroupMessage, { name: status.getIn(['account', 'username']) }),
+      confirm: intl.formatMessage(messages.kickConfirm),
+      onConfirm: () => dispatch(groupKick(status.getIn(['group', 'id']), status.getIn(['account', 'id']))),
+    }));
+  }
+
+  handleBlockFromGroup = (status) => {
+    const { dispatch, intl } = this.props;
+    dispatch(openModal('CONFIRM', {
+      message: intl.formatMessage(messages.blockFromGroupMessage, { name: status.getIn(['account', 'username']) }),
+      confirm: intl.formatMessage(messages.blockConfirm),
+      onConfirm: () => dispatch(groupBlock(status.getIn(['group', 'id']), status.getIn(['account', 'id']))),
+    }));
+  }
 
   handleHotkeyMoveUp = () => {
     this.handleMoveUp(this.props.status.get('id'));
@@ -663,6 +699,9 @@ class Status extends ImmutablePureComponent {
                   onReport={this.handleReport}
                   onPin={this.handlePin}
                   onEmbed={this.handleEmbed}
+                  onDeleteFromGroup={this.handleDeleteFromGroup}
+                  onKickFromGroup={this.handleKickFromGroup}
+                  onBlockFromGroup={this.handleBlockFromGroup}
                 />
               </div>
             </HotKeys>

@@ -1,5 +1,6 @@
 import api from '../api';
 import { importFetchedGroups } from './importer';
+import { deleteFromTimelines } from './timelines';
 
 export const GROUP_FETCH_REQUEST = 'GROUP_FETCH_REQUEST';
 export const GROUP_FETCH_SUCCESS = 'GROUP_FETCH_SUCCESS';
@@ -20,6 +21,18 @@ export const GROUP_JOIN_FAIL    = 'GROUP_JOIN_FAIL';
 export const GROUP_LEAVE_REQUEST = 'GROUP_LEAVE_REQUEST';
 export const GROUP_LEAVE_SUCCESS = 'GROUP_LEAVE_SUCCESS';
 export const GROUP_LEAVE_FAIL    = 'GROUP_LEAVE_FAIL';
+
+export const GROUP_DELETE_STATUS_REQUEST = 'GROUP_DELETE_STATUS_REQUEST';
+export const GROUP_DELETE_STATUS_SUCCESS = 'GROUP_DELETE_STATUS_SUCCESS';
+export const GROUP_DELETE_STATUS_FAIL    = 'GROUP_DELETE_STATUS_FAIL';
+
+export const GROUP_KICK_REQUEST = 'GROUP_KICK_REQUEST';
+export const GROUP_KICK_SUCCESS = 'GROUP_KICK_SUCCESS';
+export const GROUP_KICK_FAIL    = 'GROUP_KICK_FAIL';
+
+export const GROUP_BLOCK_REQUEST = 'GROUP_BLOCK_REQUEST';
+export const GROUP_BLOCK_SUCCESS = 'GROUP_BLOCK_SUCCESS';
+export const GROUP_BLOCK_FAIL    = 'GROUP_BLOCK_FAIL';
 
 export const fetchGroup = id => (dispatch, getState) => {
   dispatch(fetchGroupRelationships([id]));
@@ -194,5 +207,112 @@ export function leaveGroupFail(error) {
     type: GROUP_LEAVE_FAIL,
     error,
     skipLoading: true,
+  };
+};
+
+export function groupDeleteStatus(groupId, statusId) {
+  return (dispatch, getState) => {
+    dispatch(groupDeleteStatusRequest(groupId, statusId));
+
+    api(getState).delete(`/api/v1/groups/${groupId}/statuses/${statusId}`)
+      .then(() => {
+        dispatch(deleteFromTimelines(statusId));
+        dispatch(groupDeleteStatusSuccess(groupId, statusId));
+      }).catch(err => dispatch(groupDeleteStatusFail(groupId, statusId, err)));
+  };
+};
+
+export function groupDeleteStatusRequest(groupId, statusId) {
+  return {
+    type: GROUP_DELETE_STATUS_REQUEST,
+    groupId,
+    statusId,
+  };
+};
+
+export function groupDeleteStatusSuccess(groupId, statusId) {
+  return {
+    type: GROUP_DELETE_STATUS_SUCCESS,
+    groupId,
+    statusId,
+  };
+};
+
+export function groupDeleteStatusFail(groupId, statusId, error) {
+  return {
+    type: GROUP_DELETE_STATUS_SUCCESS,
+    groupId,
+    statusId,
+    error,
+  };
+};
+
+export function groupKick(groupId, accountId) {
+  return (dispatch, getState) => {
+    dispatch(groupKickRequest(groupId, accountId));
+
+    api(getState).post(`/api/v1/groups/${groupId}/kick`, { account_ids: [accountId] })
+      .then(() => dispatch(groupKickSuccess(groupId, accountId)))
+      .catch(err => dispatch(groupKickFail(groupId, accountId, err)));
+  };
+};
+
+export function groupKickRequest(groupId, accountId) {
+  return {
+    type: GROUP_KICK_REQUEST,
+    groupId,
+    accountId,
+  };
+};
+
+export function groupKickSuccess(groupId, accountId) {
+  return {
+    type: GROUP_KICK_SUCCESS,
+    groupId,
+    accountId,
+  };
+};
+
+export function groupKickFail(groupId, accountId, error) {
+  return {
+    type: GROUP_KICK_SUCCESS,
+    groupId,
+    accountId,
+    error,
+  };
+};
+
+export function groupBlock(groupId, accountId) {
+  return (dispatch, getState) => {
+    dispatch(groupBlockRequest(groupId, accountId));
+
+    api(getState).post(`/api/v1/groups/${groupId}/blocks`, { account_ids: [accountId] })
+      .then(() => dispatch(groupBlockSuccess(groupId, accountId)))
+      .catch(err => dispatch(groupBlockFail(groupId, accountId, err)));
+  };
+};
+
+export function groupBlockRequest(groupId, accountId) {
+  return {
+    type: GROUP_BLOCK_REQUEST,
+    groupId,
+    accountId,
+  };
+};
+
+export function groupBlockSuccess(groupId, accountId) {
+  return {
+    type: GROUP_BLOCK_SUCCESS,
+    groupId,
+    accountId,
+  };
+};
+
+export function groupBlockFail(groupId, accountId, error) {
+  return {
+    type: GROUP_BLOCK_FAIL,
+    groupId,
+    accountId,
+    error,
   };
 };
