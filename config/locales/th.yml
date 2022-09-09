@@ -228,6 +228,7 @@ th:
         approve_user: อนุมัติผู้ใช้
         assigned_to_self_report: มอบหมายรายงาน
         change_email_user: เปลี่ยนอีเมลสำหรับผู้ใช้
+        change_role_user: เปลี่ยนบทบาทของผู้ใช้
         confirm_user: ยืนยันผู้ใช้
         create_account_warning: สร้างคำเตือน
         create_announcement: สร้างประกาศ
@@ -250,6 +251,7 @@ th:
         destroy_ip_block: ลบกฎ IP
         destroy_status: ลบโพสต์
         destroy_unavailable_domain: ลบโดเมนที่ไม่พร้อมใช้งาน
+        destroy_user_role: ทำลายบทบาท
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
         disable_sign_in_token_auth_user: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
@@ -284,6 +286,7 @@ th:
         approve_user_html: "%{name} ได้อนุมัติการลงทะเบียนจาก %{target}"
         assigned_to_self_report_html: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
         change_email_user_html: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
+        change_role_user_html: "%{name} ได้เปลี่ยนบทบาทของ %{target}"
         confirm_user_html: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
         create_account_warning_html: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         create_announcement_html: "%{name} ได้สร้างประกาศใหม่ %{target}"
@@ -293,8 +296,10 @@ th:
         create_email_domain_block_html: "%{name} ได้ปิดกั้นโดเมนอีเมล %{target}"
         create_ip_block_html: "%{name} ได้สร้างกฎสำหรับ IP %{target}"
         create_unavailable_domain_html: "%{name} ได้หยุดการจัดส่งไปยังโดเมน %{target}"
+        create_user_role_html: "%{name} ได้สร้างบทบาท %{target}"
         demote_user_html: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
         destroy_announcement_html: "%{name} ได้ลบประกาศ %{target}"
+        destroy_custom_emoji_html: "%{name} ได้ลบอีโมจิ %{target}"
         destroy_domain_allow_html: "%{name} ได้ไม่อนุญาตการติดต่อกับภายนอกกับโดเมน %{target}"
         destroy_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมน %{target}"
         destroy_email_domain_block_html: "%{name} ได้เลิกปิดกั้นโดเมนอีเมล %{target}"
@@ -302,6 +307,7 @@ th:
         destroy_ip_block_html: "%{name} ได้ลบกฎสำหรับ IP %{target}"
         destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
         destroy_unavailable_domain_html: "%{name} ได้ทำการจัดส่งไปยังโดเมน %{target} ต่อ"
+        destroy_user_role_html: "%{name} ได้ลบบทบาท %{target}"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji_html: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ได้ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
@@ -328,7 +334,9 @@ th:
         update_announcement_html: "%{name} ได้อัปเดตประกาศ %{target}"
         update_custom_emoji_html: "%{name} ได้อัปเดตอีโมจิ %{target}"
         update_domain_block_html: "%{name} ได้อัปเดตการปิดกั้นโดเมนสำหรับ %{target}"
+        update_ip_block_html: "%{name} ได้เปลี่ยนกฎสำหรับ IP %{target}"
         update_status_html: "%{name} ได้อัปเดตโพสต์โดย %{target}"
+        update_user_role_html: "%{name} ได้เปลี่ยนบทบาท %{target}"
       empty: ไม่พบรายการบันทึก
       filter_by_action: กรองตามการกระทำ
       filter_by_user: กรองตามผู้ใช้
