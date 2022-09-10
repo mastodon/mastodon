@@ -1,4 +1,3 @@
----
 de:
   activerecord:
     attributes:
@@ -72,7 +71,7 @@ de:
         revoke: Bist du sicher?
       index:
         authorized_at: Autorisiert am %{date}
-        description_html: Dies sind Anwendungen, die über die Programmierschnittstelle auf dein Konto zugreifen können. Wenn es Anwendungen gibt, die du hier nicht erkennst oder eine Anwendung sich falsch verhält, kannst du den Zugriff widerrufen.
+        description_html: Dies sind Anwendungen, die über die Programmierschnittstelle auf dein Konto zugreifen können. Wenn es Anwendungen gibt, die du hier nicht erkennst, oder wenn eine Anwendung sich falsch bzw. verdächtig verhält, kannst du den Zugriff widerrufen.
         last_used_at: Zuletzt verwendet am %{date}
         never_used: Nie verwendet
         scopes: Berechtigungen
@@ -83,13 +82,13 @@ de:
         access_denied: Die Anfrage wurde durch Benutzer_in oder Autorisierungs-Server verweigert.
         credential_flow_not_configured: Das Konto konnte nicht gefunden werden, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
         invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
-        invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
+        invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen oder einem anderen Client ausgestellt, oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
         invalid_request:
           missing_param: 'Erforderlicher Parameter fehlt: %{value}.'
           request_not_authorized: Anfrage muss autorisiert werden. Benötigter Parameter für die Autorisierung der Anfrage fehlt oder ungültig.
           unknown: Der Anfrage fehlt ein benötigter Parameter, enthält einen nicht unterstützten Parameterwert oder ist anderweitig fehlerhaft.
-        invalid_resource_owner: Die angegebenen Zugangsdaten für das Konto sind ungültig oder das Konto kann nicht gefunden werden
+        invalid_resource_owner: Die angegebenen Zugangsdaten für das Konto sind ungültig, oder das Konto kann nicht gefunden werden
         invalid_scope: Die angeforderte Befugnis ist ungültig, unbekannt oder fehlerhaft.
         invalid_token:
           expired: Der Zugriffs-Token ist abgelaufen
@@ -147,39 +146,39 @@ de:
       application:
         title: OAuth-Autorisierung nötig
     scopes:
-      admin:read: alle Daten auf dem Server lesen
-      admin:read:accounts: sensible Daten aller Konten lesen
-      admin:read:reports: sensible Daten aller Meldungen und gemeldeten Konten lesen
-      admin:write: alle Daten auf dem Server ändern
-      admin:write:accounts: Moderationsaktionen auf Konten ausführen
-      admin:write:reports: Moderationsaktionen auf Meldungen ausführen
+      "admin:read": alle Daten auf dem Server lesen
+      "admin:read:accounts": sensible Daten aller Konten lesen
+      "admin:read:reports": sensible Daten aller Meldungen und gemeldeten Konten lesen
+      "admin:write": alle Daten auf dem Server ändern
+      "admin:write:accounts": Moderationsaktionen auf Konten ausführen
+      "admin:write:reports": Moderationsaktionen auf Meldungen ausführen
       crypto: Ende-zu-Ende-Verschlüsselung verwenden
       follow: Kontenbeziehungen verändern
       push: deine Push-Benachrichtigungen erhalten
       read: all deine Daten lesen
-      read:accounts: deine Konteninformationen einsehen
-      read:blocks: deine Blockaden einsehen
-      read:bookmarks: deine Lesezeichen lesen
-      read:favourites: deine Favoriten ansehen
-      read:filters: deine Filter ansehen
-      read:follows: sehen, wem du folgst
-      read:lists: deine Listen sehen
-      read:mutes: deine Stummschaltungen einsehen
-      read:notifications: deine Benachrichtigungen sehen
-      read:reports: deine Meldungen sehen
-      read:search: in deinem Namen suchen
-      read:statuses: alle Beiträge sehen
+      "read:accounts": deine Konteninformationen einsehen
+      "read:blocks": deine Blockaden einsehen
+      "read:bookmarks": deine Lesezeichen lesen
+      "read:favourites": deine Favoriten ansehen
+      "read:filters": deine Filter ansehen
+      "read:follows": sehen, wem du folgst
+      "read:lists": deine Listen sehen
+      "read:mutes": deine Stummschaltungen einsehen
+      "read:notifications": deine Benachrichtigungen sehen
+      "read:reports": deine Meldungen sehen
+      "read:search": in deinem Namen suchen
+      "read:statuses": alle Beiträge sehen
       write: all deine Benutzerdaten verändern
-      write:accounts: dein Profil bearbeiten
-      write:blocks: Domains und Konten blockieren
-      write:bookmarks: Lesezeichen hinzufügen
-      write:conversations: Unterhaltungen stummschalten und löschen
-      write:favourites: Beiträge favorisieren
-      write:filters: Filter erstellen
-      write:follows: Leuten folgen
-      write:lists: Listen erstellen
-      write:media: Mediendateien hochladen
-      write:mutes: Leute und Konversationen stummschalten
-      write:notifications: deine Benachrichtigungen leeren
-      write:reports: andere Leute melden
-      write:statuses: Beiträge veröffentlichen
+      "write:accounts": dein Profil bearbeiten
+      "write:blocks": Domains und Konten blockieren
+      "write:bookmarks": Lesezeichen hinzufügen
+      "write:conversations": Unterhaltungen stummschalten und löschen
+      "write:favourites": Beiträge favorisieren
+      "write:filters": Filter erstellen
+      "write:follows": Leuten folgen
+      "write:lists": Listen erstellen
+      "write:media": Mediendateien hochladen
+      "write:mutes": Leute und Konversationen stummschalten
+      "write:notifications": deine Benachrichtigungen leeren
+      "write:reports": andere Leute melden
+      "write:statuses": Beiträge veröffentlichen
