@@ -237,6 +237,7 @@ io:
         confirm_user: Konfirmez uzanto
         create_account_warning: Kreez averto
         create_announcement: Kreez anunco
+        create_canonical_email_block: Kreez domenobstrukto
         create_custom_emoji: Kreez kustumizita emocimajo
         create_domain_allow: Kreez domenpermiso
         create_domain_block: Kreez domenobstrukto
@@ -246,6 +247,7 @@ io:
         create_user_role: Kreez rolo
         demote_user: Despromocez uzanto
         destroy_announcement: Efacez anunco
+        destroy_canonical_email_block: Efacez domenobstrukto
         destroy_custom_emoji: Efacez kustumizita emocimajo
         destroy_domain_allow: Efacez domenpermiso
         destroy_domain_block: Efacez domenobstrukto
@@ -281,6 +283,7 @@ io:
         update_announcement: Novigez anunco
         update_custom_emoji: Novigez kustumizita emocimajo
         update_domain_block: Novigez domenobstrukto
+        update_ip_block: Kreez IP-regulo
         update_status: Novigez posto
         update_user_role: Novigez rolo
       actions:
@@ -292,6 +295,7 @@ io:
         confirm_user_html: "%{name} konfirmis retpostoadreso di uzanto %{target}"
         create_account_warning_html: "%{name} sendis averto a %{target}"
         create_announcement_html: "%{name} kreis nova anunco %{target}"
+        create_canonical_email_block_html: "%{name} obstruktis retpostodomeno %{target}"
         create_custom_emoji_html: "%{name} adchargis nova emocimajo %{target}"
         create_domain_allow_html: "%{name} permisis federato kun domeno %{target}"
         create_domain_block_html: "%{name} obstruktis domeno %{target}"
@@ -301,6 +305,7 @@ io:
         create_user_role_html: "%{name} kreis rolo di %{target}"
         demote_user_html: "%{name} despromocis uzanto %{target}"
         destroy_announcement_html: "%{name} efacis anunco %{target}"
+        destroy_canonical_email_block_html: "%{name} obstruktis retpostodomeno %{target}"
         destroy_custom_emoji_html: "%{name} efacis emocimajo %{target}"
         destroy_domain_allow_html: "%{name} despermisis federato kun domeno %{target}"
         destroy_domain_block_html: "%{name} deobstruktis domeno %{target}"
@@ -336,6 +341,7 @@ io:
         update_announcement_html: "%{name} novigis anunco %{target}"
         update_custom_emoji_html: "%{name} novigis emocimajo %{target}"
         update_domain_block_html: "%{name} novigis domenobstrukto por %{target}"
+        update_ip_block_html: "%{name} kreis regulo por IP %{target}"
         update_status_html: "%{name} novigis posto da %{target}"
         update_user_role_html: "%{name} chanjis rolo di %{target}"
       empty: Nula logi.
