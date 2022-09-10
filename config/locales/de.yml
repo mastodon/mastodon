@@ -1,29 +1,29 @@
 de:
   about:
-    about_hashtag_html: 'Das sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.'
-    about_mastodon_html: 'Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).'
+    about_hashtag_html: 'Das sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Födiversum ein Konto besitzt, kannst du mit ihnen interagieren.'
+    about_mastodon_html: 'Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral – genau wie E-Mail!'
     about_this: Über diesen Server
     active_count_after: aktiv
-    active_footnote: Monatlich Aktive User (MAU)
+    active_footnote: Monatlich aktive User (MAU)
     administered_by: 'Betrieben von:'
     api: API
     apps: Mobile Apps
     apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
     browse_directory: Durchsuche das Profilverzeichnis und filtere nach Interessen
-    browse_local_posts: Durchsuche einen Live-Stream von öffentlichen Beiträgen von diesem Server
+    browse_local_posts: Durchsuche einen Live-Stream öffentlicher Beiträge dieses Servers
     browse_public_posts: Stöbere durch öffentliche Beiträge auf Mastodon
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: Nicht verfügbar
-    continue_to_web: Weiter zur Web App
+    continue_to_web: Weiter zur Web-App
     discover_users: Benutzer entdecken
     documentation: Dokumentation
-    federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein Nutzern auf irgendeinem Mastodon-Server und darüber hinaus zu folgen.
+    federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein, Nutzern auf irgendeinem Mastodon-Server und darüber hinaus zu folgen.
     get_apps: Versuche eine mobile App
     hosted_on: Mastodon, gehostet auf %{domain}
     instance_actor_flash: |
-      Dieses Konto ist ein virtueller Akteur, der den Server selbst und nicht einen einzelnen Benutzer repräsentiert.
-      Dieser wird für Föderationszwecke verwendet und sollte nicht blockiert werden, es sei denn du möchtest die gesamte Instanz blockieren.
+      Dieses Konto ist ein virtueller Akteur, welcher den Server selbst – und nicht einen einzelnen Benutzer – repräsentiert.
+      Dieser wird für Föderationszwecke verwendet und sollte nicht blockiert werden, es sei denn, du möchtest die gesamte Instanz blockieren.
     learn_more: Mehr erfahren
     logged_in_as_html: Du bist derzeit als %{username} eingeloggt.
     logout_before_registering: Du bist bereits angemeldet.
@@ -43,7 +43,7 @@ de:
     unavailable_content_description:
       domain: Server
       reason: 'Grund:'
-      rejecting_media: 'Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles anklicken auf den anderen Server erfordert.'
+      rejecting_media: 'Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles Anklicken auf den anderen Server erfordert.'
       rejecting_media_title: Gefilterte Medien
       silenced: 'Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.'
       silenced_title: Stummgeschaltete Server
@@ -95,9 +95,9 @@ de:
       created_msg: Moderationsnotiz erfolgreich erstellt!
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
-      add_email_domain_block: E-Mail-Domain blacklisten
+      add_email_domain_block: E-Mail-Domain auf Blacklist setzen
       approve: Akzeptieren
-      approved_msg: '%{username}''s Anmeldeantrag erfolgreich genehmigt'
+      approved_msg: Anmeldeantrag von %{username} erfolgreich genehmigt
       are_you_sure: Bist du sicher?
       avatar: Profilbild
       by_domain: Domain
@@ -120,7 +120,7 @@ de:
       delete: Daten löschen
       deleted: Gelöscht
       demote: Degradieren
-      destroyed_msg: "%{username}'s Daten wurden zum Löschen in die Warteschlange eingereiht"
+      destroyed_msg: "Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht"
       disable: Ausschalten
       disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentifizierung per E-Mail
       disable_two_factor_authentication: 2FA abschalten
@@ -133,12 +133,12 @@ de:
       enable: Freischalten
       enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentifizierung per E-Mail
       enabled: Freigegeben
-      enabled_msg: '%{username}''s Konto erfolgreich freigegeben'
+      enabled_msg: Konto von %{username} erfolgreich freigegeben
       followers: Follower
       follows: Folgt
       header: Titelbild
       inbox_url: Posteingangs-URL
-      invite_request_text: Begründung für das beitreten
+      invite_request_text: Begründung für das Beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
       joined: Beigetreten
@@ -151,7 +151,7 @@ de:
       media_attachments: Dateien
       memorialize: In Gedenkmal verwandeln
       memorialized: Memorialisiert
-      memorialized_msg: '%{username} wurde erfolgreich in ein memorialisiertes Konto umgewandelt'
+      memorialized_msg: '%{username} wurde erfolgreich in ein In-Memoriam-Konto umgewandelt'
       moderation:
         active: Aktiv
         all: Alle
@@ -179,11 +179,11 @@ de:
       redownload: Profil neu laden
       redownloaded_msg: Profil von %{username} erfolgreich von Ursprung aktualisiert
       reject: Ablehnen
-      rejected_msg: '%{username}''s Anmeldeantrag erfolgreich abgelehnt'
+      rejected_msg: Anmeldeantrag von %{username} erfolgreich abgelehnt
       remove_avatar: Profilbild entfernen
       remove_header: Titelbild entfernen
       removed_avatar_msg: Profilbild von %{username} erfolgreich entfernt
-      removed_header_msg: '%{username}''s Titelbild wurde erfolgreich entfernt'
+      removed_header_msg: Titelbild von %{username} wurde erfolgreich entfernt
       resend_confirmation:
         already_confirmed: Diese_r Benutzer_in wurde bereits bestätigt
         send: Bestätigungs-E-Mail erneut senden
@@ -194,7 +194,7 @@ de:
       role: Rolle
       search: Suche
       search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
-      search_same_ip: Andere Benutzer mit derselben IP
+      search_same_ip: Andere Benutzer mit derselben IP-Adresse
       security_measures:
         only_password: Nur Passwort
         password_and_2fa: Passwort und 2FA
@@ -211,7 +211,7 @@ de:
       subscribe: Abonnieren
       suspend: Suspendieren
       suspended: Verbannt
-      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor schon hatte.
+      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es wieder brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du dies nachfolgend tun.
       title: Konten
       unblock_email: E-Mail Adresse entsperren
@@ -220,7 +220,7 @@ de:
       undo_sensitized: Nicht mehr als NSFW markieren
       undo_silenced: Stummschaltung aufheben
       undo_suspension: Verbannung aufheben
-      unsilenced_msg: '%{username}''s Konto erfolgreich freigegeben'
+      unsilenced_msg: Konto von %{username} erfolgreich freigegeben
       unsubscribe: Abbestellen
       unsuspended_msg: Konto von %{username} erfolgreich freigegeben
       username: Profilname
@@ -239,7 +239,7 @@ de:
         create_account_warning: Warnung erstellen
         create_announcement: Ankündigung erstellen
         create_canonical_email_block: E-Mail-Block erstellen
-        create_custom_emoji: Eigene Emoji erstellen
+        create_custom_emoji: Eigene Emojis erstellen
         create_domain_allow: Domain erlauben
         create_domain_block: Domain blockieren
         create_email_domain_block: E-Mail-Domain-Block erstellen
@@ -248,8 +248,8 @@ de:
         create_user_role: Rolle erstellen
         demote_user: Benutzer degradieren
         destroy_announcement: Ankündigung löschen
-        destroy_canonical_email_block: E-Mail-Block löschen
-        destroy_custom_emoji: Eigene Emoji löschen
+        destroy_canonical_email_block: E-Mail-Blockade löschen
+        destroy_custom_emoji: Eigene Emojis löschen
         destroy_domain_allow: Erlaube das Löschen von Domains
         destroy_domain_block: Domain-Blockade löschen
         destroy_email_domain_block: E-Mail-Domain-Blockade löschen
