@@ -46,7 +46,7 @@ gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
 gem 'color_diff', '~> 0.1'
 gem 'discard', '~> 1.2'
-gem 'doorkeeper', '~> 5.5'
+gem 'doorkeeper', '~> 5.6'
 gem 'ed25519', '~> 1.3'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
@@ -114,7 +114,7 @@ end
 group :test do
   gem 'capybara', '~> 3.37'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.22'
+  gem 'faker', '~> 2.23'
   gem 'microformats', '~> 4.4'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
