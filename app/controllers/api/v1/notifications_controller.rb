@@ -42,7 +42,7 @@ class Api::V1::NotificationsController < Api::BaseController
   end
 
   def browserable_account_notifications
-    current_account.notifications.without_suspended.browserable(
+    current_account.notifications.without_suspended.unresolved.browserable(
       types: Array(browserable_params[:types]),
       exclude_types: Array(browserable_params[:exclude_types]),
       from_account_id: browserable_params[:account_id]
