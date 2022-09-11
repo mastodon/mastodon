@@ -46,7 +46,7 @@ class CustomEmoji < ApplicationRecord
   scope :local, -> { where(domain: nil) }
   scope :remote, -> { where.not(domain: nil) }
   scope :alphabetic, -> { order(domain: :asc, shortcode: :asc) }
-  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
+  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches("%.#{domain}"))) }
   scope :listed, -> { local.where(disabled: false).where(visible_in_picker: true) }
 
   remotable_attachment :image, LIMIT
@@ -65,6 +65,10 @@ class CustomEmoji < ApplicationRecord
     copy = self.class.find_or_initialize_by(domain: nil, shortcode: shortcode)
     copy.image = image
     copy.tap(&:save!)
+  end
+
+  def to_log_human_identifier
+    shortcode
   end
 
   class << self

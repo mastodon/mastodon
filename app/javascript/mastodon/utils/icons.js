@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Copied from emoji-mart for consistency with emoji picker and since
 // they don't export the icons in the package
 export const loupeIcon = (
