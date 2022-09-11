@@ -46,7 +46,7 @@ gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
 gem 'color_diff', '~> 0.1'
 gem 'discard', '~> 1.2'
-gem 'doorkeeper', '~> 5.5'
+gem 'doorkeeper', '~> 5.6'
 gem 'ed25519', '~> 1.3'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
