@@ -235,17 +235,21 @@ ku:
         approve_user: Bikarhêner bipejirîne
         assigned_to_self_report: Ragihandinê diyar bike
         change_email_user: E-nameya bikarhêner biguherîne
+        change_role_user: Rola bikarhêner biguherîne
         confirm_user: Bikarhêner bipejirîne
         create_account_warning: Hişyariyekê çê bike
         create_announcement: Daxûyaniyekê çê bike
+        create_canonical_email_block: Astengkirina e-nameyê biafirîne
         create_custom_emoji: Emojiyên kesanekirî çê bike
         create_domain_allow: Navpera ku destûr standiye peyda bike
         create_domain_block: Navpera ku asteng bûye ava bike
         create_email_domain_block: Navpera e-name yê de asteng kirinê peyda bike
         create_ip_block: Rêziknameya IPyê saz bike
         create_unavailable_domain: Navpera ku nayê bikaranîn pêk bîne
+        create_user_role: Rolê biafirîne
         demote_user: Bikarhênerê kaşê jêr bike
         destroy_announcement: Daxûyanîyê jê bibe
+        destroy_canonical_email_block: Astengkirina e-nameyê jê bibe
         destroy_custom_emoji: Emojîya kesanekirî jê bibe
         destroy_domain_allow: Navperên mafdayî jê bibe
         destroy_domain_block: Navperên astengkirî jê bibe
@@ -254,6 +258,7 @@ ku:
         destroy_ip_block: Tomara IPyê jêbibe
         destroy_status: Şandiyê jê bibe
         destroy_unavailable_domain: Navperên tuneyî jê bibe
+        destroy_user_role: Rolê hilweşîne
         disable_2fa_user: 2FA neçalak bike
         disable_custom_emoji: Emojîya kesanekirî neçalak bike
         disable_sign_in_token_auth_user: Ji bo bikarhênerê piştrastkirina navnîşana e-name yê ya token neçalak bike
@@ -280,24 +285,30 @@ ku:
         update_announcement: Daxûyaniyê rojane bike
         update_custom_emoji: Emojîya kesanekirî rojane bike
         update_domain_block: Navperên astengkirî rojane bike
+        update_ip_block: Rolê IP rojane bike
         update_status: Şandiyê rojane bike
+        update_user_role: Rolê rojane bike
       actions:
         approve_appeal_html: "%{name} îtiraza biryara çavdêriyê ji %{target} pejirand"
         approve_user_html: "%{name} tomarkirina ji %{target} pejirand"
         assigned_to_self_report_html: "%{name} ji xwe re ragihandinek %{target} hilda"
         change_email_user_html: "%{name} navnîşana e-nameya bikarhêner %{target} guherand"
+        change_role_user_html: "%{name} rolê %{target} guhert"
         confirm_user_html: "%{name} navnîşana e-nameya bikarhêner %{target} piştrast kir"
         create_account_warning_html: "%{name} ji bo %{target} hişyariyek şand"
         create_announcement_html: "%{name} agahdarkirineke nû çêkir %{target}"
+        create_canonical_email_block_html: "%{name} bi riya dabeşkirinê e-nameya %{target} asteng kir"
         create_custom_emoji_html: "%{name} emojîyeke nû ya %{target} bar kir"
         create_domain_allow_html: "%{name} bi navperê %{target} re maf da demnameya giştî"
         create_domain_block_html: "%{name} navpera %{target} asteng kir"
         create_email_domain_block_html: "%{name} e-nameya navperê %{target} asteng kir"
         create_ip_block_html: "%{name} ji bo IPya %{target} rêzikname saz kir"
         create_unavailable_domain_html: "%{name} bi navperê %{target} re gihandinê rawestand"
+        create_user_role_html: "%{name} rola %{target} afirand"
         demote_user_html: "%{name} bikarhênerê %{target} kaşê jêr kir"
         destroy_announcement_html: "%{name} daxûyaniyeke %{target} jê bir"
-        destroy_custom_emoji_html: "%{name} emojiya %{target} tune kir"
+        destroy_canonical_email_block_html: "%{name} bi riya dabeşkirinê astengiya li ser e-nameya %{target} rakir"
+        destroy_custom_emoji_html: "%{name} emojiya %{target} jê bir"
         destroy_domain_allow_html: "%{name} bi navperê %{target} re maf neda demnameya giştî"
         destroy_domain_block_html: "%{name} navpera %{target} asteng kir"
         destroy_email_domain_block_html: "%{name} astengiya li ser navpera e-nameyê %{target} rakir"
@@ -305,6 +316,7 @@ ku:
         destroy_ip_block_html: "%{name}, ji bo IPya %{target} rêziknameyê jêbir"
         destroy_status_html: "%{name} ji alîyê %{target} ve şandiyê rakir"
         destroy_unavailable_domain_html: "%{name} bi navperê %{target} re gihandinê berdewam kir"
+        destroy_user_role_html: "%{name} rola %{target} jê bir"
         disable_2fa_user_html: "%{name} ji bo bikarhênerê %{target} du faktorî neçalak kir"
         disable_custom_emoji_html: "%{name} emojiya %{target} neçalak kir"
         disable_sign_in_token_auth_user_html: "%{name} ji bo %{target} nîşana mafdayîna e-nameya ne çalak kir"
@@ -331,8 +343,9 @@ ku:
         update_announcement_html: "%{name} daxûyaniya %{target} rojane kir"
         update_custom_emoji_html: "%{name} emojiya %{target} rojane kir"
         update_domain_block_html: "%{name} ji bo navpera %{target} astengkirin rojane kir"
+        update_ip_block_html: "%{name} rolê %{target} guhert ji bo IP"
         update_status_html: "%{name} şandiya bikarhêner %{target} rojane kir"
-      deleted_status: "(şandiyeke jêbirî)"
+        update_user_role_html: "%{name} rola %{target} guherand"
       empty: Tomarkirin nehate dîtin.
       filter_by_action: Li gorî çalakiyê biparzinîne
       filter_by_user: Li gorî bikarhênerê biparzinîne
@@ -797,8 +810,8 @@ ku:
         title: Mafê bide gihîştina ne naskirî bo demnameya gelemperî
       title: Sazkariyên malperê
       trendable_by_default:
-        desc_html: Hashtagên ku berê hatibûn qedexekirin bandor dike
-        title: Bihêle ku hashtag bêyî nirxandinek pêşîn bibe rojev
+        desc_html: Naveroka rojevê nîşankirî dikare were qedexekirin
+        title: Mafê bide rojevê bêyî ku were nirxandin
       trends:
         desc_html: Hashtagên ku berê hatibûn nirxandin ên ku niha rojev in bi gelemperî bide xuyakirin
         title: Hashtagên rojevê
@@ -1183,6 +1196,8 @@ ku:
     edit:
       add_keyword: Kilîtpeyv tevî bike
       keywords: Peyvkilît
+      statuses: Şandiyên kesane
+      statuses_hint_html: Ev parzûn ji bo hibijartina şandiyên kesane tê sepandin bêyî ku ew bi peyvkilîtên jêrîn re lihevhatî bin. <a href="%{path}">Şandiyan binirxîne an jî ji parzûnê rake</a>.
       title: Parzûnê serrast bike
     errors:
       deprecated_api_multiple_keywords: Van parameteran ji vê sepanê nayên guhertin ji ber ku ew li ser bêtirî yek kilîtpeyvên parzûnkirî têne sepandin. Sepaneke nûtir an navrûya bikarhêneriyê ya malperê bi kar bîne.
@@ -1196,10 +1211,23 @@ ku:
       keywords:
         one: "%{count} kilîtpeyv"
         other: "%{count} kilîtpeyv"
+      statuses:
+        one: "%{count} şandî"
+        other: "%{count} şandî"
+      statuses_long:
+        one: "%{count} şandiyê kesane yê veşartî"
+        other: "%{count} şandiyê kesane yê veşartî"
       title: Parzûn
     new:
       save: Parzûna nû tomar bike
       title: Parzûnek nû li zêde bike
+    statuses:
+      back_to_filter: Vegere bo parzûnê
+      batch:
+        remove: Ji parzûnê rake
+      index:
+        hint: Ev parzûn bêyî pîvanên din ji bo hilbijartina şandiyên kesane tê sepandin. Tu dikarî ji navrûya tevnê bêtir şandiyan tevlî vê parzûnê bikî.
+        title: Şandiyên parzûnkirî
   footer:
     developers: Pêşdebir
     more: Bêtir…
@@ -1207,12 +1235,22 @@ ku:
     trending_now: Niha rojevê de
   generic:
     all: Hemû
+    all_items_on_page_selected_html:
+      one: Berhemê <strong>%{count}</strong> li ser vê rûpelê hatiye hilbijartin.
+      other: Hemû berhemên <strong>%{count}</strong> li ser vê rûpelê hatine hilbijartin.
+    all_matching_items_selected_html:
+      one: Berhemê <strong>%{count}</strong> ku bi lêgerîna te re lihevhatî ye hatiye hilbijartin.
+      other: Hemû berhemên <strong>%{count}</strong> ku bi lêgerîna te re lihevhatî ne hatine hilbijartin.
     changes_saved_msg: Guhertin bi serkeftî tomar bû!
     copy: Jê bigire
     delete: Jê bibe
+    deselect: Hemûyan hilnebijêre
     none: Ne yek
     order_by: Rêz bike bi
     save_changes: Guhertinan tomar bike
+    select_all_matching_items:
+      one: Berhemê %{count} ku bi lêgerîna te re lihevhatî ye hilbijêre.
+      other: Hemû berhemên %{count} ku bi lêgerîna te re lihevhatî ne hilbijêre.
     today: îro
     validation_errors:
       one: Tiştek hîn ne rast e! Ji kerema xwe çewtiya li jêr di ber çavan re derbas bike
@@ -1321,17 +1359,6 @@ ku:
         subject: "%{name} ragihandinek şand"
       sign_up:
         subject: "%{name} tomar bû"
-    digest:
-      action: Hemû agahdariyan nîşan bide
-      body: Li vir kurteyeke peyamên ku li te derbasbûnd ji serdana te ya dawîn di %{since} de
-      mention: "%{name} behsa te kir:"
-      new_followers_summary:
-        one: Herwiha, dema tu dûr bûyî te şopînerek nû bi dest xist! Bijî!
-        other: Herwiha, dema tu dûr bûyî te %{count} şopînerek nû bi dest xist! Bijî!
-      subject:
-        one: "1 agahdarî ji serdana te ya herî dawî 🐘"
-        other: "%{count} agahdarî ji serdana te ya herî dawî 🐘"
-      title: Di tunebûna te de...
     favourite:
       body: 'Şandiya te hate bijartin ji alî %{name} ve:'
       subject: "%{name} şandiya te hez kir"

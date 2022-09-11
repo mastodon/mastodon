@@ -111,6 +111,7 @@ cs:
       avatar: Avatar
       by_domain: Doména
       change_email:
+        changed_msg: E-mail úspěšně změněn!
         current_email: Současný e-mail
         label: Změnit e-mail
         new_email: Nový e-mail
@@ -304,7 +305,6 @@ cs:
         create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
-        destroy_custom_emoji_html: Uživatel %{name} zničil emoji %{target}
         destroy_domain_allow_html: Uživatel %{name} zakázal federaci s doménou %{target}
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
         destroy_email_domain_block_html: Uživatel %{name} odblokoval e-mailovou doménu %{target}
@@ -339,7 +339,6 @@ cs:
         update_custom_emoji_html: Uživatel %{name} aktualizoval emoji %{target}
         update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
-      deleted_status: "(smazaný příspěvek)"
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
@@ -803,9 +802,6 @@ cs:
         desc_html: Zobrazit na hlavní stránce odkaz na veřejnou časovou osu a povolit přístup na veřejnou časovou osu pomocí API bez autentizace
         title: Povolit neautentizovaný přístup k časové ose
       title: Nastavení stránky
-      trendable_by_default:
-        desc_html: Ovlivňuje hashtagy, které nebyly dříve zakázány
-        title: Povolit zobrazení hashtagů mezi populárními i bez předchozího posouzení
       trends:
         desc_html: Veřejně zobrazit dříve schválený obsah, který je zrovna populární
         title: Trendy
@@ -1196,14 +1192,26 @@ cs:
       public: Veřejné časové osy
       thread: Konverzace
     edit:
+      add_keyword: Přidat klíčové slovo
+      keywords: Klíčová slova
       title: Upravit filtr
     errors:
+      deprecated_api_multiple_keywords: Tyto parametry nelze změnit z této aplikace, protože se vztahují na více než jedno klíčové slovo filtru. Použijte novější aplikaci nebo webové rozhraní.
       invalid_context: Nebyl poskytnut žádný nebo jen neplatný kontext
     index:
+      contexts: Filtruje %{contexts}
       delete: Smazat
       empty: Nemáte žádný filtr.
+      expires_in: Vyprší za %{distance}
+      expires_on: Vyprší %{date}
+      keywords:
+        few: "%{count} klíčová slova"
+        many: "%{count} klíčových slov"
+        one: "%{count} klíčové slovo"
+        other: "%{count} klíčových slov"
       title: Filtry
     new:
+      save: Uložit nový filtr
       title: Přidat nový filtr
   footer:
     developers: Vývojáři
@@ -1330,21 +1338,6 @@ cs:
         subject: Uživatel %{name} podal hlášení
       sign_up:
         subject: Uživatel %{name} se zaregistroval
-    digest:
-      action: Zobrazit všechna oznámení
-      body: Zde najdete stručný souhrn zpráv, které jste zmeškali od vaší poslední návštěvy %{since}
-      mention: 'Uživatel %{name} vás zmínil v:'
-      new_followers_summary:
-        few: Zatímco jste byli pryč jste navíc získali %{count} nové sledující! Skvělé!
-        many: Zatímco jste byli pryč jste navíc získali %{count} nových sledujících! Úžasné!
-        one: Zatímco jste byli pryč jste navíc získali jednoho nového sledujícího! Hurá!
-        other: Zatímco jste byli pryč jste navíc získali %{count} nových sledujících! Úžasné!
-      subject:
-        few: "%{count} nová oznámení od vaší poslední návštěvy 🐘"
-        many: "%{count} nových oznámení od vaší poslední návštěvy 🐘"
-        one: "1 nové oznámení od vaší poslední návštěvy 🐘"
-        other: "%{count} nových oznámení od vaší poslední návštěvy 🐘"
-      title: Ve vaší nepřítomnosti…
     favourite:
       body: 'Váš příspěvek si oblíbil uživatel %{name}:'
       subject: Uživatel %{name} si oblíbil váš příspěvek

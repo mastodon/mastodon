@@ -230,17 +230,21 @@ zh-TW:
         approve_user: 批准使用者
         assigned_to_self_report: 指派回報
         change_email_user: 變更使用者的電子信箱地址
+        change_role_user: 變更使用者角色
         confirm_user: 確認使用者
         create_account_warning: 建立警告
         create_announcement: 建立公告
+        create_canonical_email_block: 新增 E-mail 封鎖
         create_custom_emoji: 建立自訂顏文字
         create_domain_allow: 建立允許網域
         create_domain_block: 建立阻擋網域
         create_email_domain_block: 封鎖電子郵件站台
         create_ip_block: 新增IP規則
         create_unavailable_domain: 新增無法存取的網域
+        create_user_role: 建立角色
         demote_user: 把用戶降級
         destroy_announcement: 刪除公告
+        destroy_canonical_email_block: 刪除 E-mail 封鎖
         destroy_custom_emoji: 刪除自訂顏文字
         destroy_domain_allow: 刪除允許網域
         destroy_domain_block: 刪除阻擋網域
@@ -249,6 +253,7 @@ zh-TW:
         destroy_ip_block: 刪除 IP 規則
         destroy_status: 刪除狀態
         destroy_unavailable_domain: 刪除無法存取的網域
+        destroy_user_role: 移除角色
         disable_2fa_user: 停用兩階段認證
         disable_custom_emoji: 停用自訂顏文字
         disable_sign_in_token_auth_user: 停用使用者電子信箱 token 驗證
@@ -275,24 +280,30 @@ zh-TW:
         update_announcement: 更新公告
         update_custom_emoji: 更新自訂顏文字
         update_domain_block: 更新封鎖網域
+        update_ip_block: 更新 IP 規則
         update_status: 更新狀態
+        update_user_role: 更新角色
       actions:
         approve_appeal_html: "%{name} 批准了來自 %{target} 的審核決定申訴"
         approve_user_html: "%{name} 批准了從 %{target} 而來的註冊"
         assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
         change_email_user_html: "%{name} 變更了使用者 %{target} 的電子信箱地址"
+        change_role_user_html: "%{name} 變更了 %{target} 的角色"
         confirm_user_html: "%{name} 確認了使用者 %{target} 的電子信箱位址"
         create_account_warning_html: "%{name} 已對 %{target} 送出警告"
         create_announcement_html: "%{name} 新增了公告 %{target}"
+        create_canonical_email_block_html: "%{name} 已封鎖了 hash 為 %{target} 之 e-mail"
         create_custom_emoji_html: "%{name} 上傳了新自訂表情符號 %{target}"
         create_domain_allow_html: "%{name} 允許 %{target} 網域加入聯邦宇宙"
         create_domain_block_html: "%{name} 封鎖了網域 %{target}"
         create_email_domain_block_html: "%{name} 封鎖了電子信箱網域 %{target}"
         create_ip_block_html: "%{name} 已經設定了IP %{target} 的規則"
         create_unavailable_domain_html: "%{name} 停止發送至網域 %{target}"
+        create_user_role_html: "%{name} 建立了 %{target} 角色"
         demote_user_html: "%{name} 將使用者 %{target} 降級"
         destroy_announcement_html: "%{name} 刪除了公告 %{target}"
-        destroy_custom_emoji_html: "%{name} 停用了自訂表情符號 %{target}"
+        destroy_canonical_email_block_html: "%{name} 取消了 hash 為 %{target} 之 e-mail 的封鎖"
+        destroy_custom_emoji_html: "%{name} 刪除了表情符號 %{target}"
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 取消了對網域 %{target} 的封鎖"
         destroy_email_domain_block_html: "%{name} 取消了對電子信箱網域 %{target} 的封鎖"
@@ -300,6 +311,7 @@ zh-TW:
         destroy_ip_block_html: "%{name} 刪除了 IP %{target} 的規則"
         destroy_status_html: "%{name} 刪除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢復了對網域 %{target} 的發送"
+        destroy_user_role_html: "%{name} 刪除了 %{target} 角色"
         disable_2fa_user_html: "%{name} 停用了使用者 %{target} 的兩階段認證"
         disable_custom_emoji_html: "%{name} 停用了自訂表情符號 %{target}"
         disable_sign_in_token_auth_user_html: "%{name} 停用了 %{target} 之使用者電子信箱 token 驗證"
@@ -326,8 +338,9 @@ zh-TW:
         update_announcement_html: "%{name} 更新了公告 %{target}"
         update_custom_emoji_html: "%{name} 更新了自訂表情符號 %{target}"
         update_domain_block_html: "%{name} 更新了 %{target} 之網域封鎖"
+        update_ip_block_html: "%{name} 已經更新了 IP %{target} 之規則"
         update_status_html: "%{name} 更新了 %{target} 的嘟文"
-      deleted_status: "（已刪除嘟文）"
+        update_user_role_html: "%{name} 變更了 %{target} 角色"
       empty: 找不到 log
       filter_by_action: 按動作篩選
       filter_by_user: 按使用者篩選
@@ -781,8 +794,8 @@ zh-TW:
         title: 時間軸預覽
       title: 網站設定
       trendable_by_default:
-        desc_html: 影響此前並未被禁用的標籤
-        title: 允許熱門的主題標籤直接顯示於趨勢區，不需經過審核
+        desc_html: 特定的熱門內容仍可以被明確地禁止
+        title: 允許熱門話題直接顯示，不需經過審核
       trends:
         desc_html: 公開目前炎上的已審核標籤
         title: 趨勢主題標籤
@@ -1164,7 +1177,7 @@ zh-TW:
       add_keyword: 新增關鍵字
       keywords: 關鍵字
       statuses: 各別嘟文
-      statuses_hint_html: 此過濾器會套用至所選之各別嘟文，不管它們有無匹配到以下的關鍵字。您可以檢視這些嘟文而<a href="%{path}">按此</a>將它們從過濾器中移除。
+      statuses_hint_html: 此過濾器會套用至所選之各別嘟文，無論其是否符合下列關鍵字。<a href="%{path}">審閱或從過濾條件移除貼文</a>。
       title: 編輯篩選條件
     errors:
       deprecated_api_multiple_keywords: 這些參數無法從此應用程式中更改，因為它們適用於一或多個過濾器關鍵字。請使用較新的應用程式或是網頁介面。
@@ -1199,12 +1212,19 @@ zh-TW:
     trending_now: 現正熱門
   generic:
     all: 全部
+    all_items_on_page_selected_html:
+      other: 已選取此頁面上 <strong>%{count}</strong> 個項目。
+    all_matching_items_selected_html:
+      other: 已選取符合您搜尋的 <strong>%{count}</strong> 個項目。
     changes_saved_msg: 已成功儲存修改!
     copy: 複製
     delete: 刪除
+    deselect: 取消選擇全部
     none: 無
     order_by: 排序
     save_changes: 儲存修改
+    select_all_matching_items:
+      other: 選取 %{count} 個符合您搜尋的項目。
     today: 今天
     validation_errors:
       other: 唔…這是什麼鳥？請檢查以下 %{count} 項錯誤
@@ -1311,15 +1331,6 @@ zh-TW:
         subject: "%{name} 送出了一則檢舉報告"
       sign_up:
         subject: "%{name} 已進行註冊"
-    digest:
-      action: 閱覽所有通知
-      body: 以下是自 %{since} 您最後一次登入以來錯過的訊息摘要
-      mention: "%{name} 在此提及了您："
-      new_followers_summary:
-        other: 此外，您在離開時獲得了 %{count} 位新的追蹤者！超棒的！
-      subject:
-        other: "從您上次造訪以來有 %{count} 個新通知 🐘"
-      title: 您不在的時候...
     favourite:
       body: 您的嘟文被 %{name} 加入了最愛：
       subject: "%{name} 將您的嘟文加入了最愛"

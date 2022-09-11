@@ -235,17 +235,21 @@ da:
         approve_user: Godkend bruger
         assigned_to_self_report: Tildel rapport
         change_email_user: Skift e-mail for bruger
+        change_role_user: Skift brugerrolle
         confirm_user: Bekræft bruger
         create_account_warning: Opret advarsel
         create_announcement: Opret bekendtgørelse
+        create_canonical_email_block: Opret e-mailblokering
         create_custom_emoji: Opret tilpasset emoji
         create_domain_allow: Opret domænetilladelse
         create_domain_block: Opret domæneblokering
         create_email_domain_block: Opret e-maildomæneblokering
         create_ip_block: Opret IP-regel
         create_unavailable_domain: Opret Utilgængeligt Domæne
+        create_user_role: Opret rolle
         demote_user: Degradér bruger
         destroy_announcement: Slet bekendtgørelse
+        destroy_canonical_email_block: Slet e-mailblokering
         destroy_custom_emoji: Slet tilpasset emoji
         destroy_domain_allow: Slet domænetilladelse
         destroy_domain_block: Slet domæneblokering
@@ -254,6 +258,7 @@ da:
         destroy_ip_block: Slet IP-regel
         destroy_status: Slet indlæg
         destroy_unavailable_domain: Slet Utilgængeligt Domæne
+        destroy_user_role: Ødelæg rolle
         disable_2fa_user: Deaktivér 2FA
         disable_custom_emoji: Deaktivér tilpasset emoji
         disable_sign_in_token_auth_user: Deaktivér e-mailtoken godkendelse for bruger
@@ -280,24 +285,30 @@ da:
         update_announcement: Opdatér bekendtgørelse
         update_custom_emoji: Opdatér tilpasset emoji
         update_domain_block: Opdatér domæneblokering
+        update_ip_block: Opdatér IP-regel
         update_status: Opdatér indlæg
+        update_user_role: Opdatér rolle
       actions:
         approve_appeal_html: "%{name} godkendte moderationsafgørelsesappellen fra %{target}"
         approve_user_html: "%{name} godkendte tilmeldingen fra %{target}"
         assigned_to_self_report_html: "%{name} tildelte sig selv anmeldelsen %{target}"
         change_email_user_html: "%{name} ændrede e-mailadressen for bruger %{target}"
+        change_role_user_html: "%{name} ændrede rollen for %{target}"
         confirm_user_html: "%{name} bekræftede e-mailadressen for bruger %{target}"
         create_account_warning_html: "%{name} sendte en advarsel til %{target}"
         create_announcement_html: "%{name} oprettede den nye bekendtgørelse %{target}"
+        create_canonical_email_block_html: "%{name} blokerede e-mailen med hash'et %{target}"
         create_custom_emoji_html: "%{name} uploadede den nye emoji %{target}"
         create_domain_allow_html: "%{name} tillod federering med domænet %{target}"
         create_domain_block_html: "%{name} blokerede domænet %{target}"
         create_email_domain_block_html: "%{name} blokerede e-maildomænet %{target}"
         create_ip_block_html: "%{name} oprettede en regel for IP %{target}"
         create_unavailable_domain_html: "%{name} stoppede levering til domænet %{target}"
+        create_user_role_html: "%{name} oprettede %{target}-rolle"
         demote_user_html: "%{name} degraderede brugeren %{target}"
         destroy_announcement_html: "%{name} slettede bekendtgørelsen %{target}"
-        destroy_custom_emoji_html: "%{name} fjernede emojien %{target}"
+        destroy_canonical_email_block_html: "%{name} afblokerede e-mailen med hash'et %{target}"
+        destroy_custom_emoji_html: "%{name} slettede emojien %{target}"
         destroy_domain_allow_html: "%{name} fjernede federeringstilladelsen med domænet %{target}"
         destroy_domain_block_html: "%{name} afblokerede domænet %{target}"
         destroy_email_domain_block_html: "%{name} afblokerede e-maildomænet %{target}"
@@ -305,6 +316,7 @@ da:
         destroy_ip_block_html: "%{name} slettede en regel for IP %{target}"
         destroy_status_html: "%{name} fjernede indlægget fra %{target}"
         destroy_unavailable_domain_html: "%{name} genoptog levering til domænet %{target}"
+        destroy_user_role_html: "%{name} slettede %{target}-rolle"
         disable_2fa_user_html: "%{name} deaktiverede tofaktorkravet for brugeren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverede emojien %{target}"
         disable_sign_in_token_auth_user_html: "%{name} deaktiverede e-mailtoken godkendelsen for %{target}"
@@ -331,8 +343,9 @@ da:
         update_announcement_html: "%{name} opdaterede bekendtgørelsen %{target}"
         update_custom_emoji_html: "%{name} opdaterede emoji %{target}"
         update_domain_block_html: "%{name} opdaterede domæneblokeringen for %{target}"
+        update_ip_block_html: "%{name} ændrede reglen for IP'en %{target}"
         update_status_html: "%{name} opdaterede indlægget fra %{target}"
-      deleted_status: "(slettet indlæg)"
+        update_user_role_html: "%{name} ændrede %{target}-rolle"
       empty: Ingen logger fundet.
       filter_by_action: Filtrér efter handling
       filter_by_user: Filtrér efter bruger
@@ -794,8 +807,8 @@ da:
         title: Tillad ikke-godkendt tilgang til offentlig tidslinje
       title: Webstedsindstillinger
       trendable_by_default:
-        desc_html: Påvirker hashtags, som ikke tidligere er blevet nægtet
-        title: Tillad hashtags at forme tendens uden forudgående revision
+        desc_html: Bestemt tendensindhold kan stadig udtrykkeligt forbydes
+        title: Tillad tendenser uden forudgående gennemsyn
       trends:
         desc_html: Vis offentligt tidligere reviderede hashtags, som pt. trender
         title: Populært
@@ -1181,7 +1194,7 @@ da:
       add_keyword: Tilføj nøgleord
       keywords: Nøgleord
       statuses: Individuelle indlæg
-      statuses_hint_html: Dette filter gælder for udvalgte, individuelle indlæg, uanset om de matcher nøgleordene nedenfor. Disse indlæg kan gennemgås og fjernes fra filteret ved at <a href="%{path}">klikke hér</a>.
+      statuses_hint_html: Dette filter gælder for udvalgte, individuelle indlæg, uanset om de matcher nøgleordene nedenfor. <a href="%{path}">Gennemgå eller fjern indlæg fra filteret</a>.
       title: Redigere filter
     errors:
       deprecated_api_multiple_keywords: Disse parametre kan ikke ændres fra denne applikation, da de gælder for flere end ét filternøgleord. Brug en nyere applikation eller webgrænsefladen.
@@ -1210,7 +1223,7 @@ da:
       batch:
         remove: Fjern fra filter
       index:
-        hint: Dette filter gælder for udvalgte, individuelle indlæg uanset andre kriterier. Flere indlæg kan føjes til filteret via webgrænsefladen.
+        hint: Dette filter gælder for udvalgte, individuelle indlæg uanset andre kriterier. Flere indlæg kan føjes til filteret via webfladen.
         title: Filtrerede indlæg
   footer:
     developers: Udviklere
@@ -1219,12 +1232,22 @@ da:
     trending_now: Trender lige nu
   generic:
     all: Alle
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> emne på denne side er valgt."
+      other: Alle <strong>%{count}</strong> emner på denne side er valgt.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> emne, der matchede søgningen, er valgt."
+      other: Alle <strong>%{count}</strong> emner, som matchede søgningen, er valgt.
     changes_saved_msg: Ændringerne er gemt!
     copy: Kopier
     delete: Slet
+    deselect: Afmarkér alle
     none: Intet
     order_by: Sortér efter
     save_changes: Gem ændringer
+    select_all_matching_items:
+      one: Vælg %{count} emne, der matchede søgningen.
+      other: Vælg alle %{count} emner, som matchede søgningen.
     today: i dag
     validation_errors:
       one: Noget er ikke er helt i vinkel! Tjek fejlen nedenfor
@@ -1333,17 +1356,6 @@ da:
         subject: "%{name} indsendte en anmeldelse"
       sign_up:
         subject: "%{name} tilmeldte sig"
-    digest:
-      action: Se alle notifikationer
-      body: Her er en kort oversigt over de beskeder, som er misset siden dit seneste besøg %{since}
-      mention: "%{name} nævnte dig i:"
-      new_followers_summary:
-        one: Under dit fravær har du har også fået en ny følger! Sådan!
-        other: Under dit fravær har du har også fået %{count} nye følgere! Sådan!
-      subject:
-        one: "1 ny notifikation siden senest besøg 🐘"
-        other: "%{count} nye notifikationer siden senest besøg 🐘"
-      title: I dit fravær...
     favourite:
       body: "%{name} favoritmarkerede dit indlæg:"
       subject: "%{name} favoritmarkerede dit indlæg"

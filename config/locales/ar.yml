@@ -299,7 +299,6 @@ ar:
         create_unavailable_domain_html: قام %{name} بتوقيف التوصيل للنطاق %{target}
         demote_user_html: قام %{name} بخفض الرتبة الوظيفية لـ%{target}
         destroy_announcement_html: قام %{name} بحذف الإعلان %{target}
-        destroy_custom_emoji_html: قام %{name} بحذف الإيموجي %{target}
         destroy_domain_allow_html: قام %{name} بمنع الاتحاد مع النطاق %{target}
         destroy_domain_block_html: قام %{name} برفع الحظر عن النطاق %{target}
         destroy_email_domain_block_html: قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}
@@ -331,7 +330,6 @@ ar:
         update_custom_emoji_html: قام %{name} بتحديث الإيموجي %{target}
         update_domain_block_html: قام %{name} بتحديث كتلة النطاق %{target}
         update_status_html: قام %{name} بتحديث منشور من %{target}
-      deleted_status: "(منشور محذوف)"
       empty: لم يتم العثور على سجلات.
       filter_by_action: تصفية بحسب الإجراء
       filter_by_user: تصفية حسب المستخدم
@@ -688,9 +686,6 @@ ar:
         desc_html: عرض الخيط العمومي على صفحة الاستقبال
         title: مُعاينة الخيط العام
       title: إعدادات الموقع
-      trendable_by_default:
-        desc_html: يؤثر على علامات الوسوم التي لم يكن مسموح بها مسبقاً
-        title: السماح للوسوم بالظهور على المتداوَلة بدون مراجعة مسبقة
       trends:
         desc_html: عرض علني للوسوم المستعرضة سابقاً التي هي رائجة الآن
         title: الوسوم المتداولة
@@ -1144,18 +1139,6 @@ ar:
     admin:
       sign_up:
         subject: أنشأ %{name} حسابًا
-    digest:
-      action: معاينة كافة الإشعارات
-      body: هذا هو مُلَخَّص الرسائل التي فاتتك وذلك منذ آخر زيارة لك في %{since}
-      mention: "%{name} أشار إليك في:"
-      new_followers_summary:
-        few: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
-        many: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
-        one: و لقد تحصّلتَ كذلك على مُتابِع آخَر بينما كنتَ غائبًا! هذا شيء رائع!
-        other: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
-        two: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
-        zero: رائع، لقد قام بمتابَعتك %{count} مُتابِعون جُدد أثناء فترة غيابك عن ماستدون!
-      title: أثناء فترة غيابك...
     favourite:
       body: 'أُعجب %{name} بمنشورك:'
       subject: أُعجِب %{name} بمنشورك

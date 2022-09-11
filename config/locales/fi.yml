@@ -235,6 +235,7 @@ fi:
         approve_user: Hyväksy käyttäjä
         assigned_to_self_report: Määritä raportti
         change_email_user: Vaihda sähköposti käyttäjälle
+        change_role_user: Muuta käyttäjän roolia
         confirm_user: Vahvista käyttäjä
         create_account_warning: Luo varoitus
         create_announcement: Luo ilmoitus
@@ -244,6 +245,7 @@ fi:
         create_email_domain_block: Estä sähköpostipalvelin
         create_ip_block: Luo IP-sääntö
         create_unavailable_domain: Luo ei-saatavilla oleva verkkotunnus
+        create_user_role: Luo rooli
         demote_user: Alenna käyttäjä
         destroy_announcement: Poista ilmoitus
         destroy_custom_emoji: Poista mukautettu emoji
@@ -254,6 +256,7 @@ fi:
         destroy_ip_block: Poista IP-sääntö
         destroy_status: Poista julkaisu
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
+        destroy_user_role: Hävitä rooli
         disable_2fa_user: Poista kaksivaiheinen tunnistautuminen käytöstä
         disable_custom_emoji: Estä mukautettu emoji
         disable_sign_in_token_auth_user: Estä käyttäjältä sähköpostitunnuksen todennus
@@ -281,11 +284,13 @@ fi:
         update_custom_emoji: Päivitä muokattu emoji
         update_domain_block: Päivitä verkkotunnuksen esto
         update_status: Päivitä viesti
+        update_user_role: Päivitä rooli
       actions:
         approve_appeal_html: "%{name} hyväksyi moderointipäätöksen muutoksenhaun lähettäjältä %{target}"
         approve_user_html: "%{name} hyväksyi käyttäjän rekisteröitymisen kohteesta %{target}"
         assigned_to_self_report_html: "%{name} otti raportin %{target} tehtäväkseen"
         change_email_user_html: "%{name} vaihtoi käyttäjän %{target} sähköpostiosoitteen"
+        change_role_user_html: "%{name} muutti roolia %{target}"
         confirm_user_html: "%{name} vahvisti käyttäjän %{target} sähköpostiosoitteen"
         create_account_warning_html: "%{name} lähetti varoituksen henkilölle %{target}"
         create_announcement_html: "%{name} loi uuden ilmoituksen %{target}"
@@ -295,6 +300,7 @@ fi:
         create_email_domain_block_html: "%{name} esti sähköpostin %{target}"
         create_ip_block_html: "%{name} luonut IP-säännön %{target}"
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
+        create_user_role_html: "%{name} luonut %{target} roolin"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
         destroy_announcement_html: "%{name} poisti ilmoituksen %{target}"
         destroy_custom_emoji_html: "%{name} poisti emojin %{target}"
@@ -305,6 +311,7 @@ fi:
         destroy_ip_block_html: "%{name} poisti IP-säännön %{target}"
         destroy_status_html: "%{name} poisti viestin %{target}"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
+        destroy_user_role_html: "%{name} poisti %{target} roolin"
         disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheisen todentamiseen"
         disable_custom_emoji_html: "%{name} poisti emojin %{target}"
         disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksen %{target} todennuksen käytöstä"
@@ -332,7 +339,7 @@ fi:
         update_custom_emoji_html: "%{name} päivitti emojin %{target}"
         update_domain_block_html: "%{name} päivitti verkkotunnuksen %{target}"
         update_status_html: "%{name} päivitti viestin %{target}"
-      deleted_status: "(poistettu julkaisu)"
+        update_user_role_html: "%{name} muutti roolia %{target}"
       empty: Lokeja ei löytynyt.
       filter_by_action: Suodata tapahtuman mukaan
       filter_by_user: Suodata käyttäjän mukaan
@@ -480,6 +487,9 @@ fi:
       unsuppress: Palauta seuraa suositus
     instances:
       availability:
+        description_html:
+          one: Jos toimitus verkkotunnukseen epäonnistuu <strong>%{count} päivä</strong> ilman onnistumista, uusia yrityksiä ei tehdä ennen kuin toimitus <em>alkaen</em> verkkotunnukselta on vastaanotettu.
+          other: Jos toimitus verkkotunnukselle, epäonnistuu <strong>%{count} eri päivänä</strong> ilman onnistumista, uusia yrityksiä ei tehdä ennen kuin toimitus <em>alkaen</em> verkkotunnuselta on vastaanotettu.
         failure_threshold_reached: Epäonnistumisen kynnys saavutettu %{date}.
         failures_recorded:
           one: Epäonnistuneita yrityksiä %{count} päivässä.
@@ -660,6 +670,53 @@ fi:
       delete: Poista
       description_html: Käyttäjän <strong>roolit</strong>, voit muokata toimintoja ja alueita mitä sinun Mastodon käyttäjät voivat käyttää.
       edit: Muokkaa "%{name}" roolia
+      everyone: Oletus käyttöoikeudet
+      everyone_full_description_html: Tämä on <strong>perusrooli</strong> joka vaikuttaa <strong>kaikkiin käyttäjiin</strong>, jopa ilman määrättyä roolia. Kaikki muut roolit perivät sen käyttöoikeudet.
+      permissions_count:
+        one: "%{count} käyttöoikeus"
+        other: "%{count} käyttöoikeutta"
+      privileges:
+        administrator: Ylläpitäjä
+        administrator_description: Käyttäjät, joilla on tämä käyttöoikeus, ohittavat jokaisen käyttöoikeuden
+        delete_user_data: Poista käyttäjän tiedot
+        delete_user_data_description: Salli käyttäjien poistaa muiden käyttäjien tiedot viipymättä
+        invite_users: Kutsu käyttäjiä
+        invite_users_description: Sallii käyttäjien kutsua uusia ihmisiä palvelimelle
+        manage_announcements: Hallitse Ilmoituksia
+        manage_announcements_description: Salli käyttäjien hallita ilmoituksia palvelimella
+        manage_appeals: Hallitse valituksia
+        manage_appeals_description: Antaa käyttäjien tarkastella valvontatoimia koskevia valituksia
+        manage_blocks: Hallitse lohkoja
+        manage_blocks_description: Sallii käyttäjien estää sähköpostipalvelujen ja IP-osoitteiden käytön
+        manage_custom_emojis: Hallita mukautettuja hymiöitä
+        manage_custom_emojis_description: Salli käyttäjien hallita mukautettuja hymiöitä palvelimella
+        manage_federation: Hallita liitoksia
+        manage_federation_description: Sallii käyttäjien estää tai sallia liitoksen muiden verkkotunnusten kanssa ja hallita toimitusta
+        manage_invites: Hallita kutsuja
+        manage_invites_description: Sallii käyttäjien selata ja poistaa kutsulinkkejä käytöstä
+        manage_reports: Hallita raportteja
+        manage_reports_description: Sallii käyttäjien tarkastella raportteja ja suorittaa valvontatoimia niitä vastaan
+        manage_roles: Hallita rooleja
+        manage_roles_description: Sallii käyttäjien hallita ja määrittää rooleja heidän alapuolellaan
+        manage_rules: Hallita sääntöjä
+        manage_rules_description: Sallii käyttäjien vaihtaa palvelinsääntöjä
+        manage_settings: Hallita asetuksia
+        manage_settings_description: Salli käyttäjien muuttaa sivuston asetuksia
+        manage_taxonomies: Hallita luokittelua
+        manage_taxonomies_description: Sallii käyttäjien tarkistaa trendillisen sisällön ja päivittää hashtag-asetuksia
+        manage_user_access: Hallita käyttäjän oikeuksia
+        manage_user_access_description: Sallii käyttäjien poistaa käytöstä muiden käyttäjien kaksivaiheisen todennuksen, muuttaa heidän sähköpostiosoitettaan ja nollata heidän salasanansa
+        manage_users: Hallita käyttäjiä
+        manage_users_description: Sallii käyttäjien tarkastella muiden käyttäjien tietoja ja suorittaa valvontatoimia heitä vastaan
+        manage_webhooks: Hallita Webhookit
+        manage_webhooks_description: Sallii käyttäjien luoda webhookit hallinnollisiin tapahtumiin
+        view_audit_log: Katsoa valvontalokia
+        view_audit_log_description: Sallii käyttäjien nähdä palvelimen hallinnollisten toimien historian
+        view_dashboard: Näytä koontinäyttö
+        view_dashboard_description: Sallii käyttäjien käyttää kojelautaa ja erilaisia mittareita
+        view_devops: Operaattorit
+        view_devops_description: Sallii käyttäjille oikeuden käyttää Sidekiq ja pgHero dashboardeja
+      title: Roolit
     rules:
       add_new: Lisää sääntö
       delete: Poista
@@ -744,9 +801,6 @@ fi:
         desc_html: Näytä julkinen aikajana aloitussivulla
         title: Aikajanan esikatselu
       title: Sivuston asetukset
-      trendable_by_default:
-        desc_html: Vaikuttaa hashtageihin, joita ei ole aiemmin poistettu käytöstä
-        title: Salli hashtagit ilman tarkistusta ennakkoon
       trends:
         desc_html: Näytä julkisesti aiemmin tarkistetut hashtagit, jotka ovat tällä hetkellä saatavilla
         title: Trendaavat aihetunnisteet
@@ -779,6 +833,11 @@ fi:
     system_checks:
       database_schema_check:
         message_html: Tietokannan siirto on vireillä. Suorita ne varmistaaksesi, että sovellus toimii odotetulla tavalla
+      elasticsearch_running_check:
+        message_html: Ei saatu yhteyttä Elasticsearch. Tarkista, että se on käynnissä tai poista kokotekstihaku käytöstä
+      elasticsearch_version_check:
+        message_html: 'Yhteensopimaton Elasticsearch versio: %{value}'
+        version_comparison: Elasticsearch %{running_version} on käynnissä, kun %{required_version} vaaditaan
       rules_check:
         action: Hallinnoi palvelimen sääntöjä
         message_html: Et ole määrittänyt mitään palvelimen sääntöä.
@@ -798,8 +857,12 @@ fi:
         description_html: Nämä ovat linkkejä, joita jaetaan tällä hetkellä paljon tileillä, joilta palvelimesi näkee viestejä. Se voi auttaa käyttäjiäsi saamaan selville, mitä maailmassa tapahtuu. Linkkejä ei näytetä julkisesti, ennen kuin hyväksyt julkaisijan. Voit myös sallia tai hylätä yksittäiset linkit.
         disallow: Hylkää linkki
         disallow_provider: Estä julkaisija
+        shared_by_over_week:
+          one: Yksi henkilö jakanut viimeisen viikon aikana
+          other: Jakanut %{count} henkilöä viimeisen viikon aikana
         title: Suositut linkit
         usage_comparison: Jaettu %{today} kertaa tänään verrattuna eilen %{yesterday}
+      only_allowed: Vain sallittu
       pending_review: Odottaa tarkistusta
       preview_card_providers:
         allowed: Tämän julkaisijan linkit voivat trendata
@@ -851,6 +914,7 @@ fi:
     webhooks:
       add_new: Lisää päätepiste
       delete: Poista
+      description_html: A <strong>webhook</strong> mahdollistaa Mastodonin työntää <strong>reaaliaikaisia ilmoituksia</strong> valituista tapahtumista omaan sovellukseesi, joten sovelluksesi voi <strong>laukaista automaattisesti reaktioita</strong>.
       disable: Poista käytöstä
       disabled: Ei käytössä
       edit: Muokkaa päätepistettä
@@ -1121,8 +1185,11 @@ fi:
     edit:
       add_keyword: Lisää avainsana
       keywords: Avainsanat
+      statuses: Yksittäiset postaukset
+      statuses_hint_html: Tämä suodatin koskee yksittäisten postausten valintaa riippumatta siitä, vastaavatko ne alla olevia avainsanoja. <a href="%{path}">Tarkista tai poista viestit suodattimesta</a>.
       title: Muokkaa suodatinta
     errors:
+      deprecated_api_multiple_keywords: Näitä parametreja ei voi muuttaa tästä sovelluksesta, koska ne koskevat useampaa kuin yhtä suodattimen avainsanaa. Käytä uudempaa sovellusta tai web-käyttöliittymää.
       invalid_context: Ei sisältöä tai se on virheellinen
     index:
       contexts: Suodattimet %{contexts}
@@ -1133,10 +1200,23 @@ fi:
       keywords:
         one: "%{count} avainsana"
         other: "%{count} avainsanaa"
+      statuses:
+        one: "%{count} viesti"
+        other: "%{count} viestiä"
+      statuses_long:
+        one: "%{count} yksittäinen viesti piilotettu"
+        other: "%{count} yksittäistä viestiä piilotettu"
       title: Suodattimet
     new:
       save: Tallenna uusi suodatin
       title: Lisää uusi suodatin
+    statuses:
+      back_to_filter: Takaisin suodattimeen
+      batch:
+        remove: Poista suodattimista
+      index:
+        hint: Tämä suodatin koskee yksittäisten viestien valintaa muista kriteereistä riippumatta. Voit lisätä lisää viestejä tähän suodattimeen web-käyttöliittymästä.
+        title: Suodatetut viestit
   footer:
     developers: Kehittäjille
     more: Lisää…
@@ -1258,17 +1338,6 @@ fi:
         subject: "%{name} lähetti raportin"
       sign_up:
         subject: "%{name} kirjautunut"
-    digest:
-      action: Näytä kaikki ilmoitukset
-      body: Tässä lyhyt yhteenveto viime käyntisi (%{since}) jälkeen tulleista viesteistä
-      mention: "%{name} mainitsi sinut:"
-      new_followers_summary:
-        one: Olet myös saanut yhden uuden seuraajan! Juhuu!
-        other: Olet myös saanut %{count} uutta seuraajaa! Aivan mahtavaa!
-      subject:
-        one: "1 uusi ilmoitus viime käyntisi jälkeen 🐘"
-        other: "%{count} uutta ilmoitusta viime käyntisi jälkeen 🐘"
-      title: Poissaollessasi…
     favourite:
       body: "%{name} tykkäsi tilastasi:"
       subject: "%{name} tykkäsi tilastasi"

@@ -245,17 +245,21 @@ sl:
         approve_user: Odobri uporabnika
         assigned_to_self_report: Dodeli prijavo
         change_email_user: Spremeni e-poštni naslov uporabnika
+        change_role_user: Spremeni vlogo uporabnika
         confirm_user: Potrdi uporabnika
         create_account_warning: Ustvari opozorilo
         create_announcement: Ustvari obvestilo
+        create_canonical_email_block: Ustvari blokado e-pošte
         create_custom_emoji: Ustvari emodži po meri
         create_domain_allow: Ustvari odobritev domene
         create_domain_block: Ustvari blokado domene
         create_email_domain_block: Ustvari blokado domene e-pošte
         create_ip_block: Ustvari pravilo IP
         create_unavailable_domain: Ustvari domeno, ki ni na voljo
+        create_user_role: Ustvari vlogo
         demote_user: Ponižaj uporabnika
         destroy_announcement: Izbriši obvestilo
+        destroy_canonical_email_block: Izbriši blokado e-pošte
         destroy_custom_emoji: Izbriši emodži po meri
         destroy_domain_allow: Izbriši odobritev domene
         destroy_domain_block: Izbriši blokado domene
@@ -264,6 +268,7 @@ sl:
         destroy_ip_block: Izbriši pravilo IP
         destroy_status: Izbriši objavo
         destroy_unavailable_domain: Izbriši domeno, ki ni na voljo
+        destroy_user_role: Uniči vlogo
         disable_2fa_user: Onemogoči
         disable_custom_emoji: Onemogoči emodži po meri
         disable_sign_in_token_auth_user: Onemogoči overjanje z žetonom po e-pošti za uporabnika
@@ -290,24 +295,30 @@ sl:
         update_announcement: Posodobi objavo
         update_custom_emoji: Posodobi emodži po meri
         update_domain_block: Posodobi blokado domene
+        update_ip_block: Posodobi pravilo IP
         update_status: Posodobi objavo
+        update_user_role: Posodobi vlogo
       actions:
         approve_appeal_html: "%{name} je ugodil pritožbi uporabnika %{target} na moderatorsko odločitev"
         approve_user_html: "%{name} je odobril/a registracijo iz %{target}"
         assigned_to_self_report_html: "%{name} je dodelil/a prijavo %{target} sebi"
         change_email_user_html: "%{name} je spremenil/a naslov e-pošte uporabnika %{target}"
+        change_role_user_html: "%{name} je spremenil/a vlogo %{target}"
         confirm_user_html: "%{name} je potrdil/a naslov e-pošte uporabnika %{target}"
         create_account_warning_html: "%{name} je poslal/a opozorilo %{target}"
         create_announcement_html: "%{name} je ustvarila/a novo obvestilo %{target}"
+        create_canonical_email_block_html: "%{name} je dal/a na črni seznam e-pošto s ključnikom %{target}"
         create_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         create_domain_allow_html: "%{name} je dovolil/a federacijo z domeno %{target}"
         create_domain_block_html: "%{name} je blokiral/a domeno %{target}"
         create_email_domain_block_html: "%{name} je dal/a na črni seznam e-pošto domene %{target}"
         create_ip_block_html: "%{name} je ustvaril/a pravilo za IP %{target}"
         create_unavailable_domain_html: "%{name} je prekinil/a dostavo v domeno %{target}"
+        create_user_role_html: "%{name} je ustvaril/a vlogo %{target}"
         demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
         destroy_announcement_html: "%{name} je izbrisal/a obvestilo %{target}"
-        destroy_custom_emoji_html: "%{name} je uničil/a emotikone %{target}"
+        destroy_canonical_email_block_html: "%{name} je odstranil/a s črnega seznama e-pošto s ključnikom %{target}"
+        destroy_custom_emoji_html: "%{name} je izbrisal/a emotikon %{target}"
         destroy_domain_allow_html: "%{name} ni dovolil/a federacije z domeno %{target}"
         destroy_domain_block_html: "%{name} je odblokiral/a domeno %{target}"
         destroy_email_domain_block_html: "%{name} je odblokiral/a e-pošto domene %{target}"
@@ -315,6 +326,7 @@ sl:
         destroy_ip_block_html: "%{name} je izbrisal/a pravilo za IP %{target}"
         destroy_status_html: "%{name} je odstranil/a objavo uporabnika %{target}"
         destroy_unavailable_domain_html: "%{name} je nadaljeval/a dostav v domeno %{target}"
+        destroy_user_role_html: "%{name} je izbrisal/a vlogo %{target}"
         disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
         disable_sign_in_token_auth_user_html: "%{name} je onemogočil/a overjanje z žetonom po e-pošti za uporabnika %{target}"
@@ -341,8 +353,9 @@ sl:
         update_announcement_html: "%{name} je posodobil/a objavo %{target}"
         update_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         update_domain_block_html: "%{name} je posodobil/a domenski blok za %{target}"
+        update_ip_block_html: "%{name} je spremenil/a pravilo za IP %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
-      deleted_status: "(izbrisana objava)"
+        update_user_role_html: "%{name} je spremenil/a vlogo %{target}"
       empty: Ni najdenih zapisnikov.
       filter_by_action: Filtriraj po dejanjih
       filter_by_user: Filtriraj po uporabnikih
@@ -827,8 +840,8 @@ sl:
         title: Predogled časovnice
       title: Nastavitve strani
       trendable_by_default:
-        desc_html: Velja za ključnike, ki niso bili poprej onemogočeni
-        title: Dovoli, da so ključniki v trendu brez predhodnega pregleda
+        desc_html: Določeno vsebino v trendu je še vedno možno izrecno prepovedati
+        title: Dovoli trende brez predhodnega pregleda
       trends:
         desc_html: Javno prikaži poprej pregledano vsebino, ki je trenutno v trendu
         title: Trendi
@@ -1222,7 +1235,7 @@ sl:
       add_keyword: Dodaj ključno besedo
       keywords: Ključne besede
       statuses: Posamezne objave
-      statuses_hint_html: Ta filter se nanaša na posamezne objave ne glede na to, ali se ujemajo s spodnjimi ključnimi besedami. Te objave lahko pregledate in jih odstranite iz filtra, če <a href="%{path}">kliknete tukaj</a>.
+      statuses_hint_html: Ta filter velja za izbrane posamezne objave, ne glede na to, ali se ujemajo s spodnjimi ključnimi besedami. <a href="%{path}">Preglejte ali odstarnite objave iz filtra</a>.
       title: Uredite filter
     errors:
       deprecated_api_multiple_keywords: Teh parametrov ni mogoče spremeniti iz tega programa, ker veljajo za več kot eno ključno besedo filtra. Uporabite novejšo izdaj programa ali spletni vmesnik.
@@ -1266,12 +1279,28 @@ sl:
     trending_now: Zdaj v trendu
   generic:
     all: Vse
+    all_items_on_page_selected_html:
+      few: Na tej strani so izbrani <strong>%{count}</strong> elementi.
+      one: Na tej strani je izbran <strong>%{count}</strong> element.
+      other: Na tej strani je izbranih <strong>%{count}</strong> elementov.
+      two: Na tej strani sta izbrana <strong>%{count}</strong> elementa.
+    all_matching_items_selected_html:
+      few: Izbrani so <strong>%{count}</strong> elementi, ki ustrezajo vašemu iskanju.
+      one: Izbran je <strong>%{count}</strong> element, ki ustreza vašemu iskanju.
+      other: Izbranih je <strong>%{count}</strong> elementov, ki ustrezajo vašemu iskanju.
+      two: Izbrana sta <strong>%{count}</strong> elementa, ki ustrezata vašemu iskanju.
     changes_saved_msg: Spremembe so uspešno shranjene!
     copy: Kopiraj
     delete: Izbriši
+    deselect: Prekliči ves izbor
     none: Brez
     order_by: Razvrsti po
     save_changes: Shrani spremembe
+    select_all_matching_items:
+      few: Izberite %{count} elemente, ki ustrezajo vašemu iskanju.
+      one: Izberite %{count} element, ki ustreza vašemu iskanju.
+      other: Izberite %{count} elementov, ki ustrezajo vašemu iskanju.
+      two: Izberite %{count} elementa, ki ustrezata vašemu iskanju.
     today: danes
     validation_errors:
       few: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napake
@@ -1384,21 +1413,6 @@ sl:
         subject: "%{name} je oddal/a prijavo"
       sign_up:
         subject: "%{name} se je vpisal/a"
-    digest:
-      action: Prikaži vsa obvestila
-      body: Tukaj je kratek povzetek sporočil, ki ste jih zamudili od vašega zadnjega obiska v %{since}
-      mention: "%{name} vas je omenil/a v:"
-      new_followers_summary:
-        few: Prav tako ste pridobili %{count} nove sledilce, ko ste bili odsotni! Juhu!
-        one: Prav tako ste pridobili enega novega sledilca, ko ste bili odsotni! Juhu!
-        other: Prav tako ste pridobili %{count} novih sledilcev, ko ste bili odsotni! Juhu!
-        two: Prav tako ste pridobili %{count} nova sledilca, ko ste bili odsotni! Juhu!
-      subject:
-        few: "%{count} nova obvestila od vašega zadnjega obiska 🐘"
-        one: "%{count} novo obvestilo od vašega zadnjega obiska 🐘"
-        other: "%{count} novih obvestil od vašega zadnjega obiska 🐘"
-        two: "%{count} novi obvestili od vašega zadnjega obiska 🐘"
-      title: V vaši odsotnosti...
     favourite:
       body: "%{name} je vzljubil/a vašo objavo:"
       subject: "%{name} je vzljubil/a vašo objavo"

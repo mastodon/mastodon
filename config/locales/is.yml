@@ -235,17 +235,21 @@ is:
         approve_user: Samþykkja notanda
         assigned_to_self_report: Úthluta kæru
         change_email_user: Skipta um tölvupóstfang notanda
+        change_role_user: Breyta hlutverki notanda
         confirm_user: Staðfesta notanda
         create_account_warning: Útbúa aðvörun
         create_announcement: Búa til tilkynningu
+        create_canonical_email_block: Búa til útilokunarblokk tölvupósts
         create_custom_emoji: Búa til sérsniðið tjáningartákn
         create_domain_allow: Búa til lén leyft
         create_domain_block: Búa til útilokun léns
         create_email_domain_block: Búa til útilokun tölvupóstléns
         create_ip_block: Búa til IP-reglu
         create_unavailable_domain: Útbúa lén sem ekki er tiltækt
+        create_user_role: Útbúa hlutverk
         demote_user: Lækka notanda í tign
         destroy_announcement: Eyða tilkynningu
+        destroy_canonical_email_block: Eyða útilokunarblokk tölvupósts
         destroy_custom_emoji: Eyða sérsniðnu tjáningartákni
         destroy_domain_allow: Eyða léni leyft
         destroy_domain_block: Eyða útilokun léns
@@ -254,6 +258,7 @@ is:
         destroy_ip_block: Eyða IP-reglu
         destroy_status: Eyða færslu
         destroy_unavailable_domain: Eyða léni sem ekki er tiltækt
+        destroy_user_role: Eyða hlutverki
         disable_2fa_user: Gera tveggja-þátta auðkenningu óvirka
         disable_custom_emoji: Gera sérsniðið tjáningartákn óvirkt
         disable_sign_in_token_auth_user: Gera óvirka auðkenningu með teikni í tölvupósti fyrir notandann
@@ -280,24 +285,30 @@ is:
         update_announcement: Uppfæra tilkynningu
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
         update_domain_block: Uppfæra útilokun léns
+        update_ip_block: Uppfæra reglu IP-vistfangs
         update_status: Uppfæra færslu
+        update_user_role: Uppfæra hlutverk
       actions:
         approve_appeal_html: "%{name} samþykkti áfrýjun á ákvörðun umsjónarmanns frá %{target}"
         approve_user_html: "%{name} samþykkti nýskráningu frá %{target}"
         assigned_to_self_report_html: "%{name} úthlutaði kæru %{target} til sín"
         change_email_user_html: "%{name} breytti tölvupóstfangi fyrir notandann %{target}"
+        change_role_user_html: "%{name} breytti hlutverki %{target}"
         confirm_user_html: "%{name} staðfesti tölvupóstfang fyrir notandann %{target}"
         create_account_warning_html: "%{name} sendi aðvörun til %{target}"
         create_announcement_html: "%{name} útbjó nýja tilkynningu %{target}"
+        create_canonical_email_block_html: "%{name} útilokaði tölvupóst með tætigildið %{target}"
         create_custom_emoji_html: "%{name} sendi inn nýtt tjáningartákn %{target}"
         create_domain_allow_html: "%{name} leyfði skýjasamband með léninu %{target}"
         create_domain_block_html: "%{name} útilokaði lénið %{target}"
         create_email_domain_block_html: "%{name} útilokaði póstlénið %{target}"
         create_ip_block_html: "%{name} útbjó reglu fyrir IP-vistfangið %{target}"
         create_unavailable_domain_html: "%{name} stöðvaði afhendingu til lénsins %{target}"
+        create_user_role_html: "%{name} útbjó %{target} hlutverk"
         demote_user_html: "%{name} lækkaði notandann %{target} í tign"
         destroy_announcement_html: "%{name} eyddi tilkynninguni %{target}"
-        destroy_custom_emoji_html: "%{name} henti út tjáningartákninu %{target}"
+        destroy_canonical_email_block_html: "%{name} tók af útilokun á tölvupósti með tætigildið %{target}"
+        destroy_custom_emoji_html: "%{name} eyddi emoji-tákni %{target}"
         destroy_domain_allow_html: "%{name} bannaði skýjasamband með léninu %{target}"
         destroy_domain_block_html: "%{name} aflétti útilokun af léninu %{target}"
         destroy_email_domain_block_html: "%{name} aflétti útilokun af póstléninu %{target}"
@@ -305,6 +316,7 @@ is:
         destroy_ip_block_html: "%{name} eyddi reglu fyrir IP-vistfangið %{target}"
         destroy_status_html: "%{name} fjarlægði færslu frá %{target}"
         destroy_unavailable_domain_html: "%{name} hóf aftur afhendingu til lénsins %{target}"
+        destroy_user_role_html: "%{name} eyddi hlutverki %{target}"
         disable_2fa_user_html: "%{name} gerði kröfu um tveggja-þátta innskráningu óvirka fyrir notandann %{target}"
         disable_custom_emoji_html: "%{name} gerði tjáningartáknið %{target} óvirkt"
         disable_sign_in_token_auth_user_html: "%{name} gerði óvirka auðkenningu með teikni í tölvupósti fyrir %{target}"
@@ -331,8 +343,9 @@ is:
         update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
         update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
+        update_ip_block_html: "%{name} breytti reglu fyrir IP-vistfangið %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
-      deleted_status: "(eydd færsla)"
+        update_user_role_html: "%{name} breytti hlutverki %{target}"
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
@@ -795,11 +808,11 @@ is:
         title: Leyfa óauðkenndan aðgang að opinberri tímalínu
       title: Stillingar vefsvæðis
       trendable_by_default:
-        desc_html: Hefur áhrif á myllumerki sem ekki hafa áður verið gerð óleyfileg
-        title: Leyfa myllumerkjum að fara í umræðuna án þess að þau séu fyrst yfirfarin
+        desc_html: Sérstakt vinsælt efni er eftir sem áður hægt að banna sérstaklega
+        title: Leyfa vinsælt efni án undanfarandi yfirferðar
       trends:
         desc_html: Birta opinberlega þau áður yfirförnu myllumerki sem eru núna í umræðunni
-        title: Myllumerki í umræðunni
+        title: Vinsælt
     site_uploads:
       delete: Eyða innsendri skrá
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
@@ -1182,7 +1195,7 @@ is:
       add_keyword: Bæta við stikkorði
       keywords: Stikkorð
       statuses: Einstakar færslur
-      statuses_hint_html: Þessi sía virkar til að velja stakar færslur burtséð frá því hvort þær samsvari stikkorðunum hér fyrir neðan. Þú getur yfirfarið þessar færslur og fjarlægt þær úr síunni með því að <a href="%{path}">smella hér</a>.
+      statuses_hint_html: Þessi sía virkar til að velja stakar færslur án tillits til annarra skilyrða. <a href="%{path}">Yfirfarðu eða fjarlægðu færslur úr síunni</a>.
       title: Breyta síu
     errors:
       deprecated_api_multiple_keywords: Þessum viðföngum er ekki hægt að breyta úr þessu forriti, þar sem þau eiga við fleiri en eitt stikkorð síu. Notaðu nýrra forrit eða farðu í vefviðmótið.
@@ -1220,12 +1233,22 @@ is:
     trending_now: Í umræðunni núna
   generic:
     all: Allt
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> atriði á þessari síðu er valið."
+      other: Öll <strong>%{count}</strong> atriðin á þessari síðu eru valin.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> atriði sem samsvarar leitinni þinni er valið."
+      other: Öll <strong>%{count}</strong> atriðin sem samsvara leitinni þinni eru valin.
     changes_saved_msg: Það tókst að vista breytingarnar!
     copy: Afrita
     delete: Eyða
+    deselect: Afvelja allt
     none: Ekkert
     order_by: Raða eftir
     save_changes: Vista breytingar
+    select_all_matching_items:
+      one: Veldu %{count} atriði sem samsvarar leitinni þinni.
+      other: Veldu öll %{count} atriðin sem samsvara leitinni þinni.
     today: í dag
     validation_errors:
       one: Ennþá er ekk alvegi allt í lagi! Skoðaðu vel villuna hér fyrir neðan
@@ -1334,17 +1357,6 @@ is:
         subject: "%{name} sendi inn kæru"
       sign_up:
         subject: "%{name} nýskráði sig"
-    digest:
-      action: Skoða allar tilkynningar
-      body: Hér er stutt yfirlit yfir þau skilaboð sem þú gætir hafa misst af síðan þú leist inn síðast %{since}
-      mention: "%{name} minntist á þig í:"
-      new_followers_summary:
-        one: Að auki, þú hefur fengið einn nýjan fylgjanda á meðan þú varst fjarverandi! Húh!
-        other: Að auki, þú hefur fengið %{count} nýja fylgjendur á meðan þú varst fjarverandi! Frábært!
-      subject:
-        one: "1 ný tilkynning síðan þú leist inn síðast 🐘"
-        other: "%{count} nýjar tilkynningar síðan þú leist inn síðast 🐘"
-      title: Á meðan þú varst fjarverandi...
     favourite:
       body: 'Færslan þín var sett í eftirlæti af %{name}:'
       subject: "%{name} setti færsluna þína í eftirlæti"

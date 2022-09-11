@@ -307,7 +307,6 @@ gd:
         create_unavailable_domain_html: Sguir %{name} ris an lìbhrigeadh dhan àrainn %{target}
         demote_user_html: Dh’ìslich %{name} an cleachdaiche %{target}
         destroy_announcement_html: Sguab %{name} às am brath-fios %{target}
-        destroy_custom_emoji_html: Mhill %{name} an Emoji %{target}
         destroy_domain_allow_html: Dì-cheadaich %{name} co-nasgadh leis an àrainn %{target}
         destroy_domain_block_html: Dì-bhac %{name} an àrainn %{target}
         destroy_email_domain_block_html: Dì-bhac %{name} an àrainn puist-d %{target}
@@ -342,7 +341,6 @@ gd:
         update_custom_emoji_html: Dh’ùraich %{name} an Emoji %{target}
         update_domain_block_html: Dh’ùraich %{name} bacadh na h-àrainne %{target}
         update_status_html: Dh’ùraich %{name} post le %{target}
-      deleted_status: "(post air a sguabadh às)"
       empty: Cha deach loga a lorg.
       filter_by_action: Criathraich a-rèir gnìomha
       filter_by_user: Criathraich a-rèir cleachdaiche
@@ -826,9 +824,6 @@ gd:
         desc_html: Seall ceangal dhan loidhne-ama phoblach air an duilleag-landaidh is ceadaich inntrigeadh gun ùghdarrachadh leis an API air an loidhne-ama phoblach
         title: Ceadaich inntrigeadh gun ùghdarrachadh air an loidhne-ama phoblach
       title: Roghainnean na làraich
-      trendable_by_default:
-        desc_html: Bheir seo buaidh air na tagaichean hais nach deach a dhì-cheadachadh roimhe
-        title: Leig le tagaichean hais treandadh às aonais lèirmheis ro làimh
       trends:
         desc_html: Seall susbaint gu poblach a chaidh lèirmheas a dhèanamh oirre roimhe ’s a tha a’ treandadh
         title: Treandaichean
@@ -1091,7 +1086,7 @@ gd:
     post_follow:
       close: Air neo dùin an uinneag seo.
       return: Seall pròifil a’ chleachdaiche
-      web: Tadhail air an lìon
+      web: Tadhail air an duilleag-lìn
     title: Lean air %{acct}
   challenge:
     confirm: Lean air adhart
@@ -1365,21 +1360,6 @@ gd:
         subject: Rinn %{name} gearan
       sign_up:
         subject: Chlàraich %{name}
-    digest:
-      action: Seall a h-uile brath
-      body: Seo geàrr-chunntas air na h-atharraichean nach fhaca thu on tadhal mu dheireadh agad %{since}
-      mention: 'Thug %{name} iomradh ort an-seo:'
-      new_followers_summary:
-        few: Cuideachd, bhuannaich thu %{count} luchd-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
-        one: Cuideachd, bhuannaich thu %{count} neach-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
-        other: Cuideachd, bhuannaich thu %{count} luchd-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
-        two: Cuideachd, bhuannaich thu %{count} neach-leantainn ùr on àm a bha thu air falbh! Nach ma sin!
-      subject:
-        few: "%{count} brathan ùra on tadhal mu dheireadh agad 🐘"
-        one: "%{count} bhrath ùr on tadhal mu dheireadh agad 🐘"
-        other: "%{count} brath ùr on tadhal mu dheireadh agad 🐘"
-        two: "%{count} bhrath ùr on tadhal mu dheireadh agad 🐘"
-      title: Fhad ’s a bha thu air falbh…
     favourite:
       body: 'Is annsa le %{name} am post agad:'
       subject: Is annsa le %{name} am post agad

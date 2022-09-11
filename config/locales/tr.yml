@@ -235,17 +235,21 @@ tr:
         approve_user: Kullanıcıyı Onayla
         assigned_to_self_report: Raporu Ata
         change_email_user: Kullanıcı E-postasını Değiştir
+        change_role_user: Kullanıcının Rolünü Değiştir
         confirm_user: Kullanıcıyı Onayla
         create_account_warning: Uyarı Oluştur
         create_announcement: Duyuru Oluştur
+        create_canonical_email_block: E-posta Engeli Oluştur
         create_custom_emoji: Özel İfade Oluştur
         create_domain_allow: İzin Verilen Alan Adı Oluştur
         create_domain_block: Engellenen Alan Adı Oluştur
         create_email_domain_block: E-Posta Alan Adı Engeli Oluştur
         create_ip_block: IP kuralı oluştur
         create_unavailable_domain: Mevcut Olmayan Alan Adı Oluştur
+        create_user_role: Rol Oluştur
         demote_user: Kullanıcıyı Düşür
         destroy_announcement: Duyuru Sil
+        destroy_canonical_email_block: E-Posta Engelini Sil
         destroy_custom_emoji: Özel İfadeyi Sil
         destroy_domain_allow: İzin Verilen Alan Adını Sil
         destroy_domain_block: Engellenen Alan Adını Sil
@@ -254,6 +258,7 @@ tr:
         destroy_ip_block: IP kuralını sil
         destroy_status: Durumu Sil
         destroy_unavailable_domain: Mevcut Olmayan Alan Adı Sil
+        destroy_user_role: Rolü Kaldır
         disable_2fa_user: 2AD Kapat
         disable_custom_emoji: Özel İfadeyi Devre Dışı Bırak
         disable_sign_in_token_auth_user: Kullanıcı için E-posta Token Doğrulamayı devre dışı bırak
@@ -280,24 +285,30 @@ tr:
         update_announcement: Duyuruyu Güncelle
         update_custom_emoji: Özel İfadeyi Güncelle
         update_domain_block: Engellenen Alan Adını Güncelle
+        update_ip_block: IP kuralını güncelle
         update_status: Durumu Güncelle
+        update_user_role: Rolü Güncelle
       actions:
         approve_appeal_html: "%{name}, %{target} kullanıcısının yönetim kararına itirazını kabul etti"
         approve_user_html: "%{name}, %{target} konumundan kaydı onayladı"
         assigned_to_self_report_html: "%{name} kendilerine %{target} adlı raporu verdi"
         change_email_user_html: "%{name}, %{target} kullanıcısının e-posta adresini değiştirdi"
+        change_role_user_html: "%{name}, %{target} kişisinin rolünü değiştirdi"
         confirm_user_html: "%{name} %{target} kullanıcısının e-posta adresini onayladı"
         create_account_warning_html: "%{name} %{target} 'a bir uyarı gönderdi"
         create_announcement_html: "%{name}, yeni %{target} duyurusunu oluşturdu"
+        create_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelledi"
         create_custom_emoji_html: "%{name} yeni %{target} ifadesini yükledi"
         create_domain_allow_html: "%{name}, %{target} alan adıyla birliğe izin verdi"
         create_domain_block_html: "%{name}, %{target} alan adını engelledi"
         create_email_domain_block_html: "%{name}, %{target} e-posta alan adını engelledi"
         create_ip_block_html: "%{name}, %{target} IP adresi için kural oluşturdu"
         create_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı durdurdu"
+        create_user_role_html: "%{name}, %{target} rolünü oluşturdu"
         demote_user_html: "%{name}, %{target} kullanıcısını düşürdü"
         destroy_announcement_html: "%{name}, %{target} duyurusunu sildi"
-        destroy_custom_emoji_html: "%{name}, %{target} emojisini yok etti"
+        destroy_canonical_email_block_html: "%{name}, %{target} karmasıyla e-posta engelini kaldırdı"
+        destroy_custom_emoji_html: "%{name}, %{target} ifadesini sildi"
         destroy_domain_allow_html: "%{name}, %{target} alan adıyla birlik iznini kaldırdı"
         destroy_domain_block_html: "%{name}, %{target} alan adı engelini kaldırdı"
         destroy_email_domain_block_html: "%{name}, %{target} e-posta alan adı engelini kaldırdı"
@@ -305,6 +316,7 @@ tr:
         destroy_ip_block_html: "%{name}, %{target} IP adresi kuralını sildi"
         destroy_status_html: "%{name}, %{target} kullanıcısının gönderisini kaldırdı"
         destroy_unavailable_domain_html: "%{name}, %{target} alan adına teslimatı sürdürdü"
+        destroy_user_role_html: "%{name}, %{target} rolünü sildi"
         disable_2fa_user_html: "%{name}, %{target} kullanıcısının iki aşamalı doğrulama gereksinimini kapattı"
         disable_custom_emoji_html: "%{name}, %{target} emojisini devre dışı bıraktı"
         disable_sign_in_token_auth_user_html: "%{name}, %{target} için e-posta token doğrulamayı devre dışı bıraktı"
@@ -331,8 +343,9 @@ tr:
         update_announcement_html: "%{name}, %{target} duyurusunu güncelledi"
         update_custom_emoji_html: "%{name}, %{target} emojisini güncelledi"
         update_domain_block_html: "%{name}, %{target} alan adının engelini güncelledi"
+        update_ip_block_html: "%{name}, %{target} IP adresi için kuralı güncelledi"
         update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
-      deleted_status: "(silinmiş durum)"
+        update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
       filter_by_user: Kullanıcıya göre filtre
@@ -795,8 +808,8 @@ tr:
         title: Zaman çizelgesi önizlemesi
       title: Site Ayarları
       trendable_by_default:
-        desc_html: Daha önce izin verilmeyen etiketleri etkiler
-        title: Ön inceleme yapmadan etiketlerin trend olmasına izin ver
+        desc_html: Belirli öne çıkan içeriğe yine de açıkça izin verilmeyebilir
+        title: Ön inceleme yapmadan öne çıkmalara izin ver
       trends:
         desc_html: Şu anda trend olan ve daha önce incelenen etiketleri herkese açık olarak göster
         title: Gündem etiketleri
@@ -1182,7 +1195,7 @@ tr:
       add_keyword: Anahtar sözcük ekle
       keywords: Anahtar Sözcükler
       statuses: Tekil gönderiler
-      statuses_hint_html: Bu filtre aşağıdaki anahtar kelimelere eşlenip eşlenmediklerinden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. Bu gönderileri gözden geçirip, <a href="%{path}">buraya tıklayarak</a> filtreden kaldırabilirsiniz.
+      statuses_hint_html: Bu filtre, aşağıdaki anahtar kelimelerle eşleşip eşleşmediklerinden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. <a href="%{path}">Filtredeki gönderileri inceleyin veya kaldırın</a>.
       title: Filtreyi düzenle
     errors:
       deprecated_api_multiple_keywords: Bu parametreler, birden fazla filtre anahtar sözcüğü için geçerli olduğundan dolayı bu uygulama içerisinden değiştirilemezler. Daha yeni bir uygulama veya web arayüzünü kullanın.
@@ -1220,12 +1233,22 @@ tr:
     trending_now: Şu an gündemde
   generic:
     all: Tümü
+    all_items_on_page_selected_html:
+      one: Bu sayfadaki <strong>%{count}</strong> öğe seçilmiş.
+      other: Bu sayfadaki tüm <strong>%{count}</strong> öğe seçilmiş.
+    all_matching_items_selected_html:
+      one: Aramanızla eşleşen <strong>%{count}</strong> öğe seçilmiş.
+      other: Aramanızla eşleşen tüm <strong>%{count}</strong> öğe seçilmiş.
     changes_saved_msg: Değişiklikler başarıyla kaydedildi!
     copy: Kopyala
     delete: Sil
+    deselect: Hiçbirini seçme
     none: Hiçbiri
     order_by: Sıralama ölçütü
     save_changes: Değişiklikleri kaydet
+    select_all_matching_items:
+      one: Aramanızla eşleşen %{count} öğeyi seç.
+      other: Aramanızla eşleşen tüm %{count} öğeyi seç.
     today: bugün
     validation_errors:
       one: Bir şeyler ters gitti! Lütfen aşağıdaki hatayı gözden geçiriniz
@@ -1334,17 +1357,6 @@ tr:
         subject: "%{name} bir bildirim gönderdi"
       sign_up:
         subject: "%{name} kaydoldu"
-    digest:
-      action: Tüm bildirimleri görüntüle
-      body: Son ziyaretiniz olan %{since}'den beri'da kaçırdığınız şeylerin özeti
-      mention: "%{name} senden bahsetti:"
-      new_followers_summary:
-        one: Ayrıca, uzaktayken yeni bir takipçi kazandınız! Yaşasın!
-        other: Ayrıca, uzaktayken %{count} yeni takipçi kazandınız! İnanılmaz!
-      subject:
-        one: "Son ziyaretinizden bu yana 1 yeni bildirim 🐘"
-        other: "Son ziyaretinizden bu yana %{count} yeni bildirim 🐘"
-      title: Senin yokluğunda...
     favourite:
       body: "%{name} durumunu beğendi:"
       subject: "%{name} durumunu beğendi"

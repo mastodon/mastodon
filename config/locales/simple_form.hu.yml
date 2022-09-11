@@ -80,7 +80,7 @@ hu:
       invite_request:
         text: Ez segít nekünk átnézni a jelentkezésedet
       ip_block:
-        comment: Opcionális. Emlékeztető, hogy miért is vetted fel ezt a szabályt.
+        comment: Nem kötelező. Emlékeztető, hogy miért is vetted fel ezt a szabályt.
         expires_in: Az IP címek korlátos erőforrások, ezért néha meg vannak osztva és gyakran gazdát is cserélnek. Ezért a korlátlan IP tiltások használatát nem javasoljuk.
         ip: Írj be egy IPv4 vagy IPv6 címet. A CIDR formátum használatával teljes tartományokat tilthatsz ki. Légy óvatos, hogy magadat véletlenül se zárd ki!
         severities:
@@ -253,6 +253,7 @@ hu:
         events: Engedélyezett események
         url: Végponti URL
     'no': Nem
+    not_recommended: Nem ajánlott
     recommended: Ajánlott
     required:
       mark: "*"

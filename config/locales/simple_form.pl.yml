@@ -85,6 +85,7 @@ pl:
         ip: Wprowadź adres IPv4 lub IPv6. Możesz zablokować całe zakresy za pomocą składni CIDR. Uważaj, aby się nie zablokować!
         severities:
           no_access: Zablokuj dostęp do wszystkich zasobów
+          sign_up_block: Nowe rejestracje nie będą możliwe
           sign_up_requires_approval: Nowe rejestracje będą wymagać twojej zgody
         severity: Wybierz co ma się stać z żadaniami z tego adresu IP
       rule:
@@ -251,6 +252,7 @@ pl:
         events: Włączone zdarzenia
         url: Endpoint URL
     'no': Nie
+    not_recommended: Niezalecane
     recommended: Polecane
     required:
       mark: "*"

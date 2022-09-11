@@ -235,17 +235,21 @@ ca:
         approve_user: Aprova l'usuari
         assigned_to_self_report: Assigna l'informe
         change_email_user: Canvia l'adreça electrònica per l'usuari
+        change_role_user: Canvia el Rol del Usuari
         confirm_user: Confirma l'usuari
         create_account_warning: Crea un avís
         create_announcement: Crea un anunci
+        create_canonical_email_block: Crea un bloqueig de correu electrònic
         create_custom_emoji: Crea un emoji personalitzat
         create_domain_allow: Crea un domini permès
         create_domain_block: Crea un bloqueig de domini
         create_email_domain_block: Crea un bloqueig de domini d'adreça de correu
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crea un domini no disponible
+        create_user_role: Crea Rol
         demote_user: Degrada l'usuari
         destroy_announcement: Esborra l'anunci
+        destroy_canonical_email_block: Esborra el bloqueig de correu electrònic
         destroy_custom_emoji: Esborra l'emoji personalitzat
         destroy_domain_allow: Esborra el domini permès
         destroy_domain_block: Esborra el bloqueig de domini
@@ -254,6 +258,7 @@ ca:
         destroy_ip_block: Eliminar regla IP
         destroy_status: Esborrar la publicació
         destroy_unavailable_domain: Esborra domini no disponible
+        destroy_user_role: Destrueix Rol
         disable_2fa_user: Desactiva 2FA
         disable_custom_emoji: Desactiva l'emoji personalitzat
         disable_sign_in_token_auth_user: Desactivar l'autenticació de token per correu per l'usuari
@@ -280,24 +285,30 @@ ca:
         update_announcement: Actualitza l'anunci
         update_custom_emoji: Actualitza l'emoji personalitzat
         update_domain_block: Actualitza el Bloqueig de Domini
+        update_ip_block: Actualitza norma IP
         update_status: Actualitza l'estat
+        update_user_role: Actualitza Rol
       actions:
         approve_appeal_html: "%{name} ha aprovat l'apel·lació a la decisió de moderació de %{target}"
         approve_user_html: "%{name} ha aprovat el registre de %{target}"
         assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
         change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
+        change_role_user_html: "%{name} ha canviat el rol de %{target}"
         confirm_user_html: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
         create_account_warning_html: "%{name} ha enviat un avís a %{target}"
         create_announcement_html: "%{name} ha creat un nou anunci %{target}"
+        create_canonical_email_block_html: "%{name} ha bloquejat l'adreça de correu electrònic amb el hash %{target}"
         create_custom_emoji_html: "%{name} ha pujat un emoji nou %{target}"
         create_domain_allow_html: "%{name} ha permès la federació amb el domini %{target}"
         create_domain_block_html: "%{name} ha bloquejat el domini %{target}"
         create_email_domain_block_html: "%{name} ha bloquejat el domini de correu electrònic %{target}"
         create_ip_block_html: "%{name} ha creat una regla per a l'IP %{target}"
         create_unavailable_domain_html: "%{name} ha aturat el lliurament al domini %{target}"
+        create_user_role_html: "%{name} ha creat el rol %{target}"
         demote_user_html: "%{name} ha degradat l'usuari %{target}"
         destroy_announcement_html: "%{name} ha eliminat l'anunci %{target}"
-        destroy_custom_emoji_html: "%{name} ha destruït l'emoji %{target}"
+        destroy_canonical_email_block_html: "%{name} ha desbloquejat el correu electrònic amb el hash %{target}"
+        destroy_custom_emoji_html: "%{name} ha esborrat l'emoji %{target}"
         destroy_domain_allow_html: "%{name} no permet la federació amb el domini %{target}"
         destroy_domain_block_html: "%{name} ha desbloquejat el domini %{target}"
         destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
@@ -305,6 +316,7 @@ ca:
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
         destroy_status_html: "%{name} ha eliminat la publicació de %{target}"
         destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
+        destroy_user_role_html: "%{name} ha esborrat el rol %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
         disable_custom_emoji_html: "%{name} ha desactivat l'emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha desactivat l'autenticació de token per correu per a %{target}"
@@ -331,8 +343,9 @@ ca:
         update_announcement_html: "%{name} ha actualitzat l'anunci %{target}"
         update_custom_emoji_html: "%{name} ha actualitzat l'emoji %{target}"
         update_domain_block_html: "%{name} ha actualitzat el bloqueig de domini per a %{target}"
+        update_ip_block_html: "%{name} ha canviat la norma per la IP %{target}"
         update_status_html: "%{name} ha actualitzat l'estat de %{target}"
-      deleted_status: "(publicació esborrada)"
+        update_user_role_html: "%{name} ha canviat el rol %{target}"
       empty: No s’han trobat registres.
       filter_by_action: Filtra per acció
       filter_by_user: Filtra per usuari
@@ -795,8 +808,8 @@ ca:
         title: Permet l'accés no autenticat a la línia de temps pública
       title: Configuració del lloc
       trendable_by_default:
-        desc_html: Afecta a les etiquetes que no s'havien rebutjat prèviament
-        title: Permet que les etiquetes passin a la tendència sense revisió prèvia
+        desc_html: El contingut específic de la tendència encara pot explícitament no estar permès
+        title: Permet tendències sense revisió prèvia
       trends:
         desc_html: Mostra públicament les etiquetes revisades anteriorment que actualment estan en tendència
         title: Etiquetes tendència
@@ -1181,6 +1194,8 @@ ca:
     edit:
       add_keyword: Afegeix paraula clau
       keywords: Paraules clau
+      statuses: Apunts individuals
+      statuses_hint_html: Aquest filtre aplica als apunts individuals seleccionats independentment de si coincideixen amb les paraules clau de sota. <a href="%{path}">Revisa o elimina els apunts des d'el filtre</a>.
       title: Editar filtre
     errors:
       deprecated_api_multiple_keywords: Aquests paràmetres no poden ser canviats des d'aquesta aplicació perquè apliquen a més d'un filtre per paraula clau. Utilitza una aplicació més recent o la interfície web.
@@ -1194,10 +1209,23 @@ ca:
       keywords:
         one: "%{count} paraula clau"
         other: "%{count} paraules clau"
+      statuses:
+        one: "%{count} apunt"
+        other: "%{count} apunts"
+      statuses_long:
+        one: "%{count} apunt individual oculta"
+        other: "%{count} apunts individuals ocultats"
       title: Filtres
     new:
       save: Desa el nou filtre
       title: Afegir un nou filtre
+    statuses:
+      back_to_filter: Tornar al filtre
+      batch:
+        remove: Eliminar del filtre
+      index:
+        hint: Aquest filtre aplica als apunts seleccionats independentment d'altres criteris. Pots afegir més apunts a aquest filtre des de l'interfície Web.
+        title: Apunts filtrats
   footer:
     developers: Desenvolupadors
     more: Més…
@@ -1205,12 +1233,22 @@ ca:
     trending_now: En tendència
   generic:
     all: Tot
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> article d'aquesta s'ha seleccionat."
+      other: Tots <strong>%{count}</strong> articles d'aquesta pàgina estan seleccionats.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> article coincident amb la teva cerca està seleccionat."
+      other: Tots <strong>%{count}</strong> articles coincidents amb la teva cerca estan seleccionats.
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copiar
     delete: Esborra
+    deselect: Desfer selecció
     none: Cap
     order_by: Ordena per
     save_changes: Desa els canvis
+    select_all_matching_items:
+      one: Selecciona %{count} article coincident amb la teva cerca.
+      other: Selecciona tots %{count} articles coincidents amb la teva cerca.
     today: avui
     validation_errors:
       one: Alguna cosa no va bé! Si us plau, revisa l'error
@@ -1319,17 +1357,6 @@ ca:
         subject: "%{name} ha presentat un informe"
       sign_up:
         subject: "%{name} s'ha registrat"
-    digest:
-      action: Mostra totes les notificacions
-      body: Un resum del que et vas perdre des de la darrera visita el %{since}
-      mention: "%{name} t'ha mencionat en:"
-      new_followers_summary:
-        one: A més, has adquirit un nou seguidor durant la teva absència! Visca!
-        other: A més, has adquirit %{count} nous seguidors mentre estaves fora! Increïble!
-      subject:
-        one: "1 notificació nova des de la teva darrera visita 🐘"
-        other: "%{count} notificacions noves des de la teva darrera visita 🐘"
-      title: Durant la teva absència…
     favourite:
       body: "%{name} ha marcat com a favorit el teu estat:"
       subject: "%{name} ha marcat com a favorit el teu estat"

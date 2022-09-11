@@ -45,8 +45,8 @@ lv:
     unavailable_content_description:
       domain: Serveris
       reason: Iemesls
-      rejecting_media: 's faili no šiem serveriem netiks apstrādāti vai saglabāti, un netiks parādīti sīktēli, kuriem nepieciešama manuāla noklikšķināšana uz sākotnējā faila:'
-      rejecting_media_title: Filtrēts saturs
+      rejecting_media: 'Multivides faili no šiem serveriem netiks apstrādāti vai saglabāti, un netiks parādīti sīktēli, kuriem nepieciešama manuāla noklikšķināšana uz sākotnējā faila:'
+      rejecting_media_title: Filtrēta multivide
       silenced: 'Ziņas no šiem serveriem tiks paslēptas publiskās ziņu lentās un sarunās, un no lietotāju mijiedarbības netiks ģenerēti paziņojumi, ja vien tu tiem nesekosi:'
       silenced_title: Ierobežoti serveri
       suspended: 'Nekādi dati no šiem serveriem netiks apstrādāti, uzglabāti vai apmainīti, padarot neiespējamu jebkādu mijiedarbību vai saziņu ar lietotājiem no šiem serveriem:'
@@ -240,17 +240,21 @@ lv:
         approve_user: Apstiprināt lietotāju
         assigned_to_self_report: Piešķirt Pārskatu
         change_email_user: Mainīt e-pastu lietotājam
+        change_role_user: Mainīt lietotāja lomu
         confirm_user: Apstiprināt lietotāju
         create_account_warning: Izveidot Brīdinājumu
         create_announcement: Izveidot Paziņojumu
+        create_canonical_email_block: Izveidot E-pasta Bloku
         create_custom_emoji: Izveidot pielāgotu emocijzīmi
         create_domain_allow: Izveidot Domēna Atļauju
         create_domain_block: Izveidot Domēna Bloku
         create_email_domain_block: Izveidot E-pasta Domēna Bloku
         create_ip_block: Izveidot IP noteikumu
         create_unavailable_domain: Izveidot Nepieejamu Domēnu
+        create_user_role: Izveidot lomu
         demote_user: Pazemināt Lietotāju
         destroy_announcement: Dzēst Paziņojumu
+        destroy_canonical_email_block: Dzēst E-pasta Bloku
         destroy_custom_emoji: Dzēst pielāgoto emocijzīmi
         destroy_domain_allow: Dzēst Domēna Atļauju
         destroy_domain_block: Dzēst Domēna Bloku
@@ -259,6 +263,7 @@ lv:
         destroy_ip_block: Dzēst IP noteikumu
         destroy_status: Izdzēst Rakstu
         destroy_unavailable_domain: Dzēst Nepieejamu Domēnu
+        destroy_user_role: Iznīcināt lomu
         disable_2fa_user: Atspējot 2FA
         disable_custom_emoji: Atspējot pielāgotu emocijzīmi
         disable_sign_in_token_auth_user: Atspējoja e-pasta marķiera autentifikāciju lietotājam
@@ -285,24 +290,30 @@ lv:
         update_announcement: Atjaunināt Paziņojumu
         update_custom_emoji: Atjaunināt pielāgoto emocijzīmi
         update_domain_block: Atjaunināt Domēna Bloku
+        update_ip_block: Atjaunināt IP noteikumu
         update_status: Atjaunināt ziņu
+        update_user_role: Atjaunināt lomu
       actions:
         approve_appeal_html: "%{name} apstiprināja moderācijas lēmuma apelāciju no %{target}"
         approve_user_html: "%{name} apstiprināja reģistrēšanos no %{target}"
         assigned_to_self_report_html: "%{name} piešķīra pārskatu %{target} sev"
         change_email_user_html: "%{name} nomainīja e-pasta adresi lietotājam %{target}"
+        change_role_user_html: "%{name} nomainīja lomu uz %{target}"
         confirm_user_html: "%{name} apstiprināja e-pasta adresi lietotājam %{target}"
         create_account_warning_html: "%{name} nosūtīja brīdinājumu %{target}"
         create_announcement_html: "%{name} izveidoja jaunu paziņojumu %{target}"
+        create_canonical_email_block_html: "%{name} bloķēja e-pastu ar hešu %{target}"
         create_custom_emoji_html: "%{name} augšupielādēja jaunu emocijzīmi %{target}"
         create_domain_allow_html: "%{name} atļāva federāciju ar domēnu %{target}"
         create_domain_block_html: "%{name} bloķēja domēnu %{target}"
         create_email_domain_block_html: "%{name} bloķēja e-pasta domēnu %{target}"
         create_ip_block_html: "%{name} izveidoja nosacījumu priekš IP %{target}"
         create_unavailable_domain_html: "%{name} apturēja piegādi uz domēnu %{target}"
+        create_user_role_html: "%{name} nomainīja %{target} lomu"
         demote_user_html: "%{name} pazemināja lietotāju %{target}"
         destroy_announcement_html: "%{name} izdzēsa paziņojumu %{target}"
-        destroy_custom_emoji_html: "%{name} iznīcināja emocijzīmi %{target}"
+        destroy_canonical_email_block_html: "%{name} atbloķēja e-pastu ar hešu %{target}"
+        destroy_custom_emoji_html: "%{name} izdzēsa emocijzīmi %{target}"
         destroy_domain_allow_html: "%{name} neatļāva federāciju ar domēnu %{target}"
         destroy_domain_block_html: "%{name} atbloķēja domēnu %{target}"
         destroy_email_domain_block_html: "%{name} atbloķēja e-pasta domēnu %{target}"
@@ -310,6 +321,7 @@ lv:
         destroy_ip_block_html: "%{name} izdzēsa nosacījumu priekš IP %{target}"
         destroy_status_html: "%{name} noņēma ziņu %{target}"
         destroy_unavailable_domain_html: "%{name} atjaunoja piegādi uz domēnu %{target}"
+        destroy_user_role_html: "%{name} izdzēsa %{target} lomu"
         disable_2fa_user_html: "%{name} atspējoja divfaktoru prasības lietotājam %{target}"
         disable_custom_emoji_html: "%{name} atspējoja emocijzīmi %{target}"
         disable_sign_in_token_auth_user_html: "%{name} atspējoja e-pasta marķiera autentifikāciju %{target}"
@@ -336,8 +348,9 @@ lv:
         update_announcement_html: "%{name} atjaunināja paziņojumu %{target}"
         update_custom_emoji_html: "%{name} atjaunināja emocijzīmi %{target}"
         update_domain_block_html: "%{name} atjaunināja domēna bloku %{target}"
+        update_ip_block_html: "%{name} mainīja nosacījumu priekš IP %{target}"
         update_status_html: "%{name} atjaunināja ziņu %{target}"
-      deleted_status: "(dzēsta ziņa)"
+        update_user_role_html: "%{name} nomainīja %{target} lomu"
       empty: Žurnāli nav atrasti.
       filter_by_action: Filtrēt pēc darbības
       filter_by_user: Filtrēt pēc lietotāja
@@ -811,8 +824,8 @@ lv:
         title: Atļaut neautentificētu piekļuvi publiskai ziņu lentai
       title: Vietnes iestatījumi
       trendable_by_default:
-        desc_html: Ietekmē tēmturus, kas iepriekš nav bijuši aizliegti
-        title: Ļaujiet tēmturiem mainīties bez iepriekšējas pārskatīšanas
+        desc_html: Konkrētais populārais saturs joprojām var būt nepārprotami aizliegts
+        title: Atļaut tendences bez iepriekšējas pārskatīšanas
       trends:
         desc_html: Publiski parādīt iepriekš pārskatītus tēmturus, kas pašlaik ir populāri
         title: Populārākie tēmturi
@@ -1201,6 +1214,8 @@ lv:
     edit:
       add_keyword: Pievienot atslēgvārdu
       keywords: Atslēgvārdi
+      statuses: Individuālās ziņas
+      statuses_hint_html: Šis filtrs attiecas uz atsevišķām ziņām neatkarīgi no tā, vai tās atbilst tālāk norādītajiem atslēgvārdiem. <a href="%{path}">Pārskatīt vai noņemt ziņas no filtra</a>.
       title: Rediģēt filtru
     errors:
       deprecated_api_multiple_keywords: Šos parametrus šajā lietojumprogrammā nevar mainīt, jo tie attiecas uz vairāk nekā vienu filtra atslēgvārdu. Izmanto jaunāku lietojumprogrammu vai tīmekļa saskarni.
@@ -1215,10 +1230,25 @@ lv:
         one: "%{count} atsēgvārds"
         other: "%{count} atslēgvārdi"
         zero: "%{count} atslēgvārdu"
+      statuses:
+        one: "%{count} ziņa"
+        other: "%{count} ziņas"
+        zero: "%{count} ziņu"
+      statuses_long:
+        one: paslēpta %{count} individuālā ziņa
+        other: slēptas %{count} individuālās ziņas
+        zero: "%{count} paslēptu ziņu"
       title: Filtri
     new:
       save: Saglabāt jauno filtru
       title: Pievienot jaunu filtru
+    statuses:
+      back_to_filter: Atpakaļ pie filtra
+      batch:
+        remove: Noņemt no filtra
+      index:
+        hint: Šis filtrs attiecas uz atsevišķu ziņu atlasi neatkarīgi no citiem kritērijiem. Šim filtram tu vari pievienot vairāk ziņu, izmantojot tīmekļa saskarni.
+        title: Filtrētās ziņas
   footer:
     developers: Izstrādātāji
     more: Vairāk…
@@ -1226,12 +1256,25 @@ lv:
     trending_now: Šobrīd tendences
   generic:
     all: Visi
+    all_items_on_page_selected_html:
+      one: Šajā lapā ir atlasīts <strong>%{count}</strong> vienums.
+      other: Šajā lapā ir atlasīti <strong>%{count}</strong> vienumi.
+      zero: Šajā lapā ir atlasīts <strong>%{count}</strong> vienumu.
+    all_matching_items_selected_html:
+      one: Atlasīts <strong>%{count}</strong> vienums, kas atbilst tavam meklēšanas vaicājumam.
+      other: Atlasīti visi <strong>%{count}</strong> vienumi, kas atbilst tavam meklēšanas vaicājumam.
+      zero: Atlasīts <strong>%{count}</strong> vienumu, kas atbilst tavam meklēšanas vaicājumam.
     changes_saved_msg: Izmaiņas veiksmīgi saglabātas!
     copy: Kopēt
     delete: Dzēst
+    deselect: Atcelt visu atlasi
     none: Neviens
     order_by: Kārtot pēc
     save_changes: Saglabāt izmaiņas
+    select_all_matching_items:
+      one: Atlasi %{count} vienumu, kas atbilst tavam meklēšanas vaicājumam.
+      other: Atlasi visus %{count} vienumus, kas atbilst tavam meklēšanas vaicājumam.
+      zero: Atlasi %{count} vienumu, kas atbilst tavam meklēšanas vaicājumam.
     today: šodien
     validation_errors:
       one: Kaut kas vēl nav īsti kārtībā! Lūdzu, pārskati zemāk norādīto kļūdu
@@ -1342,19 +1385,6 @@ lv:
         subject: "%{name} iesniedza ziņojumu"
       sign_up:
         subject: "%{name} ir pierakstījies"
-    digest:
-      action: Rādīt visus paziņojumus
-      body: Šeit ir īss kopsavilkums par ziņojumiem, kurus tu esi palaidis garām kopš pēdējā apmeklējuma %{since}
-      mention: "%{name} pieminēja tevi:"
-      new_followers_summary:
-        one: Tāpat, atrodoties prom, esi ieguvis vienu jaunu sekotāju! Jip!
-        other: Turklāt, atrodoties prom, esi ieguvis %{count} jaunus sekotājus! Apbrīnojami!
-        zero: "%{count} jaunu sekotāju!"
-      subject:
-        one: "1 jauns paziņojums kopš tava pēdējā apmeklējuma 🐘"
-        other: "%{count} jauni paziņojumi kopš tava pēdējā apmeklējuma 🐘"
-        zero: "%{count} jaunu paziņojumu kopš tava pēdējā apmeklējuma"
-      title: Tavas prombūtnes laikā...
     favourite:
       body: 'Tavu ziņu izlasei pievienoja %{name}:'
       subject: "%{name} pievienoja tavu ziņu izlasei"

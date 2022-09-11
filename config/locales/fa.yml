@@ -284,7 +284,6 @@ fa:
         create_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را متوقف کرد"
         demote_user_html: "%{name} کاربر %{target} را تنزل داد"
         destroy_announcement_html: "%{name} اعلامیهٔ %{target} را حذف کرد"
-        destroy_custom_emoji_html: "%{name} اموجی %{target} را نابود کرد"
         destroy_domain_allow_html: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
         destroy_domain_block_html: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
         destroy_email_domain_block_html: "%{name} انسداد دامنهٔ رایانامهٔ %{target} را برداشت"
@@ -319,7 +318,6 @@ fa:
         update_custom_emoji_html: "%{name} شکلک %{target} را به‌روز کرد"
         update_domain_block_html: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
         update_status_html: "%{name} نوشتهٔ %{target} را به‌روز کرد"
-      deleted_status: "(نوشتهٔ پاک‌شده)"
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
       filter_by_user: پالایش بر اساس کاربر
@@ -677,9 +675,6 @@ fa:
         desc_html: نوشته‌های عمومی این سرور را در صفحهٔ آغازین نشان دهید
         title: پیش‌نمایش نوشته‌ها
       title: تنظیمات سایت
-      trendable_by_default:
-        desc_html: روی برچسب‌هایی که پیش از این ممنوع نشده‌اند تأثیر می‌گذارد
-        title: بگذارید که برچسب‌های پرطرفدار بدون بازبینی قبلی نمایش داده شوند
       trends:
         desc_html: برچسب‌های عمومی که پیش‌تر بازبینی شده‌اند و هم‌اینک پرطرفدارند
         title: پرطرفدارها
@@ -1093,14 +1088,6 @@ fa:
     admin:
       sign_up:
         subject: "%{name} ثبت نام کرد"
-    digest:
-      action: دیدن تمامی آگاهی‌ها
-      body: خلاصه‌ای از پیغام‌هایی که از زمان آخرین بازدید شما در %{since} فرستاده شد
-      mention: "%{name} این‌جا از شما نام برد:"
-      new_followers_summary:
-        one: در ضمن، وقتی که نبودید یک پیگیر تازه پیدا کردید! ای ول!
-        other: در ضمن، وقتی که نبودید %{count} پیگیر تازه پیدا کردید! چه عالی!
-      title: در مدتی که نبودید...
     favourite:
       body: "%{name} این نوشتهٔ شما را پسندید:"
       subject: "%{name} نوشتهٔ شما را پسندید"

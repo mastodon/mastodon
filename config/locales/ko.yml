@@ -230,17 +230,21 @@ ko:
         approve_user: 사용자 승인
         assigned_to_self_report: 신고 맡기
         change_email_user: 사용자의 이메일 변경
+        change_role_user: 사용자 역할 변경
         confirm_user: 사용자 확인
         create_account_warning: 경고 생성
         create_announcement: 공지사항 생성
+        create_canonical_email_block: 이메일 차단 생성
         create_custom_emoji: 커스텀 에모지 생성
         create_domain_allow: 도메인 허용 생성
         create_domain_block: 도메인 차단 추가
         create_email_domain_block: 이메일 도메인 차단 생성
         create_ip_block: IP 규칙 만들기
         create_unavailable_domain: 사용 불가능한 도메인 생성
+        create_user_role: 역할 생성
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
+        destroy_canonical_email_block: 이메일 차단 삭제
         destroy_custom_emoji: 커스텀 에모지 삭제
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
@@ -249,6 +253,7 @@ ko:
         destroy_ip_block: IP 규칙 삭제
         destroy_status: 게시물 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
+        destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
         disable_custom_emoji: 커스텀 에모지 비활성화
         disable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 비활성화
@@ -275,24 +280,30 @@ ko:
         update_announcement: 공지사항 업데이트
         update_custom_emoji: 커스텀 에모지 업데이트
         update_domain_block: 도메인 차단 갱신
+        update_ip_block: IP 규칙 수정
         update_status: 게시물 게시
+        update_user_role: 역할 수정
       actions:
         approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target}의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
         change_email_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 변경했습니다"
+        change_role_user_html: "%{name} 님이 %{target} 님의 역할을 수정했습니다"
         confirm_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 승인했습니다"
         create_account_warning_html: "%{name} 님이 %{target}에게 경고를 보냈습니다"
         create_announcement_html: "%{name} 님이 새 공지 %{target}을 만들었습니다"
+        create_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단했습니다"
         create_custom_emoji_html: "%{name} 님이 새로운 에모지 %{target}를 업로드 했습니다"
         create_domain_allow_html: "%{name} 님이 %{target} 도메인을 허용리스트에 넣었습니다"
         create_domain_block_html: "%{name} 님이 도메인 %{target}를 차단했습니다"
         create_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}를 차단했습니다"
         create_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 만들었습니다"
         create_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 중지했습니다"
+        create_user_role_html: "%{name} 님이 %{target} 역할을 생성했습니다"
         demote_user_html: "%{name} 님이 사용자 %{target} 님을 강등했습니다"
         destroy_announcement_html: "%{name} 님이 공지 %{target}을 삭제했습니다"
-        destroy_custom_emoji_html: "%{name} 님이 %{target} 에모지를 삭제했습니다"
+        destroy_canonical_email_block_html: "%{name} 님이 %{target} 해시를 가진 이메일을 차단 해제했습니다"
+        destroy_custom_emoji_html: "%{name} 님이 에모지 %{target}를 삭제했습니다"
         destroy_domain_allow_html: "%{name} 님이 %{target} 도메인과의 연합을 금지했습니다"
         destroy_domain_block_html: "%{name} 님이 도메인 %{target}의 차단을 해제했습니다"
         destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
@@ -300,6 +311,7 @@ ko:
         destroy_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
         destroy_status_html: "%{name} 님이 %{target}의 게시물을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
+        destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target}의 2FA를 비활성화 했습니다"
         disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화 했습니다"
         disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화 했습니다"
@@ -326,8 +338,9 @@ ko:
         update_announcement_html: "%{name} 님이 공지사항 %{target}을 갱신했습니다"
         update_custom_emoji_html: "%{name} 님이 에모지 %{target}를 업데이트 했습니다"
         update_domain_block_html: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
+        update_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 수정했습니다"
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트 했습니다"
-      deleted_status: "(삭제된 게시물)"
+        update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 행동으로 거르기
       filter_by_user: 사용자로 거르기
@@ -781,8 +794,8 @@ ko:
         title: 타임라인 프리뷰
       title: 사이트 설정
       trendable_by_default:
-        desc_html: 이전에 거부되지 않은 해시태그들에 영향을 미칩니다
-        title: 해시태그가 사전 리뷰 없이 트렌드에 올라갈 수 있도록 허용
+        desc_html: 특정 트렌드를 허용시키지 않는 것은 여전히 가능합니다
+        title: 사전 리뷰 없이 트렌드에 오르는 것을 허용
       trends:
         desc_html: 리뷰를 거친 해시태그를 유행하는 해시태그에 공개적으로 보여줍니다
         title: 유행하는 해시태그
@@ -1164,7 +1177,7 @@ ko:
       add_keyword: 키워드 추가
       keywords: 키워드
       statuses: 개별 게시물
-      statuses_hint_html: 이 필터는 아래 키워드들의 매치 여부와는 관계 없이 선택된 개별적인 게시물들에 적용됩니다. 다음 게시물들을 검토하고 <a href="%{path}">여기를 클릭해</a> 필터에서 제거할 수 있습니다.
+      statuses_hint_html: 이 필터는 아래의 키워드에 매칭되는지 여부와 관계 없이 몇몇개의 게시물들에 별개로 적용되었습니다. <a href="%{path}">검토하거나 필터에서 삭제하세요</a>
       title: 필터 편집
     errors:
       deprecated_api_multiple_keywords: 이 파라미터들은 하나를 초과하는 필터 키워드에 적용되기 때문에 이 응용프로그램에서 수정될 수 없습니다. 더 최신의 응용프로그램이나 웹 인터페이스를 사용하세요.
@@ -1199,12 +1212,19 @@ ko:
     trending_now: 지금 유행중
   generic:
     all: 모두
+    all_items_on_page_selected_html:
+      other: 현재 페이지에서 <strong>%{count}</strong> 개의 항목이 선택되었습니다
+    all_matching_items_selected_html:
+      other: 검색에 잡히는 <strong>%{count}</strong> 개의 항목이 선택되었습니다
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
     delete: 삭제
+    deselect: 전체 선택 해제
     none: 없음
     order_by: 순서
     save_changes: 변경 사항을 저장
+    select_all_matching_items:
+      other: 검색에 잡힌 %{count} 개의 항목을 모두 선택하기
     today: 오늘
     validation_errors:
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
@@ -1311,15 +1331,6 @@ ko:
         subject: "%{name} 님이 신고를 제출했습니다"
       sign_up:
         subject: "%{name} 님이 가입했습니다"
-    digest:
-      action: 모든 알림 보기
-      body: 마지막 로그인(%{since}) 이후로 일어난 일들에 관한 요약
-      mention: "%{name} 님이 나를 언급했습니다:"
-      new_followers_summary:
-        other: 게다가, 접속하지 않은 동안 %{count} 명의 팔로워가 생겼습니다!
-      subject:
-        other: 마지막 방문 이후로 %{count} 건의 새로운 알림
-      title: 당신이 없는 동안에...
     favourite:
       body: '당신의 게시물을 %{name} 님이 마음에 들어했습니다:'
       subject: "%{name} 님이 내 게시물을 마음에 들어했습니다"

@@ -297,7 +297,6 @@ sq:
         create_unavailable_domain_html: "%{name} ndali dërgimin drejt përkatësisë %{target}"
         demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
         destroy_announcement_html: "%{name} fshiu lajmërimin për %{target}"
-        destroy_custom_emoji_html: "%{name} asgjësoi emoxhin %{target}"
         destroy_domain_allow_html: "%{name} hoqi lejimin për federim me %{target}"
         destroy_domain_block_html: "%{name} zhbllokoi përkatësinë %{target}"
         destroy_email_domain_block_html: "%{name} hoqi bllokimin për përkatësinë email %{target}"
@@ -332,7 +331,6 @@ sq:
         update_custom_emoji_html: "%{name} përditësoi emoxhin %{target}"
         update_domain_block_html: "%{name} përditësoi bllokimin e përkatësish për %{target}"
         update_status_html: "%{name} përditësoi gjendjen me %{target}"
-      deleted_status: "(fshiu gjendjen)"
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
       filter_by_user: Filtroji sipas përdoruesit
@@ -791,9 +789,6 @@ sq:
         desc_html: Shfaqni lidhje te rrjedhë kohore publike në faqen hyrëse dhe lejoni te rrjedhë kohore publike hyrje API pa mirëfilltësim
         title: Lejo në rrjedhë kohore publike hyrje pa mirëfilltësim
       title: Rregullime sajti
-      trendable_by_default:
-        desc_html: Prek hashtag-ë që nuk kanë qenë të palejuar më parë
-        title: Lejo hashtag-ë në prirje pa paraparje paraprake
       trends:
         desc_html: Shfaqni publikisht hashtag-ë të shqyrtuar më parë që janë popullorë tani
         title: Hashtag-ë popullorë tani
@@ -1310,17 +1305,6 @@ sq:
         subject: "%{name} parashtroi një raportim"
       sign_up:
         subject: "%{name} u regjistrua"
-    digest:
-      action: Shihini krejt njoftimet
-      body: Ja një përmbledhje e shkurtër e mesazheve që keni humbur që nga vizita juaj e fundit më %{since}
-      mention: "%{name} ju ka përmendur te:"
-      new_followers_summary:
-        one: Veç kësaj, u bëtë me një ndjekës të ri, teksa s’ishit këtu! Ëhë!
-        other: Veç kësaj, u bëtë me %{count} ndjekës të rinj, teksa s’ishit këtu! Shkëlqyeshëm!
-      subject:
-        one: "1 njoftim i ri që nga vizita juaj e fundit 🐘"
-        other: "%{count} njoftime të reja që nga vizita juaj e fundit 🐘"
-      title: Gjatë mungesës tuaj…
     favourite:
       body: 'Gjendja juaj u parapëlqye nga %{name}:'
       subject: "%{name} parapëlqeu gjendjen tuaj"

@@ -269,7 +269,6 @@ co:
         create_unavailable_domain_html: "%{name} hà firmatu a distribuzione à u duminiu %{target}"
         demote_user_html: "%{name} hà ritrugradatu l’utilizatore %{target}"
         destroy_announcement_html: "%{name} hà sguassatu u novu annunziu %{target}"
-        destroy_custom_emoji_html: "%{name} hà sguassatu l'emoji %{target}"
         destroy_domain_allow_html: "%{name} hà sguassatu u duminiu %{target} da a lista bianca"
         destroy_domain_block_html: "%{name} hà sbluccatu u duminiu %{target}"
         destroy_email_domain_block_html: "%{name} hà messu u duminiu e-mail %{target} nant’a lista bianca"
@@ -298,7 +297,6 @@ co:
         update_custom_emoji_html: "%{name} hà messu à ghjornu l’emoji %{target}"
         update_domain_block_html: "%{name} hà messu à ghjornu u blucchime di duminiu per %{target}"
         update_status_html: "%{name} hà cambiatu u statutu di %{target}"
-      deleted_status: "(statutu sguassatu)"
       empty: Nunda trovu.
       filter_by_action: Filtrà da azzione
       filter_by_user: Filtrà da utilizatore
@@ -602,9 +600,6 @@ co:
         desc_html: Vede a linea pubblica nant’a pagina d’accolta
         title: Vista di e linee
       title: Parametri di u situ
-      trendable_by_default:
-        desc_html: Ùn affetta micca quelli chì sò digià stati ricusati
-        title: Auturizà l'hashtag à esse in tindenze senza verificazione
       trends:
         desc_html: Mustrà à u pubblicu i hashtag chì sò stati digià verificati è chì sò in e tendenze avà
         title: Tendenze di hashtag
@@ -962,14 +957,6 @@ co:
     carry_mutes_over_text: St'utilizatore hà traslucatu dapoi %{acct}, ch'aviate piattatu.
     copy_account_note_text: 'St''utilizatore hà traslucatu dapoi %{acct}, eccu e vostr''anziane note nant''à ellu:'
   notification_mailer:
-    digest:
-      action: Vede tutte e nutificazione
-      body: Eccu cio ch’avete mancatu dapoi à a vostr’ultima visita u %{since}
-      mention: "%{name} v’hà mintuvatu·a in:"
-      new_followers_summary:
-        one: Avete ancu un’abbunatu novu!
-        other: Avete ancu %{count} abbunati novi!
-      title: Dapoi l’ultima volta…
     favourite:
       body: "%{name} hà aghjuntu u vostru statutu à i so favuriti :"
       subject: "%{name} hà messu u vostru post in i so favuriti"

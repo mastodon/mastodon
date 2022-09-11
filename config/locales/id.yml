@@ -284,7 +284,6 @@ id:
         create_unavailable_domain_html: "%{name} menghentikan pengiriman ke domain %{target}"
         demote_user_html: "%{name} menurunkan pengguna %{target}"
         destroy_announcement_html: "%{name} menghapus pengumuman %{target}"
-        destroy_custom_emoji_html: "%{name} menghapus emoji %{target}"
         destroy_domain_allow_html: "%{name} membatalkan izin penggabungan dengan domain %{target}"
         destroy_domain_block_html: "%{name} membuka blokir domain %{target}"
         destroy_email_domain_block_html: "%{name} membuka blokir domain email %{target}"
@@ -319,7 +318,6 @@ id:
         update_custom_emoji_html: "%{name} memperbarui emoji %{target}"
         update_domain_block_html: "%{name} memperbarui blokir domain untuk %{target}"
         update_status_html: "%{name} memperbarui status %{target}"
-      deleted_status: "(status dihapus)"
       empty: Log tidak ditemukan.
       filter_by_action: Filter berdasarkan tindakan
       filter_by_user: Filter berdasarkan pengguna
@@ -713,9 +711,6 @@ id:
         desc_html: Tampilkan tautan ke linimasa publik pada halaman landas dan izinkan API mengakses linimasa publik tanpa autentifikasi
         title: Izinkan akses linimasa publik tanpa autentifikasi
       title: Pengaturan situs
-      trendable_by_default:
-        desc_html: Memengaruhi tagar yang belum pernah diizinkan
-        title: Izinkan tagar masuk tren tanpa peninjauan
       trends:
         desc_html: Tampilkan secara publik tagar tertinjau yang kini sedang tren
         title: Tagar sedang tren
@@ -1216,15 +1211,6 @@ id:
     admin:
       sign_up:
         subject: "%{name} mendaftar"
-    digest:
-      action: Lihat semua notifikasi
-      body: Ini adalah ringkasan singkat yang anda lewatkan pada sejak kunjungan terakhir anda pada %{since}
-      mention: "%{name} menyebut anda di:"
-      new_followers_summary:
-        other: Anda mendapatkan %{count} pengikut baru! Luar biasa!
-      subject:
-        other: "%{count} notifikasi baru sejak kunjungan Anda terakhir 🐘"
-      title: Saat Anda tidak muncul...
     favourite:
       body: 'Status anda disukai oleh %{name}:'
       subject: "%{name} menyukai status anda"

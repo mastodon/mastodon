@@ -175,7 +175,6 @@ kk:
       web: Веб
       whitelisted: Рұқсат тізімі
     action_logs:
-      deleted_status: "(өшірілген жазба)"
       title: Аудит логы
     announcements:
       destroyed_msg: Анонс сәтті өшірілді!
@@ -405,9 +404,6 @@ kk:
         desc_html: Display public timeline on лендинг пейдж
         title: Таймлайн превьюі
       title: Сайт баптаулары
-      trendable_by_default:
-        desc_html: Бұрын тыйым салынбаған хэштегтерге әсер етеді
-        title: Хэштегтерге алдын-ала шолусыз тренд беруге рұқсат етіңіз
       trends:
         desc_html: Бұрын қарастырылған хэштегтерді қазіргі уақытта трендте көпшілікке көрсету
         title: Тренд хештегтер
@@ -685,14 +681,6 @@ kk:
   moderation:
     title: Модерация
   notification_mailer:
-    digest:
-      action: Барлық ескертпелер
-      body: Міне, соңғы кірген уақыттан кейін келген хаттардың қысқаша мазмұны %{since}
-      mention: "%{name} сізді атап өтіпті:"
-      new_followers_summary:
-        one: Сондай-ақ, сіз бір жаңа оқырман таптыңыз! Алақай!
-        other: Сондай-ақ, сіз %{count} жаңа оқырман таптыңыз! Керемет!
-      title: Сіз жоқ кезде...
     favourite:
       body: 'Жазбаңызды ұнатып, таңдаулыға қосты %{name}:'
       subject: "%{name} жазбаңызды таңдаулыға қосты"

@@ -228,17 +228,21 @@ vi:
         approve_user: Chấp nhận người dùng
         assigned_to_self_report: Tự xử lý báo cáo
         change_email_user: Đổi email người dùng
+        change_role_user: Thay đổi vai trò
         confirm_user: Xác minh người dùng
         create_account_warning: Nhắc nhở người dùng
         create_announcement: Tạo thông báo mới
+        create_canonical_email_block: Tạo chặn tên miền email mới
         create_custom_emoji: Tạo emoji
         create_domain_allow: Cho phép máy chủ
         create_domain_block: Chặn máy chủ
         create_email_domain_block: Chặn tên miền email
         create_ip_block: Tạo chặn IP mới
         create_unavailable_domain: Máy chủ không khả dụng
+        create_user_role: Tạo vai trò
         demote_user: Xóa vai trò
         destroy_announcement: Xóa thông báo
+        destroy_canonical_email_block: Bỏ chặn tên miền email
         destroy_custom_emoji: Xóa emoji
         destroy_domain_allow: Bỏ cho phép máy chủ
         destroy_domain_block: Bỏ chặn máy chủ
@@ -247,6 +251,7 @@ vi:
         destroy_ip_block: Xóa IP đã chặn
         destroy_status: Xóa tút
         destroy_unavailable_domain: Xóa máy chủ không khả dụng
+        destroy_user_role: Xóa vai trò
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
         disable_sign_in_token_auth_user: Vô hiệu hóa xác minh bằng email cho người dùng
@@ -273,23 +278,29 @@ vi:
         update_announcement: Cập nhật thông báo
         update_custom_emoji: Cập nhật emoji
         update_domain_block: Cập nhật máy chủ chặn
+        update_ip_block: Cập nhật chặn IP
         update_status: Cập nhật tút
+        update_user_role: Cập nhật vai trò
       actions:
         approve_appeal_html: "%{name} đã chấp nhận kháng cáo của %{target}"
         approve_user_html: "%{name} đã chấp nhận đăng ký từ %{target}"
         assigned_to_self_report_html: "%{name} tự xử lý báo cáo %{target}"
         change_email_user_html: "%{name} đã thay đổi địa chỉ email của %{target}"
+        change_role_user_html: "%{name} đã thay đổi vai trò %{target}"
         confirm_user_html: "%{name} đã xác minh địa chỉ email của %{target}"
         create_account_warning_html: "%{name} đã nhắc nhở %{target}"
         create_announcement_html: "%{name} tạo thông báo mới %{target}"
+        create_canonical_email_block_html: "%{name} chặn email với hàm băm %{target}"
         create_custom_emoji_html: "%{name} đã tải lên biểu tượng cảm xúc mới %{target}"
         create_domain_allow_html: "%{name} kích hoạt liên hợp với %{target}"
         create_domain_block_html: "%{name} chặn máy chủ %{target}"
         create_email_domain_block_html: "%{name} chặn tên miền email %{target}"
         create_ip_block_html: "%{name} đã chặn IP %{target}"
         create_unavailable_domain_html: "%{name} ngưng phân phối với máy chủ %{target}"
+        create_user_role_html: "%{name} đã tạo vai trò %{target}"
         demote_user_html: "%{name} đã xóa vai trò của %{target}"
         destroy_announcement_html: "%{name} xóa thông báo %{target}"
+        destroy_canonical_email_block_html: "%{name} bỏ chặn email với hàm băm %{target}"
         destroy_custom_emoji_html: "%{name} đã xóa emoji %{target}"
         destroy_domain_allow_html: "%{name} đã ngừng liên hợp với %{target}"
         destroy_domain_block_html: "%{name} bỏ chặn máy chủ %{target}"
@@ -298,6 +309,7 @@ vi:
         destroy_ip_block_html: "%{name} bỏ chặn IP %{target}"
         destroy_status_html: "%{name} đã xóa tút của %{target}"
         destroy_unavailable_domain_html: "%{name} tiếp tục phân phối với máy chủ %{target}"
+        destroy_user_role_html: "%{name} đã xóa vai trò %{target}"
         disable_2fa_user_html: "%{name} đã vô hiệu hóa xác minh hai bước của %{target}"
         disable_custom_emoji_html: "%{name} đã ẩn emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} vô hiệu hóa xác minh email của %{target}"
@@ -324,8 +336,9 @@ vi:
         update_announcement_html: "%{name} cập nhật thông báo %{target}"
         update_custom_emoji_html: "%{name} đã cập nhật emoji %{target}"
         update_domain_block_html: "%{name} cập nhật chặn máy chủ %{target}"
+        update_ip_block_html: "%{name} cập nhật chặn IP %{target}"
         update_status_html: "%{name} cập nhật tút của %{target}"
-      deleted_status: "(tút đã xóa)"
+        update_user_role_html: "%{name} đã thay đổi vai trò %{target}"
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
       filter_by_user: Theo người
@@ -777,8 +790,8 @@ vi:
         title: Cho phép truy cập vào dòng thời gian công cộng không cần cho phép
       title: Cài đặt trang web
       trendable_by_default:
-        desc_html: Ảnh hưởng đến các hashtag chưa được cho phép trước đây
-        title: Cho phép hashtags theo xu hướng mà không cần xem xét trước
+        desc_html: Nội dung xu hướng cụ thể vẫn có thể bị cấm một cách rõ ràng
+        title: Cho phép xu hướng mà không cần xem xét trước
       trends:
         desc_html: Hiển thị công khai các hashtag được xem xét trước đây hiện đang là xu hướng
         title: Hashtag xu hướng
@@ -1160,6 +1173,7 @@ vi:
       add_keyword: Thêm từ khoá
       keywords: Từ khóa
       statuses: Những tút riêng lẻ
+      statuses_hint_html: Bộ lọc này áp dụng cho các tút riêng lẻ được chọn bất kể chúng có khớp với các từ khóa bên dưới hay không. <a href="%{path}">Xem lại hoặc xóa các tút từ bộ lọc</a>.
       title: Chỉnh sửa bộ lọc
     errors:
       deprecated_api_multiple_keywords: Không thể thay đổi các tham số này từ ứng dụng này vì chúng áp dụng cho nhiều hơn một từ khóa bộ lọc. Sử dụng ứng dụng mới hơn hoặc giao diện web.
@@ -1174,6 +1188,8 @@ vi:
         other: "%{count} từ khóa"
       statuses:
         other: "%{count} tút"
+      statuses_long:
+        other: "%{count} tút riêng lẻ đã ẩn"
       title: Bộ lọc
     new:
       save: Lưu thành bộ lọc mới
@@ -1183,6 +1199,7 @@ vi:
       batch:
         remove: Xóa khỏi bộ lọc
       index:
+        hint: Bộ lọc này áp dụng để chọn các tút riêng lẻ bất kể các tiêu chí khác. Bạn có thể thêm các tút khác vào bộ lọc này từ giao diện web.
         title: Những tút đã lọc
   footer:
     developers: Phát triển
@@ -1191,12 +1208,19 @@ vi:
     trending_now: Xu hướng
   generic:
     all: Tất cả
+    all_items_on_page_selected_html:
+      other: Toàn bộ <strong>%{count}</strong> mục trong trang này đã được chọn.
+    all_matching_items_selected_html:
+      other: Toàn bộ <strong>%{count}</strong> mục trùng khớp với tìm kiếm đã được chọn.
     changes_saved_msg: Đã lưu thay đổi!
     copy: Sao chép
     delete: Xóa
+    deselect: Bỏ chọn tất cả
     none: Trống
     order_by: Sắp xếp
     save_changes: Lưu thay đổi
+    select_all_matching_items:
+      other: Chọn tất cả%{count} mục trùng hợp với tìm kiếm của bạn.
     today: hôm nay
     validation_errors:
       other: Đã có %{count} lỗi xảy ra! Xem chi tiết bên dưới
@@ -1303,15 +1327,6 @@ vi:
         subject: "%{name} đã gửi báo cáo"
       sign_up:
         subject: "%{name} đã được đăng ký"
-    digest:
-      action: Xem toàn bộ thông báo
-      body: Dưới đây là những tin nhắn bạn đã bỏ lỡ kể từ lần truy cập trước vào %{since}
-      mention: "%{name} nhắc đến bạn trong:"
-      new_followers_summary:
-        other: Ngoài ra, bạn đã có %{count} người theo dõi mới trong khi đi chơi! Ngạc nhiên chưa!
-      subject:
-        other: "%{count} thông báo mới kể từ lần đăng nhập cuối 🐘"
-      title: Khi bạn offline...
     favourite:
       body: Tút của bạn vừa được thích bởi %{name}
       subject: "%{name} vừa thích tút của bạn"

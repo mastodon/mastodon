@@ -103,11 +103,17 @@ pt-BR:
       avatar: Imagem de perfil
       by_domain: Domínio
       change_email:
+        changed_msg: E-mail alterado com sucesso!
         current_email: E-mail atual
         label: Alterar e-mail
         new_email: Novo e-mail
         submit: Alterar e-mail
         title: Alterar e-mail para %{username}
+      change_role:
+        changed_msg: Função alterada com sucesso!
+        label: Alterar função
+        no_role: Nenhuma função
+        title: Alterar função para %{username}
       confirm: Confirmar
       confirmed: Confirmado
       confirming: Confirmando
@@ -151,6 +157,7 @@ pt-BR:
         active: Ativo
         all: Todos
         pending: Pendente
+        silenced: Limitado
         suspended: Banidos
         title: Moderação
       moderation_notes: Notas de moderação
@@ -158,6 +165,7 @@ pt-BR:
       most_recent_ip: IP mais recente
       no_account_selected: Nenhuma conta foi alterada, pois nenhuma conta foi selecionada
       no_limits_imposed: Nenhum limite imposto
+      no_role_assigned: Nenhuma função atribuída
       not_subscribed: Não inscrito
       pending: Revisão pendente
       perform_full_suspension: Banir
@@ -184,6 +192,7 @@ pt-BR:
       reset: Redefinir
       reset_password: Redefinir senha
       resubscribe: Reinscrever-se
+      role: Função
       search: Pesquisar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
@@ -226,6 +235,7 @@ pt-BR:
         approve_user: Aprovar Usuário
         assigned_to_self_report: Adicionar relatório
         change_email_user: Editar e-mail do usuário
+        change_role_user: Alteração de Função do Usuário
         confirm_user: Confirmar Usuário
         create_account_warning: Criar Aviso
         create_announcement: Criar Anúncio
@@ -235,6 +245,7 @@ pt-BR:
         create_email_domain_block: Criar Bloqueio de Domínio de E-mail
         create_ip_block: Criar regra de IP
         create_unavailable_domain: Criar domínio indisponível
+        create_user_role: Criar Função
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
         destroy_custom_emoji: Excluir emoji personalizado
@@ -245,6 +256,7 @@ pt-BR:
         destroy_ip_block: Excluir regra de IP
         destroy_status: Excluir Status
         destroy_unavailable_domain: Deletar domínio indisponível
+        destroy_user_role: Destruir Função
         disable_2fa_user: Desativar autenticação de dois fatores
         disable_custom_emoji: Desativar Emoji Personalizado
         disable_sign_in_token_auth_user: Desativar autenticação via token por email para Usuário
@@ -272,11 +284,13 @@ pt-BR:
         update_custom_emoji: Editar Emoji Personalizado
         update_domain_block: Atualizar bloqueio de domínio
         update_status: Editar Status
+        update_user_role: Atualizar função
       actions:
         approve_appeal_html: "%{name} aprovou o recurso de decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovado inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} para si"
         change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
+        change_role_user_html: "%{name} alterou a função de %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
@@ -286,9 +300,9 @@ pt-BR:
         create_email_domain_block_html: "%{name} bloqueou do domínio de e-mail %{target}"
         create_ip_block_html: "%{name} criou regra para o IP %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
+        create_user_role_html: "%{name} criou a função %{target}"
         demote_user_html: "%{name} rebaixou o usuário %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
-        destroy_custom_emoji_html: "%{name} excluiu emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
         destroy_domain_block_html: "%{name} deixou de bloquear domínio %{target}"
         destroy_email_domain_block_html: "%{name} adicionou domínio de e-mail %{target} à lista branca"
@@ -296,6 +310,7 @@ pt-BR:
         destroy_ip_block_html: "%{name} excluiu regra para o IP %{target}"
         destroy_status_html: "%{name} excluiu post de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
+        destroy_user_role_html: "%{name} excluiu a função %{target}"
         disable_2fa_user_html: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desativou a autenticação via token por email para %{target}"
@@ -323,7 +338,7 @@ pt-BR:
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
-      deleted_status: "(status excluído)"
+        update_user_role_html: "%{name} alterou a função %{target}"
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
       filter_by_user: Filtrar por usuário
@@ -635,6 +650,54 @@ pt-BR:
       unresolved: Não resolvido
       updated_at: Atualizado
       view_profile: Ver perfil
+    roles:
+      add_new: Adicionar função
+      assigned_users:
+        one: "%{count} usuário"
+        other: "%{count} usuários"
+      categories:
+        administration: Administração
+        invites: Convites
+        moderation: Moderação
+        special: Especial
+      delete: Excluir
+      description_html: Com as <strong>funções de usuário</strong>, você pode personalizar quais funções e áreas do Mastodon seus usuários podem acessar.
+      edit: Editar função de '%{name}'
+      everyone: Permissões padrão
+      everyone_full_description_html: Esta é a <strong>função base</strong> que afeta <strong>todos os usuários</strong>, mesmo aqueles sem uma função atribuída. Todas as outras funções dela herdam as suas permissões.
+      privileges:
+        administrator: Administrador
+        administrator_description: Usuários com essa permissão irão ignorar todas as permissões
+        invite_users: Convidar Usuários
+        invite_users_description: Permite que os usuários convidem novas pessoas para o servidor
+        manage_announcements: Gerenciar Avisos
+        manage_announcements_description: Permite aos usuários gerenciar anúncios no servidor
+        manage_blocks_description: Permite aos usuários bloquear provedores de e-mail e endereços IP
+        manage_custom_emojis_description: Permite aos usuários gerenciar emojis personalizados no servidor
+        manage_federation: Gerenciar Federação
+        manage_federation_description: Permite aos usuários bloquear ou permitir federação com outros domínios e controlar a entregabilidade
+        manage_invites: Gerenciar convites
+        manage_invites_description: Permite que os usuários naveguem e desativem os links de convites
+        manage_reports: Gerenciar relatórios
+        manage_roles: Gerenciar Funções
+        manage_roles_description: Permitir que os usuários gerenciem e atribuam papéis abaixo deles
+        manage_rules: Gerenciar Regras
+        manage_rules_description: Permite que os usuários alterarem as regras do servidor
+        manage_settings: Gerenciar Configurações
+        manage_settings_description: Permite que os usuários alterem as configurações do site
+        manage_taxonomies: Gerenciar taxonomias
+        manage_taxonomies_description: Permite aos usuários rever o conteúdo em alta e atualizar as configurações de hashtag
+        manage_user_access: Gerenciar Acesso de Usuário
+        manage_user_access_description: Permite aos usuários desativar a autenticação de dois fatores de outros usuários, alterar seu endereço de e-mail e redefinir sua senha
+        manage_users: Gerenciar usuários
+        manage_users_description: Permite aos usuários ver os detalhes de outros usuários e executar ações de moderação contra eles
+        manage_webhooks: Gerenciar Webhooks
+        manage_webhooks_description: Permite aos usuários configurar webhooks para eventos administrativos
+        view_audit_log: Ver o registro de auditoria
+        view_audit_log_description: Permite aos usuários ver um histórico de ações administrativas no servidor
+        view_dashboard: Ver painel
+        view_dashboard_description: Permite que os usuários acessem o painel e várias métricas
+      title: Funções
     rules:
       add_new: Adicionar regra
       delete: Deletar
@@ -719,9 +782,6 @@ pt-BR:
         desc_html: Mostra a linha do tempo pública na página inicial e permite acesso da API à mesma sem autenticação
         title: Permitir acesso não autenticado à linha pública
       title: Configurações do site
-      trendable_by_default:
-        desc_html: Afeta as hashtags que não foram reprovadas anteriormente
-        title: Permitir que hashtags fiquem em alta sem revisão prévia
       trends:
         desc_html: Mostrar publicamente hashtags previamente revisadas que estão em alta
         title: Hashtags em alta
@@ -768,15 +828,18 @@ pt-BR:
         disallow_provider: Anular editor
         title: Em alta no momento
         usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
+      only_allowed: Somente permitido
       pending_review: Revisão pendente
       preview_card_providers:
         allowed: Links deste editor podem tender
+        description_html: Estes são domínios a partir dos quais links são comumente compartilhados em seu servidor. Links não tenderão publicamente a menos que o domínio do link seja aprovado. Sua aprovação (ou rejeição) estende-se aos subdomínios.
         rejected: Links deste editor não vão tender
         title: Editor
       rejected: Rejeitado
       statuses:
         allow: Permitir postagem
         allow_account: Permitir autor
+        description_html: Estes são posts que seu servidor sabe que estão sendo muito compartilhados e favorecidos no momento. Isso pode ajudar seus usuários, novos e retornantes, a encontrar mais pessoas para seguir. Nenhum post é exibido publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar postagens individuais.
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -1051,6 +1114,7 @@ pt-BR:
     edit:
       add_keyword: Adicionar palavra-chave
       keywords: Palavras-chave
+      statuses: Postagens individuais
       title: Editar filtro
     errors:
       invalid_context: Contexto inválido ou nenhum contexto informado
@@ -1182,17 +1246,6 @@ pt-BR:
         subject: "%{name} enviou uma denúncia"
       sign_up:
         subject: "%{name} se inscreveu"
-    digest:
-      action: Ver todas as notificações
-      body: Aqui está um breve resumo das mensagens que você perdeu desde o seu último acesso em %{since}
-      mention: "%{name} te mencionou em:"
-      new_followers_summary:
-        one: Você tem um novo seguidor! Uia!
-        other: Você tem %{count} novos seguidores! AÊÊÊ!
-      subject:
-        one: "Uma nova notificação desde o seu último acesso 🐘"
-        other: "%{count} novas notificações desde o seu último acesso 🐘"
-      title: Enquanto você estava ausente...
     favourite:
       body: "%{name} favoritou seu toot:"
       subject: "%{name} favoritou seu toot"

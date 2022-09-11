@@ -261,7 +261,6 @@ eo:
         create_ip_block_html: "%{name} kreis regulon por IP %{target}"
         demote_user_html: "%{name} degradis uzanton %{target}"
         destroy_announcement_html: "%{name} forigis anoncon %{target}"
-        destroy_custom_emoji_html: "%{name} neniigis la emoĝion %{target}"
         destroy_domain_allow_html: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block_html: "%{name} malblokis domajnon %{target}"
         destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
@@ -280,7 +279,6 @@ eo:
         suspend_account_html: "%{name} suspendis la konton de %{target}"
         unsuspend_account_html: "%{name} reaktivigis la konton de %{target}"
         update_announcement_html: "%{name} ĝisdatigis anoncon %{target}"
-      deleted_status: "(forigita mesaĝo)"
       empty: Neniu protokolo trovita.
       filter_by_action: Filtri per ago
       filter_by_user: Filtri per uzanto
@@ -969,17 +967,6 @@ eo:
   moderation:
     title: Moderigado
   notification_mailer:
-    digest:
-      action: Vidi ĉiujn sciigojn
-      body: Jen eta resumo de la mesaĝoj, kiujn vi mistrafis ekde via lasta vizito en %{since}
-      mention: "%{name} menciis vin en:"
-      new_followers_summary:
-        one: Ankaŭ, vi ekhavis novan sekvanton en via foresto! Jej!
-        other: Ankaŭ, vi ekhavis %{count} novajn sekvantojn en via foresto! Mirinde!
-      subject:
-        one: "1 nova sciigo ekde via lasta vizito 🐘"
-        other: "%{count} novaj sciigoj ekde via lasta vizito 🐘"
-      title: En via foresto…
     favourite:
       body: "%{name} stelumis vian mesaĝon:"
       subject: "%{name} stelumis vian mesaĝon"

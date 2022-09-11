@@ -263,7 +263,6 @@ zh-HK:
         create_unavailable_domain_html: "%{name} 停止了對網域 %{target} 的更新通知"
         demote_user_html: "%{name} 降權了 %{target}"
         destroy_announcement_html: "%{name} 刪除了公告 %{target}"
-        destroy_custom_emoji_html: "%{name} 刪除了 Emoji %{target}"
         destroy_domain_allow_html: "%{name} 禁止網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 封鎖了網域 %{target}"
         destroy_email_domain_block_html: "%{name} 解除封鎖 e-mail 網域 %{target}"
@@ -294,7 +293,6 @@ zh-HK:
         update_custom_emoji_html: "%{name} 更新了 Emoji 表情符號 %{target}"
         update_domain_block_html: "%{name} 更新了對 %{target} 的網域封鎖"
         update_status_html: "%{name} 更新了 %{target} 的嘟文"
-      deleted_status: "（已刪除文章）"
       empty: 找不到任何日誌。
       filter_by_action: 按動作篩選
       filter_by_user: 按帳號篩選
@@ -591,9 +589,6 @@ zh-HK:
         desc_html: 在主頁顯示本站時間軸
         title: 時間軸預覽
       title: 網站設定
-      trendable_by_default:
-        desc_html: 影響之前並未禁止的標籤
-        title: 容許標籤不需要審核來成為今期流行
       trends:
         desc_html: 公開地顯示已審核的標籤為今期流行
         title: 趨勢主題標籤
@@ -939,13 +934,6 @@ zh-HK:
     carry_mutes_over_text: 此用戶從%{acct} 轉移，該帳號已被你靜音。
     copy_account_note_text: 此用戶從%{acct} 轉移，這是你之前在該帳號留下的備注：
   notification_mailer:
-    digest:
-      action: 查看所有通知
-      body: 這是自從你在%{since}使用以後，你錯失了的訊息︰
-      mention: "%{name} 在此提及了你︰"
-      new_followers_summary:
-        other: 你新獲得了 %{count} 位關注者了！好厲害！
-      title: 在你不在的這段時間……
     favourite:
       body: 你的文章被 %{name} 喜愛：
       subject: "%{name} 喜歡你的文章"

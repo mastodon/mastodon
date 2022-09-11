@@ -68,6 +68,11 @@ cs:
         with_dns_records: Dojde k pokusu o překlad DNS záznamů dané domény a výsledky budou rovněž zablokovány
       featured_tag:
         name: 'Nejspíš budete chtít použít jeden z těchto:'
+      filters:
+        action: Vyberte jakou akci provést, když příspěvek odpovídá filtru
+        actions:
+          hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
+          warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:
@@ -184,6 +189,7 @@ cs:
         setting_use_pending_items: Pomalý režim
         severity: Vážnost
         sign_in_token_attempt: Bezpečnostní kód
+        title: Název
         type: Typ importu
         username: Uživatelské jméno
         username_or_email: Uživatelské jméno nebo e-mail
@@ -192,6 +198,10 @@ cs:
         with_dns_records: Zahrnout MX záznamy a IP adresy domény
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Zcela skrýt
+          warn: Skrýt s varováním
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete

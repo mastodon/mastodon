@@ -245,6 +245,7 @@ pl:
         approve_user: Zatwierdź użytkownika
         assigned_to_self_report: Przypisz zgłoszenie
         change_email_user: Zmień adres e-mail użytkownika
+        change_role_user: Zmień rolę użytkownika
         confirm_user: Potwierdź użytkownika
         create_account_warning: Utwórz ostrzeżenie
         create_announcement: Utwórz ogłoszenie
@@ -254,6 +255,7 @@ pl:
         create_email_domain_block: Utwórz blokadę domeny e-mail
         create_ip_block: Utwórz regułę IP
         create_unavailable_domain: Utwórz niedostępną domenę
+        create_user_role: Utwórz rolę
         demote_user: Zdegraduj użytkownika
         destroy_announcement: Usuń ogłoszenie
         destroy_custom_emoji: Usuń niestandardowe emoji
@@ -264,6 +266,7 @@ pl:
         destroy_ip_block: Usuń regułę IP
         destroy_status: Usuń wpis
         destroy_unavailable_domain: Usuń niedostępną domenę
+        destroy_user_role: Zlikwiduj rolę
         disable_2fa_user: Wyłącz 2FA
         disable_custom_emoji: Wyłącz niestandardowe emoji
         disable_sign_in_token_auth_user: Wyłącz uwierzytelnianie tokenu e-mail dla użytkownika
@@ -290,12 +293,15 @@ pl:
         update_announcement: Aktualizuj ogłoszenie
         update_custom_emoji: Aktualizuj niestandardowe emoji
         update_domain_block: Zaktualizuj blokadę domeny
+        update_ip_block: Aktualizuj regułę IP
         update_status: Aktualizuj wpis
+        update_user_role: Aktualizuj rolę
       actions:
         approve_appeal_html: "%{name} zatwierdził(-a) odwołanie decyzji moderacyjnej od %{target}"
         approve_user_html: "%{name} zatwierdził rejestrację od %{target}"
         assigned_to_self_report_html: "%{name} przypisał(a) sobie zgłoszenie %{target}"
         change_email_user_html: "%{name} zmienił(a) adres e-mail użytkownika %{target}"
+        change_role_user_html: "%{name} zmienił rolę %{target}"
         confirm_user_html: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
         create_account_warning_html: "%{name} wysłał(a) ostrzeżenie do %{target}"
         create_announcement_html: "%{name} utworzył(a) nowe ogłoszenie %{target}"
@@ -305,9 +311,10 @@ pl:
         create_email_domain_block_html: "%{name} dodał(a) domenę e-mail %{target} na czarną listę"
         create_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
         create_unavailable_domain_html: "%{name} przestał(a) doręczać na domenę %{target}"
+        create_user_role_html: "%{name} utworzył rolę %{target}"
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
-        destroy_custom_emoji_html: "%{name} usunął(-ęła) emoji %{target}"
+        destroy_custom_emoji_html: "%{name} usunął emoji %{target}"
         destroy_domain_allow_html: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block_html: "%{name} odblokował(a) domenę %{target}"
         destroy_email_domain_block_html: "%{name} usunął(-ęła) domenę e-mail %{target} z czarnej listy"
@@ -315,6 +322,7 @@ pl:
         destroy_ip_block_html: "%{name} usunął(-ęła) regułę dla IP %{target}"
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
+        destroy_user_role_html: "%{name} usunął rolę %{target}"
         disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem e-mail dla %{target}"
@@ -342,7 +350,7 @@ pl:
         update_custom_emoji_html: "%{name} zaktualizował(a) emoji %{target}"
         update_domain_block_html: "%{name} zaktualizował(a) blokadę domeny dla %{target}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
-      deleted_status: "(usunięty wpis)"
+        update_user_role_html: "%{name} zmienił rolę %{target}"
       empty: Nie znaleziono aktywności w dzienniku.
       filter_by_action: Filtruj według działania
       filter_by_user: Filtruj według użytkownika
@@ -827,8 +835,8 @@ pl:
         title: Podgląd osi czasu
       title: Ustawienia strony
       trendable_by_default:
-        desc_html: Wpływa na hashtagi, które nie były wcześniej niedozwolone
-        title: Hashtagi mogą pojawiać się w trendach bez wcześniejszego zatwierdzenia
+        desc_html: Pewne treści trendu nadal mogą być bezpośrednio zabronione
+        title: Zezwalaj na trendy bez ich uprzedniego przejrzenia
       trends:
         desc_html: Wyświetlaj publicznie wcześniej sprawdzone hashtagi, które są obecnie na czasie
         title: Popularne hashtagi
@@ -1222,7 +1230,7 @@ pl:
       add_keyword: Dodaj słowo kluczowe
       keywords: Słowa kluczowe
       statuses: Pojedyncze wpisy
-      statuses_hint_html: Ten filtr ma zastosowanie do wybierania poszczególnych postów niezależnie od tego, czy pasują one do słów kluczowych poniżej. Możesz przejrzeć te posty i usunąć je z filtra <a href="%{path}">klikając tutaj</a>.
+      statuses_hint_html: Ten filtr ma zastosowanie do wybierania poszczególnych wpisów niezależnie od tego, czy pasują one do słów kluczowych poniżej. <a href="%{path}">Przejrzyj lub usuń wpisy z filtra</a>.
       title: Edytuj filtr
     errors:
       deprecated_api_multiple_keywords: Te parametry nie mogą zostać zmienione z tej aplikacji, ponieważ dotyczą więcej niż jednego słowa kluczowego. Użyj nowszej wersji aplikacji lub interfejsu internetowego.
@@ -1247,7 +1255,7 @@ pl:
       batch:
         remove: Usuń z filtra
       index:
-        hint: Ten filtr ma zastosowanie do wybierania poszczególnych postów niezależnie od innych kryteriów. Możesz dodać więcej postów do tego filtra z interfejsu WWW.
+        hint: Ten filtr ma zastosowanie do wybierania poszczególnych wpisów niezależnie od pozostałych kryteriów. Możesz dodać więcej wpisów do tego filtra z interfejsu internetowego.
         title: Filtrowane posty
   footer:
     developers: Dla programistów
@@ -1259,6 +1267,7 @@ pl:
     changes_saved_msg: Ustawienia zapisane!
     copy: Kopiuj
     delete: Usuń
+    deselect: Odznacz wszystkie
     none: Żaden
     order_by: Uporządkuj według
     save_changes: Zapisz zmiany
@@ -1374,21 +1383,6 @@ pl:
         subject: "%{name} wysłał raport"
       sign_up:
         subject: "%{name} zarejestrował(-a) się"
-    digest:
-      action: Wyświetl wszystkie powiadomienia
-      body: Oto krótkie podsumowanie wiadomości, które ominęły Cię od Twojej ostatniej wizyty (%{since})
-      mention: "%{name} wspomniał o Tobie w:"
-      new_followers_summary:
-        few: "(%{count}) nowe osoby śledzą Cię!"
-        many: "(%{count}) nowych osób Cię śledzi! Wspaniale!"
-        one: Dodatkowo, w czasie nieobecności zaczęła śledzić Cię jedna osoba Gratulacje!
-        other: Dodatkowo, zaczęło Cię śledzić %{count} nowych osób! Wspaniale!
-      subject:
-        few: "%{count} nowe powiadomienia od Twojej ostatniej wizyty 🐘"
-        many: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
-        one: "1 nowe powiadomienie od Twojej ostatniej wizyty 🐘"
-        other: "%{count} nowych powiadomień od Twojej ostatniej wizyty 🐘"
-      title: W trakcie Twojej nieobecności…
     favourite:
       body: 'Twój wpis został polubiony przez %{name}:'
       subject: "%{name} lubi Twój wpis"

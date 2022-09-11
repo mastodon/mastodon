@@ -289,7 +289,6 @@ nl:
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
-        destroy_custom_emoji_html: "%{name} verwijderde emoji %{target}"
         destroy_domain_allow_html: "%{name} heeft de federatie met het domein %{target} afgekeurd"
         destroy_domain_block_html: Domein %{target} is door %{name} gedeblokkeerd
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
@@ -320,7 +319,6 @@ nl:
         update_custom_emoji_html: Emoji %{target} is door %{name} bijgewerkt
         update_domain_block_html: "%{name} heeft de domeinblokkade bijgewerkt voor %{target}"
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
-      deleted_status: "(verwijderd bericht}"
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
       filter_by_user: Op gebruiker filteren
@@ -670,9 +668,6 @@ nl:
         desc_html: Toon een link naar de openbare tijdlijnpagina op de voorpagina en geef de API zonder in te loggen toegang tot de openbare tijdlijn
         title: Toegang tot de openbare tijdlijn zonder in te loggen toestaan
       title: Server-instellingen
-      trendable_by_default:
-        desc_html: Heeft invloed op hashtags die nog niet eerder niet zijn toegestaan
-        title: Hashtags toestaan om trending te worden zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
         title: Trends
@@ -1083,14 +1078,6 @@ nl:
     admin:
       report:
         subject: "%{name} heeft een rapportage ingediend"
-    digest:
-      action: Alle meldingen bekijken
-      body: Hier is een korte samenvatting van de berichten die je sinds jouw laatste bezoek op %{since} hebt gemist
-      mention: "%{name} vermeldde jou in:"
-      new_followers_summary:
-        one: Je hebt trouwens sinds je weg was er ook een nieuwe volger bijgekregen! Hoera!
-        other: Je hebt trouwens sinds je weg was er ook %{count} nieuwe volgers bijgekregen! Fantastisch!
-      title: Tijdens jouw afwezigheid...
     favourite:
       body: 'Jouw bericht werd door %{name} als favoriet gemarkeerd:'
       subject: "%{name} markeerde jouw bericht als favoriet"

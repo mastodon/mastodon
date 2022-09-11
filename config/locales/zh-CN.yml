@@ -22,9 +22,9 @@ zh-CN:
     federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容 Mastodon 服务器上的人。
     get_apps: 尝试移动应用
     hosted_on: 运行在 %{domain} 上的 Mastodon 站点
-    instance_actor_flash: '这个账号是个虚拟账号，不代表任何用户，只用来代表服务器本身。它用于和其它服务器互通，所以不应该被封禁，除非你想封禁整个实例。但是想封禁整个实例的时候，你应该用域名封禁。
-
-      '
+    instance_actor_flash: |
+      该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。
+      该账号用于达成互联之目的，除非你想要封禁整个实例，否则该账号不应该被封禁。在此种情况下，你应该使用域名封禁。
     learn_more: 了解详情
     logged_in_as_html: 您当前以 %{username} 登录。
     logout_before_registering: 您已登录。
@@ -62,7 +62,7 @@ zh-CN:
     followers:
       other: 关注者
     following: 正在关注
-    instance_actor_flash: 这个账户是一个虚拟账户，用来代表服务器自身，不代表任何实际用户。它用于互通功能，不应该被封禁。
+    instance_actor_flash: 该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。该账号用于达成互联之目的，不应该被停用。
     joined: 加入于 %{date}
     last_active: 最近活动
     link_verified_on: 此链接的所有权已在 %{date} 检查
@@ -230,6 +230,7 @@ zh-CN:
         approve_user: 批准用户
         assigned_to_self_report: 指派举报
         change_email_user: 为用户修改邮箱地址
+        change_role_user: 更改用户角色
         confirm_user: 确认用户
         create_account_warning: 创建警告
         create_announcement: 创建公告
@@ -239,6 +240,7 @@ zh-CN:
         create_email_domain_block: 封禁电子邮箱域名
         create_ip_block: 新建 IP 规则
         create_unavailable_domain: 创建不可用域名
+        create_user_role: 创建角色
         demote_user: 给用户降职
         destroy_announcement: 删除公告
         destroy_custom_emoji: 删除自定义表情符号
@@ -249,6 +251,7 @@ zh-CN:
         destroy_ip_block: 删除 IP 规则
         destroy_status: 删除嘟文
         destroy_unavailable_domain: 删除不可用域名
+        destroy_user_role: 销毁角色
         disable_2fa_user: 停用双重认证
         disable_custom_emoji: 禁用自定义表情符号
         disable_sign_in_token_auth_user: 为用户禁用电子邮件令牌认证
@@ -276,11 +279,13 @@ zh-CN:
         update_custom_emoji: 更新自定义表情符号
         update_domain_block: 更新域名屏蔽
         update_status: 更新嘟文
+        update_user_role: 更新角色
       actions:
         approve_appeal_html: "%{name} 批准了 %{target} 对审核结果的申诉"
         approve_user_html: "%{name} 批准了用户 %{target} 的注册"
         assigned_to_self_report_html: "%{name} 接管了举报 %{target}"
         change_email_user_html: "%{name} 更改了用户 %{target} 的电子邮件地址"
+        change_role_user_html: "%{name} 更改了 %{target} 的角色"
         confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_account_warning_html: "%{name} 向 %{target} 发送了警告"
         create_announcement_html: "%{name} 创建了新公告 %{target}"
@@ -290,9 +295,10 @@ zh-CN:
         create_email_domain_block_html: "%{name} 屏蔽了电子邮件域名 %{target}"
         create_ip_block_html: "%{name} 为 IP %{target} 创建了规则"
         create_unavailable_domain_html: "%{name} 停止了向域名 %{target} 的投递"
+        create_user_role_html: "%{name} 创建了 %{target} 角色"
         demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
-        destroy_custom_emoji_html: "%{name} 销毁了自定义表情 %{target}"
+        destroy_custom_emoji_html: "%{name} 删除了自定义表情 %{target}"
         destroy_domain_allow_html: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block_html: "%{name} 解除了对域名 %{target} 的屏蔽"
         destroy_email_domain_block_html: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
@@ -300,6 +306,7 @@ zh-CN:
         destroy_ip_block_html: "%{name} 删除了 IP %{target} 的规则"
         destroy_status_html: "%{name} 删除了 %{target} 的嘟文"
         destroy_unavailable_domain_html: "%{name} 恢复了向域名 %{target} 的投递"
+        destroy_user_role_html: "%{name} 删除了 %{target} 角色"
         disable_2fa_user_html: "%{name} 停用了用户 %{target} 的双重认证"
         disable_custom_emoji_html: "%{name} 停用了自定义表情 %{target}"
         disable_sign_in_token_auth_user_html: "%{name} 已为 %{target} 禁用电子邮件令牌认证"
@@ -327,7 +334,7 @@ zh-CN:
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
-      deleted_status: "（嘟文已删除）"
+        update_user_role_html: "%{name} 更改了 %{target} 角色"
       empty: 没有找到日志
       filter_by_action: 根据行为过滤
       filter_by_user: 根据用户过滤
@@ -779,7 +786,6 @@ zh-CN:
         title: 时间轴预览
       title: 网站设置
       trendable_by_default:
-        desc_html: 影响以前未禁止的话题标签
         title: 允许在未审查的情况下将话题置为热门
       trends:
         desc_html: 公开显示先前已通过审核的当前热门话题
@@ -834,7 +840,7 @@ zh-CN:
       links:
         allow: 允许链接
         allow_provider: 允许发布者
-        description_html: 这些是当前此服务器可见账号的嘟文中被大量分享的链接。它可以帮助用户了解正在发生的事情。发布者获得批准前不会公开显示任何链接。你也可以批准或拒绝单个链接。
+        description_html: 这些是当前此服务器可见账号的嘟文中被大量分享的链接。它可以帮助用户了解正在发生的事情。发布者获得批准前不会公开显示任何链接。你也可以批准或拒绝个别链接。
         disallow: 不允许链接
         disallow_provider: 不允许发布者
         shared_by_over_week:
@@ -852,7 +858,7 @@ zh-CN:
       statuses:
         allow: 允许嘟文
         allow_account: 允许发布者
-        description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。这些嘟文可以帮助新老用户找到更多可关注的账号。批准发布者且发布者允许将其账号推荐给其他用户前，不会公开显示任何嘟文。你也可以批准或拒绝单条嘟文。
+        description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。这些嘟文可以帮助新老用户找到更多可关注的账号。批准发布者且发布者允许将其账号推荐给其他用户前，不会公开显示任何嘟文。你也可以批准或拒绝个别嘟文。
         disallow: 禁止嘟文
         disallow_account: 禁止发布者
         not_discoverable: 发布者选择不被发现
@@ -1162,7 +1168,7 @@ zh-CN:
       add_keyword: 添加关键词
       keywords: 关键词
       statuses: 个别嘟文
-      statuses_hint_html: 无论是否匹配下列关键词，此过滤器适用于选用个别嘟文。你可以<a href="%{path}">点击此处</a>来审核这些嘟文，并从过滤器中移除。
+      statuses_hint_html: 无论是否匹配下列关键词，此过滤器适用于选用个别嘟文。<a href="%{path}">从过滤器中审核嘟文或移除嘟文</a>。
       title: 编辑过滤器
     errors:
       deprecated_api_multiple_keywords: 这些参数不能从此应用程序更改，因为它们应用于一个以上的过滤关键字。 使用较新的应用程序或网页界面。
@@ -1197,12 +1203,19 @@ zh-CN:
     trending_now: 现在流行
   generic:
     all: 全部
+    all_items_on_page_selected_html:
+      other: 此页面上的所有 <strong>%{count}</strong> 项目已被选中。
+    all_matching_items_selected_html:
+      other: 所有 <strong>%{count}</strong> 匹配您搜索的项目都已被选中。
     changes_saved_msg: 更改保存成功！
     copy: 复制
     delete: 删除
+    deselect: 取消全选
     none: 无
     order_by: 排序方式
     save_changes: 保存更改
+    select_all_matching_items:
+      other: 选择匹配您搜索的所有 %{count} 个项目。
     today: 今天
     validation_errors:
       other: 出错啦！检查一下下面 %{count} 处出错的地方吧
@@ -1309,15 +1322,6 @@ zh-CN:
         subject: "%{name} 提交了报告"
       sign_up:
         subject: "%{name} 注册了"
-    digest:
-      action: 查看所有通知
-      body: 以下是自%{since}你最后一次登录以来错过的消息的摘要
-      mention: "%{name} 在嘟文中提到了你："
-      new_followers_summary:
-        other: 而且，你不在的时候，有 %{count} 个人关注了你！好棒！
-      subject:
-        other: "自上次访问以来，收到 %{count} 条新通知 🐘"
-      title: 在你不在的这段时间……
     favourite:
       body: 你的嘟文被 %{name} 喜欢了：
       subject: "%{name} 喜欢了你的嘟文"

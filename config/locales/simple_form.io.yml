@@ -85,6 +85,7 @@ io:
         ip: Tipez adreso di IPv4 o IPv6. Vu povas restrikar tota porteo per sintaxo CIDR. Sorgemez por ke vu ne klefklozas su!
         severities:
           no_access: Restriktez aceso a omna moyeni
+          sign_up_block: Nova registrago ne esos posibla
           sign_up_requires_approval: Nova registro bezonos vua aprobo
         severity: Selektez quo eventos kun demandi de ca IP
       rule:
@@ -219,6 +220,7 @@ io:
         ip: IP
         severities:
           no_access: Depermisez aceso
+          sign_up_block: Obstruktez registragi
           sign_up_requires_approval: Limitigez registri
         severity: Regulo
       notification_emails:
@@ -251,6 +253,7 @@ io:
         events: Aktivigita eventi
         url: URL di finpunto
     'no': Ne
+    not_recommended: Ne rekomendesas
     recommended: Rekomendito
     required:
       mark: "*"

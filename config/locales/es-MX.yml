@@ -235,6 +235,7 @@ es-MX:
         approve_user: Aprobar Usuario
         assigned_to_self_report: Asignar Reporte
         change_email_user: Cambiar Correo Electrónico del Usuario
+        change_role_user: Cambiar Rol de Usuario
         confirm_user: Confirmar Usuario
         create_account_warning: Crear Advertencia
         create_announcement: Crear Anuncio
@@ -244,6 +245,7 @@ es-MX:
         create_email_domain_block: Crear Bloqueo de Dominio de Correo Electrónico
         create_ip_block: Crear regla IP
         create_unavailable_domain: Crear Dominio No Disponible
+        create_user_role: Crear Rol
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
         destroy_custom_emoji: Eliminar Emoji Personalizado
@@ -254,6 +256,7 @@ es-MX:
         destroy_ip_block: Eliminar regla IP
         destroy_status: Eliminar Estado
         destroy_unavailable_domain: Eliminar Dominio No Disponible
+        destroy_user_role: Destruir Rol
         disable_2fa_user: Deshabilitar 2FA
         disable_custom_emoji: Deshabilitar Emoji Personalizado
         disable_sign_in_token_auth_user: Deshabilitar la Autenticación por Token de Correo Electrónico para el Usuario
@@ -281,11 +284,13 @@ es-MX:
         update_custom_emoji: Actualizar Emoji Personalizado
         update_domain_block: Actualizar el Bloqueo de Dominio
         update_status: Actualizar Estado
+        update_user_role: Actualizar Rol
       actions:
         approve_appeal_html: "%{name} aprobó la solicitud de moderación de %{target}"
         approve_user_html: "%{name} aprobó el registro de %{target}"
         assigned_to_self_report_html: "%{name} asignó el informe %{target} a sí mismo"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
+        change_role_user_html: "%{name} cambió el rol de %{target}"
         confirm_user_html: "%{name} confirmó la dirección de correo electrónico del usuario %{target}"
         create_account_warning_html: "%{name} envió una advertencia a %{target}"
         create_announcement_html: "%{name} ha creado un nuevo anuncio %{target}"
@@ -295,9 +300,10 @@ es-MX:
         create_email_domain_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
         create_ip_block_html: "%{name} creó una regla para la IP %{target}"
         create_unavailable_domain_html: "%{name} detuvo las entregas al dominio %{target}"
+        create_user_role_html: "%{name} creó el rol %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
-        destroy_custom_emoji_html: "%{name} destruyó emoji %{target}"
+        destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
@@ -305,6 +311,7 @@ es-MX:
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
         destroy_status_html: "%{name} eliminó el estado por %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
+        destroy_user_role_html: "%{name} eliminó el rol %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha deshabilitado la autenticación por token de correo electrónico para %{target}"
@@ -332,7 +339,7 @@ es-MX:
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
         update_status_html: "%{name} actualizó el estado de %{target}"
-      deleted_status: "(estado borrado)"
+        update_user_role_html: "%{name} cambió el rol %{target}"
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
@@ -794,9 +801,6 @@ es-MX:
         desc_html: Mostrar línea de tiempo pública en la portada
         title: Previsualización
       title: Ajustes del sitio
-      trendable_by_default:
-        desc_html: Afecta a etiquetas que no han sido previamente rechazadas
-        title: Permitir que las etiquetas sean tendencia sin revisión previa
       trends:
         desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
         title: Hashtags de tendencia
@@ -1181,6 +1185,8 @@ es-MX:
     edit:
       add_keyword: Añadir palabra clave
       keywords: Palabras clave
+      statuses: Publicaciones individuales
+      statuses_hint_html: Este filtro se aplica a la selección de publicaciones individuales independientemente de si coinciden con las palabras clave a continuación. <a href="%{path}">Revise o elimine publicaciones del filtro</a>.
       title: Editar filtro
     errors:
       deprecated_api_multiple_keywords: Estos parámetros no se pueden cambiar desde esta aplicación porque se aplican a más de una palabra clave de filtro. Utilice una aplicación más reciente o la interfaz web.
@@ -1194,10 +1200,23 @@ es-MX:
       keywords:
         one: "%{count} palabra clave"
         other: "%{count} palabras clave"
+      statuses:
+        one: "%{count} publicación"
+        other: "%{count} publicaciones"
+      statuses_long:
+        one: "%{count} publicación individual oculta"
+        other: "%{count} publicaciones individuales ocultas"
       title: Filtros
     new:
       save: Guardar nuevo filtro
       title: Añadir un nuevo filtro
+    statuses:
+      back_to_filter: Volver a filtrar
+      batch:
+        remove: Eliminar del filtro
+      index:
+        hint: Este filtro se aplica a la selección de publicaciones individuales independientemente de otros criterios. Puede añadir más publicaciones a este filtro desde la interfaz web.
+        title: Publicaciones filtradas
   footer:
     developers: Desarrolladores
     more: Mas…
@@ -1205,12 +1224,22 @@ es-MX:
     trending_now: Tendencia ahora
   generic:
     all: Todos
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> elemento en esta página está seleccionado."
+      other: Todos los <strong>%{count}</strong> elementos en esta página están seleccionados.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> elemento que coincide con su búsqueda está seleccionado."
+      other: Todos los <strong>%{count}</strong> elementos que coinciden con su búsqueda están seleccionados.
     changes_saved_msg: "¡Cambios guardados con éxito!"
     copy: Copiar
     delete: Eliminar
+    deselect: Deseleccionar todo
     none: Nada
     order_by: Ordenar por
     save_changes: Guardar cambios
+    select_all_matching_items:
+      one: Seleccionar %{count} elemento que coincide con tu búsqueda.
+      other: Seleccionar todos los %{count} elementos que coinciden con tu búsqueda.
     today: hoy
     validation_errors:
       one: "¡Algo no está bien! Por favor, revisa el error"
@@ -1319,17 +1348,6 @@ es-MX:
         subject: "%{name} envió un informe"
       sign_up:
         subject: "%{name} se registró"
-    digest:
-      action: Ver todas las notificaciones
-      body: Un resumen de los mensajes que perdiste en desde tu última visita, el %{since}
-      mention: "%{name} te ha mencionado en:"
-      new_followers_summary:
-        one: "¡Ademas, has adquirido un nuevo seguidor mientras no estabas! ¡Hurra!"
-        other: "¡Ademas, has adquirido %{count} nuevos seguidores mientras no estabas! ¡Genial!"
-      subject:
-        one: "1 nueva notificación desde tu última visita 🐘"
-        other: "%{count} nuevas notificaciones desde tu última visita 🐘"
-      title: En tu ausencia…
     favourite:
       body: 'Tu estado fue marcado como favorito por %{name}:'
       subject: "%{name} marcó como favorito tu estado"

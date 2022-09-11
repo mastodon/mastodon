@@ -255,7 +255,6 @@ sk:
         change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
-      deleted_status: "(zmazaný príspevok)"
       filter_by_action: Filtruj podľa úkonu
       filter_by_user: Trieď podľa užívateľa
       title: Kontrólny záznam
@@ -575,9 +574,6 @@ sk:
         desc_html: Zobraziť verejnú nástenku na hlavnej stránke
         title: Náhľad nástenky
       title: Nastavenia stránky
-      trendable_by_default:
-        desc_html: Ovplyvňuje haštagy ktoré predtým neboli zakázané
-        title: Dovoľ haštagom zobrazovať sa ako populárne, bez predchodzieho posudzovania
       trends:
         desc_html: Verejne zobraz už schválené haštagy, ktoré práve trendujú
         title: Populárne haštagy
@@ -913,16 +909,6 @@ sk:
     carry_blocks_over_text: Tento užívateľ sa presunul z účtu %{acct}, ktorý si mal/a zablokovaný.
     carry_mutes_over_text: Tento užívateľ sa presunul z účtu %{acct}, ktorý si mal/a stíšený.
   notification_mailer:
-    digest:
-      action: Zobraziť všetky notifikácie
-      body: Tu nájdete krátky súhrn správ ktoré ste zmeškali od svojej poslednj návštevi od %{since}
-      mention: "%{name} ťa spomenul/a v:"
-      new_followers_summary:
-        few: A ešte, kým si bol/a preč, si získal/a %{count} nových následovateľov! Hurá!
-        many: A ešte, kým si bol/a preč, si získal/a %{count} nových následovateľov! Hurá!
-        one: A ešte, kým si bol/a preč, si získal/a jedného nového následovateľa! Hurá!
-        other: A ešte, kým si bol/a preč, si získal/a %{count} nových následovateľov! Hurá!
-      title: Zatiaľ čo si bol/a preč…
     favourite:
       body: 'Tvoj príspevok bol uložený medzi obľúbené užívateľa %{name}:'
       subject: "%{name} si obľúbil/a tvoj príspevok"
