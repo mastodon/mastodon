@@ -1,6 +1,7 @@
-import api from '../api';
-import { importFetchedGroups } from './importer';
+import api, { getLinks } from '../api';
+import { importFetchedGroups, importFetchedAccounts } from './importer';
 import { deleteFromTimelines } from './timelines';
+import { fetchRelationships } from './accounts';
 
 export const GROUP_FETCH_REQUEST = 'GROUP_FETCH_REQUEST';
 export const GROUP_FETCH_SUCCESS = 'GROUP_FETCH_SUCCESS';
@@ -33,6 +34,22 @@ export const GROUP_KICK_FAIL    = 'GROUP_KICK_FAIL';
 export const GROUP_BLOCK_REQUEST = 'GROUP_BLOCK_REQUEST';
 export const GROUP_BLOCK_SUCCESS = 'GROUP_BLOCK_SUCCESS';
 export const GROUP_BLOCK_FAIL    = 'GROUP_BLOCK_FAIL';
+
+export const GROUP_PROMOTE_REQUEST = 'GROUP_PROMOTE_REQUEST';
+export const GROUP_PROMOTE_SUCCESS = 'GROUP_PROMOTE_SUCCESS';
+export const GROUP_PROMOTE_FAIL    = 'GROUP_PROMOTE_FAIL';
+
+export const GROUP_DEMOTE_REQUEST = 'GROUP_DEMOTE_REQUEST';
+export const GROUP_DEMOTE_SUCCESS = 'GROUP_DEMOTE_SUCCESS';
+export const GROUP_DEMOTE_FAIL    = 'GROUP_DEMOTE_FAIL';
+
+export const GROUP_MEMBERSHIPS_FETCH_REQUEST = 'GROUP_MEMBERSHIPS_FETCH_REQUEST';
+export const GROUP_MEMBERSHIPS_FETCH_SUCCESS = 'GROUP_MEMBERSHIPS_FETCH_SUCCESS';
+export const GROUP_MEMBERSHIPS_FETCH_FAIL    = 'GROUP_MEMBERSHIPS_FETCH_FAIL';
+
+export const GROUP_MEMBERSHIPS_EXPAND_REQUEST = 'GROUP_MEMBERSHIPS_EXPAND_REQUEST';
+export const GROUP_MEMBERSHIPS_EXPAND_SUCCESS = 'GROUP_MEMBERSHIPS_EXPAND_SUCCESS';
+export const GROUP_MEMBERSHIPS_EXPAND_FAIL    = 'GROUP_MEMBERSHIPS_EXPAND_FAIL';
 
 export const fetchGroup = id => (dispatch, getState) => {
   dispatch(fetchGroupRelationships([id]));
@@ -313,6 +330,170 @@ export function groupBlockFail(groupId, accountId, error) {
     type: GROUP_BLOCK_FAIL,
     groupId,
     accountId,
+    error,
+  };
+};
+
+export function groupPromoteAccount(groupId, accountId, role) {
+  return (dispatch, getState) => {
+    dispatch(groupPromoteAccountRequest(groupId, accountId));
+
+    api(getState).post(`/api/v1/groups/${groupId}/promote`, { account_ids: [accountId], role: role })
+      .then((response) => dispatch(groupPromoteAccountSuccess(groupId, accountId, response.data)))
+      .catch(err => dispatch(groupPromoteAccountFail(groupId, accountId, err)));
+  };
+};
+
+export function groupPromoteAccountRequest(groupId, accountId) {
+  return {
+    type: GROUP_PROMOTE_REQUEST,
+    groupId,
+    accountId,
+  };
+};
+
+export function groupPromoteAccountSuccess(groupId, accountId, memberships) {
+  return {
+    type: GROUP_PROMOTE_SUCCESS,
+    groupId,
+    accountId,
+    memberships,
+  };
+};
+
+export function groupPromoteAccountFail(groupId, accountId, error) {
+  return {
+    type: GROUP_PROMOTE_FAIL,
+    groupId,
+    accountId,
+    error,
+  };
+};
+
+export function groupDemoteAccount(groupId, accountId, role) {
+  return (dispatch, getState) => {
+    dispatch(groupDemoteAccountRequest(groupId, accountId));
+
+    api(getState).post(`/api/v1/groups/${groupId}/demote`, { account_ids: [accountId], role: role })
+      .then((response) => dispatch(groupDemoteAccountSuccess(groupId, accountId, response.data)))
+      .catch(err => dispatch(groupDemoteAccountFail(groupId, accountId, err)));
+  };
+};
+
+export function groupDemoteAccountRequest(groupId, accountId) {
+  return {
+    type: GROUP_DEMOTE_REQUEST,
+    groupId,
+    accountId,
+  };
+};
+
+export function groupDemoteAccountSuccess(groupId, accountId, memberships) {
+  return {
+    type: GROUP_DEMOTE_SUCCESS,
+    groupId,
+    accountId,
+    memberships,
+  };
+};
+
+export function groupDemoteAccountFail(groupId, accountId, error) {
+  return {
+    type: GROUP_DEMOTE_FAIL,
+    groupId,
+    accountId,
+    error,
+  };
+};
+
+export function fetchGroupMemberships(id, role) {
+  return (dispatch, getState) => {
+    dispatch(fetchGroupMembershipsRequest(id, role));
+
+    api(getState).get(`/api/v1/groups/${id}/memberships`, { params: { role } }).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data.map((membership) => membership.account)));
+      dispatch(fetchGroupMembershipsSuccess(id, role, response.data, next ? next.uri : null));
+    }).catch(error => {
+      dispatch(fetchGroupMembershipsFail(id, role, error));
+    });
+  };
+};
+
+export function fetchGroupMembershipsRequest(id, role) {
+  return {
+    type: GROUP_MEMBERSHIPS_FETCH_REQUEST,
+    id,
+    role,
+  };
+};
+
+export function fetchGroupMembershipsSuccess(id, role, memberships, next) {
+  return {
+    type: GROUP_MEMBERSHIPS_FETCH_SUCCESS,
+    id,
+    role,
+    memberships,
+    next,
+  };
+};
+
+export function fetchGroupMembershipsFail(id, role, error) {
+  return {
+    type: GROUP_MEMBERSHIPS_FETCH_FAIL,
+    id,
+    role,
+    error,
+    skipNotFound: true,
+  };
+};
+
+export function expandGroupMemberships(id, role) {
+  return (dispatch, getState) => {
+    const url = getState().getIn(['group_memberships', role, id, 'next']);
+
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandGroupMembershipsRequest(id, role));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data.map((membership) => membership.account)));
+      dispatch(expandGroupMembershipsSuccess(id, role, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(expandGroupMembershipsFail(id, role, error));
+    });
+  };
+};
+
+export function expandGroupMembershipsRequest(id, role) {
+  return {
+    type: GROUP_MEMBERSHIPS_EXPAND_REQUEST,
+    id,
+    role,
+  };
+};
+
+export function expandGroupMembershipsSuccess(id, role, memberships, next) {
+  return {
+    type: GROUP_MEMBERSHIPS_EXPAND_SUCCESS,
+    id,
+    role,
+    memberships,
+    next,
+  };
+};
+
+export function expandGroupMembershipsFail(id, role, error) {
+  return {
+    type: GROUP_MEMBERSHIPS_EXPAND_FAIL,
+    id,
+    role,
     error,
   };
 };

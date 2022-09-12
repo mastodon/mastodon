@@ -9,6 +9,7 @@ import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import IconButton from 'mastodon/components/icon_button';
 import Avatar from 'mastodon/components/avatar';
+import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 
 const messages = defineMessages({
   join: { id: 'group.join', defaultMessage: 'Join group' },
@@ -16,6 +17,7 @@ const messages = defineMessages({
   cancel_join_request: { id: 'group.cancel_join_request', defaultMessage: 'Cancel join request' },
   post: { id: 'group.post', defaultMessage: 'Post new message' },
   group_locked: { id: 'group.locked_info', defaultMessage: 'This group\'s memberships are locked: the group administrators review who can join.' },
+  view_members: { id: 'group.view_members', defaultMessage: 'View group members' },
 });
 
 export default
@@ -53,6 +55,7 @@ class GroupHeader extends ImmutablePureComponent {
 
     let lockedIcon  = '';
     let actionBtn   = '';
+    let menu        = [];
 
     const content         = { __html: group.get('note_emojified') };
     const displayNameHtml = { __html: group.get('display_name_html') };
@@ -82,6 +85,8 @@ class GroupHeader extends ImmutablePureComponent {
       );
     }
 
+    menu.push({ text: intl.formatMessage(messages.view_members), to: `/groups/${group.get('id')}/members` });
+
     const postBtn = (
       <IconButton
         icon={'pencil'}
@@ -109,6 +114,7 @@ class GroupHeader extends ImmutablePureComponent {
             <div className='account__header__tabs__buttons'>
               {actionBtn}
               {postBtn}
+              <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
             </div>
           </div>
 

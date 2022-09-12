@@ -3243,6 +3243,10 @@ $ui-header-height: 55px;
   cursor: default;
 }
 
+.group-role-subheading {
+  background: darken($ui-base-color, 4%);
+}
+
 .getting-started__wrapper,
 .getting-started,
 .flex-spacer {
@@ -4328,6 +4332,7 @@ a.status-card.compact:hover {
 .follow_requests-unlocked_explanation {
   background: darken($ui-base-color, 4%);
   contain: initial;
+  flex-grow: 0;
 }
 
 .error-column {
