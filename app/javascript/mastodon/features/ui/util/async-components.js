@@ -42,6 +42,10 @@ export function GroupMembers () {
   return import(/* webpackChunkName: "features/group_members" */'../../group_members');
 }
 
+export function GroupMembershipRequests () {
+  return import(/* webpackChunkName: "features/group_membership_requests" */'../../group_membership_requests');
+}
+
 export function Lists () {
   return import(/* webpackChunkName: "features/lists" */'../../lists');
 }

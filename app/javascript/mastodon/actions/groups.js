@@ -51,6 +51,22 @@ export const GROUP_MEMBERSHIPS_EXPAND_REQUEST = 'GROUP_MEMBERSHIPS_EXPAND_REQUES
 export const GROUP_MEMBERSHIPS_EXPAND_SUCCESS = 'GROUP_MEMBERSHIPS_EXPAND_SUCCESS';
 export const GROUP_MEMBERSHIPS_EXPAND_FAIL    = 'GROUP_MEMBERSHIPS_EXPAND_FAIL';
 
+export const GROUP_MEMBERSHIP_REQUESTS_FETCH_REQUEST = 'GROUP_MEMBERSHIP_REQUESTS_FETCH_REQUEST';
+export const GROUP_MEMBERSHIP_REQUESTS_FETCH_SUCCESS = 'GROUP_MEMBERSHIP_REQUESTS_FETCH_SUCCESS';
+export const GROUP_MEMBERSHIP_REQUESTS_FETCH_FAIL    = 'GROUP_MEMBERSHIP_REQUESTS_FETCH_FAIL';
+
+export const GROUP_MEMBERSHIP_REQUESTS_EXPAND_REQUEST = 'GROUP_MEMBERSHIP_REQUESTS_EXPAND_REQUEST';
+export const GROUP_MEMBERSHIP_REQUESTS_EXPAND_SUCCESS = 'GROUP_MEMBERSHIP_REQUESTS_EXPAND_SUCCESS';
+export const GROUP_MEMBERSHIP_REQUESTS_EXPAND_FAIL    = 'GROUP_MEMBERSHIP_REQUESTS_EXPAND_FAIL';
+
+export const GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_REQUEST = 'GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_REQUEST';
+export const GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_SUCCESS = 'GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_SUCCESS';
+export const GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_FAIL    = 'GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_FAIL';
+
+export const GROUP_MEMBERSHIP_REQUEST_REJECT_REQUEST = 'GROUP_MEMBERSHIP_REQUEST_REJECT_REQUEST';
+export const GROUP_MEMBERSHIP_REQUEST_REJECT_SUCCESS = 'GROUP_MEMBERSHIP_REQUEST_REJECT_SUCCESS';
+export const GROUP_MEMBERSHIP_REQUEST_REJECT_FAIL    = 'GROUP_MEMBERSHIP_REQUEST_REJECT_FAIL';
+
 export const fetchGroup = id => (dispatch, getState) => {
   dispatch(fetchGroupRelationships([id]));
   dispatch(fetchGroupRequest(id));
@@ -494,6 +510,164 @@ export function expandGroupMembershipsFail(id, role, error) {
     type: GROUP_MEMBERSHIPS_EXPAND_FAIL,
     id,
     role,
+    error,
+  };
+};
+
+export function fetchGroupMembershipRequests(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchGroupMembershipRequestsRequest(id));
+
+    api(getState).get(`/api/v1/groups/${id}/membership_requests`).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(fetchGroupMembershipRequestsSuccess(id, response.data, next ? next.uri : null));
+    }).catch(error => {
+      dispatch(fetchGroupMembershipRequestsFail(id, error));
+    });
+  };
+};
+
+export function fetchGroupMembershipRequestsRequest(id) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUESTS_FETCH_REQUEST,
+    id,
+  };
+};
+
+export function fetchGroupMembershipRequestsSuccess(id, accounts, next) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUESTS_FETCH_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function fetchGroupMembershipRequestsFail(id, error) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUESTS_FETCH_FAIL,
+    id,
+    error,
+    skipNotFound: true,
+  };
+};
+
+export function expandGroupMembershipRequests(id) {
+  return (dispatch, getState) => {
+    const url = getState().getIn(['user_lists', 'membership_requests', id, 'next']);
+
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandGroupMembershipRequestsRequest(id));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(expandGroupMembershipRequestsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(expandGroupMembershipRequestsFail(id, error));
+    });
+  };
+};
+
+export function expandGroupMembershipRequestsRequest(id) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUESTS_EXPAND_REQUEST,
+    id,
+  };
+};
+
+export function expandGroupMembershipRequestsSuccess(id, accounts, next) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUESTS_EXPAND_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function expandGroupMembershipRequestsFail(id, error) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUESTS_EXPAND_FAIL,
+    id,
+    error,
+  };
+};
+
+export function authorizeGroupMembershipRequest(groupId, accountId) {
+  return (dispatch, getState) => {
+    dispatch(authorizeGroupMembershipRequestRequest(groupId, accountId));
+
+    api(getState)
+      .post(`/api/v1/groups/${groupId}/membership_requests/${accountId}/authorize`)
+      .then(() => dispatch(authorizeGroupMembershipRequestSuccess(groupId, accountId)))
+      .catch(error => dispatch(authorizeGroupMembershipRequestFail(groupId, accountId, error)));
+  };
+};
+
+export function authorizeGroupMembershipRequestRequest(groupId, accountId) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_REQUEST,
+    groupId,
+    accountId,
+  };
+};
+
+export function authorizeGroupMembershipRequestSuccess(groupId, accountId) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_SUCCESS,
+    groupId,
+    accountId,
+  };
+};
+
+export function authorizeGroupMembershipRequestFail(groupId, accountId, error) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_FAIL,
+    groupId,
+    accountId,
+    error,
+  };
+};
+
+export function rejectGroupMembershipRequest(groupId, accountId) {
+  return (dispatch, getState) => {
+    dispatch(rejectGroupMembershipRequestRequest(groupId, accountId));
+
+    api(getState)
+      .post(`/api/v1/groups/${groupId}/membership_requests/${accountId}/reject`)
+      .then(() => dispatch(rejectGroupMembershipRequestSuccess(groupId, accountId)))
+      .catch(error => dispatch(rejectGroupMembershipRequestFail(groupId, accountId, error)));
+  };
+};
+
+export function rejectGroupMembershipRequestRequest(groupId, accountId) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUEST_REJECT_REQUEST,
+    groupId,
+    accountId,
+  };
+};
+
+export function rejectGroupMembershipRequestSuccess(groupId, accountId) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUEST_REJECT_SUCCESS,
+    groupId,
+    accountId,
+  };
+};
+
+export function rejectGroupMembershipRequestFail(groupId, accountId, error) {
+  return {
+    type: GROUP_MEMBERSHIP_REQUEST_REJECT_FAIL,
+    groupId,
+    accountId,
     error,
   };
 };

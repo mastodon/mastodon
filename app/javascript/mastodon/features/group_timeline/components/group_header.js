@@ -18,6 +18,7 @@ const messages = defineMessages({
   post: { id: 'group.post', defaultMessage: 'Post new message' },
   group_locked: { id: 'group.locked_info', defaultMessage: 'This group\'s memberships are locked: the group administrators review who can join.' },
   view_members: { id: 'group.view_members', defaultMessage: 'View group members' },
+  view_pending_requests: { id: 'group.view_pending_requests', defaultMessage: 'View pending requests' },
 });
 
 export default
@@ -86,6 +87,11 @@ class GroupHeader extends ImmutablePureComponent {
     }
 
     menu.push({ text: intl.formatMessage(messages.view_members), to: `/groups/${group.get('id')}/members` });
+
+    if (['admin', 'moderator'].includes(relationship?.get('role'))) {
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.view_pending_requests), to: `/groups/${group.get('id')}/membership_requests` });
+    }
 
     const postBtn = (
       <IconButton

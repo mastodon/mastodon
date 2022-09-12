@@ -56,6 +56,16 @@ import {
   FEATURED_TAGS_FETCH_SUCCESS,
   FEATURED_TAGS_FETCH_FAIL,
 } from 'mastodon/actions/featured_tags';
+import {
+  GROUP_MEMBERSHIP_REQUESTS_FETCH_SUCCESS,
+  GROUP_MEMBERSHIP_REQUESTS_EXPAND_SUCCESS,
+  GROUP_MEMBERSHIP_REQUESTS_FETCH_REQUEST,
+  GROUP_MEMBERSHIP_REQUESTS_EXPAND_REQUEST,
+  GROUP_MEMBERSHIP_REQUESTS_FETCH_FAIL,
+  GROUP_MEMBERSHIP_REQUESTS_EXPAND_FAIL,
+  GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_SUCCESS,
+  GROUP_MEMBERSHIP_REQUEST_REJECT_SUCCESS,
+} from '../actions/groups';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialListState = ImmutableMap({
@@ -184,6 +194,19 @@ export default function userLists(state = initialState, action) {
     return state.setIn(['featured_tags', action.id, 'isLoading'], true);
   case FEATURED_TAGS_FETCH_FAIL:
     return state.setIn(['featured_tags', action.id, 'isLoading'], false);
+  case GROUP_MEMBERSHIP_REQUESTS_FETCH_SUCCESS:
+    return normalizeList(state, ['membership_requests', action.id], action.accounts, action.next);
+  case GROUP_MEMBERSHIP_REQUESTS_EXPAND_SUCCESS:
+    return appendToList(state, ['membership_requests', action.id], action.accounts, action.next);
+  case GROUP_MEMBERSHIP_REQUESTS_FETCH_REQUEST:
+  case GROUP_MEMBERSHIP_REQUESTS_EXPAND_REQUEST:
+    return state.setIn(['membership_requests', action.id, 'isLoading'], true);
+  case GROUP_MEMBERSHIP_REQUESTS_FETCH_FAIL:
+  case GROUP_MEMBERSHIP_REQUESTS_EXPAND_FAIL:
+    return state.setIn(['membership_requests', action.id, 'isLoading'], false);
+  case GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_SUCCESS:
+  case GROUP_MEMBERSHIP_REQUEST_REJECT_SUCCESS:
+    return state.updateIn(['membership_requests', action.groupId, 'items'], list => list.filterNot(item => item === action.accountId));
   default:
     return state;
   }
