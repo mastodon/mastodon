@@ -31,9 +31,21 @@ export const GROUP_KICK_REQUEST = 'GROUP_KICK_REQUEST';
 export const GROUP_KICK_SUCCESS = 'GROUP_KICK_SUCCESS';
 export const GROUP_KICK_FAIL    = 'GROUP_KICK_FAIL';
 
+export const GROUP_BLOCKS_FETCH_REQUEST = 'GROUP_BLOCKS_FETCH_REQUEST';
+export const GROUP_BLOCKS_FETCH_SUCCESS = 'GROUP_BLOCKS_FETCH_SUCCESS';
+export const GROUP_BLOCKS_FETCH_FAIL    = 'GROUP_BLOCKS_FETCH_FAIL';
+
+export const GROUP_BLOCKS_EXPAND_REQUEST = 'GROUP_BLOCKS_EXPAND_REQUEST';
+export const GROUP_BLOCKS_EXPAND_SUCCESS = 'GROUP_BLOCKS_EXPAND_SUCCESS';
+export const GROUP_BLOCKS_EXPAND_FAIL    = 'GROUP_BLOCKS_EXPAND_FAIL';
+
 export const GROUP_BLOCK_REQUEST = 'GROUP_BLOCK_REQUEST';
 export const GROUP_BLOCK_SUCCESS = 'GROUP_BLOCK_SUCCESS';
 export const GROUP_BLOCK_FAIL    = 'GROUP_BLOCK_FAIL';
+
+export const GROUP_UNBLOCK_REQUEST = 'GROUP_UNBLOCK_REQUEST';
+export const GROUP_UNBLOCK_SUCCESS = 'GROUP_UNBLOCK_SUCCESS';
+export const GROUP_UNBLOCK_FAIL    = 'GROUP_UNBLOCK_FAIL';
 
 export const GROUP_PROMOTE_REQUEST = 'GROUP_PROMOTE_REQUEST';
 export const GROUP_PROMOTE_SUCCESS = 'GROUP_PROMOTE_SUCCESS';
@@ -315,6 +327,92 @@ export function groupKickFail(groupId, accountId, error) {
   };
 };
 
+export function fetchGroupBlocks(id) {
+  return (dispatch, getState) => {
+    dispatch(fetchGroupBlocksRequest(id));
+
+    api(getState).get(`/api/v1/groups/${id}/blocks`).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(fetchGroupBlocksSuccess(id, response.data, next ? next.uri : null));
+    }).catch(error => {
+      dispatch(fetchGroupBlocksFail(id, error));
+    });
+  };
+};
+
+export function fetchGroupBlocksRequest(id) {
+  return {
+    type: GROUP_BLOCKS_FETCH_REQUEST,
+    id,
+  };
+};
+
+export function fetchGroupBlocksSuccess(id, accounts, next) {
+  return {
+    type: GROUP_BLOCKS_FETCH_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function fetchGroupBlocksFail(id, error) {
+  return {
+    type: GROUP_BLOCKS_FETCH_FAIL,
+    id,
+    error,
+    skipNotFound: true,
+  };
+};
+
+export function expandGroupBlocks(id) {
+  return (dispatch, getState) => {
+    const url = getState().getIn(['user_lists', 'group_blocks', id, 'next']);
+
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandGroupBlocksRequest(id));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(expandGroupBlocksSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(expandGroupBlocksFail(id, error));
+    });
+  };
+};
+
+export function expandGroupBlocksRequest(id) {
+  return {
+    type: GROUP_BLOCKS_EXPAND_REQUEST,
+    id,
+  };
+};
+
+export function expandGroupBlocksSuccess(id, accounts, next) {
+  return {
+    type: GROUP_BLOCKS_EXPAND_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function expandGroupBlocksFail(id, error) {
+  return {
+    type: GROUP_BLOCKS_EXPAND_FAIL,
+    id,
+    error,
+  };
+};
+
 export function groupBlock(groupId, accountId) {
   return (dispatch, getState) => {
     dispatch(groupBlockRequest(groupId, accountId));
@@ -344,6 +442,41 @@ export function groupBlockSuccess(groupId, accountId) {
 export function groupBlockFail(groupId, accountId, error) {
   return {
     type: GROUP_BLOCK_FAIL,
+    groupId,
+    accountId,
+    error,
+  };
+};
+
+export function groupUnblock(groupId, accountId) {
+  return (dispatch, getState) => {
+    dispatch(groupUnblockRequest(groupId, accountId));
+
+    api(getState).delete(`/api/v1/groups/${groupId}/blocks?account_ids[]=${accountId}`)
+      .then(() => dispatch(groupUnblockSuccess(groupId, accountId)))
+      .catch(err => dispatch(groupUnblockFail(groupId, accountId, err)));
+  };
+};
+
+export function groupUnblockRequest(groupId, accountId) {
+  return {
+    type: GROUP_UNBLOCK_REQUEST,
+    groupId,
+    accountId,
+  };
+};
+
+export function groupUnblockSuccess(groupId, accountId) {
+  return {
+    type: GROUP_UNBLOCK_SUCCESS,
+    groupId,
+    accountId,
+  };
+};
+
+export function groupUnblockFail(groupId, accountId, error) {
+  return {
+    type: GROUP_UNBLOCK_FAIL,
     groupId,
     accountId,
     error,

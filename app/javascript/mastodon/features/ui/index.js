@@ -57,6 +57,7 @@ import {
   Groups,
   GroupMembers,
   GroupMembershipRequests,
+  GroupBlocks,
 } from './util/async-components';
 import initialState, { me, owner, singleUserMode } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
@@ -190,6 +191,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/groups/:id' exact component={GroupTimeline} content={children} />
           <WrappedRoute path='/groups/:id/members' component={GroupMembers} content={children} />
           <WrappedRoute path='/groups/:id/membership_requests' component={GroupMembershipRequests} content={children} />
+          <WrappedRoute path='/groups/:id/blocks' component={GroupBlocks} content={children} />
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
