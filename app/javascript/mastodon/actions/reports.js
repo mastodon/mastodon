@@ -9,6 +9,7 @@ export const initReport = (account, status) => dispatch =>
   dispatch(openModal('REPORT', {
     accountId: account.get('id'),
     statusId: status?.get('id'),
+    groupId: status?.getIn(['group', 'id']) || status?.get('group'),
   }));
 
 export const submitReport = (params, onSuccess, onFail) => (dispatch, getState) => {

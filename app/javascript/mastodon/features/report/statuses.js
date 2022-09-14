@@ -7,18 +7,62 @@ import { OrderedSet } from 'immutable';
 import { FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
+import { createSelector } from 'reselect';
 
-const mapStateToProps = (state, { accountId }) => ({
-  availableStatusIds: OrderedSet(state.getIn(['timelines', `account:${accountId}:with_replies`, 'items'])),
-  isLoading: state.getIn(['timelines', `account:${accountId}:with_replies`, 'isLoading']),
-});
 
-export default @connect(mapStateToProps)
+
+const makeMapStateToProps = () => {
+  // Not using createSelector because we allow state.get('statuses') to change without
+  // recomputing the whole thing.
+  const makeGetFilteredGroupTimeline = () => {
+    let memoAccountId = undefined;
+    let memoGroupTimeline = undefined;
+    let memoFilteredGroupTimeline = undefined;
+
+    return (state, { accountId, groupId }) => {
+      const groupTimeline = groupId && state.getIn(['timelines', `group:${groupId}`, 'items']);
+      if (!groupTimeline) {
+        return null;
+      }
+
+      if (groupTimeline !== memoGroupTimeline || accountId !== memoAccountId) {
+        memoGroupTimeline = groupTimeline;
+        memoAccountId = accountId;
+        memoFilteredGroupTimeline = groupTimeline.filter((id) => state.getIn(['statuses', id, 'account']) === accountId);
+      }
+
+      return memoFilteredGroupTimeline;
+    };
+  };
+
+  const getAvailableStatusIds = createSelector([
+    (_, { accountId }) => accountId,
+    (_, { selectedStatusIds }) => selectedStatusIds,
+    (state, { accountId }) => state.getIn(['timelines', `account:${accountId}:with_replies`, 'items']),
+    makeGetFilteredGroupTimeline(),
+  ], (accountId, selectedStatusIds, accountTimelineIds, groupTimelineIds) => {
+    let statusIds = selectedStatusIds.union(accountTimelineIds);
+    if (groupTimelineIds) {
+      statusIds = statusIds.union(groupTimelineIds);
+    }
+    return statusIds.toList().sortBy(id => -id);
+  });
+
+  const mapStateToProps = (state, { accountId, selectedStatusIds, groupId }) => ({
+    availableStatusIds: getAvailableStatusIds(state, { accountId, selectedStatusIds, groupId }),
+    isLoading: state.getIn(['timelines', `account:${accountId}:with_replies`, 'isLoading']),
+  });
+
+  return mapStateToProps;
+};
+
+export default @connect(makeMapStateToProps)
 class Statuses extends React.PureComponent {
 
   static propTypes = {
     onNextStep: PropTypes.func.isRequired,
     accountId: PropTypes.string.isRequired,
+    groupId: PropTypes.string,
     availableStatusIds: ImmutablePropTypes.set.isRequired,
     selectedStatusIds: ImmutablePropTypes.set.isRequired,
     isLoading: PropTypes.bool,
@@ -39,7 +83,7 @@ class Statuses extends React.PureComponent {
         <p className='report-dialog-modal__lead'><FormattedMessage id='report.statuses.subtitle' defaultMessage='Select all that apply' /></p>
 
         <div className='report-dialog-modal__statuses'>
-          {isLoading ? <LoadingIndicator /> : availableStatusIds.union(selectedStatusIds).map(statusId => (
+          {isLoading ? <LoadingIndicator /> : availableStatusIds.map(statusId => (
             <StatusCheckBox
               id={statusId}
               key={statusId}
