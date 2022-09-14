@@ -44,11 +44,42 @@ RSpec.describe ReportService, type: :service do
       it 'creates a report' do
         expect { subject.call }.to change { target_account.targeted_reports.count }.from(0).to(1)
       end
+
+      it 'attaches the DM to the report' do
+        subject.call
+        expect(target_account.targeted_reports.pluck(:status_ids)).to eq [[status.id]]
+      end
     end
 
     context 'when it is not addressed to the reporter' do
       it 'errors out' do
         expect { subject.call }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    context 'when the reporter is remote' do
+      let(:source_account) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/users/1') }
+
+      context 'when it is addressed to the reporter' do
+        before do
+          status.mentions.create(account: source_account)
+        end
+
+        it 'creates a report' do
+          expect { subject.call }.to change { target_account.targeted_reports.count }.from(0).to(1)
+        end
+
+        it 'attaches the DM to the report' do
+          subject.call
+          expect(target_account.targeted_reports.pluck(:status_ids)).to eq [[status.id]]
+        end
+      end
+
+      context 'when it is not addressed to the reporter' do
+        it 'does not add the DM to the report' do
+          subject.call
+          expect(target_account.targeted_reports.pluck(:status_ids)).to eq [[]]
+        end
       end
     end
   end
