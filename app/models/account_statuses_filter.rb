@@ -48,7 +48,15 @@ class AccountStatusesFilter
   def filtered_scope
     scope = account.statuses.left_outer_joins(:mentions)
 
-    scope.merge!(scope.where(visibility: follower? ? %i(public unlisted private) : %i(public unlisted)).or(scope.where(mentions: { account_id: current_account.id })).group(Status.arel_table[:id]))
+    visibility = follower? ? %i(public unlisted private) : %i(public unlisted)
+    visibility << :group if include_groups? # TODO: change this if we add support for groups with private messages
+
+    scope.merge!(
+      scope.where(visibility: visibility)
+           .or(scope.where(mentions: { account_id: current_account.id }))
+           .group(Status.arel_table[:id])
+    )
+
     scope.merge!(filtered_reblogs_scope) if reblogs_may_occur?
 
     scope
@@ -122,6 +130,10 @@ class AccountStatusesFilter
 
   def exclude_reblogs?
     truthy_param?(:exclude_reblogs)
+  end
+
+  def include_groups?
+    truthy_param?(:include_groups)
   end
 
   def tagged?
