@@ -42,13 +42,13 @@ RSpec.describe ReportService, type: :service do
       end
 
       it 'creates a report' do
-        is_expected.to change { target_account.targeted_reports.count }.from(0).to(1)
+        expect { subject.call }.to change { target_account.targeted_reports.count }.from(0).to(1)
       end
     end
 
     context 'when it is not addressed to the reporter' do
       it 'errors out' do
-        is_expected.to raise_error
+        expect { subject.call }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
@@ -67,7 +67,7 @@ RSpec.describe ReportService, type: :service do
     end
 
     it 'does not send an e-mail' do
-      is_expected.to_not change(ActionMailer::Base.deliveries, :count).from(0)
+      expect { subject.call }.to_not change(ActionMailer::Base.deliveries, :count).from(0)
     end
   end
 end
