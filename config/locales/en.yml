@@ -205,6 +205,7 @@ en:
         promote_user: Promote User
         reject_appeal: Reject Appeal
         reject_user: Reject User
+        remove_avatar_group: Remove Group Avatar
         remove_avatar_user: Remove Avatar
         reopen_report: Reopen Report
         reset_password_user: Reset Password
@@ -212,11 +213,13 @@ en:
         sensitive_account: Force-Sensitive Account
         silence_account: Limit Account
         suspend_account: Suspend Account
+        suspend_group: Suspend Group
         unassigned_report: Unassign Report
         unblock_email_account: Unblock email address
         unsensitive_account: Undo Force-Sensitive Account
         unsilence_account: Undo Limit Account
         unsuspend_account: Unsuspend Account
+        unsuspend_group: Unsuspend Group
         update_announcement: Update Announcement
         update_custom_emoji: Update Custom Emoji
         update_domain_block: Update Domain Block
@@ -263,6 +266,7 @@ en:
         promote_user_html: "%{name} promoted user %{target}"
         reject_appeal_html: "%{name} rejected moderation decision appeal from %{target}"
         reject_user_html: "%{name} rejected sign-up from %{target}"
+        remove_avatar_group_html: "%{name} removed the avatar for group %{target}"
         remove_avatar_user_html: "%{name} removed %{target}'s avatar"
         reopen_report_html: "%{name} reopened report %{target}"
         reset_password_user_html: "%{name} reset password of user %{target}"
@@ -270,11 +274,13 @@ en:
         sensitive_account_html: "%{name} marked %{target}'s media as sensitive"
         silence_account_html: "%{name} limited %{target}'s account"
         suspend_account_html: "%{name} suspended %{target}'s account"
+        suspend_group_html: "%{name} suspended the group %{target}"
         unassigned_report_html: "%{name} unassigned report %{target}"
         unblock_email_account_html: "%{name} unblocked %{target}'s email address"
         unsensitive_account_html: "%{name} unmarked %{target}'s media as sensitive"
         unsilence_account_html: "%{name} undid limit of %{target}'s account"
         unsuspend_account_html: "%{name} unsuspended %{target}'s account"
+        unsuspend_group_html: "%{name} unsuspended the group %{target}"
         update_announcement_html: "%{name} updated announcement %{target}"
         update_custom_emoji_html: "%{name} updated emoji %{target}"
         update_domain_block_html: "%{name} updated domain block for %{target}"
@@ -427,6 +433,20 @@ en:
       suppressed: Suppressed
       title: Follow recommendations
       unsuppress: Restore follow recommendation
+    group_memberships:
+      title: Group members
+    group_statuses:
+      back_to_group: Back to group page
+      title: Group posts
+    groups:
+      group: Group
+      removed_avatar_msg: Successfully removed this group's avatar image
+      removed_header_msg: Successfully removed this group's header image
+      suspended_msg: Successfully suspended this group
+      suspension_irreversible: The data of this group has been irreversibly deleted. You can unsuspend the group to make it usable but it will not recover any data it previously had.
+      suspension_reversible_hint_html: The group has been suspended, and the data will be fully removed on %{date}. Until then, the group can be restored without any ill effects. If you wish to remove all of the group's data immediately, you can do so below.
+      title: Groups
+      unsuspended_msg: Successfully unsuspended this group
     instances:
       availability:
         description_html:
@@ -1142,6 +1162,9 @@ en:
   groups:
     errors:
       unsupported_remote_role: Moderation roles are not supported for remote users yet
+    members:
+      one: Member
+      other: Members
   html_validator:
     invalid_markup: 'contains invalid HTML markup: %{error}'
   imports:

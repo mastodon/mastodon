@@ -23,6 +23,8 @@ class GroupMembership < ApplicationRecord
     admin:     2_000,
   }, _suffix: :role
 
+  scope :recent, -> { reorder(id: :desc) }
+
   validate :validate_remote_role
 
   after_create :increment_cache_counters

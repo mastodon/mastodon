@@ -1566,6 +1566,7 @@ a .account__avatar {
 .detailed-status__display-name,
 .detailed-status__datetime,
 .detailed-status__application,
+.detailed-status__group,
 .account__display-name {
   text-decoration: none;
 }
@@ -1599,7 +1600,8 @@ a.account__display-name {
 }
 
 .detailed-status__application,
-.detailed-status__datetime {
+.detailed-status__datetime,
+.detailed-status__group {
   color: inherit;
 }
 
@@ -1786,7 +1788,8 @@ a.account__display-name {
 }
 
 .status__relative-time,
-.detailed-status__datetime {
+.detailed-status__datetime,
+.detailed-status__group {
   &:hover {
     text-decoration: underline;
   }

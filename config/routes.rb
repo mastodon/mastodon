@@ -308,6 +308,27 @@ Rails.application.routes.draw do
 
     resources :report_notes, only: [:create, :destroy]
 
+    resources :groups, only: [:index, :destroy, :show] do
+      member do
+        post :suspend
+        post :unsuspend
+        post :remove_avatar
+        post :remove_header
+      end
+
+      collection do
+        post :batch
+      end
+
+      resources :statuses, only: [:index], controller: 'group_statuses' do
+        collection do
+          post :batch
+        end
+      end
+
+      resources :memberships, only: [:index], controller: 'group_memberships'
+    end
+
     resources :accounts, only: [:index, :show, :destroy] do
       member do
         post :enable

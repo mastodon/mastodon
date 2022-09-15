@@ -38,4 +38,17 @@ module Admin::DashboardHelper
 
     content_tag(:time, l(timestamp), class: 'time-ago', datetime: timestamp.iso8601, title: l(timestamp))
   end
+
+  def relevant_group_timestamp(group)
+    if group.last_status_at.present?
+      [group.last_status_at, true]
+    else
+      timestamp, exact = [nil, false]
+    end
+
+    return '-' if timestamp.nil?
+    return t('generic.today') unless exact
+
+    content_tag(:time, l(timestamp), class: 'time-ago', datetime: timestamp.iso8601, title: l(timestamp))
+  end
 end

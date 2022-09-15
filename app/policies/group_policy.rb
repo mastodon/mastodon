@@ -1,12 +1,36 @@
 # frozen_string_literal: true
 
 class GroupPolicy < ApplicationPolicy
+  def index?
+    role.can?(:manage_users)
+  end
+
   def show?
     true
   end
 
   def show_posts?
     true # TODO: add support for private groups?
+  end
+
+  def suspend?
+    role.can?(:manage_users, :manage_reports)
+  end
+
+  def unsuspend?
+    role.can?(:manage_users, :manage_reports)
+  end
+
+  def destroy?
+    record.suspended_temporarily? && role.can?(:delete_user_data)
+  end
+
+  def remove_avatar?
+    role.can?(:manage_users, :manage_reports)
+  end
+
+  def remove_header?
+    role.can?(:manage_users, :manage_reports)
   end
 
   def post?

@@ -50,8 +50,13 @@ class Group < ApplicationRecord
   has_many :statuses, inverse_of: :group, dependent: :destroy
   has_one :deletion_request, class_name: 'GroupDeletionRequest', inverse_of: :group, dependent: :destroy
 
+  scope :recent, -> { reorder(id: :desc) }
+  scope :remote, -> { where.not(domain: nil) }
+  scope :local,  -> { where(domain: nil) }
   scope :suspended, -> { where.not(suspended_at: nil) }
   scope :without_suspended, -> { where(suspended_at: nil) }
+  scope :matches_display_name, ->(value) { where(arel_table[:display_name].matches("#{value}%")) }
+  scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
 
   before_create :generate_keys
 
@@ -115,6 +120,10 @@ class Group < ApplicationRecord
 
   def to_param
     id.to_s
+  end
+
+  def to_log_human_identifier
+    display_name || ActivityPub::TagManager.instance.uri_for(self)
   end
 
   def keypair

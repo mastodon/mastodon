@@ -1,0 +1,82 @@
+- content_for :page_title do
+  = t('admin.groups.group')
+  \-
+  = group_display_name(@group)
+
+= render 'application/group_card', group: @group
+
+- group = @group
+- if group.note.present?
+  .admin-account-bio
+    %div
+      .account__header__content.emojify= prerender_custom_emojis(account_bio_format(group), group.emojis)
+
+.dashboard__counters.admin-account-counters
+  %div
+    = link_to admin_group_statuses_path(@group.id) do
+      .dashboard__counters__num= number_with_delimiter @group.statuses_count
+      .dashboard__counters__label= t 'admin.accounts.statuses'
+  %div
+    = link_to admin_group_memberships_path(@group.id) do
+      .dashboard__counters__num= number_with_delimiter @group.members_count
+      .dashboard__counters__label= t 'admin.accounts.members'
+
+.table-wrapper
+  %table.table.inline-table
+    %tbody
+      - if @group.local?
+        - if @group.avatar?
+          %tr
+            %th= t('admin.accounts.avatar')
+            %td= table_link_to 'trash', t('admin.accounts.remove_avatar'), remove_avatar_admin_group_path(@group.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_avatar, @group)
+            %td
+
+        - if @group.header?
+          %tr
+            %th= t('admin.accounts.header')
+            %td= table_link_to 'trash', t('admin.accounts.remove_header'), remove_header_admin_group_path(@group.id), method: :post, data: { confirm: t('admin.accounts.are_you_sure') } if can?(:remove_header, @group)
+            %td
+
+        %tr
+          %th= t('admin.groups.created')
+          %td
+            %time.formatted{ datetime: @group.created_at.iso8601, title: l(@group.created_at) }= l @group.created_at
+          %td
+
+        %tr
+          %th= t('admin.accounts.most_recent_activity')
+          %td
+            - if @group.last_status_at
+              %time.formatted{ datetime: @group.last_status_at.iso8601, title: l(@group.last_status_at) }= l @group.last_status_at
+          %td
+
+      - else
+        %tr
+          %th{ rowspan: @domain_block.nil? ? 2 : 1 }= t('admin.accounts.inbox_url')
+          %td{ rowspan: @domain_block.nil? ? 2 : 1 }
+            = @group.inbox_url
+            = fa_icon DeliveryFailureTracker.available?(@group.inbox_url) ? 'check' : 'times'
+          %td
+            = table_link_to 'search', @domain_block.present? ? t('admin.domain_blocks.view') : t('admin.accounts.view_domain'), admin_instance_path(@group.domain)
+        - if @domain_block.nil?
+          %tr
+            %td
+              = table_link_to 'ban', t('admin.domain_blocks.add_new'), new_admin_domain_block_path(_domain: @group.domain)
+
+- if @group.suspended?
+  %hr.spacer/
+
+  %p.muted-hint= @deletion_request.present? ? t('admin.groups.suspension_reversible_hint_html', date: content_tag(:strong, l(@deletion_request.due_at.to_date))) : t('admin.groups.suspension_irreversible')
+
+  = link_to t('admin.accounts.undo_suspension'), unsuspend_admin_group_path(@group.id), method: :post, class: 'button' if can?(:unsuspend, @group)
+
+  - if @deletion_request.present?
+    = link_to t('admin.accounts.delete'), admin_group_path(@group.id), method: :delete, class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, @group)
+
+- else
+  %div.action-buttons
+    %div
+      = link_to t('admin.accounts.perform_full_suspension'), suspend_admin_group_path(@group.id), method: :post, class: 'button' if can?(:suspend, @group)
+    - unless @group.local?
+      %div
+        = link_to t('admin.accounts.redownload'), redownload_group_account_path(@group.id), method: :post, class: 'button' if can?(:redownload, @group)

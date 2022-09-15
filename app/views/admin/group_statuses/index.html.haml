@@ -1,0 +1,41 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('admin.group_statuses.title')
+  \-
+  = group_display_name(@group)
+
+.filters
+  .back-link
+    - if params[:report_id]
+      = link_to admin_report_path(params[:report_id].to_i) do
+        = fa_icon 'chevron-left fw'
+        = t('admin.statuses.back_to_report')
+    - else
+      = link_to admin_group_path(@group.id) do
+        = fa_icon 'chevron-left fw'
+        = t('admin.group_statuses.back_to_group')
+
+%hr.spacer/
+
+= form_for(@status_batch_action, url: batch_admin_group_statuses_path(@group.id)) do |f|
+  = hidden_field_tag :page, params[:page] || 1
+
+  - Admin::StatusFilter::KEYS.each do |key|
+    = hidden_field_tag key, params[key] if params[key].present?
+
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        - unless @statuses.empty?
+          = f.button safe_join([fa_icon('flag'), t('admin.statuses.batch.report')]), name: :report, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+    .batch-table__body
+      - if @statuses.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'admin/reports/status', collection: @statuses, locals: { f: f, show_author: true }
+
+= paginate @statuses
