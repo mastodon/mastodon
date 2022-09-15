@@ -77,6 +77,6 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
   end
 
   def ip
-    ips&.first.ip
+    ips&.first&.ip
   end
 end
