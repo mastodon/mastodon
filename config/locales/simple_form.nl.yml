@@ -1,4 +1,3 @@
----
 nl:
   simple_form:
     hints:
@@ -37,6 +36,7 @@ nl:
         current_password: Voer voor veiligheidsredenen het wachtwoord van je huidige account in
         current_username: Voer ter bevestiging de gebruikersnaam van je huidige account in
         digest: Wordt alleen na een lange periode van inactiviteit verzonden en alleen wanneer je tijdens jouw afwezigheid persoonlijke berichten hebt ontvangen
+        discoverable: Toestaan dat jouw account vindbaar is voor onbekenden, via aanbevelingen, trends en op andere manieren
         email: Je krijgt een bevestigingsmail
         fields: Je kan maximaal 4 items als een tabel op je profiel weergeven
         header: PNG, GIF of JPG. Maximaal %{size}. Wordt teruggeschaald naar %{dimensions}px
@@ -82,6 +82,7 @@ nl:
         ip: Voer een IPv4- of IPv6-adres in. Je kunt hele reeksen blokkeren met de CIDR-methode. Pas op dat je jezelf niet buitensluit!
         severities:
           no_access: Toegang tot de hele server blokkeren
+          sign_up_block: Nieuwe registraties zijn niet mogelijk
           sign_up_requires_approval: Nieuwe registraties vereisen jouw goedkeuring
         severity: Kies wat er moet gebeuren met aanvragen van dit IP-adres
       rule:
@@ -206,6 +207,7 @@ nl:
         ip: IP
         severities:
           no_access: Toegang blokkeren
+          sign_up_block: Registraties blokkeren
           sign_up_requires_approval: Registraties beperken
         severity: Regel
       notification_emails:
@@ -235,7 +237,8 @@ nl:
         position: Prioriteit
       webhook:
         url: Eindpunt URL
-    'no': Nee
+    'no': 'Nee'
+    not_recommended: Niet aanbevolen
     recommended: Aanbevolen
     required:
       mark: "*"
@@ -243,4 +246,4 @@ nl:
     title:
       sessions:
         webauthn: Gebruik een van uw beveiligingssleutels om in te loggen
-    'yes': Ja
+    'yes': 'Ja'
