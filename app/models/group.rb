@@ -48,6 +48,7 @@ class Group < ApplicationRecord
   has_many :membership_requests, class_name: 'GroupMembershipRequest', foreign_key: 'group_id', dependent: :destroy
   has_many :account_blocks, class_name: 'GroupAccountBlock', foreign_key: 'group_id', dependent: :destroy
   has_many :statuses, inverse_of: :group, dependent: :destroy
+  has_one :deletion_request, class_name: 'GroupDeletionRequest', inverse_of: :group, dependent: :destroy
 
   before_create :generate_keys
 
@@ -59,14 +60,26 @@ class Group < ApplicationRecord
     suspended_at.present?
   end
 
+  def suspended_permanently?
+    suspended? && deletion_request.nil?
+  end
+
+  def suspended_temporarily?
+    suspended? && deletion_request.present?
+  end
+
   def suspend!(date: Time.now.utc, origin: :local)
-    #TODO: schedule deletion
-    update!(suspended_at: date, suspension_origin: origin)
+    transaction do
+      create_deletion_request!
+      update!(suspended_at: date, suspension_origin: origin)
+    end
   end
 
   def unsuspend!
-    #TODO: unschedule deletion
-    update!(suspended_at: nil, suspension_origin: nil)
+    transaction do
+      deletion_request&.destroy!
+      update!(suspended_at: nil, suspension_origin: nil)
+    end
   end
 
   def keypair

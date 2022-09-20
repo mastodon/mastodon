@@ -8,6 +8,7 @@ class Scheduler::UserCleanupScheduler
   def perform
     clean_unconfirmed_accounts!
     clean_suspended_accounts!
+    clean_suspended_groups!
     clean_discarded_statuses!
   end
 
@@ -23,6 +24,12 @@ class Scheduler::UserCleanupScheduler
   def clean_suspended_accounts!
     AccountDeletionRequest.where('created_at <= ?', AccountDeletionRequest::DELAY_TO_DELETION.ago).reorder(nil).find_each do |deletion_request|
       Admin::AccountDeletionWorker.perform_async(deletion_request.account_id)
+    end
+  end
+
+  def clean_suspended_groups!
+    GroupDeletionRequest.where('created_at <= ?', GroupDeletionRequest::DELAY_TO_DELETION.ago).reorder(nil).find_each do |deletion_request|
+      Admin::GroupDeletionWorker.perform_async(deletion_request.group_id)
     end
   end
 
