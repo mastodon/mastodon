@@ -419,6 +419,10 @@
     width: 100%;
   }
 
+  .autosuggest-textarea {
+    background: darken($ui-base-color, 7%);
+  }
+
   .spoiler-input {
     height: 0;
     transform-origin: bottom;
@@ -437,8 +441,8 @@
     box-sizing: border-box;
     width: 100%;
     margin: 0;
-    color: $inverted-text-color;
-    background: $simple-background-color;
+    background: $ui-base-color;
+    color: $darker-text-color;
     padding: 10px;
     font-family: inherit;
     font-size: 14px;
@@ -568,7 +572,7 @@
     color: $inverted-text-color;
     font-family: inherit;
     font-size: 14px;
-    background: $simple-background-color;
+    background: $ui-base-color;
 
     .compose-form__upload-wrapper {
       overflow: hidden;
@@ -633,7 +637,7 @@
 
   .compose-form__buttons-wrapper {
     padding: 10px;
-    background: darken($simple-background-color, 8%);
+    background: lighten($ui-base-color, 3%);
     border-radius: 0 0 4px 4px;
     display: flex;
     justify-content: space-between;
