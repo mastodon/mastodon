@@ -13,6 +13,7 @@ import FavouriteModal from './favourite_modal';
 import AudioModal from './audio_modal';
 import DoodleModal from './doodle_modal';
 import ConfirmationModal from './confirmation_modal';
+import SubscribedLanguagesModal from 'flavours/glitch/features/subscribed_languages_modal';
 import FocalPointModal from './focal_point_modal';
 import DeprecatedSettingsModal from './deprecated_settings_modal';
 import {
@@ -51,6 +52,7 @@ const MODAL_COMPONENTS = {
   'PINNED_ACCOUNTS_EDITOR': PinnedAccountsEditor,
   'COMPARE_HISTORY': CompareHistoryModal,
   'FILTER': FilterModal,
+  'SUBSCRIBED_LANGUAGES': () => Promise.resolve({ default: SubscribedLanguagesModal }),
 };
 
 export default class ModalRoot extends React.PureComponent {
