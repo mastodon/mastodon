@@ -1031,6 +1031,10 @@
         "id": "status.admin_account"
       },
       {
+        "defaultMessage": "Change subscribed languages",
+        "id": "account.languages"
+      },
+      {
         "defaultMessage": "Follows you",
         "id": "account.follows_you"
       },
@@ -3349,6 +3353,27 @@
       }
     ],
     "path": "app/javascript/mastodon/features/status/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Change subscribed languages for {target}",
+        "id": "subscribed_languages.target"
+      },
+      {
+        "defaultMessage": "Only posts in selected languages will appear on your home and list timelines after the change. Select none to receive posts in all languages.",
+        "id": "subscribed_languages.lead"
+      },
+      {
+        "defaultMessage": "Save changes",
+        "id": "subscribed_languages.save"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/subscribed_languages_modal/index.json"
   },
   {
     "descriptors": [
