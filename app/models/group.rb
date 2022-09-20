@@ -39,6 +39,7 @@ class Group < ApplicationRecord
   include AccountAvatar
   include AccountHeader
   include Paginable
+  include GroupCounters
   include DomainNormalizable
   include DomainMaterializable
 

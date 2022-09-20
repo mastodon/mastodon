@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_22_172530) do
+ActiveRecord::Schema.define(version: 2022_10_22_182735) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -508,6 +508,16 @@ ActiveRecord::Schema.define(version: 2022_10_22_172530) do
     t.index ["account_id", "group_id"], name: "index_group_memberships_on_account_id_and_group_id", unique: true
     t.index ["group_id", "role"], name: "index_group_memberships_on_group_id_and_role"
     t.index ["uri"], name: "index_group_memberships_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
+  end
+
+  create_table "group_stats", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "statuses_count", default: 0, null: false
+    t.bigint "members_count", default: 0, null: false
+    t.datetime "last_status_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_stats_on_group_id", unique: true
   end
 
   create_table "groups", id: :bigint, default: -> { "timestamp_id('groups'::text)" }, force: :cascade do |t|
@@ -1238,6 +1248,7 @@ ActiveRecord::Schema.define(version: 2022_10_22_172530) do
   add_foreign_key "group_membership_requests", "groups", on_delete: :cascade
   add_foreign_key "group_memberships", "accounts", on_delete: :cascade
   add_foreign_key "group_memberships", "groups", on_delete: :cascade
+  add_foreign_key "group_stats", "groups", on_delete: :cascade
   add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
