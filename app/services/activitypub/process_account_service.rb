@@ -32,8 +32,6 @@ class ActivityPub::ProcessAccountService < BaseService
       process_duplicate_accounts! if @options[:verified_webfinger]
     end
 
-    return if @account.nil?
-
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed? && !@options[:signed_with_known_key]
     clear_tombstones! if key_changed?
