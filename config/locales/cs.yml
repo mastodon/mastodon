@@ -165,6 +165,7 @@ cs:
         active: Aktivní
         all: Vše
         pending: Čekající
+        silenced: Omezeno
         suspended: Pozastavené
         title: Moderování
       moderation_notes: Moderátorské poznámky
@@ -172,6 +173,7 @@ cs:
       most_recent_ip: Nejnovější IP adresa
       no_account_selected: Nebyl změněn žádný účet, neboť žádný nebyl zvolen
       no_limits_imposed: Nejsou nastavena žádná omezení
+      no_role_assigned: Nebyla přiřazena žádná role
       not_subscribed: Neodebírá
       pending: Čeká na posouzení
       perform_full_suspension: Pozastavit
@@ -243,6 +245,7 @@ cs:
         approve_user: Schválit uživatele
         assigned_to_self_report: Přiřadit hlášení
         change_email_user: Změnit uživateli e-mailovou adresu
+        change_role_user: Změnit roli uživatele
         confirm_user: Potvrdit uživatele
         create_account_warning: Vytvořit varování
         create_announcement: Nové oznámení
@@ -252,6 +255,7 @@ cs:
         create_email_domain_block: Zablokovat e-mailovou doménu
         create_ip_block: Vytvořit IP pravidlo
         create_unavailable_domain: Vytvořit nedostupnou doménu
+        create_user_role: Vytvořit roli
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
         destroy_custom_emoji: Odstranit vlastní emoji
@@ -262,6 +266,7 @@ cs:
         destroy_ip_block: Smazat IP pravidlo
         destroy_status: Odstranit Příspěvek
         destroy_unavailable_domain: Smazat nedostupnou doménu
+        destroy_user_role: Zničit roli
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
         disable_sign_in_token_auth_user: Zrušit uživatelovo ověřování e-mailovým tokenem
@@ -288,15 +293,19 @@ cs:
         update_announcement: Aktualizovat oznámení
         update_custom_emoji: Aktualizovat vlastní emoji
         update_domain_block: Změnit blokaci domény
+        update_ip_block: Aktualizovat pravidlo IP
         update_status: Aktualizovat Příspěvek
+        update_user_role: Aktualizovat roli
       actions:
         approve_appeal_html: Uživatel %{name} schválil odvolání proti rozhodnutí moderátora %{target}
         approve_user_html: "%{name} schválil registraci od %{target}"
         assigned_to_self_report_html: Uživatel %{name} si přidělil hlášení %{target}
         change_email_user_html: Uživatel %{name} změnil e-mailovou adresu uživatele %{target}
+        change_role_user_html: "%{name} změnil roli %{target}"
         confirm_user_html: Uživatel %{name} potvrdil e-mailovou adresu uživatele %{target}
         create_account_warning_html: Uživatel %{name} poslal %{target} varování
         create_announcement_html: Uživatel %{name} vytvořil nové oznámení %{target}
+        create_canonical_email_block_html: "%{name} zablokoval e-mail s hash %{target}"
         create_custom_emoji_html: Uživatel %{name} nahrál nové emoji %{target}
         create_domain_allow_html: Uživatel %{name} povolil federaci s doménou %{target}
         create_domain_block_html: Uživatel %{name} zablokoval doménu %{target}
@@ -711,12 +720,16 @@ cs:
         manage_roles: Spravovat role
         manage_rules: Spravovat pravidla
         manage_settings: Spravovat nastavení
+        manage_taxonomies: Správa taxonomií
         manage_user_access: Spravovat uživatelské přístupy
         manage_user_access_description: Umožňuje uživatelům rušit jiným uživatelům dvoufázové ověřování, měnit jejich e-mailovou adresu a obnovovat jim hesla
         manage_users: Spravovat uživatele
         manage_webhooks: Spravovat webhooky
         view_audit_log: Zobrazovat protokol auditu
+        view_dashboard: Zobrazit ovládací panel
+        view_dashboard_description: Umožňuje uživatelům přístup k ovládacímu panelu a různým metrikám
         view_devops: Devops
+        view_devops_description: Umožňuje uživatelům přístup k ovládacím panelům Sidekiq a pgHero
       title: Role
     rules:
       add_new: Přidat pravidlo
@@ -802,6 +815,9 @@ cs:
         desc_html: Zobrazit na hlavní stránce odkaz na veřejnou časovou osu a povolit přístup na veřejnou časovou osu pomocí API bez autentizace
         title: Povolit neautentizovaný přístup k časové ose
       title: Nastavení stránky
+      trendable_by_default:
+        desc_html: Specifický populární obsah může být i nadále výslovně zakázán
+        title: Povolit trendy bez předchozí revize
       trends:
         desc_html: Veřejně zobrazit dříve schválený obsah, který je zrovna populární
         title: Trendy
@@ -1194,6 +1210,7 @@ cs:
     edit:
       add_keyword: Přidat klíčové slovo
       keywords: Klíčová slova
+      statuses: Individuální příspěvky
       title: Upravit filtr
     errors:
       deprecated_api_multiple_keywords: Tyto parametry nelze změnit z této aplikace, protože se vztahují na více než jedno klíčové slovo filtru. Použijte novější aplikaci nebo webové rozhraní.
@@ -1213,6 +1230,12 @@ cs:
     new:
       save: Uložit nový filtr
       title: Přidat nový filtr
+    statuses:
+      back_to_filter: Zpět na filtr
+      batch:
+        remove: Odstranit z filtru
+      index:
+        title: Filtrované příspěvky
   footer:
     developers: Vývojáři
     more: Více…
@@ -1223,6 +1246,7 @@ cs:
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
     delete: Smazat
+    deselect: Zrušit výběr všeho
     none: Žádné
     order_by: Seřadit podle
     save_changes: Uložit změny

@@ -85,6 +85,7 @@ cs:
         ip: Zadejte IPv4 nebo IPv6 adresu. Můžete blokovat celé rozsahy použitím CIDR notace. Dejte pozor, ať neodříznete přístup sami sobě!
         severities:
           no_access: Blokovat přístup ke všem zdrojům
+          sign_up_block: Nové přihlášení nebude možné
           sign_up_requires_approval: Nové registrace budou vyžadovat schválení
         severity: Zvolte, jak naložit s požadavky z dané IP
       rule:
@@ -96,7 +97,9 @@ cs:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
+        role: Role určuje, která oprávnění má uživatel
       user_role:
+        color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
         highlighted: Toto roli učiní veřejně viditelnou
         permissions_as_keys: Uživatelé s touto rolí budou moci...
       webhook:
@@ -247,6 +250,7 @@ cs:
         events: Zapnuté události
         url: URL koncového bodu
     'no': Ne
+    not_recommended: Nedoporučuje se
     recommended: Doporučeno
     required:
       mark: "*"

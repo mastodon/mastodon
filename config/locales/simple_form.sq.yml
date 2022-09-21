@@ -85,6 +85,7 @@ sq:
         ip: Jepni një adresë IPv4 ose IPv6. Duke përdorur sintaksën CIDR, mund të bllokoni intervale të tëra. Hapni sytë mos lini veten jashtë!
         severities:
           no_access: Blloko hyrje në krejt burimet
+          sign_up_block: S’do të jenë të mundur regjistrime të reja
           sign_up_requires_approval: Regjistrime të reja do të duan miratimin tuaj
         severity: Zgjidhni ç’do të ndodhë me kërkesa nga kjo IP
       rule:
@@ -219,6 +220,7 @@ sq:
         ip: IP
         severities:
           no_access: Bllokoji hyrjen
+          sign_up_block: Blloko regjistrime
           sign_up_requires_approval: Kufizo regjistrime
         severity: Rregull
       notification_emails:
@@ -251,6 +253,7 @@ sq:
         events: Akte të aktivizuar
         url: URL pikëmbarimi
     'no': Jo
+    not_recommended: Jo e këshilluar
     recommended: E rekomanduar
     required:
       mark: "*"

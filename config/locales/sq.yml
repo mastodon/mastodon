@@ -235,17 +235,21 @@ sq:
         approve_user: Miratoje Përdoruesin
         assigned_to_self_report: Caktoji Raportim
         change_email_user: Ndrysho Email për Përdoruesin
+        change_role_user: Ndryshoni Rol Përdoruesi
         confirm_user: Ripohoje Përdoruesin
         create_account_warning: Krijo Sinjalizim
         create_announcement: Krijoni Lajmërim
+        create_canonical_email_block: Krijoni Bllokim Email-esh
         create_custom_emoji: Krijo Emotikon Vetjak
         create_domain_allow: Krijo Lejim Përkatësie
         create_domain_block: Krijo Bllokim Përkatësie
         create_email_domain_block: Krijo Bllokim Përkatësie Email-esh
         create_ip_block: Krijoni Rregull IP
         create_unavailable_domain: Krijo Përkatësi të Papërdorshme
+        create_user_role: Krijoni Rol
         demote_user: Zhgradoje Përdoruesin
         destroy_announcement: Fshije Lajmërimin
+        destroy_canonical_email_block: Fshi Bllokim El-esh
         destroy_custom_emoji: Fshi Emotikon Vetjak
         destroy_domain_allow: Fshi Lejim Përkatësie
         destroy_domain_block: Fshi Bllokim Përkatësie
@@ -254,6 +258,7 @@ sq:
         destroy_ip_block: Fshini Rregull IP
         destroy_status: Fshi Gjendje
         destroy_unavailable_domain: Fshi Përkatësi të Papërdorshme
+        destroy_user_role: Asgjësoje Rolin
         disable_2fa_user: Çaktivizo 2FA-në
         disable_custom_emoji: Çaktivizo Emotikon Vetjak
         disable_sign_in_token_auth_user: Çaktivizo Mirëfilltësim me Token Email-i për Përdoruesin
@@ -280,23 +285,30 @@ sq:
         update_announcement: Përditëso Lajmërimin
         update_custom_emoji: Përditëso Emoxhi Vetjake
         update_domain_block: Përditëso Bllok Përkatësish
+        update_ip_block: Përditësoni rregull IP
         update_status: Përditëso Gjendjen
+        update_user_role: Përditësoni Rol
       actions:
         approve_appeal_html: "%{name} miratoi apelim vendimi moderimi nga %{target}"
         approve_user_html: "%{name} miratoi regjistrim nga %{target}"
         assigned_to_self_report_html: "%{name} ia kaloi raportimin %{target} në ngarkim vetvetes"
         change_email_user_html: "%{name} ndryshoi adresën email të përdoruesit %{target}"
+        change_role_user_html: "%{name} ndryshoi rolin e %{target}"
         confirm_user_html: "%{name} ripohoi adresën email të përdoruesit %{target}"
         create_account_warning_html: "%{name} dërgoi një sinjalizim për %{target}"
         create_announcement_html: "%{name} krijoi lajmërim të ri për %{target}"
+        create_canonical_email_block_html: "%{name} bllokoi email-in me hashin %{target}"
         create_custom_emoji_html: "%{name} ngarkoi emoxhi të ri %{target}"
         create_domain_allow_html: "%{name} lejoi federim me përkatësinë %{target}"
         create_domain_block_html: "%{name} bllokoi përkatësinë %{target}"
         create_email_domain_block_html: "%{name} bllokoi përkatësinë email %{target}"
         create_ip_block_html: "%{name} krijoi rregull për IP-në %{target}"
         create_unavailable_domain_html: "%{name} ndali dërgimin drejt përkatësisë %{target}"
+        create_user_role_html: "%{name} krijoi rolin %{target}"
         demote_user_html: "%{name} zhgradoi përdoruesin %{target}"
         destroy_announcement_html: "%{name} fshiu lajmërimin për %{target}"
+        destroy_canonical_email_block_html: "%{name} zhbllokoi email-n me hashin %{target}"
+        destroy_custom_emoji_html: "%{name} fshiu emoji-n %{target}"
         destroy_domain_allow_html: "%{name} hoqi lejimin për federim me %{target}"
         destroy_domain_block_html: "%{name} zhbllokoi përkatësinë %{target}"
         destroy_email_domain_block_html: "%{name} hoqi bllokimin për përkatësinë email %{target}"
@@ -304,6 +316,7 @@ sq:
         destroy_ip_block_html: "%{name} fshiu rregull për IP-në %{target}"
         destroy_status_html: "%{name} hoqi gjendje nga %{target}"
         destroy_unavailable_domain_html: "%{name} rinisi dërgimin drejt përkatësisë %{target}"
+        destroy_user_role_html: "%{name} fshiu rolin %{target}"
         disable_2fa_user_html: "%{name} çaktivizoi domosdoshmërinë për dyfaktorësh për përdoruesin %{target}"
         disable_custom_emoji_html: "%{name} çaktivizoi emoxhin %{target}"
         disable_sign_in_token_auth_user_html: "%{name} çaktivizo mirëfilltësim me token email-i për %{target}"
@@ -330,7 +343,9 @@ sq:
         update_announcement_html: "%{name} përditësoi lajmërimin %{target}"
         update_custom_emoji_html: "%{name} përditësoi emoxhin %{target}"
         update_domain_block_html: "%{name} përditësoi bllokimin e përkatësish për %{target}"
+        update_ip_block_html: "%{name} ndryshoi rregull për IP-në %{target}"
         update_status_html: "%{name} përditësoi gjendjen me %{target}"
+        update_user_role_html: "%{name} ndryshoi rolin për %{target}"
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
       filter_by_user: Filtroji sipas përdoruesit
@@ -789,6 +804,9 @@ sq:
         desc_html: Shfaqni lidhje te rrjedhë kohore publike në faqen hyrëse dhe lejoni te rrjedhë kohore publike hyrje API pa mirëfilltësim
         title: Lejo në rrjedhë kohore publike hyrje pa mirëfilltësim
       title: Rregullime sajti
+      trendable_by_default:
+        desc_html: Lënda specifike në modë prapë mund të ndalohet shprehimisht
+        title: Lejoni prirje pa shqyrtim paraprak
       trends:
         desc_html: Shfaqni publikisht hashtag-ë të shqyrtuar më parë që janë popullorë tani
         title: Hashtag-ë popullorë tani
@@ -850,6 +868,7 @@ sq:
           other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
         title: Lidhje në modë
         usage_comparison: Ndarë %{today} herë sot, kundrejt %{yesterday} dje
+      only_allowed: Lejuar vetëm
       pending_review: Në pritje të shqyrtimit
       preview_card_providers:
         allowed: Lidhje prej këtij botuesi mund të përdoren
@@ -869,6 +888,7 @@ sq:
           other: Ndarë me të tjerë, ose shënuar si e parapëlqyer %{friendly_count} herë
         title: Postime në modë
       tags:
+        current_score: Vlera aktuale %{score}
         dashboard:
           tag_accounts_measure: përdorime unike
           tag_languages_dimension: Gjuhë kryesuese
@@ -940,6 +960,7 @@ sq:
       body: 'Gjërat vijuese lypin një shqyrtim, përpara se të mund të shfaqen publikisht:'
       new_trending_links:
         no_approved_links: Aktualisht s’ka lidhje në modë të miratuara.
+        requirements: 'Cilido prej këtyre kandidatëve mund të kalojë lidhjen e miratuar për në modë #%{rank}, që aktualisht është “%{lowest_link_title}” me pikë %{lowest_link_score}.'
         title: Lidhje në modë
       new_trending_statuses:
         no_approved_statuses: Aktualisht s’ka postime në modë të miratuar.
@@ -1167,6 +1188,8 @@ sq:
     edit:
       add_keyword: Shtoni fjalëkyç
       keywords: Fjalëkyçe
+      statuses: Postime individuale
+      statuses_hint_html: Ky filtër aplikohet për të përzgjedhur postime individuale, pavarësish se kanë apo jo përkim me fjalëkyçat më poshtë. <a href="%{path}">Shqyrtoni, ose hiqni postime prej filtrit</a>.
       title: Përpunoni filtër
     errors:
       deprecated_api_multiple_keywords: Këta parametra s’mund të ndryshohen nga ky aplikacion, ngaqë aplikohen mbi më shumë se një fjalëkyç filtri. Përdorni një aplikacion më të ri, ose ndërfaqen web.
@@ -1180,10 +1203,23 @@ sq:
       keywords:
         one: "%{count} fjalëkyç"
         other: "%{count} fjalëkyçe"
+      statuses:
+        one: "%{count} postim"
+        other: "%{count} postime"
+      statuses_long:
+        one: "%{count} postim individual i fshehur"
+        other: "%{count} postime individuale të fshehur"
       title: Filtra
     new:
       save: Ruani filtër të ri
       title: Shtoni filtër të ri
+    statuses:
+      back_to_filter: Mbrapsht te filtri
+      batch:
+        remove: Hiqe prej filtri
+      index:
+        hint: Ky filtër aplikohet për të përzgjedhur postime individuale, pavarësisht kriteresh të tjera. Që nga ndërfaqja web mund të shtoni më tepër postime te ky filtër.
+        title: Postime të filtruar
   footer:
     developers: Zhvillues
     more: Më tepër…
@@ -1191,12 +1227,22 @@ sq:
     trending_now: Prirjet e tashme
   generic:
     all: Krejt
+    all_items_on_page_selected_html:
+      one: Në këtë faqe është i përzgjedhur <strong>%{count}</strong> objekt.
+      other: Në këtë faqe janë përzgjedhur krejt <strong>%{count}</strong> objektet.
+    all_matching_items_selected_html:
+      one: Është përzgjedhur <strong>%{count}</strong> objekt me përkim me kërkimin tuaj.
+      other: Janë përzgjedhur krejt <strong>%{count}</strong> objektet me përkim me kërkimin tuaj.
     changes_saved_msg: Ndryshimet u ruajtën me sukses!
     copy: Kopjoje
     delete: Fshije
+    deselect: Shpërzgjidhi krejt
     none: Asnjë
     order_by: Renditi sipas
     save_changes: Ruaji ndryshimet
+    select_all_matching_items:
+      one: Përzgjidhni %{count} objekt me përkim me kërkimin tuaj.
+      other: Përzgjidhni krejt %{count} objektet me përkim me kërkimin tuaj.
     today: sot
     validation_errors:
       one: Diçka s’është ende si duhet! Ju lutemi, shqyrtoni gabimin më poshtë

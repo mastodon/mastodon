@@ -239,6 +239,7 @@ es-MX:
         confirm_user: Confirmar Usuario
         create_account_warning: Crear Advertencia
         create_announcement: Crear Anuncio
+        create_canonical_email_block: Crear Bloqueo de Correo Electrónico
         create_custom_emoji: Crear Emoji Personalizado
         create_domain_allow: Crear Permiso de Dominio
         create_domain_block: Crear Bloqueo de Dominio
@@ -248,6 +249,7 @@ es-MX:
         create_user_role: Crear Rol
         demote_user: Degradar Usuario
         destroy_announcement: Eliminar Anuncio
+        destroy_canonical_email_block: Eliminar Bloqueo de Correo Electrónico
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permiso de Dominio
         destroy_domain_block: Eliminar Bloqueo de Dominio
@@ -283,6 +285,7 @@ es-MX:
         update_announcement: Actualizar Anuncio
         update_custom_emoji: Actualizar Emoji Personalizado
         update_domain_block: Actualizar el Bloqueo de Dominio
+        update_ip_block: Actualizar regla IP
         update_status: Actualizar Estado
         update_user_role: Actualizar Rol
       actions:
@@ -294,6 +297,7 @@ es-MX:
         confirm_user_html: "%{name} confirmó la dirección de correo electrónico del usuario %{target}"
         create_account_warning_html: "%{name} envió una advertencia a %{target}"
         create_announcement_html: "%{name} ha creado un nuevo anuncio %{target}"
+        create_canonical_email_block_html: "%{name} bloqueó el correo electrónico con el hash %{target}"
         create_custom_emoji_html: "%{name} subió un nuevo emoji %{target}"
         create_domain_allow_html: "%{name} permitió la federación con el dominio %{target}"
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
@@ -303,6 +307,7 @@ es-MX:
         create_user_role_html: "%{name} creó el rol %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
         destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
@@ -338,6 +343,7 @@ es-MX:
         update_announcement_html: "%{name} actualizó el anuncio %{target}"
         update_custom_emoji_html: "%{name} actualizó el emoji %{target}"
         update_domain_block_html: "%{name} actualizó el bloqueo de dominio para %{target}"
+        update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
         update_status_html: "%{name} actualizó el estado de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
       empty: No se encontraron registros.
@@ -801,6 +807,9 @@ es-MX:
         desc_html: Mostrar línea de tiempo pública en la portada
         title: Previsualización
       title: Ajustes del sitio
+      trendable_by_default:
+        desc_html: El contenido específico de tendencias todavía puede ser explícitamente desactivado
+        title: Permitir tendencias sin revisión previa
       trends:
         desc_html: Mostrar públicamente hashtags previamente revisados que son tendencia
         title: Hashtags de tendencia
@@ -1720,7 +1729,7 @@ es-MX:
       change_password: cambies tu contraseña
       details: 'Aquí están los detalles del inicio de sesión:'
       explanation: Hemos detectado un inicio de sesión en tu cuenta desde una nueva dirección IP.
-      further_actions_html: Si fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos factores para mantener tu cuenta segura.
+      further_actions_html: Si no fuiste tú, te recomendamos que %{action} inmediatamente y habilites la autenticación de dos factores para mantener tu cuenta segura.
       subject: Tu cuenta ha sido accedida desde una nueva dirección IP
       title: Un nuevo inicio de sesión
     warning:
