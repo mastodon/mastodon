@@ -234,7 +234,7 @@ module Mastodon
       end
 
       if options[:days].present?
-        scope = scope.where('id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false))
+        scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false))
       end
 
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|

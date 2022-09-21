@@ -51,6 +51,7 @@ const messages = defineMessages({
   unendorse: { id: 'account.unendorse', defaultMessage: 'Don\'t feature on profile' },
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
+  languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
 });
 
 const dateFormatOptions = {
@@ -85,6 +86,7 @@ class Header extends ImmutablePureComponent {
     onEndorseToggle: PropTypes.func.isRequired,
     onAddToList: PropTypes.func.isRequired,
     onEditAccountNote: PropTypes.func.isRequired,
+    onChangeLanguages: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
@@ -212,6 +214,9 @@ class Header extends ImmutablePureComponent {
           } else {
             menu.push({ text: intl.formatMessage(messages.showReblogs, { name: account.get('username') }), action: this.props.onReblogToggle });
           }
+
+          menu.push({ text: intl.formatMessage(messages.languages), action: this.props.onChangeLanguages });
+          menu.push(null);
         }
 
         menu.push({ text: intl.formatMessage(account.getIn(['relationship', 'endorsed']) ? messages.unendorse : messages.endorse), action: this.props.onEndorseToggle });
