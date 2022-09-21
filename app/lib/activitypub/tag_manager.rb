@@ -44,6 +44,10 @@ class ActivityPub::TagManager
     end
   end
 
+  def key_uri_for(target)
+    [uri_for(target), '#main-key'].join
+  end
+
   def uri_for_username(username)
     account_url(username: username)
   end

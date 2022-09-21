@@ -35,7 +35,7 @@ class ActivityPub::LinkedDataSignature
   def sign!(creator, sign_with: nil)
     options = {
       'type'    => 'RsaSignature2017',
-      'creator' => [ActivityPub::TagManager.instance.uri_for(creator), '#main-key'].join,
+      'creator' => ActivityPub::TagManager.instance.key_uri_for(creator),
       'created' => Time.now.utc.iso8601,
     }
 
