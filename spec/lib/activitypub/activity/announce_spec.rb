@@ -115,7 +115,7 @@ RSpec.describe ActivityPub::Activity::Announce do
 
       let(:object_json) { 'https://example.com/actor/hello-world' }
 
-      subject { described_class.new(json, sender, relayed_through_account: relay_account) }
+      subject { described_class.new(json, sender, relayed_through_actor: relay_account) }
 
       before do
         stub_request(:get, 'https://example.com/actor/hello-world').to_return(body: Oj.dump(unknown_object_json))
