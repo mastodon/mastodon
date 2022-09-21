@@ -98,7 +98,7 @@ module SignatureVerification
     fail_with! e.message
   rescue HTTP::Error, OpenSSL::SSL::SSLError => e
     fail_with! "Failed to fetch remote data: #{e.message}"
-  rescue Mastodon::UnexptectedResponseError
+  rescue Mastodon::UnexpectedResponseError
     fail_with! 'Failed to fetch remote data (got unexpected reply from server)'
   rescue Stoplight::Error::RedLight
     fail_with! 'Fetching attempt skipped because of recent connection failure'
