@@ -9,7 +9,7 @@ class ActivityPub::LinkedDataSignature
     @json = json.with_indifferent_access
   end
 
-  def verify_account!
+  def verify_actor!
     return unless @json['signature'].is_a?(Hash)
 
     type        = @json['signature']['type']
@@ -18,7 +18,7 @@ class ActivityPub::LinkedDataSignature
 
     return unless type == 'RsaSignature2017'
 
-    creator   = ActivityPub::TagManager.instance.uri_to_resource(creator_uri, Account)
+    creator   = ActivityPub::TagManager.instance.uri_to_actor(creator_uri)
     creator ||= ActivityPub::FetchRemoteKeyService.new.call(creator_uri, id: false)
 
     return if creator.nil?

@@ -6,7 +6,7 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
   include AccountOwnedConcern
 
   before_action :skip_unknown_actor_activity
-  before_action :require_account_signature!
+  before_action :require_actor_signature!
   skip_before_action :authenticate_user!
 
   def create
@@ -71,6 +71,6 @@ class ActivityPub::InboxesController < ActivityPub::BaseController
   end
 
   def process_payload
-    ActivityPub::ProcessingWorker.perform_async(signed_request_account.id, body, @account&.id)
+    ActivityPub::ProcessingWorker.perform_async(signed_request_actor.id, body, @account&.id, signed_request_actor.class.name)
   end
 end

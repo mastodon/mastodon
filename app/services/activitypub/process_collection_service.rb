@@ -4,6 +4,7 @@ class ActivityPub::ProcessCollectionService < BaseService
   include JsonLdHelper
 
   def call(body, account, **options)
+    return unless account.is_a?(Account)
     @account = account
     @json    = original_json = Oj.load(body, mode: :strict)
     @options = options
@@ -67,7 +68,9 @@ class ActivityPub::ProcessCollectionService < BaseService
 
   def verify_account!
     @options[:relayed_through_account] = @account
-    @account = ActivityPub::LinkedDataSignature.new(@json).verify_account!
+    @account = ActivityPub::LinkedDataSignature.new(@json).verify_actor!
+    @account = nil unless @account.is_a?(Account)
+    @account
   rescue JSON::LD::JsonLdError => e
     Rails.logger.debug "Could not verify LD-Signature for #{value_or_id(@json['actor'])}: #{e.message}"
     nil
