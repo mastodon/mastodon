@@ -7,14 +7,25 @@ import DisplayName from 'mastodon/components/display_name';
 import RelativeTimestamp from 'mastodon/components/relative_timestamp';
 import Option from './option';
 import MediaAttachments from 'mastodon/components/media_attachments';
+import { injectIntl, defineMessages } from 'react-intl';
+import Icon from 'mastodon/components/icon';
 
-export default class StatusCheckBox extends React.PureComponent {
+const messages = defineMessages({
+  public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
+  unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
+  private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
+  direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
+});
+
+export default @injectIntl
+class StatusCheckBox extends React.PureComponent {
 
   static propTypes = {
     id: PropTypes.string.isRequired,
     status: ImmutablePropTypes.map.isRequired,
     checked: PropTypes.bool,
     onToggle: PropTypes.func.isRequired,
+    intl: PropTypes.object.isRequired,
   };
 
   handleStatusesToggle = (value, checked) => {
@@ -23,11 +34,20 @@ export default class StatusCheckBox extends React.PureComponent {
   };
 
   render () {
-    const { status, checked } = this.props;
+    const { status, checked, intl } = this.props;
 
     if (status.get('reblog')) {
       return null;
     }
+
+    const visibilityIconInfo = {
+      'public': { icon: 'globe', text: intl.formatMessage(messages.public_short) },
+      'unlisted': { icon: 'unlock', text: intl.formatMessage(messages.unlisted_short) },
+      'private': { icon: 'lock', text: intl.formatMessage(messages.private_short) },
+      'direct': { icon: 'at', text: intl.formatMessage(messages.direct_short) },
+    };
+
+    const visibilityIcon = visibilityIconInfo[status.get('visibility')];
 
     const labelComponent = (
       <div className='status-check-box__status poll__option__text'>
@@ -37,7 +57,7 @@ export default class StatusCheckBox extends React.PureComponent {
           </div>
 
           <div>
-            <DisplayName account={status.get('account')} /> · <RelativeTimestamp timestamp={status.get('created_at')} />
+            <DisplayName account={status.get('account')} /> · <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span> <RelativeTimestamp timestamp={status.get('created_at')} />
           </div>
         </div>
 
