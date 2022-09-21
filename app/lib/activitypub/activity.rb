@@ -116,12 +116,12 @@ class ActivityPub::Activity
   def dereference_object!
     return unless @object.is_a?(String)
 
-    dereferencer = ActivityPub::Dereferencer.new(@object, permitted_origin: @account.uri, signature_account: signed_fetch_account)
+    dereferencer = ActivityPub::Dereferencer.new(@object, permitted_origin: @account.uri, signature_actor: signed_fetch_actor)
 
     @object = dereferencer.object unless dereferencer.object.nil?
   end
 
-  def signed_fetch_account
+  def signed_fetch_actor
     return Account.find(@options[:delivered_to_account_id]) if @options[:delivered_to_account_id].present?
 
     first_mentioned_local_account || first_local_follower
