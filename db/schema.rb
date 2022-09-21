@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_22_152927) do
+ActiveRecord::Schema.define(version: 2022_10_22_153455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -476,6 +476,17 @@ ActiveRecord::Schema.define(version: 2022_10_22_152927) do
     t.string "languages", array: true
     t.index ["account_id", "target_account_id"], name: "index_follows_on_account_id_and_target_account_id", unique: true
     t.index ["target_account_id"], name: "index_follows_on_target_account_id"
+  end
+
+  create_table "group_membership_requests", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.string "uri"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id", "group_id"], name: "index_group_membership_requests_on_account_id_and_group_id", unique: true
+    t.index ["group_id"], name: "index_group_membership_requests_on_group_id"
+    t.index ["uri"], name: "index_group_membership_requests_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
   end
 
   create_table "group_memberships", force: :cascade do |t|
@@ -1210,6 +1221,8 @@ ActiveRecord::Schema.define(version: 2022_10_22_152927) do
   add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
+  add_foreign_key "group_membership_requests", "accounts", on_delete: :cascade
+  add_foreign_key "group_membership_requests", "groups", on_delete: :cascade
   add_foreign_key "group_memberships", "accounts", on_delete: :cascade
   add_foreign_key "group_memberships", "groups", on_delete: :cascade
   add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade

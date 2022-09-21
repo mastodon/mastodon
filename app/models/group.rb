@@ -44,6 +44,7 @@ class Group < ApplicationRecord
 
   has_many :memberships,  class_name: 'GroupMembership', foreign_key: 'group_id', dependent: :destroy
   has_many :members, -> { order('group_memberships.id desc') }, through: :memberships,  source: :account
+  has_many :membership_requests, class_name: 'GroupMembershipRequest', foreign_key: 'group_id', dependent: :destroy
 
   before_create :generate_keys
 
