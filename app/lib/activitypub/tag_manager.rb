@@ -155,6 +155,10 @@ class ActivityPub::TagManager
     path_params[param]
   end
 
+  def uri_to_actor(uri)
+    uri_to_resource(uri, Account)
+  end
+
   def uri_to_resource(uri, klass)
     return if uri.nil?
 
