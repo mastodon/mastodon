@@ -212,6 +212,7 @@ nl:
       suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
       title: Accounts
       unblock_email: E-mailadres deblokkeren
+      unblocked_email_msg: Het e-mailadres van %{username} is gedeblokkeerd
       unconfirmed_email: Onbevestigd e-mailadres
       undo_sensitized: Niet meer als gevoelig forceren
       undo_silenced: Niet langer beperken
@@ -230,6 +231,7 @@ nl:
         approve_user: Gebruiker goedkeuren
         assigned_to_self_report: Rapportage toewijzen
         change_email_user: E-mailadres van gebruiker wijzigen
+        change_role_user: Wijzig rol van gebruiker
         confirm_user: Gebruiker bevestigen
         create_account_warning: Waarschuwing aanmaken
         create_announcement: Mededeling aanmaken
@@ -241,6 +243,7 @@ nl:
         create_unavailable_domain: Niet beschikbaar domein aanmaken
         demote_user: Gebruiker degraderen
         destroy_announcement: Mededeling verwijderen
+        destroy_canonical_email_block: Verwijder e-mailblokkade
         destroy_custom_emoji: Lokale emoji verwijderen
         destroy_domain_allow: Domeingoedkeuring verwijderen
         destroy_domain_block: Domeinblokkade verwijderen
@@ -854,6 +857,7 @@ nl:
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
     link_to_otp: Voer een tweestapsverificatiecode van je telefoon of een herstelcode in
     link_to_webauth: Jouw apparaat met de authenticatie-app gebruiken
+    log_in_with: Inloggen met
     login: Inloggen
     logout: Uitloggen
     migrate_account: Naar een ander account verhuizen
@@ -875,6 +879,7 @@ nl:
     status:
       account_status: Accountstatus
       confirming: Aan het wachten totdat de e-mail is bevestigd.
+      functional: Jouw account kan in diens geheel gebruikt worden.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
@@ -1052,6 +1057,7 @@ nl:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
     delete: Verwijderen
+    deselect: Alles deselecteren
     none: Geen
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
@@ -1380,6 +1386,11 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   statuses_cleanup:
+    ignore_favs: Favorieten negeren
+    ignore_reblogs: Boosts negeren
+    keep_direct: Directe berichten behouden
+    keep_media: Berichten met mediabijlagen behouden
+    keep_pinned: Vastgemaakte berichten behouden
     min_age:
       '1209600': 2 weken
       '15778476': 6 maanden
