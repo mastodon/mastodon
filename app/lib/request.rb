@@ -40,12 +40,11 @@ class Request
     set_digest! if options.key?(:body)
   end
 
-  def on_behalf_of(account, key_id_format = :uri, sign_with: nil)
-    raise ArgumentError, 'account must not be nil' if account.nil?
+  def on_behalf_of(actor, sign_with: nil)
+    raise ArgumentError, 'actor must not be nil' if actor.nil?
 
-    @account       = account
-    @keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : @account.keypair
-    @key_id_format = key_id_format
+    @actor         = actor
+    @keypair       = sign_with.present? ? OpenSSL::PKey::RSA.new(sign_with) : @actor.keypair
 
     self
   end
@@ -79,7 +78,7 @@ class Request
   end
 
   def headers
-    (@account ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
+    (@actor ? @headers.merge('Signature' => signature) : @headers).without(REQUEST_TARGET)
   end
 
   class << self
@@ -128,12 +127,7 @@ class Request
   end
 
   def key_id
-    case @key_id_format
-    when :acct
-      @account.to_webfinger_s
-    when :uri
-      [ActivityPub::TagManager.instance.uri_for(@account), '#main-key'].join
-    end
+    ActivityPub::TagManager.instance.key_uri_for(@actor)
   end
 
   def http_client

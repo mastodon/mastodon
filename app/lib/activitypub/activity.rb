@@ -116,12 +116,12 @@ class ActivityPub::Activity
   def dereference_object!
     return unless @object.is_a?(String)
 
-    dereferencer = ActivityPub::Dereferencer.new(@object, permitted_origin: @account.uri, signature_account: signed_fetch_account)
+    dereferencer = ActivityPub::Dereferencer.new(@object, permitted_origin: @account.uri, signature_actor: signed_fetch_actor)
 
     @object = dereferencer.object unless dereferencer.object.nil?
   end
 
-  def signed_fetch_account
+  def signed_fetch_actor
     return Account.find(@options[:delivered_to_account_id]) if @options[:delivered_to_account_id].present?
 
     first_mentioned_local_account || first_local_follower
@@ -163,15 +163,15 @@ class ActivityPub::Activity
   end
 
   def followed_by_local_accounts?
-    @account.passive_relationships.exists? || @options[:relayed_through_account]&.passive_relationships&.exists?
+    @account.passive_relationships.exists? || (@options[:relayed_through_actor].is_a?(Account) && @options[:relayed_through_actor].passive_relationships&.exists?)
   end
 
   def requested_through_relay?
-    @options[:relayed_through_account] && Relay.find_by(inbox_url: @options[:relayed_through_account].inbox_url)&.enabled?
+    @options[:relayed_through_actor] && Relay.find_by(inbox_url: @options[:relayed_through_actor].inbox_url)&.enabled?
   end
 
   def reject_payload!
-    Rails.logger.info("Rejected #{@json['type']} activity #{@json['id']} from #{@account.uri}#{@options[:relayed_through_account] && "via #{@options[:relayed_through_account].uri}"}")
+    Rails.logger.info("Rejected #{@json['type']} activity #{@json['id']} from #{@account.uri}#{@options[:relayed_through_actor] && "via #{@options[:relayed_through_actor].uri}"}")
     nil
   end
 end

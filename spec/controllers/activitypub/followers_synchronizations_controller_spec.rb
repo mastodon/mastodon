@@ -15,7 +15,7 @@ RSpec.describe ActivityPub::FollowersSynchronizationsController, type: :controll
   end
 
   before do
-    allow(controller).to receive(:signed_request_account).and_return(remote_account)
+    allow(controller).to receive(:signed_request_actor).and_return(remote_account)
   end
 
   describe 'GET #show' do

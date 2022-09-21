@@ -45,8 +45,12 @@ module SignatureVerification
     end
   end
 
-  def require_signature!
+  def require_account_signature!
     render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
+  end
+
+  def require_actor_signature!
+    render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_actor
   end
 
   def signed_request?
@@ -68,7 +72,11 @@ module SignatureVerification
   end
 
   def signed_request_account
-    return @signed_request_account if defined?(@signed_request_account)
+    signed_request_actor.is_a?(Account) ? signed_request_actor : nil
+  end
+
+  def signed_request_actor
+    return @signed_request_actor if defined?(@signed_request_actor)
 
     raise SignatureVerificationError, 'Request not signed' unless signed_request?
     raise SignatureVerificationError, 'Incompatible request signature. keyId and signature are required' if missing_required_signature_parameters?
@@ -78,22 +86,22 @@ module SignatureVerification
     verify_signature_strength!
     verify_body_digest!
 
-    account = account_from_key_id(signature_params['keyId'])
+    actor = actor_from_key_id(signature_params['keyId'])
 
-    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if account.nil?
+    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
 
     signature             = Base64.decode64(signature_params['signature'])
     compare_signed_string = build_signed_string
 
-    return account unless verify_signature(account, signature, compare_signed_string).nil?
+    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    account = stoplight_wrap_request { account.possibly_stale? ? account.refresh! : account_refresh_key(account) }
+    actor = stoplight_wrap_request { actor_refresh_key!(actor) }
 
-    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if account.nil?
+    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
 
-    return account unless verify_signature(account, signature, compare_signed_string).nil?
+    return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    fail_with! "Verification failed for #{account.username}@#{account.domain} #{account.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
+    fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
   rescue SignatureVerificationError => e
     fail_with! e.message
   rescue HTTP::Error, OpenSSL::SSL::SSLError => e
@@ -112,7 +120,7 @@ module SignatureVerification
 
   def fail_with!(message)
     @signature_verification_failure_reason = message
-    @signed_request_account = nil
+    @signed_request_actor = nil
   end
 
   def signature_params
@@ -160,10 +168,10 @@ module SignatureVerification
     raise SignatureVerificationError, "Invalid Digest value. Computed SHA-256 digest: #{body_digest}; given: #{sha256[1]}"
   end
 
-  def verify_signature(account, signature, compare_signed_string)
-    if account.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), signature, compare_signed_string)
-      @signed_request_account = account
-      @signed_request_account
+  def verify_signature(actor, signature, compare_signed_string)
+    if actor.keypair.public_key.verify(OpenSSL::Digest.new('SHA256'), signature, compare_signed_string)
+      @signed_request_actor = actor
+      @signed_request_actor
     end
   rescue OpenSSL::PKey::RSAError
     nil
@@ -226,7 +234,7 @@ module SignatureVerification
     signature_params['keyId'].blank? || signature_params['signature'].blank?
   end
 
-  def account_from_key_id(key_id)
+  def actor_from_key_id(key_id)
     domain = key_id.start_with?('acct:') ? key_id.split('@').last : key_id
 
     if domain_not_allowed?(domain)
@@ -237,13 +245,13 @@ module SignatureVerification
     if key_id.start_with?('acct:')
       stoplight_wrap_request { ResolveAccountService.new.call(key_id.gsub(/\Aacct:/, ''), suppress_errors: false) }
     elsif !ActivityPub::TagManager.instance.local_uri?(key_id)
-      account   = ActivityPub::TagManager.instance.uri_to_resource(key_id, Account)
+      account   = ActivityPub::TagManager.instance.uri_to_actor(key_id)
       account ||= stoplight_wrap_request { ActivityPub::FetchRemoteKeyService.new.call(key_id, id: false, suppress_errors: false) }
       account
     end
   rescue Mastodon::PrivateNetworkAddressError => e
     raise SignatureVerificationError, "Requests to private network addresses are disallowed (tried to query #{e.host})"
-  rescue Mastodon::HostValidationError, ActivityPub::FetchRemoteAccountService::Error, ActivityPub::FetchRemoteKeyService::Error, Webfinger::Error => e
+  rescue Mastodon::HostValidationError, ActivityPub::FetchRemoteActorService::Error, ActivityPub::FetchRemoteKeyService::Error, Webfinger::Error => e
     raise SignatureVerificationError, e.message
   end
 
@@ -255,12 +263,14 @@ module SignatureVerification
       .run
   end
 
-  def account_refresh_key(account)
-    return if account.local? || !account.activitypub?
-    ActivityPub::FetchRemoteAccountService.new.call(account.uri, only_key: true, suppress_errors: false)
+  def actor_refresh_key!(actor)
+    return if actor.local? || !actor.activitypub?
+    return actor.refresh! if actor.respond_to?(:refresh!) && actor.possibly_stale?
+
+    ActivityPub::FetchRemoteActorService.new.call(actor.uri, only_key: true, suppress_errors: false)
   rescue Mastodon::PrivateNetworkAddressError => e
     raise SignatureVerificationError, "Requests to private network addresses are disallowed (tried to query #{e.host})"
-  rescue Mastodon::HostValidationError, ActivityPub::FetchRemoteAccountService::Error, Webfinger::Error => e
+  rescue Mastodon::HostValidationError, ActivityPub::FetchRemoteActorService::Error, Webfinger::Error => e
     raise SignatureVerificationError, e.message
   end
 end
