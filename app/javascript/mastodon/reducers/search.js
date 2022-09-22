@@ -52,6 +52,7 @@ export default function search(state = initialState, action) {
       map.set('results', ImmutableMap({
         accounts: ImmutableList(action.results.accounts.map(item => item.id)),
         statuses: ImmutableList(action.results.statuses.map(item => item.id)),
+        groups: ImmutableList(action.results.groups.map(item => item.id)),
         hashtags: fromJS(action.results.hashtags),
       }));
 

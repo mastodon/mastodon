@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import AccountContainer from '../../../containers/account_container';
+import GroupContainer from '../../../containers/group_container';
 import StatusContainer from '../../../containers/status_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { ImmutableHashtag as Hashtag } from '../../../components/hashtag';
@@ -45,6 +46,8 @@ class SearchResults extends ImmutablePureComponent {
 
   handleLoadMoreHashtags = () => this.props.expandSearch('hashtags');
 
+  handleLoadMoreGroups = () => this.props.expandSearch('groups');
+
   render () {
     const { intl, results, suggestions, dismissSuggestion, searchTerm } = this.props;
 
@@ -71,7 +74,7 @@ class SearchResults extends ImmutablePureComponent {
       );
     }
 
-    let accounts, statuses, hashtags;
+    let accounts, statuses, hashtags, groups;
     let count = 0;
 
     if (results.get('accounts') && results.get('accounts').size > 0) {
@@ -123,6 +126,19 @@ class SearchResults extends ImmutablePureComponent {
       );
     }
 
+    if (results.get('groups') && results.get('groups').size > 0) {
+      count   += results.get('groups').size;
+      groups = (
+        <div className='search-results__section'>
+          <h5><Icon id='users' fixedWidth /><FormattedMessage id='search_results.groups' defaultMessage='Groups' /></h5>
+
+          {results.get('groups').map(groupId => <GroupContainer key={groupId} id={groupId} />)}
+
+          {results.get('groups').size >= 5 && <LoadMore visible onClick={this.handleLoadMoreGroups} />}
+        </div>
+      );
+    }
+
     return (
       <div className='search-results'>
         <div className='search-results__header'>
@@ -133,6 +149,7 @@ class SearchResults extends ImmutablePureComponent {
         {accounts}
         {statuses}
         {hashtags}
+        {groups}
       </div>
     );
   }

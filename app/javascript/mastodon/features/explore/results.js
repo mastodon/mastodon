@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { expandSearch } from 'mastodon/actions/search';
 import Account from 'mastodon/containers/account_container';
 import Status from 'mastodon/containers/status_container';
+import Group from 'mastodon/containers/group_container';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { List as ImmutableList } from 'immutable';
 import LoadMore from 'mastodon/components/load_more';
@@ -42,6 +43,10 @@ const renderStatuses = (results, onLoadMore) => appendLoadMore('statuses', resul
   <Status key={`status-${item}`} id={item} />
 )), onLoadMore);
 
+const renderGroups = (results, onLoadMore) => appendLoadMore('groups', results.get('groups', ImmutableList()).map(item => (
+  <Group key={`status-${item}`} id={item} />
+)), onLoadMore);
+
 export default @connect(mapStateToProps)
 @injectIntl
 class Results extends React.PureComponent {
@@ -63,9 +68,11 @@ class Results extends React.PureComponent {
   handleSelectAccounts = () => this.setState({ type: 'accounts' });
   handleSelectHashtags = () => this.setState({ type: 'hashtags' });
   handleSelectStatuses = () => this.setState({ type: 'statuses' });
+  handleSelectGroups = () => this.setState({ type: 'groups' });
   handleLoadMoreAccounts = () => this.loadMore('accounts');
   handleLoadMoreStatuses = () => this.loadMore('statuses');
   handleLoadMoreHashtags = () => this.loadMore('hashtags');
+  handleLoadMoreGroups = () => this.loadMore('groups');
 
   loadMore (type) {
     const { dispatch } = this.props;
@@ -81,7 +88,7 @@ class Results extends React.PureComponent {
     if (!isLoading) {
       switch(type) {
       case 'all':
-        filteredResults = filteredResults.concat(renderAccounts(results, this.handleLoadMoreAccounts), renderHashtags(results, this.handleLoadMoreHashtags), renderStatuses(results, this.handleLoadMoreStatuses));
+        filteredResults = filteredResults.concat(renderAccounts(results, this.handleLoadMoreAccounts), renderGroups(results, this.handleMoreGroups), renderHashtags(results, this.handleLoadMoreHashtags), renderStatuses(results, this.handleLoadMoreStatuses));
         break;
       case 'accounts':
         filteredResults = filteredResults.concat(renderAccounts(results, this.handleLoadMoreAccounts));
@@ -91,6 +98,9 @@ class Results extends React.PureComponent {
         break;
       case 'statuses':
         filteredResults = filteredResults.concat(renderStatuses(results, this.handleLoadMoreStatuses));
+        break;
+      case 'groups':
+        filteredResults = filteredResults.concat(renderGroups(results, this.handleLoadMoreGroups));
         break;
       }
 
@@ -108,6 +118,7 @@ class Results extends React.PureComponent {
         <div className='account__section-headline'>
           <button onClick={this.handleSelectAll} className={type === 'all' && 'active'}><FormattedMessage id='search_results.all' defaultMessage='All' /></button>
           <button onClick={this.handleSelectAccounts} className={type === 'accounts' && 'active'}><FormattedMessage id='search_results.accounts' defaultMessage='People' /></button>
+          <button onClick={this.handleSelectGroups} className={type === 'groups' && 'active'}><FormattedMessage id='search_results.groups' defaultMessage='Groups' /></button>
           <button onClick={this.handleSelectHashtags} className={type === 'hashtags' && 'active'}><FormattedMessage id='search_results.hashtags' defaultMessage='Hashtags' /></button>
           <button onClick={this.handleSelectStatuses} className={type === 'statuses' && 'active'}><FormattedMessage id='search_results.statuses' defaultMessage='Posts' /></button>
         </div>
