@@ -20,14 +20,19 @@ class ActivityPub::Activity
   end
 
   class << self
-    def factory(json, account, **options)
+    def factory(json, actor, **options)
       @json = json
-      klass&.new(json, account, **options)
+      case actor.class.name
+      when 'Account'
+        account_klass&.new(json, actor, **options)
+      when 'Group'
+        group_klass&.new(json, actor, **options)
+      end
     end
 
     private
 
-    def klass
+    def account_klass
       case @json['type']
       when 'Create'
         ActivityPub::Activity::Create
@@ -59,6 +64,24 @@ class ActivityPub::Activity
         ActivityPub::Activity::Move
       end
     end
+
+    def group_klass
+      case @json['type']
+      when 'Delete'
+        ActivityPub::GroupActivity::Delete
+      when 'Update'
+        ActivityPub::GroupActivity::Update
+      when 'Accept'
+        ActivityPub::GroupActivity::Accept
+      when 'Reject'
+        ActivityPub::GroupActivity::Reject
+      when 'Add'
+        ActivityPub::GroupActivity::Add
+      when 'Remove'
+        ActivityPub::GroupActivity::Remove
+      end
+    end
+
   end
 
   protected
@@ -124,7 +147,7 @@ class ActivityPub::Activity
   def signed_fetch_actor
     return Account.find(@options[:delivered_to_account_id]) if @options[:delivered_to_account_id].present?
 
-    first_mentioned_local_account || first_local_follower
+    first_mentioned_local_account || first_local_follower || first_local_member
   end
 
   def first_mentioned_local_account
@@ -138,7 +161,13 @@ class ActivityPub::Activity
   end
 
   def first_local_follower
+    return unless @account.is_a?(Account)
     @account.followers.local.first
+  end
+
+  def first_local_member
+    return unless @account.is_a?(Group)
+    @account.members.first
   end
 
   def follow_request_from_object

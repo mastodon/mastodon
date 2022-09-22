@@ -37,7 +37,7 @@ class JoinGroupService < BaseService
     if @group.local?
       # TODO: notifications
     else
-      # TODO: federation
+      ActivityPub::DeliveryWorker.perform_async(build_json(membership_request), @account.id, @group.inbox_url)
     end
 
     membership_request
@@ -49,5 +49,9 @@ class JoinGroupService < BaseService
     # TODO: notifications
 
     membership
+  end
+
+  def build_json(membership_request)
+    Oj.dump(serialize_payload(membership_request, ActivityPub::JoinSerializer))
   end
 end

@@ -12,13 +12,14 @@ RSpec.describe RemoveStatusService, type: :service do
   before do
     stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
     stub_request(:post, 'http://example2.com/inbox').to_return(status: 200)
+    stub_request(:post, 'http://example.com/group/inbox').to_return(status: 200)
 
     jeff.follow!(alice)
     hank.follow!(alice)
   end
 
   context 'when removed status is a group post' do
-    let(:group) { Fabricate(:group) }
+    let(:group) { Fabricate(:group, domain: 'example.com', uri: 'http://example.com/group', inbox_url: 'http://example.com/group/inbox') }
 
     before do
       group.memberships.create!(account: alice)
@@ -36,6 +37,20 @@ RSpec.describe RemoveStatusService, type: :service do
       allow(redis).to receive(:publish)
       subject.call(@status)
       expect(redis).to have_received(:publish).with("timeline:group:#{group.id}", anything)
+    end
+
+    it 'sends Delete activity to the group' do
+      subject.call(@status)
+      expect(a_request(:post, 'http://example.com/group/inbox').with(
+        body: hash_including({
+          'type' => 'Delete',
+          'object' => {
+            'type' => 'Tombstone',
+            'id' => ActivityPub::TagManager.instance.uri_for(@status),
+            'atomUri' => OStatus::TagManager.instance.uri_for(@status),
+          },
+        })
+      )).to have_been_made.once
     end
   end
 

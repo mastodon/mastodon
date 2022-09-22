@@ -6,7 +6,7 @@ describe Api::V1::Groups::StatusesController do
   let(:user)    { Fabricate(:user) }
   let(:scopes)  { 'write:groups' }
   let(:token)   { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
-  let(:group)   { Fabricate(:group) }
+  let(:group)   { Fabricate(:group, domain: nil) }
   let(:membership) { Fabricate(:group_membership, group: group) }
   let(:status)  { Fabricate(:status, group: group, visibility: :group, account: membership.account, text: 'hello world') }
 

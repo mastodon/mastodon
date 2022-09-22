@@ -47,6 +47,14 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def create_status
     return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists? || !related_to_local_activity?
 
+    @group = @options[:expected_group]
+
+    if @group.present?
+      return reject_payload! if value_or_id(@object['target']) != ActivityPub::TagManager.instance.wall_uri_for(@group)
+    else
+      return reject_payload! if @object['target'].present?
+    end
+
     with_lock("create:#{object_uri}") do
       return if delete_arrived_first?(object_uri) || poll_vote?
 
@@ -85,10 +93,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       attach_tags(@status)
     end
 
-    resolve_thread(@status)
-    fetch_replies(@status)
+    resolve_thread(@status) if @group.nil?
+    fetch_replies(@status) if @group.nil?
     distribute
-    forward_for_reply
+    forward_for_reply if @group.nil?
   end
 
   def distribute
@@ -106,7 +114,9 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def process_status_params
-    @status_parser = ActivityPub::Parser::StatusParser.new(@json, followers_collection: @account.followers_url)
+    magic_values = { followers_collection: @account.followers_url }
+    magic_values[:group_members_collection] = ActivityPub::TagManager.instance.members_uri_for(@group) if @group.present?
+    @status_parser = ActivityPub::Parser::StatusParser.new(@json, magic_values)
 
     @params = begin
       {
@@ -126,11 +136,14 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
         poll: process_poll,
+        group: @group,
       }
     end
   end
 
   def process_audience
+    return if @params[:visibility] == :group
+
     # Unlike with tags, there is no point in resolving accounts we don't already
     # know here, because silent mentions would only be used for local access control anyway
     accounts_in_audience = (audience_to + audience_cc).uniq.filter_map do |audience|
@@ -225,6 +238,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     account = ActivityPub::FetchRemoteAccountService.new.call(tag['href']) if account.nil?
 
     return if account.nil?
+    return if @group.present? && !@group.members.where(id: account.id).exists? # TODO: change when we handle mentions without side-effects
 
     @mentions << Mention.new(account: account, silent: false)
   end

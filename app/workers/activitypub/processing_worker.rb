@@ -9,6 +9,8 @@ class ActivityPub::ProcessingWorker
     case actor_type
     when 'Account'
       actor = Account.find_by(id: actor_id)
+    when 'Group'
+      actor = Group.find_by(id: actor_id)
     end
 
     return if actor.nil?

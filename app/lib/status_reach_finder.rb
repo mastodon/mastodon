@@ -10,10 +10,16 @@ class StatusReachFinder
   end
 
   def inboxes
+    return [group_inbox].compact if @status.group_visibility?
+
     (reached_account_inboxes + followers_inboxes + relay_inboxes).uniq
   end
 
   private
+
+  def group_inbox
+    @status.group.inbox_url if @status.group.present? && !@status.group.local?
+  end
 
   def reached_account_inboxes
     # When the status is a reblog, there are no interactions with it
@@ -71,7 +77,7 @@ class StatusReachFinder
   def followers_inboxes
     if @status.in_reply_to_local_account? && distributable?
       @status.account.followers.or(@status.thread.account.followers).inboxes
-    elsif @status.direct_visibility? || @status.limited_visibility? || @status.group_visibility? #TODO
+    elsif @status.direct_visibility? || @status.limited_visibility? || @status.group_visibility?
       []
     else
       @status.account.followers.inboxes

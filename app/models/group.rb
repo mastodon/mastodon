@@ -126,6 +126,21 @@ class Group < ApplicationRecord
     display_name || ActivityPub::TagManager.instance.uri_for(self)
   end
 
+  def save_with_optional_media!
+    save!
+  rescue ActiveRecord::RecordInvalid => e
+    errors = e.record.errors.errors
+    errors.each do |err|
+      if err.attribute == :avatar
+        self.avatar = nil
+      elsif err.attribute == :header
+        self.header = nil
+      end
+    end
+
+    save!
+  end
+
   def keypair
     @keypair ||= OpenSSL::PKey::RSA.new(private_key || public_key)
   end

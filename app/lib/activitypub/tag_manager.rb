@@ -89,10 +89,11 @@ class ActivityPub::TagManager
   # Unlisted and private statuses go out primarily to the followers collection
   # Others go out only to the people they mention
   def to(status)
-    # TODO: handle federation of posts with group visibility
     case status.visibility
     when 'public'
       [COLLECTIONS[:public]]
+    when 'group'
+      [status.group&.members_url]
     when 'unlisted', 'private'
       [account_followers_url(status.account)]
     when 'direct', 'limited'
@@ -122,7 +123,8 @@ class ActivityPub::TagManager
   # Both of those and private statuses also go to the people mentioned in them
   # Direct ones don't have a secondary audience
   def cc(status)
-    # TODO: handle federation of posts with group visibility
+    return [] if status.group_visibility? # TODO: add COLLECTIONS[:public]?
+
     cc = []
 
     cc << uri_for(status.reblog.account) if status.reblog?
@@ -174,7 +176,7 @@ class ActivityPub::TagManager
   end
 
   def uri_to_actor(uri)
-    uri_to_resource(uri, Account)
+    uri_to_resource(uri, Group) || uri_to_resource(uri, Account)
   end
 
   def uri_to_resource(uri, klass)
@@ -184,6 +186,8 @@ class ActivityPub::TagManager
       case klass.name
       when 'Account'
         klass.find_local(uri_to_local_id(uri, :username))
+      when 'Group'
+        klass.local.find(uri_to_local_id(uri))
       else
         StatusFinder.new(uri).status
       end

@@ -176,5 +176,47 @@ RSpec.describe ActivityPub::FetchRemoteActorService, type: :service do
         expect(subject.call('https://fake.address/@foo', prefetched_body: Oj.dump(actor))).to be_nil
       end
     end
+
+    context 'when the actor is a group' do
+      let!(:actor) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          id: 'https://example.com/group',
+          type: 'PublicGroup',
+          name: 'Mastodon development',
+          summary: 'A group to discuss mastodon development and take screenshots',
+          inbox: 'https://example.com/group/inbox',
+          outbox: 'https://example.com/group/outbox',
+          wall: 'https://example.com/group/wall',
+          members: 'https://example.com/group/members',
+        }
+      end
+
+      let(:members_collection) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          type: 'OrderedCollection',
+          id: 'https://example.com/group/members',
+          orderedItems: [],
+        }
+      end
+
+      let(:group) { subject.call('https://example.com/group', id: true) }
+
+      before do
+        stub_request(:get, 'https://example.com/group').to_return(body: Oj.dump(actor))
+        stub_request(:get, 'https://example.com/group/members').to_return(body: Oj.dump(members_collection))
+      end
+
+      it 'returns a group' do
+        expect(group).to be_a Group
+      end
+
+      it 'sets appropriate attributes' do
+        expect(group.display_name).to eq 'Mastodon development'
+        expect(group.note).to eq 'A group to discuss mastodon development and take screenshots'
+        expect(group.inbox_url).to eq 'https://example.com/group/inbox'
+      end
+    end
   end
 end

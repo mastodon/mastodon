@@ -23,7 +23,16 @@ class UnsuspendGroupService < BaseService
   def refresh_remote_actor!
     return if @group.local?
 
-    # TODO: look at how UnsuspendAccountService does it, but we need the split-class federation code
+    # While we had the remote group suspended, it could be that
+    # it got suspended on its origin, too. So, we need to refresh
+    # it straight away so it gets marked as remotely suspended in
+    # that case.
+
+    @group = ActivityPub::FetchRemoteActorService.new.call(@group.uri)
+
+    # Worth noting that it is possible that the remote has not only
+    # been suspended, but deleted permanently, in which case
+    # @group would now be nil.
   end
 
   def distribute_update_actor!

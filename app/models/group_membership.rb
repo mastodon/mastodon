@@ -27,8 +27,13 @@ class GroupMembership < ApplicationRecord
 
   validate :validate_remote_role
 
+  before_validation :set_uri, only: :create
   after_create :increment_cache_counters
   after_destroy :decrement_cache_counters
+
+  def local?
+    false # Force uri_for to use uri attribute
+  end
 
   private
 
@@ -38,6 +43,10 @@ class GroupMembership < ApplicationRecord
 
   def decrement_cache_counters
     group&.decrement_count!(:members_count)
+  end
+
+  def set_uri
+    self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil?
   end
 
   def validate_remote_role

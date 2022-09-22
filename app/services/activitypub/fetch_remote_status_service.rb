@@ -4,7 +4,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
   include JsonLdHelper
 
   # Should be called when uri has already been checked for locality
-  def call(uri, id: true, prefetched_body: nil, on_behalf_of: nil)
+  def call(uri, id: true, prefetched_body: nil, on_behalf_of: nil, expected_group: nil)
     @json = begin
       if prefetched_body.nil?
         fetch_resource(uri, id, on_behalf_of)
@@ -23,6 +23,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
       actor_uri     = value_or_id(first_of_value(@json['attributedTo']))
       activity_json = { 'type' => 'Create', 'actor' => actor_uri, 'object' => @json }
       object_uri    = uri_from_bearcap(@json['id'])
+      return if expected_group.present? && value_or_id(@json['target']) != expected_group.wall_url
     elsif expected_activity_type?
       actor_uri     = value_or_id(first_of_value(@json['actor']))
       activity_json = @json
@@ -40,7 +41,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
     # activity as an update rather than create
     activity_json['type'] = 'Update' if equals_or_includes_any?(activity_json['type'], %w(Create)) && Status.where(uri: object_uri, account_id: actor.id).exists?
 
-    ActivityPub::Activity.factory(activity_json, actor).perform
+    ActivityPub::Activity.factory(activity_json, actor, expected_group: expected_group).perform
   end
 
   private

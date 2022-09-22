@@ -25,6 +25,25 @@ describe StatusFinder do
       end
     end
 
+    context 'with an activity url' do
+      let(:status) { Fabricate(:status) }
+      let(:url) { activity_account_status_url(status.account, status) }
+
+      context 'with not explicitly allowed' do
+        it 'raises an error' do
+          expect { subject.status }.to raise_error(ActiveRecord::RecordNotFound)
+        end
+      end
+
+      context 'when explicitly allowed' do
+        subject { described_class.new(url, allow_activity: true) }
+
+        it 'finds the stream entry' do
+          expect(subject.status).to eq(status)
+        end
+      end
+    end
+
     context 'with a remote url even if id exists on local' do
       let(:status) { Fabricate(:status) }
       let(:url) { "https://example.com/users/test/statuses/#{status.id}" }

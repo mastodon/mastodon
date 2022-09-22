@@ -134,7 +134,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
 
       context 'with a valid group membership' do
-        let!(:group) { Fabricate(:group) }
+        let!(:group) { Fabricate(:group, domain: nil) }
         let!(:group_membership) { Fabricate(:group_membership, account: user.account, group: group) }
 
         before do
@@ -147,7 +147,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
 
       context 'with a group but invalid visibility' do
-        let!(:group) { Fabricate(:group) }
+        let!(:group) { Fabricate(:group, domain: nil) }
         let!(:group_membership) { Fabricate(:group_membership, account: user.account, group: group) }
 
         before do
@@ -160,7 +160,7 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
       end
 
       context 'with a group the user is not a member of' do
-        let!(:group) { Fabricate(:group) }
+        let!(:group) { Fabricate(:group, domain: nil) }
 
         before do
           post :create, params: { status: 'Hello world', visibility: 'group', group_id: group.id }

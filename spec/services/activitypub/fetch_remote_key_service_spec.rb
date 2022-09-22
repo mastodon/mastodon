@@ -79,5 +79,63 @@ RSpec.describe ActivityPub::FetchRemoteKeyService, type: :service do
         expect(account).to be_nil
       end
     end
+
+    context 'when the actor is a group' do
+      let(:actor) do
+        {
+          '@context': [
+            'https://www.w3.org/ns/activitystreams',
+            'https://w3id.org/security/v1',
+          ],
+          id: 'https://example.com/alice',
+          type: 'PublicGroup',
+          name: 'People named Alice',
+          summary: 'A group made of people named Alice, with a legitimate purpose, absolutely not because I am too lazy to refactor the tests',
+          inbox: 'https://example.com/alice/inbox',
+          outbox: 'https://example.com/alice/outbox',
+          wall: 'https://example.com/alice/wall',
+          members: 'https://example.com/alice/members',
+          publicKey: actor_public_key,
+        }
+      end
+
+      let(:members_collection) do
+        {
+          '@context': 'https://www.w3.org/ns/activitystreams',
+          type: 'OrderedCollection',
+          id: 'https://example.com/alice/members',
+          orderedItems: [],
+        }
+      end
+
+      let(:group) { subject.call(public_key_id, id: false, suppress_errors: false) }
+
+      before do
+        stub_request(:get, 'https://example.com/alice/members').to_return(body: Oj.dump(members_collection))
+      end
+
+      context 'when the key is a sub-object from the actor' do
+        before do
+          stub_request(:get, public_key_id).to_return(body: Oj.dump(actor))
+        end
+
+        it 'returns a group with correct URI' do
+          expect(group).to be_a Group
+          expect(group.uri).to eq 'https://example.com/alice'
+        end
+      end
+
+      context 'when the key is a separate document' do
+        let(:public_key_id) { 'https://example.com/group-public-key.json' }
+
+        before do
+          stub_request(:get, public_key_id).to_return(body: Oj.dump(key_json.merge({ '@context': ['https://www.w3.org/ns/activitystreams', 'https://w3id.org/security/v1'] })))
+        end
+
+        it 'returns the expected account' do
+          expect(group.uri).to eq 'https://example.com/alice'
+        end
+      end
+    end
   end
 end

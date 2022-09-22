@@ -28,12 +28,25 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   attribute :voters_count, if: :poll_and_voters_count?
 
+  attribute :target, if: :group_post?
+
   def id
     ActivityPub::TagManager.instance.uri_for(object)
   end
 
   def type
     object.preloadable_poll ? 'Question' : 'Note'
+  end
+
+  def target
+    # Just returning the URI would be easier and cleaner, but let's follow FEP-400e
+    return if object.group.nil?
+
+    {
+      type: 'OrderedCollection', # This may not accurately represent the collection type as we do not store that information
+      id: ActivityPub::TagManager.instance.wall_uri_for(object.group),
+      attributedTo: ActivityPub::TagManager.instance.uri_for(object.group),
+    }
   end
 
   def summary
@@ -140,6 +153,10 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
 
   def local?
     object.account.local?
+  end
+
+  def group_post?
+    object.group_visibility?
   end
 
   def poll_options

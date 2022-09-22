@@ -23,7 +23,11 @@ class LeaveGroupService < BaseService
 
     membership.destroy!
 
-    send_leave!(membership) if @account.local? && !@group.local?
+    if @account.local? && !@group.local?
+      send_leave!(membership)
+      send_undo!(membership)
+    end
+
     send_reject!(membership) if @group.local? && !@account.local?
 
     membership
@@ -36,13 +40,17 @@ class LeaveGroupService < BaseService
 
     membership_request.destroy!
 
-    send_undo!(membership_request) if @account.local? && !@group.local?
+    if @account.local? && !@group.local?
+      send_leave!(membership_request)
+      send_undo!(membership_request)
+    end
 
     membership_request
   end
 
   def send_leave!(membership)
-    # TODO
+    payload = Oj.dump(serialize_payload(membership, ActivityPub::LeaveSerializer))
+    ActivityPub::DeliveryWorker.perform_async(payload, membership.account_id, membership.group.inbox_url)
   end
 
   def send_reject!(membership)
@@ -50,6 +58,7 @@ class LeaveGroupService < BaseService
   end
 
   def send_undo!(membership_request)
-    # TODO
+    payload = Oj.dump(serialize_payload(membership_request, ActivityPub::UndoJoinSerializer))
+    ActivityPub::DeliveryWorker.perform_async(payload, membership_request.account_id, membership_request.group.inbox_url)
   end
 end

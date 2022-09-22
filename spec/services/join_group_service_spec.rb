@@ -50,4 +50,24 @@ RSpec.describe JoinGroupService, type: :service do
       end
     end
   end
+
+  context 'remote ActivityPub group' do
+    let(:group) { Fabricate(:group, domain: 'example.com', inbox_url: 'http://example.com/inbox') }
+
+    before do
+      stub_request(:post, "http://example.com/inbox").to_return(:status => 200, :body => "", :headers => {})
+      subject.call(sender, group)
+    end
+
+    it 'creates membership request' do
+      expect(GroupMembershipRequest.find_by(account: sender, group: group)).to_not be_nil
+    end
+
+    it 'sends a Join activity to the inbox' do
+      expect(a_request(:post, 'http://example.com/inbox').with(
+        headers: { 'Signature' => /keyId="#{Regexp.escape(ActivityPub::TagManager.instance.key_uri_for(sender))}"/ },
+        body: /"Join"/,
+      )).to have_been_made.once
+    end
+  end
 end
