@@ -31,6 +31,9 @@ class ResolveURLService < BaseService
 
   def process_url_from_db
     if [500, 502, 503, 504, nil].include?(fetch_resource_service.response_code)
+      group = Group.find_by(uri: @url)
+      return group unless group.nil?
+
       account = Account.find_by(uri: @url)
       return account unless account.nil?
     end
@@ -89,11 +92,14 @@ class ResolveURLService < BaseService
 
     return unless recognized_params[:action] == 'show'
 
-    if recognized_params[:controller] == 'statuses'
+    case recognized_params[:controller]
+    when 'statuses'
       status = Status.find_by(id: recognized_params[:id])
       check_local_status(status)
-    elsif recognized_params[:controller] == 'accounts'
+    when 'accounts'
       Account.find_local(recognized_params[:username])
+    when 'groups'
+      Group.find_by(id: recognized_params[:id])
     end
   end
 

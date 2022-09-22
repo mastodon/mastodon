@@ -18,6 +18,7 @@ class SearchService < BaseService
         results[:accounts] = perform_accounts_search! if account_searchable?
         results[:statuses] = perform_statuses_search! if full_text_searchable?
         results[:hashtags] = perform_hashtags_search! if hashtag_searchable?
+        results[:groups]   = perform_groups_search! if group_searchable?
       end
     end
   end
@@ -32,6 +33,10 @@ class SearchService < BaseService
       resolve: @resolve,
       offset: @offset
     )
+  end
+
+  def perform_groups_search!
+    [] # TODO
   end
 
   def perform_statuses_search!
@@ -68,7 +73,7 @@ class SearchService < BaseService
   end
 
   def default_results
-    { accounts: [], hashtags: [], statuses: [] }
+    { accounts: [], hashtags: [], statuses: [], groups: [] }
   end
 
   def url_query?
@@ -97,6 +102,10 @@ class SearchService < BaseService
     account_search? && !(@query.start_with?('#') || (@query.include?('@') && @query.include?(' ')))
   end
 
+  def group_searchable?
+    group_search? && !(@query.start_with?('#') || (@query.include?('@') && @query.include?(' ')))
+  end
+
   def hashtag_searchable?
     hashtag_search? && !@query.include?('@')
   end
@@ -111,6 +120,10 @@ class SearchService < BaseService
 
   def statuses_search?
     @options[:type].blank? || @options[:type] == 'statuses'
+  end
+
+  def group_search?
+    @options[:type].blank? || @options[:type] == 'groups'
   end
 
   def relations_map_for_account(account, account_ids, domains)
