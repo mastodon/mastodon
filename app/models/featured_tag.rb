@@ -19,8 +19,8 @@ class FeaturedTag < ApplicationRecord
   validate :validate_tag_name, on: :create
   validate :validate_featured_tags_limit, on: :create
 
-  before_create :set_tag
-  before_create :reset_data
+  after_initialize :set_tag
+  after_initialize :reset_data
 
   delegate :display_name, to: :tag
 
