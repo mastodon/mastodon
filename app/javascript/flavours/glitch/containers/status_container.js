@@ -23,7 +23,9 @@ import {
   deleteStatus,
   hideStatus,
   revealStatus,
-  editStatus
+  editStatus,
+  translateStatus,
+  undoStatusTranslation,
 } from 'flavours/glitch/actions/statuses';
 import {
   initAddFilter,
@@ -185,6 +187,14 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onEdit (status, history) {
     dispatch(editStatus(status.get('id'), history));
+  },
+
+  onTranslate (status) {
+    if (status.get('translation')) {
+      dispatch(undoStatusTranslation(status.get('id')));
+    } else {
+      dispatch(translateStatus(status.get('id')));
+    }
   },
 
   onDirect (account, router) {

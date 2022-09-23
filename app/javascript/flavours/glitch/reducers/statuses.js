@@ -13,6 +13,8 @@ import {
   STATUS_REVEAL,
   STATUS_HIDE,
   STATUS_COLLAPSE,
+  STATUS_TRANSLATE_SUCCESS,
+  STATUS_TRANSLATE_UNDO,
   STATUS_FETCH_REQUEST,
   STATUS_FETCH_FAIL,
 } from 'flavours/glitch/actions/statuses';
@@ -85,6 +87,10 @@ export default function statuses(state = initialState, action) {
     return state.setIn([action.id, 'collapsed'], action.isCollapsed);
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.references);
+  case STATUS_TRANSLATE_SUCCESS:
+    return state.setIn([action.id, 'translation'], fromJS(action.translation));
+  case STATUS_TRANSLATE_UNDO:
+    return state.deleteIn([action.id, 'translation']);
   default:
     return state;
   }

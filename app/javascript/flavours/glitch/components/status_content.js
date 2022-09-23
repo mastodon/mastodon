@@ -1,7 +1,7 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
@@ -62,13 +62,15 @@ const isLinkMisleading = (link) => {
   return !(textMatchesTarget(text, origin, host) || textMatchesTarget(text.toLowerCase(), origin, host));
 };
 
-export default class StatusContent extends React.PureComponent {
+export default @injectIntl
+class StatusContent extends React.PureComponent {
 
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
     collapsed: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
+    onTranslate: PropTypes.func,
     media: PropTypes.node,
     extraMedia: PropTypes.node,
     mediaIcons: PropTypes.arrayOf(PropTypes.string),
@@ -77,6 +79,7 @@ export default class StatusContent extends React.PureComponent {
     onUpdate: PropTypes.func,
     tagLinks: PropTypes.bool,
     rewriteMentions: PropTypes.string,
+    intl: PropTypes.object,
   };
 
   static defaultProps = {
@@ -249,6 +252,10 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  handleTranslate = () => {
+    this.props.onTranslate();
+  }
+
   setContentsRef = (c) => {
     this.contentsNode = c;
   }
@@ -263,17 +270,26 @@ export default class StatusContent extends React.PureComponent {
       disabled,
       tagLinks,
       rewriteMentions,
+      intl,
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
+    const renderTranslate = this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && intl.locale !== status.get('language');
+    const languageNames = new Intl.DisplayNames([intl.locale], { type: 'language' });
 
-    const content = { __html: status.get('contentHtml') };
+    const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
-    const lang = status.get('language');
+    const lang = status.get('translation') ? intl.locale : status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': parseClick && !disabled,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
     });
+
+    const translateButton = (
+      <button className='status__content__read-more-button' onClick={this.handleTranslate}>
+        {status.get('translation') ? <span><FormattedMessage id='status.translated_from' defaultMessage='Translated from {lang}' values={{ lang: languageNames.of(status.get('language')) }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
+      </button>
+    );
 
     if (status.get('spoiler_text').length > 0) {
       let mentionsPlaceholder = '';
@@ -355,6 +371,7 @@ export default class StatusContent extends React.PureComponent {
 
           {extraMedia}
 
+          {!hidden && renderTranslate && translateButton}
         </div>
       );
     } else if (parseClick) {
@@ -377,6 +394,7 @@ export default class StatusContent extends React.PureComponent {
           />
           {media}
           {extraMedia}
+          {!hidden && renderTranslate && translateButton}
         </div>
       );
     } else {
@@ -397,6 +415,7 @@ export default class StatusContent extends React.PureComponent {
           />
           {media}
           {extraMedia}
+          {!hidden && renderTranslate && translateButton}
         </div>
       );
     }
