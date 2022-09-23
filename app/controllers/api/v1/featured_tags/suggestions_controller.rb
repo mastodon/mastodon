@@ -17,6 +17,6 @@ class Api::V1::FeaturedTags::SuggestionsController < Api::BaseController
       .recently_used(current_account)
       .where.not(id: current_account.featured_tags)
       .limit(10)
-      .collect { |tag| current_account.featured_tags.new(id: tag.id, name: tag.name) }
+      .map { |tag| current_account.featured_tags.new(id: tag.id, name: tag.name) }
   end
 end
