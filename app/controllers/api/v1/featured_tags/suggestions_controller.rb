@@ -12,10 +12,11 @@ class Api::V1::FeaturedTags::SuggestionsController < Api::BaseController
   private
 
   def set_recently_used_tags
-    @recently_used_tags = Tag
-    	.recently_used(current_account)
-    	.where.not(id: current_account.featured_tags)
-    	.limit(10)
-    	.collect{ |tag| current_account.featured_tags.new(:id => tag.id, :name => tag.name) }
+    @recently_used_tags =
+      Tag
+      .recently_used(current_account)
+      .where.not(id: current_account.featured_tags)
+      .limit(10)
+      .collect { |tag| current_account.featured_tags.new(id: tag.id, name: tag.name) }
   end
 end
