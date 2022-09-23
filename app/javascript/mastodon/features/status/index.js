@@ -32,6 +32,8 @@ import {
   editStatus,
   hideStatus,
   revealStatus,
+  translateStatus,
+  undoStatusTranslation,
 } from '../../actions/statuses';
 import {
   unblockAccount,
@@ -339,6 +341,16 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleTranslate = status => {
+    const { dispatch } = this.props;
+
+    if (status.get('translation')) {
+      dispatch(undoStatusTranslation(status.get('id')));
+    } else {
+      dispatch(translateStatus(status.get('id')));
+    }
+  }
+
   handleBlockClick = (status) => {
     const { dispatch } = this.props;
     const account = status.get('account');
@@ -558,6 +570,7 @@ class Status extends ImmutablePureComponent {
                   onOpenVideo={this.handleOpenVideo}
                   onOpenMedia={this.handleOpenMedia}
                   onToggleHidden={this.handleToggleHidden}
+                  onTranslate={this.handleTranslate}
                   domain={domain}
                   showMedia={this.state.showMedia}
                   onToggleMediaVisibility={this.handleToggleMediaVisibility}
