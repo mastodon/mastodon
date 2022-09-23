@@ -133,6 +133,44 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         end
       end
 
+      context 'with a valid group membership' do
+        let!(:group) { Fabricate(:group) }
+        let!(:group_membership) { Fabricate(:group_membership, account: user.account, group: group) }
+
+        before do
+          post :create, params: { status: 'Hello world', visibility: 'group', group_id: group.id }
+        end
+
+        it 'returns http success' do
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      context 'with a group but invalid visibility' do
+        let!(:group) { Fabricate(:group) }
+        let!(:group_membership) { Fabricate(:group_membership, account: user.account, group: group) }
+
+        before do
+          post :create, params: { status: 'Hello world', visibility: 'public', group_id: group.id }
+        end
+
+        it 'returns http unprocessable entity' do
+          expect(response).to have_http_status(422)
+        end
+      end
+
+      context 'with a group the user is not a member of' do
+        let!(:group) { Fabricate(:group) }
+
+        before do
+          post :create, params: { status: 'Hello world', visibility: 'group', group_id: group.id }
+        end
+
+        it 'returns http not found' do
+          expect(response).to have_http_status(404)
+        end
+      end
+
       context 'with missing parameters' do
         before do
           post :create, params: {}

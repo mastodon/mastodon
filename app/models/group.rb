@@ -56,6 +56,10 @@ class Group < ApplicationRecord
     domain.nil?
   end
 
+  def remote?
+    !local?
+  end
+
   def suspended?
     suspended_at.present?
   end

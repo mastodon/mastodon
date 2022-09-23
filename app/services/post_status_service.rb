@@ -13,6 +13,7 @@ class PostStatusService < BaseService
   # @option [Status] :thread Optional status to reply to
   # @option [Boolean] :sensitive
   # @option [String] :visibility
+  # @option [Group] :group Optional group to post to, `visibility` must be set to 'group' in that case
   # @option [String] :spoiler_text
   # @option [String] :language
   # @option [String] :scheduled_at
@@ -27,6 +28,7 @@ class PostStatusService < BaseService
     @options     = options
     @text        = @options[:text] || ''
     @in_reply_to = @options[:thread]
+    @group       = @options[:group]
 
     return idempotency_duplicate if idempotency_given? && idempotency_duplicate?
 
@@ -162,6 +164,7 @@ class PostStatusService < BaseService
       media_attachments: @media || [],
       ordered_media_attachment_ids: (@options[:media_ids] || []).map(&:to_i) & @media.map(&:id),
       thread: @in_reply_to,
+      group: @group,
       poll_attributes: poll_attributes,
       sensitive: @sensitive,
       spoiler_text: @options[:spoiler_text] || '',
@@ -169,6 +172,7 @@ class PostStatusService < BaseService
       language: valid_locale_cascade(@options[:language], @account.user&.preferred_posting_language, I18n.default_locale),
       application: @options[:application],
       rate_limit: @options[:with_rate_limit],
+      approval_status: @group&.remote? ? :pending : nil
     }.compact
   end
 
@@ -189,6 +193,7 @@ class PostStatusService < BaseService
   def scheduled_options
     @options.tap do |options_hash|
       options_hash[:in_reply_to_id]  = options_hash.delete(:thread)&.id
+      options_hash[:group_id]        = options_hash.delete(:group)&.id
       options_hash[:application_id]  = options_hash.delete(:application)&.id
       options_hash[:scheduled_at]    = nil
       options_hash[:idempotency]     = nil
