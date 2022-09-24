@@ -1,4 +1,3 @@
----
 pl:
   simple_form:
     hints:
@@ -220,6 +219,7 @@ pl:
         ip: Adres IP
         severities:
           no_access: Zablokuj dostęp
+          sign_up_block: Zablokuj nowe rejestracje
           sign_up_requires_approval: Ogranicz rejestracje
         severity: Reguła
       notification_emails:
@@ -251,7 +251,7 @@ pl:
       webhook:
         events: Włączone zdarzenia
         url: Endpoint URL
-    'no': Nie
+    'no': 'Nie'
     not_recommended: Niezalecane
     recommended: Polecane
     required:
@@ -260,4 +260,4 @@ pl:
     title:
       sessions:
         webauthn: Użyj jednego ze swoich kluczy bezpieczeństwa, aby się zalogować
-    'yes': Tak
+    'yes': 'Tak'
