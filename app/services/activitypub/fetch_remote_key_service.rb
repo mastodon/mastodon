@@ -12,7 +12,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
     if prefetched_body.nil?
       if id
         @json = fetch_resource_without_id_validation(uri)
-        if person?
+        if actor_type?
           @json = fetch_resource(@json['id'], true)
         elsif uri != @json['id']
           raise Error, "Fetched URI #{uri} has wrong id #{@json['id']}"
@@ -27,7 +27,7 @@ class ActivityPub::FetchRemoteKeyService < BaseService
     raise Error, "Unable to fetch key JSON at #{uri}" if @json.nil?
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?(@json)
     raise Error, "Unexpected object type for key #{uri}" unless expected_type?
-    return find_actor(@json['id'], @json, suppress_errors) if person?
+    return find_actor(@json['id'], @json, suppress_errors) if actor_type?
 
     @owner = fetch_resource(owner_uri, true)
 
@@ -51,10 +51,10 @@ class ActivityPub::FetchRemoteKeyService < BaseService
   end
 
   def expected_type?
-    actor? || public_key?
+    actor_type? || public_key?
   end
 
-  def actor?
+  def actor_type?
     equals_or_includes_any?(@json['type'], ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES)
   end
 
