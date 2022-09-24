@@ -393,6 +393,8 @@ Rails.application.routes.draw do
 
           resource :history, only: :show
           resource :source, only: :show
+
+          post :translate, to: 'translations#create'
         end
 
         member do
