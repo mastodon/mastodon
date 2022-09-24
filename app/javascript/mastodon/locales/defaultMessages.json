@@ -654,6 +654,18 @@
         "id": "status.read_more"
       },
       {
+        "defaultMessage": "Translated from {lang}",
+        "id": "status.translated_from"
+      },
+      {
+        "defaultMessage": "Show original",
+        "id": "status.show_original"
+      },
+      {
+        "defaultMessage": "Translate",
+        "id": "status.translate"
+      },
+      {
         "defaultMessage": "Show more",
         "id": "status.show_more"
       },
@@ -3021,6 +3033,27 @@
       }
     ],
     "path": "app/javascript/mastodon/features/report/comment.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Public",
+        "id": "privacy.public.short"
+      },
+      {
+        "defaultMessage": "Unlisted",
+        "id": "privacy.unlisted.short"
+      },
+      {
+        "defaultMessage": "Followers-only",
+        "id": "privacy.private.short"
+      },
+      {
+        "defaultMessage": "Mentioned people only",
+        "id": "privacy.direct.short"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/report/components/status_check_box.json"
   },
   {
     "descriptors": [
