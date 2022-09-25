@@ -45,7 +45,6 @@
 
   .fields-group
     = f.input :require_invite_text, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.require_invite_text.title'), hint: t('admin.settings.registrations.require_invite_text.desc_html'), disabled: !approved_registrations?
-  .fields-group
 
   %hr.spacer/
 
@@ -99,6 +98,13 @@
     = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
     = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
     = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }, label: t('admin.settings.custom_css.title'), hint: t('admin.settings.custom_css.desc_html')
+
+  %hr.spacer/
+
+  .fields-group
+    = f.input :media_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :content_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :backups_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
