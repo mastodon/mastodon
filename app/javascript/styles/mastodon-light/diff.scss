@@ -385,6 +385,14 @@ html {
   border: 1px solid lighten($ui-base-color, 8%);
 }
 
+.confirmation-modal__passphrase .passphrase__input {
+  border: 1px solid lighten($ui-base-color, 8%);
+
+  &.invalid {
+    background-color: darken($error-value-color, 35%);
+  }
+}
+
 .reactions-bar__item:hover,
 .reactions-bar__item:focus,
 .reactions-bar__item:active,

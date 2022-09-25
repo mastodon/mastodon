@@ -5911,6 +5911,38 @@ a.status-card.compact:hover {
   text-align: center;
 }
 
+.confirmation-modal__passphrase {
+  text-align: center;
+  padding: 0 30px 30px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+
+  .passphrase__label {
+    flex: 0 0 auto;
+  }
+
+  .passphrase__input {
+    flex: 1 0 auto;
+    display: block;
+    box-sizing: border-box;
+    padding: 10px;
+    color: $inverted-text-color;
+    background: $simple-background-color;
+    margin-inline-start: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+
+    &.invalid {
+      background-color: lighten($error-value-color, 35%);
+    }
+  }
+}
+
 .block-modal,
 .mute-modal {
   &__explanation {

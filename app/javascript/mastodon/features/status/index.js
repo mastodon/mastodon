@@ -432,6 +432,8 @@ class Status extends ImmutablePureComponent {
       message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
       confirm: this.props.intl.formatMessage(messages.blockDomainConfirm),
       onConfirm: () => this.props.dispatch(blockDomain(domain)),
+      passphraseLabel: <FormattedMessage id='confirmations.domain_block.passphrase' defaultMessage='Enter domain name' />,
+      passphrase: domain,
     }));
   }
 
