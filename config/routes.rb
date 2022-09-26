@@ -108,7 +108,7 @@ Rails.application.routes.draw do
   resources :groups, only: [:show] do
     # TODO: inbox
     # TODO: wall
-    # TODO: members
+    resources :members, only: [:index], controller: :group_members
   end
 
   resource :inbox, only: [:create], module: :activitypub

@@ -62,6 +62,8 @@
     %span.status__action-bar-button.icon-button
       - if status.distributable?
         = fa_icon 'retweet fw'
+      - elsif status.group_visibility?
+        = fa_icon 'users fw'
       - elsif status.private_visibility? || status.limited_visibility?
         = fa_icon 'lock fw'
       - else
