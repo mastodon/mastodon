@@ -46,7 +46,7 @@ import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { deployPictureInPicture } from '../actions/picture_in_picture';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { boostModal, deleteModal } from '../initial_state';
+import { boostModal, deleteModal, confirmDomainBlock } from '../initial_state';
 import { showAlertForError } from '../actions/alerts';
 
 const messages = defineMessages({
@@ -226,8 +226,10 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
       message: <FormattedMessage id='confirmations.domain_block.message' defaultMessage='Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.' values={{ domain: <strong>{domain}</strong> }} />,
       confirm: intl.formatMessage(messages.blockDomainConfirm),
       onConfirm: () => dispatch(blockDomain(domain)),
-      passphraseLabel: <FormattedMessage id='confirmations.domain_block.passphrase' defaultMessage='Please type {domain} to confirm' values={{ domain: <strong>{domain}</strong> }} />,
-      passphrase: domain,
+      ...confirmDomainBlock && {
+        passphraseLabel: <FormattedMessage id='confirmations.domain_block.passphrase' defaultMessage='Please type {domain} to confirm' values={{ domain: <strong>{domain}</strong> }} />,
+        passphrase: domain,
+      },
     }));
   },
 
