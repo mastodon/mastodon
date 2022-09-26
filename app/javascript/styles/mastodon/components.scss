@@ -5917,19 +5917,32 @@ a.status-card.compact:hover {
   font-size: 16px;
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 
   .passphrase__label {
-    flex: 0 0 auto;
+    flex: 1 1 auto;
+
+    strong {
+      font-weight: 500;
+
+      @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
+      }
+    }
   }
 
   .passphrase__input {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
+    min-width: 50%;
     display: block;
     box-sizing: border-box;
     padding: 10px;
+    margin: 0;
     color: $inverted-text-color;
     background: $simple-background-color;
-    margin-inline-start: 8px;
     font-family: inherit;
     font-size: 16px;
     resize: vertical;
