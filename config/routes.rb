@@ -676,6 +676,13 @@ Rails.application.routes.draw do
           resource :action, only: [:create], controller: 'account_actions'
         end
 
+        resources :groups, only: [:index, :show, :destroy] do
+          member do
+            post :suspend
+            post :unsuspend
+          end
+        end
+
         resources :reports, only: [:index, :update, :show] do
           member do
             post :assign_to_self
