@@ -207,8 +207,8 @@ export function submitCompose(routerHistory) {
         }
       };
 
-      if (statusId === null && response.data.visibility !== 'direct' && response.data.visibility !== 'group') {
-        insertIfOnline('home');
+      if (statusId === null && response.data.visibility !== 'direct') {
+        insertIfOnline(response.data.visibility === 'group' ? `group:${response.data.group.id}` : 'home');
       }
 
       if (statusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {

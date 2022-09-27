@@ -58,6 +58,9 @@ const messages = defineMessages({
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
   group_short: { id: 'privacy.group.short', defaultMessage: 'Group: {name}' },
   edited: { id: 'status.edited', defaultMessage: 'Edited {date}' },
+  approval_pending: { id: 'status.approval_pending', defaultMessage: 'This post is pending approval' },
+  approval_rejected: { id: 'status.approval_rejected', defaultMessage: 'This post has been rejected and will soon be deleted' },
+  approval_revoked: { id: 'status.approval_revoked', defaultMessage: 'This post has been removed and will soon be deleted' },
 });
 
 export default @injectIntl
@@ -497,11 +500,19 @@ class Status extends ImmutablePureComponent {
       'group': { icon: 'users', text: intl.formatMessage(messages.group_short, { name: group_name }) },
     };
 
-    const visibilityIcon = visibilityIconInfo[status.get('visibility')];
+    const approvalIconInfo = {
+      'pending': { icon: 'hourglass', text: intl.formatMessage(messages.approval_pending) },
+      'rejected': { icon: 'times-circle', text: intl.formatMessage(messages.approval_rejected) },
+      'revoked': { icon: 'times-circle', text: intl.formatMessage(messages.approval_revoked) },
+    };
+
+    const visibilityIcon = approvalIconInfo[status.get('approval_status')] || visibilityIconInfo[status.get('visibility')];
+
+    const unapproved = status.get('approval_status') && status.get('approval_status') !== 'approved';
 
     return (
       <HotKeys handlers={handlers}>
-        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, focusable: !this.props.muted })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef}>
+        <div className={classNames('status__wrapper', `status__wrapper-${status.get('visibility')}`, { 'status__wrapper-reply': !!status.get('in_reply_to_id'), unread, focusable: !this.props.muted, unapproved })} tabIndex={this.props.muted ? null : 0} data-featured={featured ? 'true' : null} aria-label={textForScreenReader(intl, status, rebloggedByText)} ref={this.handleRef}>
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted })} data-id={status.get('id')}>
