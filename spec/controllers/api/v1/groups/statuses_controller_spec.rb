@@ -36,20 +36,28 @@ describe Api::V1::Groups::StatusesController do
     end
 
     context 'when the user is a group admin' do
+      let(:remote_member) { Fabricate(:account, domain: 'example.com', uri: 'https://example.com/actor', inbox_url: 'https://example.com/inbox', protocol: :activitypub) }
+
       before do
+        stub_request(:post, remote_member.inbox_url).to_return(status: 202)
+        group.memberships.create!(account: remote_member)
         group.memberships.create!(account: user.account, role: :admin)
+        delete :destroy, params: { group_id: group.id, id: status.id }
       end
 
       it 'returns http success' do
-        delete :destroy, params: { group_id: group.id, id: status.id }
-
         expect(response).to have_http_status(200)
       end
 
       it 'marks the status as revoked' do
-        delete :destroy, params: { group_id: group.id, id: status.id }
-
         expect(status.reload.revoked_approval?).to be true
+      end
+
+      it 'sends a Remove activity to group members' do
+        expect(a_request(:post, remote_member.inbox_url).with do |req|
+          remove_json = Oj.load(req.body)
+          remove_json['type'] == 'Remove' && remove_json['object'] == ActivityPub::TagManager.instance.uri_for(status) && remove_json['target'] == ActivityPub::TagManager.instance.wall_uri_for(group)
+        end).to have_been_made.once
       end
     end
   end

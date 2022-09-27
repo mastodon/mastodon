@@ -8,16 +8,22 @@ class ActivityPub::Forwarder
   end
 
   def forwardable?
-    @json['signature'].present? && @status.distributable?
+    @json['signature'].present? && (@status.distributable? || @status.group&.local?)
   end
 
   def forward!
+    return forward_to_group! if @status.group&.local?
+
     ActivityPub::LowPriorityDeliveryWorker.push_bulk(inboxes) do |inbox_url|
       [payload, signature_account_id, inbox_url]
     end
   end
 
   private
+
+  def forward_to_group!
+    ActivityPub::GroupRawDistributionWorker.perform_async(payload, @status.group.id, [@account.inbox_url])
+  end
 
   def payload
     @payload ||= Oj.dump(@json)

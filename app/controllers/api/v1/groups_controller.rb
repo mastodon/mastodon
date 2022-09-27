@@ -37,7 +37,7 @@ class Api::V1::GroupsController < Api::BaseController
     #TODO: refactor
     #TODO: logging
 
-    memberships.each(&:destroy) #TODO: federate
+    memberships.each { |membership| RevokeMembershipService.new.call(membership) }
 
     render_empty
   end
@@ -54,7 +54,7 @@ class Api::V1::GroupsController < Api::BaseController
 
     memberships.each { |membership| membership.update!(role: target_role) }
 
-    # TODO: send an Update if we changed any of the moderators
+    ActivityPub::GroupUpdateDistributionWorker.perform_async(@group.id)
 
     render json: memberships, each_serializer: REST::GroupMembershipSerializer
   end
@@ -71,7 +71,7 @@ class Api::V1::GroupsController < Api::BaseController
 
     memberships.each { |membership| membership.update!(role: target_role) }
 
-    # TODO: send an Update if we changed any of the moderators
+    ActivityPub::GroupUpdateDistributionWorker.perform_async(@group.id)
 
     render json: memberships, each_serializer: REST::GroupMembershipSerializer
   end

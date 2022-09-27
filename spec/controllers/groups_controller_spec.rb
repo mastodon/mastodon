@@ -59,7 +59,7 @@ RSpec.describe GroupsController, type: :controller do
       end
     end
 
-    context 'as JSON', skip: 'TODO' do
+    context 'as JSON' do
       let(:authorized_fetch_mode) { false }
       let(:format) { 'json' }
 

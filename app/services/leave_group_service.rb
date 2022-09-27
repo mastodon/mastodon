@@ -23,12 +23,12 @@ class LeaveGroupService < BaseService
 
     membership.destroy!
 
-    if @account.local? && !@group.local?
+    if @group.local?
+      distribute_remove_to_remote_members!
+    elsif @account.local?
       send_leave!(membership)
       send_undo!(membership)
     end
-
-    send_reject!(membership) if @group.local? && !@account.local?
 
     membership
   end
@@ -53,12 +53,13 @@ class LeaveGroupService < BaseService
     ActivityPub::DeliveryWorker.perform_async(payload, membership.account_id, membership.group.inbox_url)
   end
 
-  def send_reject!(membership)
-    # TODO
-  end
-
   def send_undo!(membership_request)
     payload = Oj.dump(serialize_payload(membership_request, ActivityPub::UndoJoinSerializer))
     ActivityPub::DeliveryWorker.perform_async(payload, membership_request.account_id, membership_request.group.inbox_url)
+  end
+
+  def distribute_remove_to_remote_members!
+    json = Oj.dump(serialize_payload(@account, ActivityPub::RemoveSerializer, target: ActivityPub::TagManager.instance.members_uri_for(@group), actor: ActivityPub::TagManager.instance.uri_for(@group)))
+    ActivityPub::GroupRawDistributionWorker.perform_async(json, @group.id, [@account.inbox_url])
   end
 end

@@ -4,6 +4,12 @@ class ActivityPub::Activity::Flag < ActivityPub::Activity
   def perform
     return if skip_reports?
 
+    group = Group.find(@options[:delivered_to_group_id]) if @options[:delivered_to_group_id].present?
+    if group.present? && value_or_id(@json['to']) == ActivityPub::TagManager.instance.uri_for(group) && !object_uris.include?(ActivityPub::TagManager.instance.uri_for(group))
+      # TODO: it's a report specifically for the group admins, do not forward to instance admin
+      return
+    end
+
     target_accounts            = object_uris.filter_map { |uri| account_from_uri(uri) }.select(&:local?)
     target_statuses_by_account = object_uris.filter_map { |uri| status_from_uri(uri) }.select(&:local?).group_by(&:account_id)
 

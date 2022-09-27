@@ -91,13 +91,22 @@ class ActivityPub::ProcessGroupService < BaseService
     rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @group.id, 'Group')
     end
+
     begin
       @group.header_remote_url = image_url('image') || '' unless skip_download?
       @group.header = nil if @group.header_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @group.id, 'Group')
     end
+
     @group.hide_members = members_private?
+
+    attributed_to_uris = as_array(@json['attributedTo']).filter_map do |item|
+      uri = value_or_id(item)
+      uri unless ActivityPub::TagManager.instance.local_uri?(uri)
+    end
+
+    ActivityPub::UpdateRemoteGroupAdminsWorker.perform_async(@group.id, attributed_to_uris) unless attributed_to_uris.empty?
   end
 
   def set_suspension!

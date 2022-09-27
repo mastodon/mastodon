@@ -23,9 +23,8 @@ class GroupsController < ApplicationController
       end
 
       format.json do
-        return not_found # TODO
-        # expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
-        # render_with_cache json: @group, content_type: 'application/activity+json', serializer: ActivityPub::GroupActorSerializer, adapter: ActivityPub::Adapter
+        expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
+        render_with_cache json: @group, content_type: 'application/activity+json', serializer: ActivityPub::GroupActorSerializer, adapter: ActivityPub::Adapter
       end
     end
   end

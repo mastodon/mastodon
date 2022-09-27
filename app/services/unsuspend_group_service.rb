@@ -38,7 +38,10 @@ class UnsuspendGroupService < BaseService
   def distribute_update_actor!
     return unless @group.local?
 
-    # TODO: look at how UnsuspendAccountService does it, but we need the split-class federation code
+    inboxes = @group.members.inboxes # This should be widened when we support reporting groups themselves
+    ActivityPub::GroupDeliveryWorker.push_bulk(inboxes) do |inbox_url|
+      [signed_activity_json, @group.id, inbox_url]
+    end
   end
 
   def signed_activity_json

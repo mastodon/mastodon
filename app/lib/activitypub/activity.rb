@@ -62,6 +62,10 @@ class ActivityPub::Activity
         ActivityPub::Activity::Remove
       when 'Move'
         ActivityPub::Activity::Move
+      when 'Join'
+        ActivityPub::Activity::Join
+      when 'Leave'
+        ActivityPub::Activity::Leave
       end
     end
 

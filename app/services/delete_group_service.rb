@@ -115,7 +115,22 @@ class DeleteGroupService < BaseService
   end
 
   def delete_actor!
-    # TODO
+    ActivityPub::GroupDeliveryWorker.push_bulk(delivery_inboxes) do |inbox_url|
+      [delete_actor_json, @group.id, inbox_url]
+    end
+
+    # TODO:
+    #ActivityPub::LowPriorityDeliveryWorker.push_bulk(low_priority_delivery_inboxes) do |inbox_url|
+    #  [delete_actor_json, @account.id, inbox_url]
+    #end
+  end
+
+  def delete_actor_json
+    @delete_actor_json ||= Oj.dump(serialize_payload(@group, ActivityPub::DeleteActorSerializer, signer: @group, always_sign: true))
+  end
+
+  def delivery_inboxes
+    @delivery_inboxes ||= @group.members.inboxes
   end
 
   def associations_for_destruction

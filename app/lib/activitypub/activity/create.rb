@@ -2,6 +2,7 @@
 
 class ActivityPub::Activity::Create < ActivityPub::Activity
   include FormattingHelper
+  include Payloadable
 
   def perform
     dereference_object!
@@ -45,12 +46,22 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def create_status
-    return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists? || !related_to_local_activity?
+    return reject_payload! if unsupported_object_type? || invalid_origin?(object_uri) || tombstone_exists?
 
     @group = @options[:expected_group]
+    @group ||= Group.find(@options[:delivered_to_group_id]) if @options[:delivered_to_group_id].present?
+
+    # Smithereen and possibly other implementations may use the shared inbox for delivery, so use the abbreviated
+    # embedded target collection from to find the grouo FEP-400e
+    if @group.blank? && ActivityPub::TagManager.instance.local_uri?(@object.dig('target', 'attributedTo'))
+      @group = ActivityPub::TagManager.instance.uri_to_resource(@object['target']['attributedTo'], Group)
+    end
+
+    return unless related_to_local_activity?
 
     if @group.present?
       return reject_payload! if value_or_id(@object['target']) != ActivityPub::TagManager.instance.wall_uri_for(@group)
+      return reject_group_post! if @group.local? && (@group.suspended? || !@group.members.where(id: @account.id).exists?)
     else
       return reject_payload! if @object['target'].present?
     end
@@ -95,16 +106,22 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
     resolve_thread(@status) if @group.nil?
     fetch_replies(@status) if @group.nil?
-    distribute
+    distribute_to_local_users
+    distribute_to_remote_users if @group.present?
     forward_for_reply if @group.nil?
   end
 
-  def distribute
+  def distribute_to_local_users
     # Spread out crawling randomly to avoid DDoSing the link
     LinkCrawlWorker.perform_in(rand(1..59).seconds, @status.id)
 
     # Distribute into home and list feeds and notify mentioned accounts
     ::DistributionWorker.perform_async(@status.id, { 'silenced_account_ids' => @silenced_account_ids }) if @options[:override_timestamps] || @status.within_realtime_window?
+  end
+
+  def distribute_to_remote_users
+    json = Oj.dump(serialize_payload(@status, ActivityPub::AddSerializer, actor: ActivityPub::TagManager.instance.uri_for(@group), target: ActivityPub::TagManager.instance.wall_uri_for(@group)))
+    ActivityPub::GroupRawDistributionWorker.perform_async(json, @group.id)
   end
 
   def find_existing_status
@@ -401,7 +418,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def related_to_local_activity?
-    fetch? || followed_by_local_accounts? || requested_through_relay? ||
+    fetch? || @group.present? || followed_by_local_accounts? || requested_through_relay? ||
       responds_to_followed_account? || addresses_local_accounts?
   end
 
@@ -427,6 +444,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return unless @status.distributable? && @json['signature'].present? && reply_to_local?
 
     ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
+  end
+
+  def reject_group_post!
+    json = Oj.dump(serialize_payload(ActivityPub::RejectCreatePresenter.new(actor: @group, create_uri: @json['id'], create_object_uri: object_uri, create_actor: @account), ActivityPub::RejectCreateSerializer))
+    ActivityPub::GroupDeliveryWorker.perform_async(json, @group.id, @account.inbox_url)
   end
 
   def increment_voters_count!

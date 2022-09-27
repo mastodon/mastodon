@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Create do
-  let(:sender) { Fabricate(:account, followers_url: 'http://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor') }
+  let(:sender) { Fabricate(:account, followers_url: 'http://example.com/followers', domain: 'example.com', uri: 'https://example.com/actor', inbox_url: 'https://example.com/inbox', protocol: :activitypub) }
 
   let(:json) do
     {
@@ -26,6 +26,7 @@ RSpec.describe ActivityPub::Activity::Create do
       subject { described_class.new(json, sender) }
 
       before do
+        allow(ActivityPub::DistributePollUpdateWorker).to receive(:perform_in).and_return(true)
         subject.perform
       end
 
@@ -727,6 +728,10 @@ RSpec.describe ActivityPub::Activity::Create do
           expect(vote.uri).to eq object_json[:id]
           expect(poll.reload.cached_tallies).to eq [1, 0]
         end
+
+        it 'schedules a poll update distribution job' do
+          expect(ActivityPub::DistributePollUpdateWorker).to have_received(:perform_in).once
+        end
       end
 
       context 'when a vote to an expired local poll' do
@@ -927,6 +932,198 @@ RSpec.describe ActivityPub::Activity::Create do
 
       it 'does not create anything' do
         expect(sender.statuses.count).to eq 0
+      end
+    end
+
+    context 'when the message is a group post in a local group' do
+      subject { described_class.new(json, sender, delivered_to_group_id: group.id, delivery: true) }
+
+      let(:group) { Fabricate(:group) }
+
+      before do
+        stub_request(:post, sender.inbox_url).to_return(status: 202)
+        group.memberships.create!(account: sender)
+        subject.perform
+      end
+
+      let(:object_json) do
+        {
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+          target: {
+            type: 'OrderedCollection',
+            id: ActivityPub::TagManager.instance.wall_uri_for(group),
+            attributedTo: ActivityPub::TagManager.instance.uri_for(group),
+          },
+          to: ActivityPub::TagManager.instance.members_uri_for(group),
+          type: 'Note',
+          content: 'Lorem ipsum',
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.text).to eq 'Lorem ipsum'
+        expect(status.group_visibility?).to be true
+        expect(status.group).to eq group
+      end
+
+      it 'sends an Add activity' do
+        expect(a_request(:post, sender.inbox_url).with do |req|
+          add_json = Oj.load(req.body)
+          add_json['type'] == 'Add' && add_json['object'] == object_json[:id] && add_json['target'] == ActivityPub::TagManager.instance.wall_uri_for(group) && add_json['actor'] == ActivityPub::TagManager.instance.uri_for(group)
+        end).to have_been_made.once
+      end
+    end
+
+    context 'when the message is a group post in a local group (delivered through shared inbox)' do
+      subject { described_class.new(json, sender, delivery: true) }
+
+      let(:group) { Fabricate(:group) }
+
+      before do
+        stub_request(:post, sender.inbox_url).to_return(status: 202)
+        group.memberships.create!(account: sender)
+        subject.perform
+      end
+
+      let(:object_json) do
+        {
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+          target: {
+            type: 'OrderedCollection',
+            id: ActivityPub::TagManager.instance.wall_uri_for(group),
+            attributedTo: ActivityPub::TagManager.instance.uri_for(group),
+          },
+          to: ActivityPub::TagManager.instance.members_uri_for(group),
+          type: 'Note',
+          content: 'Lorem ipsum',
+        }
+      end
+
+      it 'creates status' do
+        status = sender.statuses.first
+
+        expect(status).to_not be_nil
+        expect(status.text).to eq 'Lorem ipsum'
+        expect(status.group_visibility?).to be true
+        expect(status.group).to eq group
+      end
+
+      it 'sends an Add activity' do
+        expect(a_request(:post, sender.inbox_url).with do |req|
+          add_json = Oj.load(req.body)
+          add_json['type'] == 'Add' && add_json['object'] == object_json[:id] && add_json['target'] == ActivityPub::TagManager.instance.wall_uri_for(group) && add_json['actor'] == ActivityPub::TagManager.instance.uri_for(group)
+        end).to have_been_made.once
+      end
+    end
+
+    context 'when the message is a group post in a local group of which the poster is not a member' do
+      subject { described_class.new(json, sender, delivered_to_group_id: group.id, delivery: true) }
+
+      let(:group) { Fabricate(:group) }
+
+      before do
+        stub_request(:post, sender.inbox_url).to_return(status: 202)
+        subject.perform
+      end
+
+      let(:object_json) do
+        {
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+          target: {
+            type: 'OrderedCollection',
+            id: ActivityPub::TagManager.instance.wall_uri_for(group),
+            attributedTo: ActivityPub::TagManager.instance.uri_for(group),
+          },
+          to: ActivityPub::TagManager.instance.members_uri_for(group),
+          type: 'Note',
+          content: 'Lorem ipsum',
+        }
+      end
+
+      it 'does not create a status' do
+        expect { subject.perform }.to_not change { [sender.statuses.count, group.statuses.count] }
+      end
+
+      it 'sends a Reject activity' do
+        expect(a_request(:post, sender.inbox_url).with do |req|
+          reject_json = Oj.load(req.body)
+          reject_json['type'] == 'Reject' && reject_json['object']['type'] == 'Create' && reject_json['object']['id'] == json[:id] && reject_json['object']['object'] == object_json[:id]
+        end).to have_been_made.once
+      end
+    end
+
+    context 'when the message is a group post in a local temporarily suspended group' do
+      subject { described_class.new(json, sender, delivered_to_group_id: group.id, delivery: true) }
+
+      let(:group) { Fabricate(:group) }
+
+      before do
+        stub_request(:post, sender.inbox_url).to_return(status: 202)
+        group.memberships.create!(account: sender)
+        group.suspend!
+        subject.perform
+      end
+
+      let(:object_json) do
+        {
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+          target: {
+            type: 'OrderedCollection',
+            id: ActivityPub::TagManager.instance.wall_uri_for(group),
+            attributedTo: ActivityPub::TagManager.instance.uri_for(group),
+          },
+          to: ActivityPub::TagManager.instance.members_uri_for(group),
+          type: 'Note',
+          content: 'Lorem ipsum',
+        }
+      end
+
+      it 'does not create a status' do
+        expect { subject.perform }.to_not change { [sender.statuses.count, group.statuses.count] }
+      end
+
+      it 'sends a Reject activity' do
+        expect(a_request(:post, sender.inbox_url).with do |req|
+          reject_json = Oj.load(req.body)
+          reject_json['type'] == 'Reject' && reject_json['object']['type'] == 'Create' && reject_json['object']['id'] == json[:id] && reject_json['object']['object'] == object_json[:id]
+        end).to have_been_made.once
+      end
+    end
+
+    context 'when the message is a different group than the one being delivered to' do
+      subject { described_class.new(json, sender, delivered_to_group_id: delivered_group.id, delivery: true) }
+
+      let(:group) { Fabricate(:group) }
+      let(:delivered_group) { Fabricate(:group) }
+
+      before do
+        group.memberships.create!(account: sender)
+        subject.perform
+      end
+
+      let(:object_json) do
+        {
+          id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+          target: {
+            type: 'OrderedCollection',
+            id: ActivityPub::TagManager.instance.wall_uri_for(group),
+            attributedTo: ActivityPub::TagManager.instance.uri_for(group),
+          },
+          to: ActivityPub::TagManager.instance.members_uri_for(group),
+          type: 'Note',
+          content: 'Lorem ipsum',
+        }
+      end
+
+      it 'does not create a status' do
+        expect { subject.perform }.to_not change { [sender.statuses.count, group.statuses.count] }
+      end
+
+      it 'does not send a Reject activity' do
+        expect(a_request(:post, sender.inbox_url)).to_not have_been_made
       end
     end
   end

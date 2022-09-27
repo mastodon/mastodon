@@ -24,7 +24,7 @@ RSpec.describe SuspendGroupService, type: :service do
       expect { subject }.to change { group.suspended? }.from(false).to(true)
     end
 
-    it 'sends an update actor to members', skip: 'TODO' do
+    it 'sends an update actor to members' do
       subject
       expect(a_request(:post, remote_member.inbox_url).with { |req| match_update_actor_request(req, group) }).to have_been_made.once
     end

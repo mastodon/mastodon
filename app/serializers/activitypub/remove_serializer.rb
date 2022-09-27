@@ -11,7 +11,7 @@ class ActivityPub::RemoveSerializer < ActivityPub::Serializer
   end
 
   def actor
-    ActivityPub::TagManager.instance.uri_for(object.account)
+    instance_options[:actor].presence || ActivityPub::TagManager.instance.uri_for(object.account)
   end
 
   def proper_object
@@ -19,6 +19,6 @@ class ActivityPub::RemoveSerializer < ActivityPub::Serializer
   end
 
   def target
-    account_collection_url(object.account, :featured)
+    instance_options[:target].presence || account_collection_url(object.account, :featured)
   end
 end

@@ -8,13 +8,14 @@ class RejectMembershipService < BaseService
 
     # TODO: logging
 
-    create_notification(membership_request) if !membership_request.account.local? && membership_request.group.local?
+    send_reject!(membership_request) if membership_request.group.local? && !membership_request.account.local?
     membership_request
   end
 
   private
 
-  def create_notification(membership_request)
-    # TODO: federation
+  def send_reject!(request)
+    json = Oj.dump(serialize_payload(request, ActivityPub::RejectJoinSerializer))
+    ActivityPub::GroupDeliveryWorker.perform_async(json, request.group.id, request.account.inbox_url)
   end
 end
