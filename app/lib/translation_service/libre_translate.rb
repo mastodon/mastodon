@@ -26,7 +26,8 @@ class TranslationService::LibreTranslate < TranslationService
   private
 
   def request(text, source_language, target_language)
-    req = Request.new(:post, "#{@base_url}/translate", body: Oj.dump(q: text, source: source_language, target: target_language, format: 'html', api_key: @api_key))
+    body = Oj.dump(q: text, source: source_language.presence || 'auto', target: target_language, format: 'html', api_key: @api_key)
+    req = Request.new(:post, "#{@base_url}/translate", body: body)
     req.add_headers('Content-Type': 'application/json')
     req
   end
