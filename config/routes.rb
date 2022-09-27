@@ -606,6 +606,11 @@ Rails.application.routes.draw do
 
       resources :groups, only: [:index, :show] do
         resources :memberships, only: [:index], controller: 'groups/memberships'
+
+        member do
+          post :join
+          post :leave
+        end
       end
 
       namespace :featured_tags do

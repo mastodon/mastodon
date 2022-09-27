@@ -18,9 +18,25 @@ class Api::V1::GroupsController < Api::BaseController
     render json: @group, serializer: REST::GroupSerializer
   end
 
+  def join
+    JoinGroupService.new.call(current_user.account, @group)
+    options = @group.locked? || current_user.account.silenced? ? {} : { member_map: { @group.id => { role: :user } }, requested_map: { @group.id => false } }
+
+    render json: @group, serializer: REST::GroupRelationshipSerializer, relationships: relationships(**options)
+  end
+
+  def leave
+    LeaveGroupService.new.call(current_user.account, @group)
+    render json: @group, serializer: REST::GroupRelationshipSerializer, relationships: relationships
+  end
+
   private
 
   def set_group
     @group = Group.find(params[:id])
+  end
+
+  def relationships(**options)
+    GroupRelationshipsPresenter.new([@group.id], current_user.account_id, **options)
   end
 end

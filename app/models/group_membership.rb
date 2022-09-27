@@ -25,7 +25,18 @@ class GroupMembership < ApplicationRecord
 
   validate :validate_remote_role
 
+  after_create :increment_cache_counters
+  after_destroy :decrement_cache_counters
+
   private
+
+  def increment_cache_counters
+    group&.increment_count!(:members_count)
+  end
+
+  def decrement_cache_counters
+    group&.decrement_count!(:members_count)
+  end
 
   def validate_remote_role
     errors.add(:role, I18n.t('groups.errors.unsupported_remote_role')) if group.local? && !account.local? && !user_role?

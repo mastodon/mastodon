@@ -89,6 +89,10 @@ class Group < ApplicationRecord
     end
   end
 
+  def blocking?(account)
+    account_blocks.where(account_id: account.id).exists?
+  end
+
   def self.member_map(target_group_ids, account_id)
     GroupMembership.where(group_id: target_group_ids, account_id: account_id).each_with_object({}) do |membership, mapping|
       mapping[membership.group_id] = { role: membership.role }
