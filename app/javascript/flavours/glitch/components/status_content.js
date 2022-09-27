@@ -5,7 +5,7 @@ import { FormattedMessage, injectIntl } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
-import { autoPlayGif } from 'flavours/glitch/initial_state';
+import { autoPlayGif, languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/utils/idna';
 
 const textMatchesTarget = (text, origin, host) => {
@@ -274,8 +274,9 @@ class StatusContent extends React.PureComponent {
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
-    const renderTranslate = this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && intl.locale !== status.get('language');
-    const languageNames = new Intl.DisplayNames([intl.locale], { type: 'language' });
+    const renderTranslate = this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && intl.locale !== status.get('language');
+    const language = preloadedLanguages.find(lang => lang[0] === status.get('language'));
+    const languageName = language ? language[2] : status.get('language');
 
     const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
@@ -287,7 +288,7 @@ class StatusContent extends React.PureComponent {
 
     const translateButton = (
       <button className='status__content__read-more-button' onClick={this.handleTranslate}>
-        {status.get('translation') ? <span><FormattedMessage id='status.translated_from' defaultMessage='Translated from {lang}' values={{ lang: languageNames.of(status.get('language')) }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
+        {status.get('translation') ? <span><FormattedMessage id='status.translated_from' defaultMessage='Translated from {lang}' values={{ lang: languageName }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
       </button>
     );
 
