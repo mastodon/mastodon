@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_22_192931) do
+ActiveRecord::Schema.define(version: 2022_10_22_193523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1022,8 +1022,10 @@ ActiveRecord::Schema.define(version: 2022_10_22_192931) do
     t.boolean "trendable"
     t.bigint "ordered_media_attachment_ids", array: true
     t.bigint "group_id"
+    t.integer "approval_status"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
     t.index ["account_id"], name: "index_statuses_on_account_id"
+    t.index ["approval_status"], name: "index_statuses_on_approval_status", where: "(approval_status IS NOT NULL)"
     t.index ["deleted_at"], name: "index_statuses_on_deleted_at", where: "(deleted_at IS NOT NULL)"
     t.index ["group_id"], name: "index_statuses_on_group_id", where: "(group_id IS NOT NULL)"
     t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"

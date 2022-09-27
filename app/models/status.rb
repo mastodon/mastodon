@@ -27,6 +27,7 @@
 #  trendable                    :boolean
 #  ordered_media_attachment_ids :bigint(8)        is an Array
 #  group_id                     :bigint(8)
+#  approval_status              :integer
 #
 
 class Status < ApplicationRecord
@@ -57,6 +58,15 @@ class Status < ApplicationRecord
     limited: 4,
     group: 5
   }, _suffix: :visibility
+
+  # In certain circumstances, we have to deal with asynchronous approval of
+  # statuses. For now, this only concerns group timelines.
+  enum approval_status: {
+    pending: 0,
+    approved: 1,
+    rejected: 2,
+    revoked: 3,
+  }, _suffix: :approval
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -99,6 +109,8 @@ class Status < ApplicationRecord
 
   default_scope { recent.kept }
 
+  scope :approved, -> { where(approval_status: [nil, :approved]) }
+  scope :disapproved, -> { where(approval_status: [:rejected, :revoked]) }
   scope :recent, -> { reorder(id: :desc) }
   scope :remote, -> { where(local: false).where.not(uri: nil) }
   scope :local,  -> { where(local: true).or(where(uri: nil)) }
@@ -450,6 +462,10 @@ class Status < ApplicationRecord
     im.select(arel_table.where(arel_table[:id].eq(reblog_bind)).where(arel_table[:deleted_at].eq(nil)).project(*binds))
 
     im
+  end
+
+  def approved?
+    approval_status.nil? || approved_approval?
   end
 
   private

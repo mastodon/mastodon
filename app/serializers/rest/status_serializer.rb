@@ -15,6 +15,8 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :pinned, if: :pinnable?
   has_many :filtered, serializer: REST::FilterResultSerializer, if: :current_user?
 
+  attribute :approval_status, if: -> { object.approval_status.present? }
+
   attribute :content, unless: :source_requested?
   attribute :text, if: :source_requested?
 
