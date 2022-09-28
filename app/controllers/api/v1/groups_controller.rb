@@ -14,6 +14,17 @@ class Api::V1::GroupsController < Api::BaseController
     render json: @groups, each_serializer: REST::GroupSerializer
   end
 
+  def create
+    authorize :group, :create?
+
+    ApplicationRecord.transaction do
+      @group = Group.create!(group_params)
+      @group.memberships.create!(account: current_account, role: :admin)
+    end
+
+    render json: @group, serializer: REST::GroupSerializer
+  end
+
   def show
     render json: @group, serializer: REST::GroupSerializer
   end
@@ -92,6 +103,10 @@ class Api::V1::GroupsController < Api::BaseController
 
   def resource_params
     params.permit(:role, account_ids: [])
+  end
+
+  def group_params
+    params.permit(:display_name, :note, :avatar, :header)
   end
 
   def account_ids

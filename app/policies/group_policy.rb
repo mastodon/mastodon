@@ -5,6 +5,10 @@ class GroupPolicy < ApplicationPolicy
     role.can?(:manage_users)
   end
 
+  def create?
+    role.can?(:create_groups)
+  end
+
   def show?
     true
   end

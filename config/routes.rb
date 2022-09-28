@@ -626,7 +626,7 @@ Rails.application.routes.draw do
         resources :relationships, only: [:index]
       end
 
-      resources :groups, only: [:index, :show] do
+      resources :groups, only: [:index, :create, :show] do
         resources :memberships, only: [:index], controller: 'groups/memberships'
 
         resources :membership_requests, only: [:index], controller: 'groups/membership_requests' do

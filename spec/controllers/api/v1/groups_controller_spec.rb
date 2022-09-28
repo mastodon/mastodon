@@ -55,6 +55,25 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
     end
   end
 
+  describe 'POST #create' do
+    let(:scopes) { 'write:groups' }
+
+    before do
+      user.update!(role: Fabricate(:user_role, permissions: UserRole::FLAGS[:create_groups]))
+      post :create, params: { display_name: 'Mastodon development group' }
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(200)
+    end
+
+    it 'returns a group of which the user is an admin' do
+      expect(body_as_json[:id].present?).to be true
+      expect(body_as_json[:display_name]).to eq 'Mastodon development group'
+      expect(Group.find(body_as_json[:id]).memberships.find_by(account_id: user.account.id).admin_role?).to eq true
+    end
+  end
+
   describe 'POST #join' do
     let(:scopes) { 'write:groups' }
 
