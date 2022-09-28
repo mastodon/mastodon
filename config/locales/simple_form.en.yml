@@ -73,6 +73,10 @@ en:
         actions:
           hide: Completely hide the filtered content, behaving as if it did not exist
           warn: Hide the filtered content behind a warning mentioning the filter's title
+      form_admin_settings:
+        backups_retention_period: Keep generated user archives for the specified number of days.
+        content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
+        media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
       form_challenge:
         current_password: You are entering a secure area
       imports:
@@ -207,6 +211,10 @@ en:
         actions:
           hide: Hide completely
           warn: Hide with a warning
+      form_admin_settings:
+        backups_retention_period: User archive retention period
+        content_cache_retention_period: Content cache retention period
+        media_cache_retention_period: Media cache retention period
       interactions:
         must_be_follower: Block notifications from non-followers
         must_be_following: Block notifications from people you don't follow
