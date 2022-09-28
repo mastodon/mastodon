@@ -234,6 +234,7 @@ zh-CN:
         confirm_user: 确认用户
         create_account_warning: 创建警告
         create_announcement: 创建公告
+        create_canonical_email_block: 新增 E-mail 屏蔽
         create_custom_emoji: 创建自定义表情符号
         create_domain_allow: 允许新域名
         create_domain_block: 封禁新域名
@@ -243,6 +244,7 @@ zh-CN:
         create_user_role: 创建角色
         demote_user: 给用户降职
         destroy_announcement: 删除公告
+        destroy_canonical_email_block: 删除 E-mail 封禁
         destroy_custom_emoji: 删除自定义表情符号
         destroy_domain_allow: 解除域名允许
         destroy_domain_block: 解除域名封禁
@@ -278,6 +280,7 @@ zh-CN:
         update_announcement: 更新公告
         update_custom_emoji: 更新自定义表情符号
         update_domain_block: 更新域名屏蔽
+        update_ip_block: 编辑 IP 封禁规则
         update_status: 更新嘟文
         update_user_role: 更新角色
       actions:
@@ -289,6 +292,7 @@ zh-CN:
         confirm_user_html: "%{name} 确认了用户 %{target} 的电子邮件地址"
         create_account_warning_html: "%{name} 向 %{target} 发送了警告"
         create_announcement_html: "%{name} 创建了新公告 %{target}"
+        create_canonical_email_block_html: "%{name} 屏蔽了 hash 为 %{target} 的电子邮箱"
         create_custom_emoji_html: "%{name} 添加了新的自定义表情 %{target}"
         create_domain_allow_html: "%{name} 允许了和域名 %{target} 的跨站交互"
         create_domain_block_html: "%{name} 屏蔽了域名 %{target}"
@@ -298,6 +302,7 @@ zh-CN:
         create_user_role_html: "%{name} 创建了 %{target} 角色"
         demote_user_html: "%{name} 对用户 %{target} 进行了降任操作"
         destroy_announcement_html: "%{name} 删除了公告 %{target}"
+        destroy_canonical_email_block_html: "%{name} 解除屏蔽了 hash 为 %{target} 的电子邮箱"
         destroy_custom_emoji_html: "%{name} 删除了自定义表情 %{target}"
         destroy_domain_allow_html: "%{name} 拒绝了和 %{target} 跨站交互"
         destroy_domain_block_html: "%{name} 解除了对域名 %{target} 的屏蔽"
@@ -333,6 +338,7 @@ zh-CN:
         update_announcement_html: "%{name} 更新了公告 %{target}"
         update_custom_emoji_html: "%{name} 更新了自定义表情 %{target}"
         update_domain_block_html: "%{name} 更新了对 %{target} 的域名屏蔽"
+        update_ip_block_html: "%{name} 修改了对 IP %{target} 的规则"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
         update_user_role_html: "%{name} 更改了 %{target} 角色"
       empty: 没有找到日志
@@ -786,6 +792,7 @@ zh-CN:
         title: 时间轴预览
       title: 网站设置
       trendable_by_default:
+        desc_html: 特定的热门内容仍可以被明确地禁止
         title: 允许在未审查的情况下将话题置为热门
       trends:
         desc_html: 公开显示先前已通过审核的当前热门话题
