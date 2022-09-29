@@ -230,10 +230,11 @@ nl:
         approve_user: Gebruiker goedkeuren
         assigned_to_self_report: Rapportage toewijzen
         change_email_user: E-mailadres van gebruiker wijzigen
-        change_role_user: Wijzig rol van gebruiker
+        change_role_user: Gebruikersrol wijzigen
         confirm_user: Gebruiker bevestigen
         create_account_warning: Waarschuwing aanmaken
         create_announcement: Mededeling aanmaken
+        create_canonical_email_block: E-mailblokkade aanmaken
         create_custom_emoji: Lokale emoji aanmaken
         create_domain_allow: Domeingoedkeuring aanmaken
         create_domain_block: Domeinblokkade aanmaken
@@ -242,7 +243,7 @@ nl:
         create_unavailable_domain: Niet beschikbaar domein aanmaken
         demote_user: Gebruiker degraderen
         destroy_announcement: Mededeling verwijderen
-        destroy_canonical_email_block: Verwijder e-mailblokkade
+        destroy_canonical_email_block: E-mailblokkade verwijderen
         destroy_custom_emoji: Lokale emoji verwijderen
         destroy_domain_allow: Domeingoedkeuring verwijderen
         destroy_domain_block: Domeinblokkade verwijderen
@@ -275,6 +276,7 @@ nl:
         update_announcement: Mededeling bijwerken
         update_custom_emoji: Lokale emoji bijwerken
         update_domain_block: Domeinblokkade bijwerken
+        update_ip_block: IP-regel bijwerken
         update_status: Bericht bijwerken
       actions:
         approve_appeal_html: "%{name} heeft het bezwaar tegen de moderatie-actie van %{target} goedgekeurd"
@@ -283,6 +285,7 @@ nl:
         confirm_user_html: "E-mailadres van gebruiker %{target} is door %{name} bevestigd"
         create_account_warning_html: "%{name} verzond een waarschuwing naar %{target}"
         create_announcement_html: "%{name} heeft de nieuwe mededeling %{target} aangemaakt"
+        create_canonical_email_block_html: "%{name} blokkeerde e-mail met de hash %{target}"
         create_custom_emoji_html: "Nieuwe emoji %{target} is door %{name} geüpload"
         create_domain_allow_html: "%{name} heeft de federatie met het domein %{target} goedgekeurd"
         create_domain_block_html: "Domein %{target} is door %{name} geblokkeerd"
@@ -291,6 +294,7 @@ nl:
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         demote_user_html: "Gebruiker %{target} is door %{name} gedegradeerd"
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
+        destroy_canonical_email_block_html: "%{name} deblokkeerde e-mail met de hash %{target}"
         destroy_domain_allow_html: "%{name} heeft de federatie met het domein %{target} afgekeurd"
         destroy_domain_block_html: "Domein %{target} is door %{name} gedeblokkeerd"
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
@@ -320,6 +324,7 @@ nl:
         update_announcement_html: "%{name} heeft de mededeling %{target} bijgewerkt"
         update_custom_emoji_html: "Emoji %{target} is door %{name} bijgewerkt"
         update_domain_block_html: "%{name} heeft de domeinblokkade bijgewerkt voor %{target}"
+        update_ip_block_html: "%{name} wijzigde de IP-regel voor %{target}"
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
@@ -717,6 +722,7 @@ nl:
         title: Toegang tot de openbare tijdlijn zonder in te loggen toestaan
       title: Server-instellingen
       trendable_by_default:
+        desc_html: Specifieke trends kunnen nog steeds expliciet worden afgekeurd
         title: Trends toestaan zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
@@ -1053,6 +1059,12 @@ nl:
     trending_now: Trends
   generic:
     all: Alles
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item op deze pagina is geselecteerd."
+      other: Alle <strong>%{count}</strong> items op deze pagina zijn geselecteerd.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item dat met jouw zoekopdracht overeenkomt is geselecteerd."
+      other: Alle <strong>%{count}</strong> items die met jouw zoekopdracht overeenkomen zijn geselecteerd.
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
     delete: Verwijderen
@@ -1060,6 +1072,9 @@ nl:
     none: Geen
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
+    select_all_matching_items:
+      one: '%{count} item dat met jouw zoekopdracht overeenkomt selecteren.'
+      other: Alle %{count} items die met jouw zoekopdracht overeenkomen selecteren.
     today: vandaag
     validation_errors:
       one: Er is iets niet helemaal goed! Bekijk onderstaande fout
@@ -1490,7 +1505,7 @@ nl:
       <p>This document is CC-BY-SA. It was last updated May 26, 2022.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: "Privacybeleid %{instance}"
+    title: "Privacybeleid van %{instance}"
   themes:
     contrast: Mastodon (hoog contrast)
     default: Mastodon (donker)
