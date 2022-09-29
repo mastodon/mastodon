@@ -26,6 +26,7 @@ zh-TW:
     learn_more: 了解詳細
     logged_in_as_html: 您目前登入使用的帳號是 %{username}
     logout_before_registering: 您已經登入了！
+    privacy_policy: 隱私權政策
     rules: 伺服器規則
     rules_html: '以下是您若想在此 Mastodon 伺服器建立帳號必須遵守的規則總結：'
     see_whats_happening: 看看發生什麼事
@@ -776,6 +777,9 @@ zh-TW:
       site_short_description:
         desc_html: 顯示在側邊欄和網頁標籤 (meta tags)。以一段話描述 Mastodon 是甚麼，以及這個伺服器的特色。
         title: 伺服器短描述
+      site_terms:
+        desc_html: 您可以撰寫自己的隱私權政策。您可以使用 HTML 標籤。
+        title: 客製的隱私權政策
       site_title: 伺服器名稱
       thumbnail:
         desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
@@ -1681,6 +1685,7 @@ zh-TW:
       <p>此文件以 CC-BY-SA 授權。最後更新時間為 2022 年 5 月 26 日。</p>
 
       <p>最初改編自 <a href="https://github.com/discourse/discourse">Discourse 隱私權政策</a>.</p>
+    title: "%{instance} 隱私權政策"
   themes:
     contrast: Mastodon（高對比）
     default: Mastodon（深色）
