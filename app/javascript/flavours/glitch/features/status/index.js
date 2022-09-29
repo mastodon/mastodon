@@ -47,11 +47,12 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
-import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/util/initial_state';
+import { boostModal, favouriteModal, deleteModal, title } from 'flavours/glitch/util/initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from 'flavours/glitch/util/fullscreen';
 import { autoUnfoldCW } from 'flavours/glitch/util/content_warning';
 import { textForScreenReader, defaultMediaVisibility } from 'flavours/glitch/components/status';
 import Icon from 'flavours/glitch/components/icon';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -145,6 +146,23 @@ const makeMapStateToProps = () => {
   };
 
   return mapStateToProps;
+};
+
+const truncate = (str, num) => {
+  if (str.length > num) {
+    return str.slice(0, num) + '…';
+  } else {
+    return str;
+  }
+};
+
+const titleFromStatus = status => {
+  const displayName = status.getIn(['account', 'display_name']);
+  const username = status.getIn(['account', 'username']);
+  const prefix = displayName.trim().length === 0 ? username : displayName;
+  const text = status.get('search_index');
+
+  return `${prefix}: "${truncate(text, 30)}"`;
 };
 
 export default @injectIntl
@@ -633,6 +651,10 @@ class Status extends ImmutablePureComponent {
             {descendants}
           </div>
         </ScrollContainer>
+
+        <Helmet>
+          <title>{titleFromStatus(status)} - {title}</title>
+        </Helmet>
       </Column>
     );
   }

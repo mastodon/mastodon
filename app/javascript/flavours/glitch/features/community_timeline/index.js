@@ -9,6 +9,8 @@ import { expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from 'flavours/glitch/actions/streaming';
+import { Helmet } from 'react-helmet';
+import { title } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
@@ -132,6 +134,10 @@ class CommunityTimeline extends React.PureComponent {
           bindToDocument={!multiColumn}
           regex={this.props.regex}
         />
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)} - {title}</title>
+        </Helmet>
       </Column>
     );
   }

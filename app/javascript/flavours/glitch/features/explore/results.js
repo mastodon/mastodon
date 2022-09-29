@@ -10,6 +10,8 @@ import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag'
 import { List as ImmutableList } from 'immutable';
 import LoadMore from 'flavours/glitch/components/load_more';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { title } from 'flavours/glitch/util/initial_state';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   title: { id: 'search_results.title', defaultMessage: 'Search for {q}' },
@@ -114,6 +116,10 @@ class Results extends React.PureComponent {
         <div className='explore__search-results'>
           {isLoading ? <LoadingIndicator /> : filteredResults}
         </div>
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title, { q })} - {title}</title>
+        </Helmet>
       </React.Fragment>
     );
   }

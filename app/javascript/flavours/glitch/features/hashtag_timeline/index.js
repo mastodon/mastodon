@@ -14,6 +14,8 @@ import { isEqual } from 'lodash';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/glitch/actions/tags';
 import Icon from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
+import { title } from 'flavours/glitch/util/initial_state';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   followHashtag: { id: 'hashtag.follow', defaultMessage: 'Follow hashtag' },
@@ -218,6 +220,10 @@ class HashtagTimeline extends React.PureComponent {
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
           bindToDocument={!multiColumn}
         />
+
+        <Helmet>
+          <title>{`#${id}`} - {title}</title>
+        </Helmet>
       </Column>
     );
   }

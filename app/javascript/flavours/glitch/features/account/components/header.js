@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, me, title, domain } from 'flavours/glitch/util/initial_state';
 import { preferencesLink, profileLink, accountAdminLink } from 'flavours/glitch/util/backend_links';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
@@ -14,6 +14,7 @@ import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
 import { PERMISSION_MANAGE_USERS } from 'flavours/glitch/permissions';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -53,6 +54,14 @@ const messages = defineMessages({
   add_account_note: { id: 'account.add_account_note', defaultMessage: 'Add note for @{name}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
 });
+
+const titleFromAccount = account => {
+  const displayName = account.get('display_name');
+  const acct = account.get('acct') === account.get('username') ? `${account.get('username')}@${domain}` : account.get('acct');
+  const prefix = displayName.trim().length === 0 ? account.get('username') : displayName;
+
+  return `${prefix} (@${acct})`;
+};
 
 const dateFormatOptions = {
   month: 'short',
@@ -340,6 +349,10 @@ class Header extends ImmutablePureComponent {
             </div>
           )}
         </div>
+
+        <Helmet>
+          <title>{titleFromAccount(account)} - {title}</title>
+        </Helmet>
       </div>
     );
   }

@@ -37,6 +37,7 @@ export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const useSystemEmojiFont = getMeta('system_emoji_font');
 export const showTrends = getMeta('trends');
+export const title = getMeta('title');
 export const disableSwiping = getMeta('disable_swiping');
 export const languages = initialState && initialState.languages;
 export const server = initialState && initialState.server;

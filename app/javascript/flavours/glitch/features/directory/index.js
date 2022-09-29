@@ -13,6 +13,8 @@ import RadioButton from 'flavours/glitch/components/radio_button';
 import LoadMore from 'flavours/glitch/components/load_more';
 import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { title } from 'flavours/glitch/util/initial_state';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   title: { id: 'column.directory', defaultMessage: 'Browse profiles' },
@@ -165,6 +167,10 @@ class Directory extends React.PureComponent {
         />
 
         {multiColumn && !pinned ? <ScrollContainer scrollKey='directory'>{scrollableArea}</ScrollContainer> : scrollableArea}
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)} - {title}</title>
+        </Helmet>
       </Column>
     );
   }
