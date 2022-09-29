@@ -1843,6 +1843,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Nothing is trending right now. Check back later!",
+        "id": "empty_column.explore_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/explore/links.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Search for {q}",
+        "id": "search_results.title"
+      },
+      {
         "defaultMessage": "Could not find anything for these search terms",
         "id": "search_results.nothing_found"
       },
@@ -1873,6 +1886,24 @@
       }
     ],
     "path": "app/javascript/mastodon/features/explore/statuses.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Nothing is trending right now. Check back later!",
+        "id": "empty_column.explore_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/explore/suggestions.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Nothing is trending right now. Check back later!",
+        "id": "empty_column.explore_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/explore/tags.json"
   },
   {
     "descriptors": [
@@ -3678,8 +3709,8 @@
         "id": "navigation_bar.apps"
       },
       {
-        "defaultMessage": "Terms of service",
-        "id": "getting_started.terms"
+        "defaultMessage": "Privacy Policy",
+        "id": "getting_started.privacy_policy"
       },
       {
         "defaultMessage": "Developers",
@@ -3823,6 +3854,23 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/report_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.",
+        "id": "sign_in_banner.text"
+      },
+      {
+        "defaultMessage": "Sign in",
+        "id": "sign_in_banner.sign_in"
+      },
+      {
+        "defaultMessage": "Create account",
+        "id": "sign_in_banner.create_account"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/sign_in_banner.json"
   },
   {
     "descriptors": [
