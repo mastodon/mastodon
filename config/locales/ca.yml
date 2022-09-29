@@ -27,6 +27,7 @@ ca:
     learn_more: Aprèn més
     logged_in_as_html: Actualment has iniciat sessió com a %{username}.
     logout_before_registering: Ja has iniciat sessió.
+    privacy_policy: Política de Privacitat
     rules: Normes del servidor
     rules_html: 'A continuació, es mostra un resum de les normes que has de seguir si vols tenir un compte en aquest servidor de Mastodon:'
     see_whats_happening: Mira què està passant
@@ -793,6 +794,9 @@ ca:
       site_short_description:
         desc_html: Es mostra a la barra lateral i a metaetiquetes. Descriu en un únic paràgraf què és Mastodon i què fa que aquest servidor sigui especial.
         title: Descripció curta del servidor
+      site_terms:
+        desc_html: Pots escriure la teva pròpia política de privacitat. Pots fer servir etiquetes HTML
+        title: Política de privacitat personalitzada
       site_title: Nom del servidor
       thumbnail:
         desc_html: S'utilitza per obtenir visualitzacions prèvies a través d'OpenGraph i API. Es recomana 1200x630px
@@ -1704,6 +1708,7 @@ ca:
       <h1>Atribució</h1>
 
       <p> This text is free to be adapted and remixed under the terms of the CC-BY (Attribution 4.0 International) license.
+    title: "Política de Privacitat de %{instance}"
   themes:
     contrast: Mastodon (alt contrast)
     default: Mastodon (fosc)
