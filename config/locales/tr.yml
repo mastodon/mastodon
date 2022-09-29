@@ -27,6 +27,7 @@ tr:
     learn_more: Daha fazla bilgi edinin
     logged_in_as_html: Şu an %{username} olarak oturum açmışsınız.
     logout_before_registering: Zaten oturumunuz açık.
+    privacy_policy: Gizlilik Politikası
     rules: Sunucu kuralları
     rules_html: 'Aşağıda, bu Mastodon sunucusu üzerinde bir hesap açmak istiyorsanız uymanız gereken kuralların bir özeti var:'
     see_whats_happening: Neler olduğunu görün
@@ -793,6 +794,9 @@ tr:
       site_short_description:
         desc_html: Kenar çubuğunda ve meta etiketlerinde görüntülenir. Mastodon'un ne olduğunu ve bu sunucuyu özel kılan şeyleri tek bir paragrafta açıklayın.
         title: Kısa sunucu açıklaması
+      site_terms:
+        desc_html: Kendi gizlilik politikanızı yazabilirsiniz. HTML etiketlerini kullanabilirsiniz
+        title: Özel gizlilik politikası
       site_title: Site başlığı
       thumbnail:
         desc_html: OpenGraph ve API ile ön izlemeler için kullanılır. 1200x630px tavsiye edilir
@@ -1712,6 +1716,7 @@ tr:
       <p>Bu belge CC-BY-SA altında lisanslanmıştır. En son 26 Mayıs 2022 tarihinde güncellenmiştir.</p>
 
       <p><a href="https://github.com/discourse/discourse">Discourse gizlilik politikasından uyarlanmıştır</a>.</p>
+    title: "%{instance} Gizlilik Politikası"
   themes:
     contrast: Mastodon (Yüksek karşıtlık)
     default: Mastodon (Karanlık)
