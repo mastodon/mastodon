@@ -1,7 +1,6 @@
 ---
 en:
   about:
-    about_hashtag_html: These are public posts tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralization! Own your data with Mastodon!'
     about_this: About
     active_count_after: active
@@ -10,14 +9,11 @@ en:
     api: API
     apps: Mobile apps
     apps_platforms: Use Mastodon from iOS, Android and other platforms
-    browse_directory: Browse a profile directory and filter by interests
-    browse_local_posts: Browse a live stream of public posts from this server
     browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
     continue_to_web: Continue to web app
-    discover_users: Discover users
     documentation: Documentation
     federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     get_apps: Try a mobile app
@@ -783,9 +779,6 @@ en:
           none: Nobody can sign up
           open: Anyone can sign up
         title: Registrations mode
-      show_known_fediverse_at_about_page:
-        desc_html: When disabled, restricts the public timeline linked from the landing page to showing only local content
-        title: Include federated content on unauthenticated public timeline page
       site_description:
         desc_html: Introductory paragraph on the API. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
         title: Server description
@@ -1109,10 +1102,6 @@ en:
       more_details_html: For more details, see the <a href="%{terms_path}">privacy policy</a>.
       username_available: Your username will become available again
       username_unavailable: Your username will remain unavailable
-  directories:
-    directory: Profile directory
-    explanation: Discover users based on their interests
-    explore_mastodon: Explore %{title}
   disputes:
     strikes:
       action_taken: Action taken
