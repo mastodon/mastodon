@@ -1,8 +1,7 @@
----
 kk:
   about:
-    about_hashtag_html: Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.
-    about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
+    about_hashtag_html: 'Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.'
+    about_mastodon_html: 'Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.'
     about_this: Туралы
     active_count_after: актив
     active_footnote: Соңғы айдағы актив қолданушылар (MAU)
@@ -17,14 +16,13 @@ kk:
     contact_unavailable: Белгісіз
     discover_users: Қолданушыларды іздеңіз
     documentation: Құжаттама
-    federation_hint_html: "%{instance} платформасындағы аккаунтыңыз арқылы Mastodon желісіндегі кез келген сервердегі қолданушыларға жазыла аласыз."
+    federation_hint_html: '%{instance} платформасындағы аккаунтыңыз арқылы Mastodon желісіндегі кез келген сервердегі қолданушыларға жазыла аласыз.'
     get_apps: Мобиль қосымшаны қолданып көріңіз
     hosted_on: Mastodon орнатылған %{domain} доменінде
     instance_actor_flash: |
       Бұл аккаунт кез-келген жеке пайдаланушыны емес, сервердің өзін көрсету үшін қолданылатын виртуалды актер.
       Ол федерация мақсаттарында қолданылады және сіз барлығын бұғаттағыңыз келмейінше, бұғатталмауы керек, бұл жағдайда сіз домен блогын қолданған жөн.
     learn_more: Көбірек білу
-    privacy_policy: Құпиялылық саясаты
     see_whats_happening: Не болып жатқанын қараңыз
     server_stats: 'Сервер статистикасы:'
     source_code: Ашық коды
@@ -32,7 +30,6 @@ kk:
       one: жазба
       other: жазба
     status_count_before: Барлығы
-    terms: Қолдану шарттары
     unavailable_content: Қолжетімсіз контент
     unavailable_content_description:
       domain: Сервер
@@ -62,8 +59,8 @@ kk:
     moved_html: "%{name} мына жерге көшті %{new_profile_link}:"
     network_hidden: Бұл ақпарат қолжетімді емес
     nothing_here: Бұл жерде ештеңе жоқ!
-    people_followed_by: "%{name} жазылған адамдар"
-    people_who_follow: "%{name} атты қолданушының оқырмандары"
+    people_followed_by: '%{name} жазылған адамдар'
+    people_who_follow: '%{name} атты қолданушының оқырмандары'
     pin_errors:
       following: Оқығыңыз келген адамға жазылуыңыз керек
     posts:
@@ -393,9 +390,6 @@ kk:
       site_short_description:
         desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to сервер description.
         title: Short сервер description
-      site_terms:
-        desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML тег
-        title: Қолдану шарттары мен ережелер
       site_title: Сервер аты
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px рекоменделеді
@@ -430,11 +424,11 @@ kk:
   admin_mailer:
     new_pending_account:
       body: Жаңа есептік жазба туралы мәліметтер төменде берілген. Бұл қолданбаны мақұлдауыңызға немесе қабылдамауыңызға болады.
-      subject: Жаңа аккаунт күтілуде %{instance} (#%{username})
+      subject: 'Жаңа аккаунт күтілуде %{instance} (#%{username})'
     new_report:
       body: "%{reporter} has rеported %{target}"
       body_remote: Someone from %{domain} has rеported %{target}
-      subject: New rеport for %{instance} (#%{id})
+      subject: 'New rеport for %{instance} (#%{id})'
   aliases:
     add_new: Алиас қосу
     created_msg: Жаңа алиас сәтті жасалды. Енді сіз ескі аккаунттан көшіруді бастай аласыз.
@@ -549,7 +543,7 @@ kk:
   directories:
     directory: Профильдер каталогы
     explanation: Қолданушыларды қызығушылықтарына қарай реттеу
-    explore_mastodon: "%{title} шарлау"
+    explore_mastodon: '%{title} шарлау'
   domain_validator:
     invalid_domain: жарамды домен атауы емес
   errors:
@@ -728,9 +722,9 @@ kk:
       duration_too_short: тым аз екен
       expired: Сауалнама уақыты аяқталған
       invalid_choice: Таңдалған жауап енді жоқ екен
-      over_character_limit: "%{max} таңбадан артық болмайды"
+      over_character_limit: '%{max} таңбадан артық болмайды'
       too_few_options: бір жауаптан көп болуы керек
-      too_many_options: "%{max} жауаптан көп болмайды"
+      too_many_options: '%{max} жауаптан көп болмайды'
   preferences:
     other: Басқа
     posting_defaults: Пост жазу негіздері
@@ -851,7 +845,7 @@ kk:
       one: 'рұқсат етілмеген хэштег: %{tags}'
       other: 'рұқсат етілмеген хэштегтер: %{tags}'
     open_in_web: Вебте ашу
-    over_character_limit: "%{max} максимум таңбадан асып кетті"
+    over_character_limit: '%{max} максимум таңбадан асып кетті'
     pin_errors:
       limit: Жабыстырылатын жазба саны максимумынан асты
       ownership: Біреудің жазбасы жабыстырылмайды
@@ -880,8 +874,6 @@ kk:
     sensitive_content: Нәзік мазмұн
   tags:
     does_not_match_previous_name: алдыңғы атқа сәйкес келмейді
-  terms:
-    title: "%{instance} Қызмет көрсету шарттары және Құпиялылық саясаты"
   themes:
     contrast: Mastodon (Жоғары контраст)
     default: Mastodon (Қою)
@@ -903,9 +895,9 @@ kk:
     warning:
       subject:
         disable: Аккаунтыңыз %{acct} уақытша тоқтатылды
-        none: "%{acct} ескертуі"
-        silence: "%{acct} аккаунтыңыз шектеулі"
-        suspend: "%{acct} аккаунт тоқтатылды"
+        none: '%{acct} ескертуі'
+        silence: '%{acct} аккаунтыңыз шектеулі'
+        suspend: '%{acct} аккаунт тоқтатылды'
       title:
         disable: Аккаунт қатырылды
         none: Ескерту
