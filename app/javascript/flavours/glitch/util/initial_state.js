@@ -25,6 +25,7 @@ export const searchEnabled = getMeta('search_enabled');
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;
 export const pollLimits = (initialState && initialState.poll_limits);
 export const limitedFederationMode = getMeta('limited_federation_mode');
+export const registrationsOpen = getMeta('registrations_open');
 export const repository = getMeta('repository');
 export const source_url = getMeta('source_url');
 export const version = getMeta('version');
