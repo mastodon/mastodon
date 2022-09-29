@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import { limitedFederationMode, version, repository, source_url } from 'flavours/glitch/util/initial_state';
-import { signOutLink, securityLink } from 'flavours/glitch/util/backend_links';
+import { signOutLink, securityLink, privacyPolicyLink } from 'flavours/glitch/util/backend_links';
 import { logOut } from 'flavours/glitch/util/log_out';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { PERMISSION_INVITE_USERS } from 'flavours/glitch/permissions';
@@ -55,7 +55,7 @@ class LinkFooter extends React.PureComponent {
           {!!securityLink && <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>}
           {!limitedFederationMode && <li><a href='/about/more' target='_blank'><FormattedMessage id='navigation_bar.info' defaultMessage='About this server' /></a> · </li>}
           <li><a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='navigation_bar.apps' defaultMessage='Mobile apps' /></a> · </li>
-          <li><a href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a> · </li>
+          <li><a href={privacyPolicyLink} target='_blank'><FormattedMessage id='getting_started.privacy_policy' defaultMessage='Privacy Policy' /></a> · </li>
           <li><a href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
           <li><a href='https://docs.joinmastodon.org' target='_blank'><FormattedMessage id='getting_started.documentation' defaultMessage='Documentation' /></a> · </li>
           <li><a href={signOutLink} onClick={this.handleLogoutClick}><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a></li>
