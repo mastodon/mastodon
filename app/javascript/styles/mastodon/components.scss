@@ -126,6 +126,7 @@
     &:hover {
       border-color: lighten($ui-primary-color, 4%);
       color: lighten($darker-text-color, 4%);
+      text-decoration: none;
     }
 
     &:disabled {
@@ -698,6 +699,15 @@
 
 .no-reduce-motion .spoiler-input {
   transition: height 0.4s ease, opacity 0.4s ease;
+}
+
+.sign-in-banner {
+  padding: 10px;
+
+  p {
+    color: $darker-text-color;
+    margin-bottom: 20px;
+  }
 }
 
 .emojione {
@@ -2214,6 +2224,7 @@ a.account__display-name {
 
   > .scrollable {
     background: $ui-base-color;
+    border-radius: 0 0 4px 4px;
   }
 }
 
@@ -2660,15 +2671,31 @@ a.account__display-name {
   height: calc(100% - 10px);
   overflow-y: hidden;
 
+  .hero-widget {
+    box-shadow: none;
+
+    &__text,
+    &__img,
+    &__img img {
+      border-radius: 0;
+    }
+
+    &__text {
+      padding: 15px;
+      color: $secondary-text-color;
+
+      strong {
+        font-weight: 700;
+        color: $primary-text-color;
+      }
+    }
+  }
+
   .navigation-bar {
     padding-top: 20px;
     padding-bottom: 20px;
     flex: 0 1 48px;
     min-height: 20px;
-  }
-
-  .flex-spacer {
-    background: transparent;
   }
 
   .compose-form {
@@ -2709,6 +2736,14 @@ a.account__display-name {
     flex: 0 0 auto;
   }
 
+  .logo {
+    height: 30px;
+    width: auto;
+  }
+}
+
+.navigation-panel,
+.compose-panel {
   hr {
     flex: 0 0 auto;
     border: 0;
@@ -2836,6 +2871,7 @@ a.account__display-name {
   box-sizing: border-box;
   width: 100%;
   background: lighten($ui-base-color, 4%);
+  border-radius: 4px 4px 0 0;
   color: $highlight-text-color;
   cursor: pointer;
   flex: 0 0 auto;
@@ -3029,6 +3065,17 @@ a.account__display-name {
 
     &.active {
       color: $highlight-text-color;
+    }
+  }
+
+  &--logo {
+    background: transparent;
+    padding: 10px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
     }
   }
 }
@@ -3551,6 +3598,7 @@ a.status-card.compact:hover {
   display: flex;
   font-size: 16px;
   background: lighten($ui-base-color, 4%);
+  border-radius: 4px 4px 0 0;
   flex: 0 0 auto;
   cursor: pointer;
   position: relative;

@@ -9,6 +9,8 @@ import { expandCommunityTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from '../../actions/streaming';
+import { Helmet } from 'react-helmet';
+import { title } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
@@ -128,6 +130,10 @@ class CommunityTimeline extends React.PureComponent {
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
           bindToDocument={!multiColumn}
         />
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)} - {title}</title>
+        </Helmet>
       </Column>
     );
   }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me } from 'mastodon/initial_state';
+import { autoPlayGif, me, title, domain } from 'mastodon/initial_state';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import IconButton from 'mastodon/components/icon_button';
@@ -15,6 +15,7 @@ import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
 import { PERMISSION_MANAGE_USERS } from 'mastodon/permissions';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -53,6 +54,14 @@ const messages = defineMessages({
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
 });
+
+const titleFromAccount = account => {
+  const displayName = account.get('display_name');
+  const acct = account.get('acct') === account.get('username') ? `${account.get('username')}@${domain}` : account.get('acct');
+  const prefix = displayName.trim().length === 0 ? account.get('username') : displayName;
+
+  return `${prefix} (@${acct})`;
+};
 
 const dateFormatOptions = {
   month: 'short',
@@ -132,6 +141,7 @@ class Header extends ImmutablePureComponent {
 
   render () {
     const { account, hidden, intl, domain } = this.props;
+    const { signedIn } = this.context.identity;
 
     if (!account) {
       return null;
@@ -162,12 +172,12 @@ class Header extends ImmutablePureComponent {
     }
 
     if (me !== account.get('id')) {
-      if (!account.get('relationship')) { // Wait until the relationship is loaded
+      if (signedIn && !account.get('relationship')) { // Wait until the relationship is loaded
         actionBtn = '';
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button className={classNames('logo-button', { 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={signedIn ? this.props.onFollow : undefined} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
@@ -183,7 +193,7 @@ class Header extends ImmutablePureComponent {
       lockedIcon = <Icon id='lock' title={intl.formatMessage(messages.account_locked)} />;
     }
 
-    if (account.get('id') !== me) {
+    if (signedIn && account.get('id') !== me) {
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
       menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.props.onDirect });
       menu.push(null);
@@ -206,7 +216,7 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
       menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
       menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
-    } else {
+    } else if (signedIn) {
       if (account.getIn(['relationship', 'following'])) {
         if (!account.getIn(['relationship', 'muting'])) {
           if (account.getIn(['relationship', 'showing_reblogs'])) {
@@ -239,7 +249,7 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
     }
 
-    if (account.get('acct') !== account.get('username')) {
+    if (signedIn && account.get('acct') !== account.get('username')) {
       const domain = account.get('acct').split('@')[1];
 
       menu.push(null);
@@ -298,7 +308,7 @@ class Header extends ImmutablePureComponent {
                   </React.Fragment>
                 )}
 
-                <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
+                <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
               </div>
             )}
           </div>
@@ -327,7 +337,7 @@ class Header extends ImmutablePureComponent {
                   </div>
                 )}
 
-                {account.get('id') !== me && <AccountNoteContainer account={account} />}
+                {(account.get('id') !== me && signedIn) && <AccountNoteContainer account={account} />}
 
                 {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
 
@@ -359,6 +369,10 @@ class Header extends ImmutablePureComponent {
             </div>
           )}
         </div>
+
+        <Helmet>
+          <title>{titleFromAccount(account)} - {title}</title>
+        </Helmet>
       </div>
     );
   }
