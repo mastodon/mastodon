@@ -27,6 +27,7 @@ da:
     learn_more: Læs mere
     logged_in_as_html: Du er pt. logget ind som %{username}.
     logout_before_registering: Allerede logget ind.
+    privacy_policy: Fortrolighedspolitik
     rules: Serverregler
     rules_html: 'Nedenfor ses en oversigt over regler, som skal følges, hvis man ønsker at have en konto på denne Mastodon-server:'
     see_whats_happening: Se, hvad der sker
@@ -792,6 +793,9 @@ da:
       site_short_description:
         desc_html: Vises på sidebjælke og metatags. Beskriv i et enkelt afsnit, hvad Mastodon er, og hvad der gør denne server speciel.
         title: Kort serverbeskrivelse
+      site_terms:
+        desc_html: Man kan skrive sin egen fortrolighedspolitik. HTML-tags understøttes
+        title: Tilpasset fortrolighedspolitik
       site_title: Servernavn
       thumbnail:
         desc_html: Bruges til forhåndsvisninger via OpenGraph og API. 1200x630px anbefales
@@ -1711,6 +1715,7 @@ da:
       <p>Dette dokument er CC-BY-SA. Det er senest opdateret 26. maj 2022.</p>
 
       <p>Oprindeligt tilpasset fra <a href="https://github.com/discourse/discourse">Discourse-fortrolighedspolitik</a>.</p>
+    title: "%{instance}-fortrolighedspolitik"
   themes:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
