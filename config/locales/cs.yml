@@ -28,7 +28,7 @@ cs:
     learn_more: Zjistit více
     logged_in_as_html: Aktuálně jste přihlášeni jako %{username}.
     logout_before_registering: Již jste přihlášeni.
-    privacy_policy: Zásady ochrany osobních údajů
+    privacy_policy: Ochrana osobních údajů
     rules: Pravidla serveru
     rules_html: 'Níže je shrnutí pravidel, která musíte dodržovat, pokud chcete mít účet na tomto Mastodon serveru:'
     see_whats_happening: Podívejte se, co se děje
@@ -41,7 +41,6 @@ cs:
       other: příspěvků
     status_count_before: Kteří napsali
     tagline: Decentralizovaná sociální síť
-    terms: Podmínky používání
     unavailable_content: Moderované servery
     unavailable_content_description:
       domain: Server
@@ -696,8 +695,10 @@ cs:
         moderation: Moderování
         special: Speciální
       delete: Smazat
+      description_html: Pomocí <strong>uživatelských rolí</strong>můžete upravit, ke kterým funkcím a oblastem mají přístup uživatelé Mastodon.
       edit: Upravit roli „%{name}“
       everyone: Výchozí oprávnění
+      everyone_full_description_html: Toto je <strong>základní role</strong> ovlivňující <strong>všechny uživatele</strong>, a to i bez přiřazené role. Všechny ostatní role od ní dědí oprávnění.
       permissions_count:
         few: "%{count} oprávnění"
         many: "%{count} oprávnění"
@@ -705,27 +706,41 @@ cs:
         other: "%{count} oprávnění"
       privileges:
         administrator: Správce
+        administrator_description: Uživatelé s tímto oprávněním obejdou všechna oprávnění
         delete_user_data: Mazat uživatelská data
         delete_user_data_description: Umožňuje uživatelům bezodkladně mazat data jiných uživatelů
         invite_users: Zvát uživatele
         invite_users_description: Umožňuje uživatelům zvát na server nové lidi
         manage_announcements: Spravovat oznámení
+        manage_announcements_description: Umožňuje uživatelům spravovat oznámení na serveru
         manage_appeals: Spravovat odvolání
         manage_appeals_description: Umožňuje uživatelům posuzovat odvolání proti moderátorským zásahům
         manage_blocks: Spravovat blokace
+        manage_blocks_description: Umožňuje uživatelům blokovat poskytovatele e-mailů a IP adresy
         manage_custom_emojis: Spravovat vlastní emoji
         manage_custom_emojis_description: Umožňuje uživatelům spravovat vlastní emoji na serveru
+        manage_federation: Spravovat federaci
+        manage_federation_description: Umožňuje uživatelům blokovat nebo povolit federaci s jinými doménami a ovládat doručování
         manage_invites: Spravovat pozvánky
+        manage_invites_description: Umožňuje uživatelům procházet a deaktivovat pozvánky
         manage_reports: Spravovat hlášení
+        manage_reports_description: Umožňuje uživatelům kontrolovat přehledy a provádět moderovací akce proti nim
         manage_roles: Spravovat role
+        manage_roles_description: Umožňuje uživatelům spravovat a přiřazovat role pod nimi
         manage_rules: Spravovat pravidla
+        manage_rules_description: Umožňuje uživatelům změnit pravidla serveru
         manage_settings: Spravovat nastavení
+        manage_settings_description: Umožňuje uživatelům změnit nastavení webu
         manage_taxonomies: Správa taxonomií
+        manage_taxonomies_description: Umožňuje uživatelům zkontrolovat populární obsah a aktualizovat nastavení hashtag
         manage_user_access: Spravovat uživatelské přístupy
         manage_user_access_description: Umožňuje uživatelům rušit jiným uživatelům dvoufázové ověřování, měnit jejich e-mailovou adresu a obnovovat jim hesla
         manage_users: Spravovat uživatele
+        manage_users_description: Umožňuje uživatelům zobrazit podrobnosti ostatních uživatelů a provádět moderování proti nim
         manage_webhooks: Spravovat webhooky
+        manage_webhooks_description: Umožňuje uživatelům nastavit webhooky pro administrativní události
         view_audit_log: Zobrazovat protokol auditu
+        view_audit_log_description: Umožňuje uživatelům vidět historii administrativních akcí na serveru
         view_dashboard: Zobrazit ovládací panel
         view_dashboard_description: Umožňuje uživatelům přístup k ovládacímu panelu a různým metrikám
         view_devops: Devops
@@ -805,8 +820,8 @@ cs:
         desc_html: Zobrazeno v postranním panelu a meta značkách. V jednom odstavci popište, co je Mastodon a čím se tento server odlišuje od ostatních.
         title: Krátký popis serveru
       site_terms:
-        desc_html: Můžete si napsat vlastní zásady ochrany osobních údajů, podmínky používání či jiné právní dokumenty. Můžete použít HTML značky
-        title: Vlastní podmínky používání
+        desc_html: Můžete napsat své vlastní zásady ochrany osobních údajů. HTML tagy můžete použít
+        title: Vlastní zásady ochrany osobních údajů
       site_title: Název serveru
       thumbnail:
         desc_html: Používáno pro náhledy přes OpenGraph a API. Doporučujeme rozlišení 1200x630px
@@ -1211,6 +1226,7 @@ cs:
       add_keyword: Přidat klíčové slovo
       keywords: Klíčová slova
       statuses: Individuální příspěvky
+      statuses_hint_html: Tento filtr platí pro výběr jednotlivých příspěvků bez ohledu na to, zda odpovídají klíčovým slovům níže. <a href="%{path}">Zkontrolujte nebo odeberte příspěvky z filtru</a>.
       title: Upravit filtr
     errors:
       deprecated_api_multiple_keywords: Tyto parametry nelze změnit z této aplikace, protože se vztahují na více než jedno klíčové slovo filtru. Použijte novější aplikaci nebo webové rozhraní.
@@ -1226,6 +1242,11 @@ cs:
         many: "%{count} klíčových slov"
         one: "%{count} klíčové slovo"
         other: "%{count} klíčových slov"
+      statuses:
+        few: "%{count} příspěvků"
+        many: "%{count} příspěvků"
+        one: "%{count} příspěvek"
+        other: "%{count} příspěvků"
       title: Filtry
     new:
       save: Uložit nový filtr
@@ -1235,6 +1256,7 @@ cs:
       batch:
         remove: Odstranit z filtru
       index:
+        hint: Tento filtr se vztahuje na výběr jednotlivých příspěvků bez ohledu na jiná kritéria. Do tohoto filtru můžete přidat více příspěvků z webového rozhraní.
         title: Filtrované příspěvky
   footer:
     developers: Vývojáři
@@ -1736,7 +1758,7 @@ cs:
       <p>Tento dokument je dostupný pod licencí CC-BY-SA. Byl naposledy aktualizován 26. května 2022.</p>
 
       <p>Původně adaptováno ze <a href="https://github.com/discourse/discourse">zásad ochrany osobních údajů projektu Discourse</a>.</p>
-    title: Podmínky používání a zásady ochrany osobních údajů na serveru %{instance}
+    title: Zásady ochrany osobních údajů %{instance}
   themes:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)
