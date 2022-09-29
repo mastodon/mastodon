@@ -31,16 +31,6 @@ RSpec.describe AboutController, type: :controller do
     end
   end
 
-  describe 'GET #terms' do
-    before do
-      get :terms
-    end
-
-    it 'returns http success' do
-      expect(response).to have_http_status(200)
-    end
-  end
-
   describe 'helper_method :new_user' do
     it 'returns a new User' do
       user = @controller.view_context.new_user

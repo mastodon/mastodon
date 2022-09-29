@@ -8,10 +8,10 @@ class AboutController < ApplicationController
   before_action :require_open_federation!, only: [:show, :more]
   before_action :set_body_classes, only: :show
   before_action :set_instance_presenter
-  before_action :set_expires_in, only: [:more, :terms]
+  before_action :set_expires_in, only: [:more]
   before_action :set_registration_form_time, only: :show
 
-  skip_before_action :require_functional!, only: [:more, :terms]
+  skip_before_action :require_functional!, only: [:more]
 
   def show; end
 
@@ -25,8 +25,6 @@ class AboutController < ApplicationController
     @table_of_contents = toc_generator.toc
     @blocks            = DomainBlock.with_user_facing_limitations.by_severity if display_blocks?
   end
-
-  def terms; end
 
   helper_method :display_blocks?
   helper_method :display_blocks_rationale?

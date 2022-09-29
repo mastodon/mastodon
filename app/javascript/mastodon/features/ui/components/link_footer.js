@@ -73,7 +73,7 @@ class LinkFooter extends React.PureComponent {
     }
 
     items.push(<a key='apps' href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='navigation_bar.apps' defaultMessage='Mobile apps' /></a>);
-    items.push(<a key='terms' href='/terms' target='_blank'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of service' /></a>);
+    items.push(<a key='privacy-policy' href='/privacy-policy' target='_blank'><FormattedMessage id='getting_started.privacy_policy' defaultMessage='Privacy Policy' /></a>);
 
     if (signedIn) {
       items.push(<a key='developers' href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a>);
