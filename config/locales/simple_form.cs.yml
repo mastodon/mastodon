@@ -1,4 +1,3 @@
----
 cs:
   simple_form:
     hints:
@@ -101,7 +100,9 @@ cs:
       user_role:
         color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
         highlighted: Toto roli učiní veřejně viditelnou
+        name: Veřejný název role, pokud má být role zobrazena jako odznak
         permissions_as_keys: Uživatelé s touto rolí budou moci...
+        position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
       webhook:
         events: Zvolte odesílané události
         url: Kam budou události odesílány
@@ -249,7 +250,7 @@ cs:
       webhook:
         events: Zapnuté události
         url: URL koncového bodu
-    'no': Ne
+    'no': 'Ne'
     not_recommended: Nedoporučuje se
     recommended: Doporučeno
     required:
@@ -258,4 +259,4 @@ cs:
     title:
       sessions:
         webauthn: K přihlášení použijte jeden z Vašich bezpečnostních klíčů
-    'yes': Ano
+    'yes': 'Ano'
