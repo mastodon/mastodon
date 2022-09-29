@@ -27,6 +27,7 @@ sl:
     learn_more: Nauči se več
     logged_in_as_html: Trenutno ste prijavljeni kot %{username}.
     logout_before_registering: Ste že prijavljeni.
+    privacy_policy: Pravilnik o zasebnosti
     rules: Pravila strežnika
     rules_html: 'Spodaj je povzetek pravil, ki jim morate slediti, če želite imeti račun na tem strežniku Mastodon:'
     see_whats_happening: Poglejte, kaj se dogaja
@@ -825,6 +826,9 @@ sl:
       site_short_description:
         desc_html: Prikazano v stranski vrstici in metaoznakah. V enem odstavku opišite, kaj je Mastodon in kaj naredi ta strežnik poseben.
         title: Kratek opis strežnika
+      site_terms:
+        desc_html: Napišete lahko svoj pravilnik o zasebnosti. Uporabite lahko značke HTML.
+        title: Pravilnik o zasebnosti po meri
       site_title: Ime strežnika
       thumbnail:
         desc_html: Uporablja se za predogled prek OpenGrapha in API-ja. Priporočamo 1200x630px
@@ -1781,6 +1785,7 @@ sl:
       <p>Ta dokument je CC-BY-SA. Zadnja posodobitev je bila 7. marca 2018.</p>
 
       <p>Prvotno je bila prilagojena v skladu s <a href="https://github.com/discourse/discourse">politiko zasebnost Discourse</a>.</p>
+    title: "Pravilnik o zasebnosti %{instance}"
   themes:
     contrast: Mastodon (Visok kontrast)
     default: Mastodon (Temna)
