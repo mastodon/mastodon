@@ -258,7 +258,6 @@ sv:
         create_domain_block_html: "%{name} blockerade domänen %{target}"
         create_email_domain_block_html: "%{name} svartlistade e-postdomän %{target}"
         create_ip_block_html: "%{name} skapade regel för IP %{target}"
-        destroy_custom_emoji_html: "%{name} förstörde emoji %{target}"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
         destroy_email_domain_block_html: "%{name} avblockerade e-postdomän %{target}"
         destroy_ip_block_html: "%{name} tog bort regel för IP %{target}"
@@ -282,7 +281,6 @@ sv:
         update_custom_emoji_html: "%{name} uppdaterade emoji %{target}"
         update_domain_block_html: "%{name} uppdaterade domän-block för %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
-      deleted_status: "(raderad status)"
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
       filter_by_user: Filtrera efter användare
@@ -912,14 +910,6 @@ sv:
     admin:
       sign_up:
         subject: "%{name} registrerade sig"
-    digest:
-      action: Visa alla aviseringar
-      body: Här är en kort sammanfattning av de meddelanden du missade sedan ditt senaste besök på %{since}
-      mention: "%{name} nämnde dig i:"
-      new_followers_summary:
-        one: Du har också förvärvat en ny följare! Jippie!
-        other: Du har också fått %{count} nya följare medans du var iväg! Otroligt!
-      title: I din frånvaro...
     favourite:
       body: 'Din status favoriserades av %{name}:'
       subject: "%{name} favoriserade din status"

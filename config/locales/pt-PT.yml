@@ -235,17 +235,21 @@ pt-PT:
         approve_user: Aprovar Utilizador
         assigned_to_self_report: Atribuir Denúncia
         change_email_user: Alterar E-mail do Utilizador
+        change_role_user: Alterar Função do Utilizador
         confirm_user: Confirmar Utilizador
         create_account_warning: Criar Aviso
         create_announcement: Criar Anúncio
+        create_canonical_email_block: Criar Bloqueio de E-mail
         create_custom_emoji: Criar Emoji Personalizado
         create_domain_allow: Criar Permissão de Domínio
         create_domain_block: Criar Bloqueio de Domínio
         create_email_domain_block: Criar Bloqueio de Domínio de E-mail
         create_ip_block: Criar regra de IP
         create_unavailable_domain: Criar Domínio Indisponível
+        create_user_role: Criar Função
         demote_user: Despromover Utilizador
         destroy_announcement: Eliminar Anúncio
+        destroy_canonical_email_block: Eliminar Bloqueio de E-mail
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permissão de Domínio
         destroy_domain_block: Eliminar Bloqueio de Domínio
@@ -254,6 +258,7 @@ pt-PT:
         destroy_ip_block: Eliminar regra de IP
         destroy_status: Eliminar Publicação
         destroy_unavailable_domain: Eliminar Domínio Indisponível
+        destroy_user_role: Eliminar Função
         disable_2fa_user: Desativar 2FA
         disable_custom_emoji: Desativar Emoji Personalizado
         disable_sign_in_token_auth_user: Desativar token de autenticação por e-mail para Utilizador
@@ -280,24 +285,30 @@ pt-PT:
         update_announcement: Atualizar Anúncio
         update_custom_emoji: Atualizar Emoji Personalizado
         update_domain_block: Atualizar Bloqueio de Domínio
+        update_ip_block: Atualizar regra de IP
         update_status: Atualizar Estado
+        update_user_role: Atualizar Função
       actions:
         approve_appeal_html: "%{name} aprovou recurso da decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovou a inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} a si próprio"
         change_email_user_html: "%{name} alterou o endereço de e-mail do utilizador %{target}"
+        change_role_user_html: "%{name} alterou a função de %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do utilizador %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
+        create_canonical_email_block_html: "%{name} bloqueou o e-mail com a hash %{target}"
         create_custom_emoji_html: "%{name} carregou o novo emoji %{target}"
         create_domain_allow_html: "%{name} habilitou a federação com o domínio %{target}"
         create_domain_block_html: "%{name} bloqueou o domínio %{target}"
         create_email_domain_block_html: "%{name} bloqueou o domínio de e-mail %{target}"
         create_ip_block_html: "%{name} criou regra para o IP %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
+        create_user_role_html: "%{name} criou a função %{target}"
         demote_user_html: "%{name} despromoveu o utilizador %{target}"
         destroy_announcement_html: "%{name} eliminou o anúncio %{target}"
-        destroy_custom_emoji_html: "%{name} destruiu o emoji %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com a hash %{target}"
+        destroy_custom_emoji_html: "%{name} eliminou o emoji %{target}"
         destroy_domain_allow_html: "%{name} desabilitou a federação com o domínio %{target}"
         destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
@@ -305,6 +316,7 @@ pt-PT:
         destroy_ip_block_html: "%{name} eliminou regra para o IP %{target}"
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
+        destroy_user_role_html: "%{name} eliminou a função %{target}"
         disable_2fa_user_html: "%{name} desativou o requerimento de autenticação em dois passos para o utilizador %{target}"
         disable_custom_emoji_html: "%{name} desabilitou o emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desativou token de autenticação por e-mail para %{target}"
@@ -331,8 +343,9 @@ pt-PT:
         update_announcement_html: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio para %{target}"
+        update_ip_block_html: "%{name} alterou regra para IP %{target}"
         update_status_html: "%{name} atualizou o estado de %{target}"
-      deleted_status: "(publicação eliminada)"
+        update_user_role_html: "%{name} alterou a função %{target}"
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
       filter_by_user: Filtrar por utilizador
@@ -795,8 +808,8 @@ pt-PT:
         title: Visualização da linha temporal
       title: Configurações do site
       trendable_by_default:
-        desc_html: Afecta as hashtags que ainda não tenham sido proibidas
-        title: Permitir hashtags em tendência sem revisão prévia
+        desc_html: Conteúdo específico em tendência pode mesmo assim ser explicitamente rejeitado
+        title: Permitir tendências sem revisão prévia
       trends:
         desc_html: Exibir publicamente hashtags atualmente em destaque que já tenham sido revistas anteriormente
         title: Hashtags em destaque
@@ -1181,6 +1194,8 @@ pt-PT:
     edit:
       add_keyword: Adicionar palavra-chave
       keywords: Palavras-chave
+      statuses: Publicações individuais
+      statuses_hint_html: Este filtro aplica-se a publicações individuais selecionadas independentemente de estas corresponderem às palavras-chave abaixo. <a href="%{path}">Reveja ou remova publicações do filtro</a>.
       title: Editar filtros
     errors:
       deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir deste aplicativo porque se aplicam a mais de um filtro de palavra-chave. Use um aplicativo mais recente ou a interface web.
@@ -1194,10 +1209,23 @@ pt-PT:
       keywords:
         one: "%{count} palavra-chave"
         other: "%{count} palavras-chaves"
+      statuses:
+        one: "%{count} publicação"
+        other: "%{count} publicações"
+      statuses_long:
+        one: "%{count} publicação individual ocultada"
+        other: "%{count} publicações individuais ocultadas"
       title: Filtros
     new:
       save: Salvar novo filtro
       title: Adicionar novo filtro
+    statuses:
+      back_to_filter: Voltar ao filtro
+      batch:
+        remove: Remover do filtro
+      index:
+        hint: Este filtro aplica-se a publicações individuais selecionadas independentemente de outros critérios. Pode adicionar mais publicações a este filtro através da interface web.
+        title: Publicações filtradas
   footer:
     developers: Responsáveis pelo desenvolvimento
     more: Mais…
@@ -1205,12 +1233,22 @@ pt-PT:
     trending_now: Tendências atuais
   generic:
     all: Tudo
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item nesta página está selecionado."
+      other: Todo os <strong>%{count}</strong> items nesta página estão selecionados.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item que corresponde à sua pesquisa está selecionado."
+      other: Todos os <strong>%{count}</strong> items que correspondem à sua pesquisa estão selecionados.
     changes_saved_msg: Alterações guardadas!
     copy: Copiar
     delete: Eliminar
+    deselect: Desmarcar todos
     none: Nenhum
     order_by: Ordenar por
     save_changes: Guardar alterações
+    select_all_matching_items:
+      one: Selecione %{count} item que corresponde à sua pesquisa.
+      other: Selecione todos os %{count} items que correspondem à sua pesquisa.
     today: hoje
     validation_errors:
       one: Algo não está correcto. Por favor vê o erro abaixo
@@ -1319,17 +1357,6 @@ pt-PT:
         subject: "%{name} submeteu uma denúncia"
       sign_up:
         subject: "%{name} inscreveu-se"
-    digest:
-      action: Ver todas as notificações
-      body: Aqui tens um breve resumo do que perdeste desde o último acesso a %{since}
-      mention: "%{name} mencionou-te em:"
-      new_followers_summary:
-        one: Tens um novo seguidor! Boa!
-        other: Tens %{count} novos seguidores! Fantástico!
-      subject:
-        one: "1 nova notificação desde o seu último acesso 🐘"
-        other: "%{count} novas notificações desde o seu último acesso 🐘"
-      title: Enquanto estiveste ausente…
     favourite:
       body: 'O teu post foi adicionado aos favoritos por %{name}:'
       subject: "%{name} adicionou o teu post aos favoritos"

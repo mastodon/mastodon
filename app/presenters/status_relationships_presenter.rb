@@ -33,12 +33,7 @@ class StatusRelationshipsPresenter
     active_filters = CustomFilter.cached_filters_for(current_account_id)
 
     @filters_map = statuses.each_with_object({}) do |status, h|
-      filter_matches = active_filters.filter_map do |filter, rules|
-        next if rules[:keywords].blank?
-
-        match = rules[:keywords].match(status.proper.searchable_text)
-        FilterResultPresenter.new(filter: filter, keyword_matches: [match.to_s]) unless match.nil?
-      end
+      filter_matches = CustomFilter.apply_cached_filters(active_filters, status)
 
       unless filter_matches.empty?
         h[status.id] = filter_matches

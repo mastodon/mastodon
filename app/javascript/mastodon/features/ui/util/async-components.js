@@ -161,3 +161,7 @@ export function CompareHistoryModal () {
 export function Explore () {
   return import(/* webpackChunkName: "features/explore" */'../../explore');
 }
+
+export function FilterModal () {
+  return import(/*webpackChunkName: "modals/filter_modal" */'../components/filter_modal');
+}

@@ -187,6 +187,7 @@ module Mastodon
     option :account, type: :string
     option :domain, type: :string
     option :status, type: :numeric
+    option :days, type: :numeric
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
@@ -203,6 +204,8 @@ module Mastodon
       using username@domain handle of the account.
 
       Use the --domain option to download attachments from a specific domain.
+
+      Use the --days option to limit attachments created within days.
 
       By default, attachments that are believed to be already downloaded will
       not be re-downloaded. To force re-download of every URL, use --force.
@@ -224,8 +227,14 @@ module Mastodon
         scope = MediaAttachment.where(account_id: account.id)
       elsif options[:domain]
         scope = MediaAttachment.joins(:account).merge(Account.by_domain_and_subdomains(options[:domain]))
+      elsif options[:days].present?
+        scope = MediaAttachment.remote
       else
         exit(1)
+      end
+
+      if options[:days].present?
+        scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false))
       end
 
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|

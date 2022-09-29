@@ -11,6 +11,7 @@ import VideoModal from './video_modal';
 import BoostModal from './boost_modal';
 import AudioModal from './audio_modal';
 import ConfirmationModal from './confirmation_modal';
+import SubscribedLanguagesModal from 'mastodon/features/subscribed_languages_modal';
 import FocalPointModal from './focal_point_modal';
 import {
   MuteModal,
@@ -20,6 +21,7 @@ import {
   ListEditor,
   ListAdder,
   CompareHistoryModal,
+  FilterModal,
 } from 'mastodon/features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -37,6 +39,8 @@ const MODAL_COMPONENTS = {
   'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
   'LIST_ADDER': ListAdder,
   'COMPARE_HISTORY': CompareHistoryModal,
+  'FILTER': FilterModal,
+  'SUBSCRIBED_LANGUAGES': () => Promise.resolve({ default: SubscribedLanguagesModal }),
 };
 
 export default class ModalRoot extends React.PureComponent {

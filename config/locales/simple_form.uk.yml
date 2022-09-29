@@ -85,6 +85,7 @@ uk:
         ip: Введіть адресу IPv4 або IPv6. Ви можете блокувати цілі діапазони, використовуючи синтаксис CIDR. Будьте обережні, щоб не заблокувати себе!
         severities:
           no_access: Заблокувати доступ до всіх ресурсів
+          sign_up_block: Нові реєстрації будуть неможливі
           sign_up_requires_approval: Нові реєстрації потребуватимуть затвердження вами
         severity: Виберіть, що буде відбуватися з запитами з цієї IP
       rule:
@@ -219,6 +220,7 @@ uk:
         ip: IP
         severities:
           no_access: Заборонити доступ
+          sign_up_block: Блокувати реєстрацію
           sign_up_requires_approval: Обмеження реєстрації
         severity: Правило
       notification_emails:
@@ -251,6 +253,7 @@ uk:
         events: Увімкнені події
         url: URL кінцевої точки
     'no': Ні
+    not_recommended: Не рекомендовано
     recommended: Рекомендовано
     required:
       mark: "*"

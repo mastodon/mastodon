@@ -257,7 +257,6 @@ sc:
         create_ip_block_html: "%{name} at creadu una règula pro s'IP %{target}"
         demote_user_html: "%{name} at degradadu s'utente %{target}"
         destroy_announcement_html: "%{name} at cantzelladu s'annùntziu %{target}"
-        destroy_custom_emoji_html: "%{name} at cantzelladu s'emoji %{target}"
         destroy_domain_allow_html: "%{name} no at permìtidu sa federatzione cun su domìniu %{target}"
         destroy_domain_block_html: "%{name} at isblocadu su domìniu %{target}"
         destroy_email_domain_block_html: "%{name} at isblocadu su domìniu de posta eletrònica %{target}"
@@ -285,7 +284,6 @@ sc:
         update_custom_emoji_html: "%{name} at atualizadu s'emoji %{target}"
         update_domain_block_html: "%{name} at atualizadu su blocu de domìniu pro %{target}"
         update_status_html: "%{name} at atualizadu sa publicatzione de %{target}"
-      deleted_status: "(istadu cantzelladu)"
       empty: Perunu registru agatadu.
       filter_by_action: Filtra pro atzione
       filter_by_user: Filtra pro utente
@@ -571,9 +569,6 @@ sc:
         desc_html: Ammustra su ligàmene a sa lìnia de tempus pùblica in sa pàgina initziale e permite s'atzessu pro mèdiu de s'API a sa lìnia de tempus pùblica sena autenticatzione
         title: Permite s'atzessu no autenticadu a sa lìnia de tempus pùblica
       title: Cunfiguratzione de su logu
-      trendable_by_default:
-        desc_html: Tocat a is etichetas chi non siant istadas refudadas prima
-        title: Permite chi is etichetas divenant tendèntzia sena revisione pretzedente
       trends:
         desc_html: Ammustra in pùblicu is etichetas chi siant istadas revisionadas in passadu e chi oe siant in tendèntzia
         title: Etichetas de tendèntzia
@@ -910,14 +905,6 @@ sc:
     carry_mutes_over_text: Custa persone s'est tramudada dae %{acct}, chi as postu a sa muda.
     copy_account_note_text: 'Custa persone s''est tramudada dae %{acct}, custas sunt is notas antepostas tuas chi ddi pertocant:'
   notification_mailer:
-    digest:
-      action: Ammustra totu is notìficas
-      body: Custu est unu resumu de su chi ti est sutzèdidu dae sa visita ùrtima tua su %{since}
-      mention: "%{name} t'at mentovadu in:"
-      new_followers_summary:
-        one: In prus, %{count} persone noa ti sighit dae cando fias assente. Incredìbile!
-        other: In prus, %{count} persones noas ti sighint dae cando fias assente. Incredìbile!
-      title: Durante s'ausèntzia tua...
     favourite:
       body: "%{name} at marcadu comente a preferidu s'istadu tuo:"
       subject: "%{name} at marcadu comente a preferidu s'istadu tuo"

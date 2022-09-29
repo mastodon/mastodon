@@ -68,6 +68,11 @@ cs:
         with_dns_records: Dojde k pokusu o překlad DNS záznamů dané domény a výsledky budou rovněž zablokovány
       featured_tag:
         name: 'Nejspíš budete chtít použít jeden z těchto:'
+      filters:
+        action: Vyberte jakou akci provést, když příspěvek odpovídá filtru
+        actions:
+          hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
+          warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:
@@ -80,6 +85,7 @@ cs:
         ip: Zadejte IPv4 nebo IPv6 adresu. Můžete blokovat celé rozsahy použitím CIDR notace. Dejte pozor, ať neodříznete přístup sami sobě!
         severities:
           no_access: Blokovat přístup ke všem zdrojům
+          sign_up_block: Nové přihlášení nebude možné
           sign_up_requires_approval: Nové registrace budou vyžadovat schválení
         severity: Zvolte, jak naložit s požadavky z dané IP
       rule:
@@ -91,7 +97,9 @@ cs:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
+        role: Role určuje, která oprávnění má uživatel
       user_role:
+        color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
         highlighted: Toto roli učiní veřejně viditelnou
         permissions_as_keys: Uživatelé s touto rolí budou moci...
       webhook:
@@ -184,6 +192,7 @@ cs:
         setting_use_pending_items: Pomalý režim
         severity: Vážnost
         sign_in_token_attempt: Bezpečnostní kód
+        title: Název
         type: Typ importu
         username: Uživatelské jméno
         username_or_email: Uživatelské jméno nebo e-mail
@@ -192,6 +201,10 @@ cs:
         with_dns_records: Zahrnout MX záznamy a IP adresy domény
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Zcela skrýt
+          warn: Skrýt s varováním
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
@@ -237,6 +250,7 @@ cs:
         events: Zapnuté události
         url: URL koncového bodu
     'no': Ne
+    not_recommended: Nedoporučuje se
     recommended: Doporučeno
     required:
       mark: "*"

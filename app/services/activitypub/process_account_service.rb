@@ -32,8 +32,6 @@ class ActivityPub::ProcessAccountService < BaseService
       process_duplicate_accounts! if @options[:verified_webfinger]
     end
 
-    return if @account.nil?
-
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed? && !@options[:signed_with_known_key]
     clear_tombstones! if key_changed?
@@ -105,11 +103,13 @@ class ActivityPub::ProcessAccountService < BaseService
   def set_fetchable_attributes!
     begin
       @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
+      @account.avatar = nil if @account.avatar_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     begin
       @account.header_remote_url = image_url('image') || '' unless skip_download?
+      @account.header = nil if @account.header_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
     end

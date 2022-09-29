@@ -25,21 +25,13 @@
     every: '5m'
     class: Scheduler::IndexingScheduler
     queue: scheduler
-  media_cleanup_scheduler:
+  vacuum_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
-    class: Scheduler::MediaCleanupScheduler
-    queue: scheduler
-  feed_cleanup_scheduler:
-    cron: '<%= Random.rand(0..59) %> <%= Random.rand(0..2) %> * * *'
-    class: Scheduler::FeedCleanupScheduler
+    class: Scheduler::VacuumScheduler
     queue: scheduler
   follow_recommendations_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(6..9) %> * * *'
     class: Scheduler::FollowRecommendationsScheduler
-    queue: scheduler
-  doorkeeper_cleanup_scheduler:
-    cron: '<%= Random.rand(0..59) %> <%= Random.rand(0..2) %> * * 0'
-    class: Scheduler::DoorkeeperCleanupScheduler
     queue: scheduler
   user_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(4..6) %> * * *'
@@ -48,14 +40,6 @@
   ip_cleanup_scheduler:
     cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
     class: Scheduler::IpCleanupScheduler
-    queue: scheduler
-  email_scheduler:
-    cron: '0 10 * * 2'
-    class: Scheduler::EmailScheduler
-    queue: scheduler
-  backup_cleanup_scheduler:
-    cron: '<%= Random.rand(0..59) %> <%= Random.rand(3..5) %> * * *'
-    class: Scheduler::BackupCleanupScheduler
     queue: scheduler
   pghero_scheduler:
     cron: '0 0 * * *'

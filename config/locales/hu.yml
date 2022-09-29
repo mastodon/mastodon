@@ -237,17 +237,21 @@ hu:
         approve_user: Felhasználó Jóváhagyása
         assigned_to_self_report: Jelentés hozzárendelése
         change_email_user: Felhasználó e-mail címének módosítása
+        change_role_user: Felhasználó szerepkörének módosítása
         confirm_user: Felhasználó megerősítése
         create_account_warning: Figyelmeztetés létrehozása
         create_announcement: Közlemény létrehozása
+        create_canonical_email_block: E-mail tiltás létrehozása
         create_custom_emoji: Egyéni emodzsi létrehozása
         create_domain_allow: Domain engedélyezés létrehozása
         create_domain_block: Domain tiltás létrehozása
         create_email_domain_block: E-mail domain tiltás létrehozása
         create_ip_block: IP szabály létrehozása
         create_unavailable_domain: Elérhetetlen domain létrehozása
+        create_user_role: Szerepkör létrehozása
         demote_user: Felhasználó lefokozása
         destroy_announcement: Közlemény törlése
+        destroy_canonical_email_block: E-mail tiltás törlése
         destroy_custom_emoji: Egyéni emodzsi törlése
         destroy_domain_allow: Domain engedélyezés törlése
         destroy_domain_block: Domain tiltás törlése
@@ -256,6 +260,7 @@ hu:
         destroy_ip_block: IP szabály törlése
         destroy_status: Bejegyzés törlése
         destroy_unavailable_domain: Elérhetetlen domain törlése
+        destroy_user_role: Szerepkör eltávolítása
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
         disable_sign_in_token_auth_user: A felhasználó tokenes e-mail hitelesítésének letiltása
@@ -282,31 +287,38 @@ hu:
         update_announcement: Közlemény frissítése
         update_custom_emoji: Egyéni emodzsi frissítése
         update_domain_block: Domain tiltás frissítése
+        update_ip_block: IP-szabály frissítése
         update_status: Bejegyzés frissítése
+        update_user_role: Szerepkör frissítése
       actions:
         approve_appeal_html: "%{name} jóváhagyott egy fellebbezést %{target} moderátori döntéséről"
         approve_user_html: "%{name} jóváhagyta %{target} regisztrációját"
         assigned_to_self_report_html: "%{name} a %{target} bejelentést magához rendelte"
         change_email_user_html: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
+        change_role_user_html: "%{name} módosította %{target} szerepkörét"
         confirm_user_html: "%{name} megerősítette %{target} e-mail-címét"
         create_account_warning_html: "%{name} figyelmeztetést küldött %{target} számára"
         create_announcement_html: "%{name} új közleményt hozott létre: %{target}"
+        create_canonical_email_block_html: "%{name} letiltotta a(z) %{target} hashű e-mailt"
         create_custom_emoji_html: "%{name} új emodzsit töltött fel: %{target}"
         create_domain_allow_html: "%{name} engedélyezte a föderációt %{target} domainnel"
         create_domain_block_html: "%{name} letiltotta a %{target} domaint"
         create_email_domain_block_html: "%{name} letiltotta a %{target} e-mail domaint"
-        create_ip_block_html: "%{name} létrehozott egy szabályt a %{target} IP-vel kapcsolatban"
+        create_ip_block_html: "%{name} létrehozta a(z) %{target} IP-címre vonatkozó szabályt"
         create_unavailable_domain_html: "%{name} leállította a kézbesítést a %{target} domainbe"
+        create_user_role_html: "%{name} létrehozta a(z) %{target} szerepkört"
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
         destroy_announcement_html: "%{name} törölte a %{target} közleményt"
-        destroy_custom_emoji_html: "%{name} törölte az emodzsit: %{target}"
+        destroy_canonical_email_block_html: "%{name} engedélyezte a(z) %{target} hashű e-mailt"
+        destroy_custom_emoji_html: "%{name} törölte a(z) %{target} emodzsit"
         destroy_domain_allow_html: "%{name} letiltotta a föderációt a %{target} domainnel"
         destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
         destroy_email_domain_block_html: "%{name} engedélyezte a %{target} e-mail domaint"
         destroy_instance_html: "%{name} véglegesen törölte a(z) %{target} domaint"
-        destroy_ip_block_html: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
+        destroy_ip_block_html: "%{name} törölte a(z) %{target} IP-címre vonatkozó szabályt"
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
+        destroy_user_role_html: "%{name} törölte a(z) %{target} szerepkört"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta az emodzsit: %{target}"
         disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail hitelesítést %{target} felhasználóra"
@@ -333,8 +345,9 @@ hu:
         update_announcement_html: "%{name} frissítette a %{target} közleményt"
         update_custom_emoji_html: "%{name} frissítette az emodzsit: %{target}"
         update_domain_block_html: "%{name} frissítette a %{target} domain tiltását"
+        update_ip_block_html: "%{name} módosította a(z) %{target} IP-címre vonatkozó szabályt"
         update_status_html: "%{name} frissítette %{target} felhasználó bejegyzését"
-      deleted_status: "(törölt bejegyzés)"
+        update_user_role_html: "%{name} módosította a(z) %{target} szerepkört"
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
       filter_by_user: Szűrés felhasználó alapján
@@ -698,7 +711,7 @@ hu:
         manage_settings: Beállítások kezelése
         manage_settings_description: Lehetővé teszi, hogy a felhasználó megváltoztassa az oldal beállításait
         manage_taxonomies: Taxonómiák kezelése
-        manage_taxonomies_description: Lehetővé teszi, hogy a felhasználó átnézze a népszerű tartalmakat és frissítse a hashtag-ek beállításait
+        manage_taxonomies_description: Lehetővé teszi, hogy a felhasználó átnézze a népszerű tartalmakat és frissítse a hashtagek beállításait
         manage_user_access: Felhasználói hozzáférések kezelése
         manage_user_access_description: Lehetővé teszi, hogy a felhasználó letiltsa mások kétlépcsős azonosítását, megváltoztassa az email címüket, és alaphelyzetbe állítsa a jelszavukat
         manage_users: Felhasználók kezelése
@@ -794,11 +807,11 @@ hu:
         title: A szerver bélyegképe
       timeline_preview:
         desc_html: Nyilvános idővonal megjelenítése a főoldalon
-        title: Idővonal előnézete
+        title: A nyilvános idővonal hitelesítés nélküli elérésének engedélyezése
       title: Webhely beállításai
       trendable_by_default:
-        desc_html: Azokra a hashtagekere hat, melyet előzőleg nem tiltottak le
-        title: Felkapott hashtagek engedélyezése előzetes ellenőrzés nélkül
+        desc_html: Az egyes felkapott tartalmak továbbra is explicit módon tilthatók
+        title: Trendek engedélyezése előzetes ellenőrzés nélkül
       trends:
         desc_html: Előzetesen engedélyezett és most felkapott hashtagek nyilvános megjelenítése
         title: Felkapott hashtagek
@@ -1183,6 +1196,8 @@ hu:
     edit:
       add_keyword: Kulcsszó hozzáadása
       keywords: Kulcsszavak
+      statuses: Egyedi bejegyzések
+      statuses_hint_html: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik, függetlenül attól, hogy megfelelnek-e a lenti kulcsszavaknak. <a href="%{path}">Engedélyezze vagy távolítsa el a bejegyzéseket a szűrőből</a>.
       title: Szűrő szerkesztése
     errors:
       deprecated_api_multiple_keywords: Ezek a paraméterek nem módosíthatóak az alkalmazásból, mert több mint egy szűrőkulcsszóra is hatással vannak. Használd az alkalmazás vagy a webes felület újabb verzióját.
@@ -1196,10 +1211,23 @@ hu:
       keywords:
         one: "%{count} kulcsszó"
         other: "%{count} kulcsszó"
+      statuses:
+        one: "%{count} bejegyzés"
+        other: "%{count} bejegyzés"
+      statuses_long:
+        one: "%{count} egyedi bejegyzés elrejtve"
+        other: "%{count} egyedi bejegyzés elrejtve"
       title: Szűrők
     new:
       save: Új szűrő mentése
       title: Új szűrő hozzáadása
+    statuses:
+      back_to_filter: Vissza a szűrőhöz
+      batch:
+        remove: Eltávolítás a szűrőből
+      index:
+        hint: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik a megadott kritériumoktól függetlenül. Újabb bejegyzéseket adhatsz hozzá ehhez a szűrőhöz a webes felületen keresztül.
+        title: Megszűrt bejegyzések
   footer:
     developers: Fejlesztőknek
     more: Többet…
@@ -1207,12 +1235,22 @@ hu:
     trending_now: Most felkapott
   generic:
     all: Mind
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> elem kiválasztva ezen az oldalon."
+      other: Mind a(z) <strong>%{count}</strong> elem kiválasztva ezen az oldalon.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva."
+      other: Mind a(z) <strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva.
     changes_saved_msg: A változásokat elmentettük!
     copy: Másolás
     delete: Törlés
+    deselect: Összes kiválasztás megszüntetése
     none: Nincs
     order_by: Rendezés
     save_changes: Változások mentése
+    select_all_matching_items:
+      one: "%{count}, a keresésnek megfelelő elem kiválasztása."
+      other: Mind a(z) %{count}, a keresésnek megfelelő elem kiválasztása.
     today: ma
     validation_errors:
       one: Valami nincs rendjén! Tekintsd meg a hibát lent
@@ -1321,17 +1359,6 @@ hu:
         subject: "%{name} bejelentést küldött"
       sign_up:
         subject: "%{name} feliratkozott"
-    digest:
-      action: Összes értesítés megtekintése
-      body: Itt a legutóbbi látogatásod (%{since}) óta írott üzenetek rövid összefoglalása
-      mention: "%{name} megemlített itt:"
-      new_followers_summary:
-        one: Sőt, egy új követőd is lett, amióta nem jártál itt. Hurrá!
-        other: Sőt, %{count} új követőd is lett, amióta nem jártál itt. Hihetetlen!
-      subject:
-        one: "1 új értesítés az utolsó látogatásod óta 🐘"
-        other: "%{count} új értesítés az utolsó látogatásod óta 🐘"
-      title: Amíg távol voltál…
     favourite:
       body: 'A bejegyzésedet kedvencnek jelölte %{name}:'
       subject: "%{name} kedvencnek jelölte a bejegyzésedet"

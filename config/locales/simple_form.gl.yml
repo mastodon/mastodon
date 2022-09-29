@@ -85,6 +85,7 @@ gl:
         ip: Escribe un enderezo IPv4 ou IPv6. Podes bloquear rangos completos usando a sintaxe CIDR. Ten coidado e non te bloquees a ti mesma!
         severities:
           no_access: Bloquear acceso a tódolos recursos
+          sign_up_block: Non se poderán rexistrar novas contas
           sign_up_requires_approval: Os novos rexistros requerirán a túa aprobación
         severity: Escolle que acontecerá coas peticións desde este IP
       rule:
@@ -219,6 +220,7 @@ gl:
         ip: IP
         severities:
           no_access: Bloquear acceso
+          sign_up_block: Bloquear novos rexistros
           sign_up_requires_approval: Limitar o rexistro
         severity: Regra
       notification_emails:
@@ -251,6 +253,7 @@ gl:
         events: Eventos activados
         url: URL do extremo
     'no': Non
+    not_recommended: Non é recomendable
     recommended: Recomendado
     required:
       mark: "*"

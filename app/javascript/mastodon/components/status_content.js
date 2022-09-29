@@ -1,19 +1,21 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
-import { autoPlayGif } from 'mastodon/initial_state';
+import { autoPlayGif, languages as preloadedLanguages } from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
-export default class StatusContent extends React.PureComponent {
+export default @injectIntl
+class StatusContent extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -21,9 +23,11 @@ export default class StatusContent extends React.PureComponent {
     expanded: PropTypes.bool,
     showThread: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
+    onTranslate: PropTypes.func,
     onClick: PropTypes.func,
     collapsable: PropTypes.bool,
     onCollapsedToggle: PropTypes.func,
+    intl: PropTypes.object,
   };
 
   state = {
@@ -163,20 +167,27 @@ export default class StatusContent extends React.PureComponent {
     }
   }
 
+  handleTranslate = () => {
+    this.props.onTranslate();
+  }
+
   setRef = (c) => {
     this.node = c;
   }
 
   render () {
-    const { status } = this.props;
+    const { status, intl } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
+    const renderTranslate = this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && intl.locale !== status.get('language');
+    const language = preloadedLanguages.find(lang => lang[0] === status.get('language'));
+    const languageName = language ? language[2] : status.get('language');
 
-    const content = { __html: status.get('contentHtml') };
+    const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
-    const lang = status.get('language');
+    const lang = status.get('translation') ? intl.locale : status.get('language');
     const classNames = classnames('status__content', {
       'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
@@ -192,6 +203,12 @@ export default class StatusContent extends React.PureComponent {
     const readMoreButton = (
       <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
         <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
+      </button>
+    );
+
+    const translateButton = (
+      <button className='status__content__read-more-button' onClick={this.handleTranslate}>
+        {status.get('translation') ? <span><FormattedMessage id='status.translated_from' defaultMessage='Translated from {lang}' values={{ lang: languageName }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
       </button>
     );
 
@@ -223,7 +240,7 @@ export default class StatusContent extends React.PureComponent {
           <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} translate`} lang={lang} dangerouslySetInnerHTML={content} />
 
           {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
-
+          {!hidden && renderTranslate && translateButton}
           {renderViewThread && showThreadButton}
         </div>
       );
@@ -233,7 +250,7 @@ export default class StatusContent extends React.PureComponent {
           <div className='status__content__text status__content__text--visible translate' lang={lang} dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
-
+          {renderTranslate && translateButton}
           {renderViewThread && showThreadButton}
         </div>,
       ];
@@ -249,7 +266,7 @@ export default class StatusContent extends React.PureComponent {
           <div className='status__content__text status__content__text--visible translate' lang={lang} dangerouslySetInnerHTML={content} />
 
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
-
+          {renderTranslate && translateButton}
           {renderViewThread && showThreadButton}
         </div>
       );

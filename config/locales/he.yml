@@ -35,11 +35,12 @@ he:
     server_stats: 'סטטיסטיקות שרת:'
     source_code: קוד מקור
     status_count_after:
-      many: חצרוצים
-      one: חצרוץ
-      other: חצרוצים
-      two: חצרוצים
+      many: פוסטים
+      one: פוסט
+      other: פוסטים
+      two: פוסטים
     status_count_before: שכתבו
+    tagline: רשת חברתית מבוזרת
     terms: תנאי שימוש
     unavailable_content: שרתים מוגבלים
     unavailable_content_description:
@@ -83,10 +84,10 @@ he:
     pin_errors:
       following: עליך לעקוב אחרי חשבון לפני שניתן יהיה להמליץ עליו
     posts:
-      many: חצרוצים
-      one: חצרוץ
-      other: חצרוצים
-      two: חצרוצים
+      many: פוסטים
+      one: פוסט
+      other: פוסטים
+      two: פוסטים
     posts_tab_heading: חצרוצים
     posts_with_replies: חצרוצים ותגובות
     roles:
@@ -110,11 +111,17 @@ he:
       avatar: יַצְגָן
       by_domain: שם מתחם
       change_email:
+        changed_msg: דוא"ל שונה בהצלחה
         current_email: כתובת דוא"ל נוכחית
         label: שינוי כתובת דוא"ל משוייכת לחשבון
         new_email: כתובת דוא"ל חדשה
         submit: שלחי בקשה לשינוי דוא"ל
         title: שינוי כתובת דוא"ל עבור המשתמש.ת %{username}
+      change_role:
+        changed_msg: תפקיד שונה בהצלחה !
+        label: שנה תפקיד
+        no_role: ללא תפקיד
+        title: שינוי תפקיד  עבור המשתמש.ת %{username}
       confirm: אישור
       confirmed: אושר
       confirming: המאשר
@@ -158,6 +165,7 @@ he:
         active: פעילים
         all: הכל
         pending: בהמתנה
+        silenced: מוגבלים
         suspended: מושהים
         title: ניהול קהילה
       moderation_notes: הודעות מנחה
@@ -165,6 +173,7 @@ he:
       most_recent_ip: כתובות אחרונות
       no_account_selected: לא בוצעו שינויים בחשבונות ל שכן לא נבחרו חשבונות
       no_limits_imposed: לא הוטלו הגבלות
+      no_role_assigned: ללא תפקיד
       not_subscribed: לא רשום
       pending: ממתינים לסקירה
       perform_full_suspension: ביצוע השעייה מלאה
@@ -191,14 +200,15 @@ he:
         send: שלח מחדש דוא"ל אימות
         success: הודעת האימייל נשלחה בהצלחה!
       reset: איפוס
-      reset_password: אתחול סיסמא
+      reset_password: איפוס סיסמה
       resubscribe: להרשם מחדש
+      role: תפקיד
       search: חיפוש
       search_same_email_domain: משתמשים אחרים מאותו דומיין דוא"ל
       search_same_ip: משתמשים אחרים מאותה כתובת IP
       security_measures:
-        only_password: סיסמא בלבד
-        password_and_2fa: סיסמא ואימות דו-גורמי
+        only_password: סיסמה בלבד
+        password_and_2fa: סיסמה ואימות דו-שלבי
       sensitive: מאולצים לרגישות
       sensitized: מסומנים כרגישים
       shared_inbox_url: תיבה משותפת לדואר נכנס
@@ -235,6 +245,7 @@ he:
         approve_user: אישור משתמש
         assigned_to_self_report: הקצאת דו"ח
         change_email_user: שינוי כתובת דוא"ל למשתמש
+        change_role_user: שינוי תפקיד למשתמש
         confirm_user: אשר משתמש
         create_account_warning: יצירת אזהרה
         create_announcement: יצירת הכרזה
@@ -244,6 +255,7 @@ he:
         create_email_domain_block: יצירת חסימת דומיין דוא"ל
         create_ip_block: יצירת כלל IP
         create_unavailable_domain: יצירת דומיין בלתי זמין
+        create_user_role: יצירת תפקיד
         demote_user: הורדת משתמש בדרגה
         destroy_announcement: מחיקת הכרזה
         destroy_custom_emoji: מחיקת אמוג'י יחודי
@@ -252,8 +264,9 @@ he:
         destroy_email_domain_block: מחיקת חסימת דומיין דוא"ל
         destroy_instance: טיהור דומיין
         destroy_ip_block: מחיקת כלל IP
-        destroy_status: מחיקת חצרוץ
+        destroy_status: מחיקת פוסט
         destroy_unavailable_domain: מחיקת דומיין בלתי זמין
+        destroy_user_role: מחיקת תפקיד
         disable_2fa_user: השעיית זיהוי דו-גורמי
         disable_custom_emoji: השעיית אמוג'י מיוחד
         disable_sign_in_token_auth_user: השעיית אסימון הזדהות בדוא"ל של משתמש
@@ -267,7 +280,7 @@ he:
         reject_user: דחיית משתמש
         remove_avatar_user: הסרת תמונת פרופיל
         reopen_report: פתיחת דו"ח מחדש
-        reset_password_user: איפוס סיסמא
+        reset_password_user: איפוס סיסמה
         resolve_report: פתירת דו"ח
         sensitive_account: חשבון רגיש לכח
         silence_account: הגבלת חשבון
@@ -281,11 +294,13 @@ he:
         update_custom_emoji: עדכון סמלון מותאם אישית
         update_domain_block: עדכון חסימת שם מתחם
         update_status: סטטוס עדכון
+        update_user_role: עדכון תפקיד
       actions:
         approve_appeal_html: "%{name} אישר/ה ערעור על החלטת מנהלי הקהילה מ-%{target}"
         approve_user_html: "%{name} אישר/ה הרשמה מ-%{target}"
         assigned_to_self_report_html: '%{name} הקצה/תה דו"ח %{target} לעצמם'
         change_email_user_html: '%{name} שינה/תה את כתובת הדוא"ל של המשתמש %{target}'
+        change_role_user_html: "%{name} שינה את התפקיד של %{target}"
         confirm_user_html: '%{name} אישר/ה את כותבת הדו"אל של המשתמש %{target}'
         create_account_warning_html: "%{name} שלח/ה אזהרה ל %{target}"
         create_announcement_html: "%{name} יצר/ה הכרזה חדשה %{target}"
@@ -295,16 +310,18 @@ he:
         create_email_domain_block_html: '%{name} חסם/ה את דומיין הדוא"ל %{target}'
         create_ip_block_html: "%{name} יצר/ה כלל עבור IP %{target}"
         create_unavailable_domain_html: "%{name} הפסיק/ה משלוח לדומיין %{target}"
+        create_user_role_html: "%{name} יצר את התפקיד של %{target}"
         demote_user_html: "%{name} הוריד/ה בדרגה את המשתמש %{target}"
         destroy_announcement_html: "%{name} מחק/ה את ההכרזה %{target}"
-        destroy_custom_emoji_html: "%{name} השמיד/ה את האמוג'י %{target}"
+        destroy_custom_emoji_html: "%{name} מחק אמוג'י של %{target}"
         destroy_domain_allow_html: "%{name} לא התיר/ה פדרציה עם הדומיין %{target}"
         destroy_domain_block_html: "%{name} הסיר/ה חסימה מהדומיין %{target}"
         destroy_email_domain_block_html: '%{name} הסיר/ה חסימה מדומיין הדוא"ל %{target}'
         destroy_instance_html: "%{name} טיהר/ה את הדומיין %{target}"
         destroy_ip_block_html: "%{name} מחק/ה את הכלל עבור IP %{target}"
-        destroy_status_html: "%{name} הסיר/ה חצרוץ מאת %{target}"
+        destroy_status_html: "%{name} הסיר/ה פוסט מאת %{target}"
         destroy_unavailable_domain_html: "%{name} התחיל/ה מחדש משלוח לדומיין %{target}"
+        destroy_user_role_html: "%{name} ביטל את התפקיד של %{target}"
         disable_2fa_user_html: "%{name} ביטל/ה את הדרישה לאימות דו-גורמי למשתמש %{target}"
         disable_custom_emoji_html: "%{name} השבית/ה את האמוג'י %{target}"
         disable_sign_in_token_auth_user_html: '%{name} השבית/ה את האימות בעזרת אסימון דוא"ל עבור %{target}'
@@ -318,7 +335,7 @@ he:
         reject_user_html: "%{name} דחו הרשמה מ-%{target}"
         remove_avatar_user_html: "%{name} הסירו את תמונת הפרופיל של %{target}"
         reopen_report_html: '%{name} פתח מחדש דו"ח %{target}'
-        reset_password_user_html: "%{name} איפס/ה סיסמא עבור המשתמש %{target}"
+        reset_password_user_html: הסיסמה עבור המשתמש %{target} התאפסה על־ידי %{name}
         resolve_report_html: '%{name} פתר/ה דו"ח %{target}'
         sensitive_account_html: "%{name} סימן/ה את המדיה של %{target} כרגיש"
         silence_account_html: "%{name} הגביל/ה את חשבונו של %{target}"
@@ -331,8 +348,8 @@ he:
         update_announcement_html: "%{name} עדכן/ה הכרזה %{target}"
         update_custom_emoji_html: "%{name} עדכן/ה אמוג'י %{target}"
         update_domain_block_html: "%{name} עדכן/ה חסימת דומיין עבור %{target}"
-        update_status_html: "%{name} עדכן/ה חצרוץ של %{target}"
-      deleted_status: "(חצרוץ נמחק)"
+        update_status_html: "%{name} עדכן/ה פוסט של %{target}"
+        update_user_role_html: "%{name} שינה את התפקיד של %{target}"
       empty: לא נמצאו יומנים.
       filter_by_action: סינון לפי פעולה
       filter_by_user: סינון לפי משתמש
@@ -436,6 +453,7 @@ he:
       destroyed_msg: חסימת שרת בוטלה
       domain: שרת
       edit: עריכת חסימת שם מתחם
+      existing_domain_block: כבר החלת הגבלות מחמירות יותר על %{name}
       existing_domain_block_html: כבר הפעלת הגבלות חמורות יותר על %{name}, עליך ראשית <a href="%{unblock_url}">להסיר מעליו/ה את החסימה</a>.
       new:
         create: יצירת חסימה
@@ -666,6 +684,71 @@ he:
       unresolved: לא פתור
       updated_at: עודכן
       view_profile: צפה בפרופיל
+    roles:
+      add_new: הוספת תפקיד
+      assigned_users:
+        many: "%{count} משתמשים"
+        one: 'משתמש %{count} '
+        other: "%{count} משתמשים"
+        two: "%{count} שני משתמשים"
+      categories:
+        administration: ניהול מערכת
+        devops: פיתוח
+        invites: הזמנות
+        moderation: פיקוח
+        special: מיוחדים
+      delete: מחיקה
+      description_html: באמצעות <strong>תפקידי משתמש</strong>, תוכלו להתאים אישית לאילו פונקציות ואזורים של מסטודון המשתמשים יוכלו לגשת
+      edit: עריכת התפקיד של %{name}
+      everyone: הרשאות ברירת מחדל
+      everyone_full_description_html: זהו <strong>התפקיד הבסיסי </strong> שמשפיע על <strong>כלל המשתשמשים</strong>, אפילו אלו ללא תפקיד. כל התפקידים האחרים יורשים את ההרשאות שלהם ממנו.
+      permissions_count:
+        many: "%{count} הרשאות"
+        one: הרשאה %{count}
+        other: "%{count} הרשאות"
+        two: "%{count} הרשאות"
+      privileges:
+        administrator: מנהל מערכת
+        administrator_description: משתמשים עם הרשאה זו יוכלו לעקוף כל הרשאה
+        delete_user_data: מחיקת כל נתוני המשתמש
+        delete_user_data_description: מאפשר למשתמשים למחוק נתוני משתמשים אחרים ללא דיחוי
+        invite_users: הזמנת משתמשים
+        invite_users_description: מאפשר למשתמשים להזמין אנשים חדשים לשרת
+        manage_announcements: ניהול הכרזות
+        manage_announcements_description: מאפשר למשתמשים לנהל הכרזות של השרת
+        manage_appeals: ניהול ערעורים
+        manage_appeals_description: מאפשר למשתמשים לסקור ערעורים כנגד פעולות מודרציה
+        manage_blocks: ניהול חסימות
+        manage_blocks_description: מאפשר למשתמשים לחסום ספקי דוא"ל וכתובות IP
+        manage_custom_emojis: ניהול סמלונים בהתאמה אישית
+        manage_custom_emojis_description: מאפשר למשתמשים לנהל סמלונים בהתאמה אישית של השרת
+        manage_federation: ניהול פדרציה
+        manage_federation_description: מאפשר למשתמשים לחסום או לאפשר התממשקות עם שמות מתחם אחרים
+        manage_invites: ניהול הזמנות
+        manage_invites_description: מאפשר למשתמשים לעלעל ב ולבטל קישורי הזמנה
+        manage_reports: ניהול דו"חות
+        manage_reports_description: מאפשר למשתמשים לסקור דו"חות ולבצע פעולות מודרציה בהתבסס עליהם
+        manage_roles: ניהול תפקידים
+        manage_roles_description: מאפשר למשתמשים לנהל ולמנות אחרים לתפקידים נמוכים יותר משלהם.
+        manage_rules: ניהול כללים
+        manage_rules_description: מאפשר למשתמשים לנהל את כללי השרת
+        manage_settings: נהל הגדרות
+        manage_settings_description: מאפשר למשתמשים לנהל את הגדרות השרת
+        manage_taxonomies: ניהול טקסונומיות
+        manage_taxonomies_description: מאפשר למשתמשים לסקור תוכן אופנתי (טרנדי) ולעדכן אפשרויות של תגיות.
+        manage_user_access: ניהול גישת משתמשים
+        manage_user_access_description: מאפשר למשתמשים לבטל אימות דו-שלבי של משתמשים אחרים, לשנות את כתובות הדוא"ל שלהם, ולאפס את סיסמתם
+        manage_users: ניהול משתמשים
+        manage_users_description: מאפשר למשתמשים לצפות בפרטים של משתמשים אחרים ולבצע פעולות מודרציה לפיהם
+        manage_webhooks: ניהול Webhooks
+        manage_webhooks_description: מאפשר למשתמשים להגדיר Webhooks לאירועים מנהלתיים
+        view_audit_log: צפייה בלוג ביקורת
+        view_audit_log_description: מאפשר למשתשמשים לצפות בהיסטוריה של פעולות מנהלתיות על השרת
+        view_dashboard: הצג לוח מחוונים
+        view_dashboard_description: אפשר למשתמשים לגשת ללוח המחוונים
+        view_devops: פיתוח
+        view_devops_description: מאפשר למשתמשים לגשת ללוחות המחוונים של Sidekiq ושל pgHero
+      title: תפקידים
     rules:
       add_new: הוספת כלל
       delete: מחיקה
@@ -750,9 +833,6 @@ he:
         desc_html: הצגת קישורית לפיד הפומבי מדף הנחיתה והרשאה לממשק לגשת לפיד הפומבי ללא אימות
         title: הרשאת גישה בלתי מאומתת לפיד הפומבי
       title: הגדרות אתר
-      trendable_by_default:
-        desc_html: משפיע על האשתגיות שלא נאסרו קודם לכן
-        title: הרשאה להאשתגיות להופיע בנושאים החמים ללא אישור מוקדם
       trends:
         desc_html: הצגה פומבית של תוכן שנסקר בעבר ומופיע כרגע בנושאים החמים
         title: נושאים חמים
@@ -825,10 +905,10 @@ he:
         title: מפרסמים
       rejected: דחוי
       statuses:
-        allow: הרשאת חצרוץ
+        allow: הרשאת פוסט
         allow_account: הרשאת מחבר/ת
         description_html: אלו הם חצרוצים שהשרת שלך מכיר וזוכים להדהודים וחיבובים רבים כרגע. זה עשוי למשתמשיך החדשים והחוזרים למצוא עוד נעקבים. החצרוצים לא מוצגים עד שיאושר המחבר/ת, והמחבר/ת יאשרו שחשבונים יומלץ לאחרים. ניתן לאשר או לדחות חצרוצים ספציפיים.
-        disallow: לא לאשר חצרוץ
+        disallow: לדחות פוסט
         disallow_account: לא לאשר מחבר/ת
         not_discoverable: המחבר/ת לא בחר/ה לאפשר את גילויים
         shared_by:
@@ -870,13 +950,26 @@ he:
       empty: לא הגדרת עדיין שום טקסט מוכן מראש לאזהרה.
       title: ניהול טקסטים מוכנים מראש לאזהרות
     webhooks:
+      add_new: הוספת נקודת קצה
       delete: מחיקה
       disable: כיבוי
       disabled: כבוי
+      edit: עריכת נקודת קצה
+      empty: לא הוגדו נקודות קצה להתליות רשת עדיין.
       enable: אפשר
       enabled: פעילים
+      enabled_events:
+        many: "%{count} אירועים אופשרו"
+        one: אירוע %{count} מאופשר
+        other: "%{count} אירועים אופשרו"
+        two: "%{count} אירועים אופשרו"
       events: אירועים
+      new: Webhook חדש
+      rotate_secret: החלף מפתח
+      secret: מפתח הרשמה
       status: סטטוס
+      title: התליות רשת
+      webhook: התליית רשת
   admin_mailer:
     new_appeal:
       actions:
@@ -905,7 +998,7 @@ he:
         title: נושאים חמים
       new_trending_statuses:
         no_approved_statuses: אין כרגע שום חצרוצים חמים מאושרים.
-        requirements: כל אחד מהמועמדים האלה עשוי לעבור החצרוץ החם המאושר מדרגה %{rank}, שההא כרגע %{lowest_status_url} עם ציון של %{lowest_status_score}.
+        requirements: כל אחד מהמועמדים האלה עשוי לעבור את הפוסט החם המאושר מדרגה %{rank}, שהוא כרגע %{lowest_status_url} עם ציון של %{lowest_status_score}.
         title: חצרוצים לוהטים
       new_trending_tags:
         no_approved_tags: אין כרגע שום האשתגיות חמות מאושרות.
@@ -930,14 +1023,14 @@ he:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: כולם יכולים לתרום.
     sensitive_content: תוכן רגיש
-    toot_layout: פריסת חצרוץ
+    toot_layout: פריסת פוסט
   application_mailer:
     notification_preferences: שינוי העדפות דוא"ל
     salutation: "%{name},"
     settings: 'שינוי הגדרות דוא"ל: %{link}'
     view: 'תצוגה:'
     view_profile: צפיה בפרופיל
-    view_status: הצגת חצרוץ
+    view_status: הצגת פוסט
   applications:
     created: ישום נוצר בהצלחה
     destroyed: ישום נמחק בהצלחה
@@ -947,7 +1040,7 @@ he:
     your_token: אסימון הגישה שלך
   auth:
     apply_for_account: בקשת הזמנה
-    change_password: סיסמא
+    change_password: סיסמה
     checkbox_agreement_html: אני מסכים/ה ל<a href="%{rules_path}" target="_blank">כללי השרת</a> ול<a href="%{terms_path}" target="_blank">תנאי השימוש</a>
     checkbox_agreement_without_rules_html: אני מסכים/ה ל<a href="%{terms_path}" target="_blank">תנאי השימוש</a>
     delete_account: מחיקת חשבון
@@ -959,7 +1052,7 @@ he:
     didnt_get_confirmation: לא התקבלו הוראות אימות?
     dont_have_your_security_key: אין לך מפתח אבטחה?
     forgot_password: הנשתכחה סיסמתך?
-    invalid_reset_password_token: אסימון איפוס הסיסמא לא תקין או פג תוקף. נא לבקש אחד חדש.
+    invalid_reset_password_token: טוקן איפוס הסיסמה אינו תקין או שפג תוקף. נא לבקש אחד חדש.
     link_to_otp: נא להכניס את קוד האימות הדו-גורמי מהטלפון או את קוד האחזור
     link_to_webauth: נא להשתמש במכשיר מפתח האבטחה
     log_in_with: התחבר באמצעות
@@ -974,9 +1067,9 @@ he:
     register: הרשמה
     registration_closed: "%{instance} לא מקבל חברים חדשים"
     resend_confirmation: שלח הוראות אימות בשנית
-    reset_password: איפוס סיסמא
-    security: החלפת סיסמא
-    set_new_password: שינוי סיסמא
+    reset_password: איפוס סיסמה
+    security: אבטחה
+    set_new_password: סיסמה חדשה
     setup:
       email_below_hint_html: אם כתובת הדוא"ל להלן לא נכונה, ניתן לשנותה כאן ולקבל דוא"ל אישור חדש.
       email_settings_hint_html: דוא"ל האישור נשלח ל-%{email}. אם כתובת הדוא"ל הזו לא נכונה, ניתן לשנותה בהגדרות החשבון.
@@ -1006,8 +1099,8 @@ he:
   challenge:
     confirm: המשך
     hint_html: "<strong>טיפ:</strong> לא נבקש את סיסמתך שוב בשעה הקרובה."
-    invalid_password: סיסמא שגויה
-    prompt: אשר/י סיסמא להמשך
+    invalid_password: סיסמה שגויה
+    prompt: יש לאשר את הסיסמה כדי להמשיך
   crypto:
     errors:
       invalid_key: זהו לא מפתח Ed25519 או Curve25519 קביל
@@ -1032,7 +1125,7 @@ he:
       x_seconds: "%{count} שניות"
   deletes:
     challenge_not_passed: המידע שהכנסת לא היה נכון
-    confirm_password: נא להכניס את הסיסמא הנוכחית כדי לוודא את זהותך
+    confirm_password: נא להכניס את הסיסמה הנוכחית כדי לאמת את זהותך
     confirm_username: נא להכניס את שם המשתמש כדאי לאשר את הפעולה
     proceed: מחיקת חשבון
     success_msg: חשבונך נמחק בהצלחה
@@ -1061,15 +1154,17 @@ he:
       appealed_msg: הערעור שלך הוגש. במידה ויאושר, תיודע.
       appeals:
         submit: הגש ערעור
+      approve_appeal: קבלת ערעור
       associated_report: הדו"ח המשויך
       created_at: מתאריך
       description_html: אלו הן הפעולות שננקטו כנגד חשבונך והאזהרות שנשלחו אליך על ידי צוות %{instance}.
       recipient: הנמען
-      status: 'חצרוץ #%{id}'
-      status_removed: החצרוץ כבר הוסר מהמערכת
+      reject_appeal: דחיית ערעור
+      status: 'פוסט #%{id}'
+      status_removed: הפוסט כבר הוסר מהמערכת
       title: "%{action} מתאריך %{date}"
       title_actions:
-        delete_statuses: הסרת חצרוץ
+        delete_statuses: הסרת פוסט
         disable: הקפאת חשבון
         mark_statuses_as_sensitive: סימון חצרוצים כרגישים
         none: אזהרה
@@ -1127,15 +1222,35 @@ he:
       public: פידים פומביים
       thread: שיחות
     edit:
+      add_keyword: הוספת מילת מפתח
+      keywords: מילות מפתח
+      statuses: פוסטים יחידים
       title: ערוך מסנן
     errors:
+      deprecated_api_multiple_keywords: לא ניתן לשנות פרמטרים אלו מהיישומון הזה בגלל שהם חלים על יותר ממילת מפתח אחת. ניתן להשתמש ביישומון מעודכן יותר או בממשק הוובי.
       invalid_context: לא סופק הקשר או הקשר לא תקין
     index:
+      contexts: פילטרים ב %{contexts}
       delete: למחוק
       empty: אין לך מסננים.
+      expires_in: פג תוקף ב %{distance}
+      expires_on: פג תוקף ב %{date}
+      keywords:
+        many: "%{count} מילות מפתח"
+        one: מילת מפתח %{count}
+        other: "%{count} מילות מפתח"
+        two: "%{count} מילות מפתח"
       title: מסננים
     new:
+      save: שמירת מסנן חדש
       title: הוספת מסנן חדש
+    statuses:
+      back_to_filter: חזרה לפילטר
+      batch:
+        remove: הסרה מפילטר
+      index:
+        hint: פילטר זה חל באופן של בחירת פוסטים בודדים ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד פוסטים לפילטר זה ממשק הווב.
+        title: פוסטים שסוננו
   footer:
     developers: מפתחות
     more: עוד…
@@ -1146,6 +1261,7 @@ he:
     changes_saved_msg: השינויים נשמרו בהצלחה!
     copy: להעתיק
     delete: למחוק
+    deselect: בטל בחירה של הכל
     none: כלום
     order_by: מיין לפי
     save_changes: שמור שינויים
@@ -1205,7 +1321,7 @@ he:
   login_activities:
     authentication_methods:
       otp: יישומון אימות דו-שלבי
-      password: סיסמא
+      password: סיסמה
       sign_in_token: קוד אימות בדוא"ל
       webauthn: מפתחות אבטחה
     description_html: אם את/ה רואה פעילות שאינך מזהה, אנא שנה/י את סיסמתך והפעל/י אימות דו-גורמי.
@@ -1215,7 +1331,7 @@ he:
     title: הסטוריית אימותים
   media_attachments:
     validations:
-      images_and_video: לא ניתן להוסיף וידאו לחצרוץ שכבר מכיל תמונות
+      images_and_video: לא ניתן להוסיף וידאו לפוסט שכבר מכיל תמונות
       not_ready: לא ניתן להצמיד קבצים שהעלאתם לא הסתיימה. נסה/י שוב בעוד רגע!
       too_many: לא ניתן להוסיף יותר מארבעה קבצים
   migrations:
@@ -1257,23 +1373,10 @@ he:
     copy_account_note_text: 'חשבון זה הועבר מ-%{acct}, הנה הערותיך הקודמות לגביהם:'
   notification_mailer:
     admin:
+      report:
+        subject: '%{name} שלח/ה דו"ח'
       sign_up:
         subject: "%{name} נרשמו"
-    digest:
-      action: הצגת כל ההתראות
-      body: להלן סיכום זריז של הדברים שקרו על מאז ביקורך האחרון ב-%{since}
-      mention: "%{name} פנה אליך ב:"
-      new_followers_summary:
-        many: חוץ מזה, נוספו לך %{count} עוקבים חדשים בזמן שלא היית! מדהים!
-        one: חוץ מזה, נוסף לך עוקב חדש בזמן שלא היית! הידד!
-        other: חוץ מזה, נוספו לך %{count} עוקבים חדשים בזמן שלא היית! מדהים!
-        two: חוץ מזה, נוספו לך %{count} עוקבים חדשים בזמן שלא היית! מדהים!
-      subject:
-        many: "%{count} התראות חדשות מאז ביקורך האחרון 🐘"
-        one: "התראה חדשה אחת מאז ביקורך האחרון 🐘"
-        other: "%{count} התראות חדשות מאז ביקורך האחרון 🐘"
-        two: "%{count} התראות חדשות מאז ביקורך האחרון 🐘"
-      title: בהעדרך...
     favourite:
       body: 'חצרוצך חובב על ידי %{name}:'
       subject: חצרוצך חובב על ידי %{name}
@@ -1343,7 +1446,7 @@ he:
       too_many_options: לא יכול להכיל יותר מ-%{max} פריטים
   preferences:
     other: שונות
-    posting_defaults: ברירות מחדל לחצרוץ
+    posting_defaults: ברירות מחדל לפוסטים
     public_timelines: פידים פומביים
   reactions:
     errors:
@@ -1376,13 +1479,13 @@ he:
   remote_interaction:
     favourite:
       proceed: המשך לחיבוב
-      prompt: 'ברצונך לחבב חצרוץ זה:'
+      prompt: 'ברצונך לחבב פוסט זה:'
     reblog:
       proceed: המשיכו להדהוד
-      prompt: 'ברצונך להדהד חצרוץ זה:'
+      prompt: 'ברצונך להדהד פוסט זה:'
     reply:
       proceed: המשיבו לתגובה
-      prompt: 'ברצונך להשיב לחצרוץ זה:'
+      prompt: 'ברצונך להשיב לפוסט זה:'
   reports:
     errors:
       invalid_rules: לא מתייחס לכללים קבילים
@@ -1488,7 +1591,7 @@ he:
       two: 'מכיל את ההאשתגיות האסורות: %{tags}'
     edited_at_html: נערך ב-%{date}
     errors:
-      in_reply_not_found: נראה שהחצרוץ שאת/ה מנסה להגיב לו לא קיים.
+      in_reply_not_found: נראה שהפוסט שאת/ה מנסה להגיב לו לא קיים.
     open_in_web: פתח ברשת
     over_character_limit: חריגה מגבול התווים של %{max}
     pin_errors:
@@ -1558,7 +1661,7 @@ he:
     min_reblogs: שמור חצרוצים מהודהדים לפחות
     min_reblogs_hint: לא מוחק מי מחצרוציך שקיבלו לפחות את המספר הזה של הדהודים. להשאיר ריק כדי למחוק חצרוצים ללא קשר למספר ההדהודים שקיבלו
   stream_entries:
-    pinned: חצרוץ מוצמד
+    pinned: פוסט נעוץ
     reblogged: הודהד
     sensitive_content: תוכן רגיש
   strikes:
@@ -1567,6 +1670,87 @@ he:
   tags:
     does_not_match_previous_name: לא תואם את השם האחרון
   terms:
+    body_html: |
+      <h2>מדיניות פרטיות</h2>
+      <h3 id="collect">איזה מידע אנחנו אוספים ?</h3>
+
+      <ul>
+        <li><em>מידע חשבון בסיסי</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+        <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+        <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any sensitive information over Mastodon.</em></li>
+        <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="use">What do we use your information for?</h3>
+
+      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+      <ul>
+        <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+        <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+        <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+      </ul>
+
+      <hr class="spacer" />
+
+      <h3 id="protect">How do we protect your information?</h3>
+
+      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="data-retention">What is our data retention policy?</h3>
+
+      <p>We will make a good faith effort to:</p>
+
+      <ul>
+        <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+        <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+      </ul>
+
+      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+      <p>You may irreversibly delete your account at any time.</p>
+
+      <hr class="spacer"/>
+
+      <h3 id="cookies">Do we use cookies?</h3>
+
+      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
+
+      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="children">Site usage by children</h3>
+
+      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
+
+      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
+
+      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+      <hr class="spacer" />
+
+      <h3 id="changes">Changes to our Privacy Policy</h3>
+
+      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
+
+      <p>This document is CC-BY-SA. It was last updated May 26, 2022.</p>
+
+      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: תנאי שימוש ומדיניות פרטיות ב-%{instance}
   themes:
     contrast: מסטודון (ניגודיות גבוהה)

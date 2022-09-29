@@ -75,7 +75,7 @@ const formatMessage = (messageId, locale, values = {}) =>
 const htmlToPlainText = html =>
   unescape(html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, ''));
 
-const handlePush = (event) => {
+export const handlePush = (event) => {
   const { access_token, notification_id, preferred_locale, title, body, icon } = event.data.json();
 
   // Placeholder until more information can be loaded
@@ -189,7 +189,7 @@ const openUrl = url =>
     return self.clients.openWindow(url);
   });
 
-const handleNotificationClick = (event) => {
+export const handleNotificationClick = (event) => {
   const reactToNotificationClick = new Promise((resolve, reject) => {
     if (event.action) {
       if (event.action === 'expand') {
@@ -211,6 +211,3 @@ const handleNotificationClick = (event) => {
 
   event.waitUntil(reactToNotificationClick);
 };
-
-self.addEventListener('push', handlePush);
-self.addEventListener('notificationclick', handleNotificationClick);
