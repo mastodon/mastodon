@@ -27,6 +27,7 @@ is:
     learn_more: Kanna nánar
     logged_in_as_html: Þú ert núna skráð/ur inn sem %{username}.
     logout_before_registering: Þú ert þegar skráð/ur inn.
+    privacy_policy: Persónuverndarstefna
     rules: Reglur netþjónsins
     rules_html: 'Hér fyrir neðan er yfirlit yfir þær reglur sem þú þarft að fara eftir ef þú ætlar að vera með notandaaðgang á þessum Mastodon-netþjóni:'
     see_whats_happening: Sjáðu hvað er í gangi
@@ -793,6 +794,9 @@ is:
       site_short_description:
         desc_html: Birt á hliðarspjaldi og í lýsigögnum. Lýstu því hvað Mastodon gerir og hvað það er sem geri þennan vefþjón sérstakan, í einni málsgrein.
         title: Stutt lýsing á netþjóninum
+      site_terms:
+        desc_html: Þú getur skrifað þína eigin persónuverndarstefnu. Nota má HTML-einindi
+        title: Sérsniðin persónuverndarstefna
       site_title: Heiti vefþjóns
       thumbnail:
         desc_html: Notað við forskoðun í gegnum OpenGraph og API-kerfisviðmót. Mælt með 1200×630 mynddílum
@@ -1713,6 +1717,7 @@ is:
       <p>Þetta skjal er CC-BY-SA nptkunarleyfi. Það var síðast uppfært 26. maí 2022.</p>
 
       <p>Upphaflega aðlagað frá <a href="https://github.com/discourse/discourse">persónuverndarstefnu Discourse</a>.</p>
+    title: "Persónuverndarstefna á %{instance}"
   themes:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)
