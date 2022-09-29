@@ -168,4 +168,159 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       end
     end
   end
+
+  describe 'POST #promote' do
+    let(:scopes) { 'write:groups' }
+    let(:membership) { Fabricate(:group_membership, group: group) }
+
+    context 'when the user is not a group member' do
+      it 'returns http forbidden' do
+        post :promote, params: { id: group.id, account_ids: [membership.account.id], role: 'moderator' }
+
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when the user has no special role within the group' do
+      before do
+        group.memberships.create!(account: user.account)
+      end
+
+      it 'returns http forbidden' do
+        post :promote, params: { id: group.id, account_ids: [membership.account.id], role: 'moderator' }
+
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when the user is a group admin' do
+      before do
+        group.memberships.create!(account: user.account, role: :admin)
+        post :promote, params: { id: group.id, account_ids: [membership.account.id], role: 'moderator' }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'changes the role' do
+        expect(group.memberships.find_by(account: membership.account).role).to eq 'moderator'
+      end
+    end
+
+    context 'when the user is a group moderator' do
+      before do
+        group.memberships.create!(account: user.account, role: :moderator)
+        post :promote, params: { id: group.id, account_ids: [membership.account.id], role: 'moderator' }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'changes the role' do
+        expect(group.memberships.find_by(account: membership.account).role).to eq 'moderator'
+      end
+    end
+
+    context 'when the user is a group moderator trying to promote someone admin' do
+      before do
+        group.memberships.create!(account: user.account, role: :moderator)
+      end
+
+      it 'returns http forbidden' do
+        post :promote, params: { id: group.id, account_ids: [membership.account.id], role: 'admin' }
+
+        expect(response).to have_http_status(403)
+      end
+    end
+  end
+
+  describe 'POST #demote' do
+    let(:scopes) { 'write:groups' }
+    let(:membership) { Fabricate(:group_membership, group: group) }
+
+    context 'when the user is not a group member' do
+      it 'returns http forbidden' do
+        post :demote, params: { id: group.id, account_ids: [membership.account.id], role: 'user' }
+
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when the user has no special role within the group' do
+      before do
+        group.memberships.create!(account: user.account)
+        post :demote, params: { id: group.id, account_ids: [membership.account.id], role: 'user' }
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+    end
+
+    context 'when the user is a group admin' do
+      before do
+        membership.update!(role: :moderator)
+        group.memberships.create!(account: user.account, role: :admin)
+        post :demote, params: { id: group.id, account_ids: [membership.account.id], role: 'user' }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'changes the role' do
+        expect(group.memberships.find_by(account: membership.account).role).to eq 'user'
+      end
+    end
+
+    context 'when the user is a group admin trying to demote another admin' do
+      before do
+        membership.update!(role: :admin)
+        group.memberships.create!(account: user.account, role: :admin)
+        post :demote, params: { id: group.id, account_ids: [membership.account.id], role: 'user' }
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+
+      it 'does not change the role' do
+        expect(group.memberships.find_by(account: membership.account).role).to eq 'admin'
+      end
+    end
+
+    context 'when the user is a group moderator trying to demote another moderator' do
+      before do
+        membership.update!(role: :moderator)
+        group.memberships.create!(account: user.account, role: :moderator)
+        post :demote, params: { id: group.id, account_ids: [membership.account.id], role: 'user' }
+      end
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+
+      it 'does not change the role' do
+        expect(group.memberships.find_by(account: membership.account).role).to eq 'moderator'
+      end
+    end
+
+    context 'when the user is a group administrator trying to "demote" a user to a higher role' do
+      before do
+        membership.update!(role: :moderator)
+        group.memberships.create!(account: user.account, role: :admin)
+        post :demote, params: { id: group.id, account_ids: [membership.account.id], role: 'admin' }
+      end
+
+      it 'returns returns http unprocessable entity' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'does not change the role' do
+        expect(group.memberships.find_by(account: membership.account).role).to eq 'moderator'
+      end
+    end
+  end
 end

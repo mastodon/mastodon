@@ -622,6 +622,8 @@ Rails.application.routes.draw do
           post :join
           post :leave
           post :kick
+          post :promote
+          post :demote
         end
       end
 

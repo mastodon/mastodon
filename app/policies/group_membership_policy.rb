@@ -5,6 +5,10 @@ class GroupMembershipPolicy < ApplicationPolicy
     group_staff? && rank_from_role(record.role) < rank_from_role(group_role)
   end
 
+  def change_role?
+    group_staff? && rank_from_role(record.role) < rank_from_role(group_role)
+  end
+
   private
 
   def rank_from_role(role)
