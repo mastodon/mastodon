@@ -27,6 +27,7 @@ zh-CN:
     learn_more: 了解详情
     logged_in_as_html: 您当前以 %{username} 登录。
     logout_before_registering: 您已登录。
+    privacy_policy: 隐私政策
     rules: 服务器规则
     rules_html: '如果你想要在此Mastodon服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：'
     see_whats_happening: 看看有什么新鲜事
@@ -777,6 +778,9 @@ zh-CN:
       site_short_description:
         desc_html: 会在在侧栏和元数据标签中显示。可以用一小段话描述 Mastodon 是什么，以及本服务器的特点。
         title: 服务器一句话介绍
+      site_terms:
+        desc_html: 您可以写自己的隐私政策。您可以使用 HTML 标签
+        title: 自定义隐私政策
       site_title: 本站名称
       thumbnail:
         desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
@@ -1679,6 +1683,7 @@ zh-CN:
       <p>此文件以 CC-BY-SA 授权。最后更新时间为 2022 年 5 月 26 日。</p>
 
       <p>最初改编自 <a href="https://github.com/discourse/discourse">Discourse 隐私政策</a>.</p>
+    title: "%{instance} 的隐私政策"
   themes:
     contrast: Mastodon（高对比度）
     default: Mastodon（暗色主题）
