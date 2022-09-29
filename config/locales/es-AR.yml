@@ -27,6 +27,7 @@ es-AR:
     learn_more: Aprendé más
     logged_in_as_html: Actualmente iniciaste sesión como %{username}.
     logout_before_registering: Ya iniciaste sesión.
+    privacy_policy: Política de privacidad
     rules: Reglas del servidor
     rules_html: 'Abajo hay un resumen de las reglas que tenés que seguir si querés tener una cuenta en este servidor de Mastodon:'
     see_whats_happening: Esto es lo que está pasando ahora
@@ -793,6 +794,9 @@ es-AR:
       site_short_description:
         desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe qué es Mastodon y qué hace especial a este servidor en un solo párrafo.
         title: Descripción corta del servidor
+      site_terms:
+        desc_html: Podés escribir tu propia política de privacidad. Podés usar etiquetas HTML
+        title: Política de privacidad personalizada
       site_title: Nombre del servidor
       thumbnail:
         desc_html: Usado para previsualizaciones vía OpenGraph y APIs. Se recomienda 1200x630 píxeles
@@ -1713,6 +1717,7 @@ es-AR:
       <p>Este documento se publica bajo la licencia CC-BY-SA (Creative Commons - Atribución - CompartirIgual) y fue actualizado por última vez el 26 de mayo de 2022.</p>
 
       <p>Originalmente adaptado de la <a href="https://github.com/discourse/discourse">Política de privacidad de Discourse</a>.</p>
+    title: "Política de privacidad de %{instance}"
   themes:
     contrast: Alto contraste
     default: Oscuro
