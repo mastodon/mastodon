@@ -65,6 +65,10 @@ const isLinkMisleading = (link) => {
 export default @injectIntl
 class StatusContent extends React.PureComponent {
 
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
+
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
@@ -274,7 +278,7 @@ class StatusContent extends React.PureComponent {
     } = this.props;
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
-    const renderTranslate = this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && intl.locale !== status.get('language');
+    const renderTranslate = this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && intl.locale !== status.get('language');
     const language = preloadedLanguages.find(lang => lang[0] === status.get('language'));
     const languageName = language ? language[2] : status.get('language');
 
