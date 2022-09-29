@@ -56,7 +56,7 @@ class LinkFooter extends React.PureComponent {
       items.push(<a key='invites' href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a>);
     }
 
-    if (withHotkeys) {
+    if (signedIn && withHotkeys) {
       items.push(<Link key='hotkeys' to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link>);
     }
 
