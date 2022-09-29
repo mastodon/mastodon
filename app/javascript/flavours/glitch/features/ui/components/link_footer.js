@@ -34,6 +34,7 @@ class LinkFooter extends React.PureComponent {
   };
 
   static propTypes = {
+    withHotkeys: PropTypes.bool,
     onLogout: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
@@ -48,12 +49,17 @@ class LinkFooter extends React.PureComponent {
   }
 
   render () {
+    const { withHotkeys } = this.props;
     const { signedIn, permissions } = this.context.identity;
 
     const items = [];
 
     if ((this.context.identity.permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS) {
       items.push(<a key='invites' href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a>);
+    }
+
+    if (signedIn && withHotkeys) {
+      items.push(<Link key='hotkeys' to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link>);
     }
 
     if (signedIn && securityLink) {

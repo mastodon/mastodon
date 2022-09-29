@@ -366,6 +366,11 @@
   &:focus {
     text-shadow: 0 0 4px darken($ui-highlight-color, 5%);
   }
+
+  &:disabled {
+    color: $dark-text-color;
+    cursor: default;
+  }
 }
 
 .column-header__notif-cleaning-buttons {
