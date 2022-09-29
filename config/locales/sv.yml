@@ -1,8 +1,7 @@
----
 sv:
   about:
-    about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
-    about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
+    about_hashtag_html: 'Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.'
+    about_mastodon_html: 'Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.'
     about_this: Om
     active_count_after: aktiv
     active_footnote: Månatligen Aktiva användare (MAU)
@@ -22,11 +21,12 @@ sv:
     federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
     get_apps: Prova en mobilapp
     hosted_on: Mastodon-värd på %{domain}
-    instance_actor_flash: "Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. \n"
+    instance_actor_flash: |
+      Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. 
+
     learn_more: Lär dig mer
     logged_in_as_html: Inloggad som %{username}.
     logout_before_registering: Du är redan inloggad.
-    privacy_policy: Integritetspolicy
     rules: Serverns regler
     rules_html: 'Nedan en sammanfattning av kontoreglerna för denna Mastodonserver:'
     see_whats_happening: Se vad som händer
@@ -36,7 +36,6 @@ sv:
       one: status
       other: statusar
     status_count_before: Som skapat
-    terms: Användarvillkor
     unavailable_content: Otillgängligt innehåll
     unavailable_content_description:
       domain: Server
@@ -195,7 +194,7 @@ sv:
       suspended: Avstängd / Avstängt
       title: Konton
       unblock_email: Avblockera e-postadress
-      unblocked_email_msg: "%{username}s e-postadress avblockerad"
+      unblocked_email_msg: '%{username}s e-postadress avblockerad'
       unconfirmed_email: Obekräftad E-postadress
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
@@ -574,9 +573,6 @@ sv:
         title: Egentillverkad utökad information
       site_short_description:
         title: Kort beskrivning av servern
-      site_terms:
-        desc_html: Du kan skriva din egen integritetspolicy, användarvillkor eller andra regler. Du kan använda HTML-taggar
-        title: Egentillverkad villkor för tjänster
       site_title: Namn på instans
       thumbnail:
         desc_html: Används för förhandsgranskningar via OpenGraph och API. 1200x630px rekommenderas
@@ -626,7 +622,7 @@ sv:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
-      subject: Ny rapport för %{instance} (#%{id})
+      subject: 'Ny rapport för %{instance} (#%{id})'
   aliases:
     add_new: Skapa alias
     remove: Avlänka alias
@@ -1155,8 +1151,6 @@ sv:
       too_late: Det är för sent att överklaga denna strejk
   tags:
     does_not_match_previous_name: matchar inte det föregående namnet
-  terms:
-    title: "%{instance} Användarvillkor och Sekretesspolicy"
   themes:
     contrast: Hög kontrast
     default: Mastodon
