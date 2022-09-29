@@ -1,7 +1,6 @@
----
 it:
   about:
-    about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
+    about_hashtag_html: 'Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.'
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
     about_this: A proposito di questo server
     active_count_after: attivo
@@ -28,7 +27,6 @@ it:
     learn_more: Scopri altro
     logged_in_as_html: Sei correntemente connesso come %{username}.
     logout_before_registering: Hai già effettuato l'accesso.
-    privacy_policy: Politica della privacy
     rules: Regole del server
     rules_html: 'Di seguito è riportato un riassunto delle regole che devi seguire se vuoi avere un account su questo server di Mastodon:'
     see_whats_happening: Guarda cosa succede
@@ -39,12 +37,11 @@ it:
       other: stati
     status_count_before: Che hanno pubblicato
     tagline: Social network decentralizzato
-    terms: Termini di Servizio
     unavailable_content: Server moderati
     unavailable_content_description:
       domain: Server
       reason: 'Motivo:'
-      rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
+      rejecting_media: 'I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull''altro server.'
       rejecting_media_title: Media filtrati
       silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
       silenced_title: Server silenziati
@@ -57,7 +54,7 @@ it:
     user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
-    choices_html: 'Suggerimenti da %{name}:'
+    choices_html: "Suggerimenti da %{name}:"
     endorsements_hint: 'Puoi segnalare persone che segui e che apprezzi dall''interfaccia web: saranno mostrate qui.'
     featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
@@ -121,7 +118,7 @@ it:
       delete: Elimina dati
       deleted: Cancellato
       demote: Declassa
-      destroyed_msg: I dati di %{username} sono ora in coda per essere eliminati tra poco
+      destroyed_msg: "I dati di %{username} sono ora in coda per essere eliminati tra poco"
       disable: Disabilita
       disable_sign_in_token_auth: Disabilita autenticazione con token email
       disable_two_factor_authentication: Disabilita l'autenticazione a due fattori
@@ -582,7 +579,7 @@ it:
       no_ip_block_selected: Nessuna regola IP è stata modificata poiché nessuna è stata selezionata
       title: Regole IP
     relationships:
-      title: Relazioni di %{acct}
+      title: "Relazioni di %{acct}"
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -796,9 +793,6 @@ it:
       site_short_description:
         desc_html: Mostrato nella barra laterale e nei tag meta. Descrive in un paragrafo che cos'è Mastodon e che cosa rende questo server speciale. Se vuoto, sarà usata la descrizione predefinita del server.
         title: Breve descrizione del server
-      site_terms:
-        desc_html: Potete scrivere la vostra politica sulla privacy, condizioni del servizio o altre informazioni legali. Potete usare tag HTML
-        title: Termini di servizio personalizzati
       site_title: Nome del server
       thumbnail:
         desc_html: Usato per anteprime tramite OpenGraph e API. 1200x630px consigliati
@@ -959,7 +953,7 @@ it:
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
-      subject: Nuova segnalazione per %{instance} (#%{id})
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trends:
       body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
       new_trending_links:
@@ -984,9 +978,7 @@ it:
     remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibilità
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
@@ -1721,7 +1713,6 @@ it:
       <p>Questo documento è CC-BY-SA. L'ultimo aggiornamento è del 26 maggio 2022.</p>
 
       <p>Adattato originalmente dal <a href="https://github.com/discourse/discourse">Discorso Politica della Privacy</a>.</p>
-    title: "%{instance} Termini di servizio e politica della privacy"
   themes:
     contrast: Mastodon (contrasto elevato)
     default: Mastodon (scuro)
