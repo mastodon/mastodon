@@ -17,10 +17,6 @@ class PermalinkRedirector
         find_status_url_by_id(path_segments[2])
       elsif path_segments[1] == 'accounts' && path_segments[2] =~ /\d/
         find_account_url_by_id(path_segments[2])
-      elsif path_segments[1] == 'timelines' && path_segments[2] == 'tag' && path_segments[3].present?
-        find_tag_url_by_name(path_segments[3])
-      elsif path_segments[1] == 'tags' && path_segments[2].present?
-        find_tag_url_by_name(path_segments[2])
       end
     end
   end
