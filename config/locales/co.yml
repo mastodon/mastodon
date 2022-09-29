@@ -1,7 +1,6 @@
----
 co:
   about:
-    about_hashtag_html: Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediversu.
+    about_hashtag_html: 'Quessi sò statuti pubblichi taggati cù <strong>#%{hashtag}</strong>. Pudete interagisce cù elli sì voi avete un contu in qualche parte di u fediversu.'
     about_mastodon_html: 'A rete suciale di u futuru: micca pubblicità, micca surveglianza, cuncezzione etica, è dicentralizazione! Firmate in cuntrollu di i vostri dati cù Mastodon!'
     about_this: À prupositu
     active_count_after: attivi
@@ -25,7 +24,6 @@ co:
       Stu contu ghjè un'attore virtuale chì ghjove à riprisentà u servore sanu è micca un veru utilizatore.
       Hè utilizatu da a federazione è ùn deve micca esse bluccatu eccettu s'e voi vulete bluccà tuttu u servore, in quellu casu duvereste utilizà un blucchime di duminiu.
     learn_more: Amparà di più
-    privacy_policy: Pulitica di vita privata
     rules: Regule di u servore
     rules_html: 'Eccu un riassuntu di e regule da siguità s''e voi vulete creà un contu nant''à quessu servore di Mastodon:'
     see_whats_happening: Vede cio chì si passa
@@ -35,7 +33,6 @@ co:
       one: statutu
       other: statuti
     status_count_before: Chì anu pubblicatu
-    terms: Cundizione di u serviziu
     unavailable_content: Cuntinutu micca dispunibule
     unavailable_content_description:
       domain: Servore
@@ -110,7 +107,7 @@ co:
       delete: Sguassà dati
       deleted: Sguassatu
       demote: Ritrugradà
-      destroyed_msg: I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu
+      destroyed_msg: "I dati di %{username} sò avà in fila d'attesa per esse tolti da quì à pocu"
       disable: Disattivà
       disable_sign_in_token_auth: Disattivà l'autentificazione à codice e-mail
       disable_two_factor_authentication: Disattivà l’identificazione à 2 fattori
@@ -379,7 +376,7 @@ co:
         create: Creà un blucchime
         hint: U blucchime di duminiu ùn impedirà micca a creazione di conti indè a database, mà metudi di muderazione specifiche saranu applicati.
         severity:
-          desc_html: Cù <strong>Silenzà</strong>, solu l’abbunati di u contu viderenu i so missaghji. <strong>Suspende</strong> sguassarà tutti i cuntenuti è dati di u contu. Utilizate <strong>Nisuna</strong> s’è voi vulete solu righjittà fugliali media.
+          desc_html: "Cù <strong>Silenzà</strong>, solu l’abbunati di u contu viderenu i so missaghji. <strong>Suspende</strong> sguassarà tutti i cuntenuti è dati di u contu. Utilizate <strong>Nisuna</strong> s’è voi vulete solu righjittà fugliali media."
           noop: Nisuna
           silence: Silenzà
           suspend: Suspende
@@ -463,7 +460,7 @@ co:
       no_ip_block_selected: E regule ùn sò micca state mudificate perchè manc'un'era selezziunata
       title: Regule IP
     relationships:
-      title: Rilazione di %{acct}
+      title: "Rilazione di %{acct}"
     relays:
       add_new: Aghjunghje un ripetitore
       delete: Sguassà
@@ -589,9 +586,6 @@ co:
       site_short_description:
         desc_html: Mustratu indè a barra laterala è i tag meta. Spiegate quale hè Mastodon è ciò chì rende u vostru servore speciale in un paragrafu. S'ella hè lasciata viota, a discrizzione di u servore sarà utilizata.
         title: Descrizzione corta di u servore
-      site_terms:
-        desc_html: Quì pudete scrive e vostre regule di cunfidenzialità, cundizione d’usu o altre menzione legale. Pudete fà usu di marchi HTML
-        title: Termini persunalizati
       site_title: Nome di u servore
       thumbnail:
         desc_html: Utilizatu per viste cù OpenGraph è l’API. Ricumandemu 1200x630px
@@ -654,7 +648,7 @@ co:
     new_report:
       body: "%{reporter} hà palisatu %{target}"
       body_remote: Qualch’unu da %{domain} hà palisatu %{target}
-      subject: Novu signalamentu nant’à %{instance} (#%{id})
+      subject: 'Novu signalamentu nant’à %{instance} (#%{id})'
   aliases:
     add_new: Creà un pseudonimu
     created_msg: Novu pseudonimu creatu. Pudete avà inizià u trasferimentu da u vechju contu.
@@ -958,7 +952,7 @@ co:
     copy_account_note_text: 'St''utilizatore hà traslucatu dapoi %{acct}, eccu e vostr''anziane note nant''à ellu:'
   notification_mailer:
     favourite:
-      body: "%{name} hà aghjuntu u vostru statutu à i so favuriti :"
+      body: '%{name} hà aghjuntu u vostru statutu à i so favuriti :'
       subject: "%{name} hà messu u vostru post in i so favuriti"
       title: Novu favuritu
     follow:
@@ -972,8 +966,8 @@ co:
       title: Nova dumanda d’abbunamentu
     mention:
       action: Risposta
-      body: "%{name} v’hà mintuvatu·a indè :"
-      subject: "%{name} v’hà mintuvatu·a"
+      body: '%{name} v’hà mintuvatu·a indè :'
+      subject: '%{name} v’hà mintuvatu·a'
       title: Nova menzione
     poll:
       subject: Un scandagliu da %{name} hè finitu
@@ -1211,8 +1205,6 @@ co:
     sensitive_content: Cuntenutu sensibile
   tags:
     does_not_match_previous_name: ùn currisponde micca à l'anzianu nome
-  terms:
-    title: Termini d’usu è di cunfidenzialità per %{instance}
   themes:
     contrast: Mastodon (Cuntrastu altu)
     default: Mastodon (Scuru)
