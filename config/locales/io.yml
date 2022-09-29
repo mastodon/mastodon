@@ -26,6 +26,7 @@ io:
     learn_more: Lernez pluse
     logged_in_as_html: Vu nun eniras quale %{username}.
     logout_before_registering: Vu ja eniris.
+    privacy_policy: Privatesguidilo
     rules: Servilreguli
     rules_html: 'La subo montras rezumo di reguli quon vu bezonas sequar se vu volas havar konto che ca servilo di Mastodon:'
     see_whats_happening: Videz quo eventas
@@ -792,6 +793,9 @@ io:
       site_short_description:
         desc_html: Montresas en flankobaro e metatagi. Deskriptez Mastodon e por quo ca servilo esas specala per 1 paragrafo.
         title: Kurta servildeskripto
+      site_terms:
+        desc_html: Vu povas adjuntar sua privatesguidilo. Vu povas uzar tagi di HTML
+        title: Kustumizita privatesguidilo
       site_title: Site title
       thumbnail:
         desc_html: Uzesis por previdi tra OpenGraph e API. 1200x630px rekomendesas
@@ -1713,6 +1717,7 @@ io:
       <p>Ca dokumento esas CC-BY-SA.</p>
 
       <p>Tradukesis e modifikesis de Angla de <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "Privatesguidilo di %{instance}"
   themes:
     contrast: Mastodon (Alta kontrasteso)
     default: Mastodon (Obskura)
