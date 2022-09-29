@@ -27,6 +27,7 @@ pl:
     learn_more: Dowiedz się więcej
     logged_in_as_html: Jesteś obecnie zalogowany/a jako %{username}.
     logout_before_registering: Jesteś już zalogowany/a.
+    privacy_policy: Polityka prywatności
     rules: Regulamin serwera
     rules_html: 'Poniżej znajduje się podsumowanie zasad, których musisz przestrzegać, jeśli chcesz mieć konto na tym serwerze Mastodona:'
     see_whats_happening: Zobacz co się dzieje
@@ -820,6 +821,9 @@ pl:
       site_short_description:
         desc_html: Wyświetlany na pasku bocznym i w znacznikach meta. Opisz w jednym akapicie, czym jest Mastodon i czym wyróżnia się ten serwer. Jeżeli pusty, zostanie użyty opis serwera.
         title: Krótki opis serwera
+      site_terms:
+        desc_html: Możesz stworzyć własną politykę prywatności. Możesz używać tagów HTML
+        title: Własna polityka prywatności
       site_title: Nazwa serwera
       thumbnail:
         desc_html: 'Używana w podglądzie przez OpenGraph i API. Zalecany rozmiar: 1200x630 pikseli'
@@ -1760,6 +1764,7 @@ pl:
       <p>Ten dokument jest <a href="https://creativecommons.org/licenses/by-sa/2.5/pl/">CC-BY-SA</a>. Data ostatniej aktualizacji: 26 maja 2022.</p>
 
       <p>Oryginalnie zaadaptowany z <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+    title: "Polityka prywatności %{instance}"
   themes:
     contrast: Mastodon (Wysoki kontrast)
     default: Mastodon (Ciemny)
