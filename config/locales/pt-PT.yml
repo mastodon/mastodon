@@ -1,8 +1,7 @@
----
 pt-PT:
   about:
-    about_hashtag_html: Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.
-    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
+    about_hashtag_html: 'Estes são toots públicos marcados com <strong>#%{hashtag}</strong>. Podes interagir com eles se tiveres uma conta Mastodon.'
+    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.'
     about_this: Sobre esta instância
     active_count_after: activo
     active_footnote: Utilizadores activos mensais (UAM)
@@ -28,7 +27,6 @@ pt-PT:
     learn_more: Saber mais
     logged_in_as_html: Está de momento ligado como %{username}.
     logout_before_registering: Já tem sessão iniciada.
-    privacy_policy: Política de privacidade
     rules: Regras da instância
     rules_html: 'Abaixo está um resumo das regras que precisa seguir se pretender ter uma conta nesta instância do Mastodon:'
     see_whats_happening: Veja o que está a acontecer
@@ -39,7 +37,6 @@ pt-PT:
       other: publicações
     status_count_before: Que fizeram
     tagline: Rede social descentralizada
-    terms: Termos de serviço
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
       domain: Instância
@@ -57,7 +54,7 @@ pt-PT:
     user_count_before: Casa para
     what_is_mastodon: O que é o Mastodon?
   accounts:
-    choices_html: 'escolhas de %{name}:'
+    choices_html: "escolhas de %{name}:"
     endorsements_hint: Você pode, através da interface web, escolher endossar pessoas que segue, e elas aparecerão aqui.
     featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
@@ -121,7 +118,7 @@ pt-PT:
       delete: Eliminar dados
       deleted: Eliminada
       demote: Despromoveu
-      destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
+      destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Congelar
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar 2FA
@@ -582,7 +579,7 @@ pt-PT:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Eliminar
@@ -796,9 +793,6 @@ pt-PT:
       site_short_description:
         desc_html: Mostrada na barra lateral e em etiquetas de metadados. Descreve o que o Mastodon é e o que torna esta instância especial num único parágrafo. Se deixada em branco, remete para a descrição da instância.
         title: Breve descrição da instância
-      site_terms:
-        desc_html: Podes escrever a sua própria política de privacidade, termos de serviço, entre outras coisas. Pode utilizar etiquetas HTML
-        title: Termos de serviço personalizados
       site_title: Título do site
       thumbnail:
         desc_html: Usada para visualizações via OpenGraph e API. Recomenda-se 1200x630px
@@ -959,7 +953,7 @@ pt-PT:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
-      subject: Nova denúncia para %{instance} (#%{id})
+      subject: 'Nova denúncia para %{instance} (#%{id})'
     new_trends:
       body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
       new_trending_links:
@@ -1373,7 +1367,7 @@ pt-PT:
     mention:
       action: Responder
       body: 'Foste mencionado por %{name}:'
-      subject: "%{name} mencionou-te"
+      subject: '%{name} mencionou-te'
       title: Nova menção
     poll:
       subject: Uma votação realizada por %{name} terminou
@@ -1719,7 +1713,6 @@ pt-PT:
       <p>Este documento é CC-BY-SA. Ele foi actualizado pela última vez em 26 de Maio 2022.</p>
 
       <p>Originalmente adaptado de <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: "%{instance} Termos de Serviço e Política de Privacidade"
   themes:
     contrast: Mastodon (Elevado contraste)
     default: Mastodon
