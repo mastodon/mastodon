@@ -31,6 +31,10 @@ class HashtagTimeline extends React.PureComponent {
 
   disconnects = [];
 
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
+
   static propTypes = {
     params: PropTypes.object.isRequired,
     columnId: PropTypes.string,
@@ -158,6 +162,11 @@ class HashtagTimeline extends React.PureComponent {
   handleFollow = () => {
     const { dispatch, params, tag } = this.props;
     const { id } = params;
+    const { signedIn } = this.context.identity;
+
+    if (!signedIn) {
+      return;
+    }
 
     if (tag.get('following')) {
       dispatch(unfollowHashtag(id));
@@ -170,6 +179,7 @@ class HashtagTimeline extends React.PureComponent {
     const { hasUnread, columnId, multiColumn, tag, intl } = this.props;
     const { id, local } = this.props.params;
     const pinned = !!columnId;
+    const { signedIn } = this.context.identity;
 
     let followButton;
 
@@ -177,7 +187,7 @@ class HashtagTimeline extends React.PureComponent {
       const following = tag.get('following');
 
       followButton = (
-        <button className={classNames('column-header__button')} onClick={this.handleFollow} title={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-label={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-pressed={following ? 'true' : 'false'}>
+        <button className={classNames('column-header__button')} onClick={this.handleFollow} disabled={!signedIn} title={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-label={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-pressed={following ? 'true' : 'false'}>
           <Icon id={following ? 'user-times' : 'user-plus'} fixedWidth className='column-header__icon' />
         </button>
       );

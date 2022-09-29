@@ -110,6 +110,7 @@
     &:hover {
       border-color: lighten($ui-primary-color, 4%);
       color: lighten($darker-text-color, 4%);
+      text-decoration: none;
     }
 
     &:disabled {
@@ -1756,3 +1757,4 @@ noscript {
 @import 'single_column';
 @import 'announcements';
 @import 'explore';
+@import 'signed_out';

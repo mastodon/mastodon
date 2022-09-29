@@ -117,6 +117,7 @@
   box-sizing: border-box;
   width: 100%;
   background: lighten($ui-base-color, 4%);
+  border-radius: 4px 4px 0 0;
   color: $highlight-text-color;
   cursor: pointer;
   flex: 0 0 auto;
@@ -204,6 +205,17 @@
       color: $highlight-text-color;
     }
   }
+
+  &--logo {
+    background: transparent;
+    padding: 10px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+    }
+  }
 }
 
 .column-link__icon {
@@ -255,6 +267,7 @@
   display: flex;
   font-size: 16px;
   background: lighten($ui-base-color, 4%);
+  border-radius: 4px 4px 0 0;
   flex: 0 0 auto;
   cursor: pointer;
   position: relative;
@@ -309,6 +322,7 @@
 
   > .scrollable {
     background: $ui-base-color;
+    border-radius: 0 0 4px 4px;
   }
 }
 

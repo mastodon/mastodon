@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { FormattedMessage } from 'react-intl';
+import { injectIntl, defineMessages, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { expandSearch } from 'flavours/glitch/actions/search';
 import Account from 'flavours/glitch/containers/account_container';
@@ -11,9 +11,14 @@ import { List as ImmutableList } from 'immutable';
 import LoadMore from 'flavours/glitch/components/load_more';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 
+const messages = defineMessages({
+  title: { id: 'search_results.title', defaultMessage: 'Search for {q}' },
+});
+
 const mapStateToProps = state => ({
   isLoading: state.getIn(['search', 'isLoading']),
   results: state.getIn(['search', 'results']),
+  q: state.getIn(['search', 'searchTerm']),
 });
 
 const appendLoadMore = (id, list, onLoadMore) => {
@@ -37,6 +42,7 @@ const renderStatuses = (results, onLoadMore) => appendLoadMore('statuses', resul
 )), onLoadMore);
 
 export default @connect(mapStateToProps)
+@injectIntl
 class Results extends React.PureComponent {
 
   static propTypes = {
@@ -44,6 +50,8 @@ class Results extends React.PureComponent {
     isLoading: PropTypes.bool,
     multiColumn: PropTypes.bool,
     dispatch: PropTypes.func.isRequired,
+    q: PropTypes.string,
+    intl: PropTypes.object,
   };
 
   state = {
@@ -64,7 +72,7 @@ class Results extends React.PureComponent {
   }
 
   render () {
-    const { isLoading, results } = this.props;
+    const { intl, isLoading, q, results } = this.props;
     const { type } = this.state;
 
     let filteredResults = ImmutableList();

@@ -11,6 +11,7 @@ const initialState = element && function () {
 
 const getMeta = (prop) => initialState && initialState.meta && initialState.meta[prop];
 
+export const domain = getMeta('domain');
 export const reduceMotion = getMeta('reduce_motion');
 export const autoPlayGif = getMeta('auto_play_gif');
 export const displayMedia = getMeta('display_media') || (getMeta('display_sensitive_media') ? 'show_all' : 'default');
@@ -37,5 +38,6 @@ export const useSystemEmojiFont = getMeta('system_emoji_font');
 export const showTrends = getMeta('trends');
 export const disableSwiping = getMeta('disable_swiping');
 export const languages = initialState && initialState.languages;
+export const server = initialState && initialState.server;
 
 export default initialState;
