@@ -134,6 +134,26 @@
     }
   }
 
+  &.button-tertiary {
+    background: transparent;
+    padding: 6px 17px;
+    color: $highlight-text-color;
+    border: 1px solid $highlight-text-color;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background: $ui-highlight-color;
+      color: $primary-text-color;
+      border: 0;
+      padding: 7px 18px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+
   &.button--block {
     display: block;
     width: 100%;
@@ -707,6 +727,10 @@
   p {
     color: $darker-text-color;
     margin-bottom: 20px;
+  }
+
+  .button {
+    margin-bottom: 10px;
   }
 }
 
@@ -3670,6 +3694,11 @@ a.status-card.compact:hover {
       color: $primary-text-color;
       background: lighten($ui-base-color, 8%);
     }
+  }
+
+  &:disabled {
+    color: $dark-text-color;
+    cursor: default;
   }
 }
 
