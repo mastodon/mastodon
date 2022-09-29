@@ -25,6 +25,15 @@ class Api::V1::GroupsController < Api::BaseController
     render json: @group, serializer: REST::GroupSerializer
   end
 
+  def update
+    authorize @group, :update?
+
+    @group.update!(group_params)
+    ActivityPub::GroupUpdateDistributionWorker.perform_async(@group.id)
+
+    render json: @group, serializer: REST::GroupSerializer
+  end
+
   def show
     render json: @group, serializer: REST::GroupSerializer
   end

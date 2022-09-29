@@ -55,6 +55,72 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
     end
   end
 
+  describe 'PUT #update' do
+    let(:scopes) { 'write:groups' }
+
+    before do
+      stub_request(:post, remote_member.inbox_url).to_return(status: 202)
+      group.memberships.create!(account: user.account, group: group, role: role)
+      put :update, params: { id: group.id, display_name: 'New and improved group name' }
+    end
+
+    context 'when group admin' do
+      let(:role) { :admin }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns the expected group' do
+        expect(body_as_json[:id]).to eq group.id.to_s
+        expect(body_as_json[:display_name]).to eq 'New and improved group name'
+      end
+
+      it 'updates the group' do
+        expect(group.reload.display_name).to eq 'New and improved group name'
+      end
+
+      it 'sends an Update to remote group members' do
+        expect(a_request(:post, remote_member.inbox_url).with do |req|
+          json = Oj.load(req.body)
+          json['type'] == 'Update' && json['actor'] == ActivityPub::TagManager.instance.uri_for(group) && json['object']['type'] == 'PublicGroup' # TODO
+        end).to have_been_made.once
+      end
+    end
+
+    context 'when group moderator' do
+      let(:role) { :moderator }
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+
+      it 'does not update the group' do
+        expect(group.reload.display_name).to_not eq 'New and improved group name'
+      end
+
+      it 'does not send an Update to remote group members' do
+        expect(a_request(:post, remote_member.inbox_url)).to_not have_been_made
+      end
+    end
+
+    context 'when no group role' do
+      let(:role) { :user }
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+
+      it 'does not update the group' do
+        expect(group.reload.display_name).to_not eq 'New and improved group name'
+      end
+
+      it 'does not send an Update to remote group members' do
+        expect(a_request(:post, remote_member.inbox_url)).to_not have_been_made
+      end
+    end
+  end
+
   describe 'POST #create' do
     let(:scopes) { 'write:groups' }
 

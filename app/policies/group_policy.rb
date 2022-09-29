@@ -9,6 +9,10 @@ class GroupPolicy < ApplicationPolicy
     role.can?(:create_groups)
   end
 
+  def update?
+    group_admin?
+  end
+
   def show?
     true
   end
@@ -57,6 +61,10 @@ class GroupPolicy < ApplicationPolicy
 
   def member?
     record.members.where(id: current_account&.id).exists?
+  end
+
+  def group_admin?
+    record.memberships.where(account_id: current_account&.id, role: :admin).exists?
   end
 
   def group_staff?
