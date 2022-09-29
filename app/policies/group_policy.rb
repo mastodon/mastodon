@@ -30,7 +30,7 @@ class GroupPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.suspended_temporarily? && role.can?(:delete_user_data)
+    group_admin? || (record.suspended_temporarily? && role.can?(:delete_user_data))
   end
 
   def remove_avatar?

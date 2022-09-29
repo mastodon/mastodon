@@ -34,6 +34,15 @@ class Api::V1::GroupsController < Api::BaseController
     render json: @group, serializer: REST::GroupSerializer
   end
 
+  def destroy
+    authorize @group, :destroy?
+
+    @group.suspend!(origin: :local)
+    GroupDeletionWorker.perform_async(@group.id)
+
+    render_empty
+  end
+
   def show
     render json: @group, serializer: REST::GroupSerializer
   end

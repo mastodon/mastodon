@@ -140,6 +140,59 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
     end
   end
 
+  describe 'DELETE #destroy' do
+    let(:scopes) { 'write:groups' }
+
+    before do
+      stub_request(:post, remote_member.inbox_url).to_return(status: 202)
+      group.memberships.create!(account: user.account, role: role)
+      delete :destroy, params: { id: group.id }
+    end
+
+    context 'when the user has no special role' do
+      let(:role) { :user }
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+
+      it 'does not send a Delete to remote group members' do
+        expect(a_request(:post, remote_member.inbox_url)).to_not have_been_made
+      end
+    end
+
+    context 'when the user is a moderator' do
+      let(:role) { :moderator }
+
+      it 'returns http forbidden' do
+        expect(response).to have_http_status(403)
+      end
+
+      it 'does not send a Delete to remote group members' do
+        expect(a_request(:post, remote_member.inbox_url)).to_not have_been_made
+      end
+    end
+
+    context 'when the user is an admin' do
+      let(:role) { :admin }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'sends an Delete to remote group members' do
+        expect(a_request(:post, remote_member.inbox_url).with do |req|
+          json = Oj.load(req.body)
+          json['type'] == 'Delete' && json['actor'] == ActivityPub::TagManager.instance.uri_for(group) && json['object'] == ActivityPub::TagManager.instance.uri_for(group)
+        end).to have_been_made.once
+      end
+
+      it 'completely deletes the group' do
+        expect { group.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
+
   describe 'POST #join' do
     let(:scopes) { 'write:groups' }
 
