@@ -20,6 +20,7 @@ const messages = defineMessages({
   view_members: { id: 'group.view_members', defaultMessage: 'View group members' },
   view_pending_requests: { id: 'group.view_pending_requests', defaultMessage: 'View pending requests' },
   view_blocks: { id: 'group.view_blocks', defaultMessage: 'View blocked accounts' },
+  delete_group: { id: 'group.delete_group', defaultMessage: 'Delete group' },
 });
 
 export default
@@ -46,6 +47,10 @@ class GroupHeader extends ImmutablePureComponent {
     e.stopPropagation();
 
     this.props.onJoinLeave(this.props.relationship);
+  };
+
+  handleDeleteGroup = () => {
+    this.props.onDeleteGroup();
   };
 
   render () {
@@ -93,6 +98,11 @@ class GroupHeader extends ImmutablePureComponent {
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.view_pending_requests), to: `/groups/${group.get('id')}/membership_requests` });
       menu.push({ text: intl.formatMessage(messages.view_blocks), to: `/groups/${group.get('id')}/blocks` });
+    }
+
+    if (relationship?.get('role') === 'admin') {
+      menu.push(null);
+      menu.push({ text: intl.formatMessage(messages.delete_group), action: this.handleDeleteGroup });
     }
 
     const postBtn = (

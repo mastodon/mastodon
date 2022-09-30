@@ -3,6 +3,10 @@ import { importFetchedGroups, importFetchedAccounts } from './importer';
 import { deleteFromTimelines } from './timelines';
 import { fetchRelationships } from './accounts';
 
+export const GROUP_DELETE_REQUEST = 'GROUP_DELETE_REQUEST';
+export const GROUP_DELETE_SUCCESS = 'GROUP_DELETE_SUCCESS';
+export const GROUP_DELETE_FAIL    = 'GROUP_DELETE_FAIL';
+
 export const GROUP_FETCH_REQUEST = 'GROUP_FETCH_REQUEST';
 export const GROUP_FETCH_SUCCESS = 'GROUP_FETCH_SUCCESS';
 export const GROUP_FETCH_FAIL    = 'GROUP_FETCH_FAIL';
@@ -78,6 +82,30 @@ export const GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_FAIL    = 'GROUP_MEMBERSHIP_REQU
 export const GROUP_MEMBERSHIP_REQUEST_REJECT_REQUEST = 'GROUP_MEMBERSHIP_REQUEST_REJECT_REQUEST';
 export const GROUP_MEMBERSHIP_REQUEST_REJECT_SUCCESS = 'GROUP_MEMBERSHIP_REQUEST_REJECT_SUCCESS';
 export const GROUP_MEMBERSHIP_REQUEST_REJECT_FAIL    = 'GROUP_MEMBERSHIP_REQUEST_REJECT_FAIL';
+
+export const deleteGroup = id => (dispatch, getState) => {
+  dispatch(deleteGroupRequest(id));
+
+  api(getState).delete(`/api/v1/groups/${id}`)
+    .then(() => dispatch(deleteGroupSuccess(id)))
+    .catch(err => dispatch(deleteGroupFail(id, err)));
+};
+
+export const deleteGroupRequest = id => ({
+  type: GROUP_DELETE_REQUEST,
+  id,
+});
+
+export const deleteGroupSuccess = id => ({
+  type: GROUP_DELETE_SUCCESS,
+  id,
+});
+
+export const deleteGroupFail = (id, error) => ({
+  type: GROUP_DELETE_FAIL,
+  id,
+  error,
+});
 
 export const fetchGroup = id => (dispatch, getState) => {
   dispatch(fetchGroupRelationships([id]));

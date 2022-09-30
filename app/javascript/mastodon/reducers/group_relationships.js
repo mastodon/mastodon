@@ -1,4 +1,5 @@
 import {
+  GROUP_DELETE_SUCCESS,
   GROUP_RELATIONSHIPS_FETCH_SUCCESS,
   GROUP_JOIN_REQUEST,
   GROUP_JOIN_SUCCESS,
@@ -23,6 +24,8 @@ const initialState = ImmutableMap();
 
 export default function relationships(state = initialState, action) {
   switch(action.type) {
+  case GROUP_DELETE_SUCCESS:
+    return state.delete(action.id);
   case GROUP_JOIN_REQUEST:
     return state.getIn([action.id, 'member']) ? state : state.setIn([action.id, action.locked ? 'requested' : 'member'], true);
   case GROUP_JOIN_FAIL:

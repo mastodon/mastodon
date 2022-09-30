@@ -1,4 +1,5 @@
 import {
+  GROUP_DELETE_SUCCESS,
   GROUP_MEMBERSHIPS_FETCH_REQUEST,
   GROUP_MEMBERSHIPS_FETCH_FAIL,
   GROUP_MEMBERSHIPS_FETCH_SUCCESS,
@@ -64,6 +65,8 @@ const removeFromList = (state, path, accountId) => {
 
 export default function group_memberships(state = initialState, action) {
   switch(action.type) {
+  case GROUP_DELETE_SUCCESS:
+    return state.deleteIn(['admin', action.id]).deleteIn(['moderator', action.id]).deleteIn(['user', action.id]);
   case GROUP_MEMBERSHIPS_FETCH_REQUEST:
   case GROUP_MEMBERSHIPS_EXPAND_REQUEST:
     return state.updateIn([action.role, action.id], map => (map || initialListState).set('isLoading', true));

@@ -4,13 +4,14 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import GroupHeader from '../components/group_header';
 import { groupCompose } from 'mastodon/actions/compose';
 import { openModal } from 'mastodon/actions/modal';
-import { joinGroup, leaveGroup } from 'mastodon/actions/groups';
+import { joinGroup, leaveGroup, deleteGroup } from 'mastodon/actions/groups';
 import { unfollowModal } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   groupPostConfirm: { id: 'confirmations.group_post.confirm', defaultMessage: 'Write group post' },
   groupPostMessage: { id: 'confirmations.group_post.message', defaultMessage: 'Writing a group post will overwrite the message you are currently composing. Are you sure you want to proceed?' },
   leaveConfirm: { id: 'confirmations.leave.confirm', defaultMessage: 'Leave' },
+  deleteGroupConfirm: { id: 'confirmations.delete_group.confirm', defaultMessage: 'Delete' },
 });
 
 const mapStateToProps = (state, props) => ({
@@ -51,6 +52,18 @@ const mapDispatchToProps = (dispatch, { intl, group }) => ({
       dispatch(joinGroup(group.get('id')));
     }
 
+  },
+
+  onDeleteGroup() {
+    dispatch(openModal('CONFIRM', {
+      message: (
+        <React.Fragment>
+          <FormattedMessage id='confirmations.delete_group.message' defaultMessage='Are you sure you want to delete this group?' /> <strong><FormattedMessage id='confirmations.delete_group.emphasis' defaultMessage='This will irreversibly delete all posts made in this group.' /></strong>
+        </React.Fragment>
+      ),
+      confirm: intl.formatMessage(messages.deleteGroupConfirm),
+      onConfirm: () => dispatch(deleteGroup(group.get('id'))),
+    }));
   },
 
 });
