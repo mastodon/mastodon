@@ -3,6 +3,10 @@ import { importFetchedGroups, importFetchedAccounts } from './importer';
 import { deleteFromTimelines } from './timelines';
 import { fetchRelationships } from './accounts';
 
+export const GROUP_CREATE_REQUEST = 'GROUP_CREATE_REQUEST';
+export const GROUP_CREATE_SUCCESS = 'GROUP_CREATE_SUCCESS';
+export const GROUP_CREATE_FAIL    = 'GROUP_CREATE_FAIL';
+
 export const GROUP_DELETE_REQUEST = 'GROUP_DELETE_REQUEST';
 export const GROUP_DELETE_SUCCESS = 'GROUP_DELETE_SUCCESS';
 export const GROUP_DELETE_FAIL    = 'GROUP_DELETE_FAIL';
@@ -82,6 +86,37 @@ export const GROUP_MEMBERSHIP_REQUEST_AUTHORIZE_FAIL    = 'GROUP_MEMBERSHIP_REQU
 export const GROUP_MEMBERSHIP_REQUEST_REJECT_REQUEST = 'GROUP_MEMBERSHIP_REQUEST_REJECT_REQUEST';
 export const GROUP_MEMBERSHIP_REQUEST_REJECT_SUCCESS = 'GROUP_MEMBERSHIP_REQUEST_REJECT_SUCCESS';
 export const GROUP_MEMBERSHIP_REQUEST_REJECT_FAIL    = 'GROUP_MEMBERSHIP_REQUEST_REJECT_FAIL';
+
+export const GROUP_EDITOR_TITLE_CHANGE = 'GROUP_EDITOR_TITLE_CHANGE';
+export const GROUP_EDITOR_RESET        = 'GROUP_EDITOR_RESET';
+
+export const createGroup = (displayName, shouldReset) => (dispatch, getState) => {
+  dispatch(createGroupRequest());
+
+  api(getState).post('/api/v1/groups', { display_name: displayName })
+    .then(({ data }) => {
+      dispatch(importFetchedGroups([data]));
+      dispatch(createGroupSuccess(data));
+
+      if (shouldReset) {
+        dispatch(resetGroupEditor());
+      }
+    }).catch(err => dispatch(createGroupFail(err)));
+};
+
+export const createGroupRequest = () => ({
+  type: GROUP_CREATE_REQUEST,
+});
+
+export const createGroupSuccess = group => ({
+  type: GROUP_CREATE_SUCCESS,
+  group,
+});
+
+export const createGroupFail = (error) => ({
+  type: GROUP_CREATE_FAIL,
+  error,
+});
 
 export const deleteGroup = id => (dispatch, getState) => {
   dispatch(deleteGroupRequest(id));
@@ -831,4 +866,24 @@ export function rejectGroupMembershipRequestFail(groupId, accountId, error) {
     accountId,
     error,
   };
+};
+
+export const changeGroupEditorTitle = value => ({
+  type: GROUP_EDITOR_TITLE_CHANGE,
+  value,
+});
+
+export const resetGroupEditor = () => ({
+  type: GROUP_EDITOR_RESET,
+});
+
+export const submitGroupEditor = shouldReset => (dispatch, getState) => {
+  const groupId     = getState().getIn(['groupEditor', 'groupId']);
+  const displayName = getState().getIn(['groupEditor', 'displayName']);
+
+  if (groupId === null) {
+    dispatch(createGroup(displayName, shouldReset));
+  } else {
+    // TODO: dispatch(updateList(listId, title, shouldReset));
+  }
 };

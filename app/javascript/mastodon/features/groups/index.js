@@ -10,8 +10,10 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ColumnLink from 'mastodon/features/ui/components/column_link';
 import ColumnSubheading from 'mastodon/features/ui/components/column_subheading';
+import NewGroupForm from './components/new_group_form';
 import { createSelector } from 'reselect';
 import ScrollableList from 'mastodon/components/scrollable_list';
+import { PERMISSION_CREATE_GROUPS } from 'mastodon/permissions';
 
 const messages = defineMessages({
   heading: { id: 'column.groups', defaultMessage: 'Groups' },
@@ -36,6 +38,10 @@ const mapStateToProps = state => ({
 export default @connect(mapStateToProps)
 @injectIntl
 class Groups extends ImmutablePureComponent {
+
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -65,6 +71,8 @@ class Groups extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} icon='users' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
+
+        { (this.context.identity.permissions & PERMISSION_CREATE_GROUPS) === PERMISSION_CREATE_GROUPS && <NewGroupForm /> }
 
         <ScrollableList
           scrollKey='groups'
