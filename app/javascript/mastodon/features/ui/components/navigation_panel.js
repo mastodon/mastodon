@@ -23,9 +23,10 @@ export default class NavigationPanel extends React.Component {
 
     return (
       <div className='navigation-panel'>
-        <Link to='/' className='column-link column-link--logo'><Logo /></Link>
-
-        <hr />
+        <div className='navigation-panel__logo'>
+          <Link to='/' className='column-link column-link--logo'><Logo /></Link>
+          <hr />
+        </div>
 
         {signedIn && (
           <React.Fragment>
@@ -40,10 +41,10 @@ export default class NavigationPanel extends React.Component {
         <NavLink className='column-link column-link--transparent' exact to='/public' data-preview-title-id='column.public' data-preview-icon='globe' ><Icon className='column-link__icon' id='globe' fixedWidth /><FormattedMessage id='tabs_bar.federated_timeline' defaultMessage='Federated' /></NavLink>
 
         {!signedIn && (
-          <React.Fragment>
+          <div className='navigation-panel__sign-in-banner'>
             <hr />
             <SignInBanner />
-          </React.Fragment>
+          </div>
         )}
 
         {signedIn && (
@@ -61,6 +62,11 @@ export default class NavigationPanel extends React.Component {
             <a className='column-link column-link--transparent' href='/relationships'><Icon className='column-link__icon' id='users' fixedWidth /><FormattedMessage id='navigation_bar.follows_and_followers' defaultMessage='Follows and followers' /></a>
           </React.Fragment>
         )}
+
+        <div className='navigation-panel__legal'>
+          <hr />
+          <NavLink className='column-link column-link--transparent' to='/about'><Icon className='column-link__icon' id='ellipsis-h' fixedWidth /><FormattedMessage id='navigation_bar.about' defaultMessage='About' /></NavLink>
+        </div>
 
         {showTrends && (
           <React.Fragment>

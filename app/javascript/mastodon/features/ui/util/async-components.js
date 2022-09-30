@@ -165,3 +165,7 @@ export function Explore () {
 export function FilterModal () {
   return import(/*webpackChunkName: "modals/filter_modal" */'../components/filter_modal');
 }
+
+export function About () {
+  return import(/*webpackChunkName: "features/about" */'../../about');
+}
