@@ -83,6 +83,16 @@
     }
   }
 
+  &.always-destructive {
+    background-color: $error-red;
+
+    &:disabled,
+    &.disabled {
+      background-color: $ui-primary-color;
+      cursor: default;
+    }
+  }
+
   &:disabled,
   &.disabled {
     background-color: $ui-primary-color;

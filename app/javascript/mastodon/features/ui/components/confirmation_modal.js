@@ -15,13 +15,15 @@ class ConfirmationModal extends React.PureComponent {
     secondary: PropTypes.string,
     onSecondary: PropTypes.func,
     closeWhenConfirm: PropTypes.bool,
-    passphraseLabel: PropTypes.node,
+    destructive: PropTypes.bool,
+
     passphrase: PropTypes.string,
     intl: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
     closeWhenConfirm: true,
+    destructive: false,
   };
 
   state = {
@@ -72,7 +74,7 @@ class ConfirmationModal extends React.PureComponent {
   }
 
   render () {
-    const { message, confirm, secondary, passphraseLabel, passphrase } = this.props;
+    const { message, confirm, secondary, destructive, passphrase } = this.props;
 
     return (
       <div className='modal-root__modal confirmation-modal'>
@@ -82,7 +84,9 @@ class ConfirmationModal extends React.PureComponent {
 
         {passphrase && (
           <div className='confirmation-modal__passphrase'>
-            <div className='passphrase__label'>{passphraseLabel}</div>
+            <div className='passphrase__label'>
+              <FormattedMessage id='confirmations.passphrase' defaultMessage='Please type "{passphrase}" to confirm' values={{ passphrase: <strong>{passphrase}</strong> }} />,
+            </div>
             <input type='text' className={classNames('passphrase__input', { invalid: this.state.passphrase !== passphrase })} onChange={this.handleChange} ref={this.setPassphraseRef} />
           </div>
         )}
@@ -94,7 +98,7 @@ class ConfirmationModal extends React.PureComponent {
           {secondary !== undefined && (
             <Button text={secondary} onClick={this.handleSecondary} className='confirmation-modal__secondary-button' />
           )}
-          <Button text={confirm} onClick={this.handleClick} disabled={passphrase && this.state.passphrase !== passphrase} ref={this.setRef} />
+          <Button text={confirm} className={classNames({ 'always-destructive': destructive })} onClick={this.handleClick} disabled={passphrase && this.state.passphrase !== passphrase} ref={this.setRef} />
         </div>
       </div>
     );
