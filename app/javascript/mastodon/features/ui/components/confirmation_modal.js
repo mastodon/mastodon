@@ -16,14 +16,12 @@ class ConfirmationModal extends React.PureComponent {
     onSecondary: PropTypes.func,
     closeWhenConfirm: PropTypes.bool,
     destructive: PropTypes.bool,
-
     passphrase: PropTypes.string,
     intl: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
     closeWhenConfirm: true,
-    destructive: false,
   };
 
   state = {
