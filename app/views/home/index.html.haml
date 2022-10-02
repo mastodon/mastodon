@@ -1,14 +1,10 @@
 - content_for :header_tags do
-  - if user_signed_in?
-    = preload_pack_asset 'features/getting_started.js', crossorigin: 'anonymous'
-    = preload_pack_asset 'features/compose.js', crossorigin: 'anonymous'
-    = preload_pack_asset 'features/home_timeline.js', crossorigin: 'anonymous'
-    = preload_pack_asset 'features/notifications.js', crossorigin: 'anonymous'
-
-  = render partial: 'shared/og'
+  = preload_pack_asset 'features/getting_started.js', crossorigin: 'anonymous'
+  = preload_pack_asset 'features/compose.js', crossorigin: 'anonymous'
+  = preload_pack_asset 'features/home_timeline.js', crossorigin: 'anonymous'
+  = preload_pack_asset 'features/notifications.js', crossorigin: 'anonymous'
 
   %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
-
   = render_initial_state
 
 .notranslate.app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
