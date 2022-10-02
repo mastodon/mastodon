@@ -3,6 +3,7 @@ const initialState = element && JSON.parse(element.textContent);
 
 const getMeta = (prop) => initialState && initialState.meta && initialState.meta[prop];
 
+export const domain = getMeta('domain');
 export const reduceMotion = getMeta('reduce_motion');
 export const autoPlayGif = getMeta('auto_play_gif');
 export const displayMedia = getMeta('display_media');
@@ -14,6 +15,7 @@ export const me = getMeta('me');
 export const searchEnabled = getMeta('search_enabled');
 export const maxChars = (initialState && initialState.max_toot_chars) || 500;
 export const limitedFederationMode = getMeta('limited_federation_mode');
+export const registrationsOpen = getMeta('registrations_open');
 export const repository = getMeta('repository');
 export const source_url = getMeta('source_url');
 export const version = getMeta('version');
@@ -27,5 +29,6 @@ export const title = getMeta('title');
 export const cropImages = getMeta('crop_images');
 export const disableSwiping = getMeta('disable_swiping');
 export const languages = initialState && initialState.languages;
+export const server = initialState && initialState.server;
 
 export default initialState;

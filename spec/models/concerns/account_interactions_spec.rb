@@ -14,14 +14,14 @@ describe AccountInteractions do
     context 'account with Follow' do
       it 'returns { target_account_id => { reblogs: true } }' do
         Fabricate(:follow, account: account, target_account: target_account)
-        is_expected.to eq(target_account_id => { reblogs: true, notify: false })
+        is_expected.to eq(target_account_id => { reblogs: true, notify: false, languages: nil })
       end
     end
 
     context 'account with Follow but with reblogs disabled' do
       it 'returns { target_account_id => { reblogs: false } }' do
         Fabricate(:follow, account: account, target_account: target_account, show_reblogs: false)
-        is_expected.to eq(target_account_id => { reblogs: false, notify: false })
+        is_expected.to eq(target_account_id => { reblogs: false, notify: false, languages: nil })
       end
     end
 
@@ -647,7 +647,7 @@ describe AccountInteractions do
       end
 
       it 'does mute notifications' do
-        expect(me.muting_notifications?(you)).to be true 
+        expect(me.muting_notifications?(you)).to be true
       end
     end
   end

@@ -81,7 +81,7 @@
       = f.input :trends, as: :boolean, wrapper: :with_label, label: t('admin.settings.trends.title'), hint: t('admin.settings.trends.desc_html')
 
     .fields-group
-      = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, label: t('admin.settings.trendable_by_default.title'), hint: t('admin.settings.trendable_by_default.desc_html')
+      = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, label: t('admin.settings.trendable_by_default.title'), hint: t('admin.settings.trendable_by_default.desc_html'), recommended: :not_recommended
 
     .fields-group
       = f.input :trending_status_cw, as: :boolean, wrapper: :with_label, label: t('admin.settings.trending_status_cw.title'), hint: t('admin.settings.trending_status_cw.desc_html')
@@ -114,6 +114,13 @@
     = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, label: t('admin.settings.registrations.closed_message.title'), hint: t('admin.settings.registrations.closed_message.desc_html'), input_html: { rows: 8 }
     = f.input :site_terms, wrapper: :with_block_label, as: :text, label: t('admin.settings.site_terms.title'), hint: t('admin.settings.site_terms.desc_html'), input_html: { rows: 8 }
     = f.input :custom_css, wrapper: :with_block_label, as: :text, input_html: { rows: 8 }, label: t('admin.settings.custom_css.title'), hint: t('admin.settings.custom_css.desc_html')
+
+  %hr.spacer/
+
+  .fields-group
+    = f.input :media_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :content_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :backups_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

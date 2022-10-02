@@ -25,7 +25,6 @@ et:
       See konto on virtuaalne näitleja, mis esindab tervet serverit ning mitte ühtegi kindlat isikut.
       Seda kasutatakse föderatiivsetel põhjustel ning seda ei tohiks blokeerida, välja arvatud juhul, kui soovite blokeerida tervet serverit, kuid sellel juhul soovitame hoopis kasutada domeeni blokeerimist.
     learn_more: Lisateave
-    privacy_policy: Privaatsuspoliitika
     rules: Serveri reeglid
     rules_html: 'Järgneb kokkuvõte reeglitest, mida pead järgima, kui lood endale siin Mastodoni serveris konto:'
     see_whats_happening: Vaata, mis toimub
@@ -35,7 +34,6 @@ et:
       one: postitust
       other: staatuseid
     status_count_before: Kes on avaldanud
-    terms: Kasutustingimused
     unavailable_content: Sisu pole saadaval
     unavailable_content_description:
       reason: Põhjus
@@ -215,7 +213,6 @@ et:
         update_announcement: Uuenda teadaannet
         update_custom_emoji: Uuendas kohandatud emotikoni
         update_status: Uuendas staatust
-      deleted_status: "(kustutatud staatus)"
       empty: Logisi ei leitud.
       filter_by_action: Filtreeri tegevuse järgi
       filter_by_user: Filtreeri kasutaja järgi
@@ -452,9 +449,6 @@ et:
       site_short_description:
         desc_html: Kuvatud küljeribal ja metasiltides. Kirjelda, mis on Mastodon ja mis on selles serveris erilist ühes lõigus.
         title: Serveri lühikirjeldus
-      site_terms:
-        desc_html: Te saate kirjutada oma privaatsuspoliitika, kasutustingimused jm seaduslikku infot. Te saate kasutada HTMLi silte
-        title: Kasutustingimused
       site_title: Serveri nimi
       thumbnail:
         desc_html: Kasutatud OpenGraph ja API eelvaadeteks. 1200x630px soovitatud
@@ -463,9 +457,6 @@ et:
         desc_html: Kuva avalikku ajajoont esilehel
         title: Ajajoone eelvaade
       title: Lehe seaded
-      trendable_by_default:
-        desc_html: Puudutab silte, mis pole varem keelatud
-        title: Luba siltide trendimine ilma eelneva ülevaatuseta
       trends:
         desc_html: Kuva avalikult eelnevalt üle vaadatud sildid, mis on praegu trendikad
         title: Populaarsed sildid praegu
@@ -770,14 +761,6 @@ et:
   moderation:
     title: Moderatsioon
   notification_mailer:
-    digest:
-      action: Vaata kõiki teateid
-      body: Siin on kiire ülevaade sellest, mis sõnumeid Te ei näinud pärast Teie viimast külastust %{since}
-      mention: "%{name} mainis Teid postituses:"
-      new_followers_summary:
-        one: Ja veel, Te saite ühe uue jälgija kui Te olite eemal! Jee!
-        other: Ja veel, Te saite %{count} uut jälgijat kui Te olite eemal! Hämmastav!
-      title: Teie puudumisel...
     favourite:
       body: "%{name} lisas Teie staatuse lemmikutesse:"
       subject: "%{name} märkis su staatuse lemmikuks"
@@ -950,8 +933,6 @@ et:
     sensitive_content: Tundlik sisu
   tags:
     does_not_match_previous_name: ei ühti eelmise nimega
-  terms:
-    title: "%{instance} Kasutustingimused ja Privaatsuspoliitika"
   themes:
     contrast: Mastodon (Kõrge kontrast)
     default: Mastodon (Tume)

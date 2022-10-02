@@ -10,6 +10,10 @@ import { changeComposing } from 'mastodon/actions/compose';
 export default @connect()
 class ComposePanel extends React.PureComponent {
 
+  static contextTypes = {
+    identity: PropTypes.object.isRequired,
+  };
+
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
   };
@@ -23,11 +27,25 @@ class ComposePanel extends React.PureComponent {
   }
 
   render() {
+    const { signedIn } = this.context.identity;
+
     return (
       <div className='compose-panel' onFocus={this.onFocus}>
         <SearchContainer openInRoute />
-        <NavigationContainer onClose={this.onBlur} />
-        <ComposeFormContainer singleColumn />
+
+        {!signedIn && (
+          <React.Fragment>
+            <div className='flex-spacer' />
+          </React.Fragment>
+        )}
+
+        {signedIn && (
+          <React.Fragment>
+            <NavigationContainer onClose={this.onBlur} />
+            <ComposeFormContainer singleColumn />
+          </React.Fragment>
+        )}
+
         <LinkFooter withHotkeys />
       </div>
     );

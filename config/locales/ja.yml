@@ -36,7 +36,6 @@ ja:
       other: 投稿
     status_count_before: 投稿数
     tagline: 分散型ソーシャルネットワーク
-    terms: 利用規約
     unavailable_content: 制限中のサーバー
     unavailable_content_description:
       domain: サーバー
@@ -97,11 +96,17 @@ ja:
       avatar: アイコン
       by_domain: ドメイン
       change_email:
+        changed_msg: メールアドレスを変更しました!
         current_email: 現在のメールアドレス
         label: メールアドレスを変更
         new_email: 新しいメールアドレス
         submit: メールアドレスの変更
         title: "%{username}さんのメールアドレスを変更"
+      change_role:
+        changed_msg: ロールを変更しました!
+        label: ロールを変更
+        no_role: ロールがありません
+        title: "%{username}さんのロールを変更"
       confirm: 確認
       confirmed: 確認済み
       confirming: 確認中
@@ -179,7 +184,7 @@ ja:
       reset: リセット
       reset_password: パスワード再設定
       resubscribe: 再講読
-      role: 役割
+      role: ロール
       search: 検索
       search_same_email_domain: 同じドメインのメールアドレスを使用しているユーザー
       search_same_ip: 同じIPのユーザーを検索
@@ -222,17 +227,21 @@ ja:
         approve_user: ユーザーの承認
         assigned_to_self_report: 通報の担当者に設定
         change_email_user: ユーザーのメールアドレスを変更
+        change_role_user: ユーザーのロールを変更
         confirm_user: ユーザーの確認
         create_account_warning: 警告を作成
         create_announcement: お知らせを作成
+        create_canonical_email_block: メールブロックを作成
         create_custom_emoji: カスタム絵文字を作成
         create_domain_allow: 連合を許可
         create_domain_block: ドメインブロックを作成
         create_email_domain_block: メールドメインブロックを作成
         create_ip_block: IPルールを作成
         create_unavailable_domain: 配送できないドメインを作成
+        create_user_role: ロールを作成
         demote_user: ユーザーを降格
         destroy_announcement: お知らせを削除
+        destroy_canonical_email_block: メールブロックを削除
         destroy_custom_emoji: カスタム絵文字を削除
         destroy_domain_allow: 連合許可を外す
         destroy_domain_block: ドメインブロックを削除
@@ -241,6 +250,7 @@ ja:
         destroy_ip_block: IPルールを削除
         destroy_status: 投稿を削除
         destroy_unavailable_domain: 配送できないドメインを削除
+        destroy_user_role: ロールを削除
         disable_2fa_user: 二要素認証を無効化
         disable_custom_emoji: カスタム絵文字を無効化
         disable_sign_in_token_auth_user: ユーザーのメールトークン認証を無効にする
@@ -267,7 +277,9 @@ ja:
         update_announcement: お知らせを更新
         update_custom_emoji: カスタム絵文字を更新
         update_domain_block: ドメインブロックを更新
+        update_ip_block: IPルールを更新
         update_status: 投稿を更新
+        update_user_role: ロールを更新
       actions:
         approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
         approve_user_html: "%{target}から登録された%{name}さんを承認しました"
@@ -284,7 +296,6 @@ ja:
         create_unavailable_domain_html: "%{name}がドメイン %{target}への配送を停止しました"
         demote_user_html: "%{name}さんが%{target}さんを降格しました"
         destroy_announcement_html: "%{name}さんがお知らせ %{target}を削除しました"
-        destroy_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を削除しました"
         destroy_domain_allow_html: "%{name}さんが%{target}の連合許可を外しました"
         destroy_domain_block_html: "%{name}さんがドメイン %{target}のブロックを外しました"
         destroy_email_domain_block_html: "%{name}さんが%{target}をメールドメインブロックから外しました"
@@ -319,7 +330,6 @@ ja:
         update_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を更新しました"
         update_domain_block_html: "%{name}さんが%{target}のドメインブロックを更新しました"
         update_status_html: "%{name}さんが%{target}さんの投稿を更新しました"
-      deleted_status: "(削除済)"
       empty: ログが見つかりませんでした
       filter_by_action: アクションでフィルター
       filter_by_user: ユーザーでフィルター
@@ -624,9 +634,9 @@ ja:
       updated_at: 更新日時
       view_profile: プロフィールを表示
     roles:
-      add_new: 役割を追加
+      add_new: ロールを追加
       assigned_users:
-        other: "%{count} 人"
+        other: "%{count}人"
       categories:
         administration: 管理
         devops: 開発者
@@ -634,24 +644,24 @@ ja:
         moderation: モデレーション
       delete: 削除
       description_html: "<strong>ユーザー ロール</strong>を使用すると、ユーザーがアクセスできる Mastodon の機能や領域をカスタマイズできます。"
-      edit: "'%{name}' の役割を編集"
+      edit: "『%{name}』のロールを編集"
       everyone: デフォルトの権限
       everyone_full_description_html: これは、割り当てられたロールを持っていないものであっても、 <strong>すべてのユーザー</strong> に影響を与える <strong>基本ロール</strong>です。 他のすべてのロールは、そこから権限を継承します。
       permissions_count:
-        other: "%{count} つの権限"
+        other: "%{count}件の権限"
       privileges:
         administrator: 管理者
         administrator_description: この権限を持つユーザーはすべての権限をバイパスします
         delete_user_data: ユーザーデータの削除
         delete_user_data_description: ユーザーは、遅滞なく他のユーザーのデータを削除することができます
         invite_users: ユーザーを招待
-        invite_users_description: ユーザーがサーバーに新しい人を招待できるようにします
+        invite_users_description: ユーザーが新しい人を招待できるようにします
         manage_announcements: お知らせの管理
-        manage_announcements_description: ユーザーがサーバー上のアナウンスを管理できるようにします
+        manage_announcements_description: ユーザーがアナウンスを管理できるようにします
         manage_appeals: 抗議の管理
         manage_appeals_description: ユーザーはモデレーションアクションに対する抗議を確認できます
         manage_blocks: ブロックの管理
-        manage_blocks_description: ユーザーが電子メールプロバイダとIPアドレスをブロックできるようにします
+        manage_blocks_description: ユーザーがメールプロバイダとIPアドレスをブロックできるようにします
         manage_custom_emojis: カスタム絵文字を管理
         manage_custom_emojis_description: ユーザーがサーバー上のカスタム絵文字を管理できるようにします
         manage_federation: 連合の管理
@@ -659,7 +669,7 @@ ja:
         manage_invites: 招待を管理
         manage_reports: レポートの管理
         manage_reports_description: ユーザーがレポートを確認したり、モデレーションアクションを実行したりできます。
-        manage_roles: 役職の管理
+        manage_roles: ロールの管理
         manage_rules: ルールの管理
         manage_rules_description: ユーザーがサーバールールを変更できるようにします
         manage_settings: 設定の管理
@@ -668,7 +678,7 @@ ja:
         manage_user_access: アクセス権を管理
         manage_user_access_description: 他のユーザーの2段階認証を無効にしたり、メールアドレスを変更したり、パスワードをリセットしたりすることができます。
         manage_users: ユーザーの管理
-        manage_webhooks: Webhook の管理
+        manage_webhooks: Webhookの管理
         manage_webhooks_description: 管理者イベントのWebhookを設定できます。
         view_audit_log: 監査ログの表示
         view_audit_log_description: ユーザーがサーバー上で管理アクションの履歴を表示できるようにします
@@ -676,7 +686,7 @@ ja:
         view_dashboard_description: ユーザーがダッシュボードやさまざまなメトリクスにアクセスできるようにします
         view_devops: 開発者
         view_devops_description: Sidekiq と pgHero ダッシュボードにアクセスできるようにします
-      title: 権限
+      title: ロール
     rules:
       add_new: ルールを追加
       delete: 削除
@@ -751,8 +761,7 @@ ja:
         desc_html: サイドバーとmetaタグに表示されます。Mastodonとは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、サーバーの説明が使用されます。
         title: 短いサーバーの説明
       site_terms:
-        desc_html: 独自のプライバシーポリシーや利用規約、その他の法的根拠を記述できます。HTMLタグが使えます
-        title: カスタム利用規約
+        title: カスタムプライバシーポリシー
       site_title: サーバーの名前
       thumbnail:
         desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
@@ -761,9 +770,6 @@ ja:
         desc_html: ランディングページに公開タイムラインへのリンクを表示し、認証なしでの公開タイムラインへのAPIアクセスを許可します
         title: 公開タイムラインへの未認証のアクセスを許可する
       title: サイト設定
-      trendable_by_default:
-        desc_html: 表示を拒否していないハッシュタグに影響します
-        title: 審査前のハッシュタグのトレンドへの表示を許可する
       trends:
         desc_html: 現在トレンドになっている承認済みのハッシュタグを公開します
         title: トレンドタグを有効にする
@@ -1134,13 +1140,15 @@ ja:
     errors:
       invalid_context: 対象がないか無効です
     index:
-      contexts: "%{contexts} のフィルター"
+      contexts: "%{contexts}のフィルター"
       delete: 削除
       empty: フィルターはありません。
-      expires_in: "%{distance} で期限切れ"
+      expires_in: "%{distance}で期限切れ"
       expires_on: 有効期限 %{date}
       keywords:
         other: "%{count}件のキーワード"
+      statuses:
+        other: "%{count}件の投稿"
       title: フィルター
     new:
       save: 新規フィルターを保存
@@ -1261,18 +1269,9 @@ ja:
   notification_mailer:
     admin:
       report:
-        subject: "%{name} がレポートを送信しました"
+        subject: "%{name}さんがレポートを送信しました"
       sign_up:
         subject: "%{name}さんがサインアップしました"
-    digest:
-      action: 全ての通知を表示
-      body: '最後のログイン（%{since}）からの出来事:'
-      mention: "%{name}さんがあなたに返信しました:"
-      new_followers_summary:
-        other: また、離れている間に%{count}人の新たなフォロワーを獲得しました！
-      subject:
-        other: "前回の訪問から%{count}件の新しい通知 🐘"
-      title: 不在の間に…
     favourite:
       body: "%{name}さんにお気に入り登録された、あなたの投稿があります:"
       subject: "%{name}さんにお気に入りに登録されました"
@@ -1626,7 +1625,7 @@ ja:
       <p>この文章のライセンスはCC-BY-SAです。最終更新日は2021年6月1日です。</p>
 
       <p>オリジナルの出典: <a href="https://github.com/discourse/discourse">Discourse privacy policy</a></p>
-    title: "%{instance} 利用規約・プライバシーポリシー"
+    title: "%{instance}のプライバシーポリシー"
   themes:
     contrast: Mastodon (ハイコントラスト)
     default: Mastodon (ダーク)

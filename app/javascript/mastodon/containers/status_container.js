@@ -25,6 +25,8 @@ import {
   revealStatus,
   toggleStatusCollapse,
   editStatus,
+  translateStatus,
+  undoStatusTranslation,
 } from '../actions/statuses';
 import {
   unmuteAccount,
@@ -148,6 +150,14 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onEdit (status, history) {
     dispatch(editStatus(status.get('id'), history));
+  },
+
+  onTranslate (status) {
+    if (status.get('translation')) {
+      dispatch(undoStatusTranslation(status.get('id')));
+    } else {
+      dispatch(translateStatus(status.get('id')));
+    }
   },
 
   onDirect (account, router) {

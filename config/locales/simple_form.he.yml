@@ -85,6 +85,7 @@ he:
         ip: נא להכניס כתובת IPv4 או IPv6. ניתן לחסום תחומים שלמים על ידי שימוש בתחביר CIDR. זהירות לא לנעול את עצמכם בחוץ!
         severities:
           no_access: חסימת גישה לכל המשאבים
+          sign_up_block: הרשמות חדשות לא יאופשרו
           sign_up_requires_approval: הרשמות חדשות ידרשו את אישורך
         severity: נא לבחור מה יקרה לבקשות מכתובת IP זו
       rule:
@@ -219,6 +220,7 @@ he:
         ip: IP
         severities:
           no_access: חסימת גישה
+          sign_up_block: חסימת הרשמות
           sign_up_requires_approval: הגבלת הרשמות
         severity: כלל
       notification_emails:
@@ -251,6 +253,7 @@ he:
         events: אירועים מאופשרים
         url: כתובת URL של נקודת הקצה
     'no': לא
+    not_recommended: לא מומלצים
     recommended: מומלץ
     required:
       mark: "*"

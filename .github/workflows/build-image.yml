@@ -10,6 +10,9 @@ on:
     paths:
       - .github/workflows/build-image.yml
       - Dockerfile
+permissions:
+  contents: read
+
 jobs:
   build-image:
     runs-on: ubuntu-latest

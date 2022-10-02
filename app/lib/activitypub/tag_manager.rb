@@ -44,6 +44,10 @@ class ActivityPub::TagManager
     end
   end
 
+  def key_uri_for(target)
+    [uri_for(target), '#main-key'].join
+  end
+
   def uri_for_username(username)
     account_url(username: username)
   end
@@ -153,6 +157,10 @@ class ActivityPub::TagManager
     path_params = Rails.application.routes.recognize_path(uri)
     path_params[:username] = Rails.configuration.x.local_domain if path_params[:controller] == 'instance_actors'
     path_params[param]
+  end
+
+  def uri_to_actor(uri)
+    uri_to_resource(uri, Account)
   end
 
   def uri_to_resource(uri, klass)

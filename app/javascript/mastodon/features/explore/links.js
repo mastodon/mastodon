@@ -5,6 +5,7 @@ import Story from './components/story';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import { connect } from 'react-redux';
 import { fetchTrendingLinks } from 'mastodon/actions/trends';
+import { FormattedMessage } from 'react-intl';
 
 const mapStateToProps = state => ({
   links: state.getIn(['trends', 'links', 'items']),
@@ -27,6 +28,16 @@ class Links extends React.PureComponent {
 
   render () {
     const { isLoading, links } = this.props;
+
+    if (!isLoading && links.isEmpty()) {
+      return (
+        <div className='explore__links scrollable scrollable--flex'>
+          <div className='empty-column-indicator'>
+            <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className='explore__links'>
