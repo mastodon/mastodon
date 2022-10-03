@@ -5,7 +5,7 @@ import { start } from '../mastodon/common';
 start();
 
 loadPolyfills().then(async () => {
-  const { default: main } = import('mastodon/main');
+  const { default: main } = await import('mastodon/main');
 
   return main();
 }).catch(e => {
