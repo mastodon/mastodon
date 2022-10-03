@@ -78,6 +78,10 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
     const language = this.props.languages.find(language => language[0] === value);
     const checked = this.state.selectedLanguages.includes(value);
 
+    if (!language) {
+      return null;
+    }
+
     return (
       <Option
         key={value}
@@ -105,7 +109,7 @@ class SubscribedLanguagesModal extends ImmutablePureComponent {
           <p className='report-dialog-modal__lead'><FormattedMessage id='subscribed_languages.lead' defaultMessage='Only posts in selected languages will appear on your home and list timelines after the change. Select none to receive posts in all languages.' /></p>
 
           <div>
-            {availableLanguages.union(selectedLanguages).map(value => this.renderItem(value))}
+            {availableLanguages.union(selectedLanguages).delete(null).map(value => this.renderItem(value))}
           </div>
 
           <div className='flex-spacer' />
