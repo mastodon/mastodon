@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as registerPushNotifications from 'flavours/glitch/actions/push_notifications';
 import { setupBrowserNotifications } from 'flavours/glitch/actions/notifications';
 import Mastodon, { store } from 'flavours/glitch/containers/mastodon';
 import ready from 'flavours/glitch/util/ready';
 
-const perf = require('./performance');
+const perf = require('flavours/glitch/util/performance');
 
+/**
+ * @returns {Promise<void>}
+ */
 function main() {
   perf.start('main()');
 
@@ -18,7 +20,7 @@ function main() {
     }
   }
 
-  ready(() => {
+  return ready(async () => {
     const mountNode = document.getElementById('mastodon');
     const props = JSON.parse(mountNode.getAttribute('data-props'));
 
@@ -26,19 +28,28 @@ function main() {
     store.dispatch(setupBrowserNotifications());
 
     if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-      import('workbox-window')
-        .then(({ Workbox }) => {
-          const wb = new Workbox('/sw.js');
+      const [{ Workbox }, { me }] = await Promise.all([
+        import('workbox-window'),
+        import('mastodon/initial_state'),
+      ]);
 
-          return wb.register();
-        })
-        .then(() => {
-          store.dispatch(registerPushNotifications.register());
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      const wb = new Workbox('/sw.js');
+
+      try {
+        await wb.register();
+      } catch (err) {
+        console.error(err);
+
+        return;
+      }
+
+      if (me) {
+        const registerPushNotifications = await import('flavours/glitch/actions/push_notifications');
+
+        store.dispatch(registerPushNotifications.register());
+      }
     }
+
     perf.stop('main()');
   });
 }
