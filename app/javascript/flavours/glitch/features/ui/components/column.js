@@ -14,10 +14,11 @@ export default class Column extends React.PureComponent {
     active: PropTypes.bool,
     hideHeadingOnMobile: PropTypes.bool,
     name: PropTypes.string,
+    bindToDocument: PropTypes.bool,
   };
 
   handleHeaderClick = () => {
-    const scrollable = this.node.querySelector('.scrollable');
+    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable');
 
     if (!scrollable) {
       return;
@@ -27,7 +28,7 @@ export default class Column extends React.PureComponent {
   }
 
   scrollTop () {
-    const scrollable = this.node.querySelector('.scrollable');
+    const scrollable = this.props.bindToDocument ? document.scrollingElement : this.node.querySelector('.scrollable');
 
     if (!scrollable) {
       return;
