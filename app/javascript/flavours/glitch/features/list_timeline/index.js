@@ -165,7 +165,7 @@ class ListTimeline extends React.PureComponent {
     }
 
     return (
-      <Column ref={this.setRef} label={title}>
+      <Column bindToDocument={!multiColumn} ref={this.setRef} label={title}>
         <ColumnHeader
           icon='list-ul'
           active={hasUnread}
@@ -175,7 +175,6 @@ class ListTimeline extends React.PureComponent {
           onClick={this.handleHeaderClick}
           pinned={pinned}
           multiColumn={multiColumn}
-          bindToDocument={!multiColumn}
         >
           <div className='column-settings__row column-header__links'>
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleEditClick}>
