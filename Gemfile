@@ -120,7 +120,7 @@ group :test do
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.18'
-  gem 'rspec_junit_formatter', '~> 0.5'
+  gem 'rspec_junit_formatter', '~> 0.6'
 end
 
 group :development do
