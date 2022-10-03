@@ -130,8 +130,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(unblockDomain(domain));
   },
 
-  onAddToList(account){
+  onAddToList (account) {
     dispatch(openModal('LIST_ADDER', {
+      accountId: account.get('id'),
+    }));
+  },
+
+  onChangeLanguages (account) {
+    dispatch(openModal('SUBSCRIBED_LANGUAGES', {
       accountId: account.get('id'),
     }));
   },

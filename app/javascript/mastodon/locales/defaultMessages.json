@@ -654,6 +654,18 @@
         "id": "status.read_more"
       },
       {
+        "defaultMessage": "Translated from {lang}",
+        "id": "status.translated_from"
+      },
+      {
+        "defaultMessage": "Show original",
+        "id": "status.show_original"
+      },
+      {
+        "defaultMessage": "Translate",
+        "id": "status.translate"
+      },
+      {
         "defaultMessage": "Show more",
         "id": "status.show_more"
       },
@@ -1029,6 +1041,10 @@
       {
         "defaultMessage": "Open moderation interface for @{name}",
         "id": "status.admin_account"
+      },
+      {
+        "defaultMessage": "Change subscribed languages",
+        "id": "account.languages"
       },
       {
         "defaultMessage": "Follows you",
@@ -1827,6 +1843,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Nothing is trending right now. Check back later!",
+        "id": "empty_column.explore_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/explore/links.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Search for {q}",
+        "id": "search_results.title"
+      },
+      {
         "defaultMessage": "Could not find anything for these search terms",
         "id": "search_results.nothing_found"
       },
@@ -1857,6 +1886,24 @@
       }
     ],
     "path": "app/javascript/mastodon/features/explore/statuses.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Nothing is trending right now. Check back later!",
+        "id": "empty_column.explore_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/explore/suggestions.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Nothing is trending right now. Check back later!",
+        "id": "empty_column.explore_statuses"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/explore/tags.json"
   },
   {
     "descriptors": [
@@ -3021,6 +3068,27 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Public",
+        "id": "privacy.public.short"
+      },
+      {
+        "defaultMessage": "Unlisted",
+        "id": "privacy.unlisted.short"
+      },
+      {
+        "defaultMessage": "Followers-only",
+        "id": "privacy.private.short"
+      },
+      {
+        "defaultMessage": "Mentioned people only",
+        "id": "privacy.direct.short"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/report/components/status_check_box.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Which rules are being violated?",
         "id": "report.rules.title"
       },
@@ -3353,6 +3421,27 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      },
+      {
+        "defaultMessage": "Change subscribed languages for {target}",
+        "id": "subscribed_languages.target"
+      },
+      {
+        "defaultMessage": "Only posts in selected languages will appear on your home and list timelines after the change. Select none to receive posts in all languages.",
+        "id": "subscribed_languages.lead"
+      },
+      {
+        "defaultMessage": "Save changes",
+        "id": "subscribed_languages.save"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/subscribed_languages_modal/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Are you sure you want to block {name}?",
         "id": "confirmations.block.message"
       },
@@ -3633,8 +3722,8 @@
         "id": "navigation_bar.apps"
       },
       {
-        "defaultMessage": "Terms of service",
-        "id": "getting_started.terms"
+        "defaultMessage": "Privacy Policy",
+        "id": "getting_started.privacy_policy"
       },
       {
         "defaultMessage": "Developers",
@@ -3778,6 +3867,23 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/report_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.",
+        "id": "sign_in_banner.text"
+      },
+      {
+        "defaultMessage": "Sign in",
+        "id": "sign_in_banner.sign_in"
+      },
+      {
+        "defaultMessage": "Create account",
+        "id": "sign_in_banner.create_account"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/sign_in_banner.json"
   },
   {
     "descriptors": [

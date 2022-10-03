@@ -26,7 +26,6 @@ nl:
     learn_more: Meer leren
     logged_in_as_html: Je bent momenteel ingelogd als %{username}.
     logout_before_registering: Je bent al ingelogd.
-    privacy_policy: Privacybeleid
     rules: Serverregels
     rules_html: 'Hieronder vind je een samenvatting van de regels die je op deze Mastodon-server moet opvolgen:'
     see_whats_happening: Kijk wat er aan de hand is
@@ -37,7 +36,6 @@ nl:
       other: berichten
     status_count_before: Zij schreven
     tagline: Decentraal sociaal netwerk
-    terms: Gebruiksvoorwaarden
     unavailable_content: Gemodereerde servers
     unavailable_content_description:
       domain: Server
@@ -212,6 +210,7 @@ nl:
       suspension_reversible_hint_html: Dit account is opgeschort en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan dit account worden hersteld zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
       title: Accounts
       unblock_email: E-mailadres deblokkeren
+      unblocked_email_msg: Het e-mailadres van %{username} is gedeblokkeerd
       unconfirmed_email: Onbevestigd e-mailadres
       undo_sensitized: Niet meer als gevoelig forceren
       undo_silenced: Niet langer beperken
@@ -230,6 +229,7 @@ nl:
         approve_user: Gebruiker goedkeuren
         assigned_to_self_report: Rapportage toewijzen
         change_email_user: E-mailadres van gebruiker wijzigen
+        change_role_user: Wijzig rol van gebruiker
         confirm_user: Gebruiker bevestigen
         create_account_warning: Waarschuwing aanmaken
         create_announcement: Mededeling aanmaken
@@ -241,6 +241,7 @@ nl:
         create_unavailable_domain: Niet beschikbaar domein aanmaken
         demote_user: Gebruiker degraderen
         destroy_announcement: Mededeling verwijderen
+        destroy_canonical_email_block: Verwijder e-mailblokkade
         destroy_custom_emoji: Lokale emoji verwijderen
         destroy_domain_allow: Domeingoedkeuring verwijderen
         destroy_domain_block: Domeinblokkade verwijderen
@@ -289,7 +290,6 @@ nl:
         create_unavailable_domain_html: "%{name} heeft de bezorging voor domein %{target} beëindigd"
         demote_user_html: Gebruiker %{target} is door %{name} gedegradeerd
         destroy_announcement_html: "%{name} heeft de mededeling %{target} verwijderd"
-        destroy_custom_emoji_html: "%{name} verwijderde emoji %{target}"
         destroy_domain_allow_html: "%{name} heeft de federatie met het domein %{target} afgekeurd"
         destroy_domain_block_html: Domein %{target} is door %{name} gedeblokkeerd
         destroy_email_domain_block_html: "%{name} heeft het e-maildomein %{target} gedeblokkeerd"
@@ -320,7 +320,6 @@ nl:
         update_custom_emoji_html: Emoji %{target} is door %{name} bijgewerkt
         update_domain_block_html: "%{name} heeft de domeinblokkade bijgewerkt voor %{target}"
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
-      deleted_status: "(verwijderd bericht}"
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
       filter_by_user: Op gebruiker filteren
@@ -383,6 +382,15 @@ nl:
       pending_appeals_html:
         one: "<strong>%{count}</strong> bezwaar te beoordelen"
         other: "<strong>%{count}</strong> bezwaren te beoordelen"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> openstaande rapportage"
+        other: "<strong>%{count}</strong> openstaande rapportages"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> hashtag te beoordelen"
+        other: "<strong>%{count}</strong> hashtags te beoordelen"
+      pending_users_html:
+        one: "<strong>%{count}</strong> nieuwe gebruiker te beoordelen"
+        other: "<strong>%{count}</strong> nieuwe gebruikers te beoordelen"
       resolved_reports: opgeloste rapportages
       software: Software
       sources: Locatie van registratie
@@ -487,6 +495,9 @@ nl:
       delivery_error_days: Dagen met bezorgfouten
       delivery_error_hint: Wanneer de bezorging voor %{count} dagen niet mogelijk is, wordt de bezorging automatisch als niet beschikbaar gemarkeerd.
       empty: Geen domeinen gevonden.
+      known_accounts:
+        one: "%{count} bekend account"
+        other: "%{count} bekende accounts"
       moderation:
         all: Alles
         limited: Beperkt
@@ -577,7 +588,9 @@ nl:
       reported_by: Gerapporteerd door
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
+      skip_to_actions: Ga direct naar de acties
       status: Rapportages
+      statuses: Gerapporteerde inhoud
       target_origin: Herkomst van de gerapporteerde accounts
       title: Rapportages
       unassign: Niet langer toewijzen
@@ -586,6 +599,38 @@ nl:
       view_profile: Profiel bekijken
     roles:
       add_new: Rol toevoegen
+      assigned_users:
+        one: "%{count} gebruiker"
+        other: "%{count} gebruikers"
+      categories:
+        administration: Beheer
+        devops: Devops
+        invites: Uitnodigingen
+        moderation: Moderatie
+        special: Speciaal
+      delete: Verwijderen
+      privileges:
+        administrator: Beheerder
+        delete_user_data: Gebruikersgegevens verwijderen
+        invite_users: Gebruikers uitnodigen
+        manage_announcements: Aankondigingen beheren
+        manage_appeals: Bezwaren afhandelen
+        manage_blocks: Blokkades beheren
+        manage_custom_emojis: Lokale emoji's beheren
+        manage_federation: Federatie beheren
+        manage_invites: Uitnodigingen beheren
+        manage_reports: Rapportages afhandelen
+        manage_roles: Rollen beheren
+        manage_rules: Serverregels wijzigen
+        manage_settings: Server-instellingen wijzigen
+        manage_taxonomies: Trends en hashtags beheren
+        manage_user_access: Gebruikerstoegang beheren
+        manage_users: Gebruikers beheren
+        manage_webhooks: Webhooks beheren
+        view_audit_log: Auditlog bekijken
+        view_dashboard: Dashboard bekijken
+        view_devops: Devops
+      title: Rollen
     rules:
       add_new: Regel toevoegen
       delete: Verwijderen
@@ -659,9 +704,6 @@ nl:
       site_short_description:
         desc_html: Dit wordt gebruikt op de voorpagina, in de zijbalk op profielpagina's en als metatag in de paginabron. Beschrijf in één alinea wat Mastodon is en wat deze server speciaal maakt.
         title: Omschrijving Mastodonserver (website)
-      site_terms:
-        desc_html: Je kan hier jouw eigen privacybeleid, gebruiksvoorwaarden en ander juridisch jargon kwijt. Je kan HTML gebruiken
-        title: Aangepaste gebruiksvoorwaarden
       site_title: Naam Mastodonserver
       thumbnail:
         desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
@@ -671,8 +713,7 @@ nl:
         title: Toegang tot de openbare tijdlijn zonder in te loggen toestaan
       title: Server-instellingen
       trendable_by_default:
-        desc_html: Heeft invloed op hashtags die nog niet eerder niet zijn toegestaan
-        title: Hashtags toestaan om trending te worden zonder voorafgaande beoordeling
+        title: Trends toestaan zonder voorafgaande beoordeling
       trends:
         desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
         title: Trends
@@ -690,6 +731,9 @@ nl:
       title: Berichten van account
       with_media: Met media
     strikes:
+      actions:
+        silence: "%{name} beperkte het account %{target}"
+        suspend: "%{name} schortte het account %{target} op"
       appeal_approved: Bezwaar ingediend
       appeal_pending: Bezwaar in behandeling
     system_checks:
@@ -706,18 +750,32 @@ nl:
     title: Beheer
     trends:
       allow: Toestaan
+      approved: Toegestaan
       disallow: Weigeren
       links:
         allow: Link toestaan
         allow_provider: Uitgever toestaan
+        disallow: Link toestaan
+        disallow_provider: Website toestaan
         title: Trending links
       only_allowed: Alleen toegestaan
       pending_review: In afwachting van beoordeling
       preview_card_providers:
+        allowed: Links van deze website kunnen trending worden
+        rejected: Links van deze website kunnen niet trending worden
         title: Uitgevers
       rejected: Afgewezen
       statuses:
         allow: Bericht toestaan
+        allow_account: Gebruiker toestaan
+        disallow: Bericht niet toestaan
+        disallow_account: Gebruiker niet toestaan
+        not_discoverable: Gebruiker heeft geen toestemming gegeven om vindbaar te zijn
+        title: Trending berichten
+      tags:
+        dashboard:
+          tag_languages_dimension: Populaire talen
+          tag_servers_dimension: Populaire servers
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
@@ -794,6 +852,7 @@ nl:
     invalid_reset_password_token: De code om jouw wachtwoord opnieuw in te stellen is verlopen. Vraag een nieuwe aan.
     link_to_otp: Voer een tweestapsverificatiecode van je telefoon of een herstelcode in
     link_to_webauth: Jouw apparaat met de authenticatie-app gebruiken
+    log_in_with: Inloggen met
     login: Inloggen
     logout: Uitloggen
     migrate_account: Naar een ander account verhuizen
@@ -815,6 +874,7 @@ nl:
     status:
       account_status: Accountstatus
       confirming: Aan het wachten totdat de e-mail is bevestigd.
+      functional: Jouw account kan in diens geheel gebruikt worden.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
@@ -952,6 +1012,7 @@ nl:
     edit:
       add_keyword: Trefwoord toevoegen
       keywords: Trefwoorden
+      statuses: Individuele berichten
       title: Filter bewerken
     errors:
       deprecated_api_multiple_keywords: Deze instellingen kunnen niet via deze applicatie worden veranderd, omdat er meer dan één trefwoord wordt gebruikt. Gebruik een meer recente applicatie of de webomgeving.
@@ -965,10 +1026,22 @@ nl:
       keywords:
         one: "%{count} trefwoord"
         other: "%{count} trefwoorden"
+      statuses:
+        one: "%{count} bericht"
+        other: "%{count} berichten"
+      statuses_long:
+        one: "%{count} individueel bericht verborgen"
+        other: "%{count} individuele berichten verborgen"
       title: Filters
     new:
       save: Nieuwe filter opslaan
       title: Nieuw filter toevoegen
+    statuses:
+      back_to_filter: Terug naar het filter
+      batch:
+        remove: Uit het filter verwijderen
+      index:
+        title: Gefilterde berichten
   footer:
     developers: Ontwikkelaars
     more: Meer…
@@ -979,6 +1052,7 @@ nl:
     changes_saved_msg: Wijzigingen succesvol opgeslagen!
     copy: Kopiëren
     delete: Verwijderen
+    deselect: Alles deselecteren
     none: Geen
     order_by: Sorteer op
     save_changes: Wijzigingen opslaan
@@ -1083,14 +1157,6 @@ nl:
     admin:
       report:
         subject: "%{name} heeft een rapportage ingediend"
-    digest:
-      action: Alle meldingen bekijken
-      body: Hier is een korte samenvatting van de berichten die je sinds jouw laatste bezoek op %{since} hebt gemist
-      mention: "%{name} vermeldde jou in:"
-      new_followers_summary:
-        one: Je hebt trouwens sinds je weg was er ook een nieuwe volger bijgekregen! Hoera!
-        other: Je hebt trouwens sinds je weg was er ook %{count} nieuwe volgers bijgekregen! Fantastisch!
-      title: Tijdens jouw afwezigheid...
     favourite:
       body: 'Jouw bericht werd door %{name} als favoriet gemarkeerd:'
       subject: "%{name} markeerde jouw bericht als favoriet"
@@ -1315,6 +1381,11 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   statuses_cleanup:
+    ignore_favs: Favorieten negeren
+    ignore_reblogs: Boosts negeren
+    keep_direct: Directe berichten behouden
+    keep_media: Berichten met mediabijlagen behouden
+    keep_pinned: Vastgemaakte berichten behouden
     min_age:
       '1209600': 2 weken
       '15778476': 6 maanden
@@ -1415,7 +1486,6 @@ nl:
       <p>This document is CC-BY-SA. It was last updated May 26, 2022.</p>
 
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: Gebruiksvoorwaarden en privacybeleid van %{instance}
   themes:
     contrast: Mastodon (hoog contrast)
     default: Mastodon (donker)
@@ -1471,8 +1541,10 @@ nl:
         silence: Jouw account %{acct} is nu beperkt
         suspend: Jouw account %{acct} is opgeschort
       title:
+        delete_statuses: Berichten verwijderd
         disable: Account bevroren
         none: Waarschuwing
+        sensitive: Account is als gevoelig gemarkeerd
         silence: Account beperkt
         suspend: Account opgeschort
     welcome:

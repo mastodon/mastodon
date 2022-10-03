@@ -282,7 +282,7 @@ class User < ApplicationRecord
   end
 
   def preferred_posting_language
-    valid_locale_cascade(settings.default_language, locale)
+    valid_locale_cascade(settings.default_language, locale, I18n.locale)
   end
 
   def setting_default_privacy

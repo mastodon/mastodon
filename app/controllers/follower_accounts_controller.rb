@@ -4,7 +4,7 @@ class FollowerAccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureVerification
 
-  before_action :require_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_cache_headers
 
   skip_around_action :set_locale, if: -> { request.format == :json }

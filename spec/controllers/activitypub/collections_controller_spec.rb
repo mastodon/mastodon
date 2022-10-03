@@ -24,7 +24,7 @@ RSpec.describe ActivityPub::CollectionsController, type: :controller do
   end
 
   before do
-    allow(controller).to receive(:signed_request_account).and_return(remote_account)
+    allow(controller).to receive(:signed_request_actor).and_return(remote_account)
 
     Fabricate(:status_pin, account: account)
     Fabricate(:status_pin, account: account)

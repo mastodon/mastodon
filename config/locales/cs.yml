@@ -28,7 +28,7 @@ cs:
     learn_more: Zjistit více
     logged_in_as_html: Aktuálně jste přihlášeni jako %{username}.
     logout_before_registering: Již jste přihlášeni.
-    privacy_policy: Zásady ochrany osobních údajů
+    privacy_policy: Ochrana osobních údajů
     rules: Pravidla serveru
     rules_html: 'Níže je shrnutí pravidel, která musíte dodržovat, pokud chcete mít účet na tomto Mastodon serveru:'
     see_whats_happening: Podívejte se, co se děje
@@ -41,7 +41,6 @@ cs:
       other: příspěvků
     status_count_before: Kteří napsali
     tagline: Decentralizovaná sociální síť
-    terms: Podmínky používání
     unavailable_content: Moderované servery
     unavailable_content_description:
       domain: Server
@@ -111,6 +110,7 @@ cs:
       avatar: Avatar
       by_domain: Doména
       change_email:
+        changed_msg: E-mail úspěšně změněn!
         current_email: Současný e-mail
         label: Změnit e-mail
         new_email: Nový e-mail
@@ -164,6 +164,7 @@ cs:
         active: Aktivní
         all: Vše
         pending: Čekající
+        silenced: Omezeno
         suspended: Pozastavené
         title: Moderování
       moderation_notes: Moderátorské poznámky
@@ -171,6 +172,7 @@ cs:
       most_recent_ip: Nejnovější IP adresa
       no_account_selected: Nebyl změněn žádný účet, neboť žádný nebyl zvolen
       no_limits_imposed: Nejsou nastavena žádná omezení
+      no_role_assigned: Nebyla přiřazena žádná role
       not_subscribed: Neodebírá
       pending: Čeká na posouzení
       perform_full_suspension: Pozastavit
@@ -242,6 +244,7 @@ cs:
         approve_user: Schválit uživatele
         assigned_to_self_report: Přiřadit hlášení
         change_email_user: Změnit uživateli e-mailovou adresu
+        change_role_user: Změnit roli uživatele
         confirm_user: Potvrdit uživatele
         create_account_warning: Vytvořit varování
         create_announcement: Nové oznámení
@@ -251,6 +254,7 @@ cs:
         create_email_domain_block: Zablokovat e-mailovou doménu
         create_ip_block: Vytvořit IP pravidlo
         create_unavailable_domain: Vytvořit nedostupnou doménu
+        create_user_role: Vytvořit roli
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
         destroy_custom_emoji: Odstranit vlastní emoji
@@ -261,6 +265,7 @@ cs:
         destroy_ip_block: Smazat IP pravidlo
         destroy_status: Odstranit Příspěvek
         destroy_unavailable_domain: Smazat nedostupnou doménu
+        destroy_user_role: Zničit roli
         disable_2fa_user: Vypnout 2FA
         disable_custom_emoji: Zakázat vlastní emoji
         disable_sign_in_token_auth_user: Zrušit uživatelovo ověřování e-mailovým tokenem
@@ -287,15 +292,19 @@ cs:
         update_announcement: Aktualizovat oznámení
         update_custom_emoji: Aktualizovat vlastní emoji
         update_domain_block: Změnit blokaci domény
+        update_ip_block: Aktualizovat pravidlo IP
         update_status: Aktualizovat Příspěvek
+        update_user_role: Aktualizovat roli
       actions:
         approve_appeal_html: Uživatel %{name} schválil odvolání proti rozhodnutí moderátora %{target}
         approve_user_html: "%{name} schválil registraci od %{target}"
         assigned_to_self_report_html: Uživatel %{name} si přidělil hlášení %{target}
         change_email_user_html: Uživatel %{name} změnil e-mailovou adresu uživatele %{target}
+        change_role_user_html: "%{name} změnil roli %{target}"
         confirm_user_html: Uživatel %{name} potvrdil e-mailovou adresu uživatele %{target}
         create_account_warning_html: Uživatel %{name} poslal %{target} varování
         create_announcement_html: Uživatel %{name} vytvořil nové oznámení %{target}
+        create_canonical_email_block_html: "%{name} zablokoval e-mail s hash %{target}"
         create_custom_emoji_html: Uživatel %{name} nahrál nové emoji %{target}
         create_domain_allow_html: Uživatel %{name} povolil federaci s doménou %{target}
         create_domain_block_html: Uživatel %{name} zablokoval doménu %{target}
@@ -304,7 +313,6 @@ cs:
         create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
-        destroy_custom_emoji_html: Uživatel %{name} zničil emoji %{target}
         destroy_domain_allow_html: Uživatel %{name} zakázal federaci s doménou %{target}
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
         destroy_email_domain_block_html: Uživatel %{name} odblokoval e-mailovou doménu %{target}
@@ -339,7 +347,6 @@ cs:
         update_custom_emoji_html: Uživatel %{name} aktualizoval emoji %{target}
         update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
-      deleted_status: "(smazaný příspěvek)"
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
@@ -688,8 +695,10 @@ cs:
         moderation: Moderování
         special: Speciální
       delete: Smazat
+      description_html: Pomocí <strong>uživatelských rolí</strong>můžete upravit, ke kterým funkcím a oblastem mají přístup uživatelé Mastodon.
       edit: Upravit roli „%{name}“
       everyone: Výchozí oprávnění
+      everyone_full_description_html: Toto je <strong>základní role</strong> ovlivňující <strong>všechny uživatele</strong>, a to i bez přiřazené role. Všechny ostatní role od ní dědí oprávnění.
       permissions_count:
         few: "%{count} oprávnění"
         many: "%{count} oprávnění"
@@ -697,27 +706,45 @@ cs:
         other: "%{count} oprávnění"
       privileges:
         administrator: Správce
+        administrator_description: Uživatelé s tímto oprávněním obejdou všechna oprávnění
         delete_user_data: Mazat uživatelská data
         delete_user_data_description: Umožňuje uživatelům bezodkladně mazat data jiných uživatelů
         invite_users: Zvát uživatele
         invite_users_description: Umožňuje uživatelům zvát na server nové lidi
         manage_announcements: Spravovat oznámení
+        manage_announcements_description: Umožňuje uživatelům spravovat oznámení na serveru
         manage_appeals: Spravovat odvolání
         manage_appeals_description: Umožňuje uživatelům posuzovat odvolání proti moderátorským zásahům
         manage_blocks: Spravovat blokace
+        manage_blocks_description: Umožňuje uživatelům blokovat poskytovatele e-mailů a IP adresy
         manage_custom_emojis: Spravovat vlastní emoji
         manage_custom_emojis_description: Umožňuje uživatelům spravovat vlastní emoji na serveru
+        manage_federation: Spravovat federaci
+        manage_federation_description: Umožňuje uživatelům blokovat nebo povolit federaci s jinými doménami a ovládat doručování
         manage_invites: Spravovat pozvánky
+        manage_invites_description: Umožňuje uživatelům procházet a deaktivovat pozvánky
         manage_reports: Spravovat hlášení
+        manage_reports_description: Umožňuje uživatelům kontrolovat přehledy a provádět moderovací akce proti nim
         manage_roles: Spravovat role
+        manage_roles_description: Umožňuje uživatelům spravovat a přiřazovat role pod nimi
         manage_rules: Spravovat pravidla
+        manage_rules_description: Umožňuje uživatelům změnit pravidla serveru
         manage_settings: Spravovat nastavení
+        manage_settings_description: Umožňuje uživatelům změnit nastavení webu
+        manage_taxonomies: Správa taxonomií
+        manage_taxonomies_description: Umožňuje uživatelům zkontrolovat populární obsah a aktualizovat nastavení hashtag
         manage_user_access: Spravovat uživatelské přístupy
         manage_user_access_description: Umožňuje uživatelům rušit jiným uživatelům dvoufázové ověřování, měnit jejich e-mailovou adresu a obnovovat jim hesla
         manage_users: Spravovat uživatele
+        manage_users_description: Umožňuje uživatelům zobrazit podrobnosti ostatních uživatelů a provádět moderování proti nim
         manage_webhooks: Spravovat webhooky
+        manage_webhooks_description: Umožňuje uživatelům nastavit webhooky pro administrativní události
         view_audit_log: Zobrazovat protokol auditu
+        view_audit_log_description: Umožňuje uživatelům vidět historii administrativních akcí na serveru
+        view_dashboard: Zobrazit ovládací panel
+        view_dashboard_description: Umožňuje uživatelům přístup k ovládacímu panelu a různým metrikám
         view_devops: Devops
+        view_devops_description: Umožňuje uživatelům přístup k ovládacím panelům Sidekiq a pgHero
       title: Role
     rules:
       add_new: Přidat pravidlo
@@ -793,8 +820,8 @@ cs:
         desc_html: Zobrazeno v postranním panelu a meta značkách. V jednom odstavci popište, co je Mastodon a čím se tento server odlišuje od ostatních.
         title: Krátký popis serveru
       site_terms:
-        desc_html: Můžete si napsat vlastní zásady ochrany osobních údajů, podmínky používání či jiné právní dokumenty. Můžete použít HTML značky
-        title: Vlastní podmínky používání
+        desc_html: Můžete napsat své vlastní zásady ochrany osobních údajů. HTML tagy můžete použít
+        title: Vlastní zásady ochrany osobních údajů
       site_title: Název serveru
       thumbnail:
         desc_html: Používáno pro náhledy přes OpenGraph a API. Doporučujeme rozlišení 1200x630px
@@ -804,8 +831,8 @@ cs:
         title: Povolit neautentizovaný přístup k časové ose
       title: Nastavení stránky
       trendable_by_default:
-        desc_html: Ovlivňuje hashtagy, které nebyly dříve zakázány
-        title: Povolit zobrazení hashtagů mezi populárními i bez předchozího posouzení
+        desc_html: Specifický populární obsah může být i nadále výslovně zakázán
+        title: Povolit trendy bez předchozí revize
       trends:
         desc_html: Veřejně zobrazit dříve schválený obsah, který je zrovna populární
         title: Trendy
@@ -1196,15 +1223,41 @@ cs:
       public: Veřejné časové osy
       thread: Konverzace
     edit:
+      add_keyword: Přidat klíčové slovo
+      keywords: Klíčová slova
+      statuses: Individuální příspěvky
+      statuses_hint_html: Tento filtr platí pro výběr jednotlivých příspěvků bez ohledu na to, zda odpovídají klíčovým slovům níže. <a href="%{path}">Zkontrolujte nebo odeberte příspěvky z filtru</a>.
       title: Upravit filtr
     errors:
+      deprecated_api_multiple_keywords: Tyto parametry nelze změnit z této aplikace, protože se vztahují na více než jedno klíčové slovo filtru. Použijte novější aplikaci nebo webové rozhraní.
       invalid_context: Nebyl poskytnut žádný nebo jen neplatný kontext
     index:
+      contexts: Filtruje %{contexts}
       delete: Smazat
       empty: Nemáte žádný filtr.
+      expires_in: Vyprší za %{distance}
+      expires_on: Vyprší %{date}
+      keywords:
+        few: "%{count} klíčová slova"
+        many: "%{count} klíčových slov"
+        one: "%{count} klíčové slovo"
+        other: "%{count} klíčových slov"
+      statuses:
+        few: "%{count} příspěvků"
+        many: "%{count} příspěvků"
+        one: "%{count} příspěvek"
+        other: "%{count} příspěvků"
       title: Filtry
     new:
+      save: Uložit nový filtr
       title: Přidat nový filtr
+    statuses:
+      back_to_filter: Zpět na filtr
+      batch:
+        remove: Odstranit z filtru
+      index:
+        hint: Tento filtr se vztahuje na výběr jednotlivých příspěvků bez ohledu na jiná kritéria. Do tohoto filtru můžete přidat více příspěvků z webového rozhraní.
+        title: Filtrované příspěvky
   footer:
     developers: Vývojáři
     more: Více…
@@ -1215,6 +1268,7 @@ cs:
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
     delete: Smazat
+    deselect: Zrušit výběr všeho
     none: Žádné
     order_by: Seřadit podle
     save_changes: Uložit změny
@@ -1330,21 +1384,6 @@ cs:
         subject: Uživatel %{name} podal hlášení
       sign_up:
         subject: Uživatel %{name} se zaregistroval
-    digest:
-      action: Zobrazit všechna oznámení
-      body: Zde najdete stručný souhrn zpráv, které jste zmeškali od vaší poslední návštěvy %{since}
-      mention: 'Uživatel %{name} vás zmínil v:'
-      new_followers_summary:
-        few: Zatímco jste byli pryč jste navíc získali %{count} nové sledující! Skvělé!
-        many: Zatímco jste byli pryč jste navíc získali %{count} nových sledujících! Úžasné!
-        one: Zatímco jste byli pryč jste navíc získali jednoho nového sledujícího! Hurá!
-        other: Zatímco jste byli pryč jste navíc získali %{count} nových sledujících! Úžasné!
-      subject:
-        few: "%{count} nová oznámení od vaší poslední návštěvy 🐘"
-        many: "%{count} nových oznámení od vaší poslední návštěvy 🐘"
-        one: "1 nové oznámení od vaší poslední návštěvy 🐘"
-        other: "%{count} nových oznámení od vaší poslední návštěvy 🐘"
-      title: Ve vaší nepřítomnosti…
     favourite:
       body: 'Váš příspěvek si oblíbil uživatel %{name}:'
       subject: Uživatel %{name} si oblíbil váš příspěvek
@@ -1719,7 +1758,7 @@ cs:
       <p>Tento dokument je dostupný pod licencí CC-BY-SA. Byl naposledy aktualizován 26. května 2022.</p>
 
       <p>Původně adaptováno ze <a href="https://github.com/discourse/discourse">zásad ochrany osobních údajů projektu Discourse</a>.</p>
-    title: Podmínky používání a zásady ochrany osobních údajů na serveru %{instance}
+    title: Zásady ochrany osobních údajů %{instance}
   themes:
     contrast: Mastodon (vysoký kontrast)
     default: Mastodon (tmavý)

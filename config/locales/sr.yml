@@ -12,14 +12,12 @@ sr:
     documentation: Документација
     hosted_on: Мастодонт хостован на %{domain}
     learn_more: Сазнајте више
-    privacy_policy: Полиса приватности
     source_code: Изворни код
     status_count_after:
       few: статуси
       one: статус
       other: статуса
     status_count_before: Који су написали
-    terms: Услови коришћења
     user_count_after:
       few: корисници
       one: корисник
@@ -146,7 +144,6 @@ sr:
       warn: Упозори
       web: Веб
     action_logs:
-      deleted_status: "(обрисан статус)"
       title: Записник
     custom_emojis:
       by_domain: Домен
@@ -315,9 +312,6 @@ sr:
       site_short_description:
         desc_html: Приказано у изборнику са стране и у мета ознакама. Опиши шта је Мастодон и шта чини овај сервер посебним у једном пасусу. Ако остане празно, вратиће се првобитни опис инстанце.
         title: Кратак опис инстанце
-      site_terms:
-        desc_html: Можете писати Вашу политику приватности, услове коришћења и остале легалне ствари. Можете користити HTML тагове
-        title: Произвољни услови коришћења
       site_title: Име инстанце
       thumbnail:
         desc_html: Користи се за прегледе кроз OpenGraph и API. Препоручује се 1200x630px
@@ -504,15 +498,6 @@ sr:
   moderation:
     title: Модерација
   notification_mailer:
-    digest:
-      action: Погледајте сва обавештења
-      body: Ево кратак преглед порука које сте пропустили од последње посете од %{since}
-      mention: "%{name} Вас је поменуо у:"
-      new_followers_summary:
-        few: Добили сте %{count} нова пратиоца! Сјајно!
-        one: Добили сте једног новог пратиоца! Јеее!
-        other: Добили сте %{count} нових пратиоца! Сјајно!
-      title: Док нисте били ту...
     favourite:
       body: "%{name} је поставио као омиљен Ваш статус:"
       subject: "%{name} је поставио као омиљен Ваш статус"
@@ -652,8 +637,6 @@ sr:
     pinned: Прикачена труба
     reblogged: подржано
     sensitive_content: Осетљив садржај
-  terms:
-    title: Услови коришћења и политика приватности инстанце %{instance}
   themes:
     contrast: Велики контраст
     default: Мастодон

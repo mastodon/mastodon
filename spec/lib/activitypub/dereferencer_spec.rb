@@ -4,10 +4,10 @@ RSpec.describe ActivityPub::Dereferencer do
   describe '#object' do
     let(:object) { { '@context': 'https://www.w3.org/ns/activitystreams', id: 'https://example.com/foo', type: 'Note', content: 'Hoge' } }
     let(:permitted_origin) { 'https://example.com' }
-    let(:signature_account) { nil }
+    let(:signature_actor) { nil }
     let(:uri) { nil }
 
-    subject { described_class.new(uri, permitted_origin: permitted_origin, signature_account: signature_account).object }
+    subject { described_class.new(uri, permitted_origin: permitted_origin, signature_actor: signature_actor).object }
 
     before do
       stub_request(:get, 'https://example.com/foo').to_return(body: Oj.dump(object), headers: { 'Content-Type' => 'application/activity+json' })
@@ -21,7 +21,7 @@ RSpec.describe ActivityPub::Dereferencer do
       end
 
       context 'with signature account' do
-        let(:signature_account) { Fabricate(:account) }
+        let(:signature_actor) { Fabricate(:account) }
 
         it 'makes signed request' do
           subject
@@ -52,7 +52,7 @@ RSpec.describe ActivityPub::Dereferencer do
       end
 
       context 'with signature account' do
-        let(:signature_account) { Fabricate(:account) }
+        let(:signature_actor) { Fabricate(:account) }
 
         it 'makes signed request' do
           subject

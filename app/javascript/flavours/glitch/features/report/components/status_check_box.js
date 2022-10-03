@@ -7,6 +7,7 @@ import DisplayName from 'flavours/glitch/components/display_name';
 import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
 import Option from './option';
 import MediaAttachments from 'flavours/glitch/components/media_attachments';
+import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
 
 export default class StatusCheckBox extends React.PureComponent {
 
@@ -36,7 +37,7 @@ export default class StatusCheckBox extends React.PureComponent {
             <Avatar account={status.get('account')} size={46} />
           </div>
 
-          <div><DisplayName account={status.get('account')} /> · <RelativeTimestamp timestamp={status.get('created_at')} /></div>
+          <div><DisplayName account={status.get('account')} /> · <VisibilityIcon visibility={status.get('visibility')} /><RelativeTimestamp timestamp={status.get('created_at')} /></div>
         </div>
 
         <StatusContent status={status} media={<MediaAttachments status={status} revealed={false} />} />
