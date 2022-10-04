@@ -42,14 +42,48 @@
     &__main {
       box-sizing: border-box;
       width: 100%;
-      max-width: 600px;
       flex: 0 0 auto;
       display: flex;
       flex-direction: column;
 
       @media screen and (min-width: $no-gap-breakpoint) {
         padding: 0 10px;
+        max-width: 600px;
       }
+    }
+  }
+}
+
+$ui-header-height: 55px;
+
+.ui__header {
+  display: none;
+  box-sizing: border-box;
+  height: $ui-header-height;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    display: inline-flex;
+    padding: 15px;
+
+    .logo {
+      height: $ui-header-height - 30px;
+      width: auto;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+
+    .button {
+      flex: 0 0 auto;
     }
   }
 }
@@ -57,12 +91,13 @@
 .tabs-bar__wrapper {
   background: darken($ui-base-color, 8%);
   position: sticky;
-  top: 0;
+  top: $ui-header-height;
   z-index: 2;
   padding-top: 0;
 
   @media screen and (min-width: $no-gap-breakpoint) {
     padding-top: 10px;
+    top: 0;
   }
 
   .tabs-bar {

@@ -52,12 +52,14 @@ import {
   Directory,
   Explore,
   FollowRecommendations,
+  About,
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import { me, title } from 'flavours/glitch/initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
+import Header from './components/header';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
@@ -183,6 +185,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
+          <WrappedRoute path='/about' component={About} content={children} />
 
           <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
           <WrappedRoute path={['/public', '/timelines/public']} exact component={PublicTimeline} content={children} />
@@ -652,6 +655,9 @@ class UI extends React.Component {
               )}}
             />
           </div>)}
+
+          <Header />
+
           <SwitchingColumnsArea location={location} mobile={layout === 'mobile' || layout === 'single-column'} navbarUnder={navbarUnder}>
             {children}
           </SwitchingColumnsArea>

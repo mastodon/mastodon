@@ -154,72 +154,70 @@
     padding-top: 0;
   }
 
-  @media screen and (min-width: 630px) {
-    .detailed-status {
-      padding: 15px;
+  .detailed-status {
+    padding: 15px;
 
-      .media-gallery,
-      .video-player,
-      .audio-player {
-        margin-top: 15px;
-      }
+    .media-gallery,
+    .video-player,
+    .audio-player {
+      margin-top: 15px;
     }
+  }
 
-    .account__header__bar {
-      padding: 5px 10px;
+  .account__header__bar {
+    padding: 5px 10px;
+  }
+
+  .navigation-bar,
+  .compose-form {
+    padding: 15px;
+  }
+
+  .compose-form .compose-form__publish .compose-form__publish-button-wrapper {
+    padding-top: 15px;
+  }
+
+  .notification__report {
+    padding: 15px 15px 15px (48px + 15px * 2);
+    min-height: 48px + 2px;
+
+    &__avatar {
+      left: 15px;
+      top: 17px;
     }
+  }
 
-    .navigation-bar,
-    .compose-form {
-      padding: 15px;
+  .status {
+    padding: 15px;
+    min-height: 48px + 2px;
+
+    .media-gallery,
+    &__action-bar,
+    .video-player,
+    .audio-player {
+      margin-top: 10px;
     }
+  }
 
-    .compose-form .compose-form__publish .compose-form__publish-button-wrapper {
+  .account {
+    padding: 15px 10px;
+
+    &__header__bio {
+      margin: 0 -10px;
+    }
+  }
+
+  .notification {
+    &__message {
       padding-top: 15px;
     }
 
-    .notification__report {
-      padding: 15px 15px 15px (48px + 15px * 2);
-      min-height: 48px + 2px;
-
-      &__avatar {
-        left: 15px;
-        top: 17px;
-      }
-    }
-
     .status {
-      padding: 15px;
-      min-height: 48px + 2px;
-
-      .media-gallery,
-      &__action-bar,
-      .video-player,
-      .audio-player {
-        margin-top: 10px;
-      }
+      padding-top: 8px;
     }
 
     .account {
-      padding: 15px 10px;
-
-      &__header__bio {
-        margin: 0 -10px;
-      }
-    }
-
-    .notification {
-      &__message {
-        padding-top: 15px;
-      }
-
-      .status {
-        padding-top: 8px;
-      }
-
-      .account {
-        padding-top: 8px;
-      }
+      padding-top: 8px;
     }
   }
 }
@@ -261,19 +259,7 @@
   .search {
     margin-bottom: 10px;
   }
-}
 
-@media screen and (max-width: 600px + (285px * 1) + (10px * 1)) {
-  .columns-area__panels__pane--compositional {
-    display: none;
-  }
-
-  .with-fab .scrollable .item-list:last-child {
-    padding-bottom: 5.25rem;
-  }
-}
-
-@media screen and (min-width: 600px + (285px * 1) + (10px * 1)) {
   .floating-action-button,
   .tabs-bar__link.optional {
     display: none;
@@ -282,16 +268,74 @@
   .search-page .search {
     display: none;
   }
-}
 
-@media screen and (max-width: 600px + (285px * 2) + (10px * 2)) {
-  .columns-area__panels__pane--navigational {
+  .navigation-panel__legal {
     display: none;
   }
 }
 
-@media screen and (min-width: 600px + (285px * 2) + (10px * 2)) {
-  .tabs-bar {
+@media screen and (max-width: $no-gap-breakpoint - 1px) {
+  .with-fab .scrollable .item-list:last-child {
+    padding-bottom: 5.25rem;
+  }
+
+  .columns-area__panels__main {
+    width: calc(100% - 55px);
+  }
+
+  .columns-area__panels {
+    min-height: calc(100vh - $ui-header-height);
+  }
+
+  .columns-area__panels__pane--navigational {
+    min-width: 55px;
+
+    .columns-area__panels__pane__inner {
+      width: 55px;
+    }
+
+    .navigation-panel {
+      margin: 0;
+      background: $ui-base-color;
+      border-left: 1px solid lighten($ui-base-color, 8%);
+      height: 100vh;
+    }
+
+    .column-link span,
+    .navigation-panel__sign-in-banner,
+    .navigation-panel__logo,
+    .getting-started__trends {
+      display: none;
+    }
+
+    .column-link__icon {
+      font-size: 18px;
+    }
+  }
+
+  .ui__header {
+    display: flex;
+    background: $ui-base-color;
+    border-bottom: 1px solid lighten($ui-base-color, 8%);
+  }
+
+  .column-header,
+  .column-back-button,
+  .scrollable {
+    border-radius: 0 !important;
+  }
+}
+
+.explore__search-header {
+  display: none;
+}
+
+@media screen and (max-width: $no-gap-breakpoint + 285px - 1px) {
+  .columns-area__panels__pane--compositional {
     display: none;
+  }
+
+  .explore__search-header {
+    display: flex;
   }
 }

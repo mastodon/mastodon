@@ -181,3 +181,7 @@ export function FilterModal () {
 export function Explore () {
   return import(/* webpackChunkName: "flavours/glitch/async/explore" */'flavours/glitch/features/explore');
 }
+
+export function About () {
+  return import(/*webpackChunkName: "features/glitch/async/about" */'flavours/glitch/features/about');
+}
