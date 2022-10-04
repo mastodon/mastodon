@@ -616,10 +616,12 @@ Rails.application.routes.draw do
     end
 
     namespace :v2 do
-      resources :media, only: [:create]
       get '/search', to: 'search#index', as: :search
+
+      resources :media,       only: [:create]
       resources :suggestions, only: [:index]
       resources :filters,     only: [:index, :create, :show, :update, :destroy]
+      resource  :instance,    only: [:show]
 
       namespace :admin do
         resources :accounts, only: [:index]

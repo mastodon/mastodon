@@ -5,6 +5,7 @@ import SearchContainer from 'mastodon/features/compose/containers/search_contain
 import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
 import NavigationContainer from 'mastodon/features/compose/containers/navigation_container';
 import LinkFooter from './link_footer';
+import ServerBanner from 'mastodon/components/server_banner';
 import { changeComposing } from 'mastodon/actions/compose';
 
 export default @connect()
@@ -35,6 +36,7 @@ class ComposePanel extends React.PureComponent {
 
         {!signedIn && (
           <React.Fragment>
+            <ServerBanner />
             <div className='flex-spacer' />
           </React.Fragment>
         )}
