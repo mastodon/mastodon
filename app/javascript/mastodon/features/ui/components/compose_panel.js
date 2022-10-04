@@ -46,7 +46,7 @@ class ComposePanel extends React.PureComponent {
           </React.Fragment>
         )}
 
-        <LinkFooter withHotkeys />
+        <LinkFooter />
       </div>
     );
   }

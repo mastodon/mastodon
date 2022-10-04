@@ -17,6 +17,7 @@ import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
 import { mascot } from '../../initial_state';
 import Icon from 'mastodon/components/icon';
 import { logOut } from 'mastodon/utils/log_out';
+import Column from 'mastodon/components/column';
 
 const messages = defineMessages({
   start: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -92,57 +93,59 @@ class Compose extends React.PureComponent {
   render () {
     const { multiColumn, showSearch, isSearchPage, intl } = this.props;
 
-    let header = '';
-
     if (multiColumn) {
       const { columns } = this.props;
-      header = (
-        <nav className='drawer__header'>
-          <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><Icon id='bars' fixedWidth /></Link>
-          {!columns.some(column => column.get('id') === 'HOME') && (
-            <Link to='/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><Icon id='home' fixedWidth /></Link>
-          )}
-          {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
-            <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' fixedWidth /></Link>
-          )}
-          {!columns.some(column => column.get('id') === 'COMMUNITY') && (
-            <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' fixedWidth /></Link>
-          )}
-          {!columns.some(column => column.get('id') === 'PUBLIC') && (
-            <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' fixedWidth /></Link>
-          )}
-          <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' fixedWidth /></a>
-          <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' fixedWidth /></a>
-        </nav>
+
+      return (
+        <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
+          <nav className='drawer__header'>
+            <Link to='/getting-started' className='drawer__tab' title={intl.formatMessage(messages.start)} aria-label={intl.formatMessage(messages.start)}><Icon id='bars' fixedWidth /></Link>
+            {!columns.some(column => column.get('id') === 'HOME') && (
+              <Link to='/home' className='drawer__tab' title={intl.formatMessage(messages.home_timeline)} aria-label={intl.formatMessage(messages.home_timeline)}><Icon id='home' fixedWidth /></Link>
+            )}
+            {!columns.some(column => column.get('id') === 'NOTIFICATIONS') && (
+              <Link to='/notifications' className='drawer__tab' title={intl.formatMessage(messages.notifications)} aria-label={intl.formatMessage(messages.notifications)}><Icon id='bell' fixedWidth /></Link>
+            )}
+            {!columns.some(column => column.get('id') === 'COMMUNITY') && (
+              <Link to='/public/local' className='drawer__tab' title={intl.formatMessage(messages.community)} aria-label={intl.formatMessage(messages.community)}><Icon id='users' fixedWidth /></Link>
+            )}
+            {!columns.some(column => column.get('id') === 'PUBLIC') && (
+              <Link to='/public' className='drawer__tab' title={intl.formatMessage(messages.public)} aria-label={intl.formatMessage(messages.public)}><Icon id='globe' fixedWidth /></Link>
+            )}
+            <a href='/settings/preferences' className='drawer__tab' title={intl.formatMessage(messages.preferences)} aria-label={intl.formatMessage(messages.preferences)}><Icon id='cog' fixedWidth /></a>
+            <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' fixedWidth /></a>
+          </nav>
+
+          {(multiColumn || isSearchPage) && <SearchContainer /> }
+
+          <div className='drawer__pager'>
+            {!isSearchPage && <div className='drawer__inner' onFocus={this.onFocus}>
+              <NavigationContainer onClose={this.onBlur} />
+
+              <ComposeFormContainer />
+
+              <div className='drawer__inner__mastodon'>
+                <img alt='' draggable='false' src={mascot || elephantUIPlane} />
+              </div>
+            </div>}
+
+            <Motion defaultStyle={{ x: isSearchPage ? 0 : -100 }} style={{ x: spring(showSearch || isSearchPage ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
+              {({ x }) => (
+                <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
+                  <SearchResultsContainer />
+                </div>
+              )}
+            </Motion>
+          </div>
+        </div>
       );
     }
 
     return (
-      <div className='drawer' role='region' aria-label={intl.formatMessage(messages.compose)}>
-        {header}
-
-        {(multiColumn || isSearchPage) && <SearchContainer /> }
-
-        <div className='drawer__pager'>
-          {!isSearchPage && <div className='drawer__inner' onFocus={this.onFocus}>
-            <NavigationContainer onClose={this.onBlur} />
-
-            <ComposeFormContainer />
-
-            <div className='drawer__inner__mastodon'>
-              <img alt='' draggable='false' src={mascot || elephantUIPlane} />
-            </div>
-          </div>}
-
-          <Motion defaultStyle={{ x: isSearchPage ? 0 : -100 }} style={{ x: spring(showSearch || isSearchPage ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
-            {({ x }) => (
-              <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
-                <SearchResultsContainer />
-              </div>
-            )}
-          </Motion>
-        </div>
-      </div>
+      <Column onFocus={this.onFocus}>
+        <NavigationContainer onClose={this.onBlur} />
+        <ComposeFormContainer />
+      </Column>
     );
   }
 
