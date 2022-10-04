@@ -198,10 +198,7 @@ module ApplicationHelper
 
   def render_initial_state
     state_params = {
-      settings: {
-        known_fediverse: Setting.show_known_fediverse_at_about_page,
-      },
-
+      settings: {},
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
     }
 
