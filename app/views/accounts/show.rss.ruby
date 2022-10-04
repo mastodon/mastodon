@@ -9,6 +9,7 @@ RSS::Builder.build do |doc|
 
   @statuses.each do |status|
     doc.item do |item|
+      item.title("New post#{" (CW: #{status.spoiler_text})" unless status.spoiler_text.empty?}")
       item.link(ActivityPub::TagManager.instance.url_for(status))
       item.pub_date(status.created_at)
       item.description(rss_status_content_format(status))
