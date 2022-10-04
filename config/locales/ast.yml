@@ -17,6 +17,7 @@ ast:
     get_apps: En preseos móviles
     hosted_on: Mastodon ta agospiáu en %{domain}
     learn_more: Saber más
+    privacy_policy: Política de privacidá
     server_stats: 'Estadístiques del sirvidor:'
     source_code: Códigu fonte
     status_count_after:
@@ -135,6 +136,9 @@ ast:
     settings:
       site_description:
         title: Descripción del sirvidor
+      site_terms:
+        desc_html: Pues escribir la to política de privacidá. Tamién pues usar etiquetes HTML
+        title: Política de privacidá personalizada
       site_title: Nome del sirvidor
       title: Axustes del sitiu
     title: Alministración
@@ -463,6 +467,8 @@ ast:
     sensitive_content: Conteníu sensible
   tags:
     does_not_match_previous_name: nun concasa col nome anterior
+  terms:
+    title: 'Política de pirvacidá de: %{instance}'
   themes:
     contrast: Contraste altu
     default: Mastodon
