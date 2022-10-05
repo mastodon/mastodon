@@ -1000,6 +1000,7 @@ ca:
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
     your_token: El teu identificador d'accés
   auth:
+    apply_for_account: Apunta't a la llista d'espera
     change_password: Contrasenya
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -1019,6 +1020,7 @@ ca:
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
     or_log_in_with: O inicia sessió amb
+    privacy_policy_agreement_html: He llegit i estic d'acord amb la <a href="%{privacy_policy_path}" target="_blank">política de privacitat</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1026,12 +1028,18 @@ ca:
     registration_closed: "%{instance} no accepta nous membres"
     resend_confirmation: Torna a enviar el correu de confirmació
     reset_password: Restableix la contrasenya
+    rules:
+      preamble: Aquestes regles estan establertes i aplicades per els moderadors de %{domain}.
+      title: Algunes regles bàsiques.
     security: Seguretat
     set_new_password: Estableix una contrasenya nova
     setup:
       email_below_hint_html: Si l’adreça de correu electrònic següent és incorrecta, podeu canviar-la aquí i rebre un nou correu electrònic de confirmació.
       email_settings_hint_html: El correu electrònic de confirmació es va enviar a %{email}. Si aquesta adreça de correu electrònic no és correcta, la podeu canviar a la configuració del compte.
       title: Configuració
+    sign_up:
+      preamble: Amb un compte en aquest servidor Mastodon, podràs seguir qualsevol altre persona de la xarxa, independentment d'on tingui el seu compte.
+      title: Anem a configurar-te a %{domain}.
     status:
       account_status: Estat del compte
       confirming: Esperant que es completi la confirmació del correu electrònic.
