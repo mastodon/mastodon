@@ -346,11 +346,13 @@ ru:
         update_announcement_html: "%{name} обновил(а) объявление %{target}"
         update_custom_emoji_html: "%{name} обновил(а) эмодзи %{target}"
         update_domain_block_html: "%{name} обновил(а) блокировку домена для %{target}"
+        update_ip_block_html: "%{name} изменил(а) правило для IP %{target}"
         update_status_html: "%{name} изменил(а) пост пользователя %{target}"
+        update_user_role_html: "%{name} изменил(а) роль %{target}"
       empty: Журнал пуст.
       filter_by_action: Фильтр по действию
       filter_by_user: Фильтр по пользователю
-      title: Журнал событий
+      title: Журнал аудита
     announcements:
       destroyed_msg: Объявление удалено.
       edit:
@@ -611,7 +613,7 @@ ru:
           few: "%{count} заметки"
           many: "%{count} заметок"
           other: "%{count} заметок"
-      action_log: Журнал событий
+      action_log: Журнал аудита
       action_taken_by: 'Действие предпринято:'
       actions:
         resolve_description_html: Никаких действий не будет выполнено относительно доложенного содержимого. Жалоба будет закрыта.
@@ -691,6 +693,8 @@ ru:
         invite_users_description: Позволяет пользователям приглашать новых людей на сервер
         manage_announcements: Управление объявлениями
         manage_announcements_description: Позволяет пользователям управлять объявлениями на сервере
+        view_audit_log: Посмотреть журнал аудита
+        view_audit_log_description: Позволяет пользователям просматривать историю административных действий на сервере
         view_dashboard: Открыть панель управления
         view_devops: DevOps
       title: Роли
