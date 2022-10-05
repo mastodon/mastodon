@@ -13,7 +13,7 @@ import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from '../../actions/compose';
 import { expandHomeTimeline } from '../../actions/timelines';
 import { expandNotifications } from '../../actions/notifications';
-import { fetchRules } from '../../actions/rules';
+import { fetchServer } from '../../actions/server';
 import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
@@ -51,10 +51,12 @@ import {
   Directory,
   Explore,
   FollowRecommendations,
+  About,
 } from './util/async-components';
 import { me, title } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 import { Helmet } from 'react-helmet';
+import Header from './components/header';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
@@ -170,6 +172,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
+          <WrappedRoute path='/about' component={About} content={children} />
 
           <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
           <WrappedRoute path={['/public', '/timelines/public']} exact component={PublicTimeline} content={children} />
@@ -389,7 +392,7 @@ class UI extends React.PureComponent {
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(expandNotifications());
 
-      setTimeout(() => this.props.dispatch(fetchRules()), 3000);
+      setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
 
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
@@ -559,6 +562,8 @@ class UI extends React.PureComponent {
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
+          <Header />
+
           <SwitchingColumnsArea location={location} mobile={layout === 'mobile' || layout === 'single-column'}>
             {children}
           </SwitchingColumnsArea>

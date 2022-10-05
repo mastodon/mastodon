@@ -21,7 +21,7 @@ class TagsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        expires_in 0, public: true
+        redirect_to web_path("tags/#{@tag.name}")
       end
 
       format.rss do

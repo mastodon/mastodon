@@ -17,25 +17,12 @@
         = render 'registration'
 
       .directory
-        - if Setting.profile_directory
-          .directory__tag
-            = optional_link_to Setting.profile_directory, explore_path do
-              %h4
-                = fa_icon 'address-book fw'
-                = t('about.discover_users')
-                %small= t('about.browse_directory')
-
-              .avatar-stack
-                - @instance_presenter.sample_accounts.each do |account|
-                  = image_tag current_account&.user&.setting_auto_play_gif ? account.avatar_original_url : account.avatar_static_url, alt: '', class: 'account__avatar'
-
-        - if Setting.timeline_preview
-          .directory__tag
-            = optional_link_to Setting.timeline_preview, public_timeline_path do
-              %h4
-                = fa_icon 'globe fw'
-                = t('about.see_whats_happening')
-                %small= t('about.browse_public_posts')
+        .directory__tag
+          = link_to web_path do
+            %h4
+              = fa_icon 'globe fw'
+              = t('about.see_whats_happening')
+              %small= t('about.browse_public_posts')
 
         .directory__tag
           = link_to 'https://joinmastodon.org/apps', target: '_blank', rel: 'noopener noreferrer' do
@@ -53,11 +40,11 @@
 
       .hero-widget
         .hero-widget__img
-          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.png'), alt: @instance_presenter.site_title
+          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.png'), alt: @instance_presenter.title
 
         .hero-widget__text
           %p
-            = @instance_presenter.site_short_description.html_safe.presence || t('about.about_mastodon_html')
+            = @instance_presenter.description.html_safe.presence || t('about.about_mastodon_html')
             = link_to about_more_path do
               = t('about.learn_more')
               = fa_icon 'angle-double-right'
@@ -66,7 +53,7 @@
           .hero-widget__footer__column
             %h4= t 'about.administered_by'
 
-            = account_link_to @instance_presenter.contact_account
+            = account_link_to @instance_presenter.contact.account
 
           .hero-widget__footer__column
             %h4= t 'about.server_stats'
