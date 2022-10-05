@@ -1000,6 +1000,7 @@ pt-PT:
     warning: Cuidado com estes dados. Não partilhar com ninguém!
     your_token: O teu token de acesso
   auth:
+    apply_for_account: Juntar-se à lista de espera
     change_password: Palavra-passe
     delete_account: Eliminar conta
     delete_account_html: Se deseja eliminar a sua conta, pode <a href="%{path}">continuar aqui</a>. Uma confirmação será solicitada.
@@ -1019,6 +1020,7 @@ pt-PT:
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se deseja redirecionar esta conta para uma outra pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou iniciar sessão com
+    privacy_policy_agreement_html: Eu li e concordo com a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1026,12 +1028,18 @@ pt-PT:
     registration_closed: "%{instance} não está a aceitar novos membros"
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Criar nova palavra-passe
+    rules:
+      preamble: Estas são definidos e aplicadas pelos moderadores de %{domain}.
+      title: Algumas regras básicas.
     security: Alterar palavra-passe
     set_new_password: Editar palavra-passe
     setup:
       email_below_hint_html: Se o endereço de e-mail abaixo estiver incorreto, pode alterá-lo aqui e receber um novo e-mail de confirmação.
       email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, pode alterá-lo nas definições da conta.
       title: Configuração
+    sign_up:
+      preamble: Com uma conta neste servidor Mastodon, poderá seguir qualquer outra pessoa na rede, independentemente do servidor onde a conta esteja hospedada.
+      title: Vamos lá inscrevê-lo em %{domain}.
     status:
       account_status: Estado da conta
       confirming: A aguardar que conclua a confirmação do e-mail.
