@@ -4,6 +4,7 @@ import SearchContainer from 'flavours/glitch/features/compose/containers/search_
 import ComposeFormContainer from 'flavours/glitch/features/compose/containers/compose_form_container';
 import NavigationContainer from 'flavours/glitch/features/compose/containers/navigation_container';
 import LinkFooter from './link_footer';
+import ServerBanner from 'flavours/glitch/components/server_banner';
 
 export default
 class ComposePanel extends React.PureComponent {
@@ -21,6 +22,7 @@ class ComposePanel extends React.PureComponent {
 
         {!signedIn && (
           <React.Fragment>
+            <ServerBanner />
             <div className='flex-spacer' />
           </React.Fragment>
         )}

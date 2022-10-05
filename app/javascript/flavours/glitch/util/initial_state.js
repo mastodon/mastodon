@@ -40,6 +40,5 @@ export const showTrends = getMeta('trends');
 export const title = getMeta('title');
 export const disableSwiping = getMeta('disable_swiping');
 export const languages = initialState && initialState.languages;
-export const server = initialState && initialState.server;
 
 export default initialState;

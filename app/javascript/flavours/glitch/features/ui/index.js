@@ -10,7 +10,7 @@ import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from 'flavours/glitch/actions/compose';
 import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
 import { expandNotifications, notificationsSetVisibility } from 'flavours/glitch/actions/notifications';
-import { fetchRules } from 'flavours/glitch/actions/rules';
+import { fetchServer } from 'flavours/glitch/actions/server';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { changeLayout } from 'flavours/glitch/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
@@ -408,7 +408,7 @@ class UI extends React.Component {
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(expandNotifications());
 
-      setTimeout(() => this.props.dispatch(fetchRules()), 3000);
+      setTimeout(() => this.props.dispatch(fetchServer()), 3000);
     }
 
     this.hotkeys.__mousetrap__.stopCallback = (e, element) => {
