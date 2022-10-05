@@ -999,6 +999,7 @@ da:
     warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
     your_token: Dit adgangstoken
   auth:
+    apply_for_account: Kom på ventelisten
     change_password: Adgangskode
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
@@ -1018,6 +1019,7 @@ da:
     migrate_account: Flyt til en anden konto
     migrate_account_html: Ønsker du at omdirigere denne konto til en anden, kan du <a href="%{path}">opsætte dette hér</a>.
     or_log_in_with: Eller log ind med
+    privacy_policy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">Fortrolighedspolitikken</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1780,20 +1782,11 @@ da:
         suspend: Konto suspenderet
     welcome:
       edit_profile_action: Opsæt profil
-      edit_profile_step: Du kan tilpasse din profil ved at uploade profilbillede, overskrift, ændre visningsnavn mm. Ønsker du at vurdere nye følgere, før de må følge dig, kan du låse din konto.
       explanation: Her er nogle råd for at få dig i gang
       final_action: Begynd at poste
-      final_step: 'Begynd at poste! Selv uden følgere vil dine offentlige indlæg kunne ses af andre f.eks. på den lokale tidslinje og i hashtags. Du kan introducere dig selv via hastagget #introductions.'
       full_handle: Dit fulde brugernavn
       full_handle_hint: Dette er, hvad du oplyser til dine venner, så de kan sende dig beskeder eller følge dig fra andre server.
-      review_preferences_action: Ændre præferencer
-      review_preferences_step: Husk at opsætte dine præferencer, såsom hvilke e-mails, du ønsker at modtage, eller hvilket fortrolighedsniveau, der skal være standard for dine opslag. Har du ikke let til køresyge, kan du vælge at aktivere auto-afspilning af GIF'er.
       subject: Velkommen til Mastodon
-      tip_federated_timeline: Den fælles tidslinje giver det store overblik over Mastodon-netværket, men den inkluderer kun folk, dine naboer abonnerer på, så den er ikke komplet.
-      tip_following: Du følger som standard din servers admin(s). For at finde flere interessante folk, så tjek de lokale og fælles tidslinjer.
-      tip_local_timeline: Den lokale tidslinje er det store overblik over folk på %{instance}, dvs. dine umiddelbare naboer!
-      tip_mobile_webapp: Tilbyder din mobilbrowser at føje Mastodon til din hjemmeskærm, kan du modtage push-notifikationer. Dette fungerer på mange måder ligesom en almindelig app!
-      tips: Tips
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan maks. følge %{limit} personer
