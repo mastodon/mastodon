@@ -93,7 +93,7 @@ const messages = {
   'settings.side_arm_reply_mode.copy': 'Copiar opción de privacidad del toot al que estás respondiendo',
   'settings.side_arm_reply_mode.keep': 'Conservar opción de privacidad',
   'settings.side_arm_reply_mode.restrict': 'Restringir la opción de privacidad a la misma del toot al que estás respondiendo',
-  'settings.side_arm_reply_mode': 'Al responder a un toot:',
+  'settings.side_arm_reply_mode': 'Al responder a un toot, el botón de toot secundario debe:',
   'settings.side_arm.none': 'Ninguno',
   'settings.side_arm': 'Botón secundario:',
   'settings.swipe_to_change_columns': 'Permitir deslizar para cambiar columnas (Sólo en móvil)',

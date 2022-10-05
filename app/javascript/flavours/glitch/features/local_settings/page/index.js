@@ -20,7 +20,7 @@ const messages = defineMessages({
   layout_mobile: { id: 'layout.single', defaultMessage: 'Mobile' },
   layout_mobile_hint: { id: 'layout.hint.single', defaultMessage: 'Use single-column layout regardless of the “Enable advanced web interface” setting or screen size.' },
   side_arm_none: { id: 'settings.side_arm.none', defaultMessage: 'None' },
-  side_arm_keep: { id: 'settings.side_arm_reply_mode.keep', defaultMessage: 'Keep secondary toot button to set privacy' },
+  side_arm_keep: { id: 'settings.side_arm_reply_mode.keep', defaultMessage: 'Keep its set privacy' },
   side_arm_copy: { id: 'settings.side_arm_reply_mode.copy', defaultMessage: 'Copy privacy setting of the toot being replied to' },
   side_arm_restrict: { id: 'settings.side_arm_reply_mode.restrict', defaultMessage: 'Restrict privacy setting to that of the toot being replied to' },
   regexp: { id: 'settings.content_warnings.regexp', defaultMessage: 'Regular expression' },
@@ -292,7 +292,7 @@ class LocalSettingsPage extends React.PureComponent {
           ]}
           onChange={onChange}
         >
-          <FormattedMessage id='settings.side_arm_reply_mode' defaultMessage='When replying to a toot:' />
+          <FormattedMessage id='settings.side_arm_reply_mode' defaultMessage='When replying to a toot, the secondary toot button should:' />
         </LocalSettingsPageItem>
       </div>
     ),
