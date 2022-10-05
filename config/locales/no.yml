@@ -1,7 +1,6 @@
 ---
 'no':
   about:
-    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om
     active_count_after: aktive
@@ -10,13 +9,10 @@
     api: API
     apps: Mobilapper
     apps_platforms: Bruk Mastodon gjennom iOS, Android og andre plattformer
-    browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
-    browse_local_posts: Bla i en sanntidsstrøm av offentlige innlegg fra denne tjeneren
     browse_public_posts: Bla i en sanntidsstrøm av offentlige innlegg på Mastodon
     contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
-    discover_users: Oppdag brukere
     documentation: Dokumentasjon
     federation_hint_html: Med en konto på %{instance} vil du kunne følge folk på enhver Mastodon-tjener, og mer til.
     get_apps: Prøv en mobilapp
@@ -526,8 +522,6 @@
           none: Ingen kan melde seg inn
           open: Hvem som helst kan melde seg inn
         title: Registreringsmodus
-      show_known_fediverse_at_about_page:
-        desc_html: Begrenser den offentlige tidslinjen som er knyttet til landingssiden når den er deaktivert, og viser bare lokalt innhold
       site_description:
         desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Nettstedsbeskrivelse
@@ -701,10 +695,6 @@
       more_details_html: For mere detaljer, se <a href="%{terms_path}">privatlivsretningslinjene</a>.
       username_available: Brukernavnet ditt vil bli gjort tilgjengelig igjen
       username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
-  directories:
-    directory: Profilmappe
-    explanation: Oppdag brukere basert på deres interesser
-    explore_mastodon: Utforsk %{title}
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   errors:

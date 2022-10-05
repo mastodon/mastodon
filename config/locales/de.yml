@@ -1,7 +1,6 @@
 ---
 de:
   about:
-    about_hashtag_html: Das sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Födiversum ein Konto besitzt, kannst du mit ihnen interagieren.
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral – genau wie E-Mail!
     about_this: Über diesen Server
     active_count_after: aktiv
@@ -10,14 +9,11 @@ de:
     api: API
     apps: Mobile Apps
     apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
-    browse_directory: Durchsuche das Profilverzeichnis und filtere nach Interessen
-    browse_local_posts: Durchsuche einen Live-Stream öffentlicher Beiträge dieses Servers
     browse_public_posts: Stöbere durch öffentliche Beiträge auf Mastodon
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: Nicht verfügbar
     continue_to_web: Weiter zur Web-App
-    discover_users: Benutzer entdecken
     documentation: Dokumentation
     federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein, Nutzern auf irgendeinem Mastodon-Server und darüber hinaus zu folgen.
     get_apps: Versuche eine mobile App
@@ -783,9 +779,6 @@ de:
           none: Niemand kann sich registrieren
           open: Jeder kann sich registrieren
         title: Registrierungsmodus
-      show_known_fediverse_at_about_page:
-        desc_html: Wenn aktiviert, wird es alle Beiträge aus dem bereits bekannten Teil des Födiversums auf der Startseite anzeigen. Andernfalls werden lokale Beitrage des Servers angezeigt.
-        title: Zeige eine öffentliche Zeitleiste auf der Einstiegsseite
       site_description:
         desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diesen Mastodon-Server ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
         title: Beschreibung des Servers
@@ -1109,10 +1102,6 @@ de:
       more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzrichtlinie</a>.
       username_available: Dein Benutzername wird wieder verfügbar
       username_unavailable: Dein Benutzername bleibt nicht verfügbar
-  directories:
-    directory: Profilverzeichnis
-    explanation: Entdecke Benutzer basierend auf deren Interessen
-    explore_mastodon: Entdecke %{title}
   disputes:
     strikes:
       action_taken: Maßnahme ergriffen

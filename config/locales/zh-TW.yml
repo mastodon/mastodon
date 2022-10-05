@@ -1,7 +1,6 @@
 ---
 zh-TW:
   about:
-    about_hashtag_html: 這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要您有任何 Mastodon 站點、或者其他聯邦宇宙的使用者，便可以與他們互動。
     about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，在上面建立帳號，然後您就可以和任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。
     about_this: 關於本站
     active_count_after: 活躍
@@ -10,14 +9,11 @@ zh-TW:
     api: API
     apps: 行動應用程式
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
-    browse_directory: 依興趣瀏覽個人資料目錄和過濾器
-    browse_local_posts: 瀏覽這台伺服器中公開嘟文的直播串流
     browse_public_posts: 在 Mastodon 瀏覽公開嘟文的即時串流
     contact: 聯絡我們
     contact_missing: 未設定
     contact_unavailable: 未公開
     continue_to_web: 於網頁程式中繼續
-    discover_users: 探索使用者
     documentation: 文件
     federation_hint_html: 您只需要擁有 %{instance} 的帳號，就可以追蹤任何一台 Mastodon 伺服器上的人等等。
     get_apps: 嘗試行動應用程式
@@ -769,9 +765,6 @@ zh-TW:
           none: 沒有人可註冊
           open: 任何人皆能註冊
         title: 註冊模式
-      show_known_fediverse_at_about_page:
-        desc_html: 如果開啟，就會在時間軸預覽顯示其他站點嘟文，否則就只會顯示本站點嘟文。
-        title: 在時間軸預覽顯示其他站點嘟文
       site_description:
         desc_html: 首頁上的介紹文字，描述此 Mastodon 伺服器的特別之處和其他重要資訊。可使用 HTML 標籤，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
         title: 伺服器描述
@@ -1091,10 +1084,6 @@ zh-TW:
       more_details_html: 更多詳細資訊，請參閲<a href="%{terms_path}">隱私政策</a>。
       username_available: 您的使用者名稱將會釋出供他人使用
       username_unavailable: 您的使用者名稱將會保留並不予他人使用
-  directories:
-    directory: 個人資料目錄
-    explanation: 根據興趣去發現新朋友
-    explore_mastodon: 探索%{title}
   disputes:
     strikes:
       action_taken: 採取的行動

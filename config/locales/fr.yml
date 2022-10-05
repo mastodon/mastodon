@@ -1,7 +1,6 @@
 ---
 fr:
   about:
-    about_hashtag_html: Voici des messages publics tagués avec <strong>#%{hashtag}</strong>. Vous pouvez interagir avec si vous avez un compte n’importe où dans le fédiverse.
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
     about_this: À propos
     active_count_after: actif·ve·s
@@ -10,14 +9,11 @@ fr:
     api: API
     apps: Applications mobiles
     apps_platforms: Utilisez Mastodon depuis iOS, Android et d’autres plates-formes
-    browse_directory: Parcourir l’annuaire des profils et filtrer par centres d’intérêts
-    browse_local_posts: Parcourir en direct un flux de messages publics depuis ce serveur
     browse_public_posts: Parcourir en direct un flux de messages publics sur Mastodon
     contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
     continue_to_web: Continuer vers l’application web
-    discover_users: Découvrez des utilisateur·rice·s
     documentation: Documentation
     federation_hint_html: Avec un compte sur %{instance}, vous pourrez suivre des gens sur n’importe quel serveur Mastodon et au-delà.
     get_apps: Essayez une application mobile
@@ -767,9 +763,6 @@ fr:
           none: Personne ne peut s’inscrire
           open: N’importe qui peut s’inscrire
         title: Mode d’enregistrement
-      show_known_fediverse_at_about_page:
-        desc_html: Lorsque désactivée, restreint le fil public accessible via la page d’accueil de l’instance pour ne montrer que le contenu local
-        title: Inclure le contenu fédéré sur la page de fil public sans authentification
       site_description:
         desc_html: Paragraphe introductif sur l'API. Décrivez les particularités de ce serveur Mastodon et précisez toute autre chose qui vous semble importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
         title: Description du serveur
@@ -1087,10 +1080,6 @@ fr:
       more_details_html: Pour plus de détails, voir la <a href="%{terms_path}">politique de confidentialité</a>.
       username_available: Votre nom d’utilisateur·rice sera à nouveau disponible
       username_unavailable: Votre nom d’utilisateur·rice restera indisponible
-  directories:
-    directory: Annuaire des profils
-    explanation: Découvrir des utilisateur·rice·s en fonction de leurs centres d’intérêt
-    explore_mastodon: Explorer %{title}
   disputes:
     strikes:
       action_taken: Mesure prise

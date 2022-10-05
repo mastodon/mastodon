@@ -1,7 +1,6 @@
 ---
 is:
   about:
-    about_hashtag_html: Þetta eru opinberar færslur sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
     about_this: Um hugbúnaðinn
     active_count_after: virkt
@@ -10,14 +9,11 @@ is:
     api: API-kerfisviðmót
     apps: Farsímaforrit
     apps_platforms: Notaðu Mastodon frá iOS, Android og öðrum stýrikerfum
-    browse_directory: Skoða notendur og sía eftir áhugamálum
-    browse_local_posts: Skoðaðu kvikt streymi af opinberum færslum á þessum vefþjóni
     browse_public_posts: Skoðaðu kvikt streymi af opinberum færslum á Mastodon
     contact: Hafa samband
     contact_missing: Ekki skilgreint
     contact_unavailable: Ekki til staðar
     continue_to_web: Halda áfram í vefforritið
-    discover_users: Uppgötva notendur
     documentation: Hjálparskjöl
     federation_hint_html: Með notandaaðgangi á %{instance} geturðu fylgst með fólki á hvaða Mastodon-þjóni sem er og reyndar víðar.
     get_apps: Prófaðu farsímaforrit
@@ -783,9 +779,6 @@ is:
           none: Enginn getur nýskráð sig
           open: Allir geta nýskráð sig
         title: Nýskráningarhamur
-      show_known_fediverse_at_about_page:
-        desc_html: Þegar þetta er óvirkt, takmarkast opinbera tímalínan sem tengt er í af upphafssíðunni við að birta einungis staðvært efni (af sama vefþjóni)
-        title: Hafa með efni úr skýjasambandi á síðu fyrir óauðkennda opinbera tímalínu
       site_description:
         desc_html: Kynningarmálsgrein í API. Lýstu því hvað það er sem geri þennan Mastodon-þjón sérstakan, auk annarra mikilvægra upplýsinga. Þú getur notað HTML-einindi, sér í lagi <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Lýsing á vefþjóni
@@ -1109,10 +1102,6 @@ is:
       more_details_html: Til að skoða þetta nánar, er gott að líta á <a href="%{terms_path}">persónuverndarstefnuna</a>.
       username_available: Notandanafnið þitt mun verða tiltækt aftur
       username_unavailable: Notandanafnið þitt mun verða áfram ótiltækt
-  directories:
-    directory: Notandasniðamappa
-    explanation: Leitaðu að notendum eftir áhugamálum þeirra
-    explore_mastodon: Kannaðu %{title}
   disputes:
     strikes:
       action_taken: Framkvæmd aðgerð

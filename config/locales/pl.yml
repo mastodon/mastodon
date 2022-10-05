@@ -1,7 +1,6 @@
 ---
 pl:
   about:
-    about_hashtag_html: Znajdują się tu publiczne wpisy oznaczone hashtagiem <strong>#%{hashtag}</strong>. Możesz dołączyć do dyskusji, jeżeli posiadasz konto gdziekolwiek w Fediwersum.
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
     about_this: O tej instancji
     active_count_after: aktywni
@@ -10,14 +9,11 @@ pl:
     api: API
     apps: Aplikacje
     apps_platforms: Korzystaj z Mastodona z poziomu iOS-a, Androida i innych
-    browse_directory: Przeglądaj katalog profilów i filtruj z uwzględnieniem zainteresowań
-    browse_local_posts: Przeglądaj strumień publicznych wpisów z tego serwera
     browse_public_posts: Przeglądaj strumień publicznych wpisów na Mastodonie na żywo
     contact: Kontakt
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
     continue_to_web: Kontynuuj przez aplikację webową
-    discover_users: Odkrywaj użytkowników
     documentation: Dokumentacja
     federation_hint_html: Z kontem na %{instance}, możesz śledzić użytkowników każdego serwera Mastodona i nie tylko.
     get_apps: Spróbuj aplikacji mobilnej
@@ -810,9 +806,6 @@ pl:
           none: Nikt nie może się zarejestrować
           open: Każdy może się zarejestrować
         title: Tryb rejestracji
-      show_known_fediverse_at_about_page:
-        desc_html: Jeśli włączone, podgląd instancji będzie wyświetlał wpisy z całego Fediwersum. W innym przypadku, będą wyświetlane tylko lokalne wpisy.
-        title: Pokazuj wszystkie znane wpisy na podglądzie instancji
       site_description:
         desc_html: Akapit wprowadzający, widoczny na stronie głównej. Opisz, co czyni tę instancję wyjątkową. Możesz korzystać ze znaczników HTML, w szczególności <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
         title: Opis serwera
@@ -1144,10 +1137,6 @@ pl:
       more_details_html: Aby uzyskać więcej szczegółów, przeczytaj naszą <a href="%{terms_path}">politykę prywatności</a>.
       username_available: Twoja nazwa użytkownika będzie z powrotem dostępna
       username_unavailable: Twoja nazwa użytkownika pozostanie niedostępna
-  directories:
-    directory: Katalog profilów
-    explanation: Poznaj profile na podstawie zainteresowań
-    explore_mastodon: Odkrywaj %{title}
   disputes:
     strikes:
       action_taken: Podjęte działania

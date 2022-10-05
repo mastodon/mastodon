@@ -1,7 +1,6 @@
 ---
 cs:
   about:
-    about_hashtag_html: Tohle jsou veřejné příspěvky označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv ve fedivesmíru, můžete s nimi interagovat.
     about_mastodon_html: 'Sociální síť budoucnosti: žádné reklamy, žádné korporátní sledování, etický design a decentralizace! S Mastodonem vlastníte svoje data!'
     about_this: O tomto serveru
     active_count_after: aktivních
@@ -10,14 +9,11 @@ cs:
     api: API
     apps: Mobilní aplikace
     apps_platforms: Používejte Mastodon na iOS, Androidu a dalších platformách
-    browse_directory: Prozkoumejte adresář profilů a filtrujte dle zájmů
-    browse_local_posts: Prozkoumejte živý proud veřejných příspěvků z tohoto serveru
     browse_public_posts: Prozkoumejte živý proud veřejných příspěvků na Mastodonu
     contact: Kontakt
     contact_missing: Nenastaveno
     contact_unavailable: Neuvedeno
     continue_to_web: Pokračovat do webové aplikace
-    discover_users: Objevujte uživatele
     documentation: Dokumentace
     federation_hint_html: S účtem na serveru %{instance} můžete sledovat lidi na jakémkoliv ze serverů Mastodon a dalších službách.
     get_apps: Vyzkoušejte mobilní aplikaci
@@ -807,9 +803,6 @@ cs:
           none: Nikdo se nemůže registrovat
           open: Kdokoliv se může registrovat
         title: Režim registrací
-      show_known_fediverse_at_about_page:
-        desc_html: Je-li vypnuto, bude veřejná časová osa, na kterou odkazuje hlavní stránka serveru, omezena pouze na místní obsah
-        title: Zahrnout federovaný obsah na neautentizované stránce veřejné časové osy
       site_description:
         desc_html: Úvodní odstavec v API. Popište, čím se tento server Mastodon odlišuje od ostatních, a cokoliv jiného, co je důležité. Můžete zde používat HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
         title: Popis serveru
@@ -1141,10 +1134,6 @@ cs:
       more_details_html: Podrobnosti najdete v <a href="%{terms_path}">zásadách ochrany osobních údajů</a>.
       username_available: Vaše uživatelské jméno bude opět dostupné
       username_unavailable: Vaše uživatelské jméno zůstane nedostupné
-  directories:
-    directory: Adresář profilů
-    explanation: Objevujte uživatele podle jejich zájmů
-    explore_mastodon: Prozkoumejte %{title}
   disputes:
     strikes:
       action_taken: Přijaté opatření

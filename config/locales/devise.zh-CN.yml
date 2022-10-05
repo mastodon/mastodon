@@ -9,7 +9,7 @@ zh-CN:
       already_authenticated: 你已登录。
       inactive: 你还没有激活帐户。
       invalid: "%{authentication_keys} 无效或密码错误。"
-      last_attempt: 你只有最后一次尝试机会，若未通过，账号将被锁定。
+      last_attempt: 你只有最后一次尝试机会，若未通过，帐号将被锁定。
       locked: 你的帐户已被锁定。
       not_found_in_database: "%{authentication_keys}或密码错误。"
       pending: 你的账号仍在审核中。
@@ -20,7 +20,7 @@ zh-CN:
       confirmation_instructions:
         action: 验证电子邮件地址
         action_with_app: 确认并返回%{app}
-        explanation: 你在 %{host} 上使用此电子邮箱地址创建了一个账号。点击下面的链接即可激活账号。如果你没有创建账号，请忽略此邮件。
+        explanation: 你在 %{host} 上使用此电子邮箱地址创建了一个帐号。点击下面的链接即可激活帐号。如果你没有创建帐号，请忽略此邮件。
         explanation_when_pending: 你用这个电子邮件申请了在 %{host} 注册。在确认电子邮件地址之后，我们会审核你的申请。在此之前，你不能登录。如果你的申请被驳回，你的数据会被移除，因此你无需再采取任何行动。如果申请人不是你，请忽略这封邮件。
         extra_html: 请记得阅读<a href="%{terms_path}">本实例的相关规定</a>和<a href="%{policy_path}">我们的使用条款</a>。
         subject: Mastodon：来自 %{instance} 的确认指引

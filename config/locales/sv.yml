@@ -1,7 +1,6 @@
 ---
 sv:
   about:
-    about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
     active_count_after: aktiv
@@ -10,14 +9,11 @@ sv:
     api: API
     apps: Mobilappar
     apps_platforms: Använd Mastodon från iOS, Android och andra plattformar
-    browse_directory: Titta på en profilkatalog och filtrera enligt intressen
-    browse_local_posts: Titta på strömmande publika inlägg från denna server
     browse_public_posts: Titta på strömmande publika inlägg på Mastodon
     contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: Ej tillämplig
     continue_to_web: Fortsätt till webbtjänst
-    discover_users: Upptäck användare
     documentation: Dokumentation
     federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
     get_apps: Prova en mobilapp
@@ -561,9 +557,6 @@ sv:
           none: Ingen kan registrera
           open: Alla kan registrera
         title: Registreringsläge
-      show_known_fediverse_at_about_page:
-        desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
-        title: Visa det kända fediverse på tidslinjens förhandsgranskning
       site_description:
         desc_html: Inledande stycke på framsidan och i metataggar. Du kan använda HTML-taggar, i synnerhet <code>&lt;a&gt;</code> och <code>&lt;em&gt;</code>.
         title: Instansbeskrivning
@@ -738,10 +731,6 @@ sv:
       irreversible: Du kan inte återställa eller återaktivera ditt konto
       username_available: Ditt användarnamn kommer att bli tillgängligt igen
       username_unavailable: Ditt användarnamn kommer att fortsätta vara otillgängligt
-  directories:
-    directory: Profil-mapp
-    explanation: Upptäck användare baserat på deras intressen
-    explore_mastodon: Utforska %{title}
   disputes:
     strikes:
       approve_appeal: Godkänn förfrågan

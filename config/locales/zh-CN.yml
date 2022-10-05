@@ -1,7 +1,6 @@
 ---
 zh-CN:
   about:
-    about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个 Mastodon 站点或与其兼容的网站上拥有一个帐户。
     about_mastodon_html: Mastodon 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
     about_this: 关于本站
     active_count_after: 活跃用户
@@ -10,14 +9,11 @@ zh-CN:
     api: API
     apps: 移动应用
     apps_platforms: 在 iOS、Android 和其他平台上使用 Mastodon
-    browse_directory: 浏览用户目录并按兴趣筛选
-    browse_local_posts: 浏览此服务器上实时公开嘟文
     browse_public_posts: 浏览 Mastodon 上公共嘟文的实时信息流
     contact: 联系方式
     contact_missing: 未设定
     contact_unavailable: 未公开
     continue_to_web: 继续前往网页应用
-    discover_users: 发现用户
     documentation: 文档
     federation_hint_html: 在 %{instance} 上拥有账号后，你可以关注任何兼容 Mastodon 服务器上的人。
     get_apps: 尝试移动应用
@@ -767,9 +763,6 @@ zh-CN:
           none: 关闭注册
           open: 开放注册
         title: 注册模式
-      show_known_fediverse_at_about_page:
-        desc_html: 如果开启，就会在时间轴预览显示其他站点嘟文，否则就只会只显示本站嘟文。
-        title: 在时间轴预览中显示其他站点嘟文
       site_description:
         desc_html: 首页上的介绍文字。 描述一下本 Mastodon 实例的特殊之处以及其他重要信息。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 。
         title: 本站简介
@@ -1089,10 +1082,6 @@ zh-CN:
       more_details_html: 更多细节，请查看 <a href="%{terms_path}">隐私政策</a> 。
       username_available: 你的用户名现在又可以使用了
       username_unavailable: 你的用户名仍将无法使用
-  directories:
-    directory: 用户目录
-    explanation: 根据兴趣发现用户
-    explore_mastodon: 探索 %{title}
   disputes:
     strikes:
       action_taken: 采取的措施

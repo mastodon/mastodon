@@ -1,7 +1,6 @@
 ---
 nn:
   about:
-    about_hashtag_html: Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     about_this: Om oss
     active_count_after: aktiv
@@ -10,13 +9,10 @@ nn:
     api: API
     apps: Mobilappar
     apps_platforms: Bruk Mastodon på iOS, Android og andre plattformer
-    browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
-    browse_local_posts: Bla i en sanntidsstrøm av offentlige innlegg fra denne tjeneren
     browse_public_posts: Sjå ei direktesending av offentlege innlegg på Mastodon
     contact: Kontakt
     contact_missing: Ikkje sett
     contact_unavailable: I/T
-    discover_users: Oppdag brukarar
     documentation: Dokumentasjon
     federation_hint_html: Med ein konto på %{instance} kan du fylgja folk på kva som helst slags Mastod-tenar og meir.
     get_apps: Prøv ein mobilapp
@@ -533,8 +529,6 @@ nn:
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
         title: Registreringsmodus
-      show_known_fediverse_at_about_page:
-        desc_html: Begrenser den offentlige tidslinjen som er knyttet til landingssiden når den er deaktivert, og viser bare lokalt innhold
       site_description:
         desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
         title: Tenarskilding
@@ -714,10 +708,6 @@ nn:
       more_details_html: For fleire detaljar, sjå <a href="%{terms_path}">personvernsvilkåra</a>.
       username_available: Brukarnamnet ditt vert tilgjengeleg igjen
       username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
-  directories:
-    directory: Profilkatalog
-    explanation: Leit fram brukarar etter interessa deira
-    explore_mastodon: Utforsk %{title}
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
   errors:

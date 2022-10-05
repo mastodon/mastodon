@@ -1,7 +1,6 @@
 ---
 vi:
   about:
-    about_hashtag_html: Đây là các tút <strong>#%{hashtag}</strong> trên mạng liên hợp. Bạn có thể tương tác với chúng sau khi đăng nhập.
     about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
     about_this: Giới thiệu
     active_count_after: hoạt động
@@ -10,14 +9,11 @@ vi:
     api: API
     apps: Apps
     apps_platforms: Lướt Mastodon trên iOS, Android và các nền tảng khác
-    browse_directory: Bạn bè từ khắp mọi nơi trên thế giới
-    browse_local_posts: Xem những gì đang xảy ra
     browse_public_posts: Đọc thử những tút công khai trên Mastodon
     contact: Liên lạc
     contact_missing: Chưa thiết lập
     contact_unavailable: N/A
     continue_to_web: Xem trong web
-    discover_users: Thành viên
     documentation: Tài liệu
     federation_hint_html: Đăng ký tài khoản %{instance} là bạn có thể giao tiếp với bất cứ ai trên bất kỳ máy chủ Mastodon nào và còn hơn thế nữa.
     get_apps: Ứng dụng di động
@@ -137,8 +133,8 @@ vi:
       ip: IP
       joined: Đã tham gia
       location:
-        all: Toàn bộ
-        local: Máy chủ của bạn
+        all: Tất cả
+        local: Máy chủ này
         remote: Máy chủ khác
         title: Vị trí
       login_status: Trạng thái tài khoản
@@ -148,8 +144,8 @@ vi:
       memorialized_msg: Đã chuyển %{username} thành tài khoản tưởng nhớ
       moderation:
         active: Hoạt động
-        all: Toàn bộ
-        pending: Chờ xử lý
+        all: Tất cả
+        pending: Chờ
         silenced: Hạn chế
         suspended: Vô hiệu hóa
         title: Trạng thái
@@ -624,7 +620,7 @@ vi:
         create_and_resolve: Xử lý
         create_and_unresolve: Mở lại kèm lưu ý mới
         delete: Xóa bỏ
-        placeholder: Mô tả vi phạm của người này, mức độ xử lý và những cập nhật liên quan khác...
+        placeholder: Mô tả vi phạm của người này, hướng xử lý và những cập nhật liên quan khác...
         title: Lưu ý
       notes_description_html: Xem và để lại lưu ý cho các kiểm duyệt viên khác
       quick_actions_description_html: 'Kiểm duyệt nhanh hoặc kéo xuống để xem nội dung bị báo cáo:'
@@ -765,9 +761,6 @@ vi:
           none: Không ai có thể đăng ký
           open: Bất cứ ai cũng có thể đăng ký
         title: Chế độ đăng ký
-      show_known_fediverse_at_about_page:
-        desc_html: Nếu tắt, bảng tin sẽ chỉ hiển thị nội dung do người dùng của máy chủ này tạo ra
-        title: Bao gồm nội dung từ mạng liên hợp trên bảng tin không được cho phép
       site_description:
         desc_html: Nội dung giới thiệu về máy chủ. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể dùng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code>.
         title: Mô tả máy chủ
@@ -1087,10 +1080,6 @@ vi:
       more_details_html: Đọc <a href="%{terms_path}">chính sách bảo mật</a> để biết thêm chi tiết.
       username_available: Tên người dùng của bạn sẽ có thể đăng ký lại
       username_unavailable: Tên người dùng của bạn sẽ không thể đăng ký mới
-  directories:
-    directory: Khám phá
-    explanation: Tìm những người chung sở thích
-    explore_mastodon: Thành viên %{title}
   disputes:
     strikes:
       action_taken: Hành động áp dụng
@@ -1412,12 +1401,12 @@ vi:
     most_recent: Mới nhất
     moved: Đã xóa
     mutual: Đồng thời
-    primary: Bình thường
+    primary: Hoạt động
     relationship: Quan hệ
     remove_selected_domains: Xóa hết người theo dõi từ các máy chủ đã chọn
     remove_selected_followers: Xóa những người theo dõi đã chọn
     remove_selected_follows: Ngưng theo dõi những người đã chọn
-    status: Trạng thái tài khoản
+    status: Trạng thái của họ
   remote_follow:
     acct: Nhập địa chỉ Mastodon của bạn (tên@máy chủ)
     missing_resource: Không tìm thấy URL chuyển hướng cho tài khoản của bạn

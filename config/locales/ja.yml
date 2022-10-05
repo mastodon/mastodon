@@ -1,7 +1,6 @@
 ---
 ja:
   about:
-    about_hashtag_html: ハッシュタグ <strong>#%{hashtag}</strong> の公開投稿です。どこか連合に参加しているSNS上にアカウントを作れば、会話に参加することができます。
     about_mastodon_html: Mastodonは、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
     about_this: 詳細情報
     active_count_after: 人がアクティブ
@@ -10,14 +9,11 @@ ja:
     api: API
     apps: アプリ
     apps_platforms: iOSやAndroidなど、各種環境から利用できます
-    browse_directory: ディレクトリから気になる人を探しましょう
-    browse_local_posts: このサーバーの公開タイムラインをご覧ください
     browse_public_posts: Mastodonの公開ライブストリームをご覧ください
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
     continue_to_web: アプリで続ける
-    discover_users: ユーザーを見つける
     documentation: ドキュメント
     federation_hint_html: "%{instance}のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。"
     get_apps: モバイルアプリを試す
@@ -748,9 +744,6 @@ ja:
           none: 誰にも許可しない
           open: 誰でも登録可
         title: 新規登録
-      show_known_fediverse_at_about_page:
-        desc_html: チェックを外すと、ランディングページからリンクされた公開タイムラインにローカルの公開投稿のみ表示します。
-        title: 公開タイムラインに連合先のコンテンツも表示する
       site_description:
         desc_html: フロントページへの表示に使用される紹介文です。このMastodonサーバーを特徴付けることやその他重要なことを記述してください。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
         title: サーバーの説明
@@ -1052,10 +1045,6 @@ ja:
       more_details_html: 詳しくは<a href="%{terms_path}">プライバシーポリシー</a>をご覧ください。
       username_available: あなたのユーザー名は再利用できるようになります
       username_unavailable: あなたのユーザー名は引き続き利用できません
-  directories:
-    directory: ディレクトリ
-    explanation: 関心を軸にユーザーを発見しよう
-    explore_mastodon: "%{title}を探索"
   disputes:
     strikes:
       action_taken: 取られた措置

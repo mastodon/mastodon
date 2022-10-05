@@ -1,7 +1,6 @@
 ---
 zh-HK:
   about:
-    about_hashtag_html: 這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你是任何聯盟網站的用戶，便可以與他們互動。
     about_mastodon_html: Mastodon（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！
     about_this: 關於本伺服器
     active_count_after: 活躍
@@ -10,13 +9,10 @@ zh-HK:
     api: API
     apps: 手機 App
     apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
-    browse_directory: 依興趣瀏覽個人資料目錄和過濾器
-    browse_local_posts: 瀏覽這個伺服器的公開文章即時串流
     browse_public_posts: 在 Mastodon 瀏覽公開文章的即時串流
     contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 不適用
-    discover_users: 探索使用者
     documentation: 說明文件
     federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤任何 Mastodon 服務站上的人！
     get_apps: 嘗試使用手機 App
@@ -564,9 +560,6 @@ zh-HK:
           none: 沒有人可註冊
           open: 任何人皆能註冊
         title: 註冊模式
-      show_known_fediverse_at_about_page:
-        desc_html: 如果停用，將會只在本站的歡迎頁顯示本站的文章。
-        title: 在訪客預覽本站的時間軸上，顯示跨站文章
       site_description:
         desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/> 你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
         title: 本站介紹
@@ -756,10 +749,6 @@ zh-HK:
       more_details_html: 請參見<a href="%{terms_path}">隱私政策</a>以瀏覽細節。
       username_available: 你的登入名稱將可被其他人使用
       username_unavailable: 你的登入名稱將不能讓其他人使用
-  directories:
-    directory: 個人資料目錄
-    explanation: 根據興趣認識新朋友
-    explore_mastodon: 探索%{title}
   domain_validator:
     invalid_domain: 不是一個可用域名
   errors:

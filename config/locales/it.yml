@@ -1,7 +1,6 @@
 ---
 it:
   about:
-    about_hashtag_html: Questi sono i toot pubblici etichettati con <strong>#%{hashtag}</strong>. Puoi interagire con loro se hai un account nel fediverse.
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
     about_this: A proposito di questo server
     active_count_after: attivo
@@ -10,14 +9,11 @@ it:
     api: API
     apps: Applicazioni per dispositivi mobili
     apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
-    browse_directory: Sfoglia la directory dei profili e filtra per interessi
-    browse_local_posts: Sfoglia il flusso di post pubblici in tempo reale su questo server
     browse_public_posts: Sfoglia il flusso di post pubblici in tempo reale su Mastodon
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
     continue_to_web: Continua all'app web
-    discover_users: Scopri utenti
     documentation: Documentazione
     federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Mastodon e oltre.
     get_apps: Prova un'app per smartphone
@@ -783,9 +779,6 @@ it:
           none: Nessuno può iscriversi
           open: Chiunque può iscriversi
         title: Modalità di registrazione
-      show_known_fediverse_at_about_page:
-        desc_html: Quando attivato, mostra nell'anteprima i toot da tutte le istanze conosciute. Altrimenti mostra solo i toot locali.
-        title: Mostra la fediverse conosciuta nell'anteprima della timeline
       site_description:
         desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Mastodon e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
         title: Descrizione del server
@@ -1111,10 +1104,6 @@ it:
       more_details_html: Per maggiori dettagli, vedi la <a href="%{terms_path}">politica di privacy</a>.
       username_available: Il tuo nome utente sarà nuovamente disponibile
       username_unavailable: Il tuo nome utente rimarrà non disponibile
-  directories:
-    directory: Directory dei profili
-    explanation: Scopri utenti in base ai loro interessi
-    explore_mastodon: Esplora %{title}
   disputes:
     strikes:
       action_taken: Azione intrapresa
