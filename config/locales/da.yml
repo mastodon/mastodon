@@ -1027,12 +1027,18 @@ da:
     registration_closed: "%{instance} accepterer ikke nye medlemmer"
     resend_confirmation: Gensend bekræftelsesinstruktioner
     reset_password: Nulstil adgangskode
+    rules:
+      preamble: Disse er opsat og håndhæves af %{domain}-moderatorerne.
+      title: Nogle grundregler.
     security: Sikkerhed
     set_new_password: Opsæt ny adgangskode
     setup:
       email_below_hint_html: Er nedenstående e-mailadresse forkert, kan du rette den hér og modtage en ny bekræftelses-e-mail.
       email_settings_hint_html: Bekræftelsese-mailen er sendt til %{email}. Er denne e-mailadresse forkert, kan du rette den via kontoindstillingerne.
       title: Opsætning
+    sign_up:
+      preamble: Med en konto på denne Mastodon-server vil man kunne følge enhver anden person på netværket, uanset hvor vedkommendes konto hostes.
+      title: Lad os få dig sat op på %{domain}.
     status:
       account_status: Kontostatus
       confirming: Afventer færdiggørelse af e-mailbekræftelse.
@@ -1782,6 +1788,7 @@ da:
         suspend: Konto suspenderet
     welcome:
       edit_profile_action: Opsæt profil
+      edit_profile_step: Man kan tilpasse sin profil ved at uploade profilfoto, overskrift, ændre visningsnavn mv. Ønskes nye følgere vurderet, før de må følge dig, kan kontoen låses.
       explanation: Her er nogle råd for at få dig i gang
       final_action: Begynd at poste
       full_handle: Dit fulde brugernavn
