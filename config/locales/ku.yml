@@ -999,6 +999,7 @@ ku:
     warning: Bi van daneyan re pir baldar be. Tu caran bi kesî re parve neke!
     your_token: Nîşana gihîştina te
   auth:
+    apply_for_account: Li ser lîsteya bendemayînê bistîne
     change_password: Borînpeyv
     delete_account: Ajimêr jê bibe
     delete_account_html: Heke tu dixwazî ajimêra xwe jê bibe, tu dikarî <a href="%{path}">li vir bidomîne</a>. Ji te tê xwestin ku were pejirandin.
@@ -1018,6 +1019,7 @@ ku:
     migrate_account: Derbasî ajimêreke din bibe
     migrate_account_html: Heke tu dixwazî ev ajimêr li ajimêreke cuda beralî bikî, tu dikarî <a href="%{path}">ji vir de saz bike</a>.
     or_log_in_with: An têketinê bike bi riya
+    privacy_policy_agreement_html: Min <a href="%{privacy_policy_path}" target="_blank">Politîka taybetiyê</a> xwend û dipejirînim
     providers:
       cas: CAS
       saml: SAML
@@ -1025,12 +1027,18 @@ ku:
     registration_closed: "%{instance} endamên nû napejirîne"
     resend_confirmation: Rêwerên pejirandinê ji nû ve bişîne
     reset_password: Borînpeyvê ji nû ve saz bike
+    rules:
+      preamble: Ev rêzik ji aliyê çavdêrên %{domain} ve tên sazkirin.
+      title: Hinek rêzikên bingehîn.
     security: Ewlehî
     set_new_password: Borînpeyveke nû ji nû ve saz bike
     setup:
       email_below_hint_html: Heke navnîşana e-nameya jêrîn ne rast be, tu dikarî wê li vir biguherîne û e-nameyeke pejirandinê ya nû bistîne.
       email_settings_hint_html: E-nameya pejirandinê ji %{email} re hate şandin. Heke ew navnîşana e-nameyê ne rast be, tu dikarî wê di sazkariyên ajimêr de biguherîne.
       title: Damezirandin
+    sign_up:
+      preamble: Bi ajimêrekê li ser vê rajekarê Mastodon re, tu yê karîbî her keseke din li ser torê bişopînî, her ku ajimêrê wan li ku derê tê pêşkêşkirin.
+      title: Ka em te bi rê bixin li ser %{domain}.
     status:
       account_status: Rewşa ajimêr
       confirming: Li benda pejirandina e-nameyê ne da ku biqede.
