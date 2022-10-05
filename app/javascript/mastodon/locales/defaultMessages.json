@@ -360,6 +360,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "You need to sign in to access this resource.",
+        "id": "not_signed_in_indicator.not_signed_in"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/not_signed_in_indicator.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Put it back",
         "id": "picture_in_picture.restore"
       }
@@ -480,6 +489,35 @@
       }
     ],
     "path": "app/javascript/mastodon/components/relative_timestamp.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "People using this server during the last 30 days (Monthly Active Users)",
+        "id": "server_banner.about_active_users"
+      },
+      {
+        "defaultMessage": "{domain} is part of the decentralized social network powered by {mastodon}.",
+        "id": "server_banner.introduction"
+      },
+      {
+        "defaultMessage": "Administered by:",
+        "id": "server_banner.administered_by"
+      },
+      {
+        "defaultMessage": "Server stats:",
+        "id": "server_banner.server_stats"
+      },
+      {
+        "defaultMessage": "active users",
+        "id": "server_banner.active_users"
+      },
+      {
+        "defaultMessage": "Learn more",
+        "id": "server_banner.learn_more"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/server_banner.json"
   },
   {
     "descriptors": [
@@ -788,6 +826,15 @@
       }
     ],
     "path": "app/javascript/mastodon/containers/status_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "About",
+        "id": "column.about"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/about/index.json"
   },
   {
     "descriptors": [
@@ -3355,35 +3402,6 @@
         "id": "confirmations.redraft.message"
       },
       {
-        "defaultMessage": "Reply",
-        "id": "confirmations.reply.confirm"
-      },
-      {
-        "defaultMessage": "Replying now will overwrite the message you are currently composing. Are you sure you want to proceed?",
-        "id": "confirmations.reply.message"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/status/containers/detailed_status_container.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Delete",
-        "id": "confirmations.delete.confirm"
-      },
-      {
-        "defaultMessage": "Are you sure you want to delete this status?",
-        "id": "confirmations.delete.message"
-      },
-      {
-        "defaultMessage": "Delete & redraft",
-        "id": "confirmations.redraft.confirm"
-      },
-      {
-        "defaultMessage": "Are you sure you want to delete this status and re-draft it? Favourites and boosts will be lost, and replies to the original post will be orphaned.",
-        "id": "confirmations.redraft.message"
-      },
-      {
         "defaultMessage": "Show more for all",
         "id": "status.show_more_all"
       },
@@ -3673,6 +3691,19 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Sign in",
+        "id": "sign_in_banner.sign_in"
+      },
+      {
+        "defaultMessage": "Create account",
+        "id": "sign_in_banner.create_account"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/header.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Are you sure you want to log out?",
         "id": "confirmations.logout.message"
       },
@@ -3681,48 +3712,48 @@
         "id": "confirmations.logout.confirm"
       },
       {
-        "defaultMessage": "Invite people",
-        "id": "getting_started.invite"
-      },
-      {
-        "defaultMessage": "Hotkeys",
-        "id": "navigation_bar.keyboard_shortcuts"
-      },
-      {
-        "defaultMessage": "Security",
-        "id": "getting_started.security"
-      },
-      {
-        "defaultMessage": "About this server",
-        "id": "navigation_bar.info"
-      },
-      {
-        "defaultMessage": "Profile directory",
-        "id": "getting_started.directory"
-      },
-      {
-        "defaultMessage": "Mobile apps",
+        "defaultMessage": "Get the app",
         "id": "navigation_bar.apps"
       },
       {
-        "defaultMessage": "Privacy Policy",
-        "id": "getting_started.privacy_policy"
+        "defaultMessage": "About",
+        "id": "navigation_bar.info"
       },
       {
-        "defaultMessage": "Developers",
-        "id": "getting_started.developers"
+        "defaultMessage": "About Mastodon",
+        "id": "getting_started.what_is_mastodon"
       },
       {
         "defaultMessage": "Documentation",
         "id": "getting_started.documentation"
       },
       {
+        "defaultMessage": "Privacy Policy",
+        "id": "getting_started.privacy_policy"
+      },
+      {
+        "defaultMessage": "Hotkeys",
+        "id": "navigation_bar.keyboard_shortcuts"
+      },
+      {
+        "defaultMessage": "Directory",
+        "id": "getting_started.directory"
+      },
+      {
+        "defaultMessage": "Invite people",
+        "id": "getting_started.invite"
+      },
+      {
+        "defaultMessage": "Security",
+        "id": "getting_started.security"
+      },
+      {
         "defaultMessage": "Logout",
         "id": "navigation_bar.logout"
       },
       {
-        "defaultMessage": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}.",
-        "id": "getting_started.open_source_notice"
+        "defaultMessage": "Mastodon is free, open source software. You can view the source code, contribute or report issues at {repository}.",
+        "id": "getting_started.free_software_notice"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/link_footer.json"
@@ -3834,6 +3865,10 @@
       {
         "defaultMessage": "Follows and followers",
         "id": "navigation_bar.follows_and_followers"
+      },
+      {
+        "defaultMessage": "About",
+        "id": "navigation_bar.about"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/navigation_panel.json"
@@ -3867,31 +3902,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/sign_in_banner.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Home",
-        "id": "tabs_bar.home"
-      },
-      {
-        "defaultMessage": "Notifications",
-        "id": "tabs_bar.notifications"
-      },
-      {
-        "defaultMessage": "Local",
-        "id": "tabs_bar.local_timeline"
-      },
-      {
-        "defaultMessage": "Federated",
-        "id": "tabs_bar.federated_timeline"
-      },
-      {
-        "defaultMessage": "Search",
-        "id": "tabs_bar.search"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/ui/components/tabs_bar.json"
   },
   {
     "descriptors": [
