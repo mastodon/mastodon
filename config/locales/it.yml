@@ -1000,6 +1000,7 @@ it:
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
     your_token: Il tuo token di accesso
   auth:
+    apply_for_account: Mettiti in lista d'attesa
     change_password: Password
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
@@ -1019,6 +1020,7 @@ it:
     migrate_account: Sposta ad un account differente
     migrate_account_html: Se vuoi che questo account sia reindirizzato a uno diverso, puoi <a href="%{path}">configurarlo qui</a>.
     or_log_in_with: Oppure accedi con
+    privacy_policy_agreement_html: Ho letto e accetto l'<a href="%{privacy_policy_path}" target="_blank">informativa sulla privacy</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1026,12 +1028,18 @@ it:
     registration_closed: "%{instance} non accetta nuovi membri"
     resend_confirmation: Invia di nuovo le istruzioni di conferma
     reset_password: Resetta la password
+    rules:
+      preamble: Questi sono impostati e applicati dai moderatori di %{domain}.
+      title: Alcune regole di base.
     security: Credenziali
     set_new_password: Imposta una nuova password
     setup:
       email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
       email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
       title: Configurazione
+    sign_up:
+      preamble: Con un account su questo server Mastodon, sarai in grado di seguire qualsiasi altra persona sulla rete, indipendentemente da dove sia ospitato il suo account.
+      title: Lascia che ti configuriamo su %{domain}.
     status:
       account_status: Stato dell'account
       confirming: In attesa che la conferma e-mail sia completata.
