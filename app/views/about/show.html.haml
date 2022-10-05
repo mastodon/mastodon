@@ -40,11 +40,11 @@
 
       .hero-widget
         .hero-widget__img
-          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.png'), alt: @instance_presenter.site_title
+          = image_tag @instance_presenter.hero&.file&.url || @instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.png'), alt: @instance_presenter.title
 
         .hero-widget__text
           %p
-            = @instance_presenter.site_short_description.html_safe.presence || t('about.about_mastodon_html')
+            = @instance_presenter.description.html_safe.presence || t('about.about_mastodon_html')
             = link_to about_more_path do
               = t('about.learn_more')
               = fa_icon 'angle-double-right'
@@ -53,7 +53,7 @@
           .hero-widget__footer__column
             %h4= t 'about.administered_by'
 
-            = account_link_to @instance_presenter.contact_account
+            = account_link_to @instance_presenter.contact.account
 
           .hero-widget__footer__column
             %h4= t 'about.server_stats'
