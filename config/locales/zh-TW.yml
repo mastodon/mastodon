@@ -979,6 +979,7 @@ zh-TW:
     warning: 警告，不要把它分享給任何人!
     your_token: 您的 access token
   auth:
+    apply_for_account: 登記排隊名單
     change_password: 密碼
     delete_account: 刪除帳號
     delete_account_html: 如果您欲刪除您的帳號，請<a href="%{path}">點擊這裡繼續</a>。您需要確認您的操作。
@@ -998,6 +999,7 @@ zh-TW:
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 如果您希望引導他人關注另一個帳號，請 <a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或透過其他方式登入
+    privacy_policy_agreement_html: 我已閱讀且同意 <a href="%{privacy_policy_path}" target="_blank">隱私權政策</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1005,12 +1007,18 @@ zh-TW:
     registration_closed: "%{instance} 現在不開放新成員"
     resend_confirmation: 重新寄送確認指引
     reset_password: 重設密碼
+    rules:
+      preamble: 這些被 %{domain} 的管管們制定以及實施。
+      title: 一些基本守則。
     security: 登入資訊
     set_new_password: 設定新密碼
     setup:
       email_below_hint_html: 如果此電子郵件地址不正確，您可於此修改並接收郵件進行認證。
       email_settings_hint_html: 請確認 e-mail 是否傳送到 %{email} 。如果不對的話，可以從帳號設定修改。
       title: 設定
+    sign_up:
+      preamble: 於此 Mastodon 伺服器擁有帳號的話，您將能跟隨聯邦宇宙網路中任何一份子，無論他們的帳號託管於何處。
+      title: 讓我們一起設定 %{domain} 吧！
     status:
       account_status: 帳號狀態
       confirming: 等待電子郵件確認完成。
