@@ -1000,6 +1000,7 @@ is:
     warning: Farðu mjög varlega með þessi gögn. Þú skalt aldrei deila þeim með neinum!
     your_token: Aðgangsteiknið þitt
   auth:
+    apply_for_account: Fara á biðlista
     change_password: Lykilorð
     delete_account: Eyða notandaaðgangi
     delete_account_html: Ef þú vilt eyða notandaaðgangnum þínum, þá geturðu <a href="%{path}">farið í það hér</a>. Þú verður beðin/n um staðfestingu.
@@ -1019,6 +1020,7 @@ is:
     migrate_account: Færa á annan notandaaðgang
     migrate_account_html: Ef þú vilt endurbeina þessum aðgangi á einhvern annan, geturðu <a href="%{path}">stillt það hér</a>.
     or_log_in_with: Eða skráðu inn með
+    privacy_policy_agreement_html: Ég hef lesið og samþykkt <a href="%{privacy_policy_path}" target="_blank">persónuverndarstefnuna</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1026,12 +1028,18 @@ is:
     registration_closed: "%{instance} samþykkir ekki nýja meðlimi"
     resend_confirmation: Senda leiðbeiningar vegna staðfestingar aftur
     reset_password: Endursetja lykilorð
+    rules:
+      preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
+      title: Nokkrar grunnreglur.
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
     setup:
       email_below_hint_html: Ef tölvupóstfangið hér fyrir neðan er rangt, skaltu breyta því hér og fá nýjan staðfestingarpóst.
       email_settings_hint_html: Staðfestingarpósturinn var sendur til %{email}. Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
       title: Uppsetning
+    sign_up:
+      preamble: Með notandaaðgangi á þessum Mastodon-þjóni geturðu fylgst með hverjum sem er á netkerfinu, sama hvar notandaaðgangurinn þeirra er hýstur.
+      title: Förum núna að setja þig upp á %{domain}.
     status:
       account_status: Staða notandaaðgangs
       confirming: Bíð eftir að staðfestingu tölvupósts sé lokið.
