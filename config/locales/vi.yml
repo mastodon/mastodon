@@ -964,6 +964,7 @@ vi:
     warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
     your_token: Mã truy cập của bạn
   auth:
+    apply_for_account: Nhận thông báo khi mở
     change_password: Mật khẩu
     delete_account: Xóa tài khoản
     delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
@@ -983,6 +984,7 @@ vi:
     migrate_account: Chuyển sang tài khoản khác
     migrate_account_html: Nếu bạn muốn bỏ tài khoản này để dùng một tài khoản khác, bạn có thể <a href="%{path}">thiết lập tại đây</a>.
     or_log_in_with: Hoặc đăng nhập bằng
+    privacy_policy_agreement_html: Tôi đã đọc và đồng ý <a href="%{privacy_policy_path}" target="_blank">chính sách bảo mật</a>
     providers:
       cas: CAS
       saml: SAML
@@ -990,12 +992,18 @@ vi:
     registration_closed: "%{instance} tạm ngưng đăng ký mới"
     resend_confirmation: Gửi lại email xác minh
     reset_password: Đặt lại mật khẩu
+    rules:
+      preamble: Được ban hành và áp dụng bởi quản trị máy chủ %{domain}.
+      title: Quy tắc máy chủ.
     security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
       email_below_hint_html: Nếu địa chỉ email dưới đây không chính xác, bạn có thể thay đổi địa chỉ tại đây và nhận email xác nhận mới.
       email_settings_hint_html: Email xác minh đã được gửi tới %{email}. Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
       title: Thiết lập
+    sign_up:
+      preamble: Với tài khoản trên máy chủ Mastodon này, bạn sẽ có thể theo dõi bất kỳ người nào trên các máy chủ khác, bất kể tài khoản của họ ở đâu.
+      title: Cho phép bạn đăng ký trên %{domain}.
     status:
       account_status: Trạng thái tài khoản
       confirming: Đang chờ xác minh email.
@@ -1697,8 +1705,10 @@ vi:
         suspend: Tài khoản bị vô hiệu hóa
     welcome:
       edit_profile_action: Cài đặt trang hồ sơ
+      edit_profile_step: Bạn có thể chỉnh sửa trang hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Bạn cũng có thể tự phê duyệt những người theo dõi mới.
       explanation: Dưới đây là một số mẹo để giúp bạn bắt đầu
       final_action: Viết tút mới
+      final_step: 'Viết tút mới! Ngay cả khi chưa có người theo dõi, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và qua hashtag. Hãy giới thiệu bản thân với hashtag #introductions.'
       full_handle: Tên đầy đủ của bạn
       full_handle_hint: Đây cũng là địa chỉ được dùng để giao tiếp với tất cả mọi người.
       subject: Chào mừng đến với Mastodon
