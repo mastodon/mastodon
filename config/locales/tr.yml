@@ -984,6 +984,7 @@ tr:
     warning: Bu verilere çok dikkat edin. Asla kimseyle paylaşmayın!
     your_token: Erişim belirteciniz
   auth:
+    apply_for_account: Bekleme listesine gir
     change_password: Parola
     delete_account: Hesabı sil
     delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
@@ -1003,6 +1004,7 @@ tr:
     migrate_account: Farklı bir hesaba taşıyın
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsan, <a href="%{path}">buradan yapılandırabilirsin</a>.
     or_log_in_with: 'Veya şununla oturum açın:'
+    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">Gizlilik politikasını</a> okudum ve kabul ettim
     providers:
       cas: CAS
       saml: SAML
@@ -1010,12 +1012,18 @@ tr:
     registration_closed: "%{instance} yeni üyeler kabul etmemektedir"
     resend_confirmation: Onaylama talimatlarını tekrar gönder
     reset_password: Parolayı sıfırla
+    rules:
+      preamble: Bunlar, %{domain} moderatörleri tarafından ayarlanmış ve uygulanmıştır.
+      title: Bazı temel kurallar.
     security: Güvenlik
     set_new_password: Yeni parola belirle
     setup:
       email_below_hint_html: Eğer aşağıdaki e-posta adresi yanlışsa, onu burada değiştirebilir ve yeni bir doğrulama e-postası alabilirsiniz.
       email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
       title: Kurulum
+    sign_up:
+      preamble: Bu Mastodon sunucusu üzerinden bir hesap ile ağdaki herhangi bir kişiyi, hesabı hangi sunucuda saklanırsa saklansın, takip edebilirsiniz.
+      title: '%{domain} için kurulumunuzu yapalım.'
     status:
       account_status: Hesap durumu
       confirming: E-posta doğrulamasının tamamlanması bekleniyor.
@@ -1764,8 +1772,10 @@ tr:
         suspend: Hesap askıya alındı
     welcome:
       edit_profile_action: Profil kurulumu
+      edit_profile_step: Bir profil resmi yükleyerek, ekran adınızı değiştirerek ve daha fazlasını yaparak profilinizi kişiselleştirebilirsiniz. Sizi takip etmelerine izin verilmeden önce yeni takipçileri incelemeyi tercih edebilirsiniz.
       explanation: İşte sana başlangıç için birkaç ipucu
       final_action: Gönderi yazmaya başlayın
+      final_step: 'Gönderi yazmaya başlayın! Takipçiler olmadan bile, herkese açık gönderileriniz başkaları tarafından görülebilir, örneğin yerel zaman tünelinde veya etiketlerde. Kendinizi #introductions etiketinde tanıtmak isteyebilirsiniz.'
       full_handle: Tanıtıcınız
       full_handle_hint: Arkadaşlarınıza, size başka bir sunucudan mesaj atabilmeleri veya sizi takip edebilmeleri için söyleyeceğiniz şey budur.
       subject: Mastodon'a hoş geldiniz
