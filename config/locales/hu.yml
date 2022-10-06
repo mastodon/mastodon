@@ -2,38 +2,25 @@ hu:
   about:
     about_mastodon_html: 'A jövő közösségi hálózata: Hirdetések és céges megfigyelés nélkül, etikus dizájnnal és decentralizációval! Legyél a saját adataid ura a Mastodonnal!'
     about_this: Névjegy
-    active_count_after: aktív
-    active_footnote: Havonta aktív felhasználók
     administered_by: 'Adminisztrátor:'
     api: API
     apps: Mobil appok
-    apps_platforms: Használd a Mastodont iOS-ről, Androidról vagy más platformról
-    browse_public_posts: Nézz bele a Mastodon élő, nyilvános bejegyzéseibe
     contact: Kapcsolat
     contact_missing: Nincs megadva
     contact_unavailable: N/A
-    continue_to_web: Tovább a webes alkalmazáshoz
     documentation: Dokumentáció
-    federation_hint_html: Egy %{instance} fiókkal bármely más Mastodon szerveren vagy a föderációban lévő felhasználót követni tudsz.
-    get_apps: Próbálj ki egy mobil appot
     hosted_on: '%{domain} Mastodon szerver'
     instance_actor_flash: |
       Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét
       felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni, hacsak nem akarod a teljes szervert kitiltani, mely esetben a domain tiltásának használata javasolt.
-    learn_more: Tudj meg többet
-    logged_in_as_html: Belépve, mint %{username}.
-    logout_before_registering: Már be vagy jelentkezve.
     privacy_policy: Adatvédelmi szabályzat
     rules: Szerverünk szabályai
     rules_html: 'Alább látod azon követendő szabályok összefoglalóját, melyet be kell tartanod, ha szeretnél fiókot ezen a szerveren:'
-    see_whats_happening: Nézd, mi történik
-    server_stats: 'Szerver statisztika:'
     source_code: Forráskód
     status_count_after:
       one: bejegyzést írt
       other: bejegyzést írt
     status_count_before: Eddig
-    tagline: Decentralizált szociális hálózat
     unavailable_content: Kimoderált szerverek
     unavailable_content_description:
       domain: Szerver
@@ -766,9 +753,6 @@ hu:
         closed_message:
           desc_html: Ez az üzenet jelenik meg a főoldalon, ha a regisztráció nem engedélyezett. HTML-tageket is használhatsz
           title: Üzenet, ha a regisztráció nem engedélyezett
-        deletion:
-          desc_html: Engedélyezed a felhasználóknak, hogy töröljék fiókjukat
-          title: Fiók törlésének engedélyezése
         require_invite_text:
           desc_html: Ha a regisztrációhoz kézi jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
           title: Az új felhasználóktól legyen megkövetelve a meghívási kérés szövegének kitöltése
@@ -1040,7 +1024,6 @@ hu:
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
       view_strikes: Fiókod elleni korábbi szankciók megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
-    trouble_logging_in: Problémád van a bejelentkezéssel?
     use_security_key: Biztonsági kulcs használata
   authorize_follow:
     already_following: Már követed ezt a felhasználót
