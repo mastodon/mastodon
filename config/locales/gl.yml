@@ -2,37 +2,24 @@ gl:
   about:
     about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
     about_this: Acerca de
-    active_count_after: activas
-    active_footnote: Usuarias Activas no Mes (UAM)
     administered_by: 'Administrada por:'
     api: API
     apps: Aplicacións móbiles
-    apps_platforms: Emprega Mastodon dende iOS, Android e outras plataformas
-    browse_public_posts: Cronoloxía en directo cos comentarios públicos en Mastodon
     contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: Non dispoñíbel
-    continue_to_web: Continuar na app web
     documentation: Documentación
-    federation_hint_html: Cunha conta en %{instance} poderás seguir ás persoas en calquera servidor do Mastodon e alén.
-    get_apps: Probar unha aplicación móbil
     hosted_on: Mastodon aloxado en %{domain}
     instance_actor_flash: |
       Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
-    learn_more: Saber máis
-    logged_in_as_html: Entraches como %{username}.
-    logout_before_registering: Xa iniciaches sesión.
     privacy_policy: Política de Privacidade
     rules: Regras do servidor
     rules_html: 'Aquí tes un resumo das regras que debes seguir se queres ter unha conta neste servidor de Mastodon:'
-    see_whats_happening: Mira o que acontece
-    server_stats: 'Estatísticas do servidor:'
     source_code: Código fonte
     status_count_after:
       one: publicación
       other: publicacións
     status_count_before: Que publicaron
-    tagline: Rede social descentralizada
     unavailable_content: Contido non dispoñíbel
     unavailable_content_description:
       domain: Servidor
@@ -999,6 +986,7 @@ gl:
     warning: Ten moito tino con estos datos. Non os compartas nunca con ninguén!
     your_token: O seu testemuño de acceso
   auth:
+    apply_for_account: Solicita o acceso
     change_password: Contrasinal
     delete_account: Eliminar conta
     delete_account_html: Se queres eliminar a túa conta, podes <a href="%{path}">facelo aquí</a>. Deberás confirmar a acción.
@@ -1018,6 +1006,7 @@ gl:
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se queres redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
     or_log_in_with: Ou accede con
+    privacy_policy_agreement_html: Lin e acepto a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1025,12 +1014,18 @@ gl:
     registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Reenviar as intruccións de confirmación
     reset_password: Restablecer contrasinal
+    rules:
+      preamble: Son establecidas e aplicadas pola moderación de %{domain}.
+      title: Algunhas regras básicas.
     security: Seguranza
     set_new_password: Estabelecer novo contrasinal
     setup:
       email_below_hint_html: Se o enderezo inferior non é correcto, podes cambialo aquí e recibir un correo de confirmación.
       email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto podes cambialo nos axustes da conta.
       title: Axustes
+    sign_up:
+      preamble: Cunha conta neste servidor Mastodon poderás seguir a calquera outra persoa na rede, independentemente de onde estivese hospedada esa conta.
+      title: Imos crear a túa conta en %{domain}.
     status:
       account_status: Estado da conta
       confirming: Agardando a confirmación do correo enviado.
@@ -1039,7 +1034,6 @@ gl:
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
       view_strikes: Ver avisos anteriores respecto da túa conta
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
-    trouble_logging_in: Problemas para acceder?
     use_security_key: Usa chave de seguridade
   authorize_follow:
     already_following: Xa está a seguir esta conta
@@ -1748,8 +1742,10 @@ gl:
         suspend: Conta suspendida
     welcome:
       edit_profile_action: Configurar perfil
+      edit_profile_step: Podes personalizar o teu perfil subindo unha imaxe de perfil, cambiar o nome público e moito máis. Podes elexir revisar as solicitudes de seguimento recibidas antes de permitirlles que te sigan.
       explanation: Aquí tes algunhas endereitas para ir aprendendo
       final_action: Comeza a publicar
+      final_step: 'Publica! Incluso sen seguidoras, as túas mensaxes públicas serán vistas por outras persoas, por exemplo na cronoloxía local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'
       full_handle: O teu alcume completo
       full_handle_hint: Compárteo coas túas amizades para que poidan seguirte ou enviarche mensaxes desde outros servidores.
       subject: Benvida a Mastodon
