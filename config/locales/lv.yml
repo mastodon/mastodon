@@ -2,39 +2,26 @@ lv:
   about:
     about_mastodon_html: 'Nākotnes sociālais tīkls: bez reklāmām, bez korporatīvās uzraudzības, ētisks dizains un decentralizācija! Pārvaldi savus datus ar Mastodon!'
     about_this: Par
-    active_count_after: aktīvs
-    active_footnote: Ikmēneša aktīvie lietotāji (IAL)
     administered_by: 'Administrē:'
     api: API
     apps: Mobilās lietotnes
-    apps_platforms: Lieto Mastodon iOS, Android un citās platformās
-    browse_public_posts: Pārlūko publisko ziņu straumi no Mastodon
     contact: Kontakts
     contact_missing: Nav uzstādīts
     contact_unavailable: N/A
-    continue_to_web: Pārej uz tīmekļa lietotni
     documentation: Dokumentācija
-    federation_hint_html: Izmantojot kontu vietnē %{instance}, varēsi sekot cilvēkiem jebkurā Mastodon serverī un ārpus tā.
-    get_apps: Izmēģini mobilo lietotni
     hosted_on: Mastodon mitināts %{domain}
     instance_actor_flash: |
       Šis konts ir virtuāls aktieris, ko izmanto, lai pārstāvētu pašu serveri, nevis atsevišķu lietotāju.
       To izmanto apvienošanas nolūkos, un to nedrīkst bloķēt, ja vien nevēlies bloķēt visu instanci, un tādā gadījumā tev jāizmanto domēna bloķēšana.
-    learn_more: Uzzināt vairāk
-    logged_in_as_html: Tu pašlaik esi pieteicies kā %{username}.
-    logout_before_registering: Tu jau esi pieteicies.
     privacy_policy: Privātuma Politika
     rules: Servera noteikumi
     rules_html: 'Tālāk ir sniegts noteikumu kopsavilkums, kas jāievēro, ja vēlies izveidot kontu šajā Mastodon serverī:'
-    see_whats_happening: Redzēt, kas notiek
-    server_stats: 'Servera statistika:'
     source_code: Pirmkods
     status_count_after:
       zero: nav
       one: ziņa
       other: ziņas
     status_count_before: Kurš publicējis
-    tagline: Decentralizēts sociālais tīkls
     unavailable_content: Moderētie serveri
     unavailable_content_description:
       domain: Serveris
@@ -1020,6 +1007,7 @@ lv:
     warning: Esi ļoti uzmanīgs ar šiem datiem. Nekad nedalies ne ar vienu ar tiem!
     your_token: Tavs piekļuves marķieris
   auth:
+    apply_for_account: Iekļūt gaidīšanas sarakstā
     change_password: Parole
     delete_account: Dzēst kontu
     delete_account_html: Ja vēlies dzēst savu kontu, tu vari <a href="%{path}">turpināt šeit</a>. Tev tiks lūgts apstiprinājums.
@@ -1039,6 +1027,7 @@ lv:
     migrate_account: Pāriešana uz citu kontu
     migrate_account_html: Ja vēlies novirzīt šo kontu uz citu, tu vari <a href="%{path}">to konfigurēt šeit</a>.
     or_log_in_with: Vai piesakies ar
+    privacy_policy_agreement_html: Esmu izlasījis un piekrītu <a href="%{privacy_policy_path}" target="_blank">privātuma politikai</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1046,12 +1035,18 @@ lv:
     registration_closed: "%{instance} nepieņem jaunus dalībniekus"
     resend_confirmation: Atkārtoti nosūtīt apstiprinājuma norādījumus
     reset_password: Atiestatīt paroli
+    rules:
+      preamble: Tos iestata un ievieš %{domain} moderatori.
+      title: Daži pamatnoteikumi.
     security: Drošība
     set_new_password: Iestatīt jaunu paroli
     setup:
       email_below_hint_html: Ja zemāk norādītā e-pasta adrese ir nepareiza, vari to nomainīt šeit un saņemt jaunu apstiprinājuma e-pastu.
       email_settings_hint_html: Apstiprinājuma e-pasts tika nosūtīts uz %{email}. Ja šī e-pasta adrese nav pareiza, vari to nomainīt konta iestatījumos.
       title: Iestatīt
+    sign_up:
+      preamble: Izmantojot kontu šajā Mastodon serverī, tu varēsi sekot jebkurai citai personai tīklā neatkarīgi no tā, kur tiek mitināts viņas konts.
+      title: Atļauj tevi iestatīt %{domain}.
     status:
       account_status: Konta statuss
       confirming: Gaida e-pasta apstiprinājuma pabeigšanu.
@@ -1060,7 +1055,6 @@ lv:
       redirecting_to: Tavs konts ir neaktīvs, jo pašlaik tas tiek novirzīts uz %{acct}.
       view_strikes: Skati iepriekšējos brīdinājumus par savu kontu
     too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
-    trouble_logging_in: Problēma ar pieteikšanos?
     use_security_key: Lietot drošības atslēgu
   authorize_follow:
     already_following: Tu jau seko šim kontam
@@ -1816,8 +1810,10 @@ lv:
         suspend: Konts apturēts
     welcome:
       edit_profile_action: Iestatīt profilu
+      edit_profile_step: Tu vari pielāgot savu profilu, augšupielādējot profila attēlu, mainot parādāmo vārdu un citas lietas. Vari izvēlēties pārskatīt jaunus sekotājus, pirms atļauj viņiem tev sekot.
       explanation: Šeit ir daži padomi, kā sākt darbu
       final_action: Sāc publicēt
+      final_step: 'Sāc publicēt! Pat bez sekotājiem tavas publiskās ziņas var redzēt citi, piemēram, vietējā ziņu lentā vai atsaucēs. Iespējams, tu vēlēsies iepazīstināt ar sevi, izmantojot tēmturi #introductions.'
       full_handle: Tavs pilnais rokturis
       full_handle_hint: Šis ir tas, ko tu pasaki saviem draugiem, lai viņi varētu tev ziņot vai sekot tev no cita servera.
       subject: Laipni lūgts Mastodon
