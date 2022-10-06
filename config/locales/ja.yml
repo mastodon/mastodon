@@ -2,36 +2,23 @@ ja:
   about:
     about_mastodon_html: 'Mastodonは、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。'
     about_this: 詳細情報
-    active_count_after: 人がアクティブ
-    active_footnote: 月間アクティブユーザー数 (MAU)
     administered_by: '管理者:'
     api: API
     apps: アプリ
-    apps_platforms: iOSやAndroidなど、各種環境から利用できます
-    browse_public_posts: Mastodonの公開ライブストリームをご覧ください
     contact: 連絡先
     contact_missing: 未設定
     contact_unavailable: N/A
-    continue_to_web: アプリで続ける
     documentation: ドキュメント
-    federation_hint_html: '%{instance}のアカウントひとつでどんなMastodon互換サーバーのユーザーでもフォローできるでしょう。'
-    get_apps: モバイルアプリを試す
     hosted_on: Mastodon hosted on %{domain}
     instance_actor_flash: |
       このアカウントはサーバーそのものを示す仮想的なもので、特定のユーザーを示すものではありません。これはサーバーの連合のために使用されます。サーバー全体をブロックするときは、このアカウントをブロックせずに、ドメインブロックを使用してください。 
-    learn_more: もっと詳しく
-    logged_in_as_html: '%{username}としてログインしています。'
-    logout_before_registering: 既にログインしています。
     privacy_policy: プライバシーポリシー
     rules: サーバーのルール
     rules_html: 'このMastodonサーバーには、アカウントの所持にあたって従うべきルールが設定されています。概要は以下の通りです:'
-    see_whats_happening: やりとりを見てみる
-    server_stats: 'サーバー統計:'
     source_code: ソースコード
     status_count_after:
       other: 投稿
     status_count_before: 投稿数
-    tagline: 分散型ソーシャルネットワーク
     unavailable_content: 制限中のサーバー
     unavailable_content_description:
       domain: サーバー
@@ -732,9 +719,6 @@ ja:
         closed_message:
           desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
           title: 新規登録停止時のメッセージ
-        deletion:
-          desc_html: 誰でも自分のアカウントを削除できるようにします
-          title: アカウント削除を受け付ける
         require_invite_text:
           desc_html: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストを必須入力にする
           title: 新規ユーザー登録時の理由を必須入力にする
@@ -984,7 +968,6 @@ ja:
       redirecting_to: アカウントは%{acct}に引っ越し設定されているため非アクティブになっています。
       view_strikes: 過去のストライクを表示
     too_fast: フォームの送信が速すぎます。もう一度やり直してください。
-    trouble_logging_in: ログインできませんか？
     use_security_key: セキュリティキーを使用
   authorize_follow:
     already_following: あなたは既にこのアカウントをフォローしています
