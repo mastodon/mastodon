@@ -2,37 +2,24 @@ ko:
   about:
     about_mastodon_html: '마스토돈은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 마스토돈 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.'
     about_this: 이 인스턴스에 대해서
-    active_count_after: 활성 사용자
-    active_footnote: 월간 활성 사용자
     administered_by: '관리자:'
     api: API
     apps: 모바일 앱
-    apps_platforms: 마스토돈을 iOS, 안드로이드, 다른 플랫폼들에서도 사용하세요
-    browse_public_posts: 마스토돈의 공개 라이브 스트림을 둘러보기
     contact: 연락처
     contact_missing: 미설정
     contact_unavailable: 없음
-    continue_to_web: 웹앱에서 계속하기
     documentation: 문서
-    federation_hint_html: '%{instance}에 계정을 만드는 것으로 모든 마스토돈 서버, 그리고 호환 되는 모든 서버의 사용자를 팔로우 할 수 있습니다.'
-    get_apps: 모바일 앱 사용해 보기
     hosted_on: '%{domain}에서 호스팅 되는 마스토돈'
     instance_actor_flash: |
       이 계정은 가상의 actor로서 개인 사용자가 아닌 서버 자체를 나타냅니다.
       이것은 페더레이션을 목적으로 사용 되며 인스턴스 전체를 차단하려 하지 않는 이상 차단하지 않아야 합니다, 그 경우에는 도메인 차단을 사용하세요.
-    learn_more: 자세히
-    logged_in_as_html: 현재 %{username}으로 로그인 했습니다.
-    logout_before_registering: 이미 로그인 했습니다.
     privacy_policy: 개인정보 처리방침
     rules: 서버 규칙
     rules_html: '아래의 글은 이 마스토돈 서버에 계정이 있다면 따라야 할 규칙의 요약입니다:'
-    see_whats_happening: 무슨 일이 일어나는 지 보기
-    server_stats: '서버 통계:'
     source_code: 소스 코드
     status_count_after:
       other: 개
     status_count_before: 게시물 수
-    tagline: 분산화된 소셜 네트워크
     unavailable_content: 이용 불가능한 컨텐츠
     unavailable_content_description:
       domain: 서버
@@ -980,6 +967,7 @@ ko:
     warning: 이 데이터를 조심히 다뤄 주세요. 다른 사람들과 절대로 공유하지 마세요!
     your_token: 액세스 토큰
   auth:
+    apply_for_account: 대기자 명단에 들어가기
     change_password: 패스워드
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
@@ -999,6 +987,7 @@ ko:
     migrate_account: 계정 옮기기
     migrate_account_html: 이 계정을 다른 계정으로 리디렉션 하길 원하는 경우 <a href="%{path}">여기</a>에서 설정할 수 있습니다.
     or_log_in_with: 다른 방법으로 로그인 하려면
+    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">개인정보 보호정책</a>을 읽었고 동의합니다
     providers:
       cas: CAS
       saml: SAML
@@ -1006,6 +995,9 @@ ko:
     registration_closed: "%{instance}는 새로운 가입을 받지 않고 있습니다"
     resend_confirmation: 확인 메일을 다시 보내기
     reset_password: 암호 재설정
+    rules:
+      preamble: 다음은 %{domain}의 중재자들에 의해 설정되고 적용되는 규칙들입니다.
+      title: 몇 개의 규칙이 있습니다.
     security: 보안
     set_new_password: 새 암호
     setup:
@@ -1020,7 +1012,6 @@ ko:
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
-    trouble_logging_in: 로그인 하는데 문제가 있나요?
     use_security_key: 보안 키 사용
   authorize_follow:
     already_following: 이미 이 계정을 팔로우 하고 있습니다
