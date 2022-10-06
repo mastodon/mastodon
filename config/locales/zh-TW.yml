@@ -2,36 +2,23 @@ zh-TW:
   about:
     about_mastodon_html: 'Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，在上面建立帳號，然後您就可以和任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。'
     about_this: 關於本站
-    active_count_after: 活躍
-    active_footnote: 每月活躍使用者 (MAU)
     administered_by: '管理者：'
     api: API
     apps: 行動應用程式
-    apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
-    browse_public_posts: 在 Mastodon 瀏覽公開嘟文的即時串流
     contact: 聯絡我們
     contact_missing: 未設定
     contact_unavailable: 未公開
-    continue_to_web: 於網頁程式中繼續
     documentation: 文件
-    federation_hint_html: 您只需要擁有 %{instance} 的帳號，就可以追蹤任何一台 Mastodon 伺服器上的人等等。
-    get_apps: 嘗試行動應用程式
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
     instance_actor_flash: |
       這個帳戶是個用來代表伺服器本身的虛擬角色，而非實際的使用者。它是用來聯盟用的，除非您想要封鎖整個站台，不然不該封鎖它。但要封鎖整個站台，您可以使用網域封鎖功能。
-    learn_more: 了解詳細
-    logged_in_as_html: 您目前登入使用的帳號是 %{username}
-    logout_before_registering: 您已經登入了！
     privacy_policy: 隱私權政策
     rules: 伺服器規則
     rules_html: '以下是您若想在此 Mastodon 伺服器建立帳號必須遵守的規則總結：'
-    see_whats_happening: 看看發生什麼事
-    server_stats: '伺服器統計：'
     source_code: 原始碼
     status_count_after:
       other: 條嘟文
     status_count_before: 他們共嘟出了
-    tagline: 去中心化社群網路
     unavailable_content: 無法取得的內容
     unavailable_content_description:
       domain: 伺服器
@@ -749,9 +736,6 @@ zh-TW:
         closed_message:
           desc_html: 關閉註冊時顯示在首頁的內容，可使用 HTML 標籤
           title: 關閉註冊訊息
-        deletion:
-          desc_html: 允許所有人刪除自己的帳號
-          title: 開放刪除帳號的權限
         require_invite_text:
           desc_html: 如果已設定為手動審核註冊，請將「加入原因」設定為必填項目。
           title: 要求新使用者填申請書以索取邀請
@@ -1027,7 +1011,6 @@ zh-TW:
       redirecting_to: 您的帳戶因目前重新導向至 %{acct} 而被停用。
       view_strikes: 檢視針對您帳號過去的警示
     too_fast: 送出表單的速度太快跟不上，請稍後再試。
-    trouble_logging_in: 登錄時遇到困難？
     use_security_key: 使用安全金鑰
   authorize_follow:
     already_following: 您已經跟隨了這個使用者
