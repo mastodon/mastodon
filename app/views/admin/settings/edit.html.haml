@@ -57,9 +57,6 @@
     .fields-group
       = f.input :timeline_preview, as: :boolean, wrapper: :with_label, label: t('admin.settings.timeline_preview.title'), hint: t('admin.settings.timeline_preview.desc_html')
 
-  .fields-group
-    = f.input :open_deletion, as: :boolean, wrapper: :with_label, label: t('admin.settings.registrations.deletion.title'), hint: t('admin.settings.registrations.deletion.desc_html')
-
   - unless whitelist_mode?
     .fields-group
       = f.input :activity_api_enabled, as: :boolean, wrapper: :with_label, label: t('admin.settings.activity_api_enabled.title'), hint: t('admin.settings.activity_api_enabled.desc_html'), recommended: true

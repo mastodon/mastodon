@@ -87,10 +87,6 @@ module ApplicationHelper
     link_to label, omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
   end
 
-  def open_deletion?
-    Setting.open_deletion
-  end
-
   def locale_direction
     if RTL_LOCALES.include?(I18n.locale)
       'rtl'
