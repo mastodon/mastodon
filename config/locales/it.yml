@@ -2,38 +2,25 @@ it:
   about:
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
     about_this: A proposito di questo server
-    active_count_after: attivo
-    active_footnote: Utenti Attivi Mensili (MAU)
     administered_by: 'Amministrato da:'
     api: API
     apps: Applicazioni per dispositivi mobili
-    apps_platforms: Usa Mastodon da iOS, Android e altre piattaforme
-    browse_public_posts: Sfoglia il flusso di post pubblici in tempo reale su Mastodon
     contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
-    continue_to_web: Continua all'app web
     documentation: Documentazione
-    federation_hint_html: Con un account su %{instance} sarai in grado di seguire persone su qualsiasi server Mastodon e oltre.
-    get_apps: Prova un'app per smartphone
     hosted_on: Mastodon ospitato su %{domain}
     instance_actor_flash: |
       Questo account è un attore virtuale utilizzato per rappresentare il server stesso e non un particolare utente.
       È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
-    learn_more: Scopri altro
-    logged_in_as_html: Sei correntemente connesso come %{username}.
-    logout_before_registering: Hai già effettuato l'accesso.
     privacy_policy: Politica sulla Privacy
     rules: Regole del server
     rules_html: 'Di seguito è riportato un riassunto delle regole che devi seguire se vuoi avere un account su questo server di Mastodon:'
-    see_whats_happening: Guarda cosa succede
-    server_stats: 'Statistiche del server:'
     source_code: Codice sorgente
     status_count_after:
       one: stato
       other: stati
     status_count_before: Che hanno pubblicato
-    tagline: Social network decentralizzato
     unavailable_content: Server moderati
     unavailable_content_description:
       domain: Server
@@ -1048,7 +1035,6 @@ it:
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
       view_strikes: Visualizza le sanzioni precedenti prese nei confronti del tuo account
     too_fast: Modulo inviato troppo velocemente, riprova.
-    trouble_logging_in: Problemi di accesso?
     use_security_key: Usa la chiave di sicurezza
   authorize_follow:
     already_following: Stai già seguendo questo account
@@ -1790,8 +1776,10 @@ it:
         suspend: Account sospeso
     welcome:
       edit_profile_action: Configura profilo
+      edit_profile_step: Puoi personalizzare il tuo profilo caricando un'immagine del profilo, cambiare il tuo nome e altro ancora. Puoi scegliere di esaminare i nuovi seguaci prima che loro siano autorizzati a seguirti.
       explanation: Ecco alcuni suggerimenti per iniziare
       final_action: Inizia a postare
+      final_step: 'Inizia a pubblicare! Anche senza seguaci, i tuoi post pubblici possono essere visti da altri, ad esempio sulla timeline locale o negli hashtag. Potresti presentarti con l''hashtag #presentazione.'
       full_handle: Il tuo nome utente completo
       full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un altro server.
       subject: Benvenuto/a su Mastodon
