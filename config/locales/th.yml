@@ -2,36 +2,23 @@ th:
   about:
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา ไม่มีการสอดแนมโดยองค์กร การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
     about_this: เกี่ยวกับ
-    active_count_after: ใช้งานอยู่
-    active_footnote: ผู้ใช้ที่ใช้งานอยู่รายเดือน (MAU)
     administered_by: 'ดูแลโดย:'
     api: API
     apps: แอปมือถือ
-    apps_platforms: ใช้ Mastodon จาก iOS, Android และแพลตฟอร์มอื่น ๆ
-    browse_public_posts: เรียกดูสตรีมสดของโพสต์สาธารณะใน Mastodon
     contact: ติดต่อ
     contact_missing: ไม่ได้ตั้ง
     contact_unavailable: ไม่มี
-    continue_to_web: ดำเนินการต่อไปยังแอปเว็บ
     documentation: เอกสารประกอบ
-    federation_hint_html: ด้วยบัญชีที่ %{instance} คุณจะสามารถติดตามผู้คนในเซิร์ฟเวอร์ Mastodon และอื่น ๆ
-    get_apps: ลองแอปมือถือ
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
     instance_actor_flash: |
       บัญชีนี้เป็นตัวดำเนินการเสมือนที่ใช้เพื่อเป็นตัวแทนของเซิร์ฟเวอร์เองและไม่ใช่ผู้ใช้รายบุคคลใด ๆ บัญชีใช้สำหรับวัตถุประสงค์ในการติดต่อกับภายนอกและไม่ควรได้รับการปิดกั้นเว้นแต่คุณต้องการปิดกั้นทั้งอินสแตนซ์ ในกรณีนี้คุณควรใช้การปิดกั้นโดเมน
-    learn_more: เรียนรู้เพิ่มเติม
-    logged_in_as_html: คุณกำลังเข้าสู่ระบบเป็น %{username} ในปัจจุบัน
-    logout_before_registering: คุณได้เข้าสู่ระบบอยู่แล้ว
     privacy_policy: นโยบายความเป็นส่วนตัว
     rules: กฎของเซิร์ฟเวอร์
     rules_html: 'ด้านล่างคือข้อมูลสรุปของกฎที่คุณจำเป็นต้องปฏิบัติตามหากคุณต้องการมีบัญชีในเซิร์ฟเวอร์ Mastodon นี้:'
-    see_whats_happening: ดูสิ่งที่กำลังเกิดขึ้น
-    server_stats: 'สถิติเซิร์ฟเวอร์:'
     source_code: โค้ดต้นฉบับ
     status_count_after:
       other: โพสต์
     status_count_before: ผู้เผยแพร่
-    tagline: เครือข่ายสังคมแบบกระจายศูนย์
     unavailable_content: เซิร์ฟเวอร์ที่มีการควบคุม
     unavailable_content_description:
       domain: เซิร์ฟเวอร์
@@ -738,9 +725,6 @@ th:
         closed_message:
           desc_html: แสดงในหน้าแรกเมื่อปิดการลงทะเบียน คุณสามารถใช้แท็ก HTML
           title: ข้อความการปิดการลงทะเบียน
-        deletion:
-          desc_html: อนุญาตให้ใครก็ตามลบบัญชีของเขา
-          title: เปิดการลบบัญชี
         require_invite_text:
           title: ต้องให้ผู้ใช้ใหม่ป้อนเหตุผลที่จะเข้าร่วม
       registrations_mode:
@@ -990,7 +974,6 @@ th:
       redirecting_to: บัญชีของคุณไม่ได้ใช้งานเนื่องจากบัญชีกำลังเปลี่ยนเส้นทางไปยัง %{acct} ในปัจจุบัน
       view_strikes: ดูการดำเนินการที่ผ่านมากับบัญชีของคุณ
     too_fast: ส่งแบบฟอร์มเร็วเกินไป ลองอีกครั้ง
-    trouble_logging_in: มีปัญหาในการเข้าสู่ระบบ?
     use_security_key: ใช้กุญแจความปลอดภัย
   authorize_follow:
     already_following: คุณกำลังติดตามบัญชีนี้อยู่แล้ว
