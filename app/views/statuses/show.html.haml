@@ -17,9 +17,4 @@
   = render 'og_description', activity: @status
   = render 'og_image', activity: @status, account: @account
 
-.grid
-  .column-0
-    .activity-stream.h-entry
-      = render partial: 'status', locals: { status: @status, include_threads: true }
-  .column-1
-    = render 'application/sidebar'
+= render 'shared/web_app'
