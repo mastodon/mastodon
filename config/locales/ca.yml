@@ -2,38 +2,25 @@ ca:
   about:
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
     about_this: Quant a
-    active_count_after: actiu
-    active_footnote: Usuaris actius mensuals (UAM)
     administered_by: 'Administrat per:'
     api: API
     apps: Aplicacions mòbils
-    apps_platforms: Utilitza Mastodon des d'iOS, Android i altres plataformes
-    browse_public_posts: Navega per una transmissió en directe de les publicacions públiques a Mastodon
     contact: Contacte
     contact_missing: No configurat
     contact_unavailable: N/D
-    continue_to_web: Continua a l'aplicació web
     documentation: Documentació
-    federation_hint_html: Amb un compte de %{instance}, podràs seguir persones de qualsevol servidor Mastodon i de molts més.
-    get_apps: Provar una aplicació mòbil
     hosted_on: Mastodon allotjat a %{domain}
     instance_actor_flash: |
       Aquest compte és un actor virtual usat per representar el servidor i no qualsevol usuari individual.
       Es fa servir per a propòsits de federació i no s'ha de ser bloquejar si no voleu bloquejar tota la instància. En aquest cas, hauríeu d'utilitzar un bloqueig de domini.
-    learn_more: Aprèn més
-    logged_in_as_html: Actualment has iniciat sessió com a %{username}.
-    logout_before_registering: Ja has iniciat sessió.
     privacy_policy: Política de Privacitat
     rules: Normes del servidor
     rules_html: 'A continuació, es mostra un resum de les normes que has de seguir si vols tenir un compte en aquest servidor de Mastodon:'
-    see_whats_happening: Mira què està passant
-    server_stats: 'Estadístiques del servidor:'
     source_code: Codi font
     status_count_after:
       one: publicació
       other: publicacions
     status_count_before: Qui ha publicat
-    tagline: Xarxa social descentralitzada
     unavailable_content: Servidors moderats
     unavailable_content_description:
       domain: Servidor
@@ -766,9 +753,6 @@ ca:
         closed_message:
           desc_html: Apareix en la primera pàgina quan es tanquen els registres. Pots utilitzar etiquetes HTML
           title: Missatge de registre tancat
-        deletion:
-          desc_html: Permet a qualsevol usuari d'esborrar el seu compte
-          title: Obre la supressió del compte
         require_invite_text:
           desc_html: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcions l escriure el text de la solicitud d'invitació "Perquè vols unirte?"
           title: Requerir als nous usuaris omplir el text de la solicitud d'invitació
@@ -1048,7 +1032,6 @@ ca:
       redirecting_to: El teu compte és inactiu perquè actualment està redirigint a %{acct}.
       view_strikes: Veure accions del passat contra el teu compte
     too_fast: Formulari enviat massa ràpid, torna a provar-ho.
-    trouble_logging_in: Problemes per iniciar la sessió?
     use_security_key: Usa clau de seguretat
   authorize_follow:
     already_following: Ja estàs seguint aquest compte
