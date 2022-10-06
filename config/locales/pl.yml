@@ -2,32 +2,20 @@ pl:
   about:
     about_mastodon_html: 'Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.'
     about_this: O tej instancji
-    active_count_after: aktywni
-    active_footnote: Aktywni użytkownicy miesięcznie (MAU)
     administered_by: 'Administrowana przez:'
     api: API
     apps: Aplikacje
-    apps_platforms: Korzystaj z Mastodona z poziomu iOS-a, Androida i innych
-    browse_public_posts: Przeglądaj strumień publicznych wpisów na Mastodonie na żywo
     contact: Kontakt
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
-    continue_to_web: Kontynuuj przez aplikację webową
     documentation: Dokumentacja
-    federation_hint_html: Z kontem na %{instance}, możesz śledzić użytkowników każdego serwera Mastodona i nie tylko.
-    get_apps: Spróbuj aplikacji mobilnej
     hosted_on: Mastodon uruchomiony na %{domain}
     instance_actor_flash: |
       To konto jest wirtualnym nadawcą, używanym do reprezentacji serwera, a nie jakiegokolwiek użytkownika.
       Jest używane w celu federowania i nie powinno być blokowane, chyba że chcesz zablokować całą instację, w takim przypadku użyj blokady domeny.
-    learn_more: Dowiedz się więcej
-    logged_in_as_html: Jesteś obecnie zalogowany/a jako %{username}.
-    logout_before_registering: Jesteś już zalogowany/a.
     privacy_policy: Polityka prywatności
     rules: Regulamin serwera
     rules_html: 'Poniżej znajduje się podsumowanie zasad, których musisz przestrzegać, jeśli chcesz mieć konto na tym serwerze Mastodona:'
-    see_whats_happening: Zobacz co się dzieje
-    server_stats: 'Statystyki serwera:'
     source_code: Kod źródłowy
     status_count_after:
       one: wpisu
@@ -35,7 +23,6 @@ pl:
       many: wpisów
       other: wpisów
     status_count_before: Są autorami
-    tagline: Zdecentralizowana sieć społecznościowa
     unavailable_content: Niedostępne treści
     unavailable_content_description:
       domain: Serwer
@@ -1075,7 +1062,6 @@ pl:
       redirecting_to: Twoje konto jest nieaktywne, ponieważ obecnie przekierowuje je na %{acct}.
       view_strikes: Zobacz dawne ostrzeżenia nałożone na twoje konto
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
-    trouble_logging_in: Masz problem z zalogowaniem się?
     use_security_key: Użyj klucza bezpieczeństwa
   authorize_follow:
     already_following: Już śledzisz to konto
@@ -1834,8 +1820,10 @@ pl:
         suspend: Konto zawieszone
     welcome:
       edit_profile_action: Skonfiguruj profil
+      edit_profile_step: Możesz dostosować profil wysyłając awatar, zmieniając wyświetlaną nazwę i o wiele więcej. Jeżeli chcesz, możesz również włączyć przeglądanie i ręczne akceptowanie nowych zgłoszeń śledzenia Twojego profilu.
       explanation: Kilka wskazówek, które pomogą Ci rozpocząć
       final_action: Zacznij pisać
+      final_step: 'Zacznij tworzyć! Nawet jeżeli nikt Cię nie śledzi, Twoje publiczne wiadomości będą widziane przez innych, na przykład na lokalnej osi czasu i w hashtagach. Możesz też utworzyć wpis wprowadzający używając hashtagu #introductions.'
       full_handle: Twój pełny adres
       full_handle_hint: Ten adres możesz podać znajomym, aby mogli skontaktować się z Tobą lub zacząć śledzić z innego serwera.
       subject: Witaj w Mastodonie
