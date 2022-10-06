@@ -2,38 +2,25 @@ de:
   about:
     about_mastodon_html: 'Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral – genau wie E-Mail!'
     about_this: Über diesen Server
-    active_count_after: aktiv
-    active_footnote: Monatlich aktive User (MAU)
     administered_by: 'Betrieben von:'
     api: API
     apps: Mobile Apps
-    apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
-    browse_public_posts: Stöbere durch öffentliche Beiträge auf Mastodon
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: Nicht verfügbar
-    continue_to_web: Weiter zur Web-App
     documentation: Dokumentation
-    federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein, Nutzern auf irgendeinem Mastodon-Server und darüber hinaus zu folgen.
-    get_apps: Versuche eine mobile App
     hosted_on: Mastodon, gehostet auf %{domain}
     instance_actor_flash: |
       Dieses Konto ist ein virtueller Akteur, welcher den Server selbst – und nicht einen einzelnen Benutzer – repräsentiert.
       Dieser wird für Föderationszwecke verwendet und sollte nicht blockiert werden, es sei denn, du möchtest die gesamte Instanz blockieren.
-    learn_more: Mehr erfahren
-    logged_in_as_html: Du bist derzeit als %{username} eingeloggt.
-    logout_before_registering: Du bist bereits angemeldet.
     privacy_policy: Datenschutzerklärung
     rules: Server-Regeln
     rules_html: 'Unten ist eine Zusammenfassung der Regeln, denen du folgen musst, wenn du ein Konto auf diesem Mastodon-Server haben möchtest:'
-    see_whats_happening: Finde heraus, was gerade in der Welt los ist
-    server_stats: 'Serverstatistiken:'
     source_code: Quellcode
     status_count_after:
       one: Beitrag
       other: Beiträge
     status_count_before: mit
-    tagline: Dezentrales soziales Netzwerk
     unavailable_content: Nicht verfügbarer Inhalt
     unavailable_content_description:
       domain: Server
@@ -1000,6 +987,7 @@ de:
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
+    apply_for_account: Auf Warteliste kommen
     change_password: Passwort
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
@@ -1019,6 +1007,7 @@ de:
     migrate_account: Ziehe zu einem anderen Konto um
     migrate_account_html: Wenn du wünschst, dieses Konto zu einem anderen umzuziehen, kannst du <a href="%{path}">dies hier einstellen</a>.
     or_log_in_with: Oder anmelden mit
+    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
     providers:
       cas: CAS
       saml: SAML
@@ -1026,12 +1015,18 @@ de:
     registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
     resend_confirmation: Bestätigungs-Mail erneut versenden
     reset_password: Passwort zurücksetzen
+    rules:
+      preamble: Diese werden von den Moderatoren von %{domain} erzwungn.
+      title: Einige Grundregeln.
     security: Sicherheit
     set_new_password: Neues Passwort setzen
     setup:
       email_below_hint_html: Wenn die unten stehende E-Mail-Adresse falsch ist, kannst du sie hier ändern und eine neue Bestätigungs-E-Mail erhalten.
       email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
       title: Konfiguration
+    sign_up:
+      preamble: Mit einem Account auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet wird.
+      title: Okay, lass uns mit %{domain} anfangen.
     status:
       account_status: Kontostatus
       confirming: Warte auf die Bestätigung der E-Mail.
@@ -1040,7 +1035,6 @@ de:
       redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
       view_strikes: Zeige frühere Streiks gegen dein Konto
     too_fast: Formular zu schnell gesendet, versuche es erneut.
-    trouble_logging_in: Schwierigkeiten beim Anmelden?
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -1750,8 +1744,10 @@ de:
         suspend: Konto gesperrt
     welcome:
       edit_profile_action: Profil einstellen
+      edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst, deinen Anzeigenamen änderst und viel mehr. Du kannst optional einstellen, ob du Accounts, die dir folgen wollen, akzeptieren musst, bevor sie dies können.
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Fang an zu posten
+      final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Du kannst dich unter dem Hashtag #introductions vorstellen, wenn du magst.'
       full_handle: Dein vollständiger Benutzername
       full_handle_hint: Dies ist, was du deinen Freunden sagen kannst, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
       subject: Willkommen bei Mastodon
