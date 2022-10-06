@@ -641,7 +641,7 @@ Rails.application.routes.draw do
 
   get '/web/(*any)', to: 'home#index', as: :web
 
-  get '/about',        to: 'about#show'
+  get '/about',        to: redirect('/')
   get '/about/more',   to: 'about#more'
 
   get '/privacy-policy', to: 'privacy#show', as: :privacy_policy
