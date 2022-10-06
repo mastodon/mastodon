@@ -2,28 +2,19 @@
   about:
     about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
     about_this: Om
-    active_count_after: aktive
-    active_footnote: Månedlige aktive brukere (MAU)
     administered_by: 'Administrert av:'
     api: API
     apps: Mobilapper
-    apps_platforms: Bruk Mastodon gjennom iOS, Android og andre plattformer
-    browse_public_posts: Bla i en sanntidsstrøm av offentlige innlegg på Mastodon
     contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
     documentation: Dokumentasjon
-    federation_hint_html: Med en konto på %{instance} vil du kunne følge folk på enhver Mastodon-tjener, og mer til.
-    get_apps: Prøv en mobilapp
     hosted_on: Mastodon driftet på %{domain}
     instance_actor_flash: |
       Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. 
 
-    learn_more: Lær mer
     rules: Server regler
     rules_html: 'Nedenfor er et sammendrag av reglene du må følge om du vil ha en konto på denne serveren av Mastodon:'
-    see_whats_happening: Se hva som skjer
-    server_stats: 'Tjenerstatistikker:'
     source_code: Kildekode
     status_count_after:
       one: innlegg
@@ -511,9 +502,6 @@
         closed_message:
           desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
           title: Melding for lukket registrering
-        deletion:
-          desc_html: Tillat alle å slette sin konto
-          title: Åpne kontosletting
         require_invite_text:
           desc_html: Når registreringer krever manuell godkjenning, må du føye «Hvorfor vil du bli med?» tekstinput obligatoriske i stedet for valgfritt
           title: Krev nye brukere for å oppgi en grunn for å delta
@@ -640,7 +628,6 @@
       confirming: Venter på at e-postbekreftelsen er fullført.
       pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
-    trouble_logging_in: Har du problemer med å logge på?
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du følger allerede denne kontoen
