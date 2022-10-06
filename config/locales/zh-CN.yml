@@ -964,6 +964,7 @@ zh-CN:
     warning: 一定小心，千万不要把它分享给任何人！
     your_token: 你的访问令牌
   auth:
+    apply_for_account: 前往申请
     change_password: 密码
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
@@ -983,6 +984,7 @@ zh-CN:
     migrate_account: 迁移到另一个帐户
     migrate_account_html: 如果你希望引导他人关注另一个账号，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过外部服务登录
+    privacy_policy_agreement_html: 我已阅读并同意 <a href="%{privacy_policy_path}" target="_blank">隐私政策</a>
     providers:
       cas: CAS
       saml: SAML
@@ -990,12 +992,18 @@ zh-CN:
     registration_closed: "%{instance} 目前不接收新成员"
     resend_confirmation: 重新发送确认邮件
     reset_password: 重置密码
+    rules:
+      preamble: 这些由 %{domain} 监察员设置和执行。
+      title: 一些基本规则。
     security: 账户安全
     set_new_password: 设置新密码
     setup:
       email_below_hint_html: 如果下面的电子邮箱地址是错误的，你可以在这里修改并重新发送新的确认邮件。
       email_settings_hint_html: 确认邮件已经发送到%{email}。如果该邮箱地址不对，你可以在账号设置里面修改。
       title: 初始设置
+    sign_up:
+      preamble: 使用此 Mastodon 服务器上的帐号，您将能够关注网络上的任何其他人，无论他们的帐号托管在哪里的主机。
+      title: 让我们在 %{domain} 上开始。
     status:
       account_status: 帐户状态
       confirming: 等待电子邮件确认完成。
@@ -1731,8 +1739,10 @@ zh-CN:
         suspend: 账号被封禁
     welcome:
       edit_profile_action: 设置个人资料
+      edit_profile_step: 您可以通过上传个人资料图片、更改您的昵称等来自定义您的个人资料。 您可以选择在新关注者关注您之前对其进行审核。
       explanation: 下面是几个小贴士，希望它们能帮到你
       final_action: 开始嘟嘟
+      final_step: '开始发嘟！ 即使没有关注者，您的公开嘟文也可能会被其他人看到，例如在本地时间轴或话题标签中。 您可能想在 #introductions 话题标签上介绍自己。'
       full_handle: 你的完整用户地址
       full_handle_hint: 你需要把这个告诉你的朋友们，这样他们就能从另一台服务器向你发送信息或者关注你。
       subject: 欢迎来到 Mastodon
