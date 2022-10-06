@@ -2,36 +2,23 @@ id:
   about:
     about_mastodon_html: 'Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.'
     about_this: Tentang server ini
-    active_count_after: aktif
-    active_footnote: Pengguna Aktif Bulanan (PAB)
     administered_by: 'Dikelola oleh:'
     api: API
     apps: Aplikasi mobile
-    apps_platforms: Gunakan Mastodon dari iOS, Android, dan platform lain
-    browse_public_posts: Jelajahi siaran langsung pos publik di Mastodon
     contact: Kontak
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
-    continue_to_web: Lanjut ke apl web
     documentation: Dokumentasi
-    federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
-    get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
     instance_actor_flash: |
       Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain. 
 
-    learn_more: Pelajari selengkapnya
-    logged_in_as_html: Anda sedang masuk sebagai %{username}.
-    logout_before_registering: Anda sudah masuk.
     rules: Aturan server
     rules_html: 'Di bawah ini adalah ringkasan aturan yang perlu Anda ikuti jika Anda ingin memiliki akun di server Mastodon ini:'
-    see_whats_happening: Lihat apa yang sedang terjadi
-    server_stats: 'Statistik server:'
     source_code: Kode sumber
     status_count_after:
       other: status
     status_count_before: Yang telah menulis
-    tagline: Jejaring sosial terdesentralisasi
     unavailable_content: Konten tak tersedia
     unavailable_content_description:
       domain: Server
@@ -671,9 +658,6 @@ id:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
           title: Pesan penutupan pendaftaran
-        deletion:
-          desc_html: Izinkan siapapun untuk menghapus akun miliknya
-          title: Buka penghapusan akun
         require_invite_text:
           desc_html: Saat pendaftaran harus disetujui manual, buat input teks "Mengapa Anda ingin bergabung?" sebagai hal wajib bukan opsional
           title: Pengguna baru harus memasukkan alasan bergabung
@@ -931,7 +915,6 @@ id:
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
       view_strikes: Lihat hukuman lalu yang pernah terjadi kepada akun Anda
     too_fast: Formulir dikirim terlalu cepat, coba lagi.
-    trouble_logging_in: Kesulitan masuk?
     use_security_key: Gunakan kunci keamanan
   authorize_follow:
     already_following: Anda sudah mengikuti akun ini
