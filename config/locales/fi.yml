@@ -2,37 +2,24 @@ fi:
   about:
     about_mastodon_html: 'Tulevaisuuden sosiaalinen verkosto: Ei mainoksia, ei valvontaa, toteutettu avoimilla protokollilla ja hajautettu! Pidä tietosi ominasi Mastodonilla!'
     about_this: Tietoa tästä palvelimesta
-    active_count_after: aktiivista
-    active_footnote: Kuukausittain aktiiviset käyttäjät (MAU)
     administered_by: 'Ylläpitäjä:'
     api: Rajapinta
     apps: Mobiilisovellukset
-    apps_platforms: Käytä Mastodonia Androidilla, iOS:llä ja muilla alustoilla
-    browse_public_posts: Selaa julkisia julkaisuja Mastodonissa
     contact: Ota yhteyttä
     contact_missing: Ei asetettu
     contact_unavailable: Ei saatavilla
-    continue_to_web: Jatka verkkosovellukseen
     documentation: Dokumentaatio
-    federation_hint_html: Tilillä %{instance}:ssa voit seurata ihmisiä millä tahansa Mastodon-palvelimella ja sen ulkopuolella.
-    get_apps: Kokeile mobiilisovellusta
     hosted_on: Mastodon palvelimella %{domain}
     instance_actor_flash: |
       Tämä on virtuaalitili, joka edustaa itse palvelinta eikä yksittäistä käyttäjää.
       Sitä käytetään yhdistämistarkoituksiin, eikä sitä saa estää, ellet halua estää koko palvelinta, jolloin sinun on käytettävä verkkotunnuksen estoa.
-    learn_more: Lisätietoja
-    logged_in_as_html: Olet kirjautunut sisään nimellä %{username}.
-    logout_before_registering: Olet jo kirjautunut sisään.
     rules: Palvelimen säännöt
     rules_html: 'Alla on yhteenveto säännöistä, joita sinun on noudatettava, jos haluat olla tili tällä Mastodonin palvelimella:'
-    see_whats_happening: Näe mitä tapahtuu
-    server_stats: 'Palvelimen tilastot:'
     source_code: Lähdekoodi
     status_count_after:
       one: julkaisun
       other: julkaisua
     status_count_before: Julkaistu
-    tagline: Hajautettu sosiaalinen verkosto
     unavailable_content: Moderoidut palvelimet
     unavailable_content_description:
       domain: Palvelin
@@ -759,9 +746,6 @@ fi:
         closed_message:
           desc_html: Näytetään etusivulla, kun rekisteröinti on suljettu. HTML-tagit käytössä
           title: Viesti, kun rekisteröinti on suljettu
-        deletion:
-          desc_html: Salli jokaisen poistaa oma tilinsä
-          title: Avoin tilin poisto
         require_invite_text:
           desc_html: Kun rekisteröinnit edellyttävät manuaalista hyväksyntää, tee “Miksi haluat liittyä?” teksti pakolliseksi eikä valinnaiseksi
           title: Vaadi uusia käyttäjiä antamaan liittymisen syy
@@ -1027,7 +1011,6 @@ fi:
       redirecting_to: Tilisi ei ole aktiivinen, koska se ohjaa tällä hetkellä kohteeseen %{acct}.
       view_strikes: Näytä tiliäsi koskevia aiempia varoituksia
     too_fast: Lomake lähetettiin liian nopeasti, yritä uudelleen.
-    trouble_logging_in: Ongelmia kirjautumisessa?
     use_security_key: Käytä suojausavainta
   authorize_follow:
     already_following: Sinä seuraat jo tätä tiliä
