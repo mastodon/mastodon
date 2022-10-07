@@ -2283,7 +2283,8 @@ $ui-header-height: 55px;
 
   > .scrollable {
     background: $ui-base-color;
-    border-radius: 0 0 4px 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 }
 
@@ -8223,6 +8224,91 @@ noscript {
     .button {
       background: $valid-value-color;
       transition: none;
+    }
+  }
+}
+
+.privacy-policy {
+  background: $ui-base-color;
+  padding: 20px;
+
+  @media screen and (min-width: $no-gap-breakpoint) {
+    border-radius: 4px;
+  }
+
+  &__body {
+    margin-top: 20px;
+    color: $secondary-text-color;
+    font-size: 15px;
+    line-height: 22px;
+
+    h1,
+    p,
+    ul,
+    ol {
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: disc;
+    }
+
+    ol {
+      list-style: decimal;
+    }
+
+    ul,
+    ol {
+      padding-left: 1em;
+    }
+
+    li {
+      margin-bottom: 10px;
+
+      &::marker {
+        color: $darker-text-color;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    h1 {
+      color: $primary-text-color;
+      font-size: 19px;
+      line-height: 24px;
+      font-weight: 700;
+      margin-top: 30px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+    strong {
+      font-weight: 700;
+      color: $primary-text-color;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    a {
+      color: $highlight-text-color;
+      text-decoration: underline;
+
+      &:focus,
+      &:hover,
+      &:active {
+        text-decoration: none;
+      }
+    }
+
+    hr {
+      border: 1px solid lighten($ui-base-color, 4%);
+      margin: 30px 0;
     }
   }
 }

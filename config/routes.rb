@@ -486,8 +486,9 @@ Rails.application.routes.draw do
 
       resource :instance, only: [:show] do
         resources :peers, only: [:index], controller: 'instances/peers'
-        resource :activity, only: [:show], controller: 'instances/activity'
         resources :rules, only: [:index], controller: 'instances/rules'
+        resource :privacy_policy, only: [:show], controller: 'instances/privacy_policies'
+        resource :activity, only: [:show], controller: 'instances/activity'
       end
 
       resource :domain_blocks, only: [:show, :create, :destroy]
