@@ -180,6 +180,7 @@ class Status extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -228,10 +229,21 @@ class Status extends ImmutablePureComponent {
   }
 
   handleFavouriteClick = (status) => {
-    if (status.get('favourited')) {
-      this.props.dispatch(unfavourite(status));
+    const { dispatch } = this.props;
+    const { signedIn } = this.context.identity;
+
+    if (signedIn) {
+      if (status.get('favourited')) {
+        dispatch(unfavourite(status));
+      } else {
+        dispatch(favourite(status));
+      }
     } else {
-      this.props.dispatch(favourite(status));
+      dispatch(openModal('INTERACTION', {
+        type: 'favourite',
+        accountId: status.getIn(['account', 'id']),
+        url: status.get('url'),
+      }));
     }
   }
 
@@ -244,15 +256,25 @@ class Status extends ImmutablePureComponent {
   }
 
   handleReplyClick = (status) => {
-    let { askReplyConfirmation, dispatch, intl } = this.props;
-    if (askReplyConfirmation) {
-      dispatch(openModal('CONFIRM', {
-        message: intl.formatMessage(messages.replyMessage),
-        confirm: intl.formatMessage(messages.replyConfirm),
-        onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
-      }));
+    const { askReplyConfirmation, dispatch, intl } = this.props;
+    const { signedIn } = this.context.identity;
+
+    if (signedIn) {
+      if (askReplyConfirmation) {
+        dispatch(openModal('CONFIRM', {
+          message: intl.formatMessage(messages.replyMessage),
+          confirm: intl.formatMessage(messages.replyConfirm),
+          onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+        }));
+      } else {
+        dispatch(replyCompose(status, this.context.router.history));
+      }
     } else {
-      dispatch(replyCompose(status, this.context.router.history));
+      dispatch(openModal('INTERACTION', {
+        type: 'reply',
+        accountId: status.getIn(['account', 'id']),
+        url: status.get('url'),
+      }));
     }
   }
 
@@ -261,14 +283,25 @@ class Status extends ImmutablePureComponent {
   }
 
   handleReblogClick = (status, e) => {
-    if (status.get('reblogged')) {
-      this.props.dispatch(unreblog(status));
-    } else {
-      if ((e && e.shiftKey) || !boostModal) {
-        this.handleModalReblog(status);
+    const { dispatch } = this.props;
+    const { signedIn } = this.context.identity;
+
+    if (signedIn) {
+      if (status.get('reblogged')) {
+        dispatch(unreblog(status));
       } else {
-        this.props.dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));
+        if ((e && e.shiftKey) || !boostModal) {
+          this.handleModalReblog(status);
+        } else {
+          dispatch(initBoostModal({ status, onReblog: this.handleModalReblog }));
+        }
       }
+    } else {
+      dispatch(openModal('INTERACTION', {
+        type: 'reblog',
+        accountId: status.getIn(['account', 'id']),
+        url: status.get('url'),
+      }));
     }
   }
 

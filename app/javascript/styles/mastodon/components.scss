@@ -4899,6 +4899,7 @@ a.status-card.compact:hover {
   left: 0;
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8103,5 +8104,125 @@ noscript {
 
   .spacer {
     margin: 10px 0;
+  }
+}
+
+.interaction-modal {
+  max-width: 90vw;
+  width: 600px;
+  background: $ui-base-color;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  padding: 20px;
+
+  h3 {
+    font-size: 22px;
+    line-height: 33px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__icon {
+    color: $highlight-text-color;
+    margin: 0 5px;
+  }
+
+  &__lead {
+    padding: 20px;
+    text-align: center;
+
+    h3 {
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 22px;
+      color: $darker-text-color;
+    }
+  }
+
+  &__choices {
+    display: flex;
+
+    &__choice {
+      flex: 0 0 auto;
+      width: 50%;
+      box-sizing: border-box;
+      padding: 20px;
+
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: $darker-text-color;
+        margin-bottom: 20px;
+      }
+
+      .button {
+        margin-bottom: 10px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $no-gap-breakpoint - 1px) {
+    &__choices {
+      display: block;
+
+      &__choice {
+        width: auto;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+.copypaste {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  input {
+    display: block;
+    font-family: inherit;
+    background: darken($ui-base-color, 8%);
+    border: 1px solid $highlight-text-color;
+    color: $darker-text-color;
+    border-radius: 4px;
+    padding: 6px 9px;
+    line-height: 22px;
+    font-size: 14px;
+    transition: border-color 300ms linear;
+    flex: 1 1 auto;
+    overflow: hidden;
+
+    &:focus {
+      outline: 0;
+      background: darken($ui-base-color, 4%);
+    }
+  }
+
+  .button {
+    flex: 0 0 auto;
+    transition: background 300ms linear;
+  }
+
+  &.copied {
+    input {
+      border: 1px solid $valid-value-color;
+      transition: none;
+    }
+
+    .button {
+      background: $valid-value-color;
+      transition: none;
+    }
   }
 }

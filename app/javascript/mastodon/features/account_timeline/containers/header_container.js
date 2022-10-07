@@ -57,6 +57,14 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
+  onInteractionModal (account) {
+    dispatch(openModal('INTERACTION', {
+      type: 'follow',
+      accountId: account.get('id'),
+      url: account.get('url'),
+    }));
+  },
+
   onBlock (account) {
     if (account.getIn(['relationship', 'blocking'])) {
       dispatch(unblockAccount(account.get('id')));

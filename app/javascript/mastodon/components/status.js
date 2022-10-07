@@ -86,6 +86,7 @@ class Status extends ImmutablePureComponent {
     onToggleHidden: PropTypes.func,
     onToggleCollapsed: PropTypes.func,
     onTranslate: PropTypes.func,
+    onInteractionModal: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
