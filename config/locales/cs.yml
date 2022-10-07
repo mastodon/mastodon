@@ -1035,6 +1035,7 @@ cs:
     migrate_account: Přesunout se na jiný účet
     migrate_account_html: Zde můžete <a href="%{path}">nastavit přesměrování tohoto účtu na jiný</a>.
     or_log_in_with: Nebo se přihlaste pomocí
+    privacy_policy_agreement_html: Četl jsem a souhlasím se zásadami <a href="%{privacy_policy_path}" target="_blank">ochrany osobních údajů</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1042,6 +1043,9 @@ cs:
     registration_closed: "%{instance} nepřijímá nové členy"
     resend_confirmation: Znovu odeslat pokyny pro potvrzení
     reset_password: Obnovit heslo
+    rules:
+      preamble: Tohle nastavují a prosazují moderátoři %{domain}.
+      title: Některá základní pravidla.
     security: Zabezpečení
     set_new_password: Nastavit nové heslo
     setup:
@@ -1805,8 +1809,10 @@ cs:
         suspend: Účet pozastaven
     welcome:
       edit_profile_action: Nastavit profil
+      edit_profile_step: Váš profil si můžete přizpůsobit nahráním profilového obrázku, změnou zobrazovaného jména a dalším. Můžete se přihlásit k přezkoumání nových následovatelů, než vás budou moci následovat.
       explanation: Zde je pár tipů do začátku
       final_action: Začít psát
+      final_step: 'Začněte psát příspěvky! I bez sledujících mohou vaše veřejné příspěvky vidět ostatní, například na místní časové ose nebo v hashtagu. Možná se budete chtít představit na hashtagu #představení.'
       full_handle: Vaše celá adresa profilu
       full_handle_hint: Tohle je, co byste řekli svým přátelům, aby vám mohli posílat zprávy nebo vás sledovat z jiného serveru.
       subject: Vítejte na Mastodonu
