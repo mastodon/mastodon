@@ -20,7 +20,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  rules: state.get('rules'),
+  rules: state.getIn(['server', 'rules']),
 });
 
 export default @connect(mapStateToProps)
