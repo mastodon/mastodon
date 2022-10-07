@@ -230,6 +230,7 @@ pl:
         confirm_user: Potwierdź użytkownika
         create_account_warning: Utwórz ostrzeżenie
         create_announcement: Utwórz ogłoszenie
+        create_canonical_email_block: Utwórz blokadę e-mail
         create_custom_emoji: Utwórz niestandardowe emoji
         create_domain_allow: Utwórz zezwolenie dla domeny
         create_domain_block: Utwórz blokadę domeny
@@ -239,6 +240,7 @@ pl:
         create_user_role: Utwórz rolę
         demote_user: Zdegraduj użytkownika
         destroy_announcement: Usuń ogłoszenie
+        destroy_canonical_email_block: Usuń blokadę e-mail
         destroy_custom_emoji: Usuń niestandardowe emoji
         destroy_domain_allow: Usuń zezwolenie dla domeny
         destroy_domain_block: Usuń blokadę domeny
@@ -1019,6 +1021,7 @@ pl:
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
     your_token: Twój token dostępu
   auth:
+    apply_for_account: Dodaj na listę oczekujących
     change_password: Hasło
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
@@ -1038,6 +1041,7 @@ pl:
     migrate_account: Przenieś konto
     migrate_account_html: Jeżeli chcesz skonfigurować przekierowanie z obecnego konta na inne, możesz <a href="%{path}">zrobić to tutaj</a>.
     or_log_in_with: Lub zaloguj się z użyciem
+    privacy_policy_agreement_html: Przeczytałem/am i akceptuję <a href="%{privacy_policy_path}" target="_blank">politykę prywatności</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1045,12 +1049,17 @@ pl:
     registration_closed: "%{instance} nie przyjmuje nowych członków"
     resend_confirmation: Ponownie prześlij instrukcje weryfikacji
     reset_password: Zresetuj hasło
+    rules:
+      preamble: Są one ustawione i wymuszone przez moderatorów %{domain}.
+      title: Kilka podstawowych zasad.
     security: Bezpieczeństwo
     set_new_password: Ustaw nowe hasło
     setup:
       email_below_hint_html: Jeżeli poniższy adres e-mail jest nieprawidłowy, możesz zmienić go tutaj i otrzymać nowy e-mail potwierdzający.
       email_settings_hint_html: E-mail potwierdzający został wysłany na %{email}. Jeżeli adres e-mail nie jest prawidłowy, możesz zmienić go w ustawieniach konta.
       title: Konfiguracja
+    sign_up:
+      preamble: Z kontem na tym serwerze Mastodon będziesz mógł obserwować każdą inną osobę w sieci, niezależnie od miejsca przechowywania ich konta.
     status:
       account_status: Stan konta
       confirming: Oczekiwanie na potwierdzenie adresu e-mail.
