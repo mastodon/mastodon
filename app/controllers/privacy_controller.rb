@@ -3,6 +3,8 @@
 class PrivacyController < ApplicationController
   layout 'public'
 
+  before_action :set_pack
+
   before_action :set_instance_presenter
   before_action :set_expires_in
 
@@ -11,6 +13,10 @@ class PrivacyController < ApplicationController
   def show; end
 
   private
+
+  def set_pack
+    use_pack 'public'
+  end
 
   def set_instance_presenter
     @instance_presenter = InstancePresenter.new
