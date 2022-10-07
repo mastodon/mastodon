@@ -984,6 +984,7 @@ hu:
     warning: Ez érzékeny adat. Soha ne oszd meg másokkal!
     your_token: Hozzáférési kulcsod
   auth:
+    apply_for_account: Felkerülés a várólistára
     change_password: Jelszó
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
@@ -1003,6 +1004,7 @@ hu:
     migrate_account: Felhasználói fiók költöztetése
     migrate_account_html: Ha szeretnéd átirányítani ezt a fiókodat egy másikra, a beállításokat <a href="%{path}">itt találod meg</a>.
     or_log_in_with: Vagy jelentkezz be ezzel
+    privacy_policy_agreement_html: Elolvastam és egyetértek az <a href="%{privacy_policy_path}" target="_blank">adatvédemi nyilatkozattal</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1010,6 +1012,9 @@ hu:
     registration_closed: "%{instance} nem fogad új tagokat"
     resend_confirmation: Megerősítési lépések újraküldése
     reset_password: Jelszó visszaállítása
+    rules:
+      preamble: Ezeket a(z) %{domain} moderátorai adjak meg és tartatják be.
+      title: Néhány alapszabály.
     security: Biztonság
     set_new_password: Új jelszó beállítása
     setup:
@@ -1765,6 +1770,7 @@ hu:
         suspend: Felfüggesztett fiók
     welcome:
       edit_profile_action: Készítsd el profilod
+      edit_profile_step: Testreszabhatod a profilod egy profilkép feltöltésével, a megjelenített neved megváltoztatásával és így tovább. Bekapcsolhatod az új követőid jóváhagyását, mielőtt követhetnek.
       explanation: Néhány tipp a kezdeti lépésekhez
       final_action: Kezdj bejegyzéseket írni
       final_step: 'Kezdj tülkölni! A nyilvános bejegyzéseid még követők híján is megjelennek másoknak, például a helyi idővonalon vagy a hashtageknél. Kezdd azzal, hogy bemutatkozol a #bemutatkozas vagy az #introductions hashtag használatával.'
