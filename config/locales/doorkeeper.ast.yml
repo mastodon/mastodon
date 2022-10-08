@@ -1,4 +1,3 @@
----
 ast:
   activerecord:
     attributes:
@@ -23,14 +22,14 @@ ast:
         edit: Editar
         submit: Unviar
       confirmations:
-        destroy: "¿De xuru?"
+        destroy: '¿De xuru?'
       form:
-        error: "¡Meca! Comprueba los fallos posibles del formulariu"
+        error: '¡Meca! Comprueba los fallos posibles del formulariu'
       help:
         native_redirect_uri: Usa %{native_redirect_uri} pa pruebes llocales
         redirect_uri: Usa una llinia per URI
       index:
-        empty: Nun tienes aplicaciones.
+        empty: Nun tienes nenguna aplicación.
         name: Nome
         new: Aplicación nueva
         scopes: Ámbitos
@@ -52,7 +51,7 @@ ast:
       buttons:
         revoke: Revocar
       confirmations:
-        revoke: "¿De xuru?"
+        revoke: '¿De xuru?'
       index:
         scopes: Permisos
         title: Les aplicaciones qu'autoricesti
@@ -66,7 +65,7 @@ ast:
         server_error: El sirvidor d'autorizaciones alcontró una condición inesperada qu'evitó que cumpliera la solicitú.
         temporarily_unavailable: Anguaño'l sirvidor d'autorizaciones nun ye a remanar la solicitú pola mor d'una sobrecarga temporal o caltenimientu del sirvidor.
         unauthorized_client: El veceru nun ta autorizáu pa facer esta solicitú usando esti métodu.
-        unsupported_response_type: El sirvidor d'autorización nun sofita esta triba de rempuesta.
+        unsupported_response_type: El sirvidor d'autorización nun ye compatible con esti tipu de respuesta.
     grouped_scopes:
       title:
         notifications: Avisos
@@ -76,32 +75,32 @@ ast:
           applications: Aplicaciones
           oauth2_provider: Fornidor d'OAuth2
     scopes:
-      admin:read: lleer tolos datos del sirvidor
-      admin:read:accounts: lleer la información sensible de toles cuentes
-      admin:read:reports: lleer la información sensible de tolos informes y cuentes informaes
-      admin:write: modificar tolos datos del sirvidor
+      "admin:read": lleer tolos datos del sirvidor
+      "admin:read:accounts": lleer la información sensible de toles cuentes
+      "admin:read:reports": lleer la información sensible de tolos informes y cuentes informaes
+      "admin:write": modificar tolos datos del sirvidor
       read: lleer tolos datos de la to cuenta
-      read:accounts: ver información de cuentes
-      read:blocks: ver quién bloquies
-      read:bookmarks: ver los tos marcadores
-      read:favourites: ver los tos favoritos
-      read:filters: ver les tos peñeres
-      read:follows: ver quién sigues
-      read:lists: ver les tos llistes
-      read:mutes: ver quién silencies
-      read:notifications: ver los tos avisos
-      read:reports: ver los tos informes
-      read:statuses: ver tolos estaos
+      "read:accounts": ver información de cuentes
+      "read:blocks": ver quién bloquies
+      "read:bookmarks": ver los tos marcadores
+      "read:favourites": ver los tos favoritos
+      "read:filters": ver les tos peñeres
+      "read:follows": ver quién sigues
+      "read:lists": ver les tos llistes
+      "read:mutes": ver quién silencies
+      "read:notifications": ver los tos avisos
+      "read:reports": ver los tos informes
+      "read:statuses": ver tolos estaos
       write: modificar los datos de la to cuenta
-      write:accounts: modificar el to perfil
-      write:blocks: bloquiar cuentes y dominios
-      write:bookmarks: amestar estaos a Marcadores
-      write:favourites: marcar estaos como favoritos
-      write:filters: crear peñeres
-      write:follows: siguir a xente
-      write:lists: crear llistes
-      write:media: xubir ficheros multimedia
-      write:mutes: silenciar xente y conversaciones
-      write:notifications: llimpiar los tos avisos
-      write:reports: informar d'otres persones
-      write:statuses: espublizar estaos
+      "write:accounts": modificar el to perfil
+      "write:blocks": bloquiar cuentes y dominios
+      "write:bookmarks": amestar estaos a Marcadores
+      "write:favourites": marcar estaos como favoritos
+      "write:filters": crear peñeres
+      "write:follows": siguir a xente
+      "write:lists": crear llistes
+      "write:media": xubir ficheros multimedia
+      "write:mutes": silenciar xente y conversaciones
+      "write:notifications": llimpiar los tos avisos
+      "write:reports": informar d'otres persones
+      "write:statuses": espublizar estaos
