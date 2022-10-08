@@ -1,14 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, Link } from 'react-router-dom';
+import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { Link, NavLink } from 'react-router-dom';
 import Icon from 'mastodon/components/icon';
-import { showTrends } from 'mastodon/initial_state';
-import NotificationsCounterIcon from './notifications_counter_icon';
+import Logo from 'mastodon/components/logo';
+import TrendsContainer from 'mastodon/features/getting_started/containers/trends_container';
+import { showTrends, timelinePreview } from 'mastodon/initial_state';
 import FollowRequestsNavLink from './follow_requests_nav_link';
 import ListPanel from './list_panel';
-import TrendsContainer from 'mastodon/features/getting_started/containers/trends_container';
-import Logo from 'mastodon/components/logo';
+import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
 
 export default class NavigationPanel extends React.Component {
@@ -37,8 +37,12 @@ export default class NavigationPanel extends React.Component {
         )}
 
         <NavLink className='column-link column-link--transparent' to='/explore' data-preview-title-id='explore.title' data-preview-icon='hashtag'><Icon className='column-link__icon' id='hashtag' fixedWidth /><FormattedMessage id='explore.title' defaultMessage='Explore' /></NavLink>
-        <NavLink className='column-link column-link--transparent' to='/public/local' data-preview-title-id='column.community' data-preview-icon='users' ><Icon className='column-link__icon' id='users' fixedWidth /><FormattedMessage id='tabs_bar.local_timeline' defaultMessage='Local' /></NavLink>
-        <NavLink className='column-link column-link--transparent' exact to='/public' data-preview-title-id='column.public' data-preview-icon='globe' ><Icon className='column-link__icon' id='globe' fixedWidth /><FormattedMessage id='tabs_bar.federated_timeline' defaultMessage='Federated' /></NavLink>
+        {signedIn || timelinePreview && (
+          <>
+            <NavLink className='column-link column-link--transparent' to='/public/local' data-preview-title-id='column.community' data-preview-icon='users' ><Icon className='column-link__icon' id='users' fixedWidth /><FormattedMessage id='tabs_bar.local_timeline' defaultMessage='Local' /></NavLink>
+            <NavLink className='column-link column-link--transparent' exact to='/public' data-preview-title-id='column.public' data-preview-icon='globe' ><Icon className='column-link__icon' id='globe' fixedWidth /><FormattedMessage id='tabs_bar.federated_timeline' defaultMessage='Federated' /></NavLink>
+          </>
+        )}
 
         {!signedIn && (
           <div className='navigation-panel__sign-in-banner'>
