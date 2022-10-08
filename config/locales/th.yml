@@ -28,6 +28,7 @@ th:
     learn_more: เรียนรู้เพิ่มเติม
     logged_in_as_html: คุณกำลังเข้าสู่ระบบเป็น %{username} ในปัจจุบัน
     logout_before_registering: คุณได้เข้าสู่ระบบอยู่แล้ว
+    privacy_policy: นโยบายความเป็นส่วนตัว
     rules: กฎของเซิร์ฟเวอร์
     rules_html: 'ด้านล่างคือข้อมูลสรุปของกฎที่คุณจำเป็นต้องปฏิบัติตามหากคุณต้องการมีบัญชีในเซิร์ฟเวอร์ Mastodon นี้:'
     see_whats_happening: ดูสิ่งที่กำลังเกิดขึ้น
@@ -766,6 +767,9 @@ th:
       site_short_description:
         desc_html: แสดงในแถบข้างและแท็กเมตา อธิบายว่า Mastodon คืออะไรและสิ่งที่ทำให้เซิร์ฟเวอร์นี้พิเศษในย่อหน้าเดียว
         title: คำอธิบายเซิร์ฟเวอร์แบบสั้น
+      site_terms:
+        desc_html: คุณสามารถเขียนนโยบายความเป็นส่วนตัวของคุณเอง คุณสามารถใช้แท็ก HTML
+        title: นโยบายความเป็นส่วนตัวที่กำหนดเอง
       site_title: ชื่อเซิร์ฟเวอร์
       thumbnail:
         desc_html: ใช้สำหรับการแสดงตัวอย่างผ่าน OpenGraph และ API 1200x630px ที่แนะนำ
@@ -1531,6 +1535,8 @@ th:
     sensitive_content: เนื้อหาที่ละเอียดอ่อน
   tags:
     does_not_match_previous_name: ไม่ตรงกับชื่อก่อนหน้านี้
+  terms:
+    title: นโยบายความเป็นส่วนตัวของ %{instance}
   themes:
     contrast: Mastodon (ความคมชัดสูง)
     default: Mastodon (มืด)
