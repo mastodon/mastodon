@@ -2380,6 +2380,75 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Copied",
+        "id": "copypaste.copied"
+      },
+      {
+        "defaultMessage": "Copy",
+        "id": "copypaste.copy"
+      },
+      {
+        "defaultMessage": "Reply to {name}'s post",
+        "id": "interaction_modal.title.reply"
+      },
+      {
+        "defaultMessage": "With an account on Mastodon, you can respond to this post.",
+        "id": "interaction_modal.description.reply"
+      },
+      {
+        "defaultMessage": "Boost {name}'s post",
+        "id": "interaction_modal.title.reblog"
+      },
+      {
+        "defaultMessage": "With an account on Mastodon, you can boost this post to share it with your own followers.",
+        "id": "interaction_modal.description.reblog"
+      },
+      {
+        "defaultMessage": "Favourite {name}'s post",
+        "id": "interaction_modal.title.favourite"
+      },
+      {
+        "defaultMessage": "With an account on Mastodon, you can favourite this post to let the author know you appreciate it and save it for later.",
+        "id": "interaction_modal.description.favourite"
+      },
+      {
+        "defaultMessage": "Follow {name}",
+        "id": "interaction_modal.title.follow"
+      },
+      {
+        "defaultMessage": "With an account on Mastodon, you can follow {name} to receive their posts in your home feed.",
+        "id": "interaction_modal.description.follow"
+      },
+      {
+        "defaultMessage": "Since Mastodon is decentralized, you can use your existing account hosted by another Mastodon server or compatible platform if you don't have an account on this one.",
+        "id": "interaction_modal.preamble"
+      },
+      {
+        "defaultMessage": "On this server",
+        "id": "interaction_modal.on_this_server"
+      },
+      {
+        "defaultMessage": "Sign in",
+        "id": "sign_in_banner.sign_in"
+      },
+      {
+        "defaultMessage": "Create account",
+        "id": "sign_in_banner.create_account"
+      },
+      {
+        "defaultMessage": "On a different server",
+        "id": "interaction_modal.on_another_server"
+      },
+      {
+        "defaultMessage": "Simply copy and paste this URL into the search bar of your favourite app or the web interface where you are signed in.",
+        "id": "interaction_modal.other_server_instructions"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/interaction_modal/index.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Keyboard Shortcuts",
         "id": "keyboard_shortcuts.heading"
       },
@@ -2986,6 +3055,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/pinned_statuses/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Privacy Policy",
+        "id": "privacy_policy.title"
+      },
+      {
+        "defaultMessage": "Last updated {date}",
+        "id": "privacy_policy.last_updated"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/privacy_policy/index.json"
   },
   {
     "descriptors": [
