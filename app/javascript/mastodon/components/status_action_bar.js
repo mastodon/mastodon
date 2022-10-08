@@ -82,6 +82,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onBookmark: PropTypes.func,
     onFilter: PropTypes.func,
     onAddFilter: PropTypes.func,
+    onInteractionModal: PropTypes.func,
     withDismiss: PropTypes.bool,
     withCounters: PropTypes.bool,
     scrollKey: PropTypes.string,
@@ -97,10 +98,12 @@ class StatusActionBar extends ImmutablePureComponent {
   ]
 
   handleReplyClick = () => {
-    if (me) {
+    const { signedIn } = this.context.identity;
+
+    if (signedIn) {
       this.props.onReply(this.props.status, this.context.router.history);
     } else {
-      this._openInteractionDialog('reply');
+      this.props.onInteractionModal('reply', this.props.status);
     }
   }
 
@@ -114,23 +117,23 @@ class StatusActionBar extends ImmutablePureComponent {
   }
 
   handleFavouriteClick = () => {
-    if (me) {
+    const { signedIn } = this.context.identity;
+
+    if (signedIn) {
       this.props.onFavourite(this.props.status);
     } else {
-      this._openInteractionDialog('favourite');
+      this.props.onInteractionModal('favourite', this.props.status);
     }
   }
 
   handleReblogClick = e => {
-    if (me) {
+    const { signedIn } = this.context.identity;
+
+    if (signedIn) {
       this.props.onReblog(this.props.status, e);
     } else {
-      this._openInteractionDialog('reblog');
+      this.props.onInteractionModal('reblog', this.props.status);
     }
-  }
-
-  _openInteractionDialog = type => {
-    window.open(`/interact/${this.props.status.get('id')}?type=${type}`, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
   }
 
   handleBookmarkClick = () => {

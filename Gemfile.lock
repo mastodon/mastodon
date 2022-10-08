@@ -402,7 +402,6 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
     minitest (5.16.3)
     msgpack (1.5.4)
     multi_json (1.15.0)
@@ -412,8 +411,7 @@ GEM
       net-ssh (>= 2.6.5, < 8.0.0)
     net-ssh (7.0.1)
     nio4r (2.5.8)
-    nokogiri (1.13.8)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
     nsa (0.2.8)
       activesupport (>= 4.2, < 7)
@@ -539,6 +537,7 @@ GEM
       link_header (~> 0.0, >= 0.0.8)
     rdf-normalize (0.5.0)
       rdf (~> 3.2)
+    redcarpet (3.5.1)
     redis (4.5.1)
     redis-namespace (1.9.0)
       redis (>= 4)
@@ -727,7 +726,7 @@ GEM
     zeitwerk (2.6.0)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers (~> 0.10)
@@ -819,6 +818,7 @@ DEPENDENCIES
   rails-i18n (~> 6.0)
   rails-settings-cached (~> 0.6)
   rdf-normalize (~> 0.5)
+  redcarpet (~> 3.5)
   redis (~> 4.5)
   redis-namespace (~> 1.9)
   rexml (~> 3.2)

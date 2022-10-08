@@ -6,9 +6,10 @@ code {
 }
 
 .form-container {
-  max-width: 400px;
+  max-width: 450px;
   padding: 20px;
-  margin: 0 auto;
+  padding-bottom: 50px;
+  margin: 50px auto;
 }
 
 .indicator-icon {
@@ -124,11 +125,32 @@ code {
   }
 
   .title {
-    color: #d9e1e8;
-    font-size: 20px;
-    line-height: 28px;
-    font-weight: 400;
+    font-size: 28px;
+    line-height: 33px;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+
+  .lead {
+    font-size: 17px;
+    line-height: 22px;
+    color: $secondary-text-color;
     margin-bottom: 30px;
+  }
+
+  .rules-list {
+    list-style: decimal;
+    font-size: 17px;
+    line-height: 22px;
+    font-weight: 500;
+    background: transparent;
+    border: 0;
+    padding: 0.5em 1em !important;
+    margin-bottom: 30px;
+
+    li {
+      border-color: lighten($ui-base-color, 8%);
+    }
   }
 
   .hint {
@@ -461,6 +483,11 @@ code {
     }
   }
 
+  .stacked-actions {
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+
   button,
   .button,
   .block-button {
@@ -509,6 +536,16 @@ code {
       &:focus {
         background-color: darken($error-value-color, 5%);
       }
+    }
+  }
+
+  .button.button-tertiary {
+    padding: 9px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      padding: 10px;
     }
   }
 

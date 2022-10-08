@@ -96,6 +96,7 @@ class Header extends ImmutablePureComponent {
     onAddToList: PropTypes.func.isRequired,
     onEditAccountNote: PropTypes.func.isRequired,
     onChangeLanguages: PropTypes.func.isRequired,
+    onInteractionModal: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
@@ -177,7 +178,7 @@ class Header extends ImmutablePureComponent {
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button className={classNames('logo-button', { 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={signedIn ? this.props.onFollow : undefined} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }

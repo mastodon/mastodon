@@ -486,8 +486,9 @@ Rails.application.routes.draw do
 
       resource :instance, only: [:show] do
         resources :peers, only: [:index], controller: 'instances/peers'
-        resource :activity, only: [:show], controller: 'instances/activity'
         resources :rules, only: [:index], controller: 'instances/rules'
+        resource :privacy_policy, only: [:show], controller: 'instances/privacy_policies'
+        resource :activity, only: [:show], controller: 'instances/activity'
       end
 
       resource :domain_blocks, only: [:show, :create, :destroy]
@@ -641,7 +642,7 @@ Rails.application.routes.draw do
 
   get '/web/(*any)', to: 'home#index', as: :web
 
-  get '/about',        to: 'about#show'
+  get '/about',        to: redirect('/')
   get '/about/more',   to: 'about#more'
 
   get '/privacy-policy', to: 'privacy#show', as: :privacy_policy
