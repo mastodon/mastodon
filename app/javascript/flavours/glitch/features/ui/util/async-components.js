@@ -185,3 +185,7 @@ export function Explore () {
 export function About () {
   return import(/*webpackChunkName: "features/glitch/async/about" */'flavours/glitch/features/about');
 }
+
+export function PrivacyPolicy () {
+  return import(/*webpackChunkName: "features/glitch/async/privacy_policy" */'flavours/glitch/features/privacy_policy');
+}
