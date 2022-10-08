@@ -28,6 +28,7 @@ de:
     learn_more: Mehr erfahren
     logged_in_as_html: Du bist derzeit als %{username} eingeloggt.
     logout_before_registering: Du bist bereits angemeldet.
+    privacy_policy: Datenschutzerklärung
     rules: Server-Regeln
     rules_html: 'Unten ist eine Zusammenfassung der Regeln, denen du folgen musst, wenn du ein Konto auf diesem Mastodon-Server haben möchtest:'
     see_whats_happening: Finde heraus, was gerade in der Welt los ist
@@ -794,6 +795,9 @@ de:
       site_short_description:
         desc_html: Wird in der Seitenleiste und in Meta-Tags angezeigt. Beschreibe in einem einzigen Abschnitt, was Mastodon ist und was diesen Server von anderen unterscheidet. Falls leer, wird die Server-Beschreibung verwendet.
         title: Kurze Beschreibung des Servers
+      site_terms:
+        desc_html: Sie können Ihre eigenen Datenschutzrichtlinien schreiben. Sie können HTML-Tags verwenden
+        title: Benutzerdefinierte Datenschutzerklärung
       site_title: Name des Servers
       thumbnail:
         desc_html: Wird für die Vorschau via OpenGraph und API verwendet. 1200×630 px wird empfohlen
@@ -1682,6 +1686,7 @@ de:
       <p>Dies ist eine Übersetzung, Irrtümer und Übersetzungsfehler vorbehalten. Im Zweifelsfall gilt die englische Originalversion.</p>
       <p>Dieses Dokument ist CC-BY-SA. Es wurde zuletzt aktualisiert am 26. Mai 2022.</p>
       <p>Ursprünglich übernommen von der <a href="https://github.com/discourse/discourse">Discourse-Datenschutzerklärung</a>.</p>
+    title: "%{instance} Datenschutzerklärung"
   themes:
     contrast: Mastodon (Hoher Kontrast)
     default: Mastodon (Dunkel)
