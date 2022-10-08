@@ -1,9 +1,4 @@
 - content_for :page_title do
-  = t('terms.title', instance: site_hostname)
+  = t('privacy_policy.title')
 
-.grid
-  .column-0
-    .box-widget
-      .rich-formatting= @instance_presenter.privacy_policy.html_safe.presence || t('terms.body_html')
-  .column-1
-    = render 'application/sidebar'
+= render 'shared/web_app'

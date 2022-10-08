@@ -169,3 +169,7 @@ export function FilterModal () {
 export function About () {
   return import(/*webpackChunkName: "features/about" */'../../about');
 }
+
+export function PrivacyPolicy () {
+  return import(/*webpackChunkName: "features/privacy_policy" */'../../privacy_policy');
+}
