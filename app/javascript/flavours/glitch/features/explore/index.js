@@ -11,6 +11,7 @@ import Statuses from './statuses';
 import Suggestions from './suggestions';
 import Search from 'flavours/glitch/features/compose/containers/search_container';
 import SearchResults from './results';
+import { showTrends } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },
@@ -19,7 +20,7 @@ const messages = defineMessages({
 
 const mapStateToProps = state => ({
   layout: state.getIn(['meta', 'layout']),
-  isSearching: state.getIn(['search', 'submitted']),
+  isSearching: state.getIn(['search', 'submitted']) || !showTrends,
 });
 
 export default @connect(mapStateToProps)
