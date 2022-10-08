@@ -8312,3 +8312,28 @@ noscript {
     }
   }
 }
+
+.dismissable-banner {
+  background: $ui-base-color;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  &__message {
+    flex: 1 1 auto;
+    padding: 20px 15px;
+    cursor: default;
+    font-size: 14px;
+    line-height: 18px;
+    color: $primary-text-color;
+  }
+
+  &__action {
+    padding: 15px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

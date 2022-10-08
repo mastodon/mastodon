@@ -10,7 +10,8 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from '../../actions/streaming';
 import { Helmet } from 'react-helmet';
-import { title } from 'mastodon/initial_state';
+import { title, domain } from 'mastodon/initial_state';
+import DismissableBanner from 'mastodon/components/dismissable_banner';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
@@ -134,6 +135,10 @@ class CommunityTimeline extends React.PureComponent {
         >
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
+
+        <DismissableBanner id='community_timeline'>
+          <FormattedMessage id='dismissable_banner.community_timeline' defaultMessage='These are the most recent public posts from people whose accounts are hosted by {domain}.' values={{ domain }} />
+        </DismissableBanner>
 
         <StatusListContainer
           trackScroll={!pinned}
