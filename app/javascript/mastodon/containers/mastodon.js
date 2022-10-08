@@ -78,13 +78,15 @@ export default class Mastodon extends React.PureComponent {
       <IntlProvider locale={locale} messages={messages}>
         <ReduxProvider store={store}>
           <ErrorBoundary>
-            <BrowserRouter basename='/web'>
+            <BrowserRouter>
               <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
                 <Route path='/' component={UI} />
               </ScrollContext>
             </BrowserRouter>
 
-            <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
+            <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`}>
+              <meta name='robots' content='noindex' />
+            </Helmet>
           </ErrorBoundary>
         </ReduxProvider>
       </IntlProvider>

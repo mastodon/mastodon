@@ -51,6 +51,7 @@ class PrivacyPolicy extends React.PureComponent {
 
         <Helmet>
           <title>{intl.formatMessage(messages.title)}</title>
+          <meta name='robots' content='all' />
         </Helmet>
       </Column>
     );

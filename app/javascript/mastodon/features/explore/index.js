@@ -84,6 +84,7 @@ class Explore extends React.PureComponent {
 
               <Helmet>
                 <title>{intl.formatMessage(messages.title)}</title>
+                <meta name='robots' content={isSearching ? 'noindex' : 'all'} />
               </Helmet>
             </React.Fragment>
           )}

@@ -10,16 +10,15 @@ RSpec.describe TagsController, type: :controller do
     let!(:late)    { Fabricate(:status, tags: [tag], text: 'late #test') }
 
     context 'when tag exists' do
-      it 'redirects to web version' do
+      it 'returns http success' do
         get :show, params: { id: 'test', max_id: late.id }
-        expect(response).to redirect_to('/web/tags/test')
+        expect(response).to have_http_status(200)
       end
     end
 
     context 'when tag does not exist' do
-      it 'returns http missing for non-existent tag' do
+      it 'returns http not found' do
         get :show, params: { id: 'none' }
-
         expect(response).to have_http_status(404)
       end
     end

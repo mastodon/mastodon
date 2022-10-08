@@ -4,6 +4,7 @@ module WebAppControllerConcern
   extend ActiveSupport::Concern
 
   included do
+    before_action :redirect_unauthenticated_to_permalinks!
     before_action :set_body_classes
     before_action :set_referrer_policy_header
   end
@@ -14,5 +15,13 @@ module WebAppControllerConcern
 
   def set_referrer_policy_header
     response.headers['Referrer-Policy'] = 'origin'
+  end
+
+  def redirect_unauthenticated_to_permalinks!
+    return if user_signed_in?
+
+    redirect_path = PermalinkRedirector.new(request.path).redirect_path
+
+    redirect_to(redirect_path) if redirect_path.present?
   end
 end

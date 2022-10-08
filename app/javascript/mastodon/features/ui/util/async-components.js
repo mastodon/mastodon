@@ -166,6 +166,14 @@ export function FilterModal () {
   return import(/*webpackChunkName: "modals/filter_modal" */'../components/filter_modal');
 }
 
+export function InteractionModal () {
+  return import(/*webpackChunkName: "modals/interaction_modal" */'../../interaction_modal');
+}
+
+export function SubscribedLanguagesModal () {
+  return import(/*webpackChunkName: "modals/subscribed_languages_modal" */'../../subscribed_languages_modal');
+}
+
 export function About () {
   return import(/*webpackChunkName: "features/about" */'../../about');
 }

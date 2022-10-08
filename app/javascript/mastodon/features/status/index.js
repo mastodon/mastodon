@@ -586,6 +586,8 @@ class Status extends ImmutablePureComponent {
       descendants = <div>{this.renderChildren(descendantsIds)}</div>;
     }
 
+    const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
+
     const handlers = {
       moveUp: this.handleHotkeyMoveUp,
       moveDown: this.handleHotkeyMoveDown,
@@ -659,6 +661,7 @@ class Status extends ImmutablePureComponent {
 
         <Helmet>
           <title>{titleFromStatus(status)}</title>
+          <meta name='robots' content={isLocal ? 'all' : 'noindex'} />
         </Helmet>
       </Column>
     );
