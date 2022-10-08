@@ -96,6 +96,12 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   _subscribe (dispatch, id, tags = {}, local) {
+    const { signedIn } = this.context.identity;
+
+    if (!signedIn) {
+      return;
+    }
+
     let any  = (tags.any || []).map(tag => tag.value);
     let all  = (tags.all || []).map(tag => tag.value);
     let none = (tags.none || []).map(tag => tag.value);

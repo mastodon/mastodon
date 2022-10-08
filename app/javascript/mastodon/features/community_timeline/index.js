@@ -35,6 +35,7 @@ class CommunityTimeline extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static defaultProps = {
@@ -71,18 +72,30 @@ class CommunityTimeline extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch, onlyMedia } = this.props;
+    const { signedIn } = this.context.identity;
 
     dispatch(expandCommunityTimeline({ onlyMedia }));
-    this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+
+    if (signedIn) {
+      this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+    }
   }
 
   componentDidUpdate (prevProps) {
+    const { signedIn } = this.context.identity;
+
     if (prevProps.onlyMedia !== this.props.onlyMedia) {
       const { dispatch, onlyMedia } = this.props;
 
-      this.disconnect();
+      if (this.disconnect) {
+        this.disconnect();
+      }
+
       dispatch(expandCommunityTimeline({ onlyMedia }));
-      this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+
+      if (signedIn) {
+        this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+      }
     }
   }
 
