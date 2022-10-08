@@ -847,6 +847,7 @@ nl:
     migrate_account: Naar een ander account verhuizen
     migrate_account_html: Wanneer je dit account naar een ander account wilt doorverwijzen, kun je <a href="%{path}">dit hier instellen</a>.
     or_log_in_with: Of inloggen met
+    privacy_policy_agreement_html: Ik heb het <a href="%{privacy_policy_path}" target="_blank">privacybeleid</a> gelezen en ga daarmee akkoord
     providers:
       cas: CAS
       saml: SAML
@@ -854,12 +855,18 @@ nl:
     registration_closed: "%{instance} laat geen nieuwe gebruikers toe"
     resend_confirmation: Verstuur de bevestigingsinstructies nogmaals
     reset_password: Wachtwoord opnieuw instellen
+    rules:
+      preamble: Deze zijn vastgesteld en worden gehandhaafd door de moderatoren van %{domain}.
+      title: Enkele basisregels.
     security: Beveiliging
     set_new_password: Nieuw wachtwoord instellen
     setup:
       email_below_hint_html: Wanneer onderstaand e-mailadres niet klopt, kun je dat hier veranderen. Je ontvangt dan hierna een bevestigingsmail.
       email_settings_hint_html: De bevestigingsmail is verzonden naar %{email}. Wanneer dat e-mailadres niet klopt, kun je dat veranderen in je accountinstellingen.
       title: Instellen
+    sign_up:
+      preamble: Je kunt met een Mastodon-account iedereen in het netwerk volgen, ongeacht waar deze persoon een account heeft.
+      title: Laten we je account op %{domain} instellen.
     status:
       account_status: Accountstatus
       confirming: Aan het wachten totdat de e-mail is bevestigd.
@@ -1462,8 +1469,10 @@ nl:
         suspend: Account opgeschort
     welcome:
       edit_profile_action: Profiel instellen
+      edit_profile_step: Je kunt jouw profiel aanpassen door een profielafbeelding (avatar) te uploaden, jouw weergavenaam aan te passen en meer. Je kunt het handmatig goedkeuren van volgers instellen.
       explanation: Hier zijn enkele tips om je op weg te helpen
       final_action: Begin berichten te plaatsen
+      final_step: 'Begin berichten te plaatsen! Zelfs zonder volgers kunnen jouw openbare berichten door anderen bekeken worden, bijvoorbeeld op de lokale tijdlijn en onder hashtags. Je kunt jezelf voorstellen met het gebruik van de hashtag #introductions.'
       full_handle: Jouw volledige Mastodonadres
       full_handle_hint: Dit geef je aan jouw vrienden, zodat ze jouw berichten kunnen sturen of (vanaf een andere Mastodonserver) kunnen volgen.
       subject: Welkom op Mastodon
